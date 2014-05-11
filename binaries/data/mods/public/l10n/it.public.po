@@ -14,8 +14,8 @@
 # balzabalza <balzarotti.andrea@gmail.com>, 2013
 # chavo, 2014
 # chavo, 2014
-# Damtux <sun_lion@live.com>, 2013
-# Damtux <sun_lion@live.com>, 2013
+# Damtux, 2013
+# Damtux, 2013
 # eriol <eriol@mornie.org>, 2014
 # DSAureli <ds.aureli@gmail.com>, 2014
 # StErMi <stermi@gmail.com>, 2013
@@ -33,7 +33,7 @@
 # Raptor86 <raptor86@inwind.it>, 2014
 # Rivoltano, 2013
 # StErMi <stermi@gmail.com>, 2013
-# Damtux <sun_lion@live.com>, 2013
+# Damtux, 2013
 # andreac <supercarrer1989@hotmail.it>, 2013
 # tema, 2014
 # The_Blinded <the_reg_tb@yahoo.it>, 2013
@@ -45,8 +45,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-05 17:04+0000\n"
+"Last-Translator: tema\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -366,14 +366,14 @@ msgstr "Dimensione Mappa:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Mappa Rivelata:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Mappa Esplorata:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -667,19 +667,19 @@ msgstr "Registrazione..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Inserire il nome utente"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Il nome utente non può contenere parentesi quadre, caratteri unicode, spazi e virgole"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Inserire la password"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Inserire nuovamente la password"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -687,15 +687,15 @@ msgstr "Le password non corrispondono"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Ti preghiamo di leggere i Termini di Servizio"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Ti preghiamo di leggere i Termini di Utilizzo"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Ti preghiamo di accettare i Termini di Servizio e i Termini di Utilizzo"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -707,11 +707,11 @@ msgstr "Connetti"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termini di Servizio"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termini di Utilizzo"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -759,13 +759,13 @@ msgstr "Metti in pausa le partite a giocatore singolo quando la finestra non è 
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Disabilita la schermata di benvenuto"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Se disabiliti questa schermata completamente, potresti perdere importanti annunci.\nPuoi sempre avviarla dal menu principale."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -823,7 +823,7 @@ msgstr "Sfuma i Bordi"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Solleva l'area oscura e la foschia di guerra fluidamente (Richiede GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -1048,7 +1048,7 @@ msgstr "Avviare la lobby multiplayer. [DISATTIVATO NELLA PRESENTE VERSIONE]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Dettagli Tecnici"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1753,8 +1753,8 @@ msgstr "Richiesta %(technology)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Rimanenti: %(number)s da costruire."
+msgstr[1] "Rimanenti: %(number)s da costruire."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -2408,7 +2408,7 @@ msgstr "Sposta 3 donne dalla raccolta del legno e 3 dalla raccolta pietra all'ag
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "I frombolieri accodati in precedenza dovranno raccogliere pietra, una volta addestrati."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -3002,13 +3002,13 @@ msgstr "Seleziona le risorse iniziali del giocatore."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Mostra la mappa come rivelata (vedrai tutto)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Mostra la mappa come esplorata (visualizza elementi naturali e strutture)"
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3143,11 +3143,11 @@ msgstr "Aggiorna"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Crea un nuovo account"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Login in un account esistente"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3171,7 +3171,7 @@ msgstr "Reinserisci la Password:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Ho letto e accetto i Termini di Servizio e i Termini di Utilizzo:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3231,7 +3231,7 @@ msgstr "Parole chiave (non utilizzato):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr "Locale risultante:"
+msgstr "Risultati in Locale:"
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
@@ -3243,11 +3243,11 @@ msgstr "Selezione Automatica"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informazioni"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Vedi Online"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3298,7 +3298,7 @@ msgstr "Stato: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3312,11 +3312,11 @@ msgstr "Partecipa a: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Abilita Feedback"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Disabilita Feedback"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3383,19 +3383,19 @@ msgstr "Apre il Gestore di Scenari Atlas in una nuova finestra. Puoi eseguirlo i
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Schermata di Benvenuto"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostra la Schermata di Benvenuto. Utile se è stata nascosta per errore."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
-msgstr "Impara A Giocare"
+msgstr "Impara a Giocare"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Apre il manuale di gioco di 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3432,15 +3432,15 @@ msgstr "Esci"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Esci dal gioco."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Aiutaci con la Traduzione!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Clicca per aprire la pagina di traduzione di 0 A.D. nel browser."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3467,7 +3467,7 @@ msgstr "Segnala un Problema"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Clicca per visitare il Trac di 0 A.D. per segnalare un difetto, un crash o un errore."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3577,7 +3577,7 @@ msgstr "Selezione articoli commerciali:"
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
-msgstr "Selezionare una merce come origine delle modifiche, \\n poi utilizzare le frecce dei beni da modificare per apportare le modifiche."
+msgstr "Selezionare una merce come origine delle modifiche, poi utilizzare le frecce dei beni da modificare per apportare le modifiche."
 
 #: gui/session/session.xml:592 (tooltip)
 msgid "Population (current / limit)"
@@ -3589,7 +3589,7 @@ msgstr "Scegli il giocatore da guardare"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -4802,7 +4802,7 @@ msgstr "\"Sia l'oligarca che il tiranno non hanno fiducia nel popolo, e quindi l
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr "\"L'arguzia è insolenza educata.\" - Aristotle"
+msgstr "\"L'arguzia è insolenza educata.\" - Aristotele"
 
 #: gui/text/quotes.txt:49
 msgid ""
@@ -4962,7 +4962,7 @@ msgstr "\"Questo, Senatori, è il favore fatto da dei criminali. Si trattengono 
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
-msgstr "\"L'ingegno è favorito dall'energia\". - Marco Tullio Cicerone"
+msgstr "\"L'ingegno è favorito dall'operosità\". - Marco Tullio Cicerone"
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
@@ -4972,7 +4972,7 @@ msgstr "\"Finchè c'è vita, c'è speranza.\" - Marco Tullio Cicerone"
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
-msgstr "\"Chiunque può sbagliare, ma nessuno, se non è uno sciocco, persevera nell'errore.\" - Marco Tullio Cicerone"
+msgstr "\"Poiché ogni errore non può esser chiamato semplicemente stupidità.\" - Marco Tullio Cicerone"
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
@@ -5145,7 +5145,7 @@ msgstr "\"Niente dura ma muta.\" - Eraclito"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr "\"Non potresti entrare due volte nello stesso fiume.\" - Eraclito"
+msgstr "\"Non puoi bagnarti due volte nella stessa acqua del fiume.\" - Eraclito"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
@@ -5335,7 +5335,7 @@ msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr "\"La democrazia, è una forma affascinante di governo, piena di varietà e di disordine, e dispensatrice di una sorta di uguaglianza di uguali e disuguali allo stesso modo.\" - Platone"
+msgstr "\"La democrazia, è una forma affascinante di governo, piena di varietà e di disordine, e dispensatrice di una sorta di uguaglianza ad uguali e disuguali allo stesso modo.\" - Platone"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
@@ -9872,7 +9872,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "La più stabile IA disponibile, Aegis è un miglioramento dei bot precedenti di Wratii. Nota che non supporta il salvataggio delle partite. Ti preghiamo di riportare eventuali problemi alla Wildfire Games (link nel menu principale)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9883,7 +9883,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Basato su Aegis, ma pesantemente modificato e progettato per essere più robusto. Nota che non supporta il salvataggio delle partite e non è stato testato quanto Aegis. Ti preghiamo di riportare eventuali problemi alla Wildfire Games (link nel menu principale)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription

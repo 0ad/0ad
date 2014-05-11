@@ -1,0 +1,53 @@
+# Translation template for Pyrogenesis.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis project.
+# 
+# Translators:
+# Aš Esu <asesuarbanesu@gmail.com>, 2014
+# Aš Esu <asesuarbanesu@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-05-01 03:17+0200\n"
+"PO-Revision-Date: 2014-05-05 12:35+0000\n"
+"Last-Translator: Aš Esu <asesuarbanesu@gmail.com>\n"
+"Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: lt\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:733
+#, c-format
+msgid "%s (custom build)"
+msgstr "%s (padarytas pagal užsakymą)"
+
+#. Translation: First item is a date and time, item between parenthesis is the
+#. Subversion revision number of the current build.
+#: gui/scripting/ScriptFunctions.cpp:738
+#, c-format
+msgid "%s (%ls)"
+msgstr "%s (%ls)"
+
+#: gui/scripting/ScriptFunctions.cpp:759
+msgid "custom build"
+msgstr "padarytas asmeniškai"
+
+#: i18n/L10n.cpp:242
+msgid "Long strings"
+msgstr "Ilgi sakiniai"
+
+#: ps/SavedGame.cpp:126
+#, c-format
+msgid "Saved game to '%ls'"
+msgstr "Žaidimas išsaugotas į '%ls'"
+
+#: ps/Util.cpp:244 ps/Util.cpp:377
+#, c-format
+msgid "Screenshot written to '%ls'"
+msgstr "Momentinė ekrano nuotrauka išsaugota į '%ls'"

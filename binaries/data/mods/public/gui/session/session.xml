@@ -394,23 +394,24 @@
 
 	<!-- Chat window -->
 	<object name="chatDialogPanel" size="50%-180 50%-48 50%+180 50%+36" type="image" hidden="true" sprite="genericPanel">
-	    <object name="chatInput" size="16 12 100%-16 36" type="input" style="ModernInput" max_length="80">
-		<action on="Press">submitChatInput();</action>
-	    </object>
+		<object name="chatInput" size="16 12 100%-16 36" type="input" style="ModernInput" max_length="80">
+			<action on="Press">submitChatInput();</action>
+		</object>
 
-	    <object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
+		<object size="16 100%-40 30%+16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closeChat();</action>
-	    </object>
+		</object>
 
-	    <object size="30%+24 100%-40 60%+24 100%-12" type="button" style="StoneButton">
+		<object name="toggleTeamChat" size="30%+22 100%-36 30%+40 100%-6" type="checkbox" style="ModernTickBox"/>
+		<object size="30%+40 100%-40 60%+16 100%-12" type="text"  style="ModernLeftLabelText">
+			Team Only
+		</object>
+
+		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
 			<translatableAttribute id="caption">Send</translatableAttribute>
 			<action on="Press">submitChatInput();</action>
-	    </object>
-	    <object name="toggleTeamChat" size="60%+32 100%-34 60%+48 100%-6" type="checkbox" style="ModernTickBox"/>
-	    <object size="60%+48 100%-40 100% 100%-12" type="text"  style="ModernLeftLabelText">
-		Team Only
-	    </object>
+		</object>
 	</object>
 
 	<!-- ================================  ================================ -->

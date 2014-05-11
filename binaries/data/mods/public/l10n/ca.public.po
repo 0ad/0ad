@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-06 21:38+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,14 +335,14 @@ msgstr "Mida del mapa:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Mapa revelat:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Mapa explorat:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -636,19 +636,19 @@ msgstr "S'està registrant..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Escriviu el nom d'usuari"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Els noms d'usuari no poden contenir [, ], unicode, espais en blanc ni comes"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Escriviu la contrasenya"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Torneu a escriure la contrasenya"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -656,15 +656,15 @@ msgstr "Les contrasenyes no coincideixen"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Llegiu els termes del servei"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Llegiu els termes d'ús"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Accepteu els termes del servei i els termes d'ús"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -676,11 +676,11 @@ msgstr "Connecta"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Termes del servei"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Termes d'ús"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -728,13 +728,13 @@ msgstr "Pausa les partides d'un sol jugador en segon pla"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Inactiva la pantalla de benvinguda"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Si inactiveu completament aquesta pantalla, us podeu perdre avisos importants.\nPodeu entrar-hi igualment des del menú principal."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -792,7 +792,7 @@ msgstr "Suavitza la línia de visió"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Suavitza el revelat de la foscor i la boira de guerra (Necessita activar l'opció \"Prefereix GLSL\")."
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -858,7 +858,7 @@ msgstr "Onades a la costa"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "Mostra onades trencant prop de la costa (Necessita tenir activades les ones d'alta qualitat)"
+msgstr "Mostra onades trencant prop de la costa (Cal activar les ones d'alta qualitat)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
@@ -1017,7 +1017,7 @@ msgstr "Obre la sala multijugador. [DESHABILITAT PER COMPILACIÓ]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalls tècnics"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1722,8 +1722,8 @@ msgstr "Necessita %(technology)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "En falta %(number)s per construir."
+msgstr[1] "En falten %(number)s per construir."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -2377,7 +2377,7 @@ msgstr "Moveu 3 dones que tallin fusta i 3 que piquin pedra a treballar a l'hort
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Els foners que heu posat abans a la cua han de picar pedra un cop reclutats."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2971,13 +2971,13 @@ msgstr "Selecciona els recursos inicials de la partida."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Activa o inactiva el mapa revelat (permet veure-ho tot)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Activa o inactiva el mapa explorat (permet veure els elements de la natura i els edificis)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3112,11 +3112,11 @@ msgstr "Actualitza"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Crea un compte nou"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Entra en un compte existent"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3140,7 +3140,7 @@ msgstr "Repetiu la contrasenya:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "He llegit els termes de servei i els termes d'ús i hi estic d'acord:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3212,11 +3212,11 @@ msgstr "Detecta automàticament"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informació"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Visualitza en línia"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3267,7 +3267,7 @@ msgstr "Estat: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alfa XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3281,11 +3281,11 @@ msgstr "Per a més informació: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Activa els informes"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Desactiva els informes"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3318,7 +3318,7 @@ msgstr "Unir-se a una partida multijugador existent."
 
 #: gui/pregame/mainmenu.xml:248 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr "Crea una partida multijugador.\\n\\nEs requereix obrir el port UDP 20595."
+msgstr "Crea una partida multijugador.\\n\\nCal obrir el port UDP 20595."
 
 #: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
@@ -3348,15 +3348,15 @@ msgstr "Editor d'escenaris"
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
-msgstr "Obre l'Editor d'Escenaris Atlas en una nova finestra. Podeu executar-lo de manera més fiable iniciant el joc amb l'argument de línia d'ordres \"-editor\"."
+msgstr "Obre l'Editor d'escenaris Atlas en una nova finestra. Podeu executar-lo de manera més fiable iniciant el joc amb l'argument de línia d'ordres \"-editor\"."
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Pantalla de benvinguda"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Mostra la pantalla de benvinguda. Útil si l'heu desactivat per error."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3364,7 +3364,7 @@ msgstr "Apreneu a jugar"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Obre el manual del 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3401,15 +3401,15 @@ msgstr "Surt"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Surt del joc."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Ajudeu amb la traducció!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Feu clic per obrir la pàgina de traducció del 0 A.D. al vostre navegador."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3428,7 +3428,7 @@ msgstr "Xat"
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr "Feu clic per obrir el xat IRC del 0 A.D. en el vostre navegador web. (#0ad a webchat.quakenet.org)"
+msgstr "Feu clic per obrir el xat IRC del 0 A.D. al vostre navegador web. (#0ad a webchat.quakenet.org)"
 
 #: gui/pregame/mainmenu.xml:548 (caption)
 msgid "Report a Bug"
@@ -3436,7 +3436,7 @@ msgstr "Informa d'errors"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Feu clic per visitar el Trac del 0 A.D. per informar d'un error o problema."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3558,7 +3558,7 @@ msgstr "Trieu un jugador per visualitzar"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALFA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3970,7 +3970,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Canviar aquest document en qualsevol sentit; en qualsevol moment; amb la condició que l'usuari sigui informat adequadament dels canvis (la definició d'informar adequadament la determinaran llavors un equip de membres de Wildfire Games (WFG))."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4027,11 +4027,11 @@ msgstr "• Feu clic esquerre i arrossegueu per seleccionar grups d'unitats."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Feu clic dret per ordenar unitats a un objectiu."
+msgstr "• Feu clic dret per enviar unitats a un objectiu."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Utilitzeu les tecles de fletxa o les de WASD per moure la càmera."
+msgstr "• Utilitzeu les tecles de fletxa o WASD per moure la càmera."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
@@ -4070,7 +4070,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Per preparar una partida multijugador, un jugador ha de seleccionar l'opció \"Crea una partida\". El joc utilitza el port UDP 20595, per tant l'amfitrió ha de configurar el seu NAT/tallafocs/etc per permetre-ho. Els altres jugadors poden seleccionar \"Unir-se a la partida\" i entrar a l'adreça IP de l'amfitrió."
+msgstr "Per preparar una partida multijugador, un jugador ha de seleccionar l'opció \"Crea una partida\". El joc utilitza el port UDP 20595, per tant l'amfitrió ha de configurar el seu NAT/tallafocs/etc per permetre-ho. Els altres jugadors poden seleccionar \"Unir-se a la partida\" i escriure l'adreça IP de l'amfitrió."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -4121,7 +4121,7 @@ msgstr "[font=\"sans-14\"]Alt + F4: Tanca el joc sense confirmació"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: Canvia entre pantalla completa i finestra"
+msgstr "Alt + Retorn: Canvia entre pantalla completa i finestra"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
@@ -4129,7 +4129,7 @@ msgstr "~ o F9: Mostra/amaga la consola"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Mostra/amaga la freqüència de generació de fotogrames (fotogrames per segon)"
+msgstr "Alt + F: Mostra/amaga la freqüència de generació de fotogrames (FPS)"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -4205,7 +4205,7 @@ msgstr "ESC: Tanca tots els diàlegs (xat, menú) o desselecciona les unitats se
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr "Enter/retorn: Obre/envia un xat"
+msgstr "Retorn: Obre/envia un xat"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
@@ -4225,7 +4225,7 @@ msgstr ",: Selecciona els lluitadors inactius"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Selecciona els treballadors inactius (incloent els soldats ciutadans)"
+msgstr ".: Selecciona els treballadors inactius (inclosos els soldats ciutadans)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
@@ -8265,7 +8265,7 @@ msgid ""
 "was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
 "second ruler of the Persians by that name, and so appears as Kurush II on "
 "his documents and coins. Kurush I was his grandfather."
-msgstr "Cir (559-530 aC) El fill d'una princesa mede i el rei d'Anshan; justament anomenat el \"Pare de l'Imperi\", Cir el Gran va conquerir Mèdia, Lídia, Babilònia i Bactriana, establint així l'Imperi Persa. També va ser reconegut com a conqueridor benevolent. Tècnicament va ser el segon rei dels perses amb aquest nom, i apareix com a Kurush II als documents i monedes; Kurush I era el seu avi."
+msgstr "Cir (559-530 aC) El fill d'una princesa mede i el rei d'Anshan; justament anomenat el \"Pare de l'Imperi\", Cir el Gran va conquerir Mèdia, Lídia, Babilònia i la Bactriana, establint així l'Imperi Persa. També va ser reconegut com a conqueridor benevolent. Tècnicament va ser el segon rei dels perses amb aquest nom, i apareix com a Kurush II als documents i monedes; Kurush I era el seu avi."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/pers_hero_cyrus.xml:12
@@ -8817,7 +8817,7 @@ msgid ""
 " the cavalry arm. War with the Romans from the West and invasions from the "
 "Galatians also forced the Seleucids to reform their infantry regiments to be"
 " more flexible."
-msgstr "Les tàctiques de guerra selèucides i dels estats successors van evolucionar durant els segles III i II aC. El contacte amb nouvinguts orientals com els parts i les revoltes constants de les satrapies perifèriques com Bactriana van provocar que els selèucides reformessin el seu exèrcit i canviessin les tàctiques, sobretot pel que fa a la cavalleria. La guerra contra els romans a l'oest i les invasions dels gàlates també van obligar els selèucides a reformar els seus regiments d'infanteria per fer-los més flexibles."
+msgstr "Les tàctiques de guerra selèucides i dels estats successors van evolucionar durant els segles III i II aC. El contacte amb nouvinguts orientals com els parts i les revoltes constants de les satrapies perifèriques com la Bactriana van provocar que els selèucides reformessin el seu exèrcit i canviessin les tàctiques, sobretot pel que fa a la cavalleria. La guerra contra els romans a l'oest i les invasions dels gàlates també van obligar els selèucides a reformar els seus regiments d'infanteria per fer-los més flexibles."
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
@@ -8997,7 +8997,7 @@ msgid ""
 "were the most extensive in Asia after that of Alexander. The whole region "
 "from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
 "Wars'."
-msgstr "Sempre a l'aguait de les nacions veïnes, fort amb les armes i persuasiu al consell, ell (Seleuc) va aconseguir Mesopotàmia, Armènia, la Capadòcia \"Selèucida\", Persis, Pàrtia, Bactriana, Aràbia, Tapúria, Sogdiana, Aracòsia, Hircània i altres pobles adjacents que havien estat conquerits per Alexandre, fins al riu Indus, així que els límits del seu imperi eren els més extensos d'Àsia després del d'Alexandre. Tota aquesta regió des de Frígia fins a l'Indus estava sotmesa a Seleuc. — Apià, \"Les guerres sirianes\"."
+msgstr "Sempre a l'aguait de les nacions veïnes, fort amb les armes i persuasiu al consell, ell (Seleuc) va aconseguir Mesopotàmia, Armènia, la Capadòcia \"Selèucida\", Persis, Pàrtia, la Bactriana, Aràbia, Tapúria, la Sogdiana, Aracòsia, Hircània i altres pobles adjacents que havien estat conquerits per Alexandre, fins al riu Indus, així que els límits del seu imperi eren els més extensos d'Àsia després del d'Alexandre. Tota aquesta regió des de Frígia fins a l'Indus estava sotmesa a Seleuc. — Apià, \"Les guerres sirianes\"."
 
 #: civs/sele.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:12
@@ -9015,7 +9015,7 @@ msgid ""
 "League and the Kingdom of Pergamon banded together with the Romans to defeat"
 " him at the Battle of Magnesia, forever burying the dream of reuniting "
 "Alexander's empire."
-msgstr "Antíoc va heretar un regne conflictiu des del començament del seu mandat. Des de la vora del col·lapse va aconseguir tornar a unificar l'imperi seleuc. Els sàtrapes rebels de l'est de Bactriana i Pàrtia van ser forçats a obeir, assegurant temporalment les fronteres orientals. Després va concentrar la seva atenció en la mare Grècia, i va intentar complir els somnis dels seus pares envaint Grècia amb el pretext de l'alliberament. La Lliga Aquea i el regne de Pèrgam es van aliar amb els romans per derrotar-lo a la batalla de Magnèsia, i van enterrar per sempre el somni de reunificar l'imperi d'Alexandre."
+msgstr "Antíoc va heretar un regne conflictiu des del començament del seu mandat. Des de la vora del col·lapse va aconseguir tornar a unificar l'imperi seleuc. Els sàtrapes rebels de l'est de la Bactriana i Pàrtia van ser forçats a obeir, assegurant temporalment les fronteres orientals. Després va concentrar la seva atenció en la mare Grècia, i va intentar complir els somnis dels seus pares envaint Grècia amb el pretext de l'alliberament. La Lliga Aquea i el regne de Pèrgam es van aliar amb els romans per derrotar-lo a la batalla de Magnèsia, i van enterrar per sempre el somni de reunificar l'imperi d'Alexandre."
 
 #: civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
@@ -9841,7 +9841,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Actualment la IA més estable del joc, l'Aegis és una versió millorada per Wraitii de bots anteriors. Cal tenir en compte que encara no té suport per a partides desades. Podeu informar dels errors a Wildfire Games (l'enllaç és al menú principal)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9852,7 +9852,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Basat en l'Aegis, però molt modificat i teòricament més robust. Cal tenir en compte que encara no té suport per a partides desades, i no ha estat provat tant com l'Aegis. Podeu informar dels errors a Wildfire Games (l'enllaç és al menú principal)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10242,7 +10242,7 @@ msgstr "Augmenta la capacitat defensiva dels comerciants."
 
 #: simulation/data/technologies/armor_trade_convoys.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "Els comerciants guanyen 2 nivells d'armadura de tall i perforació."
+msgstr "Els mercaders guanyen 2 nivells d'armadura de tall i perforació."
 
 #: simulation/data/technologies/armor_trade_convoys.jsongenericName
 msgid "Trade convoys"
@@ -10282,7 +10282,7 @@ msgstr "Les unitats guardianes tenen una valentia excepcional a la batalla."
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr "Les unitats guardianes tenen un coratge i un valor extraordinaris a la batalla. Els campions guanyen +2 d'atac."
+msgstr "Les unitats guardianes tenen un coratge i un valor extraordinaris a la batalla. Els campions guanyen 2 d'atac."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -10305,7 +10305,7 @@ msgstr "La voluntat de lluitar és crucial per a la victòria."
 
 #: simulation/data/technologies/attack_citizensoldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All citizen-Soldiers +2 attack."
-msgstr "Inspira les tropes apujant-los el sou. Tots els soldats ciutadans guanyen +2 d'atac."
+msgstr "Inspira les tropes apujant-los el sou. Tots els soldats ciutadans guanyen 2 d'atac."
 
 #: simulation/data/technologies/attack_citizensoldiers_will.jsongenericName
 msgid "Will to fight"
@@ -13328,7 +13328,7 @@ msgstr "Caer"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr "Afegeix +2 al límit de població."
+msgstr "Afegeix 2 al límit de població."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -13338,7 +13338,7 @@ msgstr "Barraca"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr "Afegeix +10 al límit de població."
+msgstr "Afegeix 10 al límit de població."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -13404,7 +13404,7 @@ msgstr "Propileu"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Afegeix +10 al límit de població. Recluta unitats especials."
+msgstr "Afegeix 10 al límit de població. Recluta unitats especials."
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -13421,7 +13421,7 @@ msgstr "Stoà hel·lènica"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "Afegeix +15 al límit de població. Recluta unitats i herois addicionals."
+msgstr "Afegeix 15 al límit de població. Recluta unitats i herois addicionals."
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
@@ -13533,7 +13533,7 @@ msgstr "Magatzem"
 
 #: simulation/templates/other/plane.xml:40
 msgid "A World War 2 American fighter plane."
-msgstr "Un caça de la Segona Guerra Mundial."
+msgstr "Un caça americà de la Segona Guerra Mundial."
 
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
@@ -14046,7 +14046,7 @@ msgstr "Recluta mercenaris celtes. Investiga millores per a aquests mercenaris."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Recluta mercenaris ibèrics. Investiga millores per a aquests mercenaris."
+msgstr "Recluta mercenaris ibers. Investiga millores per a aquests mercenaris."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
@@ -14150,7 +14150,7 @@ msgstr "Destacament gal"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr "Afegeix +10 al límit de població. Recluta fanàtics despullats."
+msgstr "Afegeix 10 al límit de població. Recluta fanàtics despullats."
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
@@ -16413,7 +16413,7 @@ msgstr "Varkaniya Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:23
 msgid "Bactrian Heavy Lancer"
-msgstr "Llancer pesat bactrià"
+msgstr "Llancer pesat de la Bactriana"
 
 #: simulation/templates/units/pers_champion_cavalry.xml:24
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:17
@@ -16422,7 +16422,7 @@ msgstr "Bakhtrish Asabara"
 
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:16
 msgid "Bactrian Heavy Cavalry Archer"
-msgstr "Arquer a cavall pesat bactrià"
+msgstr "Arquer a cavall pesat de la Bactriana"
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
@@ -16480,7 +16480,7 @@ msgstr "Heroi arquer en carro falçat.\nPot atropellar i esclafar les unitats en
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:13
 msgid "Sogdian Archer"
-msgstr "Arquer de Sogdiana"
+msgstr "Arquer de la Sogdiana"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:14
 msgid "Sugda Vaçabara"
@@ -16896,7 +16896,7 @@ msgstr "Pontifex Minor"
 
 #: simulation/templates/units/rome_support_trader.xml:9
 msgid "Plebeian Merchant"
-msgstr "Mercant plebeu"
+msgstr "Mercader plebeu"
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Mercator Plebeius"
@@ -18106,7 +18106,7 @@ msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr "Les terres àrides i riques en minerals de Bactriana (actual Afganistan) al peu de les muntanyes de l'Hindu Kush.\n\nEl centre del mapa és una muntanya seca. A banda i banda hi ha muntanyes i turons foradats per passos traïdors i velles rutes comercials."
+msgstr "Les terres àrides i riques en minerals de la Bactriana (actual Afganistan) al peu de les muntanyes de l'Hindu Kush.\n\nEl centre del mapa és una muntanya seca. A banda i banda hi ha muntanyes i turons foradats per passos traïdors i velles rutes comercials."
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
@@ -18390,7 +18390,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
-msgstr "Situat a la cara sud de la serralada de l'Atles al nord d'Àfrica.\n\nUn mapa força obert amb abundància d'animals i minerals, mentre que la fusta és escassa."
+msgstr "Situat a la cara sud de la serralada de l'Atles al nord d'Àfrica.\n\nUn mapa força obert amb abundància d'animals i minerals, mentre que la fusta escasseja."
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"

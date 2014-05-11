@@ -40,6 +40,7 @@
 # gonzaleau <reddecontactos@gmail.com>, 2013
 # llroger7ll <r0g3rva5qu3z@hotmail.com>, 2013
 # sanderd17, 2014
+# sebas173 <sebas173@gmail.com>, 2014
 # Swyter ™ <Swyterzone@gmail.com>, 2013-2014
 # Swyter ™ <Swyterzone@gmail.com>, 2013
 # Berto100 <moreno.alb1@gmail.com>, 2014
@@ -50,8 +51,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-07 01:32+0000\n"
+"Last-Translator: sebas173 <sebas173@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,14 +372,14 @@ msgstr "Tamaño de mapa:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Revelar mapa:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Explorar mapa:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -672,19 +673,19 @@ msgstr "Registrando..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Introduce tu nombre de usuario"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Los nombres de usuario no pueden contener [, ], símbolos unicode, espacios en blanco o comas"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Introduce tu contraseña"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Vuelve a introducir tu contraseña"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -692,15 +693,15 @@ msgstr "Las contraseñas no coinciden"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Haz el favor de leer los términos de servicio"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Haz el favor de leer los términos de uso"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Tienes que estar de acuerdo con los términos de uso y servicio"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -712,11 +713,11 @@ msgstr "Conectar"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Términos de servicio"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Términos de uso"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -764,13 +765,13 @@ msgstr "Pausar la partida individual cuando la ventana pase a un segundo plano"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Desactivar pantalla de bienvenida"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Si desactivas esta pantalla del todo puede que te pierdas anuncios importantes.\nPuedes seguir viéndola mediante el menú principal."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -828,7 +829,7 @@ msgstr "Línea de visión suave"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "La niebla de guerra y su oscuridad se desvanecen suavemente (Es necesario activar GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -1006,7 +1007,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarjeta de vídeo sin soporte de shaders (también llamada de fixed function). Esta opción no estará disponible en futuras versiones de 0 A.D. para dejar sitio a técnicas más avanzadas. Te aconsejamos que, si es posible, actualices tu gráfica a un modelo más reciente que sea compatible con shaders, ó sombreadores."
+msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarjeta de vídeo sin soporte de shaders (también llamada de «fixed function») Esta opción no estará disponible en futuras versiones de 0 A.D. para dejar sitio a técnicas más avanzadas. Te aconsejamos que, si es posible, actualices tu gráfica a un modelo más reciente que sea compatible con shaders, ó sombreadores."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1053,7 +1054,7 @@ msgstr "Entrar en la sala multijugador. [DESACTIVADO POR COMPILACIÓN]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Detalles técnicos"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1078,19 +1079,19 @@ msgstr "La versión de 0 A.D. necesaria es la %(requiredVersion)s, tu versión a
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr "No necesita ningún mod mientras estés jugando con \"%(currentMod)s\"."
+msgstr "No necesita ningún mod mientras estés jugando con «%(currentMod)s»."
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr "Necesita el mod \"%(requiredMod)s\" cuando no estés jugando con ningún mod."
+msgstr "Necesita el mod «%(requiredMod)s» cuando no estés jugando con ningún mod."
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr "Necesita el mod \"%(requiredMod)s\" cuando estés jugando con \"%(currentMod)s\"."
+msgstr "Necesita el mod «%(requiredMod)s» cuando estés jugando con «%(currentMod)s»."
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
@@ -1758,8 +1759,8 @@ msgstr "Necesita %(technology)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Queda: %(number)s por construir."
+msgstr[1] "Quedan: %(number)s por construir."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -1905,7 +1906,7 @@ msgstr "Elige los bienes a comerciar"
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
-msgstr "Aumenta el nivel de alerta para proteger más unidades"
+msgstr "Aumenta el nivel de alerta para proteger a más unidades"
 
 #: gui/session/utility_functions.js:375
 msgid "Raise an alert!"
@@ -2413,7 +2414,7 @@ msgstr "Mueve a 3 mujeres que estén recogiendo leña y a 3 que estén picando p
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Los honderos que pusiste en cola antes deberán picar piedra una vez hayan sido reclutados."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2668,22 +2669,22 @@ msgstr "El enemigo ha sido vencido. Has completado todas las tareas del tutorial
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr "%(name)s no se puede construir debido a un error desconocido"
+msgstr "«%(name)s» no se puede construir debido a un error desconocido"
 
 #: simulation/components/BuildRestrictions.js:104
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s no se puede construir en áreas inexploradas"
+msgstr "«%(name)s» no se puede construir en áreas inexploradas"
 
 #: simulation/components/BuildRestrictions.js:152
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr "%(name)s no se puede construir sobre otro edificio o recurso"
+msgstr "«%(name)s» no se puede construir sobre otro edificio o recurso"
 
 #: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr "%(name)s no se puede construir sobre terreno accidentado"
+msgstr "«%(name)s» no se puede construir sobre terreno accidentado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2691,7 +2692,7 @@ msgstr "%(name)s no se puede construir sobre terreno accidentado"
 #: simulation/components/BuildRestrictions.js:180
 msgctxt "Territory type"
 msgid "ally"
-msgstr "Aliado"
+msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2699,7 +2700,7 @@ msgstr "Aliado"
 #: simulation/components/BuildRestrictions.js:183
 msgctxt "Territory type"
 msgid "own"
-msgstr "Propio"
+msgstr "propio"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2722,53 +2723,53 @@ msgstr "enemigo"
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr "%(name)s no se puede construir en el territorio %(territoryType)s. Los territorios válidos son: %(validTerritories)s"
+msgstr "«%(name)s» no se puede construir en territorio %(territoryType)s. Los territorios válidos son: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:232
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s debe construirse en la línea costera"
+msgstr "«%(name)s» debe construirse en la línea costera"
 
 #: simulation/components/BuildRestrictions.js:256
 #, python-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
-msgstr "%(name)s está demasiado cerca de %(category)s, debería de estar por lo menos a %(distance)s metros"
+msgstr "«%(name)s» está demasiado cerca de %(category)s, debería de estar por lo menos a %(distance)s metros"
 
 #: simulation/components/BuildRestrictions.js:268
 #, python-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
-msgstr "%(name)s está demasiado lejos de %(category)s, debería de estar por lo menos a %(distance)s metros"
+msgstr "«%(name)s» está demasiado lejos de %(category)s, debería de estar por lo menos a %(distance)s metros"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:298
 msgctxt "Territory type list"
 msgid "own"
-msgstr "Propio"
+msgstr "propios"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:300
 msgctxt "Territory type list"
 msgid "ally"
-msgstr "Aliado"
+msgstr "aliados"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:302
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr "neutral"
+msgstr "neutrales"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr "enemigo"
+msgstr "enemigos"
 
 #: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
@@ -2824,12 +2825,12 @@ msgstr "La cola de producción está llena."
 #: simulation/components/Wonder.js:53
 #, python-format
 msgid "%(player)s will have won in %(time)s"
-msgstr "%(player)s ganaran en %(time)s"
+msgstr "%(player)s habrá ganado en %(time)s"
 
 #: simulation/components/Wonder.js:61
 #, python-format
 msgid "You will have won in %(time)s"
-msgstr "Ganaras en %(time)s"
+msgstr "Habrás ganado en %(time)s"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -3007,13 +3008,13 @@ msgstr "Elige con cuantos recursos empieza la partida."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Ver todo el mapa (o no)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Ver o no el mapa explorado, muestra gaia (animales) y edificios."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3148,11 +3149,11 @@ msgstr "Actualizar"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Crear una nueva cuenta"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Iniciar sesión en una cuenta ya existente"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3172,11 +3173,11 @@ msgstr "Registro"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr "Introduce otra vez la contraseña:"
+msgstr "Repite la contraseña:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "He leído y estoy de acuerdo con los términos de uso y servicio:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3248,11 +3249,11 @@ msgstr "Auto detectar"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Información"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Verlo en línea"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3303,7 +3304,7 @@ msgstr "Estado: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alfa XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3317,11 +3318,11 @@ msgstr "Involúcrate en: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Activar informes"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Desactivar informes"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3388,11 +3389,11 @@ msgstr "Abre el editor de escenarios Atlas en una ventana nueva. Podrás ejecuta
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Pantalla de Bienvenida"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Muestra la pantalla de bienvenida. Útil si la desactivaste por error."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3400,7 +3401,7 @@ msgstr "Aprender a jugar"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Abre el manual de juego de 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3437,15 +3438,15 @@ msgstr "Salir"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Salir del juego."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "¡Ayúdanos con la traducción!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Haz clic para abrir la página de traducción de 0 A.D. en tu navegador."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3472,7 +3473,7 @@ msgstr "Informar de un fallo"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Haz clic para visitar el Trac de 0 A.D. en el que informar de fallos, cuelgues, o errores."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3594,7 +3595,7 @@ msgstr "Elige un jugador para ver"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALFA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -4006,7 +4007,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Actualizar este documento de cualquier forma y en cualquier momento, bajo la condición de que el usuario del servicio sea notificado del cambio (la definición de notificación adecuada estará determinada por el plantel del equipo de Wildfire Games (WFG))"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -5732,7 +5733,7 @@ msgstr "IFÍCRATES"
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr "- El general ateniense que reformó el ejército ateniense para que sea más rápido y fácil de manejar."
+msgstr "- El general ateniense que reformó el ejército ateniense para que fuera más rápido y fácil de manejar."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
@@ -5820,7 +5821,7 @@ msgstr "- Los persas también tienen acceso a un gran número de tecnologías de
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr "Barco de guerra pesado"
+msgstr "NAVÍO PESADO"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -5870,7 +5871,7 @@ msgstr "- Torres independientes muy útiles como defensa de grandes territorios 
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr "- Normalmente cuestan 100 de madera y 100 de piedra. Las Torres defensivas íberas cuestan 300 de piedra (porque son más fuertes)."
+msgstr "- Normalmente cuestan 100 de madera y 100 de piedra. Las torres defensivas íberas cuestan 300 de piedra (porque son más fuertes)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
@@ -7974,7 +7975,7 @@ msgstr "Kshatriya o Kashtriya, que significa luchador, es una de las cuatro varn
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr "Las tecnologías de templos aliados reducen un -50% en coste y tiempo de investigación. "
+msgstr "Las tecnologías de templos aliados reducen un -50% el coste y tiempo de investigación. "
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
@@ -9314,7 +9315,7 @@ msgstr "Entrena héroes y espartiatas e investiga tecnologías relacionadas con 
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr "El Syssition era el comedor de oficiales de los espartanos de pura cepa. Cada spartano, incluso los reyes, pertenecían a uno."
+msgstr "El Syssition era el comedor de oficiales de los espartanos de sangre. Cada espartano, incluso los reyes, pertenecía a uno."
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -9473,7 +9474,7 @@ msgstr "Bosque de las Ardenas"
 msgid ""
 "A rugged land with small room for buildings with scarce wood. Represents the"
 " mountain range in the north-west africa."
-msgstr "Un terreno accidentado con poco espacio para edificios y con escasa madera. Representa la cordillera en el nor-oeste de África."
+msgstr "Un terreno accidentado con poco espacio para edificios y con escasa madera. Representa la cordillera en el noroeste de África."
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
@@ -9877,7 +9878,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "La IA más estable disponible por el momento. Aegis es una mejora de otros bots anteriores creados por Wratii. Ten en cuenta que todavía no soporta partidas guardadas. Puedes informar de fallos a Wildfire Games (enlace en el menú principal)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9888,7 +9889,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Basado en Aegis, pero modificado duramente y sensiblemente más robusto. Ten en cuenta que todavía no soporta partidas guardadas y no está tan probado como Aegis. Puedes informar de fallos a Wildfire Games (enlace en el menú principal)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10993,7 +10994,7 @@ msgstr "A menudo el estado o la tribu construía una sala de banquetes para fies
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Centros urbanos bonus de +5 al limite de población"
+msgstr "Los centros cívicos reciben una bonificación de +5 al limite de población."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -11033,7 +11034,7 @@ msgstr "Los jardines hogareños comprendían desde simples zonas acordonadas has
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr "Casas bonus de +1 al limite de población"
+msgstr "Las casas reciben una bonificación de +1 al limite de población."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -11060,7 +11061,7 @@ msgstr "Los hogares tendían a ampliarse a medida que crecía la riqueza y la po
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr "Amplia a +2 el límite de población."
+msgstr "Las casas reciben una bonificación de +2 al limite de población."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -11911,7 +11912,7 @@ msgstr "Metrópolis helena"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Aumentar significativamente la velocidad de reclutamiento de los campeones y las armas de asedio a la fortaleza reclutándolos en grandes grupos o batallones."
+msgstr "Aumenta significativamente la velocidad de reclutamiento de los campeones y las armas de asedio a la fortaleza reclutándolos en grandes grupos o batallones."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -11930,7 +11931,7 @@ msgstr "La ahora extinta raza de caballo níseo fue una de las más grandes y ro
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health, but also +10% train time."
-msgstr "Toda la caballería +20% de salud, pero también +10% tiempo de reclutamiento."
+msgstr "Toda la caballería recibe un +20% de salud, pero también aumenta un +10% su tiempo de reclutamiento."
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
@@ -12117,7 +12118,7 @@ msgstr "Estructura defensiva"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr "Torre de defensa"
+msgstr "TorreDefensiva"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -12386,7 +12387,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen and Elephants."
-msgstr "Clases: Caballería a Distancia - Guerrillero Campeón .\nEficaz contra: 2x vs Arqueros, 1.5x vs. Espadachines a Caballo.\nDébil contra: Lanceros y Elefantes ."
+msgstr "Clase: Caballería a distancia - Escaramucero campeón.\nFuerte contra: x2 contra arqueros, x1.5 contra espadachines a caballo.\nDébil contra: Lanceros y Elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
@@ -12397,7 +12398,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Clases: Jinete lancero campeón.⏎\nBueno contra: x2 contra espadachines y máquinas de asedio, x1.5 contra escaramuceros.⏎\nDébil contra: Lanceros, arqueros y elefantes."
+msgstr "Clase: Jinete lancero campeón.\nFuerte contra: x2 contra espadachines y máquinas de asedio, x1.5 contra escaramuceros.\nDébil contra: Lanceros, arqueros y elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
@@ -12408,7 +12409,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Swordsman.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "Clases: Caballería campeona cuerpo a cuerpo.⏎\nFuerte contra: 2x contra arqueros, todas las unidades de apoyo y máquinas de asedio.⏎\nDébil contra: Lanceros, caballería escaramucera y elefantes."
+msgstr "Clase: Caballería campeona cuerpo a cuerpo.\nFuerte contra: x2 contra arqueros, todas las unidades de apoyo y máquinas de asedio.\nDébil contra: Lanceros, caballería escaramucera y elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
@@ -12467,7 +12468,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Clases: Infantería Cuerpo a cuerpo - Campeón Lancero.\nEficaz contra: 2x vs. Todas las unidades de Caballería.\nDébil contra: Guerrilleros, Espadachines y Arqueros a Caballo."
+msgstr "Clase: Infantería cuerpo a cuerpo - Campeón lancero.\nBueno contra: x2 contra todas las unidades de caballería.\nDébil contra: Escaramuceros, espadachines y arqueros a caballo."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
@@ -12548,7 +12549,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr "Clases: Caballería Cuerpo a Cuerpo - Lancero Héroe .\n\"Héroe\" Aura: TBD.\nEficaz contra: 2x vs. Espadachines y Armas de Asedio. 1.5x vs Guerrilleros.\nDébil contra: Lanceros, Arqueros y Elefantes."
+msgstr "Clase: Caballería cuerpo a cuerpo - Héroe lancero.\nAura de \"Héroe\": Por implementar.\nBueno contra: x2 contra espadachines y armas de asedio. x1.5 contra escaramuceros.\nDébil contra: Lanceros, arqueros y elefantes."
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
@@ -12686,7 +12687,7 @@ msgstr "Navío"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Classes: Mechanical Warship Light Ranged."
-msgstr "Clases: Buque de guerra mecánico de corto alcance."
+msgstr "Clase: Navío de guerra mecánico de corto alcance."
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
@@ -12706,7 +12707,7 @@ msgstr "Navío explosivo"
 msgid ""
 "Classes: Mechanical Ship FishingBoat.\n"
 "Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate."
-msgstr "Clases: Barco de pesca..\nPescar en las aguas para obtener alimentos. Guarnición de una unidad de infantería en el interior para aumentar la tasa de pesca."
+msgstr "Clase: Barco de pesca.\nPesca en las aguas para obtener alimentos. Guarnece a una unidad de infantería en su interior para aumentar la velocidad de pesca."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -12727,7 +12728,7 @@ msgid ""
 "Classes: Mechanical Warship Heavy Ranged Melee.\n"
 "Garrison with catapults to increase ranged fire power.\n"
 "Secondary Attack: Ramming."
-msgstr "Clases: Buque pesado Ataque cuerpo a cuerpo\nGuarnición con catapultas para aumentar la potencia de fuego a distancia.\nAtaque secundario: Embestida"
+msgstr "Clase: Navío de guerra mecánico a larga distancia.\nGuarnece a catapultas en su interior para aumentar la potencia de tiro a distancia.\nAtaque secundario: Embestida."
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
@@ -12752,7 +12753,7 @@ msgid ""
 "Classes: Siege Ranged BoltShooter.\n"
 "Counters: 2x vs. Infantry and Cavalry units. Also useful vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr "Clases: Arma lanza proyectiles.\nEficaz contra: 2x vs unidades de infantería y caballería. También es útil frente a edificios.\nContrarrestado por: Caballería Cuerpo a cuerpo."
+msgstr "Clase: Arma lanza-proyectiles.\nBueno contra: x2 contra unidades de infantería y caballería. También es útil frente a edificios.\nDébil contra: Caballería cuerpo a cuerpo."
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:51
 msgid "Bolt Shooter"
@@ -12763,7 +12764,7 @@ msgid ""
 "Classes: Siege Ranged Catapult.\n"
 "Counters: Structures and Massed Infantry. Causes splash damage.\n"
 "Countered by: Melee Cavalry."
-msgstr "Clases: Catapulta.\nEficaz contra: Estructuras y grupos de Infantería. Causa daño por honda espansiva.\nContrarrestado por: Caballería Cuerpo a cuerpo."
+msgstr "Clase: Catapulta de asedio a distancia.\nEficaz contra: Estructuras y grupos de infantería. Causa daño por honda expansiva.\nDébil contra: Caballería cuerpo a cuerpo."
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:54
 msgid "Siege Catapult"
@@ -12786,7 +12787,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10.\n"
 "Counters: 2x vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr "Clases: Torre de asedio.\nGuarnición de hasta 20 infantes en el interior para aumentar el lanzamiento de flechas de 0 a 10.\nBuena contra: 2x vs Edificios.\nContrarrestado por: Caballería Cuerpo a Cuerpo."
+msgstr "Clase: Torre de asedio.\nGuarnece hasta 20 infantes en su interior para aumentar de 0 a 10 la cantidad de flechas disparadas.\nBueno contra: x2 contra edificios.\nDébil contra: Caballería cuerpo a cuerpo."
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
@@ -12800,7 +12801,7 @@ msgstr "Apoyo"
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr "Clases: Ciudadana Mujer de apoyo .\nReúne recursos, construye estructuras, e inspirar a los hombres más cercanos a trabajar más rápido. Bonus en búsqueda de alimento y agricultura."
+msgstr "Clase: Ciudadana de apoyo.\nReúne recursos, construye estructuras, e inspira a los hombres más cercanos a trabajar más rápido. Bonificación de búsqueda de alimento y agricultura."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:52
 msgid "Female Citizen"
@@ -12830,7 +12831,7 @@ msgstr "Esclavo"
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
-msgstr "Clases: Mercader de Apoyo\nIntercambia recursos entre tus propios mercados, y los de tus aliados."
+msgstr "Clase: Mercader de apoyo.\nIntercambia recursos entre tus propios mercados y los de tus aliados."
 
 #: simulation/templates/template_unit_support_trader.xml:14
 msgid "Trader"
@@ -13611,7 +13612,7 @@ msgstr "Un naufragio con pérdidas humanas. Una oportunidad excelente para cualq
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "El naufragio de un barco de carga pequeño. Una buena oportunidad para cualquier hombre de negocios."
+msgstr "El naufragio de un barco de carga pequeño. Una oportunidad excelente para cualquier empresario competente."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
@@ -14304,7 +14305,7 @@ msgstr "Biko Sarbide"
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr "Recluta campeones y héroes. Guarnece hasta 15 soldados adentro para una fornida defensa."
+msgstr "Recluta campeones y héroes. Guarnece hasta 15 soldados en su interior para una implacable defensa."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -14657,7 +14658,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr "Este es el edificio de expansión ptolemaico, similar a los centros urbanos de otras facciones. Es más débil y tiene menos influencia de territorio, pero es mas barato y se construye más rapido.\n- Recluta a los colonos-soldados de varias nacionalidades.\n- Distancia minima de otras colonias militares: 100 metros."
+msgstr "Este es el edificio de expansión ptolemaico, similar a los centros urbanos de otras facciones. Es más débil y tiene menos influencia de territorio, pero es mas barato y se construye más rapido.\n- Recluta a los colonos-soldado de varias nacionalidades.\n- Distancia mínima a otras colonias militares: 100 metros."
 
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
@@ -15848,7 +15849,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry types. +10% Attack vs. All Non-Greek Units.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "Clases: Campeón cuerpo a cuerpo de lanceros.\nBuenos contra: 2x vs todo tipo de Caballería. +10% de ataque contra todas las unidades  no griegas.\nContrarrestado por: guerrilleros, espadachines, arqueros a caballo."
+msgstr "Clase: Campeón cuerpo a cuerpo de lanceros.\nFuerte contra: x2 contra todo tipo de caballería. +10% de ataque contra todas las unidades no griegas.\nDébil contra: Escaramuceros, espadachines, arqueros a caballo."
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:98
 #: simulation/templates/units/spart_champion_infantry_spear.xml:100
@@ -16012,7 +16013,7 @@ msgid ""
 "Special: Flaming javelins. Good vs. Buildings.\n"
 "Counters: 2x vs. Buildings, 1.5x vs. Archers.\n"
 "Countered by: Spearmen and Elephants."
-msgstr "Clases: Caballería a Distancia - Guerrillero Campeón.\nEspecial: Jabalinas en Llamas. Bueno contra Edificios.\nEficaz contra: 2x vs. Edificios, 1.5x vs. Arqueros.\nDébil contra: Lanceros y Elefantes."
+msgstr "Clase: Caballería a distancia - Escaramucero campeón.\nEspecial: Jabalinas en llamas. Bueno contra edificios.\nBueno contra: x2 contra edificios, x1.5 contra arqueros.\nDébil contra: Lanceros y elefantes."
 
 #: simulation/templates/units/iber_champion_cavalry.xml:32
 msgid "Leial Zalduneria"
@@ -16201,7 +16202,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Chariot Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "Clases: Caballería a Distancia - Arquero Campeón en Carro.\nEficaz contra: 2x vs. Espadachines, 1.5x vs. Lanceros. Causa daño pisoteando al enemigo.\nDébil contra: Guerrilleros y Elefantes."
+msgstr "Clase: Caballería a Distancia - Arquero Campeón en Carro.\nFuerte contra: x2 contra espadachines, x1.5 contra lanceros. Causa daño pisoteando al enemigo.\nDébil contra: Escaramuceros y elefantes."
 
 #: simulation/templates/units/maur_champion_chariot.xml:30
 msgid "War Chariot"
@@ -16225,7 +16226,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.\n"
 "Countered by: Archers and Cavalry Spearmen."
-msgstr "Clases: Infantería - Espadachín Campeón cuerpo a cuerpo.\nEficaz contra: 2x vs. Estructuras, 1.25x vs Lanceros y Elefantes.\nDébil contra: Arqueros y Lanceros a Caballo."
+msgstr "Clase: Infantería - Espadachín Campeón cuerpo a cuerpo.\nFuerte contra: x2 contra estructuras, x1.25 contra lanceros y elefantes.\nDébil contra: Arqueros y lanceros a caballo."
 
 #: simulation/templates/units/maur_champion_infantry.xml:44
 msgid "Warrior"
@@ -16280,7 +16281,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "Clases:. Héroe sanador.\nHéroe especial: \"Sanador\" - Sana unidades a un ritmo acelerado .\nHéroe especial: \"Maestro\" - Faculta a un edificio para la investigación y reclutamiento +50% más rápido .\nHéroe especial: \"Filósofo\" - Investigación 4 tecnologías especiales sólo disponibles en Chanakya."
+msgstr "Clase: Héroe sanador.\nHéroe especial: \"Sanador\" - Sana unidades a un ritmo acelerado .\nHéroe especial: \"Maestro\" - Faculta a un edificio para la investigación y reclutamiento +50% más rápido.\nHéroe especial: \"Filósofo\" - Investiga 4 tecnologías especiales sólo disponibles para Chanakya."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
@@ -16290,7 +16291,7 @@ msgstr "Acharya Chanakya"
 msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Hero Aura: TBD."
-msgstr "Clases: Héroe Elefante Cuerpo a Cuerpo \nAura de Héroe: TBD."
+msgstr "Clase: Héroe elefante cuerpo a cuerpo.\nAura de héroe: Por implementar."
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -16408,7 +16409,7 @@ msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants.\n"
 "Causes trample damage to enemy units."
-msgstr "Clases: Caballería con Arquero en carro .\nBuenos contra: 2x vs lanceros, 1.5x vs espadachines.\nContrarrestado por: guerrileros y elefantes .\nCausan daño pisoteando al enemigo."
+msgstr "Clase: Caballería con arquero en carro.\nFuerte contra: x2 contra lanceros, x1.5 contra espadachines.\nDébil contra: escaramuceros y elefantes.\nCausan daño pisoteando al enemigo."
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babylonian Scythed Chariot"
@@ -16626,7 +16627,7 @@ msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants.\n"
 "\"Stench\" aura vs. Horses (Cavalry are less effective against Camels)."
-msgstr "Clases: Caballería a Distancia - Arquero Campeón en Carro.\nEficaz contra: 2x vs. Lanceros, 1.5x vs. Espadachines.\nDébil contra: Guerrilleros y Elefantes.\nAura \"Hedor\" vs. Caballos (La Caballería es menos efectiva contra Camellos)."
+msgstr "Clase: Caballería a distancia - Arquero campeón en carro.\nFuerte contra: x2 contra lanceros, x1.5 contra espadachines.\nDébil contra: Escaramuceros y elefantes.\nAura \"Hedor\"  contra caballos (La caballería es menos efectiva contra camellos)."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -16981,7 +16982,7 @@ msgid ""
 "Classes: Ranged Cavalry Camel Archer.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr "Clases: Caballería a distancia, Arquero a camello.\nFuerte contra lanceros (x2) y espadachines (1,5x).\nDébil contra escaramuzadores y elefantes."
+msgstr "Clases: Caballería a distancia, Arquero a Camello.\nFuerte contra: Lanceros (x2) y Espadachines (1,5x).\nDébil contra: Escaramuzadores y Elefantes."
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -17025,7 +17026,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
-msgstr "Elefante de guerra con armadura"
+msgstr "Elefante de Guerra con Armadura"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Thorakisménos Eléphantos"
@@ -17033,7 +17034,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
-msgstr "Piquero con escudo de plata"
+msgstr "Piquero con Escudo de Plata"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
@@ -17117,14 +17118,14 @@ msgstr "Piquero con escudo de bronce"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
-msgstr "Piquero con escudo de oro"
+msgstr "Piquero con Escudo de Oro"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
 "Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Clases: Mercenario Cuerpo a cuerpo Infantería Espadachín.\nEficaz contra: 2x vs. Lanceros, 1,5x vs. Elefantes.\nDébil contra: Arqueros, Lanceros a Caballo, y Arqueros a Caballo."
+msgstr "Clase: Mercenario espadachín cuerpo a cuerpo.\nBueno contra: x2 contra lanceros, x1,5 contra elefantes.\nDébil contra: Arqueros, lanceros a caballo, y arqueros a caballo."
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -17221,7 +17222,7 @@ msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
-msgstr "Clases: Ciudadana trabajadora de apoyo.\nReúne recursos, construye estructuras, e inspira a los hombres más cercanos a trabajar más rápido. Bonificación de búsqueda de alimento y agricultura.\nBueno contra: x2.5 contra asedio."
+msgstr "Clase: Ciudadana trabajadora de apoyo.\nReúne recursos, construye estructuras, e inspira a los hombres más cercanos a trabajar más rápido. Bonificación de búsqueda de alimento y agricultura.\nBueno contra: x2.5 contra asedio."
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
@@ -17863,7 +17864,7 @@ msgstr "Libios"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:Name
 msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Escenario de prueba - Los egipcios ptolomeos 2"
+msgstr "Escenario de prueba - Los Egipcios Ptolemaicos 2"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:Description
 #: maps/skirmishes/Sporades Islands (2).xml:42:Description

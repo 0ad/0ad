@@ -292,14 +292,14 @@ namespace JSI_L10n
 	 * Returns an array of paths to files in the virtual filesystem that provide
 	 * translations for the specified locale code.
 	 *
-	 * This is a JavaScript interface to L10n::GetDictionariesForDictLocale().
+	 * This is a JavaScript interface to L10n::GetDictionariesForLocale().
 	 *
 	 * @param pCxPrivate JavaScript context.
 	 * @param locale Locale code.
 	 * @return Array of paths to files in the virtual filesystem that provide
 	 * translations for @p locale.
 	 */
-	std::vector<std::wstring> GetDictionariesForDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+	std::vector<std::wstring> GetDictionariesForLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
 
 	/**
 	 * Returns the ISO-639 language code of the specified locale code.
@@ -356,6 +356,9 @@ namespace JSI_L10n
 	 * @sa http://www.icu-project.org/apiref/icu4c/classicu_1_1Locale.html#a5e0145a339d30794178a1412dcc55abe
 	 */
 	std::string GetLocaleScript(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
+
+	
+	std::wstring GetFallbackToAvailableDictLocale(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string locale);
 
 	/**
 	 * Returns @c true if the current locale is the special “Long Strings”

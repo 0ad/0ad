@@ -4194,6 +4194,8 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	var range = cmpAttack.GetRange(type);
 
 	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!thisCmpPosition.IsInWorld())
+		return false;
 	var s = thisCmpPosition.GetPosition();
 
 	var targetCmpPosition = Engine.QueryInterface(target, IID_Position);
@@ -4296,6 +4298,9 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 	var range = cmpAttack.GetRange(type);
 
 	var thisCmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	if (!thisCmpPosition.IsInWorld())
+		return false;
+
 	var s = thisCmpPosition.GetPosition();
 
 	var t = targetCmpPosition.GetPosition();
@@ -4903,6 +4908,8 @@ UnitAI.prototype.Attack = function(target, queued)
  */
 UnitAI.prototype.Garrison = function(target, queued)
 {
+	if (target == this.entity)
+		return;
 	if (!this.CanGarrison(target))
 	{
 		this.WalkToTarget(target, queued);

@@ -47,8 +47,9 @@ public:
 	{
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TestLogger logger;
-		TS_ASSERT(script.LoadScript(L"test.js", "1+1;"));
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript warning: test.js line 1\nuseless expression");
+		// in strict mode, this inside a function doesn't point to the global object
+		TS_ASSERT(script.LoadScript(L"test.js", "var isStrict = (function() { return !this; })();warn('isStrict is '+isStrict);"));
+		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"WARNING: isStrict is true");
 	}
 
 	void test_loadscript_strict_error()

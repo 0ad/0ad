@@ -6,10 +6,11 @@
 # Translators:
 # Ah! Ilgaz <abdullahilgaz@live.com>, 2014
 # Ah! Ilgaz <abdullahilgaz@live.com>, 2013
-# Anatolian, 2013
+# ubuntuki <aleverzurumlu@gmail.com>, 2014
+# Anatolian, 2013-2014
 # nalcam22 <tec.1905@windowslive.com>, 2013
 # eaytac <eaytac@gmail.com>, 2013
-# ecikla <bosmail@programmer.net>, 2013
+# ecikla <bosmail@programmer.net>, 2013-2014
 # faradundamarti <faradundamarti@yandex.com>, 2013
 # jacksprw <furkan_ts1967@hotmail.com>, 2013
 # mehmet <mehmettakar.35@gmail.com>, 2013
@@ -29,8 +30,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-07 11:58+0000\n"
+"Last-Translator: ecikla <bosmail@programmer.net>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -57,7 +58,7 @@ msgstr "Yapay zeka bu oyuncu için devre dışı."
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Sandbox"
+msgstr "Sanal alan"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -87,14 +88,14 @@ msgstr "%(civilization)s Oynanabilirlik"
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Medeniyet İkramiyesi"
+msgstr[1] "Medeniyet İkramiyeleri"
 
 #: gui/civinfo/civinfo.js:105
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Takım İkramiyesi"
+msgstr[1] "Takım İkramiyeleri"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
@@ -106,8 +107,8 @@ msgstr "Özel Teknolojiler"
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Özel Yapı"
+msgstr[1] "Özel Yapılar"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -123,11 +124,11 @@ msgstr " %(civilization)s un tarihi"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr ""
+msgstr "Açılıyor %(url)s\ninternet tarayıcısında. Lütfen bekleyin..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr ""
+msgstr "Sayfa açılıyor"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
@@ -136,7 +137,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "dd:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
@@ -350,14 +351,14 @@ msgstr "Harita Boyutu:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Açığa çıkarılan Haritası:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Araştırılmış Harita:"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -422,7 +423,7 @@ msgstr "Atanmamış"
 #: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1578
 #, python-format
@@ -447,32 +448,32 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/gamesetup.js:1595
 #, python-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s hazır!"
 
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s hazır değil."
 
 #: gui/gamesetup/gamesetup.js:1601
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Oyun ayarları değiştirildi"
 
 #: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
-msgstr ""
+msgstr "Hazır değilim"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Oynamaya hazır olmayan devlet"
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
-msgstr ""
+msgstr "Hazırım!"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Oynamaya hazır devlet."
 
 #: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
@@ -507,7 +508,7 @@ msgstr "Oyun ismi zaten kullanılıyor."
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s'nin oyunu"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -522,25 +523,25 @@ msgstr "Hazırlanıyor \"%(map)s\""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Herhangi bir"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Herhangi bir"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Herhangibir"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
-msgstr ""
+msgstr "Meşgul"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
-msgstr ""
+msgstr "Uzak"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
@@ -562,7 +563,7 @@ msgstr "Rasgele seçilen harita."
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Bu oyunun adresi '%(ip)s'  geçerli görünmüyor."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -593,25 +594,25 @@ msgstr "Üzgünüz, '%(cmd)s' komutu desteklenmiyor."
 #: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -621,7 +622,7 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:796
 msgid "HH:mm"
-msgstr ""
+msgstr "SS:dd"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -629,17 +630,17 @@ msgstr ""
 #: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Lütfen spam yapma. Sen 30 saniye boyunca engellendin."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -651,7 +652,7 @@ msgstr "Kaydediliyor..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Lütfen kullanıcı adınızı girin"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -659,27 +660,27 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Lütfen şifrenizi girin"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Lütfen şifrenizi tekrar girin"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Şifreler eşleşmiyor"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Lütfen Servis Şartlarını okuyun"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Lütfen Kullanım Şartlarını okuyun"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Lütfen Hizmet Kullanım Şartları ve Koşullarını kabul edin"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -691,11 +692,11 @@ msgstr "Bağlan"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Servis Şartları"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Kullanım Şartları"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -704,7 +705,7 @@ msgstr "Yok"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
 #: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
@@ -731,7 +732,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "0 A.D. yi pencere modunda başlat"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -743,7 +744,7 @@ msgstr ""
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Karşılama Ekranını devre dışı bırak"
 
 #: gui/options/options.js:11
 msgid ""
@@ -763,7 +764,7 @@ msgstr ""
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "GLSL tercihi"
 
 #: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
@@ -771,11 +772,11 @@ msgstr "OpenGL 2.0 gölgelendirme kullanın (önerilir)"
 
 #: gui/options/options.js:17
 msgid "Post Processing"
-msgstr ""
+msgstr "Yayın Düzenleme"
 
 #: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Ekran boşluk post işlemci filtreleri (HDR, Çiçeklenme, serbestlik, vb) kullanın"
 
 #: gui/options/options.js:18
 msgid "Shadows"
@@ -803,7 +804,7 @@ msgstr "Gökyüzünü Oluştur"
 
 #: gui/options/options.js:21
 msgid "Smooth LOS"
-msgstr ""
+msgstr "Düzgün LOS"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
@@ -811,23 +812,23 @@ msgstr ""
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Birim Siluetleri"
 
 #: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Binaların arkasında birimlerinin anahatlarını göster"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "Gölge Filtrelemesi"
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Pürüzsüz gölgeler"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
-msgstr ""
+msgstr "HQ Dalgalar"
 
 #: gui/options/options.js:24
 msgid ""
@@ -853,15 +854,15 @@ msgstr ""
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
-msgstr ""
+msgstr "Su Kırılması"
 
 #: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Gerçek bir su kırılması haritası kullan ve şeffaflık yok"
 
 #: gui/options/options.js:28
 msgid "Shore Foam"
-msgstr ""
+msgstr "Kara baglantısı Köpüğü"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
@@ -869,7 +870,7 @@ msgstr ""
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
-msgstr ""
+msgstr "Kara baglantısı Dalgaları"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
@@ -877,15 +878,15 @@ msgstr ""
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
-msgstr ""
+msgstr "Su Gölgeleri"
 
 #: gui/options/options.js:30
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Su üzeri gölgeleri"
 
 #: gui/options/options.js:31
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
@@ -893,35 +894,35 @@ msgstr ""
 
 #: gui/options/options.js:35
 msgid "Master Gain"
-msgstr ""
+msgstr "Ana Kazanç"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr ""
+msgstr "Ana ses kazançı"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
-msgstr ""
+msgstr "Müzik Kazancı"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
-msgstr ""
+msgstr "Oyun içi müzik kazancı"
 
 #: gui/options/options.js:37
 msgid "Ambient Gain"
-msgstr ""
+msgstr "Ortam Kazancı"
 
 #: gui/options/options.js:37
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "Oyundaki ortam ses kazancı"
 
 #: gui/options/options.js:38
 msgid "Action Gain"
-msgstr ""
+msgstr "Aksiyon Kazançı"
 
 #: gui/options/options.js:38
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "Oyundaki birim aksiyon ses kazancı"
 
 #: gui/options/options.js:39
 msgid "UI Gain"
@@ -933,7 +934,7 @@ msgstr "Kullanıcı arabirimi  ses kazancı"
 
 #: gui/options/options.js:43
 msgid "Chat Backlog"
-msgstr ""
+msgstr "Sohbet Biriktirme Listesi"
 
 #: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
@@ -945,7 +946,7 @@ msgstr "Sohbet Zaman damgası"
 
 #: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Sohbet lobisinde gönderilen mesajların zamanını göster"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
@@ -967,12 +968,12 @@ msgstr "yükleme başarılı"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "yükleme başarısız (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "yükleme başarısız (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -985,7 +986,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sUyarı:%(endWarning)s Gölgesiz(sabit işlevli) grafik kullanıyor olduğunuz görünüyor. Bu seçenek, daha gelişmiş grafik özelliklerine izin vermek için, gelecekteki 0 A.D. sürümünde silinecektir. Biz daha yeni, gölgelendirme-uyumlu grafik kartı yükseltmesi öneriyoruz."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1027,12 +1028,12 @@ msgstr "Hata"
 
 #: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr ""
+msgstr "Çoklu oyuncu lobisini başlat. [YAPI DEVRE DIŞI]"
 
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Teknik Detaylar"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1045,39 +1046,39 @@ msgstr "Kaydedilmiş oyun yok"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Bu kayıtlı oyun uyumlu olmayabilir:"
 
 #: gui/savedgames/load.js:48
 #, python-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "O 0 A.D. %(requiredVersion)s sürümüne ihtiyaç duyuyor, çalışan sürüm ise %(currentVersion)s dür."
 
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "\"%(currentMod)s\" ile çalışırken herhangi bir moda ihtiyaç duymaz."
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "O \"%(requiredMod)s\" moda ihtiyaç duyar modsuz çalışırken."
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "O \"%(currentMod)s\" modla çalışırken \"%(requiredMod)s\"  moduna ihtiyaç duyar."
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Hala devam etmek istiyor musunuz?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "Uyarı"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -1124,12 +1125,12 @@ msgstr ""
 #: gui/session/input.js:406
 #, python-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Kazanç: %(gain)s"
 
 #: gui/session/input.js:310
 #, python-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Hedeflenen kazanç: %(gain)s"
 
 #: gui/session/input.js:387
 msgid "Origin trade market."
@@ -1161,7 +1162,7 @@ msgstr "Duraklat"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Devam ettir"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1186,7 +1187,7 @@ msgstr "Geri döneceğim"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "İstifa mı etmek istiyorsun yoksa yakında dönecek misin?"
 
 #: gui/session/menu.js:188
 msgid "Destroy everything currently selected?"
@@ -1217,21 +1218,21 @@ msgstr "x"
 
 #: gui/session/menu.js:472
 msgid "There are no land traders."
-msgstr ""
+msgstr "Hiçbir kara ticareti yok."
 
 #: gui/session/menu.js:478
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s devre dışı"
+msgstr[1] "%(numberOfLandTraders)s devre dışı"
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberTrading)s kara ticareti var"
+msgstr[1] "%(numberTrading)s kara ticareti var"
 
 #: gui/session/menu.js:485
 #, python-format
@@ -1244,22 +1245,22 @@ msgstr[1] ""
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, ve %(inactiveString)s."
 
 #: gui/session/menu.js:496
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, ve %(garrisonedString)s."
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, ve %(inactiveString)s."
 
 #: gui/session/menu.js:513 gui/session/menu.js:575
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:523
 #, python-format
@@ -1275,12 +1276,12 @@ msgstr[1] ""
 #: gui/session/menu.js:526
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, ve %(inactiveString)s."
 
 #: gui/session/menu.js:533
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:542
 #, python-format
@@ -1293,19 +1294,19 @@ msgstr[1] ""
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(inactiveString)s var."
+msgstr[1] "%(inactiveString)s var."
 
 #: gui/session/menu.js:555
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Hiçbir ticaret gemisi yok."
 
 #: gui/session/menu.js:561
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s devre dışı"
+msgstr[1] "%(numberOfShipTraders)s devre dışı"
 
 #: gui/session/menu.js:565
 #, python-format
@@ -1318,8 +1319,8 @@ msgstr[1] ""
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s ticari gemi devredışı"
+msgstr[1] "%(numberOfShipTraders)s ticari gemiler devredışı"
 
 #: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
@@ -1433,7 +1434,7 @@ msgstr "%(player)s size gönderdi %(amounts)s."
 #: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "%(attacker)s tarafından saldırıya uğradın!"
 
 #: gui/session/messages.js:499 gui/session/messages.js:504
 #, python-format
@@ -1552,7 +1553,7 @@ msgstr "Değer:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Oran:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:636
 #: gui/session/utility_functions.js:602
@@ -1737,8 +1738,8 @@ msgstr "%(technology)s gerekli"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Kalan: inşaya %(number)s ."
+msgstr[1] "Kalan: inşaya %(number)s ."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -1751,7 +1752,7 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Kaya Duvarı Şehir Kapısına Dönüştür"
 
 #: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
@@ -1760,7 +1761,7 @@ msgstr ""
 #: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
-msgstr ""
+msgstr "%(wall)s ı %(gate)s lara dönüştür"
 
 #: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
@@ -1822,8 +1823,8 @@ msgstr "%(arrowString)s / %(timeString)s"
 #, python-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(arrows)s ok"
+msgstr[1] "%(arrows)s oklar"
 
 #: gui/session/utility_functions.js:184 gui/session/utility_functions.js:188
 #, python-format
@@ -1884,11 +1885,11 @@ msgstr ""
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Birimleri daha fazla korumak için alarm seviyesini arttır"
 
 #: gui/session/utility_functions.js:375
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Uyarıyı yükselt!"
 
 #: gui/session/utility_functions.js:386
 msgid "End of alert."
@@ -1907,7 +1908,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/session/utility_functions.js:492
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s e %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:525
 #, python-format
@@ -2299,7 +2300,7 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Sırada başka bir 5 kadın vatandaş."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
@@ -2313,7 +2314,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Tarla sürmek için 2-3 adet daha kadın vatandaş kullan."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -2321,7 +2322,7 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Sırada başka bir ev."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
@@ -2337,7 +2338,7 @@ msgstr ""
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Oduncuları ambarın yakınlarındaki ağaçlara gönder, böylece çok fazla yürümek zorunda kalmazlar."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
@@ -2347,7 +2348,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Sırada inşa edilecek başka bir ev."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
@@ -2409,11 +2410,11 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
-msgstr ""
+msgstr "Aşama 2 araştırmaya başla."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
-msgstr ""
+msgstr "Biraz atıcı sırala"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
 msgid ""
@@ -2452,7 +2453,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Hatırlanması gereken önemli noktalar:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -2488,7 +2489,7 @@ msgstr ""
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr ""
+msgstr "- Kadın vatandaşlar daha ucuzdur, böylece daha fazla kaynak için onlardan daha fazla üretebilirsin."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -2607,7 +2608,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Düşman geliyor. Onları defetmek için daha çok asker üret."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
@@ -2642,27 +2643,27 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Düşman mağlup oldu. Tüm görevler şimdi tamamlandı..."
 
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "%(name)s bilinmeyen bir hatadan dolayı inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:104
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr ""
+msgstr "%(name)s keşfedilmemiş alana inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:152
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
-msgstr ""
+msgstr "%(name)s diğer yapı veya kaynakların üzerine inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
-msgstr ""
+msgstr "%(name)s geçersiz arazi üzerine inşa edilemez"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2670,7 +2671,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:180
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "müttefik"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2678,7 +2679,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:183
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "kendi"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2686,7 +2687,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "tarafsız"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2694,19 +2695,19 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "düşman"
 
 #: simulation/components/BuildRestrictions.js:195
 #, python-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
-msgstr ""
+msgstr "%(name)s  %(territoryType)s bölgesine inşa edilemez. Geçerli bölgeler: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:232
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr ""
+msgstr "%(name)s Geçerli bir kıyı üzerine inşa edilmelidir"
 
 #: simulation/components/BuildRestrictions.js:256
 #, python-format
@@ -2726,28 +2727,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:298
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "kendi"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:300
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "müttefik"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:302
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "tarafsız"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "düşman"
 
 #: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
@@ -2772,21 +2773,21 @@ msgstr "Taş"
 #: simulation/components/Player.js:236
 #, python-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
 #, python-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
 #, python-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
 #, python-format
@@ -2794,21 +2795,21 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:345
 msgid "The production queue is full."
-msgstr ""
+msgstr "Üretim kuyruğu dolu."
 
 #: simulation/components/Wonder.js:53
 #, python-format
 msgid "%(player)s will have won in %(time)s"
-msgstr ""
+msgstr "%(player)s  %(time)s içinde kazanacak"
 
 #: simulation/components/Wonder.js:61
 #, python-format
 msgid "You will have won in %(time)s"
-msgstr ""
+msgstr "%(time)s içinde kazanacaksın"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -2902,7 +2903,7 @@ msgstr "Harita Seç:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "Oyuncu Sayısı:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -3008,7 +3009,7 @@ msgstr "Hile kullanımını aç."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
-msgstr ""
+msgstr "Oylanmış Oyun:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -3064,7 +3065,7 @@ msgstr "Çoklu oyuncu lobisi"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "Durum"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
@@ -3073,11 +3074,11 @@ msgstr "İsim"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "Değerlendirme"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Puan Tablosu"
 
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
@@ -3097,25 +3098,25 @@ msgstr "Ana Menü"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "Harita İsmi"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Boyut"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Tip"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "Oyuncular"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
-msgstr ""
+msgstr "Tam oyunları göster"
 
 #: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
 msgid "Rank"
@@ -3127,11 +3128,11 @@ msgstr "Güncelle"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Yeni hesap oluştur"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Varolan hesaba giriş yap"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3155,7 +3156,7 @@ msgstr "Şifre tekrar:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Kullanım Şartlarını ve Kullanım Servisini okudum ve kabul ediyorum:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3175,7 +3176,7 @@ msgstr "Dil:"
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "Konum:"
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption)
@@ -3184,15 +3185,15 @@ msgstr "Kabul et"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "İleri"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "Ülke:"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr ""
+msgstr "Komut dosyası:"
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
@@ -3202,36 +3203,36 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
-msgstr ""
+msgstr "Başka biçim (kullanılmayan):"
 
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Henüz uygulanmaktadır."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Anahtar kelimeler (kullanılmayan):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr ""
+msgstr "Ortaya çıkan yer:"
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Kullanılan sözlük dosyaları:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr ""
+msgstr "Otomatik tespit"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Bilgilendirme"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Çevrimiçi Görüntüle"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3247,7 +3248,7 @@ msgstr "Görüntü Ayarları"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
-msgstr ""
+msgstr "Ses Ayarları"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
@@ -3282,7 +3283,7 @@ msgstr "Durum: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3296,11 +3297,11 @@ msgstr "play0ad.com'a katılın"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Geribildirimi aç"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Geribildirimi devredışı bırak"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3367,11 +3368,11 @@ msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Karşılama Ekranı"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Karşılama Ekranını göster. Çok kullanışlıdır."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3379,7 +3380,7 @@ msgstr "Oynamayı Öğren"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "0 A.D. Oyun Rehberini aç."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3416,15 +3417,15 @@ msgstr "Çıkış"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Oyundan çık."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Çeviriye destek ol!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Tarayıcıda 0 A.D çeviri sayfasını açmak için tıklayın."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3451,7 +3452,7 @@ msgstr "Hatayı Bildirin"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "0 A.D. hata ve çökme rapor etmek için tıklayın."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3551,11 +3552,11 @@ msgstr "Vergi"
 
 #: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "Ticaret"
 
 #: gui/session/session.xml:511 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Ticari mallar seçimi:"
 
 #: gui/session/session.xml:531 (tooltip)
 msgid ""
@@ -3573,7 +3574,7 @@ msgstr "Görüntülenecek oyuncuyu seçin"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -3669,7 +3670,7 @@ msgstr "Pazar"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Çeşitli"
 
 #: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
 #: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
@@ -3724,7 +3725,7 @@ msgstr "Hisarlar"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr ""
+msgstr "Şehir Merkezleri"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
@@ -3794,19 +3795,19 @@ msgstr "Ticari kazanç"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "Vejetaryan\\noranı"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
-msgstr ""
+msgstr "Kadınsılaştırılma"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "Öldürülme / Vefat\\n oranı"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "Harita\\nkeşfedilme"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
@@ -3814,7 +3815,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Tanımlar:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -3824,7 +3825,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr " * \"Sen\" servis kullanıcısı olarak."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
@@ -3846,7 +3847,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr " 1. Takip eden tüm kullanım politikaları."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
@@ -3934,7 +3935,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Kabul ediyorsun:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
@@ -3963,7 +3964,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr " 6. Spamsız servis."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -3989,11 +3990,11 @@ msgstr ""
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. oyuniçi rehberi"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -4004,7 +4005,7 @@ msgstr "0 A.D.'yi yüklediğiniz için teşekkürler.! Bu sayfa size geliştiril
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Grafik ayarları"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -4014,11 +4015,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + Enter'a basarak tam ekran ve pencere modu arasında geçiş yapabilirsin. pencere modunda, pencere boyutunu değiştirebilirsin. Eğer oyun çok yavaş çalışıyorsa, yapılandırma dosyasından bazı ayarları değiştirebilirsin: binaries/data/config/default.cfg oyunun nereye kurulduğuna bakmak için, talimatlarla düzenleyebilir, ve \"süslü su\" ve \"gölgeler\" seçeneklerini devre dışı bırakmayı deneyebilirsin."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Oyun oyna"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -4026,7 +4027,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Kontroller ve oynanabilirlik geleneksel RTS oyunlarının oyuncularına aşina gelmelidir. Mevcutta bir çok eksik özellik ve zayıf -dengeli istatistik- var muhtemelen düzgün çalışması için yayınlanacak bir betayı beklemek durumundasınız."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -4058,11 +4059,11 @@ msgstr "• Fare tekerleği, ya da \"+\" ve \"-\" tuşları ile zoom yapabilirsi
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Modlar"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ana menü iki oyun moduna erişim sağlar:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -4071,13 +4072,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Tek-oyuncu[font=\"sans-14\"] — bir sanal alan oyunu veya bir veya daha fazla yapay zeka rakiplerine karşı oynanabilir. Bu yapay zeka veya zekalar alt geliştirmededir ve her zaman yeni özellik güncellemesi olmayabilir, ama gerçek bir rakibe karşı oynarken test edebilirsin ama bir insana karşı oynarken mümkün değildir."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Çoklu oyuncu[font=\"sans-14\"] — internet üzerinden gerçek rakiplere karşı oynayın."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -4089,13 +4090,13 @@ msgstr "Çoklu oyuncu bir oyun kurmak için, bir oyuncu mutlaka \"Host oyun\" se
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Oyun kur"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Çok oyunculu oyunda sadece kurucu, oyun kurulumu ayarlarını değiştirebilir."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -4124,15 +4125,15 @@ msgstr "Başlamak için hazır olduğunuzda, \"Oyunu başlat\" tuşunu tıklayı
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kısayol tuşları::"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Her zaman"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Oyunu Kapat, onaysız"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -4172,13 +4173,13 @@ msgstr "Shift + F2: Büyük ekran görüntüsü al (6400px*4800px, BMP biçimind
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Oyunda"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Sola çift tıklama [birime]: Ekrandaki aynı türden birimlerinin hepsini seçer (farklı rütbeler olsa bile)"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -4282,11 +4283,11 @@ msgstr "Z, X, C, V, B, N, M: ile yönetim yapıları seçilir. Eklenir 1., 2., .
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Fare hareketlerini düzenle"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Sağ Tık yapı üzerine: Garnizon"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -4331,15 +4332,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "- Aksi Halde: Saldırı harekatı"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kaplamalar"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Arayüzü Gizle/Göster"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -4363,11 +4364,11 @@ msgstr "Alt + Z: Gökyüzünü değiştir"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kamera manipülasyonu"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W veya [yukarı yön tuşu]: Ekranı yukarı kaydır"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -4444,11 +4445,11 @@ msgstr "Orta Fare Tuşu veya / (ileri Eğik çizgi): Basılı tutun ve fareyi ka
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Bina Konumu Değişimde"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: Binayı 15 derece saat yönünün tersine döndürür"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -4515,11 +4516,11 @@ msgstr "Bizim sunucu üzerinde gönderilen verileri saklayacak, ve benzeri sorul
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]0 A.D.yi kurduğun için teşekkürler!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -4633,7 +4634,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"Yavaş ve istikrarlı olan yarışı kazanır.\" -- Ezop"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -4733,7 +4734,7 @@ msgstr ""
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr ""
+msgstr "\"Bana durmak için bir yer ver, ve bende dünyayı kaldırıyım.\" - Arşimet, levyenin kullanımında."
 
 #: gui/text/quotes.txt:39
 msgid ""
@@ -4826,7 +4827,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "\"Vay haline yenilenin\" - Brennus"
 
 #: gui/text/quotes.txt:56
 msgid ""
@@ -4996,7 +4997,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Ben Kirus, dünyanın kralıyım...\" - Büyük Kirus"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
@@ -5110,7 +5111,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Ya bir yol bulacağım, yada birşey yapacağım.\" - Hannibal Barka"
 
 #: gui/text/quotes.txt:110
 msgid ""
@@ -5331,7 +5332,7 @@ msgstr "\"Savaşın sonunu sadece ölüler gördü\" -Bilinmiyor"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
-msgstr ""
+msgstr "\"Bizim gerçek bir yaratıcıya ihtiyacımız olacak.\" - Plato"
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
@@ -5487,7 +5488,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr ""
+msgstr "- Düşman ve tarafsız bölgelerde sağlık kaybeder."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -5603,7 +5604,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "HALK MERKEZLERİ"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -5723,11 +5724,11 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "KARAKOLLAR"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- Daha geniş gözlem mesefasi için tarafsız bölgede inşa et."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
@@ -5781,15 +5782,15 @@ msgstr "PERS MİMARİSİ"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- Persliler için Özel Teknoloji."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr ""
+msgstr "- Tüm Pers yapıları +25% daha güçlü."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- Sonuç olarak +20% inşa süresini uzatır."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
@@ -5799,7 +5800,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "AĞIR SAVAŞ GEMİSİ"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -5955,7 +5956,7 @@ msgstr ""
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "THEMISTOKLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
@@ -6024,7 +6025,7 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "SAVAŞ FİLLERİ"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
@@ -6339,7 +6340,7 @@ msgstr "Atinalılar"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "Metal madeninin toplanma oranı her geçen yaş için % +10 arttı."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -6410,7 +6411,7 @@ msgstr "Perikles"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Kimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
@@ -6447,7 +6448,7 @@ msgstr ""
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Cleophon"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
@@ -6612,7 +6613,7 @@ msgstr "Britanyalılar "
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Artan gıda tarım ve çiftçilikten elde edildi."
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -6628,7 +6629,7 @@ msgstr "Kelt tarım yöntemleri temsil eder,"
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Rahipleri askerlere yakınlaştırmak saldırı derecelerini artırır."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -6732,7 +6733,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Kulelerde konuşlandırılmış birliklerin yükseklik bonusu artar."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -6971,7 +6972,7 @@ msgstr "Hampsicora"
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hanibal Gisko"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
@@ -7146,7 +7147,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "Galli rahipler bir miktar yakın dövüş becerisi kazandı."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
@@ -7282,7 +7283,7 @@ msgstr ""
 
 #: civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr ""
+msgstr "Liscus"
 
 #: civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
@@ -7521,7 +7522,7 @@ msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr ""
+msgstr "Alüvyonlu ovalar ve nehir vadileri hariç, İberya Yarımadasında taş bolca bulunur ve tüm yapı çeşitleri için çokca kullanılır."
 
 #: civs/iber.jsonCivBonuses[1].Description
 msgid ""
@@ -7765,7 +7766,7 @@ msgstr ""
 
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
-msgstr ""
+msgstr "Antipater"
 
 #: civs/mace.jsonAINames[3]
 msgid "Philip IV"
@@ -7773,7 +7774,7 @@ msgstr "Philip IV"
 
 #: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
 msgid "Lysander"
-msgstr ""
+msgstr "Lysander"
 
 #: civs/mace.jsonAINames[5]
 msgid "Lysimachus"
@@ -7953,11 +7954,11 @@ msgstr ""
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr ""
+msgstr "Müttefik Tapınağı -50% maliyet ve araştırma zamanına sebep olur."
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr ""
+msgstr "Evanjelizm."
 
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -8019,7 +8020,7 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr ""
+msgstr "Fil Sürüsü"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
@@ -8039,7 +8040,7 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "Maurya İmparatorluğu'nun Kurucusu."
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
@@ -8121,7 +8122,7 @@ msgstr ""
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Persliler +10% başket nüfusu bonusuna sahip (Örn : Genelde 300 olan başkent nüfusu 330 olur)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
@@ -8204,7 +8205,7 @@ msgstr ""
 
 #: civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
-msgstr ""
+msgstr "Xsayarsa II"
 
 #: civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
@@ -8264,7 +8265,7 @@ msgstr ""
 #: civs/sele.jsonFactions[0].Technologies[3].Name
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "Nisean Savaş Atları"
 
 #: civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
@@ -8532,7 +8533,7 @@ msgstr "IV. Ptolemaios Soter"
 #: civs/ptol.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Kleopatra H' Philopater"
-msgstr ""
+msgstr "Kleopatra H' Philopater"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
@@ -8552,7 +8553,7 @@ msgstr ""
 #: civs/ptol.jsonStructures[1].Name
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratópedo Misthophóron"
-msgstr ""
+msgstr "Stratópedo Misthophóron"
 
 #: civs/ptol.jsonStructures[1].Special
 msgid ""
@@ -8787,7 +8788,7 @@ msgstr ""
 
 #: civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr ""
+msgstr "Turba duvarlar kuşatmalar sırasında lejyonerler tarafından inşa edilir."
 
 #: civs/rome.jsonHistory
 msgid ""
@@ -8814,7 +8815,7 @@ msgstr ""
 
 #: civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
-msgstr ""
+msgstr "Klerukya"
 
 #: civs/sele.jsonCivBonuses[1].Description
 msgid ""
@@ -9034,7 +9035,7 @@ msgstr ""
 
 #: civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr ""
+msgstr "Antiokhos G' Megas"
 
 #: civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -9050,7 +9051,7 @@ msgstr ""
 #: civs/sele.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "Antiochus IV. Epiphanes"
 
 #: civs/sele.jsonFactions[0].Description
 msgid ""
@@ -9066,7 +9067,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:29
 #: simulation/templates/structures/sele_military_colony.xml:29
 msgid "Military Colony"
-msgstr ""
+msgstr "Askeri Koloni"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""
@@ -9226,7 +9227,7 @@ msgstr ""
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "Mızraklı piyadeler için +25% sağlık bonusu, fakat +10% eğitim zamanı."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -9287,7 +9288,7 @@ msgstr "Syssition"
 
 #: civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr ""
+msgstr "Kahramanlar ve Spartalılar yetiştir ve onlarla ilgili teknolojileri araştır."
 
 #: civs/spart.jsonStructures[1].History
 msgid ""
@@ -9593,7 +9594,7 @@ msgstr ""
 
 #: maps/random/hyrcanian_shores.jsonsettings.Name
 msgid "Hyrcanian Shores"
-msgstr ""
+msgstr "Hyrcanian Shores"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
@@ -9648,7 +9649,7 @@ msgstr ""
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
-msgstr ""
+msgstr "Anakara"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -9670,7 +9671,7 @@ msgstr ""
 
 #: maps/random/neareastern_badlands.jsonsettings.Name
 msgid "Neareastern Badlands"
-msgstr "Yakındoğu Badlands"
+msgstr "Yakındoğu Çorak arazileri"
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable"
@@ -9779,7 +9780,7 @@ msgstr ""
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
-msgstr ""
+msgstr "Sahel Sulama Delikleri"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
@@ -9787,7 +9788,7 @@ msgstr "Birçok küçük ada birbirine dar geçitler ile bağlanmıştır."
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
-msgstr ""
+msgstr "Kartanesi Deniz kayaları"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -9927,7 +9928,7 @@ msgstr "At başlığı"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr ""
+msgstr "Kasaba aşaması kilidi açıldı."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
@@ -10022,11 +10023,11 @@ msgstr "Şehir aşaması kilidi açıldı."
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.hele
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.mace
 msgid "Sidi̱ró Panoplía"
-msgstr ""
+msgstr "Sidi̱ró Panoplía"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.rome
 msgid "Lorica Ferrea"
-msgstr ""
+msgstr "Üst Zırh"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
@@ -10056,7 +10057,7 @@ msgstr "Kapitone Vücut Zırhı"
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr ""
+msgstr "İnce zırh"
 
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
@@ -10088,7 +10089,7 @@ msgstr "Pullu Vücut Zırhı"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
-msgstr ""
+msgstr "Hafif zırh"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsondescription
 msgid ""
@@ -10107,7 +10108,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsonspecificName.rome
 msgid "Lorica Musculata"
-msgstr ""
+msgstr "Zırh"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
@@ -10163,7 +10164,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
-msgstr ""
+msgstr "Bronz Kalkan Kaplaması"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.spart
@@ -10284,7 +10285,7 @@ msgstr ""
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.hele
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.mace
 msgid "Xyston"
-msgstr ""
+msgstr "Xyston"
 
 #: simulation/data/technologies/attack_cav_lance.jsonspecificName.rome
 msgid "Hasta"
@@ -10331,7 +10332,7 @@ msgstr ""
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
-msgstr ""
+msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -10419,7 +10420,7 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
-msgstr ""
+msgstr "Taş Temeller"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -10455,7 +10456,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
-msgstr ""
+msgstr "Demir Saban"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 msgid "Increases wood gathering rates for trees."
@@ -10489,7 +10490,7 @@ msgstr "Köleler"
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.spart
 #: simulation/data/technologies/gather_mining_serfs.jsonspecificName.athen
 msgid "Heilotes"
-msgstr ""
+msgstr "Heilotes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+25% stone gathering rate."
@@ -10631,7 +10632,7 @@ msgstr "İyileştirme Oranı"
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 msgid "Sphagia"
-msgstr ""
+msgstr "Sphagia"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -10676,11 +10677,11 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr ""
+msgstr "Kadın Vatandaşlar Sağlığa %+50 katkı sağlar ."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
-msgstr ""
+msgstr "Dokuma"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
@@ -10692,7 +10693,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "Savaş alanı Tıbbı"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -10719,7 +10720,7 @@ msgstr ""
 
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
-msgstr ""
+msgstr "Yan Askerler"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
@@ -10729,11 +10730,11 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.hele
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.mace
 msgid "Xíphos"
-msgstr ""
+msgstr "Xíphos"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.rome
 msgid "Pugio"
-msgstr ""
+msgstr "Hançer"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
@@ -10741,7 +10742,7 @@ msgstr ""
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr ""
+msgstr "Tüm Mızrak birimler+2 saldırı durdurma sağlar."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
@@ -10755,7 +10756,7 @@ msgstr ""
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.hele
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.mace
 msgid "Siderénies Aichmés"
-msgstr ""
+msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
@@ -10779,7 +10780,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
-msgstr ""
+msgstr "Demir Baltalar vs. El arabası"
 
 #: simulation/data/technologies/pair_heal_01.jsongenericName
 msgid "Heal Range and Rate"
@@ -10796,11 +10797,11 @@ msgstr ""
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
 msgid "Females vs. Population"
-msgstr ""
+msgstr "Nüfusa karşı Kadınlar"
 
 #: simulation/data/technologies/pair_inf_01.jsongenericName
 msgid "Side Arms vs. Irregulars"
-msgstr ""
+msgstr "Yan Askerlere karşı Düzensizler"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
@@ -10972,15 +10973,15 @@ msgstr ""
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr ""
+msgstr "Medeniyet Merkezleri nüfusu +5 arttırır."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
-msgstr ""
+msgstr "Yemek Salonu"
 
 #: simulation/data/technologies/pop_civic_01.jsonspecificName.athen
 msgid "Tholos"
-msgstr ""
+msgstr "Tholos"
 
 #: simulation/data/technologies/pop_civic_02.jsondescription
 msgid ""
@@ -10994,15 +10995,15 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "Kamu Meclisi"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
-msgstr ""
+msgstr "Meclis"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklesia"
-msgstr ""
+msgstr "Ekklesia"
 
 #: simulation/data/technologies/pop_house_01.jsondescription
 msgid ""
@@ -11012,11 +11013,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "Evler nüfusu +1 arttırır."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "Ev Bahçesi"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -11026,11 +11027,11 @@ msgstr ""
 #: simulation/data/technologies/pop_house_01.jsonspecificName.mace
 #: simulation/data/technologies/pop_house_01.jsonspecificName.rome
 msgid "Peristyle"
-msgstr ""
+msgstr "Sütunlu avlu"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.pers
 msgid "Paradise"
-msgstr ""
+msgstr "Cennet"
 
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
@@ -11039,15 +11040,15 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr ""
+msgstr "Evler nüfusu +2 arttırır."
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
-msgstr ""
+msgstr "Manorlar"
 
 #: simulation/data/technologies/pop_house_02.jsonspecificName.rome
 msgid "Insulae"
-msgstr ""
+msgstr "İnsula"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
@@ -11069,7 +11070,7 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.mace
 msgid "Átaktoi"
-msgstr ""
+msgstr "Átaktoi"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -11080,7 +11081,7 @@ msgstr ""
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr ""
+msgstr "Tüm Cirit birimler +2 delme saldırısı ve +4 değeri sağlar."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
@@ -11094,11 +11095,11 @@ msgstr ""
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.hele
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.mace
 msgid "Ankyle"
-msgstr ""
+msgstr "Ankyle"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.rome
 msgid "Amentum"
-msgstr ""
+msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
@@ -11138,7 +11139,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsondescription
 msgid "Siege weapons require less metal resource"
-msgstr ""
+msgstr "Kuşatma silahları metal kaynaklara daha az gereksinim duyar."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
@@ -11146,7 +11147,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr ""
+msgstr "Metal işcisi"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
@@ -11289,7 +11290,7 @@ msgstr "Bereket Şenliği"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.spart
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophoria"
-msgstr ""
+msgstr "Festival"
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -11327,7 +11328,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.athen
 msgid "Metikoi"
-msgstr ""
+msgstr "Metikoi"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsontooltip
 msgid ""
@@ -11360,7 +11361,7 @@ msgstr ""
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.spart
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.athen
 msgid "Zeugites"
-msgstr ""
+msgstr "Zeugites"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
@@ -11549,7 +11550,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
-msgstr ""
+msgstr "İberya Egemenliği"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
@@ -11695,7 +11696,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
-msgstr ""
+msgstr "Mızrakçı +2 saldırı darbesi."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
 msgid "Infantry Spear Fighting"
@@ -11745,7 +11746,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/special_long_walls.jsongenericName
 msgid "Athenian Long Walls"
-msgstr ""
+msgstr "Atina Uzun Duvarları"
 
 #: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsondescription
 msgid ""
@@ -11774,7 +11775,7 @@ msgstr ""
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
 msgid "Exellinismós"
-msgstr ""
+msgstr "Exellinismós"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -11782,7 +11783,7 @@ msgstr "İmparatorlar İmparatoru"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsonspecificName.maur
 msgid "Chakravarti Samrāt"
-msgstr ""
+msgstr "Chakravarti Samrāt"
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsondescription
 msgid ""
@@ -11848,11 +11849,11 @@ msgstr ""
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
-msgstr ""
+msgstr "Süvari Askere Çağırma"
 
 #: simulation/data/technologies/persians/training_conscription_infantry.jsongenericName
 msgid "Infantry Conscription"
-msgstr ""
+msgstr "Piyade Askere Çağırma"
 
 #: simulation/data/technologies/persians/training_levy_cavalry.jsontooltip
 msgid ""
@@ -11898,7 +11899,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Daphne Geçit töreni"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
@@ -11909,7 +11910,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health, but also +10% train time."
-msgstr ""
+msgstr "Tüm süvariler +20% sağlığa, aynı zamanda +10% eğitim zamanına etki eder."
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
@@ -12059,7 +12060,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr ""
+msgstr "Halk Merkezi"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
@@ -12096,7 +12097,7 @@ msgstr "Savunma Binası"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "Savunma Kulesi"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -12115,7 +12116,7 @@ msgstr ""
 #: simulation/templates/template_structure_defense_outpost.xml:57
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr ""
+msgstr "Karakol"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -12248,7 +12249,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr ""
+msgstr "Gıda için sebze hasadı. En fazla toplayıcı: 5."
 
 #: simulation/templates/template_structure_resource_field.xml:24
 msgid "Field"
@@ -12287,7 +12288,7 @@ msgstr "Birim"
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "Basit"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -12653,7 +12654,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
-msgstr ""
+msgstr "Slinger"
 
 #: simulation/templates/template_unit_mechanical.xml:14
 msgid "Mechanical"
@@ -12735,7 +12736,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:51
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "Cıvata Atıcısı"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:55
 msgid ""
@@ -12891,7 +12892,7 @@ msgstr "Sütun Açık"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "Flank"
-msgstr ""
+msgstr "Böğür"
 
 #: simulation/templates/formations/flank.xml:5
 msgid "8 units required"
@@ -12903,19 +12904,19 @@ msgstr "Çizgi Kapandı"
 
 #: simulation/templates/formations/line_open.xml:4
 msgid "Line Open"
-msgstr ""
+msgstr "Çizgi Açık"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "Phalanx"
-msgstr ""
+msgstr "Falanks"
 
 #: simulation/templates/formations/phalanx.xml:5
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "10 yakın dövüş piyade birimi gerekli "
 
 #: simulation/templates/formations/scatter.xml:4
 msgid "Scatter"
-msgstr ""
+msgstr "Saçılma"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Skirmish"
@@ -12923,19 +12924,19 @@ msgstr "Çatışma"
 
 #: simulation/templates/formations/skirmish.xml:4
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Sadece birimlerin izinleri değiştirildi"
 
 #: simulation/templates/formations/syntagma.xml:5
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "9 kargı piyade birimi gerekli "
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "Testudo"
-msgstr ""
+msgstr "Kaplumbağa tipi"
 
 #: simulation/templates/formations/testudo.xml:5
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "9 yakın dövüş piyade birimi gerekli "
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "Wedge"
@@ -12943,7 +12944,7 @@ msgstr "Takoz"
 
 #: simulation/templates/formations/wedge.xml:5
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "3 süvari birimi gerekli"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -12963,11 +12964,11 @@ msgstr "Tavuk"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Nil Timsahı"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Nil timsahı"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -13057,11 +13058,11 @@ msgstr "Tavşan"
 
 #: simulation/templates/gaia/fauna_shark.xml:15
 msgid "Shark"
-msgstr ""
+msgstr "Köpekbalığı"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
-msgstr ""
+msgstr "Harika Beyaz"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
@@ -13277,7 +13278,7 @@ msgstr "Gizli Kutu"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "Pers Malları"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
@@ -13407,7 +13408,7 @@ msgstr "Efsanevi Tapınak"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Naos Parthenos"
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
@@ -13598,24 +13599,24 @@ msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "Büyük kabin"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "Orta boy kabin"
 
 #: simulation/templates/other/stall_small_a.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "Küçük kabin"
 
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall b"
-msgstr ""
+msgstr "Küçük kabin b"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "Masa"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
@@ -13753,11 +13754,11 @@ msgstr "Empórion"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "Yunan Karakolu"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr ""
+msgstr "Kahramanları eğit. Özel teknolojileri araştır."
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
@@ -13894,7 +13895,7 @@ msgstr ""
 #: simulation/templates/structures/celt_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
-msgstr ""
+msgstr "Crannóc"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
@@ -13966,13 +13967,13 @@ msgstr "Döner Değirmen"
 #: simulation/templates/structures/celt_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
 msgid "Ystordy"
-msgstr ""
+msgstr "Ystordy"
 
 #: simulation/templates/structures/brit_temple.xml:19
 #: simulation/templates/structures/celt_temple.xml:19
 #: simulation/templates/structures/gaul_temple.xml:19
 msgid "Addoldy"
-msgstr ""
+msgstr "Addoldy"
 
 #: simulation/templates/structures/brit_wall_gate.xml:16
 msgid "Dor"
@@ -14081,7 +14082,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
-msgstr ""
+msgstr "Ḥamet"
 
 #: simulation/templates/structures/cart_house.xml:22
 msgid "Bet"
@@ -14093,7 +14094,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr ""
+msgstr "Kartaca Karakolu"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -14148,7 +14149,7 @@ msgstr "Galyalı Dun"
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
-msgstr ""
+msgstr "Kelt Karakolu"
 
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
@@ -14173,7 +14174,7 @@ msgstr "Meyhane"
 
 #: simulation/templates/structures/gaul_tavern.xml:24
 msgid "Taberna"
-msgstr ""
+msgstr "Taberna"
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
@@ -14202,11 +14203,11 @@ msgstr ""
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr ""
+msgstr "Kaserna"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
-msgstr ""
+msgstr "Harotz"
 
 #: simulation/templates/structures/iber_civil_centre.xml:5
 msgid "Oppidum"
@@ -14235,7 +14236,7 @@ msgstr "Soro"
 
 #: simulation/templates/structures/iber_fortress.xml:16
 msgid "Castro"
-msgstr ""
+msgstr "Castro"
 
 #: simulation/templates/structures/iber_house.xml:12
 msgid "Etxe"
@@ -14243,7 +14244,7 @@ msgstr "Etxe"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr ""
+msgstr "Kırışıklık"
 
 #: simulation/templates/structures/iber_monument.xml:39
 msgid ""
@@ -14273,7 +14274,7 @@ msgstr "Loki"
 #: simulation/templates/structures/iber_wall_short.xml:13
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr ""
+msgstr "Zabal Horma"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
@@ -14300,7 +14301,7 @@ msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "Kuşatma motorları oluşturun. Araştırma kuşatma teknolojileri."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeíon Poliorkías"
@@ -14332,7 +14333,7 @@ msgstr "Udarka"
 
 #: simulation/templates/structures/maur_dock.xml:9
 msgid "Naukasthanaka"
-msgstr ""
+msgstr "Naukasthanaka"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
@@ -14364,7 +14365,7 @@ msgstr "Griham"
 
 #: simulation/templates/structures/maur_market.xml:12
 msgid "Vipana"
-msgstr ""
+msgstr "Vipana"
 
 #: simulation/templates/structures/maur_outpost.xml:5
 msgid "Uparaksana"
@@ -14384,7 +14385,7 @@ msgstr "Khalla"
 
 #: simulation/templates/structures/maur_temple.xml:12
 msgid "Devalaya"
-msgstr ""
+msgstr "Devalaya"
 
 #: simulation/templates/structures/maur_wall.xml:9
 #: simulation/templates/structures/maur_wall_long.xml:16
@@ -14409,7 +14410,7 @@ msgstr ""
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Paralı Kamp"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
@@ -14417,11 +14418,11 @@ msgstr ""
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "Karalı Kamp (Mısırlı)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
-msgstr ""
+msgstr "Stratópedo Misthophóron Aigyptiakós"
 
 #: simulation/templates/structures/pers_apadana.xml:34
 msgid ""
@@ -14441,7 +14442,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
-msgstr ""
+msgstr "Padgan"
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -14521,7 +14522,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
-msgstr ""
+msgstr "Pers Özel Yapıları"
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
@@ -14533,7 +14534,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
-msgstr ""
+msgstr "Paraspa"
 
 #: simulation/templates/structures/pers_storehouse.xml:5
 msgid "Asiyah"
@@ -14567,39 +14568,39 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ḥwt-n-mš'"
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
-msgstr ""
+msgstr "pr-'a"
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "mktr-'a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "ḥwt"
 
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothí̱ki̱"
-msgstr ""
+msgstr "Bibliothí̱ki̱"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
@@ -14609,11 +14610,11 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pharos"
-msgstr ""
+msgstr "Pharos"
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "ḥwt-n-ḫt.w-wḫa.w"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -14629,7 +14630,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "Koloni"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
@@ -14641,30 +14642,30 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
 msgid "Klēroukhia"
-msgstr ""
+msgstr "Klerukya"
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr ""
+msgstr "mktr-n-ḫt"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr ""
+msgstr "h-n-ḫt.w"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "sba-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_long.xml:10
 #: simulation/templates/structures/ptol_wall_medium.xml:10
 #: simulation/templates/structures/ptol_wall_short.xml:10
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "h-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
@@ -14686,11 +14687,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
-msgstr ""
+msgstr "Castra Vallum"
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr ""
+msgstr "Castra"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
@@ -14714,7 +14715,7 @@ msgstr "Portus"
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr ""
+msgstr "Villa"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -14722,7 +14723,7 @@ msgstr "Ager"
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr ""
+msgstr "Kale"
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
@@ -14730,11 +14731,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_market.xml:12
 msgid "Mercatus"
-msgstr ""
+msgstr "Pazar"
 
 #: simulation/templates/structures/rome_outpost.xml:5
 msgid "Vigilarium"
-msgstr ""
+msgstr "Vigilarium"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
@@ -14742,7 +14743,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
-msgstr ""
+msgstr "Porta Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:38
 #: simulation/templates/structures/rome_siege_wall_medium.xml:38
@@ -14756,13 +14757,13 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr ""
+msgstr "Kuşatma Duvarı"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:33
 #: simulation/templates/structures/rome_siege_wall_medium.xml:33
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
-msgstr ""
+msgstr "Murus Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -14770,7 +14771,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
-msgstr ""
+msgstr "Turris Circummunitionis"
 
 #: simulation/templates/structures/rome_storehouse.xml:5
 msgid "Receptaculum"
@@ -14786,7 +14787,7 @@ msgstr "Mars Tapınağı"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
-msgstr ""
+msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:15
 msgid ""
@@ -14800,11 +14801,11 @@ msgstr "Vesta Tapınağı"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr ""
+msgstr "Aedes Vestae"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr ""
+msgstr "Askerler için geçici barınak. nüfusa +5 katkı sağlar."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -14832,7 +14833,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedes Iovis Optimi Maximi"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -14840,7 +14841,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_dock.xml:12
 msgid "Liménas"
-msgstr ""
+msgstr "Liménas"
 
 #: simulation/templates/structures/sele_fortress.xml:10
 msgid ""
@@ -14850,7 +14851,7 @@ msgstr ""
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
-msgstr ""
+msgstr "Phrourion"
 
 #: simulation/templates/structures/sele_military_colony.xml:33
 msgid ""
@@ -14861,11 +14862,11 @@ msgstr ""
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr ""
+msgstr "Prophylax"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"
-msgstr ""
+msgstr "Tapınak"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
@@ -15008,7 +15009,7 @@ msgstr "Asklepeion"
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "İleri"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
@@ -15125,7 +15126,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_e.xml:11
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "Seçkin"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
@@ -15135,7 +15136,7 @@ msgstr "Yunan Süvarisi"
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
 msgid "Hippeús"
-msgstr ""
+msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:10
 msgid "City Guard"
@@ -15151,7 +15152,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Épibatēs Athēnaïkós"
-msgstr ""
+msgstr "Épibatēs Athēnaïkós"
 
 #: simulation/templates/units/athen_champion_ranged.xml:13
 msgid "Scythian Archer"
@@ -15171,7 +15172,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
-msgstr ""
+msgstr "Iphikratēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:16
 msgid ""
@@ -15220,7 +15221,7 @@ msgstr ""
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:27
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
-msgstr ""
+msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
@@ -15287,7 +15288,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaïkós"
-msgstr ""
+msgstr "Triḗrēs Athēnaïkós"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
@@ -15476,7 +15477,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
-msgstr ""
+msgstr "Ḥayyāl Raḫūv Masili"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
@@ -15484,7 +15485,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Romaḥ Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:12
 msgid "Gallic Mercenary Cavalry"
@@ -15493,7 +15494,7 @@ msgstr ""
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:13
 msgid "Ḥayyāl Ḥerev Raḫūv"
-msgstr ""
+msgstr "Ḥayyāl Ḥerev Raḫūv"
 
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:12
 msgid "Iberian Heavy Cavalry"
@@ -15531,7 +15532,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
-msgstr ""
+msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:14
 msgid ""
@@ -15584,7 +15585,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:23
 msgid "Sǝḫīr Kidōn"
-msgstr ""
+msgstr "Sǝḫīr Kidōn"
 
 #: simulation/templates/units/cart_infantry_slinger_b.xml:22
 msgid "Balearic Slinger"
@@ -15600,7 +15601,7 @@ msgstr "Libyalı Mızrakçı"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
-msgstr ""
+msgstr "Sǝḫīr Ḥanīt"
 
 #: simulation/templates/units/cart_infantry_swordsman_2_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
@@ -15609,7 +15610,7 @@ msgstr "Kılıçlı Samnitler"
 
 #: simulation/templates/units/cart_infantry_swordsman_2_b.xml:22
 msgid "Seḫīr Romaḥ"
-msgstr ""
+msgstr "Seḫīr Romaḥ"
 
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:21
 #: simulation/templates/units/ptol_infantry_swordsman_b.xml:21
@@ -15618,7 +15619,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_swordsman_b.xml:22
 msgid "Seḫīr Ḥerev"
-msgstr ""
+msgstr "Seḫīr Ḥerev"
 
 #: simulation/templates/units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/units/rome_mechanical_siege_ballista_common.xml:32
@@ -15642,7 +15643,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_ship_bireme.xml:10
 msgid "Du-Mašōt"
-msgstr ""
+msgstr "Du-Mašōt"
 
 #: simulation/templates/units/cart_ship_fishing.xml:5
 msgid "Noon-Mašōt"
@@ -15665,7 +15666,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:6
 msgid "Ḥameš-Mašōt"
-msgstr ""
+msgstr "Ḥameš-Mašōt"
 
 #: simulation/templates/units/cart_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:5
@@ -15675,7 +15676,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_ship_trireme.xml:6
 msgid "Tlat-Mašōt"
-msgstr ""
+msgstr "Tlat-Mašōt"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
@@ -15683,7 +15684,7 @@ msgstr "Kartacalı Kadın"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
-msgstr ""
+msgstr "Aštāh"
 
 #: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
@@ -15898,7 +15899,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_leonidas.xml:32
 #: simulation/templates/units/spart_hero_leonidas.xml:29
 msgid "Leōnídēs"
-msgstr ""
+msgstr "Leōnídēs"
 
 #: simulation/templates/units/hele_hero_philip.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
@@ -15908,7 +15909,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_philip.xml:11
 #: simulation/templates/units/mace_hero_philip.xml:11
 msgid "Phílippos B' ho Makedṓn"
-msgstr ""
+msgstr "Phílippos B' ho Makedṓn"
 
 #: simulation/templates/units/hele_hero_themistocles.xml:15
 msgid ""
@@ -15934,7 +15935,7 @@ msgstr ""
 #: simulation/templates/units/hele_infantry_slinger_b.xml:20
 #: simulation/templates/units/mace_infantry_slinger_b.xml:20
 msgid "Sphendonetes Rhodikos"
-msgstr ""
+msgstr "Sphendonetes Rhodikos"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:26
 msgid "Greek Hoplite"
@@ -15979,7 +15980,7 @@ msgstr "Gýnē Hellenikos"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
-msgstr ""
+msgstr "Kantabriako Zaldun"
 
 #: simulation/templates/units/iber_cavalry_spearman_b.xml:6
 msgid "Lantzari"
@@ -15999,7 +16000,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
-msgstr ""
+msgstr "Leial Ezpatari"
 
 #: simulation/templates/units/iber_hero_caros.xml:12
 #: simulation/templates/units/iber_hero_indibil.xml:7
@@ -16065,7 +16066,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr ""
+msgstr "OdrysYALI çatışma Süvarisi"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistès Odrysón"
@@ -16132,7 +16133,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
-msgstr ""
+msgstr "Hamsilos"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
@@ -16144,7 +16145,7 @@ msgstr "Gýnē Makedonikós"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"
-msgstr ""
+msgstr "Zırhlı Kılıçlı"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Thorakites"
@@ -16152,7 +16153,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_thureophoros.xml:9
 msgid "Heavy Skirmisher"
-msgstr ""
+msgstr "Ağır Avcı"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Thureophoros"
@@ -16172,7 +16173,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
-msgstr ""
+msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur_champion_chariot.xml:34
 #: simulation/templates/units/sele_champion_chariot.xml:34
@@ -16212,7 +16213,7 @@ msgstr "Savaşçı"
 
 #: simulation/templates/units/maur_champion_infantry.xml:45
 msgid "Yōddha"
-msgstr ""
+msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_maiden.xml:16
 msgid "Maiden Guard"
@@ -16221,7 +16222,7 @@ msgstr ""
 #: simulation/templates/units/maur_champion_maiden.xml:17
 #: simulation/templates/units/maur_champion_maiden_archer.xml:18
 msgid "Visha Kanya"
-msgstr ""
+msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:17
 msgid "Maiden Guard Archer"
@@ -16251,7 +16252,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:33
 msgid "Aśoka Devānāmpriya"
-msgstr ""
+msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid ""
@@ -16362,7 +16363,7 @@ msgstr ""
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
 msgid "Thracian Mercenary Swordsman"
-msgstr ""
+msgstr "Trakyalı Paralı Kılıçlı"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:15
@@ -16379,7 +16380,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
-msgstr ""
+msgstr "Arštibara"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:36
 msgid ""
@@ -16543,7 +16544,7 @@ msgstr "Athuriya Hamaranakuba"
 
 #: simulation/templates/units/pers_ship_bireme.xml:9
 msgid "Cypriot Galley"
-msgstr ""
+msgstr "Kıbrıs Kadırgası"
 
 #: simulation/templates/units/pers_ship_bireme.xml:10
 msgid "Hamaraniyanava"
@@ -16583,7 +16584,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_support_healer_b.xml:7
 msgid "Maguš Mada"
-msgstr ""
+msgstr "Maguš Mada"
 
 #: simulation/templates/units/pers_support_trader.xml:14
 msgid ""
@@ -16621,7 +16622,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:14
 msgid "Hippeus Tarantinos"
-msgstr ""
+msgstr "Hippeus Tarantinos"
 
 #: simulation/templates/units/ptol_cavalry_spearman_b.xml:6
 msgid "Macedonian Settler Cavalry"
@@ -16637,7 +16638,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Agema Basilikos"
-msgstr ""
+msgstr "Agema Basilikos"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
@@ -16649,7 +16650,7 @@ msgstr "Polémou Eléphantos"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:19
 msgid "Juggernaut"
-msgstr ""
+msgstr "Önüne gelen her şeyi yıkan güç"
 
 #: simulation/templates/units/ptol_champion_juggernaut.xml:20
 msgid "Tessarakonterēs"
@@ -16701,7 +16702,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:27
 msgid "Kousít Misthophóros Toxóti̱s"
-msgstr ""
+msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
@@ -16733,7 +16734,7 @@ msgstr "Mısır mızraklısı"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:16
 msgid "Makhimos Phalangites"
-msgstr ""
+msgstr "Makhimos Phalangites"
 
 #: simulation/templates/units/ptol_infantry_swordsman_b.xml:22
 msgid "Gallikós Mistophorós"
@@ -16741,7 +16742,7 @@ msgstr "Gallikós Mistophorós"
 
 #: simulation/templates/units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
-msgstr ""
+msgstr "Polibon"
 
 #: simulation/templates/units/ptol_ship_bireme.xml:6
 #: simulation/templates/units/sele_ship_bireme.xml:6
@@ -16750,12 +16751,12 @@ msgstr "Dierēs"
 
 #: simulation/templates/units/ptol_ship_quinquereme.xml:5
 msgid "Octères"
-msgstr ""
+msgstr "Octères"
 
 #: simulation/templates/units/ptol_ship_trireme.xml:5
 #: simulation/templates/units/sele_ship_quinquereme.xml:5
 msgid "Pentères"
-msgstr ""
+msgstr "Pentères"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:11
 msgid "Egyptian Woman"
@@ -16771,7 +16772,7 @@ msgstr "Mısırlı Rahip"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigyptikos"
-msgstr ""
+msgstr "Hiereús Aigyptikos"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:6
 msgid "Italian Allied Cavalry"
@@ -16803,7 +16804,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_champion_cavalry.xml:5
 msgid "Eques Consularis"
-msgstr ""
+msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
@@ -16827,11 +16828,11 @@ msgstr "Kıdemli Mızraklı"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Triarius"
-msgstr ""
+msgstr "Triariiler"
 
 #: simulation/templates/units/rome_infantry_swordsman_a.xml:21
 msgid "Princeps"
-msgstr ""
+msgstr "Prens"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:27
 msgid "Roman Swordsman"
@@ -16867,7 +16868,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_ship_bireme.xml:5
 msgid "Liburnus"
-msgstr ""
+msgstr "Liburnus"
 
 #: simulation/templates/units/rome_ship_fishing.xml:5
 msgid "Navicula Piscatoria"
@@ -16879,19 +16880,19 @@ msgstr ""
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:6
 msgid "Roman Quinquereme"
-msgstr ""
+msgstr "Roma Kadırgası"
 
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quinqueremis Romana"
-msgstr ""
+msgstr "Quinqueremis Romana"
 
 #: simulation/templates/units/rome_ship_trireme.xml:9
 msgid "Roman Trireme"
-msgstr ""
+msgstr "Romalı Trireme"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
-msgstr ""
+msgstr "Romalı Triremis"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Roman Woman"
@@ -16899,7 +16900,7 @@ msgstr "Romalı Kadın"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:5
 msgid "Romana"
-msgstr ""
+msgstr "Romana"
 
 #: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "State Priest"
@@ -16907,7 +16908,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Pontifex Minor"
-msgstr ""
+msgstr "Pontifex Yandal"
 
 #: simulation/templates/units/rome_support_trader.xml:9
 msgid "Plebeian Merchant"
@@ -16964,15 +16965,15 @@ msgstr ""
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
-msgstr ""
+msgstr "Dahae At Okçusu"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:8
 msgid "Hippotoxotès Dahae"
-msgstr ""
+msgstr "Hippotoxotès Dahae"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:6
 msgid "Militia Cavalry"
-msgstr ""
+msgstr "Milis Süvarisi"
 
 #: simulation/templates/units/sele_cavalry_javelinist.xml:7
 msgid "Hippakontistès Politès"
@@ -16984,7 +16985,7 @@ msgstr "Hippeus Medikos"
 
 #: simulation/templates/units/sele_cavalry_spearman_b.xml:7
 msgid "Hippos Hetairike"
-msgstr ""
+msgstr "Hippos Hetairike"
 
 #: simulation/templates/units/sele_champion_cavalry.xml:23
 msgid "Seleucid Cataphract"
@@ -16996,7 +16997,7 @@ msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:30
 msgid "Scythed Chariot"
-msgstr ""
+msgstr "Tırpanlı Savaş arabası"
 
 #: simulation/templates/units/sele_champion_chariot.xml:31
 msgid "Drepanèphoros"
@@ -17004,7 +17005,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
-msgstr ""
+msgstr "Zırhlı Savaş Fili"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Thorakisménos Eléphantos"
@@ -17012,7 +17013,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
-msgstr ""
+msgstr "Gümüş Kalkanlı Mızraklı Adam"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
@@ -17024,7 +17025,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_infantry_swordsman.xml:6
 msgid "Thorakitès Rhomaïkós"
-msgstr ""
+msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid ""
@@ -17036,7 +17037,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
-msgstr ""
+msgstr "III.Antikus \"Büyük\""
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Antiokhos G' Mégās"
@@ -17052,7 +17053,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:11
 msgid "Antiochus IV \"The Righteous\""
-msgstr ""
+msgstr "IV.Antikus \"Dürüst\""
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:15
 msgid ""
@@ -17068,7 +17069,7 @@ msgstr "I. Selevkos \"Muzaffer\""
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:14
 msgid "Syrian Archer"
-msgstr ""
+msgstr "Suriyeli Okçu"
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:15
 msgid "Toxótēs Syrías"
@@ -17076,7 +17077,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
-msgstr ""
+msgstr "Arap Mızrakcı"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
@@ -17084,7 +17085,7 @@ msgstr "Pezakontistès Aravikós"
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:14
 msgid "Militia Thureos Spearman"
-msgstr ""
+msgstr "Milis Thureos Spearman"
 
 #: simulation/templates/units/sele_infantry_spearman_2_b.xml:15
 msgid "Thureophóros Politès"
@@ -17096,7 +17097,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
-msgstr ""
+msgstr "Altın Kalkanlı Mızraklı Adam"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
@@ -17107,11 +17108,11 @@ msgstr ""
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
-msgstr ""
+msgstr "Selevkos Trireme"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
-msgstr ""
+msgstr "Seleukidó̱n Triērēs"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
@@ -17127,11 +17128,11 @@ msgstr ""
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:7
 msgid "Pródromos Perioïkós"
-msgstr ""
+msgstr "Pródromos Perioïkós"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:6
 msgid "Allied Greek Cavalry"
-msgstr ""
+msgstr "Müttefik Yunan Süvarisi"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Hippeús Symmakhikós"
@@ -17193,7 +17194,7 @@ msgstr "Perioikoi Mızrakcısı"
 
 #: simulation/templates/units/spart_infantry_spearman_b.xml:22
 msgid "Hoplī́tēs Perioïkós"
-msgstr ""
+msgstr "Hoplī́tēs Perioïkós"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
@@ -17239,7 +17240,7 @@ msgstr ""
 
 #: simulation/templates/units/theb_mechanical_siege_fireraiser.xml:23
 msgid "Pyrobolos"
-msgstr ""
+msgstr "Pyrobolos"
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
 msgid ""
@@ -17412,7 +17413,7 @@ msgstr "Bridge denemesi"
 
 #: maps/scenarios/Campaign Test Map 2 - heightmap.xml:42:Name
 msgid "Campaign Map - Test"
-msgstr ""
+msgstr "Mücadele Haritası - Deneme"
 
 #: maps/scenarios/Campaign Test Map.xml:42:Description
 msgid "A test map for potential Strategic Campaigns."
@@ -17460,11 +17461,11 @@ msgstr ""
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Name
 msgid "Combat Demo (Huge)"
-msgstr ""
+msgstr "Muharebe Deneme (Büyük)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Description
 msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr ""
+msgstr "1296 birim. Son derece yavaş (daha fazla iyileştirmeye ihtiyaçımız var)."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:42:Description
 msgid ""
@@ -17484,7 +17485,7 @@ msgstr "Ölüm kanyonu - İstila Kuvveti "
 
 #: maps/scenarios/Demo_Trading.xml:31:Description
 msgid "A demonstration of the new trading feature."
-msgstr ""
+msgstr "Yeni ticaret özelliğinin bir gösterimi."
 
 #: maps/scenarios/Demo_Trading.xml:31:Name
 msgid "Trading Demo"
@@ -17498,7 +17499,7 @@ msgstr ""
 
 #: maps/scenarios/Eire and Albion.xml:31:Name
 msgid "Eire and Albion (British Isles)"
-msgstr ""
+msgstr "İrlanda ve Albiyon (Britanya Adaları)"
 
 #: maps/scenarios/Fast Oasis.xml:31:Description
 msgid ""
@@ -17529,7 +17530,7 @@ msgstr "Uçuş Denemesi"
 
 #: maps/scenarios/Flight_demo_2.xml:31:Description
 msgid "Fly some Mustangs."
-msgstr ""
+msgstr "Uçan bazı yaban atları"
 
 #: maps/scenarios/Flight_demo_2.xml:31:Name
 msgid "Flight Demo 2"
@@ -17571,7 +17572,7 @@ msgstr ""
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:31:Name
 msgid "Height Map Import Demo - Greece"
-msgstr ""
+msgstr "Yüksek Harita Alma Deneme - Yunanistan"
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:31:Description
 msgid ""
@@ -17616,7 +17617,7 @@ msgstr "Milet"
 
 #: maps/scenarios/Miletus.xml:31:Description
 msgid "A sandbox scenario for one player."
-msgstr ""
+msgstr "Bir oyuncu için sanal alan senaryosu."
 
 #: maps/scenarios/Multiplayer_demo.xml:31:Name
 msgid "Multiplayer Demo"
@@ -17645,11 +17646,11 @@ msgstr "Yol bulma Denemesi"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Description
 msgid "A map for testing unit movement algorithms."
-msgstr ""
+msgstr "Birim hareket testi için bir harita."
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Name
 msgid "Pathfinding Terrain Demo"
-msgstr ""
+msgstr "Arazide Yol bulma Deneme"
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Description
 msgid ""
@@ -17721,7 +17722,7 @@ msgstr ""
 #: maps/scenarios/Sandbox - Athenians.xml:42:Description
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Tehdit edici olmayan bir sanal ortamda Atinalılar hizip ile oynayın."
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[0].Name
 msgid "The Athenians"
@@ -17753,7 +17754,7 @@ msgstr "Sanal alan - Atinalılar"
 #: maps/scenarios/Sandbox - Britons.xml:41:Description maps/scenarios/Sandbox
 #: - Gauls.xml:41:Description
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
-msgstr ""
+msgstr "Pastoral bir sanal ortamda Galya hizip ile oynayın."
 
 #: maps/scenarios/Sandbox - Britons.xml:41:PlayerData[3].Name
 #: maps/scenarios/Sandbox - Gauls.xml:41:PlayerData[3].Name
@@ -17762,7 +17763,7 @@ msgstr "Romalı Karışmalar"
 
 #: maps/scenarios/Sandbox - Britons.xml:41:Name
 msgid "Sandbox - The Britons"
-msgstr ""
+msgstr "Sanal Alan - Britanyalılar"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:Description
 msgid "Explore the Carthaginian Buildings and Units."
@@ -17784,7 +17785,7 @@ msgstr "Sanal alan - Kartacalılar"
 
 #: maps/scenarios/Sandbox - Gauls.xml:41:Name
 msgid "Sandbox - The Gauls"
-msgstr ""
+msgstr "Sanal alan - Galyalılar"
 
 #: maps/scenarios/Sandbox - Iberians.xml:42:Description
 msgid "A demo map for the Iberians."
@@ -17797,7 +17798,7 @@ msgstr "Sanal Alan - İberyalılar"
 #: maps/scenarios/Sandbox - Macedonians.xml:41:Description
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Tehdit edici olmayan bir sanal ortamda Makedonlar hizip ile oynayın."
 
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[0].Name
 msgid "The Macedonians"
@@ -17813,11 +17814,11 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Mauryans.xml:42:Name
 msgid "Sandbox - The Mauryans"
-msgstr ""
+msgstr "Sanal alan - Mauryalılar"
 
 #: maps/scenarios/Sandbox - Persians.xml:41:Description
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
-msgstr ""
+msgstr "Deneme Haritası. Sanal alan ayarı ile pers medeniyeti ile oynayın."
 
 #: maps/scenarios/Sandbox - Persians.xml:41:PlayerData[0].Name
 msgid "Achaemenids"
@@ -17830,7 +17831,7 @@ msgstr "Sanal alan - Persler"
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:Description
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
-msgstr ""
+msgstr "Tehdit edici olmayan bir sanal ortamda Mısırlılar hizip ile oynayın."
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:PlayerData[0].Name
 msgid "Ptolemy \"Savior\""
@@ -17859,7 +17860,7 @@ msgstr "Sanal alan - Ptolemaioslu Mısırlılar"
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Description
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr ""
+msgstr "Roma medeniyetini denemek için oyuncular için sanal bir alanda senaryoda denerler."
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Name
 msgid "Sandbox - The Republican Romans"
@@ -17867,7 +17868,7 @@ msgstr "Sanal alan - Cumhuriyetçi Romalılar"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:Description
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
-msgstr ""
+msgstr "Selevkos medeniyetini denemek için oyuncular için sanal bir alanda senaryoda denerler."
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:PlayerData[0].Name
 msgid "The Seleucids"
@@ -17879,12 +17880,12 @@ msgstr "Ptolemaioslar"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:Name
 msgid "Sandbox - The Seleucids"
-msgstr "Sanal alan -  Selevkoslular"
+msgstr "Sanal alan -  Selevkoslar"
 
 #: maps/scenarios/Sandbox - Spartans.xml:41:Description
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Tehdit edici olmayan bir sanal ortamda Spartalılar hizip ile oynayın."
 
 #: maps/scenarios/Sandbox - Spartans.xml:41:Name
 msgid "Sandbox - The Spartans"
@@ -17892,7 +17893,7 @@ msgstr "Sanal alan - Spartalılar"
 
 #: maps/scenarios/Savanna Ravine.xml:42:Name
 msgid "Savanna Ravine"
-msgstr "Savanna Ravine"
+msgstr "Savana Dağ geçidi"
 
 #: maps/scenarios/Savanna Ravine.xml:42:Description
 msgid ""
@@ -18069,7 +18070,7 @@ msgstr ""
 
 #: maps/scenarios/road demo.xml:31:Name
 msgid "Road Decals Demo"
-msgstr ""
+msgstr "Yol Çıkarmaları Deneme"
 
 #: maps/scenarios/shipattacks.xml:31:Description
 msgid "Move ships around. Attack other ships."
@@ -18103,7 +18104,7 @@ msgstr ""
 
 #: maps/skirmishes/Acropolis Bay (2).xml:41:Name
 msgid "Acropolis Bay (2)"
-msgstr ""
+msgstr "AKropolis Bay (2)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Description
 msgid ""
@@ -18125,7 +18126,7 @@ msgstr ""
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
-msgstr ""
+msgstr "Toharistan (2)"
 
 #: maps/skirmishes/Belgian Bog (2).xml:41:Description
 msgid ""
@@ -18323,7 +18324,7 @@ msgstr ""
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Name
 msgid "Median Oasis (2)"
-msgstr ""
+msgstr "Medya Vahası (2)"
 
 #: maps/skirmishes/Median Oasis (4).xml:42:Name
 msgid "Median Oasis (4)"
@@ -18337,7 +18338,7 @@ msgstr ""
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:Name
 msgid "Mediterranean Coves (2)"
-msgstr ""
+msgstr "Akdeniz Koyları (2)"
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:42:Description
 #: maps/skirmishes/Neareastern Badlands (4).xml:42:Description
@@ -18351,11 +18352,11 @@ msgstr ""
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:42:Name
 msgid "Neareastern Badlands (2)"
-msgstr ""
+msgstr "Yakındoğu Çorak arazileri (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:42:Name
 msgid "Neareastern Badlands (4)"
-msgstr ""
+msgstr "Yakındoğu Çorak arazileri (4)"
 
 #: maps/skirmishes/Nile River (4).xml:41:Description
 msgid ""
@@ -18398,7 +18399,7 @@ msgstr ""
 
 #: maps/skirmishes/Saharan Oases (4).xml:41:Name
 msgid "Saharan Oases (4)"
-msgstr ""
+msgstr "Sahra Vahası (4)"
 
 #: maps/skirmishes/Sahel (4).xml:42:Description
 msgid ""
@@ -18409,7 +18410,7 @@ msgstr ""
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"
-msgstr ""
+msgstr "Sahel (4)"
 
 #: maps/skirmishes/Savanna River.xml:42:Description
 msgid "A large savanna is bisected by a narrow jungle stream."
@@ -18417,7 +18418,7 @@ msgstr ""
 
 #: maps/skirmishes/Savanna River.xml:42:Name
 msgid "Savanna River (2)"
-msgstr ""
+msgstr "Savana Dağ geçidi (2)"
 
 #: maps/skirmishes/Sicilia (2).xml:41:Description
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -18448,7 +18449,7 @@ msgstr ""
 
 #: maps/skirmishes/Syria (2).xml:41:Name
 msgid "Syria (2)"
-msgstr ""
+msgstr "Suriye (2)"
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:42:Description
 msgid ""
@@ -18470,7 +18471,7 @@ msgstr ""
 
 #: maps/skirmishes/Thessalian Plains (4).xml:41:Name
 msgid "Thessalian Plains (4)"
-msgstr ""
+msgstr "Tesalya Ovaları (4)"
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Description
 msgid ""
@@ -18481,7 +18482,7 @@ msgstr ""
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Name
 msgid "Watering Holes (4)"
-msgstr ""
+msgstr "Sulama Delikleri (4)"
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Description
 msgid ""
@@ -18494,4 +18495,4 @@ msgstr ""
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Name
 msgid "Zagros Mountains (2)"
-msgstr ""
+msgstr "Zagros Dağları (2)"

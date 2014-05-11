@@ -37,8 +37,8 @@ static const int NUM_WORD_DELIMITORS = 4*2;
 static const u16 WordDelimitors[NUM_WORD_DELIMITORS] = {
 	' '   , ' ',    // spaces
 	'-'   , '-',    // hyphens
-	0x3000, 0x3002, // ideographic symbols (maybe this range should be wider)
-	0x4E00, 0x9FFF  // characters in the Chinese unicode block
+	0x3000, 0x31FF, // ideographic symbols
+	0x3400, 0x9FFF
 // TODO add unicode blocks of other languages that don't use spaces
 };
 

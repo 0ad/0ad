@@ -250,7 +250,33 @@ public:
 	 * @return Array of paths to files in the virtual filesystem that provide
 	 * translations for @p locale.
 	 */
-	std::vector<std::wstring> GetDictionariesForDictLocale(const std::string& locale);
+	std::vector<std::wstring> GetDictionariesForLocale(const std::string& locale);
+	
+	std::wstring GetFallbackToAvailableDictLocale(const Locale& locale);
+	
+	std::wstring GetFallbackToAvailableDictLocale(const std::string& locale);
+	
+	struct CheckLangAndCountry
+	{
+		CheckLangAndCountry(const Locale& locale);
+		const Locale& m_MatchLocale;
+		
+		bool operator()(const Locale* const locale) const;
+
+	private:
+		const CheckLangAndCountry& operator=(const CheckLangAndCountry&);
+	};
+	
+	struct CheckLang
+	{
+		CheckLang(const Locale& locale);
+		const Locale& m_MatchLocale;
+		
+		bool operator()(const Locale* const locale) const;
+
+	private:
+		const CheckLang& operator=(const CheckLang&);
+	};
 
 	/**
 	 * Returns the code of the recommended locale for the current user that the

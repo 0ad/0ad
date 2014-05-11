@@ -85,8 +85,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 06:40+0000\n"
-"Last-Translator: pointhi\n"
+"PO-Revision-Date: 2014-05-05 18:52+0000\n"
+"Last-Translator: raymond_de\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -143,14 +143,14 @@ msgstr "%(civilization)s Spielinfo"
 #: gui/civinfo/civinfo.js:97
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] "Zivilisationsvorteil"
-msgstr[1] "Zivilisationsvorteile"
+msgstr[0] "Zivilisationsbonus"
+msgstr[1] "Zivilisationsboni"
 
 #: gui/civinfo/civinfo.js:105
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] "Teamvorteil"
-msgstr[1] "Teamvorteile"
+msgstr[0] "Teambonus"
+msgstr[1] "Teamboni"
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
@@ -183,7 +183,7 @@ msgstr "Öffne %(url)s\nim Standard Web Browser. Bitte Warten..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr "Eröffnungsseite"
+msgstr "Öffne Seite"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
@@ -618,7 +618,7 @@ msgstr "Eine zufällig ausgewählte Karte."
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Diese Spiel-Adresse '%(ip)s' scheint nicht gültig zu sein."
+msgstr "Die Adresse '%(ip)s' scheint nicht gültig zu sein."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -795,17 +795,17 @@ msgstr "Hintergrund Pause"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr "Pausiere Einzelspieler-Spiele, wenn das Fenster den Fokus verliert"
+msgstr "Pausiere Einzelspielerspiele, wenn das Fenster den Fokus verliert"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr "Deaktiviere Willkommen-Bildschirm"
+msgstr "Begrüßungsfenster deaktivieren"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Wenn Sie diesen Bildschirm deaktivieren, können Sie wichtige Ankündigungen verpassen.\nSie können ihn aber immer noch über das Hauptmenü starten."
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -859,11 +859,11 @@ msgstr "Himmel rendern"
 
 #: gui/options/options.js:21
 msgid "Smooth LOS"
-msgstr "Glätte LOS"
+msgstr "Weiche Sichtbereichsgrenze"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Lüftet den Übergang zwischen der Dunkelheit und Nebel-des-Krieges weicher (Benötigt Bevorzuge GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -875,11 +875,11 @@ msgstr "Zeige Umrisse von Einheiten hinter Gebäuden"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
-msgstr "Schatten Filter"
+msgstr "Schattenfilter"
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
-msgstr "Sanfte Schatten"
+msgstr "Weiche Schatten"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
@@ -893,7 +893,7 @@ msgstr "Eche Normalenvektoren für das Rendern der Meereswellen verwenden anstat
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
-msgstr "Echte Wasser-Tiefe"
+msgstr "Echte Wassertiefe"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
@@ -901,7 +901,7 @@ msgstr "Verwendet aktuelle Wassertiefe in Rendering-Berechnungen"
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
-msgstr "Wasser Spiegelungen"
+msgstr "Wasserspiegelungen"
 
 #: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
@@ -909,7 +909,7 @@ msgstr "Erlaubt, das Wasser ein Spiegelbild reflektiert"
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
-msgstr "Wasser Lichtbrechung"
+msgstr "Lichtbrechung im Wasser"
 
 #: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
@@ -981,11 +981,11 @@ msgstr "Lautstärke der Geräusche von Einheiten"
 
 #: gui/options/options.js:39
 msgid "UI Gain"
-msgstr ""
+msgstr "Bedienoberfläche"
 
 #: gui/options/options.js:39
 msgid "UI sound gain"
-msgstr ""
+msgstr "Lautstärke der Bedienoberfläche"
 
 #: gui/options/options.js:43
 msgid "Chat Backlog"
@@ -1279,15 +1279,15 @@ msgstr "Es gibt keine Land Händler."
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] "%(numberOfLandTraders)s inaktiv"
-msgstr[1] "%(numberOfLandTraders)s inaktiv"
+msgstr[0] "%(numberOfLandTraders)s ist inaktiv"
+msgstr[1] "%(numberOfLandTraders)s sind inaktiv"
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] "There are %(numberTrading)s Überlandhändler treibt Handel"
-msgstr[1] "There are %(numberTrading)s Überlandhändler treiben Handel"
+msgstr[0] "%(numberTrading)s Überlandhändler Handelt"
+msgstr[1] "%(numberTrading)s Überlandhändler Handeln"
 
 #: gui/session/menu.js:485
 #, python-format
@@ -1349,8 +1349,8 @@ msgstr[1] "%(numberOfLandTraders)s Überlandhändler inaktiv"
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] "Es gibt %(inactiveString)s."
-msgstr[1] "Es gibt %(inactiveString)s."
+msgstr[0] "Es ist %(inactiveString)s."
+msgstr[1] "Es sind %(inactiveString)s."
 
 #: gui/session/menu.js:555
 msgid "There are no merchant ships."
@@ -1360,8 +1360,8 @@ msgstr "Es gibt keine Handelsschiffe."
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] "%(numberOfShipTraders)s inaktiv"
-msgstr[1] "%(numberOfShipTraders)s inaktiv"
+msgstr[0] "%(numberOfShipTraders)s ist inaktiv"
+msgstr[1] "%(numberOfShipTraders)s sind inaktiv"
 
 #: gui/session/menu.js:565
 #, python-format
@@ -1793,8 +1793,8 @@ msgstr "Benötigt %(technology)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Übrig: %(number)s zu bauen."
+msgstr[1] "Übrig: %(number)s zu bauen."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -1936,7 +1936,7 @@ msgstr "Bewachung beenden"
 
 #: gui/session/utility_functions.js:363
 msgid "Select trading goods"
-msgstr "wähle Handelware"
+msgstr "Wähle Handelsware"
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
@@ -2302,7 +2302,7 @@ msgstr "Warnung: Das ist ein fortgechrittenes Tutorial und läuft ziemlich schne
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr "Beginnen wir: bilde zuerst eine Gruppe (Umschalttaste + Klick) von 5 Frauen im Dorfzentrum aus."
+msgstr "Beginnen wir: bilde zuerst eine Gruppe (Umschalttaste + Klick) von 5 Frauen im Verwaltungssitz aus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
@@ -2312,7 +2312,7 @@ msgstr "Befehle nun die Bürgerinnen Beeren zu sammeln, Ihren Reiter die Hühner
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr "Setze nun den Sammelpunkt des Bürgerzentrums auf die Beeren."
+msgstr "Setze nun den Sammelpunkt des Verwaltungssitzes auf die Beeren."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
@@ -2448,7 +2448,7 @@ msgstr "Lass jetzt 3 Holz- und 3 Steinsammlerinnen Feldarbeit verrichten. Frauen
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Die Schleuderer, die du vorher in Auftrag gegeben hast, sollen Steine abbauen wenn sie ausgebildet wurden."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
@@ -2476,7 +2476,7 @@ msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr "Wenn du ins Stadtzeitalter fortgeschritten bist, platziere mit einem Soldaten eine Kaserne. Benutze alle untätigen Frauen, um die Kaserne schneller fertigzustellen.   "
+msgstr "Wenn du ins Stadtzeitalter aufgestiegen bist, platziere mit einem Soldaten eine Kaserne. Benutze alle untätigen Frauen, um die Kaserne schneller fertigzustellen.   "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
@@ -2570,13 +2570,13 @@ msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Wähle den Soldaten-Bürger und rechtsklicke auf einen Baum nahe des Dorfzentrums um Holz zu sammeln. Männliche Bürger sammeln Holz schneller als weibliche."
+msgstr "Wähle den Bürgersoldaten und rechtsklicke auf einen Baum nahe des Verwaltungssitzes um Holz zu sammeln. Männliche Bürger sammeln Holz schneller als weibliche."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr "Wähle dein Dorfzentrum aus und Shift-klicke einmal auf das Hopliten-Symbol (2. in der Reihe) um die Ausbildung von 5 Hopliten zu starten."
+msgstr "Wähle deinen Verwaltungssitz aus und Shift-klicke einmal auf das Hopliten-Symbol (2. in der Reihe) um die Ausbildung von 5 Hopliten zu starten."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
@@ -2595,13 +2595,13 @@ msgstr "Wähle die frisch ausgebildeten Hopliten aus und beauftrage sie ein Lage
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr "Bilde eine Gruppe von 5 Plänklern aus, indem du einen Shift-Klick auf das Plänkler-Symbol (3. in der Reihe) im Dorfzentrum machst."
+msgstr "Bilde eine Gruppe von 5 Plänklern aus, indem du einen Shift-Klick auf das Plänkler-Symbol (3. in der Reihe) im Verwaltungssitz machst."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
 "Build a farmstead in an open space beside the Civil Center using any idle "
 "builders."
-msgstr "Baue mit einem unbeschäftigten Bürger einen Bauernhof auf einer offenen Fläche neben dem Bürgerzentrum."
+msgstr "Baue mit einem unbeschäftigten Bürger einen Bauernhof auf einer offenen Fläche neben dem Verwaltungssitz."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:39
 msgid ""
@@ -2622,26 +2622,26 @@ msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Bilde 5 Hopliten im Dorfzentrum aus. Klicke auf das Dorfzentrum und klicke dann mit der rechten Maustaste auf einen nahegelegenen Baum. Die im Dorfzentrum ausgebildeten Einheiten werden ab sofort automatisch Holz sammeln gehen."
+msgstr "Bilde 5 Hopliten im Verwaltungssitz aus. Klicke auf das Dorfzentrum und klicke dann mit der rechten Maustaste auf einen nahegelegenen Baum. Die im Dorfzentrum ausgebildeten Einheiten werden ab sofort automatisch Holz sammeln gehen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr "Schicke die untätigen Scharmützler in den Nordosten deines Territoriums um einen Außenposten zu errichten. Dies ist das fünfte Gebäude des Dorfzeitalters, anschließend kannst du ins Stadtzeitalter fortschreiten."
+msgstr "Schicke die untätigen Scharmützler an die nordöstliche Grenze deines Territoriums, um einen Außenposten zu errichten. Dies ist das fünfte Gebäude des Dorfzeitalters, anschließend kannst du ins Stadtzeitalter aufsteigen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Selektiere das Dorfzentrum und klicke auf das Symbol \"II\" um zum Stadtzeitalter fortzuschreiten. Dann können auch städtische Gebäude errichtet werden."
+msgstr "Markiere das Dorfzentrum und klicke auf das Symbol \"II\", um ins Stadtzeitalter aufzusteigen. Dann können auch städtische Gebäude errichtet werden."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr "Gib weitere 5 weibliche Bürger im Dorfzentrum in Auftrag und setze den Sammelpunkt auf die Farm (rechts-klicke auf sie),"
+msgstr "Gib weitere 5 weibliche Bürger im Verwaltungssitz in Auftrag und setze den Sammelpunkt auf die Farm (rechts-klicke auf sie),"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -2675,20 +2675,20 @@ msgstr "Der feindliche Angriff wurde abgewehrt. Bau jetzt einen Markt und einen 
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "Jetzt, da die Stadt-Zivilisationsstufe Anforderungen erreicht sind, wähle dein Bürgerzentrum und verbessere es zur Stadt-Zivilisationsstufe."
+msgstr "Jetzt, da die Anforderungen für die Stadtphase erreicht sind, wähle deinen Verwaltungssitz aus und schreite zur Großstadtphase voran."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "Nun, da du in der Stadt-Zivilisationsstufe bist, baue eine Festung in der Nähe und verwende es um 2 Rammböcke bauen."
+msgstr "Nachdem du dich in der Stadtphase befindest, baue eine Festung in der Nähe und verwende diese um 2 Rammböcke bauen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr "Formiere jetzt alle Soldaten, die Rohstoffe sammeln, zu kleinen Gruppen und weise sie an, das gegnerische Dorfzentrum zu suchen. Die weiblichen Einwohner sollen weiter Rohstoffe sammeln."
+msgstr "Formiere jetzt alle Soldaten, die Rohstoffe sammeln, zu kleinen Gruppen und weise sie an, den gegnerischen Verwaltungssitz zu suchen. Die weiblichen Einwohner sollen weiter Rohstoffe sammeln."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
@@ -3042,13 +3042,13 @@ msgstr "Startressourcen wählen."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Karte aufdecken (alles sehen)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Entdeckte Karte umschalten (zeigt Umwelt und Einheiten)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3072,7 +3072,7 @@ msgstr "Umschalten, ob dieses Spiel für die Rangliste bewertet werden soll."
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
-msgstr "Schließe das \"Weitere Spieloptionen\"-Fenster"
+msgstr "Schließe das „Weitere Spieloptionen”-Fenster"
 
 #: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:428
 #: (caption)
@@ -3187,7 +3187,7 @@ msgstr "Ein neues Konto erstellen"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr "In einem bestehenden Konto einloggen"
+msgstr "In ein bestehendes Konto einloggen"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3287,7 +3287,7 @@ msgstr "Information"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr "Online anzeigen"
+msgstr "Online ansehen"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3295,7 +3295,7 @@ msgstr "Spieloptionen"
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
-msgstr "General"
+msgstr "Allgemein"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
@@ -3307,7 +3307,7 @@ msgstr "Toneinstellung"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
-msgstr "Lobby-Einstellungen"
+msgstr "Lobbyeinstellungen"
 
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
 #: gui/session/session.xml:754 (caption)
@@ -3397,7 +3397,7 @@ msgstr "Spiellobby"
 
 #: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
-msgstr "Multiplayer Lobby"
+msgstr "Multiplayer Lobby starten"
 
 #: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
@@ -3423,11 +3423,11 @@ msgstr "Öffnet den Karteneditor „Atlas“ in einem neuen Fenster. Etwas zuver
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr "Willkommen-Bildschirm"
+msgstr "Begrüßungsfenster"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Zeige den Willkommen-Bildschirm. Nützlich, wenn man ihn versehentlich versteckt hat."
+msgstr "Begrüßungsfenster aktivieren. Nützlich, wenn es ungewollt deaktiviert wurde."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3451,11 +3451,11 @@ msgstr "Kämpfe gegen einen oder mehrere menschliche Spieler in einem Mehrspiele
 
 #: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
-msgstr "Tools & Optionen"
+msgstr "Werkzeuge & Optionen"
 
 #: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
-msgstr "Spieloptionen und Szenario-Design-Tools."
+msgstr "Spieloptionen und Szenariogestaltungswerkzeuge"
 
 #: gui/pregame/mainmenu.xml:458 (caption)
 msgid "History"
@@ -3507,7 +3507,7 @@ msgstr "Bug melden"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr "Anklicken, um den 0 A.D. Trac zu öffnen, um einen Bugs, Crashs oder Fehlers zu melden."
+msgstr "Anklicken um den 0 A.D. Trac für die Meldung eines Bugs, Crashs oder Fehlers zu besuchen."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3664,7 +3664,7 @@ msgstr "Klicke auf gruppierten Einheiten um diese auszuwählen, doppelklicke auf
 
 #: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
-msgstr "Finde müßige Arbeiter"
+msgstr "Finde untätige Arbeiter"
 
 #: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
@@ -3751,7 +3751,7 @@ msgstr "Total"
 
 #: gui/summary/summary.xml:231 (caption)
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Gebäude-Statistiken (Erbaut / Verloren / Zerstört)"
+msgstr "Gebäudestatistiken (Erbaut / Verloren / Zerstört)"
 
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
@@ -3780,7 +3780,7 @@ msgstr "Festungen"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr "Dorfzentren"
+msgstr "Verwaltungssitze"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
@@ -3788,7 +3788,7 @@ msgstr "Wunder"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Einheiten-Statistiken (Ausgebildet / Verloren / Getötet)"
+msgstr "Einheitenstatistiken (Ausgebildet / Verloren / Getötet)"
 
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
@@ -3806,7 +3806,7 @@ msgstr "Kavallerie"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr "Champion"
+msgstr "Gardeeinheiten"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
@@ -3964,7 +3964,7 @@ msgstr "7. Dieses Dokument jederzeit beliebig verändern, unter der Voraussetzun
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr "0 A.D. Empires Ascendant Mehrspieler Lobby Nutzungsbedingungen"
+msgstr "0 A.D. Empires Ascendant Mehrspielerlobby Nutzungsbedingungen"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
@@ -4041,7 +4041,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Dieses Dokument jederzeit beliebig verändern, unter der Voraussetzung, dass der Benutzer angemessen Kenntnis von der Änderung erlangt (die konkrete Definition der Angemessenheit wird derzeit durch ein Gremium aus Teammitgliedern von Wildfire Games (WFG) bestimmt)."
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -4141,11 +4141,11 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Um ein Mehrspieler-Spiel einzurichten, muss ein Spieler die „Spiel hosten“-Option auswählen. Es wird der UDP-Port 20595 verwendet, d.h. die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspielern erreichbar ist. Alle anderen Mitspieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
+msgstr "Um ein Mehrspielerspiel einzurichten, muss ein Spieler die „Spiel hosten“-Option auswählen. Es wird der UDP-Port 20595 verwendet, d.h. die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspielern erreichbar ist. Alle anderen Mitspieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]Spiel-Einrichtung"
+msgstr "[font=\"sans-bold-16\"]Spieleinrichtung"
 
 #: gui/manual/intro.txt:29
 msgid ""
@@ -4276,7 +4276,7 @@ msgstr "ESC: Schließt alle Dialoge (Chat, Menü) oder setzt die Auswahl zurück
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr "Enter: Text-Chat"
+msgstr "Enter: Chat"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
@@ -4523,7 +4523,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Bandbreite von Systemen zu testen, aber wir möchten trotzdem die Bestmögliche Spielerfahrung für viele Spieler bieten. Wenn sie das Automatische Feedback aktivieren, können wir mit den automatisch gesammelten Daten verstehen, welche Hardware wir unterstützen sollen, beziehungsweise Performanceprobleme aufdecken."
+msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Bandbreite von Systemen zu testen, aber wir möchten trotzdem die Bestmögliche Spielerfahrung für viele Spieler bieten. Wenn Du das Automatische Feedback aktivierst, können wir mit den automatisch gesammelten Daten verstehen, welche Hardware wir unterstützen sollen, beziehungsweise Performanceprobleme aufdecken."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -5599,13 +5599,13 @@ msgstr "KARTHAGISCHE HEILIGE SCHAR"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "- Champion Speerträger und Champion Kavallerie Lanzenträger für Karthago."
+msgstr "- Gardespeerträger und berittene Lanzenträgergardisten für Karthago."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr "- Sowohl Kosten für Nahrung und Metall und aus dem Tempel trainierbar, statt der Festung wie die meisten anderen Champions."
+msgstr "- Beide kosten Nahrung und Metall, sind im Tempel ausbildbar, anstatt in der Festung wie die meisten anderen Gardeeinheiten."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
@@ -5659,7 +5659,7 @@ msgstr "- Kann bis zu 40 Einheiten transportieren."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr "DORFZENTRUM"
+msgstr "VERWALTUNGSSITZE"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -5731,7 +5731,7 @@ msgstr "- Bilde Gardisten und Helden aus und baue Belagerungswaffen."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr "- Erhöt das Befölkerungsmaximum."
+msgstr "- Erhöht das Bevölkerungsmaximum."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
@@ -5791,7 +5791,7 @@ msgstr "- Günstig, nur 80 Holz."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr "- Sie bauen schnell, sind aber schwach"
+msgstr "- Sie bauen schnell, sind aber schwach."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
@@ -6395,7 +6395,7 @@ msgstr "Athener"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Die Metall-Abbaurate wird um +10% für jedes durchlaufene Zeitalter erhöht."
+msgstr "Die Metallabbaurate wird in jeder Phase um +10% erhöht."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -6678,7 +6678,7 @@ msgstr "Ardiosmanae"
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr "steht für Keltische Ackerbaumethoden."
+msgstr "Steht für keltische Ackerbaumethoden."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
@@ -6694,7 +6694,7 @@ msgstr "Deas Celtica"
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr "ihre Kämpferische Einstellung wurde durch die Kelrische Religion und ihre Druiden hervorgerufen."
+msgstr "ihre kämpferische Einstellung wurde durch die keltische Religion und ihre Druiden hervorgerufen."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
@@ -6715,7 +6715,7 @@ msgstr "Druiden"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "Die Druiden der Kelten gestalteten eine organisierte Religion, die selbst in Kriegszeiten Technologische Fortschritte produzierte."
+msgstr "Die Druiden der Kelten gestalteten eine organisierte Religion, die selbst in Kriegszeiten technologische Fortschritte produzierte."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
@@ -6770,7 +6770,7 @@ msgstr "Vosenius"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Verbesserte Angriffs- und Bewegungsgeschwindigkeit für männliche Soldaten."
+msgstr "Verbesserte Angriffs- und Bewegungsgeschwindigkeit für  Nahkampfeinheiten."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -6783,7 +6783,7 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr "Die Briten fingen an, dauerhafte Zeichnungen mit Ähnlichkeiten zu Tattoos oder Zeitweilige farbige Malereien mit blauen Farbstoffen auf ihren Körpern zu machen. Diese wirkten angstinflößend."
+msgstr "Die Briten fingen an, Gesicht und Körper zu tätowieren oder blau zu bemalen. Dies wirkte in Schlachten abschreckend und angsteinflößend."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
@@ -6801,7 +6801,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr "‚Großer Turm‘; Keltische Legenden strotzen vor Geschichten über massive, hohe Türme, die durch die stärksten Könige gebaut wurden. Einige Rückstände sehr großer Türme wurden gefunden."
+msgstr "‚Großer Turm‘; Keltische Legenden strotzen vor Geschichten über massive, hohe Türme, die von den mächtigsten Königen errichtet wurden. Einige Ruinen sehr großer Türme wurden gefunden."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -6821,7 +6821,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr "Caratacus die römische Form von Karatakos, seinem richtigen Namen, welche auf seine vielen Münzen geprägt wurde. Unter diesem Namen ist er als großer Verteidiger gegen die Römische Invasion 43 n.Chr. noch heute bekannt. Als Sohn von König Cunobelinus asu dem Stamm der Catuvellanuen, kämpfte er neun Jahre mit wenig Erfolg gegen die Römer,floh aber letzten Endes zu den Stämmen in Wales, wo er entscheidend geschlagen wurde. Zum Schluss wandte er sich nach Nordbritanien, wo er an die Römer ausgeliefert wurde. Nach Rom gebracht, lebte Karatakos bei Kaiser Claudius und starb in Italien. Überlieferungen sagen, dass er zum Christlichen Glauben übergetreten ist, nachdem seine Frau dies auch Tat, aber nichts davon kann mit Sicherheit gesagt werden. Bemerkenswerter ist die Tatsache, dass er leben durfte nachdem er von Rom gefangen wurde. Grundsätzlich wurden solche Leute in öffentlichen Inszenierungen hingerichtet. Karatakos wurde auf eigenen Wunsch vor den Kaiser und den Senat gebracht, um sich zu erklären. Was gesagt wurde ist nicht genau bekannt, jedoch sagt Tacitus, dass es eine geniale Rede gewesen sei...."
+msgstr "Caratacus ist die römische Form von Karatakos, seinem richtigen Namen, welcher auf seine vielen Münzen geprägt war. Unter diesem Namen ist er als großer Verteidiger gegen die römische Invasion 43 n.Chr. noch heute bekannt. Als Sohn von König Cunobelinus aus dem Stamm der Catuvellanuen kämpfte er neun Jahre mit wenig Erfolg gegen die Römer, floh aber letzten Endes zu den Stämmen in Wales, wo er entscheidend geschlagen wurde. Zum Schluss wandte er sich nach Nordbritanien, wo er an die Römer ausgeliefert wurde. Nach Rom gebracht, lebte Karatakos bei Kaiser Claudius und starb in Italien. Aus Überlieferungen geht hervor, dass er zum christlichen Glauben übergetreten sei, nachdem seine Frau dies auch Tat, aber diese Behauptungen sind nicht gesichert. Bemerkenswerter ist die Tatsache, dass er leben durfte nachdem er von Rom gefangen wurde. Grundsätzlich wurden solche Leute in öffentlichen Inszenierungen hingerichtet. Karatakos wurde auf eigenen Wunsch vor den Kaiser und den Senat gebracht, um sich zu erklären. Was gesagt wurde ist nicht genau bekannt, jedoch sagt Tacitus, dass es eine geniale Rede gewesen sei...."
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 #: civs/celt.jsonFactions[0].Heroes[1].History
@@ -6859,7 +6859,7 @@ msgid ""
 " was held up by the post-Roman Britons as one of their great heroes; a "
 "conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
 "Romano-British sorely needed."
-msgstr "Kunobelinos, im Lateinischen bekannt als Cunobelin, war ein mächtiger Herrscher. Er regierte die Catuvellaunen von Camulodunum (dem heutigen Colchester) aus und war ein Kriegerkönig, der die Trinovanten unterwarf. Er wurde von den Römern laut Sueton als König der Britonen anerkannt. Die Trinovanten, obgleich ebenfalls Alliierte der Römer, erhielten von diesen jedoch keine militärische Hilfe, da ihre Unterwerfung kurz nach dem römischen Disaster im Teutoburger Wald stattfand. Kunobelinos starb an einer Krankheit, nachdem er den Großteil Südenglands unterworfen hatte (Münzen mit seinem Abbild wurden bis zu den Grenzen des späteren Wales gefunden). Nach seinem Tode regierte sein Sohn Togodumnus, der in einer Schlacht mit den Römer fiel und sein Bruder Karatakos übernahm seinen Platz. Es ist eine Ironie des Schicksals, dass Kunobelinos dritter Sohn es war, der diesen römischen Vergeltungsschlag herausforderte. Kunobelinos verhielt sich den Römern gegenüber indifferent. Er trieb regen Handel mit ihnen, aber forderte auch Ärger heraus, indem er römische Alliierte unterwarf. Er sandte schließlich seinen Pflegesohn Adminius zur Ausbildung ins römischen Gallien. Dies trug zu Adminius' Freundschaft mit den Römern bei und ihm wurde von seinem Vater die Herrschaft über die Cantaci übertragen, die Kent bewohnten. Diese Gegend war das Haupthandels- und Einflußgebiet der Römer in Britannien und er bemerkte scharfsinnig, das die Freundschaft seines jüngsten Sohnes mit mächtigen römischen und gallo-römischen Politikern und Händlern nützlich für das Regieren dieser Region sein würde. Seine anderen Söhne jedoch mochten die Römer nicht und als Kunobelinos starb, verhaftete. exekutierte und vertrieb Togodumnus, der neue König, zahlreiche römische Sympatisanten, unter anderem seinen eigenen Bruder Adminius und den enttrohnten Atrebatenkönig Verica, die ihre römischen Beziehungen benutzt hatten, um ihr Land zurückzuerlangen. \nKunobelinos war zu seiner Zeit wahrscheinlich einer der größten Könige Britanniens. Er eroberte große Ländereien, obwohl er ursprünglich nur über vier kleine verbündete Stämme, die Catuvellauni, regierte und erlangte Bekanntschaft als König der Briten. Sein Ruf war so groß, dass sogar Stämme aus Wales zur Unterstützung seiner Söhne gegen die Römer und ihre örtlichen Alliierten herbeieilten und Kunobelinos wurde von den nachrömischen Briten als einer ihrer größten Helden verehrt; ein Eroberer und Vereiniger unbedeutender Königreiche, als jemand, dessen Hilfe die nachrömischen und späteren Briten dringend bedurften."
+msgstr "Kunobelinos, im Lateinischen bekannt als Cunobelin, war ein mächtiger Herrscher. Er regierte die Catuvellaunen von Camulodunum (dem heutigen Colchester) aus und war ein Kriegerkönig, der die Trinovanten unterwarf. Er wurde von den Römern laut Sueton als König der Britonen anerkannt. Die Trinovanten, obgleich ebenfalls Alliierte der Römer, erhielten von diesen jedoch keine militärische Hilfe, da ihre Unterwerfung kurz nach dem römischen Disaster im Teutoburger Wald stattfand. Kunobelinos starb an einer Krankheit, nachdem er den Großteil Südenglands bezwungen hatte (Münzen mit seinem Abbild wurden an die Grenzen des heutigen Wales gefunden). Nach seinem Tode regierte sein Sohn Togodumnus, der in einer Schlacht mit den Römern fiel, und sein Bruder Karatakos übernahm seinen Platz. Es ist eine Ironie des Schicksals, dass es Kunobelinos' dritter Sohn war, der diesen römischen Vergeltungsschlag herausforderte. Kunobelinos verhielt sich den Römern gegenüber neutral. Er trieb regen Handel mit ihnen, aber forderte auch Ärger heraus, indem er römische Alliierte unterwarf. Schließlich schickte er seinen Pflegesohn Adminius zur Ausbildung ins römischen Gallien. Dies trug zu Adminius' Freundschaft mit den Römern bei und ihm wurde von seinem Vater die Herrschaft über die Cantaci übertragen, die Kent bewohnten. Diese Gegend war das Haupthandels- und Einflußgebiet der Römer in Britannien und er bemerkte scharfsinnig, das die Freundschaft seines jüngsten Sohnes mit mächtigen römischen und gallo-römischen Politikern und Händlern nützlich für das Regieren dieser Region sein würde. Seine anderen Söhne jedoch mochten die Römer nicht und als Kunobelinos starb, verhaftete, exekutierte und vertrieb der neue König Togodumnus zahlreiche römische Sympatisanten, unter ihnen seinen eigenen Bruder Adminius und den enttrohnten Atrebatenkönig Verica, welche ihre römischen Beziehungen  hatten spielen lassen, um ihre Länder zurückzuerlangen.\nKunobelinos war zu seiner Zeit wahrscheinlich einer der größten Könige Britanniens. Er eroberte große Ländereien, obwohl er ursprünglich nur vier kleine verbündete Stämme, die Catuvellauni, anführte und erlangte die Anerkennung als König der Briten. Sein Ruf war so groß, dass sogar Stämme aus Wales zur Unterstützung seiner Söhne gegen die Römer und ihre örtlichen Alliierten herbeieilten und Kunobelinos wurde von den nachrömischen Briten als einer ihrer größten Helden verehrt; ein Eroberer und Vereiniger unbedeutender Königreiche, als jemand, dessen Hilfe die nachrömischen und späteren Briten dringend bedurften."
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
 #: civs/celt.jsonFactions[0].Heroes[2].History
@@ -6917,7 +6917,7 @@ msgstr "Zwinger"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr "Die Britannier waren dafür bekannt, Kriegshunde zu züchten."
+msgstr "Die Briten waren dafür bekannt, Kriegshunde zu züchten."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -6925,7 +6925,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearesome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Die Briten waren der Keltische Stamm auf den Britischen Inseln. Mit ihren Streitwagen, Langschwertkämpfern und starken Nahkampfsoldaten inszenierten sie furchterregende Aufstände gegen Rom um ihre Gweohnheiten und Interressen zu verteidigen. Außerdem bauten sie tausende einzigartige Gebäude wie Burgwälle, Crannogs und Brochs."
+msgstr "Die Briten waren der keltische Stamm auf den Britischen Inseln. Mit ihren Streitwagen, Langschwertkämpfern und starken Nahkampfsoldaten inszenierten sie furchterregende Aufstände gegen Rom um ihre Gewohnheiten und Interressen zu verteidigen. Außerdem bauten sie tausende einzigartige Gebäude wie Burgwälle, Crannogs und Brochs."
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
@@ -6955,7 +6955,7 @@ msgstr "Die Rohstoffkosten für das Trainieren von berittenen Einheiten (Kavalle
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr ""
+msgstr "Zusammenfassung"
 
 #: civs/cart.jsonCivBonuses[1].History
 msgid ""
@@ -7064,7 +7064,7 @@ msgstr "Keiner in der antiken Welt wusste besser, wohin es galt zu gehen, als di
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Dorfzentren, Tempel und Häuser -25% Bauzeit."
+msgstr "Verwaltungssitze, Tempel und Häuser -25% Bauzeit."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
@@ -7104,7 +7104,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal war Hannibal Barkas ‚Stürmischer junger Kavalleriekommandant‘ während des zweiten Punischen Krieges. Er kommandierte den Rechten Flügel der Armee in Cannae, und verhalf so den Karthagern zum Sieg. Nur 20.000 von 50.000 Römer überlebten diese Schlacht. Außerdem trug er zu vielen weiteren Siegen in den Kämpfen des zweiten Punischen Krieges bei. Nach der Schlacht von Cannae soll er gesagt haben: „Zu siegen weißt du, Hannibal, aber nicht den Sieg auszunutzen.“"
+msgstr "Maharbal war Hannibal Barkas ‚Stürmischer junger Kavalleriekommandant‘ während des zweiten Punischen Krieges. Er kommandierte den Rechten Flügel der Armee in Cannae, und verhalf so den Karthagern zum Sieg. Nur 30.000 von 50.000 Römer überlebten diese Schlacht. Außerdem trug er zu vielen weiteren Siegen in den Kämpfen des zweiten Punischen Krieges bei. Nach der Schlacht von Cannae soll er gesagt haben: „Zu siegen weißt du, Hannibal, aber nicht den Sieg auszunutzen.“"
 
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
@@ -7422,7 +7422,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr "Der König von Sparta kämpfte und starb in der Schlacht bei den Thermopylen  480 v.Chr. Er blockierte den Weg der großen Persischen Armee an einer schmalen Stelle mit 7000 Mann, bis Xerxes einen geheimen unversperrten Weg bemerkte. Mit dem Feind im Rücken schickte Leonidas einen Großteil seiner Truppen nach Hause und sicherte mit 300 handverlesenen Hopliten deren Rückzug."
+msgstr "Der König von Sparta kämpfte und starb in der Schlacht bei den Thermopylen 480 v.Chr. Er blockierte den Weg der gewaltigen persischen Streitmacht an einer schmalen Stelle mit 7000 Mann, bis Xerxes auf einen geheimen unversperrten Pfad hingewiesen wurde. Mit dem Feind im Rücken schickte Leonidas einen Großteil seiner Truppen nach Hause und sicherte mit 300 handverlesenen Hopliten deren Rückzug."
 
 #: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -7470,7 +7470,7 @@ msgstr "Als Philipp II. auf den Thron kam, begann er die bunt-gemischte Mazedoni
 
 #: civs/hele.jsonFactions[1].Technologies[1].Description
 msgid "Civic Centers have double Health."
-msgstr "Dorfzentren haben doppelte Gesundheit."
+msgstr "Verwaltungssitze haben doppelte Gesundheit."
 
 #: civs/hele.jsonFactions[1].Technologies[1].Name
 #: civs/mace.jsonFactions[0].Technologies[2].Name
@@ -7566,7 +7566,7 @@ msgstr "Iberer"
 
 #: civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "Iberier starten von Anfang an mit einer starken kreisförmigen Mauer."
+msgstr "Iberer starten mit einer mächtigen, bereits errichteten Stadtmauer."
 
 #: civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
@@ -7577,7 +7577,7 @@ msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr "Mit Ausnahme von Schwemmgebieten und Flusstälern ist Stein auf der Iberischen Halbinsel reichlich vorhanden und wurde zum Bau von vielen verschiedenen Gebäuden genutzt."
+msgstr "Auf der iberischen Halbinsel gibt es mit Ausnahme von Schwemmgebieten und Flusstälern überall reiche Vorkommen an Naturstein, welcher bei der Errichtung von Bauwerken jeglicher Art Verwendung fand."
 
 #: civs/iber.jsonCivBonuses[1].Description
 msgid ""
@@ -7593,7 +7593,7 @@ msgstr "Zaldi Saldoa"
 msgid ""
 "Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
 "'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr "Ähnlich wie Numidien in Nordafrika, war die Iberische Halbinsel bekannt als Pferdeland. Hier konnten bis zu 100,000 Pferde pro Jahr produziert werden."
+msgstr "Wie Numidien in Nordafrika war die iberische Halbinsel als 'Pferdeland' bekannt und konnte jedes Jahr bis zu 100.000 neue Reittiere produzieren."
 
 #: civs/iber.jsonTeamBonuses[0].Description
 msgid ""
@@ -7611,7 +7611,7 @@ msgid ""
 "to serve as auxiliaries to their armies in foreign wars. Carthage is the "
 "most well known example, and we have evidence of them serving in such a "
 "capacity in Aquitania."
-msgstr "Iberien war lange Zeit dafür bekannt, seine Soldaten als Hilfstruppen an andere Nationen zu geben um in deren Kriegen mitzukämpfen. Karthago ist das bekannteste Beispiel und wir haben Beweise, dass sie viele Söldner nach Aquitanien schickten."
+msgstr "Die Iberer war lange Zeit dafür bekannt, ihre Soldaten anderen Nationen als Söldner bereit zu stellen um in deren Kriegen mitzukämpfen. Karthago ist das bekannteste Beispiel und es wurden auch Hinweise auf iberische Söldner in Aquitanien gefunden."
 
 #: civs/iber.jsonAINames[0] civs/iber.jsonAINames[1]
 #: civs/iber.jsonFactions[0].Heroes[0].Name
@@ -7648,7 +7648,7 @@ msgstr "Tautalus"
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr "Die getroffenen Ziele fangen an zu brennen und verlieren Lebenspunkte, bis sie entweder geheilt oder repariert werden."
+msgstr "Die getroffenen Ziele fangen Feuer und verlieren kontinuierlich Lebenspunkte, bis sie entweder geheilt oder repariert werden."
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
@@ -7659,7 +7659,7 @@ msgid ""
 "Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
 "of their throwing spears, soaking that in some sort of flammable pitch, then"
 " setting it afire just before throwing."
-msgstr "Iberische Stammeskrieger waren bekannt dafür ihre Wurfspeere mit Grasbündeln zu umwickeln, in eine Art brennbares Pech zu tauchen und anzuzünden, bevor sie sie warfen. "
+msgstr "Iberische Stammeskrieger waren dafür bekannt, ihre Wurfspeere mit Grasbündeln zu umwickeln, in eine Art brennbares Pech zu tauchen und anzuzünden, bevor sie sie warfen. "
 
 #: civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
@@ -7738,7 +7738,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "Verteidigungsaura - Gibt allen iberischen Einheiten und Gebäuden innerhalb der Sichtweite des Monuments +(10–15)% zusätzlichen Angriff. Baulimit: Es können nur 5 pro Karte gebaut werden."
+msgstr "Verteidigungsaura - Gibt allen iberischen Einheiten und Gebäuden innerhalb der Sichtweite des Monuments 10-15% zusätzlichen Angriff. Baulimit: Es können nur 5 pro Karte gebaut werden."
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
@@ -7900,7 +7900,7 @@ msgstr "In Indien, nahe dem Ende seiner langen Anabasis, schenkte Alexander dem 
 #: civs/ptol.jsonFactions[0].Technologies[0].Description
 #: civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr "Dorfzentren verfügen über +100% Lebenskraft und die doppelte Anzahl an Pfeilen, wenn keine Einheiten einquartiert sind."
+msgstr "Verwaltungssitze verfügen über +100% Lebenskraft und die doppelte Anzahl an Pfeilen, wenn keine Einheiten einquartiert sind."
 
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/hele_hero_philip.xml:10
@@ -7942,7 +7942,7 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr "Alexander der Große gründete überall in seinem neuen Reich Bibliotheken. Diese wurden zu Zentren des Lernens für eine gänzlich neu gezüchtete Kultur: die hellenische Kultur."
+msgstr "Alexander der Große gründete überall in seinem neuen Reich Bibliotheken. Diese wurden zu Zentren des Lernens für eine gänzlich neu geschaffene Kultur: die hellenische Kultur."
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 #: simulation/templates/structures/mace_siege_workshop.xml:18
@@ -8427,7 +8427,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "Die griechisch-mazedonische Dynastie der Ptolemäer war von großen Zahlen von griechischen und ausländischen Söldnern für das Militär abhängig, hauptsächlich wegen der oft zweifelhaften Loyalität der einheimischen ägyptischen Einheiten. Tatsächlich war Oberägypten wegen eines Aufstandes der Einheimischen für die Ptolemäer für Jahrzehnte verloren. Söldner waren oft kampferprobt und ihre Loyalität käuflich, manchmal für wenig Geld, manchmal für mehr Geld. Das war aber unerheblich, da Ägypten unter den Ptolemäern so sehr florierte, dass es der reichste von allen Nachfolgestaaten Alexander des Großen war."
+msgstr "Die griechisch-makedonische Dynastie der Ptolemäer war von großen Zahlen von griechischen und ausländischen Söldnern für das Militär abhängig, hauptsächlich wegen der oft zweifelhaften Loyalität der einheimischen ägyptischen Einheiten. Tatsächlich war Oberägypten wegen eines Aufstandes der Einheimischen für die Ptolemäer für Jahrzehnte verloren. Söldner waren oft kampferprobt und ihre Loyalität käuflich, manchmal für wenig Geld, manchmal für mehr Geld. Das war aber unerheblich, da Ägypten unter den Ptolemäern so sehr florierte, dass es der reichste von allen Nachfolgestaaten Alexander des Großen war."
 
 #: civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -8625,7 +8625,7 @@ msgstr "Leuchtturm"
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Entfernt den über dem Wasser befindlichen Nebel des Krieges, sodass alle Küsten sichtbar werden, wenn der Leuchtturm an der Küste gebaut wurde. Baulimit: 1."
+msgstr "Entfernt den über dem Wasser befindlichen Nebel des Krieges, sodass alle Küsten sichtbar werden. Baulimit: 1."
 
 #: civs/ptol.jsonStructures[2].History
 msgid ""
@@ -8866,7 +8866,7 @@ msgid ""
 "This unlocks the Seleucid expansion building, the Klēroukhia or Military "
 "Colony, similar to Civic Centers for other factions. It is weaker and "
 "carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie das Dorfzentrum anderer Fraktionen. Es ist schwächer und hat einen geringeren Einflussbereich, aber es ist billiger und wird schneller gebaut."
+msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz anderer Fraktionen. Es ist schwächer und hat einen geringeren Einflussbereich, aber es ist billiger und wird schneller gebaut."
 
 #: civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
@@ -8892,7 +8892,7 @@ msgstr "Die Kriegsführung der Seleukiden und auch deren Nachfolger entwickelte 
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Verbündete Dorfzentren sind 20% billiger."
+msgstr "Verbündete Verwaltungssitze sind 20% billiger."
 
 #: civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -9112,11 +9112,11 @@ msgstr "Antiokhos D' Epiphanes"
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
-msgstr "Die mazedonisch-griechische Dynastie, welches den östlichen Teil von Alexanders Reich reagierte."
+msgstr "Die makedonisch-griechische Dynastie, welches den östlichen Teil von Alexanders Reich reagierte."
 
 #: civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "Bilde alle Kavallerieeinheiten außer Citizen-Kavallerie-Miliz aus."
+msgstr "Bildet alle berittenen Einheiten außer berittener Bürgermiliz aus."
 
 #: civs/sele.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_military_colony.xml:29
@@ -9129,7 +9129,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
-msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie das Dorfzentrum für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut."
+msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut."
 
 #: civs/sele.jsonStructures[2].History
 msgid ""
@@ -9148,7 +9148,7 @@ msgstr "Die seleukidischen Könige luden die Griechen, Makedonier, Galater (Gall
 #: civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Die mazedonisch-griechische Dynastie, welches das meiste von Alexanders ehemaligem Reich reagierte."
+msgstr "Die makedonisch-griechische Dynastie, welches das Meiste von Alexanders ehemaligem Reich reagierte."
 
 #: civs/spart.jsonName civs/spart.jsonFactions[0].Name
 msgid "Spartans"
@@ -9165,7 +9165,7 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Die Spartaner waren unbestrittene Meister der Kriegsführung mit Phalanxtaktiken. Die Spartaner waren so für ihre Disziplin gefürchtet , dass manchmal eine feindliche Armee aufbrechen und wegrennen würde bevor auch nur ein einziges Schild auf ein anderes treffen würde. ‚Othismus‘ bezieht sich auf den Punkt, an dem beide Seiten versuchen sich gegenseitig aus der Formation zu schubsen, versuchend die gegnerische Formation aufzubrechen und in die Flucht zu jagen."
+msgstr "Die Spartaner waren unbestrittene Meister der Kriegsführung mit Phalanxtaktiken. Die Spartaner waren wegen ihrer Disziplin so gefürchtet , dass feindliche Armeen mitunter auseinanderfielen und davonliefen, bevor auch nur ein einziges Schild auf ein anderes traf. 'Othismos‘ bezieht sich auf jenen Punkt, an dem beide Seiten versuchen, sich gegenseitig aus der Formation zu drängen, mit dem Ziel die gegnerische Formation aufzubrechen und in die Flucht zu jagen."
 
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
@@ -9181,11 +9181,11 @@ msgid ""
 "Under the Constitution written by the mythical law-giver Lycurgus, the "
 "institution of The Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Unter der Verfassung des mythenhaften Gesetzgebers Lykurg wurde die Agoge etabliert. Sie war ein Erziehungssystem bei dem die Spartaner schon ab 6 Jahren trainiert wurden um überlegene Krieger zur Verteidigung des spartanischen Staates zu werden."
+msgstr "Unter der Verfassung des mythenhaften Gesetzgebers Lykurg wurde die Agoge etabliert. Sie war ein Erziehungssystem bei dem Spartaner bereits ab dem 6. Lebensjahr ausgebildet wurden, um überlegene Krieger zur Verteidigung des spartanischen Staates zu werden."
 
 #: civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr "Verbündete können Spartiate rekrutieren."
+msgstr "Verbündete können Spartiaten rekrutieren."
 
 #: civs/spart.jsonTeamBonuses[0].Name maps/scenarios/Campaign Test
 #: Map.xml:42:PlayerData[6].Name
@@ -9198,7 +9198,7 @@ msgid ""
 "loose confederation, with Sparta as its leader, was later dubbed the "
 "Peloponnesian League by historians, but in ancient times was called 'The "
 "Lacedaemonians and their allies.'"
-msgstr "Viele Peleponnesen waren Sparta in der ein oder anderen Weise verbunden. Später wird dieses lockere Bündnis mit dem führenden Sparta von Historikern als Peloponnesischer Bund bezeichnet, in der Antike jedoch nannte man es 'Die Lakedaimoniere und ihre Verbündeten.'"
+msgstr "Große Teile der Peleponnes waren Sparta in der einen oder anderen Weise verbunden. Später wird dieses lockere Bündnis mit dem führenden Sparta von Historikern als Peloponnesischer Bund bezeichnet, in der Antike jedoch nannte man sie 'Die Lakedaimonier und ihre Mitkämpfer'."
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
@@ -9262,7 +9262,7 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Spartas Frauen waren die freiesten der antiken Welt. Sie durften Land und Sklaven besitzen und wie die Männer nackt trainieren. Es heißt, dass nur Frauen aus Sparta echten Männern das Leben geben konnten. Stahlharte Frauen, wie jene aus Spartas retteten die eigene Heimat oft vor Schrecklichen Katastrophen, Als Beispiel: Nach der verlorenen Schlacht gegen Pyrrhos I. von Epiros bauten die Frauen über Nacht einen Erdwall zur Verteidigung um die Stadt, während die Männer in Vorbereitung auf die Belagerung des nächsten Tages Schlaf suchten."
+msgstr "Spartas Frauen waren die freiesten der antiken Welt. Sie durften Land und Sklaven besitzen und wie die Männer nackt trainieren. Es heißt, dass nur Frauen aus Sparta echten Männern das Leben geben konnten. Diese stahlharten Frauen retteten so manche Stadt vor der Katastrophe, zum Beispiel nach der verlorenen Schlacht gegen Pyrrhos I von Epiros, als  die Frauen über Nacht einen Erdwall zur Verteidigung um die Stadt errichteten, während sich die Männer in Vorbereitung auf die Belagerung des nächsten Tages ausschliefen."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
@@ -9277,7 +9277,7 @@ msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr "Paians waren Kampfhymnen, die die Hopliten sangen, während sie gegen die feindlichen Linien rannten. Eine der ersten bekannten Paians stammt von Tyrtaios, einem Kriegsdichter aus Sparte, während des ersten Messenischen Krieges."
+msgstr "Päane waren Kampfhymnen, die die Hopliten sangen, während sie gegen die feindlichen Linien rannten. Einer der ersten bekannten Päane stammt von Tyrtaios, einem Kriegsdichter aus Sparta während des ersten Messenischen Krieges."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
@@ -9317,7 +9317,7 @@ msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr "Weil Brasidas ihnen die Bürgerrechte als bezhalung für ihre Dienste anbot, kämpften Helotische Plänkler länger und härter für Sparta, wenn sie in seiner nähe waren."
+msgstr "Weil Brasidas ihnen die Bürgerrechte als Bezhalung für ihre Dienste anbot, kämpfen Helotische Plänkler länger und härter für Sparta, wenn sie in seiner Nähe sind."
 
 #: civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -9343,7 +9343,7 @@ msgstr "Syssition"
 
 #: civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr "Trainiere Helden und Spartaner und erforsche Technologien für diese."
+msgstr "Bilde Helden und Spartiaten aus und erforsche Technologien für diese."
 
 #: civs/spart.jsonStructures[1].History
 msgid ""
@@ -9359,7 +9359,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Der wohlbekannte Stadtstaat Sparta war nicht nur die militärisch dominierende Macht um ca. 650 v. Chr. sondern auch der dortige Drill seiner Truppen hatte einen weithin gefürchteten, wenn nicht fanatischen Charakter. Schon mit dem Eintritt ins siebte Lebensjahr begann für die Jugend Spartas jene Unterweisung. Solcherlei Hingabe und Disziplin sollte sich schließlich in der Führungsrolle Spartas, während der Perserkriege, auszahlen, In welchen es die Koalition griechischer Standstaaten zum Sieg führte. Darüber hinaus gelang es Sparta, einen Sieg über den Konkurrenten Athen zu erringen."
+msgstr "Der wohlbekannte Stadtstaat Sparta war ab ca. 650 v. Chr. die dominierende Landstreitmacht des antiken Grienchenlands. Die spartanische Kultur war geprägt von militärischer Disziplin und Spitzenleistung. Die strenge Ausbildung begann für die spartanischen Jungen bereits ab dem siebten Lebensjahr. Aufgrund seiner militärischen Überlegenheit führte Sparta den Peleponnesischen Bund trotz großer Verluste zum Sieg gegen Athen und dessen Verbündete."
 
 #: civs/theb.jsonName civs/theb.jsonFactions[0].Name
 msgid "Thebans"
@@ -9847,7 +9847,7 @@ msgstr "Schneeflockenförmige Steilküste"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
-msgstr "Die Spieler starten in der Prärie mit leicht geschwungenen Hügeln"
+msgstr "Die Spieler starten in der Prärie mit leicht geschwungenen Hügeln."
 
 #: maps/random/syria.jsonsettings.Name
 msgid "Syria"
@@ -9912,7 +9912,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Aegis ist die zurzeit stabilste KI und ist eine Verbesserung von früheren Bots von Wraitii.  Beachte, dass die KI noch keine gespeicherten Spiele unterstützt. Bitte informiere Wildfire Games (Link im Hauptmenü) über Fehler."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9923,7 +9923,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Basiert auf Aegis, ist aber stark modifiziert und sollte robuster sein. Beachte, dass er noch keine gespeicherten Spiele unterstützt und noch nicht so gut wie Aegis getestet wurde. Bitte informiere Wildfire Games (Link im Hauptmenü) über Fehler."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10243,7 +10243,7 @@ msgstr "Nur die am meisten gefeierten Soldaten hatten Schilde, die mit Silber be
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Champions +2 Hiebschutz, aber auch +10 Metallkosten."
+msgstr "Gardeeinheiten +2 Hiebschutz, aber auch +10 Metallkosten."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -10401,7 +10401,7 @@ msgstr "+2 Angriff für alle Einheiten mit Schwert."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
-msgstr "Stahlbearbeitung"
+msgstr "Stahlverarbeitung"
 
 #: simulation/data/technologies/attack_steel_working.jsonspecificName.maur
 msgid "Wootz Steel"
@@ -10744,11 +10744,11 @@ msgstr "Ermögliche Lebensregenerierung für deine Einheiten."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr "Bio-Einheiten werden sich im Laufe der Zeit stillstehend langsam regenerieren."
+msgstr "Untätige Einheiten regenerieren sich im Laufe der Zeit allmählig."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr "Schlachtfeld Medizin"
+msgstr "Schlachtfeldmedizin"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -10797,7 +10797,7 @@ msgstr "Die Verwendung von Eisen anstatt Bronze erhöhte die Durschschlagskraft 
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr "Alle Speer-Einheiten +2 Hiebangriffe."
+msgstr "Alle Speerträger +2 Hiebangriffe."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
@@ -10911,14 +10911,14 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Dorfzentren wird um +50% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metall-Abbaurate."
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +50% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_britons.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr "Braucht 4 neue Gebäude der Dorfphase (außer Wällen und Dorfzentren)."
+msgstr "Braucht 4 neue Gebäude der Dorfphase (außer Wällen und Verwaltungssitzen)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
@@ -10937,7 +10937,7 @@ msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer großen Stadt auf
 msgid ""
 "Advance to City Phase, which unlocks Brythonic structures and units. "
 "Territory radius for Civic Centers increased by another +50%"
-msgstr "Erforsche die Stadtphase und schalte mehr britannische Gebäude und Einheiten frei. Der Territorium-Radius von Dorfzentren wird um weitere erhöht: +50%"
+msgstr "Erforsche die Stadtphase und schalte mehr britannische Gebäude und Einheiten frei. Der Territorialradius von Verwaltungssitzen wird um weitere erhöht: +50%"
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
@@ -10947,7 +10947,7 @@ msgstr "Stadtphase - Briten"
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
 "radius for Civilization Centers increased by another +50%"
-msgstr "Steige zur Stadtphase auf, welche gallische Bauwerke und Einheiten freischaltet. Der Terriroriums-Radius von Dorfzentren wird um weitere +50% erhöht"
+msgstr "Steige zur Stadtphase auf, welche gallische Bauwerke und Einheiten freischaltet. Der Terrirorialradius von Verwaltungssitzen wird um weitere +50% erhöht"
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
@@ -10963,7 +10963,7 @@ msgstr "Steigen Sie von einer betriebsamen Ansiedlung zu einer wahren Metropole 
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%"
-msgstr "Erforsche das Großstadt-Zeitalter und schalte mehr Gebäude und Einheiten frei. Der Territorium-Radius von Dorfzentren wird um weitere erhöht: +50% "
+msgstr "Erforsche die Großstadtphase und schalte mehr Gebäude und Einheiten frei. Der Territorialradius von Verwaltungssitzen wird um weitere erhöht: +50% "
 
 #: simulation/data/technologies/phase_city_pair_celts.jsongenericName
 msgid "Britons vs. Gauls"
@@ -10987,7 +10987,7 @@ msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%. 'Silver Owls' civ bonus grants "
 "an extra +10% metal gather rate to all workers."
-msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Dorfzentren wird um +30% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metall-Abbaurate."
+msgstr "Schreite zur Stadtphase fort, wodurch zusätzliche Gebäude und Einheiten freigeschaltet werden. Das Hoheitsgebiet von Verwaltungssitzen wird um +30% erhöht. Der 'Silbereulen'-Bonus verleiht allen Arbeiten eine um +10% erhöhte Metallabbaurate."
 
 #: simulation/data/technologies/phase_town_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
@@ -11013,7 +11013,7 @@ msgstr "Steigen Sie von einem kleinen Dorf zu einer betriebsamen Ansiedlung, ber
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%"
-msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorium-Radius von Dorfzentren wird um +30% erhöht."
+msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorialradius von Verwaltunssitzen wird um +30% erhöht."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -11028,7 +11028,7 @@ msgstr "Der Staat oder Stamm baut meist einen Speisesaal für öffentliche Feste
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr "Dorfzentrum erhält +5 Bevölkerungslimit-Bonus"
+msgstr "Verwaltungssitze erhält +5 Bevölkerungslimit-Bonus"
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -11140,7 +11140,7 @@ msgstr "Alle Wurfspeereinheiten +2 Stichangriff und +4 Reichweite."
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
-msgstr "Javelin Thong"
+msgstr "Speerschlaufe"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_skirmishers.jsonspecificName.spart
@@ -11350,22 +11350,22 @@ msgstr "Thesmophorien"
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
-msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum erweiterten Rang."
+msgstr "Befördere alle Bürgersoldaten Kavalleristen zum erweiterten Rang."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsontooltip
 msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr "Befördere alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleisch Sammel-Raten um -25%. Schaltet Elite-Kavallerie-Citizen-Technologie frei."
+msgstr "Befördere alle Bürgerkavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Fleischsammelrate um -25%. Schaltet Elite Bürgerkavallerietechnologie frei."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr "Fortgeschrittene Bürger-Kavallerie"
+msgstr "Fortgeschrittene Bürgerkavallerie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr "Upgrade alle Bürger-Soldaten Infanteristen zum erweiterten Rang."
+msgstr "Befördert alle Bürger-Fußsoldaten zum Fortgeschritten-Dienstgrad."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
@@ -11376,7 +11376,7 @@ msgstr "Befördert alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "Fortgeschrittene Bürger-Infantrie"
+msgstr "Fortgeschrittene Bürgerinfantrie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
@@ -11398,7 +11398,7 @@ msgstr "Elite Bürgerkavallerie"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr "Upgrade alle Bürger-Soldaten Infanteristen zum Elite Rang."
+msgstr "Befördert alle Bürger-Fußsoldaten zum Elite-Dientgrad."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
@@ -11542,7 +11542,7 @@ msgstr "Italische Söldner: Kosten vs. Rekrutierzeit #2"
 msgid ""
 "Carthaginians were colonizers. Civic Centers, Temples, and Houses -25% build"
 " time."
-msgstr "Die Karthager waren Kolonisierer. Die Bauzeit von Dorfzentren, Tempeln und Häusern ist um -25% verkürzt."
+msgstr "Die Karthager waren Kolonisierer. Die Bauzeit von Verwaltungssitzen, Tempeln und Häusern ist um -25% verkürzt."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -11634,7 +11634,7 @@ msgstr "Italiotische Hegemonie"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr "Upgrade alle Ihre keltischen Söldner zu fortgeschrittenen Rang."
+msgstr "Befördert alle keltischen Söldner zum Fortgeschritten-Dienstgrad."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
@@ -11649,7 +11649,7 @@ msgstr "Fortgeschrittener keltischer Söldner"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr "Upgrade alle Ihre Iberischen Söldner zum erweiterten Rang."
+msgstr "Befördert alle iberischen Söldner zum Fortgeschritten-Dienstgrad."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
@@ -11664,7 +11664,7 @@ msgstr "Erweiterte Iberischer Söldner"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr "Upgrade alle Ihre italiotischen Söldner zu Elite Rang."
+msgstr "Befördert alle italiotischen Söldner zum Fortgeschritten-Dienstgrad."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
@@ -11679,7 +11679,7 @@ msgstr "Elite italiotischen Söldner"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr "Upgrade alle Ihre keltischen Söldner zu Elite Rang."
+msgstr "Befördert alle kelitschen Söldner zum Elite-Dienstgrad."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
@@ -11936,7 +11936,7 @@ msgstr "Römische Logistik "
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and double default arrows."
-msgstr "Dorfzentren verfügen über +100% Lebenskraft und die doppelte Anzahl an Pfeilen, wenn keine Einheiten einquartiert sind."
+msgstr "Verwaltungssitze verfügen über +100% Lebenskraft und die doppelte Anzahl an Pfeilen, wenn keine Einheiten einquartiert sind."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -11946,7 +11946,7 @@ msgstr "Hellenistische Metropole"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr "Erhöht die Trainingsgeschwindigkeit von Champions und Belagerungswaffen in Festungen, wenn sie in großen Bataillonen ausgebildet werden."
+msgstr "Erhöht die Trainingsgeschwindigkeit von Gardeeinheiten und Belagerungswaffen in Festungen, wenn sie in großen Bataillonen ausgebildet werden."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
@@ -12115,7 +12115,7 @@ msgstr "Ziviles Bauwerk"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr "Dorfzentrum"
+msgstr "Verwaltungssitz"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
@@ -12124,7 +12124,7 @@ msgstr "Baue, um große Teile Land zu beanspruchen. Trainiere Dorfbewohner. Einq
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
-msgstr "Dorfzentrum"
+msgstr "Verwaltungssitz"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
@@ -12237,7 +12237,7 @@ msgstr "Lagerhaus"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr "Baue hier ein Dorfzentrum, um dein Territorien."
+msgstr "Baue hier einen Verwaltungssitz, um dein Territorium zu erweitern."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
@@ -12567,7 +12567,7 @@ msgstr "Kavallerieheld"
 msgid ""
 "Hero Aura: n/a.\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr "Helden-Aura: n/a.\nFernkampf x2 gegen Speerkämpfer. Fernkampf x1.5 gegen Schwertkämpfer."
+msgstr "Heldenaura: n/a.\nFernkampf x2 gegen Speerkämpfer. Fernkampf x1.5 gegen Schwertkämpfer."
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:48
 msgid "Hero Cavalry Archer"
@@ -12637,7 +12637,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr "Klassen: Held Infanterie Nahkampf Schwert. \n\"Held\" Aura: TBD. \nStark gegen: 2x gegen Speerkämpfer, 1.5x gegen Plänkler und Elefanten. \nSchwach gegen: Bogenschützen, berittene Bogenschützen."
+msgstr "Klassen: Held Infanterie Nahkampf Schwert. \nHeldenaura: TBD. \nStark gegen: 2x gegen Speerkämpfer, 1.5x gegen Plänkler und Elefanten. \nSchwach gegen: Bogenschützen, berittene Bogenschützen."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -13654,19 +13654,19 @@ msgstr "Ein in der Mitte gerammtes Handelsschiff. Eine gute Möglichkeit für je
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "Großer Verkaufsstand"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "Mittelgroßer Verkaufsstand"
 
 #: simulation/templates/other/stall_small_a.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "Kleiner Verkaufsstand"
 
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall b"
-msgstr ""
+msgstr "Kleiner Verkaufsstand b"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -14339,7 +14339,7 @@ msgstr "Biko Sarbide"
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr "Bilde Champions und Helden aus. Quartiere bis zu 15 Soldaten im Inneren für feste Verteidigung ein."
+msgstr "Bilde Gardeeinheiten und Helden aus. Quartiere bis zu 15 Soldaten im Inneren für feste Verteidigung ein."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -14692,7 +14692,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr "Das ist das ptolemäische Gebäude zur Gebietserweiterung, ähnlich wie das Dorfzentrum für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut. \n- Bilde Siedler vieler Nationen aus. \n- Min. Entfernung von anderen militärischen Kolonien: 100 Meter."
+msgstr "Das ist das ptolemäische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut. \n- Bilde Siedler vieler Nationen aus. \n- Min. Entfernung von anderen militärischen Kolonien: 100 Meter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
@@ -14913,7 +14913,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie das Dorfzentrum für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut.\n- Bilde Siedler vieler Nationen aus.\n- Min. Entfernung von anderen Militärischen Kolonien: 100 Meter."
+msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut.\n- Bilde Siedler vieler Nationen aus.\n- Min. Entfernung von anderen Militärischen Kolonien: 100 Meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -15735,7 +15735,7 @@ msgstr "Tlat-Mašōt"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
-msgstr "Karthagische Frau"
+msgstr "Karthagerin"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
@@ -15809,7 +15809,7 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/celt_hero_brennus.xml:14
 msgid "Hero Aura: +10 Metal loot for every enemy unit killed."
-msgstr "Helden-Aura: +10 Metall für jede getötete gegnerische Einheit."
+msgstr "Heldenaura: +10 Metall für jede getötete gegnerische Einheit."
 
 #: simulation/templates/units/celt_hero_brennus.xml:13
 #: simulation/templates/units/gaul_hero_brennus.xml:13
@@ -15838,7 +15838,7 @@ msgstr "Vercingetorix"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:14
 msgid "Hero Aura: +5 Metal loot for every enemy unit killed."
-msgstr "Helden-Aura: +5 Metall für jede getötete gegnerische Einheit."
+msgstr "Heldenaura: +5 Metall für jede getötete gegnerische Einheit."
 
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:6
 msgid "Thessalian Scout"
@@ -15920,7 +15920,7 @@ msgstr "Poleis Champion Raider.\nStärken: Unterstützt Einheiten, Speereinheite
 msgid ""
 "Hero Aura: +2 Cavalry and Champion Cavalry Attack and +15% Speed. "
 "\"Herocide\" attack bonus vs. enemy Heroes."
-msgstr "Heldenaura: +2 Kavallerie- und Champion-Kavallerie-Angriff und +15% Geschwindigkeit. \"Herocide\" Angriffsbonus gegen feindliche Helden."
+msgstr "Heldenaura: +2 Angriff für Kavallerie und Gardekavallerie und +15% Geschwindigkeit. \"Herocide\" Angriffsbonus gegen feindliche Helden."
 
 #: simulation/templates/units/hele_hero_alexander.xml:21
 #: simulation/templates/units/mace_hero_alexander.xml:36
@@ -15959,7 +15959,7 @@ msgstr "Leōnídēs"
 #: simulation/templates/units/hele_hero_philip.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "Hero Aura: +5 Attack for Champion Units."
-msgstr "Heldenaura: +5 Angriff für Champion-Einheiten."
+msgstr "Heldenaura: +5 Angriff für Gardeeinheiten."
 
 #: simulation/templates/units/hele_hero_philip.xml:11
 #: simulation/templates/units/mace_hero_philip.xml:11
@@ -16101,7 +16101,7 @@ msgstr "Merkataritza Itsasontzi"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
-msgstr "Iberische Frau"
+msgstr "Ibererin"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:5
 msgid "Emazteki"
@@ -16192,7 +16192,7 @@ msgstr "Hemiolos"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
-msgstr "Mazedonische Frau"
+msgstr "Makedonin"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikós"
@@ -16390,7 +16390,7 @@ msgstr "Karmākara Gaja"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:6
 msgid "Indian Woman"
-msgstr "Indische Frau"
+msgstr "Inderin"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -16511,7 +16511,7 @@ msgstr "Anusiya"
 msgid ""
 "Hero Cavalry Lancer.\n"
 "Hero Aura: \"Lead from the Front.\" Boosts attack of nearby cavalry units."
-msgstr "Held der Kavallerielanzenträger\nHelden-Aura: „Führe von der Front.“ verstärkt den Angriff naher Kavallerieeinheiten."
+msgstr "Held der Kavallerielanzenträger\nHeldenaura: „Führe von der Front.“ verstärkt den Angriff naher Kavallerieeinheiten."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:11
 msgid "Cyrus II The Great"
@@ -16627,7 +16627,7 @@ msgstr "Vazarka Hamaraniyanava"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Mesopotamian Woman"
-msgstr "Mesopotamische Frau"
+msgstr "Mesopotamierin"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
@@ -17171,7 +17171,7 @@ msgstr "Seleukidische Trieren"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
-msgstr "Syrierin"
+msgstr "Syrerin"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:10
 msgid "Syrías Gýnē"
@@ -17520,7 +17520,7 @@ msgstr "Schlacht Demo (Groß)"
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Description
 msgid "1296 units. Extremely slow (we need more optimisation)."
-msgstr "1296 Einheiten. Extrem Langsam (wir brauchen mehr Optimierungen)."
+msgstr "1296 Einheiten. Extrem langsam (wir brauchen mehr Optimierungen)."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:42:Description
 msgid ""
@@ -17822,7 +17822,7 @@ msgstr "Sandbox - Die Britannier"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:Description
 msgid "Explore the Carthaginian Buildings and Units."
-msgstr "Erforsche die Gebäude und Einheiten Karthago."
+msgstr "Entdecke die Gebäude und Einheiten Karthagos."
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[0].Name
 #: maps/scenarios/Serengeti.xml:31:PlayerData[0].Name
@@ -18140,7 +18140,7 @@ msgid ""
 "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
 "\n"
 "Warning: This is very fast at the start, be prepared to run through the initial bit several times."
-msgstr "Diese Karte gibt eine Einführung in den effektiven Start eines Spieles. Früh im Spiel ist es wichtig so viele Rohstoffe wie möglich, so schnell wie möglich zu sammeln, damit man später genug Truppen ausbilden kann.\n\nWarnung: Zu Anfang ist das Spiel sehr schnell, sei Bereit mehrfach durch die Anfangssequenzen zu laufen."
+msgstr "Diese Karte gibt eine Einführung in den effektiven Start eines Spieles. Früh im Spiel ist es wichtig so viele Rohstoffe wie möglich, so schnell wie möglich zu sammeln, damit man später genug Truppen ausbilden kann.\n\nWarnung: Zu Anfang ist das Spiel sehr schnell, sei bereit mehrfach durch die Anfangssequenzen zu laufen."
 
 #: maps/scenarios/starting_economy_walkthrough.xml:42:Name
 msgid "Starting Economy Walkthrough"
@@ -18159,7 +18159,7 @@ msgstr "Jeder Spieler beginnt das Spiel auf einem großen flachen Plateau, als A
 
 #: maps/skirmishes/Acropolis Bay (2).xml:41:Name
 msgid "Acropolis Bay (2)"
-msgstr "Acropolis Bay (2)"
+msgstr "Acropolis Bucht (2)"
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Description
 msgid ""
@@ -18269,7 +18269,7 @@ msgid ""
 "Each player starts the match with a free farmstead and free storehouse.\n"
 "\n"
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
-msgstr "Zwei Spieler Platz nehmen  Stellung auf der stark bewaldeten Hochebene von Deccan in Zentralindien ein.\n\nJeder Spieler beginnt das Spiel mit einer Farm und einem Warenhaus.\n \nUnberührte Ressourcen liegen in den Niederungen auf jeder Seite des Plateaus. Das Tiefland bietet auch Gelegenheit zur Expansion und strategische Manöver."
+msgstr "Zwei Spieler Platz nehmen  Stellung auf der stark bewaldeten Hochebene von Deccan in Zentralindien ein.\n\nJeder Spieler beginnt das Spiel mit einem Bauernhof und einem Warenhaus.\n \nUnberührte Ressourcen liegen in den Niederungen auf jeder Seite des Plateaus. Das Tiefland bietet auch Gelegenheit zur Expansion und strategische Manöver."
 
 #: maps/skirmishes/Deccan Plateau (2).xml:41:Name
 msgid "Deccan Plateau (2)"
@@ -18331,7 +18331,7 @@ msgstr "Griechische Akropolis (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:Name
 msgid "Greek Acropolis Night (2)"
-msgstr "Griechische Akropolis Nacht (2)"
+msgstr "Griechische Akropolis bei Nacht (2)"
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Description
 msgid ""
@@ -18473,7 +18473,7 @@ msgstr "Eine große Savanne wird durch einen schmalen Dschungelfluss halbiert."
 
 #: maps/skirmishes/Savanna River.xml:42:Name
 msgid "Savanna River (2)"
-msgstr ""
+msgstr "Savannenfluss (2)"
 
 #: maps/skirmishes/Sicilia (2).xml:41:Description
 msgid "The large Mediterranean island of Sicily is open for conquest."
@@ -18485,7 +18485,7 @@ msgstr "Sizilien (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Description
 msgid "A demo Skirmish map."
-msgstr "Eine Karte, die Gefechte demonstriert."
+msgstr "Ein Gefechtsdemo"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Name
 msgid "Skirmish Demo"
