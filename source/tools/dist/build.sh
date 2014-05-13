@@ -40,8 +40,8 @@ ln -Tsf export-unix ${PREFIX}
 tar cf $PREFIX-unix-build.tar \
 	--exclude='*.bat' --exclude='*.dll' --exclude='*.exe' --exclude='*.lib' \
 	--exclude='libraries/source/fcollada/src/FCollada/FColladaTest' \
-	--exclude='libraries/source/spidermonkey/include-win32' \
-	${PREFIX}/{source,build,libraries/source,binaries/system/readme.txt,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
+	--exclude='libraries/source/spidermonkey/include-win32-*' \
+	${PREFIX}/{source,build,libraries/source,binaries/system/readme.txt,binaries/data/l10n,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
 tar cf $PREFIX-unix-data.tar \
 	--exclude='binaries/data/config/dev.cfg' \
 	 ${PREFIX}/binaries/data/{config,mods/public/public.zip,tools}
