@@ -133,6 +133,7 @@ public:
 	fixed m_WalkSpeed, m_OriginalWalkSpeed; // in metres per second
 	fixed m_RunSpeed, m_OriginalRunSpeed;
 	ICmpPathfinder::pass_class_t m_PassClass;
+	std::string m_PassClassName;
 	ICmpPathfinder::cost_class_t m_CostClass;
 
 	// Dynamic state:
@@ -306,7 +307,8 @@ public:
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (cmpPathfinder)
 		{
-			m_PassClass = cmpPathfinder->GetPassabilityClass(paramNode.GetChild("PassabilityClass").ToUTF8());
+			m_PassClassName = paramNode.GetChild("PassabilityClass").ToUTF8();
+			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
 			m_CostClass = cmpPathfinder->GetCostClass(paramNode.GetChild("CostClass").ToUTF8());
 		}
 
@@ -337,6 +339,8 @@ public:
 
 		serialize.NumberU8("state", m_State, 0, STATE_MAX-1);
 		serialize.NumberU8("path state", m_PathState, 0, PATHSTATE_MAX-1);
+
+		serialize.StringASCII("pass class", m_PassClassName, 0, 64);
 
 		serialize.NumberU32_Unbounded("ticket", m_ExpectedPathTicket);
 
@@ -369,6 +373,10 @@ public:
 		Init(paramNode);
 
 		SerializeCommon(deserialize);
+
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+		if (cmpPathfinder)
+			m_PassClass = cmpPathfinder->GetPassabilityClass(m_PassClassName);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -446,6 +454,19 @@ public:
 	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()
 	{
 		return m_PassClass;
+	}
+
+	virtual std::string GetPassabilityClassName()
+	{
+		return m_PassClassName;
+	}
+
+	virtual void SetPassabilityClassName(std::string passClassName)
+	{
+		m_PassClassName = passClassName;
+		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
+		if (cmpPathfinder)
+			m_PassClass = cmpPathfinder->GetPassabilityClass(passClassName);
 	}
 
 	virtual fixed GetCurrentSpeed()
