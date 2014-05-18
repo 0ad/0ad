@@ -180,5 +180,10 @@
 		"formations/phalanx",
 		"formations/syntagma"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_cavalry": "units/hele_cavalry_swordsman_b",
+		"skirmish/structures/default_house_10": "structures/{civ}_house"
+	},
 	"SelectableInGameSetup": false
 }

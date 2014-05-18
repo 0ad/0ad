@@ -162,5 +162,11 @@
 		"formations/wedge",
 		"formations/battle_line"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_cavalry": "units/celt_cavalry_swordsman_b",
+		"skirmish/structures/default_house_5": "structures/{civ}_house",
+		"skirmish/structures/default_fortress": "structures/celt_fortress_g"
+	},
 	"SelectableInGameSetup": false
 }
