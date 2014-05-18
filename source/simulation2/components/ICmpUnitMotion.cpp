@@ -35,6 +35,8 @@ DEFINE_INTERFACE_METHOD_1("SetSpeed", void, ICmpUnitMotion, SetSpeed, fixed)
 DEFINE_INTERFACE_METHOD_0("IsMoving", bool, ICmpUnitMotion, IsMoving)
 DEFINE_INTERFACE_METHOD_0("GetWalkSpeed", fixed, ICmpUnitMotion, GetWalkSpeed)
 DEFINE_INTERFACE_METHOD_0("GetRunSpeed", fixed, ICmpUnitMotion, GetRunSpeed)
+DEFINE_INTERFACE_METHOD_0("GetPassabilityClassName", std::string, ICmpUnitMotion, GetPassabilityClassName)
+DEFINE_INTERFACE_METHOD_1("SetPassabilityClassName", void, ICmpUnitMotion, SetPassabilityClassName, std::string)
 DEFINE_INTERFACE_METHOD_1("SetFacePointAfterMove", void, ICmpUnitMotion, SetFacePointAfterMove, bool)
 DEFINE_INTERFACE_METHOD_1("SetUnitRadius", void, ICmpUnitMotion, SetUnitRadius, fixed)
 DEFINE_INTERFACE_METHOD_1("SetDebugOverlay", void, ICmpUnitMotion, SetDebugOverlay, bool)
@@ -113,6 +115,16 @@ public:
 	virtual ICmpPathfinder::pass_class_t GetPassabilityClass()
 	{
 		return m_Script.Call<ICmpPathfinder::pass_class_t>("GetPassabilityClass");
+	}
+
+	virtual std::string GetPassabilityClassName()
+	{
+		return m_Script.Call<std::string>("GetPassabilityClassName");
+	}
+
+	virtual void SetPassabilityClassName(std::string passClassName)
+	{
+		m_Script.CallVoid("SetPassabilityClassName", passClassName);
 	}
 
 	virtual void SetUnitRadius(fixed radius)

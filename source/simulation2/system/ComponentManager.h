@@ -95,6 +95,8 @@ public:
 
 	void RegisterComponentType(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
 	void RegisterComponentTypeScriptWrapper(InterfaceId, ComponentTypeId, AllocFunc, DeallocFunc, const char*, const std::string& schema);
+	
+	void MarkScriptedComponentForSystemEntity(CComponentManager::ComponentTypeId cid);
 
 	/**
 	 * Subscribe the current component type to the given message type.
@@ -165,6 +167,11 @@ public:
 	 * @return true on success; false on failure, and logs an error message
 	 */
 	bool AddComponent(CEntityHandle ent, ComponentTypeId cid, const CParamNode& paramNode);
+
+	/**
+	 * Add all system components to the system entity (skip the scripted components or the AI components on demand)
+	 */
+	void AddSystemComponents(bool skipScriptedComponents, bool skipAI);
 
 	/**
 	 * Adds an externally-created component, so that it is returned by QueryInterface
@@ -242,7 +249,10 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
+	static void Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor, bool reRegister, bool systemComponent);
 	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
+	static void Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
+	static void Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
 	static void Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
 	static void Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
 	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, CScriptVal value);
@@ -279,6 +289,7 @@ private:
 
 	// TODO: some of these should be vectors
 	std::map<ComponentTypeId, ComponentType> m_ComponentTypesById;
+	std::vector<CComponentManager::ComponentTypeId> m_ScriptedSystemComponents;
 	std::vector<boost::unordered_map<entity_id_t, IComponent*> > m_ComponentsByInterface; // indexed by InterfaceId
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> > m_ComponentsByTypeId;
 	std::map<MessageTypeId, std::vector<ComponentTypeId> > m_LocalMessageSubscriptions;

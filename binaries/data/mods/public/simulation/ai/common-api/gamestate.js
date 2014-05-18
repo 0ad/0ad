@@ -521,6 +521,10 @@ m.GameState.prototype.getHuntableSupplies = function(){
 	return this.updatingGlobalCollection("resource-hunt", m.Filters.isHuntable(), this.getEntities(), true);
 };
 
+m.GameState.prototype.getFishableSupplies = function(){
+	return this.updatingGlobalCollection("resource-fish", m.Filters.isFishable(), this.getEntities(), true);
+};
+
 // This returns only units from buildings.
 m.GameState.prototype.findTrainableUnits = function(classes){
 	var allTrainable = [];

@@ -9,14 +9,7 @@
     <Height>5.0</Height>
   </Footprint>
   <ProductionQueue disable=""/>
-  <SkirmishReplacer>
-    <brit>structures/{civ}_house</brit>
-    <celt>structures/{civ}_house</celt>
-    <gaul>structures/{civ}_house</gaul>
-    <iber>structures/{civ}_house</iber>
-    <maur>structures/{civ}_house</maur>
-    <ptol>structures/{civ}_house</ptol>
-  </SkirmishReplacer>
+  <SkirmishReplacer/>
   <VisualActor>
     <Actor>structures/ptolemies/house.xml</Actor>
   </VisualActor>

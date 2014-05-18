@@ -12,5 +12,5 @@ ValueModificationManager.prototype.ApplyModifications = function(valueName, curr
 	return ApplyValueModificationsToEntity(valueName, currentValue, entity);
 };
 
-Engine.RegisterComponentType(IID_ValueModificationManager, "ValueModificationManager", ValueModificationManager);
+Engine.RegisterSystemComponentType(IID_ValueModificationManager, "ValueModificationManager", ValueModificationManager);
 

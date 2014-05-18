@@ -1,20 +1,27 @@
 function SkirmishReplacer() {}
 
 SkirmishReplacer.prototype.Schema = 
-	"<optional>" +
-		"<oneOrMore>" +
-			"<element a:help='Replacement template for the civ which this element is named after or general. If no element is defined for a civ the general element is used instead. If this element is empty the entity is just deleted. The general element gets used if no civ specific element is present and replaces {civ} with the civ code.'>" +
-				"<anyName/>" +
+		"<optional>" +
+			"<element name='general' a:help='The general element replaces {civ} with the civ code.'>" +
 				"<interleave>" +
 					"<text/>" +
 				"</interleave>" +
 			"</element>" +
-		"</oneOrMore>" +
-	"</optional>";
+		"</optional>";
 
 SkirmishReplacer.prototype.Init = function()
 {
 };
+
+//this function gets the replacement entities from the {civ}.json file
+function getReplacementEntities(civ)
+{	
+	var rawCivData = Engine.ReadCivJSONFile(civ+".json");
+	if (rawCivData && rawCivData.SkirmishReplacements)
+		return rawCivData.SkirmishReplacements;
+	warn("SkirmishReplacer.js: no replacements found in '"+civ+".json'");
+	return {};
+}
 
 SkirmishReplacer.prototype.OnOwnershipChanged = function(msg)
 {
@@ -26,12 +33,17 @@ SkirmishReplacer.prototype.ReplaceEntities = function()
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var civ = cmpPlayer.GetCiv();
-
-	var templateName = "";
-	if (civ in this.template)
-		templateName = this.template[civ];
-	else if ("general" in this.template)
+	var replacementEntities = getReplacementEntities(civ);
+	
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
+	
+	if(templateName in replacementEntities)
+		templateName = replacementEntities[templateName];
+	else if (this.template && "general" in this.template)
 		templateName = this.template.general;
+	else
+		templateName = "";
 
 	if (!templateName || civ == "gaia")
 	{

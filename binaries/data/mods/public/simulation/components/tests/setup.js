@@ -11,6 +11,12 @@ Engine.RegisterComponentType = function(iid, name, ctor)
 	g_ComponentTypes[name] = { iid: iid, ctor: ctor };
 };
 
+Engine.RegisterSystemComponentType = function(iid, name, ctor)
+{
+	TS_ASSERT(!g_ComponentTypes[name]);
+	g_ComponentTypes[name] = { iid: iid, ctor: ctor };
+};
+
 Engine.RegisterInterface = function(name)
 {
 	global["IID_"+name] = g_NewIID++;

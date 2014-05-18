@@ -172,4 +172,4 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 	return value;
 };
 
-Engine.RegisterComponentType(IID_AuraManager, "AuraManager", AuraManager);
+Engine.RegisterSystemComponentType(IID_AuraManager, "AuraManager", AuraManager);

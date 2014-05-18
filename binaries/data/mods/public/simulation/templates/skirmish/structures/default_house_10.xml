@@ -5,15 +5,7 @@
     <Tooltip>Changes in a 10-pop house for civilisations with those houses, is deleted for other civs</Tooltip>
   </Identity>
   <ProductionQueue disable=""/>
-  <SkirmishReplacer>
-    <athen>structures/{civ}_house</athen>
-    <cart>structures/{civ}_house</cart>
-    <hele>structures/{civ}_house</hele>
-    <mace>structures/{civ}_house</mace>
-    <pers>structures/{civ}_house</pers>
-    <rome>structures/{civ}_house</rome>
-    <spart>structures/{civ}_house</spart>
-  </SkirmishReplacer>
+  <SkirmishReplacer/>
   <VisualActor>
     <Actor>structures/athenians/house.xml</Actor>
   </VisualActor>

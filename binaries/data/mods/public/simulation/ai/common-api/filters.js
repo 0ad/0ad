@@ -255,6 +255,17 @@ m.Filters = {
 		},
 		"dynamicProperties": []};
 	},
+
+	isFishable: function(){
+		return {"func" : function(ent){
+			if (ent.get("UnitMotion"))   // temporarily do not fish moving fish (i.e. whales)
+				return false;
+			if (ent.hasClass("SeaCreature") && ent.resourceSupplyMax())
+				return true;
+			return false;
+		},
+		"dynamicProperties": []};
+	}
 };
 
 return m;

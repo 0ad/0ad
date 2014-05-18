@@ -745,6 +745,23 @@ m.Entity = m.Class({
 		return this;
 	},
 	
+	// moveApart from a point in the opposite direction with a distance dist
+	moveApart: function(point, dist) {
+		if (this.position() !== undefined) {
+			var direction = [this.position()[0] - point[0], this.position()[1] - point[1]];
+			var norm = m.VectorDistance(point, this.position());
+			if (norm === 0)
+				direction = [1, 0];
+			else
+			{
+				direction[0] /= norm;
+				direction[1] /= norm;
+			}			
+			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false});
+		}
+		return this;
+	},
+
 	// Flees from a unit in the opposite direction.
 	flee: function(unitToFleeFrom) {
 		if (this.position() !== undefined && unitToFleeFrom.position() !== undefined) {

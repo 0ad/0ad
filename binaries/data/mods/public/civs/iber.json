@@ -130,5 +130,15 @@
 		"Minurus",
 		"Tautalus"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_infantry_melee_b": "units/iber_infantry_swordsman_b",
+		"skirmish/structures/default_house_5": "structures/{civ}_house",
+		"skirmish/structures/iber_wall_short": "structures/iber_wall_short",
+		"skirmish/structures/iber_wall_medium": "structures/iber_wall_medium",
+		"skirmish/structures/iber_wall_long": "structures/iber_wall_long",
+		"skirmish/structures/iber_wall_gate": "structures/iber_wall_gate",
+		"skirmish/structures/iber_wall_tower": "structures/iber_wall_tower"
+	},
 	"SelectableInGameSetup": true
 }

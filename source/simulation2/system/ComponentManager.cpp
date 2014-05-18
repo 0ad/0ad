@@ -70,6 +70,8 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 	if (!skipScriptFunctions)
 	{
 		m_ScriptInterface.RegisterFunction<void, int, std::string, CScriptVal, CComponentManager::Script_RegisterComponentType> ("RegisterComponentType");
+		m_ScriptInterface.RegisterFunction<void, int, std::string, CScriptVal, CComponentManager::Script_RegisterSystemComponentType> ("RegisterSystemComponentType");
+		m_ScriptInterface.RegisterFunction<void, int, std::string, CScriptVal, CComponentManager::Script_ReRegisterComponentType> ("ReRegisterComponentType");
 		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterInterface> ("RegisterInterface");
 		m_ScriptInterface.RegisterFunction<void, std::string, CComponentManager::Script_RegisterMessageType> ("RegisterMessageType");
 		m_ScriptInterface.RegisterFunction<void, std::string, CScriptVal, CComponentManager::Script_RegisterGlobal> ("RegisterGlobal");
@@ -143,7 +145,7 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
+void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
@@ -163,15 +165,22 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 	ComponentTypeId cid = componentManager->LookupCID(cname);
 	if (cid == CID__Invalid)
 	{
+		if (reRegister)
+		{
+			componentManager->m_ScriptInterface.ReportError("ReRegistering component type that was not registered before"); // TODO: report the actual name
+			return;
+		}
 		// Allocate a new cid number
 		cid = componentManager->m_NextScriptComponentTypeId++;
 		componentManager->m_ComponentTypeIdsByName[cname] = cid;
+		if (systemComponent)
+			componentManager->MarkScriptedComponentForSystemEntity(cid);
 	}
 	else
 	{
 		// Component type is already loaded, so do hotloading:
 
-		if (!componentManager->m_CurrentlyHotloading)
+		if (!componentManager->m_CurrentlyHotloading && !reRegister)
 		{
 			componentManager->m_ScriptInterface.ReportError("Registering component type with already-registered name"); // TODO: report the actual name
 			return;
@@ -182,7 +191,7 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 		// We can only replace scripted component types, not native ones
 		if (ctPrevious.type != CT_Script)
 		{
-			componentManager->m_ScriptInterface.ReportError("Hotloading script component type with same name as native component");
+			componentManager->m_ScriptInterface.ReportError("Loading script component type with same name as native component");
 			return;
 		}
 
@@ -301,6 +310,26 @@ void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate*
 			}
 		}
 	}
+}
+
+void CComponentManager::Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, false);
+	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
+}
+
+void CComponentManager::Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, false, true);
+	componentManager->m_ScriptInterface.SetGlobal(cname.c_str(), ctor, componentManager->m_CurrentlyHotloading);
+}
+
+void CComponentManager::Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor)
+{
+	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	componentManager->Script_RegisterComponentType_Common(pCxPrivate, iid, cname, ctor, true, false);
 }
 
 void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name)
@@ -508,6 +537,11 @@ void CComponentManager::RegisterComponentTypeScriptWrapper(InterfaceId iid, Comp
 	// TODO: merge with RegisterComponentType
 }
 
+void CComponentManager::MarkScriptedComponentForSystemEntity(CComponentManager::ComponentTypeId cid)
+{
+	m_ScriptedSystemComponents.push_back(cid);
+}
+
 void CComponentManager::RegisterMessageType(MessageTypeId mtid, const char* name)
 {
 	m_MessageTypeIdsByName[name] = mtid;
@@ -597,6 +631,32 @@ bool CComponentManager::AddComponent(CEntityHandle ent, ComponentTypeId cid, con
 
 	component->Init(paramNode);
 	return true;
+}
+
+void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool skipAI)
+{
+	CParamNode noParam;
+	AddComponent(m_SystemEntity, CID_TemplateManager, noParam);
+	AddComponent(m_SystemEntity, CID_CommandQueue, noParam);
+	AddComponent(m_SystemEntity, CID_ObstructionManager, noParam);
+	AddComponent(m_SystemEntity, CID_ParticleManager, noParam);
+	AddComponent(m_SystemEntity, CID_Pathfinder, noParam);
+	AddComponent(m_SystemEntity, CID_ProjectileManager, noParam);
+	AddComponent(m_SystemEntity, CID_RangeManager, noParam);
+	AddComponent(m_SystemEntity, CID_SoundManager, noParam);
+	AddComponent(m_SystemEntity, CID_Terrain, noParam);
+	AddComponent(m_SystemEntity, CID_TerritoryManager, noParam);
+	AddComponent(m_SystemEntity, CID_WaterManager, noParam);
+
+	// Add scripted system components:
+	if (!skipScriptedComponents)
+	{
+
+		for (uint32_t i = 0; i < m_ScriptedSystemComponents.size(); ++i)
+			AddComponent(m_SystemEntity, m_ScriptedSystemComponents[i], noParam);
+		if (!skipAI)
+			AddComponent(m_SystemEntity, CID_AIManager, noParam);
+	}
 }
 
 IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTypeId cid)

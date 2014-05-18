@@ -228,4 +228,4 @@ AIInterface.prototype.OnGlobalValueModification = function(msg)
 	}
 };
 
-Engine.RegisterComponentType(IID_AIInterface, "AIInterface", AIInterface);
+Engine.RegisterSystemComponentType(IID_AIInterface, "AIInterface", AIInterface);

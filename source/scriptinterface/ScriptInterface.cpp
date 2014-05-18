@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -637,10 +637,9 @@ ScriptInterface_impl::ScriptInterface_impl(const char* nativeScopeName, const sh
 	JS_SetErrorReporter(m_cx, ErrorReporter);
 
 	u32 options = 0;
-	// FIXME is temporarily disabled for release, but should be reenabled again
-	// options |= JSOPTION_EXTRA_WARNINGS; // "warn on dubious practice"
+	options |= JSOPTION_EXTRA_WARNINGS; // "warn on dubious practice"
 	// We use strict mode to encourage better coding practices and
-	//to get code that can be optimized better by Spidermonkey's JIT compiler.
+	// to get code that can be optimized better by Spidermonkey's JIT compiler.
 	options |= JSOPTION_STRICT_MODE;
 	options |= JSOPTION_VAROBJFIX; // "recommended" (fixes variable scoping)
 

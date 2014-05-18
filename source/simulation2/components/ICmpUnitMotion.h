@@ -120,6 +120,16 @@ public:
 	virtual ICmpPathfinder::pass_class_t GetPassabilityClass() = 0;
 
 	/**
+	 * Get the passability class name (as defined in pathfinder.xml)
+	 */
+	virtual std::string GetPassabilityClassName() = 0;
+
+	/**
+	 * Set the passability class
+	 */
+	virtual void SetPassabilityClassName(std::string passClassName) = 0;
+
+	/**
 	 * Override the default obstruction radius, used for planning paths and checking for collisions.
 	 * Bad things may happen if this entity has an active Obstruction component with a larger
 	 * radius. (This is intended primarily for formation controllers.)

@@ -155,5 +155,14 @@
 		"Eucleidas",
 		"Agesipolis"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/structures/default_house_10" : "structures/{civ}_house",
+		"skirmish/structures/default_wall_tower": "",
+		"skirmish/structures/default_wall_gate": "",
+		"skirmish/structures/default_wall_short": "",
+		"skirmish/structures/default_wall_medium": "",
+		"skirmish/structures/default_wall_long": ""
+	},
 	"SelectableInGameSetup": true
 }

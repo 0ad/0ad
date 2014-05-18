@@ -95,56 +95,8 @@ public:
 	static void ResetComponentState(CComponentManager& componentManager, bool skipScriptedComponents, bool skipAI)
 	{
 		componentManager.ResetState();
-
-		CParamNode noParam;
-		CComponentManager::ComponentTypeId cid;
-
 		componentManager.InitSystemEntity();
-		CEntityHandle systemEntity = componentManager.GetSystemEntity();
-
-		// Add native system components:
-		componentManager.AddComponent(systemEntity, CID_TemplateManager, noParam);
-
-		componentManager.AddComponent(systemEntity, CID_CommandQueue, noParam);
-		componentManager.AddComponent(systemEntity, CID_ObstructionManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_ParticleManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_Pathfinder, noParam);
-		componentManager.AddComponent(systemEntity, CID_ProjectileManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_RangeManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_SoundManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_Terrain, noParam);
-		componentManager.AddComponent(systemEntity, CID_TerritoryManager, noParam);
-		componentManager.AddComponent(systemEntity, CID_WaterManager, noParam);
-
-		// Add scripted system components:
-		if (!skipScriptedComponents)
-		{
-			// TODO: Load this from a file to allow modders to add scripted components
-			// without having to recompile.
-#define LOAD_SCRIPTED_COMPONENT(name) \
-			cid = componentManager.LookupCID(name); \
-			if (cid == CID__Invalid) \
-				LOGERROR(L"Can't find component type " L##name); \
-			componentManager.AddComponent(systemEntity, cid, noParam)
-
-			LOAD_SCRIPTED_COMPONENT("AIInterface");
-			LOAD_SCRIPTED_COMPONENT("AuraManager");
-			LOAD_SCRIPTED_COMPONENT("Barter");
-			LOAD_SCRIPTED_COMPONENT("EndGameManager");
-			LOAD_SCRIPTED_COMPONENT("GuiInterface");
-			LOAD_SCRIPTED_COMPONENT("PlayerManager");
-			LOAD_SCRIPTED_COMPONENT("TechnologyTemplateManager");
-			LOAD_SCRIPTED_COMPONENT("Timer");
-			LOAD_SCRIPTED_COMPONENT("ValueModificationManager");
-
-#undef LOAD_SCRIPTED_COMPONENT
-
-			if (!skipAI)
-			{
-				componentManager.AddComponent(systemEntity, CID_AIManager, noParam);
-			}
-		
-		}
+		componentManager.AddSystemComponents(skipScriptedComponents, skipAI);
 	}
 
 	static bool LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts);

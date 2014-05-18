@@ -179,5 +179,10 @@
 		"Antiochus XIII Asiaticus",
 		"Philip II Philoromaeus"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_cavalry" : "units/sele_cavalry_javelinist",
+		"skirmish/structures/default_house_10" : "structures/{civ}_house"
+	},
 	"SelectableInGameSetup": true
 }

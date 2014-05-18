@@ -227,12 +227,14 @@ m.EntityCollection.prototype.move = function(x, z, queued)
 	Engine.PostCommand(PlayerID,{"type": "walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
+
 m.EntityCollection.prototype.attackMove = function(x, z, queued)
 {
 	queued = queued || false;
 	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
 	return this;
 };
+
 m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
 {
 	queued = queued || false;
@@ -246,11 +248,19 @@ m.EntityCollection.prototype.moveIndiv = function(x, z, queued)
 	}
 	return this;
 };
+
+m.EntityCollection.prototype.garrison = function(target)
+{
+	Engine.PostCommand(PlayerID,{"type": "garrison", "entities": this.toIdArray(), "target": target.id()});
+	return this;
+};
+
 m.EntityCollection.prototype.destroy = function()
 {
 	Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": this.toIdArray()});
 	return this;
 };
+
 m.EntityCollection.prototype.attack = function(unit)
 {
 	var unitId;
@@ -265,6 +275,7 @@ m.EntityCollection.prototype.attack = function(unit)
 	Engine.PostCommand(PlayerID,{"type": "attack", "entities": this.toIdArray(), "target": unitId, "queued": false});
 	return this;
 };
+
 // violent, aggressive, defensive, passive, standground
 m.EntityCollection.prototype.setStance = function(stance)
 {

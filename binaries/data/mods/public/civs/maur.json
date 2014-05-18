@@ -147,5 +147,11 @@
 		"Satadhanvan Maurya",
 		"Brihadratha Maurya"
 	],
+	"SkirmishReplacements":
+	{
+		"skirmish/units/default_infantry_ranged_b": "units/maur_infantry_archer_b",
+		"skirmish/units/special_starting_unit": "units/maur_support_elephant",
+		"skirmish/structures/default_house_5": "structures/{civ}_house"
+	},
 	"SelectableInGameSetup": true
 }

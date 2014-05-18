@@ -111,6 +111,13 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	else
 		this.holders[holder.id()].push(ent.id());
 
+	if (gameState.ai.HQ.Config.debug > 0)
+	{
+		warn("garrison unit " + ent.genericName() + " in " + holder.genericName() + " with type " + type);
+		warn(" we try to garrison a unit with plan " + ent.getMetadata(PlayerID, "plan") + " and role " + ent.getMetadata(PlayerID, "role")
+			+ " and subrole " +  ent.getMetadata(PlayerID, "subrole") + " and transport " +  ent.getMetadata(PlayerID, "transport"));
+	}
+
 	if (ent.getMetadata(PlayerID, "plan") !== undefined)
 		ent.setMetadata(PlayerID, "plan", -2);
 	else
@@ -149,6 +156,8 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 				return true;
 			return false;
 		default:
+			if (ent.getMetadata(PlayerID, "onBoard") === "onBoard")  // transport is not (yet ?) managed by garrisonManager 
+				return true;
 			warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrison-type"));
 			return true;
 	}

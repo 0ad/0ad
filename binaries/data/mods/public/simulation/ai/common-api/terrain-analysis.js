@@ -475,7 +475,7 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 		this.isOpened[currentRegion] = false;
 
 		// special case, might make it faster (usually oceans connect multiple land masses, sometimes all of them)
-		if (this.regionType[currentRegion] == "water" && endLand)
+		if (this.regionType[currentRegion] == "water" && endRegion)
 		{
 			var idx = this.regionLinks[currentRegion].indexOf(endRegion);
 			if (idx !== -1)
@@ -556,27 +556,29 @@ m.Accessibility.prototype.getRegionSizei = function(index, onWater) {
 // TODO: take big zones of impassable trees into account?
 m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 {
-	this.s = startIndex;
-	if ((!onWater && this.landPassMap[this.s] !== 0) || (onWater && this.navalPassMap[this.s] !== 0) )
+	if ((!onWater && this.landPassMap[startIndex] !== 0) || (onWater && this.navalPassMap[startIndex] !== 0) )
 		return false;	// already painted.
-	
-	this.floodFor = "land";
-	if (this.map[this.s] === 0)
+
+	var floodFor = "land";
+	if (this.map[startIndex] === 0)
 	{
-		this.landPassMap[this.s] = 1;
-		this.navalPassMap[this.s] = 1;
+		this.landPassMap[startIndex] = 1;
+		this.navalPassMap[startIndex] = 1;
 		return false;
 	}
+
 	if (onWater === true)
 	{
-		if (this.map[this.s] !== 200 && this.map[this.s] !== 201)
+		if (this.map[startIndex] !== 200 && this.map[startIndex] !== 201)
 		{
-			this.navalPassMap[this.s] = 1;	// impassable for naval
+			this.navalPassMap[startIndex] = 1;	// impassable for naval
 			return false;	// do nothing
 		}
-		this.floodFor = "water";
-	} else if (this.map[this.s] === 200) {
-		this.landPassMap[this.s] = 1;	// impassable for land
+		floodFor = "water";
+	}
+	else if (this.map[startIndex] === 200)
+	{
+		this.landPassMap[startIndex] = 1;	// impassable for land
 		return false;
 	}
 	
@@ -593,10 +595,10 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 	var x = 0;
 	var y = 0;
 	// Get x and y from index
-	var IndexArray = [this.s];
+	var IndexArray = [startIndex];
 	var newIndex = 0;
-	while(IndexArray.length){
-		
+	while(IndexArray.length)
+	{		
 		newIndex = IndexArray.pop();
 
 		y = 0;
@@ -608,13 +610,12 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 			var index = +newIndex + w*y;
 			if (index < 0)
 				break;
-			if (this.floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
+			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
 				loop = true;
-			} else if (this.floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201)) {
+			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201))
 				loop = true;
-			} else {
+			else
 				break;
-			}
 		} while (loop === true)	// should actually break
 		++y;
 		var reachLeft = false;
@@ -623,53 +624,67 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 		do {
 			var index = +newIndex + w*y;
 			
-			if (this.floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200) {
+			if (floodFor === "land" && this.landPassMap[index] === 0 && this.map[index] !== 0 && this.map[index] !== 200)
+			{
 				this.landPassMap[index] = value;
 				this.regionSize[value]++;
-			} else if (this.floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201)) {
+			}
+			else if (floodFor === "water" && this.navalPassMap[index] === 0 && (this.map[index] === 200 || this.map[index] === 201))
+			{
 				this.navalPassMap[index] = value;
 				this.regionSize[value]++;
-			} else {
-				break;
 			}
+			else
+				break;
 			
 			if (index%w > 0)
 			{
-				if (this.floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200) {
-					if(!reachLeft) {
+				if (floodFor === "land" && this.landPassMap[index -1] === 0 && this.map[index -1] !== 0 && this.map[index -1] !== 200)
+				{
+					if (!reachLeft)
+					{
 						IndexArray.push(index -1);
 						reachLeft = true;
 					}
-				} else if (this.floodFor === "water" && this.navalPassMap[index -1] === 0 && (this.map[index -1] === 200 || this.map[index -1] === 201)) {
-					if(!reachLeft) {
-						IndexArray.push(index -1);
-						reachLeft = true;
-					}
-				} else if(reachLeft) {
-					reachLeft = false;
 				}
+				else if (floodFor === "water" && this.navalPassMap[index -1] === 0 && (this.map[index -1] === 200 || this.map[index -1] === 201))
+				{
+					if (!reachLeft)
+					{
+						IndexArray.push(index -1);
+						reachLeft = true;
+					}
+				}
+				else if (reachLeft)
+					reachLeft = false;
 			}
+
 			if (index%w < w - 1)
 			{
-				if (this.floodFor === "land" && this.landPassMap[index +1] === 0 && this.map[index +1] !== 0 && this.map[index +1] !== 200) {
-					if(!reachRight) {
+				if (floodFor === "land" && this.landPassMap[index +1] === 0 && this.map[index +1] !== 0 && this.map[index +1] !== 200)
+				{
+					if (!reachRight)
+					{
 						IndexArray.push(index +1);
 						reachRight = true;
 					}
-				} else if (this.floodFor === "water" && this.navalPassMap[index +1] === 0 && (this.map[index +1] === 200 || this.map[index +1] === 201)) {
-					if(!reachRight) {
-						IndexArray.push(index +1);
-						reachRight = true;
-					}
-				} else if(reachRight) {
-					reachRight = false;
 				}
+				else if (floodFor === "water" && this.navalPassMap[index +1] === 0 && (this.map[index +1] === 200 || this.map[index +1] === 201))
+				{
+					if (!reachRight)
+					{
+						IndexArray.push(index +1);
+						reachRight = true;
+					}
+				}
+				else if (reachRight)
+					reachRight = false;
 			}
 			++y;
 		} while (index/w < w-1)	// should actually break
 	}
 	return true;
-}
+};
 
 // creates a map of resource density
 m.SharedScript.prototype.createResourceMaps = function(sharedScript) {

@@ -4,7 +4,8 @@ var PETRA = function(m)
 // other map functions
 m.TERRITORY_PLAYER_MASK = 0x3F;
 
-m.createObstructionMap = function(gameState, accessIndex, template){
+m.createObstructionMap = function(gameState, accessIndex, template)
+{
 	var passabilityMap = gameState.getMap();
 	var territoryMap = gameState.ai.territoryMap;
 	
@@ -122,11 +123,11 @@ m.createObstructionMap = function(gameState, accessIndex, template){
 		if (minDist !== undefined && category !== undefined){
 			gameState.getOwnStructures().forEach(function(ent) {
 				if (ent.buildCategory() === category && ent.position()){
-				   var pos = ent.position();
-				   var x = Math.round(pos[0] / gameState.cellSize);
-				   var z = Math.round(pos[1] / gameState.cellSize);
-				   map.addInfluence(x, z, minDist/gameState.cellSize, -255, 'constant');
-			   }
+					var pos = ent.position();
+					var x = Math.round(pos[0] / gameState.cellSize);
+					var z = Math.round(pos[1] / gameState.cellSize);
+					map.addInfluence(x, z, minDist/gameState.cellSize, -255, 'constant');
+				}
 			});
 		}
 	}
@@ -144,6 +145,7 @@ m.createTerritoryMap = function(gameState) {
 	return ret;
 };
 
+// map of our frontier : 2 means narrow border, 1 means large border
 m.createFrontierMap = function(gameState, borderMap)
 {
 	var territory = m.createTerritoryMap(gameState);
