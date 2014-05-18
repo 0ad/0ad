@@ -142,5 +142,5 @@ Barter.prototype.ProgressTimeout = function(data)
 	}
 }
 
-Engine.RegisterComponentType(IID_Barter, "Barter", Barter);
+Engine.RegisterSystemComponentType(IID_Barter, "Barter", Barter);
 

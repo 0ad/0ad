@@ -2020,4 +2020,4 @@ GuiInterface.prototype.ScriptCall = function(player, name, args)
 		throw new Error("Invalid GuiInterface Call name \""+name+"\"");
 };
 
-Engine.RegisterComponentType(IID_GuiInterface, "GuiInterface", GuiInterface);
+Engine.RegisterSystemComponentType(IID_GuiInterface, "GuiInterface", GuiInterface);

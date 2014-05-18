@@ -123,4 +123,4 @@ EndGameManager.prototype.CheckConquestCriticalEntitiesNow = function()
 	cmpRangeManager.SetLosRevealAll(-1, true);
 };
 
-Engine.RegisterComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);
+Engine.RegisterSystemComponentType(IID_EndGameManager, "EndGameManager", EndGameManager);

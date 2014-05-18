@@ -66,4 +66,4 @@ PlayerManager.prototype.GetAllPlayerEntities = function()
 {
 	return this.playerEntities;
 };
-Engine.RegisterComponentType(IID_PlayerManager, "PlayerManager", PlayerManager);
+Engine.RegisterSystemComponentType(IID_PlayerManager, "PlayerManager", PlayerManager);

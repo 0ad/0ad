@@ -49,4 +49,4 @@ TechnologyTemplateManager.prototype.GetAllTechs = function()
 	return this.allTechs;
 }
 
-Engine.RegisterComponentType(IID_TechnologyTemplateManager, "TechnologyTemplateManager", TechnologyTemplateManager);
+Engine.RegisterSystemComponentType(IID_TechnologyTemplateManager, "TechnologyTemplateManager", TechnologyTemplateManager);
