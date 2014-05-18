@@ -27,33 +27,52 @@ m.TrainingPlan.prototype.canStart = function(gameState)
 
 	// TODO: we should probably check pop caps
 
-	var trainers = gameState.findTrainers(this.type);
+	if (this.metadata && this.metadata.sea)
+		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea));
+	else
+		var trainers = gameState.findTrainers(this.type);
 
 	return (trainers.length != 0);
 };
 
 m.TrainingPlan.prototype.start = function(gameState)
 {
-	//warn("Executing TrainingPlan " + uneval(this));
-	var self = this;
-	var trainers = gameState.findTrainers(this.type).toEntityArray();
+	if (this.metadata && this.metadata.sea)
+		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea)).toEntityArray();
+	else if (this.metadata && this.metadata.base)
+		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "base", this.metadata.base)).toEntityArray();
+	else
+		var trainers = gameState.findTrainers(this.type).toEntityArray();
 
 	// Prefer training buildings with short queues
 	// (TODO: this should also account for units added to the queue by
 	// plans that have already been executed this turn)
 	if (trainers.length > 0)
 	{
+		var wantedIndex = undefined;
+		if (this.metadata && this.metadata.index)
+			wantedIndex = this.metadata.index;
+		var supportUnit = this.template.hasClass("Support");
 		trainers.sort(function(a, b) {
 			var aa = a.trainingQueueTime();
 			var bb = b.trainingQueueTime();
-			if (a.hasClass("Civic") && !self.template.hasClass("Support"))
+			if (a.hasClass("Civic") && !supportUnit)
 				aa += 0.9;
-			if (b.hasClass("Civic") && !self.template.hasClass("Support"))
+			if (b.hasClass("Civic") && !supportUnit)
 				bb += 0.9;
+			if (wantedIndex)
+			{
+				var aBase = a.getMetadata(PlayerID, "base");
+				if (!aBase || gameState.ai.HQ.baseManagers[aBase].accessIndex !== wantedIndex)
+					aa += 2.0;
+				var bBase = b.getMetadata(PlayerID, "base");
+				if (!bBase || gameState.ai.HQ.baseManagers[bBase].accessIndex !== wantedIndex)
+					bb += 2.0;
+			}
 			return (aa - bb);
 		});
 		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
-			this.metadata.base = trainers[0].getMetadata(PlayerID,"base");
+			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
 		trainers[0].train(this.type, this.number, this.metadata);
 	}
 	else

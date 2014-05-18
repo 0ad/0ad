@@ -226,7 +226,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 			if (API3.SquareVectorDistance(bases[i].position(), army.foePosition) < 40000)
 			{
 				if(this.Config.debug > 0)
-					warn("but still near one of our CC");
+					warn("army in neutral territory, but still near one of our CC");
 				stillDangerous = true;
 				break;
 			}
@@ -270,6 +270,10 @@ m.DefenseManager.prototype.assignDefenders = function(gameState, events)
 		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 			return;
 		if (ent.hasClass("Siege") || ent.hasClass("Support") || ent.attackTypes() === undefined)
+			return;
+		if (ent.hasClass("FishingBoat") || ent.hasClass("Trader"))
+			return;
+		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
@@ -336,6 +340,8 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 			continue;
 		if (!target.isGarrisonHolder() || gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
 			continue;
+		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
+			continue;
 		var attacker = gameState.getEntityById(e.attacker);
 		if (!attacker)
 			continue;
@@ -346,6 +352,7 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 		var range = target.attackRange("Ranged").max;
 		if (dist >= range*range)
 			continue;
+		var index = gameState.ai.accessibility.getAccessValue(target.position());
 		var garrisonManager = gameState.ai.HQ.garrisonManager;
 		gameState.getOwnUnits().filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).filterNearest(target.position()).forEach(function(ent) {
 			if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
@@ -358,6 +365,8 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 				army = self.getArmy(army);
 			if (army !== undefined)
 				army.removeOwn(gameState, ent.id(), ent);
+			if (ent.getMetadata(PlayerID, "transport") !== undefined)
+				return;
 			if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 				return;
 			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
@@ -366,6 +375,8 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 				if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
 					return;
 			}
+			if (gameState.ai.accessibility.getAccessValue(target.position()) !== index)
+				return;
 			garrisonManager.garrison(gameState, ent, target, "protection");
 		});
 	}

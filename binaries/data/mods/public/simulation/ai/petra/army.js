@@ -67,20 +67,23 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	} else
 		this.foePosition = [0,0];
 
-	pos = [0,0];
-	if (this.ownEntities.length !== 0)
+	this.ownPosition = [0,0];
+	var npos = 0;  // same defenders may be sailing to defend us
+	for each (var id in this.ownEntities)
 	{
-		for each (var id in this.ownEntities)
-		{
-			var ent = gameState.getEntityById(id);
-			var epos = ent.position();
-			pos[0] += epos[0];
-			pos[1] += epos[1];
-		}
-		this.ownPosition[0] = pos[0]/this.ownEntities.length;
-		this.ownPosition[1] = pos[1]/this.ownEntities.length;
-	} else
-		this.ownPosition = [0,0];
+		var ent = gameState.getEntityById(id);
+		if (!ent.position())
+			continue;
+		npos++;
+		var epos = ent.position();
+		pos[0] += epos[0];
+		pos[1] += epos[1];
+	}
+	if (npos > 0)
+	{
+		this.ownPosition[0] = pos[0]/npos;
+		this.ownPosition[1] = pos[1]/npos;
+	}
 
 	this.positionLastUpdate = gameState.getTimeElapsed();
 }
@@ -224,6 +227,29 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	else
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	ent.setMetadata(PlayerID, "formerSubrole", undefined);
+
+	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
+	{
+		var planID = ent.getMetadata(PlayerID, "transport");
+		if (!planID) // no plans ? do not know what to do
+		{
+			warn(" ERROR in army.js: ent from army without position nor transport plan");
+			ent.destroy();
+		}
+		else
+		{
+			if (gameState.ai.HQ.Config.debug > 0)
+				warn("ent from army still in transport plan: plan " + planID + " canceled");
+			for each (var plan in gameState.ai.HQ.navalManager.transportPlans)
+			{
+				if (plan.ID !== planID)
+					continue;
+				if (!plan.canceled)
+					plan.cancelTransport(gameState);
+				break;
+			}
+		}
+	}
 
 	return true;
 }

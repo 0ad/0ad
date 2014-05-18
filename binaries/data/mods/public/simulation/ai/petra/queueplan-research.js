@@ -31,15 +31,13 @@ m.ResearchPlan.prototype.isInvalid = function(gameState)
 
 m.ResearchPlan.prototype.start = function(gameState)
 {
-	var self = this;
-	
-	//m.debug ("Starting the research plan for " + this.type);
 	var trainers = gameState.findResearchers(this.type).toEntityArray();
 
 	// Prefer training buildings with short queues
 	// (TODO: this should also account for units added to the queue by
 	// plans that have already been executed this turn)
-	if (trainers.length > 0){
+	if (trainers.length > 0)
+	{
 		trainers.sort(function(a, b) {
 			return (a.trainingQueueTime() - b.trainingQueueTime());
 		});

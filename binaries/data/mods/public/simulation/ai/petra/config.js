@@ -17,9 +17,10 @@ m.Config = function() {
 		"popForTown" : 40,	// How many units we want before aging to town.
 		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 50,
-		"dockStartTime" : 240,	// Time to wait before building the dock
+		"popForDock" : 25,
 		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
 		"targetNumTraders" : 4, // Target number of traders
+		"targetNumFishers" : 1, // Target number of fishers per sea
 		"femaleRatio" : 0.5, // percent of females among the workforce.
 		"initialFields" : 5
 	};
@@ -31,9 +32,7 @@ m.Config = function() {
 		"defenseRatio" : 2,	// see defense.js for more info.
 		"armyCompactSize" : 2000,	// squared. Half-diameter of an army.
 		"armyBreakawaySize" : 3500,  // squared.
-		"armyMergeSize" : 1400,	// squared.
-		"armyStrengthWariness" : 2,  // Representation of how important army strength is for its "watch level".
-		"prudence" : 1  // Representation of how quickly we'll forget about a dangerous army.
+		"armyMergeSize" : 1400	// squared.
 	};
 	
 	// military
@@ -47,9 +46,12 @@ m.Config = function() {
 		"advanced" : {
 			"default" : [],
 			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
+			"brit" : [ "structures/{civ}_crannog", "structures/{civ}_rotarymill" ],
 			"cart" : [ "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"gaul" : [ "structures/{civ}_tavern" ],
+			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
+			"iber" : [ "structures/{civ}_monument" ],
 			"mace" : [ "structures/{civ}_siege_workshop", "structures/{civ}_library", "structures/{civ}_theatron" ],
 			"maur" : [ "structures/{civ}_elephant_stables" ],
 			"pers" : [ "structures/{civ}_stables", "structures/{civ}_apadana" ],

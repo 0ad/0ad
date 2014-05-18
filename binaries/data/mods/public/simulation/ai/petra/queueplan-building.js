@@ -49,9 +49,8 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	// some unit that can start the foundation
 
 	var pos = this.findGoodPosition(gameState);
-	if (!pos){
-		if (this.template.hasClass("Naval"))
-			gameState.ai.HQ.dockFailed = true;
+	if (!pos)
+	{
 		gameState.ai.HQ.stopBuilding.push(this.type);
 		return;
 	}
@@ -61,6 +60,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		this.metadata = { "base": pos.base };
 	else if (this.metadata.base === undefined)
 		this.metadata.base = pos.base;
+	this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
 	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
 	{
@@ -81,6 +81,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 };
 
+// TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
 m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
 	var template = gameState.getTemplate(this.type);
@@ -105,11 +106,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
-			else
-			{
-				gameState.ai.HQ.stopBuilding.push(this.type);
+			else if (!template.hasClass("Fortress") || gameState.civ() === "mace" || gameState.civ() === "maur" ||
+				gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress"), true)
+				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
+				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_fortress_g"), true)
+				+ gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_army_camp"), true) > 0)
+				// if this fortress is our first siege unit builder, just try the standard placement as we want siege units
 				return false;
-			}
 		}
 		else if (template.hasClass("Market"))
 		{
@@ -117,10 +120,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			if (pos && pos[2] > 0)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
 			else if (!pos)
-			{
-				gameState.ai.HQ.stopBuilding.push(this.type);
 				return false;
-			}
 		}
 	}
 
@@ -148,50 +148,55 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	}
 	else	// No position was specified so try and find a sensible place to build
 	{
-		// give a small > 0 level as the result of addInfluence is constrained to be > 0 
+		// give a small > 0 level as the result of addInfluence is constrained to be > 0
+		// if we really need houses (i.e. townPhasing without enough village building), do not apply these constraints
 		if (this.metadata && this.metadata.base !== undefined)
 		{
 			var base = this.metadata.base;
 			for (var j = 0; j < friendlyTiles.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] === base)
-					friendlyTiles.map[j] = 30;
+					friendlyTiles.map[j] = 45;
 		}
 		else
 		{
 			for (var j = 0; j < friendlyTiles.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] !== 0)
-					friendlyTiles.map[j] = 30;
+					friendlyTiles.map[j] = 45;
 		}
 
-		gameState.getOwnStructures().forEach(function(ent) {
-			var pos = ent.position();
-			var x = Math.round(pos[0] / cellSize);
-			var z = Math.round(pos[1] / cellSize);
+		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
+		{
+			gameState.getOwnStructures().forEach(function(ent) {
+				var pos = ent.position();
+				var x = Math.round(pos[0] / cellSize);
+				var z = Math.round(pos[1] / cellSize);
 
-			if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
-			{
-				if (template.hasClass("Field"))
-					friendlyTiles.addInfluence(x, z, 20, 50);
-				else // If this is not a field add a negative influence because we want to leave this area for fields
-					friendlyTiles.addInfluence(x, z, 20, -20);
-			}
-			else if (template.hasClass("House"))
-			{
-				if (ent.hasClass("House"))
+				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
-					friendlyTiles.addInfluence(x, z, 15, 40);    // houses are close to other houses
-					alreadyHasHouses = true;
+					if (template.hasClass("Field"))
+						friendlyTiles.addInfluence(x, z, 20, 50);
+					else // If this is not a field add a negative influence because we want to leave this area for fields
+						friendlyTiles.addInfluence(x, z, 20, -20);
 				}
-				else
-					friendlyTiles.addInfluence(x, z, 15, -40);   // and further away from other stuffs
-			}
-			else if (template.hasClass("Farmstead") && (!ent.hasClass("Field") && (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
-				friendlyTiles.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
-			else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-				friendlyTiles.addInfluence(x, z, 30, -50);
-			else if (template.hasClass("Military"))
-				friendlyTiles.addInfluence(x, z, 10, -40);
-		});
+				else if (template.hasClass("House"))
+				{
+					if (ent.hasClass("House"))
+					{
+						friendlyTiles.addInfluence(x, z, 15, 40);    // houses are close to other houses
+						alreadyHasHouses = true;
+					}
+					else
+						friendlyTiles.addInfluence(x, z, 15, -40);   // and further away from other stuffs
+				}
+				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field")
+					&& (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
+					friendlyTiles.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
+				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
+					friendlyTiles.addInfluence(x, z, 30, -50);
+				else if (template.hasClass("Military"))
+					friendlyTiles.addInfluence(x, z, 10, -40);
+			});
+		}
 
 		if (template.hasClass("Farmstead"))
 		{
@@ -207,7 +212,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	// requires to be inside our territory, and inside our base territory if required
 	// and if our first market, put it on border if possible to maximize distance with next market
-	var border = template.hasClass("BarterMarket");
+	var favorBorder = template.hasClass("BarterMarket");
+	var disfavorBorder = (template.buildCategory() === "Dock");
+	var preferredBase = (this.metadata && this.metadata.preferredBase);
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		var base = this.metadata.base;
@@ -215,8 +222,10 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] !== base)
 				friendlyTiles.map[j] = 0;
-			else if (border && gameState.ai.HQ.borderMap.map[j] > 0)
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				friendlyTiles.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+				friendlyTiles.map[j] += 10;
 		}
 	}
 	else
@@ -225,8 +234,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] === 0)
 				friendlyTiles.map[j] = 0;
-			else if (border && gameState.ai.HQ.borderMap.map[j] > 0)
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				friendlyTiles.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+				friendlyTiles.map[j] += 10;
+
+			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
+				friendlyTiles.map[j] += 200;
 		}
 	}
 	
@@ -263,10 +277,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	}
 
 	if (bestVal <= 0)
-	{
-		gameState.ai.HQ.stopBuilding.push(this.type);
 		return false;
-	}
 
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;

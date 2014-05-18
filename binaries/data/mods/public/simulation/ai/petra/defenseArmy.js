@@ -7,14 +7,8 @@ m.DefenseArmy = function(gameState, defManager, ownEntities, foeEntities)
 	if (!m.Army.call(this, gameState, defManager, ownEntities, foeEntities))
 		return false;
 
-	this.watchTSMultiplicator = this.Config.Defense.armyStrengthWariness;
-	this.watchDecrement = this.Config.Defense.prudence;
-
-	this.checkDangerosity(gameState);	// might push us to 1.
-	this.watchLevel = this.foeStrength * this.watchTSMultiplicator;
-	
 	return true;
-}
+};
 
 m.DefenseArmy.prototype = Object.create(m.Army.prototype);
 
@@ -45,14 +39,13 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 		}
 
 		var dist = API3.SquareVectorDistance(ent.position(), eEnt.position());
-		if (idMinAll === undefined || dist < distMin)
+		if (idMinAll === undefined || dist < distMinAll)
 		{
 			idMinAll = id;
 			distMinAll = dist;
 		}
 		if (this.assignedAgainst[id].length > 2)   // already enough units against it
 			continue;
-		var dist = API3.SquareVectorDistance(ent.position(), eEnt.position());
 		if (idMin === undefined || dist < distMin)
 		{
 			idMin = id;
@@ -61,24 +54,25 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	}
 
 	if (idMin !== undefined)
-	{
-		this.assignedTo[entID] = idMin;
-		this.assignedAgainst[idMin].push(entID);
-		ent.attack(idMin);
-		return true;
-	}
+		var idFoe = idMin;
 	else if (idMinAll !== undefined)
-	{
-		this.assignedTo[entID] = idMinAll;
-		this.assignedAgainst[idMinAll].push(entID);
-		ent.attack(idMinAll);
-		return true;
-	}
+		var idFoe = idMinAll
+	else
+		return false;
 
-	this.recalculatePosition(gameState);
-	ent.attackMove(this.foePosition[0], this.foePosition[1]);
-	return false;
-}
+	var ownIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+	var foePosition = gameState.getEntityById(idFoe).position();
+	var foeIndex = gameState.ai.accessibility.getAccessValue(foePosition);
+	if (ownIndex === foeIndex || ent.hasClass("Ship"))
+	{
+		this.assignedTo[entID] = idFoe;
+		this.assignedAgainst[idFoe].push(entID);
+		ent.attack(idFoe);
+	}
+	else
+		gameState.ai.HQ.navalManager.requireTransport(gameState, ent, ownIndex, foeIndex, foePosition);
+	return true;
+};
 
 // TODO: this should return cleverer results ("needs anti-elephant"…)
 m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
@@ -90,28 +84,14 @@ m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
 	if (this.foeStrength * this.defenseRatio <= this.ownStrength)
 		return false;
 	return this.foeStrength * this.defenseRatio - this.ownStrength;
-}
+};
 
 m.DefenseArmy.prototype.getState = function (gameState)
 {
 	if (this.foeEntities.length === 0)
 		return 0;
-	if (this.state === 2)
-		return 2;
-	if (this.watchLevel > 0)
-		return 1;
-	return 0;
-}
-
-// check if we should remain at state 2 or drift away
-m.DefenseArmy.prototype.checkDangerosity = function (gameState)
-{
-	// right now we'll check if our position is "enemy" or not.
-	if (gameState.ai.HQ.territoryMap.getOwner(this.ownPosition) !== PlayerID)
-		this.state = 1;
-	else if (this.state === 1)
-		this.state = 2;
-}
+	return 1;
+};
 
 m.DefenseArmy.prototype.update = function (gameState)
 {
@@ -127,20 +107,8 @@ m.DefenseArmy.prototype.update = function (gameState)
 
 	var breakaways = this.onUpdate(gameState);
 
-	this.checkDangerosity(gameState);
-	
-	var normalWatch = this.foeStrength * this.watchTSMultiplicator;
-	if (this.state === 2)
-		this.watchLevel = normalWatch;
-	else if (this.watchLevel > normalWatch)
-		this.watchLevel = normalWatch;
-	else
-		this.watchLevel -= this.watchDecrement;
-	
-	// TODO: deal with watchLevel?
-	
 	return breakaways;
-}
+};
 
 m.DefenseArmy.prototype.debug = function (gameState)
 {
@@ -156,13 +124,14 @@ m.DefenseArmy.prototype.debug = function (gameState)
 	{
 		if (gameState.getEntityById(ent) !== undefined)
 		{
-			m.debug (gameState.getEntityById(ent)._templateName + ", ID " + ent);
-		Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent], "rgb": [0.5,0,0]});
-		} else
-			m.debug("ent "  + ent);
+			warn(gameState.getEntityById(ent)._templateName + ", ID " + ent);
+			Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent], "rgb": [0.5,0,0]});
+		}
+		else
+			warn("ent "  + ent);
 	}
 	m.debug ("");
-	
-}
+};
+
 return m;
 }(PETRA);
