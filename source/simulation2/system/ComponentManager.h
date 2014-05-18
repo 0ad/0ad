@@ -242,7 +242,9 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
+	static void Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor, bool reRegister);
 	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
+	static void Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
 	static void Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
 	static void Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
 	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, CScriptVal value);

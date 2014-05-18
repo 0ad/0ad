@@ -84,6 +84,8 @@ function TestFormationExiting(mode)
 		IsInTargetRange: function(target, min, max) { return true; },
 		MoveToTargetRange: function(target, min, max) { },
 		StopMoving: function() { },
+		GetPassabilityClassName: function() { return "default"; },
+		SetPassabilityClassName: function() { },
 	});
 
 	AddMock(unit, IID_Vision, {
@@ -133,6 +135,8 @@ function TestFormationExiting(mode)
 		SetUnitRadius: function(r) { },
 		SetSpeed: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
+		GetPassabilityClassName: function() { return "default"; },
+		SetPassabilityClassName: function() { },
 	});
 
 	controllerAI.OnCreate();
@@ -230,6 +234,8 @@ function TestMoveIntoFormationWhileAttacking()
 			IsInTargetRange: function(target, min, max) { return true; },
 			MoveToTargetRange: function(target, min, max) { },
 			StopMoving: function() { },
+			GetPassabilityClassName: function() { return "default"; },
+			SetPassabilityClassName: function() { },
 		});
 	
 		AddMock(unit + i, IID_Vision, {
@@ -273,6 +279,8 @@ function TestMoveIntoFormationWhileAttacking()
 		SetSpeed: function(speed) { },
 		MoveToPointRange: function(x, z, minRange, maxRange) { },
 		IsInTargetRange: function(target, min, max) { return true; },
+		GetPassabilityClassName: function() { return "default"; },
+		SetPassabilityClassName: function() { },
 	});
 
 	AddMock(controller, IID_Attack, {
