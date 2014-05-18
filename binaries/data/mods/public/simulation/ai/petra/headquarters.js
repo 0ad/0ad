@@ -252,7 +252,8 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 		return path[1];
 	else
 	{
-		warn("bad path ??? " + uneval(path));
+		if (this.Config.debug > 0)
+			warn("bad path ??? " + uneval(path));
 		return undefined;
 	}
 };
@@ -541,7 +542,7 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number)
 	if (!accessIndex)
 		return false;
 	// sorting bases by whether they are on the same accessindex or not.
-	var baseBest = m.AssocArraytoArray(this.baseManagers).sort(function (a,b) {
+	var baseBest = API3.AssocArraytoArray(this.baseManagers).sort(function (a,b) {
 		if (a.accessIndex === accessIndex && b.accessIndex !== accessIndex)
 			return -1;
 		else if (b.accessIndex === accessIndex && a.accessIndex !== accessIndex)
