@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,10 +26,10 @@
 #include "wx/filename.h"
 
 #include <boost/version.hpp>
-#if BOOST_VERSION >= 105400
+#if BOOST_VERSION >= 104000
 # include <boost/signals2/signal.hpp>
 #else
-# include <boost/signal.hpp>
+# error Atlas requires Boost 1.40 or later
 #endif
 
 class AtObj;
@@ -52,12 +52,7 @@ public:
 	};
 
 	AtlasWindow(wxWindow* parent, const wxString& title, const wxSize& size);
-
-#if BOOST_VERSION >= 105400
 	boost::signals2::signal<void ()> sig_FileSaved;
-#else
-	boost::signal<void ()> sig_FileSaved;
-#endif
 
 private:
 
