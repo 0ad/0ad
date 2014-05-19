@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-19 09:43+0200\n"
+"POT-Creation-Date: 2014-05-19 12:56+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
@@ -771,198 +771,206 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:12
-msgid "Developer Overlay"
+msgid "Detailed Tooltips"
 msgstr ""
 
 #: gui/options/options.js:12
+msgid "Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
+
+#: gui/options/options.js:13
+msgid "Developer Overlay"
+msgstr ""
+
+#: gui/options/options.js:13
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and "
 "change perspective. Designed for use by developers"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Prefer GLSL"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Post Processing"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Shadows"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Enable shadows"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Show Sky"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Smooth LOS"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a flat"
 " texture"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shore Foam"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Shadows"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "VSync"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Music Gain"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -1464,9 +1472,10 @@ msgstr ""
 #: gui/session/utility_functions.js:224
 #: gui/session/utility_functions.js:250
 #: gui/session/utility_functions.js:279
-#: gui/session/utility_functions.js:580
-#: gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:620
+#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 msgid ", "
 msgstr ""
 
@@ -1612,12 +1621,13 @@ msgstr ""
 
 #: gui/session/selection_details.js:249
 #: gui/session/session.js:636
-#: gui/session/utility_functions.js:602
+#: gui/session/utility_functions.js:606
 msgid "Range:"
 msgstr ""
 
 #: gui/session/selection_details.js:251
 #: gui/session/session.js:637
+#: gui/session/utility_functions.js:607
 msgid "meters"
 msgstr ""
 
@@ -1693,6 +1703,7 @@ msgid "VICTORIOUS!"
 msgstr ""
 
 #: gui/session/session.js:624
+#: gui/session/unit_commands.js:520
 #: gui/session/session.xml:1004 (tooltip)
 msgid "Health:"
 msgstr ""
@@ -1726,6 +1737,16 @@ msgstr ""
 #: gui/session/unit_commands.js:149
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
+msgstr ""
+
+#: gui/session/unit_commands.js:155
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr ""
+
+#: gui/session/unit_commands.js:157
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
 msgstr ""
 
 #: gui/session/unit_commands.js:184
@@ -1790,44 +1811,48 @@ msgstr ""
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/unit_commands.js:708
+#: gui/session/unit_commands.js:524
+msgid "Armour"
+msgstr ""
+
+#: gui/session/unit_commands.js:718
 #, python-format
 msgid "Requires %(technology)s"
 msgstr ""
 
-#: gui/session/unit_commands.js:725
+#: gui/session/unit_commands.js:735
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/unit_commands.js:962
+#: gui/session/unit_commands.js:972
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr ""
 
-#: gui/session/unit_commands.js:1168
+#: gui/session/unit_commands.js:1178
 msgid "Lock Gate"
 msgstr ""
 
-#: gui/session/unit_commands.js:1174
+#: gui/session/unit_commands.js:1184
 msgid "Unlock Gate"
 msgstr ""
 
-#: gui/session/unit_commands.js:1223
+#: gui/session/unit_commands.js:1233
 msgid "Pack"
 msgstr ""
 
-#: gui/session/unit_commands.js:1225
+#: gui/session/unit_commands.js:1235
 msgid "Unpack"
 msgstr ""
 
-#: gui/session/unit_commands.js:1227
+#: gui/session/unit_commands.js:1237
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/unit_commands.js:1229
+#: gui/session/unit_commands.js:1239
 msgid "Cancel Unpacking"
 msgstr ""
 
@@ -2009,265 +2034,265 @@ msgstr ""
 msgid "Speed:"
 msgstr ""
 
-#: gui/session/utility_functions.js:577
 #: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 msgid "Walk"
 msgstr ""
 
-#: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 msgid "Run"
 msgstr ""
 
-#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:599
+#: gui/session/utility_functions.js:603
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:608
+#: gui/session/utility_functions.js:612
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:624
+#: gui/session/utility_functions.js:628
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:634
+#: gui/session/utility_functions.js:638
 msgid "???"
 msgstr ""
 
-#: gui/session/utility_functions.js:664
+#: gui/session/utility_functions.js:668
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:688
-#: gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:692
+#: gui/session/utility_functions.js:694
 msgid "+"
 msgstr ""
 
-#: gui/session/utility_functions.js:692
-#: gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:696
+#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:698
 msgid "you"
 msgstr ""
 
-#: gui/session/utility_functions.js:700
-#: gui/session/utility_functions.js:705
+#: gui/session/utility_functions.js:704
+#: gui/session/utility_functions.js:709
 #, python-format
 msgid "player %(name)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:717
 msgid "Charge Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:714
+#: gui/session/utility_functions.js:718
 msgid "Melee Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:719
 msgid "Ranged Attack:"
 msgstr ""
 
-#: gui/session/utility_functions.js:718
+#: gui/session/utility_functions.js:722
 msgid "Attack:"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:741
-msgctxt "firstWord"
-msgid "Food"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-word
-#. sentence.
-#: gui/session/utility_functions.js:743
-msgctxt "firstWord"
-msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:745
 msgctxt "firstWord"
-msgid "Metal"
+msgid "Food"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:747
 msgctxt "firstWord"
-msgid "Ore"
+msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:749
 msgctxt "firstWord"
-msgid "Rock"
+msgid "Metal"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:751
 msgctxt "firstWord"
-msgid "Ruins"
+msgid "Ore"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
-msgid "Stone"
+msgid "Rock"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:755
 msgctxt "firstWord"
-msgid "Treasure"
+msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:757
 msgctxt "firstWord"
-msgid "Tree"
+msgid "Stone"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:759
 msgctxt "firstWord"
-msgid "Wood"
+msgid "Treasure"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:761
 msgctxt "firstWord"
-msgid "Fruit"
+msgid "Tree"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:763
 msgctxt "firstWord"
-msgid "Grain"
+msgid "Wood"
 msgstr ""
 
 #. Translation: Word as used at the beginning of a sentence or as a single-word
 #. sentence.
 #: gui/session/utility_functions.js:765
 msgctxt "firstWord"
+msgid "Fruit"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:767
+msgctxt "firstWord"
+msgid "Grain"
+msgstr ""
+
+#. Translation: Word as used at the beginning of a sentence or as a single-word
+#. sentence.
+#: gui/session/utility_functions.js:769
+msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:776
-msgctxt "withinSentence"
-msgid "Food"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:778
-msgctxt "withinSentence"
-msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
-msgid "Metal"
+msgid "Food"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
-msgid "Ore"
+msgid "Meat"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
-msgid "Rock"
+msgid "Metal"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
-msgid "Ruins"
+msgid "Ore"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
-msgid "Stone"
+msgid "Rock"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:790
 msgctxt "withinSentence"
-msgid "Treasure"
+msgid "Ruins"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:792
 msgctxt "withinSentence"
-msgid "Tree"
+msgid "Stone"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
-msgid "Wood"
+msgid "Treasure"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:796
 msgctxt "withinSentence"
-msgid "Fruit"
+msgid "Tree"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
-msgid "Grain"
+msgid "Wood"
 msgstr ""
 
 #. Translation: Word as used in the middle of a sentence (which may require using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:800
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:802
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr ""
+
+#. Translation: Word as used in the middle of a sentence (which may require using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:804
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr ""
@@ -2900,15 +2925,10 @@ msgid "Civilization Selection"
 msgstr ""
 
 #: gui/civinfo/civinfo.xml:118 (caption)
-#: gui/entityInfo/entityInfo.xml:23 (caption)
 #: gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:491 (caption)
 #: gui/session/session.xml:544 (caption)
 msgid "Close"
-msgstr ""
-
-#: gui/entityInfo/entityInfo.xml:12 (caption)
-msgid "Entity Information"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:15 (caption)
@@ -9942,14 +9962,6 @@ msgstr ""
 
 #: maps/random/sahel_watering_holes.json:settings.Name
 msgid "Sahel Watering Holes"
-msgstr ""
-
-#: maps/random/schwarzwald.json:settings.Description
-msgid "A map to demonstrate playability of more realistic random terrain."
-msgstr ""
-
-#: maps/random/schwarzwald.json:settings.Name
-msgid "Schwarzwald"
 msgstr ""
 
 #: maps/random/snowflake_searocks.json:settings.Description
