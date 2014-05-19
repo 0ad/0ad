@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,7 +32,6 @@
 #include "ps/ConfigDB.h"
 
 #if CONFIG2_MINIUPNPC
-// Next four files are for UPnP port forwarding.
 #include <miniupnpc/miniwget.h>
 #include <miniupnpc/miniupnpc.h>
 #include <miniupnpc/upnpcommands.h>
@@ -275,6 +274,9 @@ void* CNetServerWorker::SetupUPnP(void*)
 	ret = UPNP_GetSpecificPortMappingEntry(urls.controlURL,
 									 data.first.servicetype,
 									 psPort, protocall,
+#if MINIUPNPC_API_VERSION >= 10
+									 NULL/*remoteHost*/,
+#endif
 									 intClient, intPort, NULL/*desc*/,
 									 NULL/*enabled*/, duration);
 
