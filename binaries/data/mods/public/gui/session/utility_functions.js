@@ -234,17 +234,17 @@ function damageTypesToText(dmg)
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.hack,
-			damageType: "[font=\"sans-12\"]" + translate("Hack") + "[/font]"
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.pierce,
-			damageType: "[font=\"sans-12\"]" + translate("Pierce") + "[/font]"
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.crush,
-			damageType: "[font=\"sans-12\"]" + translate("Crush") + "[/font]"
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
 		}));
 
 	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
@@ -260,19 +260,19 @@ function armorTypesToText(dmg)
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.hack,
-			damageType: "[font=\"sans-12\"]" + translate("Hack") + "[/font]",
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.pierce,
-			damageType: "[font=\"sans-12\"]" + translate("Pierce") + "[/font]",
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.crush,
-			damageType: "[font=\"sans-12\"]" + translate("Crush") + "[/font]",
+			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]",
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
 		}));
 
@@ -574,8 +574,10 @@ function getEntitySpeed(template)
 	{
 		var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
 		var speeds = [];
-		if (template.speed.walk) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-12\"]" + translate("Walk") + "[/font]"}));
-		if (template.speed.run) speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-12\"]" + translate("Run") + "[/font]"}));
+		if (template.speed.walk)
+			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
+		if (template.speed.run)
+			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
 
 		speed = sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
 	}
@@ -591,6 +593,8 @@ function getEntityAttack(template)
 		delete template.attack['Slaughter'];
 		for (var type in template.attack)
 		{
+			if (type == "Charge")
+				continue; // Charging isn't implemented yet and shouldn't be displayed.
 			var attack = "";
 			var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
 			if (type == "Ranged")
@@ -600,7 +604,7 @@ function getEntityAttack(template)
 					attackLabel: attackLabel,
 					damageTypes: damageTypesToText(template.attack[type]),
 					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
-					range: Math.round(template.attack[type].maxRange/4)
+					range: Math.round(template.attack[type].maxRange) + "[font=\"sans-10\"][color=\"orange\"] " + translate("meters") + "[/color][/font]"
 				});
 			}
 			else
@@ -613,7 +617,7 @@ function getEntityAttack(template)
 			attacks.push(attack);
 		}
 	}
-	return attacks.join("\n");
+	return attacks.join(translate(", "));
 }
 
 function getEntityNames(template)

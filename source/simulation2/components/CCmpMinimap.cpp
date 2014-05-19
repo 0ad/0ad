@@ -198,7 +198,7 @@ public:
 			if (!cmpOwnership || cmpOwnership->GetOwner() != (player_id_t)GetSimContext().GetCurrentDisplayedPlayer())
 				break;
 
-			m_Active = true;
+			// This depends on the viewing player, so don't alter the synchronized simulation state
 			m_IsPinging = true;
 			m_PingEndTime = 0.0;
 
