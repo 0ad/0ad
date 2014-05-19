@@ -151,11 +151,6 @@ m.Worker.prototype.update = function(baseManager, gameState)
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				this.startHunting(gameState);
 		}
-		else if (!this.ent.isIdle())
-		{
-			warn(" unit hunting ??? " + this.ent.unitAIState());
-		}
-
 	}
 	else if (subrole === "fisher")
 	{
