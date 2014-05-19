@@ -1,12 +1,12 @@
-/* $Id: miniupnpc.h,v 1.23 2011/04/11 08:21:46 nanard Exp $ */
+/* $Id: miniupnpc.h,v 1.32 2013/02/06 14:44:42 nanard Exp $ */
 /* Project: miniupnp
  * http://miniupnp.free.fr/
  * Author: Thomas Bernard
- * Copyright (c) 2005-2011 Thomas Bernard
+ * Copyright (c) 2005-2012 Thomas Bernard
  * This software is subjects to the conditions detailed
  * in the LICENCE file provided within this distribution */
-#ifndef __MINIUPNPC_H__
-#define __MINIUPNPC_H__
+#ifndef MINIUPNPC_H_INCLUDED
+#define MINIUPNPC_H_INCLUDED
 
 #include "declspec.h"
 #include "igd_desc_parse.h"
@@ -16,6 +16,10 @@
 #define UPNPDISCOVER_UNKNOWN_ERROR (-1)
 #define UPNPDISCOVER_SOCKET_ERROR (-101)
 #define UPNPDISCOVER_MEMORY_ERROR (-102)
+
+/* versions : */
+#define MINIUPNPC_VERSION	"1.8.20131209"
+#define MINIUPNPC_API_VERSION	9
 
 #ifdef __cplusplus
 extern "C" {
@@ -33,6 +37,7 @@ struct UPNPDev {
 	struct UPNPDev * pNext;
 	char * descURL;
 	char * st;
+	unsigned int scope_id;
 	char buffer[2];
 };
 
@@ -74,6 +79,7 @@ struct UPNPUrls {
 	char * ipcondescURL;
 	char * controlURL_CIF;
 	char * controlURL_6FC;
+	char * rootdescURL;
 };
 
 /* UPNP_GetValidIGD() :
@@ -105,9 +111,12 @@ UPNP_GetIGDFromUrl(const char * rootdescurl,
                    struct IGDdatas * data,
                    char * lanaddr, int lanaddrlen);
 
-LIBSPEC void GetUPNPUrls(struct UPNPUrls *, struct IGDdatas *, const char *);
+LIBSPEC void
+GetUPNPUrls(struct UPNPUrls *, struct IGDdatas *,
+            const char *, unsigned int);
 
-LIBSPEC void FreeUPNPUrls(struct UPNPUrls *);
+LIBSPEC void
+FreeUPNPUrls(struct UPNPUrls *);
 
 /* return 0 or 1 */
 LIBSPEC int UPNPIGD_IsConnected(struct UPNPUrls *, struct IGDdatas *);
