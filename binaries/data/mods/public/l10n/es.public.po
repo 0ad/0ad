@@ -51,8 +51,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-07 01:32+0000\n"
-"Last-Translator: sebas173 <sebas173@gmail.com>\n"
+"PO-Revision-Date: 2014-05-17 08:50+0000\n"
+"Last-Translator: Swyter ™ <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -303,11 +303,11 @@ msgstr "Advertencia:"
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the main menu."
-msgstr "Volver al menú principal"
+msgstr "Volver al menú principal."
 
 #: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
-msgstr "Volver a la sala."
+msgstr "Volver a la sala multijugador."
 
 #: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 msgctxt "map"
@@ -1155,7 +1155,7 @@ msgstr "Ganancia esperada: %(gain)s"
 
 #: gui/session/input.js:387
 msgid "Origin trade market."
-msgstr "Mercado de procedencia."
+msgstr "Origen del intercambio comercial."
 
 #: gui/session/input.js:393
 msgid "Right-click on another market to set it as a destination trade market."
@@ -1163,7 +1163,7 @@ msgstr "Clic derecho sobre otro mercado para configurarlo como lugar de destino.
 
 #: gui/session/input.js:396
 msgid "Destination trade market."
-msgstr "Destino de intercambio comercial."
+msgstr "Destino del intercambio comercial."
 
 #: gui/session/input.js:401
 msgid "Right-click to set as origin trade market"
@@ -1929,7 +1929,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/session/utility_functions.js:492
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr "%(resourceIcon)s %(minimum)s a %(resourceIcon)s %(maximum)s"
+msgstr "%(minimum)s %(resourceIcon)s a %(maximum)s %(resourceIcon)s"
 
 #: gui/session/utility_functions.js:525
 #, python-format
@@ -2529,7 +2529,7 @@ msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Bienvenido al tutorial de 0 A.D. Para empezar, haz clic-izquierdo sobre una ciudadana, y luego click-derecho sobre un arbusto con bayas para hacer que recoja comida. Las ciudadanas recogen comida mucho más rápido que otras unidades."
+msgstr "Bienvenido al tutorial de 0 A.D. Para empezar, haz clic izquierdo sobre una ciudadana, y luego clic derecho sobre un arbusto con bayas para hacer que recoja comida. Las ciudadanas recogen comida mucho más rápido que otras unidades."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
@@ -2660,7 +2660,7 @@ msgstr "Detén a todos tus soldados que se encuentren recogiendo recursos y ord�
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr "Has encontrado la base del enemigo, envía tus armas de asedio y todos los soldados que te queden para destruirla."
+msgstr "Has encontrado la base del enemigo, envía tus armas de asedio y a todos los soldados que te queden para destruirla."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
@@ -3389,7 +3389,7 @@ msgstr "Abre el editor de escenarios Atlas en una ventana nueva. Podrás ejecuta
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr "Pantalla de Bienvenida"
+msgstr "Pantalla de bienvenida"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
@@ -4353,7 +4353,7 @@ msgstr "- Si el puntero está sobre una estructura: Guarnecer"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr "- Sino: Mover atacando."
+msgstr "- Sino: Mover atacando"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -4680,7 +4680,7 @@ msgstr "\"Las promesas de tus enemigos nacieron para ser rotas.\" - Esopo"
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr "\"Los espartanos no preguntan el número, sino la ubicación del enemigo.\" - Agis II de Esparta"
+msgstr "\"Los espartanos no preguntan el número, sino la ubicación del enemigo.\" - Agis II de esparta"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -5477,7 +5477,7 @@ msgstr "\"Prepárate para la guerra, ya que no has podido perdurar en paz.\" - E
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr "\"Ve, oh viajero, díselo a los Espartanos, diles que, de acuerdo a sus leyes, aquí yacemos.\" - Simónides de Ceos, epitafio en el Cenotafio de las Termópilas"
+msgstr "\"Ve, oh viajero, díselo a los espartanos, diles que, de acuerdo a sus leyes, aquí yacemos.\" - Simónides de Ceos, epitafio en el Cenotafio de las Termópilas"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
@@ -6388,7 +6388,7 @@ msgstr "Construir un Teatro amplía el territorio de expansión de todos los edi
 #: civs/theb.jsonCivBonuses[2].Name
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
 msgid "Hellenization"
-msgstr "Helenizado"
+msgstr "Helenización"
 
 #: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
 #: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
@@ -6628,7 +6628,7 @@ msgstr "Como cuna de la civilización occidental y lugar de nacimiento de la dem
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Bretones"
+msgstr "Britanos"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
@@ -6749,7 +6749,7 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr "Los bretones asumieron la práctica de marcarse la piel con tatuajes o tinturas temporales. El efecto era muy dramático, e inspiraba miedo a los enemigos."
+msgstr "Los britanos asumieron la práctica de marcarse la piel con tatuajes o tinturas temporales. El efecto era muy dramático, e inspiraba miedo a los enemigos."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
@@ -6825,7 +6825,7 @@ msgid ""
 " was held up by the post-Roman Britons as one of their great heroes; a "
 "conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
 "Romano-British sorely needed."
-msgstr "Kunobelinos, más conocido por la forma latinizada Cunobelino, era un gobernante poderoso del territorio que ocupa la actual Colchester. Era un rey guerrero que  desde Kamulodunon (o Camulodunum) conquistó a los Trinovantes, una tribu vecina, por lo cual los romanos le dieron el nombre de Rey de los Bretones. A pesar de tener a los romanos como aliados, los Trinovantes no pudieron pedir la ayuda de Roma porque fueron conquistados muy poco después del propio desastre romano en Germania. Kunobelinus murió por una enfermedad luego dehaber subyugado a la gran parte de la mitad sur de Bretaña (se acuñaron sus monedas hasta la frontera de lo que hoy es Gales). Cuando murió, su hijo Togodumo lo reemplazó pero murió en batalla contra los romanos, y luego fue reemplazado por su hermano Karatakos. Es irónico que fuera su tercer hijo el que empezó la represalia contra los romanos. Kunobelinos parece haber sido indiferente a los romanos. Comerciaba libremente con ellos, pero tenía pocos escrúpulos para subyugar aliados romanos. Incluso envió a Adminius a la Galia romana para que sea educado, lo que dio cuenta de la amistad de Adminius con los romanos. Su padre le otorgó el señorío de los Cantiaci, que habitaban en Kent, el área con mayor influencia romana y flujo comercial de Bretaña, y observó hábilmente que la amistad que trababa su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos le serviría para administrar la región. Sin embargo, sus otros hijos no tenían cariño por los romanos y cuando Kunobelinus murió, Togodumo, ahora rey, arrestó, ejecutó y expulsó a numerosos simpatizantes de los romanos, incluyendo a su propio hermano Adminius y al depuesto rey de Atrevates,  Verica, quien recurrió a sus conexiones con el Imperio Romano para recuperar sus tierras. Kunobelinus, en su tiempo, ha sido con grandes posibilidades uno de los más grandes reyes britanicos. Pasó de solo gobernar cuatro tribus pequeñas en una confederación, los Catuvellauni, a conquistar grandes porciones de tierra y ser reconocido como rey de Bretaña. Tan grande fue el reconocimiento que incluso las tribus de Cambria ayudaron a sus hijos contra los romanos y sus aliados bretones, y los bretones posromanos consideraron a Kunobelinus como uno de sus grandes héroes: un conquistador y unificador de reinos insignificantes, algo que los bretones posromanos o los bretones-romanos necesitaban con urgencia."
+msgstr "Kunobelinos, más conocido por la forma latinizada Cunobelino, era un poderoso gobernante del territorio que ocupa la actual Colchester. Era un rey guerrero que desde Kamulodunon (o Camulodunum) conquistó a los Trinovantes, una tribu vecina, por lo cual los romanos le dieron el nombre de Rey de los Britanos. A pesar de tener a los romanos como aliados, los Trinovantes no pudieron pedir la ayuda de Roma porque fueron conquistados muy poco después del propio desastre romano en Germania. Kunobelinus murió por una enfermedad luego de haber subyugado a la gran parte de la mitad sur de Bretaña (se acuñaron sus monedas hasta la frontera de lo que hoy es Gales). Cuando murió, su hijo Togodumo lo reemplazó pero murió en batalla contra los romanos, y luego fue reemplazado por su hermano Karatakos. Es irónico que fuera su tercer hijo el que empezó la represalia contra los romanos. Kunobelinos parece haber sido indiferente a los romanos. Comerciaba libremente con ellos, pero tenía pocos escrúpulos para subyugar aliados romanos. Incluso envió a Adminius a la Galia romana para que fuera educado, lo que dio cuenta de la amistad de Adminius con los romanos. Su padre le otorgó el señorío de los Cantiaci, que habitaban en Kent, el área con mayor influencia romana y flujo comercial de Bretaña, y observó hábilmente que la amistad que trababa su hijo menor con los poderosos políticos y comerciantes romanos y galo-romanos le serviría para administrar la región. Sin embargo, sus otros hijos no tenían cariño por los romanos y cuando Kunobelinus murió, Togodumo, ahora rey, arrestó, ejecutó y expulsó a numerosos simpatizantes de los romanos, incluyendo a su propio hermano Adminius y al depuesto rey de Atrevates, Verica, quien recurrió a sus conexiones con el Imperio Romano para recuperar sus tierras. Puede que Kunobelinus haya sido uno de los grandes reyes británicos de su tiempo. Pasó de solo gobernar cuatro tribus pequeñas en una confederación, los Catuvellauni, a conquistar grandes porciones de tierra y ser reconocido como rey de Bretaña. Tan grande fue el reconocimiento que incluso las tribus de Cambria ayudaron a sus hijos contra los romanos y sus aliados britanos, y los britanos posromanos consideraron a Kunobelinus como uno de sus grandes héroes: un conquistador y unificador de reinos insignificantes, algo que los britanos posromanos o los britanos-romanos necesitaban con urgencia."
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
 #: civs/celt.jsonFactions[0].Heroes[2].History
@@ -6883,7 +6883,7 @@ msgstr "Perrera"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr "Los bretones eran conocidos por criar perros de guerra."
+msgstr "Los britanos eran conocidos por criar perros de guerra."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -6891,7 +6891,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearesome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Los bretones eran las tribus célticas de las Islas Británicas. Utilizando carros de combate, espadachines y poderosos guerreros cuerpo a cuerpo, protagonizaron terribles revueltas contra Roma para proteger sus costumbres e intereses. También construyeron miles de estructuras únicas como castros, crannogs y brochs."
+msgstr "Los britanos eran las tribus celtas de las Islas Británicas. Utilizando carros de combate, espadachines y poderosos guerreros cuerpo a cuerpo, protagonizaron terribles revueltas contra Roma para proteger sus costumbres e intereses. También construyeron miles de estructuras únicas como castros, crannogs y brochs."
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
@@ -6917,7 +6917,7 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "El coste de recursos de reclutar unidades montadas en elefantes (elefantes de guerra) o unidades montadas en caballos (caballería) es reducida en un 5% por cada animal alojado en el corral (según sea apropiado)."
+msgstr "El coste en recursos para reclutar unidades montadas en elefantes (elefantes de guerra) o unidades montadas en caballos (caballería) se reduce en un 5% por cada animal alojado en el corral (según el caso)."
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
@@ -7051,7 +7051,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "El hijo más famoso de Cartago. Aníbal Barca fue el mayor de los hijos de Hamilcar Barca y demostró ser un comandante incluso mejor que su padre. Vivió en 247-182 A.C. perdiendo finalmente la Segunda Guerra Púnica, sus victorias en Trebia, Lago Trasimene,  Cannae, y la hazaña de cruzar los Alpes le aseguró su posición entre los mejores estrategas tácticos en la historia."
+msgstr "El hijo más famoso de Cartago, Aníbal Barca, fue el mayor de los hijos de Amilcar Barca y demostró ser un comandante incluso mejor que su padre. Vivió en 247-182 A.C. perdiendo finalmente la Segunda Guerra Púnica, sus victorias en Trebia, el Lago Trasimeno, Cannas, y la hazaña de cruzar los Alpes le aseguró el puesto entre los mejores estrategas tácticos de la historia."
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7060,7 +7060,7 @@ msgid ""
 "B.C. While overshadowed by his sons, Hamilcar was great general in his own "
 "right, earning the nickname Baraq or Barca for the lightning speed of his "
 "advance."
-msgstr "Padre de Aníbal y dictador militar en la práctica. Hamilcar Barca fue un soldado y político que destacó a lo largo de toda su carrera. Vivió en 275-228 A.C. Aunque fue ensombrecido por sus hijos, Hamilcar fue un gran general por sus propios méritos, ganándose el apodo Baraq o Barca por sus avances a gran velocidad."
+msgstr "Padre de Aníbal y dictador militar en la práctica. Amilcar Barca fue un soldado y político que destacó a lo largo de toda su carrera. Vivió en 275-228 A.C. Aunque fue eclipsado por sus hijos, Amilcar fue un gran general por sus propios méritos, ganándose el apodo Baraq o Barca por sus rápidos avances."
 
 #: civs/cart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7481,7 +7481,7 @@ msgid ""
 "India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
 "made him halt. Died in Babylon at the age of 33 while planning a campaign "
 "against Arabia."
-msgstr "El héroe más poderoso de todos ellos - hijo de Philip II, rey de Macedonia (336-323 A.C.). Después de conquistar el resto de los Tracios y sofocar la inquietud de los griegos, Alejandro embarcó en una cruzada de conquista mundial. Derrotando las fuerzas Persas en Granicus (334 A.C.), Issus (333 A.C.) y Gaugamela (331 A.C.), se convirtió en el maestro del Imperio Persa. Entrando en India, derrotó al rey Porus en Hydaspes (326 A.C.), pero sus tropas exhaustas le hicieron detenerse. Murió en Babilonia a la edad de 33 mientras planeaba una campaña contra Arabia."
+msgstr "El héroe más poderoso de todos, hijo de Filipo II, rey de Macedonia (336-323 A.C.). Tras conquistar al resto de los Tracios y sofocar la inquietud de los griegos, Alejandro se embarcó en una cruzada de conquista mundial. Al derrotar a las fuerzas persas en el Gránico (334 A.C.), Issos (333 A.C.) y Gaugamela (331 A.C.), se convirtió en el dueño del imperio persa. Entrando en India, derrotó al rey Porus en Hydaspes (326 A.C.), pero sus tropas exhaustas le obligaron a recular. Murió en Babilonia a la edad de 33 años mientras planeaba una campaña contra Arabia."
 
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
@@ -7498,7 +7498,7 @@ msgid ""
 "his Asian possessions after the battle of Ipsos, he later won the Macedonian"
 " throne. Fearing lest they should be overpowered by Demetrios, the other "
 "Diadochi united against him and defeated him."
-msgstr "Uno de los Diácodos, Demetrio, el rey de Macedonia (294-288 a.C.) fue reconocido como uno de los más capaces y más bravos sucesores de Alejandro. Como hijo de Antigono I el Tuerto ganó muchas batalles importantes y fue proclamado rey junto a su padre en el 306 a.C. Habiendo perdido sus posesiones en Asia tras la batalla de Ipsos, ganó el trono de Macedonia. Temiendo ser dominados por Demetrio, los otros Diácodos se unieron contra él y lo derrotaron."
+msgstr "Uno de los Diácodos, Demetrio, el rey de Macedonia (294-288 a.C.) fue reconocido como uno de los más capaces y más bravos sucesores de Alejandro. Como hijo de Antígono I el Tuerto ganó muchas batalles importantes y fue proclamado rey junto a su padre en el 306 a.C. Habiendo perdido sus posesiones en Asia tras la batalla de Ipsos, ganó el trono de Macedonia. Temiendo ser dominados por Demetrio, los otros Diácodos se unieron contra él y lo derrotaron."
 
 #: civs/hele.jsonFactions[1].Heroes[2].Name
 msgid "Demetrios Poliorcetes"
@@ -7510,7 +7510,7 @@ msgstr "Macedonia"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr "Un reino alrededor de las ciudades estado griegas."
+msgstr "Un reino que circundaba las ciudades-estado griegas."
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -7524,7 +7524,7 @@ msgid ""
 " (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
 "B.C.). Their civilization would endure until their final absorption by Rome "
 "in 146 B.C."
-msgstr "Los Helenos eran un pueblo famoso aún hoy por su arquitectura, habilidades bélicas, y cultura. Los helenos de tribus Dorias, Jónicas y Eólicas irrumpieron en la actual Grecia entre el 3000 a.C. y alrededor del 1100 a.C. en oleadas sucesivas que a la larga sustituyeron a las culturas Micénica y MInóica, originarias de Creta, que se habían establecido previamente. Fueron más activos durante el periodo de colonización que tuvo lugar en los siglos 7º y 6º a.C., las guerras greco-persas (499-449 a.C.), la Guerra del Peloponeso (431-404 a.C.) y las conquistas de Alejandro Magno (siglo IV a.C.). Su civilización duraría hasta su absorción final por Roma en el año 146 a.C."
+msgstr "Los helenos eran un pueblo famoso por su arquitectura, habilidad bélica, y cultura. Las gentes helenas de las tribus Dorias, Jónicas y Eólicas irrumpieron en la actual Grecia entre el 3000 a.C. hasta cerca del 1100 a.C. en oleadas sucesivas que a la larga sustituyeron a las culturas micénica y minóica, originarias de Creta, que se habían establecido previamente. Fueron más activos durante el periodo de colonización que tuvo lugar entre los siglos 7º y 6º a.C., las guerras greco-persas (499-449 a.C.), la guerra del peloponeso (431-404 a.C.) y las conquistas de Alejandro Magno (siglo IV a.C.). Su civilización duraría hasta su absorción final por Roma en el año 146 a.C."
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -7618,7 +7618,7 @@ msgstr "Provoca que los objetivos golpeados se inflamen y pierdan puntos de vida
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr "v"
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -8266,7 +8266,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Los Persas construyeron el increíble Camino Real a lo largo de 1677 millas, desde Sardes hasta Susa; Darío el Grande y Jerjes también construyeron la magnífica Persépolis; Ciro el Grande desarrolló muchísimo Ecbatana y prácticamente reconstruyó la vieja capital Elamita de Susa. "
+msgstr "Los persas construyeron el increíble Camino Real a lo largo de unos 2700 kilómetros, desde Sardes hasta Susa; Darío el Grande y Jerjes también construyeron la magnífica Persépolis; Ciro el Grande desarrolló muchísimo Ecbatana y prácticamente reconstruyó la vieja capital Elamita de Susa. "
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -8315,7 +8315,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "Dario I (521-486 a.C.) fue el hijo de Histaspes (Vistaspa en persa), el sátrapa de Partia e Hircania. Fue un gran administrador y un buen general que introdujo la división del Imperio en satrapías y conquistó el noroeste de la India, Tracia y Macedonia. Fue llamado \"el Mercader del Imperio\"."
+msgstr "Darío I (521-486 a.C.) fue el hijo de Histaspes (Vistaspa en persa), el sátrapa de Partia e Hircania. Fue un gran administrador y general competente que inició la división del Imperio en satrapías y conquistó el noroeste de la India, Tracia y Macedonia. Se le conocía como «El Mercader del Imperio»."
 
 #: civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -8415,7 +8415,7 @@ msgstr "Delta del Nilo"
 #: civs/theb.jsonFactions[0].Technologies[1].Description
 #: civs/theb.jsonFactions[0].Technologies[1].History
 msgid "Unknown."
-msgstr "Desconocida."
+msgstr "Desconocido."
 
 #: civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
@@ -8633,7 +8633,7 @@ msgstr "Los romanos utilizaban de forma recurrente la formación en tortuga para
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Cualquier ciudadano-soldado romano luchando dentro de territorio romano obtiene una bonificación de armadura de no permanente de +10%"
+msgstr "Cualquier ciudadano-soldado romano luchando dentro de territorio romano obtiene una bonificación de armadura no permanente de +10%"
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -8654,7 +8654,7 @@ msgstr "Los ciudadanos-soldado aliados ganan un +15% de ataque cuando están en 
 
 #: civs/rome.jsonTeamBonuses[0].Name
 msgid "Socii"
-msgstr "Aliados"
+msgstr "Socii"
 
 #: civs/rome.jsonTeamBonuses[0].History
 msgid ""
@@ -8820,7 +8820,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo, abarcaba  desde el sur de  Escocia al desierto del Sahara. Era poblado por entre 60 millones u 80 millones de habitantes, aún cuarto de la población del mundo en esa época, Roma continuó siendo uno de las naciones más poderosas durante 800 años. Los romanos fueron los supremos constructores del mundo antiguo, excelentes asediadores y tuvieron una formidable infantería y marina. "
+msgstr "Los romanos controlaron uno de los imperios más grandes del mundo antiguo, abarcaba  desde el sur de  Escocia al desierto del Sahara. Era poblado por entre 60 millones u 80 millones de habitantes, un cuarto de la población del mundo en esa época, Roma continuó siendo uno de las naciones más poderosas durante 800 años. Los romanos fueron los supremos constructores del mundo antiguo, excelentes asediadores y tuvieron una formidable infantería y marina. "
 
 #: civs/sele.jsonName civs/sele.jsonFactions[0].Name maps/scenarios/Sandbox -
 #: Ptolemies 2.xml:42:PlayerData[2].Name
@@ -9131,7 +9131,7 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Los espartanos fueron los maestros indiscutibles de la guerra de falanges. Los espartanos eran tan temidos por su disciplina que el ejército enemigo a veces se disolvía y huía antes de que chocara un solo escudo. \"Othismos\" se refiere al punto de una batalla de falanges donde ambos bandos tratan de destrozar la formación, rompiendo las filas enemigas y enfilándolos directamente.  "
+msgstr "Los espartanos fueron los maestros indiscutibles de la guerra de falanges. A los espartanos se les temía tanto por su disciplina que a veces el ejército enemigo se disolvía y huía antes de que chocara un solo escudo. «Othismos» se refiere al punto de una batalla de falanges donde ambos bandos tratan de destrozar la formación contraria, rompiendo las filas enemigas y haciendo que sus miembros huyan despavoridos."
 
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
@@ -9147,7 +9147,7 @@ msgid ""
 "Under the Constitution written by the mythical law-giver Lycurgus, the "
 "institution of The Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr "Bajo la Constitución escrita por el mítico legislador Licurgo, se estableció la institución de la Agogé, donde los espartanos fueron entrenados desde la edad de 6 años para ser guerreros superiores en defensa del Estado espartano."
+msgstr "Bajo la constitución escrita por el mítico legislador Licurgo, se estableció la institución de la Agogé, donde los espartanos se entrenaban desde los seis años para convertirse en guerreros superiores con los que defender al estado espartano."
 
 #: civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
@@ -9228,7 +9228,7 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Las mujeres espartanas eran algunas de las más libres del mundo antiguo. Podían tener sus propias tierras y esclavos y ejercitarse desnudos como hacían los hombres. Se decía que sólo las mujeres esparatanas daban a luz hombres de verdad. La resistencia de las mujeres ayudó más de una vez a salvar su ciudad de un desastre, como por ejemplo después de una batalla perdida contra Pirro de Epiro, cuando construyeron una muralla de tierra para proteger la ciudad mientras sus hombres dormían, preparadánose para el asedio del día siguiente."
+msgstr "Las mujeres espartanas eran algunas de las más libres del mundo antiguo. Podían tener sus propias tierras y esclavos y ejercitarse desnudas como hacían los hombres. Se decía que sólo las mujeres esparatanas daban a luz hombres de verdad. La resistencia de las mujeres ayudó más de una vez a salvar su ciudad de un desastre, como por ejemplo después de una batalla perdida contra Pirro de Epiro, cuando construyeron una muralla de tierra para proteger la ciudad mientras sus hombres dormían, preparadánose para el asedio del día siguiente."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
@@ -9398,7 +9398,7 @@ msgstr "El gran poder de la Grecia central y lider de la Confederación Beocia."
 msgid ""
 "At the siege of the Athenian fortress at Delium, the Thebans employed what "
 "may be deemed the first recorded use of a flame thrower in warfare."
-msgstr "En el asedio de la fortaleza Ateniense en Delio, los tebanos emplearon lo que podría ser considerado como el primer uso documentado de un lanzallamas en guerra."
+msgstr "En el asedio de la fortaleza ateniense en Delio, los tebanos emplearon lo que podría considerarse como el primer uso documentado de un lanzallamas en la guerra."
 
 #: civs/theb.jsonHistory
 msgid ""
@@ -9522,7 +9522,7 @@ msgstr "Continental"
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus.'"
-msgstr "Dos masas de tierra mediterráneas conectadas por una estrecha lengua de tierra, llamada \"istmo\"."
+msgstr "Dos masas de tierra mediterráneas conectadas por una estrecha lengua de tierra, llamada «istmo»."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -9583,7 +9583,7 @@ msgstr "Una tierra acanalada decorada con motivos similares a los de una tela de
 
 #: maps/random/gear.jsonsettings.Name
 msgid "Gear"
-msgstr "Rueda dentada"
+msgstr "Engranaje"
 
 #: maps/random/guadalquivir_river.jsonsettings.Description
 msgid ""
@@ -9797,7 +9797,7 @@ msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-msgstr "Los jugadores comienzan dispersos sobre el mapa separados por ríos entre ellos.\n\nLa sabana Africana está repleta de vida animal para la caza y los depósitos minerales que hay cerca son abundantes. La estación seca se acerca y los pozos de agua se están secando."
+msgstr "Los jugadores comienzan dispersos sobre el mapa separados por ríos intermedios.\n\nLa sabana africana está repleta de vida animal para la caza y los depósitos minerales que hay cerca son abundantes. La estación seca se acerca y los pozos de agua se están secando."
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
@@ -11749,7 +11749,7 @@ msgid ""
 "the best army in the world for their time. What they didn't have in "
 "quantity, they made up with quality. It was said that Sparta did not need "
 "strong city walls, for its men were its walls."
-msgstr "Los espartanos no tenían el ejército más grande del mundo, pero tenían el mejor ejército del mundo para su tiempo. Lo que ellos no tenían por la cantidad, lo compensaban con su calidad. Se ha dicho que Esparta no necesitaba grandes murallas, sus hombres eran sus murallas."
+msgstr "Los espartanos no contaban con el ejército más grande del mundo, pero contaban con el mejor ejército de su época. Lo que no tenían de cantidad lo compensaban con su calidad. Antiguamente se decía que esparta no necesitaba grandes y protectoras murallas, ya que sus hombres eran sus muros."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsondescription
 msgid ""
@@ -11788,7 +11788,7 @@ msgstr "La cultura Helénica fue muy influyente. El griego se volvió el lenguaj
 msgid ""
 "The Hellenic culture is very influential. +20% territory effect for all "
 "buildings."
-msgstr "La cultura Helénica es muy influyente. +20% de efecto de territorio para todos los edificios."
+msgstr "La cultura helena es muy influyente. +20% de efecto territorial para todos los edificios."
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.mace
@@ -11852,7 +11852,7 @@ msgstr "Los persas tenían una tradición de excelente arquería y eran proclive
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr "Los trirremes Fenicios adquieren la habilidad de reclutar unidades de caballería."
+msgstr "Los trirremes fenicios adquieren la habilidad de reclutar unidades de caballería."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -11943,7 +11943,7 @@ msgstr "El ejército reformado de los Seléucidas."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr "Desbloquea Espadachines Pesados Romanizados y las Catafractas Seléucidas."
+msgstr "Desbloquea espadachines pesados romanizados y catapultas seléucidas."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -11955,7 +11955,7 @@ msgstr "Ejercito tradicional de los Seléucidas."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr "Desbloquea Piquero Escudo de Plata y Carros con Guadañas."
+msgstr "Desbloquea piquero con escudo de plata y carros de guerra escitos."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -12660,7 +12660,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen and Cavalry Archers, 1.25x vs. Elephants and Chariots.\n"
 "Countered by: Swordsmen, Cavalry Spearmen."
-msgstr "Clases: Infantería a Distancia - Ciudadano Guerrillero.\nEficaz contra: 1.5x vs. Lanceros y Arqueros a Caballo, 1.25x vs. Elefantes y Carros.\nDébil contra: Espadachines y Lanceros a Caballo."
+msgstr "Clase: Infantería a Distancia - Ciudadano Guerrillero.\nEficaz contra: 1.5x vs. Lanceros y Arqueros a Caballo, 1.25x vs. Elefantes y Carros.\nDébil contra: Espadachines y Lanceros a Caballo."
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid "Skirmisher"
@@ -12671,7 +12671,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Slinger.\n"
 "Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
 "Countered by: Cavalry."
-msgstr "Clases:Ciudadano Guerrillero con honda.\nEficaz contra: 1.5x vs. indanteria a distancia, 1.25x vs. infanteria cuerpo a cuerpo.\nDébil contra: Caballería."
+msgstr "Clase: Ciudadano escaramucero con honda.\nBueno contra: x1.5 contra infantería a distancia, x1.25 infantería cuerpo a cuerpo.\nDébil contra: Caballería."
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -13942,7 +13942,7 @@ msgstr "Varmo"
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Recluta héroes y campeones britones. Construye arietes de asedio."
+msgstr "Recluta héroes y campeones britanos. Construye arietes de asedio."
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
@@ -14271,7 +14271,7 @@ msgstr "Arruga"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr "Todas las unidades dentro del campo de visión de este monumento lucharán mejor. Alcance del efecto: 50 metros."
+msgstr "Todas las unidades dentro del campo de visión de este monumento lucharán mejor. Alcance de efecto: 50 metros."
 
 #: simulation/templates/structures/iber_monument.xml:36
 msgid "Revered Monument"
@@ -14642,7 +14642,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Edificio de cuarteles barato como edificio edificable en territorio neutral, pero no aumenta tu territorio de influencia. \n- Recluta Mercenarios.  \n- Mínima distancia de otros asentamientos militares: 100 metros."
+msgstr "Edificio de acuartelamiento barato edificable en territorio neutral, aunque no aumenta tu territorio de influencia. \n- Recluta mercenarios.  \n- Distancia mínima a otros asentamientos militares: 100 metros."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
@@ -16384,7 +16384,7 @@ msgstr "Clases: Mercenario Cuerpo a cuerpo Infantería Espadachín.\nEficaz cont
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
 msgid "Thracian Mercenary Swordsman"
-msgstr "Espadachín Mercenario Tracio"
+msgstr "Espadachín mercenario tracio"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:22
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:15
@@ -16655,7 +16655,7 @@ msgstr "Hippeus Makedonikós"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:5
 msgid "Royal Guard Cavalry"
-msgstr "Guardia Real a Caballo"
+msgstr "Guardia real a caballo"
 
 #: simulation/templates/units/ptol_champion_cavalry.xml:6
 msgid "Agema Basilikos"
@@ -16727,7 +16727,7 @@ msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
-msgstr "Mercenario Thureos Asaltante"
+msgstr "Escaramucero mercenario Thureos"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:16
 msgid "Thureophóros Akroboli̱stí̱s"
@@ -16743,7 +16743,7 @@ msgstr "Ebraïkós Sphendonistes"
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:22
 msgid "Mercenary Thureos Spearman"
-msgstr "Mercenario Thureos Lancero"
+msgstr "Lancero mercenario Thureos"
 
 #: simulation/templates/units/ptol_infantry_spearman_2_b.xml:23
 msgid "Thureophóros Misthophóros"
@@ -17026,7 +17026,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
-msgstr "Elefante de Guerra con Armadura"
+msgstr "Elefante de guerra con armadura"
 
 #: simulation/templates/units/sele_champion_elephant.xml:6
 msgid "Thorakisménos Eléphantos"
@@ -17034,7 +17034,7 @@ msgstr "Thorakisménos Eléphantos"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
-msgstr "Piquero con Escudo de Plata"
+msgstr "Piquero con escudo de plata"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
@@ -17058,7 +17058,7 @@ msgstr "Clase: Héroe a caballo con lanza.\nAura de \"Ilarchès\": Toda la cabal
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:11
 msgid "Antiochus III \"The Great\""
-msgstr "Antíoco III \"El Grande\""
+msgstr "Antíoco III «El Grande»"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Antiokhos G' Mégās"
@@ -17090,7 +17090,7 @@ msgstr "Seleuco I Nicátor"
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:14
 msgid "Syrian Archer"
-msgstr "Arquero Sirio"
+msgstr "Arquero sirio"
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:15
 msgid "Toxótēs Syrías"
@@ -17098,7 +17098,7 @@ msgstr "Toxótēs Syrías"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:14
 msgid "Arab Javelineer"
-msgstr "Jabalinero Árabe"
+msgstr "Jabalinero árabe"
 
 #: simulation/templates/units/sele_infantry_javelinist_b.xml:15
 msgid "Pezakontistès Aravikós"
@@ -17118,7 +17118,7 @@ msgstr "Piquero con escudo de bronce"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
-msgstr "Piquero con Escudo de Oro"
+msgstr "Piquero con escudo de oro"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
@@ -17297,7 +17297,7 @@ msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr "Es primavera en Arcadia, Grecia. El clima primaveral hace fluir lo que en cualquier otra parte del año serían secos arroyos, separando las tierras de dos tribus en guerra.\n\nLos jugadores comienzan en ambos lados de una región montañosa rica en recursos. Algunos edificios adicionales ayudarán a los jugadores a establecer sus nuevas colonias."
+msgstr "Es primavera en Arcadia, Grecia. Las lluvias primaverales hacen fluir caudales lo que en cualquier otra parte del año serían secos arroyos, separando las tierras de dos tribus en guerra.\n\nLos jugadores comienzan a ambos lados de una región montañosa rica en recursos. Algunos edificios adicionales ayudarán a los jugadores a establecer sus nuevas colonias."
 
 #: maps/scenarios/Arcadia 02.xml:41:Name
 msgid "Arcadia 2"
@@ -17611,14 +17611,14 @@ msgstr "Un tutorial básico para que puedas empezar a jugar 0 A.D."
 
 #: maps/scenarios/Introductory Tutorial.xml:42:Name
 msgid "Introductory Tutorial"
-msgstr "Tutorial introductorio"
+msgstr "Tutorial inicial"
 
 #: maps/scenarios/Laconia 01.xml:31:Description
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr "El valle Peloponésico de Laconia, hogar de los Espartanos.\n\nLos Macedonios están invadiendo las tierras Espartanas. Después de perder una batalla sin tregua contra los invasores, los Espartanos deben reconstruir su ejército rápidamente, antes de que los Macedonios arrasen todo el valle. "
+msgstr "El valle peloponesio de Laconia, hogar de los espartanos.\n\nLos macedonios están invadiendo las tierras espartanas. Después de perder una batalla sin tregua contra los invasores, los espartanos deben reconstruir su ejército rápidamente, antes de que los macedonios arrasen todo el valle. "
 
 #: maps/scenarios/Laconia 01.xml:31:Name
 msgid "Laconia"
@@ -17655,7 +17655,7 @@ msgid ""
 "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 jugadores se enfrentan sobre el vasto Delta del Nilo. Cada ciudad comienza con una gran acropolis, pero los recursos son escasos, forzando a cada jugador a expandir sus operaciones de recursos en las tierras circundantes.\n\nExploradores dicen que las ramas cercanas del Rio Nilo son bajas y muy vadeables en distintos lugares, asi que solo serán pequeñas barreras entre facciones enemigas."
+msgstr "4 jugadores se enfrentan sobre el vasto Delta del Nilo. Cada ciudad comienza con una gran acrópolis, pero los recursos son escasos, forzando a cada jugador a expandir su recolección de recursos en las tierras circundantes.\n\nLos exploradores nos comunican que los ramajes cercanos al río Nilo son poco profundos y fácilmente vadeables por varios puntos, por lo que sólo servirán como débil defensa inicial frente a facciones enemigas."
 
 #: maps/scenarios/Necropolis.xml:41:Name
 msgid "Necropolis"
@@ -17663,7 +17663,7 @@ msgstr "Necrópolis"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Name
 msgid "Pathfinding Demo"
-msgstr "Demo de pathfinding"
+msgstr "Demo de «pathfinding»"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Description
 msgid "A map for testing unit movement algorithms."
@@ -17671,7 +17671,7 @@ msgstr "Un mapa para probar los algoritmos de movimiento de unidades."
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Name
 msgid "Pathfinding Terrain Demo"
-msgstr "Demo de terrenos de pathfinding"
+msgstr "Demo de terrenos de «pathfinding»"
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Description
 msgid ""
@@ -17784,7 +17784,7 @@ msgstr "Intrusión romana"
 
 #: maps/scenarios/Sandbox - Britons.xml:41:Name
 msgid "Sandbox - The Britons"
-msgstr "Escenario de prueba - Los bretones"
+msgstr "Escenario de prueba - Los britanos"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:Description
 msgid "Explore the Carthaginian Buildings and Units."
@@ -17856,7 +17856,7 @@ msgstr "Un escenario de pruebas en el que los jugadores puedan experimentar con 
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:PlayerData[0].Name
 msgid "Ptolemy \"Savior\""
-msgstr "Ptolomeo \"El salvador\""
+msgstr "Ptolomeo «El salvador»"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:PlayerData[3].Name
 msgid "Libyans"
@@ -17864,7 +17864,7 @@ msgstr "Libios"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:Name
 msgid "Sandbox - The Ptolemaic Egyptians 2"
-msgstr "Escenario de prueba - Los Egipcios Ptolemaicos 2"
+msgstr "Escenario de prueba - Los egipcios ptolemaicos 2"
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:Description
 #: maps/skirmishes/Sporades Islands (2).xml:42:Description
@@ -17885,7 +17885,7 @@ msgstr "Un escenario de pruebas en el que los jugadores puedan experimentar con 
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Name
 msgid "Sandbox - The Republican Romans"
-msgstr "Escenario de prueba - La república Romana"
+msgstr "Escenario de prueba - La república romana"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:Description
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
@@ -17893,15 +17893,15 @@ msgstr "Un escenario de pruebas en el que los jugadores puedan experimentar con 
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:PlayerData[0].Name
 msgid "The Seleucids"
-msgstr "Los Seléucidas"
+msgstr "Los seléucidas"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:PlayerData[1].Name
 msgid "The Ptolemies"
-msgstr "Los Ptolomeos"
+msgstr "Los ptolomeos"
 
 #: maps/scenarios/Sandbox - Seleucids.xml:41:Name
 msgid "Sandbox - The Seleucids"
-msgstr "Escenario de prueba - Los Seléucidas"
+msgstr "Escenario de prueba - Los seléucidas"
 
 #: maps/scenarios/Sandbox - Spartans.xml:41:Description
 msgid ""
@@ -17920,7 +17920,7 @@ msgstr "Cañada de la sabana"
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
-msgstr "Un mapa con una savanna abierta y con un pequeño acantilado corriendo por el centro, que es fácilmente rodeable."
+msgstr "Un mapa abierto situado en la Sabana con un pequeña cañada fluyendo por su centro, fácilmente vadeable."
 
 #: maps/scenarios/Serengeti.xml:31:PlayerData[1].Name
 msgid "Iberia"
@@ -18013,7 +18013,7 @@ msgstr "Las puertas persas"
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
-msgstr "Los Romanos invaden en tierras Macedonias por tercera y última vez. ¿Podrán los alguna vez orgullosos Macedonios prevalecer contra el gigante Romano?"
+msgstr "Los romanos invaden las tierras macedonias por tercera y última vez. ¿Prevalecerán los otrora orgullosos macedonios contra el gigante romano?"
 
 #: maps/scenarios/Third Macedonian War.xml:31:PlayerData[0].Name
 msgid "Lucius Aemilius Paullus"
@@ -18143,7 +18143,7 @@ msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
-msgstr "La tierra árida y rica en minerales de Bactria (hoy Afganistán) a los pies de las montañas de Hindú Kush.\n\nEl centro del mapa es una montaña seca. En ambos lados hay montañas y laderas penetradas por pasos traicioneros y viejas rutas de comercio."
+msgstr "La tierra árida y rica en minerales de Bactria (el actual Afganistán) a los pies de las montañas de Hindú Kush.\n\nEl centro del mapa es una montaña seca. En ambos lados hay montañas y laderas rotas por pasos traicioneros y viejas rutas de comercio."
 
 #: maps/skirmishes/Bactria (2).xml:42:Name
 msgid "Bactria (2)"
@@ -18169,7 +18169,7 @@ msgstr "Dos equipos se enfrentan a lo largo de un gran lago salado.\n\nSe puede 
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:42:Name
 msgid "Caspian Sea (2v2)"
-msgstr "Mar Caspio (2vs2)"
+msgstr "Mar Caspio (2v2)"
 
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:Name
 msgid "Corinthian Isthmus (2)"
@@ -18257,7 +18257,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr "Todos los jugadores empiezan en una orilla del río, con una mínima cantidad de metal disponible. Cruzando el Río Gambia hay una sabana con muchos depósitos de metal para explotar. \n\n(Atención: Mapa grande, es recomendable tener un buen equipo) "
+msgstr "Todos los jugadores empiezan en una orilla del río, con una mínima cantidad de metal disponible. Cruzando el Río Gambia hay una sabana con muchos depósitos de metal para explotar. \n\n(Atención: mapa grande, es recomendable tener un buen equipo) "
 
 #: maps/skirmishes/Gambia River (3).xml:42:Name
 msgid "Gambia River (3)"
@@ -18304,11 +18304,11 @@ msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
-msgstr "Un par de exuberantes oasis enclavados en medio de la planicie desértica.\n\nSe trata de una representación del desierto Libio, parte del desierto sahariano,\nque se encuentra más allá del oeste del río Nilo en Egipto."
+msgstr "Un par de exuberantes oasis enclavados en medio de la planicie desértica.\n\nSe trata de una representación del desierto libio, parte del desierto sahariano,\nque se encuentra más allá del oeste del río Nilo en Egipto."
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Name
 msgid "Libyan Oases (4)"
-msgstr "Oasis Libio (4)"
+msgstr "Oasis libio (4)"
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Description
 msgid ""
@@ -18321,7 +18321,7 @@ msgstr "Un viejo favorito. Otro mapa  totalmente abierto, desertico, que se encu
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Name
 msgid "Libyan Oasis (2)"
-msgstr "Oasis Libio (2)"
+msgstr "Oasis libio (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
@@ -18373,7 +18373,7 @@ msgstr "La región de Capadocia, localizada en medio de la Anatolia oriental.\n\
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:42:Name
 msgid "Neareastern Badlands (2)"
-msgstr "Páramos de oriente (2)"
+msgstr "Páramos de oriente medio (2)"
 
 #: maps/skirmishes/Neareastern Badlands (4).xml:42:Name
 msgid "Neareastern Badlands (4)"
@@ -18405,7 +18405,7 @@ msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
-msgstr "Noroeste de la India. Los ríos cercanos rebosan por culpa de las lluvias del monzón, permitiendo solo unos pocos pasos traicioneros.\n\nLos ríos están rodeados por abundantes arboledas, mientras los campos circundantes exudan una interminable alfombra de hierba. Ten cuidado con los tigres que se esconden bajo las altas hierbas. Los elefantes asiáticos son una vista habitual por estos parajes."
+msgstr "Noroeste de la India. Los ríos cercanos rebosan por culpa de las lluvias del monzón, dejando sólo unos pocos pasos traicioneros.\n\nLos ríos están rodeados por abundantes arboledas, mientras los campos circundantes exudan una interminable alfombra de hierba. Ten cuidado con los tigres que se esconden tras las altas briznas. Los elefantes asiáticos son una vista habitual por estos parajes."
 
 #: maps/skirmishes/Punbjab (2).xml:42:Name
 msgid "Punjab (2)"
@@ -18427,7 +18427,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
-msgstr "Situado en la cara sur de la cadena montañosa norteafricana, Atlas.\n\nUn mapa ligeramente abierto con abundancia de comida y recursos minerales, y donde la comida escasea."
+msgstr "Situado en la cara sur de la cadena montañosa norteafricana, Atlas.\n\nUn mapa ligeramente abierto con abundancia de comida y recursos minerales, aunque la comida escasea."
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"
@@ -18435,7 +18435,7 @@ msgstr "Sahel (4)"
 
 #: maps/skirmishes/Savanna River.xml:42:Description
 msgid "A large savanna is bisected by a narrow jungle stream."
-msgstr "Una gran sabana dividida por un estrecho arroyo de la selva."
+msgstr "Una gran sabana dividida por un estrecho y selvático arroyo."
 
 #: maps/skirmishes/Savanna River.xml:42:Name
 msgid "Savanna River (2)"
@@ -18443,7 +18443,7 @@ msgstr "Río en la Sabana (2)"
 
 #: maps/skirmishes/Sicilia (2).xml:41:Description
 msgid "The large Mediterranean island of Sicily is open for conquest."
-msgstr "La gran isla mediterránea de Sicilia está abierta para la conquista. "
+msgstr "La gran isla mediterránea de Sicilia está lista para la conquista. "
 
 #: maps/skirmishes/Sicilia (2).xml:41:Name
 msgid "Sicilia (2)"
@@ -18512,7 +18512,7 @@ msgid ""
 "Players start the match near the Persian Gulf in their own province with 1 free Temple. \n"
 "\n"
 "Access to untapped resources and territories can be found through the rugged hinterlands."
-msgstr "Las montañas neutrales que que fluyen entre Persis, Susiana, y Media, protegiendo el territorio persa.\n\nLos jugadores comienzan la partida cerca del golfo pérsico en su propia provincia con 1 templo gratuito.\n\nEl acceso a los recursos naturales y territorios inexplorados se puede encontrar atravesando las agrestes zonas interiores."
+msgstr "Las montañas neutrales que que fluyen entre Persis, Susiana, y Media, protegiendo el territorio persa.\n\nLos jugadores comienzan la partida cerca del golfo pérsico en su propia provincia con 1 templo ya construido.\n\nEl acceso a los recursos naturales y territorios inexplorados se puede encontrar atravesando las agrestes zonas interiores."
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Name
 msgid "Zagros Mountains (2)"

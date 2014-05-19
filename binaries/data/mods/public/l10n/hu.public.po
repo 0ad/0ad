@@ -17,7 +17,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-04 12:40+0000\n"
+"PO-Revision-Date: 2014-05-14 12:56+0000\n"
 "Last-Translator: at35z\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
@@ -2974,13 +2974,13 @@ msgstr "Kezdő nyersanyagok kiválasztása."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Felfedezett térkép bekapcsolása (mindent látni)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Felfedezett térkép bekapcsolása (épületek és a természet látszik)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3143,7 +3143,7 @@ msgstr "Jelszó ismét:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Elolvastam és elfogadom a Felhasználási és Szolgáltatási Feltételeket:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3463,7 +3463,7 @@ msgstr ""
 
 #: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
-msgstr ""
+msgstr "Perspektíva megváltoztatása"
 
 #: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
@@ -5475,7 +5475,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr ""
+msgstr "- Életerőt veszt, ha semleges vagy ellenséges területen van."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
@@ -5595,7 +5595,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- Az új kolóniád \"befektetése\""
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -5603,7 +5603,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- Barátságos vagy semleges területre építhető."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -5647,7 +5647,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- Vigyázz! A halak nem tartanak ki örökké!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
@@ -5719,7 +5719,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- Olcsó, 80 Fát igényel."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
@@ -5727,7 +5727,7 @@ msgstr "- Gyorsan felépülnek, de gyengék."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr ""
+msgstr "- Életerőt veszt, ha semleges területen van, de javítható."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -5769,7 +5769,7 @@ msgstr "PERZSA ÉPÍTÉSZET"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- Különleges technológia a perzsáknak."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
@@ -5783,7 +5783,7 @@ msgstr ""
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "- A perzsák számos védelmi és strukturális technológiát érhetnek el."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -5857,11 +5857,11 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid "- Long train time, but high armor and attack."
-msgstr ""
+msgstr "- Hosszú kiképzési idő, de magas páncél és támadás."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- Használd a \"Falanx\" alakzatot extra páncélbónuszokért."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -5889,7 +5889,7 @@ msgstr "BOLTOK"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- Olcsó lerakóhely a nem-élelmiszer jellegű nyersanyagoknak (fa, kő, érc)"
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
@@ -5907,7 +5907,7 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- Lassú, nehéz alakzat."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
@@ -5961,16 +5961,16 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "TRIÉRÉSZ"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- A Közepes Csatahajó."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- Elérhető a rómaiak, karthágóiak, hellén népeknek és a perzsáknak."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
@@ -6002,7 +6002,7 @@ msgstr ""
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Gyorsan mozog, és használhat a kardot vagy égő dárdákat."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
@@ -6594,13 +6594,13 @@ msgstr "Athén a nyugati civilizáció bölcsője, a demokrácia, a művészetek
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Britonok"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Jobb termés a farmokon és a bokrokon."
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -6702,7 +6702,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Növelt támadási és mozgási sebesség a közelharci egységeknek."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -6720,7 +6720,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Növeli a magasságbónuszt az elszállásolt egységeknek a toronyban."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -6849,7 +6849,7 @@ msgstr ""
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "A britonok a harcikutya-tenyésztésükről voltak ismertek."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -7228,7 +7228,7 @@ msgstr ""
 
 #: civs/celt.jsonFactions[1].Description
 msgid "Mainland Europe"
-msgstr ""
+msgstr "Európai Anyaföld"
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 #: simulation/templates/structures/brit_rotarymill.xml:21
@@ -7239,7 +7239,7 @@ msgstr ""
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr ""
+msgstr "A kelták építették az első forgó lisztmalmot."
 
 #: civs/celt.jsonHistory
 msgid ""
@@ -7283,7 +7283,7 @@ msgstr ""
 
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
-msgstr ""
+msgstr "Az európai anyaföld keltái."
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -7304,7 +7304,7 @@ msgstr "10-15%-kal olcsóbb technológiák."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
-msgstr ""
+msgstr "Oikoumene"
 
 #: civs/hele.jsonCivBonuses[0].History
 msgid ""
@@ -7315,7 +7315,7 @@ msgstr ""
 
 #: civs/hele.jsonTeamBonuses[0].Description
 msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr ""
+msgstr "Minden egység és szövetséges ~10%-kal nagyobb látóhatárral rendelkezik."
 
 #: civs/hele.jsonTeamBonuses[0].Name
 msgid "Oracle at Delphi"
@@ -7344,7 +7344,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr ""
+msgstr "A triérészek 20%-kal olcsóbbak és 20%-kal gyorsabban épülnek fel."
 
 #: civs/hele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7383,7 +7383,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[1].Technologies[0].Description
 msgid "The player gains the Syntagma formation."
-msgstr ""
+msgstr "A játékos a Szüntagma alakzatot veszi fel."
 
 #: civs/hele.jsonFactions[1].Technologies[0].Name
 #: civs/mace.jsonFactions[0].Technologies[0].Name
@@ -7434,7 +7434,7 @@ msgstr "Makedónia királya (Kr.e. 359-336-ig), hatalmas gazdasági és katonai 
 
 #: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
 msgid "Philip II"
-msgstr ""
+msgstr "II. Philipposz"
 
 #: civs/hele.jsonFactions[1].Heroes[1].History
 #: civs/mace.jsonFactions[0].Heroes[1].History
@@ -7519,7 +7519,7 @@ msgstr ""
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "Zaldi Saldoa"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -7584,7 +7584,7 @@ msgstr ""
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -7701,7 +7701,7 @@ msgstr "A makedón egységek +10% támadási bónuszt kapnak a perzsa és hellé
 
 #: civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
-msgstr "Hellén nyelv"
+msgstr "Hellén Szövetség"
 
 #: civs/mace.jsonCivBonuses[0].History
 msgid ""
@@ -8050,7 +8050,7 @@ msgstr ""
 #: civs/maur.jsonStructures[0].Name
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Elefántistállók"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""
@@ -9122,7 +9122,7 @@ msgstr ""
 #: civs/spart.jsonTeamBonuses[0].Name maps/scenarios/Campaign Test
 #: Map.xml:42:PlayerData[6].Name
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Peloponnészoszi Szövetség"
 
 #: civs/spart.jsonTeamBonuses[0].History
 msgid ""
@@ -9771,7 +9771,7 @@ msgstr ""
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
-msgstr ""
+msgstr "Sok kis sziget egymásba kapcsolva keskeny ösvényekkel."
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
@@ -10546,7 +10546,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+25% metal gathering rate."
-msgstr ""
+msgstr "+25% ércgyűjtési ráta."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -11505,7 +11505,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr ""
+msgstr "Kelta Szövetség "
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
@@ -11528,7 +11528,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
-msgstr ""
+msgstr "Ibériai Szövetség"
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
@@ -11675,7 +11675,7 @@ msgstr ""
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
 msgid "Crop Rotation"
-msgstr ""
+msgstr "Vetésforgó"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
@@ -12112,7 +12112,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr ""
+msgstr "Kőfal"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
@@ -12471,7 +12471,7 @@ msgstr "Harci Eb"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "Fauna"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -12608,7 +12608,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 msgid "Ranged"
-msgstr ""
+msgstr "Távolsági"
 
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:40
 msgid ""
@@ -12835,19 +12835,19 @@ msgstr "I. Leonidász serege"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
+msgstr "Egy kisebb görög város. A területi hatása 150."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Apró Görög Polisz"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr ""
+msgstr "Ez egy főbb görög város. A területi hatása 300."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Görög Polisz"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -13148,11 +13148,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
-msgstr ""
+msgstr "Szüretelj fügéket több Élelemért."
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
-msgstr ""
+msgstr "Füge"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -13165,7 +13165,7 @@ msgstr "Tölgyfa"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "Nagy Tölgy"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
@@ -13235,7 +13235,7 @@ msgstr "Római Oszlopok"
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr ""
+msgstr "Étel Kincs"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
@@ -13243,11 +13243,11 @@ msgstr ""
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr ""
+msgstr "Perzsa faraktárak"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr ""
+msgstr "Perzsa ételkincs"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
@@ -13282,7 +13282,7 @@ msgstr "Kő Kincs"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr ""
+msgstr "Fa Kincs"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
@@ -14730,7 +14730,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
-msgstr ""
+msgstr "Porta Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:38
 #: simulation/templates/structures/rome_siege_wall_medium.xml:38
@@ -14758,7 +14758,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
-msgstr ""
+msgstr "Turris Circummunitionis"
 
 #: simulation/templates/structures/rome_storehouse.xml:5
 msgid "Receptaculum"
@@ -14820,7 +14820,7 @@ msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
-msgstr ""
+msgstr "Aedes Iovis Optimi Maximi"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -15001,7 +15001,7 @@ msgstr "Fejlett"
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr ""
+msgstr "Pródromos"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:20
@@ -15123,7 +15123,7 @@ msgstr ""
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
 msgid "Hippeús"
-msgstr ""
+msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:10
 msgid "City Guard"
@@ -15208,7 +15208,7 @@ msgstr ""
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:27
 #: simulation/templates/units/hele_infantry_javelinist_b.xml:24
 msgid "Peltastḗs Thrâx"
-msgstr ""
+msgstr "Peltastḗs Thrâx"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
@@ -15275,7 +15275,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaïkós"
-msgstr ""
+msgstr "Triḗrēs Athēnaïkós"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
@@ -15580,7 +15580,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_slinger_b.xml:23
 msgid "Qallāʿ Ibušimi"
-msgstr ""
+msgstr "Qallāʿ Ibušimi"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
@@ -15588,7 +15588,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
-msgstr ""
+msgstr "Sǝḫīr Ḥanīt"
 
 #: simulation/templates/units/cart_infantry_swordsman_2_b.xml:21
 #: simulation/templates/units/samnite_swordsman.xml:5
@@ -15659,7 +15659,7 @@ msgstr ""
 #: simulation/templates/units/mace_ship_trireme.xml:5
 #: simulation/templates/units/spart_ship_trireme.xml:5
 msgid "Trireme"
-msgstr ""
+msgstr "Triérész"
 
 #: simulation/templates/units/cart_ship_trireme.xml:6
 msgid "Tlat-Mašōt"
@@ -15671,7 +15671,7 @@ msgstr "Karthágói Nő"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
-msgstr ""
+msgstr "Aštāh"
 
 #: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
@@ -15886,7 +15886,7 @@ msgstr ""
 #: simulation/templates/units/hele_hero_leonidas.xml:32
 #: simulation/templates/units/spart_hero_leonidas.xml:29
 msgid "Leōnídēs"
-msgstr ""
+msgstr "Leōnídēs"
 
 #: simulation/templates/units/hele_hero_philip.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:12
@@ -15926,11 +15926,11 @@ msgstr "Sphendonetes Rhodikos"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:26
 msgid "Greek Hoplite"
-msgstr ""
+msgstr "Görög Hoplita"
 
 #: simulation/templates/units/hele_infantry_spearman_b.xml:27
 msgid "Hoplī́tēs Hellēnikós"
-msgstr ""
+msgstr "Hoplī́tēs Hellēnikós"
 
 #: simulation/templates/units/hele_mechanical_siege_tower.xml:6
 msgid ""
@@ -16239,7 +16239,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:33
 msgid "Aśoka Devānāmpriya"
-msgstr ""
+msgstr "Aśoka Devānāmpriya"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid ""
@@ -16302,7 +16302,7 @@ msgstr "Kereskedő Hajó"
 
 #: simulation/templates/units/maur_ship_merchant.xml:10
 msgid "Vanijyik Nauka"
-msgstr ""
+msgstr "Vanijyik Nauka"
 
 #: simulation/templates/units/maur_ship_trireme.xml:20
 msgid "Classes: Mechanical Warship Medium Ranged Melee."
@@ -16326,7 +16326,7 @@ msgstr "Indiai Nő"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
-msgstr ""
+msgstr "Naari"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
@@ -16367,7 +16367,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_arstibara.xml:13
 msgid "Arštibara"
-msgstr ""
+msgstr "Arštibara"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:36
 msgid ""
@@ -16791,7 +16791,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_champion_cavalry.xml:5
 msgid "Eques Consularis"
-msgstr ""
+msgstr "Eques Consularis"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
@@ -16815,11 +16815,11 @@ msgstr ""
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Triarius"
-msgstr ""
+msgstr "Triarius"
 
 #: simulation/templates/units/rome_infantry_swordsman_a.xml:21
 msgid "Princeps"
-msgstr ""
+msgstr "Princeps"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:27
 msgid "Roman Swordsman"
@@ -16895,7 +16895,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_healer_b.xml:7
 msgid "Pontifex Minor"
-msgstr ""
+msgstr "Pontifex Minor"
 
 #: simulation/templates/units/rome_support_trader.xml:9
 msgid "Plebeian Merchant"
@@ -17569,7 +17569,7 @@ msgstr ""
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:31:Name
 msgid "Height Map Import Demo - Greece (small)"
-msgstr ""
+msgstr "Magasságtérkép-importálás demó - Görögország (kicsi)"
 
 #: maps/scenarios/Introductory Tutorial.xml:42:Description
 msgid "This is a basic tutorial to get you started playing 0 A.D."
@@ -17713,7 +17713,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[0].Name
 msgid "The Athenians"
-msgstr ""
+msgstr "Az athéniak"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[1].Name
@@ -17768,7 +17768,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:Name
 msgid "Sandbox - The Carthaginians"
-msgstr ""
+msgstr "Homokozó - A karthágóiak"
 
 #: maps/scenarios/Sandbox - Gauls.xml:41:Name
 msgid "Sandbox - The Gauls"
@@ -17813,7 +17813,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Persians.xml:41:Name
 msgid "Sandbox - The Persians"
-msgstr ""
+msgstr "Homokozó - A perzsák"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:Description
 msgid ""
@@ -17916,11 +17916,11 @@ msgstr ""
 
 #: maps/scenarios/Ship Formations.xml:31:PlayerData[0].Name
 msgid "Ships"
-msgstr ""
+msgstr "Hajók"
 
 #: maps/scenarios/Ship Formations.xml:31:Name
 msgid "Ship Formations"
-msgstr ""
+msgstr "Hajóalakzatok"
 
 #: maps/scenarios/Siwa Oasis.xml:31:Description
 msgid ""
@@ -17973,7 +17973,7 @@ msgstr ""
 
 #: maps/scenarios/The Persian Gates.xml:31:Name
 msgid "The Persian Gates"
-msgstr ""
+msgstr "A Perzsa Kapuk"
 
 #: maps/scenarios/Third Macedonian War.xml:31:Description
 msgid ""

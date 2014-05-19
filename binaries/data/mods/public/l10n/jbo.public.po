@@ -10,8 +10,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-18 18:11+0000\n"
+"Last-Translator: Ilya Crols <ilya.crols@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/0ad/language/jbo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -277,7 +277,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1217 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "cunso"
 
 #: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 #: gui/summary/summary.js:508
@@ -309,7 +309,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "cunso"
 
 #: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
@@ -462,7 +462,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr "nunkei la %(name)s."
+msgstr "nunkei pe la %(name)s."
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
@@ -488,12 +488,12 @@ msgstr ""
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "nunkei la %(playername)s."
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading \"%(map)s\""
-msgstr "tcidu %(map)s"
+msgstr "tcidu la'o gy. %(map)s gy"
 
 #: gui/loading/loading.js:55
 #, python-format
@@ -534,7 +534,7 @@ msgstr ""
 #: gui/lobby/lobby.js:323
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "tolslabu"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
@@ -692,7 +692,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
-msgstr ""
+msgstr "je'e"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Retry"
@@ -939,7 +939,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:114
 #, c-format
 msgid "uploading (%f%%)"
-msgstr "kibdu'a (%f%%)"
+msgstr "kibdu'a la'o gy. (%f%%) gy"
 
 #: gui/pregame/mainmenu.js:121
 msgid "upload succeeded"
@@ -948,12 +948,12 @@ msgstr "snada nu kibdu'a"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "fliba nu kibdu'a (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "fliba nu kibdu'a (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -1348,12 +1348,12 @@ msgstr ""
 #: gui/session/messages.js:415
 #, python-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "la %(player)s. cmibi'o le nunkei"
 
 #: gui/session/messages.js:418
 #, python-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "la %(player)s. narcmibi'o le nunkei"
 
 #: gui/session/messages.js:423
 msgid "You have been defeated."
@@ -1362,7 +1362,7 @@ msgstr ""
 #: gui/session/messages.js:425
 #, python-format
 msgid "%(player)s has been defeated."
-msgstr ""
+msgstr "la %(player)s. se ji'apro"
 
 #: gui/session/messages.js:433
 #, python-format
@@ -1574,7 +1574,7 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 #: simulation/templates/template_gaia.xml:5
 msgid "Gaia"
-msgstr ""
+msgstr "la xaias."
 
 #: gui/session/session.js:312 gui/session/session.js:328
 msgid "You have left the game."
@@ -1728,7 +1728,7 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1161
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "galfi le mudri bitmu le mudvro"
 
 #: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
@@ -1741,15 +1741,15 @@ msgstr ""
 #: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
-msgstr ""
+msgstr "galfi le %(wall)s le %(gate)s"
 
 #: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
-msgstr ""
+msgstr "seltelgau vorme"
 
 #: gui/session/unit_commands.js:1197
 msgid "Unlock Gate"
-msgstr ""
+msgstr "telcaugau vorme"
 
 #: gui/session/unit_commands.js:1246
 msgid "Pack"
@@ -2830,7 +2830,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:21 (caption)
 msgid "Loading"
-msgstr ""
+msgstr "nu jajgau"
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
@@ -2838,7 +2838,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
-msgstr ""
+msgstr "cmene le kelci"
 
 #: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
@@ -2908,7 +2908,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
-msgstr ""
+msgstr "benji"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
@@ -2916,7 +2916,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
-msgstr ""
+msgstr "cfagau nunkei"
 
 #: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
@@ -3302,7 +3302,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
-msgstr "le nunkei caku toldicra "
+msgstr "caku toldicra le nunkei"
 
 #: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Click here to load a saved game."
@@ -3376,7 +3376,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
-msgstr ""
+msgstr "le tutci ce le tikygau"
 
 #: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
@@ -3500,11 +3500,11 @@ msgstr ""
 
 #: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
-msgstr "depri'a le samselkei kudo"
+msgstr "denpa do"
 
 #: gui/session/session.xml:370 (caption)
 msgid "Click to Resume Game"
-msgstr "iklki cu toldicra"
+msgstr "ko .iklki fi lo nu toldicra"
 
 #: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
 msgid "Diplomacy"
@@ -3558,11 +3558,11 @@ msgstr ""
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
-msgstr "ci'erkei nilsutra"
+msgstr "nunkei nilsutra"
 
 #: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
-msgstr "tikygau le ci'erkei nilsutra"
+msgstr "tikygau le nunkei nilsutra"
 
 #: gui/session/session.xml:706 (caption)
 msgid "MENU"
@@ -3656,7 +3656,7 @@ msgstr ""
 #: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
 #: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
 msgid "Player name"
-msgstr ""
+msgstr "cmene le kelci"
 
 #: gui/summary/summary.xml:109 (caption)
 msgid "Economy score"
@@ -3693,7 +3693,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:243 (caption)
 msgid "Outposts"
-msgstr ""
+msgstr "catlu clagaldi'u"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
@@ -4614,7 +4614,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "la .aizop. cusku lu« zo'e be masno ce stodi be'o jinga »li'u"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -5480,7 +5480,7 @@ msgstr ""
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "sondi'u"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
@@ -5584,7 +5584,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "tcamidju"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
@@ -5704,7 +5704,7 @@ msgstr ""
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr "clagaldi'u le catlu"
+msgstr "catlu clagaldi'u"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
@@ -5820,7 +5820,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr "clagaldi'u le bandu"
+msgstr "bandu clagaldi'u"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
@@ -6132,7 +6132,7 @@ msgstr "pardu nilsutra (2x)"
 #: (4).xml:42:PlayerData[0].Name maps/skirmishes/Zagros Mountains
 #: (2).xml:42:PlayerData[0].Name
 msgid "Player 1"
-msgstr ""
+msgstr "pa moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[2].Name
 #: maps/scenarios/Arcadia 02.xml:41:PlayerData[1].Name
@@ -6195,7 +6195,7 @@ msgstr ""
 #: (4).xml:42:PlayerData[1].Name maps/skirmishes/Zagros Mountains
 #: (2).xml:42:PlayerData[1].Name
 msgid "Player 2"
-msgstr ""
+msgstr "re moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[3].Name maps/scenarios/Death
 #: Canyon - Invasion Force.xml:42:PlayerData[2].Name
@@ -6224,7 +6224,7 @@ msgstr ""
 #: (4).xml:41:PlayerData[2].Name maps/skirmishes/Watering Holes
 #: (4).xml:42:PlayerData[2].Name
 msgid "Player 3"
-msgstr ""
+msgstr "ci moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[4].Name maps/scenarios/Fast
 #: Oasis.xml:31:PlayerData[3].Name
@@ -6246,23 +6246,23 @@ msgstr ""
 #: (4).xml:41:PlayerData[3].Name maps/skirmishes/Watering Holes
 #: (4).xml:42:PlayerData[3].Name
 msgid "Player 4"
-msgstr ""
+msgstr "vo moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "mu moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "xa moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "ze moi kelci"
 
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "bi moi kelci"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
@@ -6316,7 +6316,7 @@ msgstr "brabra"
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr ""
+msgstr "atinas natmi"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
@@ -6382,7 +6382,7 @@ msgstr ""
 #: simulation/templates/units/athen_hero_themistocles.xml:13
 #: simulation/templates/units/hele_hero_themistocles.xml:13
 msgid "Themistocles"
-msgstr ""
+msgstr "la femistoklys."
 
 #: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/athen_hero_pericles.xml:14
@@ -6437,7 +6437,7 @@ msgstr ""
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/athen_hero_iphicrates.xml:16
 msgid "Iphicrates"
-msgstr ""
+msgstr "la .ifikratys."
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
@@ -6481,7 +6481,7 @@ msgstr ""
 #: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr ""
+msgstr "la .ofismos."
 
 #: civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -6645,12 +6645,12 @@ msgstr ""
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "la karatakos."
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "la kunobelinos."
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
@@ -6700,7 +6700,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "la sevilis.dusios."
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
 #: civs/celt.jsonFactions[0].Technologies[0].History
@@ -6718,7 +6718,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "la turos.maros."
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 #: civs/celt.jsonFactions[0].Technologies[1].History
@@ -7101,7 +7101,7 @@ msgstr ""
 
 #: civs/celt.jsonName maps/scenarios/Azure Coast(2).xml:31:PlayerData[1].Name
 msgid "Celts"
-msgstr ""
+msgstr "dzeko'onai"
 
 #: civs/celt.jsonFactions[0].Description
 msgid "British Isles"
@@ -7228,7 +7228,7 @@ msgstr ""
 #: simulation/templates/structures/celt_sb1.xml:24
 #: simulation/templates/structures/gaul_rotarymill.xml:21
 msgid "Melonas"
-msgstr ""
+msgstr "la melonas."
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
@@ -7289,7 +7289,7 @@ msgstr ""
 
 #: civs/hele.jsonName
 msgid "Hellenes"
-msgstr ""
+msgstr "xesnai"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
@@ -7445,7 +7445,7 @@ msgstr ""
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
 msgid "Alexander the Great"
-msgstr ""
+msgstr "banli zei .aleksander."
 
 #: civs/hele.jsonFactions[1].Heroes[2].History
 #: civs/mace.jsonFactions[0].Heroes[2].History
@@ -8078,7 +8078,7 @@ msgstr ""
 #: civs/pers.jsonName maps/scenarios/The Persian
 #: Gates.xml:31:PlayerData[3].Name
 msgid "Persians"
-msgstr ""
+msgstr "kulnrfarsi natmi"
 
 #: civs/pers.jsonCivBonuses[0].Description
 msgid ""
@@ -8374,7 +8374,7 @@ msgstr ""
 #: civs/theb.jsonFactions[0].Technologies[1].Description
 #: civs/theb.jsonFactions[0].Technologies[1].History
 msgid "Unknown."
-msgstr ""
+msgstr "tolslabu"
 
 #: civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
@@ -8571,7 +8571,7 @@ msgstr ""
 #: civs/rome.jsonName maps/scenarios/Miletus.xml:31:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:PlayerData[1].Name
 msgid "Romans"
-msgstr ""
+msgstr "la'ornai"
 
 #: civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
@@ -9298,7 +9298,7 @@ msgstr ""
 #: civs/theb.jsonFactions[0].Technologies[1].Name
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
-msgstr ""
+msgstr "tolslabu"
 
 #: civs/theb.jsonTeamBonuses[0].Name
 msgid "Boeotian Confederacy"
@@ -9690,7 +9690,7 @@ msgstr ""
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
-msgstr ""
+msgstr "cmana be loi kulnrfarsi"
 
 #: maps/random/pheonician_levant.jsonsettings.Description
 msgid ""
@@ -10641,7 +10641,7 @@ msgstr ""
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
-msgstr ""
+msgstr "nunkei pe la .olimpos."
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.athen
 msgid "Eleusian Mysteries"
@@ -10997,7 +10997,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
-msgstr ""
+msgstr "zdani purdi"
 
 #: simulation/data/technologies/pop_house_01.jsonspecificName.ptol
 #: simulation/data/technologies/pop_house_01.jsonspecificName.spart
@@ -11951,7 +11951,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
-msgstr ""
+msgstr "jbari demspa"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
@@ -12049,7 +12049,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
-msgstr ""
+msgstr "tcamidju"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
@@ -12085,7 +12085,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
-msgstr ""
+msgstr "nunbandu clagaldi'u"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
@@ -12096,7 +12096,7 @@ msgstr ""
 #: simulation/templates/template_structure_defense_outpost.xml:57
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
-msgstr ""
+msgstr "catlu clagaldi'u "
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -12126,7 +12126,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr ""
+msgstr "bitmu clagaldi'u"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -12181,7 +12181,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr ""
+msgstr "sondi'u"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
@@ -12233,7 +12233,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource_field.xml:24
 msgid "Field"
-msgstr ""
+msgstr "purdi"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
@@ -12420,7 +12420,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
-msgstr ""
+msgstr "kilga'a balsoi"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
 msgid ""
@@ -12482,7 +12482,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry.xml:39
 #: simulation/templates/template_unit_hero_ranged.xml:31
 msgid "Hero"
-msgstr ""
+msgstr "vudvri"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:40
 msgid "Hero Cavalry"
@@ -12582,7 +12582,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr ""
+msgstr "kilga'a sonci"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:37
 msgid "Spearman"
@@ -12634,7 +12634,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
-msgstr ""
+msgstr "rerce'a sonci"
 
 #: simulation/templates/template_unit_mechanical.xml:14
 msgid "Mechanical"
@@ -12840,7 +12840,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "tcadu be loi xelso"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -12848,7 +12848,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr ""
+msgstr "malsi be loi xelso"
 
 #: simulation/templates/formations/battle_line.xml:4
 msgid "Battle Line"
@@ -13254,7 +13254,7 @@ msgstr "jinme mipsro"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr ""
+msgstr "mipri tanxe"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
@@ -13262,7 +13262,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr ""
+msgstr "buklolgai be loi kulnfarsi"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
@@ -13457,7 +13457,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:21
 msgid "Wooden Tower"
-msgstr ""
+msgstr "mudri clagaldi'u"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
@@ -13465,7 +13465,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_gate.xml:21
 msgid "Wooden Gate"
-msgstr ""
+msgstr "mudri vorme"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
@@ -13635,7 +13635,7 @@ msgstr ""
 #: simulation/templates/structures/mace_barracks.xml:18
 #: simulation/templates/structures/spart_barracks.xml:18
 msgid "Stratēgeîon"
-msgstr ""
+msgstr "la stratexeon."
 
 #: simulation/templates/structures/athen_blacksmith.xml:5
 #: simulation/templates/structures/spart_blacksmith.xml:5
@@ -13679,7 +13679,7 @@ msgstr ""
 #: simulation/templates/structures/sele_farmstead.xml:12
 #: simulation/templates/structures/spart_farmstead.xml:12
 msgid "Sītobólion"
-msgstr ""
+msgstr "la sitobolion."
 
 #: simulation/templates/structures/athen_field.xml:5
 #: simulation/templates/structures/hele_field.xml:5
@@ -13711,7 +13711,7 @@ msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásieon"
-msgstr ""
+msgstr "la ximnazion."
 
 #: simulation/templates/structures/athen_house.xml:18
 #: simulation/templates/structures/hele_house.xml:18
@@ -13719,7 +13719,7 @@ msgstr ""
 #: simulation/templates/structures/sele_house.xml:18
 #: simulation/templates/structures/spart_house.xml:18
 msgid "Oîkos"
-msgstr ""
+msgstr "la oikos."
 
 #: simulation/templates/structures/athen_market.xml:5
 #: simulation/templates/structures/hele_market.xml:11
@@ -13727,14 +13727,14 @@ msgstr ""
 #: simulation/templates/structures/sele_market.xml:5
 #: simulation/templates/structures/spart_market.xml:5
 msgid "Empórion"
-msgstr ""
+msgstr "la .emporion."
 
 #: simulation/templates/structures/athen_outpost.xml:5
 #: simulation/templates/structures/hele_outpost.xml:5
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "catlu clagaldi'u be loi xelso"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
@@ -13779,7 +13779,7 @@ msgstr ""
 #: simulation/templates/structures/spart_theatron.xml:28
 #: simulation/templates/structures/theb_theatron.xml:28
 msgid "Greek Theater"
-msgstr ""
+msgstr "dracydi'u be loi xelso"
 
 #: simulation/templates/structures/athen_theatron.xml:29
 #: simulation/templates/structures/hele_theatron.xml:29
@@ -13787,7 +13787,7 @@ msgstr ""
 #: simulation/templates/structures/spart_theatron.xml:29
 #: simulation/templates/structures/theb_theatron.xml:29
 msgid "Théātron"
-msgstr ""
+msgstr "la teatron."
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/hele_wall_gate.xml:9
@@ -14129,7 +14129,7 @@ msgstr ""
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
-msgstr ""
+msgstr "catlu clagaldi'u be loi dzeko'o"
 
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
@@ -14138,7 +14138,7 @@ msgstr ""
 
 #: simulation/templates/structures/celt_wall_gate.xml:16
 msgid "Gate"
-msgstr ""
+msgstr "vorme"
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
@@ -14174,7 +14174,7 @@ msgstr ""
 
 #: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásion"
-msgstr ""
+msgstr "la ximnazion."
 
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
@@ -14414,7 +14414,7 @@ msgstr ""
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
 msgid "Persian Palace"
-msgstr ""
+msgstr "nolzda be loi kulnrfarsi"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
@@ -14683,7 +14683,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
-msgstr ""
+msgstr "la saiptum."
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
@@ -14695,7 +14695,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr ""
+msgstr "la vilas."
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -14703,7 +14703,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_fortress.xml:5
 msgid "Castellum"
-msgstr ""
+msgstr "la castylum."
 
 #: simulation/templates/structures/rome_house.xml:18
 msgid "Domus"
@@ -14879,7 +14879,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklepeion"
-msgstr ""
+msgstr "la .asklepeon."
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
@@ -15111,7 +15111,7 @@ msgstr ""
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
 msgid "Greek Cavalry"
-msgstr ""
+msgstr "xirsoi be loi xelso"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
@@ -15311,7 +15311,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr ""
+msgstr "xirsoi be loi dzeko'o"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/celt_cavalry_swordsman_b.xml:6
@@ -15378,7 +15378,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_slinger_b.xml:15
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:15
 msgid "Celtic Slinger"
-msgstr ""
+msgstr "rerce'a sonci be loi dzeko'o"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/celt_infantry_slinger_b.xml:16
@@ -15432,7 +15432,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
-msgstr ""
+msgstr "ninmu be loi dzeko'o"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:13
 #: simulation/templates/units/celt_support_female_citizen.xml:18
@@ -15952,7 +15952,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_support_female_citizen.xml:6
 msgid "Greek Woman"
-msgstr ""
+msgstr "ninmu be loi xelso"
 
 #: simulation/templates/units/hele_support_female_citizen.xml:5
 msgid "Gýnē Hellenikos"
@@ -16590,7 +16590,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
-msgstr ""
+msgstr "kumte celsoi be la nabateans."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
@@ -16710,7 +16710,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:15
 msgid "Egyptian Pikeman"
-msgstr ""
+msgstr "kilga'a sonci be loi misro"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:16
 msgid "Makhimos Phalangites"
@@ -16740,7 +16740,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:11
 msgid "Egyptian Woman"
-msgstr ""
+msgstr "ninmu be loi misro"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:10
 msgid "Gýnē Aigyptiakós"
@@ -16748,7 +16748,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 msgid "Egyptian Priest"
-msgstr ""
+msgstr "jdaca'i be loi misro"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigyptikos"
@@ -16768,7 +16768,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_cavalry_spearman_b.xml:7
 msgid "Eques Romanus"
-msgstr ""
+msgstr "Eques Romanus"
 
 #: simulation/templates/units/rome_centurio_imperial.xml:16
 msgid "Roman Centurion"
@@ -16876,7 +16876,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_female_citizen.xml:6
 msgid "Roman Woman"
-msgstr ""
+msgstr "ninmu be loi latmo"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:5
 msgid "Romana"
@@ -17096,7 +17096,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
-msgstr ""
+msgstr "ninmu be loi sixo"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:10
 msgid "Syrías Gýnē"
@@ -17269,7 +17269,7 @@ msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:31:PlayerData[0].Name
 msgid "Greeks"
-msgstr ""
+msgstr "xesnai"
 
 #: maps/scenarios/Azure Coast(2).xml:31:Name
 msgid "Azure Coast 2"
@@ -17381,7 +17381,7 @@ msgstr ""
 
 #: maps/scenarios/Bridge_demo.xml:31:PlayerData[1].Name
 msgid "Other"
-msgstr ""
+msgstr "drata"
 
 #: maps/scenarios/Bridge_demo.xml:31:Description
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -17644,7 +17644,7 @@ msgstr ""
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[0].Name
 msgid "Athens"
-msgstr "la .atyns."
+msgstr "atinas"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[1].Name
 msgid "Sparta"
@@ -17706,7 +17706,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[0].Name
 msgid "The Athenians"
-msgstr ""
+msgstr "atinas natmi"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[1].Name
@@ -17719,7 +17719,7 @@ msgstr ""
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[2].Name
 #: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[2].Name
 msgid "The Persians"
-msgstr ""
+msgstr "kulnrfarsi natmi"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[3].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[3].Name
@@ -17966,7 +17966,7 @@ msgstr ""
 
 #: maps/scenarios/The Persian Gates.xml:31:Name
 msgid "The Persian Gates"
-msgstr ""
+msgstr "vorme be loi kulnrfarsi"
 
 #: maps/scenarios/Third Macedonian War.xml:31:Description
 msgid ""
@@ -18209,7 +18209,7 @@ msgstr ""
 
 #: maps/skirmishes/Gallic Fields (3).xml:42:Name
 msgid "Gallic Fields (3)"
-msgstr ""
+msgstr "purdi be loi fraso (3)"
 
 #: maps/skirmishes/Gambia River (3).xml:42:Description
 msgid ""

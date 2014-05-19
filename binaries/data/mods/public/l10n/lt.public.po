@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-05 17:36+0000\n"
+"PO-Revision-Date: 2014-05-10 09:52+0000\n"
 "Last-Translator: Aš Esu <asesuarbanesu@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Nieko"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -39,27 +39,27 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "Smėlio dėžė"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "Lengva"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Vidutiniška"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "Sunku"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "Labai sunku"
 
 #: gui/civinfo/civinfo.js:94
 #, python-format
@@ -82,7 +82,7 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
-msgstr ""
+msgstr "Specialiosios technologijos"
 
 #: gui/civinfo/civinfo.js:129
 #: simulation/templates/template_structure_special.xml:42
@@ -96,7 +96,7 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr ""
+msgstr "Herojai"
 
 #: gui/civinfo/civinfo.js:158
 #, python-format
@@ -121,7 +121,7 @@ msgstr ""
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
@@ -205,47 +205,47 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "Conquest"
-msgstr ""
+msgstr "Užkariavimas"
 
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "Wonder"
-msgstr ""
+msgstr "Stebuklas"
 
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
-msgstr ""
+msgstr "Nieko"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
-msgstr ""
+msgstr "Neribota"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "Labai mažai"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "Mažai"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Vidutiniškai"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "Daug"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "Labai daug"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
@@ -262,11 +262,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
-msgstr ""
+msgstr "Įspėjimas:"
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Grįžti į pagrindinį meniu."
 
 #: gui/gamesetup/gamesetup.js:114
 msgid "Return to the lobby."
@@ -281,7 +281,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1217 gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 #: gui/summary/summary.js:508
@@ -291,29 +291,29 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1123
 #: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
-msgstr ""
+msgstr "Numatytieji"
 
 #: gui/gamesetup/gamesetup.js:148
 msgid "Naval Maps"
-msgstr ""
+msgstr "Jūriniai žemėlapiai"
 
 #: gui/gamesetup/gamesetup.js:149
 msgid "Demo Maps"
-msgstr ""
+msgstr "Demonstraciniai žemėlapiai"
 
 #: gui/gamesetup/gamesetup.js:150
 msgid "All Maps"
-msgstr ""
+msgstr "Visi žemėlapiai"
 
 #: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Nieko"
 
 #: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
@@ -380,11 +380,11 @@ msgstr "Ne"
 
 #: gui/gamesetup/gamesetup.js:1218
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Atsitiktinai iš sąrašo parinktas žemėlapis"
 
 #: gui/gamesetup/gamesetup.js:1225 gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Deja, aprašymo nėra."
 
 #: gui/gamesetup/gamesetup.js:1231
 #, python-format
@@ -413,22 +413,22 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s prisijungė"
 
 #: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s atsijungė"
 
 #: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1595
 #, python-format
@@ -446,19 +446,19 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
-msgstr ""
+msgstr "Aš nepasiruošęs"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Pranešti, kad tu dar nepasiruošei žaidimui."
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
-msgstr ""
+msgstr "Aš pasiruošęs!"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Pranešti, kad tu jau pasiruošei žaisti."
 
 #: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
@@ -467,16 +467,16 @@ msgstr ""
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s žaidimas"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Jungiamasi prie serverio..."
 
 #: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Tinklo žinutė: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
@@ -484,7 +484,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Žaidimas jau prasidėjo, jungiamasi iš naujo..."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
@@ -493,7 +493,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s žaidimas"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -543,7 +543,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Atsitiktinai parinktas žemėlapis."
 
 #: gui/lobby/lobby.js:417
 #, python-format
@@ -629,7 +629,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "Jungiamasi..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
@@ -637,23 +637,23 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Įveskite savo vartotojo vardą"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Vartotojo varde negali būti [, ], unikodo, tarpų ir kablelių"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Įveskite savo slaptažodį"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Pakartokite slaptažodį"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Slaptažodžiai nesutampa"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
@@ -669,11 +669,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
-msgstr ""
+msgstr "Registruotis"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
 msgid "Connect"
-msgstr ""
+msgstr "Jungtis"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
@@ -686,7 +686,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Nieko"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
@@ -701,15 +701,15 @@ msgstr "Gerai"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Retry"
-msgstr ""
+msgstr "Bandyti dar kartą"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Ignore"
-msgstr ""
+msgstr "Ignoruoti"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Abort"
-msgstr ""
+msgstr "Atšaukti"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
@@ -749,11 +749,11 @@ msgstr ""
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "Pirmenybę teikti GLSL"
 
 #: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "Naudoti OpenGL 2.0 shader'ius (rekomenduojama)"
 
 #: gui/options/options.js:17
 msgid "Post Processing"
@@ -765,23 +765,23 @@ msgstr ""
 
 #: gui/options/options.js:18
 msgid "Shadows"
-msgstr ""
+msgstr "Šešėliai"
 
 #: gui/options/options.js:18
 msgid "Enable shadows"
-msgstr ""
+msgstr "Įjungti šešėlius"
 
 #: gui/options/options.js:19
 msgid "Particles"
-msgstr ""
+msgstr "Dūmai"
 
 #: gui/options/options.js:19
 msgid "Enable particles"
-msgstr ""
+msgstr "Įjungti dūmus"
 
 #: gui/options/options.js:20
 msgid "Show Sky"
-msgstr ""
+msgstr "Rodyti dangų"
 
 #: gui/options/options.js:20
 msgid "Render Sky"
@@ -797,11 +797,11 @@ msgstr ""
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Vienetų siluetai"
 
 #: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Rodyti vienetų esančių už pastatų siluetus"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
@@ -809,11 +809,11 @@ msgstr ""
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Sklandūs šešėliai"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
-msgstr ""
+msgstr "Aukštos kokybės bangavimas"
 
 #: gui/options/options.js:24
 msgid ""
@@ -823,7 +823,7 @@ msgstr ""
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
-msgstr ""
+msgstr "Realus vandens gylis"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
@@ -831,11 +831,11 @@ msgstr ""
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
-msgstr ""
+msgstr "Vandens atspindžiai"
 
 #: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Leisti vandeniui atspindėti veidrodinį vaizdą"
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
@@ -847,19 +847,19 @@ msgstr ""
 
 #: gui/options/options.js:28
 msgid "Shore Foam"
-msgstr ""
+msgstr "Jūros pūta pakrantėse"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr ""
+msgstr "Rodyti bangų sumuštas vandens pūtas pakrantėse, priklausomai nuo bangų dydžio"
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
-msgstr ""
+msgstr "Pakrančių bangos"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr ""
+msgstr "Rodyti lūžtančias bangas šalia pakrančių (reikia „Aukštos kokybės bangavimo“)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
@@ -979,7 +979,7 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr ""
+msgstr "Norėdamas gauti daugiau informacijos spausk „Skaityti daugiau“ arba „Gerai“, norėdamas tęsti."
 
 #: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
@@ -992,7 +992,7 @@ msgstr "Skaityti daugiau"
 #: gui/pregame/mainmenu.js:279 gui/session/session.js:917
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "Versija: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:310
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -1009,7 +1009,7 @@ msgstr "Scenarijų kūrimo įrankis neprieinamas arba jo nepavyko užkrauti."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
-msgstr ""
+msgstr "Klaida"
 
 #: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
@@ -1018,7 +1018,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Techninė informacija"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1143,7 +1143,7 @@ msgstr ""
 
 #: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
 msgid "Pause"
-msgstr ""
+msgstr "Pauzė"
 
 #: gui/session/menu.js:2
 msgid "Resume"
@@ -1185,17 +1185,17 @@ msgstr ""
 
 #: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
 msgid "Ally"
-msgstr ""
+msgstr "Sąjungininkas"
 
 #: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
 msgid "Neutral"
-msgstr ""
+msgstr "Neutralus"
 
 #: gui/session/menu.js:286 gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
-msgstr ""
+msgstr "Priešas"
 
 #: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
@@ -1428,7 +1428,7 @@ msgstr ""
 #: gui/session/messages.js:482
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Tave užpuolė %(attacker)s!"
 
 #: gui/session/messages.js:499 gui/session/messages.js:504
 #, python-format
@@ -1543,7 +1543,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Intervalas:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
@@ -1556,7 +1556,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:251
 msgid "meters"
-msgstr ""
+msgstr "metrai"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
@@ -1628,7 +1628,7 @@ msgstr ""
 
 #: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
 msgid "Health:"
-msgstr ""
+msgstr "Gyvybės:"
 
 #: gui/session/session.js:632
 #, python-format
@@ -1687,23 +1687,23 @@ msgstr ""
 
 #: gui/session/unit_commands.js:228
 msgid "Violent"
-msgstr ""
+msgstr "Smurtinis"
 
 #: gui/session/unit_commands.js:231
 msgid "Aggressive"
-msgstr ""
+msgstr "Agresyvus"
 
 #: gui/session/unit_commands.js:234
 msgid "Passive"
-msgstr ""
+msgstr "Pasyvus"
 
 #: gui/session/unit_commands.js:237
 msgid "Defensive"
-msgstr ""
+msgstr "Gynybinis"
 
 #: gui/session/unit_commands.js:240
 msgid "Standground"
-msgstr ""
+msgstr "Nepasiduodantis"
 
 #: gui/session/unit_commands.js:441
 msgid "Insufficient population capacity:"
@@ -1747,7 +1747,7 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Akmenynėje sienoje padaryti miesto vartus"
 
 #: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
@@ -1760,11 +1760,11 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
-msgstr ""
+msgstr "Užrakinti vartus"
 
 #: gui/session/unit_commands.js:1197
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Atrakinti vartus"
 
 #: gui/session/unit_commands.js:1246
 msgid "Pack"
@@ -1776,11 +1776,11 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1250
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Nutraukti pakavimą"
 
 #: gui/session/unit_commands.js:1252
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Nutraukti išpakavimą"
 
 #: gui/session/utility_functions.js:155 gui/session/utility_functions.js:202
 #: gui/session/utility_functions.js:231 gui/session/utility_functions.js:257
@@ -1866,7 +1866,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:336
 msgid "Back to Work"
-msgstr ""
+msgstr "Grįžti prie darbo"
 
 #: gui/session/utility_functions.js:345
 msgid "Guard"
@@ -1937,7 +1937,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:575
 msgid "Speed:"
-msgstr ""
+msgstr "Greitis:"
 
 #: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
 #, python-format
@@ -1974,7 +1974,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:634
 msgid "???"
-msgstr ""
+msgstr "???"
 
 #: gui/session/utility_functions.js:664
 #, python-format
@@ -1983,7 +1983,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
 #: gui/session/utility_functions.js:703
@@ -2022,7 +2022,7 @@ msgstr ""
 #: gui/session/utility_functions.js:741
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Maistas"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2038,7 +2038,7 @@ msgstr ""
 #: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metalas"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2070,7 +2070,7 @@ msgstr ""
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Akmuo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2094,7 +2094,7 @@ msgstr ""
 #: gui/session/utility_functions.js:759
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Mediena"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2126,7 +2126,7 @@ msgstr ""
 #: gui/session/utility_functions.js:776
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Maistas"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2142,7 +2142,7 @@ msgstr ""
 #: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metalas"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2174,7 +2174,7 @@ msgstr ""
 #: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Akmuo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2198,7 +2198,7 @@ msgstr ""
 #: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Mediena"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2601,7 +2601,7 @@ msgstr ""
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Pastatyk kalvę ir ištyrinėk pėstininkų ruošimo technologiją (ikona su kardu), kad pagerintum pėstininkų artimas atakas."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
@@ -2668,7 +2668,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:180
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "sąjungininkas"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2676,7 +2676,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:183
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "savas"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2684,7 +2684,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:186
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "neutralus"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -2692,7 +2692,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:189
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "priešas"
 
 #: simulation/components/BuildRestrictions.js:195
 #, python-format
@@ -2724,48 +2724,48 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:298
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "savas"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:300
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "sąjungininkas"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:302
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "neutralus"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "priešas"
 
 #: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "Maistas"
 
 #: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "Mediena"
 
 #: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "Metalas"
 
 #: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "Akmuo"
 
 #: simulation/components/Player.js:236
 #, python-format
@@ -2830,11 +2830,11 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:16 (caption)
 msgid "Civilizations"
-msgstr ""
+msgstr "Civilizacijos"
 
 #: gui/civinfo/civinfo.xml:28 (caption)
 msgid "Civilization Selection"
-msgstr ""
+msgstr "Civilizacijos pasirinkimas"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
@@ -2851,7 +2851,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Įkeliami žemėlapio duomenys. Palaukite..."
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
@@ -2888,7 +2888,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "Žemėlapio tipas:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
@@ -2900,7 +2900,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "Žaidėjų skaičius:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -2954,31 +2954,31 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
-msgstr ""
+msgstr "Žaidimo greitis:"
 
 #: gui/gamesetup/gamesetup.xml:274 (tooltip)
 msgid "Select game speed."
-msgstr ""
+msgstr "Pasirinkite žaidimo greitį."
 
 #: gui/gamesetup/gamesetup.xml:284 (tooltip)
 msgid "Select victory condition."
-msgstr ""
+msgstr "Nustatykite pergalės sąlygas."
 
 #: gui/gamesetup/gamesetup.xml:290 (caption)
 msgid "Population Cap:"
-msgstr ""
+msgstr "Populiacijos limitas:"
 
 #: gui/gamesetup/gamesetup.xml:294 (tooltip)
 msgid "Select population cap."
-msgstr ""
+msgstr "Nustatykite populiacijos limitą."
 
 #: gui/gamesetup/gamesetup.xml:300 (caption)
 msgid "Starting Resources:"
-msgstr ""
+msgstr "Resursai pradžiai:"
 
 #: gui/gamesetup/gamesetup.xml:304 (tooltip)
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Nustatykite resursų kiekius žaidimo pradžioje."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -3067,7 +3067,7 @@ msgstr ""
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
-msgstr ""
+msgstr "Vardas"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
@@ -3079,7 +3079,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "Žaidėjai:"
 
 #: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
@@ -3091,7 +3091,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:115 (caption)
 msgid "Main Menu"
-msgstr ""
+msgstr "Pagrindinis meniu"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
@@ -3100,12 +3100,12 @@ msgstr ""
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Dydis"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Tipas"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -3125,11 +3125,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Sukurti naują anketą"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Prisijungti prie sukurtos anketos"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3141,19 +3141,19 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
-msgstr ""
+msgstr "Slaptažodis:"
 
 #: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
-msgstr ""
+msgstr "Registracija"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr ""
+msgstr "Pakartoti slaptažodį:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Perskaičiau ir sutinku su visomis naudojimosi sąlygomis:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3225,7 +3225,7 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informacija"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
@@ -3241,11 +3241,11 @@ msgstr ""
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
-msgstr ""
+msgstr "Grafikos nustatymai"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
-msgstr ""
+msgstr "Garso nustatymai"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
@@ -3254,7 +3254,7 @@ msgstr ""
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
 #: gui/session/session.xml:754 (caption)
 msgid "Save"
-msgstr ""
+msgstr "Išsaugoti"
 
 #: gui/pregame/mainmenu.xml:98
 msgid "Help improve 0 A.D.!"
@@ -3286,19 +3286,19 @@ msgstr ""
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr ""
+msgstr "ĮSPĖJIMAS: šis žaidimas vis dar yra ankstyvoje kūrimo stadijoje. Yra dar daug nepridėtų funkcijų ir savybių."
 
 #: gui/pregame/mainmenu.xml:502
 msgid "Get involved at: play0ad.com"
-msgstr ""
+msgstr "Prisijunk prie play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Įjungti atsiliepimus"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Išjungti atsiliepimus"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3315,7 +3315,7 @@ msgstr "Kampanijos"
 #: gui/pregame/mainmenu.xml:193 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr ""
+msgstr "Pergyvenk istorines karines kampanijas. [DAR NEVEIKIA]"
 
 #: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
@@ -3377,7 +3377,7 @@ msgstr "Mokytis žaisti"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Atverti žaidimo 0 A.D. instrukcijas."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3414,15 +3414,15 @@ msgstr "Išeiti"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Išjungia žaidimą."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Padėk išversti!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Spauskite ir savo interneto naršyklėje užeisite į 0 A.D. vertėjų svetainę."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3473,7 +3473,7 @@ msgstr ""
 
 #: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
-msgstr ""
+msgstr "Pakeisti perspektyvą"
 
 #: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
@@ -3517,15 +3517,15 @@ msgstr ""
 
 #: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
-msgstr ""
+msgstr "Taktinė pauzė"
 
 #: gui/session/session.xml:370 (caption)
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Spustelkite, norėdami pratęsti žaidimą"
 
 #: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomatija"
 
 #: gui/session/session.xml:440 (caption)
 msgid "Theirs"
@@ -3533,15 +3533,15 @@ msgstr ""
 
 #: gui/session/session.xml:443 (caption)
 msgid "A"
-msgstr ""
+msgstr "S"
 
 #: gui/session/session.xml:447 (caption)
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/session.xml:451 (caption)
 msgid "E"
-msgstr ""
+msgstr "P"
 
 #: gui/session/session.xml:455 (caption)
 msgid "Tribute"
@@ -3563,7 +3563,7 @@ msgstr ""
 
 #: gui/session/session.xml:592 (tooltip)
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "Populiacija (faktinė/maksimali)"
 
 #: gui/session/session.xml:605 (tooltip)
 msgid "Choose player to view"
@@ -3575,15 +3575,15 @@ msgstr ""
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
-msgstr ""
+msgstr "Žaidimo greitis"
 
 #: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
-msgstr ""
+msgstr "Pasirinkti žaidimo greitį"
 
 #: gui/session/session.xml:706 (caption)
 msgid "MENU"
-msgstr ""
+msgstr "MENIU"
 
 #: gui/session/session.xml:767 (caption)
 msgid "Settings"
@@ -3591,7 +3591,7 @@ msgstr ""
 
 #: gui/session/session.xml:791 (caption)
 msgid "Resign"
-msgstr ""
+msgstr "Atsistatydinti"
 
 #: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
 #: (tooltip)
@@ -3606,7 +3606,7 @@ msgstr ""
 
 #: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
-msgstr ""
+msgstr "Rasti nieko neveikiantį darbininką"
 
 #: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
@@ -3614,11 +3614,11 @@ msgstr ""
 
 #: gui/session/session.xml:1017 (tooltip)
 msgid "Stamina:"
-msgstr ""
+msgstr "Ištvermė:"
 
 #: gui/session/session.xml:1059 (tooltip)
 msgid "Experience"
-msgstr ""
+msgstr "Patirtis"
 
 #: gui/session/session.xml:1127 (tooltip)
 msgid "Hitpoints"
@@ -3630,7 +3630,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:12 (caption)
 msgid "Welcome to 0 A.D. !"
-msgstr ""
+msgstr "Sveiki prisijungę prie 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
@@ -3650,11 +3650,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:70 (caption)
 msgid "Buildings"
-msgstr ""
+msgstr "Pastatai"
 
 #: gui/summary/summary.xml:77 (caption)
 msgid "Units"
-msgstr ""
+msgstr "Vienetai"
 
 #: gui/summary/summary.xml:84 (caption)
 msgid "Resources"
@@ -3739,7 +3739,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
-msgstr ""
+msgstr "Darbininkas"
 
 #: gui/summary/summary.xml:417 (caption)
 #: simulation/templates/template_unit_cavalry.xml:32
@@ -3748,11 +3748,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "Čempionas"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
-msgstr ""
+msgstr "Laivynas"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
@@ -3796,7 +3796,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
-msgstr ""
+msgstr "Moteriškėjimas"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
@@ -3932,7 +3932,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Sutinkate:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
@@ -4028,31 +4028,31 @@ msgstr ""
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
-msgstr ""
+msgstr "Valdymas:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr ""
+msgstr "• Kairiu pelytės mygtuku pažymėkite žaidimo vienetus."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr ""
+msgstr "• Spustelėję ir traukdami kairįjį pelytės mygtuką pažymėsite žaidimo vienetų grupes."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr ""
+msgstr "• Dešiniuoju pelytės mygtuku nurodysite vienetams jų tikslą ar taikinį."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr ""
+msgstr "• Klaviatūros krypčių arba W, A, S ir D klavišais judinama kamera."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr ""
+msgstr "• Pasukti kamerą galima kartu paspaudus Ctrl ir krypčių klavišus arba laikant nuspaustą Shift ir sukant pelytės ratuką."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr ""
+msgstr "• Vaizdas nutolinamas arba priartinamas pelytės ratuku arba „+“ ir „-“ klavišais."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -4118,7 +4118,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr ""
+msgstr "Kai būsite pasiruošęs, spauskite „Pradėti žaidimą“."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -4134,15 +4134,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter: perjungiamas viso ekrano ir lango režimas"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
-msgstr ""
+msgstr "~ arba F9: Rodyti/slėpti konsolę"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F: Rodyti/slėpti kadrų kaitos dažnį per sekundę (FPS)"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -4159,7 +4159,7 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: padaryti momentinę ekrano nuotrauką (ji .png formatu bus išsaugota vietoje, kuri bus nurodyta viršutiniame kairiajame kampe, o jei nespėsite įsidėmėti, galėsite pamatyti atsidarę konsolę/žurnalus)"
 
 #: gui/manual/intro.txt:46
 msgid ""
@@ -4198,15 +4198,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
-msgstr ""
+msgstr "Shift + F5: greitas žaidimo išsaugojimas"
 
 #: gui/manual/intro.txt:54
 msgid "Shift + F8: Quickload"
-msgstr ""
+msgstr "Shift + F8: greitas išsaugoto žaidimo paleidimas"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr ""
+msgstr "F10: Atverti/užverti meniu"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
@@ -4214,7 +4214,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: uždaryti visas dialogų korteles (pokalbių, menių) arba atžymėti pažymėtus vienetus"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -4234,15 +4234,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ""
+msgstr ",: pažymėti nieko neveikiančius karius"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ""
+msgstr ".: pažymėti nieko neveikiančius darbininkus (įskaitant galinčius kariauti piliečius)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: sustabdyti pažymėtus vienetus."
 
 #: gui/manual/intro.txt:65
 msgid ""
@@ -4420,15 +4420,15 @@ msgstr ""
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: atstatyti kameros pritraukimą ir pasukimą"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: priartinti (laikykite nuspaustą, kad artintumėte daugiau)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: nutolinti (laikykite nuspaustą, kad tolintumėte daugiau)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
@@ -4450,7 +4450,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: Pasukti pastatą 15 laipsnių laikrodžio rodyklės kryptimi"
 
 #: gui/manual/intro.txt:115
 msgid ""
@@ -4469,7 +4469,7 @@ msgstr ""
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Informacija, kuri bus nusiųsta į mūsų serverį:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
@@ -5062,7 +5062,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "„Aš esu pasaulio pilietis.“ - Diogenas Sinopietis"
 
 #: gui/text/quotes.txt:101
 msgid ""
@@ -5521,7 +5521,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "KALVĖ"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -5581,7 +5581,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "KELTŲ KOVOS BARŽA"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
@@ -5797,7 +5797,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "SUNKUSIS KARO LAIVAS"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
@@ -6022,25 +6022,25 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "KOVOS DRAMBLIAI"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "- Milžiniški žvėrys iš Afrikos ir Indijos, ištreniruoti karui."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- Kainuoja daug maisto ir metalo, bet yra ypač stiprūs. Stipriausi prieš pastatus ir kavaleriją."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- Pažeidžiami pėstininkų."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- Galimi Maurjams, Ptolemėjams, Seleukidams ir Kartaginiečiams."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -6064,27 +6064,27 @@ msgstr ""
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.5x)"
-msgstr ""
+msgstr "Vėžliškas (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.75x)"
-msgstr ""
+msgstr "Lėtas (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normalus (1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Greitas (1.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Labai greitas (1.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Beprotiškas (2x)"
 
 #: simulation/data/player_defaults.jsonPlayerData[1].Name
 #: maps/scenarios/Arcadia 02.xml:41:PlayerData[0].Name
@@ -6284,52 +6284,52 @@ msgstr ""
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "Mažytis"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Mažas"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "Mažas (2 žaidėjams)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
-msgstr ""
+msgstr "Vidutiniškai"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "Vidutinis (3 žaidėjams)"
 
 #: simulation/data/map_sizes.jsonSizes[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "Normalus"
 
 #: simulation/data/map_sizes.jsonSizes[3].LongName
 msgid "Normal (4 players)"
-msgstr ""
+msgstr "Normalus (4 žaidėjams)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Didelis"
 
 #: simulation/data/map_sizes.jsonSizes[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "Didelis (6 žaidėjams)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Labai didelis"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "Labai didelis (8 žaidėjams)"
 
 #: simulation/data/map_sizes.jsonSizes[6].Name
 #: simulation/data/map_sizes.jsonSizes[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "Milžiniškas"
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
@@ -6650,7 +6650,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_healer_b.xml:6
 #: simulation/templates/units/gaul_support_healer_b.xml:6
 msgid "Druides"
-msgstr ""
+msgstr "Druidai"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
 #: civs/gaul.jsonTeamBonuses[0].History
@@ -6989,7 +6989,7 @@ msgstr ""
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Visiems pirkliams ir laivams +25% prie matymo ribos."
 
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
@@ -7011,7 +7011,7 @@ msgstr ""
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
-msgstr ""
+msgstr "Kolonizacija"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
@@ -7051,7 +7051,7 @@ msgstr ""
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "Karinių laivų statykla"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -7310,7 +7310,7 @@ msgstr ""
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "10-15% pigesnės technologijos."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
@@ -7955,7 +7955,7 @@ msgstr ""
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr ""
+msgstr "Evangelizmas."
 
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
@@ -7966,12 +7966,12 @@ msgstr ""
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
-msgstr ""
+msgstr "Čandragupta Maurjas"
 
 #: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/maur_hero_ashoka.xml:32
 msgid "Ashoka the Great"
-msgstr ""
+msgstr "Ašoka Didysis"
 
 #: civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
@@ -8060,7 +8060,7 @@ msgstr ""
 #: civs/maur.jsonStructures[0].Name
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Dramblių tvartas"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""
@@ -8561,13 +8561,13 @@ msgstr ""
 #: civs/ptol.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
-msgstr ""
+msgstr "Švyturys"
 
 #: civs/ptol.jsonStructures[2].Special
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr ""
+msgstr "Pastatytas pakrantėje pašalina visas tamsumas virš vandens ir atidengia visą vandens telkinį iki visų pakrančių. Galima turėti tik 1."
 
 #: civs/ptol.jsonStructures[2].History
 msgid ""
@@ -9224,7 +9224,7 @@ msgstr ""
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "+25% gyvybių pėstininkams su ietimis, bet taip pat +10% pailgės jų paruošimas."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -9599,7 +9599,7 @@ msgstr ""
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
-msgstr ""
+msgstr "Salos"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
@@ -9617,7 +9617,7 @@ msgstr ""
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
-msgstr ""
+msgstr "Ežeras"
 
 #: maps/random/latium.jsonsettings.Description
 msgid ""
@@ -9696,7 +9696,7 @@ msgstr ""
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
-msgstr ""
+msgstr "Oazė"
 
 #: maps/random/persian_highlands.jsonsettings.Description
 msgid ""
@@ -9781,7 +9781,7 @@ msgstr ""
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
-msgstr ""
+msgstr "Daug nedidelių salų susijungusių siaurais praėjimais."
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
@@ -9803,7 +9803,7 @@ msgstr ""
 
 #: maps/random/the_nile.jsonsettings.Name
 msgid "The Nile"
-msgstr ""
+msgstr "Nilas"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map"
@@ -10339,7 +10339,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
-msgstr ""
+msgstr "+2 atakos visiems vienetams su kardais."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -10449,11 +10449,11 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +25% farming rate."
-msgstr ""
+msgstr "Darbininkai aprūpinami geležiniais plūgais. +25% ūkininkavimo tempas."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
-msgstr ""
+msgstr "Geležinis plūgas"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 msgid "Increases wood gathering rates for trees."
@@ -10690,7 +10690,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "Karo lauko medicina"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -11276,7 +11276,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr ""
+msgstr "Suteikia galimybę ruošti moteris namuose."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -11506,7 +11506,7 @@ msgstr ""
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr ""
+msgstr "Keltų samdytų karių apmokymo laikas sutrumpėjo."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
@@ -11515,7 +11515,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
-msgstr ""
+msgstr "Keltų aljansas"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
@@ -12075,7 +12075,7 @@ msgstr ""
 #: simulation/templates/template_structure_civic_house.xml:30
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
-msgstr ""
+msgstr "Namas"
 
 #: simulation/templates/template_structure_civic_temple.xml:37
 msgid ""
@@ -12122,7 +12122,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr ""
+msgstr "Akmeninė siena"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
@@ -12206,7 +12206,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr ""
+msgstr "Kalvė"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
@@ -12254,7 +12254,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "Tai specialus, konkrečios civilizacijos unikalus pastatas."
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
@@ -12264,7 +12264,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
-msgstr ""
+msgstr "Stebuklas"
 
 #: simulation/templates/template_unit.xml:37
 msgid "Unit"
@@ -12477,7 +12477,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "War Dog"
-msgstr ""
+msgstr "Karo šuo"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -12499,7 +12499,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry.xml:39
 #: simulation/templates/template_unit_hero_ranged.xml:31
 msgid "Hero"
-msgstr ""
+msgstr "Herojus"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:40
 msgid "Hero Cavalry"
@@ -12603,7 +12603,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:37
 msgid "Spearman"
-msgstr ""
+msgstr "Ietininkas"
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:54
 msgid ""
@@ -12687,7 +12687,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
-msgstr ""
+msgstr "Žvejybos laivelis"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:28
 msgid ""
@@ -12857,7 +12857,7 @@ msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Graikų Polis"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -12941,7 +12941,7 @@ msgstr ""
 
 #: simulation/templates/formations/wedge.xml:5
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "reikia 3 kavalerijos vienetų"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -13011,7 +13011,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
-msgstr ""
+msgstr "Gazelė"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
@@ -13023,7 +13023,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
-msgstr ""
+msgstr "Ožka"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Horse"
@@ -13091,7 +13091,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "Šiaurės vilkas"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
@@ -13179,7 +13179,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "Alyvmedis"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -14099,7 +14099,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
-msgstr ""
+msgstr "Konstruoti ir taisyti galingus karo laivus."
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Cothon"
@@ -14137,7 +14137,7 @@ msgstr ""
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "Ruošti galų herojus ir čempionus. Konstruoti apgulties taranus."
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -14196,7 +14196,7 @@ msgstr ""
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr ""
+msgstr "Treniruoti herojus."
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -15289,7 +15289,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
-msgstr ""
+msgstr "Atėnų moteris"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaïkós"
@@ -15449,7 +15449,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
-msgstr ""
+msgstr "Keltų moteris"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:13
 #: simulation/templates/units/celt_support_female_citizen.xml:18
@@ -15486,7 +15486,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:12
 msgid "Gallic Mercenary Cavalry"
-msgstr ""
+msgstr "Galų samdinių kavalerija"
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:13
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:13
@@ -15677,7 +15677,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
-msgstr ""
+msgstr "Kartaginos moteris"
 
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
@@ -15969,7 +15969,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_support_female_citizen.xml:6
 msgid "Greek Woman"
-msgstr ""
+msgstr "Graikų moteris"
 
 #: simulation/templates/units/hele_support_female_citizen.xml:5
 msgid "Gýnē Hellenikos"
@@ -16134,7 +16134,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
-msgstr ""
+msgstr "Makedonijos moteris"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gýnē Makedonikós"
@@ -16158,7 +16158,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr ""
+msgstr "Indų lengvoji kavalerija"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
@@ -16191,7 +16191,7 @@ msgstr ""
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr ""
+msgstr "Indų karo dramblys"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -16300,7 +16300,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_ship_fishing.xml:9
 msgid "Fisherman"
-msgstr ""
+msgstr "Žvejys"
 
 #: simulation/templates/units/maur_ship_fishing.xml:10
 msgid "Matsyapalak"
@@ -16332,7 +16332,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_support_female_citizen.xml:6
 msgid "Indian Woman"
-msgstr ""
+msgstr "Indijos moteris"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
@@ -16569,7 +16569,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_support_female_citizen.xml:6
 msgid "Mesopotamian Woman"
-msgstr ""
+msgstr "Mesopotamijos moteris"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
@@ -16757,7 +16757,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:11
 msgid "Egyptian Woman"
-msgstr ""
+msgstr "Egipto moteris"
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:10
 msgid "Gýnē Aigyptiakós"
@@ -17482,11 +17482,11 @@ msgstr ""
 
 #: maps/scenarios/Demo_Trading.xml:31:Description
 msgid "A demonstration of the new trading feature."
-msgstr ""
+msgstr "Naujos prekybos funkcijos demonstracijos."
 
 #: maps/scenarios/Demo_Trading.xml:31:Name
 msgid "Trading Demo"
-msgstr ""
+msgstr "Prekybos demonstracija"
 
 #: maps/scenarios/Eire and Albion.xml:31:Description
 msgid ""
@@ -17511,11 +17511,11 @@ msgstr ""
 
 #: maps/scenarios/Fishing_demo.xml:31:Name
 msgid "Fishing Demo"
-msgstr ""
+msgstr "Žvejybos demonstracija"
 
 #: maps/scenarios/Fishing_demo.xml:31:Description
 msgid "Test out fishing with a fishing boat. Still in development."
-msgstr ""
+msgstr "Išmėginkite žvejybą žvejų laiveliais. Vis dar kūrimo stadijoje."
 
 #: maps/scenarios/Flight_demo.xml:31:Description
 msgid "Has some experimental fighter plane prototypes."
@@ -17681,7 +17681,7 @@ msgstr ""
 
 #: maps/scenarios/Polynesia.xml:42:Description
 msgid "Demo map for new fancy water effects."
-msgstr ""
+msgstr "Demonstracinis naujų vandens efektų žemėlapis."
 
 #: maps/scenarios/Polynesia.xml:42:PlayerData[0].Name
 msgid "Samoa"
@@ -17926,11 +17926,11 @@ msgstr ""
 
 #: maps/scenarios/Ship Formations.xml:31:PlayerData[0].Name
 msgid "Ships"
-msgstr ""
+msgstr "Laivai"
 
 #: maps/scenarios/Ship Formations.xml:31:Name
 msgid "Ship Formations"
-msgstr ""
+msgstr "Laivų rikiuotės"
 
 #: maps/scenarios/Siwa Oasis.xml:31:Description
 msgid ""
@@ -18017,11 +18017,11 @@ msgstr ""
 
 #: maps/scenarios/Units_demo.xml:92:Name
 msgid "Units Demo"
-msgstr ""
+msgstr "Vienetų demonstracija"
 
 #: maps/scenarios/Units_demo.xml:92:Description
 msgid "Every unit in the game."
-msgstr ""
+msgstr "Kiekvienas žaidime esantis vienetas."
 
 #: maps/scenarios/WallTest.xml:31:Description
 #: maps/scenarios/_default.xml:32:Description maps/scenarios/temperate
@@ -18043,7 +18043,7 @@ msgstr ""
 
 #: maps/scenarios/We are Legion.xml:31:Name
 msgid "We Are Legion"
-msgstr ""
+msgstr "Mes esame legionas"
 
 #: maps/scenarios/We are Legion.xml:31:Description
 msgid "A quick battle demo map using Roman legionnaires."
@@ -18112,7 +18112,7 @@ msgstr ""
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Name
 msgid "Alpine Valleys (2)"
-msgstr ""
+msgstr "Alpių slėniai (2)"
 
 #: maps/skirmishes/Bactria (2).xml:42:Description
 msgid ""
@@ -18160,7 +18160,7 @@ msgstr ""
 
 #: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
 msgid "Corsica and Sardinia (4)"
-msgstr ""
+msgstr "Korsika ir Sardinija (4)"
 
 #: maps/skirmishes/Cycladic Archipelago (2).xml:42:Description
 msgid "A \"small island\"-style map set in the Aegean Sea."
@@ -18226,7 +18226,7 @@ msgstr ""
 
 #: maps/skirmishes/Gallic Fields (3).xml:42:Name
 msgid "Gallic Fields (3)"
-msgstr ""
+msgstr "Galijos laukai (3)"
 
 #: maps/skirmishes/Gambia River (3).xml:42:Description
 msgid ""
@@ -18237,7 +18237,7 @@ msgstr ""
 
 #: maps/skirmishes/Gambia River (3).xml:42:Name
 msgid "Gambia River (3)"
-msgstr ""
+msgstr "Gambijos upė (3)"
 
 #: maps/skirmishes/Golden Oasis (2).xml:42:Description
 msgid ""
@@ -18260,7 +18260,7 @@ msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:41:Name
 msgid "Greek Acropolis (2)"
-msgstr ""
+msgstr "Graikų Akropolis (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:41:Description
 msgid ""
@@ -18269,7 +18269,7 @@ msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:41:Name
 msgid "Greek Acropolis (4)"
-msgstr ""
+msgstr "Graikų Akropolis (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:Name
 msgid "Greek Acropolis Night (2)"
@@ -18423,7 +18423,7 @@ msgstr ""
 
 #: maps/skirmishes/Sicilia (2).xml:41:Name
 msgid "Sicilia (2)"
-msgstr ""
+msgstr "Sicilija (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Description
 msgid "A demo Skirmish map."

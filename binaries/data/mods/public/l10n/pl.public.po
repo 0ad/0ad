@@ -13,6 +13,7 @@
 # leszekleszek, 2014
 # Garrappachc <michal@garapich.pl>, 2013
 # Mar321 <grobelskimarcin@gmail.com>, 2013
+# inso_pl <hurricane.pl.96@gmail.com>, 2014
 # Kocieoko <polandlena@gmail.com>, 2014
 # krzychu188 <krzychu188@gmail.com>, 2014
 # TotalNoobPL <krzysztof.gurbala@yahoo.com>, 2013
@@ -21,7 +22,7 @@
 # leszekleszek, 2014
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # lacek, 2014
-# Garrappachc <michal@garapich.pl>, 2013
+# Garrappachc <michal@garapich.pl>, 2013-2014
 # OSWorld <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
 # OSWorld <michal.olber@osworld.pl>, 2013
@@ -40,8 +41,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-07 13:55+0000\n"
-"Last-Translator: miragae <miragae@gmail.com>\n"
+"PO-Revision-Date: 2014-05-18 15:52+0000\n"
+"Last-Translator: Garrappachc <michal@garapich.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,9 +120,9 @@ msgstr "Technologie specjalne"
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Budynek Specjalny"
+msgstr[1] "Budynki Specjalne"
+msgstr[2] "Budynki Specjalne"
 
 #: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -130,7 +131,7 @@ msgstr "Herosi"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Historia %(civilization)s"
 
 #: gui/common/functions_global_object.js:75
 #, python-format
@@ -437,7 +438,7 @@ msgstr "Nieprzypisane"
 #: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1578
 #, python-format
@@ -614,19 +615,19 @@ msgstr ""
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -636,7 +637,7 @@ msgstr ""
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:796
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -644,13 +645,13 @@ msgstr ""
 #: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -834,7 +835,7 @@ msgstr "Pokazuj zarys jednostek znajdujących się za budynkami"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "Filtrowanie cieni"
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
@@ -982,12 +983,12 @@ msgstr "wysłano poprawnie"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "błąd wysyłania (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "błąd wysyłania (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -1000,7 +1001,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sOstrzeżenie:%(endWarning)s Zdaje się że używasz grafiki bez shaderów (fixed function). Ta opcja zostanie usunięta w przyszłej wersji 0 A.D., dając możliwość używania bardziej zaawansowanych funkcjonalności. Polecamy wymianę Twojej karty graficznej na nowszy model, wspierający programy cieniujące."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -1060,39 +1061,39 @@ msgstr "Nie znaleziono zapisanych stanów gry"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Ten zapis gry może nie być zgodny:"
 
 #: gui/savedgames/load.js:48
 #, python-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "Potrzebuje wersji 0 A.D. %(requiredVersion)s, podczas gdy twoja wersja to %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "Nie używa żadnych modów, podczas gdy gra uruchomiona jest z \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "Potrzebuje moda \"%(requiredMod)s\", podczas gdy gra uruchomiona jest bez modów."
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "Potrzebuje moda \"%(requiredMod)s\", podczas gdy gra uruchomiona jest z \"%(currentMod)s\""
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Czy mimo wszystko chcesz kontynuować?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "Uwaga"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -1262,22 +1263,22 @@ msgstr[2] ""
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s oraz %(inactiveString)s."
 
 #: gui/session/menu.js:496
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s oraz %(garrisonedString)s."
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s oraz %(inactiveString)s."
 
 #: gui/session/menu.js:513 gui/session/menu.js:575
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:523
 #, python-format
@@ -1299,7 +1300,7 @@ msgstr ""
 #: gui/session/menu.js:533
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:542
 #, python-format
@@ -1313,13 +1314,13 @@ msgstr[2] ""
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jest %(inactiveString)s."
+msgstr[1] "Jest %(inactiveString)s."
+msgstr[2] "Jest %(inactiveString)s."
 
 #: gui/session/menu.js:555
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Nie ma statków kupieckich."
 
 #: gui/session/menu.js:561
 #, python-format
@@ -4796,7 +4797,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"Człowiek jest z natury zwierzęciem politycznym.\" - Arystoteles"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -4837,29 +4838,29 @@ msgstr ""
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
-msgstr ""
+msgstr "\"Wybieraj drogę, którą podążysz z rozwagą; lecz gdy nią podążysz, trzymaj się jej niezłomnie.\" - Bias z Prieny"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr ""
+msgstr "\"Głupotą jest rwać włosy z głowy z rozpaczy, bo łysina smutku nie leczy.\" - Bion z Borystenes"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr ""
+msgstr "\"To nie bogaty skąpiec posiada majątek, lecz majątek posiada jego.\" - Bion z Borystenes"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "\"Biada pokonanym\" - Brennus"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Tak zawsze kończą tyrani.\" - Marek Juniusz Brutus, po zamordowaniu Gajusza Juliusza Cezara"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -4873,7 +4874,7 @@ msgstr "\"Przybyłem, zobaczyłem, zwyciężyłem.\"  - Gajusz Julusz Cezar "
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Ludzie chętnie wierzą w to, czego pragną.\" - Gajusz Juliusz Cezar"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
@@ -4883,36 +4884,36 @@ msgstr "\"Kości zostały rzucone\" - Gajusz Julusz Cezar"
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Nie boję się wcale tych grubych i długowłosych ludzi. Boję się raczej tych innych, bladych i wysmukłych.\" - Gajusz Juliusz Cezar"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "\"Potrzeba złodzieja, żeby złapać złodzieja.\" - Kallimach"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr ""
+msgstr "\"Mędrcy uczą się więcej od głupców, niż głupcy od mędrców.\" - Kato Starszy"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr ""
+msgstr "\"A poza tym sądzę, że Kartaginę należy zniszczyć\". - Kato Starszy"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Wszyscy mężowie rządzą kobietami, my wszystkimi mężami, nami zaś kobiety.\" - Kato Starszy"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Bądź silny lub łagodny, w zależności od sytuacji.\" - Kato Starszy"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "\"Naj­gor­szym pa­nującym jest ta­ki, który nie pa­nuje nad sobą.\" - Kato Starszy"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -6521,7 +6522,7 @@ msgstr ""
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Gracz otrzymuje możliwość formowania jednostek walczących włócznią w Falangę, zwiększając ich atak i pancerz."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -8810,11 +8811,11 @@ msgstr ""
 
 #: civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr ""
+msgstr "Może zostać wybudowane na terytorium neutralnym lub terytorium wroga by dławić miasta przeciwnika."
 
 #: civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr ""
+msgstr "Wały ziemne budowane przez legionistów w czasie oblężeń."
 
 #: civs/rome.jsonHistory
 msgid ""
@@ -9253,7 +9254,7 @@ msgstr ""
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "+25% zdrowia dla piechoty z włóczniami, ale również +10% czas trenowania"
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -9458,7 +9459,7 @@ msgstr "Wyżyna Anatolijska"
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
-msgstr ""
+msgstr "Labirynt złożony z wysp o różnych kształtach i rozmiarach. Gracze zaczynają z większą ilością drewna niż zazwyczaj."
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
@@ -9516,7 +9517,7 @@ msgstr "Kanion"
 
 #: maps/random/continent.jsonsettings.Description
 msgid "All players starts on a continent surrounded by water."
-msgstr ""
+msgstr "Wszyscy gracze zaczynają grę na kontynencie otoczonym wodą."
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
@@ -9556,7 +9557,7 @@ msgstr "Archipelag Cyklady"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr ""
+msgstr "Głęboki, ciemny las w Germanii."
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
@@ -10292,7 +10293,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr ""
+msgstr "Długa włócznia skonstruowana specjalnie dla kawalerii."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -11718,7 +11719,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgstr "Szkolenie walki włócznią zwiększające obrażenie piechoty używającej włóczni."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
 msgid "Spearmen +2 hack attack."
@@ -12283,7 +12284,7 @@ msgstr "Pole"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "To jest specjalny budynek, unikalny dla danej cywilizacji."
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
@@ -12329,7 +12330,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Kawalerzysta z włócznią"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 msgid ""
@@ -12407,7 +12408,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "Elitarny Kawalerzysta z Włócznią"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
 msgid ""
@@ -12477,7 +12478,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Elitarny Włócznik"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
@@ -12558,7 +12559,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
-msgstr ""
+msgstr "Bohaterska kawaleria z włóczniami."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:60
 msgid ""
@@ -12600,7 +12601,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:33
 msgid "Hero Spearman"
-msgstr ""
+msgstr "Bohaterski Włócznik"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:54
 msgid ""
@@ -12800,7 +12801,7 @@ msgstr "Wieża oblężnicza"
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
-msgstr ""
+msgstr "Wsparcie"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:54
 msgid ""
@@ -14068,7 +14069,7 @@ msgstr ""
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "Buduj łodzie rybackie, aby zbierać mięso i statki handlowe, aby wymieniać się z innymi portami."
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
@@ -14656,7 +14657,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "Kolonia"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
@@ -15623,7 +15624,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:15
 msgid "Libyan Spearman"
-msgstr ""
+msgstr "Libijski włócznik"
 
 #: simulation/templates/units/cart_infantry_spearman_b.xml:16
 msgid "Sǝḫīr Ḥanīt"
@@ -16668,7 +16669,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_champion_elephant.xml:5
 msgid "Towered War Elephant"
-msgstr ""
+msgstr "Słoń Bojowy z Wieżyczką"
 
 #: simulation/templates/units/ptol_champion_elephant.xml:6
 msgid "Polémou Eléphantos"
@@ -16850,7 +16851,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:14
 msgid "Veteran Spearman"
-msgstr ""
+msgstr "Weteran Włócznik"
 
 #: simulation/templates/units/rome_infantry_spearman_b.xml:15
 msgid "Triarius"
@@ -17134,7 +17135,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
-msgstr ""
+msgstr "Seleucydzka triera"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
