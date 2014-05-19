@@ -1136,7 +1136,7 @@ var UnitFsmSpec = {
 					var cmpFormation = Engine.QueryInterface(this.entity, IID_Formation);
 					cmpFormation.SetRearrange(true);
 					cmpFormation.MoveMembersIntoFormation(false, false);
-					this.StartTimer(1000, 1000);
+					this.StartTimer(200, 200);
 
 					var target = this.order.data.target;
 					// Check if we are already in range, otherwise walk there
@@ -4279,7 +4279,14 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
 
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING")
+		if
+		(
+			cmpFormationAttack && 
+			cmpFormationAttack.CanAttackAsFormation() &&
+			cmpFormationUnitAI && 
+			cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.COMBAT.ATTACKING" &&
+			cmpFormationUnitAI.order.data.target == target
+		)
 			return true;
 	}
 
