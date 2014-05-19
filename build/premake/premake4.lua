@@ -269,13 +269,6 @@ function project_set_build_flags()
 					}
 				end
 
-				if arch == "x86" or arch == "amd64" then
-					buildoptions {
-						-- enable SSE intrinsics
-						"-msse"
-					}
-				end
-
 				if os.is("linux") or os.is("bsd") then
 					linkoptions { "-Wl,--no-undefined", "-Wl,--as-needed" }
 				end
@@ -283,8 +276,12 @@ function project_set_build_flags()
 				if arch == "x86" then
 					buildoptions {
 						-- To support intrinsics like __sync_bool_compare_and_swap on x86
-						-- we need to set -march to something that supports them
-						"-march=i686"
+						-- we need to set -march to something that supports them (i686).
+						-- We use pentium3 to also enable other features like mmx and sse,
+						-- while tuning for generic to have good performance on every
+						-- supported CPU.
+						-- Note that all these features are already supported on amd64.
+						"-march=pentium3 -mtune=generic"
 					}
 				end
 			end
