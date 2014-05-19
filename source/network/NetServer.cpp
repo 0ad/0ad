@@ -618,7 +618,6 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 	// back their old player ID
 
 	i32 playerID = -1;
-	bool foundPlayerID = false;
 
 	// Try to match GUID first
 	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
@@ -626,36 +625,25 @@ void CNetServerWorker::AddPlayer(const CStr& guid, const CStrW& name)
 		if (!it->second.m_Enabled && it->first == guid && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
 		{
 			playerID = it->second.m_PlayerID;
-			foundPlayerID = true;
 			m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
-			break;
+			goto found;
 		}
 	}
 
 	// Try to match username next
-	if (!foundPlayerID)
+	for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
 	{
-		for (PlayerAssignmentMap::iterator it = m_PlayerAssignments.begin(); it != m_PlayerAssignments.end(); ++it)
+		if (!it->second.m_Enabled && it->second.m_Name == name && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
 		{
-			if (!it->second.m_Enabled && it->second.m_Name == name && usedIDs.find(it->second.m_PlayerID) == usedIDs.end())
-			{
-				playerID = it->second.m_PlayerID;
-				foundPlayerID = true;
-				m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
-				break;
-			}
+			playerID = it->second.m_PlayerID;
+			m_PlayerAssignments.erase(it); // delete the old mapping, since we've got a new one now
+			goto found;
 		}
 	}
 
-	// Otherwise pick the first free player ID
-	if (!foundPlayerID)
-	{
-		for (playerID = 1; usedIDs.find(playerID) != usedIDs.end(); ++playerID)
-		{
-			// (do nothing)
-		}
-	}
+	// Otherwise leave the player ID as -1 (observer) and let gamesetup change it as needed.
 
+found:
 	PlayerAssignment assignment;
 	assignment.m_Enabled = true;
 	assignment.m_Name = name;
