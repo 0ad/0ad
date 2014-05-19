@@ -514,7 +514,17 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				var [trainEntLimit, trainEntCount, canBeAddedCount, trainEntLimitChangers] =
 					getEntityLimitAndCount(playerState, entType);
 				tooltip += formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers);
-
+				if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
+				{
+					if (template.health)
+						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + template.health;
+					if (template.attack)
+						tooltip += "\n" + getEntityAttack(template);
+					if (template.armour)
+						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Armour") + ":[/font] " + armorTypesToText(template.armour);
+					if (template.speed)
+						tooltip += "\n" + getEntitySpeed(template);
+				}
 				tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) + "[/color]";
 				break;
 

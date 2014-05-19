@@ -9,6 +9,7 @@ var options = {
 		[translate("Windowed Mode"), translate("Start 0 A.D. in a window"), {"config":"windowed"}, "boolean"],
 		[translate("Background Pause"), translate("Pause single player games when window loses focus"), {"config":"pauseonfocusloss"}, "boolean"],
 		[translate("Disable Welcome Screen"), translate("If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu."), {"config":"splashscreendisable"}, "boolean"],
+		[translate("Detailed Tooltips"), translate("Show detailed tooltips for trainable units in unit-producing buildings."), {"config":"showdetailedtooltips"}, "boolean"],
 		[translate("Developer Overlay"), translate("Show overlay in-game with options such as reveal map, control all units, and change perspective. Designed for use by developers"), {"config":"developeroverlay.enable"}, "boolean"],
 	],
 	"graphicsSetting":
