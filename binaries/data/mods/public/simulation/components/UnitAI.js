@@ -2792,6 +2792,21 @@ var UnitFsmSpec = {
 							if (cmpGarrisonHolder.Garrison(this.entity))
 							{
 								this.isGarrisoned = true;
+
+								if (this.formationController)
+								{
+									var cmpFormation = Engine.QueryInterface(this.formationController, IID_Formation);
+									if (cmpFormation)
+									{
+										// disable rearrange for this removal,
+										// but enable it again for the next
+										// move command
+										var rearrange = cmpFormation.rearrange;
+										cmpFormation.SetRearrange(false);
+										cmpFormation.RemoveMembers([this.entity]);
+										cmpFormation.SetRearrange(rearrange);
+									}
+								}
 								
 								// Check if we are garrisoned in a dropsite
 								var cmpResourceDropsite = Engine.QueryInterface(target, IID_ResourceDropsite);
