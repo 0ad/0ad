@@ -7,13 +7,14 @@
 # Sa3ana3a <sa3ana3a@abv.bg>, 2014
 # iron4o <ironsmile@gmail.com>, 2014
 # Sa3ana3a <sa3ana3a@abv.bg>, 2014
+# yoreei <yoreei.grigorov@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-19 07:21+0000\n"
+"Last-Translator: yoreei <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr ""
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "Бота ще бъде изключен за този играч."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -50,7 +51,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "Средно"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -81,7 +82,7 @@ msgstr[1] ""
 
 #: gui/civinfo/civinfo.js:117
 msgid "Special Technologies"
-msgstr ""
+msgstr "Специални технологии"
 
 #: gui/civinfo/civinfo.js:129
 #: simulation/templates/template_structure_special.xml:42
@@ -167,7 +168,7 @@ msgstr ""
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "Непозната причина"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
@@ -233,7 +234,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "Средно"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
@@ -256,11 +257,11 @@ msgid ""
 "%(warning)s The AI does not support naval maps and may cause severe "
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only."
-msgstr ""
+msgstr "%(warning)s Ботът не поддържа морски карти и може да окаже драстични проблеми с производителността. Морските карти се препоръчват за игра само с човешки опоненти."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
-msgstr ""
+msgstr "Предупреждение:"
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the main menu."
@@ -284,24 +285,24 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:143 gui/lobby/lobby.js:37
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "Сценарий"
 
 #: gui/gamesetup/gamesetup.js:147 gui/gamesetup/gamesetup.js:1123
 #: gui/gamesetup/gamesetup.js:1200
 msgid "Default"
-msgstr ""
+msgstr "По подразбиране"
 
 #: gui/gamesetup/gamesetup.js:148
 msgid "Naval Maps"
-msgstr ""
+msgstr "Морски Карти"
 
 #: gui/gamesetup/gamesetup.js:149
 msgid "Demo Maps"
-msgstr ""
+msgstr "Демо Карти"
 
 #: gui/gamesetup/gamesetup.js:150
 msgid "All Maps"
-msgstr ""
+msgstr "Всички Карти"
 
 #: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
@@ -316,7 +317,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:753 gui/gamesetup/gamesetup.js:870
 #: gui/session/session.js:19
 msgid "You"
-msgstr ""
+msgstr "Ти"
 
 #: gui/gamesetup/gamesetup.js:947
 #, python-format
@@ -326,7 +327,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1086 gui/gamesetup/gamesetup.xml:110 (caption)
 #: gui/lobby/lobby.xml:76 (caption)
 msgid "Map Size:"
-msgstr ""
+msgstr "Големина на картата:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -378,27 +379,27 @@ msgstr "Н"
 
 #: gui/gamesetup/gamesetup.js:1218
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Случайно исбира карта от листа"
 
 #: gui/gamesetup/gamesetup.js:1225 gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Съжаляваме, няма наличие на описание"
 
 #: gui/gamesetup/gamesetup.js:1231
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s играчи. %(description)s"
+msgstr[1] "%(number)s играчи. %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1371
 #, python-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "Бот: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1376
 msgid "Unassigned"
-msgstr ""
+msgstr "Никой"
 
 #. Translation: IRC system message.
 #: gui/gamesetup/gamesetup.js:1578 gui/gamesetup/gamesetup.js:1583
@@ -410,22 +411,22 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1578
 #, python-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s се присъедини"
 
 #: gui/gamesetup/gamesetup.js:1583
 #, python-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s напусна"
 
 #: gui/gamesetup/gamesetup.js:1588
 #, python-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1589
 #, python-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1595
 #, python-format
@@ -473,7 +474,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup_mp.js:79 gui/session/messages.js:189
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Мрежово съобщение: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
@@ -536,7 +537,7 @@ msgstr ""
 #: gui/lobby/lobby.js:323
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестен"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
@@ -998,7 +999,7 @@ msgstr "Сигурен ли сте, че искате да спрете 0 A.D.?"
 #: gui/pregame/mainmenu.js:310 gui/session/menu.js:141 gui/session/menu.js:164
 #: gui/session/menu.js:172
 msgid "Confirmation"
-msgstr ""
+msgstr "Одобрение"
 
 #: gui/pregame/mainmenu.js:320
 msgid "The scenario editor is not available or failed to load."
@@ -1006,7 +1007,7 @@ msgstr "Редакториа на сценарии не е намерен или
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
-msgstr ""
+msgstr "Грешка"
 
 #: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
@@ -1020,7 +1021,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
 msgid "Manual"
-msgstr ""
+msgstr "Наръчник"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -1192,7 +1193,7 @@ msgstr ""
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
-msgstr ""
+msgstr "Враг"
 
 #: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
@@ -1345,7 +1346,7 @@ msgstr ""
 
 #: gui/session/messages.js:407
 msgid "Unknown player"
-msgstr ""
+msgstr "Непознат играч"
 
 #: gui/session/messages.js:415
 #, python-format
@@ -1446,7 +1447,7 @@ msgstr ""
 #: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
 #: gui/session/session.xml:437 (caption)
 msgid "Team"
-msgstr ""
+msgstr "Отбор"
 
 #: gui/session/messages.js:633
 msgid "Private"
@@ -1576,7 +1577,7 @@ msgstr ""
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 #: simulation/templates/template_gaia.xml:5
 msgid "Gaia"
-msgstr ""
+msgstr "Природа"
 
 #: gui/session/session.js:312 gui/session/session.js:328
 msgid "You have left the game."
@@ -2630,7 +2631,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
-msgstr ""
+msgstr "%(name)s не може да бъде построен поради незнайна грешка"
 
 #: simulation/components/BuildRestrictions.js:104
 #, python-format
@@ -2795,15 +2796,15 @@ msgstr ""
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr ""
+msgstr "Настройки за бота"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player"
-msgstr ""
+msgstr "Бот"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty"
-msgstr ""
+msgstr "Трудност на бота"
 
 #: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
@@ -2811,28 +2812,28 @@ msgstr ""
 #: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
 #: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "Отказ"
 
 #: gui/civinfo/civinfo.xml:16 (caption)
 msgid "Civilizations"
-msgstr ""
+msgstr "Цивилизации"
 
 #: gui/civinfo/civinfo.xml:28 (caption)
 msgid "Civilization Selection"
-msgstr ""
+msgstr "Избор на Цивилизации"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
 #: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: gui/gamesetup/gamesetup.xml:15 (caption)
 msgid "Match Setup"
-msgstr ""
+msgstr "Настройка на играта"
 
 #: gui/gamesetup/gamesetup.xml:21 (caption)
 msgid "Loading"
-msgstr ""
+msgstr "Зареждане"
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
@@ -2840,36 +2841,36 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
-msgstr ""
+msgstr "Име на играча"
 
 #: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
-msgstr ""
+msgstr "Място на играча"
 
 #: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
 #: (caption)
 msgid "Civilization"
-msgstr ""
+msgstr "Цивилизация"
 
 #: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
-msgstr ""
+msgstr "Покажи информация за цивилизацията"
 
 #: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
-msgstr ""
+msgstr "Избери играч"
 
 #: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Промени настройките на бота"
 
 #: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Избери цивилизацията на играча"
 
 #: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
-msgstr ""
+msgstr "Избери отбора на играча"
 
 #: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
 msgid "Map Type:"
@@ -2877,11 +2878,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
-msgstr ""
+msgstr "Картов филтър:"
 
 #: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
-msgstr ""
+msgstr "Избери карта:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
@@ -2889,40 +2890,40 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
-msgstr ""
+msgstr "Избери тип карта."
 
 #: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
-msgstr ""
+msgstr "Избери филтър на картата."
 
 #: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Избери карта, на която да играеш."
 
 #: gui/gamesetup/gamesetup.xml:157 (tooltip)
 msgid "Select number of players."
-msgstr ""
+msgstr "Избери брой играчи."
 
 #: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "ИЗбери големина на картата. (Голямите карти могат да намалят производителността)"
 
 #: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
 #: (caption)
 msgid "Send"
-msgstr ""
+msgstr "Изпрати"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
-msgstr ""
+msgstr "[Помощен текст]"
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
-msgstr ""
+msgstr "Започни играта!"
 
 #: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Започни нова игра със сегашните настройки"
 
 #: gui/gamesetup/gamesetup.xml:231 (caption) gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
@@ -2931,11 +2932,11 @@ msgstr ""
 #: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
 #: (caption)
 msgid "More Options"
-msgstr ""
+msgstr "Още настройки"
 
 #: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
-msgstr ""
+msgstr "Виж допълнителни настройки на играта"
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
@@ -2999,7 +3000,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
-msgstr ""
+msgstr "Затвори прозореца с допълнителни настройки на играта"
 
 #: gui/gamesetup/gamesetup_mp.xml:19 (caption) gui/pregame/mainmenu.xml:428
 #: (caption)
@@ -3008,34 +3009,34 @@ msgstr "Мрежова игра"
 
 #: gui/gamesetup/gamesetup_mp.xml:25 (caption)
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Присъедини се към съществуваща игра."
 
 #: gui/gamesetup/gamesetup_mp.xml:29 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:72 (caption)
 msgid "Player name:"
-msgstr ""
+msgstr "Име на играча:"
 
 #: gui/gamesetup/gamesetup_mp.xml:39 (caption)
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Име на сървъра или IP:"
 
 #: gui/gamesetup/gamesetup_mp.xml:49 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:95 (caption) gui/summary/summary.xml:989
 #: (caption)
 msgid "Continue"
-msgstr ""
+msgstr "Продължи"
 
 #: gui/gamesetup/gamesetup_mp.xml:67 (caption)
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Конфигурирай сървъра, който ще хостваш."
 
 #: gui/gamesetup/gamesetup_mp.xml:84 (caption)
 msgid "Server name:"
-msgstr ""
+msgstr "Име на съвъра:"
 
 #: gui/gamesetup/gamesetup_mp.xml:115 (caption)
 msgid "[Connection status]"
-msgstr ""
+msgstr "[Статус на връзката]"
 
 #: gui/loading/loading.xml:48 (caption)
 msgid "Quote of the Day:"
@@ -3572,7 +3573,7 @@ msgstr ""
 
 #: gui/session/session.xml:767 (caption)
 msgid "Settings"
-msgstr ""
+msgstr "Настройки"
 
 #: gui/session/session.xml:791 (caption)
 msgid "Resign"
@@ -3615,7 +3616,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:12 (caption)
 msgid "Welcome to 0 A.D. !"
-msgstr ""
+msgstr "Добре дошъл в 0 A.D. !"
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
@@ -4089,7 +4090,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Първо избери дали искаш да играеш на случайно карта (Направена автоматично от комютъра) или сценарии (направен от дизайнер). Сценариите могат да бъдат филтрирани така, че да показват само някои карти. Картите по подразбиране са показани веднага, но тези по поръчка обикновено не са. Затова селектирай \"Всички карти\", за да видиш лист с всички позволени карти. Тогава избери карта, на която да играеш. \"Демо карти\" са направени за тестване на конкретни възможности на играта и вероятно не са много полезни."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -4243,7 +4244,7 @@ msgstr "1 (и така до 0): Избира единиците/сградите
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift +  1 (до 0): Добави контролни групи 1 (до 0) към селектираните единици/постройки"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -4326,23 +4327,23 @@ msgstr ""
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D: Включи/изключи платното за разработчици (с настройки за разработчици)"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Превключи скелетни стилове (Натисни веднъж, за полагане на скелет над текстурирани модели, два пъти, за да получиш само скелетите, осцветени от текстурите, три пъти, за да се върнеш към нормален текстурен стил)"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S: Включи/изключи силуети (може да подобри малко производителността)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: Включи/изключи небе"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -4354,70 +4355,70 @@ msgstr ""
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
-msgstr ""
+msgstr "S или [долу]: Премести камерата надолу"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr ""
+msgstr "А или [ляво]: премести камерата наляво"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
-msgstr ""
+msgstr "D или [дясно]: Премести камерата надясно"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W или [горе]: Завърти камерата нагоре"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S или [долу]: Завърти камерата надолу"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A или [ляво]: Завърти камерата по часовниковата стрелка"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D или [дясно]: Завърти камерата обратно на часовниковата срелка"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: Завърти камерата по часовниковата срелка"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E: Завърти камерата обратно на часовниковата срелка"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Скролер на мишката нагоре: Завърти камерата по часовниковата срелка"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + Скролер на мишката надолу: Завърти камерата обратно на часовниковата срелка"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Проследи селектираните единици (Премести камерата, за да спреш проследяването)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: Върни камерата към нормално състояние"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: Приближи камерата (задръж за продължително приближаване)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: Отдалечи камерата (задръж за продължително отдалечаване)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Смени скелетните стилове"
 
 #: gui/manual/intro.txt:110
 msgid ""
@@ -4435,13 +4436,13 @@ msgstr ""
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: Завърти постройката на 15 градуса по часовниковата срелка"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Влачи наляво: Завърти постройката с мишката (ще бъде построена при пускане на бутона)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -5310,7 +5311,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr ""
+msgstr "\"Само мъртвите са видели края на войната\" - Незнаен"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
@@ -5556,7 +5557,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr ""
+msgstr "- Скъп и бавен."
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
@@ -6134,7 +6135,7 @@ msgstr ""
 #: (4).xml:42:PlayerData[0].Name maps/skirmishes/Zagros Mountains
 #: (2).xml:42:PlayerData[0].Name
 msgid "Player 1"
-msgstr ""
+msgstr "Играч 1"
 
 #: simulation/data/player_defaults.jsonPlayerData[2].Name
 #: maps/scenarios/Arcadia 02.xml:41:PlayerData[1].Name
@@ -6197,7 +6198,7 @@ msgstr ""
 #: (4).xml:42:PlayerData[1].Name maps/skirmishes/Zagros Mountains
 #: (2).xml:42:PlayerData[1].Name
 msgid "Player 2"
-msgstr ""
+msgstr "Играч 2"
 
 #: simulation/data/player_defaults.jsonPlayerData[3].Name maps/scenarios/Death
 #: Canyon - Invasion Force.xml:42:PlayerData[2].Name
@@ -6226,7 +6227,7 @@ msgstr ""
 #: (4).xml:41:PlayerData[2].Name maps/skirmishes/Watering Holes
 #: (4).xml:42:PlayerData[2].Name
 msgid "Player 3"
-msgstr ""
+msgstr "Играч 3"
 
 #: simulation/data/player_defaults.jsonPlayerData[4].Name maps/scenarios/Fast
 #: Oasis.xml:31:PlayerData[3].Name
@@ -6248,23 +6249,23 @@ msgstr ""
 #: (4).xml:41:PlayerData[3].Name maps/skirmishes/Watering Holes
 #: (4).xml:42:PlayerData[3].Name
 msgid "Player 4"
-msgstr ""
+msgstr "Играч 4"
 
 #: simulation/data/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "Играч 5"
 
 #: simulation/data/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "Играч 6"
 
 #: simulation/data/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "Играч 7"
 
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "Играч 8"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
@@ -6281,7 +6282,7 @@ msgstr ""
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
-msgstr ""
+msgstr "Средно"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
@@ -6318,21 +6319,21 @@ msgstr ""
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr ""
+msgstr "Атиняни"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "Добива на метал увеличен с +10% за всяка следваща епоха"
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr ""
+msgstr "Сребъдни сови"
 
 #: civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr ""
+msgstr "Мините в Лаурейон в Атика дали на Атиняните богатство от сребро, от което да излеят известната и много ценена монета, Атинянската Сова"
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -6349,7 +6350,7 @@ msgstr ""
 #: civs/theb.jsonCivBonuses[2].Name
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
 msgid "Hellenization"
-msgstr ""
+msgstr "Елинизация"
 
 #: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
 #: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
@@ -6357,18 +6358,18 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Гърците били много успешни в Елинизирането на чуждоземци. По време на Елинистичната Епоха, Гръцкият бил лингва франка в древния свят, говорен от Испания до Индия."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Корабите се строят 25% по-бързо."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[0].Name
 msgid "Delian League"
-msgstr ""
+msgstr "Делоски Морски Съюз"
 
 #: civs/athen.jsonTeamBonuses[0].History
 #: civs/hele.jsonFactions[0].Technologies[1].History
@@ -6384,12 +6385,12 @@ msgstr ""
 #: simulation/templates/units/athen_hero_themistocles.xml:13
 #: simulation/templates/units/hele_hero_themistocles.xml:13
 msgid "Themistocles"
-msgstr ""
+msgstr "Темистокъл"
 
 #: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/athen_hero_pericles.xml:14
 msgid "Pericles"
-msgstr ""
+msgstr "Перикъл"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
@@ -6402,7 +6403,7 @@ msgstr ""
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/hele_hero_xenophon.xml:16
 msgid "Xenophon"
-msgstr ""
+msgstr "Ксенофон"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
@@ -6439,7 +6440,7 @@ msgstr ""
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/athen_hero_iphicrates.xml:16
 msgid "Iphicrates"
-msgstr ""
+msgstr "Епикрат"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
@@ -6447,22 +6448,22 @@ msgstr ""
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "Атинянските тиреми могат да тренират морска пехота (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
-msgstr ""
+msgstr "Епикратски Реформи"
 
 #: civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr ""
+msgstr "Каменните стени могат да бъдат строени в неутрални територии. Времето за строене на стени е намалено с 50%."
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "Дълги Стени"
 
 #: civs/athen.jsonFactions[0].Technologies[1].History
 #: simulation/data/technologies/hellenes/special_long_walls.jsondescription
@@ -6483,7 +6484,7 @@ msgstr ""
 #: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr ""
+msgstr "Отисмос"
 
 #: civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -6491,7 +6492,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr ""
+msgstr "Класическата формация на фалангите била разработена през VIII век пр.н.е. Тя била осем човека в дълбочина и до осемстотин човека в широчина. Мъжете отвътре наслагвали щитовете си, образувайки силна стена от щитове преливаща от 2.4 метрови копия."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 #: civs/hele.jsonFactions[0].Heroes[0].History
@@ -6502,7 +6503,7 @@ msgid ""
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
 "Aegean, thereby laying the foundations of future Athenian power. Ostracised "
 "by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr ""
+msgstr "Генералът, който убедил Атиняните да ивестират приходите от техните сребърни мини във военна флота от 200 Тиреми. Ключова фигура по време на Персийските Войни, той командвал печелещата Атинянска флота по време на решаващата битка в Саламис през 479г пр.н.е. По-късно, той следвал активна политика срещу Персииците в Егейско море и от там поставяйки основата на нататъшната Атинянска сила. Отхвърлен от Атиняните, той бил принуден да избяга в защитите на Персииците."
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -6521,17 +6522,17 @@ msgstr ""
 #: civs/theb.jsonFactions[0].Heroes[2].History
 #: civs/theb.jsonStructures[1].Special
 msgid "."
-msgstr ""
+msgstr "."
 
 #: civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Елини от Йонийското племе"
 
 #: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
 #: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
 #: civs/theb.jsonStructures[0].Name
 msgid "Theatron"
-msgstr ""
+msgstr "Театрон"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
 #: civs/theb.jsonStructures[0].Special
@@ -6551,32 +6552,32 @@ msgstr ""
 
 #: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr ""
+msgstr "Гимназион"
 
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr ""
+msgstr "Тренирай елитни единици и проучвай технологии отнасящи се до елитните единици."
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr ""
+msgstr "Гимназионът е бил оживено място в Елинските градове, където се правели физически упражнения и се осъществявал социален контакт."
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr ""
+msgstr "Пританейон"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr ""
+msgstr "Тренирай герои и проучвай технологии отнасящи се за героите."
 
 #: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr ""
+msgstr "Пританейонът е място за срещи на старшите, където могат да вечерят и да вземат бързи решения"
 
 #: civs/athen.jsonHistory
 msgid ""
@@ -6584,50 +6585,50 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr ""
+msgstr "Като люлката на Западната цивилизация и родното място на демокрацията, Атина била хвалена като център на изкуствата, учението и философията. Атиняните били също така силни войни, особено по море. В нейният апогей, Атина доминирала голяма част от Елинският свят за десетки години."
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Британци"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Подобрен добив на грана от животновъдство и земеделие"
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ardiosmanae"
 
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Представлява Келтски земеделски методи."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Друдите увеличават малко бързината на атаките на войници в близост до тях."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr ""
+msgstr "Dead Celtica"
 
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Келтската религия и друидство вдъхновявали техният военен начин на мислене."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Бонус към технологичната бързина."
 
 #: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
 #: civs/gaul.jsonTeamBonuses[0].Name
@@ -6635,24 +6636,24 @@ msgstr ""
 #: simulation/templates/units/celt_support_healer_b.xml:6
 #: simulation/templates/units/gaul_support_healer_b.xml:6
 msgid "Druides"
-msgstr ""
+msgstr "Друиди"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
 #: civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Друидите на Келтите поддържали организирана религия, която напредвала технологиите на техните хора дори по време на война."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Karaktakos"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Kunobelinos"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
@@ -6660,7 +6661,7 @@ msgstr ""
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:18
 #: simulation/templates/units/celt_hero_boudicca.xml:27
 msgid "Boudicca"
-msgstr ""
+msgstr "Boudicca"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
@@ -6697,12 +6698,12 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Увеличена бързина на атака и предвижване за меле войници"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
 #: civs/celt.jsonFactions[0].Technologies[0].History
@@ -6710,17 +6711,17 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Британците приели обичая да рисуват пермаментно върху тялото си като татуировки или временно да боядисват телата си с боя от сърпица. Ефектът бил много ужасяващ."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Увеличава бонусът за височина на единиците в гарнизон в кула."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 #: civs/celt.jsonFactions[0].Technologies[1].History
@@ -6728,7 +6729,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr ""
+msgstr "'Велика Кула'; Келтски легенди свързани с истории за масивни визоки кули, строени от най-силните крале и остатъци от много големи кули били открити."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -6834,17 +6835,17 @@ msgstr ""
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
-msgstr ""
+msgstr "Келтите от Британските Острови"
 
 #: civs/brit.jsonStructures[0].Name
 #: simulation/templates/structures/brit_kennel.xml:33
 #: simulation/templates/structures/celt_kennel.xml:33
 msgid "Kennel"
-msgstr ""
+msgstr "Кучешка колиба"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Британците били известни с това, че отглеждали бойни кучета."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -6856,7 +6857,7 @@ msgstr ""
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
-msgstr ""
+msgstr "Картагенци"
 
 #: civs/cart.jsonCivBonuses[0].Description
 msgid ""
@@ -6867,37 +6868,37 @@ msgstr ""
 #: civs/cart.jsonCivBonuses[0].Name
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
-msgstr ""
+msgstr "Тройни Стени"
 
 #: civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr ""
+msgstr "Картагенците строели тройни градски стени"
 
 #: civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr ""
+msgstr "Цената за трениране на единици на слон (боен слон) или кон (кавалерия) е намалена с 5% за опитомено животно (в граници)."
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr ""
+msgstr "Събиране"
 
 #: civs/cart.jsonCivBonuses[1].History
 msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr ""
+msgstr "За разлика от Иберийският полуостров, Северна Африка била прочута като конна страна, със способността да произвежда до 100,000 нови ездитни животни на година. Била също така дома на Северноафриканският Горски Слон."
 
 #: civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
-msgstr ""
+msgstr "+33% печалба от интернационално търгуване."
 
 #: civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
-msgstr ""
+msgstr "Занаятчия"
 
 #: civs/cart.jsonTeamBonuses[0].History
 msgid ""
@@ -6908,12 +6909,12 @@ msgstr ""
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/cart_hero_hannibal.xml:11
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Ханибал Барка"
 
 #: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Хамилкар Барка"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
@@ -6930,7 +6931,7 @@ msgstr ""
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Maharbal"
-msgstr ""
+msgstr "Махарбал"
 
 #: civs/cart.jsonAINames[6]
 msgid "Mago Barca"
@@ -6974,12 +6975,12 @@ msgstr ""
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Всички Търговци и Кораби +25% видимост"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
-msgstr ""
+msgstr "Разузнаване"
 
 #: civs/cart.jsonFactions[0].Technologies[0].History
 #: simulation/data/technologies/carthaginians/special_exploration.jsondescription
@@ -6987,7 +6988,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr ""
+msgstr "Никой не знаел по-добре от Картагенците накъде из древния свят се отправяли и накъде ще се отправят; техните търговци имали мисии за навсякъде."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
@@ -6996,7 +6997,7 @@ msgstr ""
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
 msgid "Colonization"
-msgstr ""
+msgstr "Колонизация"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
@@ -7012,7 +7013,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr ""
+msgstr "Най-известният син на Картаген. Ханибал Барка бил най-големият син на Хамилкар Барка и се доказал като дори по-добър командир от баща си. Той живял 247-182 пр.н.е. Докато той загубил Втората Пуническа Война, неговите победи в Требиа, Езеро Трасимене, Кана и подвигът на преминаване на Алпите му осигурили позицията като един от най-добрите тактици и стратеги в историята."
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7036,7 +7037,7 @@ msgstr ""
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "Морска Корабостроителница"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -7051,45 +7052,45 @@ msgstr ""
 #: civs/cart.jsonStructures[1].Name
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Келтско посолство"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr ""
+msgstr "Наеми Келтски наемници."
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Келтите предоставяли свирепи наемници за Картагенските армии."
 
 #: civs/cart.jsonStructures[2].Name
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Италиотски наемници"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
-msgstr ""
+msgstr "Наеми Италиански наемници."
 
 #: civs/cart.jsonStructures[2].History
 msgid ""
 "When Hannibal invaded Italy and defeated the Romans in a series of battles, "
 "many of the Italian peoples subject to Rome, including the Italian Greeks "
 "and powerful Samnites, revolted and joined the Carthaginian cause."
-msgstr ""
+msgstr "Когато Ханибал нахлул в Италия и победил Римляните в редица от битки, много от Италианските народи, които били покорени от Рим, включително Италианските Гърци и силните Самнити се присъединили към Картагенците."
 
 #: civs/cart.jsonStructures[3].Name
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "Иберийско Посолство."
 
 #: civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
-msgstr ""
+msgstr "Наеми Иберииски наемници."
 
 #: civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr ""
+msgstr "Иберииците били свирепи наемници, лойални към техните господари."
 
 #: civs/cart.jsonHistory
 msgid ""
@@ -7103,21 +7104,21 @@ msgstr ""
 
 #: civs/celt.jsonName maps/scenarios/Azure Coast(2).xml:31:PlayerData[1].Name
 msgid "Celts"
-msgstr ""
+msgstr "Келти"
 
 #: civs/celt.jsonFactions[0].Description
 msgid "British Isles"
-msgstr ""
+msgstr "Британски Острови"
 
 #: civs/celt.jsonFactions[1].Technologies[0].Description
 msgid ""
 "A set amount of ore and food from every structure destroyed or captured "
-msgstr ""
+msgstr "Определено количество руда и храна от всяка повалена или превзета структура"
 
 #: civs/celt.jsonFactions[1].Technologies[0].Name
 #: civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Uae Uictos"
-msgstr ""
+msgstr "Уае Уиктос"
 
 #: civs/celt.jsonFactions[1].Technologies[0].History
 #: civs/gaul.jsonFactions[0].Technologies[0].History
@@ -7129,12 +7130,12 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "Галските друиди получават малка меле атака."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
-msgstr ""
+msgstr "Карнути"
 
 #: civs/celt.jsonFactions[1].Technologies[1].History
 #: civs/gaul.jsonFactions[0].Technologies[1].History
@@ -7142,7 +7143,7 @@ msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
-msgstr ""
+msgstr "Карнутите били друиди от Аулерция. Те се биели когато имало нужда и били отговорни за връщането на Белгийските нахлувания в Арморика и аулерция"
 
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
@@ -7166,7 +7167,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
-msgstr ""
+msgstr "Бритомартос"
 
 #: civs/celt.jsonFactions[1].Heroes[1].History
 #: civs/gaul.jsonFactions[0].Heroes[1].History
@@ -7195,7 +7196,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennos"
-msgstr ""
+msgstr "Бренус"
 
 #: civs/celt.jsonFactions[1].Heroes[2].History
 #: civs/gaul.jsonFactions[0].Heroes[2].History
@@ -7214,27 +7215,27 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
 #: civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
-msgstr ""
+msgstr "Уеркингеторикс"
 
 #: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
 #: civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
-msgstr ""
+msgstr "Гали"
 
 #: civs/celt.jsonFactions[1].Description
 msgid "Mainland Europe"
-msgstr ""
+msgstr "Централна Европа"
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/celt_sb1.xml:24
 #: simulation/templates/structures/gaul_rotarymill.xml:21
 msgid "Melonas"
-msgstr ""
+msgstr "Мелонас"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr ""
+msgstr "Келтите направили първата въртяща се мелница за брашно"
 
 #: civs/celt.jsonHistory
 msgid ""
@@ -7274,11 +7275,11 @@ msgstr ""
 #: civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured "
-msgstr ""
+msgstr "Определено количество метал и храна от всяка повалена или превзета структура"
 
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
-msgstr ""
+msgstr "Келтите от континентална Европа"
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -7291,15 +7292,15 @@ msgstr ""
 
 #: civs/hele.jsonName
 msgid "Hellenes"
-msgstr ""
+msgstr "Елини"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "10-15% по-евтини технологии."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
-msgstr ""
+msgstr "Оикоумене"
 
 #: civs/hele.jsonCivBonuses[0].History
 msgid ""
@@ -7310,11 +7311,11 @@ msgstr ""
 
 #: civs/hele.jsonTeamBonuses[0].Description
 msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr ""
+msgstr "Всички единици и съюзнически единици имат увеличено поле на зрение. ~10%"
 
 #: civs/hele.jsonTeamBonuses[0].Name
 msgid "Oracle at Delphi"
-msgstr ""
+msgstr "Оракъл в Делфи"
 
 #: civs/hele.jsonTeamBonuses[0].History
 msgid ""
@@ -7326,7 +7327,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
-msgstr ""
+msgstr "Играчът получава формазията Фаланг"
 
 #: civs/hele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -7339,7 +7340,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr ""
+msgstr "Тиремите са 20% по-евтини и се строят 20% по-бързо."
 
 #: civs/hele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7353,7 +7354,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
 msgid "Leonidas"
-msgstr ""
+msgstr "Леонид"
 
 #: civs/hele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7370,21 +7371,21 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
-msgstr ""
+msgstr "Полеис"
 
 #: civs/hele.jsonFactions[0].Description
 msgid "Greek City-states"
-msgstr ""
+msgstr "Гръцки градове-държави"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Description
 msgid "The player gains the Syntagma formation."
-msgstr ""
+msgstr "Играчът получава формацията Синтагма"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Name
 #: civs/mace.jsonFactions[0].Technologies[0].Name
 #: civs/sele.jsonCivBonuses[1].Name
 msgid "Military Reforms"
-msgstr ""
+msgstr "Военни Реформи"
 
 #: civs/hele.jsonFactions[1].Technologies[0].History
 msgid ""
@@ -7404,7 +7405,7 @@ msgstr ""
 #: civs/ptol.jsonFactions[0].Technologies[0].Name
 #: civs/sele.jsonFactions[0].Technologies[0].Name
 msgid "Hellenistic Metropolises"
-msgstr ""
+msgstr "Елински Метрополиси"
 
 #: civs/hele.jsonFactions[1].Technologies[1].History
 #: civs/mace.jsonFactions[0].Technologies[2].History
@@ -7429,7 +7430,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
 msgid "Philip II"
-msgstr ""
+msgstr "Филип II"
 
 #: civs/hele.jsonFactions[1].Heroes[1].History
 #: civs/mace.jsonFactions[0].Heroes[1].History
@@ -7447,7 +7448,7 @@ msgstr ""
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
 msgid "Alexander the Great"
-msgstr ""
+msgstr "Александър Велики"
 
 #: civs/hele.jsonFactions[1].Heroes[2].History
 #: civs/mace.jsonFactions[0].Heroes[2].History
@@ -7463,15 +7464,15 @@ msgstr ""
 
 #: civs/hele.jsonFactions[1].Heroes[2].Name
 msgid "Demetrios Poliorcetes"
-msgstr ""
+msgstr "Деметрий I Полиоркет"
 
 #: civs/hele.jsonFactions[1].Name
 msgid "Macedonia"
-msgstr ""
+msgstr "Македония"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr ""
+msgstr "Кралство в близост до Гръцки градове-държави"
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -7489,15 +7490,15 @@ msgstr ""
 
 #: civs/iber.jsonName
 msgid "Iberians"
-msgstr ""
+msgstr "Ибериици"
 
 #: civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr ""
+msgstr "Иберииците започват със силна каменна стена около себе си."
 
 #: civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
-msgstr ""
+msgstr "Hirritsu Leku"
 
 #: civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -7510,11 +7511,11 @@ msgstr ""
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr ""
+msgstr "Цената за тренирането на конни единици (кавалерия) е намалена с 5% за опитомено животно."
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "Залди Салдоа"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -7530,7 +7531,7 @@ msgstr ""
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
-msgstr ""
+msgstr "Сарипеко"
 
 #: civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -7544,16 +7545,16 @@ msgstr ""
 #: civs/iber.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/iber_hero_viriato.xml:10
 msgid "Viriato"
-msgstr ""
+msgstr "Вириат"
 
 #: civs/iber.jsonAINames[2] civs/iber.jsonFactions[0].Heroes[1].Name
 msgid "Karos"
-msgstr ""
+msgstr "Карос"
 
 #: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
-msgstr ""
+msgstr "Индибил"
 
 #: civs/iber.jsonAINames[4]
 msgid "Audax"
@@ -7579,7 +7580,7 @@ msgstr ""
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -7590,17 +7591,17 @@ msgstr ""
 
 #: civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr ""
+msgstr "Цената в метал за единици и технологии е намалена с 50%."
 
 #: civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr ""
+msgstr "Maisu Burdina Langileak"
 
 #: civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Iberians were known to produce the finest iron and steel implements and "
 "weapons of the age. The famous 'Toledo Steel.'"
-msgstr ""
+msgstr "Иберииците произвеждали наи-добрите железни и стоманени сечива и оръжия на времето. прочутата \"Толедска Стомана\"."
 
 #: civs/iber.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -7658,7 +7659,7 @@ msgstr ""
 #: civs/iber.jsonStructures[0].Name
 #: simulation/templates/structures/iber_monument.xml:37
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Гур Ориогари"
 
 #: civs/iber.jsonStructures[0].Special
 msgid ""
@@ -7686,17 +7687,17 @@ msgstr ""
 
 #: civs/mace.jsonName civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
-msgstr ""
+msgstr "Македонци"
 
 #: civs/mace.jsonCivBonuses[0].Description
 msgid ""
 "Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
 "but -5% attack debonus vs. Romans."
-msgstr ""
+msgstr "Македонските единици имат +10% бонус атака срещу Персиици и Елинистични цивилизации, но -5% атака срещу Римляни."
 
 #: civs/mace.jsonCivBonuses[0].Name
 msgid "Hellenic League"
-msgstr ""
+msgstr "Елински съюз"
 
 #: civs/mace.jsonCivBonuses[0].History
 msgid ""
@@ -7710,12 +7711,12 @@ msgstr ""
 
 #: civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr ""
+msgstr "Пехотата с копие може да използва бавната и силна формация Синтагма"
 
 #: civs/mace.jsonCivBonuses[1].Name
 #: simulation/templates/formations/syntagma.xml:6
 msgid "Syntagma"
-msgstr ""
+msgstr "Синтагма"
 
 #: civs/mace.jsonCivBonuses[1].History
 msgid ""
@@ -7732,11 +7733,11 @@ msgstr ""
 
 #: civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
-msgstr ""
+msgstr "+15% данъчен и търговски бонус на метал."
 
 #: civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
-msgstr ""
+msgstr "Стандартизирана Валута"
 
 #: civs/mace.jsonTeamBonuses[0].History
 msgid ""
@@ -7744,7 +7745,7 @@ msgid ""
 " currency the Diadochi in particular frequently depicted themselves as the "
 "rightful successor to Alexander the Great, attempting to legitimize their "
 "rule."
-msgstr ""
+msgstr "Македонците и Диадохите леели монета от много високо качество. Върху валутата Диадохите особено често се изобразявали като пълноправни наследници на Александър Велики, с опит да легитимират управлението си."
 
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
@@ -7804,7 +7805,7 @@ msgid ""
 " of the Macedonian army. His reforms created a powerful cavalry arm to his "
 "army that would prove useful to both himself and his son Alexander's "
 "conquests."
-msgstr ""
+msgstr "Когато Филип II се възкачил на македонския трон, той започнал пълна реорганизация на македонската армия. Неговите реформи изградили силна кавалерия, която ще се окаже полезна за неговите завоевания и тези на сина му Александър."
 
 #: civs/mace.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -7833,11 +7834,11 @@ msgstr ""
 #: simulation/templates/units/hele_hero_philip.xml:10
 #: simulation/templates/units/mace_hero_philip.xml:10
 msgid "Philip II of Macedon"
-msgstr ""
+msgstr "Филип II Македонски"
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
-msgstr ""
+msgstr "Деметрий Обсадителят"
 
 #: civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
@@ -7855,7 +7856,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_library.xml:15
 #: simulation/templates/structures/sele_library.xml:15
 msgid "Library"
-msgstr ""
+msgstr "Библиотека"
 
 #: civs/mace.jsonStructures[1].Special
 msgid ""
@@ -7869,12 +7870,12 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr ""
+msgstr "Александър Велики основал библиотеки из цялата си нова империя. Те станали център на учение за една изцяло нова култура: Елинската култура."
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Обсадна Работилница"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
@@ -7891,7 +7892,7 @@ msgid ""
 "Macedonian forces and allies took over most of the world they knew, "
 "including Egypt, Persia and parts of the Indian subcontinent, allowing a "
 "diffusion of Hellenic and eastern cultures for years to come."
-msgstr ""
+msgstr "Македония била древногръзко кралсвто, разположено в северозападната част на гръзкия полуостров. Под владението на Александър Велики, Македонските сили и съюсзници превзели огромна част от света, който те познавали, включително Египет, Персия и части от Индиийския субконтинент, правейки връзка между Елински и Източни култури в следващи години,"
 
 #: civs/maur.jsonName
 msgid "Mauryans"
@@ -7951,12 +7952,12 @@ msgstr ""
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
-msgstr ""
+msgstr "Чандрагупта Мауриа"
 
 #: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/maur_hero_ashoka.xml:32
 msgid "Ashoka the Great"
-msgstr ""
+msgstr "Ашока Велики"
 
 #: civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
@@ -8035,7 +8036,7 @@ msgstr ""
 #: civs/maur.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/maur_hero_chanakya.xml:30
 msgid "Acharya Chāṇakya"
-msgstr ""
+msgstr "Ачариа Чанякя"
 
 #: civs/maur.jsonFactions[0].Name maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[0].Name
@@ -8045,7 +8046,7 @@ msgstr ""
 #: civs/maur.jsonStructures[0].Name
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr ""
+msgstr "Слонски Конюшни"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""
@@ -8056,7 +8057,7 @@ msgstr ""
 #: civs/maur.jsonStructures[1].Name
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Едиктов зъбер на Ашока"
 
 #: civs/maur.jsonStructures[1].Special
 msgid ""
@@ -8080,17 +8081,17 @@ msgstr ""
 #: civs/pers.jsonName maps/scenarios/The Persian
 #: Gates.xml:31:PlayerData[3].Name
 msgid "Persians"
-msgstr ""
+msgstr "Персийци"
 
 #: civs/pers.jsonCivBonuses[0].Description
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr ""
+msgstr "Цената за тренирането на единици на камили (търговец) или на коне (кавалерия) е намалена с 5% за всяко опитомено животно (с граница)"
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr ""
+msgstr "Опитоми Камили и Коне"
 
 #: civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -8104,12 +8105,12 @@ msgstr ""
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Персийците имат +10% бонус за популационна граница (примерно 330 популационна граница, наместо обикновената 300)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsongenericName
 msgid "Great King's Levy"
-msgstr ""
+msgstr "Велик Кралски налог"
 
 #: civs/pers.jsonCivBonuses[1].History
 #: simulation/data/technologies/persians/civbonus_pers_popcap.jsondescription
@@ -8124,11 +8125,11 @@ msgstr ""
 
 #: civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
-msgstr ""
+msgstr "+25% печалба за сухоземна търговия"
 
 #: civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
-msgstr ""
+msgstr "Кралски Път"
 
 #: civs/pers.jsonTeamBonuses[0].History
 msgid ""
@@ -8145,7 +8146,7 @@ msgstr ""
 #: civs/pers.jsonAINames[1] civs/pers.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/pers_hero_darius.xml:40
 msgid "Darayavahush I"
-msgstr ""
+msgstr "Дарайавахуш I"
 
 #: civs/pers.jsonAINames[2]
 msgid "Cambyses II"
@@ -8159,7 +8160,7 @@ msgstr ""
 #: simulation/templates/units/pers_hero_xerxes.xml:16
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:40
 msgid "Xsayarsa I"
-msgstr ""
+msgstr "Ксайарса I"
 
 #: civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
@@ -8191,11 +8192,11 @@ msgstr ""
 
 #: civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr ""
+msgstr "Финикийските тиреми получават уникалната способност да тренират кавалерия."
 
 #: civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr ""
+msgstr "Морски Занаят"
 
 #: civs/pers.jsonFactions[0].Technologies[0].History
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
@@ -8213,12 +8214,12 @@ msgstr ""
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr ""
+msgstr "Увеличава жизнените точки на всички структури, но времето за строеж е увеличено в съответствие."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
-msgstr ""
+msgstr "Персийска архителктура"
 
 #: civs/pers.jsonFactions[0].Technologies[1].History
 #: simulation/data/technologies/persians/persian_architecture.jsondescription
@@ -8231,12 +8232,12 @@ msgstr ""
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr ""
+msgstr "Намалява времето за трениране на елитната пехота Анузия наполовина"
 
 #: civs/pers.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
-msgstr ""
+msgstr "Безсмъртни"
 
 #: civs/pers.jsonFactions[0].Technologies[3].Description
 #: civs/sele.jsonFactions[0].Technologies[3].Description
@@ -8268,7 +8269,7 @@ msgstr ""
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/pers_hero_cyrus.xml:12
 msgid "Kurush II"
-msgstr ""
+msgstr "Куруш II"
 
 #: civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -8289,20 +8290,20 @@ msgstr ""
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr ""
+msgstr "Кавалерски Конюшни"
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr ""
+msgstr "Тренирай Кавалерийски граждани-войници."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr ""
+msgstr "Най-добрите войници на Персийската Империя били Източните конници."
 
 #: civs/pers.jsonStructures[1].Name
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Apadana"
-msgstr ""
+msgstr "Ападана"
 
 #: civs/pers.jsonStructures[1].Special
 msgid ""
@@ -8376,7 +8377,7 @@ msgstr ""
 #: civs/theb.jsonFactions[0].Technologies[1].Description
 #: civs/theb.jsonFactions[0].Technologies[1].History
 msgid "Unknown."
-msgstr ""
+msgstr "Неизвестен."
 
 #: civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
@@ -8546,13 +8547,13 @@ msgstr ""
 #: civs/ptol.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
-msgstr ""
+msgstr "Фар"
 
 #: civs/ptol.jsonStructures[2].Special
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr ""
+msgstr "Когато е построен в близост до вода, премахва всичката сянка над водата, показвайки всички брегове на картата. Лимит: 1."
 
 #: civs/ptol.jsonStructures[2].History
 msgid ""
@@ -8573,32 +8574,32 @@ msgstr ""
 #: civs/rome.jsonName maps/scenarios/Miletus.xml:31:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:42:PlayerData[1].Name
 msgid "Romans"
-msgstr ""
+msgstr "Римляни."
 
 #: civs/rome.jsonCivBonuses[0].Description
 msgid "Roman Legionaries can form a Testudo."
-msgstr ""
+msgstr "Римските Легионери могат да формират Тестудо"
 
 #: civs/rome.jsonCivBonuses[0].Name
 msgid "Testudo Formation"
-msgstr ""
+msgstr "Формация Тестудо"
 
 #: civs/rome.jsonCivBonuses[0].History
 msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
-msgstr ""
+msgstr "Римляните често използвали формацията Тестудо или \"костенурка\" за техните защити.  "
 
 #: civs/rome.jsonCivBonuses[1].Description
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr ""
+msgstr "Всеки Римлянски гражданин-войник, сражаващ се в Римска територия получава неперманентен +10% бонус броня."
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
-msgstr ""
+msgstr "Гражданство"
 
 #: civs/rome.jsonCivBonuses[1].History
 msgid ""
@@ -8607,20 +8608,20 @@ msgid ""
 "peoples. It is said that harming a Roman citizen was akin to harming Rome "
 "herself, and would cause the entire might of Rome to fall upon the "
 "perpetrator."
-msgstr ""
+msgstr "Римското Гражданство било много ценено в древният свят. Основни права и привилегии били давани на Римски граждани, за разлика от покорените народи. Било казвано, че да нараниш Римлянски жител било равностойно да нараниш Рим и би причинило цялата сила на Рим да бъде стоварена върху извършителя."
 
 #: civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr ""
+msgstr "Съюзени граждани-войници получават 15$ атака когато са в Римска територия."
 
 #: civs/rome.jsonTeamBonuses[0].Name
 msgid "Socii"
-msgstr ""
+msgstr "Соции"
 
 #: civs/rome.jsonTeamBonuses[0].History
 msgid ""
 "Being allied with Rome came with great benefits (as well as great peril)."
-msgstr ""
+msgstr "Съюзяването с Рим идвало с голяма полза (а също и с голяма опастност)"
 
 #: civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
@@ -8680,11 +8681,11 @@ msgstr ""
 
 #: civs/rome.jsonFactions[0].Technologies[0].Description
 msgid "Roman heroes can convert enemy units with great cost."
-msgstr ""
+msgstr "Римски герои могат да обърнат вражески единици с голяма цена."
 
 #: civs/rome.jsonFactions[0].Technologies[0].Name
 msgid "Divide et Impera"
-msgstr ""
+msgstr "Divide et Impera"
 
 #: civs/rome.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -8692,14 +8693,14 @@ msgid ""
 "throughout its long history. The Romans lured enemies or neutral factions to"
 " their side by offering them certain privileges. In due period of time, "
 "friends as well as foes were subjugated."
-msgstr ""
+msgstr "'Разделяй и владей' била главният принцип на Римската външна политика по време на дългата й история. Римляните привличали врагове или неутрални фракции към тяхна страна  като им предлагали дадени привилегии. В същото време, приятели и врагове били завладявани."
 
 #: civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
 "Dictator for six months during the Second Punic War. Instead of attacking "
 "the most powerful Hannibal, he started a very effective war of attrition "
 "against him."
-msgstr ""
+msgstr "Владетел за 6 месеца през Втората Пуническа война. Вместо да атакува силният Ханибал, той започнал много ефективна изморителна война срещу него."
 
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/rome_hero_maximus.xml:5
@@ -8722,7 +8723,7 @@ msgstr ""
 #: civs/rome.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/rome_hero_marcellus.xml:5
 msgid "Marcus Claudius Marcellus"
-msgstr ""
+msgstr "Марк Клавдий Марцел"
 
 #: civs/rome.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -8730,20 +8731,20 @@ msgid ""
 "His campaigns in Spain and Africa helped to bring Carthage to its knees "
 "during the Second Punic War. He defeated Hannibal at the Battle of Zama in "
 "202 B.C."
-msgstr ""
+msgstr "Той е бил първия наистина успешен римски генерал срещу картагените. Неговите походи в Испания и Африка помогнали за свалянето на Картаген през Втората Пуническа война. Той победил Ханибал в битката при Зама през 202 година пр.Хр."
 
 #: civs/rome.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/rome_hero_scipio.xml:5
 msgid "Scipio Africanus"
-msgstr ""
+msgstr "Сципион Африкански"
 
 #: civs/rome.jsonStructures[0].Name
 msgid "Entrenched Camp"
-msgstr ""
+msgstr "Укрепен лагер"
 
 #: civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr ""
+msgstr "Тренира граждани-войни от неутрални или вражески територии."
 
 #: civs/rome.jsonStructures[0].History
 msgid ""
@@ -8762,15 +8763,15 @@ msgstr ""
 #: civs/rome.jsonStructures[1].Name
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr ""
+msgstr "Murus Latericius"
 
 #: civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr ""
+msgstr "Може да бъде построен в неутрална и вражеска територия, за да задуши вражески градове."
 
 #: civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr ""
+msgstr "Торфени стени били строени от легионерите по време на обсади."
 
 #: civs/rome.jsonHistory
 msgid ""
@@ -9079,11 +9080,11 @@ msgstr ""
 
 #: civs/spart.jsonName civs/spart.jsonFactions[0].Name
 msgid "Spartans"
-msgstr ""
+msgstr "Спартанци"
 
 #: civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr ""
+msgstr "Спартанците могат да използват силната формация Фаланг"
 
 #: civs/spart.jsonCivBonuses[0].History
 msgid ""
@@ -9101,7 +9102,7 @@ msgstr ""
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
-msgstr ""
+msgstr "Законите на Ликург"
 
 #: civs/spart.jsonCivBonuses[1].History
 msgid ""
@@ -9112,12 +9113,12 @@ msgstr ""
 
 #: civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr ""
+msgstr "Съюзниците могат да тренират Спартиати."
 
 #: civs/spart.jsonTeamBonuses[0].Name maps/scenarios/Campaign Test
 #: Map.xml:42:PlayerData[6].Name
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Пелопонески Съюз"
 
 #: civs/spart.jsonTeamBonuses[0].History
 msgid ""
@@ -9135,7 +9136,7 @@ msgstr ""
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 #: simulation/templates/units/spart_hero_brasidas.xml:16
 msgid "Brasidas"
-msgstr ""
+msgstr "Брасидас"
 
 #: civs/spart.jsonAINames[3] simulation/templates/units/spart_hero_agis.xml:12
 msgid "Agis"
@@ -9178,7 +9179,7 @@ msgstr ""
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
-msgstr ""
+msgstr "Женствена Загадъчност"
 
 #: civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -9197,7 +9198,7 @@ msgstr ""
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
-msgstr ""
+msgstr "Tyrtean Paeans"
 
 #: civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -9209,12 +9210,12 @@ msgstr ""
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "+25% здраве за пехотата с копие, но също така и +10% време за трениране."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
-msgstr ""
+msgstr "Агогът"
 
 #: civs/spart.jsonFactions[0].Technologies[2].History
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
@@ -9237,14 +9238,14 @@ msgstr ""
 #: simulation/templates/units/hele_hero_leonidas.xml:31
 #: simulation/templates/units/spart_hero_leonidas.xml:28
 msgid "Leonidas I"
-msgstr ""
+msgstr "Леонид I"
 
 #: civs/spart.jsonFactions[0].Heroes[1].History
 msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr ""
+msgstr "Защото Брасид спонсорирал тяхното гражданство в замяна на услуги, Илотските Скирмишъри се биели по-дълго и по-силно за Спарта докато са в близост до него."
 
 #: civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -9262,15 +9263,15 @@ msgstr ""
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/spart_hero_agis.xml:11
 msgid "Agis III"
-msgstr ""
+msgstr "Агис III"
 
 #: civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr ""
+msgstr "Сиситион"
 
 #: civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr ""
+msgstr "Тренирай герои и Спартиати и проучвай технологии свързани с тях."
 
 #: civs/spart.jsonStructures[1].History
 msgid ""
@@ -9290,33 +9291,33 @@ msgstr ""
 
 #: civs/theb.jsonName civs/theb.jsonFactions[0].Name
 msgid "Thebans"
-msgstr ""
+msgstr "Тебанс"
 
 #: civs/theb.jsonCivBonuses[0].Name
 msgid "Oblique Order"
-msgstr ""
+msgstr "Скосена Подредба"
 
 #: civs/theb.jsonCivBonuses[1].Name
 #: civs/theb.jsonFactions[0].Technologies[1].Name
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестен"
 
 #: civs/theb.jsonTeamBonuses[0].Name
 msgid "Boeotian Confederacy"
-msgstr ""
+msgstr "Беотска Конфедерация"
 
 #: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
 msgid "Epaminondas"
-msgstr ""
+msgstr "Епаминондас"
 
 #: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
 msgid "Pelopidas"
-msgstr ""
+msgstr "Пелопидас"
 
 #: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
 msgid "Gorgidas"
-msgstr ""
+msgstr "Горгидас"
 
 #: civs/theb.jsonAINames[3]
 msgid "Calydnus"
@@ -9353,7 +9354,7 @@ msgstr ""
 #: civs/theb.jsonFactions[0].Description
 msgid ""
 "The great power of Central Greece and leader of the Boeotian confederacy."
-msgstr ""
+msgstr "Великата сила на Централна Гърция и лидер на Боеотската конфедерация."
 
 #: civs/theb.jsonStructures[1].History
 msgid ""
@@ -9380,7 +9381,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
-msgstr ""
+msgstr "Егейско Море"
 
 #: maps/random/alpine_lakes.jsonsettings.Description
 msgid ""
@@ -9390,7 +9391,7 @@ msgstr ""
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
-msgstr ""
+msgstr "Алпийски Езера"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
@@ -9398,7 +9399,7 @@ msgstr ""
 
 #: maps/random/alpine_valley.jsonsettings.Name
 msgid "Alpine Valley"
-msgstr ""
+msgstr "Алпийска Долина"
 
 #: maps/random/anatolian_plateau.jsonsettings.Description
 msgid ""
@@ -9408,7 +9409,7 @@ msgstr ""
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
-msgstr ""
+msgstr "Анатолийско Плато"
 
 #: maps/random/archipelago.jsonsettings.Description
 msgid ""
@@ -9418,7 +9419,7 @@ msgstr ""
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
-msgstr ""
+msgstr "Архипелаг"
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -9429,7 +9430,7 @@ msgstr ""
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
-msgstr ""
+msgstr "Арденски Гори"
 
 #: maps/random/atlas_mountains.jsonsettings.Description
 msgid ""
@@ -9439,7 +9440,7 @@ msgstr ""
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
-msgstr ""
+msgstr "Атласките Планини"
 
 #: maps/random/belgian_uplands.jsonsettings.Description
 msgid ""
@@ -9450,7 +9451,7 @@ msgstr ""
 
 #: maps/random/belgian_uplands.jsonsettings.Name
 msgid "Belgian Uplands"
-msgstr ""
+msgstr "Белгийска Планинска Земя"
 
 #: maps/random/cantabrian_highlands.jsonsettings.Description
 msgid ""
@@ -9460,7 +9461,7 @@ msgstr ""
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
-msgstr ""
+msgstr "Катабрийски плата"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
@@ -9468,7 +9469,7 @@ msgstr ""
 
 #: maps/random/canyon.jsonsettings.Name
 msgid "Canyon"
-msgstr ""
+msgstr "Канион"
 
 #: maps/random/continent.jsonsettings.Description
 msgid "All players starts on a continent surrounded by water."
@@ -9476,7 +9477,7 @@ msgstr ""
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
-msgstr ""
+msgstr "Континент"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:41:Description
@@ -9487,7 +9488,7 @@ msgstr ""
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
-msgstr ""
+msgstr "Corinthian Isthmus"
 
 #: maps/random/corsica.jsonsettings.Description
 msgid ""
@@ -9497,7 +9498,7 @@ msgstr ""
 
 #: maps/random/corsica.jsonsettings.Name
 msgid "Corsica vs Sardinia"
-msgstr ""
+msgstr "Корсика срещу Сардиния"
 
 #: maps/random/cycladic_archipelago.jsonsettings.Description
 msgid ""
@@ -9508,7 +9509,7 @@ msgstr ""
 
 #: maps/random/cycladic_archipelago.jsonsettings.Name
 msgid "Cycladic Archipelago"
-msgstr ""
+msgstr "Цикладски Архипелаг"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
@@ -9516,17 +9517,17 @@ msgstr ""
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
-msgstr ""
+msgstr "Дълбоки Гори"
 
 #: maps/random/english_channel.jsonsettings.Description
 msgid ""
 "Players start in either northern France or southern Britain while the "
 "English channel separates them."
-msgstr ""
+msgstr "Играчът запоява в Северна Франция или Южна Британия, а Английският канал ги разделя"
 
 #: maps/random/english_channel.jsonsettings.Name
 msgid "English Channel"
-msgstr ""
+msgstr "Английски канал"
 
 #: maps/random/fortress.jsonsettings.Description
 msgid "Players start in a ready-made fortress with piles of resources."
@@ -9536,15 +9537,15 @@ msgstr ""
 #: simulation/templates/template_structure_military_fortress.xml:31
 #: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Fortress"
-msgstr ""
+msgstr "Замък"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
-msgstr ""
+msgstr "Земя със водни пътища декорирани в стил паякова мрежа"
 
 #: maps/random/gear.jsonsettings.Name
 msgid "Gear"
-msgstr ""
+msgstr "Зъбно Колело"
 
 #: maps/random/guadalquivir_river.jsonsettings.Description
 msgid ""
@@ -9566,7 +9567,7 @@ msgstr ""
 
 #: maps/random/gulf_of_bothnia.jsonsettings.Name
 msgid "Gulf of Bothnia"
-msgstr ""
+msgstr "Ботнийски Гълф"
 
 #: maps/random/hyrcanian_shores.jsonsettings.Description
 msgid ""
@@ -9584,17 +9585,17 @@ msgstr ""
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
-msgstr ""
+msgstr "Острови"
 
 #: maps/random/kerala.jsonsettings.Description
 msgid ""
 "Players start in the southwestern shores of India between a sea and "
 "mountains."
-msgstr ""
+msgstr "Играчите започват в Югозападните брегове на Индия между морето и планините"
 
 #: maps/random/kerala.jsonsettings.Name
 msgid "Kerala"
-msgstr ""
+msgstr "Керала"
 
 #: maps/random/lake.jsonsettings.Description
 msgid "Players start around a lake in the center of the map."
@@ -9602,7 +9603,7 @@ msgstr ""
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
-msgstr ""
+msgstr "Езеро"
 
 #: maps/random/latium.jsonsettings.Description
 msgid ""
@@ -9613,7 +9614,7 @@ msgstr ""
 
 #: maps/random/latium.jsonsettings.Name
 msgid "Latium"
-msgstr ""
+msgstr "Лацио"
 
 #: maps/random/lorraine_plain.jsonsettings.Description
 msgid ""
@@ -9623,7 +9624,7 @@ msgstr ""
 
 #: maps/random/lorraine_plain.jsonsettings.Name
 msgid "Lorraine Plain"
-msgstr ""
+msgstr "Лотарингийско Поле"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water"
@@ -9637,12 +9638,12 @@ msgstr ""
 msgid ""
 "Players start in small islands in the eastern part of the map. There is a "
 "big continent in the west ready for expansion."
-msgstr ""
+msgstr "Играчът започва в малък остров в източната част на картата. Има голям континент на Запад, готов да разширяване."
 
 #: maps/random/migration.jsonsettings.Name
 #: maps/scenarios/Migration.xml:31:Name
 msgid "Migration"
-msgstr ""
+msgstr "Миграция"
 
 #: maps/random/neareastern_badlands.jsonsettings.Description
 msgid ""
@@ -9653,15 +9654,15 @@ msgstr ""
 
 #: maps/random/neareastern_badlands.jsonsettings.Name
 msgid "Neareastern Badlands"
-msgstr ""
+msgstr "Неплодородни области от Близкият Изток"
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable"
-msgstr ""
+msgstr "Основен тест за генератора на случайни карти - не става за игра"
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
-msgstr ""
+msgstr "Нов RMS тест"
 
 #: maps/random/northern_lights.jsonsettings.Description
 msgid ""
@@ -9671,7 +9672,7 @@ msgstr ""
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
-msgstr ""
+msgstr "Северни Светлини"
 
 #: maps/random/oasis.jsonsettings.Description
 msgid ""
@@ -9681,7 +9682,7 @@ msgstr ""
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
-msgstr ""
+msgstr "Оазис"
 
 #: maps/random/persian_highlands.jsonsettings.Description
 msgid ""
@@ -9692,7 +9693,7 @@ msgstr ""
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
-msgstr ""
+msgstr "Персийски Плата"
 
 #: maps/random/pheonician_levant.jsonsettings.Description
 msgid ""
@@ -9702,7 +9703,7 @@ msgstr ""
 
 #: maps/random/pheonician_levant.jsonsettings.Name
 msgid "Phoenician Levant"
-msgstr ""
+msgstr "Финикииско Източно Средиземноморие"
 
 #: maps/random/pyrenean_sierra.jsonsettings.Description
 msgid ""
@@ -9713,7 +9714,7 @@ msgstr ""
 
 #: maps/random/pyrenean_sierra.jsonsettings.Name
 msgid "Pyrenean Sierra"
-msgstr ""
+msgstr "Пиринейска Сиера"
 
 #: maps/random/rhine_marshlands.jsonsettings.Description
 msgid ""
@@ -9723,7 +9724,7 @@ msgstr ""
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
-msgstr ""
+msgstr "Блатата в Рейн"
 
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
@@ -9732,7 +9733,7 @@ msgstr ""
 
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
-msgstr ""
+msgstr "Реки"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -9741,7 +9742,7 @@ msgstr ""
 #: maps/random/saharan_oases.jsonsettings.Name maps/scenarios/Saharan
 #: Oases.xml:31:Name
 msgid "Saharan Oases"
-msgstr ""
+msgstr "Сахарски Оазиси"
 
 #: maps/random/sahel.jsonsettings.Description
 msgid ""
@@ -9774,11 +9775,11 @@ msgstr ""
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
-msgstr ""
+msgstr "Играча започва в равнини със  леко хълмисти плата"
 
 #: maps/random/syria.jsonsettings.Name
 msgid "Syria"
-msgstr ""
+msgstr "Сирия"
 
 #: maps/random/the_nile.jsonsettings.Description
 msgid ""
@@ -9788,29 +9789,29 @@ msgstr ""
 
 #: maps/random/the_nile.jsonsettings.Name
 msgid "The Nile"
-msgstr ""
+msgstr "Нил"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map"
-msgstr ""
+msgstr "Незнайното... Предупреждение: Може да бъде морска карта"
 
 #: maps/random/unknown_land.jsonsettings.Description
 msgid "The unknown..."
-msgstr ""
+msgstr "Незнайното..."
 
 #: maps/random/unknown_land.jsonsettings.Name
 msgid "Unknown Land"
-msgstr ""
+msgstr "Непозната Земя"
 
 #: maps/random/unknown_nomad.jsonsettings.Description
 msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: AI players will cause the game to crash.[/color]"
-msgstr ""
+msgstr "Незнайното... Играчите почват само с няколко граждани-войни и жени. [color=\"red\"]Предупреждение: Бот играчите ще накарат играта да крашне.[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
-msgstr ""
+msgstr "Неизвестен Номад"
 
 #: maps/random/volcanic_lands.jsonsettings.Description
 msgid "A charred dead land where players start around a smoking volcano."
@@ -9818,21 +9819,21 @@ msgstr ""
 
 #: maps/random/volcanic_lands.jsonsettings.Name
 msgid "Volcanic Lands"
-msgstr ""
+msgstr "Волканични Земи"
 
 #: maps/random/wall_demo.jsonsettings.Description
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Very large "
 "map size is recommended."
-msgstr ""
+msgstr "Демонстрация за методите/кода за поставяне на стени в случайни карти. Много големи карти са за предпочитане."
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
-msgstr ""
+msgstr "Демо за Стени"
 
 #: simulation/ai/aegis/data.jsonname
 msgid "Aegis Bot"
-msgstr ""
+msgstr "Аегис Бот"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
@@ -9855,7 +9856,7 @@ msgstr ""
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid "Tutorial AI"
-msgstr ""
+msgstr "Ръководителски бот"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
@@ -17271,27 +17272,27 @@ msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:31:PlayerData[0].Name
 msgid "Greeks"
-msgstr ""
+msgstr "Гърци"
 
 #: maps/scenarios/Azure Coast(2).xml:31:Name
 msgid "Azure Coast 2"
-msgstr ""
+msgstr "Небесносин бряг 2"
 
 #: maps/scenarios/Azure Coast(4).xml:31:PlayerData[0].Name
 msgid "East"
-msgstr ""
+msgstr "Изток"
 
 #: maps/scenarios/Azure Coast(4).xml:31:PlayerData[1].Name
 msgid "West"
-msgstr ""
+msgstr "Запад"
 
 #: maps/scenarios/Azure Coast(4).xml:31:PlayerData[2].Name
 msgid "South"
-msgstr ""
+msgstr "Юг"
 
 #: maps/scenarios/Azure Coast(4).xml:31:PlayerData[3].Name
 msgid "North"
-msgstr ""
+msgstr "Север"
 
 #: maps/scenarios/Azure Coast(4).xml:31:Name
 msgid "Azure Coast 3"
@@ -17383,7 +17384,7 @@ msgstr ""
 
 #: maps/scenarios/Bridge_demo.xml:31:PlayerData[1].Name
 msgid "Other"
-msgstr ""
+msgstr "Друго"
 
 #: maps/scenarios/Bridge_demo.xml:31:Description
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
@@ -17404,7 +17405,7 @@ msgstr ""
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[1].Name
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[3].Name
 msgid "Thebes"
-msgstr ""
+msgstr "Тебес"
 
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[2].Name
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[5].Name
@@ -17508,7 +17509,7 @@ msgstr ""
 
 #: maps/scenarios/Flight_demo.xml:31:Name
 msgid "Flight Demo"
-msgstr ""
+msgstr "Демо за Полет"
 
 #: maps/scenarios/Flight_demo_2.xml:31:Description
 msgid "Fly some Mustangs."
@@ -17527,7 +17528,7 @@ msgstr ""
 
 #: maps/scenarios/Gold_Rush.xml:31:Name
 msgid "Gold Rush"
-msgstr ""
+msgstr "Треска за Злато"
 
 #: maps/scenarios/Gorge.xml:31:Description
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
@@ -17568,11 +17569,11 @@ msgstr ""
 
 #: maps/scenarios/Introductory Tutorial.xml:42:Description
 msgid "This is a basic tutorial to get you started playing 0 A.D."
-msgstr ""
+msgstr "Това е основен урок, с който ще ти помогне да играеш 0 А.D."
 
 #: maps/scenarios/Introductory Tutorial.xml:42:Name
 msgid "Introductory Tutorial"
-msgstr ""
+msgstr "Запознаващ Урок"
 
 #: maps/scenarios/Laconia 01.xml:31:Description
 msgid ""
@@ -17603,13 +17604,13 @@ msgstr ""
 
 #: maps/scenarios/Multiplayer_demo.xml:31:Name
 msgid "Multiplayer Demo"
-msgstr ""
+msgstr "Демо за Мултиплейър"
 
 #: maps/scenarios/Multiplayer_demo.xml:31:Description
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
-msgstr ""
+msgstr "Малка карта със много ресурси и малко вода, за тестване на геймплейа в несъревнователни мултиплейър игри."
 
 #: maps/scenarios/Necropolis.xml:41:Description
 msgid ""
@@ -17620,15 +17621,15 @@ msgstr ""
 
 #: maps/scenarios/Necropolis.xml:41:Name
 msgid "Necropolis"
-msgstr ""
+msgstr "Некрополис"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Name
 msgid "Pathfinding Demo"
-msgstr ""
+msgstr "Демо за откриване на път"
 
 #: maps/scenarios/Pathfinding_demo.xml:31:Description
 msgid "A map for testing unit movement algorithms."
-msgstr ""
+msgstr "Карта за тест на алгоритъма за движение на единиците."
 
 #: maps/scenarios/Pathfinding_terrain_demo.xml:31:Name
 msgid "Pathfinding Terrain Demo"
@@ -17642,19 +17643,19 @@ msgstr ""
 
 #: maps/scenarios/Peloponnese.xml:41:Description
 msgid "A real-world map of the Greek homeland."
-msgstr ""
+msgstr "Карта по реалната Гръцка цемя."
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[0].Name
 msgid "Athens"
-msgstr ""
+msgstr "Атина"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[1].Name
 msgid "Sparta"
-msgstr ""
+msgstr "Спарта"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[2].Name
 msgid "Elis"
-msgstr ""
+msgstr "Елис"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[4].Name
 msgid "Corinth"
@@ -17682,11 +17683,11 @@ msgstr ""
 
 #: maps/scenarios/Resource_demo.xml:31:Name
 msgid "Resource demo"
-msgstr ""
+msgstr "Демо за Ресурси"
 
 #: maps/scenarios/Resource_demo.xml:31:Description
 msgid "Demo map for resource gathering."
-msgstr ""
+msgstr "Демо карта за събиране на ресурси"
 
 #: maps/scenarios/Saharan Oases.xml:31:Description
 msgid ""
@@ -17708,26 +17709,26 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[0].Name
 msgid "The Athenians"
-msgstr ""
+msgstr "Атиняните"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[0].Name
 #: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[1].Name
 msgid "The Spartans"
-msgstr ""
+msgstr "Спартанците"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[2].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[2].Name
 #: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[2].Name
 msgid "The Persians"
-msgstr ""
+msgstr "Персийците"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[3].Name
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[3].Name
 #: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[3].Name
 msgid "The Gauls"
-msgstr ""
+msgstr "Галите"
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:Name
 msgid "Sandbox - The Athenians"
@@ -17741,7 +17742,7 @@ msgstr ""
 #: maps/scenarios/Sandbox - Britons.xml:41:PlayerData[3].Name
 #: maps/scenarios/Sandbox - Gauls.xml:41:PlayerData[3].Name
 msgid "Roman Interlopers"
-msgstr ""
+msgstr "Римски похитители"
 
 #: maps/scenarios/Sandbox - Britons.xml:41:Name
 msgid "Sandbox - The Britons"
@@ -17754,7 +17755,7 @@ msgstr ""
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[0].Name
 #: maps/scenarios/Serengeti.xml:31:PlayerData[0].Name
 msgid "Carthage"
-msgstr ""
+msgstr "Картаген"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[1].Name
 #: maps/scenarios/Sandbox - Persians.xml:41:PlayerData[1].Name
@@ -17780,15 +17781,15 @@ msgstr ""
 #: maps/scenarios/Sandbox - Macedonians.xml:41:Description
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
-msgstr ""
+msgstr "Играй с Македонската факция в незаплашваща обстановка"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[0].Name
 msgid "The Macedonians"
-msgstr ""
+msgstr "Македонците"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:41:Name
 msgid "Sandbox - The Macedonians"
-msgstr ""
+msgstr "Пясъчник - Македонците"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:42:Description
 msgid "Mauryan Indian faction showcase map."
@@ -17875,7 +17876,7 @@ msgstr ""
 
 #: maps/scenarios/Savanna Ravine.xml:42:Name
 msgid "Savanna Ravine"
-msgstr ""
+msgstr "Саванска Клисува"
 
 #: maps/scenarios/Savanna Ravine.xml:42:Description
 msgid ""
@@ -18012,7 +18013,7 @@ msgstr ""
 #: maps/scenarios/_default.xml:32:Description maps/scenarios/temperate
 #: map.xml:31:Description
 msgid "Give an interesting description of your map."
-msgstr ""
+msgstr "Дай интересно описание на твоята карта."
 
 #: maps/scenarios/WallTest.xml:31:Name
 msgid "WallTest"
@@ -18036,7 +18037,7 @@ msgstr ""
 
 #: maps/scenarios/_default.xml:32:Name
 msgid "Unnamed map"
-msgstr ""
+msgstr "Безименна карта"
 
 #: maps/scenarios/reservoir.xml:31:Description
 msgid "A demo showing water planes."
@@ -18052,7 +18053,7 @@ msgstr ""
 
 #: maps/scenarios/road demo.xml:31:Name
 msgid "Road Decals Demo"
-msgstr ""
+msgstr "Демо за пътищни декали"
 
 #: maps/scenarios/shipattacks.xml:31:Description
 msgid "Move ships around. Attack other ships."

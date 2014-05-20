@@ -11,6 +11,7 @@
 # essdy <essdyk@gmail.com>, 2014
 # fri, 2014
 # fri, 2013-2014
+# TheSprtCZ <halapetr@selfnet.cz>, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
 # Jan Moravec <Rodeo65@centrum.cz>, 2014
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
@@ -20,6 +21,7 @@
 # fri, 2014
 # fri, 2013-2014
 # fri, 2014
+# TheSprtCZ <halapetr@selfnet.cz>, 2014
 # Jan Moravec <Rodeo65@centrum.cz>, 2014
 # Vít Pelčák, 2014
 # Vít Pelčák, 2014
@@ -29,7 +31,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-06 20:15+0000\n"
+"PO-Revision-Date: 2014-05-19 06:41+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -3744,7 +3746,7 @@ msgstr "Správní střediska"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
-msgstr ""
+msgstr "Divy světa"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
@@ -4156,7 +4158,7 @@ msgstr "Alt + Enter: Přepnout mezi režimem na celou obrazovku a okenním reži
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
-msgstr "~ or F9: Ukázat/Skrýt konzoli"
+msgstr "~ nebo F9: Ukázat/Skrýt konzoli"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
@@ -4494,7 +4496,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "• ID náhodného uživatele(uloženo v %APPDATA%\\0ad\\config\\user.cfg na Windows, ~/.config/0ad/config/user.cfg na Unixu), kvůli rozpoznání opakovaných zpráv od téhož uživatele."
+msgstr "• ID náhodného uživatele (uloženo v %APPDATA%\\0ad\\config\\user.cfg na Windows, ~/.config/0ad/config/user.cfg na Unixu), kvůli rozpoznání opakovaných zpráv od téhož uživatele."
 
 #: gui/manual/userreport.txt:6
 msgid ""
@@ -7024,7 +7026,7 @@ msgstr "Nikdo nevěděl lépe než Kartaginci, kam ve starověkém světě šli 
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Civilizační střediska, chrámy a domy -25 % času na stavbu."
+msgstr "Správní střediska, chrámy a domy -25 % času na stavbu."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/carthaginians/special_colonisation.jsongenericName
@@ -7162,7 +7164,7 @@ msgstr "Znamená „Běda poraženým“. To jsou slova, která keltský kmenov�
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr "Galští druidé získají budou moci útočit slabou chladnou zbraní."
+msgstr "Galští druidé budou moci na krátkou vzdálenost útočit slabou chladnou zbraní."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
@@ -7698,7 +7700,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr ""
+msgstr "Obranná aura - Poskytuje bonus všem Iberijským jednotkám a budovám v dohledné vzdálenosti od monumentu 10-15% bonus k útoku. Stavební omezení: Na celé mapě jich může být pouze 5."
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
@@ -7915,7 +7917,7 @@ msgstr ""
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr ""
+msgstr "Makedonci byli zlepšovateli oblehacích strojů."
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -7934,7 +7936,7 @@ msgstr "Maurijci"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Maurjové mají +10% k výši populačního limitu (např. limit 330 jednotek namísto běžných 300)."
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -8039,13 +8041,13 @@ msgstr "Sehnání slonů"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr ""
+msgstr "Větší dosah a rychlejší výcvik pro maurjovské pěší lučištníky."
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr ""
+msgstr "Lučištnická tradice"
 
 #: civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -8055,11 +8057,11 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "Zakladatel Maurjovské říše."
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "Poslední velký císař z Maurjovské dynastie."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
@@ -8084,7 +8086,7 @@ msgstr "Stáje pro slony"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr ""
+msgstr "V městské fázi cvičí lučištníky na slonech a pracovní slony. K tomu přijdou v městské fázi ještě elitní váleční sloni."
 
 #: civs/maur.jsonStructures[1].Name
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
@@ -8574,7 +8576,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr ""
+msgstr "Musí se postavit na neutrální půdě. Nemá žádný územní účinek daný poloměrem. Cvičí všechny žoldnéřské jednotky."
 
 #: civs/ptol.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_lighthouse.xml:17
@@ -9207,7 +9209,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "Spartské ženy nemohou být zajaty a tvrdošíjně napadnou jakéhokoliv útočníka. Dokáží stavět obranné věže a palisády."
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -10467,7 +10469,7 @@ msgstr "Koňmi tažený nástroj k orání země."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +25% farming rate."
-msgstr ""
+msgstr "Vybav svoje dělníky železnými pluhy. +25% k zemědělství."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -10676,7 +10678,7 @@ msgstr "Obětování bohům"
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
 #: simulation/data/technologies/heal_temple.jsonspecificName.spart
 msgid "Olympic Games"
-msgstr ""
+msgstr "Olympijské hry"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.athen
 msgid "Eleusian Mysteries"
@@ -10692,7 +10694,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr ""
+msgstr "Občanky získají +50% na zdraví."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -10878,7 +10880,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "Vyžaduje 4 nové budovy z městské fáze (vyjma hradeb a správních středisek)"
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
@@ -10953,7 +10955,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr "vyžaduje 5 staveb vesnické fáze (kromě palisád a polí)."
+msgstr "Vyžaduje 5 staveb vesnické fáze (kromě palisád a polí)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.hele
@@ -11028,7 +11030,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "Domy přidavají dalších +1 k populačnímu limitu. "
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -11055,7 +11057,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
-msgstr ""
+msgstr "Domy přidavají dalších +2 k populačnímu limitu. "
 
 #: simulation/data/technologies/pop_house_02.jsongenericName
 msgid "Manors"
@@ -11790,7 +11792,7 @@ msgstr "Helénská kultura je velmi vlivná. +20 % územní účinek pro všechn
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.theb
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsonspecificName.spart
 msgid "Exellinismós"
-msgstr ""
+msgstr "Exellinismós"
 
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsongenericName
 msgid "Emperor of Emperors"
@@ -11804,21 +11806,21 @@ msgstr "Chakravarti Samrāt"
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
-msgstr ""
+msgstr "U Indů byla přesná střelba z luku tradicí a v bitvách dávali přednost hromadnému nasazování lučištníků. "
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr ""
+msgstr "Dosah +10 metrů pro jednotky vyzbrojené lukem. Jednotky lučištníků jsou o cvičeny o -20 procent rychleji, mají ale -20 procent životních bodů."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsondescription
 msgid ""
 "The Mauryans built their city walls out of wood, an abundant natural "
 "resource in India. Consequently, Mauryan city walls have -20% health, but "
 "build 20% faster."
-msgstr ""
+msgstr "Maurjové stavěli zdi svých měst ze dřeva, protože dřevo je v Indii hojně se vyskytovavší přírodní zdroj. Pročež mají maurijské městské zdi -20% zdraví, ale jsou stavěny o 20% rychleji."
 
 #: simulation/data/technologies/mauryans/wooden_walls.jsongenericName
 msgid "Wooden Walls"
@@ -11828,21 +11830,21 @@ msgstr "Dřevěné hradby"
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "Anusiyjská elitní pěchota prodělává výcvik dvakrát tak rychle, ale ztrácí trochu na zdraví."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr ""
+msgstr "Anusiyjská elitní pěchota -50% času na výcvik, ale i -20 zdraví."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
-msgstr ""
+msgstr "Veškeré perské stavby +25% zdraví, potřebují ale také +20% více času na stavbu."
 
 #: simulation/data/technologies/persians/special_archery_tradition.jsondescription
 msgid ""
 "The Persians had a tradition of fine archery and a penchant for using massed"
 " archers in battle."
-msgstr ""
+msgstr "U Peršanů byla přesná střelba z luku tradicí a v bitvách dávali přednost hromadnému nasazování lučištníků. "
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
@@ -11850,17 +11852,17 @@ msgstr "Fénické trojveslice získají schopnost cvičit jednotky jízdy."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
-msgstr ""
+msgstr "Koňská přeprava"
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsondescription
 msgid ""
 "Significantly increase training speed of cavalry at the stables by training "
 "them in large batches or battalions."
-msgstr ""
+msgstr "Podstatně zvýší rychlost výcviku jízdy v konírnách, když jsou cvičeni po větších skupinách nebo po praporech."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Rychlejší skupinový výcvik pro stáje."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -11874,13 +11876,13 @@ msgstr "Odvod pěšího vojska"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Veškerá jízda potřebuje -20% času na výcvik, má ale -10 života. Odemkne vojenskou povinnost jízdy."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Veškerá pěchota potřebuje -10% času na výcvik, má ale -5 života. Odemkne vojenskou povinnost pěchoty."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
@@ -11888,7 +11890,7 @@ msgstr "Římané skvěle zvládali logistiku při vedení války."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Territory decay eliminated for Army Camps and Siege Walls."
-msgstr ""
+msgstr "Územní rozpad vyřazuje vojenské tábory a obléhací zdi."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -11906,22 +11908,22 @@ msgstr "Helénské hlavní město"
 msgid ""
 "Significantly increase training speed of champions and siege weapons at the "
 "fortress by training them in large batches or battalions."
-msgstr ""
+msgstr "Podstatně zvýší rychlost výcviku elitních jednotek a obléhacích strojů v pevnostech, když jsou tyto cvičeny ve velkých skupinách nebo praporech."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Rychlejší výcvik pro pevnostní jednotky."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
-msgstr ""
+msgstr "Přehlídka Dafné"
 
 #: simulation/data/technologies/successors/special_war_horses.jsondescription
 msgid ""
 "The now-extinct Nisian breed of horse was one of the largest and robust "
 "horses of ancient times. They were highly sought after by the Seleucids and "
 "Persians as both rider and mount gained heavier armor as time progressed."
-msgstr ""
+msgstr "Dnes vymřelá Nisiananská rasa koní byla jedním z největších a nejodolnějších koní antiky. Tito koně byli velmi vyhledáváni Seleukovci a Peršany, když jak jezdci tak i koně získali časem těžké brnění."
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health, but also +10% train time."
@@ -11929,7 +11931,7 @@ msgstr "Všechno jezdectvo +20% životů, ale také +10% k délce výcviku."
 
 #: simulation/data/technologies/successors/special_war_horses.jsonspecificName.sele
 msgid "Nisioi"
-msgstr ""
+msgstr "Nisioi"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsondescription
 msgid "The reform army of the Seleucids."
@@ -11959,17 +11961,17 @@ msgstr "Tradiční armáda"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Stříbrné štíty nebo Argyraspidai byli elitní těžká pěchota makedonského vojska"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr ""
+msgstr "Vyzbrojte elitní pěší nositele štítů stříbrnými štíty, které mají větší sílu útoku, více životních bodů a lepší brnění."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"
-msgstr ""
+msgstr "Pluk stříbrných štítů"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
@@ -11990,7 +11992,7 @@ msgstr "Drobné plody"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "Pokácejte pro sbírání dřeva."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -12084,7 +12086,7 @@ msgstr "Stavte, abyste získali rozsáhlé plochy země. Cvičte občany. Posád
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
-msgstr "Občanské středisko"
+msgstr "Správní středisko"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
@@ -12112,7 +12114,7 @@ msgstr "Obranná stavba"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "Obranná věž"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -12264,7 +12266,7 @@ msgstr "Ohrada"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr ""
+msgstr "Sklízí zeleninu kvůli potravě. Nejvíce sběračů: 5."
 
 #: simulation/templates/template_structure_resource_field.xml:24
 msgid "Field"
@@ -12303,7 +12305,7 @@ msgstr "Jednotka"
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "Základní"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -12314,7 +12316,7 @@ msgid ""
 "Classes: Citizen Melee Cavalry Spearman.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr ""
+msgstr "Třídy: Občanský jízdní bojovník s oštěpem.\nZvýhodněn proti: 2 x bojovníkům s mečem a obléhacím strojům, 1.5 x proti oštěpařům.\nZnevýhodněn proti: Bojovníkům s oštěpem, lučištníkům a slonům."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -12370,7 +12372,7 @@ msgid ""
 "Classes: Champion Ranged Cavalry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr ""
+msgstr "Třídy: Elitní jízdní lučištník bojující na dálku\nZvýhodněn proti: 2 x proti bojovníkům s mečem, 1,5 x proti bojovníkům s oštěpem.\nZnevýhodněn proti: Harcovníkům a slonům."
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
@@ -12429,7 +12431,7 @@ msgid ""
 "Classes: Champion Ranged Infantry Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr ""
+msgstr "Třídy: Občanský pěší lučištník pro boj na dálku.\nZvýhodněn proti: 2 x proti bojovníkům s mečem. 1,25 x proti jízdním bojovníkům s oštěpem.\nZnevýhodněn proti: Jízdním bojovníkům s mečem a jízdním harcovníkům."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -12440,18 +12442,18 @@ msgid ""
 "Classes: Champion Ranged Infantry Skirmisher.\n"
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr ""
+msgstr "Třídy: Elitní pěší harcovník pro boj na dálku\nZvýhodněn proti: 1,5 x proti bojovníkům s oštěpem a jízdním lučištníkům, proti slonům a válečným vozům.\nZnevýhodněn proti: Bojovníkům s mečem a jízdním bojovníkům s oštěpem."
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
-msgstr "Vynikající harcovník"
+msgstr "Elitní harcovník"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr ""
+msgstr "Třídy: Elitní bojovník s oštěpem pěchoty pro boj zblízka\nZvýhodněn proti: 2 x proti všem druhům jízdy, 1.5 x proti slonům\n Znevýhodněn proti: Bojovníkům s mečem, harcovníkům a jízdním lučištníkům."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
@@ -12462,7 +12464,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Třídy: Vynikající bojovník s oštěpem pěchoty pro boj zblízka\nJde proti: 2 x proti všem druhům jízdy.\nJemu čelí: Harcovníci, bojovníci s mečem, lučištníci jedoucí na koni."
+msgstr "Třídy: Elitní pěší bojovník s oštěpem pro boj zblízka\nZvýhodněn proti: 2 x proti všem druhům jízdy.\nZnevýhodněn proti: Harcovníkům, bojovníkům s mečem ajízdním lučištníkům"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
@@ -12473,7 +12475,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Třídy: Elitní pěší bojovník s mečem pro boj zblízka.\nZvýhodněn proti: 2 x proti bojovníkům s oštěpem, 1,5 x proti slonům.\nZnevýhodněn proti: Lučištníkům, jízdním bojovníkům s oštěpem a jízdním lučištníkům."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -12527,7 +12529,7 @@ msgstr "Hrdina jedoucí na koni"
 msgid ""
 "Hero Aura: n/a.\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "Hrdinova aura: n/a.\nBoj na dálku 2 x proti bojovníkům s oštěpem. Boj na dálku 1,5 x proti bojovníkům s mečem."
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:48
 msgid "Hero Cavalry Archer"
@@ -12543,7 +12545,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "Třídy: Hrdina jízdní bojovník s oštěpem pro boj zblízka.\nAura \"hrdiny\": TBD.\nZvýhodněn proti: 2 x bojovníkům s mečem a obléhacím strojům, 1.5 x proti harcovníkům.\nZnevýhodněn proti: Bojovníkům s oštěpem, lučištníkům a slonům."
 
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:67
 msgid "Hero Cavalry Spearman"
@@ -12555,7 +12557,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Třídy: Hrdina jízdní bojovník s mečem pro boj zblízka.\nAura \"hrdiny\": TBD.\nZvýhodněn proti: 2 x proti lučištníkům, všem podpůrným jednotkám a obléhacím strojům.\nZnevýhodněn proti: bojovníkům s oštěpem, jízdním harcovníkům a slonům."
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:58
 msgid "Hero Cavalry Swordsman"
@@ -12573,7 +12575,7 @@ msgid ""
 "Classes: Hero Infantry Ranged Archer Bow.\n"
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Třídy: Hrdina pěší lučištník pro boj na dálku.\nZvýhodněn proti: 2 x proti bojovníkům s mečem. 1,25 x proti jízdním bojovníkům s oštěpem.\nZnevýhodněn proti: Jízdním bojovníkům s mečem, jízdním harcovníkům."
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
 msgid "Hero Archer"
@@ -12597,7 +12599,7 @@ msgid ""
 "\"Hero\" Aura: TBD.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Třídy: Hrdina pěší bojovník s mečem pro boj zblízka.\nAura \"hrdiny\": TBD.\nZvýhodněn proti: 2 x proti bojovníkům s oštěpem 1,5 x proti harcovníkům a proti slonům.\nZnevýhodněn proti: Lučištníkům a jízdním lučištníkům."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:53
 msgid "Hero Swordsman"
@@ -12769,7 +12771,7 @@ msgid ""
 "Classes: Siege Melee Ram.\n"
 "Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr ""
+msgstr "Třídy: Obléhací beranidlo pro boj na blízko.\nZvýhodněn proti: 1,5 x proti branám. Obecně dobrý proti stavbám.\nZnevýhodněn proti: Jízdě pro boj na blízko. Nemůže zaútočit na živé jednotky (může však útočit na jiné obléhací stroje a na lodě)."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -12781,7 +12783,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10.\n"
 "Counters: 2x vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "Třídy: Obléhací věž pro boj na dálku.\nObsaďte uvnitř až 20 pěšáky pro zvýšení počtu šípů z 0 na 10.Zvýhodněn proti: 2 x proti stavbám.\nZnevýhodněn proti: Jízdě pro boj na blízko."
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
@@ -12795,7 +12797,7 @@ msgstr "Podpora"
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr ""
+msgstr "Třídy: Občanská pomocná dělnice.\nSbírá suroviny, staví občanské stavby a povzbuzuje muže v její blízkosti k rychlejší práci. Zvýhodněna při hledání potravy a při polním hospodářství."
 
 #: simulation/templates/template_unit_support_female_citizen.xml:52
 msgid "Female Citizen"
@@ -12815,7 +12817,7 @@ msgstr "Léčitel"
 msgid ""
 "Classes: Support Worker Slave.\n"
 "Gatherer with a finite life span. Bonused at mining and lumbering."
-msgstr ""
+msgstr "Třídy: Pomocný otrocký dělník.\nSběrač s omezenou délkou života. Zvýhodněn při dolování a při kácení lesa."
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
@@ -12825,7 +12827,7 @@ msgstr "Otrok"
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
-msgstr ""
+msgstr "Třídy: Pomocný obchodník.\nObchoduje se surovinami mezi vašimi trhy a trhy vašich spojenců."
 
 #: simulation/templates/template_unit_support_trader.xml:14
 msgid "Trader"
@@ -12983,7 +12985,7 @@ msgstr "Krokodýl nilský"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Crocodylus niloticus"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -17193,7 +17195,7 @@ msgid ""
 "\"Last Stand\" Aura: +20% attack for nearby Hoplites and Spartiates.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "Třídy: Hrdina bojovník s oštěpem pěchoty pro boj zblízka\nAura \"posledního vzepětí\": +20% na útoku pro hoplíty a Sparťany poblíž.\nZvýhodněn: 2 x proti všem druhům jízdy.\n Znevýhodněn proti: Harcovníkům, bojovníkům s mečem, lučištníkům jedoucím na koni."
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
@@ -17216,7 +17218,7 @@ msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
 "Counters: 2.5x vs. Siege."
-msgstr ""
+msgstr "Třídy: Občanská pomocná dělnice.\nSbírá suroviny, staví stavby a povzbuzuje muže poblíž, aby pracovali rychleji. Zvýhodněna při hledání potravy a při polním hospodářství. \n Zvýhodněna proti: 2,5 x proti obléhání."
 
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
@@ -17272,7 +17274,7 @@ msgid ""
 "Classes: Mercenary Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Třídy: Žoldnéřský elitní pěší bojovník s mečem pro boj zblízka.\nZvýhodněn proti: 2 x proti bojovníkům s oštěpem, 1,5 x proti slonům.\nZnevýhodněn proti: Lučištníkům, jízdním bojovníkům s oštěpem a jízdním lučištníkům."
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"

@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-05 15:49+0000\n"
+"PO-Revision-Date: 2014-05-18 08:11+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -313,7 +313,7 @@ msgstr "Na h‑uile mapa"
 #: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
 msgctxt "team"
 msgid "None"
-msgstr "Gun sgioba"
+msgstr "—"
 
 #: gui/gamesetup/gamesetup.js:563 gui/gamesetup/gamesetup.js:1270
 msgctxt "civilization"
@@ -692,7 +692,7 @@ msgstr "Teirmichean a' chleachdaidh"
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr "Gun IF"
+msgstr "Gun dùthaich"
 
 #: gui/locale/locale_advanced.js:89
 msgid "<invalid>"
@@ -735,7 +735,7 @@ msgstr "Cuir geamannan aon-chluicheadair 'nan stad mur eil fòcas air an uinneag
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr "Cuir an sgrìn fàilteachaidh à comas"
+msgstr "Coir an sgrìn fàilteachaidh à comas"
 
 #: gui/options/options.js:11
 msgid ""
@@ -2245,7 +2245,7 @@ msgstr "Iasg"
 #: gui/summary/summary.js:510
 #, python-format
 msgid "Time elapsed: %(time)s"
-msgstr "Ùine a dh'fhalbh: %(time)s"
+msgstr "An t-ùine a dh'fhalbh: %(time)s"
 
 #: gui/summary/summary.js:531
 #, python-format
@@ -3101,7 +3101,7 @@ msgstr "Cluicheadairean:"
 
 #: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
-msgstr "Gabh pàirt sa gheama"
+msgstr "Gabh pàirt ann an geama"
 
 #: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:247 (caption)
 msgid "Host Game"
@@ -3231,11 +3231,11 @@ msgstr "Faclan-luirg (gun chleachdadh):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr "An sgeama ionadail air thoradh:"
+msgstr "An sgeama ionadail:"
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr "Faidhlichean faclair 'gan cleachdadh:"
+msgstr "Na faidhlichean cànain aige:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
@@ -3312,11 +3312,11 @@ msgstr "Rach an sàs ann air: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr "Cuir beachd thugainn an comas"
+msgstr "Cuir fiosrachadh a-null"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr "Cuir beachd thugainn à comas"
+msgstr "Na cuir fiosrachadh a-null"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3391,7 +3391,7 @@ msgstr "Seall an sgrìn fàilteachaidh. Tha seo feumail ma dh'fhalaich thu le me
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
-msgstr "Ionnsaich mar a chluicheas tu"
+msgstr "Leabhar-mìneachaidh"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
@@ -3685,7 +3685,7 @@ msgstr "Margaid"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
-msgstr "Measgachadh"
+msgstr "Eile"
 
 #: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
 #: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
@@ -3786,31 +3786,31 @@ msgstr "Cìsean (cur / fhaighinn)"
 
 #: gui/summary/summary.xml:727 (caption)
 msgid "Food exchanged"
-msgstr "Biadh air a mhalart"
+msgstr "Biadh"
 
 #: gui/summary/summary.xml:730 (caption)
 msgid "Wood exchanged"
-msgstr "Fiodh air a mhalart"
+msgstr "Fiodh"
 
 #: gui/summary/summary.xml:733 (caption)
 msgid "Stone exchanged"
-msgstr "Clach air a malart"
+msgstr "Clachan"
 
 #: gui/summary/summary.xml:736 (caption)
 msgid "Metal exchanged"
-msgstr "Meatailt air a malart"
+msgstr "Meatailt"
 
 #: gui/summary/summary.xml:739 (caption)
 msgid "Barter efficiency"
-msgstr "Èifeachdachd a' mhalairt"
+msgstr "Èifeachdachd"
 
 #: gui/summary/summary.xml:742 (caption)
 msgid "Trade income"
-msgstr "Teachd a-steach a' mhalairt"
+msgstr "Teachd a-steach"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
-msgstr "Co-mheas nan\\nglasraichear"
+msgstr "Glasraichearan"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
@@ -3818,7 +3818,7 @@ msgstr "Boireannaich"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr "Co-mheas\\nmarbhaidh / bàis"
+msgstr "Marbhadh /\\nbàis"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
@@ -10820,7 +10820,7 @@ msgstr "Airm cliathaich no saighdearan neo-riaghailteach"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr "Ionnsaighean slèigh no streupadaireachd"
+msgstr "Ionnsaighean slèigh no streup"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
@@ -18445,7 +18445,7 @@ msgstr "Sisilidh (2)"
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Description
 msgid "A demo Skirmish map."
-msgstr "Mapa taisbeanaidh air streupadaireachd."
+msgstr "Mapa taisbeanaidh air streup."
 
 #: maps/skirmishes/Skirmish Demo.xml:42:Name
 msgid "Skirmish Demo"

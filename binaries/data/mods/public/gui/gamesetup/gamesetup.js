@@ -26,7 +26,7 @@ var g_IsNetworked;
 // Is this user in control of game settings (i.e. is a network server, or offline player)
 var g_IsController;
 
-//Server name, if user is a server, connected to the multiplayer lobby
+// Server name, if user is a server, connected to the multiplayer lobby
 var g_ServerName;
 
 // Are we currently updating the GUI in response to network messages instead of user input
@@ -72,6 +72,9 @@ var g_NavalWarning = "\n\n" + sprintf(
 	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only."),
 	{ warning: "[font=\"sans-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
 );
+
+// Current number of assigned human players.
+var g_AssignedCount = 0;
 
 // To prevent the display locking up while we load the map metadata,
 // we'll start with a 'loading' message and switch to the main screen in the
@@ -436,6 +439,9 @@ function handleNetMessage(message)
 		{
 			if (! g_PlayerAssignments[host])
 			{
+				// If we have extra player slots and we are the controller, give the player an ID.
+				if (g_IsController && message.hosts[host].player === -1 && g_AssignedCount < g_GameAttributes.settings.PlayerData.length)
+					Engine.AssignNetworkPlayer(g_AssignedCount + 1, host);
 				addChatMessage({ "type": "connect", "username": message.hosts[host].name });
 				newPlayer = host;
 			}
@@ -1329,7 +1335,7 @@ function updatePlayerList()
 	var assignments = [];
 	var aiAssignments = {};
 	var noAssignment;
-	var assignedCount = 0;
+	g_AssignedCount = 0;
 
 	for (var guid in g_PlayerAssignments)
 	{
@@ -1342,12 +1348,12 @@ function updatePlayerList()
 		assignments[player] = hostID;
 
 		if (player != -1)
-			assignedCount++;
+			g_AssignedCount++;
 	}
 
 	// Only enable start button if we have enough assigned players
 	if (g_IsController)
-		Engine.GetGUIObjectByName("startGame").enabled = (assignedCount > 0);
+		Engine.GetGUIObjectByName("startGame").enabled = (g_AssignedCount > 0);
 
 	for each (var ai in g_AIs)
 	{

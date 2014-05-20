@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-06 21:38+0000\n"
+"PO-Revision-Date: 2014-05-16 16:13+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -4091,7 +4091,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Primer de tot, seleccioneu si voleu jugar a un mapa aleatori (creat automàticament des d'un script de mapes aleatoris) o a un escenari (creat per un dissenyador de mapes). Els escenaris es poden filtrar per mostrar només certs mapes. Els mapes per defecte es mostren immediatament, però els mapes personalitzats sovint no es mostren, així que cal seleccionar \"Tots els mapes\" per veure una llista de tots els mapes disponibles. Llavors, seleccioneu un mapa per jugar-hi. Els \"mapes demo\" estan dissenyats per provar aspectes concrets del joc i generalment no són útils per jugar-hi."
+msgstr "Primer de tot, seleccioneu si voleu jugar a un mapa aleatori (creat automàticament amb un script de mapes aleatoris) o a un escenari (creat per un dissenyador de mapes). Els escenaris es poden filtrar per mostrar només certs mapes. Els mapes per defecte es mostren immediatament, però els mapes personalitzats sovint no es mostren, així que cal seleccionar \"Tots els mapes\" per veure una llista de tots els mapes disponibles. Llavors, seleccioneu un mapa per jugar-hi. Els \"mapes demo\" estan dissenyats per provar aspectes concrets del joc i generalment no són útils per jugar-hi."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -4289,7 +4289,7 @@ msgstr "Maj + Clic esquerre o Arrossegar amb el botó esquerre sobre una unitat 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Maj + Clic esquerre o Arrossegar amb el botó esquerre sobre una unitat al mapa: Elimina la unitat de la selecció"
+msgstr "Ctrl + Clic esquerre o Arrossegar amb el botó esquerre sobre una unitat al mapa: Elimina la unitat de la selecció"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
@@ -4356,15 +4356,15 @@ msgstr "[font=\"sans-14\"]W o [amunt]: Mou la pantalla cap amunt"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
-msgstr "S o [avall]: Mou la pantalla cap avall"
+msgstr "S o [avall]: Desplaça la pantalla cap avall"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr "S o [esquerra]: Mou la pantalla cap a l'esquerra"
+msgstr "S o [esquerra]: Desplaça la pantalla cap a l'esquerra"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
-msgstr "D o [dreta]: Mou la pantalla cap a la dreta"
+msgstr "D o [dreta]: Desplaça la pantalla cap a la dreta"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
@@ -5194,7 +5194,7 @@ msgstr "\"Colpeja si vols, però escolta.\" - Temístocles"
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr "\"Casa't amb un bon home, i tingues bons fills.\" - Leònides, a la seva dona abans de partir cap a les Termòpiles"
+msgstr "\"Casa't amb un bon home i tingues bons fills.\" - Leònides, a la seva dona abans de partir cap a les Termòpiles"
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -5946,7 +5946,7 @@ msgstr "TEMÍSTOCLES"
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Heroi atenès que va comandar els grecs en les grans batalles navals d'Artemisi i Salamis."
+msgstr "- Heroi atenès que va comandar els grecs en les grans batalles navals d'Artemisi i Salamina."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
@@ -6379,7 +6379,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Poc després de les grans victòries navals a Salamis i Mícale, les ciutats estat gregues van fundar l'anomenada Lliga de Delos l'any 478 aC, amb l'objectiu de fer fora els perses de la regió de l'Egeu. Els estats aliats van contribuir amb vaixells i diners, mentre que els atenesos van oferir tota la seva flota."
+msgstr "Poc després de les grans victòries navals a Salamina i Mícale, les ciutats estat gregues van fundar l'anomenada Lliga de Delos l'any 478 aC, amb l'objectiu de fer fora els perses de la regió de l'Egeu. Els estats aliats van contribuir amb vaixells i diners, mentre que els atenesos van oferir tota la seva flota."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -6504,7 +6504,7 @@ msgid ""
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
 "Aegean, thereby laying the foundations of future Athenian power. Ostracised "
 "by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "El general que va persuadir els atenesos d'invertir els seus ingressos de les mines de plata en una flota de guerra de 200 trirrems. Un personatge cabdal a les Guerres Mèdiques, va comandar la marina atenesa victoriosa a la batalla decisiva de Salamis l'any 479 aC. Més tard, va seguir una política activa contra els perses a l'Egeu, establint així les bases del futur poder d'Atenes. Condemnat a l'ostracisme pels atenesos, es va veure obligat a fugir a la protecció dels perses."
+msgstr "El general que va persuadir els atenesos d'invertir els seus ingressos de les mines de plata en una flota de guerra de 200 trirrems. Personatge cabdal durant les Guerres Mèdiques, liderà la victòria de la marina atenesa en la batalla decisiva de Salamina l'any 479 aC. Més tard, va seguir una política activa contra els perses a l'Egeu, establint així les bases del futur poder d'Atenes. Condemnat a l'ostracisme pels atenesos, es va veure obligat a fugir sota la protecció dels perses."
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
@@ -6558,7 +6558,7 @@ msgstr "Gimnàs"
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Recluta unitats campiones i investiga tecnologies pertanyents a les unitats campiones."
+msgstr "Recluta i millora unitats campiones."
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
@@ -6572,7 +6572,7 @@ msgstr "Pritaneu"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Recluta herois i investiga tecnologies pertanyents als herois."
+msgstr "Recluta i millora herois."
 
 #: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
 msgid ""
@@ -6832,7 +6832,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Ammià Marcel·lí va descriure la dificultat que tindria una banda de forasters per tractar amb un celta si demanava ajuda a la seva dona, perquè era més forta que ell i podia fer ploure cops i puntades sobre els assaltants amb la força d'una catapulta. Es deia de Budicca, reina dels icenis, que era \"molt alta i temible en aparença; la seva veu era dura i una gran massa de cabells rojos li queien per les espatlles. Duia una túnica de molts colors i, a damunt, un mantell gruixut subjectat amb un fermall.\" Budicca havia estat aliada dels romans, juntament amb el seu marit Prasutag, rei dels icenis. Prasutag s'havia aliat estretament amb els romans després d'una breu revolta, respectat com a home previsor fins i tot pels seus antics enemics, i ara aliats, els romans, i lliure de governar el seu regne com dictava la tradició nativa, excepte en un cas. Prasutag, sabent que havia de morir, va acordar un testament amb la seva dona i els seus subordinats; les seves filles heretarien el govern del teritori, sota l'administració de Budicca fins que fossin grans, i l'Emperador de Roma tindria la facultat de recaptar impostos i demanar ajuda militar, més o menys la situació que ja hi havia amb Prasutag. El problema es trobava en el fet que els romans no reconeixien les dones com a hereves, i per això, a la mort de Prasutag, van imposar que l'únic amo legítim del regne era l'Emperador. A més, van assenyalar que la pràctica habitual romana era permetre la independència d'un regne sotmès només durant la vida del rei inicial, com havia passat a Galàcia. L'Imperi es va annexionar formalment el regne i va començar immediatament a recaptar impostos cruelment, citant que Prasutag estava en deute amb els romans per haver demanat préstecs que no havia tornat. Les queixes de Budicca sobre aquest tractament i el desafiament del testament del seu difunt marit només van ser respostes amb brutalitat; els soldats romans la van fuetejar, i les seves filles, nenes tan sols, van ser violades. Budicca i els seus súbdits estaven furiosos per la deshonra feta a la reina i les seves filles. Quan el governador romà de Britània estava ocupat amb els druides de Càmbria, ara Gal·les, Budicca va aconseguir atraure més seguidors fora dels Icenis, ja que no eren l'única tribu decebuda amb els romans. Budicca i el seu exèrcit van arrasar tres ciutats, van anorrear una legió romana i van inspirar-se en la memòria d'Armini, un germànic que havia expulsat els romans de les seves terres, i en els seus avantpassats, que havien foragitat Cèsar feia prop d'un segle. Budicca va ser derrotada per un greu error tàctic a la batalla de Watling Street, on gran part de les seves forces van ser massacrades per no poder retirar-se a un lloc segur. Budicca va poder escapar, i llavors va matar les seves filles i es va suïcidar per escapar de la vergonya en mans romanes."
+msgstr "Ammià Marcel·lí va descriure la dificultat que tindria una banda de forasters per tractar amb un celta si demanava ajuda a la seva dona, perquè era més forta que ell i podia fer ploure cops i puntades sobre els assaltants amb la força d'una catapulta. Es deia de Budicca, reina dels icenis, que era \"molt alta i temible en aparença; la seva veu era dura i una gran massa de cabells rojos li queien per les espatlles. Duia una túnica de molts colors i, a damunt, un mantell gruixut subjectat amb un fermall.\" Budicca havia estat aliada dels romans, juntament amb el seu marit Prasutag, rei dels icenis. Prasutag s'havia aliat estretament amb els romans després d'una breu revolta, respectat com a home previsor fins i tot pels seus antics enemics, i ara aliats, els romans, i lliure de governar el seu regne com dictava la tradició nativa, excepte en un cas. Prasutag, sabent que havia de morir, va acordar un testament amb la seva dona i els seus subordinats; les seves filles heretarien el govern del teritori, sota l'administració de Budicca fins que fossin grans, i l'Emperador de Roma tindria la facultat de recaptar impostos i demanar ajuda militar, més o menys la situació que ja hi havia amb Prasutag. El problema es trobava en el fet que els romans no reconeixien les dones com a hereves, i per això, a la mort de Prasutag, van imposar que l'únic amo legítim del regne era l'Emperador. A més, van assenyalar que la pràctica habitual romana era permetre la independència d'un regne sotmès només durant la vida del rei inicial, com havia passat a Galàcia. L'Imperi es va annexionar formalment el regne i va començar immediatament a recaptar impostos cruelment, citant que Prasutag estava en deute amb els romans per haver demanat préstecs que no havia tornat. Les queixes de Budicca sobre aquest tractament i el desafiament del testament del seu difunt marit només van ser respostes amb brutalitat; els soldats romans la van fuetejar, i les seves filles, nenes tan sols, van ser violades. Budicca i els seus súbdits estaven furiosos per la deshonra feta a la reina i les seves filles. Quan el governador romà de Britània estava ocupat amb els druides de Càmbria, ara Gal·les, Budicca va aconseguir atraure més seguidors fora dels icenis, ja que no eren l'única tribu decebuda amb els romans. Budicca i el seu exèrcit van arrasar tres ciutats, van anorrear una legió romana i van inspirar-se en la memòria d'Armini, un germànic que havia expulsat els romans de les seves terres, i en els seus avantpassats, que havien foragitat Cèsar feia prop d'un segle. Budicca va ser derrotada per un greu error tàctic a la batalla de Watling Street, on gran part de les seves forces van ser massacrades per no poder retirar-se a un lloc segur. Budicca va poder escapar, i llavors va matar les seves filles i es va suïcidar per escapar de la vergonya en mans romanes."
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -7324,11 +7324,11 @@ msgid ""
 "sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
 "example, consulted the advice of the god before going to war with Cyrus the "
 "Great of Persia."
-msgstr "L'oracle sagrat d'Apol·lo a Delfos era un dels santuaris més estimats tant pels hel·lens com pels estrangers. El rei Cressus de Lídia, per exemple, va consultar el déu abans d'anar a la guerra amb  Cir el Gran de Pèrsia."
+msgstr "L'oracle sagrat d'Apol·lo a Delfos era un dels santuaris més estimats tant pels hel·lens com pels estrangers. El rei Cressus de Lídia, per exemple, va consultar el déu abans d'anar a la guerra amb Cir el Gran de Pèrsia."
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
-msgstr "El jugador guanya la formació de falange."
+msgstr "El jugador aconsegueix la formació de falange."
 
 #: civs/hele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -7351,7 +7351,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr "El rei d'Esparta, que va lluitar i morir a la batalla de les Termòpiles l'any 480 aC. Va bloquejar amb èxit el camí de l'enorme exèrcit persa pel pas estret amb els seus 7000 homes, fins que van mostrar a Xerxes un camí secret obert. Amb l'enemic a darrere, Leònides va enviar a casa la majoria de les tropes, i es va quedar enrere amb 300 hoplites seleccionats per guanyar temps als altres i permetre'ls retirar-se."
+msgstr "El rei d'Esparta, que va lluitar i morir a la batalla de les Termòpiles l'any 480 aC. Va bloquejar amb èxit el camí de l'enorme exèrcit persa pel pas estret amb els seus 7000 homes, fins que van mostrar a Xerxes un camí secret obert. Amb l'enemic a darrere, Leònides va enviar a casa la majoria de les tropes, i es va quedar enrere amb 300 hoplites seleccionats per donar temps als altres a retirar-se."
 
 #: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
 msgid "Leonidas"
@@ -7368,7 +7368,7 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr "Xenofont (aproximadament 430-355 aC) era un soldat i historiador grec que va néixer a Atenes en una família de l'oligarquia i va ser estudiant de Sòcrates de jove. L'any 401 aC, Xenofont va unir-se a un exèrcit de mercenaris grecs liderat per Clearc i quatre altres generals que ajudaven Cir el Jove en la seva campanya militar contra el seu germà el rei Artaxerxes II. Quan els perses van matar a traïció els líders de la força mercenària, Xenofont va ser escollit un dels 5 nous generals per manar l'exèrcit. Després d'una caminada de més de 1500 quilòmetres i un any i mig, Xenofont finalment va ajudar a portar els seus homes a casa, havent lluitat dotzenes de batalles i escaramusses pel camí."
+msgstr "Xenofont (aproximadament 430-355 aC) era un soldat i historiador grec que va néixer a Atenes en una família de l'oligarquia i va ser estudiant de Sòcrates de jove. L'any 401 aC, Xenofont va unir-se a un exèrcit de mercenaris grecs liderat per Clearc i quatre altres generals que ajudaven Cir el Jove en la seva campanya militar contra el seu germà el rei Artaxerxes II. Quan els perses van matar a traïció els líders de la força mercenària, Xenofont va ser escollit un dels 5 nous generals per manar l'exèrcit. Després d'una caminada de més de 1500 quilòmetres i un any i mig, Xenofont finalment va acompanyar els seus homes a casa, havent lluitat dotzenes de batalles i escaramusses pel camí."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
@@ -7380,7 +7380,7 @@ msgstr "Ciutats estat gregues"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Description
 msgid "The player gains the Syntagma formation."
-msgstr "El jugador guanya la formació Syntagma."
+msgstr "El jugador aconsegueix la formació Syntagma."
 
 #: civs/hele.jsonFactions[1].Technologies[0].Name
 #: civs/mace.jsonFactions[0].Technologies[0].Name
@@ -7712,7 +7712,7 @@ msgstr "Després de la unificació de Grècia, Filip II va reunir totes les ciut
 
 #: civs/mace.jsonCivBonuses[1].Description
 msgid "Infantry pike units can use the slow and powerful Syntagma formation."
-msgstr "Les unitats d'infanteria amb pica poden fer servir la formació Syntagma, lenta i poderosa."
+msgstr "Les unitats d'infanteria amb pica poden adoptar la formació Syntagma, lenta i poderosa."
 
 #: civs/mace.jsonCivBonuses[1].Name
 #: simulation/templates/formations/syntagma.xml:6
@@ -11738,7 +11738,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 BC, whose purpose "
 "was to push the Persians out of the Aegean region. The allied states "
 "contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Poc després de les grans victòries navals a Salamis i Micale, les ciutats estat gregues van instituir l'anomenada Lliga de Delos el 478 aC, amb l'objectiu d'expulsar els perses de la regió egea. Els estats aliats van contribuir amb vaixells i diners, mentre que els atenesos van oferir tota la seva flota."
+msgstr "Poc després de les grans victòries navals a Salamina i Micale, les ciutats estat gregues van instituir l'anomenada Lliga de Delos el 478 aC, amb l'objectiu d'expulsar els perses de la regió egea. Els estats aliats van contribuir amb vaixells i diners, mentre que els atenesos van oferir tota la seva flota."
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""
@@ -13583,19 +13583,19 @@ msgstr "Un vaixell mercant partit per la meitat. Una bona oportunitat per a qual
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr "Estable gran"
+msgstr "Parada gran"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr "Estable mitjà"
+msgstr "Parada mitjana"
 
 #: simulation/templates/other/stall_small_a.xml:12
 msgid "Small stall"
-msgstr "Estable petit"
+msgstr "Parada petita"
 
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall b"
-msgstr "Estable petit b"
+msgstr "Parada petita b"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -17305,7 +17305,7 @@ msgstr "Antípolis"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[1].Name
 msgid "Nikaia"
-msgstr "Nikaia"
+msgstr "Níkea"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[2].Name
 msgid "Massalia"
@@ -17329,7 +17329,7 @@ msgstr "Cavars"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[7].Name
 msgid "Verguni"
-msgstr "Verguni"
+msgstr "Vergunis"
 
 #: maps/scenarios/Azure Coast.xml:41:Name
 msgid "Azure Coast 1"

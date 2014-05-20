@@ -1,14 +1,18 @@
-#ifndef __DECLSPEC_H__
-#define __DECLSPEC_H__
+#ifndef DECLSPEC_H_INCLUDED
+#define DECLSPEC_H_INCLUDED
 
-#if defined(WIN32) && !defined(STATICLIB)
+#if defined(_WIN32) && !defined(STATICLIB)
 	#ifdef MINIUPNP_EXPORTS
 		#define LIBSPEC __declspec(dllexport)
 	#else
 		#define LIBSPEC __declspec(dllimport)
 	#endif
 #else
-	#define LIBSPEC
+	#if defined(__GNUC__) && __GNUC__ >= 4
+		#define LIBSPEC __attribute__ ((visibility ("default")))
+	#else
+		#define LIBSPEC
+	#endif
 #endif
 
 #endif

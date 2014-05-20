@@ -62,6 +62,7 @@
 # Seuthes, 2014
 # Silasoa <silasoa1@web.de>, 2013-2014
 # Tagaris <simeonpfeiffer@googlemail.com>, 2014
+# elec tronik <sshmedom@gmail.com>, 2014
 # stefanniedermann <stefan.niedermann@googlemail.com>, 2014
 # stefanniedermann <stefan.niedermann@googlemail.com>, 2014
 # Warwick <stefan.rohrbacher@hotmail.com>, 2014
@@ -85,7 +86,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-05 18:52+0000\n"
+"PO-Revision-Date: 2014-05-19 07:01+0000\n"
 "Last-Translator: raymond_de\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -179,7 +180,7 @@ msgstr "Geschichte der %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait..."
-msgstr "Öffne %(url)s\nim Standard Web Browser. Bitte Warten..."
+msgstr "Öffne %(url)s\nim Standard Webbrowser. Bitte warten..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
@@ -815,7 +816,7 @@ msgstr "Entwickler-Overlay"
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
-msgstr "Zeige im Spiel ein Overlay mit Optionen zum Aufdecken der Karte, zur Steuerung aller Einzeiten und zum Ändern der Perspektive. Für Entwickler bestimmt."
+msgstr "Zeige im Spiel ein Overlay mit Optionen zum Aufdecken der Karte, zur Steuerung aller Einheiten und zum Ändern der Perspektive. Für Entwickler bestimmt."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
@@ -831,7 +832,7 @@ msgstr "Nachbearbeitung"
 
 #: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Benutze Screen-Space Nachbearbeitungsfilter (HDR,Bloom,DOF,etc.)"
+msgstr "Benutze Screen-Space Nachbearbeitungsfilter (HDR, Bloom, DOF, etc.)"
 
 #: gui/options/options.js:18
 msgid "Shadows"
@@ -889,7 +890,7 @@ msgstr "HQ Wellen"
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
-msgstr "Eche Normalenvektoren für das Rendern der Meereswellen verwenden anstatt einer flachen Textur."
+msgstr "Echte Normalenvektoren für das Rendern der Meereswellen verwenden anstatt einer flachen Textur."
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
@@ -921,7 +922,7 @@ msgstr "Gischt"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr "Gischt in Küstennähe anzeigen, abhänging vom Wellengang."
+msgstr "Gischt in Küstennähe anzeigen, abhängig vom Wellengang."
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
@@ -1193,7 +1194,7 @@ msgstr "Herkunftsmarkt."
 
 #: gui/session/input.js:393
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr "Auf einen anderen Markt rechtsklicken um diesen als Zielmarkt zu wählen."
+msgstr "Auf einen anderen Markt rechtsklicken, um diesen als Zielmarkt zu wählen."
 
 #: gui/session/input.js:396
 msgid "Destination trade market."
@@ -1246,7 +1247,7 @@ msgstr "Möchtest du abdanken oder kehrst du bald zurück?"
 
 #: gui/session/menu.js:188
 msgid "Destroy everything currently selected?"
-msgstr "Willst du wiklich alles gerade ausgewählte zerstören?"
+msgstr "Willst du wirklich alles Ausgewählte zerstören?"
 
 #: gui/session/menu.js:188 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
@@ -1273,7 +1274,7 @@ msgstr "x"
 
 #: gui/session/menu.js:472
 msgid "There are no land traders."
-msgstr "Es gibt keine Land Händler."
+msgstr "Es gibt keine Landhändler."
 
 #: gui/session/menu.js:478
 #, python-format
@@ -1410,7 +1411,7 @@ msgstr "Verbindung zum Server wurde authentifiziert."
 
 #: gui/session/messages.js:223
 msgid "Connection to the server has been lost."
-msgstr "Die Verbindung zum Server wurde verlohren."
+msgstr "Die Verbindung zum Server wurde verloren."
 
 #: gui/session/messages.js:223
 msgid "The game has ended."
@@ -2296,7 +2297,7 @@ msgstr "%(mapName)s - %(mapType)s"
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr "Warnung: Das ist ein fortgechrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch's nochmal. Übung macht dich zum Meister!"
+msgstr "Warnung: Das ist ein fortgeschrittenes Tutorial und läuft ziemlich schnell. Wenn du nicht mithalten kannst, starte es einfach neu und versuch's nochmal. Übung macht dich zum Meister!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
@@ -2334,7 +2335,7 @@ msgstr "Setze den Sammelpunkt des Dorfzentrums auf die nahegelegenen Bäume und 
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr "Reihe ein Gruppe von 5 weiblichen Bürgern ein."
+msgstr "Reihe eine Gruppe von 5 weiblichen Bürgern ein."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
@@ -2344,7 +2345,7 @@ msgstr "Drücke die Umschalttaste und klicke, um ein Haus für die 4 Arbeiter zu
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr "Stellen Sie den Sammelpunkt zurück zu die Beeren, sobald alle Soldaten ihre Ausbildung abgeschlossen haben."
+msgstr "Stellen Sie den Sammelpunkt zurück zu den Beeren, sobald alle Soldaten ihre Ausbildung abgeschlossen haben."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
@@ -2423,7 +2424,7 @@ msgstr "Bilde weitere Schleuderer aus und schicke sie zum Steinabbau. Bilde etwa
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr "Reihe eine weitere Gruppe von 5 weiblichen Bürgern zur Ausbildung ein, sie sind für's Holz."
+msgstr "Reihe eine weitere Gruppe von 5 weiblichen Bürgern zur Ausbildung ein, sie sind fürs Holz."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -2508,7 +2509,7 @@ msgstr "Von diesem Punkt aus hast du eine gute Basis um eine Armee aufzustellen 
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr "Die wichtigsten Punkte zu merken sind:"
+msgstr "Die Schlüsselpunkte, an die du dich erinnern musst, sind:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -2538,7 +2539,7 @@ msgstr "- Schrecke nicht davor zurück Einheiten anderen Ressourcen zuzuweisen, 
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
-msgstr "Baue genug Wohnhäuser. Das Dorfzentrum sollte soviele Einheiten ausbilden wie möglich, es ist bis in die Stadtphase deine einzige Ausbildungsstätte für Bürger."
+msgstr "Baue genug Wohnhäuser. Das Dorfzentrum sollte so viele Einheiten ausbilden wie möglich, es ist bis in die Stadtphase deine einzige Ausbildungsstätte für Bürger."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
@@ -3024,7 +3025,7 @@ msgstr "Siegbedingung auswählen."
 
 #: gui/gamesetup/gamesetup.xml:290 (caption)
 msgid "Population Cap:"
-msgstr "Bevölkerungslimit"
+msgstr "Bevölkerungslimit:"
 
 #: gui/gamesetup/gamesetup.xml:294 (tooltip)
 msgid "Select population cap."
@@ -3231,7 +3232,7 @@ msgstr "Sprache:"
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr "Locale:"
+msgstr "Gebietsschema:"
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption)
@@ -3248,13 +3249,13 @@ msgstr "Land:"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr "Schrift:"
+msgstr "Skript:"
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr "Optionaler Script-Code, bestehend aus vier Buchstaben (gemäß ISO 15924)"
+msgstr "Optionaler Skript-Code, bestehend aus vier Buchstaben (gemäß ISO 15924)"
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
@@ -3267,11 +3268,11 @@ msgstr "Noch nicht implementiert."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr "Keywords (unbenutzt):"
+msgstr "Stichwörter (unbenutzt):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr "Erzeugtes Locale:"
+msgstr "Erzeugtes Gebietsschema:"
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
@@ -3279,7 +3280,7 @@ msgstr "Verwendete Übersetzungsverzeichnisse:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr "Erkennen"
+msgstr "Automatisch erkennen"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
@@ -3427,7 +3428,7 @@ msgstr "Begrüßungsfenster"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr "Begrüßungsfenster aktivieren. Nützlich, wenn es ungewollt deaktiviert wurde."
+msgstr "Begrüßungsfenster anzeigen. Nützlich, wenn es ungewollt deaktiviert wurde."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3668,7 +3669,7 @@ msgstr "Finde untätige Arbeiter"
 
 #: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
-msgstr "Tausche Resourcen:"
+msgstr "Tausche Ressourcen:"
 
 #: gui/session/session.xml:1017 (tooltip)
 msgid "Stamina:"
@@ -3876,7 +3877,7 @@ msgstr "Definitionen:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "Der \"Service\" ist die 0 AD Empires Ascendant Mehrspieler Lobby, welcher von Wildfire Games (WFG) zur Verfügung gestellt wird."
+msgstr "Der \"Service\" ist die 0 A.D. Empires Ascendant Mehrspieler Lobby, welcher von Wildfire Games (WFG) zur Verfügung gestellt wird."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -4006,7 +4007,7 @@ msgstr "2. Poste keine profanen Aussagen, unhöflichen Humor, pornographische In
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. Nicht absichtlich den Wert der anderen mit hilfe des Service zu erniedrigen."
+msgstr "3. Nicht absichtlich den Wert der anderen mit Hilfe des Service zu erniedrigen."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
@@ -4070,7 +4071,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Du kannst mit Alt + Enter zwischen Vollbild- und Festermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel sehr langsam läuft, kannst du manche Einstellungen in der Konfigurationsdatei ändern: Suche die Datei 'binaries/data/config/default.cfg' im Ordner wo dein Spiel installiert ist. Sie gibt dir Anweisungen zum Ändern. Versuche als erstes die Optionen \"fancywater\" und \"shadows\" zu deaktivieren."
+msgstr "[font=\"sans-14\"]Du kannst mit Alt + Enter zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel sehr langsam läuft, kannst du manche Einstellungen in der Konfigurationsdatei ändern: Suche die Datei 'binaries/data/config/default.cfg' im Ordner wo dein Spiel installiert ist. Sie gibt dir Anweisungen zum Ändern. Versuche als erstes die Optionen \"fancywater\" und \"shadows\" zu deaktivieren."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -4141,7 +4142,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Um ein Mehrspielerspiel einzurichten, muss ein Spieler die „Spiel hosten“-Option auswählen. Es wird der UDP-Port 20595 verwendet, d.h. die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspielern erreichbar ist. Alle anderen Mitspieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
+msgstr "Um ein Mehrspielerspiel einzurichten, muss ein Spieler die „Spiel hosten“-Option auswählen. Es wird der UDP-Port 20595 verwendet, d.h. die Firewall/NAT/etc. muss so konfiguriert werden, dass dieser für die Mitspieler erreichbar ist. Andere Spieler können dann „Spiel beitreten“ auswählen und die IP-Adresse des Hosts eingeben."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -4240,7 +4241,7 @@ msgstr "[font=\"sans-14\"]Doppelter Linksklick [auf eine Einheit]: Wähle alle d
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr "Dreifach-Klick [auf eine Einheit]: Wähle alle auf dem Bildschrim befindlichen gleichen Einheiten des selben Rangs aus"
+msgstr "Dreifach-Klick [auf eine Einheit]: Wähle alle auf dem Bildschirm befindlichen gleichen Einheiten des selben Rangs aus"
 
 #: gui/manual/intro.txt:51
 msgid ""
@@ -4280,7 +4281,7 @@ msgstr "Enter: Chat"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr "T: Sende Team Chat"
+msgstr "T: Sende Team-Chat"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
@@ -4523,7 +4524,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Bandbreite von Systemen zu testen, aber wir möchten trotzdem die Bestmögliche Spielerfahrung für viele Spieler bieten. Wenn Du das Automatische Feedback aktivierst, können wir mit den automatisch gesammelten Daten verstehen, welche Hardware wir unterstützen sollen, beziehungsweise Performanceprobleme aufdecken."
+msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Bandbreite von Systemen zu testen, aber wir möchten trotzdem die bestmögliche Spielerfahrung für viele Spieler bieten. Wenn Du das Automatische Feedback aktivierst, können wir mit den automatisch gesammelten Daten verstehen, welche Hardware wir unterstützen sollen, beziehungsweise Performanceprobleme aufdecken."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -4567,7 +4568,7 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Wir werden die Daten auf unseren Servern Speichern und eventuell Statistiken oder Benutzerunspezifische Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen fragen zu helfen. Wir werden die IP-Adressen speichern, die die Daten gesendet hat, um Missbrauch dieses Dienstes zu erkennen, aber nicht veröffentlichen. Die veröffentlichten Dten können unter http://feedback.wildfiregames.com/ eingesehen werden."
+msgstr "Wir werden die Daten auf unseren Servern speichern und eventuell Statistiken oder nicht-benutzeridentifizierbare Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen Fragen zu helfen. Wir werden die IP-Adressen speichern, von denen die Daten gesendet wurden, um Missbrauch dieses Dienstes zu erkennen und somit nicht zu veröffentlichen. Die veröffentlichten Daten können unter http://feedback.wildfiregames.com/ eingesehen werden."
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
@@ -5971,7 +5972,7 @@ msgstr "SYNTAGMA FORMATION"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Eine Formation für Infantrerie, wie Pikeniere."
+msgstr "- Eine Formation für Infanterie, wie Pikeniere."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
@@ -6052,7 +6053,7 @@ msgstr "- Nimm ein Katapult als weitreichende Belagerungswaffe an Bord."
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr "- is imstande andere Schiffe verherend zu rammen. Dieser Angriff muss nach jedem gebrauch aufladen."
+msgstr "- Ist imstande andere Schiffe verheerend zu rammen. Dieser Angriff muss nach jedem gebrauch aufladen."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -6770,7 +6771,7 @@ msgstr "Vosenius"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Verbesserte Angriffs- und Bewegungsgeschwindigkeit für  Nahkampfeinheiten."
+msgstr "Verbesserte Angriffs- und Bewegungsgeschwindigkeit für Nahkampfeinheiten."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -6859,7 +6860,7 @@ msgid ""
 " was held up by the post-Roman Britons as one of their great heroes; a "
 "conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
 "Romano-British sorely needed."
-msgstr "Kunobelinos, im Lateinischen bekannt als Cunobelin, war ein mächtiger Herrscher. Er regierte die Catuvellaunen von Camulodunum (dem heutigen Colchester) aus und war ein Kriegerkönig, der die Trinovanten unterwarf. Er wurde von den Römern laut Sueton als König der Britonen anerkannt. Die Trinovanten, obgleich ebenfalls Alliierte der Römer, erhielten von diesen jedoch keine militärische Hilfe, da ihre Unterwerfung kurz nach dem römischen Disaster im Teutoburger Wald stattfand. Kunobelinos starb an einer Krankheit, nachdem er den Großteil Südenglands bezwungen hatte (Münzen mit seinem Abbild wurden an die Grenzen des heutigen Wales gefunden). Nach seinem Tode regierte sein Sohn Togodumnus, der in einer Schlacht mit den Römern fiel, und sein Bruder Karatakos übernahm seinen Platz. Es ist eine Ironie des Schicksals, dass es Kunobelinos' dritter Sohn war, der diesen römischen Vergeltungsschlag herausforderte. Kunobelinos verhielt sich den Römern gegenüber neutral. Er trieb regen Handel mit ihnen, aber forderte auch Ärger heraus, indem er römische Alliierte unterwarf. Schließlich schickte er seinen Pflegesohn Adminius zur Ausbildung ins römischen Gallien. Dies trug zu Adminius' Freundschaft mit den Römern bei und ihm wurde von seinem Vater die Herrschaft über die Cantaci übertragen, die Kent bewohnten. Diese Gegend war das Haupthandels- und Einflußgebiet der Römer in Britannien und er bemerkte scharfsinnig, das die Freundschaft seines jüngsten Sohnes mit mächtigen römischen und gallo-römischen Politikern und Händlern nützlich für das Regieren dieser Region sein würde. Seine anderen Söhne jedoch mochten die Römer nicht und als Kunobelinos starb, verhaftete, exekutierte und vertrieb der neue König Togodumnus zahlreiche römische Sympatisanten, unter ihnen seinen eigenen Bruder Adminius und den enttrohnten Atrebatenkönig Verica, welche ihre römischen Beziehungen  hatten spielen lassen, um ihre Länder zurückzuerlangen.\nKunobelinos war zu seiner Zeit wahrscheinlich einer der größten Könige Britanniens. Er eroberte große Ländereien, obwohl er ursprünglich nur vier kleine verbündete Stämme, die Catuvellauni, anführte und erlangte die Anerkennung als König der Briten. Sein Ruf war so groß, dass sogar Stämme aus Wales zur Unterstützung seiner Söhne gegen die Römer und ihre örtlichen Alliierten herbeieilten und Kunobelinos wurde von den nachrömischen Briten als einer ihrer größten Helden verehrt; ein Eroberer und Vereiniger unbedeutender Königreiche, als jemand, dessen Hilfe die nachrömischen und späteren Briten dringend bedurften."
+msgstr "Kunobelinos, im Lateinischen bekannt als Cunobelin, war ein mächtiger Herrscher. Er regierte die Catuvellaunen von Camulodunum (dem heutigen Colchester) aus und war ein Kriegerkönig, der die Trinovanten unterwarf. Er wurde von den Römern laut Sueton als König der Britonen anerkannt. Die Trinovanten, obgleich ebenfalls Alliierte der Römer, erhielten von diesen jedoch keine militärische Hilfe, da ihre Unterwerfung kurz nach dem römischen Disaster im Teutoburger Wald stattfand. Kunobelinos starb an einer Krankheit, nachdem er den Großteil Südenglands bezwungen hatte (Münzen mit seinem Abbild wurden an die Grenzen des heutigen Wales gefunden). Nach seinem Tode regierte sein Sohn Togodumnus, der in einer Schlacht mit den Römern fiel, und sein Bruder Karatakos übernahm seinen Platz. Es ist eine Ironie des Schicksals, dass es Kunobelinos' dritter Sohn war, der diesen römischen Vergeltungsschlag herausforderte. Kunobelinos verhielt sich den Römern gegenüber neutral. Er trieb regen Handel mit ihnen, aber forderte auch Ärger heraus, indem er römische Alliierte unterwarf. Schließlich schickte er seinen Pflegesohn Adminius zur Ausbildung ins römische Gallien. Dies trug zu Adminius' Freundschaft mit den Römern bei und ihm wurde von seinem Vater die Herrschaft über die Cantaci übertragen, die Kent bewohnten. Diese Gegend war das Haupthandels- und Einflußgebiet der Römer in Britannien und er bemerkte scharfsinnig, das die Freundschaft seines jüngsten Sohnes mit mächtigen römischen und gallo-römischen Politikern und Händlern nützlich für das Regieren dieser Region sein würde. Seine anderen Söhne jedoch mochten die Römer nicht und als Kunobelinos starb, verhaftete, exekutierte und vertrieb der neue König Togodumnus zahlreiche römische Sympatisanten, unter ihnen seinen eigenen Bruder Adminius und den enttrohnten Atrebatenkönig Verica, welche ihre römischen Beziehungen  hatten spielen lassen, um ihre Länder zurückzuerlangen.\nKunobelinos war zu seiner Zeit wahrscheinlich einer der größten Könige Britanniens. Er eroberte große Ländereien, obwohl er ursprünglich nur vier kleine verbündete Stämme, die Catuvellauni, anführte und erlangte die Anerkennung als König der Briten. Sein Ruf war so groß, dass sogar Stämme aus Wales zur Unterstützung seiner Söhne gegen die Römer und ihre örtlichen Alliierten herbeieilten und Kunobelinos wurde von den nachrömischen Briten als einer ihrer größten Helden verehrt; ein Eroberer und Vereiniger unbedeutender Königreiche, als jemand, dessen Hilfe die nachrömischen und späteren Briten dringend bedurften."
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
 #: civs/celt.jsonFactions[0].Heroes[2].History
@@ -6903,7 +6904,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr "Ammianus Marcellinus beschrieb, wie schwer es für eine Gruppe Fremder sei, mit einem Kelten zurechtzukommen, der seine Frau zur Hilfe rie. Sie sei stärker als er und ließe Schläge und Tritte mit einer Kraft hageln, die einem Katapult nicht unähnlich sei. Boudicca, Königin der Icener, wird als sehr große und angst einflößende Erscheinung und ihre Stimme als barsch beschrieben. Ihr fiel eine Mäne aus rotem Haar über die Schultern. Sie trug eine vielfarbige Tunika, über der ein dicker Umhang mit einer Brosche befestigt war. Anfangs war Boudicca zusammen mit ihrem Mann Prasutagus, dem König der Icener, mit Rom verbündet. Prasutagus war nach einem kurzen Aufstand ein wichtiger Alliierter Roms, selbst bei seinen Feinden respektiert wegen seines Weitblicks, und ihm war es erlaubt sein Königreich frei zu regieren, wie es die Tradition gebot, bis auf eine Ausnahme. Als er spürte, dass er bald sterben würde, beschloss Prasutagus mit seiner Frau und seinen Untergebenen, dass seine Töchter seine Herrschaft erben sollten, unter Boudiccas Vormundschaft bis sie erwachsen waren, und der Kaiser Roms sollte die Oberherrschaft haben, Steuern erheben und militärische Unterstützung fordern, falls nötig. So ziemlich die gleiche Situation wie vorher. Es bestand jedoch das Problem, dass Rom keine weiblichen Erben akzeptierte, und feststellte, dass nach Prasutagus nur der Kaiser Roms einen Anspruch auf den Thron habe. Weiter sagte Rom, ein abhängiges Königreich sei nur während des Lebens des ursprünglichen Königs frei, wie es in Galatien der Fall war. Formell übernahm Rom die Herrschaft, und begann sofort, mit einem Hinweis auf Schulden Prasutagus, die nicht zurückgezahlt waren, hohe Steuern zu erheben. Boudiccas Beschwerden über diese Behandlung und die Ignoranz gegenüber dem letzten Willen ihres Mannes wurde mit Brutalität begegnet; römische Soldaten peitschten sie aus und missbrauchten ihre Töchter, die zu diesem Zeitpunkt nur Kinder waren. Boudicca und ihre Angestellten waren aufgebracht wegen der Schande, die ihrer Königin und deren Kinder angetan worden war. Während der römische Gouverneur von Britanien mit den Druiden in Cambria, dem heutigen Wales, beschäftigt war, sammelte Boudicca Gleichgesinnte von außerhalb des icenischen Stammes um sich. Die Icener waren nicht die einzigen, die mit der römischen Herrschaft unzufrieden waren. Boudicca und ihre Armee verwüsteten drei Städte, schlugen eine römische Legion in die Flucht und riefen Erinnerungen an Arminius wach, einen Deutschen, der die Römer schon früher von seinem Land gejagt hatte und ihre eigenen Vorfahren, die Cäsar beinahe ein Jahrhundert früher davongejagt hatten. Boudicca wurde durch einen schweren taktischen Fehler in der Schlacht von Watling Street besiegt, in der ihre Streitmacht abgeschlachtet wurde, da sie sich nicht zurückziehen konnte. Die geschlagene Heerführerin konnte fliehen und töte ihre Töchter und danach sich selbst, um weiterer Schande durch römische Hände zu entgehen."
+msgstr "Ammianus Marcellinus beschrieb, wie schwer es für eine Gruppe Fremder sei, mit einem Kelten zurechtzukommen, der seine Frau zur Hilfe rie. Sie sei stärker als er und ließe Schläge und Tritte mit einer Kraft hageln, die einem Katapult nicht unähnlich sei. Boudicca, Königin der Icener, wird als sehr große und Angst einflößende Erscheinung und ihre Stimme als barsch beschrieben. Ihr fiel eine Mäne aus rotem Haar über die Schultern. Sie trug eine vielfarbige Tunika, über der ein dicker Umhang mit einer Brosche befestigt war. Anfangs war Boudicca zusammen mit ihrem Mann Prasutagus, dem König der Icener, mit Rom verbündet. Prasutagus war nach einem kurzen Aufstand ein wichtiger Alliierter Roms, selbst bei seinen Feinden respektiert wegen seines Weitblicks, und ihm war es erlaubt sein Königreich frei zu regieren, wie es die Tradition gebot, bis auf eine Ausnahme. Als er spürte, dass er bald sterben würde, beschloss Prasutagus mit seiner Frau und seinen Untergebenen, dass seine Töchter seine Herrschaft erben sollten, unter Boudiccas Vormundschaft bis sie erwachsen waren, und der Kaiser Roms sollte die Oberherrschaft haben, Steuern erheben und militärische Unterstützung fordern, falls nötig. So ziemlich die gleiche Situation wie vorher. Es bestand jedoch das Problem, dass Rom keine weiblichen Erben akzeptierte, und feststellte, dass nach Prasutagus nur der Kaiser Roms einen Anspruch auf den Thron habe. Weiter sagte Rom, ein abhängiges Königreich sei nur während des Lebens des ursprünglichen Königs frei, wie es in Galatien der Fall war. Formell übernahm Rom die Herrschaft, und begann sofort, mit einem Hinweis auf Schulden Prasutagus, die nicht zurückgezahlt waren, hohe Steuern zu erheben. Boudiccas Beschwerden über diese Behandlung und die Ignoranz gegenüber dem letzten Willen ihres Mannes wurde mit Brutalität begegnet; römische Soldaten peitschten sie aus und missbrauchten ihre Töchter, die zu diesem Zeitpunkt nur Kinder waren. Boudicca und ihre Angestellten waren aufgebracht wegen der Schande, die ihrer Königin und deren Kinder angetan worden war. Während der römische Gouverneur von Britanien mit den Druiden in Cambria, dem heutigen Wales, beschäftigt war, sammelte Boudicca Gleichgesinnte von außerhalb des icenischen Stammes um sich. Die Icener waren nicht die einzigen, die mit der römischen Herrschaft unzufrieden waren. Boudicca und ihre Armee verwüsteten drei Städte, schlugen eine römische Legion in die Flucht und riefen Erinnerungen an Arminius wach, einen Deutschen, der die Römer schon früher von seinem Land gejagt hatte und ihre eigenen Vorfahren, die Cäsar beinahe ein Jahrhundert früher davongejagt hatten. Boudicca wurde durch einen schweren taktischen Fehler in der Schlacht von Watling Street besiegt, in der ihre Streitmacht abgeschlachtet wurde, da sie sich nicht zurückziehen konnte. Die geschlagene Heerführerin konnte fliehen und töte ihre Töchter und danach sich selbst, um weiterer Schande durch römische Hände zu entgehen."
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -6925,7 +6926,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearesome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr "Die Briten waren der keltische Stamm auf den Britischen Inseln. Mit ihren Streitwagen, Langschwertkämpfern und starken Nahkampfsoldaten inszenierten sie furchterregende Aufstände gegen Rom um ihre Gewohnheiten und Interressen zu verteidigen. Außerdem bauten sie tausende einzigartige Gebäude wie Burgwälle, Crannogs und Brochs."
+msgstr "Die Briten waren der keltische Stamm auf den Britischen Inseln. Mit ihren Streitwagen, Langschwertkämpfern und starken Nahkampfsoldaten inszenierten sie furchterregende Aufstände gegen Rom um ihre Gewohnheiten und Interessen zu verteidigen. Außerdem bauten sie tausende einzigartige Gebäude wie Burgwälle, Crannogs und Brochs."
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
@@ -7085,7 +7086,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "Karthagos  bekanntester Sohn. Hannibal Barkas war der älteste Sohn von Hamilkar Barka und war ein noch größerer Feldherr als sein Vater. Er lebte von 247-182 v.Chr. Obwohl er schlussendlich den zweiten Punischen Krieg verlor, sicherten ihm seine Siege in Trebia, am Trasimenischen See und in Cannae, sowie die überquerung der Alpen eine sichere Position unter den besten Taktikern und Strategikern der Geschichte. "
+msgstr "Karthagos  bekanntester Sohn. Hannibal Barkas war der älteste Sohn von Hamilkar Barka und war ein noch größerer Feldherr als sein Vater. Er lebte von 247-182 v.Chr. Obwohl er schlussendlich den zweiten Punischen Krieg verlor, sicherten ihm seine Siege in Trebia, am Trasimenischen See und in Cannae, sowie die Überquerung der Alpen eine sichere Position unter den besten Taktikern und Strategikern der Geschichte. "
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7172,7 +7173,7 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "Karthago, ein Stadt-Staat im heutigen Tunesien, wer eine beeindrckende Macht im westlichen Mittelmeerraum. Im 3. Jahrhundert v.Chr. übernahm sie große Teile von Nordafrika und des heutigen Spaniens. Sie Seeleute Karthagos‘s gehörteten zu den wildesten Streitern auf dem Ocean, und waren Meister des Seehandels. Sie setzten Kriegselephanten mit furchterregenden Effekten auf den Schlachtfeldern ein und hatten Verteidigunswälle, die so stark waren, dass sie nie durchbrochen wurden."
+msgstr "Karthago, ein Stadt-Staat im heutigen Tunesien, wer eine beeindruckende Macht im westlichen Mittelmeerraum. Im 3. Jahrhundert v.Chr. übernahm sie große Teile von Nordafrika und des heutigen Spaniens. Die Seeleute Karthagos‘s gehörten zu den wildesten Streitern auf der hohen See, und waren Meister des Seehandels. Sie setzten Kriegselephanten mit furchterregenden Effekten auf den Schlachtfeldern ein und hatten Verteidigungswälle, die so stark waren, dass sie nie durchbrochen wurden."
 
 #: civs/celt.jsonName maps/scenarios/Azure Coast(2).xml:31:PlayerData[1].Name
 msgid "Celts"
@@ -7234,7 +7235,7 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr "Wenn keltische Armeen den Gegner treffen, ist es Brauch, dass sich der keltische Anführer vor Schlachtbeginn in die Frontlinie geht und den mutigsten der gegnerischen Krieger in einem Ein-Mann-Duell herausfordert.\nDie Geschichte, wie Marcus Claudius Marcellus einen gallischen Führer in der Schlacht von Clastidium (222 v. Chr.) besiegte ist für solche Begegnungen charakteristisch. Mit einer kleineren Armee vorstoßend, traf Marcellus bei Clastidium eine vereinte Kraft der Insubrer. Wie von den Insubrern gewohnt attakierten diese sofort, Kriegsgeschrei brüllend, mit ihrem Anführer Viridomarus, der sofort Marcellus, wegen seines offensichtlich hohen Rankes, angriff. Britomartos war nicht nur wegen seiner Größe sondern auch aufgrund seines Schmucks eine herausragende Person auf dem Schlachtfeld, als in hellen Farben seine goldene und silberne glänzte. Diese Rüstung, dachte Marcellus, wäre ein passendes Opfer an die Götter. Er attakierte also den Insubrer, durchbohrte seine helle Brustpanzer und warf ihn zu Boden. Es war eine leichte Aufgabe für ihn, Britomartos zu töten und ihm seine Rüstung abzunehmen."
+msgstr "Wenn keltische Armeen den Gegner treffen, ist es Brauch, dass sich der keltische Anführer vor Schlachtbeginn in die Frontlinie geht und den mutigsten der gegnerischen Krieger in einem Ein-Mann-Duell herausfordert.\nDie Geschichte, wie Marcus Claudius Marcellus einen gallischen Führer in der Schlacht von Clastidium (222 v. Chr.) besiegte ist für solche Begegnungen charakteristisch. Mit einer kleineren Armee vorstoßend, traf Marcellus bei Clastidium eine vereinte Kraft der Insubrer. Wie von den Insubrern gewohnt attackierten diese sofort, Kriegsgeschrei brüllend, mit ihrem Anführer Viridomarus, der sofort Marcellus, wegen seines offensichtlich hohen Rankes, angriff. Britomartos war nicht nur wegen seiner Größe sondern auch aufgrund seines Schmucks eine herausragende Person auf dem Schlachtfeld, als in hellen Farben seine goldene und silberne glänzte. Diese Rüstung, dachte Marcellus, wäre ein passendes Opfer an die Götter. Er attackierte also den Insubrer, durchbohrte seine helle Brustpanzer und warf ihn zu Boden. Es war eine leichte Aufgabe für ihn, Britomartos zu töten und ihm seine Rüstung abzunehmen."
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
@@ -7318,7 +7319,7 @@ msgid ""
 "probably the largest contributing factor to their ultimate submission to "
 "Rome by 100 A.D. The other contributing factors were their lack of armor and"
 " their inability to counter the mighty legions and siege weapons of Rome."
-msgstr "Zur seiner besten Zeit (um 200 v.Chr.) reichte das Keltische Imperium von Spanien nach Rumänien und von Norditalien nach Schottland; obgleich es kein wirkliches Imperium war, das Keltische Volk wurde nicht von einer einheitlichen Regierung zusammengehalten, sondern nur von seiner Sprache und verschiedenen Sozialen Aspekten. Dieser Mangel an Zusammenhalt war vermutlich der wichtigste Grund für seine endgülige Unterwerfung durch Rom um 100 n.Chr. Andere Gründe hierfür mögen das fehlen von Rüstung und die Unfähigkeit römische Legionen und Belagerungswaffen zu kontern gewesen sein."
+msgstr "Zur seiner besten Zeit (um 200 v.Chr.) reichte das Keltische Imperium von Spanien nach Rumänien und von Norditalien nach Schottland; obgleich es kein wirkliches Imperium war, das Keltische Volk wurde nicht von einer einheitlichen Regierung zusammengehalten, sondern nur von seiner Sprache und verschiedenen Sozialen Aspekten. Dieser Mangel an Zusammenhalt war vermutlich der wichtigste Grund für seine endgültige Unterwerfung durch Rom um 100 n.Chr. Andere Gründe hierfür mögen das fehlen von Rüstung und die Unfähigkeit römische Legionen und Belagerungswaffen zu kontern gewesen sein."
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
@@ -7673,7 +7674,7 @@ msgstr "Maisu Burdina Langileak"
 msgid ""
 "The Iberians were known to produce the finest iron and steel implements and "
 "weapons of the age. The famous 'Toledo Steel.'"
-msgstr "Die Iberer waren für ihr feinstes Eisen, ihre Stählernen Werkzeuge und Waffen des gesamten Zeitalter herzustellen. Besonders bekannt war der ‚Toledosthal‘. "
+msgstr "Die Iberer waren für ihr feinstes Eisen, ihre Stählernen Werkzeuge und Waffen des gesamten Zeitalters herzustellen. Besonders bekannt war der ‚Toledosthal‘. "
 
 #: civs/iber.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -7745,7 +7746,7 @@ msgid ""
 "'Revered Monument' The Iberians were a religious people who built small "
 "monuments to their various gods. These monuments could also serve as family "
 "tombs."
-msgstr "‚Heiliges Denkmal‘ Die Iberer waren ein religiöses Volk, dass kleine Denkmäler für ihre vielen Götter baute. Diese Denkmäler wurden oft auch als Familiengruft genutz"
+msgstr "‚Heiliges Denkmal‘ Die Iberer waren ein religiöses Volk, dass kleine Denkmäler für ihre vielen Götter baute. Diese Denkmäler wurden oft auch als Familiengruft genutzt."
 
 #: civs/iber.jsonHistory
 msgid ""
@@ -8381,7 +8382,7 @@ msgstr "Apadana"
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr "Bilde Helden und persische Unsterbliche aus. Gewährt einen langsamen Zugewinn aller Resourcen als Tribut der Satrapien."
+msgstr "Bilde Helden und persische Unsterbliche aus. Gewährt einen langsamen Zugewinn aller Ressourcen als Tribut der Satrapien."
 
 #: civs/pers.jsonStructures[1].History
 msgid ""
@@ -8401,7 +8402,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "Das Persische Imperium war, als es von der Dynastie der Achaemenid regiert wurde, eines der größten Imperien der Antike, im Höhepunkt seiner macht spannend von Industal im Osten bis Ostgriechenland im Westen. Die Perser waren die Pioniere der Staatsbildung der antiken Welt, sie verhängten erfolgreich eine einheitliche Regierung über verschiedene Völker mit unterschiedlichen Bräuchen, Gesetzten, Religionen und Sprachen, und bauten eine internationale Armee auf, mit Aufgeboten aus jeder dieser Nationen."
+msgstr "Das Persische Imperium war, als es von der Dynastie der Achaemenid regiert wurde, eines der größten Imperien der Antike, im Höhepunkt seiner macht spannend von Industal im Osten bis Ostgriechenland im Westen. Die Perser waren die Pioniere der Staatsbildung der antiken Welt, sie verhängten erfolgreich eine einheitliche Regierung über verschiedene Völker mit unterschiedlichen Bräuchen, Gesetzen, Religionen und Sprachen, und bauten eine internationale Armee auf, mit Aufgeboten aus jeder dieser Nationen."
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
@@ -8457,7 +8458,7 @@ msgstr "Erlaubt das Einfangen von Elefanten und Kamelen, um deren Ausbildungskos
 
 #: civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Alle Verbündete bekommen Automatisch ein geringes Nahrungseinkommen."
+msgstr "Alle Verbündeten bekommen automatisch ein geringes Nahrungseinkommen."
 
 #: civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -8603,7 +8604,7 @@ msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr "Baulimit von 1 erreicht. Alle besonderen Technologien werden hier erforscht. Eins zu Bauen reduziert die Kosten für alle verbleibenden Technologien um 10%. "
+msgstr "Baulimit von 1 erreicht. Alle besonderen Technologien werden hier erforscht. Eins zu bauen reduziert die Kosten für alle verbleibenden Technologien um 10%. "
 
 #: civs/ptol.jsonStructures[1].Name
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
@@ -9282,7 +9283,7 @@ msgstr "Päane waren Kampfhymnen, die die Hopliten sangen, während sie gegen di
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% Gesundheit für Speer-Infanterie, aber auch +10% Trainingszeit"
+msgstr "+25% Gesundheit für Speer-Infanterie, aber auch +10% Trainingszeit."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -9317,7 +9318,7 @@ msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr "Weil Brasidas ihnen die Bürgerrechte als Bezhalung für ihre Dienste anbot, kämpfen Helotische Plänkler länger und härter für Sparta, wenn sie in seiner Nähe sind."
+msgstr "Weil Brasidas ihnen die Bürgerrechte als Bezahlung für ihre Dienste anbot, kämpfen Helotische Plänkler länger und härter für Sparta, wenn sie in seiner Nähe sind."
 
 #: civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -9349,7 +9350,7 @@ msgstr "Bilde Helden und Spartiaten aus und erforsche Technologien für diese."
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr "Die Syssitien waren ein Speisessaal für Vollblutspartiaten. Jeder Spartaner Bürger, auck Könige, gehörten einer Syssitiee an."
+msgstr "Die Syssitien waren ein Speisessaal für Vollblutspartiaten. Jeder Spartaner Bürger, auch Könige, gehörten einer Syssitie an."
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -9359,7 +9360,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr "Der wohlbekannte Stadtstaat Sparta war ab ca. 650 v. Chr. die dominierende Landstreitmacht des antiken Grienchenlands. Die spartanische Kultur war geprägt von militärischer Disziplin und Spitzenleistung. Die strenge Ausbildung begann für die spartanischen Jungen bereits ab dem siebten Lebensjahr. Aufgrund seiner militärischen Überlegenheit führte Sparta den Peleponnesischen Bund trotz großer Verluste zum Sieg gegen Athen und dessen Verbündete."
+msgstr "Der wohlbekannte Stadtstaat Sparta war ab ca. 650 v. Chr. die dominierende Landstreitmacht des antiken Griechenlands. Die spartanische Kultur war geprägt von militärischer Disziplin und Spitzenleistung. Die strenge Ausbildung begann für die spartanischen Jungen bereits ab dem siebten Lebensjahr. Aufgrund seiner militärischen Überlegenheit führte Sparta den Peleponnesischen Bund trotz großer Verluste zum Sieg gegen Athen und dessen Verbündete."
 
 #: civs/theb.jsonName civs/theb.jsonFactions[0].Name
 msgid "Thebans"
@@ -9432,7 +9433,7 @@ msgstr "Die große Macht Zentralgriechenlands und Führer des Böotischen Bundes
 msgid ""
 "At the siege of the Athenian fortress at Delium, the Thebans employed what "
 "may be deemed the first recorded use of a flame thrower in warfare."
-msgstr "Bei der Belagerung der Athenischen Festung bei Delium, nutzten die Theben etwas, dass man einen Flammenwerfer nennen könnte. In der Kriegsgeschichte war das das erste belegte Nutzung einer solchen Waffe."
+msgstr "Bei der Belagerung der Athenischen Festung bei Delium, nutzten die Theben etwas, dass man einen Flammenwerfer nennen könnte. In der Kriegsgeschichte war das die erste belegte Nutzung einer solchen Waffe."
 
 #: civs/theb.jsonHistory
 msgid ""
@@ -9477,7 +9478,7 @@ msgstr "Alpental"
 msgid ""
 "An indefensible open land with little wood and stone, representing the "
 "central basin of Asia Minor."
-msgstr "Ein unhaltbare Freiland mit wenig Holz und Stein, die das zentralen Becken von Kleinasien repräsentieren."
+msgstr "Ein unhaltbares Freiland mit wenig Holz und Stein, das das zentralen Becken von Kleinasien repräsentiert."
 
 #: maps/random/anatolian_plateau.jsonsettings.Name
 msgid "Anatolian Plateau"
@@ -9671,7 +9672,7 @@ msgstr "Kerala"
 
 #: maps/random/lake.jsonsettings.Description
 msgid "Players start around a lake in the center of the map."
-msgstr "Spieler beginnen rund eines Sees in der Mitte der Karte."
+msgstr "Spieler beginnen rund um einen See in der Mitte der Karte."
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
@@ -9792,7 +9793,7 @@ msgstr "Pyrenäen"
 msgid ""
 "Shallow, passable wetlands with little room for building. Represents the "
 "lowlands of the Rhine basin in Europe."
-msgstr "Seicht, passable Feuchtgebiete mit wenig Raum für Gebäude. Stellt die Niederungen des Rhein-Einzugsgebiet in Europa dar."
+msgstr "Seicht, passable Feuchtgebiete mit wenig Raum für Gebäude. Stellt die Niederungen des Rhein-Einzugsgebiets in Europa dar."
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
@@ -9831,7 +9832,7 @@ msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-msgstr "Die Spieler starten verstreut auf der Karte mit Wasserwegen zwischen ihnen\n\nDie Afrikanische Savanne ist vollgestopft mit Tieren, während nahe Erzfundstellen zum Bersten gefüllt sind. Die Trockenzeit naht und die Wasserlöcher fangen an auzustrocknen."
+msgstr "Die Spieler starten verstreut auf der Karte mit Wasserwegen zwischen ihnen\n\nDie Afrikanische Savanne ist vollgestopft mit Tieren, während nahe Erzfundstellen zum Bersten gefüllt sind. Die Trockenzeit naht und die Wasserlöcher fangen an auszutrocknen."
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
@@ -10393,7 +10394,7 @@ msgstr "Dynamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Geheime Metallverarbeitungstechniken geben Schwertern ein charakteristische und schöne Zeichnungen. Aber nicht nur das, der Härtegrad des Stahls ist unnachahmlich."
+msgstr "Geheime Metallverarbeitungstechniken geben Schwertern ein charakteristische und schöne Zeichnung. Aber nicht nur das, der Härtegrad des Stahls ist unnachahmlich."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -10491,7 +10492,7 @@ msgstr "Viehzucht"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsondescription
 msgid "Increases shuttling capacity for all resources."
-msgstr "Erhöht die Tragkapazität für alle Resourcen."
+msgstr "Erhöht die Tragkapazität für alle Ressourcen."
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -10775,7 +10776,7 @@ msgstr "Nahkampfinfanterie erhält +1 Hiebangriff."
 
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
-msgstr "Flankentruppen"
+msgstr "Seitenwaffen"
 
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_sidearms.jsonspecificName.spart
@@ -11013,7 +11014,7 @@ msgstr "Steigen Sie von einem kleinen Dorf zu einer betriebsamen Ansiedlung, ber
 msgid ""
 "Advance to Town Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by +30%"
-msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorialradius von Verwaltunssitzen wird um +30% erhöht."
+msgstr "Erweitere zur Stadtphase und schalte mehr Gebäude und Einheiten frei. Territorialradius von Verwaltungssitzen wird um +30% erhöht."
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
@@ -11601,7 +11602,7 @@ msgstr "Iberische Allianz"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr "Unterwirf Hispanien um die Rekrutierzeit für spanische Händler um 20 % zu senken."
+msgstr "Unterwirf Hispanien, um die Rekrutierzeit für spanische Händler um -20% zu senken."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -12156,7 +12157,7 @@ msgstr "Verteidigungsturm"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Verschießt Pfeile. Quartiere Einheiten für zusätzliche Verteidigung ein"
+msgstr "Verschießt Pfeile. Quartiere Einheiten für zusätzliche Verteidigung ein."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
@@ -12197,7 +12198,7 @@ msgstr "Lange Mauersegmente können in Tore umgewandelt werden."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Schießt Pfeile. Muss besetzt werden um die Stadtmauer gegen Angreifer zu verteidigen."
+msgstr "Verschießt Pfeile. Muss besetzt werden, um die Stadtmauer gegen Angreifer zu verteidigen."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
@@ -12223,7 +12224,7 @@ msgstr "Bauernhof"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr "Erschaffe Handelseinheiten um mi9t anderen Märkten zu handeln. Tausche Rohstoffe. Erforsche Handels- und Tauschverbesserungen. "
+msgstr "Erschaffe Handelseinheiten, um mit anderen Märkten zu handeln. Tausche Rohstoffe. Erforsche Handels- und Tauschverbesserungen. "
 
 #: simulation/templates/template_structure_economic_storehouse.xml:22
 msgid ""
@@ -12513,7 +12514,7 @@ msgid ""
 "Classes: Champion Melee Infantry Swordsman.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Klassen: Meister Nahkampf Infanterie Schwertkämpfer.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschüten, berittene Lanzenträger und berittene Bogenschützen."
+msgstr "Klassen: Meister Nahkampf Infanterie Schwertkämpfer.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Lanzenträger und berittene Bogenschützen."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -12751,7 +12752,7 @@ msgstr "Fischerboot"
 msgid ""
 "Classes: Mechanical Ship Trader.\n"
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Klassen: Mechanisch, Schiff, Händler\nHandelt zwischen Häfen, Quartiere einen Händler für höheren Profit ein (+20% für jeden Händler). Sammelt profitable Wasserschätzen."
+msgstr "Klassen: Mechanisch, Schiff, Händler\nHandelt zwischen Häfen, Quartiere einen Händler für höheren Profit ein (+20% für jeden Händler). Sammelt profitable Wasserschätze."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
@@ -12865,7 +12866,7 @@ msgstr "Sklave"
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
-msgstr "Klassen: Unterstützung Händler.\nHandelt Rohstoffe zwischen deinen Märkten und denen deiner Verbündeten."
+msgstr "Klassen: Unterstützung Händler.\nHandle mit Rohstoffen zwischen deinen Märkten und denen deiner Verbündeten."
 
 #: simulation/templates/template_unit_support_trader.xml:14
 msgid "Trader"
@@ -12903,7 +12904,7 @@ msgstr "Armee von Leonidas I."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "Dies ist eine kleinere Griechische Stadt. Sie hat einen Teritorialen Effekt von 150."
+msgstr "Dies ist eine kleinere Griechische Stadt. Sie hat einen Territorialen Effekt von 150."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
@@ -13646,7 +13647,7 @@ msgstr "Ein schwer beschädigtes Schiffswrack. Eine gute Möglichkeit für jeden
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Ein Wrack eines kleinen Handelschiffes. Eine gute Möglichkeit für jeden Handelsmann."
+msgstr "Ein Wrack eines kleinen Handelsschiffes. Eine gute Möglichkeit für jeden Handelsmann."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
@@ -13910,7 +13911,7 @@ msgstr "Pýrgos"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Bringe deiner Zivilisation Ruhm und Ehre und erweitere dein Reich mit großen Ländereien. quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
+msgstr "Bringe deiner Zivilisation Ruhm und Ehre und erweitere dein Reich mit großen Ländereien. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/hele_wonder.xml:17
@@ -16315,7 +16316,7 @@ msgid ""
 "Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
 "Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
 "Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "Klassen: Held Heiler.\nHeldenfähigkeit: \"Heiler\" - Heilt einheiten schneller.\nHeldenfähigkeit: \"Ausbilder\" - Lässt ein Gebäude +50% schneller forschen und ausbilden.\nHeldenfähigkeit: \"Philosoph\" - Erforscht 4 besondere Technologien, nur für Chanakya verfügbar."
+msgstr "Klassen: Held Heiler.\nHeldenfähigkeit: \"Heiler\" - Heilt Einheiten schneller.\nHeldenfähigkeit: \"Ausbilder\" - Lässt ein Gebäude +50% schneller forschen und ausbilden.\nHeldenfähigkeit: \"Philosoph\" - Erforscht 4 besondere Technologien, nur für Chanakya verfügbar."
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
@@ -17116,7 +17117,7 @@ msgid ""
 "\"Zooiarchos\" Aura: Boosts War Elephant attack and speed +20% within his vision.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Klassen: Held Nahkampf Elefant.\n\"Zooiarchos\" Aura: Beschleunigt Kriegselefanten attacke und Geschwindigkeit um +20% in seinem Sichtbereich.\nStark gegen: 2x gegen alle Reitereien, 1.5x gegen alle Bauwerke, Zusätzlich +1.5x gegen Tore.\nSchwach gegen: Plänkler und Schwertkämpfer. Kann Amok laufen."
+msgstr "Klassen: Held Nahkampf Elefant.\n\"Zooiarchos\" Aura: Beschleunigt Kriegselefanten Attacke und Geschwindigkeit um +20% in seinem Sichtbereich.\nStark gegen: 2x gegen alle Reitereien, 1.5x gegen alle Bauwerke, Zusätzlich +1.5x gegen Tore.\nSchwach gegen: Plänkler und Schwertkämpfer. Kann Amok laufen."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:11
 msgid "Seleucus I \"The Victor\""
@@ -17225,7 +17226,7 @@ msgid ""
 "\"Helot Reforms\" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Klassen: Meister Nahkampf Infanterie Schwertkämpfer.\n\"Heloten Reformen\" Aura: Heloten Plänkler in seiner Sichtweite erhalten +2 Angriff und +1 zu allen Rüstungstypen hinzu\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten. \nSchwach gegen: Bogenschüten, berittene Lanzenträger und berittene Bogenschützen."
+msgstr "Klassen: Meister Nahkampf Infanterie Schwertkämpfer.\n\"Heloten Reformen\" Aura: Heloten Plänkler in seiner Sichtweite erhalten +2 Angriff und +1 zu allen Rüstungstypen hinzu\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten. \nSchwach gegen: Bogenschützen, berittene Lanzenträger und berittene Bogenschützen."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid ""
@@ -17233,7 +17234,7 @@ msgid ""
 "\"Last Stand\" Aura: +20% attack for nearby Hoplites and Spartiates.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Klassen: Held Nahkampf Infanterie Lanzenträger.\n\"Steht zuletzt\" Aura: +20% Angriff für für Hopliten und Spartiaten.\nStark gegen: 2x gegen alle Reitereien.\nSchwach gegen: Plänkler, Schwertkämpfer und berittene Bogenschützen."
+msgstr "Klassen: Held Nahkampf Infanterie Lanzenträger.\n\"Steht zuletzt\" Aura: +20% Angriff für Hopliten und Spartiaten.\nStark gegen: 2x gegen alle Reitereien.\nSchwach gegen: Plänkler, Schwertkämpfer und berittene Bogenschützen."
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
@@ -17512,7 +17513,7 @@ msgstr "Demoschlacht"
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
-msgstr "Eine Gefehchtsdemonstration zwischen einer kleinen Gruppe an Fernkampf- und -Nahkampf-Infanterieeinheiten."
+msgstr "Eine Gefechtsdemonstration zwischen einer kleinen Gruppe an Fernkampf- und -Nahkampf-Infanterieeinheiten."
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Name
 msgid "Combat Demo (Huge)"
@@ -17689,7 +17690,7 @@ msgid ""
 "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr "4 Spieler kämpfen um das gewaltige Nildelta. Jede Stadt starte eingebettet in eine Stadtburg, jedoch sind Rohstoffe selten. Der Spieler ist gezwungen seine Rohstoffsammelaktionen immer weiter in das umliegende Land auszubreiten.\n\nSpäher sagen, dass die nahen Zweige des Nils flach und einfach zu überqueren sind, sie dienen also nur als schmale barriere szischen den Gegnerischen Fraktionen."
+msgstr "4 Spieler kämpfen um das gewaltige Nildelta. Jede Stadt starte eingebettet in eine Stadtburg, jedoch sind Rohstoffe selten. Der Spieler ist gezwungen seine Rohstoffsammelaktionen immer weiter in das umliegende Land auszubreiten.\n\nSpäher sagen, dass die nahen Zweige des Nils flach und einfach zu überqueren sind, sie dienen also nur als schmale Barriere zwischen den Gegnerischen Fraktionen."
 
 #: maps/scenarios/Necropolis.xml:41:Name
 msgid "Necropolis"
@@ -17772,7 +17773,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr "Auf der Südseite des Atlas in Nordafrika gelegen.\n\nEine einigermaßen offene Karte mit einer Fülle von Nahrung und Mineralischen Rohstoffen, wärend Holz rar ist."
+msgstr "Auf der Südseite des Atlas in Nordafrika gelegen.\n\nEine einigermaßen offene Karte mit einer Fülle von Nahrung und Mineralischen Rohstoffen, während Holz rar ist."
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:Description
 msgid ""
@@ -18085,7 +18086,7 @@ msgstr "Jede Einheit im Spiel."
 #: maps/scenarios/_default.xml:32:Description maps/scenarios/temperate
 #: map.xml:31:Description
 msgid "Give an interesting description of your map."
-msgstr "Gib deiner Karte eine interessanten Beschreibung."
+msgstr "Gib deiner Karte eine interessante Beschreibung."
 
 #: maps/scenarios/WallTest.xml:31:Name
 msgid "WallTest"
@@ -18166,7 +18167,7 @@ msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
-msgstr "Die hohen Gipfel und Täler der Alpen.\n\nJeder Spieler beginnt das Spiel in einem sicheren grünen Tal. Dazwischen liegen die tückische Alpen."
+msgstr "Die hohen Gipfel und Täler der Alpen.\n\nJeder Spieler beginnt das Spiel in einem sicheren grünen Tal. Dazwischen liegen die tückischen Alpen."
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:41:Name
 msgid "Alpine Valleys (2)"
@@ -18291,7 +18292,7 @@ msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
-msgstr "Alle Spieler starten auf einer Seite eines Flusses, mit einem Minimum an Metallresourcen. auf der Anderen Seite des Gambia ist einen Savanne mit vielen Metalllagerstätten.\n\n(Warnng: Große Karte. Gute Hardware ist empfehlenswert.)"
+msgstr "Alle Spieler starten auf einer Seite eines Flusses, mit einem Minimum an Metallressourcen. auf der Anderen Seite des Gambia ist einen Savanne mit vielen Metalllagerstätten.\n\n(Warnung: Große Karte. Gute Hardware ist empfehlenswert.)"
 
 #: maps/skirmishes/Gambia River (3).xml:42:Name
 msgid "Gambia River (3)"
@@ -18364,7 +18365,7 @@ msgid ""
 "Fairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n"
 "\n"
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
-msgstr "Die Karte wird in der Mitte mit einigen seichten Stellen anliegend von einem Fluss in Ost-West-Richtung durchquert.\n\nOffenbewaldet und grundsätzlich flach.Viel Raum für Bauwerke.Gut ausbalanciertes Rohstoffverhältnis.\n\nDIe Territorien der Zivilisationen werden vom Hauptfluss und Nebenflüssen geteilt (mit den notwendigen Untiefen, um sie zu überqueren)."
+msgstr "Die Karte wird in der Mitte mit einigen seichten Stellen anliegend von einem Fluss in Ost-West-Richtung durchquert.\n\nOffenbewaldet und grundsätzlich flach. Viel Raum für Bauwerke. Gut ausbalanciertes Rohstoffverhältnis.\n\nDie Territorien der Zivilisationen werden vom Hauptfluss und Nebenflüssen geteilt (mit den notwendigen Untiefen, um sie zu überqueren)."
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Name
 msgid "Lorraine Plain (2)"
@@ -18375,7 +18376,7 @@ msgstr "Lothringisches Plateau (2)"
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
-msgstr "Eine große Oase als der Mittelpunkt eines Gebirges, dass das Heimatterritorium von jedem Spieler teilt."
+msgstr "Eine große Oase als der Mittelpunkt eines Gebirges, das das Heimatterritorium von jedem Spieler teilt."
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Name
 msgid "Median Oasis (2)"
@@ -18403,7 +18404,7 @@ msgid ""
 "All players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n"
 "\n"
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
-msgstr "Die \"Kappadokische\" Region vom Zentral-Östlichen Anatolien\n\nAlle Spieler beginnen mit einer riesigen unbesiedelten Wildnis offen vor ihrer Nase liegend am westlichen Ende der Karte, bevor sie reif für Eroberungen und Plünderungen sind.\n\nStein und Metall gibt es im Überfluss, vor allem Stein, jedoch ist Holz etwas rarer gesäht."
+msgstr "Die \"Kappadokische\" Region vom Zentral-Östlichen Anatolien\n\nAlle Spieler beginnen mit einer riesigen unbesiedelten Wildnis offen vor ihrer Nase liegend am westlichen Ende der Karte, bevor sie reif für Eroberungen und Plünderungen sind.\n\nStein und Metall gibt es im Überfluss, vor allem Stein, jedoch ist Holz etwas rarer gesät."
 
 #: maps/skirmishes/Neareastern Badlands (2).xml:42:Name
 msgid "Neareastern Badlands (2)"
@@ -18461,7 +18462,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
-msgstr "Auf der Südseite des Atlas in Nordafrika gelegen.\n\nEine einigermaßen offene Karte mit einer Fülle von Nahrung und Mineralischen Rohstoffen, wärend Holz rar ist."
+msgstr "Auf der Südseite des Atlas in Nordafrika gelegen.\n\nEine einigermaßen offene Karte mit einer Fülle von Nahrung und Mineralischen Rohstoffen, während Holz rar ist."
 
 #: maps/skirmishes/Sahel (4).xml:42:Name
 msgid "Sahel (4)"
@@ -18533,7 +18534,7 @@ msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
-msgstr "Die Afrikanische Savanne ist vollgestopft mit Tieren, während nahe Erzfundstellen zum Bersten gefüllt sind. Die Trockenzeit naht und die Wasserlöcher fangen an auszustrocknen.\n\nHinweis: Das ist eine sehr kleine \"schnell und wilde\" Karte. Iberer starten nicht mit ihren umgebenen Mauern."
+msgstr "Die Afrikanische Savanne ist vollgestopft mit Tieren, während nahe Erzfundstellen zum Bersten gefüllt sind. Die Trockenzeit naht und die Wasserlöcher fangen an auszutrocknen.\n\nHinweis: Das ist eine sehr kleine \"schnell und wilde\" Karte. Iberer starten nicht mit ihren umgebenen Mauern."
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Name
 msgid "Watering Holes (4)"

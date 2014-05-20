@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-07 10:36+0000\n"
+"PO-Revision-Date: 2014-05-16 12:43+0000\n"
 "Last-Translator: Chris_Kay_083\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
@@ -95,7 +95,7 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr ""
+msgstr "Junaci"
 
 #: gui/civinfo/civinfo.js:158
 #, python-format
@@ -218,7 +218,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
-msgstr ""
+msgstr "Neograničeno"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:15
@@ -249,7 +249,7 @@ msgstr "Jako visoko"
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "Deathmatch"
 
 #: gui/gamesetup/gamesetup.js:72
 #, python-format
@@ -449,7 +449,7 @@ msgstr "Nisam spreman"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Izjavi  kako nisi spreman za igru."
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
@@ -457,11 +457,11 @@ msgstr "Spreman sam!"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Izjavi kako si spreman za igru!"
 
 #: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Izjavi kako prihavćaš trenutne postavke i kako si spreman za igru!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -507,33 +507,33 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Bilo koji"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
-msgstr ""
+msgstr "Zauzet"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
-msgstr ""
+msgstr "Odsutan"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
-msgstr ""
+msgstr "Na mreži"
 
 #: gui/lobby/lobby.js:318
 msgid "Offline"
-msgstr ""
+msgstr "Isključen s mreže"
 
 #: gui/lobby/lobby.js:323
 msgctxt "lobby presence"
@@ -542,7 +542,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Nasumce izabrana mapa"
 
 #: gui/lobby/lobby.js:417
 #, python-format
@@ -628,11 +628,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "Spajam..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Registriram..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
@@ -652,7 +652,7 @@ msgstr "Molimo Vas da ponovo unesete lozinku"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Lozinke se ne podudaraju "
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
@@ -712,7 +712,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Program pokrenut u prozoru."
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
@@ -720,7 +720,7 @@ msgstr "Pokrenite 0 A.D. u prozoru"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Pozadinska pauza."
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
@@ -764,7 +764,7 @@ msgstr ""
 
 #: gui/options/options.js:18
 msgid "Shadows"
-msgstr ""
+msgstr "Sjene"
 
 #: gui/options/options.js:18
 msgid "Enable shadows"
@@ -878,7 +878,7 @@ msgstr ""
 
 #: gui/options/options.js:35
 msgid "Master Gain"
-msgstr ""
+msgstr "Pojačavanje glavnog zvuka"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
@@ -886,7 +886,7 @@ msgstr ""
 
 #: gui/options/options.js:36
 msgid "Music Gain"
-msgstr ""
+msgstr "Pojačavanje glazbe"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
@@ -978,7 +978,7 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr ""
+msgstr "Molim Vas da odaberte \"Pročitaj još\" za  dodatne informacije ili \"OK\" za nastavak."
 
 #: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
@@ -1142,7 +1142,7 @@ msgstr ""
 
 #: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
 msgid "Pause"
-msgstr ""
+msgstr "Pauza"
 
 #: gui/session/menu.js:2
 msgid "Resume"
@@ -1627,7 +1627,7 @@ msgstr ""
 
 #: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
 msgid "Health:"
-msgstr ""
+msgstr "Zdravlje:"
 
 #: gui/session/session.js:632
 #, python-format
@@ -1746,7 +1746,7 @@ msgstr ""
 
 #: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Pretvori kameni zid u Gradska vrata"
 
 #: gui/session/unit_commands.js:1169
 msgid "Convert Siege Wall into Siege Wall Gate"
@@ -1869,15 +1869,15 @@ msgstr ""
 
 #: gui/session/utility_functions.js:345
 msgid "Guard"
-msgstr ""
+msgstr "Čuvar"
 
 #: gui/session/utility_functions.js:354
 msgid "Remove guard"
-msgstr ""
+msgstr "Makni čuvara"
 
 #: gui/session/utility_functions.js:363
 msgid "Select trading goods"
-msgstr ""
+msgstr "Odaberi dobra za trgovinu"
 
 #: gui/session/utility_functions.js:373
 msgid "Increase the alert level to protect more units"
@@ -1889,7 +1889,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:386
 msgid "End of alert."
-msgstr ""
+msgstr "kraj uzbune."
 
 #: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
 #: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
@@ -2021,7 +2021,7 @@ msgstr ""
 #: gui/session/utility_functions.js:741
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2037,7 +2037,7 @@ msgstr ""
 #: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2069,7 +2069,7 @@ msgstr "Ruševine"
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2093,7 +2093,7 @@ msgstr "Drvo"
 #: gui/session/utility_functions.js:759
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Drvo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2101,7 +2101,7 @@ msgstr ""
 #: gui/session/utility_functions.js:761
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Voće"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2109,7 +2109,7 @@ msgstr ""
 #: gui/session/utility_functions.js:763
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Žito"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2117,7 +2117,7 @@ msgstr ""
 #: gui/session/utility_functions.js:765
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Riba"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2125,7 +2125,7 @@ msgstr ""
 #: gui/session/utility_functions.js:776
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2141,7 +2141,7 @@ msgstr ""
 #: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2173,7 +2173,7 @@ msgstr "Ruševine"
 #: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2197,7 +2197,7 @@ msgstr "Drvo"
 #: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Drvo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2205,7 +2205,7 @@ msgstr ""
 #: gui/session/utility_functions.js:796
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Voće"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2213,7 +2213,7 @@ msgstr ""
 #: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Žito"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2221,7 +2221,7 @@ msgstr ""
 #: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Riba"
 
 #: gui/summary/summary.js:510
 #, python-format
@@ -2237,41 +2237,41 @@ msgstr ""
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Upozorenje: Ovo je napredna lekcija i brzo se odvija. Ako ne možeš pratiti samo ponovo pokreni i pokušaj opet. S vježbom do savršenstva! "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Počnimo, prvo obuči grupu (shift klik) od 5 ženskih građana u CC (Civilnom Centru)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Sada,  zapovijedi ženskim građanima da skupljaju bobice, svom konjaniku da lovi kokoši i građanu vojniku da skuplja drva."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Sada odredi zajedničku točku svog civilnog centra na mjestu gdje se skupljaju bobice."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Stavi nekoliko praćkaša na obuku, nakon ženskih građana, nećeš imati dovoljno prihoda za veću grupu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Kad si obučio svoje ženske građane, odaberi 4 i naredi im gradnju kuće u blizini."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Odaberi točku CC-a u blizini drveća, stavi još praćkaša na obuku, sad bi ih trebao istrenirati 6."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -2749,22 +2749,22 @@ msgstr ""
 #: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "Drvo"
 
 #: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "Metal"
 
 #: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #: simulation/components/Player.js:236
 #, python-format
@@ -2887,7 +2887,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:98 (caption) gui/lobby/lobby.xml:64 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "Tip Mape:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
@@ -2899,7 +2899,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "Broj Igrača:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -3074,11 +3074,11 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Tablica vodećih"
 
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "Igrači:"
 
 #: gui/lobby/lobby.xml:102 (caption) gui/pregame/mainmenu.xml:232 (caption)
 msgid "Join Game"
@@ -3086,11 +3086,11 @@ msgstr "Pridruži se igri "
 
 #: gui/lobby/lobby.xml:108 (caption) gui/pregame/mainmenu.xml:247 (caption)
 msgid "Host Game"
-msgstr ""
+msgstr "Budite domaćin igre"
 
 #: gui/lobby/lobby.xml:115 (caption)
 msgid "Main Menu"
-msgstr ""
+msgstr "Glavni izbornik"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
@@ -3116,7 +3116,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
 msgid "Rank"
-msgstr ""
+msgstr "Poredak"
 
 #: gui/lobby/lobby.xml:218 (caption)
 msgid "Update"
@@ -3240,11 +3240,11 @@ msgstr ""
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
-msgstr ""
+msgstr "Grafičke Postavke"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
-msgstr ""
+msgstr "Zvukovne Postavke"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
@@ -3253,7 +3253,7 @@ msgstr ""
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
 #: gui/session/session.xml:754 (caption)
 msgid "Save"
-msgstr ""
+msgstr "Sačuvaj"
 
 #: gui/pregame/mainmenu.xml:98
 msgid "Help improve 0 A.D.!"
@@ -3314,7 +3314,7 @@ msgstr "Kampanje"
 #: gui/pregame/mainmenu.xml:193 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr ""
+msgstr "Oživite povijest kroz povijesne vojne kampanje. (JOŠ UVIJEK NIJE PRIMJENJIVO)"
 
 #: gui/pregame/mainmenu.xml:209 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
@@ -3334,11 +3334,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
-msgstr ""
+msgstr "Predvorje igre"
 
 #: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
-msgstr ""
+msgstr "Pokreni multiplayer lobby."
 
 #: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
@@ -3346,7 +3346,7 @@ msgstr "Opcije"
 
 #: gui/pregame/mainmenu.xml:294 (tooltip)
 msgid "Adjust game settings."
-msgstr ""
+msgstr "Prilagodi postavke igre."
 
 #: gui/pregame/mainmenu.xml:311 (tooltip)
 msgid "Choose the language of the game."
@@ -3354,7 +3354,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:326 (caption)
 msgid "Scenario Editor"
-msgstr ""
+msgstr "Urednik Scenarija "
 
 #: gui/pregame/mainmenu.xml:327 (tooltip)
 msgid ""
@@ -3425,7 +3425,7 @@ msgstr "Kliknite kako bi otvorili  0 A.D. stranicu za prijevod u svom web pregle
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
-msgstr ""
+msgstr "web stranica"
 
 #: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
@@ -3434,7 +3434,7 @@ msgstr "Kliknite kako bi otvorili igraj0ad.com u svom web izborniku"
 #: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
 #: (caption)
 msgid "Chat"
-msgstr ""
+msgstr "Chat"
 
 #: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid ""
@@ -3452,7 +3452,7 @@ msgstr "Kliknite kako bi posjetili 0 A.D. Trac kako bi prijavili nepravilnost, p
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
-msgstr ""
+msgstr "WILDFIRE GAMES"
 
 #: gui/savedgames/load.xml:25 (caption)
 msgid "Load"
@@ -3562,11 +3562,11 @@ msgstr ""
 
 #: gui/session/session.xml:592 (tooltip)
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "Populacija (trenutna /limit)"
 
 #: gui/session/session.xml:605 (tooltip)
 msgid "Choose player to view"
-msgstr ""
+msgstr "Odaberi igrača kojeg ćeš gledati"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
@@ -3574,15 +3574,15 @@ msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
-msgstr ""
+msgstr "Brzina igre"
 
 #: gui/session/session.xml:653 (tooltip)
 msgid "Choose game speed"
-msgstr ""
+msgstr "Odaberi brzinu igre"
 
 #: gui/session/session.xml:706 (caption)
 msgid "MENU"
-msgstr ""
+msgstr "IZBORNIK"
 
 #: gui/session/session.xml:767 (caption)
 msgid "Settings"
@@ -3590,12 +3590,12 @@ msgstr ""
 
 #: gui/session/session.xml:791 (caption)
 msgid "Resign"
-msgstr ""
+msgstr "Odustani "
 
 #: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
 #: (tooltip)
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Napad i Oklop"
 
 #: gui/session/session.xml:852 (tooltip)
 msgid ""
@@ -3605,19 +3605,19 @@ msgstr ""
 
 #: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
-msgstr ""
+msgstr "Pronađi nezaposlenog radnika"
 
 #: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Izmjena resursa:"
 
 #: gui/session/session.xml:1017 (tooltip)
 msgid "Stamina:"
-msgstr ""
+msgstr "Izdržljivost:"
 
 #: gui/session/session.xml:1059 (tooltip)
 msgid "Experience"
-msgstr ""
+msgstr "Iskustvo"
 
 #: gui/session/session.xml:1127 (tooltip)
 msgid "Hitpoints"
@@ -3625,7 +3625,7 @@ msgstr ""
 
 #: gui/session/session.xml:1136 (tooltip)
 msgid "Stamina"
-msgstr ""
+msgstr "Izdržljivost "
 
 #: gui/splashscreen/splashscreen.xml:12 (caption)
 msgid "Welcome to 0 A.D. !"
@@ -3633,11 +3633,11 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Pokaži ovu poruku u budućnosti"
 
 #: gui/splashscreen/splashscreen.xml:38 (caption)
 msgid "Known issues (web)"
-msgstr ""
+msgstr "Poznati problemi (web)"
 
 #: gui/summary/summary.xml:23 (caption)
 msgid "Summary"
@@ -3713,11 +3713,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "Vojska"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
-msgstr ""
+msgstr "Tvrđave"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
@@ -3725,11 +3725,11 @@ msgstr "Civilizacijski centri"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
-msgstr ""
+msgstr "Čuda"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "statistika jedinica (obučene/ izgubljene/ ubijene)"
 
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
@@ -3738,7 +3738,7 @@ msgstr "Pješaštvo"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
-msgstr ""
+msgstr "Radnik"
 
 #: gui/summary/summary.xml:417 (caption)
 #: simulation/templates/template_unit_cavalry.xml:32
@@ -3747,11 +3747,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "Prvak"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
-msgstr ""
+msgstr "Mornarica"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
@@ -3853,47 +3853,47 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Također zdržavamo pravo da:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Moderiramo uslugu."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Zadužimo druge da moderiraju uslugu."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Obustavimo ili prekinemo uslugu u bilo koje vrijeme s ili bez prethodne najave."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Promijenimo uslugu u bilo koje vrijeme s ili bez prethodne najave."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Pobrišemo bilo koje ili sve uslužne podatke u bilo koje doba s ili bez prethodne najave."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Prikupimo bilo koje ili sve statistike koje identificiraju korisnika u bilo koje vrijeme bez prethodnog pristanka za:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Privatnu analizu od strane članova tima Wildfire Games (WFG), kao i njihovih podružnica."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Anonimiziranu javnu objavu od strane članova ekipe  Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -3901,7 +3901,7 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Promijenimo ovaj dokument na bilo koji način način; u bilo koje vrijeme; pod uvjetom da je korisniku usluge  dana prikladna obavijest o promjeni ( odefiniciju prikladne  obavijesti će odlučivati, za sada, komisija članova ekipe Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
@@ -4158,7 +4158,7 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: Napravite sliku zaslona (u png. formatu, lokacija je prikazana  gore, lijevo od grafičkog korisničkog sučelja nakoš što je datoteka sačuvana, također se može vidjeti u konzoli / bilješkama ako vam promake)"
 
 #: gui/manual/intro.txt:46
 msgid ""
@@ -4221,7 +4221,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr ""
+msgstr "T: pošaljite chat timu"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
@@ -4229,30 +4229,30 @@ msgstr ""
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr ""
+msgstr "Poništi: Poništi trenutno odabranu jedinicu/jedinice/zgradu/zgrade"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ""
+msgstr ",:Odaberi nekorištene borce"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ""
+msgstr ".: Odaberi besposlene radnike (uključujući i građane vojnike)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: Stop (zaustavi) trenutno odabrane jedinice"
 
 #: gui/manual/intro.txt:65
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl+1( i tako dalje do Ctrl  +0): Stvori kontroliranu grupu 1 (do 0) od odabranih jedinica / građevina"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1 ( i tako dalje do 0): Odaberi jedinice/građevine u kontroliranoj skupini 1 (do 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
@@ -4263,7 +4263,7 @@ msgstr ""
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5 (i tako dalje do F8): Označi trenutni položaj kamere kako bi mu mogao kasnije vratiti."
 
 #: gui/manual/intro.txt:69
 msgid ""
@@ -4275,7 +4275,7 @@ msgstr "F5, F6, F7 i F8: Pomaknite kameru na označeni položaj. Vrati se natrag
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Kad su odabrane građevine za obuku. Dodaj 1-u, 2-u...jedinicu prikazno prema čekanju za obuku za sve odabrane građevine."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -4287,7 +4287,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + desni klik miša: stavi u čekanje naredbu za pokret/građenje/skupljane/itd."
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -4356,7 +4356,7 @@ msgstr ""
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt+ Z: aktiviraj i deaktiviraj nebo"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
@@ -4368,39 +4368,39 @@ msgstr ""
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
-msgstr ""
+msgstr "S ili [dolje]: usmjeri zaslon prema dolje"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr ""
+msgstr "A ili [lijevo] usmjeri zaslon  ulijevo"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
-msgstr ""
+msgstr "D ili [desno]: usmjeri zaslon udesno"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W ili [gore]: Rotiraj kameru  prema gore"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S ili [dolje] Rotiraj kamera prema dolje"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A ili [lijevo] Rotiraj kameru u smjeru kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D ili [desno]: Rotiraj kameru u smjeru  suprotnom od kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: Rotiraj kameru u smjeru kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E:Rotiraj kameru u smjeru suprotnom od  kazaljke na satu oko terena."
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -4762,11 +4762,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "\"Naše osobnosti su posljedica našeg ponašanja.\" Aristotel"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"Čovjek je po naravi političko biće\" - Aristotel"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -4839,7 +4839,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Dođoh, Vidjeh, Pobjedih.\" - Gaj Julije Cezar"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -5122,7 +5122,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Samo promjena stalna jest.\" - Heraklit"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
@@ -5159,7 +5159,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "\"Mi smo prah i sjena.\" - Horacije"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -5446,7 +5446,7 @@ msgstr ""
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "\"Pripremi se za rat, jer ti je bio mrzak mir.\" - Scipion Afrički"
 
 #: gui/text/quotes.txt:174
 msgid ""
@@ -5520,7 +5520,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "KOVAČ"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -6063,27 +6063,27 @@ msgstr ""
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.5x)"
-msgstr ""
+msgstr "Kornjača (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.75x)"
-msgstr ""
+msgstr "Sporo (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Normal (1x)"
-msgstr ""
+msgstr "Normalno (1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "Brzo (1.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "Jako brzo (1.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Insane (2x)"
-msgstr ""
+msgstr "Suludo (2x)"
 
 #: simulation/data/player_defaults.jsonPlayerData[1].Name
 #: maps/scenarios/Arcadia 02.xml:41:PlayerData[0].Name
@@ -6283,15 +6283,15 @@ msgstr "Igrač 8"
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "Malecko"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "Malo"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "Malo (2 igrača)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
@@ -6299,36 +6299,36 @@ msgstr "Umjereno"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "Srednje (3 igrača)"
 
 #: simulation/data/map_sizes.jsonSizes[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "Normalno"
 
 #: simulation/data/map_sizes.jsonSizes[3].LongName
 msgid "Normal (4 players)"
-msgstr ""
+msgstr "Normalno ( 4 igrača)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
-msgstr ""
+msgstr "Veliko"
 
 #: simulation/data/map_sizes.jsonSizes[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "Veliko (6 igrača)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "Jako veliko"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "Jako veliko (8 igrača)"
 
 #: simulation/data/map_sizes.jsonSizes[6].Name
 #: simulation/data/map_sizes.jsonSizes[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "Div"
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
@@ -6922,12 +6922,12 @@ msgstr ""
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/cart_hero_hannibal.xml:11
 msgid "Hannibal Barca"
-msgstr ""
+msgstr "Hanibal Barca"
 
 #: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "Hamilcar Barca"
-msgstr ""
+msgstr "Hamilkar Barca"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
@@ -6944,7 +6944,7 @@ msgstr ""
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Maharbal"
-msgstr ""
+msgstr "Maharbal"
 
 #: civs/cart.jsonAINames[6]
 msgid "Mago Barca"
@@ -6993,7 +6993,7 @@ msgstr ""
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
-msgstr ""
+msgstr "Istraživanje"
 
 #: civs/cart.jsonFactions[0].Technologies[0].History
 #: simulation/data/technologies/carthaginians/special_exploration.jsondescription
@@ -7026,7 +7026,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr ""
+msgstr "Najslavniji sin Kartage. Hanibal Barca je bio najstariji sin Hamilkara Barcae i dokazao se kao još sposobniji zapovijednik nego što je to bio njegov otac. Živio u razdoblju 247 -182 pr. Kr. I dok je u konačnici izgubio Drugi punski rat, njegove pobjede kod Trebije, jezera Trazimene i Kane, te njegov podvig prelaska Alpi, osigurali su mu položaj jednog od najboljih taktičara i stratega u povijesti."
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -7035,7 +7035,7 @@ msgid ""
 "B.C. While overshadowed by his sons, Hamilcar was great general in his own "
 "right, earning the nickname Baraq or Barca for the lightning speed of his "
 "advance."
-msgstr ""
+msgstr "Hanibalov otac i pravi vojni diktator. Hamilkar Barca je bio vojnik i političar koji je ostvarivao izvrsne rezultate tokom cijele svoje karijere. Živio u razdoblju od 275 -228 pr.Kr. Usprkos što su ga nadvisili njegovi sinovi, Hamilkar je po svom pravu bio veliki general, zaradio je nadimak Baraq ili Barca zbog munjevite brzine svog napretka. "
 
 #: civs/cart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -7050,7 +7050,7 @@ msgstr ""
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "Mornaričko gradilište"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -7065,20 +7065,20 @@ msgstr ""
 #: civs/cart.jsonStructures[1].Name
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Keltska ambasada"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr ""
+msgstr "Unajmi Keltske plaćenike"
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Kelti su Kartažansku vojsku  snabdijevali s žestokim plaćenicima."
 
 #: civs/cart.jsonStructures[2].Name
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Italska ambasada"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -7204,7 +7204,7 @@ msgid ""
 "and Bran are often muddled with the earlier brothers Belinus and Brennus "
 "(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
 " in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr ""
+msgstr "Brennus je ime kojim su rimski povjesničari zvali slavnog vođu Gala,koji je zauzeo Rim u Kamilovo doba.  Prema Geoffreyu od Monmoutha, svećeniku koji napisao \"Povijest britanskih kraljeva\", Brennus i njegov brat Belinus su napali Galiju i opljačkali Rim 390 pr. Kr., ; time dokazujući; da su Britanci pokorili Rim, najmoćniju civilizaciju na svijetu, puno prije nego što je Rim pokorio Britance.  Poznato nam je iz mnogih drevnih izvora koji su prethodili Geoffreyu, kako je Rim doista opljačkan, ali ne 390 pr. Kr., već 387 pr.Kr,. te da je pljačkaški pohod predvodio čovjek koji se zvao Brennos (latinizirano u Brennus), ali on i njegova horda su bili pripadnici Galskog plemena Senonaca, nisu bili Britanci.  U ovoj epizodi  može se vidjeti nekoliko odlika uređivanja koje je Geoffery poduzeo: modificirao je povijesnu osobu Brennusa/ Brennosa, stvorio je njegovog brata Belinusa, posudio je Galsku invaziju, ali je izostavio dijelove gdje su Kelti izgledali slabi ili glupi. Njegova tehnika je istodobno tehnika i dodavanja i oduzimanja. Kao i priča o nastanku Troje, priča o pljački Rima nije potpuna izmišljotina; to je kreativno preslagivanje dostupnih činjenica, gdje su detalji dodani prema potrebi. Posredstvom povijesna asocijacije, Beli i Bran su često bili brkani s ranijom braćom Belinusom i Brennusom (sinovima Dunvalla Molmutiusa), koja su natjecala za vlast u sjeverom dijelu Britanije  oko 390 pr.Kr. i koji su smatrani bogovima u staroj keltskoj tradiciji."
 
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
@@ -7233,7 +7233,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
 #: civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
-msgstr ""
+msgstr "Gali"
 
 #: civs/celt.jsonFactions[1].Description
 msgid "Mainland Europe"
@@ -7305,11 +7305,11 @@ msgstr ""
 
 #: civs/hele.jsonName
 msgid "Hellenes"
-msgstr ""
+msgstr "Heleni"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "10-15 % jeftinije tehnologije."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
@@ -8032,7 +8032,7 @@ msgstr ""
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "Indija je bila zemlja streličarstva. Glavna snaga u Indijskoj vojsci su bili jako vješti streličari naoružani dugim lukovima napravljenim od bambusa. "
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -8241,7 +8241,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Perzijanci su sagradili predivnu kraljevsku  autocestu od Sardisa do Suze dugu 2700 kilometara. Darije velike i Kserkso su također sagradili veličanstveni Perzepolis.; Kir Veliki je uvelike poboljšao Ekbatana i doslovno je ponovo izgradio  Suzu, glavni grad starog Elemitskog carstva. "
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -8481,11 +8481,11 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
-msgstr ""
+msgstr "Arsinoja IV. "
 
 #: civs/ptol.jsonAINames[18]
 msgid "Arsinoe II"
-msgstr ""
+msgstr "Arsinoja II."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
@@ -8555,7 +8555,7 @@ msgstr ""
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr ""
+msgstr "Mora biti sagrađen na neutralnom teritoriju. Nema utjecaja na opseg teritorija. Obučava sve \"plaćničke\" jedinice. "
 
 #: civs/ptol.jsonStructures[2].Name
 #: simulation/templates/structures/ptol_lighthouse.xml:17
@@ -8718,7 +8718,7 @@ msgstr ""
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/rome_hero_maximus.xml:5
 msgid "Quintus Fabius Maximus"
-msgstr ""
+msgstr "Kvint Fabije Maksim"
 
 #: civs/rome.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -9188,7 +9188,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "Ženski građani Sparte se ne mogu zarobiti i odlučno će se boriti protiv svih napadača. Također imaju mogućnost gradnje obrambenih tornjeva i palisada. "
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -9453,7 +9453,7 @@ msgstr ""
 
 #: maps/random/atlas_mountains.jsonsettings.Name
 msgid "Atlas Mountains"
-msgstr ""
+msgstr "Planine Atlas"
 
 #: maps/random/belgian_uplands.jsonsettings.Description
 msgid ""
@@ -9511,7 +9511,7 @@ msgstr ""
 
 #: maps/random/corsica.jsonsettings.Name
 msgid "Corsica vs Sardinia"
-msgstr ""
+msgstr "Korzika protiv Sardinije"
 
 #: maps/random/cycladic_archipelago.jsonsettings.Description
 msgid ""
@@ -9550,7 +9550,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_fortress.xml:31
 #: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Fortress"
-msgstr ""
+msgstr "Tvrđava"
 
 #: maps/random/gear.jsonsettings.Description
 msgid "A land with waterways decorated in a manner similar to spider web."
@@ -9604,11 +9604,11 @@ msgstr ""
 msgid ""
 "Players start in the southwestern shores of India between a sea and "
 "mountains."
-msgstr ""
+msgstr "Igrači započinju igru na južnozapadnim obalama Indije, između mora i planina."
 
 #: maps/random/kerala.jsonsettings.Name
 msgid "Kerala"
-msgstr ""
+msgstr "Kerala"
 
 #: maps/random/lake.jsonsettings.Description
 msgid "Players start around a lake in the center of the map."
@@ -9685,7 +9685,7 @@ msgstr ""
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
-msgstr ""
+msgstr "Sjeverna svjetla"
 
 #: maps/random/oasis.jsonsettings.Description
 msgid ""
@@ -9706,7 +9706,7 @@ msgstr ""
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
-msgstr ""
+msgstr "Perzijsko visočje"
 
 #: maps/random/pheonician_levant.jsonsettings.Description
 msgid ""
@@ -9737,7 +9737,7 @@ msgstr ""
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
-msgstr ""
+msgstr "Rajnske močvare"
 
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
@@ -9746,7 +9746,7 @@ msgstr ""
 
 #: maps/random/rivers.jsonsettings.Name
 msgid "Rivers"
-msgstr ""
+msgstr "Rijeke"
 
 #: maps/random/saharan_oases.jsonsettings.Description
 msgid "Each players starts near a lush oasis in a large, desolate desert."
@@ -9802,7 +9802,7 @@ msgstr ""
 
 #: maps/random/the_nile.jsonsettings.Name
 msgid "The Nile"
-msgstr ""
+msgstr "Nil"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map"
@@ -10053,7 +10053,7 @@ msgstr ""
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr ""
+msgstr "Spolas"
 
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
 msgid "Laminated linen body armor for infantrymen."
@@ -10328,7 +10328,7 @@ msgstr ""
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
-msgstr ""
+msgstr "Dynamis"
 
 #: simulation/data/technologies/attack_steel_working.jsondescription
 msgid ""
@@ -10452,7 +10452,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
-msgstr ""
+msgstr "Željezni plug"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 msgid "Increases wood gathering rates for trees."
@@ -10628,7 +10628,7 @@ msgstr ""
 #: simulation/data/technologies/heal_rate.jsonspecificName.spart
 #: simulation/data/technologies/heal_rate.jsonspecificName.athen
 msgid "Sphagia"
-msgstr ""
+msgstr "Sphagia"
 
 #: simulation/data/technologies/heal_rate_2.jsongenericName
 msgid "Healing Rate 2"
@@ -10689,7 +10689,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
-msgstr ""
+msgstr "Bojna medicina"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
@@ -11271,7 +11271,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsondescription
 msgid "A festival attended by women-only, to celebrate female fertility."
-msgstr ""
+msgstr "Festival koji pohode samo žene kako bi proslavile žesnku plodnost."
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
@@ -11279,7 +11279,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
-msgstr ""
+msgstr "Festival Plodnosti"
 
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.hele
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.mace
@@ -11542,7 +11542,7 @@ msgstr ""
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "Pokori Hispaniju kako bi smanjio vrijeme za novačenje -20% za Iberijske plaćenike."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -11670,7 +11670,7 @@ msgstr ""
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
-msgstr ""
+msgstr "Drvena Građevina"
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
 msgid ""
@@ -12484,7 +12484,7 @@ msgstr "Fauna"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
-msgstr ""
+msgstr "Riba"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -13178,7 +13178,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "drvo masline"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -13595,19 +13595,19 @@ msgstr ""
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "Velika staja"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "Umjereno velika staja"
 
 #: simulation/templates/other/stall_small_a.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "Mala staja"
 
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall b"
-msgstr ""
+msgstr "Mala staja b"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
@@ -14564,7 +14564,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
-msgstr ""
+msgstr "ḥwt-n-mš'"
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -14572,31 +14572,31 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_corral.xml:19
 msgid "h-n-ssmt.w"
-msgstr ""
+msgstr "h-n-ssmt.w"
 
 #: simulation/templates/structures/ptol_defense_tower.xml:9
 msgid "mktr-n-ḏw"
-msgstr ""
+msgstr "mktr-n-ḏw"
 
 #: simulation/templates/structures/ptol_dock.xml:12
 msgid "ḥwt-n-dpt.w"
-msgstr ""
+msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
-msgstr ""
+msgstr "mktr-'a"
 
 #: simulation/templates/structures/ptol_house.xml:19
 msgid "ḥwt"
-msgstr ""
+msgstr "ḥwt"
 
 #: simulation/templates/structures/ptol_library.xml:16
 msgid "Bibliothí̱ki̱"
-msgstr ""
+msgstr "Bibliothí̱ki̱"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:20
 msgid ""
@@ -14610,7 +14610,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
-msgstr ""
+msgstr "ḥwt-n-ḫt.w-wḫa.w"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:33
 msgid ""
@@ -14642,26 +14642,26 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
-msgstr ""
+msgstr "mktr-n-ḫt"
 
 #: simulation/templates/structures/ptol_storehouse.xml:18
 msgid "h-n-ḫt.w"
-msgstr ""
+msgstr "h-n-ḫt.w"
 
 #: simulation/templates/structures/ptol_wall_gate.xml:9
 msgid "sba-n-njwt"
-msgstr ""
+msgstr "sba-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_long.xml:10
 #: simulation/templates/structures/ptol_wall_medium.xml:10
 #: simulation/templates/structures/ptol_wall_short.xml:10
 #: simulation/templates/structures/ptol_wallset_stone.xml:5
 msgid "h-n-njwt"
-msgstr ""
+msgstr "h-n-njwt"
 
 #: simulation/templates/structures/ptol_wall_tower.xml:9
 msgid "mktr"
-msgstr ""
+msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
@@ -14843,7 +14843,7 @@ msgstr ""
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "Sagradi strojeve za opsadu i treniraj Prvake. Smjesti do 20 vojnika unutra za jaku obranu."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -17349,7 +17349,7 @@ msgstr ""
 
 #: maps/scenarios/Barcania.xml:31:Name
 msgid "Barcania"
-msgstr ""
+msgstr "Barcania"
 
 #: maps/scenarios/Barcania.xml:31:Description
 msgid ""
@@ -17358,7 +17358,7 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
 "players."
-msgstr ""
+msgstr "Divlji i šumovit otok, pun utvrda, zlata i tajni...planine, mora i guste šume čine ovu mapu za 3 igrača jako dinamičnom i brzom s puno potencijalnih okršaja i gerilskog ratovanja kao i teške obrambene borbe ili agresivnih pokreta. 1 Keltski igrač, 2 Grčka igrača."
 
 #: maps/scenarios/Battle for the Tiber.xml:31:Description
 msgid ""
@@ -17418,12 +17418,12 @@ msgstr ""
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[1].Name
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[3].Name
 msgid "Thebes"
-msgstr ""
+msgstr "Teba"
 
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[2].Name
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[5].Name
 msgid "Thessaly"
-msgstr ""
+msgstr "Tesalija"
 
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[3].Name
 msgid "Megara"
@@ -17660,23 +17660,23 @@ msgstr ""
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[0].Name
 msgid "Athens"
-msgstr ""
+msgstr "Atena"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[1].Name
 msgid "Sparta"
-msgstr ""
+msgstr "Sparta"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[2].Name
 msgid "Elis"
-msgstr ""
+msgstr "Elida"
 
 #: maps/scenarios/Peloponnese.xml:41:PlayerData[4].Name
 msgid "Corinth"
-msgstr ""
+msgstr "Korint"
 
 #: maps/scenarios/Peloponnese.xml:41:Name
 msgid "Peloponnesian Wars"
-msgstr ""
+msgstr "Peloponeski ratovi"
 
 #: maps/scenarios/Polynesia.xml:42:Description
 msgid "Demo map for new fancy water effects."
@@ -17856,7 +17856,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Description
 msgid "A sandbox scenario for players to try out the Roman civilisation."
-msgstr ""
+msgstr "Sandbox scenarij za igrače kako bi isprobali Rimsku civilizaciju."
 
 #: maps/scenarios/Sandbox - Romans.xml:42:Name
 msgid "Sandbox - The Republican Romans"
@@ -18070,11 +18070,11 @@ msgstr ""
 
 #: maps/scenarios/shipattacks.xml:31:Description
 msgid "Move ships around. Attack other ships."
-msgstr ""
+msgstr "Pomakni brodove uokolo. Napadni druge brodove."
 
 #: maps/scenarios/shipattacks.xml:31:Name
 msgid "Ships Demo"
-msgstr ""
+msgstr "Brodovi demo"
 
 #: maps/scenarios/starting_economy_walkthrough.xml:42:Description
 msgid ""
@@ -18268,7 +18268,7 @@ msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:41:Name
 msgid "Greek Acropolis (4)"
-msgstr ""
+msgstr "Grčka Akropola (4)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:Name
 msgid "Greek Acropolis Night (2)"
@@ -18283,7 +18283,7 @@ msgstr ""
 
 #: maps/skirmishes/Libyan Oases (4).xml:42:Name
 msgid "Libyan Oases (4)"
-msgstr ""
+msgstr "Libijske oaze (4)"
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Description
 msgid ""
@@ -18296,7 +18296,7 @@ msgstr ""
 
 #: maps/skirmishes/Libyan Oasis (2).xml:42:Name
 msgid "Libyan Oasis (2)"
-msgstr ""
+msgstr "Libijska oaza (2)"
 
 #: maps/skirmishes/Lorraine Plain (2).xml:42:Description
 msgid ""
@@ -18363,7 +18363,7 @@ msgstr ""
 
 #: maps/skirmishes/Nile River (4).xml:41:Name
 msgid "Nile River (4)"
-msgstr ""
+msgstr "rijeka Nil (4)"
 
 #: maps/skirmishes/Persian Highlands (4).xml:42:Description
 msgid ""
@@ -18373,18 +18373,18 @@ msgstr ""
 
 #: maps/skirmishes/Persian Highlands (4).xml:42:Name
 msgid "Persian Highlands (4)"
-msgstr ""
+msgstr "Perzijsko visočje (4)"
 
 #: maps/skirmishes/Punbjab (2).xml:42:Description
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
-msgstr ""
+msgstr "Sjeverozapadna Indija. Obližnje rijeke nabujaju od monsunskih kiša i time smanjuju mogućnost  prijelaza na samo nekoliko vrlo opasnih.\nUz rijeke je bujna šumska vegetacija, dok sag od trave okružuje okolni seoski krajolik. Pazi se Tigrova u visokoj travi! Azijski slonovi su također uobičajena pojava."
 
 #: maps/skirmishes/Punbjab (2).xml:42:Name
 msgid "Punjab (2)"
-msgstr ""
+msgstr "Punjab (2)"
 
 #: maps/skirmishes/Saharan Oases (4).xml:41:Description
 msgid ""

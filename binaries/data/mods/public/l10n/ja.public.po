@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-07 14:28+0000\n"
+"PO-Revision-Date: 2014-05-18 14:22+0000\n"
 "Last-Translator: kanetaka\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -536,7 +536,7 @@ msgstr "退席中"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
-msgstr "オンライン"
+msgstr "入室"
 
 #: gui/lobby/lobby.js:318
 msgid "Offline"
@@ -579,7 +579,7 @@ msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "We're sorry, the '%(cmd)s' command is not supported."
+msgstr "相済みません。「%(cmd)s」コマンドはサポートされていません。"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
@@ -865,7 +865,7 @@ msgstr "砕ける波"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "岸の近くで砕ける波を表示します（高品質な波が必要）"
+msgstr "岸の近くで砕ける波を表示します（高品質の波が必要）"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
@@ -1157,7 +1157,7 @@ msgstr "再開"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr "本当に降伏しますか?"
+msgstr "本当に降伏しますか？"
 
 #: gui/session/menu.js:152
 msgid ""
@@ -1166,7 +1166,7 @@ msgstr "本当に終了しますか？"
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr "本当に終了しますか?"
+msgstr "本当に終了しますか？"
 
 #: gui/session/menu.js:169
 msgid "I resign"
@@ -1182,7 +1182,7 @@ msgstr "降伏しますか、それとも後で復帰しますか？"
 
 #: gui/session/menu.js:188
 msgid "Destroy everything currently selected?"
-msgstr "選択中のユニットすべてを破壊しますか?"
+msgstr "現在選択中のすべてを破壊しますか？"
 
 #: gui/session/menu.js:188 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
@@ -1465,7 +1465,7 @@ msgstr "[OFFLINE] %(player)s"
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s階級"
+msgstr "%(rank)sランク"
 
 #: gui/session/selection_details.js:68
 #, python-format
@@ -1540,7 +1540,7 @@ msgstr "間隔:"
 #: gui/session/selection_details.js:249 gui/session/session.js:636
 #: gui/session/utility_functions.js:602
 msgid "Range:"
-msgstr "射程："
+msgstr "射程:"
 
 #: gui/session/selection_details.js:251
 msgid "meters"
@@ -1551,17 +1551,17 @@ msgstr "メートル"
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
-msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
+msgstr "%(label)s %(details)s、%(rangeLabel)s %(range)s%(meters)s (%(relative)s)、%(rate)s"
 
 #: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
-msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
+msgstr "%(label)s %(details)s、%(rangeLabel)s %(range)s%(meters)s、%(rate)s"
 
 #: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
-msgstr "%(label)s %(details)s, %(rate)s"
+msgstr "%(label)s %(details)s、%(rate)s"
 
 #: gui/session/selection_details.js:341
 msgid "Hitpoints:"
@@ -1626,7 +1626,7 @@ msgstr "%(attackLabel)s %(details)s、%(rangeLabel)s %(range)s"
 #: gui/session/session.js:811
 #, python-format
 msgid "%(time)s (%(speed)sx)"
-msgstr "%(time)s (%(speed)s倍速)"
+msgstr "%(time)s (%(speed)s倍)"
 
 #: gui/session/session.js:900
 #, python-format
@@ -1729,7 +1729,7 @@ msgstr "取引する商品 %(resource)s を強制的に設定/解除します。
 
 #: gui/session/unit_commands.js:1161
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "木の壁を木の門に改築"
+msgstr "木の壁を木の門に改築します"
 
 #: gui/session/unit_commands.js:1165
 msgid "Convert Stone Wall into City Gate"
@@ -1742,7 +1742,7 @@ msgstr "包囲壁を包囲壁の門に改築します"
 #: gui/session/unit_commands.js:1174
 #, python-format
 msgid "Convert %(wall)s into %(gate)s"
-msgstr "%(wall)sを %(gate)sへと改築します"
+msgstr "%(wall)sを%(gate)sへと改築します"
 
 #: gui/session/unit_commands.js:1191
 msgid "Lock Gate"
@@ -2599,13 +2599,13 @@ msgstr "敵の攻撃を撃退しました。それでは市場と神殿を建て
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "それでは町の段階の要件を満たしましたので、町の中心を選択して、町の段階へ移行してください。"
+msgstr "それでは都市の段階の要件を満たしましたので、町の中心を選択して、都市の段階へ移行してください。"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "いよいよ町の段階へ入りました。要塞を近くに建設し、2台の破城槌建造に用いてください。"
+msgstr "いよいよ都市の段階へ入りました。要塞を近くに建設し、2台の破城槌建造に用いてください。"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
@@ -3215,7 +3215,7 @@ msgstr "オンラインで見る"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
-msgstr "ゲームオプション"
+msgstr "ゲーム設定"
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
@@ -3223,7 +3223,7 @@ msgstr "一般"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
-msgstr "グラフィック設定"
+msgstr "グラフィックス設定"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
@@ -3325,7 +3325,7 @@ msgstr "マルチプレイヤーロビーを起動します。"
 
 #: gui/pregame/mainmenu.xml:293 (caption)
 msgid "Options"
-msgstr "オプション"
+msgstr "設定"
 
 #: gui/pregame/mainmenu.xml:294 (tooltip)
 msgid "Adjust game settings."
@@ -3375,11 +3375,11 @@ msgstr "1人または複数の人間とマルチプレイヤーで対戦しま�
 
 #: gui/pregame/mainmenu.xml:443 (caption)
 msgid "Tools & Options"
-msgstr "ツールとオプション"
+msgstr "ツールと設定"
 
 #: gui/pregame/mainmenu.xml:444 (tooltip)
 msgid "Game options and scenario design tools."
-msgstr "ゲームオプションとシナリオ作成ツールです。"
+msgstr "ゲーム設定とシナリオ作成ツールです。"
 
 #: gui/pregame/mainmenu.xml:458 (caption)
 msgid "History"
@@ -3455,7 +3455,7 @@ msgstr "すべてのユニットのコントロール"
 
 #: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
-msgstr "視線の変更"
+msgstr "視点の変更"
 
 #: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
@@ -3511,7 +3511,7 @@ msgstr "外交"
 
 #: gui/session/session.xml:440 (caption)
 msgid "Theirs"
-msgstr "Theirs"
+msgstr "態度"
 
 #: gui/session/session.xml:443 (caption)
 msgid "A"
@@ -3549,7 +3549,7 @@ msgstr "人口 (現在 / 上限)"
 
 #: gui/session/session.xml:605 (tooltip)
 msgid "Choose player to view"
-msgstr "プレイヤーを選択して見よ"
+msgstr "観察するプレイヤーを選択してください"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
@@ -3588,7 +3588,7 @@ msgstr "クリックでユニットグループを選択、ダブルクリック
 
 #: gui/session/session.xml:892 (tooltip)
 msgid "Find idle worker"
-msgstr "仕事のない労働者を探す"
+msgstr "手の空いた労働者を探す"
 
 #: gui/session/session.xml:944 (tooltip)
 msgid "Exchange resources:"
@@ -3612,7 +3612,7 @@ msgstr "持久力"
 
 #: gui/splashscreen/splashscreen.xml:12 (caption)
 msgid "Welcome to 0 A.D. !"
-msgstr "0 A.D. にようこそ！"
+msgstr "0 A.D.にようこそ！"
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
@@ -3659,15 +3659,15 @@ msgstr "プレイヤー名"
 
 #: gui/summary/summary.xml:109 (caption)
 msgid "Economy score"
-msgstr "経済ポイント"
+msgstr "経済得点"
 
 #: gui/summary/summary.xml:112 (caption)
 msgid "Military score"
-msgstr "軍事ポイント"
+msgstr "軍事得点"
 
 #: gui/summary/summary.xml:115 (caption)
 msgid "Exploration score"
-msgstr "探索ポイント"
+msgstr "探索得点"
 
 #: gui/summary/summary.xml:118 (caption)
 msgid "Total score"
@@ -3675,7 +3675,7 @@ msgstr "総合得点"
 
 #: gui/summary/summary.xml:231 (caption)
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "建物の数（建造した数 / 失った数 / 破壊した数）"
+msgstr "建物の数（建設した数 / 失った数 / 破壊した数）"
 
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
@@ -4164,19 +4164,19 @@ msgstr "[font=\"sans-14\"][ユニットを]左ダブルクリック: スクリ�
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr "[ユニットを]左トリプルクリック: スクリーン上の同種同ランクの全ユニットを選択"
+msgstr "[ユニットを]左トリプルクリック： スクリーン上の同種同ランクの全ユニットを選択"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr "[ユニットを]Alt + 左ダブルクリック: マップ全体の同種の全ユニットを選択(ランクが違っても可)"
+msgstr "[ユニットを]Alt + 左ダブルクリック： マップ全体の同種の全ユニットを選択(ランクが違っても可)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "[ユニットを]Alt + 左トリプルクリック: マップ全体の同種同ランクの全ユニットを選択"
+msgstr "[ユニットを]Alt + 左トリプルクリック： マップ全体の同種同ランクの全ユニットを選択"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -4216,11 +4216,11 @@ msgstr "Delete： 選択中のユニットや建物を削除"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ",： 暇な兵士を選択"
+msgstr ",： 手の空いた兵士を選択"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".： 暇な労働者を選択（市民兵士を含む）"
+msgstr ".： 手の空いた労働者を選択（市民兵士を含む）"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
@@ -4330,7 +4330,7 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt+W： ワイヤーフレームモードの切替え（1度押すとワイヤーフレームをテクスチャ付きモデルに重ねます。2度目でテキスチャで色分けされたワイヤーフレームだけ、3度目で通常のテクスチャ付きモデルに戻ります）"
+msgstr "Alt+W： ワイヤーフレームモードの切替え（1度押すとワイヤーフレームをテクスチャ付きモデルに重ねます。2度目でテクスチャで色分けされたワイヤーフレームだけ、3度目で通常のテクスチャ付きモデルに戻ります）"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -4355,7 +4355,7 @@ msgstr "Sまたは[down]： 画面を下に移動"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr "A または [left]:画面を左に移動"
+msgstr "Aまたは[left]： 画面を左に移動"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
@@ -4464,19 +4464,19 @@ msgstr "• ランダムなユーザーID（Windowsでは%APPDATA%\\0ad\\config\
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• ゲームのバージョン番号と基本的なビルド設定（最適化モード、CPU アーキテクチャ、タイムスタンプ、コンパイラのバージョン）。"
+msgstr "• ゲームのバージョン番号と基本的なビルド設定（最適化モード、CPUアーキテクチャ、タイムスタンプ、コンパイラーのバージョン）。"
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• ハードウェアの情報：OSのバージョン、グラフィックドライバのバージョン、OpenGL対応、画面解像度、CPUの情報、RAM容量。"
+msgstr "• ハードウェアの情報：OSのバージョン、グラフィックスドライバーのバージョン、OpenGL対応、画面解像度、CPUの情報、RAM容量。"
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• パフォーマンスの情報：試合開始やグラフィック設定変更から数秒後のタイミングデータのスナップショット"
+msgstr "• パフォーマンスの情報：試合開始やグラフィックス設定変更から数秒後のタイミングデータのスナップショット"
 
 #: gui/manual/userreport.txt:10
 msgid ""
@@ -4537,7 +4537,7 @@ msgstr "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr "\"It is not the oath that makes us believe the man, but the man the oath.\" - Aeschylus"
+msgstr "「我々が人を信ずるのは誓いゆえではない。人ゆえに誓いを信ずるのだ」 - アイスキュロス"
 
 #: gui/text/quotes.txt:5
 msgid ""
@@ -4657,7 +4657,7 @@ msgstr "\"He who doeth good shall meet with good; and he who doeth evil shall me
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the Great"
+msgstr "「余がアレクサンドロスでなければディオゲネスになりたいものだ」 - アレクサンドロス大王"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
@@ -4690,42 +4690,42 @@ msgstr "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander 
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr "\"The agora is an established place for men to cheat one another, and behave covetously.\" - Anacharsis"
+msgstr "「アゴラは互いに欺き、貪欲に振る舞う男の殿堂である」 - アナカルシス"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr "\"Written laws are like spiders’ webs; they will catch, it is true, the weak and poor, but would be torn in pieces by the rich and powerful.\" - Anacharsis"
+msgstr "「成文法とは蜘蛛の巣のようなものだ。法が捕えるのは、実際、弱く貧しい者で、強く富める者には破れる」 - アナカルシス"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
+msgstr "「狐には多くの知恵がある。一方、ハリネズミは一つだが飛び切りのものがある」 - アルキロコス"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr "\"States are doomed when they are unable to distinguish good men from bad.\" - Antisthenes"
+msgstr "「国家の命運が尽きるのは悪人と善人の区別ができなくなった時である」 - アンティステネス"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on his usage of the lever."
+msgstr "「支点を一つ与えよ。されば地球を動かしてみせよう」 - アルキメデス、てこの使い方について。"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr "\"It is from their foes, not their friends, that cities learn the lesson of building high walls and ships of war.\" - Aristophanes"
+msgstr "「都市は高い壁と軍艦を作る教訓を敵から学んだ。友からではない」 - アリストパネス"
 
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
-msgstr "\"Words give wings to the mind and make a man soar to heaven.\" - Aristophanes"
+msgstr "「言葉は心に翼を与え人を天界に舞い上がらせる」 - アリストパネス"
 
 #: gui/text/quotes.txt:41
 msgid ""
@@ -5040,17 +5040,17 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when Alexander the Great found him sunbathing and asked if he could help in in any way"
+msgstr "「ございます。少しどいて私に日を当ててください」 - シノーペのディオゲネス、アレクサンドロス大王が日光浴中の彼を見つけ、何か望みはないかと尋ねられて。"
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr "\"I am a citizen of the world.\" - Diogenes of Sinope"
+msgstr "「我は世界市民なり」 - シノーペのディオゲネス"
 
 #: gui/text/quotes.txt:101
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr "\"It is not that I am mad, it is only that my head is different from yours.\" - Diogenes of Sinope"
+msgstr "「私が狂っているのではない。私の頭があなたとは異なるに過ぎない」 - シノーペのディオゲネス"
 
 #: gui/text/quotes.txt:102
 msgid ""
@@ -5105,15 +5105,15 @@ msgstr "「万物は流転して、何ものもとどまらない」 - ヘラク
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr "\"Nothing endures but change.\" - Herakleitos"
+msgstr "「存在し続けるのは変化のみである 」 - ヘラクレイトス"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr "\"You could not step twice into the same river.\" - Herakleitos"
+msgstr "「同じ川に二度足を浸すことはできない」 - ヘラクレイトス"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr "\"Character is destiny.\" - Herakleitos"
+msgstr "「性格は運命である」 - ヘラクレイトス"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
@@ -5203,11 +5203,11 @@ msgstr "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
-msgstr "\"I call a fig a fig, a spade a spade.\" - Menander"
+msgstr "「イチジクをイチジクと呼び、鍬を鍬と呼ぶ」 - メナンドロス"
 
 #: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
-msgstr "\"The man who runs may fight again.\" - Menander"
+msgstr "「逃げる者は再び戦えるだろう」 - メナンドロス"
 
 #: gui/text/quotes.txt:133
 msgid ""
@@ -5351,11 +5351,11 @@ msgstr "\"Man is the measure of all things: of things which are, that they are, 
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr "\"We ought so to behave to one another as to avoid making enemies of our friends, and at the same time to make friends of our enemies.\" - Pythagoras"
+msgstr "「我々は互いに友の敵となることを避け、同時に敵の友となるよう振る舞うべきだ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr "\"In anger we should refrain both from speech and action.\" - Pythagoras"
+msgstr "「怒りに任せて話したり行動したりするのは避けるべきだ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
@@ -5363,17 +5363,17 @@ msgstr "\"Power is the near neighbor of necessity.\" - Pythagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr "\"Numbers rule the Universe.\" - Pythagoras"
+msgstr "「数が宇宙を統べる」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr "\"Rest satisfied with doing well, and leave others to talk of you as they please.\" - Pythagoras"
+msgstr "「善きことをしたと満ち足りて眠れ、そして他人には好きに言わせておけ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
+msgstr "「怒りは無謀に始まり後悔に終わる」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
@@ -5393,13 +5393,13 @@ msgstr "\"Practice justice in word and deed, and do not get in the habit of acti
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
+msgstr "「なされるべきでないことをしようとは考えることすらしてはならぬ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr "\"When the wise man opens his mouth, the beauties of his soul present themselves to the view, like the statues in a temple.\" - Pythagoras"
+msgstr "「賢人が口を開けば、魂の美がおのずと神殿の彫像のごとき姿を現す」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:169
 msgid ""
@@ -5410,7 +5410,7 @@ msgstr "\"Remind yourself that all men assert that wisdom is the greatest good, 
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr "\"Without Justice, no realm may prosper.\" - Pythagoras"
+msgstr "「正義なく栄えられる王国などない」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -5587,7 +5587,7 @@ msgstr "町の中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- 新たな植民都市の「基礎」となります。"
+msgstr "- 新たな植民地の「基礎」となります。"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -5681,7 +5681,7 @@ msgstr "- 市民兵士は鉱山の採掘が速いです。"
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr "- 市民兵士の階級が上がる（上級、精鋭）ほど、戦闘は強くなりますが、採集の効率は悪くなります。"
+msgstr "- 市民兵士のランクが上がる（上級、精鋭）ほど、戦闘は強くなりますが、採集の効率は悪くなります。"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -5803,7 +5803,7 @@ msgstr "サバンナ生物群系"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- 水たまりやゴツゴツした崖が散在する平坦な地形です。"
+msgstr "- 水場やゴツゴツした崖が散在する平坦な地形です。"
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
@@ -5823,13 +5823,13 @@ msgstr "防御塔"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr "- 辺境地帯を守るのに適した、自立した塔です。"
+msgstr "- 辺境の広い地域を守るのに適した、自立した塔です。"
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr "- 建造には通常木材 100 と石材 100 が必要ですが、イベリアの防御塔は木材 300 と石材 300 が必要です（その分強力）。"
+msgstr "- 建設には通常木材100と石材100が必要ですが、イベリアの防御塔は石材300が必要です（より頑丈なため）。"
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
@@ -5841,7 +5841,7 @@ msgstr "スパルタ市民"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
-msgstr "本ゲーム最強の歩兵ユニットです。"
+msgstr "- 本ゲーム最強の歩兵ユニットです。"
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
@@ -6046,27 +6046,27 @@ msgstr "- 海の中をさまよっており、攻撃すると逃走します。"
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.5x)"
-msgstr "亀の歩み (0.5倍速)"
+msgstr "亀の歩み(0.5倍)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.75x)"
-msgstr "ゆっくり (0.75倍速)"
+msgstr "遅い(0.75倍)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Normal (1x)"
-msgstr "標準 (1倍速)"
+msgstr "標準(1倍)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Fast (1.25x)"
-msgstr "速い (1.25倍速)"
+msgstr "速い(1.25倍)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Very Fast (1.5x)"
-msgstr "とても速い (1.5倍速)"
+msgstr "大変速い(1.5倍)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Insane (2x)"
-msgstr "特急 (2倍速)"
+msgstr "特急(2倍)"
 
 #: simulation/data/player_defaults.jsonPlayerData[1].Name
 #: maps/scenarios/Arcadia 02.xml:41:PlayerData[0].Name
@@ -6329,7 +6329,7 @@ msgstr "フクロウ銀貨"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "アッティカ地方のラウリオン鉱山から産する銀は、アテナイに富をもたらしました。これによって、価値と誉れの高いアテナイのフクロウ銀貨が鋳造されました。"
+msgstr "アッティカ地方のラウリオン鉱山から産する銀は、アテナイに富をもたらしました。この銀から価値と誉れの高いアテナイのフクロウ銀貨が鋳造されました。"
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -6597,7 +6597,7 @@ msgstr "家畜や畑から得る食料が増加します。"
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr "ケルト式農法"
+msgstr "Ardiosmanae"
 
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
@@ -7033,7 +7033,7 @@ msgstr "マハルバルは、第二次ポエニ戦争中の、ハンニバル・
 #: civs/cart.jsonStructures[0].Name
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr "軍港"
+msgstr "海軍造船所"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -7086,7 +7086,7 @@ msgstr "イベリア傭兵を雇います。"
 #: civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "イベリア人は勇猛な傭兵として名高く、雇い主に忠誠を尽くします。"
+msgstr "イベリア人は勇猛な傭兵として名高く、雇い主に忠誠を尽くしました。"
 
 #: civs/cart.jsonHistory
 msgid ""
@@ -7426,7 +7426,7 @@ msgstr "マケドニア王（在位紀元前359-336年）であり、貨幣と�
 
 #: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
 msgid "Philip II"
-msgstr "ピリッポス 2 世"
+msgstr "ピリッポス2世"
 
 #: civs/hele.jsonFactions[1].Heroes[1].History
 #: civs/mace.jsonFactions[0].Heroes[1].History
@@ -7511,7 +7511,7 @@ msgstr "騎馬ユニット (騎兵) 養成の資源コストが、捕獲され�
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr "サルディ・サルドア"
+msgstr "サルディ・シャルドア"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -7572,7 +7572,7 @@ msgstr "タウタルス"
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr "攻撃が命中した相手に火がつき、適切に回復または修理しない限り一定速度で HP が減少し続けるようになります。"
+msgstr "攻撃が命中した相手に火がつき、適切に回復または修理しない限り一定速度で耐久力が減少し続けるようになります。"
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
@@ -7830,7 +7830,7 @@ msgstr "町の中心の耐久力と無人時の矢の量が2倍になります�
 #: simulation/templates/units/hele_hero_philip.xml:10
 #: simulation/templates/units/mace_hero_philip.xml:10
 msgid "Philip II of Macedon"
-msgstr "ピリッポス2世"
+msgstr "マケドニアのピリッポス2世"
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -7902,7 +7902,7 @@ msgstr "マウリヤ朝は最大人口+10%ボーナスを有します（通常�
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr "皇帝中の皇帝。"
+msgstr "皇帝の中の皇帝。"
 
 #: civs/maur.jsonCivBonuses[0].History
 #: simulation/data/technologies/mauryans/civbonus_maur_popcap.jsondescription
@@ -8696,7 +8696,7 @@ msgid ""
 "Dictator for six months during the Second Punic War. Instead of attacking "
 "the most powerful Hannibal, he started a very effective war of attrition "
 "against him."
-msgstr "第二次ポエニ戦争中の６カ月執政官を務めました。最強のハンニバルとの対決を避け、非常に効果的な消耗戦を仕掛けました。"
+msgstr "第二次ポエニ戦争中の6カ月執政官を務めました。最強のハンニバルとの対決を避け、非常に効果的な消耗戦を仕掛けました。"
 
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/rome_hero_maximus.xml:5
@@ -8948,7 +8948,7 @@ msgstr "ピリッポス2世親羅王"
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "従来軍は銀盾隊と大鎌戦車を解禁し、軍制改革はローマ流重装剣士と重装騎兵を解禁します。"
+msgstr "従来軍は銀盾隊と大鎌戦車を解禁し、軍制改革はローマ式重装剣士と重装騎兵を解禁します。"
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
@@ -9094,7 +9094,7 @@ msgstr "スパルタ人は疑うことなく密集陣形による戦闘の達人
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "兵営でのスパルタの階級昇進には資源は不要です。ただし時間はかかります。"
+msgstr "兵営でのスパルタのランク昇進には資源は不要です。ただし時間はかかります。"
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -9234,7 +9234,7 @@ msgstr "スパルタ王で、紀元前480年のテルモピュライの戦いで
 #: simulation/templates/units/hele_hero_leonidas.xml:31
 #: simulation/templates/units/spart_hero_leonidas.xml:28
 msgid "Leonidas I"
-msgstr "レオニダス 1 世"
+msgstr "レオニダス1世"
 
 #: civs/spart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -9259,7 +9259,7 @@ msgstr "アギス3世は第20代のエウリュポン家系のスパルタの王
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 #: simulation/templates/units/spart_hero_agis.xml:11
 msgid "Agis III"
-msgstr "アギス 3 世"
+msgstr "アギス3世"
 
 #: civs/spart.jsonStructures[1].Name
 msgid "Syssition"
@@ -9624,11 +9624,11 @@ msgstr "ロレーヌ平原"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water"
-msgstr "水地のまったくない典型的なマップ"
+msgstr "水域のまったくない典型的なマップ"
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
-msgstr "大陸"
+msgstr "本土"
 
 #: maps/random/migration.jsonsettings.Description
 msgid ""
@@ -9852,7 +9852,7 @@ msgstr "Aegisを土台に、しかし大幅に改造され、堅実さが増し�
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
 msgid "Tutorial AI"
-msgstr "練習用 AI"
+msgstr "チュートリアルAI"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsondescription
 msgid "Metal armor for a horse's face."
@@ -10250,7 +10250,7 @@ msgstr "特に騎兵のために作られた長い槍です。"
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "近接戦闘騎兵により良い武器を装備させます。近接戦闘騎兵の打撃攻撃力が2増加します。"
+msgstr "近接攻撃騎兵により良い武器を装備させます。近接攻撃騎兵の打撃攻撃力が2増加します。"
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -11035,7 +11035,7 @@ msgstr "遠隔攻撃歩兵の攻撃力を強化する訓練です。"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "Ranged infantry +2 pierce attack."
-msgstr "遠隔攻撃歩兵の貫通攻撃力 +2。"
+msgstr "遠隔攻撃歩兵の貫通攻撃力+2。"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
@@ -11060,7 +11060,7 @@ msgstr "投槍ひも（ギリシア語では輪もしくは気管支とも）に
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr "すべての投槍ユニットが貫通攻撃 +2、射程 +4。"
+msgstr "すべての投槍ユニットが貫通攻撃力+2、射程+4。"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
@@ -11901,7 +11901,7 @@ msgstr "セレウコス朝の軍制改革です。"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr "ローマ流重装剣士とセレウコス朝重装騎兵を解禁します。"
+msgstr "ローマ式重装剣士とセレウコス朝重装騎兵を解禁します。"
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
@@ -11942,7 +11942,7 @@ msgstr "一般植物"
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
-msgstr "ブッシュ"
+msgstr "灌木"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
@@ -12031,7 +12031,7 @@ msgstr "財宝"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
-msgstr "建造物"
+msgstr "建物"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
@@ -12271,7 +12271,7 @@ msgstr "通常"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
-msgstr "近接戦闘騎兵"
+msgstr "近接攻撃騎兵"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
@@ -12569,7 +12569,7 @@ msgstr "英雄剣士"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr "近接戦闘歩兵"
+msgstr "近接攻撃歩兵"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:39
@@ -12629,7 +12629,7 @@ msgid ""
 "Classes: Citizen Ranged Infantry Slinger.\n"
 "Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
 "Countered by: Cavalry."
-msgstr "分類：市民　遠隔　歩兵　投石兵。\n得意：1.5倍　対遠隔攻撃歩兵、1.25倍　対近接戦闘歩兵。\n苦手：騎兵。"
+msgstr "分類：市民　遠隔　歩兵　投石兵。\n得意：1.5倍　対遠隔攻撃歩兵、1.25倍　対近接攻撃歩兵。\n苦手：騎兵。"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -12711,7 +12711,7 @@ msgid ""
 "Classes: Siege Ranged BoltShooter.\n"
 "Counters: 2x vs. Infantry and Cavalry units. Also useful vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr "分類：攻城　遠隔　弩砲。\n得意：2倍　対歩兵、騎兵。有効　対建物。\n苦手：近接戦闘騎兵。"
+msgstr "分類：攻城　遠隔　弩砲。\n得意：2倍　対歩兵、騎兵。有効　対建物。\n苦手：近接攻撃騎兵。"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:51
 msgid "Bolt Shooter"
@@ -12722,7 +12722,7 @@ msgid ""
 "Classes: Siege Ranged Catapult.\n"
 "Counters: Structures and Massed Infantry. Causes splash damage.\n"
 "Countered by: Melee Cavalry."
-msgstr "分類：攻城　遠隔　投石機。\n得意：建物、密集した歩兵。隊列を崩す効果。\n苦手：近接戦闘騎兵。"
+msgstr "分類：攻城　遠隔　投石機。\n得意：建物、密集した歩兵。隊列を崩す効果。\n苦手：近接攻撃騎兵。"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:54
 msgid "Siege Catapult"
@@ -12733,7 +12733,7 @@ msgid ""
 "Classes: Siege Melee Ram.\n"
 "Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr "分類：攻城　近接　杭。\n得意：1.5倍　対門。一般に良好　対建物。\n苦手：近接戦闘騎兵。有機ユニットは攻撃不能（しかし他の攻城兵器や船は可能）。"
+msgstr "分類：攻城　近接　杭。\n得意：1.5倍　対門。一般に良好　対建物。\n苦手：近接戦闘騎兵。生体ユニットは攻撃不能（しかし他の攻城兵器や船は可能）。"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
@@ -12745,7 +12745,7 @@ msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10.\n"
 "Counters: 2x vs. Buildings.\n"
 "Countered by: Melee Cavalry."
-msgstr "分類：遠隔　攻城塔。\n最大20人の歩兵を駐屯させて、矢の本数を0から10へ増やせます。\n得意：2倍　対建物。\n苦手：近接戦闘騎兵。"
+msgstr "分類：遠隔　攻城塔。\n最大20人の歩兵を駐屯させて、矢の本数を0から10へ増やせます。\n得意：2倍　対建物。\n苦手：近接攻撃騎兵。"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
@@ -12819,11 +12819,11 @@ msgstr "マケドニア軍"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I."
-msgstr "レオニダス 1 世軍。"
+msgstr "レオニダス1世軍。"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "Army of Leonidas I"
-msgstr "レオニダス 1 世軍"
+msgstr "レオニダス1世軍"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
@@ -12859,7 +12859,7 @@ msgstr "方陣"
 
 #: simulation/templates/formations/box.xml:5
 msgid "4 units required"
-msgstr "4 ユニット必要"
+msgstr "4ユニット必要"
 
 #: simulation/templates/formations/column_closed.xml:4
 msgid "Column Closed"
@@ -12875,7 +12875,7 @@ msgstr "翼形"
 
 #: simulation/templates/formations/flank.xml:5
 msgid "8 units required"
-msgstr "8 ユニット必要"
+msgstr "8ユニット必要"
 
 #: simulation/templates/formations/line_closed.xml:4
 msgid "Line Closed"
@@ -12891,7 +12891,7 @@ msgstr "ファランクス"
 
 #: simulation/templates/formations/phalanx.xml:5
 msgid "10 melee infantry units required"
-msgstr "近接攻撃歩兵が 10 ユニット必要"
+msgstr "近接攻撃歩兵が10ユニット必要"
 
 #: simulation/templates/formations/scatter.xml:4
 msgid "Scatter"
@@ -12907,7 +12907,7 @@ msgstr "遠隔攻撃ユニットのみ"
 
 #: simulation/templates/formations/syntagma.xml:5
 msgid "9 pike infantry units required"
-msgstr "長槍歩兵が 9 ユニット必要"
+msgstr "長槍歩兵が9ユニット必要"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "Testudo"
@@ -12915,7 +12915,7 @@ msgstr "テストゥド"
 
 #: simulation/templates/formations/testudo.xml:5
 msgid "9 melee infantry units required"
-msgstr "近接攻撃歩兵が 10 ユニット必要"
+msgstr "近接攻撃歩兵が9ユニット必要"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "Wedge"
@@ -12923,7 +12923,7 @@ msgstr "楔形"
 
 #: simulation/templates/formations/wedge.xml:5
 msgid "3 cavalry units required"
-msgstr "騎兵ユニットが 3 つ必要です"
+msgstr "騎兵が3ユニット必要"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -13270,11 +13270,11 @@ msgstr "ペガサス"
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
 msgid "Stone Treasure"
-msgstr "石の財宝"
+msgstr "石材の財宝"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr "木の財宝"
+msgstr "木材の財宝"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
@@ -13323,7 +13323,7 @@ msgstr "Caer"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr "人口上限を +2 増加します。"
+msgstr "人口上限が2増加します。"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
@@ -13370,7 +13370,7 @@ msgstr "短いフェンス"
 #: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
 msgid "Stone Fence"
-msgstr "塀"
+msgstr "石の塀"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
@@ -13399,7 +13399,7 @@ msgstr "プロピュライア"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "人口上限を +10 増加します。特有のユニットを召集します。"
+msgstr "人口上限が10増加します。特有のユニットを召集します。"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -13416,7 +13416,7 @@ msgstr "ギリシア式柱廊"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "人口上限を +15 増加します。より多くのユニットと英雄を召集します。"
+msgstr "人口上限が15増加します。より多くのユニットと英雄を召集します。"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
@@ -14037,7 +14037,7 @@ msgstr "傭兵を雇います。"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "ケルト人の傭兵を雇用し、彼らを強化する研究を行います。"
+msgstr "ケルト傭兵を雇用し、彼らを強化する研究を行います。"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
@@ -15147,7 +15147,7 @@ msgid ""
 "\"Reforms\" Aura: All units in his formation +15% speed and +1 armor. All Peltasts +15% speed.\n"
 "Counters: +20% Attack vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Melee Cavalry."
-msgstr "分類：英雄　歩兵　遠隔　散兵。\n「改革」オーラ：彼が率いる全ユニットの速度+15%、装甲+1。全投槍兵の速度+15%。\n得意：攻撃力+20%　対槍兵、弓騎兵、象、戦車。\n苦手：近接戦闘騎兵。"
+msgstr "分類：英雄　歩兵　遠隔　散兵。\n「改革」オーラ：彼が率いる全ユニットの速度+15%、装甲+1。全投槍兵の速度+15%。\n得意：攻撃力+20%　対槍兵、弓騎兵、象、戦車。\n苦手：近接攻撃騎兵。"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:17
 msgid "Iphikratēs"
@@ -15822,7 +15822,7 @@ msgstr "Spartiā́tēs"
 msgid ""
 "Poleis Champion Raider.\n"
 "Counters Support Units and Ranged Units. Countered by Melee Cavalry. Fast Move Speed."
-msgstr "ポリスチャンピオン急襲兵。\n得意な相手は補助ユニットと遠隔攻撃ユニット。苦手は近接戦闘騎兵。移動が速いです。"
+msgstr "ポリスチャンピオン急襲兵。\n得意な相手は補助ユニットと遠隔攻撃ユニット。苦手は近接攻撃騎兵。移動が速いです。"
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:18
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:47
@@ -16302,7 +16302,7 @@ msgstr "分類：機械　軍艦　中型　遠隔　近接。"
 
 #: simulation/templates/units/maur_support_elephant.xml:32
 msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "歩く資源回収施設です。建物の建造を助けることもできます。"
+msgstr "歩く資源回収施設です。建物の建設を助けることもできます。"
 
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
@@ -16371,7 +16371,7 @@ msgstr "分類：遠隔攻撃　騎兵　戦車　弓兵。\n得意：2倍　対
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babylonian Scythed Chariot"
-msgstr "バビロニア鎌戦車"
+msgstr "バビロニア大鎌戦車"
 
 #: simulation/templates/units/pers_cavalry_archer_b.xml:33
 msgid "Babiruviya Ratha"
@@ -16464,14 +16464,14 @@ msgstr "英雄弓兵。\n英雄オーラ：「行政官」。近くのユニッ�
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
 msgid "Xerxes I"
-msgstr "クセルクセス 1 世"
+msgstr "クセルクセス1世"
 
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
 msgid ""
 "Hero Scythe Chariot Archer.\n"
 "High Trample Aura. Counters Melee Infantry. Countered by Skirmishers.\n"
 "Hero Aura: \"Administrator.\" +15% Gather Rate and Build Rate of nearby units."
-msgstr "英雄　大鎌　戦車　弓兵。\n高い踏み潰しオーラ。得意ユニットは近接歩兵。苦手は散兵。\n英雄オーラ：「行政官」。近くのユニットの採集・建設速度+15%。"
+msgstr "英雄　大鎌　戦車　弓兵。\n高い踏み潰しオーラ。得意ユニットは近接攻撃歩兵。苦手は散兵。\n英雄オーラ：「行政官」。近くのユニットの採集・建設速度+15%。"
 
 #: simulation/templates/units/pers_infantry_archer_b.xml:13
 msgid "Sogdian Archer"
@@ -16662,7 +16662,7 @@ msgid ""
 "Classes: Hero Melee Cavalry Swordsman.\n"
 "\"Raphia\" Aura: Egyptian Pikemen have greater stats within vision of him.\n"
 "\"Juggernaut\" Bonus: Build limit increased to 5 for Juggernaut Warships."
-msgstr "分類：英雄　近接　騎兵　剣士。\n「ラフィア」オーラ：彼の視界内のエジプトの長槍兵の能力値が改善。\n「ジャガナート」ボーナス：ジャガナート戦艦の建造上限が5増加。"
+msgstr "分類：英雄　近接　騎兵　剣士。\n「ラフィア」オーラ：彼の視界内のエジプトの長槍兵の能力値が改善。\n「ジャガナート」ボーナス：ジャガナート軍艦の建造上限が5増加。"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Ptolemy IV \"Father Loving\""
@@ -16976,7 +16976,7 @@ msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:30
 msgid "Scythed Chariot"
-msgstr "大鎌武装戦車"
+msgstr "大鎌戦車"
 
 #: simulation/templates/units/sele_champion_chariot.xml:31
 msgid "Drepanèphoros"
@@ -17149,7 +17149,7 @@ msgid ""
 "\"Helot Reforms\" Aura: Helot Skirmishers within sight of him gain +2 attack and +1 all armor types.\n"
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "分類：チャンピオン　近接戦闘　歩兵　剣士。\n「ヘイロタイ改革」オーラ：視界内のヘイロタイ散兵の攻撃力が+2、全タイプの装甲が+1。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+msgstr "分類：チャンピオン　近接　歩兵　剣士。\n「ヘイロタイ改革」オーラ：視界内のヘイロタイ散兵の攻撃力が+2、全タイプの装甲が+1。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid ""
@@ -17422,7 +17422,7 @@ msgstr "ハルキス"
 
 #: maps/scenarios/Campaign Test Map.xml:42:PlayerData[7].Name
 msgid "Religious Institutions"
-msgstr "宗教施設"
+msgstr "宗教教団"
 
 #: maps/scenarios/Campaign Test Map.xml:42:Name
 msgid "Strategic Campaign Proof of Concept"
@@ -17436,7 +17436,7 @@ msgstr "戦闘デモ"
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
-msgstr "少数の遠隔および近接戦闘歩兵による戦闘デモです。"
+msgstr "少数の遠隔および近接攻撃歩兵による戦闘デモです。"
 
 #: maps/scenarios/Combat_demo_(huge).xml:77:Name
 msgid "Combat Demo (Huge)"

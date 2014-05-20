@@ -101,7 +101,20 @@ EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 		var notification = {
 			"player": cmpPlayer.GetPlayerID(),
-			"message": category + " " + limitType + " limit of " + this.limit[category] + " reached"};
+			"translateMessage": true,
+			"translateParameters": ["category"],
+			"parameters": {"category": category, "limit": this.limit[category]},
+		};
+
+		if (limitType == BUILD)
+			notification.message = markForTranslation("%(category)s build limit of %(limit)s reached");
+		else if (limitType == TRAINING)
+			notification.message = markForTranslation("%(category)s training limit of %(limit)s reached");
+		else
+		{
+			warn("EntityLimits.js: Unknown LimitType " + limitType)
+			notification.message = markForTranslation("%(category)s limit of %(limit)s reached");
+		}
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
 		

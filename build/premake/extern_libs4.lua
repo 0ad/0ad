@@ -252,15 +252,6 @@ extern_lib_defs = {
 			})
 		end,
 	},
-	boost_signals = {
-		link_settings = function()
-			add_default_links({
-				android_names = { "boost_signals-gcc-mt" },
-				unix_names = { os.findlib("boost_signals-mt") and "boost_signals-mt" or "boost_signals" },
-				osx_names = { "boost_signals-mt" },
-			})
-		end,
-	},
 	comsuppw = {
 		link_settings = function()
 			add_default_links({

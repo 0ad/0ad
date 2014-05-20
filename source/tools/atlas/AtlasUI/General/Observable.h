@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,17 +39,15 @@ variable_to_be_watched.NotifyObservers();
 
 */
 
+#include <boost/bind.hpp>
 #include <boost/version.hpp>
-#if BOOST_VERSION >= 105400
+#if BOOST_VERSION >= 104000
 # include <boost/signals2.hpp>
 typedef boost::signals2::connection ObservableConnection;
 typedef boost::signals2::scoped_connection ObservableScopedConnection;
 #else
-# include <boost/signals.hpp>
-typedef boost::signals::connection ObservableConnection;
-typedef boost::signals::scoped_connection ObservableScopedConnection;
+# error Atlas requires Boost 1.40 or later
 #endif
-#include <boost/bind.hpp>
 
 template <typename T> class Observable : public T
 {
@@ -96,15 +94,8 @@ public:
 		else
 		{
 			// Temporarily disable conn
-#if BOOST_VERSION >= 105400
 			boost::signals2::shared_connection_block blocker(conn);
-#else
-			conn.block();
-#endif
 			NotifyObservers();
-#if BOOST_VERSION < 105400
-			conn.unblock();
-#endif
 		}
 	}
 
@@ -115,11 +106,7 @@ public:
 	}
 
 private:
-#if BOOST_VERSION >= 105400
 	boost::signals2::signal<void (const T&)> m_Signal;
-#else
-	boost::signal<void (const T&)> m_Signal;
-#endif
 };
 
 // A similar thing, but for wrapping pointers instead of objects
@@ -179,25 +166,14 @@ public:
 		else
 		{
 			// Temporarily disable conn
-#if BOOST_VERSION >= 105400
 			boost::signals2::shared_connection_block blocker(conn);
-#else
-			conn.block();
-#endif
 			NotifyObservers();
-#if BOOST_VERSION < 105400
-			conn.unblock();
-#endif
 		}
 	}
 
 private:
 	T* m_Ptr;
-#if BOOST_VERSION >= 105400
 	boost::signals2::signal<void (T*)> m_Signal;
-#else
-	boost::signal<void (T*)> m_Signal;
-#endif
 };
 
 class ObservableScopedConnections

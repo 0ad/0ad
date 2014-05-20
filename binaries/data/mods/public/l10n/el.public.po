@@ -8,17 +8,19 @@
 # XTos <christos.kyratzis@gmail.com>, 2014
 # Costas ., 2013-2014
 # firespin <dartworldgr@hotmail.com>, 2014
+# crippledmoon <domas392@in.gr>, 2014
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <savoritiasshadow@gmail.com>, 2014
 # StephanVS74, 2013-2014
 # jfistikis <jfistikis@mailinator.com>, 2013
+# ZedRyder <zedryder@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-15 22:01+0000\n"
+"Last-Translator: crippledmoon <domas392@in.gr>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -338,14 +340,14 @@ msgstr "Μέγεθος Χάρτη:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Αποκάλυψη Χάρτη:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Εξερεύνησε Χάρτη"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -639,19 +641,19 @@ msgstr "Εγγραφή..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Παρακαλώ, πληκτρολογήστε το όνομα χρήστη"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Το όνομα χρήστη δεν μπόρει να περιέχει [, ], unicode, διαστήματα, ή κόμματα"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Παρακαλώ, πληκτρολογήστε το όνομα χρήστη"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Παρακαλώ, ξαναπληκτρολογήστε το συνθηματικό"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -1825,14 +1827,14 @@ msgstr[1] "%(time)s δευτερόλεπτα"
 #: gui/session/utility_functions.js:267 gui/session/utility_functions.js:273
 #, python-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
 #: gui/session/utility_functions.js:209 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:221 gui/session/utility_functions.js:264
 #: gui/session/utility_functions.js:270 gui/session/utility_functions.js:276
 #, python-format
 msgid "(%(armorPercentage)s)"
-msgstr ""
+msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:289
 msgid "Unload All"
@@ -6992,7 +6994,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr ""
+msgstr "Κανείς δεν ήξερε καλύτερα πού βρίσκονταν και πού ήθελε να πάει καλύτερα από τους Καρχηδόνιους. Οι εμπορικές τους αποστολές πήγαιναν παντού"
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
@@ -7874,7 +7876,7 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr ""
+msgstr "Ο Μέγας Αλέξανδρος ίδρυσε βιβλιοθήκες σε όλη τη νέα του αυτοκρατορία, οι οποίες έγιναν κέντρα γνώσης για έναν εξολοκλήρου νεοσχηματιζόμενο πολιτισμό: τον Ελληνιστικό."
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 #: simulation/templates/structures/mace_siege_workshop.xml:18
@@ -11808,7 +11810,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
-msgstr ""
+msgstr "Όλα τα περσικά κτίσματα +25% ενέργεια, αλλά επίσης και +20% χρόνος αποπεράτωσης."
 
 #: simulation/data/technologies/persians/special_archery_tradition.jsondescription
 msgid ""
@@ -12133,7 +12135,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr ""
+msgstr "Πύργος Τείχους"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -12316,7 +12318,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Ιππέας Τοξότης"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -12357,7 +12359,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Πρωταθλητής Ιππέας Ακροβολιστής"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:78
 msgid ""
@@ -12471,7 +12473,7 @@ msgstr "Σκύλος του Πολέμου"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "Πανίδα"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -12667,7 +12669,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
-msgstr ""
+msgstr "Πυρπολικό Πλοίο"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -12757,7 +12759,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
-msgstr ""
+msgstr "Πολιορκητικός Πύργος"
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -12939,7 +12941,7 @@ msgstr "Αρκούδα"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Boar"
-msgstr ""
+msgstr "Αγριόχοιρος"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
@@ -13001,7 +13003,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
-msgstr ""
+msgstr "Γαζέλα "
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
@@ -13029,7 +13031,7 @@ msgstr " Λέαινα"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "Μοσχόβους"
 
 #: simulation/templates/gaia/fauna_peacock.xml:5
 msgid "Peacock"
@@ -13065,11 +13067,11 @@ msgstr "Φώκια"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
-msgstr ""
+msgstr "Πτεροφάλαινα"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "Μεγάπτερη Φάλαινα"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
@@ -13121,7 +13123,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
-msgstr ""
+msgstr "Χαρουπιά Δέντρο"
 
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
@@ -13131,11 +13133,11 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
-msgstr ""
+msgstr "Κυπαρίσσι Δέντρο"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
-msgstr ""
+msgstr "Χουρμαδιά"
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
@@ -13161,7 +13163,7 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
 msgid "Oak Tree"
-msgstr ""
+msgstr "Βελανιδιά Δέντρο"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
@@ -13177,7 +13179,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "Τροπικός Φοίνικας"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -13308,11 +13310,11 @@ msgstr ""
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "Ναός Θυσιών"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "Τοφεθ"
 
 #: simulation/templates/other/celt_homestead.xml:25
 msgid "A Celtic homestead."
@@ -13395,7 +13397,7 @@ msgstr "Επικός ναός"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:31
 msgid "Naos Parthenos"
-msgstr ""
+msgstr "Νέος Παρθένος"
 
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
@@ -13568,7 +13570,7 @@ msgstr "Ναυάγιο"
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "Φορτίο Ναυαγίου"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
@@ -13603,7 +13605,7 @@ msgstr ""
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "Πίνακας"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
@@ -13611,7 +13613,7 @@ msgstr ""
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "Τετράγωνος Πίνακας"
 
 #: simulation/templates/other/temp_hele_super_infantry_p.xml:5
 msgid "Spartiate with Xiphos"
@@ -14666,7 +14668,7 @@ msgstr "Αψίδα του Θριάμβου"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "Χτίστε οπουδήποτε στον χάρτη, ακόμη και στο έδαφος του αντιπάλου. Κατασκευάστε πολιορκητικά όπλα κι εκπαιδεύστε πολίτες ως  στρατιώτες. Θεραπεύστε τις έγκλειστες στο κάστρο μονάδες αργά."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"

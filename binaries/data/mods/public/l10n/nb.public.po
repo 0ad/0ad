@@ -6,6 +6,7 @@
 # Translators:
 # thomhov, 2014
 # Dagi <dagi197@gmail.com>, 2013-2014
+# Erling <kongrapemann@gmail.com>, 2014
 # Jarl Arntzen <jarl.arntzen@gmail.com>, 2014
 # Johan Reitan <johan.reitan@gmail.com>, 2013
 # Olav Lindekleiv <>, 2014
@@ -14,8 +15,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-16 21:38+0000\n"
+"Last-Translator: Erling <kongrapemann@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -335,14 +336,14 @@ msgstr "Kartstørrelse:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Avdekket Kart:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Utforsket Kart"
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -432,12 +433,12 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/gamesetup.js:1595
 #, python-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s er klar!"
 
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s er ikke klar."
 
 #: gui/gamesetup/gamesetup.js:1601
 msgid "Game settings have been changed"
@@ -445,7 +446,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
-msgstr ""
+msgstr "Jeg er ikke klar"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
@@ -453,7 +454,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
-msgstr ""
+msgstr "Jeg er klar!"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
@@ -636,7 +637,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Skriv inn ditt brukernavn"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -644,11 +645,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Skriv inn ditt passord"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Skriv inn ditt passord igjen"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -716,7 +717,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Start 0 A.D. i et vindu"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -1099,7 +1100,7 @@ msgstr "Gjennomsnittlig bonusavstand: %(range)s"
 #: gui/session/input.js:264 gui/session/input.js:357
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Nåværende garnison: %(garrisoned)s/%(capacity)s\n "
 
 #: gui/session/input.js:306
 msgid "Right-click to establish a default route for new traders."
@@ -1184,17 +1185,17 @@ msgstr "Slett"
 
 #: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
 msgid "Ally"
-msgstr ""
+msgstr "Alliert"
 
 #: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
 msgid "Neutral"
-msgstr ""
+msgstr "Nøytral"
 
 #: gui/session/menu.js:286 gui/session/messages.js:613
 #: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
-msgstr ""
+msgstr "Fiende"
 
 #: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
@@ -1467,7 +1468,7 @@ msgstr ""
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s Rang"
 
 #: gui/session/selection_details.js:68
 #, python-format
@@ -1510,7 +1511,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"
-msgstr ""
+msgstr "Antall byggere"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -2443,7 +2444,7 @@ msgstr ""
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr ""
+msgstr "Ikke ha noen inaktive enheter. Å skift klikke kø og rally punkter er svært nyttig."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
@@ -2455,13 +2456,13 @@ msgstr ""
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr ""
+msgstr "- Bruk de riktige enhetene for den riktige oppgaven, kvinnelige innbyggere samler mad, kaveleri jakt, innbygger soldater gjør resten."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr ""
+msgstr "- Ikke vær redd for å bytte enheter fra en ressurs til en annen. se punkt 2. Vær sikker på leverer hva de bærer først skjønt"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
@@ -2492,7 +2493,7 @@ msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr ""
+msgstr "Velkommen til 0 A.D. sin opplæring. Først venstre-klikker du på en kvinnelig innbygger, også høyre-klikker du på en bær busk i nærheten for å få enheten til å samle mat. Kvinnelige innbyggere får mat raskere en andre enheter."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
@@ -2551,7 +2552,7 @@ msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr ""
+msgstr "Tren 5 Hopliter fra Borger Senteret. Klikk på Borger Senteret og når du har klikket på den, høyre-klikk på et tre i nærheten. Enheter fra Borger Senteret vil automatisk samle tre."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
@@ -2576,7 +2577,7 @@ msgstr ""
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr ""
+msgstr "Bygg brakker i nærheten. Hver gang folketall grensen er nådd, bygg flere hus ved bruk av alle bygge enheter."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
@@ -2592,13 +2593,13 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr ""
+msgstr "Fienden kommer. Bygg flere soldater for å bekjempe fienden."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
 "The enemy's attack has been defeated. Now build a market and temple while "
 "assigning new units to gather any required resources."
-msgstr ""
+msgstr "Fiendens angrep har blitt beseiret. Bygg et marked og et tempel imens du tilordner enheter for å samle alle nødvendig ressurser."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:104
 msgid ""
@@ -2887,7 +2888,7 @@ msgstr "Velg kart:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "Antall Spillere:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -2993,7 +2994,7 @@ msgstr "Velge bruk av juksekoder."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
-msgstr ""
+msgstr "Vurderte Spill:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
@@ -3054,7 +3055,7 @@ msgstr ""
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
@@ -3277,7 +3278,7 @@ msgstr "ADVARSEL: Dette er en tidlig utvikler-versjon av spillet. Mange funksjon
 
 #: gui/pregame/mainmenu.xml:502
 msgid "Get involved at: play0ad.com"
-msgstr "Involver deg på: play0ad.com"
+msgstr "Bli involvert på: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
@@ -3314,7 +3315,7 @@ msgstr "Klikk her for å laste inn et lagret spill."
 
 #: gui/pregame/mainmenu.xml:233 (tooltip)
 msgid "Joining an existing multiplayer game."
-msgstr "Delta i et eksisterende flerspiller-spill."
+msgstr "Deltar i et eksisterende flerspiller-spill."
 
 #: gui/pregame/mainmenu.xml:248 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
@@ -3368,7 +3369,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
-msgstr "Enspiller"
+msgstr "Enespiller"
 
 #: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Challenge the computer player to a single player match."
@@ -3456,11 +3457,11 @@ msgstr "Beskrivelse:"
 
 #: gui/session/session.xml:251 (caption)
 msgid "Control all units"
-msgstr ""
+msgstr "Kontroller alle enhetene"
 
 #: gui/session/session.xml:261 (caption)
 msgid "Change perspective"
-msgstr ""
+msgstr "Bytt perspektiv"
 
 #: gui/session/session.xml:268 (caption)
 msgid "Display selection state"
@@ -3504,7 +3505,7 @@ msgstr ""
 
 #: gui/session/session.xml:367 (caption)
 msgid "Game Paused"
-msgstr ""
+msgstr "Spill satt på Pause"
 
 #: gui/session/session.xml:370 (caption)
 msgid "Click to Resume Game"
@@ -3512,27 +3513,27 @@ msgstr ""
 
 #: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomati"
 
 #: gui/session/session.xml:440 (caption)
 msgid "Theirs"
-msgstr ""
+msgstr "Deres"
 
 #: gui/session/session.xml:443 (caption)
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: gui/session/session.xml:447 (caption)
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/session.xml:451 (caption)
 msgid "E"
-msgstr ""
+msgstr "F"
 
 #: gui/session/session.xml:455 (caption)
 msgid "Tribute"
-msgstr ""
+msgstr "Bidra"
 
 #: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
 msgid "Trade"
@@ -3641,7 +3642,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:77 (caption)
 msgid "Units"
-msgstr ""
+msgstr "Enheter"
 
 #: gui/summary/summary.xml:84 (caption)
 msgid "Resources"
@@ -3799,7 +3800,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Defenisjoner:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -4163,7 +4164,7 @@ msgstr ""
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dobbel-venstreklikk [på enhet]: Da velger du alle enheter av samme type på skjermen (uansett om de har forskjellig rang)"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -7368,7 +7369,7 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr ""
+msgstr "Xenophon (c. 430-355 F.kr.) var en Gresk soldat og (senere) historiker som ble født i Athen av en oligark familie og var en student av Socrates i løpet av sin ungdom. i år 401 F.ek. Xenophon ble med i en hær av Greske leiesoldater ledet av Clearchus og fire andre generaler som hjalp Cyrus den Yngre i sin militære kampanje mot hans bror, Kong Artaxerxes II. Etter persisk forræderi drepte lederne av leiesoldat hæren, Xenophon var valgt til å bli en av di 5 nye generalene til å lede hæren. Etter 1,500 kilomater vandring og 11/2 år, Fikk Xenophon endelig hjelp til å lede hæren sin hjem, på veien kjempet de i dusiner av kamper og linjebrytere."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
@@ -7469,7 +7470,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[1].Name
 msgid "Macedonia"
-msgstr ""
+msgstr "Makedonia"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
@@ -8042,7 +8043,7 @@ msgstr "Acharya Chāṇakya"
 #: civs/maur.jsonFactions[0].Name maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[0].Name
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Mauryan Indianere"
 
 #: civs/maur.jsonStructures[0].Name
 #: simulation/templates/structures/maur_elephant_stables.xml:21
@@ -8092,7 +8093,7 @@ msgstr ""
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr ""
+msgstr "Innhegning av Kameler og Hester"
 
 #: civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -8130,7 +8131,7 @@ msgstr "+25 handelsprofitt for landbaserte ruter."
 
 #: civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
-msgstr ""
+msgstr "Kongelig Vei"
 
 #: civs/pers.jsonTeamBonuses[0].History
 msgid ""
@@ -8197,7 +8198,7 @@ msgstr ""
 
 #: civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr ""
+msgstr "Marine Håndverk"
 
 #: civs/pers.jsonFactions[0].Technologies[0].History
 #: simulation/data/technologies/persians/special_equine_transports.jsondescription
@@ -8286,16 +8287,16 @@ msgid ""
 "Cyrus the Great, Xerxes was an able administrator, who also extended "
 "Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he "
 "was famous for his extensive building programme, especially at Persepolis."
-msgstr ""
+msgstr "Xerxes (485-465 f.Kr.) Sønn av Darius den Store og Atoosa, en datter av Cyrus den Store, Xerxes fikk tilgang til å bli administrator, som også utvidet imperialistisk styre in til Chorasmia.  Bortsett fra hans mislykkede invasjon av Hellas, han var også kjent for hans omfattende byggeprogram, spesielt ved Persepolis."
 
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr ""
+msgstr "Kavaleri Stall"
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr ""
+msgstr "Tren Kavaleri innbygger-soldater."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -9296,7 +9297,7 @@ msgstr ""
 
 #: civs/theb.jsonCivBonuses[0].Name
 msgid "Oblique Order"
-msgstr ""
+msgstr "Skrå Rekkefølge"
 
 #: civs/theb.jsonCivBonuses[1].Name
 #: civs/theb.jsonFactions[0].Technologies[1].Name
@@ -10326,7 +10327,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
-msgstr ""
+msgstr "+2 angrep til alle sverd enheter."
 
 #: simulation/data/technologies/attack_steel_working.jsongenericName
 msgid "Steel Working"
@@ -12328,7 +12329,7 @@ msgstr "Ridende fortropp"
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
-msgstr ""
+msgstr "Mester Enhet"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:37
 msgid "Champion Cavalry"
@@ -12774,7 +12775,7 @@ msgstr "Kvinnelig borger"
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr ""
+msgstr "Klasser: Support Helbreder.\nHelbreder enheter."
 
 #: simulation/templates/template_unit_support_healer.xml:20
 msgid "Healer"
@@ -12864,7 +12865,7 @@ msgstr ""
 
 #: simulation/templates/formations/box.xml:5
 msgid "4 units required"
-msgstr ""
+msgstr "4 enheter kreves"
 
 #: simulation/templates/formations/column_closed.xml:4
 msgid "Column Closed"
@@ -12880,7 +12881,7 @@ msgstr ""
 
 #: simulation/templates/formations/flank.xml:5
 msgid "8 units required"
-msgstr ""
+msgstr "8 enheter kreves"
 
 #: simulation/templates/formations/line_closed.xml:4
 msgid "Line Closed"
@@ -12896,7 +12897,7 @@ msgstr ""
 
 #: simulation/templates/formations/phalanx.xml:5
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "10 nærangrep soldat enheter kreves"
 
 #: simulation/templates/formations/scatter.xml:4
 msgid "Scatter"
@@ -12908,11 +12909,11 @@ msgstr "Fortropp"
 
 #: simulation/templates/formations/skirmish.xml:4
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Bare langdistanse soldater tillatt"
 
 #: simulation/templates/formations/syntagma.xml:5
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "9 spyd soldater enheter kreves"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "Testudo"
@@ -12920,7 +12921,7 @@ msgstr ""
 
 #: simulation/templates/formations/testudo.xml:5
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "9 sverd soldater enheter kreves"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "Wedge"
@@ -12928,7 +12929,7 @@ msgstr ""
 
 #: simulation/templates/formations/wedge.xml:5
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "3 kavaleri enheter kreves"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -13706,7 +13707,7 @@ msgstr ""
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
-msgstr ""
+msgstr "Tren mester enheter"
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
@@ -14242,7 +14243,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr "Iberisk utpost"
+msgstr "Iberisk Utpost"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -14321,7 +14322,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
-msgstr "Tren elefanter"
+msgstr "Tren elefant enhet."
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
@@ -15315,7 +15316,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
-msgstr ""
+msgstr "Keltisk Kavaleri"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/celt_cavalry_swordsman_b.xml:6
@@ -15465,7 +15466,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
-msgstr ""
+msgstr "Italiensk Kavaleri"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -16193,7 +16194,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_champion_infantry.xml:44
 msgid "Warrior"
-msgstr ""
+msgstr "Kriger"
 
 #: simulation/templates/units/maur_champion_infantry.xml:45
 msgid "Yōddha"
@@ -16430,7 +16431,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_champion_infantry.xml:11
 msgid "Persian Immortal"
-msgstr ""
+msgstr "Persisk Udødelig"
 
 #: simulation/templates/units/pers_champion_infantry.xml:12
 msgid "Anusiya"
@@ -16820,7 +16821,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:27
 msgid "Roman Swordsman"
-msgstr ""
+msgstr "Romersk Sverdsoldat"
 
 #: simulation/templates/units/rome_infantry_swordsman_b.xml:28
 msgid "Hastatus"
@@ -17277,7 +17278,7 @@ msgstr "Grekere"
 
 #: maps/scenarios/Azure Coast(2).xml:31:Name
 msgid "Azure Coast 2"
-msgstr ""
+msgstr "Azure Kyst 2"
 
 #: maps/scenarios/Azure Coast(4).xml:31:PlayerData[0].Name
 msgid "East"
@@ -17352,11 +17353,11 @@ msgstr "En vill og trebevokst øy, full av skoger, gull og mystikk... fjell, hav
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr ""
+msgstr "Roma kamper mot den Etrusiske by av Veii for å kontrollere over Tiber Elven Basin."
 
 #: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[0].Name
 msgid "Rome"
-msgstr ""
+msgstr "Roma"
 
 #: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[1].Name
 msgid "Veii"
@@ -17369,7 +17370,7 @@ msgstr ""
 
 #: maps/scenarios/Battle for the Tiber.xml:31:Name
 msgid "Battle for the Tiber"
-msgstr ""
+msgstr "Kampen om Tiber"
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Description
 msgid "Two Celtic tribes face off across a large bog at night."
@@ -17483,7 +17484,7 @@ msgstr "En demo av de britiske øyer, laget med assistanse fra et høydekart."
 
 #: maps/scenarios/Eire and Albion.xml:31:Name
 msgid "Eire and Albion (British Isles)"
-msgstr ""
+msgstr "Eire og Albion (Britiske Øyer)"
 
 #: maps/scenarios/Fast Oasis.xml:31:Description
 msgid ""
@@ -17510,7 +17511,7 @@ msgstr ""
 
 #: maps/scenarios/Flight_demo.xml:31:Name
 msgid "Flight Demo"
-msgstr ""
+msgstr "Fly Demo"
 
 #: maps/scenarios/Flight_demo_2.xml:31:Description
 msgid "Fly some Mustangs."
@@ -17518,7 +17519,7 @@ msgstr ""
 
 #: maps/scenarios/Flight_demo_2.xml:31:Name
 msgid "Flight Demo 2"
-msgstr ""
+msgstr "Fly Demo 2"
 
 #: maps/scenarios/Gold_Rush.xml:31:Description
 msgid ""
@@ -17529,7 +17530,7 @@ msgstr ""
 
 #: maps/scenarios/Gold_Rush.xml:31:Name
 msgid "Gold Rush"
-msgstr ""
+msgstr "Gull hastverk"
 
 #: maps/scenarios/Gorge.xml:31:Description
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
@@ -17913,11 +17914,11 @@ msgstr ""
 
 #: maps/scenarios/Ship Formations.xml:31:PlayerData[0].Name
 msgid "Ships"
-msgstr ""
+msgstr "Skip"
 
 #: maps/scenarios/Ship Formations.xml:31:Name
 msgid "Ship Formations"
-msgstr ""
+msgstr "Skip Formasjoner"
 
 #: maps/scenarios/Siwa Oasis.xml:31:Description
 msgid ""
@@ -17970,7 +17971,7 @@ msgstr ""
 
 #: maps/scenarios/The Persian Gates.xml:31:Name
 msgid "The Persian Gates"
-msgstr ""
+msgstr "De Persiske Portene"
 
 #: maps/scenarios/Third Macedonian War.xml:31:Description
 msgid ""
@@ -17992,7 +17993,7 @@ msgstr "Greske allierte"
 
 #: maps/scenarios/Third Macedonian War.xml:31:Name
 msgid "Third Macedonian War"
-msgstr ""
+msgstr "Tredje Makedoniske Krig"
 
 #: maps/scenarios/Tropical Island.xml:41:Description
 msgid "Multiplayer map. A tropical paradise."
@@ -18008,7 +18009,7 @@ msgstr ""
 
 #: maps/scenarios/Units_demo.xml:92:Description
 msgid "Every unit in the game."
-msgstr ""
+msgstr "Alle enheter i spillet."
 
 #: maps/scenarios/WallTest.xml:31:Description
 #: maps/scenarios/_default.xml:32:Description maps/scenarios/temperate

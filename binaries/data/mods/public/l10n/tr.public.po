@@ -24,14 +24,15 @@
 # yakup <mutouk@yandex.ru>, 2014
 # yakupqwert <tuxtux2013@gmail.com>, 2013-2014
 # YavuzKa <yavuzka@hotmail.com.tr>, 2014
+# reprezalio <yenilmezzserdar@gmail.com>, 2014
 # yunus <yuney12345@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-07 11:58+0000\n"
-"Last-Translator: ecikla <bosmail@programmer.net>\n"
+"PO-Revision-Date: 2014-05-19 02:41+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +118,7 @@ msgstr "Kahramanlar"
 #: gui/civinfo/civinfo.js:158
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr " %(civilization)s un tarihi"
+msgstr " %(civilization)sin tarihi"
 
 #: gui/common/functions_global_object.js:75
 #, python-format
@@ -728,7 +729,7 @@ msgstr "İptal"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Pencere Modu"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
@@ -1865,7 +1866,7 @@ msgstr "Onar"
 
 #: gui/session/utility_functions.js:327
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Toplanma Noktasına Odaklan"
 
 #: gui/session/utility_functions.js:336
 msgid "Back to Work"
@@ -1873,11 +1874,11 @@ msgstr "Çalışmaya Dön"
 
 #: gui/session/utility_functions.js:345
 msgid "Guard"
-msgstr ""
+msgstr "Koruma"
 
 #: gui/session/utility_functions.js:354
 msgid "Remove guard"
-msgstr ""
+msgstr "Koruma Kaldırıldı"
 
 #: gui/session/utility_functions.js:363
 msgid "Select trading goods"
@@ -1893,7 +1894,7 @@ msgstr "Uyarıyı yükselt!"
 
 #: gui/session/utility_functions.js:386
 msgid "End of alert."
-msgstr ""
+msgstr "Uyarı sona erdi"
 
 #: gui/session/utility_functions.js:433 gui/session/utility_functions.js:434
 #: gui/session/utility_functions.js:435 gui/session/utility_functions.js:436
@@ -3283,7 +3284,7 @@ msgstr "Durum: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr "Alpha XVI: Patañjali"
+msgstr "Alfa XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3338,7 +3339,7 @@ msgstr "Çoklu oyunculu oyun sunucusu için.\\n\\nUDP port 20595 nın açılmas�
 
 #: gui/pregame/mainmenu.xml:262 (caption)
 msgid "Game Lobby"
-msgstr ""
+msgstr "Oyun Lobisi"
 
 #: gui/pregame/mainmenu.xml:263 (tooltip)
 msgid "Launch the multiplayer lobby."
@@ -3574,7 +3575,7 @@ msgstr "Görüntülenecek oyuncuyu seçin"
 
 #: gui/session/session.xml:628 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr "ALPHA XVI : Patañjali"
+msgstr "ALFA XVI : Patañjali"
 
 #: gui/session/session.xml:645 (tooltip)
 msgid "Game speed"
@@ -5616,7 +5617,7 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- Dost ve tarafsız bölgelerde inşa yapılabilir."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
@@ -5886,7 +5887,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- Hibeler +10 Nüfus."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
@@ -7021,7 +7022,7 @@ msgstr "Sömürgeleştirme"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Kartacalılar koloniler olarak birçok ticari merkeze yerleşti ve en sonunda sadece Kuzey Afrika'da 300 den fazla şehir ve köye hakim oldular."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -7064,7 +7065,7 @@ msgstr ""
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr ""
+msgstr "Yapı, kartacada yer alan iç limandaki merkez adada kartaca donanmasının savaş filosuna ev sahipliği yapar."
 
 #: civs/cart.jsonStructures[1].Name
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
@@ -7077,7 +7078,7 @@ msgstr "Paralı Kelt askeri kirala"
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Keltler, kartaca orduları için sert savaşçı paralı askerler temin ederler."
 
 #: civs/cart.jsonStructures[2].Name
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
@@ -8030,7 +8031,7 @@ msgstr ""
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
 msgid "Archery Tradition"
-msgstr ""
+msgstr "Geleneksel Okculuk"
 
 #: civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -9165,7 +9166,7 @@ msgstr "Archidamus"
 
 #: civs/spart.jsonAINames[6]
 msgid "Pausanias"
-msgstr ""
+msgstr "Pausanias"
 
 #: civs/spart.jsonAINames[7]
 msgid "Agesilaus"
@@ -10918,7 +10919,7 @@ msgstr "Britanyalılar vs Galyalılar"
 #: simulation/data/technologies/phase_town_athen.jsongenericName
 #: simulation/data/technologies/phase_town_generic.jsongenericName
 msgid "Town Phase"
-msgstr ""
+msgstr "Kasaba Aşaması"
 
 #: simulation/data/technologies/phase_town_athen.jsondescription
 msgid ""
@@ -11590,7 +11591,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
-msgstr ""
+msgstr "Gelişmiş Kelt Paralı askerleri"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
@@ -11938,7 +11939,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
-msgstr ""
+msgstr "Geleneksel Ordu"
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsondescription
 msgid ""
@@ -12121,7 +12122,7 @@ msgstr "Karakol"
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "Sağlam bir savunma için şehrine duvar ör."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -12245,7 +12246,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "Ağıl"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
@@ -12388,7 +12389,7 @@ msgid ""
 "Classes: Champion Melee Cavalry Swordsman.\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Sınıflar: Şampiyon Yakın dövüş Süvari Kılıçlı.\nSayaçlar: 2x karşı. Okçular, Tüm Destek Birimleri, ve Kuşatma Silahları.\nKarşı koyabilme: Mızraklı, Süvari avcılar ve Filler."
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
@@ -12484,7 +12485,7 @@ msgstr "Savaş Köpeği"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr "Fauna"
+msgstr "Direy"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -12790,7 +12791,7 @@ msgstr "Şehirli Kadın"
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr ""
+msgstr "Sınıflar: Destek Şifacı.\nBirimleri iyileşmek."
 
 #: simulation/templates/template_unit_support_healer.xml:20
 msgid "Healer"
@@ -13140,7 +13141,7 @@ msgstr "Keçiboynuzu Ağacı"
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
 #: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
 msgid "Cretan Date Palm"
-msgstr ""
+msgstr "Girit Hurma Palmiyesi"
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
@@ -13207,7 +13208,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
-msgstr ""
+msgstr "Senegal Hurma Palmiyesi"
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
@@ -13722,7 +13723,7 @@ msgstr "Epiteíchisma"
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
-msgstr ""
+msgstr "Şampiyon birimleri eğitme."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
@@ -13937,7 +13938,7 @@ msgstr "Annedd"
 #: simulation/templates/structures/brit_kennel.xml:35
 #: simulation/templates/structures/celt_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr ""
+msgstr "Kelt savaş köpeklerini eğit."
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/celt_market.xml:15
@@ -14297,7 +14298,7 @@ msgstr ""
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/sele_library.xml:16
 msgid "Bibliothikon"
-msgstr ""
+msgstr "Bibliothikon"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
@@ -14337,7 +14338,7 @@ msgstr "Naukasthanaka"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
-msgstr ""
+msgstr "Fil eğitme birimleri."
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
@@ -14345,7 +14346,7 @@ msgstr "Vāraṇaśālā"
 
 #: simulation/templates/structures/maur_farmstead.xml:12
 msgid "Kantu"
-msgstr ""
+msgstr "Kantu"
 
 #: simulation/templates/structures/maur_field.xml:5
 msgid "Kshetra"
@@ -14530,7 +14531,7 @@ msgstr "Parihuvādā"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
-msgstr ""
+msgstr "Yurttaş süvari birimleri eğit."
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
@@ -14829,7 +14830,7 @@ msgstr "Porta"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr ""
+msgstr "Turris Lapidea"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
@@ -14883,7 +14884,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"
-msgstr ""
+msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
@@ -15014,7 +15015,7 @@ msgstr "İleri"
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
 msgid "Pródromos"
-msgstr ""
+msgstr "Pródromos"
 
 #: simulation/templates/units/athen_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_e.xml:20
@@ -15144,7 +15145,7 @@ msgstr "Şehir Muhafızı"
 
 #: simulation/templates/units/athen_champion_infantry.xml:11
 msgid "Epilektos"
-msgstr ""
+msgstr "Epilektos"
 
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
@@ -15160,7 +15161,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_champion_ranged.xml:14
 msgid "Toxotes Skithikos"
-msgstr ""
+msgstr "Toxotes Skithikos"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:18
 msgid ""
@@ -15199,7 +15200,7 @@ msgstr ""
 #: simulation/templates/units/athen_hero_themistocles.xml:14
 #: simulation/templates/units/hele_hero_themistocles.xml:14
 msgid "Themistoklês"
-msgstr ""
+msgstr "Themistoklês"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:21
 #: simulation/templates/units/hele_infantry_archer_b.xml:19
@@ -15304,7 +15305,7 @@ msgstr "Gýnē Athēnaïkós"
 #: simulation/templates/units/sele_support_healer_b.xml:6
 #: simulation/templates/units/spart_support_healer_b.xml:6
 msgid "Hiereús"
-msgstr ""
+msgstr "Hiereús"
 
 #: simulation/templates/units/athen_support_slave.xml:5
 #: simulation/templates/units/hele_support_slave.xml:5
@@ -15317,7 +15318,7 @@ msgstr ""
 #: simulation/templates/units/ptol_support_trader.xml:9
 #: simulation/templates/units/sele_support_trader.xml:9
 msgid "Émporos"
-msgstr ""
+msgstr "Émporos"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
@@ -15420,7 +15421,7 @@ msgstr ""
 #: simulation/templates/units/celt_mechanical_siege_ram.xml:21
 #: simulation/templates/units/gaul_mechanical_siege_ram.xml:21
 msgid "Reithe"
-msgstr ""
+msgstr "Reithe"
 
 #: simulation/templates/units/brit_ship_fishing.xml:5
 #: simulation/templates/units/celt_ship_fishing.xml:5
@@ -16030,7 +16031,7 @@ msgstr "Ezpatari"
 
 #: simulation/templates/units/iber_mechanical_siege_ram.xml:9
 msgid "Ahariburu"
-msgstr ""
+msgstr "Ahariburu"
 
 #: simulation/templates/units/iber_ship_fire.xml:5
 msgid "Iberian Fire Ship"
@@ -16038,7 +16039,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_ship_fishing.xml:5
 msgid "Arrantza Ontzi"
-msgstr ""
+msgstr "Arrantza Ontzi"
 
 #: simulation/templates/units/iber_ship_merchant.xml:9
 msgid "Merkataritza Itsasontzi"
@@ -16090,7 +16091,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:23
 msgid "Hypaspistes Argyraspides"
-msgstr ""
+msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
@@ -16129,7 +16130,7 @@ msgstr ""
 #: simulation/templates/units/mace_mechanical_siege_ram.xml:9
 #: simulation/templates/units/spart_mechanical_siege_ram.xml:9
 msgid "Poliorkitikós Kriós"
-msgstr ""
+msgstr "Poliorkitikós Kriós"
 
 #: simulation/templates/units/mace_ship_bireme.xml:5
 msgid "Hemiolos"
@@ -16161,7 +16162,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
-msgstr ""
+msgstr "Hintli Hafif Süvari"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:7
 msgid "Ashwarohi"
@@ -16169,7 +16170,7 @@ msgstr "Ashwarohi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:6
 msgid "Indian Raiding Cavalry"
-msgstr ""
+msgstr "Hintli Akıncı Süvarisi"
 
 #: simulation/templates/units/maur_cavalry_swordsman_b.xml:7
 msgid "Aśvārohagaṇaḥ"
@@ -16198,7 +16199,7 @@ msgstr "Hindistan Savaş Filleri"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
-msgstr ""
+msgstr "Gajendra"
 
 #: simulation/templates/units/maur_champion_infantry.xml:48
 msgid ""
@@ -16241,7 +16242,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:27
 msgid "Vachii Gaja"
-msgstr ""
+msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:36
 msgid ""
@@ -16278,7 +16279,7 @@ msgstr "Uzun Yaylı"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
-msgstr ""
+msgstr "Dhanurdhar"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:23
 msgid "Bamboo Spearman"
@@ -16290,7 +16291,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:26
 msgid "Indian Swordsman"
-msgstr ""
+msgstr "Hintli Kılıçlı"
 
 #: simulation/templates/units/maur_infantry_swordsman_b.xml:27
 msgid "Khadagdhari"
@@ -16347,11 +16348,11 @@ msgstr ""
 
 #: simulation/templates/units/maur_support_healer_b.xml:7
 msgid "Brāhmaṇa Pujari"
-msgstr ""
+msgstr "Brāhmaṇa Pujari"
 
 #: simulation/templates/units/maur_support_trader.xml:9
 msgid "Vaishya"
-msgstr ""
+msgstr "Vaishya"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""
@@ -16442,7 +16443,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_champion_elephant.xml:6
 msgid "Hinduya Pila"
-msgstr ""
+msgstr "Hinduya Pila"
 
 #: simulation/templates/units/pers_champion_infantry.xml:11
 msgid "Persian Immortal"
@@ -16485,7 +16486,7 @@ msgstr ""
 #: simulation/templates/units/pers_hero_xerxes.xml:15
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:39
 msgid "Xerxes I"
-msgstr ""
+msgstr "I. Serhas"
 
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
 msgid ""
@@ -16560,7 +16561,7 @@ msgstr "İyonyalı Ticaret Gemisi"
 
 #: simulation/templates/units/pers_ship_merchant.xml:10
 msgid "Yaunash Nav"
-msgstr ""
+msgstr "Yaunash Nav"
 
 #: simulation/templates/units/pers_ship_trireme.xml:9
 msgid "Phoenician Trireme"
@@ -16576,7 +16577,7 @@ msgstr "Mezapotamyalı Kadın"
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
-msgstr ""
+msgstr "Banu Miyanrudani"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
@@ -16776,7 +16777,7 @@ msgstr "Hiereús Aigyptikos"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:6
 msgid "Italian Allied Cavalry"
-msgstr ""
+msgstr "İtalyan Müttefik Süvarisi"
 
 #: simulation/templates/units/rome_cavalry_javelinist_b.xml:7
 msgid "Eques Socius"
@@ -16916,7 +16917,7 @@ msgstr ""
 
 #: simulation/templates/units/rome_support_trader.xml:10
 msgid "Mercator Plebeius"
-msgstr ""
+msgstr "Mercator Plebeius"
 
 #: simulation/templates/units/samnite_skirmisher.xml:7
 msgid ""
@@ -17156,7 +17157,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:29
 msgid "Ékdromos Skiritis"
-msgstr ""
+msgstr "Ékdromos Skiritis"
 
 #: simulation/templates/units/spart_hero_agis.xml:13
 msgid ""
@@ -18324,11 +18325,11 @@ msgstr ""
 
 #: maps/skirmishes/Median Oasis (2).xml:41:Name
 msgid "Median Oasis (2)"
-msgstr "Medya Vahası (2)"
+msgstr "Medyan Vahası (2)"
 
 #: maps/skirmishes/Median Oasis (4).xml:42:Name
 msgid "Median Oasis (4)"
-msgstr ""
+msgstr "Medyan Vahası (4)"
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:Description
 msgid ""
@@ -18460,7 +18461,7 @@ msgstr ""
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:42:Name
 msgid "Team Oasis (2v2)"
-msgstr ""
+msgstr "Takım Vahası (2 ye 2)"
 
 #: maps/skirmishes/Thessalian Plains (4).xml:41:Description
 msgid ""

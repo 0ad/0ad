@@ -84,14 +84,13 @@
 #include <limits>
 #include <cassert>
 
+#include <boost/bind.hpp>
 #include <boost/version.hpp>
-#if BOOST_VERSION >= 105400
-// Signals is deprecated since 1.54
+#if BOOST_VERSION >= 104000
 # include <boost/signals2.hpp>
 #else
-# include <boost/signals.hpp> 
+# error Atlas requires Boost 1.40 or later
 #endif
-#include <boost/bind.hpp>
 
 // Nicer memory-leak detection:
 #ifdef _WIN32

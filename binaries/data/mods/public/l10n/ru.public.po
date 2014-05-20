@@ -13,7 +13,9 @@
 # kdar <kdar1987@gmail.com>, 2014
 # Alexander Oleynikov <bigaltum@gmail.com>, 2014
 # Bogarto <bogarto@mail.ru>, 2014
+# Cергей Исаченко <vortexius@gmail.com>, 2014
 # Артём Демаков <dearalcher@gmail.com>, 2013
+# Владимир Смирнов <delpfine2012@gmail.com>, 2014
 # flores <testiculi@yandex.ru>, 2013
 # flores <testiculi@yandex.ru>, 2013
 # AHTUxPK <ggg2134@mail.ru>, 2013
@@ -31,6 +33,7 @@
 # mPolr <mpolr21@gmail.com>, 2014
 # pyt0 <kuzmenko_s@ukr.net>, 2013
 # QiUi <swsh0t@gmail.com>, 2013
+# sad2shade <sad.2.shade@gmail.com>, 2014
 # Койшев Андрей <under.quol@gmail.com>, 2013
 # Unreliable <baclanenok@mail.ru>, 2013
 # QiUi <swsh0t@gmail.com>, 2013
@@ -47,8 +50,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-05 15:10+0000\n"
-"Last-Translator: arcsin <arcsin@online.ua>\n"
+"PO-Revision-Date: 2014-05-18 22:50+0000\n"
+"Last-Translator: Владимир Смирнов <delpfine2012@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -444,7 +447,7 @@ msgstr "Пусто"
 #: gui/gamesetup/gamesetup.js:1601 gui/lobby/lobby.js:765
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1578
 #, python-format
@@ -486,7 +489,7 @@ msgstr "Я не готов"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Установите здесь, если Вы не готовы играть."
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
@@ -494,11 +497,11 @@ msgstr "Я готов!"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Установите здесь, если Вы готовы играть."
 
 #: gui/gamesetup/gamesetup.js:1703
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Установите здесь, если принимаете текущие установки игры и готовы играть!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -615,25 +618,25 @@ msgstr "К сожалению команда '%(cmd)s' не поддержива
 #: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -651,13 +654,13 @@ msgstr ""
 #: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -797,7 +800,7 @@ msgstr "Запрос послан"
 
 #: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Использовать экранные фильтры постобработки (HDR, Bloom, DOF, и др.)"
 
 #: gui/options/options.js:18
 msgid "Shadows"
@@ -907,11 +910,11 @@ msgstr "Отбрасывать тени на воде"
 
 #: gui/options/options.js:31
 msgid "VSync"
-msgstr ""
+msgstr " Cинхронизация кадровая"
 
 #: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Включить кадровую синхронизацию для корректировки износа экрана. ТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
 #: gui/options/options.js:35
 msgid "Master Gain"
@@ -989,12 +992,12 @@ msgstr "загрузка завершена"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "Ошибка загрузки (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "Ошибка загрузки  (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -1183,7 +1186,7 @@ msgstr "Пауза"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Продолжить"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1269,22 +1272,22 @@ msgstr[2] ""
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, и %(inactiveString)s."
 
 #: gui/session/menu.js:496
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, и %(garrisonedString)s."
 
 #: gui/session/menu.js:506 gui/session/menu.js:568
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, и %(inactiveString)s."
 
 #: gui/session/menu.js:513 gui/session/menu.js:575
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:523
 #, python-format
@@ -1301,12 +1304,12 @@ msgstr[2] ""
 #: gui/session/menu.js:526
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, и %(inactiveString)s."
 
 #: gui/session/menu.js:533
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:542
 #, python-format
@@ -1941,7 +1944,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/session/utility_functions.js:492
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s из %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:525
 #, python-format
@@ -2371,7 +2374,7 @@ msgstr "Добавьте в очередь еще 5 женщин, пошлите
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Переведите Ваших дровосеков к деревьям возле склада для того чтобы они не ходили далеко."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
@@ -2420,7 +2423,7 @@ msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr ""
+msgstr "Переведите 3 женщин с дерева и 3 с камня на ферму. Тренировка женщины дешевая для начала игры, но после, для увеличения  эффективности необходимо тренировать городских солдат насколько это возможно."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
@@ -2492,7 +2495,7 @@ msgstr ""
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr ""
+msgstr "- Не допускайте простаивающих юнитов. Очереди с помощью Shift и место сбора очень удобны."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
@@ -2548,7 +2551,7 @@ msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr ""
+msgstr "Выберете городских солдат, и нажмите ПКМ на деревья возле Городского Центра для начала сбора дерева. Городские солдаты собирают дерево быстрее женщин."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
@@ -2676,7 +2679,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Враг повержен. Все обучающие цели теперь выполнены..."
 
 #: simulation/components/BuildRestrictions.js:83
 #, python-format
@@ -2760,28 +2763,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:298
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "свои"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:300
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "союзные"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:302
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "нейтральные"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "вражеские"
 
 #: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
@@ -2832,17 +2835,17 @@ msgstr ""
 
 #: simulation/components/ProductionQueue.js:345
 msgid "The production queue is full."
-msgstr ""
+msgstr "Очередь производства заполнена."
 
 #: simulation/components/Wonder.js:53
 #, python-format
 msgid "%(player)s will have won in %(time)s"
-msgstr ""
+msgstr "%(player)s выиграл за %(time)s"
 
 #: simulation/components/Wonder.js:61
 #, python-format
 msgid "You will have won in %(time)s"
-msgstr ""
+msgstr "Вы выиграли за %(time)s"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -3042,11 +3045,11 @@ msgstr "Включить/выключить возможность исполь�
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
-msgstr ""
+msgstr "Оценка игры:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Включите чтобы это игра была оценена для доски почета."
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
@@ -3145,7 +3148,7 @@ msgstr "Тип"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "Игроки"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
@@ -3241,7 +3244,7 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Еще не реализовано."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
@@ -4023,11 +4026,11 @@ msgstr "1. Измените этот документ любым способо�
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Руководство по игре 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -4038,7 +4041,7 @@ msgstr "Благодарим за установку 0 A.D.! Эта страни
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Настройки графики"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -4048,11 +4051,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Нажатие Alt + Enter позволяет переключаться между полноэкранным и оконным режимом. Оконный режим позволяет изменять размеры окна. Если игра работает слишком медленно, может помочь изменение настроек в конфигурационном файле, в частности отключение эффектов водных поверхностей \"fancywater\" и теней \"shadows\". binaries/data/config/default.cfg в директории с установленной игрой содержит инструкции по редактированию настроек."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Играть"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -4060,7 +4063,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Игрокам традиционных RTS игр, скорее всего, знакомы управление и игровой процесс . В настоящее время отсутствует много возможностей и плохо сбалансирована статистика. Возможно, вы захотите дождаться бета-версии, чтобы хорошо поиграть."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -4092,11 +4095,11 @@ msgstr "• Колесо мыши или \"+\" и \"-\" — приблизить
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Режимы"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"serif-14\"]Главное меню дает доступ к двум режимам игры:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -4105,13 +4108,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Одиночная игра[font=\"sans-bold-14\"] — игра в песочнице или против ИИ. ИИ находится на стадии разработки и не всегда в курсе новых игровых моментов, но вы можете поиграть против фактического противника, если нет возможности играть с человеком."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Многопользовательская[font=\"sans-bold-14\"] — игра с соперниками, по интернету."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -4123,13 +4126,13 @@ msgstr "Чтобы создать многопользовательскую и�
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Настройки игры"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]В многопользовательской игре, только хозяин может изменить параметры игры."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -4212,7 +4215,7 @@ msgstr "[font=\"sans-bold-14\"]В игре"
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Double Left Click [on unit]: Выбрать всех юнитов этого же типа на экране (даже если они разного ранга)."
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -4316,11 +4319,11 @@ msgstr "Z, X, C, V, B, N, M при выбранных постройках: до
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Изменить настройки мыши"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Правый клик на здании: Гарнизон"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -4361,19 +4364,19 @@ msgstr "Ctrl + ПКМ с выбранными юнитами:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "- Если курсор находится над структурой структуре: Гарнизон"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "- Иначе: Атака в движении"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Слои"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Показать/скрыть GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -4397,11 +4400,11 @@ msgstr "Alt + Z: Переключить небо"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Манипуляции камеры"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W or [вверх]: Переместить экран вверх"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -4478,7 +4481,7 @@ msgstr "Среднюю кнопку мыши или / (косой черты): �
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Размещение во время строительства"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
@@ -5709,7 +5712,7 @@ msgstr "- Тренируйте Чемпионов, Героев и Осадны�
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr ""
+msgstr "- Дает повышение населения."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
@@ -7373,7 +7376,7 @@ msgid ""
 "sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
 "example, consulted the advice of the god before going to war with Cyrus the "
 "Great of Persia."
-msgstr ""
+msgstr "Священный Оракул Аполлона в Дельфах, был одной из самых значимых святынь как для Эллинов, так и для иностранцев. Например Лидийский царь Крез прислушивался к советам бога перед войной с Киром Великим."
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
@@ -7386,7 +7389,7 @@ msgid ""
 "and combined pushing power. 'Othismos' refers to the point in a phalanx "
 "battle where both sides try to shove each other out of formation, attempting"
 " to breaking up the enemy lines and routing them."
-msgstr ""
+msgstr "Классическое построение фалангой было придумано приблизительно в восьмом веке до н. э. Восемь человек в глубину и двести человек в ширину закрывали друг-друга щитами, а задние ряды давили на передние. Обе стороны пытались выпихнуть противника из строя, нарушая строй, чтобы затем окружить его."
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
@@ -7417,7 +7420,7 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr ""
+msgstr "Ксенофо́нт (греч. Ξενοφῶν) (430-355 до н. э.)  был греческим солдатом, а позже историком. Родился в Афинах в богатой семье и обучался у Сократа. В 401 до н. э., Ксенофонт вступил в греческую армию наемников под предводительством Клеарха и четырех других генералов, которые были пособниками Кира Младшего в его военной кампании против его брата, короля Артаксеркса II. После Персидского предательства сгубившего все руководство сил наемников, Ксенофонт был избран одним из пяти новых генералов возглавивших армию. После похода по горам более 1500 километров и занявших полтора года, Ксенофонт, наконец, помог привести своих людей домой, прошедших десятки сражений и стычек на этом пути."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
@@ -7946,7 +7949,7 @@ msgstr "Македония была древним Греческим корол
 
 #: civs/maur.jsonName
 msgid "Mauryans"
-msgstr ""
+msgstr "Маурьи"
 
 #: civs/maur.jsonCivBonuses[0].Description
 msgid ""
@@ -9476,7 +9479,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian  Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr ""
+msgstr "Каждый игрок начинает в густом лесу.\n\nАрденны это регион больших лесов, покатых холмов и горных хребтов сформированных в середине Девонского периода, нынешние Бельгия и Люксембург. Регион получил название от античного Silva, широкий лес во времена  Рима назывался Arduenna Silva."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -9774,7 +9777,7 @@ msgstr ""
 
 #: maps/random/rhine_marshlands.jsonsettings.Name
 msgid "Rhine Marshlands"
-msgstr ""
+msgstr "Болотистая местность Рейна"
 
 #: maps/random/rivers.jsonsettings.Description
 msgid ""
@@ -9813,7 +9816,7 @@ msgstr "Игроки начинают игру в разных частях ка
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
-msgstr ""
+msgstr "Сахельские водные источники"
 
 #: maps/random/snowflake_searocks.jsonsettings.Description
 msgid "Many small islands connected to each other by narrow passages."
@@ -9821,7 +9824,7 @@ msgstr "Много маленьких островов, которые соед�
 
 #: maps/random/snowflake_searocks.jsonsettings.Name
 msgid "Snowflake Searocks"
-msgstr ""
+msgstr "Заснеженные Морские Скалы"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -9875,7 +9878,7 @@ msgstr "Вулканические земли"
 msgid ""
 "A demonstration of wall placement methods/code in random maps. Very large "
 "map size is recommended."
-msgstr ""
+msgstr "Демонстрация методы/код размещения стены в случайных картах. Рекомендованы карты большого размера."
 
 #: maps/random/wall_demo.jsonsettings.Name
 msgid "Wall Demo"
@@ -12000,7 +12003,7 @@ msgstr "Кустарник"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:10
 msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
+msgstr "Собирайте фрукты с этих кустов чтобы накопить Еды."
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
@@ -12179,7 +12182,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr ""
+msgstr "Башня стены"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -12703,7 +12706,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Легкий Военный корабль"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -12713,7 +12716,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
-msgstr ""
+msgstr "Брандер"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -12754,7 +12757,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
-msgstr ""
+msgstr "Средний Военный корабль"
 
 #: simulation/templates/template_unit_mechanical_siege.xml:13
 msgid "Siege"
@@ -14075,7 +14078,7 @@ msgstr ""
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "Создавайте рыбацкие лодки для сбора мяса и торговые суда для торговли с другими доками."
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
@@ -15614,7 +15617,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr ""
+msgstr "Иберийский наемный воин"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -15742,7 +15745,7 @@ msgstr ""
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
-msgstr ""
+msgstr "Галльская доблестная конница"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:6
 #: simulation/templates/units/gaul_champion_cavalry.xml:6
@@ -16344,7 +16347,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_ship_merchant.xml:9
 msgid "Trading Ship"
-msgstr ""
+msgstr "Торговое судно"
 
 #: simulation/templates/units/maur_ship_merchant.xml:10
 msgid "Vanijyik Nauka"
@@ -17302,7 +17305,7 @@ msgstr ""
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
-msgstr ""
+msgstr "Баркас"
 
 #: maps/scenarios/Arcadia 02.xml:41:Description
 msgid ""
@@ -17370,23 +17373,23 @@ msgstr "Дециат"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[5].Name
 msgid "Salluvii"
-msgstr ""
+msgstr "Салувии"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[6].Name
 msgid "Cavares"
-msgstr ""
+msgstr "Каварес"
 
 #: maps/scenarios/Azure Coast.xml:41:PlayerData[7].Name
 msgid "Verguni"
-msgstr ""
+msgstr "Вергуни"
 
 #: maps/scenarios/Azure Coast.xml:41:Name
 msgid "Azure Coast 1"
-msgstr ""
+msgstr "Лазурный берег 1"
 
 #: maps/scenarios/Barcania.xml:31:Name
 msgid "Barcania"
-msgstr ""
+msgstr "Баркания"
 
 #: maps/scenarios/Barcania.xml:31:Description
 msgid ""
@@ -17401,7 +17404,7 @@ msgstr "Дикий и лесистый остров, полный лесов, з
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
-msgstr ""
+msgstr "Римские битвы против Этрусского города Вейи для контроля бассейна реки Тибр."
 
 #: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[0].Name
 msgid "Rome"
@@ -17422,7 +17425,7 @@ msgstr "Битва за Тибр"
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Description
 msgid "Two Celtic tribes face off across a large bog at night."
-msgstr ""
+msgstr "Между двумя кельтских племенами большое болото ночью.  "
 
 #: maps/scenarios/Belgian_Bog_night.xml:42:Name
 msgid "Belgian Bog Night"
@@ -17480,7 +17483,7 @@ msgstr "Религиозные организации"
 
 #: maps/scenarios/Campaign Test Map.xml:42:Name
 msgid "Strategic Campaign Proof of Concept"
-msgstr ""
+msgstr "Стратегическая Кампания Подтверждения Концепции"
 
 #: maps/scenarios/Combat_demo.xml:30:Name
 msgid "Combat Demo"
@@ -17505,7 +17508,7 @@ msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
-msgstr ""
+msgstr "Глубокий скалистый каньон разрезает пустыню. Удобно для многопользовательской игры.\n\n2 команды по 2  игрока. 1 игрок каждой команды начинает с базой и ресурсами. Другой игрок начинает только с большой армией для помощи его союзнику."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[1].Name
 #: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[3].Name
@@ -17539,7 +17542,7 @@ msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
-msgstr ""
+msgstr "Маленькая карта с пустыней. Каждый игрок начинает возле оазиса. Остальная территория незащищенная от ветров песчаная пустыня в которой процветает нападения и грабежи.\n\nИгра напряженная и быстрая, нет времени для того чтобы остановится и понюхать розы."
 
 #: maps/scenarios/Fast Oasis.xml:31:Name
 msgid "Fast Oasis"
@@ -17563,18 +17566,18 @@ msgstr "Демо-полет."
 
 #: maps/scenarios/Flight_demo_2.xml:31:Description
 msgid "Fly some Mustangs."
-msgstr ""
+msgstr "Полет нескольких Мустангов."
 
 #: maps/scenarios/Flight_demo_2.xml:31:Name
 msgid "Flight Demo 2"
-msgstr ""
+msgstr "Демо полет 2"
 
 #: maps/scenarios/Gold_Rush.xml:31:Description
 msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
-msgstr ""
+msgstr "Открытая карта с богатым на Минералы (Металл) горами в центре. Возможно стоит играть на этой карте, если другие, более детализированные вызывают подвисание."
 
 #: maps/scenarios/Gold_Rush.xml:31:Name
 msgid "Gold Rush"
@@ -17630,7 +17633,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr ""
+msgstr " Пелопоннесская долина в Лаконике  родина Спартанцев.\n\nМакедонцы захватили Спартанские земли. После проигрыша в ожесточенной схватке против захватчиков, Спартанцы должны быстро перестроить свою армию прежде чем Македонцы опустошат всю долину."
 
 #: maps/scenarios/Laconia 01.xml:31:Name
 msgid "Laconia"
@@ -17667,7 +17670,7 @@ msgid ""
 "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
-msgstr ""
+msgstr "4 игрока выясняют отношения через широкую дельту Нила. Каждый город начинает в уютном гнездышке на большом акрополе, но недостаток ресурсов ресурсов заставляет каждого игрока расширять свою разработку ресурсов на прилежащие земли.\n\nРазведка доложила что поблизости расположены неглубокие рукава Нила которые можно перейти вброд в различных местах, поэтому барьер между враждующими сторонами незначительный."
 
 #: maps/scenarios/Necropolis.xml:41:Name
 msgid "Necropolis"
@@ -17750,7 +17753,7 @@ msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
-msgstr ""
+msgstr "Расположенные на Южном склоне Атласских гор в Северной Африке.\n\n Весьма открытая карта с обилием еды и минеральных ресурсов, но дерево встречается редко."
 
 #: maps/scenarios/Sandbox - Athenians.xml:42:Description
 msgid ""
@@ -17881,7 +17884,7 @@ msgstr "Песочница - Птолемеи 2"
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:Description
 #: maps/skirmishes/Sporades Islands (2).xml:42:Description
 msgid "An islands map good for intense naval combat."
-msgstr ""
+msgstr "Карта с островами хороша для напряженных морских сражений."
 
 #: maps/scenarios/Sandbox - Ptolemies.xml:41:PlayerData[1].Name
 msgid "Kautilya"
@@ -17950,7 +17953,7 @@ msgstr "Персия"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr ""
+msgstr "Африканское Серенгети имеет стада животных гуляющих по равнине.  Минералов в изобилии и большие запасы дерева."
 
 #: maps/scenarios/Serengeti.xml:31:Name
 msgid "Serengeti 1"
@@ -17990,11 +17993,11 @@ msgstr "Земля Демо"
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr ""
+msgstr "Кельты вторгаются в Грецию. Стычка в центральной равнине или проход через богатые плато для того чтобы защитить земли вокруг Дельфы!"
 
 #: maps/scenarios/The Massacre of Delphi.xml:41:Name
 msgid "Massacre of Delphi"
-msgstr ""
+msgstr "Дельфийская резня"
 
 #: maps/scenarios/The Persian Gates.xml:31:Description
 msgid ""
@@ -18003,11 +18006,11 @@ msgid ""
 "\"Beware such pride. The East has a way of swallowing men and their dreams.\"\n"
 "\n"
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
-msgstr ""
+msgstr "\"Пойти на Восток всегда был в мечтах у Греков\"\n\n\"Остерегайтесь такой гордости. Восток имеет обыкновение проглатывать людей и их мечты.\"\n\nПробьется ли Александр  через Персидские Врата и предопределит свою судьбу, или Ариобарзан защитит прочные, древние земли Персии от иностранного захватчика?"
 
 #: maps/scenarios/The Persian Gates.xml:31:PlayerData[0].Name
 msgid "Alexandros Megas"
-msgstr ""
+msgstr "Александрос Мегас"
 
 #: maps/scenarios/The Persian Gates.xml:31:PlayerData[1].Name
 msgid "Krateros"
@@ -18015,7 +18018,7 @@ msgstr "Кратерос"
 
 #: maps/scenarios/The Persian Gates.xml:31:PlayerData[2].Name
 msgid "Ariobarzanes"
-msgstr ""
+msgstr "Ариобарзан"
 
 #: maps/scenarios/The Persian Gates.xml:31:Name
 msgid "The Persian Gates"
@@ -18099,11 +18102,11 @@ msgstr "Резервуар"
 
 #: maps/scenarios/road demo.xml:31:Description
 msgid "Demo map showcasing Temperate Road decals."
-msgstr ""
+msgstr "Демо карта показывающая декали Умеренной Дороги"
 
 #: maps/scenarios/road demo.xml:31:Name
 msgid "Road Decals Demo"
-msgstr ""
+msgstr "Демо Дорожных Декалей"
 
 #: maps/scenarios/shipattacks.xml:31:Description
 msgid "Move ships around. Attack other ships."
@@ -18118,11 +18121,11 @@ msgid ""
 "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
 "\n"
 "Warning: This is very fast at the start, be prepared to run through the initial bit several times."
-msgstr ""
+msgstr "Эта карта даст грубое руководство для эффективного начала игры. В начале игры самое важное чтобы сбор ресурсов был быстрым насколько возможно и позже Вы могли построить армию.\n\nПредупреждение: Все происходит очень быстро в начале и подготовтесь пройти через это несколько раз.  "
 
 #: maps/scenarios/starting_economy_walkthrough.xml:42:Name
 msgid "Starting Economy Walkthrough"
-msgstr ""
+msgstr "Анализ стартовой экономики"
 
 #: maps/scenarios/temperate map.xml:31:Name
 msgid "Base Temperate Map"
@@ -18234,7 +18237,7 @@ msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
-msgstr ""
+msgstr "Глубокий скалистый каньон разрезает пустыню.\n\nКаждый игрок начинает свое поселение на плоскогорье на разных сторонах ущелья."
 
 #: maps/skirmishes/Death Canyon (2).xml:42:Name
 msgid "Death Canyon (2)"
@@ -18280,7 +18283,7 @@ msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
-msgstr ""
+msgstr "Игроки начинают вокруг маленьких оазисов в центре карты, которые содержат большую часть доступного дерева на карте.\n\nДругих районах расположены огромные богатства, в виде больших отложений золота и других металлов."
 
 #: maps/skirmishes/Golden Oasis (2).xml:42:Name
 msgid "Gold Oasis (2)"
@@ -18489,7 +18492,7 @@ msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
-msgstr ""
+msgstr "Оазис окруженный горами и пустыней. Сельскохозяйственный район возле уреза воды обеспечивает необходимый рост земледелия, также имеется ограниченный запас фуража и животных."
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:42:Name
 msgid "Team Oasis (2v2)"
@@ -18515,7 +18518,7 @@ msgstr "Африканская саванна набита битком живо
 
 #: maps/skirmishes/Watering Holes (4).xml:42:Name
 msgid "Watering Holes (4)"
-msgstr "Водные скважины (4)"
+msgstr "Водные источники (4)"
 
 #: maps/skirmishes/Zagros Mountains (2).xml:42:Description
 msgid ""

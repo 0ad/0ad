@@ -152,9 +152,9 @@ function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
 	for (var c in trainEntLimitChangers)
 	{
 		if (trainEntLimitChangers[c] > 0)
-			text += "\n" + sprintf("%(changer)s enlarges the limit with %(change)s.", { changer: c, change: trainEntLimitChangers[c] });
+			text += "\n" + sprintf(translate("%(changer)s enlarges the limit with %(change)s."), { changer: translate(c), change: trainEntLimitChangers[c] });
 		else if (trainEntLimitChangers[c] < 0)
-			text += "\n" + sprintf("%(changer)s lessens the limit with %(change)s.", { changer: c, change: (-trainEntLimitChangers[c]) });
+			text += "\n" + sprintf(translate("%(changer)s lessens the limit with %(change)s."), { changer: translate(c), change: (-trainEntLimitChangers[c]) });
 	}
 	return text;
 }

@@ -8,6 +8,8 @@
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # Cirro Yuan, 2013
 # hyln9 <hyln9@live.cn>, 2014
+# loms126 <loms126@126.com>, 2014
+# 吴善俊 <sjwuny@126.com>, 2014
 # Harry Tong, 2013-2014
 # Harry Tong, 2013
 # liulitchi <xingzuo88@qq.com>, 2013-2014
@@ -17,8 +19,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-01 01:24+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-05-17 18:13+0000\n"
+"Last-Translator: 吴善俊 <sjwuny@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -117,7 +119,7 @@ msgstr ""
 #: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
-msgstr ""
+msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
@@ -125,11 +127,11 @@ msgstr ""
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "中断载入"
 
 #: gui/common/functions_utility_list.js:14
 #: gui/common/functions_utility_list.js:44
@@ -141,16 +143,16 @@ msgstr ""
 #: gui/common/functions_utility_list.js:141
 #, python-format
 msgid "%(functionName)s: %(object)s not found."
-msgstr ""
+msgstr "%(functionName)s: %(object)s 没有找到."
 
 #: gui/common/functions_utility_list.js:161
 #, python-format
 msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr ""
+msgstr "在%(object)s中无法找到“%(string)s”."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
@@ -173,29 +175,29 @@ msgstr "未知原因"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "意外关闭"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "网络协议版本错误"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "游戏已经开始"
 
 #: gui/common/network.js:10
 #, python-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[无效的数值 %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "与服务器连接中断"
 
 #: gui/common/network.js:19
 #, python-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "原因: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
@@ -335,14 +337,14 @@ msgstr "地图大小:"
 #: gui/gamesetup/gamesetup.js:1088 gui/gamesetup/gamesetup.js:1147
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "显示的地图："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1089 gui/gamesetup/gamesetup.js:1148
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "探索过的地图："
 
 #: gui/gamesetup/gamesetup.js:1093 gui/gamesetup/gamesetup.js:1152
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -431,20 +433,20 @@ msgstr "%(username)s %(message)s"
 #: gui/gamesetup/gamesetup.js:1595
 #, python-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s 就绪!"
 
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s 未准备完成."
 
 #: gui/gamesetup/gamesetup.js:1601
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "游戏设置已更改"
 
 #: gui/gamesetup/gamesetup.js:1626
 msgid "I'm not ready"
-msgstr ""
+msgstr "尚未准备好"
 
 #: gui/gamesetup/gamesetup.js:1627
 msgid "State that you are not ready to play."
@@ -452,7 +454,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
 msgid "I'm ready!"
-msgstr ""
+msgstr "我准备好了！"
 
 #: gui/gamesetup/gamesetup.js:1633
 msgid "State that you are ready to play!"
@@ -635,19 +637,19 @@ msgstr "正在注册......"
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "请输入您的用户名。"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "用户名不能含有 逗号，句号，unicode字符和空格。"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "请输入密码"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "请再次输入密码"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -655,15 +657,15 @@ msgstr "密码不匹配"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "请阅读服务条款"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "请阅读使用条款"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "请同意“服务条款”和“使用条款”"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -675,11 +677,11 @@ msgstr "连接"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "服务条款"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "使用条款"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -715,7 +717,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "启动0 A.D. 在新窗口"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -727,13 +729,13 @@ msgstr "离开游戏窗口时暂停单人游戏"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "禁用欢迎屏幕"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "如果您完全禁用此屏幕，可能或错过重要声明。\n您仍然可以在主菜单中访问此屏幕。"
 
 #: gui/options/options.js:12
 msgid "Developer Overlay"
@@ -1016,7 +1018,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "技术详情"
 
 #: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
 #: gui/session/session.xml:732 (caption)
@@ -1197,7 +1199,7 @@ msgstr "敌人"
 
 #: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:472
 msgid "There are no land traders."
@@ -1298,11 +1300,11 @@ msgstr[0] ""
 
 #: gui/session/menu.js:673
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "开发者覆盖开启"
 
 #: gui/session/menu.js:675
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "开发者覆盖关闭"
 
 #: gui/session/menu.js:693
 #, python-format
@@ -1447,7 +1449,7 @@ msgstr ""
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "已解压%(genericName)s"
 
 #: gui/session/selection_details.js:44
 #, python-format
@@ -1480,7 +1482,7 @@ msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:115
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:116 gui/session/selection_details.js:149
 #: gui/session/selection_details.js:180
@@ -1513,7 +1515,7 @@ msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:226 gui/session/session.js:644
 msgid "Armor:"
-msgstr ""
+msgstr "护甲:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:641 gui/session/session.js:645
@@ -1557,7 +1559,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:341
 msgid "Hitpoints:"
-msgstr ""
+msgstr "生命值:"
 
 #: gui/session/selection_details.js:342 gui/session/session.js:625
 #, python-format
@@ -1618,19 +1620,19 @@ msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 #: gui/session/session.js:811
 #, python-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/session.js:900
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
-msgstr ""
+msgstr "未识别的环境类型: %(ambientType)s"
 
 #: gui/session/session.js:922
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "注意： 时空隧道模式是开发者选项，不适用于长时间开启。不恰当的使用可能导致内存不足或程序崩溃。"
 
 #: gui/session/session.js:922
 msgid "Time warp mode"
@@ -1644,26 +1646,26 @@ msgstr "现有数量： %(count)s，限额： %(limit)s。"
 #: gui/session/unit_commands.js:184
 #, python-format
 msgid "%(buildings)s*%(batchSize)s"
-msgstr ""
+msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/unit_commands.js:193
 msgid "Shift-click"
-msgstr ""
+msgstr "Shift + 单击"
 
 #: gui/session/unit_commands.js:202
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s 训练 %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/unit_commands.js:209
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s 训练 %(number)s (%(fullBatch)s)."
 
 #: gui/session/unit_commands.js:216
 #, python-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s 训练 %(number)s."
 
 #: gui/session/unit_commands.js:228
 msgid "Violent"
@@ -1701,18 +1703,18 @@ msgstr "卸下%(name)s"
 
 #: gui/session/unit_commands.js:459
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "单击 撤销 1。Shift+单击 撤销该类所有单位。"
 
 #: gui/session/unit_commands.js:708
 #, python-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "需要 %(technology)s"
 
 #: gui/session/unit_commands.js:725
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
+msgstr[0] "剩余: %(number)s ."
 
 #: gui/session/unit_commands.js:962
 #, python-format
@@ -1746,11 +1748,11 @@ msgstr "打开大门"
 
 #: gui/session/unit_commands.js:1246
 msgid "Pack"
-msgstr ""
+msgstr "打包"
 
 #: gui/session/unit_commands.js:1248
 msgid "Unpack"
-msgstr ""
+msgstr "解压"
 
 #: gui/session/unit_commands.js:1250
 msgid "Cancel Packing"
@@ -2036,7 +2038,7 @@ msgstr "石头"
 #: gui/session/utility_functions.js:751
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "废墟"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -2140,7 +2142,7 @@ msgstr "石头"
 #: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "废墟"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -2424,7 +2426,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "需要记住的几点是："
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -2874,7 +2876,7 @@ msgstr "选择地图:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "玩家人数："
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -3074,12 +3076,12 @@ msgstr ""
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "类型"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
@@ -3099,11 +3101,11 @@ msgstr "更新"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "新建账户"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "用已存在账户登录"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3127,7 +3129,7 @@ msgstr "请再次输入密码："
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "我已经阅读并同意服务条款和使用条款："
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3156,7 +3158,7 @@ msgstr ""
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -3199,11 +3201,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "信息"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "在线查看"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3268,11 +3270,11 @@ msgstr "欢迎加入：play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "激活反馈"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "取消反馈"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3339,11 +3341,11 @@ msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-edi
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "欢迎屏幕"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3351,7 +3353,7 @@ msgstr "游戏教程"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "打开 0 A.D. 游戏手册。"
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3388,15 +3390,15 @@ msgstr "退出"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "退出游戏"
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "协助翻译！"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3423,7 +3425,7 @@ msgstr "报告游戏错误"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
@@ -3709,7 +3711,7 @@ msgstr "单位统计（训练/阵亡/歼灭）"
 #: gui/summary/summary.xml:411 (caption)
 #: simulation/templates/template_unit_infantry.xml:50
 msgid "Infantry"
-msgstr ""
+msgstr "步兵"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
@@ -3786,7 +3788,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "定义："
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -3814,11 +3816,11 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "一旦使用服务你即同意："
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1.遵守用户协议。"
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
@@ -3828,7 +3830,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "我们保留以下权利："
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
@@ -3846,13 +3848,13 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4.在任何时间都无需声明更改服务"
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5.无需声明在任何时间删除任何或全部服务器数据"
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
@@ -3906,7 +3908,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "你同意："
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
@@ -3927,7 +3929,7 @@ msgstr ""
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4..不使用服务保护特殊商品服务或产品"
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
@@ -4491,7 +4493,7 @@ msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[字体=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -6691,7 +6693,7 @@ msgstr "增加近战士兵的攻击力和移动速度"
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
 #: civs/celt.jsonFactions[0].Technologies[0].History
@@ -6709,7 +6711,7 @@ msgstr "增加驻塔单位的奖金。"
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 #: civs/celt.jsonFactions[0].Technologies[1].History
@@ -9828,7 +9830,7 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Aegis是Wratii对一早期AI的改进版，是目前最稳定的AI。需要注意的是它并不支持已保存的游戏。如发现问题，请报告给Wildfire Games(见主菜单中的链接)。"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -9839,7 +9841,7 @@ msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "基于Aegis，但做了大量修改，并预期更为完善。需要注意的是它不支持已保存的游戏，并没有像Aegis那样经过很好的调试。如发现问题，请报告给Wildfire Games(见主菜单中的链接)。"
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -11102,7 +11104,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%"
-msgstr ""
+msgstr "弩射手精准增减 25%"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsongenericName
 msgid "Bolt Accuracy"
@@ -11942,15 +11944,15 @@ msgstr "从灌木丛采集浆果来获取食物。"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
-msgstr ""
+msgstr "浆果 "
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "伐木以增加木材数。"
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
-msgstr "shu"
+msgstr "树"
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -11962,7 +11964,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
-msgstr ""
+msgstr "矿产"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
@@ -11982,7 +11984,7 @@ msgstr "石矿"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "这些废墟可供可开采资源。"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -11993,7 +11995,7 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr ""
+msgstr "废墟"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
@@ -12027,7 +12029,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr ""
+msgstr "市政建筑"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
@@ -12064,7 +12066,7 @@ msgstr "寺庙"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "防御建筑"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
@@ -12117,7 +12119,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
-msgstr ""
+msgstr "城墙箭塔"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -12145,7 +12147,7 @@ msgstr ""
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "收集 木材，石料，金属。对以上资源的收集技术升级。"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
@@ -12164,7 +12166,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "军事建筑"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
@@ -12176,17 +12178,17 @@ msgstr ""
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "研究武器和护甲的改进。"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr ""
+msgstr "铁匠"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "建立在海岸边，用于建造海军舰艇和海上贸易。海军升级。"
 
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
@@ -12196,7 +12198,7 @@ msgstr "码头"
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
-msgstr ""
+msgstr "大使馆"
 
 #: simulation/templates/template_structure_military_fortress.xml:61
 msgid ""
@@ -12206,7 +12208,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr ""
+msgstr "资源建筑"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
@@ -12259,7 +12261,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "基本"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -12289,7 +12291,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:29
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "近战骑兵"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
 msgid ""
@@ -12300,7 +12302,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "骑射手"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -12455,7 +12457,7 @@ msgstr "军犬"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "野生动物"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -12651,7 +12653,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
-msgstr ""
+msgstr "火船"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -12707,7 +12709,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:51
 msgid "Bolt Shooter"
-msgstr ""
+msgstr "弩射手"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:55
 msgid ""
@@ -12741,7 +12743,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
-msgstr ""
+msgstr "攻城塔"
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -12931,7 +12933,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Chicken"
-msgstr ""
+msgstr "鸡"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
@@ -12947,7 +12949,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_elephant.xml:13
 msgid "Elephant"
-msgstr ""
+msgstr "大象"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
 msgid "African Bush Elephant"
@@ -13013,19 +13015,19 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "麝牛"
 
 #: simulation/templates/gaia/fauna_peacock.xml:5
 msgid "Peacock"
-msgstr ""
+msgstr "孔雀"
 
 #: simulation/templates/gaia/fauna_pig.xml:5
 msgid "Pig"
-msgstr ""
+msgstr "猪"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
-msgstr ""
+msgstr "兔子"
 
 #: simulation/templates/gaia/fauna_shark.xml:15
 msgid "Shark"
@@ -13045,7 +13047,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Walrus"
-msgstr ""
+msgstr "海象"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
@@ -13057,7 +13059,7 @@ msgstr ""
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "牛羚"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
@@ -13128,7 +13130,7 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
+msgstr "欧洲山毛榉树"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
@@ -13161,7 +13163,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "热带棕榈"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
@@ -13191,7 +13193,7 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "古迹"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
@@ -13235,7 +13237,7 @@ msgstr ""
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "金羊毛 "
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
@@ -13325,7 +13327,7 @@ msgstr "茅屋"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr ""
+msgstr "人口上限 +10。"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -13391,20 +13393,20 @@ msgstr ""
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "人口上限 +10， 招募特殊单位。"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "拱廊"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "希腊皇家柱廊"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "希腊柱廊 "
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
@@ -13478,7 +13480,7 @@ msgstr "木墙"
 #: simulation/templates/other/palisades_rocks_tower.xml:21
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "栅栏"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
@@ -14980,7 +14982,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "高级"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7

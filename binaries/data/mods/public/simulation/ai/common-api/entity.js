@@ -421,15 +421,15 @@ m.Template = m.Class({
 	},
 
 	isHuntable: function() {     // used by Petra
-		if (!this.get("UnitAI") || !this.get("UnitAI/NaturalBehaviour"))
+		if(!this.get("ResourceSupply") || !this.get("ResourceSupply/KillBeforeGather"))
 			return false;
 
 		// special case: rabbits too difficult to hunt for such a small food amount
 		if (this.get("Identity") && this.get("Identity/SpecificName") && this.get("Identity/SpecificName") === "Rabbit")
 			return false;
 
-		// do not hunt retaliating animals.
-		return !(this.get("UnitAI/NaturalBehaviour") === "violent" ||
+		// do not hunt retaliating animals (animals without UnitAI are dead animals)
+		return !this.get("UnitAI") || !(this.get("UnitAI/NaturalBehaviour") === "violent" ||
 			this.get("UnitAI/NaturalBehaviour") === "aggressive" ||
 			this.get("UnitAI/NaturalBehaviour") === "defensive");
 	},

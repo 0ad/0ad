@@ -151,11 +151,6 @@ m.Worker.prototype.update = function(baseManager, gameState)
 			if (territoryOwner != 0 && !gameState.isPlayerAlly(territoryOwner))  // player is its own ally
 				this.startHunting(gameState);
 		}
-		else if (!this.ent.isIdle())
-		{
-			warn(" unit hunting ??? " + this.ent.unitAIState());
-		}
-
 	}
 	else if (subrole === "fisher")
 	{
@@ -216,7 +211,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	// first look in our own base if accessible from our present position
 	if (baseManager.accessIndex === access)
 	{
-		if (supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["nearby"]))
+		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["nearby"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -224,18 +219,18 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		// --> for food, try to gather from fields if any, otherwise build one if any
 		if (resource === "food")
 		{
-			if (supply = this.gatherNearestField(gameState, this.baseID))
+			if ((supply = this.gatherNearestField(gameState, this.baseID)))
 			{
 				this.ent.gather(supply);
 				return true;
 			}
-			else if (supply = this.buildAnyField(gameState, this.baseID))
+			else if ((supply = this.buildAnyField(gameState, this.baseID)))
 			{
 				this.ent.repair(supply);
 				return true;
 			}
 		}
-		if (supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["medium"]))
+		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["medium"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -249,8 +244,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"])))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -265,13 +259,13 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 				continue;
 			if (base.accessIndex !== access)
 				continue;
-			if (supply = this.gatherNearestField(gameState, base.ID))
+			if ((supply = this.gatherNearestField(gameState, base.ID)))
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.gather(supply);
 				return true;
 			}
-			if (supply = this.buildAnyField(gameState, base.ID))
+			if ((supply = this.buildAnyField(gameState, base.ID)))
 			{
 				this.ent.setMetadata(PlayerID, "base", base.ID);
 				this.ent.repair(supply);
@@ -285,7 +279,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		if (supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"]))
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"])))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -317,8 +311,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	{
 		if (base.accessIndex === access)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["nearby"])))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -332,14 +325,14 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		{
 			if (base.accessIndex === access)
 				continue;
-			if (supply = this.gatherNearestField(gameState, base.ID))
+			if ((supply = this.gatherNearestField(gameState, base.ID)))
 			{
 				if (base.ID !== this.baseID)
 					this.ent.setMetadata(PlayerID, "base", base.ID);
 				navalManager.requireTransport(gameState, this.ent, access, base.accessIndex, supply.position());
 				return true;
 			}
-			if (supply = this.buildAnyField(gameState, base.ID))
+			if ((supply = this.buildAnyField(gameState, base.ID)))
 			{
 				if (base.ID !== this.baseID)
 					this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -352,8 +345,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	{
 		if (base.accessIndex === access)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["medium"])))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
@@ -383,8 +375,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
 	if (baseManager.accessIndex === access)
 	{
-		supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["faraway"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["faraway"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -396,8 +387,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 			continue;
 		if (base.accessIndex !== access)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"])))
 		{
 			this.ent.setMetadata(PlayerID, "base", base.ID);
 			this.ent.gather(supply);
@@ -408,8 +398,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	{
 		if (base.accessIndex === access)
 			continue;
-		supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"]);
-		if (supply)
+		if ((supply = findSupply(this.ent, base.dropsiteSupplies[resource]["faraway"])))
 		{
 			if (base.ID !== this.baseID)
 				this.ent.setMetadata(PlayerID, "base", base.ID);
