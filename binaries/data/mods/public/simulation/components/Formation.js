@@ -743,7 +743,8 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				var r1, r2 = 0;
+				var r1 = 0
+				var r2 = 0;
 				if (this.sloppyness != 0)
 				{
 					r1 = (Math.random() * 2 - 1) * this.sloppyness;
