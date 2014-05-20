@@ -653,7 +653,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			});
 
 			guiSelection.hidden = !formationSelected;
-			icon.sprite = "stretched:"+grayscale+"session/icons/"+item+".png";
+			icon.sprite = "stretched:"+grayscale+"session/icons/"+formationInfo.icon;
 
  		}
 		else if (guiName == STANCE)
