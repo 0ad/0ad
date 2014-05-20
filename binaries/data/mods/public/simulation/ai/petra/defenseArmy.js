@@ -101,7 +101,7 @@ m.DefenseArmy.prototype.update = function (gameState)
 		if (!ent)
 			continue;
 		var orders = ent.unitAIOrderData();
-		if (orders.length === 0)
+		if (orders.length === 0 && !ent.getMetadata(PlayerID, "transport"))
 			this.assignUnit(gameState, entId);
 	}
 

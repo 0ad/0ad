@@ -267,6 +267,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 		ship.move(self.boardingPos[ship.id()][0], self.boardingPos[ship.id()][1]);
 	});
 	this.state = "sailing";
+	this.nTry = {};
 	this.unloaded = [];
 	this.recovered = [];
 };
@@ -277,7 +278,7 @@ m.TransportPlan.prototype.isOnBoard = function(ent)
 	var ret = false;
 	var self = this;
 	this.transportShips.forEach(function (ship) {
-		if (ship._entity.garrisoned.indexOf(ent.id()) === -1)
+		if (ret || ship._entity.garrisoned.indexOf(ent.id()) === -1)
 			return;
 		ret = true;
 		ent.setMetadata(PlayerID, "onBoard", "onBoard");
@@ -310,7 +311,9 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, landIndex, seaInd
 	{
 		var pos = [i%width+0.5, Math.floor(i/width)+0.5];
 		pos = [cell*pos[0], cell*pos[1]];
-		var dist = API3.SquareVectorDistance(startPos, pos) + API3.SquareVectorDistance(pos, destination);
+		var dist = API3.SquareVectorDistance(startPos, pos);
+		if (destination)
+			dist += API3.SquareVectorDistance(pos, destination);
 		if (avoidEnnemy)
 		{
 			var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(pos);
@@ -318,6 +321,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, landIndex, seaInd
 				dist += 100000000;
 		}
 		// require a small distance between all ships of the transport plan to avoid path finder problems
+		// this is also used when the ship is blocked and we want to find a new boarding point
 		for (var shipId in this.boardingPos)
 			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < 100)
 				dist += 1000000;
@@ -440,25 +444,47 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	this.transportShips.forEach(function (ship) {
 		if (ship.unitAIState() === "INDIVIDUAL.WALKING")
 			return;
-		var boardingPos = self.boardingPos[ship.id()];
-		var dist = API3.SquareVectorDistance(ship.position(), boardingPos);
-		if (dist > 225)
-			ship.move(boardingPos[0], boardingPos[1]);
-		if (dist < 625)
+		var shipId = ship.id();
+		var dist = API3.SquareVectorDistance(ship.position(), self.boardingPos[shipId]);
+		var remaining = 0;
+		for each (var entId in ship._entity.garrisoned)
 		{
-			var remaining = 0;
-			for each (var entId in ship._entity.garrisoned)
+			var ent = gameState.getEntityById(entId);
+			if (!ent.getMetadata(PlayerID, "transport"))
+				continue;
+			remaining++;
+			if (dist < 625)
 			{
-				var ent = gameState.getEntityById(entId);
-				if (!ent.getMetadata(PlayerID, "transport"))
-					continue;
-				ent.setMetadata(PlayerID, "onBoard", ship.id());
 				ship.unload(entId);
 				self.unloaded.push(entId);
-				remaining++;
+				ent.setMetadata(PlayerID, "onBoard", shipId);
 			}
-			if (remaining === 0)   // when empty, move apart to leave room for other ships. TODO fight
-				ship.moveApart(boardingPos, 15);
+		}
+
+		if (remaining === 0)   // when empty, release the ship and move apart to leave room for other ships. TODO fight
+		{
+			ship.moveApart(self.boardingPos[shipId], 15);
+			ship.setMetadata(PlayerID, "transporter", undefined);
+			return;
+		}
+
+		if (dist > 225)
+		{
+			if (self.debug > 0)
+				warn(shipId + " ship at distance " + dist + " avec state " + ship.unitAIState() + " et isIdle " + ship.isIdle());
+			// we must have been blocked by something ... try again and then try with another boarding point
+			if (!self.nTry[shipId])
+				self.nTry[shipId] = 1;
+			else
+				++self.nTry[shipId];
+			if (self.nTry[shipId] > 2)
+			{
+				self.nTry[shipId] = 0;
+				if (self.debug > 0)
+					warn(shipId + " new attempt for a landing point ");
+				self.boardingPos[shipId] = self.getBoardingPos(gameState, self.endIndex, self.sea, undefined, true);
+			}
+			ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 		}
 	});
 };
