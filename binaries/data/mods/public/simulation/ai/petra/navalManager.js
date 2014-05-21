@@ -265,6 +265,13 @@ m.NavalManager.prototype.addPlan = function(plan)
 // (many units can then call this separately and end up in the same plan)
 m.NavalManager.prototype.requireTransport = function(gameState, entity, startIndex, endIndex, endPos)
 {
+	if (entity.getMetadata(PlayerID, "transport") !== undefined)
+	{
+		if (this.Config.debug > 0)
+			warn("Petra naval manager error: unit " + entity.id() +  " has already required a transport");
+		return false;
+	}
+
 	for each (var plan in this.transportPlans)
 	{
 		if (plan.startIndex !== startIndex || plan.endIndex !== endIndex)

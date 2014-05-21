@@ -860,6 +860,7 @@ GuiInterface.prototype.GetFormationInfoFromTemplate = function(player, data)
 		return r;
 	r.name = template.Formation.FormationName;
 	r.tooltip = template.Formation.DisabledTooltip || "";
+	r.icon = template.Formation.Icon;
 	return r;
 };
 

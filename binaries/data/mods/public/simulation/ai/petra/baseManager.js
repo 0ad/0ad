@@ -425,7 +425,8 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			}
 			else if(gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				if (numFound < 2 && numFound + numQueue < 3)
+				if ((!gameState.ai.HQ.saveResources && numFound < 2 && numFound + numQueue < 3) ||
+					(gameState.ai.HQ.saveResources && numFound < 1 && numFound + numQueue < 2))
 					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 			}
 		}

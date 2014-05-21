@@ -4,6 +4,9 @@ Formation.prototype.Schema =
 	"<element name='FormationName' a:help='Name of the formation'>" +
 		"<text/>" +
 	"</element>" +
+	"<element name='Icon'>" +
+		"<text/>" +
+	"</element>" +
 	"<element name='RequiredMemberCount' a:help='Minimum number of entities the formation should contain'>" +
 		"<data type='nonNegativeInteger'/>" +
 	"</element>" +
@@ -28,6 +31,9 @@ Formation.prototype.Schema =
 		"</element>" +
 	"</optional>" +
 	"<element name='WidthDepthRatio' a:help='Average width/depth, counted in number of units.'>" +
+		"<ref name='nonNegativeDecimal'/>" +
+	"</element>" +
+	"<element name='Sloppyness' a:help='Sloppyness in meters (the max difference between the actual and the perfectly aligned formation position'>" +
 		"<ref name='nonNegativeDecimal'/>" +
 	"</element>" +
 	"<optional>" +
@@ -77,6 +83,7 @@ Formation.prototype.Init = function()
 		"width": +this.template.UnitSeparationWidthMultiplier,
 		"depth": +this.template.UnitSeparationDepthMultiplier
 	};
+	this.sloppyness = +this.template.Sloppyness;
 	this.widthDepthRatio = +this.template.WidthDepthRatio;
 	this.minColumns = +(this.template.MinColumns || 0);
 	this.maxColumns = +(this.template.MaxColumns || 0);
@@ -736,7 +743,14 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				offsets.push(new Vector2D(x, z));
+				var r1 = 0
+				var r2 = 0;
+				if (this.sloppyness != 0)
+				{
+					r1 = (Math.random() * 2 - 1) * this.sloppyness;
+					r2 = (Math.random() * 2 - 1) * this.sloppyness;
+				}
+				offsets.push(new Vector2D(x + r1, z + r2));
 				offsets[offsets.length - 1].row = r+1;
 				offsets[offsets.length - 1].column = column;
 				left--

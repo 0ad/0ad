@@ -177,7 +177,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	}
 
 	// adapt our starting strategy to the available resources
-	// - if on a small island, favor fishing and requir less fields to save room for buildings
+	// - if on a small island, favor fishing and require less fields to save room for buildings
 	var startingSize = 0;
 	for (var i = 0; i < this.allowedRegions.length; ++i)
 	{
@@ -214,7 +214,12 @@ m.HQ.prototype.init = function(gameState, queues)
 		}
 	}
 	if (this.Config.debug > 0)
-		warn("startingWood: " + startingWood + "(cut at 8500 for rushes)");
+		warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
+	if (startingWood < 6000)
+	{
+		this.saveResources = true;
+		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
+	}
 
 	this.attackManager.init(gameState, queues, (startingWood > 8500));  // rush allowed 3rd argument = true
 	this.navalManager.init(gameState, queues);
@@ -317,6 +322,9 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 					this.baseManagers[base].anchor = ent;
 					this.baseManagers[base].buildings.updateEnt(ent);
 					this.updateTerritories(gameState);
+					// let us hope this new base will fix our resource shortage
+					// TODO check it really does so
+					this.saveResources = undefined;
 				}
 				else if (ent.hasTerritoryInfluence())
 					this.updateTerritories(gameState);
@@ -372,10 +380,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	var numTotal = numWorkers + numQueued;
 
 	// If we have too few, train more
-	// should plan enough to always have females…
-	// TODO: 15 here should be changed to something more sensible, such as nb of producing buildings.
 	if (!this.boostedSoldiers)
 	{
+		if (this.saveResources && numTotal > this.Config.Economy.popForTown + 10)
+			return;
 		if (numTotal > this.targetNumWorkers || (numTotal >= this.Config.Economy.popForTown 
 			&& gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase())))
 			return;
@@ -1149,7 +1157,7 @@ m.HQ.prototype.buildDock = function(gameState, queues)
 				{
 					if (this.navalRegions.indexOf(sea) !== -1)
 					{
-						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "base": 1, "sea": sea }));
+						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea }));
 						break;
 					}
 				}
@@ -1172,7 +1180,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		// make the difficulty available to the isGo function without having to pass it as argument
 		var difficulty = this.Config.difficulty;
 		var self = this;
-		// change the starting condition to "less than 15 slots left".
+		// change the starting condition according to the situation.
 		plan.isGo = function (gameState) {
 			if (!self.canBuild(gameState, "structures/{civ}_house"))
 				return false;
@@ -1184,7 +1192,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			// TODO how to modify with tech
 			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
 			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
-			if (gameState.getPopulation() > 55 && difficulty > 1)
+			if (self.saveResources)
+				return (freeSlots <= 10);
+			else if (gameState.getPopulation() > 55 && difficulty > 1)
 				return (freeSlots <= 21);
 			else if (gameState.getPopulation() >= 30 && difficulty > 0)
 				return (freeSlots <= 15);
@@ -1221,19 +1231,20 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (this.requireHouses && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length >= 5)
 		this.requireHouses = undefined;
 
-	// Change house priority if needed
+	// When population limit too tight
+	//    - if no room to build, try to improve with technology
+	//    - otherwise increase temporarily the priority of houses
 	var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
 	var freeSlots = 0;
 	var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
 	freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 	if (freeSlots < 5)
 	{
-		var priority = 2*this.Config.priorities.house;
 		var index = this.stopBuilding.indexOf(gameState.applyCiv("structures/{civ}_house"));
 		if (index !== -1 && queues.minorTech.length() === 0)
 		{
 			if (this.Config.debug > 0)
-				warn("no room to place a house ... try to improve with research");
+				warn("no room to place a house ... try to improve with technology");
 			var techs = gameState.findAvailableTech();
 			for each (var tech in techs)
 			{
@@ -1248,10 +1259,12 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 				break;
 			}
 		}
+		else if (index === -1)
+			var priority = 2*this.Config.priorities.house;
 	}
 	else
 		var priority = this.Config.priorities.house;
-	if (priority !== gameState.ai.queueManager.getPriority("house"))
+	if (priority && priority !== gameState.ai.queueManager.getPriority("house"))
 		gameState.ai.queueManager.changePriority("house", priority);
 };
 
@@ -1298,6 +1311,9 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, type)
 // Deals with building fortresses and towers along our border with enemies.
 m.HQ.prototype.buildDefenses = function(gameState, queues)
 {
+	if (this.saveResources)
+		return;
+
 	if (gameState.currentPhase() > 2 || gameState.isResearching(gameState.cityPhase()))
 	{
 		// try to build fortresses
@@ -1663,19 +1679,22 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
 		this.updateTerritories(gameState);
 
-	this.trainMoreWorkers(gameState, queues);
+	if (this.baseManagers[1])
+	{
+		this.trainMoreWorkers(gameState, queues);
 
-	if (gameState.ai.playedTurn % 2 === 1)
-		this.buildMoreHouses(gameState,queues);
+		if (gameState.ai.playedTurn % 2 === 1)
+			this.buildMoreHouses(gameState,queues);
 
-	if (gameState.ai.playedTurn % 4 === 2)
-		this.buildFarmstead(gameState, queues);
+		if (gameState.ai.playedTurn % 4 === 2 && !this.saveResources)
+			this.buildFarmstead(gameState, queues);
 
-	if (this.navalMap)
-		this.buildDock(gameState, queues);
+		if (this.navalMap)
+			this.buildDock(gameState, queues);
 
-	if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
-		this.tryResearchTechs(gameState,queues);
+		if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
+			this.tryResearchTechs(gameState,queues);
+	}
 
 	if (gameState.currentPhase() > 1)
 	{
@@ -1683,9 +1702,12 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		if (this.Config.difficulty > 0 && gameState.ai.playedTurn % 10 === 7)
 			this.checkBaseExpansion(gameState, queues);
 
-		this.buildMarket(gameState, queues);
-		this.buildBlacksmith(gameState, queues);
-		this.buildTemple(gameState, queues);
+		if (!this.saveResources)
+		{
+			this.buildMarket(gameState, queues);
+			this.buildBlacksmith(gameState, queues);
+			this.buildTemple(gameState, queues);
+		}
 
 		if (this.Config.difficulty > 1)
 			this.tradeManager.update(gameState, queues);
@@ -1694,7 +1716,8 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.garrisonManager.update(gameState, events);
 	this.defenseManager.update(gameState, events);
 
-	this.constructTrainingBuildings(gameState, queues);
+	if (!this.saveResources)
+		this.constructTrainingBuildings(gameState, queues);
 
 	if (this.Config.difficulty > 0)
 		this.buildDefenses(gameState, queues);

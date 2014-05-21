@@ -15,6 +15,7 @@
     <UnitSeparationWidthMultiplier>1</UnitSeparationWidthMultiplier>
     <UnitSeparationDepthMultiplier>1</UnitSeparationDepthMultiplier>
     <WidthDepthRatio>1</WidthDepthRatio>
+    <Sloppyness>0</Sloppyness>
     <Animations/>
   </Formation>
   <FormationAttack>
@@ -41,7 +42,6 @@
     <CostClass>default</CostClass>
   </UnitMotion>
   <Trader>
-    <MaxDistance>5.0</MaxDistance>
     <GainMultiplier>1.0</GainMultiplier>
   </Trader>
 </Entity>

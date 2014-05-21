@@ -69,7 +69,7 @@ var g_MapFilters = [];
 
 // Warn about the AI's nonexistent naval map support.
 var g_NavalWarning = "\n\n" + sprintf(
-	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only."),
+	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only. Nonetheless, Petra has now an experimental support for naval maps."),
 	{ warning: "[font=\"sans-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
 );
 

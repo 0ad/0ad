@@ -96,7 +96,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState);
 
 			if (pos)
-			    return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": 0 };
+				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": 0 };
 			else
 				return false;
 		}

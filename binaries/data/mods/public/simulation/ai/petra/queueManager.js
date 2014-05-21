@@ -260,7 +260,7 @@ m.QueueManager.prototype.update = function(gameState)
 		if (ress === "population")
 			continue;
 
-		if (availableRes[ress] > 0)
+		if (availableRes[ress] > 1)
 		{
 			var totalPriority = 0;
 			var tempPrio = {};

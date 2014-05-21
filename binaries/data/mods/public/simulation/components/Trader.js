@@ -15,9 +15,6 @@ Trader.prototype.Schema =
 		"<MaxDistance>2.0</MaxDistance>" +
 		"<GainMultiplier>1.0</GainMultiplier>" +
 	"</a:example>" +
-	"<element name='MaxDistance' a:help='Max distance from market when performing deal'>" +
-		"<ref name='positiveDecimal'/>" +
-	"</element>" +
 	"<element name='GainMultiplier' a:help='Additional gain multiplier'>" +
 		"<ref name='positiveDecimal'/>" +
 	"</element>";
@@ -267,7 +264,11 @@ Trader.prototype.StopTrading = function()
 // to be able to trade with it.
 Trader.prototype.GetRange = function()
 {
-	return { "min": 0, "max": +this.template.MaxDistance };
+	var cmpObstruction = Engine.QueryInterface(this.entity, IID_Obstruction);
+	var max = 1;
+	if (cmpObstruction)
+		max += cmpObstruction.GetUnitRadius()*1.5;
+	return { "min": 0, "max": max};
 };
 
 Trader.prototype.OnGarrisonedUnitsChanged = function()
