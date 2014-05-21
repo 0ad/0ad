@@ -1157,7 +1157,7 @@ m.HQ.prototype.buildDock = function(gameState, queues)
 				{
 					if (this.navalRegions.indexOf(sea) !== -1)
 					{
-						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "base": 1, "sea": sea }));
+						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea }));
 						break;
 					}
 				}
@@ -1264,7 +1264,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	}
 	else
 		var priority = this.Config.priorities.house;
-	if (priority !== gameState.ai.queueManager.getPriority("house"))
+	if (priority && priority !== gameState.ai.queueManager.getPriority("house"))
 		gameState.ai.queueManager.changePriority("house", priority);
 };
 
@@ -1679,19 +1679,22 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
 		this.updateTerritories(gameState);
 
-	this.trainMoreWorkers(gameState, queues);
+	if (this.baseManagers[1])
+	{
+		this.trainMoreWorkers(gameState, queues);
 
-	if (gameState.ai.playedTurn % 2 === 1)
-		this.buildMoreHouses(gameState,queues);
+		if (gameState.ai.playedTurn % 2 === 1)
+			this.buildMoreHouses(gameState,queues);
 
-	if (gameState.ai.playedTurn % 4 === 2 && !this.saveResources)
-		this.buildFarmstead(gameState, queues);
+		if (gameState.ai.playedTurn % 4 === 2 && !this.saveResources)
+			this.buildFarmstead(gameState, queues);
 
-	if (this.navalMap)
-		this.buildDock(gameState, queues);
+		if (this.navalMap)
+			this.buildDock(gameState, queues);
 
-	if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
-		this.tryResearchTechs(gameState,queues);
+		if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
+			this.tryResearchTechs(gameState,queues);
+	}
 
 	if (gameState.currentPhase() > 1)
 	{
