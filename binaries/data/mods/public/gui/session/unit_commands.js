@@ -521,7 +521,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					if (template.attack)
 						tooltip += "\n" + getEntityAttack(template);
 					if (template.armour)
-						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Armour") + ":[/font] " + armorTypesToText(template.armour);
+						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Armour:") + "[/font] " + armorTypesToText(template.armour);
 					if (template.speed)
 						tooltip += "\n" + getEntitySpeed(template);
 				}
