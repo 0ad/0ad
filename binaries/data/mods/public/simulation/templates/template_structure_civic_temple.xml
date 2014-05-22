@@ -35,10 +35,10 @@
   <Identity>
     <GenericName>Temple</GenericName>
     <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate. Research healing and religious improvements. Heals nearby units, but slower than garrisoned units.</Tooltip>
-    <Classes datatype="tokens">
+    <VisibleClasses datatype="tokens">
       Town
       Temple
-    </Classes>
+    </VisibleClasses>
     <Icon>structures/temple.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

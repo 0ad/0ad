@@ -25,10 +25,10 @@
   <Identity>
     <GenericName>Corral</GenericName>
     <Tooltip>Raise herd animals for food. Task domestic animals here to gain a trickle of food or other bonus (Not yet implemented).</Tooltip>
-    <Classes datatype="tokens">
+    <VisibleClasses datatype="tokens">
 	  Village
 	  Corral
-	</Classes>
+	</VisibleClasses>
     <Icon>structures/corral.png</Icon>
   </Identity>
   <Loot>

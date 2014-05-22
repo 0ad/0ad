@@ -64,8 +64,8 @@
     <Classes datatype="tokens">
       Defensive
       CivCentre
-      CivilCentre
     </Classes>
+    <VisibleClasses datatype="tokens">CivilCentre</VisibleClasses>
     <Icon>structures/civic_centre.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

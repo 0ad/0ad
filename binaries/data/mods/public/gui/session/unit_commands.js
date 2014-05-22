@@ -556,6 +556,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 
 			case CONSTRUCTION:
 				var tooltip = getEntityNamesFormatted(template);
+
+				if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
+				{
+					tooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
+					tooltip += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
+					for (var c = 1; c < template.visibleIdentityClasses.length; c++)
+						tooltip += ", " + translate(template.visibleIdentityClasses[c]);
+					tooltip += "[/font]";
+				}
+
 				if (template.tooltip)
 					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
