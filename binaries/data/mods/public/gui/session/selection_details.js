@@ -302,6 +302,15 @@ function displaySingle(entState, template)
 	if (genericName)
 		iconTooltip = "[font=\"sans-bold-16\"]" + genericName + "[/font]";
 
+	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
+	{
+		iconTooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
+		iconTooltip += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
+		for (var i = 1; i < template.visibleIdentityClasses.length; i++)
+			iconTooltip += ", " + translate(template.visibleIdentityClasses[i]);
+		iconTooltip += "[/font]";
+	}
+
 	if (template.tooltip)
 		iconTooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 
