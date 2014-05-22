@@ -85,6 +85,24 @@ m.PickRandom = function(list){
 		return list[Math.floor(Math.random()*list.length)];
 }
 
+/**
+* Gets an array of all classes for this identity template
+* (temporarily duplicated from helpers/templates.js)
+*/
+m.GetIdentityClasses = function(template)
+{
+	var classList = [];
+	if (template.Classes && template.Classes._string)
+	        classList = classList.concat(template.Classes._string.split(/\s+/));
+
+	if (template.VisibleClasses && template.VisibleClasses._string)
+		classList = classList.concat(template.VisibleClasses._string.split(/\s+/));
+
+	if (template.Rank)
+		classList = classList.concat(template.Rank);
+	return classList;
+}
+
 return m;
 
 }(API3);

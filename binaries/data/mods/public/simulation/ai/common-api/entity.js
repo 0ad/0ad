@@ -51,9 +51,9 @@ m.Template = m.Class({
 	},
 
 	classes: function() {
-		if (!this.get("Identity") || !this.get("Identity/Classes") || !this.get("Identity/Classes/_string"))
+		if (!this.get("Identity"))
 			return undefined;
-		return this.get("Identity/Classes/_string").split(/\s+/);
+		return m.GetIdentityClasses(this._template.Identity);
 	},
 	
 	requiredTech: function() {
