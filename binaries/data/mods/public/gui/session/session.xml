@@ -405,7 +405,7 @@
 
 		<object name="toggleTeamChat" size="30%+22 100%-36 30%+40 100%-6" type="checkbox" style="ModernTickBox"/>
 		<object size="30%+40 100%-40 60%+16 100%-12" type="text"  style="ModernLeftLabelText">
-			Team Only
+			<translatableAttribute id="caption">Team Only</translatableAttribute>
 		</object>
 
 		<object size="60%+16 100%-40 100%-16 100%-12" type="button" style="StoneButton">
@@ -615,7 +615,9 @@
 		<!-- ================================  ================================ -->
 		<!-- Observer Mode Warning -->
 		<!-- ================================  ================================ -->
-		<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLabelText" text_align="left" hidden="true">Observer Mode (experimental)</object>
+		<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLabelText" text_align="left" hidden="true">
+			<translatableAttribute id="tooltip">Observer Mode (experimental)</translatableAttribute>
+		</object>
 
 
 
@@ -1238,9 +1240,10 @@
 			type="image"
 			sprite="queuePanelShader"
 		>
-		    <object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom" tooltip="Production queue">
-			<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
-		    </object>
+			<object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom">
+				<translatableAttribute id="tooltip">Production queue</translatableAttribute>
+				<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
+			</object>
 
 		    <object size="48 6 100% 100%">
 			<repeat count="16">

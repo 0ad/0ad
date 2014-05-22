@@ -43,7 +43,7 @@
 				<action on="Load">
 					this.caption = Engine.ConfigDB_GetValue("user", "multiplayerserver")
 				</action>
-			</object>3 100%-33 103 100%-3
+			</object>
 
 			<object hotkey="confirm" type="button" size="50%+16 100%-60 50%+144 100%-32" style="StoneButton">
 				<translatableAttribute id="caption">Continue</translatableAttribute>
