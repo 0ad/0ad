@@ -175,16 +175,12 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			}
 		}
 	}
-	// if we have a barracks, there's no water, we're at age >= 1 and we've decided to attack.
-	else if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1
-		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.round(gameState.getPopulationMax()/100))
-		&& (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
+	else if (this.upcomingAttacks["Attack"].length === 0 && this.upcomingAttacks["HugeAttack"].length === 0
+		&& (this.startedAttacks["Attack"].length + this.startedAttacks["HugeAttack"].length < Math.round(gameState.getPopulationMax()/100)))
 	{
-		if (gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0 && gameState.ai.HQ.navalMap)
-		{
-			// wait till we get a dock.
-		}
-		else if (this.upcomingAttacks["Attack"].length === 0 && this.upcomingAttacks["HugeAttack"].length === 0)
+		if ((gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_barracks"), true) >= 1
+				&& (gameState.currentPhase() > 1 || gameState.isResearching(gameState.townPhase())))
+			|| !gameState.ai.HQ.baseManagers[1])	// if we have no base ... nothing else to do than attack
 		{
 			if (this.attackNumber < 2 || this.startedAttacks["HugeAttack"].length > 0)
 				var type = "Attack";

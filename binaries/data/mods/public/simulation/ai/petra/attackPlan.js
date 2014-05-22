@@ -32,19 +32,28 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 	}
 	
 	// get a starting rallyPoint ... will be improved later
-	this.rallyPoint = undefined;
+	var rallyPoint = undefined;
 	for each (var base in gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor || !base.anchor.position())
 			continue;
-		this.rallyPoint = base.anchor.position();
+		rallyPoint = base.anchor.position();
 		break;
 	}
-	if (!this.rallyPoint)
+	if (!rallyPoint)	// no base ?  take the position of any of our entities
 	{
-		this.failed = true;
-		return false;
+		gameState.getOwnEntities().forEach(function (ent) {
+			if (rallyPoint || !ent.position())
+				return;
+			rallyPoint = ent.position();
+		});
+		if (!rallyPoint)
+		{
+			this.failed = true;
+			return false;
+		}
 	}
+	this.rallyPoint = rallyPoint;
 
 	this.overseas = false;
 	this.paused = false;
@@ -373,6 +382,10 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			return ret;
 	}
 
+	// if we need a transport, wait for some transport ships
+	if (this.overseas && !gameState.ai.HQ.navalManager.seaTransportShips.length)
+		return 1;
+
 	this.assignUnits(gameState);
 
 	// special case: if we've reached max pop, and we can start the plan, start it.
@@ -503,8 +516,6 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 
 	if (this.buildOrder[0][0] < this.buildOrder[0][3]["targetSize"])
 	{
-//	        if (this.Config.debug > 0)
-//			warn(" we have less than nominal   Try to train more units");
 		// find the actual queue we want
 		var queue = this.queue;
 		if (this.buildOrder[0][3]["classes"].indexOf("Siege") !== -1 ||
@@ -555,7 +566,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	// Assign all no-roles that fit (after a plan aborts, for example).
 	if (this.type === "Raid")
 	{
-		var candidates = gameState.getOwnUnits().filter(API3.Filters.byClass(["Cavalry"]));
+		var candidates = gameState.getOwnUnits().filter(API3.Filters.byClass("Cavalry"));
 		var num = 0;
 		candidates.forEach(function(ent) {
 			if (!ent.position())
@@ -570,7 +581,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		return;
 	}
 
-	var noRole = gameState.getOwnEntitiesByRole(undefined, false).filter(API3.Filters.byClass(["Unit"]));
+	var noRole = gameState.getOwnEntitiesByRole(undefined, false).filter(API3.Filters.byClass("Unit"));
 	noRole.forEach(function(ent) {
 		if (!ent.position())
 			return;
@@ -578,7 +589,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			return;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
-		if (ent.hasClass("Support") || ent.attackTypes() === undefined)
+		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
 			return;
 		ent.setMetadata(PlayerID, "plan", plan);
 	});
@@ -594,7 +605,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	if (this.type !== "Rush")
 		return;
 	// For a rush, assign also workers (but keep a minimum number of defenders)
-	var worker = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.byClass(["Unit"]));
+	var worker = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.byClass("Unit"));
 	var num = 0;
 	worker.forEach(function(ent) {
 		if (!ent.position())
@@ -672,10 +683,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 
 	this.position = this.unitCollection.getCentrePosition();
 	if (!this.position)
-	{
-		var ourCC = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-		this.position = ourCC[0].position();
-	}
+		this.position = this.rallyPoint;
 
 	var minDist = Math.min();
 	var target = undefined;
