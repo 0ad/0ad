@@ -1,0 +1,9 @@
+{
+	"affects":["Structure, Mechanical"],
+	"affectedPlayers":["Enemy"],
+	"modifications":[
+		{"value":"Armour/Hack","multiply":0.5},
+		{"value":"Armour/Pierce","multiply":0.5},
+		{"value":"Armour/Crush","multiply":0.5}
+	]
+}

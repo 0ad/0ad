@@ -1,0 +1,10 @@
+{
+	"affects":["Elephant"],
+	"affectedPlayers":["Player"],
+	"modifications":[
+	   {"value":"Attack/Melee/Hack","multiply":1.2},
+	   {"value":"Attack/Melee/Crush","multiply":1.2},
+	   {"value":"Attack/Charge/Hack","multiply":1.2},
+	   {"value":"Attack/Charge/Crush","multiply":1.2}
+    ]
+}

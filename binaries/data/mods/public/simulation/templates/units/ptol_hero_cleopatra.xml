@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_archer">
+  <Auras>
+    <unit_attack_speed_20>
+      <Type>range</Type>
+      <Radius>50</Radius>
+    </unit_attack_speed_20>
+  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">
@@ -8,11 +14,11 @@
   </Builder>
   <Identity>
     <Civ>ptol</Civ>
-	<GenericName>Cleopatra VII</GenericName>
+    <GenericName>Cleopatra VII</GenericName>
     <SpecificName>Kleopatra H' Philopater</SpecificName>
     <Tooltip>Classes: Hero Infantry Archer.
-"Consort" Aura: Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes.
-"Patriot" Aura: Egyptian units fight harder when in vision of her.</Tooltip>
+"Consort" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes.
+"Patriot" Aura: Egyptian units fight harder when in vision of her. (20% greater attack speed)</Tooltip>
     <History>Cleopatra VII is one of the most discussed women in history. She came to the throne of Egypt at the age of 18 and ruled with guile and cunning. Fully Greek in heritage, she nevertheless engendered great support from the Egyptian people by being the first Ptolemaic Pharaoh to learn the Egyptian language. Her patron goddess was the Egyptian goddess Isis, even though by this time the Macedonians had imported much of their pantheon of Olympian gods. Cleopatra met Julius Caesar in 48 BCE, when he arrived to conquer Egypt for Rome. She succeeded in changing his mind. She bore him a son the next year and travelled to Rome as Caesar's bride, but when Julius was assassinated she fled back to Egypt. Later, on his way to attack Parthia, Marcus Antony, trusted general of the late Caesar, stopped in Egypt. There he met Cleopatra and fell immediately in love. Cleopatra bore him 4 children. Together, they fought Octavian Caesar (who would go on to become Augustus Caesar, first emperor of Rome) in a Roman civil war. After the disastrous naval battle of Actium (31 BCE) off the coast of Greece, they fled back to Egypt, hotly pursued by Octavian. The next year, surrounded by Octavian's forces with no hope of regaining power, Antony committed suicide. Cleopatra, the last of the Egyptian Pharaohs and the last of Alexander's Successors, followed Antony in death, committing suicide by Asp, a deadly snake.</History>
     <Icon>units/celt_hero_boudicca.png</Icon>
   </Identity>

@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
+  <Auras>
+    <cav_armor_2>
+      <Type>global</Type>
+    </cav_armor_2>
+  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

@@ -1,0 +1,13 @@
+{
+	"affects":["Pike"],
+	"affectedPlayers":["Player"],
+	"modifications":[
+		{"value":"Attack/Melee/Hack","multiply":1.2},
+		{"value":"Attack/Melee/Pierce","multiply":1.2},
+		{"value":"Attack/Melee/Crush","multiply":1.2},
+		{"value":"Armour/Hack","multiply":1.2},
+		{"value":"Armour/Pierce","multiply":1.2},
+		{"value":"Armour/Hack","multiply":1.2}
+		{"value":"Health/Max","multiply":1.2}
+	]
+}

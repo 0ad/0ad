@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
+  <Auras>
+    <eleph_attack_20>
+      <Type>range</Type>
+      <Radius>80</Radius>
+    </eleph_attack_20>
+    <eleph_speed_20>
+      <Type>range</Type>
+      <Radius>80</Radius>
+    </eleph_speed_20>
+  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

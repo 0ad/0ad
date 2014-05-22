@@ -1,0 +1,9 @@
+{
+	"affects":["Unit"],
+	"affectedPlayers":["Player"],
+	"modifications":[
+		{"value":"Attack/Melee/RepeatTime","multiply":0.8},
+		{"value":"Attack/Ranged/RepeatTime","multiply":0.8},
+		{"value":"Attack/Charge/RepeatTime","multiply":0.8},
+	]
+}
