@@ -8,7 +8,7 @@ function GetIdentityClasses(template)
 		classList = classList.concat(template.Classes._string.split(/\s+/));
 
 	if (template.VisibleClasses && template.VisibleClasses._string)
-		classList.concat(template.VisibleClasses._string.split(/\s+/));
+		classList = classList.concat(template.VisibleClasses._string.split(/\s+/));
 
 	if (template.Rank)
 		classList = classList.concat(template.Rank);
