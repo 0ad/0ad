@@ -1,7 +1,7 @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@ Install ejabberd and the erlang compiler @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-# apt-get install ejabberd erlang-dev?
+# apt-get install ejabberd erlang-dev make
 
 Configure it
 # dpkg-reconfigure ejabberd 
@@ -16,7 +16,8 @@ You should now be able to connect to this XMPP server using a normal XMPP client
 Go to its source directory
 $ cd source/tools/XpartaMuPP
 
-Edit the file to set the domain on which is run the ejabberd server. (e.g. localhost)
+Edit mod_ipstamp.erl to set the domain on which is run the ejabberd server. (e.g. localhost)
+# -define (Domain, <server domain>).
 
 Build and install it
 $ make
@@ -43,44 +44,40 @@ You can see the list of registered / connected users in
 "Virtual Hosts" >> domain name >> "users"
 
 You must manually add a new user for XpartaMuPP.
-Enter a login (use "xpartamupp" since that's what clients expect) 
+Enter a login (use "wfgbot" since that's what clients expect) 
 and password, then press "Add user"
 
 Alternative - Command line :
 Edit /etc/ejabberd.ejabberd.cfg and change {register, [{deny,all}]} to {register, [{allow,all}]}.
-Register xpartamupp : # ejabberdctl register xpartamupp <domain> <Xpartamupp password>
+Register wfgbot : # ejabberdctl register wfgbot <domain> <wfgbot password>
 
 Create an ACL that includes the bot (name it ipbots, since that's what the ipstamp module expects)
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @@ Run XpartaMuPP - XMPP Multiplayer Game Manager @@
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-You need to have python 3 installed
-$ sudo apt-get install python3
-
-You also need the SleekXmpp Python library
-Go to github and follow their instructions
-https://github.com/fritzy/SleekXMPP
+You need to have python 3 and SleekXmpp installed
+$ sudo apt-get install python3 python3-sleekxmpp
 
 If you would like to run the leaderboard database,
-$ sudo apt-get install sqlalchemy
+$ sudo apt-get install python3-sqlalchemy
 
 Then execute the following command to setup the database.
-$ ./source/tools/XpartaMuPP/LobbyRanking.py
+$ python3 ./source/tools/XpartaMuPP/LobbyRanking.py
 
 Execute the following command to run the bot with default options
-$ ./source/tools/XpartaMuPP/XpartaMuPP.py
+$ python3 ./source/tools/XpartaMuPP/XpartaMuPP.py
 
 or rather a similar command to run a properly configured program
-$ ./source/tools/XpartaMuPP/XpartaMuPP.py --domain localhost --password XXXXXX --nickname WFGbot
+$ python3 ./source/tools/XpartaMuPP/XpartaMuPP.py --domain localhost --login wfgbot --password XXXXXX --nickname WFGbot --room arena
 
-Run ./source/tools/XpartaMuPP/XpartaMuPP.py -h for the full list of options
+Run python3 ./source/tools/XpartaMuPP/XpartaMuPP.py --help for the full list of options
 
 If everything is fine you should see something along these lines in your console
 <<<<
 INFO     Negotiating TLS
 INFO     Using SSL version: 3
-INFO     Node set to: xpartamupp@lobby.wildfiregames.com/CC
+INFO     Node set to: wfgbot@lobby.wildfiregames.com/CC
 INFO     XpartaMuPP started
 <<<<
 
