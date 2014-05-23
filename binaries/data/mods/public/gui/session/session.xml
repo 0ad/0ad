@@ -242,10 +242,6 @@
 	<object name="devCommands" size="100%-225 50%-88 100%-8 50%+104" type="image" sprite="devCommandsBackground" z="40"
 		hidden="true" hotkey="session.devcommands.toggle">
 		<action on="Press">toggleDeveloperOverlay();</action>
-		<action on="Tick">
-			if (this.hidden != (Engine.ConfigDB_GetValue("user", "developeroverlay.enable") === "false"))
-				toggleDeveloperOverlay();
-		</action>
 
 		<object size="0 0 100%-18 16" type="text" style="devCommandsText">
 			<translatableAttribute id="caption">Control all units</translatableAttribute>
