@@ -525,6 +525,8 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 
 	var xMax = 0;
 	var yMax = 0;
+	var xMin = 0;
+	var yMin = 0;
 
 	for (var i = 0; i < this.offsets.length; ++i)
 	{
@@ -534,27 +536,20 @@ Formation.prototype.MoveMembersIntoFormation = function(moveCenter, force)
 		if (!cmpUnitAI)
 			continue;
 		
-		if (force)
+		var data = 
 		{
-			cmpUnitAI.ReplaceOrder("FormationWalk", {
-				"target": this.entity,
-				"x": offset.x,
-				"z": offset.y
-			});
-		}
-		else
-		{
-			cmpUnitAI.PushOrderFront("FormationWalk", {
-				"target": this.entity,
-				"x": offset.x,
-				"z": offset.y
-			});
-		}
+			"target": this.entity,
+			"x": offset.x,
+			"z": offset.y
+		};
+		cmpUnitAI.AddOrder("FormationWalk", data, !force);
 		xMax = Math.max(xMax, offset.x);
 		yMax = Math.max(yMax, offset.y);
+		xMin = Math.min(xMin, offset.x);
+		yMin = Math.min(yMin, offset.y);
 	}
-	this.width = xMax * 2;
-	this.depth = yMax * 2;
+	this.width = xMax - xMin;
+	this.depth = yMax - yMin;
 };
 
 Formation.prototype.MoveToMembersCenter = function()
@@ -743,7 +738,7 @@ Formation.prototype.ComputeFormationOffsets = function(active, positions)
 					x += side * centerGap / 2;
 				}
 				var column = Math.ceil(n/2) + Math.ceil(c/2) * side;
-				var r1 = 0
+				var r1 = 0;
 				var r2 = 0;
 				if (this.sloppyness != 0)
 				{
