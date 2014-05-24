@@ -5584,15 +5584,11 @@ UnitAI.prototype.CanHeal = function(target)
 			return false;
 
 	// Verify that the target is a healable class
-	var healable = false;
 	for (var healableClass of cmpHeal.GetHealableClasses())
 		if (cmpIdentity.HasClass(healableClass))
-			healable = true;
+			return true;
 
-	if (!healable)
-		return false;
-
-	return true;
+	return false;
 };
 
 UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
