@@ -440,8 +440,13 @@ function openTrade()
 
 		buttonResource.onpress = (function(resource){
 			return function() {
-				if (selec == resource)
-					return;
+				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
+				{
+					for (var ress of RESOURCES)
+						proba[ress] = 0;
+					proba[resource] = 100;
+					Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				}
 				selec = resource;
 				updateButtons();
 			}
