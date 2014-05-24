@@ -5578,23 +5578,17 @@ UnitAI.prototype.CanHeal = function(target)
 	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return false;
-	for each (var unhealableClass in cmpHeal.GetUnhealableClasses())
-	{
-		if (cmpIdentity.HasClass(unhealableClass) != -1)
-		{
+
+	for (var unhealableClass of cmpHeal.GetUnhealableClasses())
+		if (cmpIdentity.HasClass(unhealableClass))
 			return false;
-		}
-	}
 
 	// Verify that the target is a healable class
 	var healable = false;
-	for each (var healableClass in cmpHeal.GetHealableClasses())
-	{
-		if (cmpIdentity.HasClass(healableClass) != -1)
-		{
+	for (var healableClass of cmpHeal.GetHealableClasses())
+		if (cmpIdentity.HasClass(healableClass))
 			healable = true;
-		}
-	}
+
 	if (!healable)
 		return false;
 
