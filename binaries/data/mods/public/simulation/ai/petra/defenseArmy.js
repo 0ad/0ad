@@ -114,8 +114,6 @@ m.DefenseArmy.prototype.debug = function (gameState)
 {
 	m.debug(" ");
 	m.debug ("Army " + this.ID)
-//	m.debug ("state " + this.state);
-//	m.debug ("WatchLevel " + this.watchLevel);
 //	m.debug ("Entities " + this.foeEntities.length);
 //	m.debug ("Strength " + this.foeStrength);
 	//	debug (gameState.getEntityById(ent)._templateName + ", ID " + ent);

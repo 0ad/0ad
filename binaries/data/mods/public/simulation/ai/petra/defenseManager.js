@@ -184,9 +184,6 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		for (var p = o+1; p < this.armies.length; ++p)
 		{
 			var otherArmy = this.armies[p];
-			if (otherArmy.state !== army.state)
-				continue;
-			
 			if (API3.SquareVectorDistance(army.foePosition, otherArmy.foePosition) < this.armyMergeSize)
 			{
 				// no need to clear here.
