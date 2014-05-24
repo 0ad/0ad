@@ -192,6 +192,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.identity = {
 			"rank": cmpIdentity.GetRank(),
 			"classes": cmpIdentity.GetClassesList(),
+			"visibleClasses": cmpIdentity.GetVisibleClassesList(),
 			"selectionGroupName": cmpIdentity.GetSelectionGroupName()
 		};
 	}
@@ -630,7 +631,7 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		ret.tooltip =  template.Identity.Tooltip;
 		ret.gateConversionTooltip =  template.Identity.GateConversionTooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
-		ret.identityClassesString = GetTemplateIdentityClassesString(template);
+		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
 	}
 
 	if (template.UnitMotion)

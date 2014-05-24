@@ -56,7 +56,8 @@
   <Identity>
     <GenericName>Outpost</GenericName>
     <Tooltip>Build in neutral and friendly territories to scout areas of the map. Slowly loses health while in neutral territory.</Tooltip>
-    <Classes datatype="tokens">Outpost Village Defensive -ConquestCritical</Classes>
+    <Classes datatype="tokens">-ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Village Outpost</VisibleClasses>
     <Icon>structures/outpost.png</Icon>
   </Identity>
   <Loot>

@@ -419,7 +419,11 @@ class xml(Extractor):
                                 comment = element.get("comment")
                                 comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
                                 comments.append(comment)
-                            yield element.text, context, position, comments
+                            if "splitOnWhitespace" in self.keywords[keyword]:
+                                for splitText in element.text.split():
+                                    yield splitText, context, position, comments
+                            else:
+                                yield element.text, context, position, comments
 
 
 # Hack from http://stackoverflow.com/a/2819788

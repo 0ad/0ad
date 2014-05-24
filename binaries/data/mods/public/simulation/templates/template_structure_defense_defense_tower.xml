@@ -59,7 +59,8 @@
   <Identity>
     <GenericName>Defense Tower</GenericName>
     <Tooltip>Shoots arrows. Garrison to provide extra defense.</Tooltip>
-    <Classes datatype="tokens">DefenseTower Town Tower GarrisonTower -ConquestCritical</Classes>
+    <Classes datatype="tokens">Tower GarrisonTower -ConquestCritical</Classes>
+    <VisibleClasses datatype="tokens">Town DefenseTower</VisibleClasses>
     <Icon>structures/defense_tower.png</Icon>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

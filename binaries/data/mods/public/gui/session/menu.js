@@ -666,6 +666,7 @@ function openManual()
 
 function toggleDeveloperOverlay()
 {
+	// The developer overlay is disabled in ranked games
 	if (Engine.HasXmppClient() && Engine.IsRankedGame())
 		return;
 
@@ -674,10 +675,8 @@ function toggleDeveloperOverlay()
 		submitChatDirectly(translate("The Developer Overlay was opened."));
 	else
 		submitChatDirectly(translate("The Developer Overlay was closed."));
-	// Update the options dialog
+	// Toggle the overlay
 	devCommands.hidden = !devCommands.hidden;
-	// Save the changes
-	Engine.ConfigDB_CreateValue("user", "developeroverlay.enable", String(!devCommands.hidden) );
 }
 
 function closeOpenDialogs()

@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
+  <Auras>
+    <struct_buildtime_10>
+      <Type>range</Type>
+      <Radius>77</Radius>
+    </struct_buildtime_10>
+    <merc_cost_50>
+      <Type>global</Type>
+    </merc_cost_50>
+  </Auras>
   <Builder>
     <Rate>1.0</Rate>
     <Entities datatype="tokens">

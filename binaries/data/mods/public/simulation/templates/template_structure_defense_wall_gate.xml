@@ -26,7 +26,7 @@
   <Identity>
     <GenericName>City Gate</GenericName>
     <Tooltip>Allow units access through a city wall. Can be locked to prevent access.</Tooltip>
-    <Classes datatype="tokens">-ConquestCritical Defensive StoneWall Gates</Classes>
+    <Classes datatype="tokens">-ConquestCritical StoneWall Gates</Classes>
     <Icon>structures/gate.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

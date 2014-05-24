@@ -1,24 +1,31 @@
 /**
- * Return template.Identity.Classes._string if exists
+ * Gets an array of all classes for this identity template
  */
-function GetTemplateIdentityClassesString(template)
+function GetIdentityClasses(template)
 {
-	var identityClassesString = undefined;
-	if (template.Identity && template.Identity.Classes && "_string" in template.Identity.Classes)
-		identityClassesString = template.Identity.Classes._string;
-	return identityClassesString;
+	var classList = [];
+	if (template.Classes && template.Classes._string)
+		classList = classList.concat(template.Classes._string.split(/\s+/));
+
+	if (template.VisibleClasses && template.VisibleClasses._string)
+		classList = classList.concat(template.VisibleClasses._string.split(/\s+/));
+
+	if (template.Rank)
+		classList = classList.concat(template.Rank);
+	return classList;
 }
 
 /**
- * Check whether template.Identity.Classes contains specified class
+ * Gets an array with all classes for this identity template
+ * that should be shown in the GUI
  */
-function TemplateHasIdentityClass(template, className)
+function GetVisibleIdentityClasses(template)
 {
-	var identityClassesString = GetTemplateIdentityClassesString(template);
-	var hasClass = identityClassesString && identityClassesString.indexOf(className) != -1;
-	return hasClass;
+	if (template.VisibleClasses && template.VisibleClasses._string)
+		return template.VisibleClasses._string.split(/\s+/);
+	return [];
 }
 
-Engine.RegisterGlobal("GetTemplateIdentityClassesString", GetTemplateIdentityClassesString);
-Engine.RegisterGlobal("TemplateHasIdentityClass", TemplateHasIdentityClass);
+Engine.RegisterGlobal("GetIdentityClasses", GetIdentityClasses);
+Engine.RegisterGlobal("GetVisibleIdentityClasses", GetVisibleIdentityClasses);
 

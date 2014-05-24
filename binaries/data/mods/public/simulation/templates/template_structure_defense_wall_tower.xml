@@ -54,7 +54,7 @@
   <Identity>
     <GenericName>Wall Turret</GenericName>
     <Tooltip>Shoots arrows. Garrison to defend a city wall against attackers.</Tooltip>
-    <Classes datatype="tokens">Defensive -ConquestCritical StoneWall Tower</Classes>
+    <Classes datatype="tokens">-ConquestCritical StoneWall Tower</Classes>
     <Icon>structures/tower.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

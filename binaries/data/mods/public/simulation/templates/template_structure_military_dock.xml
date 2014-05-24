@@ -23,7 +23,8 @@
   <Identity>
     <GenericName>Dock</GenericName>
     <Tooltip>Build upon a shoreline to construct naval vessels and to open sea trade. Research naval improvements.</Tooltip>
-    <Classes datatype="tokens">Village Naval Market NavalMarket Dock</Classes>
+    <Classes datatype="tokens">Naval NavalMarket</Classes>
+    <VisibleClasses datatype="tokens">Economic Village Market Dock</VisibleClasses>
     <Icon>structures/dock.png</Icon>
   </Identity>
   <Loot>

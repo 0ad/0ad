@@ -28,10 +28,10 @@
   <Identity>
     <GenericName>Blacksmith</GenericName>
     <Tooltip>Research weapons and armor improvements.</Tooltip>
-    <Classes datatype="tokens">
+    <VisibleClasses datatype="tokens">
 	  Town
 	  Blacksmith
-	</Classes>
+	</VisibleClasses>
     <Icon>structures/blacksmith.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>

@@ -21,13 +21,12 @@
     <GenericName>Storehouse</GenericName>
     <Tooltip>Dropsite for wood, stone, and metal resources. Research gathering improvements for these resources.</Tooltip>
     <Classes datatype="tokens">
-	  Storehouse
-	  Village
 	  DropsiteWood
 	  DropsiteMetal
 	  DropsiteStone
 	  -ConquestCritical
 	</Classes>
+    <VisibleClasses datatype="tokens">Village Storehouse</VisibleClasses>
     <Icon>structures/storehouse.png</Icon>
   </Identity>
   <Loot>
