@@ -49,9 +49,10 @@ public:
 		ICmpRangeManager::CLosQuerier los(ICmpRangeManager::LOS_MASK, inputDataVec, size);
 
 		std::vector<u8> losData;
-		losData.resize(tex.GetBitmapSize(size, size));
+		size_t pitch;
+		losData.resize(tex.GetBitmapSize(size, size, &pitch));
 
-		tex.GenerateBitmap(los, &losData[0], size, size);
+		tex.GenerateBitmap(los, &losData[0], size, size, pitch);
 
 //		for (size_t i = 0; i < losData.size(); ++i)
 //			printf("%s %3d", i % (size_t)sqrt(losData.size()) ? "" : "\n", losData[i]);
@@ -78,9 +79,10 @@ public:
 		for (size_t i = 0; i < reps; ++i)
 		{
 			std::vector<u8> losData;
-			losData.resize(tex.GetBitmapSize(size, size));
+			size_t pitch;
+			losData.resize(tex.GetBitmapSize(size, size, &pitch));
 
-			tex.GenerateBitmap(los, &losData[0], size, size);
+			tex.GenerateBitmap(los, &losData[0], size, size, pitch);
 		}
 		double dt = timer_Time() - t;
 		printf("\n# %f secs\n", dt/reps);
