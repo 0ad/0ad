@@ -104,7 +104,7 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 
 	m_client->registerConnectionListener( this );
 	m_client->setPresence(gloox::Presence::Available, -1);
-	m_client->disco()->setVersion( "Pyrogenesis", "0.0.15" );
+	m_client->disco()->setVersion( "Pyrogenesis", "0.0.17" );
 	m_client->disco()->setIdentity( "client", "bot" );
 	m_client->setCompression(false);
 
