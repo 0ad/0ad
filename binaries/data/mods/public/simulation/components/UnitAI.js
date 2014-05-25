@@ -269,7 +269,10 @@ var UnitFsmSpec = {
 		}
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		if (!this.order.data.max)
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+		else
+			this.MoveToPointRange(this.order.data.x, this.order.data.z, this.order.data.min, this.order.data.max);
 		if (this.IsAnimal())
 			this.SetNextState("ANIMAL.WALKING");
 		else
@@ -4864,6 +4867,14 @@ UnitAI.prototype.Walk = function(x, z, queued)
 		this.expectedRoute.push({ "x": x, "z": z });
 	else
 		this.AddOrder("Walk", { "x": x, "z": z, "force": true }, queued);
+};
+
+/**
+ * Adds walk to point range order to queue, forced by the player.
+ */
+UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued)
+{
+	this.AddOrder("Walk", { "x": x, "z": z, "min": min, "max": max, "force": true }, queued);
 };
 
 /**

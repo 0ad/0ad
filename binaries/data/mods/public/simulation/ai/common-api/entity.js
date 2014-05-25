@@ -703,6 +703,12 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": x, "z": z, "queued": queued });
 		return this;
 	},
+
+	moveToRange: function(x, z, min, max, queued) {
+		queued = queued || false;
+		Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
+		return this;
+	},
 	
 	attackMove: function(x, z, queued) {
 		queued = queued || false;
@@ -735,8 +741,9 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	garrison: function(target) {
-		Engine.PostCommand(PlayerID,{"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": false});
+	garrison: function(target, queued) {
+		queued = queued || false;
+		Engine.PostCommand(PlayerID,{"type": "garrison", "entities": [this.id()], "target": target.id(),"queued": queued});
 		return this;
 	},
 

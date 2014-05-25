@@ -3,7 +3,7 @@ var PETRA = function(m)
 
 /*
  Describes a transport plan
- Constructor assign units (units is an ID array, or an ID), a destionation (position, ingame), and a wanted escort size.
+ Constructor assign units (units is an ID array), a destionation (position).
  The naval manager will try to deal with it accordingly.
  
  By this I mean that the naval manager will find how to go from access point 1 to access point 2 (relying on in-game pathfinder for mvt)
@@ -11,24 +11,18 @@ var PETRA = function(m)
  
  Note: only assign it units currently over land, or it won't work.
  Also: destination should probably be land, otherwise the units will be lost at sea.
+
+ metadata for units:
+   transport = this.ID
+   onBoard = ship.id() when affected to a ship but not yet garrisoned
+           = "onBoard" when garrisoned in a ship
+           = undefined otherwise
+   endPos  = position of destination
+  
+   metadata for ships
+   transporter = this.ID
 */
 
-// TODO: finish the support of multiple accessibility indexes.
-// TODO: this doesn't check we can actually reach in the init, which we might want?
-
-// TODO when a ship is destroyed, remove the entities inside from this.units
-
-// metadata for units:
-// transport = this.ID
-// onBoard = ship.id() when affected to a ship but not yet garrisoned
-//         = "onBoard" when garrisoned in a ship
-//         = undefined otherwise
-// endPos  = position of destination
-//
-// metadata for ships
-// transporter = this.ID
-
-//m.TransportPlan = function(gameState, units, destination, allAtOnce, escortSize) {
 m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 {
 	this.ID = m.playerGlobals[PlayerID].uniqueIDTPlans++;
@@ -61,30 +55,17 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 		warn("Starting a new transport plan with ID " +  this.ID + " to index " + endIndex
 			+ " with units length " + units.length);
 
-	var allAtOnce = false;
-	var escortSize = false;
-	if (allAtOnce)
-		this.allAtOnce = allAtOnce;
-	else
-		this.allAtOnce = false;
-
-	if (escortSize)
-		this.escortSize = escortSize;
-	else
-		this.escortSize = 0;
-	
 	this.ships = gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
 	this.transportShips = gameState.ai.HQ.navalManager.transportShips.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
-	this.escortShips = gameState.ai.HQ.navalManager.warShips.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
 	
 	this.ships.registerUpdates();
 	this.transportShips.registerUpdates();
-	this.escortShips.registerUpdates();
 
 	this.state = "boarding";
 	this.boardingPos = {};
 	this.needTransportShips = true;
+	this.nTry = {};
 	return true;
 };
 
@@ -155,11 +136,6 @@ m.TransportPlan.prototype.releaseAllShips = function()
 	this.ships.forEach(function (ent) { ent.setMetadata(PlayerID, "transporter", undefined) });
 };
 
-m.TransportPlan.prototype.needEscortShips = function()
-{
-	return !(this.escortShips.length < this.escortSize);
-};
-
 m.TransportPlan.prototype.cancelTransport = function(gameState)
 {
 	var ent = this.units.toEntityArray()[0];
@@ -188,17 +164,11 @@ m.TransportPlan.prototype.cancelTransport = function(gameState)
 };
 
 
-// try to move on.
-/* several states:
- "unstarted" is the initial state, and will determine wether we follow basic or grouping path
- Basic path:
- - "waitingForBoarding" means we wait 'till we have enough transport ships and escort ships to move stuffs.
- - "Boarding" means we're trying to board units onto our ships
- - "Moving" means we're moving ships
- - "Unboarding" means we're unbording
- - Once we're unboarded, we either return to boarding point (if we still have units to board) or we clear.
-	> there is the possibility that we'll be moving units on land, but that's basically a restart too, with more clearing.
- Grouping Path is basically the same with "grouping" and we never unboard (unless there is a need to)
+/*
+  try to move on. There are two states:
+ - "boarding" means we're trying to board units onto our ships
+ - "sailing" means we're moving ships and eventually unload units
+ - then the plan is cleared
  */
 
 m.TransportPlan.prototype.update = function(gameState)
@@ -233,6 +203,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 				}
 				ent.garrison(ship);
 				ent.setMetadata(PlayerID, "timeGarrison", time);
+				ent.setMetadata(PlayerID, "posGarrison", ent.position());
 			}
 		}
 		else if (ent.getMetadata(PlayerID, "onBoard") !== "onBoard" && !self.isOnBoard(ent))
@@ -244,15 +215,43 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 				ent.setMetadata(PlayerID, "onBoard", undefined);
 			else
 			{
-				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 10000)
+				var distShip = API3.SquareVectorDistance(self.boardingPos[shipId], ship.position());
+				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 10000 && distShip > 225)
 				{
 					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 					ship.setMetadata(PlayerID, "timeGarrison", time);				
 				}
 				else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2000)
 				{
-					ent.garrison(ship);
+					var oldPos = ent.getMetadata(PlayerID, "posGarrison");
+					var newPos = ent.position();
+					var distEnt = API3.SquareVectorDistance(self.boardingPos[shipId], ent.position());
+					if (oldPos[0] === newPos[0] && oldPos[1] === newPos[1])
+					{
+						if (distShip < 225)	// looks like we are blocked ... try to go out of this trap
+						{
+							if (!self.nTry[ent.id()])
+								self.nTry[ent.id()] = 1;
+							else
+								++self.nTry[ent.id()];
+							if (self.nTry[ent.id()] > 5)
+							{
+								if (self.debug > 0)
+									warn("unit blocked, but no ways out of the trap ... destroy it");
+								ent.destroy();
+								return;
+							}
+							if (self.nTry[ent.id()] > 1)
+								ent.moveToRange(newPos[0], newPos[1], 30, 30);
+							ent.garrison(ship, true);
+						}
+						else			// wait for the ship
+							ent.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
+					}
+					else
+						self.nTry[ent.id()] = 0;
 					ent.setMetadata(PlayerID, "timeGarrison", time);
+					ent.setMetadata(PlayerID, "posGarrison", ent.position());
 				}
 			}
 		}
