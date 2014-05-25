@@ -37,7 +37,6 @@ GUI util
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUIbase.h"
-#include "ps/Parser.h"
 // TODO Gee: New
 #include "ps/Overlay.h"
 #include "CGUI.h"
