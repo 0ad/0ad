@@ -218,6 +218,7 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 		break;
 	}
 	case MT_TerrainChanged:
+	case MT_WaterChanged:
 	{
 		// TODO: we ought to only bother updating the dirtied region
 		m_TerrainDirty = true;
