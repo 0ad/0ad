@@ -485,21 +485,23 @@ public:
 		float x, z, rotY;
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
-		float y = GetHeightFixed().ToFloat() + Interpolate(0.f, m_LastYDifference.ToFloat(), frameOffset);
-
-		if (forceFloating)
+	
+		float baseY = 0;
+		if (m_RelativeToGround)
 		{
-			// if the actor has a <float/> flag, it shouldn't be serialized, 
-			// so it's handled here separately
 			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
-			if (cmpTerrain && cmpWaterManager)
+			if (cmpTerrain)
+				baseY = cmpTerrain->GetExactGroundLevel(x, z);
+
+			if (m_Floating || forceFloating)
 			{
-				float diff = (cmpWaterManager->GetWaterLevel(m_X, m_Z) - cmpTerrain->GetGroundLevel(m_X, m_Z)).ToFloat();
-				if (diff > 0.f)
-					y += diff;
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+				if (cmpWaterManager)
+					baseY = std::max(baseY, cmpWaterManager->GetExactWaterLevel(x, z));
 			}
 		}
+
+		float y = baseY + m_Y.ToFloat() + Interpolate(m_LastYDifference.ToFloat(), 0.f, frameOffset);
 
 		CMatrix3D m;
 		
