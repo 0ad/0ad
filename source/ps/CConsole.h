@@ -75,6 +75,9 @@ public:
 	void InsertMessage(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
 	void InsertChar(const int szChar, const wchar_t cooked);
 
+	// Insert message without printf-style formatting, and without length limits
+	void InsertMessageRaw(const CStrW& message);
+
 	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
 
 	void SetBuffer(const wchar_t* szMessage);
@@ -139,9 +142,6 @@ private:
 	bool IsEmpty() { return (m_iBufferLength == 0); }
 
 	void ProcessBuffer(const wchar_t* szLine);
-
-	// Insert message without printf-style formatting, and without length limits
-	void InsertMessageRaw(const CStrW& message);
 
 	void LoadHistory();
 	void SaveHistory();

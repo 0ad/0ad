@@ -50,7 +50,7 @@ void JSI_Console::Write(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wst
 {
 	if (!CheckGlobalInitialized())
 		return;
-	g_Console->InsertMessage(L"%ls", output.c_str());
+	g_Console->InsertMessageRaw(output);
 }
 
 void JSI_Console::RegisterScriptFunctions(ScriptInterface& scriptInterface)
