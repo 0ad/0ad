@@ -41,6 +41,7 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 
 m.ConstructionPlan.prototype.start = function(gameState)
 {
+	Engine.ProfileStart("Building construction start");
 
 	var builders = gameState.findBuilders(this.type).toEntityArray();
 
@@ -52,6 +53,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	if (!pos)
 	{
 		gameState.ai.HQ.stopBuilding.push(this.type);
+		Engine.ProfileStop();
 		return;
 	}
 	gameState.buildingsBuilt++;
@@ -79,6 +81,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		}
 	}
 	this.onStart(gameState);
+	Engine.ProfileStop();
 };
 
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea

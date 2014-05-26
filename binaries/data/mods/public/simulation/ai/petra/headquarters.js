@@ -61,7 +61,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	// initialize frontier map. Each cell is 2 if on the near frontier, 1 on the frontier and 0 otherwise
 	this.frontierMap = m.createFrontierMap(gameState, this.borderMap);
 	// list of allowed regions
-	this.allowedRegions = [gameState.ai.myIndex];
+	this.allowedRegions = {};
 
 	// try to determine if we have a water map
 	this.navalMap = false;
@@ -70,22 +70,21 @@ m.HQ.prototype.init = function(gameState, queues)
 	var totalSize = gameState.getMap().width * gameState.getMap().width;
 	var minLandSize = Math.floor(0.2*totalSize);
 	var minWaterSize = Math.floor(0.3*totalSize);
-	var possibleRegions = [gameState.ai.myIndex];
 	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
 	{
-		if (i !== gameState.ai.myIndex && gameState.ai.accessibility.regionType[i] === "land"
-			&& gameState.ai.accessibility.regionSize[i] > 20)
+		if (i === gameState.ai.myIndex)
+			this.allowedRegions[i] = true;
+		else if (gameState.ai.accessibility.regionType[i] === "land" && gameState.ai.accessibility.regionSize[i] > 20)
 		{
 			var seaIndex = this.getSeaIndex(gameState, gameState.ai.myIndex, i);
-			if (seaIndex)
+			if (!seaIndex)
+				continue;
+			this.allowedRegions[i] = true;
+			if (gameState.ai.accessibility.regionSize[i] > minLandSize)
 			{
-				possibleRegions.push(i);
-				if (gameState.ai.accessibility.regionSize[i] > minLandSize)
-				{
-					this.navalMap = true;
-					if (this.navalRegions.indexOf(seaIndex) === -1)
-						this.navalRegions.push(seaIndex);
-				}
+				this.navalMap = true;
+				if (this.navalRegions.indexOf(seaIndex) === -1)
+					this.navalRegions.push(seaIndex);
 			}
 		}
 		else if (gameState.ai.accessibility.regionType[i] === "water" && gameState.ai.accessibility.regionSize[i] > minWaterSize)
@@ -95,12 +94,9 @@ m.HQ.prototype.init = function(gameState, queues)
 				this.navalRegions.push(i);
 		}
 	}
-	if (this.navalMap)
-		this.allowedRegions = possibleRegions;
 	if (this.Config.debug > 0)
 	{
-		warn("allowed regions " + uneval(this.allowedRegions));
-		for (var region of this.allowedRegions)
+		for (var region in this.allowedRegions)
 			warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
 	}
 
@@ -179,13 +175,13 @@ m.HQ.prototype.init = function(gameState, queues)
 	// adapt our starting strategy to the available resources
 	// - if on a small island, favor fishing and require less fields to save room for buildings
 	var startingSize = 0;
-	for (var i = 0; i < this.allowedRegions.length; ++i)
+	for (var region in this.allowedRegions)
 	{
 		for each (var base in this.baseManagers)
 		{
-			if (!base.anchor || base.accessIndex !== this.allowedRegions[i])
+			if (!base.anchor || base.accessIndex !== +region)
 				continue;
-			startingSize += gameState.ai.accessibility.regionSize[base.accessIndex];
+			startingSize += gameState.ai.accessibility.regionSize[region];
 			break;
 		}
 	}
@@ -200,7 +196,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
 	var startingWood = gameState.getResources()["wood"];
 	var check = {};
-	for each (var proxim in ["nearby", "medium", "faraway"])
+	for (var proxim of ["nearby", "medium", "faraway"])
 	{
 		for each (var base in this.baseManagers)
 		{
@@ -657,6 +653,8 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
 
+	Engine.ProfileStart("findEconomicCCLocation");
+
 	// create an empty map
 	var locateMap = new API3.Map(gameState.sharedScript);
 	locateMap.setMaxVal(255);
@@ -675,22 +673,19 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 			norm = 0;
 			continue;
 		}
-		else if (this.borderMap.map[j] === 1)	// disfavor the borders of the map
-			norm *= 0.5;
-
-		var pos = [j%locateMap.width+0.5, Math.floor(j/locateMap.width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		// We require that it is accessible from our starting position
-		var index = gameState.ai.accessibility.getAccessValue(pos);
-		if (this.allowedRegions.indexOf(index) === -1)
+		var index = gameState.ai.accessibility.landPassMap[j];
+		if (!this.allowedRegions[index])
 		{
 			norm = 0;
 			continue;
 		}
 
 		// checking distance to other cc
+		var pos = [j%locateMap.width+0.5, Math.floor(j/locateMap.width)+0.5];
+		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		var minDist = Math.min();
-		for each (var cc in ccEnts)
+		for (var cc of ccEnts)
 		{
 			var dist = API3.SquareVectorDistance(cc.position(), pos);
 			if (dist < 14000)    // Reject if too near from any cc
@@ -730,7 +725,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 				norm *= 0.5;
 		}
 
-		for each (var dp in dpEnts)
+		for (var dp of dpEnts)
 		{
 			if (dp.hasClass("Elephant") || dp.hasClass("CivCentre"))  // CivCentre are already taken into account
 				continue;
@@ -745,6 +740,9 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 		}
 		if (norm == 0)
 			continue;
+
+		if (this.borderMap.map[j] === 1)	// disfavor the borders of the map
+			norm *= 0.5;
 		
 		var val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j]
 			+ gameState.sharedScript.CCResourceMaps["wood"].map[j]
@@ -755,7 +753,8 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 			val = 255;
 		locateMap.map[j] = val;
 	}
-	
+
+	Engine.ProfileStop();	
 	
 	var best = locateMap.findBestTile(6, obstructions);
 	var bestIdx = best[0];
@@ -783,7 +782,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, resource, fromStrate
 	var z = (Math.floor(bestIdx / locateMap.width) + 0.5) * gameState.cellSize;
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
-	var index = gameState.ai.accessibility.getAccessValue([x,z]);
+	var index = gameState.ai.accessibility.landPassMap[bestIdx];
 	for each (var base in this.baseManagers)
 	{
 		if (base.anchor && base.accessIndex !== index)
@@ -809,11 +808,13 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 	// TODO add CC foundations (needed for allied)
 	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	var numAllyCC = 0;
-	for each (var cc in ccEnts)
+	for (var cc of ccEnts)
 		if (gameState.isPlayerAlly(cc.owner()))
 			numAllyCC += 1;
 	if (numAllyCC < 2)
 		return this.findEconomicCCLocation(gameState, "wood", true);
+
+	Engine.ProfileStart("findStrategicCCLocation");
 
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0);
@@ -826,20 +827,17 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 	{
 		if (this.territoryMap.getOwnerIndex(j) !== 0 || this.borderMap.map[j] === 2)
 			continue;
-
-		var ix = j%width;
-		var iy = Math.floor(j/width);
-		var pos = [ix+0.5, iy+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
-		// We require that it is accessible from our starting position if not a naval map
-		var index = gameState.ai.accessibility.getAccessValue(pos);
-		if (this.allowedRegions.indexOf(index) === -1)
+		// We require that it is accessible from our starting position
+		var index = gameState.ai.accessibility.landPassMap[j];
+		if (!this.allowedRegions[index])
 			continue;
 
 		// checking distances to other cc
+		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
+		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		var minDist = Math.min();
 		var sumDelta = 0;
-		for each (var cc in ccEnts)
+		for (var cc of ccEnts)
 		{
 			var ccPos = cc.position();
 			var dist = API3.SquareVectorDistance(ccPos, pos);
@@ -888,6 +886,8 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 	if (this.Config.debug > 0)
 		warn("We've found a strategic base with bestVal = " + bestVal);	
 
+	Engine.ProfileStop();
+
 	if (bestVal === undefined)
 		return undefined;
 
@@ -895,7 +895,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState)
 	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
-	var index = gameState.ai.accessibility.getAccessValue([x,z]);
+	var index = gameState.ai.accessibility.landPassMap[bestIdx];
 	for each (var base in this.baseManagers)
 	{
 		if (base.anchor && base.accessIndex !== index)
@@ -945,7 +945,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		var index = gameState.ai.accessibility.getAccessValue(pos);
 		// checking distances to other markets
 		var maxDist = 0;
-		for each (var market in markets)
+		for (var market of markets)
 		{
 			if (template.hasClass("Dock") && market.hasClass("Dock"))
 			{
@@ -1021,7 +1021,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		// checking distances to other structures
 		var minDist = Math.min();
-		for each (var str in enemyStructures)
+		for (var str of enemyStructures)
 		{
 			if (str.foundationProgress() !== undefined)
 				continue;
@@ -1040,7 +1040,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		if (minDist < 0)
 			continue;
 
-		for each (var str in ownStructures)
+		for (var str of ownStructures)
 		{
 			var strPos = str.position();
 			if (!strPos)
@@ -1428,12 +1428,12 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 	if (gameState.currentPhase() > 2 && queues.militaryBuilding.length() === 0 && this.bAdvanced.length !== 0)
 	{
 		var nAdvanced = 0;
-		for each (var advanced in this.bAdvanced)
+		for (var advanced of this.bAdvanced)
 			nAdvanced += gameState.countEntitiesAndQueuedByType(gameState.applyCiv(advanced));
 
 		if ((nAdvanced === 0 && gameState.getPopulation() > 80)	|| gameState.getPopulation() > 120)
 		{
-			for each (var advanced in this.bAdvanced)
+			for (var advanced of this.bAdvanced)
 			{
 				if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(advanced), true) < 1 && this.canBuild(gameState, advanced))
 				{
@@ -1453,11 +1453,11 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	var bestBase = 1;
 	var distMin = Math.min();
-	for each (var cc in ccEnts)
+	for (var cc of ccEnts)
 	{
 		if (cc.owner() != PlayerID)
 			continue;
-		for each (var cce in ccEnts)
+		for (var cce of ccEnts)
 		{
 			if (gameState.isPlayerAlly(cce.owner()))
 				continue;
@@ -1540,18 +1540,20 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		}
 		else if (this.basesMap.map[j] === 0)
 		{
+			var index = gameState.ai.accessibility.landPassMap[j];
+			if (!gameState.ai.HQ.allowedRegions[index])
+				continue;
 			var distmin = Math.min();
 			var baseID = undefined;
 			var ix = j%width;
 			var iy = Math.floor(j/width);
-
 			var pos = [ix+0.5, iy+0.5];
 			pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 			for each (var base in this.baseManagers)
 			{
 				if (!base.anchor || !base.anchor.position())
 					continue;
-				if (base.accessIndex !== gameState.ai.accessibility.getAccessValue(pos))
+				if (base.accessIndex !== index)
 					continue;
 				var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 				if (dist >= distmin)
