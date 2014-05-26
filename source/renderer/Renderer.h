@@ -95,6 +95,7 @@ public:
 		OPT_SHOWSKY,
 		OPT_SMOOTHLOS,
 		OPT_POSTPROC,
+		OPT_DISPLAYFRUSTUM,
 	};
 
 	enum RenderPath {
@@ -155,6 +156,7 @@ public:
 		bool m_SmoothLOS;
 		bool m_ShowSky;
 		bool m_Postproc;
+		bool m_DisplayFrustum;
 	} m_Options;
 
 	struct Caps {
@@ -448,14 +450,6 @@ protected:
 	 * m_SkyManager: the SkyManager object used for sky textures and settings
 	 */
 	SkyManager* m_SkyManager;
-
-	/**
-	 * m_DisplayFrustum: Render the cull frustum and other data that may be interesting
-	 * to evaluate culling and shadow map calculations
-	 *
-	 * Can be controlled from JS via renderer.displayFrustum
-	 */
-	bool m_DisplayFrustum;
 
 	/**
 	 * Enable rendering of terrain tile priority text overlay, for debugging.

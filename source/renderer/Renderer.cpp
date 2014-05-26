@@ -432,7 +432,6 @@ CRenderer::CRenderer()
 	m_ModelRenderMode = SOLID;
 	m_ClearColor[0] = m_ClearColor[1] = m_ClearColor[2] = m_ClearColor[3] = 0;
 
-	m_DisplayFrustum = false;
 	m_DisplayTerrainPriorities = false;
 	m_SkipSubmit = false;
 
@@ -451,6 +450,7 @@ CRenderer::CRenderer()
 	m_Options.m_SmoothLOS = false;
 	m_Options.m_Postproc = false;
 	m_Options.m_ShowSky = false;
+	m_Options.m_DisplayFrustum = false;
 
 	// TODO: be more consistent in use of the config system
 	CFG_GET_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
@@ -733,6 +733,9 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_POSTPROC:
 			m_Options.m_Postproc = value;
 			break;
+		case OPT_DISPLAYFRUSTUM:
+			m_Options.m_DisplayFrustum = value;
+			break;
 		default:
 			debug_warn(L"CRenderer::SetOptionBool: unknown option");
 			break;
@@ -778,6 +781,8 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_SmoothLOS;
 		case OPT_POSTPROC:
 			return m_Options.m_Postproc;
+		case OPT_DISPLAYFRUSTUM:
+			return m_Options.m_DisplayFrustum;
 		default:
 			debug_warn(L"CRenderer::GetOptionBool: unknown option");
 			break;
@@ -1608,7 +1613,7 @@ void CRenderer::RenderSubmissions()
 #endif
 
 	// render debug lines
-	if (m_DisplayFrustum)
+	if (m_Options.m_DisplayFrustum)
 	{
 		DisplayFrustum();
 		m->shadow.RenderDebugBounds();
