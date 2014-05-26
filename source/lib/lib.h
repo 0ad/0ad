@@ -63,6 +63,7 @@ scope
 #include <cmath>	// fabsf
 #include <limits>	// numeric_limits
 #include <stdexcept>	// out_of_range
+#include <algorithm>	// min, max
 
 template<typename T>
 T Clamp(T val, T min, T max)
