@@ -4,8 +4,8 @@
 	<Environment>
 		<SkySet>cumulus</SkySet>
 		<SunColour r="0.866667" g="0.776471" b="0.486275"/>
-		<SunElevation angle="0.615431"/>
-		<SunRotation angle="1.47876"/>
+		<SunElevation angle="0.589049"/>
+		<SunRotation angle="-0.0490874"/>
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.458824" g="0.458824" b="0.458824"/>
 		<Fog>
@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.737255" g="0.592157" b="0.27451"/>
 				<Height>20.1443</Height>
-				<Shininess>104.004</Shininess>
 				<Waviness>4.94141</Waviness>
 				<Murkiness>0.818359</Murkiness>
 				<Tint r="0.737255" g="0.592157" b="0.27451"/>
@@ -35,7 +34,7 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="605.808" y="92.0018" z="230.984"/>
+		<Position x="595.7" y="141.2" z="97.878"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
@@ -13411,20 +13410,6 @@
 			<Orientation y="-1.11228"/>
 			<Actor seed="13862"/>
 		</Entity>
-		<Entity uid="5467">
-			<Template>structures/ptol_mercenary_camp</Template>
-			<Player>1</Player>
-			<Position x="639.43952" z="948.93982"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="38994"/>
-		</Entity>
-		<Entity uid="5469">
-			<Template>structures/ptol_mercenary_camp</Template>
-			<Player>1</Player>
-			<Position x="666.38575" z="424.19285"/>
-			<Orientation y="2.35621"/>
-			<Actor seed="26108"/>
-		</Entity>
 		<Entity uid="5470">
 			<Template>units/ptol_support_female_citizen</Template>
 			<Player>1</Player>
@@ -13659,7 +13644,7 @@
 		<Entity uid="5553">
 			<Template>structures/ptol_outpost</Template>
 			<Player>1</Player>
-			<Position x="283.18412" z="295.16163"/>
+			<Position x="336.69776" z="187.83252"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="4678"/>
 		</Entity>
@@ -15175,6 +15160,41 @@
 			<Position x="364.20688" z="1035.86988"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="22078"/>
+		</Entity>
+		<Entity uid="5858">
+			<Template>structures/ptol_military_colony</Template>
+			<Player>1</Player>
+			<Position x="639.87165" z="951.88733"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9184"/>
+		</Entity>
+		<Entity uid="5859">
+			<Template>structures/ptol_military_colony</Template>
+			<Player>1</Player>
+			<Position x="365.36606" z="1005.06983"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="10972"/>
+		</Entity>
+		<Entity uid="5860">
+			<Template>structures/ptol_military_colony</Template>
+			<Player>1</Player>
+			<Position x="255.04262" z="297.2552"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="59750"/>
+		</Entity>
+		<Entity uid="5861">
+			<Template>structures/ptol_military_colony</Template>
+			<Player>1</Player>
+			<Position x="710.16712" z="185.21903"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="2140"/>
+		</Entity>
+		<Entity uid="5862">
+			<Template>structures/ptol_military_colony</Template>
+			<Player>1</Player>
+			<Position x="693.13447" z="517.42103"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="64678"/>
 		</Entity>
 	</Entities>
 	<Paths/>
