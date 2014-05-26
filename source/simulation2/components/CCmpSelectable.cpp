@@ -57,6 +57,8 @@ public:
 		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_PositionChanged);
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_WaterChanged);
 		// TODO: it'd be nice if we didn't get these messages except in the rare
 		// cases where we're actually drawing a selection highlight
 	}
@@ -318,9 +320,13 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 			// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
 			CColor color = cmpPlayer->GetColour();
 			SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
+
+			InvalidateStaticOverlay();
+			break;
 		}
-		// fall-through
 	case MT_PositionChanged:
+	case MT_TerrainChanged:
+	case MT_WaterChanged:
 		{
 			InvalidateStaticOverlay();
 			break;
