@@ -48,7 +48,11 @@ public:
 	virtual void SetHeightOffset(entity_pos_t UNUSED(dy)) { }
 	virtual entity_pos_t GetHeightOffset() { return entity_pos_t::Zero(); }
 	virtual void SetHeightFixed(entity_pos_t UNUSED(y)) { }
+	virtual entity_pos_t GetHeightFixed() { return entity_pos_t::Zero(); }
+	virtual bool IsHeightRelative() { return true; }
+	virtual void SetHeightRelative(bool UNUSED(relative)) { }
 	virtual bool IsFloating() { return false; }
+	virtual void SetFloating(bool UNUSED(flag)) { }
 	virtual CFixedVector3D GetPosition() { return CFixedVector3D(); }
 	virtual CFixedVector2D GetPosition2D() { return CFixedVector2D(); }
 	virtual CFixedVector3D GetPreviousPosition() { return CFixedVector3D(); }

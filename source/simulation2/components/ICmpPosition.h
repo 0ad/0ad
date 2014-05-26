@@ -94,15 +94,35 @@ public:
 	virtual entity_pos_t GetHeightOffset() = 0;
 
 	/**
-	 * Set the vertical position as a fixed, absolute value.
-	 * Will stay at this height until the next call to SetHeightFixed or SetHeightOffset.
+	 * Set the vertical position above the map zero point
 	 */
 	virtual void SetHeightFixed(entity_pos_t y) = 0;
+
+	/**
+	 * Returns the vertical offset above the map zero point
+	 */
+	virtual entity_pos_t GetHeightFixed() = 0;
+
+	/**
+	 * Returns true iff the entity will follow the terrain height (possibly with an offset)
+	 */
+	virtual bool IsHeightRelative() = 0;
+
+	/**
+	 * When set to true, the entity will follow the terrain height (possibly with an offset)
+	 * When set to false, it's height won't change automatically
+	 */
+	virtual void SetHeightRelative(bool flag) = 0;
 
 	/**
 	 * Returns whether the entity floats on water.
 	 */
 	virtual bool IsFloating() = 0;
+
+	/**
+	 * Set the entity to float on water
+	 */
+	virtual void SetFloating(bool flag) = 0;
 
 	/**
 	 * Returns the current x,y,z position (no interpolation).
