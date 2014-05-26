@@ -292,6 +292,19 @@ public:
 };
 
 /**
+ * Sent when water height has been changed.
+ */
+class CMessageWaterChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(WaterChanged)
+
+	CMessageWaterChanged()
+	{
+	}
+};
+
+/**
  * Sent when terrain (texture or elevation) has been changed.
  */
 class CMessageTerrainChanged : public CMessage
