@@ -118,6 +118,9 @@ public:
 
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
+
+		CMessageWaterChanged msg;
+		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
 	virtual entity_pos_t GetWaterLevel(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z))

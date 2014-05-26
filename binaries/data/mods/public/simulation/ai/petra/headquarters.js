@@ -100,7 +100,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	if (this.Config.debug > 0)
 	{
 		warn("allowed regions " + uneval(this.allowedRegions));
-		for each (var region in this.allowedRegions)
+		for (var region of this.allowedRegions)
 			warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
 	}
 

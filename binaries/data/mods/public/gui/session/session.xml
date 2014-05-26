@@ -525,14 +525,14 @@
 					</object>
 				</repeat>
 				<object name="tradeHelp" size="100%-24 4 100% 28" enabled="false" type="button" style="StoneButton" tooltip_style="sessionToolTipBold">
-					<translatableAttribute id="tooltip">Select one goods as origin of the changes, then use the arrows of the target goods to make the changes.</translatableAttribute>
+					<translatableAttribute id="tooltip">Select one goods as origin of the changes, then use the arrows of the target goods to make the changes (using Shift to select will put the selected resource to 100%).</translatableAttribute>
 					<object size="20% 15% 80% 75%" type="image" ghost="true" sprite="iconInfoWhite"/>
 				</object>
 			</object>
 		</object>
 
 		<object name="tradeStatistics" size="20 90 100%-20 168">
-			<object name="landTraders" size="0 0   100%  50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+			<object name="landTraders" size="0 0 100% 50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
 			<object name="shipTraders" size="0 50% 100% 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
 		</object>
 

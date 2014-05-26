@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,8 +21,7 @@ GUI base
 
 #include "precompiled.h"
 
-#include <string>
-
+#include "ps/CLogger.h"
 #include "GUI.h"
 
 //--------------------------------------------------------
@@ -62,118 +61,86 @@ CRect CClientArea::GetClientArea(const CRect &parent) const
 
 bool CClientArea::SetClientArea(const CStr& Value)
 {
-	// This might lack incredible speed, but since all XML files
-	//  are read at startup, reading 100 client areas will be
-	//  negligible in the loading time.
+	/* ClientAreas contain a left, top, right, and bottom
+	 *  for example: "50%-150 10%+9 50%+150 10%+25" means
+	 *  the left edge is at 50% minus 150 pixels, the top
+	 *  edge is at 10% plus 9 pixels, the right edge is at
+	 *  50% plus 150 pixels, and the bottom edge is at 10%
+	 *  plus 25 pixels.
+	 * All four coordinates are required and can be
+	 *  defined only in pixels, only in percents, or some
+	 *  combination of both.
+	 */
 
-	// Setup parser to parse the value
+	// Check the input is only numeric
+	const char* input = Value.c_str();
+	CStr buffer = "";
+	unsigned int coord = 0;
+	float pixels[4] = {0, 0, 0, 0};
+	float percents[4] = {0, 0, 0, 0};
+	for (unsigned int i = 0; i < Value.length(); i++)
+	{
+		switch (input[i])
+		{
+		case '.':
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+		case '7':
+		case '8':
+		case '9':
+			buffer.push_back(input[i]);
+			break;
+		case '+':
+			pixels[coord] += buffer.ToFloat();
+			buffer = "+";
+			break;
+		case '-':
+			pixels[coord] += buffer.ToFloat();
+			buffer = "-";
+			break;
+		case '%':
+			percents[coord] += buffer.ToFloat();
+			buffer = "";
+			break;
+		case ' ':
+			pixels[coord] += buffer.ToFloat();
+			buffer = "";
+			coord++;
+			break;
+		default:
+			LOGWARNING(L"ClientArea definitions may only contain numerics. Your input: '%s'", Value.c_str());
+			return false;
+		}
+		if (coord > 3)
+		{
+			LOGWARNING(L"Too many CClientArea parameters (4 max). Your input: '%s'", Value.c_str());
+			return false;
+		}
+	}
 
-	// One of the four values:
-	//  will give outputs like (in argument):
-	//  (200) <== no percent, just the first $value
-	//  (200) (percent) <== just the percent
-	//  (200) (percent) (100) <== percent PLUS pixel
-	//  (200) (percent) (-100) <== percent MINUS pixel
-	//  (200) (percent) (100) (-100) <== Both PLUS and MINUS are used, INVALID
-	/*
-	string one_value = "_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]";
-	string four_values = one_value + "$arg(delim)" + 
-						 one_value + "$arg(delim)" + 
-						 one_value + "$arg(delim)" + 
-						 one_value + "$arg(delim)_"; // it's easier to just end with another delimiter
-	*/
-	// Don't use the above strings, because they make this code go very slowly
-	const char* four_values =
-		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
-		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
-		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
-		"_[-_$arg(_minus)]$value[$arg(percent)%_[+_$value]_[-_$arg(_minus)$value]_]" "$arg(delim)"
-		"_";
-	CParser& parser (CParserCache::Get(four_values));
-
-	CParserLine line;
-	line.ParseString(parser, Value);
-
-	if (!line.m_ParseOK)
+	if (coord < 3)
+	{
+		LOGWARNING(L"Too few CClientArea parameters (4 min). Your input: '%s'", Value.c_str());
 		return false;
-
-	int arg_count[4] = {0,0,0,0}; // argument counts for the four values
-	int arg_start[4] = {0,0,0,0}; // location of first argument, [0] is always 0
-
-	// Divide into the four piles (delimiter is an argument named "delim")
-	for (int i=0, valuenr=0; i<(int)line.GetArgCount(); ++i)
-	{
-		std::string str;
-		line.GetArgString(i, str);
-		if (str == "delim")
-		{
-			if (valuenr==0)
-			{
-				arg_count[0] = i;
-				arg_start[1] = i+1;
-			}
-			else
-			{
-				if (valuenr!=3)
-				{
-					ENSURE(valuenr <= 2);
-					arg_start[valuenr+1] = i+1;
-					arg_count[valuenr] = arg_start[valuenr+1] - arg_start[valuenr] - 1;
-				}
-				else
-					arg_count[3] = (int)line.GetArgCount() - arg_start[valuenr] - 1;
-			}
-
-			++valuenr;
-		}
 	}
 
-	// Iterate argument
-	
-	// This is the scheme:
-	// 1 argument = Just pixel value
-	// 2 arguments = Just percent value
-	// 3 arguments = percent and pixel
-	// 4 arguments = INVALID
+	// Now that we're at the end of the string, flush the remaining buffer.
+	pixels[coord] += buffer.ToFloat();
 
-  	// Default to 0
-	float values[4][2] = {{0.f,0.f},{0.f,0.f},{0.f,0.f},{0.f,0.f}};
-	for (int v=0; v<4; ++v)
-	{
-		if (arg_count[v] == 1)
-		{
-			std::string str;
-			line.GetArgString(arg_start[v], str);
-
-			if (!line.GetArgFloat(arg_start[v], values[v][1]))
-				return false;
-		}
-		else
-		if (arg_count[v] == 2)
-		{
-			if (!line.GetArgFloat(arg_start[v], values[v][0]))
-				return false;
-		}
-		else
-		if (arg_count[v] == 3)
-		{
-			if (!line.GetArgFloat(arg_start[v], values[v][0]) ||
-				!line.GetArgFloat(arg_start[v]+2, values[v][1]))
-				return false;
-
-		}
-		else return false;
-	}
-
-	// Now store the values[][] in the right place
-	pixel.left =		values[0][1];
-	pixel.top =			values[1][1];
-	pixel.right =		values[2][1];
-	pixel.bottom =		values[3][1];
-	percent.left =		values[0][0];
-	percent.top =		values[1][0];
-	percent.right =		values[2][0];
-	percent.bottom =	values[3][0];
+	// Now store the coords in the right place
+	pixel.left =		pixels[0];
+	pixel.top =			pixels[1];
+	pixel.right =		pixels[2];
+	pixel.bottom =		pixels[3];
+	percent.left =		percents[0];
+	percent.top =		percents[1];
+	percent.right =		percents[2];
+	percent.bottom =	percents[3];
 	return true;
 }
 

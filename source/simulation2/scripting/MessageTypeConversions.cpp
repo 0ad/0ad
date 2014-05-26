@@ -282,6 +282,19 @@ CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, js
 
 ////////////////////////////////
 
+jsval CMessageWaterChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageWaterChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return new CMessageWaterChanged();
+}
+
+////////////////////////////////
+
 jsval CMessageTerritoriesChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

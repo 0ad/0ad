@@ -93,6 +93,16 @@ function ProcessCommand(player, cmd)
 		});
 		break;
 
+	case "walk-to-range":
+		// Only used by the AI
+		for each (var ent in entities)
+		{
+			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+			if(cmpUnitAI)
+				cmpUnitAI.WalkToPointRange(cmd.x, cmd.z, cmd.min, cmd.max, cmd.queued);
+		}
+		break;
+
 	case "attack-walk":
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);

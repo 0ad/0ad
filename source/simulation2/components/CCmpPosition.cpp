@@ -72,8 +72,9 @@ public:
 	// m_LastX/Z contain the position from the start of the most recent turn
 	// m_PrevX/Z conatain the position from the turn before that
 	entity_pos_t m_X, m_Z, m_LastX, m_LastZ, m_PrevX, m_PrevZ; // these values contain undefined junk if !InWorld
-	entity_pos_t m_YOffset, m_LastYOffset;
-	bool m_RelativeToGround; // whether m_YOffset is relative to terrain/water plane, or an absolute height
+
+	entity_pos_t m_Y, m_LastYDifference; // either the relative or the absolute Y coordinate
+	bool m_RelativeToGround; // whether m_Y is relative to terrain/water plane, or an absolute height
 
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 
@@ -128,7 +129,8 @@ public:
 
 		m_InWorld = false;
 
-		m_LastYOffset = m_YOffset = paramNode.GetChild("Altitude").ToFixed();
+		m_LastYDifference = entity_pos_t::Zero();
+		m_Y = paramNode.GetChild("Altitude").ToFixed();
 		m_RelativeToGround = true;
 		m_Floating = paramNode.GetChild("Floating").ToBool();
 
@@ -152,16 +154,19 @@ public:
 		if (m_InWorld)
 		{
 			serialize.NumberFixed_Unbounded("x", m_X);
+			serialize.NumberFixed_Unbounded("y", m_Y);
 			serialize.NumberFixed_Unbounded("z", m_Z);
 			serialize.NumberFixed_Unbounded("last x", m_LastX);
+			serialize.NumberFixed_Unbounded("last y diff", m_LastYDifference);
 			serialize.NumberFixed_Unbounded("last z", m_LastZ);
 		}
 		serialize.NumberI32_Unbounded("territory", m_Territory);
 		serialize.NumberFixed_Unbounded("rot x", m_RotX);
 		serialize.NumberFixed_Unbounded("rot y", m_RotY);
 		serialize.NumberFixed_Unbounded("rot z", m_RotZ);
-		serialize.NumberFixed_Unbounded("altitude", m_YOffset);
+		serialize.NumberFixed_Unbounded("altitude", m_Y);
 		serialize.Bool("relative", m_RelativeToGround);
+		serialize.Bool("floating", m_Floating);
 
 		if (serialize.IsDebug())
 		{
@@ -186,7 +191,6 @@ public:
 				break;
 			}
 			serialize.StringASCII("anchor", anchor, 0, 16);
-			serialize.Bool("floating", m_Floating);
 		}
 	}
 
@@ -198,20 +202,22 @@ public:
 		if (m_InWorld)
 		{
 			deserialize.NumberFixed_Unbounded("x", m_X);
+			deserialize.NumberFixed_Unbounded("y", m_Y);
 			deserialize.NumberFixed_Unbounded("z", m_Z);
 			deserialize.NumberFixed_Unbounded("last x", m_LastX);
+			deserialize.NumberFixed_Unbounded("last y diff", m_LastYDifference);
 			deserialize.NumberFixed_Unbounded("last z", m_LastZ);
 		}
 		deserialize.NumberI32_Unbounded("territory", m_Territory);
 		deserialize.NumberFixed_Unbounded("rot x", m_RotX);
 		deserialize.NumberFixed_Unbounded("rot y", m_RotY);
 		deserialize.NumberFixed_Unbounded("rot z", m_RotZ);
-		deserialize.NumberFixed_Unbounded("altitude", m_YOffset);
+		deserialize.NumberFixed_Unbounded("altitude", m_Y);
 		deserialize.Bool("relative", m_RelativeToGround);
+		deserialize.Bool("floating", m_Floating);
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
-		m_LastYOffset = m_YOffset;
 
 		if (m_InWorld)
 			UpdateXZRotation();
@@ -239,7 +245,7 @@ public:
 			m_InWorld = true;
 			m_LastX = m_PrevX = m_X;
 			m_LastZ = m_PrevZ = m_Z;
-			m_LastYOffset = m_YOffset;
+			m_LastYDifference = entity_pos_t::Zero();
 		}
 
 		AdvertisePositionChanges();
@@ -256,7 +262,7 @@ public:
 			m_InWorld = true;
 			m_LastX = m_PrevX = m_X;
 			m_LastZ = m_PrevZ = m_Z;
-			m_LastYOffset = m_YOffset;
+			m_LastYDifference = entity_pos_t::Zero();
 		}
 		
 		AdvertisePositionChanges();
@@ -278,42 +284,79 @@ public:
 
 	virtual void SetHeightOffset(entity_pos_t dy)
 	{
-		if (m_RelativeToGround)
-		{
-			m_LastYOffset = m_YOffset;
-			m_YOffset = dy;
-		}
-		else 
-		{
-			m_LastYOffset = m_YOffset = dy;
-			m_RelativeToGround = true;
-		}
-
+		// subtract the offset and replace with a new offset
+		m_LastYDifference = dy - GetHeightOffset();
+		m_Y += m_LastYDifference;
 		AdvertisePositionChanges();
 	}
 
 	virtual entity_pos_t GetHeightOffset()
 	{
-		return m_YOffset;
+		if (m_RelativeToGround)
+			return m_Y;
+		// not relative to the ground, so the height offset is m_Y - ground height
+		entity_pos_t baseY;
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		if (cmpTerrain)
+			baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
+
+		if (m_Floating)
+		{
+			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+			if (cmpWaterManager)
+				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
+		}
+		return m_Y - baseY;
 	}
 
 	virtual void SetHeightFixed(entity_pos_t y)
 	{
-		if (m_RelativeToGround)
+		// subtract the absolute height and replace it with a new absolute height
+		m_LastYDifference = y - GetHeightFixed();
+		m_Y += m_LastYDifference;
+		AdvertisePositionChanges();
+	}
+
+	virtual entity_pos_t GetHeightFixed()
+	{
+		if (!m_RelativeToGround)
+			return m_Y;
+		// relative to the ground, so the fixed height = ground height + m_Y
+		entity_pos_t baseY;
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		if (cmpTerrain)
+			baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
+
+		if (m_Floating)
 		{
-			m_LastYOffset = m_YOffset = y;
-			m_RelativeToGround = false;
+			CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
+			if (cmpWaterManager)
+				baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
 		}
-		else
-		{
-			m_LastYOffset = m_YOffset;
-			m_YOffset = y;	
-		}
+		return m_Y + baseY;
+	}
+
+	virtual bool IsHeightRelative()
+	{
+		return m_RelativeToGround;
+	}
+
+	virtual void SetHeightRelative(bool relative)
+	{
+		// move y to use the right offset (from terrain or from map origin)
+		m_Y = relative ? GetHeightOffset() : GetHeightFixed();
+		m_RelativeToGround = relative;
+		m_LastYDifference = entity_pos_t::Zero();
 	}
 
 	virtual bool IsFloating()
 	{
 		return m_Floating;
+	}
+
+	virtual void SetFloating(bool flag)
+	{
+		m_Floating = flag;
 	}
 
 	virtual CFixedVector3D GetPosition()
@@ -324,22 +367,7 @@ public:
 			return CFixedVector3D();
 		}
 
-		entity_pos_t baseY;
-		if (m_RelativeToGround)
-		{
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-			if (cmpTerrain)
-				baseY = cmpTerrain->GetGroundLevel(m_X, m_Z);
-
-			if (m_Floating)
-			{
-				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
-				if (cmpWaterManager)
-					baseY = std::max(baseY, cmpWaterManager->GetWaterLevel(m_X, m_Z));
-			}
-		}
-
-		return CFixedVector3D(m_X, baseY + m_YOffset, m_Z);
+		return CFixedVector3D(m_X, GetHeightFixed(), m_Z);
 	}
 
 	virtual CFixedVector2D GetPosition2D()
@@ -361,22 +389,7 @@ public:
 			return CFixedVector3D(); 
 		} 
 
-		entity_pos_t baseY; 
-		if (m_RelativeToGround) 
-		{ 
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-			if (cmpTerrain) 
-				baseY = cmpTerrain->GetGroundLevel(m_PrevX, m_PrevZ); 
-
-			if (m_Floating) 
-			{ 
-				CmpPtr<ICmpWaterManager> cmpWaterMan(GetSystemEntity());
-				if (cmpWaterMan) 
-					baseY = std::max(baseY, cmpWaterMan->GetWaterLevel(m_PrevX, m_PrevZ)); 
-			} 
-		} 
-
-		return CFixedVector3D(m_PrevX, baseY + m_YOffset, m_PrevZ); 
+		return CFixedVector3D(m_PrevX, GetHeightFixed(), m_PrevZ); 
 	} 
 
 	virtual CFixedVector2D GetPreviousPosition2D() 
@@ -472,6 +485,7 @@ public:
 		float x, z, rotY;
 		GetInterpolatedPosition2D(frameOffset, x, z, rotY);
 
+	
 		float baseY = 0;
 		if (m_RelativeToGround)
 		{
@@ -487,7 +501,7 @@ public:
 			}
 		}
 
-		float y = baseY + Interpolate(m_LastYOffset.ToFloat(), m_YOffset.ToFloat(), frameOffset);
+		float y = baseY + m_Y.ToFloat() + Interpolate(m_LastYDifference.ToFloat(), 0.f, frameOffset);
 
 		CMatrix3D m;
 		
@@ -560,7 +574,7 @@ public:
 
 			m_LastX = m_X;
 			m_LastZ = m_Z;
-			m_LastYOffset = m_YOffset;
+			m_LastYDifference = entity_pos_t::Zero();
 
 
 			// warn when a position change also causes a territory change under the entity

@@ -398,14 +398,12 @@ function openTrade()
 			button[res].label.caption = proba[res] + "%";
 			if (res == selec)
 			{
-				button[res].res.enabled = false;
 				button[res].sel.hidden = false;
 				button[res].up.hidden = true;
 				button[res].dn.hidden = true;
 			}
 			else
 			{
-				button[res].res.enabled = true;
 				button[res].sel.hidden = true;
 				button[res].up.hidden = (proba[res] == 100 || proba[selec] == 0);
 				button[res].dn.hidden = (proba[res] == 0 || proba[selec] == 100);
@@ -436,12 +434,17 @@ function openTrade()
 		var buttonUp = Engine.GetGUIObjectByName("tradeArrowUp["+i+"]");
 		var buttonDn = Engine.GetGUIObjectByName("tradeArrowDn["+i+"]");
 		var iconSel = Engine.GetGUIObjectByName("tradeResourceSelection["+i+"]");
-		button[resource] = { "res": buttonResource, "up": buttonUp, "dn": buttonDn, "label": label, "sel": iconSel };
+		button[resource] = { "up": buttonUp, "dn": buttonDn, "label": label, "sel": iconSel };
 
 		buttonResource.onpress = (function(resource){
 			return function() {
-				if (selec == resource)
-					return;
+				if (Engine.HotkeyIsPressed("session.fulltradeswap"))
+				{
+					for (var ress of RESOURCES)
+						proba[ress] = 0;
+					proba[resource] = 100;
+					Engine.PostNetworkCommand({"type": "set-trading-goods", "tradingGoods": proba});
+				}
 				selec = resource;
 				updateButtons();
 			}

@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
+  <Auras>
+    <structure_armor_1>
+      <Type>range</Type>
+      <Radius>50</Radius>
+    </structure_armor_1>
+    <unit_armor_1>
+      <Type>range</Type>
+      <Radius>50</Radius>
+    </unit_armor_1>
+  </Auras>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Quintus Fabius Maximus</SpecificName>
     <Icon>units/rome_hero_maximus.png</Icon>
     <History>Maximus was dictator of Rome for six months during the Second Punic War. Instead of attacking the most powerful Hannibal, he started a very effective war of attrition against him, securing the nickname "Cunctator" or Delayer.</History>
+    <Tooltip>Classes: Hero Melee Cavalry Sword.
+"Shield of Rome" Aura: +1 Armor (all types) to Roman units and buildings within sight of him.
+Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
+Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/romans/hero_maximus_horse.xml</Actor>

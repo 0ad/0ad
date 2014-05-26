@@ -51,6 +51,12 @@ The blurred bitmap is then uploaded into a GL texture for use by the renderer.
 // Blur with a NxN filter, where N = g_BlurSize must be an odd number.
 static const size_t g_BlurSize = 7;
 
+// Alignment (in bytes) of the pixel data passed into glTexSubImage2D.
+// This must be a multiple of GL_UNPACK_ALIGNMENT, which ought to be 1 (since
+// that's what we set it to) but in some weird cases appears to have a different
+// value. (See Trac #2594). Multiples of 4 are possibly good for performance anyway.
+static const size_t g_SubTextureAlignment = 4;
+
 CLOSTexture::CLOSTexture(CSimulation2& simulation) :
 	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
@@ -219,7 +225,7 @@ void CLOSTexture::ConstructTexture(int unit)
 
 	m_MapSize = cmpTerrain->GetVerticesPerSide();
 
-	m_TextureSize = (GLsizei)round_up_to_pow2((size_t)m_MapSize + g_BlurSize - 1);
+	m_TextureSize = (GLsizei)round_up_to_pow2(round_up((size_t)m_MapSize + g_BlurSize - 1, g_SubTextureAlignment));
 
 	glGenTextures(1, &m_Texture);
 
@@ -305,7 +311,8 @@ void CLOSTexture::RecomputeTexture(int unit)
 	PROFILE("recompute LOS texture");
 
 	std::vector<u8> losData;
-	losData.resize(GetBitmapSize(m_MapSize, m_MapSize));
+	size_t pitch;
+	losData.resize(GetBitmapSize(m_MapSize, m_MapSize, &pitch));
 
 	CmpPtr<ICmpRangeManager> cmpRangeManager(m_Simulation, SYSTEM_ENTITY);
 	if (!cmpRangeManager)
@@ -313,34 +320,33 @@ void CLOSTexture::RecomputeTexture(int unit)
 
 	ICmpRangeManager::CLosQuerier los(cmpRangeManager->GetLosQuerier(g_Game->GetPlayerID()));
 
-	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize);
+	GenerateBitmap(los, &losData[0], m_MapSize, m_MapSize, pitch);
 
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS && recreated)
 	{
 		g_Renderer.BindTexture(unit, m_TextureSmooth1);		
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 		g_Renderer.BindTexture(unit, m_TextureSmooth2);		
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 	}
 
 	g_Renderer.BindTexture(unit, m_Texture);
-	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, m_MapSize + g_BlurSize - 1, m_MapSize + g_BlurSize - 1, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
+	glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, pitch, m_MapSize, GL_ALPHA, GL_UNSIGNED_BYTE, &losData[0]);
 }
 
-size_t CLOSTexture::GetBitmapSize(size_t w, size_t h)
+size_t CLOSTexture::GetBitmapSize(size_t w, size_t h, size_t* pitch)
 {
-	return (w + g_BlurSize - 1) * (h + g_BlurSize - 1);
+	*pitch = round_up(w + g_BlurSize - 1, g_SubTextureAlignment);
+	return *pitch * (h + g_BlurSize - 1);
 }
 
-void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h)
+void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData, size_t w, size_t h, size_t pitch)
 {
-	const size_t rowSize = w + g_BlurSize-1; // size of losData rows
-
 	u8 *dataPtr = losData;
 
 	// Initialise the top padding
 	for (size_t j = 0; j < g_BlurSize/2; ++j)
-		for (size_t i = 0; i < rowSize; ++i)
+		for (size_t i = 0; i < pitch; ++i)
 			*dataPtr++ = 0;
 
 	for (size_t j = 0; j < h; ++j)
@@ -361,13 +367,13 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 		}
 
 		// Initialise the right padding
-		for (size_t i = 0; i < g_BlurSize/2; ++i)
+		for (size_t i = 0; i < pitch - w - g_BlurSize/2; ++i)
 			*dataPtr++ = 0;
 	}
 
 	// Initialise the bottom padding
 	for (size_t j = 0; j < g_BlurSize/2; ++j)
-		for (size_t i = 0; i < rowSize; ++i)
+		for (size_t i = 0; i < pitch; ++i)
 			*dataPtr++ = 0;
 
 	// Horizontal blur:
@@ -376,7 +382,7 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 	{
 		for (size_t i = 0; i < w; ++i)
 		{
-			u8* d = &losData[i+j*rowSize];
+			u8* d = &losData[i+j*pitch];
 			*d = (
 				1*d[0] +
 				6*d[1] +
@@ -395,15 +401,15 @@ void CLOSTexture::GenerateBitmap(ICmpRangeManager::CLosQuerier los, u8* losData,
 	{
 		for (size_t i = 0; i < w; ++i)
 		{
-			u8* d = &losData[i+j*rowSize];
+			u8* d = &losData[i+j*pitch];
 			*d = (
-				1*d[0*rowSize] +
-				6*d[1*rowSize] +
-				15*d[2*rowSize] +
-				20*d[3*rowSize] +
-				15*d[4*rowSize] +
-				6*d[5*rowSize] +
-				1*d[6*rowSize]
+				1*d[0*pitch] +
+				6*d[1*pitch] +
+				15*d[2*pitch] +
+				20*d[3*pitch] +
+				15*d[4*pitch] +
+				6*d[5*pitch] +
+				1*d[6*pitch]
 			) / 64;
 		}
 	}

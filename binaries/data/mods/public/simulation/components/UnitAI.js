@@ -269,7 +269,10 @@ var UnitFsmSpec = {
 		}
 
 		this.SetHeldPosition(this.order.data.x, this.order.data.z);
-		this.MoveToPoint(this.order.data.x, this.order.data.z);
+		if (!this.order.data.max)
+			this.MoveToPoint(this.order.data.x, this.order.data.z);
+		else
+			this.MoveToPointRange(this.order.data.x, this.order.data.z, this.order.data.min, this.order.data.max);
 		if (this.IsAnimal())
 			this.SetNextState("ANIMAL.WALKING");
 		else
@@ -4867,6 +4870,14 @@ UnitAI.prototype.Walk = function(x, z, queued)
 };
 
 /**
+ * Adds walk to point range order to queue, forced by the player.
+ */
+UnitAI.prototype.WalkToPointRange = function(x, z, min, max, queued)
+{
+	this.AddOrder("Walk", { "x": x, "z": z, "min": min, "max": max, "force": true }, queued);
+};
+
+/**
  * Adds stop order to queue, forced by the player.
  */
 UnitAI.prototype.Stop = function(queued)
@@ -5578,27 +5589,17 @@ UnitAI.prototype.CanHeal = function(target)
 	var cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity)
 		return false;
-	for each (var unhealableClass in cmpHeal.GetUnhealableClasses())
-	{
-		if (cmpIdentity.HasClass(unhealableClass) != -1)
-		{
+
+	for (var unhealableClass of cmpHeal.GetUnhealableClasses())
+		if (cmpIdentity.HasClass(unhealableClass))
 			return false;
-		}
-	}
 
 	// Verify that the target is a healable class
-	var healable = false;
-	for each (var healableClass in cmpHeal.GetHealableClasses())
-	{
-		if (cmpIdentity.HasClass(healableClass) != -1)
-		{
-			healable = true;
-		}
-	}
-	if (!healable)
-		return false;
+	for (var healableClass of cmpHeal.GetHealableClasses())
+		if (cmpIdentity.HasClass(healableClass))
+			return true;
 
-	return true;
+	return false;
 };
 
 UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)

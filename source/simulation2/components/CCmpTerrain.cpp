@@ -144,7 +144,7 @@ public:
 	virtual void MakeDirty(i32 i0, i32 j0, i32 i1, i32 j1)
 	{
 		CMessageTerrainChanged msg(i0, j0, i1, j1);
-		GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 };
 
