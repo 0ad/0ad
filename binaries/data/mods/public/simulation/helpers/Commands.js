@@ -31,29 +31,45 @@ function ProcessCommand(player, cmd)
 	//	moves the entities closer to the target before giving up.)
 
 	// Now handle various commands
-	switch (cmd.type)
-	{
-	case "debug-print":
-		print(cmd.message);
-		break;
+	if (commands[cmd.type])
+		commands[cmd.type](player, cmd);
+	else
+		error("Invalid command: unknown command type: "+uneval(cmd));
+}
+
 	
-	case "chat":
-	case "aichat":
+var commands = {
+	"debug-print": function(player, cmd)
+	{
+		print(cmd.message);
+	},
+	
+	"chat": function(player, cmd)
+	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
-		break;
+	},
+
+	"aichat": function(player, cmd)
+	{
+		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
+	},
 		
-	case "cheat":
+	"cheat": function(player, cmd)
+	{
 		Cheat(cmd);
-		break;
+	},
 		
-	case "quit":
+	"quit": function(player, cmd)
+	{
 		// Let the AI exit the game for testing purposes
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "quit"});
-		break;
+	},
 
-	case "diplomacy":
+	"diplomacy": function(player, cmd)
+	{
 		switch(cmd.to)
 		{
 		case "ally":
@@ -70,30 +86,35 @@ function ProcessCommand(player, cmd)
 		}
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "diplomacy", "player": player, "player1": cmd.player, "status": cmd.to});
-		break;
+	},
 
-	case "tribute":
+	"tribute": function(player, cmd)
+	{
 		cmpPlayer.TributeResource(cmd.player, cmd.amounts);
-		break;
+	},
 
-	case "control-all":
+	"control-all": function(player, cmd)
+	{
 		cmpPlayer.SetControlAllUnits(cmd.flag);
-		break;
+	},
 
-	case "reveal-map":
+	"reveal-map": function(player, cmd)
+	{
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		cmpRangeManager.SetLosRevealAll(-1, cmd.enable);
-		break;
+	},
 
-	case "walk":
+	"walk": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
-		break;
+	},
 
-	case "walk-to-range":
+	"walk-to-range": function(player, cmd)
+	{
 		// Only used by the AI
 		for each (var ent in entities)
 		{
@@ -101,15 +122,17 @@ function ProcessCommand(player, cmd)
 			if(cmpUnitAI)
 				cmpUnitAI.WalkToPointRange(cmd.x, cmd.z, cmd.min, cmd.max, cmd.queued);
 		}
-		break;
+	},
 
-	case "attack-walk":
+	"attack-walk": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
 		});
-		break;
+	},
 
-	case "attack":
+	"attack": function(player, cmd)
+	{
 		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 		{
 			// This check is for debugging only!
@@ -120,9 +143,10 @@ function ProcessCommand(player, cmd)
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Attack(cmd.target, cmd.queued);
 		});
-		break;
+	},
 
-	case "heal":
+	"heal": function(player, cmd)
+	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
 		{
 			// This check is for debugging only!
@@ -133,9 +157,10 @@ function ProcessCommand(player, cmd)
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Heal(cmd.target, cmd.queued);
 		});
-		break;
+	},
 
-	case "repair":
+	"repair": function(player, cmd)
+	{
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
 		{
@@ -147,9 +172,10 @@ function ProcessCommand(player, cmd)
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Repair(cmd.target, cmd.autocontinue, cmd.queued);
 		});
-		break;
+	},
 
-	case "gather":
+	"gather": function(player, cmd)
+	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 		{
 			// This check is for debugging only!
@@ -160,15 +186,17 @@ function ProcessCommand(player, cmd)
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Gather(cmd.target, cmd.queued);
 		});
-		break;
+	},
 		
-	case "gather-near-position":
+	"gather-near-position": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
-		break;
+	},
 
-	case "returnresource":
+	"returnresource": function(player, cmd)
+	{
 		// Check dropsite is owned by player
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
 		{
@@ -180,27 +208,30 @@ function ProcessCommand(player, cmd)
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.ReturnResource(cmd.target, cmd.queued);
 		});
-		break;
+	},
 		
-	case "back-to-work":
+	"back-to-work": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if(!cmpUnitAI || !cmpUnitAI.BackToWork())
 				notifyBackToWorkFailure(player);
 		}
-		break;
+	},
 
-	case "remove-guard":
+	"remove-guard": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if(cmpUnitAI)
 				cmpUnitAI.RemoveGuard();
 		}
-		break;
+	},
 
-	case "train":
+	"train": function(player, cmd)
+	{
 		// Check entity limits
 		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var template = cmpTempMan.GetTemplate(cmd.template);
@@ -245,9 +276,10 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: training building(s) cannot be controlled by player "+player+": "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "research":
+	"research": function(player, cmd)
+	{
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
@@ -267,9 +299,10 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: research building cannot be controlled by player "+player+": "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "stop-production":
+	"stop-production": function(player, cmd)
+	{
 		// Verify that the building can be controlled by the player
 		if (CanControlUnit(cmd.entity, player, controlAllUnits))
 		{
@@ -281,17 +314,20 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: production building cannot be controlled by player "+player+": "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "construct":
+	"construct": function(player, cmd)
+	{
 		TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd);
-		break;
+	},
 
-	case "construct-wall":
+	"construct-wall": function(player, cmd)
+	{
 		TryConstructWall(player, cmpPlayer, controlAllUnits, cmd);
-		break;
+	},
 
-	case "delete-entities":
+	"delete-entities": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpHealth = Engine.QueryInterface(ent, IID_Health);
@@ -304,9 +340,10 @@ function ProcessCommand(player, cmd)
 			else
 				Engine.DestroyEntity(ent);
 		}
-		break;
+	},
 
-	case "set-rallypoint":
+	"set-rallypoint": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
@@ -319,23 +356,26 @@ function ProcessCommand(player, cmd)
 				cmpRallyPoint.AddData(cmd.data);
 			}
 		}
-		break;
+	},
 
-	case "unset-rallypoint":
+	"unset-rallypoint": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpRallyPoint = Engine.QueryInterface(ent, IID_RallyPoint);
 			if (cmpRallyPoint)
 				cmpRallyPoint.Reset();
 		}
-		break;
+	},
 
-	case "defeat-player":
+	"defeat-player": function(player, cmd)
+	{
 		// Send "OnPlayerDefeated" message to player
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player } );
-		break;
+	},
 
-	case "garrison":
+	"garrison": function(player, cmd)
+	{
 		// Verify that the building can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
 		{
@@ -347,9 +387,10 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: garrison target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "guard":
+	"guard": function(player, cmd)
+	{
 		// Verify that the target can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
 		{
@@ -361,15 +402,17 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: guard/escort target cannot be controlled by player "+player+": "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "stop":
+	"stop": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Stop(cmd.queued);
 		});
-		break;
+	},
 
-	case "unload":
+	"unload": function(player, cmd)
+	{
 		// Verify that the building can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.garrisonHolder, player, controlAllUnits))
 		{
@@ -391,12 +434,13 @@ function ProcessCommand(player, cmd)
 		{
 			warn("Invalid command: unload target cannot be controlled by player "+player+" (or ally): "+uneval(cmd));
 		}
-		break;
+	},
 
-	case "unload-template":
+	"unload-template": function(player, cmd)
+	{
 		var index = cmd.template.indexOf("&");  // Templates for garrisoned units are extended
 		if (index == -1)
-			break;
+			return;
 
 		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, controlAllUnits);
 		for each (var garrisonHolder in entities)
@@ -413,9 +457,10 @@ function ProcessCommand(player, cmd)
 					notifyUnloadFailure(player, garrisonHolder);
 			}
 		}
-		break;
+	},
 
-	case "unload-all-own":
+	"unload-all-own": function(player, cmd)
+	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
 		for each (var garrisonHolder in entities)
 		{
@@ -423,9 +468,10 @@ function ProcessCommand(player, cmd)
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAllOwn())
 				notifyUnloadFailure(player, garrisonHolder)
 		}
-		break;
+	},
 
-	case "unload-all":
+	"unload-all": function(player, cmd)
+	{
 		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
 		for each (var garrisonHolder in entities)
 		{
@@ -433,33 +479,37 @@ function ProcessCommand(player, cmd)
 			if (!cmpGarrisonHolder || !cmpGarrisonHolder.UnloadAll())
 				notifyUnloadFailure(player, garrisonHolder)
 		}
-		break;
+	},
 	
-	case "increase-alert-level":
+	"increase-alert-level": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (!cmpAlertRaiser || !cmpAlertRaiser.IncreaseAlertLevel())
 				notifyAlertFailure(player);
 		}
-		break;
+	},
 	
-	case "alert-end":
+	"alert-end": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpAlertRaiser = Engine.QueryInterface(ent, IID_AlertRaiser);
 			if (cmpAlertRaiser)
 				cmpAlertRaiser.EndOfAlert();
 		}
-		break;
+	},
 
-	case "formation":
+	"formation": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
 			cmpUnitAI.MoveIntoFormation(cmd);
 		});
-		break;
+	},
 
-	case "promote":
+	"promote": function(player, cmd)
+	{
 		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": "(Cheat - promoted units)"});
@@ -470,25 +520,28 @@ function ProcessCommand(player, cmd)
 			if (cmpPromotion)
 				cmpPromotion.IncreaseXp(cmpPromotion.GetRequiredXp() - cmpPromotion.GetCurrentXp());
 		}
-		break;
+	},
 
-	case "stance":
+	"stance": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			if (cmpUnitAI)
 				cmpUnitAI.SwitchToStance(cmd.name);
 		}
-		break;
+	},
 
-	case "wall-to-gate":
+	"wall-to-gate": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			TryTransformWallToGate(ent, cmpPlayer, cmd.template);
 		}
-		break;
+	},
 
-	case "lock-gate":
+	"lock-gate": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpGate = Engine.QueryInterface(ent, IID_Gate);
@@ -500,32 +553,44 @@ function ProcessCommand(player, cmd)
 					cmpGate.UnlockGate();
 			}
 		}
-		break;
+	},
 
-	case "setup-trade-route":
+	"setup-trade-route": function(player, cmd)
+	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
 		});
-
-	case "select-required-goods":
 		for each (var ent in entities)
 		{
 			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
 			if (cmpTrader)
 				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
 		}
-		break;
+	},
 
-	case "set-trading-goods":
+	"select-required-goods": function(player, cmd)
+	{
+		for each (var ent in entities)
+		{
+			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
+			if (cmpTrader)
+				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
+		}
+	},
+
+	"set-trading-goods": function(player, cmd)
+	{
 		cmpPlayer.SetTradingGoods(cmd.tradingGoods);
-		break;
+	},
 
-	case "barter":
+	"barter": function(player, cmd)
+	{
 		var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);
-		break;
+	},
 		
-	case "set-shading-color":
+	"set-shading-color": function(player, cmd)
+	{
 		// Debug command to make an entity brightly colored
 		for each (var ent in cmd.entities)
 		{
@@ -533,9 +598,10 @@ function ProcessCommand(player, cmd)
 			if (cmpVisual)
 				cmpVisual.SetShadingColour(cmd.rgb[0], cmd.rgb[1], cmd.rgb[2], 0) // alpha isn't used so just send 0
 		}
-		break;
+	},
 
-	case "pack":
+	"pack": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -547,9 +613,10 @@ function ProcessCommand(player, cmd)
 					cmpUnitAI.Unpack(cmd.queued);
 			}
 		}
-		break;
+	},
 
-	case "cancel-pack":
+	"cancel-pack": function(player, cmd)
+	{
 		for each (var ent in entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
@@ -561,12 +628,8 @@ function ProcessCommand(player, cmd)
 					cmpUnitAI.CancelUnpack(cmd.queued);
 			}
 		}
-		break;
-
-	default:
-		error("Invalid command: unknown command type: "+uneval(cmd));
-	}
-}
+	},
+};
 
 /**
  * Sends a GUI notification about unit(s) that failed to ungarrison.
@@ -1521,3 +1584,4 @@ function ReplaceBuildingWith(ent, building)
 Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);
+Engine.RegisterGlobal("commands", commands);
