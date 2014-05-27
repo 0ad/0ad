@@ -32,7 +32,7 @@ function ProcessCommand(player, cmd)
 
 	// Now handle various commands
 	if (commands[cmd.type])
-		commands[cmd.type](player, cmd);
+		commands[cmd.type](player, cmd, entities);
 	else
 		error("Invalid command: unknown command type: "+uneval(cmd));
 }
@@ -106,14 +106,14 @@ var commands = {
 		cmpRangeManager.SetLosRevealAll(-1, cmd.enable);
 	},
 
-	"walk": function(player, cmd)
+	"walk": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Walk(cmd.x, cmd.z, cmd.queued);
 		});
 	},
 
-	"walk-to-range": function(player, cmd)
+	"walk-to-range": function(player, cmd, entities)
 	{
 		// Only used by the AI
 		for each (var ent in entities)
@@ -124,14 +124,14 @@ var commands = {
 		}
 	},
 
-	"attack-walk": function(player, cmd)
+	"attack-walk": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
 		});
 	},
 
-	"attack": function(player, cmd)
+	"attack": function(player, cmd, entities)
 	{
 		if (g_DebugCommands && !(IsOwnedByEnemyOfPlayer(player, cmd.target) || IsOwnedByNeutralOfPlayer(player, cmd.target)))
 		{
@@ -145,7 +145,7 @@ var commands = {
 		});
 	},
 
-	"heal": function(player, cmd)
+	"heal": function(player, cmd, entities)
 	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByAllyOfPlayer(player, cmd.target)))
 		{
@@ -159,7 +159,7 @@ var commands = {
 		});
 	},
 
-	"repair": function(player, cmd)
+	"repair": function(player, cmd, entities)
 	{
 		// This covers both repairing damaged buildings, and constructing unfinished foundations
 		if (g_DebugCommands && !IsOwnedByAllyOfPlayer(player, cmd.target))
@@ -174,7 +174,7 @@ var commands = {
 		});
 	},
 
-	"gather": function(player, cmd)
+	"gather": function(player, cmd, entities)
 	{
 		if (g_DebugCommands && !(IsOwnedByPlayer(player, cmd.target) || IsOwnedByGaia(cmd.target)))
 		{
@@ -188,14 +188,14 @@ var commands = {
 		});
 	},
 		
-	"gather-near-position": function(player, cmd)
+	"gather-near-position": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.GatherNearPosition(cmd.x, cmd.z, cmd.resourceType, cmd.resourceTemplate, cmd.queued);
 		});
 	},
 
-	"returnresource": function(player, cmd)
+	"returnresource": function(player, cmd, entities)
 	{
 		// Check dropsite is owned by player
 		if (g_DebugCommands && !IsOwnedByPlayer(player, cmd.target))
@@ -210,7 +210,7 @@ var commands = {
 		});
 	},
 		
-	"back-to-work": function(player, cmd)
+	"back-to-work": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -220,7 +220,7 @@ var commands = {
 		}
 	},
 
-	"remove-guard": function(player, cmd)
+	"remove-guard": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -230,7 +230,7 @@ var commands = {
 		}
 	},
 
-	"train": function(player, cmd)
+	"train": function(player, cmd, entities)
 	{
 		// Check entity limits
 		var cmpTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
@@ -326,7 +326,7 @@ var commands = {
 		TryConstructWall(player, cmpPlayer, controlAllUnits, cmd);
 	},
 
-	"delete-entities": function(player, cmd)
+	"delete-entities": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -342,7 +342,7 @@ var commands = {
 		}
 	},
 
-	"set-rallypoint": function(player, cmd)
+	"set-rallypoint": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -358,7 +358,7 @@ var commands = {
 		}
 	},
 
-	"unset-rallypoint": function(player, cmd)
+	"unset-rallypoint": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -374,7 +374,7 @@ var commands = {
 		Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": player } );
 	},
 
-	"garrison": function(player, cmd)
+	"garrison": function(player, cmd, entities)
 	{
 		// Verify that the building can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
@@ -389,7 +389,7 @@ var commands = {
 		}
 	},
 
-	"guard": function(player, cmd)
+	"guard": function(player, cmd, entities)
 	{
 		// Verify that the target can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
@@ -404,14 +404,14 @@ var commands = {
 		}
 	},
 
-	"stop": function(player, cmd)
+	"stop": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.Stop(cmd.queued);
 		});
 	},
 
-	"unload": function(player, cmd)
+	"unload": function(player, cmd, entities)
 	{
 		// Verify that the building can be controlled by the player or is mutualAlly
 		if (CanControlUnitOrIsAlly(cmd.garrisonHolder, player, controlAllUnits))
@@ -481,7 +481,7 @@ var commands = {
 		}
 	},
 	
-	"increase-alert-level": function(player, cmd)
+	"increase-alert-level": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -491,7 +491,7 @@ var commands = {
 		}
 	},
 	
-	"alert-end": function(player, cmd)
+	"alert-end": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -501,14 +501,14 @@ var commands = {
 		}
 	},
 
-	"formation": function(player, cmd)
+	"formation": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player, cmd.name).forEach(function(cmpUnitAI) {
 			cmpUnitAI.MoveIntoFormation(cmd);
 		});
 	},
 
-	"promote": function(player, cmd)
+	"promote": function(player, cmd, entities)
 	{
 		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
@@ -522,7 +522,7 @@ var commands = {
 		}
 	},
 
-	"stance": function(player, cmd)
+	"stance": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -532,7 +532,7 @@ var commands = {
 		}
 	},
 
-	"wall-to-gate": function(player, cmd)
+	"wall-to-gate": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -540,7 +540,7 @@ var commands = {
 		}
 	},
 
-	"lock-gate": function(player, cmd)
+	"lock-gate": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -555,7 +555,7 @@ var commands = {
 		}
 	},
 
-	"setup-trade-route": function(player, cmd)
+	"setup-trade-route": function(player, cmd, entities)
 	{
 		GetFormationUnitAIs(entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
@@ -568,7 +568,7 @@ var commands = {
 		}
 	},
 
-	"select-required-goods": function(player, cmd)
+	"select-required-goods": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -589,7 +589,7 @@ var commands = {
 		cmpBarter.ExchangeResources(playerEnt, cmd.sell, cmd.buy, cmd.amount);
 	},
 		
-	"set-shading-color": function(player, cmd)
+	"set-shading-color": function(player, cmd, entities)
 	{
 		// Debug command to make an entity brightly colored
 		for each (var ent in cmd.entities)
@@ -600,7 +600,7 @@ var commands = {
 		}
 	},
 
-	"pack": function(player, cmd)
+	"pack": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
@@ -615,7 +615,7 @@ var commands = {
 		}
 	},
 
-	"cancel-pack": function(player, cmd)
+	"cancel-pack": function(player, cmd, entities)
 	{
 		for each (var ent in entities)
 		{
