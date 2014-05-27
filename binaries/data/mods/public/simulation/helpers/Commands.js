@@ -11,17 +11,17 @@ function ProcessCommand(player, cmd)
 		return;
 
 	data.playerEnt = data.cmpPlayerMan.GetPlayerByID(player);
-	if (playerEnt == INVALID_ENTITY)
+	if (data.playerEnt == INVALID_ENTITY)
 		return;
 
 	data.cmpPlayer = Engine.QueryInterface(data.playerEnt, IID_Player);
 	if (!data.cmpPlayer)
 		return;
 
-	data.controlAllUnits = cmpPlayer.CanControlAllUnits();
+	data.controlAllUnits = data.cmpPlayer.CanControlAllUnits();
 
 	if (cmd.entities)
-		data.entities = FilterEntityList(cmd.entities, data.player, data.controlAllUnits);
+		data.entities = FilterEntityList(cmd.entities, player, data.controlAllUnits);
 
 
 	// Note: checks of UnitAI targets are not robust enough here, as ownership
