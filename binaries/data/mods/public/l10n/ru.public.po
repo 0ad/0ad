@@ -7,6 +7,7 @@
 # AHTUxPK <ggg2134@mail.ru>, 2013
 # Alexander Olkhovskiy, 2013-2014
 # Alexander Olkhovskiy, 2013
+# Zanziver <sekachinsky@gmail.com>, 2014
 # ShooterZXC <axe.red97@gmail.com>, 2013
 # a.khabarov <2233009@gmail.com>, 2014
 # arcsin <arcsin@online.ua>, 2013-2014
@@ -34,6 +35,7 @@
 # pyt0 <kuzmenko_s@ukr.net>, 2013
 # QiUi <swsh0t@gmail.com>, 2013
 # sad2shade <sad.2.shade@gmail.com>, 2014
+# Zanziver <sekachinsky@gmail.com>, 2014
 # Койшев Андрей <under.quol@gmail.com>, 2013
 # Unreliable <baclanenok@mail.ru>, 2013
 # QiUi <swsh0t@gmail.com>, 2013
@@ -49,9 +51,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-18 22:50+0000\n"
-"Last-Translator: Владимир Смирнов <delpfine2012@gmail.com>\n"
+"POT-Creation-Date: 2014-05-19 12:56+0200\n"
+"PO-Revision-Date: 2014-05-26 21:22+0000\n"
+"Last-Translator: Zanziver <sekachinsky@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -100,30 +102,30 @@ msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Очень сложно"
 
-#: gui/civinfo/civinfo.js:94
+#: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Геймплей"
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Командный бонус"
+msgstr[1] "Командные бонусы"
+msgstr[2] "Командные бонусы"
 
-#: gui/civinfo/civinfo.js:117
+#: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
 msgstr "Специальные технологии"
 
-#: gui/civinfo/civinfo.js:129
+#: gui/civinfo/civinfo.js:134
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
@@ -133,11 +135,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
 msgstr "Герои"
 
-#: gui/civinfo/civinfo.js:158
+#: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
 msgstr "История %(civilization)s"
@@ -344,7 +346,7 @@ msgstr "Демонстрационные карты"
 msgid "All Maps"
 msgstr "Все карты"
 
-#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
 msgstr "Пусто"
@@ -491,7 +493,7 @@ msgstr "Я не готов"
 msgid "State that you are not ready to play."
 msgstr "Установите здесь, если Вы не готовы играть."
 
-#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1706
 msgid "I'm ready!"
 msgstr "Я готов!"
 
@@ -499,7 +501,7 @@ msgstr "Я готов!"
 msgid "State that you are ready to play!"
 msgstr "Установите здесь, если Вы готовы играть."
 
-#: gui/gamesetup/gamesetup.js:1703
+#: gui/gamesetup/gamesetup.js:1707
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Установите здесь, если принимаете текущие установки игры и готовы играть!"
 
@@ -727,12 +729,12 @@ msgctxt "localeCountry"
 msgid "None"
 msgstr "Пусто"
 
-#: gui/locale/locale_advanced.js:89
+#: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
 msgstr ""
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
-#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:41 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
@@ -777,198 +779,207 @@ msgid ""
 msgstr "Если Вы отключите экран приветствия, Вы можете потерять важные сообщения.\nВы можете все еще включить его используя главное меню."
 
 #: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr ""
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
+
+#: gui/options/options.js:13
 msgid "Developer Overlay"
 msgstr "Слой разработчика"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr "Показать игровой слой с опциями такими как открытость карты, управление всеми юнитами и изменение перспективы. Рассчитано для разработчиков"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Prefer GLSL"
 msgstr "Приоритет GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Использовать шейдеры OpenGL 2.0 (рекомендуется)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Post Processing"
 msgstr "Запрос послан"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Использовать экранные фильтры постобработки (HDR, Bloom, DOF, и др.)"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Shadows"
 msgstr "Тени"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Enable shadows"
 msgstr "Отображать тени"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Particles"
 msgstr "Частицы"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Enable particles"
 msgstr "Отображать частицы"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Show Sky"
 msgstr "Показать небо"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Render Sky"
 msgstr "Отображеть небо"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Smooth LOS"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Увеличить темноту и плавный туман войны (Необходим GLSL)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Unit Silhouettes"
 msgstr "Силуэты юнитов"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Show outlines of units behind buildings"
 msgstr "Отображать контур юнитов сквозь здания"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Smooth shadows"
 msgstr "Гладкие тени"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "HQ Waviness"
 msgstr "HQ Волнистости"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "Использовать реальные нормали для рендеринга океанских волн, вместо наложения их как плоские текстуры"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Real Water Depth"
 msgstr "Фактическая глубина воды"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Use actual water depth in rendering calculations"
 msgstr "Использовать реальную глубину воды в вычислениях рендеринга"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Water Reflections"
 msgstr "Преломления воды"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Allow water to reflect a mirror image"
 msgstr "Разрешить воде отражать зеркальное изображение"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Refraction"
 msgstr "Преломление воды"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shore Foam"
 msgstr "Береговая пена"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Показывать пену на воде возле берега на волнах "
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Shore Waves"
 msgstr "Береговые волны"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Показывать разбивающиеся волны на воде возле берега (Требуется HQ Волнистость)"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Shadows"
 msgstr "Тени воды"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Cast shadows on water"
 msgstr "Отбрасывать тени на воде"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "VSync"
 msgstr " Cинхронизация кадровая"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Включить кадровую синхронизацию для корректировки износа экрана. ТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master Gain"
 msgstr "Общая громкость"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master audio gain"
 msgstr "Общее усиление звука"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Music Gain"
 msgstr "Громкость музыки"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "In game music gain"
 msgstr "Усиление музыки в игре"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI Gain"
 msgstr "Громкость интерфейса"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI sound gain"
 msgstr "Громкость звуков интерфейса"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Chat Backlog"
 msgstr "История чата"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Количество сообщений, которые загружаются из памяти при входе в общий чат"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Chat Timestamp"
 msgstr "Отметка времени чата"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Показывать время сообщений в общем чате"
 
@@ -1059,8 +1070,8 @@ msgstr ""
 msgid "Technical Details"
 msgstr "Технические детали"
 
-#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
-#: gui/session/session.xml:732 (caption)
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:664
+#: gui/session/session.xml:733 (caption)
 msgid "Manual"
 msgstr "Руководство"
 
@@ -1070,7 +1081,7 @@ msgstr "Ненайдено сохраненных игр "
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Сохраненная игра может быть несовместима:"
 
 #: gui/savedgames/load.js:48
 #, python-format
@@ -1126,61 +1137,61 @@ msgstr "Сохраненная игра будет перезаписана, в�
 msgid "OVERWRITE SAVE"
 msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Basic range: %(range)s"
 msgstr "Базовый диапазон: %(range)s"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Average bonus range: %(range)s"
 msgstr ""
 
-#: gui/session/input.js:264 gui/session/input.js:357
+#: gui/session/input.js:268 gui/session/input.js:361
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Текущий гарнизон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/input.js:306
+#: gui/session/input.js:310
 msgid "Right-click to establish a default route for new traders."
 msgstr "Щелкните правой кнопкой мыши, чтобы установить маршрут по умолчанию для новых торговцев."
 
-#: gui/session/input.js:308 gui/session/input.js:389 gui/session/input.js:396
-#: gui/session/input.js:406
+#: gui/session/input.js:312 gui/session/input.js:393 gui/session/input.js:400
+#: gui/session/input.js:410
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr ""
 
-#: gui/session/input.js:310
+#: gui/session/input.js:314
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr ""
 
-#: gui/session/input.js:387
+#: gui/session/input.js:391
 msgid "Origin trade market."
 msgstr "Исходный пункт торгового рынка."
 
-#: gui/session/input.js:393
+#: gui/session/input.js:397
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Нажмите ПКМ на другом рынке чтобы выбрать место назначения торговорого рынка."
 
-#: gui/session/input.js:396
+#: gui/session/input.js:400
 msgid "Destination trade market."
 msgstr "Место назначения торгового рынка."
 
-#: gui/session/input.js:401
+#: gui/session/input.js:405
 msgid "Right-click to set as origin trade market"
 msgstr "Нажмите ПКМ для выбора исходного торгового рынка"
 
-#: gui/session/input.js:406
+#: gui/session/input.js:410
 msgid "Right-click to set as destination trade market."
 msgstr "Нажмите ПКМ для выбора пункта назначения торгового рынка. "
 
-#: gui/session/input.js:996
+#: gui/session/input.js:1000
 msgid "Cannot build wall here!"
 msgstr "Невозможно построить стену здесь!"
 
-#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:780 (caption)
 msgid "Pause"
 msgstr "Пауза"
 
@@ -1202,49 +1213,49 @@ msgid "Are you sure you want to quit?"
 msgstr "Вы действительно хотите выйти?"
 
 #: gui/session/menu.js:169
-msgid "I resign"
-msgstr "Я ухожу в отставку"
-
-#: gui/session/menu.js:169
 msgid "I will return"
 msgstr "Я вернусь"
+
+#: gui/session/menu.js:169
+msgid "I resign"
+msgstr "Я ухожу в отставку"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
 msgstr "Вы желаете сдаться или вскоре вернётесь?"
 
-#: gui/session/menu.js:188
+#: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
 msgstr "Удалить все выбранное?"
 
-#: gui/session/menu.js:188 gui/session/utility_functions.js:296
+#: gui/session/menu.js:189 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
 msgstr "Удалить"
 
-#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:445 (tooltip)
 msgid "Ally"
 msgstr "Союзник"
 
-#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:449 (tooltip)
 msgid "Neutral"
 msgstr "Нейтральный"
 
-#: gui/session/menu.js:286 gui/session/messages.js:613
-#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:287 gui/session/messages.js:613
+#: gui/session/session.xml:453 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "Противник"
 
-#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
+#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
 msgid "x"
 msgstr "х"
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:473
 msgid "There are no land traders."
 msgstr ""
 
-#: gui/session/menu.js:478
+#: gui/session/menu.js:479
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
@@ -1252,7 +1263,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:483
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
@@ -1260,7 +1271,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:485
+#: gui/session/menu.js:486
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
@@ -1268,28 +1279,28 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:488
+#: gui/session/menu.js:489
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:496
+#: gui/session/menu.js:497
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, и %(garrisonedString)s."
 
-#: gui/session/menu.js:506 gui/session/menu.js:568
+#: gui/session/menu.js:507 gui/session/menu.js:569
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:513 gui/session/menu.js:575
+#: gui/session/menu.js:514 gui/session/menu.js:576
 #, python-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:523
+#: gui/session/menu.js:524
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1301,17 +1312,17 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:526
+#: gui/session/menu.js:527
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:533
+#: gui/session/menu.js:534
 #, python-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:543
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
@@ -1319,7 +1330,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:543 gui/session/menu.js:585
+#: gui/session/menu.js:544 gui/session/menu.js:586
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
@@ -1327,11 +1338,11 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:556
 msgid "There are no merchant ships."
 msgstr ""
 
-#: gui/session/menu.js:561
+#: gui/session/menu.js:562
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
@@ -1339,7 +1350,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:566
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
@@ -1347,7 +1358,7 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:584
+#: gui/session/menu.js:585
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
@@ -1355,15 +1366,15 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/menu.js:673
+#: gui/session/menu.js:674
 msgid "The Developer Overlay was opened."
 msgstr "Слой разработчика открыт."
 
-#: gui/session/menu.js:675
+#: gui/session/menu.js:676
 msgid "The Developer Overlay was closed."
 msgstr "Слой разработчика закрыт."
 
-#: gui/session/menu.js:693
+#: gui/session/menu.js:694
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -1454,8 +1465,9 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 
 #: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
-#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:620 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 msgid ", "
 msgstr ", "
 
@@ -1495,7 +1507,7 @@ msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
 #: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
-#: gui/session/session.xml:437 (caption)
+#: gui/session/session.xml:438 (caption)
 msgid "Team"
 msgstr "Команда"
 
@@ -1516,7 +1528,7 @@ msgstr "[OFFLINE] %(player)s"
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s Ранг"
 
 #: gui/session/selection_details.js:68
 #, python-format
@@ -1589,11 +1601,12 @@ msgid "Rate:"
 msgstr ""
 
 #: gui/session/selection_details.js:249 gui/session/session.js:636
-#: gui/session/utility_functions.js:602
+#: gui/session/utility_functions.js:606
 msgid "Range:"
 msgstr "Радиус:"
 
-#: gui/session/selection_details.js:251
+#: gui/session/selection_details.js:251 gui/session/session.js:637
+#: gui/session/utility_functions.js:607
 msgid "meters"
 msgstr "метры"
 
@@ -1665,7 +1678,8 @@ msgstr "ПОРАЖЕНИЕ!"
 msgid "VICTORIOUS!"
 msgstr "ПОБЕДА!"
 
-#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
+#: gui/session/session.js:624 gui/session/unit_commands.js:520
+#: gui/session/session.xml:1004 (tooltip)
 msgid "Health:"
 msgstr "Здоровье:"
 
@@ -1699,6 +1713,16 @@ msgstr "Искажение времени"
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Текущее количество: %(count)s, Предел: %(limit)s."
+
+#: gui/session/unit_commands.js:155
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr ""
+
+#: gui/session/unit_commands.js:157
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr ""
 
 #: gui/session/unit_commands.js:184
 #, python-format
@@ -1762,12 +1786,16 @@ msgstr "Выгрузить %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Нажмите ЛКМ для выгрузки одного. Shift+ЛКМ для выгрузки всех этого типа."
 
-#: gui/session/unit_commands.js:708
+#: gui/session/unit_commands.js:524
+msgid "Armour"
+msgstr ""
+
+#: gui/session/unit_commands.js:718
 #, python-format
 msgid "Requires %(technology)s"
 msgstr "Требуется %(technology)s"
 
-#: gui/session/unit_commands.js:725
+#: gui/session/unit_commands.js:735
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -1775,49 +1803,32 @@ msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/session/unit_commands.js:962
+#: gui/session/unit_commands.js:972
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr ""
 
-#: gui/session/unit_commands.js:1161
-msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "Переделать деревянную стену в деревянные ворота"
-
-#: gui/session/unit_commands.js:1165
-msgid "Convert Stone Wall into City Gate"
-msgstr "Преобразовать каменную стену в городские ворота"
-
-#: gui/session/unit_commands.js:1169
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Переделать осадную стену в ворота осадной стены"
-
-#: gui/session/unit_commands.js:1174
-#, python-format
-msgid "Convert %(wall)s into %(gate)s"
-msgstr "Переделать %(wall)s в %(gate)s"
-
-#: gui/session/unit_commands.js:1191
+#: gui/session/unit_commands.js:1178
 msgid "Lock Gate"
 msgstr "Закрыть ворота"
 
-#: gui/session/unit_commands.js:1197
+#: gui/session/unit_commands.js:1184
 msgid "Unlock Gate"
 msgstr "Открыть ворота"
 
-#: gui/session/unit_commands.js:1246
+#: gui/session/unit_commands.js:1233
 msgid "Pack"
 msgstr "Собрать"
 
-#: gui/session/unit_commands.js:1248
+#: gui/session/unit_commands.js:1235
 msgid "Unpack"
 msgstr "Разобрать"
 
-#: gui/session/unit_commands.js:1250
+#: gui/session/unit_commands.js:1237
 msgid "Cancel Packing"
 msgstr "Отменить собирание"
 
-#: gui/session/unit_commands.js:1252
+#: gui/session/unit_commands.js:1239
 msgid "Cancel Unpacking"
 msgstr "Отменить разбирание"
 
@@ -1846,7 +1857,7 @@ msgstr "Протыкать"
 #: gui/session/utility_functions.js:171 gui/session/utility_functions.js:220
 #: gui/session/utility_functions.js:247 gui/session/utility_functions.js:275
 msgid "Crush"
-msgstr ""
+msgstr "Разрушить"
 
 #: gui/session/utility_functions.js:182
 #, python-format
@@ -1978,87 +1989,87 @@ msgstr "Недостаточно ресурсов:"
 msgid "Speed:"
 msgstr "Скорость:"
 
-#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:578 gui/session/utility_functions.js:580
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 msgid "Walk"
 msgstr "Ходьба"
 
-#: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 msgid "Run"
 msgstr "Бег"
 
-#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:599
+#: gui/session/utility_functions.js:603
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:608
+#: gui/session/utility_functions.js:612
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:624
+#: gui/session/utility_functions.js:628
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:634
+#: gui/session/utility_functions.js:638
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:664
+#: gui/session/utility_functions.js:668
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:694
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:696 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:698
 msgid "you"
 msgstr "вы"
 
-#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
+#: gui/session/utility_functions.js:704 gui/session/utility_functions.js:709
 #, python-format
 msgid "player %(name)s"
 msgstr "игрок %(name)s"
 
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:717
 msgid "Charge Attack:"
 msgstr "Выберете Атаку:"
 
-#: gui/session/utility_functions.js:714
+#: gui/session/utility_functions.js:718
 msgid "Melee Attack:"
 msgstr "Атака ближнего боя:"
 
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:719
 msgid "Ranged Attack:"
 msgstr "Атака дальнего боя:"
 
-#: gui/session/utility_functions.js:718
+#: gui/session/utility_functions.js:722
 msgid "Attack:"
 msgstr "Наносимый урон:"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:741
+#: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Еда"
@@ -2066,7 +2077,7 @@ msgstr "Еда"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:743
+#: gui/session/utility_functions.js:747
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Еда"
@@ -2074,7 +2085,7 @@ msgstr "Еда"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:745
+#: gui/session/utility_functions.js:749
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Метал"
@@ -2082,7 +2093,7 @@ msgstr "Метал"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:747
+#: gui/session/utility_functions.js:751
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "Руда"
@@ -2090,25 +2101,9 @@ msgstr "Руда"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:749
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Камень"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
-#: gui/session/utility_functions.js:751
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Руины"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
-msgid "Stone"
+msgid "Rock"
 msgstr "Камень"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
@@ -2116,13 +2111,29 @@ msgstr "Камень"
 #. sentence.
 #: gui/session/utility_functions.js:755
 msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Руины"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Камень"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
 msgid "Treasure"
 msgstr "Сокровище"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:757
+#: gui/session/utility_functions.js:761
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "Дерево"
@@ -2130,7 +2141,7 @@ msgstr "Дерево"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:759
+#: gui/session/utility_functions.js:763
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "Дерево"
@@ -2138,7 +2149,7 @@ msgstr "Дерево"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:761
+#: gui/session/utility_functions.js:765
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "Фрукт"
@@ -2146,7 +2157,7 @@ msgstr "Фрукт"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:763
+#: gui/session/utility_functions.js:767
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "Продовольствие"
@@ -2154,7 +2165,7 @@ msgstr "Продовольствие"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:765
+#: gui/session/utility_functions.js:769
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Рыба"
@@ -2162,7 +2173,7 @@ msgstr "Рыба"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:776
+#: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Еда"
@@ -2170,7 +2181,7 @@ msgstr "Еда"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:778
+#: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Еда"
@@ -2178,7 +2189,7 @@ msgstr "Еда"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:780
+#: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Метал"
@@ -2186,7 +2197,7 @@ msgstr "Метал"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:782
+#: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Руда"
@@ -2194,7 +2205,7 @@ msgstr "Руда"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:784
+#: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Камень"
@@ -2202,7 +2213,7 @@ msgstr "Камень"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:786
+#: gui/session/utility_functions.js:790
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "Руины"
@@ -2210,7 +2221,7 @@ msgstr "Руины"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:788
+#: gui/session/utility_functions.js:792
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Камень"
@@ -2218,7 +2229,7 @@ msgstr "Камень"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:790
+#: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
 msgid "Treasure"
 msgstr "Сокровище"
@@ -2226,7 +2237,7 @@ msgstr "Сокровище"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:792
+#: gui/session/utility_functions.js:796
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Дерево"
@@ -2234,7 +2245,7 @@ msgstr "Дерево"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:794
+#: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Дерево"
@@ -2242,7 +2253,7 @@ msgstr "Дерево"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:796
+#: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "Фрукт"
@@ -2250,7 +2261,7 @@ msgstr "Фрукт"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:798
+#: gui/session/utility_functions.js:802
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Продовольствие"
@@ -2258,7 +2269,7 @@ msgstr "Продовольствие"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:800
+#: gui/session/utility_functions.js:804
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Рыба"
@@ -2681,22 +2692,22 @@ msgstr ""
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Враг повержен. Все обучающие цели теперь выполнены..."
 
-#: simulation/components/BuildRestrictions.js:83
+#: simulation/components/BuildRestrictions.js:85
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:104
+#: simulation/components/BuildRestrictions.js:108
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:152
+#: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:160
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr ""
@@ -2704,7 +2715,7 @@ msgstr ""
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:180
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr ""
@@ -2712,7 +2723,7 @@ msgstr ""
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:183
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr ""
@@ -2720,7 +2731,7 @@ msgstr ""
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:186
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr ""
@@ -2728,31 +2739,31 @@ msgstr ""
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:189
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:195
+#: simulation/components/BuildRestrictions.js:199
 #, python-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:232
+#: simulation/components/BuildRestrictions.js:238
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:262
 #, python-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:268
+#: simulation/components/BuildRestrictions.js:275
 #, python-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
@@ -2760,48 +2771,63 @@ msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:298
+#: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
 msgstr "свои"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:300
+#: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "союзные"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "нейтральные"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "вражеские"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
+#: simulation/components/EntityLimits.js:110
+#, python-format
+msgid "%(category)s build limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:112
+#, python-format
+msgid "%(category)s training limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:116
+#, python-format
+msgid "%(category)s limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/Player.js:40 gui/session/session.xml:565 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "Еда"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:572 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "Дерево"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:586 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "Метал"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:579 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "Камень"
@@ -2859,11 +2885,11 @@ msgstr "ИИ игрок"
 msgid "AI Difficulty"
 msgstr "Сложность ИИ"
 
-#: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
-#: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:36
+#: (caption) gui/locale/locale_advanced.xml:65 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/save.xml:37 (caption) gui/session/session.xml:402 (caption)
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -2876,7 +2902,7 @@ msgid "Civilization Selection"
 msgstr "Выбор цивилизации"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
-#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
+#: gui/session/session.xml:491 (caption) gui/session/session.xml:544 (caption)
 msgid "Close"
 msgstr "Закрыть"
 
@@ -2900,7 +2926,7 @@ msgstr "Имя игрока"
 msgid "Player Placement"
 msgstr "Размещение игрока"
 
-#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:435
 #: (caption)
 msgid "Civilization"
 msgstr "Цивилизация"
@@ -2961,7 +2987,7 @@ msgstr "Выберите количество игроков."
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Выберите размер карты. (Большие размеры могут снизить производительность.)"
 
-#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:412
 #: (caption)
 msgid "Send"
 msgstr "Отправить"
@@ -3104,7 +3130,7 @@ msgid "Status"
 msgstr "Статус"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:432 (caption)
 msgid "Name"
 msgstr "Имя"
 
@@ -3154,7 +3180,7 @@ msgstr "Игроки"
 msgid "Show full games"
 msgstr "Показать полные игры"
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1068 (tooltip)
 msgid "Rank"
 msgstr "Звание"
 
@@ -3214,14 +3240,14 @@ msgstr "Язык:"
 msgid "Locale:"
 msgstr "Язык:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption)
-msgid "Accept"
-msgstr "Подтвердить"
-
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
 msgstr "Продвинутый"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
+#: (caption)
+msgid "Accept"
+msgstr "Подтвердить"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -3290,8 +3316,8 @@ msgstr "Настройка звука"
 msgid "Lobby Settings"
 msgstr "Настройки лобби"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:754 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/session/session.xml:755 (caption)
 msgid "Save"
 msgstr "Сохранить"
 
@@ -3446,8 +3472,8 @@ msgstr "История"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Познакомьтесь со множеством цивилизаций, представленных в 0 A.D."
 
-#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
-#: (caption) gui/session/session.xml:1300 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:803
+#: (caption) gui/session/session.xml:1301 (caption)
 msgid "Exit"
 msgstr "Выход"
 
@@ -3471,7 +3497,7 @@ msgstr "Сайт"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Нажмите, чтобы открыть play0ad.com в браузере."
 
-#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:744
 #: (caption)
 msgid "Chat"
 msgstr "Чат"
@@ -3494,7 +3520,7 @@ msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчет
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
 msgstr "Загрузить"
 
@@ -3562,108 +3588,108 @@ msgstr "Игра приостановлена"
 msgid "Click to Resume Game"
 msgstr "Нажмите для продолжения игры"
 
-#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
+#: gui/session/session.xml:427 (caption) gui/session/session.xml:666 (tooltip)
 msgid "Diplomacy"
 msgstr "Дипломатия"
 
-#: gui/session/session.xml:440 (caption)
+#: gui/session/session.xml:441 (caption)
 msgid "Theirs"
 msgstr ""
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:444 (caption)
 msgid "A"
 msgstr "С"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:448 (caption)
 msgid "N"
 msgstr "Н"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:452 (caption)
 msgid "E"
 msgstr "В"
 
-#: gui/session/session.xml:455 (caption)
+#: gui/session/session.xml:456 (caption)
 msgid "Tribute"
 msgstr "Дань"
 
-#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
+#: gui/session/session.xml:506 (caption) gui/session/session.xml:685 (tooltip)
 msgid "Trade"
 msgstr "Торговля"
 
-#: gui/session/session.xml:511 (caption)
+#: gui/session/session.xml:512 (caption)
 msgid "Trading goods selection:"
 msgstr ""
 
-#: gui/session/session.xml:531 (tooltip)
+#: gui/session/session.xml:532 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
 msgstr ""
 
-#: gui/session/session.xml:592 (tooltip)
+#: gui/session/session.xml:593 (tooltip)
 msgid "Population (current / limit)"
 msgstr "Население (текущее / лимит)"
 
-#: gui/session/session.xml:605 (tooltip)
+#: gui/session/session.xml:606 (tooltip)
 msgid "Choose player to view"
 msgstr "Выберете игрока для просмотра"
 
-#: gui/session/session.xml:628 (caption)
+#: gui/session/session.xml:629 (caption)
 msgid "ALPHA XVI : Patañjali"
 msgstr "ALPHA XVI: Патанджали"
 
-#: gui/session/session.xml:645 (tooltip)
+#: gui/session/session.xml:646 (tooltip)
 msgid "Game speed"
 msgstr "Скорость игры"
 
-#: gui/session/session.xml:653 (tooltip)
+#: gui/session/session.xml:654 (tooltip)
 msgid "Choose game speed"
 msgstr "Выберите скорость игры"
 
-#: gui/session/session.xml:706 (caption)
+#: gui/session/session.xml:707 (caption)
 msgid "MENU"
 msgstr "МЕНЮ"
 
-#: gui/session/session.xml:767 (caption)
+#: gui/session/session.xml:768 (caption)
 msgid "Settings"
 msgstr "Настройки"
 
-#: gui/session/session.xml:791 (caption)
+#: gui/session/session.xml:792 (caption)
 msgid "Resign"
 msgstr "Сдаться"
 
-#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
+#: gui/session/session.xml:829 (tooltip) gui/session/session.xml:1045
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "Атака и Броня"
 
-#: gui/session/session.xml:852 (tooltip)
+#: gui/session/session.xml:853 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr "Кликните для группового выделения юнитов, "
 
-#: gui/session/session.xml:892 (tooltip)
+#: gui/session/session.xml:893 (tooltip)
 msgid "Find idle worker"
 msgstr "Найти свободных рабочих"
 
-#: gui/session/session.xml:944 (tooltip)
+#: gui/session/session.xml:945 (tooltip)
 msgid "Exchange resources:"
 msgstr "Обмен ресурсами:"
 
-#: gui/session/session.xml:1017 (tooltip)
+#: gui/session/session.xml:1018 (tooltip)
 msgid "Stamina:"
 msgstr "Выносливость:"
 
-#: gui/session/session.xml:1059 (tooltip)
+#: gui/session/session.xml:1060 (tooltip)
 msgid "Experience"
 msgstr "Опыт"
 
-#: gui/session/session.xml:1127 (tooltip)
+#: gui/session/session.xml:1128 (tooltip)
 msgid "Hitpoints"
 msgstr "Очки здоровья"
 
-#: gui/session/session.xml:1136 (tooltip)
+#: gui/session/session.xml:1137 (tooltip)
 msgid "Stamina"
 msgstr "Выносливость"
 
@@ -3787,7 +3813,7 @@ msgstr "Конница"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr "Чемпион"
+msgstr "Элита"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
@@ -5416,7 +5442,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Власть есть ближайший сосед необходимости.\" - Пифагор"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
@@ -5708,7 +5734,7 @@ msgstr "- Крепость обычно самое крепкое здание �
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr "- Тренируйте Чемпионов, Героев и Осадные орудия."
+msgstr "- Тренируйте Элитных Юнитов, Героев и Осадные орудия."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -5902,7 +5928,7 @@ msgstr "- Сильнейший юнит пехоты в игре."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr "- Чемпионы пехоты доступны Спартанской цивилизации."
+msgstr "- Элитные пехотинцы доступны Спартанской цивилизации."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid "- Long train time, but high armor and attack."
@@ -5952,7 +5978,7 @@ msgstr "ФОРМИРОВАНИЕ СИНТАГМА"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr "- Формирование пехоты типа \"пикенёр\"."
+msgstr "- Формирование пехоты типа \"пикинёр\"."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
@@ -6610,7 +6636,7 @@ msgstr "Гимнасий"
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Обучай чемпионов и исследуй технологии, связанные с ними"
+msgstr "Обучай элитных юнитов и исследуй технологии связанные с ними."
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
@@ -7447,7 +7473,7 @@ msgid ""
 "SYNTAGMA formation, derived from the oblique battle front developed by the "
 "Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
 "arranged in the following way 16 men in width and 16 in depth."
-msgstr ""
+msgstr "После вступления на престол, Филипп II приступил к реформированию македонской армии с целью превратить необученный сброд во внушающую страх профессиональную силу. Одной из таких реформ является формирование СИНТАГМЫ — боевого порядка, разработанного греческим полководцем Эпаминондом, представляющую собой отряд из 256 мужчин устроенный следующим образом: 16 человек в длину и 16 в глубину. "
 
 #: civs/hele.jsonFactions[1].Technologies[1].Description
 msgid "Civic Centers have double Health."
@@ -7539,7 +7565,7 @@ msgid ""
 " (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
 "B.C.). Their civilization would endure until their final absorption by Rome "
 "in 146 B.C."
-msgstr ""
+msgstr "Эллины на сегодняшний день наиболее известны своей архитектурой, военным делом и культурой. Дорийцы, Ионийцы и Эолийцы распространились по территории современной Греции в промежутке между 3000 г. и 1100 г. до н. э. и в итоге вытеснили культуры Микен и минойского Крита. Эллины были наиболее активны в период колонизации в 7-6 в до н. э., во времена Греко-Персидских войн (499-449 г. до н. э.), Пелопоннесской войны (431-404 до н. э.) и завоеваний Александра Македонского (4 век до н. э.). Их цивилизация просуществует до окончательного поглощения Римом в 146 году до н. э."
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -7775,7 +7801,7 @@ msgstr "Синтагма"
 msgid ""
 "Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
 "that proved invincible against the armies of Hellas and the East."
-msgstr "Основанное на Фиванском косом фаланге, построение Синтагма доказало свою эффективность против армий Эллады и Востока."
+msgstr "Основанное на Фивской косой фаланге, построение Синтагма доказало свою эффективность против армий Эллады и Востока."
 
 #: civs/mace.jsonCivBonuses[2].History
 msgid ""
@@ -7864,7 +7890,7 @@ msgstr "Когда Филипп II пришел на македонский пр
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr ""
+msgstr "Улучшение Гипаспистов до Сереброщитных, с более мощной атакой и бронью, но и с большей стоимостью."
 
 #: civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
@@ -8038,7 +8064,7 @@ msgstr ""
 
 #: civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
-msgstr ""
+msgstr "Деваварман Маурья"
 
 #: civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
@@ -8072,7 +8098,7 @@ msgstr "Стрельба из лука."
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "Индия — страна лучников. Основная часть любой индийской армии состояла из высококвалифицированных воинов вооруженных бамбуковыми луками."
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -8105,7 +8131,7 @@ msgstr "Стойло слонов"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr ""
+msgstr "Тренировать слона с лучниками и рабочего слона в фазе поселения, затем добавляется элитный боевой слон в фазе города."
 
 #: civs/maur.jsonStructures[1].Name
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
@@ -8152,7 +8178,7 @@ msgid ""
 "accompanied by great success (most notably during the battle of Sardis in "
 "546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
 "while Northern Arabia supplied 'one-hump' camels."
-msgstr ""
+msgstr "Персы использовали отряды на верблюдах только несколько раз, его использование всегда сопровождалось большим успехом (в первую очередь в битве при Сардах в 546 году до н. э.). Основным источником двугорбых верблюдов являлась сатрапия Бактрия, в то время как из Северной Аравии поставлялись верблюды с одним горбом."
 
 #: civs/pers.jsonCivBonuses[1].Description
 msgid ""
@@ -8317,7 +8343,7 @@ msgid ""
 "was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
 "second ruler of the Persians by that name, and so appears as Kurush II on "
 "his documents and coins. Kurush I was his grandfather."
-msgstr ""
+msgstr "Кир (559-530 г.г. до н. э.) - сын мидийской принцессы и правителя Аншана; его справедливо называют \"Отцом империи\". Кир Великий завоевал Мидию, Лидию, Вавилонию и Бактрию тем самым основав Персидскую империю. Также был известен как благожелательный завоеватель (Куруш). Второй правитель персов с таким именем, в документах и на монетах упоминается как Куруш II. Кир I является его дедом."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 #: simulation/templates/units/pers_hero_cyrus.xml:12
@@ -8382,7 +8408,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr ""
+msgstr "Персидская империя во времена правления династии Ахеменидов является одной из величайших империй древности, распростершаяся от долины Инда на востоке до Греции на западе. Персы были пионерами в основании империи древнего мира, успешного введения централизованного управления над разными народами с различными обычаями, законами, религиями и языками. Первыми создали космополитическую армию состоящую из контингента разных стран."
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
@@ -8710,7 +8736,7 @@ msgstr "Луций Папирий Курсор"
 
 #: civs/rome.jsonAINames[8] maps/scenarios/Sahel.xml:42:PlayerData[0].Name
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Авл Манлий Капитолин"
 
 #: civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
@@ -9183,7 +9209,7 @@ msgstr "Большая часть Пелопоннеса была подчине
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr ""
+msgstr "Диэнекий"
 
 #: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
 #: simulation/templates/units/spart_hero_brasidas.xml:15
@@ -9330,7 +9356,7 @@ msgstr "Обучай героев и спартанцев и исследую т
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr ""
+msgstr "Сиссития — совместная трапеза для граждан Спарты, на которой все были равны, и даже для царей не было никаких исключений."
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -9805,7 +9831,7 @@ msgstr ""
 
 #: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:42:Name
 msgid "Sahel"
-msgstr ""
+msgstr "Сахель"
 
 #: maps/random/sahel_watering_holes.jsonsettings.Description
 msgid ""
@@ -10179,7 +10205,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
-msgstr ""
+msgstr "Усиленный Щит"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
@@ -10192,7 +10218,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsondescription
 msgid "A bronze skin hammered over the face of the shield."
-msgstr ""
+msgstr "Бронзовая оковка внешней части щита."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
@@ -10334,16 +10360,18 @@ msgstr ""
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "Охранные юниты проявляют незаурядное мужество и доблесть в бою. Элита +2 к атаке."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
 msgstr ""
 
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 msgid "Andreia"
 msgstr ""
 
@@ -10363,10 +10391,12 @@ msgstr ""
 msgid "Will to fight"
 msgstr ""
 
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.ptol
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.sele
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.hele
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr "Динамия"
 
@@ -10800,7 +10830,7 @@ msgstr ""
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr ""
+msgstr "Элита против нерегулярных войск"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -11296,7 +11326,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "Разблокирование воинов чемпионов"
+msgstr "Открыть Элитных воинов"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.hele
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
@@ -11327,6 +11357,10 @@ msgstr "Фестиваль плодородия"
 #: simulation/data/technologies/unlock_females_house.jsonspecificName.athen
 msgid "Thesmophoria"
 msgstr "Тесмофории"
+
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
+msgid "Bona Dea"
+msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
@@ -11849,11 +11883,11 @@ msgstr "Деревянные стены"
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "Анузийская элитная пехота передвигается в два раза быстрее, но теряет немного максимального здоровья."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
 msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr ""
+msgstr "Анузийская элитная пехота, -50% времени передвижения, но также -20 здоровья."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
@@ -11970,7 +12004,7 @@ msgstr "Традиционная армия Селевкидов."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Открыть Сереброщитных пикинеров и Колесницу с косами."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -12176,6 +12210,10 @@ msgstr "Городские ворота"
 msgid "Long wall segments can be converted to gates."
 msgstr ""
 
+#: simulation/templates/template_structure_defense_wall_long.xml:15
+msgid "Convert Stone Wall into City Gate"
+msgstr "Преобразовать каменную стену в городские ворота"
+
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr ""
@@ -12267,7 +12305,7 @@ msgstr "Посольство"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Обучай героев, чемпионов и осадное оружие. Исследуй улучшение осадноно оружия"
+msgstr "Обучай героев, элитных воинов, строй осадное оружие. Исследуй улучшение осадноного оружия. Гарнизон: 20."
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -12380,11 +12418,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
-msgstr "Чемпион"
+msgstr "Элитный юнит"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:37
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "Элитная Конница"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:41
 msgid ""
@@ -12395,7 +12433,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Элитный конный лучник"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
 msgid ""
@@ -12406,7 +12444,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Элитный конный застрельщик"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:78
 msgid ""
@@ -12417,7 +12455,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:77
 msgid "Champion Cavalry Spearman"
-msgstr "Чемпион конницы копьеносцев"
+msgstr "Элитный конный копейщик"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
 msgid ""
@@ -12428,7 +12466,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
-msgstr "Чемпион конницы фехтовальщиков"
+msgstr "Элитный конный мечник"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
@@ -12443,7 +12481,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Элитный пехотинец"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
 msgid ""
@@ -12454,7 +12492,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
-msgstr "Чемпион лучник"
+msgstr "Элитный лучник"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
@@ -12465,7 +12503,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Элитный застрельщик"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:57
 msgid ""
@@ -12476,7 +12514,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:55
 msgid "Champion Pikeman"
-msgstr "Чемпион копейщик"
+msgstr "Элитный пикинер"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
 msgid ""
@@ -12487,7 +12525,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Элитный копейщик"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
 msgid ""
@@ -12498,7 +12536,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
-msgstr "Чемпион фехтовальщик"
+msgstr "Элитный мечник"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
@@ -12606,7 +12644,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:35
 msgid "Hero Pikeman"
-msgstr "Герой копейщик"
+msgstr "Герой пикинер"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:33
 msgid "Hero Spearman"
@@ -12638,7 +12676,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr "Копейщик"
+msgstr "Пикинер"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:37
 msgid "Spearman"
@@ -13545,6 +13583,10 @@ msgstr "Деревянная стена"
 msgid "Palisade"
 msgstr "Частокол"
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+msgid "Convert Wooden Wall into Wooden Gate"
+msgstr "Переделать деревянную стену в деревянные ворота"
+
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
@@ -13758,7 +13800,7 @@ msgstr ""
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
-msgstr "Обучение чемпионов."
+msgstr "Обучение элитных юнитов."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
@@ -14176,7 +14218,7 @@ msgstr "Башня Баала Хаммона"
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Обучай галльских героев и чемпионов. Построить осадный таран"
+msgstr "Обучай галльских героев и элитных воинов. Построить осадный таран"
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -14272,7 +14314,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_fortress.xml:16
 msgid "Castro"
-msgstr ""
+msgstr "Кастро"
 
 #: simulation/templates/structures/iber_house.xml:12
 msgid "Etxe"
@@ -14389,7 +14431,7 @@ msgstr "Кшетра"
 
 #: simulation/templates/structures/maur_fortress.xml:7
 msgid "Train heroes and champion units."
-msgstr "Обучение героев и чемпионов"
+msgstr "Обучение героев и элитных юнитов."
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
@@ -14515,7 +14557,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Обучай чемпионов кавалерии и строй осадные тараны."
+msgstr "Обучай элитную конницу и строй тараны."
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
@@ -14642,11 +14684,11 @@ msgstr ""
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map (Not "
 "implemented). Very large vision range: 180 meters."
-msgstr ""
+msgstr "Построить вдоль берега, чтобы выявить береговые линии по всей карте (не реализовано). Очень большой обзор: 180 метров."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pharos"
-msgstr ""
+msgstr "Фарос"
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -14801,6 +14843,10 @@ msgstr "Осадная стена"
 msgid "Murus Circummunitionis"
 msgstr ""
 
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+msgid "Convert Siege Wall into Siege Wall Gate"
+msgstr "Переделать осадную стену в ворота осадной стены"
+
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
 msgstr "Стенная осадная башня"
@@ -14923,7 +14969,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Обучай спартанских героев и элитных гоплитов."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
@@ -15172,7 +15218,7 @@ msgstr "Греческая конница"
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
 msgid "Hippeús"
-msgstr ""
+msgstr "Гиппеи"
 
 #: simulation/templates/units/athen_champion_infantry.xml:10
 msgid "City Guard"
@@ -15221,7 +15267,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_pericles.xml:15
 msgid "Periklēs"
-msgstr ""
+msgstr "Периклес"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:15
 msgid ""
@@ -15353,7 +15399,7 @@ msgstr ""
 #: simulation/templates/units/ptol_support_trader.xml:9
 #: simulation/templates/units/sele_support_trader.xml:9
 msgid "Émporos"
-msgstr ""
+msgstr "Эмпорос"
 
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
 msgid "Raiding Cavalry"
@@ -15363,7 +15409,7 @@ msgstr ""
 #: simulation/templates/units/celt_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
-msgstr ""
+msgstr "Гаизаредос"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
 msgid "Celtic Cavalry"
@@ -15383,11 +15429,11 @@ msgstr "Кельтская колесница"
 #: simulation/templates/units/brit_champion_cavalry.xml:28
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:23
 msgid "Carbanto"
-msgstr ""
+msgstr "Карбанто"
 
 #: simulation/templates/units/brit_champion_infantry.xml:17
 msgid "Brythonic Longswordsman"
-msgstr ""
+msgstr "Бриттский Мечник (длинный меч)"
 
 #: simulation/templates/units/brit_champion_infantry.xml:18
 #: simulation/templates/units/celt_champion_infantry_brit.xml:14
@@ -15428,7 +15474,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
 #: simulation/templates/units/gaul_infantry_javelinist_b.xml:15
 msgid "Baguada"
-msgstr ""
+msgstr "Багуада"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:13
 #: simulation/templates/units/celt_infantry_slinger_b.xml:15
@@ -15494,7 +15540,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_female_citizen.xml:18
 #: simulation/templates/units/gaul_support_female_citizen.xml:18
 msgid "Bodu"
-msgstr ""
+msgstr "Боду"
 
 #: simulation/templates/units/brit_support_trader.xml:9
 #: simulation/templates/units/celt_support_trader.xml:9
@@ -15556,15 +15602,15 @@ msgstr ""
 
 #: simulation/templates/units/cart_champion_infantry.xml:12
 msgid "Sacred Band Infantry"
-msgstr ""
+msgstr "Священный отряд пехоты"
 
 #: simulation/templates/units/cart_champion_infantry.xml:13
 msgid "Sacred Band of Ba'al"
-msgstr ""
+msgstr "Священный отряд Баала"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:5
 msgid "Sacred Band Pikeman"
-msgstr ""
+msgstr "Священный отряд пикинеров"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
 msgid "Mašal"
@@ -15605,7 +15651,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid "Maharbaʿal"
-msgstr ""
+msgstr "Махарбаал"
 
 #: simulation/templates/units/cart_infantry_archer_b.xml:15
 msgid "Mauritanian Archer"
@@ -15740,7 +15786,7 @@ msgstr ""
 msgid ""
 "Gallic Champion Cavalry.\n"
 "Counters Ranged Units."
-msgstr ""
+msgstr "Гальская элитная конница.\nСильна против дальнобойных юнитов."
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -15756,7 +15802,7 @@ msgstr ""
 msgid ""
 "Brythonic Champion Swordsman.\n"
 "Counters Spear Units."
-msgstr ""
+msgstr "Бриттский Элитный Мечник.\nСилен против Копейщиков."
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:13
 msgid "Two-Handed Swordsman"
@@ -15766,7 +15812,7 @@ msgstr ""
 msgid ""
 "Gallic Champion Swordsman.\n"
 "Counters Spearmen and Cavalry."
-msgstr ""
+msgstr "Галльский Элитный Мечник.\nСилен против Копейщиков и Конницы. "
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:10
 #: simulation/templates/units/gaul_champion_infantry.xml:10
@@ -15805,7 +15851,7 @@ msgstr ""
 #: simulation/templates/units/celt_hero_britomartus.xml:13
 #: simulation/templates/units/gaul_hero_britomartus.xml:13
 msgid "Britomartus"
-msgstr ""
+msgstr "Бритомартида"
 
 #: simulation/templates/units/celt_hero_vercingetorix.xml:25
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:25
@@ -15829,7 +15875,7 @@ msgstr ""
 msgid ""
 "Macedonian Champion Cavalry.\n"
 "Counters Cavalry and Archers. Countered by Champion Units."
-msgstr ""
+msgstr "Македонская элитная конница.\nСильна против Конницы и Лучников. Слаба против элитных юнитов."
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:21
 #: simulation/templates/units/mace_champion_cavalry.xml:19
@@ -15846,7 +15892,7 @@ msgstr ""
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Counters Cavalry and Infantry. Countered Ranged Units. Uses the Syntagma Formation."
-msgstr ""
+msgstr "Македонский Элитный Пикинер.\nТяжелая линейная пехота. Силен против Конницы и Пехоты. Слаб против дальнобойных юнитов. Использует построение Синтагма."
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -16046,7 +16092,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_hero_caros.xml:10
 msgid "Caros"
-msgstr ""
+msgstr "Карос"
 
 #: simulation/templates/units/iber_infantry_javelinist_b.xml:11
 msgid "Lusitano Ezpatari"
@@ -16098,7 +16144,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_support_trader.xml:5
 msgid "Merkatari"
-msgstr ""
+msgstr "Меркатари"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
@@ -16118,7 +16164,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:30
 msgid "Macedonian Shield Bearer"
-msgstr ""
+msgstr "Македонский щитоносец"
 
 #: simulation/templates/units/mace_champion_infantry_a.xml:31
 msgid "Hypaspistes"
@@ -16126,7 +16172,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_champion_infantry_e.xml:23
 msgid "Hypaspistes Argyraspides"
-msgstr ""
+msgstr "Аргираспиды"
 
 #: simulation/templates/units/mace_hero_alexander.xml:38
 msgid ""
@@ -16288,7 +16334,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_hero_ashoka.xml:33
 msgid "Aśoka Devānāmpriya"
-msgstr ""
+msgstr "Ашока Деванампия"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid ""
@@ -16310,11 +16356,11 @@ msgstr ""
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
-msgstr ""
+msgstr "Лучник с длинным луком"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:14
 msgid "Dhanurdhar"
-msgstr ""
+msgstr "Дханурдхар"
 
 #: simulation/templates/units/maur_infantry_spearman_b.xml:23
 msgid "Bamboo Spearman"
@@ -16335,7 +16381,7 @@ msgstr ""
 #: simulation/templates/units/maur_ship_bireme.xml:5
 #: simulation/templates/units/maur_ship_trireme.xml:18
 msgid "Yudhpot"
-msgstr ""
+msgstr "Юдпот"
 
 #: simulation/templates/units/maur_ship_fishing.xml:9
 msgid "Fisherman"
@@ -16375,7 +16421,7 @@ msgstr "Индиянка"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
-msgstr ""
+msgstr "Наари"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
@@ -16443,7 +16489,7 @@ msgstr ""
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:7
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:10
 msgid "Mada Asabara"
-msgstr ""
+msgstr "Мада Асабара"
 
 #: simulation/templates/units/pers_cavalry_spearman_b.xml:11
 msgid "Cappadocian Cavalry"
@@ -16548,11 +16594,11 @@ msgstr ""
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:19
 msgid "Shieldbearer"
-msgstr ""
+msgstr "Щитоносец"
 
 #: simulation/templates/units/pers_infantry_spearman_b.xml:20
 msgid "Sparabara"
-msgstr ""
+msgstr "Спарабара"
 
 #: simulation/templates/units/pers_kardakes_hoplite.xml:5
 msgid "Cardaces Hoplite"
@@ -16612,7 +16658,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
-msgstr ""
+msgstr "Бану Мианрудани"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
@@ -16766,7 +16812,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:15
 msgid "Egyptian Pikeman"
-msgstr ""
+msgstr "Египетский пикинер"
 
 #: simulation/templates/units/ptol_infantry_spearman_b.xml:16
 msgid "Makhimos Phalangites"
@@ -17049,7 +17095,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:5
 msgid "Silver Shield Pikeman"
-msgstr ""
+msgstr "Сереброщитный пикинер"
 
 #: simulation/templates/units/sele_champion_infantry_pikeman.xml:6
 msgid "Phalangitès Argyraspis"
@@ -17129,11 +17175,11 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:14
 msgid "Bronze Shield Pikeman"
-msgstr "Бронзовый щит копейщика"
+msgstr "Бронзовый щит пикинера"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
-msgstr ""
+msgstr "Золотощитный пикинер"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""
@@ -17176,7 +17222,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:5
 msgid "Spartan Pikeman"
-msgstr "Спартанский копейщик"
+msgstr "Спартанский пикинер"
 
 #: simulation/templates/units/spart_champion_infantry_pike.xml:6
 msgid "Phalangites Spartiatis"
@@ -17282,7 +17328,7 @@ msgstr ""
 msgid ""
 "Champion Spearman.\n"
 "Counters Melee Units. Countered by Ranged Units. Extra Bonus vs. All Greek Units."
-msgstr ""
+msgstr "Элитный копейщик.\nСилен против рукопашных юнитов. Слаб против дальнобойных юнитов. Дополнительный бонус против всех Греческих воинов."
 
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieros Lochos Hoplites"
