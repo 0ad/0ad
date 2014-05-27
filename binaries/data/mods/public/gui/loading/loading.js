@@ -48,11 +48,11 @@ function init(data)
 		{
 		case "skirmish":
 		case "scenario":
-			loadingMapName.caption = sprintf(translate("Loading \"%(map)s\""), {map: mapName});
+			loadingMapName.caption = sprintf(translate("Loading “%(map)s”"), {map: mapName});
 			break;
 
 		case "random":
-			loadingMapName.caption = sprintf(translate("Generating \"%(map)s\""), {map: mapName});
+			loadingMapName.caption = sprintf(translate("Generating “%(map)s”"), {map: mapName});
 			break;
 
 		default:

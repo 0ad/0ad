@@ -5,17 +5,17 @@
 	<script file="gui/aiconfig/aiconfig.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="10" sprite="ModernFade"/>
+	<object type="image" sprite="ModernFade"/>
 
-	<object type="image" style="ModernDialog" size="50%-200 40%-140 50%+200 40%+180">
+	<object type="image" style="ModernDialog" size="50%-230 50%-130 50%+230 50%+130">
 
-		<object style="TitleText" type="text" size="50%-128 -16 50%+128 16">
+		<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">AI Configuration</translatableAttribute>
 		</object>
 
 		<object size="50%-128 30 50%+128 80">
 			<object type="text" style="ModernRightLabelText" size="-10 0 90 50%">
-				<translatableAttribute id="caption">AI Player</translatableAttribute>
+				<translatableAttribute id="caption">AI Player:</translatableAttribute>
 			</object>
 
 			<object name="aiSelection" type="dropdown" style="ModernDropDown" size="50%-24 0 50%+136 28">
@@ -23,21 +23,21 @@
 			</object>
 
 			<object type="text" style="ModernRightLabelText" size="-10 35 90 50%+35">
-				<translatableAttribute id="caption">AI Difficulty</translatableAttribute>
+				<translatableAttribute id="caption">AI Difficulty:</translatableAttribute>
 			</object>
 			
 			<object name="aiDifficulty" type="dropdown" style="ModernDropDown" size="50%-24 35 50%+136 63">
 			</object>
 		</object>
 
-		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 50%-54 92% 50%+74" text_align="center"/>
+		<object name="aiDescription" type="text" style="ModernLabelText" size="8% 50%-54 92% 50%+74"/>
 
-		<object type="button" style="StoneButton" size="50%-144 100%-60 50%-16 100%-32">
+		<object type="button" style="ModernButtonRed" size="18 100%-45 50%-5 100%-17">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">Engine.PopGuiPage();</action>
 		</object>
 
-		<object type="button" style="StoneButton" size="50%+16 100%-60 50%+144 100%-32">
+		<object type="button" style="ModernButtonRed" size="50%+5 100%-45 100%-18 100%-17">
 			<translatableAttribute id="caption">OK</translatableAttribute>
 			<action on="Press">returnAI();</action>
 		</object>
