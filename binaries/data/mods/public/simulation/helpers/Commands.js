@@ -39,36 +39,36 @@ function ProcessCommand(player, cmd)
 
 	
 var commands = {
-	"debug-print": function(player, cmd)
+	"debug-print": function(player, cmd, data)
 	{
 		print(cmd.message);
 	},
 	
-	"chat": function(player, cmd)
+	"chat": function(player, cmd, data)
 	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
 	},
 
-	"aichat": function(player, cmd)
+	"aichat": function(player, cmd, data)
 	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
 	},
 		
-	"cheat": function(player, cmd)
+	"cheat": function(player, cmd, data)
 	{
 		Cheat(cmd);
 	},
 		
-	"quit": function(player, cmd)
+	"quit": function(player, cmd, data)
 	{
 		// Let the AI exit the game for testing purposes
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "quit"});
 	},
 
-	"diplomacy": function(player, cmd)
+	"diplomacy": function(player, cmd, data)
 	{
 		switch(cmd.to)
 		{
@@ -88,17 +88,17 @@ var commands = {
 		cmpGuiInterface.PushNotification({"type": "diplomacy", "player": player, "player1": cmd.player, "status": cmd.to});
 	},
 
-	"tribute": function(player, cmd)
+	"tribute": function(player, cmd, data)
 	{
 		data.cmpPlayer.TributeResource(cmd.player, cmd.amounts);
 	},
 
-	"control-all": function(player, cmd)
+	"control-all": function(player, cmd, data)
 	{
 		data.cmpPlayer.SetControlAllUnits(cmd.flag);
 	},
 
-	"reveal-map": function(player, cmd)
+	"reveal-map": function(player, cmd, data)
 	{
 		// Reveal the map for all players, not just the current player,
 		// primarily to make it obvious to everyone that the player is cheating
@@ -278,10 +278,10 @@ var commands = {
 		}
 	},
 
-	"research": function(player, cmd)
+	"research": function(player, cmd, data)
 	{
 		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		if (CanControlUnit(cmd.entity, player, data.controlAllUnits))
 		{
 			var cmpTechnologyManager = QueryOwnerInterface(cmd.entity, IID_TechnologyManager);
 			if (cmpTechnologyManager.CanResearch(cmd.template))
@@ -301,10 +301,10 @@ var commands = {
 		}
 	},
 
-	"stop-production": function(player, cmd)
+	"stop-production": function(player, cmd, data)
 	{
 		// Verify that the building can be controlled by the player
-		if (CanControlUnit(cmd.entity, player, controlAllUnits))
+		if (CanControlUnit(cmd.entity, player, data.controlAllUnits))
 		{
 			var queue = Engine.QueryInterface(cmd.entity, IID_ProductionQueue);
 			if (queue)
@@ -316,14 +316,14 @@ var commands = {
 		}
 	},
 
-	"construct": function(player, cmd)
+	"construct": function(player, cmd, data)
 	{
-		TryConstructBuilding(player, data.cmpPlayer, controlAllUnits, cmd);
+		TryConstructBuilding(player, data.cmpPlayer, data.controlAllUnits, cmd);
 	},
 
 	"construct-wall": function(player, cmd, data)
 	{
-		TryConstructWall(player, data.cmpPlayer, controlAllUnits, cmd);
+		TryConstructWall(player, data.cmpPlayer, data.controlAllUnits, cmd);
 	},
 
 	"delete-entities": function(player, cmd, data)
@@ -377,7 +377,7 @@ var commands = {
 	"garrison": function(player, cmd, data)
 	{
 		// Verify that the building can be controlled by the player or is mutualAlly
-		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
+		if (CanControlUnitOrIsAlly(cmd.target, player, data.controlAllUnits))
 		{
 			GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Garrison(cmd.target, cmd.queued);
@@ -392,7 +392,7 @@ var commands = {
 	"guard": function(player, cmd, data)
 	{
 		// Verify that the target can be controlled by the player or is mutualAlly
-		if (CanControlUnitOrIsAlly(cmd.target, player, controlAllUnits))
+		if (CanControlUnitOrIsAlly(cmd.target, player, data.controlAllUnits))
 		{
 			GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
 				cmpUnitAI.Guard(cmd.target, cmd.queued);
@@ -414,7 +414,7 @@ var commands = {
 	"unload": function(player, cmd, data)
 	{
 		// Verify that the building can be controlled by the player or is mutualAlly
-		if (CanControlUnitOrIsAlly(cmd.garrisonHolder, player, controlAllUnits))
+		if (CanControlUnitOrIsAlly(cmd.garrisonHolder, player, data.controlAllUnits))
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(cmd.garrisonHolder, IID_GarrisonHolder);
 			var notUngarrisoned = 0;
@@ -442,14 +442,14 @@ var commands = {
 		if (index == -1)
 			return;
 
-		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, controlAllUnits);
+		var entities = FilterEntityListWithAllies(cmd.garrisonHolders, player, data.controlAllUnits);
 		for each (var garrisonHolder in entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
 			if (cmpGarrisonHolder)
 			{
 				// Only the owner of the garrisonHolder may unload entities from any owners
-				if (!IsOwnedByPlayer(player, garrisonHolder) && !controlAllUnits
+				if (!IsOwnedByPlayer(player, garrisonHolder) && !data.controlAllUnits
 				    && player != +cmd.template.slice(1,index))
 						continue;
 
@@ -461,7 +461,7 @@ var commands = {
 
 	"unload-all-own": function(player, cmd, data)
 	{
-		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
 		for each (var garrisonHolder in entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
@@ -472,7 +472,7 @@ var commands = {
 
 	"unload-all": function(player, cmd, data)
 	{
-		var entities = FilterEntityList(cmd.garrisonHolders, player, controlAllUnits);
+		var entities = FilterEntityList(cmd.garrisonHolders, player, data.controlAllUnits);
 		for each (var garrisonHolder in entities)
 		{
 			var cmpGarrisonHolder = Engine.QueryInterface(garrisonHolder, IID_GarrisonHolder);
