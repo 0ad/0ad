@@ -526,9 +526,6 @@ m.HQ.prototype.tryResearchTechs = function(gameState, queues)
 		if (techName.indexOf("heal_rate") !== -1 || techName.indexOf("heal_range") !== -1 ||
 			techName.indexOf("heal_temple") !== -1 || techName.indexOf("unlock_females_house") !== -1)
 			possibilities.splice(i--, 1);
-		// temporary hack for upgrade problem TODO fix that
-		else if (techName.slice(0, 12) === "upgrade_rank")
-			possibilities.splice(i--, 1);
 	}
 	if (possibilities.length === 0)
 		return;

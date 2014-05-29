@@ -260,6 +260,22 @@ var commands = {
 				{
 					var queue = Engine.QueryInterface(ent, IID_ProductionQueue);
 					// Check if the building can train the unit
+					// TODO: the AI API does not take promotion technologies into account for the list of trainable units
+					// (it is taken directly from the unit template). Here is a temporary fix. 
+					if (queue && data.cmpPlayer.IsAI())
+					{
+						var len = cmd.template.length;
+						var list = queue.GetEntitiesList();
+						if (cmd.template.substr(len-2,2) === "_b" && list.indexOf(cmd.template) === -1)
+						{
+							var promo_a = cmd.template.substr(0,len-2) + "_a";
+							var promo_e = cmd.template.substr(0,len-2) + "_e";
+							if (list.indexOf(promo_a) !== -1)
+								cmd.template = promo_a;
+							else if (list.indexOf(promo_e) !== -1)
+								cmd.template = promo_e;
+						}
+					}
 					if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
 						if ("metadata" in cmd)
 							queue.AddBatch(cmd.template, "unit", +cmd.count, cmd.metadata);
