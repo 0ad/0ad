@@ -94,9 +94,9 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		if (template.hasClass("CivCentre"))
 		{
 			if (this.metadata.type)
-				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, this.metadata.type);
+				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.type);
 			else
-				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState);
+				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
 
 			if (pos)
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": 0 };
