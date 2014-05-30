@@ -227,6 +227,16 @@ Attack.prototype.CanAttack = function(target)
 	if (cmpFormation)
 		return true;
 
+	var cmpThisPosition = Engine.QueryInterface(this.entity, IID_Position);
+	var cmpTargetPosition = Engine.QueryInterface(target, IID_Position);
+	if (!cmpThisPosition || !cmpTargetPosition || !cmpThisPosition.IsInWorld() || !cmpTargetPosition.IsInWorld())
+		return false;
+
+	// Check if the relative height difference is larger than the attack range
+	// If the relative height is bigger, it means they will never be able to
+	// reach each other, no matter how close they come.
+	var heightDiff = Math.abs(cmpThisPosition.GetHeightOffset() - cmpTargetPosition.GetHeightOffset());
+
 	const cmpIdentity = Engine.QueryInterface(target, IID_Identity);
 	if (!cmpIdentity) 
 		return undefined;
@@ -235,6 +245,9 @@ Attack.prototype.CanAttack = function(target)
 
 	for each (var type in this.GetAttackTypes())
 	{
+		if (heightDiff > this.GetRange(type).max)
+			continue;
+
 		var canAttack = true;
 		var restrictedClasses = this.GetRestrictedClasses(type);
 

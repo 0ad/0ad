@@ -76,9 +76,15 @@ public:
 	entity_pos_t m_Y, m_LastYDifference; // either the relative or the absolute Y coordinate
 	bool m_RelativeToGround; // whether m_Y is relative to terrain/water plane, or an absolute height
 
+	// when the entity is a turret, only m_RotY is used, and this is the rotation
+	// relative to the parent entity
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
 
 	player_id_t m_Territory;
+
+	entity_id_t m_TurretParent;
+	CFixedVector3D m_TurretPosition;
+	std::set<entity_id_t> m_Turrets;
 
 	// not serialized:
 	float m_InterpolatedRotX, m_InterpolatedRotY, m_InterpolatedRotZ;
@@ -142,6 +148,8 @@ public:
 		m_Territory = INVALID_PLAYER;
 
 		m_NeedInitialXZRotation = false;
+		m_TurretParent = INVALID_ENTITY;
+		m_TurretPosition = CFixedVector3D();
 	}
 
 	virtual void Deinit()
@@ -223,6 +231,60 @@ public:
 			UpdateXZRotation();
 	}
 
+	virtual void UpdateTurretPosition()
+	{
+		if (m_TurretParent == INVALID_ENTITY)
+			return;
+		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+		if (!cmpPosition)
+		{
+			LOGERROR(L"Turret with parent without position component");
+			return;
+		}
+		if (!cmpPosition->IsInWorld())
+			MoveOutOfWorld();
+		else
+		{
+			CFixedVector2D rotatedPosition = CFixedVector2D(m_TurretPosition.X, m_TurretPosition.Z);
+			rotatedPosition = rotatedPosition.Rotate(cmpPosition->GetRotation().Y);
+			CFixedVector2D rootPosition = cmpPosition->GetPosition2D();
+			entity_pos_t x = rootPosition.X + rotatedPosition.X;
+			entity_pos_t z = rootPosition.Y + rotatedPosition.Y;
+			if (!m_InWorld || m_X != x || m_Z != z)
+				MoveTo(x, z);
+			entity_pos_t y = cmpPosition->GetHeightOffset() + m_TurretPosition.Y;
+			if (!m_InWorld || GetHeightOffset() != y)
+				SetHeightOffset(y);
+			m_InWorld = true;
+		}
+	}
+
+	virtual std::set<entity_id_t>* GetTurrets()
+	{
+		return &m_Turrets;
+	}
+
+	virtual void SetTurretParent(entity_id_t id, CFixedVector3D offset)
+	{
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (cmpPosition)
+				cmpPosition->GetTurrets()->erase(GetEntityId());
+		}
+
+		m_TurretParent = id;
+		m_TurretPosition = offset;
+
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (cmpPosition)
+				cmpPosition->GetTurrets()->insert(GetEntityId());
+		}
+		UpdateTurretPosition();
+	}
+
 	virtual bool IsInWorld()
 	{
 		return m_InWorld;
@@ -255,7 +317,6 @@ public:
 	{
 		m_X = x;
 		m_Z = z;
-		m_RotY = ry;
 		
 		if (!m_InWorld)
 		{
@@ -265,7 +326,8 @@ public:
 			m_LastYDifference = entity_pos_t::Zero();
 		}
 		
-		AdvertisePositionChanges();
+		// TurnTo will advertise the position changes
+		TurnTo(ry);
 	}
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
@@ -405,6 +467,12 @@ public:
 
 	virtual void TurnTo(entity_angle_t y)
 	{
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (cmpPosition)
+				y -= cmpPosition->GetRotation().Y;
+		}
 		m_RotY = y;
 
 		AdvertisePositionChanges();
@@ -412,6 +480,12 @@ public:
 
 	virtual void SetYRotation(entity_angle_t y)
 	{
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (cmpPosition)
+				y -= cmpPosition->GetRotation().Y;
+		}
 		m_RotY = y;
 		m_InterpolatedRotY = m_RotY.ToFloat();
 
@@ -444,6 +518,13 @@ public:
 
 	virtual CFixedVector3D GetRotation()
 	{
+		entity_angle_t y = m_RotY;
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (cmpPosition)
+				y += cmpPosition->GetRotation().Y;
+		}
 		return CFixedVector3D(m_RotX, m_RotY, m_RotZ);
 	}
 
@@ -474,6 +555,32 @@ public:
 
 	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating)
 	{
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
+			if (!cmpPosition)
+			{
+				LOGERROR(L"Turret with parent without position component");
+				CMatrix3D m;
+				m.SetIdentity();
+				return m;
+			}
+			if (!cmpPosition->IsInWorld())
+			{
+				LOGERROR(L"CCmpPosition::GetInterpolatedTransform called on turret entity when IsInWorld is false");
+				CMatrix3D m;
+				m.SetIdentity();
+				return m;
+			}
+			else
+			{
+				CMatrix3D parentTransformMatrix = cmpPosition->GetInterpolatedTransform(frameOffset, forceFloating);
+				CMatrix3D ownTransformation = CMatrix3D();
+				ownTransformation.SetYRotation(m_InterpolatedRotY);
+				ownTransformation.Translate(-m_TurretPosition.X.ToFloat(), m_TurretPosition.Y.ToFloat(), -m_TurretPosition.Z.ToFloat());
+				return parentTransformMatrix * ownTransformation;
+			}
+		}
 		if (!m_InWorld)
 		{
 			LOGERROR(L"CCmpPosition::GetInterpolatedTransform called on entity when IsInWorld is false");
@@ -562,6 +669,7 @@ public:
 		}
 		case MT_TurnStart:
 		{
+			
 			m_LastInterpolatedRotX = m_InterpolatedRotX;
 			m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 
@@ -606,6 +714,12 @@ public:
 private:
 	void AdvertisePositionChanges()
 	{
+		for (std::set<entity_id_t>::const_iterator it = m_Turrets.begin(); it != m_Turrets.end(); ++it)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), *it);
+			if (cmpPosition)
+				cmpPosition->UpdateTurretPosition();
+		}
 		if (m_InWorld)
 		{
 			CMessagePositionChanged msg(GetEntityId(), true, m_X, m_Z, m_RotY);

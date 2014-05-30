@@ -4,6 +4,25 @@
     <Square width="38.5" depth="9.0"/>
     <Height>9.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <VisibleGarrisonPoints>
+      <Archer1>
+        <X>0</X><Y>10.6</Y><Z>0</Z>
+      </Archer1>
+      <Archer2>
+        <X>8</X><Y>10.6</Y><Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>-8</X><Y>10.6</Y><Z>0</Z>
+      </Archer3>
+      <Archer4>
+        <X>4</X><Y>10.6</Y><Z>0</Z>
+      </Archer4>
+      <Archer5>
+        <X>-4</X><Y>10.6</Y><Z>0</Z>
+      </Archer5>
+    </VisibleGarrisonPoints>
+  </GarrisonHolder>
   <Identity>
     <Civ>pers</Civ>
     <SelectionGroupName>structures/pers_wallset_stone</SelectionGroupName>

@@ -59,6 +59,21 @@ class ICmpPosition : public IComponent
 {
 public:
 	/**
+	 * Set this as a turret of an other entity
+	 */
+	virtual void SetTurretParent(entity_id_t parent, CFixedVector3D offset) = 0;
+
+	/**
+	 * Has to be called to update the simulation position of the turret
+	 */
+	virtual void UpdateTurretPosition() = 0;
+
+	/**
+	 * Get the list of turrets to read or edit
+	 */
+	virtual std::set<entity_id_t>* GetTurrets() = 0;
+
+	/**
 	 * Returns true if the entity currently exists at a defined position in the world.
 	 */
 	virtual bool IsInWorld() = 0;

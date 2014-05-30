@@ -179,7 +179,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	// Called when being told to walk as part of a formation
 	"Order.FormationWalk": function(msg) {
 		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic())
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -207,7 +207,7 @@ UnitAI.prototype.UnitFsmSpec = {
 	"Order.LeaveFoundation": function(msg) {
 		// If foundation is not ally of entity, or if entity is unpacked siege,
 		// ignore the order
-		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack())
+		if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -252,7 +252,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.Walk": function(msg) {
 		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic())
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -281,7 +281,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.WalkAndFight": function(msg) {
 		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic())
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -308,7 +308,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 	"Order.WalkToTarget": function(msg) {
 		// Let players move captured domestic animals around
-		if (this.IsAnimal() && !this.IsDomestic())
+		if (this.IsAnimal() && !this.IsDomestic() || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -489,7 +489,7 @@ UnitAI.prototype.UnitFsmSpec = {
 
 		// If we can't reach the target, but are standing ground, then abandon this attack order.
 		// Unless we're hunting, that's a special case where we should continue attacking our target.
-		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting)
+		if (this.GetStance().respondStandGround && !this.order.data.force && !this.order.data.hunting || this.IsTurret())
 		{
 			this.FinishOrder();
 			return;
@@ -688,6 +688,11 @@ UnitAI.prototype.UnitFsmSpec = {
 	},
 
 	"Order.Garrison": function(msg) {
+		if (this.IsTurret())
+		{
+			this.FinishOrder();
+			return;
+		}
 		// For packable units:
 		// 1. If packed, we can move to the garrison target.
 		// 2. If unpacked, we first need to pack, then follow case 1.
@@ -1245,7 +1250,7 @@ UnitAI.prototype.UnitFsmSpec = {
 		"Order.LeaveFoundation": function(msg) {
 			// If foundation is not ally of entity, or if entity is unpacked siege,
 			// ignore the order
-			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack())
+			if (!IsOwnedByAllyOfEntity(this.entity, msg.data.target) || this.IsPacking() || this.CanPack() || this.IsTurret())
 			{
 				this.FinishOrder();
 				return;
@@ -2836,6 +2841,9 @@ UnitAI.prototype.UnitFsmSpec = {
 									delete this.pickup;
 								}
 								
+								if (this.IsTurret())
+									this.SetNextState("IDLE");
+
 								return false;
 							}
 						}
@@ -3135,6 +3143,28 @@ UnitAI.prototype.Init = function()
 	this.lastHealed = undefined;
 
 	this.SetStance(this.template.DefaultStance);
+	this.SetTurret(false);
+};
+
+/**
+ * Set the flag to true to use this unit as a turret
+ * This means no moving is allowed, only turning
+ */
+UnitAI.prototype.SetTurret = function(flag)
+{
+	this.isTurret = flag;
+	if (flag == false && this.oldStance)
+		this.SetStance(this.oldStance);
+	else if (flag == true)
+	{
+		this.OldStance = this.GetStance();
+		this.SetStance("standground");
+	}
+};
+
+UnitAI.prototype.IsTurret = function()
+{
+	return this.isTurret;
 };
 
 UnitAI.prototype.ReactsToAlert = function(level)
@@ -4168,7 +4198,7 @@ UnitAI.prototype.MoveToTarget = function(target)
 
 UnitAI.prototype.MoveToTargetRange = function(target, iid, type)
 {
-	if (!this.CheckTargetVisible(target))
+	if (!this.CheckTargetVisible(target) || this.IsTurret())
 		return false;
 
 	var cmpRanged = Engine.QueryInterface(this.entity, iid);
@@ -4599,6 +4629,9 @@ UnitAI.prototype.ShouldAbandonChase = function(target, force, iid, type)
  */
 UnitAI.prototype.ShouldChaseTargetedEntity = function(target, force)
 {
+	if (this.IsTurret())
+		return false;
+
 	// TODO: use special stances instead?
 	var cmpPack = Engine.QueryInterface(this.entity, IID_Pack);
 	if (cmpPack)
@@ -5530,6 +5563,8 @@ UnitAI.prototype.CanGarrison = function(target)
 
 UnitAI.prototype.CanGather = function(target)
 {
+	if (this.IsTurret())
+		return false;
 	// The target must be a valid resource supply.
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
 	if (!cmpResourceSupply)
@@ -5602,6 +5637,8 @@ UnitAI.prototype.CanHeal = function(target)
 
 UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 {
+	if (this.IsTurret())
+		return false;
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())
@@ -5636,6 +5673,8 @@ UnitAI.prototype.CanReturnResource = function(target, checkCarriedResource)
 
 UnitAI.prototype.CanTrade = function(target)
 {
+	if (this.IsTurret())
+		return false;
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())
@@ -5651,6 +5690,8 @@ UnitAI.prototype.CanTrade = function(target)
 
 UnitAI.prototype.CanRepair = function(target)
 {
+	if (this.IsTurret())
+		return false;
 	// Formation controllers should always respond to commands
 	// (then the individual units can make up their own minds)
 	if (this.IsFormationController())

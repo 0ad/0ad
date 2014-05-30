@@ -26,6 +26,19 @@
   <Health>
     <Max>1500</Max>
   </Health>
+  <GarrisonHolder>
+    <VisibleGarrisonPoints>
+      <Archer1>
+        <X>0</X><Y>5.7</Y><Z>0</Z>
+      </Archer1>
+      <Archer2>
+        <X>4</X><Y>5.7</Y><Z>0</Z>
+      </Archer2>
+      <Archer3>
+        <X>-4</X><Y>5.7</Y><Z>0</Z>
+      </Archer3>
+    </VisibleGarrisonPoints>
+  </GarrisonHolder>
   <Identity>
     <Civ>rome</Civ>
 	<SelectionGroupName>structures/rome_wallset_siege</SelectionGroupName>
