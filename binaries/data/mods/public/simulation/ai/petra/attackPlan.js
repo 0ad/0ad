@@ -822,7 +822,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	if (this.Config.debug)
 		warn("start attack " + this.name + " with type " + this.type);
 
-	if (!this.target)  // our target was destroyed during our preparation
+	if (!this.target || !gameState.getEntityById(this.target.id()))  // our target was destroyed during our preparation
 	{
 		if (!this.targetPos)    // should not happen
 			return false;

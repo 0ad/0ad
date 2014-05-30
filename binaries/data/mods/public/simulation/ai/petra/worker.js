@@ -742,15 +742,17 @@ m.Worker.prototype.moveAway = function(baseManager, gameState){
 	var pos = this.ent.position();
 	var dist = Math.min();
 	var destination = pos;
-	for (var i = 0; i < gatherers.length; ++i)
+	for (var gatherer of gatherers)
 	{
-		if (gatherers[i].isIdle())
+		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
-		var distance = API3.SquareVectorDistance(pos, gatherers[i].position());
+		if (gatherer.isIdle())
+			continue;
+		var distance = API3.SquareVectorDistance(pos, gatherer.position());
 		if (distance > dist)
 			continue;
 		dist = distance;
-		destination = gatherers[i].position();
+		destination = gatherer.position();
 	}
 	this.ent.move(destination[0], destination[1]);
 };

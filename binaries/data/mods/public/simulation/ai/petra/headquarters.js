@@ -254,7 +254,11 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 	else
 	{
 		if (this.Config.debug > 0)
-			warn("bad path ??? " + uneval(path));
+		{
+			warn("bad path from " + index1 + " to " + index2 + " ??? " + uneval(path));
+			warn(" regionLinks start " + uneval(gameState.ai.accessibility.regionLinks[index1]));
+			warn(" regionLinks end   " + uneval(gameState.ai.accessibility.regionLinks[index2]));
+		}
 		return undefined;
 	}
 };
@@ -1283,7 +1287,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 	// then expand if we have lots of units
 	var numUnits = 	gameState.getOwnUnits().length;
 	var numCCs = gameState.countEntitiesByType(gameState.applyCiv(this.bBase[0]), true);
-	if (Math.floor(numUnits/60) >= numCCs)
+	var popForBase = this.Config.Economy.popForTown + 20;
+	if (this.saveResources)
+		popForBase = this.Config.Economy.popForTown + 5;
+	if (Math.floor(numUnits/popForBase) >= numCCs)
 	{
 		if (this.Config.debug > 1)
 			warn("try to build a new base because of population " + numUnits + " for " + numCCs + " CCs");
