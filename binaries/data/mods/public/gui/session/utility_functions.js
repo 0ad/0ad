@@ -304,11 +304,29 @@ function getEntityCommandsList(entState)
 		    "tooltip": translate("Stop"),
 		    "icon": "stop.png"
 		});
-		commands.push({
-		    "name": "garrison",
-		    "tooltip": translate("Garrison"),
-		    "icon": "garrison.png"
-		});
+	}
+
+	if (entState.unitAI)
+	{
+		if (entState.turretParent)
+		{
+			var parent = GetEntityState(entState.turretParent);
+			if (
+				parent.garrisonHolder && 
+				parent.garrisonHolder.entities.indexOf(entState.id) != -1
+			)
+				commands.push({
+					"name": "unload",
+					"tooltip": translate("Unload"),
+					"icon": "garrison-out.png"
+				});
+		}
+		else
+			commands.push({
+				"name": "garrison",
+				"tooltip": translate("Garrison"),
+				"icon": "garrison.png"
+			});
 	}
 
 	if (entState.buildEntities)

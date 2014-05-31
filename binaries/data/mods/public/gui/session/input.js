@@ -1932,6 +1932,9 @@ function performCommand(entity, commandName)
 			case "remove-guard":
 				removeGuard();
 				break;
+			case "unload":
+				unloadThese();
+				break;
 			case "unload-all":
 				unloadAll();
 				break;
@@ -2208,6 +2211,29 @@ function unloadTemplate(template)
 		"template": template,
 		"garrisonHolders": garrisonHolders
 	});
+}
+
+function unloadThese()
+{
+	var entities = g_Selection.toList();
+	var parent = 0;
+	var ents = [];
+	for each (var ent in entities)
+	{
+		var state = GetExtendedEntityState(ent);
+		if (state && state.turretParent)
+		{
+			if (!parent)
+			{
+				parent = state.turretParent;
+				ents.push(ent);
+			}
+			else if (state.turretParent == parent)
+				ents.push(ent)
+		}
+	}
+	if (parent)
+		Engine.PostNetworkCommand({"type": "unload", "entities":ents, "garrisonHolder": parent});
 }
 
 function unloadAll()
