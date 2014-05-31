@@ -3143,28 +3143,12 @@ UnitAI.prototype.Init = function()
 	this.lastHealed = undefined;
 
 	this.SetStance(this.template.DefaultStance);
-	this.SetTurret(false);
-};
-
-/**
- * Set the flag to true to use this unit as a turret
- * This means no moving is allowed, only turning
- */
-UnitAI.prototype.SetTurret = function(flag)
-{
-	this.isTurret = flag;
-	if (flag == false && this.oldStance)
-		this.SetStance(this.oldStance);
-	else if (flag == true)
-	{
-		this.OldStance = this.GetStance();
-		this.SetStance("standground");
-	}
 };
 
 UnitAI.prototype.IsTurret = function()
 {
-	return this.isTurret;
+	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
+	return cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY;
 };
 
 UnitAI.prototype.ReactsToAlert = function(level)

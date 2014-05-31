@@ -245,9 +245,6 @@ GarrisonHolder.prototype.Garrison = function(entity)
 			continue;
 		vgp.entity = entity;
 		cmpPosition.SetTurretParent(this.entity, vgp.offset);
-		var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI)
-		if (cmpUnitAI)
-			cmpUnitAI.SetTurret(true);
 		visiblyGarrisoned = true;
 		break;
 	}
@@ -346,9 +343,6 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 			continue;
 		cmpNewPosition.SetTurretParent(INVALID_ENTITY, new Vector3D());
 		vgp.entity = null;
-		var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI)
-		if (cmpUnitAI)
-			cmpUnitAI.SetTurret(false);
 		break;
 	}
 

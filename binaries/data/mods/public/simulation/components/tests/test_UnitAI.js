@@ -72,6 +72,7 @@ function TestFormationExiting(mode)
 	});
 
 	AddMock(unit, IID_Position, {
+		GetTurretParent: function() { return INVALID_ENTITY; },
 		GetPosition: function() { return new Vector3D(); },
 		GetPosition2D: function() { return new Vector2D(); },
 		GetRotation: function() { return { "y": 0 }; },
@@ -125,6 +126,7 @@ function TestFormationExiting(mode)
 
 	AddMock(controller, IID_Position, {
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
+		GetTurretParent: function() { return INVALID_ENTITY; },
 		GetPosition: function() { return new Vector3D(this.x, 0, this.z); },
 		GetPosition2D: function() { return new Vector2D(this.x, this.z); },
 		GetRotation: function() { return { "y": 0 }; },
@@ -222,6 +224,7 @@ function TestMoveIntoFormationWhileAttacking()
 		});
 	
 		AddMock(unit + i, IID_Position, {
+			GetTurretParent: function() { return INVALID_ENTITY; },
 			GetPosition: function() { return new Vector3D(); },
 			GetPosition2D: function() { return new Vector2D(); },
 			GetRotation: function() { return { "y": 0 }; },
@@ -267,6 +270,7 @@ function TestMoveIntoFormationWhileAttacking()
 	var controllerAI = ConstructComponent(controller, "UnitAI", { "FormationController": "true", "DefaultStance": "aggressive" });
 
 	AddMock(controller, IID_Position, {
+		GetTurretParent: function() { return INVALID_ENTITY; },
 		JumpTo: function(x, z) { this.x = x; this.z = z; },
 		GetPosition: function() { return new Vector3D(this.x, 0, this.z); },
 		GetPosition2D: function() { return new Vector2D(this.x, this.z); },

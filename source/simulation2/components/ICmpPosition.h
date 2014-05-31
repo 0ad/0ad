@@ -64,6 +64,11 @@ public:
 	virtual void SetTurretParent(entity_id_t parent, CFixedVector3D offset) = 0;
 
 	/**
+	 * Get the turret parent of this entity
+	 */
+	virtual entity_id_t GetTurretParent() = 0;
+
+	/**
 	 * Has to be called to update the simulation position of the turret
 	 */
 	virtual void UpdateTurretPosition() = 0;

@@ -200,6 +200,13 @@ public:
 			}
 			serialize.StringASCII("anchor", anchor, 0, 16);
 		}
+		serialize.NumberU32_Unbounded("turret parent", m_TurretParent);
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			serialize.NumberFixed_Unbounded("x", m_TurretPosition.X);
+			serialize.NumberFixed_Unbounded("y", m_TurretPosition.Y);
+			serialize.NumberFixed_Unbounded("z", m_TurretPosition.Z);
+		}
 	}
 
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize)
@@ -226,6 +233,14 @@ public:
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
+
+		deserialize.NumberU32_Unbounded("turret parent", m_TurretParent);
+		if (m_TurretParent != INVALID_ENTITY)
+		{
+			deserialize.NumberFixed_Unbounded("x", m_TurretPosition.X);
+			deserialize.NumberFixed_Unbounded("y", m_TurretPosition.Y);
+			deserialize.NumberFixed_Unbounded("z", m_TurretPosition.Z);
+		}
 
 		if (m_InWorld)
 			UpdateXZRotation();
@@ -283,6 +298,11 @@ public:
 				cmpPosition->GetTurrets()->insert(GetEntityId());
 		}
 		UpdateTurretPosition();
+	}
+
+	virtual entity_id_t GetTurretParent()
+	{
+		return m_TurretParent;
 	}
 
 	virtual bool IsInWorld()

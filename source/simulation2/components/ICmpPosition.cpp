@@ -23,6 +23,7 @@
 
 BEGIN_INTERFACE_WRAPPER(Position)
 DEFINE_INTERFACE_METHOD_2("SetTurretParent", void, ICmpPosition, SetTurretParent, entity_id_t, CFixedVector3D)
+DEFINE_INTERFACE_METHOD_0("GetTurretParent", entity_id_t, ICmpPosition, GetTurretParent)
 DEFINE_INTERFACE_METHOD_0("IsInWorld", bool, ICmpPosition, IsInWorld)
 DEFINE_INTERFACE_METHOD_0("MoveOutOfWorld", void, ICmpPosition, MoveOutOfWorld)
 DEFINE_INTERFACE_METHOD_2("MoveTo", void, ICmpPosition, MoveTo, entity_pos_t, entity_pos_t)
