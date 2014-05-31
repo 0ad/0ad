@@ -14,6 +14,7 @@ Auras.prototype.Schema =
 					"<value a:help='Affects units in the same formation'>formation</value>" +
 					"<value a:help='Affects units in a certain range'>range</value>" +
 					"<value a:help='Affects the structure or unit this unit is garrisoned in'>garrison</value>" +
+					"<value a:help='Affects the units that are garrisoned on a certain structure'>garrisonedUnits</value>" +
 					"<value a:help='Affects all units while this unit is alive'>global</value>" +
 				"</choice>" +
 			"</element>" +
@@ -96,6 +97,11 @@ Auras.prototype.HasGarrisonAura = function()
 	return this.GetAuraNames().some(this.IsGarrisonAura.bind(this));
 };
 
+Auras.prototype.HasGarrisonedUnitsAura = function()
+{
+	return this.GetAuraNames().some(this.IsGarrisonedUnitsAura.bind(this));
+};
+
 Auras.prototype.GetType = function(name)
 {
 	return this.template[name].Type;
@@ -109,6 +115,11 @@ Auras.prototype.IsFormationAura = function(name)
 Auras.prototype.IsGarrisonAura = function(name)
 {
 	return this.GetType(name) == "garrison";
+};
+
+Auras.prototype.IsGarrisonedUnitsAura = function(name)
+{
+	return this.GetType(name) == "garrisonedUnits";
 };
 
 Auras.prototype.IsRangeAura = function(name)
@@ -235,6 +246,20 @@ Auras.prototype.OnRangeUpdate = function(msg)
 		}
 	}
 
+};
+
+Auras.prototype.OnGarrisonedUnitsChanged = function(msg)
+{
+	var auraNames = this.GetAuraNames();
+	for each (var name in auraNames)
+	{
+		if (!this.IsGarrisonedUnitsAura(name))
+			continue;
+		for each (var ent in msg.added)
+			this.ApplyBonus(name, ent);
+		for each (var ent in msg.removed)
+			this.RemoveBonus(name, ent);
+	}
 };
 
 Auras.prototype.ApplyFormationBonus = function(memberList)
