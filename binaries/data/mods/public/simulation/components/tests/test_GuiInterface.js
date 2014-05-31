@@ -364,6 +364,7 @@ AddMock(10, IID_Identity, {
 });
 
 AddMock(10, IID_Position, {
+	GetTurretParent: function() {return INVALID_ENTITY;},
 	GetPosition: function() {
 		return {x:1, y:2, z:3};
 	},
@@ -417,6 +418,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedEntityState(-1, 10), {
 	buildingAI: null,
 	healer: null,
 	obstruction: null,
+	turretParent: null,
 	promotion: null,
 	resourceCarrying: null,
 	resourceDropsite: null,
