@@ -3223,7 +3223,7 @@ UnitAI.prototype.IsIdle = function()
 
 UnitAI.prototype.IsGarrisoned = function()
 {
-	return this.isGarrisoned;
+	return this.isGarrisoned || this.IsTurret();
 };
 
 UnitAI.prototype.IsFleeing = function()
