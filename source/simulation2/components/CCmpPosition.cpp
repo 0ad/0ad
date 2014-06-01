@@ -90,8 +90,6 @@ public:
 	float m_InterpolatedRotX, m_InterpolatedRotY, m_InterpolatedRotZ;
 	float m_LastInterpolatedRotX, m_LastInterpolatedRotZ; // not serialized
 
-	bool m_NeedInitialXZRotation;
-
 	static std::string GetSchema()
 	{
 		return
@@ -147,7 +145,6 @@ public:
 		m_LastInterpolatedRotX = m_LastInterpolatedRotZ = 0.f;
 		m_Territory = INVALID_PLAYER;
 
-		m_NeedInitialXZRotation = false;
 		m_TurretParent = INVALID_ENTITY;
 		m_TurretPosition = CFixedVector3D();
 	}
@@ -675,15 +672,6 @@ public:
 					UpdateXZRotation();
 				}
 			}
-			
-			if (m_InWorld && m_NeedInitialXZRotation)
-			{
-				// the terrain probably wasn't loaded last time we tried, so update the XZ rotation without interpolation
-				UpdateXZRotation();
-
-				m_LastInterpolatedRotX = m_InterpolatedRotX;
-				m_LastInterpolatedRotZ = m_InterpolatedRotZ;
-			}
 
 			break;
 		}
@@ -771,8 +759,7 @@ private:
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (!cmpTerrain || !cmpTerrain->IsLoaded())
 		{
-			// try again when terrain is loaded
-			m_NeedInitialXZRotation = true;
+			LOGERROR(L"Terrain not loaded");
 			return;
 		}
 
@@ -792,10 +779,6 @@ private:
 
 		if (m_AnchorType == ROLL || m_AnchorType == PITCH_ROLL)
 			m_InterpolatedRotZ = atan2(normal.X, normal.Y);
-
-		m_NeedInitialXZRotation = false;
-		
-		return;
 	}
 };
 
