@@ -105,6 +105,12 @@ private:
 
 	std::vector<SModelAnimState> m_AnimStates;
 
+	/**
+	 * True if all the current AnimStates are static, so Update() doesn't need
+	 * to do any work at all
+	 */
+	bool m_AnimStatesAreStatic;
+
 	void AddModel(CModel* model, const CObjectEntry* object);
 
 	entity_id_t m_Entity;

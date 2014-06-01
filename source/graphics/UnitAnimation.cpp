@@ -73,6 +73,11 @@ void CUnitAnimation::AddModel(CModel* model, const CObjectEntry* object)
 
 	model->SetAnimation(state.anims[state.animIdx], !m_Looping);
 
+	// Detect if this unit has any non-static animations
+	for (size_t i = 0; i < state.anims.size(); i++)
+		if (state.anims[i]->m_AnimDef != NULL)
+			m_AnimStatesAreStatic = false;
+
 	// Recursively add all props
 	const std::vector<CModel::Prop>& props = model->GetProps();
 	for (std::vector<CModel::Prop>::const_iterator it = props.begin(); it != props.end(); ++it)
@@ -89,6 +94,7 @@ void CUnitAnimation::ReloadUnit(CModel* model, const CObjectEntry* object)
 	m_Object = object;
 
 	m_AnimStates.clear();
+	m_AnimStatesAreStatic = true;
 	AddModel(m_Model, m_Object);
 }
 
@@ -117,6 +123,9 @@ void CUnitAnimation::SetAnimationSyncRepeat(float repeatTime)
 
 void CUnitAnimation::SetAnimationSyncOffset(float actionTime)
 {
+	if (m_AnimStatesAreStatic)
+		return;
+
 	// Update all the synced prop models to each coincide with actionTime
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
@@ -147,6 +156,9 @@ void CUnitAnimation::SetAnimationSyncOffset(float actionTime)
 
 void CUnitAnimation::Update(float time)
 {
+	if (m_AnimStatesAreStatic)
+		return;
+
 	// Advance all of the prop models independently
 	for (std::vector<SModelAnimState>::iterator it = m_AnimStates.begin(); it != m_AnimStates.end(); ++it)
 	{
