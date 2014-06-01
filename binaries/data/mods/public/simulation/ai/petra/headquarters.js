@@ -45,6 +45,7 @@ m.HQ = function(Config)
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.navalManager = new m.NavalManager(this.Config);
+	this.researchManager = new m.ResearchManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
 
 	this.boostedSoldiers = undefined;
@@ -499,45 +500,6 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	});
 	return units[0][0];
 };
-
-// Tries to research any available tech
-// Only one at once. Also does military tech (selection is completely random atm)
-// TODO: Lots, lots, lots here.
-m.HQ.prototype.tryResearchTechs = function(gameState, queues)
-{
-	if (gameState.currentPhase() < 2 || queues.minorTech.length() !== 0)
-		return;
-
-	var possibilities = gameState.findAvailableTech();
-	for (var i = 0; i < possibilities.length; ++i)
-	{
-		var techName = possibilities[i][0];
-		if (techName.indexOf("attack_tower_watch") !== -1 || techName.indexOf("gather_mining_servants") !== -1 ||
-			techName.indexOf("gather_mining_shaftmining") !== -1)
-		{
-			queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
-			return;
-		}
-	}
-
-	if (gameState.currentPhase() < 3)
-		return;
-
-	// remove some tech not yet used by this AI
-	for (var i = 0; i < possibilities.length; ++i)
-	{
-		var techName = possibilities[i][0];
-		if (techName.indexOf("heal_rate") !== -1 || techName.indexOf("heal_range") !== -1 ||
-			techName.indexOf("heal_temple") !== -1 || techName.indexOf("unlock_females_house") !== -1)
-			possibilities.splice(i--, 1);
-	}
-	if (possibilities.length === 0)
-		return;
-	// randomly pick one. No worries about pairs in that case.
-	var p = Math.floor((Math.random()*possibilities.length));
-	queues.minorTech.addItem(new m.ResearchPlan(gameState, possibilities[p][0]));
-};
-
 
 // returns an entity collection of workers through BaseManager.pickBuilders
 // TODO: when same accessIndex, sort by distance
@@ -1244,23 +1206,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (freeSlots < 5)
 	{
 		var index = this.stopBuilding.indexOf(gameState.applyCiv("structures/{civ}_house"));
-		if (index !== -1 && queues.minorTech.length() === 0)
+		if (index !== -1)
 		{
 			if (this.Config.debug > 0)
 				warn("no room to place a house ... try to improve with technology");
-			var techs = gameState.findAvailableTech();
-			for each (var tech in techs)
-			{
-				if (!tech[1]._template.modifications)
-					continue;
-				// TODO may-be loop on all modifs and check if the effect if positive ?
-				if (tech[1]._template.modifications[0].value !== "Cost/PopulationBonus")
-					continue;
-				if (this.Config.debug > 0)
-					warn(" ... ok we've found the " + tech[0] + " tech");
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				break;
-			}
+			this.researchManager.searchPopulationBonus(gameState, queues);
 		}
 		else if (index === -1)
 			var priority = 2*this.Config.priorities.house;
@@ -1701,7 +1651,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			this.buildDock(gameState, queues);
 
 		if (queues.minorTech.length() === 0 && gameState.ai.playedTurn % 5 === 1)
-			this.tryResearchTechs(gameState,queues);
+			this.researchManager.update(gameState, queues);
 	}
 
 	if (gameState.currentPhase() > 1)

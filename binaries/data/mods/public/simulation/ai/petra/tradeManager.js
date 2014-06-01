@@ -291,8 +291,11 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	{
 		if (buy === "food")
 			continue;
+		var barterRateMin = 80;
+		if (available["buy"] < 5000 && available["food"] > 5000)
+			barterRateMin -= (20 - Math.floor(available["buy"]/250));
 		var barterRate = getBarterRate(prices, buy, "food");
-		if (barterRate < 80)
+		if (barterRate < barterRateMin)
 			continue;
 		var choice = barterRate / (100 + available[buy]);
 		if (choice > bestChoice)
