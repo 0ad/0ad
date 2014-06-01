@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #include "simulation2/MessageTypes.h"
 
 #include "ICmpTerrain.h"
+#include "ICmpTerritoryManager.h"
+#include "ICmpVisual.h"
 #include "ICmpWaterManager.h"
 
 #include "graphics/Terrain.h"
@@ -32,7 +34,6 @@
 #include "maths/Vector3D.h"
 #include "maths/Vector2D.h"
 #include "ps/CLogger.h"
-#include "ICmpTerritoryManager.h"
 
 /**
  * Basic ICmpPosition implementation.
@@ -44,6 +45,9 @@ public:
 	{
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Interpolate);
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_WaterChanged);
+		componentManager.SubscribeToMessageType(MT_Deserialized);
 
 		// TODO: if this component turns out to be a performance issue, it should
 		// be optimised by creating a new PositionStatic component that doesn't subscribe
@@ -60,7 +64,7 @@ public:
 		UPRIGHT = 0,
 		PITCH = 1,
 		PITCH_ROLL = 2,
-		ROLL=3,
+		ROLL = 3,
 	} m_AnchorType;
 
 	bool m_Floating;
@@ -76,6 +80,8 @@ public:
 	entity_pos_t m_Y, m_LastYDifference; // either the relative or the absolute Y coordinate
 	bool m_RelativeToGround; // whether m_Y is relative to terrain/water plane, or an absolute height
 
+	fixed m_ConstructionProgress;
+
 	// when the entity is a turret, only m_RotY is used, and this is the rotation
 	// relative to the parent entity
 	entity_angle_t m_RotX, m_RotY, m_RotZ;
@@ -86,9 +92,10 @@ public:
 	CFixedVector3D m_TurretPosition;
 	std::set<entity_id_t> m_Turrets;
 
-	// not serialized:
+	// Not serialized:
 	float m_InterpolatedRotX, m_InterpolatedRotY, m_InterpolatedRotZ;
-	float m_LastInterpolatedRotX, m_LastInterpolatedRotZ; // not serialized
+	float m_LastInterpolatedRotX, m_LastInterpolatedRotZ;
+	bool m_ActorFloating;
 
 	static std::string GetSchema()
 	{
@@ -147,6 +154,8 @@ public:
 
 		m_TurretParent = INVALID_ENTITY;
 		m_TurretPosition = CFixedVector3D();
+
+		m_ActorFloating = false;
 	}
 
 	virtual void Deinit()
@@ -172,6 +181,7 @@ public:
 		serialize.NumberFixed_Unbounded("altitude", m_Y);
 		serialize.Bool("relative", m_RelativeToGround);
 		serialize.Bool("floating", m_Floating);
+		serialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 
 		if (serialize.IsDebug())
 		{
@@ -227,6 +237,7 @@ public:
 		deserialize.NumberFixed_Unbounded("altitude", m_Y);
 		deserialize.Bool("relative", m_RelativeToGround);
 		deserialize.Bool("floating", m_Floating);
+		deserialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 		// TODO: should there be range checks on all these values?
 
 		m_InterpolatedRotY = m_RotY.ToFloat();
@@ -302,6 +313,11 @@ public:
 		return m_TurretParent;
 	}
 
+	void Deserialized()
+	{
+		AdvertiseInterpolatedPositionChanges();
+	}
+
 	virtual bool IsInWorld()
 	{
 		return m_InWorld;
@@ -312,6 +328,7 @@ public:
 		m_InWorld = false;
 
 		AdvertisePositionChanges();
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual void MoveTo(entity_pos_t x, entity_pos_t z)
@@ -328,6 +345,7 @@ public:
 		}
 
 		AdvertisePositionChanges();
+		AdvertiseInterpolatedPositionChanges();
 	}
 	
 	virtual void MoveAndTurnTo(entity_pos_t x, entity_pos_t z, entity_angle_t ry)
@@ -359,6 +377,8 @@ public:
 		m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 
 		AdvertisePositionChanges();
+		AdvertiseInterpolatedPositionChanges();
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual void SetHeightOffset(entity_pos_t dy)
@@ -366,7 +386,7 @@ public:
 		// subtract the offset and replace with a new offset
 		m_LastYDifference = dy - GetHeightOffset();
 		m_Y += m_LastYDifference;
-		AdvertisePositionChanges();
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual entity_pos_t GetHeightOffset()
@@ -393,7 +413,7 @@ public:
 		// subtract the absolute height and replace it with a new absolute height
 		m_LastYDifference = y - GetHeightFixed();
 		m_Y += m_LastYDifference;
-		AdvertisePositionChanges();
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual entity_pos_t GetHeightFixed()
@@ -426,6 +446,7 @@ public:
 		m_Y = relative ? GetHeightOffset() : GetHeightFixed();
 		m_RelativeToGround = relative;
 		m_LastYDifference = entity_pos_t::Zero();
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual bool IsFloating()
@@ -436,6 +457,19 @@ public:
 	virtual void SetFloating(bool flag)
 	{
 		m_Floating = flag;
+		AdvertiseInterpolatedPositionChanges();
+	}
+
+	virtual void SetActorFloating(bool flag)
+	{
+		m_ActorFloating = flag;
+		AdvertiseInterpolatedPositionChanges();
+	}
+
+	virtual void SetConstructionProgress(fixed progress)
+	{
+		m_ConstructionProgress = progress;
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual CFixedVector3D GetPosition()
@@ -529,8 +563,6 @@ public:
 			m_LastInterpolatedRotX = m_InterpolatedRotX;
 			m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 		}
-
-		AdvertisePositionChanges();
 	}
 
 	virtual CFixedVector3D GetRotation()
@@ -556,6 +588,36 @@ public:
 		return CFixedVector2D(m_X - m_LastX, m_Z - m_LastZ).Length();
 	}
 
+	float GetConstructionProgressOffset(const CVector3D& pos)
+	{
+		if (m_ConstructionProgress.IsZero())
+			return 0.0f;
+
+		CmpPtr<ICmpVisual> cmpVisual(GetEntityHandle());
+		if (!cmpVisual)
+			return 0.0f;
+
+		// We use selection boxes to calculate the model size, since the model could be offset
+		// TODO: this annoyingly shows decals, would be nice to hide them
+		CBoundingBoxOriented bounds = cmpVisual->GetSelectionBox();
+		if (bounds.IsEmpty())
+			return 0.0f;
+
+		float dy = 2.0f * bounds.m_HalfSizes.Y;
+
+		// If this is a floating unit, we want it to start all the way under the terrain,
+		// so find the difference between its current position and the terrain
+
+		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
+		if (cmpTerrain && (m_Floating || m_ActorFloating))
+		{
+			float ground = cmpTerrain->GetExactGroundLevel(pos.X, pos.Z);
+			dy += std::max(0.f, pos.Y - ground);
+		}
+
+		return (m_ConstructionProgress.ToFloat() - 1.0f) * dy;
+	}
+
 	virtual void GetInterpolatedPosition2D(float frameOffset, float& x, float& z, float& rotY)
 	{
 		if (!m_InWorld)
@@ -570,7 +632,7 @@ public:
 		rotY = m_InterpolatedRotY;
 	}
 
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating)
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset)
 	{
 		if (m_TurretParent != INVALID_ENTITY)
 		{
@@ -591,7 +653,7 @@ public:
 			}
 			else
 			{
-				CMatrix3D parentTransformMatrix = cmpPosition->GetInterpolatedTransform(frameOffset, forceFloating);
+				CMatrix3D parentTransformMatrix = cmpPosition->GetInterpolatedTransform(frameOffset);
 				CMatrix3D ownTransformation = CMatrix3D();
 				ownTransformation.SetYRotation(m_InterpolatedRotY);
 				ownTransformation.Translate(-m_TurretPosition.X.ToFloat(), m_TurretPosition.Y.ToFloat(), -m_TurretPosition.Z.ToFloat());
@@ -617,7 +679,7 @@ public:
 			if (cmpTerrain)
 				baseY = cmpTerrain->GetExactGroundLevel(x, z);
 
-			if (m_Floating || forceFloating)
+			if (m_Floating || m_ActorFloating)
 			{
 				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSystemEntity());
 				if (cmpWaterManager)
@@ -634,10 +696,52 @@ public:
 		m.SetXRotation(Interpolate(m_LastInterpolatedRotX, m_InterpolatedRotX, frameOffset));
 		m.RotateZ(Interpolate(m_LastInterpolatedRotZ, m_InterpolatedRotZ, frameOffset));
 	
+		CVector3D pos(x, y, z);
+
+		pos.Y += GetConstructionProgressOffset(pos);
+
 		m.RotateY(rotY + (float)M_PI);
-		m.Translate(CVector3D(x, y, z));
+		m.Translate(pos);
 		
 		return m;
+	}
+
+	void GetInterpolatedPositions(CVector3D& pos0, CVector3D& pos1)
+	{
+		float baseY0 = 0;
+		float baseY1 = 0;
+		float x0 = m_LastX.ToFloat();
+		float z0 = m_LastZ.ToFloat();
+		float x1 = m_X.ToFloat();
+		float z1 = m_Z.ToFloat();
+		if (m_RelativeToGround)
+		{
+			CmpPtr<ICmpTerrain> cmpTerrain(GetSimContext(), SYSTEM_ENTITY);
+			if (cmpTerrain)
+			{
+				baseY0 = cmpTerrain->GetExactGroundLevel(x0, z0);
+				baseY1 = cmpTerrain->GetExactGroundLevel(x1, z1);
+			}
+
+			if (m_Floating || m_ActorFloating)
+			{
+				CmpPtr<ICmpWaterManager> cmpWaterManager(GetSimContext(), SYSTEM_ENTITY);
+				if (cmpWaterManager)
+				{
+					baseY0 = std::max(baseY0, cmpWaterManager->GetExactWaterLevel(x0, z0));
+					baseY1 = std::max(baseY1, cmpWaterManager->GetExactWaterLevel(x1, z1));
+				}
+			}
+		}
+
+		float y0 = baseY0 + m_Y.ToFloat() + m_LastYDifference.ToFloat();
+		float y1 = baseY1 + m_Y.ToFloat();
+
+		pos0 = CVector3D(x0, y0, z0);
+		pos1 = CVector3D(x1, y1, z1);
+
+		pos0.Y += GetConstructionProgressOffset(pos0);
+		pos1.Y += GetConstructionProgressOffset(pos1);
 	}
 
 	virtual void HandleMessage(const CMessage& msg, bool UNUSED(global))
@@ -716,10 +820,29 @@ public:
 			}
 			break;
 		}
+		case MT_TerrainChanged:
+		case MT_WaterChanged:
+		{
+			AdvertiseInterpolatedPositionChanges();
+			break;
+		}
+		case MT_Deserialized:
+		{
+			Deserialized();
+			break;
+		}
+		}
 	}
-};
 
 private:
+
+	/**
+	 * This must be called after changing anything that will affect the
+	 * return value of GetPosition2D() or GetRotation().Y:
+	 *  - m_InWorld
+	 *  - m_X, m_Z
+	 *  - m_RotY
+	 */
 	void AdvertisePositionChanges()
 	{
 		for (std::set<entity_id_t>::const_iterator it = m_Turrets.begin(); it != m_Turrets.end(); ++it)
@@ -736,6 +859,33 @@ private:
 		else
 		{
 			CMessagePositionChanged msg(GetEntityId(), false, entity_pos_t::Zero(), entity_pos_t::Zero(), entity_angle_t::Zero());
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+		}
+	}
+
+	/**
+	 * This must be called after changing anything that will affect the
+	 * return value of GetInterpolatedPositions():
+	 *  - m_InWorld
+	 *  - m_X, m_Z
+	 *  - m_LastX, m_LastZ
+	 *  - m_Y, m_LastYDifference, m_RelativeToGround
+	 *  - If m_RelativeToGround, then the ground under this unit
+	 *  - If m_RelativeToGround && m_Float, then the water level
+	 */
+	void AdvertiseInterpolatedPositionChanges()
+	{
+		if (m_InWorld)
+		{
+			CVector3D pos0, pos1;
+			GetInterpolatedPositions(pos0, pos1);
+
+			CMessageInterpolatedPositionChanged msg(GetEntityId(), true, pos0, pos1);
+			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
+		}
+		else
+		{
+			CMessageInterpolatedPositionChanged msg(GetEntityId(), false, CVector3D(), CVector3D());
 			GetSimContext().GetComponentManager().PostMessage(GetEntityId(), msg);
 		}
 	}

@@ -57,6 +57,8 @@ public:
 	virtual void SetHeightRelative(bool UNUSED(relative)) { }
 	virtual bool IsFloating() { return false; }
 	virtual void SetFloating(bool UNUSED(flag)) { }
+	virtual void SetActorFloating(bool UNUSED(flag)) { }
+	virtual void SetConstructionProgress(fixed UNUSED(progress)) { }
 	virtual CFixedVector3D GetPosition() { return CFixedVector3D(); }
 	virtual CFixedVector2D GetPosition2D() { return CFixedVector2D(); }
 	virtual CFixedVector3D GetPreviousPosition() { return CFixedVector3D(); }
@@ -67,7 +69,7 @@ public:
 	virtual CFixedVector3D GetRotation() { return CFixedVector3D(); }
 	virtual fixed GetDistanceTravelled() { return fixed::Zero(); }
 	virtual void GetInterpolatedPosition2D(float UNUSED(frameOffset), float& x, float& z, float& rotY) { x = z = rotY = 0; }
-	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset), bool UNUSED(forceFloating)) { return CMatrix3D(); }
+	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset)) { return CMatrix3D(); }
 };
 
 class TestCmpRangeManager : public CxxTest::TestSuite

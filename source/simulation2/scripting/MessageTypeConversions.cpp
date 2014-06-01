@@ -238,6 +238,20 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, j
 
 ////////////////////////////////
 
+jsval CMessageInterpolatedPositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	LOGWARNING(L"CMessageInterpolatedPositionChanged::ToJSVal not implemented");
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageInterpolatedPositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	LOGWARNING(L"CMessageInterpolatedPositionChanged::FromJSVal not implemented");
+	return NULL;
+}
+
+////////////////////////////////
+
 jsval CMessageTerritoryPositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

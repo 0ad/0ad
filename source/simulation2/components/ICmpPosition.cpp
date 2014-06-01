@@ -37,6 +37,7 @@ DEFINE_INTERFACE_METHOD_0("IsHeightRelative", bool, ICmpPosition, IsHeightRelati
 DEFINE_INTERFACE_METHOD_1("SetHeightRelative", void, ICmpPosition, SetHeightRelative, bool)
 DEFINE_INTERFACE_METHOD_0("IsFloating", bool, ICmpPosition, IsFloating)
 DEFINE_INTERFACE_METHOD_1("SetFloating", void, ICmpPosition, SetFloating, bool)
+DEFINE_INTERFACE_METHOD_1("SetConstructionProgress", void, ICmpPosition, SetConstructionProgress, fixed)
 DEFINE_INTERFACE_METHOD_0("GetPosition", CFixedVector3D, ICmpPosition, GetPosition)
 DEFINE_INTERFACE_METHOD_0("GetPosition2D", CFixedVector2D, ICmpPosition, GetPosition2D)
 DEFINE_INTERFACE_METHOD_0("GetPreviousPosition", CFixedVector3D, ICmpPosition, GetPreviousPosition) 

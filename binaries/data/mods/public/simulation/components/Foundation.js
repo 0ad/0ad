@@ -41,9 +41,9 @@ Foundation.prototype.InitialiseConstruction = function(owner, template)
 Foundation.prototype.OnHealthChanged = function(msg)
 {
 	// Gradually reveal the final building preview
-	var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
-	if (cmpPreviewVisual)
-		cmpPreviewVisual.SetConstructionProgress(this.GetBuildProgress());
+	var cmpPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
+	if (cmpPosition)
+		cmpPosition.SetConstructionProgress(this.GetBuildProgress());
 		
 	Engine.PostMessage(this.entity, MT_FoundationProgressChanged, { "to": this.GetBuildPercentage() });
 };
@@ -218,10 +218,12 @@ Foundation.prototype.Build = function(builderEnt, work)
 			cmpPreviewOwnership.SetOwner(cmpFoundationOwnership.GetOwner());
 
 			// Initially hide the preview underground
+			var cmpPreviewPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
+			cmpPreviewPosition.SetConstructionProgress(0.0);
+
 			var cmpPreviewVisual = Engine.QueryInterface(this.previewEntity, IID_Visual);
 			if (cmpPreviewVisual)
 			{
-				cmpPreviewVisual.SetConstructionProgress(0.0);
 				cmpPreviewVisual.SetActorSeed(cmpFoundationVisual.GetActorSeed());
 				cmpPreviewVisual.SelectAnimation("scaffold", false, 1.0, "");
 			}
@@ -229,7 +231,6 @@ Foundation.prototype.Build = function(builderEnt, work)
 			var cmpFoundationPosition = Engine.QueryInterface(this.entity, IID_Position);
 			var pos = cmpFoundationPosition.GetPosition();
 			var rot = cmpFoundationPosition.GetRotation();
-			var cmpPreviewPosition = Engine.QueryInterface(this.previewEntity, IID_Position);
 			cmpPreviewPosition.SetYRotation(rot.y);
 			cmpPreviewPosition.SetXZRotation(rot.x, rot.z);
 			cmpPreviewPosition.JumpTo(pos.x, pos.z);

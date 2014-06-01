@@ -27,6 +27,8 @@
 
 #include "simulation2/components/ICmpPathfinder.h"
 
+#include "maths/Vector3D.h"
+
 #define DEFAULT_MESSAGE_IMPL(name) \
 	virtual int GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
@@ -255,7 +257,8 @@ public:
 };
 
 /**
- * Sent during TurnStart.
+ * Sent by CCmpPosition whenever anything has changed that will affect the
+ * return value of GetPosition2D() or GetRotation().Y
  *
  * If @c inWorld is false, then the other fields are invalid and meaningless.
  * Otherwise they represent the current position.
@@ -276,13 +279,33 @@ public:
 	entity_angle_t a;
 };
 
+/**
+ * Sent by CCmpPosition whenever anything has changed that will affect the
+ * return value of GetInterpolatedTransform()
+ */
+class CMessageInterpolatedPositionChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(InterpolatedPositionChanged)
+
+	CMessageInterpolatedPositionChanged(entity_id_t entity, bool inWorld, const CVector3D& pos0, const CVector3D& pos1) :
+		entity(entity), inWorld(inWorld), pos0(pos0), pos1(pos1)
+	{
+	}
+
+	entity_id_t entity;
+	bool inWorld;
+	CVector3D pos0;
+	CVector3D pos1;
+};
+
 /*Sent whenever the territory type (neutral,own,enemy) differs from the former type*/
 class CMessageTerritoryPositionChanged : public CMessage
 {
 public:
 	DEFAULT_MESSAGE_IMPL(TerritoryPositionChanged)
 
-	CMessageTerritoryPositionChanged(entity_id_t entity, player_id_t newTerritory) : 
+	CMessageTerritoryPositionChanged(entity_id_t entity, player_id_t newTerritory) :
 		entity(entity), newTerritory(newTerritory)
 	{
 	}

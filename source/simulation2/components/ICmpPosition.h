@@ -145,6 +145,18 @@ public:
 	virtual void SetFloating(bool flag) = 0;
 
 	/**
+	 * Set the entity to float on water, in a non-network-synchronised visual-only way.
+	 * (This is to support the 'floating' flag in actor XMLs.)
+	 */
+	virtual void SetActorFloating(bool flag) = 0;
+
+	/**
+	 * Set construction progress of the model, this affects the rendered position of the model.
+	 * 0.0 will be fully underground, 1.0 will be fully visible, 0.5 will be half underground.
+	 */
+	virtual void SetConstructionProgress(fixed progress) = 0;
+
+	/**
 	 * Returns the current x,y,z position (no interpolation).
 	 * Depends on the current terrain heightmap.
 	 * Must not be called unless IsInWorld is true.
@@ -216,7 +228,7 @@ public:
 	 * Get the current interpolated transform matrix, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating) = 0;
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) = 0;
 
 	DECLARE_INTERFACE_TYPE(Position)
 };

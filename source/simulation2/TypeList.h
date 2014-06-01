@@ -43,6 +43,7 @@ MESSAGE(Create)
 MESSAGE(Destroy)
 MESSAGE(OwnershipChanged)
 MESSAGE(PositionChanged)
+MESSAGE(InterpolatedPositionChanged)
 MESSAGE(TerritoryPositionChanged)
 MESSAGE(MotionChanged)
 MESSAGE(RangeUpdate)
@@ -161,6 +162,9 @@ COMPONENT(TerritoryManager)
 INTERFACE(UnitMotion)
 COMPONENT(UnitMotion) // must be after Obstruction
 COMPONENT(UnitMotionScripted)
+
+INTERFACE(UnitRenderer)
+COMPONENT(UnitRenderer)
 
 INTERFACE(Vision)
 COMPONENT(Vision)

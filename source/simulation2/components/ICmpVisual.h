@@ -162,12 +162,6 @@ public:
 	virtual bool HasConstructionPreview() = 0;
 
 	/**
-	 * Set construction progress of the model, this affects the rendered position of the model.
-	 * 0.0 will be fully underground, 1.0 will be fully visible, 0.5 will be half underground.
-	 */
-	virtual void SetConstructionProgress(fixed progress) = 0;
-
-	/**
 	 * Called when an actor file has been modified and reloaded dynamically.
 	 * If this component uses the named actor file, it should regenerate its actor
 	 * to pick up the new definitions.
