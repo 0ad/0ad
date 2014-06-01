@@ -1059,6 +1059,54 @@ void RenderCursor(bool RenderingState)
 	g_DoRenderCursor = RenderingState;
 }
 
+/**
+ * Temporarily loads a scenario map and retrieves the "ScriptSettings" JSON
+ * data from it.
+ * The scenario map format is used for scenario and skirmish map types (random
+ * games do not use a "map" (format) but a small JavaScript program which
+ * creates a map on the fly). It contains a section to initialize the game
+ * setup screen.
+ * @param mapPath Absolute path (from VSF root) to the map file to peek in.
+ * @return ScriptSettings in JSON format extracted from the map.
+ */
+CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
+{
+	CXeromyces mapFile;
+	const char *pathToSettings[] =
+	{
+		"Scenario", "ScriptSettings", ""	// Path to JSON data in map
+	};
+
+	Status loadResult = mapFile.Load(g_VFS, mapPath);
+
+	if (INFO::OK != loadResult)
+	{
+		LOGERROR(L"Unable to load map file - maybe path typo?");
+		throw PSERROR_Game_World_MapLoadFailed("Unable to load map file - maybe path typo?");
+	}
+	XMBElement mapElement = mapFile.GetRoot();
+
+	// Select the ScriptSettings node in the map file...
+	for (int i = 0; pathToSettings[i][0]; i++)
+	{
+		int childId = mapFile.GetElementID(pathToSettings[i]);
+
+		XMBElementList children = mapElement.GetChildNodes();
+		for (int childIndex = 0; childIndex < children.Count; childIndex++)
+		{
+			XMBElement child = children.Item(childIndex);
+			if (child.GetNodeName() == childId)
+			{
+				mapElement = child;
+				break;
+			}
+		}
+	}
+	// ... they contain a JSON document to initialize the game setup
+	// screen
+	return mapElement.GetText();
+}
+
 bool Autostart(const CmdLineArgs& args)
 {
 	/*
@@ -1103,13 +1151,22 @@ bool Autostart(const CmdLineArgs& args)
 	CScriptVal playerData;
 	scriptInterface.Eval("([])", playerData);
 
-	// Set different attributes for random or scenario game
-	if (args.Has("autostart-random"))
-	{
-		CStr seedArg = args.Get("autostart-random");
+	// The directory in front of the actual map name indicates which type
+	// of map is being loaded. Drawback of this approach is the association
+	// of map types and folders is hard-coded, but benefits are:
+	// - No need to pass the map type via command line separately (as was
+	//   done by -autostart-random)
+	// - Prevents mixing up of scenarios and skirmish maps to some degree
+	Path mapPath = Path(autoStartName);
+	std::wstring mapDirectory = mapPath.Parent().Filename().string();
+	std::string mapType;
 
+	if (mapDirectory == L"random")
+	{
 		// Default seed is 0
 		u32 seed = 0;
+		CStr seedArg = args.Get("autostart-random");
+
 		if (!seedArg.empty())
 		{
 			if (seedArg.compare("-1") == 0)
@@ -1123,7 +1180,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 		
 		// Random map definition will be loaded from JSON file, so we need to parse it
-		std::wstring scriptPath = L"maps/random/" + autoStartName.FromUTF8() + L".json";
+		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
 		CScriptValRooted scriptData = scriptInterface.ReadJSONFile(scriptPath);
 		if (!scriptData.undefined() && scriptInterface.GetProperty(scriptData.get(), "settings", settings))
 		{
@@ -1147,8 +1204,6 @@ bool Autostart(const CmdLineArgs& args)
 			mapSize = size.ToUInt();
 		}
 
-		scriptInterface.SetProperty(attrs.get(), "map", std::string(autoStartName));
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
 		scriptInterface.SetProperty(settings.get(), "Seed", seed);									// Random seed
 		scriptInterface.SetProperty(settings.get(), "Size", mapSize);								// Random map size (in patches)
 
@@ -1171,14 +1226,48 @@ bool Autostart(const CmdLineArgs& args)
 			scriptInterface.SetProperty(player.get(), "Civ", std::string("athen"));
 			scriptInterface.SetPropertyInt(playerData.get(), i, player);
 		}
+		mapType = "random";
 	}
-	else
+	if (mapDirectory == L"scenarios")
 	{
-		// TODO: support akirmish maps
-		std::string mapFile = "maps/scenarios/" + autoStartName;
-		scriptInterface.SetProperty(attrs.get(), "map", mapFile);
-		scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
+		// Initialize general settings from the map data so some values
+		// (e.g. name of map) are always present, even when autostart is
+		// less-than-completely configured
+		// (Omitting this may cause the loading screen to display "Loading (undefined)",
+		// for example...)
+		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
+		CScriptValRooted mapSettings = scriptInterface.ParseJSON(mapSettingsJSON);
+
+		settings = mapSettings.get();
+		mapType = "scenario";
 	}
+	if (mapDirectory == L"skirmishes")
+	{
+		// In skirmish mode, the player initialization data is taken from the
+		// game-setup settings (see CGame::RegisterInit(...)). If some player
+		// is not initialized (PlayerData[] holding fewer/more entries than
+		// defined in map), there's a crash.
+		// To prevent this, we mimic the behavior of the game setup screen by
+		// retrieving the map settings from the actual map xml...
+		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
+		CScriptValRooted mapSettings = scriptInterface.ParseJSON(mapSettingsJSON);
+
+		settings = mapSettings.get();
+		// ...and initialize the playerData array being edited by
+		// autostart-civ et.al. with the real map data, so sensible values
+		// are always present:
+		scriptInterface.GetProperty(settings.get(), "PlayerData", playerData);
+		mapType = "skirmish";
+	}
+	if (mapType.empty())
+	{
+		LOGERROR(L"Unrecognized map type '%ls' detected", mapType.c_str());
+		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult GameSetup.cpp for the currently supported types.");
+	}
+	scriptInterface.SetProperty(attrs.get(), "mapType", mapType);
+	scriptInterface.SetProperty(attrs.get(), "map", std::string("maps/" + autoStartName));
+
+	scriptInterface.SetProperty(settings.get(), "mapType", mapType);
 
 	// Set player data for AIs
 	//		attrs.settings = { PlayerData: [ { AI: ... }, ... ] }:
