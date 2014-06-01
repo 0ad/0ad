@@ -254,6 +254,11 @@ public:
 			UpdateXZRotation();
 	}
 
+	void Deserialized()
+	{
+		AdvertiseInterpolatedPositionChanges();
+	}
+
 	virtual void UpdateTurretPosition()
 	{
 		if (m_TurretParent == INVALID_ENTITY)
@@ -313,11 +318,6 @@ public:
 		return m_TurretParent;
 	}
 
-	void Deserialized()
-	{
-		AdvertiseInterpolatedPositionChanges();
-	}
-
 	virtual bool IsInWorld()
 	{
 		return m_InWorld;
@@ -363,6 +363,8 @@ public:
 		
 		// TurnTo will advertise the position changes
 		TurnTo(ry);
+
+		AdvertiseInterpolatedPositionChanges();
 	}
 
 	virtual void JumpTo(entity_pos_t x, entity_pos_t z)
@@ -377,7 +379,6 @@ public:
 		m_LastInterpolatedRotZ = m_InterpolatedRotZ;
 
 		AdvertisePositionChanges();
-		AdvertiseInterpolatedPositionChanges();
 		AdvertiseInterpolatedPositionChanges();
 	}
 
