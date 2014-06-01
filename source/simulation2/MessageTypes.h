@@ -183,6 +183,24 @@ public:
 	int* progress;
 };
 
+/**
+ * Broadcast after the entire simulation state has been deserialized.
+ * Components should do all their self-contained work in their Deserialize
+ * function when possible. But any reinitialisation that depends on other
+ * components or other entities, that might not be constructed until later
+ * in the deserialization process, may be done in response to this message
+ * instead.
+ */
+class CMessageDeserialized : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(Deserialized)
+
+	CMessageDeserialized()
+	{
+	}
+};
+
 
 /**
  * This is sent immediately after a new entity's components have all been created

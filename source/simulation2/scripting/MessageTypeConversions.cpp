@@ -148,6 +148,20 @@ CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInter
 
 ////////////////////////////////
 
+jsval CMessageDeserialized::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+{
+	LOGWARNING(L"CMessageDeserialized::ToJSVal not implemented");
+	return JSVAL_VOID;
+}
+
+CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	LOGWARNING(L"CMessageDeserialized::FromJSVal not implemented");
+	return NULL;
+}
+
+////////////////////////////////
+
 jsval CMessageCreate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
