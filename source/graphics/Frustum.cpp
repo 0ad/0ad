@@ -93,25 +93,20 @@ bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &
 	}
 	return false;
 }
+
 bool CFrustum::IsSphereVisible (const CVector3D &center, float radius) const
 {
-	for (size_t i=0; i<m_NumPlanes; i++)
+	for (size_t i = 0; i < m_NumPlanes; i++)
 	{
-		float Dist = m_aPlanes[i].DistanceToPlane (center);
-		
-		//is it behind the plane
-		if (Dist < 0)
-		{
-			//if non of it falls in front its outside the
-			//frustum
-			if (-Dist > radius)
-				return false;
-		}
+		float Dist = m_aPlanes[i].DistanceToPlane(center);
+		// If none of the sphere is in front of the plane, then
+		// it is outside the frustum
+		if (-Dist > radius)
+			return false;
 	}
 
 	return true;
 }
-
 
 bool CFrustum::IsBoxVisible (const CVector3D &position,const CBoundingBoxAligned &bounds) const
 {

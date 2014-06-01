@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="arb">
+
+    <vertex file="arb/overlay_solid.vp">
+        <uniform name="transform" loc="0" type="mat4"/>
+        <stream name="pos"/>
+    </vertex>
+
+    <fragment file="arb/overlay_solid.fp">
+        <uniform name="color" loc="0" type="vec4"/>
+    </fragment>
+
+</program>

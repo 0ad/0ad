@@ -1749,6 +1749,11 @@ void CRenderer::Submit(SOverlayQuad* overlay)
 	m->overlayRenderer.Submit(overlay);
 }
 
+void CRenderer::Submit(SOverlaySphere* overlay)
+{
+	m->overlayRenderer.Submit(overlay);
+}
+
 void CRenderer::Submit(CModelDecal* decal)
 {
 	m->terrainRenderer.Submit(decal);

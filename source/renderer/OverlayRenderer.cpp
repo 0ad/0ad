@@ -88,6 +88,7 @@ struct OverlayRendererInternals
 	std::vector<SOverlayTexturedLine*> texlines;
 	std::vector<SOverlaySprite*> sprites;
 	std::vector<SOverlayQuad*> quads;
+	std::vector<SOverlaySphere*> spheres;
 
 	QuadBatchMap quadBatchMap;
 
@@ -110,6 +111,11 @@ struct OverlayRendererInternals
 	CShaderDefines defsOverlayLineNormal;
 	CShaderDefines defsOverlayLineAlwaysVisible;
 	CShaderDefines defsQuadOverlay;
+
+	// Geometry for a unit sphere
+	std::vector<float> sphereVertexes;
+	std::vector<u16> sphereIndexes;
+	void GenerateSphere();
 
 	/// Performs one-time setup. Called from CRenderer::Open, after graphics capabilities have
 	/// been detected. Note that no VBOs must be created before this is called, since the shader
@@ -223,12 +229,19 @@ void OverlayRenderer::Submit(SOverlayQuad* overlay)
 	m->quads.push_back(overlay);
 }
 
+void OverlayRenderer::Submit(SOverlaySphere* overlay)
+{
+	m->spheres.push_back(overlay);
+}
+
 void OverlayRenderer::EndFrame()
 {
 	m->lines.clear();
 	m->texlines.clear();
 	m->sprites.clear();
 	m->quads.clear();
+	m->spheres.clear();
+
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
 	
@@ -384,6 +397,7 @@ void OverlayRenderer::RenderOverlaysAfterWater()
 
 	RenderTexturedOverlayLines();
 	RenderQuadOverlays();
+	RenderSphereOverlays();
 }
 
 void OverlayRenderer::RenderTexturedOverlayLines()
@@ -628,4 +642,119 @@ void OverlayRenderer::RenderForegroundOverlays(const CCamera& viewCamera)
 	glDisable(GL_BLEND);
 	glDisable(GL_TEXTURE_2D);
 #endif
+}
+
+static void TessellateSphereFace(const CVector3D& a, u16 ai,
+								 const CVector3D& b, u16 bi,
+								 const CVector3D& c, u16 ci,
+								 std::vector<float>& vertexes, std::vector<u16>& indexes, int level)
+{
+	if (level == 0)
+	{
+		indexes.push_back(ai);
+		indexes.push_back(bi);
+		indexes.push_back(ci);
+	}
+	else
+	{
+		CVector3D d = (a + b).Normalized();
+		CVector3D e = (b + c).Normalized();
+		CVector3D f = (c + a).Normalized();
+		int di = vertexes.size() / 3; vertexes.push_back(d.X); vertexes.push_back(d.Y); vertexes.push_back(d.Z);
+		int ei = vertexes.size() / 3; vertexes.push_back(e.X); vertexes.push_back(e.Y); vertexes.push_back(e.Z);
+		int fi = vertexes.size() / 3; vertexes.push_back(f.X); vertexes.push_back(f.Y); vertexes.push_back(f.Z);
+		TessellateSphereFace(a,ai, d,di, f,fi, vertexes, indexes, level-1);
+		TessellateSphereFace(d,di, b,bi, e,ei, vertexes, indexes, level-1);
+		TessellateSphereFace(f,fi, e,ei, c,ci, vertexes, indexes, level-1);
+		TessellateSphereFace(d,di, e,ei, f,fi, vertexes, indexes, level-1);
+	}
+}
+
+static void TessellateSphere(std::vector<float>& vertexes, std::vector<u16>& indexes, int level)
+{
+	/* Start with a tetrahedron, then tessellate */
+	float s = sqrtf(0.5f);
+#define VERT(a,b,c) vertexes.push_back(a); vertexes.push_back(b); vertexes.push_back(c);
+	VERT(-s,  0, -s);
+	VERT( s,  0, -s);
+	VERT( s,  0,  s);
+	VERT(-s,  0,  s);
+	VERT( 0, -1,  0);
+	VERT( 0,  1,  0);
+#define FACE(a,b,c) \
+	TessellateSphereFace( \
+		CVector3D(vertexes[a*3], vertexes[a*3+1], vertexes[a*3+2]), a, \
+		CVector3D(vertexes[b*3], vertexes[b*3+1], vertexes[b*3+2]), b, \
+		CVector3D(vertexes[c*3], vertexes[c*3+1], vertexes[c*3+2]), c, \
+		vertexes, indexes, level);
+	FACE(0,4,1);
+	FACE(1,4,2);
+	FACE(2,4,3);
+	FACE(3,4,0);
+	FACE(1,5,0);
+	FACE(2,5,1);
+	FACE(3,5,2);
+	FACE(0,5,3);
+#undef FACE
+#undef VERT
+}
+
+void OverlayRendererInternals::GenerateSphere()
+{
+	if (sphereVertexes.empty())
+		TessellateSphere(sphereVertexes, sphereIndexes, 3);
+}
+
+void OverlayRenderer::RenderSphereOverlays()
+{
+	PROFILE3_GPU("overlays (spheres)");
+
+	if (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER)
+		return;
+
+	if (m->spheres.empty())
+		return;
+
+	glDisable(GL_TEXTURE_2D);
+	glEnable(GL_BLEND);
+	glDepthMask(0);
+
+	glEnableClientState(GL_VERTEX_ARRAY);
+
+	CShaderProgramPtr shader;
+	CShaderTechniquePtr tech;
+
+	tech = g_Renderer.GetShaderManager().LoadEffect(str_overlay_solid);
+	tech->BeginPass();
+	shader = tech->GetShader();
+
+	m->GenerateSphere();
+
+	shader->VertexPointer(3, GL_FLOAT, 0, &m->sphereVertexes[0]);
+
+	for (size_t i = 0; i < m->spheres.size(); ++i)
+	{
+		SOverlaySphere* sphere = m->spheres[i];
+
+		CMatrix3D transform;
+		transform.SetIdentity();
+		transform.Scale(sphere->m_Radius, sphere->m_Radius, sphere->m_Radius);
+		transform.Translate(sphere->m_Center);
+
+		shader->Uniform(str_transform, transform);
+
+		shader->Uniform(str_color, sphere->m_Color);
+
+		glDrawElements(GL_TRIANGLES, m->sphereIndexes.size(), GL_UNSIGNED_SHORT, &m->sphereIndexes[0]);
+
+		g_Renderer.GetStats().m_DrawCalls++;
+		g_Renderer.GetStats().m_OverlayTris = m->sphereIndexes.size()/3;
+	}
+
+	tech->EndPass();
+
+	glDisableClientState(GL_VERTEX_ARRAY);
+
+	glDepthMask(1);
+	glDisable(GL_BLEND);
 }

@@ -55,6 +55,15 @@ public:
 	 */
 	void Transform(const CMatrix3D& m, CBoundingBoxOriented& result) const;
 
+	/**
+	 * Translates these bounds by @p v, and writes the result to @p result.
+	 */
+	void Translate(const CVector3D& v, CBoundingBoxAligned& result) const
+	{
+		result.m_Data[0] = m_Data[0] + v;
+		result.m_Data[1] = m_Data[1] + v;
+	}
+
 	CVector3D& operator[](int index) { return m_Data[index]; }
 	const CVector3D& operator[](int index) const { return m_Data[index]; }
 
