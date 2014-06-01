@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-18 19:12+0000\n"
-"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
+"POT-Creation-Date: 2014-05-19 12:56+0200\n"
+"PO-Revision-Date: 2014-05-20 08:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,28 +64,28 @@ msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Meget Svær"
 
-#: gui/civinfo/civinfo.js:94
+#: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Gameplay"
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] "Civilisationsbonusser"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] "Holdbonusser"
 
-#: gui/civinfo/civinfo.js:117
+#: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
 msgstr "Specialteknologier"
 
-#: gui/civinfo/civinfo.js:129
+#: gui/civinfo/civinfo.js:134
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
@@ -94,11 +94,11 @@ msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] "Specialbygninger"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
 msgstr "Helte"
 
-#: gui/civinfo/civinfo.js:158
+#: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
 msgstr "Historien om %(civilization)s"
@@ -305,7 +305,7 @@ msgstr "Demo Baner"
 msgid "All Maps"
 msgstr "Alle Baner"
 
-#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
 msgstr "Intet"
@@ -451,7 +451,7 @@ msgstr "Jeg er ikke klar"
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1706
 msgid "I'm ready!"
 msgstr "Jeg er klar!"
 
@@ -459,7 +459,7 @@ msgstr "Jeg er klar!"
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1703
+#: gui/gamesetup/gamesetup.js:1707
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -687,12 +687,12 @@ msgctxt "localeCountry"
 msgid "None"
 msgstr "Intet"
 
-#: gui/locale/locale_advanced.js:89
+#: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
 msgstr "<ugyldig>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
-#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:41 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
@@ -737,198 +737,207 @@ msgid ""
 msgstr ""
 
 #: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr ""
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
+
+#: gui/options/options.js:13
 msgid "Developer Overlay"
 msgstr "Udvikleroverlay"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Prefer GLSL"
 msgstr "Foretræk GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Brug OpenGL 2.0 shaders (anbefalet)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Post Processing"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Shadows"
 msgstr "Skygger"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Enable shadows"
 msgstr "Aktiver skygger"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Particles"
 msgstr "Partikler"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Enable particles"
 msgstr "Aktiver partikler"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Show Sky"
 msgstr "Vis Himlen"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Smooth LOS"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Real Water Depth"
 msgstr "Reel Vanddybde"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Water Reflections"
 msgstr "Vandspejlinger"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shore Foam"
 msgstr "Bølgeskum"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Shadows"
 msgstr "Vandskygger"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Cast shadows on water"
 msgstr "Kast skygger over vand"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Music Gain"
 msgstr "Musikforstærkelse:"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Chat Timestamp"
 msgstr "Chat Tidsstempel"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -1019,8 +1028,8 @@ msgstr ""
 msgid "Technical Details"
 msgstr "Tekniske Detaljer"
 
-#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
-#: gui/session/session.xml:732 (caption)
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:664
+#: gui/session/session.xml:733 (caption)
 msgid "Manual"
 msgstr "Manual"
 
@@ -1086,61 +1095,61 @@ msgstr "Det gemte spil vil blive overskrevet permanent, er du sikker?"
 msgid "OVERWRITE SAVE"
 msgstr "OVERSKRIV GEMT SPIL"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Basic range: %(range)s"
 msgstr "Basisrækkevidde: %(range)s"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Average bonus range: %(range)s"
 msgstr "Gennemsnitlig bonusrækkevidde: %(range)s"
 
-#: gui/session/input.js:264 gui/session/input.js:357
+#: gui/session/input.js:268 gui/session/input.js:361
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nuværende garnison: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/input.js:306
+#: gui/session/input.js:310
 msgid "Right-click to establish a default route for new traders."
 msgstr "Højreklik for at etablere en ny standardrute for nye handlende."
 
-#: gui/session/input.js:308 gui/session/input.js:389 gui/session/input.js:396
-#: gui/session/input.js:406
+#: gui/session/input.js:312 gui/session/input.js:393 gui/session/input.js:400
+#: gui/session/input.js:410
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Indtægt: %(gain)s"
 
-#: gui/session/input.js:310
+#: gui/session/input.js:314
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Forventet indtægt: %(gain)s"
 
-#: gui/session/input.js:387
+#: gui/session/input.js:391
 msgid "Origin trade market."
 msgstr "Oprindelsesmarked:"
 
-#: gui/session/input.js:393
+#: gui/session/input.js:397
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Højreklik på et andet marked for at sætte det som destinationsmarked."
 
-#: gui/session/input.js:396
+#: gui/session/input.js:400
 msgid "Destination trade market."
 msgstr "Destinationsmarked:"
 
-#: gui/session/input.js:401
+#: gui/session/input.js:405
 msgid "Right-click to set as origin trade market"
 msgstr "Højreklik for at vælge oprindelsesmarked"
 
-#: gui/session/input.js:406
+#: gui/session/input.js:410
 msgid "Right-click to set as destination trade market."
 msgstr "Højreklik for at vælge destinationsmarked"
 
-#: gui/session/input.js:996
+#: gui/session/input.js:1000
 msgid "Cannot build wall here!"
 msgstr "Mure kan ikke bygges her!"
 
-#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:780 (caption)
 msgid "Pause"
 msgstr "Pause"
 
@@ -1162,91 +1171,91 @@ msgid "Are you sure you want to quit?"
 msgstr "Er du sikker på du vil afslutte?"
 
 #: gui/session/menu.js:169
-msgid "I resign"
-msgstr "Jeg giver op"
-
-#: gui/session/menu.js:169
 msgid "I will return"
 msgstr "Jeg vender tilbage"
+
+#: gui/session/menu.js:169
+msgid "I resign"
+msgstr "Jeg giver op"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
 msgstr ""
 
-#: gui/session/menu.js:188
+#: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
 msgstr "Ødelæg alle?"
 
-#: gui/session/menu.js:188 gui/session/utility_functions.js:296
+#: gui/session/menu.js:189 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
 msgstr "Slet"
 
-#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:445 (tooltip)
 msgid "Ally"
 msgstr "Allieret"
 
-#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:449 (tooltip)
 msgid "Neutral"
 msgstr "Neutral"
 
-#: gui/session/menu.js:286 gui/session/messages.js:613
-#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:287 gui/session/messages.js:613
+#: gui/session/session.xml:453 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "Fjende"
 
-#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
+#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:473
 msgid "There are no land traders."
 msgstr ""
 
-#: gui/session/menu.js:478
+#: gui/session/menu.js:479
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s inaktiv"
 msgstr[1] "%(numberOfLandTraders)s inaktive"
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:483
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:485
+#: gui/session/menu.js:486
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:488
+#: gui/session/menu.js:489
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:496
+#: gui/session/menu.js:497
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, og %(garrisonedString)s."
 
-#: gui/session/menu.js:506 gui/session/menu.js:568
+#: gui/session/menu.js:507 gui/session/menu.js:569
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:513 gui/session/menu.js:575
+#: gui/session/menu.js:514 gui/session/menu.js:576
 #, python-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:523
+#: gui/session/menu.js:524
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1257,64 +1266,64 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:526
+#: gui/session/menu.js:527
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:533
+#: gui/session/menu.js:534
 #, python-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:543
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:543 gui/session/menu.js:585
+#: gui/session/menu.js:544 gui/session/menu.js:586
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Der er %(inactiveString)s."
 msgstr[1] "Der er %(inactiveString)s."
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:556
 msgid "There are no merchant ships."
 msgstr "Der er ingen handelsskibe."
 
-#: gui/session/menu.js:561
+#: gui/session/menu.js:562
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s inaktiv"
 msgstr[1] "%(numberOfShipTraders)s inaktive"
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:566
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:584
+#: gui/session/menu.js:585
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s handelsskib inaktivt"
 msgstr[1] "%(numberOfShipTraders)s handelsskibe inaktive"
 
-#: gui/session/menu.js:673
+#: gui/session/menu.js:674
 msgid "The Developer Overlay was opened."
 msgstr "Udvikleroverlayet blev åbnet."
 
-#: gui/session/menu.js:675
+#: gui/session/menu.js:676
 msgid "The Developer Overlay was closed."
 msgstr "Udvikleroverlayet blev lukket."
 
-#: gui/session/menu.js:693
+#: gui/session/menu.js:694
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -1405,8 +1414,9 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 
 #: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
-#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:620 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 msgid ", "
 msgstr ","
 
@@ -1446,7 +1456,7 @@ msgid "%(userTag)s %(message)s"
 msgstr " %(userTag)s %(message)s "
 
 #: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
-#: gui/session/session.xml:437 (caption)
+#: gui/session/session.xml:438 (caption)
 msgid "Team"
 msgstr "Hold"
 
@@ -1540,11 +1550,12 @@ msgid "Rate:"
 msgstr "Rate:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:636
-#: gui/session/utility_functions.js:602
+#: gui/session/utility_functions.js:606
 msgid "Range:"
 msgstr "Rækkevidde:"
 
-#: gui/session/selection_details.js:251
+#: gui/session/selection_details.js:251 gui/session/session.js:637
+#: gui/session/utility_functions.js:607
 msgid "meters"
 msgstr "meter"
 
@@ -1616,7 +1627,8 @@ msgstr "NEDERLAG!"
 msgid "VICTORIOUS!"
 msgstr "SEJR!"
 
-#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
+#: gui/session/session.js:624 gui/session/unit_commands.js:520
+#: gui/session/session.xml:1004 (tooltip)
 msgid "Health:"
 msgstr "Helbred:"
 
@@ -1650,6 +1662,16 @@ msgstr "Tidsforskydning"
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "Nuværende Antal: %(count)s, Max: %(limit)s."
+
+#: gui/session/unit_commands.js:155
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr ""
+
+#: gui/session/unit_commands.js:157
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr ""
 
 #: gui/session/unit_commands.js:184
 #, python-format
@@ -1713,61 +1735,48 @@ msgstr "Aflæs %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Klik en gang for at aflæsse 1. Shift-klik for at aflæsse alle enheder af denne type."
 
-#: gui/session/unit_commands.js:708
+#: gui/session/unit_commands.js:524
+msgid "Armour"
+msgstr ""
+
+#: gui/session/unit_commands.js:718
 #, python-format
 msgid "Requires %(technology)s"
 msgstr "Kræver %(technology)s"
 
-#: gui/session/unit_commands.js:725
+#: gui/session/unit_commands.js:735
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/unit_commands.js:962
+#: gui/session/unit_commands.js:972
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr "Vælg/fravælg %(resource)s som tvungen handelsvare."
 
-#: gui/session/unit_commands.js:1161
-msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "Omdan Træmur til Træport"
-
-#: gui/session/unit_commands.js:1165
-msgid "Convert Stone Wall into City Gate"
-msgstr "Omdan Stenmur til Byport"
-
-#: gui/session/unit_commands.js:1169
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Omdan Belejringsmur til Belejringsmursport"
-
-#: gui/session/unit_commands.js:1174
-#, python-format
-msgid "Convert %(wall)s into %(gate)s"
-msgstr "Omdan %(wall)s til %(gate)s"
-
-#: gui/session/unit_commands.js:1191
+#: gui/session/unit_commands.js:1178
 msgid "Lock Gate"
 msgstr "Lås Port"
 
-#: gui/session/unit_commands.js:1197
+#: gui/session/unit_commands.js:1184
 msgid "Unlock Gate"
 msgstr "Åben Port"
 
-#: gui/session/unit_commands.js:1246
+#: gui/session/unit_commands.js:1233
 msgid "Pack"
 msgstr "Pak sammen"
 
-#: gui/session/unit_commands.js:1248
+#: gui/session/unit_commands.js:1235
 msgid "Unpack"
 msgstr "Pak ud"
 
-#: gui/session/unit_commands.js:1250
+#: gui/session/unit_commands.js:1237
 msgid "Cancel Packing"
 msgstr "Afbryd Pakning"
 
-#: gui/session/unit_commands.js:1252
+#: gui/session/unit_commands.js:1239
 msgid "Cancel Unpacking"
 msgstr "Afbryd Udpakning"
 
@@ -1926,87 +1935,87 @@ msgstr "Utilstrækkelige ressourcer:"
 msgid "Speed:"
 msgstr "Hastighed:"
 
-#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:578 gui/session/utility_functions.js:580
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 msgid "Walk"
 msgstr "Gå"
 
-#: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 msgid "Run"
 msgstr "Løb"
 
-#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:599
+#: gui/session/utility_functions.js:603
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:608
+#: gui/session/utility_functions.js:612
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:624
+#: gui/session/utility_functions.js:628
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:634
+#: gui/session/utility_functions.js:638
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:664
+#: gui/session/utility_functions.js:668
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:694
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:696 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:698
 msgid "you"
 msgstr "dig"
 
-#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
+#: gui/session/utility_functions.js:704 gui/session/utility_functions.js:709
 #, python-format
 msgid "player %(name)s"
 msgstr "spiller %(name)s"
 
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:717
 msgid "Charge Attack:"
 msgstr "Stormangreb:"
 
-#: gui/session/utility_functions.js:714
+#: gui/session/utility_functions.js:718
 msgid "Melee Attack:"
 msgstr "Nærkampsangreb:"
 
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:719
 msgid "Ranged Attack:"
 msgstr "Afstandsangreb:"
 
-#: gui/session/utility_functions.js:718
+#: gui/session/utility_functions.js:722
 msgid "Attack:"
 msgstr "Angreb:"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:741
+#: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Mad"
@@ -2014,7 +2023,7 @@ msgstr "Mad"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:743
+#: gui/session/utility_functions.js:747
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Kød"
@@ -2022,7 +2031,7 @@ msgstr "Kød"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:745
+#: gui/session/utility_functions.js:749
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Metal"
@@ -2030,7 +2039,7 @@ msgstr "Metal"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:747
+#: gui/session/utility_functions.js:751
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "Malm"
@@ -2038,25 +2047,9 @@ msgstr "Malm"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:749
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Sten"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
-#: gui/session/utility_functions.js:751
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Ruiner"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
-msgid "Stone"
+msgid "Rock"
 msgstr "Sten"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
@@ -2064,13 +2057,29 @@ msgstr "Sten"
 #. sentence.
 #: gui/session/utility_functions.js:755
 msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Ruiner"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Sten"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
 msgid "Treasure"
 msgstr "Skat"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:757
+#: gui/session/utility_functions.js:761
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "Træ"
@@ -2078,7 +2087,7 @@ msgstr "Træ"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:759
+#: gui/session/utility_functions.js:763
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "Træ"
@@ -2086,7 +2095,7 @@ msgstr "Træ"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:761
+#: gui/session/utility_functions.js:765
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "Frugt"
@@ -2094,7 +2103,7 @@ msgstr "Frugt"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:763
+#: gui/session/utility_functions.js:767
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "Korn"
@@ -2102,7 +2111,7 @@ msgstr "Korn"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:765
+#: gui/session/utility_functions.js:769
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Fisk"
@@ -2110,7 +2119,7 @@ msgstr "Fisk"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:776
+#: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Mad"
@@ -2118,7 +2127,7 @@ msgstr "Mad"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:778
+#: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Kød"
@@ -2126,7 +2135,7 @@ msgstr "Kød"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:780
+#: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Metal"
@@ -2134,7 +2143,7 @@ msgstr "Metal"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:782
+#: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Malm"
@@ -2142,7 +2151,7 @@ msgstr "Malm"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:784
+#: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Sten"
@@ -2150,7 +2159,7 @@ msgstr "Sten"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:786
+#: gui/session/utility_functions.js:790
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "Ruiner"
@@ -2158,7 +2167,7 @@ msgstr "Ruiner"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:788
+#: gui/session/utility_functions.js:792
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Sten"
@@ -2166,7 +2175,7 @@ msgstr "Sten"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:790
+#: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
 msgid "Treasure"
 msgstr "Skat"
@@ -2174,7 +2183,7 @@ msgstr "Skat"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:792
+#: gui/session/utility_functions.js:796
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Træ"
@@ -2182,7 +2191,7 @@ msgstr "Træ"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:794
+#: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Træ"
@@ -2190,7 +2199,7 @@ msgstr "Træ"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:796
+#: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "Frugt"
@@ -2198,7 +2207,7 @@ msgstr "Frugt"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:798
+#: gui/session/utility_functions.js:802
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Korn"
@@ -2206,7 +2215,7 @@ msgstr "Korn"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:800
+#: gui/session/utility_functions.js:804
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Fisk"
@@ -2629,22 +2638,22 @@ msgstr ""
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:83
+#: simulation/components/BuildRestrictions.js:85
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s kan ikke bygges på grund af en ukendt fejl"
 
-#: simulation/components/BuildRestrictions.js:104
+#: simulation/components/BuildRestrictions.js:108
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s kan ikke bygges i uudforskede områder"
 
-#: simulation/components/BuildRestrictions.js:152
+#: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s kan ikke bygges på en anden bygning eller ressource"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:160
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s kan ikke bygges på ugyldigt terræn"
@@ -2652,7 +2661,7 @@ msgstr "%(name)s kan ikke bygges på ugyldigt terræn"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:180
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "allieret"
@@ -2660,7 +2669,7 @@ msgstr "allieret"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:183
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "eget"
@@ -2668,7 +2677,7 @@ msgstr "eget"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:186
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutral"
@@ -2676,31 +2685,31 @@ msgstr "neutral"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:189
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "fjendligt"
 
-#: simulation/components/BuildRestrictions.js:195
+#: simulation/components/BuildRestrictions.js:199
 #, python-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s kan ikke bygges i %(territoryType)s territorium. Gyldige territorier: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:232
+#: simulation/components/BuildRestrictions.js:238
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s skal bygges på en gyldig kystlinje"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:262
 #, python-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:268
+#: simulation/components/BuildRestrictions.js:275
 #, python-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
@@ -2708,48 +2717,63 @@ msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:298
+#: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
 msgstr "eget"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:300
+#: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "allieret"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neutral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "fjende"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
+#: simulation/components/EntityLimits.js:110
+#, python-format
+msgid "%(category)s build limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:112
+#, python-format
+msgid "%(category)s training limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:116
+#, python-format
+msgid "%(category)s limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/Player.js:40 gui/session/session.xml:565 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "Mad"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:572 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "Træ"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:586 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "Metal"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:579 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "Sten"
@@ -2807,11 +2831,11 @@ msgstr "Computermodstander"
 msgid "AI Difficulty"
 msgstr "Sværhedsgrad for Computermodstandere"
 
-#: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
-#: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:36
+#: (caption) gui/locale/locale_advanced.xml:65 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/save.xml:37 (caption) gui/session/session.xml:402 (caption)
 msgid "Cancel"
 msgstr "Annuller"
 
@@ -2824,7 +2848,7 @@ msgid "Civilization Selection"
 msgstr "Civilisationsvalg"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
-#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
+#: gui/session/session.xml:491 (caption) gui/session/session.xml:544 (caption)
 msgid "Close"
 msgstr "Luk"
 
@@ -2848,7 +2872,7 @@ msgstr "Spillernavn"
 msgid "Player Placement"
 msgstr "Spillerplacering"
 
-#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:435
 #: (caption)
 msgid "Civilization"
 msgstr "Civilisation"
@@ -2909,7 +2933,7 @@ msgstr "Vælg antal spillere. "
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Vælg banestørrelse. (Større størrelser kan reducere ydelse)"
 
-#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:412
 #: (caption)
 msgid "Send"
 msgstr "Send"
@@ -3052,7 +3076,7 @@ msgid "Status"
 msgstr "Status"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:432 (caption)
 msgid "Name"
 msgstr "Navn"
 
@@ -3102,7 +3126,7 @@ msgstr "Spillere"
 msgid "Show full games"
 msgstr "Vis fulde spil"
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1068 (tooltip)
 msgid "Rank"
 msgstr "Rang"
 
@@ -3162,14 +3186,14 @@ msgstr "Sprog:"
 msgid "Locale:"
 msgstr "Lokation:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption)
-msgid "Accept"
-msgstr "Acceptér"
-
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
 msgstr "Avanceret"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
+#: (caption)
+msgid "Accept"
+msgstr "Acceptér"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -3238,8 +3262,8 @@ msgstr "Lydindstillinger"
 msgid "Lobby Settings"
 msgstr "Lobbyindstillinger"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:754 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/session/session.xml:755 (caption)
 msgid "Save"
 msgstr "Gem"
 
@@ -3394,8 +3418,8 @@ msgstr "Historie"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Lær om de mange civilisationer i 0 A.D."
 
-#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
-#: (caption) gui/session/session.xml:1300 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:803
+#: (caption) gui/session/session.xml:1301 (caption)
 msgid "Exit"
 msgstr "Afslut"
 
@@ -3419,7 +3443,7 @@ msgstr "Hjemmeside"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klik for at åbne play0ad.com i din browser."
 
-#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:744
 #: (caption)
 msgid "Chat"
 msgstr "Chat"
@@ -3442,7 +3466,7 @@ msgstr ""
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
 msgstr "Indlæs"
 
@@ -3510,108 +3534,108 @@ msgstr "Spillet er sat på Pause"
 msgid "Click to Resume Game"
 msgstr "Klik for at fortsætte spillet. "
 
-#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
+#: gui/session/session.xml:427 (caption) gui/session/session.xml:666 (tooltip)
 msgid "Diplomacy"
 msgstr "Diplomati"
 
-#: gui/session/session.xml:440 (caption)
+#: gui/session/session.xml:441 (caption)
 msgid "Theirs"
 msgstr "Deres"
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:444 (caption)
 msgid "A"
 msgstr "A"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:448 (caption)
 msgid "N"
 msgstr "N"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:452 (caption)
 msgid "E"
 msgstr "F"
 
-#: gui/session/session.xml:455 (caption)
+#: gui/session/session.xml:456 (caption)
 msgid "Tribute"
 msgstr "Tribut"
 
-#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
+#: gui/session/session.xml:506 (caption) gui/session/session.xml:685 (tooltip)
 msgid "Trade"
 msgstr "Handel"
 
-#: gui/session/session.xml:511 (caption)
+#: gui/session/session.xml:512 (caption)
 msgid "Trading goods selection:"
 msgstr ""
 
-#: gui/session/session.xml:531 (tooltip)
+#: gui/session/session.xml:532 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
 msgstr ""
 
-#: gui/session/session.xml:592 (tooltip)
+#: gui/session/session.xml:593 (tooltip)
 msgid "Population (current / limit)"
 msgstr "Befolkning (nuværende / max)"
 
-#: gui/session/session.xml:605 (tooltip)
+#: gui/session/session.xml:606 (tooltip)
 msgid "Choose player to view"
 msgstr "Vælg spiller at følge"
 
-#: gui/session/session.xml:628 (caption)
+#: gui/session/session.xml:629 (caption)
 msgid "ALPHA XVI : Patañjali"
 msgstr "ALPHA XVI : Patañjali"
 
-#: gui/session/session.xml:645 (tooltip)
+#: gui/session/session.xml:646 (tooltip)
 msgid "Game speed"
 msgstr "Spilhastighed"
 
-#: gui/session/session.xml:653 (tooltip)
+#: gui/session/session.xml:654 (tooltip)
 msgid "Choose game speed"
 msgstr "Vælg spilhastighed"
 
-#: gui/session/session.xml:706 (caption)
+#: gui/session/session.xml:707 (caption)
 msgid "MENU"
 msgstr "MENU"
 
-#: gui/session/session.xml:767 (caption)
+#: gui/session/session.xml:768 (caption)
 msgid "Settings"
 msgstr "Indstillinger"
 
-#: gui/session/session.xml:791 (caption)
+#: gui/session/session.xml:792 (caption)
 msgid "Resign"
 msgstr "Giv op"
 
-#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
+#: gui/session/session.xml:829 (tooltip) gui/session/session.xml:1045
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "Angreb og Panser"
 
-#: gui/session/session.xml:852 (tooltip)
+#: gui/session/session.xml:853 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr ""
 
-#: gui/session/session.xml:892 (tooltip)
+#: gui/session/session.xml:893 (tooltip)
 msgid "Find idle worker"
 msgstr "Find ledig arbejder"
 
-#: gui/session/session.xml:944 (tooltip)
+#: gui/session/session.xml:945 (tooltip)
 msgid "Exchange resources:"
 msgstr "Udveksl ressourcer:"
 
-#: gui/session/session.xml:1017 (tooltip)
+#: gui/session/session.xml:1018 (tooltip)
 msgid "Stamina:"
 msgstr "Udholdenhed:"
 
-#: gui/session/session.xml:1059 (tooltip)
+#: gui/session/session.xml:1060 (tooltip)
 msgid "Experience"
 msgstr "Erfaring"
 
-#: gui/session/session.xml:1127 (tooltip)
+#: gui/session/session.xml:1128 (tooltip)
 msgid "Hitpoints"
 msgstr "Livspoint"
 
-#: gui/session/session.xml:1136 (tooltip)
+#: gui/session/session.xml:1137 (tooltip)
 msgid "Stamina"
 msgstr "Udholdenhed"
 
@@ -10288,10 +10312,12 @@ msgstr ""
 msgid "Heroism"
 msgstr "Heroisme"
 
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 msgid "Andreia"
 msgstr ""
 
@@ -10311,10 +10337,12 @@ msgstr "Inspirer dine soldater med højere løn. Alle borgersoldater får +2 ang
 msgid "Will to fight"
 msgstr "Kampvilje"
 
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.ptol
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.sele
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.hele
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr "Dynamis"
 
@@ -11276,6 +11304,10 @@ msgstr "Frugtbarhedsfest"
 msgid "Thesmophoria"
 msgstr ""
 
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
+msgid "Bona Dea"
+msgstr ""
+
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
@@ -12123,6 +12155,10 @@ msgstr "Byport"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 msgid "Long wall segments can be converted to gates."
 msgstr "Lange mursegmenter kan omdannes til porte."
+
+#: simulation/templates/template_structure_defense_wall_long.xml:15
+msgid "Convert Stone Wall into City Gate"
+msgstr "Omdan Stenmur til Byport"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -13493,6 +13529,10 @@ msgstr "Træmur"
 msgid "Palisade"
 msgstr "Palisade"
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+msgid "Convert Wooden Wall into Wooden Gate"
+msgstr "Omdan Træmur til Træport"
+
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
@@ -14748,6 +14788,10 @@ msgstr "Belejringsmur"
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
 msgstr "Murus Circummunitionis"
+
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+msgid "Convert Siege Wall into Siege Wall Gate"
+msgstr "Omdan Belejringsmur til Belejringsmursport"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"

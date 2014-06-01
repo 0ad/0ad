@@ -55,7 +55,7 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	var pos = [0,0];
 	if (this.foeEntities.length !== 0)
 	{
-		for each (var id in this.foeEntities)
+		for (var id of this.foeEntities)
 		{
 			var ent = gameState.getEntityById(id);
 			var epos = ent.position();
@@ -69,7 +69,7 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 
 	this.ownPosition = [0,0];
 	var npos = 0;  // same defenders may be sailing to defend us
-	for each (var id in this.ownEntities)
+	for (var id of this.ownEntities)
 	{
 		var ent = gameState.getEntityById(id);
 		if (!ent.position())
@@ -96,9 +96,9 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 	
 	// todo: deal with specifics.
 
-	for each (var id in this.foeEntities)
+	for (var id of this.foeEntities)
 		this.evaluateStrength(gameState.getEntityById(id));
-	for each (var id in this.ownEntities)
+	for (var id of this.ownEntities)
 		this.evaluateStrength(gameState.getEntityById(id), true);
 }
 
@@ -293,10 +293,10 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 	for (var i in otherArmy.assignedTo)
 		this.assignedTo[i] = otherArmy.assignedTo[i];
 	
-	for each (var id in otherArmy.foeEntities)
+	for (var id of otherArmy.foeEntities)
 		this.addFoe(gameState, id);
 	// TODO: reassign those ?
-	for each (var id in otherArmy.ownEntities)
+	for (var id of otherArmy.ownEntities)
 		this.addOwn(gameState, id);
 
 	this.recalculatePosition(gameState, true);

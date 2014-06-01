@@ -10,7 +10,7 @@
 	<object type="image" style="ModernDialog" size="50%-220 50%-200 50%+220 50%+200">
 		<action on="Tick">onTick();</action>
 		<object size="15 0 100%-15 100%">
-			<object style="ModernLabelText" type="text" size="50%-150 0%-16 50%+150 16">
+			<object style="ModernLabelText" type="text" size="50%-150 -18 50%+150 14">
 				<translatableAttribute id="caption">Language</translatableAttribute>
 			</object>
 			<object type="text" size="5 50 50% 75" style="ModernLabelText" text_align="left">
@@ -71,7 +71,7 @@
 				<action on="Press">autoDetectLocale();</action>
 			</object>
 
-			<object name="acceptButton" type="button" style="ModernButtonRed" size="66%+5 100%-60  100% 100%-32">
+			<object name="acceptButton" type="button" style="ModernButtonRed" size="66%+5 100%-60 100% 100%-32">
 				<translatableAttribute id="caption">Accept</translatableAttribute>
 				<action on="Press">applySelectedLocale();</action>
 			</object>

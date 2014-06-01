@@ -12,15 +12,15 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <Health>
-    <Max>170</Max>
-  </Health>
   <Attack>
     <Ranged>
+      <MaxRange>48</MaxRange>
       <Spread>1.0</Spread>
-      <MaxRange>52</MaxRange>
     </Ranged>
   </Attack>
+  <Health>
+    <Max>160</Max>
+  </Health>
   <VisualActor>
     <Actor>units/iberians/cavalry_javelinist_e.xml</Actor>
   </VisualActor>

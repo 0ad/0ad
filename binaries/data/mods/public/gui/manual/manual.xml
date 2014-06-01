@@ -8,7 +8,7 @@
 	<object type="image" z="0" sprite="ModernFade"/>
 
 	<object type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
-		<object name="title" type="text" style="ModernLabelText" size="50%-128 0%-16 50%+128 16">
+		<object name="title" style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 			<translatableAttribute id="caption">Information</translatableAttribute>
 		</object>
 

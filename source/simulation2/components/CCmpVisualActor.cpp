@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,10 +23,9 @@
 #include "simulation2/MessageTypes.h"
 
 #include "ICmpFootprint.h"
+#include "ICmpUnitRenderer.h"
 #include "ICmpOwnership.h"
 #include "ICmpPosition.h"
-#include "ICmpRangeManager.h"
-#include "ICmpSelectable.h"
 #include "ICmpTemplateManager.h"
 #include "ICmpTerrain.h"
 #include "ICmpUnitMotion.h"
@@ -41,13 +40,12 @@
 #include "graphics/Unit.h"
 #include "graphics/UnitAnimation.h"
 #include "graphics/UnitManager.h"
+#include "maths/BoundingSphere.h"
 #include "maths/Matrix3D.h"
 #include "maths/Vector3D.h"
 #include "ps/CLogger.h"
 #include "ps/GameSetup/Config.h"
 #include "renderer/Scene.h"
-
-#include "tools/atlas/GameInterface/GameLoop.h"
 
 class CCmpVisualActor : public ICmpVisual
 {
@@ -55,11 +53,11 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_Update_Final);
-		componentManager.SubscribeToMessageType(MT_Interpolate);
-		componentManager.SubscribeToMessageType(MT_RenderSubmit);
+		componentManager.SubscribeToMessageType(MT_InterpolatedPositionChanged);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_ValueModification);
-		componentManager.SubscribeGloballyToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_TerrainChanged);
+		componentManager.SubscribeToMessageType(MT_Destroy);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(VisualActor)
@@ -73,8 +71,6 @@ private:
 
 	std::map<std::string, std::string> m_AnimOverride;
 
-	ICmpRangeManager::ELosVisibility m_Visibility; // only valid between Interpolate and RenderSubmit
-
 	// Current animation state
 	fixed m_AnimRunThreshold; // if non-zero this is the special walk/run mode
 	std::string m_AnimName;
@@ -87,15 +83,11 @@ private:
 	u32 m_Seed; // seed used for random variations
 
 	bool m_ConstructionPreview;
-	fixed m_ConstructionProgress;
 
 	bool m_VisibleInAtlasOnly;
 	bool m_IsActorOnly;	// an in-world entity should not have this or it might not be rendered.
 
-	/// Whether the visual actor has been rendered at least once.
-	/// Necessary because the visibility update runs on simulation update,
-	/// which may not occur immediately if the game starts paused.
-	bool m_PreviouslyRendered;
+	ICmpUnitRenderer::tag_t m_ModelTag;
 
 public:
 	static std::string GetSchema()
@@ -181,13 +173,10 @@ public:
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_PreviouslyRendered = false;
 		m_Unit = NULL;
-		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
 		m_R = m_G = m_B = fixed::FromInt(1);
 
 		m_ConstructionPreview = paramNode.GetChild("ConstructionPreview").IsOk();
-		m_ConstructionProgress = fixed::Zero();
 
 		m_Seed = GetEntityId();
 
@@ -233,8 +222,6 @@ public:
 		serialize.NumberU32_Unbounded("seed", m_Seed);
 		// TODO: variation/selection strings
 		serialize.String("actor", m_ActorName, 0, 256);
-
-		serialize.NumberFixed_Unbounded("constructionprogress", m_ConstructionProgress);
 
 		// TODO: store actor variables?
 	}
@@ -294,18 +281,6 @@ public:
 			Update(msgData.turnLength);
 			break;
 		}
-		case MT_Interpolate:
-		{
-			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-			Interpolate(msgData.deltaSimTime, msgData.offset);
-			break;
-		}
-		case MT_RenderSubmit:
-		{
-			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(msgData.collector, msgData.frustum, msgData.culling);
-			break;
-		}
 		case MT_OwnershipChanged:
 		{
 			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
@@ -333,6 +308,26 @@ public:
 			{
 				m_ActorName = newActorName;
 				ReloadActor();
+			}
+			break;
+		}
+		case MT_InterpolatedPositionChanged:
+		{
+			const CMessageInterpolatedPositionChanged& msgData = static_cast<const CMessageInterpolatedPositionChanged&> (msg);
+			if (m_ModelTag.valid())
+			{
+				CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
+				cmpModelRenderer->UpdateUnitPos(m_ModelTag, msgData.inWorld, msgData.pos0, msgData.pos1);
+			}
+			break;
+		}
+		case MT_Destroy:
+		{
+			if (m_ModelTag.valid())
+			{
+				CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
+				cmpModelRenderer->RemoveUnit(m_ModelTag);
+				m_ModelTag = ICmpUnitRenderer::tag_t();
 			}
 			break;
 		}
@@ -387,7 +382,15 @@ public:
 		if (m_Unit->GetModel().ToCModel())
 		{
 			// Ensure the prop transforms are correct
-			m_Unit->GetModel().ValidatePosition();
+			CmpPtr<ICmpUnitRenderer> cmpUnitRenderer(GetSystemEntity());
+			CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+			if (cmpUnitRenderer && cmpPosition)
+			{
+				float frameOffset = cmpUnitRenderer->GetFrameOffset();
+				CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
+				m_Unit->GetModel().SetTransform(transform);
+				m_Unit->GetModel().ValidatePosition();
+			}
 
 			CModelAbstract* ammo = m_Unit->GetModel().ToCModel()->FindFirstAmmoProp();
 			if (ammo)
@@ -473,6 +476,12 @@ public:
 		m_G = g;
 		m_B = b;
 		UNUSED2(a); // TODO: why is this even an argument?
+
+		if (m_Unit)
+		{
+			CModelAbstract& model = m_Unit->GetModel();
+			model.SetShadingColor(CColor(m_R.ToFloat(), m_G.ToFloat(), m_B.ToFloat(), 1.0f));
+		}
 	}
 
 	virtual void SetVariable(std::string name, float value)
@@ -502,11 +511,6 @@ public:
 		return m_ConstructionPreview;
 	}
 
-	virtual void SetConstructionProgress(fixed progress)
-	{
-		m_ConstructionProgress = progress;
-	}
-
 	virtual void Hotload(const VfsPath& name)
 	{
 		if (!m_Unit)
@@ -529,8 +533,6 @@ private:
 
 	void Update(fixed turnLength);
 	void UpdateVisibility();
-	void Interpolate(float frameTime, float frameOffset);
-	void RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling);
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)
@@ -539,49 +541,74 @@ REGISTER_COMPONENT_TYPE(VisualActor)
 
 void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 {
-	if (GetSimContext().HasUnitManager())
+	if (!GetSimContext().HasUnitManager())
+		return;
+
+	std::set<CStr> selections;
+	std::wstring actorName = m_ActorName;
+	if (actorName.find(L".xml") == std::wstring::npos)
+		actorName += L".xml";
+	m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
+	if (!m_Unit)
+		return;
+
+	CModelAbstract& model = m_Unit->GetModel();
+	if (model.ToCModel())
 	{
-		std::set<CStr> selections;
-		std::wstring actorName = m_ActorName;
-		if (actorName.find(L".xml") == std::wstring::npos)
-			actorName += L".xml";
-		m_Unit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
-		if (m_Unit)
+		u32 modelFlags = 0;
+
+		if (paramNode.GetChild("SilhouetteDisplay").ToBool())
+			modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+
+		if (paramNode.GetChild("SilhouetteOccluder").ToBool())
+			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
+
+		CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
+		if (cmpVision && cmpVision->GetAlwaysVisible())
+			modelFlags |= MODELFLAG_IGNORE_LOS;
+
+		model.ToCModel()->AddFlagsRec(modelFlags);
+	}
+
+	if (paramNode.GetChild("DisableShadows").IsOk())
+	{
+		if (model.ToCModel())
+			model.ToCModel()->RemoveShadowsRec();
+		else if (model.ToCModelDecal())
+			model.ToCModelDecal()->RemoveShadows();
+	}
+
+	// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the
+	// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
+	// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
+	// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
+	// initialize the selection shape descriptor on-demand.
+	InitSelectionShapeDescriptor(paramNode);
+
+	m_Unit->SetID(GetEntityId());
+
+	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
+	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
+	if (cmpPosition)
+		cmpPosition->SetActorFloating(floating);
+
+	if (!m_ModelTag.valid())
+	{
+		CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
+		if (cmpModelRenderer)
 		{
-			CModelAbstract& model = m_Unit->GetModel();
-			if (model.ToCModel())
-			{
-				u32 modelFlags = 0;
+			// TODO: this should account for all possible props, animations, etc,
+			// else we might accidentally cull the unit when it should be visible
+			CBoundingBoxAligned bounds = m_Unit->GetModel().GetWorldBoundsRec();
+			CBoundingSphere boundSphere = CBoundingSphere::FromSweptBox(bounds);
 
-				if (paramNode.GetChild("SilhouetteDisplay").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_DISPLAY;
+			int flags = 0;
+			if (m_IsActorOnly)
+				flags |= ICmpUnitRenderer::ACTOR_ONLY;
+			if (m_VisibleInAtlasOnly)
+				flags |= ICmpUnitRenderer::VISIBLE_IN_ATLAS_ONLY;
 
-				if (paramNode.GetChild("SilhouetteOccluder").ToBool())
-					modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
-
-				CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
-				if (cmpVision && cmpVision->GetAlwaysVisible())
-					modelFlags |= MODELFLAG_IGNORE_LOS;
-
-				model.ToCModel()->AddFlagsRec(modelFlags);
-			}
-
-			if (paramNode.GetChild("DisableShadows").IsOk())
-			{
-				if (model.ToCModel())
-					model.ToCModel()->RemoveShadowsRec();
-				else if (model.ToCModelDecal())
-					model.ToCModelDecal()->RemoveShadows();
-			}
-
-			// Initialize the model's selection shape descriptor. This currently relies on the component initialization order; the 
-			// Footprint component must be initialized before this component (VisualActor) to support the ability to use the footprint
-			// shape for the selection box (instead of the default recursive bounding box). See TypeList.h for the order in
-			// which components are initialized; if for whatever reason you need to get rid of this dependency, you can always just
-			// initialize the selection shape descriptor on-demand.
-			InitSelectionShapeDescriptor(paramNode);
-
-			m_Unit->SetID(GetEntityId());
+			m_ModelTag = cmpModelRenderer->AddUnit(GetEntityHandle(), m_Unit, boundSphere, flags);
 		}
 	}
 }
@@ -662,15 +689,6 @@ void CCmpVisualActor::ReloadActor()
 	if (!m_Unit)
 		return;
 
-	std::set<CStr> selections;
-	std::wstring actorName = m_ActorName;
-	if (actorName.find(L".xml") == std::wstring::npos)
-		actorName += L".xml";
-	CUnit* newUnit = GetSimContext().GetUnitManager().CreateUnit(actorName, GetActorSeed(), selections);
-
-	if (!newUnit)
-		return;
-
 	// Save some data from the old unit
 	CColor shading = m_Unit->GetModel().GetShadingColor();
 	player_id_t playerID = m_Unit->GetModel().GetPlayerID();
@@ -698,14 +716,20 @@ void CCmpVisualActor::ReloadActor()
 	m_Unit->GetModel().SetShadingColor(shading);
 
 	m_Unit->GetModel().SetPlayerID(playerID);
+
+	if (m_ModelTag.valid())
+	{
+		CmpPtr<ICmpUnitRenderer> cmpModelRenderer(GetSystemEntity());
+		CBoundingBoxAligned bounds = m_Unit->GetModel().GetWorldBoundsRec();
+		CBoundingSphere boundSphere = CBoundingSphere::FromSweptBox(bounds);
+		cmpModelRenderer->UpdateUnit(m_ModelTag, m_Unit, boundSphere);
+	}
 }
 
 void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 {
 	if (m_Unit == NULL)
 		return;
-
-	UpdateVisibility();
 
 	// If we're in the special movement mode, select an appropriate animation
 	if (!m_AnimRunThreshold.IsZero())
@@ -744,120 +768,4 @@ void CCmpVisualActor::Update(fixed UNUSED(turnLength))
 				m_Unit->GetAnimation()->SetAnimationState(name, false, speed, 0.f, L"");
 		}
 	}
-}
-
-void CCmpVisualActor::UpdateVisibility()
-{
-	ICmpRangeManager::ELosVisibility oldVisibility = m_Visibility;
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (cmpPosition && cmpPosition->IsInWorld())
-	{
-		// The 'always visible' flag means we should always render the unit
-		// (regardless of whether the LOS system thinks it's visible)
-		CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
-		if (cmpVision && cmpVision->GetAlwaysVisible())
-			m_Visibility = ICmpRangeManager::VIS_VISIBLE;
-		else
-		{
-			CmpPtr<ICmpRangeManager> cmpRangeManager(GetSystemEntity());
-			// Uncomment the following lines to prevent the models from popping into existence
-			// near the LOS boundary. Is rather resource intensive.
-			//if (cmpVision->GetRetainInFog())
-			//	m_Visibility = ICmpRangeManager::VIS_VISIBLE;
-			//else
-				m_Visibility = cmpRangeManager->GetLosVisibility(GetEntityHandle(),
-					GetSimContext().GetCurrentDisplayedPlayer());
-		}
-	}
-	else
-		m_Visibility = ICmpRangeManager::VIS_HIDDEN;
-
-	if (m_Visibility != oldVisibility)
-	{
-		// Change the visibility of the visual actor's selectable if it has one.
-		CmpPtr<ICmpSelectable> cmpSelectable(GetEntityHandle());
-		if (cmpSelectable)
-			cmpSelectable->SetVisibility(m_Visibility == ICmpRangeManager::VIS_HIDDEN ? false : true);
-	}
-}
-
-void CCmpVisualActor::Interpolate(float frameTime, float frameOffset)
-{
-	if (m_Unit == NULL)
-		return;
-
-	// Disable rendering of the unit if it has no position
-	CmpPtr<ICmpPosition> cmpPosition(GetEntityHandle());
-	if (!cmpPosition || !cmpPosition->IsInWorld())
-		return;
-	else if (!m_PreviouslyRendered)
-	{
-		UpdateVisibility();
-		m_PreviouslyRendered = true;
-	}
-
-	// Even if HIDDEN due to LOS, we need to set up the transforms
-	// so that projectiles will be launched from the right place
-
-	bool floating = m_Unit->GetObject().m_Base->m_Properties.m_FloatOnWater;
-
-	CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, floating));
-
-	if (!m_ConstructionProgress.IsZero())
-	{
-		// We use selection boxes to calculate the model size, since the model could be offset
-		// TODO: this annoyingly shows decals, would be nice to hide them
-		CBoundingBoxOriented bounds = GetSelectionBox();
-		if (!bounds.IsEmpty())
-		{
-			float dy = 2.0f * bounds.m_HalfSizes.Y;
-
-			// If this is a floating unit, we want it to start all the way under the terrain,
-			// so find the difference between its current position and the terrain
-
-			CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
-			if (floating && cmpTerrain)
-			{
-				CVector3D pos = transform.GetTranslation();
-				float ground = cmpTerrain->GetExactGroundLevel(pos.X, pos.Z);
-				dy += std::max(0.f, pos.Y - ground);
-			}
-
-			transform.Translate(0.0f, (m_ConstructionProgress.ToFloat() - 1.0f) * dy, 0.0f);
-		}
-	}
-
-	CModelAbstract& model = m_Unit->GetModel();
-
-	model.SetTransform(transform);
-	m_Unit->UpdateModel(frameTime);
-
-	// If not hidden, then we need to set up some extra state for rendering
-	if (m_Visibility != ICmpRangeManager::VIS_HIDDEN)
-	{
-		model.ValidatePosition();
-		model.SetShadingColor(CColor(m_R.ToFloat(), m_G.ToFloat(), m_B.ToFloat(), 1.0f));
-	}
-}
-
-void CCmpVisualActor::RenderSubmit(SceneCollector& collector, const CFrustum& frustum, bool culling)
-{
-	if (m_Unit == NULL)
-		return;
-
-	if (m_Visibility == ICmpRangeManager::VIS_HIDDEN)
-		return;
-
-	CModelAbstract& model = m_Unit->GetModel();
-	
-	if (!g_AtlasGameLoop->running && !g_RenderActors && m_IsActorOnly)
-		return;
-
-	if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), model.GetWorldBoundsRec()))
-		return;
-
-	if (!g_AtlasGameLoop->running && m_VisibleInAtlasOnly)
-		return;
-
-	collector.SubmitRecursive(&model);
 }

@@ -5,6 +5,11 @@
       <Hack>10.0</Hack>
     </Melee>
   </Attack>
+  <Builder>
+    <Entities datatype="tokens">
+      structures/brit_rotarymill
+	</Entities>
+  </Builder>
   <Health>
     <Max>75</Max>
   </Health>

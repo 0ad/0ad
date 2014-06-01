@@ -59,6 +59,26 @@ class ICmpPosition : public IComponent
 {
 public:
 	/**
+	 * Set this as a turret of an other entity
+	 */
+	virtual void SetTurretParent(entity_id_t parent, CFixedVector3D offset) = 0;
+
+	/**
+	 * Get the turret parent of this entity
+	 */
+	virtual entity_id_t GetTurretParent() = 0;
+
+	/**
+	 * Has to be called to update the simulation position of the turret
+	 */
+	virtual void UpdateTurretPosition() = 0;
+
+	/**
+	 * Get the list of turrets to read or edit
+	 */
+	virtual std::set<entity_id_t>* GetTurrets() = 0;
+
+	/**
 	 * Returns true if the entity currently exists at a defined position in the world.
 	 */
 	virtual bool IsInWorld() = 0;
@@ -123,6 +143,18 @@ public:
 	 * Set the entity to float on water
 	 */
 	virtual void SetFloating(bool flag) = 0;
+
+	/**
+	 * Set the entity to float on water, in a non-network-synchronised visual-only way.
+	 * (This is to support the 'floating' flag in actor XMLs.)
+	 */
+	virtual void SetActorFloating(bool flag) = 0;
+
+	/**
+	 * Set construction progress of the model, this affects the rendered position of the model.
+	 * 0.0 will be fully underground, 1.0 will be fully visible, 0.5 will be half underground.
+	 */
+	virtual void SetConstructionProgress(fixed progress) = 0;
 
 	/**
 	 * Returns the current x,y,z position (no interpolation).
@@ -196,7 +228,7 @@ public:
 	 * Get the current interpolated transform matrix, for rendering.
 	 * Must not be called unless IsInWorld is true.
 	 */
-	virtual CMatrix3D GetInterpolatedTransform(float frameOffset, bool forceFloating) = 0;
+	virtual CMatrix3D GetInterpolatedTransform(float frameOffset) = 0;
 
 	DECLARE_INTERFACE_TYPE(Position)
 };

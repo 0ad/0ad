@@ -4,6 +4,7 @@
 # Ascendant project.
 # 
 # Translators:
+# kingu <comradekingu@gmail.com>, 2014
 # thomhov, 2014
 # Dagi <dagi197@gmail.com>, 2013-2014
 # Erling <kongrapemann@gmail.com>, 2014
@@ -14,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-16 21:38+0000\n"
-"Last-Translator: Erling <kongrapemann@gmail.com>\n"
+"POT-Creation-Date: 2014-05-19 12:56+0200\n"
+"PO-Revision-Date: 2014-05-23 20:52+0000\n"
+"Last-Translator: Jarl Arntzen <jarl.arntzen@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,28 +66,28 @@ msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Veldig vanskelig"
 
-#: gui/civinfo/civinfo.js:94
+#: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Sivilisasjons-bonus"
 msgstr[1] "Sivilisasjons-bonuser"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Lagbonus"
 msgstr[1] "Lagbonuser"
 
-#: gui/civinfo/civinfo.js:117
+#: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
 msgstr "Spesielle Teknologier"
 
-#: gui/civinfo/civinfo.js:129
+#: gui/civinfo/civinfo.js:134
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
@@ -95,11 +96,11 @@ msgid_plural "Special Buildings"
 msgstr[0] "Spesialbygning"
 msgstr[1] "Spesialbygninger"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:158
+#: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
 msgstr "Historien om  %(civilization)s"
@@ -306,7 +307,7 @@ msgstr "Demokart"
 msgid "All Maps"
 msgstr "Alle kart"
 
-#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
 msgstr "Ingen"
@@ -452,7 +453,7 @@ msgstr "Jeg er ikke klar"
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1706
 msgid "I'm ready!"
 msgstr "Jeg er klar!"
 
@@ -460,7 +461,7 @@ msgstr "Jeg er klar!"
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1703
+#: gui/gamesetup/gamesetup.js:1707
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
@@ -641,7 +642,7 @@ msgstr "Skriv inn ditt brukernavn"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Brukernavn kan ikke inneholde tegnene [ eller ] unicode-tegn, mellomrom eller komma."
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -657,15 +658,15 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Vennligst les tjenestevilkårene"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Vennligst les bruksvilkårene"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Vennligst godkjenn tjenestevilkårene og bruksvilkårene"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -677,23 +678,23 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Tjenestevilkår"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Bruksvilkår"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
 msgstr "Ingen"
 
-#: gui/locale/locale_advanced.js:89
+#: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
-#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:41 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
@@ -729,207 +730,216 @@ msgstr ""
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Skru av velkomstskjerm"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Hvis du skrur av denne skjermen kan du gå glipp av viktige meldinger.\nDu kan uansett åpne den igjen fra hovedmenyen."
 
 #: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr "Detaljerte pekertips"
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr "Vis detaljerte pekertips for enheter som kan trenes i trenings-bygninger."
+
+#: gui/options/options.js:13
 msgid "Developer Overlay"
 msgstr "Visningslag for utviklere"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Prefer GLSL"
 msgstr ""
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr ""
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Post Processing"
-msgstr ""
+msgstr "Etterbehandling"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Shadows"
 msgstr ""
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Enable shadows"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Particles"
 msgstr ""
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Enable particles"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Show Sky"
 msgstr ""
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Render Sky"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Smooth LOS"
-msgstr ""
-
-#: gui/options/options.js:21
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Myk LOS"
 
 #: gui/options/options.js:22
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
+msgstr "Glatt ut grensene for avdekket og utforsket kart (Trenger \"Prefer GLSL\")"
+
+#: gui/options/options.js:23
 msgid "Unit Silhouettes"
 msgstr ""
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Show outlines of units behind buildings"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadow Filtering"
 msgstr ""
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Smooth shadows"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "HQ Waviness"
 msgstr ""
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Real Water Depth"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Use actual water depth in rendering calculations"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Water Reflections"
 msgstr ""
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Allow water to reflect a mirror image"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Refraction"
 msgstr ""
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Use a real water refraction map and not transparency"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shore Foam"
 msgstr ""
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Show foam on water near shore depending on water waviness"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Shore Waves"
 msgstr ""
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Shadows"
 msgstr ""
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Cast shadows on water"
 msgstr ""
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master Gain"
 msgstr ""
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master audio gain"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Music Gain"
 msgstr ""
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "In game music gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Ambient Gain"
 msgstr ""
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "In game ambient sound gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Action Gain"
 msgstr ""
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game unit action sound gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI Gain"
 msgstr ""
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI sound gain"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Chat Backlog"
 msgstr ""
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr ""
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Chat Timestamp"
 msgstr ""
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Show time that messages are posted in the lobby chat"
 msgstr ""
 
@@ -1018,10 +1028,10 @@ msgstr ""
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:108 (caption)
 #: gui/pregame/mainmenu.xml:139 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Tekniske detaljer"
 
-#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
-#: gui/session/session.xml:732 (caption)
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:664
+#: gui/session/session.xml:733 (caption)
 msgid "Manual"
 msgstr "Manual"
 
@@ -1059,11 +1069,11 @@ msgstr ""
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Vil du fremdeles fortsette?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "Advarsel"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -1087,67 +1097,67 @@ msgstr "Lagret spill vil bli overskrevet, er du sikker?"
 msgid "OVERWRITE SAVE"
 msgstr "OVERSKRIV LAGRET"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Basic range: %(range)s"
 msgstr "Standard avstand: %(range)s"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Average bonus range: %(range)s"
 msgstr "Gjennomsnittlig bonusavstand: %(range)s"
 
-#: gui/session/input.js:264 gui/session/input.js:357
+#: gui/session/input.js:268 gui/session/input.js:361
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Nåværende garnison: %(garrisoned)s/%(capacity)s\n "
 
-#: gui/session/input.js:306
+#: gui/session/input.js:310
 msgid "Right-click to establish a default route for new traders."
 msgstr "Høyre-klikk for å etablere en standard rute for nye handelsmenn."
 
-#: gui/session/input.js:308 gui/session/input.js:389 gui/session/input.js:396
-#: gui/session/input.js:406
+#: gui/session/input.js:312 gui/session/input.js:393 gui/session/input.js:400
+#: gui/session/input.js:410
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr ""
 
-#: gui/session/input.js:310
+#: gui/session/input.js:314
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr ""
 
-#: gui/session/input.js:387
+#: gui/session/input.js:391
 msgid "Origin trade market."
 msgstr ""
 
-#: gui/session/input.js:393
+#: gui/session/input.js:397
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Høyre-klikk på et annet marked for å sette det som bestemmelsessted."
 
-#: gui/session/input.js:396
+#: gui/session/input.js:400
 msgid "Destination trade market."
 msgstr ""
 
-#: gui/session/input.js:401
+#: gui/session/input.js:405
 msgid "Right-click to set as origin trade market"
 msgstr "Høyre-klikk for å sette som opprinnelses-marked."
 
-#: gui/session/input.js:406
+#: gui/session/input.js:410
 msgid "Right-click to set as destination trade market."
 msgstr "Høyre-klikk for å sette som destinasjons-marked."
 
-#: gui/session/input.js:996
+#: gui/session/input.js:1000
 msgid "Cannot build wall here!"
 msgstr "Kan ikke bygge vegg her!"
 
-#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:780 (caption)
 msgid "Pause"
 msgstr "Pause"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Gjenoppta"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -1163,91 +1173,91 @@ msgid "Are you sure you want to quit?"
 msgstr "Er du sikker på at du vil avslutte?"
 
 #: gui/session/menu.js:169
-msgid "I resign"
+msgid "I will return"
 msgstr ""
 
 #: gui/session/menu.js:169
-msgid "I will return"
+msgid "I resign"
 msgstr ""
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
 msgstr ""
 
-#: gui/session/menu.js:188
+#: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
 msgstr "Ødelegg alle valgte?"
 
-#: gui/session/menu.js:188 gui/session/utility_functions.js:296
+#: gui/session/menu.js:189 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
 msgstr "Slett"
 
-#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:445 (tooltip)
 msgid "Ally"
 msgstr "Alliert"
 
-#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:449 (tooltip)
 msgid "Neutral"
 msgstr "Nøytral"
 
-#: gui/session/menu.js:286 gui/session/messages.js:613
-#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:287 gui/session/messages.js:613
+#: gui/session/session.xml:453 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "Fiende"
 
-#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
+#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
 msgid "x"
 msgstr ""
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:473
 msgid "There are no land traders."
-msgstr ""
+msgstr "Det finnes ingen landhandlere"
 
-#: gui/session/menu.js:478
+#: gui/session/menu.js:479
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s inaktive"
+msgstr[1] "%(numberOfLandTraders)s inaktive"
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:483
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det er %(numberTrading)s kjøpmann som handler"
+msgstr[1] "Det er %(numberTrading)s kjøpmenn som handler"
 
-#: gui/session/menu.js:485
+#: gui/session/menu.js:486
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s utstasjonert på et handelsreisende skip"
+msgstr[1] "%(numberGarrisoned)s utstasjonert på et handelsreisende skip"
 
-#: gui/session/menu.js:488
+#: gui/session/menu.js:489
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:496
+#: gui/session/menu.js:497
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:506 gui/session/menu.js:568
+#: gui/session/menu.js:507 gui/session/menu.js:569
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:513 gui/session/menu.js:575
+#: gui/session/menu.js:514 gui/session/menu.js:576
 #, python-format
 msgid "%(openingTradingString)s."
 msgstr ""
 
-#: gui/session/menu.js:523
+#: gui/session/menu.js:524
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1258,64 +1268,64 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:526
+#: gui/session/menu.js:527
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr ""
 
-#: gui/session/menu.js:533
+#: gui/session/menu.js:534
 #, python-format
 msgid "%(openingGarrisonedString)s."
 msgstr ""
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:543
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:543 gui/session/menu.js:585
+#: gui/session/menu.js:544 gui/session/menu.js:586
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:556
 msgid "There are no merchant ships."
 msgstr ""
 
-#: gui/session/menu.js:561
+#: gui/session/menu.js:562
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:566
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:584
+#: gui/session/menu.js:585
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:673
+#: gui/session/menu.js:674
 msgid "The Developer Overlay was opened."
 msgstr ""
 
-#: gui/session/menu.js:675
+#: gui/session/menu.js:676
 msgid "The Developer Overlay was closed."
 msgstr ""
 
-#: gui/session/menu.js:693
+#: gui/session/menu.js:694
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -1406,8 +1416,9 @@ msgstr "%(previousAmounts)s og %(lastAmount)s"
 
 #: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
-#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:620 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 msgid ", "
 msgstr ","
 
@@ -1447,7 +1458,7 @@ msgid "%(userTag)s %(message)s"
 msgstr ""
 
 #: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
-#: gui/session/session.xml:437 (caption)
+#: gui/session/session.xml:438 (caption)
 msgid "Team"
 msgstr "Lag"
 
@@ -1541,11 +1552,12 @@ msgid "Rate:"
 msgstr ""
 
 #: gui/session/selection_details.js:249 gui/session/session.js:636
-#: gui/session/utility_functions.js:602
+#: gui/session/utility_functions.js:606
 msgid "Range:"
 msgstr "Avstand:"
 
-#: gui/session/selection_details.js:251
+#: gui/session/selection_details.js:251 gui/session/session.js:637
+#: gui/session/utility_functions.js:607
 msgid "meters"
 msgstr ""
 
@@ -1617,7 +1629,8 @@ msgstr "BESEIRET!"
 msgid "VICTORIOUS!"
 msgstr "SEIER!"
 
-#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
+#: gui/session/session.js:624 gui/session/unit_commands.js:520
+#: gui/session/session.xml:1004 (tooltip)
 msgid "Health:"
 msgstr "Helse:"
 
@@ -1651,6 +1664,16 @@ msgstr ""
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr ""
+
+#: gui/session/unit_commands.js:155
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr "%(changer)s forstørrer grensen med %(change)s."
+
+#: gui/session/unit_commands.js:157
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr "%(changer)s minker grensen med %(change)s."
 
 #: gui/session/unit_commands.js:184
 #, python-format
@@ -1714,61 +1737,48 @@ msgstr "Send ut %(name)s"
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr ""
 
-#: gui/session/unit_commands.js:708
+#: gui/session/unit_commands.js:524
+msgid "Armour"
+msgstr "Rustning"
+
+#: gui/session/unit_commands.js:718
 #, python-format
 msgid "Requires %(technology)s"
 msgstr "Krever %(technology)s"
 
-#: gui/session/unit_commands.js:725
+#: gui/session/unit_commands.js:735
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Gjenstår: %(number)s å bygge."
+msgstr[1] "Gjenstår: %(number)s å bygge."
 
-#: gui/session/unit_commands.js:962
+#: gui/session/unit_commands.js:972
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr ""
 
-#: gui/session/unit_commands.js:1161
-msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
-
-#: gui/session/unit_commands.js:1165
-msgid "Convert Stone Wall into City Gate"
-msgstr ""
-
-#: gui/session/unit_commands.js:1169
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr ""
-
-#: gui/session/unit_commands.js:1174
-#, python-format
-msgid "Convert %(wall)s into %(gate)s"
-msgstr ""
-
-#: gui/session/unit_commands.js:1191
+#: gui/session/unit_commands.js:1178
 msgid "Lock Gate"
 msgstr ""
 
-#: gui/session/unit_commands.js:1197
+#: gui/session/unit_commands.js:1184
 msgid "Unlock Gate"
 msgstr ""
 
-#: gui/session/unit_commands.js:1246
+#: gui/session/unit_commands.js:1233
 msgid "Pack"
 msgstr "Pakk"
 
-#: gui/session/unit_commands.js:1248
+#: gui/session/unit_commands.js:1235
 msgid "Unpack"
 msgstr "Pakk ut"
 
-#: gui/session/unit_commands.js:1250
+#: gui/session/unit_commands.js:1237
 msgid "Cancel Packing"
 msgstr ""
 
-#: gui/session/unit_commands.js:1252
+#: gui/session/unit_commands.js:1239
 msgid "Cancel Unpacking"
 msgstr ""
 
@@ -1893,7 +1903,7 @@ msgstr ""
 #: gui/session/utility_functions.js:492
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s til %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:525
 #, python-format
@@ -1927,87 +1937,87 @@ msgstr "Utilstrekkelige resurser:"
 msgid "Speed:"
 msgstr "Hastighet:"
 
-#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:578 gui/session/utility_functions.js:580
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 msgid "Walk"
 msgstr "Gange"
 
-#: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 msgid "Run"
 msgstr "Løp"
 
-#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:599
+#: gui/session/utility_functions.js:603
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:608
+#: gui/session/utility_functions.js:612
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:624
+#: gui/session/utility_functions.js:628
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:634
+#: gui/session/utility_functions.js:638
 msgid "???"
 msgstr ""
 
-#: gui/session/utility_functions.js:664
+#: gui/session/utility_functions.js:668
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:694
 msgid "+"
 msgstr ""
 
-#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:696 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr ""
 
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:698
 msgid "you"
 msgstr "deg"
 
-#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
+#: gui/session/utility_functions.js:704 gui/session/utility_functions.js:709
 #, python-format
 msgid "player %(name)s"
 msgstr "spiller %(name)s"
 
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:717
 msgid "Charge Attack:"
 msgstr "Stormangrep:"
 
-#: gui/session/utility_functions.js:714
+#: gui/session/utility_functions.js:718
 msgid "Melee Attack:"
 msgstr "Nærkampangrep:"
 
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:719
 msgid "Ranged Attack:"
 msgstr "Avstandsangrep:"
 
-#: gui/session/utility_functions.js:718
+#: gui/session/utility_functions.js:722
 msgid "Attack:"
 msgstr "Angrep:"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:741
+#: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Mat"
@@ -2015,15 +2025,15 @@ msgstr "Mat"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:743
+#: gui/session/utility_functions.js:747
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Kjøtt"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:745
+#: gui/session/utility_functions.js:749
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Metall"
@@ -2031,31 +2041,31 @@ msgstr "Metall"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:747
-msgctxt "firstWord"
-msgid "Ore"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
-#: gui/session/utility_functions.js:749
-msgctxt "firstWord"
-msgid "Rock"
-msgstr ""
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
 #: gui/session/utility_functions.js:751
 msgctxt "firstWord"
-msgid "Ruins"
-msgstr ""
+msgid "Ore"
+msgstr "Malm"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
 #: gui/session/utility_functions.js:753
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Klippe"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:755
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Ruiner"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
 msgctxt "firstWord"
 msgid "Stone"
 msgstr "Stein"
@@ -2063,23 +2073,23 @@ msgstr "Stein"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:755
+#: gui/session/utility_functions.js:759
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:757
+#: gui/session/utility_functions.js:761
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Tre"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:759
+#: gui/session/utility_functions.js:763
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "Tømmer"
@@ -2087,23 +2097,23 @@ msgstr "Tømmer"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:761
+#: gui/session/utility_functions.js:765
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukt"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:763
+#: gui/session/utility_functions.js:767
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Korn"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:765
+#: gui/session/utility_functions.js:769
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Fisk"
@@ -2111,7 +2121,7 @@ msgstr "Fisk"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:776
+#: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Mat"
@@ -2119,15 +2129,15 @@ msgstr "Mat"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:778
+#: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Kjøtt"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:780
+#: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Metall"
@@ -2135,33 +2145,17 @@ msgstr "Metall"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:782
-msgctxt "withinSentence"
-msgid "Ore"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using
-#. lowercase for your language).
-#: gui/session/utility_functions.js:784
-msgctxt "withinSentence"
-msgid "Rock"
-msgstr ""
-
-#. Translation: Word as used in the middle of a sentence (which may require
-#. using
-#. lowercase for your language).
 #: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
-msgid "Ruins"
-msgstr ""
+msgid "Ore"
+msgstr "Malm"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
-msgid "Stone"
+msgid "Rock"
 msgstr "Stein"
 
 #. Translation: Word as used in the middle of a sentence (which may require
@@ -2169,21 +2163,37 @@ msgstr "Stein"
 #. lowercase for your language).
 #: gui/session/utility_functions.js:790
 msgctxt "withinSentence"
-msgid "Treasure"
-msgstr ""
+msgid "Ruins"
+msgstr "Ruiner"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:792
 msgctxt "withinSentence"
-msgid "Tree"
-msgstr ""
+msgid "Stone"
+msgstr "Stein"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
 #: gui/session/utility_functions.js:794
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "Skatt"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:796
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Tre"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Tømmer"
@@ -2191,23 +2201,23 @@ msgstr "Tømmer"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:796
+#: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Frukt"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:798
+#: gui/session/utility_functions.js:802
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Korn"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:800
+#: gui/session/utility_functions.js:804
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Fisk"
@@ -2226,80 +2236,80 @@ msgstr ""
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Advarsel: Dette er en avansert veiledning og den går ganske raskt. Hvis du ikke klarer å holde følge, bare start på nytt og prøv igjen. Øvelse gjør mester!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "La oss begynne, tren først en gruppe (Shift+klikk) på 5 kvinnelige borgere fra bysenteret."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "La de kvinnelige borgere få i oppgave å sanke bær, din kavalerist å jage kyllingene og dine borgersoldater å sanke tømmer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Sett nå marsjmålet for ditt bysenter på bærbuskene."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Sett noen slyngekastere i treningskø etter de kvinnelige borgerne. (Det vil ikke være nok ressurser for en hel gruppe på fem.)"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Når dine kvinnelige borgere er ferdig opplært, bruk 4 til å bygge et hus i nærheten."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Sett bysenterets marsjmål på trærne i nærheten, tren flere slyngekastere, 6 stykker i denne omgang."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Sett en gruppe på 5 kvinnelige borgere i treningskø."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Bruk Shift+klikk for å sette et nytt hus i oppgavekøen til de 4 byggerne."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Sett marsjmålet tilbake til bærbuskene straks alle borgersoldatene har fullført treningen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr ""
+msgstr "Send en borger for å sanke stein, send 2 andre for å bygge et steinhus nær trærne i sør."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr ""
+msgstr "Legg enda 5 kvinnelige borgere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Bruk en kvinnelig borger for å lage et jorde rett ved siden av bysenteret."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Kavaleristen er antagelig tom for kyllingere nå men det finnes geiter til venstre for bysenteret."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr ""
+msgstr "Bruk 2-3 flere kvinnelige borgere for å lage jordet."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -2307,174 +2317,174 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Legg et hus til i oppgavekøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Det er for mange ved bærbuskene, send noen kvinnelige borgere til å arbeide på jordet, sett marsjmålet der."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr ""
+msgstr "Legg ytterligere 5 kvinnelige borgere i treningskøen. Disse bør sanke stein."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Flytt tømmerhuggerne til trærne nær lagerhuset så de ikke behøver å gå så langt."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr ""
+msgstr "Når arbeiderne er ferdige med bærbuskene, pass på at de blir brukt til å sanke korn fra jordet isteden for å stå arbeidsledige."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr ""
+msgstr "Legg enda et hus i byggekøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Legg 5 kvinnelige borgere i køen. Disse må sanke tømmer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
 "Build another field, this decreases the amount of walking for your female "
 "citizens."
-msgstr ""
+msgstr "Lag enda et jorde, gjør at de kvinnelige borgerne slipper å gå så langt."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:123
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr ""
+msgstr "Tren flere slyngekastere og send dem for å sanke stein. Tren omtrent 5 stykker, det kan hende du ikke har ressurser for å trene en hel gruppe akkurat nå."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr ""
+msgstr "Legg enda en gruppe med 5 kvinnelige borgere i treningskøen. Disse skal sanke tømmer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Legg en gruppe (Shift+klikk) spydkastere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr ""
+msgstr "Utforsk teknikk for steingruver fra lagerhuset."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
-msgstr ""
+msgstr "Legg en gruppe slyngekastere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:158
 msgid ""
 "Move 3 women from wood and 3 from stone to farming. Women are cheap to train"
 " initially but later in the game it is best to maximize efficiency as you "
 "are able to train more citizen soldiers."
-msgstr ""
+msgstr "Flytt 3 kvinner fra tømmersanking og 3 fra steingruva til gårdsdrift. Kvinner er billige å trene i begynnelsen men senere i spillet er det best å fokusere på effektivitet slik at du kan trene flere borgersoldater."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:168
 msgid ""
 "The slingers that you queued earlier should gather stone once they are "
 "trained."
-msgstr ""
+msgstr "Slyngekasterne du la i køen tidligere burde sanke stein straks de er trenet."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:173
 msgid "Queue a batch of spearmen, they should gather wood."
-msgstr ""
+msgstr "Legg en gruppe spydkastere i treningskøen. Disse skal sanke tømmer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:178
 msgid "Next queue a batch of slingers."
-msgstr ""
+msgstr "Legg så en gruppe slyngekastere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:183
 msgid ""
 "Send some of the stone miners to mine metal, getting ready for the next age."
-msgstr ""
+msgstr "Send noen av arbeiderne i steingruva til metallgruva så de er klare for neste fase."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
 msgid "Start researching Phase 2."
-msgstr ""
+msgstr "Start utforsking på Fase 2."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:198
 msgid "Queue some slingers."
-msgstr ""
+msgstr "Legg noen slyngekastere i treningskøen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:203
 msgid ""
 "When you have advanced, use a single citizen soldier to place a barracks "
 "foundation. Then use the rest of the non food or house building female "
 "citizens to construct it."
-msgstr ""
+msgstr "Når du har oppnådd by-fasen, bruk en enkelt borger-soldat til å lage grunnmuren for en kaserne. Bruk deretter resten de kvinnelige borgerne til å bygge ferdig kasernen så sant de ikke allerede brukes til matsanking eller husbygging."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:208
 msgid "Queue 5 more females for construction work."
-msgstr ""
+msgstr "Kø opp 5 kvinner for byggearbeider."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:213
 msgid ""
 "Queue a batch of slingers to gather the trees on the north side of your "
 "base."
-msgstr ""
+msgstr "Tren en gruppe slyngekastere for å sanke tømmeret nord for basen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:218
 msgid ""
 "This is the end of the walkthrough. This should give you a good idea of how "
 "to build up a nice economy rapidly."
-msgstr ""
+msgstr "Dette er slutten av gjennomgangen. Du bør nå ha en god formening om hvordan man raskt kan bygge opp en fin økonomi."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:223
 msgid ""
 "At this point you should be able to fully use both training facilities, keep"
 " putting units into economic work, to keep growing faster and faster."
-msgstr ""
+msgstr "Nå burde du være fullt i stand til å bruke begge treningsstedene, sende enheter ut i økonomisk arbeid for å vokse raskere og raskere."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:228
 msgid ""
 "From this point you have a good base to build an army and wipe out the "
 "opposition."
-msgstr ""
+msgstr "Nå har du et godt grunnlag for å bygge en hær og utslette motstanderen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Nøkkelpunktene du må huske er:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr "Ikke ha noen inaktive enheter. Å skift klikke kø og rally punkter er svært nyttig."
+msgstr "- Unngå arbeidsledige enheter. Det er veldig nyttig å lage oppgave-køer ved hjelp av Skift+klikk og bruk også marsjmål."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
 " - Use all of your resources, stockpiled resources are waste, having too "
 "much of a resource is waste."
-msgstr ""
+msgstr "- Bruk alle ressurser. Oppsparte ressurser er bortkastede, å ha for mye av en ressurs er bortkastet."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr "- Bruk de riktige enhetene for den riktige oppgaven, kvinnelige innbyggere samler mad, kaveleri jakt, innbygger soldater gjør resten."
+msgstr "- Bruk de riktige enhetene for den riktige oppgaven, kvinnelige innbyggere samler mat, kaveleriet jakter, borger-soldater gjør resten."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
 " - Don't be afraid to swap units from one resource to another, see point 2. "
 "Make sure they deposit what they are carrying first though."
-msgstr "- Ikke vær redd for å bytte enheter fra en ressurs til en annen. se punkt 2. Vær sikker på leverer hva de bærer først skjønt"
+msgstr "- Ikke vær redd for å bytte enheter fra en ressurs til en annen. se punkt 2. Men sørg først for at de leverer det de bærer på til riktig sted."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:258
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
-msgstr ""
+msgstr "- Bygg nok bolighus, bruk samfunnsenteret til trening så mye som mulig siden det er den eneste trenings-bygningen du har til du når by-fasen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr ""
+msgstr "- Kvinnelige borgere er rimelige så du kan trene flere av dem og sanke flere ressurser."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -2486,66 +2496,66 @@ msgstr ""
 msgid ""
 "Each map is different, so you will need to play slightly differently on "
 "each. This should give an outline for a high resource map."
-msgstr ""
+msgstr "Hvert kart er forskjellig så du blir nødt til å spille på litt forskjellige måter. Dette burde gi en oversikt for et kart med mange ressurser."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:4
 msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Velkommen til 0 A.D. sin opplæring. Først venstre-klikker du på en kvinnelig innbygger, også høyre-klikker du på en bær busk i nærheten for å få enheten til å samle mat. Kvinnelige innbyggere får mat raskere en andre enheter."
+msgstr "Velkommen til veiledningen for 0 A.D. Først venstre-klikker du på en kvinnelig innbygger, deretter høyre-klikker du på en bærbusk i nærheten for å få enheten til å sanke mat. Kvinnelige innbyggere sanker mat raskere enn andre enheter."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr ""
+msgstr "Velg borgersoldaten, høyre-klikk på et tre nær samfunnsenteret for å begynne å sanke tømmer. Borgersoldater sanker tømmer raskere enn kvinnelige borgere."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
 "Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
 "in the row) once to begin training 5 Hoplites."
-msgstr ""
+msgstr "Velg samfunnssenteret og Shift+klikk på Hoplite-ikonet (nr 2 fra venstre) en gang for å starte treningen av 5 Hoplitter."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr ""
+msgstr "Velg de to arbeidsledige kvinnelige borgerne og bygg et hus i nærheten ved å velge hus-ikonet. Plasser bygningen ved å venstre-klikke på et ledig område."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
 "Select the newly trained Hoplites and assign them to build a storehouse "
 "beside some nearby trees. They will begin to gather wood when it's "
 "constructed."
-msgstr ""
+msgstr "Velg de nytrenede hoplittene og beordre dem til å lage et lager ved siden av noen trær i nærheten. De vil begynne å sanke tømmer når lagere er ferdig."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
 "Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
 "in the row) in the Civil Center."
-msgstr ""
+msgstr "Tren en gruppe på 5 frontsoldater Shift-klikke på frontsoldat-ikonet (nr 3 fra venstre) i samfunnssenteret."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
 msgid ""
 "Build a farmstead in an open space beside the Civil Center using any idle "
 "builders."
-msgstr ""
+msgstr "Bygg en gårdsbygning i et åpent område ved siden av samfunnssenteret ved å bruke arbeidsledige byggere."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:39
 msgid ""
 "Once the farmstead is constructed, its builders will automatically begin "
 "gathering food if there is any nearby. Select the builders and instead make "
 "them construct a field beside the farmstead."
-msgstr ""
+msgstr "Straks gårdsbygningen er ferdig vil byggerne automatisk sanke mat dersom det finnes i nærheten. Velg byggerne og få dem til å lage et jorde ved siden av gårdsbygningen isteden."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:45
 msgid ""
 "The field's builders will now automatically begin collecting food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
-msgstr ""
+msgstr "De som lager jordet vil nå automatisk sanke korn. Bruk de nytrenede frontsoldatene til å lage et hus til i nærheten."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:51
 msgid ""
@@ -2559,37 +2569,37 @@ msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr ""
+msgstr "Beordre arbeidsledige frontsoldater til å bygge en utpost i nord-øst av ditt territorium. Dette vil være den femte bygningen i landsby-fasen slik at du nå kan gå videre til by-fasen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr ""
+msgstr "Velg samfunnssenteret igjen og gå videre til by-fasen ved å klikke på 'II'-ikonet. Dette gjør det mulig å lage by-fase bygninger."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr ""
+msgstr "Start med å trene 5 kvinnelige borgere i samfunnssenteret og sett marsjmålet på gården (høyreklikk)."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
 "Build a Barracks nearby. Whenever your population limit is reached, build an"
 " extra house using any available builder units."
-msgstr "Bygg brakker i nærheten. Hver gang folketall grensen er nådd, bygg flere hus ved bruk av alle bygge enheter."
+msgstr "Bygg kaserner i nærheten. Bygg nye bolighus ved hjelp av alle ledige enheter hver gang befolkingsgrensen nås."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:80
 msgid ""
 "Prepare for an attack by an enemy player. Build more soldiers using the "
 "Barracks, and get idle soldiers to build a Defense Tower near your Outpost."
-msgstr ""
+msgstr "Forbered deg på angrep fra en fientlig spiller. Tren flere soldater i kasernene og få arbeidsløse soldater til å byge et forsvarstårn nær utposten."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr ""
+msgstr "Bygg en smie og utforsk teknologi for Trening av Infanteri (sverd-ikonet) for å forbedre infanteristenes hakke-angrep."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
@@ -2605,47 +2615,47 @@ msgstr "Fiendens angrep har blitt beseiret. Bygg et marked og et tempel imens du
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr ""
+msgstr "Nå som kravene for by-fasen er oppnådd, velg samfunnssenteret og gå så videre til by-fasen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr ""
+msgstr "Nå som du har nådd by-fasen, bygg et fort i nærheten og bruk det til å bygge 2 rambukker."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr ""
+msgstr "Bruk soldatene som sanker ressurser til å lete etter fiendens samfunnssenter i små grupper. Kvinnelige borgere kan fortsette å sanke ressurser."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr ""
+msgstr "Fiendens base har blitt oppdaget. Send beleiringsmaskinene og alle gjenværende soldater for å ødelegge det."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Fienden har blitt beseiret. Veiledningen er nå fullført..."
 
-#: simulation/components/BuildRestrictions.js:83
+#: simulation/components/BuildRestrictions.js:85
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s kan ikke bygges på grunnn av ukjent feil."
 
-#: simulation/components/BuildRestrictions.js:104
+#: simulation/components/BuildRestrictions.js:108
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s kan ikke bygges i uutforsket land."
 
-#: simulation/components/BuildRestrictions.js:152
+#: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s kan ikke bygges på en annen bygning eller ressurs."
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:160
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s kan ikke bygges på dette terrenget."
@@ -2653,7 +2663,7 @@ msgstr "%(name)s kan ikke bygges på dette terrenget."
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:180
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "alliert"
@@ -2661,7 +2671,7 @@ msgstr "alliert"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:183
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "egen"
@@ -2669,7 +2679,7 @@ msgstr "egen"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:186
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "nøytral"
@@ -2677,31 +2687,31 @@ msgstr "nøytral"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:189
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "fiende"
 
-#: simulation/components/BuildRestrictions.js:195
+#: simulation/components/BuildRestrictions.js:199
 #, python-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s kan ikke bygges %(territoryType)s territorium. Gyldige territorium: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:232
+#: simulation/components/BuildRestrictions.js:238
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s må bygges på en gyldig kystlinje."
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:262
 #, python-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr "%(name)s for nær %(category)s, må være minst %(distance)s meter unna"
 
-#: simulation/components/BuildRestrictions.js:268
+#: simulation/components/BuildRestrictions.js:275
 #, python-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
@@ -2709,48 +2719,63 @@ msgstr "%(name)s for langt fra en %(category)s, må være innen %(distance)s met
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:298
+#: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
 msgstr "egen"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:300
+#: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "alliert"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "nøytral"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "fiende"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
+#: simulation/components/EntityLimits.js:110
+#, python-format
+msgid "%(category)s build limit of %(limit)s reached"
+msgstr "%(category)s bygningsgrensen på %(limit)s er nådd"
+
+#: simulation/components/EntityLimits.js:112
+#, python-format
+msgid "%(category)s training limit of %(limit)s reached"
+msgstr "%(category)s treningsgrensen på %(limit)s nådd"
+
+#: simulation/components/EntityLimits.js:116
+#, python-format
+msgid "%(category)s limit of %(limit)s reached"
+msgstr "%(category)s grensen på %(limit)s nådd."
+
+#: simulation/components/Player.js:40 gui/session/session.xml:565 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "Mat"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:572 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "Tømmer"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:586 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "Metall"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:579 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "Stein"
@@ -2784,7 +2809,7 @@ msgstr ""
 
 #: simulation/components/ProductionQueue.js:345
 msgid "The production queue is full."
-msgstr ""
+msgstr "Køen for trening/produksjon er full."
 
 #: simulation/components/Wonder.js:53
 #, python-format
@@ -2808,11 +2833,11 @@ msgstr "AI Spiller"
 msgid "AI Difficulty"
 msgstr "AI Vanskelighetsgrad"
 
-#: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
-#: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:36
+#: (caption) gui/locale/locale_advanced.xml:65 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/save.xml:37 (caption) gui/session/session.xml:402 (caption)
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -2825,7 +2850,7 @@ msgid "Civilization Selection"
 msgstr "Siviliasjons Valg"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
-#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
+#: gui/session/session.xml:491 (caption) gui/session/session.xml:544 (caption)
 msgid "Close"
 msgstr "Lukk"
 
@@ -2849,7 +2874,7 @@ msgstr "Spillernavn"
 msgid "Player Placement"
 msgstr "Spillerplassering"
 
-#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:435
 #: (caption)
 msgid "Civilization"
 msgstr "Sivilisasjon"
@@ -2910,7 +2935,7 @@ msgstr "Velg antall spillere."
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Velg kartstørrelse. (Større størrelser kan redusere ytelse.)"
 
-#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:412
 #: (caption)
 msgid "Send"
 msgstr "Send"
@@ -2972,13 +2997,13 @@ msgstr "Velg spillets startressurser."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Gjem/vis kartet."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Gjem/vis utforsket kart (se gaia og bygninger)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -3050,16 +3075,16 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:432 (caption)
 msgid "Name"
 msgstr "Navn"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "Vurdering"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
@@ -3083,27 +3108,27 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "Kartnavn"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Størrelse"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "Spillere"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
 msgstr ""
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1068 (tooltip)
 msgid "Rank"
 msgstr "Grad"
 
@@ -3113,11 +3138,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr "Lag en ny konto"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "ogg inn til en eksisterende konto"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
@@ -3141,7 +3166,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Jeg har lest og er enig i tjenestevilkårene og bruksvilkårene:"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:310 (caption)
@@ -3161,20 +3186,20 @@ msgstr ""
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "Lokalisering"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
+#: gui/locale/locale.xml:41 (caption)
+msgid "Advanced"
+msgstr "Avansert"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
 #: (caption)
 msgid "Accept"
 msgstr ""
 
-#: gui/locale/locale.xml:41 (caption)
-msgid "Advanced"
-msgstr ""
-
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "Land"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
@@ -3193,11 +3218,11 @@ msgstr ""
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Ikke implementert enda."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Nøkkelord (ubrukt):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
@@ -3205,19 +3230,19 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Ordbok-filer som brukes:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr ""
+msgstr "Gjenkjenn automatisk"
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informasjon"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Vis på nettet"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -3239,8 +3264,8 @@ msgstr ""
 msgid "Lobby Settings"
 msgstr ""
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:754 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/session/session.xml:755 (caption)
 msgid "Save"
 msgstr "Lagre"
 
@@ -3268,7 +3293,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:498
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:500
 msgid ""
@@ -3282,11 +3307,11 @@ msgstr "Bli involvert på: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:104 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Skru på tilbakemeldinger"
 
 #: gui/pregame/mainmenu.xml:135 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Skru av tilbakemeldinger"
 
 #: gui/pregame/mainmenu.xml:178 (caption)
 msgid "Matches"
@@ -3353,11 +3378,11 @@ msgstr "Åpne Atlas kartverktøyet i et nytt vindu. Start spillet ved hjelp av k
 
 #: gui/pregame/mainmenu.xml:339 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Velkomstskjerm"
 
 #: gui/pregame/mainmenu.xml:340 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Vis velkomstskjermen. Nyttig dersom du valgte å skjule den ved en feil."
 
 #: gui/pregame/mainmenu.xml:396 (caption)
 msgid "Learn To Play"
@@ -3365,7 +3390,7 @@ msgstr "Lær å spille"
 
 #: gui/pregame/mainmenu.xml:397 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Åpner spillmanualen for 0 A.D."
 
 #: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Single Player"
@@ -3395,22 +3420,22 @@ msgstr "Historie"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Lær om de mange sivilisasjonene i 0 A.D."
 
-#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
-#: (caption) gui/session/session.xml:1300 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:803
+#: (caption) gui/session/session.xml:1301 (caption)
 msgid "Exit"
 msgstr "Avslutt"
 
 #: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Går ut av spillet."
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Hjelp til med oversettelsen!"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open the 0 A.D translate page in your browser."
-msgstr ""
+msgstr "Klikk for å åpne oversettingssiden for 0 A.D. i din nettleser."
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Website"
@@ -3420,7 +3445,7 @@ msgstr "Nettsted"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klikk for å åpne play0ad.com i nettleseren din"
 
-#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:744
 #: (caption)
 msgid "Chat"
 msgstr "Nettprat"
@@ -3437,13 +3462,13 @@ msgstr "Rapporter en feil"
 
 #: gui/pregame/mainmenu.xml:549 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klikk for å besøke 0 A.D. Trac for å rapportere en programfeil, krasj eller annet."
 
 #: gui/pregame/mainmenu.xml:577 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
 msgstr "Last"
 
@@ -3511,108 +3536,108 @@ msgstr "Spill satt på Pause"
 msgid "Click to Resume Game"
 msgstr ""
 
-#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
+#: gui/session/session.xml:427 (caption) gui/session/session.xml:666 (tooltip)
 msgid "Diplomacy"
 msgstr "Diplomati"
 
-#: gui/session/session.xml:440 (caption)
+#: gui/session/session.xml:441 (caption)
 msgid "Theirs"
 msgstr "Deres"
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:444 (caption)
 msgid "A"
 msgstr "A"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:448 (caption)
 msgid "N"
 msgstr "N"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:452 (caption)
 msgid "E"
 msgstr "F"
 
-#: gui/session/session.xml:455 (caption)
+#: gui/session/session.xml:456 (caption)
 msgid "Tribute"
 msgstr "Bidra"
 
-#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
+#: gui/session/session.xml:506 (caption) gui/session/session.xml:685 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "Handle"
 
-#: gui/session/session.xml:511 (caption)
+#: gui/session/session.xml:512 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Valg av handelsvarer"
 
-#: gui/session/session.xml:531 (tooltip)
+#: gui/session/session.xml:532 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
-msgstr ""
+msgstr "Velg en vare som skal endres, \\nbruk deretter pilene på målvarene for å utføre endringene."
 
-#: gui/session/session.xml:592 (tooltip)
+#: gui/session/session.xml:593 (tooltip)
 msgid "Population (current / limit)"
 msgstr "Befolkning (nåværende / grense)"
 
-#: gui/session/session.xml:605 (tooltip)
+#: gui/session/session.xml:606 (tooltip)
 msgid "Choose player to view"
 msgstr "Velg spiller å se"
 
-#: gui/session/session.xml:628 (caption)
+#: gui/session/session.xml:629 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
-#: gui/session/session.xml:645 (tooltip)
+#: gui/session/session.xml:646 (tooltip)
 msgid "Game speed"
 msgstr "Spillhastighet"
 
-#: gui/session/session.xml:653 (tooltip)
+#: gui/session/session.xml:654 (tooltip)
 msgid "Choose game speed"
 msgstr "Velg spillhastighet"
 
-#: gui/session/session.xml:706 (caption)
+#: gui/session/session.xml:707 (caption)
 msgid "MENU"
 msgstr "MENY"
 
-#: gui/session/session.xml:767 (caption)
+#: gui/session/session.xml:768 (caption)
 msgid "Settings"
 msgstr "Innstillinger"
 
-#: gui/session/session.xml:791 (caption)
+#: gui/session/session.xml:792 (caption)
 msgid "Resign"
 msgstr "Gi opp"
 
-#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
+#: gui/session/session.xml:829 (tooltip) gui/session/session.xml:1045
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "Angrep og Rustning"
 
-#: gui/session/session.xml:852 (tooltip)
+#: gui/session/session.xml:853 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr "KIikk for å velge grupperte enheter.\nDobbelt-klikk for å fokusere på de grupperte enhetene.\nHøyreklikk for å la gruppen tre av."
 
-#: gui/session/session.xml:892 (tooltip)
+#: gui/session/session.xml:893 (tooltip)
 msgid "Find idle worker"
 msgstr "Finn ledig arbeider"
 
-#: gui/session/session.xml:944 (tooltip)
+#: gui/session/session.xml:945 (tooltip)
 msgid "Exchange resources:"
 msgstr "Utveksle ressurser:"
 
-#: gui/session/session.xml:1017 (tooltip)
+#: gui/session/session.xml:1018 (tooltip)
 msgid "Stamina:"
 msgstr "Utholdenhet:"
 
-#: gui/session/session.xml:1059 (tooltip)
+#: gui/session/session.xml:1060 (tooltip)
 msgid "Experience"
 msgstr "Erfaring"
 
-#: gui/session/session.xml:1127 (tooltip)
+#: gui/session/session.xml:1128 (tooltip)
 msgid "Hitpoints"
 msgstr "Treffpoeng"
 
-#: gui/session/session.xml:1136 (tooltip)
+#: gui/session/session.xml:1137 (tooltip)
 msgid "Stamina"
 msgstr "Utholdenhet"
 
@@ -3710,7 +3735,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr ""
+msgstr "Samfunnssenter"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
@@ -3780,7 +3805,7 @@ msgstr "Handelsinntekt"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "Andel\\nvegetarianere"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
@@ -3788,11 +3813,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "Andel\\n drap/døde"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "Utforsking\\nav kart"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
@@ -3971,15 +3996,15 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Endre dette dokumentet på hvilken som helst måte, når som helst, på betingelse av at brukeren av tjenesten gis tilstrekkelig varsel om endringen (definisjonen på tilstrekkelig varsel besluttes av et panel bestående av medlemmer fra Wildfire Games (WFT))"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. manual"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -3990,7 +4015,7 @@ msgstr "Takk for at du installerte 0 A.D.! Denne siden vil gi en kort oversikt o
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Grafikk innstillinger"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -4000,11 +4025,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Du kan skifte mellom full skjerm og vindu ved å trykke Alt+Enter. Vindusstørrelsen kan endres når i vindus-modus. Hvis spillet kjører for sakte kan du endre noen innstillinger i konfigurasjons-filen. Se etter /binaries/data/config/default.cfg på plasseringen der spillet er installert. Her vil du finne instruksjoner for konfigurering. Forsøk å skru av innstillingene \"fancywater\" og \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Slik spiller du"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -4012,7 +4037,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Kontrollene og spillmekanismene burde være kjent for de som er vant til tradisjonelle Sanntids-Strategispill. For øyeblikket mangler mange funksjoner og enhetene er dårlig balansert - du vil antagelig måtte vente til beta-utgaven før dette fungerer skikkelig."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -4044,11 +4069,11 @@ msgstr "• Muse-hjul, eller \"+\" og \"-\" tastene, for å zoome."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spillvarianter"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Hoved menyen gir tilgang til to spillvarianter:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -4057,13 +4082,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Enkelt-spiller[font=\"sans-14\"] — spill et sandkasse-spill eller mot en eller flere maskin-motstandere. Disse er under utvikling og er kanskje ikke alltid oppdaterte på nye funksjoner, men du kan likevel teste spillet mot en faktisk motstander dersom du ikke er i stand til å spille med et menneske."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Flerspiller[font=\"sans-14\"] — spill mot motstandere over internett."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -4075,13 +4100,13 @@ msgstr "For å starte et flerspillerspill må en spiller velge \"Arranger spill\
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Spill oppsett"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]I et flerspiller spill, kan bare verten endre på spillets oppsett valg."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -4110,15 +4135,15 @@ msgstr "Når du er klar for å starte, klikk på \"Start spill\" knappen."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hurtigtaster:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Alltid"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Lukk spillet, uten bekreftelse"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -4158,7 +4183,7 @@ msgstr "Shift + F2: Ta stort skjermbilde (6400px*4800px, i .bmp-format, plasseri
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]I spillet"
 
 #: gui/manual/intro.txt:49
 msgid ""
@@ -4268,11 +4293,11 @@ msgstr "Z, X, C, V, B, N, M: Med treningsbygningene markert. Legger til den 1., 
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Endre muse-handling"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Høyre-klikk på bygning: Stasjoner"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -4305,7 +4330,7 @@ msgstr "Ctrl + Venstre-klikk på enhet/gruppe ikon med flere enheter valgt: Fjer
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Høyre-klikk på valgte bygning/bygningert: setter et samlingspunkt for enheter skapt/utstasjonert fra den bygningen."
+msgstr "Høyre-klikk på valgte bygning/bygningert: setter et marsjmål for enheter skapt/utstasjonert fra den bygningen."
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
@@ -4313,15 +4338,15 @@ msgstr "Ctrl + Høyre-klikk med valgte enheter:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "- Hvis pekeren er over en bygning: Stasjoner"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "- Ellers: Angrip"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Visningslag"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
@@ -5365,7 +5390,7 @@ msgstr "\"I sinne burde vi avstå fra både tale og handling.\" - Pythagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "\"Makt er en nær nabo av nødvendighet.\" - Pythagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
@@ -8021,7 +8046,7 @@ msgstr ""
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "India var et land av bueskyttere. Hoveddelen av den indiske hæren bestod av svært dyktige bueskyttere med langbuer av bambus."
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -9842,18 +9867,18 @@ msgid ""
 "The most stable AI currently available, Aegis is an improvement of earlier "
 "bots by Wratii. Note that it doesn't support saved games yet. Please report "
 "issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Den mest stabile maskinspilleren, Aegis, er en forbedring fra tidligere boter av Wraitii. Merk at den ikke støtter lagrede spill enda. Vennligst meld inn problemer til Wildfire Games (se lenken i hovedmenyen)."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
-msgstr ""
+msgstr "Petra boten"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Based on Aegis, but heavily modified and expected to be more robust. Note "
 "that it doesn't support saved games yet and is not as well tested as Aegis. "
 "Please report issues to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "Basert på Aegis men sterkt modifisert og antagelig mer robust. Merk at den ikke støtter lagrede spill enda og er ikke så godt testet som Aegis. Vennligst rapporter problemer til Wildfire Games (se lenke i hovedmenyen)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription
@@ -10289,10 +10314,12 @@ msgstr ""
 msgid "Heroism"
 msgstr ""
 
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 msgid "Andreia"
 msgstr ""
 
@@ -10312,10 +10339,12 @@ msgstr ""
 msgid "Will to fight"
 msgstr "Kampvilje"
 
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.ptol
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.sele
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.hele
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr ""
 
@@ -10662,7 +10691,7 @@ msgstr ""
 
 #: simulation/data/technologies/health_females_01.jsontooltip
 msgid "Female Citizens +50% Health."
-msgstr ""
+msgstr "Kvinnelige borgere +50% i helse."
 
 #: simulation/data/technologies/health_females_01.jsongenericName
 msgid "The Loom"
@@ -10877,7 +10906,7 @@ msgstr "Storbyfasen - Britene"
 msgid ""
 "Advance to City Phase, which unlocks Gallic structures and units. Territory "
 "radius for Civilization Centers increased by another +50%"
-msgstr ""
+msgstr "Avanser til by-fasen, som låser opp galliske bygninger og enheter. Radiusen for territoriet rundt samfunnssenteret øker med ytterligere +50%"
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
@@ -10980,7 +11009,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_civic_02.jsongenericName
 msgid "Public Assembly"
-msgstr ""
+msgstr "Offentlig forsamling"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
@@ -10998,7 +11027,7 @@ msgstr ""
 
 #: simulation/data/technologies/pop_house_01.jsontooltip
 msgid "Houses +1 population cap bonus."
-msgstr ""
+msgstr "Hus +1 bonus befolkingsgrense."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -11277,6 +11306,10 @@ msgstr ""
 msgid "Thesmophoria"
 msgstr ""
 
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
+msgid "Bona Dea"
+msgstr ""
+
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
@@ -11531,7 +11564,7 @@ msgstr "Iberisk allianse"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "Regjer over Hispana for å redusere rekrutteringstiden med -20% for iberiske leiesoldater."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -11964,7 +11997,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
-msgstr ""
+msgstr "Tre"
 
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
@@ -11988,7 +12021,7 @@ msgstr ""
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
-msgstr ""
+msgstr "Stein"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
@@ -12007,7 +12040,7 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr ""
+msgstr "Ruiner"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
@@ -12033,7 +12066,7 @@ msgstr ""
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
 msgid "Treasure"
-msgstr ""
+msgstr "Skatt"
 
 #: simulation/templates/template_structure.xml:47
 msgid "Structure"
@@ -12123,6 +12156,10 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 msgid "Long wall segments can be converted to gates."
+msgstr ""
+
+#: simulation/templates/template_structure_defense_wall_long.xml:15
+msgid "Convert Stone Wall into City Gate"
 msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
@@ -13494,6 +13531,10 @@ msgstr ""
 msgid "Palisade"
 msgstr ""
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+msgid "Convert Wooden Wall into Wooden Gate"
+msgstr ""
+
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
@@ -13562,7 +13603,7 @@ msgstr "Et militært skipsvrak i forfall. En god mulighet for alle forrretningsm
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr ""
+msgstr "Skipsvrak"
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
@@ -14615,7 +14656,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "Koloni"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
@@ -14748,6 +14789,10 @@ msgstr "Beleiringsvegg"
 #: simulation/templates/structures/rome_siege_wall_medium.xml:33
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
+msgstr ""
+
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+msgid "Convert Siege Wall into Siege Wall Gate"
 msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
@@ -14994,7 +15039,7 @@ msgstr ""
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "Avansert"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7

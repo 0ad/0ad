@@ -597,7 +597,7 @@ public:
 		CComponentManager man(context, g_ScriptRuntime);
 		man.LoadComponentTypes();
 
-		entity_id_t ent1 = 1, ent2 = 2, ent3 = FIRST_LOCAL_ENTITY;
+		entity_id_t ent1 = 10, ent2 = 20, ent3 = FIRST_LOCAL_ENTITY;
 		CEntityHandle hnd1 = man.AllocateEntityHandle(ent1);
 		CEntityHandle hnd2 = man.AllocateEntityHandle(ent2);
 		CEntityHandle hnd3 = man.AllocateEntityHandle(ent3);
@@ -621,13 +621,13 @@ public:
 		TS_ASSERT_STR_EQUALS(debugStream.str(),
 				"rng: \"78606\"\n"
 				"entities:\n"
-				"- id: 1\n"
+				"- id: 10\n"
 				"  Test1A:\n"
 				"    x: 11000\n"
 				"  Test2A:\n"
 				"    x: 21000\n"
 				"\n"
-				"- id: 2\n"
+				"- id: 20\n"
 				"  Test1A:\n"
 				"    x: 1234\n"
 				"\n"
@@ -641,25 +641,26 @@ public:
 		std::string hash;
 		TS_ASSERT(man.ComputeStateHash(hash, false));
 		TS_ASSERT_EQUALS(hash.length(), (size_t)16);
-		TS_ASSERT_SAME_DATA(hash.data(), "\x1c\x45\x2b\x20\x1f\x0c\x00\x93\x60\x78\xe2\x63\xb1\x47\x08\x19", 16);
-		// echo -en "\x05\x00\x00\x0078606\x01\0\0\0\x01\0\0\0\xf8\x2a\0\0\x02\0\0\0\xd2\x04\0\0\x04\0\0\0\x01\0\0\0\x08\x52\0\0" | openssl md5 | perl -pe 's/(..)/\\x$1/g'
-		//           ^^^^^^^^ rng ^^^^^^^^ ^^Test1A^^ ^^^ent1^^ ^^^11000^^^ ^^^ent2^^ ^^^1234^^^ ^^Test2A^^ ^^ent1^^ ^^^21000^^^
+		TS_ASSERT_SAME_DATA(hash.data(), "\x3c\x25\x6e\x22\x58\x23\x09\x58\x38\xca\xb2\x1e\x0b\x8c\xac\xcf", 16);
+		// echo -en "\x05\x00\x00\x0078606\x02\0\0\0\x01\0\0\0\x0a\0\0\0\xf8\x2a\0\0\x14\0\0\0\xd2\x04\0\0\x04\0\0\0\x0a\0\0\0\x08\x52\0\0" | md5sum | perl -pe 's/([0-9a-f]{2})/\\x$1/g'
+		//           ^^^^^^^^ rng ^^^^^^^^ ^^next^^ ^^Test1A^^ ^^^ent1^^ ^^^11000^^^ ^^^ent2^^ ^^^1234^^^ ^^Test2A^^ ^^ent1^^ ^^^21000^^^
 
 		std::stringstream stateStream;
 		TS_ASSERT(man.SerializeState(stateStream));
-		TS_ASSERT_STREAM(stateStream, 69,
+		TS_ASSERT_STREAM(stateStream, 73,
 				"\x05\x00\x00\x00\x37\x38\x36\x30\x36" // RNG
 				"\x02\x00\x00\x00" // next entity ID
+				"\x00\x00\x00\x00" // num system component types
 				"\x02\x00\x00\x00" // num component types
 				"\x06\x00\x00\x00Test1A"
 				"\x02\x00\x00\x00" // num ents
-				"\x01\x00\x00\x00" // ent1
+				"\x0a\x00\x00\x00" // ent1
 				"\xf8\x2a\x00\x00" // 11000
-				"\x02\x00\x00\x00" // ent2
+				"\x14\x00\x00\x00" // ent2
 				"\xd2\x04\x00\x00" // 1234
 				"\x06\x00\x00\x00Test2A"
 				"\x01\x00\x00\x00" // num ents
-				"\x01\x00\x00\x00" // ent1
+				"\x0a\x00\x00\x00" // ent1
 				"\x08\x52\x00\x00" // 21000
 		);
 

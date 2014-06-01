@@ -29,6 +29,26 @@ GarrisonHolder.prototype.Schema =
 		"<element name='Pickup' a:help='This garrisonHolder will move to pick up units to be garrisoned'>" +
 			"<data type='boolean'/>" +
 		"</element>" +
+	"</optional>" +
+	"<optional>" +
+		"<element name='VisibleGarrisonPoints' a:help='Points that will be used to visibly garrison a unit'>" +
+			"<zeroOrMore>" +
+				"<element a:help='Element containing the offset coordinates'>" +
+					"<anyName/>" +
+					"<interleave>" +
+						"<element name='X'>" +
+							"<data type='decimal'/>" +
+						"</element>" +
+						"<element name='Y'>" +
+							"<data type='decimal'/>" +
+						"</element>" +
+						"<element name='Z'>" +
+							"<data type='decimal'/>" +
+						"</element>" +
+					"</interleave>" +
+				"</element>" +
+			"</zeroOrMore>" +
+		"</element>" +
 	"</optional>";
 
 /**
@@ -40,6 +60,18 @@ GarrisonHolder.prototype.Init = function()
 	this.entities = [];
 	this.timer = undefined;
 	this.allowGarrisoning = {};
+	this.visibleGarrisonPoints = [];
+	if (this.template.VisibleGarrisonPoints)
+	{
+		for each (var offset in this.template.VisibleGarrisonPoints)
+		{
+			var o = {};
+			o.x = +offset.X;
+			o.y = +offset.Y;
+			o.z = +offset.Z;
+			this.visibleGarrisonPoints.push({"offset":o, "entity": null});
+		}
+	}
 };
 
 /**
@@ -206,7 +238,18 @@ GarrisonHolder.prototype.Garrison = function(entity)
 	if (!this.PerformGarrison(entity))
 		return false;
 
-	cmpPosition.MoveOutOfWorld();
+	var visiblyGarrisoned = false;
+	for (var vgp of this.visibleGarrisonPoints)
+	{
+		if (vgp.entity)
+			continue;
+		vgp.entity = entity;
+		cmpPosition.SetTurretParent(this.entity, vgp.offset);
+		visiblyGarrisoned = true;
+		break;
+	}
+	if (!visiblyGarrisoned)
+		cmpPosition.MoveOutOfWorld();
 	return true;
 };
 
@@ -291,8 +334,18 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 		}
 	}
 	
+	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	this.entities.splice(entityIndex, 1);
 	
+	for (var vgp of this.visibleGarrisonPoints)
+	{
+		if (vgp.entity != entity)
+			continue;
+		cmpNewPosition.SetTurretParent(INVALID_ENTITY, new Vector3D());
+		vgp.entity = null;
+		break;
+	}
+
 	var cmpUnitAI = Engine.QueryInterface(entity, IID_UnitAI);
 	if (cmpUnitAI)
 		cmpUnitAI.Ungarrison();
@@ -306,8 +359,8 @@ GarrisonHolder.prototype.Eject = function(entity, forced)
 		cmpAura.RemoveGarrisonBonus(this.entity);	
 
 	
-	var cmpNewPosition = Engine.QueryInterface(entity, IID_Position);
 	cmpNewPosition.JumpTo(pos.x, pos.z);
+	cmpNewPosition.SetHeightOffset(0);
 	// TODO: what direction should they face in?
 	
 	Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed": [entity] });
@@ -579,8 +632,8 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 	var entityIndex = this.entities.indexOf(msg.entity);
 	if (entityIndex != -1)
 	{
-		this.entities[entityIndex] = msg.newentity;
-		Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [msg.newentity], "removed": [msg.entity] });
+		this.Eject(msg.entity);
+		this.Garrison(msg.newentity);
 	}
 };
 

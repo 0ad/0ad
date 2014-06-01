@@ -40,6 +40,10 @@ class MockPosition : public ICmpPosition
 public:
 	DEFAULT_MOCK_COMPONENT()
 
+	virtual void SetTurretParent(entity_id_t UNUSED(id), CFixedVector3D UNUSED(pos)) {}
+	virtual entity_id_t GetTurretParent() {return INVALID_ENTITY;}
+	virtual void UpdateTurretPosition() {}
+	virtual std::set<entity_id_t>* GetTurrets() { return NULL; }
 	virtual bool IsInWorld() { return true; }
 	virtual void MoveOutOfWorld() { }
 	virtual void MoveTo(entity_pos_t UNUSED(x), entity_pos_t UNUSED(z)) { }
@@ -53,6 +57,8 @@ public:
 	virtual void SetHeightRelative(bool UNUSED(relative)) { }
 	virtual bool IsFloating() { return false; }
 	virtual void SetFloating(bool UNUSED(flag)) { }
+	virtual void SetActorFloating(bool UNUSED(flag)) { }
+	virtual void SetConstructionProgress(fixed UNUSED(progress)) { }
 	virtual CFixedVector3D GetPosition() { return CFixedVector3D(); }
 	virtual CFixedVector2D GetPosition2D() { return CFixedVector2D(); }
 	virtual CFixedVector3D GetPreviousPosition() { return CFixedVector3D(); }
@@ -63,7 +69,7 @@ public:
 	virtual CFixedVector3D GetRotation() { return CFixedVector3D(); }
 	virtual fixed GetDistanceTravelled() { return fixed::Zero(); }
 	virtual void GetInterpolatedPosition2D(float UNUSED(frameOffset), float& x, float& z, float& rotY) { x = z = rotY = 0; }
-	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset), bool UNUSED(forceFloating)) { return CMatrix3D(); }
+	virtual CMatrix3D GetInterpolatedTransform(float UNUSED(frameOffset)) { return CMatrix3D(); }
 };
 
 class TestCmpRangeManager : public CxxTest::TestSuite

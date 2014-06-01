@@ -72,9 +72,9 @@ public:
 		// Position computed from move plus terrain
 		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(100, 60, 200));
 		// Interpolated position should be constant
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f, false).GetTranslation(), CVector3D(100, 60, 200));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f, false).GetTranslation(), CVector3D(100, 60, 200));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f, false).GetTranslation(), CVector3D(100, 60, 200));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f).GetTranslation(), CVector3D(100, 60, 200));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f).GetTranslation(), CVector3D(100, 60, 200));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(100, 60, 200));
 
 		// No TurnStart message, so this move doesn't affect the interpolation
 		cmp->MoveTo(entity_pos_t::FromInt(0), entity_pos_t::FromInt(0));
@@ -83,9 +83,9 @@ public:
 		// Position computed from move plus terrain
 		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(200, 60, 0));
 		// Interpolated position should vary, from original move into world to new move
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f, false).GetTranslation(), CVector3D(100, 60, 200));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f, false).GetTranslation(), CVector3D(150, 60, 100));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f, false).GetTranslation(), CVector3D(200, 60, 0));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f).GetTranslation(), CVector3D(100, 60, 200));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f).GetTranslation(), CVector3D(150, 60, 100));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(200, 60, 0));
 
 		// Latch new position for interpolation
 		CMessageTurnStart msg;
@@ -93,18 +93,18 @@ public:
 
 		// Move smoothly to new position
 		cmp->MoveTo(entity_pos_t::FromInt(400), entity_pos_t::FromInt(300));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f, false).GetTranslation(), CVector3D(200, 60, 0));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f, false).GetTranslation(), CVector3D(300, 60, 150));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f, false).GetTranslation(), CVector3D(400, 60, 300));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f).GetTranslation(), CVector3D(200, 60, 0));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f).GetTranslation(), CVector3D(300, 60, 150));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(400, 60, 300));
 
 		// Jump to new position
 		cmp->JumpTo(entity_pos_t::FromInt(300), entity_pos_t::FromInt(100));
 		// Position computed from jump plus terrain
 		TS_ASSERT_EQUALS(cmp->GetPosition(), fixedvec(300, 60, 100));
 		// Interpolated position should be constant after jump
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f, false).GetTranslation(), CVector3D(300, 60, 100));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f, false).GetTranslation(), CVector3D(300, 60, 100));
-		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f, false).GetTranslation(), CVector3D(300, 60, 100));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.0f).GetTranslation(), CVector3D(300, 60, 100));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(0.5f).GetTranslation(), CVector3D(300, 60, 100));
+		TS_ASSERT_EQUALS(cmp->GetInterpolatedTransform(1.0f).GetTranslation(), CVector3D(300, 60, 100));
 
 		// TODO: Test the rotation methods
 	}

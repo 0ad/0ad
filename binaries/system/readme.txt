@@ -1,13 +1,13 @@
 COMMAND LINE OPTIONS
 
 Basic gameplay:
--autostart			load a map instead of showing main menu (see below)
+-autostart=...		load a map instead of showing main menu (see below)
 -editor				launch the Atlas scenario editor
 -mod NAME			start the game using NAME mod
 -quickstart			load faster (disables audio and some system info logging)
 
 Autostart:
--autostart=NAME					map NAME for scenario, or rms name for random map
+-autostart=TYPEDIR/MAPNAME		enables autostart, selects map in subdirectory of maps/
 -autostart-ai=PLAYER:AI			adds named AI to the given PLAYER (e.g. 2:testbot)
 -autostart-aidiff=PLAYER:level	changes the difficulty setting for AI PLAYER (0: easy, 3: very hard)
 Multiplayer:
@@ -17,7 +17,6 @@ Multiplayer:
 -autostart-client				multiplayer client mode
 -autostart-ip=IP				multiplayer client: connect to this host IP
 Random maps only:
--autostart-random				random map
 -autostart-random=SEED			random map with SEED value (default 0, use -1 for random)
 -autostart-size=TILES			random map SIZE in tiles (default 192)
 -autostart-players=NUMBER		NUMBER of players on random map

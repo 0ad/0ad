@@ -10,15 +10,15 @@
 	<script file="gui/options/options.js"/>
 
 	<!-- Add a translucent black background to fade out the menu page -->
-	<object type="image" z="0" style="TranslucentPanel"/>
+	<object type="image" sprite="ModernFade"/>
 
 	<!-- Settings Window -->
 	<object name="options" type="image" style="ModernDialog" size="50%-466 50%-316 50%+466 50%+316">
-		<object style="TitleText" type="text" size="50%-128 0%-16 50%+128 16">
+		<object style="ModernLabelText" type="text" size="50%-128 -16 50%+128 16">
 			<translatableAttribute id="caption">Game Options</translatableAttribute>
 		</object>
 		<object name="GeneralSettings" type="image" sprite="ModernDarkBoxGold" size="16 16 312 100%-16">
-			<object style="TitleText" type="text" size="0 5 100% 25">
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">General</translatableAttribute>
 			</object>
 			<repeat count="23">
@@ -29,8 +29,8 @@
 				</object>
 			</repeat>
 		</object>
-		<object name="GraphicsSettings" type="image" sprite="ModernDarkBoxGold" size="320 16 612 100%-56">
-			<object style="TitleText" type="text" size="0 5 100% 25">
+		<object name="GraphicsSettings" type="image" sprite="ModernDarkBoxGold" size="320 16 612 100%-52">
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Graphics Settings</translatableAttribute>
 			</object>
 			<repeat count="21">
@@ -42,7 +42,7 @@
 			</repeat>
 		</object>
 		<object name="SoundSettings" type="image" sprite="ModernDarkBoxGold" size="620 16 916 50%-4">
-			<object style="TitleText" type="text" size="0 5 100% 25">
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Sound Settings</translatableAttribute>
 			</object>
 			<repeat count="10">
@@ -54,7 +54,7 @@
 			</repeat>
 		</object>
 		<object name="LobbySettings" type="image" sprite="ModernDarkBoxGold" size="620 50%+4 916 100%-16">
-			<object style="TitleText" type="text" size="0 5 100% 25">
+			<object style="ModernLabelText" type="text" size="0 5 100% 25">
 				<translatableAttribute id="caption">Lobby Settings</translatableAttribute>
 			</object>
 			<repeat count="10">
@@ -65,11 +65,11 @@
 				</object>
 			</repeat>
 		</object>
-		<object type="button" style="StoneButton" size="320 100%-48 50%-4 100%-16">
+		<object type="button" style="ModernButtonRed" size="320 100%-44 50%-4 100%-16">
 			<translatableAttribute id="caption">Cancel</translatableAttribute>
 			<action on="Press">closePage();</action>
 		</object>
-		<object type="button" style="StoneButton" size="50%+4 100%-48 612 100%-16">
+		<object type="button" style="ModernButtonRed" size="50%+4 100%-44 612 100%-16">
 			<translatableAttribute id="caption">Save</translatableAttribute>
 			<action on="Press">Engine.ConfigDB_WriteFile("user", "config/user.cfg");closePage();</action>
 		</object>

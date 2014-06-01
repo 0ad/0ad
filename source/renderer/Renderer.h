@@ -354,6 +354,7 @@ protected:
 	void Submit(SOverlayQuad* overlay);
 	void Submit(CModelDecal* decal);
 	void Submit(CParticleEmitter* emitter);
+	void Submit(SOverlaySphere* overlay);
 	void SubmitNonRecursive(CModel* model);
 	//END: Implementation of SceneCollector
 

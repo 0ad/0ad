@@ -33,5 +33,4 @@ DEFINE_INTERFACE_METHOD_2("SetVariable", void, ICmpVisual, SetVariable, std::str
 DEFINE_INTERFACE_METHOD_0("GetActorSeed", u32, ICmpVisual, GetActorSeed)
 DEFINE_INTERFACE_METHOD_1("SetActorSeed", void, ICmpVisual, SetActorSeed, u32)
 DEFINE_INTERFACE_METHOD_0("HasConstructionPreview", bool, ICmpVisual, HasConstructionPreview)
-DEFINE_INTERFACE_METHOD_1("SetConstructionProgress", void, ICmpVisual, SetConstructionProgress, fixed)
 END_INTERFACE_WRAPPER(Visual)

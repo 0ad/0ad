@@ -267,28 +267,30 @@ m.BaseManager.prototype.removeDropsite = function (gameState, ent)
 m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 {
 	
-	var storeHousePlate = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
+	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_storehouse"));
 
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
 	//	(which are dynamically updated and are made so that they will facilitate DP placement)
 	// Then checks for a good spot in the territory. If none, and town/city phase, checks outside
 	// The AI will currently not build a CC if it wouldn't connect with an existing CC.
-	
-	var obstructions = m.createObstructionMap(gameState, this.accessIndex, storeHousePlate);
+
+	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
 	obstructions.expandInfluences();
 	
-	var locateMap = new API3.Map(gameState.sharedScript);
-
 	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
 
 	var ccEnts = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	
-	// TODO: might be better to check dropsites someplace else.
-	// loop over this in this.terrytoryindices. It's usually a little too much, but it's always enough.
-	var width = locateMap.width;
+
+	var width = obstructions.width;
+	var bestIdx = undefined;
+	var bestVal = undefined;
+	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+
 	for (var p = 0; p < this.territoryIndices.length; ++p)
 	{
 		var j = this.territoryIndices[p];
+		if (obstructions.map[j] <= radius)  // check room around
+			continue;
 		
 		// we add 3 times the needed resource and once the other two (not food)
 		var total = 0;
@@ -355,22 +357,23 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 			else if (dist < 6400)
 				total /= 2;
 		}
+		if (total == 0)
+			continue;
 
-		locateMap.map[j] = total;
+		if (bestVal !== undefined && total < bestVal)
+			continue;
+		bestVal = total;
+		bestIdx = j;
 	}
-	
-	var best = locateMap.findBestTile(2, obstructions);
-	var bestIdx = best[0];
 
 	if (this.Config.debug == 2)
-		warn(" for dropsite best is " + best[1]);
+		warn(" for dropsite best is " + bestVal);
 
-	var quality = best[1];
-	if (quality <= 0)
-		return {"quality": quality, "pos": [0, 0]};
+	if (bestVal <= 0)
+		return {"quality": bestVal, "pos": [0, 0]};
 	var x = ((bestIdx % width) + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx / width) + 0.5) * gameState.cellSize;
-	return {"quality": quality, "pos": [x, z]};
+	return {"quality": bestVal, "pos": [x, z]};
 };
 
 m.BaseManager.prototype.getResourceLevel = function (gameState, type)

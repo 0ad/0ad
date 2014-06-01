@@ -1406,7 +1406,10 @@ function updatePlayerList()
 				if (aiId in aiAssignments)
 					selection = aiAssignments[aiId];
 				else
+				{
+					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";					
 					warn(sprintf("AI \"%(id)s\" not present. Defaulting to unassigned.", { id: aiId }));
+				}
 			}
 
 			if (!selection)

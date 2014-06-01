@@ -79,9 +79,13 @@ private:
 
 	// ApplyData: take all the input data, and rebuild the scene from it
 	int ApplyData();
+	int ApplyTerrainData();
 
-	// ReadXML: read some other data (entities, etc) in XML format
+	// read some misc data from the XML file
 	int ReadXML();
+
+	// read entity data from the XML file
+	int ReadXMLEntities();
 
 	// clean up everything used during delayed load
 	int DelayLoadFinished();

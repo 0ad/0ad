@@ -775,7 +775,7 @@ void CGameView::Update(const float deltaRealTime)
 		{
 			// Get the most recent interpolated position
 			float frameOffset = m->Game->GetSimulation2()->GetLastFrameOffset();
-			CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset, false);
+			CMatrix3D transform = cmpPosition->GetInterpolatedTransform(frameOffset);
 			CVector3D pos = transform.GetTranslation();
 
 			if (m->FollowFirstPerson)

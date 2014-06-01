@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-05-01 03:17+0200\n"
-"PO-Revision-Date: 2014-05-18 08:11+0000\n"
+"POT-Creation-Date: 2014-05-19 12:56+0200\n"
+"PO-Revision-Date: 2014-05-23 12:04+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -63,12 +63,12 @@ msgctxt "aiDiff"
 msgid "Very Hard"
 msgstr "Dùbhlanach"
 
-#: gui/civinfo/civinfo.js:94
+#: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
 msgstr "Cluiche %(civilization)s"
 
-#: gui/civinfo/civinfo.js:97
+#: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Buannachd an t-sìobhaltais"
@@ -76,7 +76,7 @@ msgstr[1] "Buannachdan an t-sìobhaltais"
 msgstr[2] "Buannachdan an t-sìobhaltais"
 msgstr[3] "Buannachdan an t-sìobhaltais"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Buannachd an sgioba"
@@ -84,11 +84,11 @@ msgstr[1] "Buannachdan an sgioba"
 msgstr[2] "Buannachdan an sgioba"
 msgstr[3] "Buannachdan an sgioba"
 
-#: gui/civinfo/civinfo.js:117
+#: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
 msgstr "Teicneolasan sònraichte"
 
-#: gui/civinfo/civinfo.js:129
+#: gui/civinfo/civinfo.js:134
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
@@ -99,11 +99,11 @@ msgstr[1] "Togalaichean sònraichte"
 msgstr[2] "Togalaichean sònraichte"
 msgstr[3] "Togalaichean sònraichte"
 
-#: gui/civinfo/civinfo.js:141 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
 msgstr "Curaidhean"
 
-#: gui/civinfo/civinfo.js:158
+#: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
 msgstr "An eachdraidh aig %(civilization)s"
@@ -310,7 +310,7 @@ msgstr "Mapaichean taisbeanaidh"
 msgid "All Maps"
 msgstr "Na h‑uile mapa"
 
-#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:283
+#: gui/gamesetup/gamesetup.js:361 gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
 msgstr "—"
@@ -458,7 +458,7 @@ msgstr "Chan eil mi deiseil"
 msgid "State that you are not ready to play."
 msgstr "Innis nach eil thu deiseil airson cluiche."
 
-#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1702
+#: gui/gamesetup/gamesetup.js:1632 gui/gamesetup/gamesetup.js:1706
 msgid "I'm ready!"
 msgstr "Tha mi deiseil!"
 
@@ -466,7 +466,7 @@ msgstr "Tha mi deiseil!"
 msgid "State that you are ready to play!"
 msgstr "Innis gu bheil thu deiseil airson cluiche!"
 
-#: gui/gamesetup/gamesetup.js:1703
+#: gui/gamesetup/gamesetup.js:1707
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Innis gun gabh thu ris na roghainnean làithreach 's gu bheil thu deiseil airson cluiche!"
 
@@ -694,12 +694,12 @@ msgctxt "localeCountry"
 msgid "None"
 msgstr "Gun dùthaich"
 
-#: gui/locale/locale_advanced.js:89
+#: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
-#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:42 (caption)
+#: gui/session/session.js:475 gui/aiconfig/aiconfig.xml:41 (caption)
 #: gui/gamesetup/gamesetup.xml:366 (caption)
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
@@ -744,198 +744,207 @@ msgid ""
 msgstr "Ma chuireas tu an sgrìn seo à comas gu tur, dh'fhaoidte gun caill thu brathan cudromach.\n'S urrainn dhut a thòiseachadh fhathast sa phrìomh chlàr-taice"
 
 #: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr ""
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
+
+#: gui/options/options.js:13
 msgid "Developer Overlay"
 msgstr "Tar-chòmhdachadh nan leasaichear"
 
-#: gui/options/options.js:12
+#: gui/options/options.js:13
 msgid ""
 "Show overlay in-game with options such as reveal map, control all units, and"
 " change perspective. Designed for use by developers"
 msgstr "Seall tar-chòmhdachadh sa gheama le roghainnean mar fhoillseachadh a' mhapa, smachd air a h-uile aonad agus atharrachadh an t-seallaidh. Chaidh a dhealbhachadh airson an luchd-leasachaidh"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Prefer GLSL"
 msgstr "'S fhearr GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:17
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Post Processing"
 msgstr "Giullachd an dèidh làimh"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:18
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Cleachd criathragan giullachd-sgrìn an dèidh làimh (HDR, Bloom, DOF, agus msaa)"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Shadows"
 msgstr "Sgàilean"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:19
 msgid "Enable shadows"
 msgstr "Cuir na sgàilean an comas"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Particles"
 msgstr "Mìrean"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Enable particles"
 msgstr "Cuir na mìrean an comas"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Show Sky"
 msgstr "Seall na speuran"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Render Sky"
 msgstr "Reandaraich na speuran"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Smooth LOS"
 msgstr "LOS rèidh"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Tog dorchadas agus ceò a' chogaidh gu rèidh (Tha \"'S fearr GLSL\" riatanach)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Unit Silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Show outlines of units behind buildings"
 msgstr "Seall sgàil-riochdan de dh'aonadan a tha air cùlaibh thogalaichean"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Shadow Filtering"
 msgstr "Chriathradh sgàile"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Smooth shadows"
 msgstr "Sgàilean rèidhe"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "HQ Waviness"
 msgstr "Tonnachd àrd-chàileachd"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
 msgstr "Cleachd an ìre àbhaisteach airson reandaradh tuinn na mara seach inneach rèidh"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Real Water Depth"
 msgstr "Fìor-dhoimhne uisge"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Use actual water depth in rendering calculations"
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Water Reflections"
 msgstr "Faileas uisge"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Allow water to reflect a mirror image"
 msgstr "Leig le uisge dealbh faileis a thilgeil air ais"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Water Refraction"
 msgstr "Solas-briseadh uisge"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Use a real water refraction map and not transparency"
 msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Shore Foam"
 msgstr "Cop air cladach"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "Show foam on water near shore depending on water waviness"
 msgstr "Seall cop air uisge faisg air a' chladach a-rèir tonnachd an uisge"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Shore Waves"
 msgstr "Tuinn air cladach"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
 msgstr "Seall briseadh nan tonn faisg air a' chladach (feumaidh seo tonnachd àrd-chàileachd)"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Shadows"
 msgstr "Sgàilean uisge"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Cast shadows on water"
 msgstr "Tilg sgàil air uisge"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "VSync"
 msgstr "Sioncronachadh-V"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master Gain"
 msgstr "Prìomh àirde"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:36
 msgid "Master audio gain"
 msgstr "Prìomh àirde na fuaime"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "Music Gain"
 msgstr "Àirde a' chiùil"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:37
 msgid "In game music gain"
 msgstr "Àirde a' chiùil sa gheama"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Ambient Gain"
 msgstr "Àirde na h-àrainneachd"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "In game ambient sound gain"
 msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Action Gain"
 msgstr "Àirde na gnìomhachd"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game unit action sound gain"
 msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI Gain"
 msgstr "Àirde na h-eadar-aghaidh"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "UI sound gain"
 msgstr "Àirde aig fuaimean na h-eadar-aghaidh"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Chat Backlog"
 msgstr "Ro-loga na cabadaich"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:44
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuair thig thu a-seach dhan lobaidh"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Chat Timestamp"
 msgstr "Stampaichean-tìde na cabadaich"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:45
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na lobaidh"
 
@@ -1026,8 +1035,8 @@ msgstr "Tòisich an lobaidh ioma-chluicheadair. [À COMAS LEIS AN TOGAIL]"
 msgid "Technical Details"
 msgstr "Fiosrachadh teicnigeach"
 
-#: gui/pregame/mainmenu.js:335 gui/session/menu.js:663
-#: gui/session/session.xml:732 (caption)
+#: gui/pregame/mainmenu.js:335 gui/session/menu.js:664
+#: gui/session/session.xml:733 (caption)
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
@@ -1093,61 +1102,61 @@ msgstr "Thèid sgrìobhadh thairis air geama air a shàbhaladh gu buan, a bheil 
 msgid "OVERWRITE SAVE"
 msgstr "SGRÌOBH THAIRIS AIR AN T‑SÀBHALADH"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Basic range: %(range)s"
 msgstr "Bun-astar: %(range)s"
 
-#: gui/session/input.js:149
+#: gui/session/input.js:153
 #, python-format
 msgid "Average bonus range: %(range)s"
 msgstr "Buannachd astair chuibheasach: %(range)s"
 
-#: gui/session/input.js:264 gui/session/input.js:357
+#: gui/session/input.js:268 gui/session/input.js:361
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "An gearastan an-dràsta: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/input.js:306
+#: gui/session/input.js:310
 msgid "Right-click to establish a default route for new traders."
 msgstr "Dèan briogadh deas gus slighe-mhalairt bhunaiteach a' stèidheachadh do luchd-malairt ùr."
 
-#: gui/session/input.js:308 gui/session/input.js:389 gui/session/input.js:396
-#: gui/session/input.js:406
+#: gui/session/input.js:312 gui/session/input.js:393 gui/session/input.js:400
+#: gui/session/input.js:410
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Buannachd: %(gain)s"
 
-#: gui/session/input.js:310
+#: gui/session/input.js:314
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Dùil air buannachd: %(gain)s"
 
-#: gui/session/input.js:387
+#: gui/session/input.js:391
 msgid "Origin trade market."
 msgstr "Margaid tùsail."
 
-#: gui/session/input.js:393
+#: gui/session/input.js:397
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Dèan briogadh deas air margaid eile gus a shuidheachadh mar cheann-uidhe a' mhalairt."
 
-#: gui/session/input.js:396
+#: gui/session/input.js:400
 msgid "Destination trade market."
 msgstr "Margaid-uidhe."
 
-#: gui/session/input.js:401
+#: gui/session/input.js:405
 msgid "Right-click to set as origin trade market"
 msgstr "Dèan briogadh deas gus a' mhargaid a shuidheachadh mar thùs a' mhalairt"
 
-#: gui/session/input.js:406
+#: gui/session/input.js:410
 msgid "Right-click to set as destination trade market."
 msgstr "Dèan briogadh deas gus a' mhargaid a shuidheachadh mar cheann-uidhe a' mhalairt"
 
-#: gui/session/input.js:996
+#: gui/session/input.js:1000
 msgid "Cannot build wall here!"
 msgstr "Cha ghabh balla a thogail an-seo!"
 
-#: gui/session/menu.js:1 gui/session/session.xml:779 (caption)
+#: gui/session/menu.js:1 gui/session/session.xml:780 (caption)
 msgid "Pause"
 msgstr "Cuir 'na stad"
 
@@ -1169,49 +1178,49 @@ msgid "Are you sure you want to quit?"
 msgstr "A bheil thu cinnteach gu bheil thu airson fàgail?"
 
 #: gui/session/menu.js:169
-msgid "I resign"
-msgstr "Tha mi a' gèilleadh"
-
-#: gui/session/menu.js:169
 msgid "I will return"
 msgstr "Tillidh mi"
+
+#: gui/session/menu.js:169
+msgid "I resign"
+msgstr "Tha mi a' gèilleadh"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
 msgstr "A bheil thu airson gèilleadh no an till thu?"
 
-#: gui/session/menu.js:188
+#: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
 msgstr "A bheil thu airson a h‑uile rud a thagh thu a mhilleadh?"
 
-#: gui/session/menu.js:188 gui/session/utility_functions.js:296
+#: gui/session/menu.js:189 gui/session/utility_functions.js:296
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
 msgstr "Sguab às"
 
-#: gui/session/menu.js:286 gui/session/session.xml:444 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:445 (tooltip)
 msgid "Ally"
 msgstr "Caidreabhach"
 
-#: gui/session/menu.js:286 gui/session/session.xml:448 (tooltip)
+#: gui/session/menu.js:287 gui/session/session.xml:449 (tooltip)
 msgid "Neutral"
 msgstr "Neo-phàirteach"
 
-#: gui/session/menu.js:286 gui/session/messages.js:613
-#: gui/session/session.xml:452 (tooltip) maps/scenarios/Sandbox -
+#: gui/session/menu.js:287 gui/session/messages.js:613
+#: gui/session/session.xml:453 (tooltip) maps/scenarios/Sandbox -
 #: Mauryans.xml:42:PlayerData[1].Name
 msgid "Enemy"
 msgstr "An nàmhaid"
 
-#: gui/session/menu.js:347 gui/session/menu.js:354 gui/session/menu.js:361
+#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:473
 msgid "There are no land traders."
 msgstr "Chan eil neach-margaid tìre ann."
 
-#: gui/session/menu.js:478
+#: gui/session/menu.js:479
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
@@ -1220,7 +1229,7 @@ msgstr[1] "%(numberOfLandTraders)s 'nan tàmh"
 msgstr[2] "%(numberOfLandTraders)s 'nan tàmh"
 msgstr[3] "%(numberOfLandTraders)s 'na thàmh"
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:483
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
@@ -1229,7 +1238,7 @@ msgstr[1] "Tha %(numberTrading)s luchd-margaid a' malart"
 msgstr[2] "Tha %(numberTrading)s luchd-margaid a' malart"
 msgstr[3] "Tha %(numberTrading)s luchd-margaid a' malart"
 
-#: gui/session/menu.js:485
+#: gui/session/menu.js:486
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
@@ -1238,28 +1247,28 @@ msgstr[1] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
 msgstr[2] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
 msgstr[3] "Tha %(numberGarrisoned)s 'nan gearastan air long-mhalairt"
 
-#: gui/session/menu.js:488
+#: gui/session/menu.js:489
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s 's %(inactiveString)s."
 
-#: gui/session/menu.js:496
+#: gui/session/menu.js:497
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s 's %(garrisonedString)s."
 
-#: gui/session/menu.js:506 gui/session/menu.js:568
+#: gui/session/menu.js:507 gui/session/menu.js:569
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s 's %(inactiveString)s."
 
-#: gui/session/menu.js:513 gui/session/menu.js:575
+#: gui/session/menu.js:514 gui/session/menu.js:576
 #, python-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:523
+#: gui/session/menu.js:524
 #, python-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -1272,17 +1281,17 @@ msgstr[1] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-
 msgstr[2] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-mhalairt"
 msgstr[3] "Tha %(numberGarrisoned)s luchd-malairt tìre 'nan gearastan air long-mhalairt"
 
-#: gui/session/menu.js:526
+#: gui/session/menu.js:527
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s 's %(inactiveString)s."
 
-#: gui/session/menu.js:533
+#: gui/session/menu.js:534
 #, python-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:542
+#: gui/session/menu.js:543
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
@@ -1291,7 +1300,7 @@ msgstr[1] "%(numberOfLandTraders)s luchd-malairt tìre 'nan tàmh"
 msgstr[2] "%(numberOfLandTraders)s luchd-malairt tìre 'nan tàmh"
 msgstr[3] "%(numberOfLandTraders)s luchd-malairt tìre 'na thàmh"
 
-#: gui/session/menu.js:543 gui/session/menu.js:585
+#: gui/session/menu.js:544 gui/session/menu.js:586
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
@@ -1300,11 +1309,11 @@ msgstr[1] "Tha %(inactiveString)s ann."
 msgstr[2] "Tha %(inactiveString)s ann."
 msgstr[3] "Tha %(inactiveString)s ann."
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:556
 msgid "There are no merchant ships."
 msgstr "Chan eil long-mhalairt ann"
 
-#: gui/session/menu.js:561
+#: gui/session/menu.js:562
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
@@ -1313,7 +1322,7 @@ msgstr[1] "%(numberOfShipTraders)s 'nan tàmh"
 msgstr[2] "%(numberOfShipTraders)s 'nan tàmh"
 msgstr[3] "%(numberOfShipTraders)s 'na thàmh"
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:566
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
@@ -1322,7 +1331,7 @@ msgstr[1] "Tha %(numberTrading)s long-mhalairt a' malart"
 msgstr[2] "Tha %(numberTrading)s longan-malairt a' malart"
 msgstr[3] "Tha %(numberTrading)s long-mhalairt a' malart"
 
-#: gui/session/menu.js:584
+#: gui/session/menu.js:585
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
@@ -1331,15 +1340,15 @@ msgstr[1] "%(numberOfShipTraders)s long-mhalairt 'nan tàmh"
 msgstr[2] "%(numberOfShipTraders)s longan-malairt 'nan tàmh"
 msgstr[3] "%(numberOfShipTraders)s long-mhalairt 'na thàmh"
 
-#: gui/session/menu.js:673
+#: gui/session/menu.js:674
 msgid "The Developer Overlay was opened."
 msgstr "Chaidh tar-chòmhdachadh nan leasaichear fhosgladh."
 
-#: gui/session/menu.js:675
+#: gui/session/menu.js:676
 msgid "The Developer Overlay was closed."
 msgstr "Chaidh tar-chòmhdachadh nan leasaichear a dhùnadh."
 
-#: gui/session/menu.js:693
+#: gui/session/menu.js:694
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
@@ -1430,8 +1439,9 @@ msgstr "%(previousAmounts)s is %(lastAmount)s"
 
 #: gui/session/messages.js:467 gui/session/utility_functions.js:174
 #: gui/session/utility_functions.js:224 gui/session/utility_functions.js:250
-#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:580
-#: gui/session/utility_functions.js:698 gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:279 gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:620 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 msgid ", "
 msgstr ", "
 
@@ -1471,7 +1481,7 @@ msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
 #: gui/session/messages.js:600 gui/gamesetup/gamesetup.xml:61 (caption)
-#: gui/session/session.xml:437 (caption)
+#: gui/session/session.xml:438 (caption)
 msgid "Team"
 msgstr "Sgioba"
 
@@ -1565,11 +1575,12 @@ msgid "Rate:"
 msgstr "Reat:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:636
-#: gui/session/utility_functions.js:602
+#: gui/session/utility_functions.js:606
 msgid "Range:"
 msgstr "Astar:"
 
-#: gui/session/selection_details.js:251
+#: gui/session/selection_details.js:251 gui/session/session.js:637
+#: gui/session/utility_functions.js:607
 msgid "meters"
 msgstr "meatair"
 
@@ -1641,7 +1652,8 @@ msgstr "RUAIG!"
 msgid "VICTORIOUS!"
 msgstr "BUAIDH!"
 
-#: gui/session/session.js:624 gui/session/session.xml:1003 (tooltip)
+#: gui/session/session.js:624 gui/session/unit_commands.js:520
+#: gui/session/session.xml:1004 (tooltip)
 msgid "Health:"
 msgstr "Slàinte:"
 
@@ -1675,6 +1687,16 @@ msgstr "Modh dlùthadh an ama"
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
 msgstr "An t‑uiread an-dràsta: %(count)s, Cuingeachadh: %(limit)s."
+
+#: gui/session/unit_commands.js:155
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr ""
+
+#: gui/session/unit_commands.js:157
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr ""
 
 #: gui/session/unit_commands.js:184
 #, python-format
@@ -1732,18 +1754,22 @@ msgstr "%(population)s %(neededSlots)s"
 #: gui/session/unit_commands.js:459
 #, python-format
 msgid "Unload %(name)s"
-msgstr "Dì-luchdaich %(name)s"
+msgstr "A-mach le %(name)s"
 
 #: gui/session/unit_commands.js:459
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr "Briog aon turas gus 1 a dhì-luchdadh. Shift-bhriog gus na h‑uile dhen seòrsa seo a dhì-luchdadh."
+msgstr "Briog aon turas ach an tig 1 dhiubh a-mach. Shift-bhriog ach an tig gach saighdear dhen t-seòrsa seo a-mach."
 
-#: gui/session/unit_commands.js:708
+#: gui/session/unit_commands.js:524
+msgid "Armour"
+msgstr ""
+
+#: gui/session/unit_commands.js:718
 #, python-format
 msgid "Requires %(technology)s"
 msgstr "Tha %(technology)s a dhìth"
 
-#: gui/session/unit_commands.js:725
+#: gui/session/unit_commands.js:735
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
@@ -1752,49 +1778,32 @@ msgstr[1] "Air fhàgail: %(number)s ri thogail."
 msgstr[2] "Air fhàgail: %(number)s ri an togail."
 msgstr[3] "Air fhàgail: %(number)s ri thogail."
 
-#: gui/session/unit_commands.js:962
+#: gui/session/unit_commands.js:972
 #, python-format
 msgid "Set/unset %(resource)s as forced trading goods."
 msgstr "Suidhich/neo-shuidhich %(resource)s mar bhathar-malairt co-èignichte."
 
-#: gui/session/unit_commands.js:1161
-msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "Dèan geata fiodha dhen bhalla fhiodha"
-
-#: gui/session/unit_commands.js:1165
-msgid "Convert Stone Wall into City Gate"
-msgstr "Dèan geata baile dhen bhalla fhiodha"
-
-#: gui/session/unit_commands.js:1169
-msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Dèan geata balla-sèiste dhen bhalla-sèiste"
-
-#: gui/session/unit_commands.js:1174
-#, python-format
-msgid "Convert %(wall)s into %(gate)s"
-msgstr "Dèan %(gate)s dhen %(wall)s"
-
-#: gui/session/unit_commands.js:1191
+#: gui/session/unit_commands.js:1178
 msgid "Lock Gate"
 msgstr "Glais an geata"
 
-#: gui/session/unit_commands.js:1197
+#: gui/session/unit_commands.js:1184
 msgid "Unlock Gate"
 msgstr "Neo-ghlais an geata"
 
-#: gui/session/unit_commands.js:1246
+#: gui/session/unit_commands.js:1233
 msgid "Pack"
 msgstr "Paisg"
 
-#: gui/session/unit_commands.js:1248
+#: gui/session/unit_commands.js:1235
 msgid "Unpack"
 msgstr "Neo-phaisg"
 
-#: gui/session/unit_commands.js:1250
+#: gui/session/unit_commands.js:1237
 msgid "Cancel Packing"
 msgstr "Sguir dhen phasgadh"
 
-#: gui/session/unit_commands.js:1252
+#: gui/session/unit_commands.js:1239
 msgid "Cancel Unpacking"
 msgstr "Sguir dhen neo-phasgadh"
 
@@ -1864,7 +1873,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:289
 msgid "Unload All"
-msgstr "Dì-luchdaich na h‑uile"
+msgstr "A-mach leotha uile"
 
 #: gui/session/utility_functions.js:304
 msgid "Stop"
@@ -1957,87 +1966,87 @@ msgstr "Tha stòras a dhìth:"
 msgid "Speed:"
 msgstr "Luaths:"
 
-#: gui/session/utility_functions.js:577 gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:578 gui/session/utility_functions.js:580
 #, python-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:577
+#: gui/session/utility_functions.js:578
 msgid "Walk"
 msgstr "Coisich"
 
-#: gui/session/utility_functions.js:578
+#: gui/session/utility_functions.js:580
 msgid "Run"
 msgstr "Ruith"
 
-#: gui/session/utility_functions.js:580
+#: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:599
+#: gui/session/utility_functions.js:603
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:608
+#: gui/session/utility_functions.js:612
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:624
+#: gui/session/utility_functions.js:628
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:634
+#: gui/session/utility_functions.js:638
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:664
+#: gui/session/utility_functions.js:668
 #, python-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:688 gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:694
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:692 gui/session/utility_functions.js:698
-#: gui/session/utility_functions.js:703
+#: gui/session/utility_functions.js:696 gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:707
 #, python-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:698
 msgid "you"
 msgstr "thusa"
 
-#: gui/session/utility_functions.js:700 gui/session/utility_functions.js:705
+#: gui/session/utility_functions.js:704 gui/session/utility_functions.js:709
 #, python-format
 msgid "player %(name)s"
 msgstr "cluicheadair %(name)s"
 
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:717
 msgid "Charge Attack:"
 msgstr "Ionnsaigh cruinn-leuma:"
 
-#: gui/session/utility_functions.js:714
+#: gui/session/utility_functions.js:718
 msgid "Melee Attack:"
 msgstr "Ionnsaigh dhlùth:"
 
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:719
 msgid "Ranged Attack:"
 msgstr "Ionnsaigh astair:"
 
-#: gui/session/utility_functions.js:718
+#: gui/session/utility_functions.js:722
 msgid "Attack:"
 msgstr "Ionnsaigh:"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:741
+#: gui/session/utility_functions.js:745
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Biadh"
@@ -2045,7 +2054,7 @@ msgstr "Biadh"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:743
+#: gui/session/utility_functions.js:747
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Feòil"
@@ -2053,7 +2062,7 @@ msgstr "Feòil"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:745
+#: gui/session/utility_functions.js:749
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Meatailt"
@@ -2061,7 +2070,7 @@ msgstr "Meatailt"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:747
+#: gui/session/utility_functions.js:751
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "Clach-mheatailt"
@@ -2069,25 +2078,9 @@ msgstr "Clach-mheatailt"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:749
-msgctxt "firstWord"
-msgid "Rock"
-msgstr "Clach"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
-#: gui/session/utility_functions.js:751
-msgctxt "firstWord"
-msgid "Ruins"
-msgstr "Làrach"
-
-#. Translation: Word as used at the beginning of a sentence or as a single-
-#. word
-#. sentence.
 #: gui/session/utility_functions.js:753
 msgctxt "firstWord"
-msgid "Stone"
+msgid "Rock"
 msgstr "Clach"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
@@ -2095,13 +2088,29 @@ msgstr "Clach"
 #. sentence.
 #: gui/session/utility_functions.js:755
 msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Làrach"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:757
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Clach"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:759
+msgctxt "firstWord"
 msgid "Treasure"
 msgstr "Ulaidh"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:757
+#: gui/session/utility_functions.js:761
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "Craobh"
@@ -2109,7 +2118,7 @@ msgstr "Craobh"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:759
+#: gui/session/utility_functions.js:763
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "Fiodh"
@@ -2117,7 +2126,7 @@ msgstr "Fiodh"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:761
+#: gui/session/utility_functions.js:765
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "Meas"
@@ -2125,7 +2134,7 @@ msgstr "Meas"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:763
+#: gui/session/utility_functions.js:767
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "Gràn"
@@ -2133,7 +2142,7 @@ msgstr "Gràn"
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
 #. sentence.
-#: gui/session/utility_functions.js:765
+#: gui/session/utility_functions.js:769
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Iasg"
@@ -2141,7 +2150,7 @@ msgstr "Iasg"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:776
+#: gui/session/utility_functions.js:780
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Biadh"
@@ -2149,7 +2158,7 @@ msgstr "Biadh"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:778
+#: gui/session/utility_functions.js:782
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Feòil"
@@ -2157,7 +2166,7 @@ msgstr "Feòil"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:780
+#: gui/session/utility_functions.js:784
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Meatailt"
@@ -2165,7 +2174,7 @@ msgstr "Meatailt"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:782
+#: gui/session/utility_functions.js:786
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Clach-mheatailt"
@@ -2173,7 +2182,7 @@ msgstr "Clach-mheatailt"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:784
+#: gui/session/utility_functions.js:788
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Clach"
@@ -2181,7 +2190,7 @@ msgstr "Clach"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:786
+#: gui/session/utility_functions.js:790
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "Làrach"
@@ -2189,7 +2198,7 @@ msgstr "Làrach"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:788
+#: gui/session/utility_functions.js:792
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Clach"
@@ -2197,7 +2206,7 @@ msgstr "Clach"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:790
+#: gui/session/utility_functions.js:794
 msgctxt "withinSentence"
 msgid "Treasure"
 msgstr "Ulaidh"
@@ -2205,7 +2214,7 @@ msgstr "Ulaidh"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:792
+#: gui/session/utility_functions.js:796
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Craobh"
@@ -2213,7 +2222,7 @@ msgstr "Craobh"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:794
+#: gui/session/utility_functions.js:798
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Fiodh"
@@ -2221,7 +2230,7 @@ msgstr "Fiodh"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:796
+#: gui/session/utility_functions.js:800
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "Meas"
@@ -2229,7 +2238,7 @@ msgstr "Meas"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:798
+#: gui/session/utility_functions.js:802
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Gràn"
@@ -2237,7 +2246,7 @@ msgstr "Gràn"
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
 #. lowercase for your language).
-#: gui/session/utility_functions.js:800
+#: gui/session/utility_functions.js:804
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Iasg"
@@ -2660,22 +2669,22 @@ msgstr "Fhuaras lorg air bunait an nàmhad. Cuir na h-innealan-sèiste agus na h
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Chaidh ruaig a chur air an nàmhaid. Tha gach saothair an oideachaidh coileanta…"
 
-#: simulation/components/BuildRestrictions.js:83
+#: simulation/components/BuildRestrictions.js:85
 #, python-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "Cha ghabh %(name)s a thogail ri linn mearachd neo-aithnichte"
 
-#: simulation/components/BuildRestrictions.js:104
+#: simulation/components/BuildRestrictions.js:108
 #, python-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "Cha ghabh %(name)s a thogail air tìr gun rùrachadh"
 
-#: simulation/components/BuildRestrictions.js:152
+#: simulation/components/BuildRestrictions.js:156
 #, python-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "Cha ghabh %(name)s a thogail air togalach eile no stòras"
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:160
 #, python-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "Cha ghabh %(name)s a thogail air cruth-tìre mì-dhligheach"
@@ -2683,7 +2692,7 @@ msgstr "Cha ghabh %(name)s a thogail air cruth-tìre mì-dhligheach"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:180
+#: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "aig caidreabhach"
@@ -2691,7 +2700,7 @@ msgstr "aig caidreabhach"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:183
+#: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "agad fhèin"
@@ -2699,7 +2708,7 @@ msgstr "agad fhèin"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:186
+#: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neo-phàirteach"
@@ -2707,31 +2716,31 @@ msgstr "neo-phàirteach"
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
 #. "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:189
+#: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "an nàmhad"
 
-#: simulation/components/BuildRestrictions.js:195
+#: simulation/components/BuildRestrictions.js:199
 #, python-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "Cha ghabh %(name)s a thogail air ranntair %(territoryType)s. Ranntairean dligheach: %(validTerritories)s"
 
-#: simulation/components/BuildRestrictions.js:232
+#: simulation/components/BuildRestrictions.js:238
 #, python-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "Feumaidh tu %(name)s a thogail air oirthir dligheach"
 
-#: simulation/components/BuildRestrictions.js:256
+#: simulation/components/BuildRestrictions.js:262
 #, python-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr "Tha %(name)s ro fhaisg air %(category)s, feumaidh e bhith %(distance)s meatair air falbh air a' char as lugha"
 
-#: simulation/components/BuildRestrictions.js:268
+#: simulation/components/BuildRestrictions.js:275
 #, python-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
@@ -2739,48 +2748,63 @@ msgstr "Tha %(name)s ro fhad air falbh o %(category)s, feumaidh e bhith am broin
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:298
+#: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
 msgstr "agad fhèin"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:300
+#: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
 msgstr "aig caidreabhach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:302
+#: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr "neo-phàirteach"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:304
+#: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr "aig an nàmhaid"
 
-#: simulation/components/Player.js:40 gui/session/session.xml:564 (tooltip)
+#: simulation/components/EntityLimits.js:110
+#, python-format
+msgid "%(category)s build limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:112
+#, python-format
+msgid "%(category)s training limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/EntityLimits.js:116
+#, python-format
+msgid "%(category)s limit of %(limit)s reached"
+msgstr ""
+
+#: simulation/components/Player.js:40 gui/session/session.xml:565 (tooltip)
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
 msgstr "Biadh"
 
-#: simulation/components/Player.js:41 gui/session/session.xml:571 (tooltip)
+#: simulation/components/Player.js:41 gui/session/session.xml:572 (tooltip)
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
 msgstr "Fiodh"
 
-#: simulation/components/Player.js:42 gui/session/session.xml:585 (tooltip)
+#: simulation/components/Player.js:42 gui/session/session.xml:586 (tooltip)
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
 msgstr "Meatailt"
 
-#: simulation/components/Player.js:43 gui/session/session.xml:578 (tooltip)
+#: simulation/components/Player.js:43 gui/session/session.xml:579 (tooltip)
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
 msgstr "Clach"
@@ -2838,11 +2862,11 @@ msgstr "Cluicheadair IF"
 msgid "AI Difficulty"
 msgstr "Duilgheadas an IF"
 
-#: gui/aiconfig/aiconfig.xml:47 (caption) gui/gamesetup/gamesetup_mp.xml:109
-#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:46
-#: (caption) gui/locale/locale_advanced.xml:75 (caption)
-#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:35 (caption)
-#: gui/savedgames/save.xml:47 (caption) gui/session/session.xml:407 (caption)
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: (caption) gui/lobby/prelobby.xml:97 (caption) gui/locale/locale.xml:36
+#: (caption) gui/locale/locale_advanced.xml:65 (caption)
+#: gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/save.xml:37 (caption) gui/session/session.xml:402 (caption)
 msgid "Cancel"
 msgstr "Sguir dheth"
 
@@ -2855,7 +2879,7 @@ msgid "Civilization Selection"
 msgstr "Tagh sìobhaltasan"
 
 #: gui/civinfo/civinfo.xml:118 (caption) gui/manual/manual.xml:23 (caption)
-#: gui/session/session.xml:490 (caption) gui/session/session.xml:543 (caption)
+#: gui/session/session.xml:491 (caption) gui/session/session.xml:544 (caption)
 msgid "Close"
 msgstr "Dùin"
 
@@ -2879,7 +2903,7 @@ msgstr "Ainm a' chluicheadair"
 msgid "Player Placement"
 msgstr "Ionad a' chluicheadair"
 
-#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:434
+#: gui/gamesetup/gamesetup.xml:46 (caption) gui/session/session.xml:435
 #: (caption)
 msgid "Civilization"
 msgstr "Sìobhaltas"
@@ -2940,7 +2964,7 @@ msgstr "Tagh an àireamh de chluicheadairean."
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Tagh meud a' mhapa. (Dh'fhaoidte gum bi an geama nas slaodaiche le mapa mòr.)"
 
-#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:402
+#: gui/gamesetup/gamesetup.xml:187 (caption) gui/session/session.xml:412
 #: (caption)
 msgid "Send"
 msgstr "Cuir a-null"
@@ -3083,7 +3107,7 @@ msgid "Status"
 msgstr "Staid"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:431 (caption)
+#: gui/lobby/lobby.xml:207 (heading) gui/session/session.xml:432 (caption)
 msgid "Name"
 msgstr "Ainm"
 
@@ -3133,7 +3157,7 @@ msgstr "Cluicheadairean"
 msgid "Show full games"
 msgstr "Seall geamannan làna"
 
-#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1067 (tooltip)
+#: gui/lobby/lobby.xml:204 (heading) gui/session/session.xml:1068 (tooltip)
 msgid "Rank"
 msgstr "Rang"
 
@@ -3193,14 +3217,14 @@ msgstr "Cànan:"
 msgid "Locale:"
 msgstr "Sgeama ionadail:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption)
-msgid "Accept"
-msgstr "Gabh ris"
-
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
 msgstr "Adhartach"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
+#: (caption)
+msgid "Accept"
+msgstr "Gabh ris"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
@@ -3269,8 +3293,8 @@ msgstr "Roghainnean fuaime"
 msgid "Lobby Settings"
 msgstr "Roghainnean na lobaidh"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:37 (caption)
-#: gui/session/session.xml:754 (caption)
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/session/session.xml:755 (caption)
 msgid "Save"
 msgstr "Sàbhail"
 
@@ -3425,8 +3449,8 @@ msgstr "Eachdraidh"
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Fiosrachadh mu na sìobhaltasan ann an 0 A.D."
 
-#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:802
-#: (caption) gui/session/session.xml:1300 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption) gui/session/session.xml:803
+#: (caption) gui/session/session.xml:1301 (caption)
 msgid "Exit"
 msgstr "Fàg an-seo"
 
@@ -3450,7 +3474,7 @@ msgstr "Làrach-lìn"
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Briog gus play0ad.com fhosgladh sa bhrabhsair-lìn agad."
 
-#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:743
+#: gui/pregame/mainmenu.xml:536 (caption) gui/session/session.xml:744
 #: (caption)
 msgid "Chat"
 msgstr "Cabadaich"
@@ -3473,7 +3497,7 @@ msgstr "Briog gus tadhal air 0 A.D. Trac ach an dèan thu aithris air buga, tuis
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/savedgames/load.xml:25 (caption)
+#: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
 msgstr "Luchdaich"
 
@@ -3541,108 +3565,108 @@ msgstr "Tha an geama 'na stad"
 msgid "Click to Resume Game"
 msgstr "Briog gus leantainn air adhart leis a' gheama"
 
-#: gui/session/session.xml:426 (caption) gui/session/session.xml:665 (tooltip)
+#: gui/session/session.xml:427 (caption) gui/session/session.xml:666 (tooltip)
 msgid "Diplomacy"
 msgstr "Dioplòmasachd"
 
-#: gui/session/session.xml:440 (caption)
+#: gui/session/session.xml:441 (caption)
 msgid "Theirs"
 msgstr "Aca"
 
-#: gui/session/session.xml:443 (caption)
+#: gui/session/session.xml:444 (caption)
 msgid "A"
 msgstr "C"
 
-#: gui/session/session.xml:447 (caption)
+#: gui/session/session.xml:448 (caption)
 msgid "N"
 msgstr "N"
 
-#: gui/session/session.xml:451 (caption)
+#: gui/session/session.xml:452 (caption)
 msgid "E"
 msgstr "C"
 
-#: gui/session/session.xml:455 (caption)
+#: gui/session/session.xml:456 (caption)
 msgid "Tribute"
 msgstr "Fo chìs"
 
-#: gui/session/session.xml:505 (caption) gui/session/session.xml:684 (tooltip)
+#: gui/session/session.xml:506 (caption) gui/session/session.xml:685 (tooltip)
 msgid "Trade"
 msgstr "Malart"
 
-#: gui/session/session.xml:511 (caption)
+#: gui/session/session.xml:512 (caption)
 msgid "Trading goods selection:"
 msgstr "Tagh bathar malairt:"
 
-#: gui/session/session.xml:531 (tooltip)
+#: gui/session/session.xml:532 (tooltip)
 msgid ""
 "Select one goods as origin of the changes,\\nthen use the arrows of the "
 "target goods to make the changes."
 msgstr "Tagh bathar mar thùs an atharrachaidh,\\nan uairsin cleachd na saighdean aig a' bhathar-uidhe gus na h-atharraichean a dhèanamh."
 
-#: gui/session/session.xml:592 (tooltip)
+#: gui/session/session.xml:593 (tooltip)
 msgid "Population (current / limit)"
 msgstr "Sluagh (an-dràsta / as motha)"
 
-#: gui/session/session.xml:605 (tooltip)
+#: gui/session/session.xml:606 (tooltip)
 msgid "Choose player to view"
 msgstr "Tagh cluicheadair airson a shealltainn"
 
-#: gui/session/session.xml:628 (caption)
+#: gui/session/session.xml:629 (caption)
 msgid "ALPHA XVI : Patañjali"
 msgstr "ALPHA XVI : Patañjali"
 
-#: gui/session/session.xml:645 (tooltip)
+#: gui/session/session.xml:646 (tooltip)
 msgid "Game speed"
 msgstr "Luaths a' gheama"
 
-#: gui/session/session.xml:653 (tooltip)
+#: gui/session/session.xml:654 (tooltip)
 msgid "Choose game speed"
 msgstr "Tagh luaths a' gheama"
 
-#: gui/session/session.xml:706 (caption)
+#: gui/session/session.xml:707 (caption)
 msgid "MENU"
 msgstr "CLÀR-TAICE"
 
-#: gui/session/session.xml:767 (caption)
+#: gui/session/session.xml:768 (caption)
 msgid "Settings"
 msgstr "Roghainnean"
 
-#: gui/session/session.xml:791 (caption)
+#: gui/session/session.xml:792 (caption)
 msgid "Resign"
 msgstr "Gèill"
 
-#: gui/session/session.xml:828 (tooltip) gui/session/session.xml:1044
+#: gui/session/session.xml:829 (tooltip) gui/session/session.xml:1045
 #: (tooltip)
 msgid "Attack and Armor"
 msgstr "Ionnsaigh 's armachd"
 
-#: gui/session/session.xml:852 (tooltip)
+#: gui/session/session.xml:853 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
 msgstr "Briog gus aonadan buidhnichte a thaghadh, dèan briogadh dùbailte gus am fòcas a chur air na h-aonadan buidhnichte agus dèan briogadh deas gus am buidheann a sgaoileadh."
 
-#: gui/session/session.xml:892 (tooltip)
+#: gui/session/session.xml:893 (tooltip)
 msgid "Find idle worker"
 msgstr "Lorg obraiche na thàmh"
 
-#: gui/session/session.xml:944 (tooltip)
+#: gui/session/session.xml:945 (tooltip)
 msgid "Exchange resources:"
 msgstr "Malairt stòrasan:"
 
-#: gui/session/session.xml:1017 (tooltip)
+#: gui/session/session.xml:1018 (tooltip)
 msgid "Stamina:"
 msgstr "Smiodam:"
 
-#: gui/session/session.xml:1059 (tooltip)
+#: gui/session/session.xml:1060 (tooltip)
 msgid "Experience"
 msgstr "Eòlas"
 
-#: gui/session/session.xml:1127 (tooltip)
+#: gui/session/session.xml:1128 (tooltip)
 msgid "Hitpoints"
 msgstr "Puingean-slàinte"
 
-#: gui/session/session.xml:1136 (tooltip)
+#: gui/session/session.xml:1137 (tooltip)
 msgid "Stamina"
 msgstr "Smiodam"
 
@@ -10319,10 +10343,12 @@ msgstr "Bidh aonadan geàird glè dhàna air a' bhlàr. +2 air ionnsaighean nan 
 msgid "Heroism"
 msgstr "Gaisgeachd"
 
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.ptol
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.sele
+#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.hele
 #: simulation/data/technologies/attack_champions_elite.jsonspecificName.mace
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.spart
-#: simulation/data/technologies/attack_champions_elite.jsonspecificName.athen
 msgid "Andreia"
 msgstr "Andreia"
 
@@ -10342,10 +10368,12 @@ msgstr "Brosnaich na saighdearan agad le barrachd pàighidh. Gheibh na h‑uile 
 msgid "Will to fight"
 msgstr "Miann-còmhraig"
 
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.ptol
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.sele
+#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.hele
 #: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.mace
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.spart
-#: simulation/data/technologies/attack_citizensoldiers_will.jsonspecificName.athen
 msgid "Dynamis"
 msgstr "Dynamis"
 
@@ -11307,6 +11335,10 @@ msgstr "Fèill torrachais"
 msgid "Thesmophoria"
 msgstr "Thesmophoria"
 
+#: simulation/data/technologies/unlock_females_house.jsonspecificName.rome
+msgid "Bona Dea"
+msgstr ""
+
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsondescription
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsondescription
 msgid "Promote all of your citizen-soldier cavalrymen to Advanced rank."
@@ -12154,6 +12186,10 @@ msgstr "Geata a' bhaile"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 msgid "Long wall segments can be converted to gates."
 msgstr "Gabhaidh geata a dhèanamh de phìos fhada dhen bhalla."
+
+#: simulation/templates/template_structure_defense_wall_long.xml:15
+msgid "Convert Stone Wall into City Gate"
+msgstr "Dèan geata baile dhen bhalla fhiodha"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -13524,6 +13560,10 @@ msgstr "Balla fiodha"
 msgid "Palisade"
 msgstr "Sonnach"
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+msgid "Convert Wooden Wall into Wooden Gate"
+msgstr "Dèan geata fiodha dhen bhalla fhiodha"
+
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
@@ -14779,6 +14819,10 @@ msgstr "Balla sèiste"
 #: simulation/templates/structures/rome_siege_wall_short.xml:33
 msgid "Murus Circummunitionis"
 msgstr "Murus Circummunitionis"
+
+#: simulation/templates/structures/rome_siege_wall_long.xml:39
+msgid "Convert Siege Wall into Siege Wall Gate"
+msgstr "Dèan geata balla-sèiste dhen bhalla-sèiste"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"

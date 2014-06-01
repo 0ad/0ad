@@ -2,12 +2,12 @@
 <Entity parent="units/spart_cavalry_javelinist_a">
   <Attack>
     <Ranged>
+      <MaxRange>48</MaxRange>
       <Spread>1.0</Spread>
-      <MaxRange>52</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>170</Max>
+    <Max>160</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>

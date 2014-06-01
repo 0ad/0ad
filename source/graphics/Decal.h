@@ -53,6 +53,7 @@ public:
 	CModelDecal(CTerrain* terrain, const SDecal& decal)
 		: m_Terrain(terrain), m_Decal(decal)
 	{
+		ENSURE(terrain != NULL);
 	}
 
 	/// Dynamic cast

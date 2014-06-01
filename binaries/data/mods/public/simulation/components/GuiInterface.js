@@ -338,6 +338,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"buildingAI": null,
 		"healer": null,
 		"obstruction": null,
+		"turretParent":null,
 		"promotion": null,
 		"resourceCarrying": null,
 		"resourceDropsite": null,
@@ -415,6 +416,10 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"controlGroup2": cmpObstruction.GetControlGroup2(),
 		};
 	}
+
+	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+	if (cmpPosition && cmpPosition.GetTurretParent() != INVALID_ENTITY)
+		ret.turretParent = cmpPosition.GetTurretParent();
 
 	var cmpResourceSupply = Engine.QueryInterface(ent, IID_ResourceSupply);
 	if (cmpResourceSupply)

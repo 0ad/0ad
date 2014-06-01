@@ -305,8 +305,8 @@ function getBuildString()
 function exitGamePressed()
 {
 	closeMenu();
-	var btCaptions = [translate("Yes"), translate("No")];
-	var btCode = [Engine.Exit, null];
+	var btCaptions = [translate("No"), translate("Yes")];
+	var btCode = [null, Engine.Exit];
 	messageBox(400, 200, translate("Are you sure you want to quit 0 A.D.?"), translate("Confirmation"), 0, btCaptions, btCode);
 }
 

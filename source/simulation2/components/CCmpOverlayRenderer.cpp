@@ -131,7 +131,7 @@ public:
 		}
 
 		// Find the precise position of the unit
-		CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset, false));
+		CMatrix3D transform(cmpPosition->GetInterpolatedTransform(frameOffset));
 		CVector3D position(transform.GetTranslation());
 
 		// Move all the sprites to the desired offset relative to the unit
