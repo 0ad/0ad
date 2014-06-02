@@ -799,7 +799,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	for (var i in damagedBuildings)
 	{
 		var target = damagedBuildings[i];
-		if (gameState.defcon() < 5)
+		var underAttack = false;  // TODO define the condition of under attack
+		if (underAttack)
 		{
 			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall"))
 				continue;
@@ -817,9 +818,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		{
 			if (builderWorkers.length + addedWorkers < targetNB*2)
 			{	
-				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); });
-				if (gameState.defcon() < 5)
-					nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.hasClass("Female") && ent.position() !== undefined); });
+				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined && ent.getMetadata(PlayerID, "transport") === undefined); });
 				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB/3 - assigned);
 				
 				nearestNonBuilders.forEach(function(ent) {

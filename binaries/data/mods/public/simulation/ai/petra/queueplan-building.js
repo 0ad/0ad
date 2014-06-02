@@ -62,23 +62,23 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		this.metadata = { "base": pos.base };
 	else if (this.metadata.base === undefined)
 		this.metadata.base = pos.base;
-	this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
+	if (pos.access)
+		this.metadata.access = pos.access;   // needed for Docks for the position is on water
+	else
+		this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
 	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
 	{
-		for (var angle = 0; angle < Math.PI * 2; angle += Math.PI/4)
-			builders[0].construct(this.type, pos.x, pos.z, angle, this.metadata);
+		// try to place it a bit inside the land if possible
+		for (var d = -10; d <= 0; d += 2)
+			builders[0].construct(this.type, pos.x+d*Math.sin(pos.angle), pos.z+d*Math.cos(pos.angle), pos.angle, this.metadata);
 	}
-	else
+	else if (pos.x == pos.xx && pos.z == pos.zz)
+		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
+	else // try with the lowest, move towards us unless we're same
 	{
-		// try with the lowest, move towards us unless we're same
-		if (pos.x == pos.xx && pos.z == pos.zz)
-			builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
-		else
-		{
-			for (var step = 0; step <= 1; step += 0.2)
-				builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz), pos.angle, this.metadata);
-		}
+		for (var step = 0; step <= 1; step += 0.2)
+			builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz), pos.angle, this.metadata);
 	}
 	this.onStart(gameState);
 	Engine.ProfileStop();
@@ -253,11 +253,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// also not for fields who can be stacked quite a bit
 
 	var radius = 0;
-	if (template.hasClass("Fortress") || this.type === "structures/{civ}_siege_workshop"
-		|| this.type === "structures/{civ}_elephant_stables")
+	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop")
+		|| this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor(template.obstructionRadius() / cellSize) + 3;
 	else if (template.buildCategory() === "Dock")
-		radius = 1;
+		radius = Math.ceil(template.obstructionRadius() / cellSize);   // not used
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
@@ -290,8 +290,94 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else
 		var secondBest = [x,z];
 
+	// Needed for dock placement whose position will be changed
+	var access = gameState.ai.accessibility.getAccessValue([x, z]);
+
+	// for Dock placement, we need to improve the position of the building as the position given here
+	// is only the position on the shore, while the need the position of the center of the building
+	// We also need to find the angle of the building
+	if (template.buildCategory() === "Dock")
+	{
+		var angle = this.getDockAngle(gameState, template, x, z);
+		if (!angle)
+			return false;
+		if (template.get("Obstruction") && template.get("Obstruction/Static")) 
+			var radius = (+template.get("Obstruction/Static/@depth"))/2;
+		else if (template.get("Obstruction") && template.get("Obstruction/Unit"))
+			var radius = +template.get("Obstruction/Unit/@radius");
+		else
+		{
+			warn("Error: try to place a building without obstruction " + this.type);
+			var radius = 0;
+		}
+		// Position of the center of the building
+		x = x + radius*Math.sin(angle);
+		z = z + radius*Math.cos(angle);
+	}
+	else
+		var angle = 3*Math.PI/4;
+
 	// default angle = 3*Math.PI/4;	
-	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": secondBest[0], "zz": secondBest[1], "base": gameState.ai.HQ.basesMap.map[bestIdx] };
+	return { "x": x, "z": z, "angle": angle, "xx": secondBest[0], "zz": secondBest[1],
+		"base": gameState.ai.HQ.basesMap.map[bestIdx], "access": access };
+};
+
+// Algorithm taken from the function GetDockAngle in helpers/Commands.j
+m.ConstructionPlan.prototype.getDockAngle = function(gameState, template, x, z)
+{
+	var radius = template.obstructionRadius();
+	if (!radius)
+		return false;
+
+	var pos = gameState.ai.accessibility.gamePosToMapPos([x, z]);
+	var pos = gameState.ai.accessibility.gamePosToMapPos(pos);
+	var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+	var seaRef = gameState.ai.accessibility.navalPassMap[j];
+	const numPoints = 16;
+	for (var dist = 0; dist < 2; ++dist)
+	{
+		var waterPoints = [];
+		for (var i = 0; i < numPoints; ++i)
+		{
+			var angle = (i/numPoints)*2*Math.PI;
+			var pos = [ x - (2+dist)*radius*Math.sin(angle), z + (2+dist)*radius*Math.cos(angle)];
+			var pos = gameState.ai.accessibility.gamePosToMapPos(pos);
+			var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
+			var seaAccess = gameState.ai.accessibility.navalPassMap[j];
+			var landAccess = gameState.ai.accessibility.landPassMap[j];
+			if (seaAccess === seaRef && landAccess < 2)
+				waterPoints.push(i);			
+		}
+		var consec = [];
+		var length = waterPoints.length;
+		for (var i = 0; i < length; ++i)
+		{
+			var count = 0;
+			for (var j = 0; j < (length-1); ++j)
+			{
+				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
+					++count;
+				else
+					break;
+			}
+			consec[i] = count;
+		}
+		var start = 0;
+		var count = 0;
+		for (var c in consec)
+		{
+			if (consec[c] > count)
+			{
+				start = c;
+				count = consec[c];
+			}
+		}
+		
+		// If we've found a shoreline, stop searching
+		if (count != numPoints-1)
+			return -((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI;
+	}
+	return false;
 };
 
 return m;

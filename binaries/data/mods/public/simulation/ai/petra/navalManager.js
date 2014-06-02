@@ -158,6 +158,16 @@ m.NavalManager.prototype.init = function(gameState, queues)
 		}
 	}
 
+	// load units and buildings from the config files
+	var civ = gameState.playerData.civ;
+	if (civ in this.Config.buildings.naval)
+		this.bNaval = this.Config.buildings.naval[civ];
+	else
+		this.bNaval = this.Config.buildings.naval['default'];
+
+	for (var i in this.bNaval)
+		this.bNaval[i] = gameState.applyCiv(this.bNaval[i]);
+
 	// Assign our docks
 	var self = this;
 	this.docks.forEach(function(dock) { self.assignDock(gameState, dock); });
@@ -172,10 +182,15 @@ m.NavalManager.prototype.resetFishingBoats = function()
 m.NavalManager.prototype.assignDock = function(gameState, dock)
 {
 	var land = dock.getMetadata(PlayerID, "access");
+	if (land === undefined)
+	{
+		land = this.getDockIndex(gameState, dock, false);
+		dock.setMetadata(PlayerID, "access", land);
+	}
 	var sea = dock.getMetadata(PlayerID, "sea");
 	if (sea === undefined)
 	{
-		sea = this.getDockSeaIndex(gameState, dock);
+		sea = this.getDockIndex(gameState, dock, true);
 		dock.setMetadata(PlayerID, "sea", sea);
 	}
 
@@ -185,27 +200,28 @@ m.NavalManager.prototype.assignDock = function(gameState, dock)
 		this.accessibleSeas.push(sea);
 };
 
-// get the sea index for our starting docks and those of our allies
-m.NavalManager.prototype.getDockSeaIndex = function(gameState, dock)
+// get the indices for our starting docks and those of our allies
+// land index when onWater=false, sea indes when true
+m.NavalManager.prototype.getDockIndex = function(gameState, dock, onWater)
 {
-	var sea = gameState.ai.accessibility.getAccessValue(dock.position(), true);
-	if (sea < 2)
+	var index = gameState.ai.accessibility.getAccessValue(dock.position(), onWater);
+	if (index < 2)
 	{
-		// pre-positioned docks are sometimes not on the shoreline
+		// pre-positioned docks are sometimes not well positionned
 		var dockPos = dock.position();
 		var radius = dock.footprintRadius();
 		for (var i = 0; i < 16; i++)
 		{
-			var seaPos = [ dockPos[0] + radius*Math.cos(i*Math.PI/8), dockPos[1] + radius*Math.sin(i*Math.PI/8)];
+			var pos = [ dockPos[0] + radius*Math.cos(i*Math.PI/8), dockPos[1] + radius*Math.sin(i*Math.PI/8)];
 
-			sea = gameState.ai.accessibility.getAccessValue(seaPos, true);
-			if (sea >= 2)
+			index = gameState.ai.accessibility.getAccessValue(pos, onWater);
+			if (index >= 2)
 				break;
 		}
 	}
-	if (sea < 2)
-		warn("ERROR in Petra navalManager because of dock position " + sea);
-	return sea;
+	if (index < 2)
+		warn("ERROR in Petra navalManager because of dock position (onWater=" + onWater + ") index " + index);
+	return index;
 };
 
 m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
@@ -403,14 +419,63 @@ m.NavalManager.prototype.moveApart = function(gameState)
 	}
 };
 
-// Some functions are run every turn
-// Others once in a while
+m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
+{
+	if (!gameState.ai.HQ.navalMap || !gameState.ai.HQ.baseManagers[1])
+		return;
+
+	if (gameState.getPopulation() > this.Config.Economy.popForDock)
+	{
+		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0 &&
+			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0)
+		{
+			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
+			{
+				var remaining = this.getUnconnectedSeas(gameState, gameState.ai.HQ.baseManagers[1].accessIndex);
+				for (var sea of remaining)
+				{
+					if (gameState.ai.HQ.navalRegions.indexOf(sea) !== -1)
+					{
+						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea }));
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	if (gameState.currentPhase() > 1 && gameState.getPopulation() > this.Config.Economy.popForTown + 15
+		&& queues.militaryBuilding.length() === 0 && this.bNaval.length !== 0)
+	{
+		var nNaval = 0;
+		for (var naval of this.bNaval)
+			nNaval += gameState.countEntitiesAndQueuedByType(naval, true);
+
+		var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).toEntityArray();
+		if (docks.length && (nNaval === 0 || (nNaval < this.bNaval.length && gameState.getPopulation() > 120)))
+		{
+			for (var naval of this.bNaval)
+			{
+				if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
+				{
+					var sea = docks[0].getMetadata(PlayerID, "sea");
+					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "sea" : sea }));
+					break;
+				}
+			}
+		}
+	}
+};
+
 m.NavalManager.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Naval Manager update");
 	
 	this.checkEvents(gameState, queues, events);
 
+	this.buildNavalStructures(gameState, queues);
+
+	// close previous transport plans if finished
 	for (var i = 0; i < this.transportPlans.length; ++i)
 	{
 		var remaining = this.transportPlans[i].update(gameState);
@@ -418,14 +483,6 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 		{
 			if (this.Config.debug > 0)
 				warn("no more units on transport plan " + this.transportPlans[i].ID);
-//			var moveBack = true;
-//			var plan = this.transportPlans[i];
-//			this.docks.forEach(function(dock) {
-//				if (!moveBack || dock.getMetadata(PlayerID, "sea") !== plan.sea)
-//					return;
-//				moveBack = false;
-//				plan.ships.forEach(function(ship) { ship.move(dock.position()[0], dock.position()[1]); });
-//			});
 			this.transportPlans[i].releaseAll();
 			this.transportPlans.splice(i--, 1);
 		}

@@ -146,7 +146,7 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 			if (m2.hasClass("Dock") && m2.getMetadata(PlayerID, "sea") === undefined)
 			{
 				// m2 may-be an allied dock, without sea already affected to it
-				var sea = gameState.ai.HQ.navalManager.getDockSeaIndex(gameState, m2);
+				var sea = gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true);
 				m2.setMetadata(PlayerID, "sea", sea);
 			}
 			if (index1 !== index2 && !(m1.hasClass("Dock") && m2.hasClass("Dock") && m1.getMetadata(PlayerID, "sea") === m2.getMetadata(PlayerID, "sea")))

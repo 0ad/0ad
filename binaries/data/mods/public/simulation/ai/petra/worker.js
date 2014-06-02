@@ -106,7 +106,9 @@ m.Worker.prototype.update = function(baseManager, gameState)
 		else
 		{
 			var startIndex = gameState.ai.accessibility.getAccessValue(this.ent.position());
-			var endIndex = gameState.ai.accessibility.getAccessValue(target.position());
+			var endIndex = target.getMetadata(PlayerID, "access");
+			if (!endIndex)
+				endIndex = gameState.ai.accessibility.getAccessValue(target.position());
 			if (startIndex === endIndex)
 				this.ent.repair(target);
 			else

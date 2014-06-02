@@ -1228,7 +1228,7 @@ bool Autostart(const CmdLineArgs& args)
 		}
 		mapType = "random";
 	}
-	if (mapDirectory == L"scenarios")
+	else if (mapDirectory == L"scenarios")
 	{
 		// Initialize general settings from the map data so some values
 		// (e.g. name of map) are always present, even when autostart is
@@ -1241,7 +1241,7 @@ bool Autostart(const CmdLineArgs& args)
 		settings = mapSettings.get();
 		mapType = "scenario";
 	}
-	if (mapDirectory == L"skirmishes")
+	else if (mapDirectory == L"skirmishes")
 	{
 		// In skirmish mode, the player initialization data is taken from the
 		// game-setup settings (see CGame::RegisterInit(...)). If some player
