@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,29 +26,30 @@ class CVector3D;
 
 class ISoundManager
 {
-
 public:
-  virtual ~ISoundManager() {};
+	virtual ~ISoundManager() {};
 
-  static void CreateSoundManager();
-  static void SetEnabled(bool doEnable);
-  static void CloseGame();
+	static void CreateSoundManager();
+	static void SetEnabled(bool doEnable);
+	static void CloseGame();
 
-  virtual void IdleTask() = 0;
-  virtual void Pause(bool pauseIt) = 0;
+	virtual void StartWorker() = 0;
 
-  virtual void SetMasterGain(float gain) = 0;
-  virtual void SetMusicGain(float gain) = 0;
-  virtual void SetAmbientGain(float gain) = 0;
-  virtual void SetActionGain(float gain) = 0;
-  virtual void SetUIGain(float gain) = 0;
+	virtual void IdleTask() = 0;
+	virtual void Pause(bool pauseIt) = 0;
 
-  virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
-  virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;
-  virtual void PlayAsAmbient(const VfsPath& itemPath, bool looping) = 0;
-  virtual void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound) = 0;
+	virtual void SetMasterGain(float gain) = 0;
+	virtual void SetMusicGain(float gain) = 0;
+	virtual void SetAmbientGain(float gain) = 0;
+	virtual void SetActionGain(float gain) = 0;
+	virtual void SetUIGain(float gain) = 0;
 
-  virtual bool InDistress() = 0;
+	virtual void PlayAsUI(const VfsPath& itemPath, bool looping) = 0;
+	virtual void PlayAsMusic(const VfsPath& itemPath, bool looping) = 0;
+	virtual void PlayAsAmbient(const VfsPath& itemPath, bool looping) = 0;
+	virtual void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound) = 0;
+
+	virtual bool InDistress() = 0;
 };
 
 extern ISoundManager*  g_SoundManager;
