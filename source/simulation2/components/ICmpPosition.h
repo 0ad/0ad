@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,8 @@
 #include "simulation2/helpers/Position.h"
 #include "maths/FixedVector3D.h"
 #include "maths/FixedVector2D.h"
+
+#include <set>
 
 class CMatrix3D;
 
