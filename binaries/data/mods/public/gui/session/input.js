@@ -2221,16 +2221,15 @@ function unloadThese()
 	for each (var ent in entities)
 	{
 		var state = GetExtendedEntityState(ent);
-		if (state && state.turretParent)
+		if (!state || !state.turretParent)
+			continue;
+		if (!parent)
 		{
-			if (!parent)
-			{
-				parent = state.turretParent;
-				ents.push(ent);
-			}
-			else if (state.turretParent == parent)
-				ents.push(ent)
+			parent = state.turretParent;
+			ents.push(ent);
 		}
+		else if (state.turretParent == parent)
+			ents.push(ent)
 	}
 	if (parent)
 		Engine.PostNetworkCommand({"type": "unload", "entities":ents, "garrisonHolder": parent});
