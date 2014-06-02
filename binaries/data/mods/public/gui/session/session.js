@@ -223,17 +223,14 @@ function init(initData, hotloadData)
 	{
 		g_Selection.selected = hotloadData.selection;
 	}
-	else
-	{
-		// Starting for the first time:
-		initMusic();
-		if (!g_IsObserver){
-			var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
-			global.music.storeTracks(civMusic);
-		}
-		global.music.setState(global.music.states.PEACE);
-		playRandomAmbient("temperate");
+	// Starting for the first time:
+	initMusic();
+	if (!g_IsObserver){
+		var civMusic = g_CivData[g_Players[Engine.GetPlayerID()].civ].Music;
+		global.music.storeTracks(civMusic);
 	}
+	global.music.setState(global.music.states.PEACE);
+	playRandomAmbient("temperate");
 
 	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
 		Engine.GetGUIObjectByName("timeElapsedCounter").hidden = false;
