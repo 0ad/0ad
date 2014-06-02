@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,17 +22,15 @@
 
 #if CONFIG2_AUDIO
 
+#include "ISoundManager.h"
+#include "data/SoundData.h"
+#include "items/ISoundItem.h"
+#include "scripting/SoundGroup.h"
+
 #include "lib/external_libraries/openal.h"
-
-
 #include "lib/file/vfs/vfs_path.h"
-#include "soundmanager/ISoundManager.h"
-#include "soundmanager/items/ISoundItem.h"
-#include "simulation2/system/Entity.h"
-#include "soundmanager/data/SoundData.h"
-#include "soundmanager/items/ISoundItem.h"
-#include "soundmanager/scripting/SoundGroup.h"
 #include "ps/Profiler2.h"
+#include "simulation2/system/Entity.h"
 
 #include <vector>
 #include <map>
@@ -98,14 +96,16 @@ public:
 	CSoundManager();
 	virtual ~CSoundManager();
 
+	void StartWorker();
+
 	ISoundItem* LoadItem(const VfsPath& itemPath);
 	ISoundItem* ItemForData(CSoundData* itemData);
-	ISoundItem* ItemForEntity( entity_id_t source, CSoundData* sndData);
+	ISoundItem* ItemForEntity(entity_id_t source, CSoundData* sndData);
 
 	Status ReloadChangedFiles(const VfsPath& path);
 
 	void ClearPlayListItems();
-	void StartPlayList( bool doLoop );
+	void StartPlayList(bool doLoop);
 	void AddPlayListItem(const VfsPath& itemPath);
 
 	static void CreateSoundManager();
@@ -117,8 +117,8 @@ public:
 	static void al_ReportError(ALenum err, const char* caller, int line);
 	static void al_check(const char* caller, int line);
 
-	void SetMusicEnabled (bool isEnabled);
-	void setSoundEnabled( bool enabled );
+	void SetMusicEnabled(bool isEnabled);
+	void setSoundEnabled(bool enabled);
 
 	ALuint GetALSource(ISoundItem* anItem);
 	void ReleaseALSource(ALuint theSource);
@@ -135,8 +135,8 @@ public:
 	long GetBufferCount();
 	long GetBufferSize();
 
-	void PlayAsMusic( const VfsPath& itemPath, bool looping);
-	void PlayAsAmbient( const VfsPath& itemPath, bool looping);
+	void PlayAsMusic(const VfsPath& itemPath, bool looping);
+	void PlayAsAmbient(const VfsPath& itemPath, bool looping);
 	void PlayAsUI(const VfsPath& itemPath, bool looping);
 	void PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, entity_id_t source, bool ownedSound);
 
@@ -147,9 +147,9 @@ public:
 	void SetDistressThroughError();
 
 	void Pause(bool pauseIt);
-	void PauseMusic (bool pauseIt);
-	void PauseAmbient (bool pauseIt);
-	void PauseAction (bool pauseIt);
+	void PauseMusic(bool pauseIt);
+	void PauseAmbient(bool pauseIt);
+	void PauseAction(bool pauseIt);
 	void SetAmbientItem(ISoundItem* anItem);
 
 	void SetMasterGain(float gain);
