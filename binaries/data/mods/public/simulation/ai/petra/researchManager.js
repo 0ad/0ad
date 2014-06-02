@@ -10,6 +10,48 @@ m.ResearchManager = function(Config)
 	this.Config = Config;
 };
 
+/**
+ * Check if we can go to the next phase
+ */
+m.ResearchManager.prototype.checkPhase = function(gameState, queues)
+{
+	if (queues.majorTech.length() !== 0)
+		return;
+
+	var townPhase = gameState.townPhase();
+	var cityPhase = gameState.cityPhase();
+		
+	if (gameState.canResearch(townPhase,true) && gameState.getPopulation() >= this.Config.Economy.popForTown - 10
+		&& gameState.findResearchers(townPhase,true).length != 0)
+	{
+		var plan = new m.ResearchPlan(gameState, townPhase, true);
+		plan.lastIsGo = false;
+		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState) };
+		plan.isGo = function (gameState) {
+			var ret = gameState.getPopulation() >= gameState.Config.Economy.popForTown;
+			if (ret && !this.lastIsGo)
+				this.onGo(gameState);
+			else if (!ret && this.lastIsGo)
+				this.onNotGo(gameState);
+			this.lastIsGo = ret;
+			return ret;
+		};
+		plan.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; };
+		plan.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
+
+		queues.majorTech.addItem(plan);
+	}
+	else if (gameState.canResearch(cityPhase,true) && gameState.getTimeElapsed() > (this.Config.Economy.cityPhase*1000)
+			&& gameState.getOwnEntitiesByRole("worker", true).length > 85
+			&& gameState.findResearchers(cityPhase, true).length != 0
+			&& queues.civilCentre.length() === 0)
+	{
+		var plan = new m.ResearchPlan(gameState, cityPhase, true);
+		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
+		queues.majorTech.addItem(plan);
+	}
+};
+
 m.ResearchManager.prototype.searchPopulationBonus = function(gameState, queues)
 {
 	if (queues.minorTech.length() !== 0)
@@ -31,6 +73,8 @@ m.ResearchManager.prototype.searchPopulationBonus = function(gameState, queues)
 
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
+	this.checkPhase(gameState, queues);
+
 	if (gameState.currentPhase() < 2 || queues.minorTech.length() !== 0)
 		return;
 

@@ -46,7 +46,7 @@ m.Config = function() {
 		"advanced" : {
 			"default" : [],
 			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
-			"brit" : [ "structures/{civ}_crannog", "structures/{civ}_rotarymill" ],
+			"brit" : [ "structures/{civ}_rotarymill" ],
 			"cart" : [ "structures/{civ}_embassy_celtic",
 					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"gaul" : [ "structures/{civ}_tavern" ],
@@ -59,6 +59,11 @@ m.Config = function() {
 			"rome" : [ "structures/{civ}_army_camp" ],
 			"sele" : [ "structures/{civ}_library" ],
 			"spart" : [ "structures/{civ}_syssiton", "structures/{civ}_theatron" ]
+		},
+		"naval" : {
+			"default" : [],
+//			"brit" : [ "structures/{civ}_crannog" ],
+			"cart" : [ "structures/{civ}_super_dock" ]
 		}
 	};
 
