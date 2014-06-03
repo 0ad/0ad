@@ -219,6 +219,7 @@ void CCmpPathfinder::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	}
 	case MT_TerrainChanged:
 	case MT_WaterChanged:
+	case MT_ObstructionMapShapeChanged:
 	{
 		// TODO: we ought to only bother updating the dirtied region
 		m_TerrainDirty = true;
@@ -338,11 +339,6 @@ void CCmpPathfinder::UpdateGrid()
 		// Obstructions changed - we need to recompute passability
 		// Since terrain hasn't changed we only need to update the obstruction bits
 		// and can skip the rest of the data
-
-		// TODO: if ObstructionManager::SetPassabilityCircular was called at runtime
-		// (which should probably never happen, but that's not guaranteed),
-		// then TILE_OUTOFBOUNDS will change and we can't use this fast path, but
-		// currently it'll just set obstructionsDirty and we won't notice
 
 		for (u16 j = 0; j < m_MapSize; ++j)
 		{

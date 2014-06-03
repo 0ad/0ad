@@ -362,6 +362,20 @@ public:
 };
 
 /**
+ * Sent when ObstructionManager's view of the shape of the world has changed
+ * (changing the TILE_OUTOFBOUNDS tiles returned by Rasterise).
+ */
+class CMessageObstructionMapShapeChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(ObstructionMapShapeChanged)
+
+	CMessageObstructionMapShapeChanged()
+	{
+	}
+};
+
+/**
  * Sent when territory assignments have changed.
  */
 class CMessageTerritoriesChanged : public CMessage
