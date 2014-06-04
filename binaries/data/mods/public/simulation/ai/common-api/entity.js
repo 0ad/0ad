@@ -51,9 +51,10 @@ m.Template = m.Class({
 	},
 
 	classes: function() {
-		if (!this.get("Identity"))
+		var template = this.get("Identity");
+		if (!template)
 			return undefined;
-		return m.GetIdentityClasses(this._template.Identity);
+		return GetIdentityClasses(template);
 	},
 	
 	requiredTech: function() {
