@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.294118" g="0.34902" b="0.694118"/>
 				<Height>5</Height>
-				<Shininess>150</Shininess>
 				<Waviness>8</Waviness>
 				<Murkiness>0.45</Murkiness>
 				<Tint r="0.27451" g="0.294118" b="0.584314"/>
@@ -35,14 +34,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="266.069" y="73.5956" z="798.146"/>
+		<Position x="264.361" y="166.44" z="216.523"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "The 'Cappadocia' region of Central-Eastern Anatolia.\u000a\u000aAll players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\u000a\u000aStone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce.",
+  "Description": "The 'Cappadocia' region of Central-Eastern Anatolia.\n\nAll players start on the Western end of the map, with a vast unclaimed wilderness lying open before them ripe for conquest and depredation.\n\nStone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -15498,6 +15497,258 @@
 			<Position x="466.94431" z="828.65864"/>
 			<Orientation y="2.35621"/>
 			<Actor seed="7364"/>
+		</Entity>
+		<Entity uid="3197">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="605.24305" z="1075.18824"/>
+			<Orientation y="-2.23447"/>
+			<Actor seed="48976"/>
+		</Entity>
+		<Entity uid="3198">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="600.13941" z="1072.00123"/>
+			<Orientation y="1.11956"/>
+			<Actor seed="18048"/>
+		</Entity>
+		<Entity uid="3199">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="601.84015" z="1076.48426"/>
+			<Orientation y="0.51958"/>
+			<Actor seed="54780"/>
+		</Entity>
+		<Entity uid="3200">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="609.12989" z="1083.72657"/>
+			<Orientation y="-2.52517"/>
+			<Actor seed="43458"/>
+		</Entity>
+		<Entity uid="3201">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="615.16974" z="1085.52601"/>
+			<Orientation y="-2.44898"/>
+			<Actor seed="21410"/>
+		</Entity>
+		<Entity uid="3202">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="610.0724" z="1076.80372"/>
+			<Orientation y="-3.0613"/>
+			<Actor seed="25290"/>
+		</Entity>
+		<Entity uid="3203">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="609.9261" z="1070.8003"/>
+			<Orientation y="1.50651"/>
+			<Actor seed="6628"/>
+		</Entity>
+		<Entity uid="3204">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="613.12458" z="1078.73597"/>
+			<Orientation y="-2.18212"/>
+			<Actor seed="42564"/>
+		</Entity>
+		<Entity uid="3205">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="614.65418" z="1091.60071"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="19956"/>
+		</Entity>
+		<Entity uid="3206">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="609.19568" z="1087.89551"/>
+			<Orientation y="-1.97164"/>
+			<Actor seed="51916"/>
+		</Entity>
+		<Entity uid="3207">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="457.85883" z="1086.40516"/>
+			<Orientation y="-3.06684"/>
+			<Actor seed="31584"/>
+		</Entity>
+		<Entity uid="3208">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="459.07517" z="1075.05066"/>
+			<Orientation y="1.24221"/>
+			<Actor seed="29658"/>
+		</Entity>
+		<Entity uid="3209">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="462.6305" z="1077.75806"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="38892"/>
+		</Entity>
+		<Entity uid="3210">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="453.28901" z="1082.10084"/>
+			<Orientation y="-1.35515"/>
+			<Actor seed="47638"/>
+		</Entity>
+		<Entity uid="3211">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="448.76532" z="1086.81177"/>
+			<Orientation y="0.86254"/>
+			<Actor seed="986"/>
+		</Entity>
+		<Entity uid="3212">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="452.28379" z="1092.45325"/>
+			<Orientation y="3.06481"/>
+			<Actor seed="33708"/>
+		</Entity>
+		<Entity uid="3213">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="573.03785" z="978.25489"/>
+			<Orientation y="-1.9985"/>
+			<Actor seed="50210"/>
+		</Entity>
+		<Entity uid="3214">
+			<Template>gaia/fauna_camel</Template>
+			<Player>0</Player>
+			<Position x="662.11225" z="996.40833"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="14664"/>
+		</Entity>
+		<Entity uid="3215">
+			<Template>gaia/fauna_camel</Template>
+			<Player>0</Player>
+			<Position x="327.21177" z="784.66095"/>
+			<Orientation y="0.4302"/>
+			<Actor seed="5974"/>
+		</Entity>
+		<Entity uid="3216">
+			<Template>gaia/fauna_boar</Template>
+			<Player>0</Player>
+			<Position x="366.10462" z="869.89216"/>
+			<Orientation y="-2.54073"/>
+			<Actor seed="28742"/>
+		</Entity>
+		<Entity uid="3217">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="174.19806" z="821.19697"/>
+			<Orientation y="-1.99691"/>
+			<Actor seed="34340"/>
+		</Entity>
+		<Entity uid="3218">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="171.38352" z="814.63703"/>
+			<Orientation y="2.47324"/>
+			<Actor seed="10352"/>
+		</Entity>
+		<Entity uid="3219">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="168.314" z="824.87458"/>
+			<Orientation y="-0.33227"/>
+			<Actor seed="42318"/>
+		</Entity>
+		<Entity uid="3220">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="158.73293" z="838.081"/>
+			<Orientation y="-1.37314"/>
+			<Actor seed="4942"/>
+		</Entity>
+		<Entity uid="3221">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="147.34165" z="839.02613"/>
+			<Orientation y="1.03887"/>
+			<Actor seed="27618"/>
+		</Entity>
+		<Entity uid="3222">
+			<Template>gaia/fauna_deer</Template>
+			<Player>0</Player>
+			<Position x="161.39243" z="843.85016"/>
+			<Orientation y="-1.34313"/>
+			<Actor seed="2370"/>
+		</Entity>
+		<Entity uid="3223">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="278.3989" z="850.0699"/>
+			<Orientation y="-2.08622"/>
+			<Actor seed="26934"/>
+		</Entity>
+		<Entity uid="3224">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="275.44037" z="847.7552"/>
+			<Orientation y="1.85546"/>
+			<Actor seed="34338"/>
+		</Entity>
+		<Entity uid="3225">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="277.59763" z="845.65943"/>
+			<Orientation y="-2.65589"/>
+			<Actor seed="58148"/>
+		</Entity>
+		<Entity uid="3226">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="274.30823" z="839.80298"/>
+			<Orientation y="1.27466"/>
+			<Actor seed="37412"/>
+		</Entity>
+		<Entity uid="3227">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="279.99283" z="847.16358"/>
+			<Orientation y="1.57522"/>
+			<Actor seed="3830"/>
+		</Entity>
+		<Entity uid="3228">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="288.61982" z="850.57679"/>
+			<Orientation y="-2.3884"/>
+			<Actor seed="59248"/>
+		</Entity>
+		<Entity uid="3229">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="281.33378" z="843.14716"/>
+			<Orientation y="0.7189"/>
+			<Actor seed="11274"/>
+		</Entity>
+		<Entity uid="3230">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="287.21564" z="850.98353"/>
+			<Orientation y="-0.95141"/>
+			<Actor seed="17274"/>
+		</Entity>
+		<Entity uid="3231">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="282.72696" z="850.44404"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="57180"/>
+		</Entity>
+		<Entity uid="3232">
+			<Template>gaia/fauna_chicken</Template>
+			<Player>0</Player>
+			<Position x="285.17652" z="847.85694"/>
+			<Orientation y="-1.54905"/>
+			<Actor seed="12166"/>
 		</Entity>
 	</Entities>
 	<Paths/>
