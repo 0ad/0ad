@@ -686,10 +686,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState,queues) {
 				});
 				var numFd = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
 				if (numFarms+numFd > 15)
-				{
-					warn("treu");
 					this.willGather["food"] = 2;
-				}
 				var numQueued = queues.field.countQueuedUnits();
 				numFarms += numFd + numQueued;
 				

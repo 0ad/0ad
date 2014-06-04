@@ -194,7 +194,9 @@ function colorFade_attackUnit(data)
 	// wait a short time and then color fade from red to grey to nothing
 	else if ( data.tickCounter >= g_fadeAttackUnit.blinkingTicks + g_fadeAttackUnit.blinkingChangeInterval) 
 	{
-		rgb.g = rgb.g < 255 ? rgb.g += g_fadeAttackUnit.gbcolorChangeRate * Math.sqrt(data.tickCounter - g_fadeAttackUnit.blinkingTicks) : 255;
+		rgb.g += Math.round(g_fadeAttackUnit.gbcolorChangeRate * Math.sqrt(data.tickCounter - g_fadeAttackUnit.blinkingTicks));
+		if (rgb.g > 255)
+			rgb.g = 255;
 		
 		// start with fading it out
 		if (rgb.g > g_fadeAttackUnit.fadeOutStart) 

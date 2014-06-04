@@ -121,7 +121,7 @@ function init(attribs)
 // Called after the map data is loaded and cached
 function initMain()
 {
-	// Load AI list and hide deprecated AIs
+	// Load AI list
 	g_AIs = Engine.GetAIs();
 
 	// Sort AIs by displayed name

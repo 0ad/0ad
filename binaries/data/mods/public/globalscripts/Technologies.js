@@ -24,15 +24,9 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
 
 	// TODO: will we ever need the full template?
 	// Get the classes which this entity template belongs to
-	var rawClasses;
+	var classes = [];
 	if (entityTemplateData && entityTemplateData.Identity)
-	{
-		rawClasses = entityTemplateData.Identity.Classes;
-		rawClasses = rawClasses && "_string" in rawClasses ?  rawClasses._string : "";
-		if (entityTemplateData.Identity.Rank)
-			rawClasses += " " + entityTemplateData.Identity.Rank;
-	} 
-	var classes = rawClasses && rawClasses.length ? rawClasses.split(/\s+/) : [];
+		classes = GetIdentityClasses(entityTemplateData.Identity);
 
 	var retValue = propertyValue;
 
