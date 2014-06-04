@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ struct CColor
 	CColor() : r(-1.f), g(-1.f), b(-1.f), a(1.f) {}
 	CColor(float cr,float cg,float cb,float ca) : r(cr), g(cg), b(cb), a(ca) {}
 
-	bool ParseString(const CStr8& Value, float DefaultAlpha);
+	bool ParseString(const CStr8& Value, int DefaultAlpha = 255);
 
 	bool operator == (const CColor &color) const;
 

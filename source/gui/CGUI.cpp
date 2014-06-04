@@ -1687,7 +1687,7 @@ void CGUI::Xeromyces_ReadEffects(XMBElement Element, CXeromyces* pFile, SGUIImag
 		if (attr_name == "add_color")
 		{
 			CColor color;
-			if (!GUI<int>::ParseColor(attr_value, color, 0.f))
+			if (!GUI<int>::ParseColor(attr_value, color, 0))
 				LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 			else effects.m_AddColor = color;
 		}
@@ -1933,7 +1933,7 @@ void CGUI::Xeromyces_ReadColor(XMBElement Element, CXeromyces* pFile)
 	if (! value.empty())
 	{
 		// Try setting color to value
-		if (!color.ParseString(value, 255.f))
+		if (!color.ParseString(value))
 		{
 			LOGERROR(L"GUI: Unable to create custom color '%hs'. Invalid color syntax.", name.c_str());
 		}
