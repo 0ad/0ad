@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,31 +24,49 @@ Overlay.cpp
 #include <string>
 
 #include "Overlay.h"
-#include "Parser.h"
+#include "CLogger.h"
+#include "CStr.h"
 
-
-bool CColor::ParseString(const CStr8& Value, float DefaultAlpha)
+/**
+ * Try to parse @p Value as a color. Returns true on success, false otherwise.
+ * @param Value Should be "r g b" or "r g b a" where each value is an integer in [0,255].
+ * @param DefaultAlpha The alpha value that is used if the format of @p Value is "r g b".
+ */
+bool CColor::ParseString(const CStr8& Value, int DefaultAlpha)
 {
-	// Use the parser to parse the values
-	CParser& parser (CParserCache::Get("_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[-$arg(_minus)]$value_[[-$arg(_minus)]$value_]"));
-
-	std::string str = Value;
-
-	CParserLine line;
-	line.ParseString(parser, str);
-	if (!line.m_ParseOK)
+	const unsigned int NUM_VALS = 4;
+	int values[NUM_VALS] = { 0, 0, 0, DefaultAlpha };
+	std::stringstream stream;
+	stream.str(Value);
+	// Parse each value
+	size_t i;
+	for (i = 0; i < NUM_VALS; ++i)
 	{
-		// TODO Gee: Parsing failed
-		return false;
-	}
-	float values[4] = { 0, 0, 0, DefaultAlpha };
-	for (int i=0; i<(int)line.GetArgCount(); ++i)
-	{
-		if (!line.GetArgFloat(i, values[i]))
+		if (stream.eof())
+			break;
+
+		stream >> values[i];
+		if ((stream.rdstate() & std::stringstream::failbit) != 0)
 		{
-			// Parsing failed
+			LOGWARNING(L"Unable to parse CColor parameters. Your input: '%s'", Value.c_str());
 			return false;
 		}
+		if (values[i] < 0 || values[i] > 255)
+		{
+			LOGWARNING(L"Invalid value (<0 or >255) when parsing CColor parameters. Your input: '%s'", Value.c_str());
+			return false;
+		}
+	}
+
+	if (i < 3)
+	{
+		LOGWARNING(L"Not enough parameters when parsing as CColor. Your input: '%s'", Value.c_str());
+		return false;
+	}
+	if (!stream.eof())
+	{
+		LOGWARNING(L"Too many parameters when parsing as CColor. Your input: '%s'", Value.c_str());
+		return false;
 	}
 
 	r = values[0]/255.f;

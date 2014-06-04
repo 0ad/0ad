@@ -443,6 +443,9 @@ public:
 	{
 		m_PassabilityCircular = enabled;
 		MakeDirtyAll();
+
+		CMessageObstructionMapShapeChanged msg;
+		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}
 
 	virtual void SetDebugOverlay(bool enabled)

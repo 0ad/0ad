@@ -323,6 +323,19 @@ CMessage* CMessageWaterChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 ////////////////////////////////
 
+jsval CMessageObstructionMapShapeChanged::ToJSVal(ScriptInterface& scriptInterface) const
+{
+	TOJSVAL_SETUP();
+	return OBJECT_TO_JSVAL(obj);
+}
+
+CMessage* CMessageObstructionMapShapeChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+{
+	return new CMessageObstructionMapShapeChanged();
+}
+
+////////////////////////////////
+
 jsval CMessageTerritoriesChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();

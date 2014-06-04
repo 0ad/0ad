@@ -26,6 +26,4 @@ function GetVisibleIdentityClasses(template)
 	return [];
 }
 
-Engine.RegisterGlobal("GetIdentityClasses", GetIdentityClasses);
-Engine.RegisterGlobal("GetVisibleIdentityClasses", GetVisibleIdentityClasses);
 

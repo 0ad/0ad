@@ -99,7 +99,7 @@ bool __ParseString<CClientArea>(const CStrW& Value, CClientArea &Output)
 }
 
 template <>
-bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, float DefaultAlpha)
+bool GUI<int>::ParseColor(const CStrW& Value, CColor &Output, int DefaultAlpha)
 {
 	// First, check our database in g_GUI for pre-defined colors
 	//  If we find anything, we'll ignore DefaultAlpha
@@ -119,7 +119,7 @@ bool __ParseString<CColor>(const CStrW& Value, CColor &Output)
 	if (g_GUI->GetPreDefinedColor(Value.ToUTF8(), Output))
 		return true;
 
-	return Output.ParseString(Value.ToUTF8(), 255.f);
+	return Output.ParseString(Value.ToUTF8());
 }
 
 template <>
