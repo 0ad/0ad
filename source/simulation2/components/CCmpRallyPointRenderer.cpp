@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -277,6 +277,21 @@ public:
 		}
 	}
 
+	virtual void UpdatePosition(u32 rallyPointId, CFixedVector2D pos)
+	{
+		if (rallyPointId >= m_RallyPoints.size())
+			return;
+
+		m_RallyPoints[rallyPointId] = pos;
+
+		UpdateMarkers();
+
+		// Compute a new path for the current, and if existing the next rally point
+		RecomputeRallyPointPath_wrapper(rallyPointId);
+		if (rallyPointId+1 < m_RallyPoints.size())
+			RecomputeRallyPointPath_wrapper(rallyPointId+1);
+	}
+
 	virtual void SetDisplayed(bool displayed)
 	{
 		if (m_Displayed != displayed)
@@ -285,7 +300,7 @@ public:
 
 			// move the markers out of oblivion and back into the real world, or vice-versa
 			UpdateMarkers();
-			
+
 			// Check for changes to the SoD and update the overlay lines accordingly. We need to do this here because this method
 			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred 
 			// while this rally point was not being displayed.
@@ -507,29 +522,27 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 
 		// set rally point flag selection based on player civilization
 		CmpPtr<ICmpOwnership> cmpOwnership(GetEntityHandle());
-		if (cmpOwnership)
-		{
-			player_id_t ownerId = cmpOwnership->GetOwner();
-			if (ownerId != INVALID_PLAYER && (ownerId != previousOwner || m_LastMarkerCount < i))
-			{
-				m_LastOwner = ownerId;
-				CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-				// cmpPlayerManager should not be null as long as this method is called on-demand instead of at Init() time
-				// (we can't rely on component initialization order in Init())
-				if (cmpPlayerManager)
-				{
-					CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
-					if (cmpPlayer)
-					{
-						CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityIds[i]);
-						if (cmpVisualActor)
-						{
-							cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
-						}
-					}
-				}
-			}
-		}
+		if (!cmpOwnership)
+			continue;
+
+		player_id_t ownerId = cmpOwnership->GetOwner();
+		if (ownerId == INVALID_PLAYER || (ownerId == previousOwner && m_LastMarkerCount >= i))
+			continue;
+
+		m_LastOwner = ownerId;
+		CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+		// cmpPlayerManager should not be null as long as this method is called on-demand instead of at Init() time
+		// (we can't rely on component initialization order in Init())
+		if (!cmpPlayerManager)
+			continue;
+
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(ownerId));
+		if (!cmpPlayer)
+			continue;
+
+		CmpPtr<ICmpVisual> cmpVisualActor(GetSimContext(), m_MarkerEntityIds[i]);
+		if (cmpVisualActor)
+			cmpVisualActor->SetUnitEntitySelection(CStrW(cmpPlayer->GetCiv()).ToUTF8());
 	}
 	m_LastMarkerCount = m_RallyPoints.size() - 1;
 }
@@ -1011,7 +1024,7 @@ void CCmpRallyPointRenderer::ReduceSegmentsByVisibility(std::vector<CVector2D>& 
 
 	size_t baseNodeIdx = 0;
 	size_t curNodeIdx = 1;
-	
+
 	float baseNodeY;
 	entity_pos_t baseNodeX;
 	entity_pos_t baseNodeZ;
@@ -1167,10 +1180,9 @@ void CCmpRallyPointRenderer::MergeVisibilitySegments(std::deque<SVisibilitySegme
 		int firstSegmentStartIndex = segments.front().m_StartIndex;
 		ENSURE(firstSegmentStartIndex == 0);
 		ENSURE(!segments[1].IsSinglePoint()); // at this point, the second segment should never be a single-point segment
-		
+
 		segments.erase(segments.begin());
 		segments.front().m_StartIndex = firstSegmentStartIndex;
-
 	}
 
 	// check to see if the last segment needs to be merged with its neighbour

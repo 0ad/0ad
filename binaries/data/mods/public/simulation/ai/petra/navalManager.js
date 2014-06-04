@@ -459,7 +459,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 				if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
 				{
 					var sea = docks[0].getMetadata(PlayerID, "sea");
-					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "sea" : sea }));
+					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "sea": sea }));
 					break;
 				}
 			}

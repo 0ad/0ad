@@ -348,7 +348,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	var self = this;
 
 	// Check that the units recovered on the previous turn have been reloaded
-	for each (var recov in this.recovered)
+	for (var recov of this.recovered)
 	{
 		var ent = gameState.getEntityById(recov.entId);
 		if (!ent)  // entity destroyed
@@ -383,7 +383,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 
 	// Check that the units unloaded on the previous turn have been really unloaded
 	var shipsToMove = {};
-	for each (var entId in this.unloaded)
+	for (var entId of this.unloaded)
 	{
 		var ent = gameState.getEntityById(entId);
 		if (!ent)  // entity destroyed

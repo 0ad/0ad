@@ -544,6 +544,9 @@ void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& i
 		// Corpses shouldn't display silhouettes (especially since they're often half underground)
 		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
 			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
+
+		// Corpses should remain visible in fog-of-war
+		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Vision></Entity>");
 	}
 }
 
