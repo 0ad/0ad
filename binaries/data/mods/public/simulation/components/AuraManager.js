@@ -27,7 +27,7 @@ AuraManager.prototype.ensureExists = function(name, value, id, key, defaultData)
 
 	if (!this[name][value][id][key])
 		this[name][value][id][key] = [];
-}
+};
 
 AuraManager.prototype.ApplyBonus = function(value, ent, data, key)
 {
