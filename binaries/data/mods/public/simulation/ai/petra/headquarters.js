@@ -889,7 +889,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		return [-1, -1, -1];
 
 	// obstruction map
-	var obstructions = m.createObstructionMap(gameState, 0);
+	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
 	var width = this.territoryMap.width;
@@ -906,8 +906,10 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 			continue;
 		if (obstructions.map[j] <= radius)  // check room around
 			continue;
-
 		var index = gameState.ai.accessibility.landPassMap[j];
+		if (!this.allowedRegions[index])
+			continue;
+
 		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
 		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		// checking distances to other markets
@@ -1445,9 +1447,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 				continue;
 			var distmin = Math.min();
 			var baseID = undefined;
-			var ix = j%width;
-			var iy = Math.floor(j/width);
-			var pos = [ix+0.5, iy+0.5];
+			var pos = [j%width+0.5, Math.floor(j/width)+0.5];
 			pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 			for each (var base in this.baseManagers)
 			{

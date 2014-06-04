@@ -70,7 +70,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
 	{
 		// try to place it a bit inside the land if possible
-		for (var d = -10; d <= 0; d += 2)
+		for (var d = -10; d <= 2; d += 2)
 			builders[0].construct(this.type, pos.x+d*Math.sin(pos.angle), pos.z+d*Math.cos(pos.angle), pos.angle, this.metadata);
 	}
 	else if (pos.x == pos.xx && pos.z == pos.zz)
@@ -87,7 +87,11 @@ m.ConstructionPlan.prototype.start = function(gameState)
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
 m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
+
 	var template = gameState.getTemplate(this.type);
+
+	if (template.buildCategory() === "Dock")
+		return this.findDockPosition(gameState);
 
 	if (!this.position)
 	{
@@ -132,8 +136,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// First, find all tiles that are far enough away from obstructions:
 
 	var obstructionMap = m.createObstructionMap(gameState, 0, template);
-	if (template.buildCategory() !== "Dock")
-		obstructionMap.expandInfluences();
+	obstructionMap.expandInfluences();
 
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
 
@@ -256,8 +259,6 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop")
 		|| this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
 		radius = Math.floor(template.obstructionRadius() / cellSize) + 3;
-	else if (template.buildCategory() === "Dock")
-		radius = Math.ceil(template.obstructionRadius() / cellSize);   // not used
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
 		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
 	else
@@ -290,39 +291,156 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	else
 		var secondBest = [x,z];
 
+	// default angle = 3*Math.PI/4;	
+	return { "x": x, "z": z, "angle": 3*Math.PI/4, "xx": secondBest[0], "zz": secondBest[1],
+		"base": gameState.ai.HQ.basesMap.map[bestIdx] };
+};
+
+// Placement of buildings with Dock build category
+// TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
+m.ConstructionPlan.prototype.findDockPosition = function(gameState)
+{
+	var template = gameState.getTemplate(this.type);
+
+	var cellSize = gameState.cellSize; // size of each tile
+
+	// First, find all tiles that are far enough away from obstructions:
+
+	var obstructionMap = m.createObstructionMap(gameState, 0, template);
+	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
+
+	// Compute each tile's closeness to friendly structures:
+
+	var friendlyTiles = new API3.Map(gameState.sharedScript);
+	
+	if (this.position)	// If a position was specified then place the building as close to it as possible
+	{
+		var x = Math.floor(this.position[0] / cellSize);
+		var z = Math.floor(this.position[1] / cellSize);
+		friendlyTiles.addInfluence(x, z, 255);
+	}
+	else	// No position was specified so try and find a sensible place to build
+	{
+		// give a small > 0 level as the result of addInfluence is constrained to be > 0
+		// if we really need houses (i.e. townPhasing without enough village building), do not apply these constraints
+		if (this.metadata && this.metadata.base !== undefined)
+		{
+			var base = this.metadata.base;
+			for (var j = 0; j < friendlyTiles.map.length; ++j)
+				if (gameState.ai.HQ.basesMap.map[j] === base)
+					friendlyTiles.map[j] = 45;
+		}
+		else
+		{
+			for (var j = 0; j < friendlyTiles.map.length; ++j)
+				if (gameState.ai.HQ.basesMap.map[j] !== 0)
+					friendlyTiles.map[j] = 45;
+		}
+
+		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
+		{
+			gameState.getOwnStructures().forEach(function(ent) {
+				var pos = ent.position();
+				var x = Math.round(pos[0] / cellSize);
+				var z = Math.round(pos[1] / cellSize);
+
+				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
+				{
+					if (template.hasClass("Field"))
+						friendlyTiles.addInfluence(x, z, 20, 50);
+					else // If this is not a field add a negative influence because we want to leave this area for fields
+						friendlyTiles.addInfluence(x, z, 20, -20);
+				}
+				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
+					friendlyTiles.addInfluence(x, z, 30, -50);
+				else if (template.hasClass("Military"))
+					friendlyTiles.addInfluence(x, z, 10, -40);
+			});
+		}
+	}
+
+	// requires to be inside our territory, and inside our base territory if required
+	// and if our first market, put it on border if possible to maximize distance with next market
+	var favorBorder = template.hasClass("BarterMarket");
+	var disfavorBorder = (template.buildCategory() === "Dock");
+	var preferredBase = (this.metadata && this.metadata.preferredBase);
+	if (this.metadata && this.metadata.base !== undefined)
+	{
+		var base = this.metadata.base;
+		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		{
+			if (gameState.ai.HQ.basesMap.map[j] !== base)
+				friendlyTiles.map[j] = 0;
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
+				friendlyTiles.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+				friendlyTiles.map[j] += 10;
+		}
+	}
+	else
+	{
+		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		{
+			if (gameState.ai.HQ.basesMap.map[j] === 0)
+				friendlyTiles.map[j] = 0;
+			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
+				friendlyTiles.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+				friendlyTiles.map[j] += 10;
+
+			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
+				friendlyTiles.map[j] += 200;
+		}
+	}
+
+	var radius = 1;    // not used
+	
+	if (bestVal === undefined || bestVal === -1)
+	{
+		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
+		var bestIdx = bestTile[0];
+		var bestVal = bestTile[1];
+	}
+
+	if (bestVal <= 0)
+		return false;
+
+	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
+	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
+
+	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
+		var secondBest = obstructionMap.findLowestNeighbor(x,z);
+	else
+		var secondBest = [x,z];
+
 	// Needed for dock placement whose position will be changed
 	var access = gameState.ai.accessibility.getAccessValue([x, z]);
 
 	// for Dock placement, we need to improve the position of the building as the position given here
 	// is only the position on the shore, while the need the position of the center of the building
 	// We also need to find the angle of the building
-	if (template.buildCategory() === "Dock")
-	{
-		var angle = this.getDockAngle(gameState, template, x, z);
-		if (!angle)
-			return false;
-		if (template.get("Obstruction") && template.get("Obstruction/Static")) 
-			var radius = (+template.get("Obstruction/Static/@depth"))/2;
-		else if (template.get("Obstruction") && template.get("Obstruction/Unit"))
-			var radius = +template.get("Obstruction/Unit/@radius");
-		else
-		{
-			warn("Error: try to place a building without obstruction " + this.type);
-			var radius = 0;
-		}
-		// Position of the center of the building
-		x = x + radius*Math.sin(angle);
-		z = z + radius*Math.cos(angle);
-	}
+	var angle = this.getDockAngle(gameState, template, x, z);
+	if (!angle)
+		return false;
+	if (template.get("Obstruction") && template.get("Obstruction/Static")) 
+		var radius = (+template.get("Obstruction/Static/@depth"))/2;
+	else if (template.get("Obstruction") && template.get("Obstruction/Unit"))
+		var radius = +template.get("Obstruction/Unit/@radius");
 	else
-		var angle = 3*Math.PI/4;
+	{
+		warn("Error: try to place a building without obstruction " + this.type);
+		var radius = 0;
+	}
+	// Position of the center of the building
+	x = x + radius*Math.sin(angle);
+	z = z + radius*Math.cos(angle);
 
 	// default angle = 3*Math.PI/4;	
 	return { "x": x, "z": z, "angle": angle, "xx": secondBest[0], "zz": secondBest[1],
 		"base": gameState.ai.HQ.basesMap.map[bestIdx], "access": access };
 };
 
-// Algorithm taken from the function GetDockAngle in helpers/Commands.j
+// Algorithm taken from the function GetDockAngle in helpers/Commands.js
 m.ConstructionPlan.prototype.getDockAngle = function(gameState, template, x, z)
 {
 	var radius = template.obstructionRadius();
