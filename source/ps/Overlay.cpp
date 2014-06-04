@@ -34,7 +34,7 @@ Overlay.cpp
  */
 bool CColor::ParseString(const CStr8& Value, int DefaultAlpha)
 {
-	unsigned int NUM_VALS= 4;
+	const unsigned int NUM_VALS = 4;
 	int values[NUM_VALS] = { 0, 0, 0, DefaultAlpha };
 	std::stringstream stream;
 	stream.str(Value);
