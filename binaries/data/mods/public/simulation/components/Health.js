@@ -45,7 +45,7 @@ Health.prototype.Init = function()
 	// (Allowing 0 initial HP would break our death detection code)
 	this.hitpoints = +(this.template.Initial || this.GetMaxHitpoints());
 	this.regenRate = ApplyValueModificationsToEntity("Health/RegenRate", +this.template.RegenRate, this.entity);
-    this.CheckRegenTimer();
+	this.CheckRegenTimer();
 };
 
 //// Interface functions ////
