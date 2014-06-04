@@ -19,6 +19,29 @@ RallyPoint.prototype.AddPosition = function(x, z)
 
 RallyPoint.prototype.GetPositions = function()
 {
+	// Update positions for moving target entities
+	// TODO: If we target an enemy unit we should update its position
+	// as long as it is outside of FoW and SoD.
+	for (var i = 0; i < this.pos.length; i++)
+	{
+		if (!this.data[i].target)
+			continue;
+
+		// Get the actual position of the target entity
+		var cmpPosition = Engine.QueryInterface(this.data[i].target, IID_Position);
+		if (!cmpPosition)
+			continue;
+
+		var targetPosition = cmpPosition.GetPosition2D();
+		if (!targetPosition)
+			continue;
+
+		this.pos[i] = {"x": targetPosition.x, "z": targetPosition.y};
+		var cmpRallyPointRenderer = Engine.QueryInterface(this.entity, IID_RallyPointRenderer);
+		if (cmpRallyPointRenderer)
+			cmpRallyPointRenderer.UpdatePosition(i, targetPosition);
+	}
+
 	return this.pos;
 };
 

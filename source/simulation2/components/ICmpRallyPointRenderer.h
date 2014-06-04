@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,6 +36,9 @@ public:
 	/// Sets the position at which the rally point marker should be displayed.
 	/// Discards all previous positions
 	virtual void SetPosition(CFixedVector2D position) = 0;
+
+	/// Updates the position of one given rally point marker.
+	virtual void UpdatePosition(u32 rallyPointId, CFixedVector2D position) = 0;
 
 	/// Add another position at which a marker should be displayed, connected
 	/// to the previous one.
