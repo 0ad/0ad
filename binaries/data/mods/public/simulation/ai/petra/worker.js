@@ -523,7 +523,6 @@ m.Worker.prototype.startHunting = function(gameState, position)
 			if (gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id])
 			{
 				supply.setMetadata(PlayerID, "inaccessible", true)
-				warn("on a trouve un poulet inaccessible");
 				return;
 			}
 		}
