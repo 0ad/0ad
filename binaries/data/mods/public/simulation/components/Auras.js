@@ -191,20 +191,13 @@ Auras.prototype.Clean = function()
 
 Auras.prototype.GiveMembersWithValidClass = function(auraName, entityList)
 {
-	var validClasses = this.GetClasses(auraName);
+	var match = this.GetClasses(auraName);
 	var r = [];
-	for each (var ent in entityList)
+	for (var ent of entityList)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		var targetClasses = cmpIdentity.GetClassesList();
-		for each (var classCollection in validClasses)
-		{
-			if (classCollection.split(/\s+/).every(function(c) {return targetClasses.indexOf(c) > -1}))
-			{
-				r.push(ent);
-				break;
-			}
-		}
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), match))
+			r.push(ent);
 	}
 	return r;
 }

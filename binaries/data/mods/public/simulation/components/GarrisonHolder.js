@@ -110,10 +110,9 @@ GarrisonHolder.prototype.GetEntities = function()
  * Returns an array of unit classes which can be garrisoned inside this
  * particualar entity. Obtained from the entity's template 
  */
-GarrisonHolder.prototype.GetAllowedClassesList = function()
+GarrisonHolder.prototype.GetAllowedClasses = function()
 {
-	var classes = this.template.List._string;
-	return classes ? classes.split(/\s+/) : [];
+	return this.template.List._string;
 };
 
 /**
@@ -211,17 +210,11 @@ GarrisonHolder.prototype.AllowedToGarrison = function(entity)
 	if (!this.IsGarrisoningAllowed())
 		return false;
 
-	var allowedClasses = this.GetAllowedClassesList();
-	var entityClasses = (Engine.QueryInterface(entity, IID_Identity)).GetClassesList();
-	// Check if the unit is allowed to be garrisoned inside the building
-	for each (var allowedClass in allowedClasses)
-	{
-		if (entityClasses.indexOf(allowedClass) != -1)
-		{
-			return true;
-		}
-	}
-	return false;
+	var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+	var entityClasses = cmpIdentity.GetClassesList();
+	return MatchesClassList(entityClasses, this.template.List._string);
 };
 
 /**

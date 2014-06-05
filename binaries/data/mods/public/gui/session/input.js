@@ -367,12 +367,8 @@ function getActionInfo(action, target)
 					extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
 				if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
 					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
-				var allowedClasses = targetState.garrisonHolder.allowedClasses;
-				for each (var unitClass in entState.identity.classes)
-				{
-					if (allowedClasses.indexOf(unitClass) != -1)
-						return {"possible": true, "tooltip": tooltip};
-				}
+				if (MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
+					return {"possible": true, "tooltip": tooltip};
 			}
 			break;
 		case "setup-trade-route":
