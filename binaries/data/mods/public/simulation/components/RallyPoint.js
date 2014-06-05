@@ -36,7 +36,7 @@ RallyPoint.prototype.GetPositions = function()
 		if (!targetPosition)
 			continue;
 
-		if (this.pos[i].x == targetPosition.x AND this.pos[i].z == targetPosition.y)
+		if (this.pos[i].x == targetPosition.x && this.pos[i].z == targetPosition.y)
 			continue;
 
 		this.pos[i] = {"x": targetPosition.x, "z": targetPosition.y};
