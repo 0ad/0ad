@@ -798,7 +798,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						var totalCost = 0;
 						for each (var resource in neededResources)
 							totalCost += resource;
-						var alpha = 50 + totalCost/10;
+						var alpha = 50 + Math.round(totalCost/10);
 						alpha = alpha > 125 ? 125 : alpha;
 						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 					}
@@ -833,7 +833,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 							var totalCost = 0;
 							for each (var resource in neededResources)
 								totalCost += resource;
-							var alpha = 50 + totalCost/10;
+							var alpha = 50 + Math.round(totalCost/10);
 							alpha = alpha > 125 ? 125 : alpha;
 							affordableMask1.sprite = "colour: 255 0 0 " + (alpha);
 						}
@@ -883,7 +883,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 							var totalCost = 0;
 							for each (var resource in neededResources)
 								totalCost += resource;
-							var alpha = 50 + totalCost/10;
+							var alpha = 50 + Math.round(totalCost/10);
 							alpha = alpha > 125 ? 125 : alpha;
 							affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 						}
