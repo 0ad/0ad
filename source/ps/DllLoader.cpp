@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,7 +22,6 @@
 #include "lib/timer.h"
 #include "lib/posix/posix_dlfcn.h"
 #include "ps/CStr.h"
-#include "ps/CLogger.h"
 
 #if OS_MACOSX
 # include "lib/sysdep/os/osx/osx_bundle.h"
@@ -111,9 +110,9 @@ static CStr GenerateFilename(const CStr& name, const CStr& suffix, const CStr& e
 // @return valid handle or 0
 static void* LoadAnyVariant(const CStr& name, std::stringstream& errors)
 {
-	for(size_t idxSuffix = 0; idxSuffix < ARRAY_SIZE(suffixes); idxSuffix++)
+	for (size_t idxSuffix = 0; idxSuffix < ARRAY_SIZE(suffixes); idxSuffix++)
 	{
-		for(size_t idxExtension = 0; idxExtension < ARRAY_SIZE(extensions); idxExtension++)
+		for (size_t idxExtension = 0; idxExtension < ARRAY_SIZE(extensions); idxExtension++)
 		{
 			CStr filename = GenerateFilename(name, suffixes[idxSuffix], extensions[idxExtension]);
 
@@ -122,7 +121,7 @@ static void* LoadAnyVariant(const CStr& name, std::stringstream& errors)
 			// it is safer and matches the Windows load behavior.
 			const int flags = RTLD_LOCAL|RTLD_NOW;
 			void* handle = dlopen(filename.c_str(), flags);
-			if(handle)
+			if (handle)
 				return handle;
 			else
 				errors << "dlopen(" << filename << ") failed: " << dlerror() << "; ";
@@ -133,8 +132,8 @@ static void* LoadAnyVariant(const CStr& name, std::stringstream& errors)
 }
 
 
-DllLoader::DllLoader(const char* name)
-	: m_Name(name), m_Handle(0)
+DllLoader::DllLoader(const char* name, CLogger::ELogMethod loadErrorLogMethod)
+	: m_Name(name), m_Handle(0), m_LoadErrorLogMethod(loadErrorLogMethod)
 {
 }
 
@@ -159,9 +158,9 @@ bool DllLoader::LoadDLL()
 
 		std::stringstream errors;
 		m_Handle = LoadAnyVariant(m_Name, errors);
-		if(!m_Handle)	// (only report errors if nothing worked)
+		if (!m_Handle)	// (only report errors if nothing worked)
 		{
-			LOGERROR(L"DllLoader: %hs", errors.str().c_str());
+			LogLoadError(errors.str().c_str());
 			m_Handle = HANDLE_UNAVAILABLE;
 		}
 	}
@@ -171,7 +170,7 @@ bool DllLoader::LoadDLL()
 
 void DllLoader::Unload()
 {
-	if(!IsLoaded())
+	if (!IsLoaded())
 		return;
 
 	dlclose(m_Handle);
@@ -180,7 +179,7 @@ void DllLoader::Unload()
 
 void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 {
-	if(!IsLoaded())
+	if (!IsLoaded())
 	{
 		debug_warn(L"Loading symbol from invalid DLL");
 		*fptr = NULL;
@@ -188,8 +187,24 @@ void DllLoader::LoadSymbolInternal(const char* name, void** fptr) const
 	}
 
 	*fptr = dlsym(m_Handle, name);
-	if(*fptr == NULL)
+	if (*fptr == NULL)
 		throw PSERROR_DllLoader_SymbolNotFound();
+}
+
+void DllLoader::LogLoadError(const char* errors)
+{
+	switch (m_LoadErrorLogMethod)
+	{
+	case CLogger::Normal:
+		LOGMESSAGE(L"DllLoader: %hs", errors);
+		break;
+	case CLogger::Warning:
+		LOGWARNING(L"DllLoader: %hs", errors);
+		break;
+	case CLogger::Error:
+		LOGERROR(L"DllLoader: %hs", errors);
+		break;
+	}
 }
 
 void DllLoader::OverrideLibdir(const char* libdir)

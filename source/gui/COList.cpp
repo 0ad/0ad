@@ -1,3 +1,19 @@
+/* Copyright (C) 2014 Wildfire Games.
+ * This file is part of 0 A.D.
+ *
+ * 0 A.D. is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * 0 A.D. is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "precompiled.h"
 #include "COList.h"
 #include "i18n/L10n.h"
@@ -16,8 +32,6 @@ void COList::SetupText()
 
 	CGUIList *pList;
 	GUI<CGUIList>::GetSettingPointer(this, "list_name", pList);
-
-	//ENSURE(m_GeneratedTexts.size()>=1);
 
 	m_ItemsYPositions.resize( pList->m_Items.size()+1 );
 
@@ -38,9 +52,7 @@ void COList::SetupText()
 		// TODO Gee: (2004-08-14) Don't define standard like this. Do it with the default style.
 		font = L"default";
 
-	//CGUIString caption;
 	bool scrollbar;
-	//GUI<CGUIString>::GetSetting(this, "caption", caption);
 	GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 
 	float width = GetListRect().GetWidth();
@@ -85,9 +97,6 @@ void COList::SetupText()
 
 	m_ItemsYPositions[pList->m_Items.size()] = buffered_y;
 
-	//if (! scrollbar)
-	//	CalculateTextPosition(m_CachedActualSize, m_TextPos, *m_GeneratedTexts[0]);
-
 	// Setup scrollbar
 	if (scrollbar)
 	{
@@ -110,14 +119,6 @@ CRect COList::GetListRect() const
 void COList::HandleMessage(SGUIMessage &Message)
 {
 	CList::HandleMessage(Message);
-//	switch (Message.type)
-//	{
-//	case GUIM_SETTINGS_UPDATED:
-//		if (Message.value.Find("list_") != -1)
-//		{
-//			SetupText();
-//		}
-//	}
 }
 
 bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile)

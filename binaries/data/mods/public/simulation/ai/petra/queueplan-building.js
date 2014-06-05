@@ -448,7 +448,6 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, template, x, z)
 		return false;
 
 	var pos = gameState.ai.accessibility.gamePosToMapPos([x, z]);
-	var pos = gameState.ai.accessibility.gamePosToMapPos(pos);
 	var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 	var seaRef = gameState.ai.accessibility.navalPassMap[j];
 	const numPoints = 16;

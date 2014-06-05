@@ -273,7 +273,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 	{
 		ret.garrisonHolder = {
 			"entities": cmpGarrisonHolder.GetEntities(),
-			"allowedClasses": cmpGarrisonHolder.GetAllowedClassesList(),
+			"allowedClasses": cmpGarrisonHolder.GetAllowedClasses(),
 			"capacity": cmpGarrisonHolder.GetCapacity(),
 			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
 		};

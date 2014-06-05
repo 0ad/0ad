@@ -225,19 +225,19 @@ function getStanceDisplayName(name)
 	switch(name)
 	{
 		case "violent":
-			displayName = translate("Violent");
+			displayName = translateWithContext("stance", "Violent");
 			break;
 		case "aggressive":
-			displayName = translate("Aggressive");
+			displayName = translateWithContext("stance", "Aggressive");
 			break;
 		case "passive":
-			displayName = translate("Passive");
+			displayName = translateWithContext("stance", "Passive");
 			break;
 		case "defensive":
-			displayName = translate("Defensive");
+			displayName = translateWithContext("stance", "Defensive");
 			break;
 		case "standground":
-			displayName = translate("Standground");
+			displayName = translateWithContext("stance", "Standground");
 			break;
 		default:
 			warn(sprintf("Internationalization: Unexpected stance found with code ‘%(stance)s’. This stance must be internationalized.", { stance: name }));
@@ -798,7 +798,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 						var totalCost = 0;
 						for each (var resource in neededResources)
 							totalCost += resource;
-						var alpha = 50 + totalCost/10;
+						var alpha = 50 + Math.round(totalCost/10);
 						alpha = alpha > 125 ? 125 : alpha;
 						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 					}
@@ -833,7 +833,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 							var totalCost = 0;
 							for each (var resource in neededResources)
 								totalCost += resource;
-							var alpha = 50 + totalCost/10;
+							var alpha = 50 + Math.round(totalCost/10);
 							alpha = alpha > 125 ? 125 : alpha;
 							affordableMask1.sprite = "colour: 255 0 0 " + (alpha);
 						}
@@ -883,7 +883,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 							var totalCost = 0;
 							for each (var resource in neededResources)
 								totalCost += resource;
-							var alpha = 50 + totalCost/10;
+							var alpha = 50 + Math.round(totalCost/10);
 							alpha = alpha > 125 ? 125 : alpha;
 							affordableMask.sprite = "colour: 255 0 0 " + (alpha);
 						}

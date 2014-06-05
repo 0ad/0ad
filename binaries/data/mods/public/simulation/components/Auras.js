@@ -27,9 +27,13 @@ Auras.prototype.Init = function()
 	this.templateName = cmpTemplateManager.GetCurrentTemplateName(this.entity);
 	var auraNames = this.GetAuraNames();
 	this.auras = {};
+	this.affectedPlayers = {};
 	var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	for each (var name in auraNames)
+	{
 		this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
+		this.affectedPlayers[name] = []; // will be calculated on ownership change
+	}
 };
 
 Auras.prototype.GetAuraNames = function()
@@ -58,17 +62,22 @@ Auras.prototype.GetModifications = function(name)
 
 Auras.prototype.GetAffectedPlayers = function(name)
 {
+	return this.affectedPlayers[name];
+};
+
+Auras.prototype.CalculateAffectedPlayers = function(name)
+{
 	if (this.auras[name].affectedPlayers)
 		var affectedPlayers = this.auras[name].affectedPlayers;
 	else
 		var affectedPlayers = ["Player"];
 
-	var ret = [];
+	this.affectedPlayers[name] = [];
 
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
 	if (!cmpPlayer)
-		return ret;
+		return;
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
@@ -79,12 +88,11 @@ Auras.prototype.GetAffectedPlayers = function(name)
 		{
 			if (p == "Player" ? cmpPlayer.GetPlayerID() == i : cmpPlayer["Is" + p](i))
 			{
-				ret.push(i);
+				this.affectedPlayers[name].push(i);
 				break;
 			}
 		}
 	}
-	return ret;
 };
 
 Auras.prototype.HasFormationAura = function()
@@ -158,6 +166,9 @@ Auras.prototype.Clean = function()
 
 	for each (var name in auraNames)
 	{
+		// only calculate the affected players on re-applying the bonuses
+		// this makes sure the template bonuses are removed from the correct players
+		this.CalculateAffectedPlayers(name);
 		// initialise range query
 		this[name] = {};
 		this[name].targetUnits = [];
@@ -191,20 +202,13 @@ Auras.prototype.Clean = function()
 
 Auras.prototype.GiveMembersWithValidClass = function(auraName, entityList)
 {
-	var validClasses = this.GetClasses(auraName);
+	var match = this.GetClasses(auraName);
 	var r = [];
-	for each (var ent in entityList)
+	for (var ent of entityList)
 	{
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
-		var targetClasses = cmpIdentity.GetClassesList();
-		for each (var classCollection in validClasses)
-		{
-			if (classCollection.split(/\s+/).every(function(c) {return targetClasses.indexOf(c) > -1}))
-			{
-				r.push(ent);
-				break;
-			}
-		}
+		if (cmpIdentity && MatchesClassList(cmpIdentity.GetClassesList(), match))
+			r.push(ent);
 	}
 	return r;
 }

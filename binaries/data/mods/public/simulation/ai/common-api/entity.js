@@ -380,9 +380,9 @@ m.Template = m.Class({
 
 
 	garrisonableClasses: function() {
-		if (!this.get("GarrisonHolder") || !this.get("GarrisonHolder/List/_string"))
+		if (!this.get("GarrisonHolder"))
 			return undefined;
-		return this.get("GarrisonHolder/List/_string").split(/\s+/);
+		return this.get(this.get("GarrisonHolder/List/_string"));
 	},
 
 	garrisonMax: function() {

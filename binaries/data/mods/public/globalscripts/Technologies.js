@@ -57,17 +57,5 @@ function GetTechModifiedProperty(currentTechModifications, entityTemplateData, p
  */
 function DoesModificationApply(modification, classes)
 {
-	// See if any of the lists of classes matches this entity
-	for (var j in modification.affects)
-	{
-		var hasAllClasses = true;
-		// Check each class in affects is present for the entity
-		for (var k in modification.affects[j])
-			hasAllClasses = hasAllClasses && (classes.indexOf(modification.affects[j][k]) !== -1);
-
-		if (hasAllClasses)
-			return true;
-	}
-
-	return false;
+	return MatchesClassList(classes, modification.affects);
 }

@@ -19,9 +19,9 @@
   </Health>
   <GarrisonHolder>
     <Max>5</Max>
-    <List datatype="tokens">Infantry</List>
+    <List datatype="tokens">Ranged+Infantry</List>
     <EjectHealth>0.1</EjectHealth>
-    <EjectClassesOnDestroy datatype="tokens">Infantry</EjectClassesOnDestroy>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
     <BuffHeal>0</BuffHeal>
     <LoadingRange>2</LoadingRange>
     <VisibleGarrisonPoints>

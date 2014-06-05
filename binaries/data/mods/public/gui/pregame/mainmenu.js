@@ -317,7 +317,7 @@ function pressedScenarioEditorButton()
 	if (Engine.AtlasIsAvailable())
 		Engine.RestartInAtlas();
 	else
-		messageBox(400, 200, translate("The scenario editor is not available or failed to load."), translate("Error"), 2);
+		messageBox(400, 200, translate("The scenario editor is not available or failed to load. See the game logs for additional information."), translate("Error"), 2);
 }
 
 function getLobbyDisabledByBuild()
