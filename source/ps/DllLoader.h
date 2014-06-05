@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 #define INCLUDED_DLLLOADER
 
 #include "ps/Errors.h"
+#include "ps/CLogger.h"
 
 ERROR_GROUP(DllLoader);
 ERROR_TYPE(DllLoader, DllNotLoaded);
@@ -33,8 +34,10 @@ public:
 	 * @param name base name of the library (from which we'll derive
 	 *  "name.dll", "libname_dbg.so", etc). Pointer must remain valid for
 	 *  this object's lifetime (which is fine if you just use a string literal).
+	 * @param loadErrorLogMethod Allows to set the CLogger log level that is
+	 *  used when the DllLoader reports loading errors.
 	 */
-	DllLoader(const char* name);
+	DllLoader(const char* name, CLogger::ELogMethod loadErrorLogMethod = CLogger::Error);
 
 	~DllLoader();
 
@@ -78,8 +81,11 @@ private:
 	// casting from users.
 	void LoadSymbolInternal(const char* name, void** fptr) const;
 
+	void LogLoadError(const char* errors);
+
 	const char* m_Name;
 	void* m_Handle;
+	CLogger::ELogMethod m_LoadErrorLogMethod;
 };
 
 template <typename T>
