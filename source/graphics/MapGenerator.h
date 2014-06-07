@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,7 @@
 
 #include "ps/FileIo.h"
 #include "ps/ThreadUtil.h"
+#include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptInterface.h"
 
 #include <boost/random/linear_congruential.hpp>
@@ -125,6 +126,9 @@ private:
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
 	static void MaybeGC(ScriptInterface::CxPrivate* pCxPrivate);
 	static std::vector<std::string> GetCivData(ScriptInterface::CxPrivate* pCxPrivate);
+	static CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
+	static std::vector<std::string> FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories);
+	static std::vector<std::string> FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories);
 
 	std::set<std::wstring> m_LoadedLibraries;
 	shared_ptr<ScriptInterface::StructuredClone> m_MapData;
@@ -133,6 +137,7 @@ private:
 	ScriptInterface* m_ScriptInterface;
 	VfsPath m_ScriptPath;
 	std::string m_Settings;
+	CTemplateLoader m_TemplateLoader;
 
 // Thread
 	static void* RunThread(void* data);

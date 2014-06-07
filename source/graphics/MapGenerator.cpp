@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -91,6 +91,9 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
+	m_ScriptInterface->RegisterFunction<CParamNode, std::string, CMapGeneratorWorker::GetTemplate>("GetTemplate");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindTemplates>("FindTemplates");
+	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
 
 	// TODO: This code is a bit ugly because we have to ensure that CScriptValRooted gets destroyed before the ScriptInterface.
 	// In the future we should work more with the standard JSAPI types for rooting on the stack, which should avoid such problems.
@@ -218,6 +221,31 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 
 	return data;
 
+}
+
+CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+{
+	// TODO: Find a way to validate templates outside of the simulation.
+	// This should be implemented in TemplateLoader though.
+	
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	const CParamNode& templateRoot = self->m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	if (!templateRoot.IsOk())
+		LOGERROR(L"Invalid template found for '%hs'", templateName.c_str());
+	
+	return templateRoot;
+}
+
+std::vector<std::string> CMapGeneratorWorker::FindTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories)
+{
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, SIMULATION_TEMPLATES);
+}
+
+std::vector<std::string> CMapGeneratorWorker::FindActorTemplates(ScriptInterface::CxPrivate* pCxPrivate, std::string path, bool includeSubdirectories)
+{
+	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	return self->m_TemplateLoader.FindTemplates(path, includeSubdirectories, ACTOR_TEMPLATES);
 }
 
 bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
