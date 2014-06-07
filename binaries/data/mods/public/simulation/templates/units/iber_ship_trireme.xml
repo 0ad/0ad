@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_unit_mechanical_ship_trireme">
+  <Cost>
+    <BuildTime>40</BuildTime>
+  </Cost>
+  <Footprint>
+    <Square width="12.0" depth="36.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <GarrisonHolder>
+    <Max>40</Max>
+  </GarrisonHolder>
+  <Health>
+    <Max>1600</Max>
+  </Health>
+  <Identity>
+    <Civ>iber</Civ>
+    <SpecificName>Ponti</SpecificName>
+    <Tooltip>Classes: Medium Warship Ranged
+Transport many soldiers across the sea.</Tooltip>
+    <History>.</History>
+    <Icon>units/celt_ship_trireme.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Unit radius="6.0"/>
+  </Obstruction>
+  <UnitMotion>
+    <WalkSpeed>12.5</WalkSpeed>
+  </UnitMotion>
+  <VisualActor>
+    <Actor>structures/iberians/warship.xml</Actor>
+  </VisualActor>
+</Entity>

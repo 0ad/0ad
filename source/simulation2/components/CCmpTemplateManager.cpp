@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,14 +22,11 @@
 
 #include "simulation2/MessageTypes.h"
 
+#include "ps/TemplateLoader.h"
+
 #include "lib/utf8.h"
 #include "ps/CLogger.h"
-#include "ps/Filesystem.h"
 #include "ps/XML/RelaxNG.h"
-#include "ps/XML/Xeromyces.h"
-
-static const wchar_t TEMPLATE_ROOT[] = L"simulation/templates/";
-static const wchar_t ACTOR_ROOT[] = L"art/actors/";
 
 class CCmpTemplateManager : public ICmpTemplateManager
 {
@@ -136,17 +133,14 @@ public:
 	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName);
 
 private:
+	// Template loader
+	CTemplateLoader m_templateLoader;
+
 	// Entity template XML validator
 	RelaxNGValidator m_Validator;
 
 	// Disable validation, for test cases
 	bool m_DisableValidation;
-
-	// Map from template name (XML filename or special |-separated string) to the most recently
-	// loaded non-broken template data. This includes files that will fail schema validation.
-	// (Failed loads won't remove existing entries under the same name, so we behave more nicely
-	// when hotloading broken files)
-	std::map<std::string, CParamNode> m_TemplateFileData;
 
 	// Map from template name to schema validation status.
 	// (Some files, e.g. inherited parent templates, may not be valid themselves but we still need to load
@@ -157,31 +151,6 @@ private:
 	// again for deserialization.
 	// TODO: should store player ID etc.
 	std::map<entity_id_t, std::string> m_LatestTemplates;
-
-	// (Re)loads the given template, regardless of whether it exists already,
-	// and saves into m_TemplateFileData. Also loads any parents that are not yet
-	// loaded. Returns false on error.
-	// @param templateName XML filename to load (not a |-separated string)
-	bool LoadTemplateFile(const std::string& templateName, int depth);
-
-	// Constructs a standard static-decorative-object template for the given actor
-	void ConstructTemplateActor(const std::string& actorName, CParamNode& out);
-
-	// Copy the non-interactive components of an entity template (position, actor, etc) into
-	// a new entity template
-	void CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse);
-
-	// Copy the components of an entity necessary for a construction foundation
-	// (position, actor, armour, health, etc) into a new entity template
-	void CopyFoundationSubset(CParamNode& out, const CParamNode& in);
-
-	// Copy the components of an entity necessary for a non-foundation construction entity
-	// into a new entity template
-	void CopyConstructionSubset(CParamNode& out, const CParamNode& in);
-
-	// Copy the components of an entity necessary for a gatherable resource
-	// into a new entity template
-	void CopyResourceSubset(CParamNode& out, const CParamNode& in);
 };
 
 REGISTER_COMPONENT_TYPE(TemplateManager)
@@ -201,19 +170,16 @@ const CParamNode* CCmpTemplateManager::LoadTemplate(entity_id_t ent, const std::
 
 const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 {
-	// Load the template if necessary
-	if (!LoadTemplateFile(templateName, 0))
-	{
-		LOGERROR(L"Failed to load entity template '%hs'", templateName.c_str());
+	const CParamNode& fileData = m_templateLoader.GetTemplateFileData(templateName);
+	if (!fileData.IsOk())
 		return NULL;
-	}
 
 	if (!m_DisableValidation)
 	{
 		// Compute validity, if it's not computed before
 		if (m_TemplateSchemaValidity.find(templateName) == m_TemplateSchemaValidity.end())
 		{
-			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(wstring_from_utf8(templateName), m_TemplateFileData[templateName].ToXML());
+			m_TemplateSchemaValidity[templateName] = m_Validator.Validate(wstring_from_utf8(templateName), fileData.ToXML());
 
 			// Show error on the first failure to validate the template
 			if (!m_TemplateSchemaValidity[templateName])
@@ -224,7 +190,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 			return NULL;
 	}
 
-	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
+	const CParamNode& templateRoot = fileData.GetChild("Entity");
 	if (!templateRoot.IsOk())
 	{
 		// The validator should never let this happen
@@ -237,14 +203,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 
 const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(std::string templateName)
 {
-	// Load the template if necessary
-	if (!LoadTemplateFile(templateName, 0))
-	{
-		LOGERROR(L"Failed to load entity template '%hs'", templateName.c_str());
-		return NULL;
-	}
-
-	const CParamNode& templateRoot = m_TemplateFileData[templateName].GetChild("Entity");
+	const CParamNode& templateRoot = m_templateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
 		return NULL;
 
@@ -267,218 +226,10 @@ std::string CCmpTemplateManager::GetCurrentTemplateName(entity_id_t ent)
 	return it->second;
 }
 
-bool CCmpTemplateManager::LoadTemplateFile(const std::string& templateName, int depth)
-{
-	// If this file was already loaded, we don't need to do anything
-	if (m_TemplateFileData.find(templateName) != m_TemplateFileData.end())
-		return true;
-
-	// Handle infinite loops more gracefully than running out of stack space and crashing
-	if (depth > 100)
-	{
-		LOGERROR(L"Probable infinite inheritance loop in entity template '%hs'", templateName.c_str());
-		return false;
-	}
-
-	// Handle special case "actor|foo"
-	if (templateName.find("actor|") == 0)
-	{
-		ConstructTemplateActor(templateName.substr(6), m_TemplateFileData[templateName]);
-		return true;
-	}
-
-	// Handle special case "preview|foo"
-	if (templateName.find("preview|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(8);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], false);
-		return true;
-	}
-
-	// Handle special case "corpse|foo"
-	if (templateName.find("corpse|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(7);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyPreviewSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName], true);
-		return true;
-	}
-
-	// Handle special case "foundation|foo"
-	if (templateName.find("foundation|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(11);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyFoundationSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
-
-	// Handle special case "construction|foo"
-	if (templateName.find("construction|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(13);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyConstructionSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
-
-	// Handle special case "resource|foo"
-	if (templateName.find("resource|") == 0)
-	{
-		// Load the base entity template, if it wasn't already loaded
-		std::string baseName = templateName.substr(9);
-		if (!LoadTemplateFile(baseName, depth+1))
-		{
-			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
-			return false;
-		}
-		// Copy a subset to the requested template
-		CopyResourceSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
-		return true;
-	}
-
-	// Normal case: templateName is an XML file:
-
-	VfsPath path = VfsPath(TEMPLATE_ROOT) / wstring_from_utf8(templateName + ".xml");
-	CXeromyces xero;
-	PSRETURN ok = xero.Load(g_VFS, path);
-	if (ok != PSRETURN_OK)
-		return false; // (Xeromyces already logged an error with the full filename)
-
-	int attr_parent = xero.GetAttributeID("parent");
-	CStr parentName = xero.GetRoot().GetAttributes().GetNamedItem(attr_parent);
-	if (!parentName.empty())
-	{
-		// To prevent needless complexity in template design, we don't allow |-separated strings as parents
-		if (parentName.find('|') != parentName.npos)
-		{
-			LOGERROR(L"Invalid parent '%hs' in entity template '%hs'", parentName.c_str(), templateName.c_str());
-			return false;
-		}
-
-		// Ensure the parent is loaded
-		if (!LoadTemplateFile(parentName, depth+1))
-		{
-			LOGERROR(L"Failed to load parent '%hs' of entity template '%hs'", parentName.c_str(), templateName.c_str());
-			return false;
-		}
-
-		CParamNode& parentData = m_TemplateFileData[parentName];
-
-		// Initialise this template with its parent
-		m_TemplateFileData[templateName] = parentData;
-	}
-
-	// Load the new file into the template data (overriding parent values)
-	CParamNode::LoadXML(m_TemplateFileData[templateName], xero, wstring_from_utf8(templateName).c_str());
-
-	return true;
-}
-
-void CCmpTemplateManager::ConstructTemplateActor(const std::string& actorName, CParamNode& out)
-{
-	// Load the base actor template if necessary
-	const char* templateName = "special/actor";
-	if (!LoadTemplateFile(templateName, 0))
-	{
-		LOGERROR(L"Failed to load entity template '%hs'", templateName);
-		return;
-	}
-
-	// Copy the actor template
-	out = m_TemplateFileData[templateName];
-
-	// Initialise the actor's name and make it an Atlas selectable entity.
-	std::wstring actorNameW = wstring_from_utf8(actorName);
-	std::string name = utf8_from_wstring(CParamNode::EscapeXMLString(actorNameW));
-	std::string xml = "<Entity>"
-	                      "<VisualActor><Actor>" + name + "</Actor><ActorOnly/></VisualActor>"
-						  // arbitrary-sized Footprint definition to make actors' selection outlines show up in Atlas
-						  "<Footprint><Circle radius='2.0'/><Height>1.0</Height></Footprint>"
-	                      "<Selectable>"
-	                          "<EditorOnly/>"
-	                          "<Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay>"
-	                      "</Selectable>"
-	                  "</Entity>";
-
-	CParamNode::LoadXMLString(out, xml.c_str(), actorNameW.c_str());
-}
-
-static Status AddToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
-{
-	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
-
-	// Strip the .xml extension
-	VfsPath pathstem = pathname.ChangeExtension(L"");
-	// Strip the root from the path
-	std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT)-1);
-
-	// We want to ignore template_*.xml templates, since they should never be built in the editor
-	if (name.substr(0, 9) == L"template_")
-		return INFO::OK;
-
-	templates.push_back(std::string(name.begin(), name.end()));
-	return INFO::OK;
-}
-
-static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
-{
-	std::vector<std::string>& templates = *(std::vector<std::string>*)cbData;
-
-	// Strip the root from the path
-	std::wstring name = pathname.string().substr(ARRAY_SIZE(ACTOR_ROOT)-1);
-
-	templates.push_back("actor|" + std::string(name.begin(), name.end()));
-	return INFO::OK;
-}
-
 std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActors)
 {
-	// TODO: eventually this should probably read all the template files and look for flags to
-	// determine which should be displayed in the editor (and in what categories etc); for now we'll
-	// just return all the files
-
-	std::vector<std::string> templates;
-
-	Status ok;
-
-	// Find all the normal entity templates first
-	ok = vfs::ForEachFile(g_VFS, TEMPLATE_ROOT, AddToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
-	WARN_IF_ERR(ok);
-
-	if (includeActors)
-	{
-		// Add all the actors too
-		ok = vfs::ForEachFile(g_VFS, ACTOR_ROOT, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
-		WARN_IF_ERR(ok);
-	}
-
-	return templates;
+	ETemplatesType templatesType = includeActors ? ALL_TEMPLATES : SIMULATION_TEMPLATES;
+	return m_templateLoader.FindTemplates("", true, templatesType);
 }
 
 /**
@@ -493,149 +244,4 @@ std::vector<entity_id_t> CCmpTemplateManager::GetEntitiesUsingTemplate(std::stri
 			entities.push_back(it->first);
 	}
 	return entities;
-}
-
-void CCmpTemplateManager::CopyPreviewSubset(CParamNode& out, const CParamNode& in, bool corpse)
-{
-	// We only want to include components which are necessary (for the visual previewing of an entity)
-	// and safe (i.e. won't do anything that affects the synchronised simulation state), so additions
-	// to this list should be carefully considered
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Decay");
-	permittedComponentTypes.insert("BuildRestrictions");
-
-	// Need these for the Actor Viewer:
-	permittedComponentTypes.insert("Attack");
-	permittedComponentTypes.insert("UnitMotion");
-	permittedComponentTypes.insert("Sound");
-
-	// (This set could be initialised once and reused, but it's not worth the effort)
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// Disable the Obstruction component (if there is one) so it doesn't affect pathfinding
-	// (but can still be used for testing this entity for collisions against others)
-	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><Active>false</Active></Obstruction></Entity>");
-
-	if (!corpse)
-	{
-		// Previews should not cast shadows
-		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
-
-		// Previews should always be visible in fog-of-war/etc
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible></Vision></Entity>");
-	}
-
-	if (corpse)
-	{
-		// Corpses should include decay components and un-inactivate them
-		if (out.GetChild("Entity").GetChild("Decay").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><Decay><Inactive disable=''/></Decay></Entity>");
-
-		// Corpses shouldn't display silhouettes (especially since they're often half underground)
-		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
-
-		// Corpses should remain visible in fog-of-war
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Vision></Entity>");
-	}
-}
-
-void CCmpTemplateManager::CopyFoundationSubset(CParamNode& out, const CParamNode& in)
-{
-	// TODO: this is all kind of yucky and hard-coded; it'd be nice to have a more generic
-	// extensible scriptable way to define these subsets
-
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("BuildRestrictions");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Armour");
-	permittedComponentTypes.insert("Health");
-	permittedComponentTypes.insert("StatusBars");
-	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("Decay");
-	permittedComponentTypes.insert("Cost");
-	permittedComponentTypes.insert("Sound");
-	permittedComponentTypes.insert("Vision");
-	permittedComponentTypes.insert("AIProxy");
-	permittedComponentTypes.insert("RallyPoint");
-	permittedComponentTypes.insert("RallyPointRenderer");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-
-	// Switch the actor to foundation mode
-	CParamNode::LoadXMLString(out, "<Entity><VisualActor><Foundation/></VisualActor></Entity>");
-
-	// Add the Foundation component, to deal with the construction process
-	CParamNode::LoadXMLString(out, "<Entity><Foundation/></Entity>");
-
-	// Initialise health to 1
-	CParamNode::LoadXMLString(out, "<Entity><Health><Initial>1</Initial></Health></Entity>");
-
-	// Foundations shouldn't initially block unit movement
-	if (out.GetChild("Entity").GetChild("Obstruction").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Obstruction><DisableBlockMovement>true</DisableBlockMovement><DisableBlockPathfinding>true</DisableBlockPathfinding></Obstruction></Entity>");
-
-	// Don't provide population bonuses yet (but still do take up population cost)
-	if (out.GetChild("Entity").GetChild("Cost").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Cost><PopulationBonus>0</PopulationBonus></Cost></Entity>");
-
-	// Foundations should be visible themselves in fog-of-war if their base template is,
-	// but shouldn't have any vision range
-	if (out.GetChild("Entity").GetChild("Vision").IsOk())
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range></Vision></Entity>");
-}
-
-void CCmpTemplateManager::CopyConstructionSubset(CParamNode& out, const CParamNode& in)
-{
-	// Currently used for buildings rising during construction
-	// Mostly serves to filter out components like Vision, UnitAI, etc.
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
-}
-
-
-void CCmpTemplateManager::CopyResourceSubset(CParamNode& out, const CParamNode& in)
-{
-	// Currently used for animals which die and leave a gatherable corpse.
-	// Mostly serves to filter out components like Vision, UnitAI, etc.
-	std::set<std::string> permittedComponentTypes;
-	permittedComponentTypes.insert("Ownership");
-	permittedComponentTypes.insert("Position");
-	permittedComponentTypes.insert("VisualActor");
-	permittedComponentTypes.insert("Identity");
-	permittedComponentTypes.insert("Obstruction");
-	permittedComponentTypes.insert("Minimap");
-	permittedComponentTypes.insert("ResourceSupply");
-	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("Footprint");
-	permittedComponentTypes.insert("StatusBars");
-	permittedComponentTypes.insert("OverlayRenderer");
-	permittedComponentTypes.insert("Sound");
-	permittedComponentTypes.insert("AIProxy");
-
-	CParamNode::LoadXMLString(out, "<Entity/>");
-	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
 }

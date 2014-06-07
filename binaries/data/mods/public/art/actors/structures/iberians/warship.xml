@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <float/>
+  <group>
+    <variant frequency="100" name="ship mesh">
+      <mesh>structural/celt_warship.dae</mesh>
+      <props>
+        <prop actor="props/structures/celts/warship_sail.xml" attachpoint="root"/>
+        <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+      </props>
+      <textures><texture file="structural/celt_ship.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+</actor>
