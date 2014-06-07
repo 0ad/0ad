@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="sail mesh">
+      <mesh>props/celt_warship.dae</mesh>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="sail design - bull">
+      <textures><texture file="props/iber_sail_a.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
