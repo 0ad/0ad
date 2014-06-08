@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,9 +28,6 @@ but much more efficiency (particularly for loading simple data
 classes that don't need much initialisation).
 
 Main limitations:
- * Only handles UTF16 internally. (It's meant to be a feature, but
-   can be detrimental if it's always being converted back to
-   ASCII.)
  * Can't correctly handle mixed text/elements inside elements -
    "<div> <b> Text </b> </div>" and "<div> Te<b/>xt </div>" are
    considered identical.
@@ -47,10 +44,10 @@ XMB_File {
 	char Header[4]; // because everyone has one; currently "XMB0"
 
 	int ElementNameCount;
-	ZStrA ElementNames[];
+	ZStr8 ElementNames[];
 
 	int AttributeNameCount;
-	ZStrA AttributeNames[];
+	ZStr8 AttributeNames[];
 
 	XMB_Node Root;
 }
@@ -72,29 +69,20 @@ XMB_Node {
 
 XMB_Attribute {
 	int Name;
-	ZStrW Value;
+	ZStr8 Value;
 }
 
-ZStrA {
+ZStr8 {
 	int Length; // in bytes
-	char* Text; // null-terminated ASCII
-}
-
-ZStrW {
-	int Length; // in bytes
-	char16* Text; // null-terminated UTF16
+	char* Text; // null-terminated UTF8
 }
 
 XMB_Text {
 20)	int Length; // 0 if there's no text, else 4+sizeof(Text) in bytes including terminator
 	// If Length != 0:
 24)	int LineNumber; // for e.g. debugging scripts
-28)	char16* Text; // null-terminated UTF16
+28)	char* Text; // null-terminated UTF8
 }
-
-TODO: since the API was changed to return UTF-8 CStrs,
-it'd make much more sense to store UTF-8 on disk too
-(plus it'd save space).
 
 */
 
@@ -140,7 +128,7 @@ public:
 	XMBElement GetRoot() const;
 
 	
-	// Returns internal ID for a given ASCII element/attribute string.
+	// Returns internal ID for a given element/attribute string.
 	int GetElementID(const char* Name) const;
 	int GetAttributeID(const char* Name) const;
 
@@ -163,7 +151,7 @@ private:
 	const char* m_AttributePointer;
 #endif
 
-	std::string ReadZStrA();
+	std::string ReadZStr8();
 };
 
 class XMBElement
