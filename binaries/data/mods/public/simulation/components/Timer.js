@@ -8,6 +8,7 @@ Timer.prototype.Init = function()
 	this.id = 0;
 	this.time = 0;
 	this.timers = {};
+	this.turnLength = 0;
 };
 
 /**
@@ -17,6 +18,11 @@ Timer.prototype.GetTime = function()
 {
 	return this.time;
 }
+
+Timer.prototype.GetLatestTurnLength = function()
+{
+	return this.turnLength;
+};
 
 /**
  * Create a new timer, which will call the 'funcname' method with arguments (data, lateness)
@@ -62,6 +68,7 @@ Timer.prototype.OnUpdate = function(msg)
 {
 	var dt = Math.round(msg.turnLength * 1000);
 	this.time += dt;
+	this.turnLength = dt;
 
 	// Collect the timers that need to run
 	// (We do this in two stages to avoid deleting from the timer list while
