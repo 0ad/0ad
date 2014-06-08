@@ -710,31 +710,19 @@ function ExtractFormations(ents)
  * Tries to find the best angle to put a dock at a given position
  * Taken from GuiInterface.js
  */
-function GetDockAngle(templateName,x,y)
+function GetDockAngle(template, x, z)
 {
-	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var template = cmpTemplateMgr.GetTemplate(templateName);
-
-	if (template.BuildRestrictions.Category !== "Dock")
-		return undefined;
-
 	var cmpTerrain = Engine.QueryInterface(SYSTEM_ENTITY, IID_Terrain);
 	var cmpWaterManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_WaterManager);
 	if (!cmpTerrain || !cmpWaterManager)
-	{
 		return undefined;
-	}
 	
 	// Get footprint size
 	var halfSize = 0;
 	if (template.Footprint.Square)
-	{
 		halfSize = Math.max(template.Footprint.Square["@depth"], template.Footprint.Square["@width"])/2;
-	}
 	else if (template.Footprint.Circle)
-	{
 		halfSize = template.Footprint.Circle["@radius"];
-	}
 	
 	/* Find direction of most open water, algorithm:
 	 *	1. Pick points in a circle around dock
@@ -754,28 +742,24 @@ function GetDockAngle(templateName,x,y)
 			var angle = (i/numPoints)*2*Math.PI;
 			var d = halfSize*(dist+1);
 			var nx = x - d*Math.sin(angle);
-			var nz = y + d*Math.cos(angle);
+			var nz = z + d*Math.cos(angle);
 			
 			if (cmpTerrain.GetGroundLevel(nx, nz) < cmpWaterManager.GetWaterLevel(nx, nz))
-			{
 				waterPoints.push(i);
-			}
 		}
 		var consec = [];
 		var length = waterPoints.length;
+		if (!length)
+			continue;
 		for (var i = 0; i < length; ++i)
 		{
 			var count = 0;
 			for (var j = 0; j < (length-1); ++j)
 			{
 				if (((waterPoints[(i + j) % length]+1) % numPoints) == waterPoints[(i + j + 1) % length])
-				{
 					++count;
-				}
 				else
-				{
 					break;
-				}
 			}
 			consec[i] = count;
 		}
@@ -792,9 +776,7 @@ function GetDockAngle(templateName,x,y)
 		
 		// If we've found a shoreline, stop searching
 		if (count != numPoints-1)
-		{
 			return -(((waterPoints[start] + consec[start]/2) % numPoints)/numPoints*2*Math.PI);
-		}
 	}
 	return undefined;
 }
@@ -850,9 +832,14 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	}
 	
 	// If it's a dock, get the right angle.
-	var angle = GetDockAngle(cmd.template,cmd.x,cmd.z);
-	if (angle !== undefined)
-		cmd.angle = angle;
+	var cmpTemplateMgr = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var template = cmpTemplateMgr.GetTemplate(cmd.template);
+	if (template.BuildRestrictions.Category === "Dock")
+	{
+		var angle = GetDockAngle(template, cmd.x, cmd.z);
+		if (angle !== undefined)
+			cmd.angle = angle;
+	}
 	
 	// Move the foundation to the right place
 	var cmpPosition = Engine.QueryInterface(ent, IID_Position);
@@ -1599,5 +1586,7 @@ function ReplaceBuildingWith(ent, building)
 
 Engine.RegisterGlobal("GetFormationRequirements", GetFormationRequirements);
 Engine.RegisterGlobal("CanMoveEntsIntoFormation", CanMoveEntsIntoFormation);
+Engine.RegisterGlobal("GetDockAngle", GetDockAngle);
 Engine.RegisterGlobal("ProcessCommand", ProcessCommand);
 Engine.RegisterGlobal("commands", commands);
+
