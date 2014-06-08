@@ -59,14 +59,13 @@
 		<action on="Press">
 			var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
 			Engine.Renderer_SetSilhouettesEnabled(newSetting);
-			Engine.GetGUIObjectByName("silhouettesCheckbox").checked = newSetting;
 		</action>
 	</object>
 
 	<!-- Sky -->
 	<object hotkey="showsky">
 		<action on="Press">
-			var newSetting =  !Engine.Renderer_GetShowSkyEnabled();
+			var newSetting = !Engine.Renderer_GetShowSkyEnabled();
 			Engine.Renderer_SetShowSkyEnabled(newSetting);
 		</action>
 	</object>
