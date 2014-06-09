@@ -1,9 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_archer">
   <Auras>
-    <unit_speed_15>
+    <Aura1>
       <Type>global</Type>
-    </unit_speed_15>
+      <Affects>Unit</Affects>
+      <AffectedPlayers>Player</AffectedPlayers>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
+      </Modifications>
+      <AuraName>Leadership Aura</AuraName>
+      <AuraDescription>+15% Movement Speed of all units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Hack>10</Hack>
@@ -40,7 +47,6 @@
     <SpecificName>Darayavahush I</SpecificName>
     <Icon>units/pers_hero_darius.png</Icon>
 	<Tooltip>Hero Scythe Chariot Archer.
-Hero Aura: "Leadership." +15% Movement Speed of all units.
 Hero Aura: "Merchant of the Empire." Boosts profitablity of trade during his lifetime (TBD).
 Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen.</Tooltip>
     <History>(King, 521 BC - 486 BC) The son of Vishtaspa (Hystaspes), the satrap of Parthia and Hyrcania; a great administrator as well as a decent general, Darius introduced the division of the empire into satrapies and conquered NW India, Thrace and Macedonia. He was called the 'Merchant of the Empire'.</History>

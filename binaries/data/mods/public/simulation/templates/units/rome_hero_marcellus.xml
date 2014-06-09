@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-    <unit_attack_15>
+    <Aura1>
       <Type>range</Type>
-      <Radius>50</Radius>
-    </unit_attack_15>
+      <Radius>60</Radius>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
+        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
+      </Modifications>
+      <AuraName>Sword of Rome Aura</AuraName>
+      <AuraDescription>+5 attack for Roman units within sight of him.</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>rome</Civ>
     <SpecificName>Marcus Claudius Marcellus</SpecificName>
     <Icon>units/rome_hero_marcellus.png</Icon>
     <History>Marcus Claudius Marcellus, 268 - 208 BC, a soldier of the first war with Carthage, a hero of the Second Punic War, and victor over the Gauls at Clastidium. Plutarch describes him as a man of war, strong in body and constitution, with an iron will to fight on. As a general he was immensely capable, standing alongside Scipio Africanus and Claudius Nero as the most effective Roman generals of the entire Second Punic War. In addition to his military achievements Marcellus was a fan of Greek culture and arts, which he enthusiastically promoted in Rome. He met his demise when his men were ambushed near Venusia. In honor of the respect the people held for him, Marcellus was granted the title of "Sword of Rome".</History>
-    <Tooltip>Classes: Hero Melee Cavalry Sword.
-"Sword of Rome" Aura: +15% attack for Roman units within sight of him.
-Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
-Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/romans/hero_marcellus_horse.xml</Actor>

@@ -1,18 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras>
-    <cav_attack_2>
+    <Aura1>
       <Type>range</Type>
       <Radius>60</Radius>
-    </cav_attack_2>
+      <Affects>Cavalry</Affects>
+      <Modifications>
+        <Attack.Ranged.Pierce> <Add>2</Add> </Attack.Ranged.Pierce>
+        <Attack.Melee.Hack> <Add>2</Add> </Attack.Melee.Hack>
+      </Modifications>
+      <AuraName>Lead from the Front Aura</AuraName>
+      <AuraDescription>+2 attack for nearby cavalry units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>pers</Civ>
     <GenericName>Cyrus II The Great</GenericName>
     <SpecificName>Kurush II</SpecificName>
     <Icon>units/pers_hero_cyrus.png</Icon>
-    <Tooltip>Hero Cavalry Lancer.
-Hero Aura: "Lead from the Front." Boosts attack of nearby cavalry units.</Tooltip>
     <History>(559 BC - 530 BC) The son of a Median princess and the ruler of Anshan; justly called the 'Father of the Empire', Cyrus the Great conquered Media, Lydia, Babylonia and Bactria, thereby establishing the Persian Empire. He was also renown as a benevolent conqueror. Technically the second ruler of the Persians by that name, and so appears as Kurush II on his documents and coins. Kurush I was his grandfather.</History>
   </Identity>
   <ProductionQueue>

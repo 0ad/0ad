@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras>
-    <cav_armor_2>
+    <Aura1>
       <Type>global</Type>
-    </cav_armor_2>
+      <Affects>Cavalry</Affects>
+      <Modifications>
+        <Armour.Pierce> <Add>2</Add> </Armour.Pierce>
+        <Armour.Hack> <Add>2</Add> </Armour.Hack>
+        <Armour.Crush> <Add>2</Add> </Armour.Crush>
+      </Modifications>
+      <AuraName>Ilarchès Aura</AuraName>
+      <AuraDescription>All cavalry gains +2 levels of all armour types.</AuraDescription>
+    </Aura1>
   </Auras>
   <Builder>
     <Rate>1.0</Rate>
@@ -15,10 +23,6 @@
     <Civ>sele</Civ>
     <GenericName>Antiochus III "The Great"</GenericName>
     <SpecificName>Antiokhos G' Mégās</SpecificName>
-    <Tooltip>Classes: Hero Melee Cavalry Spear.
-"Ilarchès" Aura: All cavalry trained during his lifetime gain +2 levels of all armour types. These cavalrymen retain their armour bonuses even after Antiochus is dead.
-Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.
-Countered by: Spearmen, Archers, and Elephants.</Tooltip>
     <History>Antiochus inherited a troubled kingdom upon the beginning of his reign. From the verge of collapse he managed to weld back together the empire Seleukus I so hard to found. The rebellious eastern satraps of Bactria and Parthia were brought to heel , temporarily securing his eastern borders. He then turned his attention to mother Greece, attempting to fulfill the dreams of his fathers by invading Greece under the pretext of "liberation". The Achaean League and the Kingdom of Pergamon banded together with the Romans to defeat him at the Battle of Magnesia, forever burying the dream of reuniting Alexander's empire.</History>
     <Icon>units/hele_hero_alexander.png</Icon>
   </Identity>

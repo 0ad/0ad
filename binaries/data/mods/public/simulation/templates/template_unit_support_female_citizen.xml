@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
   <Auras>
-    <male_gatheringRate_10>
+    <Aura1>
       <Type>range</Type>
       <Radius>10</Radius>
-    </male_gatheringRate_10>
-    <male_buildRate_10>
-      <Type>range</Type>
-      <Radius>10</Radius>
-    </male_buildRate_10>
+      <Affects>Citizen+Soldier</Affects>
+      <Modifications>
+        <Builder.Rate> <Multiply>1.1</Multiply> </Builder.Rate>
+        <ResourceGatherer.BaseSpeed> <Multiply>1.1</Multiply> </ResourceGatherer.BaseSpeed>
+      </Modifications>
+      <AuraName>Inspiration Aura</AuraName>
+      <AuraDescription>Nearby males work 10% faster</AuraDescription>
+    </Aura1>
   </Auras>
   <Attack>
     <Melee>
@@ -51,8 +54,6 @@
   <Identity>
     <GenericName>Female Citizen</GenericName>
     <History>Women in the ancient world took on a variety of roles - from leadership (Celts) to servant (Greeks). Women are hard workers, the economic backbone of any civilization. In history, it was typical when all the males (capable of fighting) were killed for the females, children, and elderly to be sold as slaves.</History>
-    <Tooltip>Classes: Citizen Support Worker Female.
-Gather resources, build civic structures, and inspire nearby males to work faster. Bonused at foraging and farming.</Tooltip>
     <Classes datatype="tokens">Worker Female Citizen</Classes>
     <Formations disable=""/>
   </Identity>

@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-    <cav_attack_2>
-      <Type>global</Type>
-    </cav_attack_2>
-    <cav_speed_15>
-      <Type>global</Type>
-    </cav_speed_15>
-  </Auras>
-  <Armour>
-    <Crush>20</Crush>
-  </Armour>
-  <Cost>
-    <Resources>
-      <metal>300</metal>
-    </Resources>
-  </Cost>
+<Entity parent="units/mace_hero_alexander">
   <Identity>
     <Civ>hele</Civ>
-    <GenericName>Alexander The Great</GenericName>
-    <SpecificName>Mégās Aléxandros</SpecificName>
-    <Tooltip>Hero Aura: +2 Cavalry and Champion Cavalry Attack and +15% Speed. "Herocide" attack bonus vs. enemy Heroes.</Tooltip>
-    <History>The most powerful hero of them all - son of Philip II, king of Macedonia (336 BC - 323 BC). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 BC), Issus (333 BC) and Gaugamela (331 BC), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 BC), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia.</History>
-    <Icon>units/hele_hero_alexander.png</Icon>
   </Identity>
-  <Vision>
-    <Range>77</Range>
-  </Vision>
-  <VisualActor>
-    <Actor>units/hellenes/alexander.xml</Actor>
-  </VisualActor>
 </Entity>

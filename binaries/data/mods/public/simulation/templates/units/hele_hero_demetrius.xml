@@ -1,25 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry_pikeman">
-  <Auras>
-    <siege_crush_attack_10>
-      <Type>global</Type>
-    </siege_crush_attack_10>
-    <siege_range_15>
-      <Type>global</Type>
-    </siege_range_15>
-  </Auras>
+<Entity parent="units/mace_hero_demetrius">
   <Identity>
     <Civ>hele</Civ>
-    <GenericName>Demetrius The Besieger</GenericName>
-    <SpecificName>Dēmḗtrios Poliorkḗtēs</SpecificName>
-    <Tooltip>Hero Aura: +15% Range and +10 Crush Attack for Siege Engines.</Tooltip>
-    <History>One of the Diadochi, king of Macedonia (294 BC - 288 BC), Demetrius was renowned as one of the bravest and most able successors of Alexander. As the son of Antigonus I Monophtalmus, he fought and won many important battles early on and was proclaimed king, along with his father, in 306 BC. Losing his Asian possessions after the battle of Ipsus, he later won the Macedonian throne. Fearing lest they should be overpowered by Demetrius, the other Diadochi united against him and defeated him.</History>
-    <Icon>units/hele_hero_demetrius.png</Icon>
   </Identity>
-  <Vision>
-    <Range>66</Range>
-  </Vision>
-  <VisualActor>
-    <Actor>units/hellenes/demetrius.xml</Actor>
-  </VisualActor>
 </Entity>

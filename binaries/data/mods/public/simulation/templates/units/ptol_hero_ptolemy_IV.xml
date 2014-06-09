@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-	<pike_20>
-      <Type>range</Type>
-      <Radius>70</Radius>
-	</pike_20>
+	<Aura1>
+      <Type>global</Type>
+      <Affects>Pike</Affects>
+      <Modifications>
+        <Health.Max> <Multiply>1.40</Multiply> </Health.Max>
+      </Modifications>
+      <AuraName>Raphia Aura</AuraName>
+      <AuraDescription>Egyptian Pikemen have 40% greater health during his lifetime.</AuraDescription>
+	</Aura1>
   </Auras>
   <Builder>
     <Rate>1.0</Rate>
@@ -17,9 +22,6 @@
     <GenericName>Ptolemy IV "Father Loving"</GenericName>
     <SpecificName>Ptolemaios D' Philopater</SpecificName>
     <Classes datatype="tokens">PtolemyIV</Classes>
-    <Tooltip>Classes: Hero Melee Cavalry Swordsman.
-"Raphia" Aura: Egyptian Pikemen have 20% greater stats within vision of him.
-"Juggernaut" Bonus: Build limit increased to 5 for Juggernaut Warships.</Tooltip>
     <History>Ptolemy IV Philopater's reign was inaugurated by the murder of his mother, and he was always under the dominion of favorites, male and female, who indulged his vices and conducted the government as they pleased. Self-interest led his ministers to make serious preparations to meet the attacks of Antiochus III the Great on Coele-Syria including Judea, and the great Egyptian victory of Raphia (217), where Ptolemy himself was present, secured the northern borders of the kingdom for the remainder of his reign. Ptolemy IV is said to have built a giant ship known as the tessarakonteres ("forty"), a huge type of galley. The forty of its name may refer to its number of banks of oars. The current theory is that Ptolemy's ship was an oversize catamaran galley, measuring 128 m 420 ft.</History>
     <Icon>units/mace_hero_philip.png</Icon>
   </Identity>
