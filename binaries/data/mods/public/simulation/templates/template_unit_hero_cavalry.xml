@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry">
+<Entity parent="template_unit_hero">
   <Armour>
     <Hack>6</Hack>
     <Pierce>8</Pierce>
     <Crush>8</Crush>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-    <Charge>
-      <Hack>90.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
-    </Charge>
-  </Attack>
   <Cost>
     <BuildTime>50</BuildTime>
     <Resources>
@@ -31,50 +16,40 @@
   </Cost>
   <Footprint>
     <Circle radius="2.5"/>
-    <Height>3.0</Height>
+    <Height>5.0</Height>
   </Footprint>
   <Health>
     <Max>1500</Max>
   </Health>
   <Identity>
     <GenericName>Hero Cavalry</GenericName>
-    <Classes datatype="tokens">Hero -Champion</Classes>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Cavalry</VisibleClasses>
     <Formations datatype="tokens">
       formations/wedge
     </Formations>
   </Identity>
-  <Loot>
-    <xp>500</xp>
-    <food>10</food>
-    <wood>0</wood>
-    <stone>0</stone>
-    <metal>25</metal>
-  </Loot>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
+  <Position>
+    <Anchor>pitch</Anchor>
+  </Position>
   <Sound>
     <SoundGroups>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/fauna/death/death_horse.xml</death>
-    </SoundGroups>
+      <trained>interface/alarm/alarm_create_cav.xml</trained>
+	</SoundGroups>
   </Sound>
   <Stamina>
     <Max>2500</Max>
   </Stamina>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
+  <StatusBars>
+    <HeightOffset>6.5</HeightOffset>
+  </StatusBars>
   <UnitMotion>
     <WalkSpeed>13.0</WalkSpeed>
     <Run>

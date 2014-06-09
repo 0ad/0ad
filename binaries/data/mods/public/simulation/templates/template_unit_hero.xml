@@ -5,22 +5,6 @@
     <Pierce>20.0</Pierce>
     <Crush>15.0</Crush>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>40.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1500</RepeatTime>
-    </Melee>
-    <Charge>
-      <Hack>120.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-    </Charge>
-  </Attack>
   <Cost>
     <Population>2</Population>
     <BuildTime>40</BuildTime>
@@ -34,7 +18,8 @@
   </Health>
   <Identity>
     <GenericName>Hero</GenericName>
-    <Classes datatype="tokens">Hero Organic</Classes>
+    <Classes datatype="tokens">Organic</Classes>
+    <VisibleClasses datatype="tokens">Hero Soldier</VisibleClasses>
     <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>

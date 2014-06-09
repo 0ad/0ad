@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_cavalry_javelinist">
+<Entity parent="template_unit_hero_cavalry">
   <Armour>
     <Hack>5</Hack>
     <Pierce>7</Pierce>
@@ -7,7 +7,15 @@
   </Armour>
   <Attack>
     <Ranged>
+      <Hack>0.0</Hack>
       <Pierce>50.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>56</MaxRange>
+      <MinRange>0.0</MinRange>
+      <ProjectileSpeed>50.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
+      <Spread>1.2</Spread>
 	  <Bonuses>
 		<BonusPrimary>
 		  <Classes>Infantry Bow</Classes>
@@ -28,49 +36,11 @@
       <metal>75</metal>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="3.0"/>
-    <Height>3.0</Height>
-  </Footprint>
-  <Health>
-    <Max>1500</Max>
-  </Health>
   <Identity>
-    <Classes datatype="tokens">Hero</Classes>
+    <VisibleClasses datatype="tokens">Ranged Javelin</VisibleClasses>
     <GenericName>Hero Cavalry Skirmisher</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>
   </Identity>
-  <Loot>
-    <xp>450</xp>
-    <food>10</food>
-    <wood>20</wood>
-    <stone>0</stone>
-    <metal>0</metal>
-  </Loot>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
-  <UnitMotion>
-    <WalkSpeed>14.0</WalkSpeed>
-    <Run>
-      <Speed>28.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>16.0</RangeMin>
-    </Run>
-  </UnitMotion>
 </Entity>

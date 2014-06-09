@@ -48,7 +48,8 @@
   </Health>
   <Identity>
     <GenericName>Infantry</GenericName>
-    <Classes datatype="tokens">Infantry CitizenSoldier Worker Organic</Classes>
+    <Classes datatype="tokens">CitizenSoldier Worker Organic</Classes>
+    <VisibleClasses datatype="tokens">Infantry Citizen Soldier</VisibleClasses>
     <Rank>Basic</Rank>
   </Identity>
   <Loot>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_infantry_archer">
+<Entity parent="template_unit_hero_infantry">
   <Armour>
     <Hack>5</Hack>
     <Pierce>6</Pierce>
@@ -7,8 +7,14 @@
   </Armour>
   <Attack>
     <Ranged>
+      <Hack>0.0</Hack>
       <Pierce>20.0</Pierce>
+      <Crush>0.0</Crush>
       <MaxRange>60</MaxRange>
+      <MinRange>0.0</MinRange>
+      <ProjectileSpeed>75.0</ProjectileSpeed>
+      <PrepareTime>1200</PrepareTime>
+      <RepeatTime>2000</RepeatTime>
       <Spread>1.0</Spread>
 	  <Bonuses>
 		<BonusPrimary>
@@ -28,20 +34,9 @@
       <wood>200</wood>
     </Resources>
   </Cost>
-  <Footprint>
-    <Circle radius="1.5"/>
-    <Height>2.5</Height>
-  </Footprint>
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <GenericName>Hero Archer</GenericName>
-    <Classes datatype="tokens">Hero Archer Bow</Classes>
-	<Tooltip>Classes: Hero Infantry Ranged Archer Bow.
-Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.
-Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>
@@ -53,19 +48,9 @@ Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
     <stone>0</stone>
     <metal>10</metal>
   </Loot>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
+  <Sound>
+    <SoundGroups>
+      <attack>attack/weapon/arrowfly.xml</attack>
+    </SoundGroups>
+  </Sound>
 </Entity>

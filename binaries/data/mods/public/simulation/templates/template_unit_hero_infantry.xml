@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_infantry">
+<Entity parent="template_unit_hero">
   <Armour>
     <Hack>10</Hack>
     <Pierce>12</Pierce>
     <Crush>10</Crush>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-    </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-    </Charge>
-  </Attack>
   <Cost>
     <BuildTime>40</BuildTime>
     <Resources>
@@ -35,9 +20,8 @@
     <Max>1000</Max>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Hero Infantry</Classes>
+    <VisibleClasses datatype="tokens">Infantry</VisibleClasses>
     <GenericName>Hero</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Loot>
     <xp>400</xp>
@@ -46,39 +30,18 @@
     <stone>0</stone>
     <metal>20</metal>
   </Loot>
-  <Minimap>
-    <Type>hero</Type>
-  </Minimap>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
   <Sound>
     <SoundGroups>
+      <trained>interface/alarm/alarm_create_infantry.xml</trained>
+      <select>voice/hellenes/civ/civ_male_select.xml</select>
+      <order_walk>voice/hellenes/civ/civ_male_ack.xml</order_walk>
+      <order_attack>voice/hellenes/civ/civ_male_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <order_repair>voice/hellenes/civ/civ_male_ack.xml</order_repair>
+      <walk>actor/human/movement/walk.xml</walk>
+      <run>actor/human/movement/walk.xml</run>
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/human/death/death.xml</death>
     </SoundGroups>
   </Sound>
-  <Stamina>
-    <Max>1500</Max>
-  </Stamina>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>21.25</Speed>
-      <Range>600.0</Range>
-      <RangeMin>8.0</RangeMin>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>60</Range>
-  </Vision>
 </Entity>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_champion_elephant_melee">
+<Entity parent="template_unit_hero">
   <Armour>
     <Hack>10</Hack>
     <Pierce>10</Pierce>
@@ -8,12 +8,25 @@
   <Attack>
     <Melee>
       <Hack>25.0</Hack>
+      <Pierce>0.0</Pierce>
       <Crush>25.0</Crush>
+      <MaxRange>8.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
+	  <Bonuses>
+		<BonusStructures>
+		  <Classes>Structure</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusStructures>
+		<BonusCav>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>2</Multiplier>
+		</BonusCav>
+		<BonusGates>
+		  <Classes>Gates</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusGates>
+	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>75.0</Hack>
-      <Crush>75.0</Crush>
-    </Charge>
   </Attack>
   <Cost>
     <Population>3</Population>
@@ -31,22 +44,33 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Classes datatype="tokens">Hero -Champion</Classes>
+    <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
     <Tooltip>Classes: Hero Melee Elephant.
 Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.
 Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
-    <RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
-  <Selectable>
-    <Overlay>
-      <AlwaysVisible/>
-      <Texture>
-        <MainTexture>star/256x256.png</MainTexture>
-        <MainTextureMask>star/256x256_mask.png</MainTextureMask>
-      </Texture>
-    </Overlay>
-  </Selectable>
-  <TrainingRestrictions>
-    <Category>Hero</Category>
-  </TrainingRestrictions>
+  <Sound>
+    <SoundGroups>
+      <select>actor/fauna/animal/elephant_select.xml</select>
+      <order_walk>actor/fauna/animal/elephant_order.xml</order_walk>
+      <order_attack>actor/fauna/animal/elephant_attack.xml</order_attack>
+      <order_gather>voice/hellenes/civ/civ_male_ack.xml</order_gather>
+      <attack>actor/fauna/animal/elephant_attack.xml</attack>
+      <walk>actor/mounted/movement/walk.xml</walk>
+      <run>actor/mounted/movement/walk.xml</run>
+      <death>actor/fauna/animal/elephant_death.xml</death>
+      <trained>actor/fauna/animal/elephant_trained.xml</trained>
+    </SoundGroups>
+  </Sound>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>14.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
 </Entity>

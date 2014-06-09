@@ -36,40 +36,10 @@
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
     </Melee>
-    <Charge>
-      <Hack>90.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Sword</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Javelin</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
-      <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
-    </Charge>
   </Attack>
   <Identity>
-    <Classes datatype="tokens">Melee Spear</Classes>
+    <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Hero Cavalry Spearman</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
-	<Tooltip>Classes: Hero Melee Cavalry Spear.
-"Hero" Aura: TBD.
-Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.
-Countered by: Spearmen, Archers, and Elephants.</Tooltip>
   </Identity>
   <Loot>
     <xp>500</xp>
