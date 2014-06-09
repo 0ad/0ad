@@ -204,7 +204,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	if (this.upcomingAttacks["Raid"].length === 0 && gameState.ai.HQ.defenseManager.targetList.length)
 	{
 		var target = undefined;
-		for each (var targetId in gameState.ai.HQ.defenseManager.targetList)
+		for (var targetId of gameState.ai.HQ.defenseManager.targetList)
 		{
 			target = gameState.getEntityById(targetId);
 			if (target)

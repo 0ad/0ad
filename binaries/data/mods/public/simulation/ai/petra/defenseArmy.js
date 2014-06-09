@@ -25,7 +25,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	var distMin = undefined;
 	var idMinAll = undefined;
 	var distMinAll = undefined; 
-	for each (var id in this.foeEntities)
+	for (var id of this.foeEntities)
 	{
 		var eEnt = gameState.getEntityById(id);
 		if (!eEnt || !eEnt.position())	// probably can't happen.
@@ -95,7 +95,7 @@ m.DefenseArmy.prototype.getState = function (gameState)
 
 m.DefenseArmy.prototype.update = function (gameState)
 {
-	for each (var entId in this.ownEntities)
+	for (var entId of this.ownEntities)
 	{
 		var ent = gameState.getEntityById(entId);
 		if (!ent)
@@ -118,7 +118,7 @@ m.DefenseArmy.prototype.debug = function (gameState)
 //	m.debug ("Strength " + this.foeStrength);
 	//	debug (gameState.getEntityById(ent)._templateName + ", ID " + ent);
 	//debug ("Defenders " + this.ownEntities.length);
-	for each (ent in this.foeEntities)
+	for (var ent of this.foeEntities)
 	{
 		if (gameState.getEntityById(ent) !== undefined)
 		{

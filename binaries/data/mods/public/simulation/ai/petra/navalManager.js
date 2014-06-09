@@ -288,7 +288,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 		return false;
 	}
 
-	for each (var plan in this.transportPlans)
+	for (var plan of this.transportPlans)
 	{
 		if (plan.startIndex !== startIndex || plan.endIndex !== endIndex)
 			continue
@@ -328,7 +328,7 @@ m.NavalManager.prototype.checkLevels = function(gameState, queues)
 	for (var sea = 0; sea < this.neededTransportShips.length; sea++)
 		this.neededTransportShips[sea] = 0;
 
-	for each (var plan in this.transportPlans)
+	for (var plan of this.transportPlans)
 	{
 		if (!plan.needTransportShips || plan.units.length < 2)
 			continue;
@@ -357,30 +357,29 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 		gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_super_dock"), true) === 0)
 		return;
 	// check if we have enough transport ships per region.
-	for (var i = 0; i < this.seaShips.length; ++i)
+	for (var sea = 0; sea < this.seaShips.length; ++sea)
 	{
-		if (this.accessibleSeas.indexOf(i) === -1)
+		if (this.accessibleSeas.indexOf(sea) === -1)
 			continue;
-		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", i) > 0)
+		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", sea) > 0)
 			continue;
 
-		if (this.seaTransportShips[i].length < this.wantedTransportShips[i])
+		if (this.seaTransportShips[sea].length < this.wantedTransportShips[sea])
 		{
-			if ((gameState.civ() === "cart" && gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_super_dock"), true) === 0)
-				|| gameState.civ() === "iber")
-				queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_merchant", { "sea": i }, 1, 1));
-			else
-				queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_trireme", { "sea": i }, 1, 1));
+			var template = this.getBestShip(gameState, sea, "transport");
+			if (!template)
+				continue;
+			queues.ships.addItem(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
 		}
-		else if (this.seaFishShips[i].length < this.wantedFishShips[i])
-			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_fishing", { "base": 0, "role": "worker", "sea": i }, 1, 1));
+		else if (this.seaFishShips[sea].length < this.wantedFishShips[sea])
+			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_fishing", { "base": 0, "role": "worker", "sea": sea }, 1, 1));
 	}
 };
 
 // assigns free ships to plans that need some
 m.NavalManager.prototype.assignToPlans = function(gameState)
 {
-	for each (var plan in this.transportPlans)
+	for (var plan of this.transportPlans)
 	{
 		if (!plan.needTransportShips)
 			continue;
@@ -465,6 +464,47 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 			}
 		}
 	}
+};
+
+// goal can be either attack (choose ship with best arrowCount) or transport (choose ship with best capacity)
+m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
+{
+	var trainableShips = [];
+	gameState.getOwnTrainingFacilities().filter(API3.Filters.byMetadata(PlayerID, "sea", sea)).forEach(function(ent) {
+		var trainables = ent.trainableEntities();
+		for (var trainable of trainables)
+		{
+			var template = gameState.getTemplate(trainable);
+			if (template.hasClass("Ship") && trainableShips.indexOf(trainable) === -1)
+				trainableShips.push(trainable);
+		}
+	});
+
+	var best = 0;
+	var bestShip = undefined;
+	for (var trainable of trainableShips)
+	{
+		var template = gameState.getTemplate(trainable);
+		var arrows = +(template.getDefaultArrow() || 0);
+		if (goal === "attack")    // choose the maximum default arrows
+		{
+			if (best > arrows)
+				continue;
+			best = arrows;
+		}
+		else if (goal === "transport")   // choose the maximum capacity, with a bonus if arrows or if siege transport
+		{
+			var capacity = +(template.garrisonMax() || 0);
+			capacity += 10*arrows;
+			if (MatchesClassList(template.garrisonableClasses(), "Siege"))
+				capacity += 50;
+			if (best > capacity)
+				continue;
+			best = capacity;
+		}
+		bestShip = trainable;
+	}
+	return bestShip;
 };
 
 m.NavalManager.prototype.update = function(gameState, queues, events)
