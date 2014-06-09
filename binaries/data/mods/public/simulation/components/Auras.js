@@ -19,7 +19,7 @@ var modificationSchema =
 
 Auras.prototype.Schema =
 	"<oneOrMore>" +
-		"<element a:help='Name of the aura JSON file to use, case-insensitive'>" +
+		"<element a:help='Any name you want'>" +
 			"<anyName/>" +
 			"<interleave>" +
 				"<optional>" +
@@ -423,9 +423,6 @@ Auras.prototype.ApplyBonus = function(name, ent)
 {
 	var modifications = this.GetModifications(name);
 	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
-	warn(name);
-	warn(ent);
-	warn(uneval(modifications));
 	for each (var mod in modifications)
 		cmpAuraManager.ApplyBonus(mod.value, ent, mod, this.templateName + "/" + name + "/" + mod.value);
 
