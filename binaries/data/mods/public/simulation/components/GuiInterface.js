@@ -397,6 +397,12 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		ret.armour = cmpArmour.GetArmourStrengths();
 	}
 
+	var cmpAuras = Engine.QueryInterface(ent, IID_Auras)
+	if (cmpAuras)
+	{
+		ret.auras = cmpAuras.GetDescriptions();
+	}
+
 	var cmpBuildingAI = Engine.QueryInterface(ent, IID_BuildingAI);
 	if (cmpBuildingAI)
 	{
@@ -530,7 +536,15 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 			};
 		}
 	}
-	
+
+	if (template.Auras)
+	{
+		ret.auras = {};
+		for each (var aura in template.Auras)
+			if (aura.AuraName)
+				ret.auras[aura.AuraName] = aura.AuraDescription || null;
+	}
+
 	if (template.BuildRestrictions)
 	{
 		// required properties

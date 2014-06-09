@@ -4,20 +4,27 @@
     <construction_speed_15>
       <Type>range</Type>
       <Radius>60</Radius>
+      <Affects>Worker</Affects>
+      <Modifications>
+        <Builder.Rate><Multiply>1.15</Multiply></Builder.Rate>
+      </Modifications>
+      <AuraName>Builder Aura</AuraName>
+      <AuraDescription>Buildings construct 15% faster within his vision.</AuraDescription>
     </construction_speed_15>
-    <temple_cost-50>
+    <Aura2>
       <Type>global</Type>
-    </temple_cost-50>
+      <Affects>Temple</Affects>
+      <Modifications>
+        <Cost.Resources.stone><Add>-50</Add></Cost.Resources.stone>
+      </Modifications>
+      <AuraName>Acropolis Aura</AuraName>
+      <AuraDescription>Temples are 50 stone cheaper during his lifetime.</AuraDescription>
+    </Aura2>
   </Auras>
   <Identity>
     <Civ>athen</Civ>
 	<GenericName>Pericles</GenericName>
     <SpecificName>Periklēs</SpecificName>
-    <Tooltip>Classes: Hero Melee Infantry Spearman.
-"Builder" Aura: Buildings construct 15% faster within his vision.
-"Acropolis" Aura: Temples are 50 stone cheaper during his lifetime.
-Counters: 2x vs. All Cavalry.
-Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     <History>Pericles was the foremost Athenian politician of the 5th Century.</History>
     <Icon>units/athen_hero_pericles.png</Icon>
   </Identity>

@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_javelinist">
   <Auras>
-    <champion_speed_25>
+    <Aura1>
       <Type>global</Type>
-    </champion_speed_25>
-    <champion_attack_5>
-      <Type>global</Type>
-    </champion_attack_5>
+      <Affects>Champion</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
+        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
+        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
+      </Modifications>
+      <AuraName>Champion Army</AuraName>
+      <AuraDescription>+5 Attack and +25% Speed for Champion Units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Hack>7</Hack>
@@ -30,7 +35,6 @@
     <Civ>brit</Civ>
     <Classes datatype="tokens">Chariot</Classes>
     <SpecificName>Boudicca</SpecificName>
-    <Tooltip>Hero Aura: +5 Attack and +25% Speed for Champion Units.</Tooltip>
     <History>Ammianus Marcellinus described how difficult it would be for a band of foreigners to deal with a Celt if he called in the help of his wife. For she was stronger than he was and could rain blows and kicks upon the assailants equal in force to the shots of a catapult. Boudicca, queen of the Iceni, was said to be 'very tall and terrifying in appearance; her voice was very harsh and a great mass of red hair fell over her shoulders. She wore a tunic of many colors over which a thick cloak was fastened by a brooch.</History>
     <Icon>units/celt_hero_boudicca.png</Icon>
   </Identity>

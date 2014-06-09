@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-    <unit_speed_15>
+	<Aura1>
       <Type>global</Type>
-    </unit_speed_15>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
+      </Modifications>
+      <AuraName>Lightning Aura</AuraName>
+      <AuraDescription>All Units +15% speed.</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>cart</Civ>
@@ -11,10 +17,6 @@
     <GenericName>Hamilcar Barca</GenericName>
     <History>Father of Hannibal and virtual military dictator of Carthage. Hamilcar Barca was a soldier and politician who excelled along his entire career. Lived 275-228 BC. While overshadowed by his sons, Hamilcar was great general in his own right, earning the nickname Baraq or Barca for the "lightning" speed of his advance.</History>
     <Icon>units/cart_hero_hamilcar.png</Icon>
-    <Tooltip>Classes: Hero Melee Cavalry Sword.
-"Lightning" Aura: All of the player's units +15% movement speed (walk and run, but not charge) while he lives.
-Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
-Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/carthaginians/hero_hamilcar_horse.xml</Actor>

@@ -1,23 +1,65 @@
 function Auras() {}
 
+var modificationSchema = 
+	"<element name='Modifications' a:help='Modification list'>" +
+		"<oneOrMore>" +
+			"<element a:help='Name of the value to modify'>" +
+				"<anyName/>" +
+				"<choice>" +
+					"<element name='Add'>" +
+						"<data type='decimal'/>" +
+					"</element>" +
+					"<element name='Multiply'>" +
+						"<data type='decimal'/>" +
+					"</element>" +
+				"</choice>" +
+			"</element>" +
+		"</oneOrMore>" +
+	"</element>";
+
 Auras.prototype.Schema =
 	"<oneOrMore>" +
 		"<element a:help='Name of the aura JSON file to use, case-insensitive'>" +
 			"<anyName/>" +
-			"<optional>" +
-				"<element name='Radius' a:help='Define the radius this aura affects, if it is a range aura'>" +
-					"<data type='nonNegativeInteger'/>" +
+			"<interleave>" +
+				"<optional>" +
+					"<element name='Radius' a:help='Define the radius this aura affects, if it is a range aura'>" +
+						"<data type='nonNegativeInteger'/>" +
+					"</element>" +
+				"</optional>" +
+				"<element name='Type' a:help='Controls how this aura affects nearby units'>" +
+					"<choice>" +
+						"<value a:help='Affects units in the same formation'>formation</value>" +
+						"<value a:help='Affects units in a certain range'>range</value>" +
+						"<value a:help='Affects the structure or unit this unit is garrisoned in'>garrison</value>" +
+						"<value a:help='Affects the units that are garrisoned on a certain structure'>garrisonedUnits</value>" +
+						"<value a:help='Affects all units while this unit is alive'>global</value>" +
+					"</choice>" +
 				"</element>" +
-			"</optional>" +
-			"<element name='Type' a:help='Controls how this aura affects nearby units'>" +
-				"<choice>" +
-					"<value a:help='Affects units in the same formation'>formation</value>" +
-					"<value a:help='Affects units in a certain range'>range</value>" +
-					"<value a:help='Affects the structure or unit this unit is garrisoned in'>garrison</value>" +
-					"<value a:help='Affects the units that are garrisoned on a certain structure'>garrisonedUnits</value>" +
-					"<value a:help='Affects all units while this unit is alive'>global</value>" +
-				"</choice>" +
-			"</element>" +
+				"<optional>" +
+					"<element name='AuraName' a:help='name to display in the GUI'>" +
+						"<text/>" +
+					"</element>" +
+				"</optional>" +
+				"<optional>" +
+					"<element name='AuraDescription' a:help='description to display in the GUI, requires a name'>" +
+						"<text/>" +
+					"</element>" +
+				"</optional>" +
+				"<optional>" +
+					"<element name='Affects' a:help='Affected classes'>" +
+						"<text/>" +
+					"</element>" +
+				"</optional>" +
+				"<optional>" +
+					modificationSchema +
+				"</optional>" +
+				"<optional>" +
+					"<element name='AffectedPlayers' a:help='Affected players'>" +
+						"<text/>" +
+					"</element>" +
+				"</optional>" +
+			"</interleave>" +
 		"</element>" +
 	"</oneOrMore>";
 
@@ -31,9 +73,38 @@ Auras.prototype.Init = function()
 	var cmpTechnologyTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	for each (var name in auraNames)
 	{
-		this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
 		this.affectedPlayers[name] = []; // will be calculated on ownership change
+		if (this.template[name].Affects)
+		{
+			var aura = {}
+			aura.affects = this.template[name].Affects;
+			if (this.template[name].AffectedPlayers)
+				aura.affectedPlayers = this.template[name].AffectedPlayers.split(/\s+/);
+			aura.modifications = [];
+			for (var value in this.template[name].Modifications)
+			{
+				var mod = {};
+				mod.value = value.replace(/\./g, "/");
+				if (this.template[name].Modifications[value].Add)
+					mod.add = +this.template[name].Modifications[value].Add;
+				else if (this.template[name].Modifications[value].Multiply)
+					mod.add = +this.template[name].Modifications[value].Multiply;
+				aura.modifications.push(mod);
+			}
+			this.auras[name] = aura;
+		}
+		else // load data from JSON
+			this.auras[name] = cmpTechnologyTemplateManager.GetAuraTemplate(name);
 	}
+};
+
+Auras.prototype.GetDescriptions = function()
+{
+	var ret = {}
+	for each (var aura in this.template)
+		if (aura.AuraName)
+			ret[aura.AuraName] = aura.AuraDescription || null;
+	return ret;
 };
 
 Auras.prototype.GetAuraNames = function()

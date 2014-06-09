@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-    <heal>
+    <Aura1>
       <Type>range</Type>
       <Radius>60</Radius>
-    </heal>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <Health.RegenRate> <Add>1</Add> </Health.RegenRate>
+      </Modifications>
+      <AuraName>Hero Aura</AuraName>
+      <AuraDescription>Let all units heal at 1 HP per second</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Hack>10</Hack>
@@ -12,7 +18,6 @@
   <Identity>
     <Civ>brit</Civ>
     <SpecificName>Cynvelin</SpecificName>
-    <Tooltip>Hero Aura: Has a large and powerful Healing Aura.</Tooltip>
     <History>Cynvelin was a powerful ruler centered in the territory around modern day London. Ruling the Catuvellauni from Camulodunum, he was a warrior king who conquered a neighboring tribe and was referred to by the Romans as the King of the Britons. Eventually Cynvelin retired to become the arch-druid of Siluria, but was taken to Rome with his son upon Caratacos's capture. According to legend, the Apostle Paul baptized Cynvelin into Christianity before he died in Italy.</History>
     <Icon>units/celt_hero_cynvelin.png</Icon>
   </Identity>

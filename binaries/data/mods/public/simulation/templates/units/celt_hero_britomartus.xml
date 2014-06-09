@@ -1,21 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry_spearman">
-  <Auras>
-    <unit_gatheringRate_15>
-      <Type>global</Type>
-    </unit_gatheringRate_15>
-  </Auras>
-  <Armour>
-    <Hack>9</Hack>
-  </Armour>
+<Entity parent="units/gaul_hero_britomartus">
   <Identity>
     <Civ>celt</Civ>
-    <SpecificName>Britomartus</SpecificName>
-    <Tooltip>Hero Aura: Gathering rates increased with +15% during his lifetime.</Tooltip>
-    <History> The story of how Marcus Claudius Marcellus killed a Gallic leader at Clastidium (222 BC) is typical of such encounters. Advancing with a smallish army, Marcellus met a combined force of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with the usual rush and terrifying cries, and their king, Britomartus, picking out Marcellus by means of his badges of rank, made for him, shouting a challenge and brandishing his spear. Britomartus was an outstanding figure not only for his size but also for his adornments; for he was resplendent in bright colors and his armor shone with gold and silver. This armor, thought Marcellus, would be a fitting offering to the gods. He charged the Gaul, pierced his bright breastplate and cast him to the ground. It was an easy task to kill Britomartus and strip him of his armor.</History>
-    <Icon>units/celt_hero_britomartus.png</Icon>
   </Identity>
-  <VisualActor>
-    <Actor>units/celts/britomartus.xml</Actor>
-  </VisualActor>
 </Entity>

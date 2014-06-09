@@ -1,55 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_javelinist">
-  <Auras>
-    <champion_speed_25>
-      <Type>global</Type>
-    </champion_speed_25>
-    <champion_attack_5>
-      <Type>global</Type>
-    </champion_attack_5>
-  </Auras>
-  <Cost>
-    <Population>4</Population>
-    <BuildTime>50</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
-  <Footprint replace="">
-    <Square width="4.5" depth="9.0"/>
-    <Height>5.0</Height>
-  </Footprint>
+<Entity parent="units/brit_hero_boudicca">
   <Identity>
     <Civ>celt</Civ>
-    <Classes datatype="tokens">Chariot</Classes>
-    <SpecificName>Boudicca</SpecificName>
-    <Tooltip>Hero Aura: +5 Attack and +25% Speed for Champion Units.</Tooltip>
-    <History>Ammianus Marcellinus described how difficult it would be for a band of foreigners to deal with a Celt if he called in the help of his wife. For she was stronger than he was and could rain blows and kicks upon the assailants equal in force to the shots of a catapult. Boudicca, queen of the Iceni, was said to be 'very tall and terrifying in appearance; her voice was very harsh and a great mass of red hair fell over her shoulders. She wore a tunic of many colors over which a thick cloak was fastened by a brooch.</History>
-    <Icon>units/celt_hero_boudicca.png</Icon>
   </Identity>
-  <Obstruction>
-    <Unit radius="2.0"/>
-  </Obstruction>
-  <Sound>
-    <SoundGroups>
-      <select>voice/hellenes/civ/female/civ_female_select.xml</select>
-      <order_walk>voice/hellenes/civ/female/civ_female_walk.xml</order_walk>
-      <order_attack>voice/hellenes/civ/female/civ_female_go_out_against.xml</order_attack>
-      <order_gather>voice/hellenes/civ/female/civ_female_gather_together.xml</order_gather>
-      <order_repair>voice/hellenes/civ/female/civ_female_repair.xml</order_repair>
-      <order_garrison>voice/hellenes/civ/female/civ_female_garrison.xml</order_garrison>
-      <death>actor/human/death/female_death.xml</death>
-    </SoundGroups>
-  </Sound>
-  <UnitMotion>
-    <WalkSpeed>18.0</WalkSpeed>
-    <Run>
-      <Speed>38.0</Speed>
-    </Run>
-  </UnitMotion>
-  <VisualActor>
-    <Actor>units/celts/boudicca_chariot.xml</Actor>
-  </VisualActor>
 </Entity>

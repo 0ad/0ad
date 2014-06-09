@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
   <Auras>
-    <champion_speed_25>
+    <Aura1>
       <Type>global</Type>
-    </champion_speed_25>
-    <champion_attack_5>
-      <Type>global</Type>
-    </champion_attack_5>
+      <Affects>Champion</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.25</Multiply> </UnitMotion.WalkSpeed>
+        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
+        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
+      </Modifications>
+      <AuraName>Champion Army</AuraName>
+      <AuraDescription>+5 Attack and +25% Speed for Champion Units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Hack>5</Hack>
@@ -17,8 +22,6 @@
     <Civ>brit</Civ>
     <SpecificName>Boudicca</SpecificName>
     <GenericName>Heroine</GenericName>
-    <Tooltip>Hero Aura: +5 Attack and +25% Speed for Champion Units.</Tooltip>
-    <History>.</History>
     <Icon>units/celt_hero_boudicca.png</Icon>
   </Identity>
   <VisualActor>
