@@ -367,12 +367,23 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 		if (this.seaTransportShips[sea].length < this.wantedTransportShips[sea])
 		{
 			var template = this.getBestShip(gameState, sea, "transport");
-			if (!template)
+			if (template)
+			{
+				queues.ships.addItem(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
 				continue;
-			queues.ships.addItem(new m.TrainingPlan(gameState, template, { "sea": sea }, 1, 1));
+			}
 		}
-		else if (this.seaFishShips[sea].length < this.wantedFishShips[sea])
-			queues.ships.addItem(new m.TrainingPlan(gameState, "units/{civ}_ship_fishing", { "base": 0, "role": "worker", "sea": sea }, 1, 1));
+
+
+		if (this.seaFishShips[sea].length < this.wantedFishShips[sea])
+		{
+			var template = this.getBestShip(gameState, sea, "fishing");
+			if (template)
+			{
+				queues.ships.addItem(new m.TrainingPlan(gameState, template, { "base": 0, "role": "worker", "sea": sea }, 1, 1));
+				continue;
+			}
+		}
 	}
 };
 
@@ -485,6 +496,9 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 	for (var trainable of trainableShips)
 	{
 		var template = gameState.getTemplate(trainable);
+		if (!template.available(gameState))
+			continue;
+
 		var arrows = +(template.getDefaultArrow() || 0);
 		if (goal === "attack")    // choose the maximum default arrows
 		{
@@ -495,12 +509,19 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 		else if (goal === "transport")   // choose the maximum capacity, with a bonus if arrows or if siege transport
 		{
 			var capacity = +(template.garrisonMax() || 0);
+			if (capacity < 2)
+				continue;
 			capacity += 10*arrows;
 			if (MatchesClassList(template.garrisonableClasses(), "Siege"))
 				capacity += 50;
 			if (best > capacity)
 				continue;
 			best = capacity;
+		}
+		else if (goal === "fishing")
+		{
+			if (!template.hasClass("FishingBoat"))
+				continue;
 		}
 		bestShip = trainable;
 	}
