@@ -576,12 +576,6 @@ var commands = {
 		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
 			cmpUnitAI.SetupTradeRoute(cmd.target, cmd.source, cmd.route, cmd.queued);
 		});
-		for each (var ent in data.entities)
-		{
-			var cmpTrader = Engine.QueryInterface(ent, IID_Trader);
-			if (cmpTrader)
-				cmpTrader.SetRequiredGoods(cmd.requiredGoods);
-		}
 	},
 
 	"select-required-goods": function(player, cmd, data)
