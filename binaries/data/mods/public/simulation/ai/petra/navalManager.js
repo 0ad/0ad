@@ -173,7 +173,7 @@ m.NavalManager.prototype.init = function(gameState, queues)
 	this.docks.forEach(function(dock) { self.assignDock(gameState, dock); });
 };
 
-m.NavalManager.prototype.resetFishingBoats = function()
+m.NavalManager.prototype.resetFishingBoats = function(gameState)
 {
 	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
 		this.wantedFishShips[i] = 0;

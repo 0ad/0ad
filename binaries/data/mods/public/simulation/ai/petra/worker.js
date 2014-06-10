@@ -569,7 +569,7 @@ m.Worker.prototype.startFishing = function(gameState)
 	var resources = gameState.getFishableSupplies();
 	if (resources.length === 0)
 	{
-		gameState.ai.HQ.navalManager.resetFishingBoats();
+		gameState.ai.HQ.navalManager.resetFishingBoats(gameState);
 		this.ent.destroy();
 		return false;
 	}
