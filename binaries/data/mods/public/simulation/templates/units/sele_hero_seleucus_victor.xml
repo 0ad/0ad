@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
   <Auras>
-    <eleph_attack_20>
+    <Aura1>
       <Type>range</Type>
       <Radius>80</Radius>
-    </eleph_attack_20>
-    <eleph_speed_20>
-      <Type>range</Type>
-      <Radius>80</Radius>
-    </eleph_speed_20>
+      <Affects>Elephant</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.20</Multiply> </UnitMotion.WalkSpeed>
+        <Attack.Melee.Hack> <Multiply>1.20</Multiply> </Attack.Melee.Hack>
+        <Attack.Melee.Crush> <Multiply>1.20</Multiply> </Attack.Melee.Crush>
+      </Modifications>
+      <AuraName>Zooiarchos Aura</AuraName>
+      <AuraDescription>Boosts War Elephant attack and speed +20% within his vision.</AuraDescription>
+    </Aura1>
   </Auras>
   <Builder>
     <Rate>1.0</Rate>
@@ -22,10 +26,6 @@
     <SpecificName>Seleukos A' Nikator</SpecificName>
     <History>"Always lying in wait for the neighboring nations, strong in arms and persuasive in council, he [Seleucus] acquired Mesopotamia, Armenia, 'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, Arachosia, Hyrcania, and other adjacent peoples that had been subdued by Alexander, as far as the river Indus, so that the boundaries of his empire were the most extensive in Asia after that of Alexander. The whole region from Phrygia to the Indus was subject to Seleucus." — Appian, "The Syrian Wars"</History>
     <Icon>units/cart_hero_hannibal.png</Icon>
-    <Tooltip>Classes: Hero Melee Elephant.
-"Zooiarchos" Aura: Boosts War Elephant attack and speed +20% within his vision.
-Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.
-Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/carthaginians/hero_hannibal_mount.xml</Actor>

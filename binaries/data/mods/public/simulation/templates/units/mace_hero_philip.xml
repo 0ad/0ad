@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras>
-    <champion_attack_5>
+    <Aura1>
       <Type>global</Type>
-    </champion_attack_5>
+      <Affects>Champion</Affects>
+      <Modifications>
+        <Attack.Ranged.Pierce> <Add>5</Add> </Attack.Ranged.Pierce>
+        <Attack.Melee.Hack> <Add>5</Add> </Attack.Melee.Hack>
+      </Modifications>
+      <AuraName>Hero Aura</AuraName>
+      <AuraDescription>+5 Attack for Champion Units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>mace</Civ>
     <GenericName>Philip II of Macedon</GenericName>
     <SpecificName>Phílippos B' ho Makedṓn</SpecificName>
-    <Tooltip>Hero Aura: +5 Attack for Champion Units.</Tooltip>
     <History>The king of Macedonia (359 BC - 336 BC), he carried out vast monetary and military reforms in order to make his kingdom the most powerful force in the Greek world. Greatly enlarged the size of Macedonia by conquering much of Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign against Persia.</History>
     <Icon>units/hele_hero_philip.png</Icon>
   </Identity>

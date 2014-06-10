@@ -271,7 +271,7 @@ m.NavalManager.prototype.update = function(gameState, queues, events) {
 				if (dock.getMetadata(PlayerID,"sea") == seaZone)
 					rallyPos = dock.position();
 			});
-			this.transportPlans[i].ships.move(rallyPos);
+			this.transportPlans[i].ships.move(rallyPos[0], rallyPos[1]);
 			this.transportPlans[i].releaseAll(gameState);
 			this.transportPlans.splice(i,1);
 			--i;

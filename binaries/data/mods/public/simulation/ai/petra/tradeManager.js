@@ -131,12 +131,12 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 	var distmax = -1;
 	var imax = -1;
 	var jmax = -1;
-	for each (var m1 in market1)
+	for (var m1 of market1)
 	{
 		if (!m1.position())
 			continue;
 		var index1 = gameState.ai.accessibility.getAccessValue(m1.position());
-		for each (var m2 in market2)
+		for (var m2 of market2)
 		{
 			if (m1.id() === m2.id())
 				continue;
@@ -230,7 +230,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	var getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices["sell"][sell] / prices["buy"][buy]); };
 
 	// loop through each queues checking if we could barter and help finishing a queue quickly.
-	for each (var buy in needs.types)
+	for (var buy of needs.types)
 	{
 		if (needs[buy] == 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
 			continue;
@@ -238,7 +238,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		// pick the best resource to barter.
 		var bestToSell = undefined;
 		var bestRate = 0;
-		for each (var sell in needs.types)
+		for (var sell of needs.types)
 		{
 			if (sell === buy)
 				continue;
@@ -287,7 +287,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		return false;
 	var bestToBuy = undefined;
 	var bestChoice = 0;
-	for each (var buy in needs.types)
+	for (var buy of needs.types)
 	{
 		if (buy === "food")
 			continue;

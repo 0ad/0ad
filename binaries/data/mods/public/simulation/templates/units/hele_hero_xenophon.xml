@@ -1,21 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_javelinist">
   <Auras>
-    <unit_speed_15>
+	<Aura1>
       <Type>formation</Type>
-    </unit_speed_15>
-    <unit_armor_1>
-      <Type>formation</Type>
-    </unit_armor_1>
-    <javelin_speed_15>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
+        <Armour.Pierce> <Add>1</Add> </Armour.Pierce>
+        <Armour.Hack>   <Add>1</Add> </Armour.Hack>
+        <Armour.Crush>  <Add>1</Add> </Armour.Crush>
+      </Modifications>
+      <AuraName>Formation Reforms</AuraName>
+      <AuraDescription>All units in his formation +15% speed and +1 armor.</AuraDescription>
+    </Aura1>
+	<Aura2>
       <Type>global</Type>
-    </javelin_speed_15>
+      <Affects>Javelin</Affects>
+      <Modifications>
+        <UnitMotion.WalkSpeed><Multiply>1.15</Multiply></UnitMotion.WalkSpeed>
+      </Modifications>
+      <AuraName>Peltast Reforms</AuraName>
+      <AuraDescription>All Peltasts +15% speed.</AuraDescription>
+    </Aura2>
   </Auras>
   <Identity>
     <Civ>hele</Civ>
 	<GenericName>Xenophon</GenericName>
     <SpecificName>Xenophôn</SpecificName>
-    <Tooltip>Hero Aura: +1 Armour and +15% Speed to units within his Formation. +15% Speed to Thracian Peltasts during his lifetime.</Tooltip>
     <History>Xenophon (c. 430 B. C. to c. 355 B. C.) was a Greek soldier and (later) historian who was born in Athens of an oligarch family and was a student of Socrates during his youth. He was elected one of the new Greek leaders chosen to lead the army in its retreat out of Persia. Xenophon went on to fight and lead troops in numerous battles then later write numerous books on military tactics, organization and command throughout the remainder of his lifetime.</History>
     <Icon>units/hele_hero_xenophon.png</Icon>
   </Identity>

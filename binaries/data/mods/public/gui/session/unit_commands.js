@@ -510,6 +510,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 					tooltip += "[/font]";
 				}
 
+				if (template.auras)
+				{
+					for (var auraName in template.auras)
+					{
+						tooltip += "\n[font=\"sans-bold-13\"]" + translate(auraName) + "[/font]";
+						if (template.auras[auraName])
+							tooltip += ": " + translate(template.auras[auraName]);
+					}
+				}
+
 				if (template.tooltip)
 					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
 

@@ -1,26 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_infantry_swordsman">
-  <Auras>
-    <unit_speed_15>
-      <Type>global</Type>
-    </unit_speed_15>
-  </Auras>
-  <Attack>
-    <Melee>
-      <Hack>27.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>54.0</Hack>
-    </Charge>
-  </Attack>
+<Entity parent="units/brit_hero_caratacos">
   <Identity>
     <Civ>celt</Civ>
-    <SpecificName>Caratacos</SpecificName>
-    <Tooltip>Hero Aura: +15% Speed for all units during his lifetime.</Tooltip>
-    <History>Caratacos's name is better known in its Romanized form, Caratacus. Under this name he is remembered as a fierce defender of Britain against the Romans after their invasion in 43 AD. Son of King Cynvelin of the Catuvellauni tribe, Caratacos fought for nine years against the Romans with little success, eventually fleeing to the tribes in Wales, where he was defeated decisively. Finally he entered Northern Britain, where was handed over to the Romans. Taken to Rome, Caratacos was allowed to live by the Emperor Claudius and died in Italy.</History>
-    <Icon>units/celt_hero_caratacos.png</Icon>
   </Identity>
-  <VisualActor>
-    <Actor>units/celts/caradoc.xml</Actor>
-  </VisualActor>
 </Entity>

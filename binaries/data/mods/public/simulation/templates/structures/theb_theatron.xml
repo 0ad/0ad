@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Auras>
-    <struct_territory_20>
+    <Aura1>
       <Type>global</Type>
-    </struct_territory_20>
+      <Affects>Structure</Affects>
+      <Modifications>
+        <TerritoryInfluence.Radius> <Multiply>1.2</Multiply> </TerritoryInfluence.Radius>
+      </Modifications>
+    </Aura1>
   </Auras>
   <BuildRestrictions>
     <Category>Theater</Category>

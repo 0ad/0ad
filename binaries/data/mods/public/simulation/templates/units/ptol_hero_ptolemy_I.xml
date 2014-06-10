@@ -1,13 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_elephant_melee">
   <Auras>
-    <struct_buildtime_10>
+    <Aura1>
       <Type>range</Type>
       <Radius>77</Radius>
-    </struct_buildtime_10>
-    <merc_cost_50>
+      <Affects>Worker</Affects>
+      <Modifications>
+        <Builder.Rate> <Multiply>1.10</Multiply> </Builder.Rate>
+      </Modifications>
+      <AuraName>Construction Aura</AuraName>
+      <AuraDescription>Buildings construct 10% faster within his vision.</AuraDescription>
+    </Aura1>
+    <Aura2>
       <Type>global</Type>
-    </merc_cost_50>
+      <Affects>Mercenary</Affects>
+      <Modifications>
+		<Cost.Resources.food> <Multiply>0.5</Multiply> </Cost.Resources.food>
+		<Cost.Resources.wood> <Multiply>0.5</Multiply> </Cost.Resources.wood>
+        <Cost.Resources.stone> <Multiply>0.5</Multiply> </Cost.Resources.stone>
+        <Cost.Resources.metal> <Multiply>0.5</Multiply> </Cost.Resources.metal>
+      </Modifications>
+      <AuraName>Mercenary Patron Aura</AuraName>
+      <AuraDescription>Mercenaries cost -50% resources during his lifetime.</AuraDescription>
+    </Aura2>
   </Auras>
   <Builder>
     <Rate>1.0</Rate>
@@ -19,9 +34,6 @@
     <Civ>ptol</Civ>
     <GenericName>Ptolemy I "Savior"</GenericName>
     <SpecificName>Ptolemaios A' Soter</SpecificName>
-    <Tooltip>Classes: Hero Melee Elephant.
-"Mercenary Patron" Aura: Mercenaries cost -50% during his lifetime.
-"Construction" Aura: -10% build time for nearby structures.</Tooltip>
     <History>Born in 367 BCE, Ptolemy I grew to become one of Alexander the Great's closest friends and generals. He was instrumental in Alexander's later campaigns in Bactria (modern Afghanistan) and India. After Alexander's death, Ptolemy took control of the Satrap of Egypt, and after the Battle of Ipsus became sole ruler of Egypt as "Pharaoh," founding the Ptolemy Dynasty that would rule Egypt for nearly 3 centuries. Ptolemaic Egypt reached the height of its territorial boundaries under his reign as he added Syria, Judea, Cyprus, and parts of Asia Minor to his realm. His reputation for bonhomie and liberality attached the floating soldier-class of Macedonians and Hellenes to his service, and was not insignificant; nor did he wholly neglect conciliation of the native Egyptians. He was a ready patron of letters, founding the Great Library of Alexandria. He himself wrote a history of Alexander's campaigns that has not survived. This used to be considered an objective work, distinguished by its straightforward honesty and sobriety. However, Ptolemy may have exaggerated his own role, and had propagandist aims in writing his History. Although now lost, it was a principal source for the surviving account by Arrian of Nicomedia. Ptolemy died in 283 BCE, the last of the Diodachoi, leaving a well-ordered and stable kingdom to his progeny.</History>
     <Icon>units/hele_hero_alexander.png</Icon>
   </Identity>

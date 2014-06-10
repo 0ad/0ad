@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Auras>
-    <melee_attack_2>
+    <Aura1>
       <Type>range</Type>
       <Radius>50</Radius>
-    </melee_attack_2>
-    <ranged_attack_3>
-      <Type>range</Type>
-      <Radius>50</Radius>
-    </ranged_attack_3>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <Attack.Melee.Hack> <Add>2</Add> </Attack.Melee.Hack>
+        <Attack.Ranged.Pierce> <Add>3</Add> </Attack.Ranged.Pierce>
+      </Modifications>
+    </Aura1>
   </Auras>
   <BuildRestrictions>
     <Category>Monument</Category>

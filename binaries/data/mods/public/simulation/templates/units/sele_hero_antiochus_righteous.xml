@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-    <structure_mechanical_armour_05>
+    <Aura1>
       <Type>range</Type>
       <Radius>70</Radius>
-    </structure_mechanical_armour_05>
+      <AffectedPlayers>Enemy</AffectedPlayers>
+      <Affects>Structure Mechanical</Affects>
+      <Modifications>
+        <Health.Max> <Multiply>0.5</Multiply> </Health.Max>
+      </Modifications>
+      <AuraName>Conquest Aura</AuraName>
+      <AuraDescription>All nearby enemy buildings, siege engines, and ships have their health halved.</AuraDescription>
+    </Aura1>
   </Auras>
   <Builder>
     <Rate>1.0</Rate>
@@ -16,10 +23,6 @@
     <Civ>sele</Civ>
     <GenericName>Antiochus IV "The Righteous"</GenericName>
     <SpecificName>Antiokhos D' Epiphanes</SpecificName>
-    <Tooltip>Classes: Hero Melee Cavalry Sword.
-"Conquest" Aura: All nearby enemy buildings, siege engines, and ships have their armour halved. Building capture time reduced by 25% during his reign (TBD).
-Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
-Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
     <History>Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of Seleucus IV Philopator. Originally named Mithridates, he assumed the name Antiochus either upon his accession to the throne or after the death of his elder brother Antiochus. Notable events during his reign include the near-conquest of Egypt (twice), which was halted by the threat of Roman intervention, and the beginning of the Jewish revolt of the Maccabees. He died of sudden illness while fighting off a Parthian invasion from the East.</History>
     <Icon>units/mace_hero_philip.png</Icon>
   </Identity>

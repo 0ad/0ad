@@ -1,24 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_archer">
   <Auras>
-    <unit_gatheringRate_15>
+    <Aura1>
       <Type>range</Type>
       <Radius>60</Radius>
-    </unit_gatheringRate_15>
-    <unit_buildRate_15>
-      <Type>range</Type>
-      <Radius>60</Radius>
-    </unit_buildRate_15>
+      <Affects>Worker</Affects>
+      <Modifications>
+        <Builder.Rate> <Multiply>1.15</Multiply> </Builder.Rate>
+        <ResourceGatherer.BaseSpeed> <Multiply>1.15</Multiply> </ResourceGatherer.BaseSpeed>
+      </Modifications>
+      <AuraName>Administrator Aura</AuraName>
+      <AuraDescription> +15% Gather Rate and Build Rate of nearby units.</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Xerxes I</GenericName>
     <SpecificName>Xsayarsa I</SpecificName>
     <Icon>units/pers_hero_xerxes.png</Icon>
-	<Tooltip>Hero Archer.
-Hero Aura: "Administrator." +15% Gather Rate and Build Rate of nearby units.
-Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.
-Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
     <History>(King, 485 BC - 465 BC) The son of Darius the Great and Atoosa, a daughter of Cyrus the Great, Xerxes was an able administrator, who also extended Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he was famous for his extensive building program, especially at Persepolis.</History>
   </Identity>
   <VisualActor>

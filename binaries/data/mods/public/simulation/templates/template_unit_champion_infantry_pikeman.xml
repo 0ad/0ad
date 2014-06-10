@@ -23,24 +23,6 @@
 		</BonusEles>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>8.0</MaxRange>
-      <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusCavalry>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavalry>
-		<BonusEles>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusEles>
-	  </Bonuses>
-      <RestrictedClasses datatype="tokens">StoneWall</RestrictedClasses>
-    </Charge>
   </Attack>
   <Cost>
     <Resources>
@@ -51,7 +33,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Classes datatype="tokens">Melee Spear Pike</Classes>
+    <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Champion Pikeman</GenericName>
 	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
 	<Tooltip>Classes: Champion Melee Infantry Spearman.

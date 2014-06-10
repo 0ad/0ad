@@ -393,14 +393,10 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 		}
 	}
 
-	var radius = 1;    // not used
-	
-	if (bestVal === undefined || bestVal === -1)
-	{
-		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
-		var bestIdx = bestTile[0];
-		var bestVal = bestTile[1];
-	}
+	var radius = 1;
+	var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
+	var bestIdx = bestTile[0];
+	var bestVal = bestTile[1];
 
 	if (bestVal <= 0)
 		return false;
@@ -463,10 +459,12 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, template, x, z)
 			var seaAccess = gameState.ai.accessibility.navalPassMap[j];
 			var landAccess = gameState.ai.accessibility.landPassMap[j];
 			if (seaAccess === seaRef && landAccess < 2)
-				waterPoints.push(i);			
+				waterPoints.push(i);
 		}
-		var consec = [];
 		var length = waterPoints.length;
+		if (!length)
+			continue;
+		var consec = [];
 		for (var i = 0; i < length; ++i)
 		{
 			var count = 0;

@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_swordsman">
   <Auras>
-    <struct_territory_10>
+    <Aura1>
       <Type>global</Type>
-    </struct_territory_10>
+      <Affects>Structure</Affects>
+      <Modifications>
+        <TerritoryInfluence.Radius> <Multiply>1.10</Multiply> </TerritoryInfluence.Radius>
+      </Modifications>
+      <AuraName>Imperialism Aura</AuraName>
+      <AuraDescription>+10% territory effect for all buildings while he lives.</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Crush>20</Crush>
@@ -17,14 +23,6 @@
 		</Herocide>
 	  </Bonuses>
     </Melee>
-    <Charge>
-	  <Bonuses>
-		<Herocide>
-		  <Classes>Hero</Classes>
-		  <Multiplier>1.2</Multiplier>
-		</Herocide>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Cost>
     <Resources>
@@ -35,8 +33,7 @@
     <Civ>mace</Civ>
     <GenericName>Alexander The Great</GenericName>
     <SpecificName>Mégās Aléxandros</SpecificName>
-    <Tooltip>"Imperialism" Aura: +10% territory effect for all buildings while he lives.
-"Herocide" Bonus: +20% attack bonus vs. enemy Heroes.</Tooltip>
+    <Tooltip>"Herocide" Bonus: +20% attack bonus vs. enemy Heroes.</Tooltip>
     <History>The most powerful hero of them all - son of Philip II, king of Macedonia (336 BC - 323 BC). After conquering the rest of the Thracians and quelling the unrest of the Greeks, Alexander embarked on a world-conquest march. Defeating the Persian forces at Granicus (334 BC), Issus (333 BC) and Gaugamela (331 BC), he became master of the Persian Empire. Entering India, he defeated king Porus at Hydaspes (326 BC), but his weary troops made him halt. Died in Babylon at the age of 33 while planning a campaign against Arabia.</History>
     <Icon>units/hele_hero_alexander.png</Icon>
   </Identity>

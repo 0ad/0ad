@@ -27,45 +27,13 @@
 		</BonusTertiary>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>60.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Spear</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Javelin</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-		<BonusTertiary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusTertiary>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Identity>
-    <Classes datatype="tokens">Melee Sword</Classes>
+    <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Hero Swordsman</GenericName>
-    <Tooltip>Classes: Hero Infantry Melee Sword.
-"Hero" Aura: TBD.
-Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.
-Countered by: Archers, Cavalry Archers.</Tooltip>
-    <RequiredTechnology>phase_city</RequiredTechnology>
+    <Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.
+Countered by: Archers, Cavalry Archers.</Tooltip> 
   </Identity>
-  <Sound>
-    <SoundGroups>
-      <attack>attack/weapon/sword.xml</attack>
-      <death>actor/human/death/death.xml</death>
-    </SoundGroups>
-  </Sound>
-  <Stamina>
-    <Max>1500</Max>
-  </Stamina>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
     <Run>

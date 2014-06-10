@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_cavalry_spearman">
   <Auras>
-    <cav_charge_attack_5>
+    <Aura1>
       <Type>range</Type>
       <Radius>60</Radius>
-    </cav_charge_attack_5>
+      <Affects>Cavalry</Affects>
+      <Modifications>
+        <Attack.Charge.Hack> <Add>5</Add> </Attack.Charge.Hack>
+      </Modifications>
+      <AuraName>Commander Aura</AuraName>
+      <AuraDescription> +5 Cavalry charge attack within vision range of him (currently useless).</AuraDescription>
+    </Aura1>
   </Auras>
   <Identity>
     <Civ>cart</Civ>
@@ -12,10 +18,6 @@
     <SpecificName>Maharbaʿal</SpecificName>
     <History>Maharbal was Hannibal Barca's "brash young cavalry commander" during the 2nd Punic War. He is credited with turning the wing of the legions at Cannae resulting in defeat in which 30,000 of 50,000 Romans were lost, as well as significant contributions to the winning of many other battles during the 2nd Punic War. He is known for having said, after the battle of Cannae, "Hannibal, you know how to win the victory; just not what to do with it."</History>
     <Icon>units/cart_hero_maharbal.png</Icon>
-	<Tooltip>Classes: Hero Melee Cavalry Spear.
-"Commander" Aura: +5 Cavalry charge attack within vision range of him.
-Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.
-Countered by: Spearmen, Archers, and Elephants.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/carthaginians/hero_maharbal_horse.xml</Actor>

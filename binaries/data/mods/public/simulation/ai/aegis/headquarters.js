@@ -1022,9 +1022,9 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues) {
 	if (gameState.civ() !== "gaul" && gameState.civ() !== "brit" && gameState.civ() !== "iber" &&
 		workersNumber > 130 && gameState.currentPhase() > 2)
 	{
-		var Const = 0;
+		var inConst = 0;
 		for (var i in this.bAdvanced)
-			Const += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[i]), true);
+			inConst += gameState.countEntitiesByType(gameState.applyCiv(this.bAdvanced[i]), true);
 		if (inConst == 1) {
 			var i = Math.floor(Math.random() * this.bAdvanced.length);
 			if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(this.bAdvanced[i]), true) < 1){

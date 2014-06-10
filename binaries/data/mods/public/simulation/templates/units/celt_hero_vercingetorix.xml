@@ -1,32 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Entity parent="template_unit_hero_cavalry_swordsman">
-  <Auras>
-    <unit_attack_2>
-      <Type>range</Type>
-      <Radius>60</Radius>
-    </unit_attack_2>
-  </Auras>
-  <Attack>
-    <Melee>
-      <Hack>27.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>54.0</Hack>
-    </Charge>
-  </Attack>
-  <Cost>
-    <Resources>
-      <metal>260</metal>
-    </Resources>
-  </Cost>
+<Entity parent="units/gaul_hero_vercingetorix">
   <Identity>
     <Civ>celt</Civ>
-    <SpecificName>Vercingetorix</SpecificName>
-    <Tooltip>Hero Aura: +2 attack for all units within his aura.</Tooltip>
-    <History>The most famous of all Celts, Vercingetorix lead the rebelling Gallic tribes against the might of Rome and Julius Caesar's veteran army in 54 BC. Although successful in defeating several Roman forces, Vercingetorix was unable to defeat Caesar, who eventually surrounded the Celtic leaders in the town of Alesia along with 100,000 men. When a relief army arrived to lift the epic siege, the Romans were out numbered 7 to 1 but still defeated the Celts. Vercingetorix surrendered and was executed.</History>
-    <Icon>units/celt_hero_vercingetorix.png</Icon>
   </Identity>
-  <VisualActor>
-    <Actor>units/celts/vercingetorix_horse.xml</Actor>
-  </VisualActor>
 </Entity>

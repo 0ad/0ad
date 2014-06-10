@@ -117,12 +117,15 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 	var map = new API3.Map(gameState.sharedScript, obstructionTiles);
 	map.setMaxVal(255);
 	
-	if (template && template.buildDistance()) {
+	if (template && template.buildDistance())
+	{
 		var minDist = template.buildDistance().MinDistance;
 		var category = template.buildDistance().FromCategory;
-		if (minDist !== undefined && category !== undefined){
+		if (minDist !== undefined && category !== undefined)
+		{
 			gameState.getOwnStructures().forEach(function(ent) {
-				if (ent.buildCategory() === category && ent.position()){
+				if (ent.buildCategory() === category && ent.position())
+				{
 					var pos = ent.position();
 					var x = Math.round(pos[0] / gameState.cellSize);
 					var z = Math.round(pos[1] / gameState.cellSize);

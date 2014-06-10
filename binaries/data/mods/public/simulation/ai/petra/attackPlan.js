@@ -498,7 +498,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 	{
 		warn("====================================");
 		warn("======== build order for plan " + this.name);
-		for each (var order in this.buildOrder)
+		for (var order of this.buildOrder)
 		{
 			var specialData = "Plan_"+this.name+"_"+order[4];
 			var inTraining = gameState.countOwnQueuedEntitiesWithMetadata("special", specialData);
@@ -687,7 +687,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 
 	var minDist = Math.min();
 	var target = undefined;
-	for each (var building in buildings)
+	for (var building of buildings)
 	{
 		if (building.owner() === 0)
 			continue;
@@ -696,7 +696,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 			continue;
 		var pos = building.position();
 		var defended = false;
-		for each (var defense in buildings)
+		for (var defense of buildings)
 		{
 			if (!defense.hasClass("CivCentre") && !defense.hasClass("Tower") && !defense.hasClass("Fortress"))
 				continue;
@@ -728,7 +728,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 m.AttackPlan.prototype.raidTargetFinder = function(gameState)
 {
 	var targets = new API3.EntityCollection(gameState.sharedScript);
-	for each (var targetId in gameState.ai.HQ.defenseManager.targetList)
+	for (var targetId of gameState.ai.HQ.defenseManager.targetList)
 	{
 		var target = gameState.getEntityById(targetId);
 		if (target && target.position())
@@ -1144,7 +1144,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			{
 				// if siege units are attacked, we'll send some units to deal with enemies.
 				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
-				for each (var ent in collec)
+				for (var ent of collec)
 					if (!this.isSiegeUnit(gameState, ent))
 						ent.attack(attacker.id());
 			}
@@ -1422,7 +1422,7 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 		if (data && +(ent.getMetadata(PlayerID, data)) !== value)
 			return;
 		var orders = ent.unitAIOrderData();
-		for each (var order in orders)
+		for (var order of orders)
 			if (order.force)
 				forced = true;
 	});

@@ -36,11 +36,8 @@
     </Resources>
   </Cost>
   <Identity>
-    <Classes datatype="tokens">Ranged Archer Bow</Classes>
+    <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <GenericName>Champion Cavalry Archer.</GenericName>
-	<Tooltip>Classes: Champion Ranged Cavalry Archer.
-Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen.
-Countered by: Skirmishers and Elephants.</Tooltip>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>

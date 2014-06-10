@@ -11,6 +11,7 @@
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusCavalry>
 		  <Classes>Cavalry</Classes>
@@ -18,22 +19,10 @@
 		</BonusCavalry>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <MaxRange>8.0</MaxRange>
-	  <Bonuses>
-		<BonusCavalry>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavalry>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Identity>
-    <Classes datatype="tokens">Melee Spear Pike</Classes>
+    <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Hero Pikeman</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo

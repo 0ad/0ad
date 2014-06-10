@@ -1,22 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
   <Auras>
-    <ship_speed_50>
+    <Aura1>
       <Type>garrison</Type>
-    </ship_speed_50>
-    <ship_buildtime_20>
+      <Affects>Ship</Affects>
+      <AffectedPlayers>Player MutualAlly</AffectedPlayers>
+      <Modifications>
+        <UnitMotion.WalkSpeed> <Multiply>1.15</Multiply> </UnitMotion.WalkSpeed>
+      </Modifications>
+      <AuraName>Naval Commander Aura</AuraName>
+      <AuraDescription>When garrisoned in a ship, his ship is +50% faster.</AuraDescription>
+    </Aura1>
+    <Aura2>
       <Type>global</Type>
-    </ship_buildtime_20>
+      <Affects>Ship</Affects>
+      <Modifications>
+        <Cost.BuildTime> <Multiply>0.8</Multiply> </Cost.BuildTime>
+      </Modifications>
+      <AuraName>Naval Architect Aura</AuraName>
+      <AuraDescription>Ships are built +20% faster during his lifespan.</AuraDescription>
+    </Aura2>
   </Auras>
   <Identity>
     <Civ>athen</Civ>
 	<GenericName>Themistocles</GenericName>
     <SpecificName>Themistoklês</SpecificName>
-    <Tooltip>Classes: Hero Infantry Melee Sword.
-"Naval Commander" Aura: When garrisoned in a ship, his ship is +50% faster. 
-"Naval Architect" Aura: Ships are built +20% faster during his lifespan.
-Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.
-Countered by: Archers, Cavalry Archers.</Tooltip>
     <History>The general whom persuaded the Athenians to invest their income from silver mines in a war navy of 200 Triremes. A key figure during the Persian Wars, he commanded the victorious Athenian navy at the decisive battle of Salamis in 479 BC. Later, he pursued an active policy against the Persians in the Aegean, thereby laying the foundations of future Athenian power. Ostracised by the Athenians, he was forced to flee to the protection of the Persians.</History>
     <Icon>units/hele_hero_themistocles.png</Icon>
   </Identity>

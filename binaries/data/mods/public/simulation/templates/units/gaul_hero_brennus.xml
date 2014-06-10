@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_hero_infantry_swordsman">
   <Auras>
-    <unit_loot_5metal>
+    <Aura1>
       <Type>global</Type>
-    </unit_loot_5metal>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <Looter.Resource.metal> <Add>10</Add> </Looter.Resource.metal>
+      </Modifications>
+      <AuraName>Hero Aura</AuraName>
+      <AuraDescription>+10 Metal loot for every enemy unit killed.</AuraDescription>
+    </Aura1>
   </Auras>
   <Armour>
     <Hack>7</Hack>
@@ -11,7 +17,6 @@
   <Identity>
     <Civ>gaul</Civ>
     <SpecificName>Brennus</SpecificName>
-    <Tooltip>Hero Aura: +5 Metal loot for every enemy unit killed.</Tooltip>
     <History>Brennus is the name which the Roman historians give to the famous leader of the Gauls who took Rome in the time of Camillus. According to Geoffrey of Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' that Britons had conquered Rome, the greatest civilization in the world, long before Rome conquered the Britons. We know from many ancient sources which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and that the raid was led by a man named Brennos (which was latinized to Brennus), but he and his invading horde were Gallic Senones, not British. In this episode several features of Geoffrey's editing method can be seen: he modified the historical Brennus/Brennos, created the brother Belinus, borrowed the Gallic invasion, but omitted the parts where the Celts seemed weak or foolish. His technique is both additive and subtractive. Like the tale of Trojan origin, the story of the sack of Rome is not pure fabrication; it is a creative rearrangement of the available facts, with details added as necessary. By virtue of their historical association, Beli and Bran are often muddled with the earlier brothers Belinus and Brennus (the sons of Dunvallo Molmutius) who contended for power in northern Britain in around 390 B.C., and were regarded as gods in old Celtic tradition.</History>
     <Icon>units/celt_hero_brennus.png</Icon>
   </Identity>

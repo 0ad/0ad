@@ -21,14 +21,13 @@
   </Health>
   <Identity>
     <Civ>maur</Civ>
-    <Classes datatype="tokens">Elephant -Cavalry</Classes>
+    <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
     <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <GenericName>Elephant Archer</GenericName>
     <SpecificName>Vachii Gaja</SpecificName>
     <Icon>units/maur_cavalry_archer.png</Icon>
     <History>Elephant Archer.</History>
-    <Tooltip>Classes: Ranged Elephant Archer.
-Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. "Stench" aura vs. Cavalry.
+    <Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. "Stench" aura vs. Cavalry.
 Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
   <Promotion>

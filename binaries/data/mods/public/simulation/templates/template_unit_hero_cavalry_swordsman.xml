@@ -7,6 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
+     <Hack>30.0</Hack>
+     <Pierce>0.0</Pierce>
+     <Crush>0.0</Crush>
+     <MaxRange>6.0</MaxRange>
+     <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusPrimary>
 		  <Classes>Support</Classes>
@@ -31,35 +36,9 @@
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
     </Melee>
-    <Charge>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSecondary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
-      <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
-    </Charge>
   </Attack>
   <Identity>
-    <Classes datatype="tokens">Sword</Classes>
+    <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Hero Cavalry Swordsman</GenericName>
-    <RequiredTechnology>phase_city</RequiredTechnology>
-    <Tooltip>Classes: Hero Melee Cavalry Sword.
-"Hero" Aura: TBD.
-Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
-Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
 </Entity>

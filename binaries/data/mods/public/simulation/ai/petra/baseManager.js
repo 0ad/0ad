@@ -51,7 +51,7 @@ m.BaseManager.prototype.init = function(gameState, unconstructed)
 	this.dropsites = {};
 	this.dropsiteSupplies = {};
 	this.gatherers = {};
-	for each (var type in this.Config.resources)
+	for (var type of this.Config.resources)
 	{
 		this.dropsiteSupplies[type] = {"nearby": [], "medium": [], "faraway": []};
 		this.gatherers[type] = {"nextCheck": 0, "used": 0, "lost": 0};
@@ -343,7 +343,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		if (total == 0)
 			continue;
 
-		for each (var cc in ccEnts)
+		for (var cc of ccEnts)
 		{
 			var ccPos = cc.position();
 			if (!ccPos)
@@ -381,7 +381,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type)
 	var count = 0;
 	var check = {};
 	var nearby = this.dropsiteSupplies[type]["nearby"];
-	for each (var supply in nearby)
+	for (var supply of nearby)
 	{
 		if (check[supply.id])    // avoid double counting as same resource can appear several time
 			continue;
@@ -389,7 +389,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type)
 		count += supply.ent.resourceSupplyAmount();
 	}
 	var medium = this.dropsiteSupplies[type]["medium"];
-	for each (var supply in medium)
+	for (var supply of medium)
 	{
 		if (check[supply.id])
 			continue;
@@ -402,7 +402,7 @@ m.BaseManager.prototype.getResourceLevel = function (gameState, type)
 // check our resource levels and react accordingly
 m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 {
-	for each (var type in this.Config.resources)
+	for (var type of this.Config.resources)
 	{
 		if (type == "food")
 		{
@@ -543,12 +543,12 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 	var resources = gameState.ai.queueManager.getAvailableResources(gameState);
 
 	var avgOverdraft = 0;
-	for each (var type in resources.types)
+	for (var type of resources.types)
 		avgOverdraft += resources[type];
 	avgOverdraft /= 4;
 
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-	for each (var type in resources.types)
+	for (var type of resources.types)
 	{
 		if (type === mostNeeded[0])
 			continue;

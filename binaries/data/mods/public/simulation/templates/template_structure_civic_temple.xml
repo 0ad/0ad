@@ -4,6 +4,12 @@
     <heal>
       <Type>range</Type>
       <Radius>40</Radius>
+      <Affects>Unit</Affects>
+      <Modifications>
+        <Health.RegenRate> <Add>1</Add> </Health.RegenRate>
+      </Modifications>
+      <AuraName>Healing Aura</AuraName>
+      <AuraDescription>Heals nearby units at 1 HP per second.</AuraDescription>
     </heal>
   </Auras>
   <BuildRestrictions>
@@ -34,7 +40,7 @@
   </Health>
   <Identity>
     <GenericName>Temple</GenericName>
-    <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate. Research healing and religious improvements. Heals nearby units, but slower than garrisoned units.</Tooltip>
+    <Tooltip>Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP per second). Research healing and religious improvements.</Tooltip>
     <VisibleClasses datatype="tokens">
       Town
       Temple
