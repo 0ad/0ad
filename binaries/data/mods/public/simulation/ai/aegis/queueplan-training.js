@@ -40,9 +40,9 @@ m.TrainingPlan.prototype.start = function(gameState) {
 			var aa = a.trainingQueueTime();
 			var bb = b.trainingQueueTime();
 			if (a.hasClass("Civic") && !self.template.hasClass("Support"))
-				aa += 0.9;
+				aa += 10;
 			if (b.hasClass("Civic") && !self.template.hasClass("Support"))
-				bb += 0.9;
+				bb += 10;
 			return (aa - bb);
 		});
 		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)

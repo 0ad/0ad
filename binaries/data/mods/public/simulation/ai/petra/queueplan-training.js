@@ -57,17 +57,17 @@ m.TrainingPlan.prototype.start = function(gameState)
 			var aa = a.trainingQueueTime();
 			var bb = b.trainingQueueTime();
 			if (a.hasClass("Civic") && !supportUnit)
-				aa += 0.9;
+				aa += 10;
 			if (b.hasClass("Civic") && !supportUnit)
-				bb += 0.9;
+				bb += 10;
 			if (wantedIndex)
 			{
 				var aBase = a.getMetadata(PlayerID, "base");
 				if (!aBase || gameState.ai.HQ.baseManagers[aBase].accessIndex !== wantedIndex)
-					aa += 2.0;
+					aa += 30;
 				var bBase = b.getMetadata(PlayerID, "base");
 				if (!bBase || gameState.ai.HQ.baseManagers[bBase].accessIndex !== wantedIndex)
-					bb += 2.0;
+					bb += 30;
 			}
 			return (aa - bb);
 		});

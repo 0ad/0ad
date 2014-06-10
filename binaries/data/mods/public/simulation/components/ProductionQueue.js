@@ -432,6 +432,7 @@ ProductionQueue.prototype.GetQueue = function()
 			"count": item.count,
 			"neededSlots": item.neededSlots,
 			"progress": 1 - ( item.timeRemaining / (item.timeTotal || 1) ),
+			"timeRemaining": item.timeRemaining,
 			"metadata": item.metadata,
 		});
 	}

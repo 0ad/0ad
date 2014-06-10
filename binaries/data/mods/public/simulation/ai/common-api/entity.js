@@ -586,8 +586,10 @@ m.Entity = m.Class({
 		var queue = this._entity.trainingQueue;
 		if (!queue)
 			return undefined;
-		// TODO: compute total time for units in training queue
-		return queue.length;
+		var time = 0;
+		for (var item of queue)
+			time += item.timeRemaining;
+		return time/1000;
 	},
 
 	foundationProgress: function() {
