@@ -326,6 +326,7 @@ public:
 		// The whole map should be visible to Gaia by default, else e.g. animals
 		// will get confused when trying to run from enemies
 		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
+		m_LosRevealAll[0] = true;
 		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
 
 		m_LosCircular = false;

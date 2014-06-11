@@ -31,7 +31,6 @@ const INPUT_BUILDING_WALL_PATHING = 9;
 const INPUT_MASSTRIBUTING = 10;
 
 var inputState = INPUT_NORMAL;
-var placementSupport = new PlacementSupport();
 
 var mouseX = 0;
 var mouseY = 0;
