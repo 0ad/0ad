@@ -25,7 +25,7 @@ Damage.CauseSplashDamage = function(data)
 		if(data.shape == 'Circular') // circular effect with quadratic falloff in every direction
 		{
 			var squaredDistanceFromOrigin = data.origin.distanceToSquared(entityPosition);
-			damageMultiplier == 1 - squaredDistanceFromOrigin / (data.radius * data.radius);
+			damageMultiplier = 1 - squaredDistanceFromOrigin / (data.radius * data.radius);
 		}
 		else if(data.shape == 'Linear') // linear effect with quadratic falloff in two directions (only used for certain missiles)
 		{

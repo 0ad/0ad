@@ -24,12 +24,12 @@ RallyPoint.prototype.GetPositions = function()
 	// as long as it is outside of FoW and SoD.
 	for (var i = 0; i < this.pos.length; i++)
 	{
-		if (!this.data[i].target)
+		if (!this.data[i] || !this.data[i].target)
 			continue;
 
 		// Get the actual position of the target entity
 		var cmpPosition = Engine.QueryInterface(this.data[i].target, IID_Position);
-		if (!cmpPosition)
+		if (!cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
 		var targetPosition = cmpPosition.GetPosition2D();
