@@ -444,14 +444,14 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
 	 * 'count' times, replacing the string "[n]" in its descendants' names
 	 * with "[0]", "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths);
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
