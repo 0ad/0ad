@@ -6,7 +6,7 @@ var PETRA = function(m)
  * When a unit is ordered to garrison, it must be done through this.garrison() function so that
  * an object in this.holders is created. This object contains an array with the entities
  * in the process of being garrisoned. To have all garrisoned units, we must add those in holder.garrisoned().
- * Futhermore garrison units have a metadata garrison described the reason of this garrison (protection, transport, ...)
+ * Futhermore garrison units have a metadata garrison describing its reason (protection, transport, ...)
  */
 
 m.GarrisonManager = function()
@@ -53,7 +53,10 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 
 		if (gameState.ai.playedTurn - holder.getMetadata(PlayerID, "lastUpdate") > 5)
 		{
-			var range = holder.attackRange("Ranged").max;
+			if (holder.attackRange("Ranged"))
+				var range = holder.attackRange("Ranged").max;
+			else
+				var range = 80;
 			var enemiesAround = gameState.getEnemyEntities().toEntityArray().some(function(ent) {
 				if (!ent.position() || ent.owner() === 0)
 					return false;
@@ -111,7 +114,7 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	else
 		this.holders[holder.id()].push(ent.id());
 
-	if (gameState.ai.HQ.Config.debug > 0)
+	if (gameState.ai.HQ.Config.debug > 1)
 	{
 		warn("garrison unit " + ent.genericName() + " in " + holder.genericName() + " with type " + type);
 		warn(" we try to garrison a unit with plan " + ent.getMetadata(PlayerID, "plan") + " and role " + ent.getMetadata(PlayerID, "role")

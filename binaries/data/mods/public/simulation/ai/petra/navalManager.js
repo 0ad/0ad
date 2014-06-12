@@ -103,8 +103,8 @@ m.NavalManager.prototype.init = function(gameState, queues)
 
 	// determination of the possible landing zones
 	var width = gameState.getMap().width;
-	var totalSize = width * width;
-	for (var i = 0; i < totalSize; ++i)
+	var length = width * gameState.getMap().height;
+	for (var i = 0; i < length; ++i)
 	{
 		var land = gameState.ai.accessibility.landPassMap[i];
 		if (land < 2)

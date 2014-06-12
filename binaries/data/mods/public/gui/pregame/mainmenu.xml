@@ -516,7 +516,7 @@
 					size="8 100%-108 100%-8 100%-80"
 				>
 					<translatableAttribute id="caption">Help with the Translation!</translatableAttribute>
-					<translatableAttribute id="tooltip">Click to open the 0 A.D translate page in your browser.</translatableAttribute>
+					<translatableAttribute id="tooltip">Click to open the 0 A.D. translate page in your browser.</translatableAttribute>
 					<action on="Press"><![CDATA[
 						openURL("http://trac.wildfiregames.com/wiki/Localization");
 					]]></action>

@@ -75,7 +75,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 	}
 	// get out current resources, not removing accounts.
 	var current = this.getAvailableResources(gameState, true);
-	for each (var ress in needed.types)
+	for (var ress of needed.types)
 		needed[ress] = Math.max(0, needed[ress] - current[ress]);
 
 	return needed;
@@ -208,7 +208,7 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 			qStr += q.queue[j].type;
 			qStr += "<br><span class=\"ressLevel\">";
 			var costs = q.queue[j].getCost();
-			for each (var k in costs.types)
+			for (var k of costs.types)
 			{
 				qStr += costs[k] + k.substr(0,1).toUpperCase() ;
 				if (k != "metal")
@@ -229,7 +229,7 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 	strToSend.push("<p>Current Resources:" + uneval(gameState.getResources()) + "</p>");
 	strToSend.push("<p>Available Resources:" + uneval(this.getAvailableResources(gameState)) + "</p>");
 	strToSend.push("</body></html>");
-	for each (var logged in strToSend)
+	for (var logged of strToSend)
 		log(logged);
 };
 

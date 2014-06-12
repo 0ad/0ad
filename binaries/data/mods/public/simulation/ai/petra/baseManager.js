@@ -453,13 +453,15 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 					{
 						var newDP = this.findBestDropsiteLocation(gameState, type);
 						if (newDP.quality > 50 && gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
-						{
 							queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID }, newDP.pos));
-							if (!gameState.isResearched("gather_capacity_wheelbarrow") && !gameState.isResearching("gather_capacity_wheelbarrow"))
-								queues.minorTech.addItem(new m.ResearchPlan(gameState, "gather_capacity_wheelbarrow"));
+						else if (gameState.countFoundationsByType(gameState.ai.HQ.bBase[0], true) === 0 && queues.civilCentre.length() === 0)
+						{
+							// No good dropsite, try to build a new base if no base already planned,
+							// and if not possible, be less strict on dropsite quality
+							if (!gameState.ai.HQ.buildNewBase(gameState, queues, type) && newDP.quality > Math.min(25, 50*0.15/ratio)
+								&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_storehouse"))
+								queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": this.ID }, newDP.pos));
 						}
-						else
-							gameState.ai.HQ.buildNewBase(gameState, queues, type);
 					}
 					this.gatherers[type].nextCheck = gameState.ai.playedTurn + 20;
 					this.gatherers[type].used = 0;

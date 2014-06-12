@@ -818,6 +818,17 @@ m.Entity = m.Class({
 		return this;
 	},
 	
+	setRallyPoint: function(target, command) {
+		var data = {"command": command, "target": target.id()};
+		Engine.PostCommand(PlayerID, {"type": "set-rallypoint", "entities": [this.id()], "x": target.position()[0], "z": target.position()[1], "data": data});
+		return this;
+	},
+
+	unsetRallyPoint: function() {
+		Engine.PostCommand(PlayerID, {"type": "unset-rallypoint", "entities": [this.id()]});
+		return this;
+	},
+
 	train: function(type, count, metadata)
 	{
 		var trainable = this.trainableEntities();

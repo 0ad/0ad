@@ -52,10 +52,11 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 	}
 };
 
-m.ResearchManager.prototype.searchPopulationBonus = function(gameState, queues)
+m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues)
 {
 	if (queues.minorTech.length() !== 0)
 		return;
+
 	var techs = gameState.findAvailableTech();
 	for (var tech of techs)
 	{
@@ -71,18 +72,85 @@ m.ResearchManager.prototype.searchPopulationBonus = function(gameState, queues)
 	}
 };
 
+m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
+{
+	if (queues.minorTech.length() !== 0)
+		return;
+
+	var techs = gameState.findAvailableTech();
+	for (var tech of techs)
+	{
+		if (!tech[1]._template.modifications || !tech[1]._template.affects)
+			continue;
+		if (tech[1]._template.affects.indexOf("Trader") === -1)
+			continue;
+		// TODO may-be loop on all modifs and check if the effect if positive ?
+		if (tech[1]._template.modifications[0].value !== "UnitMotion/WalkSpeed")
+			continue;
+		if (this.Config.debug > 0)
+			warn(" ... ok we've found the " + tech[0] + " tech");
+		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
+		break;
+	}
+};
+
+// Techs to be searched for as soon as they are available
+m.ResearchManager.prototype.researchWantedTechs = function(gameState, queues)
+{
+	var techs = gameState.findAvailableTech();
+
+	var techName = undefined;
+	for (var tech of techs)
+	{
+		if (!tech[1]._template.modifications)
+			continue;
+		var template = tech[1]._template;
+		if (template.modifications[0].value.indexOf("ResourceGatherer/Capacities") !== -1)
+		{
+			techName = tech[0];
+			break;
+		}
+		else if (template.modifications[0].value === "ResourceGatherer/Rates/food.grain")
+		{
+			techName = tech[0];
+			break;
+		}
+		else if (template.modifications[0].value === "Health/RegenRate")
+		{
+			techName = tech[0];
+			break;
+		}
+		else if (template.modifications[0].value === "BuildingAI/DefaultArrowCount" && template.affects.indexOf("Tower"))
+		{
+			techName = tech[0];
+			break;
+		}
+	}
+
+	if (!techName)
+		return;
+	if (this.Config.debug > 0)
+		warn(" ... ok we've found the " + techName + " tech");
+	queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
+};
+
 m.ResearchManager.prototype.update = function(gameState, queues)
 {
 	this.checkPhase(gameState, queues);
 
-	if (gameState.currentPhase() < 2 || queues.minorTech.length() !== 0)
+	if (queues.minorTech.length() !== 0 || gameState.ai.playedTurn % 4 !== 0)
+		return;
+
+	this.researchWantedTechs(gameState, queues);
+
+	if (gameState.currentPhase() < 2)
 		return;
 
 	var techs = gameState.findAvailableTech();
 	for (var tech of techs)
 	{
 		var techName = tech[0];
-		if (techName.indexOf("attack_tower_watch") !== -1 || techName.indexOf("gather_mining_servants") !== -1 ||
+		if (techName.indexOf("gather_mining_servants") !== -1 ||
 			techName.indexOf("gather_mining_shaftmining") !== -1)
 		{
 			queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
