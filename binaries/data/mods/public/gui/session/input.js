@@ -199,7 +199,7 @@ function getActionInfo(action, target)
 	if (!entState)
 		return {"possible": false};
 
-	if (!target)
+	if (!target) // TODO move these non-target actions to an object like unit_actions.js
 	{
 		if (action == "set-rallypoint")
 		{
@@ -220,117 +220,10 @@ function getActionInfo(action, target)
 			return {"possible": false};
 	}
 
-	if (action == "unset-rallypoint" && selection.indexOf(target) != -1)
-	{
-		var haveNonEmptyRallyPoints = selection.some(function(ent) {
-			var entState = GetEntityState(ent);
-			return entState && entState.rallyPoint && entState.rallyPoint.position;
-		});
-		if (haveNonEmptyRallyPoints)
-			return {"possible": true};
-		else
-			return {"possible": false};
-	}
-
 	// Look at the first targeted entity
 	// (TODO: maybe we eventually want to look at more, and be more context-sensitive?
 	// e.g. prefer to attack an enemy unit, even if some friendly units are closer to the mouse)
 	var targetState = GetExtendedEntityState(target);
-
-	var gaiaOwned = (targetState.player == 0);
-
-	// Look to see what type of command units going to the rally point should use
-	if (action == "set-rallypoint")
-	{
-		// We assume that all entities are owned by the same player (given par entState of selection[0]).
-		var playerState = simState.players[entState.player];
-		var playerOwned = (targetState.player == entState.player);
-		var allyOwned = playerState.isAlly[targetState.player];
-		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
-		var enemyOwned = playerState.isEnemy[targetState.player];
-
-		var tooltip;
-		// default to walking there (or attack-walking if hotkey pressed)
-		var data = {command: "walk"};
-		var cursor = "";
-		if (Engine.HotkeyIsPressed("session.attackmove"))
-		{
-			data = {command: "attack-walk"};
-			cursor = "action-attack-move";
-		}
-
-		if (targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
-		{
-			data.command = "garrison";
-			data.target = target;
-			cursor = "action-garrison";
-			tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-				garrisoned: targetState.garrisonHolder.garrisonedEntitiesCount,
-				capacity: targetState.garrisonHolder.capacity
-			});
-			if (targetState.garrisonHolder.garrisonedEntitiesCount >= targetState.garrisonHolder.capacity)
-				tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
-		}
-		else if (targetState.resourceSupply)
-		{
-			var resourceType = targetState.resourceSupply.type;
-			if (resourceType.generic == "treasure")
-				cursor = "action-gather-" + resourceType.generic;
-			else
-				cursor = "action-gather-" + resourceType.specific;
-			data.command = "gather";
-			data.resourceType = resourceType;
-			data.resourceTemplate = targetState.template;
-		}
-		else if (targetState.foundation && entState.buildEntities)
-		{
-			data.command = "build";
-			data.target = target;
-			cursor = "action-build";
-		}
-		else if (hasClass(entState, "Market") && hasClass(targetState, "Market") && entState.id != targetState.id &&
-				(!hasClass(entState, "NavalMarket") || hasClass(targetState, "NavalMarket")) && !enemyOwned)
-		{
-			// Find a trader (if any) that this building can produce.
-			var trader;
-			if (entState.production && entState.production.entities.length)
-				for (var i = 0; i < entState.production.entities.length; ++i)
-					if ((trader = GetTemplateData(entState.production.entities[i]).trader))
-						break;
-
-			var traderData = { "firstMarket": entState.id, "secondMarket": targetState.id, "template": trader };
-			var gain = Engine.GuiInterfaceCall("GetTradingRouteGain", traderData);
-			if (gain && gain.traderGain)
-			{
-				data.command = "trade";
-				data.target = traderData.secondMarket;
-				data.source = traderData.firstMarket;
-				cursor = "action-setup-trade-route";
-				tooltip = translate("Right-click to establish a default route for new traders.");
-				if (trader)
-					tooltip += "\n" + sprintf(translate("Gain: %(gain)s"), { gain: getTradingTooltip(gain) });
-				else // Foundation or cannot produce traders
-					tooltip += "\n" + sprintf(translate("Expected gain: %(gain)s"), { gain: getTradingTooltip(gain) });
-			}
-		}
-		else if (targetState.needsRepair && allyOwned)
-		{
-			data.command = "repair";
-			data.target = target;
-			cursor = "action-repair";
-		}
-
-		// Don't allow the rally point to be set on any of the currently selected entities (used for unset)
-		// except if the autorallypoint hotkey is pressed and the target can produce entities
-		if (!Engine.HotkeyIsPressed("session.autorallypoint") || !targetState.production || !targetState.production.entities.length)
-		{
-			for (var i = 0; i < selection.length; i++)
-				if (target === selection[i])
-					return {"possible": false};
-		}
-
-		return {"possible": true, "data": data, "position": targetState.position, "cursor": cursor, "tooltip": tooltip};
-	}
 
 	// Check if the target entity is a resource, dropsite, foundation, or enemy unit.
 	// Check if any entities in the selection can gather the requested resource,
@@ -341,132 +234,14 @@ function getActionInfo(action, target)
 		if (!entState)
 			continue;
 
-		var playerState = simState.players[entState.player];
-		var playerOwned = (targetState.player == entState.player);
-		var allyOwned = playerState.isAlly[targetState.player];
-		var mutualAllyOwned = playerState.isMutualAlly[targetState.player];
-		var neutralOwned = playerState.isNeutral[targetState.player];
-		var enemyOwned = playerState.isEnemy[targetState.player];
-
-		// Find the resource type we're carrying, if any
-		var carriedType = undefined;
-		if (entState.resourceCarrying && entState.resourceCarrying.length)
-			carriedType = entState.resourceCarrying[0].type;
-		switch (action)
+		if (unitActions[action] && unitActions[action].getActionInfo)
 		{
-		case "garrison":
-			if (hasClass(entState, "Unit") && targetState.garrisonHolder && (playerOwned || mutualAllyOwned))
-			{
-				var tooltip = sprintf(translate("Current garrison: %(garrisoned)s/%(capacity)s"), {
-					garrisoned: targetState.garrisonHolder.garrisonedEntitiesCount,
-					capacity: targetState.garrisonHolder.capacity
-				});
-				var extraCount = 0;
-				if (entState.garrisonHolder)
-					extraCount += entState.garrisonHolder.garrisonedEntitiesCount;
-				if (targetState.garrisonHolder.garrisonedEntitiesCount + extraCount >= targetState.garrisonHolder.capacity)
-					tooltip = "[color=\"orange\"]" + tooltip + "[/color]";
-				if (MatchesClassList(entState.identity.classes, targetState.garrisonHolder.allowedClasses))
-					return {"possible": true, "tooltip": tooltip};
-			}
-			break;
-		case "setup-trade-route":
-			// If ground or sea trade possible
-			if (!targetState.foundation && ((entState.trader && hasClass(entState, "Organic") && (playerOwned || allyOwned) && hasClass(targetState, "Market")) ||
-				(entState.trader && hasClass(entState, "Ship") && (playerOwned || allyOwned) && hasClass(targetState, "NavalMarket"))))
-			{
-				var tradingData = {"trader": entState.id, "target": target};
-				var tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", tradingData);
-				var tooltip;
-				if (tradingDetails === null)
-					return {"possible": false};
-				switch (tradingDetails.type)
-				{
-				case "is first":
-					tooltip = translate("Origin trade market.");
-					if (tradingDetails.hasBothMarkets)
-						tooltip += "\n" + sprintf(translate("Gain: %(gain)s"), {
-							gain: getTradingTooltip(tradingDetails.gain)
-						});
-					else
-						tooltip += "\n" + translate("Right-click on another market to set it as a destination trade market.")
-					break;
-				case "is second":
-					tooltip = translate("Destination trade market.") + "\n" + sprintf(translate("Gain: %(gain)s"), {
-						gain: getTradingTooltip(tradingDetails.gain)
-					});
-					break;
-				case "set first":
-					tooltip = translate("Right-click to set as origin trade market");
-					break;
-				case "set second":
-					if (tradingDetails.gain.traderGain == 0)   // markets too close
-						return {"possible": false};
-					tooltip = translate("Right-click to set as destination trade market.") + "\n" + sprintf(translate("Gain: %(gain)s"), {
-						gain: getTradingTooltip(tradingDetails.gain)
-					});
-					break;
-				}
-				return {"possible": true, "tooltip": tooltip};
-			}
-			break;
-		case "heal":
-			// The check if the target is unhealable is done by targetState.needsHeal
-			if (entState.healer && hasClass(targetState, "Unit") && targetState.needsHeal && (playerOwned || allyOwned))
-			{
-				// Healers can't heal themselves.
-				if (entState.id == targetState.id)
-					return {"possible": false};
-
-				var unhealableClasses = entState.healer.unhealableClasses;
-				for each (var unitClass in targetState.identity.classes)
-				{
-					if (unhealableClasses.indexOf(unitClass) != -1)
-						return {"possible": false};
-				}
-
-				var healableClasses = entState.healer.healableClasses;
-				for each (var unitClass in targetState.identity.classes)
-				{
-					if (healableClasses.indexOf(unitClass) != -1)
-						return {"possible": true};
-				}
-			}
-			break;
-		case "gather":
-			if (targetState.resourceSupply)
-			{
-				var resource = findGatherType(entState, targetState.resourceSupply);
-				if (resource)
-					return {"possible": true, "cursor": "action-gather-" + resource};
-			}
-			break;
-		case "returnresource":
-			if (targetState.resourceDropsite && playerOwned && carriedType && targetState.resourceDropsite.types.indexOf(carriedType) != -1)
-				return {"possible": true, "cursor": "action-return-" + carriedType};
-			break;
-		case "build":
-			if (targetState.foundation && entState.buildEntities && playerOwned)
-				return {"possible": true};
-			break;
-		case "repair":
-			if (entState.buildEntities && targetState.needsRepair && allyOwned)
-				return {"possible": true};
-			break;
-		case "attack":
-			if (entState.attack && targetState.hitpoints && (enemyOwned || neutralOwned))
-				return {"possible": Engine.GuiInterfaceCall("CanAttack", {"entity": entState.id, "target": target})};
-			break;
-		case "guard":
-			if (targetState.guard && (playerOwned || mutualAllyOwned))
-				return {"possible": (("unitAI" in entState) && entState.unitAI && entState.unitAI.canGuard && !(targetState.unitAI && targetState.unitAI.isGuarding))};
-			break;
+			var r = unitActions[action].getActionInfo(entState, targetState, simState);
+			if (r) // return true if it's possible for one of the entities
+				return r;
 		}
 	}
-	if (action == "move" || action == "attack-move")
-		return {"possible": true};
-	else
-		return {"possible": false};
+	return {"possible": false};
 }
 
 /**
@@ -498,19 +273,6 @@ function determineAction(x, y, fromMinimap)
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return undefined;
 
-	// Work out whether at least part of the selection have UnitAI
-	var haveUnitAI = selection.some(function(ent) {
-		var entState = GetEntityState(ent);
-		return entState && entState.unitAI;
-	});
-
-	// Work out whether at least part the selection have rally points
-	// while none have UnitAI
-	var haveRallyPoints = !haveUnitAI && selection.some(function(ent) {
-		var entState = GetEntityState(ent);
-		return entState && ("rallyPoint" in entState) && entState.rallyPoint;
-	});
-
 	var targets = [];
 	var target = undefined;
 	if (!fromMinimap)
@@ -519,79 +281,47 @@ function determineAction(x, y, fromMinimap)
 	if (targets.length)
 		target = targets[0];
 
+	// decide between the following ordered actions
+	// if two actions are possible, the first one is taken
+	// so the most specific should appear first
+	var actions = Object.keys(unitActions).slice();
+	actions.sort(function(a, b) {return unitActions[a].specificness > unitActions[b].specificness;});
+
 	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
 	{
-		switch (preSelectedAction)
+		for (var action of actions)
 		{
-		case ACTION_GARRISON:
-			if ((actionInfo = getActionInfo("garrison", target)).possible)
-				return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
-			else
-				return {"type": "none", "cursor": "action-garrison-disabled", "target": undefined};
-			break;
-		case ACTION_REPAIR:
-			if (getActionInfo("repair", target).possible)
-				return {"type": "repair", "cursor": "action-repair", "target": target};
-			else
-				return {"type": "none", "cursor": "action-repair-disabled", "target": undefined};
-			break;
-		case ACTION_GUARD:
-			if (getActionInfo("guard", target).possible)
-				return {"type": "guard", "cursor": "action-guard", "target": target};
-			else
-				return {"type": "none", "cursor": "action-guard-disabled", "target": undefined};
-			break;
+			if (unitActions[action].preSelectedActionCheck)
+			{
+				var r = unitActions[action].preSelectedActionCheck(target, selection);
+				if (r)
+					return r;
+			}
+		}
+		return {"type": "none", "cursor": "", "target": target};
+	}
+
+	for (var action of actions)
+	{
+		if (unitActions[action].hotkeyActionCheck)
+		{
+			var r = unitActions[action].hotkeyActionCheck(target, selection);
+			if (r)
+				return r;
 		}
 	}
-	else if (Engine.HotkeyIsPressed("session.attack") && getActionInfo("attack", target).possible)
+
+	for (var action of actions)
 	{
-		return {"type": "attack", "cursor": "action-attack", "target": target};
+		if (unitActions[action].actionCheck)
+		{
+			var r = unitActions[action].actionCheck(target, selection);
+			if (r)
+				return r;
+		}
 	}
-	else if (Engine.HotkeyIsPressed("session.garrison") && (actionInfo = getActionInfo("garrison", target)).possible)
-	{
-		return {"type": "garrison", "cursor": "action-garrison", "tooltip": actionInfo.tooltip, "target": target};
-	}
-	else if (haveUnitAI && Engine.HotkeyIsPressed("session.attackmove") && getActionInfo("attack-move", target).possible)
-	{
-			return {"type": "attack-move", "cursor": "action-attack-move"};
-	}
-	else if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("guard", target).possible)
-	{
-		return {"type": "guard", "cursor": "action-guard", "target": target};
-	}
-	else if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("remove-guard", target).possible)
-	{
-		var isGuarding = selection.some(function(ent) {
-			var entState = GetEntityState(ent);
-			return entState && entState.unitAI && entState.unitAI.isGuarding;
-		});
-		if (isGuarding)
-			return {"type": "remove-guard", "cursor": "action-remove-guard"};
-	}
-	else
-	{
-		if ((actionInfo = getActionInfo("setup-trade-route", target)).possible)
-			return {"type": "setup-trade-route", "cursor": "action-setup-trade-route", "tooltip": actionInfo.tooltip, "target": target};
-		else if ((actionInfo = getActionInfo("gather", target)).possible)
-			return {"type": "gather", "cursor": actionInfo.cursor, "target": target};
-		else if ((actionInfo = getActionInfo("returnresource", target)).possible)
-			return {"type": "returnresource", "cursor": actionInfo.cursor, "target": target};
-		else if (getActionInfo("build", target).possible)
-			return {"type": "build", "cursor": "action-build", "target": target};
-		else if (getActionInfo("repair", target).possible)
-			return {"type": "build", "cursor": "action-repair", "target": target};
-		else if (haveRallyPoints && (actionInfo = getActionInfo("set-rallypoint", target)).possible)
-			return {"type": "set-rallypoint", "cursor": actionInfo.cursor, "data": actionInfo.data, "tooltip": actionInfo.tooltip, "position": actionInfo.position};
-		else if (getActionInfo("heal", target).possible)
-			return {"type": "heal", "cursor": "action-heal", "target": target};
-		else if (getActionInfo("attack", target).possible)
-			return {"type": "attack", "cursor": "action-attack", "target": target};
-		else if (haveRallyPoints && getActionInfo("unset-rallypoint", target).possible)
-			return {"type": "unset-rallypoint", "cursor": "action-unset-rally"};
-		else if (haveUnitAI && getActionInfo("move", target).possible)
-			return {"type": "move"};
-	}
+		
 	return {"type": "none", "cursor": "", "target": target};
 }
 
@@ -1431,105 +1161,12 @@ function doAction(action, ev)
 	// If shift is down, add the order to the unit's order queue instead
 	// of running it immediately
 	var queued = Engine.HotkeyIsPressed("session.queue");
+	var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
 
-	switch (action.type)
-	{
-	case "move":
-		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-		Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
-		return true;
-
-	case "attack-move":
-		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-		Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
-		return true;
-
-	case "attack":
-		Engine.PostNetworkCommand({"type": "attack", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_attack", "entity": selection[0] });
-		return true;
-
-	case "heal":
-		Engine.PostNetworkCommand({"type": "heal", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_heal", "entity": selection[0] });
-		return true;
-
-	case "build": // (same command as repair)
-	case "repair":
-		Engine.PostNetworkCommand({"type": "repair", "entities": selection, "target": action.target, "autocontinue": true, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_repair", "entity": selection[0] });
-		return true;
-
-	case "gather":
-		Engine.PostNetworkCommand({"type": "gather", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
-		return true;
-
-	case "returnresource":
-		Engine.PostNetworkCommand({"type": "returnresource", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_gather", "entity": selection[0] });
-		return true;
-
-	case "setup-trade-route":
-		Engine.PostNetworkCommand({"type": "setup-trade-route", "entities": selection, "target": action.target, "source": undefined, "route": undefined, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_trade", "entity": selection[0] });
-		return true;
-
-	case "garrison":
-		Engine.PostNetworkCommand({"type": "garrison", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_garrison", "entity": selection[0] });
-		return true;
-
-	case "guard":
-		Engine.PostNetworkCommand({"type": "guard", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
-		return true;
-
-	case "remove-guard":
-		Engine.PostNetworkCommand({"type": "remove-guard", "entities": selection, "target": action.target, "queued": queued});
-		Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
-		return true;
-
-	case "set-rallypoint":
-		var pos = undefined;
-		// if there is a position set in the action then use this so that when setting a 
-		// rally point on an entity it is centered on that entity
-		if (action.position)
-		{
-			pos = action.position;
-		}
-		else
-		{
-			pos = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-		}
-		Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": pos.x, "z": pos.z, "data": action.data, "queued": queued});
-		// Display rally point at the new coordinates, to avoid display lag
-		Engine.GuiInterfaceCall("DisplayRallyPoint", {
-			"entities": selection,
-			"x": pos.x,
-			"z": pos.z,
-			"queued": queued
-		});
-		return true;
-
-	case "unset-rallypoint":
-		var target = Engine.GetTerrainAtScreenPoint(ev.x, ev.y);
-		Engine.PostNetworkCommand({"type": "unset-rallypoint", "entities": selection});
-		// Remove displayed rally point
-		Engine.GuiInterfaceCall("DisplayRallyPoint", {
-			"entities": []
-		});
-		return true;
-
-	case "none":
-		return true;
-
-	default:
-		error("Invalid action.type "+action.type);
-		return false;
-	}
+	if (unitActions[action.type] && unitActions[action.type].execute)
+		return unitActions[action.type].execute(target, action, selection, queued);
+	error("Invalid action.type "+action.type);
+	return false;
 }
 
 function handleMinimapEvent(target)
@@ -1537,44 +1174,20 @@ function handleMinimapEvent(target)
 	// Partly duplicated from handleInputAfterGui(), but with the input being
 	// world coordinates instead of screen coordinates.
 
-	if (inputState == INPUT_NORMAL)
-	{
-		var fromMinimap = true;
-		var action = determineAction(undefined, undefined, fromMinimap);
-		if (!action)
-			return false;
+	if (inputState != INPUT_NORMAL)
+		return false;
 
-		var selection = g_Selection.toList();
+	var fromMinimap = true;
+	var action = determineAction(undefined, undefined, fromMinimap);
+	if (!action)
+		return false;
 
-		var queued = Engine.HotkeyIsPressed("session.queue");
+	var selection = g_Selection.toList();
 
-		switch (action.type)
-		{
-		case "move":
-			Engine.PostNetworkCommand({"type": "walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
-			return true;
-
-		case "attack-move":
-			Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
-			return true;
-
-		case "set-rallypoint":
-			Engine.PostNetworkCommand({"type": "set-rallypoint", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
-			// Display rally point at the new coordinates, to avoid display lag
-			Engine.GuiInterfaceCall("DisplayRallyPoint", {
-				"entities": selection,
-				"x": target.x,
-				"z": target.z,
-				"queued": queued
-			});
-			return true;
-
-		default:
-			error("Invalid action.type "+action.type);
-		}
-	}
+	var queued = Engine.HotkeyIsPressed("session.queue");
+	if (unitActions[action.type] && unitActions[action.type].execute)
+		return unitActions[action.type].execute(target, action, selection, queued);
+	error("Invalid action.type "+action.type);
 	return false;
 }
 
@@ -1928,7 +1541,7 @@ function performCommand(entity, commandName)
 				removeGuard();
 				break;
 			case "unload":
-				unloadThese();
+				unloadSelection();
 				break;
 			case "unload-all":
 				unloadAll();
@@ -2208,7 +1821,7 @@ function unloadTemplate(template)
 	});
 }
 
-function unloadThese()
+function unloadSelection()
 {
 	var entities = g_Selection.toList();
 	var parent = 0;
