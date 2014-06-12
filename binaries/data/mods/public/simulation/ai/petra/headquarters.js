@@ -167,10 +167,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	{
 		var newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40 && this.canBuild(gameState, "structures/{civ}_storehouse"))
-		{
 			queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": 1 }, newDP.pos));
-			queues.minorTech.addItem(new m.ResearchPlan(gameState, "gather_capacity_wheelbarrow"));
-		}
 	}
 
 	// adapt our starting strategy to the available resources
@@ -734,7 +731,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		{
 			var sea = this.getSeaIndex(gameState, base.accessIndex, index);
 			if (sea !== undefined)
-				this.navalManager.setMinimalTransportShips(gameState, sea, 2);
+				this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 		}
 	}
 
@@ -868,7 +865,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 		{
 			var sea = this.getSeaIndex(gameState, base.accessIndex, index);
 			if (sea !== undefined)
-				this.navalManager.setMinimalTransportShips(gameState, sea, 2);
+				this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 		}
 	}
 
@@ -1043,9 +1040,6 @@ m.HQ.prototype.buildTemple = function(gameState, queues)
 	if (!this.canBuild(gameState, "structures/{civ}_temple"))
 		return;
 	queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_temple"));
-	// add the health regeneration to the research we want.
-	if (!gameState.isResearched("health_regen_units") && !gameState.isResearching("health_regen_units"))
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, "health_regen_units"));
 };
 
 m.HQ.prototype.buildMarket = function(gameState, queues)
@@ -1076,9 +1070,6 @@ m.HQ.prototype.buildFarmstead = function(gameState, queues)
 		return;
 
 	queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_farmstead"));
-	// add the farming plough to the research we want.
-	if (!gameState.isResearched("gather_farming_plows") && !gameState.isResearching("gather_farming_plows"))
-		queues.minorTech.addItem(new m.ResearchPlan(gameState, "gather_farming_plows"));
 };
 
 // build more houses if needed.
@@ -1160,7 +1151,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		{
 			if (this.Config.debug > 0)
 				warn("no room to place a house ... try to improve with technology");
-			this.researchManager.searchPopulationBonus(gameState, queues);
+			this.researchManager.researchPopulationBonus(gameState, queues);
 		}
 		else if (index === -1)
 			var priority = 2*this.Config.priorities.house;
@@ -1474,8 +1465,6 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
-	if (this.Config.debug > 1)
-		warn(" buildings stopped " + uneval(this.stopBuilding));
 	this.stopBuilding = [];
 };
 

@@ -184,9 +184,14 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 		if (stocks[type] < 200)
 		{
 			tradingGoods[type] = 20;
-			this.targetNumTraders += 2;
+			this.targetNumTraders += 3;
 		}
 		else if (stocks[type] < 500)
+		{
+			tradingGoods[type] = 15;
+			this.targetNumTraders += 2;
+		}
+		else if (stocks[type] < 1000)
 		{
 			tradingGoods[type] = 10;
 			this.targetNumTraders += 1;
@@ -337,6 +342,10 @@ m.TradeManager.prototype.update = function(gameState, queues)
 		this.setTradingGoods(gameState);
 	this.trainMoreTraders(gameState, queues);
 	this.traders.forEach(function(ent) { self.updateTrader(ent) });
+
+	if (!this.tradeRoute || gameState.ai.playedTurn % 20 !== 10)
+		return;
+	gameState.ai.HQ.researchManager.researchTradeBonus(gameState, queues)
 };
 
 return m;
