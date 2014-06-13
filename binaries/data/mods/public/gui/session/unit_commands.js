@@ -6,7 +6,6 @@ const FORMATION = "Formation";
 const TRAINING = "Training";
 const RESEARCH = "Research";
 const CONSTRUCTION = "Construction";
-const TRADING = "Trading";
 const COMMAND = "Command";
 const STANCE = "Stance";
 const GATE = "Gate";
@@ -30,10 +29,10 @@ const BARTER_ACTIONS = ["Sell", "Buy"];
 const GATE_ACTIONS = ["lock", "unlock"];
 
 // The number of currently visible buttons (used to optimise showing/hiding)
-var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Trading": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0, "Pack": 0};
+var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0, "Pack": 0};
 
 // Unit panels are panels with row(s) of buttons
-var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Trading", "Construction", "Research", "Stance", "Command", "Gate", "Pack"];
+var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "Barter", "Construction", "Research", "Stance", "Command", "Gate", "Pack"];
 
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
@@ -981,32 +980,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	g_unitPanelButtons[guiName] = numButtons;
 }
 
-// Sets up "unit trading panel" - special case for setupUnitPanel
-function setupUnitTradingPanel(usedPanels, unitEntState, selection)
-{
-	usedPanels[TRADING] = 1;
-
-	var requiredGoods = unitEntState.trader.requiredGoods;
-	for (var i = 0; i < TRADING_RESOURCES.length; i++)
-	{
-		var resource = TRADING_RESOURCES[i];
-		var button = Engine.GetGUIObjectByName("unitTradingButton["+i+"]");
-		button.size = (i * 46) + " 0 " + ((i + 1) * 46) + " 46";
-		if (resource == requiredGoods)
-			var selectRequiredGoodsData = { "entities": selection, "requiredGoods": undefined };
-		else
-			var selectRequiredGoodsData = { "entities": selection, "requiredGoods": resource };
-		button.onpress = (function(e){ return function() { selectRequiredGoods(e); } })(selectRequiredGoodsData);
-		button.enabled = true;
-		button.tooltip = sprintf(translate("Set/unset %(resource)s as forced trading goods."), { resource: resource });
-		var icon = Engine.GetGUIObjectByName("unitTradingIcon["+i+"]");
-		var selected = Engine.GetGUIObjectByName("unitTradingSelection["+i+"]");
-		selected.hidden = !(resource == requiredGoods);
-		var grayscale = (resource != requiredGoods) ? "grayscale:" : "";
-		icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + resource + ".png";
-	}
-}
-
 // Sets up "unit barter panel" - special case for setupUnitPanel
 function setupUnitBarterPanel(unitEntState, playerState)
 {
@@ -1168,8 +1141,6 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 		else if (entState.production && entState.production.entities)
 			setupUnitPanel(TRAINING, usedPanels, entState, playerState, trainableEnts,
 				function (trainEntType) { addTrainingToQueue(selection, trainEntType, playerState); } );
-//		else if (entState.trader)
-//			setupUnitTradingPanel(usedPanels, entState, selection);
 		else if (!entState.foundation && entState.gate || hasClass(entState, "LongWall"))
 		{
 			// Allow long wall pieces to be converted to gates
