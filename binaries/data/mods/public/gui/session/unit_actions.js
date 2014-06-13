@@ -621,6 +621,245 @@ var unitActions =
 	},
 };
 
+/**
+ * Info and actions for the entity commands
+ * Currently displayed in the bottom of the central pane
+ */
+var entityCommands = 
+{
+	// Unload
+	"unload-all": {
+		"getInfo": function(entState)
+		{
+			if (!entState.garrisonHolder)
+				return false;
+			return {
+				"tooltip": translate("Unload All"),
+				"icon": "garrison-out.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			unloadAdd();
+		},
+	},
+	// Delete
+	"delete": {
+		"getInfo": function(entState)
+		{
+			return {
+				"tooltip": translate("Delete"),
+				"icon": "kill_small.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			var selection = g_Selection.toList();
+			if (selection.length < 1)
+				return;
+			if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather)
+				openDeleteDialog(selection);
+		},
+	},
+	// Stop
+	"stop": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI)
+				return false;
+			return {
+				"tooltip": translate("Stop"),
+				"icon": "stop.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			var selection = g_Selection.toList();
+			if (selection.length > 0)
+				stopUnits(selection);
+		},
+	},
+	// Garrison
+	 "garrison": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI || entState.turretParent)
+				return false;
+			return {
+				"tooltip": translate("Garrison"),
+				"icon": "garrison.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			inputState = INPUT_PRESELECTEDACTION;
+			preSelectedAction = ACTION_GARRISON;
+		},
+	},
+	// Ungarrison
+	"unload": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI || !entState.turretParent)
+				return false;
+
+			var p = GetEntityState(entState.turretParent);
+			if (p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
+				return false;
+			return {
+				"tooltip": translate("Unload"),
+				"icon": "garrison-out.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			unloadSelection();
+		},
+	},
+	// Repair
+	"repair": {
+		"getInfo": function(entState)
+		{
+			if (!entState.buildEntities)
+				return false;
+			return {
+				"tooltip": translate("Repair"),
+				"icon": "repair.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			inputState = INPUT_PRESELECTEDACTION;
+			preSelectedAction = ACTION_REPAIR;
+		},
+	},
+	// Focus on rally point
+	"focus-rally": {
+		"getInfo": function(entState)
+		{
+			if (!entState.rallyPoint)
+				return false;
+			return {
+				"tooltip": translate("Focus on Rally Point"),
+				"icon": "focus-rally.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			var focusTarget = null;
+			if (entState.rallyPoint && entState.rallyPoint.position)
+				focusTarget = entState.rallyPoint.position;
+			else if (entState.position)
+				focusTarget = entState.position;
+			
+			if (focusTarget)
+				Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
+		},
+	},
+	// Back to work
+	"back-to-work": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI || !entState.unitAI.hasWorkOrders)
+				return false;
+			return {
+				"tooltip": translate("Back to Work"),
+				"icon": "production.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			backToWork();
+		},
+	},
+	// Guard
+	"add-guard": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI || !entState.unitAI.canGuard || entState.unitAI.isGuarding)
+				return false;
+			return {
+				"tooltip": translate("Guard"),
+				"icon": "add-guard.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			inputState = INPUT_PRESELECTEDACTION;
+			preSelectedAction = ACTION_GUARD;
+		},
+	},
+	// Remove guard
+	"remove-guard": {
+		"getInfo": function(entState)
+		{
+			if (!entState.unitAI || !entState.unitAI.isGuarding)
+				return false;
+			return {
+				"tooltip": translate("Remove guard"),
+				"icon": "remove-guard.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			removeGuard();
+		},
+	},
+	// Trading
+	 "select-trading-goods": {
+		"getInfo": function(entState)
+		{
+			if (!hasClass(entState, "Market"))
+				return false;
+			return {
+				"tooltip": translate("Select trading goods"),
+				"icon": "economics.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			toggleTrade();
+		},
+	},
+	// Raise alert
+	"increase-alert-level": {
+		"getInfo": function(entState)
+		{
+			if(!entState.alertRaiser || !entState.alertRaiser.canIncreaseLevel)
+				return false;
+
+			if(entState.alertRaiser.hasRaisedAlert)
+				var tooltip = translate("Increase the alert level to protect more units");
+			else
+				var tooltip = translate("Raise an alert!");
+			return {
+				"tooltip": tooltip,
+				"icon": "bell_level1.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			increaseAlertLevel();
+		},
+	},
+	// End alert
+	"alert-end": {
+		"getInfo": function(entState)
+		{
+			if(!entState.alertRaiser || !entState.alertRaiser.hasRaisedAlert)
+				return false
+			return {
+				"tooltip": translate("End of alert."),
+				"icon": "bell_level0.png"
+			};
+		},
+		"execute": function(entState)
+		{
+			endOfAlert();
+		},
+	},
+};
+
 function playerCheck(entState, targetState, validPlayers)
 {
 	var playerState = GetSimState().players[entState.player];
@@ -634,4 +873,4 @@ function playerCheck(entState, targetState, validPlayers)
 			return true;
 	}
 	return false;
-}
+};
