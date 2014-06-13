@@ -3,7 +3,7 @@
     "supersedes": "persians/training_levy_cavalry",
 	"description": "Significantly increase training speed of cavalry at the stables by training them in large batches or battalions.",
 	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "pers"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "horse_rider.png",
 	"researchTime": 40,

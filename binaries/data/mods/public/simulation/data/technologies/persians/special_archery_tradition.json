@@ -2,7 +2,7 @@
 	"genericName": "Archery Tradition",
 	"description": "The Persians had a tradition of fine archery and a penchant for using massed archers in battle.",
 	"cost": {"food": 200, "wood": 300, "stone": 0, "metal": 150},
-	"requirements": {"tech": "phase_village"},
+	"requirements": {"all": [{"tech": "phase_village"}, {"civ": "pers"}]},
 	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "armor_plates_ranged.png",
 	"researchTime": 60,

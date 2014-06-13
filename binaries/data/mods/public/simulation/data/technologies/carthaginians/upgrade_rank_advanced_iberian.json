@@ -2,7 +2,7 @@
 	"genericName": "Advanced Iberian Mercenaries",
 	"description": "Upgrade all of your Iberian mercenaries to Advanced rank.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 300},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "upgrade_advanced.png",
 	"researchTime": 40,

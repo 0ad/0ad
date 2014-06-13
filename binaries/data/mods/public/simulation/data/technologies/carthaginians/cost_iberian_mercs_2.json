@@ -3,7 +3,7 @@
 	"genericName": "Celtiberian Mercenary General",
 	"description": "Iberian mercenaries have their metal cost decreased.",
 	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 200},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_corinthian_crest.png",
 	"researchTime": 40,

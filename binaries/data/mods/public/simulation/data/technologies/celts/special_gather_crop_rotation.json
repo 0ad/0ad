@@ -2,7 +2,7 @@
 	"genericName": "Crop Rotation",
 	"description": "Crop rotation increases yield by preventing the depletion of vital nutrients and minerals from the soil.",
 	"cost": {"food": 300, "wood": 300, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"any": [{"civ": "celt"}, {"civ": "brit"}, {"civ": "gaul"}]}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "crop_rotation.png",
 	"researchTime": 40,

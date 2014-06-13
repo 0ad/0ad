@@ -2,7 +2,7 @@
 	"genericName": "Exploration",
 	"description": "Nobody knew better than the Carthaginians where in the ancient world they were going and going to go; their merchant traders had missions to everywhere.",
 	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 200},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "armor_ship_gold.png",
 	"researchTime": 60,

@@ -2,7 +2,7 @@
 	"genericName": "The Agoge",
 	"description": "Spartans were housed and trained from a young age to be superlative warriors and to endure any hardship a military life can give them.",
 	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "spart"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "agoge.png",
 	"researchTime": 60,

@@ -3,7 +3,7 @@
 	"genericName": "Gallic Hegemony",
 	"description": "Celtic mercenaries have their train time decreased.",
 	"cost": {"food": 0, "wood": 0, "stone": 200, "metal": 200},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "fist_spear.png",
 	"researchTime": 40,

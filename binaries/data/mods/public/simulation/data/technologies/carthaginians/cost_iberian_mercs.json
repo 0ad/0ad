@@ -3,7 +3,7 @@
 	"genericName": "Lusitanian Mercenary Captain",
 	"description": "Iberian mercenaries have their metal cost decreased.",
 	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 100},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "helmet_corinthian_silver.png",
 	"researchTime": 40,
