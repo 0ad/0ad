@@ -282,7 +282,7 @@ var unitActions =
 			if (!(hasClass(entState, "Organic") && hasClass(targetState, "Market")) && !(hasClass(entState, "Ship") && hasClass(targetState, "NavalMarket")))
 				return false;
 
-			var tradingData = {"trader": entState.id, "target": target};
+			var tradingData = {"trader": entState.id, "target": targetState.id};
 			var tradingDetails = Engine.GuiInterfaceCall("GetTradingDetails", tradingData);
 
 			if (!tradingDetails)
