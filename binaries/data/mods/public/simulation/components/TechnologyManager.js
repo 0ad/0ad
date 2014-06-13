@@ -2,12 +2,12 @@ function TechnologyManager() {}
 
 TechnologyManager.prototype.Schema =
 	"<a:component type='system'/><empty/>";
-	
+
 TechnologyManager.prototype.Serialize = function()
 {
 	// The modifications cache will be affected by property reads from the GUI and other places so we shouldn't 
 	// serialize it.
-	
+
 	var ret = {};
 	for (var i in this)
 	{
@@ -25,7 +25,7 @@ TechnologyManager.prototype.Init = function ()
 	this.researchedTechs = {}; // technologies which have been researched
 	this.researchQueued = {};  // technologies which are queued for research
 	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
-	
+
 	// This stores the modifications to unit stats from researched technologies
 	// Example data: {"ResourceGatherer/Rates/food.grain": [ 
 	//                     {"multiply": 1.15, "affects": ["Female", "Infantry Swordsman"]},
@@ -35,12 +35,12 @@ TechnologyManager.prototype.Init = function ()
 	this.modificationCache = {}; // Caches the values after technologies have been applied
 	                             // e.g. { "Attack/Melee/Hack" : {5: {"origValue": 8, "newValue": 10}, 7: {"origValue": 9, "newValue": 12}, ...}, ...}
 	                             // where 5 and 7 are entity id's
-	
+
 	this.typeCounts = {}; // stores the number of entities of each type 
 	this.classCounts = {}; // stores the number of entities of each Class
 	this.typeCountsByClass = {}; // stores the number of entities of each type for each class i.e.
 	                             // {"someClass": {"unit/spearman": 2, "unit/cav": 5} "someOtherClass":...}
-	
+
 	// Some technologies are automatically researched when their conditions are met.  They have no cost and are 
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
 	this.autoResearchTech = {};
@@ -85,7 +85,7 @@ TechnologyManager.prototype.CanProduce = function (templateName)
 {
 	var cmpTempManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 	var template = cmpTempManager.GetTemplate(templateName);
-	
+
 	if (template.Identity && template.Identity.RequiredTechnology)
 		return this.IsTechnologyResearched(template.Identity.RequiredTechnology);
 	else
@@ -106,21 +106,24 @@ TechnologyManager.prototype.CanResearch = function (tech)
 		warn("Technology \"" + tech + "\" does not exist");
 		return false;
 	}
-	
+
 	// The technology which this technology supersedes is required
 	if (template.supersedes && !this.IsTechnologyResearched(template.supersedes))
 		return false;
-	
+
 	if (template.top && this.IsInProgress(template.top) ||
 	    template.bottom && this.IsInProgress(template.bottom))
 		return false;
-	
+
 	if (template.pair && !this.CanResearch(template.pair))
 		return false;
-	
+
 	if (this.IsInProgress(tech))
 		return false;
-	
+
+	if (this.IsTechnologyResearched(tech))
+		return false;
+
 	return this.CheckTechnologyRequirements(template.requirements || null);
 };
 
@@ -130,7 +133,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 	// If there are no requirements then all requirements are met
 	if (!reqs)
 		return true;
-	
+
 	if (reqs.tech)
 	{
 		return this.IsTechnologyResearched(reqs.tech);
@@ -156,7 +159,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 	else if (reqs.class)
 	{
 		if (reqs.numberOfTypes)
-		{	
+		{
 			if (this.typeCountsByClass[reqs.class])
 				return (reqs.numberOfTypes <= Object.keys(this.typeCountsByClass[reqs.class]).length);
 			else
@@ -169,7 +172,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 			else
 				return false;
 		}
-	} 
+	}
 	else if (reqs.civ) 
 	{
 		var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
@@ -178,7 +181,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 		else 
 			return false;
 	}
-	
+
 	// The technologies requirements are not a recognised format
 	error("Bad requirements " + uneval(reqs));
 	return false;
@@ -192,14 +195,14 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 	{
 		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
 		var template = cmpTemplateManager.GetCurrentTemplateName(msg.entity);
-		
+
 		this.typeCounts[template] = this.typeCounts[template] || 0;
 		this.typeCounts[template] += 1;
-		
+
 		var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 		if (!cmpIdentity)
 			return;
-			
+
 		var classes = cmpIdentity.GetClassesList();
 		// don't use foundations for the class counts but check if techs apply (e.g. health increase)
 		if (!Engine.QueryInterface(msg.entity, IID_Foundation))
@@ -214,7 +217,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 				this.typeCountsByClass[classes[i]][template] += 1;
 			}
 		}
-		
+
 		// Newly created entity, check if any researched techs might apply
 		// (only do this for new entities because even if an entity is converted or captured,
 		//	we want it to maintain whatever technologies previously applied)
@@ -248,7 +251,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 		this.typeCounts[template] -= 1;
 		if (this.typeCounts[template] <= 0)
 			delete this.typeCounts[template];
-		
+
 		// don't use foundations for the class counts
 		if (!Engine.QueryInterface(msg.entity, IID_Foundation))
 		{
@@ -261,31 +264,31 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 					this.classCounts[classes[i]] -= 1;
 					if (this.classCounts[classes[i]] <= 0)
 						delete this.classCounts[classes[i]];
-				
+
 					this.typeCountsByClass[classes[i]][template] -= 1;
 					if (this.typeCountsByClass[classes[i]][template] <= 0)
 						delete this.typeCountsByClass[classes[i]][template];
 				}
 			}
 		}
-		
+
 		this.clearModificationCache(msg.entity);
 	}
 };
-	
+
 // Marks a technology as researched.  Note that this does not verify that the requirements are met.
 TechnologyManager.prototype.ResearchTechnology = function (tech)
 {
 	this.StoppedResearch(tech); // The tech is no longer being currently researched
-	
+
 	var template = this.GetTechnologyTemplate(tech);
-	
+
 	if (!template)
 	{
 		error("Tried to research invalid techonology: " + uneval(tech));
 		return;
 	}
-	
+
 	var modifiedComponents = {};
 	this.researchedTechs[tech] = template;
 	// store the modifications in an easy to access structure
@@ -304,7 +307,7 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 		{
 			affects.push([]);
 		}
-		
+
 		// We add an item to this.modifications for every modification in the template.modifications array
 		for (var i in template.modifications)
 		{
@@ -319,14 +322,14 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 				for (var a in modAffects)
 					modAffects[a] = modAffects[a].concat(extraAffects);
 			}
-			
+
 			var mod = {"affects": modAffects};
-			
+
 			// copy the modification data into our new data structure
 			for (var j in modification)
 				if (j !== "value" && j !== "affects")
 					mod[j] = modification[j];
-			
+
 			this.modifications[modification.value].push(mod);
 			var component = modification.value.split("/")[0];
 			if (!modifiedComponents[component])
@@ -335,9 +338,9 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 			this.modificationCache[modification.value] = {};
 		}
 	}
-	
+
 	this.UpdateAutoResearch();
-	
+
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer || cmpPlayer.GetPlayerID() === undefined)
 		return;
@@ -368,7 +371,7 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 {
 	if (!this.modificationCache[valueName])
 		this.modificationCache[valueName] = {};
-	
+
 	if (!this.modificationCache[valueName][ent] || this.modificationCache[valueName][ent].origValue != curValue)
 	{
 		this.modificationCache[valueName][ent] = {"origValue": curValue};
@@ -379,7 +382,7 @@ TechnologyManager.prototype.ApplyModifications = function(valueName, curValue, e
 			templateName = templateName.slice(templateName.indexOf("|") + 1);
 		this.modificationCache[valueName][ent].newValue = GetTechModifiedProperty(this.modifications, cmpTemplateManager.GetTemplate(templateName), valueName, curValue);
 	}
-	
+
 	return this.modificationCache[valueName][ent].newValue;
 };
 

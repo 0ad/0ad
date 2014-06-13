@@ -2,7 +2,7 @@
 	"genericName": "Elite Celtic Mercenaries",
 	"description": "Upgrade all of your Celtic Mercenaries to Elite rank.",
 	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 500},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "upgrade_elite.png",
 	"researchTime": 40,

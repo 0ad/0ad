@@ -2,7 +2,7 @@
 	"genericName": "Athenian Long Walls",
 	"description": "The Long Walls of Athens were constructed under the auspices of the wily Themistocles and extended 6 km from the city to the port of Piraeus. This secured the city's sea supply routes and prevented an enemy from starving out the city during a siege.",
 	"cost": {"food": 0, "wood": 0, "stone": 250, "metal": 250},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "athen"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "crenelations.png",
 	"researchTime": 60,

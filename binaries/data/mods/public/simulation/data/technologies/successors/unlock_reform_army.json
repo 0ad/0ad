@@ -3,7 +3,7 @@
 	"genericName": "Reform Army",
 	"description": "The reform army of the Seleucids.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "sele"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "helmet_corinthian_crest.png",
 	"researchTime": 0,

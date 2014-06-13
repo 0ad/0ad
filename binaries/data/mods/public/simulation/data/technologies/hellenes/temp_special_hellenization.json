@@ -9,7 +9,7 @@
 	},
 	"description": "The Hellenic culture was very influential. Greek became the spoken language of commerce and politics for much of the Mediterranean basin and Middle East for centuries.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 1000},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"any": [{"civ": "hele"},{"civ": "athen"},{"civ": "mace"},{"civ": "spart"},{"civ": "theb"}]}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "political_face.png",
 	"researchTime": 60,

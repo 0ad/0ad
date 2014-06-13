@@ -2,7 +2,7 @@
 	"genericName": "Phoenician Naval Architects",
 	"description": "Significantly increase build speed of batches of ships at the Shipyard.",
 	"cost": {"food": 200, "wood": 200, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "cart"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "calipers.png",
 	"researchTime": 40,

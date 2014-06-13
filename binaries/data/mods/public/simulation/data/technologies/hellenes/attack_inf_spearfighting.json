@@ -9,7 +9,7 @@
 	},
 	"description": "Spear fighting training increases damage of infantry spear units.",
 	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 100},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"any": [{"civ": "hele"},{"civ": "athen"},{"civ": "mace"},{"civ": "spart"},{"civ": "theb"}]}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "spear.png",
 	"researchTime": 40,

@@ -3,7 +3,7 @@
     "supersedes": "persians/training_levy_infantry",
 	"description": "Significantly increase training speed of soldiers at the barracks by training them in large batches or battalions.",
 	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_city"},
+	"requirements": {"all": [{"tech": "phase_city"}, {"civ": "pers"}]},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "fist_spear.png",
 	"researchTime": 40,

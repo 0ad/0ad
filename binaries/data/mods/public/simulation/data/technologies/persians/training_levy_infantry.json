@@ -2,7 +2,7 @@
 	"genericName": "Levy Infantry",
 	"description": "Calling up infantry levies in time of war helps bolster the ranks of a king's army.",
 	"cost": {"food": 100, "wood": 0, "stone": 0, "metal": 0},
-	"requirements": {"tech": "phase_town"},
+	"requirements": {"all": [{"tech": "phase_town"}, {"civ": "pers"}]},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,

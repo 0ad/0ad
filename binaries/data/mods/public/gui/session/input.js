@@ -1505,82 +1505,16 @@ function changePrimarySelectionGroup(templateName, deselectGroup)
 // Performs the specified command (delete, town bell, repair, etc.)
 function performCommand(entity, commandName)
 {
-	if (entity)
-	{
-		var entState = GetExtendedEntityState(entity);
-		var playerID = Engine.GetPlayerID();
+	if (!entity)
+		return;
+	var entState = GetExtendedEntityState(entity);
+	var playerID = Engine.GetPlayerID();
 
-		if (entState.player == playerID || g_DevSettings.controlAll)
-		{
-			switch (commandName)
-			{
-			case "delete":
-				var selection = g_Selection.toList();
-				if (selection.length > 0)
-					if (!entState.resourceSupply || !entState.resourceSupply.killBeforeGather)
-						openDeleteDialog(selection);
-				break;
-			case "stop":
-				var selection = g_Selection.toList();
-				if (selection.length > 0)
-					stopUnits(selection);
-				break;
-			case "garrison":
-				inputState = INPUT_PRESELECTEDACTION;
-				preSelectedAction = ACTION_GARRISON;
-				break;
-			case "repair":
-				inputState = INPUT_PRESELECTEDACTION;
-				preSelectedAction = ACTION_REPAIR;
-				break;
-			case "add-guard":
-				inputState = INPUT_PRESELECTEDACTION;
-				preSelectedAction = ACTION_GUARD;
-				break;
-			case "remove-guard":
-				removeGuard();
-				break;
-			case "unload":
-				unloadSelection();
-				break;
-			case "unload-all":
-				unloadAll();
-				break;
-			case "focus-rally":
-				// if the selected building has a rally point set, move the camera to it; otherwise, move to the building itself
-				// (since that's where units will spawn without a rally point)
-				var focusTarget = null;
-				if (entState.rallyPoint && entState.rallyPoint.position)
-				{
-					focusTarget = entState.rallyPoint.position;
-				}
-				else
-				{
-					if (entState.position)
-						focusTarget = entState.position;
-				}
-				
-				if (focusTarget !== null)
-					Engine.CameraMoveTo(focusTarget.x, focusTarget.z);
-				
-				break;
-			case "back-to-work":
-				backToWork();
-				break;
-			case "increase-alert-level":
-				increaseAlertLevel();
-				break;
-			case "alert-end":
-				endOfAlert();
-				break;
-			case "select-trading-goods":
-				toggleTrade();
-				break;
-			default:
-				break;
-			}
-		}
-	}
+	if (!entState.player == playerID && !g_DevSettings.controlAll)
+		return;
+
+	if (entityCommands[commandName])
+		entityCommands[commandName].execute(entState);
 }
 
 // Performs the specified formation

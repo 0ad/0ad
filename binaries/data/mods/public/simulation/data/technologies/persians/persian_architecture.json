@@ -2,7 +2,7 @@
 	"genericName": "Persian Architecture",
 	"description": "The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to Susa; Darius the Great and Xerxes also built the magnificent Persepolis; Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old Elamite capital of Susa.",
 	"cost": {"food": 0, "wood": 200, "stone": 200, "metal": 0},
-	"requirements": {"tech": "phase_village"},
+	"requirements": {"all": [{"tech": "phase_village"}, {"civ": "pers"}]},
 	"icon": "stone_blocks.png",
 	"researchTime": 60,
 	"tooltip": "All Persian structures +25% health, but also +20% build time.",
