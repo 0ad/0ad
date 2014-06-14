@@ -85,7 +85,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 			// as we are already garrisoned and do not need to do
 			// any further checks (or else we should do them here).
 			orders.shift();
-			cmpPromotedUnitAI.Autogarrison();
+			cmpPromotedUnitAI.Autogarrison(orders[0].data.target);
 		}
 		else
 			warn("Promoted garrisoned entity with empty order queue.");

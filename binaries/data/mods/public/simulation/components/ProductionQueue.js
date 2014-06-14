@@ -551,7 +551,7 @@ ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 		if (cmpAutoGarrison && cmpAutoGarrison.PerformGarrison(ent))
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			cmpUnitAI.Autogarrison();
+			cmpUnitAI.Autogarrison(this.entity);
 		}
 		else
 		{

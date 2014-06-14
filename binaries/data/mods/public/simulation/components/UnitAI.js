@@ -4982,9 +4982,9 @@ UnitAI.prototype.Ungarrison = function()
  * Adds autogarrison order to the queue (only used by ProductionQueue for auto-garrisoning
  * and Promotion when promoting already garrisoned entities).
  */
-UnitAI.prototype.Autogarrison = function()
+UnitAI.prototype.Autogarrison = function(target)
 {
-	this.AddOrder("Autogarrison", null, false);
+	this.AddOrder("Autogarrison", { "target": target }, false);
 };
 
 /**

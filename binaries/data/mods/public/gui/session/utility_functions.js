@@ -631,7 +631,7 @@ function getEntityOrHolder(ent)
 {
 	var entState = GetEntityState(ent);
 	if (entState && !entState.position && entState.unitAI && entState.unitAI.orders.length > 0 &&
-			entState.unitAI.orders[0].type == "Garrison")
+			(entState.unitAI.orders[0].type == "Garrison" || entState.unitAI.orders[0].type == "Autogarrison"))
 		return entState.unitAI.orders[0].data.target;
 
 	return ent;
