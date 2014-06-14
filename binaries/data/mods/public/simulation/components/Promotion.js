@@ -79,7 +79,7 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	var orders = cmpCurrentUnitAI.GetOrders();
 	if (cmpCurrentUnitAI.IsGarrisoned())
 	{
-		if (orders.length > 0 && orders[0].type == "Garrison")
+		if (orders.length > 0 && (orders[0].type == "Garrison" || orders[0].type == "Autogarrison"))
 		{
 			// Replace the garrison order by an autogarrison order,
 			// as we are already garrisoned and do not need to do
