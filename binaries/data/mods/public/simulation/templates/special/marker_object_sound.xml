@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_structure">
+  <BuildRestrictions>
+    <Category>Special</Category>
+  </BuildRestrictions>
+  <Footprint replace="">
+    <Circle radius="6.0"/>
+    <Height>5.0</Height>
+  </Footprint>
+  <Health>
+    <Max>200000</Max>
+  </Health>
+  <Identity>
+    <Civ>gaia</Civ>
+    <GenericName>Marker</GenericName>
+    <SpecificName>Marker</SpecificName>
+    <Icon>gaia/special_blank.png</Icon>
+  </Identity>
+  <Obstruction>
+    <Obstructions>
+      <Edge width="6" depth="6"/> 
+    </Obstructions>
+  </Obstruction>
+  <Selectable>
+    <EditorOnly/>
+  </Selectable>
+  <Vision>
+    <AlwaysVisible>true</AlwaysVisible>
+  </Vision>
+  <VisualActor>
+    <Actor>props/special/common/marker_object_sound.xml</Actor>
+  </VisualActor>
+</Entity>
