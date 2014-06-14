@@ -260,6 +260,11 @@ function getStanceDisplayName(name)
  */
 function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, callback)
 {
+	if (!g_SelectionPanels[guiName])
+	{
+		error("unknown guiName used");
+		return;
+	}
 	usedPanels[guiName] = 1;
 
 	var numberOfItems = items.length;
@@ -267,67 +272,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	var garrisonGroups = new EntityGroups();
 
 	// Determine how many buttons there should be
-	switch (guiName)
-	{
-		case SELECTION:
-			if (numberOfItems > 16)
-				numberOfItems = 16;
-			break;
+	if (g_SelectionPanels[guiName].maxNumberOfItems)
+		numberOfItems = Math.min(g_SelectionPanels[guiName].maxNumberOfItems, numberOfItems);
 
-		case QUEUE:
-			if (numberOfItems > 16)
-				numberOfItems = 16;
-			break;
-
-		case GARRISON:
-			if (numberOfItems > 12)
-				numberOfItems = 12;
-			break;
-
-		case STANCE:
-			if (numberOfItems > 5)
-				numberOfItems = 5;
-			break;
-
-		case FORMATION:
-			if (numberOfItems > 16)
-				numberOfItems = 16;
-			break;
-
-		case TRAINING:
-			if (numberOfItems > 24)
-				numberOfItems = 24;
-			break;
-
-		case RESEARCH:
-			if (numberOfItems > 8)
-				numberOfItems = 8;
-			break;
-
-		case CONSTRUCTION:
-			if (numberOfItems > 24)
-				numberOfItems = 24;
-			break;
-
-		case COMMAND:
-			if (numberOfItems > 6)
-				numberOfItems = 6;
-			break;
-
-		case GATE:
-			if(numberOfItems > 8)
-				numberOfItems = 8;
-			break;
-
-		case PACK:
-			if(numberOfItems > 8)
-				numberOfItems = 8;
-			break;
-
-		default:
-			break;
-	}
-
+	// TODO get this out of here
 	switch (guiName)
 	{
 		case GARRISON:
@@ -345,569 +293,83 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 			break;
 	}
 
-	var rowLength = 8;
-	if (guiName == SELECTION)
-		rowLength = 4;
-	else if (guiName == FORMATION || guiName == GARRISON || guiName == COMMAND)
-		rowLength = 4;
+	if (g_SelectionPanels[guiName].rowLength)
+		var rowLength = g_SelectionPanels[guiName].rowLength;
+	else
+		var rowLength = 8;
 
 	// Make buttons
-	var i;
-	for (i = 0; i < numberOfItems; i++)
+	for (var i = 0; i < numberOfItems; i++)
 	{
 		var item = items[i];
 
 		// If a tech has been researched it leaves an empty slot
-		if (guiName == RESEARCH && !item)
+		if (!item && g_SelectionPanels[guiName].hideItem)
 		{
-			Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
-			// We also remove the paired tech and the pair symbol
-			Engine.GetGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
-			Engine.GetGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
+			g_SelectionPanels[guiName].hideItem(i, rowLength);
 			continue;
 		}
 
-		// Get the entity type and load the template for that type if necessary
-		var entType;
-		var template;
-		var entType1;
-		var template1;
-		switch (guiName)
+		// STANDARD DATA
+		// add standard data 
+		var data = {
+			"selection": selection,
+			"playerState": playerState,
+			"unitEntState": unitEntState,
+			"callback": callback,
+			"item": item,
+			"i": i,
+			"rowLength": rowLength,
+		};
+
+		if (garrisonGroups)
+			data.garrisonGroups = garrisonGroups;
+
+		// add standard gui objects to the data
+		data.button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
+		data.affordableMask = Engine.GetGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
+		data.icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
+		data.guiSelection = Engine.GetGUIObjectByName("unit"+guiName+"Selection["+i+"]");
+		data.countDisplay = Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]");
+
+
+		// DEFAULTS
+		data.button.hidden = false;
+		data.button.enabled = true;
+		data.button.tooltip = "";
+		data.button.caption = "";
+
+		// Items can have a callback element that overrides the normal 
+		// caller-supplied callback function. Button Function 
+		// (need nested functions to get the closure right)
+		data.button.onpress = (function(e){ return function() { e.callback ? e.callback(e) : callback(e) } })(item);
+
+		if (data.affordableMask)
+			data.affordableMask.hidden = true;	// actually used for the red "lack of resource" overlay, and darkening if unavailable. Sort of a hack.
+
+		// GENERAL DATA
+		// add general data, and a chance to abort on faulty data
+		if (g_SelectionPanels[guiName].addData)
 		{
-			case QUEUE:
-				// The queue can hold both technologies and units so we need to use the correct code for
-				// loading the templates
-				if (item.unitTemplate)
-				{
-					entType = item.unitTemplate;
-					template = GetTemplateData(entType);
-				}
-				else if (item.technologyTemplate)
-				{
-					entType = item.technologyTemplate;
-					template = GetTechnologyData(entType);
-				}
-
-				if (!template)
-					continue; 	// ignore attempts to use invalid templates (an error should have been
-								// reported already)
-				break;
-			case RESEARCH:
-				if (item.pair)
-				{
-					entType1 = item.top;
-					template1 = GetTechnologyData(entType1);
-					if (!template1)
-						continue; 	// ignore attempts to use invalid templates (an error should have been
-									// reported already)
-
-					entType = item.bottom;
-				}
-				else
-				{
-					entType = item;
-				}
-				template = GetTechnologyData(entType);
-				if (!template)
-					continue; 	// ignore attempts to use invalid templates (an error should have been
-								// reported already)
-
-				break;
-			case SELECTION:
-			case GARRISON:
-			case TRAINING:
-			case CONSTRUCTION:
-				entType = item;
-				template = GetTemplateData(entType);
-				if (!template)
-					continue;	// ignore attempts to use invalid templates (an error should have been
-								// reported already)
-				break;
+			var success = g_SelectionPanels[guiName].addData(data);
+			if (!success)
+				continue; // ignore faulty data
 		}
 
-		switch (guiName)
+		// SET CONTENT
+		// run all content setters
+		for (var f in g_SelectionPanels[guiName])
 		{
-			case SELECTION:
-				var name = getEntityNames(template);
-				var tooltip = name;
-				var count = g_Selection.groups.getCount(item);
-				Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-				break;
-
-			case QUEUE:
-				var tooltip = getEntityNames(template);
-				if (item.neededSlots)
-					tooltip += "\n[color=\"red\"]" + translate("Insufficient population capacity:") + "\n[/color]" + sprintf(translate("%(population)s %(neededSlots)s"), { population: getCostComponentDisplayName("population"), neededSlots: item.neededSlots });
-
-				var progress = Math.round(item.progress*100) + "%";
-				Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (item.count > 1 ? item.count : "");
-
-				if (i == 0)
-				{
-					Engine.GetGUIObjectByName("queueProgress").caption = (item.progress ? progress : "");
-					var size = Engine.GetGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size;
-
-					// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
-					size.top = size.left + Math.round(item.progress * (size.right - size.left));
-					Engine.GetGUIObjectByName("unit"+guiName+"ProgressSlider["+i+"]").size = size;
-				}
-				break;
-
-			case GARRISON:
-				var name = getEntityNames(template);
-				var tooltip = sprintf(translate("Unload %(name)s"), { name: name })+ "\n" + translate("Single-click to unload 1. Shift-click to unload all of this type.");
-				var count = garrisonGroups.getCount(item);
-				Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 1 ? count : "");
-				break;
-
-			case GATE:
-				var tooltip = item.tooltip;
-				if (item.template)
-				{
-					var template = GetTemplateData(item.template);
-					var wallCount = g_Selection.toList().reduce(function (count, ent) {
-							var state = GetEntityState(ent);
-							if (hasClass(state, "LongWall") && !state.gate)
-								count++;
-							return count;
-						}, 0);
-
-					tooltip += "\n" + getEntityCostTooltip(template, wallCount);
-
-					var affordableMask = Engine.GetGUIObjectByName("unitGateUnaffordable["+i+"]");
-					affordableMask.hidden = true;
-
-					var neededResources = Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(template, wallCount));
-					if (neededResources)
-					{
-						affordableMask.hidden = false;
-						tooltip += getNeededResourcesTooltip(neededResources);
-					}
-				}
-				break;
-
-			case PACK:
-				var tooltip = item.tooltip;
-				break;
-
-			case STANCE:
-				var tooltip = getStanceDisplayName(item);
-				break;
-
-			case TRAINING:
-				var tooltip = getEntityNamesFormatted(template);
-				var key = Engine.ConfigDB_GetValue("user", "hotkey.session.queueunit." + (i + 1));
-				if (key)
-					tooltip = "[color=\"255 251 131\"][font=\"sans-bold-16\"][" + key + "][/font][/color] " + tooltip;
-
-				if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
-				{
-					tooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
-					tooltip += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
-					for (var c = 1; c < template.visibleIdentityClasses.length; c++)
-						tooltip += ", " + translate(template.visibleIdentityClasses[c]);
-					tooltip += "[/font]";
-				}
-
-				if (template.auras)
-				{
-					for (var auraName in template.auras)
-					{
-						tooltip += "\n[font=\"sans-bold-13\"]" + translate(auraName) + "[/font]";
-						if (template.auras[auraName])
-							tooltip += ": " + translate(template.auras[auraName]);
-					}
-				}
-
-				if (template.tooltip)
-					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-				var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch] =
-					getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
-				if (Engine.HotkeyIsPressed("session.batchtrain"))
-					trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
-
-				tooltip += "\n" + getEntityCostTooltip(template, trainNum, unitEntState.id);
-
-				var [trainEntLimit, trainEntCount, canBeAddedCount, trainEntLimitChangers] =
-					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers);
-				if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
-				{
-					if (template.health)
-						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + template.health;
-					if (template.attack)
-						tooltip += "\n" + getEntityAttack(template);
-					if (template.armour)
-						tooltip += "\n[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font] " + armorTypesToText(template.armour);
-					if (template.speed)
-						tooltip += "\n" + getEntitySpeed(template);
-				}
-				tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch) + "[/color]";
-				break;
-
-			case RESEARCH:
-				var tooltip = getEntityNamesFormatted(template);
-				if (template.tooltip)
-					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-				tooltip += "\n" + getEntityCostTooltip(template);
-
-				if (item.pair)
-				{
-					var tooltip1 = getEntityNamesFormatted(template1);
-					if (template1.tooltip)
-						tooltip1 += "\n[font=\"sans-13\"]" + template1.tooltip + "[/font]";
-
-					tooltip1 += "\n" + getEntityCostTooltip(template1);
-				}
-				break;
-
-			case CONSTRUCTION:
-				var tooltip = getEntityNamesFormatted(template);
-
-				if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
-				{
-					tooltip += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
-					tooltip += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
-					for (var c = 1; c < template.visibleIdentityClasses.length; c++)
-						tooltip += ", " + translate(template.visibleIdentityClasses[c]);
-					tooltip += "[/font]";
-				}
-
-				if (template.tooltip)
-					tooltip += "\n[font=\"sans-13\"]" + template.tooltip + "[/font]";
-
-				tooltip += "\n" + getEntityCostTooltip(template);
-				tooltip += getPopulationBonusTooltip(template);
-
-				var [entLimit, entCount, canBeAddedCount, entLimitChangers] =
-					getEntityLimitAndCount(playerState, entType);
-				tooltip += formatLimitString(entLimit, entCount, entLimitChangers);
-
-				break;
-
-			case COMMAND:
-				// here, "item" is an object with properties .name (command name), .tooltip and .icon (relative to session/icons/single)
-				if (item.name == "unload-all")
-				{
-					var count = garrisonGroups.getTotalCount();
-					Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (count > 0 ? count : "");
-				}
-				else
-				{
-					Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = "";
-				}
-
-				tooltip = (item.tooltip ? item.tooltip : toTitleCase(item.name));
-				break;
-
-			default:
-				break;
+			if (f.match(/^set/))
+				g_SelectionPanels[guiName][f](data);
 		}
 
-		// Button
-		var button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var button1 = Engine.GetGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]");
-		var affordableMask = Engine.GetGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
-		var affordableMask1 = Engine.GetGUIObjectByName("unit"+guiName+"Unaffordable["+(i+rowLength)+"]");
-		var icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
-		var guiSelection = Engine.GetGUIObjectByName("unit"+guiName+"Selection["+i+"]");
-		var pair = Engine.GetGUIObjectByName("unit"+guiName+"Pair["+i+"]");
-		button.hidden = false;
-		button.tooltip = tooltip || "";
-
-		// Button Function (need nested functions to get the closure right)
-		// Items can have a callback element that overrides the normal caller-supplied callback function.
-		button.onpress = (function(e){ return function() { e.callback ? e.callback(e) : callback(e) } })(item);
-
-		if(guiName == SELECTION)
-		{
-			button.onpressright = (function(e){return function() {callback(e, true) } })(item);
-			button.onpress = (function(e){ return function() {callback(e, false) } })(item);
-		}
-
-		if (guiName == RESEARCH)
-		{
-			if (item.pair)
-			{
-				button.onpress = (function(e){ return function() { callback(e) } })(item.bottom);
-
-				var icon1 = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+(i+rowLength)+"]");
-				button1.hidden = false;
-				button1.tooltip = tooltip1;
-				button1.onpress = (function(e){ return function() { callback(e) } })(item.top);
-
-				// when we hover over a pair, the other one gets a red cross over it to show it won't be available any more.
-				var unchosenIcon = Engine.GetGUIObjectByName("unit"+guiName+"UnchosenIcon["+i+"]");
-				var unchosenIcon1 = Engine.GetGUIObjectByName("unit"+guiName+"UnchosenIcon["+(i+rowLength)+"]");
-
-				button1.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(unchosenIcon);
-				button1.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(unchosenIcon);
-
-				button.onmouseenter = (function(e){ return function() { setOverlay(e, true) } })(unchosenIcon1);
-				button.onmouseleave = (function(e){ return function() { setOverlay(e, false) } })(unchosenIcon1);
-
-				pair.hidden = false;
-			}
-			else
-			{
-				// Hide the overlay.
-				var unchosenIcon = Engine.GetGUIObjectByName("unit"+guiName+"UnchosenIcon["+i+"]");
-				unchosenIcon.hidden = true;
-			}
-		}
-
-		// Get icon image
-		if (guiName == FORMATION)
-		{
-			var formationInfo = Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": item});
-
-			button.tooltip = translate(formationInfo.name);
-			var formationOk = canMoveSelectionIntoFormation(item);
-			var grayscale = "";
-			button.enabled = formationOk;
-			if (!formationOk)
- 			{
-				grayscale = "grayscale:";
-
-				if (formationInfo.tooltip)
-					button.tooltip += "\n" + "[color=\"red\"]" + translate(formationInfo.tooltip) + "[/color]";
-			}
-
-			var formationSelected = Engine.GuiInterfaceCall("IsFormationSelected", {
-				"ents": g_Selection.toList(),
-				"formationTemplate": item
-			});
-
-			guiSelection.hidden = !formationSelected;
-			icon.sprite = "stretched:"+grayscale+"session/icons/"+formationInfo.icon;
-
- 		}
-		else if (guiName == STANCE)
-		{
-			var stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
-				"ents": g_Selection.toList(),
-				"stance": item
-			});
-
-			guiSelection.hidden = !stanceSelected;
-			icon.sprite = "stretched:session/icons/stances/"+item+".png";
-		}
-		else if (guiName == COMMAND)
-		{
-			icon.sprite = "stretched:session/icons/" + item.icon;
-		}
-		else if (guiName == GATE)
-		{
-			var gateIcon;
-			// If already a gate, show locking actions
-			if (item.gate)
-			{
-				gateIcon = "icons/lock_" + GATE_ACTIONS[item.locked ? 0 : 1] + "ed.png";
-				guiSelection.hidden = item.gate.locked === undefined ? false : item.gate.locked != item.locked;
-			}
-			// otherwise show gate upgrade icon
-			else
-			{
-				template = GetTemplateData(item.template);
-				gateIcon = template.icon ?  "portraits/" + template.icon : "icons/gate_closed.png";
-				guiSelection.hidden = true;
-			}
-
-			icon.sprite = "stretched:session/" + gateIcon;
-		}
-		else if (guiName == PACK)
-		{
-			if (item.packing)
-			{
-				icon.sprite = "stretched:session/icons/cancel.png";
-			}
-			else
-			{
-				if (item.packed)
-					icon.sprite = "stretched:session/icons/unpack.png";
-				else
-					icon.sprite = "stretched:session/icons/pack.png";
-			}
-		}
-		else if (template.icon)
-		{
-			var grayscale = "";
-			button.enabled = true;
-			if (affordableMask)
-				affordableMask.hidden = true;	// actually used for the red "lack of resource" overlay, and darkening if unavailable. Sort of a hack.
-
-			// In case this is an icon that would require tech checking, make sure we have the requirements.
-			if (guiName != SELECTION && guiName != GARRISON && guiName != QUEUE && template.requiredTechnology && !Engine.GuiInterfaceCall("IsTechnologyResearched", template.requiredTechnology))
-			{
-				button.enabled = false;
-				var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
-				button.tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
-				grayscale = "grayscale:";
-				affordableMask.hidden = false;
-				affordableMask.sprite = "colour: 0 0 0 127";
-			}
-
-			if (guiName == RESEARCH && !Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType))
-			{
-				button.enabled = false;
-				button.tooltip += "\n" + GetTechnologyData(entType).requirementsTooltip;
-				if (GetTechnologyData(entType).classRequirements)
-				{
-					var player = Engine.GetPlayerID();
-					var current = GetSimState().players[player].classCounts[GetTechnologyData(entType).classRequirements.class];
-					// If current is undefined, this means no building filling the requirement has been found
-					current = current ? current : 0;
-					var remaining = GetTechnologyData(entType).classRequirements.number - current;
-					button.tooltip += " " + sprintf(translatePlural("Remaining: %(number)s to build.", "Remaining: %(number)s to build.", remaining), { number: remaining});
-				}
-				grayscale = "grayscale:";
-				affordableMask.hidden = false;
-				affordableMask.sprite = "colour: 0 0 0 127";
-			}
-
-			if ((guiName == CONSTRUCTION || guiName == TRAINING) && canBeAddedCount == 0)
-			{
-				grayscale = "grayscale:";
-				affordableMask.hidden = false;
-				affordableMask.sprite = "colour: 0 0 0 127";
-			}
-
-			if (guiName == GARRISON)
-			{
-				var ents = garrisonGroups.getEntsByName(item);
-				var entplayer = GetEntityState(ents[0]).player;
-				button.sprite = "colour: " + g_Players[entplayer].color.r + " " + g_Players[entplayer].color.g + " " + g_Players[entplayer].color.b;
-
-				var player = Engine.GetPlayerID();
-				if(player != unitEntState.player && !g_DevSettings.controlAll)
-				{
-					if (entplayer != player)
-					{
-						button.enabled = false;
-						grayscale = "grayscale:";
-					}
-				}
-			}
-
-			icon.sprite = "stretched:" + grayscale + "session/portraits/" + template.icon;
-
-			if (guiName == RESEARCH)
-			{
-				// Check resource requirements
-				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", template.cost);
-				if (neededResources)
-				{
-					if (button.enabled !== false)
-					{
-						button.enabled = false;
-						affordableMask.hidden = false;
-
-						var totalCost = 0;
-						for each (var resource in neededResources)
-							totalCost += resource;
-						var alpha = 50 + Math.round(totalCost/10);
-						alpha = alpha > 125 ? 125 : alpha;
-						affordableMask.sprite = "colour: 255 0 0 " + (alpha);
-					}
-					button.tooltip += getNeededResourcesTooltip(neededResources);
-				}
-
-				if (item.pair)
-				{
-					grayscale = "";
-					button1.enabled = true;
-					affordableMask1.hidden = true;
-
-					if (!Engine.GuiInterfaceCall("CheckTechnologyRequirements", entType1))
-					{
-						button1.enabled = false;
-						button1.tooltip += "\n" + GetTechnologyData(entType1).requirementsTooltip;
-						grayscale = "grayscale:";
-						affordableMask1.hidden = false;
-						affordableMask1.sprite = "colour: 0 0 0 127";
-					}
-					icon1.sprite = "stretched:" + grayscale + "session/portraits/" +template1.icon;
-
-					// Check resource requirements for second button
-					neededResources = Engine.GuiInterfaceCall("GetNeededResources", template1.cost);
-					if (neededResources)
-					{
-						if (button1.enabled !== false)
-						{
-							button1.enabled = false;
-							affordableMask1.hidden = false;
-
-							var totalCost = 0;
-							for each (var resource in neededResources)
-								totalCost += resource;
-							var alpha = 50 + Math.round(totalCost/10);
-							alpha = alpha > 125 ? 125 : alpha;
-							affordableMask1.sprite = "colour: 255 0 0 " + (alpha);
-						}
-						button1.tooltip += getNeededResourcesTooltip(neededResources);
-					}
-				}
-				else
-				{
-					pair.hidden = true;
-					button1.hidden = true;
-					affordableMask1.hidden = true;
-				}
-			}
-			else if (guiName == CONSTRUCTION || guiName == TRAINING)
-			{
-				var totalCosts = {};
-				var trainNum = 1;
-				var button_disableable = true;
-
-				if (guiName == TRAINING)
-				{
-					if (Engine.HotkeyIsPressed("session.batchtrain"))
-					{
-						var [buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch, batchTrainingCount] =
-							getTrainingBatchStatus(playerState, unitEntState.id, entType, selection);
-						trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
-						button_disableable = !Engine.HotkeyIsPressed("selection.remove");
-					}
-					Engine.GetGUIObjectByName("unit"+guiName+"Count["+i+"]").caption = (batchTrainingCount > 0) ? batchTrainingCount : "";
-				}
-
-				// Walls have no cost defined.
-				if (template.cost !== undefined)
-					totalCosts = multiplyEntityCosts(template, trainNum);
-
-				var neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCosts);
-				if (neededResources)
-				{
-					if (button.enabled !== false)
-					{
-						button.enabled = (button_disableable ? false : true);
-						// Don't display the red overlay if we can't even train/build it
-						if (canBeAddedCount != 0)
-						{
-							affordableMask.hidden = false;
-
-							var totalCost = 0;
-							for each (var resource in neededResources)
-								totalCost += resource;
-							var alpha = 50 + Math.round(totalCost/10);
-							alpha = alpha > 125 ? 125 : alpha;
-							affordableMask.sprite = "colour: 255 0 0 " + (alpha);
-						}
-					}
-					button.tooltip += getNeededResourcesTooltip(neededResources);
-				}
-			}
-		}
-		else
-		{
-			// TODO: we should require all entities to have icons, so this case never occurs
-			icon.sprite = "bkFillBlack";
-		}
+		// TODO: we should require all entities to have icons, so this case never occurs
+		if (!data.icon.sprite)
+			data.icon.sprite = "bkFillBlack";
+		
 	}
-
+	// TODO clean this up, and move most data to g_SelectionPanels.
 	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
 	var numButtons = i;
 
@@ -978,6 +440,16 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	}
 
 	g_unitPanelButtons[guiName] = numButtons;
+}
+
+function resourcesToAlphaMask(neededResources)
+{
+	var totalCost = 0;
+	for each (var resource in neededResources)
+		totalCost += resource;
+	var alpha = 50 + Math.round(totalCost/10);
+	alpha = alpha > 125 ? 125 : alpha;
+	return "colour: 255 0 0 " + (alpha);
 }
 
 // Sets up "unit barter panel" - special case for setupUnitPanel
@@ -1384,3 +856,17 @@ function canMoveSelectionIntoFormation(formationTemplate)
 	}
 	return g_canMoveIntoFormation[formationTemplate];
 }
+
+function getVisibleEntityClassesFormatted(template)
+{
+	var r = ""
+	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
+	{
+		r += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
+		r += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
+		for (var c = 1; c < template.visibleIdentityClasses.length; c++)
+			r += ", " + translate(template.visibleIdentityClasses[c]);
+		r += "[/font]";
+	}
+	return r;
+};

@@ -89,6 +89,11 @@ function getPlayerData(playerAssignments)
 	return players;
 }
 
+function rgbToGuiColor(color)
+{
+	return color.r + " " + color.g + " " + color.b;
+}
+
 function findGuidForPlayerID(playerAssignments, player)
 {
 	for (var playerGuid in playerAssignments)
