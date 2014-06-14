@@ -743,6 +743,9 @@ GuiInterface.prototype.GetTechnologyData = function(player, name)
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 {
+	if (!tech)
+		return true;
+
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	
 	if (!cmpTechnologyManager)

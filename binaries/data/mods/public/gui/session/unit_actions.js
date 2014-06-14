@@ -640,7 +640,7 @@ var entityCommands =
 		},
 		"execute": function(entState)
 		{
-			unloadAdd();
+			unloadAll();
 		},
 	},
 	// Delete

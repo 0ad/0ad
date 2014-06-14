@@ -317,6 +317,11 @@ AIProxy.prototype.OnConstructionFinished = function(msg)
 	this.cmpAIInterface.PushEvent("ConstructionFinished", msg);
 };
 
+AIProxy.prototype.OnTrainingStarted = function(msg)
+{
+	this.cmpAIInterface.PushEvent("TrainingStarted", msg);
+};
+
 AIProxy.prototype.OnTrainingFinished = function(msg)
 {
 	this.cmpAIInterface.PushEvent("TrainingFinished", msg);
