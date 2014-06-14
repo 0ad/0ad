@@ -370,10 +370,8 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		
 	}
 	// TODO clean this up, and move most data to g_SelectionPanels.
-	// Position the visible buttons (TODO: if there's lots, maybe they should be squeezed together to fit)
-	var numButtons = i;
-
-	var numRows = Math.ceil(numButtons / rowLength);
+	// Position the buttons
+	var numRows = Math.ceil(numberOfItems / rowLength);
 
 	var buttonSideLength = Engine.GetGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
 
@@ -386,7 +384,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	// Layout buttons
 	if (guiName == COMMAND)
 	{
-		layoutButtonRowCentered(0, guiName, 0, numButtons, COMMANDS_PANEL_WIDTH);
+		layoutButtonRowCentered(0, guiName, 0, numberOfItems, COMMANDS_PANEL_WIDTH);
 	}
 	else if (guiName == RESEARCH)
 	{
@@ -426,20 +424,20 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	}
 
 	// Hide any buttons we're no longer using
-	for (var i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+	for (var i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
 		Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
 
 	// Hide unused pair buttons and symbols
 	if (guiName == RESEARCH)
 	{
-		for (var i = numButtons; i < g_unitPanelButtons[guiName]; ++i)
+		for (var i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
 		{
 			Engine.GetGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
 			Engine.GetGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
 		}
 	}
 
-	g_unitPanelButtons[guiName] = numButtons;
+	g_unitPanelButtons[guiName] = numberOfItems;
 }
 
 function resourcesToAlphaMask(neededResources)
