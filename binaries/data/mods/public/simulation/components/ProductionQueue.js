@@ -665,6 +665,8 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 			}
 
 			item.productionStarted = true;
+			if (item.unitTemplate)
+				Engine.PostMessage(this.entity, MT_TrainingStarted, {"entity": this.entity});
 		}
 
 		// If we won't finish the batch now, just update its timer
