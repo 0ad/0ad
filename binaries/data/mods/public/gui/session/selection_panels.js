@@ -567,7 +567,7 @@ g_SelectionPanels.Training = {
 		tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(data.buildingsCountToTrainFullBatch, data.fullBatchSize, data.remainderBatch) + "[/color]";
 		if (!data.technologyEnabled)
 		{
-			var techName = getEntityNames(GetTechnologyData(template.requiredTechnology));
+			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));
 			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
 		}
 		if (data.neededResources)
