@@ -4206,7 +4206,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	{
 		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState == "FORMATIONCONTROLLER.ATTACKING")
+		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.ATTACKING")
 			return false;
 	}
 
