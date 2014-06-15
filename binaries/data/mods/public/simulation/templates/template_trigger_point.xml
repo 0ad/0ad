@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Entity parent="template_entity_quasi">
+  <Footprint>
+    <Circle radius="2.0"/>
+    <Height>8.0</Height>
+  </Footprint>
+  <OverlayRenderer/>
+  <Selectable>
+    <Overlay>
+      <Outline>
+        <LineTexture>outline_border.png</LineTexture>
+        <LineTextureMask>outline_border_mask.png</LineTextureMask>
+        <LineThickness>0.4</LineThickness>
+      </Outline>
+    </Overlay>
+  </Selectable>
+  <VisualActor>
+    <SilhouetteDisplay>false</SilhouetteDisplay>
+    <SilhouetteOccluder>true</SilhouetteOccluder>
+    <VisibleInAtlasOnly>true</VisibleInAtlasOnly>
+  </VisualActor>
+</Entity>
+
