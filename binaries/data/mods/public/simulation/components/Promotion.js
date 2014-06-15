@@ -84,8 +84,9 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 			// Replace the garrison order by an autogarrison order,
 			// as we are already garrisoned and do not need to do
 			// any further checks (or else we should do them here).
+			var garrisonHolder = orders[0].data.target;
 			orders.shift();
-			cmpPromotedUnitAI.Autogarrison(orders[0].data.target);
+			cmpPromotedUnitAI.Autogarrison(garrisonHolder);
 		}
 		else
 			warn("Promoted garrisoned entity with empty order queue.");
