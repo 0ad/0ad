@@ -73,7 +73,8 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 	var cmpCurrentUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var cmpPromotedUnitAI = Engine.QueryInterface(promotedUnitEntity, IID_UnitAI);
 	var pos = cmpCurrentUnitAI.GetHeldPosition();
-	cmpPromotedUnitAI.SetHeldPosition(pos.x, pos.z);
+	if (pos)
+		cmpPromotedUnitAI.SetHeldPosition(pos.x, pos.z);
 	if (cmpCurrentUnitAI.GetStanceName())
 		cmpPromotedUnitAI.SwitchToStance(cmpCurrentUnitAI.GetStanceName());
 

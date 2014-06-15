@@ -159,7 +159,8 @@ Pack.prototype.PackProgress = function(data, lateness)
 		if (cmpUnitAI && cmpNewUnitAI)
 		{
 			var pos = cmpUnitAI.GetHeldPosition();
-			cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
+			if (pos)
+				cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
 			if (cmpUnitAI.GetStanceName())
 				cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
 			cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());
