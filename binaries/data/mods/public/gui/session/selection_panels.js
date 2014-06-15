@@ -13,7 +13,6 @@ var g_SelectionPanels = {};
 // COMMAND
 g_SelectionPanels.Command = {
 	"maxNumberOfItems": 6,
-	"rowLength": 4,
 	"setTooltip": function(data)
 	{
 		if (data.item.tooltip)
@@ -31,6 +30,18 @@ g_SelectionPanels.Command = {
 	"setGraphics": function(data)
 	{
 		data.icon.sprite = "stretched:session/icons/" + data.item.icon;
+	},
+	"setPosition": function(data)
+	{
+		var size = data.button.size;
+		// count on square buttons, so size.bottom is the width too
+		var spacer = size.bottom + 1;
+		// relative to the center ( = 50%)
+		size.rleft = size.rright = 50;
+		// offset from the center calculation
+		size.left = (data.i - data.numberOfItems/2) * spacer;
+		size.right = size.left + size.bottom;
+		data.button.size = size;
 	},
 };
 
@@ -296,7 +307,7 @@ g_SelectionPanels.Queue = {
 	{
 		if (data.template.icon)
 			data.icon.sprite = "stretched:session/portraits/" + data.template.icon;
-	}
+	},
 };
 
 // RESEARCH
@@ -311,14 +322,15 @@ g_SelectionPanels.Research = {
 	},
 	"addData": function(data)
 	{
-		data.entType = data.item.pair ? [data.item.bottom, data.item.top] : [data.item];
+		data.entType = data.item.pair ? [data.item.top, data.item.bottom] : [data.item];
 		data.template = data.entType.map(GetTechnologyData);
 		// abort if no template found for any of the techs
 		if (!data.template.every(function(v) { return v; }))
 			return false;
-
-		data.positions = data.item.pair ? [data.i, data.i + data.rowLength] : [data.i];
-		data.positionsToHide = data.item.pair ? [] : [data.i + data.rowLength];
+		// index one row below
+		var shiftedIndex = data.i + data.rowLength;
+		data.positions = data.item.pair ? [data.i, shiftedIndex] : [shiftedIndex];
+		data.positionsToHide = data.item.pair ? [] : [data.i];
 
 		// add top buttons to the data
 		data.button = data.positions.map(function(p) { 
@@ -437,6 +449,12 @@ g_SelectionPanels.Research = {
 			button.hidden = true;
 		// show the tech connector
 		data.pair.hidden = data.item.pair == null;
+	},
+	"setPosition": function(data)
+	{
+		for (var i in data.button)
+			setPanelObjectPosition(data.button[i], data.positions[i], data.rowLength);
+		setPanelObjectPosition(data.pair, data.i, data.rowLength);
 	},
 };
 
