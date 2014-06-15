@@ -3561,7 +3561,7 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 	else if (this.order && this.IsPacking())
 	{
 		var packingOrder = this.orderQueue.shift();
-		this.orderQueue.unshift = (packingOrder, order);
+		this.orderQueue.unshift(packingOrder, order);
 	}
 	else
 	{

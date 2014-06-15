@@ -188,6 +188,10 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	// Determine how many buttons there should be
 	if (g_SelectionPanels[guiName].maxNumberOfItems)
 		numberOfItems = Math.min(g_SelectionPanels[guiName].maxNumberOfItems, numberOfItems);
+	if (g_SelectionPanels[guiName].rowLength)
+		var rowLength = g_SelectionPanels[guiName].rowLength;
+	else
+		var rowLength = 8;
 
 	// TODO get this out of here
 	// Common code for garrison and 'unload all' button counts.
@@ -209,11 +213,6 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
 		panel.size = size;
 	}
-
-	if (g_SelectionPanels[guiName].rowLength)
-		var rowLength = g_SelectionPanels[guiName].rowLength;
-	else
-		var rowLength = 8;
 
 	// Make buttons
 	for (var i = 0; i < numberOfItems; i++)
