@@ -12,7 +12,6 @@ const GATE = "Gate";
 const PACK = "Pack";
 
 // Constants
-const COMMANDS_PANEL_WIDTH = 228;
 const UNIT_PANEL_BASE = -52; // QUEUE: The offset above the main panel (will often be negative)
 const UNIT_PANEL_HEIGHT = 44; // QUEUE: The height needed for a row of buttons
 
@@ -37,105 +36,20 @@ var g_unitPanels = ["Selection", "Queue", "Formation", "Garrison", "Training", "
 // Indexes of resources to sell and buy on barter panel
 var g_barterSell = 0;
 
-// Lay out a row of centered buttons (does not work inside a loop like the other function)
-function layoutButtonRowCentered(rowNumber, guiName, startIndex, endIndex, width)
+function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin = 1)
 {
-	var buttonSideLength = Engine.GetGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-	var buttonSpacer = buttonSideLength+1;
-	var colNumber = 0;
-
-	// Collect buttons
-	var buttons = [];
-	var icons = [];
-
-	for (var i = startIndex; i < endIndex; i++)
-	{
-		var button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
-		var icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
-
-		if (button)
-		{
-			buttons.push(button);
-			icons.push(icon);
-		}
-	}
-
-	// Location of middle button
-	var middleIndex = Math.ceil(buttons.length/2);
-
-	// Determine whether even or odd number of buttons
-	var center = (buttons.length/2 == Math.ceil(buttons.length/2))? Math.ceil(width/2) : Math.ceil(width/2+buttonSpacer/2);
-
-	// Left Side
-	for (var i = middleIndex-1; i >= 0; i--)
-	{
-		if (buttons[i])
-		{
-			var icon = icons[i];
-			var size = buttons[i].size;
-			size.left = center - buttonSpacer*colNumber - buttonSideLength;
-			size.right = center - buttonSpacer*colNumber;
-			size.top = buttonSpacer*rowNumber;
-			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
-			buttons[i].size = size;
-			colNumber++;
-		}
-	}
-
-	// Right Side
-	center += 1; // add spacing to center buttons
-	colNumber = 0; // reset to 0
-
-	for (var i = middleIndex; i < buttons.length; i++)
-	{
-		if (buttons[i])
-		{
-			var icon = icons[i];
-			var size = buttons[i].size;
-			size.left = center + buttonSpacer*colNumber;
-			size.right = center + buttonSpacer*colNumber + buttonSideLength;
-			size.top = buttonSpacer*rowNumber;
-			size.bottom = buttonSpacer*rowNumber + buttonSideLength;
-			buttons[i].size = size;
-			colNumber++;
-		}
-	}
-}
-
-// Lay out button rows
-function layoutButtonRow(rowNumber, guiName, buttonSideWidth, buttonSpacer, startIndex, endIndex)
-{
-	layoutRow("Button", rowNumber, guiName, buttonSideWidth, buttonSpacer, buttonSideWidth, buttonSpacer, startIndex, endIndex);
-}
-
-// Lay out rows
-function layoutRow(objectName, rowNumber, guiName, objectSideWidth, objectSpacerWidth, objectSideHeight, objectSpacerHeight, startIndex, endIndex)
-{
-	var colNumber = 0;
-
-	for (var i = startIndex; i < endIndex; i++)
-	{
-		var button = Engine.GetGUIObjectByName("unit"+guiName+objectName+"["+i+"]");
-
-		if (button)
-		{
-			var size = button.size;
-
-			size.left = objectSpacerWidth*colNumber;
-			size.right = objectSpacerWidth*colNumber + objectSideWidth;
-			size.top = objectSpacerHeight*rowNumber;
-			size.bottom = objectSpacerHeight*rowNumber + objectSideHeight;
-
-			button.size = size;
-			colNumber++;
-		}
-	}
-}
-
-// Set the visibility of the object
-function setOverlay(object, value)
-{
-	object.hidden = !value;
+	var size = object.size;
+	// horizontal position
+	var oWidth = size.right - size.left;
+	var hIndex = index % rowLength;
+	size.left = hIndex * (oWidth + vMargin);
+	size.right = size.left + oWidth;
+	// vertical position
+	var oHeight = size.bottom - size.top;
+	var vIndex = Math.floor(index / rowLength);
+	size.top = vIndex * (oHeight + hMargin);
+	size.bottom = size.top + oHeight;
+	object.size = size;
 }
 
 /**
@@ -262,7 +176,7 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 {
 	if (!g_SelectionPanels[guiName])
 	{
-		error("unknown guiName used");
+		error("unknown guiName used '" + guiName + "'");
 		return;
 	}
 	usedPanels[guiName] = 1;
@@ -274,29 +188,31 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 	// Determine how many buttons there should be
 	if (g_SelectionPanels[guiName].maxNumberOfItems)
 		numberOfItems = Math.min(g_SelectionPanels[guiName].maxNumberOfItems, numberOfItems);
-
-	// TODO get this out of here
-	switch (guiName)
-	{
-		case GARRISON:
-		case COMMAND:
-			// Common code for garrison and 'unload all' button counts.
-			for (var i = 0; i < selection.length; ++i)
-			{
-				var state = GetEntityState(selection[i]);
-				if (state.garrisonHolder)
-					garrisonGroups.add(state.garrisonHolder.entities)
-			}
-			break;
-
-		default:
-			break;
-	}
-
 	if (g_SelectionPanels[guiName].rowLength)
 		var rowLength = g_SelectionPanels[guiName].rowLength;
 	else
 		var rowLength = 8;
+
+	// TODO get this out of here
+	// Common code for garrison and 'unload all' button counts.
+	if (guiName == GARRISON || guiName == COMMAND)
+	{
+		for (var i = 0; i < selection.length; ++i)
+		{
+			var state = GetEntityState(selection[i]);
+			if (state.garrisonHolder)
+				garrisonGroups.add(state.garrisonHolder.entities)
+		}
+	}
+	// Resize Queue panel if needed
+	if (guiName == QUEUE) // or garrison
+	{
+		var numRows = Math.ceil(numberOfItems / rowLength);
+		var panel = Engine.GetGUIObjectByName("unitQueuePanel");
+		var size = panel.size;
+		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
+		panel.size = size;
+	}
 
 	// Make buttons
 	for (var i = 0; i < numberOfItems; i++)
@@ -313,19 +229,21 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 		// STANDARD DATA
 		// add standard data 
 		var data = {
+			"i": i,
+			"item": item,
 			"selection": selection,
 			"playerState": playerState,
 			"unitEntState": unitEntState,
 			"callback": callback,
-			"item": item,
-			"i": i,
 			"rowLength": rowLength,
+			"numberOfItems": numberOfItems,
 		};
 
 		if (garrisonGroups)
 			data.garrisonGroups = garrisonGroups;
 
 		// add standard gui objects to the data
+		// depending on the actual XML, some of this may be undefined
 		data.button = Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]");
 		data.affordableMask = Engine.GetGUIObjectByName("unit"+guiName+"Unaffordable["+i+"]");
 		data.icon = Engine.GetGUIObjectByName("unit"+guiName+"Icon["+i+"]");
@@ -364,79 +282,24 @@ function setupUnitPanel(guiName, usedPanels, unitEntState, playerState, items, c
 				g_SelectionPanels[guiName][f](data);
 		}
 
+		// Special case: position
+		if (!g_SelectionPanels[guiName].setPosition)
+			setPanelObjectPosition(data.button, i, rowLength);
+
 		// TODO: we should require all entities to have icons, so this case never occurs
 		if (!data.icon.sprite)
 			data.icon.sprite = "bkFillBlack";
 		
 	}
-	// TODO clean this up, and move most data to g_SelectionPanels.
-	// Position the buttons
-	var numRows = Math.ceil(numberOfItems / rowLength);
-
-	var buttonSideLength = Engine.GetGUIObjectByName("unit"+guiName+"Button[0]").size.bottom;
-
-	// We sort pairs upside down, so get the size from the topmost button.
-	if (guiName == RESEARCH)
-		buttonSideLength = Engine.GetGUIObjectByName("unit"+guiName+"Button["+(rowLength*numRows)+"]").size.bottom;
-
-	var buttonSpacer = buttonSideLength+1;
-
-	// Layout buttons
-	if (guiName == COMMAND)
-	{
-		layoutButtonRowCentered(0, guiName, 0, numberOfItems, COMMANDS_PANEL_WIDTH);
-	}
-	else if (guiName == RESEARCH)
-	{
-		// We support pairs so we need to add a row
-		numRows++;
-		// Layout rows from bottom to top
-		for (var i = 0, j = numRows; i < numRows; i++, j--)
-		{
-			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*(j-1), rowLength*j);
-		}
-	}
-	else
-	{
-		for (var i = 0; i < numRows; i++)
-			layoutButtonRow(i, guiName, buttonSideLength, buttonSpacer, rowLength*i, rowLength*(i+1) );
-	}
-
-	// Layout pair icons
-	if (guiName == RESEARCH)
-	{
-		var pairSize = Engine.GetGUIObjectByName("unit"+guiName+"Pair[0]").size;
-		var pairSideWidth = pairSize.right;
-		var pairSideHeight = pairSize.bottom;
-		var pairSpacerHeight = pairSideHeight + 1;
-		var pairSpacerWidth = pairSideWidth + 1;
-
-		layoutRow("Pair", 0, guiName, pairSideWidth, pairSpacerWidth, pairSideHeight, pairSpacerHeight, 0, rowLength);
-	}
-
-	// Resize Queue panel if needed
-	if (guiName == QUEUE) // or garrison
-	{
-		var panel = Engine.GetGUIObjectByName("unitQueuePanel");
-		var size = panel.size;
-		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
-		panel.size = size;
-	}
 
 	// Hide any buttons we're no longer using
 	for (var i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
-		Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
+		if (g_SelectionPanels[guiName].hideItem)
+			g_SelectionPanels[guiName].hideItem(i, rowLength);
+		else
+			Engine.GetGUIObjectByName("unit"+guiName+"Button["+i+"]").hidden = true;
 
-	// Hide unused pair buttons and symbols
-	if (guiName == RESEARCH)
-	{
-		for (var i = numberOfItems; i < g_unitPanelButtons[guiName]; ++i)
-		{
-			Engine.GetGUIObjectByName("unit"+guiName+"Button["+(i+rowLength)+"]").hidden = true;
-			Engine.GetGUIObjectByName("unit"+guiName+"Pair["+i+"]").hidden = true;
-		}
-	}
-
+	// remember the number of items
 	g_unitPanelButtons[guiName] = numberOfItems;
 }
 

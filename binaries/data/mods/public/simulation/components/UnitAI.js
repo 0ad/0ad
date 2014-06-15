@@ -3561,7 +3561,7 @@ UnitAI.prototype.PushOrderFront = function(type, data)
 	else if (this.order && this.IsPacking())
 	{
 		var packingOrder = this.orderQueue.shift();
-		this.orderQueue.unshift = (packingOrder, order);
+		this.orderQueue.unshift(packingOrder, order);
 	}
 	else
 	{
@@ -4206,7 +4206,7 @@ UnitAI.prototype.MoveToTargetAttackRange = function(target, type)
 	{
 		var cmpFormationAttack = Engine.QueryInterface(this.formationController, IID_Attack);
 		var cmpFormationUnitAI = Engine.QueryInterface(this.formationController, IID_UnitAI);
-		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState == "FORMATIONCONTROLLER.ATTACKING")
+		if (cmpFormationAttack && cmpFormationAttack.CanAttackAsFormation() && cmpFormationUnitAI && cmpFormationUnitAI.GetCurrentState() == "FORMATIONCONTROLLER.ATTACKING")
 			return false;
 	}
 
@@ -4350,9 +4350,6 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, Math.sqrt(maxRangeSq));
-
-	return maxRangeSq >= distanceSq && range.min*range.min <= distanceSq;
-
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)

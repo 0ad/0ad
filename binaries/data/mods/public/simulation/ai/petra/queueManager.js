@@ -260,7 +260,7 @@ m.QueueManager.prototype.update = function(gameState)
 		if (ress === "population")
 			continue;
 
-		if (availableRes[ress] > 1)
+		if (availableRes[ress] > 0)
 		{
 			var totalPriority = 0;
 			var tempPrio = {};
@@ -295,13 +295,33 @@ m.QueueManager.prototype.update = function(gameState)
 			}
 			// Now we allow resources to the accounts. We can at most allow "TempPriority/totalpriority*available"
 			// But we'll sometimes allow less if that would overflow.
+			var available = availableRes[ress];
+			var missing = false;
 			for (var j in tempPrio)
 			{
 				// we'll add at much what can be allowed to this queue.
 				var toAdd = Math.floor(availableRes[ress] * tempPrio[j]/totalPriority);
-				var maxAdd = Math.min(maxNeed[j], toAdd);
-				this.accounts[j][ress] += maxAdd;
+				if (toAdd >= maxNeed[j])
+					toAdd = maxNeed[j];
+				else
+					missing = true;
+				this.accounts[j][ress] += toAdd;
+				maxNeed[j] -= toAdd;
+				available -= toAdd;
 			}
+			if (missing && available > 0)   // distribute the rest (due to floor) in any queue
+			{
+				for (var j in tempPrio)
+				{
+					var toAdd = Math.min(maxNeed[j], available);
+					this.accounts[j][ress] += toAdd;
+					available -= toAdd;
+					if (available <= 0)
+						break;
+				}
+			}
+			if (available < 0)
+				warn("Petra: problem with remaining " + ress + " in queueManager " + available);
 		}
 		else
 		{

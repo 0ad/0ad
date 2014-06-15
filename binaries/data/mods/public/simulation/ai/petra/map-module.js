@@ -165,7 +165,7 @@ m.createFrontierMap = function(gameState, borderMap)
 			continue;
 		var ix = j%width;
 		var iz = Math.floor(j/width);
-		for each (var a in around)
+		for (var a of around)
 		{
 			var jx = ix + Math.round(insideSmall*a[0]);
 			if (jx < 0 || jx >= width)

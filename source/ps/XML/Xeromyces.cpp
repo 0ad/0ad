@@ -68,12 +68,8 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 
 	CCacheLoader cacheLoader(vfs, L".xmb");
 
-	// Arbitrary version number - change this if we update the code and
-	// need to invalidate old users' caches
-	u32 version = 2;
-
 	VfsPath xmbPath;
-	Status ret = cacheLoader.TryLoadingCached(filename, MD5(), version, xmbPath);
+	Status ret = cacheLoader.TryLoadingCached(filename, MD5(), XMBVersion, xmbPath);
 
 	if (ret == INFO::OK)
 	{
@@ -313,6 +309,8 @@ PSRETURN CXeromyces::CreateXMB(const xmlDocPtr doc, WriteBuffer& writeBuffer)
 {
 	// Header
 	writeBuffer.Append(UnfinishedHeaderMagicStr, 4);
+	// Version
+	writeBuffer.Append(&XMBVersion, 4);
 
 	std::set<std::string>::iterator it;
 	u32 i;

@@ -24,6 +24,9 @@
 // external linkage (also used by Xeromyces.cpp)
 const char* HeaderMagicStr = "XMB0";
 const char* UnfinishedHeaderMagicStr = "XMBu";
+// Arbitrary version number - change this if we update the code and
+// need to invalidate old users' caches
+const u32 XMBVersion = 3;
 
 // Warning: May contain traces of pointer abuse
 
@@ -37,6 +40,11 @@ bool XMBFile::Initialise(const char* FileData)
 	if(!strcmp(Header, UnfinishedHeaderMagicStr))
 		return false;
 	ENSURE(!strcmp(Header, HeaderMagicStr) && "Invalid XMB header!");
+
+	u32 Version = *(u32*)m_Pointer;
+	m_Pointer += 4;
+	if (Version != XMBVersion)
+		return false;
 
 	int i;
 

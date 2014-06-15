@@ -42,6 +42,7 @@ Theoretical file structure:
 
 XMB_File {
 	char Header[4]; // because everyone has one; currently "XMB0"
+	u32 Version;
 
 	int ElementNameCount;
 	ZStr8 ElementNames[];
@@ -104,6 +105,7 @@ XMB_Text {
 // File headers, to make sure it doesn't try loading anything other than an XMB
 extern const char* HeaderMagicStr;
 extern const char* UnfinishedHeaderMagicStr;
+extern const u32 XMBVersion;
 
 class XMBElement;
 class XMBElementList;
@@ -122,6 +124,7 @@ public:
 	// @return indication of success; main cause for failure is attempting to
 	// load a partially valid XMB file (e.g. if the game was interrupted
 	// while writing it), which we detect by checking the magic string.
+	// It also fails when trying to load an XMB file with a different version.
 	bool Initialise(const char* FileData);
 
 	// Returns the root element
