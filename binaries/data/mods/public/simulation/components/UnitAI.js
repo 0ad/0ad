@@ -4350,9 +4350,6 @@ UnitAI.prototype.CheckTargetAttackRange = function(target, type)
 
 	var cmpUnitMotion = Engine.QueryInterface(this.entity, IID_UnitMotion);
 	return cmpUnitMotion.IsInTargetRange(target, range.min, Math.sqrt(maxRangeSq));
-
-	return maxRangeSq >= distanceSq && range.min*range.min <= distanceSq;
-
 };
 
 UnitAI.prototype.CheckTargetRangeExplicit = function(target, min, max)
