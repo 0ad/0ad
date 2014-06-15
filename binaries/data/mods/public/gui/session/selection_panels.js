@@ -318,11 +318,17 @@ g_SelectionPanels.Research = {
 			return false;
 
 		data.positions = data.item.pair ? [data.i, data.i + data.rowLength] : [data.i];
+		data.positionsToHide = data.item.pair ? [] : [data.i + data.rowLength];
 
 		// add top buttons to the data
 		data.button = data.positions.map(function(p) { 
 			return Engine.GetGUIObjectByName("unitResearchButton["+p+"]"); 
 		});
+
+		data.buttonsToHide = data.positionsToHide.map(function(p) { 
+			return Engine.GetGUIObjectByName("unitResearchButton["+p+"]"); 
+		});
+
 
 		data.affordableMask = data.positions.map(function(p) { 
 			return Engine.GetGUIObjectByName("unitResearchUnaffordable["+p+"]");
@@ -383,7 +389,6 @@ g_SelectionPanels.Research = {
 			var others = Object.keys(data.template);
 			others.splice(i, 1);
 			var button = data.button[i];
-			button.hidden = false;
 			button.onpress = (function(e){ return function() { data.callback(e) } })(data.entType[i]);
 			// on mouse enter, show a cross over the other icons
 			button.onmouseenter = (function(others, icons) {
@@ -404,28 +409,34 @@ g_SelectionPanels.Research = {
 	{
 		for (var i in data.entType)
 		{
+			var button = data.button[i];
+			button.hidden = false;
 			var grayscale = "";
 			if (!data.requirementsPassed[i])
 			{
-				data.button[i].enabled = false;
+				button.enabled = false;
 				grayscale = "grayscale:";
 				data.affordableMask[i].hidden = false;
 				data.affordableMask[i].sprite = "colour: 0 0 0 127";
 			}
 			else if (data.neededResources[i])
 			{
-				data.button[i].enabled = false;
+				button.enabled = false;
 				data.affordableMask[i].hidden = false;
 				data.affordableMask[i].sprite = resourcesToAlphaMask(data.neededResources[i]);
 			}
 			else
 			{
 				data.affordableMask[i].hidden = true;
-				data.button[i].enabled = true; 
+				button.enabled = true; 
 			}
 			if (data.template[i].icon)
 				data.icon[i].sprite = "stretched:" + grayscale + "session/portraits/" + data.template[i].icon;
 		}
+		for  (var button of data.buttonsToHide)
+			button.hidden = true;
+		// show the tech connector
+		data.pair.hidden = data.item.pair == null;
 	},
 };
 
