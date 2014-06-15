@@ -4,7 +4,7 @@ var PETRA = function(m)
 // this defines the medium difficulty
 m.Config = function() {
 	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
-	this.debug = 0;
+	this.debug = 1;
 
 	this.Military = {
 		"towerLapseTime" : 90, // Time to wait between building 2 towers
@@ -69,7 +69,7 @@ m.Config = function() {
 
 	this.priorities = 
 	{
-		"villager" : 30,	// should be slightly lower than the citizen soldier one because otherwise they get all the food
+		"villager" : 30,      // should be slightly lower than the citizen soldier one to not get all the food
 		"citizenSoldier" : 60,
 		"trader" : 50,
 		"ships" : 70,
@@ -81,7 +81,8 @@ m.Config = function() {
 		"defenseBuilding" : 70,
 		"civilCentre" : 950,
 		"majorTech" : 700,
-		"minorTech" : 40
+		"minorTech" : 40,
+		"emergency" : 1000    // used only in emergency situations, should be the highest one 
 	};
 
 	this.personality =

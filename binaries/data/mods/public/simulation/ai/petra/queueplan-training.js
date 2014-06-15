@@ -37,6 +37,19 @@ m.TrainingPlan.prototype.canStart = function(gameState)
 
 m.TrainingPlan.prototype.start = function(gameState)
 {
+	if (this.metadata && this.metadata.trainer)
+	{
+		var metadata = {};
+		for (var key in this.metadata)
+			if (key !== "trainer")
+				metadata[key] = this.metadata[key];
+		var trainer = gameState.getEntityById(this.metadata.trainer);
+		if (trainer)
+			trainer.train(this.type, this.number, metadata);
+		this.onStart(gameState);
+		return;
+	}
+
 	if (this.metadata && this.metadata.sea)
 		var trainers = gameState.findTrainers(this.type).filter(API3.Filters.byMetadata(PlayerID, "sea", this.metadata.sea)).toEntityArray();
 	else if (this.metadata && this.metadata.base)

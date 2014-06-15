@@ -316,11 +316,13 @@ m.DefenseManager.prototype.assignDefenders = function(gameState, events)
 			break;
 	}
 
-	// If shortage of defenders: increase the priority of soldiers queues
-	if (armiesNeeding.length !== 0)
-		gameState.ai.HQ.boostSoldiers(gameState);
-	else
-		gameState.ai.HQ.unboostSoldiers(gameState);
+	if (armiesNeeding.length === 0)
+		return;
+	// If shortage of defenders, produce ranged infantry garrisoned in nearest civil centre
+	var armiesPos = [];
+	for (var a = 0; a < armiesNeeding.length; ++a)
+		armiesPos.push(armiesNeeding[a]["army"].foePosition);
+	gameState.ai.HQ.trainEmergencyUnits(gameState, armiesPos);
 };
 
 // If our defense structures are attacked, garrison soldiers inside when possible

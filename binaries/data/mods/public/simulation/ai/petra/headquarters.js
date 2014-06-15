@@ -47,8 +47,6 @@ m.HQ = function(Config)
 	this.navalManager = new m.NavalManager(this.Config);
 	this.researchManager = new m.ResearchManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
-
-	this.boostedSoldiers = undefined;
 };
 
 // More initialisation for stuff that needs the gameState
@@ -263,69 +261,106 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 
 m.HQ.prototype.checkEvents = function (gameState, events, queues)
 {
-	// TODO: probably check stuffs like a base destruction.
 	var CreateEvents = events["Create"];
-	var ConstructionEvents = events["ConstructionFinished"];
-	for (var i in CreateEvents)
+	for (var evt of CreateEvents)
 	{
-		var evt = CreateEvents[i];
 		// Let's check if we have a building set to create a new base.
-		if (evt && evt.entity)
+		var ent = gameState.getEntityById(evt.entity);
+		if (!ent || !ent.isOwn(PlayerID))
+			continue;
+			
+		if (ent.getMetadata(PlayerID, "base") === -1)
 		{
-			var ent = gameState.getEntityById(evt.entity);
-			
-			if (ent === undefined)
-				continue; // happens when this message is right before a "Destroy" one for the same entity.
-			
-			if (ent.isOwn(PlayerID) && ent.getMetadata(PlayerID, "base") === -1)
+			// Okay so let's try to create a new base around this.
+			var bID = m.playerGlobals[PlayerID].uniqueIDBases;
+			this.baseManagers[bID] = new m.BaseManager(this.Config);
+			this.baseManagers[bID].init(gameState, true);
+			this.baseManagers[bID].setAnchor(gameState, ent);
+
+			// Let's get a few units out there to build this.
+			var builders = this.bulkPickWorkers(gameState, bID, 10);
+			if (builders !== false)
 			{
-				// Okay so let's try to create a new base around this.
-				var bID = m.playerGlobals[PlayerID].uniqueIDBases;
-				this.baseManagers[bID] = new m.BaseManager(this.Config);
-				this.baseManagers[bID].init(gameState, true);
-				this.baseManagers[bID].setAnchor(gameState, ent);
-				
-				// Let's get a few units out there to build this.
-				var builders = this.bulkPickWorkers(gameState, bID, 10);
-				if (builders !== false)
-				{
-					builders.forEach(function (worker) {
-						worker.setMetadata(PlayerID, "base", bID);
-						worker.setMetadata(PlayerID, "subrole", "builder");
-						worker.setMetadata(PlayerID, "target-foundation", ent.id());
-					});
-				}
+				builders.forEach(function (worker) {
+					worker.setMetadata(PlayerID, "base", bID);
+					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "target-foundation", ent.id());
+				});
 			}
 		}
 	}
-	for (var i in ConstructionEvents)
+
+	var ConstructionEvents = events["ConstructionFinished"];
+	for (var evt of ConstructionEvents)
 	{
-		var evt = ConstructionEvents[i];
 		// Let's check if we have a building set to create a new base.
 		// TODO: move to the base manager.
 		if (evt.newentity)
 		{
 			var ent = gameState.getEntityById(evt.newentity);
+			if (!ent || !ent.isOwn(PlayerID))
+				continue;
 
-			if (ent === undefined)
-				continue; // happens when this message is right before a "Destroy" one for the same entity.
-			
-			if (ent.isOwn(PlayerID))
+			if (ent.getMetadata(PlayerID, "baseAnchor") == true)
 			{
-				if (ent.getMetadata(PlayerID, "baseAnchor") == true)
-				{
-					var base = ent.getMetadata(PlayerID, "base");
-					if (this.baseManagers[base].constructing)
-						this.baseManagers[base].constructing = false;
-					this.baseManagers[base].anchor = ent;
-					this.baseManagers[base].buildings.updateEnt(ent);
-					this.updateTerritories(gameState);
-					// let us hope this new base will fix our resource shortage
-					// TODO check it really does so
-					this.saveResources = undefined;
-				}
-				else if (ent.hasTerritoryInfluence())
-					this.updateTerritories(gameState);
+				var base = ent.getMetadata(PlayerID, "base");
+				if (this.baseManagers[base].constructing)
+					this.baseManagers[base].constructing = false;
+				this.baseManagers[base].anchor = ent;
+				this.baseManagers[base].buildings.updateEnt(ent);
+				this.updateTerritories(gameState);
+				// let us hope this new base will fix our resource shortage
+				// TODO check it really does so
+				this.saveResources = undefined;
+			}
+			else if (ent.hasTerritoryInfluence())
+				this.updateTerritories(gameState);
+		}
+	}
+
+	// deal with the different rally points of training units: the rally point is set when the training starts
+	// for the time being, only autogarrison is used
+
+	var TrainingEvents = events["TrainingStarted"];
+	for (var evt of TrainingEvents)
+	{
+		var ent = gameState.getEntityById(evt.entity);
+		if (!ent || !ent.isOwn(PlayerID))
+			continue;
+
+		if (!ent._entity.trainingQueue || !ent._entity.trainingQueue.length)
+			continue;
+		var metadata = ent._entity.trainingQueue[0].metadata;
+		if (metadata.garrisonType)
+		{
+			ent.setRallyPoint(ent, "garrison");  // trained units will autogarrison
+			if (!this.garrisonManager.holders[evt.entity])
+				this.garrisonManager.holders[evt.entity] = [];
+		}
+		else
+			ent.unsetRallyPoint();
+	}
+
+	var TrainingEvents = events["TrainingFinished"];
+	for (var evt of TrainingEvents)
+	{
+		for (var entId of evt.entities)
+		{
+			var ent = gameState.getEntityById(entId);
+			if (!ent || !ent.isOwn(PlayerID))
+				continue;
+
+			if (!ent.position())
+			{
+				// we are autogarrisoned, check that the holder is registered in the garrisonManager
+				var holderId = ent.unitAIOrderData()[0]["target"];
+				if (!this.garrisonManager.holders[holderId])
+					this.garrisonManager.holders[holderId] = [];
+			}
+			else if (ent.getMetadata(PlayerID, "garrisonType"))
+			{
+				// we were supposed to be autogarrisoned, but this has failed (may-be full)
+				ent.getMetadata(PlayerID, "garrisonType", undefined);
 			}
 		}
 	}
@@ -354,7 +389,6 @@ m.HQ.prototype.OnCityPhase = function(gameState)
 // TODO: also there are several things that could be greatly improved here.
 m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 {
-	// Get some data.
 	// Count the workers in the world and in progress
 	var numFemales = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("units/{civ}_support_female_citizen"), true);
 
@@ -377,15 +411,11 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	var numQueued = numQueuedS + numQueuedF;
 	var numTotal = numWorkers + numQueued;
 
-	// If we have too few, train more
-	if (!this.boostedSoldiers)
-	{
-		if (this.saveResources && numTotal > this.Config.Economy.popForTown + 10)
-			return;
-		if (numTotal > this.targetNumWorkers || (numTotal >= this.Config.Economy.popForTown 
-			&& gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase())))
-			return;
-	}
+	if (this.saveResources && numTotal > this.Config.Economy.popForTown + 10)
+		return;
+	if (numTotal > this.targetNumWorkers || (numTotal >= this.Config.Economy.popForTown 
+		&& gameState.currentPhase() === 1 && !gameState.isResearching(gameState.townPhase())))
+		return;
 	if (numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
 		return;
 
@@ -1365,24 +1395,116 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 	return bestBase;
 };
 
-m.HQ.prototype.boostSoldiers = function(gameState)
+/**
+ * train with highest priority ranged infantry in the nearest civil centre from a given set of positions
+ * and garrison them there for defense
+ */  
+m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
-	if (this.boostedSoldiers)
-		return;
-	this.boostedSoldiers = true;
-	gameState.ai.queueManager.changePriority("citizenSoldier", 5*this.Config.priorities.citizenSoldier);
-	// Reset accounts from all other queues
-	for (var p in gameState.ai.queueManager.queues)
-		if (p != "citizenSoldier")
-			gameState.ai.queueManager.accounts[p].reset();
-};
+	var available = gameState.ai.queueManager.getAvailableResources(gameState, false);
+	var total = gameState.ai.queueManager.getAvailableResources(gameState, true);
+	var distcut = 20000;
 
-m.HQ.prototype.unboostSoldiers = function(gameState)
-{
-	if (!this.boostedSoldiers)
+	var nearestAnchor = undefined;
+	var templateAnchor = undefined;
+	var distmin = undefined;
+	for (var pos of positions)
+	{
+		var access = gameState.ai.accessibility.getAccessValue(pos);
+		// check nearest base anchor
+		for each (var base in gameState.ai.HQ.baseManagers)
+		{
+			if (!base.anchor || !base.anchor.position())
+				continue;
+			if (base.anchor.getMetadata(PlayerID, "access") !== access)
+				continue;
+			var queue = base.anchor._entity.trainingQueue
+			if (queue)
+			{
+				var time = 0;
+				for (var item of queue)
+					if (item.progress > 0 || (item.metadata && item.metadata.trainer))
+						time += item.timeRemaining;
+				if (time/1000 > 5)
+					continue;
+			}
+			var trainable = base.anchor.trainableEntities();
+			var templateFound = undefined;
+			for (var i in trainable)
+			{
+				var template = gameState.getTemplate(trainable[i]);
+				if (!template.hasClass("Infantry") || !template.hasClass("Ranged")
+					|| !template.hasClass("CitizenSoldier"))
+					continue;
+				if (!total.canAfford(new API3.Resources(template.cost())))
+					continue;
+				templateFound = [trainable[i], template];
+				break;
+			}
+			if (!templateFound)
+				continue;
+			var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+			if (nearestAnchor && dist > distmin)
+				continue;
+			distmin = dist;
+			nearestAnchor = base.anchor;
+			templateAnchor = templateFound;
+		}
+	}
+	if (!nearestAnchor || distmin > distcut)
 		return;
-	gameState.ai.queueManager.changePriority("citizenSoldier", this.Config.priorities.citizenSoldier);
-	this.boostedSoldiers = undefined;
+
+	var autogarrison = true;
+	var numGarrisoned = this.garrisonManager.numberOfGarrisonedUnits(nearestAnchor);
+	if (nearestAnchor._entity.trainingQueue)
+	{
+		for (var item of nearestAnchor._entity.trainingQueue)
+		{
+			if (item.metadata && item.metadata["garrisonType"])
+				numGarrisoned += item.count;
+			else if (!item.progress || !item.metadata || !item.metadata.trainer)
+				nearestAnchor.stopProduction(item.id);
+		}
+	}
+	if (numGarrisoned >= nearestAnchor.garrisonMax())
+	{
+		// No more room to garrison ... favor a melee unit
+		autogarrison = false;
+		var trainables = nearestAnchor.trainableEntities();
+		for (var trainable of trainables)
+		{
+			var template = gameState.getTemplate(trainable);
+			if (!template.hasClass("Infantry") || !template.hasClass("Melee")
+				|| !template.hasClass("CitizenSoldier"))
+				continue;
+			if (!total.canAfford(new API3.Resources(template.cost())))
+				continue;
+			templateFound = [trainable, template];
+			break;
+		}
+	}
+	// Check first if we can afford it without touching other the accounts
+	// and if not, take some of ther accounted resources
+	// TODO substract only what is needed instead of reset
+	// TODO sort the queues
+	var cost = new API3.Resources(templateFound[1].cost());
+	if (!available.canAfford(cost))
+	{
+		for (var p in gameState.ai.queueManager.queues)
+		{
+			// TODO substract only what is needed instead of reseting
+			// and do a better sorting of queues
+			available.add(gameState.ai.queueManager.accounts[p]);
+			gameState.ai.queueManager.accounts[p].reset();
+			if (available.canAfford(cost))
+				break;
+		}
+	}
+	gameState.ai.queueManager.accounts["emergency"].add(cost);
+	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "trainer": nearestAnchor.id() };
+	if (autogarrison)
+		metadata.garrisonType = "protection";
+	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
 };
 
 m.HQ.prototype.canBuild = function(gameState, structure)
