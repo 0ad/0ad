@@ -72,7 +72,9 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 
 	var cmpCurrentUnitAI = Engine.QueryInterface(this.entity, IID_UnitAI);
 	var cmpPromotedUnitAI = Engine.QueryInterface(promotedUnitEntity, IID_UnitAI);
-	cmpPromotedUnitAI.SetHeldPosition(cmpCurrentUnitAI.GetHeldPosition());
+	var pos = cmpCurrentUnitAI.GetHeldPosition();
+	if (pos)
+		cmpPromotedUnitAI.SetHeldPosition(pos.x, pos.z);
 	if (cmpCurrentUnitAI.GetStanceName())
 		cmpPromotedUnitAI.SwitchToStance(cmpCurrentUnitAI.GetStanceName());
 
@@ -84,8 +86,9 @@ Promotion.prototype.Promote = function(promotedTemplateName)
 			// Replace the garrison order by an autogarrison order,
 			// as we are already garrisoned and do not need to do
 			// any further checks (or else we should do them here).
+			var garrisonHolder = orders[0].data.target;
 			orders.shift();
-			cmpPromotedUnitAI.Autogarrison(orders[0].data.target);
+			cmpPromotedUnitAI.Autogarrison(garrisonHolder);
 		}
 		else
 			warn("Promoted garrisoned entity with empty order queue.");

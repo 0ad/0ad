@@ -158,7 +158,9 @@ Pack.prototype.PackProgress = function(data, lateness)
 		var cmpNewUnitAI = Engine.QueryInterface(newEntity, IID_UnitAI);
 		if (cmpUnitAI && cmpNewUnitAI)
 		{
-			cmpNewUnitAI.SetHeldPosition(cmpUnitAI.GetHeldPosition());
+			var pos = cmpUnitAI.GetHeldPosition();
+			if (pos)
+				cmpNewUnitAI.SetHeldPosition(pos.x, pos.z);
 			if (cmpUnitAI.GetStanceName())
 				cmpNewUnitAI.SwitchToStance(cmpUnitAI.GetStanceName());
 			cmpNewUnitAI.AddOrders(cmpUnitAI.GetOrders());

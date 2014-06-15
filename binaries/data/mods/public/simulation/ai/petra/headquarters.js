@@ -1479,7 +1479,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				continue;
 			if (!total.canAfford(new API3.Resources(template.cost())))
 				continue;
-			templateFound = [trainable, template];
+			templateAnchor = [trainable, template];
 			break;
 		}
 	}
@@ -1487,7 +1487,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	// and if not, take some of ther accounted resources
 	// TODO substract only what is needed instead of reset
 	// TODO sort the queues
-	var cost = new API3.Resources(templateFound[1].cost());
+	var cost = new API3.Resources(templateAnchor[1].cost());
 	if (!available.canAfford(cost))
 	{
 		for (var p in gameState.ai.queueManager.queues)
@@ -1504,7 +1504,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "trainer": nearestAnchor.id() };
 	if (autogarrison)
 		metadata.garrisonType = "protection";
-	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
+	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateAnchor[0], metadata, 1, 1));
 };
 
 m.HQ.prototype.canBuild = function(gameState, structure)

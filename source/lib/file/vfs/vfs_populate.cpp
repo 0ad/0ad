@@ -136,7 +136,7 @@ private:
 		{
 			// skip version control directories - this avoids cluttering the
 			// VFS with hundreds of irrelevant files.
-			if(subdirectoryNames[i] == L".svn")
+			if(subdirectoryNames[i] == L".svn" || subdirectoryNames[i] == L".git")
 				continue;
 
 			VfsDirectory* subdirectory = m_directory->AddSubdirectory(subdirectoryNames[i]);

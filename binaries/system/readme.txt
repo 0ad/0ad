@@ -3,7 +3,7 @@ COMMAND LINE OPTIONS
 Basic gameplay:
 -autostart=...		load a map instead of showing main menu (see below)
 -editor				launch the Atlas scenario editor
--mod NAME			start the game using NAME mod
+-mod=NAME			start the game using NAME mod
 -quickstart			load faster (disables audio and some system info logging)
 
 Autostart:
@@ -67,6 +67,7 @@ Windows-specific:
 
 Archive builder:
 -archivebuild=PATH				system PATH of the base directory containing mod data to be archived/precached
+								specify all mods it depends on with -mod=NAME
 -archivebuild-output=PATH		system PATH to output of the resulting .zip archive (use with archivebuild)
 -archivebuild-compress			enable deflate compression in the .zip
 								(no zip compression by default since it hurts compression of release packages)

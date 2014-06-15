@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -43,6 +43,7 @@ public:
 	/**
 	 * Add a mod which will be loaded but not archived, to provide
 	 * files like textures.xml needed for the conversion.
+	 * Added mods will be mounted with increasing priority.
 	 * Typically this will be called with 'public', when packaging
 	 * a user's mod.
 	 * @param mod path to data/mods/foo directory, containing files for loading
@@ -62,6 +63,7 @@ private:
 	PIVFS m_VFS;
 	std::vector<VfsPath> m_Files;
 	OsPath m_TempDir;
+	size_t m_NumBaseMods;
 };
 
 #endif // INCLUDED_ARCHIVEBUILDER

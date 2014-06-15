@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -461,6 +461,13 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 			zip = mod.Filename().ChangeExtension(L".zip");
 
 		CArchiveBuilder builder(mod, paths.Cache());
+
+		// Add mods provided on the command line
+		// NOTE: We do not handle mods in the user mod path here
+		std::vector<CStr> mods = args.GetMultiple("mod");
+		for (size_t i = 0; i < mods.size(); ++i)
+			builder.AddBaseMod(paths.RData()/"mods"/mods[i]);
+
 		builder.Build(zip, args.Has("archivebuild-compress"));
 
 		CXeromyces::Terminate();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,7 +34,7 @@
 #include <boost/algorithm/string.hpp>
 
 CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
-	m_TempDir(tempdir)
+	m_TempDir(tempdir), m_NumBaseMods(0)
 {
 	m_VFS = CreateVfs(20*MiB);
 
@@ -42,7 +42,8 @@ CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :
 
 	m_VFS->Mount(L"cache/", m_TempDir/"_archivecache"/"");
 
-	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED);
+	// Mount with highest priority so base mods do not overwrite files in this mod
+	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST | VFS_MOUNT_KEEP_DELETED, (size_t)-1);
 
 	// Collect the list of files before loading any base mods
 	vfs::ForEachFile(m_VFS, L"", &CollectFileCB, (uintptr_t)static_cast<void*>(this), 0, vfs::DIR_RECURSIVE);
@@ -57,7 +58,9 @@ CArchiveBuilder::~CArchiveBuilder()
 
 void CArchiveBuilder::AddBaseMod(const OsPath& mod)
 {
-	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST);
+	// Increase priority for each additional base mod, so that the
+	// mods are mounted in the same way as when starting the game.
+	m_VFS->Mount(L"", mod/"", VFS_MOUNT_MUST_EXIST, ++m_NumBaseMods);
 }
 
 void CArchiveBuilder::Build(const OsPath& archive, bool compress)
