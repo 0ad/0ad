@@ -74,7 +74,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			// okay so we'll get the support plan
 			if (!attack.isStarted())
 			{
-				var updateStep = attack.updatePreparation(gameState, this,events);
+				var updateStep = attack.updatePreparation(gameState, events);
 					
 				// now we're gonna check if the preparation time is over
 				if (updateStep === 1 || attack.isPaused() )
@@ -146,7 +146,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			// okay so then we'll update the attack.
 			if (attack.isPaused())
 				continue;
-			var remaining = attack.update(gameState,this, events);
+			var remaining = attack.update(gameState, events);
 			if (!remaining)
 			{
 				if (this.Config.debug > 0)
