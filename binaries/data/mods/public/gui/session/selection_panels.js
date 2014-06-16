@@ -1,18 +1,128 @@
 /**
  * Contains the layout and button settings per selection panel
  *
- * addData is called first, and can be used to abort going any furter 
- * by returning false. Else it should always return true.
+ * getItems returns a list of basic items used to fill the panel.
+ * This method is obligated. If the items list is empty, the panel
+ * won't be rendered.
+ * 
+ * Then there's a loop over all items provided. In the loop, 
+ * the item and some other standard data is added to a data object.
  *
- * addData is used to add data to the data object that can be used in the 
- * content setter functions.
+ * The standard data is 
+ * var data = {
+ *   "i":              index
+ *   "item":           item coming from the getItems function
+ *   "selection":      list of currently selected items
+ *   "playerState":    playerState
+ *   "unitEntState":   first selected entity state
+ *   "rowLength":      rowLength
+ *   "numberOfItems":  number of items that will be processed
+ *   "button":         gui Button object
+ *   "affordableMask": gui Unaffordable overlay
+ *   "icon":           gui Icon object
+ *   "guiSelection":   gui button Selection overlay
+ *   "countDisplay":   gui caption space
+ * };
+ *
+ * Then, addData is called, and can be used to abort the processing 
+ * of the current item by returning false. 
+ * It should return true if you want the panel to be filled.
+ *
+ * addData is used to add data to the data object on top 
+ * (or instead of) the standard data.
+ * addData is not obligated, the function will just continue
+ * with the content setters if no addData is present.
+ * 
+ * After the addData, all functions starting with "set" are called. 
+ * These are used to set various parts of content.
  */
 
 var g_SelectionPanels = {};
 
+// BARTER
+g_SelectionPanels.Barter = {
+	"maxNumberOfItems": 4,
+	"rowLength": 4,
+	"getItems": function(unitEntState, selection)
+	{
+		if (!unitEntState.barterMarket)
+			return [];
+		// ["food", "wood", "stone", "metal"]
+		return BARTER_RESOURCES;
+	},
+	"addData": function(data)
+	{
+		// data.item is the resource name in this case
+		data.button = {};
+		data.icon = {};
+		data.amount = {};
+		for (var a of BARTER_ACTIONS)
+		{
+			data.button[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Button["+data.i+"]");
+			data.icon[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Icon["+data.i+"]");
+			data.amount[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Amount["+data.i+"]");
+		}
+		data.selection = Engine.GetGUIObjectByName("unitBarterSellSelection["+data.i+"]");
+		data.affordableMask = Engine.GetGUIObjectByName("unitBarterSellUnaffordable["+data.i+"]");
+
+		data.amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
+		if (Engine.HotkeyIsPressed("session.massbarter"))
+			data.amountToSell *= BARTER_BUNCH_MULTIPLIER;
+		data.isSelected = data.item == g_barterSell;
+		return true;
+	},
+	"setCountDisplay": function(data)
+	{
+		data.amount.Sell.caption = "-" + data.amountToSell;
+		var sellPrice = data.unitEntState.barterMarket.prices["sell"][g_barterSell];
+		var buyPrice = data.unitEntState.barterMarket.prices["buy"][data.item];
+		data.amount.Buy.caption = "+" + Math.round(sellPrice / buyPrice * data.amountToSell);
+	},
+	"setTooltip": function(data)
+	{
+		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": translate(data.item)});
+		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": translate(data.item)});
+	},
+	"setAction": function(data)
+	{
+		data.button.Sell.onPress = function() { g_barterSell = data.item; };
+		var exchangeResourcesParameters = {
+			"sell": g_barterSell,
+			"buy": data.item,
+			"amount": data.amountToSell
+		};
+		data.button.Buy.onPress = function() { exchangeResources(exchangeResourcesParameters); };
+	},
+	"setGraphics": function(data)
+	{
+		var grayscale = data.isSelected ? "grayscale:" : ""; 
+		data.button.Buy.hidden = data.isSelected;
+		data.button.Sell.hidden = false;
+		for each (var icon in data.icon)
+			icon.sprite = "stretched:"+grayscale+"session/icons/resources/" + data.item + ".png";
+
+		var neededRes = {};
+		neededRes[data.item] = data.amountToSell;
+		if (Engine.GuiInterfaceCall("GetNeededResources", neededRes))
+			data.affordableMask.hidden = false;
+		else
+			data.affordableMask.hidden = true;
+		data.selection.hidden = !data.isSelected;
+	},
+	"setPosition": function(data)
+	{
+		setPanelObjectPosition(data.button.Sell, data.i, data.rowLength);
+		setPanelObjectPosition(data.button.Buy, data.i + data.rowLength, data.rowLength);
+	},
+},
+
 // COMMAND
 g_SelectionPanels.Command = {
 	"maxNumberOfItems": 6,
+	"getItems": function(unitEntState)
+	{
+		return getEntityCommandsList(unitEntState)
+	},
 	"setTooltip": function(data)
 	{
 		if (data.item.tooltip)
@@ -20,12 +130,13 @@ g_SelectionPanels.Command = {
 		else
 			data.button.tooltip = toTitleCase(data.item.name);
 	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { data.item.callback ? data.item.callback(data.item) : performCommand(data.unitEntState.id, data.item.name); };
+	},
 	"setCountDisplay": function(data)
 	{
-		var count = 0;
-		if (data.item.name == "unload-all")
-			count = data.garrisonGroups.getTotalCount();
-		data.countDisplay.caption = count || "";
+		data.countDisplay.caption = data.item.count || "";
 	},
 	"setGraphics": function(data)
 	{
@@ -48,6 +159,11 @@ g_SelectionPanels.Command = {
 // CONSTRUCTION
 g_SelectionPanels.Construction = {
 	"maxNumberOfItems": 24,
+	"conflictsWith": ["Gate", "Pack", "Training"],
+	"getItems": function()
+	{
+		return getAllBuildableEntitiesFromSelection();
+	},
 	"addData": function(data)
 	{
 		data.entType = data.item;
@@ -60,7 +176,12 @@ g_SelectionPanels.Construction = {
 			var totalCost = multiplyEntityCosts(data.template, 1);
 			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCost);
 		}
+		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
 		return true;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function () { startBuildingPlacement(data.item, data.playerState); };
 	},
 	"setTooltip": function(data)
 	{
@@ -73,13 +194,7 @@ g_SelectionPanels.Construction = {
 		tooltip += "\n" + getEntityCostTooltip(data.template);
 		tooltip += getPopulationBonusTooltip(data.template);
 
-		var limits = getEntityLimitAndCount(data.playerState, data.entType);
-		data.entLimit = limits[0];
-		data.entCount = limits[1];
-		data.canBeAddedCount = limits[2];
-		data.entLimitChangers = limits[3];
-
-		tooltip += formatLimitString(data.entLimit, data.entCount, data.entLimitChangers);
+		tooltip += formatLimitString(data.limits.entLimit, data.limits.entCount, data.limits.entLimitChangers);
 		if (!data.technologyEnabled)
 		{
 			var techName = getEntityNames(GetTechnologyData(data.template.requiredTechnology));
@@ -93,7 +208,7 @@ g_SelectionPanels.Construction = {
 	"setGraphics": function(data)
 	{
 		var grayscale = "";
-		if (!data.technologyEnabled || data.canBeAddedCount == 0)
+		if (!data.technologyEnabled || data.limits.canBeAddedCount == 0)
 		{
 			data.button.enabled = false;
 			grayscale = "grayscale:";
@@ -115,6 +230,13 @@ g_SelectionPanels.Construction = {
 g_SelectionPanels.Formation = {
 	"maxNumberOfItems": 16,
 	"rowLength": 4,
+	"conflictsWith": ["Garrison"],
+	"getItems": function(unitEntState)
+	{
+		if (!hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
+			return [];
+		return Engine.GuiInterfaceCall("GetAvailableFormations");
+	},
 	"addData": function(data)
 	{
 		data.formationInfo = Engine.GuiInterfaceCall("GetFormationInfoFromTemplate", {"templateName": data.item});
@@ -125,9 +247,13 @@ g_SelectionPanels.Formation = {
 		});
 		return true;
 	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { performFormation(data.unitEntState.id, data.item); };
+	},
 	"setTooltip": function(data)
 	{
-		var tooltip =  translate(data.formationInfo.name);
+		var tooltip = translate(data.formationInfo.name);
 		if (!data.formationOk && data.formationInfo.tooltip)
 			tooltip += "\n" + "[color=\"red\"]" + translate(data.formationInfo.tooltip) + "[/color]";
 		data.button.tooltip = tooltip;
@@ -145,15 +271,32 @@ g_SelectionPanels.Formation = {
 g_SelectionPanels.Garrison = {
 	"maxNumberOfItems": 12,
 	"rowLength": 4,
+	"getItems": function(unitEntState, selection)
+	{
+		if (!unitEntState.garrisonHolder)
+			return [];
+		var groups = new EntityGroups();
+		for (var ent of selection)
+		{
+			var state = GetEntityState(ent);
+			if (state.garrisonHolder)
+				groups.add(state.garrisonHolder.entities)
+		}
+		return groups.getEntsGrouped();
+	},
 	"addData": function(data)
 	{
-		data.entType = data.item;
+		data.entType = data.item.template;
 		data.template = GetTemplateData(data.entType);
 		if (!data.template)
 			return false;
 		data.name = getEntityNames(data.template);
-		data.count = data.garrisonGroups.getCount(data.item);
+		data.count = data.item.ents.length;
 		return true;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { unloadTemplate(data.item.template); };
 	},
 	"setTooltip": function(data)
 	{
@@ -168,7 +311,7 @@ g_SelectionPanels.Garrison = {
 	"setGraphics": function(data)
 	{
 		var grayscale = "";
-		var ents = data.garrisonGroups.getEntsByName(data.item);
+		var ents = data.item.ents;
 		var entplayer = GetEntityState(ents[0]).player;
 		data.button.sprite = "colour: " + rgbToGuiColor(g_Players[entplayer].color);
 
@@ -188,6 +331,70 @@ g_SelectionPanels.Garrison = {
 // GATE
 g_SelectionPanels.Gate = {
 	"maxNumberOfItems": 8,
+	"conflictsWith": ["Construction", "Pack", "Training"],
+	"getItems": function(unitEntState, selection)
+	{
+		if (unitEntState.foundation)
+			return [];
+		if (!hasClass(unitEntState, "LongWall") && !unitEntState.gate)
+			return [];
+		// Allow long wall pieces to be converted to gates
+		var longWallTypes = {};
+		var walls = [];
+		var gates = [];
+		for (var i in selection)
+		{
+			var state = GetEntityState(selection[i]);
+			if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
+			{
+				var gateTemplate = getWallGateTemplate(state.id);
+				if (gateTemplate)
+				{
+					var tooltipString = GetTemplateDataWithoutLocalization(state.template).gateConversionTooltip;
+					if (!tooltipString)
+					{
+						warn(state.template + " is supposed to be convertable to a gate, but it's missing the GateConversionTooltip in the Identity template");
+						tooltipString = "";
+					}
+					walls.push({
+						"tooltip": translate(tooltipString),
+						"template": gateTemplate,
+						"callback": function (item) { transformWallToGate(item.template); }
+					});
+				}
+
+				// We only need one entity per type.
+				longWallTypes[state.template] = true;
+			}
+			else if (state.gate && !gates.length)
+			{
+				gates.push({
+					"gate": state.gate,
+					"tooltip": translate("Lock Gate"),
+					"locked": true,
+					"callback": function (item) { lockGate(item.locked); }
+				});
+				gates.push({
+					"gate": state.gate,
+					"tooltip": translate("Unlock Gate"),
+					"locked": false,
+					"callback": function (item) { lockGate(item.locked); }
+				});
+			}
+			// Show both 'locked' and 'unlocked' as active if the selected gates have both lock states.
+			else if (state.gate && state.gate.locked != gates[0].gate.locked)
+				for (var j = 0; j < gates.length; ++j)
+					delete gates[j].gate.locked;
+		}
+
+		// Place wall conversion options after gate lock/unlock icons.
+		var items = gates.concat(walls);
+		return items;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() {data.item.callback(data.item); };
+	},
 	"setTooltip": function(data)
 	{
 		var tooltip = data.item.tooltip;
@@ -229,7 +436,7 @@ g_SelectionPanels.Gate = {
 			var template = GetTemplateData(data.item.template);
 			if (!template)
 				return;
-			gateIcon = data.template.icon ?  "portraits/" + data.template.icon : "icons/gate_closed.png";
+			gateIcon = data.template.icon ? "portraits/" + data.template.icon : "icons/gate_closed.png";
 			data.guiSelection.hidden = true;
 		}
 
@@ -240,6 +447,48 @@ g_SelectionPanels.Gate = {
 // PACK
 g_SelectionPanels.Pack = {
 	"maxNumberOfItems": 8,
+	"conflictsWith": ["Construction", "Gate", "Training"],
+	"getItems": function(unitEntState, selection)
+	{
+		if (!unitEntState.pack)
+			return [];
+		var checks = {};
+		for (var ent of selection)
+		{
+			var state = GetEntityState(ent);
+			if (!state.pack)
+				continue;
+			if (state.pack.progress == 0)
+			{
+				if (!state.pack.packed)
+					checks.packButton = true;
+				else if (state.pack.packed)
+					checks.unpackButton = true;
+			}
+			else
+			{
+				// Already un/packing - show cancel button
+				if (!state.pack.packed)
+					checks.packCancelButton = true;
+				else if (state.pack.packed)
+					checks.unpackCancelButton = true;
+			}
+		}
+		var items = [];
+		if (checks.packButton)
+			items.push({ "packing": false, "packed": false, "tooltip": translate("Pack"), "callback": function() { packUnit(true); } });
+		if (checks.unpackButton)
+			items.push({ "packing": false, "packed": true, "tooltip": translate("Unpack"), "callback": function() { packUnit(false); } });
+		if (checks.packCancelButton)
+			items.push({ "packing": true, "packed": false, "tooltip": translate("Cancel Packing"), "callback": function() { cancelPackUnit(true); } });
+		if (checks.unpackCancelButton)
+			items.push({ "packing": true, "packed": true, "tooltip": translate("Cancel Unpacking"), "callback": function() { cancelPackUnit(false); } });
+		return items;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() {data.item.callback(data.item); };
+	},
 	"setTooltip": function(data)
 	{
 		data.button.tooltip = data.item.tooltip;
@@ -258,6 +507,20 @@ g_SelectionPanels.Pack = {
 // QUEUE
 g_SelectionPanels.Queue = {
 	"maxNumberOfItems": 16,
+	"getItems": function(unitEntState)
+	{
+		if (!unitEntState.production)
+			return [];
+		return unitEntState.production.queue;
+	},
+	"resizePanel": function(numberOfItems, rowLength)
+	{
+		var numRows = Math.ceil(numberOfItems / rowLength);
+		var panel = Engine.GetGUIObjectByName("unitQueuePanel");
+		var size = panel.size;
+		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
+		panel.size = size;
+	},
 	"addData": function(data)
 	{
 		// differentiate between units and techs
@@ -274,6 +537,10 @@ g_SelectionPanels.Queue = {
 
 		data.progress = Math.round(data.item.progress*100) + "%";
 		return data.template;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { removeFromProductionQueue(data.unitEntState.id, data.item.id); };
 	},
 	"setTooltip": function(data)
 	{
@@ -313,6 +580,15 @@ g_SelectionPanels.Queue = {
 // RESEARCH
 g_SelectionPanels.Research = {
 	"maxNumberOfItems": 8,
+	"getItems": function(unitEntState, selection)
+	{
+		if (!unitEntState.production)
+			return [];
+		// TODO 8 is the row lenght, make variable
+		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
+			return [];
+		return unitEntState.production.technologies;
+	},
 	"hideItem": function(i, rowLength) // called when no item is found
 	{
 		Engine.GetGUIObjectByName("unitResearchButton["+i+"]").hidden = true;
@@ -393,7 +669,7 @@ g_SelectionPanels.Research = {
 			data.button[i].tooltip = tooltip;
 		}
 	},
-	"setActions": function(data)
+	"setAction": function(data)
 	{
 		for (var i in data.entType)
 		{
@@ -401,7 +677,9 @@ g_SelectionPanels.Research = {
 			var others = Object.keys(data.template);
 			others.splice(i, 1);
 			var button = data.button[i];
-			button.onpress = (function(e){ return function() { data.callback(e) } })(data.entType[i]);
+			// as we're in a loop, we need to limit the scope with a closure
+			// else the last value of the loop will be taken, rather than the current one
+			button.onpress = (function(template) { return function () { addResearchToQueue(data.unitEntState.id, template); }; })(data.entType[i]);
 			// on mouse enter, show a cross over the other icons
 			button.onmouseenter = (function(others, icons) {
 				return function() {
@@ -445,7 +723,7 @@ g_SelectionPanels.Research = {
 			if (data.template[i].icon)
 				data.icon[i].sprite = "stretched:" + grayscale + "session/portraits/" + data.template[i].icon;
 		}
-		for  (var button of data.buttonsToHide)
+		for (var button of data.buttonsToHide)
 			button.hidden = true;
 		// show the tech connector
 		data.pair.hidden = data.item.pair == null;
@@ -462,6 +740,12 @@ g_SelectionPanels.Research = {
 g_SelectionPanels.Selection = {
 	"maxNumberOfItems": 16,
 	"rowLength": 4,
+	"getItems": function(unitEntState, selection)
+	{
+		if (selection.length < 2)
+			return [];
+		return g_Selection.groups.getTemplateNames();
+	},
 	"addData": function(data)
 	{
 		data.entType = data.item;
@@ -480,10 +764,10 @@ g_SelectionPanels.Selection = {
 	{
 		data.countDisplay.caption = data.count || "";
 	},
-	"setActions": function(data)
+	"setAction": function(data)
 	{
-		data.button.onpressright = (function(e){return function() {data.callback(e, true) } })(data.item);
-		data.button.onpress = (function(e){ return function() {data.callback(e, false) } })(data.item);
+		data.button.onpressright = function() { changePrimarySelectionGroup(data.item, true); };
+		data.button.onpress = function() { changePrimarySelectionGroup(data.item, false); };
 	},
 	"setGraphics": function(data)
 	{
@@ -495,6 +779,12 @@ g_SelectionPanels.Selection = {
 // STANCE
 g_SelectionPanels.Stance = {
 	"maxNumberOfItems": 5,
+	"getItems": function(unitEntState)
+	{
+		if (!unitEntState.unitAI || !hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
+			return [];
+		return unitEntState.unitAI.possibleStances;
+	},
 	"addData": function(data)
 	{
 		data.stanceSelected = Engine.GuiInterfaceCall("IsStanceSelected", {
@@ -502,6 +792,10 @@ g_SelectionPanels.Stance = {
 			"stance": data.item
 		});
 		return true;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { performStance(data.unitEntState, data.item); };
 	},
 	"setTooltip": function(data)
 	{
@@ -517,6 +811,11 @@ g_SelectionPanels.Stance = {
 // TRAINING
 g_SelectionPanels.Training = {
 	"maxNumberOfItems": 24,
+	"conflictsWith": ["Construction", "Gate", "Pack"],
+	"getItems": function()
+	{
+		return getAllTrainableEntitiesFromSelection();
+	},
 	"addData": function(data)
 	{
 		data.entType = data.item;
@@ -541,6 +840,10 @@ g_SelectionPanels.Training = {
 		}
 
 		return true;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { addTrainingToQueue(data.selection, data.item, data.playerState); };
 	},
 	"setCountDisplay": function(data)
 	{
@@ -574,14 +877,9 @@ g_SelectionPanels.Training = {
 
 		tooltip += "\n" + getEntityCostTooltip(data.template, data.trainNum, data.unitEntState.id);
 
-		// TODO make the getEntityLimitAndCount method return something nicer than an array
-		var limits = getEntityLimitAndCount(data.playerState, data.entType);
-		data.entLimit = limits[0];
-		data.entCount = limits[1];
-		data.canBeAddedCount = limits[2];
-		data.entLimitChangers = limits[3];
+		data.limits = getEntityLimitAndCount(data.playerState, data.entType);
 
-		tooltip += formatLimitString(data.entLimit, data.entCount, data.entLimitChangers);
+		tooltip += formatLimitString(data.limits.entLimit, data.limits.entCount, data.limits.entLimitChangers);
 		if (Engine.ConfigDB_GetValue("user", "showdetailedtooltips") === "true")
 		{
 			if (data.template.health)
@@ -608,3 +906,30 @@ g_SelectionPanels.Training = {
 	"setGraphics": g_SelectionPanels.Construction.setGraphics,
 };
 
+
+
+/**
+ * If two panels need the same space, so they collide,
+ * the one appearing first in the order is rendered.
+ *
+ * Note that the panel needs to appear in the list to get rendered.
+ */
+var g_PanelsOrder = [
+	// LEFT PANE
+	"Barter", // must always be visible on markets
+	"Garrison", // more important than Formation, as you want to see the garrisoned units in ships
+	"Formation",
+	"Stance", // normal together with formation
+
+	// RIGHT PANE
+	"Gate", // must always be shown on gates
+	"Pack", // must always be shown on packable entities
+	"Training", // lets hope training and construction never happen together
+	"Construction",
+	"Research", // normal together with training
+
+	// UNIQUE PANES (importance doesn't matter)
+	"Command",
+	"Queue",
+	"Selection",
+];

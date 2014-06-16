@@ -285,7 +285,7 @@ function determineAction(x, y, fromMinimap)
 	// if two actions are possible, the first one is taken
 	// so the most specific should appear first
 	var actions = Object.keys(unitActions).slice();
-	actions.sort(function(a, b) {return unitActions[a].specificness > unitActions[b].specificness;});
+	actions.sort(function(a, b) {return unitActions[a].specificness - unitActions[b].specificness;});
 
 	var actionInfo = undefined;
 	if (preSelectedAction != ACTION_NONE)
@@ -1195,7 +1195,7 @@ function handleMinimapEvent(target)
 // @param buildTemplate Template name of the entity the user wants to build
 function startBuildingPlacement(buildTemplate, playerState)
 {
-	if(getEntityLimitAndCount(playerState, buildTemplate)[2] == 0)
+	if(getEntityLimitAndCount(playerState, buildTemplate).canBeAddedCount == 0)
 		return;
 
 	// TODO: we should clear any highlight selection rings here. If the mouse was over an entity before going onto the GUI
@@ -1314,24 +1314,26 @@ function getBuildingsWhichCanTrainEntity(entitiesToCheck, trainEntType)
 
 function getEntityLimitAndCount(playerState, entType)
 {
+	var r = {
+		"entLimit": undefined,
+		"entCount": undefined,
+		"entLimitChangers": undefined,
+		"canBeAddedCount": undefined
+	};
 	var template = GetTemplateData(entType);
 	var entCategory = null;
 	if (template.trainingRestrictions)
 		entCategory = template.trainingRestrictions.category;
 	else if (template.buildRestrictions)
 		entCategory = template.buildRestrictions.category;
-	var entLimit = undefined;
-	var entCount = undefined;
-	var entLimitChangers = undefined;
-	var canBeAddedCount = undefined;
 	if (entCategory && playerState.entityLimits[entCategory] != null)
 	{
-		entLimit = playerState.entityLimits[entCategory];
-		entCount = playerState.entityCounts[entCategory];
-		entLimitChangers = playerState.entityLimitChangers[entCategory];
-		canBeAddedCount = Math.max(entLimit - entCount, 0);
+		r.entLimit = playerState.entityLimits[entCategory] || Infinity;
+		r.entCount = playerState.entityCounts[entCategory] || 0;
+		r.entLimitChangers = playerState.entityLimitChangers[entCategory];
+		r.canBeAddedCount = Math.max(r.entLimit - r.entCount, 0);
 	}
-	return [entLimit, entCount, canBeAddedCount, entLimitChangers];
+	return r;
 }
 
 // Add the unit shown at position to the training queue for all entities in the selection
@@ -1363,10 +1365,10 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 	var appropriateBuildings = getBuildingsWhichCanTrainEntity(selection, trainEntType);
 
 	// Check trainEntType entity limit and count
-	var [trainEntLimit, trainEntCount, canBeTrainedCount] = getEntityLimitAndCount(playerState, trainEntType)
+	var limits = getEntityLimitAndCount(playerState, trainEntType);
 
 	// Batch training possible if we can train at least 2 units
-	var batchTrainingPossible = canBeTrainedCount == undefined || canBeTrainedCount > 1;
+	var batchTrainingPossible = limits.canBeAddedCount == undefined || limits.canBeAddedCount > 1;
 
 	var decrement = Engine.HotkeyIsPressed("selection.remove");
 	if (!decrement)
@@ -1398,8 +1400,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 					if (batchTrainingCount <= 0)
 						inputState = INPUT_NORMAL;
 				}
-				else if (canBeTrainedCount == undefined ||
-					canBeTrainedCount > batchTrainingCount * appropriateBuildings.length)
+				else if (limits.canBeAddedCount == undefined ||
+					limits.canBeAddedCount > batchTrainingCount * appropriateBuildings.length)
 				{
 					if (Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(
 						template, batchTrainingCount + batchIncrementSize)))
@@ -1407,7 +1409,7 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 
 					batchTrainingCount += batchIncrementSize;
 				}
-				batchTrainingEntityAllowedCount = canBeTrainedCount;
+				batchTrainingEntityAllowedCount = limits.canBeAddedCount;
 				return;
 			}
 			// Otherwise start a new one
@@ -1426,7 +1428,7 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 		inputState = INPUT_BATCHTRAINING;
 		batchTrainingEntities = selection;
 		batchTrainingType = trainEntType;
-		batchTrainingEntityAllowedCount = canBeTrainedCount;
+		batchTrainingEntityAllowedCount = limits.canBeAddedCount;
 		batchTrainingCount = batchIncrementSize;
 	}
 	else
@@ -1434,8 +1436,8 @@ function addTrainingToQueue(selection, trainEntType, playerState)
 		// Non-batched - just create a single entity in each building
 		// (but no more than entity limit allows)
 		var buildingsForTraining = appropriateBuildings;
-		if (trainEntLimit)
-			buildingsForTraining = buildingsForTraining.slice(0, canBeTrainedCount);
+		if (limits.entLimit)
+			buildingsForTraining = buildingsForTraining.slice(0, limits.canBeAddedCount);
 		Engine.PostNetworkCommand({"type": "train", "template": trainEntType,
 			"count": 1, "entities": buildingsForTraining});
 	}
@@ -1462,27 +1464,27 @@ function getTrainingBatchStatus(playerState, entity, trainEntType, selection)
 	{
 		nextBatchTrainingCount = batchTrainingCount;
 		currentBatchTrainingCount = batchTrainingCount;
-		var canBeTrainedCount = batchTrainingEntityAllowedCount;
+		var limits = {
+			"canBeAddedCount": batchTrainingEntityAllowedCount
+		};
 	}
 	else
 	{
-		var [trainEntLimit, trainEntCount, canBeTrainedCount] =
-			getEntityLimitAndCount(playerState, trainEntType);
-		var batchSize = Math.min(canBeTrainedCount, batchIncrementSize);
+		var limits = getEntityLimitAndCount(playerState, trainEntType);
 	}
 	// We need to calculate count after the next increment if it's possible
-	if (canBeTrainedCount == undefined ||
-		canBeTrainedCount > nextBatchTrainingCount * appropriateBuildings.length)
+	if (limits.canBeAddedCount == undefined ||
+		limits.canBeAddedCount > nextBatchTrainingCount * appropriateBuildings.length)
 		nextBatchTrainingCount += batchIncrementSize;
 	// If training limits don't allow us to train batchTrainingCount in each appropriate building
 	// train as many full batches as we can and remainer in one more building.
 	var buildingsCountToTrainFullBatch = appropriateBuildings.length;
 	var remainderToTrain = 0;
-	if (canBeTrainedCount !== undefined &&
-		canBeTrainedCount < nextBatchTrainingCount * appropriateBuildings.length)
+	if (limits.canBeAddedCount !== undefined &&
+		limits.canBeAddedCount < nextBatchTrainingCount * appropriateBuildings.length)
 	{
-		buildingsCountToTrainFullBatch = Math.floor(canBeTrainedCount / nextBatchTrainingCount);
-		remainderToTrain = canBeTrainedCount % nextBatchTrainingCount;
+		buildingsCountToTrainFullBatch = Math.floor(limits.canBeAddedCount / nextBatchTrainingCount);
+		remainderToTrain = limits.canBeAddedCount % nextBatchTrainingCount;
 	}
 	return [buildingsCountToTrainFullBatch, nextBatchTrainingCount, remainderToTrain, currentBatchTrainingCount];
 }
