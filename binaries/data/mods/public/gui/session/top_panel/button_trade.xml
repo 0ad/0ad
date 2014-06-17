@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="button"
+	name="tradeButton1"
+	size="100%-194 4 100%-166 32"
+	style="iconButton"
+	tooltip_style="sessionToolTip"
+>
+	<!-- TODO make the button less ugly -->
+	<object size="0 0 100% 100%" name="tradeButtonImage" type="image" sprite="stretched:session/icons/economics.png" ghost="true"/>
+	<translatableAttribute id="tooltip">Trade</translatableAttribute>
+	<action on="Press">
+		toggleTrade();
+	</action>
+</object>

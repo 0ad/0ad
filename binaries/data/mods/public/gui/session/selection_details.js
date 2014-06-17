@@ -428,8 +428,5 @@ function updateSelectionDetails()
 	{
 		// Fill out commands panel for specific unit selected (or first unit of primary group)
 		updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, selection);
-		// Show panels
-		supplementalDetailsPanel.hidden = false;
-		commandsPanel.hidden = false;
 	}
 }

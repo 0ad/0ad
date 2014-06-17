@@ -24,7 +24,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 		var holder = gameState.getEntityById(id);
 		if (!holder)    // this holder was certainly destroyed. Let's remove it
 		{
-			for each (var entId in this.holders[id])
+			for (var entId of this.holders[id])
 			{
 				var ent = gameState.getEntityById(entId);
 				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") === id)
@@ -51,8 +51,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 		if (!holder.position())     // could happen with siege unit inside a ship
 			continue;
 
-		if (holder.getMetadata(PlayerID, "lastUpdate") === undefined
-			|| gameState.ai.playedTurn - holder.getMetadata(PlayerID, "lastUpdate") > 5)
+		if (gameState.ai.playedTurn - holder.getMetadata(PlayerID, "holderUpdate") > 5)
 		{
 			if (holder.attackRange("Ranged"))
 				var range = holder.attackRange("Ranged").max;
@@ -87,7 +86,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			if (this.numberOfGarrisonedUnits(holder) === 0)
 				this.holders[id] = undefined;
 			else
-				holder.setMetadata(PlayerID, "lastUpdate", gameState.ai.playedTurn);
+				holder.setMetadata(PlayerID, "holderUpdate", gameState.ai.playedTurn);
 		}
 	}
 };
@@ -107,13 +106,8 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	if (this.numberOfGarrisonedUnits(holder) >= holder.garrisonMax())
 		return;
 
-	if (!this.holders[holder.id()])
-	{
-		this.holders[holder.id()] = [ent.id()];
-		holder.setMetadata(PlayerID, "lastUpdate", gameState.ai.playedTurn);
-	}
-	else
-		this.holders[holder.id()].push(ent.id());
+	this.registerHolder(gameState, holder);
+	this.holders[holder.id()].push(ent.id());
 
 	if (gameState.ai.HQ.Config.debug > 1)
 	{
@@ -165,6 +159,15 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 			warn("unknown type in garrisonManager " + ent.getMetadata(PlayerID, "garrisonType"));
 			return true;
 	}
+};
+
+// Add this holder in the list managed by the garrisonManager
+m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
+{
+	if (this.holders[holder.id()])    // already registered
+		return;
+	this.holders[holder.id()] = [];
+	holder.setMetadata(PlayerID, "holderUpdate", gameState.ai.playedTurn);
 };
 
 return m;

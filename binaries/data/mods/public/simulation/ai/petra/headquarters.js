@@ -332,11 +332,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 		var metadata = ent._entity.trainingQueue[0].metadata;
 		if (metadata.garrisonType)
-		{
 			ent.setRallyPoint(ent, "garrison");  // trained units will autogarrison
-			if (!this.garrisonManager.holders[evt.entity])
-				this.garrisonManager.holders[evt.entity] = [];
-		}
 		else
 			ent.unsetRallyPoint();
 	}
@@ -354,8 +350,9 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			{
 				// we are autogarrisoned, check that the holder is registered in the garrisonManager
 				var holderId = ent.unitAIOrderData()[0]["target"];
-				if (!this.garrisonManager.holders[holderId])
-					this.garrisonManager.holders[holderId] = [];
+				var holder = gameState.getEntityById(holderId);
+				if (holder)
+					this.garrisonManager.registerHolder(gameState, holder);
 			}
 			else if (ent.getMetadata(PlayerID, "garrisonType"))
 			{
@@ -406,6 +403,18 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			numInTraining += item.count;
 		});
 	});
+
+	// Adapt the batch size of the first queued workers and females to the present population
+	// to ease a possible recovery if our population was drastically reduced by an attack
+	if (numWorkers < 12)
+		var size = 1;
+	else
+		var size =  Math.min(5, Math.ceil(numWorkers / 10));
+	if (queues.villager.queue[0])
+		queues.villager.queue[0].number = Math.min(queues.villager.queue[0].number, size);
+	if (queues.citizenSoldier.queue[0])
+		queues.citizenSoldier.queue[0].number = Math.min(queues.citizenSoldier.queue[0].number, size);
+
 	var numQueuedF = queues.villager.countQueuedUnits();
 	var numQueuedS = queues.citizenSoldier.countQueuedUnits();
 	var numQueued = numQueuedS + numQueuedF;
@@ -419,11 +428,13 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 	if (numQueued > 50 || (numQueuedF > 20 && numQueuedS > 20) || numInTraining > 15)
 		return;
 
-	// default template and size
+	// default template
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-	var size = Math.min(5, Math.ceil(numTotal / 10));
+	// anticipate the optimal batch size when this queue will start
 	if (numTotal < 12)
-		size = 1;
+		var size = 1;
+	else
+		var size = Math.min(5, Math.ceil(numTotal / 10));
 
 	// Choose whether we want soldiers instead.
 	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > this.femaleRatio)
@@ -436,8 +447,6 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 			template = gameState.applyCiv("units/{civ}_support_female_citizen");
 	}
 
-	// TODO: perhaps assign them a default resource and check the base according to that.
-	
 	// base "0" means "auto"
 	if (template === gameState.applyCiv("units/{civ}_support_female_citizen"))
 		queues.villager.addItem(new m.TrainingPlan(gameState, template, { "role": "worker", "base": 0 }, size, size));
@@ -1408,15 +1417,19 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	var nearestAnchor = undefined;
 	var templateAnchor = undefined;
 	var distmin = undefined;
+	var rangedUnit = false;
 	for (var pos of positions)
 	{
 		var access = gameState.ai.accessibility.getAccessValue(pos);
 		// check nearest base anchor
-		for each (var base in gameState.ai.HQ.baseManagers)
+		for each (var base in this.baseManagers)
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
 			if (base.anchor.getMetadata(PlayerID, "access") !== access)
+				continue;
+			var trainables = base.anchor.trainableEntities();
+			if (!trainables)     // base still in construction
 				continue;
 			var queue = base.anchor._entity.trainingQueue
 			if (queue)
@@ -1428,18 +1441,30 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				if (time/1000 > 5)
 					continue;
 			}
-			var trainable = base.anchor.trainableEntities();
 			var templateFound = undefined;
-			for (var i in trainable)
+			for (var trainable of trainables)
 			{
-				var template = gameState.getTemplate(trainable[i]);
+				var template = gameState.getTemplate(trainable);
 				if (!template.hasClass("Infantry") || !template.hasClass("Ranged")
 					|| !template.hasClass("CitizenSoldier"))
 					continue;
 				if (!total.canAfford(new API3.Resources(template.cost())))
-					continue;
-				templateFound = [trainable[i], template];
-				break;
+				{
+					if (rangedUnit)
+						continue;
+					// if we still have no ranged units, but can afford a melee unit, let's try it
+					var template = gameState.getTemplate(trainable);
+					if (!template.hasClass("Infantry") || !template.hasClass("Melee")
+						|| !template.hasClass("CitizenSoldier"))
+						continue;
+					if (!total.canAfford(new API3.Resources(template.cost())))
+						continue;
+				}
+				else
+					rangedUnit = true;
+				templateFound = [trainable, template];
+				if (rangedUnit)
+					break;
 			}
 			if (!templateFound)
 				continue;
@@ -1454,7 +1479,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	if (!nearestAnchor || distmin > distcut)
 		return;
 
-	var autogarrison = true;
+	var autogarrison = rangedUnit;
 	var numGarrisoned = this.garrisonManager.numberOfGarrisonedUnits(nearestAnchor);
 	if (nearestAnchor._entity.trainingQueue)
 	{
@@ -1466,9 +1491,9 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	if (numGarrisoned >= nearestAnchor.garrisonMax())
+	if (rangedUnit && numGarrisoned >= nearestAnchor.garrisonMax())
 	{
-		// No more room to garrison ... favor a melee unit
+		// No ranged more room to garrison ... favor a melee unit
 		autogarrison = false;
 		var trainables = nearestAnchor.trainableEntities();
 		for (var trainable of trainables)

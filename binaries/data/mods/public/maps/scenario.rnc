@@ -1,0 +1,120 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+start = Scenario
+
+##
+# Defines #
+##
+colour_rgb = 
+  attribute r { xsd:decimal { minInclusive = "0" maxInclusive = "1" } },
+  attribute g { xsd:decimal { minInclusive = "0" maxInclusive = "1" } },
+  attribute b { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }
+
+suncolour_rgb =     # RGB can be > 1 due to overbrightness
+  attribute r { xsd:decimal { minInclusive = "0" } },
+  attribute g { xsd:decimal { minInclusive = "0" } },
+  attribute b { xsd:decimal { minInclusive = "0" } }
+
+pos_xyz = 
+  attribute x { xsd:float },
+  attribute y { xsd:float },
+  attribute z { xsd:float }
+
+pos_xz = 
+  attribute x { xsd:decimal },
+  attribute z { xsd:decimal }
+
+angle = attribute angle { xsd:float }
+
+##
+# Scenario #
+##
+# TODO: bounds are not documented for many of these
+Scenario = element Scenario {
+    attribute version { xsd:positiveInteger } &
+    element Environment {
+        element LightingModel { text }? & # Deprecated
+        element SkySet { text } &
+        element SunColour { suncolour_rgb } &
+        element SunElevation { angle } &
+        element SunRotation { angle } &
+        element TerrainAmbientColour { colour_rgb } &
+        element UnitsAmbientColour { colour_rgb } &
+        element Fog {
+            element FogFactor {
+                xsd:decimal { minInclusive = "0" } # TODO: what is the max?
+            } &
+            element FogThickness {
+                xsd:decimal { minInclusive = "0" } # TODO: what is the max?
+            } &
+            element FogColour { colour_rgb }
+        }? &
+        element Water {
+            element WaterBody {
+                element Type { text } & # Not implemented
+                element Colour { colour_rgb } &
+                element Height { xsd:decimal } &
+                element Shininess { xsd:decimal }? & # Deprecated
+                element Waviness { xsd:decimal } &
+                element Murkiness { xsd:decimal } &
+                element Tint { colour_rgb } &
+                element ReflectionTint { colour_rgb } &
+                element ReflectionTintStrength { xsd:decimal }
+            }
+        } &
+        element Postproc {
+            element Brightness { xsd:decimal },
+            element Contrast { xsd:decimal },
+            element Saturation { xsd:decimal },
+            element Bloom { xsd:decimal },
+            element PostEffect { text }
+        }?
+    } &
+    element Terrain {
+        attribute patches { xsd:positiveInteger }?,
+        attribute texture { text }?,
+        attribute priority { xsd:nonNegativeInteger }?,
+        attribute height { xsd:positiveInteger }?
+    }? &
+    element Script {
+        text
+    }? &
+    element Camera { # Camera can have weird float values
+        element Position { pos_xyz },
+        element Rotation { angle },
+        element Declination { angle }
+    } &
+    element ScriptSettings {
+        text
+    } &
+    element Entities {
+        element Entity {
+            attribute uid { xsd:positiveInteger } &
+            element Template { text } &
+            element Player { xsd:nonNegativeInteger }? &
+            element Position {
+                pos_xz
+            } &
+            element Orientation {
+                attribute y { xsd:decimal }
+            } &
+            element Obstruction {
+                attribute group { xsd:positiveInteger },
+                attribute group2 { xsd:positiveInteger }?
+            }? &
+            element Actor {
+                attribute seed { xsd:integer }
+            }?
+        }*
+    }? &
+    element Paths { # Unused
+        empty
+    }? &
+    element Triggers { # Unused
+        empty
+    }?
+}

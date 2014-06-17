@@ -1,0 +1,33 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element terrain {
+    element textures {
+        element texture {
+            attribute name { text } &
+            attribute file { text }
+        }*
+    } &
+    element material {
+        text
+    }? &
+    element alphamap {
+        text
+    }? &
+    element props {
+        attribute groups { text }? & # comma-separated list of groups
+        attribute mmap {
+            list {
+                xsd:integer { minInclusive = "0" }, # R
+                xsd:integer { minInclusive = "0" }, # G
+                xsd:integer { minInclusive = "0" }  # B
+            }
+        }? &
+        attribute angle { xsd:float }? &    # degrees
+        attribute size { xsd:float }? &
+        attribute movementclass { text }?
+    }*
+}

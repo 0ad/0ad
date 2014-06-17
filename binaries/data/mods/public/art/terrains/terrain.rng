@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="Terrains" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <element name="Terrain">
+    <interleave>
+      <attribute name="groups"/>
+      <optional>
+        <!-- comma-separated list of groups -->
+        <attribute name="mmap">
+          <list>
+            <group>
+              <data type="integer">
+                <param name="minInclusive">0</param>
+                <param name="maxInclusive">255</param>
+              </data>
+              <!-- R -->
+              <data type="integer">
+                <param name="minInclusive">0</param>
+                <param name="maxInclusive">255</param>
+              </data>
+              <!-- G -->
+              <data type="integer">
+                <param name="minInclusive">0</param>
+                <param name="maxInclusive">255</param>
+              </data>
+            </group>
+            <!-- B -->
+          </list>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="angle">
+          <data type="float"/>
+        </attribute>
+      </optional>
+      <optional>
+        <!-- degrees -->
+        <attribute name="size">
+          <data type="float"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="movementclass"/>
+      </optional>
+    </interleave>
+  </element>
+</element>

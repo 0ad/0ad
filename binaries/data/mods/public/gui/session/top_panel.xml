@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="topPanel"
+	type="image"
+	sprite="topPanel"
+	size="-3 0 100%+3 36"
+>
+	<!-- most elements are defined in this directory -->
+	<include directory="gui/session/top_panel/"/>
+
+	<!-- ================================  ================================ -->
+	<!-- Some development features -->
+	<!-- ================================  ================================ -->
+
+	<!-- ================================  ================================ -->
+	<!-- Switch the view perspective to another player's (largely for AI development) -->
+	<!-- ================================  ================================ -->
+	<object size="50%+50 5 50%+150 100%-5" name="viewPlayer" type="dropdown" hidden="true" style="ModernDropDown" tooltip_style="sessionToolTipBold">
+		<translatableAttribute id="tooltip">Choose player to view</translatableAttribute>
+		<action on="SelectionChange">selectViewPlayer(this.selected);</action>
+	</object>
+
+	<!-- ================================  ================================ -->
+	<!-- Observer Mode Warning -->
+	<!-- ================================  ================================ -->
+	<object size="50 4 50% 100%-2" name="observerText" type="text" style="ModernLabelText" text_align="left" hidden="true">
+		<translatableAttribute id="caption">Observer Mode (experimental)</translatableAttribute>
+	</object>
+
+</object>

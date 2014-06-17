@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="food" size="10 0 100 100%" type="image" style="resourceCounter" tooltip_style="sessionToolTipBold">
+		<translatableAttribute id="tooltip">Food</translatableAttribute>
+		<object size="0 -4 40 36" type="image" sprite="stretched:session/icons/resources/food.png" ghost="true"/>
+		<object size="32 0 100% 100%-2" type="text" style="resourceText" name="resourceFood"/>
+</object>

@@ -1,0 +1,44 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element particles {
+    element texture {
+        text
+    }? &
+    element blend {
+        attribute mode { "add" | "subtract" | "over" | "multiply" }
+    }? &
+    element start_full {                # flag; true if present
+        empty
+    }? &
+    element use_relative_velocity {    # flag; true if present
+        empty
+    }? &
+    element constant {
+        attribute name { text } &
+        attribute value { xsd:float }
+    }* &
+    element uniform {
+        attribute name { text } &
+        attribute min { xsd:float } &
+        attribute max { xsd:float }
+    }* &
+    element copy {
+        attribute name { text } &
+        attribute from { text }
+    }* &
+    element expr {
+        attribute name { text } &
+        attribute from { text } &
+        attribute mul { xsd:float } &
+        attribute max { xsd:float }
+    }* &
+    element force {
+        attribute x { xsd:float }? &
+        attribute y { xsd:float }? &
+        attribute z { xsd:float }?
+    }*
+}

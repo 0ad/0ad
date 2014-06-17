@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="actor" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <attribute name="version">
+    <data type="positiveInteger"/>
+  </attribute>
+  <interleave>
+    <zeroOrMore>
+      <element name="group">
+        <zeroOrMore>
+          <element name="variant">
+            <interleave>
+              <optional>
+                <attribute name="name"/>
+              </optional>
+              <optional>
+                <attribute name="frequency">
+                  <data type="nonNegativeInteger"/>
+                </attribute>
+              </optional>
+              <optional>
+                <element name="mesh">
+                  <text/>
+                </element>
+              </optional>
+              <optional>
+                <element name="textures">
+                  <zeroOrMore>
+                    <element name="texture">
+                      <interleave>
+                        <optional>
+                          <attribute name="file"/>
+                        </optional>
+                        <attribute name="name"/>
+                      </interleave>
+                    </element>
+                  </zeroOrMore>
+                </element>
+              </optional>
+              <optional>
+                <element name="decal">
+                  <interleave>
+                    <attribute name="width">
+                      <data type="float"/>
+                    </attribute>
+                    <!-- X -->
+                    <attribute name="depth">
+                      <data type="float"/>
+                    </attribute>
+                    <!-- Z -->
+                    <attribute name="angle">
+                      <data type="float"/>
+                    </attribute>
+                    <attribute name="offsetx">
+                      <data type="float"/>
+                    </attribute>
+                    <attribute name="offsetz">
+                      <data type="float"/>
+                    </attribute>
+                  </interleave>
+                </element>
+              </optional>
+              <optional>
+                <element name="particles">
+                  <attribute name="file"/>
+                </element>
+              </optional>
+              <optional>
+                <element name="colour">
+                  <list>
+                    <group>
+                      <data type="nonNegativeInteger"/>
+                      <!-- R -->
+                      <data type="nonNegativeInteger"/>
+                      <!-- G -->
+                      <data type="nonNegativeInteger"/>
+                    </group>
+                    <!-- B -->
+                  </list>
+                </element>
+              </optional>
+              <optional>
+                <element name="animations">
+                  <zeroOrMore>
+                    <element name="animation">
+                      <interleave>
+                        <attribute name="name"/>
+                        <optional>
+                          <attribute name="file"/>
+                        </optional>
+                        <attribute name="speed">
+                          <data type="nonNegativeInteger"/>
+                        </attribute>
+                        <optional>
+                          <attribute name="event">
+                            <data type="decimal">
+                              <param name="minInclusive">0</param>
+                              <param name="maxInclusive">1</param>
+                            </data>
+                          </attribute>
+                        </optional>
+                        <optional>
+                          <attribute name="load">
+                            <data type="decimal">
+                              <param name="minInclusive">0</param>
+                              <param name="maxInclusive">1</param>
+                            </data>
+                          </attribute>
+                        </optional>
+                        <optional>
+                          <attribute name="sound">
+                            <data type="decimal">
+                              <param name="minInclusive">0</param>
+                              <param name="maxInclusive">1</param>
+                            </data>
+                          </attribute>
+                        </optional>
+                      </interleave>
+                    </element>
+                  </zeroOrMore>
+                </element>
+              </optional>
+              <optional>
+                <element name="props">
+                  <zeroOrMore>
+                    <element name="prop">
+                      <interleave>
+                        <optional>
+                          <attribute name="actor"/>
+                        </optional>
+                        <attribute name="attachpoint"/>
+                        <optional>
+                          <attribute name="minheight">
+                            <data type="float"/>
+                          </attribute>
+                        </optional>
+                        <optional>
+                          <attribute name="maxheight">
+                            <data type="float"/>
+                          </attribute>
+                        </optional>
+                        <optional>
+                          <attribute name="selectable">
+                            <choice>
+                              <value>true</value>
+                              <value>false</value>
+                            </choice>
+                          </attribute>
+                        </optional>
+                      </interleave>
+                    </element>
+                  </zeroOrMore>
+                </element>
+              </optional>
+            </interleave>
+          </element>
+        </zeroOrMore>
+      </element>
+    </zeroOrMore>
+    <optional>
+      <element name="castshadow">
+        <!-- flag; true if present -->
+        <empty/>
+      </element>
+    </optional>
+    <optional>
+      <element name="float">
+        <!-- flag; true if present -->
+        <empty/>
+      </element>
+    </optional>
+    <optional>
+      <element name="material">
+        <text/>
+      </element>
+    </optional>
+  </interleave>
+</element>

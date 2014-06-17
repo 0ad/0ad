@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<!-- camera.follow mode - follow the first unit in the selection -->
+	<object hotkey="camera.follow">
+		<action on="Press">setCameraFollow(g_Selection.toList()[0]);</action>
+	</object>
+
+	<!-- Camera jumping - press a hotkey to mark a position and another hotkey to jump back there -->
+	<object hotkey="camera.jump.1">
+		<action on="Press">jumpCamera(1);</action>
+	</object>
+
+	<object hotkey="camera.jump.2">
+		<action on="Press">jumpCamera(2);</action>
+	</object>
+
+	<object hotkey="camera.jump.3">
+		<action on="Press">jumpCamera(3);</action>
+	</object>
+
+	<object hotkey="camera.jump.4">
+		<action on="Press">jumpCamera(4);</action>
+	</object>
+
+	<object hotkey="camera.jump.5">
+		<action on="Press">jumpCamera(5);</action>
+	</object>
+
+	<object hotkey="camera.jump.6">
+		<action on="Press">jumpCamera(6);</action>
+	</object>
+
+	<object hotkey="camera.jump.7">
+		<action on="Press">jumpCamera(7);</action>
+	</object>
+
+	<object hotkey="camera.jump.8">
+		<action on="Press">jumpCamera(8);</action>
+	</object>
+
+	<object hotkey="camera.jump.9">
+		<action on="Press">jumpCamera(9);</action>
+	</object>
+
+	<object hotkey="camera.jump.10">
+		<action on="Press">jumpCamera(10);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.1">
+		<action on="Press">setJumpCamera(1);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.2">
+		<action on="Press">setJumpCamera(2);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.3">
+		<action on="Press">setJumpCamera(3);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.4">
+		<action on="Press">setJumpCamera(4);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.5">
+		<action on="Press">setJumpCamera(5);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.6">
+		<action on="Press">setJumpCamera(6);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.7">
+		<action on="Press">setJumpCamera(7);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.8">
+		<action on="Press">setJumpCamera(8);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.9">
+		<action on="Press">setJumpCamera(9);</action>
+	</object>
+
+	<object hotkey="camera.jump.set.10">
+		<action on="Press">setJumpCamera(10);</action>
+	</object>
+</object>

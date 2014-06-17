@@ -7,7 +7,7 @@
         <animation file="biped/cavalryidle.psa" name="Idle" speed="50"/>
         <animation file="biped/cavalryidle.psa" name="Walk" speed="17"/>
         <animation file="biped/rider_gallop.psa" name="Run" speed="8"/>
-        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" load="" name="attack_melee" speed="400"/>
+        <animation event="0.5" file="cavalry/spear/attack/rider_spear_shield_atk_a.psa" name="attack_melee" speed="400"/>
         <animation file="biped/rider_sword_death_a.psa" name="death" speed="225"/>
       </animations>
       <mesh>skeletal/m_tunic_short.dae</mesh>

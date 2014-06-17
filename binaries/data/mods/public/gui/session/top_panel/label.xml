@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object size="50%+48 0 100%-226 100%" name="alphaLabel" type="text" style="ModernLabelText" text_valign="top" ghost="true">
+	<!-- IMPORTANT: remember to update pregame/mainmenu.xml in sync with this: -->
+	<translatableAttribute id="caption">ALPHA XVI : Patañjali</translatableAttribute>
+
+	<!-- Displays build date and revision number-->
+	<object size="50%-128 0 50%+128 100%-2" name="buildTimeLabel" type="text" style="BuildNameText" ghost="true">
+		<action on="Load">this.caption = getBuildString()</action>
+	</object>
+</object>

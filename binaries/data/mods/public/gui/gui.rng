@@ -1,0 +1,819 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <a:documentation/>
+    <!--
+      NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+        and use a converter tool like trang to generate the Relax NG XML (.rng) file
+    -->
+    <a:documentation/>
+    <choice>
+      <ref name="object"/>
+      <ref name="objects"/>
+      <ref name="setup"/>
+      <ref name="sprites"/>
+      <ref name="styles"/>
+    </choice>
+  </start>
+  <!--
+    xsd:boolean could be used instead of this definition,
+    though it considers "1" & "0" as valid values.
+  -->
+  <define name="bool">
+    <a:documentation/>
+    <!-- Types # -->
+    <a:documentation/>
+    <choice>
+      <value>true</value>
+      <value>false</value>
+    </choice>
+  </define>
+  <define name="align">
+    <choice>
+      <value>left</value>
+      <value>center</value>
+      <value>right</value>
+    </choice>
+  </define>
+  <define name="valign">
+    <choice>
+      <value>top</value>
+      <value>center</value>
+      <value>bottom</value>
+    </choice>
+  </define>
+  <define name="wrapmode">
+    <choice>
+      <value>repeat</value>
+      <value>mirrored_repeat</value>
+      <value>clamp_to_edge</value>
+    </choice>
+  </define>
+  <define name="coord">
+    <data type="string">
+      <param name="pattern">-?\d*\.?\d+(%([\+\-]\d*\.?\d+)?)?</param>
+    </data>
+  </define>
+  <define name="clientarea">
+    <list>
+      <ref name="coord"/>
+      <ref name="coord"/>
+      <ref name="coord"/>
+      <ref name="coord"/>
+    </list>
+  </define>
+  <!-- color can be a name or "R G B A" format string -->
+  <define name="rgba">
+    <list>
+      <data type="integer">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">255</param>
+      </data>
+      <data type="integer">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">255</param>
+      </data>
+      <data type="integer">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">255</param>
+      </data>
+      <optional>
+        <data type="integer">
+          <param name="minInclusive">0</param>
+          <param name="maxInclusive">255</param>
+        </data>
+      </optional>
+    </list>
+  </define>
+  <define name="ccolor">
+    <choice>
+      <ref name="rgba"/>
+      <data type="string">
+        <param name="pattern">[A-Za-z]+</param>
+      </data>
+    </choice>
+  </define>
+  <define name="size">
+    <list>
+      <data type="decimal"/>
+      <data type="decimal"/>
+    </list>
+  </define>
+  <define name="pos">
+    <list>
+      <data type="decimal"/>
+      <data type="decimal"/>
+    </list>
+  </define>
+  <define name="rect">
+    <list>
+      <data type="decimal"/>
+      <data type="decimal"/>
+      <data type="decimal"/>
+      <data type="decimal"/>
+    </list>
+  </define>
+  <define name="unique_settings">
+    <a:documentation/>
+    <!-- Defines # -->
+    <a:documentation/>
+    <optional>
+      <attribute name="name"/>
+    </optional>
+    <optional>
+      <attribute name="type" a:defaultValue="empty"/>
+    </optional>
+    <optional>
+      <attribute name="style"/>
+    </optional>
+  </define>
+  <!--
+    This could probably be made more specific/strict
+    with more information regarding the use/meaning
+    of these attributes.
+  -->
+  <define name="base_settings">
+    <interleave>
+      <optional>
+        <attribute name="absolute">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="enable">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="ghost">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="hidden">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="size">
+          <ref name="clientarea"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="z">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+    </interleave>
+  </define>
+  <!-- Defaults are not put in here, because it ruins the concept of styles. -->
+  <define name="ex_settings">
+    <interleave>
+      <optional>
+        <attribute name="anchor">
+          <ref name="valign"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="buffer_zone">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="buffer_width">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="button_width">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="checked">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="clip">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="dropdown_size">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="dropdown_buffer">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="enabled">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="font"/>
+      </optional>
+      <optional>
+        <attribute name="fov_wedge_color">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="hotkey"/>
+      </optional>
+      <optional>
+        <attribute name="cell_id">
+          <data type="integer"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="independent">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="input_initvalue_destroyed_at_focus">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="mask">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="mask_char">
+          <data type="string">
+            <param name="minLength">1</param>
+            <param name="maxLength">1</param>
+          </data>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="max_length">
+          <data type="nonNegativeInteger"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="maxwidth">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="multiline">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="offset">
+          <ref name="pos"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scrollbar">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="scrollbar_style"/>
+      </optional>
+      <optional>
+        <attribute name="scroll_bottom">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="sound_closed"/>
+      </optional>
+      <optional>
+        <attribute name="sound_disabled"/>
+      </optional>
+      <optional>
+        <attribute name="sound_enter"/>
+      </optional>
+      <optional>
+        <attribute name="sound_leave"/>
+      </optional>
+      <optional>
+        <attribute name="sound_opened"/>
+      </optional>
+      <optional>
+        <attribute name="sound_pressed"/>
+      </optional>
+      <optional>
+        <attribute name="sound_selected"/>
+      </optional>
+      <optional>
+        <attribute name="sprite"/>
+      </optional>
+      <optional>
+        <attribute name="sprite2"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_heading"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_bar"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_background"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_disabled"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_list"/>
+      </optional>
+      <optional>
+        <attribute name="sprite2_disabled"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_over"/>
+      </optional>
+      <optional>
+        <attribute name="sprite2_over"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_pressed"/>
+      </optional>
+      <optional>
+        <attribute name="sprite2_pressed"/>
+      </optional>
+      <optional>
+        <attribute name="sprite_selectarea"/>
+      </optional>
+      <optional>
+        <attribute name="square_side">
+          <data type="decimal"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="textcolor">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="textcolor_disabled">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="textcolor_over">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="textcolor_pressed">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="textcolor_selected">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text_align">
+          <ref name="align"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="text_valign">
+          <ref name="valign"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="tooltip"/>
+      </optional>
+      <optional>
+        <attribute name="tooltip_style"/>
+      </optional>
+    </interleave>
+  </define>
+  <define name="objects">
+    <a:documentation/>
+    <!-- Objects # -->
+    <a:documentation/>
+    <element name="objects">
+      <zeroOrMore>
+        <choice>
+          <ref name="script"/>
+          <ref name="object"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="script">
+    <element name="script">
+      <interleave>
+        <text/>
+        <optional>
+          <attribute name="file"/>
+        </optional>
+        <optional>
+          <attribute name="directory"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="object">
+    <element name="object">
+      <choice>
+        <zeroOrMore>
+          <choice>
+            <ref name="object"/>
+            <ref name="action"/>
+            <ref name="attribute"/>
+            <ref name="def"/>
+            <ref name="include"/>
+            <ref name="item"/>
+            <ref name="repeat"/>
+            <ref name="translatableAttribute"/>
+          </choice>
+        </zeroOrMore>
+        <text/>
+      </choice>
+      <ref name="unique_settings"/>
+      <ref name="base_settings"/>
+      <ref name="ex_settings"/>
+    </element>
+  </define>
+  <define name="action">
+    <element name="action">
+      <text/>
+      <attribute name="on"/>
+      <optional>
+        <attribute name="file"/>
+      </optional>
+    </element>
+  </define>
+  <define name="attribute">
+    <element name="attribute">
+      <zeroOrMore>
+        <choice>
+          <ref name="keep"/>
+          <ref name="translate"/>
+        </choice>
+      </zeroOrMore>
+      <attribute name="id"/>
+    </element>
+  </define>
+  <define name="def">
+    <element name="def">
+      <optional>
+        <ref name="translatableAttribute"/>
+      </optional>
+      <interleave>
+        <attribute name="id"/>
+        <optional>
+          <attribute name="color">
+            <ref name="ccolor"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="heading"/>
+        </optional>
+        <optional>
+          <attribute name="width"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="include">
+    <element name="include">
+      <choice>
+        <attribute name="file"/>
+        <attribute name="directory"/>
+      </choice>
+    </element>
+  </define>
+  <define name="item">
+    <element name="item">
+      <text/>
+      <optional>
+        <attribute name="enabled">
+          <ref name="bool"/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+  <define name="keep">
+    <element name="keep">
+      <text/>
+    </element>
+  </define>
+  <define name="repeat">
+    <element name="repeat">
+      <oneOrMore>
+        <ref name="object"/>
+      </oneOrMore>
+      <attribute name="count"/>
+    </element>
+  </define>
+  <define name="translate">
+    <element name="translate">
+      <text/>
+    </element>
+  </define>
+  <define name="translatableAttribute">
+    <element name="translatableAttribute">
+      <text/>
+      <interleave>
+        <attribute name="id"/>
+        <optional>
+          <attribute name="comment"/>
+        </optional>
+        <optional>
+          <attribute name="context"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="styles">
+    <a:documentation/>
+    <!-- Styles # -->
+    <a:documentation/>
+    <element name="styles">
+      <zeroOrMore>
+        <ref name="style"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="style">
+    <element name="style">
+      <attribute name="name"/>
+      <ref name="base_settings"/>
+      <ref name="ex_settings"/>
+    </element>
+  </define>
+  <define name="setup">
+    <a:documentation/>
+    <!-- Setup # -->
+    <a:documentation/>
+    <element name="setup">
+      <zeroOrMore>
+        <choice>
+          <ref name="icon"/>
+          <ref name="scrollbar"/>
+          <ref name="tooltip"/>
+          <ref name="color"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="scrollbar">
+    <element name="scrollbar">
+      <interleave>
+        <attribute name="name"/>
+        <attribute name="width">
+          <data type="decimal"/>
+        </attribute>
+        <optional>
+          <attribute name="alwaysshown">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="maximum_bar_size">
+            <data type="decimal"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="minimum_bar_size">
+            <data type="decimal"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="scroll_wheel">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="show_edge_buttons">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_top"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_top_pressed"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_top_disabled"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_top_over"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_bottom"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_bottom_pressed"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_bottom_disabled"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_button_bottom_over"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_bar_vertical"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_bar_vertical_over"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_bar_vertical_pressed"/>
+        </optional>
+        <optional>
+          <attribute name="sprite_back_vertical"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="icon">
+    <element name="icon">
+      <interleave>
+        <attribute name="name"/>
+        <attribute name="size">
+          <ref name="size"/>
+        </attribute>
+        <attribute name="sprite"/>
+        <optional>
+          <attribute name="cell_id"/>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="tooltip">
+    <element name="tooltip">
+      <interleave>
+        <attribute name="name"/>
+        <optional>
+          <attribute name="sprite"/>
+        </optional>
+        <optional>
+          <attribute name="anchor">
+            <ref name="valign"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="buffer_zone">
+            <data type="decimal"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="font"/>
+        </optional>
+        <optional>
+          <attribute name="maxwidth">
+            <data type="decimal"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="offset">
+            <ref name="pos"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="textcolor">
+            <ref name="ccolor"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="delay">
+            <data type="integer"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="use_object"/>
+        </optional>
+        <optional>
+          <attribute name="hide_object">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="color">
+    <element name="color">
+      <ref name="rgba"/>
+      <attribute name="name"/>
+    </element>
+  </define>
+  <define name="sprites">
+    <a:documentation/>
+    <!-- Sprites # -->
+    <a:documentation/>
+    <element name="sprites">
+      <zeroOrMore>
+        <ref name="sprite"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="sprite">
+    <element name="sprite">
+      <group>
+        <optional>
+          <ref name="effect"/>
+        </optional>
+        <oneOrMore>
+          <ref name="image"/>
+        </oneOrMore>
+      </group>
+      <attribute name="name"/>
+    </element>
+  </define>
+  <define name="image">
+    <element name="image">
+      <optional>
+        <ref name="effect"/>
+      </optional>
+      <interleave>
+        <optional>
+          <attribute name="texture"/>
+        </optional>
+        <optional>
+          <attribute name="size">
+            <ref name="clientarea"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="texture_size">
+            <ref name="clientarea"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="real_texture_placement">
+            <ref name="rect"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="cell_size">
+            <ref name="size"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="backcolor">
+            <ref name="ccolor"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="bordercolor">
+            <ref name="ccolor"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="border">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="z_level">
+            <data type="float"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="fixed_h_aspect_ratio">
+            <data type="decimal"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="round_coordinates">
+            <ref name="bool"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="wrap_mode">
+            <ref name="wrapmode"/>
+          </attribute>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+  <define name="effect">
+    <element name="effect">
+      <optional>
+        <attribute name="add_color">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="multiply_color">
+          <ref name="ccolor"/>
+        </attribute>
+      </optional>
+      <optional>
+        <attribute name="grayscale">
+          <empty/>
+        </attribute>
+      </optional>
+    </element>
+  </define>
+</grammar>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="tradeDialogPanel"
+	size="50%-250 50%-130 50%+250 50%+100"
+	type="image"
+	hidden="true"
+	sprite="ModernDialog"
+>
+	<object type="text" style="TitleText" size="50%-96 -16 50%+96 16">
+		<translatableAttribute id="caption">Trade</translatableAttribute>
+	</object>
+
+	<!-- Trading goods -->
+	<object name="tradeGoods" size="20 50 100%-20 82">
+		<object name="tradeHeader" size="0 0 180 100%" type="text" style="ModernLabelText" text_align="left" ghost="true">
+			<translatableAttribute id="caption">Trading goods selection:</translatableAttribute>
+		</object>
+
+		<object size="180 0 100% 100%">
+			<repeat count="4">
+				<object name="tradeResource[n]" size="0 0 58 32">
+					<object name="tradeResourceButton[n]" size="4 0 36 100%" type="button" style="StoneButton">
+						<object name="tradeResourceIcon[n]" type="image" ghost="true"/>
+						<object name="tradeResourceSelection[n]" type="image" sprite="stretched:session/icons/corners.png" ghost="true"/>
+						<object name="tradeResourceText[n]" type="text" style="ModernLabelText" ghost="true"/>
+					</object>
+					<object name="tradeArrowUp[n]" size="36 0 52 50%" type="button" style="iconButton">
+						<object type="image" ghost="true" sprite="wheatArrowUp"/>
+					</object>
+					<object name="tradeArrowDn[n]" size="36 50% 52 100%" type="button" style="iconButton">
+						<object type="image" ghost="true" sprite="wheatArrowDn"/>
+					</object>
+				</object>
+			</repeat>
+			<object name="tradeHelp" size="100%-24 4 100% 28" enabled="false" type="button" style="StoneButton" tooltip_style="sessionToolTipBold">
+				<translatableAttribute id="tooltip">Select one goods as origin of the changes, then use the arrows of the target goods to make the changes (using Shift to select will put the selected resource to 100%).</translatableAttribute>
+				<object size="20% 15% 80% 75%" type="image" ghost="true" sprite="iconInfoWhite"/>
+			</object>
+		</object>
+	</object>
+
+	<object name="tradeStatistics" size="20 90 100%-20 168">
+		<object name="landTraders" size="0 0 100% 50%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+		<object name="shipTraders" size="0 50% 100% 100%" type="text" style="ModernLabelText" text_align="left" ghost="true" />
+	</object>
+
+	<object size="50%-64 100%-50 50%+64 100%-22" type="button" style="StoneButton">
+		<translatableAttribute id="caption">Close</translatableAttribute>
+		<action on="Press">closeTrade();</action>
+	</object>
+</object>
+

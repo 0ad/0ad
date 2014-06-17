@@ -5439,6 +5439,11 @@ UnitAI.prototype.GetStance = function()
 	return g_Stances[this.stance];
 };
 
+UnitAI.prototype.GetPossibleStances = function()
+{
+	return Object.keys(g_Stances);
+};
+
 UnitAI.prototype.GetStanceName = function()
 {
 	return this.stance;

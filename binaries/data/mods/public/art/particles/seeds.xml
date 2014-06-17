@@ -4,7 +4,7 @@
     <texture>art/textures/particles/seeds.png</texture>
     <blend mode="over"/>
 
-    <expr name="emissionrate" value="1.0"/>
+    <constant name="emissionrate" value="1.0"/>
 
     <uniform name="lifetime" min="3.0" max="5.0"/>
 

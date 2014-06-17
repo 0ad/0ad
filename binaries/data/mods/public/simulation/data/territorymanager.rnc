@@ -1,0 +1,17 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element TerritoryManager {
+    element ImpassableCost {
+        xsd:integer { minInclusive = "0" maxInclusive = "255" }
+    } &
+    element BorderThickness {
+        xsd:decimal
+    } &
+    element BorderSeparation {
+        xsd:decimal
+    }
+}

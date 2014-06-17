@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="material" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <interleave>
+    <zeroOrMore>
+      <element name="alternative">
+        <interleave>
+          <attribute name="material"/>
+          <optional>
+            <attribute name="quality">
+              <data type="decimal">
+                <param name="minInclusive">0</param>
+              </data>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="if"/>
+          </optional>
+        </interleave>
+      </element>
+    </zeroOrMore>
+    <optional>
+      <element name="alpha_blending">
+        <!-- flag; true if present -->
+        <empty/>
+      </element>
+    </optional>
+    <element name="shader">
+      <attribute name="effect"/>
+    </element>
+    <zeroOrMore>
+      <element name="define">
+        <attribute name="name"/>
+        <attribute name="value"/>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="conditional_define">
+        <attribute name="name"/>
+        <attribute name="value"/>
+        <attribute name="type"/>
+        <choice>
+          <attribute name="conf"/>
+          <group>
+            <optional>
+              <attribute name="min">
+                <data type="float"/>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="max">
+                <data type="float"/>
+              </attribute>
+            </optional>
+          </group>
+        </choice>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="uniform">
+        <attribute name="name"/>
+        <attribute name="value">
+          <list>
+            <!-- X Y Z W -->
+            <data type="float"/>
+            <optional>
+              <data type="float"/>
+            </optional>
+            <optional>
+              <data type="float"/>
+            </optional>
+            <optional>
+              <data type="float"/>
+            </optional>
+          </list>
+        </attribute>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="renderquery">
+        <attribute name="name"/>
+      </element>
+    </zeroOrMore>
+  </interleave>
+</element>

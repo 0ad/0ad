@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<!-- queue first unit in the training queue  -->
+	<object hotkey="session.queueunit.1">
+		<action on="Press">addTrainingByPosition(0);</action>
+	</object>
+
+	<!-- queue 2nd unit in the training queue  -->
+	<object hotkey="session.queueunit.2">
+		<action on="Press">addTrainingByPosition(1);</action>
+	</object>
+
+	<!-- queue 3rd unit in the training queue  -->
+	<object hotkey="session.queueunit.3">
+		<action on="Press">addTrainingByPosition(2);</action>
+	</object>
+
+	<!-- queue 4th unit in the training queue  -->
+	<object hotkey="session.queueunit.4">
+		<action on="Press">addTrainingByPosition(3);</action>
+	</object>
+
+	<!-- queue 5th unit in the training queue  -->
+	<object hotkey="session.queueunit.5">
+		<action on="Press">addTrainingByPosition(4);</action>
+	</object>
+
+	<!-- queue 6th unit in the training queue  -->
+	<object hotkey="session.queueunit.6">
+		<action on="Press">addTrainingByPosition(5);</action>
+	</object>
+
+	<!-- queue 7th unit in the training queue  -->
+	<object hotkey="session.queueunit.7">
+		<action on="Press">addTrainingByPosition(6);</action>
+	</object>
+</object>

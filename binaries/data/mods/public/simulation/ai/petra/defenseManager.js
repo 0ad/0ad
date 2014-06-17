@@ -331,17 +331,16 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 {
 	var self = this;
 	var attackedEvents = events["Attacked"];
-	for (var key in attackedEvents)
+	for (var evt of attackedEvents)
 	{
-		var e = attackedEvents[key];
-		var target = gameState.getEntityById(e.target);
+		var target = gameState.getEntityById(evt.target);
 		if (!target || !gameState.isEntityOwn(target) || !target.getArrowMultiplier())
 			continue;
 		if (!target.isGarrisonHolder() || gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
 			continue;
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
-		var attacker = gameState.getEntityById(e.attacker);
+		var attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker)
 			continue;
 		var attackTypes = target.attackTypes();
@@ -359,11 +358,6 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 
 			if (!ent.position())
 				return;
-			var army = ent.getMetadata(PlayerID, "PartOfArmy");
-			if (army !== undefined)
-				army = self.getArmy(army);
-			if (army !== undefined)
-				army.removeOwn(gameState, ent.id(), ent);
 			if (ent.getMetadata(PlayerID, "transport") !== undefined)
 				return;
 			if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
@@ -376,6 +370,13 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 			}
 			if (gameState.ai.accessibility.getAccessValue(target.position()) !== index)
 				return;
+			var army = ent.getMetadata(PlayerID, "PartOfArmy");
+			if (army !== undefined)
+			{
+				army = self.getArmy(army);
+				if (army !== undefined)
+					army.removeOwn(gameState, ent.id(), ent);
+			}
 			garrisonManager.garrison(gameState, ent, target, "protection");
 		});
 	}

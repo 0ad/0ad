@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object type="button"
+	name="menuButton"
+	size="100%-164 4 100%-8 32"
+	style="StoneButtonFancy"
+	tooltip_style="sessionToolTip"
+	z="70"
+>
+	<!-- This object covers up the text on the menu
+	buttons as they slide by so that you don't see
+	them on top of the main menu button -->
+	<object size="0 -4 100% 0" type="image" sprite="horizontalThinBorder" ghost="true"/>
+
+	<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">
+		<translatableAttribute id="caption">MENU</translatableAttribute>
+	</object>
+	<action on="Press">
+		toggleMenu();
+	</action>
+</object>

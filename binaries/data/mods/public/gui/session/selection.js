@@ -61,6 +61,7 @@ EntityGroups.prototype.add = function(ents)
 			var templateName = entState.template;
 			var key = GetTemplateData(templateName).selectionGroupName || templateName;
 
+			// TODO ugly hack, just group them by player too.
 			// Prefix garrisoned unit's selection name with the player they belong to
 			var index = templateName.indexOf("&");
 			if (index != -1 && key.indexOf("&") == -1)
@@ -137,6 +138,23 @@ EntityGroups.prototype.getEntsByName = function(templateName)
 	}
 
 	return ents;
+};
+
+/**
+ * get a list of entities grouped by templateName
+ */
+EntityGroups.prototype.getEntsGrouped = function()
+{
+	var templateNames = this.getTemplateNames();
+	var list = [];
+	for (var t of templateNames)
+	{
+		list.push({
+			"ents": this.getEntsByName(t),
+			"template": t,
+		});	
+	}
+	return list;
 };
 
 /**

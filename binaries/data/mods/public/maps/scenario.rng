@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <start>
+    <a:documentation/>
+    <!--
+      NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+        and use a converter tool like trang to generate the Relax NG XML (.rng) file
+    -->
+    <a:documentation/>
+    <ref name="Scenario"/>
+  </start>
+  <define name="colour_rgb">
+    <a:documentation/>
+    <!-- Defines # -->
+    <a:documentation/>
+    <attribute name="r">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">1</param>
+      </data>
+    </attribute>
+    <attribute name="g">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">1</param>
+      </data>
+    </attribute>
+    <attribute name="b">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">1</param>
+      </data>
+    </attribute>
+  </define>
+  <define name="suncolour_rgb">
+    <!-- RGB can be > 1 due to overbrightness -->
+    <attribute name="r">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+      </data>
+    </attribute>
+    <attribute name="g">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+      </data>
+    </attribute>
+    <attribute name="b">
+      <data type="decimal">
+        <param name="minInclusive">0</param>
+      </data>
+    </attribute>
+  </define>
+  <define name="pos_xyz">
+    <attribute name="x">
+      <data type="float"/>
+    </attribute>
+    <attribute name="y">
+      <data type="float"/>
+    </attribute>
+    <attribute name="z">
+      <data type="float"/>
+    </attribute>
+  </define>
+  <define name="pos_xz">
+    <attribute name="x">
+      <data type="decimal"/>
+    </attribute>
+    <attribute name="z">
+      <data type="decimal"/>
+    </attribute>
+  </define>
+  <define name="angle">
+    <attribute name="angle">
+      <data type="float"/>
+    </attribute>
+  </define>
+  <!-- TODO: bounds are not documented for many of these -->
+  <define name="Scenario">
+    <a:documentation/>
+    <!-- Scenario # -->
+    <a:documentation/>
+    <element name="Scenario">
+      <interleave>
+        <attribute name="version">
+          <data type="positiveInteger"/>
+        </attribute>
+        <element name="Environment">
+          <interleave>
+            <optional>
+              <element name="LightingModel">
+                <text/>
+              </element>
+            </optional>
+            <!-- Deprecated -->
+            <element name="SkySet">
+              <text/>
+            </element>
+            <element name="SunColour">
+              <ref name="suncolour_rgb"/>
+            </element>
+            <element name="SunElevation">
+              <ref name="angle"/>
+            </element>
+            <element name="SunRotation">
+              <ref name="angle"/>
+            </element>
+            <element name="TerrainAmbientColour">
+              <ref name="colour_rgb"/>
+            </element>
+            <element name="UnitsAmbientColour">
+              <ref name="colour_rgb"/>
+            </element>
+            <optional>
+              <element name="Fog">
+                <interleave>
+                  <element name="FogFactor">
+                    <data type="decimal">
+                      <param name="minInclusive">0</param>
+                    </data>
+                    <!-- TODO: what is the max? -->
+                  </element>
+                  <element name="FogThickness">
+                    <data type="decimal">
+                      <param name="minInclusive">0</param>
+                    </data>
+                    <!-- TODO: what is the max? -->
+                  </element>
+                  <element name="FogColour">
+                    <ref name="colour_rgb"/>
+                  </element>
+                </interleave>
+              </element>
+            </optional>
+            <element name="Water">
+              <element name="WaterBody">
+                <interleave>
+                  <element name="Type">
+                    <text/>
+                  </element>
+                  <!-- Not implemented -->
+                  <element name="Colour">
+                    <ref name="colour_rgb"/>
+                  </element>
+                  <element name="Height">
+                    <data type="decimal"/>
+                  </element>
+                  <optional>
+                    <element name="Shininess">
+                      <data type="decimal"/>
+                    </element>
+                  </optional>
+                  <!-- Deprecated -->
+                  <element name="Waviness">
+                    <data type="decimal"/>
+                  </element>
+                  <element name="Murkiness">
+                    <data type="decimal"/>
+                  </element>
+                  <element name="Tint">
+                    <ref name="colour_rgb"/>
+                  </element>
+                  <element name="ReflectionTint">
+                    <ref name="colour_rgb"/>
+                  </element>
+                  <element name="ReflectionTintStrength">
+                    <data type="decimal"/>
+                  </element>
+                </interleave>
+              </element>
+            </element>
+            <optional>
+              <element name="Postproc">
+                <element name="Brightness">
+                  <data type="decimal"/>
+                </element>
+                <element name="Contrast">
+                  <data type="decimal"/>
+                </element>
+                <element name="Saturation">
+                  <data type="decimal"/>
+                </element>
+                <element name="Bloom">
+                  <data type="decimal"/>
+                </element>
+                <element name="PostEffect">
+                  <text/>
+                </element>
+              </element>
+            </optional>
+          </interleave>
+        </element>
+        <optional>
+          <element name="Terrain">
+            <optional>
+              <attribute name="patches">
+                <data type="positiveInteger"/>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="texture"/>
+            </optional>
+            <optional>
+              <attribute name="priority">
+                <data type="nonNegativeInteger"/>
+              </attribute>
+            </optional>
+            <optional>
+              <attribute name="height">
+                <data type="positiveInteger"/>
+              </attribute>
+            </optional>
+          </element>
+        </optional>
+        <optional>
+          <element name="Script">
+            <text/>
+          </element>
+        </optional>
+        <element name="Camera">
+          <!-- Camera can have weird float values -->
+          <element name="Position">
+            <ref name="pos_xyz"/>
+          </element>
+          <element name="Rotation">
+            <ref name="angle"/>
+          </element>
+          <element name="Declination">
+            <ref name="angle"/>
+          </element>
+        </element>
+        <element name="ScriptSettings">
+          <text/>
+        </element>
+        <optional>
+          <element name="Entities">
+            <zeroOrMore>
+              <element name="Entity">
+                <interleave>
+                  <attribute name="uid">
+                    <data type="positiveInteger"/>
+                  </attribute>
+                  <element name="Template">
+                    <text/>
+                  </element>
+                  <optional>
+                    <element name="Player">
+                      <data type="nonNegativeInteger"/>
+                    </element>
+                  </optional>
+                  <element name="Position">
+                    <ref name="pos_xz"/>
+                  </element>
+                  <element name="Orientation">
+                    <attribute name="y">
+                      <data type="decimal"/>
+                    </attribute>
+                  </element>
+                  <optional>
+                    <element name="Obstruction">
+                      <attribute name="group">
+                        <data type="positiveInteger"/>
+                      </attribute>
+                      <optional>
+                        <attribute name="group2">
+                          <data type="positiveInteger"/>
+                        </attribute>
+                      </optional>
+                    </element>
+                  </optional>
+                  <optional>
+                    <element name="Actor">
+                      <attribute name="seed">
+                        <data type="integer"/>
+                      </attribute>
+                    </element>
+                  </optional>
+                </interleave>
+              </element>
+            </zeroOrMore>
+          </element>
+        </optional>
+        <optional>
+          <element name="Paths">
+            <!-- Unused -->
+            <empty/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Triggers">
+            <!-- Unused -->
+            <empty/>
+          </element>
+        </optional>
+      </interleave>
+    </element>
+  </define>
+</grammar>

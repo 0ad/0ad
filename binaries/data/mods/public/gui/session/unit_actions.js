@@ -633,9 +633,18 @@ var entityCommands =
 		{
 			if (!entState.garrisonHolder)
 				return false;
+			var selection = g_Selection.toList();
+			var count = 0;
+			for (var ent of selection)
+			{
+				var state = GetEntityState(ent);
+				if (state.garrisonHolder)
+					count += state.garrisonHolder.entities.length;
+			}
 			return {
 				"tooltip": translate("Unload All"),
-				"icon": "garrison-out.png"
+				"icon": "garrison-out.png",
+				"count": count,
 			};
 		},
 		"execute": function(entState)

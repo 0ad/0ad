@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="Textures" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <zeroOrMore>
+    <element name="File">
+      <interleave>
+        <optional>
+          <attribute name="pattern"/>
+        </optional>
+        <optional>
+          <attribute name="format">
+            <choice>
+              <value>dxt1</value>
+              <value>dxt3</value>
+              <value>dxt5</value>
+              <value>rgba</value>
+              <value>alpha</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="mipmap">
+            <choice>
+              <value>true</value>
+              <value>false</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="normal">
+            <choice>
+              <value>true</value>
+              <value>false</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="alpha">
+            <choice>
+              <value>none</value>
+              <value>player</value>
+              <value>transparency</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="filter">
+            <choice>
+              <value>box</value>
+              <value>triangle</value>
+              <value>kaiser</value>
+            </choice>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="kaiserwidth">
+            <data type="float"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="kaiseralpha">
+            <data type="float"/>
+          </attribute>
+        </optional>
+        <optional>
+          <attribute name="kaiserstretch">
+            <data type="float"/>
+          </attribute>
+        </optional>
+      </interleave>
+    </element>
+  </zeroOrMore>
+</element>

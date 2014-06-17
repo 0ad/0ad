@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="TerritoryManager" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <interleave>
+    <element name="ImpassableCost">
+      <data type="integer">
+        <param name="minInclusive">0</param>
+        <param name="maxInclusive">255</param>
+      </data>
+    </element>
+    <element name="BorderThickness">
+      <data type="decimal"/>
+    </element>
+    <element name="BorderSeparation">
+      <data type="decimal"/>
+    </element>
+  </interleave>
+</element>

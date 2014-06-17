@@ -9,7 +9,7 @@
         <animation file="quadraped/horse_gallop.psa" name="Run" speed="50"/>
         <animation file="quadraped/horse_walk.psa" name="carry_meat" speed="120"/>
         <animation event=".5" file="quadraped/horse_idle_a.psa" name="attack_ranged" speed="20"/>
-        <animation event="" file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="20"/>
+        <animation file="quadraped/horse_attack_a.psa" name="attack_slaughter" speed="20"/>
         <animation file="quadraped/horse_death.psa" name="death" speed="240"/>
       </animations>
       <mesh>skeletal/horse.pmd</mesh>

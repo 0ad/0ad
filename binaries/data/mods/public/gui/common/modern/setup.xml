@@ -2,9 +2,11 @@
 <!DOCTYPE setup SYSTEM "..\..\gui.dtd">
 
 <setup>
+	<!--
 	==========================================
 	- SCROLLBARS -
 	==========================================
+	-->
 	<scrollbar name="ModernScrollBar"
 			width = "15"
 			minimum_bar_size = "15"
@@ -13,9 +15,11 @@
 			sprite_back_vertical = "ModernScrollBack"
 			sprite_bar_vertical = "ModernScrollBar"
 	/>
+	<!--
 	==========================================
 	- TOOLTIPS -
 	==========================================
+	-->
 	<tooltip name="default"
 			anchor="top"
 			buffer_zone="4"
@@ -26,9 +30,11 @@
 			sprite="colour:255 255 255"
 			textcolor="0 0 0"
 	/>
+	<!--
 	==========================================
 	- COLORS -
 	==========================================
+	-->
 	<color name="black">0 0 0</color>
 	<color name="white">255 255 255</color>
 	<color name="red">255 0 0</color>

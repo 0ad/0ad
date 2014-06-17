@@ -1130,27 +1130,31 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	// basic state of attacking.
 	if (this.state === "")
 	{
+		var timeElapsed = gameState.getTimeElapsed();
+
 		var attackedEvents = events["Attacked"];
-		for (var key in attackedEvents)
+		for (var evt of attackedEvents)
 		{
-			var e = attackedEvents[key];
-			if (IDs.indexOf(e.target) === -1)
+			if (IDs.indexOf(evt.target) === -1)
 				continue;
-			var attacker = gameState.getEntityById(e.attacker);
+			var attacker = gameState.getEntityById(evt.attacker);
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
 				continue;
-			var ourUnit = gameState.getEntityById(e.target);
+			var ourUnit = gameState.getEntityById(evt.target);
 			if (this.isSiegeUnit(gameState, ourUnit))
 			{
 				// if siege units are attacked, we'll send some units to deal with enemies.
 				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5).toEntityArray();
 				for (var ent of collec)
 					if (!this.isSiegeUnit(gameState, ent))
+					{
 						ent.attack(attacker.id());
+						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", timeElapsed);
+					}
 			}
 			else
 			{
-				// if other units are attacked, abandon their target (if it was a structure or a support) and retaliate
+				// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
 				var orderData = ourUnit.unitAIOrderData();
 				if (orderData.length !== 0 && orderData[0]["target"])
 				{
@@ -1159,6 +1163,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						continue;
 				}
 				ourUnit.attack(attacker.id());
+				ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", timeElapsed);
 			}
 		}
 		
@@ -1168,8 +1173,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length === 0)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
-		var timeElapsed = gameState.getTimeElapsed();
-	
 		// Let's check a few units each time we update (currently 10) except when attack starts
 		if (this.unitCollUpdateArray.length < 15 || this.startingAttack)
 			var lgth = this.unitCollUpdateArray.length;
@@ -1202,12 +1205,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				else if(!target.hasClass("Structure"))
 					maybeUpdate = true;
 			}
-			else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged") && orderData && orderData["target"])
+			else if(orderData && orderData["target"])
 			{
 				var target = gameState.getEntityById(orderData["target"]);
 				if (!target)
 					needsUpdate = true;
-				else if (target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
+				else if(target.hasClass("Structure"))
+					maybeUpdate = true;
+				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged")
+					&& target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
 					maybeUpdate = true;
 			}
 

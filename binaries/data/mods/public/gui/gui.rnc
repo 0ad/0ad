@@ -1,0 +1,273 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+start = object | objects | setup | sprites | styles
+
+##
+# Types #
+##
+# xsd:boolean could be used instead of this definition,
+# though it considers "1" & "0" as valid values.
+bool = "true" | "false"
+align = "left" | "center" | "right"
+valign = "top" | "center" | "bottom"
+wrapmode = "repeat" | "mirrored_repeat" | "clamp_to_edge"
+coord = xsd:string { pattern = "-?\d*\.?\d+(%([\+\-]\d*\.?\d+)?)?" }
+clientarea = list { coord, coord, coord, coord }
+# color can be a name or "R G B A" format string
+rgba = list { xsd:integer { minInclusive = "0" maxInclusive = "255" },
+              xsd:integer { minInclusive = "0" maxInclusive = "255" },
+              xsd:integer { minInclusive = "0" maxInclusive = "255" },
+              xsd:integer { minInclusive = "0" maxInclusive = "255" }?}
+ccolor = rgba | xsd:string { pattern = "[A-Za-z]+" }
+size = list { xsd:decimal, xsd:decimal }
+pos = list { xsd:decimal, xsd:decimal }
+rect = list { xsd:decimal, xsd:decimal, xsd:decimal, xsd:decimal }
+
+##
+# Defines #
+##
+unique_settings =
+  attribute name { text }?,
+  [ a:defaultValue = "empty" ] attribute type { text }?,
+  attribute style { text }?
+# This could probably be made more specific/strict
+# with more information regarding the use/meaning
+# of these attributes.
+base_settings =
+  attribute absolute { bool }?&
+  attribute enable { bool }?&
+  attribute ghost { bool }?&
+  attribute hidden { bool }?&
+  attribute size { clientarea }?&
+  attribute z { xsd:decimal }?
+# Defaults are not put in here, because it ruins the concept of styles.
+ex_settings =
+  attribute anchor { valign }?&
+  attribute buffer_zone { xsd:decimal }?&
+  attribute buffer_width { xsd:decimal }?&
+  attribute button_width { xsd:decimal }?&
+  attribute checked { bool }?&
+  attribute clip { bool }?&
+  attribute dropdown_size { xsd:decimal }?&
+  attribute dropdown_buffer { xsd:decimal }?&
+  attribute enabled { bool }?&
+  attribute font { text }?&
+  attribute fov_wedge_color { ccolor }?&
+  attribute hotkey { text }?&
+  attribute cell_id { xsd:integer }?&
+  attribute independent { bool }?&
+  attribute input_initvalue_destroyed_at_focus { bool }?&
+  attribute mask { bool }?&
+  attribute mask_char { xsd:string { minLength = "1" maxLength = "1" } }?&
+  attribute max_length { xsd:nonNegativeInteger }?&
+  attribute maxwidth { xsd:decimal }? &
+  attribute multiline { bool }?&
+  attribute offset { pos }?&
+  attribute scrollbar { bool }?&
+  attribute scrollbar_style { text }?&
+  attribute scroll_bottom { bool }?&
+  attribute sound_closed { text }?&
+  attribute sound_disabled { text }?&
+  attribute sound_enter { text }?&
+  attribute sound_leave { text }?&
+  attribute sound_opened { text }?&
+  attribute sound_pressed { text }?&
+  attribute sound_selected { text }?&
+  attribute sprite { text }?&
+  attribute sprite2 { text }?&
+  attribute sprite_heading { text }?&
+  attribute sprite_bar { text }?&
+  attribute sprite_background { text }?&
+  attribute sprite_disabled { text }?&
+  attribute sprite_list { text }?&
+  attribute sprite2_disabled { text }?&
+  attribute sprite_over { text }?&
+  attribute sprite2_over { text }?&
+  attribute sprite_pressed { text }?&
+  attribute sprite2_pressed { text }?&
+  attribute sprite_selectarea { text }?&
+  attribute square_side { xsd:decimal }?&
+  attribute textcolor { ccolor }?&
+  attribute textcolor_disabled { ccolor }?&
+  attribute textcolor_over { ccolor }?&
+  attribute textcolor_pressed { ccolor }?&
+  attribute textcolor_selected { ccolor }?&
+  attribute text_align { align }?&
+  attribute text_valign { valign }?&
+  attribute tooltip { text }?&
+  attribute tooltip_style { text }?
+
+##
+# Objects #
+##
+objects = element objects { (script | object)* }
+script =
+  element script {
+    text &
+    attribute file { text }? &
+    attribute directory { text }?
+  }
+object =
+  element object {
+    ((object
+      | action
+      | \attribute
+      | def
+      | \include
+      | item
+      | repeat
+      | translatableAttribute)*
+      | text),
+    unique_settings,
+    base_settings,
+    ex_settings
+  }
+action =
+  element action {
+    text,
+    attribute on { text },
+    attribute file { text }?
+  }
+\attribute =
+  element attribute {
+    (keep | translate)*,
+    attribute id { text }
+  }
+def =
+  element def {
+    translatableAttribute?,
+    (
+    attribute id { text }&
+    attribute color { ccolor }?&
+    attribute heading { text }?&
+    attribute width { text }?
+    )
+  }
+\include =
+  element include {
+	attribute file { text }|
+    attribute directory { text }
+}
+item =
+  element item {
+    text,
+    attribute enabled { bool }?
+  }
+keep = element keep { text }
+repeat =
+  element repeat {
+    object+,
+    attribute count { text }
+  }
+translate = element translate { text }
+translatableAttribute =
+  element translatableAttribute {
+    text,
+    (
+    attribute id { text }&
+    attribute comment { text }?&
+    attribute context { text }?
+    )
+  }
+
+##
+# Styles #
+##
+styles = element styles { style* }
+style =
+  element style {
+    attribute name { text },
+    base_settings,
+    ex_settings
+  }
+
+##
+# Setup #
+##
+setup = element setup { (icon | scrollbar | tooltip | color)* }
+scrollbar =
+  element scrollbar {
+    attribute name { text }&
+    attribute width { xsd:decimal }&
+    attribute alwaysshown { bool }?&
+    attribute maximum_bar_size { xsd:decimal }?&
+    attribute minimum_bar_size { xsd:decimal }?&
+    attribute scroll_wheel { bool }?&
+    attribute show_edge_buttons { bool }?&
+    attribute sprite_button_top { text }?&
+    attribute sprite_button_top_pressed { text }?&
+    attribute sprite_button_top_disabled { text }?&
+    attribute sprite_button_top_over { text }?&
+    attribute sprite_button_bottom { text }?&
+    attribute sprite_button_bottom_pressed { text }?&
+    attribute sprite_button_bottom_disabled { text }?&
+    attribute sprite_button_bottom_over { text }?&
+    attribute sprite_bar_vertical { text }?&
+    attribute sprite_bar_vertical_over { text }?&
+    attribute sprite_bar_vertical_pressed { text }?&
+    attribute sprite_back_vertical { text }?
+  }
+icon =
+  element icon {
+    attribute name { text }&
+    attribute size { size }&
+    attribute sprite { text }&
+    attribute cell_id { text }?
+  }
+tooltip =
+  element tooltip {
+    attribute name { text }&
+    attribute sprite { text }?&
+    attribute anchor { valign }?&
+    attribute buffer_zone { xsd:decimal }?&
+    attribute font { text }?&
+    attribute maxwidth { xsd:decimal }?&
+    attribute offset { pos }?&
+    attribute textcolor { ccolor }?&
+    attribute delay { xsd:integer }?&
+    attribute use_object { text }?&
+    attribute hide_object { bool }?
+  }
+color =
+  element color {
+    rgba,
+    attribute name { text }
+  }
+
+##
+# Sprites #
+##
+sprites = element sprites { sprite* }
+sprite =
+  element sprite {
+    (effect?, image+),
+    attribute name { text }
+  }
+image =
+  element image {
+    effect?,
+    (
+    attribute texture { text }?&
+    attribute size { clientarea }?&
+    attribute texture_size { clientarea }?&
+    attribute real_texture_placement { rect }?&
+    attribute cell_size { size }?&
+    attribute backcolor { ccolor }?&
+    attribute bordercolor { ccolor }?&
+    attribute border { bool }?&
+    attribute z_level { xsd:float }?&
+    attribute fixed_h_aspect_ratio { xsd:decimal }?&
+    attribute round_coordinates { bool }?&
+    attribute wrap_mode { wrapmode }?
+    )
+  }
+effect =
+  element effect {
+    attribute add_color { ccolor }?,
+    attribute multiply_color { ccolor }?,
+    attribute grayscale { empty }?
+  }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="particles" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <interleave>
+    <optional>
+      <element name="texture">
+        <text/>
+      </element>
+    </optional>
+    <optional>
+      <element name="blend">
+        <attribute name="mode">
+          <choice>
+            <value>add</value>
+            <value>subtract</value>
+            <value>over</value>
+            <value>multiply</value>
+          </choice>
+        </attribute>
+      </element>
+    </optional>
+    <optional>
+      <element name="start_full">
+        <!-- flag; true if present -->
+        <empty/>
+      </element>
+    </optional>
+    <optional>
+      <element name="use_relative_velocity">
+        <!-- flag; true if present -->
+        <empty/>
+      </element>
+    </optional>
+    <zeroOrMore>
+      <element name="constant">
+        <interleave>
+          <attribute name="name"/>
+          <attribute name="value">
+            <data type="float"/>
+          </attribute>
+        </interleave>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="uniform">
+        <interleave>
+          <attribute name="name"/>
+          <attribute name="min">
+            <data type="float"/>
+          </attribute>
+          <attribute name="max">
+            <data type="float"/>
+          </attribute>
+        </interleave>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="copy">
+        <interleave>
+          <attribute name="name"/>
+          <attribute name="from"/>
+        </interleave>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="expr">
+        <interleave>
+          <attribute name="name"/>
+          <attribute name="from"/>
+          <attribute name="mul">
+            <data type="float"/>
+          </attribute>
+          <attribute name="max">
+            <data type="float"/>
+          </attribute>
+        </interleave>
+      </element>
+    </zeroOrMore>
+    <zeroOrMore>
+      <element name="force">
+        <interleave>
+          <optional>
+            <attribute name="x">
+              <data type="float"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="y">
+              <data type="float"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="z">
+              <data type="float"/>
+            </attribute>
+          </optional>
+        </interleave>
+      </element>
+    </zeroOrMore>
+  </interleave>
+</element>

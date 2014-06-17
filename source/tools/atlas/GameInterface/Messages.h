@@ -334,6 +334,20 @@ struct sObjectSettings
 SHAREABLE_STRUCT(sObjectSettings);
 #endif
 
+// transform de local entity to a real entity
+MESSAGE(ObjectPreviewToEntity,);
+
+//Query for get selected objects
+QUERY(GetCurrentSelection,
+	, //No inputs
+	((std::vector<ObjectID>, ids))
+	);
+
+// Moving Preview(s) object together, default is using the firs element in vector
+MESSAGE(MoveObjectPreview,
+		((Position,pos))
+		);
+
 // Preview object in the game world - creates a temporary unit at the given
 // position, and removes it when the preview is next changed
 MESSAGE(ObjectPreview,
@@ -344,6 +358,7 @@ MESSAGE(ObjectPreview,
 		((Position, target))
 		((float, angle))
 		((unsigned int, actorseed))
+		((bool, cleanObjectPreviews))
 		);
 
 COMMAND(CreateObject, NOMERGE,
@@ -589,6 +604,13 @@ COMMAND(SetObjectSettings, NOMERGE,
 		((ObjectID, id))
 		((sObjectSettings, settings))
 		);
+
+QUERY(GetObjectMapSettings,
+		((std::vector<ObjectID>, ids))
+		,
+		((std::wstring, xmldata))
+		);
+
 
 QUERY(GetPlayerObjects,
 		((int, player))
