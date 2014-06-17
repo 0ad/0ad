@@ -4,7 +4,7 @@ namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
 #   and use a converter tool like trang to generate the Relax NG XML (.rng) file
 ##
 
-start = objects | setup | sprites | styles
+start = object | objects | setup | sprites | styles
 
 ##
 # Types #
@@ -149,7 +149,8 @@ def =
   }
 \include =
   element include {
-    attribute file { text }
+	attribute file { text }|
+    attribute directory { text }
 }
 item =
   element item {

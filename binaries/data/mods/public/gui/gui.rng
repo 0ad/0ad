@@ -8,6 +8,7 @@
     -->
     <a:documentation/>
     <choice>
+      <ref name="object"/>
       <ref name="objects"/>
       <ref name="setup"/>
       <ref name="sprites"/>
@@ -484,7 +485,10 @@
   </define>
   <define name="include">
     <element name="include">
-      <attribute name="file"/>
+      <choice>
+        <attribute name="file"/>
+        <attribute name="directory"/>
+      </choice>
     </element>
   </define>
   <define name="item">
