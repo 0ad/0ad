@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="terrain" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <interleave>
+    <element name="textures">
+      <zeroOrMore>
+        <element name="texture">
+          <interleave>
+            <attribute name="name"/>
+            <attribute name="file"/>
+          </interleave>
+        </element>
+      </zeroOrMore>
+    </element>
+    <optional>
+      <element name="material">
+        <text/>
+      </element>
+    </optional>
+    <optional>
+      <element name="alphamap">
+        <text/>
+      </element>
+    </optional>
+    <zeroOrMore>
+      <element name="props">
+        <interleave>
+          <optional>
+            <attribute name="groups"/>
+          </optional>
+          <optional>
+            <!-- comma-separated list of groups -->
+            <attribute name="mmap">
+              <list>
+                <group>
+                  <data type="integer">
+                    <param name="minInclusive">0</param>
+                  </data>
+                  <!-- R -->
+                  <data type="integer">
+                    <param name="minInclusive">0</param>
+                  </data>
+                  <!-- G -->
+                  <data type="integer">
+                    <param name="minInclusive">0</param>
+                  </data>
+                </group>
+                <!-- B -->
+              </list>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="angle">
+              <data type="float"/>
+            </attribute>
+          </optional>
+          <optional>
+            <!-- degrees -->
+            <attribute name="size">
+              <data type="float"/>
+            </attribute>
+          </optional>
+          <optional>
+            <attribute name="movementclass"/>
+          </optional>
+        </interleave>
+      </element>
+    </zeroOrMore>
+  </interleave>
+</element>

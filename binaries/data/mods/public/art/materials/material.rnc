@@ -1,0 +1,42 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element material {
+    element alternative {
+        attribute material { text } &
+        attribute quality { xsd:decimal { minInclusive = "0" } }? &
+        attribute if { text }?
+    }* &
+    element alpha_blending {    # flag; true if present
+        empty
+    }? &
+    element shader {
+        attribute effect { text }
+    } &
+    element define {
+        attribute name { text },
+        attribute value { text }
+    }* &
+    element conditional_define {
+        attribute name { text },
+        attribute value { text },
+        attribute type { text },
+        (attribute conf { text }
+         | ( attribute min { xsd:float }?, attribute max { xsd:float }? ))
+    }* &
+    element uniform {
+        attribute name { text },
+        attribute value { list { # X Y Z W
+            xsd:float,
+            xsd:float?,
+            xsd:float?,
+            xsd:float?
+        } }
+    }* &
+    element renderquery {
+        attribute name { text }
+    }*
+}

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<grammar xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <define name="flag">
+    <a:documentation/>
+    <!--
+      NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+        and use a converter tool like trang to generate the Relax NG XML (.rng) file
+    -->
+    <a:documentation/>
+    <a:documentation/>
+    <!-- Types # -->
+    <a:documentation/>
+    <choice>
+      <value>0</value>
+      <value>1</value>
+    </choice>
+  </define>
+  <start>
+    <ref name="SoundGroup"/>
+  </start>
+  <define name="SoundGroup">
+    <element name="SoundGroup">
+      <interleave>
+        <optional>
+          <element name="Gain">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Looping">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Omnipresent">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="HeardBy">
+            <value>owner</value>
+          </element>
+        </optional>
+        <optional>
+          <element name="Distanceless">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Pitch">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Priority">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="RandOrder">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="RandGain">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="GainUpper">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="GainLower">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="RandPitch">
+            <ref name="flag"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="PitchUpper">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="PitchLower">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="ConeGain">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="ConeInner">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="ConeOuter">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Replacement">
+            <text/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Threshold">
+            <data type="float"/>
+          </element>
+        </optional>
+        <optional>
+          <element name="Decay">
+            <data type="float"/>
+          </element>
+        </optional>
+        <oneOrMore>
+          <element name="Sound">
+            <text/>
+          </element>
+        </oneOrMore>
+        <element name="Path">
+          <text/>
+        </element>
+      </interleave>
+    </element>
+  </define>
+</grammar>

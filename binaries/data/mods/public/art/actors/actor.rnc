@@ -1,0 +1,68 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element actor {
+    attribute version { xsd:positiveInteger }, (
+    element group {
+        element variant {
+            attribute name { text }? &
+            attribute frequency { xsd:nonNegativeInteger }? &
+            element mesh {
+                text
+            }? &
+            element textures {
+                element texture {
+                    attribute file { text }? &
+                    attribute name { text }
+                }*
+            }? &
+            element decal {
+                attribute width { xsd:float } &  # X
+                attribute depth { xsd:float } &  # Z
+                attribute angle { xsd:float } &
+                attribute offsetx { xsd:float } &
+                attribute offsetz { xsd:float }
+            }? &
+            element particles {
+                attribute file { text }
+            }? &
+            element colour { list {
+                xsd:nonNegativeInteger, # R
+                xsd:nonNegativeInteger, # G
+                xsd:nonNegativeInteger # B
+            } }? &
+            element animations {
+                element animation {
+                    attribute name { text } &
+                    attribute file { text }? &
+                    attribute speed { xsd:nonNegativeInteger } &
+                    attribute event { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }? &
+                    attribute load { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }? &
+                    attribute sound { xsd:decimal { minInclusive = "0" maxInclusive = "1" } }?
+                }*
+            }? &
+            element props {
+                element prop {
+                    (attribute actor { text }? &
+                    attribute attachpoint { text } &
+                    attribute minheight { xsd:float }? &
+                    attribute maxheight { xsd:float }? &
+                    attribute selectable { "true" | "false" }?)
+                }*
+            }?
+        }*
+    }* &
+    element castshadow {    # flag; true if present
+        empty
+    }? &
+    element float {         # flag; true if present
+        empty
+    }? &
+    element material {
+        text
+    }?
+    )
+}

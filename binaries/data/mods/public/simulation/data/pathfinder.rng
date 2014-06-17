@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<element name="Pathfinder" xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0" xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes">
+  <a:documentation/>
+  <!--
+    NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+      and use a converter tool like trang to generate the Relax NG XML (.rng) file
+  -->
+  <a:documentation/>
+  <interleave>
+    <element name="MaxSameTurnMoves">
+      <data type="nonNegativeInteger"/>
+    </element>
+    <element name="PassabilityClasses">
+      <oneOrMore>
+        <element>
+          <anyName/>
+          <interleave>
+            <optional>
+              <element name="MinWaterDepth">
+                <data type="decimal"/>
+              </element>
+            </optional>
+            <optional>
+              <!-- TODO: fixed type -->
+              <element name="MaxWaterDepth">
+                <data type="decimal"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="MaxTerrainSlope">
+                <data type="decimal"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="MinShoreDistance">
+                <data type="decimal"/>
+              </element>
+            </optional>
+            <optional>
+              <element name="MaxShoreDistance">
+                <data type="decimal"/>
+              </element>
+            </optional>
+          </interleave>
+        </element>
+      </oneOrMore>
+    </element>
+    <element name="MovementClasses">
+      <oneOrMore>
+        <element>
+          <anyName/>
+          <interleave>
+            <attribute name="Speed">
+              <data type="decimal"/>
+            </attribute>
+            <attribute name="Cost">
+              <data type="decimal"/>
+            </attribute>
+            <optional>
+              <element name="UnitClasses">
+                <zeroOrMore>
+                  <element>
+                    <anyName/>
+                    <interleave>
+                      <attribute name="Speed">
+                        <data type="decimal"/>
+                      </attribute>
+                      <attribute name="Cost">
+                        <data type="decimal"/>
+                      </attribute>
+                    </interleave>
+                  </element>
+                </zeroOrMore>
+              </element>
+            </optional>
+          </interleave>
+        </element>
+      </oneOrMore>
+    </element>
+  </interleave>
+</element>

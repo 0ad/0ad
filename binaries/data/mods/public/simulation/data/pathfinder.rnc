@@ -1,0 +1,30 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element Pathfinder {
+    element MaxSameTurnMoves { xsd:nonNegativeInteger } &
+    element PassabilityClasses {
+        element * {
+            element MinWaterDepth { xsd:decimal }? & # TODO: fixed type
+            element MaxWaterDepth { xsd:decimal }? &
+            element MaxTerrainSlope { xsd:decimal }? &
+            element MinShoreDistance { xsd:decimal }? &
+            element MaxShoreDistance { xsd:decimal }?
+        }+
+    } &
+    element MovementClasses {
+        element * {
+            attribute Speed { xsd:decimal } &
+            attribute Cost { xsd:decimal } &
+            element UnitClasses {
+                element * {
+                    attribute Speed { xsd:decimal } &
+                    attribute Cost { xsd:decimal }
+                }*
+            }?
+        }+
+    }
+}
