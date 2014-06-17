@@ -8,7 +8,7 @@
         <animation file="biped/walk_spearshield.psa" name="Walk" speed="100"/>
         <animation file="infantry/general/death/inf_06.psa" name="Death" speed="400"/>
         <animation file="female/f_death_01.dae" name="Death" speed="150"/>
-        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" load="" name="attack_melee" speed="500"/>
+        <animation event="0.5" file="infantry/sword/attack/isw_s_off_05.psa" name="attack_melee" speed="500"/>
         <animation file="infantry/sword/move/run/isw_s_off_01.psa" name="run" speed="50"/>
       </animations>
       <mesh>skeletal/f_tunic.dae</mesh>
