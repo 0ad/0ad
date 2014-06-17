@@ -49,7 +49,7 @@ public:
 			+ (m_ScreenPos.type1.y-m_Target.type1.y)*(m_ScreenPos.type1.y-m_Target.type1.y);
 		bool useTarget = (dragDistSq >= 16*16);
 		if (preview)
-			POST_MESSAGE(ObjectPreview, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle, m_ActorSeed));
+			POST_MESSAGE(ObjectPreview, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle, m_ActorSeed, true));
 		else
 		{
 			POST_COMMAND(CreateObject, ((std::wstring)m_ObjectID.wc_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), m_ObjPos, useTarget, m_Target, g_DefaultAngle, m_ActorSeed));

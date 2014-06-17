@@ -23,6 +23,9 @@
 #include "Common/MiscState.h"
 #include "Common/ObjectSettings.h"
 #include "GameInterface/Messages.h"
+#include <wx/clipbrd.h>
+#include <wx/xml/xml.h>
+#include <wx/sstream.h>
 
 using AtlasMessage::Position;
 
@@ -33,6 +36,7 @@ class TransformObject : public StateDrivenTool<TransformObject>
 	int m_dx, m_dy;
 	AtlasMessage::ObjectID m_lastSelected;
 	wxPoint m_startPoint;
+	Position m_entPosition;
 
 	// TODO: If we don't plan to change hotkeys, just replace with evt.ShiftDown(), etc.
 	static const wxKeyCode SELECTION_ADD_HOTKEY = WXK_SHIFT;
@@ -52,6 +56,139 @@ public:
 		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 	}
 
+	void OnPasteStart()
+	{
+		//PASTE
+		wxString entities;
+		if (wxTheClipboard->Open())
+		{
+			if (wxTheClipboard->IsSupported(wxDF_TEXT))
+			{
+				wxTextDataObject data;
+				wxTheClipboard->GetData(data);
+				entities = data.GetText();
+			}
+			wxTheClipboard->Close();
+		}
+		else
+		{
+			//TODO: Show something when the clipboard couldnt open
+		}
+
+		//First do we need to check if it is a correct xml string
+		wxInputStream* is = new wxStringInputStream(entities);
+		wxXmlDocument doc;
+		if (!doc.Load(*is))
+			return;
+
+		// Entities, Entity(1.*)
+		wxXmlNode* root = doc.GetRoot();
+		if (root->GetName() != wxT("Entities"))
+			return;
+
+		//	Template, position,orientation
+		const wxXmlNode* child = root->GetChildren();
+
+		while (child)
+		{
+			if (child->GetName() != wxT("Entity"))
+				return;
+
+			//TODO Validate all attributes
+			child = child->GetNext();
+		}
+
+		//Update selectedObjects??
+		g_SelectedObjects.clear();
+		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
+
+		// is the source code get here now you can add the objects to scene(preview)
+		// store id to move 
+		child = root->GetChildren();
+
+		while (child)
+		{
+			wxString templateName;
+			Position entityPos;
+			long playerId;
+			double orientation = 0;
+
+			const wxXmlNode* xmlData = child->GetChildren();
+
+			while (xmlData)
+			{
+				if (xmlData->GetName() == wxT("Template"))
+					templateName = xmlData->GetNodeContent();
+				else if (xmlData->GetName() == wxT("Position"))
+				{
+					wxString x, z;
+					xmlData->GetAttribute(wxT("x"), &x);
+					xmlData->GetAttribute(wxT("z"), &z);
+
+					double aux, aux2;
+					x.ToDouble(&aux);
+					z.ToDouble(&aux2);
+
+					entityPos = Position(aux, 0, aux2);
+				}
+				else if (xmlData->GetName() == wxT("Orientation"))
+				{
+					wxString y;
+					xmlData->GetAttribute(wxT("y"), &y);
+					y.ToDouble(&orientation);
+				}
+				else if (xmlData->GetName() == wxT("Player"))
+				{
+					wxString x;
+					x = xmlData->GetNodeContent();
+					x.ToLong(&playerId);
+				}
+
+				xmlData = xmlData->GetNext();
+			}
+
+			//Update current Ownership
+			this->GetScenarioEditor().GetObjectSettings().SetPlayerID(playerId);
+			this->GetScenarioEditor().GetObjectSettings().NotifyObservers();
+
+			POST_MESSAGE(ObjectPreview, ((std::wstring)templateName.c_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), entityPos, false, Position(), orientation, 0, false));
+
+			child = child->GetNext();
+		}
+
+		//Set state paste for preview the new objects
+		this->SetState(&Pasting);
+
+		//Update the objects to current mouse position
+		OnMovingPaste();
+	}
+
+	void OnMovingPaste()
+	{
+		//Move the preview(s) object(s)
+		POST_MESSAGE(MoveObjectPreview, ((m_entPosition)));
+	}
+
+	void OnPasteEnd(bool canceled)
+	{
+		if (canceled)
+			//delete previews objects
+			POST_MESSAGE(ObjectPreview, (_T(""), GetScenarioEditor().GetObjectSettings().GetSettings(), Position(), false, Position(), 0, 0, true));
+		else
+		{
+			//Create new Objects and delete preview objects
+			POST_MESSAGE(ObjectPreviewToEntity, ());
+
+			AtlasMessage::qGetCurrentSelection currentSelection;
+			currentSelection.Post();
+
+			g_SelectedObjects = *currentSelection.ids;
+		}
+
+
+		//when all is done set default state
+		this->SetState(&Waiting);
+	}
 
 	// TODO: keys to rotate/move object?
 
@@ -132,7 +269,7 @@ public:
 
 				// Dragging with right mouse button -> rotate objects to look
 				// at mouse
-				Position pos (evt.GetPosition());
+				Position pos(evt.GetPosition());
 				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
 					POST_COMMAND(RotateObject, (g_SelectedObjects[i], true, pos, 0.f));
 
@@ -140,6 +277,9 @@ public:
 			}
 			else if (evt.Moving())
 			{
+				//Save position for smooth paste position
+				obj->m_entPosition = Position(evt.GetPosition());
+
 				// Prevent certain events from reaching game UI in this mode
 				//	to prevent selection ring confusion
 				return true;
@@ -167,8 +307,39 @@ public:
 				obj->GetScenarioEditor().GetObjectSettings().NotifyObservers();
 				return true;
 			}
-			else
-				return false;
+			else if (evt.GetModifiers() == wxMOD_CONTROL)
+			{
+				if (evt.GetKeyCode() == 'C')
+				{
+					if (!g_SelectedObjects.empty())
+					{
+						//COPY current selections
+						AtlasMessage::qGetObjectMapSettings info(g_SelectedObjects);
+						info.Post();
+
+						//In xmldata is the configuration
+						//now send to clipboard
+						if (wxTheClipboard->Open())
+						{
+							wxString text(info.xmldata.c_str());
+							wxTheClipboard->SetData(new wxTextDataObject(text));
+							wxTheClipboard->Close();
+						}
+						else
+						{
+							//TODO: Say something about couldnt open clipboard
+						}
+						return true;
+					}
+				}
+				else if (evt.GetKeyCode() == 'V')
+				{
+					obj->OnPasteStart();
+					return true;
+				}
+			}
+
+			return false;
 		}
 	}
 	Waiting;
@@ -184,7 +355,7 @@ public:
 			}
 			else if (evt.Dragging())
 			{
-				Position pos (evt.GetPosition() + wxPoint(obj->m_dx, obj->m_dy));
+				Position pos(evt.GetPosition() + wxPoint(obj->m_dx, obj->m_dy));
 
 				POST_COMMAND(MoveObjects, (g_SelectedObjects, obj->m_lastSelected, pos));
 				return true;
@@ -241,7 +412,7 @@ public:
 				{
 					for (size_t i = 0; i < ids.size(); ++i)
 					{
-						std::vector<AtlasMessage::ObjectID>::iterator it = 	std::find(g_SelectedObjects.begin(), g_SelectedObjects.end(), ids[i]);
+						std::vector<AtlasMessage::ObjectID>::iterator it = std::find(g_SelectedObjects.begin(), g_SelectedObjects.end(), ids[i]);
 						bool objectIsSelected = (it != g_SelectedObjects.end());
 						if (selectionRemove)
 						{
@@ -298,7 +469,7 @@ public:
 				qry.Post();
 
 				std::vector<AtlasMessage::ObjectID> ids = *qry.ids;
-				
+
 				if (!selectionAdd && !selectionRemove)
 				{
 					// Just copy new selections (clears list if no selections)
@@ -308,7 +479,7 @@ public:
 				{
 					for (size_t i = 0; i < ids.size(); ++i)
 					{
-						std::vector<AtlasMessage::ObjectID>::iterator it = 	std::find(g_SelectedObjects.begin(), g_SelectedObjects.end(), ids[i]);
+						std::vector<AtlasMessage::ObjectID>::iterator it = std::find(g_SelectedObjects.begin(), g_SelectedObjects.end(), ids[i]);
 						bool objectIsSelected = (it != g_SelectedObjects.end());
 						if (selectionRemove)
 						{
@@ -335,6 +506,39 @@ public:
 		}
 	}
 	SelectSimilar;
+
+	struct sPasting : public State
+	{
+		bool OnMouse(TransformObject* obj, wxMouseEvent& evt)
+		{
+			if (evt.Moving())
+			{
+				//Move the object
+				obj->m_entPosition = Position(evt.GetPosition());
+				obj->OnMovingPaste();
+				return true;
+			}
+			else if (evt.LeftDown())
+			{
+				//Place the object and update 
+				obj->OnPasteEnd(false);
+				return true;
+			}
+			else
+				return false;
+		}
+		bool OnKey(TransformObject* obj, wxKeyEvent& evt, KeyEventType type)
+		{
+			if (type == KEY_CHAR && evt.GetKeyCode() == WXK_ESCAPE)
+			{
+				obj->OnPasteEnd(true);
+				return true;
+			}
+			else
+				return false;
+		}
+	}
+	Pasting;
 };
 
 IMPLEMENT_DYNAMIC_CLASS(TransformObject, StateDrivenTool<TransformObject>);
