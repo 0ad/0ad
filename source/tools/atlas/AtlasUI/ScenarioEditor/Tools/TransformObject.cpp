@@ -26,6 +26,7 @@
 #include <wx/clipbrd.h>
 #include <wx/xml/xml.h>
 #include <wx/sstream.h>
+#include <wx/version.h>
 
 using AtlasMessage::Position;
 
@@ -122,8 +123,13 @@ public:
 				else if (xmlData->GetName() == wxT("Position"))
 				{
 					wxString x, z;
+#if wxCHECK_VERSION(3, 0, 0)
 					xmlData->GetAttribute(wxT("x"), &x);
 					xmlData->GetAttribute(wxT("z"), &z);
+#else
+					xmlData->GetPropVal(wxT("x"), &x);
+					xmlData->GetPropVal(wxT("z"), &z);
+#endif
 
 					double aux, aux2;
 					x.ToDouble(&aux);
@@ -134,7 +140,11 @@ public:
 				else if (xmlData->GetName() == wxT("Orientation"))
 				{
 					wxString y;
+#if wxCHECK_VERSION(3, 0, 0)
 					xmlData->GetAttribute(wxT("y"), &y);
+#else
+					xmlData->GetPropVal(wxT("y"), &y);
+#endif
 					y.ToDouble(&orientation);
 				}
 				else if (xmlData->GetName() == wxT("Player"))
