@@ -1110,6 +1110,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	ATTR(z);
 	ATTR(on);
 	ATTR(file);
+	ATTR(directory);
 	ATTR(id);
 	ATTR(context);
 
@@ -1340,39 +1341,57 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		else if (element_name == elmt_include)
 		{
 			CStrW filename(child.GetAttributes().GetNamedItem(attr_file).FromUTF8());
-			if (filename.empty())
+			CStrW directory(child.GetAttributes().GetNamedItem(attr_directory).FromUTF8());
+			if (!filename.empty())
 			{
-				LOGERROR(L"GUI: 'include' XML element with empty 'file' XML attribute found. (object %hs)", object->GetPresentableName().c_str());
-				continue;
-			}
-			Paths.insert(filename);
+				if (!directory.empty())
+					LOGWARNING(L"GUI: Include element found with file name (%ls) and directory name (%ls). Only the file will be processed.", filename.c_str(), directory.c_str());
 
-			CXeromyces XeroChildren;
-			if (XeroChildren.Load(g_VFS, filename) != PSRETURN_OK)
-			{
-				LOGERROR(L"GUI: Error reading included XML: '%ls'", filename.c_str());
-				continue;
-			}
+				Paths.insert(filename);
 
-			XMBElement node = XeroChildren.GetRoot();
-			if (node.GetNodeName() != XeroChildren.GetElementID("objects"))
-			{
-				LOGERROR(L"GUI: Error reading included XML: '%ls', root element must have the name 'objects'.", filename.c_str());
-				continue;
-			}
-
-			XMBElementList include_children = node.GetChildNodes();
-			// Call this function on the child
-			for (int j = 0; j < include_children.Count; ++j)
-			{
-				XMBElement child2 = include_children.Item(j);
-				if (child2.GetNodeName() !=  XeroChildren.GetElementID("object"))
+				CXeromyces XeroIncluded;
+				if (XeroIncluded.Load(g_VFS, filename) != PSRETURN_OK)
 				{
-					LOGWARNING(L"GUI: Warning reading included XML: '%ls', all direct childs of an included XML must have the name 'object'.", filename.c_str());
+					LOGERROR(L"GUI: Error reading included XML: '%ls'", filename.c_str());
 					continue;
 				}
-				Xeromyces_ReadObject(child2, &XeroChildren, object, NameSubst, Paths, nesting_depth+1);
+
+				XMBElement node = XeroIncluded.GetRoot();
+				if (node.GetNodeName() != XeroIncluded.GetElementID("object"))
+				{
+					LOGERROR(L"GUI: Error reading included XML: '%ls', root element must have be of type 'object'.", filename.c_str());
+					continue;
+				}
+				Xeromyces_ReadObject(node, &XeroIncluded, object, NameSubst, Paths, nesting_depth+1);
 			}
+			else if (!directory.empty())
+			{
+				VfsPaths pathnames;
+				vfs::GetPathnames(g_VFS, directory, L"*.xml", pathnames);
+				for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+				{
+					// as opposed to loading scripts, don't care if it's loaded before
+					// one might use the same parts of the GUI in different situations
+					Paths.insert(*it);
+					CXeromyces XeroIncluded;
+					if (XeroIncluded.Load(g_VFS, *it) != PSRETURN_OK)
+					{
+						LOGERROR(L"GUI: Error reading included XML: '%ls'", (*it).string().c_str());
+						continue;
+					}
+
+					XMBElement node = XeroIncluded.GetRoot();
+					if (node.GetNodeName() != XeroIncluded.GetElementID("object"))
+					{
+						LOGERROR(L"GUI: Error reading included XML: '%ls', root element must have be of type 'object'.", (*it).string().c_str());
+						continue;
+					}
+					Xeromyces_ReadObject(node, &XeroIncluded, object, NameSubst, Paths, nesting_depth+1);
+				}
+
+			}
+			else
+				LOGERROR(L"GUI: 'include' XML element must have valid 'file' or 'directory' attribute found. (object %hs)", object->GetPresentableName().c_str());
 		}
 		else
 		{
@@ -1486,7 +1505,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 				}
 				catch (PSERROR_Scripting& e)
 				{
-					LOGERROR(L"GUI: Error executing script %ls: %hs", directory.c_str(), e.what());
+					LOGERROR(L"GUI: Error executing script %ls: %hs", (*it).string().c_str(), e.what());
 				}
 			}
 		}

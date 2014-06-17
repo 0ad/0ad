@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object hotkey="leave">
+		<action on="Press">closeOpenDialogs();</action>
+	</object>
+
+	<!-- Chat: Depending on the current state, it either opens message window or closes message window / posts message -->
+	<object hotkey="chat">
+		<action on="Press">toggleChatWindow();</action>
+	</object>
+
+	<!-- Team Chat: Does the same as the above, but sets the window up to only send messages to teammates. -->
+	<object hotkey="teamchat">
+	    <action on="Press">toggleChatWindow(true);</action>
+	</object>
+
+	<!-- Menu -->
+	<object hotkey="menu.toggle">
+		<action on="Press">openMenu();</action>
+	</object>
+
+	<!-- Unit silhouettes -->
+	<object hotkey="silhouettes">
+		<action on="Press">
+			var newSetting = !Engine.Renderer_GetSilhouettesEnabled();
+			Engine.Renderer_SetSilhouettesEnabled(newSetting);
+		</action>
+	</object>
+
+	<!-- Sky -->
+	<object hotkey="showsky">
+		<action on="Press">
+			var newSetting = !Engine.Renderer_GetShowSkyEnabled();
+			Engine.Renderer_SetShowSkyEnabled(newSetting);
+		</action>
+	</object>
+
+	<!-- Pause -->
+	<object hotkey="pause">
+		<action on="Press">togglePause();</action>
+	</object>
+
+	<!-- Quicksave/load -->
+	<object hotkey="quicksave">
+		<action on="Press">Engine.QuickSave();</action>
+	</object>
+	<object hotkey="quickload">
+		<action on="Press">Engine.QuickLoad();</action>
+	</object>
+
+	<!-- Delete button Hotkey (For some reason it won't work when the console is visible -->
+	<object hotkey="session.kill">
+		<action on="Press">performCommand(g_Selection.toList()[0], "delete");</action>
+	</object>
+
+	<!-- Stop the selected units -->
+	<object hotkey="session.stop">
+		<action on="Press">stopUnits(g_Selection.toList());</action>
+	</object>
+
+	<!-- Find idle warrior - TODO: Potentially move this to own UI button? -->
+	<object hotkey="selection.idlewarrior">
+		<action on="Press">findIdleUnit(["Hero", "Champion", "CitizenSoldier", "Siege", "Warship", "Dog"]);</action>
+	</object>
+
+	<!-- Unselect any selected entities -->
+	<object hotkey="selection.cancel">
+		<action on="Press">clearSelection()</action>
+	</object>
+</object>

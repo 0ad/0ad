@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object>
+	<object type="button"
+	name="gameSpeedButton"
+	size="100%-258 4 100%-230 32"
+	style="iconButton"
+	tooltip_style="sessionToolTip"
+	>
+		<translatableAttribute id="tooltip">Game speed</translatableAttribute>
+		<object size="5 5 100%-5 100%-5" type="image" sprite="stretched:session/icons/resources/time_small.png" ghost="true"/>
+		<action on="Press">
+			toggleGameSpeed();
+		</action>
+	</object>
+
+	<object size="100%-380 40 100%-230 65" name="gameSpeed" type="dropdown" buffer_zone="5" style="ModernDropDown" hidden="true" tooltip_style="sessionToolTip">
+		<translatableAttribute id="tooltip">Choose game speed</translatableAttribute>
+	</object>
+</object>
