@@ -57,7 +57,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 
 	this.overseas = false;
 	this.paused = false;
-	this.completingTurn = 0;	
+	this.maxCompletingTurn = 0;	
 
 	// priority of the queues we'll create.
 	var priority = 70;
@@ -300,7 +300,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		if (this.waitingForTransport())
 			return 1;
 		// bloqued units which cannot finish their order should not stop the attack
-		if (this.completingTurn + 60 < gameState.ai.playedTurn && this.hasForceOrder())
+		if (gameState.ai.playedTurn < this.maxCompletingTurn && this.hasForceOrder())
 			return 1;
 		return 2;
 	}
@@ -434,7 +434,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 
 	// if we're here, it means we must start (and have no units in training left).
 	this.state = "completing";
-	this.completingTurn = gameState.ai.playedTurn;
+	this.maxCompletingTurn = gameState.ai.playedTurn + 60;
 
 	var rallyPoint = this.rallyPoint;
 	var rallyIndex = gameState.ai.accessibility.getAccessValue(rallyPoint);
