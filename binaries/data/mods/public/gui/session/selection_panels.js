@@ -83,8 +83,9 @@ g_SelectionPanels.Barter = {
 	},
 	"setTooltip": function(data)
 	{
-		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": translate(data.item)});
-		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": translate(data.item)});
+		var resource = getLocalizedResourceName("WithinSentence", data.item);
+		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
+		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
 	},
 	"setAction": function(data)
 	{
@@ -127,7 +128,16 @@ g_SelectionPanels.Command = {
 	},
 	"getItems": function(unitEntState)
 	{
-		return getEntityCommandsList(unitEntState)
+		var commands = [];
+		for (var c in entityCommands)
+		{
+			var info = g_EntityCommands[c].getInfo(entState);
+			if (!info)
+				continue;
+			info.name = c;
+			commands.push(info);
+		}
+		return commands;
 	},
 	"setTooltip": function(data)
 	{
@@ -546,7 +556,9 @@ g_SelectionPanels.Queue = {
 		var numRows = Math.ceil(numberOfItems / rowLength);
 		var panel = Engine.GetGUIObjectByName("unitQueuePanel");
 		var size = panel.size;
-		size.top = (UNIT_PANEL_BASE - ((numRows-1)*UNIT_PANEL_HEIGHT));
+		var buttonSize = Engine.GetGUIObjectByName("unitQueueButton[0]").size.bottom;
+		var margin = 4;
+		size.top = size.bottom - numRows*buttonSize - (numRows+2)*margin;
 		panel.size = size;
 	},
 	"addData": function(data)

@@ -267,13 +267,12 @@ function timeToString(time)
 
 function removeDupes(array)
 {
-	for (var i = 0; i < array.length; i++)
+	// loop backwards to make splice operations cheaper
+	var i = array.length;
+	while (i--)
 	{
-		if (array.indexOf(array[i]) < i)
-		{
+		if (array.indexOf(array[i]) != i)
 			array.splice(i, 1);
-			i--;
-		}
 	}
 }
 

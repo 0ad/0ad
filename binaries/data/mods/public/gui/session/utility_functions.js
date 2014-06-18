@@ -12,9 +12,9 @@ const COST_DISPLAY_NAMES = {
     "time": "[icon=\"iconTime\"]"
 };
 
-//-------------------------------- -------------------------------- --------------------------------
+//-------------------------------- --------------------------------
 // Utility functions
-//-------------------------------- -------------------------------- --------------------------------
+//-------------------------------- --------------------------------
 
 function toTitleCase(word)
 {
@@ -31,6 +31,14 @@ function toTitleCase(word)
 
 	return word;
 }
+
+function rgbToGuiColor(color)
+{
+	return color.r + " " + color.g + " " + color.b;
+}
+
+//===============================================
+// Player functions
 
 // Get the basic player data
 function getPlayerData(playerAssignments)
@@ -89,11 +97,6 @@ function getPlayerData(playerAssignments)
 	return players;
 }
 
-function rgbToGuiColor(color)
-{
-	return color.r + " " + color.g + " " + color.b;
-}
-
 function findGuidForPlayerID(playerAssignments, player)
 {
 	for (var playerGuid in playerAssignments)
@@ -124,8 +127,11 @@ function updatePlayerDataRemove(players, hostGuid)
 			player.offline = true;
 }
 
+//===============================================
+// Identity functions
 function hasClass(entState, className)
 {
+	// note: use the functions in globalscripts/Templates.js for more versatile matching
 	if (entState.identity)
 	{
 		var classes = entState.identity.classes;
@@ -135,6 +141,8 @@ function hasClass(entState, className)
 	return false;
 }
 
+//===============================================
+// Atack/Armour functions
 // For the unit details panel
 function damageValues(dmg)
 {
@@ -284,23 +292,58 @@ function armorTypesToText(dmg)
 	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
 }
 
-function getEntityCommandsList(entState)
+function getAttackTypeLabel(type)
 {
-	var commands = [];
-	for (var c in entityCommands)
-	{
-		var info = entityCommands[c].getInfo(entState);
-		if (!info)
-			continue;
-		info.name = c;
-		commands.push(info);
-	}
-	return commands;
+	if (type === "Charge") return translate("Charge Attack:");
+	if (type === "Melee") return translate("Melee Attack:");
+	if (type === "Ranged") return translate("Ranged Attack:");
+
+	warn(sprintf("Internationalization: Unexpected attack type found with code ‘%(attackType)s’. This attack type must be internationalized.", { attackType: type }));
+	return translate("Attack:");
 }
 
+function getEntityAttack(template)
+{
+	var attacks = [];
+	if (template.attack)
+	{
+		// Don't show slaughter attack
+		delete template.attack['Slaughter'];
+		for (var type in template.attack)
+		{
+			if (type == "Charge")
+				continue; // Charging isn't implemented yet and shouldn't be displayed.
+			var attack = "";
+			var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
+			if (type == "Ranged")
+			{
+				// Show max attack range if ranged attack, also convert to tiles (4m per tile)
+				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"), {
+					attackLabel: attackLabel,
+					damageTypes: damageTypesToText(template.attack[type]),
+					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
+					range: Math.round(template.attack[type].maxRange) + "[font=\"sans-10\"][color=\"orange\"] " + translate("meters") + "[/color][/font]"
+				});
+			}
+			else
+			{
+				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
+					attackLabel: attackLabel,
+					damageTypes: damageTypesToText(template.attack[type])
+				});
+			}
+			attacks.push(attack);
+		}
+	}
+	return attacks.join(translate(", "));
+}
+
+// ==============================================
+// Cost
+
 /**
- * Translates a cost component identifier as they are used internally (e.g. "population", "food", etc.) to proper
- * display names.
+ * Translates a cost component identifier as they are used internally
+ * (e.g. "population", "food", etc.) to proper display names.
  */
 function getCostComponentDisplayName(costComponentName)
 {
@@ -474,58 +517,8 @@ function getNeededResourcesTooltip(resources)
 	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join(translate("  "));
 }
 
-function getEntitySpeed(template)
-{
-	var speed = "";
-	if (template.speed)
-	{
-		var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
-		var speeds = [];
-		if (template.speed.walk)
-			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
-		if (template.speed.run)
-			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
-
-		speed = sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
-	}
-	return speed;
-}
-
-function getEntityAttack(template)
-{
-	var attacks = [];
-	if (template.attack)
-	{
-		// Don't show slaughter attack
-		delete template.attack['Slaughter'];
-		for (var type in template.attack)
-		{
-			if (type == "Charge")
-				continue; // Charging isn't implemented yet and shouldn't be displayed.
-			var attack = "";
-			var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
-			if (type == "Ranged")
-			{
-				// Show max attack range if ranged attack, also convert to tiles (4m per tile)
-				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"), {
-					attackLabel: attackLabel,
-					damageTypes: damageTypesToText(template.attack[type]),
-					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
-					range: Math.round(template.attack[type].maxRange) + "[font=\"sans-10\"][color=\"orange\"] " + translate("meters") + "[/color][/font]"
-				});
-			}
-			else
-			{
-				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
-					attackLabel: attackLabel,
-					damageTypes: damageTypesToText(template.attack[type])
-				});
-			}
-			attacks.push(attack);
-		}
-	}
-	return attacks.join(translate(", "));
-}
+// ==============================================
+// IDENTITY INFO
 
 function getEntityNames(template)
 {
@@ -567,6 +560,20 @@ function getEntityNamesFormatted(template)
 	return names;
 }
 
+function getVisibleEntityClassesFormatted(template)
+{
+	var r = ""
+	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
+	{
+		r += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
+		r += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
+		for (var c = 1; c < template.visibleIdentityClasses.length; c++)
+			r += ", " + translate(template.visibleIdentityClasses[c]);
+		r += "[/font]";
+	}
+	return r;
+}
+
 function getEntityRankedName(entState)
 {
 	var template = GetTemplateData(entState.template)
@@ -587,6 +594,25 @@ function getRankIconSprite(entState)
 		return "stretched:session/icons/rank1.png";
 
 	return "";
+}
+
+// ==============================================
+// OTHER INFO
+function getEntitySpeed(template)
+{
+	var speed = "";
+	if (template.speed)
+	{
+		var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
+		var speeds = [];
+		if (template.speed.walk)
+			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
+		if (template.speed.run)
+			speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
+
+		speed = sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
+	}
+	return speed;
 }
 
 /**
@@ -619,15 +645,7 @@ function getTradingTooltip(gain)
 	return tooltip;
 }
 
-function getAttackTypeLabel(type)
-{
-	if (type === "Charge") return translate("Charge Attack:");
-	if (type === "Melee") return translate("Melee Attack:");
-	if (type === "Ranged") return translate("Ranged Attack:");
 
-	warn(sprintf("Internationalization: Unexpected attack type found with code ‘%(attackType)s’. This attack type must be internationalized.", { attackType: type }));
-	return translate("Attack:");
-}
 
 /**
  * Returns the entity itself except when garrisoned where it returns its garrisonHolder
@@ -642,81 +660,77 @@ function getEntityOrHolder(ent)
 	return ent;
 }
 
+
 function getLocalizedResourceName(resourceCode, context)
 {
-    if (context == "firstWord")
-    {
-        switch(resourceCode)
-        {
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "food": return translateWithContext("firstWord", "Food");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "meat": return translateWithContext("firstWord", "Meat");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "metal": return translateWithContext("firstWord", "Metal");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "ore": return translateWithContext("firstWord", "Ore");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "rock": return translateWithContext("firstWord", "Rock");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "ruins": return translateWithContext("firstWord", "Ruins");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "stone": return translateWithContext("firstWord", "Stone");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "treasure": return translateWithContext("firstWord", "Treasure");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "tree": return translateWithContext("firstWord", "Tree");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "wood": return translateWithContext("firstWord", "Wood");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "fruit": return translateWithContext("firstWord", "Fruit");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "grain": return translateWithContext("firstWord", "Grain");
-            // Translation: Word as used at the beginning of a sentence or as a single-word sentence.
-            case "fish": return translateWithContext("firstWord", "Fish");
-            default:
-                warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
-                return resourceCode; // It should never get here.
-        }
-    }
-    else if (context == "withinSentence")
-    {
-        switch(resourceCode)
-        {
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "food": return translateWithContext("withinSentence", "Food");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "meat": return translateWithContext("withinSentence", "Meat");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "metal": return translateWithContext("withinSentence", "Metal");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "ore": return translateWithContext("withinSentence", "Ore");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "rock": return translateWithContext("withinSentence", "Rock");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "ruins": return translateWithContext("withinSentence", "Ruins");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "stone": return translateWithContext("withinSentence", "Stone");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "treasure": return translateWithContext("withinSentence", "Treasure");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "tree": return translateWithContext("withinSentence", "Tree");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "wood": return translateWithContext("withinSentence", "Wood");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "fruit": return translateWithContext("withinSentence", "Fruit");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "grain": return translateWithContext("withinSentence", "Grain");
-            // Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
-            case "fish": return translateWithContext("withinSentence", "Fish");
-            default:
-                warn(sprintf("Internationalization: Unexpected resource type found with code ‘%(resource)s’. This resource type must be internationalized.", { resource: resourceCode }));
-                return resourceCode; // It should never get here.
-        }
-    }
-    else
-    {
-        warn(sprintf("Internationalization: Unexpected context for resource type localization found: ‘%(context)s’. This context is not supported.", { context: context }));
-        return resourceCode; // It should never get here.
-    }
+	if (!context in localisedResourceNames)
+	{
+		warn("Internationalization: Unexpected context for resource type localization found: ‘" + context + "’. This context is not supported.");
+		return resourceCode;
+	}
+	if (!resourceCode in localisedResourceNames[context])
+	{
+		warn("Internationalization: Unexpected resource type found with code ‘" + resourceCode + ". This resource type must be internationalized.");
+		return resourceCode;
+	}
+	return localisedResourceNames[context][resourceCode];
 }
+
+var localisedResourceNames = {};
+localisedResourceNames.firstWord = {
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"food": translateWithContext("firstWord", "Food"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"meat": translateWithContext("firstWord", "Meat"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"metal": translateWithContext("firstWord", "Metal"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"ore": translateWithContext("firstWord", "Ore"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"rock": translateWithContext("firstWord", "Rock"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"ruins": translateWithContext("firstWord", "Ruins"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"stone": translateWithContext("firstWord", "Stone"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"treasure": translateWithContext("firstWord", "Treasure"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"tree": translateWithContext("firstWord", "Tree"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"wood": translateWithContext("firstWord", "Wood"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"fruit": translateWithContext("firstWord", "Fruit"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"grain": translateWithContext("firstWord", "Grain"),
+	// Translation: Word as used at the beginning of a sentence or as a single-word sentence.
+	"fish": translateWithContext("firstWord", "Fish"),
+};
+
+localisedResourceNames.WithinSentence = {
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"food": translateWithContext("withinSentence", "Food"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"meat": translateWithContext("withinSentence", "Meat"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"metal": translateWithContext("withinSentence", "Metal"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"ore": translateWithContext("withinSentence", "Ore"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"rock": translateWithContext("withinSentence", "Rock"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"ruins": translateWithContext("withinSentence", "Ruins"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"stone": translateWithContext("withinSentence", "Stone"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"treasure": translateWithContext("withinSentence", "Treasure"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"tree": translateWithContext("withinSentence", "Tree"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"wood": translateWithContext("withinSentence", "Wood"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"fruit": translateWithContext("withinSentence", "Fruit"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"grain": translateWithContext("withinSentence", "Grain"),
+	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
+	"fish": translateWithContext("withinSentence", "Fish"),
+};
