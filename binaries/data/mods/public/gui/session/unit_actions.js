@@ -625,7 +625,7 @@ var unitActions =
  * Info and actions for the entity commands
  * Currently displayed in the bottom of the central pane
  */
-var entityCommands = 
+var g_EntityCommands = 
 {
 	// Unload
 	"unload-all": {

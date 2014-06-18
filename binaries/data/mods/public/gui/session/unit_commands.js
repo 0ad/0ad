@@ -1,42 +1,5 @@
-// Panel types
-const SELECTION = "Selection";
-const QUEUE = "Queue";
-const GARRISON = "Garrison";
-const FORMATION = "Formation";
-const TRAINING = "Training";
-const RESEARCH = "Research";
-const CONSTRUCTION = "Construction";
-const COMMAND = "Command";
-const STANCE = "Stance";
-const GATE = "Gate";
-const PACK = "Pack";
-
-// Constants
-const UNIT_PANEL_BASE = -52; // QUEUE: The offset above the main panel (will often be negative)
-const UNIT_PANEL_HEIGHT = 44; // QUEUE: The height needed for a row of buttons
-
-// Trading constants
-const TRADING_RESOURCES = [
-	markForTranslation("food"),
-	markForTranslation("wood"),
-	markForTranslation("stone"),
-	markForTranslation("metal")
-];
-
-// Barter constants
-const BARTER_RESOURCE_AMOUNT_TO_SELL = 100;
-const BARTER_BUNCH_MULTIPLIER = 5;
-const BARTER_RESOURCES = ["food", "wood", "stone", "metal"];
-const BARTER_ACTIONS = ["Sell", "Buy"];
-
-// Gate constants
-const GATE_ACTIONS = ["lock", "unlock"];
-
 // The number of currently visible buttons (used to optimise showing/hiding)
 var g_unitPanelButtons = {"Selection": 0, "Queue": 0, "Formation": 0, "Garrison": 0, "Training": 0, "Research": 0, "Barter": 0, "Construction": 0, "Command": 0, "Stance": 0, "Gate": 0, "Pack": 0};
-
-// Resources to sell on barter panel
-var g_barterSell = "food";
 
 /**
  * Set the position of a panel object according to the index,
@@ -61,119 +24,12 @@ function setPanelObjectPosition(object, index, rowLength, vMargin = 1, hMargin =
 }
 
 /**
- * Format entity count/limit message for the tooltip
- */
-function formatLimitString(trainEntLimit, trainEntCount, trainEntLimitChangers)
-{
-	if (trainEntLimit == undefined)
-		return "";
-	var text = "\n\n" + sprintf(translate("Current Count: %(count)s, Limit: %(limit)s."), { count: trainEntCount, limit: trainEntLimit });
-	if (trainEntCount >= trainEntLimit)
-		text = "[color=\"red\"]" + text + "[/color]";
-	for (var c in trainEntLimitChangers)
-	{
-		if (trainEntLimitChangers[c] > 0)
-			text += "\n" + sprintf(translate("%(changer)s enlarges the limit with %(change)s."), { changer: translate(c), change: trainEntLimitChangers[c] });
-		else if (trainEntLimitChangers[c] < 0)
-			text += "\n" + sprintf(translate("%(changer)s lessens the limit with %(change)s."), { changer: translate(c), change: (-trainEntLimitChangers[c]) });
-	}
-	return text;
-}
-
-/**
- * Format batch training string for the tooltip
- * Examples:
- * buildingsCountToTrainFullBatch = 1, fullBatchSize = 5, remainderBatch = 0:
- * "Shift-click to train 5"
- * buildingsCountToTrainFullBatch = 2, fullBatchSize = 5, remainderBatch = 0:
- * "Shift-click to train 10 (2*5)"
- * buildingsCountToTrainFullBatch = 1, fullBatchSize = 15, remainderBatch = 12:
- * "Shift-click to train 27 (15 + 12)"
- */
-function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize, remainderBatch)
-{
-	var totalBatchTrainingCount = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
-	// Don't show the batch training tooltip if either units of this type can't be trained at all
-	// or only one unit can be trained
-	if (totalBatchTrainingCount < 2)
-		return "";
-	var batchTrainingString = "";
-	var fullBatchesString = "";
-	if (buildingsCountToTrainFullBatch > 0)
-	{
-		if (buildingsCountToTrainFullBatch > 1)
-			fullBatchesString = sprintf(translate("%(buildings)s*%(batchSize)s"), {
-				buildings: buildingsCountToTrainFullBatch,
-				batchSize: fullBatchSize
-			});
-		else
-			fullBatchesString = fullBatchSize;
-	}
-	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
-	var batchDetailsString = "";
-	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font][font=\"sans-13\"]"
-
-	// We need to display the batch details part if there is either more than
-	// one building with full batch or one building with the full batch and
-	// another with a partial batch
-	if (buildingsCountToTrainFullBatch > 1 ||
-		(buildingsCountToTrainFullBatch == 1 && remainderBatch > 0))
-	{
-		if (remainderBatch > 0)
-			return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."), {
-				action: action,
-				number: totalBatchTrainingCount,
-				fullBatch: fullBatchesString,
-				remainderBatch: remainderBatch
-			}) + "[/font]";
-
-		return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s (%(fullBatch)s)."), {
-			action: action,
-			number: totalBatchTrainingCount,
-			fullBatch: fullBatchesString
-		}) + "[/font]";
-	}
-
-	return "\n[font=\"sans-13\"]" + sprintf(translate("%(action)s to train %(number)s."), {
-		action: action,
-		number: totalBatchTrainingCount
-	}) + "[/font]";
-}
-
-function getStanceDisplayName(name)
-{
-	var displayName;
-	switch(name)
-	{
-		case "violent":
-			displayName = translateWithContext("stance", "Violent");
-			break;
-		case "aggressive":
-			displayName = translateWithContext("stance", "Aggressive");
-			break;
-		case "passive":
-			displayName = translateWithContext("stance", "Passive");
-			break;
-		case "defensive":
-			displayName = translateWithContext("stance", "Defensive");
-			break;
-		case "standground":
-			displayName = translateWithContext("stance", "Standground");
-			break;
-		default:
-			warn(sprintf("Internationalization: Unexpected stance found with code ‘%(stance)s’. This stance must be internationalized.", { stance: name }));
-			displayName = name;
-			break;
-	}
-	return displayName;
-}
-
-/**
- * Helper function for updateUnitCommands; sets up "unit panels" (i.e. panels with rows of icons) for the currently selected
- * unit.
+ * Helper function for updateUnitCommands; sets up "unit panels"
+ * (i.e. panels with rows of icons) for the currently selected unit.
  *
- * @param guiName Short identifier string of this panel; see constants defined at the top of this file.
+ * @param guiName Short identifier string of this panel. See g_SelectionPanels.
  * @param unitEntState Entity state of the (first) selected unit.
+ * @param payerState Player state
  */
 function setupUnitPanel(guiName, unitEntState, playerState)
 {
@@ -193,8 +49,10 @@ function setupUnitPanel(guiName, unitEntState, playerState)
 	var garrisonGroups = new EntityGroups();
 
 	// Determine how many buttons there should be
-	if (g_SelectionPanels[guiName].maxNumberOfItems)
-		numberOfItems = Math.min(g_SelectionPanels[guiName].maxNumberOfItems, numberOfItems);
+	var maxNumberOfItems = g_SelectionPanels[guiName].getMaxNumberOfItems()
+	if (maxNumberOfItems < numberOfItems)
+		numberOfItems = maxNumberOfItems;
+
 	if (g_SelectionPanels[guiName].rowLength)
 		var rowLength = g_SelectionPanels[guiName].rowLength;
 	else
@@ -299,12 +157,15 @@ function resourcesToAlphaMask(neededResources)
 }
 
 /**
- * Updates the right hand side "Unit Commands" panel. Runs in the main session loop via updateSelectionDetails().
- * Delegates to setupUnitPanel to set up individual subpanels, appropriately activated depending on the selected
- * unit's state.
+ * Updates the selection panels where buttons are supposed to 
+ * depend on the context.
+ * Runs in the main session loop via updateSelectionDetails().
+ * Delegates to setupUnitPanel to set up individual subpanels,
+ * appropriately activated depending on the selected unit's state.
  *
  * @param entState Entity state of the (first) selected unit.
- * @param supplementalDetailsPanel Reference to the "supplementalSelectionDetails" GUI Object
+ * @param supplementalDetailsPanel Reference to the 
+ *        "supplementalSelectionDetails" GUI Object
  * @param commandsPanel Reference to the "commandsPanel" GUI Object
  * @param selection Array of currently selected entity IDs.
  */
@@ -341,7 +202,7 @@ function updateUnitCommands(entState, supplementalDetailsPanel, commandsPanel, s
 	{
 		// TODO if there's a second panel needed for a different player
 		// we should consider adding the players list to g_SelectionPanels
-		setupUnitPanel(GARRISON, entState, playerState);
+		setupUnitPanel("Garrison", entState, playerState);
 		if (g_SelectionPanels["Garrison"].used)
 			supplementalDetailsPanel.hidden = false;
 		else
@@ -415,33 +276,6 @@ function getAllBuildableEntitiesFromSelection()
 		g_allBuildableEntities = getAllBuildableEntities(g_Selection.toList());
 
 	return g_allBuildableEntities;
-}
-
-// Check if the selection can move into formation, and cache the result
-function canMoveSelectionIntoFormation(formationTemplate)
-{
-	if (!(formationTemplate in g_canMoveIntoFormation))
-	{
-		g_canMoveIntoFormation[formationTemplate] = Engine.GuiInterfaceCall("CanMoveEntsIntoFormation", {
-			"ents": g_Selection.toList(),
-			"formationTemplate": formationTemplate
-		});
-	}
-	return g_canMoveIntoFormation[formationTemplate];
-}
-
-function getVisibleEntityClassesFormatted(template)
-{
-	var r = ""
-	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
-	{
-		r += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
-		r += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
-		for (var c = 1; c < template.visibleIdentityClasses.length; c++)
-			r += ", " + translate(template.visibleIdentityClasses[c]);
-		r += "[/font]";
-	}
-	return r;
 }
 
 function getNumberOfRightPanelButtons()

@@ -87,6 +87,11 @@ Cost.prototype.OnValueModification = function(msg)
 	if (msg.component != "Cost")
 		return;
 
+	// foundations shouldn't give a pop bonus
+	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation)
+	if (cmpFoundation)
+		return;
+
 	// update the population bonuses
 	var newPopBonus = ApplyValueModificationsToEntity("Cost/PopulationBonus",  +this.template.PopulationBonus, this.entity);
 	var popDifference = newPopBonus - this.populationBonus;

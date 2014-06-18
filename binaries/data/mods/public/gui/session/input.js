@@ -1515,8 +1515,8 @@ function performCommand(entity, commandName)
 	if (!entState.player == playerID && !g_DevSettings.controlAll)
 		return;
 
-	if (entityCommands[commandName])
-		entityCommands[commandName].execute(entState);
+	if (g_EntityCommands[commandName])
+		g_EntityCommands[commandName].execute(entState);
 }
 
 // Performs the specified formation
@@ -1847,3 +1847,35 @@ function clearSelection()
 	preSelectedAction = ACTION_NONE;
 }
 
+/**
+ * Returns a list of all items in the productionqueue of the selection
+ * @param selection List with entity ids
+ */
+function getTrainingQueueItems(selection)
+{
+	var entStates = [];
+	for (var ent of selection)
+	{
+		var entState = GetEntityState(ent);
+		if (entState.production)
+			entStates.push(entState);
+	}
+	var queue = [];
+	var i = 0;
+	do
+	{
+		var foundNewItems = false;
+		for (entState of entStates)
+		{
+			if (!entState.production.queue[i])
+				continue;
+			var item = entState.production.queue[i];
+			item.producingEnt = entState.id;
+			queue.push(item);
+			foundNewItems = true;
+		}
+		i++;
+	}
+	while (foundNewItems)
+	return queue;
+}

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object
+	name="minimapPanel"
+	size="0 100%-212 212 100%"
+	type="image"
+	sprite="mapPanel"
+>
+	<!-- Idle Worker Button -->
+	<object size="100%-80 100%-80 100%-5 100%-5">
+		<!-- TODO: We should disable this button if there are no idle workers. -->
+		<object type="button"
+			tooltip_style="sessionToolTip"
+			hotkey="selection.idleworker"
+		>
+			<translatableAttribute id="tooltip">Find idle worker</translatableAttribute>
+			<action on="Press">findIdleUnit(["Female", "Trade", "FishingBoat", "CitizenSoldier", "Healer"]);</action>
+			<action on="MouseEnter">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle-highlight.png";</action>
+			<action on="MouseLeave">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
+			<action on="MouseLeftPress">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle.png";</action>
+			<action on="MouseLeftRelease">Engine.GetGUIObjectByName("idleOverlay").sprite = "stretched:session/minimap-idle-highlight.png";</action>
+		</object>
+	</object>
+	<!-- Minimap -->
+	<object name="minimap"
+		type="minimap" z="20"
+		size="8 8 100%-8 100%-8"
+	>
+		<action on="WorldClick">handleMinimapEvent(arguments[0]);</action>
+	</object>
+	<!-- Overlays -->
+	<object name="minimapOverlay" size="4 4 100%-4 100%-4" type="image" sprite="stretched:session/minimap_circle_modern.png" ghost="true"/>
+	<object name="idleOverlay" z="100" size="100%-125 100%-125 100%-5 100%-5" type="image" sprite="stretched:session/minimap-idle.png" ghost="true"/>
+</object>

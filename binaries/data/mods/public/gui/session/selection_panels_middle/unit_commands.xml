@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unit Commands -->
+<object name="unitCommandPanel"
+	size="0 100%-36 100% 100%-4"
+	type="image"
+	z="30"
+>
+	<object size="0 1 100% 100%">
+	<repeat count="6">
+		<object name="unitCommandButton[n]" hidden="true" style="iconButton" type="button" size="0 0 32 32" tooltip_style="sessionToolTipBottomBold">
+		<object name="unitCommandIcon[n]" ghost="true" type="image" size="0 0 100% 100%" style="commandIcon"/>
+		<object name="unitCommandCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+		</object>
+	</repeat>
+	</object>
+	<!-- shading for unit commands area -->
+	<object z="50" size="4 100% 100%-4 100%" ghost="true" type="image" sprite="bottomEdgedPanelShader"/>
+</object>
+

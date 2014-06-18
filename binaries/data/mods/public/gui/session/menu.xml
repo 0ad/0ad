@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="menu"
+	style="StonePanelThinBorder"
+	type="image"
+	hidden="false"
+	z="40"
+>
+	<object size="4 36 100%-4 50%+20">
+	
+		<!-- Manual button -->
+		<object type="button"
+			name="manualButton"
+			style="StoneButtonFancy"
+			size="0 0 100% 28"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Manual</translatableAttribute>
+			<action on="Press">openManual();</action>
+		</object>
+		
+		<!-- Chat button -->
+		<object type="button"
+			name="chatButton"
+			style="StoneButtonFancy"
+			size="0 32 100% 60"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Chat</translatableAttribute>
+			<action on="Press">chatMenuButton();</action>
+		</object>
+
+		<!-- Save game button -->
+		<object type="button"
+			name="saveGameButton"
+			style="StoneButtonFancy"
+			size="0 64 100% 92"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Save</translatableAttribute>
+			<action on="Press">
+			openSave();
+			</action>
+		</object>
+		
+		<!-- Settings button -->
+		<object type="button"
+			name="settingsButton"
+			style="StoneButtonFancy"
+			size="0 96 100% 124"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Settings</translatableAttribute>
+			<action on="Press">settingsMenuButton();</action>
+		</object>
+
+		<!-- Pause / Resume Button -->
+		<object type="button"
+			name="pauseButton"
+			style="StoneButtonFancy"
+			size="0 128 100% 156"
+			tooltip_style="sessionToolTip"
+		>
+			<object name="pauseButtonText" type="text" style="CenteredButtonText" ghost="true">
+				<translatableAttribute id="caption">Pause</translatableAttribute>
+			</object>
+			<action on="Press">togglePause();</action>
+		</object>
+		
+		<!-- Resign button -->
+		<object type="button"
+			name="menuResignButton"
+			style="StoneButtonFancy"
+			size="0 160 100% 188"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Resign</translatableAttribute>
+			<action on="Press">resignMenuButton();</action>
+		</object>
+		
+		<!-- Exit button -->
+		<object type="button"
+			name="menuExitButton"
+			style="StoneButtonFancy"
+			size="0 192 100% 220"
+			tooltip_style="sessionToolTip"
+		>
+			<translatableAttribute id="caption">Exit</translatableAttribute>
+			<action on="Press">exitMenuButton();</action>
+		</object>
+	</object>
+</object>
+
+

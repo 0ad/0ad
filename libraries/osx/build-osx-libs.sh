@@ -28,7 +28,7 @@ XML2_VERSION="libxml2-2.9.1"
 SDL_VERSION="SDL-1.2.15"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
-WXWIDGETS_VERSION="wxWidgets-3.0.0"
+WXWIDGETS_VERSION="wxWidgets-3.0.1"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="unitPackPanel"
+	size="10 12 100% 100%"
+>
+	<object size="0 0 100% 100%">
+	<repeat count="8">
+		<object name="unitPackButton[n]" hidden="true" style="iconButton" type="button" size="0 0 46 46" tooltip_style="sessionToolTipBottom">
+		<object name="unitPackIcon[n]" type="image" ghost="true" size="3 3 43 43"/>
+		</object>
+	</repeat>
+	</object>
+</object>

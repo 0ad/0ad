@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Stance Selection -->
+<object name="unitStancePanel"
+	style="TranslucentPanel"
+	size="4 100%-43 100%-4 100%-4"
+	type="text"
+>
+	<object size="1 2 100% 100%">
+		<repeat count="5">
+			<object name="unitStanceButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBottomBold" z="100">
+				<object name="unitStanceIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+				<object name="unitStanceSelection[n]" hidden="true" type="image" ghost="true" size="3 3 33 33" sprite="stretched:session/icons/corners.png"/>
+			</object>
+		</repeat>
+	</object>
+</object>
