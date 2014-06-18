@@ -1515,8 +1515,8 @@ function performCommand(entity, commandName)
 	if (!entState.player == playerID && !g_DevSettings.controlAll)
 		return;
 
-	if (entityCommands[commandName])
-		entityCommands[commandName].execute(entState);
+	if (g_EntityCommands[commandName])
+		g_EntityCommands[commandName].execute(entState);
 }
 
 // Performs the specified formation
