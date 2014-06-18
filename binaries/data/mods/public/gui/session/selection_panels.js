@@ -507,11 +507,9 @@ g_SelectionPanels.Pack = {
 // QUEUE
 g_SelectionPanels.Queue = {
 	"maxNumberOfItems": 16,
-	"getItems": function(unitEntState)
+	"getItems": function(unitEntState, selection)
 	{
-		if (!unitEntState.production)
-			return [];
-		return unitEntState.production.queue;
+		return getTrainingQueueItems(selection);
 	},
 	"resizePanel": function(numberOfItems, rowLength)
 	{
@@ -534,13 +532,13 @@ g_SelectionPanels.Queue = {
 			data.entType = data.item.technologyTemplate;
 			data.template = GetTechnologyData(data.entType);
 		}
-
 		data.progress = Math.round(data.item.progress*100) + "%";
+
 		return data.template;
 	},
 	"setAction": function(data)
 	{
-		data.button.onPress = function() { removeFromProductionQueue(data.unitEntState.id, data.item.id); };
+		data.button.onPress = function() { removeFromProductionQueue(data.item.producingEnt, data.item.id); };
 	},
 	"setTooltip": function(data)
 	{
@@ -555,20 +553,19 @@ g_SelectionPanels.Queue = {
 	"setCountDisplay": function(data)
 	{
 		data.countDisplay.caption = data.item.count > 1 ? data.item.count : "";
-
+	},
+	"setProgressDisplay": function(data)
+	{
+		// show the progress number for the first item
 		if (data.i == 0)
-		{
-			// Also set the general progress display here
-			// maybe a separate method would be more appropriate
 			Engine.GetGUIObjectByName("queueProgress").caption = data.progress;
-			var guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
-			var size = guiObject.size;
 
-			// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
-			size.top = size.left + Math.round(data.item.progress * (size.right - size.left));
-			guiObject.size = size;
-		}
+		var guiObject = Engine.GetGUIObjectByName("unitQueueProgressSlider["+data.i+"]");
+		var size = guiObject.size;
 
+		// Buttons are assumed to be square, so left/right offsets can be used for top/bottom.
+		size.top = size.left + Math.round(data.item.progress * (size.right - size.left));
+		guiObject.size = size;
 	},
 	"setGraphics": function(data)
 	{
@@ -829,7 +826,7 @@ g_SelectionPanels.Training = {
 		data.buildingsCountToTrainFullBatch = buildingsCountToTrainFullBatch;
 		data.fullBatchSize = fullBatchSize;
 		data.remainderBatch = remainderBatch;
-		data.trainNum = 1;
+		data.trainNum = buildingsCountToTrainFullBatch;
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
 			data.trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
@@ -847,9 +844,7 @@ g_SelectionPanels.Training = {
 	},
 	"setCountDisplay": function(data)
 	{
-		var count = "";
-		if (data.trainNum > 1)
-			count = data.trainNum;
+		var count = data.trainNum > 1 ? data.trainNum : "";
 		data.countDisplay.caption = count;
 	},
 	"setTooltip": function(data)
