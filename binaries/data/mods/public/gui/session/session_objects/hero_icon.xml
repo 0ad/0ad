@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object
+	name="unitHeroPanel"
+	size="0 36 50 93"
+	hidden="true"
+>
+	<object name="unitHeroButton" size="0 0 50 50" type="button" style="iconButton" 
+		tooltip_style="sessionToolTip">
+		<translatableAttribute id="tooltip">Attack and Armor</translatableAttribute>
+		<object name="unitHeroImage" size="5 5 100%-5 100%-5" type="image" ghost="true"/>
+		<object name="heroHitOverlay" hidden="true" type="image" ghost="true" size="5 5 100%-5 100%-5"/> 
+	</object>
+	<!-- Hero Health bar -->
+	<object size="3 100%-7 100%-3 100%-2" name="heroHealthSection" ghost="true">
+		<object size="0 0 100% 5" name="heroHealth" type="image" ghost="true">
+			<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+			<object type="image" sprite="healthBackground" ghost="true"/> 
+			<object type="image" sprite="healthForeground" ghost="true" name="heroHealthBar"/> 
+			<object type="image" sprite="statsBarShaderHorizontal" ghost="true"/>
+		</object>
+	</object>
+</object>

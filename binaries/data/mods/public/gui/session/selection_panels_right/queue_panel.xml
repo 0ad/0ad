@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<object name="unitQueuePanel"
+	size="4 -56 100% 0"
+	type="image"
+	sprite="queuePanelShader"
+>
+	<object size="-4 -2 52 54" type="image" sprite="stretched:session/icons/production.png" tooltip_style="sessionToolTipBottom">
+		<translatableAttribute id="tooltip">Production queue</translatableAttribute>
+		<object name="queueProgress" ghost="true" style="iconButtonProgress" type="text"/>
+	</object>
+
+	<object size="48 6 100% 100%">
+	<repeat count="16">
+		<object name="unitQueueButton[n]" hidden="true" style="iconButton" type="button" size="0 0 40 40" tooltip_style="sessionToolTipBottom">
+		<object name="unitQueueIcon[n]" ghost="true" type="image" size="3 3 37 37"/>
+		<object name="unitQueueProgressSlider[n]" type="image" sprite="queueProgressSlider" ghost="true" size="3 3 37 37" z="20"/>
+		<object name="unitQueueCount[n]" ghost="true" style="groupIconsText" type="text" z="20"/>
+		</object>
+	</repeat>
+	</object>
+</object>

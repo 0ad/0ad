@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Unit details for Multiple Units -->
+<object size="50%-112 0 50%+112 100%" name="detailsAreaMultiple">
+
+	<object name="unitSelectionPanel"
+		size="20 12 100%-20 100%"
+	>
+	<object size="0 0 100% 100%">
+		<repeat count="16">
+		<object name="unitSelectionButton[n]" hidden="true" style="iconButton" type="button" size="0 0 36 36" tooltip_style="sessionToolTipBold" z="100">
+			<object name="unitSelectionIcon[n]" type="image" ghost="true" size="3 3 33 33"/>
+			<object name="unitSelectionCount[n]" ghost="true" style="groupIconsText" type="text" size="0 0 100% 100%"/>
+			<object size="0 100%-3 100% 100%" name="unitSelectionHealth[n]" ghost="true">
+			</object>
+		</object>
+		</repeat>
+	</object>
+	</object>
+
+	<!-- Total -->
+	<object size="100%-42 12 100%-8 46" type="image" sprite="groupsIcon">
+	<object size="0 0 100% 100%" type="text" style="largeCenteredOutlinedText" name="numberOfUnits"/>
+	</object>
+
+	<!-- Stats Bars -->
+	<object size= "100%-38 50 100%-18 100%-44" type="image" tooltip_style="sessionToolTip">
+	<!-- Health bar -->
+	<object size="4 0 11 100%" type="image" name="healthMultiple" tooltip_style="sessionToolTip">
+		<translatableAttribute id="tooltip">Hitpoints</translatableAttribute>
+		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+		<object type="image" sprite="healthBackground" ghost="true"/>
+		<object type="image" sprite="healthForeground" ghost="true" name="healthBarMultiple"/>
+		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+	</object>
+
+	<!-- Stamina bar -->
+	<object size="15 0 22 100%" type="image" name="staminaMultiple" tooltip_style="sessionToolTipBold">
+		<translatableAttribute id="tooltip">Stamina</translatableAttribute>
+		<object type="image" sprite="barBorder" ghost="true" size="-1 -1 100%+1 100%+1"/>
+		<object type="image" sprite="staminaBackground" ghost="true"/>
+		<object type="image" sprite="staminaForeground" ghost="true" name="staminaBarMultiple"/>
+		<object type="image" sprite="statsBarShaderVertical" ghost="true"/>
+	</object>
+	</object>
+</object>
+
