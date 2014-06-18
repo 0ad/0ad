@@ -129,9 +129,9 @@ g_SelectionPanels.Command = {
 	"getItems": function(unitEntState)
 	{
 		var commands = [];
-		for (var c in entityCommands)
+		for (var c in g_EntityCommands)
 		{
-			var info = g_EntityCommands[c].getInfo(entState);
+			var info = g_EntityCommands[c].getInfo(unitEntState);
 			if (!info)
 				continue;
 			info.name = c;
