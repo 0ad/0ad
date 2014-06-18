@@ -41,7 +41,10 @@ var g_SelectionPanels = {};
 
 // BARTER
 g_SelectionPanels.Barter = {
-	"maxNumberOfItems": 4,
+	"getMaxNumberOfItems": function()
+	{
+		return 4;
+	},
 	"rowLength": 4,
 	"getItems": function(unitEntState, selection)
 	{
@@ -118,7 +121,10 @@ g_SelectionPanels.Barter = {
 
 // COMMAND
 g_SelectionPanels.Command = {
-	"maxNumberOfItems": 6,
+	"getMaxNumberOfItems": function()
+	{
+		return 6;
+	},
 	"getItems": function(unitEntState)
 	{
 		return getEntityCommandsList(unitEntState)
@@ -158,8 +164,10 @@ g_SelectionPanels.Command = {
 
 // CONSTRUCTION
 g_SelectionPanels.Construction = {
-	"maxNumberOfItems": 24,
-	"conflictsWith": ["Gate", "Pack", "Training"],
+	"getMaxNumberOfItems": function()
+	{
+		return 24 - getNumberOfRightPanelButtons();
+	},
 	"getItems": function()
 	{
 		return getAllBuildableEntitiesFromSelection();
@@ -224,11 +232,19 @@ g_SelectionPanels.Construction = {
 		if (data.template.icon)
 			data.icon.sprite = "stretched:" + grayscale + "session/portraits/" + data.template.icon;
 	},
+	"setPosition": function(data)
+	{
+		var index = data.i + getNumberOfRightPanelButtons();
+		setPanelObjectPosition(data.button, index, data.rowLength);
+	},
 };
 
 // FORMATION
 g_SelectionPanels.Formation = {
-	"maxNumberOfItems": 16,
+	"getMaxNumberOfItems": function()
+	{
+		return 16
+	},
 	"rowLength": 4,
 	"conflictsWith": ["Garrison"],
 	"getItems": function(unitEntState)
@@ -269,7 +285,10 @@ g_SelectionPanels.Formation = {
 
 // GARRISON
 g_SelectionPanels.Garrison = {
-	"maxNumberOfItems": 12,
+	"getMaxNumberOfItems": function()
+	{
+		return 12;
+	},
 	"rowLength": 4,
 	"getItems": function(unitEntState, selection)
 	{
@@ -330,14 +349,12 @@ g_SelectionPanels.Garrison = {
 
 // GATE
 g_SelectionPanels.Gate = {
-	"maxNumberOfItems": 8,
-	"conflictsWith": ["Construction", "Pack", "Training"],
+	"getMaxNumberOfItems": function()
+	{
+		return 24 - getNumberOfRightPanelButtons();
+	},
 	"getItems": function(unitEntState, selection)
 	{
-		if (unitEntState.foundation)
-			return [];
-		if (!hasClass(unitEntState, "LongWall") && !unitEntState.gate)
-			return [];
 		// Allow long wall pieces to be converted to gates
 		var longWallTypes = {};
 		var walls = [];
@@ -442,16 +459,21 @@ g_SelectionPanels.Gate = {
 
 		data.icon.sprite = "stretched:session/" + gateIcon;
 	},
+	"setPosition": function(data)
+	{
+		var index = data.i + getNumberOfRightPanelButtons();
+		setPanelObjectPosition(data.button, index, data.rowLength);
+	},
 };
 
 // PACK
 g_SelectionPanels.Pack = {
-	"maxNumberOfItems": 8,
-	"conflictsWith": ["Construction", "Gate", "Training"],
+	"getMaxNumberOfItems": function()
+	{
+		return 24 - getNumberOfRightPanelButtons();
+	},
 	"getItems": function(unitEntState, selection)
 	{
-		if (!unitEntState.pack)
-			return [];
 		var checks = {};
 		for (var ent of selection)
 		{
@@ -502,11 +524,19 @@ g_SelectionPanels.Pack = {
 		else
 			data.icon.sprite = "stretched:session/icons/pack.png";
 	},
+	"setPosition": function(data)
+	{
+		var index = data.i + getNumberOfRightPanelButtons();
+		setPanelObjectPosition(data.button, index, data.rowLength);
+	},
 };
 
 // QUEUE
 g_SelectionPanels.Queue = {
-	"maxNumberOfItems": 16,
+	"getMaxNumberOfItems": function()
+	{
+		return 16;
+	},
 	"getItems": function(unitEntState, selection)
 	{
 		return getTrainingQueueItems(selection);
@@ -576,15 +606,22 @@ g_SelectionPanels.Queue = {
 
 // RESEARCH
 g_SelectionPanels.Research = {
-	"maxNumberOfItems": 8,
+	"getMaxNumberOfItems": function()
+	{
+		return 8;
+	},
 	"getItems": function(unitEntState, selection)
 	{
-		if (!unitEntState.production)
-			return [];
 		// TODO 8 is the row lenght, make variable
 		if (getNumberOfRightPanelButtons() > 8 && selection.length > 1)
 			return [];
-		return unitEntState.production.technologies;
+		for (var ent of selection)
+		{
+			var entState = GetEntityState(ent);
+			if (entState.production && entState.production.technologies.length)
+				return entState.production.technologies
+		}
+		return [];
 	},
 	"hideItem": function(i, rowLength) // called when no item is found
 	{
@@ -735,7 +772,10 @@ g_SelectionPanels.Research = {
 
 // SELECTION
 g_SelectionPanels.Selection = {
-	"maxNumberOfItems": 16,
+	"getMaxNumberOfItems": function()
+	{
+		return 16;
+	},
 	"rowLength": 4,
 	"getItems": function(unitEntState, selection)
 	{
@@ -775,7 +815,10 @@ g_SelectionPanels.Selection = {
 
 // STANCE
 g_SelectionPanels.Stance = {
-	"maxNumberOfItems": 5,
+	"getMaxNumberOfItems": function()
+	{
+		return 5;
+	},
 	"getItems": function(unitEntState)
 	{
 		if (!unitEntState.unitAI || !hasClass(unitEntState, "Unit") || hasClass(unitEntState, "Animal"))
@@ -807,8 +850,10 @@ g_SelectionPanels.Stance = {
 
 // TRAINING
 g_SelectionPanels.Training = {
-	"maxNumberOfItems": 24,
-	"conflictsWith": ["Construction", "Gate", "Pack"],
+	"getMaxNumberOfItems": function()
+	{
+		return 24 - getNumberOfRightPanelButtons();
+	},
 	"getItems": function()
 	{
 		return getAllTrainableEntitiesFromSelection();
@@ -899,6 +944,11 @@ g_SelectionPanels.Training = {
 	},
 	// disable and enable buttons in the same way as when you do for the construction
 	"setGraphics": g_SelectionPanels.Construction.setGraphics,
+	"setPosition": function(data)
+	{
+		var index = data.i + getNumberOfRightPanelButtons();
+		setPanelObjectPosition(data.button, index, data.rowLength);
+	},
 };
 
 
@@ -919,7 +969,7 @@ var g_PanelsOrder = [
 	// RIGHT PANE
 	"Gate", // must always be shown on gates
 	"Pack", // must always be shown on packable entities
-	"Training", // lets hope training and construction never happen together
+	"Training",
 	"Construction",
 	"Research", // normal together with training
 
