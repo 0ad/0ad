@@ -663,12 +663,12 @@ function getEntityOrHolder(ent)
 
 function getLocalizedResourceName(resourceCode, context)
 {
-	if (!context in localisedResourceNames)
+	if (!localisedResourceNames[context])
 	{
 		warn("Internationalization: Unexpected context for resource type localization found: ‘" + context + "’. This context is not supported.");
 		return resourceCode;
 	}
-	if (!resourceCode in localisedResourceNames[context])
+	if (!localisedResourceNames[context][resourceCode])
 	{
 		warn("Internationalization: Unexpected resource type found with code ‘" + resourceCode + ". This resource type must be internationalized.");
 		return resourceCode;
