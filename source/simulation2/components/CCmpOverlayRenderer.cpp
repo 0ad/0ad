@@ -30,10 +30,8 @@
 class CCmpOverlayRenderer : public ICmpOverlayRenderer
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager))
 	{
-		componentManager.SubscribeToMessageType(MT_Interpolate);
-		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(OverlayRenderer)
@@ -79,12 +77,14 @@ public:
 		{
 		case MT_Interpolate:
 		{
+			PROFILE3("OverlayRenderer::Interpolate");
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 			Interpolate(msgData.deltaSimTime, msgData.offset);
 			break;
 		}
 		case MT_RenderSubmit:
 		{
+			PROFILE3("OverlayRenderer::RenderSubmit");
 			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
 			RenderSubmit(msgData.collector);
 			break;
@@ -92,10 +92,24 @@ public:
 		}
 	}
 
+	/*
+	 * Must be called whenever the size of m_Sprites changes,
+	 * to determine whether we need to respond to rendering messages.
+	 */
+	void UpdateMessageSubscriptions()
+	{
+		bool needRender = !m_Sprites.empty();
+
+		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_Interpolate, this, needRender);
+		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
+	}
+
 	virtual void Reset()
 	{
 		m_Sprites.clear();
 		m_SpriteOffsets.clear();
+
+		UpdateMessageSubscriptions();
 	}
 
 	virtual void AddSprite(VfsPath textureName, CFixedVector2D corner0, CFixedVector2D corner1, CFixedVector3D position)
@@ -111,6 +125,8 @@ public:
 
 		m_Sprites.push_back(sprite);
 		m_SpriteOffsets.push_back(CVector3D(position));
+
+		UpdateMessageSubscriptions();
 	}
 
 	void Interpolate(float UNUSED(frameTime), float frameOffset)

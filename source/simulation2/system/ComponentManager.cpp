@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,7 @@
 
 #include "ComponentManager.h"
 
+#include "DynamicSubscription.h"
 #include "IComponent.h"
 #include "ParamNode.h"
 #include "SimContext.h"
@@ -567,6 +568,50 @@ void CComponentManager::SubscribeGloballyToMessageType(MessageTypeId mtid)
 	std::sort(types.begin(), types.end()); // TODO: just sort once at the end of LoadComponents
 }
 
+void CComponentManager::FlattenDynamicSubscriptions()
+{
+	std::map<MessageTypeId, CDynamicSubscription>::iterator it;
+	for (it = m_DynamicMessageSubscriptionsNonsync.begin();
+	     it != m_DynamicMessageSubscriptionsNonsync.end(); ++it)
+	{
+		it->second.Flatten();
+	}
+}
+
+void CComponentManager::DynamicSubscriptionNonsync(MessageTypeId mtid, IComponent* component, bool enable)
+{
+	if (enable)
+	{
+		bool newlyInserted = m_DynamicMessageSubscriptionsNonsyncByComponent[component].insert(mtid).second;
+		if (newlyInserted)
+			m_DynamicMessageSubscriptionsNonsync[mtid].Add(component);
+	}
+	else
+	{
+		size_t numRemoved = m_DynamicMessageSubscriptionsNonsyncByComponent[component].erase(mtid);
+		if (numRemoved)
+			m_DynamicMessageSubscriptionsNonsync[mtid].Remove(component);
+	}
+}
+
+void CComponentManager::RemoveComponentDynamicSubscriptions(IComponent* component)
+{
+	std::map<IComponent*, std::set<MessageTypeId> >::iterator it = m_DynamicMessageSubscriptionsNonsyncByComponent.find(component);
+	if (it == m_DynamicMessageSubscriptionsNonsyncByComponent.end())
+		return;
+
+	std::set<MessageTypeId>::iterator mtit;
+	for (mtit = it->second.begin(); mtit != it->second.end(); ++mtit)
+	{
+		m_DynamicMessageSubscriptionsNonsync[*mtit].Remove(component);
+
+		// Need to flatten the subscription lists immediately to avoid dangling IComponent* references
+		m_DynamicMessageSubscriptionsNonsync[*mtit].Flatten();
+	}
+
+	m_DynamicMessageSubscriptionsNonsyncByComponent.erase(it);
+}
+
 CComponentManager::ComponentTypeId CComponentManager::LookupCID(const std::string& cname) const
 {
 	std::map<std::string, ComponentTypeId>::const_iterator it = m_ComponentTypeIdsByName.find(cname);
@@ -830,6 +875,10 @@ void CComponentManager::FlushDestroyedComponents()
 		std::vector<entity_id_t> queue;
 		queue.swap(m_DestructionQueue);
 
+		// Flatten all the dynamic subscriptions to ensure there are no dangling
+		// references in the 'removed' lists to components we're going to delete
+		FlattenDynamicSubscriptions();
+
 		for (std::vector<entity_id_t>::iterator it = queue.begin(); it != queue.end(); ++it)
 		{
 			entity_id_t ent = *it;
@@ -846,6 +895,7 @@ void CComponentManager::FlushDestroyedComponents()
 				if (eit != iit->second.end())
 				{
 					eit->second->Deinit();
+					RemoveComponentDynamicSubscriptions(eit->second);
 					m_ComponentTypesById[iit->first].dealloc(eit->second);
 					iit->second.erase(ent);
 					handle.GetComponentCache()->interfaces[m_ComponentTypesById[iit->first].iid] = NULL;
@@ -916,7 +966,7 @@ const CComponentManager::InterfaceListUnordered& CComponentManager::GetEntitiesW
 	return m_ComponentsByInterface[iid];
 }
 
-void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const
+void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg)
 {
 	// Send the message to components of ent, that subscribed locally to this message
 	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
@@ -941,7 +991,7 @@ void CComponentManager::PostMessage(entity_id_t ent, const CMessage& msg) const
 	SendGlobalMessage(ent, msg);
 }
 
-void CComponentManager::BroadcastMessage(const CMessage& msg) const
+void CComponentManager::BroadcastMessage(const CMessage& msg)
 {
 	// Send the message to components of all entities that subscribed locally to this message
 	std::map<MessageTypeId, std::vector<ComponentTypeId> >::const_iterator it;
@@ -966,7 +1016,7 @@ void CComponentManager::BroadcastMessage(const CMessage& msg) const
 	SendGlobalMessage(INVALID_ENTITY, msg);
 }
 
-void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg) const
+void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 {
 	// (Common functionality for PostMessage and BroadcastMessage)
 
@@ -999,8 +1049,17 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg) 
 				eit->second->HandleMessage(msg, true);
 		}
 	}
-}
 
+	// Send the message to component instances that dynamically subscribed to this message
+	std::map<MessageTypeId, CDynamicSubscription>::iterator dit = m_DynamicMessageSubscriptionsNonsync.find(msg.GetType());
+	if (dit != m_DynamicMessageSubscriptionsNonsync.end())
+	{
+		dit->second.Flatten();
+		const std::vector<IComponent*>& dynamic = dit->second.GetComponents();
+		for (size_t i = 0; i < dynamic.size(); i++)
+			dynamic[i]->HandleMessage(msg, false);
+	}
+}
 
 std::string CComponentManager::GenerateSchema()
 {

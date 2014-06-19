@@ -44,7 +44,6 @@ public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
 		componentManager.SubscribeToMessageType(MT_TurnStart);
-		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 		componentManager.SubscribeToMessageType(MT_WaterChanged);
 		componentManager.SubscribeToMessageType(MT_Deserialized);
@@ -96,6 +95,8 @@ public:
 	float m_InterpolatedRotX, m_InterpolatedRotY, m_InterpolatedRotZ;
 	float m_LastInterpolatedRotX, m_LastInterpolatedRotZ;
 	bool m_ActorFloating;
+
+	bool m_EnabledMessageInterpolate;
 
 	static std::string GetSchema()
 	{
@@ -156,6 +157,8 @@ public:
 		m_TurretPosition = CFixedVector3D();
 
 		m_ActorFloating = false;
+
+		m_EnabledMessageInterpolate = false;
 	}
 
 	virtual void Deinit()
@@ -252,6 +255,8 @@ public:
 
 		if (m_InWorld)
 			UpdateXZRotation();
+
+		UpdateMessageSubscriptions();
 	}
 
 	void Deserialized()
@@ -528,6 +533,7 @@ public:
 		m_RotY = y;
 
 		AdvertisePositionChanges();
+		UpdateMessageSubscriptions();
 	}
 
 	virtual void SetYRotation(entity_angle_t y)
@@ -550,6 +556,7 @@ public:
 		}
 
 		AdvertisePositionChanges();
+		UpdateMessageSubscriptions();
 	}
 
 	virtual void SetXZRotation(entity_angle_t x, entity_angle_t z)
@@ -751,6 +758,8 @@ public:
 		{
 		case MT_Interpolate:
 		{
+			PROFILE3("Position::Interpolate");
+
 			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
 
 			float rotY = m_RotY.ToFloat();
@@ -776,6 +785,8 @@ public:
 
 					UpdateXZRotation();
 				}
+
+				UpdateMessageSubscriptions();
 			}
 
 			break;
@@ -836,6 +847,25 @@ public:
 	}
 
 private:
+
+	/*
+	 * Must be called whenever m_RotY or m_InterpolatedRotY change,
+	 * to determine whether we need to call Interpolate to make the unit rotate.
+	 */
+	void UpdateMessageSubscriptions()
+	{
+		bool needInterpolate = false;
+
+		float rotY = m_RotY.ToFloat();
+		if (rotY != m_InterpolatedRotY)
+			needInterpolate = true;
+
+		if (needInterpolate != m_EnabledMessageInterpolate)
+		{
+			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_Interpolate, this, needInterpolate);
+			m_EnabledMessageInterpolate = needInterpolate;
+		}
+	}
 
 	/**
 	 * This must be called after changing anything that will affect the

@@ -44,6 +44,10 @@
 #define DEFAULT_COMPONENT_ALLOCATOR(cname) \
 	static IComponent* Allocate(ScriptInterface&, jsval) { return new CCmp##cname(); } \
 	static void Deallocate(IComponent* cmp) { delete static_cast<CCmp##cname*> (cmp); } \
+	virtual int GetComponentTypeId() const \
+	{ \
+		return CID_##cname; \
+	}
 
 #define DEFAULT_SCRIPT_WRAPPER(cname) \
 	static void ClassInit(CComponentManager& UNUSED(componentManager)) { } \
@@ -84,11 +88,19 @@
 	{ \
 		return m_Script.GetInstance(); \
 	} \
+	virtual int GetComponentTypeId() const \
+	{ \
+		return CID_##cname; \
+	} \
 	private: \
-	CComponentTypeScript m_Script; \
+		CComponentTypeScript m_Script; \
 	public:
 
 #define DEFAULT_MOCK_COMPONENT() \
+	virtual int GetComponentTypeId() const \
+	{ \
+		return -1; \
+	} \
 	virtual void Init(const CParamNode& UNUSED(paramNode)) \
 	{ \
 	} \
