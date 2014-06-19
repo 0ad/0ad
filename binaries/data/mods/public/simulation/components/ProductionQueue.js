@@ -342,7 +342,7 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 	}
 	else
 	{
-		var notification = {"player": cmpPlayer.GetPlayerID(), "message": markForTranslation("The production queue is full."), "translateMessage": true };
+		var notification = {"players": [cmpPlayer.GetPlayerID()], "message": markForTranslation("The production queue is full."), "translateMessage": true };
 		var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGUIInterface.PushNotification(notification);
 	}
