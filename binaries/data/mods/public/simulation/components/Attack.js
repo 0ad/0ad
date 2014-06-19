@@ -576,7 +576,7 @@ Attack.prototype.MissileHit = function(data, lateness)
 	var targetPosition = this.InterpolatedLocation(data.target, lateness);
 	if (!targetPosition)
 		return;
-	
+
 	if (this.template.Ranged.Splash) // splash damage, do this first in case the direct hit kills the target
 	{
 		var friendlyFire = this.template.Ranged.Splash.FriendlyFire;
