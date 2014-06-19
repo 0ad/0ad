@@ -87,7 +87,7 @@ var g_NotificationsTypes =
 		if (isDiplomacyOpen)
 			openDiplomacy();
 	},
-	"quite": function(notification, player)
+	"quit": function(notification, player)
 	{
 		exit(); // TODO this doesn't work anymore
 	},
