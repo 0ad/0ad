@@ -20,6 +20,8 @@
 
 #include "IComponent.h"
 
+#include <set>
+
 /**
  * A list of components that are dynamically subscribed to a particular
  * message. The components list is sorted by (entity_id, ComponentTypeId),
