@@ -77,7 +77,6 @@ class CCmpRallyPointRenderer : public ICmpRallyPointRenderer
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeToMessageType(MT_RenderSubmit);
 		componentManager.SubscribeToMessageType(MT_OwnershipChanged);
 		componentManager.SubscribeToMessageType(MT_TurnStart);
 		componentManager.SubscribeToMessageType(MT_Destroy);
@@ -224,6 +223,7 @@ public:
 		{
 		case MT_RenderSubmit:
 			{
+				PROFILE3("RallyPoint::RenderSubmit");
 				if (m_Displayed && IsSet())
 				{
 					const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
@@ -263,6 +263,16 @@ public:
 		}
 	}
 
+	/*
+	 * Must be called whenever m_Displayed or the size of m_RallyPoints change,
+	 * to determine whether we need to respond to render messages.
+	 */
+	void UpdateMessageSubscriptions()
+	{
+		bool needRender = m_Displayed && IsSet();
+		GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_RenderSubmit, this, needRender);
+	}
+
 	virtual void AddPosition_wrapper(CFixedVector2D pos)
 	{
 		AddPosition(pos, false);
@@ -274,6 +284,7 @@ public:
 		{
 			m_RallyPoints.clear();
 			AddPosition(pos, true);
+			// Don't need to UpdateMessageSubscriptions here since AddPosition already calls it
 		}
 	}
 
@@ -305,6 +316,8 @@ public:
 			// only takes effect when the display flag is active; we need to pick up changes to the SoD that might have occurred 
 			// while this rally point was not being displayed.
 			UpdateOverlayLines();
+
+			UpdateMessageSubscriptions();
 		}
 	}
 
@@ -312,6 +325,7 @@ public:
 	{
 		m_RallyPoints.clear();
 		RecomputeAllRallyPointPaths();
+		UpdateMessageSubscriptions();
 	}
 
 	/**
@@ -336,6 +350,8 @@ private:
 			RecomputeAllRallyPointPaths();
 		else
 			RecomputeRallyPointPath_wrapper(m_RallyPoints.size()-1);
+
+		UpdateMessageSubscriptions();
 	}
 
 	/**

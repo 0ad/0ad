@@ -847,6 +847,13 @@ GuiInterface.prototype.GetTimeNotifications = function(playerID)
 
 GuiInterface.prototype.PushNotification = function(notification)
 {
+	if (!notification.type || notification.type == "text")
+	{
+		if (!notification.duration)
+			notification.duration = 10000;
+		this.AddTimeNotification(notification);
+		return;
+	}
 	this.notifications.push(notification);
 };
 

@@ -13,7 +13,7 @@ function Cheat(input)
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (!cmpPlayer.GetCheatsEnabled())
 	{
-		cmpGuiInterface.PushNotification({"type": "chat", "player": input.player, "message": "Cheats are disbaled in this match"});
+		cmpGuiInterface.PushNotification({"type": "chat", "players": [input.player], "message": "Cheats are disbaled in this match"});
 		return;
 	}
 
@@ -61,14 +61,14 @@ function Cheat(input)
 	case "createunits":
 		if (!input.selected[0])
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "You need to select a building that trains units."});
+			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You need to select a building that trains units."});
 			return;
 		}
 
 		var cmpProductionQueue = Engine.QueryInterface(input.selected[0], IID_ProductionQueue);
 		if (!cmpProductionQueue)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "You need to select a building that trains units."});
+			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You need to select a building that trains units."});
 			return;
 		}
 		for (var i = 0; i < input.parameter; i++)
@@ -115,7 +115,7 @@ function Cheat(input)
 		// check, if name of technology is given
 		if (input.parameter.length == 0)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "You have to enter the name of a technology or select a building and enter the number of the technology (brainiac number [top|paired].)"});
+			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You have to enter the name of a technology or select a building and enter the number of the technology (brainiac number [top|paired].)"});
 			return;
 		}
 		var techname = input.parameter;
@@ -144,7 +144,7 @@ function Cheat(input)
 						var tech = techs[number-1];
 						if (!tech)
 						{
-							cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "You have already researched this technology."});
+							cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "You have already researched this technology."});
 							return;
 						}
 						// get name of tech
@@ -155,7 +155,7 @@ function Cheat(input)
 					}
 					else
 					{
-						cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "This building only has " + techs.length + " technologies."});
+						cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "This building only has " + techs.length + " technologies."});
 						return;
 					}
 				}
@@ -166,7 +166,7 @@ function Cheat(input)
 		var template = cmpTechnologyManager.GetTechnologyTemplate(techname);
 		if (!template)
 		{
-			cmpGuiInterface.PushNotification({"type": "notification", "player": input.player, "message": "Technology \"" + techname + "\" does not exist"});
+			cmpGuiInterface.PushNotification({"type": "notification", "players": [input.player], "message": "Technology \"" + techname + "\" does not exist"});
 			return;
 		}
 

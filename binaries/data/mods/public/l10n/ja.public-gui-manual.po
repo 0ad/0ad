@@ -1,0 +1,557 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr "情報"
+
+#: gui/manual/manual.xml:20 (caption)
+msgid "View Online"
+msgstr "オンラインで見る"
+
+#: gui/manual/manual.xml:23 (caption)
+msgid "Close"
+msgstr "閉じる"
+
+#: gui/manual/intro.txt:1
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr "[font=\"sans-bold-18\"]0 A.D. ゲーム内マニュアル"
+
+#: gui/manual/intro.txt:2
+msgid "[font=\"sans-14\"]"
+msgstr "[font=\"sans-14\"]"
+
+#: gui/manual/intro.txt:3
+msgid ""
+"Thank you for installing 0 A.D.! This page will give a brief overview of the"
+" features available in this incomplete, under-development, alpha version of "
+"the game."
+msgstr "0 A.D.をインストールしていただきありがとうございます。このページでは、未完成で開発途上のアルファ版であるこのゲームで利用可能な機能の概要を説明します。"
+
+#: gui/manual/intro.txt:5
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr "[font=\"sans-bold-16\"]グラフィックス設定"
+
+#: gui/manual/intro.txt:6
+msgid ""
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
+"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
+"game runs too slowly, you can change some settings in the configuration "
+"file: look for binaries/data/config/default.cfg in the location where the "
+"game is installed, which gives instructions for editing, and try disabling "
+"the \"fancywater\" and \"shadows\" options."
+msgstr "[font=\"sans-14\"]フルスクリーンとウィンドウのモード切替えは Alt + Enter を押すことで可能です。ウィンドウモードでは、ウィンドウの大きさを変えられます。ゲームの動作があまりに遅いときは、設定ファイルのいくつかの設定を変更可能です。ゲームがインストールされた場所のbinaries/data/config/default.cfgを見つけると、編集の仕方の説明があるので、「fancywater」と「shadows」のオプションを無効にしてください。"
+
+#: gui/manual/intro.txt:8
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr "[font=\"sans-bold-16\"]ゲームをプレイする"
+
+#: gui/manual/intro.txt:9
+msgid ""
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
+"poorly-balanced stats – you will probably have to wait until a beta release "
+"for it to work well."
+msgstr "[font=\"sans-14\"]操作とゲームプレイは従来のRTSゲームのプレイヤーにはなじみ深いものでしょう。今のところ多くの機能を欠き、また能力値のパランスがとれていません。しっかりとしたものはおそらくベータリリースまで待たねばならないでしょう。"
+
+#: gui/manual/intro.txt:11
+msgid "Basic controls:"
+msgstr "基本的な操作："
+
+#: gui/manual/intro.txt:12
+msgid "• Left-click to select units."
+msgstr "• 左クリックしてユニットを選択します。"
+
+#: gui/manual/intro.txt:13
+msgid "• Left-click-and-drag to select groups of units."
+msgstr "• 左クリックしてドラッグでユニットを複数選択します。"
+
+#: gui/manual/intro.txt:14
+msgid "• Right-click to order units to the target."
+msgstr "• 右クリックでユニットに目標を指示します。"
+
+#: gui/manual/intro.txt:15
+msgid "• Arrow keys or WASD keys to move the camera."
+msgstr "• 矢印キーやWASDキーでカメラを移動します。"
+
+#: gui/manual/intro.txt:16
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
+msgstr "• Ctrl+矢印キーやshift+マウスホイールでカメラを回転します。"
+
+#: gui/manual/intro.txt:17
+msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
+msgstr "• マウスホイールや 「+」、「-」キーでズームします。"
+
+#: gui/manual/intro.txt:19
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr "[font=\"sans-bold-16\"]モード"
+
+#: gui/manual/intro.txt:20
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr "[font=\"sans-14\"]メインメニューから2つのゲームモードが選べます："
+
+#: gui/manual/intro.txt:22
+msgid ""
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"game or against one or more AI opponents. The AI/AIs are under development "
+"and may not always be up to date on the new features, but you can test "
+"playing the game against an actual opponent if you aren't able to play with "
+"a human."
+msgstr "• [font=\"sans-bold-14\"]シングルプレイヤー[font=\"sans-14\"] — 練習ゲームをプレイするか、1もしくは複数のAIと対戦します。AIは開発途上で、常に最新機能に対応しているわけではありませんが、人間とプレイできない時に、実際の対戦相手とプレイする練習ができます。"
+
+#: gui/manual/intro.txt:24
+msgid ""
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr "• [font=\"sans-bold-14\"]マルチプレイヤー[font=\"sans-14\"] — インターネット越しに人間と対戦します。"
+
+#: gui/manual/intro.txt:26
+msgid ""
+"To set up a multiplayer game, one player must select the \"Host game\" "
+"option. The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"and enter the host's IP address."
+msgstr "マルチプレイヤーゲームを立ち上げるには、1人のプレイヤーが「ゲームをホストする」オプションを選ばなければなりません。ゲームはUDPの20595番ポートを使用するので、ホストは自分のNATやファイアウォールなどがこれを許可するように調整しなけれなりません。その後に、他のプレイヤーは「ゲームに参加する」を選んでホストのIPアドレスを入力できます。"
+
+#: gui/manual/intro.txt:28
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr "[font=\"sans-bold-16\"]ゲームの立ち上げ"
+
+#: gui/manual/intro.txt:29
+msgid ""
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
+"setup options."
+msgstr "[font=\"sans-14\"]マルチプレイヤーゲームでは、ホストだけがゲーム立ち上げのオプションを変更できます。"
+
+#: gui/manual/intro.txt:31
+msgid ""
+"First, select whether you want to play on a random map (created "
+"automatically from a random map script) or a scenario (created by a map "
+"designer). Scenarios can be filtered to show only some maps. The default "
+"maps are shown immediately, but custom maps are often not so select \"All "
+"maps\" to see a list of all available maps. Then select a map to play on. "
+"The \"Demo Maps\" are designed for testing particular gameplay features and "
+"are probably not generally useful."
+msgstr "まず、ランダムマップ（ランダムマップスクリプトによって自動作成）かシナリオ（マップデザイナーが作成）かどちらをプレイするか選びます。既成のマップは直ちに表示されますが、カスタムマップはしばしばそうではないので、「すべてのマップ」を選択してすべての利用可能なマップのリストを見てください。そしてプレイするマップを選びます。「デモマップ」は特定のゲームプレイの機能のテスト用に設計されたもので、おそらく一般的には有用でありません。"
+
+#: gui/manual/intro.txt:33
+msgid ""
+"Finally change the settings. For random maps this includes the number of "
+"players, the size of a map, etc. For scenarios you can only select who "
+"controls which player (decides where you start on the map etc). The options "
+"are either a human player, an AI or no player at all (existing units will "
+"attack enemies that come into sight, but no new units will be created, nor "
+"will the units be sent to attack anyone)."
+msgstr "最後に設定を変更します。ランダムマップでは、プレイヤーの人数やマップの大きさなどが含まれます。シナリオでは、誰がどのプレイヤーをやるか（マップ内のどこが開始位置かなどが決まります）だけが選択できます。選択肢は人間のプレイヤーかAI、プレイヤーなしのいずれかです。プレイヤーなしでは、既存のユニットは視界に入った敵は攻撃しますが、新たなユニットは生産されず、ユニットが誰かを攻撃するために移動することもありません。"
+
+#: gui/manual/intro.txt:35
+msgid "When you are ready to start, click the \"Start game\" button."
+msgstr "準備ができたら、「ゲーム開始」ボタンをクリックします。"
+
+#: gui/manual/intro.txt:37
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]ホットキー："
+
+#: gui/manual/intro.txt:38
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr "[font=\"sans-bold-14\"]常時"
+
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr "[font=\"sans-14\"]Alt+F4： 確認なしでゲームを終了"
+
+#: gui/manual/intro.txt:40
+msgid "Alt + Enter: Toggle between fullscreen and windowed"
+msgstr "Alt+Enter： フルスクリーンとウィンドウの切替え"
+
+#: gui/manual/intro.txt:41
+msgid "~ or F9: Show/hide console"
+msgstr "~かF9： コンソールを見せるか隠す"
+
+#: gui/manual/intro.txt:42
+msgid "Alt + F: Show/hide frame counter (FPS)"
+msgstr "Alt+F： フレームカウンター（FPS）を見せるか隠す"
+
+#: gui/manual/intro.txt:43
+msgid ""
+"F11: Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr "F11： リアルタイムプロファイラーを有効か無効にします。また押すたびに情報の表示が切り替わります。"
+
+#: gui/manual/intro.txt:44
+msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
+msgstr "Shift+F11： 現在のプロファイラーのデータを「logs/profile.txt」に保存します。"
+
+#: gui/manual/intro.txt:45
+msgid ""
+"F2: Take screenshot (in .png format, location is displayed in the top left "
+"of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr "F2： スクリーンショットを撮ります（pngフォーマットで保存されます。場所はファイルが保存された後の画面の左上に表示され、また見逃した場合はコンソールやログでも見られます）"
+
+#: gui/manual/intro.txt:46
+msgid ""
+"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
+" displayed in the top left of the GUI after the file has been saved, and can"
+" also be seen in the console/logs if you miss it there)"
+msgstr "Shift+F2： 大きなスクリーンショットを撮ります（6400×4800ピクセルのbmpフォーマットで保存されます。場所はファイルが保存された後の画面の左上に表示され、また見逃した場合はコンソールやログでも見られます）"
+
+#: gui/manual/intro.txt:48
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr "[font=\"sans-bold-14\"]ゲーム内"
+
+#: gui/manual/intro.txt:49
+msgid ""
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
+"the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"][ユニットを]左ダブルクリック： スクリーン上の同種の全ユニットを選択(ランクが違っても可)"
+
+#: gui/manual/intro.txt:50
+msgid ""
+"Triple Left Click [on unit]: Select all of your units of the same kind and "
+"the same rank on the screen"
+msgstr "[ユニットを]左トリプルクリック： スクリーン上の同種同ランクの全ユニットを選択"
+
+#: gui/manual/intro.txt:51
+msgid ""
+"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
+" the entire map (even if the are different ranks)"
+msgstr "[ユニットを]Alt + 左ダブルクリック： マップ全体の同種の全ユニットを選択(ランクが違っても可)"
+
+#: gui/manual/intro.txt:52
+msgid ""
+"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"and rank on the entire map"
+msgstr "[ユニットを]Alt + 左トリプルクリック： マップ全体の同種同ランクの全ユニットを選択"
+
+#: gui/manual/intro.txt:53
+msgid "Shift + F5: Quicksave"
+msgstr "Shift+F5： クイック保存"
+
+#: gui/manual/intro.txt:54
+msgid "Shift + F8: Quickload"
+msgstr "Shift+F8： クイック読込み"
+
+#: gui/manual/intro.txt:55
+msgid "F10: Open/close menu"
+msgstr "F10： メニューを開くか閉じる"
+
+#: gui/manual/intro.txt:56
+msgid "F12: Show/hide time elapsed counter"
+msgstr "F12： 経過時間カウンターを表示か隠す"
+
+#: gui/manual/intro.txt:57
+msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
+msgstr "ESC： すべてのダイアログ（チャット、メニュー）を閉じる、またはユニットの選択をクリアする"
+
+#: gui/manual/intro.txt:58
+msgid "Enter/return: Open/send chat"
+msgstr "Enterまたはreturn： チャットを開始か送信"
+
+#: gui/manual/intro.txt:59
+msgid "T: Send team chat"
+msgstr "T： チームへチャットを送信"
+
+#: gui/manual/intro.txt:60
+msgid "Pause: Pause/resume the game"
+msgstr "Pause： ゲームを休止/再開"
+
+#: gui/manual/intro.txt:61
+msgid "Delete: Delete currently selected unit/units/building/buildings"
+msgstr "Delete： 選択中のユニットや建物を削除"
+
+#: gui/manual/intro.txt:62
+msgid ",: Select idle fighters"
+msgstr ",： 手の空いた兵士を選択"
+
+#: gui/manual/intro.txt:63
+msgid ".: Select idle workers (including citizen soldiers)"
+msgstr ".： 手の空いた労働者を選択（市民兵士を含む）"
+
+#: gui/manual/intro.txt:64
+msgid "H: Stop (halt) the currently selected units."
+msgstr "H： 選択中のユニットを停止"
+
+#: gui/manual/intro.txt:65
+msgid ""
+"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
+"selected units/buildings"
+msgstr "Ctrl+1（から同様にCtrl+0まで）： 選択したユニットや建物群からコントロールグループ1（から0）を結成"
+
+#: gui/manual/intro.txt:66
+msgid ""
+"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
+msgstr "1 （から同様に0まで）： コントロールグループ1（から0）のユニットや建物群を選択"
+
+#: gui/manual/intro.txt:67
+msgid ""
+"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
+msgstr "Shift+1（から0）： グループ1（から0）を選択したユニットまたは建物群に追加"
+
+#: gui/manual/intro.txt:68
+msgid ""
+"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
+"jumping back to later."
+msgstr "Ctrl+F5（同様にF8まで）： 現在のカメラの位置を記憶し、後で戻せるようにする"
+
+#: gui/manual/intro.txt:69
+msgid ""
+"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
+"last location if the camera is already over the marked position."
+msgstr "F5, F6, F7, F8： 記憶したカメラの位置へ移動。カメラがすでに記憶した位置にあるときは、直前の位置に復帰"
+
+#: gui/manual/intro.txt:70
+msgid ""
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
+" unit shown to the training queue for all the selected buildings."
+msgstr "Z, X, C, V, B, N, M（養成施設を選択中に）： 選択されたすべての建物で養成キューに示された1番目、2番目、… のユニットを追加　"
+
+#: gui/manual/intro.txt:72
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]修飾されたマウス操作"
+
+#: gui/manual/intro.txt:73
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]建物をCtrl+右クリック： 駐屯"
+
+#: gui/manual/intro.txt:74
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Shift+右クリック： 移動や建設、採集などの指令予約"
+
+#: gui/manual/intro.txt:75
+msgid "Shift + Left click when training unit/s: Add units in batches of five"
+msgstr "Shift+左クリック（ユニット養成中）： ユニットを5人追加"
+
+#: gui/manual/intro.txt:76
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Shift+左クリックか、左ドラッグでマップ上のユニットに範囲をかぶせる： 選択対象にユニットを追加"
+
+#: gui/manual/intro.txt:77
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ctrl+左クリックか、左ドラッグでマップ上のユニットに範囲をかぶせる： 選択対象からユニットを削除"
+
+#: gui/manual/intro.txt:78
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt+左ドラッグでマップ上のユニット群に範囲をかぶせる： 軍事ユニットのみ選択"
+
+#: gui/manual/intro.txt:79
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ctrl+左クリック（ユニットあるいは複数ユニットを有するグループアイコン）： 選択解除"
+
+#: gui/manual/intro.txt:80
+msgid ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "右クリック（建物を選択中）：  建物から生成あるいは駐屯解除されるユニットの集合地点を設定"
+
+#: gui/manual/intro.txt:81
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ctrl+右クリック（ユニット選択中）："
+
+#: gui/manual/intro.txt:82
+msgid "    - If the cursor is over a structure: Garrison"
+msgstr "- カーソルが建物上の場合： 駐屯"
+
+#: gui/manual/intro.txt:83
+msgid "    - Otherwise: Attack move"
+msgstr "- その他： 攻撃のために移動"
+
+#: gui/manual/intro.txt:85
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]オーバーレイ"
+
+#: gui/manual/intro.txt:86
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt+G： GUIを隠すか見せる"
+
+#: gui/manual/intro.txt:87
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt+D： （開発者用オプションを備えた）開発者用オーバーレイを見せるか隠す"
+
+#: gui/manual/intro.txt:88
+msgid ""
+"Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
+"the textured models, twice to get just the wireframes colored by the "
+"textures, thrice to get back to normal textured mode)"
+msgstr "Alt+W： ワイヤーフレームモードの切替え（1度押すとワイヤーフレームをテクスチャ付きモデルに重ねます。2度目でテクスチャで色分けされたワイヤーフレームだけ、3度目で通常のテクスチャ付きモデルに戻ります）"
+
+#: gui/manual/intro.txt:89
+msgid ""
+"Alt + S: Toggle unit silhouettes (might give a small performance boost)"
+msgstr "Alt+S： ユニットのシルエットの切替え（少し性能改善するかも知れません）"
+
+#: gui/manual/intro.txt:90
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt+Z： 空の表示の切替え"
+
+#: gui/manual/intro.txt:92
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]カメラ操作"
+
+#: gui/manual/intro.txt:93
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr "[font=\"sans-14\"]Wまたは[up]： 画面を上に移動"
+
+#: gui/manual/intro.txt:94
+msgid "S or [down]: Pan screen down"
+msgstr "Sまたは[down]： 画面を下に移動"
+
+#: gui/manual/intro.txt:95
+msgid "A or [left]: Pan screen left"
+msgstr "Aまたは[left]： 画面を左に移動"
+
+#: gui/manual/intro.txt:96
+msgid "D or [right]: Pan screen right"
+msgstr "Dまたは[right]： 画面を右に移動"
+
+#: gui/manual/intro.txt:97
+msgid "Ctrl + W or [up]: Rotate camera to look upward"
+msgstr "Ctrl+Wまたは[up]： カメラを上に回転"
+
+#: gui/manual/intro.txt:98
+msgid "Ctrl + S or [down]: Rotate camera to look downward"
+msgstr "Ctrl+Sまたは[down]： カメラを下に回転"
+
+#: gui/manual/intro.txt:99
+msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl+Aまたは[left]： 土地の周囲を時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:100
+msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl+Dまたは[right]： 土地の周囲を反時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:101
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "Q： 土地の周囲を時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:102
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E： 土地の周囲を反時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Shift+マウスホイール上回転： 土地の周囲を時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:104
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Shift+マウスホイール下回転： 土地の周囲を反時計回りにカメラを回転"
+
+#: gui/manual/intro.txt:105
+msgid ""
+"F: Follow the selected unit (move the camera to stop the camera from "
+"following the unit/s)"
+msgstr "F： 選択したユニットを追跡（カメラを動かすとユニットの追跡を中止）"
+
+#: gui/manual/intro.txt:106
+msgid "R: Reset camera zoom/orientation"
+msgstr "R： カメラのズームと方向を戻す"
+
+#: gui/manual/intro.txt:107
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+： ズームイン（押し続けると連続ズーム）"
+
+#: gui/manual/intro.txt:108
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "-： ズームアウト（押し続けると連続ズーム）"
+
+#: gui/manual/intro.txt:109
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt+W： ワイヤーフレームモードの切替え"
+
+#: gui/manual/intro.txt:110
+msgid ""
+"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
+" pan"
+msgstr "マウスの中ボタンまたは /（スラッシュ）： 押したままでマウスを動かすことでパンします"
+
+#: gui/manual/intro.txt:112
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]建物配置時"
+
+#: gui/manual/intro.txt:113
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"][： 建物を反時計回りに15度回転"
+
+#: gui/manual/intro.txt:114
+msgid "]: Rotate building 15 degrees clockwise"
+msgstr "]： 建物を時計回りに15度回転"
+
+#: gui/manual/intro.txt:115
+msgid ""
+"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
+"release)"
+msgstr "左ドラッグ： マウスで建物を回転（マウスから放したときに基礎が建てられる）"
+
+#: gui/manual/userreport.txt:1
+msgid ""
+"As a free, open source game, we don't have the resources to test on a wide "
+"range of systems, but we want to provide the best quality experience to as "
+"many players as possible. When you enable automatic feedback, we'll receive "
+"data to help us understand the hardware we should focus on supporting, and "
+"to identify performance problems we should fix."
+msgstr "このゲームはフリーなオープンソースゲームなので、幅広い環境でテストを行う予算も人員もありませんが、私たちはできるだけ多くのプレイヤーに最高の品質をお届けしたいと思っています。あなたが自動フィードバックを有効にすることで、私たちは対応を強化すべきハードウェアを理解したり、修正すべき動作の問題を特定したりするためのデータを得ることができます。"
+
+#: gui/manual/userreport.txt:3
+msgid "The following data will be sent to our server:"
+msgstr "以下のデータが私たちのサーバーに送られます："
+
+#: gui/manual/userreport.txt:5
+msgid ""
+"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
+"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
+"from the same user."
+msgstr "• ランダムなユーザーID（Windowsでは%APPDATA%\\0ad\\config\\user.cfg、Unixでは~/.config/0ad/config/user.cfgに記録）を、同じユーザーからの繰り返しのレポートをわれわれ（WildFire Games）が感知するため使います。"
+
+#: gui/manual/userreport.txt:6
+msgid ""
+"• Game version number and basic build settings (optimisation mode, CPU "
+"architecture, timestamp, compiler version)."
+msgstr "• ゲームのバージョン番号と基本的なビルド設定（最適化モード、CPUアーキテクチャ、タイムスタンプ、コンパイラーのバージョン）。"
+
+#: gui/manual/userreport.txt:7
+msgid ""
+"• Hardware details: OS version, graphics driver version, OpenGL "
+"capabilities, screen size, CPU details, RAM size."
+msgstr "• ハードウェアの情報：OSのバージョン、グラフィックスドライバーのバージョン、OpenGL対応、画面解像度、CPUの情報、RAM容量。"
+
+#: gui/manual/userreport.txt:8
+msgid ""
+"• Performance details: a snapshot of timing data a few seconds after you "
+"start a match or change graphics settings."
+msgstr "• パフォーマンスの情報：試合開始やグラフィックス設定変更から数秒後のタイミングデータのスナップショット"
+
+#: gui/manual/userreport.txt:10
+msgid ""
+"The data will only be a few kilobytes each time you run the game, so "
+"bandwidth usage is minimal."
+msgstr "ゲーム 1 回あたりの送信データは数キロバイト程度と、通信使用量を最小限に抑えています。"
+
+#: gui/manual/userreport.txt:12
+msgid ""
+"We will store the submitted data on our server, and may publish statistics "
+"or non-user-identifiable details to help other game developers with similar "
+"questions. We will store the IP address that submitted the data, to help "
+"detect abuse of the service, but will not publish it. The published data can"
+" be seen at http://feedback.wildfiregames.com/"
+msgstr "送信されたデータは私たちのサーバーに保存され、統計またはユーザーが特定できない形の詳細情報として、同様の問題を抱える他のゲーム開発者に資するために公開されることがあります。サービスの悪用を検知できるよう、データを送信した IP アドレスを保存しますが、公開はしません。公開されたデータは http://feedback.wildfiregames.com/ で見ることができます。"

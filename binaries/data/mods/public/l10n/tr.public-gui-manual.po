@@ -1,0 +1,557 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: tr\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr "Bilgilendirme"
+
+#: gui/manual/manual.xml:20 (caption)
+msgid "View Online"
+msgstr "Çevrimiçi Görüntüle"
+
+#: gui/manual/manual.xml:23 (caption)
+msgid "Close"
+msgstr "Kapat"
+
+#: gui/manual/intro.txt:1
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr "[font=\"sans-bold-18\"]0 A.D. oyuniçi rehberi"
+
+#: gui/manual/intro.txt:2
+msgid "[font=\"sans-14\"]"
+msgstr "[font=\"sans-14\"]"
+
+#: gui/manual/intro.txt:3
+msgid ""
+"Thank you for installing 0 A.D.! This page will give a brief overview of the"
+" features available in this incomplete, under-development, alpha version of "
+"the game."
+msgstr "0 A.D.'yi yüklediğiniz için teşekkürler.! Bu sayfa size geliştirilmekte olan oyunun alfa sürümündeki mevcut olan özelliklerini tanıtacak."
+
+#: gui/manual/intro.txt:5
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr "[font=\"sans-bold-16\"]Grafik ayarları"
+
+#: gui/manual/intro.txt:6
+msgid ""
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
+"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
+"game runs too slowly, you can change some settings in the configuration "
+"file: look for binaries/data/config/default.cfg in the location where the "
+"game is installed, which gives instructions for editing, and try disabling "
+"the \"fancywater\" and \"shadows\" options."
+msgstr "[font=\"sans-14\"]Alt + Enter'a basarak tam ekran ve pencere modu arasında geçiş yapabilirsin. pencere modunda, pencere boyutunu değiştirebilirsin. Eğer oyun çok yavaş çalışıyorsa, yapılandırma dosyasından bazı ayarları değiştirebilirsin: binaries/data/config/default.cfg oyunun nereye kurulduğuna bakmak için, talimatlarla düzenleyebilir, ve \"süslü su\" ve \"gölgeler\" seçeneklerini devre dışı bırakmayı deneyebilirsin."
+
+#: gui/manual/intro.txt:8
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr "[font=\"sans-bold-16\"]Oyun oyna"
+
+#: gui/manual/intro.txt:9
+msgid ""
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
+"poorly-balanced stats – you will probably have to wait until a beta release "
+"for it to work well."
+msgstr "[font=\"sans-14\"]Kontroller ve oynanabilirlik geleneksel RTS oyunlarının oyuncularına aşina gelmelidir. Mevcutta bir çok eksik özellik ve zayıf -dengeli istatistik- var muhtemelen düzgün çalışması için yayınlanacak bir betayı beklemek durumundasınız."
+
+#: gui/manual/intro.txt:11
+msgid "Basic controls:"
+msgstr "Temel kontroller:"
+
+#: gui/manual/intro.txt:12
+msgid "• Left-click to select units."
+msgstr "•Sol-tık ile birimleri seçebilirsin."
+
+#: gui/manual/intro.txt:13
+msgid "• Left-click-and-drag to select groups of units."
+msgstr "•Sol-tık-ve-sürükleme toplu ile birim seçebilirsin."
+
+#: gui/manual/intro.txt:14
+msgid "• Right-click to order units to the target."
+msgstr "•Sağ-tık ile birimlere hedeflerini bildirebilirsin."
+
+#: gui/manual/intro.txt:15
+msgid "• Arrow keys or WASD keys to move the camera."
+msgstr "• Ok tuşları ya da WASD tuşları ile kamerayı hareket ettirebilirsin."
+
+#: gui/manual/intro.txt:16
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
+msgstr "• Ctrl + ok tuşları, ya da shift + fare tekerleği ile kamerayı döndürebilirsin."
+
+#: gui/manual/intro.txt:17
+msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
+msgstr "• Fare tekerleği, ya da \"+\" ve \"-\" tuşları ile zoom yapabilirsin."
+
+#: gui/manual/intro.txt:19
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr "[font=\"sans-bold-16\"]Modlar"
+
+#: gui/manual/intro.txt:20
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr "[font=\"sans-14\"]Ana menü iki oyun moduna erişim sağlar:"
+
+#: gui/manual/intro.txt:22
+msgid ""
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"game or against one or more AI opponents. The AI/AIs are under development "
+"and may not always be up to date on the new features, but you can test "
+"playing the game against an actual opponent if you aren't able to play with "
+"a human."
+msgstr "• [font=\"sans-bold-14\"]Tek-oyuncu[font=\"sans-14\"] — bir sanal alan oyunu veya bir veya daha fazla yapay zeka rakiplerine karşı oynanabilir. Bu yapay zeka veya zekalar alt geliştirmededir ve her zaman yeni özellik güncellemesi olmayabilir, ama gerçek bir rakibe karşı oynarken test edebilirsin ama bir insana karşı oynarken mümkün değildir."
+
+#: gui/manual/intro.txt:24
+msgid ""
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr "• [font=\"sans-bold-14\"]Çoklu oyuncu[font=\"sans-14\"] — internet üzerinden gerçek rakiplere karşı oynayın."
+
+#: gui/manual/intro.txt:26
+msgid ""
+"To set up a multiplayer game, one player must select the \"Host game\" "
+"option. The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"and enter the host's IP address."
+msgstr "Çoklu oyuncu bir oyun kurmak için, bir oyuncu mutlaka \"Host oyun\" seçeneğini seçmelidir. Oyun 20595 UDP portunu kullanır, bu nedenle oyun sahibi kendi NAT/güvenlik duvarını vb buna izinli yapmalıdır. Ozaman diğer oyuncular \"Oyuna katıl\" seçer ve oyun sahibinin IP adresini girebilir."
+
+#: gui/manual/intro.txt:28
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr "[font=\"sans-bold-16\"]Oyun kur"
+
+#: gui/manual/intro.txt:29
+msgid ""
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
+"setup options."
+msgstr "[font=\"sans-14\"]Çok oyunculu oyunda sadece kurucu, oyun kurulumu ayarlarını değiştirebilir."
+
+#: gui/manual/intro.txt:31
+msgid ""
+"First, select whether you want to play on a random map (created "
+"automatically from a random map script) or a scenario (created by a map "
+"designer). Scenarios can be filtered to show only some maps. The default "
+"maps are shown immediately, but custom maps are often not so select \"All "
+"maps\" to see a list of all available maps. Then select a map to play on. "
+"The \"Demo Maps\" are designed for testing particular gameplay features and "
+"are probably not generally useful."
+msgstr "İlk olarak, (rasgele harita komutu tarafından oluşturulan) rastgele bir harita ya da (bir harita tasarımcı tarafından oluşturulan) bir senaryo oynamak isteyip istemediğinizi seçin. Senaryolar sadece bazı haritaları göstermek için filtre edilebilir. Varsayılan haritaları hemen gösterilir, ancak özel haritalar genellikle çok mevcut tüm haritaların bir listesini görmek için \"Tüm haritalar\" seçeneğini seçilmelidir. Sonra oynamak için bir harita seçin. \"Demo Haritalar\" Özellikle oynanış özellikleri test etmek için tasarlanmış ve muhtemelen genellikle yararlı olmayabilir."
+
+#: gui/manual/intro.txt:33
+msgid ""
+"Finally change the settings. For random maps this includes the number of "
+"players, the size of a map, etc. For scenarios you can only select who "
+"controls which player (decides where you start on the map etc). The options "
+"are either a human player, an AI or no player at all (existing units will "
+"attack enemies that come into sight, but no new units will be created, nor "
+"will the units be sent to attack anyone)."
+msgstr "Ayar değişikliklerini bitirdiğinde. Rasgele haritalar için bu oyuncuların sayısını içerecektir, harita boyutu, vs. Senaryolar için yanlız hangi oyuncu için hangi kontroller seçebilirsin (haritada nerede başlayacağın gibi.).Bu seçenek, bir oyuncu, bir yapay zeka veya hiç bir oyuncunun olmamasını sağlar(mevcut olan birimler görüş haline gelen düşmanlara saldıracak, ancak ne yeni birimler oluşturulacak, nede saldırıya gidecekler)."
+
+#: gui/manual/intro.txt:35
+msgid "When you are ready to start, click the \"Start game\" button."
+msgstr "Başlamak için hazır olduğunuzda, \"Oyunu başlat\" tuşunu tıklayın."
+
+#: gui/manual/intro.txt:37
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]Kısayol tuşları::"
+
+#: gui/manual/intro.txt:38
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr "[font=\"sans-bold-14\"]Her zaman"
+
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr "[font=\"sans-14\"]Alt + F4: Oyunu Kapat, onaysız"
+
+#: gui/manual/intro.txt:40
+msgid "Alt + Enter: Toggle between fullscreen and windowed"
+msgstr "Alt + Enter:  Pencere ve tam ekran arasında değiştir"
+
+#: gui/manual/intro.txt:41
+msgid "~ or F9: Show/hide console"
+msgstr "~ or F9: Konsolu göster/gizle"
+
+#: gui/manual/intro.txt:42
+msgid "Alt + F: Show/hide frame counter (FPS)"
+msgstr "Alt + F: Kare sayıcısını (FPS) göster/gizle"
+
+#: gui/manual/intro.txt:43
+msgid ""
+"F11: Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr "F11: Gerçek zamanlı profilleyici Aktif/Pasif (geçiş yapılarak bilgiler gösterilir)"
+
+#: gui/manual/intro.txt:44
+msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
+msgstr "Shift + F11: Şuanki profil bilgilerini \"logs/profile.txt\" kaydeder"
+
+#: gui/manual/intro.txt:45
+msgid ""
+"F2: Take screenshot (in .png format, location is displayed in the top left "
+"of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr "F2: Ekran görüntüsü al (PNG biçiminde, konum dosya kaydedildikten sonra arayüzün sol üstünde gösterilir. Ayrıca gözden kaçırırsanız uçbirim ya da kütükte görebilirsiniz.)"
+
+#: gui/manual/intro.txt:46
+msgid ""
+"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
+" displayed in the top left of the GUI after the file has been saved, and can"
+" also be seen in the console/logs if you miss it there)"
+msgstr "Shift + F2: Büyük ekran görüntüsü al (6400px*4800px, BMP biçiminde, konum dosya kaydedildikten sonra arayüzün sol üstünde gösterilir. Ayrıca gözden kaçırırsanız uçbirim ya da kütükte görebilirsiniz.)"
+
+#: gui/manual/intro.txt:48
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr "[font=\"sans-bold-14\"]Oyunda"
+
+#: gui/manual/intro.txt:49
+msgid ""
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
+"the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"]Sola çift tıklama [birime]: Ekrandaki aynı türden birimlerinin hepsini seçer (farklı rütbeler olsa bile)"
+
+#: gui/manual/intro.txt:50
+msgid ""
+"Triple Left Click [on unit]: Select all of your units of the same kind and "
+"the same rank on the screen"
+msgstr "Üçkez Sol Tıklama [birime]: Ekranda bulunan aynı tür ve aynı değerdeki bütün birimleri seçer."
+
+#: gui/manual/intro.txt:51
+msgid ""
+"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
+" the entire map (even if the are different ranks)"
+msgstr "Alt + Çift Sol Tıklama [birime]: Tüm harita üzerinde aynı türden tüm birimleri seçer (farklı rütbeleri bile)"
+
+#: gui/manual/intro.txt:52
+msgid ""
+"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"and rank on the entire map"
+msgstr "Alt + Üçkez Sol Tıklama [birime]: Tüm harita üzerindeki aynı tür ve değerde tüm birimleri seçer"
+
+#: gui/manual/intro.txt:53
+msgid "Shift + F5: Quicksave"
+msgstr "Shift + F5: Hızlı kayıt"
+
+#: gui/manual/intro.txt:54
+msgid "Shift + F8: Quickload"
+msgstr "Shift + F8: Hızlı yükle"
+
+#: gui/manual/intro.txt:55
+msgid "F10: Open/close menu"
+msgstr "F10: Menü'yü aç/kapat"
+
+#: gui/manual/intro.txt:56
+msgid "F12: Show/hide time elapsed counter"
+msgstr "F12: Zaman sayacını göster/gizle"
+
+#: gui/manual/intro.txt:57
+msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
+msgstr "ESC: Tüm pencereleri kapat (sohbet, menü) ya da birim seçimini temizle"
+
+#: gui/manual/intro.txt:58
+msgid "Enter/return: Open/send chat"
+msgstr "Enter: Sohbet Aç/Gönder"
+
+#: gui/manual/intro.txt:59
+msgid "T: Send team chat"
+msgstr "T: Takım konuşması gönder"
+
+#: gui/manual/intro.txt:60
+msgid "Pause: Pause/resume the game"
+msgstr "Duraklat: oyunu duraklat/devam ettir"
+
+#: gui/manual/intro.txt:61
+msgid "Delete: Delete currently selected unit/units/building/buildings"
+msgstr "Delete: Seçilmiş olan birim/yapıları siler"
+
+#: gui/manual/intro.txt:62
+msgid ",: Select idle fighters"
+msgstr ",: Boşta duran savaşçıları seç"
+
+#: gui/manual/intro.txt:63
+msgid ".: Select idle workers (including citizen soldiers)"
+msgstr ".: Boşta duran işçileri seç ( sivil askerler de dahil)"
+
+#: gui/manual/intro.txt:64
+msgid "H: Stop (halt) the currently selected units."
+msgstr "H: Seçilen birimleri durdur."
+
+#: gui/manual/intro.txt:65
+msgid ""
+"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
+"selected units/buildings"
+msgstr "Ctrl + 1 (ve böylece e kadar Ctrl + 0): Kontrol grubu oluşturma 1 den (0 a) seçilen birimler/yapılardan."
+
+#: gui/manual/intro.txt:66
+msgid ""
+"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
+msgstr "1 (ve böylece e kadar 0): Seçilen birimler/yapılar kontrol grubu 1 (0 a)"
+
+#: gui/manual/intro.txt:67
+msgid ""
+"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
+msgstr "Shift + 1 (0'a kadar): Seçilen birimleri/binaları kontrol grubu 1'e (0'a kadar) ekle"
+
+#: gui/manual/intro.txt:68
+msgid ""
+"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
+"jumping back to later."
+msgstr "Ctrl + F5 (ve böylece F8 e): Geçerli kamera konumunu işaretlenecek, daha sonra geri atlama için."
+
+#: gui/manual/intro.txt:69
+msgid ""
+"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
+"last location if the camera is already over the marked position."
+msgstr "F5, F6, F7 ve F8: Kamerayı işaretli yere götürür. Kamera zaten işaretli yerdeyse son yerine geri götürür."
+
+#: gui/manual/intro.txt:70
+msgid ""
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
+" unit shown to the training queue for all the selected buildings."
+msgstr "Z, X, C, V, B, N, M: ile yönetim yapıları seçilir. Eklenir 1., 2., ... Seçilen tüm yapılar için birim yönetimleri gösterilir."
+
+#: gui/manual/intro.txt:72
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]Fare hareketlerini düzenle"
+
+#: gui/manual/intro.txt:73
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]Ctrl + Sağ Tık yapı üzerine: Garnizon"
+
+#: gui/manual/intro.txt:74
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Shift + Sağ Tıklama: Kuyruğa taşıma/yapma/toplama/vs görev"
+
+#: gui/manual/intro.txt:75
+msgid "Shift + Left click when training unit/s: Add units in batches of five"
+msgstr "Shift+Left tık antrenman sırasında ünite sayısını beşe çıkartır."
+
+#: gui/manual/intro.txt:76
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Shift + Sol Tık ve Sol Sürükleme haritadaki birimler üzerinde: Seçilenlere yeni birim ekler"
+
+#: gui/manual/intro.txt:77
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ctrl + Sol Tıklama veya Hariadaki birim üzerine Sol Sürükleme: Seçilen birimi kaldırır"
+
+#: gui/manual/intro.txt:78
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt + Sol Sürükleme haritadaki birimler üzerinde: Sadece askeri birimleri seçer"
+
+#: gui/manual/intro.txt:79
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ctrl + Sol Tıklama birim/grup üzerinde ikon ile çoklu birim seçilir: İşaret kaldır"
+
+#: gui/manual/intro.txt:80
+msgid ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "Sağ Tıklama ile yapım/yapımlar seçilir: yapılardan birimler/garnizonolmayan için yarış noktası ayarlanır."
+
+#: gui/manual/intro.txt:81
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ctrl + Sağ Tık seçilmiş birimlerle:"
+
+#: gui/manual/intro.txt:82
+msgid "    - If the cursor is over a structure: Garrison"
+msgstr ""
+
+#: gui/manual/intro.txt:83
+msgid "    - Otherwise: Attack move"
+msgstr "- Aksi Halde: Saldırı harekatı"
+
+#: gui/manual/intro.txt:85
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]Kaplamalar"
+
+#: gui/manual/intro.txt:86
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt + G: Arayüzü Gizle/Göster"
+
+#: gui/manual/intro.txt:87
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt + D: Geliştirici kaplamasını göster/gizle (geliştirici ayarlarıyla)"
+
+#: gui/manual/intro.txt:88
+msgid ""
+"Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
+"the textured models, twice to get just the wireframes colored by the "
+"textures, thrice to get back to normal textured mode)"
+msgstr "Alt + W: Izgara moda geçiş (ilk basıldığında kaplama model üzerine ızgara gelecektir, iki kere basıldığında, renkli ızgara kaplayacaktır, üçüncü basımda normal moda dönecek)"
+
+#: gui/manual/intro.txt:89
+msgid ""
+"Alt + S: Toggle unit silhouettes (might give a small performance boost)"
+msgstr "Alt + S: Birim silüetlerini değiştirme (küçük bir performans artışı olabilir)"
+
+#: gui/manual/intro.txt:90
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt + Z: Gökyüzünü değiştir"
+
+#: gui/manual/intro.txt:92
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]Kamera manipülasyonu"
+
+#: gui/manual/intro.txt:93
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W veya [yukarı yön tuşu]: Ekranı yukarı kaydır"
+
+#: gui/manual/intro.txt:94
+msgid "S or [down]: Pan screen down"
+msgstr "S veya [aşağı yön tuşu]: Ekranı aşağıya kaydır"
+
+#: gui/manual/intro.txt:95
+msgid "A or [left]: Pan screen left"
+msgstr "A veya [sol yön tuşu]: Ekranı sola kaydır"
+
+#: gui/manual/intro.txt:96
+msgid "D or [right]: Pan screen right"
+msgstr "D veya [sağ yön tuşu]: Ekranı sağa kaydır"
+
+#: gui/manual/intro.txt:97
+msgid "Ctrl + W or [up]: Rotate camera to look upward"
+msgstr "Ctrl + W or [up]: Kamerayı yukarıya çevir"
+
+#: gui/manual/intro.txt:98
+msgid "Ctrl + S or [down]: Rotate camera to look downward"
+msgstr "Ctrl + S or [down]: Kamerayı aşağıya çevir"
+
+#: gui/manual/intro.txt:99
+msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A or [left]: Kamerayı arazi etrafında saat yönünde çevir"
+
+#: gui/manual/intro.txt:100
+msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D or [right]: Kamerayı arazi etrafında saatin aksi yönünde çevir"
+
+#: gui/manual/intro.txt:101
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "Q: Kamerayı arazi etrafında saat yönünde döndür"
+
+#: gui/manual/intro.txt:102
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E: Kamerayı arazi etrafında saat yönünün tersine döndür"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Shift + Fare Tekerleği Yukarı: Kamerayı arazi etrafında saat yönünde çevir"
+
+#: gui/manual/intro.txt:104
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Shift + Fare Tekerleği Aşağı: Kamerayı arazi etrafında saat yönünün tersine çevir"
+
+#: gui/manual/intro.txt:105
+msgid ""
+"F: Follow the selected unit (move the camera to stop the camera from "
+"following the unit/s)"
+msgstr "F: Seçilen birimi takip et (takip edilen birimlerin hareketlerinin tamamında eşlik et)"
+
+#: gui/manual/intro.txt:106
+msgid "R: Reset camera zoom/orientation"
+msgstr "R: Kamera yakınlaştırma/yönelim sıfırla"
+
+#: gui/manual/intro.txt:107
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+: Yakınlaştırma (Daha fazla yakınlaşmak için basılı tutun)"
+
+#: gui/manual/intro.txt:108
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "-: Uzaklaşma (Daha fazla uzaklaşmak için basılı tutun)"
+
+#: gui/manual/intro.txt:109
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: Izgara modları arasında geçiş"
+
+#: gui/manual/intro.txt:110
+msgid ""
+"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
+" pan"
+msgstr "Orta Fare Tuşu veya / (ileri Eğik çizgi): Basılı tutun ve fareyi kaydırın."
+
+#: gui/manual/intro.txt:112
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]Bina Konumu Değişimde"
+
+#: gui/manual/intro.txt:113
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"][: Binayı 15 derece saat yönünün tersine döndürür"
+
+#: gui/manual/intro.txt:114
+msgid "]: Rotate building 15 degrees clockwise"
+msgstr "]: Yapılar 15 derece saat yönünde döndür."
+
+#: gui/manual/intro.txt:115
+msgid ""
+"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
+"release)"
+msgstr "Sol Sürükle: Fareyi kullanarak bina döndürün (kurum farenin bıraktığı yere yerleşecek)"
+
+#: gui/manual/userreport.txt:1
+msgid ""
+"As a free, open source game, we don't have the resources to test on a wide "
+"range of systems, but we want to provide the best quality experience to as "
+"many players as possible. When you enable automatic feedback, we'll receive "
+"data to help us understand the hardware we should focus on supporting, and "
+"to identify performance problems we should fix."
+msgstr "Ücretsiz, açık kaynak kodlu bir oyun olarak,tüm sistemler için geniş bir yelpaze üzerinde test etmek için kaynağımız yok, ama biz mümkün olduğunca çok oyuncu için iyi kaliteli bir deneyim sunmak istiyoruz. Otomatik geribildirim sağlayarak, gönderdiğiniz verilerle bize destek olabilirsiniz, donanımlarda çalışma şeklini anlamamıza yardımcı olmak olursanız, bizde performans sorunlarını düzeltme imkanına sahip oluruz."
+
+#: gui/manual/userreport.txt:3
+msgid "The following data will be sent to our server:"
+msgstr "Aşağıaki veri sunucumuza gönderilecek:"
+
+#: gui/manual/userreport.txt:5
+msgid ""
+"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
+"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
+"from the same user."
+msgstr "• Rasgele kullanıcı kimliği (Windows'ta %APPDATA%\\0ad\\config\\user.cfg 'e kaydolacak, Unix'te ~/.config/0ad/config/user.cfg 'e), Bize aynı kullanıcının tekrarlanan raporlarını algılamasına izin vermek için."
+
+#: gui/manual/userreport.txt:6
+msgid ""
+"• Game version number and basic build settings (optimisation mode, CPU "
+"architecture, timestamp, compiler version)."
+msgstr "• Oyun sürüm numarası ve basit kurulum seçenekleri (optimizasyon modu, CPU mimarisi, zaman damgası, derleyici sürümü)."
+
+#: gui/manual/userreport.txt:7
+msgid ""
+"• Hardware details: OS version, graphics driver version, OpenGL "
+"capabilities, screen size, CPU details, RAM size."
+msgstr "• Donanım detayları: İşletim sistemi versiyonu, grafik sürücü versiyonu, OpenGL kapasitesi, ekran boyutu, İşlemci detayları, Bellek boyutu."
+
+#: gui/manual/userreport.txt:8
+msgid ""
+"• Performance details: a snapshot of timing data a few seconds after you "
+"start a match or change graphics settings."
+msgstr "• Performans detayları: bir maç başlatıldığında veya ayarlar değiştirildiğinde birkaç saniyelik kayıt alacaktır."
+
+#: gui/manual/userreport.txt:10
+msgid ""
+"The data will only be a few kilobytes each time you run the game, so "
+"bandwidth usage is minimal."
+msgstr "Veriler sadece oyunu çalıştırıldığı zaman bir kaç kilobayt olacak, böylece bant genişliği kullanımı az olacak."
+
+#: gui/manual/userreport.txt:12
+msgid ""
+"We will store the submitted data on our server, and may publish statistics "
+"or non-user-identifiable details to help other game developers with similar "
+"questions. We will store the IP address that submitted the data, to help "
+"detect abuse of the service, but will not publish it. The published data can"
+" be seen at http://feedback.wildfiregames.com/"
+msgstr "Bizim sunucu üzerinde gönderilen verileri saklayacak, ve benzeri sorular ile diğer oyun geliştiricileri yardımcı olmak için istatistik veya kullanıcı tanımlama detayları olamayan bilgilerinizi yayınlayacaktır Biz, verilerinizi servisimizi kötüye kullanımı engellemek için IP ile saklayacak ama bunu paylaşmayacağız.Yayınlanan verileri http://feedback.wildfiregames.com/ adresinden görebilirsiniz."

@@ -45,9 +45,8 @@
 class CCmpDecay : public ICmpDecay
 {
 public:
-	static void ClassInit(CComponentManager& componentManager)
+	static void ClassInit(CComponentManager& UNUSED(componentManager))
 	{
-		componentManager.SubscribeToMessageType(MT_Interpolate);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Decay)
@@ -109,6 +108,9 @@ public:
 			debug_warn(L"CCmpDecay must not be used on non-local (network-synchronised) entities");
 			m_Active = false;
 		}
+
+		if (m_Active)
+			GetSimContext().GetComponentManager().DynamicSubscriptionNonsync(MT_Interpolate, this, true);
 	}
 
 	virtual void Deinit()
@@ -131,6 +133,8 @@ public:
 		{
 		case MT_Interpolate:
 		{
+			PROFILE3("Decay::Interpolate");
+
 			if (!m_Active)
 				break;
 

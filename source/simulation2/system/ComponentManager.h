@@ -33,6 +33,7 @@ class IComponent;
 class CParamNode;
 class CMessage;
 class CSimContext;
+class CDynamicSubscription;
 
 class CComponentManager
 {
@@ -72,7 +73,8 @@ private:
 		CScriptValRooted ctor; // only valid if type == CT_Script
 	};
 	
-	struct FindJSONFilesCallbackData {
+	struct FindJSONFilesCallbackData
+	{
 		VfsPath path;
 		std::vector<std::string> templates;
 	};
@@ -113,6 +115,23 @@ public:
 	 * Must only be called by a component type's ClassInit.
 	 */
 	void SubscribeGloballyToMessageType(MessageTypeId mtid);
+
+	/**
+	 * Subscribe the given component instance to all messages of the given message type.
+	 * The component's HandleMessage will be called on any BroadcastMessage or PostMessage of
+	 * this message type, regardless of the entity.
+	 *
+	 * This can be called at any time (including inside the HandleMessage callback for this message type).
+	 *
+	 * The component type must not have statically subscribed to this message type in its ClassInit.
+	 *
+	 * The subscription status is not saved or network-synchronised. Components must remember to
+	 * resubscribe in their Deserialize methods if they still want the message.
+	 *
+	 * This is primarily intended for Interpolate and RenderSubmit messages, to avoid the cost of
+	 * sending the message to components that do not currently need to do any rendering.
+	 */
+	void DynamicSubscriptionNonsync(MessageTypeId mtid, IComponent* component, bool enabled);
 
 	/**
 	 * @param cname Requested component type name (not including any "CID" or "CCmp" prefix)
@@ -221,13 +240,13 @@ public:
 	 * components of that entity which subscribed to the message type, and by any other components
 	 * that subscribed globally to the message type.
 	 */
-	void PostMessage(entity_id_t ent, const CMessage& msg) const;
+	void PostMessage(entity_id_t ent, const CMessage& msg);
 
 	/**
 	 * Send a message, not targeted at any particular entity. The message will be received by any
 	 * components that subscribed (either globally or not) to the message type.
 	 */
-	void BroadcastMessage(const CMessage& msg) const;
+	void BroadcastMessage(const CMessage& msg);
 
 	/**
 	 * Resets the dynamic simulation state (deletes all entities, resets entity ID counters;
@@ -273,7 +292,10 @@ private:
 	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);
 
 	CMessage* ConstructMessage(int mtid, CScriptVal data);
-	void SendGlobalMessage(entity_id_t ent, const CMessage& msg) const;
+	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);
+
+	void FlattenDynamicSubscriptions();
+	void RemoveComponentDynamicSubscriptions(IComponent* component);
 
 	ComponentTypeId GetScriptWrapper(InterfaceId iid);
 
@@ -298,6 +320,9 @@ private:
 	std::map<std::string, MessageTypeId> m_MessageTypeIdsByName;
 	std::map<MessageTypeId, std::string> m_MessageTypeNamesById;
 	std::map<std::string, InterfaceId> m_InterfaceIdsByName;
+
+	std::map<MessageTypeId, CDynamicSubscription> m_DynamicMessageSubscriptionsNonsync;
+	std::map<IComponent*, std::set<MessageTypeId> > m_DynamicMessageSubscriptionsNonsyncByComponent;
 
 	std::map<entity_id_t, SEntityComponentCache*> m_ComponentCaches;
 

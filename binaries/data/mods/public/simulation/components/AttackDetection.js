@@ -78,7 +78,7 @@ AttackDetection.prototype.AttackAlert = function(target, attacker)
 	this.AddSuppression(event);
 	Engine.PostMessage(this.entity, MT_AttackDetected, { "player": cmpPlayer.GetPlayerID(), "event": event });
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-	cmpGuiInterface.PushNotification({"type": "attack", "player": cmpPlayer.GetPlayerID(), "attacker": cmpAttackerOwnership.GetOwner() });
+	cmpGuiInterface.PushNotification({"type": "attack", "players": [cmpPlayer.GetPlayerID()], "attacker": cmpAttackerOwnership.GetOwner() });
 	PlaySound("attacked", target);
 };
 

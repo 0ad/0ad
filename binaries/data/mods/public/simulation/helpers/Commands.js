@@ -45,13 +45,13 @@ var commands = {
 	"chat": function(player, cmd, data)
 	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
+		cmpGuiInterface.PushNotification({"type": cmd.type, "players": [player], "message": cmd.message});
 	},
 
 	"aichat": function(player, cmd, data)
 	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": cmd.type, "player": player, "message": cmd.message});
+		cmpGuiInterface.PushNotification({"type": cmd.type, "players": [player], "message": cmd.message});
 	},
 
 	"cheat": function(player, cmd, data)
@@ -62,6 +62,7 @@ var commands = {
 	"quit": function(player, cmd, data)
 	{
 		// Let the AI exit the game for testing purposes
+		// TODO broken, does this need a fix?
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 		cmpGuiInterface.PushNotification({"type": "quit"});
 	},
@@ -83,7 +84,7 @@ var commands = {
 			warn("Invalid command: Could not set "+player+" diplomacy status of player "+cmd.player+" to "+cmd.to);
 		}
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "diplomacy", "player": player, "player1": cmd.player, "status": cmd.to});
+		cmpGuiInterface.PushNotification({"type": "diplomacy", "players": [player], "player1": cmd.player, "status": cmd.to});
 	},
 
 	"tribute": function(player, cmd, data)
@@ -526,7 +527,7 @@ var commands = {
 	{
 		// No need to do checks here since this is a cheat anyway
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "chat", "player": player, "message": "(Cheat - promoted units)"});
+		cmpGuiInterface.PushNotification({"type": "chat", "players": [player], "message": "(Cheat - promoted units)"});
 
 		for each (var ent in cmd.entities)
 		{
@@ -645,7 +646,7 @@ var commands = {
 function notifyUnloadFailure(player, garrisonHolder)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Unable to ungarrison unit(s)" };
+	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Unable to ungarrison unit(s)" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 }
@@ -656,7 +657,7 @@ function notifyUnloadFailure(player, garrisonHolder)
 function notifyBackToWorkFailure(player)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Some unit(s) can't go back to work" };
+	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Some unit(s) can't go back to work" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 }
@@ -667,7 +668,7 @@ function notifyBackToWorkFailure(player)
 function notifyAlertFailure(player)
 {
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var notification = {"player": cmpPlayer.GetPlayerID(), "message": "You can't raise the alert to a higher level !" };
+	var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "You can't raise the alert to a higher level !" };
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 }
@@ -873,7 +874,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			}
 
 			var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-			ret.player = player;
+			ret.players = [player];
 			cmpGuiInterface.PushNotification(ret);
 			
 			// Remove the foundation because the construction was aborted
@@ -912,7 +913,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 		}
 		
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({ "player": player, "message": "Building's technology requirements are not met." }); 
+		cmpGuiInterface.PushNotification({ "players": [player], "message": "Building's technology requirements are not met." }); 
 		
 		// Remove the foundation because the construction was aborted 
 		cmpPosition.MoveOutOfWorld();

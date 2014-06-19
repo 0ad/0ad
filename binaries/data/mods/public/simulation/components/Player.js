@@ -244,7 +244,7 @@ Player.prototype.SubtractResourcesOrNotify = function(amounts)
 			warn("Localisation: Strings are not localised for more than 4 resources");
 
 		var notification = {
-			"player": this.playerID,
+			"players": [this.playerID],
 			"message": msg,
 			"parameters": parameters,
 			"translateMessage": true,
@@ -641,7 +641,7 @@ Player.prototype.OnPlayerDefeated = function(msg)
 	cmpRangeManager.SetLosRevealAll(this.playerID, true);
 
 	// Send a chat message notifying of the player's defeat.
-	var notification = {"type": "defeat", "player": this.playerID};
+	var notification = {"type": "defeat", "players": [this.playerID]};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGUIInterface.PushNotification(notification);
 };
@@ -698,7 +698,7 @@ Player.prototype.TributeResource = function(player, amounts)
 	if (cmpTheirStatisticsTracker)
 		cmpTheirStatisticsTracker.IncreaseTributesReceivedCounter(total);
 
-	var notification = {"type": "tribute", "player": player, "player1": this.playerID, "amounts": amounts};
+	var notification = {"type": "tribute", "players": [player], "donator": this.playerID, "amounts": amounts};
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
 		cmpGUIInterface.PushNotification(notification);

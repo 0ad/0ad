@@ -1,181 +1,541 @@
 [
-	{
-		"output": "public.pot",
-		"inputRoot": "..",
-		"project": "0 A.D. — Empires Ascendant",
-		"copyrightHolder": "Wildfire Games",
-		"rules": [
-			{
-				"extractor": "javascript",
-				"filemasks": ["**.js"],
-				"options": {
-					"keywords": {
-						"translate": [1],
-						"translatePlural": [1, 2],
-						"translateWithContext": [[1], 2],
-						"translatePluralWithContext": [[1], 2, 3],
-						"markForTranslation": [1],
-						"markForTranslationWithContext": [[1], 2]
-					},
-					"commentTags": [
-						"Translation:"
-					]
-				}
-			},
-			{
-				"extractor": "xml",
-				"filemasks": ["gui/**.xml"],
-				"options": {
-					"format": "none",
-					"keywords": {
-						"translatableAttribute": {
-							"locationAttributes": ["id"]
-						},
-						"translate": {}
-					}
-				}
-			},
-			{
-				"extractor": "txt",
-				"filemasks": [
-					"gui/manual/intro.txt",
-					"gui/manual/userreport.txt",
+    {
+        "output": "public-civilizations.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "civs/**.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "Name",
+                        "Description",
+                        "History",
+                        "Special",
+                        "AINames"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-ingame.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/session/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/session/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-gamesetup.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/aiconfig/**.js",
+                    "gui/gamesetup/**.js",
+                    "gui/loading/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/aiconfig/**.xml",
+                    "gui/gamesetup/**.xml",
+                    "gui/loading/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            },
+            {
+                "extractor": "txt",
+                "filemasks": [
+                    "gui/text/quotes.txt"
+                ],
+                "options": {
+                    "format": "none"
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-lobby.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/lobby/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/lobby/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            },
+            {
+                "extractor": "txt",
+                "filemasks": [
                     "gui/lobby/Terms_of_Service.txt",
-                    "gui/lobby/Terms_of_Use.txt",
-					"gui/text/quotes.txt",
-					"gui/splashscreen/splashscreen.txt",
-					"gui/text/tips/**.txt"
-				],
-				"options": {
-					"format": "none"
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"simulation/data/game_speeds.json",
-					"simulation/data/player_defaults.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"Name"
-					]
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"simulation/data/map_sizes.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"Name",
-						"LongName"
-					]
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"civs/**.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"Name",
-						"Description",
-						"History",
-						"Special",
-						"AINames"
-					]
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"maps/random/**.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"Name",
-						"Description"
-					]
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"simulation/ai/**.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"name",
-						"description"
-					]
-				}
-			},
-			{
-				"extractor": "json",
-				"filemasks": [
-					"simulation/data/technologies/**.json"
-				],
-				"options": {
-					"format": "none",
-					"keywords": [
-						"specificName",
-						"genericName",
-						"description",
-						"tooltip",
-						"requirementsTooltip"
-					]
-				}
-			},
-			{
-				"extractor": "xml",
-				"filemasks": ["simulation/templates/**.xml"],
-				"options": {
-					"format": "none",
-					"keywords": {
-						"GenericName": {},
-						"SpecificName": {},
-						"VisibleClasses": {
-							"splitOnWhitespace": true
-						},
-						"Tooltip": {},
-						"GateConversionTooltip": {},
-						"DisabledTooltip": {},
-						"FormationName": {},
+                    "gui/lobby/Terms_of_Use.txt"
+                ],
+                "options": {
+                    "format": "none"
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-manual.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/manual/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/manual/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            },
+            {
+                "extractor": "txt",
+                "filemasks": [
+                    "gui/manual/intro.txt",
+                    "gui/manual/userreport.txt"
+                ],
+                "options": {
+                    "format": "none"
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-gui-other.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "globalscripts/**.js",
+                    "gui/civinfo/**.js",
+                    "gui/common/**.js",
+                    "gui/locale/**.js",
+                    "gui/msgbox/**.js",
+                    "gui/options/**.js",
+                    "gui/pregame/**.js",
+                    "gui/savedgames/**.js",
+                    "gui/splashscreen/**.js",
+                    "gui/summary/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "globalscripts/**.xml",
+                    "gui/civinfo/**.xml",
+                    "gui/common/**.xml",
+                    "gui/locale/**.xml",
+                    "gui/msgbox/**.xml",
+                    "gui/options/**.xml",
+                    "gui/pregame/**.xml",
+                    "gui/savedgames/**.xml",
+                    "gui/splashscreen/**.xml",
+                    "gui/summary/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            },
+            {
+                "extractor": "txt",
+                "filemasks": [
+                    "gui/splashscreen/splashscreen.txt",
+                    "gui/text/tips/**.txt"
+                ],
+                "options": {
+                    "format": "none"
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-templates-units.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "simulation/templates/template_unit_*.xml",
+                    "simulation/templates/units/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "GenericName": {},
+                        "SpecificName": {},
+                        "VisibleClasses": {
+                            "splitOnWhitespace": true
+                        },
+                        "Tooltip": {},
+                        "GateConversionTooltip": {},
+                        "DisabledTooltip": {},
+                        "FormationName": {},
                         "FromClass": {},
                         "Rank": {
                             "tagAsContext": true
+                        },
+                        "AuraName": {},
+                        "AuraDescription": {}
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-templates-buildings.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "simulation/templates/template_structure_*.xml",
+                    "simulation/templates/structures/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "GenericName": {},
+                        "SpecificName": {},
+                        "VisibleClasses": {
+                            "splitOnWhitespace": true
+                        },
+                        "Tooltip": {},
+                        "GateConversionTooltip": {},
+                        "DisabledTooltip": {},
+                        "FormationName": {},
+                        "FromClass": {},
+                        "Rank": {
+                            "tagAsContext": true
+                        },
+                        "AuraName": {},
+                        "AuraDescription": {}
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-templates-other.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "xml",
+                "filemasks": {
+                    "includeMasks": [
+                        "simulation/templates/**.xml"
+                    ],
+                    "excludeMasks": [
+                        "simulation/templates/structures/**.xml",
+                        "simulation/templates/template_structure_*.xml",
+                        "simulation/templates/template_unit_*.xml",
+                        "simulation/templates/units/**.xml"
+                    ]
+                },
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "GenericName": {},
+                        "SpecificName": {},
+                        "VisibleClasses": {
+                            "splitOnWhitespace": true
+                        },
+                        "Tooltip": {},
+                        "GateConversionTooltip": {},
+                        "DisabledTooltip": {},
+                        "FormationName": {},
+                        "FromClass": {},
+                        "Rank": {
+                            "tagAsContext": true
+                        },
+                        "AuraName": {},
+                        "AuraDescription": {}
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-simulation-technologies.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/technologies/**.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "specificName",
+                        "genericName",
+                        "description",
+                        "tooltip",
+                        "requirementsTooltip"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-simulation-other.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "simulation/ai/**.js",
+                    "simulation/components/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/game_speeds.json",
+                    "simulation/data/player_defaults.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "Name"
+                    ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/data/map_sizes.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "Name",
+                        "LongName"
+                    ]
+                }
+            },
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "simulation/ai/**.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "name",
+                        "description"
+                    ]
+                }
+            }
+        ]
+    },
+    {
+        "output": "public-maps.pot",
+        "inputRoot": "..",
+        "project": "0 A.D. — Empires Ascendant",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "json",
+                "filemasks": [
+                    "maps/random/**.json"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": [
+                        "Name",
+                        "Description"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "maps/scenarios/**.xml",
+                    "maps/skirmishes/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "ScriptSettings": {
+                            "extractJson": {
+                                "keywords": [
+                                    "Name",
+                                    "Description"
+                                ]
+                            }
                         }
-					}
-				}
-			},
-			{
-				"extractor": "xml",
-				"filemasks": [
-					"maps/scenarios/**.xml",
-					"maps/skirmishes/**.xml"
-				],
-				"options": {
-					"format": "none",
-					"keywords": {
-						"ScriptSettings": {
-							"extractJson": {
-								"keywords": [
-									"Name",
-									"Description"
-								]
-							}
-						}
-					}
-				}
-			}
-		]
-	}
+                    }
+                }
+            }
+        ]
+    }
 ]

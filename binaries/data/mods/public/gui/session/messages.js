@@ -26,20 +26,25 @@ function getCheatsData()
 	return cheats;
 }
 
-// Notifications
-function handleNotifications()
+var g_NotificationsTypes =
 {
-	var notification = Engine.GuiInterfaceCall("GetNextNotification");
-
-	if (!notification)
-		return;
-	
-	if (notification.type === undefined)
-		notification.type = "text";
-
-	// Handle chat notifications specially
-	if (notification.type == "chat" ||
-		notification.type == "aichat")
+	"chat": function(notification, player)
+	{
+		var message = {
+			"type": "message",
+			"text": notification.message
+		}
+		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
+		if (guid == undefined)
+		{
+			message["guid"] = -1;
+			message["player"] = player;
+		} else {
+			message["guid"] = guid;
+		}
+		addChatMessage(message);
+	},
+	"aichat": function(notification, player)
 	{
 		var message = {
 			"type": "message",
@@ -47,33 +52,33 @@ function handleNotifications()
 		}
 		if (notification.type == "aichat")
 			message["translate"] = true;
-		var guid = findGuidForPlayerID(g_PlayerAssignments, notification.player);
+		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)
 		{
 			message["guid"] = -1;
-			message["player"] = notification.player;
+			message["player"] = player;
 		} else {
-			message["guid"] = findGuidForPlayerID(g_PlayerAssignments, notification.player);
+			message["guid"] = guid;
 		}
 		addChatMessage(message);
-	}
-	else if (notification.type == "defeat")
+	},
+	"defeat": function(notification, player)
 	{
 		addChatMessage({
 			"type": "defeat",
-			"guid": findGuidForPlayerID(g_PlayerAssignments, notification.player),
-			"player": notification.player
+			"guid": findGuidForPlayerID(g_PlayerAssignments, player),
+			"player": player
 		});
 
 		// If the diplomacy panel is open refresh it.
 		if (isDiplomacyOpen)
 			openDiplomacy();
-	}
-	else if (notification.type == "diplomacy")
+	},
+	"diplomacy": function(notification, player)
 	{
 		addChatMessage({
 			"type": "diplomacy",
-			"player": notification.player,
+			"player": player,
 			"player1": notification.player1,
 			"status": notification.status
 		});
@@ -81,85 +86,76 @@ function handleNotifications()
 		// If the diplomacy panel is open refresh it.
 		if (isDiplomacyOpen)
 			openDiplomacy();
-	}
-	else if (notification.type == "quit")
+	},
+	"quit": function(notification, player)
 	{
-		// Used for AI testing
-		exit();
-	}
-	else if (notification.type == "tribute")
+		exit(); // TODO this doesn't work anymore
+	},
+	"tribute": function(notification, player)
 	{
 		addChatMessage({
 			"type": "tribute",
-			"player": notification.player,
-			"player1": notification.player1,
+			"player": player,
+			"player1": notification.donator,
 			"amounts": notification.amounts
 		});
-	}
-	else if (notification.type == "attack")
+	},
+	"attack": function(notification, player)
 	{
-		if (notification.player == Engine.GetPlayerID())
-		{
-			if (Engine.ConfigDB_GetValue("user", "gui.session.attacknotificationmessage") === "true")
-			{
-				addChatMessage({
-					"type": "attack",
-					"player": notification.player,
-					"attacker": notification.attacker
-				});
-			}
-		}
-	}
-	else if (notification.type == "text")
-	{
-		// Only display notifications directed to this player
-		if (notification.player == Engine.GetPlayerID())
-		{
-			notifications.push(notification);
-			notificationsTimers.push(setTimeout(removeOldNotifications, NOTIFICATION_TIMEOUT));
+		if (player != Engine.GetPlayerID())
+			return;
+		if (Engine.ConfigDB_GetValue("user", "gui.session.attacknotificationmessage") !== "true")
+			return;
+		addChatMessage({
+			"type": "attack",
+			"player": player,
+			"attacker": notification.attacker
+		});
+	},
+};
 
-			if (notifications.length > MAX_NUM_NOTIFICATION_LINES)
-				removeOldNotifications();
-			else
-				displayNotifications();
-		}
-	}
-	else
-	{
-		warn("notification of unknown type!");
-	}
-}
-
-function removeOldNotifications()
+// Notifications
+function handleNotifications()
 {
-	clearTimeout(notificationsTimers[0]); // The timer only needs to be cleared when new notifications bump old notifications off
-	notificationsTimers.shift();
-	notifications.shift();
-	displayNotifications();
-}
+	var notification = Engine.GuiInterfaceCall("GetNextNotification");
 
-function displayNotifications()
-{
-	var messages = [];
-	for each (var n in notifications)
+	if (!notification)
+		return;
+	if (!notification.type)
 	{
-		var parameters = n.parameters || {};
-		if (n.translateParameters)
-			translateObjectKeys(parameters, n.translateParameters);
-		var message = n.message;
-		if (n.translateMessage)
-			message = translate(message);
-		messages.push(sprintf(message, parameters));
+		error("notification without type found.\n"+uneval(notification))
+		return;
 	}
-	Engine.GetGUIObjectByName("notificationText").caption = messages.join("\n");
+	if (!notification.players)
+	{
+		error("notification without players found.\n"+uneval(notification))
+		return;
+	}
+	var action = g_NotificationsTypes[notification.type];
+	if (!action)
+	{
+		error("unknown notification type '" + notification.type + "' found.");
+		return;
+	}
+
+	for (var player of notification.players)
+		action(notification, player);
 }
 
 function updateTimeNotifications()
 {
 	var notifications =  Engine.GuiInterfaceCall("GetTimeNotifications");
 	var notificationText = "";
+	var playerID = Engine.GetPlayerID();
 	for (var n of notifications)
 	{
+		if (!n.players)
+		{
+			warn("notification has unknown player list. Text:\n"+n.message);
+			continue;
+		}
+		if (n.players.indexOf(playerID) == -1)
+			continue;
 		var message = n.message;
 		if (n.translateMessage)
 			message = translate(message);
@@ -169,7 +165,7 @@ function updateTimeNotifications()
 		parameters.time = timeToString(n.time);
 		notificationText += sprintf(message, parameters) + "\n";
 	}
-	Engine.GetGUIObjectByName("timeNotificationText").caption = notificationText;
+	Engine.GetGUIObjectByName("notificationText").caption = notificationText;
 }
 
 // Returns [username, playercolor] for the given player
