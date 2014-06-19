@@ -709,7 +709,7 @@ ProductionQueue.prototype.ProgressTimeout = function(data)
 				if (!this.spawnNotified)
 				{
 					var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-					var notification = {"player": cmpPlayer.GetPlayerID(), "message": "Can't find free space to spawn trained units" };
+					var notification = {"players": [cmpPlayer.GetPlayerID()], "message": "Can't find free space to spawn trained units" };
 					var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 					cmpGUIInterface.PushNotification(notification);
 					this.spawnNotified = true;

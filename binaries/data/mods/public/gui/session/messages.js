@@ -152,7 +152,7 @@ function updateTimeNotifications()
 		if (!n.players)
 		{
 			warn("notification has unknown player list. Text:\n"+n.message);
-			continue
+			continue;
 		}
 		if (n.players.indexOf(playerID) == -1)
 			continue;
