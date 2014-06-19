@@ -1,0 +1,1528 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+# André Rodrigues <email@andrerodrigues.pt>, 2013
+# Ernan, 2014
+# Grim Kriegor <grimkriegor@gmail.com>, 2014
+# Helder Meneses <helder.meneses@gmail.com>, 2013
+# Luís Guedes <luisgguedes@gmail.com>, 2013
+# Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2013-2014
+# Qodek <andre.lucas.silva2468@gmail.com>, 2014
+# Sander Deryckere, 2014
+# Sérgio Marques <smarquespt@gmail.com>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 18:07+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: pt_PT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/aiconfig/aiconfig.js:10
+msgctxt "ai"
+msgid "None"
+msgstr "Nenhum(a)"
+
+#: gui/aiconfig/aiconfig.js:10
+msgid "AI will be disabled for this player."
+msgstr "A inteligência artificial deste jogador está desactivada."
+
+#. Translation: AI difficulty level.
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Sandbox"
+msgstr "Muito Fácil"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Easy"
+msgstr "Fácil"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Medium"
+msgstr "Média"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Hard"
+msgstr "Difícil"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Very Hard"
+msgstr "Muito Difícil"
+
+#. Translation: Type of victory condition.
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
+msgid "Conquest"
+msgstr "Conquista"
+
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
+msgid "Wonder"
+msgstr "Maravilha"
+
+#: gui/gamesetup/gamesetup.js:8
+msgctxt "victory"
+msgid "None"
+msgstr "Nenhum(a)"
+
+#: gui/gamesetup/gamesetup.js:11
+msgid "Unlimited"
+msgstr "Ilimitado"
+
+#. Translation: Amount of starting resources.
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Very Low"
+msgstr "Muito Escassos"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Low"
+msgstr "Escassos"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Medium"
+msgstr "Médio"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "High"
+msgstr "Abundantes"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Very High"
+msgstr "Muito Abundantes"
+
+#: gui/gamesetup/gamesetup.js:15
+msgctxt "startingResources"
+msgid "Deathmatch"
+msgstr "Deathmatch"
+
+#: gui/gamesetup/gamesetup.js:72
+#, python-format
+msgid ""
+"%(warning)s The AI does not support naval maps and may cause severe "
+"performance issues. Naval maps are recommended to be played with human "
+"opponents only. Nonetheless, Petra has now an experimental support for naval"
+" maps."
+msgstr "%(warning)s Os jogadores artificiais não suportam mapas navais podendo causar problemas de desempenho. É recomendado que os mapas navais sejam jogados com oponentes humanos apenas. No entanto, Petra tem agora suporte experimental para mapas navais."
+
+#: gui/gamesetup/gamesetup.js:73
+msgid "Warning:"
+msgstr "Aviso:"
+
+#: gui/gamesetup/gamesetup.js:113
+msgid "Return to the main menu."
+msgstr "Regressar ao menu principal."
+
+#: gui/gamesetup/gamesetup.js:117
+msgid "Return to the lobby."
+msgstr "Regressar a entrada."
+
+#: gui/gamesetup/gamesetup.js:146
+msgctxt "map"
+msgid "Skirmish"
+msgstr "Escaramuça"
+
+#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:635
+#: gui/gamesetup/gamesetup.js:1223
+msgctxt "map"
+msgid "Random"
+msgstr "Aleatório"
+
+#: gui/gamesetup/gamesetup.js:146
+msgid "Scenario"
+msgstr "Cenário"
+
+#: gui/gamesetup/gamesetup.js:150 gui/gamesetup/gamesetup.js:1129
+#: gui/gamesetup/gamesetup.js:1206
+msgid "Default"
+msgstr "Pré-definido"
+
+#: gui/gamesetup/gamesetup.js:151
+msgid "Naval Maps"
+msgstr "Mapas Navais"
+
+#: gui/gamesetup/gamesetup.js:152
+msgid "Demo Maps"
+msgstr "Mapas de Demonstração"
+
+#: gui/gamesetup/gamesetup.js:153
+msgid "All Maps"
+msgstr "Todos os Mapas"
+
+#: gui/gamesetup/gamesetup.js:364
+msgctxt "team"
+msgid "None"
+msgstr "Nenhum(a)"
+
+#: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
+msgctxt "civilization"
+msgid "Random"
+msgstr "Aleatório"
+
+#: gui/gamesetup/gamesetup.js:759 gui/gamesetup/gamesetup.js:876
+msgid "You"
+msgstr "Você"
+
+#: gui/gamesetup/gamesetup.js:953
+#, python-format
+msgid "%(playerName)s %(romanNumber)s"
+msgstr "%(playerName)s %(romanNumber)s"
+
+#: gui/gamesetup/gamesetup.js:1092 gui/gamesetup/gamesetup.xml:110 (caption)
+msgid "Map Size:"
+msgstr "Tamanho do Mapa:"
+
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
+#: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
+#: gui/gamesetup/gamesetup.xml:310 (caption)
+msgid "Revealed Map:"
+msgstr "Mapa Revelado:"
+
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
+#: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
+#: gui/gamesetup/gamesetup.xml:320 (caption)
+msgid "Explored Map:"
+msgstr "Mapa Explorado:"
+
+#: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.xml:280 (caption)
+msgid "Victory Condition:"
+msgstr "Condição de Vitória:"
+
+#: gui/gamesetup/gamesetup.js:1101 gui/gamesetup/gamesetup.js:1160
+#: gui/gamesetup/gamesetup.xml:330 (caption)
+msgid "Teams Locked:"
+msgstr "Equipas Bloqueadas:"
+
+#: gui/gamesetup/gamesetup.js:1120 gui/gamesetup/gamesetup.js:1121
+#: gui/gamesetup/gamesetup.js:1123 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.js:1177 gui/gamesetup/gamesetup.js:1179
+#: gui/gamesetup/gamesetup.js:1207 gui/gamesetup/gamesetup.js:1208
+#: gui/gamesetup/gamesetup.js:1210
+msgid "Yes"
+msgstr "Sim"
+
+#: gui/gamesetup/gamesetup.js:1120 gui/gamesetup/gamesetup.js:1121
+#: gui/gamesetup/gamesetup.js:1123 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.js:1177 gui/gamesetup/gamesetup.js:1179
+#: gui/gamesetup/gamesetup.js:1207 gui/gamesetup/gamesetup.js:1208
+#: gui/gamesetup/gamesetup.js:1210
+msgid "No"
+msgstr "Não"
+
+#: gui/gamesetup/gamesetup.js:1224
+msgid "Randomly selects a map from the list"
+msgstr "Selecciona aleatoriamente um mapa da lista"
+
+#: gui/gamesetup/gamesetup.js:1231
+msgid "Sorry, no description available."
+msgstr "Desculpe, não se encontra disponível nenhuma descrição."
+
+#: gui/gamesetup/gamesetup.js:1237
+#, python-format
+msgid "%(number)s player. %(description)s"
+msgid_plural "%(number)s players. %(description)s"
+msgstr[0] "%(number)s jogador. %(description)s"
+msgstr[1] "%(number)s jogadores. %(description)s"
+
+#: gui/gamesetup/gamesetup.js:1377
+#, python-format
+msgid "AI: %(ai)s"
+msgstr "IA: %(ai)s"
+
+#: gui/gamesetup/gamesetup.js:1382
+msgid "Unassigned"
+msgstr "Não atribuído"
+
+#: gui/gamesetup/gamesetup.js:1587 gui/gamesetup/gamesetup.js:1592
+#: gui/gamesetup/gamesetup.js:1610
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s "
+
+#: gui/gamesetup/gamesetup.js:1587
+#, python-format
+msgid "%(username)s has joined"
+msgstr "%(username)s entrou no jogo"
+
+#: gui/gamesetup/gamesetup.js:1592
+#, python-format
+msgid "%(username)s has left"
+msgstr "%(username)s saiu do jogo"
+
+#: gui/gamesetup/gamesetup.js:1597
+#, python-format
+msgid "<%(username)s>"
+msgstr "<%(username)s>"
+
+#: gui/gamesetup/gamesetup.js:1598
+#, python-format
+msgid "%(username)s %(message)s"
+msgstr "%(username)s %(message)s"
+
+#: gui/gamesetup/gamesetup.js:1604
+#, python-format
+msgid "* %(username)s is ready!"
+msgstr "* %(username)s está pronto!"
+
+#: gui/gamesetup/gamesetup.js:1606
+#, python-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s não está pronto."
+
+#: gui/gamesetup/gamesetup.js:1610
+msgid "Game settings have been changed"
+msgstr "As definições do jogo foram alteradas"
+
+#: gui/gamesetup/gamesetup.js:1635
+msgid "I'm not ready"
+msgstr "Não estou pronto"
+
+#: gui/gamesetup/gamesetup.js:1636
+msgid "State that you are not ready to play."
+msgstr "Informa que ainda não está pronto para jogar."
+
+#: gui/gamesetup/gamesetup.js:1641 gui/gamesetup/gamesetup.js:1715
+msgid "I'm ready!"
+msgstr "Estou pronto!"
+
+#: gui/gamesetup/gamesetup.js:1642
+msgid "State that you are ready to play!"
+msgstr "Informa que está pronto para jogar!"
+
+#: gui/gamesetup/gamesetup.js:1716
+msgid "State that you accept the current settings and are ready to play!"
+msgstr "Informa que aceita as definições actuais e que está pronto para jogar!"
+
+#: gui/gamesetup/gamesetup_mp.js:34
+#, python-format
+msgid "%(name)s's game"
+msgstr "Jogo de %(name)s"
+
+#: gui/gamesetup/gamesetup_mp.js:60
+msgid "Connecting to server..."
+msgstr "A ligar ao servidor..."
+
+#: gui/gamesetup/gamesetup_mp.js:79
+#, python-format
+msgid "Net message: %(message)s"
+msgstr "Mensagem de rede: %(message)s"
+
+#: gui/gamesetup/gamesetup_mp.js:136
+msgid "Registering with server..."
+msgstr "A registar no servidor..."
+
+#: gui/gamesetup/gamesetup_mp.js:142
+msgid "Game has already started, rejoining..."
+msgstr "O jogo já começou. A entrar..."
+
+#: gui/gamesetup/gamesetup_mp.js:185
+msgid "Game name already in use."
+msgstr "O nome do jogo está a ser usado."
+
+#: gui/gamesetup/gamesetup_mp.js:241
+#, python-format
+msgid "%(playername)s's game"
+msgstr "Jogo de %(playername)s"
+
+#: gui/loading/loading.js:51
+#, python-format
+msgid "Loading “%(map)s”"
+msgstr "A carregar “%(map)s”"
+
+#: gui/loading/loading.js:55
+#, python-format
+msgid "Generating “%(map)s”"
+msgstr "A gerar \"%(map)s\""
+
+#: gui/aiconfig/aiconfig.xml:13 (caption)
+msgid "AI Configuration"
+msgstr "Configuração da IA"
+
+#: gui/aiconfig/aiconfig.xml:18 (caption)
+msgid "AI Player:"
+msgstr "Jogador artificial:"
+
+#: gui/aiconfig/aiconfig.xml:26 (caption)
+msgid "AI Difficulty:"
+msgstr "Nível de dificuldade do jogador artificial"
+
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: (caption)
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:366
+#: (caption)
+msgid "OK"
+msgstr "OK"
+
+#: gui/gamesetup/gamesetup.xml:15 (caption)
+msgid "Match Setup"
+msgstr "Configuração da Partida"
+
+#: gui/gamesetup/gamesetup.xml:21 (caption)
+msgid "Loading"
+msgstr "A carregar"
+
+#: gui/gamesetup/gamesetup.xml:25 (caption)
+msgid "Loading map data. Please wait..."
+msgstr "A carregar mapa. Por favor aguarde..."
+
+#: gui/gamesetup/gamesetup.xml:40 (caption)
+msgid "Player Name"
+msgstr "Nome do Jogador"
+
+#: gui/gamesetup/gamesetup.xml:43 (caption)
+msgid "Player Placement"
+msgstr "Colocação do Jogador"
+
+#: gui/gamesetup/gamesetup.xml:46 (caption)
+msgid "Civilization"
+msgstr "Civilização"
+
+#: gui/gamesetup/gamesetup.xml:55 (tooltip)
+msgid "View civilization info"
+msgstr "Ver informações sobre as civilizações"
+
+#: gui/gamesetup/gamesetup.xml:61 (caption)
+msgid "Team"
+msgstr "Equipa"
+
+#: gui/gamesetup/gamesetup.xml:70 (tooltip)
+msgid "Select player."
+msgstr "Seleccionar jogador."
+
+#: gui/gamesetup/gamesetup.xml:79 (tooltip)
+msgid "Configure AI settings."
+msgstr "Configurar os jogadores artificiais."
+
+#: gui/gamesetup/gamesetup.xml:82 (tooltip)
+msgid "Select player's civilization."
+msgstr "Seleccionar a civilização do jogador."
+
+#: gui/gamesetup/gamesetup.xml:86 (tooltip)
+msgid "Select player's team."
+msgstr "Seleccionar a equipa do jogador."
+
+#: gui/gamesetup/gamesetup.xml:98 (caption)
+msgid "Map Type:"
+msgstr "Tipo de mapa:"
+
+#: gui/gamesetup/gamesetup.xml:101 (caption)
+msgid "Map Filter:"
+msgstr "Filtro de Mapas:"
+
+#: gui/gamesetup/gamesetup.xml:104 (caption)
+msgid "Select Map:"
+msgstr "Seleccionar Mapa:"
+
+#: gui/gamesetup/gamesetup.xml:107 (caption)
+msgid "Number of Players:"
+msgstr "Número de Jogadores:"
+
+#: gui/gamesetup/gamesetup.xml:127 (tooltip)
+msgid "Select a map type."
+msgstr "Seleccionar um tipo de mapa."
+
+#: gui/gamesetup/gamesetup.xml:136 (tooltip)
+msgid "Select a map filter."
+msgstr "Seleccionar um filtro de mapas."
+
+#: gui/gamesetup/gamesetup.xml:146 (tooltip)
+msgid "Select a map to play on."
+msgstr "Seleccionar o mapa para jogar."
+
+#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+msgid "Select number of players."
+msgstr "Seleccionar o número de jogadores."
+
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
+msgid "Select map size. (Larger sizes may reduce performance.)"
+msgstr "Seleccionar o tamanho do mapa (tamanhos grandes podem reduzir o desempenho)."
+
+#: gui/gamesetup/gamesetup.xml:187 (caption)
+msgid "Send"
+msgstr "Enviar"
+
+#: gui/gamesetup/gamesetup.xml:201 (caption)
+msgid "[Tooltip text]"
+msgstr "[Dica de texto]"
+
+#: gui/gamesetup/gamesetup.xml:213 (caption)
+msgid "Start game!"
+msgstr "Iniciar jogo!"
+
+#: gui/gamesetup/gamesetup.xml:214 (tooltip)
+msgid "Start a new game with the current settings."
+msgstr "Iniciar um jogo novo com a configuração actual."
+
+#: gui/gamesetup/gamesetup.xml:231 (caption)
+msgid "Back"
+msgstr "Voltar"
+
+#: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
+#: (caption)
+msgid "More Options"
+msgstr "Mais Opções"
+
+#: gui/gamesetup/gamesetup.xml:254 (tooltip)
+msgid "See more game options"
+msgstr "Ver mais opções do jogo"
+
+#: gui/gamesetup/gamesetup.xml:270 (caption)
+msgid "Game Speed:"
+msgstr "Velocidade do Jogo:"
+
+#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+msgid "Select game speed."
+msgstr "Seleccionar a velocidade do jogo."
+
+#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+msgid "Select victory condition."
+msgstr "Seleccionar a condição de vitória."
+
+#: gui/gamesetup/gamesetup.xml:290 (caption)
+msgid "Population Cap:"
+msgstr "Limite de População:"
+
+#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+msgid "Select population cap."
+msgstr "Seleccionar o limite de população."
+
+#: gui/gamesetup/gamesetup.xml:300 (caption)
+msgid "Starting Resources:"
+msgstr "Recursos Iniciais:"
+
+#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+msgid "Select the game's starting resources."
+msgstr "Seleccionar os recursos iniciais da partida."
+
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
+#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+msgid "Toggle revealed map (see everything)."
+msgstr "Activar/desactivar mapa revelado (tudo visível)."
+
+#. Make sure to differentiate between the revealed map and explored map
+#. options!
+#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+msgid "Toggle explored map (see gaia and buildings)."
+msgstr "Activar/desactivar mapa explorado (natureza e edifícios visíveis)"
+
+#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+msgid "Toggle locked teams."
+msgstr "Activar/desactivar equipas bloqueadas."
+
+#: gui/gamesetup/gamesetup.xml:340 (caption)
+msgid "Cheats:"
+msgstr "Batotice:"
+
+#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+msgid "Toggle the usability of cheats."
+msgstr "Activar/desactivar possibilidade de uso de códigos de batota."
+
+#: gui/gamesetup/gamesetup.xml:350 (caption)
+msgid "Rated Game:"
+msgstr "Jogo Classificado:"
+
+#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+msgid "Toggle if this game will be rated for the leaderboard."
+msgstr "Define se este jogo conta para a tabela classificativa dos jogadores."
+
+#: gui/gamesetup/gamesetup.xml:367 (tooltip)
+msgid "Close more game options window"
+msgstr "Fechar a janela de mais opções do jogo"
+
+#: gui/gamesetup/gamesetup_mp.xml:19 (caption)
+msgid "Multiplayer"
+msgstr "Multijogador"
+
+#: gui/gamesetup/gamesetup_mp.xml:25 (caption)
+msgid "Joining an existing game."
+msgstr "Entrar num jogo existente."
+
+#: gui/gamesetup/gamesetup_mp.xml:29 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:72 (caption)
+msgid "Player name:"
+msgstr "Nome do jogador:"
+
+#: gui/gamesetup/gamesetup_mp.xml:39 (caption)
+msgid "Server Hostname or IP:"
+msgstr "Nome ou IP do servidor:"
+
+#: gui/gamesetup/gamesetup_mp.xml:49 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:95 (caption)
+msgid "Continue"
+msgstr "Continuar"
+
+#: gui/gamesetup/gamesetup_mp.xml:67 (caption)
+msgid "Set up your server to host."
+msgstr "Configurar o seu computador como anfitrião."
+
+#: gui/gamesetup/gamesetup_mp.xml:84 (caption)
+msgid "Server name:"
+msgstr "Nome do servidor:"
+
+#: gui/gamesetup/gamesetup_mp.xml:115 (caption)
+msgid "[Connection status]"
+msgstr "[Estado da ligação] "
+
+#: gui/loading/loading.xml:48 (caption)
+msgid "Quote of the Day:"
+msgstr "Citação do Dia:"
+
+#: gui/text/quotes.txt:1
+msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
+msgstr "\"Um tolo próspero é um fardo doloroso.\" - Ésquilo"
+
+#: gui/text/quotes.txt:2
+msgid ""
+"\"From him [Death] alone of all the powers of heaven Persuasion holds "
+"aloof.\" - Aeschylus"
+msgstr "\"Os poderes celestiais podem ser persuasivos para evitar muitos males, mas nada pode ser persuasivo de evitar a morte.\" - Ésquilo"
+
+#: gui/text/quotes.txt:3
+msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
+msgstr "\"Falseando a verdade, a maioria dos homens prefere antes parecer a ser.\" Ésquilo in \"Sete contra Tebas\""
+
+#: gui/text/quotes.txt:4
+msgid ""
+"\"It is not the oath that makes us believe the man, but the man the oath.\" "
+"- Aeschylus"
+msgstr "\"Não é o juramento que nos faz acreditar no homem, mas o homem que fez o juramento.\" – Ésquilo"
+
+#: gui/text/quotes.txt:5
+msgid ""
+"\"In every tyrant's heart there springs in the end this poison, that he "
+"cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
+msgstr "\"No coração de cada tirano salta na extremidade este veneno, de que que não pode confiar um amigo.\" - Ésquilo in \"Promoteu Acorrentado\""
+
+#: gui/text/quotes.txt:6
+msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
+msgstr "\"Tudo o tempo ensina, ao envelhecer.\" - Ésquilo in \"Promoteu Acorrentado\""
+
+#: gui/text/quotes.txt:7
+msgid ""
+"\"Wisdom comes through suffering... Favours come to us from gods.\" - "
+"Aeschylus, \"Agamemnon\""
+msgstr ""
+
+#: gui/text/quotes.txt:8
+msgid ""
+"\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
+"\"Agamemnon\""
+msgstr "\"(Helena) levou para Ílio em vez de dote a destruição\" - Ésquilo in \"Agamémnon\""
+
+#: gui/text/quotes.txt:9
+msgid ""
+"\"It is in the character of very few men to honor without envy a friend who "
+"has prospered.\" - Aeschylus, \"Agamemnon\""
+msgstr "\"Há poucos homens capazes de prestar homenagem ao sucesso de um amigo, sem qualquer inveja.\" - Ésquilo in \"Agamémnon\""
+
+#: gui/text/quotes.txt:10
+msgid ""
+"\"For a deadly blow let him pay with a deadly blow; it is for him who has "
+"done a deed to suffer.\" - Aeschylus"
+msgstr "\"E que todo o golpe assassino seja pago com um golpe assassino: ao culpado a expiação.\" Ésquilo in \"Coéforas\""
+
+#: gui/text/quotes.txt:11
+msgid "\"Any excuse will serve a tyrant.\" - Aesop"
+msgstr "\"A um tirano qualquer desculpa lhe serve.\" - Esopo"
+
+#: gui/text/quotes.txt:12
+msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
+msgstr "\"Melhor ser sábio pelas desgraças dos outros do que pelas suas.\" - Esopo"
+
+#: gui/text/quotes.txt:13
+msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
+msgstr "\"A familiaridade leva ao desespero; o conhecimento suaviza os prejuízos.\" - Esopo"
+
+#: gui/text/quotes.txt:14
+msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
+msgstr "\"É fácil ser bravo de uma distância segura.\" - Esopo"
+
+#: gui/text/quotes.txt:15
+msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
+msgstr "\"Deve-se cuidar hoje das necessidades de amanhã.\" - Esopo"
+
+#: gui/text/quotes.txt:16
+msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
+msgstr "\"Não são apenas as penas perfeitas que fazem pássaros perfeitos.\" - Esopo"
+
+#: gui/text/quotes.txt:17
+msgid ""
+"\"Never trust advice from a man in the throes of his own difficulty.\" - "
+"Aesop"
+msgstr "\"Nunca confie o conselho de um homem nas dificuldades.\" - Esopo"
+
+#: gui/text/quotes.txt:18
+msgid "\"Persuasion is often more effectual than force.\" - Aesop"
+msgstr "A persuasão é muitas vezes mais eficaz do que a força.\" - Esopo"
+
+#: gui/text/quotes.txt:19
+msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
+msgstr "\"A presunção pode levar à auto-destruição.\" - Esopo"
+
+#: gui/text/quotes.txt:20
+msgid "\"Slow and steady wins the race.\" - Aesop"
+msgstr "\"Devagar se vai ao longe\" - Esopo"
+
+#: gui/text/quotes.txt:21
+msgid "\"The gods help them that help themselves.\" - Aesop"
+msgstr "\"Os deuses ajudam quem se ajuda.\" - Esopo"
+
+#: gui/text/quotes.txt:22
+msgid ""
+"\"The shaft of the arrow had been feathered with one of the eagle's own "
+"plumes. We often give our enemies the means of our own destruction.\" - "
+"Aesop"
+msgstr "\"O mais triste é ver que a seta que me mata tem penas de águia. Geralmente damos aos nossos inimigos os meios para nossa destruição.\" - Esopo"
+
+#: gui/text/quotes.txt:23
+msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
+msgstr "\"A união faz a força.\" - Esopo, fábula do molho de varas"
+
+#: gui/text/quotes.txt:24
+msgid "\"Enemies' promises were made to be broken.\" - Aesop"
+msgstr "\"As promessas dos inimigos são para serem quebradas.\" - Esopo"
+
+#: gui/text/quotes.txt:25
+msgid ""
+"\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
+"Sparta"
+msgstr "\"Os Espartanos não perguntam quantos são, mas onde estão.\" - Ágis IV, 24º rei de Esparta e da  dinastia Euripôntida."
+
+#: gui/text/quotes.txt:26
+msgid ""
+"\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
+"my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
+msgstr "\"Não chores por mim, eu sofro injustamente, mas sou mais feliz do que os meus assassinos.\" Ágis IV 24º rei de Esparta e da  dinastia Euripôntida."
+
+#: gui/text/quotes.txt:27
+msgid ""
+"\"He who doeth good shall meet with good; and he who doeth evil shall meet "
+"with evil, for the Lord judgeth a man according to the measure of his "
+"work.\" - Ahiqar, Assyrian sage"
+msgstr "\"Aquele que fizer o bem, bem ficará; aquele que fizer o mal, mal ficará, pois o Senhor julga os homens pelas suas acções.\" – Ahiqar, sábio sírio "
+
+#: gui/text/quotes.txt:28
+msgid ""
+"\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
+"Great"
+msgstr "\"Se eu não fosse Alexandre, gostava de ser Diógenes.\" - Alexandre Magno"
+
+#: gui/text/quotes.txt:29
+msgid "\"I do not steal victory.\" - Alexander the Great"
+msgstr "\"Não roubo vitórias.\" – Alexandre Magno"
+
+#: gui/text/quotes.txt:30
+msgid ""
+"\"Are you still to learn that the end and perfection of our victories is to "
+"avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
+"Great"
+msgstr "\"Ainda não aprenderam que o objectivo e a perfeição das nossas vitórias é para evitar os vícios e os males de aqueles que dominamos?\" – Alexandre Magno"
+
+#: gui/text/quotes.txt:31
+msgid ""
+"\"To the strongest!\" - Alexander, on his death bed, when asked who should "
+"succeed him as king"
+msgstr "\"O mais forte!\" - Alexandre, no seu leito de morte, quando lhe perguntaram quem o deveria suceder no trono"
+
+#: gui/text/quotes.txt:32
+msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
+msgstr "\"Nada é impossível para quem persiste\" - Alexandre Magno"
+
+#: gui/text/quotes.txt:33
+msgid ""
+"\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
+"Great"
+msgstr "\"Abandonei o sexo e o sono para lembrar-me que sou mortal.\" - Alexandre Magno"
+
+#: gui/text/quotes.txt:34
+msgid ""
+"\"The agora is an established place for men to cheat one another, and behave"
+" covetously.\" - Anacharsis"
+msgstr "\"A ágora é o local onde os homens se enganam uns aos outros e se comportam de maneira cobiçosa.\" – Anacársis"
+
+#: gui/text/quotes.txt:35
+msgid ""
+"\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
+" and poor, but would be torn in pieces by the rich and powerful.\" - "
+"Anacharsis"
+msgstr "\"Leis escritas são como teias de aranha. Pegarão os fracos e os pobres, mas serão despedaçadas pelos ricos e poderosos.\" – Anacársis"
+
+#: gui/text/quotes.txt:36
+msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
+msgstr "\"A raposa conhece muitas coisas, mas o ouriço conhece uma única grande coisa” – Arquíloco"
+
+#: gui/text/quotes.txt:37
+msgid ""
+"\"States are doomed when they are unable to distinguish good men from bad.\""
+" - Antisthenes"
+msgstr "\"Os estados estão condenados quando não sabem distinguir o homem bom do mau.\" – Antístenes"
+
+#: gui/text/quotes.txt:38
+msgid ""
+"\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
+"his usage of the lever."
+msgstr "\"Dai-me um ponto de apoio e levantarei o mundo.\" – Arquimedes, sobre o uso da alavanca"
+
+#: gui/text/quotes.txt:39
+msgid ""
+"\"It is from their foes, not their friends, that cities learn the lesson of "
+"building high walls and ships of war.\" - Aristophanes"
+msgstr "\"São os inimigos, e não os aliados, que ensinam as cidades a construírem muralhas altas e embarcações de guerra.\" – Aristófanes"
+
+#: gui/text/quotes.txt:40
+msgid ""
+"\"Words give wings to the mind and make a man soar to heaven.\" - "
+"Aristophanes"
+msgstr "\"As palavras dão-nos imaginação e permite-nos ir ao céu.\" – Aristófanes"
+
+#: gui/text/quotes.txt:41
+msgid ""
+"\"It is the compelling power of great thoughts and ideas to engender "
+"language of equal greatness.\" - Aristophanes"
+msgstr "\"As grandes ideias correspondem ao poder de gerar uma linguagem da mesma grandiosidade.\" – Aristófanes"
+
+#: gui/text/quotes.txt:42
+msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
+msgstr "\"A fome não tem mais amigos que o que lhe dá de comer.\" – Aristófanes"
+
+#: gui/text/quotes.txt:43
+msgid ""
+"\"I count him braver who overcomes his desires than him who overcomes his "
+"enemies.\" - Aristotle"
+msgstr "\" Considero mais valente aquele que vence seus desejos do que aquele que vence seus inimigos; pois a vitória mais difícil é a vitória sobre si mesmo.\" – Aristóteles"
+
+#: gui/text/quotes.txt:44
+msgid "\"Our characters are the result of our conduct.\" - Aristotle"
+msgstr "\"Nosso carácter é o resultado da nossa conduta.\" – Aristóteles"
+
+#: gui/text/quotes.txt:45
+msgid "\"Man is by nature a political animal.\" - Aristotle"
+msgstr "\"O homem é por natureza um animal político.\" – Aristóteles"
+
+#: gui/text/quotes.txt:46
+msgid ""
+"\"If liberty and equality, as is thought by some, are chiefly to be found in"
+" democracy, they will be best attained when all persons alike share in the "
+"government to the utmost.\" - Aristotle"
+msgstr "Se a liberdade e a igualdade, como consideradas por alguns, devem ser encontradas principalmente na democracia, serão melhor alcançadas quando todas as pessoas iguais compartilharem do governo ao máximo.\" – Aristóteles"
+
+#: gui/text/quotes.txt:47
+msgid ""
+"\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
+"of their arms.\" - Aristotle"
+msgstr "\"Tanto a oligarquia como a tirania desconfiam do povo e por isso, privam-no das suas armas.\" – Aristóteles"
+
+#: gui/text/quotes.txt:48
+msgid "\"Wit is well-bred insolence.\" - Aristotle"
+msgstr "\"O engenho não é mais que a maturação da insolência.\" – Aristóteles"
+
+#: gui/text/quotes.txt:49
+msgid ""
+"\"It is simplicity that makes the uneducated more effective than the "
+"educated when addressing popular audiences.\" - Aristotle"
+msgstr "\"É a simplicidade que faz com que o ignorante seja mais eficaz do que o culto ao abordar nas audiências populares.\" – Aristóteles"
+
+#: gui/text/quotes.txt:50
+msgid ""
+"\"Poetry demands a man with a special gift for it, or else one with a touch "
+"of madness in him.\" - Aristotle"
+msgstr "\"A Poesia exige um homem com um dom especial para isso, ou então um com um toque de loucura.\" – Aristóteles"
+
+#: gui/text/quotes.txt:51
+msgid ""
+"\"I have gained this by philosophy: that I do without being commanded what "
+"others do only from fear of the law.\" - Aristotle"
+msgstr "\"Se algo que consegui com a filosofia é fazer com que ninguém me obrigue aos que os outros fazem por medo às leis.\" – Aristóteles"
+
+#: gui/text/quotes.txt:52
+msgid ""
+"\"Choose the course which you adopt with deliberation; but when you have "
+"adopted it, then persevere in it with firmness.\" - Bias of Priene"
+msgstr "\"Sê cuidadoso na realização de um projecto e, uma vez iniciado, prossegue sem desfalecimento.\" – Bias de Priene"
+
+#: gui/text/quotes.txt:53
+msgid ""
+"\"How stupid it was for the king to tear out his hair in grief, as if "
+"baldness were a cure for sorrow.\" - Bion of Borysthenes"
+msgstr "\"Foi uma estupidez do rei rapar o cabelo em luto como se a calvície fosse uma cura para a tristeza.\" – Bion de Borístenes"
+
+#: gui/text/quotes.txt:54
+msgid ""
+"\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
+"Borysthenes"
+msgstr "\"Não adquiriu uma fortuna: a fortuna adquiriu a ele.\" – Bion de Borístenes"
+
+#: gui/text/quotes.txt:55
+msgid "\"Woe to the Defeated\" - Brennus"
+msgstr "\"Ai dos vencidos!\" – Breno"
+
+#: gui/text/quotes.txt:56
+msgid ""
+"\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
+"Gaius Julius Caesar"
+msgstr "\"Isto é o que merece todos os tiranos.\" – Marco Júnio Bruto, antes de assassinar Júlio César"
+
+#: gui/text/quotes.txt:57
+msgid ""
+"\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
+"Brutus, before committing suicide"
+msgstr "\"Fujo, sim, mas desta vez com as mãos e não com os pés.\" – Marco Júnio Bruto, antes de suicidar"
+
+#: gui/text/quotes.txt:58
+msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
+msgstr "\"Cheguei, vi e venci.\" – Caio Júlio César"
+
+#: gui/text/quotes.txt:59
+msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
+msgstr "\"Os homens estão dispostos a crer naquilo que desejam.\" – Júlio César"
+
+#: gui/text/quotes.txt:60
+msgid "\"The die is cast.\" - Gaius Julius Caesar"
+msgstr "\"Os dados estão lançados.\" – Caio Júlio César"
+
+#: gui/text/quotes.txt:61
+msgid ""
+"\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
+" looking.\" - Gaius Julius Caesar"
+msgstr "\"Não sãos os homens bem alimentados e de cabelo comprido que temo mas os pálidos e famintos.\" – Júlio César"
+
+#: gui/text/quotes.txt:62
+msgid "\"Set a thief to catch a thief.\" - Callimachus"
+msgstr "\"Precisa-se de um ladrão para apanhar outro.\" – Calímaco"
+
+#: gui/text/quotes.txt:63
+msgid ""
+"\"Wise men learn more from fools than fools from the wise.\" - Cato the "
+"Elder"
+msgstr "\"Os sábios aproveitam-se dos tolos mais do que os tolos se aproveitam dos sábios, uma vez que os sábios evitam os erros dos tolos, enquanto estes últimos não imitam a prudência dos sábios.\" – Catão, o Censor"
+
+#: gui/text/quotes.txt:64
+msgid ""
+"\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
+msgstr "\"Cartago tem que ser destruída.\" – Catão, o Censor"
+
+#: gui/text/quotes.txt:65
+msgid ""
+"\"All mankind rules its women, and we rule all mankind, but our women rule "
+"us.\" - Cato the Elder"
+msgstr "\"Os homens do (...) mundo todo mandam em suas mulheres, (...) [os] únicos homens que são servos das próprias mulheres: os romanos!\" – Catão, o Censor"
+
+#: gui/text/quotes.txt:66
+msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
+msgstr "\"Sê firme ou modere segundo a ocasião.\" – Catão, o Censor"
+
+#: gui/text/quotes.txt:67
+msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
+msgstr "\"Não há pior governante do que aquele não sabe governar a si próprio.\" – Catão, o Censor"
+
+#: gui/text/quotes.txt:68
+msgid ""
+"\"Whoever imposes severe punishment becomes repulsive to the people; while "
+"he who awards mild punishment becomes contemptible. But whoever imposes "
+"punishment as deserved becomes respectable.\" - Chanakya"
+msgstr "\"Quem impõe punições severas se torna repulsivo para o povo; e quem impõe castigos muito suaves é desprezado. No entanto, quando aplicadas com a devida consideração, as punições tornam o povo mais atento à correcção do seu comportamento e às obras que produzem riqueza e satisfação\" – Kautilya"
+
+#: gui/text/quotes.txt:69
+msgid ""
+"\"If a king is energetic, his subjects will be equally energetic.\" - "
+"Chanakya"
+msgstr "\"Se um rei mostrar vitalidade, assim o farão os seus súbditos.\" – Kautilya"
+
+#: gui/text/quotes.txt:70
+msgid ""
+"\"For there is but one essential justice which cements society, and one law "
+"which establishes this justice. This law is right reason, which is the true "
+"rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
+msgstr "\"Não há mais que uma justiça essencial que serve de base para a sociedade e só há uma lei que estabelece essa justiça. Esta lei é o senso comum que é a verdadeira regra de todas as ordens e proibições.\" – Cícero "
+
+#: gui/text/quotes.txt:71
+msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
+msgstr "\"Ó tempos, ó costumes!\" – Marco Túlio Cícero"
+
+#: gui/text/quotes.txt:72
+msgid ""
+"\"No one is so old as to think that he cannot live one more year.\" - Marcus"
+" Tullius Cicero"
+msgstr "\"Ninguém é tão velho que não pense em poder viver mais um ano.\" – Cícero "
+
+#: gui/text/quotes.txt:73
+msgid ""
+"\"We are not born, we do not live for ourselves alone; our country, our "
+"friends, have a share in us.\" - Marcus Tullius Cicero"
+msgstr "\"Não nascemos apenas para nós; o nosso país, os nossos amigos, reclamam uma parte de nós.\"  – Cícero "
+
+#: gui/text/quotes.txt:74
+msgid ""
+"\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
+"Tullius Cicero"
+msgstr "\"Que as armas cedam à toga, o triunfo militar à glória cívica.\" – Cícero"
+
+#: gui/text/quotes.txt:75
+msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
+msgstr "\"Ao meu sinal, desencadear o inferno\" – Maximus (personagem principal do filme \"O Gladiador\")"
+
+#: gui/text/quotes.txt:76
+msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
+msgstr "\"O tempo sara todas as feridas.\" – Marco Túlio Cícero"
+
+#: gui/text/quotes.txt:77
+msgid ""
+"\"That, Senators, is what a favour from gangs amounts to. They refrain from "
+"murdering someone; then they boast that they have spared him!\" - Marcus "
+"Tullius Cicero"
+msgstr "\"Isso, senadores, é o que se reduz os favores dos gangues. Controlam-se e não matam alguém para presumirem que lhes perdoaram a vida!\" – Cícero"
+
+#: gui/text/quotes.txt:78
+msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
+msgstr "\"A vitalidade dá luz a genialidade.\" – Cícero"
+
+#: gui/text/quotes.txt:79
+msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
+msgstr "\"Enquanto há vida, há esperança.\" – Marco Túlio Cícero"
+
+#: gui/text/quotes.txt:80
+msgid ""
+"\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
+"Cicero"
+msgstr "\"Não devemos dizer que todos erros são parvos.\" – Cícero"
+
+#: gui/text/quotes.txt:81
+msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
+msgstr "\"Que o castigo seja em proporção ao crime.\" – Cícero"
+
+#: gui/text/quotes.txt:82
+msgid ""
+"\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
+"Cicero"
+msgstr "\"Que o bem-estar do povo seja a lei suprema.\" – Cícero"
+
+#: gui/text/quotes.txt:83
+msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
+msgstr "\"As riquezas infinitas são as que alimentam as guerras.\" – Cícero"
+
+#: gui/text/quotes.txt:84
+msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
+msgstr "\"As leis são silenciadas em tempo de guerra.\" – Cícero"
+
+#: gui/text/quotes.txt:85
+msgid ""
+"\"A war is never undertaken by the ideal State, except in defense of its "
+"honor or its safety.\" - Marcus Tullius Cicero"
+msgstr "\"O estado ideal nunca entra em guerra excepto para defender a sua honra ou a sua segurança.\" – Cícero"
+
+#: gui/text/quotes.txt:86
+msgid ""
+"\"The first duty of a man is the seeking after and the investigation of "
+"truth.\" - Marcus Tullius Cicero"
+msgstr "\"O dever primordial de qualquer homem é a busca da verdade.\" – Cícero"
+
+#: gui/text/quotes.txt:87
+msgid ""
+"\"In peace the sons bury their fathers, but in war the fathers bury their "
+"sons.\" - Croesus (Greek: Kroisos), king of Lydia"
+msgstr "\"Em tempos de paz, os filhos enterram os pais mas em tempos de guerra, os pais enterram os filhos.\" – Creso, o último rei da Lídia"
+
+#: gui/text/quotes.txt:88
+msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
+msgstr "\"Eu sou Ciro, rei do mundo...\" – Ciro o Grande"
+
+#: gui/text/quotes.txt:89
+msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
+msgstr "\"Diversidade no conselho, unidade na execução – Ciro II"
+
+#: gui/text/quotes.txt:90
+msgid ""
+"\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
+"Epitaph of Cyrus the Great"
+msgstr "\"Não tenha rancor por este pouco de terra que cobre meu corpo.\" – Excerto do epitáfio do túmulo de Ciro II"
+
+#: gui/text/quotes.txt:91
+msgid ""
+"\"Success always calls for greater generosity — though most people, lost in "
+"the darkness of their own egos, treat it as an occasion for greater greed.\""
+" - Cyrus the Great"
+msgstr "\"O êxito requer uma maior generosidade ainda que maior parte das pessoas, perdidas na obscuridade do seu próprio ego, o aproveite para aumentar a sua cobiça.\" – Ciro II"
+
+#: gui/text/quotes.txt:92
+msgid ""
+"\"Whether men lie, or say true, it is with one and the same object.\" - "
+"Darius I"
+msgstr "\"Os homens mentem e dizem a verdade com o mesmo objectivo.\" – Dario I"
+
+#: gui/text/quotes.txt:93
+msgid ""
+"\"Good breeding in cattle depends on physical health, but in men on a well-"
+"formed character.\" - Democritus"
+msgstr "\"Nos animais, a saúde determina se é bom ou mau. Nos homens, é o carácter que determina.\" – Demócrito "
+
+#: gui/text/quotes.txt:94
+msgid ""
+"\"If your desires are not great, a little will seem much to you; for small "
+"appetite makes poverty equivalent to wealth.\" - Democritus"
+msgstr "\"Se não tens grandes desejos, uma pouca vontade parece grande coisa; a falta de apetite iguala a pobreza e a riqueza.\" – Demócrito"
+
+#: gui/text/quotes.txt:95
+msgid ""
+"\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
+"three most important elements of rhetoric"
+msgstr "\"Resultados, resultados e resultados.\" – Demóstenes, quando lhe perguntaram quais os três elementos mais importantes da retórica"
+
+#: gui/text/quotes.txt:96
+msgid ""
+"\"It is not possible to found a lasting power upon injustice, perjury, and "
+"treachery.\" - Demosthenes"
+msgstr "\"É impossível encontrar um poder duradouro baseado em injustiça, perjúrio e traição.\" – Demóstenes"
+
+#: gui/text/quotes.txt:97
+msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
+msgstr "\"As pequenas oportunidades são com frequência o início de grandes empreendimentos.\" – Demóstenes"
+
+#: gui/text/quotes.txt:98
+msgid ""
+"\"Every advantage in the past is judged in the light of the final issue.\" -"
+" Demosthenes"
+msgstr "\"Toda a vantagem obtida no passado é julgada à luz do resultado final.\" – Demóstenes"
+
+#: gui/text/quotes.txt:99
+msgid ""
+"\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
+"Alexander the Great found him sunbathing and asked if he could help in in "
+"any way"
+msgstr "\"Não me tires o que não me podes dar!\" – Diógenes de Sinope, quando Alexandre Magno o encontrou a tomar banhos de sol e perguntou-lhe se podia ajudar em alguma coisa"
+
+#: gui/text/quotes.txt:100
+msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
+msgstr "\"Não sou nem ateniense, nem grego, mas sim um cidadão do mundo.\" – Diógenes de Sinope"
+
+#: gui/text/quotes.txt:101
+msgid ""
+"\"It is not that I am mad, it is only that my head is different from "
+"yours.\" - Diogenes of Sinope"
+msgstr "\"Não estou tolo, é que a minha cabeça funciona de maneira diferente da vossa.\" – Diógenes de Sinope"
+
+#: gui/text/quotes.txt:102
+msgid ""
+"\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
+"Syracuse"
+msgstr "\"Que a tua palavra seja melhor do que o silêncio, ou então cala-te.\" – Dionísio I de Siracusa"
+
+#: gui/text/quotes.txt:103
+msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
+msgstr "\"Nada tem mais força que uma necessidade medonha.\" – Eurípides"
+
+#: gui/text/quotes.txt:104
+msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
+msgstr "\"Os covardes fogem mas os valentes escolhem o perigo.\" – Eurípides"
+
+#: gui/text/quotes.txt:105
+msgid ""
+"\"Cowards do not count in battle; they are there, but not in it.\" - "
+"Euripides"
+msgstr "\"Os covardes não contam na batalha; estão lá, mas não nela.\" – Eurípides"
+
+#: gui/text/quotes.txt:106
+msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
+msgstr "\"A fortuna luta sempre ao lado da prudência.\" – Eurípides"
+
+#: gui/text/quotes.txt:107
+msgid ""
+"\"If a man put out the eye of another man, his eye shall be put out.\" - "
+"Hammurabi"
+msgstr "\"Se alguém arranca o olho a um outro, se lhe deverá arrancar o olho.\" – Hamurabi"
+
+#: gui/text/quotes.txt:108
+msgid ""
+"\"I have come not to make war on the Italians, but to aid the Italians "
+"against Rome.\" - Hannibal Barca"
+msgstr "\"Eu não vim aqui fazer guerra com os Italiotas mas ajuda-los contra Roma.\" – Aníbal"
+
+#: gui/text/quotes.txt:109
+msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
+msgstr "\"Ou nós encontramos um caminho, ou abrimos um.\" – Aníbal"
+
+#: gui/text/quotes.txt:110
+msgid ""
+"\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
+"their turn, will be obliged to yield to my good fortune, and my valour.\" - "
+"Hannibal Barca"
+msgstr "\"Os meus antepassados cederem ante a corajosa Roma. Eu só tento que outros, por sua vez, sejam obrigados a ceder ante a minha fortuna e a minha coragem.\" – Aníbal"
+
+#: gui/text/quotes.txt:111
+msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
+msgstr "\"Tudo flui, nada persiste nem permanece o mesmo\" – Heráclito"
+
+#: gui/text/quotes.txt:112
+msgid "\"Nothing endures but change.\" - Herakleitos"
+msgstr "\"Nada é permanente, salvo a mudança.\" – Heráclito"
+
+#: gui/text/quotes.txt:113
+msgid "\"You could not step twice into the same river.\" - Herakleitos"
+msgstr "\"Não poderias entrar duas vezes no mesmo rio.\" – Heráclito"
+
+#: gui/text/quotes.txt:114
+msgid "\"Character is destiny.\" - Herakleitos"
+msgstr "\"O carácter de um homem é o seu destino.\" – Heráclito"
+
+#: gui/text/quotes.txt:115
+msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
+msgstr " \"São as circunstâncias que governam os homens, não os homens que governam as circunstâncias.\" – Heródoto"
+
+#: gui/text/quotes.txt:116
+msgid ""
+"\"The Lacedaemonians fought a memorable battle; they made it quite clear "
+"that they were the experts, and that they were fighting against amateurs.\" "
+"- Herodotus"
+msgstr " \"Os Lacedemónios lutaram numa batalho digna de se lembrada; deixaram bem claro que os espertos eram eles e que estavam a lutar contra novatos.\" – Heródoto"
+
+#: gui/text/quotes.txt:117
+msgid ""
+"\"This is the bitterest pain among men, to have much knowledge but no "
+"power.\" - Herodotus"
+msgstr "\"Esta é a mais dolorosa de todas as doenças humanas: dispor de todo o conhecimento e ainda não ter nenhum poder de acção.\" – Heródoto"
+
+#: gui/text/quotes.txt:118
+msgid "\"In soft regions are born soft men.\" - Herodotus"
+msgstr " \"Nas regiões moles nascem homens moles.\" – Heródoto"
+
+#: gui/text/quotes.txt:119
+msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
+msgstr "\"Doce e honroso é morrer pela pátria.\" – Horácio"
+
+#: gui/text/quotes.txt:120
+msgid "\"We are but dust and shadow.\" - Horace"
+msgstr "\"Mais não somos do que pó e sombra.\" – Horácio"
+
+#: gui/text/quotes.txt:121
+msgid ""
+"\"I am not bound over to swear allegiance to any master; where the storm "
+"drives me I turn in for shelter.\" - Horace"
+msgstr "\"Não sou obrigado a jurar sobre as palavras de nenhum mestre.\" – Horácio"
+
+#: gui/text/quotes.txt:122
+msgid ""
+"\"Conquered Greece took captive her savage conqueror and brought her arts "
+"into rustic Latium.\" - Horace"
+msgstr "\"A Grécia conquistada conquistou por sua vez seu selvagem vencedor e trouxe a civilização ao rude Lácio,\" – Horácio"
+
+#: gui/text/quotes.txt:123
+msgid ""
+"\"Guard yourself against accusations, even if they are false; for the "
+"multitude are ignorant of the truth and look only to reputation.\" - "
+"Isocrates"
+msgstr "\"Protege-te das acusações, mesmo quando estas são falsas, pois a multidão é ignorante da verdade e só tem em conta a reputação.\" – Isócrates"
+
+#: gui/text/quotes.txt:124
+msgid ""
+"\"I never learned how to tune a harp, or play upon a lute; but I know how to"
+" raise a small and inconsiderable city to glory and greatness.\" - "
+"Themistocles"
+msgstr "\"Nunca aprendi afinar a harpa ou tocar alaúde; mas sei como levar uma pequena cidade desconhecida à glória e a grandeza.” – Temístocles"
+
+#: gui/text/quotes.txt:125
+msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
+msgstr "\"Eu tenho comigo dois deuses, persuasão e compulsão.\" – Temístocles"
+
+#: gui/text/quotes.txt:126
+msgid ""
+"\"For the Athenians command the rest of Greece, I command the Athenians; "
+"your mother commands me, and you command your mother.\" - Themistocles, in a"
+" statement to his son"
+msgstr " \"Os Atenienses mandam sobrem o resto da Grécia. Eu mando sobre os Atenienses; a tua mãe manda sobre mim e eu mando sobre a tua mãe.\"– Temístocles, dirigindo-se ao seu filho"
+
+#: gui/text/quotes.txt:127
+msgid "\"Strike, if you will, but listen.\" - Themistocles"
+msgstr " \"Ataca se quiseres mas escuta.\" – Temístocles"
+
+#: gui/text/quotes.txt:128
+msgid ""
+"\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
+" he left for Thermopylae"
+msgstr "\"Casa com um bom homem e dá a luz bons filhos.\" – Leónidas I, para a sua mulher antes de partir para as Termópilas"
+
+#: gui/text/quotes.txt:129
+msgid ""
+"\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
+"that he and his men lay down their arms"
+msgstr "\"Vinde pegá-las!\" – Leónidas I, ao mensageiro persa que exigiu que ele e os seus homens entregassem as armas"
+
+#: gui/text/quotes.txt:130
+msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
+msgstr "\"Para o homem que pense, a sabedoria é o seu lugar.\" – Zaratustra "
+
+#: gui/text/quotes.txt:131
+msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
+msgstr "\"Eu chamo figo a figo, espada a espada.\" – Menandro"
+
+#: gui/text/quotes.txt:132
+msgid "\"The man who runs may fight again.\" - Menander"
+msgstr "\"O homem que foge pode combater outra vez.\" – Menandro"
+
+#: gui/text/quotes.txt:133
+msgid ""
+"\"At times discretion should be thrown aside, and with the foolish we should"
+" play the fool.\" - Menander"
+msgstr "\"A sensatez não convém em todas as ocasiões; às vezes é necessário ser um pouco louco com os loucos.\" – Menandro"
+
+#: gui/text/quotes.txt:134
+msgid ""
+"\"Freedom is the sure possession of those alone who have the courage to "
+"defend it.\" - Pericles"
+msgstr "\"A liberdade é a posse segura de quem só quem tem a coragem de defendê-la.\" – Péricles"
+
+#: gui/text/quotes.txt:135
+msgid ""
+"\"What you leave behind is not what is engraved in stone monuments, but what"
+" is woven into the lives of others.\" - Pericles"
+msgstr "\"O que deixa para trás não é o que é gravado em monumentos de pedra, mas o que é tecido nas vidas de outros.\" – Péricles"
+
+#: gui/text/quotes.txt:136
+msgid ""
+"\"We do not say that a man who takes no interest in politics is a man who "
+"minds his own business; we say that he has no business here at all.\" - "
+"Pericles"
+msgstr "\"Não dizemos que um homem que não se interessa por politica é um homem que cuida de seus próprios assuntos. Dizemos que ele, aqui, não tem nenhum interesse.\" – Péricles"
+
+#: gui/text/quotes.txt:137
+msgid ""
+"\"They gave her their lives, to Her and to all of us, and for their own "
+"selves they won praises that never grow old, the most splendid of "
+"sepulchers...\" - Pericles, Funeral Oration"
+msgstr "\"Deram-lhe suas vidas para o bem comum e, assim fazendo, ganharam o louvor imperceptível e o túmulo mais insigne, naquele em que estão sepultados...\" – Péricles, oração fúnebre"
+
+#: gui/text/quotes.txt:138
+msgid ""
+"\"Make up your minds that happiness depends on being free, and freedom "
+"depends on being courageous.\" - Pericles"
+msgstr "\"A felicidade depende da liberdade e liberdade exige coragem.\" – Péricles"
+
+#: gui/text/quotes.txt:139
+msgid ""
+"\"Your empire is now like a tyranny: it may have been wrong to take it; it "
+"is certainly dangerous to let it go.\" - Pericles"
+msgstr "\"Seu império é como uma tirania: pode ter sido errado governa-lo é certamente perigoso deixá-lo.\" – Péricles"
+
+#: gui/text/quotes.txt:140
+msgid ""
+"\"If Athens shall appear great to you, consider then that her glories were "
+"purchased by valiant men, and by men who learned their duty.\" - Pericles"
+msgstr "\"Se Atenas deve parecer grande para si, considere então que suas as glórias foram compradas por homens valentes e por homens que aprenderam o seu dever.\" – Péricles"
+
+#: gui/text/quotes.txt:141
+msgid ""
+"\"Just because you do not take an interest in politics doesn't mean politics"
+" won't take an interest in you.\" - Pericles"
+msgstr "\"Só porque não se interessa por política não significa que a política não vai se interessar por si.\" – Péricles"
+
+#: gui/text/quotes.txt:142
+msgid ""
+"\"War is sweet to those who have no experience of it, but the experienced "
+"man trembles exceedingly at heart on its approach.\" - Pindar"
+msgstr "\"A guerra é doce para aqueles que não têm experiência nisso, mas o homem experiente treme muito no coração na sua abordagem.\" – Píndaro"
+
+#: gui/text/quotes.txt:143
+msgid ""
+"\"The hour of departure has arrived, and we go our ways — I to die, and you "
+"to live. Which is better God only knows.\" - Plato"
+msgstr "\"A hora da partida chegou, e seguimos os nossos caminhos - eu de morrer e você de viver. Qual é melhor só Deus sabe.\" – Platão"
+
+#: gui/text/quotes.txt:144
+msgid "\"Life without examination is not worth living.\" - Plato"
+msgstr "\"Uma vida sem exame não vale a pena ser vivida.\" - Platão"
+
+#: gui/text/quotes.txt:145
+msgid ""
+"\"Let every man remind their descendants that they also are soldiers who "
+"must not desert the ranks of their ancestors, or from cowardice fall "
+"behind.\" - Plato"
+msgstr "\"Que cada homem lembre os seus descendentes que eles também são soldados que não devem desertam das fileiras de seus antepassados​​, ou de de caírem perante a covardia.\" – Platão"
+
+#: gui/text/quotes.txt:146
+msgid ""
+"\"False words are not only evil in themselves, but they infect the soul with"
+" evil.\" - Plato"
+msgstr " \"As palavras falsas não são apenas más em si, mas também infectam a alma com o mal.\" – Platão"
+
+#: gui/text/quotes.txt:147
+msgid ""
+"\"Democracy, which is a charming form of government, full of variety and "
+"disorder, and dispensing a sort of equality to equals and unequals alike.\" "
+"- Plato"
+msgstr "\"A democracia... é uma constituição agradável, anárquica e variada, distribuidora de igualdade indiferentemente a iguais e a desiguais.\" – Platão"
+
+#: gui/text/quotes.txt:148
+msgid "\"Death is not the worst that can happen to men.\" - Plato"
+msgstr "\"A morte não é o pior que nos pode acontecer.\" - Platão"
+
+#: gui/text/quotes.txt:149
+msgid "\"Only the dead have seen the end of war.\" - Unknown"
+msgstr "\"Só os mortos viram o fim da guerra.\" - Anónimo"
+
+#: gui/text/quotes.txt:150
+msgid "\"Our need will be the real creator.\" - Plato"
+msgstr " \"O verdadeiro criador é a necessidade.\" – Platão"
+
+#: gui/text/quotes.txt:151
+msgid "\"A man with courage has every blessing.\" - Plautus"
+msgstr "\"Um homem com coragem tem todas as bençãos.\" – Plauto"
+
+#: gui/text/quotes.txt:152
+msgid ""
+"\"No guest is so welcome in a friend's house that he will not become a "
+"nuisance after three days.\" - Plautus"
+msgstr "\"Nenhum convidado é muito bem-vindo na casa de um amigo, não vá ele se tornar um incómodo depois de três dias.\" – Plauto"
+
+#: gui/text/quotes.txt:153
+msgid "\"He whom the gods love dies young.\" - Plautus"
+msgstr " \"Aquele que os deuses querem favorecer morre jovem.\" – Plauto"
+
+#: gui/text/quotes.txt:154
+msgid "\"Practice yourself what you preach.\" - Plautus"
+msgstr " \"Pratique o que vai pregar.\" – Plauto"
+
+#: gui/text/quotes.txt:155
+msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
+msgstr " \"Beber, viver como os gregos, comer, garganta.\" – Plauto"
+
+#: gui/text/quotes.txt:156
+msgid ""
+"\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
+"the Great)"
+msgstr "\"Pare de citar leis, nós carregamos armas!\" – Pompeu"
+
+#: gui/text/quotes.txt:157
+msgid ""
+"\"Man is the measure of all things: of things which are, that they are, and "
+"of things which are not, that they are not.\" - Protagoras"
+msgstr " \"O homem é a medida de todas as coisas, das coisas que são, enquanto são, das coisas que não são, enquanto não são.\" – Protágoras"
+
+#: gui/text/quotes.txt:158
+msgid ""
+"\"We ought so to behave to one another as to avoid making enemies of our "
+"friends, and at the same time to make friends of our enemies.\" - Pythagoras"
+msgstr " \"Devíamos comportar-nos uns com os outros de forma a evitar fazer inimigos entre os nossos amigos e, ao mesmo tempo, fazer amigos entre os nossos inimigos.\" – Pitágoras"
+
+#: gui/text/quotes.txt:159
+msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
+msgstr " \"Na raiva que deve abster-se tanto do discurso e da acção.\" – Pitágoras"
+
+#: gui/text/quotes.txt:160
+msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
+msgstr "\"O poder é um vizinho próximo da necessidade.\" - Pitágoras"
+
+#: gui/text/quotes.txt:161
+msgid "\"Numbers rule the Universe.\" - Pythagoras"
+msgstr "\"Os números regulam o Universo.\" - Pitágoras"
+
+#: gui/text/quotes.txt:162
+msgid ""
+"\"Rest satisfied with doing well, and leave others to talk of you as they "
+"please.\" - Pythagoras"
+msgstr " \"Fique satisfeito com fazer bem e deixes outros falarem de si como bem entenderem.\" – Pitágoras"
+
+#: gui/text/quotes.txt:163
+msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
+msgstr " \"A raiva começa em loucura e termina em arrependimento.\" – Pitágoras"
+
+#: gui/text/quotes.txt:164
+msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
+msgstr " \"Não há nenhuma palavra ou acção mas tem seu eco na eternidade.\" – Pitágoras"
+
+#: gui/text/quotes.txt:165
+msgid ""
+"\"There is geometry in the humming of the strings, there is music in the "
+"spacing of the spheres.\" - Pythagoras"
+msgstr " \"Há geometria no zumbido das cordas, há música no espaçamento das esferas.\" – Pitágoras"
+
+#: gui/text/quotes.txt:166
+msgid ""
+"\"Practice justice in word and deed, and do not get in the habit of acting "
+"thoughtlessly about anything.\" - Pythagoras"
+msgstr "\"Pratica a justiça com teus actos e com tuas palavras e não ter o hábito de agir sem pensar em nada.\" – Pitágoras"
+
+#: gui/text/quotes.txt:167
+msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
+msgstr "\"Não pense em fazer o que não deve ser feito.\" – Pitágoras"
+
+#: gui/text/quotes.txt:168
+msgid ""
+"\"When the wise man opens his mouth, the beauties of his soul present "
+"themselves to the view, like the statues in a temple.\" - Pythagoras"
+msgstr " \"Quando um homem sábio abre sua boca, a beleza da sua alma fica à mostra, como no caso das estátuas em um templo.\" – Pitágoras"
+
+#: gui/text/quotes.txt:169
+msgid ""
+"\"Remind yourself that all men assert that wisdom is the greatest good, but "
+"that there are few who strenuously seek out that greatest good.\" - "
+"Pythagoras"
+msgstr " \"Lembre-se que todos os homens afirmam que a sabedoria é o maior bem, mas que não são poucos os que procuram tenazmente que bem maior.\" – Pitágoras"
+
+#: gui/text/quotes.txt:170
+msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
+msgstr " \"Sem Justiça, não há reino que pode prosperar.\" – Pitágoras"
+
+#: gui/text/quotes.txt:171
+msgid ""
+"\"For harmony makes small states great, while discord undermines the "
+"mightiest empires.\" - Sallust"
+msgstr "\"Harmonia faz pequenas coisas crescerem , a falta dela faz grandes coisas entrar em decadência.\" – Salústio"
+
+#: gui/text/quotes.txt:172
+msgid ""
+"\"I am mindful of human weakness, and I reflect upon the might of Fortune "
+"and know that everything that we do is exposed to a thousand chances.\" - "
+"Scipio Africanus"
+msgstr "\"Estou consciente da fraqueza humana, penso sobre o poder da fortuna e sei que tudo o que fazemos é exposto a mil coisas.\" – Cipião Africano"
+
+#: gui/text/quotes.txt:173
+msgid ""
+"\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
+"Africanus"
+msgstr "\"Prepare-se para a guerra, uma vez que têm sido incapazes de suportar a paz.\" – Cipião Africano"
+
+#: gui/text/quotes.txt:174
+msgid ""
+"\"Go, tell the Spartans, stranger passing by that here, obedient to their "
+"laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
+msgstr "\"Viajante, anuncia em Esparta que aqui permanecemos em obediência às suas leis.\" – Simónides de Ceos no epitáfio do rei Leonidas I"
+
+#: gui/text/quotes.txt:175
+msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
+msgstr " Nem os próprios deuses lutam contra a necessidade.\" – Simónides de Ceos"
+
+#: gui/text/quotes.txt:176
+msgid ""
+"\"We did not flinch but gave our lives to save Greece when her fate hung on "
+"a razor's edge.\" - Simonides of Ceos"
+msgstr "\"Não vacilamos mas demos a vida para salvar a Grécia, quando o seu destino estava no fio da navalha.\" – Simónides de Ceos"
+
+#: gui/text/quotes.txt:177
+msgid ""
+"\"The bravest are surely those who have the clearest vision of what is "
+"before them, glory and danger alike, and yet notwithstanding, go out to meet"
+" it.\" - Thucydides"
+msgstr "\"Mas os mais corajosos são certamente aqueles que têm a visão mais clara do que está diante deles, da mesma forma que a glória e o perigo que mesmo assim têm que encontrá-los.\"– Péricles"

@@ -95,6 +95,8 @@ def generateTemplatesForMessagesFile(messagesFilePath):
         with codecs.open(os.path.join(rootPath, templateSettings["output"]), 'w', 'utf-8') as fileObject:
             write_po(fileObject, template)
 
+        print(u"Generated “{}” with {} messages.".format(templateSettings["output"], len(template)))
+
 
 def main():
 

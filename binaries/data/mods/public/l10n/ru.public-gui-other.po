@@ -1,0 +1,1734 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ru\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: globalscripts/l10n.js:112
+msgctxt "enumeration"
+msgid ", "
+msgstr ", "
+
+#: gui/civinfo/civinfo.js:108
+#, python-format
+msgid "%(civilization)s Gameplay"
+msgstr "%(civilization)s Геймплей"
+
+#: gui/civinfo/civinfo.js:111
+msgid "Civilization Bonus"
+msgid_plural "Civilization Bonuses"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: gui/civinfo/civinfo.js:116
+msgid "Team Bonus"
+msgid_plural "Team Bonuses"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: gui/civinfo/civinfo.js:125
+msgid "Special Technologies"
+msgstr "Специальные технологии"
+
+#: gui/civinfo/civinfo.js:134
+msgid "Special Building"
+msgid_plural "Special Buildings"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+msgid "Heroes"
+msgstr "Герои"
+
+#: gui/civinfo/civinfo.js:157
+#, python-format
+msgid "History of the %(civilization)s"
+msgstr "История %(civilization)s"
+
+#: gui/common/functions_global_object.js:75
+#, python-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait...."
+msgstr "Открывается %(url)s\nв браузере по умолчанию. Пожалуйста, подождите..."
+
+#: gui/common/functions_global_object.js:75
+msgid "Opening page"
+msgstr ""
+
+#: gui/common/functions_global_object.js:80
+#, python-format
+msgid "FPS: %(fps)s"
+msgstr "FPS: %(fps)s"
+
+#: gui/common/functions_utility.js:260
+msgid "mm:ss"
+msgstr ""
+
+#: gui/common/functions_utility.js:262
+msgid "HH:mm:ss"
+msgstr "HH:mm:ss"
+
+#: gui/common/functions_utility_error.js:22
+msgid "Loading Aborted"
+msgstr "Загрузка прервана"
+
+#: gui/common/functions_utility_list.js:14
+#: gui/common/functions_utility_list.js:44
+#: gui/common/functions_utility_list.js:69
+#: gui/common/functions_utility_list.js:84
+#: gui/common/functions_utility_list.js:101
+#: gui/common/functions_utility_list.js:113
+#: gui/common/functions_utility_list.js:125
+#: gui/common/functions_utility_list.js:141
+#, python-format
+msgid "%(functionName)s: %(object)s not found."
+msgstr "%(functionName)s: %(object)s не найдено."
+
+#: gui/common/functions_utility_list.js:161
+#, python-format
+msgid "Requested string '%(string)s' not found in %(object)s's list."
+msgstr "Запрошенная строка '%(string)s' не найдена в списке %(object)s's."
+
+#: gui/common/functions_utility_loadsave.js:8
+msgid "yyyy-MM-dd HH:mm:ss"
+msgstr "yyyy-MM-dd HH:mm:ss"
+
+#: gui/common/functions_utility_loadsave.js:9
+#, python-format
+msgid "[%(date)s]"
+msgstr "[%(date)s]"
+
+#: gui/common/functions_utility_loadsave.js:18
+#, python-format
+msgid "%(dateString)s %(map)s - %(description)s"
+msgstr "%(dateString)s %(map)s - %(description)s"
+
+#: gui/common/functions_utility_loadsave.js:20
+#, python-format
+msgid "%(dateString)s %(map)s"
+msgstr "%(dateString)s %(map)s"
+
+#: gui/common/network.js:6
+msgid "Unknown reason"
+msgstr "Неизвестная причина"
+
+#: gui/common/network.js:7
+msgid "Unexpected shutdown"
+msgstr "Неожиданная остановка"
+
+#: gui/common/network.js:8
+msgid "Incorrect network protocol version"
+msgstr "Неверная версия протокола"
+
+#: gui/common/network.js:9
+msgid "Game has already started"
+msgstr "Игра уже запущена"
+
+#: gui/common/network.js:10
+#, python-format
+msgid "[Invalid value %(id)s]"
+msgstr "[Неверное значение %(id)s]"
+
+#: gui/common/network.js:19
+msgid "Lost connection to the server."
+msgstr "Подключение к серверу разорвано."
+
+#: gui/common/network.js:19
+#, python-format
+msgid "Reason: %(reason)s."
+msgstr "Причина: %(reason)s."
+
+#: gui/common/network.js:20
+msgid "Disconnected"
+msgstr "Соединение разорвано"
+
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "Пусто"
+
+#: gui/locale/locale_advanced.js:91
+msgid "<invalid>"
+msgstr ""
+
+#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+msgid "Yes"
+msgstr "Да"
+
+#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+msgid "No"
+msgstr "Нет"
+
+#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/splashscreen/splashscreen.xml:27 (caption)
+msgid "OK"
+msgstr "OK"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Retry"
+msgstr "Повторить"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Ignore"
+msgstr "Игнорировать"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Abort"
+msgstr "Сброс"
+
+#: gui/options/options.js:9
+msgid "Windowed Mode"
+msgstr " Оконный режим"
+
+#: gui/options/options.js:9
+msgid "Start 0 A.D. in a window"
+msgstr "Запустить 0 A.D. в окне"
+
+#: gui/options/options.js:10
+msgid "Background Pause"
+msgstr "Фоновая пауза"
+
+#: gui/options/options.js:10
+msgid "Pause single player games when window loses focus"
+msgstr "Ставить на паузу одиночную игру, когда окно неактивно"
+
+#: gui/options/options.js:11
+msgid "Disable Welcome Screen"
+msgstr "Отключить окно приветствия"
+
+#: gui/options/options.js:11
+msgid ""
+"If you disable this screen completely, you may miss important announcements.\n"
+"You can still launch it using the main menu."
+msgstr "Если Вы отключите экран приветствия, Вы можете потерять важные сообщения.\nВы можете все еще включить его используя главное меню."
+
+#: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr "Подробное подсказки"
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr ""
+
+#: gui/options/options.js:16
+msgid "Prefer GLSL"
+msgstr "Приоритет GLSL"
+
+#: gui/options/options.js:16
+msgid "Use OpenGL 2.0 shaders (recommended)"
+msgstr "Использовать шейдеры OpenGL 2.0 (рекомендуется)"
+
+#: gui/options/options.js:17
+msgid "Post Processing"
+msgstr "Запрос послан"
+
+#: gui/options/options.js:17
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr "Использовать экранные фильтры постобработки (HDR, Bloom, DOF, и др.)"
+
+#: gui/options/options.js:18
+msgid "Shadows"
+msgstr "Тени"
+
+#: gui/options/options.js:18
+msgid "Enable shadows"
+msgstr "Отображать тени"
+
+#: gui/options/options.js:19
+msgid "Particles"
+msgstr "Частицы"
+
+#: gui/options/options.js:19
+msgid "Enable particles"
+msgstr "Отображать частицы"
+
+#: gui/options/options.js:20
+msgid "Show Sky"
+msgstr "Показать небо"
+
+#: gui/options/options.js:20
+msgid "Render Sky"
+msgstr "Отображеть небо"
+
+#: gui/options/options.js:21
+msgid "Smooth LOS"
+msgstr ""
+
+#: gui/options/options.js:21
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
+msgstr "Увеличить темноту и плавный туман войны (Необходим GLSL)"
+
+#: gui/options/options.js:22
+msgid "Unit Silhouettes"
+msgstr "Силуэты юнитов"
+
+#: gui/options/options.js:22
+msgid "Show outlines of units behind buildings"
+msgstr "Отображать контур юнитов сквозь здания"
+
+#: gui/options/options.js:23
+msgid "Shadow Filtering"
+msgstr ""
+
+#: gui/options/options.js:23
+msgid "Smooth shadows"
+msgstr "Гладкие тени"
+
+#: gui/options/options.js:24
+msgid "HQ Waviness"
+msgstr "HQ Волнистости"
+
+#: gui/options/options.js:24
+msgid ""
+"Use real normals for ocean-wave rendering, instead of applying them as a "
+"flat texture"
+msgstr "Использовать реальные нормали для рендеринга океанских волн, вместо наложения их как плоские текстуры"
+
+#: gui/options/options.js:25
+msgid "Real Water Depth"
+msgstr "Фактическая глубина воды"
+
+#: gui/options/options.js:25
+msgid "Use actual water depth in rendering calculations"
+msgstr "Использовать реальную глубину воды в вычислениях рендеринга"
+
+#: gui/options/options.js:26
+msgid "Water Reflections"
+msgstr "Преломления воды"
+
+#: gui/options/options.js:26
+msgid "Allow water to reflect a mirror image"
+msgstr "Разрешить воде отражать зеркальное изображение"
+
+#: gui/options/options.js:27
+msgid "Water Refraction"
+msgstr "Преломление воды"
+
+#: gui/options/options.js:27
+msgid "Use a real water refraction map and not transparency"
+msgstr ""
+
+#: gui/options/options.js:28
+msgid "Shore Foam"
+msgstr "Береговая пена"
+
+#: gui/options/options.js:28
+msgid "Show foam on water near shore depending on water waviness"
+msgstr "Показывать пену на воде возле берега на волнах "
+
+#: gui/options/options.js:29
+msgid "Shore Waves"
+msgstr "Береговые волны"
+
+#: gui/options/options.js:29
+msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
+msgstr "Показывать разбивающиеся волны на воде возле берега (Требуется HQ Волнистость)"
+
+#: gui/options/options.js:30
+msgid "Water Shadows"
+msgstr "Тени воды"
+
+#: gui/options/options.js:30
+msgid "Cast shadows on water"
+msgstr "Отбрасывать тени на воде"
+
+#: gui/options/options.js:31
+msgid "VSync"
+msgstr " Cинхронизация кадровая"
+
+#: gui/options/options.js:31
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "Включить кадровую синхронизацию для корректировки износа экрана. ТРЕБУЕТСЯ ПЕРЕЗАПУСК ИГРЫ"
+
+#: gui/options/options.js:35
+msgid "Master Gain"
+msgstr "Общая громкость"
+
+#: gui/options/options.js:35
+msgid "Master audio gain"
+msgstr "Общее усиление звука"
+
+#: gui/options/options.js:36
+msgid "Music Gain"
+msgstr "Громкость музыки"
+
+#: gui/options/options.js:36
+msgid "In game music gain"
+msgstr "Усиление музыки в игре"
+
+#: gui/options/options.js:37
+msgid "Ambient Gain"
+msgstr ""
+
+#: gui/options/options.js:37
+msgid "In game ambient sound gain"
+msgstr ""
+
+#: gui/options/options.js:38
+msgid "Action Gain"
+msgstr ""
+
+#: gui/options/options.js:38
+msgid "In game unit action sound gain"
+msgstr ""
+
+#: gui/options/options.js:39
+msgid "UI Gain"
+msgstr "Громкость интерфейса"
+
+#: gui/options/options.js:39
+msgid "UI sound gain"
+msgstr "Громкость звуков интерфейса"
+
+#: gui/options/options.js:43
+msgid "Chat Backlog"
+msgstr "История чата"
+
+#: gui/options/options.js:43
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "Количество сообщений, которые загружаются из памяти при входе в общий чат"
+
+#: gui/options/options.js:44
+msgid "Chat Timestamp"
+msgstr "Отметка времени чата"
+
+#: gui/options/options.js:44
+msgid "Show time that messages are posted in the lobby chat"
+msgstr "Показывать время сообщений в общем чате"
+
+#: gui/pregame/mainmenu.js:106
+msgid "disabled"
+msgstr "отключен"
+
+#: gui/pregame/mainmenu.js:109
+msgid "connecting to server"
+msgstr "подключение к серверу"
+
+#: gui/pregame/mainmenu.js:114
+#, c-format
+msgid "uploading (%f%%)"
+msgstr "загрузка (%f%%)"
+
+#: gui/pregame/mainmenu.js:121
+msgid "upload succeeded"
+msgstr "загрузка завершена"
+
+#: gui/pregame/mainmenu.js:123
+#, python-format
+msgid "upload failed (%(errorCode)s)"
+msgstr "Ошибка загрузки (%(errorCode)s)"
+
+#: gui/pregame/mainmenu.js:130
+#, python-format
+msgid "upload failed (%(errorMessage)s)"
+msgstr "Ошибка загрузки  (%(errorMessage)s)"
+
+#: gui/pregame/mainmenu.js:133
+msgid "unknown"
+msgstr "неизвестно"
+
+#: gui/pregame/mainmenu.js:177
+#, python-format
+msgid ""
+"%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
+"(fixed function) graphics. This option will be removed in a future 0 A.D. "
+"release, to allow for more advanced graphics features. We advise upgrading "
+"your graphics card to a more recent, shader-compatible model."
+msgstr ""
+
+#. Translation: This is the second paragraph of a warning. The
+#. warning explains that the user is using “non-shader“ graphics,
+#. and that in the future this will not be supported by the game, so
+#. the user will need a better graphics card.
+#: gui/pregame/mainmenu.js:183
+msgid "Please press \"Read More\" for more information or \"OK\" to continue."
+msgstr "Пожалуйста, нажмите на кнопку \"Подробнее\" для получения дополнительной информации или \"OK\" для продолжения."
+
+#: gui/pregame/mainmenu.js:184
+msgid "WARNING!"
+msgstr "ВНИМАНИЕ!"
+
+#: gui/pregame/mainmenu.js:186
+msgid "Read More"
+msgstr "Подробнее"
+
+#: gui/pregame/mainmenu.js:279
+#, python-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Сборка: %(buildDate)s (%(revision)s)"
+
+#: gui/pregame/mainmenu.js:310
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr "Вы действительно хотите покинуть 0 A.D.?"
+
+#: gui/pregame/mainmenu.js:310
+msgid "Confirmation"
+msgstr "Подтверждение"
+
+#: gui/pregame/mainmenu.js:320
+msgid ""
+"The scenario editor is not available or failed to load. See the game logs "
+"for additional information."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:320
+msgid "Error"
+msgstr "Ошибка"
+
+#: gui/pregame/mainmenu.js:325
+msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgstr ""
+
+#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
+#: gui/pregame/mainmenu.xml:145 (caption)
+msgid "Technical Details"
+msgstr "Технические детали"
+
+#: gui/pregame/mainmenu.js:335
+msgid "Manual"
+msgstr "Руководство"
+
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+msgid "No saved games found"
+msgstr "Ненайдено сохраненных игр "
+
+#: gui/savedgames/load.js:46
+msgid "This saved game may not be compatible:"
+msgstr "Сохраненная игра может быть несовместима:"
+
+#: gui/savedgames/load.js:48
+#, python-format
+msgid ""
+"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
+"%(currentVersion)s."
+msgstr ""
+
+#: gui/savedgames/load.js:58
+#, python-format
+msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
+msgstr ""
+
+#: gui/savedgames/load.js:62
+#, python-format
+msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
+msgstr ""
+
+#: gui/savedgames/load.js:66
+#, python-format
+msgid ""
+"It needs the mod \"%(requiredMod)s\" while you are running with "
+"\"%(currentMod)s\"."
+msgstr ""
+
+#: gui/savedgames/load.js:71
+msgid "Do you still want to proceed?"
+msgstr ""
+
+#: gui/savedgames/load.js:72
+msgid "Warning"
+msgstr ""
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/save.js:91
+#, python-format
+msgid "\"%(label)s\""
+msgstr "\"%(label)s\""
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+msgid "Saved game will be permanently deleted, are you sure?"
+msgstr "Сохраненная игра будет безвозвратно удалена, вы уверены?"
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+msgid "DELETE"
+msgstr "УДАЛИТЬ"
+
+#: gui/savedgames/save.js:61
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "Сохраненная игра будет перезаписана, вы уверены?"
+
+#: gui/savedgames/save.js:61
+msgid "OVERWRITE SAVE"
+msgstr "ПЕРЕЗАПИСАТЬ СОХРАНЕНИЕ"
+
+#: gui/summary/summary.js:508
+msgid "Scenario"
+msgstr "Сценарий"
+
+#: gui/summary/summary.js:510
+#, python-format
+msgid "Time elapsed: %(time)s"
+msgstr "Прошло времени: %(time)s"
+
+#: gui/summary/summary.js:531
+#, python-format
+msgid "%(mapName)s - %(mapType)s"
+msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/civinfo/civinfo.xml:16 (caption)
+msgid "Civilizations"
+msgstr "Цивилизации"
+
+#: gui/civinfo/civinfo.xml:28 (caption)
+msgid "Civilization Selection"
+msgstr "Выбор цивилизации"
+
+#: gui/civinfo/civinfo.xml:118 (caption)
+msgid "Close"
+msgstr "Закрыть"
+
+#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
+#: (caption) gui/pregame/mainmenu.xml:316 (caption)
+msgid "Language"
+msgstr "Язык"
+
+#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
+#: (caption)
+msgid "Language:"
+msgstr "Язык:"
+
+#. A locale is a set of parameters that defines the user’s language, country
+#. and
+#. any special variant preferences that the user wants to see in their user
+#. interface. Here, “Locale” refers to the code that identifies those
+#. settings,
+#. such as ‘en_US’.
+#: gui/locale/locale.xml:31 (caption)
+msgid "Locale:"
+msgstr "Язык:"
+
+#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
+#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
+#: (caption) gui/savedgames/save.xml:37 (caption)
+msgid "Cancel"
+msgstr "Отмена"
+
+#: gui/locale/locale.xml:41 (caption)
+msgid "Advanced"
+msgstr "Продвинутый"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
+#: (caption)
+msgid "Accept"
+msgstr "Подтвердить"
+
+#: gui/locale/locale_advanced.xml:25 (caption)
+msgid "Country:"
+msgstr "Страна:"
+
+#: gui/locale/locale_advanced.xml:34 (caption)
+msgid "Script:"
+msgstr "Код:"
+
+#: gui/locale/locale_advanced.xml:37 (tooltip)
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:41 (caption)
+msgid "Variant (unused):"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:44 (tooltip)
+#: gui/locale/locale_advanced.xml:51 (tooltip)
+msgid "Not implemented yet."
+msgstr "Еще не реализовано."
+
+#: gui/locale/locale_advanced.xml:48 (caption)
+msgid "Keywords (unused):"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:55 (caption)
+msgid "Resulting locale:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:60 (caption)
+msgid "Dictionary files used:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:70 (caption)
+msgid "Auto detect"
+msgstr "Автоопределение"
+
+#: gui/options/options.xml:18 (caption)
+msgid "Game Options"
+msgstr "Настройки игры"
+
+#: gui/options/options.xml:22 (caption)
+msgid "General"
+msgstr ""
+
+#: gui/options/options.xml:34 (caption)
+msgid "Graphics Settings"
+msgstr "Настройки изображения"
+
+#: gui/options/options.xml:46 (caption)
+msgid "Sound Settings"
+msgstr "Настройка звука"
+
+#: gui/options/options.xml:58 (caption)
+msgid "Lobby Settings"
+msgstr "Настройки лобби"
+
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+msgid "Save"
+msgstr "Сохранить"
+
+#: gui/pregame/mainmenu.xml:104
+msgid "Help improve 0 A.D.!"
+msgstr "Помогите улучшить 0 A.D.!"
+
+#: gui/pregame/mainmenu.xml:106
+msgid ""
+"You can automatically send us anonymous feedback that will help us fix bugs,"
+" and improve performance and compatibility."
+msgstr "Вы можете автоматически посылать нам анонимную информацию, которая поможет исправить ошибки, улучшить производительность и совместимость."
+
+#: gui/pregame/mainmenu.xml:132
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "Спасибо за помощь в улучшении 0 A.D.!"
+
+#: gui/pregame/mainmenu.xml:134
+msgid "Anonymous feedback is currently enabled."
+msgstr "Анонимный сбор информации включён."
+
+#: gui/pregame/mainmenu.xml:136
+msgid "Status: $status."
+msgstr "Статус: $status."
+
+#: gui/pregame/mainmenu.xml:504
+msgid "Alpha XVI: Patañjali"
+msgstr "Alpha XVI: Патанджали"
+
+#: gui/pregame/mainmenu.xml:506
+msgid ""
+"WARNING: This is an early development version of the game. Many features "
+"have not been added yet."
+msgstr "ВНИМАНИЕ: Игра находится на стадии разработки. Многие запланированные функции, ещё не реализованы."
+
+#: gui/pregame/mainmenu.xml:508
+msgid "Get involved at: play0ad.com"
+msgstr "Посетите: play0ad.com"
+
+#: gui/pregame/mainmenu.xml:110 (caption)
+msgid "Enable Feedback"
+msgstr "Включить обратную связь"
+
+#: gui/pregame/mainmenu.xml:141 (caption)
+msgid "Disable Feedback"
+msgstr "Выключить обратную связь"
+
+#: gui/pregame/mainmenu.xml:184 (caption)
+msgid "Matches"
+msgstr "Матчи"
+
+#: gui/pregame/mainmenu.xml:185 (tooltip)
+msgid "Click here to start a new single player game."
+msgstr "Нажмите здесь, чтобы начать новую одиночную игру."
+
+#: gui/pregame/mainmenu.xml:198 (caption)
+msgid "Campaigns"
+msgstr "Кампании"
+
+#: gui/pregame/mainmenu.xml:199 (tooltip)
+msgid ""
+"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+msgstr "Воспроизведите историю в исторических военных кампаниях. [НЕ РЕАЛИЗОВАНО]"
+
+#: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
+msgid "Load Game"
+msgstr "Загрузить игру"
+
+#: gui/pregame/mainmenu.xml:216 (tooltip)
+msgid "Click here to load a saved game."
+msgstr "Нажмите здесь, чтобы загрузить сохранённую игру."
+
+#: gui/pregame/mainmenu.xml:238 (caption)
+msgid "Join Game"
+msgstr "Присоединиться к игре"
+
+#: gui/pregame/mainmenu.xml:239 (tooltip)
+msgid "Joining an existing multiplayer game."
+msgstr "Присоединиться к существующей многопользовательской игре."
+
+#: gui/pregame/mainmenu.xml:253 (caption)
+msgid "Host Game"
+msgstr "Создать игру"
+
+#: gui/pregame/mainmenu.xml:254 (tooltip)
+msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
+msgstr "Создать многопользовательскую игру.\\n\\nПорт UDP 20595 должен быть открыт."
+
+#: gui/pregame/mainmenu.xml:268 (caption)
+msgid "Game Lobby"
+msgstr "Игровое лобби"
+
+#: gui/pregame/mainmenu.xml:269 (tooltip)
+msgid "Launch the multiplayer lobby."
+msgstr "Создать мультиплеерное лобби"
+
+#: gui/pregame/mainmenu.xml:299 (caption)
+msgid "Options"
+msgstr "Настройки"
+
+#: gui/pregame/mainmenu.xml:300 (tooltip)
+msgid "Adjust game settings."
+msgstr "Настроить параметры игры."
+
+#: gui/pregame/mainmenu.xml:317 (tooltip)
+msgid "Choose the language of the game."
+msgstr "Выберите язык игры."
+
+#: gui/pregame/mainmenu.xml:332 (caption)
+msgid "Scenario Editor"
+msgstr "Редактор сценариев"
+
+#: gui/pregame/mainmenu.xml:333 (tooltip)
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr "Открыть редактор сценариев Atlas в новом окне. Вы также можете перейти в режим редактора, запустив игру с аргументом командной строки \"-editor\"."
+
+#: gui/pregame/mainmenu.xml:345 (caption)
+msgid "Welcome Screen"
+msgstr "Экран приветствия"
+
+#: gui/pregame/mainmenu.xml:346 (tooltip)
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "Показ Экрана приветствия. Полезно, если это скрыто по ошибке."
+
+#: gui/pregame/mainmenu.xml:402 (caption)
+msgid "Learn To Play"
+msgstr "Обучение игре"
+
+#: gui/pregame/mainmenu.xml:403 (tooltip)
+msgid "Open the 0 A.D. Game Manual."
+msgstr "Открыть Игровое Руководство 0 A.D."
+
+#: gui/pregame/mainmenu.xml:419 (caption)
+msgid "Single Player"
+msgstr "Одиночная игра"
+
+#: gui/pregame/mainmenu.xml:420 (tooltip)
+msgid "Challenge the computer player to a single player match."
+msgstr "Сразиться с компьютерным игроком в однопользовательской игре."
+
+#: gui/pregame/mainmenu.xml:434 (caption)
+msgid "Multiplayer"
+msgstr "Многопользовательская игра"
+
+#: gui/pregame/mainmenu.xml:435 (tooltip)
+msgid "Fight against one or more human players in a multiplayer game."
+msgstr "Сразиться с одним или несколькими игроками в многопользовательской игре."
+
+#: gui/pregame/mainmenu.xml:449 (caption)
+msgid "Tools & Options"
+msgstr "Инструменты и настройки"
+
+#: gui/pregame/mainmenu.xml:450 (tooltip)
+msgid "Game options and scenario design tools."
+msgstr "Настройки игры и инструменты для создания сценариев."
+
+#: gui/pregame/mainmenu.xml:464 (caption)
+msgid "History"
+msgstr "История"
+
+#: gui/pregame/mainmenu.xml:465 (tooltip)
+msgid "Learn about the many civilizations featured in 0 A.D."
+msgstr "Познакомьтесь со множеством цивилизаций, представленных в 0 A.D."
+
+#: gui/pregame/mainmenu.xml:481 (caption)
+msgid "Exit"
+msgstr "Выход"
+
+#: gui/pregame/mainmenu.xml:482 (tooltip)
+msgid "Exits the game."
+msgstr "Выйти из игры."
+
+#: gui/pregame/mainmenu.xml:518 (caption)
+msgid "Help with the Translation!"
+msgstr "Помогите с переводом!"
+
+#: gui/pregame/mainmenu.xml:519 (tooltip)
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:530 (caption)
+msgid "Website"
+msgstr "Сайт"
+
+#: gui/pregame/mainmenu.xml:531 (tooltip)
+msgid "Click to open play0ad.com in your web browser."
+msgstr "Нажмите, чтобы открыть play0ad.com в браузере."
+
+#: gui/pregame/mainmenu.xml:542 (caption)
+msgid "Chat"
+msgstr "Чат"
+
+#: gui/pregame/mainmenu.xml:543 (tooltip)
+msgid ""
+"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
+"webchat.quakenet.org)"
+msgstr "Нажмите, чтобы открыть IRC-чат 0 A.D. в браузере. (#0ad на webchat.quakenet.org)"
+
+#: gui/pregame/mainmenu.xml:554 (caption)
+msgid "Report a Bug"
+msgstr "Сообщить об ошибке"
+
+#: gui/pregame/mainmenu.xml:555 (tooltip)
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr "Нажмите чтобы посетить 0 A.D. Trac для отчетов о багах, крахах или ошибках."
+
+#: gui/pregame/mainmenu.xml:583 (caption)
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+msgid "Delete"
+msgstr "Удалить"
+
+#: gui/savedgames/load.xml:35 (caption)
+msgid "Load"
+msgstr "Загрузить"
+
+#: gui/savedgames/save.xml:15 (caption)
+msgid "Save Game"
+msgstr "Сохранить игру"
+
+#: gui/savedgames/save.xml:29 (caption)
+msgid "Description:"
+msgstr "Описание:"
+
+#: gui/splashscreen/splashscreen.xml:12 (caption)
+msgid "Welcome to 0 A.D. !"
+msgstr "Добро пожаловать в 0 A.D.!"
+
+#: gui/splashscreen/splashscreen.xml:20 (caption)
+msgid "Show this message in the future"
+msgstr "Показывать это сообщение в будущее"
+
+#: gui/splashscreen/splashscreen.xml:38 (caption)
+msgid "Known issues (web)"
+msgstr "Известные проблемы (web)"
+
+#: gui/summary/summary.xml:23 (caption)
+msgid "Summary"
+msgstr "Итог"
+
+#: gui/summary/summary.xml:63 (caption)
+msgid "Score"
+msgstr "Очки"
+
+#: gui/summary/summary.xml:70 (caption)
+msgid "Buildings"
+msgstr "Постройки"
+
+#: gui/summary/summary.xml:77 (caption)
+msgid "Units"
+msgstr "Юниты"
+
+#: gui/summary/summary.xml:84 (caption)
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: gui/summary/summary.xml:91 (caption)
+msgid "Market"
+msgstr "Рынок"
+
+#: gui/summary/summary.xml:98 (caption)
+msgid "Miscellaneous"
+msgstr "Разное"
+
+#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
+#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
+#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+msgid "Player name"
+msgstr "Имя игрока"
+
+#: gui/summary/summary.xml:109 (caption)
+msgid "Economy score"
+msgstr "Экономический счет"
+
+#: gui/summary/summary.xml:112 (caption)
+msgid "Military score"
+msgstr "Военный счет"
+
+#: gui/summary/summary.xml:115 (caption)
+msgid "Exploration score"
+msgstr "Исследование"
+
+#: gui/summary/summary.xml:118 (caption)
+msgid "Total score"
+msgstr "Очков всего"
+
+#: gui/summary/summary.xml:231 (caption)
+msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
+msgstr "Статистика Зданий (Построено / Потеряно / Разрушено)"
+
+#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
+#: gui/summary/summary.xml:581 (caption)
+msgid "Total"
+msgstr "Всё"
+
+#: gui/summary/summary.xml:237 (caption)
+msgid "Houses"
+msgstr "Дома"
+
+#: gui/summary/summary.xml:240 (caption)
+msgid "Economic"
+msgstr "Экономика"
+
+#: gui/summary/summary.xml:243 (caption)
+msgid "Outposts"
+msgstr "Заставы"
+
+#: gui/summary/summary.xml:246 (caption)
+msgid "Military"
+msgstr "Военные"
+
+#: gui/summary/summary.xml:249 (caption)
+msgid "Fortresses"
+msgstr "Форт"
+
+#: gui/summary/summary.xml:252 (caption)
+msgid "Civ Centers"
+msgstr ""
+
+#: gui/summary/summary.xml:255 (caption)
+msgid "Wonders"
+msgstr "Чудеса"
+
+#: gui/summary/summary.xml:405 (caption)
+msgid "Units Statistics (Trained / Lost / Killed)"
+msgstr "Статистика Юнитов (Натренировано / Потеряно / Убито)"
+
+#: gui/summary/summary.xml:411 (caption)
+msgid "Infantry"
+msgstr "Пехотинец"
+
+#: gui/summary/summary.xml:414 (caption)
+msgid "Worker"
+msgstr "Рабочий"
+
+#: gui/summary/summary.xml:417 (caption)
+msgid "Cavalry"
+msgstr "Конница"
+
+#: gui/summary/summary.xml:420 (caption)
+msgid "Champion"
+msgstr "Элита"
+
+#: gui/summary/summary.xml:426 (caption)
+msgid "Navy"
+msgstr "Флот"
+
+#: gui/summary/summary.xml:566 (caption)
+msgid "Resource Statistics (Gathered / Used)"
+msgstr "Статистика ресурсов (Добыто / Потрачено)"
+
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "Еда"
+
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "Дерево"
+
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "Камень"
+
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "Метал"
+
+#: gui/summary/summary.xml:584 (caption)
+msgid "Treasures collected"
+msgstr "Собрано сокровищ"
+
+#: gui/summary/summary.xml:587 (caption)
+msgid "Tributes (Sent / Received)"
+msgstr "Дань (Отдано/Получено)"
+
+#: gui/summary/summary.xml:727 (caption)
+msgid "Food exchanged"
+msgstr "Обменено еды"
+
+#: gui/summary/summary.xml:730 (caption)
+msgid "Wood exchanged"
+msgstr "Обменено дерева"
+
+#: gui/summary/summary.xml:733 (caption)
+msgid "Stone exchanged"
+msgstr "Обменено камня"
+
+#: gui/summary/summary.xml:736 (caption)
+msgid "Metal exchanged"
+msgstr "Обменено метала"
+
+#: gui/summary/summary.xml:739 (caption)
+msgid "Barter efficiency"
+msgstr "Эффективность обмена"
+
+#: gui/summary/summary.xml:742 (caption)
+msgid "Trade income"
+msgstr "Доход от торговли"
+
+#: gui/summary/summary.xml:873 (caption)
+msgid "Vegetarian\\nratio"
+msgstr ""
+
+#: gui/summary/summary.xml:876 (caption)
+msgid "Feminisation"
+msgstr ""
+
+#: gui/summary/summary.xml:879 (caption)
+msgid "Kill / Death\\nratio"
+msgstr ""
+
+#: gui/summary/summary.xml:882 (caption)
+msgid "Map\\nexploration"
+msgstr ""
+
+#: gui/summary/summary.xml:989 (caption)
+msgid "Continue"
+msgstr "Продолжить"
+
+#: gui/splashscreen/splashscreen.txt:1
+msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
+msgstr "[font=\"sans-bold-16\"]Благодарим вас за установку 0 A.D.!"
+
+#: gui/splashscreen/splashscreen.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/splashscreen/splashscreen.txt:3
+msgid ""
+"[icon=\"constructionIcon\"]  This is an early experimental version of the "
+"game. Features are missing and it contains bugs."
+msgstr "[icon=\"constructionIcon\"]  Это ранняя экспериментальная версия игры. Features are missing and it contains bugs. Некоторые возможности отсутствуют и содержит ошибки."
+
+#: gui/splashscreen/splashscreen.txt:5
+msgid "[icon=iconLag]  The game lags when many units are moving."
+msgstr ""
+
+#: gui/splashscreen/splashscreen.txt:7
+msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
+msgstr "[icon=\"iconShip\"] Компьютер противник не может использовать корабли."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid "[icon=\"iconMap\"]  Large maps can cause problems."
+msgstr "[icon=\"iconMap\"] Большие карты могут вызвать проблемы."
+
+#: gui/text/tips/army_camp.txt:1
+msgid "ROMAN ARMY CAMP"
+msgstr "РИМСКИЙ ВОЕННЫЙ ЛАГЕРЬ"
+
+#: gui/text/tips/army_camp.txt:2
+msgid ""
+"- Build anywhere on the map, even in enemy territory. Good for building a "
+"secret base behind enemy lines or to consolidate gains within enemy "
+"territory."
+msgstr "- Постройте где-нибудь на карте, даже на территории врага. Хороший для постройки секретной базы позади линии врага или для объединения на вражеской территории. "
+
+#: gui/text/tips/army_camp.txt:4
+msgid "- Loses health when in neutral or enemy territory."
+msgstr "- "
+
+#: gui/text/tips/army_camp.txt:6
+msgid "- Construct siege weapons and train citizen-soldiers."
+msgstr "- Стройте осадные орудия и тренируйте городских солдат. "
+
+#: gui/text/tips/army_camp.txt:8
+msgid "- Slowly heal up to 40 garrisoned units."
+msgstr "- Медленно исцеляет до 40 размещенных юнитов."
+
+#: gui/text/tips/barracks.txt:1
+msgid "BARRACKS"
+msgstr "БАРАКИ"
+
+#: gui/text/tips/barracks.txt:2
+msgid ""
+"- Train all citizen-soldiers. Some factions can unlock the training of "
+"champions as well."
+msgstr ""
+
+#: gui/text/tips/barracks.txt:4
+msgid "- Research military technologies unique to each faction."
+msgstr "- Исследуйте военные технологии уникальные для каждой цивилизации."
+
+#: gui/text/tips/barracks.txt:6
+msgid ""
+"- Build one early to train citizen-soldiers while you phase up your "
+"settlement."
+msgstr "- Постройте его в начале для тренировки городских солдат пока Ваше поселене не достаточно развилось. "
+
+#: gui/text/tips/barracks.txt:8
+msgid "- Build in a forward base to resupply your assault with fresh troops."
+msgstr "- Стройте в передней части базы для пополнения Вашей атаки свежими силами."
+
+#: gui/text/tips/blacksmith.txt:1
+msgid "BLACKSMITH"
+msgstr "КУЗНЕЦ"
+
+#: gui/text/tips/blacksmith.txt:2
+msgid "- Research structure for all factions."
+msgstr "Структура исследований для всех цивилизаций."
+
+#: gui/text/tips/blacksmith.txt:4
+msgid "- Research weapon and armor upgrades for your units."
+msgstr "- Исследования улучшений оружия и защиты для Ваших юнитов. "
+
+#: gui/text/tips/blacksmith.txt:6
+msgid "- Garrison a citizen-soldier inside to research faster."
+msgstr "- Разместите горожанина-солдата внутри для ускорения исследований."
+
+#: gui/text/tips/carth_sacred_band.txt:1
+msgid "CARTHAGINIAN SACRED BAND"
+msgstr "КАРФАГЕНСКИЙ СВЯЩЕННЫЙ ОТРЯД"
+
+#: gui/text/tips/carth_sacred_band.txt:2
+msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr ""
+
+#: gui/text/tips/carth_sacred_band.txt:4
+msgid ""
+"- Both cost Food and Metal and are trainable from the Temple, instead of the"
+" Fortress like most other champions."
+msgstr ""
+
+#: gui/text/tips/carth_sacred_band.txt:6
+msgid ""
+"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
+"heavy shock against siege weapons and skirmishers."
+msgstr ""
+
+#: gui/text/tips/catapults.txt:1
+msgid "CATAPULTS"
+msgstr "КАТАПУЛЬТЫ"
+
+#: gui/text/tips/catapults.txt:2
+msgid "- Ranged siege engines that are good against buildings."
+msgstr "- Выстраивайте в ряд осадные машины против зданий. "
+
+#: gui/text/tips/catapults.txt:4
+msgid ""
+"- May upgrade to flaming projectiles for extra effectiveness against "
+"buildings and units."
+msgstr "Можете улучшить до летящего огня для дополнительного эффекта против зданий и юнитов."
+
+#: gui/text/tips/catapults.txt:6
+msgid "- Expensive and slow."
+msgstr "- Дорогой и медленный."
+
+#: gui/text/tips/catapults.txt:8
+msgid ""
+"- Pack up into carts for movement, and unpack into stationary engines for "
+"attack!"
+msgstr "- Соберите в повозку для движения, и разберите в стационарную машину для атаки!"
+
+#: gui/text/tips/celtic_war_barge.txt:1
+msgid "CELTIC WAR BARGE"
+msgstr "ВОЕННАЯ БАРЖА КЕЛЬТОВ"
+
+#: gui/text/tips/celtic_war_barge.txt:2
+msgid "- A medium \"trireme\"-class warship."
+msgstr "- Класс военного корабля: средняя \"трирема\"."
+
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "- The only ship of its kind."
+msgstr "- Единственный корабль подобного рода."
+
+#: gui/text/tips/celtic_war_barge.txt:6
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- Не может таранить, как другие триремы, но имеет много жизни и брони. "
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Can transport up to 40 units across the waters."
+msgstr "Может перевозить по воде до 40 воинов."
+
+#: gui/text/tips/civic_centres.txt:1
+msgid "CIVIC CENTERS"
+msgstr ""
+
+#: gui/text/tips/civic_centres.txt:2
+msgid "- The \"foundation\" of your new colony."
+msgstr "- Основа Вашей новой колонии."
+
+#: gui/text/tips/civic_centres.txt:4
+msgid "- Claim large tracts of territory."
+msgstr "- Удерживает большой участок территории."
+
+#: gui/text/tips/civic_centres.txt:6
+msgid "- Can be built in friendly and neutral territory."
+msgstr "- Может быть построен на нейтральной и союзной территории."
+
+#: gui/text/tips/civic_centres.txt:8
+msgid "- Train Female Citizens and basic Citizen-Soldiers."
+msgstr ""
+
+#: gui/text/tips/embassies.txt:1
+msgid "EMBASSIES"
+msgstr "ПОСОЛЬСТВА"
+
+#: gui/text/tips/embassies.txt:2
+msgid "- Special \"Barracks\" available to the Carthage faction."
+msgstr "- Особые \"Бараки\" доступны в цивилизации Карфаген."
+
+#: gui/text/tips/embassies.txt:4
+msgid "- Train mercenaries from each of the ethnically-themed embassies."
+msgstr "- Тренируйте наёмников из каждого этнического посольства."
+
+#: gui/text/tips/embassies.txt:6
+msgid ""
+"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
+"Metal cost."
+msgstr "- Наёмник \"горожанин-солдат\" имеют стоимость в Еде, переведенную в стоимость в Металле. "
+
+#: gui/text/tips/fishing.txt:1
+msgid "FISHING"
+msgstr "РЫБОЛОВСТВО"
+
+#: gui/text/tips/fishing.txt:2
+msgid "- Fish the seas for a bountiful harvest."
+msgstr "- Рыба в морях для богатых уловов."
+
+#: gui/text/tips/fishing.txt:4
+msgid "- Fishing boats carry a large amount of Food per trip."
+msgstr "- Рыболоветская лодка несет большой количество Еды за рейс."
+
+#: gui/text/tips/fishing.txt:6
+msgid ""
+"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
+"rate."
+msgstr "- Разместите Юнитов Поддержки на борту чтобы удвоить  скорость лова. "
+
+#: gui/text/tips/fishing.txt:8
+msgid "- Careful! Fish are not an infinite resource!"
+msgstr "- Будте осторожны! Рыба не бесконечный ресурс!"
+
+#: gui/text/tips/fortress.txt:1
+msgid "FORTRESS"
+msgstr "КРЕПОСТЬ"
+
+#: gui/text/tips/fortress.txt:2
+msgid "- The Fortress is usually each faction's strongest building."
+msgstr "- Крепость обычно самое крепкое здание во всех цивилизациях. "
+
+#: gui/text/tips/fortress.txt:4
+msgid "- Trains Champion Units, Heroes, and Siege Weapons."
+msgstr "- Тренируйте Элитных Юнитов, Героев и Осадные орудия."
+
+#: gui/text/tips/fortress.txt:6
+msgid "- Gives a population boost."
+msgstr "- Дает повышение населения."
+
+#: gui/text/tips/fortress.txt:8
+msgid "- Garrison soldiers inside to add more firepower to its defense."
+msgstr ""
+
+#: gui/text/tips/gathering.txt:1
+msgid "RESOURCE GATHERING"
+msgstr "СБОР РЕСУРСОВ"
+
+#: gui/text/tips/gathering.txt:2
+msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
+msgstr "- Используйте Горожанин-Солдат и Женщин для сбора ресурсов."
+
+#: gui/text/tips/gathering.txt:4
+msgid "- Female Citizens are bonused with Farming and Foraging."
+msgstr "- У Женщин есть бонус для животноводства и фуражировки."
+
+#: gui/text/tips/gathering.txt:6
+msgid "- Citizen-Soldiers are bonused with Mining."
+msgstr "- у Горожанин-Солдат бонус для Горных работ."
+
+#: gui/text/tips/gathering.txt:8
+msgid ""
+"- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
+"fights, but the less efficient he is at gathering."
+msgstr "- Увеличение уровня Горожанин-Солдат (Развитый, Элитный), улучшает боевой дух, но уменьшает  умение в сборе ресурсов."
+
+#: gui/text/tips/iphicrates.txt:1
+msgid "IPHICRATES"
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:2
+msgid ""
+"- The Athenian general who reformed the Athenian army to be faster and more "
+"maneuverable."
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:4
+msgid "- Units in his formation are faster and stronger."
+msgstr ""
+
+#: gui/text/tips/iphicrates.txt:6
+msgid "- Skirmishers move faster while he lives."
+msgstr ""
+
+#: gui/text/tips/outposts.txt:1
+msgid "OUTPOSTS"
+msgstr "АВАНПОСТЫ"
+
+#: gui/text/tips/outposts.txt:2
+msgid "- Build in neutral territory for a large scouting range."
+msgstr "- Строится на нейтральной территории для масштабной разведки области."
+
+#: gui/text/tips/outposts.txt:4
+msgid "- Cheap, at 80 Wood."
+msgstr "- Дешевый, 80 Дерева. "
+
+#: gui/text/tips/outposts.txt:6
+msgid "- They construct quickly, but are weak."
+msgstr "- Они строятся быстро, но шаткие."
+
+#: gui/text/tips/outposts.txt:8
+msgid "- Lose health while in Neutral territory, but are repairable."
+msgstr "- Теряют здоровье на нейтральной территории, но поддаются ремонту."
+
+#: gui/text/tips/palisades.txt:1
+msgid "PALISADE WALLS"
+msgstr "СТЕНЫ ЧАСТОКОЛА"
+
+#: gui/text/tips/palisades.txt:2
+msgid "- A quick, cheap wooden wall available to all factions."
+msgstr "- Быстрая, дешевая деревянная стена доступна всем цивилизациям."
+
+#: gui/text/tips/palisades.txt:4
+msgid "- Most factions have access to them in Village Phase."
+msgstr "- Большинство цивилизаций получают доступ к  ним на этапе Посёлок."
+
+#: gui/text/tips/palisades.txt:6
+msgid ""
+"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
+" by siege weapons."
+msgstr "- Могут быть атакованы вражескими солдатами, в отличии от Городской Стены, которая может быть атакована только осадными орудиями. "
+
+#: gui/text/tips/pericles.txt:1
+msgid "PERICLES"
+msgstr ""
+
+#: gui/text/tips/pericles.txt:2
+msgid "- The foremost Athenian politician of the 5th century BCE."
+msgstr ""
+
+#: gui/text/tips/pericles.txt:4
+msgid "- Buildings construct faster within his range."
+msgstr ""
+
+#: gui/text/tips/pericles.txt:6
+msgid "- Temples are cheaper while he lives."
+msgstr ""
+
+#: gui/text/tips/persian_architecture.txt:1
+msgid "PERSIAN ARCHITECTURE"
+msgstr "ПЕРСИДСКАЯ АРХИТЕКТУРА"
+
+#: gui/text/tips/persian_architecture.txt:2
+msgid "- Special Technology for the Persians."
+msgstr "- Особая технология для персов."
+
+#: gui/text/tips/persian_architecture.txt:4
+msgid "- All Persian buildings +25% stronger."
+msgstr "- Все персидские постройки на +25% крепче."
+
+#: gui/text/tips/persian_architecture.txt:6
+msgid "- Build time lengthened by +20% as a consequence."
+msgstr "- Как следствие постройка удлиняется на +20%."
+
+#: gui/text/tips/persian_architecture.txt:8
+msgid ""
+"- Persians also have access to a great number of structural & defensive "
+"technologies."
+msgstr "- Персы так же имеют доступ к большому количеству строительных и оборонительных технологий."
+
+#: gui/text/tips/quinquereme.txt:1
+msgid "HEAVY WARSHIP"
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:2
+msgid ""
+"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
+"and Seleucids."
+msgstr ""
+
+#: gui/text/tips/quinquereme.txt:4
+msgid ""
+"- Garrison up to 50 units for tons of firepower, including ballistas and "
+"scorpions."
+msgstr "- Разместите до 50 юнитов для увеличения огневой мощи, включая баллисты и скорпионов."
+
+#: gui/text/tips/quinquereme.txt:6
+msgid "- Has a ramming attack that sinks enemy ships."
+msgstr ""
+
+#: gui/text/tips/savanna_biome.txt:1
+msgid "SAVANNA BIOME"
+msgstr "САВАННЫЙ БИОМ"
+
+#: gui/text/tips/savanna_biome.txt:2
+msgid "- Generally flat, with a few watering holes and rocky outcrops."
+msgstr "- В основном плоский, с несколькими водными впадинами и скалистыми выходами пласта. "
+
+#: gui/text/tips/savanna_biome.txt:4
+msgid "- Chock full of herd animals for plentiful hunting."
+msgstr "- Полностью напонен стадами животных для изобилующей охоты."
+
+#: gui/text/tips/savanna_biome.txt:6
+msgid "- Rich in all types of mining."
+msgstr "- Изобилует всеми типами месторождений."
+
+#: gui/text/tips/savanna_biome.txt:8
+msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr "- Дерево редкое, но заключается в больших количествах в Баобабовых деревьях."
+
+#: gui/text/tips/scout_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "ЗАЩИТНЫЕ БАШНИ"
+
+#: gui/text/tips/scout_towers.txt:2
+msgid "- Free-standing towers good for defending large areas of countryside."
+msgstr "- Свободностоящие башни хороши для обороны больших площадей поселения."
+
+#: gui/text/tips/scout_towers.txt:4
+msgid ""
+"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
+"Stone (because they're stronger)."
+msgstr "- Они обычно стоят 100 Дерева и 100 Камня. Иберийские Оборонные Башни стоят 300 Камня (потому что они крепче)."
+
+#: gui/text/tips/scout_towers.txt:6
+msgid "- Has a ranged attack that increases for each garrisoned unit."
+msgstr "- Дальность действия увеличивается с каждым размещенный юнитом."
+
+#: gui/text/tips/spartan_hoplites.txt:1
+msgid "SPARTIATES"
+msgstr "СПАРТАНЦЫ"
+
+#: gui/text/tips/spartan_hoplites.txt:2
+msgid "- Strongest infantry unit in the game."
+msgstr "- Сильнейший юнит пехоты в игре."
+
+#: gui/text/tips/spartan_hoplites.txt:4
+msgid "- Champion Infantry available to the Spartans faction."
+msgstr "- Элитные пехотинцы доступны Спартанской цивилизации."
+
+#: gui/text/tips/spartan_hoplites.txt:6
+msgid "- Long train time, but high armor and attack."
+msgstr "- Длительная тренировка, но высокая защита и атака."
+
+#: gui/text/tips/spartan_hoplites.txt:8
+msgid "- Use the 'Phalanx' formation for extra armor bonuses."
+msgstr "- Используйте построение \"Фаланга\" для дополнительных бонусов защиты. "
+
+#: gui/text/tips/stoa.txt:1
+msgid "STOA"
+msgstr "СТОА"
+
+#: gui/text/tips/stoa.txt:2
+msgid "- A special starting structure for the Hellenes."
+msgstr "- Специальное начальное строение для Греков."
+
+#: gui/text/tips/stoa.txt:4
+msgid "- Grants +10 Population."
+msgstr "- Предоставляет +10 к Населению."
+
+#: gui/text/tips/stoa.txt:6
+msgid "- Only enabled in some game modes."
+msgstr "- Доступна только в нескольких режимах игры."
+
+#: gui/text/tips/stoa.txt:8
+msgid "- Can be found in the Atlas editor for custom scenarios."
+msgstr "- Может быть найдено в редакторе карт для кастомных сценариев"
+
+#: gui/text/tips/storehouses.txt:1
+msgid "STOREHOUSES"
+msgstr "СКЛАДЫ"
+
+#: gui/text/tips/storehouses.txt:2
+msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
+msgstr "- Дешевый склад для не пищевых ресурсов (Дерево, Камень, Металл)."
+
+#: gui/text/tips/storehouses.txt:4
+msgid ""
+"- Research technologies to improve the gathering capabilities of your "
+"citizens."
+msgstr "- Исследуйте технологии увеличивающие производительность сбора ресурсов Ваших граждан."
+
+#: gui/text/tips/syntagma.txt:1
+msgid "SYNTAGMA FORMATION"
+msgstr "ФОРМИРОВАНИЕ СИНТАГМА"
+
+#: gui/text/tips/syntagma.txt:2
+msgid "- A formation for 'pikeman' style infantry."
+msgstr "- Формирование пехоты типа \"пикинёр\"."
+
+#: gui/text/tips/syntagma.txt:4
+msgid "- Formation is slow and cumbersome."
+msgstr "- Формирование медленнное и громоздкое."
+
+#: gui/text/tips/syntagma.txt:6
+msgid "- Nearly invulnerable from the front."
+msgstr "- Особенно неуязвимые спереди."
+
+#: gui/text/tips/syntagma.txt:8
+msgid "- Vulnerable to attacks from the rear."
+msgstr "- Уязвимые к атакам с тыла."
+
+#: gui/text/tips/temples.txt:1
+msgid "TEMPLES"
+msgstr "ХРАМЫ"
+
+#: gui/text/tips/temples.txt:2
+msgid "- Town Phase structure required to upgrade to the City Phase."
+msgstr "- Структура этапа Городок необходимая для улучшения до этапа Город."
+
+#: gui/text/tips/temples.txt:4
+msgid "- Recruit Healers to heal your troops on the battlefield."
+msgstr "- Призовите Целителей исцелять ваши войска на поле боя."
+
+#: gui/text/tips/temples.txt:6
+msgid "- Research healing, religious devotion, and cultural technologies."
+msgstr "- Исследуйте исцеление, религиозную преданность и технологии культуры."
+
+#: gui/text/tips/temples.txt:8
+msgid "- Its \"aura\" heals nearby units."
+msgstr "- Его \"аура\" исцеляет юнитов возле себя."
+
+#: gui/text/tips/temples.txt:10
+msgid "- Garrison damaged units inside for quicker healing."
+msgstr "- Разместите поврежденных юнитов внутри для более быстрого исцеления."
+
+#: gui/text/tips/themistocles.txt:1
+msgid "THEMISTOCLES"
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:2
+msgid ""
+"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Artemisium and Salamis."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:4
+msgid "- All ships are built faster while he lives."
+msgstr ""
+
+#: gui/text/tips/themistocles.txt:6
+msgid "- The ship he is garrisoned inside moves much faster."
+msgstr ""
+
+#: gui/text/tips/triremes.txt:1
+msgid "TRIREME"
+msgstr "ТРИРЕМА"
+
+#: gui/text/tips/triremes.txt:2
+msgid "- The Medium Warship."
+msgstr "Средний боевой корабль."
+
+#: gui/text/tips/triremes.txt:4
+msgid ""
+"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
+msgstr "- Доступен римлянам, карфагенянам, эллинской группе и персам. "
+
+#: gui/text/tips/triremes.txt:6
+msgid "- Good for transporting or fighting."
+msgstr "- Подходит для транспортировки или сражения."
+
+#: gui/text/tips/triremes.txt:8
+msgid "- Garrison a catapult aboard for a long-range siege attack."
+msgstr "- Разместите катапульту на борту для атаки большого радиуса действия."
+
+#: gui/text/tips/triremes.txt:10
+msgid ""
+"- Capable of a devastating ship-to-ship ramming attack that must recharge "
+"between each use."
+msgstr "- Возможность разрушительной таранной аатаки на корабли, которая перезаряжается послекаждого использования. "
+
+#: gui/text/tips/viriato.txt:1
+msgid "VIRIATO"
+msgstr "Вириат"
+
+#: gui/text/tips/viriato.txt:2
+msgid "- Iberian hero of the Lusitani tribe."
+msgstr "- Иберийский герой племени Лузитаны. "
+
+#: gui/text/tips/viriato.txt:4
+msgid ""
+"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
+"147 to 139 B.C."
+msgstr "- По крайней мере 7 кампаний против римлян на протяжении Лузитанской войны с 147 до 139 до н.э. "
+
+#: gui/text/tips/viriato.txt:6
+msgid "- Fast moving and can switch between sword and flaming javelin."
+msgstr "- Быстро перемещаются и есть возможность выбора между мечем и огенным копьем. "
+
+#: gui/text/tips/viriato.txt:8
+msgid ""
+"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
+"to ambush their opponents."
+msgstr "- Его \"аура\" это \"Тактика Партизанской войны\" которая позволяет иберийским юнитам нападать из засады на их противников."
+
+#: gui/text/tips/war_elephants.txt:1
+msgid "WAR ELEPHANTS"
+msgstr "Боевые слоны"
+
+#: gui/text/tips/war_elephants.txt:2
+msgid "- Huge beasts from Africa and India, trained for war."
+msgstr "- Большие монстры из Африки и Индии, Обучены для войны"
+
+#: gui/text/tips/war_elephants.txt:4
+msgid ""
+"- High Food and Metal cost, but very powerful. Strongest against Structures "
+"and Cavalry."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:6
+msgid "- Vulnerable to infantry skirmishers."
+msgstr ""
+
+#: gui/text/tips/war_elephants.txt:8
+msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
+msgstr ""
+
+#: gui/text/tips/whales.txt:1
+msgid "WHALES"
+msgstr "КИТЫ"
+
+#: gui/text/tips/whales.txt:2
+msgid "- An oceanic resource."
+msgstr "- Океанические ресурсы."
+
+#: gui/text/tips/whales.txt:4
+msgid "- 2000 Food."
+msgstr "- 2000 Еды."
+
+#: gui/text/tips/whales.txt:6
+msgid "- Gatherable by Fishing Boats after the whale is killed."
+msgstr "- Собираются с помощью рыболовецких лодок после убоя."
+
+#: gui/text/tips/whales.txt:8
+msgid "- Roam around the oceans of the game and flee when attacked."
+msgstr "- Бродит по океанам игры и убегает когда атакован. "

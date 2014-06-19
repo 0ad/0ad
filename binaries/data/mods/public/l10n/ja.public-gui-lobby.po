@@ -1,0 +1,515 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/lobby/lobby.js:25
+msgctxt "map size"
+msgid "Any"
+msgstr "不問"
+
+#: gui/lobby/lobby.js:33
+msgctxt "player number"
+msgid "Any"
+msgstr "不問"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Any"
+msgstr "不問"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Skirmish"
+msgstr "散兵列"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Random"
+msgstr "ランダム"
+
+#: gui/lobby/lobby.js:37
+msgid "Scenario"
+msgstr "シナリオ"
+
+#: gui/lobby/lobby.js:305
+msgid "Busy"
+msgstr "取込み中"
+
+#: gui/lobby/lobby.js:310
+msgid "Away"
+msgstr "退席中"
+
+#: gui/lobby/lobby.js:314
+msgid "Online"
+msgstr "入室"
+
+#: gui/lobby/lobby.js:318
+msgid "Offline"
+msgstr "オフライン"
+
+#: gui/lobby/lobby.js:323
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "未定"
+
+#: gui/lobby/lobby.js:364
+msgid "A randomly selected map."
+msgstr "ランダム選択マップ"
+
+#: gui/lobby/lobby.js:389
+msgid "Sorry, no description available."
+msgstr "すみませんが、説明はありません。"
+
+#: gui/lobby/lobby.js:417
+#, python-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "このゲームのアドレス「%(ip)s」は正しくない形式です。"
+
+#: gui/lobby/lobby.js:495
+#, python-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)sが参加しました。"
+
+#: gui/lobby/lobby.js:504
+#, python-format
+msgid "%(nick)s has left."
+msgstr "%(nick)sが退出しました。"
+
+#: gui/lobby/lobby.js:511
+#, python-format
+msgid "Invalid nickname: %(nick)s"
+msgstr "無効なニックネーム：%(nick)s"
+
+#: gui/lobby/lobby.js:518
+#, python-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)sは名前を%(newnick)sに変更しました。"
+
+#: gui/lobby/lobby.js:672
+#, python-format
+msgid "We're sorry, the '%(cmd)s' command is not supported."
+msgstr "相済みません。「%(cmd)s」コマンドはサポートされていません。"
+
+#. Translation: IRC message prefix when the sender uses the /me command.
+#: gui/lobby/lobby.js:752
+#, python-format
+msgid "* %(sender)s"
+msgstr "* %(sender)s"
+
+#. Translation: IRC message issued using the ‘/me’ command.
+#: gui/lobby/lobby.js:754
+#, python-format
+msgid "%(sender)s %(action)s"
+msgstr "%(sender)s %(action)s"
+
+#. Translation: IRC message prefix.
+#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
+#, python-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#. Translation: IRC message.
+#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#, python-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#. Translation: IRC system message.
+#: gui/lobby/lobby.js:765
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#. Translation: Time as shown in the multiplayer lobby (when you enable it in
+#. the
+#. options page).
+#. For a list of symbols that you can use, see:
+#. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
+#. #TOC-Date-Field-Symbol-Table
+#: gui/lobby/lobby.js:796
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it
+#. in the options page).
+#: gui/lobby/lobby.js:799
+#, python-format
+msgid "[%(time)s]"
+msgstr "[%(time)s]"
+
+#. Translation: IRC message format when there is a time prefix.
+#: gui/lobby/lobby.js:802
+#, python-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/lobby/lobby.js:852
+msgid "Please do not spam. You have been blocked for thirty seconds."
+msgstr "スパム行為をしないでください。あなたは30秒間ブロックされました。"
+
+#: gui/lobby/prelobby.js:40
+msgid "Connecting..."
+msgstr "接続しています…"
+
+#: gui/lobby/prelobby.js:62
+msgid "Registering..."
+msgstr "登録しています…"
+
+#: gui/lobby/prelobby.js:99
+msgid "Please enter your username"
+msgstr "ユーザー名を入力してください"
+
+#: gui/lobby/prelobby.js:105
+msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
+msgstr "ユーザー名には、[・]・ユニコード文字・空白文字・コンマは使用できません"
+
+#: gui/lobby/prelobby.js:111
+msgid "Please enter your password"
+msgstr "パスワードを入力してください"
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your password again"
+msgstr "パスワードをもう一度入力してください"
+
+#: gui/lobby/prelobby.js:130
+msgid "Passwords do not match"
+msgstr "パスワードが一致しません"
+
+#: gui/lobby/prelobby.js:136
+msgid "Please read the Terms of Service"
+msgstr "サービス規約をお読みください"
+
+#: gui/lobby/prelobby.js:142
+msgid "Please read the Terms of Use"
+msgstr "利用規約をお読みください"
+
+#: gui/lobby/prelobby.js:148
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr "サービス規約および利用規約をご承諾ください"
+
+#: gui/lobby/prelobby.js:246
+msgid "Register"
+msgstr "登録"
+
+#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
+msgid "Connect"
+msgstr "接続"
+
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
+msgid "Terms of Service"
+msgstr "サービス規約"
+
+#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
+msgid "Terms of Use"
+msgstr "利用規約"
+
+#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
+msgid "Multiplayer Lobby"
+msgstr "マルチプレイヤーロビー"
+
+#: gui/lobby/lobby.xml:25 (heading)
+msgid "Status"
+msgstr "状態"
+
+#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
+#: gui/lobby/lobby.xml:207 (heading)
+msgid "Name"
+msgstr "名前"
+
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
+msgid "Rating"
+msgstr "格付け"
+
+#: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
+msgid "Leaderboard"
+msgstr "ランキング"
+
+#: gui/lobby/lobby.xml:64 (caption)
+msgid "Map Type:"
+msgstr "マップの種類："
+
+#: gui/lobby/lobby.xml:76 (caption)
+msgid "Map Size:"
+msgstr "マップの大きさ："
+
+#: gui/lobby/lobby.xml:93 (caption)
+msgid "Players:"
+msgstr "プレイヤー:"
+
+#: gui/lobby/lobby.xml:102 (caption)
+msgid "Join Game"
+msgstr "ゲームに参加する"
+
+#: gui/lobby/lobby.xml:108 (caption)
+msgid "Host Game"
+msgstr "ゲームをホストする"
+
+#: gui/lobby/lobby.xml:115 (caption)
+msgid "Main Menu"
+msgstr "メインメニュー"
+
+#: gui/lobby/lobby.xml:132 (heading)
+msgid "Map Name"
+msgstr "マップ名"
+
+#: gui/lobby/lobby.xml:135 (heading)
+msgctxt "map"
+msgid "Size"
+msgstr "大きさ"
+
+#: gui/lobby/lobby.xml:138 (heading)
+msgctxt "map"
+msgid "Type"
+msgstr "種類"
+
+#: gui/lobby/lobby.xml:141 (heading)
+msgid "Players"
+msgstr "プレイヤー数"
+
+#: gui/lobby/lobby.xml:171 (caption)
+msgid "Show full games"
+msgstr "全ゲームの表示"
+
+#: gui/lobby/lobby.xml:204 (heading)
+msgid "Rank"
+msgstr "順位"
+
+#: gui/lobby/lobby.xml:214 (caption)
+msgid "Back"
+msgstr "戻る"
+
+#: gui/lobby/lobby.xml:218 (caption)
+msgid "Update"
+msgstr "更新"
+
+#: gui/lobby/prelobby.xml:23 (caption)
+msgid "Create a new account"
+msgstr "新規アカウントを作成する"
+
+#: gui/lobby/prelobby.xml:27 (caption)
+msgid "Login to an existing account"
+msgstr "既存のアカウントでログインする"
+
+#: gui/lobby/prelobby.xml:33 (caption)
+msgid "Connect to the game lobby"
+msgstr "ゲームロビーに入る"
+
+#: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
+msgid "Login:"
+msgstr "ログイン："
+
+#: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
+msgid "Password:"
+msgstr "パスワード："
+
+#: gui/lobby/prelobby.xml:59 (caption)
+msgid "Registration"
+msgstr "登録"
+
+#: gui/lobby/prelobby.xml:73 (caption)
+msgid "Password again:"
+msgstr "パスワードの確認："
+
+#: gui/lobby/prelobby.xml:88 (caption)
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr "サービス規約および利用規約を読み承諾します："
+
+#: gui/lobby/prelobby.xml:97 (caption)
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr "0 A.D. Empires Ascendant マルチプレイヤーロビーサービス規約"
+
+#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr "定義："
+
+#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
+"provided by Wildfire Games (WFG)."
+msgstr "「サービス」とは、Wildfire Games（WFG）が提供する0 A.D. Empires Ascendant マルチプレイヤーロビーを指します。"
+
+#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr "*「あなた」とは当サービスの利用者を指します。"
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr "*「当団体」とは、Wildfire Games（WFG）チーム全員の集合を指します。"
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analysing various user statistics for"
+" the purpose of generating a single comprehensive score."
+msgstr "* 「格付け」とは、単一の総合得点を決定するための様々な利用者統計の分析プロセスを指します。"
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr "* 「運営」とは、利用方針を施行するプロセスを指します。"
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr "当サービスを利用するにあたり、あなたは以下に同意します："
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr "1. すべての利用方針に従うこと。"
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr "2. 格付けおよび利用者プロフィール、コミュニティ統計のために、利用者を特定可能な統計を収集することを許可すること。"
+
+#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr "当団体は以下の権利を有します："
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr "1. 当サービスを運営すること。"
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr "2. 当サービスを運営する他者を任命すること。"
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr "3. サービスを随時事前の告知のありなしに関わらず、停止あるいは中断すること。"
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr "4. 当サービスを随時告知のありなしに関わらず、変更すること。"
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid ""
+" 5. Delete any and all service data at any time with or without "
+"announcement."
+msgstr "5. 当サービスの任意もしくはすべてのデータを、随時告知のありなしに関わらず削除すること。"
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr "6. 以下に関する同意を得ずに、利用者の特定可能な統計を随時収集すること："
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr "a. Wildfire Games（WFG）チームメンバーとその協力者による非公開の分析。"
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr "b. Wildfire Games（WFG）チームメンバーによる個人を特定できない形での公表。"
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr "7.  当サービスの利用者に変更の十分な告知がされる条件の上で、任意の方法により随時、この文書を変更すること（十分な告知の定義は、Wildfire Games（WFG）チームメンバーの委員会が決定した時点とします）。"
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr "0 A.D. Empires Ascendant マルチプレイヤーロビー利用規約"
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr "* 「なりすまし」とは、あなたが他人の身元識別情報を自身のために悪用しようと試みる行為を指します。"
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr "* 「スパム」とは、無関係あるいは不適当なメッセージを多数の受信者へ送ることを指します。"
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr "* 「格付け」とは、利用者ごとの総合得点を指します。"
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr "* 「順位記録ゲーム」とは、格付け変更の統計が記録されたゲームを指します。"
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr "あなたは以下に同意します："
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized"
+" by a Wildfire Games (WFG) team member."
+msgstr "1. 当サービスのアカウント作成は利用者1人につき1つのみとすること。ただし、Wildfire Games（WFG）チームメンバーの許可がある場合を除きます。"
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr "2. 冒涜的な発言や無礼なユーモア、わいせつなコンテンツ、差別的なコメントを当サービスに投稿しないこと。"
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr "3. 当サービスを用いて、意図して他人の名誉を貶めないこと。"
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid ""
+" 4. Not use the service to promote specific goods, services, or products."
+msgstr "4. 当サービスを用いて、特定の商品やサービス、製品を宣伝しないこと。"
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr "5. 当サービスの他の利用者へのなりすましを行わないこと。"
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr "6. 当サービスでスパムを行わないこと。"
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr "7. 人為的に当サービスの任意の利用者の得点あるいは得点に影響する任意の統計を改変しようと試みること。（この例として、得点記録ゲームでのチートや当サービスのリバースエンジニアリングで当サービスの他の利用者より優位に立つこと、ただしこの例に限定されません）"
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator"
+" determines your behavior is not consistent with these rules."
+msgstr "8. いつでも運営者があなたの行動が本規約に反すると判断した場合に、当サービスから追放されることを承諾すること。"
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 1. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr "1.  当サービスの利用者に変更の十分な告知がされる条件の上で、任意の方法により随時、この文書を変更すること（十分な告知の定義は、Wildfire Games (WFG)チームメンバーの委員会が決定した時点とします）。"

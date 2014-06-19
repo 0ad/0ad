@@ -1,0 +1,3007 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+# Alberto <alb_ert@hotmail.it>, 2014
+# Alessandro, 2013
+# Andrea Balzarotti <balzarotti.andrea@gmail.com>, 2013
+# andreac <supercarrer1989@hotmail.it>, 2013
+# Angela <angelapellegrino@hotmail.it>, 2014
+# chavo, 2014
+# Damiano, 2013
+# Daniele Tricoli <eriol@mornie.org>, 2014
+# Davide <ds.aureli@gmail.com>, 2014
+# Emanuele Ricci <stermi@gmail.com>, 2013
+# Fabio Pedretti <fabio.ped@libero.it>, 2013
+# j4nsen <enrico.meneguzzi@gmail.com>, 2013
+# Marco <inactive+Vamos@transifex.com>, 2013
+# Me Lazzi, 2014
+# Raptor86 <raptor86@inwind.it>, 2014
+# Rivoltano, 2013
+# tema, 2014
+# The_Blinded <the_reg_tb@yahoo.it>, 2013
+# Vaschetto Marco <vaschetto.marco@gmail.com>, 2013
+# Zioninja <Maury.ferraresi@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: civs/athen.jsonName civs/athen.jsonFactions[0].Name
+msgid "Athenians"
+msgstr "Ateniesi"
+
+#: civs/athen.jsonCivBonuses[0].Description
+msgid "Metal mining gathering rates increased by +10% for each passing age."
+msgstr "La velocità di estrazione del metallo aumenta del +10% dopo ogni avanzamento di età."
+
+#: civs/athen.jsonCivBonuses[0].Name
+msgid "Silver Owls"
+msgstr "Civette d'argento"
+
+#: civs/athen.jsonCivBonuses[0].History
+msgid ""
+"The mines at Laureion in Attica provided Athens with a wealth of silver from"
+" which to mint her famous and highly prized coin, The Athenian Owl."
+msgstr "Le miniere di Laurium in Attica rifornivano Atene di una grande quantità di argento, con il quale veniva coniata la sua famosa e apprezzata moneta, la Civetta Ateniese."
+
+#: civs/athen.jsonCivBonuses[1].Description
+#: civs/hele.jsonCivBonuses[1].Description
+#: civs/mace.jsonCivBonuses[2].Description
+#: civs/spart.jsonCivBonuses[2].Description
+#: civs/theb.jsonCivBonuses[2].Description
+msgid ""
+"Constructing a Theatron increases the territory expanse of all buildings by "
+"+20%."
+msgstr "Costruire un Theatron aumenta l'effetto territorio di tutti gli edifici di +20%."
+
+#: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
+#: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
+#: civs/theb.jsonCivBonuses[2].Name
+msgid "Hellenization"
+msgstr "Ellenizzazione"
+
+#: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
+#: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
+msgid ""
+"The Greeks were highly successful in Hellenising various foreigners. During "
+"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
+"spoken widely from Spain to India."
+msgstr "i Greci ebbero molto successo nell'ellenizzare popoli stranieri. Durante l'Età Ellenistica, il greco era la lingua franca del Mondo Antico, parlato diffusamente dalla Spagna all'India."
+
+#: civs/athen.jsonTeamBonuses[0].Description
+msgid "Ships construct 25% faster."
+msgstr "Le navi sono costruite il 25% più velocemente"
+
+#: civs/athen.jsonTeamBonuses[0].Name
+#: civs/hele.jsonFactions[0].Technologies[1].Name
+msgid "Delian League"
+msgstr "Lega di Delo"
+
+#: civs/athen.jsonTeamBonuses[0].History
+#: civs/hele.jsonFactions[0].Technologies[1].History
+msgid ""
+"Shortly after the great naval victories at Salamis and Mykale, the Greek "
+"city-states instituted the so-called Delian League in 478 B.C., whose "
+"purpose was to push the Persians out of the Aegean region. The allied states"
+" contributed ships and money, while the Athenians offered their entire navy."
+msgstr "Poco dopo le grandi vittorie navali a Salamina e Mykale, le città-stato greche istituirono la cosiddetta Lega di Delo nel 478 a.C., il cui scopo era di respingere i persiani fuori dalla regione dell'Egeo. Gli stati alleati contribuirono con navi e soldi, mentre gli Ateniesi offrirono tutta la loro marina."
+
+#: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
+#: civs/hele.jsonFactions[0].Heroes[0].Name
+msgid "Themistocles"
+msgstr "Temistocle"
+
+#: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
+msgid "Pericles"
+msgstr "Pericle"
+
+#: civs/athen.jsonAINames[2]
+msgid "Cimon"
+msgstr "Cimone"
+
+#: civs/athen.jsonAINames[3]
+msgid "Aristides"
+msgstr "Aristide"
+
+#: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
+msgid "Xenophon"
+msgstr "Senofonte"
+
+#: civs/athen.jsonAINames[5]
+msgid "Hippias"
+msgstr "Ippia"
+
+#: civs/athen.jsonAINames[6]
+msgid "Cleisthenes"
+msgstr "Clistene"
+
+#: civs/athen.jsonAINames[7]
+msgid "Thucydides"
+msgstr "Tucidide"
+
+#: civs/athen.jsonAINames[8]
+msgid "Alcibiades"
+msgstr "Alcibiade"
+
+#: civs/athen.jsonAINames[9]
+msgid "Miltiades"
+msgstr "Milziade"
+
+#: civs/athen.jsonAINames[10]
+msgid "Cleon"
+msgstr "Cleone"
+
+#: civs/athen.jsonAINames[11]
+msgid "Cleophon"
+msgstr "Cleofonte"
+
+#: civs/athen.jsonAINames[12]
+msgid "Thrasybulus"
+msgstr "Trasibulo"
+
+#: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
+msgid "Iphicrates"
+msgstr "Ificrate"
+
+#: civs/athen.jsonAINames[14]
+msgid "Demosthenes"
+msgstr "Demostene"
+
+#: civs/athen.jsonFactions[0].Technologies[0].Description
+msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
+msgstr "I Triremi ateniesi possono addestrare unità di fanteria marina (Epibates Athenaikos)."
+
+#: civs/athen.jsonFactions[0].Technologies[0].Name
+msgid "Iphicratean Reforms"
+msgstr "Riforma di Ificrate"
+
+#: civs/athen.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Stone walls can be built in neutral territory. Construction time for walls "
+"is reduced by 50%."
+msgstr "Le mura di pietra possono essere costruite in territorio neutrale. Il tempo di costruzione delle mura è ridotto del 50%."
+
+#: civs/athen.jsonFactions[0].Technologies[1].Name
+msgid "Long Walls"
+msgstr "Lunghe Mura"
+
+#: civs/athen.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Long Walls of Athens were constructed under the auspices of the wily "
+"Themistocles and extended 6 km from the city to the port of Piraeus. This "
+"secured the city's sea supply routes and prevented an enemy from starving "
+"out the city during a siege."
+msgstr "Le Lunghe Mura di Atene furono costruite sotto gli auspici dello scaltro Temistocle e si estendevano per 6 km dalla città fino al porto del Pireo. Questo assicurava le rotte di approvvigionamento via mare e impediva che gli assedi nemici costringessero la città alla resa per fame."
+
+#: civs/athen.jsonFactions[0].Technologies[2].Description
+msgid ""
+"The player gains the ability to order spear-armed troops into Phalanx "
+"formation, providing greater attack and armor."
+msgstr "Il giocatore guadagna la possibilità di ordinare le truppe armate di lancia nella formazione Falange, aumentandone attacco e armatura."
+
+#: civs/athen.jsonFactions[0].Technologies[2].Name
+#: civs/hele.jsonFactions[0].Technologies[0].Name
+#: civs/spart.jsonCivBonuses[0].Name
+msgid "Othismos"
+msgstr "Othismos"
+
+#: civs/athen.jsonFactions[0].Technologies[2].History
+msgid ""
+"The classical phalanx formation was developed about VIII century BC. It was "
+"eight men deep and up to eight hundred men wide. The men within overlapped "
+"their shields, presenting a formidable shield wall brimming with 8 foot "
+"spears."
+msgstr "La tradizionale formazione a falange fu sviluppata intorno all'VIII secolo a.C.. Era formata da otto file di uomini ed arrivava a contarne ottocento in larghezza. Gli uomini all'interno sovrapponevano i loro scudi, costituendo una barriera formidabile di scudi tra cui erano intercalate lance lunghe quasi due metri e mezzo."
+
+#: civs/athen.jsonFactions[0].Heroes[0].History
+#: civs/hele.jsonFactions[0].Heroes[0].History
+msgid ""
+"The general whom persuaded the Athenians to invest their income from silver "
+"mines in a war navy of 200 Triremes. A key figure during the Persian Wars, "
+"he commanded the victorious Athenian navy at the decisive battle of Salamis "
+"in 479 B.C. Later, he pursued an active policy against the Persians in the "
+"Aegean, thereby laying the foundations of future Athenian power. Ostracised "
+"by the Athenians, he was forced to flee to the protection of the Persians."
+msgstr "Il generale persuase gli Ateniesi ad investire i loro introiti provenienti dalle miniere d'argento in una flotta di 200 Triremi. Figura chiave durante le Guerre Persiane, egli comandò la vittoriosa flotta ateniese nella decisiva battaglia di Salamina nel 479 a.C. In seguito, egli condusse una politica aggressiva contro i Persiani nell'Egeo, ponendo le basi della futura potenza ateniese. Ostracizzato dagli Ateniesi, fu costretto a fuggire cercando protezione presso i Persiani."
+
+#: civs/athen.jsonFactions[0].Heroes[1].History
+msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
+msgstr "Pericle era il principale politico ateniese del 5° secolo a.C."
+
+#: civs/athen.jsonFactions[0].Heroes[2].History
+#: civs/maur.jsonFactions[0].Technologies[0].History
+#: civs/maur.jsonStructures[0].History civs/maur.jsonStructures[1].History
+#: civs/pers.jsonFactions[0].Technologies[2].History
+#: civs/ptol.jsonFactions[0].Heroes[0].History
+#: civs/ptol.jsonFactions[0].Heroes[1].History
+#: civs/ptol.jsonFactions[0].Heroes[2].History
+#: civs/sele.jsonCivBonuses[0].History civs/sele.jsonStructures[1].History
+#: civs/theb.jsonFactions[0].Heroes[0].History
+#: civs/theb.jsonFactions[0].Heroes[1].History
+#: civs/theb.jsonFactions[0].Heroes[2].History
+#: civs/theb.jsonStructures[1].Special
+msgid "."
+msgstr "."
+
+#: civs/athen.jsonFactions[0].Description
+msgid "A Hellenic people of the Ionian tribe."
+msgstr "Una popolazione Ellenica della tribù degli Ioni."
+
+#: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
+#: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
+#: civs/theb.jsonStructures[0].Name
+msgid "Theatron"
+msgstr "Theatron"
+
+#: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
+#: civs/theb.jsonStructures[0].Special
+msgid ""
+"The Hellenization civ bonus. Building a Theatron increases the territory "
+"effect of all buildings by 25%."
+msgstr "Il bonus Ellenizzazione. Costruire un Theatron aumenta l'effetto territorio di tutti gli edifici del 25%."
+
+#: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
+#: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
+#: civs/theb.jsonStructures[0].History
+msgid ""
+"Greek theatres were places where the immortal tragedies of Aeschylus, "
+"Sophocles and many other talented dramatists were staged to the delight of "
+"the populace. They were instrumental in enriching Hellenic culture."
+msgstr "I teatri greci erano i luoghi in cui venivano inscenate le immortali opere di Eschilo, Sofocle e molti altri talentuosi tragediografi, per deliziare il popolo. Queste erano accompagnate da strumenti musicali durante la fiorente cultura ellenica."
+
+#: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
+msgid "Gymnasion"
+msgstr "Gymnasion"
+
+#: civs/athen.jsonStructures[1].Special
+msgid ""
+"Train champion units and research technologies pertaining to champion units."
+msgstr "Addestra campioni e ricerca tecnologie a loro relative."
+
+#: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
+msgid ""
+"The Gymnasion was a vital place in Hellenic cities, where physical exercises"
+" were performed and social contacts established."
+msgstr "Il Ginnasio era un luogo vitale nelle città Elleniche, vi si praticavano esercizi ginnici e si instauravano rapporti sociali."
+
+#: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
+msgid "Prytaneion"
+msgstr "Pritaneo"
+
+#: civs/athen.jsonStructures[2].Special
+msgid "Train heroes and research technology pertaining to heroes."
+msgstr "Addestra gli Eroi e sviluppa gli avanzamenti tecnologici di pertinenza agli eroi."
+
+#: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
+msgid ""
+"The Prytaneion is the meeting place for the city elders to dine and to make "
+"swift decisions."
+msgstr "Il Pritaneo era il luogo di incontro dove gli anziani saggi cenavano e prendevano rapide decisioni."
+
+#: civs/athen.jsonHistory
+msgid ""
+"As the cradle of Western civilization and the birthplace of democracy, "
+"Athens was famed as a center for the arts, learning and philosophy. The "
+"Athenians were also powerful warriors, particularly at sea. At its peak, "
+"Athens dominated a large part of the Hellenic world for several decades."
+msgstr "Culla della civiltà occidentale e luogo di nascita della democrazia, Atene era famosa come centro delle arti, dell'apprendimento e della filosofia. Gli ateniesi erano anche guerrieri potenti, specialmente in mare. Al suo apice, Atene ha dominato gran parte del mondo ellenico per diversi decenni."
+
+#: civs/brit.jsonName civs/brit.jsonFactions[0].Name
+#: civs/celt.jsonFactions[0].Name
+msgid "Britons"
+msgstr "Britanni"
+
+#: civs/brit.jsonCivBonuses[0].Description
+#: civs/celt.jsonCivBonuses[0].Description
+#: civs/gaul.jsonCivBonuses[0].Description
+msgid "Enhanced food gained from ranching and farming. "
+msgstr "Maggiore raccolta di cibo dall'allevamento e dall'agricoltura."
+
+#: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
+#: civs/gaul.jsonCivBonuses[0].Name
+msgid "Ardiosmanae"
+msgstr "Ardiosmanae"
+
+#: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
+#: civs/gaul.jsonCivBonuses[0].History
+msgid "Represents Celtic farming methods. "
+msgstr "Rappresenta i metodi di coltivazione dei Celti."
+
+#: civs/brit.jsonCivBonuses[1].Description
+#: civs/celt.jsonCivBonuses[1].Description
+#: civs/gaul.jsonCivBonuses[1].Description
+msgid "Druids increase attack rates of soldiers near them slightly."
+msgstr "I Druidi aumentano il tasso d'attacco dei soldati a loro più vicini."
+
+#: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
+#: civs/gaul.jsonCivBonuses[1].Name
+msgid "Deas Celtica"
+msgstr "Deas Celtica"
+
+#: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
+#: civs/gaul.jsonCivBonuses[1].History
+msgid "Celtic religion and druidry inspired their warlike mindset. "
+msgstr "La religione celtica e il druidismo ispirivano la loro mentalità guerriera."
+
+#: civs/brit.jsonTeamBonuses[0].Description
+#: civs/celt.jsonTeamBonuses[0].Description
+#: civs/gaul.jsonTeamBonuses[0].Description
+msgid "Bonus to tech speed."
+msgstr "Bonus nella velocità di ricerca tecnologica."
+
+#: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
+#: civs/gaul.jsonTeamBonuses[0].Name
+msgid "Druides"
+msgstr "Druidi"
+
+#: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
+#: civs/gaul.jsonTeamBonuses[0].History
+msgid ""
+"The Druids of the Celts maintained an organized religion that advanced the "
+"technology of their people even during wartime."
+msgstr "I Druidi dei Celti mantennero un'organizzazione religiosa che consentì l'avanzamento tecnologico del loro popolo persino in tempo di guerra."
+
+#: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
+#: civs/celt.jsonFactions[0].Heroes[0].Name
+msgid "Karatakos"
+msgstr "Karatakos"
+
+#: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
+#: civs/celt.jsonFactions[0].Heroes[1].Name
+msgid "Kunobelinos"
+msgstr "Kunobelinos"
+
+#: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
+#: civs/celt.jsonFactions[0].Heroes[2].Name
+msgid "Boudicca"
+msgstr "Budicca"
+
+#: civs/brit.jsonAINames[3]
+msgid "Prasutagus"
+msgstr "Prasutago"
+
+#: civs/brit.jsonAINames[4]
+msgid "Venutius"
+msgstr "Venuzio"
+
+#: civs/brit.jsonAINames[5]
+msgid "Cogidubnus"
+msgstr "Cogidubno"
+
+#: civs/brit.jsonAINames[6]
+msgid "Commius"
+msgstr "Commio"
+
+#: civs/brit.jsonAINames[7]
+msgid "Comux"
+msgstr "Comux"
+
+#: civs/brit.jsonAINames[8]
+msgid "Adminius"
+msgstr "Adminio"
+
+#: civs/brit.jsonAINames[9]
+msgid "Dubnovellaunus"
+msgstr "Dubnovellauno"
+
+#: civs/brit.jsonAINames[10]
+msgid "Vosenius"
+msgstr "Vosenius"
+
+#: civs/brit.jsonFactions[0].Technologies[0].Description
+#: civs/celt.jsonFactions[0].Technologies[0].Description
+msgid "Increased attack and movement rate for melee soldiers."
+msgstr "Tasso di attacco e di movimento aumentati per le truppe da mischia."
+
+#: civs/brit.jsonFactions[0].Technologies[0].Name
+#: civs/celt.jsonFactions[0].Technologies[0].Name
+msgid "Sevili Dusios"
+msgstr "Sevili Dusios"
+
+#: civs/brit.jsonFactions[0].Technologies[0].History
+#: civs/celt.jsonFactions[0].Technologies[0].History
+msgid ""
+"The Britons took up the practice of either making permanent marks on their "
+"body in the form of tattoos or temporarily painted their bodies with woad "
+"paint. The effect was very frightening."
+msgstr "Tra i britanni si diffuse la pratica di fare segni permanenti sui loro corpi nella forma di tatuaggi, o di tinteggiarli temporaneamente con il fango dei guadi. L'effetto sul nemico era terrificante."
+
+#: civs/brit.jsonFactions[0].Technologies[1].Description
+#: civs/celt.jsonFactions[0].Technologies[1].Description
+msgid "Increases the height bonus of units garrisoned in a tower."
+msgstr "Bonus che aumenta il numero di unità che possono presidiare una torre."
+
+#: civs/brit.jsonFactions[0].Technologies[1].Name
+#: civs/celt.jsonFactions[0].Technologies[1].Name
+msgid "Turos Maros"
+msgstr "Turos Maros"
+
+#: civs/brit.jsonFactions[0].Technologies[1].History
+#: civs/celt.jsonFactions[0].Technologies[1].History
+msgid ""
+"'Great Tower'; Celtic legends abound with stories of massive tall towers "
+"built by the most powerful kings, and the remains of some very large towers "
+"have been found."
+msgstr "\"La Grande Torre\"; Le leggende Celtiche abbondano di storie di gigantesche torri costruite dai più potenti re, e sono stati trovati i ruderi di molte grandi torri"
+
+#: civs/brit.jsonFactions[0].Heroes[0].History
+#: civs/celt.jsonFactions[0].Heroes[0].History
+msgid ""
+"Caractacus, the Roman form, is a simple change from Karatakos, his actual "
+"name, which was printed on his many, many coins. Under this name he is "
+"remembered as a fierce defender of Britain against the Romans after their "
+"invasion in 43 A.D. Son of King Cunobelin of the Catuvellauni tribal "
+"confederation, Karatakos fought for nine years against the Romans with "
+"little success, eventually fleeing to the tribes in Wales, where he was "
+"defeated decisively. Finally he entered Northern Britain, where was handed "
+"over to the Romans. Taken to Rome, Karatakos was allowed to live by the "
+"Emperor Claudius and died in Italy. Tradition states he converted to "
+"Christianity when his wife did, but there is nothing known of this as "
+"definite. Probably more notable is the matter that he was allowed to live "
+"once captured. Roman policy was typically to have such men killed in public "
+"displays to celebrate. Karatakos was brought before the Emperor and Senate "
+"at his request to explain himself. What he said is not known for certainty, "
+"but Tacitus applies to him a famous speech..."
+msgstr "Caractacus, nella forma romana, è un semplice adattamento di Karatakos, il nome originario, che era stampato sulle sue molte, molte monete. Sotto questo nome è ricordato come un fiero difensore della Gran Bretagna contro i Romani dopo la loro invasione nel 43 d.C.. Figlio di Re Cunobelin della confederazione tribale Catuvellauni, Karatakos combattè per nove anni contro i Romani con scarso successo, finendo in fuga verso le tribù del Galles, dove fu definitivamente sconfitto. Quindi puntò sulla Gran Bretagna Settentrionale, dove però venne consegnato ai Romani. Portato a Roma, Karatakos venne graziato dall'imperatore Claudio e morì in Italia. Secondo la tradizione si convertì al cristianesimo in seguito alla conversione della moglie, ma nelle cronache storiche non è riportato per certo. Probabilmente il fatto notevole è che gli fu concesso di vivere, una volta catturato. La politica romana riguardo ai prigionieri e oppositori era solitamente la condanna a morte durante i giochi pubblici indetti per celebrare le proprie vittorie. Karatakos venne portato davanti all'Imperatore e al Senato, a seguito di una sua richiesta. Ciò che ha detto non si sa per certo, ma Tacito attribuì a lui un famoso discorso..."
+
+#: civs/brit.jsonFactions[0].Heroes[1].History
+#: civs/celt.jsonFactions[0].Heroes[1].History
+msgid ""
+"Kunobelinos, perhaps better known by the latinized form of Cunobelin, was a "
+"powerful ruler centered in the territory around modern day Colchester. "
+"Ruling the Catuvellauni from Kamulodunon(better known as Camulodunum), he "
+"was a warrior king who conquered a neighboring tribe, the Trinovantes, and "
+"was referred to by the Romans as the King of the Britons. The Trinovantes, "
+"while having been Roman allies, were not able to call for Roman aide, as "
+"they were conquered shortly after the Roman's own disaster in Germania. "
+"Kunobelinos died of disease after subjugating the great majority of the "
+"southern half of Britain (his coins were being minted as far as the borders "
+"of what would become Wales). When he died, his son Togdumnos replaced him, "
+"who died in battle with the Romans, and was subsequently replaced by his "
+"brother, Karatakos. It is an irony that it was his third son that initially "
+"invited this Roman reprisal. Kunobelinos seems to have been indifferent to "
+"the Romans. He traded with them freely, but had few qualms subjugating known"
+" Roman allies, and even sent Adminius as a fosterling to be educated in "
+"Roman Gaul. This accounted for Adminius's friendships among the Romans, and "
+"he was given lordship over the Cantaci, who inhabited Kent, by his father. "
+"This area was the prime area of Roman influence and trade in Britain, and he"
+" shrewdly observed his youngest son's friendship with powerful Roman and "
+"Gallo-Roman politicians and traders would be of use administrating the "
+"region. His other sons though had no love for the Romans, and when "
+"Kunobelinos died, Togdumnos, now king, arrested, executed, or expelled "
+"numerous Roman sympathizers, including his own brother Adminius, and the "
+"deposed Atrebates king, Verica, who appealed to their connections in the "
+"Roman Empire for aide in recovering their lands. Kunobelinos in his own time"
+" though was possibly one of the greatest of all British kings. He conquered "
+"huge portions of land from originally ruling over only four minor tribes in "
+"a confederation, the Catuvellauni, and achieved recognition as king of "
+"Britain. This recognition was so great that tribes in Cambria even came to "
+"assist his sons against the Romans and their British allies, and Kunobelinos"
+" was held up by the post-Roman Britons as one of their great heroes; a "
+"conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
+"Romano-British sorely needed."
+msgstr "Kunobelinos, forse meglio conosciuto con la forma latinizzata di Cunobelin, fu un sovrano potente nel territorio intorno alla moderna Colchester. Regnante sulla confederazione Catuvellauni da Kamulodunon (meglio conosciuta come Camulodunum), era un re guerriero che conquistò una tribù vicina, i Trinovanti, e venne denominato dai romani come il re dei Britanni. I Trinovanti, pur essendo alleati romani, non furono in grado di ricevere l'aiuto romano, poichè furono conquistati poco dopo il disastro delle campagne romane in Germania. Kunobelinos morì di malattia dopo aver soggiogato buona parte della metà meridionale della Gran Bretagna (le sue monete erano coniate nei confini di quello che sarebbe divenuto il Galles). Quando morì, il figlio Togdumnos lo sostituì, ma morì in battaglia con i Romani, e venne successivamente sostituito da suo fratello, Karatakos. Ironia della sorte fu proprio il suo terzo figlio, a scatenare la rappresaglia romana. Kunobelinos sembra fosse indifferente ai Romani. Commerciava con loro liberamente, ma aveva pochi scrupoli nell'assoggettare noti alleati romani, e aveva anche inviato il figlio adottivo Adminius nella Gallia romana per essere educato. Grazie alle buone relazioni di Adminius con i Romani, suo padre lo fece Signore dei Cantaci, che abitavano il Kent. Questa zona era la principale zona di influenza romana e commerciale in Gran Bretagna, e il padre utilizzò astutamente i buoni rapporti del figlio con i potenti uomini politici romani e commercianti gallo-romani per amministrare la regione. Gli altri suoi figli non simpatizzavano per i romani, e quando Kunobelinos morì, Togdumnos, divenuto re, arrestò, giustiziò o espulse numerosi simpatizzanti romani, tra cui suo fratello Adminius, e il re deposto degli Atrebati, Verica, che aveva fatto appello ai trattati con l'impero romano per cercare aiuto nel recuperare i propri territori. Kunobelinos a suo tempo fu forse uno dei più grandi tra tutti i re inglesi. Conquistò enormi porzioni di territorio in origine governate solo da quattro tribù minori riunendole in una confederazione, la Catuvellauni, e ottene il riconoscimento come Re di Gran Bretagna. Di tale importanza fu questo riconoscimento che le tribù di Cambria vennero per aiutare i suoi figli contro i Romani e i loro alleati britannici, e Kunobelinos venne ritenuto dai Britanni come uno dei grandi eroi, un conquistatore e unificatore di piccoli regni."
+
+#: civs/brit.jsonFactions[0].Heroes[2].History
+#: civs/celt.jsonFactions[0].Heroes[2].History
+msgid ""
+"Ammianus Marcellinus described how difficult it would be for a band of "
+"foreigners to deal with a Celt if he called in the help of his wife. For she"
+" was stronger than he was and could rain blows and kicks upon the assailants"
+" equal in force to the shots of a catapult. Boudicca, queen of the Iceni, "
+"was said to be 'very tall and terrifying in appearance; her voice was very "
+"harsh and a great mass of red hair fell over her shoulders. She wore a tunic"
+" of many colors over which a thick cloak was fastened by a brooch. Boudicca "
+"had actually at first been a Roman ally, along with her husband, Prasutagus,"
+" king of the Iceni. Prasutagus had been a close Roman ally after a brief "
+"uprising, respected as being forethinking even by his former enemies, now "
+"allied Romans, and free to rule his kingdom as their native tradition "
+"dictated, except in one case. Prasutagus, realizing he was going to die, "
+"agreed upon a will with his wife and subordinates; his daughters would "
+"inherit the physical running of the territory, under Boudicca's stewardship "
+"until they were adults, and the Emperor of Rome would have overlordship, "
+"collecting taxes and being allowed to request military aide. Much the same "
+"situation as he already held. The problem lay in that the Romans did not "
+"recognize female heirs, and thus asserted, upon Prasutagus's death, that "
+"only the Emperor's claim to the kingdom of Icenia was valid. They further "
+"noted it was regular Roman practice to only allow a client kingdom to be "
+"independent for the lifetime of the initial king, such as had occurred in "
+"Galatia. The Empire formally annexed the kingdom, and began extracting harsh"
+" taxes immediately, citing that Prasutagus was indebted to the Romans, "
+"having taken several loans during his lifetime that he had failed to repay. "
+"Boudicca's complaint about this treatment and the defiance of her deceased "
+"husband's will was met with brutality; Roman soldiers flogged her, and her "
+"daughters, only children, were raped. Boudicca and her subjects were "
+"infuriated at the disgrace done to their queen and the children. With the "
+"Roman governor of Britain engaged with the druids in Cambria, now Wales, "
+"Boudicca was able to attract more followers from outside the Iceni, as they "
+"were hardly the only British tribe growing rapidly disillusioned with the "
+"Romans. Boudicca and her army laid waste to three cities, routed a Roman "
+"legion, and called on the memory of Arminius, a German who had routed the "
+"Romans from his lands, and their own ancestors who had driven off Caesar "
+"near a century earlier. Boudicca was defeated by a major tactical blunder in"
+" the Battle of Watling Street, leading to much of her force being "
+"slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
+"and then slew her daughters, and then herself, to avoid further shame at "
+"Roman hands."
+msgstr "Ammiano Marcellino descrisse come fosse difficile per un gruppo di stranieri affrontare un celto qualora questo avesse chiamato in aiuto la moglie. Poichè lei era più forte di lui e sarebbero piovuti colpi e calci sugli assalitori uguali in vigore ai colpi di una catapulta. Boudicca, regina degli Iceni, venne descritta come molto alta e terrificante in apparenza, la sua voce era dura e una gran massa di capelli rossi le cadeva sulle spalle. Indossava una tunica di molti colori, avvolta da un mantello fitto, ove era fissata una spilla. Boudicca fu effettivamente in un primo momento alleata di Roma, insieme al marito, Prasutago, re degli Iceni. Prasutago divenne un'alleato romano dopo una breve rivolta. Rispettato come veggente anche dai suoi ex nemici, i romani ora alleati, fu libero di governare il suo regno secondo la tradizione natia, tranne in un caso. Prasutago, all'approssimarsi della propria morte, espose le proprie volontà alla moglie e ai suoi subordinati; le sue figlie avrebbero ereditato il territorio su cui governava, sotto la gestione di Boudicca finché non fossero adulte, e l'Imperatore di Roma avrebbe mantenuto la signoria della zona, con la riscossione delle imposte e la richiesta di aiuti militari. In verità erano gli accordi a lui già concessi da Roma. Il problema era che i Romani non riconoscevano eredi di sesso femminile, e qanto affermato nel testamento, dopo la morte di Prasutagus, veniva demandato solo al giudizio dell'Imperatore. Era una normale pratica romana consentire ad un regno di essere indipendente per la vita del primo re, come era avvenuto in Galazia. L'impero formalmente annettè il regno, e cominciò ad imporre dure tasse, a saldo di un debito di Prasutago con i Romani, che non era riuscito a ripagare. Boudicca denunciò questo trattamento e la cancellazione delle volontà del defunto marito, ma la sua richiesta venne soffocata con brutalità; i soldati romani fustigarono lei, e le sue figlie, bambine, vennero stuprate. Boudicca ed i suoi sostenitori bramavano vendetta per il disonore arrecato alla regina e alle figlie. Con il governatore romano della Britannia impegnato con i druidi in Cambria, l'attuale Galles, Boudicca fu in grado di conquistare facilmente seguaci anche al di fuori dei territori Iceni, non furono certamente l'unica tribù britannica in cerca di rivincita nei confronti dei Romani. Boudicca e il suo esercito devastarono tre città, sbaragliarono una legione romana, e venne ricordata nelle memorie di Arminio, un tedesco che aveva scacciato i romani dalle sue terre, assieme ai suoi antenati che avevano respinto Cesare un secolo prima. Boudicca fu sconfitta da un grave errore tattico nella battaglia di Watling Street, portando gran parte della sue forze al macello senza possibilità di scampo o ritirata. Boudicca stessa fuggì, uccise le sue figlie e se stessa, per evitare un ulteriore vergogna nelle mani romane."
+
+#: civs/brit.jsonFactions[0].Description
+msgid "The Celts of the British Isles."
+msgstr "I Celti delle isole Britanniche."
+
+#: civs/brit.jsonStructures[0].Name
+msgid "Kennel"
+msgstr "Canile"
+
+#: civs/brit.jsonStructures[0].History
+msgid "The Britons were known for breeding war dogs."
+msgstr "I Britanni erano noti per allevare cani da guerra."
+
+#: civs/brit.jsonHistory
+msgid ""
+"The Britons were the Celtic tribes of the British Isles. Using chariots, "
+"longswordsmen and powerful melee soldiers, they staged fearesome revolts "
+"against Rome to protect their customs and interests. Also, they built "
+"thousands of unique structures such as hill forts, crannogs and brochs."
+msgstr "I britanni erano formati dalle tribù Celtiche delle isole Britanniche. Utilizzando carri, guerrieri a spada lunga e possenti soldati da mischia, misero in atto sanguinose rivolte contro Roma per proteggere i loro costumi e interessi. Inoltre, costruirono migliaia di edifici unici come fortezze: i crannogs, isole artificiali, e i brochs, possenti torri circolari."
+
+#: civs/cart.jsonName
+msgid "Carthaginians"
+msgstr "Cartaginesi"
+
+#: civs/cart.jsonCivBonuses[0].Description
+msgid ""
+"Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
+" also 2x build time."
+msgstr "Mura cartaginesi, porte e torri hanno 3x la salute di un muro standard, ma anche 2x tempo di costruzione."
+
+#: civs/cart.jsonCivBonuses[0].Name
+msgid "Triple Walls"
+msgstr "Mura Triple"
+
+#: civs/cart.jsonCivBonuses[0].History
+msgid "Carthaginians built triple city walls."
+msgstr "I cartaginesi costruivano triple mura cittadine."
+
+#: civs/cart.jsonCivBonuses[1].Description
+msgid ""
+"The resource cost of training elephant-mounted (war elephant) or horse-"
+"mounted units (cavalry) is reduced by 5% per animal corralled (as "
+"appropriate)."
+msgstr "Il costo in risorse per l'addestramento di una unità montata su elefante (elefante da guerra) o a cavallo (cavalleria) è ridotto del 5% per ogni animale in un recinto (del tipo appropriato)."
+
+#: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
+msgid "Roundup"
+msgstr "Adunata"
+
+#: civs/cart.jsonCivBonuses[1].History
+msgid ""
+"Not unlike the Iberian Peninsula, North Africa was known as horse country, "
+"capable of producing up to 100,000 new mounts each year. It was also the "
+"home of the North African Forest Elephant."
+msgstr "Non diversamente dalla penisola Iberica, l'Africa settentrionale era conosciuta come il paese dei cavalli, poiché era in grado di fornire fino a 100.000 nuove cavalcature ogni anno. Era inoltre l'habitat dell'Elefante Nordafricano."
+
+#: civs/cart.jsonTeamBonuses[0].Description
+msgid "+33% trade profit international routes."
+msgstr "+33% di profitti per trattative su rotte commerciali internazionali."
+
+#: civs/cart.jsonTeamBonuses[0].Name
+msgid "Trademasters"
+msgstr "Commercianti"
+
+#: civs/cart.jsonTeamBonuses[0].History
+msgid ""
+"The Phoenicians and Carthaginians were broadly known as the greatest trading"
+" civilization of the ancient and classical world."
+msgstr "I Fenici e Cartaginesi erano ampiamente conosciuti come le più grandi civiltà commerciali del mondo antico e classico."
+
+#: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
+msgid "Hannibal Barca"
+msgstr "Annibale Barca"
+
+#: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
+msgid "Hamilcar Barca"
+msgstr "Amilcare Barca"
+
+#: civs/cart.jsonAINames[2]
+msgid "Hasdrubal Barca"
+msgstr "Asdrubale Barca"
+
+#: civs/cart.jsonAINames[3]
+msgid "Hasdrubal Gisco"
+msgstr "Asdrubale Giscone"
+
+#: civs/cart.jsonAINames[4]
+msgid "Hanno the Elder"
+msgstr "Annone Il Vecchio"
+
+#: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
+msgid "Maharbal"
+msgstr "Maarbale"
+
+#: civs/cart.jsonAINames[6]
+msgid "Mago Barca"
+msgstr "Magone Barca"
+
+#: civs/cart.jsonAINames[7]
+msgid "Hasdrubal the Fair"
+msgstr "Asdrubale il Giusto"
+
+#: civs/cart.jsonAINames[8]
+msgid "Hanno the Great"
+msgstr "Annone il Grande"
+
+#: civs/cart.jsonAINames[9]
+msgid "Himilco"
+msgstr "Imilcone"
+
+#: civs/cart.jsonAINames[10]
+msgid "Hampsicora"
+msgstr "Ampsicora"
+
+#: civs/cart.jsonAINames[11]
+msgid "Hannibal Gisco"
+msgstr "Annibale Giscone"
+
+#: civs/cart.jsonAINames[12]
+msgid "Dido"
+msgstr "Didone"
+
+#: civs/cart.jsonAINames[13]
+msgid "Xanthippus"
+msgstr "Xantippo"
+
+#: civs/cart.jsonAINames[14]
+msgid "Himilco Phameas"
+msgstr "Imilcóne Fàmea"
+
+#: civs/cart.jsonAINames[15]
+msgid "Hasdrubal the Boetharch"
+msgstr "Asdrubale"
+
+#: civs/cart.jsonFactions[0].Technologies[0].Description
+msgid "All Traders and Ships +25% vision range."
+msgstr "Tutti i Commercianti e Navi +25% visuale."
+
+#: civs/cart.jsonFactions[0].Technologies[0].Name
+msgid "Exploration"
+msgstr "Esplorazione"
+
+#: civs/cart.jsonFactions[0].Technologies[0].History
+msgid ""
+"Nobody knew better than the Carthaginians where in the ancient world they "
+"were going and going to go; their merchant traders had missions to "
+"everywhere."
+msgstr "Nessuno nel mondo antico conosceva meglio dei Cartaginesi dove stavano andando e dove sarebbero andati; i loro mercanti partivano per missioni commerciali dirette ovunque."
+
+#: civs/cart.jsonFactions[0].Technologies[1].Description
+msgid "Civic Centers, Temples, and Houses -25% build time."
+msgstr "Centri Civici, Templi e Case -25% del tempo di costruzione."
+
+#: civs/cart.jsonFactions[0].Technologies[1].Name
+msgid "Colonization"
+msgstr "Colonizzazione"
+
+#: civs/cart.jsonFactions[0].Technologies[1].History
+msgid ""
+"Carthaginians established many trading centers as colonies and ultimately "
+"held dominion over 300 cities and towns in North Africa alone."
+msgstr "I Cartaginesi istituirono numerosi centri commerciali nelle colonie e mantennero il dominio di oltre 300 città e paesi del Nord Africa."
+
+#: civs/cart.jsonFactions[0].Heroes[0].History
+msgid ""
+"Carthage's most famous son. Hannibal Barca was the eldest son of Hamilcar "
+"Barca and proved an even greater commander than his father. Lived 247-182 "
+"B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
+"Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
+"his position as among the best tacticians and strategists in history."
+msgstr "Il Cartaginese più famoso. Annibale Barca era il figlio maggiore di Amilcare Barca e si rivelò un comandante ancora migliore di suo padre. Visse nel 247-182 a.C. Nonostante abbia perso la Seconda Guerra Punica, le sue vittorie presso il Trebbia, il Lago Trasimeno e a Canne, insieme all'impresa dell'attraversamento delle Alpi gli hanno assicurato un posto tra i migliori tattici e strateghi della storia."
+
+#: civs/cart.jsonFactions[0].Heroes[1].History
+msgid ""
+"Father of Hannibal and virtual military dictator. Hamilcar Barca was a "
+"soldier and politician who excelled along his entire career. Lived 275-228 "
+"B.C. While overshadowed by his sons, Hamilcar was great general in his own "
+"right, earning the nickname Baraq or Barca for the lightning speed of his "
+"advance."
+msgstr "Padre di Annibale e comandante militare. Amilcare Barca si rivelò un politico e un soldato eccellente per tutta la sua carriera. Visse nel 275-228 a.C. Nonostante sia stato messo in ombra dai suoi figli, Amilcare dimostrò di essere un valoroso generale, guadagnandosi il soprannome di Baraq o Barca per la sua avanzata rapida come quella di un fulmine."
+
+#: civs/cart.jsonFactions[0].Heroes[2].History
+msgid ""
+"Maharbal was Hannibal Barca's 'brash young cavalry commander' during the 2nd"
+" Punic War. He is credited with turning the wing of the legions at Cannae "
+"resulting in defeat in which 30,000 of 50,000 Romans were lost, as well as "
+"significant contributions to the winning of many other battles during the "
+"2nd Punic War. He is known for having said, after the battle of Cannae, "
+"'Hannibal, you know how to win the victory; just not what to do with it.'"
+msgstr "Maarbale era il 'giovane e sfacciato comandante di cavalleria' di Annibale durante la 2a guerra punica. Ebbe il merito di costringere a far ripiegare l'ala delle legioni a Canne, con la conseguente sconfitta in cui morirono 30.000 dei 50.000 romani, così come altri contributi determinanti per la vittoria in molte altre battaglie durante la seconda guerra punica. E' noto per aver detto, dopo la battaglia di Canne, 'Annibale, tu sai come vincere, ma non come sfruttare la vittoria'."
+
+#: civs/cart.jsonStructures[0].Name
+msgid "Naval Shipyard"
+msgstr "Cantiere Navale"
+
+#: civs/cart.jsonStructures[0].Special
+msgid "Construct the powerful warships of the Carthaginian navy."
+msgstr "Costruisce le potenti navi da guerra della marina Cartaginese."
+
+#: civs/cart.jsonStructures[0].History
+msgid ""
+"The structure is based upon the center island of the inner harbour "
+"constructed to house the war fleet of the Carthaginian navy at Carthage."
+msgstr "La struttura si basa sull'isola centrale del porto interno costruito per ospitare la flotta da guerra della marina cartaginese a Cartagine."
+
+#: civs/cart.jsonStructures[1].Name
+msgid "Celtic Embassy"
+msgstr "Ambasciatore celtico"
+
+#: civs/cart.jsonStructures[1].Special
+msgid "Hire Celtic mercenaries."
+msgstr "Ingaggia mercenari celti."
+
+#: civs/cart.jsonStructures[1].History
+msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
+msgstr "I Celti fornivano feroci soldati mercenari per gli eserciti cartaginesi."
+
+#: civs/cart.jsonStructures[2].Name
+msgid "Italiote Embassy"
+msgstr "Ambasciata Italiota"
+
+#: civs/cart.jsonStructures[2].Special
+msgid "Hire Italian mercenaries."
+msgstr "Ingaggia mercenari Italiani"
+
+#: civs/cart.jsonStructures[2].History
+msgid ""
+"When Hannibal invaded Italy and defeated the Romans in a series of battles, "
+"many of the Italian peoples subject to Rome, including the Italian Greeks "
+"and powerful Samnites, revolted and joined the Carthaginian cause."
+msgstr "Quando Annibale invase l'Italia e scofisse i Romani in una serie di battaglie, molti dei popoli italici soggetti a Roma, tra cui i Greci italici e i potenti Sanniti, si ribellarono e si unirono alla causa cartaginese."
+
+#: civs/cart.jsonStructures[3].Name
+msgid "Iberian Embassy"
+msgstr "Ambasciata Iberica"
+
+#: civs/cart.jsonStructures[3].Special
+msgid "Hire Iberian mercenaries."
+msgstr "Ingaggia mercenari Iberici."
+
+#: civs/cart.jsonStructures[3].History
+msgid ""
+"The Iberians were known as fierce mercenaries, loyal to their paymasters."
+msgstr "Gli iberici erano famosi come feroci mercenari, fedeli a chi li aveva assoldati."
+
+#: civs/cart.jsonHistory
+msgid ""
+"Carthage, a city-state in modern-day Tunisia, was a formidable force in the "
+"western Mediterranean, eventually taking over much of North Africa and "
+"modern-day Spain in the third century B.C. The sailors of Carthage were "
+"among the fiercest contenders on the high seas, and masters of naval trade. "
+"They deployed towered War Elephants on the battlefield to fearsome effect, "
+"and had defensive walls so strong, they were never breached."
+msgstr "Cartagine, una città stato nella moderna Tunisia, era una forza formidabile nel Mediterraneo occidentale, giungendo ad avere il controllo di gran parte dell'Africa settentrionale e della moderna Spagna nel terzo secolo a.C. I marinai di Cartagine furono tra i contendenti più agguerriti del mare aperto, e maestri del commercio navale. Erano soliti dispiegare elefanti da guerra sul campo di battaglia per avere un impatto terrificante sul nemico, e costruirono mura difensive così robuste che non vennero mai violate."
+
+#: civs/celt.jsonName
+msgid "Celts"
+msgstr "Celti"
+
+#: civs/celt.jsonFactions[0].Description
+msgid "British Isles"
+msgstr "Isole Britanniche"
+
+#: civs/celt.jsonFactions[1].Technologies[0].Description
+msgid ""
+"A set amount of ore and food from every structure destroyed or captured "
+msgstr "Ottieni una quantità di minerali e cibo da ogni struttura distrutta o catturata"
+
+#: civs/celt.jsonFactions[1].Technologies[0].Name
+#: civs/gaul.jsonFactions[0].Technologies[0].Name
+msgid "Uae Uictos"
+msgstr "Vae Victis!"
+
+#: civs/celt.jsonFactions[1].Technologies[0].History
+msgid ""
+"Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
+" spoke at the Capitol at Rome after they took their plunder."
+msgstr "Significa Guai ai Vinti. Erano le parole che il capo gallico, Brenno, pronunciò in Campidoglio a Roma quando gettò sul piatto della bilancia anche la sua spada in modo da aumentare il valore del bottino richiesto ai Romani."
+
+#: civs/celt.jsonFactions[1].Technologies[1].Description
+#: civs/gaul.jsonFactions[0].Technologies[1].Description
+msgid "Gallic druids gain a small melee attack."
+msgstr "I druidi gallici guadagnano un piccolo attacco corpo a corpo."
+
+#: civs/celt.jsonFactions[1].Technologies[1].Name
+#: civs/gaul.jsonFactions[0].Technologies[1].Name
+msgid "Carnutes"
+msgstr "Carnuti"
+
+#: civs/celt.jsonFactions[1].Technologies[1].History
+#: civs/gaul.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Carnutes were druids from Aulercia. They fought when needed, and were "
+"largely responsible for turning back the Belgae incursions into Armorica and"
+" Aulercia."
+msgstr "I Carnuti erano i druidi di Aulercia. Combattenti quando necessario, furono in gran parte artefici delle sconfitte dei Belgi inferte durante le loro incursioni in Armorica e Aulercia."
+
+#: civs/celt.jsonFactions[1].Heroes[0].History
+#: civs/gaul.jsonFactions[0].Heroes[0].History
+msgid ""
+"When celt armies met the enemy, before the battle would start, the celt "
+"leader would go to the first line and challenge the bravest of the enemy "
+"warriors to a single combat. The story of how Marcus Claudius Marcellus "
+"killed a Gallic leader at Clastidium (222 B.C.) is typical of such "
+"encounters. Advancing with a smallish army, Marcellus met a combined force "
+"of Insubrian Gauls and Gaesatae at Clastidium. The Gallic army advanced with"
+" the usual rush and terrifying cries, and their king, Britomartos, picking "
+"out Marcellus by means of his badges of rank, made for him, shouting a "
+"challenge and brandishing his spear. Britomartos was an outstanding figure "
+"not only for his size but also for his adornments; for he was resplendent in"
+" bright colors and his armor shone with gold and silver. This armor, thought"
+" Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
+"pierced his bright breastplate and cast him to the ground. It was an easy "
+"task to kill Britomartos and strip him of his armor."
+msgstr "Quando gli eserciti Celti incontravano il nemico, prima della battaglia, il capo celto si portava tra le prime file per sfidare il più valoroso dei guerrieri nemici in un singolo combattimento. La storia di come Marco Claudio Marcello uccise un capo Gallico a Clastidium (222 a.C.) è tipica di tali avvenimenti. Avanzando con un esercito ridotto, Marcello incontrò un gruppo di Galli Insubri e Gesati a Clastidium. L'esercito Gallico avanzò con la solita foga e urla terrificanti, ed il loro re, Britomartos, individuò Marcello per mezzo dei suoi distintivi di grado e gli si gettò contro brandendo la sua lancia. Britomartos era una figura eccezionale, non solo per le sue dimensione, ma anche per i suoi ornamenti, era risplende di colori vivaci e la sua armatura brillava d'oro e d'argento. Questa armatura, pensò Marcello, sarebbe un'eccellente offerta agli dei. Caricò il capo Gallico, trafiggendo la sua brillante corazza e gettandolo a terra. Complice la foga di Britomartos il romano riuscì facilmente a ucciderlo e lo spogliarlo della sua armatura."
+
+#: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
+#: civs/gaul.jsonFactions[0].Heroes[0].Name
+msgid "Britomartos"
+msgstr "Britomartos"
+
+#: civs/celt.jsonFactions[1].Heroes[1].History
+#: civs/gaul.jsonFactions[0].Heroes[1].History
+msgid ""
+"Brennus is the name which the Roman historians give to the famous leader of "
+"the Gauls who took Rome in the time of Camillus. According to Geoffrey of "
+"Monmouth, the cleric who wrote “History of the Kings of Britain”, Brennus "
+"and his brother Belinus invaded Gaul and sacked Rome in 390 B.C., 'proving' "
+"that Britons had conquered Rome, the greatest civilization in the world, "
+"long before Rome conquered the Britons. We know from many ancient sources "
+"which predate Geoffrey that Rome was indeed sacked, but in 387 not 390, and "
+"that the raid was led by a man named Brennos (which was latinized to "
+"Brennus), but he and his invading horde were Gallic Senones, not British. In"
+" this episode several features of Geoffrey's editing method can be seen: he "
+"modified the historical Brennus/Brennos, created the brother Belinus, "
+"borrowed the Gallic invasion, but omitted the parts where the Celts seemed "
+"weak or foolish. His technique is both additive and subtractive. Like the "
+"tale of Trojan origin, the story of the sack of Rome is not pure "
+"fabrication; it is a creative rearrangement of the available facts, with "
+"details added as necessary. By virtue of their historical association, Beli "
+"and Bran are often muddled with the earlier brothers Belinus and Brennus "
+"(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
+" in around 390 B.C., and were regarded as gods in old Celtic tradition."
+msgstr "Brenno è il nome che gli storici romani diedero al famoso condottiero dei Galli che prese Roma al tempo di Camillo. Secondo Geoffrey di Monmouth, il religioso che ha scritto \"Storia dei Re della Bretagna\", Brenno e suo fratello Belinus invasero la Gallia e saccheggiarono Roma nel 390 a.C., è la 'prova' che i Britanni conquistarono Roma, la più grande civiltà del mondo, prima che Roma conquistasse i Britanni. Sappiamo da molte fonti antiche, anteriori a Geoffrey che Roma fu effettivamente saccheggiata, ma nel 387 non nel 390, e che l'attacco venne condotto da un uomo di nome Brennos (latinizzato in Brenno), ma sia lui che la sua orda di invasori erano Galli Senoni, non Britanni. In questo episodio possono essere evidenziate diverse caratteristiche del metodo di revisione di Geoffrey: modificò il nome Brenno/Brennos, creò il fratello Belinus, prese in prestito l'invasione gallica, ma omise le parti in cui i celti apparivano deboli o ignoranti. La sua tecnica era sia additiva sia sottrattiva. Come il racconto dell'origine di Troia, la storia del sacco di Roma non fu pura invenzione; ma un riarrangiamento creativo dei dati disponibili, con particolari aggiunti, quando necessario. In virtù della loro associazione storica, Beli e Bran sono spesso confusi con i fratelli precedenti Belinus e Brenno (i figli di Dunvallo Molmutius), che governarono nel nord della Gran Bretagna intorno al 390 a.C., ed erano venerati come divinità nella vecchia tradizione Celtica."
+
+#: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
+#: civs/gaul.jsonFactions[0].Heroes[1].Name
+msgid "Brennos"
+msgstr "Brenno"
+
+#: civs/celt.jsonFactions[1].Heroes[2].History
+#: civs/gaul.jsonFactions[0].Heroes[2].History
+msgid ""
+"Vercingetorix (Gaulish: Ver-Rix Cingetos) was the chieftain of the Arverni "
+"tribe in Gaul (modern France). Starting in 52 B.C. he led a revolt against "
+"the invading Romans under Julius Caesar, his actions during the revolt are "
+"remembered to this day. Vercingetorix was probably born near his tribes "
+"capital (Gergovia). From what little info we have Vercingetorix was probably"
+" born in 72 B.C., his father was Celtius and we don't know who his mother "
+"was. Because we only know of him from Roman sources we don't know much about"
+" Vercingetorix as a child or young man, except that perhaps he was probably "
+"very high spirited and probably gained some renown in deeds."
+msgstr "Vercingetorix (dal gallico: Ver-Rix Cingetos) è stato il capo della tribù degli Arverni in Gallia (l'attuale Francia). A partire dal 52 a.C. guidò una rivolta contro i Romani invasori sotto Giulio Cesare, le sue azioni durante la rivolta vennero tramandate fino ai giorni nostri. Vercingetorix nacque probabilmente nei pressi della capitale della sua tribù (Gergovia). Da quel poco di informazioni che abbiamo nacque nel 72 a.C., suo padre era un Celto e non si sa chi fosse la madre. Poiché sappiamo solo di lui da fonti romane non sappiamo molto di Vercingetorix durante la sua infanzia e giovinezza, se non che forse era molto vivace e guadagnò una discreta fama con le sue gesta."
+
+#: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
+#: civs/gaul.jsonFactions[0].Heroes[2].Name
+msgid "Uerkingetorix"
+msgstr "Vercingetorix"
+
+#: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
+#: civs/gaul.jsonFactions[0].Name
+msgid "Gauls"
+msgstr "Galli"
+
+#: civs/celt.jsonFactions[1].Description
+msgid "Mainland Europe"
+msgstr "Europa Continentale"
+
+#: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
+msgid "Melonas"
+msgstr "Melona"
+
+#: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
+msgid "The Celts developed the first rotary flour mill."
+msgstr "I Celti svilupparono il primo mulino rotante."
+
+#: civs/celt.jsonHistory
+msgid ""
+"At its peak (around 200 B.C.), the massive Celtic Empire spanned from Spain "
+"to Romania and Northern Italy to Scotland; although it wasn't a true empire "
+"because the Celtic people were not united by any form of government, but "
+"only in language and various social aspects. Their lack of any cohesion was "
+"probably the largest contributing factor to their ultimate submission to "
+"Rome by 100 A.D. The other contributing factors were their lack of armor and"
+" their inability to counter the mighty legions and siege weapons of Rome."
+msgstr "Al suo apice (circa 200 a.C.), l'Impero Celtico si estendeva dalla Spagna alla Romania e dal Nord Italia alla Scozia, anche se non era un vero e proprio impero, poiché i popoli celti non erano uniti da una forma di governo, ma solo dalla lingua e alcuni aspetti sociali. La loro mancanza di coesione fu probabilmente il principale fattore che contribuì alla loro sottomissione a Roma del 100 d.C. Gli altri fattori furono la mancanza di armature e la loro incapacità di contrastare le legioni organizzate e le armi d'assedio di Roma."
+
+#: civs/gaul.jsonAINames[3]
+msgid "Divico"
+msgstr "Divico"
+
+#: civs/gaul.jsonAINames[4]
+msgid "Ambiorix"
+msgstr "Ambiorix"
+
+#: civs/gaul.jsonAINames[5]
+msgid "Ariovistus"
+msgstr "Ariovisto"
+
+#: civs/gaul.jsonAINames[6]
+msgid "Cassivellaunus"
+msgstr "Cassivellauno"
+
+#: civs/gaul.jsonAINames[7]
+msgid "Liscus"
+msgstr "Liscus"
+
+#: civs/gaul.jsonAINames[8]
+msgid "Valetiacos"
+msgstr "Valetiacos"
+
+#: civs/gaul.jsonFactions[0].Technologies[0].Description
+msgid ""
+"A set amount of metal and food from every structure destroyed or captured."
+msgstr ""
+
+#: civs/gaul.jsonFactions[0].Technologies[0].History
+msgid ""
+"Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
+" spoke at the Capitol at Rome after they took their plunder."
+msgstr ""
+
+#: civs/gaul.jsonFactions[0].Description
+msgid "The Celts of mainland Europe."
+msgstr "I Celti del continente Europeo."
+
+#: civs/gaul.jsonHistory
+msgid ""
+"The Gauls were the Celtic tribes of continental Europe. Dominated by a "
+"priestly class of Druids, they featured a sophisticated culture of advanced "
+"metalworking, agriculture, trade and even road engineering. With heavy "
+"infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
+"of conquest and Rome's authoritarian rule."
+msgstr "I Galli erano le tribù celtiche dell'Europa continentale. Dominati dalla classe sacerdotale dei Druidi, caratterizzati da una cultura sofisticata nella lavorazione avanzata dei metalli, agricoltura, commercio e anche di ingegneria stradale. Con la fanteria pesante e cavalleria, i guerrieri gallici coraggiosamente resistettero alla campagna di conquista di Cesare e all'imposizione dell'autorità Romana."
+
+#: civs/hele.jsonName
+msgid "Hellenes"
+msgstr "Elleni"
+
+#: civs/hele.jsonCivBonuses[0].Description
+msgid "10-15% cheaper technologies."
+msgstr "tecnologie più economiche del 10-15%."
+
+#: civs/hele.jsonCivBonuses[0].Name
+msgid "Oikoumene"
+msgstr "Ecumene"
+
+#: civs/hele.jsonCivBonuses[0].History
+msgid ""
+"The Hellenes envisioned themselves as comprising the civilized world "
+"(oikoumene), surrounded by more or less developed barbarians. Many "
+"foreigners also considered them men of higher stature."
+msgstr "I Greci si immaginavano come l'area del mondo civilizzato (ecumene), circondato da più o meno evoluti barbari. Anche molti stranieri li consideravano uomini di grandi doti culturali."
+
+#: civs/hele.jsonTeamBonuses[0].Description
+msgid "All units and allied units have increased LOS. ~ 10%"
+msgstr "Tutte le unità e le unità alleate aumentano del ~ 10% la visuale"
+
+#: civs/hele.jsonTeamBonuses[0].Name
+msgid "Oracle at Delphi"
+msgstr "Oracolo di Delfi"
+
+#: civs/hele.jsonTeamBonuses[0].History
+msgid ""
+"The sacred Oracle of Apollo at Delphi was among the most highly cherished "
+"sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
+"example, consulted the advice of the god before going to war with Cyrus the "
+"Great of Persia."
+msgstr "Il sacro oracolo di Apollo a Delfi è stato tra i santuari più amati da Greci e stranieri. Il re di Lidia, Creso, per esempio, consultò il consiglio del dio prima di andare in guerra contro Ciro il Grande di Persia."
+
+#: civs/hele.jsonFactions[0].Technologies[0].Description
+msgid "The player gains the Phalanx formation."
+msgstr "Gli spartani possono utilizzare la potente formazione a Falange."
+
+#: civs/hele.jsonFactions[0].Technologies[0].History
+msgid ""
+"The classical phalanx formation was developed about VIII century B.C. It was"
+" eight men deep and over two hundred men wide, and used overlapping shields "
+"and combined pushing power. 'Othismos' refers to the point in a phalanx "
+"battle where both sides try to shove each other out of formation, attempting"
+" to breaking up the enemy lines and routing them."
+msgstr "La formazione a falange classica è stata sviluppata nel VIII secolo a.C. Costituita da otto uomini per lunghezza e larga più di duecento uomini, utilizza una combinazione di scudi sovrapposti e potenza di spinta. 'Othismos' si riferisce al punto, in una battaglia tra falangi, in cui entrambe le parti cercano di spingere a vicenda la formazione avversaria, cercando di sfondare le linee nemiche."
+
+#: civs/hele.jsonFactions[0].Technologies[1].Description
+msgid "Triremes are 20% cheaper and build 20% faster."
+msgstr "Le Trireme saranno il 20% più economiche e il 20% più veloci da costruire"
+
+#: civs/hele.jsonFactions[0].Heroes[1].History
+msgid ""
+"The king of Sparta, whom fought and died at the battle of Thermopylae in 480"
+" B.C. He successfully blocked the way of the huge Persian army through the "
+"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
+"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
+" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
+"time for the others to withdraw."
+msgstr "Il re di Sparta, che combatté e morì nella battaglia delle Termopili nel 480 a.C. Impedì con successo l'avanzata dell'enorme esercito persiano attraverso lo stretto passaggio con i suoi 7000 uomini, fino a quando Serse venne a conoscenza di un percorso alternativo segreto. Trovandosi il nemico alle spalle, Leonida inviò a difendere la grecia la maggior parte delle sue truppe, scegliendo di rimanere con 300 opliti alle Termopili e guadagnare il tempo necessario per permettere agli altri di ritirarsi."
+
+#: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
+msgid "Leonidas"
+msgstr "Leonida"
+
+#: civs/hele.jsonFactions[0].Heroes[2].History
+msgid ""
+"Xenophon (c. 430-355 B.C.) was a Greek soldier and (later) historian who was"
+" born in Athens of an oligarch family and was a student of Socrates during "
+"his youth. In 401 B. C., Xenophon joined an army of Greek mercenaries lead "
+"by Clearchus and four other generals who were aiding Cyrus the Younger in "
+"his military campaign against his brother, King Artaxerxes II. After Persian"
+" treachery killed the leaders of the mercenary force, Xenophon was elected "
+"one of the 5 new generals to lead the army. After a trek of over 1,500 "
+"kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
+"fighting dozens of battles and skirmishes along the way."
+msgstr "Senofonte (c. 430-355 a.C.) era un soldato greco e (più tardi) storico, nato ad Atene da una famiglia oligarca ed allievo di Socrate durante la gioventù. Nel 401 a.C. Senofonte si unì ad un esercito di mercenari greci guidati da Clearco e altri quattro generali in aiuto di Ciro il Giovane nella sua campagna militare contro il fratello, il re Artaserse II. Dopo il tradimento persiano che uccise i leader della forza mercenaria, Senofonte venne eletto tra i 5 nuovi generali per guidare l'esercito. Dopo oltre 1.500 chilometri e 2 anni di cammino, Senofonte riportò i suoi uomini a casa, combattendo decine di battaglie e schermaglie lungo la strada."
+
+#: civs/hele.jsonFactions[0].Name
+msgid "Poleis"
+msgstr "Città"
+
+#: civs/hele.jsonFactions[0].Description
+msgid "Greek City-states"
+msgstr "Città Stato Greca"
+
+#: civs/hele.jsonFactions[1].Technologies[0].Description
+msgid "The player gains the Syntagma formation."
+msgstr "Il giocatore guadagna la formazione Syntagma."
+
+#: civs/hele.jsonFactions[1].Technologies[0].Name
+#: civs/mace.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonCivBonuses[1].Name
+msgid "Military Reforms"
+msgstr "Riforme Militari"
+
+#: civs/hele.jsonFactions[1].Technologies[0].History
+msgid ""
+"Once coming to the throne, Philip II set about reforming the ragtag "
+"Macedonian army into a fearsome professional force. One such reform is the "
+"SYNTAGMA formation, derived from the oblique battle front developed by the "
+"Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
+"arranged in the following way 16 men in width and 16 in depth."
+msgstr "Una volta salito al trono, Filippo II si accinse a riformare l'esercito irregolare Macedone in una forza temibile. La riforma introdusse la formazione SYNTAGMA, derivata dal fronte di battaglia obliquo sviluppato dal comandante tebano Epaminonda. La falange, composta di 256 uomini, è disposta nel modo seguente 16 uomini in larghezza e 16 in profondità."
+
+#: civs/hele.jsonFactions[1].Technologies[1].Description
+msgid "Civic Centers have double Health."
+msgstr "Centro Cittadino raddoppia la propria Salute"
+
+#: civs/hele.jsonFactions[1].Technologies[1].Name
+#: civs/mace.jsonFactions[0].Technologies[2].Name
+#: civs/ptol.jsonFactions[0].Technologies[0].Name
+#: civs/sele.jsonFactions[0].Technologies[0].Name
+msgid "Hellenistic Metropolises"
+msgstr "Metropoli Ellenistiche"
+
+#: civs/hele.jsonFactions[1].Technologies[1].History
+#: civs/mace.jsonFactions[0].Technologies[2].History
+#: civs/ptol.jsonFactions[0].Technologies[0].History
+#: civs/sele.jsonFactions[0].Technologies[0].History
+msgid ""
+"Beginning with Alexander, the Hellenistic monarchs founded many cities "
+"throughout their empires, where Greek culture and art blended with local "
+"customs to create the motley Hellenistic civilization."
+msgstr "A partire da Alessandro, i sovrani ellenistici fondarono molte città in tutto il loro impero, dove la cultura e l'arte greca si mescolarono con le tradizioni locali fino a creare una civiltà ellenistica eterogenea."
+
+#: civs/hele.jsonFactions[1].Heroes[0].History
+#: civs/mace.jsonFactions[0].Heroes[0].History
+msgid ""
+"The king of Macedonia (359-336 B.C.), he carried out vast monetary and "
+"military reforms in order to make his kingdom the most powerful force in the"
+" Greek world. Greatly enlarged the size of Macedonia by conquering much of "
+"Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
+"against Persia."
+msgstr "Re di Macedonia (359-336 a.C.), portò a termine ampie riforme sia monetarie che militari, in modo tale da rendere il suo regno la forza più potente del mondo greco. Ampliò considerevolmente i confini della Macedonia conquistando gran parte della Tracia e sottomettendo i Greci. Fu ucciso a Aegae mentre pianificava una campagna contro la Persia."
+
+#: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
+msgid "Philip II"
+msgstr "Filippo II"
+
+#: civs/hele.jsonFactions[1].Heroes[1].History
+#: civs/mace.jsonFactions[0].Heroes[1].History
+msgid ""
+"The most powerful hero of them all - son of Philip II, king of Macedonia "
+"(336-323 B.C.). After conquering the rest of the Thracians and quelling the "
+"unrest of the Greeks, Alexander embarked on a world-conquest march. "
+"Defeating the Persian forces at Granicus (334 B.C.), Issus (333 B.C.) and "
+"Gaugamela (331 B.C.), he became master of the Persian Empire. Entering "
+"India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
+"made him halt. Died in Babylon at the age of 33 while planning a campaign "
+"against Arabia."
+msgstr "L'eroe più potente di tutti - figlio di Filippo II, re di Macedonia (336-323 a.C.). Dopo aver conquistato il resto della Tracia e aver domato il resto dei greci, Alessandro intraprese una campagna alla conquista del mondo. Con la sconfitta del Persiani sul Granico (334 a.C.), a Isso (333 a.C.) e a Gaugamela (331 a.C.), divenne padrone dell'Impero Persiano. Entrato in India, sconfisse re Poro presso il fiume Idaspe (326 a.C.), ma le sue truppe esauste lo costrinsero a fermarsi. Morì a Babilonia all'età di 33 anni, mentre pianificava una campagna contro l'Arabia."
+
+#: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
+#: civs/mace.jsonFactions[0].Heroes[1].Name
+msgid "Alexander the Great"
+msgstr "Alessandro Magno"
+
+#: civs/hele.jsonFactions[1].Heroes[2].History
+#: civs/mace.jsonFactions[0].Heroes[2].History
+msgid ""
+"One of the Diadochi, king of Macedonia (294-288 B.C.), Demetrios was "
+"renowned as one of the bravest and most able successors of Alexander. As the"
+" son of Antigonus I Monophthalmus, he fought and won many important battles "
+"early on and was proclaimed king, along with his father, in 306 B.C. Losing "
+"his Asian possessions after the battle of Ipsos, he later won the Macedonian"
+" throne. Fearing lest they should be overpowered by Demetrios, the other "
+"Diadochi united against him and defeated him."
+msgstr "Uno dei Diadochi, re di Macedonia (294-288 a.C.), Demetrio era noto come uno dei più coraggiosi e capaci successori di Alessandro Magno. In quanto figlio di Antigono I Monoftalmo, presto combattè e vinse molte importanti battaglie e fu proclamato re, insieme a suo padre, nel 306 a.C. Dopo aver perso i suoi possedimenti asiatici in seguito alla battaglia di Ipso, riuscì a riconquistare il trono macedone. Temendo di essere sopraffatti da Demetrio, gli altri Diadochi si allearono contro di lui e lo sconfissero."
+
+#: civs/hele.jsonFactions[1].Heroes[2].Name
+msgid "Demetrios Poliorcetes"
+msgstr "Demetrio I Poliorcete"
+
+#: civs/hele.jsonFactions[1].Name
+msgid "Macedonia"
+msgstr "Macedonia"
+
+#: civs/hele.jsonFactions[1].Description
+msgid "Kingdom bordering Greek city-states"
+msgstr "Regno confinante città-stato Greche"
+
+#: civs/hele.jsonHistory
+msgid ""
+"The Hellenes were a people famous today for their architecture, fighting "
+"ability, and culture. The Hellenic peoples of the Dorian, Ionian, and "
+"Aeolian tribes swept into modern day Greece from 3000 B.C. to around 1100 "
+"B.C. in successive waves that eventually supplanted the previously "
+"established cultures of Mycenae and Minoan Crete. They were most active "
+"during the period of colonization that took place in the 7th and 6th "
+"centuries B.C., the Greco-Persian Wars (499-449 B.C.), the Peloponnesian War"
+" (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
+"B.C.). Their civilization would endure until their final absorption by Rome "
+"in 146 B.C."
+msgstr "I Greci erano un popolo divenuto oggi famoso per la loro architettura, la capacità in combattimento e la cultura. I popoli Ellenici dei Dori, Ioni, e le tribù degli Eoli furono presenti in quella che è la Grecia moderna dal 3000 a.C. al 1100 a.C. in ondate successive che alla fine soppiantarono le culture precedentemente stabilitesi di Micene e Creta Minoica. Furono i più attivi durante il periodo della colonizzazione che ebbe luogo nel 7° e 6° secolo a.C., le Guerre Greco-Persiane (499-449 a.C.), la Guerra del Peloponneso (431-404 a.C.), e le conquiste di Alessandro Magno ( IV secolo a.C.). La loro civiltà durò fino al loro assorbimento da parte di Roma nel 146 a.C."
+
+#: civs/iber.jsonName
+msgid "Iberians"
+msgstr "Iberici"
+
+#: civs/iber.jsonCivBonuses[0].Description
+msgid "Iberians start with a powerful prefabricated circuit of stone walls."
+msgstr "Gli Iberici iniziano con un possente circuito di mura di pietra già costruito."
+
+#: civs/iber.jsonCivBonuses[0].Name
+msgid "Harritsu Leku"
+msgstr "Harritsu Leku"
+
+#: civs/iber.jsonCivBonuses[0].History
+msgid ""
+"With exception to alluvial plains and river valleys, stone is abundant in "
+"the Iberian Peninsula and was greatly used in construction of structures of "
+"all types."
+msgstr "Con l'eccezione delle pianure alluvionali e valli fluviali, la pietra è abbondante nella Penisola Iberica ed è stata molto utilizzata nella costruzione di strutture di tutti i tipi."
+
+#: civs/iber.jsonCivBonuses[1].Description
+msgid ""
+"The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
+" per animal corralled."
+msgstr "Il costo per l'addestramento delle unità montate a cavallo (cavalleria) è ridotto del 5% per ogni animale in un recinto."
+
+#: civs/iber.jsonCivBonuses[1].Name
+msgid "Zaldi Saldoa"
+msgstr "Zaldi Saldoa"
+
+#: civs/iber.jsonCivBonuses[1].History
+msgid ""
+"Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
+"'horse country', capable of producing up to 100,000 new mounts each year."
+msgstr "Non diversamente dalla penisola Iberica, l'Africa settentrionale era conosciuta come il paese dei cavalli, poiché era in grado fornire fino a 100.000 nuove cavalcature ogni anno."
+
+#: civs/iber.jsonTeamBonuses[0].Description
+msgid ""
+"Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
+"allies."
+msgstr "Fanteria Cittadino-soldato incursori e cavalleria incursori costo -20% per gli alleati."
+
+#: civs/iber.jsonTeamBonuses[0].Name
+msgid "Saripeko"
+msgstr "Saripeko"
+
+#: civs/iber.jsonTeamBonuses[0].History
+msgid ""
+"The Iberians were long known to provide mercenary soldiers to other nations "
+"to serve as auxiliaries to their armies in foreign wars. Carthage is the "
+"most well known example, and we have evidence of them serving in such a "
+"capacity in Aquitania."
+msgstr "Gli iberici erano noti per fornire soldati mercenari alle altre nazioni per servire come ausiliari ai loro eserciti in guerre straniere. Cartagine è l'esempio più noto, e le prove delle loro capacità sono evidenti in Aquitania."
+
+#: civs/iber.jsonAINames[0] civs/iber.jsonAINames[1]
+#: civs/iber.jsonFactions[0].Heroes[0].Name
+msgid "Viriato"
+msgstr "Viriato"
+
+#: civs/iber.jsonAINames[2] civs/iber.jsonFactions[0].Heroes[1].Name
+msgid "Karos"
+msgstr "Karos"
+
+#: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
+msgid "Indibil"
+msgstr "Indibile"
+
+#: civs/iber.jsonAINames[4]
+msgid "Audax"
+msgstr "Audax"
+
+#: civs/iber.jsonAINames[5]
+msgid "Ditalcus"
+msgstr "Ditalcus"
+
+#: civs/iber.jsonAINames[6]
+msgid "Minurus"
+msgstr "Minurus"
+
+#: civs/iber.jsonAINames[7]
+msgid "Tautalus"
+msgstr "Tautalus"
+
+#: civs/iber.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Causes targets struck to become inflamed and lose hitpoints at a constant "
+"rate until and if either healed or repaired, as appropriate."
+msgstr "Gli obiettivi colpiti si infiammano e perdono punti a una velocità costante fino a quando vengono curati o riparati, a seconda dei casi."
+
+#: civs/iber.jsonFactions[0].Technologies[0].Name
+msgid "Suzko Txabalina"
+msgstr "Suzko Txabalina"
+
+#: civs/iber.jsonFactions[0].Technologies[0].History
+msgid ""
+"Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
+"of their throwing spears, soaking that in some sort of flammable pitch, then"
+" setting it afire just before throwing."
+msgstr "Gli uomini delle tribù iberiche erano noti per il confezionamento di pacchi di erba applicati sui fusti delle loro lance, che intinti in una sorta di pece infiammabile, rendevano l'arma incendiaria poco prima di lanciarla."
+
+#: civs/iber.jsonFactions[0].Technologies[1].Description
+msgid "Metal costs for units and technologies reduced by 50%."
+msgstr "Il costo in metallo per unità e tecnologie è ridotto del 50%"
+
+#: civs/iber.jsonFactions[0].Technologies[1].Name
+msgid "Maisu Burdina Langileak"
+msgstr "Maisu Burdina Langileak"
+
+#: civs/iber.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Iberians were known to produce the finest iron and steel implements and "
+"weapons of the age. The famous 'Toledo Steel.'"
+msgstr "Gli iberici erano noti per produrre i migliori utensili di ferro e acciaio ed armi dell'epoca. Il famoso 'Acciaio di Toledo.'"
+
+#: civs/iber.jsonFactions[0].Heroes[0].History
+msgid ""
+"Viriato, like Vercingetorix amongst the Gauls, was the most famous of the "
+"Iberian tribal war leaders, having conducted at least 7 campaigns against "
+"the Romans in the southern half of the peninsula during the 'Lusitani Wars' "
+"from 147-139 B.C. He surfaced as a survivor of the treacherous massacre of "
+"9,000 men and the selling into slavery of 21,000 elderly, women, and "
+"children of the Lusitani. They had signed a treaty of peace with the Romans,"
+" conducted by Servius Sulpicius Galba, governor of Hispania Ulterior, as the"
+" 'final solution' to the Lusitani problem. He emerged from humble beginnings"
+" in 151 B.C. to become war chief of the Lusitani. He was intelligent and a "
+"superior tactician, never really defeated in any encounter (though suffered "
+"losses in some requiring retreat). He succumbed instead to another treachery"
+" arranged by a later Roman commander, Q. Servilius Caepio, to have him "
+"assassinated by three comrades that were close to him."
+msgstr "Viriato, come Vercingetorix tra i Galli, era il più famoso dei leader della guerra tribale Iberica, condusse almeno 7 campagne contro i romani nella metà meridionale della penisola durante le \"Guerre Lusitane\" 147-139 a.C. Sopravvisse al proditorio massacro di 9.000 uomini e la vendita in schiavitù di 21.000 anziani, donne e bambini Lusitani. Avevano firmato un trattato di pace con i Romani, stipulato da Servio Sulpicio Galba, governatore della Hispania Ulteriore, indicato come la 'soluzione finale' al problema dei Lusitani. Di umili origini, nel 151 a.C. divenne capo di guerra dei Lusitani. Era intelligente e tattico, non venne mai sconfitto nei vari scontri (anche se subì diverse perdite in alcune ritirate strategiche). Morì in seguito ad un altro tradimento organizzato da un comandante romano, Q. Servilio Caepio, che lo fece assassinare da tre compagni d'arme del suo stesso esercito."
+
+#: civs/iber.jsonFactions[0].Heroes[1].History
+msgid ""
+"Karos was a chief of the Belli tribe located just east of the Celtiberi "
+"(Numantines at the center). Leading the confederated tribes of the meseta "
+"central (central upland plain) he concealed 20,000 foot and 5,000 mounted "
+"troops along a densely wooded track. Q. Fulvius Nobilior neglected proper "
+"reconnaissance and lead his army into the trap strung out in a long column. "
+"Some 10,000 of 15,000 Roman legionaries fell in the massive ambush that was "
+"sprung upon them. The date was 23 August of 153 B.C., the day when Rome "
+"celebrated the feast of Vulcan. By later Senatorial Decree it was ever "
+"thereafter known as dies ater, a 'sinister day', and Rome never again fought"
+" a battle on the 23rd of August. Karos was wounded in an after battle small "
+"cavalry action the same evening and soon died thereafter, but he had carried"
+" off one of the most humiliating defeats that Rome ever suffered."
+msgstr "Karos fu un capo della tribù Belli posta appena a est dei Celtiberi (coi Numantini al centro). A capo delle tribù confederate della Meseta Centrale (altopiano centrale) nascose 20.000 fanti e 5.000 cavallieri lungo una pista ricca di boschi. Q. Fulvio Nobiliore trascurando di fare una corretta ricognizione portò il suo esercito in trappola. Circa 10.000 di 15.000 legionari romani caddero nell'imboscata. La data era il 23 Agosto del 153 a.C., il giorno in cui Roma celebrava la festa di Vulcano. In un successivo Decreto Senatoriale venne ricordato come dies ater, un 'giorno sinistro', da cui deriva la parola disastro, e Roma non combattè più una battaglia il 23 Agosto. Karos venne ferito in una piccola azione di cavalleria la sera stessa dopo la battaglia e presto morì, ma aveva strappato una delle sconfitte più umilianti che sia mai stata inferta a Roma."
+
+#: civs/iber.jsonFactions[0].Heroes[2].History
+msgid ""
+"Indibil was king of the Ilegetes, a large federation ranged principally "
+"along the Ebro River in the northwest of the Iberian Peninsula. During the "
+"Barcid expansion, from 212 B.C. he had initially been talked into allying "
+"himself with the Carthaginians who had taken control of a lot of territory "
+"to the south and west, however after loss and his capture in a major battle "
+"he was convinced, some say tricked, to switch to the Roman side by Scipio "
+"Africanus. But that alliance didn't last long, as Roman promises were hollow"
+" and the Romans acted more like conquerors than allies. So, while the Romans"
+" and their allies had ended Carthaginian presence in 'Hispania' in 206 B.C.,"
+" Indibil and another tribal prince by the name of Mandonio, who may have "
+"been his brother, rose up in rebellion against the Romans. They were "
+"defeated in battle, but rose up in a 2nd even larger rebellion that had "
+"unified all the Ilergetes again in 205 B.C. Outnumbered and outarmed they "
+"were again defeated, Indibil losing his life in the final battle and "
+"Mandonio being captured then later put to death. From that date onward the "
+"Ilergetes remained a pacified tribe under Roman rule."
+msgstr "Indibil era il re degli Ilegeti, una grande federazione fondata principalmente lungo il fiume Ebro, nel nord-ovest della penisola iberica. Durante l'espansione dei Barcidi, dal 212 a.C. venne stipulata un'alleanza con i Cartaginesi che avevano preso il controllo di gran parte del territorio a sud e ad ovest, ma dopo una grande battaglia persa e la sua cattura venne convinto, alcuni dicono con l'inganno, a passare dalla parte di Roma grazie a Scipione l'Africano. Ma questa alleanza non durò a lungo, le promesse romane rimasero tali e i Romani agirono più come conquistatori che alleati. Così, mentre i Romani e i loro alleati cercavano di porre fine alla presenza cartaginese in 'Hispania' nel 206 a.C., Indibil e un altro principe tribale di nome Mandonio, probabilmente suo fratello, sollevarono una rivolta contro i Romani. Essi furono sconfitti in battaglia, ma crearono i presupposti per una seconda ribellione ancora più grande, che vedeva unificati tutti gli Ilergeti nel 205 a.C. In Inferiorità numerica e male armati furono nuovamente sconfitti, Indibil perse la vita nella battaglia finale e Mandonio catturato e condannato a morte. Da allora gli Ilergeti rimasero una tribù pacifica sotto il dominio romano."
+
+#: civs/iber.jsonStructures[0].Name
+msgid "Gur Oroigarri"
+msgstr "Gur Oroigarri"
+
+#: civs/iber.jsonStructures[0].Special
+msgid ""
+"Defensive Aura - Gives all Iberian units and buildings within vision range "
+"of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
+"map."
+msgstr "Aura Difensiva - Fornisce a tutte le unità ed edifici Iberici nella visuale del monumento un bonus del 10-15% all'attacco.\nLimite di costruzione: solo 5 possono essere costruiti per mappa."
+
+#: civs/iber.jsonStructures[0].History
+msgid ""
+"'Revered Monument' The Iberians were a religious people who built small "
+"monuments to their various gods. These monuments could also serve as family "
+"tombs."
+msgstr "'Venerato Monumento' Gli iberici erano un popolo religioso che costruiva piccoli monumenti alle loro varie divinità. Questi monumenti potevano anche servire come tombe di famiglia."
+
+#: civs/iber.jsonHistory
+msgid ""
+"The Iberians were a people of mysterious origins and language, with a strong"
+" tradition of horsemanship and metalworking. A relatively peaceful culture, "
+"they usually fought in other's battles only as mercenaries. However, they "
+"proved tenacious when Rome sought to take their land and freedom from them, "
+"and employed pioneering guerrilla tactics and flaming javelins as they "
+"fought back."
+msgstr "Gli iberici erano un popolo di origini e linguaggio misteriose, con una forte tradizione per l'equitazione e lavorazione dei metalli. Una cultura relativamente pacifica, di solito combattevano in altre battaglie solo come mercenari. Tuttavia, essi hanno dimostrato una resistenza tenace quando Roma cercò di prendere la loro terra e la loro libertà, impiegando pionieristiche tattiche di guerriglia e giavellotti incendiari."
+
+#: civs/mace.jsonName civs/mace.jsonFactions[0].Name
+msgid "Macedonians"
+msgstr "Macedoni"
+
+#: civs/mace.jsonCivBonuses[0].Description
+msgid ""
+"Macedonian units have +10% attack bonus vs. Persian and Hellenic factions, "
+"but -5% attack debonus vs. Romans."
+msgstr "Le unità macedoni hanno un +10% di attacco bonus contro i Persiani e gli Ellenici, ma un -5% di penalità contro i Romani."
+
+#: civs/mace.jsonCivBonuses[0].Name
+msgid "Hellenic League"
+msgstr "Lega di Corinto"
+
+#: civs/mace.jsonCivBonuses[0].History
+msgid ""
+"After the unification of Greece, Philip II gathered all the city-states "
+"together to form the Hellenic League, with Macedon as the its leader. With "
+"this Pan-Hellenic federation he planned to launch an expedition to punish "
+"Persia for past wrongs. Although assassinated before he could carry out the "
+"invasion, his son Alexander the Great took up the mantle and completed his "
+"fathers plans."
+msgstr "Dopo l'unificazione della Grecia, Filippo II radunò insieme tutte le città-stato per formare la Lega di Corinto, con a capo la Macedonia. Con questa federazione panellenica pianificava di inviare una spedizione per punire la Persia per i torti del passato. Anche se fu assassinato prima di poter portare a termine il suo piano di invasione, suo figlio Alessandro Magno decise di subentrare e di portare a termine i piani di suo padre."
+
+#: civs/mace.jsonCivBonuses[1].Description
+msgid "Infantry pike units can use the slow and powerful Syntagma formation."
+msgstr "Le unità di fanteria armate di picca possono utilizzare la lenta e potente formazione a Syntagma."
+
+#: civs/mace.jsonCivBonuses[1].Name
+msgid "Syntagma"
+msgstr "Syntagma"
+
+#: civs/mace.jsonCivBonuses[1].History
+msgid ""
+"Based upon the Theban Oblique Order phalanx, the Syntagma was the formation "
+"that proved invincible against the armies of Hellas and the East."
+msgstr "Basata sul modello della Falange Obliqua Tebana, il Syntagma fu la formazione che si rivelò invincibile contro le armate sia dell'Ellade che dell'Oriente."
+
+#: civs/mace.jsonCivBonuses[2].History
+msgid ""
+"The Greeks were highly successful in Hellenizing various foreigners. During "
+"the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
+"spoken widely from Spain to India."
+msgstr "I Greci ebbero molto successo nell'ellenizzazione dei vari stranieri. Durante l'era ellenica, il greco era la lingua franca del mondo antico, parlato dalla spagna all'india."
+
+#: civs/mace.jsonTeamBonuses[0].Description
+msgid "+15% tribute and trade bonus on metal."
+msgstr "Bonus +15% sui Tributi e Trattative sui metalli."
+
+#: civs/mace.jsonTeamBonuses[0].Name
+msgid "Standardized Currency"
+msgstr "Valuta Standardizzata"
+
+#: civs/mace.jsonTeamBonuses[0].History
+msgid ""
+"The Macedonians and the Diadochi minted coins of very high quality. On their"
+" currency the Diadochi in particular frequently depicted themselves as the "
+"rightful successor to Alexander the Great, attempting to legitimize their "
+"rule."
+msgstr "I Macedoni e i Diadochi coniavano monete di altissima qualità. Sulle loro valute i Diadochi in particolare erano soliti raffigurarsi come i legittimi successori di Alessandro Magno, nel tentativo di legittimare il loro dominio."
+
+#: civs/mace.jsonAINames[2]
+msgid "Antipater"
+msgstr "Antipatro"
+
+#: civs/mace.jsonAINames[3]
+msgid "Philip IV"
+msgstr "Filippo IV"
+
+#: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
+msgid "Lysander"
+msgstr "Lisandro"
+
+#: civs/mace.jsonAINames[5]
+msgid "Lysimachus"
+msgstr "Lisimaco"
+
+#: civs/mace.jsonAINames[6]
+msgid "Pyrrhus of Epirus"
+msgstr "Pirro dell'Epiro"
+
+#: civs/mace.jsonAINames[7]
+msgid "Antigonus II Gonatas"
+msgstr "Antigono II Gonata"
+
+#: civs/mace.jsonAINames[8]
+msgid "Demetrius II Aetolicus"
+msgstr "Demetrio II Etolico"
+
+#: civs/mace.jsonAINames[9]
+msgid "Philip V"
+msgstr "Filippo V"
+
+#: civs/mace.jsonAINames[10]
+msgid "Perseus"
+msgstr "Perseo"
+
+#: civs/mace.jsonAINames[11]
+msgid "Craterus"
+msgstr "Cratero"
+
+#: civs/mace.jsonAINames[12]
+msgid "Meleager"
+msgstr "Meleagro"
+
+#: civs/mace.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Each subsequent Barracks constructed comes with 5 free (random) Macedonian "
+"military units. This also applies to the Barracks of allied players (they "
+"receive 5 free units of their own culture for each new Barracks "
+"constructed)."
+msgstr "Ogni successiva Caserma costruita verrà dotata di 5 unità militari (casuali) macedoni gratuite. Questo vale anche per le Caserme dei giocatori alleati (che ricevono 5 unità gratuite della propria cultura per ogni nuova Caserma costruita)."
+
+#: civs/mace.jsonFactions[0].Technologies[0].History
+msgid ""
+"When Philip II came to the Macedonian throne he began a total reorganization"
+" of the Macedonian army. His reforms created a powerful cavalry arm to his "
+"army that would prove useful to both himself and his son Alexander's "
+"conquests."
+msgstr "Quando Filippo II salì sul trono macedone, iniziò a riorganizzare in toto l'esercito macedone. Le sue riforme crearono una potente divisione di cavalleria al servizio del suo esercito, che si sarebbe rivelata utile per sé e per le conquiste di suo figlio Alessandro."
+
+#: civs/mace.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
+"and armor, but also greater cost."
+msgstr "Aggiornamento Fanteria Ipaspista Campione a Argiraspidi, con maggiore attacco e armatura, ma anche costo maggiore."
+
+#: civs/mace.jsonFactions[0].Technologies[1].Name
+msgid "Royal Gift"
+msgstr "Dono Reale"
+
+#: civs/mace.jsonFactions[0].Technologies[1].History
+msgid ""
+"In India near the end of his long anabasis, Alexander gifted to the Royal "
+"Hypaspist corps shields of silver for their long and valiant service in his "
+"army."
+msgstr "In india, alla fine della sua lunga anabasi, Alessandro donò al corpo degli ipaspisti reali scudi d'argento per il lungo e valoroso servizio nella sua armata."
+
+#: civs/mace.jsonFactions[0].Technologies[2].Description
+#: civs/ptol.jsonFactions[0].Technologies[0].Description
+#: civs/sele.jsonFactions[0].Technologies[0].Description
+msgid "Civic Centers have double Health and double default arrows."
+msgstr "I centri cittadini hanno il doppio dei punti salute e scagliano il doppio delle frecce."
+
+#: civs/mace.jsonFactions[0].Heroes[0].Name
+msgid "Philip II of Macedon"
+msgstr "Filippo II di Macedonia"
+
+#: civs/mace.jsonFactions[0].Heroes[2].Name
+msgid "Demetrios the Besieger"
+msgstr "Demetrio I Poliorcete"
+
+#: civs/mace.jsonFactions[0].Description
+msgid "A Hellenistic kingdom bordering the Greek city-states."
+msgstr "Un regno Ellenistico al confine con le città-stato greche."
+
+#: civs/mace.jsonStructures[0].Special
+msgid ""
+"The Hellenization civ bonus. Building a Theatron increases the territory "
+"effect of all buildings by 25%. Build limit: 1."
+msgstr "Il bonus Ellenizzazione. Costruire un Theatron aumenta l'effetto territorio di tutti gli edifici del 25%. Limite Costruzione: 1."
+
+#: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
+#: civs/sele.jsonStructures[0].Name
+msgid "Library"
+msgstr "Biblioteca"
+
+#: civs/mace.jsonStructures[1].Special
+msgid ""
+"All Special Technologies are researched here. Building one reduces the cost "
+"of all other remaining technologies by 10%. Build limit: 1."
+msgstr "Tutte le Tecnologie Speciali vengono ricercate qui. Costruirne uno riduce il costo di tutte le altre tecnologie rimanenti del 10%. Limite Costruzione: 1."
+
+#: civs/mace.jsonStructures[1].History civs/ptol.jsonStructures[0].History
+#: civs/sele.jsonStructures[0].History
+msgid ""
+"Alexander the Great founded libraries all over his new empire. These became "
+"a center of learning for an entirely new synthesized culture: the "
+"Hellenistic culture."
+msgstr "Alessandro Magno fondò biblioteche in tutto il nuovo impero. Queste divennero il centro di apprendimento della nuova cultura: la cultura Ellenistica."
+
+#: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
+msgid "Siege Workshop"
+msgstr "Officina Macchinari da Assedio "
+
+#: civs/mace.jsonStructures[2].Special
+msgid "Constructs and upgrades all Macedonian siege engines."
+msgstr "Costruisce e Migliora gli strumenti da assedio Macedoni."
+
+#: civs/mace.jsonStructures[2].History
+msgid "The Macedonians were innovators in area of siegecraft."
+msgstr "I Macedoni erano innovatori nelle tecniche d'assedio."
+
+#: civs/mace.jsonHistory
+msgid ""
+"Macedonia was an ancient Greek kingdom, centered in the northeastern part of"
+" the Greek peninsula. Under the leadership of Alexander the Great, "
+"Macedonian forces and allies took over most of the world they knew, "
+"including Egypt, Persia and parts of the Indian subcontinent, allowing a "
+"diffusion of Hellenic and eastern cultures for years to come."
+msgstr "La Macedonia era un antico regno greco, centrato nella parte nord-orientale della penisola greca. Sotto la guida di Alessandro Magno le forze macedoni e gli alleati assunsero il controllo della maggior parte del mondo conosciuto, come l'Egitto, la Persia e parti del subcontinente indiano, permettendo la diffusione delle culture orientali ed elleniche per diversi anni a seguire."
+
+#: civs/maur.jsonName
+msgid "Mauryans"
+msgstr "Maurya"
+
+#: civs/maur.jsonCivBonuses[0].Description
+msgid ""
+"Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
+"usual 300)."
+msgstr "I Maurya hanno un bonus limite di popolazione +10% (vale a dire, 330 lim. pop. invece dei soliti 300)."
+
+#: civs/maur.jsonCivBonuses[0].Name
+msgid "Emperor of Emperors."
+msgstr "Imperatore di Imperi"
+
+#: civs/maur.jsonCivBonuses[0].History
+msgid ""
+"The Mauryan Empire encompassed dozens of formerly independent kingdoms over "
+"an area of 5 million square kilometers, with a population of close to 60 "
+"million people. The Mauryan regents held the title Emperor of Emperors and "
+"commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
+"chariots, and 30,000 cavalry, making it arguably the largest army of its "
+"time."
+msgstr "L'impero Maurya comprendeva decine di regni precedentemente indipendenti estesi su una superficie di 5 milioni di chilometri quadrati, con una popolazione di quasi 60 milioni di persone. I reggenti Maurya ottennero il titolo di Imperatore degli Imperatori e comandarono un esercito permanente di 600.000 fanti, 9000 elefanti, 8000 carri, e 30.000 cavallieri, probabilmente il più grande esercito del tempo."
+
+#: civs/maur.jsonCivBonuses[1].Description
+msgid "The Mauryans enjoy access to 4 champions."
+msgstr "I Maurya usufruiscono dell'accesso a 4 campioni."
+
+#: civs/maur.jsonCivBonuses[1].Name
+msgid "Kṣhatriya Warrior Caste."
+msgstr "Casta Guerriera Kṣhatriya."
+
+#: civs/maur.jsonCivBonuses[1].History
+msgid ""
+"Kshatriya or Kashtriya, meaning warrior, is one of the four varnas (social "
+"orders) in Hinduism. Traditionally Kshatriya constitute the military and "
+"ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
+"Laws of Manu."
+msgstr "Kshatriya o Kashtriya, che significa guerriero, è uno dei quattro varna (ordini sociali) dell'Induismo. Tradizionalmente i Kshatriya costituiscono l'elite al potere militare e del sistema sociale Vedico-Indù delineato dai Veda e le Leggi di Manu."
+
+#: civs/maur.jsonTeamBonuses[0].Description
+msgid "Allied Temple techs -50% cost and research time."
+msgstr "Tecnologie del Tempio Alleato, costo e tempo di ricerca -50%."
+
+#: civs/maur.jsonTeamBonuses[0].Name
+msgid "Evangelism."
+msgstr "Evangelizzazione."
+
+#: civs/maur.jsonTeamBonuses[0].History
+msgid ""
+"Ashoka the Great sent embassies West to spread knowledge of the Buddha."
+msgstr "Ashoka il Grande inviò ambasciate in Occidente per diffondere la conoscenza del Buddha."
+
+#: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
+msgid "Chandragupta Maurya"
+msgstr "Chandragupta Maurya"
+
+#: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
+msgid "Ashoka the Great"
+msgstr "Ashoka il Grande"
+
+#: civs/maur.jsonAINames[2]
+msgid "Ashokavardhan Maurya"
+msgstr "Ashokavardhan Maurya"
+
+#: civs/maur.jsonAINames[3]
+msgid "Acharya Bhadrabahu"
+msgstr "Acharya Bhadrabahu"
+
+#: civs/maur.jsonAINames[4]
+msgid "Bindusara Maurya"
+msgstr "Bindusara Maurya"
+
+#: civs/maur.jsonAINames[5]
+msgid "Dasaratha Maurya"
+msgstr "Dasaratha Maurya"
+
+#: civs/maur.jsonAINames[6]
+msgid "Samprati Maurya"
+msgstr "Samprati Maurya"
+
+#: civs/maur.jsonAINames[7]
+msgid "Salisuka Maurya"
+msgstr "Salisuka Maurya"
+
+#: civs/maur.jsonAINames[8]
+msgid "Devavarman Maurya"
+msgstr "Devavarman Maurya"
+
+#: civs/maur.jsonAINames[9]
+msgid "Satadhanvan Maurya"
+msgstr "Satadhanvan Maurya"
+
+#: civs/maur.jsonAINames[10]
+msgid "Brihadratha Maurya"
+msgstr "Brihadratha Maurya"
+
+#: civs/maur.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
+"gain up to a 25% bonus in cost and train time of elephant units."
+msgstr "Cattura fino a 5 elefanti Selvatici e ricoverali nelle Stalle per Elefanti per guadagnare un bonus fino al 25% in termini di costi e tempo di addestramento delle unità di elefante."
+
+#: civs/maur.jsonFactions[0].Technologies[0].Name
+msgid "Elephant Roundup"
+msgstr "Raduna Elefanti"
+
+#: civs/maur.jsonFactions[0].Technologies[1].Description
+msgid "Greater range and faster train time for Mauryan infantry archers."
+msgstr "Maggiore portata e riduzione del tempo di addestramento per gli arcieri Maurya."
+
+#: civs/maur.jsonFactions[0].Technologies[1].Name
+msgid "Archery Tradition"
+msgstr "Tradizione Arciera"
+
+#: civs/maur.jsonFactions[0].Technologies[1].History
+msgid ""
+"India was a land of archery. The bulk of any Indian army was made up of "
+"highly skilled archers, armed with bamboo longbows."
+msgstr "L'India era una terra di arcieri. La maggior parte di qualsiasi esercito Indiano era costituita da arcieri altamente qualificati, armati di lunghi archi di bambù."
+
+#: civs/maur.jsonFactions[0].Heroes[0].History
+msgid "Founder of the Mauryan Empire."
+msgstr "Fondatore dell'Impero Maurya."
+
+#: civs/maur.jsonFactions[0].Heroes[1].History
+msgid "Last great emperor of the Mauryan dynasty."
+msgstr "L'ultimo grande imperatore della dinastia Maurya."
+
+#: civs/maur.jsonFactions[0].Heroes[2].History
+msgid "Great teacher and advisor to Chandragupta Maurya."
+msgstr "Grande maestro e consigliere di Chandragupta Maurya."
+
+#: civs/maur.jsonFactions[0].Heroes[2].Name
+msgid "Acharya Chāṇakya"
+msgstr "Acharya Chāṇakya"
+
+#: civs/maur.jsonFactions[0].Name
+msgid "Mauryan Indians"
+msgstr "Indiani Maurya"
+
+#: civs/maur.jsonStructures[0].Name
+msgid "Elephant Stables"
+msgstr "Scuderie per Elefanti"
+
+#: civs/maur.jsonStructures[0].Special
+msgid ""
+"Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
+"champion War Elephant at the City phase."
+msgstr "Addestra Arcieri Elefanti e Elefanti da Lavoro nella Fase Cittadina, si aggiunge l'Elefante da Guerra Campione nella fase Città."
+
+#: civs/maur.jsonStructures[1].Name
+msgid "Edict Pillar of Ashoka"
+msgstr "Editto Colonna di Ashoka"
+
+#: civs/maur.jsonStructures[1].Special
+msgid ""
+"Contentment: +10% Health and +10% resource gathering rates for all citizens "
+"and allied citizens within its range. Can be built anywhere except in enemy "
+"territory. Max Built: 10."
+msgstr "Contentezza: +10% Salute e +10% di raccolta di risorse per tutti i cittadini e i cittadini alleati all'interno del suo raggio d'azione. Può essere costruito ovunque tranne che in territorio nemico. Max Costruzioni: 10."
+
+#: civs/maur.jsonHistory
+msgid ""
+"Founded in 322 B.C. by Chandragupta Maurya, the Mauryan Empire was the first"
+" to rule most of the Indian subcontinent, and was one of the largest and "
+"most populous empires of antiquity. Its military featured bowmen who used "
+"the long-range bamboo longbow, fierce female warriors, chariots, and "
+"thousands of armored war elephants. Its philosophers, especially the famous "
+"Acharya Chanakya, contributed to such varied fields such as economics, "
+"religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
+"the Great, the empire saw 40 years of peace, harmony, and prosperity."
+msgstr "Fondato nel 322 a.C. da Chandragupta Maurya, l'impero Maurya fu il primo a governare la maggior parte del subcontinente indiano, e fu uno dei più grandi e più popolosi imperi dell'antichità. Il suo esercito era caratterizzato da arcieri che utilizzavano l'arco lungo di bambù, feroci guerriere, carri e migliaia di elefanti da guerra corazzati. I suoi filosofi, in particolare Acharya Chanakya, contribuirono in vari campi, quali: l'economia, la religione, la diplomazia, la guerra, e il buon governo. Sotto il regno di Ashoka il Grande l'impero vide 40 anni di pace, armonia e prosperità."
+
+#: civs/pers.jsonName
+msgid "Persians"
+msgstr "Persiani"
+
+#: civs/pers.jsonCivBonuses[0].Description
+msgid ""
+"The resource cost of training camel-mounted (trader) or horse-mounted units "
+"(cavalry) is reduced by 5% per animal (as appropriate) corralled."
+msgstr "Il costo in risorse per l'addestramento di una unità montata su cammello (mercante) o a cavallo (cavalleria) è ridotto del 5% per ogni animale (del tipo appropriato) in un recinto."
+
+#: civs/pers.jsonCivBonuses[0].Name
+msgid "Corral Camels and Horses"
+msgstr "Recinto per Cammelli e Cavalli"
+
+#: civs/pers.jsonCivBonuses[0].History
+msgid ""
+"While the Persians employed camelry only in a few cases, its use was always "
+"accompanied by great success (most notably during the battle of Sardis in "
+"546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
+"while Northern Arabia supplied 'one-hump' camels."
+msgstr "Nonostante i Persiani impiegassero i cammellieri solo in pochi casi, il loro utilizzo fu sempre accompagnato da grande successo (in particolare durante la battaglia di Sardi nel 546 a.C.) La satrapia di Battriana era una ricca risorsa di cammelli a 'due gobbe', mentre il Nord Arabia forniva cammelli a 'una gobba'."
+
+#: civs/pers.jsonCivBonuses[1].Description
+msgid ""
+"Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
+"usual 300)."
+msgstr "I Persiani hanno un +10% di bonus al numero massimo di popolazione (es. 330 di popolazione invece di 300)"
+
+#: civs/pers.jsonCivBonuses[1].Name
+msgid "Great King's Levy"
+msgstr "Reale Leva Generale"
+
+#: civs/pers.jsonCivBonuses[1].History
+msgid ""
+"The Persians could and did levy a large number of infantry during wartime "
+"due to the sheer size of the Achaemenid Empire and the way in which it was "
+"set-up. In general the Persian infantry was well trained and fought with "
+"great tenacity. However while this was true the infantry were poor hand-to-"
+"hand, close combat fighters. Also, with the exception of the elite "
+"regiments, the Persian infantry was not a standing professional force."
+msgstr "I Persiani potevano disporre di un gran numero di fanti in tempo di guerra a causa della vastità dell'Impero Achemenide e per come era stato concepito. In generale, la fanteria persiana era ben addestrata e combatteva con grande tenacia. Tuttavia, era vero che la fanteria era carente nel corpo a corpo, trovandosi vicino agli avversari. Inoltre, con l'eccezione dei reggimenti d'elite, la fanteria persiana non era una forza professionale permanente."
+
+#: civs/pers.jsonTeamBonuses[0].Description
+msgid "+25% trade profit land routes."
+msgstr "+25% di profitto per le rotte commerciali terrestri."
+
+#: civs/pers.jsonTeamBonuses[0].Name
+msgid "Royal Road"
+msgstr "Strada Reale"
+
+#: civs/pers.jsonTeamBonuses[0].History
+msgid ""
+"Coinage was invented by the Lydians in 7th Century B.C., but it was not very"
+" common until the Persian period. Darius the Great standardized coined money"
+" and his golden coins (known as 'darics') became commonplace not only "
+"throughout his empire, but as far to the west as Central Europe."
+msgstr "il Conio venne inventato dai Lidi nel 7° secolo a.C., ma non divenne d'uso comune fino al periodo persiano. Dario il Grande standardizzò le monete coniate e le sue monete d'oro (conosciute come 'dariche') divennero d'uso comune, non solo in tutto il suo impero, ma anche in occidente nell'Europa Centrale."
+
+#: civs/pers.jsonAINames[0]
+msgid "Kurush II the Great"
+msgstr "Ciro II Il Grande"
+
+#: civs/pers.jsonAINames[1] civs/pers.jsonFactions[0].Heroes[1].Name
+msgid "Darayavahush I"
+msgstr "Darayavahush I"
+
+#: civs/pers.jsonAINames[2]
+msgid "Cambyses II"
+msgstr "Cambise II "
+
+#: civs/pers.jsonAINames[3]
+msgid "Bardiya"
+msgstr "Smerdi di Persia"
+
+#: civs/pers.jsonAINames[4] civs/pers.jsonFactions[0].Heroes[2].Name
+msgid "Xsayarsa I"
+msgstr "Xsayarsa I"
+
+#: civs/pers.jsonAINames[5]
+msgid "Artaxshacha I"
+msgstr "Artaxshacha I"
+
+#: civs/pers.jsonAINames[6]
+msgid "Darayavahush II"
+msgstr "Darayavahush II"
+
+#: civs/pers.jsonAINames[7]
+msgid "Darayavahush III"
+msgstr "Darayavahush III"
+
+#: civs/pers.jsonAINames[8]
+msgid "Artaxshacha II"
+msgstr "Artaxshacha II"
+
+#: civs/pers.jsonAINames[9]
+msgid "Artaxshacha III"
+msgstr "Artaxshacha III"
+
+#: civs/pers.jsonAINames[10]
+msgid "Haxamanish"
+msgstr "Haxamanish"
+
+#: civs/pers.jsonAINames[11]
+msgid "Xsayarsa II"
+msgstr "Xsayarsa II"
+
+#: civs/pers.jsonFactions[0].Technologies[0].Description
+msgid "Phoenician triremes gain the unique ability to train cavalry units."
+msgstr "Le trireme Fenicie ottengono l'abilità unica di poter addestrare unità di cavalleria."
+
+#: civs/pers.jsonFactions[0].Technologies[0].Name
+msgid "Naval Craftsmanship"
+msgstr "Artigianato Navale"
+
+#: civs/pers.jsonFactions[0].Technologies[0].History
+msgid ""
+"Early Achaemenid rulers acted towards making Persia the first great Asian "
+"empire to rule the seas. The Great King behaved favourably towards the "
+"various sea peoples in order to secure their services, but also carried out "
+"various marine initiatives. During the reign of Darius the Great, for "
+"example, a canal was built in Egypt and a Persian navy was sent exploring "
+"the Indus river. According to Herodotus, some 300 ships in the Persian navy "
+"were retrofitted to carry horses and their riders."
+msgstr "I primi sovrani Achemenidi agirono per rendere la Persia il primo grande impero asiatico capace di governare i mari. Il Grande Re si manteneva in rapporti amichevoli nei confronti dei vari popoli del mare al fine di garantirsi i loro servizi, ma anche per svolgere varie iniziative marinare. Durante il regno di Dario il Grande, per esempio, un canale venne costruito in Egitto e una flotta persiana venne inviata a esplorare il fiume Indo. Secondo Erodoto, circa 300 navi nella flotta persiana vennero adattate per trasportare i cavalli e i loro cavalieri."
+
+#: civs/pers.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Increases hitpoints of all structures, but build time increased "
+"appropriately."
+msgstr "Aumenta i punti di tutte le strutture, ma aumenta anche il tempo di costruzione."
+
+#: civs/pers.jsonFactions[0].Technologies[1].Name
+msgid "Persian Architecture"
+msgstr "Architettura Persiana"
+
+#: civs/pers.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Persians built the wonderful 1677 mile-long Royal Highway from Sardis to"
+" Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
+"Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
+"Elamite capital of Susa."
+msgstr "I Persiani costruirono la splendida Strada Reale di 1677 miglia da Sardi a Susa; Dario il Grande e Serse costruirono la magnifica Persepoli, Ciro il Grande migliorò notevolmente Ecbatana e praticamente 'ricostruì' la vecchia capitale Elamita di Susa."
+
+#: civs/pers.jsonFactions[0].Technologies[2].Description
+msgid "Reduces train time for Anusiya champion infantry by half."
+msgstr "Dimezza il tempo di allenamento per il campione di fanteria Anusiya."
+
+#: civs/pers.jsonFactions[0].Technologies[2].Name
+msgid "Immortals"
+msgstr "Immortali"
+
+#: civs/pers.jsonFactions[0].Technologies[3].Description
+#: civs/sele.jsonFactions[0].Technologies[3].Description
+msgid "+25% health for cavalry, but +10% train time."
+msgstr "+25% punti vita per la cavalleria, ma +10% tempo d'addestramento."
+
+#: civs/pers.jsonFactions[0].Technologies[3].Name
+#: civs/sele.jsonFactions[0].Technologies[3].Name
+msgid "Nisean War Horses"
+msgstr " Cavalli da Guerra Niseani"
+
+#: civs/pers.jsonFactions[0].Technologies[3].History
+msgid ""
+"The beautiful and powerful breed of Nisean horses increases health for "
+"Persian cavalry."
+msgstr "I bellissimi e robusti stalloni Nisei aumentano i punti vita della cavalleria persiana."
+
+#: civs/pers.jsonFactions[0].Heroes[0].History
+msgid ""
+"Cyrus (559-530 B.C.) The son of a Median princess and the ruler of Anshan; "
+"justly called the 'Father of the Empire', Cyrus the Great conquered Media, "
+"Lydia, Babylonia and Bactria, thereby establishing the Persian Empire. He "
+"was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
+"second ruler of the Persians by that name, and so appears as Kurush II on "
+"his documents and coins. Kurush I was his grandfather."
+msgstr "Ciro (Kurush) (559-530 a.C.) Il figlio di una principessa Mediana e il governatore di Anshan; giustamente chiamato il 'Padre dell'Impero', Ciro il Grande conquistò Media, Lydia, Babilonia e Battriana, costruendo così l'Impero Persiano. Dotato anche della fama di conquistatore benevolo. Tecnicamente era il secondo sovrano dei Persiani con quel nome, per cui appare come Kurush II sui suoi documenti e monete. Kurush I era suo nonno."
+
+#: civs/pers.jsonFactions[0].Heroes[0].Name
+msgid "Kurush II"
+msgstr "Kurush II"
+
+#: civs/pers.jsonFactions[0].Heroes[1].History
+msgid ""
+"Darius (521-486 B.C.) The son of Vishtaspa (Hystaspes), the satrap of "
+"Parthia and Hyrcania; a great administrator as well as a decent general, "
+"Darius introduced the division of the empire into satrapies and conquered NW"
+" India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
+msgstr "Dario (521-486 a.C.) Il figlio di Vishtaspa (Hystaspes), il satrapo di Partia e Hyrcania; fu un grande amministratore, nonché un generale discreto, Dario introdusse la divisione dell'impero in satrapie e conquistò l'India nord occidentale, Tracia e Macedonia. Era nominato il' Mercante dell'Impero '."
+
+#: civs/pers.jsonFactions[0].Heroes[2].History
+msgid ""
+"Xerxes (485-465 B.C.) The son of Darius the Great and Atoosa, a daughter of "
+"Cyrus the Great, Xerxes was an able administrator, who also extended "
+"Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he "
+"was famous for his extensive building programme, especially at Persepolis."
+msgstr "Serse (485-465 a.C.) Il figlio di Dario il Grande e Atoosa, una figlia di Ciro il Grande, Serse era un amministratore capace, che estese il dominio imperiale in Corasmia. Oltre alla sua fallita invasione della Grecia, divenne famoso per il suo vasto programma di costruzione, soprattutto a Persepoli."
+
+#: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
+msgid "Cavalry Stables"
+msgstr "Scuderie Cavalleria"
+
+#: civs/pers.jsonStructures[0].Special
+msgid "Train Cavalry citizen-soldiers."
+msgstr "Allena Cavalleria di cittadini-soldati."
+
+#: civs/pers.jsonStructures[0].History
+msgid "The Persian Empire's best soldiers were Eastern horsemen."
+msgstr "I migliori soldati dell'Impero Persiano erano i cavalieri Orientali."
+
+#: civs/pers.jsonStructures[1].Name
+msgid "Apadana"
+msgstr "Apadana"
+
+#: civs/pers.jsonStructures[1].Special
+msgid ""
+"Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
+" 'Satrapy Tribute.'"
+msgstr "Addestra eroi e Immortali Persiani. Da un contributo modesto per tutte le risorse come 'Tributo di Satrapia'."
+
+#: civs/pers.jsonStructures[1].History
+msgid ""
+"The term Apadana designates a large hypostyle palace found in Persia. The "
+"best known example, and by far the largest, was the great Apadana at "
+"Persepolis. Functioning as the empire's central audience hall, the palace is"
+" famous for the reliefs of the tribute-bearers and of the army, including "
+"the Immortals."
+msgstr "Il termine Apadana designa un grande palazzo ipostila ritrovato in Persia. L'esempio più noto e il più esteso, è rappresentato dalla grande Apadana a Persepoli. Utilizzato come sala centrale delle udienze dell'impero, il palazzo è famoso per i rilievi dei portatori dei tributi e dell'esercito, tra cui gli Immortali."
+
+#: civs/pers.jsonHistory
+msgid ""
+"The Persian Empire, when ruled by the Achaemenid dynasty, was one of the "
+"greatest empires of antiquity, stretching at its zenith from the Indus "
+"Valley in the east to Greece in the west. The Persians were the pioneers of "
+"empire-building of the ancient world, successfully imposing a centralized "
+"rule over various peoples with different customs, laws, religions and "
+"languages, and building a cosmopolitan army made up of contingents from each"
+" of these nations."
+msgstr "L'Impero Persiano, durante la dinastia Achemenide, fu uno dei più grandi imperi dell'antichità, all'apice della sua storia si estendeva dalla Valle dell'Indo a est fino alla Grecia a ovest. I Persiani furono pionieri nella costruzione di imperi del mondo antico, imponendo con successo una regolamentazione centralizzata su vari popoli con differenti costumi, leggi, religioni e lingue, e la costruzione di un esercito cosmopolita composto da contingenti di ciascuna di queste nazioni."
+
+#: civs/ptol.jsonName
+msgid "Ptolemies"
+msgstr "Tolemaici"
+
+#: civs/ptol.jsonCivBonuses[0].Description
+msgid ""
+"The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
+"neutral territory and trains mercenary soldiers."
+msgstr "I Tolomei ricevono L'accampamento Mercenario, una caserma costruita in territorio neutrale che addestra soldati mercenari."
+
+#: civs/ptol.jsonCivBonuses[0].Name
+msgid "Mercenary Army"
+msgstr "Esercito Mercenario"
+
+#: civs/ptol.jsonCivBonuses[0].History civs/ptol.jsonStructures[1].History
+msgid ""
+"The Greco-Macedonian Ptolemy Dynasty relied on large numbers of Greek and "
+"foreign mercenaries for the bulk of its military force, mainly because the "
+"loyalty of native Egyptian units was often suspect. Indeed, during one "
+"native uprising, Upper Egypt was lost to the Ptolemies for decades. "
+"Mercenaries were often battle-hardened and their loyalty can be bought, "
+"sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
+" under the Ptolemies was so prosperous as to be the richest of Alexander's "
+"successor states."
+msgstr "La Dinastia Tolemaica Greco-Macedone assunse un gran numero di mercenari greci e stranieri per costituire la maggior parte della sua forza militare, soprattutto perché la lealtà delle unità egiziane native fu spesso in discussione. Infatti, durante una rivolta dei nativi, l'Alto Egitto venne perso dai Tolomei per decenni. I Mercenari erano spesso veterani agguerriti e la loro lealtà poteva essere comprata, a volte a buon mercato, a volte non così a buon mercato. Questo non aveva importanza, dal momento che l'Egitto sotto i Tolomei era così fiorente da essere il più ricco tra gli stati dei successori di Alessandro."
+
+#: civs/ptol.jsonCivBonuses[1].Description
+msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
+msgstr "Gli Egiziani Tolemaici ricevono 3 tecnologie agricole supplementari."
+
+#: civs/ptol.jsonCivBonuses[1].Name
+#: civs/ptol.jsonFactions[0].Technologies[2].Name
+msgid "Nile Delta"
+msgstr "Delta del Nilo"
+
+#: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
+#: civs/theb.jsonCivBonuses[0].Description civs/theb.jsonCivBonuses[0].History
+#: civs/theb.jsonCivBonuses[1].Description civs/theb.jsonCivBonuses[1].History
+#: civs/theb.jsonTeamBonuses[0].Description
+#: civs/theb.jsonTeamBonuses[0].History
+#: civs/theb.jsonFactions[0].Technologies[0].Description
+#: civs/theb.jsonFactions[0].Technologies[0].Name
+#: civs/theb.jsonFactions[0].Technologies[0].History
+#: civs/theb.jsonFactions[0].Technologies[1].Description
+#: civs/theb.jsonFactions[0].Technologies[1].History
+msgid "Unknown."
+msgstr "Sconosciuto."
+
+#: civs/ptol.jsonCivBonuses[2].Description
+msgid "Can capture gaia elephants and camels to reduce their training cost."
+msgstr "Puoi catturare gli elefanti e cammelli selvatici per ridurre i loro costi di addestramento."
+
+#: civs/ptol.jsonTeamBonuses[0].Description
+msgid "All allies automatically gain a slow trickle of food income."
+msgstr "Tutti gli alleati ottengono automaticamente un po' di cibo."
+
+#: civs/ptol.jsonTeamBonuses[0].Name
+msgid "Breadbasket of the Mediterranean"
+msgstr "Granaio del Mediterraneo"
+
+#: civs/ptol.jsonTeamBonuses[0].History
+msgid ""
+"Egypt was a net exporter of grain, so much so that large cities such as "
+"Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
+"their masses."
+msgstr "L'Egitto era un esportatore di cereali, tanto che grandi città come Atene, Antiochia e Roma dovettero fare affidamento sul grano Egizio per sfamare le loro genti."
+
+#: civs/ptol.jsonAINames[0]
+msgid "Ptolemy Soter"
+msgstr "Tolomeo I Sotere"
+
+#: civs/ptol.jsonAINames[1]
+msgid "Ptolemy Philadelphus"
+msgstr "Tolomeo Filadelfo"
+
+#: civs/ptol.jsonAINames[2]
+msgid "Ptolemy Epigone"
+msgstr "Tolomeo Epigone"
+
+#: civs/ptol.jsonAINames[3]
+msgid "Ptolemy Eurgetes"
+msgstr "Tolomeo III Evergete"
+
+#: civs/ptol.jsonAINames[4]
+msgid "Ptolemy Philopater"
+msgstr "Tolomeo IV Filopatore"
+
+#: civs/ptol.jsonAINames[5]
+msgid "Ptolemy Epiphanes"
+msgstr "Tolomeo V Epifane"
+
+#: civs/ptol.jsonAINames[6]
+msgid "Ptolemy Philometor"
+msgstr "Tolomeo VI Filometore"
+
+#: civs/ptol.jsonAINames[7]
+msgid "Ptolemy Eupator"
+msgstr "Tolomeo Eupatore"
+
+#: civs/ptol.jsonAINames[8]
+msgid "Ptolemy Alexander"
+msgstr "Tolomeo X Alessandro I"
+
+#: civs/ptol.jsonAINames[9]
+msgid "Ptolemy Neos Dionysos"
+msgstr "Tolomeo XII Neo Dioniso"
+
+#: civs/ptol.jsonAINames[10]
+msgid "Ptolemy Neos Philopater"
+msgstr "Tolomeo VII Neo Filopatore"
+
+#: civs/ptol.jsonAINames[11]
+msgid "Berenice Philopater"
+msgstr "Berenice II"
+
+#: civs/ptol.jsonAINames[12]
+msgid "Cleopatra Tryphaena"
+msgstr "Cleopatra V Trifena"
+
+#: civs/ptol.jsonAINames[13]
+msgid "Berenice Epiphaneia"
+msgstr "Berenice IV"
+
+#: civs/ptol.jsonAINames[14]
+msgid "Cleopatra Philopater"
+msgstr "Cleopatra VII Filopatore"
+
+#: civs/ptol.jsonAINames[15]
+msgid "Cleopatra Selene"
+msgstr "Cleopatra Selene"
+
+#: civs/ptol.jsonAINames[16]
+msgid "Cleopatra II Philometora Soteira"
+msgstr "Cleopatra II Filometora Soteira"
+
+#: civs/ptol.jsonAINames[17]
+msgid "Arsinoe IV"
+msgstr "Arsinoe IV"
+
+#: civs/ptol.jsonAINames[18]
+msgid "Arsinoe II"
+msgstr "Arsinoe II"
+
+#: civs/ptol.jsonFactions[0].Technologies[1].Description
+msgid "Hero aura range boosted by 50%."
+msgstr "L'Aura dell'Eroe aumenta la portata del 50%."
+
+#: civs/ptol.jsonFactions[0].Technologies[1].Name
+msgid "Pharaonic Cult."
+msgstr "Culto del Faraone."
+
+#: civs/ptol.jsonFactions[0].Technologies[1].History
+msgid ""
+"The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
+"Egyptian traditions in order to satiate the local populace and ingratiate "
+"themselves to the powerful priestly class in the country."
+msgstr "I governanti Greco-Macedoni della dinastia tolemaica osservavano molte antiche tradizioni Egizie, al fine di accontentare la popolazione locale e di ingraziarsi la potente classe sacerdotale del paese."
+
+#: civs/ptol.jsonFactions[0].Technologies[2].Description
+msgid ""
+"The Ptolemaic Egyptians receive 3 additional farming technologies above and "
+"beyond the maximum number of farming technologies usually available to a "
+"faction."
+msgstr "Gli Egiziani Tolemaici ricevono 3 tecnologie agricole aggiuntive in più, oltre al numero massimo di tecnologie agricole normalmente disponibili per una fazione."
+
+#: civs/ptol.jsonFactions[0].Technologies[2].History
+msgid ""
+"The Nile Delta had rich soil for farming, due to centuries of seasonal "
+"floods from the Nile depositing rich silt across the landscape."
+msgstr "Il Delta del Nilo era terreno fertile per l'agricoltura, a causa delle secolari inondazioni stagionali del Nilo che depositarono ricco limo lungo le rive."
+
+#: civs/ptol.jsonFactions[0].Heroes[0].Name
+msgid "Ptolemaios A' Soter"
+msgstr "Ptolemaios A' Soter"
+
+#: civs/ptol.jsonFactions[0].Heroes[1].Name
+msgid "Ptolemaios D' Philopater"
+msgstr "Ptolemaios D' Philopater"
+
+#: civs/ptol.jsonFactions[0].Heroes[2].Name
+msgid "Kleopatra H' Philopater"
+msgstr "Kleopatra H' Philopater"
+
+#: civs/ptol.jsonFactions[0].Name
+msgid "Ptolemaic Egyptians"
+msgstr "Egiziani Tolemaici"
+
+#: civs/ptol.jsonFactions[0].Description
+msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
+msgstr "La grande dinastia greco-macedone domina sull'antico Egitto."
+
+#: civs/ptol.jsonStructures[0].Special civs/sele.jsonStructures[0].Special
+msgid ""
+"Maximum of 1 built. All Special Technologies and some regular city-phase "
+"technologies are researched here. Building one reduces the cost of all other"
+" remaining technologies by 10%."
+msgstr "Massimo 1a costruzione. Tutte le tecnologie speciali e alcune tecnologie normali della fase-città vengono studiate qui. Costruirne una riduce il costo di tutte le altre tecnologie rimanenti del 10%."
+
+#: civs/ptol.jsonStructures[1].Name
+msgid "Stratópedo Misthophóron"
+msgstr "Stratópedo Misthophóron"
+
+#: civs/ptol.jsonStructures[1].Special
+msgid ""
+"Must be constructed in neutral territory. Has no territory radius effect. "
+"Trains all 'mercenary' units."
+msgstr "Deve esser costruito in territorio neutrale. Non estende il limite del territorio controllato. Addestra tutte le unità \"mercenarie\"."
+
+#: civs/ptol.jsonStructures[2].Name
+msgid "Lighthouse"
+msgstr "Faro"
+
+#: civs/ptol.jsonStructures[2].Special
+msgid ""
+"When built along the shoreline, removes shroud of darkness over all the "
+"water, revealing all the coast lines on the map. Limit: 1."
+msgstr "Quando costruito sulla costa, rimuove l'offuscamento che copre l'acqua, rivelando tutti i litorali della mappa. Limite: 1."
+
+#: civs/ptol.jsonStructures[2].History
+msgid ""
+"The Ptolemaic dynasty in Egypt built the magnificent Lighthouse of "
+"Alexandria near the harbor mouth of that Nile Delta city. This structure "
+"could be seen for many kilometers out to sea and was one of the Seven "
+"Wonders of the World."
+msgstr "La dinastia Tolemaica in Egitto costruì il magnifico faro di Alessandria all'ingresso del porto dell'omonima città del Delta del Nilo. Tale struttura era visibile per molti chilometri sul mare ed era una delle Sette Meraviglie del Mondo."
+
+#: civs/ptol.jsonHistory
+msgid ""
+"The Ptolemaic dynasty was a Macedonian Greek royal family which ruled the "
+"Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
+"for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
+"Egypt."
+msgstr "La dinastia Tolemaica era una casata reale greco-macedone che governò l'Impero Tolemaico in Egitto durante il periodo Ellenistico. Il loro dominio durò per 275 anni, dal 305 a.C. al 30 a.C. Furono l'ultima dinastia dell'antico Egitto."
+
+#: civs/rome.jsonName
+msgid "Romans"
+msgstr "Romani"
+
+#: civs/rome.jsonCivBonuses[0].Description
+msgid "Roman Legionaries can form a Testudo."
+msgstr "I Legionari Romani possono disporsi in una formazione a testuggine."
+
+#: civs/rome.jsonCivBonuses[0].Name
+msgid "Testudo Formation"
+msgstr "Formazione a testuggine"
+
+#: civs/rome.jsonCivBonuses[0].History
+msgid ""
+"The Romans commonly used the Testudo or 'turtle' formation for defense: "
+"Legionaries were formed into hollow squares with twelve men on each side, "
+"standing so close together that their shields overlapped like fish scales."
+msgstr "I romani erano soliti utilizzare la Testudo o formazione 'a tartaruga' per la difesa: i legionari si disponevano in quadrati con dodici uomini per lato, i quali stavano in piedi molto vicini gli uni agli altri, così da sovrapporre i loro scudi come le scaglie di pesce."
+
+#: civs/rome.jsonCivBonuses[1].Description
+msgid ""
+"Any Roman citizen-soldier fighting within Roman territory gains a non-"
+"permanent +10% bonus in armor."
+msgstr "Ciascun cittadino-soldato romano che combatte in territorio romano riceve un bonus temporaneo di armatura di +10%."
+
+#: civs/rome.jsonCivBonuses[1].Name
+msgid "Citizenship"
+msgstr "Cittadinanza"
+
+#: civs/rome.jsonCivBonuses[1].History
+msgid ""
+"Roman Citizenship was highly prized in the ancient world. Basic rights and "
+"privileges were afforded Roman citizens that were denied other conquered "
+"peoples. It is said that harming a Roman citizen was akin to harming Rome "
+"herself, and would cause the entire might of Rome to fall upon the "
+"perpetrator."
+msgstr "La Cittadinanza Romana era molto apprezzata nel mondo antico. Diritti e privilegi di base venivano concessi ai cittadini romani, mentre erano negati agli altri popoli conquistati. Si diceva che danneggiare un cittadino romano era come danneggiare Roma stessa, e avrebbe causato la reazione dell'intera potenza di Roma sull'autore."
+
+#: civs/rome.jsonTeamBonuses[0].Description
+msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
+msgstr "I cittadini-soldati alleati ricevono un bonus di attacco di +15% quando si trovano in territorio romano."
+
+#: civs/rome.jsonTeamBonuses[0].Name
+msgid "Socii"
+msgstr "Socii"
+
+#: civs/rome.jsonTeamBonuses[0].History
+msgid ""
+"Being allied with Rome came with great benefits (as well as great peril)."
+msgstr "Essere alleati di Roma comporta grandi vantaggi (così come grandi pericoli)."
+
+#: civs/rome.jsonAINames[0]
+msgid "Lucius Junius Brutus"
+msgstr "Lucio Giunio Bruto"
+
+#: civs/rome.jsonAINames[1]
+msgid "Lucius Tarquinius Collatinus"
+msgstr "Lucio Tarquinio Collatino"
+
+#: civs/rome.jsonAINames[2]
+msgid "Gaius Julius Caesar Octavianus"
+msgstr "Gaio Giulio Cesare Ottaviano"
+
+#: civs/rome.jsonAINames[3]
+msgid "Marcus Vipsanius Agrippa"
+msgstr "Marco Vipsanio Agrippa"
+
+#: civs/rome.jsonAINames[4]
+msgid "Gaius Iulius Iullus"
+msgstr "Gaio Giulio Iullo"
+
+#: civs/rome.jsonAINames[5]
+msgid "Gaius Servilius Structus Ahala"
+msgstr "Gaio Servilio Strutto Ahala"
+
+#: civs/rome.jsonAINames[6]
+msgid "Publius Cornelius Rufinus"
+msgstr "Publio Cornelio Rufino"
+
+#: civs/rome.jsonAINames[7]
+msgid "Lucius Papirius Cursor"
+msgstr "Lucio Papirio Cursore"
+
+#: civs/rome.jsonAINames[8]
+msgid "Aulus Manlius Capitolinus"
+msgstr "Aulo Manlio Capitolino"
+
+#: civs/rome.jsonAINames[9]
+msgid "Publius Cornelius Scipio Africanus"
+msgstr "Publio Cornelio Scipione Africano"
+
+#: civs/rome.jsonAINames[10]
+msgid "Publius Sempronius Tuditanus"
+msgstr "Publio Sempronio Tuditano"
+
+#: civs/rome.jsonAINames[11]
+msgid "Marcus Cornelius Cethegus"
+msgstr "Marco Cornelio Cetego"
+
+#: civs/rome.jsonAINames[12]
+msgid "Quintus Caecilius Metellus Pius"
+msgstr "Quinto Cecilio Metello Pio"
+
+#: civs/rome.jsonAINames[13]
+msgid "Marcus Licinius Crassus"
+msgstr "Marco Licinio Crasso"
+
+#: civs/rome.jsonFactions[0].Technologies[0].Description
+msgid "Roman heroes can convert enemy units with great cost."
+msgstr "Gli eroi romani possono convertire le unità nemiche a caro prezzo."
+
+#: civs/rome.jsonFactions[0].Technologies[0].Name
+msgid "Divide et Impera"
+msgstr "Divide et Impera"
+
+#: civs/rome.jsonFactions[0].Technologies[0].History
+msgid ""
+"'Divide and conquer' was the main principle in Rome's foreign politics "
+"throughout its long history. The Romans lured enemies or neutral factions to"
+" their side by offering them certain privileges. In due period of time, "
+"friends as well as foes were subjugated."
+msgstr "'Divide et impera' fu il principio fondamentale della politica estera di Roma nel corso della sua lunga storia. I Romani attiravano i nemici o le fazioni neutrali dalla loro parte offrendo loro alcuni privilegi. A tempo debito, sia gli amici che i nemici venivano soggiogati."
+
+#: civs/rome.jsonFactions[0].Heroes[0].History
+msgid ""
+"Dictator for six months during the Second Punic War. Instead of attacking "
+"the most powerful Hannibal, he started a very effective war of attrition "
+"against him."
+msgstr "Dittatore per sei mesi durante la seconda guerra punica. Invece di attaccare direttamente il più potente Annibale, egli attuò contro di lui una efficace guerra di logoramento."
+
+#: civs/rome.jsonFactions[0].Heroes[0].Name
+msgid "Quintus Fabius Maximus"
+msgstr "Quinto Fabio Massimo"
+
+#: civs/rome.jsonFactions[0].Heroes[1].History
+msgid ""
+"A soldier of the first war with Carthage, a hero of the Second Punic War, "
+"and victor over the Gauls at Clastidium. Plutarch describes him as a man of "
+"war, strong in body and constitution, with an iron will to fight on. As a "
+"general he was immensely capable, standing alongside Scipio Africanus and "
+"Claudius Nero as the most effective Roman generals of the entire Second "
+"Punic War. In addition to his military achievements Marcellus was a fan of "
+"Greek culture and arts, which he enthusiastically promoted in Rome. He met "
+"his demise when his men were ambushed near Venusia. In honor of the respect "
+"the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
+msgstr "Soldato nella prima guerra con Cartagine, eroe nella Seconda Guerra Punica, e vincitore dei Galli a Clastidium. Plutarco lo descrive come un uomo di guerra, forte nel corpo e nella costituzione, con una volontà ferrea per il combattimento. Come generale era immensamente capace, era affiancato a Scipione l'Africano e Claudio Nerone tra i più validi generali romani di tutta la Seconda Guerra Punica. Oltre ai suoi successi militari Marcello era un appassionato di cultura e di arte greca, che promosse entusiasticamente a Roma. Incontrò la morte cadendo in un'imboscata insieme suoi uomini nei pressi di Venusia. In onore al rispetto che gli era tributato, Marcello fu insignito del titolo di 'Spada di Roma.'"
+
+#: civs/rome.jsonFactions[0].Heroes[1].Name
+msgid "Marcus Claudius Marcellus"
+msgstr "Marco Claudio Marcello"
+
+#: civs/rome.jsonFactions[0].Heroes[2].History
+msgid ""
+"He was the first really successful Roman general against the Carthaginians. "
+"His campaigns in Spain and Africa helped to bring Carthage to its knees "
+"during the Second Punic War. He defeated Hannibal at the Battle of Zama in "
+"202 B.C."
+msgstr "Fu il primo generale romano veramente vittorioso contro i cartaginesi. Le sue campagne in Spagna e in Africa contribuirono a mettere Cartagine in ginocchio durante la seconda guerra punica. Sconfisse Annibale nella battaglia di Zama nel 202 a.C."
+
+#: civs/rome.jsonFactions[0].Heroes[2].Name
+msgid "Scipio Africanus"
+msgstr "Scipione l'Africano"
+
+#: civs/rome.jsonStructures[0].Name
+msgid "Entrenched Camp"
+msgstr "Campo Trincerato"
+
+#: civs/rome.jsonStructures[0].Special
+msgid "Trains citizen-soldiers from neutral or enemy territory."
+msgstr "Addestra cittadini-soldati in territorio nemico o neutrale."
+
+#: civs/rome.jsonStructures[0].History
+msgid ""
+"Sometimes it was a temporary camp built facing the route by which the army "
+"is to march, other times a defensive or offensive (for sieges) structure. "
+"Within the Praetorian gate, which should either front the east or the enemy,"
+" the tents of the first centuries or cohorts are pitched, and the dracos "
+"(ensigns of cohorts) and other ensigns planted. The Decumane gate is "
+"directly opposite to the Praetorian in the rear of the camp, and through "
+"this the soldiers are conducted to the place appointed for punishment or "
+"execution. It has a turf wall, and it's surrounded by a canal filled with "
+"water whenever possible for extra defense. Many towns started up as bigger "
+"military camps to evolve to more complicated cities."
+msgstr "A volte era un campo temporaneo costruito lungo il tragitto attraverso il quale l'esercito marciava, altre volte una struttura difensiva o offensiva (per gli assedi). All'interno il cancello Pretoriano trovava collocazione ad est o di fronte al nemico, le tende delle prime centurie o coorti, e venivani piantati i draconi ( le insegne delle coorti) e altre insegne. La porta Decumana è esattamente all'opposto della porta Pretoria nella parte posteriore del campo, e attraverso questa i soldati venivano condotti al luogo designato per le punizioni o le esecuzioni. Cinto da un terrapieno erboso e, quando possibile, circondato da un canale pieno d'acqua per aumentarne le difese. Molte cittadelle hanno avuto origine da grandi accampamenti militari per poi evolvere verso le più complesse città."
+
+#: civs/rome.jsonStructures[1].Name
+msgid "Murus Latericius"
+msgstr "Murus Latericius"
+
+#: civs/rome.jsonStructures[1].Special
+msgid "Can be built in neutral and enemy territory to strangle enemy towns."
+msgstr "Può essere costruito in territorio nemico o neutrale per strangolare le cittadine nemiche."
+
+#: civs/rome.jsonStructures[1].History
+msgid "Turf walls built by legionaries during sieges."
+msgstr "Muri di zolle costruiti dai legionari durante gli assedi"
+
+#: civs/rome.jsonHistory
+msgid ""
+"The Romans controlled one of the largest empires of the ancient world, "
+"stretching at its peak from southern Scotland to the Sahara Desert, and "
+"containing between 60 million and 80 million inhabitants, one quarter of the"
+" Earth's population at that time. Rome also remained one of the strongest "
+"nations on earth for almost 800 years. The Romans were the supreme builders "
+"of the ancient world, excelled at siege warfare and had an exquisite "
+"infantry and navy."
+msgstr "I Romani controllavano uno dei più grandi imperi del mondo antico, che al suo apice si estendeva dal sud della Scozia al deserto del Sahara, e contenente tra i 60 e gli 80 milioni di abitanti, un quarto della popolazione della Terra di quel periodo. Roma rimase una delle nazioni più forti sulla terra per quasi 800 anni. I Romani erano tra i migliori costruttori del mondo antico, eccellevano nell'arte dell'assedio e avevano una fanteria e una marina straordinarie."
+
+#: civs/sele.jsonName civs/sele.jsonFactions[0].Name
+msgid "Seleucids"
+msgstr "Seleucidi"
+
+#: civs/sele.jsonCivBonuses[0].Description
+msgid ""
+"This unlocks the Seleucid expansion building, the Klēroukhia or Military "
+"Colony, similar to Civic Centers for other factions. It is weaker and "
+"carries a smaller territory influence, but is cheaper and built faster."
+msgstr "Questo sblocca la costruzione per l'espansione Seleucide, il Klēroukhia o Colonia militare, simile a Centri Civici di altre fazioni. E' più debole e porta un influenza sul territorio minore, ma è più economico e più veloce da costruire."
+
+#: civs/sele.jsonCivBonuses[0].Name
+msgid "Cleruchy"
+msgstr "Cleruchi"
+
+#: civs/sele.jsonCivBonuses[1].Description
+msgid ""
+"Choose between Traditional Army and Reform Army technologies that unlock "
+"different Champions."
+msgstr "Scegliere tra Esercito Tradizionale e Esercito Riformato sblocca differenti tecnologie Campione."
+
+#: civs/sele.jsonCivBonuses[1].History
+#: civs/sele.jsonFactions[0].Technologies[1].History
+msgid ""
+"Seleucid and indeed Successor warfare evolved over the course of the 3rd and"
+" 2nd centuries. Contact with Eastern upstarts such as the Parthians and "
+"constant revolts of peripheral satrapies such as Bactria caused the "
+"Seleucids to reform their military and change their tactics, specifically in"
+" the cavalry arm. War with the Romans from the West and invasions from the "
+"Galatians also forced the Seleucids to reform their infantry regiments to be"
+" more flexible."
+msgstr "I Seleucidi e i successori spinsero l'evoluzione dell'arte della guerra nel corso dei secoli 3° e 2°. Il contatto con nuovi ricchi popoli orientali come i Parti e le rivolte costanti di satrapie periferiche come Battriana portarono i Seleucidi a riformare le loro milizie e cambiare tattiche, in particolare nella cavalleria. La guerra con i Romani ad ovest e le invasioni dei Galati costrinsero anche i Seleucidi a riformare i loro reggimenti di fanteria per essere più flessibili."
+
+#: civs/sele.jsonTeamBonuses[0].Description
+msgid "Allied Civic Centers are 20% cheaper."
+msgstr "Centri Civici Alleati costano il 20% in meno."
+
+#: civs/sele.jsonTeamBonuses[0].Name
+msgid "Syrian Tetrapolis"
+msgstr "Tetrapolis Siriana"
+
+#: civs/sele.jsonTeamBonuses[0].History
+msgid ""
+"The political core of the Seleucid Empire consisted of four 'sister' cities:"
+" Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
+msgstr "Il nucleo politico dell'impero seleucide consisteva di quattro città 'sorelle': Antiochia (la capitale), Seleucia Pieria, Apamea e Laodicea."
+
+#: civs/sele.jsonAINames[0]
+msgid "Seleucus I Nicator"
+msgstr "Seleuco I Nicatore"
+
+#: civs/sele.jsonAINames[1]
+msgid "Antiochus I Soter"
+msgstr "Antioco I Sotere"
+
+#: civs/sele.jsonAINames[2]
+msgid "Antiochus II Theos"
+msgstr "Antioco II Teo"
+
+#: civs/sele.jsonAINames[3]
+msgid "Seleucus II Callinicus"
+msgstr "Seleuco II Callinico"
+
+#: civs/sele.jsonAINames[4]
+msgid "Seleucus III Ceraunus"
+msgstr "Seleuco III Sotere Cerauno"
+
+#: civs/sele.jsonAINames[5]
+msgid "Antiochus III Megas"
+msgstr "Antioco III il Grande"
+
+#: civs/sele.jsonAINames[6]
+msgid "Seleucus IV Philopator"
+msgstr "Seleuco IV Filopatore"
+
+#: civs/sele.jsonAINames[7]
+msgid "Antiochus IV Epiphanes"
+msgstr "Antioco IV Epifane"
+
+#: civs/sele.jsonAINames[8]
+msgid "Antiochus V Eupator"
+msgstr "Antioco V Eupatore"
+
+#: civs/sele.jsonAINames[9]
+msgid "Demetrius I Soter"
+msgstr "Demetrio I Sotere"
+
+#: civs/sele.jsonAINames[10]
+msgid "Alexander I Balas"
+msgstr "Alessandro I Bala Epifane"
+
+#: civs/sele.jsonAINames[11] civs/sele.jsonAINames[15]
+msgid "Demetrius II Nicator"
+msgstr "Demetrio II Nicatore"
+
+#: civs/sele.jsonAINames[12]
+msgid "Antiochus VI Dionysus"
+msgstr "Antioco VI Dioniso"
+
+#: civs/sele.jsonAINames[13]
+msgid "Diodotus Tryphon"
+msgstr "Diodoto Trifone"
+
+#: civs/sele.jsonAINames[14]
+msgid "Antiochus VII Sidetes"
+msgstr "Antioco VII Evergete Sidete"
+
+#: civs/sele.jsonAINames[16]
+msgid "Alexander II Zabinas"
+msgstr "Alessandro II Zabina"
+
+#: civs/sele.jsonAINames[17]
+msgid "Cleopatra Thea"
+msgstr "Cleopatra Tea Evergete"
+
+#: civs/sele.jsonAINames[18]
+msgid "Seleucus V Philometor"
+msgstr "Seleuco V Filometore"
+
+#: civs/sele.jsonAINames[19]
+msgid "Antiochus VIII Grypus"
+msgstr "Antioco VIII Gripo"
+
+#: civs/sele.jsonAINames[20]
+msgid "Antiochus IX Cyzicenus"
+msgstr "Antioco IX Eusebe"
+
+#: civs/sele.jsonAINames[21]
+msgid "Seleucus VI Epiphanes"
+msgstr "Seleuco VI Epifane"
+
+#: civs/sele.jsonAINames[22]
+msgid "Antiochus X Eusebes"
+msgstr "Antioco X Eusebe Filopatore"
+
+#: civs/sele.jsonAINames[23]
+msgid "Demetrius III Eucaerus"
+msgstr "Demetrio III Euchero"
+
+#: civs/sele.jsonAINames[24]
+msgid "Antiochus XI Epiphanes"
+msgstr "Antioco XI Epifane"
+
+#: civs/sele.jsonAINames[25]
+msgid "Philip I Philadelphus"
+msgstr "Filippo I Filadelfo"
+
+#: civs/sele.jsonAINames[26]
+msgid "Antiochus XII Dionysus"
+msgstr "Antioco XII Dioniso"
+
+#: civs/sele.jsonAINames[27]
+msgid "Seleucus VII Kybiosaktes"
+msgstr "Seleuco VII Kybiosaktes"
+
+#: civs/sele.jsonAINames[28]
+msgid "Antiochus XIII Asiaticus"
+msgstr "Antioco XIII Asiatico"
+
+#: civs/sele.jsonAINames[29]
+msgid "Philip II Philoromaeus"
+msgstr "Filippo II Filoromeo"
+
+#: civs/sele.jsonFactions[0].Technologies[1].Description
+msgid ""
+"Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
+"unlocks Romanized Heavy Swordsmen and Cataphracts."
+msgstr "Esercito Tradizionale sblocca Scudi D'argento e Carri Falcati, Esercito Riformato sblocca Spadaccini Pesanti Romani e Catafratti."
+
+#: civs/sele.jsonFactions[0].Technologies[1].Name
+msgid "Traditional Army vs. Reform Army"
+msgstr "Esercito tradizionale Vs. Esercito riformato."
+
+#: civs/sele.jsonFactions[0].Technologies[2].Description
+msgid ""
+"A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
+msgstr "Un acquisto una tantum di 20 elefanti indiani da guerra dall'Impero Maurya."
+
+#: civs/sele.jsonFactions[0].Technologies[2].Name
+msgid "Marriage Alliance"
+msgstr "Alleanza Matrimoniale"
+
+#: civs/sele.jsonFactions[0].Technologies[2].History
+msgid ""
+"Seleucus I Nicator invaded the Punjab region of India in 305 BC, confronting"
+" Chandragupta Maurya (Sandrokottos), founder of the Mauryan empire. It is "
+"said that Chandragupta fielded an army of 600,000 men and 9,000 war "
+"elephants (Pliny, Natural History VI, 22.4). Seleucus met with no success "
+"and to establish peace between the two great powers and to formalize their "
+"alliance, he married his daughter to Chandragupta. In return, Chandragupta "
+"gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
+"military asset for Seleucus as he fought the rest of Alexander's successors."
+msgstr "Seleuco I Nicatore invase la regione del Punjab in India nel 305 a.C., affrontando Chandragupta Maurya (Sandrokottos), fondatore dell'impero Maurya. Si dice che Chandragupta misse in campo un esercito di 600.000 uomini e 9.000 elefanti da guerra (Plinio, Storia Naturale VI, 22.4). Seleuco si scontrò senza successo e così per stabilire la pace tra le due grandi potenze e formalizzare la loro alleanza, sposò la figlia di Chandragupta. In cambio, Chandragupta regalò a Seleuco un corpo di 500 elefanti da guerra, che si sarebbero rivelati una risorsa militare decisiva per Seleuco nella lotta con il resto dei successori di Alessandro."
+
+#: civs/sele.jsonFactions[0].Technologies[3].History
+msgid ""
+"The beautiful and powerful breed of Nisean horses increases health for "
+"Seleucid cavalry."
+msgstr "La bella e potente razza di cavalli Niseani aumenta la salute della cavalleria Seleucide."
+
+#: civs/sele.jsonFactions[0].Heroes[0].History
+msgid ""
+"Always lying in wait for the neighboring nations, strong in arms and "
+"persuasive in council, he (Seleucus) acquired Mesopotamia, Armenia, "
+"'Seleucid' Cappadocia, Persis, Parthia, Bactria, Arabia, Tapouria, Sogdia, "
+"Arachosia, Hyrcania, and other adjacent peoples that had been subdued by "
+"Alexander, as far as the river Indus, so that the boundaries of his empire "
+"were the most extensive in Asia after that of Alexander. The whole region "
+"from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
+"Wars'."
+msgstr "Sempre in agguato con le nazioni vicine, ben armato e persuasivo in concilio, lui (Seleuco) acquisì la Mesopotamia, l'Armenia, la Cappadocia 'Seleucide', Persis, Partia, Battriana, l'Arabia, Tapouria, Sogdia, l'Arachosia, l'Ircania, e altri popoli adiacenti che erano stati sottomessi da Alessandro, fino al fiume Indo, tanto che i confini del suo impero erano i più estesi in Asia dopo quelli di Alessandro. L'intera regione dalla Frigia all'Indo furono soggiogate da Seleuco. - Appia, «Le Guerre Siriane."
+
+#: civs/sele.jsonFactions[0].Heroes[0].Name
+msgid "Seleukos A' Nikator"
+msgstr "Seleukos A' Nikator"
+
+#: civs/sele.jsonFactions[0].Heroes[1].History
+msgid ""
+"Antiochus inherited a troubled kingdom upon the beginning of his reign. From"
+" the verge of collapse he managed to weld back together the empire Seleukus "
+"I so hard to found. The rebellious eastern satraps of Bactria and Parthia "
+"were brought to heel , temporarily securing his eastern borders. He then "
+"turned his attention to mother Greece, attempting to fulfill the dreams of "
+"his fathers by invading Greece under the pretext of liberation. The Achaean "
+"League and the Kingdom of Pergamon banded together with the Romans to defeat"
+" him at the Battle of Magnesia, forever burying the dream of reuniting "
+"Alexander's empire."
+msgstr "Antioco ereditò un paese tormentato all'inizio del suo regno. Dall'essere vicino al crollo riuscì a rinsaldare e riportare l'impero ai fasti di Seleuco I. I satrapi orientali ribelli di Battriana e Partia furono confinati a sud, garantendo temporaneamente i suoi confini orientali. Rivolse poi la sua attenzione alla Grecia, nel tentativo di realizzare i sogni dei suoi padri, invase la Grecia con il pretesto della liberazione. La Lega Achea e il Regno di Pergamo si unirono con i Romani per sconfiggerlo nella battaglia di Magnesia, seppellendo per sempre il sogno di riunire l'impero di Alessandro."
+
+#: civs/sele.jsonFactions[0].Heroes[1].Name
+msgid "Antiokhos G' Megas"
+msgstr "Antiokhos G' Megas"
+
+#: civs/sele.jsonFactions[0].Heroes[2].History
+msgid ""
+"Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of "
+"Seleucus IV Philopator. Originally named Mithridates, he assumed the name "
+"Antiochus either upon his accession to the throne or after the death of his "
+"elder brother Antiochus. Notable events during his reign include the near-"
+"conquest of Egypt (twice), which was halted by the threat of Roman "
+"intervention, and the beginning of the Jewish revolt of the Maccabees. He "
+"died of sudden illness while fighting off a Parthian invasion from the East."
+msgstr "Antioco IV Epifane era figlio di Antioco III il Grande e fratello di Seleuco IV Filopatore. Originariamente chiamato Mitridate, assunse il nome di Antioco nella sua ascesa al trono o dopo la morte del fratello maggiore Antioco. Eventi degni di nota durante il suo regno comprendono la quasi conquista dell'Egitto (due volte), che fu fermata prima dalla minaccia di un intervento romano, e poi con l'inizio della rivolta ebraica dei Maccabei. Morì di malattia improvvisa, mentre combatteva contro un'invasione Partica dall'Oriente."
+
+#: civs/sele.jsonFactions[0].Heroes[2].Name
+msgid "Antiokhos D' Epiphanes"
+msgstr "Antiokhos D' Epiphanes"
+
+#: civs/sele.jsonFactions[0].Description
+msgid ""
+"The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
+"former empire."
+msgstr "La dinastia greco-macedone che ha governato la parte orientale del vecchio impero di Alessandro."
+
+#: civs/sele.jsonStructures[1].Special
+msgid "Trains all cavalry units except Citizen-Militia Cavalry."
+msgstr "Addestra tutte le unità di cavalleria eccetto la cavalleria miliziana cittadina."
+
+#: civs/sele.jsonStructures[2].Name
+msgid "Military Colony"
+msgstr "Avamposto Militare"
+
+#: civs/sele.jsonStructures[2].Special
+msgid ""
+"This is the Seleucid expansion building, similar to Civic Centers for other "
+"factions. It is weaker and carries a smaller territory influence, but is "
+"cheaper and built faster."
+msgstr "L'edificio di espansione Seleucida, similie al Centro Cittadino delle altre fazioni. E' meno resistente ed espande meno l'area di influenza ma è meno costoso e si costruisce più velocemente."
+
+#: civs/sele.jsonStructures[2].History
+msgid ""
+"The Seleucid kings invited Greeks, Macedonians, Galatians (Gauls), Cretans, "
+"and Thracians alike to settle in within the vast territories of the empire. "
+"They settled in military colonies called cleruchies (klēroukhia). Under this"
+" arrangement, the settlers were given a plot of land, or a kleros, and in "
+"return were required to serve in the great king's army when called to duty. "
+"This created a upper-middle class of military settlers who owed their "
+"livelihoods and fortunes to the Syrian kings and helped grow the available "
+"manpower for the imperial Seleucid army. A side effect of this system was "
+"that it drained the Greek homeland of military-aged men, a contributing "
+"factor to Greece's eventual conquest by Rome."
+msgstr "I re Seleucidi invitarono i Greci, i Macedoni, i Galati (Galli), i Cretesi e i Traci a stabilirsi nei vasti territori dell'impero. Si stabilirono in colonie militari chiamate cleruchie (klēroukhia). In base agli accordi, i coloni ottenevano un appezzamento di terreno, un kleros, e in cambio erano tenuti a servire nell'esercito del grande re quando richiamati al dovere. Questo creò una classe medio-alta di coloni militari che dovettero le loro fortune e le loro ricchezze ai re Siriani e contribuirono a far crescere la manodopera disponibile per l'esercito imperiale Seleucide. Un effetto collaterale di questo sistema fu il prosciugameto nella patria greca degli uomini validi, un fattore che contribuì alla conquista della Grecia da parte di Roma."
+
+#: civs/sele.jsonHistory
+msgid ""
+"The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
+msgstr "La dinastia greco-macedone che ha dominato la maggior parte del vecchio impero di Alessandro."
+
+#: civs/spart.jsonName civs/spart.jsonFactions[0].Name
+msgid "Spartans"
+msgstr "Spartani"
+
+#: civs/spart.jsonCivBonuses[0].Description
+msgid "Spartans can use the powerful Phalanx formation."
+msgstr "Gli spartani possono utilizzare la potente formazione a Falange."
+
+#: civs/spart.jsonCivBonuses[0].History
+msgid ""
+"The Spartans were undisputed masters of phalanx warfare. The Spartans were "
+"so feared for their discipline that the enemy army would sometimes break up "
+"and run away before a single shield clashed. 'Othismos' refers to the point "
+"in a phalanx battle where both sides try to shove each other out of "
+"formation, attempting to breaking up the enemy lines and routing them."
+msgstr "Gli Spartani erano maestri indiscussi della tattica della falange. Gli Spartani erano così temuti per la loro disciplina che capitava a volte che l'esercito nemico rompesse i ranghi e fuggisse prima ancora che venisse urtato un singolo scudo. 'Othismos' si riferisce al momento di uno scontro tra falangi in cui entrambe le parti cercavano di spingersi a vicenda fuori della formazione, cercando di rompere le linee nemiche e di metterle in rotta."
+
+#: civs/spart.jsonCivBonuses[1].Description
+msgid ""
+"The Spartan rank upgrades at the Barracks cost no resources, except time."
+msgstr "Gli aggiornamenti Spartani presso la Caserma non costano risorse, tranne il tempo."
+
+#: civs/spart.jsonCivBonuses[1].Name
+msgid "Laws of Lycurgus"
+msgstr "Leggi di Licurgo"
+
+#: civs/spart.jsonCivBonuses[1].History
+msgid ""
+"Under the Constitution written by the mythical law-giver Lycurgus, the "
+"institution of The Agoge was established, where Spartans were trained from "
+"the age of 6 to be superior warriors in defense of the Spartan state."
+msgstr "Sotto i dettami della Costituzione scritta dal mitico legislatore Licurgo, venne istituita l'Agoghé, dove gli spartani venivano formati a partire dall'età di 6 anni per essere i migliori guerrieri a difesa di Sparta."
+
+#: civs/spart.jsonTeamBonuses[0].Description
+msgid "Allies can train Spartiates."
+msgstr "Gli alleati possono addestrare Spartiati."
+
+#: civs/spart.jsonTeamBonuses[0].Name
+msgid "Peloponnesian League"
+msgstr "Lega Peloponnesiaca"
+
+#: civs/spart.jsonTeamBonuses[0].History
+msgid ""
+"Much of the Peloponnese was subject to Sparta in one way or another. This "
+"loose confederation, with Sparta as its leader, was later dubbed the "
+"Peloponnesian League by historians, but in ancient times was called 'The "
+"Lacedaemonians and their allies.'"
+msgstr "Gran parte del Peloponneso era assoggettato a Sparta, in un modo o nell'altro. Questa ampia confederazione, con a capo Sparta, è stata successivamente soprannominata Lega Peloponnesiaca dagli storici, ma anticamente era definita come 'Gli Spartani e i loro alleati.'"
+
+#: civs/spart.jsonAINames[1]
+msgid "Dienekes"
+msgstr "Dienekes"
+
+#: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
+msgid "Brasidas"
+msgstr "Brasida"
+
+#: civs/spart.jsonAINames[3]
+msgid "Agis"
+msgstr "Agis"
+
+#: civs/spart.jsonAINames[4]
+msgid "Archidamus"
+msgstr "Archidamo"
+
+#: civs/spart.jsonAINames[6]
+msgid "Pausanias"
+msgstr "Pausania"
+
+#: civs/spart.jsonAINames[7]
+msgid "Agesilaus"
+msgstr "Agesilao"
+
+#: civs/spart.jsonAINames[8]
+msgid "Echestratus"
+msgstr "Echestrato"
+
+#: civs/spart.jsonAINames[9]
+msgid "Eurycrates"
+msgstr "Euricrate"
+
+#: civs/spart.jsonAINames[10]
+msgid "Eucleidas"
+msgstr "Euclida"
+
+#: civs/spart.jsonAINames[11]
+msgid "Agesipolis"
+msgstr "Agesipoli I"
+
+#: civs/spart.jsonFactions[0].Technologies[0].Description
+msgid ""
+"Spartan female citizens cannot be captured and will doggedly fight back "
+"against any attackers. They are also capable of constructing defense towers "
+"and palisades."
+msgstr "I cittadini spartani di sesso femminile non possono essere catturate e combatteranno tenacemente contro eventuali aggressori. Sono anche in grado di costruire torri di difesa e palizzate."
+
+#: civs/spart.jsonFactions[0].Technologies[0].Name
+msgid "Feminine Mystique"
+msgstr "Mistica femminile"
+
+#: civs/spart.jsonFactions[0].Technologies[0].History
+msgid ""
+"Spartan women were some of the freest in the ancient world. They could own "
+"land and slaves and even exercise naked like Spartan men. It is said that "
+"only Spartan women gave birth to real men. Such tough-as-nails women more "
+"than once helped save their city from disaster, for example when after a "
+"lost battle against Pyrrhus of Epirus they overnight built an earthen "
+"rampart to protect the city while their men slept in preparation for the "
+"next day's siege."
+msgstr "Le donne spartane erano tra le più libere del mondo antico. Potevano possedere terre e schiavi e persino allenarsi nude proprio come gli uomini spartani. E' stato detto che solo le donne spartane abbiano dato alla luce veri uomini. Queste donne resistenti come il ferro più di una volta contribuirono a salvare la città dal disastro, per esempio quando, dopo una battaglia persa contro Pirro re dell'Epiro, durante la notte costruirono un terrapieno per proteggere la città mentre i loro uomini dormivano per prepararsi all'assedio del giorno successivo."
+
+#: civs/spart.jsonFactions[0].Technologies[1].Description
+msgid "Units in phalanx formation move faster."
+msgstr "Le unità della falange si muovono più velocemente."
+
+#: civs/spart.jsonFactions[0].Technologies[1].Name
+msgid "Tyrtean Paeans"
+msgstr "I Peàna di Tirteo"
+
+#: civs/spart.jsonFactions[0].Technologies[1].History
+msgid ""
+"Paeans were battle hymns that were sung by the hoplites when they charged "
+"the enemy lines. One of the first known Paeans were composed by Tirteus, a "
+"warrior poet of Sparta, during the First Messenian War."
+msgstr "I Peàna erano inni di guerra che venivano cantati dagli opliti quando caricavano le linee nemiche. Alcuni dei primi Peàna conosciuti sono stati composti da Tirteo, un poeta guerriero di Sparta, durante la Prima Guerra Messenica."
+
+#: civs/spart.jsonFactions[0].Technologies[2].Description
+msgid "+25% health for spear infantry, but also +10% train time."
+msgstr "+25% di salute per la fanteria con lancia, ma anche +10% tempo di addestramento."
+
+#: civs/spart.jsonFactions[0].Technologies[2].Name
+msgid "The Agoge"
+msgstr "L'Agoghé"
+
+#: civs/spart.jsonFactions[0].Technologies[2].History
+msgid ""
+"Spartans were housed and trained from a young age to be superlative warriors"
+" and to endure any hardship a military life can give them."
+msgstr "Gli Spartani erano addestrati fin dalla giovane età ad essere guerrieri straordinari e a sopportare qualsiasi difficoltà che una vita militare avrebbe potuto dare loro."
+
+#: civs/spart.jsonFactions[0].Heroes[0].History
+msgid ""
+"The king of Sparta, who fought and died at the battle of Thermopylae in 480 "
+"B.C. He successfully blocked the way of the huge Persian army through the "
+"narrow passage with his 7000 men, until Xerxes was made aware of a secret "
+"unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
+" his troops, choosing to stay behind with 300 hand-picked hoplites and win "
+"time for the others to withdraw."
+msgstr "Il re di Sparta, che combattè e morì nella battaglia delle Termopili nel 480 a.C. Bloccò con successo la via all'enorme esercito persiano attraverso lo stretto passaggio con i suoi 7000 uomini, fino a quando Serse venne a conoscenza di un percorso segreto senza ostacoli. Con il nemico alle spalle, Leonida inviò in patria la maggior parte delle sue truppe, scegliendo di rimanere con 300 opliti scelti per dare tempo agli altri a ritirarsi."
+
+#: civs/spart.jsonFactions[0].Heroes[0].Name
+msgid "Leonidas I"
+msgstr "Leonida I"
+
+#: civs/spart.jsonFactions[0].Heroes[1].History
+msgid ""
+"Because Brasidas has sponsored their citizenship in return for service, "
+"Helot Skirmishers fight longer and harder for Sparta while within range of "
+"him."
+msgstr "Poiché Brasida aveva promesso loro la cittadinanza in cambio dei loro servigi, la Fanteria Leggera Ilota combatte più a lungo e più intensamente per Sparta, mentre si trova nel suo raggio d'azione."
+
+#: civs/spart.jsonFactions[0].Heroes[2].History
+msgid ""
+"Agis III was the 20th Spartan king of the Eurypontid lineage. Agis cobbled "
+"together an alliance of Southern Greek states to fight off Macedonian "
+"hegemony while Alexander the Great was away in Asia on his conquest march. "
+"After securing Crete as a Spartan tributary, Agis then moved to besiege the "
+"city of Megalopolis in the Peloponnese, who was an ally of Macedon. "
+"Antipater, the Macedonian regent, lead an army to stop this new uprising. In"
+" the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
+"battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
+"made a heroic final stand in order to buy time for his troops to retreat."
+msgstr "Agis III è stato il 20° re spartano del lignaggio Eurypontida. Agis stipulò un'alleanza tra gli stati greci del Sud per combattere l'egemonia macedone, mentre Alessandro Magno era in Asia nella sua marcia di conquista. Dopo aver ottenuto la sottomissione di Creta come tributario spartano, Agis mosse guerra ed assediò la città di Megalopoli nel Peloponneso, alleata dei Macedoni. Antipatro, il reggente macedone, mobilitò l'esercito per fermare questa nuova rivolta. Nella battaglia di Megalopoli, i macedoni prevalsero in una battaglia lunga e sanguinosa. Proprio come Leonida 150 anni prima, invece di arrendersi, Agis morì eroicamente, al fine di guadagnare tempo per la ritirata delle sue truppe."
+
+#: civs/spart.jsonFactions[0].Heroes[2].Name
+msgid "Agis III"
+msgstr "Agis III"
+
+#: civs/spart.jsonStructures[1].Name
+msgid "Syssition"
+msgstr "Syssition"
+
+#: civs/spart.jsonStructures[1].Special
+msgid "Train heroes and Spartiates and research technologies related to them."
+msgstr "Addestra eroi e Spartiati e ricerca tecnologie a loro relative."
+
+#: civs/spart.jsonStructures[1].History
+msgid ""
+"The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
+"peer, even kings, belonged to one."
+msgstr "Il Syssitia era la sala mensa per Spartiati purosangue. Ogni pari Spartano, anche i re, doveva parteciparvi."
+
+#: civs/spart.jsonHistory
+msgid ""
+"Sparta was a prominent city-state in ancient Greece, and its dominant "
+"military power on land from circa 650 B.C. Spartan culture was obsessed with"
+" military training and excellence, with rigorous training for boys beginning"
+" at age seven. Thanks to its military might, Sparta led a coalition of Greek"
+" forces during the Greco-Persian Wars, and won over Athens in the "
+"Peloponnesian Wars, though at great cost."
+msgstr "Sparta era una città-stato di primo piano nella Grecia antica, e la sua potenza militare sulla terraferma divenne dominante a partire dal 650 a.C. La mentalità spartana era ossessionata dall'addestramento militare e dalla capacità di eccellere, con una formazione rigorosa per i ragazzi che iniziava all'età di sette anni. Grazie alla sua potenza militare, Sparta guidò una coalizione di forze greche durante le Guerre Greco-Persiane e conquistò Atene nel Guerra del Peloponneso, anche se a caro prezzo."
+
+#: civs/theb.jsonName civs/theb.jsonFactions[0].Name
+msgid "Thebans"
+msgstr "Tebani"
+
+#: civs/theb.jsonCivBonuses[0].Name
+msgid "Oblique Order"
+msgstr "Ordine Obliquo"
+
+#: civs/theb.jsonCivBonuses[1].Name
+#: civs/theb.jsonFactions[0].Technologies[1].Name
+msgid "Unknown"
+msgstr "Sconosciuto"
+
+#: civs/theb.jsonTeamBonuses[0].Name
+msgid "Boeotian Confederacy"
+msgstr "Confederazione Beota"
+
+#: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
+msgid "Epaminondas"
+msgstr "Epaminonda"
+
+#: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
+msgid "Pelopidas"
+msgstr "Pelopida"
+
+#: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
+msgid "Gorgidas"
+msgstr "Gorgida"
+
+#: civs/theb.jsonAINames[3]
+msgid "Calydnus"
+msgstr "Calidno"
+
+#: civs/theb.jsonAINames[4]
+msgid "Ogyges"
+msgstr "Ogigo"
+
+#: civs/theb.jsonAINames[5]
+msgid "Cadmus"
+msgstr "Cadmo"
+
+#: civs/theb.jsonAINames[6]
+msgid "Pentheus"
+msgstr "Penteo"
+
+#: civs/theb.jsonAINames[7]
+msgid "Polydorus"
+msgstr "Polidoro"
+
+#: civs/theb.jsonAINames[8]
+msgid "Nycteus"
+msgstr "Nitteo"
+
+#: civs/theb.jsonAINames[9]
+msgid "Lycus"
+msgstr "Lico"
+
+#: civs/theb.jsonAINames[10]
+msgid "Labdacus"
+msgstr "Labdaco"
+
+#: civs/theb.jsonFactions[0].Description
+msgid ""
+"The great power of Central Greece and leader of the Boeotian confederacy."
+msgstr "La grande potenza della Grecia centrale e leader della confederazione Beota."
+
+#: civs/theb.jsonStructures[1].History
+msgid ""
+"At the siege of the Athenian fortress at Delium, the Thebans employed what "
+"may be deemed the first recorded use of a flame thrower in warfare."
+msgstr "Presso l'assedio della fortezza ateniese a Delio, i Tebani impiegarono quello che può essere considerato come il primo uso documentato di un lanciafiamme in guerra."
+
+#: civs/theb.jsonHistory
+msgid ""
+"The great power of Central Greece and leader of the Boeotian confederacy, "
+"Thebes is a force to be reckoned with. It is a major rival of ancient "
+"Athens, and sided with the Persians during the 480 BC invasion under Xerxes."
+" Theban forces ended the power of Sparta at the Battle of Leuctra in 371 BC "
+"under the command of Epaminondas. The Sacred Band of Thebes (an elite "
+"military unit) famously fell at the battle of Chaeronea in 338 BC against "
+"Philip II and Alexander the Great. Prior to its destruction by Alexander in "
+"335 BC, Thebes was a major force in Greek history, and was the most dominant"
+" city-state at the time of the Macedonian conquest of Greece."
+msgstr "La grande potenza della Grecia Centrale e a capo della confederazione Beota, Tebe è una forza da non sottovalutare. Si tratta di un importante rivale dell'antica Atene, e si schierò con i persiani nel 480 a.C. durante l'invasione di Serse. Le forze tebane sconfissero la potenza di Sparta nella battaglia di Leuctra nel 371 a.C. sotto il comando di Epaminonda. La Banda Sacra di Tebe (una unità militare d'elite) venne sconfitta solo nella battaglia di Cheronea nel 338 a.C. contro Filippo II e Alessandro Magno. Prima della sua distruzione da parte di Alessandro nel 335 a.C., Tebe era una forza importante nella storia greca, ed era la città-stato dominante al tempo della conquista Macedone della Grecia."

@@ -1,8 +1,63 @@
 [main]
 host = https://www.transifex.com
 
-[0ad.public]
-file_filter = <lang>.public.po
-source_file = public.pot
+[0ad.public-civilizations]
+file_filter = <lang>.public-civilizations.po
+source_file = public-civilizations.pot
+source_lang = en
+
+[0ad.public-gui-gamesetup]
+file_filter = <lang>.public-gui-gamesetup.po
+source_file = public-gui-gamesetup.pot
+source_lang = en
+
+[0ad.public-gui-ingame]
+file_filter = <lang>.public-gui-ingame.po
+source_file = public-gui-ingame.pot
+source_lang = en
+
+[0ad.public-gui-lobby]
+file_filter = <lang>.public-gui-lobby.po
+source_file = public-gui-lobby.pot
+source_lang = en
+
+[0ad.public-gui-manual]
+file_filter = <lang>.public-gui-manual.po
+source_file = public-gui-manual.pot
+source_lang = en
+
+[0ad.public-gui-other]
+file_filter = <lang>.public-gui-other.po
+source_file = public-gui-other.pot
+source_lang = en
+
+[0ad.public-maps]
+file_filter = <lang>.public-maps.po
+source_file = public-maps.pot
+source_lang = en
+
+[0ad.public-simulation-other]
+file_filter = <lang>.public-simulation-other.po
+source_file = public-simulation-other.pot
+source_lang = en
+
+[0ad.public-simulation-technologies]
+file_filter = <lang>.public-simulation-technologies.po
+source_file = public-simulation-technologies.pot
+source_lang = en
+
+[0ad.public-templates-buildings]
+file_filter = <lang>.public-templates-buildings.po
+source_file = public-templates-buildings.pot
+source_lang = en
+
+[0ad.public-templates-other]
+file_filter = <lang>.public-templates-other.po
+source_file = public-templates-other.pot
+source_lang = en
+
+[0ad.public-templates-units]
+file_filter = <lang>.public-templates-units.po
+source_file = public-templates-units.pot
 source_lang = en
 

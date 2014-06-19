@@ -1,0 +1,557 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: gd\n"
+"Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
+
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr "Fiosrachadh"
+
+#: gui/manual/manual.xml:20 (caption)
+msgid "View Online"
+msgstr "Seall air loidhne"
+
+#: gui/manual/manual.xml:23 (caption)
+msgid "Close"
+msgstr "Dùin"
+
+#: gui/manual/intro.txt:1
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr "[font=\"sans-bold-18\"]An leabhar-mìneachaidh am broinn 0 A.D."
+
+#: gui/manual/intro.txt:2
+msgid "[font=\"sans-14\"]"
+msgstr "[font=\"sans-14\"]"
+
+#: gui/manual/intro.txt:3
+msgid ""
+"Thank you for installing 0 A.D.! This page will give a brief overview of the"
+" features available in this incomplete, under-development, alpha version of "
+"the game."
+msgstr "Tapadh leat airson 0 A.D. a stàladh! Bheir an duilleag seo foir-shealladh goirid dhut air na feartan a tha ri am faighinn san tionndadh alpha neo-choileanta seo dhen gheama a tha fhathast 'ga leasachadh."
+
+#: gui/manual/intro.txt:5
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr "[font=\"sans-bold-16\"]Roghainnean a' ghrafaigeachd"
+
+#: gui/manual/intro.txt:6
+msgid ""
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
+"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
+"game runs too slowly, you can change some settings in the configuration "
+"file: look for binaries/data/config/default.cfg in the location where the "
+"game is installed, which gives instructions for editing, and try disabling "
+"the \"fancywater\" and \"shadows\" options."
+msgstr "[font=\"sans-14\"]'S urrainn dhut leum a ghearradh eadar modh làn-sgrìn no uinneige 's tu a' brùthadh air Alt + Enter. Sa mhodh uinneige, 's urrainn dhut meud na h-uinneige atharrachadh. Ma bhios an geama a' ruith ro shlaodach, 's urrainn dhut cuid a roghainnean atharrachadh san fhaidhle rèiteachaidh: lorg airson binaries/data/config/default.cfg san ionad far an deach an geama a stàladh a bheir mìneachaidhean seachad air deasachadh is feuch an cuir thu na roghainnean \"fancywater\" is \"shadows\" à comas."
+
+#: gui/manual/intro.txt:8
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr "[font=\"sans-bold-16\"]Mar a chluicheas tu an geama"
+
+#: gui/manual/intro.txt:9
+msgid ""
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
+"poorly-balanced stats – you will probably have to wait until a beta release "
+"for it to work well."
+msgstr "[font=\"sans-14\"]Bidh thu eòlach air na innealan-smachd is an dòigh cluiche ma tha thu air geamannan ro-innleachd fìor-ùine (RTS) tradaiseanta a chluich roimhe. Tha iomadh feart a dhìth fhathast aig an àm seo is chan eil meidh air mar bu chòir – tha sinn an dùil gum bi agad ri feitheamh airson sgaoileadh beta ach an obraich e gu math."
+
+#: gui/manual/intro.txt:11
+msgid "Basic controls:"
+msgstr "Innealan-smachd bunasach:"
+
+#: gui/manual/intro.txt:12
+msgid "• Left-click to select units."
+msgstr "• Dèan briogadh clì gus aonad a thaghadh."
+
+#: gui/manual/intro.txt:13
+msgid "• Left-click-and-drag to select groups of units."
+msgstr "• Dèan briogadh clì is slaod gus buidhnean de dh'aonadan a thaghadh."
+
+#: gui/manual/intro.txt:14
+msgid "• Right-click to order units to the target."
+msgstr "• Dèan briogadh deas ach an tèid aonadan dhan cheann-uidhe."
+
+#: gui/manual/intro.txt:15
+msgid "• Arrow keys or WASD keys to move the camera."
+msgstr "• Cleachd na h‑iuchraichean saighde no WASD gus an camara a ghluasad."
+
+#: gui/manual/intro.txt:16
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
+msgstr "• Cleachd Ctrl + iuchraichean saighde no shift + cuibhle na luchaige gus an camara a chuairteachadh."
+
+#: gui/manual/intro.txt:17
+msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
+msgstr "• Cleachd cuibhle na luchaige no na h‑iuchraichean \"+\" is \"-\" airson sùmadh."
+
+#: gui/manual/intro.txt:19
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr "[font=\"sans-bold-16\"]Modhan"
+
+#: gui/manual/intro.txt:20
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr "[font=\"sans-14\"]Gheibh thu inntrigeadh do dhà mhodh leis a' phrìomh chlàr-taice:"
+
+#: gui/manual/intro.txt:22
+msgid ""
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"game or against one or more AI opponents. The AI/AIs are under development "
+"and may not always be up to date on the new features, but you can test "
+"playing the game against an actual opponent if you aren't able to play with "
+"a human."
+msgstr "• [font=\"sans-bold-14\"]Aon chluicheadair[font=\"sans-14\"] — cluich geama sa bhogsa-gainmhich no an aghaidh nàimhde IF no dhà. Tha an IF/na IFan gan leasachadh fhathast is 's dòcha nach eil iad eòlach air na feartan as ùire ach le IF 's urrainn dhut an geama feuchainn an aghaidh nàmhaid mur urrainn dhut cluich an aghaidh duine eile."
+
+#: gui/manual/intro.txt:24
+msgid ""
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr "• [font=\"sans-bold-14\"]Ioma-chluicheadair[font=\"sans-14\"] — cluich an aghaidh co-fharpaisichean daonna air an eadar-lìn."
+
+#: gui/manual/intro.txt:26
+msgid ""
+"To set up a multiplayer game, one player must select the \"Host game\" "
+"option. The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"and enter the host's IP address."
+msgstr "Feumaidh cluicheadair an roghainn \"Òstaich geama\" a thaghadh gus geama ioma-chluicheadair a shuidheachadh. Cleachdaidh an geama am port UDP 20595, mar sin feumaidh an t‑òstair a NAT/firewall/etc a rèiteachadh gus seo a cheadachadh. 'S urrainn dha chluicheadairean eile \"Gabh pàirt sa gheama\" a thaghadh an uairsin is an t‑seòladh IP aig an òstair a chur a-steach."
+
+#: gui/manual/intro.txt:28
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr "[font=\"sans-bold-16\"]Rèiteachadh a' gheama"
+
+#: gui/manual/intro.txt:29
+msgid ""
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
+"setup options."
+msgstr "[font=\"sans-14\"]Ann an geama ioma-chluicheadair, chan urrainn ach dhan òstair roghainnean rèiteachaidh a' gheama atharrachadh."
+
+#: gui/manual/intro.txt:31
+msgid ""
+"First, select whether you want to play on a random map (created "
+"automatically from a random map script) or a scenario (created by a map "
+"designer). Scenarios can be filtered to show only some maps. The default "
+"maps are shown immediately, but custom maps are often not so select \"All "
+"maps\" to see a list of all available maps. Then select a map to play on. "
+"The \"Demo Maps\" are designed for testing particular gameplay features and "
+"are probably not generally useful."
+msgstr "An toiseach, tagh a bheil thu airson cluich air mapa air thuaiream (a thèid a chruthachadh gu fèin-obrachail o sgriobt mapa) no cnàmh-sgeul (a chaidh a chruthachadh le dealbhaiche mapa). Gabhaidh na cnàmh-sgeulan criathradh gus nach tèid ach cuid dhiubh a shealltainn. Thèid na mapaichean bunaiteach a shealltainn sa bhad ach chan fhaic thu mapaichean gnàthaichte mar as trice. Mar sin, tagh \"Na h‑uile mapa\" gus liosta dhe na h‑uile mapa a tha ri làimh fhaicinn. Tagh mapa airson cluich air an uairsin. Chaidh na \"Mapaichean taisbeanaidh\" a dhealbhadh gus feartan sònraichte dhen gheama a chur fo dheuchainn is cha bhi iad feumail san fharsaingeachd."
+
+#: gui/manual/intro.txt:33
+msgid ""
+"Finally change the settings. For random maps this includes the number of "
+"players, the size of a map, etc. For scenarios you can only select who "
+"controls which player (decides where you start on the map etc). The options "
+"are either a human player, an AI or no player at all (existing units will "
+"attack enemies that come into sight, but no new units will be created, nor "
+"will the units be sent to attack anyone)."
+msgstr "Atharraich na roghainnean aig deireadh na sgeòil. Le mapa air thuaiream, gabhaidh seo a-steach an àireamh de chluicheadairean, meud a' mhapa agus msaa. Le cnàmh-sgeulan, chan urrainn dhut taghadh ach cò a ghabhas smachd air na cluicheadairean (suidhichidh seo càite an tòisich thu air a' mhapa agus msaa.) Faodaidh tu cluicheadair daonna no IF a thaghadh no nach bi cluicheadair ann idir (bheir na h‑aonadan a bhios ann ionnsaigh air nàimhdean a thig am fradharc ach cha tèid aonadan ùra a chruthachadh no an cuir an aghaidh an nàmhad)."
+
+#: gui/manual/intro.txt:35
+msgid "When you are ready to start, click the \"Start game\" button."
+msgstr "Nuair a bhios tu deiseil airson tòiseachadh, briog air a' phutan \"Tòisich air geama\"."
+
+#: gui/manual/intro.txt:37
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]Hotkeys:"
+
+#: gui/manual/intro.txt:38
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr "[font=\"sans-bold-14\"]An-còmhnaidh"
+
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr "[font=\"sans-14\"]Alt + F4: Fàg an geama gun dearbhadh"
+
+#: gui/manual/intro.txt:40
+msgid "Alt + Enter: Toggle between fullscreen and windowed"
+msgstr "Alt + Enter: Toglaich eadar làn-sgrìn is modh uinneige"
+
+#: gui/manual/intro.txt:41
+msgid "~ or F9: Show/hide console"
+msgstr "~ no F9: Seall/Falaich a' chonsoil"
+
+#: gui/manual/intro.txt:42
+msgid "Alt + F: Show/hide frame counter (FPS)"
+msgstr "Alt + F: Seall/Falaich cunntair nam frèam (FPS)"
+
+#: gui/manual/intro.txt:43
+msgid ""
+"F11: Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr "F11: Cuir am pròifilear fìor-ùine an comas/à comas (toglaichidh seo tro na seallaidhean fiosrachaidh)"
+
+#: gui/manual/intro.txt:44
+msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
+msgstr "Shift + F11: Sàbhail dàta a' phròifileir làithrich gu \"logs/profile.txt\""
+
+#: gui/manual/intro.txt:45
+msgid ""
+"F2: Take screenshot (in .png format, location is displayed in the top left "
+"of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr "F2: Tog glacadh-sgrìn (san fhòrmat .png, thèid an t‑ionad a shealltainn air oisean clì gu h‑àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t‑ionad air a' chonsoil/sna logaichean ma chaill thu e an-sin)"
+
+#: gui/manual/intro.txt:46
+msgid ""
+"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
+" displayed in the top left of the GUI after the file has been saved, and can"
+" also be seen in the console/logs if you miss it there)"
+msgstr "F2: Tog glacadh-sgrìn anabarrach mòr (6400x4800px, san fhòrmat .bmp, thèid an t‑ionad a shealltainn air oisean clì gu h‑àrd nuair a bhios am faidhle air a shàbhaladh is chì thu an t‑ionad air a' chonsoil/sna logaichean ma chaill thu e an-sin)"
+
+#: gui/manual/intro.txt:48
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr "[font=\"sans-bold-14\"]Am broinn a' gheama"
+
+#: gui/manual/intro.txt:49
+msgid ""
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
+"the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"]Briogadh clì dùbailte [air aonad]: Tagh a h-uile aonad dhen aon seòrsa agad a chì thu (fiù 's ma tha rang eadar-dhealaichte aca)"
+
+#: gui/manual/intro.txt:50
+msgid ""
+"Triple Left Click [on unit]: Select all of your units of the same kind and "
+"the same rank on the screen"
+msgstr "Briogadh clì trìoblaichte [air aonad]: Tagh a h-uile aonad dhen aon seòrsa is rang agad a chì thu"
+
+#: gui/manual/intro.txt:51
+msgid ""
+"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
+" the entire map (even if the are different ranks)"
+msgstr "Alt + Briogadh clì dùbailte [air aonad]: Tagh a h-uile aonad dhen aon seòrsa agad air a' mhapa gu lèir (fiù 's ma tha rang eadar-dhealaichte aca)"
+
+#: gui/manual/intro.txt:52
+msgid ""
+"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"and rank on the entire map"
+msgstr "Alt + Briogadh clì trìoblaichte [air aonad]: Tagh a h-uile aonad dhen aon seòrsa is rang agad air a' mhapa gu lèir"
+
+#: gui/manual/intro.txt:53
+msgid "Shift + F5: Quicksave"
+msgstr "Shift + F5: Sàbhaladh luath"
+
+#: gui/manual/intro.txt:54
+msgid "Shift + F8: Quickload"
+msgstr "Shift + F8: Luchdadh luath"
+
+#: gui/manual/intro.txt:55
+msgid "F10: Open/close menu"
+msgstr "F10: Fosgail/Dùin an clàr-taice"
+
+#: gui/manual/intro.txt:56
+msgid "F12: Show/hide time elapsed counter"
+msgstr "F12: Seall/Falaich an ùine a dh'fhalbh"
+
+#: gui/manual/intro.txt:57
+msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
+msgstr "ESC: Dùin a h‑uile còmhradh (cabadaich, clàr-taice) no falamhaich taghadh nan aonadan"
+
+#: gui/manual/intro.txt:58
+msgid "Enter/return: Open/send chat"
+msgstr "Enter/Return: Fosgail/Cuir cabadaich"
+
+#: gui/manual/intro.txt:59
+msgid "T: Send team chat"
+msgstr "T: Cuir cabadaich gun sgioba"
+
+#: gui/manual/intro.txt:60
+msgid "Pause: Pause/resume the game"
+msgstr "Pause: Cuir an geama 'na stad/a' dol"
+
+#: gui/manual/intro.txt:61
+msgid "Delete: Delete currently selected unit/units/building/buildings"
+msgstr "Delete: Sguab às an aonad/na h‑aonadan/an togalach/na togalaichean a thagh thu"
+
+#: gui/manual/intro.txt:62
+msgid ",: Select idle fighters"
+msgstr ",: Tagh na saighdearan nan tàmh"
+
+#: gui/manual/intro.txt:63
+msgid ".: Select idle workers (including citizen soldiers)"
+msgstr ".: Tagh na h‑obraichean nan tàmh (a' gabhail a-steach am feachd-dùthcha)"
+
+#: gui/manual/intro.txt:64
+msgid "H: Stop (halt) the currently selected units."
+msgstr "H: Cuir stad air na h‑aonadan a thagh thu."
+
+#: gui/manual/intro.txt:65
+msgid ""
+"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
+"selected units/buildings"
+msgstr "Ctrl + 1 ('s mar sin air adhart gu ruige Ctrl + 0): Dèan buidheann-smachd 1 (gu 0) dhe na h‑aonadan/togalaichean a thagh thu"
+
+#: gui/manual/intro.txt:66
+msgid ""
+"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
+msgstr "1 ('s mar sin air adhart gu ruige 0): Tagh na h‑aonadan/togalaichean sa bhuidheann-smachd 1 (gu 0)"
+
+#: gui/manual/intro.txt:67
+msgid ""
+"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
+msgstr "Shift + 1 (gu ruige 0): Cuir buidheann-smachd 1 (gu 0) ris na togalaichean/na h‑aonadan a thagh thu"
+
+#: gui/manual/intro.txt:68
+msgid ""
+"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
+"jumping back to later."
+msgstr "Ctrl + F5 ('s mar sin air adhart gu ruige F8): Comharraich ionad làithreach a' chamara ach an urrainn dhut leum a ghearradh dha an uairsin."
+
+#: gui/manual/intro.txt:69
+msgid ""
+"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
+"last location if the camera is already over the marked position."
+msgstr "F5, F6, F7 is F8: Gluais an camara gu ionad comharraichte. Gearr leum air ais dhan ionad roimhe ma tha an camara air an ionad chomharraichte mar-thà."
+
+#: gui/manual/intro.txt:70
+msgid ""
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
+" unit shown to the training queue for all the selected buildings."
+msgstr "Z, X, C, V, B, N, M: Le togalach trèanaidh no dhà air a thaghadh. Cuir a' chiad, an dàrna, ... aonad a chì thu air a' chiudha trèanaidh sa h‑uile togalach a thagh thu."
+
+#: gui/manual/intro.txt:72
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]Atharraich gnìomh na luchaige"
+
+#: gui/manual/intro.txt:73
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]Ctrl + briogadh deas air togalach: Rach 'na ghearastan"
+
+#: gui/manual/intro.txt:74
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Shift + briogadh deas: Cuir an t‑òrdugh gluais/tog/cruinnich/msaa. air a' chiudha"
+
+#: gui/manual/intro.txt:75
+msgid "Shift + Left click when training unit/s: Add units in batches of five"
+msgstr "Shift + briogadh deas le trèanadh aonadan: cuir aonadan ann an grunnan de chòignear ris"
+
+#: gui/manual/intro.txt:76
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Shift + briogadh clì no slaodadh thar an aonaid air a' mhapa: cuir an t‑aonad ris an taghadh"
+
+#: gui/manual/intro.txt:77
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ctrl + briogadh clì no slaodadh clì thar an aonaid air a' mhapa: thoir an t‑aonad far an taghadh"
+
+#: gui/manual/intro.txt:78
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt + slaodadh clì thar aonadan air a' mhapa: Na tagh ach aonadan an airm"
+
+#: gui/manual/intro.txt:79
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ctrl + briogadh clì air ìomhaigheag an aonaid/a' bhuidhinn le iomad aonad air a thaghadh: Neo-thagh"
+
+#: gui/manual/intro.txt:80
+msgid ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "Briogadh deas le togalach/togalaichean air an taghadh: suidhichidh seo ceann-cruinneachaidh airson aonadan a thèid a chruthachadh san togalach ud no a dh'fhalbhas an gearastan."
+
+#: gui/manual/intro.txt:81
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ctrl + briogadh deas le aonadan air an taghadh:"
+
+#: gui/manual/intro.txt:82
+msgid "    - If the cursor is over a structure: Garrison"
+msgstr "    - Ma tha an cùrsair os cionn togalaich: Rach 'na ghearastan"
+
+#: gui/manual/intro.txt:83
+msgid "    - Otherwise: Attack move"
+msgstr "    - Mur eil: Thoir ionnsaigh"
+
+#: gui/manual/intro.txt:85
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]Tar-chòmhdachaidhean"
+
+#: gui/manual/intro.txt:86
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt + G: Falaich/Seall an eadar-aghaidh"
+
+#: gui/manual/intro.txt:87
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt + D: Seall/Falaich tar-chòmhdachadh nan leasaichear (le roghainnean nan leasaichear)"
+
+#: gui/manual/intro.txt:88
+msgid ""
+"Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
+"the textured models, twice to get just the wireframes colored by the "
+"textures, thrice to get back to normal textured mode)"
+msgstr "Alt + W: Toglaich modh frèam-uèir (brùth air aon turas gus frèaman-uèir a thar-chòmhdachadh air bàrr nam modalan le innich, dà thuras gus frèaman-uèir le dathan nan inneach a-mhàin fhaighinn is trì tursan gus tilleadh dhan mhodh àbhaisteach le innich)"
+
+#: gui/manual/intro.txt:89
+msgid ""
+"Alt + S: Toggle unit silhouettes (might give a small performance boost)"
+msgstr "Alt + S: Toglaich sgàil-riochdan nan aonadan (dh'fhaoidte gum faigh thu beagan dèanadais a bharrachd às)"
+
+#: gui/manual/intro.txt:90
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt + Z: Toglaich na speuran"
+
+#: gui/manual/intro.txt:92
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]Gluasad a' chamara"
+
+#: gui/manual/intro.txt:93
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W no [suas]: Panaich an sgrìn suas"
+
+#: gui/manual/intro.txt:94
+msgid "S or [down]: Pan screen down"
+msgstr "S no [sìos]: Panaich an sgrìn sìos"
+
+#: gui/manual/intro.txt:95
+msgid "A or [left]: Pan screen left"
+msgstr "A no [clì]: Panaich an sgrìn gu clì"
+
+#: gui/manual/intro.txt:96
+msgid "D or [right]: Pan screen right"
+msgstr "D no [deas]: Panaich an sgrìn gu deas"
+
+#: gui/manual/intro.txt:97
+msgid "Ctrl + W or [up]: Rotate camera to look upward"
+msgstr "Ctrl + W no [suas]: Cuairtich an camara airson sealltainn suas"
+
+#: gui/manual/intro.txt:98
+msgid "Ctrl + S or [down]: Rotate camera to look downward"
+msgstr "Ctrl + S no [sìos]: Cuairtich an camara airson sealltainn sìos"
+
+#: gui/manual/intro.txt:99
+msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A no [clì]: Cuairtich an camara gu deiseil"
+
+#: gui/manual/intro.txt:100
+msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D no [deas]: Cuairtich an camara gu tuathal"
+
+#: gui/manual/intro.txt:101
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "Q: Cuairtich an camara gu deiseil"
+
+#: gui/manual/intro.txt:102
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E: Cuairtich an camara gu tuathail"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Shift + cuibhle na luchaige suas: Cuairtich an camara gu deiseil"
+
+#: gui/manual/intro.txt:104
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Shift + cuibhle na luchaige sìos: Cuairtich an camara gu tuathal"
+
+#: gui/manual/intro.txt:105
+msgid ""
+"F: Follow the selected unit (move the camera to stop the camera from "
+"following the unit/s)"
+msgstr "F: Lean air an aonad air a thaghadh (gluais an camara ach nach lean e air an aonad/na h‑aonadan tuilleadh)"
+
+#: gui/manual/intro.txt:106
+msgid "R: Reset camera zoom/orientation"
+msgstr "R: Ath-shuidhich sùm/cuairteachadh a' chamara"
+
+#: gui/manual/intro.txt:107
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+: Sùm a-steach (cum sìos e airson sùm gun sgur)"
+
+#: gui/manual/intro.txt:108
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "-: Sùm a-mach (cum sìos e airson sùm gun sgur)"
+
+#: gui/manual/intro.txt:109
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: Toglaich tro na modhan frèam-uèir"
+
+#: gui/manual/intro.txt:110
+msgid ""
+"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
+" pan"
+msgstr "Putan meadhanach na luchaige no / (Forward Slash): Cùm sìos e is gluais an luchag airson panachadh"
+
+#: gui/manual/intro.txt:112
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]Fhad 's a chuireas tu togalach ann"
+
+#: gui/manual/intro.txt:113
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"][: Cuairtich an togalach 15 puingean gu tuathal"
+
+#: gui/manual/intro.txt:114
+msgid "]: Rotate building 15 degrees clockwise"
+msgstr "]: Cuairtich an togalach 15 puingean gu deiseil"
+
+#: gui/manual/intro.txt:115
+msgid ""
+"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
+"release)"
+msgstr "Slaod le putan clì na luchaige: Cuairtich an togalach leis an luchag (thèid a shuidheachadh nuair a leigeas tu às an luchag)"
+
+#: gui/manual/userreport.txt:1
+msgid ""
+"As a free, open source game, we don't have the resources to test on a wide "
+"range of systems, but we want to provide the best quality experience to as "
+"many players as possible. When you enable automatic feedback, we'll receive "
+"data to help us understand the hardware we should focus on supporting, and "
+"to identify performance problems we should fix."
+msgstr "Air sgàth 's gur e geama open source saor a th' ann, chan eil na goireasan againn gus a h‑uile siostam fon ghrèin a chur fo dheuchainn ach bu mhiann leinn a' chàileachd as fhearr a ghabhas a thoirt dhan uiread as motha a chluicheadairean. Ma chuireas tu fiosrachadh thugainn gu fèin-obrachail, gheibh sinn dàta a bheir taic dhuinn ach an tuig sinn dè am bathar-cruaidh a bu chòir dhuinn taic a thoirt dha agus gus duilgheadasan leis an dèanadas a mhothachadh a bu chòir dhuinn càradh."
+
+#: gui/manual/userreport.txt:3
+msgid "The following data will be sent to our server:"
+msgstr "Seo an dàta a thèid a chur dhan fhrithealaiche againn:"
+
+#: gui/manual/userreport.txt:5
+msgid ""
+"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
+"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
+"from the same user."
+msgstr "• ID cleachdaiche air tuaiream ('ga ghlèidheadh ann an %APPDATA%\\0ad\\config\\user.cfg air Windows, ~/.config/0ad/config/user.cfg air Unix) ach am mothaich sinn nuair a thèid iomadh aithris on t‑aon chleachdaiche a chur thugainn."
+
+#: gui/manual/userreport.txt:6
+msgid ""
+"• Game version number and basic build settings (optimisation mode, CPU "
+"architecture, timestamp, compiler version)."
+msgstr "• Àireamh tionndaidh dhen gheama 's roghainnean togail bunasach (modh piseachaidh, ailtireachd a' CPU, stampa-tìde, tionndadh dhen trusaiche)."
+
+#: gui/manual/userreport.txt:7
+msgid ""
+"• Hardware details: OS version, graphics driver version, OpenGL "
+"capabilities, screen size, CPU details, RAM size."
+msgstr "• Fiosrachadh mun bhathar-chruaidh: tionndadh dhen t‑siostam-obrachaidh, tionndadh de dhraibhear a' ghrafaigeachd, comasan OpenGL, meud na sgrìn, fiosrachadh a' CPU, meud a' RAM."
+
+#: gui/manual/userreport.txt:8
+msgid ""
+"• Performance details: a snapshot of timing data a few seconds after you "
+"start a match or change graphics settings."
+msgstr "• Fiosrachadh mun dèanadas: glacadh dhen dàta tìmeachaidh beagan dhiogan às dèidh tòiseachadh maidse no nuair a bhios tu air roghainnean a' ghrafaigeachd atharrachadh."
+
+#: gui/manual/userreport.txt:10
+msgid ""
+"The data will only be a few kilobytes each time you run the game, so "
+"bandwidth usage is minimal."
+msgstr "Cha chuir sinn ach beagan cileabaidht gach turas a ruitheas tu an geama, mas sin cha tèid ach glè bheag de leud-banna a chleachdadh."
+
+#: gui/manual/userreport.txt:12
+msgid ""
+"We will store the submitted data on our server, and may publish statistics "
+"or non-user-identifiable details to help other game developers with similar "
+"questions. We will store the IP address that submitted the data, to help "
+"detect abuse of the service, but will not publish it. The published data can"
+" be seen at http://feedback.wildfiregames.com/"
+msgstr "Glèidhidh sinn an dàta a chuireas tu thugainn air an fhrithealaiche againn agus dh'fhaoidte gum foillsich sinn stadastaireachd no fiosrachadh on nach gabh d' aithneachadh gus taic a thoirt dhan luchd-leasachaidh aig geamannan eile aig a bheil ceistean coltach ris. Glèidhidh sinn an t‑seòladh IP a chuir an dàta thugainn gus bacadh a chur air ana-chleachdadh an t‑seirbheis ach chan fhoillsich sinn e. Chì thu an dàta a chaidh fhoillseachadh air http://feedback.wildfiregames.com/"

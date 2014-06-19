@@ -1,0 +1,1728 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: globalscripts/l10n.js:112
+msgctxt "enumeration"
+msgid ", "
+msgstr "、"
+
+#: gui/civinfo/civinfo.js:108
+#, python-format
+msgid "%(civilization)s Gameplay"
+msgstr "%(civilization)sの特性"
+
+#: gui/civinfo/civinfo.js:111
+msgid "Civilization Bonus"
+msgid_plural "Civilization Bonuses"
+msgstr[0] ""
+
+#: gui/civinfo/civinfo.js:116
+msgid "Team Bonus"
+msgid_plural "Team Bonuses"
+msgstr[0] ""
+
+#: gui/civinfo/civinfo.js:125
+msgid "Special Technologies"
+msgstr "特有のテクノロジー"
+
+#: gui/civinfo/civinfo.js:134
+msgid "Special Building"
+msgid_plural "Special Buildings"
+msgstr[0] ""
+
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+msgid "Heroes"
+msgstr "英雄"
+
+#: gui/civinfo/civinfo.js:157
+#, python-format
+msgid "History of the %(civilization)s"
+msgstr "%(civilization)sの歴史"
+
+#: gui/common/functions_global_object.js:75
+#, python-format
+msgid ""
+"Opening %(url)s\n"
+" in default web browser. Please wait...."
+msgstr "%(url)sを\n既定のウェブブラウザーで開いています。お待ちください...."
+
+#: gui/common/functions_global_object.js:75
+msgid "Opening page"
+msgstr "ページを開く"
+
+#: gui/common/functions_global_object.js:80
+#, python-format
+msgid "FPS: %(fps)s"
+msgstr "FPS: %(fps)s"
+
+#: gui/common/functions_utility.js:260
+msgid "mm:ss"
+msgstr "mm:ss"
+
+#: gui/common/functions_utility.js:262
+msgid "HH:mm:ss"
+msgstr "HH:mm:ss"
+
+#: gui/common/functions_utility_error.js:22
+msgid "Loading Aborted"
+msgstr "読込みを中止しました"
+
+#: gui/common/functions_utility_list.js:14
+#: gui/common/functions_utility_list.js:44
+#: gui/common/functions_utility_list.js:69
+#: gui/common/functions_utility_list.js:84
+#: gui/common/functions_utility_list.js:101
+#: gui/common/functions_utility_list.js:113
+#: gui/common/functions_utility_list.js:125
+#: gui/common/functions_utility_list.js:141
+#, python-format
+msgid "%(functionName)s: %(object)s not found."
+msgstr "%(functionName)s: %(object)sが見つかりません。"
+
+#: gui/common/functions_utility_list.js:161
+#, python-format
+msgid "Requested string '%(string)s' not found in %(object)s's list."
+msgstr "要求された文字列「%(string)s」は%(object)sのリストにありません。"
+
+#: gui/common/functions_utility_loadsave.js:8
+msgid "yyyy-MM-dd HH:mm:ss"
+msgstr "yyyy-MM-dd HH:mm:ss"
+
+#: gui/common/functions_utility_loadsave.js:9
+#, python-format
+msgid "[%(date)s]"
+msgstr "[%(date)s]"
+
+#: gui/common/functions_utility_loadsave.js:18
+#, python-format
+msgid "%(dateString)s %(map)s - %(description)s"
+msgstr "%(dateString)s %(map)s - %(description)s"
+
+#: gui/common/functions_utility_loadsave.js:20
+#, python-format
+msgid "%(dateString)s %(map)s"
+msgstr "%(dateString)s %(map)s"
+
+#: gui/common/network.js:6
+msgid "Unknown reason"
+msgstr "原因不明"
+
+#: gui/common/network.js:7
+msgid "Unexpected shutdown"
+msgstr "予期しないシャットダウン"
+
+#: gui/common/network.js:8
+msgid "Incorrect network protocol version"
+msgstr "ネットワークプロトコルのバージョン不適合"
+
+#: gui/common/network.js:9
+msgid "Game has already started"
+msgstr "ゲームはすでに始まっています"
+
+#: gui/common/network.js:10
+#, python-format
+msgid "[Invalid value %(id)s]"
+msgstr "[無効値 %(id)s]"
+
+#: gui/common/network.js:19
+msgid "Lost connection to the server."
+msgstr "サーバーとの接続が切れました。"
+
+#: gui/common/network.js:19
+#, python-format
+msgid "Reason: %(reason)s."
+msgstr "理由： %(reason)s."
+
+#: gui/common/network.js:20
+msgid "Disconnected"
+msgstr "通信遮断"
+
+#: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
+msgctxt "localeCountry"
+msgid "None"
+msgstr "なし"
+
+#: gui/locale/locale_advanced.js:91
+msgid "<invalid>"
+msgstr "<無効>"
+
+#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+msgid "Yes"
+msgstr "はい"
+
+#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/save.js:59 gui/savedgames/save.js:89
+msgid "No"
+msgstr "いいえ"
+
+#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/splashscreen/splashscreen.xml:27 (caption)
+msgid "OK"
+msgstr "OK"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Retry"
+msgstr "リトライ"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Ignore"
+msgstr "無視"
+
+#: gui/msgbox/msgbox.js:41
+msgid "Abort"
+msgstr "中止"
+
+#: gui/options/options.js:9
+msgid "Windowed Mode"
+msgstr "ウィンドウモード"
+
+#: gui/options/options.js:9
+msgid "Start 0 A.D. in a window"
+msgstr "ウィンドウ内で0 A.D.を起動"
+
+#: gui/options/options.js:10
+msgid "Background Pause"
+msgstr "フォーカス外で休止"
+
+#: gui/options/options.js:10
+msgid "Pause single player games when window loses focus"
+msgstr "ウィンドウがフォーカスを外れたとき、シングルプレイヤーのゲームを休止します"
+
+#: gui/options/options.js:11
+msgid "Disable Welcome Screen"
+msgstr "歓迎スクリーンを隠す"
+
+#: gui/options/options.js:11
+msgid ""
+"If you disable this screen completely, you may miss important announcements.\n"
+"You can still launch it using the main menu."
+msgstr "このスクリーン表示を完全に無効にすると、重要な告知を見逃す可能性があります。\nその場合もメインメニューから表示させることができます。"
+
+#: gui/options/options.js:12
+msgid "Detailed Tooltips"
+msgstr "詳細なツールチップ"
+
+#: gui/options/options.js:12
+msgid ""
+"Show detailed tooltips for trainable units in unit-producing buildings."
+msgstr "ユニット養成施設で養成可能なユニットの詳細なツールチップを表示します。"
+
+#: gui/options/options.js:16
+msgid "Prefer GLSL"
+msgstr "GLSLの使用"
+
+#: gui/options/options.js:16
+msgid "Use OpenGL 2.0 shaders (recommended)"
+msgstr "OpenGL 2.0シェーダーを使います（推奨）"
+
+#: gui/options/options.js:17
+msgid "Post Processing"
+msgstr "後処理"
+
+#: gui/options/options.js:17
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr "スクリーン空間での後処理フィルターの使用（HDR、ブルーム、DOFなど）"
+
+#: gui/options/options.js:18
+msgid "Shadows"
+msgstr "影"
+
+#: gui/options/options.js:18
+msgid "Enable shadows"
+msgstr "影を表示します"
+
+#: gui/options/options.js:19
+msgid "Particles"
+msgstr "降水"
+
+#: gui/options/options.js:19
+msgid "Enable particles"
+msgstr "降水を許可します"
+
+#: gui/options/options.js:20
+msgid "Show Sky"
+msgstr "空の表示"
+
+#: gui/options/options.js:20
+msgid "Render Sky"
+msgstr "空を描画します"
+
+#: gui/options/options.js:21
+msgid "Smooth LOS"
+msgstr "滑らかな視界移動"
+
+#: gui/options/options.js:21
+msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
+msgstr "暗闇と戦場の霧が滑らかに移動します（GLSLの使用が必要）"
+
+#: gui/options/options.js:22
+msgid "Unit Silhouettes"
+msgstr "ユニットのシルエット"
+
+#: gui/options/options.js:22
+msgid "Show outlines of units behind buildings"
+msgstr "建物の影に隠れたユニットの輪郭を表示します"
+
+#: gui/options/options.js:23
+msgid "Shadow Filtering"
+msgstr "影のフィルタリング"
+
+#: gui/options/options.js:23
+msgid "Smooth shadows"
+msgstr "影を滑らかにします"
+
+#: gui/options/options.js:24
+msgid "HQ Waviness"
+msgstr "高品質の波"
+
+#: gui/options/options.js:24
+msgid ""
+"Use real normals for ocean-wave rendering, instead of applying them as a "
+"flat texture"
+msgstr "リアルな通常の海の波を描画し、平らな表面を使いません。"
+
+#: gui/options/options.js:25
+msgid "Real Water Depth"
+msgstr "リアルな水深"
+
+#: gui/options/options.js:25
+msgid "Use actual water depth in rendering calculations"
+msgstr "実際の水深で描画計算します"
+
+#: gui/options/options.js:26
+msgid "Water Reflections"
+msgstr "水面の反射"
+
+#: gui/options/options.js:26
+msgid "Allow water to reflect a mirror image"
+msgstr "水面が反射で鏡のように像を映すようにします"
+
+#: gui/options/options.js:27
+msgid "Water Refraction"
+msgstr "水面の屈折"
+
+#: gui/options/options.js:27
+msgid "Use a real water refraction map and not transparency"
+msgstr "リアルな水面屈折マップを用い、不透明にします。"
+
+#: gui/options/options.js:28
+msgid "Shore Foam"
+msgstr "岸の泡"
+
+#: gui/options/options.js:28
+msgid "Show foam on water near shore depending on water waviness"
+msgstr "岸の近くの水面の泡を表示を、波有効のとき行います"
+
+#: gui/options/options.js:29
+msgid "Shore Waves"
+msgstr "砕ける波"
+
+#: gui/options/options.js:29
+msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
+msgstr "岸の近くで砕ける波を表示します（高品質の波が必要）"
+
+#: gui/options/options.js:30
+msgid "Water Shadows"
+msgstr "水面の影"
+
+#: gui/options/options.js:30
+msgid "Cast shadows on water"
+msgstr "水面に影を落とします"
+
+#: gui/options/options.js:31
+msgid "VSync"
+msgstr "VSync"
+
+#: gui/options/options.js:31
+msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
+msgstr "垂直同期を実行して画面の乱れを修正します。ゲームの再起動が必要です。"
+
+#: gui/options/options.js:35
+msgid "Master Gain"
+msgstr "全体音量"
+
+#: gui/options/options.js:35
+msgid "Master audio gain"
+msgstr "音楽音量"
+
+#: gui/options/options.js:36
+msgid "Music Gain"
+msgstr "音楽の音量"
+
+#: gui/options/options.js:36
+msgid "In game music gain"
+msgstr "ゲーム内の音楽の音量"
+
+#: gui/options/options.js:37
+msgid "Ambient Gain"
+msgstr "環境音量"
+
+#: gui/options/options.js:37
+msgid "In game ambient sound gain"
+msgstr "ゲーム内の環境音の音量"
+
+#: gui/options/options.js:38
+msgid "Action Gain"
+msgstr "アクション音量"
+
+#: gui/options/options.js:38
+msgid "In game unit action sound gain"
+msgstr "ゲーム内のユニットのアクションの音量"
+
+#: gui/options/options.js:39
+msgid "UI Gain"
+msgstr "UI音量"
+
+#: gui/options/options.js:39
+msgid "UI sound gain"
+msgstr "UIの音量"
+
+#: gui/options/options.js:43
+msgid "Chat Backlog"
+msgstr "チャット過去ログ"
+
+#: gui/options/options.js:43
+msgid "Number of backlogged messages to load when joining the lobby"
+msgstr "ロビーに入った時に表示する過去のメッセージ数"
+
+#: gui/options/options.js:44
+msgid "Chat Timestamp"
+msgstr "発言時刻"
+
+#: gui/options/options.js:44
+msgid "Show time that messages are posted in the lobby chat"
+msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
+
+#: gui/pregame/mainmenu.js:106
+msgid "disabled"
+msgstr "無効"
+
+#: gui/pregame/mainmenu.js:109
+msgid "connecting to server"
+msgstr "サーバーに接続中"
+
+#: gui/pregame/mainmenu.js:114
+#, c-format
+msgid "uploading (%f%%)"
+msgstr "アップロード中 (%f%%)"
+
+#: gui/pregame/mainmenu.js:121
+msgid "upload succeeded"
+msgstr "アップロード成功"
+
+#: gui/pregame/mainmenu.js:123
+#, python-format
+msgid "upload failed (%(errorCode)s)"
+msgstr "アップロード失敗 (%(errorCode)s)"
+
+#: gui/pregame/mainmenu.js:130
+#, python-format
+msgid "upload failed (%(errorMessage)s)"
+msgstr "アップロード失敗 (%(errorMessage)s)"
+
+#: gui/pregame/mainmenu.js:133
+msgid "unknown"
+msgstr "未知"
+
+#: gui/pregame/mainmenu.js:177
+#, python-format
+msgid ""
+"%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
+"(fixed function) graphics. This option will be removed in a future 0 A.D. "
+"release, to allow for more advanced graphics features. We advise upgrading "
+"your graphics card to a more recent, shader-compatible model."
+msgstr "%(startWarning)s警告：%(endWarning)s プログラマブルシェーダーでない（固定機能の）グラフィックスを使用しているようです。このオプションは、より進んだグラフィックス機能の実現のために、将来の0 A.D.リリースでは削除される見込みです。グラフィックスカードをより新しい、プログラマブルシェーダーのモデルに更新することをお勧めします。"
+
+#. Translation: This is the second paragraph of a warning. The
+#. warning explains that the user is using “non-shader“ graphics,
+#. and that in the future this will not be supported by the game, so
+#. the user will need a better graphics card.
+#: gui/pregame/mainmenu.js:183
+msgid "Please press \"Read More\" for more information or \"OK\" to continue."
+msgstr "「詳しく読む」を押して詳しい情報を調べるか、「OK」を押して続けてください。"
+
+#: gui/pregame/mainmenu.js:184
+msgid "WARNING!"
+msgstr "警告!"
+
+#: gui/pregame/mainmenu.js:186
+msgid "Read More"
+msgstr "詳しく読む"
+
+#: gui/pregame/mainmenu.js:279
+#, python-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Build: %(buildDate)s (%(revision)s)"
+
+#: gui/pregame/mainmenu.js:310
+msgid "Are you sure you want to quit 0 A.D.?"
+msgstr "本当に0 A.D.を終了しますか?"
+
+#: gui/pregame/mainmenu.js:310
+msgid "Confirmation"
+msgstr "確認"
+
+#: gui/pregame/mainmenu.js:320
+msgid ""
+"The scenario editor is not available or failed to load. See the game logs "
+"for additional information."
+msgstr ""
+
+#: gui/pregame/mainmenu.js:320
+msgid "Error"
+msgstr "エラー"
+
+#: gui/pregame/mainmenu.js:325
+msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgstr "マルチプレイヤーロビーに入ります。［本ビルドでは利用不可］"
+
+#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
+#: gui/pregame/mainmenu.xml:145 (caption)
+msgid "Technical Details"
+msgstr "技術的詳細"
+
+#: gui/pregame/mainmenu.js:335
+msgid "Manual"
+msgstr "マニュアル"
+
+#: gui/savedgames/load.js:10 gui/savedgames/save.js:30
+msgid "No saved games found"
+msgstr "保存したゲームがありません"
+
+#: gui/savedgames/load.js:46
+msgid "This saved game may not be compatible:"
+msgstr "この保存したゲームは互換性がない恐れがあります："
+
+#: gui/savedgames/load.js:48
+#, python-format
+msgid ""
+"It needs 0 A.D. version %(requiredVersion)s, while you are running version "
+"%(currentVersion)s."
+msgstr "0 A.D. version %(requiredVersion)sが必要ですが、version %(currentVersion)sを使用しています。"
+
+#: gui/savedgames/load.js:58
+#, python-format
+msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
+msgstr "modは何も必要ありませんが、「%(currentMod)s」modを使用しています。"
+
+#: gui/savedgames/load.js:62
+#, python-format
+msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
+msgstr "「%(requiredMod)s」modが必要ですが、modがありません。"
+
+#: gui/savedgames/load.js:66
+#, python-format
+msgid ""
+"It needs the mod \"%(requiredMod)s\" while you are running with "
+"\"%(currentMod)s\"."
+msgstr "「%(requiredMod)s」modが必要ですが、「%(currentMod)s」modを使用しています。"
+
+#: gui/savedgames/load.js:71
+msgid "Do you still want to proceed?"
+msgstr "このまま続けますか？"
+
+#: gui/savedgames/load.js:72
+msgid "Warning"
+msgstr "警告"
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/save.js:91
+#, python-format
+msgid "\"%(label)s\""
+msgstr "\"%(label)s\""
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+msgid "Saved game will be permanently deleted, are you sure?"
+msgstr "既存のゲームが消去されます。よろしいですか？"
+
+#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+msgid "DELETE"
+msgstr "消去"
+
+#: gui/savedgames/save.js:61
+msgid "Saved game will be permanently overwritten, are you sure?"
+msgstr "既存のゲームが上書きされます。よろしいですか？"
+
+#: gui/savedgames/save.js:61
+msgid "OVERWRITE SAVE"
+msgstr "上書き保存"
+
+#: gui/summary/summary.js:508
+msgid "Scenario"
+msgstr "シナリオ"
+
+#: gui/summary/summary.js:510
+#, python-format
+msgid "Time elapsed: %(time)s"
+msgstr "プレイ時間：%(time)s"
+
+#: gui/summary/summary.js:531
+#, python-format
+msgid "%(mapName)s - %(mapType)s"
+msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/civinfo/civinfo.xml:16 (caption)
+msgid "Civilizations"
+msgstr "文明紹介"
+
+#: gui/civinfo/civinfo.xml:28 (caption)
+msgid "Civilization Selection"
+msgstr "文明選択"
+
+#: gui/civinfo/civinfo.xml:118 (caption)
+msgid "Close"
+msgstr "閉じる"
+
+#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
+#: (caption) gui/pregame/mainmenu.xml:316 (caption)
+msgid "Language"
+msgstr "言語"
+
+#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
+#: (caption)
+msgid "Language:"
+msgstr "言語:"
+
+#. A locale is a set of parameters that defines the user’s language, country
+#. and
+#. any special variant preferences that the user wants to see in their user
+#. interface. Here, “Locale” refers to the code that identifies those
+#. settings,
+#. such as ‘en_US’.
+#: gui/locale/locale.xml:31 (caption)
+msgid "Locale:"
+msgstr "ロケール："
+
+#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
+#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
+#: (caption) gui/savedgames/save.xml:37 (caption)
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: gui/locale/locale.xml:41 (caption)
+msgid "Advanced"
+msgstr "上級"
+
+#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
+#: (caption)
+msgid "Accept"
+msgstr "承認"
+
+#: gui/locale/locale_advanced.xml:25 (caption)
+msgid "Country:"
+msgstr "地域："
+
+#: gui/locale/locale_advanced.xml:34 (caption)
+msgid "Script:"
+msgstr "文字："
+
+#: gui/locale/locale_advanced.xml:37 (tooltip)
+msgid ""
+"Optional four-letter script code part following the language code (as listed"
+" in ISO 15924)"
+msgstr "言語コードの後に続く、省略可能な4文字の文字体系コードパート（ISO 15924で規定）"
+
+#: gui/locale/locale_advanced.xml:41 (caption)
+msgid "Variant (unused):"
+msgstr "バリアント（未使用）："
+
+#: gui/locale/locale_advanced.xml:44 (tooltip)
+#: gui/locale/locale_advanced.xml:51 (tooltip)
+msgid "Not implemented yet."
+msgstr "未実装です。"
+
+#: gui/locale/locale_advanced.xml:48 (caption)
+msgid "Keywords (unused):"
+msgstr "キーワード（未使用）："
+
+#: gui/locale/locale_advanced.xml:55 (caption)
+msgid "Resulting locale:"
+msgstr "採用ロケール："
+
+#: gui/locale/locale_advanced.xml:60 (caption)
+msgid "Dictionary files used:"
+msgstr "使用する辞書ファイル："
+
+#: gui/locale/locale_advanced.xml:70 (caption)
+msgid "Auto detect"
+msgstr "自動判定"
+
+#: gui/options/options.xml:18 (caption)
+msgid "Game Options"
+msgstr "ゲーム設定"
+
+#: gui/options/options.xml:22 (caption)
+msgid "General"
+msgstr "一般"
+
+#: gui/options/options.xml:34 (caption)
+msgid "Graphics Settings"
+msgstr "グラフィックス設定"
+
+#: gui/options/options.xml:46 (caption)
+msgid "Sound Settings"
+msgstr "サウンド設定"
+
+#: gui/options/options.xml:58 (caption)
+msgid "Lobby Settings"
+msgstr "ロビー設定"
+
+#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+msgid "Save"
+msgstr "保存"
+
+#: gui/pregame/mainmenu.xml:104
+msgid "Help improve 0 A.D.!"
+msgstr "0 A.D.の改良にご協力を！"
+
+#: gui/pregame/mainmenu.xml:106
+msgid ""
+"You can automatically send us anonymous feedback that will help us fix bugs,"
+" and improve performance and compatibility."
+msgstr "自動で匿名のフィードバックを送り、バグの修正と性能および互換性の向上に協力することができます。"
+
+#: gui/pregame/mainmenu.xml:132
+msgid "Thank you for helping improve 0 A.D.!"
+msgstr "0 A.D. の改良へのご協力感謝します。"
+
+#: gui/pregame/mainmenu.xml:134
+msgid "Anonymous feedback is currently enabled."
+msgstr "匿名フィードバックが現在有効です。"
+
+#: gui/pregame/mainmenu.xml:136
+msgid "Status: $status."
+msgstr "状態： $status。"
+
+#: gui/pregame/mainmenu.xml:504
+msgid "Alpha XVI: Patañjali"
+msgstr "Alpha XVI: Patañjali"
+
+#: gui/pregame/mainmenu.xml:506
+msgid ""
+"WARNING: This is an early development version of the game. Many features "
+"have not been added yet."
+msgstr "警告： このゲームは開発初期版です。多くの機能がまだ盛り込まれていません。"
+
+#: gui/pregame/mainmenu.xml:508
+msgid "Get involved at: play0ad.com"
+msgstr "play0ad.comから参加しよう"
+
+#: gui/pregame/mainmenu.xml:110 (caption)
+msgid "Enable Feedback"
+msgstr "Feedback有効"
+
+#: gui/pregame/mainmenu.xml:141 (caption)
+msgid "Disable Feedback"
+msgstr "Feedback無効"
+
+#: gui/pregame/mainmenu.xml:184 (caption)
+msgid "Matches"
+msgstr "対戦"
+
+#: gui/pregame/mainmenu.xml:185 (tooltip)
+msgid "Click here to start a new single player game."
+msgstr "クリックしてシングルプレイヤーゲームを新たに始めます。"
+
+#: gui/pregame/mainmenu.xml:198 (caption)
+msgid "Campaigns"
+msgstr "キャンペーン"
+
+#: gui/pregame/mainmenu.xml:199 (tooltip)
+msgid ""
+"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+msgstr "歴史的軍事キャンペーンを通じて歴史を追体験します。［未実装］"
+
+#: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
+msgid "Load Game"
+msgstr "ゲームの読込み"
+
+#: gui/pregame/mainmenu.xml:216 (tooltip)
+msgid "Click here to load a saved game."
+msgstr "クリックして保存したゲームを読み込みます。"
+
+#: gui/pregame/mainmenu.xml:238 (caption)
+msgid "Join Game"
+msgstr "ゲームに参加する"
+
+#: gui/pregame/mainmenu.xml:239 (tooltip)
+msgid "Joining an existing multiplayer game."
+msgstr "既存のマルチプレイヤーゲームに参加します。"
+
+#: gui/pregame/mainmenu.xml:253 (caption)
+msgid "Host Game"
+msgstr "ゲームをホストする"
+
+#: gui/pregame/mainmenu.xml:254 (tooltip)
+msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
+msgstr "マルチプレイヤーゲームのホストをします。\\n\\nUDPの20595ポートを開放する必要があります。"
+
+#: gui/pregame/mainmenu.xml:268 (caption)
+msgid "Game Lobby"
+msgstr "ゲームロビー"
+
+#: gui/pregame/mainmenu.xml:269 (tooltip)
+msgid "Launch the multiplayer lobby."
+msgstr "マルチプレイヤーロビーを起動します。"
+
+#: gui/pregame/mainmenu.xml:299 (caption)
+msgid "Options"
+msgstr "設定"
+
+#: gui/pregame/mainmenu.xml:300 (tooltip)
+msgid "Adjust game settings."
+msgstr "ゲームの設定を調整します。"
+
+#: gui/pregame/mainmenu.xml:317 (tooltip)
+msgid "Choose the language of the game."
+msgstr "ゲームの言語を選択します。"
+
+#: gui/pregame/mainmenu.xml:332 (caption)
+msgid "Scenario Editor"
+msgstr "シナリオエディター"
+
+#: gui/pregame/mainmenu.xml:333 (tooltip)
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr "Atlasシナリオエディターを新しいウィンドウで開きます。より確実に起動するには、コマンドライン引数「-editor」を指定してゲームを開始します。"
+
+#: gui/pregame/mainmenu.xml:345 (caption)
+msgid "Welcome Screen"
+msgstr "歓迎スクリーン"
+
+#: gui/pregame/mainmenu.xml:346 (tooltip)
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "歓迎スクリーンを表示します。誤ってこの表示を隠したときに有用です。"
+
+#: gui/pregame/mainmenu.xml:402 (caption)
+msgid "Learn To Play"
+msgstr "遊び方を学ぶ"
+
+#: gui/pregame/mainmenu.xml:403 (tooltip)
+msgid "Open the 0 A.D. Game Manual."
+msgstr " 0 A.D. ゲームマニュアルを開きます。"
+
+#: gui/pregame/mainmenu.xml:419 (caption)
+msgid "Single Player"
+msgstr "シングルプレイヤー"
+
+#: gui/pregame/mainmenu.xml:420 (tooltip)
+msgid "Challenge the computer player to a single player match."
+msgstr "コンピューター相手に単独プレイで対戦に挑みます。"
+
+#: gui/pregame/mainmenu.xml:434 (caption)
+msgid "Multiplayer"
+msgstr "マルチプレイヤー"
+
+#: gui/pregame/mainmenu.xml:435 (tooltip)
+msgid "Fight against one or more human players in a multiplayer game."
+msgstr "1人または複数の人間とマルチプレイヤーで対戦します。"
+
+#: gui/pregame/mainmenu.xml:449 (caption)
+msgid "Tools & Options"
+msgstr "ツールと設定"
+
+#: gui/pregame/mainmenu.xml:450 (tooltip)
+msgid "Game options and scenario design tools."
+msgstr "ゲーム設定とシナリオ作成ツールです。"
+
+#: gui/pregame/mainmenu.xml:464 (caption)
+msgid "History"
+msgstr "歴史"
+
+#: gui/pregame/mainmenu.xml:465 (tooltip)
+msgid "Learn about the many civilizations featured in 0 A.D."
+msgstr "0 A.D.に登場する多くの文明について学びます。"
+
+#: gui/pregame/mainmenu.xml:481 (caption)
+msgid "Exit"
+msgstr "終了"
+
+#: gui/pregame/mainmenu.xml:482 (tooltip)
+msgid "Exits the game."
+msgstr "ゲームを終了します。"
+
+#: gui/pregame/mainmenu.xml:518 (caption)
+msgid "Help with the Translation!"
+msgstr "翻訳にご協力を！"
+
+#: gui/pregame/mainmenu.xml:519 (tooltip)
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:530 (caption)
+msgid "Website"
+msgstr "ウェブサイト"
+
+#: gui/pregame/mainmenu.xml:531 (tooltip)
+msgid "Click to open play0ad.com in your web browser."
+msgstr "クリックしてplay0ad.comをウェブブラウザーで開きます。"
+
+#: gui/pregame/mainmenu.xml:542 (caption)
+msgid "Chat"
+msgstr "チャット"
+
+#: gui/pregame/mainmenu.xml:543 (tooltip)
+msgid ""
+"Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
+"webchat.quakenet.org)"
+msgstr "クリックしてブラウザーから 0 A.D. IRCチャットに入ります。 （webchat.quakenet.orgの#0ad）"
+
+#: gui/pregame/mainmenu.xml:554 (caption)
+msgid "Report a Bug"
+msgstr "バグを報告する"
+
+#: gui/pregame/mainmenu.xml:555 (tooltip)
+msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
+msgstr "クリックして0 A.D. Tracへバグや異常終了、エラーを報告します。"
+
+#: gui/pregame/mainmenu.xml:583 (caption)
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+msgid "Delete"
+msgstr "削除"
+
+#: gui/savedgames/load.xml:35 (caption)
+msgid "Load"
+msgstr "読込み"
+
+#: gui/savedgames/save.xml:15 (caption)
+msgid "Save Game"
+msgstr "ゲームを保存"
+
+#: gui/savedgames/save.xml:29 (caption)
+msgid "Description:"
+msgstr "説明:"
+
+#: gui/splashscreen/splashscreen.xml:12 (caption)
+msgid "Welcome to 0 A.D. !"
+msgstr "0 A.D.にようこそ！"
+
+#: gui/splashscreen/splashscreen.xml:20 (caption)
+msgid "Show this message in the future"
+msgstr "今後もこのメッセージを表示する"
+
+#: gui/splashscreen/splashscreen.xml:38 (caption)
+msgid "Known issues (web)"
+msgstr "既知の問題(ウェブ)"
+
+#: gui/summary/summary.xml:23 (caption)
+msgid "Summary"
+msgstr "成績"
+
+#: gui/summary/summary.xml:63 (caption)
+msgid "Score"
+msgstr "得点"
+
+#: gui/summary/summary.xml:70 (caption)
+msgid "Buildings"
+msgstr "建物"
+
+#: gui/summary/summary.xml:77 (caption)
+msgid "Units"
+msgstr "ユニット"
+
+#: gui/summary/summary.xml:84 (caption)
+msgid "Resources"
+msgstr "資源"
+
+#: gui/summary/summary.xml:91 (caption)
+msgid "Market"
+msgstr "市場"
+
+#: gui/summary/summary.xml:98 (caption)
+msgid "Miscellaneous"
+msgstr "その他"
+
+#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
+#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
+#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+msgid "Player name"
+msgstr "プレイヤー名"
+
+#: gui/summary/summary.xml:109 (caption)
+msgid "Economy score"
+msgstr "経済得点"
+
+#: gui/summary/summary.xml:112 (caption)
+msgid "Military score"
+msgstr "軍事得点"
+
+#: gui/summary/summary.xml:115 (caption)
+msgid "Exploration score"
+msgstr "探索得点"
+
+#: gui/summary/summary.xml:118 (caption)
+msgid "Total score"
+msgstr "総合得点"
+
+#: gui/summary/summary.xml:231 (caption)
+msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
+msgstr "建物の数（建設した数 / 失った数 / 破壊した数）"
+
+#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
+#: gui/summary/summary.xml:581 (caption)
+msgid "Total"
+msgstr "合計"
+
+#: gui/summary/summary.xml:237 (caption)
+msgid "Houses"
+msgstr "家"
+
+#: gui/summary/summary.xml:240 (caption)
+msgid "Economic"
+msgstr "経済施設"
+
+#: gui/summary/summary.xml:243 (caption)
+msgid "Outposts"
+msgstr "前哨地"
+
+#: gui/summary/summary.xml:246 (caption)
+msgid "Military"
+msgstr "軍事施設"
+
+#: gui/summary/summary.xml:249 (caption)
+msgid "Fortresses"
+msgstr "要塞"
+
+#: gui/summary/summary.xml:252 (caption)
+msgid "Civ Centers"
+msgstr "町の中心"
+
+#: gui/summary/summary.xml:255 (caption)
+msgid "Wonders"
+msgstr "象徴"
+
+#: gui/summary/summary.xml:405 (caption)
+msgid "Units Statistics (Trained / Lost / Killed)"
+msgstr "ユニットの数（養成 / 損耗 / 殺害）"
+
+#: gui/summary/summary.xml:411 (caption)
+msgid "Infantry"
+msgstr "歩兵"
+
+#: gui/summary/summary.xml:414 (caption)
+msgid "Worker"
+msgstr "労働者"
+
+#: gui/summary/summary.xml:417 (caption)
+msgid "Cavalry"
+msgstr "騎兵"
+
+#: gui/summary/summary.xml:420 (caption)
+msgid "Champion"
+msgstr "チャンピオン"
+
+#: gui/summary/summary.xml:426 (caption)
+msgid "Navy"
+msgstr "海軍"
+
+#: gui/summary/summary.xml:566 (caption)
+msgid "Resource Statistics (Gathered / Used)"
+msgstr "資源内訳（採集 / 消費）"
+
+#: gui/summary/summary.xml:569 (caption)
+msgid "Food"
+msgstr "食料"
+
+#: gui/summary/summary.xml:572 (caption)
+msgid "Wood"
+msgstr "木材"
+
+#: gui/summary/summary.xml:575 (caption)
+msgid "Stone"
+msgstr "石材"
+
+#: gui/summary/summary.xml:578 (caption)
+msgid "Metal"
+msgstr "金属"
+
+#: gui/summary/summary.xml:584 (caption)
+msgid "Treasures collected"
+msgstr "集めた財宝の数"
+
+#: gui/summary/summary.xml:587 (caption)
+msgid "Tributes (Sent / Received)"
+msgstr "納めた / 受け取った貢ぎ物"
+
+#: gui/summary/summary.xml:727 (caption)
+msgid "Food exchanged"
+msgstr "食料取引"
+
+#: gui/summary/summary.xml:730 (caption)
+msgid "Wood exchanged"
+msgstr "木材取引"
+
+#: gui/summary/summary.xml:733 (caption)
+msgid "Stone exchanged"
+msgstr "石材取引"
+
+#: gui/summary/summary.xml:736 (caption)
+msgid "Metal exchanged"
+msgstr "金属取引"
+
+#: gui/summary/summary.xml:739 (caption)
+msgid "Barter efficiency"
+msgstr "取引効率"
+
+#: gui/summary/summary.xml:742 (caption)
+msgid "Trade income"
+msgstr "交易収入"
+
+#: gui/summary/summary.xml:873 (caption)
+msgid "Vegetarian\\nratio"
+msgstr "菜食率"
+
+#: gui/summary/summary.xml:876 (caption)
+msgid "Feminisation"
+msgstr "女性比率"
+
+#: gui/summary/summary.xml:879 (caption)
+msgid "Kill / Death\\nratio"
+msgstr "殺害/死亡\\n比率"
+
+#: gui/summary/summary.xml:882 (caption)
+msgid "Map\\nexploration"
+msgstr "マップ\\n探索"
+
+#: gui/summary/summary.xml:989 (caption)
+msgid "Continue"
+msgstr "続行"
+
+#: gui/splashscreen/splashscreen.txt:1
+msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
+msgstr "[font=\"sans-bold-16\"]0 A.D. をインストールしていただきありがとうございます"
+
+#: gui/splashscreen/splashscreen.txt:2
+msgid "[font=\"sans-16\"]"
+msgstr "[font=\"sans-16\"]"
+
+#: gui/splashscreen/splashscreen.txt:3
+msgid ""
+"[icon=\"constructionIcon\"]  This is an early experimental version of the "
+"game. Features are missing and it contains bugs."
+msgstr "[icon=\"constructionIcon\"]  このゲームはまだ開発の初期段階です。実装されていない機能やバグが含まれています。"
+
+#: gui/splashscreen/splashscreen.txt:5
+msgid "[icon=iconLag]  The game lags when many units are moving."
+msgstr "[icon=iconLag]  たくさんのユニットを動かすと動作が遅くなります。"
+
+#: gui/splashscreen/splashscreen.txt:7
+msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
+msgstr "[icon=\"iconShip\"]  コンピューターの相手は船を使えません。"
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid "[icon=\"iconMap\"]  Large maps can cause problems."
+msgstr "[icon=\"iconMap\"]  大きなマップで問題が発生することがあります。"
+
+#: gui/text/tips/army_camp.txt:1
+msgid "ROMAN ARMY CAMP"
+msgstr "ローマ軍営"
+
+#: gui/text/tips/army_camp.txt:2
+msgid ""
+"- Build anywhere on the map, even in enemy territory. Good for building a "
+"secret base behind enemy lines or to consolidate gains within enemy "
+"territory."
+msgstr "- マップ内のどこでも、敵領内でも建設できます。秘密基地を敵陣の背後に築いたり、敵領内の獲得地域を編入したりするのに好都合です。"
+
+#: gui/text/tips/army_camp.txt:4
+msgid "- Loses health when in neutral or enemy territory."
+msgstr "- 中立地帯や敵領内で耐久力が減少します。"
+
+#: gui/text/tips/army_camp.txt:6
+msgid "- Construct siege weapons and train citizen-soldiers."
+msgstr "- 攻城兵器の建造と市民兵士の養成を行います。"
+
+#: gui/text/tips/army_camp.txt:8
+msgid "- Slowly heal up to 40 garrisoned units."
+msgstr "- 最大40の駐屯ユニットを徐々に治療します。"
+
+#: gui/text/tips/barracks.txt:1
+msgid "BARRACKS"
+msgstr "兵営"
+
+#: gui/text/tips/barracks.txt:2
+msgid ""
+"- Train all citizen-soldiers. Some factions can unlock the training of "
+"champions as well."
+msgstr "- 全種の市民兵士を養成します。勢力によってはチャンピオン養成の解禁もできます。"
+
+#: gui/text/tips/barracks.txt:4
+msgid "- Research military technologies unique to each faction."
+msgstr "- 各勢力に特有の軍事テクノロジーを研究できます。"
+
+#: gui/text/tips/barracks.txt:6
+msgid ""
+"- Build one early to train citizen-soldiers while you phase up your "
+"settlement."
+msgstr "- 中心を進化させている間に一つ建てて、早めに市民兵士を養成しましょう。"
+
+#: gui/text/tips/barracks.txt:8
+msgid "- Build in a forward base to resupply your assault with fresh troops."
+msgstr "- 前線の基地に建てることで、戦場にすばやく兵力を補充できます。"
+
+#: gui/text/tips/blacksmith.txt:1
+msgid "BLACKSMITH"
+msgstr "鍛冶屋"
+
+#: gui/text/tips/blacksmith.txt:2
+msgid "- Research structure for all factions."
+msgstr "- すべての勢力にある研究施設です。"
+
+#: gui/text/tips/blacksmith.txt:4
+msgid "- Research weapon and armor upgrades for your units."
+msgstr "- ユニット用の武器と装甲の改良を研究します。"
+
+#: gui/text/tips/blacksmith.txt:6
+msgid "- Garrison a citizen-soldier inside to research faster."
+msgstr "- 市民兵士を駐屯させると研究速度が速くなります。"
+
+#: gui/text/tips/carth_sacred_band.txt:1
+msgid "CARTHAGINIAN SACRED BAND"
+msgstr "カルタゴ神聖隊"
+
+#: gui/text/tips/carth_sacred_band.txt:2
+msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
+msgstr "- カルタゴのチャンピオン槍兵とチャンピオン槍騎兵です。"
+
+#: gui/text/tips/carth_sacred_band.txt:4
+msgid ""
+"- Both cost Food and Metal and are trainable from the Temple, instead of the"
+" Fortress like most other champions."
+msgstr "- いずれも食料と金属を消費し、神殿で養成できます。多くの他のチャンピオンと違い要塞ではありません。"
+
+#: gui/text/tips/carth_sacred_band.txt:6
+msgid ""
+"- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
+"heavy shock against siege weapons and skirmishers."
+msgstr "- 槍兵は対騎兵の重装歩兵として用います。騎兵は攻城兵器と散兵に対して重い衝撃を与えるのに用います。"
+
+#: gui/text/tips/catapults.txt:1
+msgid "CATAPULTS"
+msgstr "投石機"
+
+#: gui/text/tips/catapults.txt:2
+msgid "- Ranged siege engines that are good against buildings."
+msgstr "- 建物に対して攻撃力が高い遠隔攻撃の攻城兵器です。"
+
+#: gui/text/tips/catapults.txt:4
+msgid ""
+"- May upgrade to flaming projectiles for extra effectiveness against "
+"buildings and units."
+msgstr "- アップグレードによって建物とユニットに追加ダメージを与える火炎弾を発射できます。"
+
+#: gui/text/tips/catapults.txt:6
+msgid "- Expensive and slow."
+msgstr "- コストが高く、移動速度が遅いです。"
+
+#: gui/text/tips/catapults.txt:8
+msgid ""
+"- Pack up into carts for movement, and unpack into stationary engines for "
+"attack!"
+msgstr "- 移動時は車両に梱包し、攻撃時は展開して固定兵器になります。"
+
+#: gui/text/tips/celtic_war_barge.txt:1
+msgid "CELTIC WAR BARGE"
+msgstr "ケルト軍用はしけ"
+
+#: gui/text/tips/celtic_war_barge.txt:2
+msgid "- A medium \"trireme\"-class warship."
+msgstr "- 中型の「三段櫂船」級の軍艦です。"
+
+#: gui/text/tips/celtic_war_barge.txt:4
+msgid "- The only ship of its kind."
+msgstr "- 同種の唯一の船です。"
+
+#: gui/text/tips/celtic_war_barge.txt:6
+msgid "- Cannot ram, like other triremes, but has greater health and armour."
+msgstr "- 他の三段櫂船と異なり衝角攻撃できませんが、耐久力と防御力に優れます。"
+
+#: gui/text/tips/celtic_war_barge.txt:8
+msgid "- Can transport up to 40 units across the waters."
+msgstr "- 最大40ユニットを水上輸送できます。"
+
+#: gui/text/tips/civic_centres.txt:1
+msgid "CIVIC CENTERS"
+msgstr "町の中心"
+
+#: gui/text/tips/civic_centres.txt:2
+msgid "- The \"foundation\" of your new colony."
+msgstr "- 新たな植民地の「基礎」となります。"
+
+#: gui/text/tips/civic_centres.txt:4
+msgid "- Claim large tracts of territory."
+msgstr "- 広大な範囲の領地を得ます。"
+
+#: gui/text/tips/civic_centres.txt:6
+msgid "- Can be built in friendly and neutral territory."
+msgstr "- 同盟国の領内や中立地帯に建設できます。"
+
+#: gui/text/tips/civic_centres.txt:8
+msgid "- Train Female Citizens and basic Citizen-Soldiers."
+msgstr "- 女性市民と基本的な市民兵士を養成します。"
+
+#: gui/text/tips/embassies.txt:1
+msgid "EMBASSIES"
+msgstr "大使館"
+
+#: gui/text/tips/embassies.txt:2
+msgid "- Special \"Barracks\" available to the Carthage faction."
+msgstr "- カルタゴのみ利用できる特殊な「兵営」です。"
+
+#: gui/text/tips/embassies.txt:4
+msgid "- Train mercenaries from each of the ethnically-themed embassies."
+msgstr "- それぞれの大使館の部族の傭兵が養成できます。"
+
+#: gui/text/tips/embassies.txt:6
+msgid ""
+"- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
+"Metal cost."
+msgstr "- 傭兵の「市民兵士」は通常の食料コストの代わりにその分の金属コストがかかります。"
+
+#: gui/text/tips/fishing.txt:1
+msgid "FISHING"
+msgstr "漁業"
+
+#: gui/text/tips/fishing.txt:2
+msgid "- Fish the seas for a bountiful harvest."
+msgstr "- 豊富な資源を求めて海へ駆り出しましょう。"
+
+#: gui/text/tips/fishing.txt:4
+msgid "- Fishing boats carry a large amount of Food per trip."
+msgstr "- 漁船は一度に大量の食料を運べます。"
+
+#: gui/text/tips/fishing.txt:6
+msgid ""
+"- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
+"rate."
+msgstr "- 補助ユニットを船に乗せると漁船の採集速度が2倍になります。"
+
+#: gui/text/tips/fishing.txt:8
+msgid "- Careful! Fish are not an infinite resource!"
+msgstr "- 魚は無尽蔵ではないことを忘れずに！"
+
+#: gui/text/tips/fortress.txt:1
+msgid "FORTRESS"
+msgstr "要塞"
+
+#: gui/text/tips/fortress.txt:2
+msgid "- The Fortress is usually each faction's strongest building."
+msgstr "- 要塞は通常それぞれの勢力で最強の建物となります。"
+
+#: gui/text/tips/fortress.txt:4
+msgid "- Trains Champion Units, Heroes, and Siege Weapons."
+msgstr "- チャンピオンユニット、英雄、攻城兵器を養成/建造できます。"
+
+#: gui/text/tips/fortress.txt:6
+msgid "- Gives a population boost."
+msgstr "- 人口上限を増やします。"
+
+#: gui/text/tips/fortress.txt:8
+msgid "- Garrison soldiers inside to add more firepower to its defense."
+msgstr "- 兵士を駐屯させて防衛火力を増強できます。"
+
+#: gui/text/tips/gathering.txt:1
+msgid "RESOURCE GATHERING"
+msgstr "資源採集"
+
+#: gui/text/tips/gathering.txt:2
+msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
+msgstr "- 市民兵士と女性市民は資源を採集できます。"
+
+#: gui/text/tips/gathering.txt:4
+msgid "- Female Citizens are bonused with Farming and Foraging."
+msgstr "- 女性市民は畑と木の実の採集が速いです。"
+
+#: gui/text/tips/gathering.txt:6
+msgid "- Citizen-Soldiers are bonused with Mining."
+msgstr "- 市民兵士は鉱山の採掘が速いです。"
+
+#: gui/text/tips/gathering.txt:8
+msgid ""
+"- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
+"fights, but the less efficient he is at gathering."
+msgstr "- 市民兵士のランクが上がる（上級、精鋭）ほど、戦闘は強くなりますが、採集の効率は悪くなります。"
+
+#: gui/text/tips/iphicrates.txt:1
+msgid "IPHICRATES"
+msgstr "イピクラテス"
+
+#: gui/text/tips/iphicrates.txt:2
+msgid ""
+"- The Athenian general who reformed the Athenian army to be faster and more "
+"maneuverable."
+msgstr "- アテナイ軍をより速く機動性の高い軍隊へ改革したアテナイの将軍です。"
+
+#: gui/text/tips/iphicrates.txt:4
+msgid "- Units in his formation are faster and stronger."
+msgstr "- 彼の隊列にいるユニットは速く強力になります。"
+
+#: gui/text/tips/iphicrates.txt:6
+msgid "- Skirmishers move faster while he lives."
+msgstr "- 彼の生存中は散兵の移動が速くなります。"
+
+#: gui/text/tips/outposts.txt:1
+msgid "OUTPOSTS"
+msgstr "前哨地"
+
+#: gui/text/tips/outposts.txt:2
+msgid "- Build in neutral territory for a large scouting range."
+msgstr "- 中立地帯に建設して、広い視界を確保できます。"
+
+#: gui/text/tips/outposts.txt:4
+msgid "- Cheap, at 80 Wood."
+msgstr "- 木材80と安価です。"
+
+#: gui/text/tips/outposts.txt:6
+msgid "- They construct quickly, but are weak."
+msgstr "- 速く建設できますが、耐久力が弱いです。"
+
+#: gui/text/tips/outposts.txt:8
+msgid "- Lose health while in Neutral territory, but are repairable."
+msgstr "- 中立地帯ではだんだん耐久力が減っていきますが、修理できます。"
+
+#: gui/text/tips/palisades.txt:1
+msgid "PALISADE WALLS"
+msgstr "柵"
+
+#: gui/text/tips/palisades.txt:2
+msgid "- A quick, cheap wooden wall available to all factions."
+msgstr "- すべての勢力にある安価で手早く作れる木の防壁です。"
+
+#: gui/text/tips/palisades.txt:4
+msgid "- Most factions have access to them in Village Phase."
+msgstr "- ほとんどの勢力で村の段階から建てることができます。"
+
+#: gui/text/tips/palisades.txt:6
+msgid ""
+"- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
+" by siege weapons."
+msgstr "- 攻城兵器でしか攻撃できない城壁と異なり、敵の兵士でも攻撃できます。"
+
+#: gui/text/tips/pericles.txt:1
+msgid "PERICLES"
+msgstr "ペリクレス"
+
+#: gui/text/tips/pericles.txt:2
+msgid "- The foremost Athenian politician of the 5th century BCE."
+msgstr "- 紀元前5世紀に登場したアテナイ屈指の政治家です。"
+
+#: gui/text/tips/pericles.txt:4
+msgid "- Buildings construct faster within his range."
+msgstr "- 彼の視界内の建物は建設が速くなります。"
+
+#: gui/text/tips/pericles.txt:6
+msgid "- Temples are cheaper while he lives."
+msgstr "- 彼の生存中は神殿が安くなります。"
+
+#: gui/text/tips/persian_architecture.txt:1
+msgid "PERSIAN ARCHITECTURE"
+msgstr "ペルシア建築"
+
+#: gui/text/tips/persian_architecture.txt:2
+msgid "- Special Technology for the Persians."
+msgstr "- ペルシャ特有のテクノロジー。"
+
+#: gui/text/tips/persian_architecture.txt:4
+msgid "- All Persian buildings +25% stronger."
+msgstr "- すべてのペルシアの建物が25%強化されます。"
+
+#: gui/text/tips/persian_architecture.txt:6
+msgid "- Build time lengthened by +20% as a consequence."
+msgstr "- 建設時間が20%結果として伸びます。"
+
+#: gui/text/tips/persian_architecture.txt:8
+msgid ""
+"- Persians also have access to a great number of structural & defensive "
+"technologies."
+msgstr "- ペルシアはまた、建物と防御に関する多数のテクノロジーを開発可能です。"
+
+#: gui/text/tips/quinquereme.txt:1
+msgid "HEAVY WARSHIP"
+msgstr "大型軍艦"
+
+#: gui/text/tips/quinquereme.txt:2
+msgid ""
+"- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
+"and Seleucids."
+msgstr "- 最大の標準軍艦です。ローマ、カルタゴ、プトレマイオス朝、セレウコス朝で建造可能です。"
+
+#: gui/text/tips/quinquereme.txt:4
+msgid ""
+"- Garrison up to 50 units for tons of firepower, including ballistas and "
+"scorpions."
+msgstr "- 最大50ユニットを駐屯させて、バリスタやスコルピオンなどの火力を山盛りにできます。"
+
+#: gui/text/tips/quinquereme.txt:6
+msgid "- Has a ramming attack that sinks enemy ships."
+msgstr "- 衝角攻撃で敵船を沈めることができます。"
+
+#: gui/text/tips/savanna_biome.txt:1
+msgid "SAVANNA BIOME"
+msgstr "サバンナ生物群系"
+
+#: gui/text/tips/savanna_biome.txt:2
+msgid "- Generally flat, with a few watering holes and rocky outcrops."
+msgstr "- 水場やゴツゴツした崖が散在する平坦な地形です。"
+
+#: gui/text/tips/savanna_biome.txt:4
+msgid "- Chock full of herd animals for plentiful hunting."
+msgstr "- 狩りの獲物になる動物たちが大群をなして生息しています。"
+
+#: gui/text/tips/savanna_biome.txt:6
+msgid "- Rich in all types of mining."
+msgstr "- 石材と金属が豊富に存在します。"
+
+#: gui/text/tips/savanna_biome.txt:8
+msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
+msgstr "- 木はたいていまばらですが、木材の量が多いバオバブの木が生えています。"
+
+#: gui/text/tips/scout_towers.txt:1
+msgid "DEFENSE TOWERS"
+msgstr "防御塔"
+
+#: gui/text/tips/scout_towers.txt:2
+msgid "- Free-standing towers good for defending large areas of countryside."
+msgstr "- 辺境の広い地域を守るのに適した、自立した塔です。"
+
+#: gui/text/tips/scout_towers.txt:4
+msgid ""
+"- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
+"Stone (because they're stronger)."
+msgstr "- 建設には通常木材100と石材100が必要ですが、イベリアの防御塔は石材300が必要です（より頑丈なため）。"
+
+#: gui/text/tips/scout_towers.txt:6
+msgid "- Has a ranged attack that increases for each garrisoned unit."
+msgstr "- 駐屯ユニット 1 体ごとに遠隔攻撃の回数が増加します。"
+
+#: gui/text/tips/spartan_hoplites.txt:1
+msgid "SPARTIATES"
+msgstr "スパルタ市民"
+
+#: gui/text/tips/spartan_hoplites.txt:2
+msgid "- Strongest infantry unit in the game."
+msgstr "- 本ゲーム最強の歩兵ユニットです。"
+
+#: gui/text/tips/spartan_hoplites.txt:4
+msgid "- Champion Infantry available to the Spartans faction."
+msgstr "- チャンピオン歩兵がスパルタで利用可能になります。"
+
+#: gui/text/tips/spartan_hoplites.txt:6
+msgid "- Long train time, but high armor and attack."
+msgstr "- 養成に時間がかかりますが、高い防御力と攻撃力を持ちます。"
+
+#: gui/text/tips/spartan_hoplites.txt:8
+msgid "- Use the 'Phalanx' formation for extra armor bonuses."
+msgstr "- ファランクス陣形を採用して追加装甲ボーナスを得ましょう。"
+
+#: gui/text/tips/stoa.txt:1
+msgid "STOA"
+msgstr "柱廊"
+
+#: gui/text/tips/stoa.txt:2
+msgid "- A special starting structure for the Hellenes."
+msgstr "- ギリシア特有のスタート時建造物。"
+
+#: gui/text/tips/stoa.txt:4
+msgid "- Grants +10 Population."
+msgstr "- 人口上限を10増やします。"
+
+#: gui/text/tips/stoa.txt:6
+msgid "- Only enabled in some game modes."
+msgstr "- あるゲームモードでのみ利用可能です。"
+
+#: gui/text/tips/stoa.txt:8
+msgid "- Can be found in the Atlas editor for custom scenarios."
+msgstr "- Atlasエディターでカスタムシナリオ用として見つけられます。"
+
+#: gui/text/tips/storehouses.txt:1
+msgid "STOREHOUSES"
+msgstr "倉庫"
+
+#: gui/text/tips/storehouses.txt:2
+msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
+msgstr "- 食料以外の資源（木材、石材、金属）の安価な回収場所です。"
+
+#: gui/text/tips/storehouses.txt:4
+msgid ""
+"- Research technologies to improve the gathering capabilities of your "
+"citizens."
+msgstr "- 市民の採集能力を高めるテクノロジーを研究できます。"
+
+#: gui/text/tips/syntagma.txt:1
+msgid "SYNTAGMA FORMATION"
+msgstr "シンタグマ陣形"
+
+#: gui/text/tips/syntagma.txt:2
+msgid "- A formation for 'pikeman' style infantry."
+msgstr "- 「長槍兵」型歩兵のための陣形です。"
+
+#: gui/text/tips/syntagma.txt:4
+msgid "- Formation is slow and cumbersome."
+msgstr "- 陣形を組んでいる時は移動が遅く小回りが利きません。"
+
+#: gui/text/tips/syntagma.txt:6
+msgid "- Nearly invulnerable from the front."
+msgstr "- 正面からはほぼ無敵です。"
+
+#: gui/text/tips/syntagma.txt:8
+msgid "- Vulnerable to attacks from the rear."
+msgstr "- 後方からの攻撃に弱いです。"
+
+#: gui/text/tips/temples.txt:1
+msgid "TEMPLES"
+msgstr "神殿"
+
+#: gui/text/tips/temples.txt:2
+msgid "- Town Phase structure required to upgrade to the City Phase."
+msgstr "- 都市の段階へのアップグレードに必要な町の段階の建物です。"
+
+#: gui/text/tips/temples.txt:4
+msgid "- Recruit Healers to heal your troops on the battlefield."
+msgstr "- 戦場の兵士を回復する治療者を召集することができます。"
+
+#: gui/text/tips/temples.txt:6
+msgid "- Research healing, religious devotion, and cultural technologies."
+msgstr "- 治療、宗教、文化に関するテクノロジーを研究できます。"
+
+#: gui/text/tips/temples.txt:8
+msgid "- Its \"aura\" heals nearby units."
+msgstr "- 「オーラ」によって近くにいるユニットを回復させます。"
+
+#: gui/text/tips/temples.txt:10
+msgid "- Garrison damaged units inside for quicker healing."
+msgstr "- ダメージを受けたユニットを駐屯させてより早く回復できます。"
+
+#: gui/text/tips/themistocles.txt:1
+msgid "THEMISTOCLES"
+msgstr "テミストクレス"
+
+#: gui/text/tips/themistocles.txt:2
+msgid ""
+"- Athenian hero who commanded the Greeks at the great naval battles of "
+"Artemisium and Salamis."
+msgstr "- アルテミシオンとサラミスの大海戦でギリシア軍を率いたアテナイの英雄です。"
+
+#: gui/text/tips/themistocles.txt:4
+msgid "- All ships are built faster while he lives."
+msgstr "- 彼の生存中はすべての船舶の建造が速くなります。"
+
+#: gui/text/tips/themistocles.txt:6
+msgid "- The ship he is garrisoned inside moves much faster."
+msgstr "- 彼が乗っている船は移動が大幅に速くなります。"
+
+#: gui/text/tips/triremes.txt:1
+msgid "TRIREME"
+msgstr "三段櫂船"
+
+#: gui/text/tips/triremes.txt:2
+msgid "- The Medium Warship."
+msgstr "- 中型の軍艦です。"
+
+#: gui/text/tips/triremes.txt:4
+msgid ""
+"- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
+msgstr "- ローマ、カルタゴ、ギリシア諸勢力、ペルシアが利用できます。"
+
+#: gui/text/tips/triremes.txt:6
+msgid "- Good for transporting or fighting."
+msgstr "- 輸送と戦闘に適しています。"
+
+#: gui/text/tips/triremes.txt:8
+msgid "- Garrison a catapult aboard for a long-range siege attack."
+msgstr "- 投石機を船に乗せると長距離砲撃が可能になります。"
+
+#: gui/text/tips/triremes.txt:10
+msgid ""
+"- Capable of a devastating ship-to-ship ramming attack that must recharge "
+"between each use."
+msgstr "- 敵船に破壊的な衝角攻撃を実行できます。再度発動まで準備時間が必要です。"
+
+#: gui/text/tips/viriato.txt:1
+msgid "VIRIATO"
+msgstr "ヴィリアト"
+
+#: gui/text/tips/viriato.txt:2
+msgid "- Iberian hero of the Lusitani tribe."
+msgstr "- ルシタニ族のイベリアの英雄です。"
+
+#: gui/text/tips/viriato.txt:4
+msgid ""
+"- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
+"147 to 139 B.C."
+msgstr "- 少なくとも7度のローマとの戦闘が、紀元前147年から139年にかけての「ルシタニア戦争」でありました。"
+
+#: gui/text/tips/viriato.txt:6
+msgid "- Fast moving and can switch between sword and flaming javelin."
+msgstr "- 移動が速く、剣と火投槍の両方を使えます。"
+
+#: gui/text/tips/viriato.txt:8
+msgid ""
+"- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
+"to ambush their opponents."
+msgstr "- 彼の「オーラ」は「ゲリラ戦術」であり、近くのイベリアユニットが待ち伏せして敵を攻撃できるようになります。"
+
+#: gui/text/tips/war_elephants.txt:1
+msgid "WAR ELEPHANTS"
+msgstr "戦象"
+
+#: gui/text/tips/war_elephants.txt:2
+msgid "- Huge beasts from Africa and India, trained for war."
+msgstr "- 戦闘用に訓練された、アフリカ・インド原産の巨獣です。"
+
+#: gui/text/tips/war_elephants.txt:4
+msgid ""
+"- High Food and Metal cost, but very powerful. Strongest against Structures "
+"and Cavalry."
+msgstr "- 多くの食料と金属が必要ですが、非常に強力です。特に建物と騎兵に対して効果的です。"
+
+#: gui/text/tips/war_elephants.txt:6
+msgid "- Vulnerable to infantry skirmishers."
+msgstr "- 散兵には弱いです。"
+
+#: gui/text/tips/war_elephants.txt:8
+msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
+msgstr "- マウリヤ朝・プトレマイオス朝・セレウコス朝・カルタゴで養成可能です。"
+
+#: gui/text/tips/whales.txt:1
+msgid "WHALES"
+msgstr "クジラ"
+
+#: gui/text/tips/whales.txt:2
+msgid "- An oceanic resource."
+msgstr "- 海洋資源です。"
+
+#: gui/text/tips/whales.txt:4
+msgid "- 2000 Food."
+msgstr "- 食料2000。"
+
+#: gui/text/tips/whales.txt:6
+msgid "- Gatherable by Fishing Boats after the whale is killed."
+msgstr "- クジラを倒した後、漁船で採集できます。"
+
+#: gui/text/tips/whales.txt:8
+msgid "- Roam around the oceans of the game and flee when attacked."
+msgstr "- 海の中をさまよっており、攻撃すると逃走します。"

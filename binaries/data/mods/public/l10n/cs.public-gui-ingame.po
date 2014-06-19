@@ -1,0 +1,1447 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+# attilla1996 <attilla1996@gmail.com>, 2014
+# David Exner <essdyk@gmail.com>, 2014
+# Devinate <m.brezek@gmail.com>, 2014
+# fri, 2014
+# ike20 <mvaldman@seznam.cz>, 2014
+# OndraK <kajinond@fjfi.cvut.cz>, 2014
+# Petr Hála <halapetr@selfnet.cz>, 2014
+# Rodeo65 <Rodeo65@centrum.cz>, 2014
+# Vit Pelcak, 2014
+# Vít Pelčák, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 18:09+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: gui/session/input.js:152
+#, python-format
+msgid "Basic range: %(range)s"
+msgstr "Základní dostřel: %(range)s"
+
+#: gui/session/input.js:152
+#, python-format
+msgid "Average bonus range: %(range)s"
+msgstr "Průměrná přidaná vzdálenost dostřelu: %(range)s"
+
+#: gui/session/input.js:725
+msgid "Cannot build wall here!"
+msgstr "Zde nelze hradbu postavit!"
+
+#: gui/session/menu.js:1 gui/session/menu.xml:64 (caption)
+msgid "Pause"
+msgstr "Pozastavit"
+
+#: gui/session/menu.js:2
+msgid "Resume"
+msgstr "Pokračovat"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:478
+msgid "Yes"
+msgstr "Ano"
+
+#: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
+#: gui/session/session.js:478
+msgid "No"
+msgstr "Ne"
+
+#: gui/session/menu.js:141
+msgid "Are you sure you want to resign?"
+msgstr "Opravdu si přejete se vzdát?"
+
+#: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
+msgid "Confirmation"
+msgstr "Potvrzení"
+
+#: gui/session/menu.js:152
+msgid ""
+"Are you sure you want to quit? Leaving will disconnect all other players."
+msgstr "Opravdu si přejete skončit? Při opuštění hry jsou odpojení všichni ostatní hráči."
+
+#: gui/session/menu.js:157 gui/session/menu.js:162
+msgid "Are you sure you want to quit?"
+msgstr "Opravdu si přejete skončit?"
+
+#: gui/session/menu.js:169
+msgid "I will return"
+msgstr "Vrátím se"
+
+#: gui/session/menu.js:169
+msgid "I resign"
+msgstr "Vzdávám se"
+
+#: gui/session/menu.js:172
+msgid "Do you want to resign or will you return soon?"
+msgstr "Chcete se vzdát nebo se brzy vrátíte?"
+
+#: gui/session/menu.js:189
+msgid "Destroy everything currently selected?"
+msgstr "Zničit vše, co je nyní vybráno?"
+
+#: gui/session/menu.js:189 gui/session/unit_actions.js:660
+msgid "Delete"
+msgstr "Smazat"
+
+#: gui/session/menu.js:284
+msgctxt "team"
+msgid "None"
+msgstr "Žádný"
+
+#: gui/session/menu.js:287 gui/session/diplomacy_window.xml:28 (tooltip)
+msgid "Ally"
+msgstr "Spojenec"
+
+#: gui/session/menu.js:287 gui/session/diplomacy_window.xml:32 (tooltip)
+msgid "Neutral"
+msgstr "Neutrální"
+
+#: gui/session/menu.js:287 gui/session/messages.js:609
+#: gui/session/diplomacy_window.xml:36 (tooltip)
+msgid "Enemy"
+msgstr "Nepřítel"
+
+#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
+msgid "x"
+msgstr "x"
+
+#: gui/session/menu.js:476
+msgid "There are no land traders."
+msgstr "Nejsou tu žádní obchodníci obchodující mezi zeměmi"
+
+#: gui/session/menu.js:482
+#, python-format
+msgid "%(numberOfLandTraders)s inactive"
+msgid_plural "%(numberOfLandTraders)s inactive"
+msgstr[0] "%(numberOfLandTraders)s je nečinný"
+msgstr[1] "%(numberOfLandTraders)s jsou nečinní"
+msgstr[2] "%(numberOfLandTraders)s je nečinných"
+
+#: gui/session/menu.js:486
+#, python-format
+msgid "There is %(numberTrading)s land trader trading"
+msgid_plural "There are %(numberTrading)s land traders trading"
+msgstr[0] "%(numberTrading)s obchodník mezi zeměmi obchoduje"
+msgstr[1] "%(numberTrading)s obchodníci mezi zeměmi obchoduje"
+msgstr[2] "%(numberTrading)s obchodníků mezi zeměmi obchoduje"
+
+#: gui/session/menu.js:489
+#, python-format
+msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
+msgstr[0] "%(numberGarrisoned)s umístěn na obchodní lodi"
+msgstr[1] "%(numberGarrisoned)s umístěni na obchodní lodi"
+msgstr[2] "%(numberGarrisoned)s umístěno na obchodní lodi"
+
+#: gui/session/menu.js:492
+#, python-format
+msgid ""
+"%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s, a %(inactiveString)s."
+
+#: gui/session/menu.js:500
+#, python-format
+msgid "%(openingTradingString)s, and %(garrisonedString)s."
+msgstr "%(openingTradingString)s, a %(garrisonedString)s."
+
+#: gui/session/menu.js:510 gui/session/menu.js:572
+#, python-format
+msgid "%(openingTradingString)s, and %(inactiveString)s."
+msgstr "%(openingTradingString)s, a %(inactiveString)s."
+
+#: gui/session/menu.js:517 gui/session/menu.js:579
+#, python-format
+msgid "%(openingTradingString)s."
+msgstr "%(openingTradingString)s."
+
+#: gui/session/menu.js:527
+#, python-format
+msgid ""
+"There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
+"ship"
+msgid_plural ""
+"There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
+" ship"
+msgstr[0] "Na obchodní lodi je umístěn %(numberGarrisoned)s obchodník obchodující mezi zeměmi"
+msgstr[1] "Na obchodní lodi jsou umístěni %(numberGarrisoned)s obchodníci obchodující mezi zeměmi"
+msgstr[2] "Na obchodní lodi je umístěno %(numberGarrisoned)s obchodníků obchodujících mezi zeměmi"
+
+#: gui/session/menu.js:530
+#, python-format
+msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
+msgstr "%(openingGarrisonedString)s, a %(inactiveString)s."
+
+#: gui/session/menu.js:537
+#, python-format
+msgid "%(openingGarrisonedString)s."
+msgstr "%(openingGarrisonedString)s."
+
+#: gui/session/menu.js:546
+#, python-format
+msgid "%(numberOfLandTraders)s land trader inactive"
+msgid_plural "%(numberOfLandTraders)s land traders inactive"
+msgstr[0] "%(numberOfLandTraders)s obchodník obchodující mezi zeměmi je nečinný"
+msgstr[1] "%(numberOfLandTraders)s obchodníci obchodující mezi zeměmi jsou nečinní"
+msgstr[2] "%(numberOfLandTraders)s obchodníků obchodující mezi zeměmi je nečinných"
+
+#: gui/session/menu.js:547 gui/session/menu.js:589
+#, python-format
+msgid "There is %(inactiveString)s."
+msgid_plural "There are %(inactiveString)s."
+msgstr[0] "Je %(inactiveString)s."
+msgstr[1] "Jsou %(inactiveString)s."
+msgstr[2] "Je %(inactiveString)s."
+
+#: gui/session/menu.js:559
+msgid "There are no merchant ships."
+msgstr "Nejsou žádné obchodní lodě."
+
+#: gui/session/menu.js:565
+#, python-format
+msgid "%(numberOfShipTraders)s inactive"
+msgid_plural "%(numberOfShipTraders)s inactive"
+msgstr[0] "%(numberOfShipTraders)s nečinná"
+msgstr[1] "%(numberOfShipTraders)s nečinné"
+msgstr[2] "%(numberOfShipTraders)s nečinných"
+
+#: gui/session/menu.js:569
+#, python-format
+msgid "There is %(numberTrading)s merchant ship trading"
+msgid_plural "There are %(numberTrading)s merchant ships trading"
+msgstr[0] "%(numberTrading)s obchodní loď obchoduje"
+msgstr[1] "%(numberTrading)s obchodní lodě obchodují"
+msgstr[2] "%(numberTrading)s obchodních lodí obchoduje"
+
+#: gui/session/menu.js:588
+#, python-format
+msgid "%(numberOfShipTraders)s merchant ship inactive"
+msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
+msgstr[0] "%(numberOfShipTraders)s obchodní loď nečinná"
+msgstr[1] "%(numberOfShipTraders)s obchodní lodě nečinné"
+msgstr[2] "%(numberOfShipTraders)s obchodních lodí nečinných"
+
+#: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
+msgid "Manual"
+msgstr "Příručka"
+
+#: gui/session/menu.js:678
+msgid "The Developer Overlay was opened."
+msgstr "Byla otevřena vývojářská vrstva."
+
+#: gui/session/menu.js:680
+msgid "The Developer Overlay was closed."
+msgstr "Byla zavřena vývojářská vrstva."
+
+#: gui/session/menu.js:696
+#, python-format
+msgid ""
+"Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
+"to tribute %(greaterAmount)s."
+msgstr "Poplatek %(resourceAmount)s %(resourceType)s %(playerName)s. Shift-klepnutí pro poplatek %(greaterAmount)s."
+
+#: gui/session/messages.js:185
+#, python-format
+msgid "Net message: %(message)s"
+msgstr "Síťová zpráva: %(message)s"
+
+#: gui/session/messages.js:198
+msgid "Waiting for other players to connect..."
+msgstr "Čeká se na připojení dalších hráčů..."
+
+#: gui/session/messages.js:202
+msgid "Synchronising gameplay with other players..."
+msgstr "Synchronizace hry s dalšími hráči..."
+
+#: gui/session/messages.js:210
+msgid "Connected to the server."
+msgstr "Připojen k serveru."
+
+#: gui/session/messages.js:214
+msgid "Connection to the server has been authenticated."
+msgstr "Spojení se serverem bylo ověřeno."
+
+#: gui/session/messages.js:219
+msgid "Connection to the server has been lost."
+msgstr "Spojení se serverem bylo ztraceno."
+
+#: gui/session/messages.js:219
+msgid "The game has ended."
+msgstr "Hra skončila."
+
+#: gui/session/messages.js:403
+msgid "Unknown player"
+msgstr "Neznámý hráč"
+
+#: gui/session/messages.js:411
+#, python-format
+msgid "%(player)s has joined the game."
+msgstr "%(player)s se připojil ke hře."
+
+#: gui/session/messages.js:414
+#, python-format
+msgid "%(player)s has left the game."
+msgstr "%(player)s opustil hru."
+
+#: gui/session/messages.js:419
+msgid "You have been defeated."
+msgstr "Byl jste poražen."
+
+#: gui/session/messages.js:421
+#, python-format
+msgid "%(player)s has been defeated."
+msgstr "%(player)s byl poražen."
+
+#: gui/session/messages.js:429
+#, python-format
+msgid "You are now allied with %(player)s."
+msgstr "Nyní jste spojencem %(player)s."
+
+#: gui/session/messages.js:431
+#, python-format
+msgid "You are now at war with %(player)s."
+msgstr "Nyní jste ve válce s %(player)s."
+
+#: gui/session/messages.js:433
+#, python-format
+msgid "You are now neutral with %(player)s."
+msgstr "Nyní jste neutrální vůči %(player)s."
+
+#: gui/session/messages.js:439
+#, python-format
+msgid "%(player)s is now allied with you."
+msgstr "%(player)s je nyní vaším spojencem."
+
+#: gui/session/messages.js:441
+#, python-format
+msgid "%(player)s is now at war with you."
+msgstr "%(player)s je s vámi nyní ve válce."
+
+#: gui/session/messages.js:443
+#, python-format
+msgid "%(player)s is now neutral with you."
+msgstr "%(player)s je nyní vůči vám neutrální."
+
+#: gui/session/messages.js:462
+#, python-format
+msgid "%(previousAmounts)s and %(lastAmount)s"
+msgstr "%(previousAmounts)s a %(lastAmount)s"
+
+#: gui/session/messages.js:463 gui/session/utility_functions.js:187
+#: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
+#: gui/session/utility_functions.js:292 gui/session/utility_functions.js:338
+#: gui/session/utility_functions.js:613 gui/session/utility_functions.js:635
+#: gui/session/utility_functions.js:640
+msgid ", "
+msgstr ", "
+
+#: gui/session/messages.js:468
+#, python-format
+msgid "%(player)s has sent you %(amounts)s."
+msgstr "%(player)s vám poslal %(amounts)s."
+
+#: gui/session/messages.js:478
+#, python-format
+msgid "You have been attacked by %(attacker)s!"
+msgstr "Byl jste napaden %(attacker)s!"
+
+#: gui/session/messages.js:495 gui/session/messages.js:500
+#, python-format
+msgid "(%(context)s) * %(user)s %(message)s"
+msgstr "(%(context)s) * %(user)s %(message)s"
+
+#: gui/session/messages.js:508 gui/session/messages.js:512
+#, python-format
+msgid "* %(user)s %(message)s"
+msgstr "* %(user)s %(message)s"
+
+#: gui/session/messages.js:520 gui/session/messages.js:521
+#, python-format
+msgid "<%(user)s>"
+msgstr "<%(user)s>"
+
+#: gui/session/messages.js:524 gui/session/messages.js:529
+#, python-format
+msgid "(%(context)s) %(userTag)s %(message)s"
+msgstr "(%(context)s) %(userTag)s %(message)s"
+
+#: gui/session/messages.js:537 gui/session/messages.js:538
+#, python-format
+msgid "%(userTag)s %(message)s"
+msgstr "%(userTag)s %(message)s"
+
+#: gui/session/messages.js:596 gui/session/diplomacy_window.xml:21 (caption)
+msgid "Team"
+msgstr "Tým"
+
+#: gui/session/messages.js:629
+msgid "Private"
+msgstr "Soukromý"
+
+#: gui/session/selection_details.js:32
+#, python-format
+msgid "%(genericName)s — Packed"
+msgstr "%(genericName)s — Sbalen"
+
+#: gui/session/selection_details.js:44
+#, python-format
+msgid "[OFFLINE] %(player)s"
+msgstr "[NEPŘIPOJENÝ] %(player)s"
+
+#: gui/session/selection_details.js:50
+#, python-format
+msgid "%(rank)s Rank"
+msgstr "%(rank)s hodnost"
+
+#: gui/session/selection_details.js:68
+#, python-format
+msgid "%(hitpoints)s / %(maxHitpoints)s"
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
+
+#: gui/session/selection_details.js:95
+#, python-format
+msgid "%(experience)s %(current)s / %(required)s"
+msgstr "%(experience)s %(current)s / %(required)s"
+
+#: gui/session/selection_details.js:96 gui/session/selection_details.js:102
+msgid "Experience:"
+msgstr "Zkušenosti:"
+
+#: gui/session/selection_details.js:101
+#, python-format
+msgid "%(experience)s %(current)s"
+msgstr "%(experience)s %(current)s"
+
+#: gui/session/selection_details.js:115
+msgid "∞"
+msgstr "∞"
+
+#: gui/session/selection_details.js:116 gui/session/selection_details.js:149
+#: gui/session/selection_details.js:180
+#, python-format
+msgid "%(amount)s / %(max)s"
+msgstr "%(amount)s / %(max)s"
+
+#: gui/session/selection_details.js:125
+#, python-format
+msgid "%(resource)s:"
+msgstr "%(resource)s:"
+
+#: gui/session/selection_details.js:164
+#, python-format
+msgid "Gain: %(amount)s"
+msgstr "Zisk: %(amount)s"
+
+#: gui/session/selection_details.js:173
+msgid "Number of builders"
+msgstr "Počet stavitelů"
+
+#: gui/session/selection_details.js:181
+msgid "Current/max gatherers"
+msgstr "Nyní/maximum sběračů"
+
+#: gui/session/selection_details.js:196
+#, python-format
+msgid "(%(genericName)s)"
+msgstr "(%(genericName)s)"
+
+#: gui/session/selection_details.js:226 gui/session/selection_panels.js:942
+#: gui/session/session.js:641
+msgid "Armor:"
+msgstr "Brnění:"
+
+#: gui/session/selection_details.js:227 gui/session/selection_details.js:238
+#: gui/session/session.js:638 gui/session/session.js:642
+#, python-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/session/selection_details.js:234
+msgid "Interval:"
+msgstr "Interval:"
+
+#: gui/session/selection_details.js:236
+msgid "Rate:"
+msgstr "Výše:"
+
+#: gui/session/selection_details.js:249 gui/session/session.js:633
+#: gui/session/utility_functions.js:324
+msgid "Range:"
+msgstr "Dostřel:"
+
+#: gui/session/selection_details.js:251 gui/session/session.js:634
+#: gui/session/utility_functions.js:325
+msgid "meters"
+msgstr "metrů"
+
+#: gui/session/selection_details.js:254 gui/session/selection_details.js:264
+#, python-format
+msgid ""
+"%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
+"%(rate)s"
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
+
+#: gui/session/selection_details.js:274
+#, python-format
+msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
+
+#: gui/session/selection_details.js:285
+#, python-format
+msgid "%(label)s %(details)s, %(rate)s"
+msgstr "%(label)s %(details)s, %(rate)s"
+
+#: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
+msgid "Classes:"
+msgstr "Třídy:"
+
+#: gui/session/selection_details.js:360
+msgid "Hitpoints:"
+msgstr "Životy:"
+
+#: gui/session/selection_details.js:361 gui/session/session.js:622
+#, python-format
+msgid "%(label)s %(current)s / %(max)s"
+msgstr "%(label)s %(current)s / %(max)s"
+
+#: gui/session/selection_panels.js:87
+#, python-format
+msgid "Buy %(resource)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:88
+#, python-format
+msgid "Sell %(resource)s"
+msgstr ""
+
+#: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
+#, python-format
+msgid "Requires %(technology)s"
+msgstr "Vyžaduje %(technology)s"
+
+#: gui/session/selection_panels.js:332
+#, python-format
+msgid "Unload %(name)s"
+msgstr "Vyložit %(name)s"
+
+#: gui/session/selection_panels.js:333
+msgid "Single-click to unload 1. Shift-click to unload all of this type."
+msgstr "Jednou klepněte pro vyložení 1. Shift-klepněte pro vyložení všeho tohoto typu."
+
+#: gui/session/selection_panels.js:400
+msgid "Lock Gate"
+msgstr "Zamknout bránu"
+
+#: gui/session/selection_panels.js:406
+msgid "Unlock Gate"
+msgstr "Odemknout bránu"
+
+#: gui/session/selection_panels.js:511
+msgid "Pack"
+msgstr "Sbalit"
+
+#: gui/session/selection_panels.js:513
+msgid "Unpack"
+msgstr "Rozbalit"
+
+#: gui/session/selection_panels.js:515
+msgid "Cancel Packing"
+msgstr "Zrušit balení"
+
+#: gui/session/selection_panels.js:517
+msgid "Cancel Unpacking"
+msgstr "Zrušit rozbalování"
+
+#: gui/session/selection_panels.js:590
+msgid "Insufficient population capacity:"
+msgstr "Nedostatečný kapacita populace:"
+
+#: gui/session/selection_panels.js:591
+#, python-format
+msgid "%(population)s %(neededSlots)s"
+msgstr "%(population)s %(neededSlots)s"
+
+#: gui/session/selection_panels.js:710
+#, python-format
+msgid "Remaining: %(number)s to build."
+msgid_plural "Remaining: %(number)s to build."
+msgstr[0] "Zbývá: %(number)s k postavení."
+msgstr[1] "Zbývá: %(number)s k postavení."
+msgstr[2] "Zbývá: %(number)s k postavení."
+
+#: gui/session/selection_panels.js:938 gui/session/session.js:621
+#: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
+msgid "Health:"
+msgstr "Zdraví:"
+
+#: gui/session/selection_panels_helpers.js:39
+msgctxt "stance"
+msgid "Violent"
+msgstr "Násilný"
+
+#: gui/session/selection_panels_helpers.js:42
+msgctxt "stance"
+msgid "Aggressive"
+msgstr "Útočný"
+
+#: gui/session/selection_panels_helpers.js:45
+msgctxt "stance"
+msgid "Passive"
+msgstr "Pasivní"
+
+#: gui/session/selection_panels_helpers.js:48
+msgctxt "stance"
+msgid "Defensive"
+msgstr "Obranný"
+
+#: gui/session/selection_panels_helpers.js:51
+msgctxt "stance"
+msgid "Standground"
+msgstr "Stát na místě"
+
+#: gui/session/selection_panels_helpers.js:70
+#, python-format
+msgid "Current Count: %(count)s, Limit: %(limit)s."
+msgstr "Nynější počet: %(count)s, Limit: %(limit)s."
+
+#: gui/session/selection_panels_helpers.js:76
+#, python-format
+msgid "%(changer)s enlarges the limit with %(change)s."
+msgstr "%(changer)s zvětší limit o %(change)s."
+
+#: gui/session/selection_panels_helpers.js:78
+#, python-format
+msgid "%(changer)s lessens the limit with %(change)s."
+msgstr "%(changer)s zmenší limit o %(change)s."
+
+#: gui/session/selection_panels_helpers.js:105
+#, python-format
+msgid "%(buildings)s*%(batchSize)s"
+msgstr "%(buildings)s*%(batchSize)s"
+
+#: gui/session/selection_panels_helpers.js:114
+msgid "Shift-click"
+msgstr "Shift-klepnutí"
+
+#: gui/session/selection_panels_helpers.js:123
+#, python-format
+msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+msgstr "%(action)s pro vycvičení %(number)s (%(fullBatch)s + %(remainderBatch)s)."
+
+#: gui/session/selection_panels_helpers.js:130
+#, python-format
+msgid "%(action)s to train %(number)s (%(fullBatch)s)."
+msgstr "%(action)s pro vycvičení %(number)s (%(fullBatch)s)."
+
+#: gui/session/selection_panels_helpers.js:137
+#, python-format
+msgid "%(action)s to train %(number)s."
+msgstr "%(action)s pro vycvičení %(number)s."
+
+#: gui/session/session.js:19
+msgid "You"
+msgstr "Vy"
+
+#: gui/session/session.js:170
+msgid "Gaia"
+msgstr "Gaia"
+
+#: gui/session/session.js:309 gui/session/session.js:325
+msgid "You have left the game."
+msgstr "Opustil jste hru."
+
+#: gui/session/session.js:316
+msgid "You have been disconnected."
+msgstr "Byl jste odpojen."
+
+#: gui/session/session.js:318
+msgid "You have won the battle!"
+msgstr "Vyhrál bitvu!"
+
+#: gui/session/session.js:320
+msgid "You have been defeated..."
+msgstr "Byl jste poražen..."
+
+#: gui/session/session.js:328
+msgid "You have abandoned the game."
+msgstr "Opustil jste hru."
+
+#: gui/session/session.js:472
+msgid "OK"
+msgstr "OK"
+
+#: gui/session/session.js:474
+msgid "Press OK to continue"
+msgstr "Stiskněte OK pro pokračování"
+
+#: gui/session/session.js:480
+msgid "Do you want to quit?"
+msgstr "Chcete skončit?"
+
+#: gui/session/session.js:486
+msgid "DEFEATED!"
+msgstr "PORÁŽKA!"
+
+#: gui/session/session.js:494
+msgid "VICTORIOUS!"
+msgstr "VÍTĚZSTVÍ!"
+
+#: gui/session/session.js:629
+#, python-format
+msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
+
+#: gui/session/session.js:802
+#, python-format
+msgid "%(time)s (%(speed)sx)"
+msgstr "%(time)s (%(speed)sx)"
+
+#: gui/session/session.js:891
+#, python-format
+msgid "Unrecognized ambient type: %(ambientType)s"
+msgstr "Nerozpoznaný nejednoznačný typ: %(ambientType)s"
+
+#: gui/session/session.js:908
+#, python-format
+msgid "Build: %(buildDate)s (%(revision)s)"
+msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
+
+#: gui/session/session.js:913
+msgid ""
+"Note: time warp mode is a developer option, and not intended for use over "
+"long periods of time. Using it incorrectly may cause the game to run out of "
+"memory or crash."
+msgstr "Poznámka: Režim cestování časem je možnost pro vývojáře a není záměrem, aby se používala po dlouhou dobu. Její špatné užití může způsobit to, že hře dojde paměť nebo že spadne."
+
+#: gui/session/session.js:913
+msgid "Time warp mode"
+msgstr "Režim zrychlení času"
+
+#: gui/session/unit_actions.js:295
+msgid "Origin trade market."
+msgstr "Původní obchodní trh."
+
+#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#, python-format
+msgid "Gain: %(gain)s"
+msgstr "Zisk: %(gain)s"
+
+#: gui/session/unit_actions.js:301
+msgid "Right-click on another market to set it as a destination trade market."
+msgstr "Klepněte pravým tlačítkem myši na jiný trh pro jeho nastavení coby cílového obchodního trhu."
+
+#: gui/session/unit_actions.js:304
+msgid "Destination trade market."
+msgstr "Cílový obchodní trh."
+
+#: gui/session/unit_actions.js:309
+msgid "Right-click to set as origin trade market"
+msgstr "Klepněte pravým tlačítkem myši pro nastavení jako původní obchodní trh"
+
+#: gui/session/unit_actions.js:314
+msgid "Right-click to set as destination trade market."
+msgstr "Klepněte pravým tlačítkem myši pro nastavení jako cílový obchodní trh."
+
+#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#, python-format
+msgid "Current garrison: %(garrisoned)s/%(capacity)s"
+msgstr "Nynější posádka: %(garrisoned)s/%(capacity)s"
+
+#: gui/session/unit_actions.js:519
+msgid "Right-click to establish a default route for new traders."
+msgstr "Klepněte pravým tlačítkem myši pro zřízení výchozí cesty pro nové obchodníky."
+
+#: gui/session/unit_actions.js:523
+#, python-format
+msgid "Expected gain: %(gain)s"
+msgstr "Očekávaný zisk: %(gain)s"
+
+#: gui/session/unit_actions.js:645
+msgid "Unload All"
+msgstr "Vylodit vše"
+
+#: gui/session/unit_actions.js:680
+msgid "Stop"
+msgstr "Zastavit"
+
+#: gui/session/unit_actions.js:698
+msgid "Garrison"
+msgstr "Obsadit"
+
+#: gui/session/unit_actions.js:719
+msgid "Unload"
+msgstr ""
+
+#: gui/session/unit_actions.js:735
+msgid "Repair"
+msgstr "Opravit"
+
+#: gui/session/unit_actions.js:752
+msgid "Focus on Rally Point"
+msgstr "Přepnout na shromaždiště"
+
+#: gui/session/unit_actions.js:775
+msgid "Back to Work"
+msgstr "Zpět do práce"
+
+#: gui/session/unit_actions.js:791
+msgid "Guard"
+msgstr "Stráž"
+
+#: gui/session/unit_actions.js:808
+msgid "Remove guard"
+msgstr "Odstranit stráž"
+
+#: gui/session/unit_actions.js:824
+msgid "Select trading goods"
+msgstr "Vyberte obchodované zboží"
+
+#: gui/session/unit_actions.js:841
+msgid "Increase the alert level to protect more units"
+msgstr "Zvýšit úroveň ostražitosti kvůli ochránění více jednotek"
+
+#: gui/session/unit_actions.js:843
+msgid "Raise an alert!"
+msgstr "Zvýšit ostražitost!"
+
+#: gui/session/unit_actions.js:861
+msgid "End of alert."
+msgstr "Konec poplachu."
+
+#: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
+#: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
+msgid "(None)"
+msgstr "(Žádný)"
+
+#: gui/session/utility_functions.js:172 gui/session/utility_functions.js:177
+#: gui/session/utility_functions.js:182 gui/session/utility_functions.js:248
+#: gui/session/utility_functions.js:253 gui/session/utility_functions.js:258
+#, python-format
+msgid "%(damage)s %(damageType)s"
+msgstr "%(damage)s %(damageType)s"
+
+#: gui/session/utility_functions.js:174 gui/session/utility_functions.js:221
+#: gui/session/utility_functions.js:250 gui/session/utility_functions.js:276
+msgid "Hack"
+msgstr "Sek"
+
+#: gui/session/utility_functions.js:179 gui/session/utility_functions.js:227
+#: gui/session/utility_functions.js:255 gui/session/utility_functions.js:282
+msgid "Pierce"
+msgstr "Bodnutí"
+
+#: gui/session/utility_functions.js:184 gui/session/utility_functions.js:233
+#: gui/session/utility_functions.js:260 gui/session/utility_functions.js:288
+msgid "Crush"
+msgstr "Úder"
+
+#: gui/session/utility_functions.js:195
+#, python-format
+msgid "%(arrowString)s / %(timeString)s"
+msgstr "%(arrowString)s / %(timeString)s"
+
+#: gui/session/utility_functions.js:196
+#, python-format
+msgid "%(arrows)s arrow"
+msgid_plural "%(arrows)s arrows"
+msgstr[0] "%(arrows)s šíp"
+msgstr[1] "%(arrows)s šípy"
+msgstr[2] "%(arrows)s šípů"
+
+#: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
+#, python-format
+msgid "%(time)s second"
+msgid_plural "%(time)s seconds"
+msgstr[0] "%(time)s sekunda"
+msgstr[1] "%(time)s sekundy"
+msgstr[2] "%(time)s sekund"
+
+#: gui/session/utility_functions.js:219 gui/session/utility_functions.js:225
+#: gui/session/utility_functions.js:231 gui/session/utility_functions.js:274
+#: gui/session/utility_functions.js:280 gui/session/utility_functions.js:286
+#, python-format
+msgid "%(damage)s %(damageType)s %(armorPercentage)s"
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
+
+#: gui/session/utility_functions.js:222 gui/session/utility_functions.js:228
+#: gui/session/utility_functions.js:234 gui/session/utility_functions.js:277
+#: gui/session/utility_functions.js:283 gui/session/utility_functions.js:289
+#, python-format
+msgid "(%(armorPercentage)s)"
+msgstr "(%(armorPercentage)s)"
+
+#: gui/session/utility_functions.js:297
+msgid "Charge Attack:"
+msgstr "Útok ztečí:"
+
+#: gui/session/utility_functions.js:298
+msgid "Melee Attack:"
+msgstr "Útok zblízka:"
+
+#: gui/session/utility_functions.js:299
+msgid "Ranged Attack:"
+msgstr "Útok na dálku:"
+
+#: gui/session/utility_functions.js:302
+msgid "Attack:"
+msgstr "Útok:"
+
+#: gui/session/utility_functions.js:321
+#, python-format
+msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
+
+#: gui/session/utility_functions.js:330
+#, python-format
+msgid "%(attackLabel)s %(damageTypes)s"
+msgstr "%(attackLabel)s %(damageTypes)s"
+
+#: gui/session/utility_functions.js:383 gui/session/utility_functions.js:384
+#: gui/session/utility_functions.js:385 gui/session/utility_functions.js:386
+#: gui/session/utility_functions.js:387 gui/session/utility_functions.js:388
+#: gui/session/utility_functions.js:512
+#, python-format
+msgid "%(component)s %(cost)s"
+msgstr "%(component)s %(cost)s"
+
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/session/utility_functions.js:442
+#, python-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s na %(resourceIcon)s %(maximum)s"
+
+#: gui/session/utility_functions.js:475
+#, python-format
+msgid "Walls:  %(costs)s"
+msgstr "Hradby:  %(costs)s"
+
+#: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
+#: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
+msgid "  "
+msgstr "  "
+
+#: gui/session/utility_functions.js:476
+#, python-format
+msgid "Towers:  %(costs)s"
+msgstr "Věže:  %(costs)s"
+
+#: gui/session/utility_functions.js:498
+#, python-format
+msgid "%(label)s %(populationBonus)s"
+msgstr "%(label)s %(populationBonus)s"
+
+#: gui/session/utility_functions.js:499
+msgid "Population Bonus:"
+msgstr "Populační zvýhodnění:"
+
+#: gui/session/utility_functions.js:517
+msgid "Insufficient resources:"
+msgstr "Nedostatečné zdroje:"
+
+#: gui/session/utility_functions.js:528
+#, python-format
+msgid "%(specificName)s (%(genericName)s)"
+msgstr "%(specificName)s (%(genericName)s)"
+
+#: gui/session/utility_functions.js:538
+msgid "???"
+msgstr "???"
+
+#: gui/session/utility_functions.js:582
+#, python-format
+msgid "%(rank)s %(name)s"
+msgstr "%(rank)s %(name)s"
+
+#: gui/session/utility_functions.js:606
+msgid "Speed:"
+msgstr "Rychlost:"
+
+#: gui/session/utility_functions.js:609 gui/session/utility_functions.js:611
+#, python-format
+msgid "%(speed)s %(movementType)s"
+msgstr "%(speed)s %(movementType)s"
+
+#: gui/session/utility_functions.js:609
+msgid "Walk"
+msgstr "Jít"
+
+#: gui/session/utility_functions.js:611
+msgid "Run"
+msgstr "Běžet"
+
+#: gui/session/utility_functions.js:613
+#, python-format
+msgid "%(label)s %(speeds)s"
+msgstr "%(label)s %(speeds)s"
+
+#: gui/session/utility_functions.js:625 gui/session/utility_functions.js:627
+msgid "+"
+msgstr "+"
+
+#: gui/session/utility_functions.js:629 gui/session/utility_functions.js:635
+#: gui/session/utility_functions.js:640
+#, python-format
+msgid "%(gain)s (%(player)s)"
+msgstr "%(gain)s (%(player)s)"
+
+#: gui/session/utility_functions.js:631
+msgid "you"
+msgstr "vy"
+
+#: gui/session/utility_functions.js:637 gui/session/utility_functions.js:642
+#, python-format
+msgid "player %(name)s"
+msgstr "Hráč %(name)s"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:682
+msgctxt "firstWord"
+msgid "Food"
+msgstr "Jídlo"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:684
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "Maso"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:686
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "Kov"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:688
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "Ruda"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:690
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "Skála"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:692
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "Zříceniny"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:694
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "Kámen"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:696
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "Poklad"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:698
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "Strom"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:700
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "Dřevo"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:702
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "Ovoce"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:704
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "Obilí"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word
+#. sentence.
+#: gui/session/utility_functions.js:706
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "Ryba"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:711
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "Jídlo"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:713
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "Maso"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:715
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "Kov"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:717
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "Ruda"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:719
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "Skála"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:721
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "Zříceniny"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:723
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "Kámen"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:725
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "Poklad"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:727
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "Strom"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:729
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "Dřevo"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:731
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "Ovoce"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:733
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "Obilí"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using
+#. lowercase for your language).
+#: gui/session/utility_functions.js:735
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "Ryba"
+
+#: gui/session/diplomacy_window.xml:10 (caption)
+#: gui/session/top_panel/button_diplomacy.xml:8 (tooltip)
+msgid "Diplomacy"
+msgstr "Diplomacie"
+
+#: gui/session/diplomacy_window.xml:15 (caption)
+msgid "Name"
+msgstr "Jméno"
+
+#: gui/session/diplomacy_window.xml:18 (caption)
+msgid "Civilization"
+msgstr "Civilizace"
+
+#: gui/session/diplomacy_window.xml:24 (caption)
+msgid "Theirs"
+msgstr "Jejich"
+
+#: gui/session/diplomacy_window.xml:27 (caption)
+msgid "A"
+msgstr "A"
+
+#: gui/session/diplomacy_window.xml:31 (caption)
+msgid "N"
+msgstr "N"
+
+#: gui/session/diplomacy_window.xml:35 (caption)
+msgid "E"
+msgstr "E"
+
+#: gui/session/diplomacy_window.xml:39 (caption)
+msgid "Tribute"
+msgstr "Poplatek"
+
+#: gui/session/diplomacy_window.xml:73 (caption)
+#: gui/session/trade_window.xml:47 (caption)
+msgid "Close"
+msgstr "Zavřít"
+
+#: gui/session/menu.xml:28 (caption)
+msgid "Chat"
+msgstr "Rozhovor"
+
+#: gui/session/menu.xml:39 (caption)
+msgid "Save"
+msgstr "Uložit"
+
+#: gui/session/menu.xml:52 (caption)
+msgid "Settings"
+msgstr "Nastavení"
+
+#: gui/session/menu.xml:76 (caption)
+msgid "Resign"
+msgstr "Vzdát se"
+
+#: gui/session/menu.xml:87 (caption) gui/session/session.xml:323 (caption)
+msgid "Exit"
+msgstr "Ukončit"
+
+#: gui/session/minimap_panel.xml:15 (tooltip)
+msgid "Find idle worker"
+msgstr "Najít nečinného dělníka"
+
+#: gui/session/session.xml:53 (caption)
+msgid "Control all units"
+msgstr "Ovládat všechny jednotky"
+
+#: gui/session/session.xml:63 (caption)
+msgid "Change perspective"
+msgstr "Změnit pohled"
+
+#: gui/session/session.xml:70 (caption)
+msgid "Display selection state"
+msgstr "Zobrazit stav výběru"
+
+#: gui/session/session.xml:75 (caption)
+msgid "Pathfinder overlay"
+msgstr "Vrstva pro hledání trasy"
+
+#: gui/session/session.xml:82 (caption)
+msgid "Obstruction overlay"
+msgstr "Vrstva s překážkami"
+
+#: gui/session/session.xml:89 (caption)
+msgid "Unit motion overlay"
+msgstr "Vrstva s pohybem jednotky"
+
+#: gui/session/session.xml:96 (caption)
+msgid "Range overlay"
+msgstr "Vrstva s dostřelem"
+
+#: gui/session/session.xml:103 (caption)
+msgid "Bounding box overlay"
+msgstr "Vrstva s okrajovými rámy"
+
+#: gui/session/session.xml:110 (caption)
+msgid "Restrict camera"
+msgstr "Omezit kameru"
+
+#: gui/session/session.xml:124 (caption)
+msgid "Reveal map"
+msgstr "Odhalit mapu"
+
+#: gui/session/session.xml:132 (caption)
+msgid "Enable time warp"
+msgstr "Povolit zrychlení času"
+
+#: gui/session/session.xml:142 (caption)
+msgid "Promote selected units"
+msgstr "Povýšit vybrané jednotky"
+
+#: gui/session/session.xml:169 (caption)
+msgid "Game Paused"
+msgstr "Hra pozastavena"
+
+#: gui/session/session.xml:172 (caption)
+msgid "Click to Resume Game"
+msgstr "Klepněte pro pokračování ve hře"
+
+#: gui/session/session.xml:201 (caption)
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: gui/session/session.xml:207 (caption)
+msgid "Team Only"
+msgstr "Jen tým"
+
+#: gui/session/session.xml:211 (caption)
+msgid "Send"
+msgstr "Poslat"
+
+#: gui/session/top_panel.xml:18 (tooltip)
+msgid "Choose player to view"
+msgstr "Vyberte hráče jejž budete pozorovat"
+
+#: gui/session/top_panel.xml:26 (caption)
+msgid "Observer Mode (experimental)"
+msgstr "Pozorovatelský režim (pokusné)"
+
+#: gui/session/trade_window.xml:9 (caption)
+#: gui/session/top_panel/button_trade.xml:10 (tooltip)
+msgid "Trade"
+msgstr "Obchod"
+
+#: gui/session/trade_window.xml:15 (caption)
+msgid "Trading goods selection:"
+msgstr "Výběr obchodovaného zboží:"
+
+#: gui/session/trade_window.xml:35 (tooltip)
+msgid ""
+"Select one goods as origin of the changes, then use the arrows of the target"
+" goods to make the changes (using Shift to select will put the selected "
+"resource to 100%)."
+msgstr ""
+
+#: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
+msgid "Exchange resources:"
+msgstr "Vyměnit zdroje:"
+
+#: gui/session/selection_panels_middle/multiple_details_area.xml:29 (tooltip)
+msgid "Hitpoints"
+msgstr "Životy"
+
+#: gui/session/selection_panels_middle/multiple_details_area.xml:38 (tooltip)
+msgid "Stamina"
+msgstr "Výdrž"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:26 (tooltip)
+msgid "Stamina:"
+msgstr "Výdrž:"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:53 (tooltip)
+#: gui/session/session_objects/hero_icon.xml:9 (tooltip)
+msgid "Attack and Armor"
+msgstr "Útok a brnění"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:68 (tooltip)
+msgid "Experience"
+msgstr "Zkušenosti"
+
+#: gui/session/selection_panels_middle/single_details_area.xml:76 (tooltip)
+msgid "Rank"
+msgstr "Hodnost"
+
+#: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
+msgid "Production queue"
+msgstr "Výrobní řada"
+
+#: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
+msgid ""
+"Click to select grouped units, double-click to focus the grouped units and "
+"right-click to disband the group."
+msgstr "Klepněte pro vybrání seskupených jednotek, klepněte dvakrát pro přepnutí na seskupené jednotky a klepněte pravým tlačítkem myši pro rozpuštění skupiny."
+
+#: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
+msgid "Game speed"
+msgstr "Rychlost hry"
+
+#: gui/session/top_panel/button_game_speed.xml:17 (tooltip)
+msgid "Choose game speed"
+msgstr "Vyberte rychlost hry"
+
+#: gui/session/top_panel/button_menu.xml:15 (caption)
+msgid "MENU"
+msgstr "NABÍDKA"
+
+#: gui/session/top_panel/label.xml:4 (caption)
+msgid "ALPHA XVI : Patañjali"
+msgstr "ALFA XVI : Patañjali"
+
+#: gui/session/top_panel/resource_food.xml:3 (tooltip)
+msgid "Food"
+msgstr "Jídlo"
+
+#: gui/session/top_panel/resource_metal.xml:3 (tooltip)
+msgid "Metal"
+msgstr "Kov"
+
+#: gui/session/top_panel/resource_population.xml:3 (tooltip)
+msgid "Population (current / limit)"
+msgstr "Obyvatelstvo (nyní / limit)"
+
+#: gui/session/top_panel/resource_stone.xml:3 (tooltip)
+msgid "Stone"
+msgstr "Kámen"
+
+#: gui/session/top_panel/resource_wood.xml:3 (tooltip)
+msgid "Wood"
+msgstr "Dřevo"

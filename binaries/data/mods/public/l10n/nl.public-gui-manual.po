@@ -1,0 +1,557 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:38+0200\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/manual/manual.xml:12 (caption)
+msgid "Information"
+msgstr "Informatie"
+
+#: gui/manual/manual.xml:20 (caption)
+msgid "View Online"
+msgstr "Bekijk online"
+
+#: gui/manual/manual.xml:23 (caption)
+msgid "Close"
+msgstr "Sluiten"
+
+#: gui/manual/intro.txt:1
+msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
+msgstr "[font=\"sans-bold-18\"]0 A.D. in-game handleiding"
+
+#: gui/manual/intro.txt:2
+msgid "[font=\"sans-14\"]"
+msgstr "[font=\"sans-14\"]"
+
+#: gui/manual/intro.txt:3
+msgid ""
+"Thank you for installing 0 A.D.! This page will give a brief overview of the"
+" features available in this incomplete, under-development, alpha version of "
+"the game."
+msgstr "Bedankt voor het installeren 0 A.D.! Deze pagina geeft een kort overzicht van de aanwezige functies in deze incomplete versie van het spel."
+
+#: gui/manual/intro.txt:5
+msgid "[font=\"sans-bold-16\"]Graphics settings"
+msgstr "[font=\"sans-bold-16\"]Grafische instellingen"
+
+#: gui/manual/intro.txt:6
+msgid ""
+"[font=\"sans-14\"]You can switch between fullscreen and windowed mode by "
+"pressing Alt + Enter. In windowed mode, you can resize the window. If the "
+"game runs too slowly, you can change some settings in the configuration "
+"file: look for binaries/data/config/default.cfg in the location where the "
+"game is installed, which gives instructions for editing, and try disabling "
+"the \"fancywater\" and \"shadows\" options."
+msgstr "[font=\"sans-14\"]Je kan wisselen tussen volledig scherm, of in een venster door de Alt+Enter toetsencombinatie te gebruiken. Vensters kan je altijd verkleinen. Indien het spel te traag is kan je enkele instellingen proberen te wijzigen in de configuratie bestanden. Kijk hiervoor in binaries/data/config/default.cfg in de installatie locatie. Probeer onder andere \"fancy water\" en \"shadows\" te verwijderen."
+
+#: gui/manual/intro.txt:8
+msgid "[font=\"sans-bold-16\"]Playing the game"
+msgstr "[font=\"sans-bold-16\"]Spelcommando's"
+
+#: gui/manual/intro.txt:9
+msgid ""
+"[font=\"sans-14\"]The controls and gameplay should be familiar to players of"
+" traditional RTS games. There are currently a lot of missing features and "
+"poorly-balanced stats – you will probably have to wait until a beta release "
+"for it to work well."
+msgstr "[font=\"sans-14\"]De manier om het spel te spelen zou familiair moeten zijn voor spelers die gewoon zijn met het RTS genre. Er zijn momenteel nog een groot aantal ontbrekende eigenschappen en ongebalanceerde statistieken. Je zult waarschijnlijk tot een beta release moeten wachten voor het goed zal werken."
+
+#: gui/manual/intro.txt:11
+msgid "Basic controls:"
+msgstr "Basiscommando's:"
+
+#: gui/manual/intro.txt:12
+msgid "• Left-click to select units."
+msgstr "• Links klikken om eenheden te selecteren."
+
+#: gui/manual/intro.txt:13
+msgid "• Left-click-and-drag to select groups of units."
+msgstr "• Links slepen om een groep eenheden te selecteren."
+
+#: gui/manual/intro.txt:14
+msgid "• Right-click to order units to the target."
+msgstr "• Rechts klikken om eenheden een opdracht te geven."
+
+#: gui/manual/intro.txt:15
+msgid "• Arrow keys or WASD keys to move the camera."
+msgstr "• Gebruik pijltjes toetsen of WASD toetsen om de camera te bewegen."
+
+#: gui/manual/intro.txt:16
+msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
+msgstr "• Ctrl + pijltjes toetsen of Shift + muiswiel om de camera te roteren."
+
+#: gui/manual/intro.txt:17
+msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
+msgstr "• Muiswiel of \"+\" en \"-\" toetsen om te zoomen."
+
+#: gui/manual/intro.txt:19
+msgid "[font=\"sans-bold-16\"]Modes"
+msgstr "[font=\"sans-bold-16\"]Modes"
+
+#: gui/manual/intro.txt:20
+msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
+msgstr "[font=\"sans-14\"]Het main menu geeft toegang tot twee spelmodes:"
+
+#: gui/manual/intro.txt:22
+msgid ""
+"• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox "
+"game or against one or more AI opponents. The AI/AIs are under development "
+"and may not always be up to date on the new features, but you can test "
+"playing the game against an actual opponent if you aren't able to play with "
+"a human."
+msgstr "• [font=\"sans-bold-14\"]Singleplayer[font=\"sans-14\"] — speel een zandbak spel tegen één of meerdere AI tegenstanders. De AI tegenstanders zijn onder ontwikkeling en kunnen dus af en toe niet up-to-date zijn met de nieuwe eigenschappen in het spel. "
+
+#: gui/manual/intro.txt:24
+msgid ""
+"• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
+"opponents over the internet."
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — speel tegen menselijke tegenstanders over het internet of een lokaal netwerk."
+
+#: gui/manual/intro.txt:26
+msgid ""
+"To set up a multiplayer game, one player must select the \"Host game\" "
+"option. The game uses UDP port 20595, so the host must configure their "
+"NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
+"and enter the host's IP address."
+msgstr "Om een multiplayer spel te starten moet er één speler de \"Host spel\" optie aanduiden. Het spel gebruikt UDP poort 20595, dus moet de host zijn NAT/firewall/enz. configureren om dit toe te staan. Andere spelers kunnen dan \"Join spel\" selecteren en het IP adres van de host ingeven."
+
+#: gui/manual/intro.txt:28
+msgid "[font=\"sans-bold-16\"]Game setup"
+msgstr "[font=\"sans-bold-16\"]Spel instellen"
+
+#: gui/manual/intro.txt:29
+msgid ""
+"[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
+"setup options."
+msgstr "[font=\"sans-14\"]In een multiplayer spel kan enkel de host de instellingen wijzigen."
+
+#: gui/manual/intro.txt:31
+msgid ""
+"First, select whether you want to play on a random map (created "
+"automatically from a random map script) or a scenario (created by a map "
+"designer). Scenarios can be filtered to show only some maps. The default "
+"maps are shown immediately, but custom maps are often not so select \"All "
+"maps\" to see a list of all available maps. Then select a map to play on. "
+"The \"Demo Maps\" are designed for testing particular gameplay features and "
+"are probably not generally useful."
+msgstr "Als eerste selecteer je of je een willekeurige kaart (door de computer gemaakt, iedere keer anders) of een scenario (door een kaart designer gemaakt) wil spelen. Daarna kan je ook enkele filters aanpassen. Voor AI spelen kies je best de standaard filter, voor Multiplayer kan je ook zeekaarten kiezen als je dat wil. De demo kaarten zijn vooral gemaakt om het spel te testen, en zijn niet altijd even speelbaar."
+
+#: gui/manual/intro.txt:33
+msgid ""
+"Finally change the settings. For random maps this includes the number of "
+"players, the size of a map, etc. For scenarios you can only select who "
+"controls which player (decides where you start on the map etc). The options "
+"are either a human player, an AI or no player at all (existing units will "
+"attack enemies that come into sight, but no new units will be created, nor "
+"will the units be sent to attack anyone)."
+msgstr "Als laatste is het mogelijk om de instellingen wijzigen. Voor willekeurige kaarten kan je het aantal spelers, grootte van de kaart enz. instellen. Voor scenario's kan je enkel selecteren wie welke speler bestuurt (dit bepaalt waar je op de kaart begint). De mogelijkheden zijn óf een menselijke speler, óf een AI, óf geen speler (de bestaande eenheden zullen allen vijanden aanvallen die ze zien, maar er zullen geen nieuwe eenheden gecreëerd worden)."
+
+#: gui/manual/intro.txt:35
+msgid "When you are ready to start, click the \"Start game\" button."
+msgstr "Als je klaar bent, klik op de \"Start spel\" knop."
+
+#: gui/manual/intro.txt:37
+msgid "[font=\"sans-bold-16\"]Hotkeys:"
+msgstr "[font=\"sans-bold-16\"]Sneltoetsen:"
+
+#: gui/manual/intro.txt:38
+msgid "[font=\"sans-bold-14\"]Always"
+msgstr "[font=\"sans-bold-14\"]Altijd"
+
+#: gui/manual/intro.txt:39
+msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
+msgstr "[font=\"sans-14\"]Alt + F4: Sluit het spel onmiddellijk"
+
+#: gui/manual/intro.txt:40
+msgid "Alt + Enter: Toggle between fullscreen and windowed"
+msgstr "Alt + Enter: Wissel tussen volledig scherm en venster-modus."
+
+#: gui/manual/intro.txt:41
+msgid "~ or F9: Show/hide console"
+msgstr "~ of F9: Toon/verberg console"
+
+#: gui/manual/intro.txt:42
+msgid "Alt + F: Show/hide frame counter (FPS)"
+msgstr "Alt + F: Toon/verberg frame teller (FPS)"
+
+#: gui/manual/intro.txt:43
+msgid ""
+"F11: Enable/disable real-time profiler (toggles through the displays of "
+"information)"
+msgstr "F11: Activeer/deactiveer real-time profiler (blader door de verschillende informatieweergaven)"
+
+#: gui/manual/intro.txt:44
+msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
+msgstr "Shift + F11: Sla de huidige profiler data op naar \"logs/profile.txt\""
+
+#: gui/manual/intro.txt:45
+msgid ""
+"F2: Take screenshot (in .png format, location is displayed in the top left "
+"of the GUI after the file has been saved, and can also be seen in the "
+"console/logs if you miss it there)"
+msgstr "F2: Maak een schermafbeelding (in .png formaat, de locatie is weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of de logs)."
+
+#: gui/manual/intro.txt:46
+msgid ""
+"Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
+" displayed in the top left of the GUI after the file has been saved, and can"
+" also be seen in the console/logs if you miss it there)"
+msgstr "Shift + F2: Neem een grote schermafbeelding (6400px*4800px in .bmp formaat. De locatie is weergegeven in de linker bovenhoek nadat het bestand is opgeslagen. De locatie kan ook gevonden worden in de console of logs)."
+
+#: gui/manual/intro.txt:48
+msgid "[font=\"sans-bold-14\"]In Game"
+msgstr "[font=\"sans-bold-14\"]In het spel"
+
+#: gui/manual/intro.txt:49
+msgid ""
+"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
+"the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"]Dubbel klikken [op eenheid]: Selecteer alle eenheden van dezelfde soort op het scherm (ook van verschillende rang)."
+
+#: gui/manual/intro.txt:50
+msgid ""
+"Triple Left Click [on unit]: Select all of your units of the same kind and "
+"the same rank on the screen"
+msgstr "Driedubbelklik [op een eenheid]: Selecteer alle eenheden van dezelfde soort en rang die zichtbaar zijn vanuit het huidige camera standpunt."
+
+#: gui/manual/intro.txt:51
+msgid ""
+"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
+" the entire map (even if the are different ranks)"
+msgstr "Alt + Dubbel klikken [op eenheid]: Selecteer alle eenheden van dezelfde soort over de volledige kaart (zelfs als ze van verschillende rang zijn)"
+
+#: gui/manual/intro.txt:52
+msgid ""
+"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"and rank on the entire map"
+msgstr "Alt + driedubbelklik [op een eenheid]: Selecteer alle eenheden van dezelfde soort en rang over de volledige kaart."
+
+#: gui/manual/intro.txt:53
+msgid "Shift + F5: Quicksave"
+msgstr "Shift + F5: Snel opslaan"
+
+#: gui/manual/intro.txt:54
+msgid "Shift + F8: Quickload"
+msgstr "Shift + F8: Snel laden"
+
+#: gui/manual/intro.txt:55
+msgid "F10: Open/close menu"
+msgstr "F10: Open/sluit menu"
+
+#: gui/manual/intro.txt:56
+msgid "F12: Show/hide time elapsed counter"
+msgstr "F12: Toon/verberg verstreken tijd"
+
+#: gui/manual/intro.txt:57
+msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
+msgstr "ESC: Sluit alle vensters (chat, menu, ...) of verwijder de selectie"
+
+#: gui/manual/intro.txt:58
+msgid "Enter/return: Open/send chat"
+msgstr "Enter/return: Open/verstuur chat"
+
+#: gui/manual/intro.txt:59
+msgid "T: Send team chat"
+msgstr "T: Verstuur een team chat"
+
+#: gui/manual/intro.txt:60
+msgid "Pause: Pause/resume the game"
+msgstr "Pauze: Pauzeer/hervat het spel"
+
+#: gui/manual/intro.txt:61
+msgid "Delete: Delete currently selected unit/units/building/buildings"
+msgstr "Delete: Verwijder de huidige selectie"
+
+#: gui/manual/intro.txt:62
+msgid ",: Select idle fighters"
+msgstr ",: Selecteer de vrije soldaten"
+
+#: gui/manual/intro.txt:63
+msgid ".: Select idle workers (including citizen soldiers)"
+msgstr ".: Selecteer de vrije werkers (inclusief civiele soldaten)"
+
+#: gui/manual/intro.txt:64
+msgid "H: Stop (halt) the currently selected units."
+msgstr "H: Stop (halt) de geselecteerde eenheden."
+
+#: gui/manual/intro.txt:65
+msgid ""
+"Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
+"selected units/buildings"
+msgstr "Ctrl + 1 (en zo door tot Ctrl + 0): Creëer een controle groep 1 (tot 0) met de geselecteerde eenheden of gebouwen."
+
+#: gui/manual/intro.txt:66
+msgid ""
+"1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
+msgstr "1 (en zo door tot 0): Selecteer de eenheden/gebouwen in controle groep 1 (tot 0)"
+
+#: gui/manual/intro.txt:67
+msgid ""
+"Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
+msgstr "Shift + 1 (tot 0): Voeg de geselecteerde eenheden/gebouwen aan controlegroep 1 (tot 0) toe"
+
+#: gui/manual/intro.txt:68
+msgid ""
+"Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
+"jumping back to later."
+msgstr "Ctrl + F5 (en zo door tot F8): Sla de huidige camera positie op, om later naar terug te keren."
+
+#: gui/manual/intro.txt:69
+msgid ""
+"F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
+"last location if the camera is already over the marked position."
+msgstr "F5 (tot F8): Verplaats de camera naar de opgeslagen positie. Spring terug naar de laatste positie indien de camera al op de opgeslagen positie is."
+
+#: gui/manual/intro.txt:70
+msgid ""
+"Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
+" unit shown to the training queue for all the selected buildings."
+msgstr "Z, X, C, V, B, N, M: Met een gebouw geselecteerd, voeg de 1ste, 2de, ... getoonde eenheid toe aan de rekruteerwachtrij voor alle geselecteerde gebouwen."
+
+#: gui/manual/intro.txt:72
+msgid "[font=\"sans-bold-14\"]Modify mouse action"
+msgstr "[font=\"sans-bold-14\"]Wijzig muis actie"
+
+#: gui/manual/intro.txt:73
+msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
+msgstr "[font=\"sans-14\"]Ctrl + Rechter klik op gebouw: Beman gebouw"
+
+#: gui/manual/intro.txt:74
+msgid "Shift + Right Click: Queue the move/build/gather/etc order"
+msgstr "Shift + rechtsklik: Voeg een order toe aan de wachtrij"
+
+#: gui/manual/intro.txt:75
+msgid "Shift + Left click when training unit/s: Add units in batches of five"
+msgstr "Shift + klik bij het rekruteren van eenheden: Voeg eenheden toe aan de wachtrij in groepen van vijf"
+
+#: gui/manual/intro.txt:76
+msgid ""
+"Shift + Left Click or Left Drag over unit on map: Add unit to selection"
+msgstr "Shift + klik of sleep over een eenheid op de kaart: Voeg eenheid toe aan de selectie"
+
+#: gui/manual/intro.txt:77
+msgid ""
+"Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
+msgstr "Ctrl + klik of sleep over een eenheid: Verwijder eenheid van de selectie"
+
+#: gui/manual/intro.txt:78
+msgid "Alt + Left Drag over units on map: Only select military units"
+msgstr "Alt + sleep over eenheden op de kaart: Selecteer alleen militaire eenheden"
+
+#: gui/manual/intro.txt:79
+msgid ""
+"Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
+msgstr "Ctrl + Klik: Deselecteer eenheid of groep"
+
+#: gui/manual/intro.txt:80
+msgid ""
+"Right Click with a building/buildings selected: sets a rally point for units"
+" created/ungarrisoned from that building."
+msgstr "Rechtsklik met een gebouw geselecteerd: Zet een doel voor eenheden die uit dit gebouw komen."
+
+#: gui/manual/intro.txt:81
+msgid "Ctrl + Right Click with units selected:"
+msgstr "Ctrl + rechtsklik met eenheden geselecteerd:"
+
+#: gui/manual/intro.txt:82
+msgid "    - If the cursor is over a structure: Garrison"
+msgstr "- Met de cursor over een gebouw: Beman gebouw"
+
+#: gui/manual/intro.txt:83
+msgid "    - Otherwise: Attack move"
+msgstr "- Anders: Zoek en val vijanden aan"
+
+#: gui/manual/intro.txt:85
+msgid "[font=\"sans-bold-14\"]Overlays"
+msgstr "[font=\"sans-bold-14\"]Snelle (ontwikkelings) instellingen"
+
+#: gui/manual/intro.txt:86
+msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
+msgstr "[font=\"sans-14\"]Alt + G: Toon/verberg de GUI"
+
+#: gui/manual/intro.txt:87
+msgid "Alt + D: Show/hide developer overlay (with developer options)"
+msgstr "Alt + D: Toon/verberg de ontwikkelaars overlay (met ontwikkelopties)"
+
+#: gui/manual/intro.txt:88
+msgid ""
+"Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
+"the textured models, twice to get just the wireframes colored by the "
+"textures, thrice to get back to normal textured mode)"
+msgstr "Alt + W: Activeer de draadmodus (wireframe). Druk 1 keer om de draden over de vlakken te zien, twee keer om enkel de draden te zien, en drie keer om terug te keren naar het oorspronkelijke beeld."
+
+#: gui/manual/intro.txt:89
+msgid ""
+"Alt + S: Toggle unit silhouettes (might give a small performance boost)"
+msgstr "Alt + S: (De)activeer de silhouetten (kan een kleine snelheidswinst geven)"
+
+#: gui/manual/intro.txt:90
+msgid "Alt + Z: Toggle sky"
+msgstr "Alt + Z: Activeer/deactiveer de lucht"
+
+#: gui/manual/intro.txt:92
+msgid "[font=\"sans-bold-14\"]Camera manipulation"
+msgstr "[font=\"sans-bold-14\"]Camera manipulatie"
+
+#: gui/manual/intro.txt:93
+msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W of [up]: Ga voorwaards"
+
+#: gui/manual/intro.txt:94
+msgid "S or [down]: Pan screen down"
+msgstr "S or [down]: Ga achterwaards"
+
+#: gui/manual/intro.txt:95
+msgid "A or [left]: Pan screen left"
+msgstr "A of [left]: Ga links"
+
+#: gui/manual/intro.txt:96
+msgid "D or [right]: Pan screen right"
+msgstr "D of [right]: Ga rechts"
+
+#: gui/manual/intro.txt:97
+msgid "Ctrl + W or [up]: Rotate camera to look upward"
+msgstr "Ctrl + W of [up]: Roteer camera om naar boven te kijken"
+
+#: gui/manual/intro.txt:98
+msgid "Ctrl + S or [down]: Rotate camera to look downward"
+msgstr "Ctrl + S of [down]: Roteer camera om naar beneden te kijken"
+
+#: gui/manual/intro.txt:99
+msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A of [left]: Roteer de camera rond het terrein met de klok mee"
+
+#: gui/manual/intro.txt:100
+msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D or [right]: Roteer de camera rond het terrein tegen de klok in"
+
+#: gui/manual/intro.txt:101
+msgid "Q: Rotate camera clockwise around terrain"
+msgstr "Q: Roteer camera in wijzerzin rond het terrein"
+
+#: gui/manual/intro.txt:102
+msgid "E: Rotate camera anticlockwise around terrain"
+msgstr "E: Roteer de camera in tegenwijzerzin over het terrein"
+
+#: gui/manual/intro.txt:103
+msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
+msgstr "Shift + Muiswiel omhoog: Roteer de camera in wijzerzin."
+
+#: gui/manual/intro.txt:104
+msgid ""
+"Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
+msgstr "Shift + Muiswiel naar beneden: Roteer de camera in tegenwijzerzin."
+
+#: gui/manual/intro.txt:105
+msgid ""
+"F: Follow the selected unit (move the camera to stop the camera from "
+"following the unit/s)"
+msgstr "F: Volg de geselecteerde eenheid (beweeg de camera om het volgen te stoppen)"
+
+#: gui/manual/intro.txt:106
+msgid "R: Reset camera zoom/orientation"
+msgstr "R: Herstel camera zoom/orientatie"
+
+#: gui/manual/intro.txt:107
+msgid "+: Zoom in (keep pressed for continuous zoom)"
+msgstr "+: Zoom in (ingedrukt houden voor continue zoom)"
+
+#: gui/manual/intro.txt:108
+msgid "-: Zoom out (keep pressed for continuous zoom)"
+msgstr "-: Zoom uit (Ingedrukt houden voor continue zoom)"
+
+#: gui/manual/intro.txt:109
+msgid "Alt + W: Toggle through wireframe modes"
+msgstr "Alt + W: Wissel wireframe modes"
+
+#: gui/manual/intro.txt:110
+msgid ""
+"Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
+" pan"
+msgstr "Middelmuisknop of / (voorwaardse slash): houd ingedrukt en beweeg de muis om te pannen"
+
+#: gui/manual/intro.txt:112
+msgid "[font=\"sans-bold-14\"]During Building Placement"
+msgstr "[font=\"sans-bold-14\"]Tijdens het plaatsen van een gebouw"
+
+#: gui/manual/intro.txt:113
+msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"][: Roteer 15 graden tegenwijzerzin"
+
+#: gui/manual/intro.txt:114
+msgid "]: Rotate building 15 degrees clockwise"
+msgstr "]: Roteer het gebouw 15 graden met de klok mee."
+
+#: gui/manual/intro.txt:115
+msgid ""
+"Left Drag: Rotate building using mouse (foundation will be placed on mouse "
+"release)"
+msgstr "Links slepen: Roteer gebouw met de muis (de fundamenten zullen geplaatst worden bij het loslaten van de muis)"
+
+#: gui/manual/userreport.txt:1
+msgid ""
+"As a free, open source game, we don't have the resources to test on a wide "
+"range of systems, but we want to provide the best quality experience to as "
+"many players as possible. When you enable automatic feedback, we'll receive "
+"data to help us understand the hardware we should focus on supporting, and "
+"to identify performance problems we should fix."
+msgstr "Als een vrij en openbron spel hebben we niet de mogelijkheid om op veel verschillende systemen te testen, maar we willen de beste kwaliteit bieden aan zoveel mogelijk spelers. Door het activeren van de automatische feedback ontvangen wij data waaruit we kunnen leren op welke hardware we moeten focussen, en welke performantieproblemen er zijn."
+
+#: gui/manual/userreport.txt:3
+msgid "The following data will be sent to our server:"
+msgstr "De volgende data wordt naar onze servers verstuurd:"
+
+#: gui/manual/userreport.txt:5
+msgid ""
+"• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
+"~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
+"from the same user."
+msgstr "• Een willekeurige gebruikersID (opgeslaan in %APPDATA%\\0ad\\config\\user.cfg voor Windows, ~/.config/0ad/config/user.cfg voor Unix), om herhaalde problemen van dezelfde gebruiker te herkennen."
+
+#: gui/manual/userreport.txt:6
+msgid ""
+"• Game version number and basic build settings (optimisation mode, CPU "
+"architecture, timestamp, compiler version)."
+msgstr "• Versienummer en compileer eigenschappen (optimalisatiemode, CPU architectuur, tijd van compilatie, compilator versie) van het spel."
+
+#: gui/manual/userreport.txt:7
+msgid ""
+"• Hardware details: OS version, graphics driver version, OpenGL "
+"capabilities, screen size, CPU details, RAM size."
+msgstr "Hardware details: OS versie, grafische drivers, OpenGL eigenschappen, scherm grootte, CPU details, hoeveelheid RAM."
+
+#: gui/manual/userreport.txt:8
+msgid ""
+"• Performance details: a snapshot of timing data a few seconds after you "
+"start a match or change graphics settings."
+msgstr "• Performantie details: een getimed fragment van een paar seconden nadat een match gestart is, of grafische instellingen veranderd zijn."
+
+#: gui/manual/userreport.txt:10
+msgid ""
+"The data will only be a few kilobytes each time you run the game, so "
+"bandwidth usage is minimal."
+msgstr "De data zal slechts enkele kilobytes bevatten, iedere keer het spel gestart wordt. Dus het nodige internetverkeer is minimaal."
+
+#: gui/manual/userreport.txt:12
+msgid ""
+"We will store the submitted data on our server, and may publish statistics "
+"or non-user-identifiable details to help other game developers with similar "
+"questions. We will store the IP address that submitted the data, to help "
+"detect abuse of the service, but will not publish it. The published data can"
+" be seen at http://feedback.wildfiregames.com/"
+msgstr "We zullen de ontvangen data op onze server opslaan en kunnen deze geanonimiseerd publiceren voor statistische doeleinden, om andere ontwikkelaars met dezelfde vragen te helpen. We zullen het IP adres ook opslaan om misbruik van de dienst tegen te gaan, maar deze worden nooit gepubliceerd. De gepubliceerde data kan gezien worden op http://feedback.wildfiregames.com/"

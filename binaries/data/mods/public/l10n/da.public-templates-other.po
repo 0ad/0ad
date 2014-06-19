@@ -1,0 +1,981 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-06-19 19:39+0200\n"
+"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: da\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: simulation/templates/template_gaia.xml:5
+msgid "Gaia"
+msgstr "Moder Natur"
+
+#: simulation/templates/template_gaia_flora.xml:8
+msgid "Generic Flora"
+msgstr "Generisk Flora"
+
+#: simulation/templates/template_gaia_flora_bush.xml:8
+#: simulation/templates/template_gaia_flora_bush_berry.xml:8
+msgid "Bush"
+msgstr "Busk"
+
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Saml bær fra buskene for at få Mad."
+
+#: simulation/templates/template_gaia_flora_bush_berry.xml:9
+msgid "Berries"
+msgstr "Bær"
+
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr "Fæld for at samle Træ."
+
+#: simulation/templates/template_gaia_flora_tree.xml:5
+msgid "Tree"
+msgstr "Træ"
+
+#: simulation/templates/template_gaia_geo.xml:8
+msgid "Generic Geology"
+msgstr "Generisk Geologi"
+
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "En mineralåre som giver adgang til sjældne former for værdifuldt Metal."
+
+#: simulation/templates/template_gaia_geo_mineral.xml:4
+msgid "Mineral"
+msgstr "Mineral"
+
+#: simulation/templates/template_gaia_geo_mineral.xml:5
+msgid "Metal Mine"
+msgstr "Metalmine"
+
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "Udgrav disse for at få Sten."
+
+#: simulation/templates/template_gaia_geo_rock.xml:4
+msgid "Rock"
+msgstr "Sten"
+
+#: simulation/templates/template_gaia_geo_rock.xml:5
+msgid "Stone Mine"
+msgstr "Stenmine"
+
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
+msgstr "Ruinerne kan udgraves for at få ressourcer."
+
+#: simulation/templates/template_gaia_ruins.xml:8
+msgid "Generic Ruins"
+msgstr "Generiske Ruiner"
+
+#: simulation/templates/template_gaia_ruins.xml:9
+#: simulation/templates/gaia/special_ruins.xml:9
+#: simulation/templates/gaia/special_ruins_column_doric.xml:9
+#: simulation/templates/other/unfinished_greek_temple.xml:9
+msgid "Ruins"
+msgstr "Ruiner"
+
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr "En skat der hurtigt kan indsamles."
+
+#: simulation/templates/template_gaia_treasure.xml:8
+msgid "Generic Treasure"
+msgstr "Generisk Skat"
+
+#: simulation/templates/template_gaia_treasure.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:9
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:9
+#: simulation/templates/gaia/special_treasure_food_bin.xml:9
+#: simulation/templates/gaia/special_treasure_food_crate.xml:9
+#: simulation/templates/gaia/special_treasure_food_jars.xml:9
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:9
+#: simulation/templates/gaia/special_treasure_pegasus.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:9
+#: simulation/templates/gaia/special_treasure_wood.xml:9
+#: simulation/templates/other/special_treasure_shipwreck.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:9
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:9
+msgid "Treasure"
+msgstr "Skat"
+
+#: simulation/templates/template_structure.xml:47
+msgid "Structure"
+msgstr "Bygning"
+
+#: simulation/templates/template_unit.xml:37
+msgid "Unit"
+msgstr "Enhed"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
+#: simulation/templates/campaigns/army_mace_standard.xml:22
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+msgid "This is what an army would look like on the Strat Map."
+msgstr "Sådan ser en hær ud på det strategiske kort."
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+msgid "Army of Alexander the Great."
+msgstr "Alexander den Stores hær. "
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+msgid "Army of Alexander the Great"
+msgstr "Alexander den Stores hær"
+
+#: simulation/templates/campaigns/army_mace_standard.xml:20
+msgid "Army of Macedonia"
+msgstr "Makedoniens Hær"
+
+#: simulation/templates/campaigns/army_mace_standard.xml:21
+msgid "Army of Macedon"
+msgstr "Makedoniens Hær"
+
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+msgid "Army of Leonidas I."
+msgstr "Leonidas I's hær, "
+
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+msgid "Army of Leonidas I"
+msgstr "Leonidas I's hær"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city. Has a territory effect of 150."
+msgstr "Dette er en mindre græsk by. Har en territoriumseffekt på 150."
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:26
+#: simulation/templates/campaigns/campaign_city_test.xml:26
+msgid "Settlement"
+msgstr "Bebyggelse"
+
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:27
+msgid "Minor Greek Polis"
+msgstr "Mindre græsk Polis"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city. Has a territory effect of 300."
+msgstr "Dette er en stor græsk by. Har en territoriumseffekt på 300."
+
+#: simulation/templates/campaigns/campaign_city_test.xml:27
+msgid "Greek Polis"
+msgstr "Græsk Polis"
+
+#: simulation/templates/campaigns/campaign_religious_test.xml:12
+msgid "Religious Sanctuary"
+msgstr "Religiøst Sanctuarium"
+
+#: simulation/templates/campaigns/campaign_religious_test.xml:13
+msgid "Greek Religious Sanctuary"
+msgstr "Græsk Religiøst Sanctuarium"
+
+#: simulation/templates/formations/battle_line.xml:5
+msgid "Battle Line"
+msgstr "Kamplinje"
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
+msgstr "Kasse"
+
+#: simulation/templates/formations/box.xml:6
+msgid "4 units required"
+msgstr "Kræver 4 enheder"
+
+#: simulation/templates/formations/column_closed.xml:5
+msgid "Column Closed"
+msgstr "Kolonne Lukket"
+
+#: simulation/templates/formations/column_open.xml:5
+msgid "Column Open"
+msgstr "Kolonne Åben"
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
+msgstr "Flanke"
+
+#: simulation/templates/formations/flank.xml:6
+msgid "8 units required"
+msgstr "Kræver 8 enheder"
+
+#: simulation/templates/formations/line_closed.xml:5
+msgid "Line Closed"
+msgstr "Linje Lukket"
+
+#: simulation/templates/formations/line_open.xml:5
+msgid "Line Open"
+msgstr "Linje Åben"
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Falanks"
+
+#: simulation/templates/formations/phalanx.xml:6
+msgid "10 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/formations/scatter.xml:5
+msgid "Scatter"
+msgstr "Spredning"
+
+#: simulation/templates/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Blænkning"
+
+#: simulation/templates/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr ""
+
+#: simulation/templates/formations/syntagma.xml:7
+msgid "Syntagma"
+msgstr "Syntagme"
+
+#: simulation/templates/formations/syntagma.xml:6
+msgid "9 pike infantry units required"
+msgstr "Kræver 9 pikenerinfanterienheder"
+
+#: simulation/templates/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Skjoldborg"
+
+#: simulation/templates/formations/testudo.xml:6
+msgid "9 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Kile"
+
+#: simulation/templates/formations/wedge.xml:6
+msgid "3 cavalry units required"
+msgstr "Kræver 3 kavalerienheder"
+
+#: simulation/templates/gaia/fauna_bear.xml:18
+msgid "Bear"
+msgstr "Bjørn"
+
+#: simulation/templates/gaia/fauna_boar.xml:18
+msgid "Boar"
+msgstr "Vildsvin"
+
+#: simulation/templates/gaia/fauna_camel.xml:9
+msgid "Camel"
+msgstr "Kamel"
+
+#: simulation/templates/gaia/fauna_chicken.xml:12
+msgid "Chicken"
+msgstr "Kylling"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
+msgstr "Nilkrokodille"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:18
+msgid "Crocodylus niloticus"
+msgstr "Crocodylus niloticus"
+
+#: simulation/templates/gaia/fauna_deer.xml:5
+msgid "Deer"
+msgstr "Hjort"
+
+#: simulation/templates/gaia/fauna_elephant.xml:13
+msgid "Elephant"
+msgstr "Elefant"
+
+#: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
+msgid "African Bush Elephant"
+msgstr "Afrikansk Savanneelefant"
+
+#: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
+msgid "African Elephant (Infant)"
+msgstr "Afrikansk Elefant (Unge)"
+
+#: simulation/templates/gaia/fauna_elephant_asian.xml:46
+msgid "Asian Elephant"
+msgstr "Asiatisk Elefant"
+
+#: simulation/templates/gaia/fauna_elephant_north_african.xml:33
+msgid "North African Elephant"
+msgstr "Nordafrikansk Elefant"
+
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
+msgstr "Saml mad denne rige oceanressource."
+
+#: simulation/templates/gaia/fauna_fish.xml:5
+#: simulation/templates/gaia/fauna_fish_tuna.xml:5
+msgid "Tuna Fish"
+msgstr "Tunfisk "
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
+msgstr "Saml med fra denne rige ressource fra vandløb."
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:5
+msgid "Tilapia Fish"
+msgstr "Tilapia"
+
+#: simulation/templates/gaia/fauna_gazelle.xml:5
+msgid "Gazelle"
+msgstr "Gazelle"
+
+#: simulation/templates/gaia/fauna_giraffe.xml:12
+msgid "Giraffe (Adult)"
+msgstr "Giraf (Voksen)"
+
+#: simulation/templates/gaia/fauna_giraffe_infant.xml:9
+msgid "Giraffe (Juvenile)"
+msgstr "Giraf (Ung)"
+
+#: simulation/templates/gaia/fauna_goat.xml:11
+msgid "Goat"
+msgstr "Ged"
+
+#: simulation/templates/gaia/fauna_horse.xml:9
+msgid "Horse"
+msgstr "Hest"
+
+#: simulation/templates/gaia/fauna_lion.xml:18
+msgid "Lion"
+msgstr "Løve"
+
+#: simulation/templates/gaia/fauna_lioness.xml:18
+msgid "Lioness"
+msgstr "Løvinde"
+
+#: simulation/templates/gaia/fauna_muskox.xml:9
+msgid "Muskox"
+msgstr "Moskusokse"
+
+#: simulation/templates/gaia/fauna_peacock.xml:5
+msgid "Peacock"
+msgstr "Påfugl"
+
+#: simulation/templates/gaia/fauna_pig.xml:5
+msgid "Pig"
+msgstr "Gris"
+
+#: simulation/templates/gaia/fauna_rabbit.xml:9
+msgid "Rabbit"
+msgstr "Kanin"
+
+#: simulation/templates/gaia/fauna_shark.xml:15
+msgid "Shark"
+msgstr "Haj"
+
+#: simulation/templates/gaia/fauna_shark.xml:14
+msgid "Great White"
+msgstr "Hvidhaj"
+
+#: simulation/templates/gaia/fauna_sheep.xml:11
+msgid "Sheep"
+msgstr "Får"
+
+#: simulation/templates/gaia/fauna_tiger.xml:18
+msgid "Tiger"
+msgstr "Tiger"
+
+#: simulation/templates/gaia/fauna_walrus.xml:23
+msgid "Walrus"
+msgstr "Hvalros"
+
+#: simulation/templates/gaia/fauna_whale_fin.xml:4
+msgid "Fin Whale"
+msgstr "Finhval"
+
+#: simulation/templates/gaia/fauna_whale_humpback.xml:8
+msgid "Humpback Whale"
+msgstr "Pukkelhval"
+
+#: simulation/templates/gaia/fauna_wildebeest.xml:9
+msgid "Wildebeest"
+msgstr "Gnu"
+
+#: simulation/templates/gaia/fauna_wolf.xml:18
+msgid "Wolf"
+msgstr "Ulv"
+
+#: simulation/templates/gaia/fauna_wolf_snow.xml:18
+msgid "Snow Wolf"
+msgstr "Polarulv"
+
+#: simulation/templates/gaia/fauna_zebra.xml:9
+msgid "Zebra"
+msgstr "Zebra"
+
+#: simulation/templates/gaia/flora_bush_badlands.xml:8
+msgid "Hardy Bush"
+msgstr "Hårdfør Busk"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
+msgstr "Saml druer fra disse rænker for at få Mad."
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:4
+msgid "Forage"
+msgstr "Samle"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:5
+msgid "Grapes"
+msgstr "Druer"
+
+#: simulation/templates/gaia/flora_bush_temperate.xml:8
+msgid "Deciduous Bush"
+msgstr "Løvfældende Busk"
+
+#: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
+msgid "Aleppo Pine Tree"
+msgstr "Aleppofyr"
+
+#: simulation/templates/gaia/flora_tree_apple.xml:8
+msgid "Apple Tree"
+msgstr "Æbletræ"
+
+#: simulation/templates/gaia/flora_tree_baobab.xml:8
+msgid "Baobab"
+msgstr "Baobab"
+
+#: simulation/templates/gaia/flora_tree_carob.xml:4
+msgid "Carob Tree"
+msgstr "Johannesbrød"
+
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_patch.xml:8
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_short.xml:4
+#: simulation/templates/gaia/flora_tree_cretan_date_palm_tall.xml:4
+msgid "Cretan Date Palm"
+msgstr "Kretansk Figenpalme"
+
+#: simulation/templates/gaia/flora_tree_cypress.xml:4
+msgid "Cypress Tree"
+msgstr "Cypres"
+
+#: simulation/templates/gaia/flora_tree_date_palm.xml:4
+msgid "Date Palm"
+msgstr "Daddelpalme"
+
+#: simulation/templates/gaia/flora_tree_dead.xml:4
+msgid "Dead Tree"
+msgstr "Dødt Træ"
+
+#: simulation/templates/gaia/flora_tree_euro_beech.xml:4
+#: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
+msgid "European Beech Tree"
+msgstr "Europæisk Bøgetræ"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
+msgstr "Saml figner for at få Mad."
+
+#: simulation/templates/gaia/flora_tree_fig.xml:8
+msgid "Fig"
+msgstr "Figen"
+
+#: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
+msgid "Mediterranean Fan Palm"
+msgstr "Middelhavspalme"
+
+#: simulation/templates/gaia/flora_tree_oak.xml:4
+#: simulation/templates/gaia/flora_tree_oak_aut.xml:4
+msgid "Oak Tree"
+msgstr "Egetræ"
+
+#: simulation/templates/gaia/flora_tree_oak_large.xml:4
+msgid "Large Oak Tree"
+msgstr "Stort Egetræ"
+
+#: simulation/templates/gaia/flora_tree_olive.xml:8
+msgid "Olive Tree"
+msgstr "Oliventræ"
+
+#: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
+msgid "Palm"
+msgstr "Palme"
+
+#: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
+msgid "Tropical Palm"
+msgstr "Tropisk Palme"
+
+#: simulation/templates/gaia/flora_tree_pine.xml:4
+#: simulation/templates/gaia/flora_tree_pine_w.xml:4
+msgid "Pine Tree"
+msgstr "Fyrretræ"
+
+#: simulation/templates/gaia/flora_tree_poplar.xml:4
+msgid "Poplar Tree"
+msgstr "Poppel"
+
+#: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
+msgid "Lombardy Poplar Tree"
+msgstr "Pyramidepoppel"
+
+#: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
+msgid "Senegal Date Palm"
+msgstr "Senegal Daddelpalme"
+
+#: simulation/templates/gaia/flora_tree_tamarix.xml:4
+msgid "Tamarix Tree"
+msgstr "Tamarisk"
+
+#: simulation/templates/gaia/flora_tree_toona.xml:4
+msgid "Toona Tree"
+msgstr "Asiatisk Mahogni"
+
+#: simulation/templates/gaia/special_ruins.xml:10
+#: simulation/templates/gaia/special_ruins_column_doric.xml:10
+msgid "Ancient Ruins"
+msgstr "Ruiner fra Oldtiden"
+
+#: simulation/templates/gaia/special_ruins_standing_stone.xml:9
+#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
+#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
+msgid "Stone Ruins"
+msgstr "Stenruiner"
+
+#: simulation/templates/gaia/special_ruins_standing_stone.xml:10
+#: simulation/templates/gaia/special_treasure_standing_stone.xml:10
+msgid "Celtic Standing Stone"
+msgstr "Keltisk Bautasten"
+
+#: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
+msgid "Ptolemaic Egyptian Statues"
+msgstr "Ptolemæiske Egyptiske Statuer"
+
+#: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
+msgid "Roman Statues"
+msgstr "Romerske Statuer"
+
+#: simulation/templates/gaia/special_treasure_food_barrel.xml:10
+#: simulation/templates/gaia/special_treasure_food_bin.xml:10
+#: simulation/templates/gaia/special_treasure_food_crate.xml:10
+#: simulation/templates/gaia/special_treasure_food_jars.xml:10
+#: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
+#: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
+msgid "Food Treasure"
+msgstr "Madskat"
+
+#: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
+msgid "Half-buried Barrels"
+msgstr "Halvt Begravede Tønder"
+
+#: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
+msgid "Persian Food Stores"
+msgstr "Persiske Madlagre"
+
+#: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
+msgid "Persian Food Treasure"
+msgstr "Persisk Madskat"
+
+#: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
+msgid "Golden Fleece"
+msgstr "Det Gyldne Skind"
+
+#: simulation/templates/gaia/special_treasure_metal.xml:9
+#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
+#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
+msgid "Metal Treasure"
+msgstr "Metalskat"
+
+#: simulation/templates/gaia/special_treasure_metal.xml:10
+msgid "Secret Box"
+msgstr "Hemmelig Æske"
+
+#: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
+msgid "Persian Wares"
+msgstr "Persiske Varer"
+
+#: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
+msgid "Persian Rugs"
+msgstr "Persiske Tæpper"
+
+#: simulation/templates/gaia/special_treasure_pegasus.xml:10
+msgid "Pegasus"
+msgstr "Pegasus"
+
+#: simulation/templates/gaia/special_treasure_standing_stone.xml:9
+#: simulation/templates/gaia/special_treasure_stone.xml:10
+msgid "Stone Treasure"
+msgstr "Stenskat"
+
+#: simulation/templates/gaia/special_treasure_wood.xml:10
+msgid "Wood Treasure"
+msgstr "Træskat"
+
+#: simulation/templates/other/bench.xml:20
+msgid "Bench"
+msgstr "Bænk"
+
+#: simulation/templates/other/bench.xml:21
+msgid "Wooden Bench"
+msgstr "Træbænk"
+
+#: simulation/templates/other/bridge_hele.xml:15
+#: simulation/templates/other/bridge_hele.xml:16
+msgid "Bridge"
+msgstr "Bro"
+
+#: simulation/templates/other/bridge_wooden.xml:15
+#: simulation/templates/other/bridge_wooden.xml:16
+msgid "Wooden Bridge"
+msgstr "Træbro"
+
+#: simulation/templates/other/cart_tophet.xml:25
+msgid "Train physicians and Sacred Band Cavalrymen."
+msgstr ""
+
+#: simulation/templates/other/cart_tophet.xml:22
+msgid "Sacrificial Temple"
+msgstr "Offertempel"
+
+#: simulation/templates/other/cart_tophet.xml:23
+msgid "Tophet"
+msgstr "Tophet"
+
+#: simulation/templates/other/celt_homestead.xml:25
+msgid "A Celtic homestead."
+msgstr "Et keltisk avlsbrug."
+
+#: simulation/templates/other/celt_homestead.xml:22
+msgid "Homestead"
+msgstr "Avlsbrug"
+
+#: simulation/templates/other/celt_homestead.xml:23
+msgid "Caer"
+msgstr "Caer"
+
+#: simulation/templates/other/celt_hut.xml:23
+msgid "Add +2 to Population Cap."
+msgstr "+2 Befolkning."
+
+#: simulation/templates/other/celt_hut.xml:21
+msgid "Hut"
+msgstr "Hytte"
+
+#: simulation/templates/other/celt_longhouse.xml:24
+#: simulation/templates/other/hellenic_propylaea.xml:28
+#: simulation/templates/other/hellenic_stoa.xml:28
+msgid "Add +10 to Population Cap."
+msgstr "+10 Befolkning."
+
+#: simulation/templates/other/celt_longhouse.xml:22
+msgid "Longhouse"
+msgstr "Langhus"
+
+#: simulation/templates/other/column_doric.xml:20
+#: simulation/templates/other/column_doric_fallen.xml:20
+#: simulation/templates/other/column_doric_fallen_b.xml:20
+msgid "Column"
+msgstr "Søjle"
+
+#: simulation/templates/other/column_doric.xml:21
+msgid "Doric Column"
+msgstr "Dorisk Søjle"
+
+#: simulation/templates/other/column_doric_fallen.xml:21
+#: simulation/templates/other/column_doric_fallen_b.xml:21
+msgid "Fallen Doric Column"
+msgstr "Falden Dorisk Søjle"
+
+#: simulation/templates/other/fence_long.xml:20
+#: simulation/templates/other/fence_short.xml:20
+msgid "Fence"
+msgstr "Hegn"
+
+#: simulation/templates/other/fence_long.xml:21
+msgid "Long Wooden Fence"
+msgstr "Langt Træhegn"
+
+#: simulation/templates/other/fence_short.xml:21
+msgid "Short Wooden Fence"
+msgstr "Kort Træhegn"
+
+#: simulation/templates/other/fence_stone.xml:20
+#: simulation/templates/other/fence_stone.xml:21
+msgid "Stone Fence"
+msgstr "Stenhegn"
+
+#: simulation/templates/other/generic_field.xml:9
+msgid "Wheat Field"
+msgstr "Hvedemark"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:33
+msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Træner helere. Garnisonér op til 30 enheder for at hele dem hurtigt."
+
+#: simulation/templates/other/hellenic_epic_temple.xml:30
+msgid "Epic Temple"
+msgstr "Episk Tempel"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:31
+msgid "Naos Parthenos"
+msgstr "Naos Parthenos"
+
+#: simulation/templates/other/hellenic_propylaea.xml:25
+msgid "Portico"
+msgstr "Porticus"
+
+#: simulation/templates/other/hellenic_propylaea.xml:26
+msgid "Propylaea"
+msgstr "Propylaea"
+
+#: simulation/templates/other/hellenic_royal_stoa.xml:33
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "+10 Befolkning. Kan rekruttere specialenheder."
+
+#: simulation/templates/other/hellenic_royal_stoa.xml:30
+#: simulation/templates/other/hellenic_stoa.xml:25
+msgid "Stoa"
+msgstr "Stoa"
+
+#: simulation/templates/other/hellenic_royal_stoa.xml:31
+msgid "Hellenic Royal Stoa"
+msgstr "Hellensk Kongelig Stoa"
+
+#: simulation/templates/other/hellenic_stoa.xml:26
+msgid "Hellenic Stoa"
+msgstr "Hellensk Stoa"
+
+#: simulation/templates/other/maur_palace.xml:14
+msgid "Add +15 to Population Cap. Recruit extra units and heroes."
+msgstr "+15 Befolkning. Rekruttér ekstra enheder og helte."
+
+#: simulation/templates/other/maur_palace.xml:12
+msgid "Harmya"
+msgstr "Harmya"
+
+#: simulation/templates/other/obelisk.xml:20
+msgid "Obelisk"
+msgstr "Obelisk"
+
+#: simulation/templates/other/obelisk.xml:21
+msgid "Egyptian Obelisk"
+msgstr "Egyptisk Obelisk"
+
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
+msgstr "Stor Pig"
+
+#: simulation/templates/other/palisades_angle_spike.xml:16
+msgid "Palisade Angle Spike"
+msgstr ""
+
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
+msgstr "Træmurshjørne"
+
+#: simulation/templates/other/palisades_rocks_curve.xml:15
+msgid "Palisade Curve"
+msgstr "Palisadekurve"
+
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
+msgstr "Træmur Endestykke"
+
+#: simulation/templates/other/palisades_rocks_end.xml:15
+msgid "Palisade End"
+msgstr "Palisade Ende"
+
+#: simulation/templates/other/palisades_rocks_fort.xml:21
+msgid "Wooden Tower"
+msgstr "Trætårn"
+
+#: simulation/templates/other/palisades_rocks_fort.xml:20
+msgid "Palisade Fort"
+msgstr "Palisade Fort"
+
+#: simulation/templates/other/palisades_rocks_gate.xml:21
+msgid "Wooden Gate"
+msgstr "Træport"
+
+#: simulation/templates/other/palisades_rocks_gate.xml:20
+msgid "Palisade Gate"
+msgstr "Palisadeport"
+
+#: simulation/templates/other/palisades_rocks_long.xml:23
+#: simulation/templates/other/palisades_rocks_medium.xml:23
+#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr "Træmur"
+
+#: simulation/templates/other/palisades_rocks_long.xml:22
+#: simulation/templates/other/palisades_rocks_medium.xml:22
+#: simulation/templates/other/palisades_rocks_short.xml:21
+#: simulation/templates/other/palisades_rocks_straight.xml:15
+#: simulation/templates/other/palisades_rocks_tower.xml:21
+#: simulation/templates/other/wallset_palisade.xml:6
+msgid "Palisade"
+msgstr "Palisade"
+
+#: simulation/templates/other/palisades_rocks_long.xml:24
+msgid "Convert Wooden Wall into Wooden Gate"
+msgstr "Omdan Træmur til Træport"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:16
+#: simulation/templates/other/palisades_rocks_watchtower.xml:16
+msgid "Wooden Watch Tower"
+msgstr "Vagttårn af træ"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+msgid "Outpost"
+msgstr "Udkigspost"
+
+#: simulation/templates/other/palisades_rocks_watchtower.xml:15
+msgid "Watchtower"
+msgstr "Vagttårn"
+
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
+msgstr "Små Pigge"
+
+#: simulation/templates/other/palisades_small_spikes.xml:16
+msgid "Spikes Small"
+msgstr "Pigge Små"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
+msgstr "Høje Pigge"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:16
+msgid "Spikes Tall"
+msgstr "Pigge Høje"
+
+#: simulation/templates/other/pers_apartment_block.xml:15
+msgid "Apartment Block"
+msgstr "Lejlighedskompleks"
+
+#: simulation/templates/other/pers_house_a.xml:12
+msgid "House"
+msgstr "Hus"
+
+#: simulation/templates/other/pers_house_b.xml:15
+#: simulation/templates/other/pers_inn.xml:15
+msgid "Inn"
+msgstr "Kro"
+
+#: simulation/templates/other/pers_warehouse.xml:12
+msgid "Warehouse"
+msgstr "Varehus"
+
+#: simulation/templates/other/plane.xml:40
+msgid "A World War 2 American fighter plane."
+msgstr "Et amerikansk kampfly fra Anden Verdenskrig."
+
+#: simulation/templates/other/plane.xml:38
+msgid "P-51 Mustang"
+msgstr "P-51 Mustang"
+
+#: simulation/templates/other/pyramid_great.xml:9
+#: simulation/templates/other/pyramid_minor.xml:9
+msgid "Pyramid"
+msgstr "Pyramide"
+
+#: simulation/templates/other/pyramid_great.xml:10
+msgid "Great Pyramid"
+msgstr "Den Store Pyramide"
+
+#: simulation/templates/other/pyramid_minor.xml:10
+msgid "Minor Pyramid"
+msgstr "Lille Pyramide"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr ""
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
+msgid "Shipwreck"
+msgstr "Skibsvrag"
+
+#: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
+msgid "Shipwreck Cargo"
+msgstr "Vraggods"
+
+#: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
+msgid ""
+"A shipwreck with much loss of life. A good opportunity for any businessman."
+msgstr "Et skibsvrag med mange tabte liv. En god mulighed for enhver forretningsmand."
+
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
+msgid ""
+"The wreck of a small cargo ship. A good opportunity for any businessman."
+msgstr "Vraget af et lille handelsskib. En god mulighed for enhver forretningsmand."
+
+#: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
+msgid "A cargo ship rammed in half. A good opportunity for any businessman."
+msgstr "Et handelsskib vædret midt over. En god mulighed for enhver forretningsmand."
+
+#: simulation/templates/other/stall_big.xml:12
+msgid "Big stall"
+msgstr "Stor bod"
+
+#: simulation/templates/other/stall_med.xml:12
+msgid "Medium stall"
+msgstr "Mellemstor bod"
+
+#: simulation/templates/other/stall_small_a.xml:12
+msgid "Small stall"
+msgstr "Lille bod"
+
+#: simulation/templates/other/stall_small_b.xml:12
+msgid "Small stall b"
+msgstr "Lille bod b"
+
+#: simulation/templates/other/table_rectangle.xml:20
+#: simulation/templates/other/table_square.xml:20
+msgid "Table"
+msgstr "Bord"
+
+#: simulation/templates/other/table_rectangle.xml:21
+msgid "Rectangle Table"
+msgstr "Rektangulært Bord"
+
+#: simulation/templates/other/table_square.xml:21
+msgid "Square Table"
+msgstr "Kvadratisk Bord"
+
+#: simulation/templates/other/temp_hele_super_infantry_p.xml:5
+msgid "Spartiate with Xiphos"
+msgstr "Spartiat med Xiphos"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "Dette tempel blev aldrig færdigt og er blevet til ruiner."
+
+#: simulation/templates/other/unfinished_greek_temple.xml:10
+msgid "Unfinished Greek Temple"
+msgstr "Ufærdigt Græsk Tempel"
+
+#: simulation/templates/skirmish/structures/default_house_10.xml:5
+msgid ""
+"Changes in a 10-pop house for civilisations with those houses, is deleted "
+"for other civs"
+msgstr ""
+
+#: simulation/templates/skirmish/structures/default_house_5.xml:5
+msgid ""
+"Changes in a 5-pop house for civilisations with those houses, is deleted for"
+" other civs"
+msgstr ""
+
+#: simulation/templates/special/marker_object_sound.xml:15
+#: simulation/templates/special/marker_object_sound.xml:16
+msgid "Marker"
+msgstr ""
