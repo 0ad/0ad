@@ -419,7 +419,7 @@ function joinSelectedGame()
 		}
 
 		// Open Multiplayer connection window with join option.
-		Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "join", name: sname, ip: sip, rating: g_userRating });
+		Engine.PushGuiPage("page_gamesetup_mp.xml", { multiplayerGameType: "join", name: sname, ip: "127.0.0.1", rating: g_userRating });
 	}
 }
 

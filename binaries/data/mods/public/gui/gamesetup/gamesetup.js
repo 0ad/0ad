@@ -284,6 +284,8 @@ function initMain()
 			// Update attributes so other players can see change
 			g_GameAttributes.settings.RatingEnabled = this.checked;
 			Engine.SetRankedGame(this.checked);
+			Engine.GetGUIObjectByName("enableCheats").enabled = !this.checked;
+			Engine.GetGUIObjectByName("lockTeams").enabled = !this.checked;
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
 		};
@@ -291,7 +293,6 @@ function initMain()
 	else
 	{
 		// If we're a network client, disable all the map controls
-		// TODO: make them look visually disabled so it's obvious why they don't work
 		Engine.GetGUIObjectByName("mapTypeSelection").hidden = true;
 		Engine.GetGUIObjectByName("mapTypeText").hidden = false;
 		Engine.GetGUIObjectByName("mapFilterSelection").hidden = true;
@@ -333,7 +334,10 @@ function initMain()
 		{
 			Engine.GetGUIObjectByName("optionRating").hidden = false;
 			Engine.GetGUIObjectByName("enableRating").checked = Engine.IsRankedGame();
-			g_GameAttributes.settings.RatingEnabled = true;
+			g_GameAttributes.settings.RatingEnabled = Engine.IsRankedGame();
+			// We force locked teams and disabled cheats in ranked games.
+			Engine.GetGUIObjectByName("enableCheats").enabled = !Engine.IsRankedGame();
+			Engine.GetGUIObjectByName("lockTeams").enabled = !Engine.IsRankedGame();
 		}
 		if (g_IsController)
 		{
@@ -398,6 +402,9 @@ function initMain()
 		// to allow easy keyboard selection of maps
 		Engine.GetGUIObjectByName("mapSelection").focus();
 	}
+	// Sync g_GameAttributes to everyone.
+	if (g_IsController)
+		updateGameAttributes();
 }
 
 function handleNetMessage(message)
@@ -426,7 +433,18 @@ function handleNetMessage(message)
 
 	case "gamesetup":
 		if (message.data) // (the host gets undefined data on first connect, so skip that)
+		{
 			g_GameAttributes = message.data;
+
+			// Validate some settings for rated games.
+			if (g_GameAttributes.settings.RatingEnabled)
+			{
+				// Cheats can never be on in rated games.
+				g_GameAttributes.settings.CheatsEnabled = false;
+				// Teams must be locked in rated games.
+				g_GameAttributes.settings.LockTeams = true;
+			}
+		}
 
 		onGameAttributesChange();
 		break;
@@ -1040,14 +1058,15 @@ function onGameAttributesChange()
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 
+	// Josh 20.6.2014: Not quite sure why we check for undefined on these properties, that shouldn't ever happen (?)
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victoryIdx = (mapSettings.GameType !== undefined && VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
-	enableCheats.checked = (g_GameAttributes.settings.CheatsEnabled === undefined || !g_GameAttributes.settings.CheatsEnabled ? false : true)
+	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
-	if (g_GameAttributes.settings.RatingEnabled !== undefined)
+	if (mapSettings.RatingEnabled !== undefined)
 	{
-		enableRating.checked = g_GameAttributes.settings.RatingEnabled;
+		enableRating.checked = mapSettings.RatingEnabled;
 		Engine.SetRankedGame(enableRating.checked);
 		enableRatingText.caption = (enableRating.checked ? "Yes" : "No");
 	}
