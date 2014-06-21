@@ -242,9 +242,8 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 {
 	var evts = events["ConstructionFinished"];
 	// TODO: probably check stuffs like a base destruction.
-	for (var i in evts)
+	for (var evt of evts)
 	{
-		var evt = evts[i];
 		if (!evt || !evt.newentity)
 			continue;
 		var entity = gameState.getEntityById(evt.newentity);
@@ -253,21 +252,19 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 	}
 
 	var evts = events["TrainingFinished"];
-	for (var i in evts)
+	for (var evt of evts)
 	{
-		var evt = evts[i];
 		if (!evt || !evt.entities)
 			continue;
-		for each (var entId in evt.entities)
+		for (var entId of evt.entities)
 		{
 			var entity = gameState.getEntityById(entId);
-			if (entity && entity.hasClass("Ship") && entity.isOwn(PlayerID))
-			{
-				var pos = gameState.ai.accessibility.gamePosToMapPos(entity.position());
-				var index = pos[0] + pos[1]*gameState.ai.accessibility.width;
-				var sea = gameState.ai.accessibility.navalPassMap[index];
-				entity.setMetadata(PlayerID, "sea", sea);
-			}
+			if (!entity || !entity.hasClass("Ship") || !entity.isOwn(PlayerID))
+				continue;
+			var pos = gameState.ai.accessibility.gamePosToMapPos(entity.position());
+			var index = pos[0] + pos[1]*gameState.ai.accessibility.width;
+			var sea = gameState.ai.accessibility.navalPassMap[index];
+			entity.setMetadata(PlayerID, "sea", sea);
 		}
 	}
 };

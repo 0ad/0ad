@@ -36,9 +36,9 @@ m.HQ = function(Config)
 	this.stopBuilding = []; // list of buildings to stop (temporarily) production because no room
 
 	this.towerStartTime = 0;
-	this.towerLapseTime = this.Config.Military.towerLapseTime * 1000;
+	this.towerLapseTime = this.Config.Military.towerLapseTime;
 	this.fortressStartTime = 0;
-	this.fortressLapseTime = this.Config.Military.fortressLapseTime * 1000;
+	this.fortressLapseTime = this.Config.Military.fortressLapseTime;
 
 	this.baseManagers = {};
 	this.attackManager = new m.AttackManager(this.Config);
@@ -478,7 +478,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 		else
 			var costsResource = 0.2;
 		var toAdd = true;
-		for each (var param in parameters)
+		for (var param of parameters)
 		{
 			if (param[0] !== "costsResource" || param[2] !== type)
 				continue; 			
@@ -1268,9 +1268,9 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 			else
 				var numFortresses = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_b"), true)
 					+ gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_fortress_g"), true);
-			if (gameState.getTimeElapsed() > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
+			if (gameState.ai.elapsedTime > (1 + 0.10*numFortresses)*this.fortressLapseTime + this.fortressStartTime)
 			{
-				this.fortressStartTime = gameState.getTimeElapsed();
+				this.fortressStartTime = gameState.ai.elapsedTime;
 				queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, fortressType));
 			}
 		}
@@ -1304,9 +1304,9 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 		return;	
 
 	var numTowers = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_defense_tower"), true);
-	if (gameState.getTimeElapsed() > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
+	if (gameState.ai.elapsedTime > (1 + 0.10*numTowers)*this.towerLapseTime + this.towerStartTime)
 	{
-		this.towerStartTime = gameState.getTimeElapsed();
+		this.towerStartTime = gameState.ai.elapsedTime;
 		queues.defenseBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_defense_tower"));
 	}
 	// TODO  otherwise protect markets and civilcentres
@@ -1493,7 +1493,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	}
 	if (rangedUnit && numGarrisoned >= nearestAnchor.garrisonMax())
 	{
-		// No ranged more room to garrison ... favor a melee unit
+		// No more room to garrison ... favor a melee unit
 		autogarrison = false;
 		var trainables = nearestAnchor.trainableEntities();
 		for (var trainable of trainables)
@@ -1510,8 +1510,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	}
 	// Check first if we can afford it without touching other the accounts
 	// and if not, take some of ther accounted resources
-	// TODO substract only what is needed instead of reset
-	// TODO sort the queues
+	// TODO substract only what is needed instead of reset and sort the queues
 	var cost = new API3.Resources(templateAnchor[1].cost());
 	if (!available.canAfford(cost))
 	{
@@ -1692,7 +1691,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			}
 			if (gameState.ai.playedTurn - ent.getMetadata(PlayerID, "idleTim") < 50)
 				return;
-			warn(" unit idle since " + (gameState.ai.playedTurn-ent.getMetadata(PlayerID, "lastIdle")) + " turns");
+			warn(" unit idle since " + (gameState.ai.playedTurn-ent.getMetadata(PlayerID, "idleTim")) + " turns");
 			warn(" unitai state " + ent.unitAIState());
 			warn(" >>> base " + ent.getMetadata(PlayerID, "base"));
 			warn(" >>> role " + ent.getMetadata(PlayerID, "role"));
