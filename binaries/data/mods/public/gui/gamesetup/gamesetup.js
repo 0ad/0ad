@@ -1058,7 +1058,7 @@ function onGameAttributesChange()
 	var startingResourcesText = Engine.GetGUIObjectByName("startingResourcesText");
 	var gameSpeedText = Engine.GetGUIObjectByName("gameSpeedText");
 
-	// Josh 20.6.2014: Not quite sure why we check for undefined on these properties, that shouldn't ever happen (?)
+	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
 	var victoryIdx = (mapSettings.GameType !== undefined && VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
