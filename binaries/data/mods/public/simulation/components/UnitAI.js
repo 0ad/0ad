@@ -2543,7 +2543,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.waypoints && this.waypoints.length)
 					{
 						if (!this.MoveToMarket(this.order.data.firstMarket))
-							this.stopTrading();
+							this.StopTrading();
 					}
 					else
 						this.PerformTradeAndMoveToNextMarket(this.order.data.firstMarket, this.order.data.secondMarket, "APPROACHINGSECONDMARKET");
@@ -2559,7 +2559,7 @@ UnitAI.prototype.UnitFsmSpec = {
 					if (this.waypoints && this.waypoints.length)
 					{
 						if (!this.MoveToMarket(this.order.data.secondMarket))
-							this.stopTrading();
+							this.StopTrading();
 					}
 					else
 						this.PerformTradeAndMoveToNextMarket(this.order.data.secondMarket, this.order.data.firstMarket, "APPROACHINGFIRSTMARKET");
