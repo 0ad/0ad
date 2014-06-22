@@ -83,7 +83,7 @@ g_SelectionPanels.Barter = {
 	},
 	"setTooltip": function(data)
 	{
-		var resource = getLocalizedResourceName(data.item, "WithinSentence");
+		var resource = getLocalizedResourceName(data.item, "withinSentence");
 		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
 		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
 	},
