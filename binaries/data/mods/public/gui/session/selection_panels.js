@@ -883,7 +883,7 @@ g_SelectionPanels.Training = {
 		data.buildingsCountToTrainFullBatch = buildingsCountToTrainFullBatch;
 		data.fullBatchSize = fullBatchSize;
 		data.remainderBatch = remainderBatch;
-		data.trainNum = buildingsCountToTrainFullBatch;
+		data.trainNum = buildingsCountToTrainFullBatch || 1; // train at least one unit
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
 			data.trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 
