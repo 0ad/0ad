@@ -83,7 +83,7 @@ g_SelectionPanels.Barter = {
 	},
 	"setTooltip": function(data)
 	{
-		var resource = getLocalizedResourceName(data.item, "WithinSentence");
+		var resource = getLocalizedResourceName(data.item, "withinSentence");
 		data.button.Buy.tooltip = sprintf(translate("Buy %(resource)s"), {"resource": resource});
 		data.button.Sell.tooltip = sprintf(translate("Sell %(resource)s"), {"resource": resource});
 	},
@@ -883,7 +883,7 @@ g_SelectionPanels.Training = {
 		data.buildingsCountToTrainFullBatch = buildingsCountToTrainFullBatch;
 		data.fullBatchSize = fullBatchSize;
 		data.remainderBatch = remainderBatch;
-		data.trainNum = buildingsCountToTrainFullBatch;
+		data.trainNum = buildingsCountToTrainFullBatch || 1; // train at least one unit
 		if (Engine.HotkeyIsPressed("session.batchtrain"))
 			data.trainNum = buildingsCountToTrainFullBatch * fullBatchSize + remainderBatch;
 

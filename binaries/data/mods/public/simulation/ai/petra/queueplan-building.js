@@ -67,7 +67,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	else
 		this.metadata.access = gameState.ai.accessibility.getAccessValue([pos.x, pos.z]);
 
-	if (gameState.getTemplate(this.type).buildCategory() === "Dock")
+	if (this.template.buildCategory() === "Dock")
 	{
 		// try to place it a bit inside the land if possible
 		for (var d = -10; d <= 2; d += 2)
@@ -88,7 +88,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 {
 
-	var template = gameState.getTemplate(this.type);
+	var template = this.template;
 
 	if (template.buildCategory() === "Dock")
 		return this.findDockPosition(gameState);
@@ -300,7 +300,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
 m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 {
-	var template = gameState.getTemplate(this.type);
+	var template = this.template;
 
 	var cellSize = gameState.cellSize; // size of each tile
 
@@ -415,7 +415,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	// for Dock placement, we need to improve the position of the building as the position given here
 	// is only the position on the shore, while the need the position of the center of the building
 	// We also need to find the angle of the building
-	var angle = this.getDockAngle(gameState, template, x, z);
+	var angle = this.getDockAngle(gameState, x, z);
 	if (!angle)
 		return false;
 	if (template.get("Obstruction") && template.get("Obstruction/Static")) 
@@ -437,9 +437,9 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 };
 
 // Algorithm taken from the function GetDockAngle in helpers/Commands.js
-m.ConstructionPlan.prototype.getDockAngle = function(gameState, template, x, z)
+m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
 {
-	var radius = template.obstructionRadius();
+	var radius = this.template.obstructionRadius();
 	if (!radius)
 		return false;
 

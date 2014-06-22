@@ -44,7 +44,7 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 	if (g_messageBoxBtnFunctions && g_messageBoxBtnFunctions.length != 0)
 	{
 		warn("A messagebox was called when a previous callback function is still set, aborting!");
-		return;	
+		return;
 	}
 
 	g_messageBoxBtnFunctions = mbBtnCode;
@@ -61,7 +61,6 @@ function messageBox (mbWidth, mbHeight, mbMessage, mbTitle, mbMode, mbButtonCapt
 	}
 	if (mbBtnCode)
 		initData.callback = "g_messageBoxCallbackFunction";
-		
 
 	Engine.PushGuiPage("page_msgbox.xml", initData);
 }

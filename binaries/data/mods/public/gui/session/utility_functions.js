@@ -706,7 +706,7 @@ localisedResourceNames.firstWord = {
 	"fish": translateWithContext("firstWord", "Fish"),
 };
 
-localisedResourceNames.WithinSentence = {
+localisedResourceNames.withinSentence = {
 	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).
 	"food": translateWithContext("withinSentence", "Food"),
 	// Translation: Word as used in the middle of a sentence (which may require using lowercase for your language).

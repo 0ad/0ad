@@ -45,7 +45,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "transport", this.ID));
 	this.units.registerUpdates();
 
-	for each (var ent in units)
+	for (var ent of units)
 	{
 		ent.setMetadata(PlayerID, "transport", this.ID);
 		ent.setMetadata(PlayerID, "endPos", endPos);
@@ -185,7 +185,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 {
 	var ready = true;
 	var self = this;
-	var time = gameState.getTimeElapsed();
+	var time = gameState.ai.elapsedTime;
 	this.units.forEach(function (ent) {
 		if (!ent.getMetadata(PlayerID, "onBoard"))
 		{
@@ -216,7 +216,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 			else
 			{
 				var distShip = API3.SquareVectorDistance(self.boardingPos[shipId], ship.position());
-				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8000 && distShip > 225)
+				if (time - ship.getMetadata(PlayerID, "timeGarrison") > 8 && distShip > 225)
 				{
 					if (!self.nTry[shipId])
 						self.nTry[shipId] = 1;
@@ -232,7 +232,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 					ship.setMetadata(PlayerID, "timeGarrison", time);				
 				}
-				else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2000)
+				else if (time - ent.getMetadata(PlayerID, "timeGarrison") > 2)
 				{
 					var oldPos = ent.getMetadata(PlayerID, "posGarrison");
 					var newPos = ent.position();
@@ -457,7 +457,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		var shipId = ship.id();
 		var dist = API3.SquareVectorDistance(ship.position(), self.boardingPos[shipId]);
 		var remaining = 0;
-		for each (var entId in ship._entity.garrisoned)
+		for (var entId of ship._entity.garrisoned)
 		{
 			var ent = gameState.getEntityById(entId);
 			if (!ent.getMetadata(PlayerID, "transport"))

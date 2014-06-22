@@ -361,16 +361,19 @@ extern_lib_defs = {
 				add_default_include_paths("iconv")
 				defines { "HAVE_ICONV_CONST" }
 				defines { "LIBICONV_STATIC" }
+			elseif os.is("macosx") then
+				add_default_include_paths("iconv")
+				defines { "LIBICONV_STATIC" }
 			end
 		end,
 		link_settings = function()
-			if os.is("windows") then
+			if os.is("windows") or os.is("macosx") then
 				add_default_lib_paths("iconv")
 			end
 			add_default_links({
 				win_names  = { "iconv" },
 				-- TODO: glibc provides symbols for this, so we should only include that (and depend on libiconv) on non-glibc unix
-				--unix_names = { "iconv" },
+				osx_names = { "iconv" },
 				dbg_suffix = "",
 			})
 		end,

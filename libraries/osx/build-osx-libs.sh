@@ -65,7 +65,7 @@ ARCH=${ARCH:="x86_64"}
 # Define compiler as "gcc" (in case anything expects e.g. gcc-4.2)
 # On newer OS X versions, this will be a symbolic link to LLVM GCC
 # TODO: don't rely on that
-export CC=${CC:="gcc"} CXX=${CXX:="g++"}
+export CC=${CC:="clang"} CXX=${CXX:="clang++"}
 
 # The various libs offer inconsistent configure options, some allow
 # setting sysroot and OS X-specific options, others don't. Adding to
@@ -208,8 +208,8 @@ LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY="$LIB_VERSION"
 LIB_URL="http://ftp.gnu.org/pub/gnu/libiconv/"
 
-mkdir -p libiconv
-pushd libiconv > /dev/null
+mkdir -p iconv
+pushd iconv > /dev/null
 
 ICONV_DIR="$(pwd)"
 
@@ -317,7 +317,7 @@ then
   pushd $LIB_DIRECTORY
 
   # Can't use macosx-version, see above comment.
-  (./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
+(./bootstrap.sh --with-libraries=filesystem,system,signals --prefix=$INSTALL_DIR && ./b2 cflags="$CFLAGS" toolset=clang cxxflags="$CXXFLAGS" linkflags="$LDFLAGS" ${JOBS} -d2 --layout=tagged --debug-configuration link=static threading=multi variant=release,debug install) || die "Boost build failed"
 
   popd
   touch .already-built
@@ -546,7 +546,7 @@ then
   tar -xf $LIB_ARCHIVE
   pushd $LIB_DIRECTORY/nspr
 
-  (CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$NSPR_DIR" && make ${JOBS} && make install) || die "NSPR build failed"
+  (CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ./configure --prefix="$NSPR_DIR" && make ${JOBS} && make install) || die "NSPR build failed"
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
@@ -581,7 +581,7 @@ then
   mkdir -p source/build
   pushd source/build
 
-  (CFLAGS="$CFLAGS" CPPFLAGS="$CPPFLAGS" LDFLAGS="$LDFLAGS" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
+(CXX="clang" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS -stdlib=libstdc++" LDFLAGS="$LDFLAGS -lstdc++" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
   popd
   popd
   touch .already-built

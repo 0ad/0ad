@@ -13,6 +13,7 @@ m.PetraBot = function PetraBot(settings)
 
 	this.turn = 0;
 	this.playedTurn = 0;
+	this.elapsedTime = 0;
 
 	this.Config = new m.Config();
 	this.Config.updateDifficulty(settings.difficulty);	
@@ -51,7 +52,7 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 
 	this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
 	
-	this.HQ.init(gameState,this.queues);
+	this.HQ.init(gameState, this.queues);
 };
 
 m.PetraBot.prototype.OnUpdate = function(sharedScript)
@@ -68,6 +69,7 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 	}
 
 	// Run the update every n turns, offset depending on player ID to balance the load
+	this.elapsedTime = this.gameState.getTimeElapsed() / 1000;
 	if ((this.turn + this.player) % 8 == 5)
 	{		
 		Engine.ProfileStart("PetraBot bot (player " + this.player +")");
@@ -83,39 +85,6 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 		this.HQ.update(this.gameState, this.queues, this.savedEvents);
 
 		this.queueManager.update(this.gameState);
-
-		/*
-		 // Use this to debug informations about the metadata.
-		if (this.playedTurn % 10 === 0)
-		{
-			// some debug informations about units.
-			var units = this.gameState.getOwnEntities();
-			for (var i in units._entities)
-			{
-				var ent = units._entities[i];
-				if (!ent.isIdle())
-					continue;
-				warn ("Unit " + ent.id() + " is a " + ent._templateName);
-				if (sharedScript._entityMetadata[PlayerID][ent.id()])
-				{
-					var metadata = sharedScript._entityMetadata[PlayerID][ent.id()];
-					for (var j in metadata)
-					{
-						warn ("Metadata " + j);
-						if (typeof(metadata[j]) == "object")
-							warn ("Object");
-						else if (typeof(metadata[j]) == undefined)
-							warn ("Undefined");
-						else
-							warn(uneval(metadata[j]));
-					}
-				}
-			}
-		}*/
-
-			
-		//if (this.playedTurn % 5 === 0)
-		//	this.queueManager.printQueues(this.gameState);
 		
 		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
 		// TODO: remove this when the engine gives a random seed
@@ -146,7 +115,6 @@ m.PetraBot.prototype.initPersonality = function()
 	{
 		this.Config.Military.popForBarracks1 = 12;
 		this.Config.Economy.popForTown = 55;
-		this.Config.Economy.cityPhase = 900;
 		this.Config.Economy.popForMarket = 70;
 		this.Config.Economy.femaleRatio = 0.3;
 		this.Config.priorities.defenseBuilding = 60;

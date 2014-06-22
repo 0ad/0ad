@@ -40,9 +40,9 @@ m.AttackManager.prototype.init = function(gameState, queues, allowRush)
 // Others once in a while
 m.AttackManager.prototype.update = function(gameState, queues, events)
 {
-	if (this.Config.debug == 2 &&  gameState.getTimeElapsed() > this.debugTime + 60000)
+	if (this.Config.debug == 2 &&  gameState.ai.elapsedTime > this.debugTime + 60)
 	{
-		this.debugTime = gameState.getTimeElapsed();
+		this.debugTime = gameState.ai.elapsedTime;
 		warn(" upcoming attacks =================");
 		for (var attackType in this.upcomingAttacks)
 		{
@@ -69,7 +69,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		for (var i = 0; i < this.upcomingAttacks[attackType].length; ++i)
 		{
 			var attack = this.upcomingAttacks[attackType][i];
-			attack.checkEvents(gameState, events, queues);
+			attack.checkEvents(gameState, events);
 
 			// okay so we'll get the support plan
 			if (!attack.isStarted())
@@ -142,7 +142,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		for (var i = 0; i < this.startedAttacks[attackType].length; ++i)
 		{
 			var attack = this.startedAttacks[attackType][i];
-			attack.checkEvents(gameState, events, queues);
+			attack.checkEvents(gameState, events);
 			// okay so then we'll update the attack.
 			if (attack.isPaused())
 				continue;

@@ -563,6 +563,7 @@ void CNetServerWorker::SetupSession(CNetServerSession* session)
 	session->AddTransition(NSS_PREGAME, (uint)NMT_READY, NSS_PREGAME, (void*)&OnReady, context);
 	session->AddTransition(NSS_PREGAME, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnLoadedGame, context);
 
+	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
 	session->AddTransition(NSS_JOIN_SYNCING, (uint)NMT_LOADED_GAME, NSS_INGAME, (void*)&OnJoinSyncingLoadedGame, context);
 
 	session->AddTransition(NSS_INGAME, (uint)NMT_CONNECTION_LOST, NSS_UNCONNECTED, (void*)&OnDisconnect, context);
@@ -601,7 +602,7 @@ void CNetServerWorker::OnUserLeave(CNetServerSession* session)
 {
 	RemovePlayer(session->GetGUID());
 
-	if (m_ServerTurnManager)
+	if (m_ServerTurnManager && session->GetCurrState() != NSS_JOIN_SYNCING)
 		m_ServerTurnManager->UninitialiseClient(session->GetHostID()); // TODO: only for non-observers
 
 	// TODO: ought to switch the player controlled by that client

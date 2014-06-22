@@ -236,7 +236,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 	}
 };
 
-m.DefenseManager.prototype.assignDefenders = function(gameState, events)
+m.DefenseManager.prototype.assignDefenders = function(gameState)
 {
 	if (this.armies.length === 0)
 		return;

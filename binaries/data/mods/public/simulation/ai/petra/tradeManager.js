@@ -219,22 +219,21 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 // only once per turn because the info doesn't update between a turn and fixing isn't worth it.
 m.TradeManager.prototype.performBarter = function(gameState)
 {
-	var markets = gameState.getOwnEntitiesByType(gameState.applyCiv("structures/{civ}_market"), true).toEntityArray();
-
-	if (markets.length === 0)
+	var barterers = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("BarterMarket"), API3.Filters.not(API3.Filters.isFoundation()))).toEntityArray();
+	if (barterers.length === 0)
 		return false;
 
 	// Available resources after account substraction
 	var available = gameState.ai.queueManager.getAvailableResources(gameState);
 	var needs = gameState.ai.queueManager.currentNeeds(gameState);
 
-	var rates = gameState.ai.HQ.GetCurrentGatherRates(gameState)
+	var rates = gameState.ai.HQ.GetCurrentGatherRates(gameState);
 
 	var prices = gameState.getBarterPrices();
 	// calculates conversion rates
 	var getBarterRate = function (prices,buy,sell) { return Math.round(100 * prices["sell"][sell] / prices["buy"][buy]); };
 
-	// loop through each queues checking if we could barter and help finishing a queue quickly.
+	// loop through each missing resource checking if we could barter and help finishing a queue quickly.
 	for (var buy of needs.types)
 	{
 		if (needs[buy] == 0 || needs[buy] < rates[buy]*30) // check if our rate allows to gather it fast enough
@@ -278,7 +277,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		}
 		if (bestToSell !== undefined)
 		{
-			markets[0].barter(buy, bestToSell, 100);
+			barterers[0].barter(buy, bestToSell, 100);
 			if (this.Config.debug > 1)
 				warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
 					 + " need buy " + needs[buy] + " rate buy " + rates[buy] + " available sell " + available[bestToSell]
@@ -311,7 +310,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	}
 	if (bestToBuy !== undefined)
 	{
-		markets[0].barter(bestToBuy, "food", 100);
+		barterers[0].barter(bestToBuy, "food", 100);
 		if (this.Config.debug > 1)
 			warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"]
 				 + " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));

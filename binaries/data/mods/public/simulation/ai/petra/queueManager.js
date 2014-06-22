@@ -148,7 +148,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 
 m.QueueManager.prototype.printQueues = function(gameState)
 {
-	warn("QUEUES");
+	warn("---------- QUEUES ------------");
 	for (var i in this.queues)
 	{
 		var qStr = "";
@@ -174,6 +174,7 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	warn("Available Resources:" + uneval(this.getAvailableResources(gameState)));
 	warn("Wanted Gather Rates:" + uneval(this.wantedGatherRates(gameState)));
 	warn("Current Gather Rates:" + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
+	warn("------------------------------------");
 };
 
 // nice readable HTML version.
@@ -189,7 +190,7 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 		
 		var q = this.queues[i];
 		var str = "<th>" + i + "  (" + this.priorities[i] + ")<br><span class=\"ressLevel\">";
-		for each (var k in this.accounts[i].types)
+		for (var k of this.accounts[i].types)
 			if(k != "population")
 			{
 				str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
@@ -386,6 +387,9 @@ m.QueueManager.prototype.update = function(gameState)
 			queue.switched = 0;
 		}
 	}
+
+	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
+		this.printQueues(gameState);
 	
 	Engine.ProfileStop();
 };
