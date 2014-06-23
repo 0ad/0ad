@@ -41,6 +41,12 @@ Trigger.prototype.ResearchQueuedAction = function(data)
 	warn(uneval(data));
 };
 
+Trigger.prototype.OwnershipChangedAction = function(data)
+{
+	warn("The OnOwnershipChanged event happened with the following data:");
+	warn(uneval(data));
+};
+
 Trigger.prototype.PlayerCommandAction = function(data)
 {
 	warn("The OnPlayerCommand event happened with the following data:");
@@ -72,6 +78,7 @@ cmpTrigger.RegisterTrigger("OnTrainingFinished", "TrainingFinishedAction", data)
 cmpTrigger.RegisterTrigger("OnTrainingQueued", "TrainingQueuedAction", data);
 cmpTrigger.RegisterTrigger("OnResearchFinished", "ResearchFinishedAction", data);
 cmpTrigger.RegisterTrigger("OnResearchQueued", "ResearchQueuedAction", data);
+cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OwnershipChangedAction", data);
 cmpTrigger.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
 
 data.delay = 10000; // after 10 seconds

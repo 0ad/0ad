@@ -14,6 +14,7 @@ Trigger.prototype.eventNames =
 	"TrainingQueued",  
 	"ResearchFinished",  
 	"ResearchQueued",  
+	"OwnershipChanged",
 	"PlayerCommand",
 	"Interval",
 	"Range",
@@ -230,6 +231,12 @@ Trigger.prototype.OnGlobalTrainingFinished = function(msg)
 	//							 "owner": cmpOwnership.GetOwner(),
 	//							 "metadata": metadata}
 	// See function "SpawnUnits" in ProductionQueue for more details
+};
+
+Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
+{
+	this.CallEvent("OwnershipChanged", msg);
+	// data is {"entities": ents, "from": playerId, "to": playerId}
 };
 
 /** 
