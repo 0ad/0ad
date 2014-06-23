@@ -1069,6 +1069,7 @@ function setup_atlas_projects()
 		"../../../third_party/jsonspirit"
 	},{	-- extern_libs
 		"boost",
+		"iconv",
 		"libxml2",
 		"wxwidgets"
 	},{	-- extra_params
@@ -1112,6 +1113,7 @@ function setup_atlas_projects()
 		"boost",
 		"comsuppw",
 		--"ffmpeg", -- disabled for now because it causes too many build difficulties
+		"iconv",
 		"libxml2",
 		"sdl",	-- key definitions
 		"wxwidgets",
@@ -1255,6 +1257,7 @@ function setup_collada_projects()
 	},{	-- include
 	},{	-- extern_libs
 		"fcollada",
+		"iconv",
 		"libxml2"
 	},{	-- extra_params
 	})

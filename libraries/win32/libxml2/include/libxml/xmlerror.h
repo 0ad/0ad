@@ -62,7 +62,9 @@ typedef enum {
     XML_FROM_WRITER,	/* The xmlwriter module */
     XML_FROM_MODULE,	/* The dynamically loaded module module*/
     XML_FROM_I18N,	/* The module handling character conversion */
-    XML_FROM_SCHEMATRONV	/* The Schematron validator module */
+    XML_FROM_SCHEMATRONV,/* The Schematron validator module */
+    XML_FROM_BUFFER,    /* The buffers module */
+    XML_FROM_URI        /* The URI module */
 } xmlErrorDomain;
 
 /**
@@ -205,6 +207,8 @@ typedef enum {
     XML_WAR_ENTITY_REDEFINED, /* 107 */
     XML_ERR_UNKNOWN_VERSION, /* 108 */
     XML_ERR_VERSION_MISMATCH, /* 109 */
+    XML_ERR_NAME_TOO_LONG, /* 110 */
+    XML_ERR_USER_STOP, /* 111 */
     XML_NS_ERR_XML_NAMESPACE = 200,
     XML_NS_ERR_UNDEFINED_NAMESPACE, /* 201 */
     XML_NS_ERR_QNAME, /* 202 */
@@ -825,11 +829,8 @@ typedef enum {
     XML_I18N_NO_HANDLER, /* 6001 */
     XML_I18N_EXCESS_HANDLER, /* 6002 */
     XML_I18N_CONV_FAILED, /* 6003 */
-    XML_I18N_NO_OUTPUT /* 6004 */
-#if 0
-    XML_CHECK_, /* 5033 */
-    XML_CHECK_X /* 503 */
-#endif
+    XML_I18N_NO_OUTPUT, /* 6004 */
+    XML_BUF_OVERFLOW = 7000
 } xmlParserErrors;
 
 /**
@@ -843,7 +844,7 @@ typedef enum {
  */
 typedef void (XMLCDECL *xmlGenericErrorFunc) (void *ctx,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(2,3);
+				 ...) LIBXML_ATTR_FORMAT(2,3);
 /**
  * xmlStructuredErrorFunc:
  * @userData:  user provided data for the error callback
@@ -874,19 +875,19 @@ XMLPUBFUN void XMLCALL
 XMLPUBFUN void XMLCDECL
     xmlParserError		(void *ctx,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(2,3);
+				 ...) LIBXML_ATTR_FORMAT(2,3);
 XMLPUBFUN void XMLCDECL
     xmlParserWarning		(void *ctx,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(2,3);
+				 ...) LIBXML_ATTR_FORMAT(2,3);
 XMLPUBFUN void XMLCDECL
     xmlParserValidityError	(void *ctx,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(2,3);
+				 ...) LIBXML_ATTR_FORMAT(2,3);
 XMLPUBFUN void XMLCDECL
     xmlParserValidityWarning	(void *ctx,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(2,3);
+				 ...) LIBXML_ATTR_FORMAT(2,3);
 XMLPUBFUN void XMLCALL
     xmlParserPrintFileInfo	(xmlParserInputPtr input);
 XMLPUBFUN void XMLCALL
@@ -930,7 +931,7 @@ XMLPUBFUN void XMLCALL
 				 int int1,
 				 int col,
 				 const char *msg,
-				 ...) ATTRIBUTE_PRINTF(16,17);
+				 ...) LIBXML_ATTR_FORMAT(16,17);
 XMLPUBFUN void XMLCALL
     __xmlSimpleError		(int domain,
 				 int code,
