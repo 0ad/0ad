@@ -59,7 +59,7 @@ XMLPUBFUN const xmlChar * XMLCALL
                                          const xmlChar *val);
 XMLPUBFUN const xmlChar * XMLCALL
                 xmlStrcasestr            (const xmlChar *str,
-                                         xmlChar *val);
+                                         const xmlChar *val);
 XMLPUBFUN int XMLCALL
                 xmlStrcmp                (const xmlChar *str1,
                                          const xmlChar *str2);
@@ -113,16 +113,16 @@ XMLPUBFUN int XMLCALL
 XMLPUBFUN int XMLCALL
         xmlUTF8Strsize                   (const xmlChar *utf,
                                          int len);
-XMLPUBFUN xmlChar * XMLCALL 
+XMLPUBFUN xmlChar * XMLCALL
         xmlUTF8Strndup                   (const xmlChar *utf,
                                          int len);
-XMLPUBFUN const xmlChar * XMLCALL 
+XMLPUBFUN const xmlChar * XMLCALL
         xmlUTF8Strpos                    (const xmlChar *utf,
                                          int pos);
 XMLPUBFUN int XMLCALL
         xmlUTF8Strloc                    (const xmlChar *utf,
                                          const xmlChar *utfchar);
-XMLPUBFUN xmlChar * XMLCALL 
+XMLPUBFUN xmlChar * XMLCALL
         xmlUTF8Strsub                    (const xmlChar *utf,
                                          int start,
                                          int len);

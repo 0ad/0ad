@@ -371,7 +371,7 @@ extern_lib_defs = {
 				add_default_lib_paths("iconv")
 			end
 			add_default_links({
-				win_names  = { "iconv" },
+				win_names  = { "libiconv" },
 				-- TODO: glibc provides symbols for this, so we should only include that (and depend on libiconv) on non-glibc unix
 				osx_names = { "iconv" },
 				dbg_suffix = "",

@@ -31,7 +31,11 @@ function ProcessCommand(player, cmd)
 
 	// Now handle various commands
 	if (commands[cmd.type])
+	{
+		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+		cmpTrigger.CallEvent("PlayerCommand", {"player": player, "cmd": cmd});
 		commands[cmd.type](player, cmd, data);
+	}
 	else
 		error("Invalid command: unknown command type: "+uneval(cmd));
 }

@@ -348,6 +348,10 @@ TechnologyManager.prototype.ResearchTechnology = function (tech)
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var ents = cmpRangeManager.GetEntitiesByPlayer(playerID);
 
+	// Call the related trigger event 
+	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+	cmpTrigger.CallEvent("ResearchFinished", {"player": playerID, "tech": tech});
+	
 	for (var component in modifiedComponents)
 	{
 		Engine.PostMessage(SYSTEM_ENTITY, MT_TemplateModification, { "player": playerID, "component": component, "valueNames": modifiedComponents[component]});

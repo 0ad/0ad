@@ -3,11 +3,10 @@
 const DEFAULT_NETWORKED_MAP = "Acropolis 01";
 const DEFAULT_OFFLINE_MAP = "Acropolis 01";
 
+const VICTORY_DEFAULTIDX = 1;
+
 // TODO: Move these somewhere like simulation\data\game_types.json, Atlas needs them too
 // Translation: Type of victory condition.
-const VICTORY_TEXT = [translateWithContext("victory", "Conquest"), translateWithContext("victory", "Wonder"), translateWithContext("victory", "None")];
-const VICTORY_DATA = ["conquest", "wonder", "endless"];
-const VICTORY_DEFAULTIDX = 0;
 const POPULATION_CAP = ["50", "100", "150", "200", "250", "300", translate("Unlimited")];
 const POPULATION_CAP_DATA = [50, 100, 150, 200, 250, 300, 10000];
 const POPULATION_CAP_DEFAULTIDX = 5;
@@ -158,6 +157,8 @@ function initMain()
 	mapFilters.list_data = getFilterIds();
 	g_GameAttributes.mapFilter = "default";
 
+
+
 	// Setup controls for host only
 	if (g_IsController)
 	{
@@ -221,12 +222,16 @@ function initMain()
 		}
 
 		var victoryConditions = Engine.GetGUIObjectByName("victoryCondition");
-		victoryConditions.list = VICTORY_TEXT;
-		victoryConditions.list_data = VICTORY_DATA;
+		var victories = getVictoryConditions();
+		victoryConditions.list = victories.text;
+		victoryConditions.list_data = victories.data;
 		victoryConditions.onSelectionChange = function()
 		{	// Update attributes so other players can see change
 			if (this.selected != -1)
-				g_GameAttributes.settings.GameType = VICTORY_DATA[this.selected];
+			{
+				g_GameAttributes.settings.GameType = victories.data[this.selected];
+				g_GameAttributes.settings.VictoryScripts = victories.scripts[this.selected];
+			}
 
 			if (!g_IsInGuiUpdate)
 				updateGameAttributes();
@@ -924,6 +929,10 @@ function launchGame()
 	if (g_GameAttributes.map == "random")
 		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
 			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
+	if (!g_GameAttributes.settings.TriggerScripts)
+		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts;
+	else
+		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts);
 	g_GameStarted = true;
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 	var numPlayers = g_GameAttributes.settings.PlayerData.length;
@@ -1061,7 +1070,8 @@ function onGameAttributesChange()
 	// We have to check for undefined on these properties as not all maps define them.
 	var sizeIdx = (mapSettings.Size !== undefined && g_MapSizes.tiles.indexOf(mapSettings.Size) != -1 ? g_MapSizes.tiles.indexOf(mapSettings.Size) : g_MapSizes["default"]);
 	var speedIdx = (g_GameAttributes.gameSpeed !== undefined && g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) != -1) ? g_GameSpeeds.speeds.indexOf(g_GameAttributes.gameSpeed) : g_GameSpeeds["default"];
-	var victoryIdx = (mapSettings.GameType !== undefined && VICTORY_DATA.indexOf(mapSettings.GameType) != -1 ? VICTORY_DATA.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
+	var victories = getVictoryConditions();
+	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
 	enableCheats.checked = (mapSettings.CheatsEnabled === undefined || !mapSettings.CheatsEnabled ? false : true)
 	enableCheatsText.caption = (enableCheats.checked ? "Yes" : "No");
 	if (mapSettings.RatingEnabled !== undefined)
@@ -1138,7 +1148,7 @@ function onGameAttributesChange()
 			mapSizeText.caption = g_MapSizes.names[sizeIdx];
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExporeMap ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
+			victoryConditionText.caption = victories.text[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1194,7 +1204,7 @@ function onGameAttributesChange()
 
 			revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 			exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
-			victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
+			victoryConditionText.caption = victories.text[victoryIdx];
 			lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		}
 
@@ -1225,7 +1235,7 @@ function onGameAttributesChange()
 		mapSizeText.caption = translate("Default");
 		revealMapText.caption = (mapSettings.RevealMap ? translate("Yes") : translate("No"));
 		exploreMapText.caption = (mapSettings.ExploreMap ? translate("Yes") : translate("No"));
-		victoryConditionText.caption = VICTORY_TEXT[victoryIdx];
+		victoryConditionText.caption = victories.text[victoryIdx];
 		lockTeamsText.caption = (mapSettings.LockTeams ? translate("Yes") : translate("No"));
 		Engine.GetGUIObjectByName("populationCap").selected = POPULATION_CAP_DEFAULTIDX;
 
@@ -1846,4 +1856,19 @@ function sendRegisterGameStanza()
 		"players":players
 	};
 	Engine.SendRegisterGame(gameData);
+}
+
+function getVictoryConditions()
+{
+	var r = {};
+	r.text = [translate("None")];
+	r.data = ["endless"];
+	r.scripts = [[]];
+	for (var vc in g_VictoryConditions)
+	{
+		r.data.push(vc);
+		r.text.push(g_VictoryConditions[vc].name);
+		r.scripts.push(g_VictoryConditions[vc].scripts);
+	}
+	return r;
 }

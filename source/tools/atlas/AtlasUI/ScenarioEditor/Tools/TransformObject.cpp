@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -111,7 +111,7 @@ public:
 		{
 			wxString templateName;
 			Position entityPos;
-			long playerId;
+			long playerId = 0;
 			double orientation = 0;
 
 			const wxXmlNode* xmlData = child->GetChildren();

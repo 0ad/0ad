@@ -179,6 +179,10 @@ ResourceGatherer.prototype.TryInstantGather = function(target)
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
 
+	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);  
+	if (cmpTrigger)  
+		cmpTrigger.CallEvent("TreasureCollected", {"player": cmpPlayer.GetPlayerID(), "type": type.specific, "amount": status.amount });  
+
 	return true;
 };
 

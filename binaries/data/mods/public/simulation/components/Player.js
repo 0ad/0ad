@@ -42,7 +42,6 @@ Player.prototype.Init = function()
 		"metal": markForTranslation("Metal"),
 		"stone": markForTranslation("Stone"),
 	}
-	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -586,9 +585,6 @@ Player.prototype.OnGlobalOwnershipChanged = function(msg)
 		if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("ConquestCritical"))
 			this.conquestCriticalEntitiesCount--;
 
-		if (this.conquestCriticalEntitiesCount == 0) // end game when needed
-			Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
-
 		if (cmpCost)
 			this.popUsed -= cmpCost.GetPopCost();
 
@@ -649,7 +645,6 @@ Player.prototype.OnPlayerDefeated = function(msg)
 Player.prototype.OnDiplomacyChanged = function()
 {
 	this.UpdateSharedLos();
-	Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager).CheckConquestCriticalEntities();
 };
 
 Player.prototype.SetCheatsEnabled = function(flag)

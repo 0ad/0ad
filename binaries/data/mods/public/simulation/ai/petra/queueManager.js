@@ -42,11 +42,9 @@ m.QueueManager = function(Config, queues)
 	this.curItemQueue = [];
 };
 
-m.QueueManager.prototype.getAvailableResources = function(gameState, noAccounts)
+m.QueueManager.prototype.getAvailableResources = function(gameState)
 {
 	var resources = gameState.getResources();
-	if (noAccounts)
-		return resources;
 	for (var key in this.queues)
 		resources.subtract(this.accounts[key]);
 	return resources;
@@ -74,7 +72,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 		needed.add(costs);
 	}
 	// get out current resources, not removing accounts.
-	var current = this.getAvailableResources(gameState, true);
+	var current = gameState.getResources();
 	for (var ress of needed.types)
 		needed[ress] = Math.max(0, needed[ress] - current[ress]);
 
@@ -86,7 +84,7 @@ m.QueueManager.prototype.currentNeeds = function(gameState)
 m.QueueManager.prototype.wantedGatherRates = function(gameState)
 {
 	// get out current resources, not removing accounts.
-	var current = this.getAvailableResources(gameState, true);
+	var current = gameState.getResources();
 	// short queue is the first item of a queue, assumed to be ready in 30s
 	// medium queue is the second item of a queue, assumed to be ready in 60s
 	// long queue contains the is the isGo=false items, assumed to be ready in 300s
