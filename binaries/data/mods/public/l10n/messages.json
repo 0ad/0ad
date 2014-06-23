@@ -517,6 +517,23 @@
                 }
             },
             {
+                "extractor": "javascript",
+                "filemasks": [
+                    "maps/scenarios/**.js",
+                    "maps/skirmishes/**.js",
+                    "maps/random/**.js"
+                ],
+                "options": {
+                    "keywords": {
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
                 "extractor": "xml",
                 "filemasks": [
                     "maps/scenarios/**.xml",
