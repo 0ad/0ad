@@ -16,9 +16,3 @@ function clone(o)
 	return r;
 }
 
-var data = { "sub1": { "sub1prop1":"original" }, "prop1": "original", "prop2": [1,2,3] };
-var newData = clone(data);
-newData["sub1"]["sub1prop1"] = "modified";
-
-print("data" + uneval(data));
-print("newData" + uneval(newData));
