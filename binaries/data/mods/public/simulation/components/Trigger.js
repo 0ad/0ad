@@ -18,6 +18,7 @@ Trigger.prototype.eventNames =
 	"PlayerCommand",
 	"Interval",
 	"Range",
+	"TreasureCollected",
 ]; 
 
 Trigger.prototype.Init = function()
