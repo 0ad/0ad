@@ -1,6 +1,5 @@
 Trigger.prototype.CheckWonderVictory = function(data)
 {
-	warn(uneval(data));
 	var ent = data.entity;
 	var cmpWonder = Engine.QueryInterface(ent, IID_Wonder);
 	if (!cmpWonder)

@@ -18,7 +18,6 @@
 				<Type>default</Type>
 				<Colour r="0.219608" g="0.247059" b="0.356863"/>
 				<Height>21.0885</Height>
-				<Shininess>250</Shininess>
 				<Waviness>0.830078</Waviness>
 				<Murkiness>0.871094</Murkiness>
 				<Tint r="0.592157" g="0.639216" b="0.756863"/>
@@ -31,18 +30,18 @@
 			<Contrast>1.03906</Contrast>
 			<Saturation>1.05859</Saturation>
 			<Bloom>0.1999</Bloom>
-			<PostEffect>hdr</PostEffect>
+			<PostEffect>default</PostEffect>
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="319.998" y="82.8692" z="281.119"/>
-		<Rotation angle="0"/>
+		<Position x="533.642" y="94.8386" z="705.501"/>
+		<Rotation angle="0.542233"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\u000a\u000aEach player begins the match with a wooden palisade and some guard towers atop a low embankment.",
+  "Description": "Defend your Gallic outpost against attacks from your treacherous neighbors!\n\nEach player begins the match with a wooden palisade and some guard towers atop a low embankment.\n\nWatch out for Romans passing by!",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -95,7 +94,11 @@
     }
   ],
   "Preview": "gallic_fields.png",
-  "RevealMap": false
+  "RevealMap": false,
+  "TriggerScripts": [
+    "scripts/TriggerHelper.js",
+    "skirmishes/Gallic Fields (3).js"
+  ]
 }
 ]]></ScriptSettings>
 	<Entities>
@@ -17374,162 +17377,6 @@
 			<Position x="753.04261" z="99.05979"/>
 			<Orientation y="1.04381"/>
 		</Entity>
-		<Entity uid="2999">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="970.68488" z="556.81086"/>
-			<Orientation y="3.03232"/>
-		</Entity>
-		<Entity uid="3000">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="972.51838" z="558.22272"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3001">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="973.98511" z="559.8733"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3002">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="975.47876" z="561.45289"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3003">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="977.06482" z="563.13013"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3004">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="978.44092" z="564.00824"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3005">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="980.35376" z="565.84992"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3006">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="972.39826" z="554.17463"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3007">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="973.7862" z="555.21351"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3008">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="975.35413" z="556.52253"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3009">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="977.14277" z="557.90491"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3010">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="979.14362" z="560.13013"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3011">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="981.0542" z="562.00068"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3012">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="77.18448" z="734.07874"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3013">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="81.05483" z="729.54395"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3014">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="84.24665" z="726.56165"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3015">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="87.00104" z="723.6255"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3016">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="89.71207" z="721.23298"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3017">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="92.41475" z="718.40687"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3018">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="76.13277" z="728.19819"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3019">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="79.16231" z="724.68097"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3020">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="82.15836" z="722.10785"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3021">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="84.53042" z="719.02094"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3022">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="86.45192" z="717.38465"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3023">
-			<Template>units/rome_legionnaire_marian</Template>
-			<Player>0</Player>
-			<Position x="89.43009" z="714.60633"/>
-			<Orientation y="2.35621"/>
-		</Entity>
-		<Entity uid="3024">
-			<Template>units/rome_centurio_imperial</Template>
-			<Player>0</Player>
-			<Position x="92.5489" z="711.15864"/>
-			<Orientation y="2.35621"/>
-		</Entity>
 		<Entity uid="3025">
 			<Template>actor|props/flora/grass_temp_field.xml</Template>
 			<Position x="141.20521" z="450.51584"/>
@@ -21827,6 +21674,69 @@
 			<Position x="696.83796" z="352.09629"/>
 			<Orientation y="-2.44382"/>
 			<Actor seed="8060"/>
+		</Entity>
+		<Entity uid="3884">
+			<Template>special/trigger_point_A</Template>
+			<Player>1</Player>
+			<Position x="314.17612" z="368.69764"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="3701"/>
+		</Entity>
+		<Entity uid="3885">
+			<Template>special/trigger_point_A</Template>
+			<Player>3</Player>
+			<Position x="525.60499" z="749.31641"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="29136"/>
+		</Entity>
+		<Entity uid="3886">
+			<Template>special/trigger_point_A</Template>
+			<Player>2</Player>
+			<Position x="687.4369" z="327.84437"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="33923"/>
+		</Entity>
+		<Entity uid="3887">
+			<Template>special/trigger_point_B</Template>
+			<Player>2</Player>
+			<Position x="1005.07227" z="573.89106"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="26771"/>
+		</Entity>
+		<Entity uid="3888">
+			<Template>special/trigger_point_C</Template>
+			<Player>2</Player>
+			<Position x="821.95636" z="114.01125"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="9077"/>
+		</Entity>
+		<Entity uid="3889">
+			<Template>special/trigger_point_B</Template>
+			<Player>1</Player>
+			<Position x="140.49982" z="171.7696"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="63041"/>
+		</Entity>
+		<Entity uid="3890">
+			<Template>special/trigger_point_C</Template>
+			<Player>1</Player>
+			<Position x="66.91005" z="738.45435"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="37719"/>
+		</Entity>
+		<Entity uid="3891">
+			<Template>special/trigger_point_C</Template>
+			<Player>3</Player>
+			<Position x="386.41355" z="991.14393"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="61131"/>
+		</Entity>
+		<Entity uid="3892">
+			<Template>special/trigger_point_B</Template>
+			<Player>3</Player>
+			<Position x="676.52369" z="981.33338"/>
+			<Orientation y="2.35621"/>
+			<Actor seed="7004"/>
 		</Entity>
 	</Entities>
 	<Paths/>

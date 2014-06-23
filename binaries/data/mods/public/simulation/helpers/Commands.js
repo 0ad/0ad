@@ -33,8 +33,7 @@ function ProcessCommand(player, cmd)
 	if (commands[cmd.type])
 	{
 		var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
-		if (cmpTrigger)
-			cmpTrigger.CallEvent("PlayerCommand", {"player": player, "cmd": cmd});
+		cmpTrigger.CallEvent("PlayerCommand", {"player": player, "cmd": cmd});
 		commands[cmd.type](player, cmd, data);
 	}
 	else

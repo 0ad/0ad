@@ -932,7 +932,7 @@ function launchGame()
 	if (!g_GameAttributes.settings.TriggerScripts)
 		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts;
 	else
-		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttrbutes.settings.TriggerScripts);
+		g_GameAttributes.settings.TriggerScripts = g_GameAttributes.settings.VictoryScripts.concat(g_GameAttributes.settings.TriggerScripts);
 	g_GameStarted = true;
 	g_GameAttributes.settings.mapType = g_GameAttributes.mapType;
 	var numPlayers = g_GameAttributes.settings.PlayerData.length;
