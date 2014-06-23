@@ -236,7 +236,7 @@ Trigger.prototype.OnGlobalTrainingFinished = function(msg)
 Trigger.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	this.CallEvent("OwnershipChanged", msg);
-	// data is {"entities": ents, "from": playerId, "to": playerId}
+	// data is {"entity": ent, "from": playerId, "to": playerId}
 };
 
 /** 
