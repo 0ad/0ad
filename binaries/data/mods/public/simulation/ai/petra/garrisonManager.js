@@ -126,7 +126,7 @@ m.GarrisonManager.prototype.garrison = function(gameState, ent, holder, type)
 	ent.garrison(holder);
 };
 
-// This is the end of the pre-garrison state, either because the entity really garrsioned
+// This is the end of the pre-garrison state, either because the entity is really garrisoned
 // or because it has changed its order (i.e. because the garrisonHolder was destroyed).
 m.GarrisonManager.prototype.leaveGarrison = function(ent)
 {

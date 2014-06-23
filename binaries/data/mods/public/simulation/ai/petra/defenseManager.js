@@ -368,7 +368,7 @@ m.DefenseManager.prototype.checkDefenseStructures = function(gameState, events)
 				if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
 					return;
 			}
-			if (gameState.ai.accessibility.getAccessValue(target.position()) !== index)
+			if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
 				return;
 			var army = ent.getMetadata(PlayerID, "PartOfArmy");
 			if (army !== undefined)

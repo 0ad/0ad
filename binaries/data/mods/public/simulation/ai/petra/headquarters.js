@@ -1410,8 +1410,8 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
  */  
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
-	var available = gameState.ai.queueManager.getAvailableResources(gameState, false);
-	var total = gameState.ai.queueManager.getAvailableResources(gameState, true);
+	var available = gameState.ai.queueManager.getAvailableResources(gameState);
+	var total = gameState.getResources();
 	var distcut = 20000;
 
 	var nearestAnchor = undefined;
