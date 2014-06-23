@@ -6,7 +6,7 @@ Trigger.prototype.CheckConquestCriticalEntities = function()
 	if (this.checkingConquestCriticalEntities)
 		return;
 	// wait a turn for actually checking the players
-	this.DoAfterDelay(1, "CheckConquestCriticalEntitiesNow", null);
+	this.DoAfterDelay(0, "CheckConquestCriticalEntitiesNow", null);
 	this.checkingConquestCriticalEntities = true;
 };
 
@@ -65,6 +65,6 @@ var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 var data = {"enabled": true};
 cmpTrigger.RegisterTrigger("OnOwnershipChanged", "CheckConquestCriticalEntities", data);
 // also check at the start of the game
-cmpTrigger.DoAfterDelay(1, "CheckConquestCriticalEntitiesNow", null);
+cmpTrigger.DoAfterDelay(0, "CheckConquestCriticalEntitiesNow", null);
 cmpTrigger.checkingConquestCriticalEntities = false;
 
