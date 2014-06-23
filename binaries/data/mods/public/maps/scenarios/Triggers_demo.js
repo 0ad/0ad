@@ -1,32 +1,4 @@
-warn("loading the trigers file");
-
-// Activate all possible triggers
-Trigger.prototype.InitGame = function()
-{
-	var data = {"enabled": true};
-	this.RegisterTrigger("OnStructureBuilt", "StructureBuiltAction", data);
-	this.RegisterTrigger("OnConstructionStarted", "ConstructionStartedAction", data);
-	this.RegisterTrigger("OnTrainingFinished", "TrainingFinishedAction", data);
-	this.RegisterTrigger("OnTrainingQueued", "TrainingQueuedAction", data);
-	this.RegisterTrigger("OnResearchFinished", "ResearchFinishedAction", data);
-	this.RegisterTrigger("OnResearchQueued", "ResearchQueuedAction", data);
-	this.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
-
-	data.delay = 10000; // after 10 seconds
-	data.interval = 1000; // every second
-	this.numberOfTimerTrigger = 0;
-	this.maxNumberOfTimerTrigger = 10; // execute it 10 times maximum
-	this.RegisterTrigger("OnInterval", "IntervalAction", data);
-	var entities = this.GetTriggerPoints("A");
-	data = {
-		"entities": entities, // central points to calculate the range circles
-		"players": [1], // only count entities of player 1
-		"maxRange": 40,
-		"requiredComponent": IID_UnitAI, // only count units in range
-		"enabled": true,
-	};
-	this.RegisterTrigger("OnRange", "RangeAction", data);
-};
+warn("loading the triggers file");
 
 ///////////////////////
 // Trigger listeners //
@@ -89,3 +61,30 @@ Trigger.prototype.RangeAction = function(data)
 	warn("The OnRange event happened with the following data:");
 	warn(uneval(data));
 };
+
+// Activate all possible triggers
+var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+
+var data = {"enabled": true};
+cmpTrigger.RegisterTrigger("OnStructureBuilt", "StructureBuiltAction", data);
+cmpTrigger.RegisterTrigger("OnConstructionStarted", "ConstructionStartedAction", data);
+cmpTrigger.RegisterTrigger("OnTrainingFinished", "TrainingFinishedAction", data);
+cmpTrigger.RegisterTrigger("OnTrainingQueued", "TrainingQueuedAction", data);
+cmpTrigger.RegisterTrigger("OnResearchFinished", "ResearchFinishedAction", data);
+cmpTrigger.RegisterTrigger("OnResearchQueued", "ResearchQueuedAction", data);
+cmpTrigger.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
+
+data.delay = 10000; // after 10 seconds
+data.interval = 1000; // every second
+cmpTrigger.numberOfTimerTrigger = 0;
+cmpTrigger.maxNumberOfTimerTrigger = 10; // execute it 10 times maximum
+cmpTrigger.RegisterTrigger("OnInterval", "IntervalAction", data);
+var entities = cmpTrigger.GetTriggerPoints("A");
+data = {
+	"entities": entities, // central points to calculate the range circles
+	"players": [1], // only count entities of player 1
+	"maxRange": 40,
+	"requiredComponent": IID_UnitAI, // only count units in range
+	"enabled": true,
+};
+cmpTrigger.RegisterTrigger("OnRange", "RangeAction", data);

@@ -1,4 +1,4 @@
-function TriggerPoint() {};
+function TriggerPoint() {}
 
 TriggerPoint.prototype.Schema =
 	"<optional>" +

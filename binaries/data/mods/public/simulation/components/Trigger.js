@@ -1,4 +1,4 @@
-function Trigger() {};
+function Trigger() {}
 
 Trigger.prototype.Schema =
 	"<a:component type='system'/><empty/>";
@@ -26,16 +26,6 @@ Trigger.prototype.Init = function()
 	// Each event has its own set of actions determined by the map maker.
 	for each (var eventName in this.eventNames) 
 		this["On" + eventName + "Actions"] = {}; 
-	 
-	// To prevent the lose of trigger variables after a save, they "should" be defined in "InitTriggers" function, which is the starting point of a trigger script
-	this.DoAfterDelay(0, "InitGame", {});
-};
-
-/**
- * This method may be overwritten by triggers
- */
-Trigger.prototype.InitGame = function()
-{
 };
 
 Trigger.prototype.RegisterTriggerPoint = function(ref, ent)
