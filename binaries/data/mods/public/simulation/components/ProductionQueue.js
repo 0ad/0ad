@@ -288,6 +288,10 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"timeTotal": time*1000,
 				"timeRemaining": time*1000,
 			});
+			
+			// Call the related trigger event 
+			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+			cmpTrigger.CallEvent("TrainingQueued", {"playerid": cmpPlayer.GetPlayerID(), "unitTemplate": templateName, "count": count, "metadata": metadata, "trainerEntity": this.entity});
 		}
 		else if (type == "technology")
 		{
@@ -324,6 +328,10 @@ ProductionQueue.prototype.AddBatch = function(templateName, type, count, metadat
 				"timeTotal": time*1000,
 				"timeRemaining": time*1000,
 			});
+			
+			// Call the related trigger event 
+			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+			cmpTrigger.CallEvent("ResearchQueued", {"playerid": cmpPlayer.GetPlayerID(), "technologyTemplate": templateName, "researcherEntity": this.entity});
 		}
 		else
 		{

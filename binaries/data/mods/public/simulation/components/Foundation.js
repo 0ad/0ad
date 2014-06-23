@@ -202,6 +202,10 @@ Foundation.prototype.Build = function(builderEnt, work)
 			// (via CCmpTemplateManager). Now we need to remove that temporary
 			// blocker-disabling, so that we'll perform standard unit blocking instead.
 			cmpObstruction.SetDisableBlockMovementPathfinding(false, false, -1);
+			
+			// Call the related trigger event 
+			var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
+			cmpTrigger.CallEvent("ConstructionStarted", {"foundation": this.entity, "template": this.finalTemplateName});
 		}
 
 		// Switch foundation to scaffold variant

@@ -702,6 +702,19 @@ void CSimulation2::LoadMapSettings()
 
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
+	
+	// Load the trigger script after we have loaded the simulation and the map.
+	if (GetScriptInterface().HasProperty(m->m_MapSettings.get(), "TriggerScripts"))
+	{
+		std::vector<std::string> scriptNames;
+		GetScriptInterface().GetProperty(m->m_MapSettings.get(), "TriggerScripts", scriptNames);
+		for (u32 i = 0; i < scriptNames.size(); i++)
+		{
+			std::string scriptName = "maps/" + scriptNames[i];
+			LOGMESSAGE(L"Loading trigger script '%hs'", scriptName.c_str());
+			m->m_ComponentManager.LoadScript(scriptName.data());
+		}
+	}
 }
 
 int CSimulation2::ProgressiveLoad()

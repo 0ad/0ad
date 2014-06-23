@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_trigger_point">
+  <TriggerPoint>
+    <Reference>F</Reference>
+  </TriggerPoint>
   <VisualActor>
     <Actor>props/special/common/marker_object_char_f.xml</Actor>
   </VisualActor>
