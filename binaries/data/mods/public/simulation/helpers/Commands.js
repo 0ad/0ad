@@ -4,6 +4,7 @@ var g_DebugCommands = false;
 
 function ProcessCommand(player, cmd)
 {
+	warn("process command");
 	// Do some basic checks here that commanding player is valid
 	var data = {};
 	data.cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);

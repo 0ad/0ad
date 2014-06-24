@@ -38,7 +38,8 @@ COggData::COggData()
 COggData::~COggData()
 {
 	AL_CHECK
-	ogg->Close();
+	if (ogg)
+		ogg->Close();
 
 	AL_CHECK
 	if ( m_BuffersUsed > 0 )
