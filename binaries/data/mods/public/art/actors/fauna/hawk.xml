@@ -6,7 +6,9 @@
     <variant>
 		<animations>
 			<animation file="other/hawk_flight.dae" name="Walk" speed="10"/>
+			<animation file="other/hawk_glide.dae" name="Walk" speed="3"/>
 			<animation file="other/hawk_flight.dae" name="Idle" speed="40"/>
+			<animation file="other/hawk_glide.dae" name="Idle" speed="3"/>
 		</animations>
       <mesh>skeletal/hawk.dae</mesh>
     </variant>
