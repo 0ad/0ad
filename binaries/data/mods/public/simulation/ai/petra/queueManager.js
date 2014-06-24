@@ -254,11 +254,8 @@ m.QueueManager.prototype.update = function(gameState)
 			
 	// Let's assign resources to plans that need'em
 	var availableRes = this.getAvailableResources(gameState);
-	for (var ress in availableRes)
+	for (var ress of availableRes.types)
 	{
-		if (ress === "population")
-			continue;
-
 		if (availableRes[ress] > 0)
 		{
 			var totalPriority = 0;
