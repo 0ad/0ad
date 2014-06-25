@@ -477,15 +477,6 @@ void CGameView::BeginFrame()
 	{
 		// Set up cull camera
 		m->CullCamera = m->ViewCamera;
-
-		// One way to fix shadows popping in at the edge of the screen is to widen the culling frustum so that
-		// objects aren't culled as early. The downside is that objects will get rendered even though they appear
-		// off screen, which is somewhat inefficient. A better solution would be to decouple shadow map rendering
-		// from model rendering; as it is now, a shadow map is only rendered if its associated model is to be
-		// rendered.
-		// (See http://trac.wildfiregames.com/ticket/504)
-		m->CullCamera.SetProjection(m->ViewNear, m->ViewFar, GetCullFOV());
-		m->CullCamera.UpdateFrustum();
 	}
 	g_Renderer.SetSceneCamera(m->ViewCamera, m->CullCamera);
 
@@ -523,51 +514,7 @@ void CGameView::EnumerateObjects(const CFrustum& frustum, SceneCollector* c)
 			}
 
 			if (!m->Culling || frustum.IsBoxVisible (CVector3D(0,0,0), bounds)) {
-				//c->Submit(patch);
-
-				// set the renderstate for this patch
-				patch->setDrawState(true);
-
-				// set the renderstate for the neighbors
-				CPatch *nPatch;
-
-				nPatch = pTerrain->GetPatch(i-1,j-1);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i,j-1);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i+1,j-1);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i-1,j);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i+1,j);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i-1,j+1);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i,j+1);
-				if(nPatch) nPatch->setDrawState(true);
-
-				nPatch = pTerrain->GetPatch(i+1,j+1);
-				if(nPatch) nPatch->setDrawState(true);
-			}
-		}
-	}
-
-	// draw the patches
-	for (ssize_t j=0; j<patchesPerSide; j++)
-	{
-		for (ssize_t i=0; i<patchesPerSide; i++)
-		{
-			CPatch* patch=pTerrain->GetPatch(i,j);	// can't fail
-			if(patch->getDrawState() == true)
-			{
 				c->Submit(patch);
-				patch->setDrawState(false);
 			}
 		}
 	}
@@ -1100,11 +1047,6 @@ float CGameView::GetFar() const
 float CGameView::GetFOV() const
 {
 	return m->ViewFOV;
-}
-
-float CGameView::GetCullFOV() const
-{
-	return m->ViewFOV + DEGTORAD(6.0f);	//add 6 degrees to the default FOV for use with the culling frustum;
 }
 
 void CGameView::SetCameraProjection()

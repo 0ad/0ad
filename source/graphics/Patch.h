@@ -58,9 +58,6 @@ public:
 	// calculate and store bounds of this patch
 	void CalcBounds();
 
-	// is already in the DrawList
-	bool m_bWillBeDrawn;
-
 public:
 	// minipatches (tiles) making up the patch
 	CMiniPatch m_MiniPatches[PATCH_SIZE][PATCH_SIZE];
@@ -68,10 +65,6 @@ public:
 	int m_X,m_Z;
 	// parent terrain
 	CTerrain* m_Parent;
-
-	// draw state...
-	void setDrawState(bool value) { m_bWillBeDrawn = value; };
-	bool getDrawState() { return m_bWillBeDrawn; };
 
 	int GetSideFlags();
 };

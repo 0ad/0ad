@@ -46,15 +46,6 @@ typedef shared_ptr<ModelRenderer> ModelRendererPtr;
 class CModel;
 class CShaderDefines;
 
-class CModelFilter
-{
-	NONCOPYABLE(CModelFilter);
-public:
-	CModelFilter() {}
-	virtual ~CModelFilter() {}
-	virtual bool Filter(CModel* model) = 0;
-};
-
 /**
  * Class CModelRData: Render data that is maintained per CModel.
  * ModelRenderer implementations may derive from this class to store
@@ -132,7 +123,7 @@ public:
 	 * @param model The model that will be added to the list of models
 	 * submitted this frame.
 	 */
-	virtual void Submit(CModel* model) = 0;
+	virtual void Submit(int cullGroup, CModel* model) = 0;
 
 	/**
 	 * PrepareModels: Calculate renderer data for all previously
@@ -166,18 +157,7 @@ public:
 	 * If flags is non-zero, only models that contain flags in their
 	 * CModel::GetFlags() are rendered.
 	 */
-	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags) = 0;
-
-	/**
-	 * Filter: Filter submitted models, setting the passed flags on any models
-	 * that pass the filter, and clearing them from models that fail.
-	 *
-	 * @param filter Filter to select a subset of models.
-	 * @param passed Flags to be set/cleared.
-	 * @param flags If non-zero, only models that contain @p flags
-	 * have the filter test applied.
-	 */
-	virtual void Filter(CModelFilter& filter, int passed, int flags = 0) = 0;
+	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags) = 0;
 
 	/**
 	 * CopyPositionAndNormals: Copy unanimated object-space vertices and
@@ -284,11 +264,10 @@ public:
 	virtual ~ShaderModelRenderer();
 
 	// Batching implementations
-	virtual void Submit(CModel* model);
+	virtual void Submit(int cullGroup, CModel* model);
 	virtual void PrepareModels();
 	virtual void EndFrame();
-	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags);
-	virtual void Filter(CModelFilter& filter, int passed, int flags);
+	virtual void Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags);
 
 private:
 	ShaderModelRendererInternals* m;

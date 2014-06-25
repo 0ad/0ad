@@ -102,7 +102,6 @@ public:
 	float GetNear() const;
 	float GetFar() const;
 	float GetFOV() const;
-	float GetCullFOV() const;
 	
 	#define DECLARE_BOOLEAN_SETTING(NAME) \
 	bool Get##NAME##Enabled(); \

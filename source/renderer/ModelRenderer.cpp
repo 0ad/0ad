@@ -215,7 +215,7 @@ struct ShaderModelRendererInternals
 	ModelVertexRendererPtr vertexRenderer;
 
 	/// List of submitted models for rendering in this frame
-	std::vector<CModel*> submissions;
+	std::vector<CModel*> submissions[CRenderer::CULL_MAX];
 };
 
 
@@ -232,7 +232,7 @@ ShaderModelRenderer::~ShaderModelRenderer()
 }
 
 // Submit one model.
-void ShaderModelRenderer::Submit(CModel* model)
+void ShaderModelRenderer::Submit(int cullGroup, CModel* model)
 {
 	CModelDefPtr mdef = model->GetModelDef();
 	CModelRData* rdata = (CModelRData*)model->GetRenderData();
@@ -246,22 +246,27 @@ void ShaderModelRenderer::Submit(CModel* model)
 		model->SetDirty(~0u);
 	}
 
-	m->submissions.push_back(model);
+	m->submissions[cullGroup].push_back(model);
 }
 
 
 // Call update for all submitted models and enter the rendering phase
 void ShaderModelRenderer::PrepareModels()
 {
-	for (size_t i = 0; i < m->submissions.size(); ++i)
+	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
 	{
-		CModel* model = m->submissions[i];
+		for (size_t i = 0; i < m->submissions[cullGroup].size(); ++i)
+		{
+			CModel* model = m->submissions[cullGroup][i];
 
- 		CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
- 		ENSURE(rdata->GetKey() == m->vertexRenderer.get());
+			model->ValidatePosition();
 
-		m->vertexRenderer->UpdateModelData(model, rdata, rdata->m_UpdateFlags);
-		rdata->m_UpdateFlags = 0;
+			CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
+			ENSURE(rdata->GetKey() == m->vertexRenderer.get());
+
+			m->vertexRenderer->UpdateModelData(model, rdata, rdata->m_UpdateFlags);
+			rdata->m_UpdateFlags = 0;
+		}
 	}
 }
 
@@ -269,7 +274,8 @@ void ShaderModelRenderer::PrepareModels()
 // Clear the submissions list
 void ShaderModelRenderer::EndFrame()
 {
-	m->submissions.clear();
+	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+		m->submissions[cullGroup].clear();
 }
 
 
@@ -358,9 +364,9 @@ struct SMRCompareTechBucket
 	}
 };
 
-void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int flags)
+void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags)
 {
-	if (m->submissions.empty())
+	if (m->submissions[cullGroup].empty())
 		return;
 
 	CMatrix3D worldToCam;
@@ -431,9 +437,9 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	{
 		PROFILE3("bucketing by material");
 
-		for (size_t i = 0; i < m->submissions.size(); ++i)
+		for (size_t i = 0; i < m->submissions[cullGroup].size(); ++i)
 		{
-			CModel* model = m->submissions[i];
+			CModel* model = m->submissions[cullGroup][i];
 
 			uint32_t condFlags = 0;
 
@@ -768,21 +774,5 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 			idxTechStart = idxTechEnd;
 		}
-	}
-}
-
-void ShaderModelRenderer::Filter(CModelFilter& filter, int passed, int flags)
-{
-	for (size_t i = 0; i < m->submissions.size(); ++i)
-	{
-		CModel* model = m->submissions[i];
-
-		if (flags && !(model->GetFlags() & flags))
-			continue;
-
-		if (filter.Filter(model))
-			model->SetFlags(model->GetFlags() | passed);
-		else
-			model->SetFlags(model->GetFlags() & ~passed);
 	}
 }

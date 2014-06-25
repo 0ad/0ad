@@ -98,6 +98,14 @@ public:
 		OPT_DISPLAYFRUSTUM,
 	};
 
+	enum CullGroup {
+		CULL_DEFAULT,
+		CULL_SHADOWS,
+		CULL_REFLECTIONS,
+		CULL_REFRACTIONS,
+		CULL_MAX
+	};
+
 	enum RenderPath {
 		// If no rendering path is configured explicitly, the renderer
 		// will choose the path when Open() is called.
@@ -359,18 +367,18 @@ protected:
 	//END: Implementation of SceneCollector
 
 	// render any batched objects
-	void RenderSubmissions();
+	void RenderSubmissions(const CBoundingBoxAligned& waterScissor);
 
 	// patch rendering stuff
-	void RenderPatches(const CShaderDefines& context, const CFrustum* frustum = 0);
+	void RenderPatches(const CShaderDefines& context, int cullGroup);
 
 	// model rendering stuff
-	void RenderModels(const CShaderDefines& context, const CFrustum* frustum = 0);
-	void RenderTransparentModels(const CShaderDefines& context, ETransparentMode transparentMode, const CFrustum* frustum = 0);
+	void RenderModels(const CShaderDefines& context, int cullGroup);
+	void RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling);
 
 	void RenderSilhouettes(const CShaderDefines& context);
 
-	void RenderParticles();
+	void RenderParticles(int cullGroup);
 
 	// shadow rendering stuff
 	void RenderShadowMap(const CShaderDefines& context);
@@ -379,11 +387,14 @@ protected:
 	SScreenRect RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 	SScreenRect RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 
+	void ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
+	void ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
+
 	// debugging
 	void DisplayFrustum();
 
 	// enable oblique frustum clipping with the given clip plane
-	void SetObliqueFrustumClipping(const CVector4D& clipPlane);
+	void SetObliqueFrustumClipping(CCamera& camera, const CVector4D& clipPlane) const;
 
 	void ReloadShaders();
 	void RecomputeSystemShaderDefines();
@@ -423,6 +434,7 @@ protected:
 
 	// only valid inside a call to RenderScene
 	Scene* m_CurrentScene;
+	int m_CurrentCullGroup;
 
 	// color used to clear screen in BeginFrame
 	float m_ClearColor[4];

@@ -211,6 +211,39 @@ void CBoundingBoxAligned::IntersectFrustumConservative(const CFrustum& frustum)
 	buf.Bounds(*this);
 }
 
+///////////////////////////////////////////////////////////////////////////////
+CFrustum CBoundingBoxAligned::ToFrustum() const
+{
+	CFrustum frustum;
+
+	frustum.SetNumPlanes(6);
+
+	// get the LEFT plane
+	frustum.m_aPlanes[0].m_Norm = CVector3D(1, 0, 0);
+	frustum.m_aPlanes[0].m_Dist = -m_Data[0].X;
+
+	// get the RIGHT plane
+	frustum.m_aPlanes[1].m_Norm = CVector3D(-1, 0, 0);
+	frustum.m_aPlanes[1].m_Dist = m_Data[1].X;
+
+	// get the BOTTOM plane
+	frustum.m_aPlanes[2].m_Norm = CVector3D(0, 1, 0);
+	frustum.m_aPlanes[2].m_Dist = -m_Data[0].Y;
+
+	// get the TOP plane
+	frustum.m_aPlanes[3].m_Norm = CVector3D(0, -1, 0);
+	frustum.m_aPlanes[3].m_Dist = m_Data[1].Y;
+
+	// get the NEAR plane
+	frustum.m_aPlanes[4].m_Norm = CVector3D(0, 0, 1);
+	frustum.m_aPlanes[4].m_Dist = -m_Data[0].Z;
+
+	// get the FAR plane
+	frustum.m_aPlanes[5].m_Norm = CVector3D(0, 0, -1);
+	frustum.m_aPlanes[5].m_Dist = m_Data[1].Z;
+
+	return frustum;
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 void CBoundingBoxAligned::Expand(float amount)
@@ -264,11 +297,11 @@ void CBoundingBoxAligned::RenderOutline(CShaderProgramPtr& shader) const
 	ADD_PT(0, 1, x, y, z); ADD_PT(0, 0, x, y, z);
 #define ADD_PT(u_, v_, x, y, z) \
 	STMT(int u = u_; int v = v_; \
-	data.push_back(u); \
-	data.push_back(v); \
-	data.push_back(m_Data[x].X); \
-	data.push_back(m_Data[y].Y); \
-	data.push_back(m_Data[z].Z); \
+		data.push_back(u); \
+		data.push_back(v); \
+		data.push_back(m_Data[x].X); \
+		data.push_back(m_Data[y].Y); \
+		data.push_back(m_Data[z].Z); \
 	)
 
 	ADD_FACE(u, v, 0);

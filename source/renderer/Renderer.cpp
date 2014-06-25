@@ -44,6 +44,7 @@
 #include "ps/Loader.h"
 #include "ps/ProfileViewer.h"
 #include "graphics/Camera.h"
+#include "graphics/Decal.h"
 #include "graphics/FontManager.h"
 #include "graphics/GameView.h"
 #include "graphics/LightEnv.h"
@@ -52,6 +53,7 @@
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
 #include "graphics/ParticleManager.h"
+#include "graphics/Patch.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/Terrain.h"
 #include "graphics/Texture.h"
@@ -356,7 +358,7 @@ public:
 	/**
 	 * Renders all non-alpha-blended models with the given context.
 	 */
-	void CallModelRenderers(const CShaderDefines& context, int flags)
+	void CallModelRenderers(const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
@@ -364,20 +366,20 @@ public:
 			contextSkinned.Add(str_USE_INSTANCING, str_1);
 			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
-		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, flags);
+		Model.NormalSkinned->Render(Model.ModShader, contextSkinned, cullGroup, flags);
 
 		if (Model.NormalUnskinned != Model.NormalSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
 			contextUnskinned.Add(str_USE_INSTANCING, str_1);
-			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, flags);
+			Model.NormalUnskinned->Render(Model.ModShader, contextUnskinned, cullGroup, flags);
 		}
 	}
 
 	/**
 	 * Renders all alpha-blended models with the given context.
 	 */
-	void CallTranspModelRenderers(const CShaderDefines& context, int flags)
+	void CallTranspModelRenderers(const CShaderDefines& context, int cullGroup, int flags)
 	{
 		CShaderDefines contextSkinned = context;
 		if (g_Renderer.m_Options.m_GPUSkinning)
@@ -385,34 +387,14 @@ public:
 			contextSkinned.Add(str_USE_INSTANCING, str_1);
 			contextSkinned.Add(str_USE_GPU_SKINNING, str_1);
 		}
-		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, flags);
+		Model.TranspSkinned->Render(Model.ModShader, contextSkinned, cullGroup, flags);
 
 		if (Model.TranspUnskinned != Model.TranspSkinned)
 		{
 			CShaderDefines contextUnskinned = context;
 			contextUnskinned.Add(str_USE_INSTANCING, str_1);
-			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, flags);
+			Model.TranspUnskinned->Render(Model.ModShader, contextUnskinned, cullGroup, flags);
 		}
-	}
-
-	/**
-	 * Filters all non-alpha-blended models.
-	 */
-	void FilterModels(CModelFilter& filter, int passed, int flags = 0)
-	{
-		Model.NormalSkinned->Filter(filter, passed, flags);
-		if (Model.NormalUnskinned != Model.NormalSkinned)
-			Model.NormalUnskinned->Filter(filter, passed, flags);
-	}
-
-	/**
-	 * Filters all alpha-blended models.
-	 */
-	void FilterTranspModels(CModelFilter& filter, int passed, int flags = 0)
-	{
-		Model.TranspSkinned->Filter(filter, passed, flags);
-		if (Model.TranspUnskinned != Model.TranspSkinned)
-			Model.TranspUnskinned->Filter(filter, passed, flags);
 	}
 };
 
@@ -901,7 +883,7 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 		PROFILE("render patches");
 		glCullFace(GL_FRONT);
 		glEnable(GL_CULL_FACE);
-		m->terrainRenderer.RenderPatches();
+		m->terrainRenderer.RenderPatches(CULL_SHADOWS);
 		glCullFace(GL_BACK);
 	}
 
@@ -910,14 +892,14 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 
 	{
 		PROFILE("render models");
-		m->CallModelRenderers(contextCast, MODELFLAG_CASTSHADOWS);
+		m->CallModelRenderers(contextCast, CULL_SHADOWS, MODELFLAG_CASTSHADOWS);
 	}
 
 	{
 		PROFILE("render transparent models");
 		// disable face-culling for two-sided models
 		glDisable(GL_CULL_FACE);
-		m->CallTranspModelRenderers(contextCast, MODELFLAG_CASTSHADOWS);
+		m->CallTranspModelRenderers(contextCast, CULL_SHADOWS, MODELFLAG_CASTSHADOWS);
 		glEnable(GL_CULL_FACE);
 	}
 
@@ -926,18 +908,9 @@ void CRenderer::RenderShadowMap(const CShaderDefines& context)
 	m->SetOpenGLCamera(m_ViewCamera);
 }
 
-void CRenderer::RenderPatches(const CShaderDefines& context, const CFrustum* frustum)
+void CRenderer::RenderPatches(const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("patches");
-
-	bool filtered = false;
-	if (frustum)
-	{
-		if (!m->terrainRenderer.CullPatches(frustum))
-			return;
-
-		filtered = true;
-	}
 
 #if CONFIG2_GLES
 #warning TODO: implement wireface/edged rendering mode GLES
@@ -951,9 +924,9 @@ void CRenderer::RenderPatches(const CShaderDefines& context, const CFrustum* fru
 
 	// render all the patches, including blend pass
 	if (GetRenderPath() == RP_SHADER)
-		m->terrainRenderer.RenderTerrainShader(context, (m_Caps.m_Shadows && m_Options.m_Shadows) ? &m->shadow : 0, filtered);
+		m->terrainRenderer.RenderTerrainShader(context, cullGroup, (m_Caps.m_Shadows && m_Options.m_Shadows) ? &m->shadow : 0);
 	else
-		m->terrainRenderer.RenderTerrain(filtered);
+		m->terrainRenderer.RenderTerrain(cullGroup);
 
 
 #if !CONFIG2_GLES
@@ -975,14 +948,14 @@ void CRenderer::RenderPatches(const CShaderDefines& context, const CFrustum* fru
 		glLineWidth(2.0f);
 
 		// render tiles edges
-		m->terrainRenderer.RenderPatches(filtered);
+		m->terrainRenderer.RenderPatches(cullGroup);
 
 		// set color for outline
 		glColor3f(0, 0, 1);
 		glLineWidth(4.0f);
 
 		// render outline of each patch
-		m->terrainRenderer.RenderOutlines(filtered);
+		m->terrainRenderer.RenderOutlines(cullGroup);
 
 		// .. and restore the renderstates
 		glLineWidth(1.0f);
@@ -991,31 +964,11 @@ void CRenderer::RenderPatches(const CShaderDefines& context, const CFrustum* fru
 #endif
 }
 
-class CModelCuller : public CModelFilter
-{
-public:
-	CModelCuller(const CFrustum& frustum) : m_Frustum(frustum) { }
-
-	bool Filter(CModel *model)
-	{
-		return m_Frustum.IsBoxVisible(CVector3D(0, 0, 0), model->GetWorldBoundsRec());
-	}
-
-private:
-	const CFrustum& m_Frustum;
-};
-
-void CRenderer::RenderModels(const CShaderDefines& context, const CFrustum* frustum)
+void CRenderer::RenderModels(const CShaderDefines& context, int cullGroup)
 {
 	PROFILE3_GPU("models");
 
 	int flags = 0;
-	if (frustum)
-	{
-		flags = MODELFLAG_FILTERED;
-		CModelCuller culler(*frustum);
-		m->FilterModels(culler, flags);
-	}
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
@@ -1024,7 +977,7 @@ void CRenderer::RenderModels(const CShaderDefines& context, const CFrustum* frus
 	}
 #endif
 
-	m->CallModelRenderers(context, flags);
+	m->CallModelRenderers(context, cullGroup, flags);
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == WIREFRAME)
@@ -1039,24 +992,18 @@ void CRenderer::RenderModels(const CShaderDefines& context, const CFrustum* frus
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
 
-		m->CallModelRenderers(contextWireframe, flags);
+		m->CallModelRenderers(contextWireframe, cullGroup, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
 #endif
 }
 
-void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETransparentMode transparentMode, const CFrustum* frustum)
+void CRenderer::RenderTransparentModels(const CShaderDefines& context, int cullGroup, ETransparentMode transparentMode, bool disableFaceCulling)
 {
 	PROFILE3_GPU("transparent models");
 
 	int flags = 0;
-	if (frustum)
-	{
-		flags = MODELFLAG_FILTERED;
-		CModelCuller culler(*frustum);
-		m->FilterTranspModels(culler, flags);
-	}
 
 #if !CONFIG2_GLES
 	// switch on wireframe if we need it
@@ -1067,7 +1014,7 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 #endif
 
 	// disable face culling for two-sided models in sub-renders
-	if (flags)
+	if (disableFaceCulling)
 		glDisable(GL_CULL_FACE);
 
 	CShaderDefines contextOpaque = context;
@@ -1077,12 +1024,12 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 	contextBlend.Add(str_ALPHABLEND_PASS_BLEND, str_1);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_OPAQUE)
-		m->CallTranspModelRenderers(contextOpaque, flags);
+		m->CallTranspModelRenderers(contextOpaque, cullGroup, flags);
 
 	if (transparentMode == TRANSPARENT || transparentMode == TRANSPARENT_BLEND)
-		m->CallTranspModelRenderers(contextBlend, flags);
+		m->CallTranspModelRenderers(contextBlend, cullGroup, flags);
 
-	if (flags)
+	if (disableFaceCulling)
 		glEnable(GL_CULL_FACE);
 
 #if !CONFIG2_GLES
@@ -1099,7 +1046,7 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 		glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		glDisable(GL_TEXTURE_2D);
 
-		m->CallTranspModelRenderers(contextWireframe, flags);
+		m->CallTranspModelRenderers(contextWireframe, cullGroup, flags);
 
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 	}
@@ -1111,14 +1058,14 @@ void CRenderer::RenderTransparentModels(const CShaderDefines& context, ETranspar
 // SetObliqueFrustumClipping: change the near plane to the given clip plane (in world space)
 // Based on code from Game Programming Gems 5, from http://www.terathon.com/code/oblique.html
 // - worldPlane is a clip plane in world space (worldPlane.Dot(v) >= 0 for any vector v passing the clipping test)
-void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
+void CRenderer::SetObliqueFrustumClipping(CCamera& camera, const CVector4D& worldPlane) const
 {
 	// First, we'll convert the given clip plane to camera space, then we'll 
 	// Get the view matrix and normal matrix (top 3x3 part of view matrix)
-	CMatrix3D normalMatrix = m_ViewCamera.m_Orientation.GetTranspose();
+	CMatrix3D normalMatrix = camera.m_Orientation.GetTranspose();
 	CVector4D camPlane = normalMatrix.Transform(worldPlane);
 
-	CMatrix3D matrix = m_ViewCamera.GetProjection();
+	CMatrix3D matrix = camera.GetProjection();
 
 	// Calculate the clip-space corner point opposite the clipping plane
 	// as (sgn(camPlane.x), sgn(camPlane.y), 1, 1) and
@@ -1141,8 +1088,81 @@ void CRenderer::SetObliqueFrustumClipping(const CVector4D& worldPlane)
 	matrix[14] = c.W;
 
 	// Load it back into the camera
-	m_ViewCamera.SetProjection(matrix);
-	m->SetOpenGLCamera(m_ViewCamera);
+	camera.SetProjection(matrix);
+}
+
+void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const
+{
+	WaterManager& wm = m->waterManager;
+
+	float fov = m_ViewCamera.GetFOV();
+
+	// Expand fov slightly since ripples can reflect parts of the scene that
+	// are slightly outside the normal camera view, and we want to avoid any
+	// noticeable edge-filtering artifacts
+	fov *= 1.05f;
+
+	camera = m_ViewCamera;
+
+	// Temporarily change the camera to one that is reflected.
+	// Also, for texturing purposes, make it render to a view port the size of the
+	// water texture, stretch the image according to our aspect ratio so it covers
+	// the whole screen despite being rendered into a square, and cover slightly more
+	// of the view so we can see wavy reflections of slightly off-screen objects.
+	camera.m_Orientation.Scale(1, -1, 1);
+	camera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
+	camera.UpdateFrustum(scissor);
+	camera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
+
+	SViewPort vp;
+	vp.m_Height = wm.m_ReflectionTextureSize;
+	vp.m_Width = wm.m_ReflectionTextureSize;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	camera.SetViewPort(vp);
+	camera.SetProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	CMatrix3D scaleMat;
+	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
+
+	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
+	SetObliqueFrustumClipping(camera, camPlane);
+
+}
+
+void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const
+{
+	WaterManager& wm = m->waterManager;
+
+	float fov = m_ViewCamera.GetFOV();
+
+	// Expand fov slightly since ripples can reflect parts of the scene that
+	// are slightly outside the normal camera view, and we want to avoid any
+	// noticeable edge-filtering artifacts
+	fov *= 1.05f;
+
+	camera = m_ViewCamera;
+
+	// Temporarily change the camera to make it render to a view port the size of the
+	// water texture, stretch the image according to our aspect ratio so it covers
+	// the whole screen despite being rendered into a square, and cover slightly more
+	// of the view so we can see wavy refractions of slightly off-screen objects.
+	camera.UpdateFrustum(scissor);
+	camera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight));
+
+	SViewPort vp;
+	vp.m_Height = wm.m_RefractionTextureSize;
+	vp.m_Width = wm.m_RefractionTextureSize;
+	vp.m_X = 0;
+	vp.m_Y = 0;
+	camera.SetViewPort(vp);
+	camera.SetProjection(m_ViewCamera.GetNearPlane(), m_ViewCamera.GetFarPlane(), fov);
+	CMatrix3D scaleMat;
+	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
+	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
+
+	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight);
+	SetObliqueFrustumClipping(camera, camPlane);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1156,40 +1176,21 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 	// Remember old camera
 	CCamera normalCamera = m_ViewCamera;
 
-	// Temporarily change the camera to one that is reflected.
-	// Also, for texturing purposes, make it render to a view port the size of the
-	// water texture, stretch the image according to our aspect ratio so it covers
-	// the whole screen despite being rendered into a square, and cover slightly more
-	// of the view so we can see wavy reflections of slightly off-screen objects.
-	m_ViewCamera.m_Orientation.Scale(1, -1, 1);
-	m_ViewCamera.m_Orientation.Translate(0, 2*wm.m_WaterHeight, 0);
-	m_ViewCamera.UpdateFrustum(scissor);
-	m_ViewCamera.ClipFrustum(CVector4D(0, 1, 0, -wm.m_WaterHeight));
-
-	SViewPort vp;
-	vp.m_Height = wm.m_ReflectionTextureSize;
-	vp.m_Width = wm.m_ReflectionTextureSize;
-	vp.m_X = 0;
-	vp.m_Y = 0;
-	m_ViewCamera.SetViewPort(vp);
-	m_ViewCamera.SetProjection(normalCamera.GetNearPlane(), normalCamera.GetFarPlane(), normalCamera.GetFOV()*1.05f); // Slightly higher than view FOV
-	CMatrix3D scaleMat;
-	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
-	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
+	ComputeReflectionCamera(m_ViewCamera, scissor);
 
 	m->SetOpenGLCamera(m_ViewCamera);
-
-	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
-	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_ReflectionMatrix = m_ViewCamera.GetViewProjection();
 
+	float vpHeight = wm.m_ReflectionTextureSize;
+	float vpWidth = wm.m_ReflectionTextureSize;
+
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
-	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vp.m_Height);
-	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vp.m_Width);
-	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vp.m_Height);
+	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
 
 	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
 	{
@@ -1198,19 +1199,28 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
+		// Swap front/back faces to compensate for the reflected view-projection matrix
 		glFrontFace(GL_CW);
 
 		// Render sky, terrain and models
 		m->skyManager.RenderSky();
 		ogl_WarnIfError();
-		RenderPatches(context, &m_ViewCamera.GetFrustum());
+		RenderPatches(context, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderModels(context, &m_ViewCamera.GetFrustum());
+		RenderModels(context, CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderTransparentModels(context, TRANSPARENT_OPAQUE, &m_ViewCamera.GetFrustum());
+		RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT_OPAQUE, true);
 		ogl_WarnIfError();
 
 		glFrontFace(GL_CCW);
+
+		// Particles are always oriented to face the camera in the vertex shader,
+		// so they don't need the inverted glFrontFace
+		if (m_Options.m_Particles)
+		{
+			RenderParticles(CULL_REFLECTIONS);
+			ogl_WarnIfError();
+		}
 
 		glDisable(GL_SCISSOR_TEST);
 
@@ -1243,37 +1253,21 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 	// Remember old camera
 	CCamera normalCamera = m_ViewCamera;
 
-	// Temporarily change the camera to make it render to a view port the size of the
-	// water texture, stretch the image according to our aspect ratio so it covers
-	// the whole screen despite being rendered into a square, and cover slightly more
-	// of the view so we can see wavy refractions of slightly off-screen objects.
-	m_ViewCamera.UpdateFrustum(scissor);
-	m_ViewCamera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight));
-
-	SViewPort vp;
-	vp.m_Height = wm.m_RefractionTextureSize;
-	vp.m_Width = wm.m_RefractionTextureSize;
-	vp.m_X = 0;
-	vp.m_Y = 0;
-	m_ViewCamera.SetViewPort(vp);
-	m_ViewCamera.SetProjection(normalCamera.GetNearPlane(), normalCamera.GetFarPlane(), normalCamera.GetFOV()*1.05f); // Slightly higher than view FOV
-	CMatrix3D scaleMat;
-	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
-	m_ViewCamera.m_ProjMat = scaleMat * m_ViewCamera.m_ProjMat;
+	ComputeRefractionCamera(m_ViewCamera, scissor);
 
 	m->SetOpenGLCamera(m_ViewCamera);
-
-	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight);
-	SetObliqueFrustumClipping(camPlane);
 
 	// Save the model-view-projection matrix so the shaders can use it for projective texturing
 	wm.m_RefractionMatrix = m_ViewCamera.GetViewProjection();
 
+	float vpHeight = wm.m_RefractionTextureSize;
+	float vpWidth = wm.m_RefractionTextureSize;
+
 	SScreenRect screenScissor;
-	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vp.m_Width);
-	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vp.m_Height);
-	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vp.m_Width);
-	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vp.m_Height);
+	screenScissor.x1 = (GLint)floor((scissor[0].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vpHeight);
+	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
+	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
 	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
 	{
 		glEnable(GL_SCISSOR_TEST);
@@ -1283,12 +1277,14 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 
 		// Render terrain and models
-		RenderPatches(context, &m_ViewCamera.GetFrustum());
+		RenderPatches(context, CULL_REFRACTIONS);
 		ogl_WarnIfError();
-		RenderModels(context, &m_ViewCamera.GetFrustum());
+		RenderModels(context, CULL_REFRACTIONS);
 		ogl_WarnIfError();
-		RenderTransparentModels(context, TRANSPARENT_OPAQUE, &m_ViewCamera.GetFrustum());
+		RenderTransparentModels(context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
 		ogl_WarnIfError();
+
+		// Don't bother with particles since it's unlikely they'll be visible underwater
 
 		glDisable(GL_SCISSOR_TEST);
 
@@ -1347,18 +1343,18 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 		// protrude into the ground, only occlude with the back faces of the
 		// terrain (so silhouettes will still display when behind hills)
 		glCullFace(GL_FRONT);
-		m->terrainRenderer.RenderPatches();
+		m->terrainRenderer.RenderPatches(CULL_DEFAULT);
 		glCullFace(GL_BACK);
 	}
 
 	{
 		PROFILE("render model occluders");
-		m->CallModelRenderers(contextOccluder, MODELFLAG_SILHOUETTE_OCCLUDER);
+		m->CallModelRenderers(contextOccluder, CULL_DEFAULT, MODELFLAG_SILHOUETTE_OCCLUDER);
 	}
 
 	{
 		PROFILE("render transparent occluders");
-		m->CallTranspModelRenderers(contextOccluder, MODELFLAG_SILHOUETTE_OCCLUDER);
+		m->CallTranspModelRenderers(contextOccluder, CULL_DEFAULT, MODELFLAG_SILHOUETTE_OCCLUDER);
 	}
 
 	glDepthFunc(GL_GEQUAL);
@@ -1392,7 +1388,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 
 	{
 		PROFILE("render models");
-		m->CallModelRenderers(contextDisplay, MODELFLAG_SILHOUETTE_DISPLAY);
+		m->CallModelRenderers(contextDisplay, CULL_DEFAULT, MODELFLAG_SILHOUETTE_DISPLAY);
 		// (This won't render transparent objects with SILHOUETTE_DISPLAY - will
 		// we have any units that need that?)
 	}
@@ -1412,7 +1408,7 @@ void CRenderer::RenderSilhouettes(const CShaderDefines& context)
 	}
 }
 
-void CRenderer::RenderParticles()
+void CRenderer::RenderParticles(int cullGroup)
 {
 	// Only supported in shader modes
 	if (GetRenderPath() != RP_SHADER)
@@ -1420,7 +1416,7 @@ void CRenderer::RenderParticles()
 
 	PROFILE3_GPU("particles");
 
-	m->particleRenderer.RenderParticles();
+	m->particleRenderer.RenderParticles(cullGroup);
 
 #if !CONFIG2_GLES
 	if (m_ModelRenderMode == EDGED_FACES)
@@ -1438,7 +1434,7 @@ void CRenderer::RenderParticles()
 		shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
 		shader->Uniform(str_transform, m_ViewCamera.GetViewProjection());
 
-		m->particleRenderer.RenderBounds(shader);
+		m->particleRenderer.RenderBounds(cullGroup, shader);
 
 		shaderTech->EndPass();
 
@@ -1449,7 +1445,7 @@ void CRenderer::RenderParticles()
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderSubmissions: force rendering of any batched objects
-void CRenderer::RenderSubmissions()
+void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 {
 	PROFILE3("render submissions");
 	
@@ -1459,6 +1455,8 @@ void CRenderer::RenderSubmissions()
 		m->postprocManager.CaptureRenderOutput();
 
 	CShaderDefines context = m->globalContext;
+
+	int cullGroup = CULL_DEFAULT;
 
 	ogl_WarnIfError();
 
@@ -1495,39 +1493,31 @@ void CRenderer::RenderSubmissions()
 
 	ogl_WarnIfError();
 
-	CBoundingBoxAligned waterScissor;
 	if (m_WaterManager->m_RenderWater)
 	{
-		waterScissor = m->terrainRenderer.ScissorWater(m_ViewCamera.GetViewProjection());
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
-			SScreenRect dirty = { 0, 0, 0, 0 };
-			if (m_Options.m_WaterRefraction && m_Options.m_WaterReflection)
+			SScreenRect dirty = { INT_MAX, INT_MAX, INT_MIN, INT_MIN };
+
+			if (m_Options.m_WaterReflection)
 			{
 				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
-				SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
-				dirty.x1 = std::min(reflectionScissor.x1, refractionScissor.x1);
-				dirty.y1 = std::min(reflectionScissor.y1, refractionScissor.y1);
-				dirty.x2 = std::max(reflectionScissor.x2, refractionScissor.x2);
-				dirty.y2 = std::max(reflectionScissor.y2, refractionScissor.y2);
- 			}
-			else if (m_Options.m_WaterRefraction)
+				dirty.x1 = std::min(dirty.x1, reflectionScissor.x1);
+				dirty.y1 = std::min(dirty.y1, reflectionScissor.y1);
+				dirty.x2 = std::max(dirty.x2, reflectionScissor.x2);
+				dirty.y2 = std::max(dirty.y2, reflectionScissor.y2);
+			}
+
+			if (m_Options.m_WaterRefraction)
 			{
 				SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
-				dirty.x1 = refractionScissor.x1;
-				dirty.y1 = refractionScissor.y1;
-				dirty.x2 = refractionScissor.x2;
-				dirty.y2 = refractionScissor.y2;
+				dirty.x1 = std::min(dirty.x1, refractionScissor.x1);
+				dirty.y1 = std::min(dirty.y1, refractionScissor.y1);
+				dirty.x2 = std::max(dirty.x2, refractionScissor.x2);
+				dirty.y2 = std::max(dirty.y2, refractionScissor.y2);
 			}
-            else if (m_Options.m_WaterReflection)
-			{
-				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
-				dirty.x1 = reflectionScissor.x1;
-				dirty.y1 = reflectionScissor.y1;
-				dirty.x2 = reflectionScissor.x2;
-				dirty.y2 = reflectionScissor.y2;
-			}
+
 			if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
 			{
 				glEnable(GL_SCISSOR_TEST);
@@ -1545,7 +1535,7 @@ void CRenderer::RenderSubmissions()
 	}
 
 	// render submitted patches and models
-	RenderPatches(context);
+	RenderPatches(context, cullGroup);
 	ogl_WarnIfError();
 
 	// render debug-related terrain overlays
@@ -1556,27 +1546,27 @@ void CRenderer::RenderSubmissions()
 	m->overlayRenderer.RenderOverlaysBeforeWater();
 	ogl_WarnIfError();
 
-	RenderModels(context);
+	RenderModels(context, cullGroup);
 	ogl_WarnIfError();
 
 	// render water
 	if (m_WaterManager->m_RenderWater && g_Game && waterScissor.GetVolume() > 0)
 	{
 		// render transparent stuff, but only the solid parts that can occlude block water
-		RenderTransparentModels(context, TRANSPARENT_OPAQUE);
+		RenderTransparentModels(context, cullGroup, TRANSPARENT_OPAQUE, false);
 		ogl_WarnIfError();
 
-		m->terrainRenderer.RenderWater(context, &m->shadow);
+		m->terrainRenderer.RenderWater(context, cullGroup, &m->shadow);
 		ogl_WarnIfError();
 
 		// render transparent stuff again, but only the blended parts that overlap water
-		RenderTransparentModels(context, TRANSPARENT_BLEND);
+		RenderTransparentModels(context, cullGroup, TRANSPARENT_BLEND, false);
 		ogl_WarnIfError();
 	}
 	else
 	{
 		// render transparent stuff, so it can overlap models/terrain
-		RenderTransparentModels(context, TRANSPARENT);
+		RenderTransparentModels(context, cullGroup, TRANSPARENT, false);
 		ogl_WarnIfError();
 	}
 
@@ -1591,7 +1581,7 @@ void CRenderer::RenderSubmissions()
 	// particles are transparent so render after water
 	if (m_Options.m_Particles)
 	{
-		RenderParticles();
+		RenderParticles(cullGroup);
 		ogl_WarnIfError();
 	}
 	
@@ -1694,7 +1684,7 @@ void CRenderer::RenderTextOverlays()
 	PROFILE3_GPU("text overlays");
 
 	if (m_DisplayTerrainPriorities)
-		m->terrainRenderer.RenderPriorities();
+		m->terrainRenderer.RenderPriorities(CULL_DEFAULT);
 
 	ogl_WarnIfError();
 }
@@ -1726,69 +1716,92 @@ SViewPort CRenderer::GetViewport()
 
 void CRenderer::Submit(CPatch* patch)
 {
-	m->terrainRenderer.Submit(patch);
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->shadow.AddShadowReceiverBound(patch->GetWorldBounds());
+
+	if (m_CurrentCullGroup == CULL_SHADOWS)
+		m->shadow.AddShadowCasterBound(patch->GetWorldBounds());
+
+	m->terrainRenderer.Submit(m_CurrentCullGroup, patch);
 }
 
 void CRenderer::Submit(SOverlayLine* overlay)
 {
-	m->overlayRenderer.Submit(overlay);
+	// Overlays are only needed in the default cull group for now,
+	// so just ignore submissions to any other group
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::Submit(SOverlayTexturedLine* overlay)
 {
-	m->overlayRenderer.Submit(overlay);
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::Submit(SOverlaySprite* overlay)
 {
-	m->overlayRenderer.Submit(overlay);
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::Submit(SOverlayQuad* overlay)
 {
-	m->overlayRenderer.Submit(overlay);
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::Submit(SOverlaySphere* overlay)
 {
-	m->overlayRenderer.Submit(overlay);
+	if (m_CurrentCullGroup == CULL_DEFAULT)
+		m->overlayRenderer.Submit(overlay);
 }
 
 void CRenderer::Submit(CModelDecal* decal)
 {
-	m->terrainRenderer.Submit(decal);
+	// Decals can't cast shadows since they're flat on the terrain.
+	// They can receive shadows, but the terrain under them will have
+	// already been passed to AddShadowCasterBound, so don't bother
+	// doing it again here.
+
+	m->terrainRenderer.Submit(m_CurrentCullGroup, decal);
 }
 
 void CRenderer::Submit(CParticleEmitter* emitter)
 {
-	m->particleRenderer.Submit(emitter);
+	m->particleRenderer.Submit(m_CurrentCullGroup, emitter);
 }
 
 void CRenderer::SubmitNonRecursive(CModel* model)
 {
-	if (model->GetFlags() & MODELFLAG_CASTSHADOWS)
+	if (m_CurrentCullGroup == CULL_DEFAULT)
 	{
-		m->shadow.AddShadowedBound(model->GetWorldBounds());
+		m->shadow.AddShadowReceiverBound(model->GetWorldBounds());
 	}
 
-	// Tricky: The call to GetWorldBounds() above can invalidate the position
-	model->ValidatePosition();
+	if (m_CurrentCullGroup == CULL_SHADOWS)
+	{
+		if (!(model->GetFlags() & MODELFLAG_CASTSHADOWS))
+			return;
+
+		m->shadow.AddShadowCasterBound(model->GetWorldBounds());
+	}
 
 	bool requiresSkinning = (model->GetModelDef()->GetNumBones() != 0);
 
 	if (model->GetMaterial().UsesAlphaBlending())
 	{
 		if (requiresSkinning)
-			m->Model.TranspSkinned->Submit(model);
+			m->Model.TranspSkinned->Submit(m_CurrentCullGroup, model);
 		else
-			m->Model.TranspUnskinned->Submit(model);
+			m->Model.TranspUnskinned->Submit(m_CurrentCullGroup, model);
 	}
 	else
 	{
 		if (requiresSkinning)
-			m->Model.NormalSkinned->Submit(model);
+			m->Model.NormalSkinned->Submit(m_CurrentCullGroup, model);
 		else
-			m->Model.NormalUnskinned->Submit(model);
+			m->Model.NormalUnskinned->Submit(m_CurrentCullGroup, model);
 	}
 }
 
@@ -1801,13 +1814,54 @@ void CRenderer::RenderScene(Scene& scene)
 
 	CFrustum frustum = m_CullCamera.GetFrustum();
 
+	m_CurrentCullGroup = CULL_DEFAULT;
+
 	scene.EnumerateObjects(frustum, this);
 
 	m->particleManager.RenderSubmit(*this, frustum);
 
+	if (m_Caps.m_Shadows && m_Options.m_Shadows && GetRenderPath() == RP_SHADER)
+	{
+		m_CurrentCullGroup = CULL_SHADOWS;
+
+		CFrustum shadowFrustum = m->shadow.GetShadowCasterCullFrustum();
+		scene.EnumerateObjects(shadowFrustum, this);
+	}
+
+	CBoundingBoxAligned waterScissor;
+	if (m_WaterManager->m_RenderWater)
+	{
+		waterScissor = m->terrainRenderer.ScissorWater(CULL_DEFAULT, m_ViewCamera.GetViewProjection());
+
+		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
+		{
+			if (m_Options.m_WaterReflection)
+			{
+				m_CurrentCullGroup = CULL_REFLECTIONS;
+
+				CCamera reflectionCamera;
+				ComputeReflectionCamera(reflectionCamera, waterScissor);
+
+				scene.EnumerateObjects(reflectionCamera.GetFrustum(), this);
+			}
+
+			if (m_Options.m_WaterRefraction)
+			{
+				m_CurrentCullGroup = CULL_REFRACTIONS;
+
+				CCamera refractionCamera;
+				ComputeRefractionCamera(refractionCamera, waterScissor);
+
+				scene.EnumerateObjects(refractionCamera.GetFrustum(), this);
+			}
+		}
+	}
+
+	m_CurrentCullGroup = -1;
+
 	ogl_WarnIfError();
 
-	RenderSubmissions();
+	RenderSubmissions(waterScissor);
 
 	m_CurrentScene = NULL;
 }

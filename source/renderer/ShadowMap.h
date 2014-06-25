@@ -89,12 +89,30 @@ public:
 	void SetupFrame(const CCamera& camera, const CVector3D& lightdir);
 
 	/**
-	 * AddShadowedBound: Add the bounding box of an object that has to be shadowed.
+	 * Add the bounding box of an object that will cast a shadow.
 	 * This is used to calculate the bounds for the shadow map.
 	 *
 	 * @param bounds world space bounding box
 	 */
-	void AddShadowedBound(const CBoundingBoxAligned& bounds);
+	void AddShadowCasterBound(const CBoundingBoxAligned& bounds);
+
+	/**
+	 * Add the bounding box of an object that will receive a shadow.
+	 * This is used to calculate the bounds for the shadow map.
+	 *
+	 * @param bounds world space bounding box
+	 */
+	void AddShadowReceiverBound(const CBoundingBoxAligned& bounds);
+
+	/**
+	 * Compute the frustum originating at the light source, that encompasses
+	 * all the objects passed into AddShadowReceiverBound so far.
+	 *
+	 * This frustum can be used to determine which objects might cast a visible
+	 * shadow. Those objects should be passed to AddShadowCasterBound and
+	 * then should be rendered into the shadow map.
+	 */
+	CFrustum GetShadowCasterCullFrustum();
 
 	/**
 	 * BeginRender: Set OpenGL state for rendering into the shadow map texture.

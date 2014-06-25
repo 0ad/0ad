@@ -38,7 +38,7 @@ public:
 	/**
 	 * Add an emitter for rendering in this frame.
 	 */
-	void Submit(CParticleEmitter* emitter);
+	void Submit(int cullGroup, CParticleEmitter* emitter);
 
 	/**
 	 * Prepare internal data structures for rendering.
@@ -55,12 +55,12 @@ public:
 	/**
 	 * Render all the submitted particles.
 	 */
-	void RenderParticles(bool solidColor = false);
+	void RenderParticles(int cullGroup, bool solidColor = false);
 
 	/**
 	 * Render bounding boxes for all the submitted emitters.
 	 */
-	void RenderBounds(CShaderProgramPtr& shader);
+	void RenderBounds(int cullGroup, CShaderProgramPtr& shader);
 
 private:
 	ParticleRendererInternals* m;

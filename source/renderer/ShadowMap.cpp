@@ -31,6 +31,7 @@
 #include "graphics/ShaderManager.h"
 
 #include "maths/BoundingBoxAligned.h"
+#include "maths/Brush.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
 
@@ -69,7 +70,10 @@ struct ShadowMapInternals
 	// transform light space into world space
 	CMatrix3D InvLightTransform;
 	// bounding box of shadowed objects in light space
-	CBoundingBoxAligned ShadowBound;
+	CBoundingBoxAligned ShadowCasterBound;
+	CBoundingBoxAligned ShadowReceiverBound;
+
+	CBoundingBoxAligned ShadowRenderBound;
 
 	// Camera transformed into light space
 	CCamera LightspaceCamera;
@@ -198,7 +202,8 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 	m->LightTransform._44 = 1.0;
 
 	m->LightTransform.GetInverse(m->InvLightTransform);
-	m->ShadowBound.SetEmpty();
+	m->ShadowCasterBound.SetEmpty();
+	m->ShadowReceiverBound.SetEmpty();
 
 	//
 	m->LightspaceCamera = camera;
@@ -210,26 +215,79 @@ void ShadowMap::SetupFrame(const CCamera& camera, const CVector3D& lightdir)
 //////////////////////////////////////////////////////////////////////////////
 // AddShadowedBound: add a world-space bounding box to the bounds of shadowed
 // objects
-void ShadowMap::AddShadowedBound(const CBoundingBoxAligned& bounds)
+void ShadowMap::AddShadowCasterBound(const CBoundingBoxAligned& bounds)
 {
 	CBoundingBoxAligned lightspacebounds;
 
 	bounds.Transform(m->LightTransform, lightspacebounds);
-	m->ShadowBound += lightspacebounds;
+	m->ShadowCasterBound += lightspacebounds;
 }
 
+void ShadowMap::AddShadowReceiverBound(const CBoundingBoxAligned& bounds)
+{
+	CBoundingBoxAligned lightspacebounds;
+
+	bounds.Transform(m->LightTransform, lightspacebounds);
+	m->ShadowReceiverBound += lightspacebounds;
+}
+
+CFrustum ShadowMap::GetShadowCasterCullFrustum()
+{
+	// Get the bounds of all objects that can receive shadows
+	CBoundingBoxAligned bound = m->ShadowReceiverBound;
+
+	// Intersect with the camera frustum, so the shadow map doesn't have to get
+	// stretched to cover the off-screen parts of large models
+	bound.IntersectFrustumConservative(m->LightspaceCamera.GetFrustum());
+
+	// ShadowBound might have been empty to begin with, producing an empty result
+	if (bound.IsEmpty())
+	{
+		// CFrustum can't easily represent nothingness, so approximate it with
+		// a single point which won't match many objects
+		bound += CVector3D(0.0f, 0.0f, 0.0f);
+		return bound.ToFrustum();
+	}
+
+	// Extend the bounds a long way towards the light source, to encompass
+	// all objects that might cast visible shadows.
+	// (The exact constant was picked entirely arbitrarily.)
+	bound[0].Z -= 1000.f;
+
+	CFrustum frustum = bound.ToFrustum();
+	frustum.Transform(m->InvLightTransform);
+	return frustum;
+}
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // CalcShadowMatrices: calculate required matrices for shadow map generation - the light's
 // projection and transformation matrices
 void ShadowMapInternals::CalcShadowMatrices()
 {
-	float minZ = ShadowBound[0].Z;
+	// Start building the shadow map to cover all objects that will receive shadows
+	CBoundingBoxAligned receiverBound = ShadowReceiverBound;
 
-	ShadowBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
+	// Intersect with the camera frustum, so the shadow map doesn't have to get
+	// stretched to cover the off-screen parts of large models
+	receiverBound.IntersectFrustumConservative(LightspaceCamera.GetFrustum());
+
+	// Intersect with the shadow caster bounds, because there's no point
+	// wasting space around the edges of the shadow map that we're not going
+	// to draw into
+	ShadowRenderBound[0].X = std::max(receiverBound[0].X, ShadowCasterBound[0].X);
+	ShadowRenderBound[0].Y = std::max(receiverBound[0].Y, ShadowCasterBound[0].Y);
+	ShadowRenderBound[1].X = std::min(receiverBound[1].X, ShadowCasterBound[1].X);
+	ShadowRenderBound[1].Y = std::min(receiverBound[1].Y, ShadowCasterBound[1].Y);
+
+	// Set the near and far planes to include just the shadow casters,
+	// so we make full use of the depth texture's range. Add a bit of a
+	// delta so we don't accidentally clip objects that are directly on
+	// the planes.
+	ShadowRenderBound[0].Z = ShadowCasterBound[0].Z - 2.f;
+	ShadowRenderBound[1].Z = ShadowCasterBound[1].Z + 2.f;
 
 	// ShadowBound might have been empty to begin with, producing an empty result
-	if (ShadowBound.IsEmpty())
+	if (ShadowRenderBound.IsEmpty())
 	{
 		// no-op
 		LightProjection.SetIdentity();
@@ -239,20 +297,14 @@ void ShadowMapInternals::CalcShadowMatrices()
 
 	// round off the shadow boundaries to sane increments to help reduce swim effect
 	float boundInc = 16.0f;
-	ShadowBound[0].X = floor(ShadowBound[0].X / boundInc) * boundInc;
-	ShadowBound[0].Y = floor(ShadowBound[0].Y / boundInc) * boundInc;
-	ShadowBound[1].X = ceil(ShadowBound[1].X / boundInc) * boundInc;
-	ShadowBound[1].Y = ceil(ShadowBound[1].Y / boundInc) * boundInc;
-
-	// minimum Z bound must not be clipped too much, because objects that lie outside
-	// the shadow bounds cannot cast shadows either
-	// the 2.0 is rather arbitrary: it should be big enough so that we won't accidentally miss
-	// a shadow generator, and small enough not to affect Z precision
-	ShadowBound[0].Z = minZ - 2.0;
+	ShadowRenderBound[0].X = floor(ShadowRenderBound[0].X / boundInc) * boundInc;
+	ShadowRenderBound[0].Y = floor(ShadowRenderBound[0].Y / boundInc) * boundInc;
+	ShadowRenderBound[1].X = ceil(ShadowRenderBound[1].X / boundInc) * boundInc;
+	ShadowRenderBound[1].Y = ceil(ShadowRenderBound[1].Y / boundInc) * boundInc;
 
 	// Setup orthogonal projection (lightspace -> clip space) for shadowmap rendering
-	CVector3D scale = ShadowBound[1] - ShadowBound[0];
-	CVector3D shift = (ShadowBound[1] + ShadowBound[0]) * -0.5;
+	CVector3D scale = ShadowRenderBound[1] - ShadowRenderBound[0];
+	CVector3D shift = (ShadowRenderBound[1] + ShadowRenderBound[0]) * -0.5;
 
 	if (scale.X < 1.0)
 		scale.X = 1.0;
@@ -266,8 +318,8 @@ void ShadowMapInternals::CalcShadowMatrices()
 	scale.Z = 2.0 / scale.Z;
 
 	// make sure a given world position falls on a consistent shadowmap texel fractional offset
-	float offsetX = fmod(ShadowBound[0].X - LightTransform._14, 2.0f/(scale.X*EffectiveWidth));
-	float offsetY = fmod(ShadowBound[0].Y - LightTransform._24, 2.0f/(scale.Y*EffectiveHeight));
+	float offsetX = fmod(ShadowRenderBound[0].X - LightTransform._14, 2.0f/(scale.X*EffectiveWidth));
+	float offsetY = fmod(ShadowRenderBound[0].Y - LightTransform._24, 2.0f/(scale.Y*EffectiveHeight));
 
 	LightProjection.SetZero();
 	LightProjection._11 = scale.X;
@@ -288,11 +340,11 @@ void ShadowMapInternals::CalcShadowMatrices()
 	CMatrix3D lightToTex;
 	lightToTex.SetZero();
 	lightToTex._11 = texscalex;
-	lightToTex._14 = (offsetX - ShadowBound[0].X) * texscalex;
+	lightToTex._14 = (offsetX - ShadowRenderBound[0].X) * texscalex;
 	lightToTex._22 = texscaley;
-	lightToTex._24 = (offsetY - ShadowBound[0].Y) * texscaley;
+	lightToTex._24 = (offsetY - ShadowRenderBound[0].Y) * texscaley;
 	lightToTex._33 = texscalez;
-	lightToTex._34 = -ShadowBound[0].Z * texscalez;
+	lightToTex._34 = -ShadowRenderBound[0].Z * texscalez;
 	lightToTex._44 = 1.0;
 
 	TextureMatrix = lightToTex * LightTransform;
@@ -579,35 +631,50 @@ void ShadowMap::RenderDebugBounds()
 	glDepthMask(0);
 	glDisable(GL_CULL_FACE);
 
-	// Render shadow bound
+	// Render various shadow bounds:
+	//  Yellow = bounds of objects in view frustum that receive shadows
+	//  Red = culling frustum used to find potential shadow casters
+	//  Green = bounds of objects in culling frustum that cast shadows
+	//  Blue = frustum used for rendering the shadow map
+
 	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection() * m->InvLightTransform);
+
+	shader->Uniform(str_color, 1.0f, 1.0f, 0.0f, 1.0f);
+	m->ShadowReceiverBound.RenderOutline(shader);
+
+	shader->Uniform(str_color, 0.0f, 1.0f, 0.0f, 1.0f);
+	m->ShadowCasterBound.RenderOutline(shader);
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 0.25f);
-	m->ShadowBound.Render(shader);
+	m->ShadowRenderBound.Render(shader);
 	glDisable(GL_BLEND);
 
 	shader->Uniform(str_color, 0.0f, 0.0f, 1.0f, 1.0f);
-	m->ShadowBound.RenderOutline(shader);
+	m->ShadowRenderBound.RenderOutline(shader);
 
-	// Draw a funny line/triangle direction indicator thing for unknown reasons
-	float shadowLineVerts[] = {
-		0.0, 0.0, 0.0,
-		0.0, 0.0, 50.0,
+	// Render light frustum
 
-		0.0, 0.0, 50.0,
-		50.0, 0.0, 50.0,
+	shader->Uniform(str_transform, g_Renderer.GetViewCamera().GetViewProjection());
 
-		50.0, 0.0, 50.0,
-		0.0, 50.0, 50.0,
-		
-		0.0, 50.0, 50.0,
-		0.0, 0.0, 50.0
-	};
-	shader->VertexPointer(3, GL_FLOAT, 0, shadowLineVerts);
-	shader->AssertPointersBound();
-	glDrawArrays(GL_LINES, 0, 8);
+	CFrustum frustum = GetShadowCasterCullFrustum();
+	// We don't have a function to create a brush directly from a frustum, so use
+	// the ugly approach of creating a large cube and then intersecting with the frustum
+	CBoundingBoxAligned dummy(CVector3D(-1e4, -1e4, -1e4), CVector3D(1e4, 1e4, 1e4));
+	CBrush brush(dummy);
+	CBrush frustumBrush;
+	brush.Intersect(frustum, frustumBrush);
+
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 0.25f);
+	frustumBrush.Render(shader);
+	glDisable(GL_BLEND);
+
+	shader->Uniform(str_color, 1.0f, 0.0f, 0.0f, 1.0f);
+	frustumBrush.RenderOutline(shader);
+
 
 	shaderTech->EndPass();
 

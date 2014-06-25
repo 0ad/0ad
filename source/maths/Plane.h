@@ -56,7 +56,7 @@ class CPlane
 		PLANESIDE ClassifyPoint (const CVector3D &point) const;
 
 		//solves the plane equation for a particular point
-		float DistanceToPlane (const CVector3D &point) const;
+		inline float DistanceToPlane (const CVector3D &point) const;
 
 		//calculates the intersection point of a line with this
 		//plane. Returns false if there is no intersection
@@ -67,5 +67,17 @@ class CPlane
 		CVector3D m_Norm;	//normal vector of the plane
 		float m_Dist;		//Plane distance (ie D in the plane eq.)
 };
+
+float CPlane::DistanceToPlane (const CVector3D &point) const
+{
+	float Dist;
+
+	Dist = m_Norm.X * point.X +
+		   m_Norm.Y * point.Y +
+		   m_Norm.Z * point.Z +
+		   m_Dist;
+
+	return Dist;
+}
 
 #endif

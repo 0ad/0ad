@@ -24,6 +24,8 @@
 
 #include "Vector3D.h"
 
+#include "graphics/ShaderProgram.h"
+
 class CBoundingBoxAligned;
 class CFrustum;
 class CPlane;
@@ -77,6 +79,16 @@ public:
 	 * @param result the resulting brush is stored here
 	 */
 	void Intersect(const CFrustum& frustum, CBrush& result) const;
+
+	/**
+	 * Render the surfaces of the brush as triangles.
+	 */
+	void Render(CShaderProgramPtr& shader) const;
+
+	/**
+	 * Render the outline of the brush as lines.
+	 */
+	void RenderOutline(CShaderProgramPtr& shader) const;
 
 private:
 	

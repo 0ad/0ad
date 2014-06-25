@@ -34,6 +34,7 @@ portal rendering, where a portal may have 3 or more edges.
 #define MAX_NUM_FRUSTUM_PLANES		(10)
 
 class CBoundingBoxAligned;
+class CMatrix3D;
 
 class CFrustum
 {
@@ -49,6 +50,8 @@ public:
 	size_t GetNumPlanes() const { return m_NumPlanes; }
 
 	void AddPlane (const CPlane& plane);
+
+	void Transform(CMatrix3D& m);
 
 	//The following methods return true if the shape is
 	//partially or completely in front of the frustum planes
