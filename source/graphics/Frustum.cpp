@@ -30,6 +30,7 @@ portal rendering, where a portal may have 3 or more edges.
 #include "Frustum.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
+#include "maths/Matrix3D.h"
 
 CFrustum::CFrustum ()
 {
@@ -46,7 +47,10 @@ void CFrustum::SetNumPlanes (size_t num)
 
 	//clip it
 	if (m_NumPlanes >= MAX_NUM_FRUSTUM_PLANES)
+	{
+		debug_warn(L"CFrustum::SetNumPlanes: Too many planes");
 		m_NumPlanes = MAX_NUM_FRUSTUM_PLANES-1;
+	}
 }
 
 void CFrustum::AddPlane (const CPlane& plane)
@@ -58,6 +62,17 @@ void CFrustum::AddPlane (const CPlane& plane)
 	}
 
 	m_aPlanes[m_NumPlanes++] = plane;
+}
+
+void CFrustum::Transform(CMatrix3D& m)
+{
+	for (size_t i = 0; i < m_NumPlanes; i++)
+	{
+		CVector3D n = m.Rotate(m_aPlanes[i].m_Norm);
+		CVector3D p = m.Transform(m_aPlanes[i].m_Norm * -m_aPlanes[i].m_Dist);
+		m_aPlanes[i].Set(n, p);
+		m_aPlanes[i].Normalize();
+	}
 }
 
 bool CFrustum::IsPointVisible (const CVector3D &point) const
@@ -74,6 +89,7 @@ bool CFrustum::IsPointVisible (const CVector3D &point) const
 
 	return true;
 }
+
 bool CFrustum::DoesSegmentIntersect(const CVector3D& startRef, const CVector3D &endRef)
 {
 	CVector3D start = startRef;
@@ -179,5 +195,3 @@ bool CFrustum::IsBoxVisible (const CVector3D &position,const CBoundingBoxAligned
 
 	return true;
 }
-
-

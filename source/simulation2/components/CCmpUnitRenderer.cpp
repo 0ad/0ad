@@ -69,6 +69,13 @@ public:
 		int flags;
 
 		/**
+		 * m_FrameNumber from when the model's transform was last updated.
+		 * This is used to avoid recomputing it multiple times per frame
+		 * if a model is visible in multiple cull groups.
+		 */
+		int lastTransformFrame;
+
+		/**
 		 * Worst-case bounding shape, relative to position. Needs to account
 		 * for all possible animations, orientations, etc.
 		 */
@@ -107,6 +114,7 @@ public:
 	std::vector<SUnit> m_Units;
 	std::vector<tag_t> m_UnitTagsFree;
 
+	int m_FrameNumber;
 	float m_FrameOffset;
 
 	bool m_EnableDebugOverlays;
@@ -128,6 +136,7 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
+		m_FrameNumber = 0;
 		m_FrameOffset = 0.0f;
 		m_EnableDebugOverlays = false;
 	}
@@ -195,6 +204,7 @@ public:
 		SUnit* unit = LookupUnit(tag);
 		unit->entity = entity;
 		unit->actor = actor;
+		unit->lastTransformFrame = -1;
 		unit->flags = flags;
 		unit->boundsApprox = boundsApprox;
 		unit->inWorld = false;
@@ -277,6 +287,7 @@ void CCmpUnitRenderer::Interpolate(float frameTime, float frameOffset)
 {
 	PROFILE3("UnitRenderer::Interpolate");
 
+	++m_FrameNumber;
 	m_FrameOffset = frameOffset;
 
 	// TODO: we shouldn't update all the animations etc for units that are off-screen
@@ -346,14 +357,20 @@ void CCmpUnitRenderer::RenderSubmit(SceneCollector& collector, const CFrustum& f
 
 		unit.culled = false;
 
-		CmpPtr<ICmpPosition> cmpPosition(unit.entity);
-		if (!cmpPosition)
-			continue;
-
-		CMatrix3D transform(cmpPosition->GetInterpolatedTransform(m_FrameOffset));
-
 		CModelAbstract& unitModel = unit.actor->GetModel();
-		unitModel.SetTransform(transform);
+
+		if (unit.lastTransformFrame != m_FrameNumber)
+		{
+			CmpPtr<ICmpPosition> cmpPosition(unit.entity);
+			if (!cmpPosition)
+				continue;
+
+			CMatrix3D transform(cmpPosition->GetInterpolatedTransform(m_FrameOffset));
+
+			unitModel.SetTransform(transform);
+
+			unit.lastTransformFrame = m_FrameNumber;
+		}
 
 		if (culling && !frustum.IsBoxVisible(CVector3D(0, 0, 0), unitModel.GetWorldBoundsRec()))
 			continue;

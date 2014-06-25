@@ -139,7 +139,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 	else if (subrole === "hunter")
 	{
 		var lastHuntSearch = this.ent.getMetadata(PlayerID, "lastHuntSearch");
-		if (this.ent.isIdle() && (!lastHuntSearch || (gameState.ai.playedTurn - lastHuntSearch) > 20))
+		if (this.ent.isIdle() && (!lastHuntSearch || (gameState.ai.elapsedTime - lastHuntSearch) > 20))
 		{
 			if (!this.startHunting(gameState))
 			{
@@ -164,7 +164,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 					}
 				}
 				if (nowhereToHunt)
-					this.ent.setMetadata(PlayerID, "lastHuntSearch", gameState.ai.playedTurn);
+					this.ent.setMetadata(PlayerID, "lastHuntSearch", gameState.ai.elapsedTime);
 			}
 		}
 		else if (gameState.ai.playedTurn % 10 === 0)  // Perform some checks from time to time
@@ -555,9 +555,10 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		if (!isCavalry && dist > 25000)
 			return;
 
-		// some simple check for chickens: if they're in a inaccessible square, we won't gather from them.
-		// TODO: make sure this works with rounding.
-		if (supply.footprintRadius() < 1)
+		// some simple accessibility check: if they're in an inaccessible square, we won't gather from them.
+		// (happen only at start of the game, as animals should not be able to walk to an inaccessible area)
+		// TODO as the animal can move, check again from time to time
+		if (supply.setMetadata(PlayerID, "inaccessible") === undefined)
 		{
 			var fakeMap = new API3.Map(gameState.sharedScript, gameState.getMap().data);
 			var mapPos = fakeMap.gamePosToMapPos(supply.position());
@@ -567,6 +568,8 @@ m.Worker.prototype.startHunting = function(gameState, position)
 				supply.setMetadata(PlayerID, "inaccessible", true)
 				return;
 			}
+			else
+				supply.setMetadata(PlayerID, "inaccessible", false)
 		}
 
 		// Avoid ennemy territory

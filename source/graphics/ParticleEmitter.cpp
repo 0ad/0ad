@@ -31,7 +31,8 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
 	m_IndexArray(GL_DYNAMIC_DRAW),
-	m_VertexArray(GL_DYNAMIC_DRAW)
+	m_VertexArray(GL_DYNAMIC_DRAW),
+	m_LastFrameNumber(-1)
 {
 	// If we should start with particles fully emitted, pretend that we
 	// were created in the past so the first update will produce lots of
@@ -80,8 +81,13 @@ CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_IndexArray.FreeBackingStore();
 }
 
-void CParticleEmitter::UpdateArrayData()
+void CParticleEmitter::UpdateArrayData(int frameNumber)
 {
+	if (m_LastFrameNumber == frameNumber)
+		return;
+
+	m_LastFrameNumber = frameNumber;
+
 	// Update m_Particles
 	m_Type->UpdateEmitter(*this, m_Type->m_Manager.GetCurrentTime() - m_LastUpdateTime);
 	m_LastUpdateTime = m_Type->m_Manager.GetCurrentTime();

@@ -321,17 +321,20 @@ for (var g = 0; g < scaleByMapSize(5,30); g++)
 		);
 		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
 		
-		var placer = new PathPlacer(tx, tz, mapSize*playerX[p2], mapSize*playerZ[p2], scaleByMapSize(11,17), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.1);
-		var terrainPainter = new LayeredPainter(
-			[tMainTerrain, tMainTerrain],		// terrains
-			[3]		// widths
-		);
-		var elevationPainter = new SmoothElevationPainter(
-			ELEVATION_SET,			// type
-			3,				// elevation
-			3				// blend radius
-		);
-		createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
+		if (numPlayers > 1)
+		{
+			var placer = new PathPlacer(tx, tz, mapSize*playerX[p2], mapSize*playerZ[p2], scaleByMapSize(11,17), 0.4, 3*(scaleByMapSize(1,4)), 0.1, 0.1);
+			var terrainPainter = new LayeredPainter(
+				[tMainTerrain, tMainTerrain],		// terrains
+				[3]		// widths
+			);
+			var elevationPainter = new SmoothElevationPainter(
+				ELEVATION_SET,			// type
+				3,				// elevation
+				3				// blend radius
+			);
+			createArea(placer, [terrainPainter, elevationPainter, paintClass(clLand)], null);
+		}
 	}
 }
 

@@ -23,13 +23,13 @@
 #include "maths/Vector3D.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgram.h"
-#include "renderer/ShadowMap.h"
 #include "VertexBufferManager.h"
 
 class CPatch;
 class CSimulation2;
 class CTerrainTextureEntry;
 class CTextRenderer;
+class ShadowMap;
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 // CPatchRData: class encapsulating logic for rendering terrain patches; holds per

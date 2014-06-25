@@ -21,11 +21,11 @@
 #include "graphics/Camera.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgram.h"
-#include "renderer/ShadowMap.h"
 #include "renderer/VertexArray.h"
 
 class CModelDecal;
 class CSimulation2;
+class ShadowMap;
 
 class CDecalRData : public CRenderData
 {

@@ -414,3 +414,77 @@ void CBrush::GetFaces(std::vector<std::vector<size_t> >& out) const
 		faceStartIdx = j + 1;
 	}
 }
+
+void CBrush::Render(CShaderProgramPtr& shader) const
+{
+	std::vector<float> data;
+
+	std::vector<std::vector<size_t> > faces;
+	GetFaces(faces);
+
+#define ADD_VERT(a) \
+	STMT( \
+		data.push_back(u); \
+		data.push_back(v); \
+		data.push_back(m_Vertices[faces[i][a]].X); \
+		data.push_back(m_Vertices[faces[i][a]].Y); \
+		data.push_back(m_Vertices[faces[i][a]].Z); \
+	)
+
+	for (size_t i = 0; i < faces.size(); ++i)
+	{
+		// Triangulate into (0,1,2), (0,2,3), ...
+		for (size_t j = 1; j < faces[i].size() - 2; ++j)
+		{
+			float u = 0;
+			float v = 0;
+			ADD_VERT(0);
+			ADD_VERT(j);
+			ADD_VERT(j+1);
+		}
+	}
+
+#undef ADD_VERT
+
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
+	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
+
+	shader->AssertPointersBound();
+	glDrawArrays(GL_TRIANGLES, 0, data.size() / 5);
+}
+
+void CBrush::RenderOutline(CShaderProgramPtr& shader) const
+{
+	std::vector<float> data;
+
+	std::vector<std::vector<size_t> > faces;
+	GetFaces(faces);
+
+#define ADD_VERT(a) \
+	STMT( \
+		data.push_back(u); \
+		data.push_back(v); \
+		data.push_back(m_Vertices[faces[i][a]].X); \
+		data.push_back(m_Vertices[faces[i][a]].Y); \
+		data.push_back(m_Vertices[faces[i][a]].Z); \
+	)
+
+	for (size_t i = 0; i < faces.size(); ++i)
+	{
+		for (size_t j = 0; j < faces[i].size() - 1; ++j)
+		{
+			float u = 0;
+			float v = 0;
+			ADD_VERT(j);
+			ADD_VERT(j+1);
+		}
+	}
+
+#undef ADD_VERT
+
+	shader->TexCoordPointer(GL_TEXTURE0, 2, GL_FLOAT, 5*sizeof(float), &data[0]);
+	shader->VertexPointer(3, GL_FLOAT, 5*sizeof(float), &data[2]);
+
+	shader->AssertPointersBound();
+	glDrawArrays(GL_LINES, 0, data.size() / 5);
+}

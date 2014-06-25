@@ -107,8 +107,11 @@ public:
 
 	/**
 	 * Update particle and vertex array data. Must be called before RenderArray.
+	 *
+	 * If frameNumber is the same as the previous call to UpdateArrayData,
+	 * then the function will do no work and return immediately.
 	 */
-	void UpdateArrayData();
+	void UpdateArrayData(int frameNumber);
 
 	/**
 	 * Bind rendering state (textures and blend modes).
@@ -158,6 +161,8 @@ private:
 	VertexArray::Attribute m_AttributeAxis;
 	VertexArray::Attribute m_AttributeUV;
 	VertexArray::Attribute m_AttributeColor;
+
+	int m_LastFrameNumber;
 };
 
 /**

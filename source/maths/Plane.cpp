@@ -95,19 +95,6 @@ PLANESIDE CPlane::ClassifyPoint (const CVector3D &point) const
 	return PS_ON;
 }
 
-//solves the plane equation for a particular point
-float CPlane::DistanceToPlane (const CVector3D &point) const
-{
-	float Dist;
-
-	Dist = m_Norm.X * point.X +
-		   m_Norm.Y * point.Y +
-		   m_Norm.Z * point.Z +
-		   m_Dist;
-
-	return Dist;
-}
-
 //calculates the intersection point of a line with this
 //plane. Returns false if there is no intersection
 bool CPlane::FindLineSegIntersection (const CVector3D &start, const CVector3D &end, CVector3D *intsect)

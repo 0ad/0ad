@@ -28,7 +28,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 // CPatch constructor
 CPatch::CPatch()
-: m_Parent(0), m_bWillBeDrawn(false)
+: m_Parent(0)
 {
 }
 

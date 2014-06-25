@@ -107,13 +107,7 @@ m.HQ.prototype.init = function(gameState, queues)
 		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3.0)));
 
 	// Let's get our initial situation here.
-	// TODO: improve on this.
-	// TODO: aknowledge bases, assign workers already.
-	var ents = gameState.getEntities().filter(API3.Filters.byOwner(PlayerID));
-	var ccEnts = ents.filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	
-	var workersNB = ents.filter(API3.Filters.byClass("Worker")).length;
-	
+	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();	
 	for (var i = 0; i < ccEnts.length; ++i)
 	{
 		this.baseManagers[i+1] = new m.BaseManager(this.Config);
@@ -126,9 +120,9 @@ m.HQ.prototype.init = function(gameState, queues)
 	{
 		var self = this;
 		var width = gameState.getMap().width;
-		ents.forEach( function (ent) {
+		gameState.getOwnEntities().forEach( function (ent) {
 			if (ent.hasClass("Trader"))
-				this.tradeManager.assignTrader(ent);
+				self.tradeManager.assignTrader(ent);
 			var pos = ent.position();
 			if (!pos)
 			{
@@ -1332,29 +1326,37 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 // TODO: building placement is bad. Choice of buildings is also fairly dumb.
 m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 {
-	var barrackNb = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_barracks"), true);
-	var preferredBase = this.findBestBaseForMilitary(gameState);
-
 	if (this.canBuild(gameState, "structures/{civ}_barracks") && queues.militaryBuilding.length() === 0)
 	{
+		var barrackNb = gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_barracks"), true);
 		// first barracks.
 		if (barrackNb === 0 && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
 			(this.econState == "townPhasing" && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
 		{
 			var priority = this.Config.priorities.militaryBuilding;
 			gameState.ai.queueManager.changePriority("militaryBuilding", 2*priority);
+			var preferredBase = this.findBestBaseForMilitary(gameState);
 			var plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
 			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", priority); };
 			queues.militaryBuilding.addItem(plan);
 		}
 		// second barracks, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.
 		else if (barrackNb === 1 && gameState.getPopulation() > this.Config.Military.popForBarracks2)
+		{
+			var preferredBase = this.findBestBaseForMilitary(gameState);
 			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+		}
 		else if (barrackNb === 2 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 20)
-			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase" : preferredBase }));
+		{
+			var preferredBase = this.findBestBaseForMilitary(gameState);
+			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+		}
 		else if (barrackNb === 3 && gameState.getPopulation() > this.Config.Military.popForBarracks2 + 50
 			&& (gameState.civ() == "gaul" || gameState.civ() == "brit" || gameState.civ() == "iber"))
-			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase" : preferredBase }));
+		{
+			var preferredBase = this.findBestBaseForMilitary(gameState);
+			queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase }));
+		}
 	}
 
 	//build advanced military buildings
@@ -1370,7 +1372,8 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 			{
 				if (gameState.countEntitiesAndQueuedByType(advanced, true) < 1 && this.canBuild(gameState, advanced))
 				{
-					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, advanced, { "preferredBase" : preferredBase }));
+					var preferredBase = this.findBestBaseForMilitary(gameState);
+					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, advanced, { "preferredBase": preferredBase }));
 					break;
 				}
 			}
@@ -1386,13 +1389,13 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	var bestBase = 1;
 	var distMin = Math.min();
-	for (var cc of ccEnts)
+	for (var cce of ccEnts)
 	{
-		if (cc.owner() != PlayerID)
+		if (gameState.isPlayerAlly(cce.owner()))
 			continue;
-		for (var cce of ccEnts)
+		for (var cc of ccEnts)
 		{
-			if (gameState.isPlayerAlly(cce.owner()))
+			if (cc.owner() != PlayerID)
 				continue;
 			var dist = API3.SquareVectorDistance(cc.position(), cce.position());
 			if (dist > distMin)

@@ -78,12 +78,10 @@ struct TerrainRendererInternals
 	Phase phase;
 
 	/// Patches that were submitted for this frame
-	std::vector<CPatchRData*> visiblePatches;
-	std::vector<CPatchRData*> filteredPatches;
+	std::vector<CPatchRData*> visiblePatches[CRenderer::CULL_MAX];
 
 	/// Decals that were submitted for this frame
-	std::vector<CDecalRData*> visibleDecals;
-	std::vector<CDecalRData*> filteredDecals;
+	std::vector<CDecalRData*> visibleDecals[CRenderer::CULL_MAX];
 
 	/// Fancy water shader
 	CShaderProgramPtr fancyWaterShader;
@@ -114,7 +112,7 @@ void TerrainRenderer::SetSimulation(CSimulation2* simulation)
 
 ///////////////////////////////////////////////////////////////////
 // Submit a patch for rendering
-void TerrainRenderer::Submit(CPatch* patch)
+void TerrainRenderer::Submit(int cullGroup, CPatch* patch)
 {
 	ENSURE(m->phase == Phase_Submit);
 
@@ -127,12 +125,12 @@ void TerrainRenderer::Submit(CPatch* patch)
 	}
 	data->Update(m->simulation);
 
-	m->visiblePatches.push_back(data);
+	m->visiblePatches[cullGroup].push_back(data);
 }
 
 ///////////////////////////////////////////////////////////////////
 // Submit a decal for rendering
-void TerrainRenderer::Submit(CModelDecal* decal)
+void TerrainRenderer::Submit(int cullGroup, CModelDecal* decal)
 {
 	ENSURE(m->phase == Phase_Submit);
 
@@ -145,7 +143,7 @@ void TerrainRenderer::Submit(CModelDecal* decal)
 	}
 	data->Update(m->simulation);
 
-	m->visibleDecals.push_back(data);
+	m->visibleDecals[cullGroup].push_back(data);
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -163,45 +161,27 @@ void TerrainRenderer::EndFrame()
 {
 	ENSURE(m->phase == Phase_Render || m->phase == Phase_Submit);
 
-	m->visiblePatches.clear();
-	m->visibleDecals.clear();
+	for (int i = 0; i < CRenderer::CULL_MAX; ++i)
+	{
+		m->visiblePatches[i].clear();
+		m->visibleDecals[i].clear();
+	}
 
 	m->phase = Phase_Submit;
 }
 
 
 ///////////////////////////////////////////////////////////////////
-// Culls patches and decals against a frustum.
-bool TerrainRenderer::CullPatches(const CFrustum* frustum)
-{
-	m->filteredPatches.clear();
-	for (std::vector<CPatchRData*>::iterator it = m->visiblePatches.begin(); it != m->visiblePatches.end(); ++it)
-	{
-		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetPatch()->GetWorldBounds()))
-			m->filteredPatches.push_back(*it);
-	}
-
-	m->filteredDecals.clear();
-	for (std::vector<CDecalRData*>::iterator it = m->visibleDecals.begin(); it != m->visibleDecals.end(); ++it)
-	{
-		if (frustum->IsBoxVisible(CVector3D(0, 0, 0), (*it)->GetDecal()->GetWorldBounds()))
-			m->filteredDecals.push_back(*it);
-	}
-
-	return !m->filteredPatches.empty() || !m->filteredDecals.empty();
-}
-
-///////////////////////////////////////////////////////////////////
 // Full-featured terrain rendering with blending and everything
-void TerrainRenderer::RenderTerrain(bool filtered)
+void TerrainRenderer::RenderTerrain(int cullGroup)
 {
 #if CONFIG2_GLES
-	UNUSED2(filtered);
+	UNUSED2(cullGroup);
 #else
 	ENSURE(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
-	std::vector<CDecalRData*>& visibleDecals = filtered ? m->filteredDecals : m->visibleDecals;
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+	std::vector<CDecalRData*>& visibleDecals = m->visibleDecals[cullGroup];
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
@@ -396,15 +376,16 @@ void TerrainRenderer::RenderTerrain(bool filtered)
 #endif
 }
 
-void TerrainRenderer::RenderTerrainOverlayTexture(CMatrix3D& textureMatrix)
+void TerrainRenderer::RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix)
 {
 #if CONFIG2_GLES
 #warning TODO: implement TerrainRenderer::RenderTerrainOverlayTexture for GLES
+	UNUSED2(cullGroup);
 	UNUSED2(textureMatrix);
 #else
 	ENSURE(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches;
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_TEXTURE_COORD_ARRAY);
@@ -428,9 +409,9 @@ void TerrainRenderer::RenderTerrainOverlayTexture(CMatrix3D& textureMatrix)
 	// To make the overlay visible over water, render an additional map-sized
 	// water-height patch
 	CBoundingBoxAligned waterBounds;
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
-		CPatchRData* data = m->visiblePatches[i];
+		CPatchRData* data = visiblePatches[i];
 		waterBounds += data->GetWaterBounds();
 	}
 	if (!waterBounds.IsEmpty())
@@ -493,12 +474,12 @@ void TerrainRenderer::PrepareShader(const CShaderProgramPtr& shader, ShadowMap* 
 	shader->Uniform(str_fogParams, lightEnv.m_FogFactor, lightEnv.m_FogMax, 0.f, 0.f);
 }
 
-void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered)
+void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	ENSURE(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
-	std::vector<CDecalRData*>& visibleDecals = filtered ? m->filteredDecals : m->visibleDecals;
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+	std::vector<CDecalRData*>& visibleDecals = m->visibleDecals[cullGroup];
 	if (visiblePatches.empty() && visibleDecals.empty())
 		return;
 
@@ -545,11 +526,11 @@ void TerrainRenderer::RenderTerrainShader(const CShaderDefines& context, ShadowM
 
 ///////////////////////////////////////////////////////////////////
 // Render un-textured patches as polygons
-void TerrainRenderer::RenderPatches(bool filtered)
+void TerrainRenderer::RenderPatches(int cullGroup)
 {
 	ENSURE(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	if (visiblePatches.empty())
 		return;
 
@@ -570,11 +551,11 @@ void TerrainRenderer::RenderPatches(bool filtered)
 
 ///////////////////////////////////////////////////////////////////
 // Render outlines of submitted patches as lines
-void TerrainRenderer::RenderOutlines(bool filtered)
+void TerrainRenderer::RenderOutlines(int cullGroup)
 {
 	ENSURE(m->phase == Phase_Render);
 
-	std::vector<CPatchRData*>& visiblePatches = filtered ? m->filteredPatches : m->visiblePatches;
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
 	if (visiblePatches.empty())
 		return;
 
@@ -591,12 +572,14 @@ void TerrainRenderer::RenderOutlines(bool filtered)
 
 ///////////////////////////////////////////////////////////////////
 // Scissor rectangle of water patches
-CBoundingBoxAligned TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
+CBoundingBoxAligned TerrainRenderer::ScissorWater(int cullGroup, const CMatrix3D &viewproj)
 {
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+
 	CBoundingBoxAligned scissor;
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
-		CPatchRData* data = m->visiblePatches[i];
+		CPatchRData* data = visiblePatches[i];
 		const CBoundingBoxAligned& waterBounds = data->GetWaterBounds();
 		if (waterBounds.IsEmpty())
 			continue;
@@ -642,7 +625,7 @@ CBoundingBoxAligned TerrainRenderer::ScissorWater(const CMatrix3D &viewproj)
 }
 
 // Render fancy water
-bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap* shadow)
+bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	PROFILE3_GPU("fancy water");
 	
@@ -868,9 +851,10 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 		m->fancyWaterShader->Uniform(str_shadowScale, width, height, 1.0f / width, 1.0f / height);
 	}
 
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
-		CPatchRData* data = m->visiblePatches[i];
+		CPatchRData* data = visiblePatches[i];
 		data->RenderWater(m->fancyWaterShader);
 	}
 
@@ -884,9 +868,11 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, ShadowMap*
 	return true;
 }
 
-void TerrainRenderer::RenderSimpleWater()
+void TerrainRenderer::RenderSimpleWater(int cullGroup)
 {
-#if !CONFIG2_GLES
+#if CONFIG2_GLES
+	UNUSED2(cullGroup);
+#else
 	PROFILE3_GPU("simple water");
 
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
@@ -959,9 +945,10 @@ void TerrainRenderer::RenderSimpleWater()
 	glEnableClientState(GL_VERTEX_ARRAY);
 	glEnableClientState(GL_COLOR_ARRAY);
 
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
 	{
-		CPatchRData* data = m->visiblePatches[i];
+		CPatchRData* data = visiblePatches[i];
 		data->RenderWater(dummyShader);
 	}
 
@@ -990,17 +977,17 @@ void TerrainRenderer::RenderSimpleWater()
 
 ///////////////////////////////////////////////////////////////////
 // Render water that is part of the terrain
-void TerrainRenderer::RenderWater(const CShaderDefines& context, ShadowMap* shadow)
+void TerrainRenderer::RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow)
 {
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
 	if (!WaterMgr->WillRenderFancyWater())
-		RenderSimpleWater();
+		RenderSimpleWater(cullGroup);
 	else
-		RenderFancyWater(context, shadow);
+		RenderFancyWater(context, cullGroup, shadow);
 }
 
-void TerrainRenderer::RenderPriorities()
+void TerrainRenderer::RenderPriorities(int cullGroup)
 {
 	PROFILE("priorities");
 
@@ -1013,8 +1000,9 @@ void TerrainRenderer::RenderPriorities()
 	textRenderer.Font(CStrIntern("mono-stroke-10"));
 	textRenderer.Color(1.0f, 1.0f, 0.0f);
 
-	for (size_t i = 0; i < m->visiblePatches.size(); ++i)
-		m->visiblePatches[i]->RenderPriorities(textRenderer);
+	std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
+	for (size_t i = 0; i < visiblePatches.size(); ++i)
+		visiblePatches[i]->RenderPriorities(textRenderer);
 
 	textRenderer.Render();
 	tech->EndPass();

@@ -291,7 +291,7 @@ TerrainTextureOverlay::~TerrainTextureOverlay()
 	glDeleteTextures(1, &m_Texture);
 }
 
-void TerrainTextureOverlay::RenderAfterWater()
+void TerrainTextureOverlay::RenderAfterWater(int cullGroup)
 {
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 
@@ -329,5 +329,5 @@ void TerrainTextureOverlay::RenderAfterWater()
 	matrix._23 = m_TexelsPerTile / (m_TextureH * TERRAIN_TILE_SIZE);
 	matrix._44 = 1;
 
-	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(matrix);
+	g_Renderer.GetTerrainRenderer().RenderTerrainOverlayTexture(cullGroup, matrix);
 }

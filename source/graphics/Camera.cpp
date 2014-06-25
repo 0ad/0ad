@@ -89,9 +89,9 @@ void CCamera::UpdateFrustum(const CBoundingBoxAligned& scissor)
 
 	MatFinal = m_ProjMat * MatView;
 
-	// get the RIGHT plane
 	m_ViewFrustum.SetNumPlanes(6);
 
+	// get the RIGHT plane
 	m_ViewFrustum.m_aPlanes[0].m_Norm.X = scissor[1].X*MatFinal._41 - MatFinal._11;
 	m_ViewFrustum.m_aPlanes[0].m_Norm.Y = scissor[1].X*MatFinal._42 - MatFinal._12;
 	m_ViewFrustum.m_aPlanes[0].m_Norm.Z = scissor[1].X*MatFinal._43 - MatFinal._13;

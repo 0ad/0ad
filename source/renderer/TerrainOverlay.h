@@ -187,7 +187,7 @@ protected:
 	virtual void BuildTextureRGBA(u8* data, size_t w, size_t h) = 0;
 
 private:
-	void RenderAfterWater();
+	void RenderAfterWater(int cullGroup);
 
 	float m_TexelsPerTile;
 	GLuint m_Texture;

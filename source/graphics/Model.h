@@ -42,7 +42,6 @@ class CSimulation2;
 #define MODELFLAG_SILHOUETTE_DISPLAY	(1<<2)
 #define MODELFLAG_SILHOUETTE_OCCLUDER	(1<<3)
 #define MODELFLAG_IGNORE_LOS		(1<<4)
-#define MODELFLAG_FILTERED			(1<<5)	// used internally by renderer
 
 ///////////////////////////////////////////////////////////////////////////////
 // CModel: basically, a mesh object - holds the texturing and skinning 

@@ -27,14 +27,16 @@
 
 struct ParticleRendererInternals
 {
+	int frameNumber;
 	CShaderTechniquePtr shader;
 	CShaderTechniquePtr shaderSolid;
-	std::vector<CParticleEmitter*> emitters;
+	std::vector<CParticleEmitter*> emitters[CRenderer::CULL_MAX];
 };
 
 ParticleRenderer::ParticleRenderer()
 {
 	m = new ParticleRendererInternals();
+	m->frameNumber = 0;
 }
 
 ParticleRenderer::~ParticleRenderer()
@@ -42,14 +44,15 @@ ParticleRenderer::~ParticleRenderer()
 	delete m;
 }
 
-void ParticleRenderer::Submit(CParticleEmitter* emitter)
+void ParticleRenderer::Submit(int cullGroup, CParticleEmitter* emitter)
 {
-	m->emitters.push_back(emitter);
+	m->emitters[cullGroup].push_back(emitter);
 }
 
 void ParticleRenderer::EndFrame()
 {
-	m->emitters.clear();
+	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
+		m->emitters[cullGroup].clear();
 	// this should leave the capacity unchanged, which is okay since it
 	// won't be very large or very variable
 }
@@ -91,29 +94,35 @@ void ParticleRenderer::PrepareForRendering(const CShaderDefines& context)
 		}
 	}
 
+	++m->frameNumber;
+
+	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
 	{
 		PROFILE("update emitters");
-		for (size_t i = 0; i < m->emitters.size(); ++i)
+		for (size_t i = 0; i < m->emitters[cullGroup].size(); ++i)
 		{
-			CParticleEmitter* emitter = m->emitters[i];
-			emitter->UpdateArrayData();
+			CParticleEmitter* emitter = m->emitters[cullGroup][i];
+			emitter->UpdateArrayData(m->frameNumber);
 		}
 	}
 
+	for (int cullGroup = 0; cullGroup < CRenderer::CULL_MAX; ++cullGroup)
 	{
 		// Sort back-to-front by distance from camera
 		PROFILE("sort emitters");
 		CMatrix3D worldToCam;
 		g_Renderer.GetViewCamera().m_Orientation.GetInverse(worldToCam);
-		std::stable_sort(m->emitters.begin(), m->emitters.end(), SortEmitterDistance(worldToCam));
+		std::stable_sort(m->emitters[cullGroup].begin(), m->emitters[cullGroup].end(), SortEmitterDistance(worldToCam));
 	}
 
 	// TODO: should batch by texture here when possible, maybe
 }
 
-void ParticleRenderer::RenderParticles(bool solidColor)
+void ParticleRenderer::RenderParticles(int cullGroup, bool solidColor)
 {
 	CShaderTechniquePtr shader = solidColor ? m->shaderSolid : m->shader;
+
+	std::vector<CParticleEmitter*>& emitters = m->emitters[cullGroup];
 
 	shader->BeginPass();
 
@@ -123,9 +132,9 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 		glEnable(GL_BLEND);
 	glDepthMask(0);
 
-	for (size_t i = 0; i < m->emitters.size(); ++i)
+	for (size_t i = 0; i < emitters.size(); ++i)
 	{
-		CParticleEmitter* emitter = m->emitters[i];
+		CParticleEmitter* emitter = emitters[i];
 
 		emitter->Bind(shader->GetShader());
 		emitter->RenderArray(shader->GetShader());
@@ -142,11 +151,13 @@ void ParticleRenderer::RenderParticles(bool solidColor)
 	shader->EndPass();
 }
 
-void ParticleRenderer::RenderBounds(CShaderProgramPtr& shader)
+void ParticleRenderer::RenderBounds(int cullGroup, CShaderProgramPtr& shader)
 {
-	for (size_t i = 0; i < m->emitters.size(); ++i)
+	std::vector<CParticleEmitter*>& emitters = m->emitters[cullGroup];
+
+	for (size_t i = 0; i < emitters.size(); ++i)
 	{
-		CParticleEmitter* emitter = m->emitters[i];
+		CParticleEmitter* emitter = emitters[i];
 
 		CBoundingBoxAligned bounds = emitter->m_Type->CalculateBounds(emitter->GetPosition(), emitter->GetParticleBounds());
 		bounds.Render(shader);

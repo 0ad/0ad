@@ -142,12 +142,18 @@ public:
 	void IntersectFrustumConservative(const CFrustum& frustum);
 
 	/**
-	 * Render: Render the surfaces of the bound object as triangles.
+	 * Construct a CFrustum that describes the same volume as this bounding box.
+	 * Only valid for non-empty bounding boxes - check IsEmpty() first.
+	 */
+	CFrustum ToFrustum() const;
+
+	/**
+	 * Render the surfaces of the bound object as triangles.
 	 */
 	void Render(CShaderProgramPtr& shader) const;
 
 	/**
-	 * Render: Render the outline of the bound object as lines.
+	 * Render the outline of the bound object as lines.
 	 */
 	void RenderOutline(CShaderProgramPtr& shader) const;
 

@@ -59,12 +59,12 @@ public:
 	 *
 	 * @param patch the patch
 	 */
-	void Submit(CPatch* patch);
+	void Submit(int cullGroup, CPatch* patch);
 
 	/**
 	 * Submit: Add a terrain decal for rendering in this frame.
 	 */
-	void Submit(CModelDecal* decal);
+	void Submit(int cullGroup, CModelDecal* decal);
 
 	/**
 	 * PrepareForRendering: Prepare internal data structures like vertex
@@ -82,31 +82,21 @@ public:
 	void EndFrame();
 
 	/**
-	 * CullPatches: Culls patches and decals against a frustum,
-	 * and stores the results in a special filtered list that
-	 * is used when calling render functions with @p filtered true.
-	 */
-	bool CullPatches(const CFrustum* frustum);
-
-	/**
 	 * RenderTerrain: Render textured terrain (including blends between
 	 * different terrain types).
 	 *
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderTerrain.
-	 *
-	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderTerrain(bool filtered = false);
+	void RenderTerrain(int cullGroup);
 
 	/**
 	 * Render textured terrain, as with RenderTerrain, but using shaders
 	 * instead of multitexturing.
 	 *
 	 * @param shadow A prepared shadow map, in case rendering with shadows is enabled.
-	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderTerrainShader(const CShaderDefines& context, ShadowMap* shadow, bool filtered = false);
+	void RenderTerrainShader(const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
 	 * RenderPatches: Render all patches un-textured as polygons.
@@ -116,7 +106,7 @@ public:
 	 *
 	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderPatches(bool filtered = false);
+	void RenderPatches(int cullGroup);
 
 	/**
 	 * RenderOutlines: Render the outline of patches as lines.
@@ -126,7 +116,7 @@ public:
 	 *
 	 * @param filtered If true then only render objects that passed CullPatches.
 	 */
-	void RenderOutlines(bool filtered = false);
+	void RenderOutlines(int cullGroup);
 
 	/**
 	 * RenderWater: Render water for all patches that have been submitted
@@ -135,24 +125,24 @@ public:
 	 * preconditions  : PrepareForRendering must have been called this
 	 * frame before calling RenderWater.
 	 */
-	void RenderWater(const CShaderDefines& context, ShadowMap* shadow);
+	void RenderWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
 	 * Calculate a scissor rectangle for the visible water patches.
 	 */
-	CBoundingBoxAligned ScissorWater(const CMatrix3D& viewproj);
+	CBoundingBoxAligned ScissorWater(int cullGroup, const CMatrix3D& viewproj);
 
 	/**
 	 * Render priority text for all submitted patches, for debugging.
 	 */
-	void RenderPriorities();
+	void RenderPriorities(int cullGroup);
 
 	/**
 	 * Render texture unit 0 over the terrain mesh, with UV coords calculated
 	 * by the given texture matrix.
 	 * Intended for use by TerrainTextureOverlay.
 	 */
-	void RenderTerrainOverlayTexture(CMatrix3D& textureMatrix);
+	void RenderTerrainOverlayTexture(int cullGroup, CMatrix3D& textureMatrix);
 
 private:
 	TerrainRendererInternals* m;
@@ -161,12 +151,12 @@ private:
 	 * RenderFancyWater: internal rendering method for fancy water.
 	 * Returns false if unable to render with fancy water.
 	 */
-	bool RenderFancyWater(const CShaderDefines& context, ShadowMap* shadow);
+	bool RenderFancyWater(const CShaderDefines& context, int cullGroup, ShadowMap* shadow);
 
 	/**
 	 * RenderSimpleWater: internal rendering method for water
 	 */
-	void RenderSimpleWater();
+	void RenderSimpleWater(int cullGroup);
 
 	static void PrepareShader(const CShaderProgramPtr& shader, ShadowMap* shadow);
 };

@@ -66,12 +66,6 @@ var g_CivData = {};
 
 var g_MapFilters = [];
 
-// Warn about the AI's nonexistent naval map support.
-var g_NavalWarning = "\n\n" + sprintf(
-	translate("%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only. Nonetheless, Petra has now an experimental support for naval maps."),
-	{ warning: "[font=\"sans-bold-12\"][color=\"orange\"]" + translate("Warning:") + "[/color][/font]" }
-);
-
 // Current number of assigned human players.
 var g_AssignedCount = 0;
 
@@ -313,7 +307,7 @@ function initMain()
 		// TODO: Shouldn't players be able to choose their own assignment?
 		for (var i = 0; i < MAX_PLAYERS; ++i)
 		{
-			Engine.GetGUIObjectByName("playerAssignment["+i+"]").enabled = false;
+			Engine.GetGUIObjectByName("playerAssignment["+i+"]").hidden = true;
 			Engine.GetGUIObjectByName("playerCiv["+i+"]").hidden = true;
 			Engine.GetGUIObjectByName("playerTeam["+i+"]").hidden = true;
 		}
@@ -1259,9 +1253,6 @@ function onGameAttributesChange()
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
-	if (g_GameAttributes.mapFilter == "naval")
-		description += g_NavalWarning;
-
 	// Describe the number of players
 	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
 
@@ -1275,6 +1266,8 @@ function onGameAttributesChange()
 			continue;
 
 		var pName = Engine.GetGUIObjectByName("playerName["+i+"]");
+		var pAssignment = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+		var pAssignmentText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
 		var pCiv = Engine.GetGUIObjectByName("playerCiv["+i+"]");
 		var pCivText = Engine.GetGUIObjectByName("playerCivText["+i+"]");
 		var pTeam = Engine.GetGUIObjectByName("playerTeam["+i+"]");
@@ -1294,8 +1287,11 @@ function onGameAttributesChange()
 		var civ = getSetting(pData, pDefs, "Civ");
 
 		// For clients or scenarios, hide some player dropdowns
+		// TODO: Allow clients to choose their own civ and team
 		if (!g_IsController || g_GameAttributes.mapType == "scenario")
 		{
+			pAssignmentText.hidden = false;
+			pAssignment.hidden = true;
 			pCivText.hidden = false;
 			pCiv.hidden = true;
 			pTeamText.hidden = false;
@@ -1306,9 +1302,12 @@ function onGameAttributesChange()
 			else
 				pCivText.caption = g_CivData[civ].Name;
 			pTeamText.caption = (team !== undefined && team >= 0) ? team+1 : "-";
+			pAssignmentText.caption = pAssignment.list[pAssignment.selected];
 		}
 		else if (g_GameAttributes.mapType != "scenario")
 		{
+			pAssignmentText.hidden = true;
+			pAssignment.hidden = false;
 			pCivText.hidden = true;
 			pCiv.hidden = false;
 			pTeamText.hidden = true;
@@ -1436,7 +1435,7 @@ function updatePlayerList()
 					selection = aiAssignments[aiId];
 				else
 				{
-					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";					
+					g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
 					warn(sprintf("AI \"%(id)s\" not present. Defaulting to unassigned.", { id: aiId }));
 				}
 			}
@@ -1470,12 +1469,14 @@ function updatePlayerList()
 		}
 
 		var assignBox = Engine.GetGUIObjectByName("playerAssignment["+i+"]");
+		var assignBoxText = Engine.GetGUIObjectByName("playerAssignmentText["+i+"]");
 		assignBox.list = hostNameList;
 		assignBox.list_data = hostGuidList;
 		if (assignBox.selected != selection)
 			assignBox.selected = selection;
+		assignBoxText.caption = hostNameList[selection];
 
-		if (g_IsNetworked && g_IsController)
+		if (g_IsController)
 		{
 			assignBox.onselectionchange = function ()
 			{
@@ -1484,47 +1485,28 @@ function updatePlayerList()
 					var guid = hostGuidList[this.selected];
 					if (guid == "")
 					{
-						// Unassign any host from this player slot
-						Engine.AssignNetworkPlayer(playerID, "");
+						if (g_IsNetworked)
+							// Unassign any host from this player slot
+							Engine.AssignNetworkPlayer(playerID, "");
 						// Remove AI from this player slot
 						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
 					}
 					else if (guid.substr(0, 3) == "ai:")
 					{
-						// Unassign any host from this player slot
-						Engine.AssignNetworkPlayer(playerID, "");
+						if (g_IsNetworked)
+							// Unassign any host from this player slot
+							Engine.AssignNetworkPlayer(playerID, "");
 						// Set the AI for this player slot
 						g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
 					}
 					else
 						swapPlayers(guid, playerSlot);
 
-					Engine.SetNetworkGameAttributes(g_GameAttributes);
+					if (g_IsNetworked)
+						Engine.SetNetworkGameAttributes(g_GameAttributes);
+					else
+						updatePlayerList();
 					updateReadyUI();
-				}
-			};
-		}
-		else if (!g_IsNetworked)
-		{
-			assignBox.onselectionchange = function ()
-			{
-				if (!g_IsInGuiUpdate)
-				{
-					var guid = hostGuidList[this.selected];
-					if (guid == "")
-					{
-						// Remove AI from this player slot
-						g_GameAttributes.settings.PlayerData[playerSlot].AI = "";
-					}
-					else if (guid.substr(0, 3) == "ai:")
-					{
-						// Set the AI for this player slot
-						g_GameAttributes.settings.PlayerData[playerSlot].AI = guid.substr(3);
-					}
-					else
-						swapPlayers(guid, playerSlot);
-
-					updatePlayerList();
 				}
 			};
 		}
@@ -1706,9 +1688,9 @@ function updateReadyUI()
 	}
 
 	// The host is not allowed to start until everyone is ready.
-	var startGameButton = Engine.GetGUIObjectByName("startGame");
 	if (g_IsNetworked && g_IsController)
 	{
+		var startGameButton = Engine.GetGUIObjectByName("startGame");
 		startGameButton.enabled = allReady;
 		// Add a explanation on to the tooltip if disabled.
 		var disabledIndex = startGameButton.tooltip.indexOf('Disabled');
