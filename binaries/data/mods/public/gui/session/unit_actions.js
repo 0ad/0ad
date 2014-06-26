@@ -398,7 +398,7 @@ var unitActions =
 		},
 		"preSelectedActionCheck" : function(target)
 		{
-			if (preSelectedAction != ACTION_GARRISON)
+			if (preSelectedAction != ACTION_GUARD)
 				return false;
 			if (getActionInfo("guard", target).possible)
 				return {"type": "guard", "cursor": "action-guard", "target": target};
@@ -421,7 +421,7 @@ var unitActions =
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_guard", "entity": selection[0] });
 			return true;
 		},
-		"hotkeyActionCheck": function(target)
+		"hotkeyActionCheck": function(target, selection)
 		{
 			if (Engine.HotkeyIsPressed("session.guard") && getActionInfo("remove-guard", target).possible)
 			{
