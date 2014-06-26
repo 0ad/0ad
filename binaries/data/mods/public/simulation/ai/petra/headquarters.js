@@ -674,12 +674,12 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 			}
 			if (!cc.ally)
 				continue;
-			if (dist < 20000)    // Reject if too near from an allied cc
+			if (dist < 30000)    // Reject if too near from an allied cc
 			{
 				norm = 0
 				break;
 			}
-			if (dist < 40000)   // Disfavor if quite near an allied cc
+			if (dist < 50000)   // Disfavor if quite near an allied cc
 				norm *= 0.5;
 			if (dist < minDist)
 				minDist = dist;
@@ -1439,7 +1439,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 			{
 				var time = 0;
 				for (var item of queue)
-					if (item.progress > 0 || (item.metadata && item.metadata.trainer))
+					if (item.progress > 0 || (item.metadata && item.metadata.garrisonType))
 						time += item.timeRemaining;
 				if (time/1000 > 5)
 					continue;
@@ -1513,21 +1513,19 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	}
 	// Check first if we can afford it without touching other the accounts
 	// and if not, take some of ther accounted resources
-	// TODO substract only what is needed instead of reset and sort the queues
+	// TODO sort the queues to be substracted
 	var cost = new API3.Resources(templateAnchor[1].cost());
-	if (!available.canAfford(cost))
+	if (!gameState.ai.queueManager.accounts["emergency"].canAfford(cost))
 	{
 		for (var p in gameState.ai.queueManager.queues)
 		{
-			// TODO substract only what is needed instead of reseting
-			// and do a better sorting of queues
-			available.add(gameState.ai.queueManager.accounts[p]);
-			gameState.ai.queueManager.accounts[p].reset();
-			if (available.canAfford(cost))
+			if (p === "emergency")
+				continue;
+			gameState.ai.queueManager.transferAccounts(cost, p, "emergency");
+			if (gameState.ai.queueManager.accounts["emergency"].canAfford(cost))
 				break;
 		}
 	}
-	gameState.ai.queueManager.accounts["emergency"].add(cost);
 	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "trainer": nearestAnchor.id() };
 	if (autogarrison)
 		metadata.garrisonType = "protection";

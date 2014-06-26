@@ -29,7 +29,7 @@ export ARCH=${ARCH:="x86_64"}
 # TODO: we could get this from xcode-select but the user must set that up
 #export SYSROOT=${SYSROOT="/Developer/SDKs/MacOSX10.5.sdk"}
 export SYSROOT=${SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk"}
-export MIN_OSX_VERSION=${MIN_OSX_VERSION="10.8"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION="10.9"}
 
 # 0 A.D. release version, e.g. Alpha 12 is 0.0.12
 BUNDLE_VERSION=${BUNDLE_VERSION:="0.0.0"}

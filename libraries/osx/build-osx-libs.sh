@@ -85,6 +85,11 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   # clang and llvm-gcc look at mmacosx-version-min to determine link target
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
+else
+  C_FLAGS="$C_FLAGS -mmacosx-version-min=10.9"
+  # clang and llvm-gcc look at mmacosx-version-min to determine link target
+  # and CRT version, and use it to set the macosx_version_min linker flag
+  LDFLAGS="$LDFLAGS -mmacosx-version-min=10.9"
 fi
 C_FLAGS="$C_FLAGS -arch $ARCH -fvisibility=hidden"
 LDFLAGS="$LDFLAGS -arch $ARCH"
@@ -353,7 +358,7 @@ then
   pushd build-release
 
   # disable XML and richtext support, to avoid dependency on expat
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --disable-richtext --without-expat --without-sdl"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --disable-richtext --with-expat=builtin --without-sdl"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then

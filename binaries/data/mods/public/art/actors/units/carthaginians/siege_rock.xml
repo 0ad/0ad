@@ -4,13 +4,16 @@
   <group>
     <variant frequency="100" name="carthaginian ballista">
       <animations>
-        <animation event="0.75" file="mechanical/rome_ballista_atttack.dae" load="0.7" name="attack_ranged" speed="100"/>
+        <animation event="0.58" file="mechanical/kart_ballista.dae" load="0.44" name="attack_ranged" speed="100"/>
       </animations>
       <mesh>structural/kart_ballista.dae</mesh>
       <props>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
       </props>
-      <textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
 </actor>

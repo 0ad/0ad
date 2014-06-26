@@ -546,10 +546,8 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 				if (trainingPlan.template)
 					queue.addItem(trainingPlan);
 				else if (this.Config.debug > 0)
-				{
 					warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
 						+ " build3 " + uneval(this.buildOrder[0][3]["interests"]));
-				}
 			}
 		}
 	}

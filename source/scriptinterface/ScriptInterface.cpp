@@ -1201,7 +1201,7 @@ bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& cod
 	uint lineNo = 1;
 
 	JS::RootedFunction func(m->m_cx,
-		JS_CompileUCFunction(m->m_cx, m->m_glob, utf8_from_wstring(filename.string()).c_str(), 0, NULL,
+		JS_CompileUCFunction(m->m_cx, m->m_glob, NULL, 0, NULL,
 			reinterpret_cast<const jschar*> (codeUtf16.c_str()), (uint)(codeUtf16.length()),
 			utf8_from_wstring(filename.string()).c_str(), lineNo)
 	);
