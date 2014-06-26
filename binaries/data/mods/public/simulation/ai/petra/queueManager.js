@@ -189,11 +189,10 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 		var q = this.queues[i];
 		var str = "<th>" + i + "  (" + this.priorities[i] + ")<br><span class=\"ressLevel\">";
 		for (var k of this.accounts[i].types)
-			if(k != "population")
-			{
-				str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
-				if (k != "metal") str += " / ";
-			}
+		{
+			str += this.accounts[i][k] + k.substr(0,1).toUpperCase() ;
+			if (k != "metal") str += " / ";
+		}
 		strToSend.push(str + "</span></th>");
 		for (var j in q.queue) {
 			if (q.queue[j].isGo(gameState))
@@ -239,6 +238,21 @@ m.QueueManager.prototype.clear = function()
 		this.queues[i].empty();
 };
 
+/**
+ * transfer accounts from queue i to queue j
+ */
+m.QueueManager.prototype.transferAccounts = function(cost, i, j)
+{
+	for (var ress of this.accounts[i].types)
+	{
+		if (this.accounts[j][ress] >= cost[ress])
+			continue;
+		var diff = Math.min(this.accounts[i][ress], cost[ress] - this.accounts[j][ress]);
+		this.accounts[i][ress] -= diff;
+		this.accounts[j][ress] += diff;
+	}
+};
+
 m.QueueManager.prototype.update = function(gameState)
 {
 	for (var i in this.queues)
@@ -251,7 +265,7 @@ m.QueueManager.prototype.update = function(gameState)
 	}
 	
 	Engine.ProfileStart("Queue Manager");
-			
+
 	// Let's assign resources to plans that need'em
 	var availableRes = this.getAvailableResources(gameState);
 	for (var ress of availableRes.types)

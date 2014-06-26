@@ -65,8 +65,6 @@ m.ResearchManager.prototype.researchPopulationBonus = function(gameState, queues
 		// TODO may-be loop on all modifs and check if the effect if positive ?
 		if (tech[1]._template.modifications[0].value !== "Cost/PopulationBonus")
 			continue;
-		if (this.Config.debug > 0)
-			warn(" ... ok we've found the " + tech[0] + " tech");
 		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
 		break;
 	}
@@ -87,8 +85,6 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 		// TODO may-be loop on all modifs and check if the effect if positive ?
 		if (tech[1]._template.modifications[0].value !== "UnitMotion/WalkSpeed")
 			continue;
-		if (this.Config.debug > 0)
-			warn(" ... ok we've found the " + tech[0] + " tech");
 		queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
 		break;
 	}

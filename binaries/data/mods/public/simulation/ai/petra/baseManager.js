@@ -88,9 +88,9 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 	var createEvents = events["Create"];
 	var cFinishedEvents = events["ConstructionFinished"];
 
-	for (var i in renameEvents)
+	for (var evt of renameEvents)
 	{
-		var ent = gameState.getEntityById(renameEvents[i].newentity);
+		var ent = gameState.getEntityById(evt.newentity);
 		if (!ent)
 			continue;
 		var workerObject = ent.getMetadata(PlayerID, "worker-object");
@@ -98,11 +98,10 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			workerObject.ent = ent;
 	}
 
-	for (var i in destEvents)
+	for (var evt of destEvents)
 	{
-		var evt = destEvents[i];
 		// let's check we haven't lost an important building here.
-		if (evt != undefined && !evt.SuccessfulFoundation && evt.entityObj != undefined && evt.metadata !== undefined && evt.metadata[PlayerID] &&
+		if (evt && !evt.SuccessfulFoundation && evt.entityObj != undefined && evt.metadata !== undefined && evt.metadata[PlayerID] &&
 			evt.metadata[PlayerID]["base"] !== undefined && evt.metadata[PlayerID]["base"] == this.ID)
 		{
 			var ent = evt.entityObj;
@@ -121,36 +120,33 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			
 		}
 	}
-	for (var i in cFinishedEvents)
-	{
-		var evt = cFinishedEvents[i];
-		if (evt && evt.newentity)
-		{
-			var ent = gameState.getEntityById(evt.newentity);
-			if (ent === undefined)
-				continue;
 
-			if (evt.newentity === evt.entity)  // repaired building
-				continue;
+	for (var evt of cFinishedEvents)
+	{
+		if (!evt || !evt.newentity)
+			continue;
+		var ent = gameState.getEntityById(evt.newentity);
+		if (ent === undefined)
+			continue;
+		if (evt.newentity === evt.entity)  // repaired building
+			continue;
 			
-			if (ent.getMetadata(PlayerID,"base") == this.ID)
-			{
-				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
-					this.assignResourceToDropsite(gameState, ent);
-			}
+		if (ent.getMetadata(PlayerID,"base") == this.ID)
+		{
+			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+				this.assignResourceToDropsite(gameState, ent);
 		}
 	}
-	for (var i in createEvents)
-	{
-		var evt = createEvents[i];
-		if (evt && evt.entity)
-		{
-			var ent = gameState.getEntityById(evt.entity);
-			if (ent === undefined)
-				continue;
 
-			// do necessary stuff here
-		}
+	for (var evt of createEvents)
+	{
+		if (!evt || !evt.entity)
+			continue;
+		var ent = gameState.getEntityById(evt.entity);
+		if (ent === undefined)
+			continue;
+
+		// do necessary stuff here
 	}
 };
 

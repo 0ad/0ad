@@ -88,7 +88,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
 		trainers[0].train(this.type, this.number, this.metadata);
 	}
-	else
+	else if (gameState.ai.Config.debug > 0)
 		warn(" no trainers for this queue " + this.type);
 	this.onStart(gameState);
 };

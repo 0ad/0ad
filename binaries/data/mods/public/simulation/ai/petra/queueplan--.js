@@ -55,7 +55,7 @@ m.QueuePlan.prototype.getCost = function()
 	var costs = new API3.Resources();
 	costs.add(this.cost);
 	if (this.number !== 1)
-			costs.multiply(this.number);
+		costs.multiply(this.number);
 	return costs;
 };
 
