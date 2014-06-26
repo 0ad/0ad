@@ -1,16 +1,20 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <actor version="1">
-
   <castshadow/>
-
   <group>
-    <variant>
-      <mesh>structural/hele_sr.dae</mesh>
-      <textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
+    <variant frequency="100" name="pew pew">
+      <animations>
+        <animation event=".61" file="mechanical/hele_lithobolos.dae" load=".46" name="attack_ranged" speed="250"/>
+        <animation file="mechanical/hele_lithobolos_idle.dae" name="idle" speed="10"/>
+      </animations>
+      <mesh>structural/hele_lithobolos.dae</mesh>
       <props>
         <prop actor="props/units/weapons/rock_flaming.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/rock.xml" attachpoint="loaded-projectile"/>
       </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
-
 </actor>

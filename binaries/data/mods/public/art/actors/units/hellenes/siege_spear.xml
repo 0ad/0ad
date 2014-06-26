@@ -3,11 +3,17 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="bolt shooter">
-      <mesh>structural/hele_sp.dae</mesh>
+      <animations>
+        <animation event=".66" file="mechanical/hele_oxybeles.dae" load=".58" name="attack_ranged" speed="250"/>
+      </animations>
+      <mesh>structural/hele_oxybeles.dae</mesh>
       <props>
         <prop actor="props/units/weapons/bolt.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/bolt.xml" attachpoint="loaded-projectile"/>
       </props>
-      <textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
 </actor>
