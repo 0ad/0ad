@@ -3,8 +3,17 @@
   <castshadow/>
   <group>
     <variant frequency="1" name="Scorpio">
-      <mesh>props/special/rome_siege_scorpio_weapon.dae</mesh>
-      <textures><texture file="structural/hele_siege.dds" name="baseTex"/></textures>
+      <animations>
+        <animation event=".68" file="mechanical/rome_scorpio.dae" load=".55" name="attack_ranged" speed="250"/>
+      </animations>
+      <mesh>props/special/rome_scorpio.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   <material>player_trans.xml</material>
