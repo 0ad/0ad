@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="bolt shooter">
+      <animations>
+        <animation event=".6" file="mechanical/ptol_polybolos.dae" load=".43" name="attack_ranged" speed="250"/>
+      </animations>
+      <mesh>structural/ptol_polybolos.dae</mesh>
+      <props>
+        <prop actor="props/units/weapons/jav_projectile.xml" attachpoint="projectile"/>
+        <prop actor="props/units/weapons/jav.xml" attachpoint="loaded-projectile"/>
+      </props>
+      <textures>
+        <texture file="structural/hele_siege.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+</actor>

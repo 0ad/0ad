@@ -1,0 +1,45 @@
+<skeletons>
+   <standard_skeleton title="polybolos" id="polybolos">
+    <bone name="ground">
+      <bone name="pivot">
+         <bone name="slide">
+        </bone>
+         <bone name="arm_L">
+         </bone>
+         <bone name="arm_R">
+         </bone>
+         <bone name="crank_F">
+         </bone>
+         <bone name="crank_B">
+         </bone>
+         <bone name="sling">
+            <bone name="prop_projectile">
+            </bone>
+         </bone>
+      </bone>
+    </bone>
+</standard_skeleton>
+  <skeleton title="polybolos" target="polybolos">
+    <identifier>
+      <root>polybolos</root>
+    </identifier>
+    <bone name="ground"><target>ground</target>
+      <bone name="pivot"><target>pivot</target>
+         <bone name="slide"><target>slide</target>
+        </bone>
+         <bone name="arm_L"><target>arm_L</target>
+         </bone>
+         <bone name="arm_R"><target>arm_R</target>
+         </bone>
+         <bone name="crank_F"><target>crank_F</target>
+         </bone>
+         <bone name="crank_B"><target>crank_B</target>
+         </bone>
+         <bone name="sling"><target>sling</target>
+            <bone name="prop_projectile"><target>prop_projectile</target>
+            </bone>
+         </bone>
+      </bone>
+    </bone>
+  </skeleton>
+</skeletons>
