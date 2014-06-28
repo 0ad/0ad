@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,9 +35,9 @@
 // automatically link against the required library
 #if MSC_VERSION
 # ifdef NDEBUG
-#  pragma comment(lib, "libpng15.lib")
+#  pragma comment(lib, "libpng16.lib")
 # else
-#  pragma comment(lib, "libpng15d.lib")
+#  pragma comment(lib, "libpng16d.lib")
 # endif	// NDEBUG
 #endif	// MSC_VERSION
 
