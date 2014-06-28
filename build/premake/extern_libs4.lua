@@ -271,13 +271,13 @@ extern_lib_defs = {
 	},
 	enet = {
 		compile_settings = function()
-			if not _OPTIONS["with-system-enet"] then
-				add_source_include_paths("enet")
+			if os.is("windows") or os.is("macosx") then
+				add_default_include_paths("enet")
 			end
 		end,
 		link_settings = function()
-			if not _OPTIONS["with-system-enet"] then
-				add_source_lib_paths("enet")
+			if os.is("windows") or os.is("macosx") then
+				add_default_lib_paths("enet")
 			end
 			add_default_links({
 				win_names  = { "enet" },
@@ -304,23 +304,6 @@ extern_lib_defs = {
 					links { "FColladaSR" }
 				configuration { }
 			end
-		end,
-	},
-	ffmpeg = {
-		compile_settings = function()
-			if os.is("windows") then
-				add_default_include_paths("ffmpeg")
-			end
-		end,
-		link_settings = function()
-			if os.is("windows") then
-				add_default_lib_paths("ffmpeg")
-			end
-			add_default_links({
-				win_names = { "avcodec-51", "avformat-51", "avutil-49", "swscale-0" },
-				unix_names = { "avcodec", "avformat", "avutil" },
-				dbg_suffix = "",
-			})
 		end,
 	},
 	gloox = {
@@ -456,7 +439,7 @@ extern_lib_defs = {
 				add_default_lib_paths("libpng")
 			end
 			add_default_links({
-				win_names  = { "libpng15" },
+				win_names  = { "libpng16" },
 				unix_names = { "png" },
 				-- Otherwise ld will sometimes pull in ancient 1.2 from the SDK, which breaks the build :/
 				-- TODO: Figure out why that happens

@@ -11,9 +11,6 @@ win32/ contains headers and precompiled static libs for Windows builds.
   source/cxxtest
     LGPL v2.1 (see COPYING)
 
-  source/enet
-    MIT (see src/LICENSE)
-
   source/fcollada
     MIT (see src/FCollada/Copyright.txt)
 
@@ -32,8 +29,17 @@ win32/ contains headers and precompiled static libs for Windows builds.
   win32/boost
     Boost Software License
 
+  win32/enet
+    MIT
+
   win32/gloox
     GPL v2
+
+  win32/iconv
+    LGPL v2.0
+
+  win32/icu
+    MIT-X11 (see license.html)
 
   win32/libcurl
     MIT
@@ -46,8 +52,7 @@ win32/ contains headers and precompiled static libs for Windows builds.
 
   win32/libxml2
     MIT
-    LGPL v2.0 (include/iconv.h)
-	
+
   win32/openal
     LGPL v2.0
 

@@ -766,7 +766,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		m->wavesShader->BindTexture(str_waveTex, WaterMgr->m_Wave);
 		m->wavesShader->Uniform(str_time, (float)time);
 		m->wavesShader->Uniform(str_waviness, WaterMgr->m_Waviness);
-		m->wavesShader->Uniform(str_mapSize, (float)(WaterMgr->m_TexSize));
+		m->wavesShader->Uniform(str_mapSize, (float)(WaterMgr->m_MapSize));
 		
 		SWavesVertex *base=(SWavesVertex *)WaterMgr->m_VBWaves->m_Owner->Bind();
 		GLsizei stride = sizeof(SWavesVertex);
@@ -805,7 +805,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	if (WaterMgr->m_WaterFoam || WaterMgr->m_WaterCoastalWaves)
 	{
 		m->fancyWaterShader->BindTexture(str_Foam, WaterMgr->m_Foam);
-		m->fancyWaterShader->Uniform(str_mapSize, (float)(WaterMgr->m_TexSize));
+		m->fancyWaterShader->Uniform(str_mapSize, (float)(WaterMgr->m_MapSize));
 	}
 	if (WaterMgr->m_WaterRealDepth)
 		m->fancyWaterShader->BindTexture(str_depthTex, WaterMgr->m_depthTT);

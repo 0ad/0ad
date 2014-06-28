@@ -40,7 +40,6 @@ premake_args=""
 
 without_nvtt=false
 with_system_nvtt=false
-with_system_enet=false
 with_system_miniupnpc=false
 with_system_mozjs24=false
 enable_atlas=true
@@ -50,7 +49,7 @@ do
   case $i in
     --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
-    --with-system-enet ) with_system_enet=true; premake_args="${premake_args} --with-system-enet" ;;
+    --with-system-enet ) echo "NOTE: the --with-system-enet option is deprecated, system ENet is now required"; echo ;;
     --with-system-miniupnpc ) with_system_miniupnpc=true; premake_args="${premake_args} --with-system-miniupnpc" ;;
     --with-system-mozjs24 ) with_system_mozjs24=true; premake_args="${premake_args} --with-system-mozjs24" ;;
     --enable-atlas ) enable_atlas=true ;;
@@ -93,10 +92,6 @@ if [ "`uname -s`" != "Darwin" ]; then
   echo
   if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
     (cd ../../libraries/source/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
-  fi
-  echo
-  if [ "$with_system_enet" = "false" ]; then
-    (cd ../../libraries/source/enet && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "ENet build failed"
   fi
   echo
   if [ "$with_system_miniupnpc" = "false" ]; then
