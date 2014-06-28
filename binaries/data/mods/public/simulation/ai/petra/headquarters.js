@@ -602,19 +602,20 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 	this.wantedRates = gameState.ai.queueManager.wantedGatherRates(gameState);
 	var currentRates = this.GetCurrentGatherRates(gameState);
 
-	// let's get our ideal number.
-	var types = Object.keys(this.wantedRates);
+	var needed = [];
+	for (var res in this.wantedRates)
+		needed.push({ "type": res, "wanted": this.wantedRates[res], "current": currentRates[res] });
 
-	types.sort(function(a, b) {
-		var va = (Math.max(0,self.wantedRates[a] - currentRates[a]))/ (currentRates[a]+1);
-		var vb = (Math.max(0,self.wantedRates[b] - currentRates[b]))/ (currentRates[b]+1);
+	needed.sort(function(a, b) {
+		var va = (Math.max(0, a.wanted - a.current))/ (a.current+1);
+		var vb = (Math.max(0, b.wanted - b.current))/ (b.current+1);
 		
 		// If they happen to be equal (generally this means "0" aka no need), make it fair.
 		if (va === vb)
-			return (self.wantedRates[b]/(currentRates[b]+1)) - (self.wantedRates[a]/(currentRates[a]+1));
+			return (b.wanted/(b.current+1)) - (a.wanted/(a.current+1));
 		return vb-va;
 	});
-	return types;
+	return needed;
 };
 
 // Returns the best position to build a new Civil Centre
@@ -1772,7 +1773,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	if (this.Config.difficulty > 0)
 		this.attackManager.update(gameState, queues, events);
 
-	Engine.ProfileStop();	// Heaquarters update
+	Engine.ProfileStop();
 };
 
 return m;

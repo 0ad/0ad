@@ -38,8 +38,6 @@ m.QueueManager = function(Config, queues)
 		this.queueArrays.push([p,this.queues[p]]);
 	}
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
-
-	this.curItemQueue = [];
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
@@ -146,7 +144,12 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 
 m.QueueManager.prototype.printQueues = function(gameState)
 {
-	warn("---------- QUEUES ------------");
+	var numWorkers = 0;
+	gameState.getOwnUnits().forEach (function (ent) {
+		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
+			numWorkers++;
+	});
+	warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
 	for (var i in this.queues)
 	{
 		var qStr = "";
@@ -233,7 +236,6 @@ m.QueueManager.prototype.HTMLprintQueues = function(gameState)
 
 m.QueueManager.prototype.clear = function()
 {
-	this.curItemQueue = [];
 	for (var i in this.queues)
 		this.queues[i].empty();
 };
@@ -253,124 +255,122 @@ m.QueueManager.prototype.transferAccounts = function(cost, i, j)
 	}
 };
 
-m.QueueManager.prototype.update = function(gameState)
+/**
+ * distribute the resources between the different queues according to their priorities
+ */
+m.QueueManager.prototype.distributeResources = function(gameState)
 {
-	for (var i in this.queues)
-	{
-		this.queues[i].check(gameState);  // do basic sanity checks on the queue
-		if (this.priorities[i] > 0)
-			continue;
-		warn("QueueManager received bad priorities, please report this error: " + uneval(this.priorities));
-		this.priorities[i] = 1;  // TODO: make the Queue Manager not die when priorities are zero.
-	}
-	
-	Engine.ProfileStart("Queue Manager");
-
-	// Let's assign resources to plans that need'em
 	var availableRes = this.getAvailableResources(gameState);
 	for (var ress of availableRes.types)
 	{
-		if (availableRes[ress] > 0)
+		if (!availableRes[ress])
 		{
-			var totalPriority = 0;
-			var tempPrio = {};
-			var maxNeed = {};
-			// Okay so this is where it gets complicated.
-			// If a queue requires "ress" for the next elements (in the queue)
-			// And the account is not high enough for it.
-			// Then we add it to the total priority.
-			// To try and be clever, we don't want a long queue to hog all resources. So two things:
-			//	-if a queue has enough of resource X for the 1st element, its priority is decreased (factor 2).
-			//	-queues accounts are capped at "resources for the first + 60% of the next"
-			// This avoids getting a high priority queue with many elements hogging all of one resource
-			// uselessly while it awaits for other resources.
-			for (var j in this.queues)
-			{
-				// returns exactly the correct amount, ie 0 if we're not go.
-				var queueCost = this.queues[j].maxAccountWanted(gameState, 0.6);
-				if (this.queues[j].length() > 0 && this.accounts[j][ress] < queueCost[ress] && !this.queues[j].paused)
-				{
-					// adding us to the list of queues that need an update.
-					tempPrio[j] = this.priorities[j];
-					maxNeed[j] = queueCost[ress] - this.accounts[j][ress];
-					// if we have enough of that resource for our first item in the queue, diminish our priority.
-					if (this.accounts[j][ress] >= this.queues[j].getNext().getCost()[ress])
-						tempPrio[j] /= 2;
+			this.switchResource(gameState, ress);
+			continue;
+		}
 
-					if (tempPrio[j])
-						totalPriority += tempPrio[j];
-				}
-				else if (this.accounts[j][ress] > queueCost[ress])
-					this.accounts[j][ress] = queueCost[ress];
+		var totalPriority = 0;
+		var tempPrio = {};
+		var maxNeed = {};
+		// Okay so this is where it gets complicated.
+		// If a queue requires "ress" for the next elements (in the queue)
+		// And the account is not high enough for it.
+		// Then we add it to the total priority.
+		// To try and be clever, we don't want a long queue to hog all resources. So two things:
+		//	-if a queue has enough of resource X for the 1st element, its priority is decreased (factor 2).
+		//	-queues accounts are capped at "resources for the first + 60% of the next"
+		// This avoids getting a high priority queue with many elements hogging all of one resource
+		// uselessly while it awaits for other resources.
+		for (var j in this.queues)
+		{
+			// returns exactly the correct amount, ie 0 if we're not go.
+			var queueCost = this.queues[j].maxAccountWanted(gameState, 0.6);
+			if (this.queues[j].length() > 0 && this.accounts[j][ress] < queueCost[ress] && !this.queues[j].paused)
+			{
+				// adding us to the list of queues that need an update.
+				tempPrio[j] = this.priorities[j];
+				maxNeed[j] = queueCost[ress] - this.accounts[j][ress];
+				// if we have enough of that resource for our first item in the queue, diminish our priority.
+				if (this.accounts[j][ress] >= this.queues[j].getNext().getCost()[ress])
+					tempPrio[j] /= 2;
+
+				if (tempPrio[j])
+					totalPriority += tempPrio[j];
 			}
-			// Now we allow resources to the accounts. We can at most allow "TempPriority/totalpriority*available"
-			// But we'll sometimes allow less if that would overflow.
-			var available = availableRes[ress];
-			var missing = false;
+			else if (this.accounts[j][ress] > queueCost[ress])
+				this.accounts[j][ress] = queueCost[ress];
+		}
+		// Now we allow resources to the accounts. We can at most allow "TempPriority/totalpriority*available"
+		// But we'll sometimes allow less if that would overflow.
+		var available = availableRes[ress];
+		var missing = false;
+		for (var j in tempPrio)
+		{
+			// we'll add at much what can be allowed to this queue.
+			var toAdd = Math.floor(availableRes[ress] * tempPrio[j]/totalPriority);
+			if (toAdd >= maxNeed[j])
+				toAdd = maxNeed[j];
+			else
+				missing = true;
+			this.accounts[j][ress] += toAdd;
+			maxNeed[j] -= toAdd;
+			available -= toAdd;
+		}
+		if (missing && available > 0)   // distribute the rest (due to floor) in any queue
+		{
 			for (var j in tempPrio)
 			{
-				// we'll add at much what can be allowed to this queue.
-				var toAdd = Math.floor(availableRes[ress] * tempPrio[j]/totalPriority);
-				if (toAdd >= maxNeed[j])
-					toAdd = maxNeed[j];
-				else
-					missing = true;
+				var toAdd = Math.min(maxNeed[j], available);
 				this.accounts[j][ress] += toAdd;
-				maxNeed[j] -= toAdd;
 				available -= toAdd;
-			}
-			if (missing && available > 0)   // distribute the rest (due to floor) in any queue
-			{
-				for (var j in tempPrio)
-				{
-					var toAdd = Math.min(maxNeed[j], available);
-					this.accounts[j][ress] += toAdd;
-					available -= toAdd;
-					if (available <= 0)
-						break;
-				}
-			}
-			if (available < 0)
-				warn("Petra: problem with remaining " + ress + " in queueManager " + available);
-		}
-		else
-		{
-			// We have no available resources, see if we can't "compact" them in one queue.
-			// compare queues 2 by 2, and if one with a higher priority could be completed by our amount, give it.
-			// TODO: this isn't perfect compression.
-			for (var j in this.queues)
-			{
-				if (this.queues[j].length() === 0 || this.queues[j].paused)
-					continue;
-
-				var queue = this.queues[j];
-				var queueCost = queue.maxAccountWanted(gameState, 0);
-				if (this.accounts[j][ress] >= queueCost[ress])
-					continue;
-
-				for (var i in this.queues)
-				{
-					if (i === j)
-						continue;
-					var otherQueue = this.queues[i];
-					if (this.priorities[i] >= this.priorities[j] || otherQueue.switched !== 0)
-						continue;
-					if (this.accounts[j][ress] + this.accounts[i][ress] < queueCost[ress])
-						continue;
-
-					var diff = queueCost[ress] - this.accounts[j][ress];
-					this.accounts[j][ress] += diff;
-					this.accounts[i][ress] -= diff;
-					++otherQueue.switched;
-					if (this.Config.debug > 1)
-						warn ("switching queue " + ress + " from " + i + " to " + j + " in amount " + diff);
+				if (available <= 0)
 					break;
-				}
 			}
+		}
+		if (available < 0)
+			warn("Petra: problem with remaining " + ress + " in queueManager " + available);
+	}
+};
+
+m.QueueManager.prototype.switchResource = function(gameState, ress)
+{
+	// We have no available resources, see if we can't "compact" them in one queue.
+	// compare queues 2 by 2, and if one with a higher priority could be completed by our amount, give it.
+	// TODO: this isn't perfect compression.
+	for (var j in this.queues)
+	{
+		if (this.queues[j].length() === 0 || this.queues[j].paused)
+			continue;
+
+		var queue = this.queues[j];
+		var queueCost = queue.maxAccountWanted(gameState, 0);
+		if (this.accounts[j][ress] >= queueCost[ress])
+			continue;
+
+		for (var i in this.queues)
+		{
+			if (i === j)
+				continue;
+			var otherQueue = this.queues[i];
+			if (this.priorities[i] >= this.priorities[j] || otherQueue.switched !== 0)
+				continue;
+			if (this.accounts[j][ress] + this.accounts[i][ress] < queueCost[ress])
+				continue;
+
+			var diff = queueCost[ress] - this.accounts[j][ress];
+			this.accounts[j][ress] += diff;
+			this.accounts[i][ress] -= diff;
+			++otherQueue.switched;
+			if (this.Config.debug > 1)
+				warn ("switching queue " + ress + " from " + i + " to " + j + " in amount " + diff);
+			break;
 		}
 	}
+};
 
-	// Start the next item in the queue if we can afford it.
+// Start the next item in the queue if we can afford it.
+m.QueueManager.prototype.startNextItems = function(gameState)
+{
 	for (var i in this.queueArrays)
 	{
 		var name = this.queueArrays[i][0];
@@ -378,16 +378,12 @@ m.QueueManager.prototype.update = function(gameState)
 		if (queue.length() > 0 && !queue.paused)
 		{
 			var item = queue.getNext();
-			var total = new API3.Resources();
-			total.add(this.accounts[name]);
-			if (total.canAfford(item.getCost()))
+			if (this.accounts[name].canAfford(item.getCost()) && item.canStart(gameState))
 			{
-				if (item.canStart(gameState))
-				{
-					this.accounts[name].subtract(item.getCost());
-					queue.startNext(gameState);
-					queue.switched = 0;
-				}
+				this.finishingTime = gameState.ai.elapsedTime;
+				this.accounts[name].subtract(item.getCost());
+				queue.startNext(gameState);
+				queue.switched = 0;
 			}
 		}
 		else if (queue.length() === 0)
@@ -396,6 +392,26 @@ m.QueueManager.prototype.update = function(gameState)
 			queue.switched = 0;
 		}
 	}
+};
+
+m.QueueManager.prototype.update = function(gameState)
+{
+	Engine.ProfileStart("Queue Manager");
+
+	for (var i in this.queues)
+	{
+		this.queues[i].check(gameState);  // do basic sanity checks on the queue
+		if (this.priorities[i] > 0)
+			continue;
+		warn("QueueManager received bad priorities, please report this error: " + uneval(this.priorities));
+		this.priorities[i] = 1;  // TODO: make the Queue Manager not die when priorities are zero.
+	}
+
+	// Let's assign resources to plans that need them
+	this.distributeResources(gameState);
+
+	// Start the next item in the queue if we can afford it.
+	this.startNextItems(gameState);
 
 	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
 		this.printQueues(gameState);
@@ -460,8 +476,6 @@ m.QueueManager.prototype.removeQueue = function(queueName)
 {
 	if (this.queues[queueName] !== undefined)
 	{
-		if (this.curItemQueue.indexOf(queueName) !== -1)
-			this.curItemQueue.splice(this.curItemQueue.indexOf(queueName),1);
 		delete this.queues[queueName];
 		delete this.priorities[queueName];
 		delete this.accounts[queueName];

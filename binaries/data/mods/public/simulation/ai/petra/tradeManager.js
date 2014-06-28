@@ -203,13 +203,12 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	var mainNeed = Math.floor(remaining * 70 / 100)
 	var nextNeed = remaining - mainNeed;
 
-	var wantedRates = gameState.ai.queueManager.wantedGatherRates(gameState);
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-	tradingGoods[mostNeeded[0]] += mainNeed;
-	if (wantedRates[mostNeeded[1]] > 0)
-		tradingGoods[mostNeeded[1]] += nextNeed;
+	tradingGoods[mostNeeded[0].type] += mainNeed;
+	if (mostNeeded[1].wanted > 0)
+		tradingGoods[mostNeeded[1].type] += nextNeed;
 	else
-		tradingGoods[mostNeeded[0]] += nextNeed;
+		tradingGoods[mostNeeded[0].type] += nextNeed;
 	Engine.PostCommand(PlayerID, {"type": "set-trading-goods", "tradingGoods": tradingGoods});
 	if (this.Config.debug == 2)
 		warn(" trading goods set to " + uneval(tradingGoods));
