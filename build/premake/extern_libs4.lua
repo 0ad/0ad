@@ -271,13 +271,13 @@ extern_lib_defs = {
 	},
 	enet = {
 		compile_settings = function()
-			if not _OPTIONS["with-system-enet"] then
-				add_source_include_paths("enet")
+			if os.is("windows") or os.is("macosx") then
+				add_default_include_paths("enet")
 			end
 		end,
 		link_settings = function()
-			if not _OPTIONS["with-system-enet"] then
-				add_source_lib_paths("enet")
+			if os.is("windows") or os.is("macosx") then
+				add_default_lib_paths("enet")
 			end
 			add_default_links({
 				win_names  = { "enet" },

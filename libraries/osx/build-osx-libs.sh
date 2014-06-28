@@ -42,10 +42,10 @@ GLOOX_VERSION="gloox-1.0.9"
 NSPR_VERSION="4.10.3"
 # OS X only includes part of ICU, and only the dylib
 ICU_VERSION="icu4c-52_1"
+ENET_VERSION="enet-1.3.12"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 24
-# * ENet 1.3.3
 # * NVTT
 # * FCollada
 # * MiniUPnPc
@@ -595,9 +595,39 @@ else
 fi
 popd > /dev/null
 
+# --------------------------------------------------------------
+echo -e "Building ENet..."
+
+LIB_VERSION="${ENET_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="http://enet.bespin.org/download/"
+
+mkdir -p enet
+pushd enet > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib sbin share
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
 # --------------------------------------------------------------------
 # The following libraries are shared on different OSes and may
-# be customzied, so we build and install them from bundled sources
+# be customized, so we build and install them from bundled sources
 # --------------------------------------------------------------------
 echo -e "Building Spidermonkey..."
 
@@ -662,25 +692,6 @@ then
   mv Makefile.in.bak Makefile.in
   mv shell/Makefile.in.bak shell/Makefile.in
   
-  popd
-  touch .already-built
-else
-  already_built
-fi
-popd > /dev/null
-
-# --------------------------------------------------------------
-echo -e "Building ENet..."
-
-pushd ../source/enet/ > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
-then
-  INSTALL_DIR="$(pwd)"
-  rm -f .already-built
-
-  pushd src
-  (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
   popd
   touch .already-built
 else
