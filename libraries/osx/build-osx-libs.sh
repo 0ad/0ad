@@ -66,6 +66,7 @@ ARCH=${ARCH:="x86_64"}
 # On newer OS X versions, this will be a symbolic link to LLVM GCC
 # TODO: don't rely on that
 export CC=${CC:="clang"} CXX=${CXX:="clang++"}
+export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
 
 # The various libs offer inconsistent configure options, some allow
 # setting sysroot and OS X-specific options, others don't. Adding to
@@ -85,11 +86,6 @@ if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
   # clang and llvm-gcc look at mmacosx-version-min to determine link target
   # and CRT version, and use it to set the macosx_version_min linker flag
   LDFLAGS="$LDFLAGS -mmacosx-version-min=$MIN_OSX_VERSION"
-else
-  C_FLAGS="$C_FLAGS -mmacosx-version-min=10.9"
-  # clang and llvm-gcc look at mmacosx-version-min to determine link target
-  # and CRT version, and use it to set the macosx_version_min linker flag
-  LDFLAGS="$LDFLAGS -mmacosx-version-min=10.9"
 fi
 C_FLAGS="$C_FLAGS -arch $ARCH -fvisibility=hidden"
 LDFLAGS="$LDFLAGS -arch $ARCH"
