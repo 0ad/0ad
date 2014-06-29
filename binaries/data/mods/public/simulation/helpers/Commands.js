@@ -288,6 +288,12 @@ var commands = {
 					else if (list.indexOf(promo_e) !== -1)
 						cmd.template = promo_e;
 				}
+				else if (cmd.template.substr(len-2,2) === "_a" && list.indexOf(cmd.template) === -1)
+				{
+					var promo_e = cmd.template.substr(0,len-2) + "_e";
+					if (list.indexOf(promo_e) !== -1)
+						cmd.template = promo_e;
+				}
 			}
 			if (queue && queue.GetEntitiesList().indexOf(cmd.template) != -1)
 				if ("metadata" in cmd)

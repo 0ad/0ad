@@ -537,33 +537,45 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 {
 	if (gameState.currentPhase() < 2)
 		return;
-	
-	var resources = gameState.ai.queueManager.getAvailableResources(gameState);
 
-	var avgOverdraft = 0;
-	for (var type of resources.types)
-		avgOverdraft += resources[type];
-	avgOverdraft /= 4;
-
+	// change resource only towards one which is more needed, and if changing will not change this order
+	var nb = 1;    // no more than 1 change per turn (otherwise we should update the rates)
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
-	for (var type of resources.types)
+	var sumWanted = 0;
+	var sumCurrent = 0;
+	for (var need of mostNeeded)
 	{
-		if (type === mostNeeded[0])
-			continue;
-		if (resources[type] > avgOverdraft + 200 || (resources[type] > avgOverdraft && avgOverdraft > 200))
+		sumWanted += need.wanted;
+		sumCurrent += need.current;
+	}
+	var scale = 1;
+	if (sumWanted > 0)
+		scale = sumCurrent / sumWanted;
+
+	for (var i = mostNeeded.length-1; i > 0; --i)
+	{
+		var lessNeed = mostNeeded[i];
+		for (var j = 0; j < i; ++j) 
 		{
-			if (this.gatherersByType(gameState, type).length === 0)
+			var moreNeed = mostNeeded[j];
+			var lastFailed = gameState.ai.HQ.lastFailedGather[moreNeed.type];
+			if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 				continue;
-			// TODO: perhaps change this?
-			var nb = 2;
-			this.gatherersByType(gameState, type).forEach( function (ent) {
-				if (nb == 0)
+			// If we assume a mean rate of 0.5 per gatherer, this diff should be > 1
+			// but we require a bit more to avoid too frequent changes
+			if ((scale*moreNeed.wanted - moreNeed.current) - (scale*lessNeed.wanted - lessNeed.current) > 1.5)
+			{
+				this.gatherersByType(gameState, lessNeed.type).forEach( function (ent) {
+					if (nb === 0)
+						return;
+					--nb;
+					ent.stopMoving();
+					ent.setMetadata(PlayerID, "gather-type", moreNeed.type);
+					m.AddTCRessGatherer(gameState, moreNeed.type);
+				});
+				if (nb === 0)
 					return;
-				nb--;
-				// TODO: might want to direct assign.
-				ent.stopMoving();
-				ent.setMetadata(PlayerID, "subrole","idle");
-			});
+			}
 		}
 	}
 };
@@ -596,15 +608,15 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 					ent.repair(self.anchor);
 				else
 				{
-					var types = gameState.ai.HQ.pickMostNeededResources(gameState);
-					for (var i = 0; i < types.length; ++i)
+					var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
+					for (var needed of mostNeeded)
 					{
-						var lastFailed = gameState.ai.HQ.lastFailedGather[types[i]];
-						if (lastFailed && gameState.ai.playedTurn - lastFailed < 20)
+						var lastFailed = gameState.ai.HQ.lastFailedGather[needed.type];
+						if (lastFailed && gameState.ai.elapsedTime - lastFailed < 20)
 							continue;
 						ent.setMetadata(PlayerID, "subrole", "gatherer");
-						ent.setMetadata(PlayerID, "gather-type", types[i]);
-						m.AddTCRessGatherer(gameState, types[i]);
+						ent.setMetadata(PlayerID, "gather-type", needed.type);
+						m.AddTCRessGatherer(gameState, needed.type);
 						break;
 					}
 				}
