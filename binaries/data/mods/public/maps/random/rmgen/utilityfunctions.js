@@ -130,8 +130,8 @@ function createForests(terrainset, constraint, tileclass, numMultiplier, biomeID
 		var num = floor(size / types.length);
 		for (var i = 0; i < types.length; ++i)
 		{
-			placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
-			painter = new LayeredPainter(
+			var placer = new ChainPlacer(1, floor(scaleByMapSize(3, 5)), numForest / num, 0.5);
+			var painter = new LayeredPainter(
 				types[i],		// terrains
 				[2]											// widths
 				);
