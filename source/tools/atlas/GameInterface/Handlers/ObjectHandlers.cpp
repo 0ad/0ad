@@ -68,7 +68,7 @@ QUERYHANDLER(GetObjectsList)
 	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
 	if (cmpTemplateManager)
 	{
-		std::vector<std::string> names = cmpTemplateManager->FindAllTemplates(true);
+		std::vector<std::string> names = cmpTemplateManager->FindAllPlaceableTemplates(true);
 
 		for (std::vector<std::string>::iterator it = names.begin(); it != names.end(); ++it)
 		{

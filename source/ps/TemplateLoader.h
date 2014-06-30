@@ -19,6 +19,7 @@
 #define INCLUDED_TEMPLATELOADER
 
 #include "simulation2/system/ParamNode.h"
+#include "scriptinterface/ScriptInterface.h"
 
 enum ETemplatesType
 {
@@ -54,6 +55,8 @@ public:
 	 * (This includes "actor|foo" etc names).
 	 */
 	std::vector<std::string> FindTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType);
+
+	std::vector<std::string> FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface);
 
 private:
 	/**

@@ -125,8 +125,42 @@ TriggerHelper.SetPlayerWon = function(playerID)
  */
 TriggerHelper.DefeatPlayer = function(playerID)
 {
-	var playerEnt = GetPlayerEntityByID(playerID);
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var playerEnt = cmpPlayerMan.GetPlayerByID(playerID);
 	Engine.PostMessage(playerEnt, MT_PlayerDefeated, { "playerId": playerID } );
 };
+
+/**
+ * Returns the number of current players
+ */
+TriggerHelper.GetNumberOfPlayers = function()
+{
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	return cmpPlayerManager.GetNumPlayers();
+}
+
+/**
+ * Returns the player component. For more information on its functions, see simulation/components/Player.js
+ */
+TriggerHelper.GetPlayerComponent = function(playerID)
+{
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	return Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(playerID), IID_Player);
+}
+
+/**
+ * A function to determine if an entity has a specific class
+ * @param entity ID of the entity that we want to check for classes
+ * @param classname The name of the class we are checking if the entity has
+ */
+TriggerHelper.EntityHasClass = function(entity, classname)
+{
+	var cmpIdentity = Engine.QueryInterface(entity, IID_Identity);
+	if (!cmpIdentity)
+		return false;
+	var classes = cmpIdentity.GetClassesList();;
+	return (classes && classes.indexOf(classname) != -1);
+}
+
 
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);

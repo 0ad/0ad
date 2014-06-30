@@ -1280,7 +1280,7 @@ function onGameAttributesChange()
 
 		// Common to all game types
 		var color = iColorToString(getSetting(pData, pDefs, "Colour"));
-		pColor.sprite = "colour:"+color+" 100";
+		pColor.sprite = "colour:" + color + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
 		var team = getSetting(pData, pDefs, "Team");
@@ -1289,7 +1289,10 @@ function onGameAttributesChange()
 		// Nobody but the controller can assign people
 		pAssignmentText.hidden = g_IsController;
 		pAssignment.hidden = !g_IsController;
-		pAssignmentText.caption = pAssignment.list[pAssignment.selected];
+		if (!pAssignment.list[0])
+			pAssignmentText.caption = "Loading...";
+		else
+			pAssignmentText.caption = pAssignment.list[pAssignment.selected === -1 ? 0 : pAssignment.selected];
 
 		// For clients or scenarios, hide some player dropdowns
 		// TODO: Allow clients to choose their own civ and team
