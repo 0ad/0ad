@@ -49,7 +49,7 @@ Trigger.prototype.CheckWonderVictory = function(data)
 
 	this.wonderVictoryTimers[ent] = timer;
 	this.wonderVictoryMessages[ent] = messages;
-}
+};
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 
