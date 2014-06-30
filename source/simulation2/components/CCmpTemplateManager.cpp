@@ -130,6 +130,8 @@ public:
 
 	virtual std::vector<std::string> FindAllTemplates(bool includeActors);
 
+	virtual std::vector<std::string> FindAllPlaceableTemplates(bool includeActors);
+
 	virtual std::vector<entity_id_t> GetEntitiesUsingTemplate(std::string templateName);
 
 private:
@@ -230,6 +232,14 @@ std::vector<std::string> CCmpTemplateManager::FindAllTemplates(bool includeActor
 {
 	ETemplatesType templatesType = includeActors ? ALL_TEMPLATES : SIMULATION_TEMPLATES;
 	return m_templateLoader.FindTemplates("", true, templatesType);
+}
+
+std::vector<std::string> CCmpTemplateManager::FindAllPlaceableTemplates(bool includeActors)
+{
+	ScriptInterface& scriptInterface = this->GetSimContext().GetScriptInterface();
+
+	ETemplatesType templatesType = includeActors ? ALL_TEMPLATES : SIMULATION_TEMPLATES;
+	return m_templateLoader.FindPlaceableTemplates("", true, templatesType, scriptInterface);
 }
 
 /**

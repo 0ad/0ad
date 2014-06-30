@@ -191,6 +191,67 @@ static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUS
 	return INFO::OK;
 }
 
+std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface)
+{
+	
+	std::vector<std::string> templates;
+	Status ok;
+	VfsPath templatePath;
+
+
+	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
+	{
+		CScriptValRooted placeablesFilter = scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json");
+		
+		std::vector<CScriptValRooted> folders;
+		if (scriptInterface.GetProperty(placeablesFilter.get(), "templates", folders))
+		{
+			templatePath = VfsPath(TEMPLATE_ROOT) / path;
+			//I have every object inside, just run for each
+			for (std::vector<CScriptValRooted>::iterator iterator = folders.begin(); iterator != folders.end();++iterator)
+			{
+				jsval val = (*iterator).get();
+				std::string directoryPath;
+				std::wstring fileFilter;
+				scriptInterface.GetProperty(val, "directory", directoryPath);
+				scriptInterface.GetProperty(val, "file", fileFilter);
+				
+				VfsPaths filenames;
+				if (vfs::GetPathnames(g_VFS, templatePath / (directoryPath + "/"), fileFilter.c_str(), filenames) != INFO::OK)
+					continue;
+				
+				for (VfsPaths::iterator it = filenames.begin(); it != filenames.end(); ++it)
+				{
+					VfsPath filename = *it;
+					// Strip the .xml extension
+					VfsPath pathstem = filename.ChangeExtension(L"");
+					// Strip the root from the path
+					std::wstring name = pathstem.string().substr(ARRAY_SIZE(TEMPLATE_ROOT) - 1);
+
+					templates.push_back(std::string(name.begin(), name.end()));
+				}
+				
+			}
+			
+		}
+	}
+
+	if (templatesType == ACTOR_TEMPLATES || templatesType == ALL_TEMPLATES)
+	{
+		templatePath = VfsPath(ACTOR_ROOT) / path;
+		if (includeSubdirectories)
+			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml", vfs::DIR_RECURSIVE);
+		else
+			ok = vfs::ForEachFile(g_VFS, templatePath, AddActorToTemplates, (uintptr_t)&templates, L"*.xml");
+		WARN_IF_ERR(ok);
+	}
+
+	if (templatesType != SIMULATION_TEMPLATES && templatesType != ACTOR_TEMPLATES && templatesType != ALL_TEMPLATES)
+		LOGERROR(L"Undefined template type (valid: all, simulation, actor)");
+
+	return templates;
+}
+
 std::vector<std::string> CTemplateLoader::FindTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType)
 {
 	std::vector<std::string> templates;
