@@ -147,38 +147,27 @@ void SetDisableShadowPCF(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool di
 
 void SetDisableAllWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
-	if (!IsOverridden("waternormals"))
-		g_WaterNormal = !disabled;
+	g_WaterUgly = true;
+	if (!IsOverridden("waterfancyeffects"))
+		g_WaterFancyEffects = !disabled;
 	if (!IsOverridden("waterrealdepth"))
 		g_WaterRealDepth = !disabled;
-	if (!IsOverridden("waterfoam"))
-		g_WaterFoam = !disabled;
-	if (!IsOverridden("watercoastalwaves"))
-		g_WaterCoastalWaves = !disabled;
 	if (!IsOverridden("waterrefraction"))
 		g_WaterRefraction = !disabled;
 	if (!IsOverridden("waterreflection"))
 		g_WaterReflection = !disabled;
-	if (!IsOverridden("watershadows"))
+	if (!IsOverridden("shadowsonwater"))
 		g_WaterShadows = !disabled;
 }
+
 void SetDisableFancyWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
 {
+	if (!IsOverridden("waterfancyeffects"))
+		g_WaterFancyEffects = !disabled;
 	if (!IsOverridden("waterrealdepth"))
 		g_WaterRealDepth = !disabled;
-	if (!IsOverridden("waterfoam"))
-		g_WaterFoam = !disabled;
-	if (!IsOverridden("watercoastalwaves"))
-		g_WaterCoastalWaves = !disabled;
-	if (!IsOverridden("watershadows"))
+	if (!IsOverridden("shadowsonwater"))
 		g_WaterShadows = !disabled;
-}
-void SetDisableFBOWater(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), bool disabled)
-{
-	if (!IsOverridden("waterfoam"))
-		g_WaterFoam = !disabled;
-	if (!IsOverridden("watercoastalwaves"))
-		g_WaterCoastalWaves = !disabled;
 }
 
 void SetRenderPath(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string renderpath)
@@ -198,7 +187,6 @@ void RunHardwareDetection()
 	scriptInterface.RegisterFunction<void, bool, &SetDisableShadowPCF>("SetDisableShadowPCF");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAllWater>("SetDisableAllWater");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableFancyWater>("SetDisableFancyWater");
-	scriptInterface.RegisterFunction<void, bool, &SetDisableFBOWater>("SetDisableFBOWater");
 	scriptInterface.RegisterFunction<void, std::string, &SetRenderPath>("SetRenderPath");
 
 	// Load the detection script:

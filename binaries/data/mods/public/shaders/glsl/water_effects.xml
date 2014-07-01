@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <program type="glsl">
 
-    <vertex file="glsl/waves.vs">
+    <vertex file="glsl/water_effects.vs">
         <stream name="pos"/>
-        <stream name="uv0"/>
+        <stream name="color"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
     </vertex>
 
-    <fragment file="glsl/waves.fs"/>
+    <fragment file="glsl/water_effects.fs"/>
 
 </program>

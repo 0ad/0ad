@@ -667,17 +667,14 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 			m_Options.m_Shadows = value;
 			MakeShadersDirty();
 			break;
-		case OPT_WATERNORMAL:
-			m_Options.m_WaterNormal = value;
+		case OPT_WATERUGLY:
+			m_Options.m_WaterUgly = value;
+			break;
+		case OPT_WATERFANCYEFFECTS:
+			m_Options.m_WaterFancyEffects = value;
 			break;
 		case OPT_WATERREALDEPTH:
 			m_Options.m_WaterRealDepth = value;
-			break;
-		case OPT_WATERFOAM:
-			m_Options.m_WaterFoam = value;
-			break;
-		case OPT_WATERCOASTALWAVES:
-			m_Options.m_WaterCoastalWaves = value;
 			break;
 		case OPT_WATERREFLECTION:
 			m_Options.m_WaterReflection = value;
@@ -685,8 +682,8 @@ void CRenderer::SetOptionBool(enum Option opt,bool value)
 		case OPT_WATERREFRACTION:
 			m_Options.m_WaterRefraction = value;
 			break;
-		case OPT_WATERSHADOW:
-			m_Options.m_WaterShadow = value;
+		case OPT_SHADOWSONWATER:
+			m_Options.m_WaterShadows = value;
 			break;
 		case OPT_SHADOWPCF:
 			m_Options.m_ShadowPCF = value;
@@ -733,20 +730,18 @@ bool CRenderer::GetOptionBool(enum Option opt) const
 			return m_Options.m_NoVBO;
 		case OPT_SHADOWS:
 			return m_Options.m_Shadows;
-		case OPT_WATERNORMAL:
-			return m_Options.m_WaterNormal;
+		case OPT_WATERUGLY:
+			return m_Options.m_WaterUgly;
+		case OPT_WATERFANCYEFFECTS:
+			return m_Options.m_WaterFancyEffects;
 		case OPT_WATERREALDEPTH:
 			return m_Options.m_WaterRealDepth;
-		case OPT_WATERFOAM:
-			return m_Options.m_WaterFoam;
-		case OPT_WATERCOASTALWAVES:
-			return m_Options.m_WaterCoastalWaves;
 		case OPT_WATERREFLECTION:
 			return m_Options.m_WaterReflection;
 		case OPT_WATERREFRACTION:
 			return m_Options.m_WaterRefraction;
-		case OPT_WATERSHADOW:
-			return m_Options.m_WaterShadow;
+		case OPT_SHADOWSONWATER:
+			return m_Options.m_WaterShadows;
 		case OPT_SHADOWPCF:
 			return m_Options.m_ShadowPCF;
 		case OPT_PARTICLES:

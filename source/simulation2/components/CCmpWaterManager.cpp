@@ -33,6 +33,7 @@ class CCmpWaterManager : public ICmpWaterManager
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
+		// No need to subscribe to WaterChanged since we're actually the one sending those.
 		componentManager.SubscribeToMessageType(MT_Interpolate);
 		componentManager.SubscribeToMessageType(MT_TerrainChanged);
 	}
@@ -50,7 +51,6 @@ public:
 
 	virtual void Init(const CParamNode& UNUSED(paramNode))
 	{
-		SetWaterLevel(entity_pos_t::FromInt(5));
 	}
 
 	virtual void Deinit()
@@ -119,6 +119,8 @@ public:
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 
+		g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
+		
 		CMessageWaterChanged msg;
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);
 	}

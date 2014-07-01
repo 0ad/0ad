@@ -58,11 +58,14 @@ public:
 	float* m_DistanceToShore;
 	float* m_FoamFactor;
 	
+	u8* m_DistanceHeightmap;	// Returns how far from the shore a point is. 3-2-1-0 where 3 is "on land"
+	CVector3D* m_BlurredNormalMap;	// Returns how far from the shore a point is. 3-2-1-0 where 3 is "on land"
+
 	size_t m_MapSize;
 	ssize_t m_TexSize;
 
 	GLuint m_depthTT;
-	GLuint m_waveTT;
+	GLuint m_FancyTexture;
 
 	// used to know what to update when updating parts of the terrain only.
 	u32 m_updatei0;
@@ -74,13 +77,18 @@ public:
 	CColor m_WaterColor;
 	bool m_RenderWater;
 
+	// Force the use of the fixed function for rendering.
+	bool m_WaterUgly;
 	// Those variables register the current quality level. If there is a change, I have to recompile the shader.
-	bool m_WaterNormal;
+	// Use real depth or use the fake precomputed one.
 	bool m_WaterRealDepth;
-	bool m_WaterFoam;
-	bool m_WaterCoastalWaves;
+	// Use fancy shore effects and show trails behind ships
+	bool m_WaterFancyEffects;
+	// Use refractions instead of simply making the water more or less transparent.
 	bool m_WaterRefraction;
+	// Use complete reflections instead of showing merely the sky.
 	bool m_WaterReflection;
+	// Show shadows on the water.
 	bool m_WaterShadows;
 	
 	bool m_NeedsReloading;
@@ -145,6 +153,17 @@ public:
 	 */
 	void UnloadWaterTextures();
 
+	
+	/**
+	 * RecomputeDistanceHeightmap: recalculates (or calculates) the distance heightmap.
+	 */
+	void RecomputeDistanceHeightmap();
+
+	/**
+	 * RecomputeBlurredNormalMap: calculates the blurred normal map of the terrain. Slow.
+	 */
+	void RecomputeBlurredNormalMap();
+	
 	/**
 	 * CreateSuperfancyInfo: creates textures and wave vertices for superfancy water
 	 */

@@ -35,6 +35,7 @@ uniform vec3 fogColor;
 uniform vec2 fogParams;
 
 varying vec4 v_lighting;
+varying vec4 v_lighting2;
 varying vec2 v_tex;
 varying vec2 v_los;
 
@@ -249,9 +250,12 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * get_shadow();
-  vec3 ambColor = texdiffuse * ambient;
-
+	float shadow = get_shadow();
+	
+  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * shadow;
+  vec3 ambColor = texdiffuse * (ambient + v_lighting2.rgb*(shadow+0.8)*0.5);
+  //ambColor = texdiffuse * ambient;
+	
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
     vec3 ao = texture2D(aoTex, v_tex2).rrr;
     ao = mix(vec3(1.0), ao * 2.0, effectSettings.w);
@@ -273,6 +277,8 @@ void main()
   #endif
 
   color *= shadingColor;
-
+	
+	//color = v_lighting2.rgb;
+	
   gl_FragColor.rgb = color;
 }
