@@ -1290,7 +1290,7 @@ function onGameAttributesChange()
 		pAssignmentText.hidden = g_IsController;
 		pAssignment.hidden = !g_IsController;
 		if (!pAssignment.list[0])
-			pAssignmentText.caption = "Loading...";
+			pAssignmentText.caption = translate("Loading...");
 		else
 			pAssignmentText.caption = pAssignment.list[pAssignment.selected === -1 ? 0 : pAssignment.selected];
 
