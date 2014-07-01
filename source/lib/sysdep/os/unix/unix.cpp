@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -121,7 +121,11 @@ static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool man
 
 	pid_t cpid = fork();
 	if(cpid == -1)
+	{
+		for(char* const* a = argv; *a; ++a)
+			free(*a);
 		return ERI_NOT_IMPLEMENTED;
+	}
 
 	if(cpid == 0)
 	{

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -66,9 +66,6 @@ private:
 								SkyManager* pSkyMan, CLightEnv* pLightEnv, CCamera* pCamera, 
 								CCinemaManager* pCinema, CPostprocManager* pPostproc,
 								CSimulation2* pSimulation2);
-//	void WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group,
-//											const std::list<MapTriggerGroup>& groupList);
-//	void WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger);
 };
 
 #endif
