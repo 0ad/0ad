@@ -291,7 +291,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 			continue
 		if (plan.state !== "boarding")
 			continue
-		if (plan.units.length > 12)   // TODO to be improve  ... check on ship capacity
+		if (plan.units.length > 12)   // TODO to be improved  ... check on ship capacity
 			continue;
 		plan.addUnit(entity, endPos);
 		return true;
