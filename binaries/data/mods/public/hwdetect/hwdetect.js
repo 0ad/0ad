@@ -180,7 +180,6 @@ function RunDetection(settings)
 	var disable_shadowpcf = undefined;
 	var disable_allwater = undefined;
 	var disable_fancywater = undefined;
-	var disable_fbowater = undefined;
 	var override_renderpath = undefined;
 
 	// TODO: add some mechanism for setting config values
@@ -257,7 +256,6 @@ function RunDetection(settings)
 	{
 		disable_allwater = false;
 		disable_fancywater = true;
-		//disable_fbowater = true;
 		disable_shadowpcf = true;
 	}
 
@@ -295,7 +293,6 @@ function RunDetection(settings)
 		"disable_shadowpcf": disable_shadowpcf,
 		"disable_allwater": disable_allwater,
 		"disable_fancywater": disable_fancywater,
-		"disable_fbowater": disable_fbowater,
 		"override_renderpath": override_renderpath,
 	};
 }
@@ -334,9 +331,6 @@ global.RunHardwareDetection = function(settings)
 	
 	if (output.disable_fancywater !== undefined)
 		Engine.SetDisableFancyWater(output.disable_fancywater);
-	
-	if (output.disable_fbowater !== undefined)
-		Engine.SetDisableFancyWater(output.disable_fbowater);
 
 	if (output.override_renderpath !== undefined)
 		Engine.SetRenderPath(output.override_renderpath);

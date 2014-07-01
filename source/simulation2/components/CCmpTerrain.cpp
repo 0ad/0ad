@@ -136,8 +136,11 @@ public:
 		}
 		
 		if (ReloadWater && CRenderer::IsInitialised())
+		{
 			g_Renderer.GetWaterManager()->SetMapSize(vertices);
-
+			g_Renderer.GetWaterManager()->RecomputeDistanceHeightmap();
+			g_Renderer.GetWaterManager()->RecomputeBlurredNormalMap();
+		}
 		MakeDirty(0, 0, tiles+1, tiles+1);
 	}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -194,10 +194,13 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		XML_Element("Scenario");
 		XML_Attribute("version", (int)FILE_VERSION);
 
-		if (pSimulation2 && !pSimulation2->GetStartupScript().empty())
+		ENSURE(pSimulation2);
+		CSimulation2& sim = *pSimulation2;
+
+		if (!sim.GetStartupScript().empty())
 		{
 			XML_Element("Script");
-			XML_CDATA(pSimulation2->GetStartupScript().c_str());
+			XML_CDATA(sim.GetStartupScript().c_str());
 		}
 
 		{
@@ -253,7 +256,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 						XML_Attribute("g", pWaterMan->m_WaterColor.g);
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
 					}
-					CmpPtr<ICmpWaterManager> cmpWaterManager(*pSimulation2, SYSTEM_ENTITY);
+					CmpPtr<ICmpWaterManager> cmpWaterManager(sim, SYSTEM_ENTITY);
 					ENSURE(cmpWaterManager);
 					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
 					XML_Setting("Waviness", pWaterMan->m_Waviness);
@@ -312,9 +315,8 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 			}
 		}
 
-		if (pSimulation2)
 		{
-			std::string settings = pSimulation2->GetMapSettingsString();
+			std::string settings = sim.GetMapSettingsString();
 			if (!settings.empty())
 			{
 				XML_Element("ScriptSettings");
@@ -324,8 +326,6 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 
 		{
 			XML_Element("Entities");
-
-			CSimulation2& sim = *pSimulation2;
 
 			CmpPtr<ICmpTemplateManager> cmpTemplateManager(sim, SYSTEM_ENTITY);
 			ENSURE(cmpTemplateManager);
@@ -455,113 +455,3 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 	if (!XML_StoreVFS(g_VFS, filename))
 		LOGERROR(L"Failed to write map '%ls'", filename.string().c_str());
 }
-
-/*
-void CMapWriter::WriteTriggerGroup(XMLWriter_File& xml_file_, const MapTriggerGroup& group, const std::list<MapTriggerGroup>& groupList)
-{
-	XML_Element("Group");
-	XML_Attribute("name", group.name);
-
-	for ( std::list<CStrW>::const_iterator it = group.childGroups.begin(); 
-									it != group.childGroups.end(); ++it )
-	{
-		//Not very efficient...
-		std::list<MapTriggerGroup>::const_iterator it2 = std::find(groupList.begin(), groupList.end(), *it);
-		if ( it2 != groupList.end() )
-			WriteTriggerGroup(xml_file_, *it2, groupList);
-		else
-			debug_warn(L"Invalid trigger group ID while writing map");
-	}
-
-	for ( std::list<MapTrigger>::const_iterator it = group.triggers.begin(); it != group.triggers.end(); ++it )
-	{
-		WriteTrigger(xml_file_, *it);
-	}	
-}
-
-void CMapWriter::WriteTrigger(XMLWriter_File& xml_file_, const MapTrigger& trigger)
-{
-	XML_Element("Trigger");
-	XML_Attribute("name", trigger.name);
-
-	{
-		if ( trigger.active )
-			XML_Setting("Active", "true");
-		else
-			XML_Setting("Active", "false");
-		XML_Setting("MaxRunCount", trigger.maxRunCount);
-		XML_Setting("Delay", trigger.timeValue);
-	}
-		
-	{
-		XML_Element("Conditions");
-		for ( std::list<MapTriggerCondition>::const_iterator it2 = trigger.conditions.begin();
-													it2 != trigger.conditions.end(); ++it2 )
-		{
-			size_t distance = std::distance( trigger.conditions.begin(), it2 );
-			std::set<MapTriggerLogicBlock>::const_iterator logicIter;
-			
-			if ( ( logicIter = trigger.logicBlocks.find(MapTriggerLogicBlock(distance)) ) 
-														!= trigger.logicBlocks.end() )
-			{
-				XML_Element("LogicBlock");
-				if ( logicIter->negated )
-					XML_Attribute("not", "true");
-				else
-					XML_Attribute("not", "false");
-			}
-			
-			{
-				XML_Element("Condition");
-				XML_Attribute("name", it2->name);
-
-				XML_Attribute("function", it2->functionName);
-				XML_Attribute("display", it2->displayName);
-
-				if ( it2->negated )
-					XML_Attribute("not", "true");
-				else
-					XML_Attribute("not", "false");
-			
-				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin(); 
-											paramIter != it2->parameters.end(); ++paramIter )
-				{
-					CStrW paramString(*paramIter);
-					//paramString.Replace(L"<", L"&lt;");
-					//paramString.Replace(L">", L"&gt;");
-					XML_Setting("Parameter", paramString);
-				}
-				if ( it2->linkLogic == 1 )
-					XML_Setting("LinkLogic", "AND");
-				else if ( it2->linkLogic == 2 )
-					XML_Setting("LinkLogic", "OR");
-					
-				if ( trigger.logicBlockEnds.find(distance) != trigger.logicBlockEnds.end() )
-				{
-						XML_Element("LogicBlockEnd");
-				}
-			}
-		}	//Read all conditions		
-	}	//Conditions' scope
-		
-	{
-		XML_Element("Effects");
-		for ( std::list<MapTriggerEffect>::const_iterator it2 = trigger.effects.begin(); 
-												it2 != trigger.effects.end(); ++it2 )
-		{
-			XML_Element("Effect");
-			XML_Attribute("name", it2->name);
-			{
-				XML_Setting("function", it2->functionName);	
-				XML_Setting("display", it2->displayName);
-
-				for ( std::list<CStrW>::const_iterator paramIter = it2->parameters.begin();
-											paramIter != it2->parameters.end(); ++paramIter )
-				{
-					XML_Setting("Parameter", *paramIter);
-				}
-			}
-		}
-	}	//Effects' scope	
-}
-*/

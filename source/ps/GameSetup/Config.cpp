@@ -41,10 +41,9 @@ bool g_RenderActors = true;
 bool g_Shadows = false;
 bool g_ShadowPCF = false;
 
-bool g_WaterNormal = false;
+bool g_WaterUgly = false;
+bool g_WaterFancyEffects = false;
 bool g_WaterRealDepth = false;
-bool g_WaterFoam = false;
-bool g_WaterCoastalWaves = false;
 bool g_WaterRefraction = false;
 bool g_WaterReflection = false;
 bool g_WaterShadows = false;
@@ -94,15 +93,12 @@ static void LoadGlobals()
 	CFG_GET_VAL("shadows", Bool, g_Shadows);
 	CFG_GET_VAL("shadowpcf", Bool, g_ShadowPCF);
 
-	CFG_GET_VAL("waternormals",Bool, g_WaterNormal);
+	CFG_GET_VAL("waterugly",Bool, g_WaterUgly);
+	CFG_GET_VAL("waterfancyeffects",Bool, g_WaterFancyEffects);
 	CFG_GET_VAL("waterrealdepth",Bool, g_WaterRealDepth);
-	CFG_GET_VAL("waterfoam",Bool, g_WaterFoam);
-	CFG_GET_VAL("watercoastalwaves",Bool, g_WaterCoastalWaves);
-	if (g_WaterCoastalWaves && !g_WaterNormal)
-		g_WaterCoastalWaves = false;
 	CFG_GET_VAL("waterrefraction",Bool, g_WaterRefraction);
 	CFG_GET_VAL("waterreflection",Bool, g_WaterReflection);
-	CFG_GET_VAL("watershadows",Bool, g_WaterShadows);
+	CFG_GET_VAL("shadowsonwater",Bool, g_WaterShadows);
 
 	CFG_GET_VAL("renderpath", String, g_RenderPath);
 	CFG_GET_VAL("particles", Bool, g_Particles);

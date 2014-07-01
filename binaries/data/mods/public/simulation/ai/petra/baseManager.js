@@ -739,13 +739,15 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	if (this.constructing == true && maxTotalBuilders < 15)
 		maxTotalBuilders = 15;
 	
-	for (var i in foundations)
+	for (var target of foundations)
 	{
-		var target = foundations[i];
-
 		if (target.hasClass("Field"))
 			continue; // we do not build fields
-		
+
+		if (gameState.ai.HQ.isDangerousLocation(target.position()))
+			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall"))
+				continue;
+
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
 		if (target.hasClass("House") || target.hasClass("Market"))
@@ -806,15 +808,11 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	}
 
 	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
-	for (var i in damagedBuildings)
+	for (var target of damagedBuildings)
 	{
-		var target = damagedBuildings[i];
-		var underAttack = false;  // TODO define the condition of under attack
-		if (underAttack)
-		{
-			if (target.healthLevel() > 0.5 || !target.hasClass("CivCentre") || !target.hasClass("StoneWall"))
+		if (gameState.ai.HQ.isDangerousLocation(target.position()))
+			if (target.healthLevel() > 0.5 || (!target.hasClass("CivCentre") && !target.hasClass("StoneWall")))
 				continue;
-		}
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 		

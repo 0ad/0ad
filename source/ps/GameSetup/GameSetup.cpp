@@ -591,13 +591,12 @@ static void InitRenderer()
 	g_Renderer.SetOptionBool(CRenderer::OPT_NOVBO, g_NoGLVBO);
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWS, g_Shadows);
 
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERNORMAL, g_WaterNormal);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERUGLY, g_WaterUgly);
+	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS, g_WaterFancyEffects);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREALDEPTH, g_WaterRealDepth);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERFOAM, g_WaterFoam);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERCOASTALWAVES, g_WaterCoastalWaves);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFLECTION, g_WaterReflection);
 	g_Renderer.SetOptionBool(CRenderer::OPT_WATERREFRACTION, g_WaterRefraction);
-	g_Renderer.SetOptionBool(CRenderer::OPT_WATERSHADOW, g_WaterShadows);
+	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWSONWATER, g_WaterShadows);
 	
 	g_Renderer.SetRenderPath(CRenderer::GetRenderPathByName(g_RenderPath));
 	g_Renderer.SetOptionBool(CRenderer::OPT_SHADOWPCF, g_ShadowPCF);

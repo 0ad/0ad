@@ -50,14 +50,12 @@ extern bool g_RenderActors;
 // flag to switch on shadows
 extern bool g_Shadows;
 
-// Use real normals for ocean-wave rendering, instead of applying them as a flat texture.
-extern bool g_WaterNormal;
+// Force the use of the fixed function for rendering water.
+extern bool g_WaterUgly;
+// Add foam and waves near the shores, trails following ships, and other HQ things.
+extern bool g_WaterFancyEffects;
 // Use real depth for water rendering.
 extern bool g_WaterRealDepth;
-// Show foam near the shores depending on waviness.
-extern bool g_WaterFoam;
-// Show coastal breaking waves.
-extern bool g_WaterCoastalWaves;
 // Use a real refraction map and not transparency.
 extern bool g_WaterRefraction;
 // Use a real reflection map and not a skybox texture.

@@ -25,17 +25,14 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 {
 	if (gameState.buildingsBuilt > 0)   // do not start another building if already one this turn
 		return false;
-	
+
 	if (!this.isGo(gameState))
 		return false;
-	
-	// TODO: verify numeric limits etc
-	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
-	{
-		return false;
-	}
-	var builders = gameState.findBuilders(this.type);
 
+	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
+		return false;
+
+	var builders = gameState.findBuilders(this.type);
 	return (builders.length != 0);
 };
 
@@ -232,6 +229,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				friendlyTiles.map[j] += 50;
 			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
 				friendlyTiles.map[j] += 10;
+
+			if (friendlyTiles.map[j] > 0)
+			{
+				var x = (j % friendlyTiles.width + 0.5) * cellSize;
+				var z = (Math.floor(j / friendlyTiles.width) + 0.5) * cellSize;
+				if (gameState.ai.HQ.isDangerousLocation([x, z]))
+					friendlyTiles.map[j] = 0;
+			}
 		}
 	}
 	else
@@ -247,6 +252,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
 				friendlyTiles.map[j] += 200;
+
+			if (friendlyTiles.map[j] > 0)
+			{
+				var x = (j % friendlyTiles.width + 0.5) * cellSize;
+				var z = (Math.floor(j / friendlyTiles.width) + 0.5) * cellSize;
+				if (gameState.ai.HQ.isDangerousLocation([x, z]))
+					friendlyTiles.map[j] = 0;
+			}
 		}
 	}
 	

@@ -1669,6 +1669,15 @@ m.HQ.prototype.assignGatherers = function(gameState)
 	}
 };
 
+// Check that the chosen position is not too near from an invading army
+m.HQ.prototype.isDangerousLocation = function(pos)
+{
+	for (var army of this.defenseManager.armies)
+		if (army.foePosition && API3.SquareVectorDistance(army.foePosition, pos) < 12000)
+			return true;
+	return false;
+};
+
 // Some functions are run every turn
 // Others once in a while
 m.HQ.prototype.update = function(gameState, queues, events)

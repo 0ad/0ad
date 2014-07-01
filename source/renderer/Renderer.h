@@ -80,13 +80,12 @@ public:
 	enum Option {
 		OPT_NOVBO,
 		OPT_SHADOWS,
-		OPT_WATERNORMAL,
+		OPT_WATERUGLY,
+		OPT_WATERFANCYEFFECTS,
 		OPT_WATERREALDEPTH,
-		OPT_WATERFOAM,
-		OPT_WATERCOASTALWAVES,
 		OPT_WATERREFLECTION,
 		OPT_WATERREFRACTION,
-		OPT_WATERSHADOW,
+		OPT_SHADOWSONWATER,
 		OPT_SHADOWPCF,
 		OPT_PARTICLES,
 		OPT_GENTANGENTS,
@@ -143,13 +142,12 @@ public:
 		bool m_NoVBO;
 		bool m_Shadows;
 		
-		bool m_WaterNormal;
+		bool m_WaterUgly;
+		bool m_WaterFancyEffects;
 		bool m_WaterRealDepth;
-		bool m_WaterFoam;
-		bool m_WaterCoastalWaves;
 		bool m_WaterRefraction;
 		bool m_WaterReflection;
-		bool m_WaterShadow;
+		bool m_WaterShadows;
 
 		RenderPath m_RenderPath;
 		bool m_ShadowAlphaFix;

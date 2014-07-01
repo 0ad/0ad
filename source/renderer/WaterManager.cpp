@@ -82,10 +82,12 @@ WaterManager::WaterManager()
 	m_DistanceToShore = NULL;
 	m_FoamFactor = NULL;
 
-	m_WaterNormal = false;
+	m_DistanceHeightmap = NULL;
+	m_BlurredNormalMap = NULL;
+	
+	m_WaterUgly = false;
+	m_WaterFancyEffects = false;
 	m_WaterRealDepth = false;
-	m_WaterFoam = false;
-	m_WaterCoastalWaves = false;
 	m_WaterRefraction = false;
 	m_WaterReflection = false;
 	m_WaterShadows = false;
@@ -97,7 +99,7 @@ WaterManager::WaterManager()
 	m_VBWavesIndices = NULL;
 
 	m_depthTT = 0;
-	m_waveTT = 0;
+	m_FancyTexture = 0;
 
 	m_MapSize = 0;
 	
@@ -117,7 +119,7 @@ WaterManager::~WaterManager()
 	delete[] m_FoamFactor;
 	
 	glDeleteTextures(1, &m_depthTT);
-	glDeleteTextures(1, &m_waveTT);
+	glDeleteTextures(1, &m_FancyTexture);
 	
 	if (m_VBWaves) g_VBMan.Release(m_VBWaves);
 	if (m_VBWavesIndices) g_VBMan.Release(m_VBWavesIndices);
@@ -134,14 +136,14 @@ int WaterManager::LoadWaterTextures()
 
 	// TODO: add a member variable and setter for this. (can't make this
 	// a parameter because this function is called via delay-load code)
-	static const wchar_t* const water_type = L"default";
+	static const wchar_t* const water_type = L"ocean";
 
 	wchar_t pathname[PATH_MAX];
 
 	// Load diffuse grayscale images (for non-fancy water)
 	for (size_t i = 0; i < ARRAY_SIZE(m_WaterTexture); ++i)
 	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/diffuse%02d.dds", water_type, (int)i+1);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/default/diffuse%02d.dds", (int)i+1);
 		CTextureProperties textureProps(pathname);
 		textureProps.SetWrap(GL_REPEAT);
 
@@ -153,7 +155,7 @@ int WaterManager::LoadWaterTextures()
 	// Load normalmaps (for fancy water)
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); ++i)
 	{
-		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal%02d.dds", water_type, (int)i+1);
+		swprintf_s(pathname, ARRAY_SIZE(pathname), L"art/textures/animated/water/%ls/normal00%02d.png", water_type, (int)i+1);
 		CTextureProperties textureProps(pathname);
 		textureProps.SetWrap(GL_REPEAT);
 		textureProps.SetMaxAnisotropy(4);
@@ -162,6 +164,7 @@ int WaterManager::LoadWaterTextures()
 		texture->Prefetch();
 		m_NormalMap[i] = texture;
 	}
+	
 	// Load foam (for fancy water)
 	{
 		CTextureProperties textureProps("art/textures/terrain/types/water/foam.png");
@@ -235,6 +238,128 @@ void WaterManager::UnloadWaterTextures()
 }
 
 ///////////////////////////////////////////////////////////////////
+// Calculate our binary heightmap from the terrain heightmap.
+void WaterManager::RecomputeDistanceHeightmap()
+{
+	if (m_DistanceHeightmap == NULL)
+		m_DistanceHeightmap = new u8[m_MapSize*m_MapSize];
+	
+	// Custom copy the heightmap.
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	
+	u16 waterLevel = m_WaterHeight/HEIGHT_SCALE;
+
+	u16* heightmap = terrain->GetHeightMap();
+	
+	// We will "expand" the heightmap. That is we'll set each vertex on land as "3", and "bleed" that onto neighboring pixels.
+	// So 3 is "on land", 2 is "close", 1 "somewhat close" and 0 is "water".
+	// This gives a basic manhattan approximation of how close to the coast we are.
+	// I have a heathen fondness for ternary operators so there are some below.
+	u8 level = 0;
+	for (size_t z = 0; z < m_MapSize; ++z)
+	{
+		level = 0;
+		for (size_t x = 0; x < m_MapSize; ++x)
+			m_DistanceHeightmap[z*m_MapSize + x] = heightmap[z*m_MapSize + x] >= waterLevel ? level = 3
+												 : level > 0 ? --level : 0;
+		level = 0;
+		for (size_t x = m_MapSize-1; x != (size_t)-1; --x)
+		{
+			if (heightmap[z*m_MapSize + x] >= waterLevel)
+				level = 3;	// no need to set m_distanceHeightmap, it's already been done by the other loop.
+			else
+			{
+				level > 0 ? --level : 0;
+				if (level > m_DistanceHeightmap[z*m_MapSize + x])
+					m_DistanceHeightmap[z*m_MapSize + x] = level;
+			}
+		}
+	}
+	for (size_t x = 0; x < m_MapSize; ++x)
+	{
+		level = 0;
+		for (size_t z = 0; z < m_MapSize; ++z)
+		{
+			if (heightmap[z*m_MapSize + x] >= waterLevel)
+				level = 3;
+			else
+			{
+				level > 0 ? --level : 0;
+				if (level > m_DistanceHeightmap[z*m_MapSize + x])
+					m_DistanceHeightmap[z*m_MapSize + x] = level;
+			}
+		}
+		level = 0;
+		for (size_t z = m_MapSize-1; z != (size_t)-1; --z)
+		{
+			if (heightmap[z*m_MapSize + x] >= waterLevel)
+				level = 3;
+			else
+			{
+				level > 0 ? --level : 0;
+				if (level > m_DistanceHeightmap[z*m_MapSize + x])
+					m_DistanceHeightmap[z*m_MapSize + x] = level;
+			}
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////
+// Calculate The blurred normal map to get an idea of where water ought to go.
+void WaterManager::RecomputeBlurredNormalMap()
+{
+	// used to cache terrain normals since otherwise we'd recalculate them a lot (I'm blurring the "normal" map).
+	// this might be updated to actually cache in the terrain manager but that's not for now.
+	if (m_BlurredNormalMap == NULL)
+		m_BlurredNormalMap = new CVector3D[m_MapSize*m_MapSize];
+
+	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
+	
+	// It's really slow to calculate normals so cache them first.
+	CVector3D* normals = new CVector3D[m_MapSize*m_MapSize];
+	
+	// Not the edges, we won't care about them.
+	float ii = 8.0f, jj = 8.0f;
+	for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
+		for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f)
+		{
+			CVector3D norm;
+			terrain->CalcNormal(i,j,norm);
+			normals[j*m_MapSize + i] = norm;
+		}
+	
+	// We could be way fancier (and faster) for our blur but we probably don't need the complexity.
+	// Two pass filter, nothing complicated here.
+	CVector3D blurValue;
+	ii = 8.0f; jj = 8.0f;
+	size_t idx = 2;
+	for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
+		for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f,++idx)
+		{
+			blurValue = normals[idx-2];
+			blurValue += normals[idx-1];
+			blurValue += normals[idx];
+			blurValue += normals[idx+1];
+			blurValue += normals[idx+2];
+			m_BlurredNormalMap[idx] = blurValue * 0.2f;
+		}
+	// y direction, probably slower because of cache misses but I don't see an easy way around that.
+	ii = 8.0f; jj = 8.0f;
+	for (size_t i = 2; i < m_MapSize-2; ++i, ii += 4.0f)
+	{
+		for (size_t j = 2; j < m_MapSize-2; ++j, jj += 4.0f)
+		{
+			blurValue = normals[(j-2)*m_MapSize + i];
+			blurValue += normals[(j-1)*m_MapSize + i];
+			blurValue += normals[j*m_MapSize + i];
+			blurValue += normals[(j+1)*m_MapSize + i];
+			blurValue += normals[(j+2)*m_MapSize + i];
+			m_BlurredNormalMap[j*m_MapSize + i] = blurValue * 0.2f;
+		}
+	}
+}
+
+///////////////////////////////////////////////////////////////////
 // Create information about the terrain and wave vertices.
 void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 {
@@ -248,7 +373,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 		g_VBMan.Release(m_VBWavesIndices);
 		m_VBWavesIndices = NULL;
 	}
-
+	
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	
 	CmpPtr<ICmpWaterManager> cmpWaterManager(*simulation, SYSTEM_ENTITY);
@@ -608,7 +733,7 @@ void WaterManager::CreateSuperfancyInfo(CSimulation2* simulation)
 }
 
 ////////////////////////////////////////////////////////////////////////
-// This will always recalculate for now
+// TODO: This will always recalculate for now
 void WaterManager::SetMapSize(size_t size)
 {
 	// TODO: Im' blindly trusting the user here.
@@ -619,6 +744,8 @@ void WaterManager::SetMapSize(size_t size)
 	m_updatej0 = 0;
 	m_updatej1 = size;
 	
+	SAFE_ARRAY_DELETE(m_DistanceHeightmap);
+	SAFE_ARRAY_DELETE(m_BlurredNormalMap);
 	SAFE_ARRAY_DELETE(m_WaveX);
 	SAFE_ARRAY_DELETE(m_WaveZ);
 	SAFE_ARRAY_DELETE(m_DistanceToShore);
@@ -629,23 +756,17 @@ void WaterManager::SetMapSize(size_t size)
 // This will set the bools properly
 void WaterManager::UpdateQuality()
 {
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERNORMAL) != m_WaterNormal) {
-		m_WaterNormal = g_Renderer.GetOptionBool(CRenderer::OPT_WATERNORMAL);
+	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERUGLY) != m_WaterUgly) {
+		m_WaterUgly = g_Renderer.GetOptionBool(CRenderer::OPT_WATERUGLY);
+		m_NeedsReloading = true;
+	}
+	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS) != m_WaterFancyEffects) {
+		m_WaterFancyEffects = g_Renderer.GetOptionBool(CRenderer::OPT_WATERFANCYEFFECTS);
 		m_NeedsReloading = true;
 	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH) != m_WaterRealDepth) {
 		m_WaterRealDepth = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREALDEPTH);
 		m_NeedsReloading = true;
-	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERFOAM) != m_WaterFoam) {
-		m_WaterFoam = g_Renderer.GetOptionBool(CRenderer::OPT_WATERFOAM);
-		m_NeedsReloading = true;
-		m_NeedInfoUpdate = true;
-	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERCOASTALWAVES) != m_WaterCoastalWaves) {
-		m_WaterCoastalWaves = g_Renderer.GetOptionBool(CRenderer::OPT_WATERCOASTALWAVES);
-		m_NeedsReloading = true;
-		m_NeedInfoUpdate = true;
 	}
 	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION) != m_WaterRefraction) {
 		m_WaterRefraction = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFRACTION);
@@ -655,8 +776,8 @@ void WaterManager::UpdateQuality()
 		m_WaterReflection = g_Renderer.GetOptionBool(CRenderer::OPT_WATERREFLECTION);
 		m_NeedsReloading = true;
 	}
-	if (g_Renderer.GetOptionBool(CRenderer::OPT_WATERSHADOW) != m_WaterShadows) {
-		m_WaterShadows = g_Renderer.GetOptionBool(CRenderer::OPT_WATERSHADOW);
+	if (g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWSONWATER) != m_WaterShadows) {
+		m_WaterShadows = g_Renderer.GetOptionBool(CRenderer::OPT_SHADOWSONWATER);
 		m_NeedsReloading = true;
 	}
 }
@@ -665,7 +786,7 @@ bool WaterManager::WillRenderFancyWater()
 {
 	if (!g_Renderer.GetCapabilities().m_FragmentShader)
 		return false;
-	if (!m_RenderWater)
+	if (!m_RenderWater || m_WaterUgly)
 		return false;
 	return true;
 }
