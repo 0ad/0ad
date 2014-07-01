@@ -23,7 +23,6 @@ uniform mat4 instancingTransform;
 #endif
 
 varying vec4 v_lighting;
-varying vec4 v_lighting2;
 varying vec2 v_tex;
 varying vec2 v_los;
 
@@ -75,8 +74,6 @@ vec4 fakeCos(vec4 x)
 
 void main()
 {
-	// Compute position, normal and tangent vertices.
-	// GPU skinning does the animation live on the GPU.
   #if USE_GPU_SKINNING
     vec3 p = vec3(0.0);
     vec3 n = vec3(0.0);
@@ -108,7 +105,7 @@ void main()
   #endif
   #endif
 
-  // Calculate swaying of trees dynamically
+
   #if USE_WIND
     vec2 wind = windData.xy;
 
@@ -142,6 +139,7 @@ void main()
     position.xz += diff + diff2 * wind;
   #endif
 
+
   gl_Position = transform * position;
 
   #if USE_SPECULAR || USE_NORMAL_MAP || USE_SPECULAR_MAP || USE_PARALLAX_MAP
@@ -167,12 +165,7 @@ void main()
     #endif
   #endif
   
-	float firstDot = dot(normal, -sunDir);
-	v_lighting2.xyz = max(0.0, (dot(normal, vec3(-sunDir.r,sunDir.g,-sunDir.b)) + 1.0) - abs(firstDot)*0.8 - max(0.0,firstDot)*1.9) * 0.4 * sunColor;
-	v_lighting2 -= a_vertex.y*0.1;
-	v_lighting2 = clamp(vec4(0.3), vec4(0.0), v_lighting2);
-
-  v_lighting.xyz = max(0.0, firstDot) * sunColor;
+  v_lighting.xyz = max(0.0, dot(normal, -sunDir)) * sunColor;
 
   v_tex = a_uv0;
 
@@ -184,7 +177,7 @@ void main()
     v_shadow = shadowTransform * position;
     #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
       v_shadow.xy *= shadowScale.xy;
-    #endif
+    #endif  
   #endif
 
   v_los = position.xz * losTransform.x + losTransform.y;
