@@ -57,7 +57,7 @@ log("Initializing map...");
 
 InitMap();
 
-var numPlayers = getNumPlayers() - 1;
+var numPlayers = getNumPlayers();
 var mapSize = getMapSize();
 var mapArea = mapSize*mapSize;
 
@@ -132,9 +132,6 @@ for (var i = 0; i < numPlayers; i++)
 	attackerZ[i] = 0.5 + 0.45*sin(playerAngle[i]);
 }
 
-// determines the trigger point associated with the attacker spawning point of each player.
-var attackerTriggerPointForPlayer = ["", "B", "C", "D", "E", "F", "G", "H"];
-
 for (var i = 0; i < numPlayers; i++)
 {
 	var id = playerIDs[i];
@@ -148,7 +145,7 @@ for (var i = 0; i < numPlayers; i++)
 	// place the attacker spawning trigger point
 	var ax = round(fractionToTiles(attackerX[i]));
 	var az = round(fractionToTiles(attackerZ[i]));
-	placeObject(ax, az, "special/trigger_point_" + attackerTriggerPointForPlayer[id], 0, PI);
+	placeObject(ax, az, "special/trigger_point_A", id, PI);
 	addToClass(ax, az, clPlayer);
 	addToClass(round(fractionToTiles((attackerX[i] + playerX[i]) / 2)), round(fractionToTiles((attackerZ[i] + playerZ[i]) / 2)), clPlayer);
 	
@@ -217,7 +214,7 @@ paintTerrainBasedOnHeight(3.12, 29, 1, tCliff);
 paintTileClassBasedOnHeight(3.12, 29, 1, clHill);
 
 // create trigger points for treasures
-group = new SimpleGroup( [new SimpleObject("special/trigger_point_A", 1,1, 0,0)], true, clWomen);
+group = new SimpleGroup( [new SimpleObject("special/trigger_point_B", 1,1, 0,0)], true, clWomen);
 createObjectGroups(group, 0,
 	[avoidClasses(clForest, 5, clPlayer, 5, clHill, 5), stayClasses(clLand, 5)],
 	scaleByMapSize(40, 140), 100

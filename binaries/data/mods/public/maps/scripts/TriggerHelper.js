@@ -87,7 +87,7 @@ TriggerHelper.SpawnUnitsFromTriggerPoints = function(ref, template, count, owner
 	for (var point of triggerPoints)
 		r[point] = TriggerHelper.SpawnUnits(point, template, count, owner);
 	return r;
-}
+};
 
 /**
  * Returs a function that can be used to filter an array of entities by player
@@ -137,7 +137,7 @@ TriggerHelper.GetNumberOfPlayers = function()
 {
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	return cmpPlayerManager.GetNumPlayers();
-}
+};
 
 /**
  * Returns the player component. For more information on its functions, see simulation/components/Player.js
@@ -146,7 +146,7 @@ TriggerHelper.GetPlayerComponent = function(playerID)
 {
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	return Engine.QueryInterface(cmpPlayerMan.GetPlayerByID(playerID), IID_Player);
-}
+};
 
 /**
  * A function to determine if an entity has a specific class
@@ -160,7 +160,6 @@ TriggerHelper.EntityHasClass = function(entity, classname)
 		return false;
 	var classes = cmpIdentity.GetClassesList();;
 	return (classes && classes.indexOf(classname) != -1);
-}
-
+};
 
 Engine.RegisterGlobal("TriggerHelper", TriggerHelper);
