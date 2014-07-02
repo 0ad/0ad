@@ -18,7 +18,8 @@
 #ifndef INCLUDED_SHADERTECHNIQUE
 #define INCLUDED_SHADERTECHNIQUE
 
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
+#include "lib/ogl.h"
 
 /**
  * Implements a render pass consisting of various GL state changes and a shader,

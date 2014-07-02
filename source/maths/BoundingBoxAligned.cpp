@@ -28,6 +28,7 @@
 #include <float.h>
 
 #include "graphics/Frustum.h"
+#include "graphics/ShaderProgram.h"
 #include "maths/BoundingBoxOriented.h"
 #include "maths/Brush.h"
 #include "maths/Matrix3D.h"

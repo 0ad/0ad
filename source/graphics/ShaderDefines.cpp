@@ -19,6 +19,7 @@
 
 #include "ShaderDefines.h"
 
+#include "graphics/ShaderProgram.h"
 #include "maths/Vector4D.h"
 #include "ps/ThreadUtil.h"
 

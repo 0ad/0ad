@@ -29,6 +29,7 @@
 #define INCLUDED_RENDERMODIFIERS
 
 #include "ModelRenderer.h"
+#include "graphics/ShaderProgram.h"
 #include "graphics/ShaderTechnique.h"
 #include "graphics/Texture.h"
 

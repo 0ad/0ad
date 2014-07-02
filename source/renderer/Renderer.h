@@ -25,7 +25,7 @@
 
 #include "graphics/Camera.h"
 #include "graphics/SColor.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
 

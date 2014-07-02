@@ -20,6 +20,7 @@
 #include "ParticleRenderer.h"
 
 #include "graphics/ParticleEmitter.h"
+#include "graphics/ShaderDefines.h"
 #include "graphics/ShaderManager.h"
 #include "graphics/TextureManager.h"
 #include "ps/Profile.h"

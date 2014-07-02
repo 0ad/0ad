@@ -28,6 +28,7 @@
 #include "Brush.h"
 #include "BoundingBoxAligned.h"
 #include "graphics/Frustum.h"
+#include "graphics/ShaderProgram.h"
 
 
 ///////////////////////////////////////////////////////////////////////////////

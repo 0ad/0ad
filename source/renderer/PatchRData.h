@@ -22,7 +22,7 @@
 #include "graphics/SColor.h"
 #include "maths/Vector3D.h"
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "VertexBufferManager.h"
 
 class CPatch;

@@ -24,7 +24,7 @@
 
 #include "Vector3D.h"
 
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 
 class CBoundingBoxAligned;
 class CFrustum;
