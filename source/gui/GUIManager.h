@@ -88,9 +88,9 @@ public:
 	void DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message);
 
 	/**
-	 * Call when a file has bee modified, to hotload pages if their .xml files changed.
+	 * Called when a file has been modified, to hotload changes.
 	 */
-	Status ReloadChangedFiles(const VfsPath& path);
+	Status ReloadChangedFile(const VfsPath& path);
 
 	/**
 	 * Pass input events to the currently active GUI page.

@@ -47,16 +47,23 @@ InReaction gui_handler(const SDL_Event_* ev)
 	return g_GUI->HandleEvent(ev);
 }
 
+static Status ReloadChangedFileCB(void* param, const VfsPath& path)
+{
+	return static_cast<CGUIManager*>(param)->ReloadChangedFile(path);
+}
+
 CGUIManager::CGUIManager()
 {
 	m_ScriptRuntime = g_ScriptRuntime;
 	m_ScriptInterface.reset(new ScriptInterface("Engine", "GUIManager", m_ScriptRuntime));
 	m_ScriptInterface->SetCallbackData(this);
 	m_ScriptInterface->LoadGlobalScripts();
+	RegisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 CGUIManager::~CGUIManager()
 {
+	UnregisterFileReloadFunc(ReloadChangedFileCB, this);
 }
 
 bool CGUIManager::HasPages()
@@ -259,7 +266,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 		previousPageScriptInterface.reset();
 }
 
-Status CGUIManager::ReloadChangedFiles(const VfsPath& path)
+Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 {
 	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
 	{
