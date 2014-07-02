@@ -60,6 +60,43 @@ Trigger.prototype.IntervalAction = function(data)
 	this.numberOfTimerTrigger++;
 	if (this.numberOfTimerTrigger >= this.maxNumberOfTimerTrigger)
 		this.DisableTrigger("OnInterval", "IntervalAction");
+
+	// try out the dialog
+	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGUIInterface.PushNotification({
+		"type": "dialog",
+		"players": [1,2,3,4,5,6,7,8],
+		"dialogName": "yes-no",
+		"data": {
+			"text": {
+				"caption": {
+					"message": markForTranslation("Testing the yes-no dialog. Do you want to say sure or rather not?"),
+					"translateMessage": true,
+				},
+			},
+			"button1": {
+				"caption": {
+					"message": markForTranslation("Sure"),
+					"translateMessage": true,
+				},
+				"tooltip": {
+					"message": markForTranslation("Say sure"),
+					"translateMessage": true,
+				},
+			},
+			"button2": {
+				"caption": {
+					"message": markForTranslation("Rather not"),
+					"translateMessage": true,
+				},
+				"tooltip": {
+					"message": markForTranslation("Say rather not"),
+					"translateMessage": true,
+				},
+			},
+
+		},
+	});
 };
 
 Trigger.prototype.RangeAction = function(data)
@@ -82,9 +119,9 @@ cmpTrigger.RegisterTrigger("OnOwnershipChanged", "OwnershipChangedAction", data)
 cmpTrigger.RegisterTrigger("OnPlayerCommand", "PlayerCommandAction", data);
 
 data.delay = 10000; // after 10 seconds
-data.interval = 1000; // every second
+data.interval = 5000; // every 5 seconds
 cmpTrigger.numberOfTimerTrigger = 0;
-cmpTrigger.maxNumberOfTimerTrigger = 10; // execute it 10 times maximum
+cmpTrigger.maxNumberOfTimerTrigger = 3; // execute it 3 times maximum
 cmpTrigger.RegisterTrigger("OnInterval", "IntervalAction", data);
 var entities = cmpTrigger.GetTriggerPoints("A");
 data = {

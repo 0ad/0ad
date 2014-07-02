@@ -648,6 +648,11 @@ var commands = {
 			}
 		}
 	},
+	"dialog-answer": function(player, cmd, data)
+	{
+		// Currently nothing. Triggers can read it anyway, and send this
+		// message to any component you like.
+	},
 };
 
 /**
