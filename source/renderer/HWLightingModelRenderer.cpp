@@ -26,6 +26,7 @@
 #include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ModelDef.h"
+#include "graphics/ShaderProgram.h"
 
 #include "renderer/HWLightingModelRenderer.h"
 #include "renderer/Renderer.h"

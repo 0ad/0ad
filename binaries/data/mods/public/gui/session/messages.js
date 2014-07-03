@@ -112,6 +112,11 @@ var g_NotificationsTypes =
 			"attacker": notification.attacker
 		});
 	},
+	"dialog": function(notification, player)
+	{
+		if (player == Engine.GetPlayerID())
+			openDialog(notification.dialogName, notification.data, player);
+	},
 };
 
 // Notifications
@@ -647,4 +652,56 @@ function parseChatCommands(msg, playerAssignments)
 	// Attempt to parse more commands if the current command allows it.
 	if (recurse)
 		parseChatCommands(msg, playerAssignments);
+}
+
+function sendDialogAnswer(guiObject, dialogName)
+{
+	Engine.GetGUIObjectByName(dialogName+"-dialog").hidden = true;
+
+	Engine.PostNetworkCommand({
+		"type": "dialog-answer",
+		"dialog": dialogName,
+		"answer": guiObject.name.split("-").pop(),
+	});
+
+	resumeGame();
+}
+
+function openDialog(dialogName, data, player)
+{
+	var dialog = Engine.GetGUIObjectByName(dialogName+"-dialog");
+	if (!dialog)
+	{
+		warn("messages.js: Unknow dialog with name "+dialogName);
+		return;
+	}
+	dialog.hidden = false;
+
+	for (var objName in data)
+	{
+		var obj = Engine.GetGUIObjectByName(dialogName + "-dialog-" + objName);
+		if (!obj)
+		{
+			warn("messages.js: Key '" + objName + "' not found in '" + dialogName + "' dialog.");
+			continue;
+		}
+		for (var key in data[objName])
+		{
+			var n = data[objName][key];
+			if (typeof n == "object" && n.message)
+			{
+				var message = n.message;
+				if (n.translateMessage)
+					message = translate(message);
+				var parameters = n.parameters || {};
+				if (n.translateParameters)
+					translateObjectKeys(parameters, n.translateParameters);
+				obj[key] = sprintf(message, parameters);
+			}
+			else
+				obj[key] = n;
+		}
+	}
+
+	pauseGame();
 }

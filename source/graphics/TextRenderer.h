@@ -18,7 +18,7 @@
 #ifndef INCLUDED_TEXTRENDERER
 #define INCLUDED_TEXTRENDERER
 
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "maths/Matrix3D.h"
 #include "ps/CStrIntern.h"
 #include "ps/Overlay.h"

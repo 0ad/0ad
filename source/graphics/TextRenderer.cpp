@@ -21,6 +21,7 @@
 
 #include "graphics/Font.h"
 #include "graphics/FontManager.h"
+#include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "ps/CStrIntern.h"
 #include "renderer/Renderer.h"

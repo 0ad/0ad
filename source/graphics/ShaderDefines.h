@@ -18,7 +18,7 @@
 #ifndef INCLUDED_SHADERDEFINES
 #define INCLUDED_SHADERDEFINES
 
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "ps/CStr.h"
 #include "ps/CStrIntern.h"
 

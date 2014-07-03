@@ -22,7 +22,6 @@
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
 #include "lib/res/handle.h"
-#include "ps/CStr.h"
 
 #include <map>
 

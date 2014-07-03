@@ -24,7 +24,7 @@
 #define INCLUDED_MODELVERTEXRENDERER
 
 #include "graphics/MeshManager.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 
 class CModel;
 class CModelRData;

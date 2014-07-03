@@ -23,6 +23,7 @@
 #include "graphics/LOSTexture.h"
 #include "graphics/ParticleEmitterType.h"
 #include "graphics/ParticleManager.h"
+#include "graphics/ShaderProgram.h"
 #include "graphics/TextureManager.h"
 
 #include "renderer/Renderer.h"

@@ -20,7 +20,7 @@
 
 #include "graphics/Overlay.h"
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "graphics/TextureManager.h"
 #include "renderer/VertexBufferManager.h"
 

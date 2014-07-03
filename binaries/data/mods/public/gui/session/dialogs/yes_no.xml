@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<object name="yes-no-dialog"
+	size="50%-300 50%-200 50%+300 50%+150"
+	type="image"
+	hidden="true"
+	sprite="ModernDialog"
+>
+
+	<object type="text" style="TitleText" size="50%-96 -16 50%+96 16" name="yes-no-dialog-title">
+		<translatableAttribute id="caption">Question</translatableAttribute>
+	</object>
+
+	<object name="yes-no-dialog-text" size="20 32 100%-20 100%-70" type="text" style="ModernLabelText" ghost="true">
+		<translatableAttribute id="caption">Yes or no?</translatableAttribute>
+	</object>
+
+	<object size="10 100%-50 50%-10 100%-22" type="button" style="StoneButton" name="yes-no-dialog-button1">
+		<translatableAttribute id="caption">Yes</translatableAttribute>
+		<action on="Press">sendDialogAnswer(this, "yes-no");</action>
+	</object>
+
+	<object size="50%+10 100%-50 100%-10 100%-22" type="button" style="StoneButton" name="yes-no-dialog-button2">
+		<translatableAttribute id="caption">No</translatableAttribute>
+		<action on="Press">sendDialogAnswer(this, "yes-no");</action>
+	</object>
+
+</object>

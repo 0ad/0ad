@@ -19,10 +19,10 @@
 #define INCLUDED_PARTICLERENDERER
 
 class CParticleEmitter;
-
+class CShaderDefines;
 struct ParticleRendererInternals;
 
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 
 /**
  * Render particles.

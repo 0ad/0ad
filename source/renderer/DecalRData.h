@@ -20,10 +20,11 @@
 
 #include "graphics/Camera.h"
 #include "graphics/RenderableObject.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "renderer/VertexArray.h"
 
 class CModelDecal;
+class CShaderDefines;
 class CSimulation2;
 class ShadowMap;
 
