@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,8 +22,11 @@
 #include "precompiled.h"
 
 #include "HFTracer.h"
-#include "Terrain.h"
+
+#include "graphics/Patch.h"
+#include "graphics/Terrain.h"
 #include "maths/BoundingBoxAligned.h"
+#include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 
 // To cope well with points that are slightly off the edge of the map,
@@ -50,8 +53,8 @@ CHFTracer::CHFTracer(CTerrain *pTerrain):
 // RayTriIntersect: intersect a ray with triangle defined by vertices
 // v0,v1,v2; return true if ray hits triangle at distance less than dist,
 // or false otherwise
-bool CHFTracer::RayTriIntersect(const CVector3D& v0, const CVector3D& v1, const CVector3D& v2,
-								const CVector3D& origin, const CVector3D& dir, float& dist) const
+static bool RayTriIntersect(const CVector3D& v0, const CVector3D& v1, const CVector3D& v2,
+								const CVector3D& origin, const CVector3D& dir, float& dist)
 {
 	const float EPSILON=0.00001f;
 
@@ -225,5 +228,131 @@ bool CHFTracer::RayIntersect(const CVector3D& origin, const CVector3D& dir, int&
 	} while (traversalPt.Y>=0);
 
 	// fell off end of heightmap with no intersection; return a miss
+	return false;
+}
+
+static bool TestTile(u16* heightmap, int stride, int i, int j, const CVector3D& pos, const CVector3D& dir, CVector3D& isct)
+{
+	u16 y00 = heightmap[i + j*stride];
+	u16 y10 = heightmap[i+1 + j*stride];
+	u16 y01 = heightmap[i + (j+1)*stride];
+	u16 y11 = heightmap[i+1 + (j+1)*stride];
+
+	CVector3D p00(    i * TERRAIN_TILE_SIZE, y00 * HEIGHT_SCALE,     j * TERRAIN_TILE_SIZE);
+	CVector3D p10((i+1) * TERRAIN_TILE_SIZE, y10 * HEIGHT_SCALE,     j * TERRAIN_TILE_SIZE);
+	CVector3D p01(    i * TERRAIN_TILE_SIZE, y01 * HEIGHT_SCALE, (j+1) * TERRAIN_TILE_SIZE);
+	CVector3D p11((i+1) * TERRAIN_TILE_SIZE, y11 * HEIGHT_SCALE, (j+1) * TERRAIN_TILE_SIZE);
+
+	int mid1 = y00+y11;
+	int mid2 = y01+y10;
+	int triDir = (mid1 < mid2);
+
+	float dist = FLT_MAX;
+
+	if (triDir)
+	{
+		if (RayTriIntersect(p00, p10, p01, pos, dir, dist) || // lower-left triangle
+		    RayTriIntersect(p11, p01, p10, pos, dir, dist))   // upper-right triangle
+		{
+			isct = pos + dir * dist;
+			return true;
+		}
+	}
+	else
+	{
+		if (RayTriIntersect(p00, p11, p01, pos, dir, dist) || // upper-left triangle
+		    RayTriIntersect(p00, p10, p11, pos, dir, dist))   // lower-right triangle
+		{
+			isct = pos + dir * dist;
+			return true;
+		}
+	}
+	return false;
+}
+
+bool CHFTracer::PatchRayIntersect(CPatch* patch, const CVector3D& origin, const CVector3D& dir, CVector3D* out)
+{
+	// (TODO: This largely duplicates RayIntersect - some refactoring might be
+	// nice in the future.)
+
+	// General approach:
+	// Given the ray defined by origin + dir * t, we increase t until it
+	// enters the patch's bounding box. The x,z coordinates identify which
+	// tile it is currently above/below. Do an intersection test vs the tile's
+	// two triangles. If it doesn't hit, do a 2D line rasterisation to find
+	// the next tiles the ray will pass through, and test each of them.
+
+	// Start by jumping to the point where the ray enters the bounding box
+	CBoundingBoxAligned bound = patch->GetWorldBounds();
+	float tmin, tmax;
+	if (!bound.RayIntersect(origin, dir, tmin, tmax))
+	{
+		// Ray missed patch; no intersection
+		return false;
+	}
+
+	int heightmapStride = patch->m_Parent->GetVerticesPerSide();
+
+	// Get heightmap, offset to start at this patch
+	u16* heightmap = patch->m_Parent->GetHeightMap() +
+			patch->m_X * PATCH_SIZE +
+			patch->m_Z * PATCH_SIZE * heightmapStride;
+
+	// Get patch-space position of ray origin and bbox entry point
+	CVector3D patchPos(
+			patch->m_X * PATCH_SIZE * TERRAIN_TILE_SIZE,
+			0.0f,
+			patch->m_Z * PATCH_SIZE * TERRAIN_TILE_SIZE);
+	CVector3D originPatch = origin - patchPos;
+	CVector3D entryPatch = originPatch + dir * tmin;
+
+	// We want to do a simple 2D line rasterisation (with the 3D ray projected
+	// down onto the Y plane). That will tell us which cells are intersected
+	// in 2D dimensions, then we can do a more precise 3D intersection test.
+	//
+	// WLOG, assume the ray has direction dir.x > 0, dir.z > 0, and starts in
+	// cell (i,j). The next cell intersecting the line must be either (i+1,j)
+	// or (i,j+1). To tell which, just check whether the point (i+1,j+1) is
+	// above or below the ray. Advance into that cell and repeat.
+	//
+	// (If the ray passes precisely through (i+1,j+1), we can pick either.
+	// If the ray is parallel to Y, only the first cell matters, then we can
+	// carry on rasterising in any direction (a bit of a waste of time but
+	// should be extremely rare, and it's safe and simple).)
+
+	// Work out which tile we're starting in
+	int i = clamp((int)(entryPatch.X / TERRAIN_TILE_SIZE), 0, (int)PATCH_SIZE-1);
+	int j = clamp((int)(entryPatch.Z / TERRAIN_TILE_SIZE), 0, (int)PATCH_SIZE-1);
+
+	// Work out which direction the ray is going in
+	int di = (dir.X >= 0 ? 1 : 0);
+	int dj = (dir.Z >= 0 ? 1 : 0);
+
+	do
+	{
+		CVector3D isct;
+		if (TestTile(heightmap, heightmapStride, i, j, originPatch, dir, isct))
+		{
+			if (out)
+				*out = isct + patchPos;
+			return true;
+		}
+
+		// Get the vertex between the two possible next cells
+		float nx = (i + di) * (int)TERRAIN_TILE_SIZE;
+		float nz = (j + dj) * (int)TERRAIN_TILE_SIZE;
+
+		// Test which side of the ray the vertex is on, and advance into the
+		// appropriate cell, using a test that works for all 4 combinations
+		// of di,dj
+		float dot = dir.Z * (nx - originPatch.X) - dir.X * (nz - originPatch.Z);
+		if ((di == dj) == (dot > 0.0f))
+			j += dj*2-1;
+		else
+			i += di*2-1;
+	}
+	while (i >= 0 && j >= 0 && i < PATCH_SIZE && j < PATCH_SIZE);
+
+	// Ran off the edge of the patch, so no intersection
 	return false;
 }

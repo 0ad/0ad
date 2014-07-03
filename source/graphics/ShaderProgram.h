@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SHADERPROGRAM
 #define INCLUDED_SHADERPROGRAM
 
+#include "graphics/ShaderProgramPtr.h"
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs_path.h"
@@ -203,7 +204,5 @@ protected:
 	void UnbindClientStates();
 	int m_ValidStreams; // which streams have been specified via VertexPointer etc since the last Bind
 };
-
-typedef shared_ptr<CShaderProgram> CShaderProgramPtr;
 
 #endif // INCLUDED_SHADERPROGRAM

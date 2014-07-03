@@ -96,8 +96,21 @@ class CVector3D
 		}
 
 	public:
-		float Dot (const CVector3D &vector) const;
-		CVector3D Cross (const CVector3D &vector) const;
+		float Dot (const CVector3D &vector) const
+		{
+			return ( X * vector.X +
+					 Y * vector.Y +
+					 Z * vector.Z );
+		}
+
+		CVector3D Cross (const CVector3D &vector) const
+		{
+			CVector3D Temp;
+			Temp.X = (Y * vector.Z) - (Z * vector.Y);
+			Temp.Y = (Z * vector.X) - (X * vector.Z);
+			Temp.Z = (X * vector.Y) - (Y * vector.X);
+			return Temp;
+		}
 
 		float Length () const;
 		float LengthSquared () const;
