@@ -5,6 +5,7 @@ uniform mat4 refractionMatrix;
 uniform mat4 losMatrix;
 uniform mat4 shadowTransform;
 uniform float repeatScale;
+uniform float windAngle;
 uniform vec2 translation;
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 
@@ -23,13 +24,12 @@ varying vec4 waterInfo;
 	varying vec4 v_shadow;
 #endif
 attribute vec3 a_vertex;
-attribute vec4 a_encodedDepth;
 attribute vec4 a_waterInfo;
 void main()
 {
 	worldPos = a_vertex;
 	waterInfo = a_waterInfo;
-	waterDepth = dot(a_encodedDepth.xyz, vec3(255.0, -255.0, 1.0));
+	waterDepth = a_waterInfo.a;
 	
 	gl_TexCoord[0] = vec4(a_vertex.xz*repeatScale,translation);
 	gl_TexCoord[1] = reflectionMatrix * vec4(a_vertex, 1.0);		// projective texturing

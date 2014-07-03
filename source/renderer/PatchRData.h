@@ -45,7 +45,7 @@ public:
 	void RenderSides(CShaderProgramPtr& shader);
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWater(CShaderProgramPtr& shader);
+	void RenderWater(CShaderProgramPtr& shader, bool fixedPipeline = false);
 
 	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
@@ -105,13 +105,9 @@ private:
 	struct SWaterVertex {
 		// vertex position
 		CVector3D m_Position;
-		// (p,q,r, a) where
-		//   p*255 + q*-255 + r = depth of water
-		//   a = depth-dependent alpha
-		SColor4ub m_DepthData;
 		CVector4D m_WaterData;
 	};
-	cassert(sizeof(SWaterVertex) == 32);
+	cassert(sizeof(SWaterVertex) == 28);
 
 	// build this renderdata object
 	void Build();

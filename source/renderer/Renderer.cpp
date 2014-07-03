@@ -1123,7 +1123,7 @@ void CRenderer::ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAlign
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
 
-	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight);
+	CVector4D camPlane(0, 1, 0, -wm.m_WaterHeight + 0.5f);
 	SetObliqueFrustumClipping(camera, camPlane);
 
 }
@@ -1146,7 +1146,7 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	// the whole screen despite being rendered into a square, and cover slightly more
 	// of the view so we can see wavy refractions of slightly off-screen objects.
 	camera.UpdateFrustum(scissor);
-	camera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight));
+	camera.ClipFrustum(CVector4D(0, -1, 0, wm.m_WaterHeight + 0.5f));	// add some to avoid artifacts near steep shores.
 
 	SViewPort vp;
 	vp.m_Height = wm.m_RefractionTextureSize;
@@ -1159,7 +1159,7 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
 
-	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight);
+	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 0.5f);
 	SetObliqueFrustumClipping(camera, camPlane);
 }
 
@@ -1169,6 +1169,10 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 {
 	PROFILE3_GPU("water reflections");
 
+	// Save the post-processing framebuffer.
+	GLint fbo;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
+	
 	WaterManager& wm = m->waterManager;
 
 	// Remember old camera
@@ -1190,52 +1194,46 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
 
-	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+
+	// try binding the framebuffer
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_ReflectionFbo);
+	
+	glClearColor(0.5f,0.5f,1.0f,0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	glFrontFace(GL_CW);
+	
+	// Render sky, terrain and models
+	//m->skyManager.RenderSky();
+	//ogl_WarnIfError();
+	RenderPatches(context, CULL_REFLECTIONS);
+	ogl_WarnIfError();
+	RenderModels(context, CULL_REFLECTIONS);
+	ogl_WarnIfError();
+	RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT, true);
+	ogl_WarnIfError();
+	
+	glFrontFace(GL_CCW);
+	
+	// Particles are always oriented to face the camera in the vertex shader,
+	// so they don't need the inverted glFrontFace
+	if (m_Options.m_Particles)
 	{
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
-
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-
-		// Swap front/back faces to compensate for the reflected view-projection matrix
-		glFrontFace(GL_CW);
-
-		// Render sky, terrain and models
-		m->skyManager.RenderSky();
+		RenderParticles(CULL_REFLECTIONS);
 		ogl_WarnIfError();
-		RenderPatches(context, CULL_REFLECTIONS);
-		ogl_WarnIfError();
-		RenderModels(context, CULL_REFLECTIONS);
-		ogl_WarnIfError();
-		RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT_OPAQUE, true);
-		ogl_WarnIfError();
-
-		glFrontFace(GL_CCW);
-
-		// Particles are always oriented to face the camera in the vertex shader,
-		// so they don't need the inverted glFrontFace
-		if (m_Options.m_Particles)
-		{
-			RenderParticles(CULL_REFLECTIONS);
-			ogl_WarnIfError();
-		}
-
-		glDisable(GL_SCISSOR_TEST);
-
-		// Copy the image to a texture
-		pglActiveTextureARB(GL_TEXTURE0);
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, wm.m_ReflectionTexture);
-		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
-				screenScissor.x1, screenScissor.y1,
-				screenScissor.x1, screenScissor.y1,
-				screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 	}
-
-	// Reset old camera
-	m_ViewCamera = normalCamera;
-	m->SetOpenGLCamera(m_ViewCamera);
-
+	
+	glDisable(GL_SCISSOR_TEST);
+	
+  	// Reset old camera
+  	m_ViewCamera = normalCamera;
+  	m->SetOpenGLCamera(m_ViewCamera);
+	
+	// rebind post-processing frambuffer.
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
+	
 	return screenScissor;
 }
 
@@ -1246,6 +1244,10 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 {
 	PROFILE3_GPU("water refractions");
 
+	// Save the post-processing framebuffer.
+	GLint fbo;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &fbo);
+	
 	WaterManager& wm = m->waterManager;
 
 	// Remember old camera
@@ -1266,40 +1268,33 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 	screenScissor.y1 = (GLint)floor((scissor[0].Y*0.5f+0.5f)*vpHeight);
 	screenScissor.x2 = (GLint)ceil((scissor[1].X*0.5f+0.5f)*vpWidth);
 	screenScissor.y2 = (GLint)ceil((scissor[1].Y*0.5f+0.5f)*vpHeight);
-	if (screenScissor.x1 < screenScissor.x2 && screenScissor.y1 < screenScissor.y2)
-	{
-		glEnable(GL_SCISSOR_TEST);
-		glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
 
-		glClearColor(0.5f, 0.5f, 0.5f, 1.0f);		// a neutral gray to blend in with shores
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_SCISSOR_TEST);
+	glScissor(screenScissor.x1, screenScissor.y1, screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
+	
+	// try binding the framebuffer
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, wm.m_RefractionFbo);
 
-		// Render terrain and models
-		RenderPatches(context, CULL_REFRACTIONS);
-		ogl_WarnIfError();
-		RenderModels(context, CULL_REFRACTIONS);
-		ogl_WarnIfError();
-		RenderTransparentModels(context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
-		ogl_WarnIfError();
-
-		// Don't bother with particles since it's unlikely they'll be visible underwater
-
-		glDisable(GL_SCISSOR_TEST);
-
-		// Copy the image to a texture
-		pglActiveTextureARB(GL_TEXTURE0);
-		glEnable(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, wm.m_RefractionTexture);
-		glCopyTexSubImage2D(GL_TEXTURE_2D, 0,
-				screenScissor.x1, screenScissor.y1,
-				screenScissor.x1, screenScissor.y1,
-				screenScissor.x2 - screenScissor.x1, screenScissor.y2 - screenScissor.y1);
-	}
-
-	// Reset old camera
-	m_ViewCamera = normalCamera;
-	m->SetOpenGLCamera(m_ViewCamera);
-
+	glClearColor(1.0f,0.0f,0.0f,0.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	
+	// Render terrain and models
+	RenderPatches(context, CULL_REFRACTIONS);
+	ogl_WarnIfError();
+	RenderModels(context, CULL_REFRACTIONS);
+	ogl_WarnIfError();
+	RenderTransparentModels(context, CULL_REFRACTIONS, TRANSPARENT_OPAQUE, false);
+	ogl_WarnIfError();
+	
+	glDisable(GL_SCISSOR_TEST);
+	
+  	// Reset old camera
+  	m_ViewCamera = normalCamera;
+  	m->SetOpenGLCamera(m_ViewCamera);
+	
+	// rebind post-processing frambuffer.
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
+	
 	return screenScissor;
 }
 
@@ -1511,14 +1506,14 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 				dirty.y2 = std::max(dirty.y2, refractionScissor.y2);
 			}
 
-			if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
+			/*if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
 			{
 				glEnable(GL_SCISSOR_TEST);
 				glScissor(dirty.x1, dirty.y1, dirty.x2 - dirty.x1, dirty.y2 - dirty.y1);
 				glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
 				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 				glDisable(GL_SCISSOR_TEST);
-			}
+			}*/
 		}
 	}
 

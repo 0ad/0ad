@@ -35,6 +35,7 @@ protected:
 private:
 	VariableListBox* m_PostEffectList;
 	VariableListBox* m_SkyList;
+	VariableListBox* m_WaterTypeList;
 	ObservableScopedConnection m_Conn;
 	
 	DECLARE_EVENT_TABLE();

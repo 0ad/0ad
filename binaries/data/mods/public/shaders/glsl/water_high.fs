@@ -1,17 +1,18 @@
 #version 110
 
+// Environment settings
 uniform vec3 ambient;
 uniform vec3 sunDir;
 uniform vec3 sunColor;
+
 uniform vec3 cameraPos;
+
 uniform sampler2D losMap;
-uniform float specularStrength;	// Scaling for specular reflection (specular color is (this,this,this))
+
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
+uniform vec3 color;				// color of the water
 uniform vec3 tint;				// Tint for refraction (used to simulate particles in water)
 uniform float murkiness;		// Amount of tint to blend in with the refracted colour
-uniform vec3 reflectionTint;	// Tint for reflection (used for really muddy water)
-uniform float reflectionTintStrength;	// Strength of reflection tint (how much of it to mix in)
-uniform vec3 color;				// color of the water
 
 uniform vec3 fogColor;
 uniform vec2 fogParams;
@@ -32,6 +33,9 @@ uniform sampler2D normalMap2;
 
 #if USE_FANCY_EFFECTS
 	uniform sampler2D waterEffectsTex;
+#else
+	uniform vec4 waveParams1; // wavyEffect, BaseScale, Flattenism, Basebump
+	uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmovement
 #endif
 
 #if USE_REFLECTION
@@ -43,11 +47,6 @@ uniform sampler2D normalMap2;
 #if USE_REAL_DEPTH
 	uniform sampler2D depthTex;
 #endif
-
-/*#if USE_FOAM || USE_WAVES
-	uniform sampler2D Foam;
-	uniform sampler2D waveTex;
-#endif*/
 
 #if USE_SHADOWS_ON_WATER && USE_SHADOW
 	varying vec4 v_shadow;
@@ -129,56 +128,56 @@ vec3 get_fog(vec3 color)
 
 void main()
 {
-	//float fwaviness = 1;
-	
 	float fresnel;
 	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
 	vec3 reflColor, refrColor, specular;
 	float losMod;
 	
-	// Correct the waviness (range [0,10]) to something slightly more convenient (range [0,1.2] so you can treat it like [0.1] with overdraft).
-	float wavyFactor = waviness * 0.125;
-
 	vec3 l = -sunDir;
 	vec3 v = normalize(cameraPos - worldPos);
 	vec3 h = normalize(l + v);
 	
+	// Fix the waviness for local wind strength
+	float fwaviness = 6.0;waviness;// * ((0.15+waterInfo.r/1.15));
+
 	// Calculate water normals.
-	
 #if USE_FANCY_EFFECTS
 	vec4 fancyeffects = texture2D(waterEffectsTex, gl_FragCoord.xy/screenSize);
-	vec3 n = fancyeffects.rgb;
+	vec3 n = (fancyeffects.rgb-0.5)*2.0;
 #else
+	float wavyEffect = waveParams1.r;
+	float baseScale = waveParams1.g;
+	float flattenism = waveParams1.b;
+	float baseBump = waveParams1.a;
+
+	float smallIntensity = waveParams2.r;
+	float smallBase = waveParams2.g;
+	float BigMovement = waveParams2.b;
+	float SmallMovement = waveParams2.a;
+
 	// This method uses 60 animated water frames. We're blending between each two frames
 	// TODO: could probably have fewer frames thanks to this blending.
 	// Scale the normal textures by waviness so that big waviness means bigger waves.
-	vec3 ww1 = texture2D(normalMap, (gl_TexCoord[0].st) * (0.7 - waviness/20.0)).xzy;
-	vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st) * (0.7 - waviness/20.0)).xzy;
+	vec3 ww1 = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
+	vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
 	
-	//vec3 smallWW = texture2D(normalMap, (gl_TexCoord[0].st - gl_TexCoord[0].wz*6.0) * 1.2).xzy;
-	//vec3 smallWW2 = texture2D(normalMap2, (gl_TexCoord[0].st - gl_TexCoord[0].wz*6.0) * 1.2).xzy;
+	vec3 smallWW = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
+	vec3 smallWW2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
 
 	ww1 = mix(ww1, ww2, mod(time * 60.0, 8.0) / 8.0);
-	//smallWW = mix(smallWW, smallWW2, mod(time * 60.0, 8.0) / 8.0) - vec3(0.5);
-	//ww += vec3(smallWW.x,0.0,smallWW.z)*0.5;
-	
-	/*#if USE_WAVES
-		vec3 waves = texture2D(waveTex, gl_FragCoord.xy/screenSize).rbg - vec3(0.5,0.5,0.5);
-		float waveFoam = 0.0;//texture2D(waveTex, gl_FragCoord.xy/screenSize).a;
-		n = normalize(mix(waves, ww - vec3(0.5, 0.5, 0.5) , clamp(distToShore*3.0,0.4,1.0)));
-	#else*/
-	// Fix our normals.
-	vec3  n = normalize(ww1 - vec3(0.5, 0.5, 0.5));
+	smallWW = mix(smallWW, smallWW2, mod(time * 60.0, 8.0) / 8.0) - vec3(0.5);
+	ww1 += vec3(smallWW.x,0.0,smallWW.z)*(waviness/10.0*smallIntensity + smallBase);
 
 	// Flatten them based on waviness.
-	n = mix(vec3(0.0,1.0,0.0),n,waviness/10.0);
+	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1 - vec3(0.5,0.0,0.5), clamp(baseBump + waviness/flattenism,0.0,1.0)));
 
+	// Fix our normals.
+	//n = normalize(n - vec3(0.5, 0.5, 0.5));
 #endif
 
 	// simulates how parallel the "point->sun", "view->point" vectors are.
-	// To always have a bit of that, we don't use the "n" we calculated above.
-	float ndoth = dot( mix(vec3(0.0,1.0,0.0),n,0.1 + min(0.8,waviness*waviness/70.0)) , h);
+	float ndoth = dot(n , h);
 	// how perpendicular to the normal our view is. Used for fresnel.
 	float ndotv = clamp(dot(n, v),0.0,1.0);
 	
@@ -231,27 +230,6 @@ void main()
 	//gl_FragColor = vec4(fresnel,fresnel,fresnel,1.0);
 	//return;
 	
-	/*#if USE_FOAM
-		// texture is rotated 90°, moves slowly.
-		vec2 foam1RC = vec2(-gl_TexCoord[0].t,gl_TexCoord[0].s)*1.3  - 0.012*n.xz + vec2(time*0.004,time*0.003);
-		// texture is not rotated, moves twice faster in the opposite direction, translated.
-		vec2 foam2RC = gl_TexCoord[0].st*1.8 + vec2(time*-0.019,time*-0.012) - 0.012*n.xz + vec2(0.4,0.2);
-		
-		vec2 WaveRocking = cos(time*1.2566) * beachOrientation * clamp(1.0 - distToShore*0.8,0.1,1.0)/3.0;
-		vec4 foam1 = texture2D(Foam, foam1RC + vec2(-WaveRocking.t,WaveRocking.s));
-		vec4 foam2 = foam1.r*texture2D(Foam, foam2RC + WaveRocking);
-		
-		vec3 finalFoam = min((foam2).rrr * waterInfo.a,1.0);
-		
-		if ((1.0 - finalFoam.r) >= wavyFactor)
-			finalFoam = vec3(0.0);
-		#if USE_WAVES && USE_NORMALS
-			// waves bypass the regular foam restrictions.
-			finalFoam += min( max(0.0,-waves.b) * texture2D(Foam, foam1RC).r, 1.0)*3.0 * max(0.0,wavyFactor-0.1);
-		#endif
-		finalFoam *= sunColor;
-	#endif*/
-	
 	#if USE_SHADOWS_ON_WATER && USE_SHADOW
 		float shadow = get_shadow(vec4(v_shadow.xy, v_shadow.zw));
 	#endif
@@ -265,9 +243,14 @@ void main()
 	float murky = mix(200.0,0.1,pow(murkiness,0.25));
 
 	#if USE_REFRACTION
-		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor*10.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor*7.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
 		vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
-		
+		if (refColor.r > refColor.g + refColor.b + 0.25)
+		{
+			refrCoords = clamp( (0.5*gl_TexCoord[2].xy + n.xz) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			refColor = texture2D(refractionMap, refrCoords).rgb;
+		}
+
 		// TODO: make murkiness (both types rematter on that.
 		// linearly extinct the water. This is how quickly we see nothing but the pure water color
 		float extFact = max(0.0,1.0 - (depth*fixedVy/murky));
@@ -290,41 +273,44 @@ void main()
 		float alphaCoeff = mix(1.0, base, extFact);
 		refrColor = color;
 	#endif
-		
-	#if USE_REFLECTION
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * 2.0 * n.xz) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
-		reflColor = mix(texture2D(reflectionMap, reflCoords).rgb, sunColor * reflectionTint, reflectionTintStrength);
-		// TODO: At very low angles the reflection stuff doesn't really work any more:
-		// IRL you would get a blur of the sky, but we don't have that precision (would require mad oversampling)
-		// So tend towards a predefined color (per-map) which looks like what the skybox would look like if you really blurred it.
-		// The TODO here would be to precompute a band (1x32?) that represents the average color around the map.
-		// TODO: another issue is that at high distances (half map) the texture blurs into flatness. Using better mipmaps won't really solve it
-		// So we'll need to stop showing reflections and default to sky color there too.
-		// Unless maybe waviness is so low that you would see like in a mirror anyways.
-		//float disttt = distance(worldPos,cameraPos);
-		//reflColor = mix(vec3(0.5,0.5,0.55), reflColor, clamp(1.0-disttt/600.0*disttt/600.0,0.0,1.0));//clamp(-0.05 + v.y*20.0,0.0,1.0));
-	#else
-		vec3 eye = reflect(v,n);
-		eye.y = min(-0.1,eye.y);
-		// let's calculate where we intersect with the skycube.
-		Ray myRay = Ray(vec3(worldPos.x/4.0,worldPos.y,worldPos.z/4.0),eye);
-		vec3 start = vec3(-1500.0 + mapSize/2.0,-100.0,-1500.0 + mapSize/2.0);
-		vec3 end = vec3(1500.0 + mapSize/2.0,500.0,1500.0 + mapSize/2.0);
-		float tmin = IntersectBox(myRay,start,end);
-		vec3 newpos = vec3(-worldPos.x/4.0,worldPos.y,-worldPos.z/4.0) + eye * tmin - vec3(-mapSize/2.0,worldPos.y,-mapSize/2.0);
-		//newpos = normalize(newpos);
-		newpos.y *= 6.0;
-		newpos *= rotationMatrix();
-		vec3 tex = textureCube(skyCube, newpos).rgb;
-		//float disttt = distance(worldPos,cameraPos);
-		//tex = mix(tex,vec3(0.7,0.7,0.9),clamp(disttt/300.0*disttt/300.0*disttt/300.0,0.0,0.9));
-		//gl_FragColor = vec4(clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),1.0);
-		//return;
-		reflColor = mix(tex, sunColor * reflectionTint, reflectionTintStrength);
-	#endif
+	
+#if USE_REFLECTION
+	// Reflections
+	vec3 eye = reflect(v,n);
+	//eye.y = min(-0.2,eye.y);
+	// let's calculate where we intersect with the skycube.
+	Ray myRay = Ray(vec3(worldPos.x/4.0,worldPos.y,worldPos.z/4.0),eye);
+	vec3 start = vec3(-1500.0 + mapSize/2.0,-100.0,-1500.0 + mapSize/2.0);
+	vec3 end = vec3(1500.0 + mapSize/2.0,500.0,1500.0 + mapSize/2.0);
+	float tmin = IntersectBox(myRay,start,end);
+	vec3 newpos = vec3(-worldPos.x/4.0,worldPos.y,-worldPos.z/4.0) + eye * tmin - vec3(-mapSize/2.0,worldPos.y,-mapSize/2.0);
+	//newpos = normalize(newpos);
+	newpos.y *= 6.0;
+	newpos *= rotationMatrix();
+	reflColor = textureCube(skyCube, newpos).rgb;
+	//float disttt = distance(worldPos,cameraPos);
+	//tex = mix(tex,vec3(0.7,0.7,0.9),clamp(disttt/300.0*disttt/300.0*disttt/300.0,0.0,0.9));
+	//gl_FragColor = vec4(clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),1.0);
+	//return;
+	
+	reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(4.0, 1.0,waviness/10.0) * n.zx) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+	vec4 refTex = texture2D(reflectionMap, reflCoords);
+	reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);
+	
+#endif
+
+	// TODO: At very low angles the reflection stuff doesn't really work any more:
+	// IRL you would get a blur of the sky, but we don't have that precision (would require mad oversampling)
+	// So tend towards a predefined color (per-map) which looks like what the skybox would look like if you really blurred it.
+	// The TODO here would be to precompute a band (1x32?) that represents the average color around the map.
+	// TODO: another issue is that at high distances (half map) the texture blurs into flatness. Using better mipmaps won't really solve it
+	// So we'll need to stop showing reflections and default to sky color there too.
+	// Unless maybe waviness is so low that you would see like in a mirror anyways.
+	//float disttt = distance(worldPos,cameraPos);
+	//reflColor = mix(vec3(0.5,0.5,0.55), reflColor, clamp(1.0-disttt/600.0*disttt/600.0,0.0,1.0));//clamp(-0.05 + v.y*20.0,0.0,1.0));
 	
 	// Specular.
-	specular = pow(ndoth, mix(100.0,450.0, v.y*2.0))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
+	specular = pow(ndoth, mix(5.0,2000.0, clamp(v.y*v.y*2.0,0.0,1.0)))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
 
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
@@ -351,7 +337,7 @@ void main()
 	
 	// TODO: work the foam in somewhere else.
 	#if USE_FANCY_EFFECTS
-		gl_FragColor.rgb = get_fog(colour) * losMod + fancyeffects.a * losMod;
+	gl_FragColor.rgb = get_fog(colour) * losMod + fancyeffects.a * losMod;
 	#else
 		gl_FragColor.rgb = get_fog(colour) * losMod;
 	#endif
@@ -359,6 +345,6 @@ void main()
 	#if !USE_REFRACTION
 		gl_FragColor.a = clamp(depth*2.0,0.0,1.0) * alphaCoeff;
 	#else
-		gl_FragColor.a = clamp(depth*2.0,0.0,1.0);
+		gl_FragColor.a = clamp(depth*5.0 + n.x * 5.0,0.0,1.0);
 	#endif
 }

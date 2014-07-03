@@ -217,14 +217,19 @@ EnvironmentSidebar::EnvironmentSidebar(ScenarioEditor& scenarioEditor, wxWindow*
 	wxSizer* waterSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Water settings"));
 	scrollSizer->Add(waterSizer, wxSizerFlags().Expand());
 	waterSizer->Add(new wxButton(this, ID_RecomputeWaterData, _("Reset Water Data")), wxSizerFlags().Expand());
+	waterSizer->Add(m_WaterTypeList = new VariableListBox(scrolledWindow, _("Water Type"), g_EnvironmentSettings.watertype), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water height"), g_EnvironmentSettings.waterheight, 0.f, 1.2f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water waviness"), g_EnvironmentSettings.waterwaviness, 0.f, 10.f), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Water murkiness"), g_EnvironmentSettings.watermurkiness, 0.f, 1.f), wxSizerFlags().Expand());
+	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Wind angle"), g_EnvironmentSettings.windangle, -M_PIf, M_PIf), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Water colour"), g_EnvironmentSettings.watercolour), wxSizerFlags().Expand());
 	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Water tint"), g_EnvironmentSettings.watertint), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableColourBox(scrolledWindow, _("Reflection tint"), g_EnvironmentSettings.waterreflectiontint), wxSizerFlags().Expand());
-	waterSizer->Add(new VariableSliderBox(scrolledWindow, _("Reflection tint strength"), g_EnvironmentSettings.waterreflectiontintstrength, 0.f, 1.f), wxSizerFlags().Expand());
 
+	std::vector<std::wstring> list;
+	list.push_back(L"ocean"); list.push_back(L"lake"); list.push_back(L"clap");
+	m_WaterTypeList->SetChoices(list);
+
+	
 	wxSizer* sunSizer = new wxStaticBoxSizer(wxVERTICAL, scrolledWindow, _T("Sun / lighting settings"));
 	scrollSizer->Add(sunSizer, wxSizerFlags().Expand().Border(wxTOP, 8));
 

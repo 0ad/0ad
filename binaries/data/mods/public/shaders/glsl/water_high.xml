@@ -3,10 +3,8 @@
 
     <vertex file="glsl/water_high.vs">
         <stream name="pos"/>
-        <stream name="color"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-        <attrib name="a_encodedDepth" semantics="gl_Color"/>
-        <attrib name="a_waterInfo" semantics="gl_MultiTexCoord0"/>
+        <attrib name="a_waterInfo" semantics="CustomAttribute0"/>
     </vertex>
 
     <fragment file="glsl/water_high.fs"/>
