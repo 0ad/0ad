@@ -415,9 +415,7 @@ setSunRotation(randFloat(0, TWO_PI));
 setSunColour(0.746, 0.718, 0.539);	
 setWaterColour(0.292, 0.347, 0.691);		
 setWaterTint(0.550, 0.543, 0.437);				
-setWaterReflectionTint(0.562, 0.511, 0.425);	
 setWaterMurkiness(0.83);
-setWaterReflectionTintStrength(0.377);
 
 setFogColor(0.8, 0.76, 0.61);
 setFogThickness(0.2);

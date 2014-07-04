@@ -474,10 +474,8 @@ setSunElevation(PI/ 3);
 
 setWaterColour(0.524,0.734,0.839);
 setWaterTint(0.369,0.765,0.745);
-setWaterReflectionTint(1,1,1);
 setWaterWaviness(1.5);
 setWaterMurkiness(0.35);
-setWaterReflectionTintStrength(0.0);
 
 setFogFactor(0.4);
 setFogThickness(0.2);

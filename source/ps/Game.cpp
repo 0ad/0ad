@@ -167,8 +167,8 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 
 		m_World->RegisterInit(mapFile, settings, m_PlayerID);
 	}
-	
-	RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
+	if (m_GameView)
+		RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
 
 	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);

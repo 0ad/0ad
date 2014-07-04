@@ -95,9 +95,12 @@ public:
 
 	virtual void RecomputeWaterData()
 	{
-		g_Renderer.GetWaterManager()->RecomputeBlurredNormalMap();
-		g_Renderer.GetWaterManager()->RecomputeDistanceHeightmap();
-		g_Renderer.GetWaterManager()->RecomputeWindStrength();
+		if (CRenderer::IsInitialised())
+		{
+			g_Renderer.GetWaterManager()->RecomputeBlurredNormalMap();
+			g_Renderer.GetWaterManager()->RecomputeDistanceHeightmap();
+			g_Renderer.GetWaterManager()->RecomputeWindStrength();
+		}
 		
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
@@ -110,7 +113,8 @@ public:
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 
-		g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
 		
 		CMessageWaterChanged msg;
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);

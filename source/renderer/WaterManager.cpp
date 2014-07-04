@@ -190,13 +190,17 @@ int WaterManager::LoadWaterTextures()
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture, 0);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FboDepthTexture, 0);
+	if (glGetError() != 0)
+		debug_warn(L"WaterManager.cpp::Refraction FBO failed to create");
 
 	m_RefractionFbo = 0;
 	pglGenFramebuffersEXT(1, &m_RefractionFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture, 0);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FboDepthTexture, 0);
-
+	if (glGetError() != 0)
+		debug_warn(L"WaterManager.cpp::Refraction FBO failed to create");
+		
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 
 	// Enable rendering, now that we've succeeded this far
@@ -400,12 +404,12 @@ void WaterManager::RecomputeWindStrength()
 			
 			// Draw on map. This is pretty slow.
 			//float width = 3.0f;
-			float length = 21.0f * (1.0f-baseLevel);
+			float length = 1.2f;//21.0f * (1.0f-baseLevel);
 			
 			for (float y = 0; y < length; y += 0.6f)
 				//for (float x = -width*(y+1)/(length+1); x < width*(y+1)/(length+1); x += 0.5f)
 				{
-					int index = (j - y * windDir.Y)*m_MapSize + (i - y * windDir.X);
+					int index = clamp(j - y * windDir.Y,0.0f,(float)(m_MapSize-1))*m_MapSize + clamp(i - y * windDir.X,0.0f,(float)(m_MapSize-1));
 					m_WindStrength[index] = (0.5f+baseLevel*0.5f) * (1.0f-y/length) + y/length * 1.0f;
 				}
 		}

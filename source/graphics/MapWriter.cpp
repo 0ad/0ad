@@ -249,7 +249,7 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Element("Water");
 				{
 					XML_Element("WaterBody");
-					CmpPtr<ICmpWaterManager> cmpWaterManager(*pSimulation2, SYSTEM_ENTITY);
+					CmpPtr<ICmpWaterManager> cmpWaterManager(sim, SYSTEM_ENTITY);
 					ENSURE(cmpWaterManager);
 					XML_Setting("Type", pWaterMan->m_WaterType);
 					{

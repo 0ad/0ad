@@ -455,7 +455,6 @@ setWaterColour(0, 0.501961, 1);
 setWaterTint(0.501961, 1, 1);
 setWaterWaviness(10);
 setWaterMurkiness(0.49);
-setWaterReflectionTintStrength(0.0);
 
 setFogFactor(0.3);
 setFogThickness(0.25);

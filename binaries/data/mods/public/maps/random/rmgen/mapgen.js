@@ -12,14 +12,13 @@ var g_Environment = {
 	UnitsAmbientColour: {r: 0.501961, g: 0.501961, b: 0.501961, a: 0},
 	Water: {
 		WaterBody: {
-			Type: "default",
+			Type: "ocean",
 			Colour: {r: 0.3, g: 0.35, b: 0.7, a: 0},
+			Tint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
 			Height: 5,
 			Waviness: 8,
 			Murkiness: 0.45,
-			Tint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
-			ReflectionTint: {r: 0.28, g: 0.3, b: 0.59, a: 0},
-			ReflectionTintStrength: 0.0
+			WindAngle: 0.0
 		}
 	},
 	Fog: {

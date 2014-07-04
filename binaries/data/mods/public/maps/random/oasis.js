@@ -436,10 +436,8 @@ setSunRotation(PI/3);
 setSunElevation(0.5);
 setWaterColour(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);
-setWaterReflectionTint(1, 1, 1);
 setWaterWaviness(1);
 setWaterMurkiness(0.5);
-setWaterReflectionTintStrength(0.0);
 setTerrainAmbientColour(0.45, 0.5, 0.6);
 setUnitsAmbientColour(0.501961, 0.501961, 0.501961);
 

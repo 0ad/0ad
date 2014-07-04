@@ -49,6 +49,12 @@ function setWaterColour(r, g, b)
 	g_Environment.Water.WaterBody.Colour = { "r" : r, "g" : g, "b" : b, "a" : 0};
 }
 
+// Set water tint RGB (0,1)
+function setWaterTint(r, g, b)
+{
+	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b, "a" : 0};
+}
+
 // Set water height
 function setWaterHeight(h)
 {
@@ -68,24 +74,17 @@ function setWaterMurkiness(m)
 	g_Environment.Water.WaterBody.Murkiness = m;
 }
 
-// Set water tint RGB (0,1)
-function setWaterTint(r, g, b)
+// Set water type
+function setWaterType(m)
 {
-	g_Environment.Water.WaterBody.Tint = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Water.WaterBody.Type = m;
 }
 
-// Set water reflection tint RGB (0,1)
-function setWaterReflectionTint(r, g, b)
+// Set wind angle for water (thus direction of waves)
+function setWindAngle(m)
 {
-	g_Environment.Water.WaterBody.WaterReflectionTint = { "r" : r, "g" : g, "b" : b, "a" : 0};
+	g_Environment.Water.WaterBody.WindAngle = m;
 }
-
-// Set water reflection tint strength (0,1)
-function setWaterReflectionTintStrength(s)
-{
-	g_Environment.Water.WaterBody.WaterReflectionTintStrength = s;
-}
-
 
 // Set fog factor (0,1)
 function setFogFactor(s)

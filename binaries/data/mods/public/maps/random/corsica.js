@@ -622,9 +622,7 @@ setTerrainAmbientColour(0.564706,0.543726,0.419608);
 setUnitsAmbientColour(0.53,0.55,0.45);
 setWaterColour(0.2,0.294,0.49);
 setWaterTint(0.208, 0.659, 0.925);
-setWaterReflectionTint(0.2, 0.6, 0.9);	
 setWaterMurkiness(0.72);
-setWaterReflectionTintStrength(0.1);
 setWaterWaviness(4.5);
 // Export map data
 ExportMap();

@@ -1505,15 +1505,6 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 				dirty.x2 = std::max(dirty.x2, refractionScissor.x2);
 				dirty.y2 = std::max(dirty.y2, refractionScissor.y2);
 			}
-
-			/*if (dirty.x1 < dirty.x2 && dirty.y1 < dirty.y2)
-			{
-				glEnable(GL_SCISSOR_TEST);
-				glScissor(dirty.x1, dirty.y1, dirty.x2 - dirty.x1, dirty.y2 - dirty.y1);
-				glClearColor(m_ClearColor[0], m_ClearColor[1], m_ClearColor[2], m_ClearColor[3]);
-				glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-				glDisable(GL_SCISSOR_TEST);
-			}*/
 		}
 	}
 
