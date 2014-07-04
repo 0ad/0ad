@@ -60,7 +60,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		return false;
 
 	// check if the entity is trying to build a new base near our buildings, and if yes, add this base in our target list
-	if (entity.unitAIState() == "INDIVIDUAL.REPAIR.REPAIRING")
+	if (entity.unitAIState() && entity.unitAIState() == "INDIVIDUAL.REPAIR.REPAIRING")
 	{
 		var targetId = entity.unitAIOrderData()[0]["target"];
 		if (this.targetList.indexOf(targetId) !== -1)
@@ -128,8 +128,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 {
-	var nbPlayers = gameState.sharedScript.playersData.length - 1;
-	var i = 1 + gameState.ai.playedTurn % nbPlayers;
+	var nbPlayers = gameState.sharedScript.playersData.length;
+	var i = gameState.ai.playedTurn % nbPlayers;
 	if (i === PlayerID || gameState.isPlayerAlly(i))
 		return;
 
@@ -141,6 +141,10 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 	enemyUnits.forEach( function (ent) {
 		// first check: is this unit already part of an army.
 		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
+			return;
+
+		// TODO do not bother with animals for the time being
+		if (ent.hasClass("Animal"))
 			return;
 
 		// TODO what to do for ships ?

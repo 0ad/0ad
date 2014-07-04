@@ -165,7 +165,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 	this.dropsites[dropsite.id()] = true;
 
 	var self = this;
-	for each (var type in dropsite.resourceDropsiteTypes())
+	for (var type of dropsite.resourceDropsiteTypes())
 	{
 		var resources = gameState.getResourceSupplies(type);
 		if (resources.length === 0)
