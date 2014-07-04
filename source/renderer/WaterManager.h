@@ -60,7 +60,8 @@ public:
 
 	GLuint m_depthTT;
 	GLuint m_FancyTexture;
-	GLuint m_FboDepthTexture;
+	GLuint m_ReflFboDepthTexture;
+	GLuint m_RefrFboDepthTexture;
 
 	// used to know what to update when updating parts of the terrain only.
 	u32 m_updatei0;

@@ -91,7 +91,8 @@ WaterManager::WaterManager()
 	
 	m_depthTT = 0;
 	m_FancyTexture = 0;
-	m_FboDepthTexture = 0;
+	m_ReflFboDepthTexture = 0;
+	m_RefrFboDepthTexture = 0;
 
 	m_MapSize = 0;
 	
@@ -112,7 +113,8 @@ WaterManager::~WaterManager()
 	
 	glDeleteTextures(1, &m_depthTT);
 	glDeleteTextures(1, &m_FancyTexture);
-	glDeleteTextures(1, &m_FboDepthTexture);
+	glDeleteTextures(1, &m_ReflFboDepthTexture);
+	glDeleteTextures(1, &m_RefrFboDepthTexture);
 }
 
 
@@ -175,33 +177,61 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
 
-	// Create depth texture
-	glGenTextures(1, &m_FboDepthTexture);
-	glBindTexture(GL_TEXTURE_2D, m_FboDepthTexture);
+	// Create depth textures
+	glGenTextures(1, &m_ReflFboDepthTexture);
+	glBindTexture(GL_TEXTURE_2D, m_ReflFboDepthTexture);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	
+	glGenTextures(1, &m_RefrFboDepthTexture);
+	glBindTexture(GL_TEXTURE_2D, m_RefrFboDepthTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
+	glBindTexture(GL_TEXTURE_2D, 0);
+	
 	// Create the water framebuffers
+	
+	GLint currentFbo;
+	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &currentFbo);
+
 	m_ReflectionFbo = 0;
 	pglGenFramebuffersEXT(1, &m_ReflectionFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_ReflectionFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ReflectionTexture, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FboDepthTexture, 0);
-	if (glGetError() != 0)
-		debug_warn(L"WaterManager.cpp::Refraction FBO failed to create");
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_ReflFboDepthTexture, 0);
+
+	ogl_WarnIfError();
+	
+	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		LOGWARNING(L"Reflection framebuffer object incomplete: 0x%04X", status);
+		g_Renderer.m_Options.m_WaterReflection = false;
+	}
 
 	m_RefractionFbo = 0;
 	pglGenFramebuffersEXT(1, &m_RefractionFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_RefractionFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_RefractionTexture, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_FboDepthTexture, 0);
-	if (glGetError() != 0)
-		debug_warn(L"WaterManager.cpp::Refraction FBO failed to create");
-		
-	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_ATTACHMENT_EXT, GL_TEXTURE_2D, m_RefrFboDepthTexture, 0);
+
+	ogl_WarnIfError();
+	
+	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
+	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
+	{
+		LOGWARNING(L"Refraction framebuffer object incomplete: 0x%04X", status);
+		g_Renderer.m_Options.m_WaterRefraction = false;
+	}
+	
+	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, currentFbo);
 
 	// Enable rendering, now that we've succeeded this far
 	m_RenderWater = true;
@@ -366,7 +396,7 @@ void WaterManager::RecomputeWindStrength()
 	
 	CVector2D windDir = CVector2D(cos(m_WindAngle),sin(m_WindAngle));
 	// Our kernel will sample 5 points going towards the wind (generally).
-	int kernel[5][2] = { {windDir.X*2,windDir.Y*2}, {windDir.X*5,windDir.Y*5}, {windDir.X*9,windDir.Y*9}, {windDir.X*16,windDir.Y*16}, {windDir.X*25,windDir.Y*25} };
+	int kernel[5][2] = { {(int)windDir.X*2,(int)windDir.Y*2}, {(int)windDir.X*5,(int)windDir.Y*5}, {(int)windDir.X*9,(int)windDir.Y*9}, {(int)windDir.X*16,(int)windDir.Y*16}, {(int)windDir.X*25,(int)windDir.Y*25} };
 	
 	//CVector2D perp = CVector2D(-windDir.Y, windDir.X);
 	for (size_t j = 0; j < m_MapSize; ++j)
