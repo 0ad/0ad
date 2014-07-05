@@ -69,8 +69,12 @@ Dictionary::translate_plural(const Entries& dict, const std::string& msgid, cons
   {
     unsigned int n = 0;
     n = plural_forms.get_plural(count);
-    assert(/*n >= 0 &&*/ n < msgstrs.size());
-
+   	if(n >= msgstrs.size())
+    {
+      log_error << "Plural translation not available (and not set to empty): '" << msgid << "'" << std::endl;
+      log_error << "Missing plural form: " << n << std::endl;
+      return msgid;
+   	}
     if (!msgstrs[n].empty())
       return msgstrs[n];
     else
