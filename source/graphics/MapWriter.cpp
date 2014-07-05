@@ -249,31 +249,25 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 				XML_Element("Water");
 				{
 					XML_Element("WaterBody");
-					XML_Setting("Type", "default");
+					CmpPtr<ICmpWaterManager> cmpWaterManager(sim, SYSTEM_ENTITY);
+					ENSURE(cmpWaterManager);
+					XML_Setting("Type", pWaterMan->m_WaterType);
 					{
 						XML_Element("Colour");
 						XML_Attribute("r", pWaterMan->m_WaterColor.r);
 						XML_Attribute("g", pWaterMan->m_WaterColor.g);
 						XML_Attribute("b", pWaterMan->m_WaterColor.b);
 					}
-					CmpPtr<ICmpWaterManager> cmpWaterManager(sim, SYSTEM_ENTITY);
-					ENSURE(cmpWaterManager);
-					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
-					XML_Setting("Waviness", pWaterMan->m_Waviness);
-					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
 					{
 						XML_Element("Tint");
 						XML_Attribute("r", pWaterMan->m_WaterTint.r);
 						XML_Attribute("g", pWaterMan->m_WaterTint.g);
 						XML_Attribute("b", pWaterMan->m_WaterTint.b);
 					}
-					{
-						XML_Element("ReflectionTint");
-						XML_Attribute("r", pWaterMan->m_ReflectionTint.r);
-						XML_Attribute("g", pWaterMan->m_ReflectionTint.g);
-						XML_Attribute("b", pWaterMan->m_ReflectionTint.b);
-					}
-					XML_Setting("ReflectionTintStrength", pWaterMan->m_ReflectionTintStrength);
+					XML_Setting("Height", cmpWaterManager->GetExactWaterLevel(0, 0));
+					XML_Setting("Waviness", pWaterMan->m_Waviness);
+					XML_Setting("Murkiness", pWaterMan->m_Murkiness);
+					XML_Setting("WindAngle", pWaterMan->m_WindAngle);
 				}
 			}
 			

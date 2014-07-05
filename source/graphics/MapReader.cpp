@@ -599,13 +599,14 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 	EL(waterbody);
 	EL(type);
 	EL(colour);
+	EL(tint);
 	EL(height);
 	EL(shininess);	// for compatibility
 	EL(waviness);
 	EL(murkiness);
-	EL(tint);
-	EL(reflectiontint);
-	EL(reflectiontintstrength);
+	EL(windangle);
+	EL(reflectiontint);	// for compatibility
+	EL(reflectiontintstrength);	// for compatibility
 	EL(fog);
 	EL(fogcolour);
 	EL(fogfactor);
@@ -737,9 +738,12 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					
 					if (element_name == el_type)
 					{
-						// TODO: implement this, when WaterManager supports it
+						if (waterelement.GetText() == "default")
+							m_MapReader.pWaterMan->m_WaterType = L"ocean";
+						else
+							m_MapReader.pWaterMan->m_WaterType =  waterelement.GetText().FromUTF8();
 					}
-					else if (element_name == el_shininess)
+					else if (element_name == el_shininess || element_name == el_reflectiontint || element_name == el_reflectiontintstrength)
 					{
 						// deprecated.
 					}
@@ -761,11 +765,10 @@ void CXMLReader::ReadEnvironment(XMBElement parent)
 					} \
 
 					READ_COLOUR(el_colour, m_MapReader.pWaterMan->m_WaterColor)
+					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
 					READ_FLOAT(el_waviness, m_MapReader.pWaterMan->m_Waviness)
 					READ_FLOAT(el_murkiness, m_MapReader.pWaterMan->m_Murkiness)
-					READ_COLOUR(el_tint, m_MapReader.pWaterMan->m_WaterTint)
-					READ_COLOUR(el_reflectiontint, m_MapReader.pWaterMan->m_ReflectionTint)
-					READ_FLOAT(el_reflectiontintstrength, m_MapReader.pWaterMan->m_ReflectionTintStrength)
+					READ_FLOAT(el_windangle, m_MapReader.pWaterMan->m_WindAngle)
 
 #undef READ_FLOAT
 #undef READ_COLOUR
@@ -1501,14 +1504,14 @@ int CMapReader::ParseEnvironment()
 	// If we have graphics, get rest of settings
 	if (pWaterMan)
 	{
-		// TODO: Water type not implemented
-
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Type, pWaterMan->m_WaterType)
+		if (pWaterMan->m_WaterType == L"default")
+			pWaterMan->m_WaterType = L"ocean";
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Colour, pWaterMan->m_WaterColor)
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Tint, pWaterMan->m_WaterTint)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Waviness, pWaterMan->m_Waviness)
 		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Murkiness, pWaterMan->m_Murkiness)
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), Tint, pWaterMan->m_WaterTint)
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTint, pWaterMan->m_ReflectionTint)
-		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), ReflectionTintStrength, pWaterMan->m_ReflectionTintStrength)
+		GET_ENVIRONMENT_PROPERTY(waterBodyObj.get(), WindAngle, pWaterMan->m_WindAngle)
 	}
 
 	CScriptValRooted fogObject;

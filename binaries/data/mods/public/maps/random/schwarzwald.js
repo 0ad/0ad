@@ -26,8 +26,6 @@ setFogThickness(0.19);
 // water
 setWaterColour(0.501961, 0.501961, 0.501961);
 setWaterTint(0.25098, 0.501961, 0.501961);
-setWaterReflectionTint(0.501961, 0.501961, 0.25098);
-setWaterReflectionTintStrength(0.4);
 setWaterWaviness(0.3);
 setWaterMurkiness(0.75);
 

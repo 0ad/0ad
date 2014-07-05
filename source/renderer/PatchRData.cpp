@@ -1420,22 +1420,10 @@ void CPatchRData::BuildWater()
 				
 				m_WaterBounds += vertex.m_Position;
 				
-				// faking fresnel for simplest water.
-				float alpha = clamp(depth / WaterMgr->m_WaterFullDepth + WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterAlphaOffset, WaterMgr->m_WaterMaxAlpha);
-				
-				// Split the depth data across 24 bits, so the fancy-water shader can reconstruct
-				// the depth value while the simple-water can just use the precomputed alpha
-				float depthInt = floor(depth);
-				float depthFrac = depth - depthInt;
-				vertex.m_DepthData = SColor4ub(u8(clamp(depthInt, 0.0f, 255.0f)),
-											   u8(clamp(-depthInt, 0.0f, 255.0f)),
-											   u8(clamp(depthFrac*255.0f, 0.0f, 255.0f)),
-											   u8(clamp(alpha*255.0f, 0.0f, 255.0f)));
-
-				vertex.m_WaterData = CVector4D(WaterMgr->m_BlurredNormalMap[xx + zz*mapSize].X,
-											   WaterMgr->m_BlurredNormalMap[xx + zz*mapSize].Z,
+				vertex.m_WaterData = CVector4D(WaterMgr->m_WindStrength[xx + zz*mapSize],
+											   0.0f,
 											   WaterMgr->m_DistanceHeightmap[xx + zz*mapSize],
-											   0.0f);
+											   depth);
 				
 				water_index_map[z+moves[points[i]][1]][x+moves[points[i]][0]] = water_vertex_data.size();
 				water_vertex_data.push_back(vertex);
@@ -1481,7 +1469,7 @@ void CPatchRData::BuildWater()
 	m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
 }
 
-void CPatchRData::RenderWater(CShaderProgramPtr& shader)
+void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool fixedPipeline)
 {
 	ASSERT(m_UpdateFlags==0);
 
@@ -1490,13 +1478,14 @@ void CPatchRData::RenderWater(CShaderProgramPtr& shader)
 
 	SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
 
+	// This is debug code. If it ends up in SVN, remove it.
 	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 	// setup data pointers
 	GLsizei stride = sizeof(SWaterVertex);
-	shader->ColorPointer(4, GL_UNSIGNED_BYTE, stride, &base[m_VBWater->m_Index].m_DepthData);
 	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
-	shader->TexCoordPointer(GL_TEXTURE0, 4, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_WaterData);
+	if (!fixedPipeline)
+		shader->VertexAttribPointer(str_a_waterInfo, 4, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
 
 	shader->AssertPointersBound();
 

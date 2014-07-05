@@ -3,9 +3,9 @@
 
     <vertex file="glsl/water_effects.vs">
         <stream name="pos"/>
-        <stream name="color"/>
         <attrib name="a_vertex" semantics="gl_Vertex"/>
-    </vertex>
+		<attrib name="a_waterInfo" semantics="CustomAttribute0"/>
+   </vertex>
 
     <fragment file="glsl/water_effects.fs"/>
 

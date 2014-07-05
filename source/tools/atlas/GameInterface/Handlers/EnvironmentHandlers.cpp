@@ -44,15 +44,15 @@ sEnvironmentSettings GetSettings()
 	s.waterheight = cmpWaterManager->GetExactWaterLevel(0, 0) / (65536.f * HEIGHT_SCALE);
 
 	WaterManager* wm = g_Renderer.GetWaterManager();
+	s.watertype = wm->m_WaterType;
 	s.waterwaviness = wm->m_Waviness;
 	s.watermurkiness = wm->m_Murkiness;
-	s.waterreflectiontintstrength = wm->m_ReflectionTintStrength;
+	s.windangle = wm->m_WindAngle;
 
 	// CColor colours
 #define COLOUR(A, B) A = Colour((int)(B.r*255), (int)(B.g*255), (int)(B.b*255))
 	COLOUR(s.watercolour, wm->m_WaterColor);
 	COLOUR(s.watertint, wm->m_WaterTint);
-	COLOUR(s.waterreflectiontint, wm->m_ReflectionTint);
 #undef COLOUR
 
 	float sunrotation = g_LightEnv.GetRotation();
@@ -101,12 +101,12 @@ void SetSettings(const sEnvironmentSettings& s)
 	WaterManager* wm = g_Renderer.GetWaterManager();
 	wm->m_Waviness = s.waterwaviness;
 	wm->m_Murkiness = s.watermurkiness;
-	wm->m_ReflectionTintStrength = s.waterreflectiontintstrength;
-
+	wm->m_WindAngle = s.windangle;
+	wm->m_WaterType = s.watertype._Unwrap();
+	
 #define COLOUR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
 	COLOUR(s.watercolour, wm->m_WaterColor);
 	COLOUR(s.watertint, wm->m_WaterTint);
-	COLOUR(s.waterreflectiontint, wm->m_ReflectionTint);
 #undef COLOUR
 
 	g_LightEnv.SetRotation(s.sunrotation);

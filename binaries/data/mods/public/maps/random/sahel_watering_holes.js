@@ -558,10 +558,8 @@ setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 4));
 setWaterColour(0.478,0.42,0.384);				// greyish
 setWaterTint(0.58,0.22,0.067);				// reddish
-setWaterReflectionTint(0.502,0.286,0.267);	// reddish
 setWaterMurkiness(0.87);
 setWaterWaviness(0.5);
-setWaterReflectionTintStrength(0.35);
 
 // Export map data
 

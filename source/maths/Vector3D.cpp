@@ -45,25 +45,6 @@ int CVector3D::operator ! () const
 	return 1;
 }
 
-float CVector3D::Dot (const CVector3D &vector) const 
-{
-	return ( X * vector.X +
-			 Y * vector.Y +
-			 Z * vector.Z );
-}
-
-CVector3D CVector3D::Cross (const CVector3D &vector) const 
-{
-	CVector3D Temp;
-
-	Temp.X = (Y * vector.Z) - (Z * vector.Y);
-	Temp.Y = (Z * vector.X) - (X * vector.Z);
-	Temp.Z = (X * vector.Y) - (Y * vector.X);
-
-	return Temp;
-}
-
-
 float CVector3D::LengthSquared () const 
 {
 	return ( SQR(X) + SQR(Y) + SQR(Z) );

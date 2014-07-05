@@ -797,10 +797,8 @@ setSunRotation(randFloat(0, TWO_PI));
 	setUnitsAmbientColour(0.4,0.4,0.4);
 	setWaterColour(0.114, 0.192, 0.463);
 	setWaterTint(0.255, 0.361, 0.651);
-	setWaterReflectionTint(0.255, 0.361, 0.651);
 	setWaterWaviness(5.5);
 	setWaterMurkiness(0.83);
-	setWaterReflectionTintStrength(0.05);
 //}
 
 // Export map data

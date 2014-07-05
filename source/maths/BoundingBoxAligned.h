@@ -24,7 +24,7 @@
 
 // necessary includes
 #include "Vector3D.h"
-#include "graphics/ShaderProgram.h"
+#include "graphics/ShaderProgramPtr.h"
 
 class CFrustum;
 class CMatrix3D;

@@ -26,7 +26,7 @@ function getInitColorFadeRGB()
  * fun_smoothRestart [optional]: a function, which returns a smooth tick counter, if the fade should be started; 
  *								 arguments: [var data]; must return false, if smooth restart was not possible and true, if it was ok
  */
-function startColorFade(name, tickInterval, duration, fun_colorTransform, restartAble, fun_smoothRestart)
+function startColorFade(name, tickInterval, duration, fun_colorTransform, restartAble = true, fun_smoothRestart = false)
 {
 	// get the overlay
 	var overlay = Engine.GetGUIObjectByName(name);
@@ -42,7 +42,7 @@ function startColorFade(name, tickInterval, duration, fun_colorTransform, restar
 						"tickInterval": tickInterval,
 						"duration": duration,
 						"fun_colorTransform": fun_colorTransform,
-						"restartAble": restartAble || restartAble === undefined, //TODO: add default parameter when it is supported (spiderMonkey upgrade #1886)
+						"restartAble": restartAble,
 						"fun_smoothRestart": fun_smoothRestart,
 						"tickCounter": 0,
 						"justStopAtExternCall": duration == 0,
@@ -114,7 +114,7 @@ function isColorFadeRunning(name)
  * hideOverlay [optional]: hides the overlay, if true [default: true]
  * return: true a running fade was stopped
  */
-function stopColorFade(name, hideOverlay)
+function stopColorFade(name, hideOverlay = true)
 {
 	// check, if a color fade is running
 	if (!isColorFadeRunning(name))
@@ -125,7 +125,7 @@ function stopColorFade(name, hideOverlay)
 	delete g_colorFade[name];
 
 	// get the overlay and hide it
-	if (hideOverlay || hideOverlay === undefined)  //TODO: add default parameter when it is supported (spiderMonkey upgrade #1886)
+	if (hideOverlay)
 	{
 		var overlay = Engine.GetGUIObjectByName(name);
 		if (overlay)

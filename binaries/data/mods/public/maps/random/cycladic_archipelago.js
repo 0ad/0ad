@@ -578,9 +578,7 @@ createObjectGroups(group, 0,
 setSkySet("sunny");
 setWaterColour(0.2,0.294,0.49);
 setWaterTint(0.208, 0.659, 0.925);
-setWaterReflectionTint(0.2, 0.6, 0.9);
 setWaterMurkiness(0.72);
-setWaterReflectionTintStrength(0.1);
 setWaterWaviness(3.5);
 
 // Export map data

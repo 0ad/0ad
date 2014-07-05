@@ -25,6 +25,7 @@
 #include "graphics/Texture.h"
 #include "lib/ogl.h"
 #include "maths/Matrix3D.h"
+#include "maths/Vector2D.h"
 #include "ps/Overlay.h"
 #include "renderer/VertexBufferManager.h"
 
@@ -40,10 +41,8 @@ cassert(sizeof(SWavesVertex) == 16);
 
 
 /**
- * Class WaterManager: Maintain water settings and textures.
- *
- * This could be extended to provide more advanced water rendering effects
- * (refractive/reflective water) in the future.
+ * Class WaterManager: Maintain rendering-related water settings and textures
+ * Anything that affects gameplay should go in CcmpWaterManager.cpp and passed to this (possibly as copy).
  */
 
 class WaterManager
@@ -51,21 +50,18 @@ class WaterManager
 public:
 	CTexturePtr m_WaterTexture[60];
 	CTexturePtr m_NormalMap[60];
-	CTexturePtr m_Foam;
-	CTexturePtr m_Wave;
-	float* m_WaveX;
-	float* m_WaveZ;
-	float* m_DistanceToShore;
-	float* m_FoamFactor;
-	
+
+	float* m_WindStrength;	// How strong the waves are at point X. % of waviness.
 	u8* m_DistanceHeightmap;	// Returns how far from the shore a point is. 3-2-1-0 where 3 is "on land"
-	CVector3D* m_BlurredNormalMap;	// Returns how far from the shore a point is. 3-2-1-0 where 3 is "on land"
+	CVector3D* m_BlurredNormalMap;	// Cache a slightly blurred map of the normals of the terrain.
 
 	size_t m_MapSize;
 	ssize_t m_TexSize;
 
 	GLuint m_depthTT;
 	GLuint m_FancyTexture;
+	GLuint m_ReflFboDepthTexture;
+	GLuint m_RefrFboDepthTexture;
 
 	// used to know what to update when updating parts of the terrain only.
 	u32 m_updatei0;
@@ -74,7 +70,6 @@ public:
 	u32 m_updatej1;
 	
 	int m_WaterCurrentTex;
-	CColor m_WaterColor;
 	bool m_RenderWater;
 
 	// Force the use of the fixed function for rendering.
@@ -95,19 +90,10 @@ public:
 	// requires also recreating the super fancy information.
 	bool m_NeedInfoUpdate;
 
-	bool m_WaterScroll;
 	float m_WaterHeight;
-	float m_WaterMaxAlpha;
-	float m_WaterFullDepth;
-	float m_WaterAlphaOffset;
 
-	float m_SWaterSpeed;
-	float m_TWaterSpeed;
-	float m_SWaterTrans;
-	float m_TWaterTrans;
-	float m_SWaterScrollCounter;
-	float m_TWaterScrollCounter;
 	double m_WaterTexTimer;
+	float m_RepeatPeriod;
 
 	// Reflection and refraction textures for fancy water
 	GLuint m_ReflectionTexture;
@@ -115,25 +101,23 @@ public:
 	size_t m_ReflectionTextureSize;
 	size_t m_RefractionTextureSize;
 
+	// framebuffer objects
+	GLuint m_RefractionFbo;
+	GLuint m_ReflectionFbo;
+
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)
 	CMatrix3D m_ReflectionMatrix;
 	CMatrix3D m_RefractionMatrix;
 
-	// Shader parameters for fancy water
-	CColor m_WaterTint;
-	float m_RepeatPeriod;
-	float m_SpecularStrength;
-	float m_Waviness;
-	float m_Murkiness;
-	CColor m_ReflectionTint;
-	float m_ReflectionTintStrength;
+	// Water parameters
+	std::wstring m_WaterType;		// Which texture to use.
+	CColor m_WaterColor;	// Color of the water without refractions. This is what you're seeing when the water's deep or murkiness high.
+	CColor m_WaterTint;		// Tint of refraction in the water.
+	float m_Waviness;		// How big the waves are.
+	float m_Murkiness;		// How murky the water is.
+	float m_WindAngle;	// In which direction the water waves go.
 	
-	// Waves
-	// see the struct above.
-	CVertexBuffer::VBChunk* m_VBWaves;
-	CVertexBuffer::VBChunk* m_VBWavesIndices;
-
 public:
 	WaterManager();
 	~WaterManager();
@@ -153,7 +137,11 @@ public:
 	 */
 	void UnloadWaterTextures();
 
-	
+	/**
+	 * RecomputeWindStrength: calculates the intensity of waves
+	 */
+	void RecomputeWindStrength();
+
 	/**
 	 * RecomputeDistanceHeightmap: recalculates (or calculates) the distance heightmap.
 	 */

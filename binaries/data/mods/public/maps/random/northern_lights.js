@@ -411,10 +411,8 @@ setSunElevation(PI/ 6);
 
 setWaterColour(0.3, 0.347, 0.386);				// dark majestic blue
 setWaterTint(0.171, 0.236, 0.263);				// light blue
-setWaterReflectionTint(0.0, 0.047, 0.086);
 setWaterMurkiness(0.82);
 setWaterWaviness(3);
-setWaterReflectionTintStrength(0.15);
 
 setFogFactor(0.95);
 setFogThickness(0.09);

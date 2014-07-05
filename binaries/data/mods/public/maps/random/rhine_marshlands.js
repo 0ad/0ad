@@ -471,10 +471,8 @@ createObjectGroups(group, 0,
 setSkySet("cirrus");
 setWaterColour(0.753,0.635,0.345);				// muddy brown
 setWaterTint(0.161,0.514,0.635);				// clear blue for blueness
-setWaterReflectionTint(0.561,0.435,0.196);		// muddy brown
 setWaterMurkiness(0.8);
 setWaterWaviness(0.8);
-setWaterReflectionTintStrength(0.4);
 
 setFogThickness(0.25);
 setFogFactor(0.6);

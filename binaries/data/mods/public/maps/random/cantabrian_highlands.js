@@ -394,10 +394,8 @@ createStragglerTrees(types, avoidClasses(clWater, 1, clForest, 1, clHill, 1, clP
 setSkySet("cirrus");
 setWaterColour(0.447, 0.412, 0.322);			// muddy brown
 setWaterTint(0.447, 0.412, 0.322);				// muddy brown
-setWaterReflectionTint(0.447, 0.412, 0.322);	// muddy brown
 setWaterMurkiness(1.0);
 setWaterWaviness(2.0);
-setWaterReflectionTintStrength(0.677);
 
 setFogThickness(0.25);
 setFogFactor(0.4);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #ifndef INCLUDED_HFTRACER
 #define INCLUDED_HFTRACER
 
+class CPatch;
 class CVector3D;
 class CTerrain;
 
@@ -37,13 +38,24 @@ public:
 	// occurs (and fill in grid coordinates and point of intersection), or false otherwise
 	bool RayIntersect(const CVector3D& origin, const CVector3D& dir, int& x, int& z, CVector3D& ipt) const;
 
-private:
-	// intersect a ray with triangle defined by vertices 
-	// v0,v1,v2; return true if ray hits triangle at distance less than dist,
-	// or false otherwise
-	bool RayTriIntersect(const CVector3D& v0, const CVector3D& v1, const CVector3D& v2,
-			const CVector3D& origin, const CVector3D& dir, float& dist) const;
+	/**
+	 * Intersects ray with a single patch.
+	 * The ray is a half-infinite line starting at @p origin with direction @p dir
+	 * (not required to be a unit vector).. The patch is treated as a collection
+	 * of two-sided triangles, corresponding to the terrain tiles.
+	 *
+	 * If there is an intersection, returns true; and if @p out is not NULL, it
+	 * is set to the intersection point. This is guaranteed to be the earliest
+	 * tile intersected (starting at @p origin), but not necessarily the earlier
+	 * triangle inside that tile.
+	 *
+	 * This partly duplicates RayIntersect, but it only operates on a single
+	 * patch, and it's more precise (it uses the same tile triangulation as the
+	 * renderer), and tries to be more numerically robust.
+	 */
+	static bool PatchRayIntersect(CPatch* patch, const CVector3D& origin, const CVector3D& dir, CVector3D* out);
 
+private:
 	// test if ray intersects either of the triangles in the given 
 	bool CellIntersect(int cx, int cz, const CVector3D& origin, const CVector3D& dir, float& dist) const;
 	

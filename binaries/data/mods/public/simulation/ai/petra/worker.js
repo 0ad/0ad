@@ -695,37 +695,6 @@ m.Worker.prototype.startFishing = function(gameState)
 	}
 };
 
-m.Worker.prototype.getResourceType = function(type){
-	if (!type || !type.generic)
-		return undefined;
-	
-	if (type.generic === "treasure")
-		return type.specific;
-	else
-		return type.generic;
-};
-
-m.Worker.prototype.getGatherRate = function(gameState) {
-	if (this.ent.getMetadata(PlayerID,"subrole") !== "gatherer")
-		return 0;
-	var rates = this.ent.resourceGatherRates();
-	
-	if (this.ent.unitAIOrderData().length && this.ent.unitAIState().split(".")[1] === "GATHER" && this.ent.unitAIOrderData()[0]["target"])
-	{
-		var ress = gameState.getEntityById(this.ent.unitAIOrderData()[0]["target"]);
-		if (!ress)
-			return 0;
-		var type = ress.resourceSupplyType();
-		if (type.generic == "treasure")
-			return 1000;
-		var tstring = type.generic + "." + type.specific;
-		if (rates[tstring])
-			return rates[tstring];
-		return 0;
-	}
-	return 0;
-};
-
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 {
 	var self = this;

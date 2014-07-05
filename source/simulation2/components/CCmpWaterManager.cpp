@@ -86,12 +86,6 @@ public:
 				if (CRenderer::IsInitialised())
 				{
 					const CMessageTerrainChanged& msgData = static_cast<const CMessageTerrainChanged&> (msg);
-					g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;
-					g_Renderer.GetWaterManager()->m_updatei0 = msgData.i0;
-					g_Renderer.GetWaterManager()->m_updatej0 = msgData.j0;
-					g_Renderer.GetWaterManager()->m_updatei1 = msgData.i1;
-					g_Renderer.GetWaterManager()->m_updatej1 = msgData.j1;
-					
 					GetSimContext().GetTerrain().MakeDirty(msgData.i0,msgData.j0,msgData.i1,msgData.j1,RENDERDATA_UPDATE_VERTICES);
 				}
 				break;
@@ -101,13 +95,13 @@ public:
 
 	virtual void RecomputeWaterData()
 	{
-		ssize_t mapSize = GetSimContext().GetTerrain().GetVerticesPerSide();
-		g_Renderer.GetWaterManager()->m_NeedInfoUpdate = true;
-		g_Renderer.GetWaterManager()->m_updatei0 = 0;
-		g_Renderer.GetWaterManager()->m_updatej0 = 0;
-		g_Renderer.GetWaterManager()->m_updatei1 = mapSize-1;
-		g_Renderer.GetWaterManager()->m_updatej1 = mapSize-1;
-
+		if (CRenderer::IsInitialised())
+		{
+			g_Renderer.GetWaterManager()->RecomputeBlurredNormalMap();
+			g_Renderer.GetWaterManager()->RecomputeDistanceHeightmap();
+			g_Renderer.GetWaterManager()->RecomputeWindStrength();
+		}
+		
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 	}
@@ -119,7 +113,8 @@ public:
 		// Tell the terrain it'll need to recompute its cached render data
 		GetSimContext().GetTerrain().MakeDirty(RENDERDATA_UPDATE_VERTICES);
 
-		g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
+		if (CRenderer::IsInitialised())
+			g_Renderer.GetWaterManager()->m_WaterHeight = h.ToFloat();
 		
 		CMessageWaterChanged msg;
 		GetSimContext().GetComponentManager().BroadcastMessage(msg);

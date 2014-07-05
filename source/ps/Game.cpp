@@ -42,6 +42,7 @@
 #include "ps/GameSetup/GameSetup.h"
 #include "renderer/Renderer.h"
 #include "renderer/TimeManager.h"
+#include "renderer/WaterManager.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -166,6 +167,8 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 
 		m_World->RegisterInit(mapFile, settings, m_PlayerID);
 	}
+	if (m_GameView)
+		RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
 
 	if (m_IsSavedGame)
 		RegMemFun(this, &CGame::LoadInitialState, L"Loading game", 1000);

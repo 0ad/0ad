@@ -18,7 +18,6 @@
 #ifndef INCLUDED_GRAPHICS_OVERLAY
 #define INCLUDED_GRAPHICS_OVERLAY
 
-#include "graphics/RenderableObject.h"
 #include "graphics/Texture.h"
 #include "maths/Vector2D.h"
 #include "maths/Vector3D.h"
