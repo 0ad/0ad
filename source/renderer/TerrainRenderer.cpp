@@ -703,13 +703,8 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	double period = 8;
 	int curTex = (int)(time*60/period) % 60;
 	int nexTex = (curTex + 1) % 60;
-
-	// Shift the texture coordinates by these amounts to make the water "flow"
-	float tx = time*cos(WaterMgr->m_WindAngle);
-	float ty = time*sin(WaterMgr->m_WindAngle);
 	
 	float repeatPeriod = WaterMgr->m_RepeatPeriod;
-
 	
 	GLuint FramebufferName = 0;
 
@@ -746,9 +741,9 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		m->fancyEffectsShader->BindTexture(str_normalMap, WaterMgr->m_NormalMap[curTex]);
 		m->fancyEffectsShader->BindTexture(str_normalMap2, WaterMgr->m_NormalMap[nexTex]);
 		m->fancyEffectsShader->Uniform(str_waviness, WaterMgr->m_Waviness);
-		m->fancyEffectsShader->Uniform(str_translation, tx, ty);
 		m->fancyEffectsShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
 		m->fancyEffectsShader->Uniform(str_time, (float)time);
+		m->fancyEffectsShader->Uniform(str_windAngle, (float)WaterMgr->m_WindAngle);
 		m->fancyEffectsShader->Uniform(str_screenSize, (float)g_Renderer.GetWidth(), (float)g_Renderer.GetHeight(), 0.0f, 0.0f);
 		m->fancyEffectsShader->Uniform(str_mapSize, (float)(WaterMgr->m_MapSize));
 
@@ -765,7 +760,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		else
 		{
 			m->fancyEffectsShader->Uniform(str_waveParams1, 15.0f,0.8f,10.0f,0.1f);
-			m->fancyEffectsShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.35f);
+			m->fancyEffectsShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
 		}
 		
 		std::vector<CPatchRData*>& visiblePatches = m->visiblePatches[cullGroup];
@@ -818,7 +813,6 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 	m->fancyWaterShader->Uniform(str_waviness, WaterMgr->m_Waviness);
 	m->fancyWaterShader->Uniform(str_murkiness, WaterMgr->m_Murkiness);
 	m->fancyWaterShader->Uniform(str_windAngle, WaterMgr->m_WindAngle);
-	m->fancyWaterShader->Uniform(str_translation, tx, ty);
 	m->fancyWaterShader->Uniform(str_repeatScale, 1.0f / repeatPeriod);
 	m->fancyWaterShader->Uniform(str_reflectionMatrix, WaterMgr->m_ReflectionMatrix);
 	m->fancyWaterShader->Uniform(str_refractionMatrix, WaterMgr->m_RefractionMatrix);
@@ -844,7 +838,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		else
 		{
 			m->fancyWaterShader->Uniform(str_waveParams1, 15.0f,0.8f,10.0f,0.1f);
-			m->fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.35f);
+			m->fancyWaterShader->Uniform(str_waveParams2, 0.3f,0.0f,0.1f,0.3f);
 		}
 	}
 	

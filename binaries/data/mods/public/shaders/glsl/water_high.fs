@@ -33,10 +33,10 @@ uniform sampler2D normalMap2;
 
 #if USE_FANCY_EFFECTS
 	uniform sampler2D waterEffectsTex;
-#else
-	uniform vec4 waveParams1; // wavyEffect, BaseScale, Flattenism, Basebump
-	uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmovement
 #endif
+
+uniform vec4 waveParams1; // wavyEffect, BaseScale, Flattenism, Basebump
+uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmovement
 
 #if USE_REFLECTION
 	uniform sampler2D reflectionMap;
@@ -128,6 +128,9 @@ vec3 get_fog(vec3 color)
 
 void main()
 {
+	//gl_FragColor = vec4(waterInfo.rrr,1.0);
+	//return;
+	
 	float fresnel;
 	float t;				// Temporary variable
 	vec2 reflCoords, refrCoords;
@@ -139,7 +142,7 @@ void main()
 	vec3 h = normalize(l + v);
 	
 	// Fix the waviness for local wind strength
-	float fwaviness = 6.0;waviness;// * ((0.15+waterInfo.r/1.15));
+	float fwaviness = waviness * ((0.15+waterInfo.r/1.15));
 
 	// Calculate water normals.
 #if USE_FANCY_EFFECTS
@@ -155,7 +158,7 @@ void main()
 	float smallBase = waveParams2.g;
 	float BigMovement = waveParams2.b;
 	float SmallMovement = waveParams2.a;
-
+	
 	// This method uses 60 animated water frames. We're blending between each two frames
 	// TODO: could probably have fewer frames thanks to this blending.
 	// Scale the normal textures by waviness so that big waviness means bigger waves.
@@ -167,17 +170,22 @@ void main()
 
 	ww1 = mix(ww1, ww2, mod(time * 60.0, 8.0) / 8.0);
 	smallWW = mix(smallWW, smallWW2, mod(time * 60.0, 8.0) / 8.0) - vec3(0.5);
-	ww1 += vec3(smallWW.x,0.0,smallWW.z)*(waviness/10.0*smallIntensity + smallBase);
+	ww1 += vec3(smallWW.x,0.0,smallWW.z)*(fwaviness/10.0*smallIntensity + smallBase);
 
+	ww1 = mix(smallWW + vec3(0.5,0.0,0.5), ww1, waterInfo.r);
+	
 	// Flatten them based on waviness.
-	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1 - vec3(0.5,0.0,0.5), clamp(baseBump + waviness/flattenism,0.0,1.0)));
+	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1 - vec3(0.5,0.0,0.5), clamp(baseBump + fwaviness/flattenism,0.0,1.0)));
 
 	// Fix our normals.
 	//n = normalize(n - vec3(0.5, 0.5, 0.5));
 #endif
-
+	
+	n = mix(vec3(0.0,1.0,0.0), n,0.5 + waterInfo.r/2.0);
+	
 	// simulates how parallel the "point->sun", "view->point" vectors are.
 	float ndoth = dot(n , h);
+	
 	// how perpendicular to the normal our view is. Used for fresnel.
 	float ndotv = clamp(dot(n, v),0.0,1.0);
 	
@@ -311,7 +319,8 @@ void main()
 	
 	// Specular.
 	specular = pow(ndoth, mix(5.0,2000.0, clamp(v.y*v.y*2.0,0.0,1.0)))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
-
+	gl_FragColor = vec4(specular,1.0);
+	return;
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	

@@ -6,7 +6,6 @@ uniform mat4 losMatrix;
 uniform mat4 shadowTransform;
 uniform float repeatScale;
 uniform float windAngle;
-uniform vec2 translation;
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
 
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
@@ -31,7 +30,11 @@ void main()
 	waterInfo = a_waterInfo;
 	waterDepth = a_waterInfo.a;
 	
-	gl_TexCoord[0] = vec4(a_vertex.xz*repeatScale,translation);
+	float newX = a_vertex.x * cos(-windAngle) - a_vertex.z * sin(-windAngle);
+	float newY = a_vertex.x * sin(-windAngle) + a_vertex.z * cos(-windAngle);
+	
+	gl_TexCoord[0] = vec4(newX,newY,time,0.0);
+	gl_TexCoord[0].xy *= repeatScale;
 	gl_TexCoord[1] = reflectionMatrix * vec4(a_vertex, 1.0);		// projective texturing
 	gl_TexCoord[2] = refractionMatrix * vec4(a_vertex, 1.0);
 	gl_TexCoord[3] = losMatrix * vec4(a_vertex, 1.0);

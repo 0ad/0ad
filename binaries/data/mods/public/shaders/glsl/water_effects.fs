@@ -6,7 +6,9 @@
 uniform float waviness;
 uniform vec2 screenSize;
 uniform float time;
+
 varying vec3 worldPos;
+varying vec4 waterInfo;
 
 uniform float mapSize;
 
@@ -23,7 +25,8 @@ uniform vec4 waveParams2; // Smallintensity, Smallbase, Bigmovement, Smallmoveme
 
 void main()
 {
-	float wavyFactor = waviness * 0.125;
+	// Fix the waviness for local wind strength
+	float fwaviness = waviness * ((0.15+waterInfo.r/1.15));
 
 	float wavyEffect = waveParams1.r;
 	float baseScale = waveParams1.g;
@@ -46,9 +49,12 @@ void main()
 	
 	ww1 = mix(ww1, ww2, mod(time * 60.0, 8.0) / 8.0);
 	smallWW = mix(smallWW, smallWW2, mod(time * 60.0, 8.0) / 8.0) - vec3(0.5);
-	ww1 += vec3(smallWW.x,0.0,smallWW.z)*(waviness/10.0*smallIntensity + smallBase);
+	ww1 += vec3(smallWW.x,0.0,smallWW.z)*(fwaviness/10.0*smallIntensity + smallBase);
 	
-	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1 - vec3(0.5,0.0,0.5), clamp(baseBump + waviness/flattenism,0.0,1.0)));
+	ww1 = mix(smallWW + vec3(0.5,0.0,0.5), ww1, waterInfo.r);
+	
+	// Flatten them based on waviness.
+	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1 - vec3(0.5,0.0,0.5), clamp(baseBump + fwaviness/flattenism,0.0,1.0)));
 
 	float foamFact1 = texture2D(normalMap, (gl_TexCoord[0].st) * 0.3).a;
 	float foamFact2 = texture2D(normalMap2, (gl_TexCoord[0].st) * 0.3).a;

@@ -379,6 +379,8 @@ void WaterManager::RecomputeBlurredNormalMap()
 			m_BlurredNormalMap[j*m_MapSize + i] = blurValue * 0.2f;
 		}
 	}
+	
+	delete[] normals;
 }
 
 ///////////////////////////////////////////////////////////////////
@@ -388,24 +390,26 @@ void WaterManager::RecomputeWindStrength()
 {
 	if (m_WindStrength == NULL)
 		m_WindStrength = new float[m_MapSize*m_MapSize];
-	
-	std::fill(m_WindStrength, m_WindStrength + m_MapSize*m_MapSize, 1.0f);
-	
+		
 	CTerrain* terrain = g_Game->GetWorld()->GetTerrain();
 	float waterLevel = m_WaterHeight;
 	
 	CVector2D windDir = CVector2D(cos(m_WindAngle),sin(m_WindAngle));
+	CVector2D perp = CVector2D(-windDir.Y, windDir.X);
+
 	// Our kernel will sample 5 points going towards the wind (generally).
 	int kernel[5][2] = { {(int)windDir.X*2,(int)windDir.Y*2}, {(int)windDir.X*5,(int)windDir.Y*5}, {(int)windDir.X*9,(int)windDir.Y*9}, {(int)windDir.X*16,(int)windDir.Y*16}, {(int)windDir.X*25,(int)windDir.Y*25} };
 	
-	//CVector2D perp = CVector2D(-windDir.Y, windDir.X);
+	float* Temp = new float[m_MapSize*m_MapSize];
+	std::fill(Temp, Temp + m_MapSize*m_MapSize, 1.0f);
+
 	for (size_t j = 0; j < m_MapSize; ++j)
 		for (size_t i = 0; i < m_MapSize; ++i)
 		{
 			float curHeight = terrain->GetVertexGroundLevel(i,j);
 			if (curHeight >= waterLevel)
 			{
-				m_WindStrength[j*m_MapSize + i] = 0.0f;
+				Temp[j*m_MapSize + i] = 0.3f;	// blurs too strong otherwise
 				continue;
 			}
 			if (terrain->GetVertexGroundLevel(i + ceil(windDir.X),j + ceil(windDir.Y)) < waterLevel)
@@ -415,34 +419,50 @@ void WaterManager::RecomputeWindStrength()
 			float tendency = 0.0f;
 			float oldHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[4][0],j+kernel[4][1]));
 			float currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[3][0],j+kernel[3][1]));
+			float avgheight = oldHeight + currentHeight;
 			tendency = currentHeight - oldHeight;
 			oldHeight = currentHeight;
 			currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[2][0],j+kernel[2][1]));
+			avgheight += currentHeight;
 			tendency += currentHeight - oldHeight;
 			oldHeight = currentHeight;
 			currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[1][0],j+kernel[1][1]));
+			avgheight += currentHeight;
 			tendency += currentHeight - oldHeight;
 			oldHeight = currentHeight;
 			currentHeight = std::max(waterLevel,terrain->GetVertexGroundLevel(i+kernel[0][0],j+kernel[0][1]));
+			avgheight += currentHeight;
 			tendency += currentHeight - oldHeight;
 			
-			float baseLevel = std::max(0.0f,1.0f - (currentHeight-waterLevel)/20.0f);
+			float baseLevel = std::max(0.0f,1.0f - (avgheight/5.0f-waterLevel)/20.0f);
 			baseLevel *= baseLevel;
-			tendency /= 10.0f;
+			tendency /= 15.0f;
 			baseLevel -= tendency;	// if the terrain was sloping downwards, increase baselevel. Otherwise reduce.
 			baseLevel = clamp(baseLevel,0.0f,1.0f);
 			
 			// Draw on map. This is pretty slow.
-			//float width = 3.0f;
-			float length = 1.2f;//21.0f * (1.0f-baseLevel);
-			
+			float length = 35.0f * (1.0f-baseLevel/1.8f);
 			for (float y = 0; y < length; y += 0.6f)
-				//for (float x = -width*(y+1)/(length+1); x < width*(y+1)/(length+1); x += 0.5f)
 				{
-					int index = clamp(j - y * windDir.Y,0.0f,(float)(m_MapSize-1))*m_MapSize + clamp(i - y * windDir.X,0.0f,(float)(m_MapSize-1));
-					m_WindStrength[index] = (0.5f+baseLevel*0.5f) * (1.0f-y/length) + y/length * 1.0f;
+					int xx = clamp(i - y * windDir.X,0.0f,(float)(m_MapSize-1));
+					int yy = clamp(j - y * windDir.Y,0.0f,(float)(m_MapSize-1));
+					Temp[yy*m_MapSize + xx] = Temp[yy*m_MapSize + xx] < (0.0f+baseLevel/1.5f) * (1.0f-y/length) + y/length * 1.0f ?
+												Temp[yy*m_MapSize + xx] : (0.0f+baseLevel/1.5f) * (1.0f-y/length) + y/length * 1.0f;
 				}
 		}
+	
+	int blurKernel[4][2] = { {(int)ceil(windDir.X),(int)ceil(windDir.Y)}, {(int)windDir.X*3,(int)windDir.Y*3}, {(int)ceil(perp.X),(int)ceil(perp.Y)}, {(int)-ceil(perp.X),(int)-ceil(perp.Y)} };
+	float blurValue;
+	for (size_t j = 2; j < m_MapSize-2; ++j)
+		for (size_t i = 2; i < m_MapSize-2; ++i)
+		{
+			blurValue = Temp[(j+blurKernel[0][1])*m_MapSize + i+blurKernel[0][0]];
+			blurValue += Temp[(j+blurKernel[0][1])*m_MapSize + i+blurKernel[0][0]];
+			blurValue += Temp[(j+blurKernel[0][1])*m_MapSize + i+blurKernel[0][0]];
+			blurValue += Temp[(j+blurKernel[0][1])*m_MapSize + i+blurKernel[0][0]];
+			m_WindStrength[j*m_MapSize + i] = blurValue * 0.25f;
+		}
+	delete[] Temp;
 }
 
 ////////////////////////////////////////////////////////////////////////
