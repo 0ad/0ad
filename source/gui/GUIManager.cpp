@@ -165,17 +165,13 @@ void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, c
 void CGUIManager::LoadPage(SGUIPage& page)
 {
 	// If we're hotloading then try to grab some data from the previous page
-	// TODO: Currently we have to guarantee that previousPageScriptInterface lives longer than hotloadData because the structured
-	// clone needs a JSContext (which is part of previousPageScriptInterface) to be freed. This changes with the SpiderMonkey upgrade.
-	// This function can be cleanup up a bit after the upgrade.
-	shared_ptr<ScriptInterface> previousPageScriptInterface;
 	shared_ptr<ScriptInterface::StructuredClone> hotloadData;
 	if (page.gui)
 	{	
 		CScriptVal hotloadDataVal;
-		previousPageScriptInterface = page.gui->GetScriptInterface();
-		previousPageScriptInterface->CallFunction(previousPageScriptInterface->GetGlobalObject(), "getHotloadData", hotloadDataVal);
-		hotloadData = previousPageScriptInterface->WriteStructuredClone(hotloadDataVal.get());
+		shared_ptr<ScriptInterface> scriptInterface = page.gui->GetScriptInterface(); 
+		scriptInterface->CallFunction(scriptInterface->GetGlobalObject(), "getHotloadData", hotloadDataVal); 
+		hotloadData = scriptInterface->WriteStructuredClone(hotloadDataVal.get()); 
 	}
 		
 	page.inputs.clear();
@@ -188,15 +184,8 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	CXeromyces xero;
 	if (xero.Load(g_VFS, path) != PSRETURN_OK)
-	{
-		if (hotloadData)
-			hotloadData.reset();
-		if (previousPageScriptInterface)
-			previousPageScriptInterface.reset();
 		// Fail silently (Xeromyces reported the error)
 		return;
-		
-	}
 
 	int elmt_page = xero.GetElementID("page");
 	int elmt_include = xero.GetElementID("include");
@@ -206,12 +195,6 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	if (root.GetNodeName() != elmt_page)
 	{
 		LOGERROR(L"GUI page '%ls' must have root element <page>", page.name.c_str());
-		
-		if (hotloadData)
-			hotloadData.reset();
-		if (previousPageScriptInterface)
-			previousPageScriptInterface.reset();
-		
 		return;
 	}
 
@@ -259,11 +242,6 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	}
 
 	m_CurrentGUI = oldGUI;
-	
-	if (hotloadData)
-		hotloadData.reset();
-	if (previousPageScriptInterface)
-		previousPageScriptInterface.reset();
 }
 
 Status CGUIManager::ReloadChangedFile(const VfsPath& path)
