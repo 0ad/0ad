@@ -82,17 +82,11 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 	if (market1.length < needed)
 	{
 		// TODO what to do if market1 is invalid ??? should not happen
+		// and when checking the number >= needed, be sure that they are accessible => We should count the pairs
 		if (!market1[0] || !market1[0].position())
 			return false;
-		// We require at least two finished bases
-		var nbase = 0;
-		for each (var base in gameState.ai.HQ.baseManagers)
-			if (base && !base.constructing)
-				nbase++;
-		if (nbase < 2)
-			return false;
 		if (queues.economicBuilding.countQueuedUnitsWithClass("Market") > 0 ||
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_market"), true) >= needed)
+			gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).length >= needed)
 			return false;
 		if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 			return false;
@@ -105,8 +99,6 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 		for (var i in gameState.ai.HQ.baseManagers)
 		{
 			var baseManager = gameState.ai.HQ.baseManagers[i];
-			if (marketBase === +i)
-				continue;
 			if (!baseManager.anchor || !baseManager.anchor.position())
 				continue;
 			var dist = API3.SquareVectorDistance(market1[0].position(), baseManager.anchor.position());
@@ -127,7 +119,6 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 
 	if (market2.length === 0)
 		market2 = market1;
-	var gainFactor = 1/(110*110);    // todo  take it directly from helpers/TraderGain.js
 	var distmax = -1;
 	var imax = -1;
 	var jmax = -1;
@@ -156,17 +147,17 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 				continue;
 			distmax = dist;
 
-			this.setTradeRoute(m1, m2, Math.round(distmax*gainFactor));
+			this.setTradeRoute(m1, m2, Math.round(distmax / this.Config.distUnitGain));
 		}
 	}
 	if (distmax < 0)
 	{
-		if (this.Config.debug)
+		if (this.Config.debug > 1)
 			warn("no trade route possible");
 		return false;
 	}
-	if (this.Config.debug)
-		warn("one trade route set with gain " + Math.round(distmax*gainFactor));
+	if (this.Config.debug > 0)
+		warn("one trade route set with gain " + Math.round(distmax / this.Config.distUnitGain));
 	return true;
 };
 

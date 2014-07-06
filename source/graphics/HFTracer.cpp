@@ -29,6 +29,8 @@
 #include "maths/MathUtil.h"
 #include "maths/Vector3D.h"
 
+#include <cfloat>
+
 // To cope well with points that are slightly off the edge of the map,
 // we act as if there's an N-tile margin around the edges of the heightfield.
 // (N shouldn't be too huge else it'll hurt performance a little when

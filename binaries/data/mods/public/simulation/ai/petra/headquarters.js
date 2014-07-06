@@ -106,6 +106,14 @@ m.HQ.prototype.init = function(gameState, queues)
 	else
 		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3.0)));
 
+	this.treasures = gameState.getEntities().filter(function (ent) {
+		var type = ent.resourceSupplyType();
+		if (type && type.generic === "treasure")
+			return true;
+		return false;
+	});
+	this.treasures.registerUpdates();
+
 	// Let's get our initial situation here.
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();	
 	for (var i = 0; i < ccEnts.length; ++i)
@@ -325,7 +333,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		if (!ent._entity.trainingQueue || !ent._entity.trainingQueue.length)
 			continue;
 		var metadata = ent._entity.trainingQueue[0].metadata;
-		if (metadata.garrisonType)
+		if (metadata && metadata.garrisonType)
 			ent.setRallyPoint(ent, "garrison");  // trained units will autogarrison
 		else
 			ent.unsetRallyPoint();
@@ -970,6 +978,13 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1];
+
+	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
+	if (this.Config.debug > 0)
+		warn("this would give a trading gain of " + expectedGain);
+	// do not keep it if gain is too small, except if this is our first BarterMarket 
+	if (expectedGain < 6 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0))
+		return false;
 
 	var x = (bestIdx%width + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;

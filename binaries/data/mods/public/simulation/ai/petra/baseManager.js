@@ -185,21 +185,21 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 				return;
 			if (supply.hasClass("Field"))     // fields are treated separately
 				return;
+			if (supply.resourceSupplyType()["generic"] === "treasure")  // treasures are treated separately
+				return;
 			// quick accessibility check
-			var index = gameState.ai.accessibility.getAccessValue(supply.position());
-			if (index !== self.accessIndex)
+			var access = supply.getMetadata(PlayerID, "access");
+			if (!access)
+			{
+				access = gameState.ai.accessibility.getAccessValue(supply.position());
+				supply.setMetadata(PlayerID, "access", access);
+			}
+			if (access !== self.accessIndex)
 				return;
 
 			var dist = API3.SquareVectorDistance(supply.position(), dropsite.position());
 			if (dist < self.maxDistResourceSquare)
 			{
-				if (supply.resourceSupplyType()["generic"] == "treasure")
-				{
-					if (dist < self.maxDistResourceSquare/4)
-						dist = 0;
-					else
-						dist = self.maxDistResourceSquare/16;
-				}
 				if (dist < self.maxDistResourceSquare/16)        // distmax/4
 				    nearby.push({ "dropsite": dropsite.id(), "id": supply.id(), "ent": supply, "dist": dist }); 
 				else if (dist < self.maxDistResourceSquare/4)    // distmax/2

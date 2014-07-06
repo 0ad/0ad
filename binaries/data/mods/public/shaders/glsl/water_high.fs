@@ -319,8 +319,7 @@ void main()
 	
 	// Specular.
 	specular = pow(ndoth, mix(5.0,2000.0, clamp(v.y*v.y*2.0,0.0,1.0)))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
-	gl_FragColor = vec4(specular,1.0);
-	return;
+
 	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
