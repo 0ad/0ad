@@ -25,6 +25,8 @@ m.Config = function() {
 		"initialFields" : 5
 	};
 
+	this.distUnitGain = 110*110;   // TODO  take it directly from helpers/TraderGain.js
+
 	// Note: attack settings are set directly in attack_plan.js
 	// defense
 	this.Defense =

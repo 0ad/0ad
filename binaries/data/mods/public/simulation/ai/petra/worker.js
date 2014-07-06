@@ -211,6 +211,45 @@ m.Worker.prototype.update = function(baseManager, gameState)
 
 m.Worker.prototype.startGathering = function(gameState, baseManager)
 {
+	var self = this;
+	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+
+	// First look for possible treasure if any
+	var treasureFound = undefined;
+	var distmin = Math.min();
+	gameState.ai.HQ.treasures.forEach(function (treasure) {
+		var treasureAccess = treasure.getMetadata(PlayerID, "access");
+		if (!treasureAccess)
+		{
+			treasureAccess = gameState.ai.accessibility.getAccessValue(treasure.position());
+			treasure.setMetadata(PlayerID, "access", treasureAccess);
+		}
+		if (treasureAccess !== access)
+			return;
+		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
+		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
+			return;
+		var lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
+		// let some time for the previous gatherer to reach the treasure
+		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
+			return;
+		var dist = API3.SquareVectorDistance(self.ent.position(), treasure.position());
+		if (territoryOwner !== PlayerID && dist > 14000)  //  AI has no LOS, so restrict it a bit
+			return;
+		if (dist > distmin)
+			return;
+		distmin = dist;
+		treasureFound = treasure;
+	});
+	if (treasureFound)
+	{
+		treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
+		this.ent.gather(treasureFound);
+		m.AddTCGatherer(gameState, treasureFound.id());
+		this.ent.setMetadata(PlayerID, "supply", treasureFound.id());
+		return true;
+	}
+
 	var resource = this.ent.getMetadata(PlayerID, "gather-type");
 
 	// If we are gathering food, try to hunt first
@@ -247,8 +286,6 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		return ret;
 	};
 
-	var self = this;
-	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 	var navalManager = gameState.ai.HQ.navalManager;
 	var supply;
 

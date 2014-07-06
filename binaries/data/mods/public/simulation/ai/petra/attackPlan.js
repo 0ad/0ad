@@ -96,6 +96,13 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, enemy, target)
 		this.unitStat["ChampMeleeInfantry"]  = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Infantry","Melee", "Champion" ], "interests": [ ["strength",3], ["cost",1] ] };
 		this.unitStat["ChampMeleeCavalry"]   = { "priority": 1, "minSize": 3, "targetSize": 18, "batchSize": 3, "classes": ["Cavalry","Melee", "Champion" ], "interests": [ ["strength",2], ["cost",1] ] };
 		this.neededShips = 5;
+		// decrease a bit the targetSize according to max population
+		if (gameState.getPopulationMax() < 300)
+		{
+			var reduc = Math.sqrt(gameState.getPopulationMax() / 300);
+			for (var unitCat in this.unitStat)
+				this.unitStat[unitCat]["targetSize"] = Math.floor(reduc * this.unitStat[unitCat]["targetSize"]);
+		}
 	}
 	else
 	{

@@ -311,8 +311,6 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 			}
 			else if (this.accounts[j][res] > queueCost[res])
 			{
-				if (this.Config.debug > 0)
-					warn("Petra warning: we should never go there with a too big account for " + res);
 				availableRes[res] += (this.accounts[j][res] - queueCost[res]);
 				this.accounts[j][res] = queueCost[res];
 			}
