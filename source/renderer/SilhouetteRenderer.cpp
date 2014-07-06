@@ -29,6 +29,8 @@
 #include "renderer/Renderer.h"
 #include "renderer/Scene.h"
 
+#include <cfloat>
+
 // For debugging
 static const bool g_DisablePreciseIntersections = false;
 
