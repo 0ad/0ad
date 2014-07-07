@@ -347,7 +347,7 @@ g_SelectionPanels.Garrison = {
 		var player = Engine.GetPlayerID();
 		if(player != data.unitEntState.player && !g_DevSettings.controlAll)
 		{
-			if (data.entplayer != player)
+			if (entplayer != player)
 			{
 				data.button.enabled = false;
 				grayscale = "grayscale:";
