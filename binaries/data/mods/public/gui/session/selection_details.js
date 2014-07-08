@@ -170,7 +170,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingIcon").sprite = "stretched:session/icons/repair.png";
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
-		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = translate("Number of builders");
+		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Number of builders.\nTasking another to this foundation would speed construction up by %(numb)s%%"), { numb : Math.round((Math.pow((entState.foundation.numBuilders+1)/entState.foundation.numBuilders, 0.7) - 1.0)*100) });
 	}
 	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
 	{
