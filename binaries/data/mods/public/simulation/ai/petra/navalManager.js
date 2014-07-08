@@ -394,7 +394,7 @@ m.NavalManager.prototype.assignToPlans = function(gameState)
 
 		for each (var ship in this.seaTransportShips[plan.sea]._entities)
 		{
-			if (ship.getMetadata(PlayerID, "transporter") || ship.getMetadata(PlayerID, "escort"))
+			if (ship.getMetadata(PlayerID, "transporter"))
 				continue;
 			plan.assignShip(ship);
 			plan.needTransportShips = false;

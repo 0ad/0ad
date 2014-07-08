@@ -19,8 +19,7 @@ m.Army = function(gameState, owner, ownEntities, foeEntities)
 	this.breakawaySize = this.Config.Defense.armyBreakawaySize;
 		
 	// average
-	this.foePosition = [0,0];		
-	this.ownPosition = [0,0];
+	this.foePosition = [0,0];
 	this.positionLastUpdate = gameState.ai.elapsedTime;
 
 	// Some caching
@@ -52,37 +51,24 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 {
 	if (!force && this.positionLastUpdate === gameState.ai.elapsedTime)
 		return;
-	var pos = [0,0];
-	if (this.foeEntities.length !== 0)
-	{
-		for (var id of this.foeEntities)
-		{
-			var ent = gameState.getEntityById(id);
-			var epos = ent.position();
-			pos[0] += epos[0];
-			pos[1] += epos[1];
-		}
-		this.foePosition[0] = pos[0]/this.foeEntities.length;
-		this.foePosition[1] = pos[1]/this.foeEntities.length;
-	} else
-		this.foePosition = [0,0];
 
-	this.ownPosition = [0,0];
-	var npos = 0;  // same defenders may be sailing to defend us
-	for (var id of this.ownEntities)
+	var npos = 0;
+	var pos = [0, 0];
+	for (var id of this.foeEntities)
 	{
 		var ent = gameState.getEntityById(id);
-		if (!ent.position())
+		if (!ent)
 			continue;
 		npos++;
 		var epos = ent.position();
 		pos[0] += epos[0];
 		pos[1] += epos[1];
 	}
+	// if npos = 0, the army must have been destroyed and will be removed next turn. keep previous position
 	if (npos > 0)
 	{
-		this.ownPosition[0] = pos[0]/npos;
-		this.ownPosition[1] = pos[1]/npos;
+		this.foePosition[0] = pos[0]/npos;
+		this.foePosition[1] = pos[1]/npos;
 	}
 
 	this.positionLastUpdate = gameState.ai.elapsedTime;

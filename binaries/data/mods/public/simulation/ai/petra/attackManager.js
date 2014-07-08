@@ -25,14 +25,24 @@ m.AttackManager.prototype.init = function(gameState, queues, allowRush)
 	this.outOfPlan.registerUpdates();
 
 	this.maxRushes = 0;
+	this.rushSize = [];
 	if (allowRush)
 	{
-		if (this.Config.personality.aggressive > 0.9)
-			this.maxRushes = 2
-		else if (this.Config.personality.aggressive > 0.7)
+		if (this.Config.personality.aggressive > 0.8)
+		{
+			this.maxRushes = 3
+			this.rushSize = [ 16, 22, 28 ];
+		}
+		else if (this.Config.personality.aggressive > 0.6)
+		{
+			this.maxRushes = 2;
+			this.rushSize = [ 18, 28 ];
+		}
+		else if (this.Config.personality.aggressive > 0.3)
+		{
 			this.maxRushes = 1;
-		else
-			this.maxRushes = 0;
+			this.rushSize = [ 24 ];
+		}
 	}
 };
 
@@ -40,7 +50,7 @@ m.AttackManager.prototype.init = function(gameState, queues, allowRush)
 // Others once in a while
 m.AttackManager.prototype.update = function(gameState, queues, events)
 {
-	if (this.Config.debug == 2 &&  gameState.ai.elapsedTime > this.debugTime + 60)
+	if (this.Config.debug == 2 && gameState.ai.elapsedTime > this.debugTime + 60)
 	{
 		this.debugTime = gameState.ai.elapsedTime;
 		warn(" upcoming attacks =================");
@@ -164,7 +174,8 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if (this.upcomingAttacks["Rush"].length === 0)
 		{
 			// we have a barracks and we want to rush, rush.
-			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush");
+			var data = { "targetSize": this.rushSize[this.rushNumber] };
+			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush", data);
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 0)
@@ -213,7 +224,8 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		if (target)
 		{
 			// prepare a raid against this target
-			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", target.owner(), target);
+			var data = { "target": target };
+			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 0)
