@@ -1336,6 +1336,20 @@ m.HQ.prototype.buildBlacksmith = function(gameState, queues)
 		queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_blacksmith"));
 };
 
+m.HQ.prototype.buildWonder = function(gameState, queues)
+{
+	if (!this.canBuild(gameState, "structures/{civ}_wonder"))
+		return;
+	if (gameState.ai.queues["wonder"] && gameState.ai.queues["wonder"].length() > 0)
+		return;
+	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_wonder"), true) > 0)
+		return;
+
+	if (!gameState.ai.queues["wonder"])
+		gameState.ai.queueManager.addQueue("wonder", 1000);
+	gameState.ai.queues["wonder"].addItem(new m.ConstructionPlan(gameState, "structures/{civ}_wonder"));
+};
+
 // Deals with constructing military buildings (barracks, stables…)
 // They are mostly defined by Config.js. This is unreliable since changes could be done easily.
 // TODO: We need to determine these dynamically. Also doesn't build fortresses since the above function does that.
