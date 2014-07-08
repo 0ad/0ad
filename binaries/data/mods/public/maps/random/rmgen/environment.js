@@ -128,7 +128,7 @@ function setPPBloom(s)
 	g_Environment.Postproc.Bloom = (1 - s) * 0.2;
 }
 
-// Set postproc effect ("default", "hdr", "DOF", "HQDOF")
+// Set postproc effect ("default", "hdr", "DOF")
 function setPPEffect(s)
 {
 	g_Environment.Postproc.PostprocEffect = s;
