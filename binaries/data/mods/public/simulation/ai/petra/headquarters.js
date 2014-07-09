@@ -757,7 +757,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	if (fromStrategic)  // be less restrictive
 		cut = 30;
 	if (this.Config.debug)
-		warn("on a trouve une base avec best (cut=" + cut + ") = " + bestVal);
+		warn("we have found a base for " + resource + " with best (cut=" + cut + ") = " + bestVal);
 	// not good enough.
 	if (bestVal < cut)
 		return false;
@@ -1757,6 +1757,9 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	}
 	else if (gameState.ai.playedTurn - this.lastTerritoryUpdate > 100)
 		this.updateTerritories(gameState);
+
+	if (gameState.getGameType() === "wonder")
+		this.buildWonder(gameState, queues);
 
 	if (this.baseManagers[1])
 	{

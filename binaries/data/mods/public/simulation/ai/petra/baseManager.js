@@ -422,7 +422,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 				for (var i in queues.field.queue)
 					queues.field.queue[i].isGo = function() { return true; };	// start them
 			}
-			else if(gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
+			else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
 				if ((!gameState.ai.HQ.saveResources && numFound < 2 && numFound + numQueue < 3) ||
 					(gameState.ai.HQ.saveResources && numFound < 1 && numFound + numQueue < 2))
@@ -843,7 +843,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 m.BaseManager.prototype.update = function(gameState, queues, events)
 {
 	if (this.anchor && this.anchor.getMetadata(PlayerID, "access") !== this.accessIndex)
-		warn(" probleme avec accessIndex " + this.accessIndex + " et metadata " + this.anchor.getMetadata(PlayerID, "access"));
+		warn("Petra baseManager problem with accessIndex " + this.accessIndex
+			+ " while metadata acess is " + this.anchor.getMetadata(PlayerID, "access"));
 
 	Engine.ProfileStart("Base update - base " + this.ID);
 
