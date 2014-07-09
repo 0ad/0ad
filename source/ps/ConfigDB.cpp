@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,11 @@
 
 #include <boost/algorithm/string.hpp>
 
-#include "Pyrogenesis.h"
-#include "Parser.h"
-#include "ConfigDB.h"
 #include "CLogger.h"
+#include "ConfigDB.h"
 #include "Filesystem.h"
+#include "Parser.h"
+#include "ThreadUtil.h"
 #include "lib/allocators/shared_ptr.h"
 
 typedef std::map <CStr, CConfigValueSet> TConfigMap;
@@ -31,11 +31,6 @@ TConfigMap CConfigDB::m_Map[CFG_LAST];
 VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 
 static pthread_mutex_t cfgdb_mutex = PTHREAD_MUTEX_INITIALIZER;
-struct ScopedLock
-{
-	ScopedLock() { pthread_mutex_lock(&cfgdb_mutex); }
-	~ScopedLock() { pthread_mutex_unlock(&cfgdb_mutex); }
-};
 
 CConfigDB::CConfigDB()
 {
@@ -60,7 +55,7 @@ CConfigDB::CConfigDB()
 			debug_warn(L"CConfigDB: Invalid ns value"); \
 			return; \
 		} \
-		ScopedLock s; \
+		CScopeLock s(&cfgdb_mutex); \
 		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name); \
 		if (it != m_Map[CFG_COMMAND].end()) \
 		{ \
@@ -95,7 +90,7 @@ void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet
 		return;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 	{
@@ -122,7 +117,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 		return CFG_LAST;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
 	if (it != m_Map[CFG_COMMAND].end())
 		return CFG_COMMAND;
@@ -139,7 +134,7 @@ EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& n
 
 std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace ns, const CStr& prefix)
 {
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	std::map<CStr, CConfigValueSet> ret;
 
 	if (ns < 0 || ns >= CFG_LAST)
@@ -176,7 +171,7 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 		return;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
@@ -192,7 +187,7 @@ void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 		return;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	m_ConfigFile[ns]=path;
 }
 
@@ -204,7 +199,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		return false;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 
 	// Set up CParser
 	CParser parser;
@@ -293,7 +288,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns)
 		return false;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	return WriteFile(ns, m_ConfigFile[ns]);
 }
 
@@ -305,7 +300,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 		return false;
 	}
 
-	ScopedLock s;
+	CScopeLock s(&cfgdb_mutex);
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();

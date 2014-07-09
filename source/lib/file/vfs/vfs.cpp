@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -43,11 +43,13 @@ static const StatusDefinition vfsStatusDefinitions[] = {
 STATUS_ADD_DEFINITIONS(vfsStatusDefinitions);
 
 static pthread_mutex_t vfs_mutex = PTHREAD_MUTEX_INITIALIZER;
+namespace {
 struct ScopedLock
 {
 	ScopedLock() { pthread_mutex_lock(&vfs_mutex); }
 	~ScopedLock() { pthread_mutex_unlock(&vfs_mutex); }
 };
+} // namespace
 
 class VFS : public IVFS
 {

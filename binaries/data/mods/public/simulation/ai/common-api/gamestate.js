@@ -27,6 +27,7 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.playerData = this.sharedScript.playersData[this.player];
 	this.techModifications = SharedScript._techModifications[this.player];
 	this.barterPrices = SharedScript.barterPrices;
+	this.gameType = SharedScript.gameType;
 };
 
 m.GameState.prototype.update = function(SharedScript, state) {
@@ -117,6 +118,11 @@ m.GameState.prototype.getTimeElapsed = function()
 m.GameState.prototype.getBarterPrices = function()
 {
 	return this.barterPrices;
+};
+
+m.GameState.prototype.getGameType = function()
+{
+	return this.gameType;
 };
 
 m.GameState.prototype.getTemplate = function(type)
