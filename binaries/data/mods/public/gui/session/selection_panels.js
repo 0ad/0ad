@@ -65,7 +65,7 @@ g_SelectionPanels.Barter = {
 			data.icon[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Icon["+data.i+"]");
 			data.amount[a] = Engine.GetGUIObjectByName("unitBarter"+a+"Amount["+data.i+"]");
 		}
-		data.selection = Engine.GetGUIObjectByName("unitBarterSellSelection["+data.i+"]");
+		data.selectionIcon = Engine.GetGUIObjectByName("unitBarterSellSelection["+data.i+"]");
 		data.affordableMask = Engine.GetGUIObjectByName("unitBarterSellUnaffordable["+data.i+"]");
 
 		data.amountToSell = BARTER_RESOURCE_AMOUNT_TO_SELL;
@@ -111,7 +111,7 @@ g_SelectionPanels.Barter = {
 			data.affordableMask.hidden = false;
 		else
 			data.affordableMask.hidden = true;
-		data.selection.hidden = !data.isSelected;
+		data.selectionIcon.hidden = !data.isSelected;
 	},
 	"setPosition": function(data)
 	{
