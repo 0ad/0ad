@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -359,6 +359,25 @@ public:
 	}
 
 	int32_t i0, j0, i1, j1; // inclusive lower bound, exclusive upper bound, in tiles
+};
+
+/**
+ * Sent, at most once per turn, when the visibility of an entity changed
+ */
+class CMessageVisibilityChanged : public CMessage
+{
+public:
+	DEFAULT_MESSAGE_IMPL(VisibilityChanged)
+
+	CMessageVisibilityChanged(player_id_t player, entity_id_t ent, int oldVisibility, int newVisibility) :
+		player(player), ent(ent), oldVisibility(oldVisibility), newVisibility(newVisibility)
+	{
+	}
+
+	player_id_t player;
+	entity_id_t ent;
+	int oldVisibility;
+	int newVisibility;
 };
 
 /**
