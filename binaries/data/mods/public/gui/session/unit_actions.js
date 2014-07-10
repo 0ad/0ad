@@ -713,7 +713,7 @@ var g_EntityCommands =
 				return false;
 
 			var p = GetEntityState(entState.turretParent);
-			if (p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
+			if (!p.garrisonHolder || p.garrisonHolder.entities.indexOf(entState.id) == -1)
 				return false;
 			return {
 				"tooltip": translate("Unload"),

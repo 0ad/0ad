@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -216,9 +216,9 @@ public:
 
 	enum ELosVisibility
 	{
-		VIS_HIDDEN,
-		VIS_FOGGED,
-		VIS_VISIBLE
+		VIS_HIDDEN = 0,
+		VIS_FOGGED = 1,
+		VIS_VISIBLE = 2
 	};
 
 	/**
@@ -325,6 +325,7 @@ public:
 	 */
 	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog = false) = 0;
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog = false) = 0;
+
 
 	/**
 	 * GetLosVisibility wrapped for script calls.

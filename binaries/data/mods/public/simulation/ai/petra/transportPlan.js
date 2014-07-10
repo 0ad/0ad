@@ -87,6 +87,9 @@ m.TransportPlan.prototype.countFreeSlotsOnShip = function(ship)
 
 m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 {
+	if (this.needTransportShips)
+		return;
+
 	var self = this;
 	var done = false;
 	this.transportShips.forEach(function (ship) {

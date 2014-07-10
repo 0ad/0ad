@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,7 @@
 #include "renderer/Scene.h"
 #include "lib/ps_stl.h"
 
-
+#define LOS_TILES_RATIO 8
 #define DEBUG_RANGE_MANAGER_BOUNDS 0
 
 /**
@@ -138,13 +138,14 @@ struct EntityData
 	EntityData() : retainInFog(0), owner(-1), inWorld(0), flags(1) { }
 	entity_pos_t x, z;
 	entity_pos_t visionRange;
+	u32 visibilities; // 2-bit visibility, per player
 	u8 retainInFog; // boolean
 	i8 owner;
 	u8 inWorld; // boolean
 	u8 flags; // See GetEntityFlagMask
 };
 
-cassert(sizeof(EntityData) == 16);
+cassert(sizeof(EntityData) == 20);
 
 /**
  * Serialization helper template for Query
@@ -197,6 +198,7 @@ struct SerializeEntityData
 		serialize.NumberFixed_Unbounded("z", value.z);
 		serialize.NumberFixed_Unbounded("vision", value.visionRange);
 		serialize.NumberU8("retain in fog", value.retainInFog, 0, 1);
+		serialize.NumberU32_Unbounded("visibilities", value.visibilities);
 		serialize.NumberI8_Unbounded("owner", value.owner);
 		serialize.NumberU8("in world", value.inWorld, 0, 1);
 		serialize.NumberU8_Unbounded("flags", value.flags);
@@ -283,6 +285,13 @@ public:
 	bool m_LosCircular;
 	i32 m_TerrainVerticesPerSide;
 	size_t m_TerritoriesDirtyID;
+	
+	// Cache for visibility tracking (not serialized)
+	i32 m_LosTilesPerSide;
+	bool* m_DirtyVisibility;
+	std::vector<std::set<entity_id_t> > m_LosTiles;
+	// List of entities that must be updated, regardless of the status of their tile
+	std::vector<entity_id_t> m_ModifiedEntities;
 
 	// Counts of units seeing vertex, per vertex, per player (starting with player 0).
 	// Use u16 to avoid overflows when we have very large (but not infeasibly large) numbers
@@ -332,11 +341,14 @@ public:
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
 
+		m_DirtyVisibility = NULL;
+
 		m_TerritoriesDirtyID = 0;
 	}
 
 	virtual void Deinit()
 	{
+		delete[] m_DirtyVisibility;
 	}
 
 	template<typename S>
@@ -355,7 +367,9 @@ public:
 		serialize.Bool("los circular", m_LosCircular);
 		serialize.NumberI32_Unbounded("terrain verts per side", m_TerrainVerticesPerSide);
 
-		// We don't serialize m_Subdivision or m_LosPlayerCounts
+		SerializeVector<SerializeU32_Unbounded>()(serialize, "modified entities", m_ModifiedEntities);
+
+		// We don't serialize m_Subdivision, m_LosPlayerCounts or m_LosTiles
 		// since they can be recomputed from the entity data when deserializing;
 		// m_LosState must be serialized since it depends on the history of exploration
 
@@ -432,12 +446,20 @@ public:
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Move(ent, from, to);
 					LosMove(it->second.owner, it->second.visionRange, from, to);
+					i32 oldLosTile = PosToLosTilesHelper(it->second.x, it->second.z);
+					i32 newLosTile = PosToLosTilesHelper(msgData.x, msgData.z);
+					if (oldLosTile != newLosTile)
+					{
+						RemoveFromTile(oldLosTile, ent);
+						AddToTile(newLosTile, ent);
+					}
 				}
 				else
 				{
 					CFixedVector2D to(msgData.x, msgData.z);
 					m_Subdivision.Add(ent, to);
 					LosAdd(it->second.owner, it->second.visionRange, to);
+					AddToTile(PosToLosTilesHelper(msgData.x, msgData.z), ent);
 				}
 
 				it->second.inWorld = 1;
@@ -451,12 +473,15 @@ public:
 					CFixedVector2D from(it->second.x, it->second.z);
 					m_Subdivision.Remove(ent, from);
 					LosRemove(it->second.owner, it->second.visionRange, from);
+					RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
 				}
 
 				it->second.inWorld = 0;
 				it->second.x = entity_pos_t::Zero();
 				it->second.z = entity_pos_t::Zero();
 			}
+
+			m_ModifiedEntities.push_back(ent);
 
 			break;
 		}
@@ -495,7 +520,10 @@ public:
 				break;
 
 			if (it->second.inWorld)
+			{
 				m_Subdivision.Remove(ent, CFixedVector2D(it->second.x, it->second.z));
+				RemoveFromTile(PosToLosTilesHelper(it->second.x, it->second.z), ent);
+			}
 
 			// This will be called after Ownership's OnDestroy, so ownership will be set
 			// to -1 already and we don't have to do a LosRemove here
@@ -539,6 +567,7 @@ public:
 		case MT_Update:
 		{
 			m_DebugOverlayDirty = true;
+			UpdateVisibilityData();
 			UpdateTerritoriesLos();
 			ExecuteActiveQueries();
 			break;
@@ -559,6 +588,8 @@ public:
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
 		m_TerrainVerticesPerSide = (i32)vertices;
+		
+		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
 
 		ResetDerivedData(false);
 	}
@@ -639,11 +670,19 @@ public:
 		}
 		m_LosStateRevealed.clear();
 		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
+		
+		delete[] m_DirtyVisibility;
+		m_DirtyVisibility = new bool[m_LosTilesPerSide*m_LosTilesPerSide]();
+		m_LosTiles.clear();
+		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
 			if (it->second.inWorld)
+			{
 				LosAdd(it->second.owner, it->second.visionRange, CFixedVector2D(it->second.x, it->second.z));
+				AddToTile(PosToLosTilesHelper(it->second.x, it->second.z), it->first);
+			}
 		}
 
 		m_TotalInworldVertices = 0;
@@ -1384,6 +1423,82 @@ public:
 		return GetLosVisibility(handle, player, forceRetainInFog);
 	}
 
+	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z)
+	{
+		i32 i = Clamp(
+			(x/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
+			0,
+			m_LosTilesPerSide - 1);
+		i32 j = Clamp(
+			(z/(entity_pos_t::FromInt(TERRAIN_TILE_SIZE * LOS_TILES_RATIO))).ToInt_RoundToZero(),
+			0,
+			m_LosTilesPerSide - 1);
+		return j*m_LosTilesPerSide + i;
+	}
+
+	void AddToTile(i32 tile, entity_id_t ent)
+	{
+		m_LosTiles[tile].insert(ent);
+	}
+
+	void RemoveFromTile(i32 tile, entity_id_t ent)
+	{
+		for (std::set<entity_id_t>::iterator tileIt = m_LosTiles[tile].begin();
+			tileIt != m_LosTiles[tile].end();
+			++tileIt)
+		{
+			if (*tileIt == ent)
+			{
+				m_LosTiles[tile].erase(tileIt);
+				return;
+			}
+		}
+	}
+
+	void UpdateVisibilityData()
+	{
+		PROFILE("UpdateVisibilityData");
+		
+		for (i32 n = 0; n < m_LosTilesPerSide*m_LosTilesPerSide; ++n)
+		{
+			if (m_DirtyVisibility[n])
+			{
+				for (std::set<entity_id_t>::iterator it = m_LosTiles[n].begin();
+					it != m_LosTiles[n].end();
+					++it)
+				{
+					UpdateVisibility(*it);
+				}
+				m_DirtyVisibility[n] = false;
+			}
+		}
+
+		for (std::vector<entity_id_t>::iterator it = m_ModifiedEntities.begin(); it != m_ModifiedEntities.end(); ++it)
+		{
+			UpdateVisibility(*it);
+		}
+		m_ModifiedEntities.clear();
+	}
+
+	void UpdateVisibility(entity_id_t ent)
+	{
+		EntityMap<EntityData>::iterator itEnts = m_EntityData.find(ent);
+		if (itEnts == m_EntityData.end())
+			return;
+		
+		for (player_id_t player = 1; player <= MAX_LOS_PLAYER_ID; ++player)
+		{
+			u8 oldVis = (itEnts->second.visibilities >> (2*player)) & 0x3;
+			u8 newVis = GetLosVisibility(itEnts->first, player, false);
+
+			if (oldVis != newVis)
+			{
+				CMessageVisibilityChanged msg(player, ent, oldVis, newVis);
+				GetSimContext().GetComponentManager().PostMessage(ent, msg);
+				itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2*player)) | (newVis << 2*player);
+			}
+		}
+	}
 
 	virtual void SetLosRevealAll(player_id_t player, bool enabled)
 	{
@@ -1532,6 +1647,7 @@ public:
 					explored += !(m_LosState[idx] & (LOS_EXPLORED << (2*(owner-1))));
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 				}
+				m_DirtyVisibility[(j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO] = true;
 			}
 
 			ASSERT(counts[idx] < 65535);
@@ -1559,6 +1675,9 @@ public:
 			{
 				// (If LosIsOffWorld then this is a no-op, so don't bother doing the check)
 				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
+
+				i32 i = i0 + idx - idx0;
+				m_DirtyVisibility[(j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO] = true;
 			}
 		}
 	}
