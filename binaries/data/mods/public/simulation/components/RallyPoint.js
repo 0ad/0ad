@@ -22,6 +22,11 @@ RallyPoint.prototype.GetPositions = function()
 	// Update positions for moving target entities
 	// TODO: If we target an enemy unit we should update its position
 	// as long as it is outside of FoW and SoD.
+	
+	// We must not affect the simulation state here (modifications of the
+	// RallyPointRenderer are allowed though), so copy the state
+	var ret = this.pos;
+	
 	for (var i = 0; i < this.pos.length; i++)
 	{
 		if (!this.data[i] || !this.data[i].target)
@@ -39,13 +44,13 @@ RallyPoint.prototype.GetPositions = function()
 		if (this.pos[i].x == targetPosition.x && this.pos[i].z == targetPosition.y)
 			continue;
 
-		this.pos[i] = {"x": targetPosition.x, "z": targetPosition.y};
+		ret[i] = {"x": targetPosition.x, "z": targetPosition.y};
 		var cmpRallyPointRenderer = Engine.QueryInterface(this.entity, IID_RallyPointRenderer);
 		if (cmpRallyPointRenderer)
 			cmpRallyPointRenderer.UpdatePosition(i, targetPosition);
 	}
 
-	return this.pos;
+	return ret;
 };
 
 // Extra data for the rally point, should have a command property and then helpful data for that command
