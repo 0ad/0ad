@@ -25,10 +25,12 @@ RallyPoint.prototype.GetPositions = function()
 	
 	// We must not affect the simulation state here (modifications of the
 	// RallyPointRenderer are allowed though), so copy the state
-	var ret = this.pos;
+	var ret = [];
 	
 	for (var i = 0; i < this.pos.length; i++)
 	{
+		ret.push(this.pos[i]);
+		
 		if (!this.data[i] || !this.data[i].target)
 			continue;
 
