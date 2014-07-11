@@ -1,0 +1,56 @@
+html
+{
+	font-family: arial;
+}
+.ComparisonTable
+{
+	margin-top: 400px;
+	border-collapse: collapse;
+	border:1px black;
+	font-size: 18px;
+}
+.ComparisonTable td
+{
+	width:20px;
+	height: 20px;
+	text-align: center;
+}
+.ComparisonTable th
+{
+	text-align: right;
+	font-weight:normal;
+	padding-right:5px;
+}
+.ComparisonTable .vertical-text th {
+	-webkit-transform: rotate(-90deg);
+ 	-moz-transform: rotate(-90deg);
+  	-ms-transform: rotate(-90deg);
+  	-o-transform: rotate(-90deg);
+  	transform: rotate(-90deg);
+  	max-width: 20px;
+  	height: 25px;
+  	padding-right:0px;
+}
+
+.WorthList p
+{
+	display:block;
+	width: 400px;
+	text-align: right;
+	font-size: 14px;
+}
+.WorthList th
+{
+	text-align: right;
+	font-weight:normal;
+	padding-right:2px;
+}
+.WorthList td
+{
+	width: 400px;
+	color:white;
+}
+.WorthList td span
+{
+	display:inline-block;
+}
