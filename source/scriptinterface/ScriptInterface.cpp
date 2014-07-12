@@ -425,8 +425,8 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 	msg << message;
 
 	// If there is an exception, then print its stack trace
-	jsval excn;
-	if (JS_GetPendingException(cx, &excn) && excn.isObject())
+	JS::RootedValue excn(cx);
+	if (JS_GetPendingException(cx, excn.address()) && excn.isObject())
 	{
 		JS::RootedObject excnObj(cx, &excn.toObject());
 		// TODO: this violates the docs ("The error reporter callback must not reenter the JSAPI.")
@@ -437,7 +437,7 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 
 		JS::RootedValue rval(cx);
 		const char dumpStack[] = "this.stack.trimRight().replace(/^/mg, '  ')"; // indent each line
-		if (JS_EvaluateScript(cx, &excn.toObject(), dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, rval.address()))
+		if (JS_EvaluateScript(cx, excnObj, dumpStack, ARRAY_SIZE(dumpStack)-1, "(eval)", 1, rval.address()))
 		{
 			std::string stackTrace;
 			if (ScriptInterface::FromJSVal(cx, rval, stackTrace))
