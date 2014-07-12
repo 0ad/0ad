@@ -55,12 +55,13 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 
 JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
 {
+	JSAutoRequest rq(cx);
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
 
-	jsval idval;
-	if (!JS_IdToValue(cx, id, &idval))
+	JS::RootedValue idval(cx);
+	if (!JS_IdToValue(cx, id, idval.address()))
 		return JS_FALSE;
 
 	std::string propName;
@@ -304,8 +305,9 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 	if (!e)
 		return JS_FALSE;
 
-	jsval idval;
-	if (!JS_IdToValue(cx, id, &idval))
+	JSAutoRequest rq(cx);
+	JS::RootedValue idval(cx);
+	if (!JS_IdToValue(cx, id, idval.address()))
 		return JS_FALSE;
 
 	std::string propName;
