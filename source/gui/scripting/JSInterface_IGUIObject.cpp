@@ -593,7 +593,8 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 
 JSBool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 {
-	if (argc == 0)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() == 0)
 	{
 		JS_ReportError(cx, "GUIObject has no default constructor");
 		return JS_FALSE;
@@ -602,10 +603,10 @@ JSBool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 	JS::RootedObject obj(cx, JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL));
 
 	// Store the IGUIObject in the JS object's 'private' area
-	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(JS_ARGV(cx, vp)[0]);
+	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(args[0]);
 	JS_SetPrivate(obj, guiObject);
 
-	JS_SET_RVAL(cx, vp, JS::ObjectValue(*obj));
+	args.rval().setObject(*obj);
 	return JS_TRUE;
 }
 
@@ -617,6 +618,7 @@ void JSI_IGUIObject::init(ScriptInterface& scriptInterface)
 JSBool JSI_IGUIObject::toString(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
@@ -625,13 +627,14 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, uint argc, jsval* vp)
 	char buffer[256];
 	snprintf(buffer, 256, "[GUIObject: %s]", e->GetName().c_str());
 	buffer[255] = 0;
-	JS_SET_RVAL(cx, vp, JS::StringValue(JS_NewStringCopyZ(cx, buffer)));
+	rec.rval().setString(JS_NewStringCopyZ(cx, buffer));
 	return JS_TRUE;
 }
 
 JSBool JSI_IGUIObject::focus(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
@@ -639,13 +642,14 @@ JSBool JSI_IGUIObject::focus(JSContext* cx, uint argc, jsval* vp)
 
 	e->GetGUI()->SetFocusedObject(e);
 
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	rec.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool JSI_IGUIObject::blur(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
@@ -653,13 +657,15 @@ JSBool JSI_IGUIObject::blur(JSContext* cx, uint argc, jsval* vp)
 
 	e->GetGUI()->SetFocusedObject(NULL);
 
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	rec.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp)
 {
 	UNUSED2(argc);
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
+	
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
@@ -682,6 +688,6 @@ JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp)
 		return JS_FALSE;
 	}
 
-	JS_SET_RVAL(cx, vp, objVal);
+	rec.rval().set(objVal);
 	return JS_TRUE;
 }

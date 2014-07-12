@@ -464,80 +464,82 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 
 JSBool print(JSContext* cx, uint argc, jsval* vp)
 {
-	for (uint i = 0; i < argc; ++i)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	for (uint i = 0; i < args.length(); ++i)
 	{
 		std::wstring str;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[i], str))
+		if (!ScriptInterface::FromJSVal(cx, args[i], str))
 			return JS_FALSE;
 		debug_printf(L"%ls", str.c_str());
 	}
 	fflush(stdout);
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	args.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool logmsg(JSContext* cx, uint argc, jsval* vp)
 {
-	if (argc < 1)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() < 1)
 	{
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		args.rval().setUndefined();
 		return JS_TRUE;
 	}
 
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+	if (!ScriptInterface::FromJSVal(cx, args[0], str))
 		return JS_FALSE;
 	LOGMESSAGE(L"%ls", str.c_str());
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	args.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool warn(JSContext* cx, uint argc, jsval* vp)
 {
-	if (argc < 1)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() < 1)
 	{
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		args.rval().setUndefined();
 		return JS_TRUE;
 	}
 
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+	if (!ScriptInterface::FromJSVal(cx, args[0], str))
 		return JS_FALSE;
 	LOGWARNING(L"%ls", str.c_str());
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	args.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool error(JSContext* cx, uint argc, jsval* vp)
 {
-	if (argc < 1)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() < 1)
 	{
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		args.rval().setUndefined();
 		return JS_TRUE;
 	}
 
 	std::wstring str;
-	if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+	if (!ScriptInterface::FromJSVal(cx, args[0], str))
 		return JS_FALSE;
 	LOGERROR(L"%ls", str.c_str());
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	args.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool deepcopy(JSContext* cx, uint argc, jsval* vp)
 {
-	if (argc < 1)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() < 1)
 	{
-		JS_SET_RVAL(cx, vp, JSVAL_VOID);
+		args.rval().setUndefined();
 		return JS_TRUE;
 	}
 
-	jsval ret;
-
-	if (!JS_StructuredClone(cx, JS_ARGV(cx, vp)[0], &ret, NULL, NULL))
+	if (!JS_StructuredClone(cx, args[0], args.rval().address(), NULL, NULL))
 		return JS_FALSE;
 
-	JS_SET_RVAL(cx, vp, ret);
 	return JS_TRUE;
 }
 
@@ -545,10 +547,11 @@ JSBool ProfileStart(JSContext* cx, uint argc, jsval* vp)
 {
 	const char* name = "(ProfileStart)";
 
-	if (argc >= 1)
+	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	if (args.length() >= 1)
 	{
 		std::string str;
-		if (!ScriptInterface::FromJSVal(cx, JS_ARGV(cx, vp)[0], str))
+		if (!ScriptInterface::FromJSVal(cx, args[0], str))
 			return JS_FALSE;
 
 		typedef boost::flyweight<
@@ -565,18 +568,19 @@ JSBool ProfileStart(JSContext* cx, uint argc, jsval* vp)
 
 	g_Profiler2.RecordRegionEnter(name);
 
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	args.rval().setUndefined();
 	return JS_TRUE;
 }
 
 JSBool ProfileStop(JSContext* UNUSED(cx), uint UNUSED(argc), jsval* vp)
 {
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 	if (CProfileManager::IsInitialised() && ThreadUtil::IsMainThread())
 		g_Profiler.Stop();
 
 	g_Profiler2.RecordRegionLeave("(ProfileStop)");
 
-	JS_SET_RVAL(cx, vp, JSVAL_VOID);
+	rec.rval().setUndefined();
 	return JS_TRUE;
 }
 
@@ -600,12 +604,12 @@ static double generate_uniform_real(boost::rand48& rng, double min, double max)
 
 JSBool Math_random(JSContext* cx, uint UNUSED(argc), jsval* vp)
 {
+	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 	double r;
 	if(!ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface->MathRandom(r))
 		return JS_FALSE;
 
-	jsval rv = JS::NumberValue(r);
-	JS_SET_RVAL(cx, vp, rv);
+	rec.rval().setNumber(r);
 	return JS_TRUE;
 }
 
