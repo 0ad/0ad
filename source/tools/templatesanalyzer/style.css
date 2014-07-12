@@ -2,19 +2,60 @@ html
 {
 	font-family: arial;
 }
+body
+{
+	padding: 25px;
+	padding-top: 0px;
+	margin:0px;
+}
+h1
+{
+	font-size: 48px;
+	text-align: center;
+}
+h2
+{
+	margin-left: -25px;
+	padding-left: 60px;
+	padding-bottom: 3px;
+	border-bottom: 2px #F88 solid;
+	width: 500px;
+	font-size: 30px;
+	font-style: italic;
+}
+h3
+{
+	border-bottom: 1px #33AAFF solid;
+	text-align: center;
+	font-size: 25px;
+	font-weight: normal;
+}
+.UnitList td
+{
+	white-space:nowrap;
+}
+
 .ComparisonTable
 {
-	margin-top: 400px;
+	margin-top: 200px;
 	border-collapse: collapse;
 	border:1px black;
 	font-size: 18px;
+	margin-bottom: 40px;
 }
+
 .ComparisonTable td
 {
 	width:20px;
 	height: 20px;
 	text-align: center;
 }
+
+.ComparisonTable .Separator
+{
+	min-width:50px;
+}
+
 .ComparisonTable th
 {
 	text-align: right;
@@ -30,14 +71,13 @@ html
   	max-width: 20px;
   	height: 25px;
   	padding-right:0px;
+  	font-size: 9px;
 }
-
-.WorthList p
+.desc
 {
-	display:block;
-	width: 400px;
-	text-align: right;
-	font-size: 14px;
+	font-style: italic;
+	font-size: 13px;
+	margin-top: -15px;
 }
 .WorthList th
 {
@@ -53,4 +93,23 @@ html
 .WorthList td span
 {
 	display:inline-block;
+}
+
+.AverageComp
+{
+	border-collapse: collapse;
+	font-size: 16px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.AverageComp tr
+{
+	border-bottom: 1px #DDD solid;
+	height:28px;
+	text-align: right;
+}
+.AverageComp td
+{
+	text-align: center;
+	width: 150px;
 }
