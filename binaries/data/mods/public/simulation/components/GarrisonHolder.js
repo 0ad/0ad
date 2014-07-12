@@ -611,6 +611,10 @@ GarrisonHolder.prototype.OnGlobalOwnershipChanged = function(msg)
 			this.entities.splice(entityIndex, 1);
 			Engine.PostMessage(this.entity, MT_GarrisonedUnitsChanged, { "added" : [], "removed": [msg.entity] });
 			this.UpdateGarrisonFlag();
+
+			for (var pt of this.visibleGarrisonPoints)
+				if (pt.entity == msg.entity)
+					pt.entity = null;
 		}
 		else if(!IsOwnedByMutualAllyOfEntity(this.entity, this.entities[entityIndex]))
 			this.EjectOrKill([this.entities[entityIndex]]);
