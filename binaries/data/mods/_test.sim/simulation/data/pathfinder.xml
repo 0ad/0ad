@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Pathfinder>
+  <!-- Sets limit on the number of same turns moves we will process -->
+  <!-- Setting the value to 0 disable this functionality -->
+  <MaxSameTurnMoves>64</MaxSameTurnMoves>
+  
   <PassabilityClasses>
+
+    <!-- Unit pathfinding classes: -->
+    <unrestricted/>
     <default>
       <MaxWaterDepth>2</MaxWaterDepth>
       <MaxTerrainSlope>1.0</MaxTerrainSlope>
@@ -8,8 +15,37 @@
     <ship>
       <MinWaterDepth>1</MinWaterDepth>
     </ship>
+    <!-- Building construction classes:
+    * Land is used for most buildings, which must be away
+        from water and not on cliffs or mountains.
+    * Shore is used for docks, which must be near water and
+        land, yet shallow enough for builders to approach.
+    -->
+    <building-land>
+      <MaxWaterDepth>0</MaxWaterDepth>
+      <MinShoreDistance>1.0</MinShoreDistance>
+      <MaxTerrainSlope>1.0</MaxTerrainSlope>
+    </building-land>
+    <building-shore>
+      <MaxShoreDistance>2.0</MaxShoreDistance>
+      <MaxTerrainSlope>1.25</MaxTerrainSlope>
+    </building-shore>
+
   </PassabilityClasses>
+  
+  <!--
+    Warning: Movement costs are a subtle tradeoff between
+    pathfinding accuracy and computation cost. Be extremely
+    careful if you change them.
+    (Speeds are safer to change, but ought to be kept roughly
+    in sync with costs.)
+  -->
   <MovementClasses>
     <default Speed="1.0" Cost="1.08"/>
+    <city Speed="1.0" Cost="1.0">
+      <UnitClasses>
+        <infantry Speed="1.4" Cost="0.6"/>
+      </UnitClasses>
+    </city>
   </MovementClasses>
 </Pathfinder>
