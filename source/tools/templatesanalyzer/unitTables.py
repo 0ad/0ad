@@ -16,13 +16,12 @@ AddedTemplates = ["template_unit_support_female_citizen.xml", "template_unit_cha
 # Those describe Civs to analyze and buildings to consider.
 # That way you can restrict to some buildings specifically.
 Civs = ["spart", "athen", "mace", "rome", "cart", "pers", "maur", "gaul", "brit", "iber"]
-#Civs = ["spart","mace", "gaul"]
+#Civs = ["rome","pers"]
 CivBuildings = ["civil_centre", "barracks","gymnasion", "stables", "elephant_stables", "fortress", "embassy_celtic", "embassy_italiote", "embassy_iberian"]
 #CivBuildings = ["civil_centre", "barracks"]
 
 # Remote Civ templates with those strings in their name.
-FilterOut = ["hero", "mecha", "support", "elephant"]
-
+FilterOut = ["hero", "mecha", "support"]
 
 # Graphic parameters: affects only how the data is shown
 ComparativeSortByCav = True
@@ -37,10 +36,16 @@ paramDPSImp = 5
 paramHPImp = 3	# Decrease to make more important
 paramRessImp = { "food" : 1.0, "wood" : 1.0, "stone" : 2.0, "metal" : 1.5 }
 paramBuildTimeImp = 0.5	# Sane values are 0-1, though more is OK.
-paramSpeedImp = 0.3		# Sane values are 0-1, anything else will be weird.
+paramSpeedImp = 0.2		# Sane values are 0-1, anything else will be weird.
 paramRangedCoverage = 1.0  	# Sane values are 0-1, though more is OK.
 paramRangedMode = "Average"	#Anything but "Average" is "Max"
- 
+paramMicroAutoSpeed = 2.5	# Give a small advantage to ranged units faster than melee units (by at least this parameter). Making this too high will disable this advantage. This simulates the advantage a bit of micro would give
+paramMicroPerfectSpeed = 5.0	# Likewise, only this assumes perfect micro. Thus a ranged unit a lot faster is invincible. For example chariot v Elephant is a large win for elephants without this, but a large win for chariots with, since chariots can easily outmaneuver elephants if microed perfectly.
+
+# This is the path to the /templates/ folder to consider. Change this for mod support.
+basePath = os.path.realpath(__file__).replace("unitTables.py","") + "../../../binaries/data/mods/public/simulation/templates/"
+
+
 def htbout(file, balise, value):
 	file.write("<" + balise + ">" + value + "</" + balise + ">\n" )
 def htout(file, value):
@@ -177,6 +182,13 @@ def WriteUnit(Name, UnitDict):
 	
 	rstr += "<td>Costs: " + UnitDict["Cost"]["food"] + "F / " + UnitDict["Cost"]["wood"] + "W / " + UnitDict["Cost"]["stone"] + "S / " + UnitDict["Cost"]["metal"] + "M</td>\n"
 
+	if UnitDict["Ranged"] == "True":
+		rstr += "<td>Attack: " + str(UnitDict["Attack"]["Ranged"]["Hack"]) + "/" + str(UnitDict["Attack"]["Ranged"]["Pierce"]) + "/" + str(UnitDict["Attack"]["Ranged"]["Crush"]) + "</td>\n"
+	else:
+		rstr += "<td>Attack: " + str(UnitDict["Attack"]["Melee"]["Hack"]) + "/" + str(UnitDict["Attack"]["Melee"]["Pierce"]) + "/" + str(UnitDict["Attack"]["Melee"]["Crush"]) + "</td>\n"
+	
+	rstr += "<td>Armour: " + str(UnitDict["Armour"]["Hack"]) + "/" + str(UnitDict["Armour"]["Pierce"]) + "/" + str(UnitDict["Armour"]["Crush"]) + "</td>\n"
+
 	rstr += "<td>Classes: "
 	for classe in UnitDict["Classes"]:
 		rstr += classe + " "
@@ -297,18 +309,29 @@ def Compare2(UnitDictA,UnitDictB):
 	for att in AttackTypes:
 		ADPS += float(UnitDictA['Attack'][AAttack][att]) * 0.9**float(UnitDictB['Armour'][att])
 		BDPS += float(UnitDictB['Attack'][BAttack][att]) * 0.9**float(UnitDictA['Armour'][att])
-		#Check if A is bonused against B and vice versa
-		if (paramFactorCounters == True):
-			ADPS *= GetAttackBonus(UnitDictA,UnitDictB)
-			BDPS *= GetAttackBonus(UnitDictB,UnitDictA)
+	#Check if A is bonused against B and vice versa
+	if (paramFactorCounters == True):
+		ADPS *= GetAttackBonus(UnitDictA,UnitDictB)
+		BDPS *= GetAttackBonus(UnitDictB,UnitDictA)
 
 	if (AAttack == "Ranged"):
-		ADPS += float(UnitDictA["Range"]) / 10
+		ADPS += float(UnitDictA["Range"]) / float(UnitDictB["WalkSpeed"])
 	if (BAttack == "Ranged"):
-		BDPS += float(UnitDictB["Range"]) / 10
+		BDPS += float(UnitDictB["Range"]) / float(UnitDictA["WalkSpeed"])
 
 	ADPS /= (float(UnitDictA['RepeatRate'][AAttack])+float(UnitDictA['PrepRate'][AAttack])+1)/1000
 	BDPS /= (float(UnitDictB['RepeatRate'][BAttack])+float(UnitDictB['PrepRate'][BAttack])+1)/1000
+
+	#Ranged units can get a real advantage against slower enemy units.
+	if AAttack == "Ranged" and BAttack != "Ranged" and float(UnitDictA["WalkSpeed"]) - paramMicroAutoSpeed > float(UnitDictB["WalkSpeed"]):
+		ADPS += 20
+	elif BAttack == "Ranged" and AAttack != "Ranged" and float(UnitDictB["WalkSpeed"]) - paramMicroAutoSpeed > float(UnitDictA["WalkSpeed"]):
+		BDPS += 20
+
+	if AAttack == "Ranged" and BAttack != "Ranged" and float(UnitDictA["WalkSpeed"]) - paramMicroPerfectSpeed > float(UnitDictB["WalkSpeed"]):
+		ADPS += 5000
+	elif BAttack == "Ranged" and AAttack != "Ranged" and float(UnitDictB["WalkSpeed"]) - paramMicroPerfectSpeed > float(UnitDictA["WalkSpeed"]):
+		BDPS += 5000
 
 	AWorth += int(UnitDictA['HP']) / (BDPS+1);
 	BWorth += int(UnitDictB['HP']) / (ADPS+1);
@@ -461,9 +484,6 @@ def CivUnitComparisons(CivA, CivB):
 	else:
 		f.write("<td style=\"background-color:rgb(255,0,0);\">No, too weak</td>")
 	f.write("<td class=\"Separator\">" + str(int(CivA["RangedUnitsWorth"] / CivB["RangedUnitsWorth"]*100)) + "%</td><td class=\"UnitTd\">" + MaxMinEffUnit + "</td><td class=\"UnitTd\">" + MinMaxEffUnit + "</td></tr>")
-
-
-basePath = os.path.realpath(__file__).replace("unitTables.py","") + "../../../binaries/data/mods/public/simulation/templates/"
 
 f = open(os.path.realpath(__file__).replace("unitTables.py","") + 'unit_summary_table.html', 'w')
 
