@@ -1267,6 +1267,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 bool ScriptInterface::Eval(const char* code)
 {
+	JSAutoRequest rq(m->m_cx);
 	JS::RootedValue rval(m->m_cx);
 	return Eval_(code, &rval);
 }
