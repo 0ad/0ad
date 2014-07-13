@@ -26,7 +26,7 @@
 #define NUMBERED_LIST_BALANCED(z, i, data) BOOST_PP_COMMA_IF(i) data##i
 // Some other things
 #define TYPED_ARGS(z, i, data) , T##i a##i
-#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, i < argc ? JS_ARGV(cx, vp)[i] : JS::UndefinedValue(), a##i)) return false;
+#define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, i < args.length() ? args.handleAt(i) : JS::UndefinedHandleValue, a##i)) return false;
 
 // List-generating macros, named roughly after their first list item
 #define TYPENAME_T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, typename T) // "typename T0, typename T1, "

@@ -51,8 +51,8 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Value& 
 
 	// Otherwise we need to construct a wrapper object
 	// (TODO: cache wrapper objects?)
-	JSClass* cls = val->GetJSClass();
-	if (!cls)
+	JS::RootedObject obj(cx);
+	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface, &obj))
 	{
 		// Report as an error, since scripts really shouldn't try to use unscriptable interfaces
 		LOGERROR(L"IComponent does not have a scriptable interface");
@@ -60,15 +60,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Value& 
 		return;
 	}
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, cls, NULL, NULL));
-	if (!obj)
-	{
-		LOGERROR(L"Failed to construct IComponent script object");
-		ret = JS::UndefinedValue();
-		return;
-	}
 	JS_SetPrivate(obj, static_cast<void*>(val));
-
 	ret = JS::ObjectValue(*obj);
 }
 
@@ -91,7 +83,7 @@ template<> void ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, JS::V
 		ret = JSVAL_VOID;
 }
 
-template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, jsval v, CColor& out)
+template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValue v, CColor& out)
 {
 	if (!v.isObject())
 		FAIL("jsval not an object");
@@ -142,7 +134,7 @@ template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::Value& ret, 
 	ret = JS::ObjectValue(*obj);
 }
 
-template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, jsval v, fixed& out)
+template<> bool ScriptInterface::FromJSVal<fixed>(JSContext* cx, JS::HandleValue v, fixed& out)
 {
 	JSAutoRequest rq(cx);
 	double ret;
@@ -159,7 +151,7 @@ template<> void ScriptInterface::ToJSVal<fixed>(JSContext* UNUSED(cx), JS::Value
 	ret = JS::NumberValue(val.ToDouble());
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, jsval v, CFixedVector3D& out)
+template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, JS::HandleValue v, CFixedVector3D& out)
 {
 	if (!v.isObject())
 		return false; // TODO: report type error
@@ -210,7 +202,7 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Valu
 	ret = JS::ObjectValue(*obj);
 }
 
-template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, jsval v, CFixedVector2D& out)
+template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::HandleValue v, CFixedVector2D& out)
 {
 	JSAutoRequest rq(cx);
 	if (!v.isObject())

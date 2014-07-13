@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,8 +35,7 @@ class ICmpTemplateManager : public IComponent
 public:
 	/**
 	 * Loads the template XML file identified by 'templateName' (including inheritance
-	 * from parent XML files), and applies the techs that are currently active for
-	 * player 'playerID', for use with a new entity 'ent'.
+	 * from parent XML files) for use with a new entity 'ent'.
 	 * The returned CParamNode must not be used for any entities other than 'ent'.
 	 *
 	 * If templateName is of the form "actor|foo" then it will load a default
@@ -110,7 +109,6 @@ public:
 	 * TODO:
 	 * When an entity changes template (e.g. upgrades) or player ownership, it
 	 * should call some Reload(ent, templateName, playerID) function to load its new template.
-	 * When a player researches new techs, it should call Reload(playerID).
 	 * When a file changes on disk, something should call Reload(templateName).
 	 *
 	 * Reloading should happen by sending a message to affected components (containing

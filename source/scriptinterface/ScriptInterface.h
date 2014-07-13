@@ -328,7 +328,7 @@ public:
 	/**
 	 * Convert a jsval to a C++ type. (This might trigger GC.)
 	 */
-	template<typename T> static bool FromJSVal(JSContext* cx, jsval val, T& ret);
+	template<typename T> static bool FromJSVal(JSContext* cx, const JS::HandleValue val, T& ret);
 
 	/**
 	 * Convert a C++ type to a jsval. (This might trigger GC. The return
@@ -397,9 +397,9 @@ public:
 	jsval ReadStructuredClone(const shared_ptr<StructuredClone>& ptr);
 
 private:
-	bool CallFunction_(jsval val, const char* name, uint argc, jsval* argv, jsval& ret);
-	bool Eval_(const char* code, jsval& ret);
-	bool Eval_(const wchar_t* code, jsval& ret);
+	bool CallFunction_(JS::HandleValue val, const char* name, uint argc, jsval* argv, JS::MutableHandleValue ret);
+	bool Eval_(const char* code, JS::MutableHandleValue ret);
+	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret);
 	bool SetGlobal_(const char* name, jsval value, bool replace);
 	bool SetProperty_(jsval obj, const char* name, jsval value, bool readonly, bool enumerate);
 	bool SetProperty_(jsval obj, const wchar_t* name, jsval value, bool readonly, bool enumerate);
@@ -413,8 +413,8 @@ private:
 	class CustomType
 	{
 	public:
-		JSObject *	m_Object;
-		JSClass *	m_Class;
+		JSObject*	m_Prototype;
+		JSClass*	m_Class;
 		JSNative 	m_Constructor;
 	};
 	void Register(const char* name, JSNative fptr, size_t nargs);
@@ -447,8 +447,11 @@ public:
 template<typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, R& ret)
 {
-	jsval jsRet;
-	bool ok = CallFunction_(val, name, 0, NULL, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	bool ok = CallFunction_(val1, name, 0, NULL, &jsRet);
 	if (!ok)
 		return false;
 	return FromJSVal(GetContext(), jsRet, ret);
@@ -457,85 +460,113 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, R& ret)
 template<typename T0>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0)
 {
-	jsval jsRet;
-	jsval argv[1];
-	ToJSVal(GetContext(), argv[0], a0);
-	return CallFunction_(val, name, 1, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(1);
+	ToJSVal(cx, argv[0], a0);
+	return CallFunction_(val1, name, 1, argv.begin(), &jsRet);
 }
 
 template<typename T0, typename T1>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1)
 {
-	jsval jsRet;
-	jsval argv[2];
-	ToJSVal(GetContext(), argv[0], a0);
-	ToJSVal(GetContext(), argv[1], a1);
-	return CallFunction_(val, name, 2, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(2);
+	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv[1], a1);
+	return CallFunction_(val1, name, 2, argv.begin(), &jsRet);
 }
 
 template<typename T0, typename T1, typename T2>
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2)
 {
-	jsval jsRet;
-	jsval argv[3];
-	ToJSVal(GetContext(), argv[0], a0);
-	ToJSVal(GetContext(), argv[1], a1);
-	ToJSVal(GetContext(), argv[2], a2);
-	return CallFunction_(val, name, 3, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(3);
+	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv[1], a1);
+	ToJSVal(cx, argv[2], a2);
+	return CallFunction_(val1, name, 3, argv.begin(), &jsRet);
 }
 
 template<typename T0, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R& ret)
 {
-	jsval jsRet;
-	jsval argv[1];
-	ToJSVal(GetContext(), argv[0], a0);
-	bool ok = CallFunction_(val, name, 1, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(1);
+	ToJSVal(cx, argv[0], a0);
+	bool ok = CallFunction_(val1, name, 1, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
-	return FromJSVal(GetContext(), jsRet, ret);
+	return FromJSVal(cx, jsRet, ret);
 }
 
 template<typename T0, typename T1, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, R& ret)
 {
-	jsval jsRet;
-	jsval argv[2];
-	ToJSVal(GetContext(), argv[0], a0);
-	ToJSVal(GetContext(), argv[1], a1);
-	bool ok = CallFunction_(val, name, 2, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(2);
+	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv[1], a1);
+	bool ok = CallFunction_(val1, name, 2, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
-	return FromJSVal(GetContext(), jsRet, ret);
+	return FromJSVal(cx, jsRet, ret);
 }
 
 template<typename T0, typename T1, typename T2, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, R& ret)
 {
-	jsval jsRet;
-	jsval argv[3];
-	ToJSVal(GetContext(), argv[0], a0);
-	ToJSVal(GetContext(), argv[1], a1);
-	ToJSVal(GetContext(), argv[2], a2);
-	bool ok = CallFunction_(val, name, 3, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(3);
+	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv[1], a1);
+	ToJSVal(cx, argv[2], a2);
+	bool ok = CallFunction_(val1, name, 3, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
-	return FromJSVal(GetContext(), jsRet, ret);
+	return FromJSVal(cx, jsRet, ret);
 }
 
 template<typename T0, typename T1, typename T2, typename T3, typename R>
 bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, const T1& a1, const T2& a2, const T3& a3, R& ret)
 {
-	jsval jsRet;
-	jsval argv[4];
-	ToJSVal(GetContext(), argv[0], a0);
-	ToJSVal(GetContext(), argv[1], a1);
-	ToJSVal(GetContext(), argv[2], a2);
-	ToJSVal(GetContext(), argv[3], a3);
-	bool ok = CallFunction_(val, name, 4, argv, jsRet);
+	JSContext* cx = GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue jsRet(cx);
+	JS::RootedValue val1(cx, val);
+	JS::AutoValueVector argv(cx);
+	argv.resize(4);
+	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv[1], a1);
+	ToJSVal(cx, argv[2], a2);
+	ToJSVal(cx, argv[3], a3);
+	bool ok = CallFunction_(val1, name, 4, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
-	return FromJSVal(GetContext(), jsRet, ret);
+	return FromJSVal(cx, jsRet, ret);
 }
 
 template<typename T>
@@ -592,8 +623,9 @@ bool ScriptInterface::GetPropertyInt(jsval obj, int name, T& out)
 template<typename T, typename CHAR>
 bool ScriptInterface::Eval(const CHAR* code, T& ret)
 {
-	jsval rval;
-	if (! Eval_(code, rval))
+	JSAutoRequest rq(GetContext());
+	JS::RootedValue rval(GetContext());
+	if (! Eval_(code, &rval))
 		return false;
 	return FromJSVal(GetContext(), rval, ret);
 }

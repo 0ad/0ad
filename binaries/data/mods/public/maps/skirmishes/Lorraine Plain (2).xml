@@ -15,15 +15,13 @@
 		</Fog>
 		<Water>
 			<WaterBody>
-				<Type>default</Type>
+				<Type>ocean</Type>
 				<Colour r="0.329412" g="0.337255" b="0.458824"/>
+				<Tint r="0.603922" g="0.537255" b="0.482353"/>
 				<Height>16.3672</Height>
-				<Shininess>54.9316</Shininess>
 				<Waviness>4.0332</Waviness>
 				<Murkiness>0.901367</Murkiness>
-				<Tint r="0.603922" g="0.537255" b="0.482353"/>
-				<ReflectionTint r="0.501961" g="1" b="1"/>
-				<ReflectionTintStrength>0.0996094</ReflectionTintStrength>
+				<WindAngle>0</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,14 +33,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="368.178" y="128.055" z="671.465"/>
-		<Rotation angle="0"/>
+		<Position x="391.294" y="137.17" z="456.04"/>
+		<Rotation angle="0.580856"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "The map is cut through the center by a river traversing east-west with some shallows.\u000a\u000aFairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\u000a\u000aCiv Territories are divided by main river and tributaries (with necessary shallows for crossings).",
+  "Description": "The map is cut through the center by a river traversing east-west with some shallows.\n\nFairly open-wooded and basically flat. Plenty of building room. Well balanced resources.\n\nCiv Territories are divided by main river and tributaries (with necessary shallows for crossings).",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,
@@ -8479,33 +8477,33 @@
 		<Entity uid="1428">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="238.59615" z="545.74073"/>
+			<Position x="238.77161" z="545.24561"/>
 			<Orientation y="-2.34412"/>
 			<Obstruction group="7539" group2="7535"/>
 		</Entity>
 		<Entity uid="1429">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="229.12664" z="540.48035"/>
+			<Position x="234.24683" z="547.99433"/>
 			<Orientation y="-1.66514"/>
 			<Obstruction group="7539" group2="7535"/>
 		</Entity>
 		<Entity uid="1430">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="224.01906" z="541.50495"/>
+			<Position x="229.13926" z="549.01893"/>
 			<Orientation y="-0.47397"/>
 		</Entity>
 		<Entity uid="1431">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="215.39055" z="551.29352"/>
+			<Position x="220.51075" z="558.8075"/>
 			<Orientation y="-0.37563"/>
 		</Entity>
 		<Entity uid="1432">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="211.50092" z="556.70508"/>
+			<Position x="216.62113" z="564.21906"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1433">
@@ -8926,7 +8924,7 @@
 		<Entity uid="1502">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="255.24228" z="550.61194"/>
+			<Position x="256.43805" z="552.87989"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1503">
@@ -8938,7 +8936,7 @@
 		<Entity uid="1504">
 			<Template>gaia/flora_tree_euro_beech</Template>
 			<Player>0</Player>
-			<Position x="199.27833" z="567.40857"/>
+			<Position x="204.57993" z="574.9217"/>
 			<Orientation y="2.35621"/>
 		</Entity>
 		<Entity uid="1505">

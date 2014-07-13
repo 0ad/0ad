@@ -52,7 +52,7 @@
 	JSAutoRequest rq(scriptInterface.GetContext()); \
 	if (! JS_GetProperty(scriptInterface.GetContext(), obj, #name, prop.address())) \
 		return NULL; \
-	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop.get(), name)) \
+	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop, name)) \
 		return NULL; \
 	}
 

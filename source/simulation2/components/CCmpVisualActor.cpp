@@ -532,7 +532,6 @@ private:
 	void ReloadActor();
 
 	void Update(fixed turnLength);
-	void UpdateVisibility();
 };
 
 REGISTER_COMPONENT_TYPE(VisualActor)

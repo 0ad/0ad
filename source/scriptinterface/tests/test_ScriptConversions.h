@@ -52,8 +52,8 @@ class TestScriptConversions : public CxxTest::TestSuite
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
 
-		JS::Value v1;
-		ScriptInterface::ToJSVal(cx, v1, value);
+		JS::RootedValue v1(cx);
+		ScriptInterface::ToJSVal(cx, v1.get(), value);
 
 		std::string source;
 		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
@@ -62,7 +62,7 @@ class TestScriptConversions : public CxxTest::TestSuite
 			TS_ASSERT_STR_EQUALS(source, expected);
 
 		T v2 = T();
-		TS_ASSERT(ScriptInterface::FromJSVal(script.GetContext(), v1, v2));
+		TS_ASSERT(ScriptInterface::FromJSVal(cx, v1, v2));
 		TS_ASSERT_EQUALS(value, v2);
 	}
 
@@ -163,8 +163,8 @@ public:
 		JSAutoRequest rq(cx);
 
 		float f = 0;
-		JS::Value testNANVal;
-		ScriptInterface::ToJSVal(cx, testNANVal, NAN);
+		JS::RootedValue testNANVal(cx);
+		ScriptInterface::ToJSVal(cx, testNANVal.get(), NAN);
 		TS_ASSERT(ScriptInterface::FromJSVal(cx, testNANVal, f));
 		TS_ASSERT(isnan(f));
 	}
