@@ -21,7 +21,8 @@ CivBuildings = ["civil_centre", "barracks","gymnasion", "stables", "elephant_sta
 #CivBuildings = ["civil_centre", "barracks"]
 
 # Remote Civ templates with those strings in their name.
-FilterOut = ["hero", "mecha", "support"]
+FilterOut = ["hero", "mecha", "support", "elephant"]
+
 
 # Graphic parameters: affects only how the data is shown
 ComparativeSortByCav = True
@@ -30,13 +31,16 @@ SortTypes = ["Support","Pike","Spear","Sword", "Archer","Javelin","Sling","Eleph
 ShowCivLists = False
 
 # Parameters: affects the data
-paramFactorSpeed = True;
 paramIncludePopCost = False
 paramFactorCounters = True;	# False means attack bonuses are not counted.
 paramDPSImp = 5
 paramHPImp = 3	# Decrease to make more important
 paramRessImp = { "food" : 1.0, "wood" : 1.0, "stone" : 2.0, "metal" : 1.5 }
-
+paramBuildTimeImp = 0.5	# Sane values are 0-1, though more is OK.
+paramSpeedImp = 0.3		# Sane values are 0-1, anything else will be weird.
+paramRangedCoverage = 1.0  	# Sane values are 0-1, though more is OK.
+paramRangedMode = "Average"	#Anything but "Average" is "Max"
+ 
 def htbout(file, balise, value):
 	file.write("<" + balise + ">" + value + "</" + balise + ">\n" )
 def htout(file, value):
@@ -168,6 +172,8 @@ def WriteUnit(Name, UnitDict):
 	rstr += "<td>HP: " + UnitDict["HP"] + "</td>\n"
 
 	rstr += "<td>BuildTime: " + UnitDict["BuildTime"] + "</td>\n"
+
+	rstr += "<td>Speed: " + UnitDict["WalkSpeed"] + "</td>\n"
 	
 	rstr += "<td>Costs: " + UnitDict["Cost"]["food"] + "F / " + UnitDict["Cost"]["wood"] + "W / " + UnitDict["Cost"]["stone"] + "S / " + UnitDict["Cost"]["metal"] + "M</td>\n"
 
@@ -229,10 +235,12 @@ def CalcValue(UnitDict):
 
 	Worth["Cost"] = TotalCost/400.0;
 
-	Worth["Cost"] *= int(UnitDict['BuildTime'])/12.0;
+	Worth["Cost"] = Worth["Cost"] * int(UnitDict['BuildTime'])/12.0 * paramBuildTimeImp + (1.0-paramBuildTimeImp) * Worth["Cost"];
 
 	# Speed makes you way less evasive, and you can chase less.
-	Worth["Cost"] /= float(UnitDict["WalkSpeed"])/10.0;
+	# It's not really a cost so just decrease Attack and Defence
+	Worth["Attack"] = Worth["Attack"] * float(UnitDict["WalkSpeed"])/10.0 * paramSpeedImp + (1.0-paramSpeedImp) * Worth["Attack"];
+	Worth["Defence"] = Worth["Defence"] * float(UnitDict["WalkSpeed"])/10.0 * paramSpeedImp + (1.0-paramSpeedImp) * Worth["Defence"];
 
 	Worth["Total"] = (Worth["Attack"] + Worth["Defence"])/Worth["Cost"]
 
@@ -305,10 +313,8 @@ def Compare2(UnitDictA,UnitDictB):
 	AWorth += int(UnitDictA['HP']) / (BDPS+1);
 	BWorth += int(UnitDictB['HP']) / (ADPS+1);
 
-	if (paramFactorSpeed):
-		SpeedRatio = float(UnitDictA["WalkSpeed"]) / float(UnitDictB["WalkSpeed"])
-	else:
-		SpeedRatio = 1.0
+	SpeedRatio = 1.0-paramSpeedImp + paramSpeedImp * float(UnitDictA["WalkSpeed"]) / float(UnitDictB["WalkSpeed"])
+
 	return AWorth / BWorth * SpeedRatio
 
 
@@ -391,6 +397,71 @@ def WriteWorthList(Units):
 
 	f.write("</table>")
 
+def CivUnitComparisons(CivA, CivB):
+	averageEffNoCost = 0
+	MaxMinEffNoCost = 0
+	MinMaxEffNoCost = 999999
+	averageEff = 0
+	MaxMinEff = 0
+	MinMaxEff = 999999
+	MaxMinEffUnit = ""
+	MinMaxEffUnit = ""
+
+	for theirUnit in CivB["Units"]:
+		unitAverageNoCost = 0
+		unitMaxNoCost = 0
+		unitAverage = 0
+		unitMax = 0
+		for myUnit in CivA["Units"]:
+			eff = Compare2(CivA["Units"][myUnit],CivB["Units"][theirUnit])
+			eff = (eff * CivA["RangedUnitsWorth"] / CivB["RangedUnitsWorth"] * paramRangedCoverage) + eff * (1.0-paramRangedCoverage)
+			unitAverageNoCost += eff
+			if (eff > unitMaxNoCost): unitMaxNoCost = eff
+			eff /= CalcValue(CivA["Units"][myUnit])["Cost"] / CalcValue(CivB["Units"][theirUnit])["Cost"]
+			unitAverage += eff
+			if (eff > unitMax): unitMax = eff
+		unitAverageNoCost /= len(CivB["Units"])
+		unitAverage /= len(CivB["Units"])
+		averageEffNoCost += unitAverageNoCost
+		averageEff += unitAverage
+		if (unitMax < MinMaxEff):
+			MinMaxEff = unitMax
+			MinMaxEffUnit = theirUnit
+		if (unitMaxNoCost < MinMaxEffNoCost): MinMaxEffNoCost = unitMaxNoCost
+
+	for myUnit in CivA["Units"]:
+		unitMinNoCost = 9999999
+		unitMin = 9999999
+		for theirUnit in CivB["Units"]:
+			eff = Compare2(CivA["Units"][myUnit],CivB["Units"][theirUnit])
+			eff = (eff * CivA["RangedUnitsWorth"] / CivB["RangedUnitsWorth"] * paramRangedCoverage) + eff * (1.0-paramRangedCoverage)
+			if (eff < unitMinNoCost): unitMinNoCost = eff
+			eff /= CalcValue(CivA["Units"][myUnit])["Cost"] / CalcValue(CivB["Units"][theirUnit])["Cost"]
+			if (eff < unitMin): unitMin = eff
+		if (unitMin > MaxMinEff):
+			MaxMinEff = unitMin
+			MaxMinEffUnit = myUnit
+		if (unitMinNoCost > MaxMinEffNoCost): MaxMinEffNoCost = unitMinNoCost
+
+	f.write("<tr><th>" + oCiv + "</th>")
+	averageEffNoCost /= len(CivA["Units"])
+	averageEff /= len(CivA["Units"])
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (averageEffNoCost-1) * 90)) + "," + str(int((averageEffNoCost-1) * 90)) 	+ ",0,0.7);\">" + str("%.2f" % averageEffNoCost) + "</td>")
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (MaxMinEffNoCost-0.3) * 360)) + "," + str(int((MaxMinEffNoCost-0.3) * 360))+ ",0,0.7);\">" + str("%.2f" % MaxMinEffNoCost) + "</td>")
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (MinMaxEffNoCost-1) * 130)) + "," + str(int((MinMaxEffNoCost-1) * 130)) 	+ ",0,0.7);\">" + str("%.2f" % MinMaxEffNoCost) + "</td>")
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (averageEff-0.5) * 110)) + "," + str(int((averageEff-0.5) * 110)) 			+ ",0,0.7);\">" + str("%.2f" % averageEff) + "</td>")
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (MaxMinEff-0.3) * 360)) + "," + str(int((MaxMinEff-0.3) * 360)) 			+ ",0,0.7);\">" + str("%.2f" % MaxMinEff) + "</td>")
+	f.write("<td style=\"background-color:rgba(" + str(int(255 - (MinMaxEff-1) * 130)) + "," + str(int((MinMaxEff-1) * 130)) 				+ ",0,0.7);\">" + str("%.2f" % MinMaxEff) + "</td>")
+	if MaxMinEff <= MinMaxEff and abs(MaxMinEff * MinMaxEff - 1.0) < 0.1:
+		f.write("<td style=\"background-color:rgb(0,255,0);\">Surely</td>")
+	elif MaxMinEff <= MinMaxEff and abs(MaxMinEff * MinMaxEff - 1.0) < 0.2:
+		f.write("<td style=\"background-color:rgb(255,160,0);\">Probably</td>")
+	elif MaxMinEff > MinMaxEff or MaxMinEff * MinMaxEff > 1.0:
+		f.write("<td style=\"background-color:rgb(255,0,0);\">No, too strong</td>")
+	else:
+		f.write("<td style=\"background-color:rgb(255,0,0);\">No, too weak</td>")
+	f.write("<td class=\"Separator\">" + str(int(CivA["RangedUnitsWorth"] / CivB["RangedUnitsWorth"]*100)) + "%</td><td class=\"UnitTd\">" + MaxMinEffUnit + "</td><td class=\"UnitTd\">" + MinMaxEffUnit + "</td></tr>")
+
 
 basePath = os.path.realpath(__file__).replace("unitTables.py","") + "../../../binaries/data/mods/public/simulation/templates/"
 
@@ -405,6 +476,7 @@ os.chdir(basePath)
 #Load values up.
 templates = {};	# Values
 
+############################################################
 #Whilst loading I also write them.
 htbout(f,"h2", "Units")
 f.write("<table class=\"UnitList\">")
@@ -434,124 +506,85 @@ f.write("<p class=\"desc\">Costs are estimated as the sum of Food*" + str(paramR
 f.write("Population cost is " + ("counted" if paramIncludePopCost else "not counted") + " in the costs.<br/>")
 WriteWorthList(templates)
 
-#Load Civ specific templates
+############################################################
+# Load Civ specific templates
 # Will be loaded by loading buildings, and templates will be set the Civ building, the Civ and in general.
 # Allows to avoid special units.
-CivTemplatesByBuilding = {};
-CivTemplatesByCiv = {};
+CivData = {};
 CivTemplates = {};
 
 for Civ in Civs:
 	if ShowCivLists:
 		htbout(f,"h2", Civ)
 		f.write("<table class=\"UnitList\">")
-	CivTemplatesByCiv[Civ] = {}
-	CivTemplatesByBuilding[Civ] = {}
+	CivData[Civ] = { "Units" : {}, "Buildings" : {}, "RangedUnits" : {} }
 	for building in CivBuildings:
-		CivTemplatesByBuilding[Civ][building] = {}
+		CivData[Civ]["Buildings"][building] = {}
 		bdTemplate = "./structures/" + Civ + "_" + building + ".xml"
 		TrainableUnits = []
 		if (os.path.isfile(bdTemplate)):
 			Template = ET.parse(bdTemplate)
 			if (Template.find("./ProductionQueue/Entities") != None):
 				TrainableUnits = Template.find("./ProductionQueue/Entities").text.replace(" ","").replace("\t","").split("\n")
+		# We have the templates this building can train.
 		for UnitFile in TrainableUnits:
 			breakIt = False
 			for filter in FilterOut:
 				if UnitFile.find(filter) != -1: breakIt = True
 			if breakIt: continue
+
 			if (os.path.isfile(UnitFile + ".xml")):
-				templates[UnitFile + ".xml"] = CalcUnit(UnitFile + ".xml")
-				CivTemplatesByBuilding[Civ][building][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
-				if UnitFile + ".xml" not in CivTemplatesByCiv[Civ]:
+				templates[UnitFile + ".xml"] = CalcUnit(UnitFile + ".xml")	# Parse
+				CivData[Civ]["Buildings"][building][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
+				if UnitFile + ".xml" not in CivData[Civ]["Units"]:
 					CivTemplates[UnitFile + ".xml"] = templates[UnitFile + ".xml"]
-					CivTemplatesByCiv[Civ][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
+					CivData[Civ]["Units"][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
 					if ShowCivLists:
 						f.write(WriteUnit(UnitFile + ".xml", templates[UnitFile + ".xml"]))
+					if "Ranged" in templates[UnitFile + ".xml"]["Classes"]:
+						CivData[Civ]["RangedUnits"][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
 	f.write("</table>")
 
+############################################################
 # Writing Civ Specific Comparisons.
-f.write("<h2>Civ Unit Comparisons</h2>\n")
+f.write("<h2>Civilisation Comparisons</h2>\n")
+
 f.write("<p class=\"desc\">The following graphs attempt to do some analysis of civilizations against each other. ")
-f.write("They use the data in the comparison tables below. The averages are not extremely useful but can give some indications.<br/>")
-f.write("You can deduce some things based on other columns though.<br/><br/>In particular \"Minimal Maximal Efficiency\" is low if there is a unit this civ cannot counter, and \"Maximal Minimal Efficiency\" is high if there is a unit that cannot be countered. If the (minimal) maximal efficiency and the average maximal efficiency are close, this means there are several units for that civ that counter the enemy civ's unit.<br/>The Balance column analyses those two to give some verdict (consider the average effectiveness too though)<br/><br/>Note that \"Counter\" in this data means \"Any unit that is strong against another unit\", so a unit that's simply way stronger than another counts as \"countering it\".<br/>If a civ's average efficiency and average efficiency disregarding costs are very different, this can mean that its costly units are particularly strong (Mauryans fit the bill with elephants).</p>")
+f.write("Different kinds of data: A matrix of units efficiency in a 1v1 fight, a graph of unit worthiness (power/cost), and a statistical analysis of civilizations against each other:<br/>")
+f.write("In this last one in particular, \"Minimal Maximal Efficiency\" is low if there is a unit this civ cannot counter, and \"Maximal Minimal Efficiency\" is high if there is a unit that cannot be countered. If the (minimal) maximal efficiency and the average maximal efficiency are close, this means there are several units for that civ that counter the enemy civ's unit.<br/>The Balance column analyses those two to give some verdict (consider the average effectiveness too though)<br/><br/>Note that \"Counter\" in this data means \"Any unit that is strong against another unit\", so a unit that's simply way stronger than another counts as \"countering it\".<br/>If a civ's average efficiency and average efficiency disregarding costs are very different, this can mean that its costly units are particularly strong (Mauryans fit the bill with elephants).</p>")
+
+for Civ in Civs:
+	CivData[Civ]["RangedUnitsWorth"] = 0
+	for unit in CivData[Civ]["RangedUnits"]:
+		value = CalcValue(CivData[Civ]["RangedUnits"][unit])["Total"]
+		if paramRangedMode == "Average": CivData[Civ]["RangedUnitsWorth"] += value
+		elif value > CivData[Civ]["RangedUnitsWorth"]: CivData[Civ]["RangedUnitsWorth"] = value
+	if (paramRangedMode == "Average" and len(CivData[Civ]["RangedUnits"]) > 0):
+		CivData[Civ]["RangedUnitsWorth"] /= len(CivData[Civ]["RangedUnits"])
 
 for Civ in Civs:
 	f.write("<h3>" + Civ + "</h3>")
-	f.write("<table class=\"AverageComp\">")
-	f.write("<tr><td></td><td>Average Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Maximal Minimal Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Minimal Maximal Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Average Efficiency</td><td>Maximal Minimal Efficiency</td><td>Minimal Maximal Efficiency</td><td>Balance</td></tr>")
-	for oCiv in Civs:
-		averageEffNoCost = 0
-		MaxMinEffNoCost = 0
-		MinMaxEffNoCost = 999999
-		averageEff = 0
-		MaxMinEff = 0
-		MinMaxEff = 999999
-		if (oCiv == Civ):
-			continue
-		for theirUnit in CivTemplatesByCiv[oCiv]:
-			unitAverageNoCost = 0
-			unitMaxNoCost = 0
-			unitAverage = 0
-			unitMax = 0
-			for myUnit in CivTemplatesByCiv[Civ]:
-				eff = Compare2(CivTemplatesByCiv[Civ][myUnit],CivTemplatesByCiv[oCiv][theirUnit])
-				unitAverageNoCost += eff
-				if (eff > unitMaxNoCost): unitMaxNoCost = eff
-				eff /= CalcValue(CivTemplatesByCiv[Civ][myUnit])["Cost"] / CalcValue(CivTemplatesByCiv[oCiv][theirUnit])["Cost"]
-				unitAverage += eff
-				if (eff > unitMax): unitMax = eff
-			unitAverageNoCost /= len(CivTemplatesByCiv[oCiv])
-			unitAverage /= len(CivTemplatesByCiv[oCiv])
-			averageEffNoCost += unitAverageNoCost
-			averageEff += unitAverage
-			if (unitMax < MinMaxEff): MinMaxEff = unitMax
-			if (unitMaxNoCost < MinMaxEffNoCost): MinMaxEffNoCost = unitMaxNoCost
 
-		for myUnit in CivTemplatesByCiv[Civ]:
-			unitMinNoCost = 9999999
-			unitMin = 9999999
-			for theirUnit in CivTemplatesByCiv[oCiv]:
-				eff = Compare2(CivTemplatesByCiv[Civ][myUnit],CivTemplatesByCiv[oCiv][theirUnit])
-				if (eff < unitMinNoCost): unitMinNoCost = eff
-				eff /= CalcValue(CivTemplatesByCiv[Civ][myUnit])["Cost"] / CalcValue(CivTemplatesByCiv[oCiv][theirUnit])["Cost"]
-				if (eff < unitMin): unitMin = eff
-			if (unitMin > MaxMinEff): MaxMinEff = unitMin
-			if (unitMinNoCost > MaxMinEffNoCost): MaxMinEffNoCost = unitMinNoCost
-
-		f.write("<tr><td>" + oCiv + "</td>")
-		averageEffNoCost /= len(CivTemplatesByCiv[Civ])
-		averageEff /= len(CivTemplatesByCiv[Civ])
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (averageEffNoCost-1) * 90)) + "," + str(int((averageEffNoCost-1) * 90)) 	+ ",0,0.7);\">" + str("%.2f" % averageEffNoCost) + "</td>")
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (MaxMinEffNoCost-0.3) * 360)) + "," + str(int((MaxMinEffNoCost-0.3) * 360))+ ",0,0.7);\">" + str("%.2f" % MaxMinEffNoCost) + "</td>")
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (MinMaxEffNoCost-1) * 130)) + "," + str(int((MinMaxEffNoCost-1) * 130)) 	+ ",0,0.7);\">" + str("%.2f" % MinMaxEffNoCost) + "</td>")
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (averageEff-0.5) * 110)) + "," + str(int((averageEff-0.5) * 110)) 			+ ",0,0.7);\">" + str("%.2f" % averageEff) + "</td>")
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (MaxMinEff-0.3) * 360)) + "," + str(int((MaxMinEff-0.3) * 360)) 			+ ",0,0.7);\">" + str("%.2f" % MaxMinEff) + "</td>")
-		f.write("<td style=\"background-color:rgba(" + str(int(255 - (MinMaxEff-1) * 130)) + "," + str(int((MinMaxEff-1) * 130)) 				+ ",0,0.7);\">" + str("%.2f" % MinMaxEff) + "</td>")
-		if MaxMinEff <= MinMaxEff and abs(MaxMinEff * MinMaxEff - 1.0) < 0.1:
-			f.write("<td style=\"background-color:rgb(0,255,0);\">Surely</td></tr>")
-		elif MaxMinEff <= MinMaxEff and abs(MaxMinEff * MinMaxEff - 1.0) < 0.2:
-			f.write("<td style=\"background-color:rgb(255,160,0);\">Probably</td></tr>")
-		elif MaxMinEff >= MinMaxEff or MaxMinEff * MinMaxEff > 1.0:
-			f.write("<td style=\"background-color:rgb(255,0,0);\">No, too strong</td></tr>")
-		else:
-			f.write("<td style=\"background-color:rgb(255,0,0);\">No, too weak</td></tr>")
-	f.write("</table>")
-
-
-f.write("<h2>Civ Comparison Tables</h2>\n")
-
-for Civ in Civs:
-	f.write("<h3>" + Civ + "</h3>")
 	z = {}
 	for oCiv in Civs:
 		if (oCiv != Civ):
-			z.update(CivTemplatesByCiv[oCiv])
-	WriteComparisonTable(CivTemplatesByCiv[Civ],z)
+			z.update(CivData[oCiv]["Units"])
+	WriteComparisonTable(CivData[Civ]["Units"],z)
 
-f.write("<h2>Civ Units Worthiness</h2>\n")
-for Civ in Civs:
-	f.write("<h3>" + Civ + "</h3>")
-	WriteWorthList(CivTemplatesByCiv[Civ])
+	WriteWorthList(CivData[Civ]["Units"])
+
+	f.write("<p>This Civilization has " + str(len(CivData[Civ]["RangedUnits"])) + " ranged units for a worth of " + str(CivData[Civ]["RangedUnitsWorth"]) + " (method " + ("Average" if paramRangedMode == "Average" else "Max") + "), individually:<br/>")
+	for unit in CivData[Civ]["RangedUnits"]:
+		value = CalcValue(CivData[Civ]["RangedUnits"][unit])["Total"]
+		f.write(unit + " : " + str(value) + "<br/>")
+
+	f.write("<p class=\"desc\"><br/>The following table uses the value in the comparison matrix above, factoring in costs (on the 3 columns on the right), and the average efficiency of its ranged units (per ParamRangedCoverage - " + str(paramRangedCoverage) + " right now).</p>")
+	f.write("<table class=\"AverageComp\">")
+	f.write("<tr><td></td><td>Average Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Maximal Minimal Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Minimal Maximal Efficiency<br/><span style=\"font-size:10px\">(disregards costs)</span></td><td>Average Efficiency</td><td>Maximal Minimal Efficiency</td><td>Minimal Maximal Efficiency</td><td>Balance</td><td>Ranged Efficiency</td><td>Countered the least</td><td>Counters the least</td></tr>")
+	for oCiv in Civs:
+		if (oCiv == Civ):
+			continue
+		CivUnitComparisons(CivData[Civ],CivData[oCiv])
+	f.write("</table>")
 
 f.write("</body>\n</html>")

@@ -51,9 +51,10 @@ h3
 	text-align: center;
 }
 
-.ComparisonTable .Separator
+.Separator
 {
 	min-width:50px;
+	border: none;
 }
 
 .ComparisonTable th
@@ -106,10 +107,21 @@ h3
 {
 	border-bottom: 1px #DDD solid;
 	height:28px;
-	text-align: right;
+}
+.AverageComp th
+{
+	font-weight: normal
 }
 .AverageComp td
 {
 	text-align: center;
+	min-width: 150px;
+}
+
+.AverageComp .UnitTd
+{
+	text-align: center;
 	width: 150px;
+	border: 1px #DDD solid;
+	padding: 0px 5px 0px 5px;
 }
