@@ -21,6 +21,11 @@ EndGameManager.prototype.Init = function()
 	this.alliedVictory = true;
 };
 
+EndGameManager.prototype.GetGameType = function()
+{
+	return this.gameType;
+};
+
 EndGameManager.prototype.SetGameType = function(newGameType)
 {
 	this.gameType = newGameType;

@@ -119,7 +119,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	// and the game type
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
-	ret.gameType = cmpEndGameManager.gameType;
+	ret.gameType = cmpEndGameManager.GetGameType();
 
 	return ret;
 };
