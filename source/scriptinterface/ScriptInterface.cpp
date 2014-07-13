@@ -946,7 +946,7 @@ void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructo
 
 	CustomType type;
 
-	type.m_Object = obj;
+	type.m_Prototype = obj;
 	type.m_Class = clasp;
 	type.m_Constructor = constructor;
 
@@ -960,11 +960,9 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string & typeName)
 	if (it == m_CustomObjectTypes.end())
 		throw PSERROR_Scripting_TypeDoesNotExist();
 
-	JSFunction* ctor = JS_NewFunction(m->m_cx, (*it).second.m_Constructor, 0, 0,
-               NULL, "ctor_fun");
-	return JS_New(m->m_cx, JS_GetFunctionObject(ctor), 0, NULL);
+	JS::RootedObject prototype(m->m_cx, (*it).second.m_Prototype);
+	return JS_NewObject(m->m_cx, (*it).second.m_Class, prototype, NULL);
 }
-
 
 bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
 {

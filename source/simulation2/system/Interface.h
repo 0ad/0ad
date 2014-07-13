@@ -21,7 +21,7 @@
 #include "simulation2/system/IComponent.h"
 
 #define DECLARE_INTERFACE_TYPE(iname) \
-	virtual JSClass* GetJSClass() const; \
+	virtual bool NewJSObject(ScriptInterface& scriptInterface, JS::MutableHandleObject out) const; \
 	static void InterfaceInit(ScriptInterface& scriptInterface); \
 	static int GetInterfaceId() { return IID_##iname; }
 

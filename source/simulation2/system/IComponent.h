@@ -56,7 +56,11 @@ public:
 	virtual void Serialize(ISerializer& serialize) = 0;
 	virtual void Deserialize(const CParamNode& paramNode, IDeserializer& deserialize) = 0;
 
-	virtual JSClass* GetJSClass() const;
+	/**
+	 * Returns false by default, indicating that a scripted wrapper of this IComponent is not supported.
+	 * Derrived classes should return true if they implement such a wrapper.
+	 */
+	virtual bool NewJSObject(ScriptInterface& scriptInterface, JS::MutableHandleObject out) const;
 	virtual jsval GetJSInstance() const;
 	virtual int GetComponentTypeId() const = 0;
 

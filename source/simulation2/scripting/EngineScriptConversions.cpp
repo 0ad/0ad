@@ -51,8 +51,8 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Value& 
 
 	// Otherwise we need to construct a wrapper object
 	// (TODO: cache wrapper objects?)
-	JSClass* cls = val->GetJSClass();
-	if (!cls)
+	JS::RootedObject obj(cx);
+	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface, &obj))
 	{
 		// Report as an error, since scripts really shouldn't try to use unscriptable interfaces
 		LOGERROR(L"IComponent does not have a scriptable interface");
@@ -60,15 +60,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Value& 
 		return;
 	}
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, cls, NULL, NULL));
-	if (!obj)
-	{
-		LOGERROR(L"Failed to construct IComponent script object");
-		ret = JS::UndefinedValue();
-		return;
-	}
 	JS_SetPrivate(obj, static_cast<void*>(val));
-
 	ret = JS::ObjectValue(*obj);
 }
 

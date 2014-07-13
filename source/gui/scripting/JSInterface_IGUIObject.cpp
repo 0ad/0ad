@@ -56,6 +56,8 @@ JSFunctionSpec JSI_IGUIObject::JSI_methods[] =
 JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp)
 {
 	JSAutoRequest rq(cx);
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+
 	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, obj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
@@ -161,8 +163,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			{
 				CColor colour;
 				GUI<CColor>::GetSetting(e, propName, colour);
-				JS::RootedObject obj(cx, JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL));
-				vp.set(JS::ObjectValue(*obj));
+				JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
+				vp.setObject(*obj);
 				JS::RootedValue c(cx);
 				// Attempt to minimise ugliness through macrosity
 				#define P(x) c = JS::NumberValue(colour.x); \
@@ -183,7 +185,8 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 				CClientArea area;
 				GUI<CClientArea>::GetSetting(e, propName, area);
 
-				vp.set(JS::ObjectValue(*JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL)));
+				JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
+				vp.setObject(*obj);
 				try
 				{
 					ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
@@ -595,14 +598,17 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 
 JSBool JSI_IGUIObject::construct(JSContext* cx, uint argc, jsval* vp)
 {
+	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	
 	if (args.length() == 0)
 	{
 		JS_ReportError(cx, "GUIObject has no default constructor");
 		return JS_FALSE;
 	}
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL));
+	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIObject"));
 
 	// Store the IGUIObject in the JS object's 'private' area
 	IGUIObject* guiObject = (IGUIObject*)JSVAL_TO_PRIVATE(args[0]);

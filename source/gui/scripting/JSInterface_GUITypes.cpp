@@ -51,8 +51,11 @@ JSFunctionSpec JSI_GUISize::JSI_methods[] =
 
 JSBool JSI_GUISize::construct(JSContext* cx, uint argc, jsval* vp)
 {
+	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	JSObject* obj = JS_NewObject(cx, &JSI_GUISize::JSI_class, NULL, NULL);
+
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUISize"));
 
 	if (args.length() == 8)
 	{
@@ -166,9 +169,12 @@ JSFunctionSpec JSI_GUIColor::JSI_methods[] =
 
 JSBool JSI_GUIColor::construct(JSContext* cx, uint argc, jsval* vp)
 {
+	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	JSObject* obj = JS_NewObject(cx, &JSI_GUIColor::JSI_class, NULL, NULL);
-
+	
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIColor"));
+	
 	if (args.length() == 4)
 	{
 		JS_SetProperty(cx, obj, "r", &args[0]);
@@ -243,7 +249,9 @@ JSBool JSI_GUIMouse::construct(JSContext* cx, uint argc, jsval* vp)
 {
 	JSAutoRequest rq(cx);
 	JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-	JSObject* obj = JS_NewObject(cx, &JSI_GUIMouse::JSI_class, NULL, NULL);
+
+	ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface;
+	JS::RootedObject obj(cx, pScriptInterface->CreateCustomObject("GUIMouse"));
 
 	if (args.length() == 3)
 	{

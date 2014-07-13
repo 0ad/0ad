@@ -518,11 +518,11 @@ JSObject* IGUIObject::GetJSObject()
 	// not have these objects hang around forever using up memory, though.
 	if (m_JSObject.uninitialised())
 	{
-		JSObject* obj = JS_NewObject(cx, &JSI_IGUIObject::JSI_class, NULL, NULL);
-		m_JSObject = CScriptValRooted(cx, OBJECT_TO_JSVAL(obj));
-		JS_SetPrivate(JSVAL_TO_OBJECT(m_JSObject.get()), this);
+		JS::RootedObject obj(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+		m_JSObject = CScriptValRooted(cx, JS::ObjectValue(*obj));
+		JS_SetPrivate(obj, this);
 	}
-	return JSVAL_TO_OBJECT(m_JSObject.get());;
+	return &m_JSObject.get().toObject();
 }
 
 CStr IGUIObject::GetPresentableName() const
