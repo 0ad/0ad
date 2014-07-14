@@ -337,7 +337,7 @@ public:
 	 * The reason is a memory corruption problem that appears to be caused by a bug in Visual Studio.
 	 * Details here: http://www.wildfiregames.com/forum/index.php?showtopic=17289&p=285921
 	 */
-	template<typename T> static void ToJSVal(JSContext* cx, JS::Value& ret, T const& val);
+	template<typename T> static void ToJSVal(JSContext* cx, JS::MutableHandleValue ret, T const& val);
 
 	AutoGCRooter* ReplaceAutoGCRooter(AutoGCRooter* rooter);
 
@@ -466,7 +466,7 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(1);
-	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv.handleAt(0), a0);
 	return CallFunction_(val1, name, 1, argv.begin(), &jsRet);
 }
 
@@ -479,8 +479,8 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(2);
-	ToJSVal(cx, argv[0], a0);
-	ToJSVal(cx, argv[1], a1);
+	ToJSVal(cx, argv.handleAt(0), a0);
+	ToJSVal(cx, argv.handleAt(1), a1);
 	return CallFunction_(val1, name, 2, argv.begin(), &jsRet);
 }
 
@@ -493,9 +493,9 @@ bool ScriptInterface::CallFunctionVoid(jsval val, const char* name, const T0& a0
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(3);
-	ToJSVal(cx, argv[0], a0);
-	ToJSVal(cx, argv[1], a1);
-	ToJSVal(cx, argv[2], a2);
+	ToJSVal(cx, argv.handleAt(0), a0);
+	ToJSVal(cx, argv.handleAt(1), a1);
+	ToJSVal(cx, argv.handleAt(2), a2);
 	return CallFunction_(val1, name, 3, argv.begin(), &jsRet);
 }
 
@@ -508,7 +508,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, R&
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(1);
-	ToJSVal(cx, argv[0], a0);
+	ToJSVal(cx, argv.handleAt(0), a0);
 	bool ok = CallFunction_(val1, name, 1, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
@@ -524,8 +524,8 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(2);
-	ToJSVal(cx, argv[0], a0);
-	ToJSVal(cx, argv[1], a1);
+	ToJSVal(cx, argv.handleAt(0), a0);
+	ToJSVal(cx, argv.handleAt(1), a1);
 	bool ok = CallFunction_(val1, name, 2, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
@@ -541,9 +541,9 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(3);
-	ToJSVal(cx, argv[0], a0);
-	ToJSVal(cx, argv[1], a1);
-	ToJSVal(cx, argv[2], a2);
+	ToJSVal(cx, argv.handleAt(0), a0);
+	ToJSVal(cx, argv.handleAt(1), a1);
+	ToJSVal(cx, argv.handleAt(2), a2);
 	bool ok = CallFunction_(val1, name, 3, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
@@ -559,10 +559,10 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 	JS::RootedValue val1(cx, val);
 	JS::AutoValueVector argv(cx);
 	argv.resize(4);
-	ToJSVal(cx, argv[0], a0);
-	ToJSVal(cx, argv[1], a1);
-	ToJSVal(cx, argv[2], a2);
-	ToJSVal(cx, argv[3], a3);
+	ToJSVal(cx, argv.handleAt(0), a0);
+	ToJSVal(cx, argv.handleAt(1), a1);
+	ToJSVal(cx, argv.handleAt(2), a2);
+	ToJSVal(cx, argv.handleAt(3), a3);
 	bool ok = CallFunction_(val1, name, 4, argv.begin(), &jsRet);
 	if (!ok)
 		return false;
@@ -572,16 +572,18 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, const T0& a0, co
 template<typename T>
 bool ScriptInterface::SetGlobal(const char* name, const T& value, bool replace)
 {
-	JS::Value val;
-	ToJSVal(GetContext(), val, value);
+	JSAutoRequest rq(GetContext());
+	JS::RootedValue val(GetContext());
+	ToJSVal(GetContext(), &val, value);
 	return SetGlobal_(name, val, replace);
 }
 
 template<typename T>
 bool ScriptInterface::SetProperty(jsval obj, const char* name, const T& value, bool readonly, bool enumerate)
 {
-	JS::Value val;
-	ToJSVal(GetContext(), val, value);
+	JSAutoRequest rq(GetContext());
+	JS::RootedValue val(GetContext());
+	ToJSVal(GetContext(), &val, value);
 	return SetProperty_(obj, name, val, readonly, enumerate);
 }
 
@@ -594,8 +596,9 @@ bool ScriptInterface::SetProperty(jsval obj, const wchar_t* name, const T& value
 template<typename T>
 bool ScriptInterface::SetPropertyInt(jsval obj, int name, const T& value, bool readonly, bool enumerate)
 {
-	JS::Value val;
-	ToJSVal(GetContext(), val, value);
+	JSAutoRequest rq(GetContext());
+	JS::RootedValue val(GetContext());
+	ToJSVal(GetContext(), &val, value);
 	return SetPropertyInt_(obj, name, val, readonly, enumerate);
 }
 

@@ -69,7 +69,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
 
 	JS::RootedValue val(s->cx);
-	ScriptInterface::ToJSVal( s->cx, val.get(), CStrW(pathname.string()) );
+	ScriptInterface::ToJSVal( s->cx, &val, CStrW(pathname.string()) );
 	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, val.address());
 	return INFO::OK;
 }
@@ -146,9 +146,12 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 //   filename: VFS filename (may include path)
 CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+
 	CVFSFile file;
 	if (file.Load(g_VFS, filename) != PSRETURN_OK)
-		return JSVAL_NULL;
+		return JS::NullValue();
 
 	CStr contents = file.DecodeUTF8(); // assume it's UTF-8
 
@@ -156,9 +159,9 @@ CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstrin
 	contents.Replace("\r\n", "\n");
 
 	// Decode as UTF-8
-	JS::Value ret;
-	ScriptInterface::ToJSVal( pCxPrivate->pScriptInterface->GetContext(), ret, contents.FromUTF8() );
-	return ret;
+	JS::RootedValue ret(cx);
+	ScriptInterface::ToJSVal(cx, &ret, contents.FromUTF8());
+	return ret.get();
 }
 
 
@@ -168,6 +171,8 @@ CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstrin
 //   filename: VFS filename (may include path)
 CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 	//
 	// read file
 	//
@@ -185,8 +190,6 @@ CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::w
 	//
 
 	std::stringstream ss(contents);
-
-	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSObject* line_array = JS_NewArrayObject(cx, 0, NULL);
 
 	std::string line;
@@ -195,9 +198,9 @@ CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::w
 	{
 		// Decode each line as UTF-8
 		JS::RootedValue val(cx);
-		ScriptInterface::ToJSVal(cx, val.get(), CStr(line).FromUTF8());
+		ScriptInterface::ToJSVal(cx, &val, CStr(line).FromUTF8());
 		JS_SetElement(cx, line_array, cur_line++, val.address());
 	}
 
-	return OBJECT_TO_JSVAL( line_array );
+	return JS::ObjectValue(*line_array);
 }

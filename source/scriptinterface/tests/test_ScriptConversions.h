@@ -34,13 +34,13 @@ class TestScriptConversions : public CxxTest::TestSuite
 		JSContext* cx = script.GetContext();
 		JSAutoRequest rq(cx);
 
-		JS::Value v1; 
-		ScriptInterface::ToJSVal(cx, v1, value);
+		JS::RootedValue v1(cx);
+		ScriptInterface::ToJSVal(cx, &v1, value);
 
 		// We want to convert values to strings, but can't just call toSource() on them
 		// since they might not be objects. So just use uneval.
 		std::string source;
-		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
+		TS_ASSERT(script.CallFunction(JS::ObjectValue(*JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -53,10 +53,10 @@ class TestScriptConversions : public CxxTest::TestSuite
 		JSAutoRequest rq(cx);
 
 		JS::RootedValue v1(cx);
-		ScriptInterface::ToJSVal(cx, v1.get(), value);
+		ScriptInterface::ToJSVal(cx, &v1, value);
 
 		std::string source;
-		TS_ASSERT(script.CallFunction(OBJECT_TO_JSVAL(JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
+		TS_ASSERT(script.CallFunction(JS::ObjectValue(*JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
 
 		if (expected)
 			TS_ASSERT_STR_EQUALS(source, expected);
@@ -130,22 +130,22 @@ public:
 		JSAutoRequest rq(cx);
 		
 		// using new uninitialized variables each time to be sure the test doesn't succeeed if ToJSVal doesn't touch the value at all.
-		JS::Value val0, val1, val2, val3, val4, val5, val6, val7, val8;
-		ScriptInterface::ToJSVal<i32>(cx, val0, 0);
-		ScriptInterface::ToJSVal<i32>(cx, val1, 2147483646); // JSVAL_INT_MAX-1
-		ScriptInterface::ToJSVal<i32>(cx, val2, 2147483647); // JSVAL_INT_MAX
-		ScriptInterface::ToJSVal<i32>(cx, val3, -2147483647); // JSVAL_INT_MIN+1
-		ScriptInterface::ToJSVal<i32>(cx, val4, -(i64)2147483648u); // JSVAL_INT_MIN
+		JS::RootedValue val0(cx), val1(cx), val2(cx), val3(cx), val4(cx), val5(cx), val6(cx), val7(cx), val8(cx);
+		ScriptInterface::ToJSVal<i32>(cx, &val0, 0);
+		ScriptInterface::ToJSVal<i32>(cx, &val1, 2147483646); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<i32>(cx, &val2, 2147483647); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<i32>(cx, &val3, -2147483647); // JSVAL_INT_MIN+1
+		ScriptInterface::ToJSVal<i32>(cx, &val4, -(i64)2147483648u); // JSVAL_INT_MIN
 		TS_ASSERT(JSVAL_IS_INT(val0));
 		TS_ASSERT(JSVAL_IS_INT(val1)); 
 		TS_ASSERT(JSVAL_IS_INT(val2)); 
 		TS_ASSERT(JSVAL_IS_INT(val3)); 
 		TS_ASSERT(JSVAL_IS_INT(val4)); 
 
-		ScriptInterface::ToJSVal<u32>(cx, val5, 0);
-		ScriptInterface::ToJSVal<u32>(cx, val6, 2147483646u); // JSVAL_INT_MAX-1
-		ScriptInterface::ToJSVal<u32>(cx, val7, 2147483647u); // JSVAL_INT_MAX
-		ScriptInterface::ToJSVal<u32>(cx, val8, 2147483648u); // JSVAL_INT_MAX+1
+		ScriptInterface::ToJSVal<u32>(cx, &val5, 0);
+		ScriptInterface::ToJSVal<u32>(cx, &val6, 2147483646u); // JSVAL_INT_MAX-1
+		ScriptInterface::ToJSVal<u32>(cx, &val7, 2147483647u); // JSVAL_INT_MAX
+		ScriptInterface::ToJSVal<u32>(cx, &val8, 2147483648u); // JSVAL_INT_MAX+1
 		TS_ASSERT(JSVAL_IS_INT(val5));
 		TS_ASSERT(JSVAL_IS_INT(val6)); 
 		TS_ASSERT(JSVAL_IS_INT(val7)); 
@@ -164,7 +164,7 @@ public:
 
 		float f = 0;
 		JS::RootedValue testNANVal(cx);
-		ScriptInterface::ToJSVal(cx, testNANVal.get(), NAN);
+		ScriptInterface::ToJSVal(cx, &testNANVal, NAN);
 		TS_ASSERT(ScriptInterface::FromJSVal(cx, testNANVal, f));
 		TS_ASSERT(isnan(f));
 	}
