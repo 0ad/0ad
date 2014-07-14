@@ -3,12 +3,17 @@
 
     <technique>
         <require shaders="arb"/>
-	<pass shader="arb/minimap"/>
+        <pass shader="arb/minimap"/>
     </technique>
 
     <technique>
         <require shaders="glsl"/>
-	<pass shader="glsl/minimap"/>
+        <pass shader="glsl/minimap"/>
+    </technique>
+
+    <technique>
+        <require shaders="fixed"/>
+        <pass shader="fixed:minimap"/>
     </technique>
 
 </effect>

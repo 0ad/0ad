@@ -61,7 +61,7 @@ public:
 	 * coordinates, in the form expected by glLoadMatrixf.
 	 * This must only be called after BindTexture.
 	 */
-	const float* GetMinimapTextureMatrix();
+	const CMatrix3D* GetMinimapTextureMatrix();
 
 private:
 	/**
