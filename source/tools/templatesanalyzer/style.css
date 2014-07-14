@@ -30,14 +30,30 @@ h3
 	font-size: 25px;
 	font-weight: normal;
 }
+.UnitList
+{
+	border-collapse: collapse;
+	white-space:nowrap;
+}
+
+.UnitList th
+{
+	text-align: center;
+	padding: 0px 8px 3px 8px;
+	font-weight: normal;
+	border-bottom: 1px #DDDDDD solid;
+}
+
 .UnitList td
 {
+	text-align: center;
 	white-space:nowrap;
+	padding:3px;
 }
 
 .ComparisonTable
 {
-	margin-top: 200px;
+	margin-top: 175px;
 	border-collapse: collapse;
 	border:1px black;
 	font-size: 18px;
@@ -64,15 +80,15 @@ h3
 	padding-right:5px;
 }
 .ComparisonTable .vertical-text th {
-	-webkit-transform: rotate(-90deg);
- 	-moz-transform: rotate(-90deg);
-  	-ms-transform: rotate(-90deg);
-  	-o-transform: rotate(-90deg);
-  	transform: rotate(-90deg);
+	-webkit-transform: rotate(-45deg);
+ 	-moz-transform: rotate(-45deg);
+  	-ms-transform: rotate(-45deg);
+  	-o-transform: rotate(-45deg);
+  	transform: rotate(-45deg);
   	max-width: 20px;
   	height: 25px;
   	padding-right:0px;
-  	font-size: 9px;
+  	font-size: 12px;
 }
 .desc
 {
@@ -124,4 +140,76 @@ h3
 	width: 150px;
 	border: 1px #DDD solid;
 	padding: 0px 5px 0px 5px;
+}
+
+.CivRosterVariety
+{
+	margin-top: 10px;
+	border-collapse: collapse;
+}
+
+.CivRosterVariety th
+{
+	font-weight: normal;
+	width:100px;
+	margin-left: 50px;
+	font-size: 14px;
+}
+
+.CivRosterVariety tr
+{
+	border-bottom: 1px white solid;
+}
+
+.CivRosterVariety td
+{
+	width: 20px;
+	height:20px;
+	border-right: 1px solid white;
+}
+.CivRosterVariety .vertical-text {
+	-webkit-transform: rotate(-45deg);
+ 	-moz-transform: rotate(-45deg);
+  	-ms-transform: rotate(-45deg);
+  	-o-transform: rotate(-45deg);
+  	transform: rotate(-45deg);
+  	max-width: 20px;
+  	height: 25px;
+  	padding-right:0px;
+  	font-size: 20px;
+}
+
+.TemplateParentComp th
+{
+	border-right: 1px #CCC solid;
+	border-bottom: 1px #CCC solid;
+	font-weight: normal;
+	font-size: 15px;
+	padding:4px;
+	margin: 2px;
+}
+.TemplateParentComp .Sub
+{
+	padding: 4px;
+	font-size: 13px;
+}
+.TemplateParentComp tr
+{
+	border-bottom: 1px #F3F3F3 solid;
+}
+
+.TemplateParentComp .Label td
+{
+	text-align: center;
+	font-weight: normal;
+	min-width: 25px;
+	padding: 3px 6px 3px 6px;
+}
+
+.TemplateParentComp
+{
+	border: 2px black solid;
+	font-size: 12px;
+	border-collapse: collapse;
+	text-align: center;
 }

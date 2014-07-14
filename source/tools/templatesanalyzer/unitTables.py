@@ -11,17 +11,17 @@ Class = ["_champion",""]
 Types = ["infantry","cavalry"];
 Subtypes = ["spearman","pikeman","swordsman", "archer","javelinist","slinger"];
 Fix = ["melee_","ranged_",""]
-AddedTemplates = ["template_unit_support_female_citizen.xml", "template_unit_champion_elephant_melee.xml"]
+AddedTemplates = ["template_unit_champion_elephant_melee.xml"]
 
 # Those describe Civs to analyze and buildings to consider.
 # That way you can restrict to some buildings specifically.
-Civs = ["spart", "athen", "mace", "rome", "cart", "pers", "maur", "gaul", "brit", "iber"]
+Civs = ["athen", "mace", "spart", "cart", "rome", "pers", "maur", "brit", "gaul", "iber"]
 #Civs = ["rome","pers"]
 CivBuildings = ["civil_centre", "barracks","gymnasion", "stables", "elephant_stables", "fortress", "embassy_celtic", "embassy_italiote", "embassy_iberian"]
 #CivBuildings = ["civil_centre", "barracks"]
 
 # Remote Civ templates with those strings in their name.
-FilterOut = ["hero", "mecha", "support"]
+FilterOut = ["hero", "mecha", "support", "barracks"]
 
 # Graphic parameters: affects only how the data is shown
 ComparativeSortByCav = True
@@ -172,29 +172,29 @@ def CalcUnit(UnitName, existingUnit = None):
 def WriteUnit(Name, UnitDict):
 	rstr = "<tr>"
 
-	rstr += "<td>" + Name + "</td>\n"
+	rstr += "<td style=\"text-align:right;\">" + Name + "</td>\n"
 	
-	rstr += "<td>HP: " + UnitDict["HP"] + "</td>\n"
+	rstr += "<td>" + UnitDict["HP"] + "</td>\n"
 
-	rstr += "<td>BuildTime: " + UnitDict["BuildTime"] + "</td>\n"
+	rstr += "<td>" + UnitDict["BuildTime"] + "</td>\n"
 
-	rstr += "<td>Speed: " + UnitDict["WalkSpeed"] + "</td>\n"
+	rstr += "<td>" + UnitDict["WalkSpeed"] + "</td>\n"
 	
-	rstr += "<td>Costs: " + UnitDict["Cost"]["food"] + "F / " + UnitDict["Cost"]["wood"] + "W / " + UnitDict["Cost"]["stone"] + "S / " + UnitDict["Cost"]["metal"] + "M</td>\n"
+	rstr += "<td>" + UnitDict["Cost"]["food"] + "F / " + UnitDict["Cost"]["wood"] + "W / " + UnitDict["Cost"]["stone"] + "S / " + UnitDict["Cost"]["metal"] + "M</td>\n"
 
 	if UnitDict["Ranged"] == "True":
-		rstr += "<td>Attack: " + str(UnitDict["Attack"]["Ranged"]["Hack"]) + "/" + str(UnitDict["Attack"]["Ranged"]["Pierce"]) + "/" + str(UnitDict["Attack"]["Ranged"]["Crush"]) + "</td>\n"
+		rstr += "<td>" + str(UnitDict["Attack"]["Ranged"]["Hack"]) + " / " + str(UnitDict["Attack"]["Ranged"]["Pierce"]) + " / " + str(UnitDict["Attack"]["Ranged"]["Crush"]) + "</td>\n"
 	else:
-		rstr += "<td>Attack: " + str(UnitDict["Attack"]["Melee"]["Hack"]) + "/" + str(UnitDict["Attack"]["Melee"]["Pierce"]) + "/" + str(UnitDict["Attack"]["Melee"]["Crush"]) + "</td>\n"
+		rstr += "<td>" + str(UnitDict["Attack"]["Melee"]["Hack"]) + " / " + str(UnitDict["Attack"]["Melee"]["Pierce"]) + " / " + str(UnitDict["Attack"]["Melee"]["Crush"]) + "</td>\n"
 	
-	rstr += "<td>Armour: " + str(UnitDict["Armour"]["Hack"]) + "/" + str(UnitDict["Armour"]["Pierce"]) + "/" + str(UnitDict["Armour"]["Crush"]) + "</td>\n"
+	rstr += "<td>" + str(UnitDict["Armour"]["Hack"]) + " / " + str(UnitDict["Armour"]["Pierce"]) + " / " + str(UnitDict["Armour"]["Crush"]) + "</td>\n"
 
-	rstr += "<td>Classes: "
+	rstr += "<td style=\"text-align:left;\">"
 	for classe in UnitDict["Classes"]:
 		rstr += classe + " "
 	rstr += "</td>"
 	
-	rstr += "<td>Efficient against:"
+	rstr += "<td style=\"text-align:left;\">"
 	for Bonus in UnitDict["AttackBonuses"]:
 		rstr += "["
 		for classe in UnitDict["AttackBonuses"][Bonus]["Classes"]:
@@ -202,7 +202,7 @@ def WriteUnit(Name, UnitDict):
 		rstr += ': ' + str(UnitDict["AttackBonuses"][Bonus]["Multiplier"]) + "]  "
 	rstr += "</td>"
 
-	rstr += "<td>Cannot Attack: "
+	rstr += "<td>"
 	for classe in UnitDict["Restricted"]:
 		rstr += classe + " "
 	rstr += "</td>"
@@ -340,25 +340,24 @@ def Compare2(UnitDictA,UnitDictB):
 
 	return AWorth / BWorth * SpeedRatio
 
+# Sort the templates dictionary.
+def SortFn(A):
+	sortVal = 0
+	for classe in SortTypes:
+		sortVal += 1
+		if classe in A[1]["Classes"]:
+			break
+	if (ComparativeSortByChamp == True and A[0].find("champion") == -1):
+		sortVal -= 20
+	if (ComparativeSortByCav == True and A[0].find("cavalry") == -1):
+		sortVal -= 10
+	if (A[1]["Civ"] != None):
+		sortVal += 100 * Civs.index(A[1]["Civ"])
+	return sortVal
 
 # Output a matrix of each units against one another, where the square is greener if the unit is stronger, redder if weaker.
 def WriteComparisonTable(Units, OtherUnits = None):
 	f.write("<table class=\"ComparisonTable\">")
-
-	# Sort the templates dictionary.
-	def SortFn(A):
-		sortVal = 0
-		for classe in SortTypes:
-			sortVal += 1
-			if classe in A[1]["Classes"]:
-				break
-		if (ComparativeSortByChamp == True and A[0].find("champion") == -1):
-			sortVal -= 20
-		if (ComparativeSortByCav == True and A[0].find("cavalry") == -1):
-			sortVal -= 10
-		if (A[1]["Civ"] != None):
-			sortVal += 100 * Civs.index(A[1]["Civ"])
-		return sortVal
 
 	if OtherUnits == None:
 		OtherUnits = Units
@@ -500,6 +499,7 @@ templates = {};	# Values
 #Whilst loading I also write them.
 htbout(f,"h2", "Units")
 f.write("<table class=\"UnitList\">")
+f.write("<tr><th></th><th>HP</th><th>BuildTime</th><th>Speed</th><th>Costs</th><th>Attack (H/P/C)</th><th>Armour(H/P/C)</th><th>Classes</th><th>Efficient against</th><th>Cannot Attack</th></tr>")
 for clss in Class:
 	for tp in Types:
 		for sbt in Subtypes:
@@ -564,6 +564,95 @@ for Civ in Civs:
 					if "Ranged" in templates[UnitFile + ".xml"]["Classes"]:
 						CivData[Civ]["RangedUnits"][UnitFile + ".xml"] = templates[UnitFile + ".xml"]
 	f.write("</table>")
+
+############################################################
+f.write("\n\n<h2>Units Specializations</h2>\n")
+f.write("<p class=\"desc\">This table compares each template to its parent, showing the differences between the two.<br/>Note that like any table, you can copy/paste this in Excel (or Numbers or ...) and sort it.</p>")
+TemplatesByParent = {}
+
+#Get them in the array
+for CivUnitTemplate in CivTemplates:
+	parent = CivTemplates[CivUnitTemplate]["Parent"]
+	if parent in templates and templates[parent]["Civ"] == None:
+		if parent not in TemplatesByParent:
+			TemplatesByParent[parent] = []
+		TemplatesByParent[parent].append( (CivUnitTemplate,CivTemplates[CivUnitTemplate]))
+
+#Sort them by civ and write them in a table.
+f.write("<table class=\"TemplateParentComp\">\n")
+f.write("<tr class=\"Label\"><td></td><td></td><td style=\"border-left:1px black solid;\">HP</td><td style=\"border-left:1px black solid;\">BuildTime</td><td style=\"border-left:1px black solid;\">Speed(walk)</td><td colspan=\"3\" style=\"border-left:1px black solid;\">Armour</td><td colspan=\"3\" style=\"border-left:1px black solid;\">Attack</td><td colspan=\"5\" style=\"border-left:1px black solid;\">Costs</td><td style=\"border-left:1px black solid;\">Civ</td><td style=\"border-left:1px black solid;\">Worth</td></tr>\n")
+f.write("<tr class=\"Label\" style=\"border-bottom:1px black solid;\"><td></td><td></td><td style=\"border-left:1px black solid;\"></td><td style=\"border-left:1px black solid;\"></td><td style=\"border-left:1px black solid;\"></td><td style=\"border-left:1px black solid;\">H</td><td>P</td><td>C</td><td style=\"border-left:1px black solid;\">H</td><td>P</td><td>C</td><td style=\"border-left:1px black solid;\">F</td><td>W</td><td>S</td><td>M</td><td>P</td><td style=\"border-left:1px black solid;\"></td><td style=\"border-left:1px black solid;\"></td></tr>\n<tr>")
+for parent in TemplatesByParent:
+	TemplatesByParent[parent].sort(key=lambda x : Civs.index(x[1]["Civ"]))
+	f.write("<th rowspan=\"" + str(len(TemplatesByParent[parent])) + "\">" + parent + "</th>")
+	for tp in TemplatesByParent[parent]:
+		f.write("<td class=\"Sub\">" + tp[0] + "</td>")
+		diff = int(tp[1]["HP"]) - int(templates[parent]["HP"])
+		f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff < 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+		diff = int(tp[1]["BuildTime"]) - int(templates[parent]["BuildTime"])
+		f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff > 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+
+		diff = float(tp[1]["WalkSpeed"]) - float(templates[parent]["WalkSpeed"])
+		f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff < 0 else "0,150,0")) + ");\">" + str("%.1f" % diff) + "</span></td>")
+
+		for atype in AttackTypes:
+			diff = float(tp[1]["Armour"][atype]) - float(templates[parent]["Armour"][atype])
+			f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff < 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+
+		attType = ("Ranged" if tp[1]["Ranged"] else "Melee")
+		for atype in AttackTypes:
+			diff = float(tp[1]["Attack"][attType][atype]) - float(templates[parent]["Attack"][attType][atype])
+			f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff < 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+
+		for rtype in Resources:
+			diff = float(tp[1]["Cost"][rtype]) - float(templates[parent]["Cost"][rtype])
+			f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff > 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+		
+		diff = float(tp[1]["Cost"]["population"]) - float(templates[parent]["Cost"]["population"])
+		f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff > 0 else "0,150,0")) + ");\">" + str(int(diff)) + "</span></td>")
+
+		f.write("<td>" + tp[1]["Civ"] + "</td>")
+
+		diff = float(CalcValue(tp[1])["Total"]) / float(CalcValue(templates[parent])["Total"])-1.0
+		f.write("<td><span style=\"color:rgb(" +("200,200,200" if diff == 0 else ("180,0,0" if diff < 0.0 else "0,150,0")) + ");\">" + str(int(100*diff)) + "%</span></td>")
+
+		f.write("</tr>\n<tr>")
+f.write("<table/>")
+
+# Table of unit having or not having some units.
+f.write("\n\n<h2>Roster Variety</h2>\n")
+f.write("<p class=\"desc\">This table show which civilizations have units who derive from each loaded generic template.<br/>Green means 1 deriving unit, blue means 2, black means 3 or more.<br/>The total is the total number of loaded units for this civ, which may be more than the total of units inheriting from loaded templates.</p>")
+f.write("<table class=\"CivRosterVariety\">\n")
+f.write("<tr><th>Template</th>\n")
+for civ in Civs:
+	f.write("<td class=\"vertical-text\">" + civ + "</td>\n")
+f.write("</tr>\n")
+
+sortedDict = sorted(templates.items(), key=SortFn)
+
+for tp in sortedDict:
+	if tp[0] not in TemplatesByParent:
+		continue
+	f.write("<tr><th>" + tp[0] +"</th>\n")
+	for civ in Civs:
+		found = 0
+		for temp in TemplatesByParent[tp[0]]:
+			if temp[1]["Civ"] == civ:
+				found += 1
+		if found == 1:
+			f.write("<td style=\"background-color:rgb(0,230,0);\"></td>")
+		elif found == 2:
+			f.write("<td style=\"background-color:rgb(0,0,200);\"></td>")
+		elif found >= 3:
+			f.write("<td style=\"background-color:rgb(0,0,0);\"></td>")
+		else:
+			f.write("<td style=\"background-color:rgb(235,0,0);\"></td>")
+	f.write("</tr>\n")
+f.write("<tr style=\"margin-top:2px;border-top:2px #aaa solid;\"><th style=\"text-align:right; padding-right:10px;\">Total:</th>\n")
+for civ in Civs:
+	f.write("<td style=\"text-align:center;\">" + str(len(CivData[civ]["Units"])) + "</td>\n")
+f.write("</tr>\n")
+f.write("<table/>")
 
 ############################################################
 # Writing Civ Specific Comparisons.
