@@ -756,7 +756,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;
-		if (target.getMetadata(PlayerID, "baseAnchor") == true)
+		if (target.getMetadata(PlayerID, "baseAnchor") == true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
 			targetNB = 15;
 
 		if (assigned < targetNB)

@@ -213,7 +213,28 @@ m.AttackPlan.prototype.setPaused = function(boolValue)
 m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 {
 	var enemyPlayer = undefined;
-	// let's find our prefered target enemy, basically counting our enemies units.
+
+	// first check if there is a preferred enemy based on our victory conditions
+	if (gameState.getGameType() === "wonder")
+	{
+		var moreAdvanced = undefined;
+		var enemyWonder = undefined;
+		var wonders = gameState.getEnemyStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
+		for (var wonder of wonders)
+		{
+			var progress = wonder.foundationProgress();
+			if (progress === undefined)
+				return wonder.owner();
+			if (enemyWonder && moreAdvanced > progress)
+				continue;
+			enemyWonder = wonder;
+			moreAdvanced = progress;
+		}
+		if (enemyWonder)
+			return enemyWonder.owner();
+	}
+
+	// then let's find our prefered target enemy, basically counting our enemies units.
 	var enemyCount = {};
 	var enemyDefense = {};
 	for (var i = 1; i < gameState.sharedScript.playersData.length; ++i)
@@ -696,16 +717,24 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 // Default target finder aims for conquest critical targets
 m.AttackPlan.prototype.defaultTargetFinder = function(gameState)
 {
+	var targets = undefined;
+	if (gameState.getGameType() === "wonder")
+	{
+		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Wonder"));
+		if (targets.length)
+			return targets;
+	}
+
 	var targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("CivCentre"));
-	if (targets.length == 0)
+	if (!targets.length)
 		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	// If there's nothing, attack anything else that's less critical
-	if (targets.length == 0)
+	if (!targets.length)
 		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Town"));
-	if (targets.length == 0)
+	if (!targets.length)
 		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Village"));
-	// no buildings, attack anything conquest critical, even units (it's assuming it won't move).
-	if (targets.length == 0)
+	// no buildings, attack anything conquest critical, even units
+	if (!targets.length)
 		targets = gameState.getEnemyEntities(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
 };
