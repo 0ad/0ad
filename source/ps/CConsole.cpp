@@ -206,11 +206,11 @@ void CConsole::Render()
 	const float DeltaY = (1.0f - m_fVisibleFrac) * m_fHeight;
 	transform.PostTranslate(m_fX, m_fY - DeltaY, 0.0f); // move to window position
 	solidShader->Uniform(str_transform, transform);
-	
+
 	DrawWindow(solidShader);
 
 	solidTech->EndPass();
-	
+
 	CShaderTechniquePtr textTech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
 	textTech->BeginPass();
 	CTextRenderer textRenderer(textTech->GetShader());

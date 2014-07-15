@@ -211,10 +211,10 @@ const CMatrix3D& CLOSTexture::GetTextureMatrix()
 	return m_TextureMatrix;
 }
 
-const float* CLOSTexture::GetMinimapTextureMatrix()
+const CMatrix3D* CLOSTexture::GetMinimapTextureMatrix()
 {
 	ENSURE(!m_Dirty);
-	return &m_MinimapTextureMatrix._11;
+	return &m_MinimapTextureMatrix;
 }
 
 void CLOSTexture::ConstructTexture(int unit)

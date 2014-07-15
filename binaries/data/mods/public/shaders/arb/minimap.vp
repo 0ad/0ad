@@ -7,19 +7,19 @@ MOV position, vertex.position;
 #endif
 MOV position.w, 1.0;
 
-DP4 result.position.x, state.matrix.mvp.row[0], position;
-DP4 result.position.y, state.matrix.mvp.row[1], position;
-DP4 result.position.z, state.matrix.mvp.row[2], position;
-DP4 result.position.w, state.matrix.mvp.row[3], position;
+DP4 result.position.x, program.local[0], position;
+DP4 result.position.y, program.local[1], position;
+DP4 result.position.z, program.local[2], position;
+DP4 result.position.w, program.local[3], position;
 
 #if MINIMAP_BASE || MINIMAP_LOS
   TEMP tex;
   MOV tex, vertex.texcoord;
 
-  DP4 result.texcoord.x, state.matrix.texture[0].row[0], tex;
-  DP4 result.texcoord.y, state.matrix.texture[0].row[1], tex;
-  DP4 result.texcoord.z, state.matrix.texture[0].row[2], tex;
-  DP4 result.texcoord.w, state.matrix.texture[0].row[3], tex;
+  DP4 result.texcoord.x, program.local[4], tex;
+  DP4 result.texcoord.y, program.local[5], tex;
+  DP4 result.texcoord.z, program.local[6], tex;
+  DP4 result.texcoord.w, program.local[7], tex;
 #endif
 
 #if MINIMAP_POINT

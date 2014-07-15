@@ -5,10 +5,13 @@
         <stream name="pos"/>
         <stream name="uv0" if="MINIMAP_BASE || MINIMAP_LOS"/>
         <stream name="color" if="MINIMAP_POINT"/>
+        <uniform name="transform" loc="0" type="mat4"/>
+        <uniform name="textureTransform" loc="4" type="mat4"/>
     </vertex>
 
     <fragment file="arb/minimap.fp">
         <uniform name="baseTex" loc="0" type="sampler2D" if="MINIMAP_BASE || MINIMAP_LOS"/>
+        <uniform name="color" loc="1" type="vec4" if="MINIMAP_LINE"/>
     </fragment>
 
 </program>

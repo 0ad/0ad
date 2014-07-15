@@ -290,6 +290,22 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				});
 			}
 		}
+		else if (ent.hasClass("Wonder") && gameState.getGameType() === "wonder")
+		{
+			var base = ent.getMetadata(PlayerID, "base");
+			if (!base)
+				warn("Petra: wonder founadtion without base ???");
+			// Let's get a few units out there to build this.
+			var builders = this.bulkPickWorkers(gameState, base, 10);
+			if (builders !== false)
+			{
+				builders.forEach(function (worker) {
+					worker.setMetadata(PlayerID, "base", base);
+					worker.setMetadata(PlayerID, "subrole", "builder");
+					worker.setMetadata(PlayerID, "target-foundation", ent.id());
+				});
+			}
+		}
 	}
 
 	var ConstructionEvents = events["ConstructionFinished"];
@@ -1002,6 +1018,16 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var ownStructures = gameState.getOwnStructures().filter(API3.Filters.byClassesOr(["Fortress", "Tower"])).toEntityArray();
 	var enemyStructures = gameState.getEnemyStructures().filter(API3.Filters.byClassesOr(["CivCentre", "Fortress", "Tower"])).toEntityArray();
 
+	var wonderMode = (gameState.getGameType() === "wonder");
+	var wonderDistmin = undefined;
+	if (wonderMode)
+	{
+		var wonders = gameState.getOwnStructures().filter(API3.Filters.byClass("Wonder")).toEntityArray();
+		wonderMode = (wonders.length !== 0);
+		if (wonderMode)
+			wonderDistmin = (50 + wonders[0].footprintRadius()) * (50 + wonders[0].footprintRadius());
+	}
+
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
@@ -1016,11 +1042,14 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
-		// do not try if well inside or outside territory
-		if (this.frontierMap.map[j] === 0)
-			continue
-		if (this.frontierMap.map[j] === 1 && template.hasClass("Tower"))
-			continue;
+		if (!wonderMode)
+		{
+			// do not try if well inside or outside territory
+			if (this.frontierMap.map[j] === 0)
+				continue
+			if (this.frontierMap.map[j] === 1 && template.hasClass("Tower"))
+				continue;
+		}
 		if (this.basesMap.map[j] === 0)   // inaccessible cell
 			continue;
 		if (obstructions.map[j] <= radius)  // check room around
@@ -1030,6 +1059,16 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
 		// checking distances to other structures
 		var minDist = Math.min();
+
+		var dista = 0;
+		if (wonderMode)
+		{
+			dista = API3.SquareVectorDistance(wonders[0].position(), pos);
+			if (dista < wonderDistmin)
+				continue;
+			dista *= 200;   // empirical factor (TODO should depend on map size) to stay near the wonder
+		}
+
 		for (var str of enemyStructures)
 		{
 			if (str.foundationProgress() !== undefined)
@@ -1043,8 +1082,8 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 				minDist = -1;
 				break;
 			}
-			if (str.hasClass("CivCentre") && dist < minDist)
-				minDist = dist;
+			if (str.hasClass("CivCentre") && dist + dista < minDist)
+				minDist = dist + dista;
 		}
 		if (minDist < 0)
 			continue;

@@ -214,7 +214,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			{
 				CGUIString value;
 				GUI<CGUIString>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, *vp.address(), value.GetOriginalString());
+				ScriptInterface::ToJSVal(cx, vp, value.GetOriginalString());
 				break;
 			}
 
@@ -222,7 +222,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			{
 				CStr value;
 				GUI<CStr>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, *vp.address(), value);
+				ScriptInterface::ToJSVal(cx, vp, value);
 				break;
 			}
 
@@ -230,7 +230,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			{
 				CStrW value;
 				GUI<CStrW>::GetSetting(e, propName, value);
-				ScriptInterface::ToJSVal(cx, *vp.address(), value);
+				ScriptInterface::ToJSVal(cx, vp, value);
 				break;
 			}
 
@@ -238,7 +238,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			{
 				CGUISpriteInstance *value;
 				GUI<CGUISpriteInstance>::GetSettingPointer(e, propName, value);
-				ScriptInterface::ToJSVal(cx, *vp.address(), value->GetName());
+				ScriptInterface::ToJSVal(cx, vp, value->GetName());
 				break;
 			}
 
@@ -254,7 +254,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 				case EAlign_Center: word = "center"; break;
 				default: debug_warn(L"Invalid EAlign!"); word = "error"; break;
 				}
-				ScriptInterface::ToJSVal(cx, *vp.address(), word);
+				ScriptInterface::ToJSVal(cx, vp, word);
 				break;
 			}
 
@@ -270,7 +270,7 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 				case EVAlign_Center: word = "center"; break;
 				default: debug_warn(L"Invalid EVAlign!"); word = "error"; break;
 				}
-				ScriptInterface::ToJSVal(cx, *vp.address(), word);
+				ScriptInterface::ToJSVal(cx, vp, word);
 				break;
 			}
 
@@ -280,12 +280,12 @@ JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 				GUI<CGUIList>::GetSetting(e, propName, value);
 
 				JS::RootedObject obj(cx, JS_NewArrayObject(cx, 0, NULL));
-				vp.set(JS::ObjectValue(*obj));
+				vp.setObject(*obj);
 
 				for (u32 i = 0; i < value.m_Items.size(); ++i)
 				{
 					JS::RootedValue val(cx);
-					ScriptInterface::ToJSVal(cx, val.get(), value.m_Items[i].GetOriginalString());
+					ScriptInterface::ToJSVal(cx, &val, value.m_Items[i].GetOriginalString());
 					JS_SetElement(cx, obj, i, val.address());
 				}
 

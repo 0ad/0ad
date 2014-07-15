@@ -11,7 +11,7 @@ Mod makers that would like to compare your units with vanilla's: read "Customizi
 ########################################################################
 1. unitTables.py
 
-This is the main script, the one which returns the comparison tables. It has 4 kinds of output, and many parameters.
+This is the main script, the one which returns the comparison tables. It has 6 kinds of output, and many parameters.
 
 ------------------------------------------------------------
 - Unit Tables -
@@ -33,6 +33,15 @@ The matrix on the right shows hardcoded counters. Greener means higher counter. 
 ------------------------------------------------------------
 - Unit Worthiness -
 Those are the Red/Blue pyramids. Those show how powerful, cost-wise, a unit is. Thus the longer the bar, the better the unit will be cost-wise. Red bars show offensive power, while blue bars show resiliency (HP and armor). This being a simple scalar, it does not reflect really accurately how units behave, since it eg does not take hard-coded counters into account. It can be however used eg to see if a champion version of a unit is effectively worth its heightened cost, or not.
+
+------------------------------------------------------------
+- Unit Specializations -
+This table compares units that inherit from a generic template to this generic template (note that this means that barracks-specific versions of champion units don't count.). The graph shows the difference with the generic template, and the last column is how much this changes the worth or the unit (according to the script).
+If you want to data mine here, I recommend you copy/paste this table in Excel or Numbers to be able to sort it by column.
+
+------------------------------------------------------------
+- Roster Variety -
+This shows in a simple manner which civs have units inheriting from which template, which is a simple but accurate way of showing the roster variety of a civ. The less units, the variety the civ has.
 
 ------------------------------------------------------------
 - Civilization Comparison Tables -

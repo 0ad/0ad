@@ -24,6 +24,10 @@
 #ifndef INCLUDED_ATLASOBJECT
 #define INCLUDED_ATLASOBJECT
 
+#if defined(_WIN32)
+# define _CRT_SECURE_NO_WARNINGS // Disable deprecation warning in VS2008
+#endif
+
 #include <wchar.h> // for wchar_t
 #include <string>
 

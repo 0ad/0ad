@@ -35,7 +35,7 @@
 		JSAutoRequest rq(scriptInterface.GetContext()); \
 		JSContext* cx = scriptInterface.GetContext(); \
 		JS::RootedValue prop(cx);\
-		ScriptInterface::ToJSVal(cx, prop.get(), this->name); \
+		ScriptInterface::ToJSVal(cx, &prop, this->name); \
 		if (! JS_SetProperty(cx, obj, #name, prop.address())) \
 			return JSVAL_VOID; \
 	} while (0);

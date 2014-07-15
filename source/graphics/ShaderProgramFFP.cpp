@@ -289,7 +289,7 @@ public:
 			glTexGeni(GL_S, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 			glTexGeni(GL_T, GL_TEXTURE_GEN_MODE, GL_OBJECT_LINEAR);
 			// Overridden implementation of Uniform() sets GL_OBJECT_PLANE values
-			
+
 			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_MODULATE);
 			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PREVIOUS);
 			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
@@ -430,6 +430,131 @@ public:
 	{
 		UnbindClientStates();
 
+		glMatrixMode(GL_PROJECTION);
+		glPopMatrix();
+		glMatrixMode(GL_MODELVIEW);
+		glPopMatrix();
+	}
+};
+
+class CShaderProgramFFP_GuiMinimap : public CShaderProgramFFP
+{
+protected:
+	CShaderDefines m_Defines;
+	// Uniforms
+	enum
+	{
+		ID_transform,
+		ID_textureTransform,
+		ID_color,
+	};
+public:
+	CShaderProgramFFP_GuiMinimap(const CShaderDefines& defines) :
+		CShaderProgramFFP(0) // We set the streamflags later, during initialization.
+	{
+		m_Defines = defines;
+		SetUniformIndex("transform", ID_transform);
+		SetUniformIndex("textureTransform", ID_textureTransform);
+		SetUniformIndex("color", ID_color);
+
+		if (m_Defines.GetInt("MINIMAP_BASE") || m_Defines.GetInt("MINIMAP_LOS"))
+		{
+			SetUniformIndex("baseTex", 0);
+			m_StreamFlags = STREAM_POS | STREAM_UV0;
+		}
+		else if (m_Defines.GetInt("MINIMAP_POINT"))
+			m_StreamFlags = STREAM_POS | STREAM_COLOR;
+		else
+			m_StreamFlags = STREAM_POS;
+	}
+
+	virtual void Uniform(Binding id, const CMatrix3D& v)
+	{
+		if (id.second == ID_textureTransform)
+		{
+			glMatrixMode(GL_TEXTURE);
+			glLoadMatrixf(&v._11);
+		}
+		else if (id.second == ID_transform)
+		{
+			glMatrixMode(GL_MODELVIEW);
+			glLoadMatrixf(&v._11);
+		}
+	}
+
+	virtual void Uniform(Binding id, float v0, float v1, float v2, float v3)
+	{
+		if (id.second == ID_color)
+			glColor4f(v0, v1, v2, v3);
+	}
+
+	virtual void Bind()
+	{
+		// Setup matrix environment
+		glMatrixMode(GL_PROJECTION);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_MODELVIEW);
+		glPushMatrix();
+		glLoadIdentity();
+		glMatrixMode(GL_TEXTURE);
+		glPushMatrix();
+		glLoadIdentity();
+
+		BindClientStates();
+
+		// Setup texture environment
+		if (m_Defines.GetInt("MINIMAP_BASE"))
+		{
+			glEnable(GL_TEXTURE_2D);
+			glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		}
+		else if (m_Defines.GetInt("MINIMAP_LOS"))
+		{
+			glEnable(GL_TEXTURE_2D);
+			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_RGB_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_RGB_ARB, GL_PRIMARY_COLOR_ARB);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_RGB_ARB, GL_SRC_COLOR);
+			glTexEnvi(GL_TEXTURE_ENV, GL_COMBINE_ALPHA_ARB, GL_REPLACE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_SOURCE0_ALPHA_ARB, GL_TEXTURE);
+			glTexEnvi(GL_TEXTURE_ENV, GL_OPERAND0_ALPHA_ARB, GL_ONE_MINUS_SRC_ALPHA);
+			glColor3f(0.0f, 0.0f, 0.0f);
+		}
+		else if (m_Defines.GetInt("MINIMAP_POINT"))
+		{
+			glDisable(GL_TEXTURE_2D);
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glEnableClientState(GL_COLOR_ARRAY);
+		}
+		else if (m_Defines.GetInt("MINIMAP_LINE"))
+		{
+			// JoshuaJB 13.7.2014: This doesn't seem to do anything on my drivers.
+			glEnable(GL_LINE_SMOOTH);
+		}
+	}
+
+	virtual void Unbind()
+	{
+		// Reset texture environment
+		if (m_Defines.GetInt("MINIMAP_POINT"))
+		{
+			glEnable(GL_TEXTURE_2D);
+			glDisableClientState(GL_VERTEX_ARRAY);
+			glDisableClientState(GL_COLOR_ARRAY);
+		}
+		else if (m_Defines.GetInt("MINIMAP_LINE"))
+		{
+			glDisable(GL_LINE_SMOOTH);
+		}
+
+		UnbindClientStates();
+
+		// Clear matrix stack
+		glMatrixMode(GL_TEXTURE);
+		glPopMatrix();
 		glMatrixMode(GL_PROJECTION);
 		glPopMatrix();
 		glMatrixMode(GL_MODELVIEW);
@@ -1017,6 +1142,8 @@ public:
 		return new CShaderProgramFFP_GuiGrayscale();
 	if (id == "gui_solid")
 		return new CShaderProgramFFP_GuiSolid();
+	if (id == "minimap")
+		return new CShaderProgramFFP_GuiMinimap(defines);
 	if (id == "solid")
 		return new CShaderProgramFFP_GuiSolid(); // works for non-GUI objects too
 	if (id == "model")

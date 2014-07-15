@@ -1622,9 +1622,10 @@ void CRenderer::EndFrame()
 
 	{
 		PROFILE3("error check");
-		if (glGetError())
+		int err = glGetError();
+		if (err)
 		{
-			ONCE(LOGERROR(L"CRenderer::EndFrame: GL errors occurred"));
+			ONCE(LOGERROR(L"CRenderer::EndFrame: GL errors %i occurred", err));
 		}
 	}
 }
