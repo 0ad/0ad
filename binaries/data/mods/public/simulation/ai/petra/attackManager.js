@@ -180,10 +180,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			{
 				if (this.Config.debug > 0)
 					warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
-				this.rushNumber++;
 				this.totalNumber++;
 				this.upcomingAttacks["Rush"].push(attackPlan);
 			}
+			this.rushNumber++;
 		}
 	}
 	else if (this.upcomingAttacks["Attack"].length === 0 && this.upcomingAttacks["HugeAttack"].length === 0
@@ -205,10 +205,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			{
 				if (this.Config.debug > 0)
 					warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
-				this.attackNumber++;
 				this.totalNumber++;
 				this.upcomingAttacks[type].push(attackPlan);
 			}
+			this.attackNumber++;
 		}
 	}
 
@@ -230,10 +230,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			{
 				if (this.Config.debug > 0)
 					warn("Headquarters: Raiding plan " + this.totalNumber);
-				this.raidNumber++;
 				this.totalNumber++;
 				this.upcomingAttacks["Raid"].push(attackPlan);
 			}
+			this.raidNumber++;
 		}
 	}
 };
