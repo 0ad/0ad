@@ -8,6 +8,7 @@ TerritoryDecay.prototype.Schema =
 TerritoryDecay.prototype.Init = function()
 {
 	this.timer = undefined;
+	this.decaying = false;
 };
 
 TerritoryDecay.prototype.IsConnected = function()
@@ -38,6 +39,11 @@ TerritoryDecay.prototype.IsConnected = function()
 	return cmpTerritoryManager.IsConnected(pos.x, pos.y);
 };
 
+TerritoryDecay.prototype.IsDecaying = function()
+{
+	return this.decaying;
+};
+
 TerritoryDecay.prototype.UpdateDecayState = function()
 {
 	var connected = this.IsConnected();
@@ -54,6 +60,15 @@ TerritoryDecay.prototype.UpdateDecayState = function()
 		cmpTimer.CancelTimer(this.timer);
 		this.timer = undefined;
 	}
+
+	if (connected)
+		var decaying = false;
+	else
+		var decaying = (Math.round(ApplyValueModificationsToEntity("TerritoryDecay/HealthDecayRate", +this.template.HealthDecayRate, this.entity)) > 0);
+	if (decaying === this.decaying)
+		return;
+	this.decaying = decaying;
+	Engine.PostMessage(this.entity, MT_TerritoryDecayChanged, { "to": decaying });
 };
 
 TerritoryDecay.prototype.OnTerritoriesChanged = function(msg)

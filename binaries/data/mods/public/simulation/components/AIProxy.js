@@ -176,6 +176,12 @@ AIProxy.prototype.OnFoundationBuildersChanged = function(msg)
 	this.changes.foundationBuilders = msg.to;
 };
 
+AIProxy.prototype.OnTerritoryDecayChanged = function(msg)
+{
+	this.NotifyChange();
+	this.changes.decaying = msg.to;
+};
+
 // TODO: event handlers for all the other things
 
 AIProxy.prototype.GetFullRepresentation = function()
@@ -266,6 +272,10 @@ AIProxy.prototype.GetFullRepresentation = function()
 		// Updated by OnGarrisonedUnitsChanged
 		ret.garrisoned = cmpGarrisonHolder.GetEntities();
 	}
+
+	var cmpTerritoryDecay = Engine.QueryInterface(this.entity, IID_TerritoryDecay);
+	if (cmpTerritoryDecay)
+		ret.decaying = cmpTerritoryDecay.IsDecaying();
 
 	return ret;
 };
