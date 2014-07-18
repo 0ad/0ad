@@ -588,8 +588,6 @@ public:
 		m_WorldX1 = x1;
 		m_WorldZ1 = z1;
 		m_TerrainVerticesPerSide = (i32)vertices;
-		
-		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
 
 		ResetDerivedData(false);
 	}
@@ -606,6 +604,7 @@ public:
 		std::vector<std::vector<u16> > oldPlayerCounts = m_LosPlayerCounts;
 		std::vector<u32> oldStateRevealed = m_LosStateRevealed;
 		SpatialSubdivision oldSubdivision = m_Subdivision;
+		std::vector<std::set<entity_id_t> > oldLosTiles = m_LosTiles;
 
 		ResetDerivedData(true);
 
@@ -631,6 +630,8 @@ public:
 			debug_warn(L"inconsistent revealed");
 		if (oldSubdivision != m_Subdivision)
 			debug_warn(L"inconsistent subdivs");
+		if (oldLosTiles != m_LosTiles)
+			debug_warn(L"inconsistent los tiles");
 	}
 
 	SpatialSubdivision* GetSubdivision()
@@ -643,6 +644,8 @@ public:
 	{
 		ENSURE(m_WorldX0.IsZero() && m_WorldZ0.IsZero()); // don't bother implementing non-zero offsets yet
 		ResetSubdivisions(m_WorldX1, m_WorldZ1);
+
+		m_LosTilesPerSide = (m_TerrainVerticesPerSide - 1)/LOS_TILES_RATIO;
 
 		m_LosPlayerCounts.clear();
 		m_LosPlayerCounts.resize(MAX_LOS_PLAYER_ID+1);

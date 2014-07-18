@@ -74,7 +74,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	// note: siege build order is currently added by the military manager if a fortress is there.
 	this.unitStat = {};
 
-	// neededShips is the minimal number of ships which should be availabe for transport
+	// neededShips is the minimal number of ships which should be available for transport
 	if (type === "Rush")
 	{
 		priority = 250;
@@ -1058,16 +1058,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
 		{
 			// check for stuck siege units
-			var sieges = this.unitCollection.filter(API3.Filters.byClass("Siege"));
 			var farthest = 0;
 			var farthestEnt = -1;
-			sieges.forEach (function (ent) {
+			this.unitCollection.filter(API3.Filters.byClass("Siege")).forEach (function (ent) {
 				var dist = API3.SquareVectorDistance(ent.position(), self.position);
-				if (dist > farthest)
-				{
-					farthest = dist;
-					farthestEnt = ent;
-				}
+				if (dist < farthest)
+					return;
+				farthest = dist;
+				farthestEnt = ent;
 			});
 			if (farthestEnt !== -1)
 				farthestEnt.destroy();
@@ -1079,11 +1077,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		{
 			if (!this.path[0][0][0] || !this.path[0][0][1])
 				warn("Start: Problem with path " + uneval(this.path));
-			this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
-			var walls = gameState.getEnemyEntities().filter(API3.Filters.and(API3.Filters.byOwner(this.targetPlayer), API3.Filters.byClass("StoneWall")));
 			var nexttoWalls = false;
-			walls.forEach( function (ent) {
+			gameState.getEnemyEntities().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
 				if (!nexttoWalls && API3.SquareVectorDistance(self.position, ent.position()) < 800)
 					nexttoWalls = true;
 			});
@@ -1091,61 +1087,41 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).length !== 0)
 			{
 				if (this.Config.debug > 0)
-					warn("Attack Plan " +this.type +" " +this.name +" has met walls and is not happy.");
+					warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
 				this.state = "arrived";
 			}
 			else if (nexttoWalls)	// abort plan
 			{
 				if (this.Config.debug > 0)
-					warn("Attack Plan " +this.type +" " +this.name +" has met walls and gives up.");
+					warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
 				Engine.ProfileStop();
 				return 0;
 			}
+			else
+				this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
+				//this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 		}
+	}
 
-		// check if our land units are close enough from the next waypoint.
-		if (API3.SquareVectorDistance(this.position, this.targetPos) < 9000 ||
-			API3.SquareVectorDistance(this.position, this.path[0][0]) < 650)
+	// check if our units are close enough from the next waypoint.
+	if (this.state === "walking")
+	{
+		if (API3.SquareVectorDistance(this.position, this.targetPos) < 10000)
 		{
-			if (this.unitCollection.filter(API3.Filters.byClass("Siege")).length !== 0
-				&& API3.SquareVectorDistance(this.position, this.targetPos) >= 9000
-				&& API3.SquareVectorDistance(this.unitCollection.filter(API3.Filters.byClass("Siege")).getCentrePosition(), this.path[0][0]) >= 650)
-			{
-			}
+			if (this.Config.debug > 0)
+				warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+			this.state = "arrived";
+		}
+		else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0][0]) < 1600)
+		{
+			this.path.shift();
+			if (this.path.length)
+				this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
 			else
 			{
-				// okay so here basically two cases. First case is "we've arrived"
-				// Second case is "either we need a boat, or we need to unload"
-				if (this.path[0][1] !== true)
-				{
-					this.path.shift();
-					if (this.path.length > 0)
-						this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
-					else
-					{
-						if (this.Config.debug > 0)
-							warn("Attack Plan " +this.type +" " +this.name +" has arrived to destination.");
-						// we must assume we've arrived at the end of the trail.
-						this.state = "arrived";
-					}
-				}
-				else
-				{
-					this.path.shift();
-					if (this.path.length === 0)
-					{
-						if (this.Config.debug)
-							warn("Attack Plan " +this.type +" " +this.name +" has arrived to destination.");
-						// we must assume we've arrived at the end of the trail.
-						this.state = "arrived";
-					}
-					else
-					{
-						//right now we'll abort.
-						Engine.ProfileStop();
-						return 0;
-					}
-				}
+				if (this.Config.debug > 0)
+					warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+				this.state = "arrived";
 			}
 		}
 	}
@@ -1224,7 +1200,6 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var lgth = this.unitCollUpdateArray.length;
 		else
 			var lgth = 10;
-		this.startingAttack = false;
 		for (var check = 0; check < lgth; check++)
 		{
 			var ent = gameState.getEntityById(this.unitCollUpdateArray[check]);
@@ -1339,10 +1314,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					else
 					{
 						var rand = Math.floor(Math.random() * mStruct.length * 0.2);
-						ent.attack(mStruct[+rand].id());
+						ent.attack(mStruct[rand].id());
 					}
 				}
-				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 900)
+				else
 					ent.attackMove(self.targetPos[0], self.targetPos[1]);
 			}
 			else
@@ -1369,7 +1344,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					ent.attack(mUnit[rand].id());
 				}
 				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
-					ent.attackMove(self.targetPos[0],self.targetPos[1]);
+					ent.attackMove(self.targetPos[0], self.targetPos[1]);
 				else if (mStruct.length !== 0)
 				{
 					mStruct.sort(function (structa,structb) {
@@ -1396,6 +1371,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			}
 		}
 		this.unitCollUpdateArray.splice(0, lgth);
+		this.startingAttack = false;
 
 		// updating targets.
 		if (!this.target || !gameState.getEntityById(this.target.id()))
