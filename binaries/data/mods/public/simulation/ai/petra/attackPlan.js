@@ -370,7 +370,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			// may-be all our previous enemey targets have been destroyed ?
 			this.targetPlayer = this.getEnemyPlayer(gameState);
 			if (this.Config.debug > 0)
-				warn(" === no more target for enemy player " + oldTargetPlayer + " let us switch against player " + this.targetPlayer);
+				API3.warn(" === no more target for enemy player " + oldTargetPlayer + " let us switch against player " + this.targetPlayer);
 			this.target = this.getNearestTarget(gameState, this.rallyPoint);
 		}
 		if (!this.target)
@@ -456,11 +456,11 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			if (this.Config.debug > 0)
 			{
 				var am = gameState.ai.HQ.attackManager;
-				warn(" attacks upcoming: raid " + am.upcomingAttacks["Raid"].length
+				API3.warn(" attacks upcoming: raid " + am.upcomingAttacks["Raid"].length
 					+ " rush " + am.upcomingAttacks["Rush"].length
 					+ " attack " + am.upcomingAttacks["Attack"].length
 					+ " huge " + am.upcomingAttacks["HugeAttack"].length);
-				warn(" attacks started: raid " + am.startedAttacks["Raid"].length
+				API3.warn(" attacks started: raid " + am.startedAttacks["Raid"].length
 					+ " rush " + am.startedAttacks["Rush"].length
 					+ " attack " + am.startedAttacks["Attack"].length
 					+ " huge " + am.startedAttacks["HugeAttack"].length);
@@ -550,8 +550,8 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 
 	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
 	{
-		warn("====================================");
-		warn("======== build order for plan " + this.name);
+		API3.warn("====================================");
+		API3.warn("======== build order for plan " + this.name);
 		for (var order of this.buildOrder)
 		{
 			var specialData = "Plan_"+this.name+"_"+order[4];
@@ -559,10 +559,10 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 			var queue1 = this.queue.countQueuedUnitsWithMetadata("special", specialData);
 			var queue2 = this.queueChamp.countQueuedUnitsWithMetadata("special", specialData);
 			var queue3 = this.queueSiege.countQueuedUnitsWithMetadata("special", specialData);
-			warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining
+			API3.warn(" >>> " + order[4] + " done " + order[2].length + " training " + inTraining
 				+ " queue " + queue1 + " champ " + queue2 + " siege " + queue3 + " >> need " + order[3].targetSize); 
 		}
-		warn("====================================");
+		API3.warn("====================================");
 	}
 
 	if (this.buildOrder[0][0] < this.buildOrder[0][3]["targetSize"])
@@ -583,14 +583,14 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 			if (template === undefined)
 			{
 				if (this.Config.debug > 0)
-					warn("attack no template found " + this.buildOrder[0][1]);
+					API3.warn("attack no template found " + this.buildOrder[0][1]);
 				delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
 				this.buildOrder.splice(0,1);
 			}
 			else
 			{
 				if (this.Config.debug > 1)
-					warn("attack template " + template + " added for plan " + this.name);
+					API3.warn("attack template " + template + " added for plan " + this.name);
 				var max = this.buildOrder[0][3]["batchSize"];
 				var specialData = "Plan_" + this.name + "_" + this.buildOrder[0][4];
 				if (gameState.getTemplate(template).hasClass("CitizenSoldier"))
@@ -600,7 +600,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 				if (trainingPlan.template)
 					queue.addItem(trainingPlan);
 				else if (this.Config.debug > 0)
-					warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
+					API3.warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
 						+ " build3 " + uneval(this.buildOrder[0][3]["interests"]));
 			}
 		}
@@ -886,7 +886,7 @@ m.AttackPlan.prototype.setRallyPoint = function(gameState)
 m.AttackPlan.prototype.StartAttack = function(gameState)
 {
 	if (this.Config.debug)
-		warn("start attack " + this.name + " with type " + this.type);
+		API3.warn("start attack " + this.name + " with type " + this.type);
 
 	if (!this.target || !gameState.getEntityById(this.target.id()))  // our target was destroyed during our preparation
 	{
@@ -941,7 +941,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 			if (!this.path[0][0][0] || !this.path[0][0][1])
 			{
 				if (this.Config.debug > 0)
-					warn("StartAttack: Problem with path " + uneval(this.path));
+					API3.warn("StartAttack: Problem with path " + uneval(this.path));
 				return false;
 			}
 			this.state = "walking";
@@ -1076,7 +1076,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
 		{
 			if (!this.path[0][0][0] || !this.path[0][0][1])
-				warn("Start: Problem with path " + uneval(this.path));
+				API3.warn("Start: Problem with path " + uneval(this.path));
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
 			var nexttoWalls = false;
 			gameState.getEnemyEntities().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
@@ -1087,13 +1087,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).length !== 0)
 			{
 				if (this.Config.debug > 0)
-					warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
+					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
 				this.state = "arrived";
 			}
 			else if (nexttoWalls)	// abort plan
 			{
 				if (this.Config.debug > 0)
-					warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
+					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
 				Engine.ProfileStop();
 				return 0;
 			}
@@ -1109,7 +1109,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (API3.SquareVectorDistance(this.position, this.targetPos) < 10000)
 		{
 			if (this.Config.debug > 0)
-				warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+				API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
 			this.state = "arrived";
 		}
 		else if (this.path.length && API3.SquareVectorDistance(this.position, this.path[0][0]) < 1600)
@@ -1120,7 +1120,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			else
 			{
 				if (this.Config.debug > 0)
-					warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
+					API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
 				this.state = "arrived";
 			}
 		}
@@ -1377,12 +1377,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		if (!this.target || !gameState.getEntityById(this.target.id()))
 		{
 			if (this.Config.debug > 0)
-				warn("Seems like our target has been destroyed. Switching.");
+				API3.warn("Seems like our target has been destroyed. Switching.");
 			this.target = this.getNearestTarget(gameState, this.position, true);
 			if (!this.target)
 			{
 				if (this.Config.debug > 0)
-					warn("No new target found. Remaining units " + this.unitCollection.length);
+					API3.warn("No new target found. Remaining units " + this.unitCollection.length);
 				Engine.ProfileStop();
 				return false;
 			}
@@ -1480,13 +1480,13 @@ m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
 
 m.AttackPlan.prototype.debugAttack = function()
 {
-	warn("---------- attack " + this.name);
+	API3.warn("---------- attack " + this.name);
 	for (var unitCat in this.unitStat)
 	{
 		var Unit = this.unitStat[unitCat];
-		warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
+		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
 	}
-	warn("------------------------------");
+	API3.warn("------------------------------");
 };
 
 return m;

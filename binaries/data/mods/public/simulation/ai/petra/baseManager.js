@@ -112,7 +112,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				// sounds like we lost our anchor. Let's try rebuilding it.
 				// TODO: currently the HQ manager sets us as initgathering, we probably ouht to do it
 				this.anchor = undefined;
-				
+
 				this.constructing = true;	// let's switch mode.
 				this.workers.forEach( function (worker) { worker.stopMoving(); });
 				queues.civilCentre.addItem(new m.ConstructionPlan(gameState, gameState.ai.HQ.bBase[0], { "base": this.ID, "baseAnchor": true }, ent.position()));
@@ -816,10 +816,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		else if (noRepair && !target.hasClass("CivCentre"))
 			continue;
 		
-		if (gameState.ai.HQ.territoryMap.getOwner(target.position()) !== PlayerID ||
-			((gameState.ai.HQ.territoryMap.getOwner([target.position()[0] + 10, target.position()[1]]) !== PlayerID)  &&
-			gameState.ai.HQ.territoryMap.getOwner([target.position()[0] - 10, target.position()[1]]) !== PlayerID))
-			continue;  // TODO find a better way to signal a decaying building
+		if (target.decaying())
+			continue;
 		
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		if (assigned < targetNB/3)

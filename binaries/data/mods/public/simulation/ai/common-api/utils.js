@@ -1,14 +1,23 @@
 var API3 = function(m)
 {
 
-m.debug = function(output){
-	if (m.DebugEnabled){
-		if (typeof output === "string"){
+m.debug = function(output)
+{
+	if (m.DebugEnabled)
+	{
+		if (typeof output === "string")
 			warn(output);
-		}else{
+		else
 			warn(uneval(output));
-		}
 	}
+};
+
+m.warn = function(output)
+{
+	if (typeof output === "string")
+		warn("PlayerID " + PlayerID + " |   " + output);
+	else
+		warn("PlayerID " + PlayerID + " |   " + uneval(output));
 };
 
 m.VectorDistance = function(a, b)

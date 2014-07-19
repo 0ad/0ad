@@ -93,10 +93,10 @@ m.HQ.prototype.init = function(gameState, queues)
 				this.navalRegions.push(i);
 		}
 	}
-	if (this.Config.debug > 0)
+	if (this.Config.debug > 1)
 	{
 		for (var region in this.allowedRegions)
-			warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
+			API3.warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
 	}
 
 	if (this.Config.difficulty === 0)
@@ -184,7 +184,7 @@ m.HQ.prototype.init = function(gameState, queues)
 		}
 	}
 	if (this.Config.debug > 0)
-		warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
+		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
 	if (startingSize < 1500)
 	{
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
@@ -208,7 +208,7 @@ m.HQ.prototype.init = function(gameState, queues)
 		}
 	}
 	if (this.Config.debug > 0)
-		warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
+		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
 	{
 		this.saveResources = true;
@@ -253,9 +253,9 @@ m.HQ.prototype.getSeaIndex = function (gameState, index1, index2)
 	{
 		if (this.Config.debug > 0)
 		{
-			warn("bad path from " + index1 + " to " + index2 + " ??? " + uneval(path));
-			warn(" regionLinks start " + uneval(gameState.ai.accessibility.regionLinks[index1]));
-			warn(" regionLinks end   " + uneval(gameState.ai.accessibility.regionLinks[index2]));
+			API3.warn("bad path from " + index1 + " to " + index2 + " ??? " + uneval(path));
+			API3.warn(" regionLinks start " + uneval(gameState.ai.accessibility.regionLinks[index1]));
+			API3.warn(" regionLinks end   " + uneval(gameState.ai.accessibility.regionLinks[index2]));
 		}
 		return undefined;
 	}
@@ -294,7 +294,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		{
 			var base = ent.getMetadata(PlayerID, "base");
 			if (!base)
-				warn("Petra: wonder founadtion without base ???");
+				API3.warn("Petra: wonder foundation without base ???");
 			// Let's get a few units out there to build this.
 			var builders = this.bulkPickWorkers(gameState, base, 10);
 			if (builders !== false)
@@ -375,7 +375,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 			else if (ent.getMetadata(PlayerID, "garrisonType"))
 			{
 				// we were supposed to be autogarrisoned, but this has failed (may-be full)
-				ent.getMetadata(PlayerID, "garrisonType", undefined);
+				ent.setMetadata(PlayerID, "garrisonType", undefined);
 			}
 		}
 	}
@@ -773,7 +773,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	if (fromStrategic)  // be less restrictive
 		cut = 30;
 	if (this.Config.debug)
-		warn("we have found a base for " + resource + " with best (cut=" + cut + ") = " + bestVal);
+		API3.warn("we have found a base for " + resource + " with best (cut=" + cut + ") = " + bestVal);
 	// not good enough.
 	if (bestVal < cut)
 		return false;
@@ -905,7 +905,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	}
 
 	if (this.Config.debug > 0)
-		warn("We've found a strategic base with bestVal = " + bestVal);	
+		API3.warn("We've found a strategic base with bestVal = " + bestVal);	
 
 	Engine.ProfileStop();
 
@@ -990,14 +990,14 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	}
 
 	if (this.Config.debug > 0)
-		warn("We found a market position with bestVal = " + bestVal);	
+		API3.warn("We found a market position with bestVal = " + bestVal);	
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1];
 
 	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
 	if (this.Config.debug > 0)
-		warn("this would give a trading gain of " + expectedGain);
+		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket 
 	if (expectedGain < 6 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0))
 		return false;
@@ -1205,7 +1205,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		if (count < 5 && index !== -1)
 		{
 			if (this.Config.debug > 0)
-				warn("no room to place a house ... try to be less restrictive");
+				API3.warn("no room to place a house ... try to be less restrictive");
 			this.stopBuilding.splice(index, 1);
 			this.requireHouses = true;
 		}
@@ -1238,7 +1238,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 		if (index !== -1)
 		{
 			if (this.Config.debug > 0)
-				warn("no room to place a house ... try to improve with technology");
+				API3.warn("no room to place a house ... try to improve with technology");
 			this.researchManager.researchPopulationBonus(gameState, queues);
 		}
 		else if (index === -1)
@@ -1259,7 +1259,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 	if (this.stopBuilding.length > 1)
 	{
 		if (this.Config.debug > 1)
-			warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
+			API3.warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
 		this.buildNewBase(gameState, queues);
 		return;
 	}
@@ -1272,7 +1272,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 	if (Math.floor(numUnits/popForBase) >= numCCs)
 	{
 		if (this.Config.debug > 1)
-			warn("try to build a new base because of population " + numUnits + " for " + numCCs + " CCs");
+			API3.warn("try to build a new base because of population " + numUnits + " for " + numCCs + " CCs");
 		this.buildNewBase(gameState, queues);
 	}
 };
@@ -1288,7 +1288,7 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, type)
 
 	// base "-1" means new base.
 	if (this.Config.debug > 0)
-		warn("new base planned with type " + type);
+		API3.warn("new base planned with type " + type);
 	queues.civilCentre.addItem(new m.ConstructionPlan(gameState, this.bBase[0], { "base": -1, "type": type }));
 	return true;
 };
@@ -1641,7 +1641,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 			var index = this.baseManagers[baseID].territoryIndices.indexOf(j);
 			if (index === -1)
 			{
-				warn(" problem in headquarters::updateTerritories for base " + baseID);
+				API3.warn(" problem in headquarters::updateTerritories for base " + baseID);
 				continue;
 			}
 			this.baseManagers[baseID].territoryIndices.splice(index, 1);
@@ -1770,16 +1770,16 @@ m.HQ.prototype.update = function(gameState, queues, events)
 			}
 			if (gameState.ai.playedTurn - ent.getMetadata(PlayerID, "idleTim") < 50)
 				return;
-			warn(" unit idle since " + (gameState.ai.playedTurn-ent.getMetadata(PlayerID, "idleTim")) + " turns");
-			warn(" unitai state " + ent.unitAIState());
-			warn(" >>> base " + ent.getMetadata(PlayerID, "base"));
-			warn(" >>> role " + ent.getMetadata(PlayerID, "role"));
-			warn(" >>> subrole " + ent.getMetadata(PlayerID, "subrole"));
-			warn(" >>> gather-type " + ent.getMetadata(PlayerID, "gather-type"));
-			warn(" >>> target-foundation " + ent.getMetadata(PlayerID, "target-foundation"));
-			warn(" >>> PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
-			warn(" >>> plan " + ent.getMetadata(PlayerID, "plan"));
-			warn(" >>> transport " + ent.getMetadata(PlayerID, "transport"));
+			API3.warn(" unit idle since " + (gameState.ai.playedTurn-ent.getMetadata(PlayerID, "idleTim")) + " turns");
+			API3.warn(" unitai state " + ent.unitAIState());
+			API3.warn(" >>> base " + ent.getMetadata(PlayerID, "base"));
+			API3.warn(" >>> role " + ent.getMetadata(PlayerID, "role"));
+			API3.warn(" >>> subrole " + ent.getMetadata(PlayerID, "subrole"));
+			API3.warn(" >>> gather-type " + ent.getMetadata(PlayerID, "gather-type"));
+			API3.warn(" >>> target-foundation " + ent.getMetadata(PlayerID, "target-foundation"));
+			API3.warn(" >>> PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
+			API3.warn(" >>> plan " + ent.getMetadata(PlayerID, "plan"));
+			API3.warn(" >>> transport " + ent.getMetadata(PlayerID, "transport"));
 			ent.setMetadata(PlayerID, "idleTim", gameState.ai.playedTurn);
 		});
 	}
