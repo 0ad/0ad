@@ -53,25 +53,25 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	if (this.Config.debug == 2 && gameState.ai.elapsedTime > this.debugTime + 60)
 	{
 		this.debugTime = gameState.ai.elapsedTime;
-		warn(" upcoming attacks =================");
+		API3.warn(" upcoming attacks =================");
 		for (var attackType in this.upcomingAttacks)
 		{
 			for (var i = 0; i < this.upcomingAttacks[attackType].length; ++i)
 			{
 				var attack = this.upcomingAttacks[attackType][i];
-				warn(" type " + attackType + " state " + attack.state + " paused " + attack.isPaused());
+				API3.warn(" type " + attackType + " state " + attack.state);
 			}
 		}
-		warn(" started attacks ==================");
+		API3.warn(" started attacks ==================");
 		for (var attackType in this.startedAttacks)
 		{
 			for (var i = 0; i < this.startedAttacks[attackType].length; ++i)
 			{
 				var attack = this.startedAttacks[attackType][i];
-				warn(" type " + attackType + " state " + attack.state + " paused " + attack.isPaused());
+				API3.warn(" type " + attackType + " state " + attack.state);
 			}
 		}
-		warn(" ==================================");
+		API3.warn(" ==================================");
 	}
 
 	for (var attackType in this.upcomingAttacks)
@@ -94,9 +94,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				else if (updateStep === 0 || updateStep === 3)
 				{
 					if (this.Config.debug)
-						warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");
-//					if (updateStep === 3)
-//						this.attackPlansEncounteredWater = true;
+						API3.warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");
 					attack.Abort(gameState, this);
 					this.upcomingAttacks[attackType].splice(i--,1);
 				}
@@ -117,7 +115,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 						gameState.ai.chatTeam(chatText);
 		
 						if (this.Config.debug)
-							warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
+							API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
 						this.startedAttacks[attackType].push(attack);
 					}
 					else
@@ -140,7 +138,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				gameState.ai.chatTeam(chatText);
 					
 				if (this.Config.debug)
-					warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
+					API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
 				this.startedAttacks[attackType].push(attack);
 				this.upcomingAttacks[attackType].splice(i--,1);
 			}
@@ -160,7 +158,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			if (!remaining)
 			{
 				if (this.Config.debug > 0)
-					warn("Military Manager: " + attack.getType() + " plan " + attack.getName() + " is finished with remaining " + remaining);
+					API3.warn("Military Manager: " + attack.getType() + " plan " + attack.getName() + " is finished with remaining " + remaining);
 				attack.Abort(gameState);
 				this.startedAttacks[attackType].splice(i--,1);
 			}
@@ -179,7 +177,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 0)
-					warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
+					API3.warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.totalNumber++;
 				this.upcomingAttacks["Rush"].push(attackPlan);
 			}
@@ -204,7 +202,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			else
 			{
 				if (this.Config.debug > 0)
-					warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
+					API3.warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
 				this.totalNumber++;
 				this.upcomingAttacks[type].push(attackPlan);
 			}
@@ -229,7 +227,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			if (!attackPlan.failed)
 			{
 				if (this.Config.debug > 0)
-					warn("Headquarters: Raiding plan " + this.totalNumber);
+					API3.warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.totalNumber++;
 				this.upcomingAttacks["Raid"].push(attackPlan);
 			}
@@ -238,7 +236,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 	}
 };
 
-m.AttackManager.prototype.pausePlan = function(gameState, planName)
+m.AttackManager.prototype.getPlan = function(planName)
 {
 	for (var attackType in this.upcomingAttacks)
 	{
@@ -246,45 +244,36 @@ m.AttackManager.prototype.pausePlan = function(gameState, planName)
 		{
 			var attack = this.upcomingAttacks[attackType][i];
 			if (attack.getName() == planName)
-				attack.setPaused(true);
+				return attack;
 		}
 	}
-
 	for (var attackType in this.startedAttacks)
 	{
 		for (var i in this.startedAttacks[attackType])
 		{
 			var attack = this.startedAttacks[attackType][i];
 			if (attack.getName() == planName)
-				attack.setPaused(true);
+				return attack;
 		}
 	}
+	return undefined;
 };
 
-m.AttackManager.prototype.unpausePlan = function(gameState, planName)
+m.AttackManager.prototype.pausePlan = function(planName)
 {
-	for (var attackType in this.upcomingAttacks)
-	{
-		for (var i in this.upcomingAttacks[attackType])
-		{
-			var attack = this.upcomingAttacks[attackType][i];
-			if (attack.getName() == planName)
-				attack.setPaused(false);
-		}
-	}
-
-	for (var attackType in this.startedAttacks)
-	{
-		for (var i in this.startedAttacks[attackType])
-		{
-			var attack = this.startedAttacks[attackType][i];
-			if (attack.getName() == planName)
-				attack.setPaused(false);
-		}
-	}
+	var attack = this.getPlan(planName);
+	if (attack)
+		attack.setPaused(true);
 };
 
-m.AttackManager.prototype.pauseAllPlans = function(gameState)
+m.AttackManager.prototype.unpausePlan = function(planName)
+{
+	var attack = this.getPlan(planName);
+	if (attack)
+		attack.setPaused(falsee);
+};
+
+m.AttackManager.prototype.pauseAllPlans = function()
 {
 	for (var attackType in this.upcomingAttacks)
 		for (var i in this.upcomingAttacks[attackType])
@@ -295,7 +284,7 @@ m.AttackManager.prototype.pauseAllPlans = function(gameState)
 			this.startedAttacks[attackType][i].setPaused(true);
 };
 
-m.AttackManager.prototype.unpauseAllPlans = function(gameState)
+m.AttackManager.prototype.unpauseAllPlans = function()
 {
 	for (var attackType in this.upcomingAttacks)
 		for (var i in this.upcomingAttacks[attackType])

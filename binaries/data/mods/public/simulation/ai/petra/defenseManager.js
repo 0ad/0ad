@@ -346,7 +346,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 		var attacker = gameState.getEntityById(evt.attacker);
-		if (!attacker)
+		if (!attacker || !attacker.position())
 			continue;
 		var attackTypes = target.attackTypes();
 		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)

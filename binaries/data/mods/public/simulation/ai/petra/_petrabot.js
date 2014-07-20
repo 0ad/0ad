@@ -122,7 +122,7 @@ m.PetraBot.prototype.initPersonality = function()
 
 	if (this.Config.debug == 0)
 		return;
-	warn(" >>>  Petra bot: personality = " + uneval(this.Config.personality));
+	API3.warn(" >>>  Petra bot: personality = " + uneval(this.Config.personality));
 };
 
 /*m.PetraBot.prototype.Deserialize = function(data, sharedScript)
@@ -134,19 +134,6 @@ PetraBot.prototype.Serialize = function()
 {
 	return {};
 };*/
-
-// For the moment we just use the debugging flag and the debugging function from the API.
-// Maybe it will make sense in the future to separate them.
-m.DebugEnabled = function()
-{
-	return API3.DebugEnabled;
-}
-
-m.debug = function(output)
-{
-	API3.debug(output);
-}
-
 
 return m;
 }());

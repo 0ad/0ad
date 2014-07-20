@@ -171,10 +171,11 @@ m.QueueManager.prototype.printQueues = function(gameState)
 	warn("Accounts");
 	for (var p in this.accounts)
 	    warn(p + ": " + uneval(this.accounts[p]));
-	warn("Current Resources:" + uneval(gameState.getResources()));
-	warn("Available Resources:" + uneval(this.getAvailableResources(gameState)));
-	warn("Wanted Gather Rates:" + uneval(this.wantedGatherRates(gameState)));
-	warn("Current Gather Rates:" + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
+	warn("Current Resources: " + uneval(gameState.getResources()));
+	warn("Available Resources: " + uneval(this.getAvailableResources(gameState)));
+	warn("Wanted Gather Rates: " + uneval(this.wantedGatherRates(gameState)));
+	warn("Current Gather Rates: " + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
+	warn("Most needed resources: " + uneval(gameState.ai.HQ.pickMostNeededResources(gameState)));
 	warn("------------------------------------");
 };
 
