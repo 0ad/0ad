@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -26,6 +26,7 @@
 #define NUMBERED_LIST_BALANCED(z, i, data) BOOST_PP_COMMA_IF(i) data##i
 // Some other things
 #define TYPED_ARGS(z, i, data) , T##i a##i
+#define TYPED_ARGS_CONST_REF(z, i, data) const T##i& a##i,
 #define CONVERT_ARG(z, i, data) T##i a##i; if (! ScriptInterface::FromJSVal<T##i>(cx, i < args.length() ? args.handleAt(i) : JS::UndefinedHandleValue, a##i)) return false;
 
 // List-generating macros, named roughly after their first list item
@@ -35,6 +36,7 @@
 #define T0_HEAD(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_HEAD, T) // "T0, T1, "
 #define T0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, T) // ", T0, T1"
 #define T0_A0(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS, ~) // "T0 a0, T1 a1"
+#define T0_A0_CONST_REF(z, i) BOOST_PP_REPEAT_##z (i, TYPED_ARGS_CONST_REF, ~) // " const T0 a0, const T1 a1, "
 #define A0(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_BALANCED, a) // "a0, a1"
 #define A0_TAIL(z, i) BOOST_PP_REPEAT_##z (i, NUMBERED_LIST_TAIL, a) // ", a0, a1"
 
@@ -66,5 +68,21 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #define OVERLOADS(z, i, data) \
 	template <int dummy TYPENAME_T0_TAIL(z,i)> /* add a dummy parameter so we still compile with 0 template args */ \
 	static size_t nargs() { return i; }
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
+// Call the named property on the given object
+#define OVERLOADS(z, i, data) \
+	template <typename R TYPENAME_T0_TAIL(z, i)> \
+	bool CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) R& ret);
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
+// The trick is using JS::Rooted<R>* and converting that to a JS::MutableHandle<R> explicitly in the function body.
+// Normally the function would take JS::MutableHandle<R> and that conversion would happen implicitly. However, implicit
+// conversion does not work with template argument deduction (only exact type matches allowed).
+#define OVERLOADS(z, i, data) \
+	template <typename R TYPENAME_T0_TAIL(z, i)> \
+	bool CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret);
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS

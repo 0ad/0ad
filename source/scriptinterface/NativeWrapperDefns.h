@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -123,11 +123,52 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
+#define TO_JS_VAL(z, i, data) ToJSVal(cx, argv.handleAt(i), a##i);
+
+#define OVERLOADS(z, i, data) \
+template<typename R TYPENAME_T0_TAIL(z, i)> \
+bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) R& ret) \
+{ \
+	JSContext* cx = GetContext(); \
+	JSAutoRequest rq(cx); \
+	JS::RootedValue jsRet(cx); \
+	JS::RootedValue val1(cx, val); \
+	JS::AutoValueVector argv(cx); \
+	argv.resize(i); \
+	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), &jsRet); \
+	if (!ok) \
+		return false; \
+	return FromJSVal(cx, jsRet, ret); \
+}
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
+#define OVERLOADS(z, i, data) \
+template<typename R TYPENAME_T0_TAIL(z, i)> \
+bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret) \
+{ \
+	JSContext* cx = GetContext(); \
+	JSAutoRequest rq(cx); \
+	JS::MutableHandle<R> jsRet(ret); \
+	JS::RootedValue val1(cx, val); \
+	JS::AutoValueVector argv(cx); \
+	argv.resize(i); \
+	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), jsRet); \
+	if (!ok) \
+		return false; \
+	return true; \
+}
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
 // Clean up our mess
 #undef SCRIPT_PROFILE
 #undef NUMBERED_LIST_HEAD
 #undef NUMBERED_LIST_TAIL
 #undef NUMBERED_LIST_BALANCED
+#undef TYPED_ARGS_CONST_REF
 #undef TYPED_ARGS
 #undef CONVERT_ARG
 #undef TYPENAME_T0_HEAD
@@ -135,6 +176,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef T0
 #undef T0_HEAD
 #undef T0_TAIL
+#undef T0_A0_CONST_REF
 #undef T0_A0
 #undef A0
 #undef A0_TAIL
