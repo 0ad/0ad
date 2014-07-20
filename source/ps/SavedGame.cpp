@@ -55,6 +55,8 @@ Status SavedGames::SavePrefix(const std::wstring& prefix, const std::wstring& de
 
 Status SavedGames::Save(const std::wstring& name, const std::wstring& description, CSimulation2& simulation, shared_ptr<ScriptInterface::StructuredClone> guiMetadataClone, int playerID)
 {
+	JSContext* cx = simulation.GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
 	const VfsPath filename = basenameFormat.ChangeExtension(L".0adsave");
@@ -87,7 +89,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
 
-	CScriptVal guiMetadata = simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone);
+	JS::RootedValue guiMetadata(cx, simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone));
 
 	// get some camera data
 	CScriptVal cameraMetadata;
@@ -98,7 +100,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotX", g_Game->GetView()->GetCameraRotX());
 	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotY", g_Game->GetView()->GetCameraRotY());
 	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "Zoom", g_Game->GetView()->GetCameraZoom());
-	simulation.GetScriptInterface().SetProperty(guiMetadata.get(), "camera", cameraMetadata);
+	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
 
 	simulation.GetScriptInterface().SetProperty(metadata.get(), "description", description);
