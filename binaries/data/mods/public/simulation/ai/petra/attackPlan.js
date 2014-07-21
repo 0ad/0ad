@@ -1404,21 +1404,24 @@ m.AttackPlan.prototype.Abort = function(gameState)
 {
 	// Do not use QuickIter with forEach when forEach removes elements
 	this.unitCollection.preventQuickIter();
-	// If the attack was started, and we are on the same land as the rallyPoint, go back there
-	var rallyPoint = this.rallyPoint;
-	var planIndex = gameState.ai.accessibility.getAccessValue(this.position);
-	var withdrawal = (this.isStarted() && !this.overseas);
-	this.unitCollection.forEach(function(ent) {
-		ent.stopMoving();
-		if (withdrawal)
-			ent.move(rallyPoint[0], rallyPoint[1]);
-		if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
-		{
-			ent.setMetadata(PlayerID, "role", "worker");
-			ent.setMetadata(PlayerID, "subrole", undefined);
-		}
-		ent.setMetadata(PlayerID, "plan", -1);
-	});
+	if (this.unitCollection.length)
+	{
+		// If the attack was started, and we are on the same land as the rallyPoint, go back there
+		var rallyPoint = this.rallyPoint;
+		var planIndex = gameState.ai.accessibility.getAccessValue(this.position);
+		var withdrawal = (this.isStarted() && !this.overseas);
+		this.unitCollection.forEach(function(ent) {
+			ent.stopMoving();
+			if (withdrawal)
+				ent.move(rallyPoint[0], rallyPoint[1]);
+			if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
+			{
+				ent.setMetadata(PlayerID, "role", "worker");
+				ent.setMetadata(PlayerID, "subrole", undefined);
+			}
+			ent.setMetadata(PlayerID, "plan", -1);
+		});
+	}
 
 	for (var unitCat in this.unitStat) {
 		delete this.unitStat[unitCat];
