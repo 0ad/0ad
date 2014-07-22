@@ -18,10 +18,8 @@ TechnologyManager.prototype.Serialize = function()
 	return ret;
 };
 
-TechnologyManager.prototype.Init = function ()
+TechnologyManager.prototype.Init = function()
 {
-	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
-	this.allTechs = cmpTechTempMan.GetAllTechs();
 	this.researchedTechs = {}; // technologies which have been researched
 	this.researchQueued = {};  // technologies which are queued for research
 	this.researchStarted = {}; // technologies which are being researched currently (non-queued)
@@ -44,26 +42,29 @@ TechnologyManager.prototype.Init = function ()
 	// Some technologies are automatically researched when their conditions are met.  They have no cost and are 
 	// researched instantly.  This allows civ bonuses and more complicated technologies.
 	this.autoResearchTech = {};
-	for (var key in this.allTechs)
+	var allTechs = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager).GetAllTechs();
+	for (var key in allTechs)
 	{
-		if (this.allTechs[key].autoResearch || this.allTechs[key].top)
-			this.autoResearchTech[key] = this.allTechs[key];
+		if (allTechs[key].autoResearch || allTechs[key].top)
+			this.autoResearchTech[key] = allTechs[key];
 	}
 };
 
-TechnologyManager.prototype.OnUpdate = function () 
+TechnologyManager.prototype.OnUpdate = function() 
 {
 	this.UpdateAutoResearch();
 }
 
 
 // This function checks if the requirements of any autoresearch techs are met and if they are it researches them
-TechnologyManager.prototype.UpdateAutoResearch = function ()
+TechnologyManager.prototype.UpdateAutoResearch = function()
 {
+	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	for (var key in this.autoResearchTech)
 	{
-		if ((this.allTechs[key].autoResearch && this.CanResearch(key))
-			|| (this.allTechs[key].top && (this.IsTechnologyResearched(this.allTechs[key].top) || this.IsTechnologyResearched(this.allTechs[key].bottom))))
+		var tech = cmpTechTempMan.GetTemplate(key);
+		if ((tech.autoResearch && this.CanResearch(key))
+			|| (tech.top && (this.IsTechnologyResearched(tech.top) || this.IsTechnologyResearched(tech.bottom))))
 		{
 			delete this.autoResearchTech[key];
 			this.ResearchTechnology(key);
@@ -72,12 +73,9 @@ TechnologyManager.prototype.UpdateAutoResearch = function ()
 	}
 }
 
-TechnologyManager.prototype.GetTechnologyTemplate = function (tech)
+TechnologyManager.prototype.GetTechnologyTemplate = function(tech)
 {
-	if (!(tech in this.allTechs))
-		return undefined;
-
-	return this.allTechs[tech];
+	return Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager).GetTemplate(tech);
 };
 
 // Checks an entity template to see if its technology requirements have been met
@@ -98,7 +96,7 @@ TechnologyManager.prototype.IsTechnologyResearched = function (tech)
 };
 
 // Checks the requirements for a technology to see if it can be researched at the current time
-TechnologyManager.prototype.CanResearch = function (tech)
+TechnologyManager.prototype.CanResearch = function(tech)
 {
 	var template = this.GetTechnologyTemplate(tech);
 	if (!template)

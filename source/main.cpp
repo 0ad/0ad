@@ -442,7 +442,7 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 		{
 			CReplayPlayer replay;
 			replay.Load(args.Get("replay"));
-			replay.Replay();
+			replay.Replay(args.Has("serializationtest"));
 		}
 
 		g_VFS.reset();

@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ public:
 	~CReplayPlayer();
 
 	void Load(const std::string& path);
-	void Replay();
+	void Replay(bool serializationtest);
 
 private:
 	std::istream* m_Stream;
