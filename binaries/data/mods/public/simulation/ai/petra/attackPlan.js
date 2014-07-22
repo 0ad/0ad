@@ -1408,7 +1408,6 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	{
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;
-		var planIndex = gameState.ai.accessibility.getAccessValue(this.position);
 		var withdrawal = (this.isStarted() && !this.overseas);
 		this.unitCollection.forEach(function(ent) {
 			ent.stopMoving();

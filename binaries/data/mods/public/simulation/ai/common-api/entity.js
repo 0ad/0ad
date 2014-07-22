@@ -408,6 +408,12 @@ m.Template = m.Class({
 			return undefined;
 		return this.get("GarrisonHolder/BuffHeal");
 	},
+
+	promotion: function() {
+		if (!this.get("Promotion"))
+			return undefined;
+		return this.get("Promotion/Entity");
+	},
 	
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
@@ -830,7 +836,7 @@ m.Entity = m.Class({
 		return this;
 	},
 
-	train: function(type, count, metadata)
+	train: function(type, count, metadata, promotedTypes)
 	{
 		var trainable = this.trainableEntities();
 		if (!trainable)
@@ -849,7 +855,8 @@ m.Entity = m.Class({
 			"entities": [this.id()],
 			"template": type,
 			"count": count,
-			"metadata": metadata
+			"metadata": metadata,
+			"promoted": promotedTypes
 		});
 		return this;
 	},

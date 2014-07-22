@@ -45,7 +45,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 				metadata[key] = this.metadata[key];
 		var trainer = gameState.getEntityById(this.metadata.trainer);
 		if (trainer)
-			trainer.train(this.type, this.number, metadata);
+			trainer.train(this.type, this.number, metadata, this.promotedTypes(gameState));
 		this.onStart(gameState);
 		return;
 	}
@@ -93,7 +93,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 		});
 		if (this.metadata && this.metadata.base !== undefined && this.metadata.base === 0)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
-		trainers[0].train(this.type, this.number, this.metadata);
+		trainers[0].train(this.type, this.number, this.metadata, this.promotedTypes(gameState));
 	}
 	else if (gameState.ai.Config.debug > 0)
 		warn(" no trainers for this queue " + this.type);
@@ -105,6 +105,21 @@ m.TrainingPlan.prototype.addItem = function(amount)
 	if (amount === undefined)
 		amount = 1;
 	this.number += amount;
+};
+
+// Find the promoted types corresponding to this.type
+m.TrainingPlan.prototype.promotedTypes = function(gameState)
+{
+	var types = [];
+	var template = this.template;
+	var promotion = template.promotion();
+	while (promotion)
+	{
+		types.push(promotion);
+		template = gameState.getTemplate(promotion);
+		promotion = template.promotion();
+	}
+	return types;
 };
 
 return m;
