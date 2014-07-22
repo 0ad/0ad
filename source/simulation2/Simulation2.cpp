@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -101,6 +101,7 @@ public:
 
 	static bool LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts);
 	static bool LoadScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts, const VfsPath& path);
+	static bool LoadTriggerScripts(CComponentManager& componentManager, const CScriptValRooted& mapSettings);
 	Status ReloadChangedFile(const VfsPath& path);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
@@ -183,8 +184,26 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 		if (loadedScripts)
 			loadedScripts->insert(filename);
 		LOGMESSAGE(L"Loading simulation script '%ls'", filename.string().c_str());
-		if (! componentManager.LoadScript(filename))
+		if (!componentManager.LoadScript(filename))
 			ok = false;
+	}
+	return ok;
+}
+
+bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, const CScriptValRooted& mapSettings)
+{
+	bool ok = true;
+	if (componentManager.GetScriptInterface().HasProperty(mapSettings.get(), "TriggerScripts"))
+	{
+		std::vector<std::string> scriptNames;
+		componentManager.GetScriptInterface().GetProperty(mapSettings.get(), "TriggerScripts", scriptNames);
+		for (u32 i = 0; i < scriptNames.size(); ++i)
+		{
+			std::string scriptName = "maps/" + scriptNames[i];
+			LOGMESSAGE(L"Loading trigger script '%hs'", scriptName.c_str());
+			if (!componentManager.LoadScript(scriptName.data()))
+				ok = false;
+		}
 	}
 	return ok;
 }
@@ -334,6 +353,9 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		secondaryComponentManager.LoadComponentTypes();
 		ENSURE(LoadDefaultScripts(secondaryComponentManager, NULL));
 		ResetComponentState(secondaryComponentManager, false, false);
+
+		// Load the trigger scripts after we have loaded the simulation.
+		ENSURE(LoadTriggerScripts(secondaryComponentManager, m_MapSettings));
 
 		// Load the map into the secondary simulation
 
@@ -702,19 +724,9 @@ void CSimulation2::LoadMapSettings()
 
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
-	
-	// Load the trigger script after we have loaded the simulation and the map.
-	if (GetScriptInterface().HasProperty(m->m_MapSettings.get(), "TriggerScripts"))
-	{
-		std::vector<std::string> scriptNames;
-		GetScriptInterface().GetProperty(m->m_MapSettings.get(), "TriggerScripts", scriptNames);
-		for (u32 i = 0; i < scriptNames.size(); i++)
-		{
-			std::string scriptName = "maps/" + scriptNames[i];
-			LOGMESSAGE(L"Loading trigger script '%hs'", scriptName.c_str());
-			m->m_ComponentManager.LoadScript(scriptName.data());
-		}
-	}
+
+	// Load the trigger scripts after we have loaded the simulation and the map.
+	m->LoadTriggerScripts(m->m_ComponentManager, m->m_MapSettings);
 }
 
 int CSimulation2::ProgressiveLoad()

@@ -85,7 +85,7 @@ Trigger.prototype.RegisterTrigger = function(event, action, data)
 	}
 	if (this[eventString][action])
 	{
-		warn("Trigger.js: Trigger has been registered before. Aborting...");
+		warn("Trigger.js: Trigger \"" + action + "\" has been registered before. Aborting...");
 		return;
 	}
 	// clone the data to be sure it's only modified locally
