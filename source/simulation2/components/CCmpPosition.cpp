@@ -582,7 +582,7 @@ public:
 			if (cmpPosition)
 				y += cmpPosition->GetRotation().Y;
 		}
-		return CFixedVector3D(m_RotX, m_RotY, m_RotZ);
+		return CFixedVector3D(m_RotX, y, m_RotZ);
 	}
 
 	virtual fixed GetDistanceTravelled()
