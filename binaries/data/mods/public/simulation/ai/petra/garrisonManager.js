@@ -66,8 +66,6 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				return false;
 			});
 
-			var healer = holder.buffHeal();
-
 			for (var entId of holder._entity.garrisoned)
 			{
 				var ent = gameState.getEntityById(entId);
@@ -147,8 +145,7 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 		case 'trade':		// trader garrisoned in ship
 			return true;
 		case 'protection':	// hurt unit for healing or ranged infantry for defense
-			var healer = holder.buffHeal();
-			if (healer && healer > 0 && ent.isHurt())
+			if (ent.isHurt() && holder.buffHeal())
 				return true;
 			if (enemiesAround && (ent.hasClass("Support") || (ent.hasClass("Ranged") && ent.hasClass("Infantry"))))
 				return true;

@@ -149,15 +149,15 @@ m.QueueManager.prototype.printQueues = function(gameState)
 		if (ent.getMetadata(PlayerID, "role") == "worker" && ent.getMetadata(PlayerID, "plan") == undefined)
 			numWorkers++;
 	});
-	warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
+	API3.warn("---------- QUEUES ------------ with pop " + gameState.getPopulation() + " and workers " + numWorkers);
 	for (var i in this.queues)
 	{
 		var qStr = "";
 		var q = this.queues[i];
 		if (q.queue.length > 0)
 		{
-			warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
-			warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
+			API3.warn(i + ": ( with priority " + this.priorities[i] +" and accounts " + uneval(this.accounts[i]) +")");
+			API3.warn(" while maxAccountWanted(0.6) is " + uneval(q.maxAccountWanted(gameState, 0.6)));
 		}
 		for (var j in q.queue)
 		{
@@ -165,18 +165,18 @@ m.QueueManager.prototype.printQueues = function(gameState)
 			if (q.queue[j].number)
 				qStr += "x" + q.queue[j].number;
 			qStr += "   isGo " + q.queue[j].isGo(gameState);
-			warn(qStr);
+			API3.warn(qStr);
 		}
 	}
-	warn("Accounts");
+	API3.warn("Accounts");
 	for (var p in this.accounts)
-	    warn(p + ": " + uneval(this.accounts[p]));
-	warn("Current Resources: " + uneval(gameState.getResources()));
-	warn("Available Resources: " + uneval(this.getAvailableResources(gameState)));
-	warn("Wanted Gather Rates: " + uneval(this.wantedGatherRates(gameState)));
-	warn("Current Gather Rates: " + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
-	warn("Most needed resources: " + uneval(gameState.ai.HQ.pickMostNeededResources(gameState)));
-	warn("------------------------------------");
+	    API3.warn(p + ": " + uneval(this.accounts[p]));
+	API3.warn("Current Resources: " + uneval(gameState.getResources()));
+	API3.warn("Available Resources: " + uneval(this.getAvailableResources(gameState)));
+	API3.warn("Wanted Gather Rates: " + uneval(this.wantedGatherRates(gameState)));
+	API3.warn("Current Gather Rates: " + uneval(gameState.ai.HQ.GetCurrentGatherRates(gameState)));
+	API3.warn("Most needed resources: " + uneval(gameState.ai.HQ.pickMostNeededResources(gameState)));
+	API3.warn("------------------------------------");
 };
 
 // nice readable HTML version.
@@ -344,7 +344,7 @@ m.QueueManager.prototype.distributeResources = function(gameState)
 			}
 		}
 		if (available < 0)
-			warn("Petra: problem with remaining " + res + " in queueManager " + available);
+			API3.warn("Petra: problem with remaining " + res + " in queueManager " + available);
 	}
 };
 
@@ -378,7 +378,7 @@ m.QueueManager.prototype.switchResource = function(gameState, res)
 			this.accounts[i][res] -= diff;
 			++otherQueue.switched;
 			if (this.Config.debug > 1)
-				warn ("switching queue " + res + " from " + i + " to " + j + " in amount " + diff);
+				API3.warn ("switching queue " + res + " from " + i + " to " + j + " in amount " + diff);
 			break;
 		}
 	}
@@ -419,7 +419,7 @@ m.QueueManager.prototype.update = function(gameState)
 		this.queues[i].check(gameState);  // do basic sanity checks on the queue
 		if (this.priorities[i] > 0)
 			continue;
-		warn("QueueManager received bad priorities, please report this error: " + uneval(this.priorities));
+		API3.warn("QueueManager received bad priorities, please report this error: " + uneval(this.priorities));
 		this.priorities[i] = 1;  // TODO: make the Queue Manager not die when priorities are zero.
 	}
 
@@ -512,7 +512,7 @@ m.QueueManager.prototype.getPriority = function(queueName)
 m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 {
 	if (this.Config.debug > 0)
-		warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
+		API3.warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
 	var self = this;
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;

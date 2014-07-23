@@ -72,7 +72,7 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 {
 	var filter = API3.Filters.and(API3.Filters.byClass("Market"), API3.Filters.not(API3.Filters.isFoundation()));
 	var market1 = gameState.getOwnStructures().filter(filter).toEntityArray();
-	var market2 = gameState.getAllyEntities().filter(filter).toEntityArray();
+	var market2 = gameState.getExclusiveAllyEntities().filter(filter).toEntityArray();
 	if (market1.length + market2.length < 1)  // We have to wait  ... a first market will be built soon
 		return false;
 
@@ -110,7 +110,7 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 		if (distmax > 0)
 		{
 			if (this.Config.debug > 1)
-				warn(" a second market will be built in base " + base);
+				API3.warn(" a second market will be built in base " + base);
 			// TODO build also docks when better
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market", { "base": base }));
 		}
@@ -153,11 +153,11 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 	if (distmax < 0)
 	{
 		if (this.Config.debug > 1)
-			warn("no trade route possible");
+			API3.warn("no trade route possible");
 		return false;
 	}
 	if (this.Config.debug > 0)
-		warn("one trade route set with gain " + Math.round(distmax / this.Config.distUnitGain));
+		API3.warn("one trade route set with gain " + Math.round(distmax / this.Config.distUnitGain));
 	return true;
 };
 
@@ -202,7 +202,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 		tradingGoods[mostNeeded[0].type] += nextNeed;
 	Engine.PostCommand(PlayerID, {"type": "set-trading-goods", "tradingGoods": tradingGoods});
 	if (this.Config.debug == 2)
-		warn(" trading goods set to " + uneval(tradingGoods));
+		API3.warn(" trading goods set to " + uneval(tradingGoods));
 };
 
 // Try to barter unneeded resources for needed resources.
@@ -269,7 +269,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		{
 			barterers[0].barter(buy, bestToSell, 100);
 			if (this.Config.debug > 1)
-				warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
+				API3.warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
 					 + " need buy " + needs[buy] + " rate buy " + rates[buy] + " available sell " + available[bestToSell]
 					 + " available buy " + available[buy] + " barterRate " + bestRate);
 			return true;
@@ -302,7 +302,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	{
 		barterers[0].barter(bestToBuy, "food", 100);
 		if (this.Config.debug > 1)
-			warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"]
+			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"]
 				 + " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));
 		return true;
 	}
@@ -322,7 +322,7 @@ m.TradeManager.prototype.update = function(gameState, queues)
 	if (!source || !target || !gameState.getEntityById(source.id()) || !gameState.getEntityById(target.id()))
 	{
 		if (this.Config.debug > 1)
-			warn("We have lost our trade route");
+			API3.warn("We have lost our trade route");
 		this.tradeRoute = undefined;
 		return;
 	}

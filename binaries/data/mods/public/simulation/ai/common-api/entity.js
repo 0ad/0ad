@@ -406,7 +406,7 @@ m.Template = m.Class({
 	buffHeal: function() {
 		if (!this.get("GarrisonHolder"))
 			return undefined;
-		return this.get("GarrisonHolder/BuffHeal");
+		return +this.get("GarrisonHolder/BuffHeal");
 	},
 
 	promotion: function() {
