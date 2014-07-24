@@ -51,7 +51,7 @@ m.NavalManager.prototype.init = function(gameState, queues)
 	this.docks.allowQuickIter();
 	this.docks.registerUpdates();
 	
-	this.ships = gameState.getOwnEntities().filter(API3.Filters.byClass("Ship"));
+	this.ships = gameState.getOwnUnits().filter(API3.Filters.byClass("Ship"));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
 	this.transportShips = this.ships.filter(API3.Filters.and(API3.Filters.byCanGarrison(), API3.Filters.not(API3.Filters.byClass("FishingBoat"))));
 	this.warShips = this.ships.filter(API3.Filters.byClass("Warship"));

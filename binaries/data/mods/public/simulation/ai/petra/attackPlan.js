@@ -158,6 +158,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	
 	// each array is [ratio, [associated classes], associated EntityColl, associated unitStat, name ]
 	this.buildOrder = [];
+	this.canBuildUnits = gameState.ai.HQ.canBuildUnits;
 	
 	// defining the entity collections. Will look for units I own, that are part of this plan.
 	// Also defining the buildOrders.
@@ -167,7 +168,8 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]), API3.Filters.byMetadata(PlayerID, "plan",this.name));
 		this.unit[cat] = gameState.getOwnUnits().filter(filter);
 		this.unit[cat].registerUpdates();
-		this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
+		if (this.canBuildUnits)
+			this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
 	}
 	
 	// some variables for during the attack
@@ -268,6 +270,9 @@ m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 // Basically it checks we have enough units.
 m.AttackPlan.prototype.canStart = function(gameState)
 {	
+	if (!this.canBuildUnits)
+		return true;
+
 	for (var unitCat in this.unitStat)
 	{
 		var Unit = this.unitStat[unitCat];
@@ -281,6 +286,10 @@ m.AttackPlan.prototype.mustStart = function(gameState)
 {
 	if (this.isPaused() || this.path === undefined)
 		return false;
+
+	if (!this.canBuildUnits)
+		return true;
+
 	var MaxReachedEverywhere = true;
 	var MinReachedEverywhere = true;
 	for (var unitCat in this.unitStat)
@@ -478,11 +487,14 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 	}
 	else if (!this.mustStart(gameState))
 	{
-		// We still have time left to recruit units and do stuffs.
-		this.trainMoreUnits(gameState);
-		// may happen if we have no more training facilities and build orders are canceled
-		if (this.buildOrder.length === 0)
-			return 0;	// will abort the plan
+		if (this.canBuildUnits)
+		{
+			// We still have time left to recruit units and do stuffs.
+			this.trainMoreUnits(gameState);
+			// may happen if we have no more training facilities and build orders are canceled
+			if (this.buildOrder.length === 0)
+				return 0;	// will abort the plan
+		}
 		return 1;
 	}
 
@@ -612,13 +624,30 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	var plan = this.name;
 	var added = false;
 
+	// If we can not build units, assign all available except those affcted to allied defnse to the current attack
+	if (!this.canBuildUnits)
+	{
+		gameState.getOwnUnits().forEach(function(ent) {
+			if (!ent.position())
+				return;
+			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
+				return;
+			if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
+				return;
+			if (ent.getMetadata(PlayerID, "allied"))
+				return;
+			ent.setMetadata(PlayerID, "plan", plan);
+			added = true; 
+		});
+		return added;
+	}
+
 	// TODO: assign myself units that fit only, right now I'm getting anything.
 	// Assign all no-roles that fit (after a plan aborts, for example).
 	if (this.type === "Raid")
 	{
-		var candidates = gameState.getOwnUnits().filter(API3.Filters.byClass("Cavalry"));
 		var num = 0;
-		candidates.forEach(function(ent) {
+		gameState.getOwnUnits().filter(API3.Filters.byClass("Cavalry")).forEach(function(ent) {
 			if (!ent.position())
 				return;
 			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
@@ -1098,8 +1127,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				return 0;
 			}
 			else
-				this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
-				//this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
+				//this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
+				this.unitCollection.moveIndiv(this.path[0][0][0], this.path[0][0][1]);
 		}
 	}
 
