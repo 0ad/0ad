@@ -324,13 +324,19 @@ m.GameState.prototype.getEnemies = function(){
 	return ret;
 };
 
-m.GameState.prototype.getAllies = function(){  // Player is not included
+m.GameState.prototype.getAllies = function(){
 	var ret = [];
-	for (var i in this.playerData.isAlly){
-		if (this.playerData.isAlly[i] && +i !== this.player){
+	for (var i in this.playerData.isAlly)
+		if (this.playerData.isAlly[i])
 			ret.push(i);
-		}
-	}
+	return ret;
+};
+
+m.GameState.prototype.getExclusiveAllies = function(){  // Player is not included
+	var ret = [];
+	for (var i in this.playerData.isAlly)
+		if (this.playerData.isAlly[i] && +i !== this.player)
+			ret.push(i);
 	return ret;
 };
 
@@ -386,6 +392,10 @@ m.GameState.prototype.getOwnUnits = function() {
 
 m.GameState.prototype.getAllyEntities = function() {
 	return this.entities.filter(m.Filters.byOwners(this.getAllies()));
+};
+
+m.GameState.prototype.getExclusiveAllyEntities = function() {
+	return this.entities.filter(m.Filters.byOwners(this.getExclusiveAllies()));
 };
 
 // Try to use a parameter for those three, it'll be a lot faster.

@@ -107,7 +107,7 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	if (this.Config.personality.cooperative > 0.3)
 	{
-		var allyCC = gameState.getAllyEntities().filter(API3.Filters.byClass("CivCentre"));
+		var allyCC = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre"));
 		for (var i in allyCC._entities)
 		{
 			if (this.Config.personality.cooperative < 0.6 && allyCC._entities[i].foundationProgress() !== undefined)
@@ -217,18 +217,16 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 
 		// army in neutral territory // TODO check smaller distance with all our buildings instead of only ccs with big distance
 		var stillDangerous = false;
-		var bases = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 		if (this.Config.personality.cooperative > 0.3)
-		{
-			var allyCC = gameState.getAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-			bases = bases.concat(allyCC);
-		}
+			var bases = gameState.getAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+		else
+			var bases = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 	 	for (var i in bases)
 		{
 			if (API3.SquareVectorDistance(bases[i].position(), army.foePosition) < 40000)
 			{
 				if(this.Config.debug > 0)
-					warn("army in neutral territory, but still near one of our CC");
+					API3.warn("army in neutral territory, but still near one of our CC");
 				stillDangerous = true;
 				break;
 			}
@@ -307,7 +305,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 		if (aMin === undefined)
 		{
 			for (var a = 0; a < armiesNeeding.length; ++a)
-				warn(" defense/armiesNeeding " + uneval(armiesNeeding[a]["need"]));
+				API3.warn(" defense/armiesNeeding " + uneval(armiesNeeding[a]["need"]));
 		}
 
 		var str = m.getMaxStrength(ent);
@@ -331,7 +329,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 };
 
 // If our defense structures are attacked, garrison soldiers inside when possible
-// TODO transfer most of that code in a garrisonManager
+// and if a support unit is attacked and has less than 30% health, garrison it inside the nearest cc
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
 	var self = this;
@@ -339,186 +337,98 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 	for (var evt of attackedEvents)
 	{
 		var target = gameState.getEntityById(evt.target);
-		if (!target || !gameState.isEntityOwn(target) || !target.getArrowMultiplier())
-			continue;
-		if (!target.isGarrisonHolder() || gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+		if (!target || !gameState.isEntityOwn(target) || !target.position())
 			continue;
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
+
+		if (target.hasClass("Support") && target.healthLevel() < 0.4)
+		{
+			this.garrisonUnitForHealing(gameState, target);
+			continue;
+		}
+
 		var attacker = gameState.getEntityById(evt.attacker);
 		if (!attacker || !attacker.position())
 			continue;
-		var attackTypes = target.attackTypes();
-		if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
-			continue;
-		var dist = API3.SquareVectorDistance(attacker.position(), target.position());
-		var range = target.attackRange("Ranged").max;
-		if (dist >= range*range)
-			continue;
-		var index = gameState.ai.accessibility.getAccessValue(target.position());
-		var garrisonManager = gameState.ai.HQ.garrisonManager;
-		gameState.getOwnUnits().filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).filterNearest(target.position()).forEach(function(ent) {
-			if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
-				return;
 
-			if (!ent.position())
-				return;
-			if (ent.getMetadata(PlayerID, "transport") !== undefined)
-				return;
-			if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
-				return;
-			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-			{
-				var subrole = ent.getMetadata(PlayerID, "subrole");
-				if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
-					return;
-			}
-			if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
-				return;
-			var army = ent.getMetadata(PlayerID, "PartOfArmy");
-			if (army !== undefined)
-			{
-				army = self.getArmy(army);
-				if (army !== undefined)
-					army.removeOwn(gameState, ent.id(), ent);
-			}
-			garrisonManager.garrison(gameState, ent, target, "protection");
-		});
+		if (target.isGarrisonHolder() && target.getArrowMultiplier())
+			this.garrisonRangedUnitsInside(gameState, target, attacker);
 	}
 };
 
-// this processes the attackmessages
-// So that a unit that gets attacked will not be completely dumb.
-// warning: big levels of indentation coming.
-//m.DefenseManager.prototype.MessageProcess = function(gameState,events) {
-/*	var self = this;
-	var attackedEvents = events["Attacked"];
-	for (var key in attackedEvents){
-		var e = attackedEvents[key];
-		if (gameState.isEntityOwn(gameState.getEntityById(e.target))) {
-			var attacker = gameState.getEntityById(e.attacker);
-			var ourUnit = gameState.getEntityById(e.target);
-			
-			// the attacker must not be already dead, and it must not be me (think catapults that miss).
-			if (attacker === undefined || attacker.owner() === PlayerID || attacker.position() === undefined)
-				continue;
-			
-			var mapPos = this.dangerMap.gamePosToMapPos(attacker.position());
-			this.dangerMap.addInfluence(mapPos[0], mapPos[1], 4, 1, 'constant');
-
-			// disregard units from attack plans and defense.
-			if (ourUnit.getMetadata(PlayerID, "role") == "defense" || ourUnit.getMetadata(PlayerID, "role") == "attack")
-				continue;
-			
-			var territory = this.territoryMap.getOwner(attacker.position());
-
-			if (attacker.owner() == 0)
-			{
-				if (ourUnit !== undefined && ourUnit.hasClass("Unit") && !ourUnit.hasClass("Support"))
-					ourUnit.attack(e.attacker);
-				else
-				{
-					ourUnit.flee(attacker);
-					ourUnit.setMetadata(PlayerID,"fleeing", gameState.getTimeElapsed());
-				}
-				if (territory === PlayerID)
-				{
-					// anyway we'll register the animal as dangerous, and attack it (note: only on our territory. Don't care otherwise).
-					this.listOfWantedUnits[attacker.id()] = new EntityCollection(gameState.sharedScript);
-					this.listOfWantedUnits[attacker.id()].addEnt(attacker);
-					this.listOfWantedUnits[attacker.id()].freeze();
-					this.listOfWantedUnits[attacker.id()].registerUpdates();
-					
-					var filter = Filters.byTargetedEntity(attacker.id());
-					this.WantedUnitsAttacker[attacker.id()] = this.myUnits.filter(filter);
-					this.WantedUnitsAttacker[attacker.id()].registerUpdates();
-				}
-			} // Disregard military units except in our territory. Disregard all calls in enemy territory.
-			else if (territory == PlayerID || (territory != attacker.owner() && ourUnit.hasClass("Support")))
-			{
-				// TODO: this does not differentiate with buildings...
-				// These ought to be treated differently.
-				// units in attack plans will react independently, but we still list the attacks here.
-				if (attacker.hasClass("Structure")) {
-					// todo: we ultimately have to check wether it's a danger point or an isolated area, and if it's a danger point, mark it as so.
-					
-					// Right now, to make the AI less gameable, we'll mark any surrounding resource as inaccessible.
-					// usual tower range is 80. Be on the safe side.
-					var close = gameState.getResourceSupplies("wood").filter(Filters.byDistance(attacker.position(), 90));
-					close.forEach(function (supply) { //}){
-								  supply.setMetadata(PlayerID, "inaccessible", true);
-								  });
-				} else {
-					// TODO: right now a soldier always retaliate... Perhaps it should be set in "Defense" mode.
-
-					// TODO: handle the ship case
-					if (attacker.hasClass("Ship"))
-						continue;
-
-					// This unit is dangerous. if it's in an army, it's being dealt with.
-					// if it's not in an army, it means it's either a lone raider, or it has got friends.
-					// In which case we must check for other dangerous units around, and perhaps armify them.
-					// TODO: perhaps someday army detection will have improved and this will require change.
-					var armyID = attacker.getMetadata(PlayerID, "inArmy");
-					if (armyID == undefined || !this.enemyArmy[attacker.owner()] || !this.enemyArmy[attacker.owner()][armyID]) {
-						if (this.reevaluateEntity(gameState, attacker))
-						{
-							var position = attacker.position();
-							var close = HQ.enemyWatchers[attacker.owner()].enemySoldiers.filter(Filters.byDistance(position, self.armyCompactSize));
-							
-							if (close.length > 2 || ourUnit.hasClass("Support") || attacker.hasClass("Siege"))
-							{
-								// armify it, then armify units close to him.
-								this.armify(gameState,attacker);
-								armyID = attacker.getMetadata(PlayerID, "inArmy");
-								
-								close.forEach(function (ent) { //}){
-											  if (API3.SquareVectorDistance(position, ent.position()) < self.armyCompactSize)
-											  {
-											  ent.setMetadata(PlayerID, "inArmy", armyID);
-											  self.enemyArmy[ent.owner()][armyID].addEnt(ent);
-											  }
-											  });
-								return;	// don't use too much processing power. If there are other cases, they'll be processed soon enough.
-							}
-						}
-						// Defensemanager will deal with them in the next turn.
-					}
-					if (ourUnit !== undefined && ourUnit.hasClass("Unit")) {
-						if (ourUnit.hasClass("Support")) {
-							// let's try to garrison this support unit.
-							if (ourUnit.position())
-							{
-								var buildings = gameState.getOwnEntities().filter(Filters.byCanGarrison()).filterNearest(ourUnit.position(),4).toEntityArray();
-								var garrisoned = false;
-								for (var i in buildings)
-								{
-									var struct = buildings[i];
-									if (struct.garrisoned() && struct.garrisonMax() - struct.garrisoned().length > 0)
-									{
-										garrisoned = true;
-										ourUnit.garrison(struct);
-										break;
-									}
-								}
-								if (!garrisoned) {
-									ourUnit.flee(attacker);
-									ourUnit.setMetadata(PlayerID,"fleeing", gameState.getTimeElapsed());
-								}
-							}
-						} else {
-							// It's a soldier. Right now we'll retaliate
-							// TODO: check for stronger units against this type, check for fleeing options, etc.
-							// Check also for neighboring towers and garrison there perhaps?
-							ourUnit.attack(e.attacker);
-						}
-					}
-				}
-			}
+m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, target, attacker)
+{
+	if (gameState.ai.HQ.garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+		return;
+	var attackTypes = target.attackTypes();
+	if (!attackTypes || attackTypes.indexOf("Ranged") === -1)
+		return;
+	var dist = API3.SquareVectorDistance(attacker.position(), target.position());
+	var range = target.attackRange("Ranged").max;
+	if (dist >= range*range)
+		return;
+	var index = gameState.ai.accessibility.getAccessValue(target.position());
+	var garrisonManager = gameState.ai.HQ.garrisonManager;
+	gameState.getOwnUnits().filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).filterNearest(target.position()).forEach(function(ent) {
+		if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
+			return;
+		if (!ent.position())
+			return;
+		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+			return;
+		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+			return;
+		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
+		{
+			var subrole = ent.getMetadata(PlayerID, "subrole");
+			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
+				return;
 		}
-	}
- */
-//}; // nice sets of closing brackets, isn't it?
+		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
+			return;
+		var army = ent.getMetadata(PlayerID, "PartOfArmy");
+		if (army !== undefined)
+		{
+			army = self.getArmy(army);
+			if (army !== undefined)
+				army.removeOwn(gameState, ent.id(), ent);
+		}
+		garrisonManager.garrison(gameState, ent, target, "protection");
+	});
+};
+
+// garrison a hurt unit inside the nearest healing structure
+m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
+{
+	var distmin = Math.min();
+	var nearest = undefined;
+	var unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
+	var garrisonManager = gameState.ai.HQ.garrisonManager;
+	gameState.getAllyEntities().filter(API3.Filters.byClass("Structure")).forEach(function(ent) {
+		if (!ent.buffHeal())
+			return;
+		if (!MatchesClassList(ent.garrisonableClasses(), unit.classes()))
+			return;
+		if (garrisonManager.numberOfGarrisonedUnits(ent) >= ent.garrisonMax())
+			return;
+		var entAccess = ent.getMetadata(PlayerID, "access");
+		if (!entAccess)
+		{
+			entAccess = gameState.ai.accessibility.getAccessValue(ent.position());
+			ent.setMetadata(PlayerID, "access", entAccess);
+		}
+		if (entAccess !== unitAccess)
+			return;
+		var dist = API3.SquareVectorDistance(ent.position(), unit.position());
+		if (dist > distmin)
+			return;
+		distmin = dist;
+		nearest = ent;
+	});
+	if (nearest)
+		garrisonManager.garrison(gameState, unit, nearest, "protection");
+};
 
 return m;
 }(PETRA);

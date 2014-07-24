@@ -23,6 +23,10 @@
     <Static width="30.0" depth="19.0"/>
   </Obstruction>
   <ProductionQueue>
+    <Entities datatype="tokens">
+      units/cart_ship_bireme
+      units/cart_ship_trireme
+    </Entities>
     <Technologies datatype="tokens">
       -training_naval_architects
     </Technologies>

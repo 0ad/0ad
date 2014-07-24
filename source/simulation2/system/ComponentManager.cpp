@@ -697,7 +697,6 @@ void CComponentManager::AddSystemComponents(bool skipScriptedComponents, bool sk
 	// Add scripted system components:
 	if (!skipScriptedComponents)
 	{
-
 		for (uint32_t i = 0; i < m_ScriptedSystemComponents.size(); ++i)
 			AddComponent(m_SystemEntity, m_ScriptedSystemComponents[i], noParam);
 		if (!skipAI)

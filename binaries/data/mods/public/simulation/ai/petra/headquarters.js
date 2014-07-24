@@ -936,7 +936,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 // TODO check that it is on same accessIndex
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
-	var markets = gameState.getAllyEntities().filter(API3.Filters.byClass("Market")).toEntityArray();
+	var markets = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("Market")).toEntityArray();
 	if (!markets.length)
 		markets = gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).toEntityArray();
 
