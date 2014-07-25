@@ -292,9 +292,11 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 			continue
 		if (plan.state !== "boarding")
 			continue
-		if (plan.transportShips.length && !plan.countFreeSlots())
-			continue;
-		else if (!plan.transportShips.length && plan.units.length > 12)
+//		if (plan.transportShips.length && !plan.countFreeSlots())
+//			continue;
+//		else if (!plan.transportShips.length && plan.units.length > 14)
+//			continue;
+		if (plan.units.length > 14)
 			continue;
 		plan.addUnit(entity, endPos);
 		return true;
