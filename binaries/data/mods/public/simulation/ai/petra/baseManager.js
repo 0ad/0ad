@@ -275,7 +275,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	
 	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
 
-	var ccEnts = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 
 	var width = obstructions.width;
 	var bestIdx = undefined;

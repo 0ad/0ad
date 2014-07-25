@@ -19,7 +19,7 @@ function getCheatsData()
 	{
 		var currentCheat = parseJSONData("simulation/data/cheats/"+fileName+".json");
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
-			warn(sprintf("Cheat name '%(name)s' is already present", { name: currentCheat.Name }));
+			warn("Cheat name '" + currentCheat.Name + "' is already present");
 		else
 			cheats[currentCheat.Name] = currentCheat.Data;
 	}
@@ -225,7 +225,7 @@ function handleNetMessage(message)
 			obj.hidden = false;
 			break;
 		default:
-			error(sprintf("Unrecognised netstatus type %(netType)s", { netType: message.status }));
+			error("Unrecognised netstatus type '" + message.status + "'");
 			break;
 		}
 		break;
@@ -281,7 +281,7 @@ function handleNetMessage(message)
 		break;
 
 	default:
-		error(sprintf("Unrecognised net message type %(messageType)s", { messageType: message.type }));
+		error("Unrecognised net message type '" + message.type + "'");
 	}
 }
 
@@ -497,11 +497,6 @@ function addChatMessage(msg, playerAssignments)
 		{
 			if (msg.context !== "")
 			{
-				Engine.Console_Write(sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
-					context: msg.context,
-					user: username,
-					message: message
-				}));
 				formatted = sprintf(translate("(%(context)s) * %(user)s %(message)s"), {
 					context: msg.context,
 					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
@@ -510,10 +505,6 @@ function addChatMessage(msg, playerAssignments)
 			}
 			else
 			{
-				Engine.Console_Write(sprintf(translate("* %(user)s %(message)s"), {
-					user: username,
-					message: message
-				}));
 				formatted = sprintf(translate("* %(user)s %(message)s"), {
 					user: "[color=\"" + playerColor + "\"]" + username + "[/color]",
 					message: message
@@ -526,11 +517,6 @@ function addChatMessage(msg, playerAssignments)
 			var formattedUserTag = sprintf(translate("<%(user)s>"), { user: "[color=\"" + playerColor + "\"]" + username + "[/color]" })
 			if (msg.context !== "")
 			{
-				Engine.Console_Write(sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
-					context: msg.context,
-					userTag: userTag,
-					message: message
-				}));
 				formatted = sprintf(translate("(%(context)s) %(userTag)s %(message)s"), {
 					context: msg.context,
 					userTag: formattedUserTag,
@@ -539,7 +525,6 @@ function addChatMessage(msg, playerAssignments)
 			}
 			else
 			{
-				Engine.Console_Write(sprintf(translate("%(userTag)s %(message)s"), { userTag: userTag, message: message}));
 				formatted = sprintf(translate("%(userTag)s %(message)s"), { userTag: formattedUserTag, message: message});
 			}
 		}

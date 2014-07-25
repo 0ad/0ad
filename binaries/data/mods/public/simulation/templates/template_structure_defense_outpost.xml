@@ -55,7 +55,7 @@
   </Health>
   <Identity>
     <GenericName>Outpost</GenericName>
-    <Tooltip>Build in neutral and friendly territories to scout areas of the map. Slowly loses health while in neutral territory.</Tooltip>
+    <Tooltip>Build in neutral and own territories to scout areas of the map. Slowly loses health while in neutral territory.</Tooltip>
     <Classes datatype="tokens">-ConquestCritical</Classes>
     <VisibleClasses datatype="tokens">Village Outpost</VisibleClasses>
     <Icon>structures/outpost.png</Icon>
@@ -74,7 +74,7 @@
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Technologies datatype="tokens">
       vision_outpost
-	  decay_outpost
+      decay_outpost
     </Technologies>
   </ProductionQueue>
   <Sound>

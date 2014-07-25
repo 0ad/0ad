@@ -876,16 +876,12 @@ function playRandomAmbient(type)
 	switch (type)
 	{
 		case AMBIENT_TEMPERATE:
-			// Seem to need the underscore at the end of "temperate" to avoid crash
-			// (Might be caused by trying to randomly load day_temperate.xml)
-//			currentAmbient = newRandomSound("ambient", "temperate_", "dayscape");
-
 			const AMBIENT = "audio/ambient/dayscape/day_temperate_gen_03.ogg";
-			Engine.PlayAmbientSound( AMBIENT, true );
+			Engine.PlayAmbientSound(AMBIENT, true);
 			break;
 
 		default:
-			Engine.Console_Write(sprintf(translate("Unrecognized ambient type: %(ambientType)s"), { ambientType: type }));
+			error("Unrecognized ambient type: '" + type + "'");
 			break;
 	}
 }

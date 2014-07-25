@@ -170,6 +170,26 @@ m.HQ.prototype.init = function(gameState, queues)
 			queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": 1 }, newDP.pos));
 	}
 
+	// TODO: change that to something dynamic.
+	var civ = gameState.playerData.civ;
+	
+	// load units and buildings from the config files
+	
+	if (civ in this.Config.buildings.base)
+		this.bBase = this.Config.buildings.base[civ];
+	else
+		this.bBase = this.Config.buildings.base['default'];
+
+	if (civ in this.Config.buildings.advanced)
+		this.bAdvanced = this.Config.buildings.advanced[civ];
+	else
+		this.bAdvanced = this.Config.buildings.advanced['default'];
+	
+	for (var i in this.bBase)
+		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
+	for (var i in this.bAdvanced)
+		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
+
 	// adapt our starting strategy to the available resources
 	// - if on a small island, favor fishing and require less fields to save room for buildings
 	var startingSize = 0;
@@ -215,30 +235,99 @@ m.HQ.prototype.init = function(gameState, queues)
 		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
 	}
 
-	this.attackManager.init(gameState, queues, (startingWood > 8500));  // rush allowed 3rd argument = true
+	// Check if we will ever be able to produce units
+	this.canBuildUnits = true;
+	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
+	{
+		var template = gameState.getTemplate(this.bBase[0]);
+		if (!template.available(gameState))
+		{
+			if (this.Config.debug > 0)
+				API3.warn(" this AI is unable to produce any units");
+			this.canBuildUnits = false;
+			var allycc = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+			if (allycc.length)
+			{
+				// if we have some allies, keep a fraction of our units to defend them
+				// and devote the rest to atacks
+				if (this.Config.debug > 0)
+					API3.warn(" We have allied cc " + allycc.length + " and " + gameState.getOwnUnits().length + " units ");
+				var units = gameState.getOwnUnits();
+				var num = Math.max(Math.min(Math.round(0.08*(1+this.Config.personality.cooperative)*units.length), 20), 5);
+				var num1 = Math.floor(num / 2);
+				var num2 = num1;
+				// first pass to affect ranged infantry
+				units.filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).forEach(function (ent) {
+					if (!num || !num1)
+						return;
+					if (ent.getMetadata(PlayerID, "allied"))
+						return;
+					var access = gameState.ai.accessibility.getAccessValue(ent.position());
+					for (var cc of allycc)
+					{
+						if (!cc.position())
+							continue;
+						if (gameState.ai.accessibility.getAccessValue(cc.position()) !== access)
+							continue;
+						--num;
+						--num1;
+						ent.setMetadata(PlayerID, "allied", true);
+						var range = 1.5 * cc.footprintRadius();
+						ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+						break;
+					}
+				});
+				// second pass to affect melee infantry
+				units.filter(API3.Filters.byClassesAnd(["Infantry", "Melee"])).forEach(function (ent) {
+					if (!num || !num2)
+						return;
+					if (ent.getMetadata(PlayerID, "allied"))
+						return;
+					var access = gameState.ai.accessibility.getAccessValue(ent.position());
+					for (var cc of allycc)
+					{
+						if (!cc.position())
+							continue;
+						if (gameState.ai.accessibility.getAccessValue(cc.position()) !== access)
+							continue;
+						--num;
+						--num2;
+						ent.setMetadata(PlayerID, "allied", true);
+						var range = 1.5 * cc.footprintRadius();
+						ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+						break;
+					}
+				});
+				// and now complete the affectation, including all support units
+				units.forEach(function (ent) {
+					if (!num && !ent.hasClass("Support"))
+						return;
+					if (ent.getMetadata(PlayerID, "allied"))
+						return;
+					var access = gameState.ai.accessibility.getAccessValue(ent.position());
+					for (var cc of allycc)
+					{
+						if (!cc.position())
+							continue;
+						if (gameState.ai.accessibility.getAccessValue(cc.position()) !== access)
+							continue;
+						if (!ent.hasClass("Support"))
+							--num;
+						ent.setMetadata(PlayerID, "allied", true);
+						var range = 1.5 * cc.footprintRadius();
+						ent.moveToRange(cc.position()[0], cc.position()[1], range, range);
+						break;
+					}
+				});
+			}
+		}
+	}
+
+	var allowRushes = (startingWood > 8500 && this.canBuildUnits);
+	this.attackManager.init(gameState, queues, allowRushes);
 	this.navalManager.init(gameState, queues);
 	this.defenseManager.init(gameState);
 	this.tradeManager.init(gameState);
-
-	// TODO: change that to something dynamic.
-	var civ = gameState.playerData.civ;
-	
-	// load units and buildings from the config files
-	
-	if (civ in this.Config.buildings.base)
-		this.bBase = this.Config.buildings.base[civ];
-	else
-		this.bBase = this.Config.buildings.base['default'];
-
-	if (civ in this.Config.buildings.advanced)
-		this.bAdvanced = this.Config.buildings.advanced[civ];
-	else
-		this.bAdvanced = this.Config.buildings.advanced['default'];
-	
-	for (var i in this.bBase)
-		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
-	for (var i in this.bAdvanced)
-		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
@@ -1265,11 +1354,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
 	}
 	// then expand if we have lots of units
 	var numUnits = 	gameState.getOwnUnits().length;
-	var numCCs = gameState.countEntitiesByType(this.bBase[0], true);
 	var popForBase = this.Config.Economy.popForTown + 20;
 	if (this.saveResources)
 		popForBase = this.Config.Economy.popForTown + 5;
-	if (Math.floor(numUnits/popForBase) >= numCCs)
+	if (Math.floor(numUnits/popForBase) >= gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
 	{
 		if (this.Config.debug > 1)
 			API3.warn("try to build a new base because of population " + numUnits + " for " + numCCs + " CCs");

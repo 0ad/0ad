@@ -8,69 +8,71 @@
 // ====================================================================
 
 // Remove the item at the given index (pos) from the given list object (objectName).
-function removeItem (objectName, pos)
+function removeItem(objectName, pos)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "removeItem()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("removeItem(): " + objectName + " not found.");
+		return;
+	}
 
-	var list = Engine.GetGUIObjectByName (objectName).list;
-	var selected = Engine.GetGUIObjectByName (objectName).selected;
+	var list = Engine.GetGUIObjectByName(objectName).list;
+	var selected = Engine.GetGUIObjectByName(objectName).selected;
 
 	list.splice(pos, 1);
 
-	Engine.GetGUIObjectByName (objectName).list = list;
+	Engine.GetGUIObjectByName(objectName).list = list;
 
 	// It's important that we update the selection *after*
 	//  we've committed the changes to the list.
 
 	// Update the selected so the same element remains selected.
 	if (selected == pos)
-	{
-		Engine.GetGUIObjectByName (objectName).selected = -1;
-	}
-	else
-	if (selected > pos)
-	{
-		Engine.GetGUIObjectByName (objectName).selected = selected - 1;
-	}
+		Engine.GetGUIObjectByName(objectName).selected = -1;
+	else if (selected > pos)
+		Engine.GetGUIObjectByName(objectName).selected = selected - 1;
 }
 
 // ====================================================================
 
 // Add the item at the given index (pos) to the given list object (objectName) with the given value (value).
-function addItem (objectName, pos, value)
+function addItem(objectName, pos, value)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "addItem()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("addItem(): " + objectName + " not found.");
+		return;
+	}
 
-	var list = Engine.GetGUIObjectByName (objectName).list;
-	var selected = Engine.GetGUIObjectByName (objectName).selected;
+	var list = Engine.GetGUIObjectByName(objectName).list;
+	var selected = Engine.GetGUIObjectByName(objectName).selected;
 
-	list.splice (pos, 0, value);
+	list.splice(pos, 0, value);
 
-	Engine.GetGUIObjectByName (objectName).list = list;
+	Engine.GetGUIObjectByName(objectName).list = list;
 
 	// It's important that we update the selection *after*
 	//  we've committed the changes to the list.
 
 	// Update the selected so the same element remains selected.
 	if (selected >= pos)
-	{
-		Engine.GetGUIObjectByName (objectName).selected = selected + 1;
-	}
+		Engine.GetGUIObjectByName(objectName).selected = selected + 1;
 }
 
 // ====================================================================
 
 // Adds an element to the end of the list
-function pushItem (objectName, value)
+function pushItem(objectName, value)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "pushItem()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("pushItem(): " + objectName + " not found.");
+		return;
+	}
 
-	var list = Engine.GetGUIObjectByName (objectName).list;
-	list.push (value);
-	Engine.GetGUIObjectByName (objectName).list = list;
+	var list = Engine.GetGUIObjectByName(objectName).list;
+	list.push(value);
+	Engine.GetGUIObjectByName(objectName).list = list;
 	// Point to the new item.
 	Engine.GetGUIObjectByName(objectName).selected = getNumItems(objectName)-1;
 }
@@ -78,27 +80,31 @@ function pushItem (objectName, value)
 // ====================================================================
 
 // Removes the last element
-function popItem (objectName)
+function popItem(objectName)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "popItem()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("popItem(): " + objectName + " not found.");
+		return;
+	}
 
-	var selected = Engine.GetGUIObjectByName (objectName).selected;
+	var selected = Engine.GetGUIObjectByName(objectName).selected;
 	removeItem(objectName, getNumItems(objectName)-1);
 
 	if (selected == getNumItems(objectName)-1)
-	{
 		Engine.GetGUIObjectByName(objectName).selected = -1;
-	}
 }
 
 // ====================================================================
 
 // Retrieves the number of elements in the list
-function getNumItems (objectName)
+function getNumItems(objectName)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getNumItems()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("getNumItems(): " + objectName + " not found.");
+		return 0;
+	}
 
 	var list = Engine.GetGUIObjectByName(objectName).list;
 	return list.length;
@@ -107,10 +113,13 @@ function getNumItems (objectName)
 // ====================================================================
 
 // Retrieves the value of the item at 'pos'
-function getItemValue (objectName, pos)
+function getItemValue(objectName, pos)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getItemValue()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("getItemValue(): " + objectName + " not found.");
+		return "";
+	}
 
 	var list = Engine.GetGUIObjectByName(objectName).list;
 	return list[pos];
@@ -119,10 +128,13 @@ function getItemValue (objectName, pos)
 // ====================================================================
 
 // Retrieves the value of the currently selected item
-function getCurrItemValue (objectName)
+function getCurrItemValue(objectName)
 {
-	if (Engine.GetGUIObjectByName (objectName) == null)
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "getCurrItemValue()", object: objectName }));
+	if (Engine.GetGUIObjectByName(objectName) == null)
+	{
+		warn("getCurrItemValue(): " + objectName + " not found.");
+		return "";
+	}
 
 	if (Engine.GetGUIObjectByName(objectName).selected == -1)
 		return "";
@@ -134,11 +146,11 @@ function getCurrItemValue (objectName)
 
 // Sets current item to a given string (which must be one of those
 // already in the list).
-function setCurrItemValue (objectName, string)
+function setCurrItemValue(objectName, string)
 {
 	if (Engine.GetGUIObjectByName(objectName) == null)
 	{
-		Engine.Console_Write (sprintf(translate("%(functionName)s: %(object)s not found."), { functionName: "setCurrItemValue()", object: objectName }));
+		warn("setCurrItemValue(): " + objectName + " not found.");
 		return -1;
 	}
 
@@ -158,7 +170,7 @@ function setCurrItemValue (objectName, string)
 	}
 
 	// Return -2 if failed to find value in list.
-	Engine.Console_Write (sprintf(translate("Requested string '%(string)s' not found in %(object)s's list."), { string: string, object: objectName }));
+	warn("Requested string '" + string + "' not found in " + objectName + "'s list.");
 	return -2;
 }
 
