@@ -4,30 +4,33 @@ newoption { trigger = "collada", description = "Include COLLADA projects (requir
 newoption { trigger = "coverage", description = "Enable code coverage data collection (GCC only)" }
 newoption { trigger = "gles", description = "Use non-working OpenGL ES 2.0 mode" }
 newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; should use either \"--cc icc\" or --without-pch too, and then set CXX=icpc before calling make)" }
-newoption { trigger = "outpath", description = "Location for generated project files" }
-newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
+newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use the XmlPrinter runner which produces Jenkins-compatible output" }
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
-newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
-newoption { trigger = "without-tests", description = "Disable generation of test projects" }
-newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
-newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
-newoption { trigger = "without-miniupnpc", description = "Disable use of miniupnpc for port forwarding" }
-newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
-newoption { trigger = "with-system-enet", description = "Search standard paths for libenet, instead of using bundled copy" }
+newoption { trigger = "outpath", description = "Location for generated project files" }
+newoption { trigger = "with-c++11", description = "Enable C++11 on GCC" }
 newoption { trigger = "with-system-miniupnpc", description = "Search standard paths for libminiupnpc, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs24", description = "Search standard paths for libmozjs24, instead of using bundled copy" }
-newoption { trigger = "with-c++11", description = "Enable C++11 on GCC" }
-newoption { trigger = "sysroot", description = "Set compiler system root path, used for building against a non-system SDK. For example /usr/local becomes SYSROOT/user/local" }
-newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
-newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
+newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
+newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
+newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
+newoption { trigger = "without-miniupnpc", description = "Disable use of miniupnpc for port forwarding" }
+newoption { trigger = "without-nvtt", description = "Disable use of NVTT" }
+newoption { trigger = "without-pch", description = "Disable generation and usage of precompiled headers" }
+newoption { trigger = "without-tests", description = "Disable generation of test projects" }
 
+-- OS X specific options
+newoption { trigger = "macosx-bundle", description = "Enable OSX bundle, the argument is the bundle identifier string (e.g. com.wildfiregames.0ad)" }
+newoption { trigger = "macosx-version-min", description = "Set minimum required version of the OS X API, the build will possibly fail if an older SDK is used, while newer API functions will be weakly linked (i.e. resolved at runtime)" }
+newoption { trigger = "sysroot", description = "Set compiler system root path, used for building against a non-system SDK. For example /usr/local becomes SYSROOT/user/local" }
+
+-- Windows specific options
 newoption { trigger = "build-shared-glooxwrapper", description = "Rebuild glooxwrapper DLL for Windows. Requires the same compiler version that gloox was built with" }
 newoption { trigger = "use-shared-glooxwrapper", description = "Use prebuilt glooxwrapper DLL for Windows" }
 
+-- Install options
 newoption { trigger = "bindir", description = "Directory for executables (typically '/usr/games'); default is to be relocatable" }
 newoption { trigger = "datadir", description = "Directory for data files (typically '/usr/share/games/0ad'); default is ../data/ relative to executable" }
 newoption { trigger = "libdir", description = "Directory for libraries (typically '/usr/lib/games/0ad'); default is ./ relative to executable" }
-newoption { trigger = "jenkins-tests", description = "configure cxxtest to use the XmlPrinter runner which produces jenkins-compatible output" }
 
 -- Root directory of project checkout relative to this .lua file
 rootdir = "../.."
