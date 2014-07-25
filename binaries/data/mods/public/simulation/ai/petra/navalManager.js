@@ -220,7 +220,7 @@ m.NavalManager.prototype.getDockIndex = function(gameState, dock, onWater)
 		}
 	}
 	if (index < 2)
-		warn("ERROR in Petra navalManager because of dock position (onWater=" + onWater + ") index " + index);
+		API3.warn("ERROR in Petra navalManager because of dock position (onWater=" + onWater + ") index " + index);
 	return index;
 };
 
@@ -276,12 +276,13 @@ m.NavalManager.prototype.addPlan = function(plan)
 
 // complete already existing plan or create a new one for this requirement
 // (many units can then call this separately and end up in the same plan)
+// TODO  check garrison classes
 m.NavalManager.prototype.requireTransport = function(gameState, entity, startIndex, endIndex, endPos)
 {
 	if (entity.getMetadata(PlayerID, "transport") !== undefined)
 	{
 		if (this.Config.debug > 0)
-			warn("Petra naval manager error: unit " + entity.id() +  " has already required a transport");
+			API3.warn("Petra naval manager error: unit " + entity.id() +  " has already required a transport");
 		return false;
 	}
 
@@ -291,7 +292,9 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 			continue
 		if (plan.state !== "boarding")
 			continue
-		if (plan.units.length > 12)   // TODO to be improved  ... check on ship capacity
+		if (plan.transportShips.length && !plan.countFreeSlots())
+			continue;
+		else if (!plan.transportShips.length && plan.units.length > 12)
 			continue;
 		plan.addUnit(entity, endPos);
 		return true;
@@ -300,7 +303,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 	if (plan.failed)
 	{
 		if (this.Config.debug > 0)
-			warn(">>>> transport plan aborted <<<<");
+			API3.warn(">>>> transport plan aborted <<<<");
 		return false;
 	}
 	this.transportPlans.push(plan);
@@ -314,7 +317,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 	if (newplan.failed)
 	{
 		if (this.Config.debug > 0)
-			warn(">>>> split of transport plan aborted <<<<");
+			API3.warn(">>>> split of transport plan aborted <<<<");
 		return false;
 	}
 
@@ -411,19 +414,8 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 m.NavalManager.prototype.assignToPlans = function(gameState)
 {
 	for (var plan of this.transportPlans)
-	{
-		if (!plan.needTransportShips)
-			continue;
-
-		for each (var ship in this.seaTransportShips[plan.sea]._entities)
-		{
-			if (ship.getMetadata(PlayerID, "transporter"))
-				continue;
-			plan.assignShip(ship);
-			plan.needTransportShips = false;
-			break;
-		}
-	}
+		if (plan.needTransportShips)
+			plan.assignShip(gameState);
 };
 
 // let blocking ships move apart from active ships (waiting for a better pathfinder)
@@ -563,7 +555,7 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 		if (remaining === 0)
 		{
 			if (this.Config.debug > 0)
-				warn("no more units on transport plan " + this.transportPlans[i].ID);
+				API3.warn("no more units on transport plan " + this.transportPlans[i].ID);
 			this.transportPlans[i].releaseAll();
 			this.transportPlans.splice(i--, 1);
 		}
