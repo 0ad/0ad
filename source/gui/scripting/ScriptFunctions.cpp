@@ -219,8 +219,12 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs, int p
 	g_Game->StartGame(gameAttribs, "");
 }
 
-CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
+CScriptVal StartSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
 {
+	CSimulation2* sim = g_Game->GetSimulation2();
+	JSContext* cx = sim->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
 
@@ -229,28 +233,25 @@ CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring n
 	// Load the saved game data from disk
 	CScriptValRooted metadata;
 	std::string savedState;
-	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), metadata, savedState);
+	Status err = SavedGames::Load(name, sim->GetScriptInterface(), metadata, savedState);
 	if (err < 0)
 		return CScriptVal();
 
 	g_Game = new CGame();
+	
+	JS::RootedValue gameMetadata(cx, metadata.get());
 
-	// Convert from GUI script context to sim script context
-	CSimulation2* sim = g_Game->GetSimulation2();
-	CScriptValRooted gameMetadata (sim->GetScriptInterface().GetContext(),
-		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), metadata.get()));
-
-	CScriptValRooted gameInitAttributes;
-	sim->GetScriptInterface().GetProperty(gameMetadata.get(), "initAttributes", gameInitAttributes);
+	JS::RootedValue gameInitAttributes(cx);
+	sim->GetScriptInterface().GetProperty(gameMetadata, "initAttributes", &gameInitAttributes);
 
 	int playerID;
-	sim->GetScriptInterface().GetProperty(gameMetadata.get(), "player", playerID);
+	sim->GetScriptInterface().GetProperty(gameMetadata, "player", playerID);
 
 	// Start the game
 	g_Game->SetPlayerID(playerID);
-	g_Game->StartGame(gameInitAttributes, savedState);
+	g_Game->StartGame(CScriptValRooted(cx, gameInitAttributes), savedState);
 
-	return metadata.get();
+	return gameMetadata.get();
 }
 
 void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, CScriptVal GUIMetadata)

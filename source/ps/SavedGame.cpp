@@ -80,32 +80,32 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	if (!simulation.SerializeState(simStateStream))
 		WARN_RETURN(ERR::FAIL);
 
-	CScriptValRooted metadata;
-	simulation.GetScriptInterface().Eval("({})", metadata);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "version_major", SAVED_GAME_VERSION_MAJOR);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "version_minor", SAVED_GAME_VERSION_MINOR);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "mods", g_modsLoaded);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "time", (double)now);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "player", playerID);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "initAttributes", simulation.GetInitAttributes());
+	JS::RootedValue metadata(cx);
+	simulation.GetScriptInterface().Eval("({})", &metadata);
+	simulation.GetScriptInterface().SetProperty(metadata, "version_major", SAVED_GAME_VERSION_MAJOR);
+	simulation.GetScriptInterface().SetProperty(metadata, "version_minor", SAVED_GAME_VERSION_MINOR);
+	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
+	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
+	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
+	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", simulation.GetInitAttributes());
 
 	JS::RootedValue guiMetadata(cx, simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone));
 
 	// get some camera data
-	CScriptVal cameraMetadata;
-	simulation.GetScriptInterface().Eval("({})", cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosX", g_Game->GetView()->GetCameraPosX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosY", g_Game->GetView()->GetCameraPosY());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "PosZ", g_Game->GetView()->GetCameraPosZ());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotX", g_Game->GetView()->GetCameraRotX());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "RotY", g_Game->GetView()->GetCameraRotY());
-	simulation.GetScriptInterface().SetProperty(cameraMetadata.get(), "Zoom", g_Game->GetView()->GetCameraZoom());
+	JS::RootedValue cameraMetadata(cx);
+	simulation.GetScriptInterface().Eval("({})", &cameraMetadata);
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosX", g_Game->GetView()->GetCameraPosX());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosY", g_Game->GetView()->GetCameraPosY());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "PosZ", g_Game->GetView()->GetCameraPosZ());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotX", g_Game->GetView()->GetCameraRotX());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "RotY", g_Game->GetView()->GetCameraRotY());
+	simulation.GetScriptInterface().SetProperty(cameraMetadata, "Zoom", g_Game->GetView()->GetCameraZoom());
 	simulation.GetScriptInterface().SetProperty(guiMetadata, "camera", cameraMetadata);
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "gui", guiMetadata);
-
-	simulation.GetScriptInterface().SetProperty(metadata.get(), "description", description);
+	simulation.GetScriptInterface().SetProperty(metadata, "gui", guiMetadata);
 	
-	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata.get(), true);
+	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
+	
+	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata, true);
 	
 	// Write the saved game as zip file containing the various components
 	PIArchiveWriter archiveWriter = CreateArchiveWriter_Zip(tempSaveFileRealPath, false);
@@ -194,7 +194,9 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
-
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
 	std::vector<CScriptValRooted> games;
 
 	Status err;
@@ -221,8 +223,9 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 			continue; // skip this file
 		}
 
-		CScriptValRooted metadata;
-		CGameLoader loader(scriptInterface, &metadata, NULL);
+		JS::RootedValue metadata(cx);
+		CScriptValRooted tmpMetada(cx, metadata);
+		CGameLoader loader(scriptInterface, &tmpMetada, NULL);
 		err = archiveReader->ReadEntries(CGameLoader::ReadEntryCallback, (uintptr_t)&loader);
 		if (err < 0)
 		{
@@ -230,11 +233,11 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 			continue; // skip this file
 		}
 
-		CScriptValRooted game;
-		scriptInterface.Eval("({})", game);
-		scriptInterface.SetProperty(game.get(), "id", pathnames[i].Basename());
-		scriptInterface.SetProperty(game.get(), "metadata", metadata);
-		games.push_back(game);
+		JS::RootedValue game(cx);
+		scriptInterface.Eval("({})", &game);
+		scriptInterface.SetProperty(game, "id", pathnames[i].Basename());
+		scriptInterface.SetProperty(game, "metadata", metadata);
+		games.push_back(CScriptValRooted(cx, game));
 	}
 
 	return games;
@@ -264,11 +267,14 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 
 CScriptValRooted SavedGames::GetEngineInfo(ScriptInterface& scriptInterface) 
 { 
-	CScriptValRooted metainfo; 
-	scriptInterface.Eval("({})", metainfo); 
-	scriptInterface.SetProperty(metainfo.get(), "version_major", SAVED_GAME_VERSION_MAJOR); 
-	scriptInterface.SetProperty(metainfo.get(), "version_minor", SAVED_GAME_VERSION_MINOR); 
-	scriptInterface.SetProperty(metainfo.get(), "mods"         , g_modsLoaded);
-	return metainfo; 
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue metainfo(cx); 
+	scriptInterface.Eval("({})", &metainfo); 
+	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR); 
+	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR); 
+	scriptInterface.SetProperty(metainfo, "mods"         , g_modsLoaded);
+	return CScriptValRooted(cx, metainfo); 
 }
 

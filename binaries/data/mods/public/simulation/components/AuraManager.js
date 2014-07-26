@@ -127,6 +127,11 @@ AuraManager.prototype.RemoveTemplateBonus = function(value, player, classes, key
 
 AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 {
+	// FIXME Due do a bug in IonMonkey v24, we must interprete this method
+	// When we upgrade to v31, remove the try-catch line.
+	// See #2684
+	try {} catch(e) {}
+
 	if (!this.modificationsCache[valueName] || !this.modificationsCache[valueName][ent])
 		return value;
 
@@ -137,6 +142,11 @@ AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 
 AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, player, template)
 {
+	// FIXME Due do a bug in IonMonkey v24, we must interprete this method
+	// When we upgrade to v31, remove the try-catch line.
+	// See #2684
+	try {} catch(e) {}
+
 	if (!this.templateModificationsCache[valueName] || !this.templateModificationsCache[valueName][player])
 		return value;
 

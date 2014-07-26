@@ -95,10 +95,13 @@ private:
 			// LoadScripts will only load each script once even though we call it for each player
 			if (!m_Worker.LoadScripts(m_AIName))
 				return false;
+				
+			JSContext* cx = m_ScriptInterface->GetContext();
+			JSAutoRequest rq(cx);
 
 			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
-			CScriptValRooted metadata = m_Worker.LoadMetadata(path);
-			if (metadata.uninitialised())
+			JS::RootedValue metadata(cx, m_Worker.LoadMetadata(path).get());
+			if (metadata.isUndefined())
 			{
 				LOGERROR(L"Failed to create AI player: can't find %ls", path.string().c_str());
 				return false;
@@ -109,50 +112,51 @@ private:
 			// TODO: All AIs should use modules. Remove the condition if this requirement is met.
 			std::string moduleName;
 			std::string constructor;
-			CScriptVal objectWithConstructor; // object that should contain the constructor function
+			JS::RootedValue objectWithConstructor(cx); // object that should contain the constructor function
+			JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
 			CScriptVal ctor;
-			if (!m_ScriptInterface->HasProperty(metadata.get(), "moduleName"))
+			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
-				objectWithConstructor = m_ScriptInterface->GetGlobalObject();
+				objectWithConstructor.set(m_ScriptInterface->GetGlobalObject());
 			}
 			else
 			{
-				m_ScriptInterface->GetProperty(metadata.get(), "moduleName", moduleName);
-				if(!m_ScriptInterface->GetProperty(m_ScriptInterface->GetGlobalObject(), moduleName.c_str(), objectWithConstructor) || objectWithConstructor.undefined())
+				m_ScriptInterface->GetProperty(metadata, "moduleName", moduleName);
+				if(!m_ScriptInterface->GetProperty(global, moduleName.c_str(), &objectWithConstructor) || objectWithConstructor.isUndefined())
 				{
 					LOGERROR(L"Failed to create AI player: %ls: can't find the module that should contain the constructor: '%hs'", path.string().c_str(), moduleName.c_str());
 					return false;
 				}
 			}
-			if (!m_ScriptInterface->GetProperty(metadata.get(), "constructor", constructor))
+			if (!m_ScriptInterface->GetProperty(metadata, "constructor", constructor))
 			{
 				LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.string().c_str());
 				return false;
 			}
 
 			// Get the constructor function from the loaded scripts
-			if (!m_ScriptInterface->GetProperty(objectWithConstructor.get(), constructor.c_str(), ctor)
+			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), ctor)
 				|| ctor.undefined())
 			{
 				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
 			}
 
-			m_ScriptInterface->GetProperty(metadata.get(), "useShared", m_UseSharedComponent);
+			m_ScriptInterface->GetProperty(metadata, "useShared", m_UseSharedComponent);
 			
 			CScriptVal obj;
 
 			if (callConstructor)
 			{
 				// Set up the data to pass as the constructor argument
-				CScriptVal settings;
-				m_ScriptInterface->Eval(L"({})", settings);
-				m_ScriptInterface->SetProperty(settings.get(), "player", m_Player, false);
-				m_ScriptInterface->SetProperty(settings.get(), "difficulty", m_Difficulty, false);
+				JS::RootedValue settings(cx);
+				m_ScriptInterface->Eval(L"({})", &settings);
+				m_ScriptInterface->SetProperty(settings, "player", m_Player, false);
+				m_ScriptInterface->SetProperty(settings, "difficulty", m_Difficulty, false);
 				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
-				m_ScriptInterface->SetProperty(settings.get(), "templates", m_Worker.m_EntityTemplates, false);
+				m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
 
-				JS::AutoValueVector argv(m_ScriptInterface->GetContext());
+				JS::AutoValueVector argv(cx);
 				argv.append(settings.get());
 				obj = m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0));
 			}
@@ -170,23 +174,23 @@ private:
 				return false;
 			}
 
-			m_Obj = CScriptValRooted(m_ScriptInterface->GetContext(), obj);
+			m_Obj = CScriptValRooted(cx, obj);
 			return true;
 		}
 
-		void Run(CScriptVal state, int playerID)
+		void Run(JS::HandleValue state, int playerID)
 		{
 			m_Commands.clear();
 			m_ScriptInterface->CallFunctionVoid(m_Obj.get(), "HandleMessage", state, playerID);
 		}
 		// overloaded with a sharedAI part.
 		// javascript can handle both natively on the same function.
-		void Run(CScriptVal state, int playerID, CScriptValRooted SharedAI)
+		void Run(JS::HandleValue state, int playerID, CScriptValRooted SharedAI)
 		{
 			m_Commands.clear();
 			m_ScriptInterface->CallFunctionVoid(m_Obj.get(), "HandleMessage", state, playerID, SharedAI);
 		}
-		void InitAI(CScriptVal state, CScriptValRooted SharedAI)
+		void InitAI(JS::HandleValue state, CScriptValRooted SharedAI)
 		{
 			m_Commands.clear();
 			m_ScriptInterface->CallFunctionVoid(m_Obj.get(), "Init", state, m_Player, SharedAI);
@@ -370,53 +374,54 @@ public:
 		
 		// Constructor name is SharedScript, it's in the module API3
 		// TODO: Hardcoding this is bad, we need a smarter way. 
-		CScriptVal AIModule;
-		CScriptVal ctor;
-		if (!m_ScriptInterface->GetProperty(m_ScriptInterface->GetGlobalObject(), "API3", AIModule) || AIModule.undefined())
+		JS::RootedValue AIModule(cx);
+		JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
+		JS::RootedValue ctor(cx);
+		if (!m_ScriptInterface->GetProperty(global, "API3", &AIModule) || AIModule.isUndefined())
 		{
 			LOGERROR(L"Failed to create shared AI component: %ls: can't find module '%hs'", path.string().c_str(), "API3");
 			return false;
 		}
 		
-		if (!m_ScriptInterface->GetProperty(AIModule.get(), "SharedScript", ctor)
-			|| ctor.undefined())
+		if (!m_ScriptInterface->GetProperty(AIModule, "SharedScript", &ctor)
+			|| ctor.isUndefined())
 		{
 			LOGERROR(L"Failed to create shared AI component: %ls: can't find constructor '%hs'", path.string().c_str(), "SharedScript");
 			return false;
 		}
 		
 		// Set up the data to pass as the constructor argument
-		CScriptVal settings;
-		m_ScriptInterface->Eval(L"({})", settings);
-		CScriptVal playersID;
-		m_ScriptInterface->Eval(L"({})", playersID);
+		JS::RootedValue settings(cx);
+		m_ScriptInterface->Eval(L"({})", &settings);
+		JS::RootedValue playersID(cx);
+		m_ScriptInterface->Eval(L"({})", &playersID);
 		
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
 			JS::RootedValue val(cx);
 			m_ScriptInterface->ToJSVal(cx, &val, m_Players[i]->m_Player);
-			m_ScriptInterface->SetPropertyInt(playersID.get(), i, CScriptVal(val), true);
+			m_ScriptInterface->SetPropertyInt(playersID, i, val, true);
 		}
 		
-		m_ScriptInterface->SetProperty(settings.get(), "players", playersID);
+		m_ScriptInterface->SetProperty(settings, "players", playersID);
 		ENSURE(m_HasLoadedEntityTemplates);
-		m_ScriptInterface->SetProperty(settings.get(), "templates", m_EntityTemplates, false);
+		m_ScriptInterface->SetProperty(settings, "templates", m_EntityTemplates, false);
 		
 		if (hasTechs)
 		{
-			m_ScriptInterface->SetProperty(settings.get(), "techTemplates", m_TechTemplates, false);
+			m_ScriptInterface->SetProperty(settings, "techTemplates", m_TechTemplates, false);
 		}
 		else
 		{
 			// won't get the tech templates directly.
-			CScriptVal fakeTech;
-			m_ScriptInterface->Eval("({})", fakeTech);
-			m_ScriptInterface->SetProperty(settings.get(), "techTemplates", fakeTech, false);
+			JS::RootedValue fakeTech(cx);
+			m_ScriptInterface->Eval("({})", &fakeTech);
+			m_ScriptInterface->SetProperty(settings, "techTemplates", fakeTech, false);
 		}
 		
 		JS::AutoValueVector argv(cx);
-		argv.append(settings.get());
-		m_SharedAIObj = CScriptValRooted(cx, m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0)));
+		argv.append(settings);
+		m_SharedAIObj = CScriptValRooted(cx, m_ScriptInterface->CallConstructor(ctor, argv.length(), argv.handleAt(0)));
 	
 		
 		if (m_SharedAIObj.undefined())
@@ -448,25 +453,29 @@ public:
 		// this will be run last by InitGame.Js, passing the full game representation.
 		// For now it will run for the shared Component.
 		// This is NOT run during deserialization.
-		CScriptVal state = m_ScriptInterface->ReadStructuredClone(gameState);
 		JSContext* cx = m_ScriptInterface->GetContext();
-
-		JS::RootedValue tmpVal(cx);
+		JSAutoRequest rq(cx);
+		
+		JS::RootedValue state(cx, m_ScriptInterface->ReadStructuredClone(gameState));
+		
+		JS::RootedValue tmpVal(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 		ScriptInterface::ToJSVal(cx, &tmpVal, passabilityMap);
 		m_PassabilityMapVal = CScriptValRooted(cx, tmpVal.get());
+		
 		ScriptInterface::ToJSVal(cx, &tmpVal, territoryMap);
 		m_TerritoryMapVal = CScriptValRooted(cx, tmpVal);
+		
 		if (m_HasSharedComponent)
 		{
-			m_ScriptInterface->SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
-			m_ScriptInterface->SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
+			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
+			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
 
 			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj.get(), "init", state);
 			
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
 				if (m_HasSharedComponent && m_Players[i]->m_UseSharedComponent)
-					m_Players[i]->InitAI(state,m_SharedAIObj);
+					m_Players[i]->InitAI(state, m_SharedAIObj);
 			}
 		}
 		
@@ -484,7 +493,7 @@ public:
 		if (passabilityMap.m_DirtyID != m_PassabilityMap.m_DirtyID)
 		{
 			m_PassabilityMap = passabilityMap;
-			JS::RootedValue tmpVal(cx);
+			JS::RootedValue tmpVal(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 			ScriptInterface::ToJSVal(cx, &tmpVal, m_PassabilityMap);
 			m_PassabilityMapVal = CScriptValRooted(cx, tmpVal);
 		}
@@ -529,18 +538,23 @@ public:
 	
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
 	{
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+
 		m_HasLoadedEntityTemplates = true;
 
-		m_ScriptInterface->Eval("({})", m_EntityTemplates);
+		JS::RootedValue tmpEntityTemplates(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+		m_ScriptInterface->Eval("({})", &tmpEntityTemplates);
 
 		for (size_t i = 0; i < templates.size(); ++i)
 		{
-			jsval val = templates[i].second->ToJSVal(m_ScriptInterface->GetContext(), false);
-			m_ScriptInterface->SetProperty(m_EntityTemplates.get(), templates[i].first.c_str(), CScriptVal(val), true);
+			JS::RootedValue val(cx, templates[i].second->ToJSVal(cx, false));
+			m_ScriptInterface->SetProperty(tmpEntityTemplates, templates[i].first.c_str(), val, true);
 		}
 
 		// Since the template data is shared between AI players, freeze it
 		// to stop any of them changing it and confusing the other players
+		m_EntityTemplates = CScriptValRooted(cx, tmpEntityTemplates);
 		m_ScriptInterface->FreezeObject(m_EntityTemplates.get(), true);
 	}
 
@@ -565,6 +579,9 @@ public:
 
 	void SerializeState(ISerializer& serializer)
 	{
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		
 		std::stringstream rngStream;
 		rngStream << m_RNG;
 		serializer.StringASCII("rng", rngStream.str(), 0, 32);
@@ -594,23 +611,27 @@ public:
 				serializer.ScriptVal("command", val);
 			}
 
-			bool hasCustomSerialize = m_ScriptInterface->HasProperty(m_Players[i]->m_Obj.get(), "Serialize");
+			JS::RootedValue tmpPlayerObj(cx, m_Players[i]->m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			bool hasCustomSerialize = m_ScriptInterface->HasProperty(tmpPlayerObj, "Serialize");
 			if (hasCustomSerialize)
 			{
-				CScriptVal scriptData;
-				if (!m_ScriptInterface->CallFunction(m_Players[i]->m_Obj.get(), "Serialize", scriptData))
+				JS::RootedValue scriptData(cx);
+				if (!m_ScriptInterface->CallFunction(tmpPlayerObj, "Serialize", &scriptData))
 					LOGERROR(L"AI script Serialize call failed");
 				serializer.ScriptVal("data", scriptData);
 			}
 			else
 			{
-				serializer.ScriptVal("data", m_Players[i]->m_Obj.get());
+				serializer.ScriptVal("data", tmpPlayerObj);
 			}
 		}
 	}
 
 	void Deserialize(std::istream& stream)
 	{
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		
 		ENSURE(m_CommandsComputed); // deserializing while we're still actively computing would be bad
 
 		CStdDeserializer deserializer(*m_ScriptInterface, stream);
@@ -666,24 +687,25 @@ public:
 			//	prototypes could be stored in their ScriptInterface
 			deserializer.SetSerializablePrototypes(m_DeserializablePrototypes);
 
-			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj.get(), "Deserialize");
+			JS::RootedValue tmpPlayerObj(cx, m_Players.back()->m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(tmpPlayerObj, "Deserialize");
 			if (hasCustomDeserialize)
 			{
 				CScriptVal scriptData;
 				deserializer.ScriptVal("data", scriptData);
 				if (m_Players[i]->m_UseSharedComponent)
 				{
-					if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData, m_SharedAIObj))
+					if (!m_ScriptInterface->CallFunctionVoid(tmpPlayerObj, "Deserialize", scriptData, m_SharedAIObj))
 						LOGERROR(L"AI script Deserialize call failed");
 				}
-				else if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj.get(), "Deserialize", scriptData))
+				else if (!m_ScriptInterface->CallFunctionVoid(tmpPlayerObj, "Deserialize", scriptData))
 				{
 					LOGERROR(L"AI script deserialize() call failed");
 				}
 			}
 			else
 			{
-				deserializer.ScriptVal("data", m_Players.back()->m_Obj);
+				deserializer.ScriptVal("data", tmpPlayerObj.get());
 			}
 		}
 	}
@@ -719,12 +741,14 @@ private:
 	void PerformComputation()
 	{			
 		// Deserialize the game state, to pass to the AI's HandleMessage
-		CScriptVal state;
+		JSContext* cx = m_ScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue state(cx);
 		{
 			PROFILE3("AI compute read state");
-			state = m_ScriptInterface->ReadStructuredClone(m_GameState);
-			m_ScriptInterface->SetProperty(state.get(), "passabilityMap", m_PassabilityMapVal, true);
-			m_ScriptInterface->SetProperty(state.get(), "territoryMap", m_TerritoryMapVal, true);
+			state.set(m_ScriptInterface->ReadStructuredClone(m_GameState));
+			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
+			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
 		}
 
 		// It would be nice to do
@@ -887,13 +911,15 @@ public:
 	virtual void RunGamestateInit()
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
 		
 		CmpPtr<ICmpAIInterface> cmpAIInterface(GetSystemEntity());
 		ENSURE(cmpAIInterface);
 		
 		// Get the game state from AIInterface
 		// We flush events from the initialization so we get a clean state now.
-		CScriptVal state = cmpAIInterface->GetFullRepresentation(true);
+		JS::RootedValue state(cx, cmpAIInterface->GetFullRepresentation(true).get());
 
 		// Get the passability data
 		Grid<u16> dummyGrid;
@@ -924,6 +950,8 @@ public:
 		ForceLoadEntityTemplates();
 
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
 
 		if (m_Worker.getPlayerSize() == 0)
 			return;
@@ -932,11 +960,11 @@ public:
 		ENSURE(cmpAIInterface);
 
 		// Get the game state from AIInterface
-		CScriptVal state;
+		JS::RootedValue state(cx);
 		if (m_JustDeserialized)
-			state = cmpAIInterface->GetFullRepresentation(true);
+			state.set(cmpAIInterface->GetFullRepresentation(true).get());
 		else
-			state = cmpAIInterface->GetRepresentation();
+			state.set(cmpAIInterface->GetRepresentation().get());
 
 		// Get the passability data
 		Grid<u16> dummyGrid;
@@ -959,7 +987,7 @@ public:
 
 		LoadPathfinderClasses(state);
 
-		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state.get()), *passabilityMap, *territoryMap, territoryMapDirty);
+		m_Worker.StartComputation(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap, territoryMapDirty);
 		
 		m_JustDeserialized = false;
 	}
@@ -1032,22 +1060,24 @@ private:
 		}
 	}
 
-	void LoadPathfinderClasses(CScriptVal state)
+	void LoadPathfinderClasses(JS::HandleValue state)
 	{
 		CmpPtr<ICmpPathfinder> cmpPathfinder(GetSystemEntity());
 		if (!cmpPathfinder)
 			return;
 
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
 
-		CScriptVal classesVal;
-		scriptInterface.Eval("({ pathfinderObstruction: 1, foundationObstruction: 2 })", classesVal);
+		JS::RootedValue classesVal(cx);
+		scriptInterface.Eval("({ pathfinderObstruction: 1, foundationObstruction: 2 })", &classesVal);
 
 		std::map<std::string, ICmpPathfinder::pass_class_t> classes = cmpPathfinder->GetPassabilityClasses();
 		for (std::map<std::string, ICmpPathfinder::pass_class_t>::iterator it = classes.begin(); it != classes.end(); ++it)
-			scriptInterface.SetProperty(classesVal.get(), it->first.c_str(), it->second, true);
+			scriptInterface.SetProperty(classesVal, it->first.c_str(), it->second, true);
 
-		scriptInterface.SetProperty(state.get(), "passabilityClasses", classesVal, true);
+		scriptInterface.SetProperty(state, "passabilityClasses", classesVal, true);
 	}
 
 	CAIWorker m_Worker;

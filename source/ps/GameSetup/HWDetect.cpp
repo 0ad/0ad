@@ -66,50 +66,56 @@
 
 #endif
 
-static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings);
+static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue settings);
 
 #if ARCH_X86_X64
 CScriptVal ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache)
 {
-	CScriptVal ret;
-	scriptInterface.Eval("[]", ret);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue ret(cx);
+	scriptInterface.Eval("[]", &ret);
 	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
 		const x86_x64::Cache* pcache = x86_x64::Caches(idxCache+idxLevel);
 		if (pcache->type == x86_x64::Cache::kNull || pcache->numEntries == 0)
 			continue;
-		CScriptVal cache;
-		scriptInterface.Eval("({})", cache);
-		scriptInterface.SetProperty(cache.get(), "type", (u32)pcache->type);
-		scriptInterface.SetProperty(cache.get(), "level", (u32)pcache->level);
-		scriptInterface.SetProperty(cache.get(), "associativity", (u32)pcache->associativity);
-		scriptInterface.SetProperty(cache.get(), "linesize", (u32)pcache->entrySize);
-		scriptInterface.SetProperty(cache.get(), "sharedby", (u32)pcache->sharedBy);
-		scriptInterface.SetProperty(cache.get(), "totalsize", (u32)pcache->TotalSize());
-		scriptInterface.SetPropertyInt(ret.get(), idxLevel, cache);
+		JS::RootedValue cache(cx);
+		scriptInterface.Eval("({})", &cache);
+		scriptInterface.SetProperty(cache, "type", (u32)pcache->type);
+		scriptInterface.SetProperty(cache, "level", (u32)pcache->level);
+		scriptInterface.SetProperty(cache, "associativity", (u32)pcache->associativity);
+		scriptInterface.SetProperty(cache, "linesize", (u32)pcache->entrySize);
+		scriptInterface.SetProperty(cache, "sharedby", (u32)pcache->sharedBy);
+		scriptInterface.SetProperty(cache, "totalsize", (u32)pcache->TotalSize());
+		scriptInterface.SetPropertyInt(ret, idxLevel, cache);
 	}
-	return ret;
+	return ret.get();
 }
 
 CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
 {
-	CScriptVal ret;
-	scriptInterface.Eval("[]", ret);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue ret(cx);
+	scriptInterface.Eval("[]", &ret);
 	for(size_t i = 0; ; i++)
 	{
 		const x86_x64::Cache* ptlb = x86_x64::Caches(x86_x64::TLB+i);
 		if (!ptlb)
 			break;
-		CScriptVal tlb;
-		scriptInterface.Eval("({})", tlb);
-		scriptInterface.SetProperty(tlb.get(), "type", (u32)ptlb->type);
-		scriptInterface.SetProperty(tlb.get(), "level", (u32)ptlb->level);
-		scriptInterface.SetProperty(tlb.get(), "associativity", (u32)ptlb->associativity);
-		scriptInterface.SetProperty(tlb.get(), "pagesize", (u32)ptlb->entrySize);
-		scriptInterface.SetProperty(tlb.get(), "entries", (u32)ptlb->numEntries);
-		scriptInterface.SetPropertyInt(ret.get(), i, tlb);
+		JS::RootedValue tlb(cx);
+		scriptInterface.Eval("({})", &tlb);
+		scriptInterface.SetProperty(tlb, "type", (u32)ptlb->type);
+		scriptInterface.SetProperty(tlb, "level", (u32)ptlb->level);
+		scriptInterface.SetProperty(tlb, "associativity", (u32)ptlb->associativity);
+		scriptInterface.SetProperty(tlb, "pagesize", (u32)ptlb->entrySize);
+		scriptInterface.SetProperty(tlb, "entries", (u32)ptlb->numEntries);
+		scriptInterface.SetPropertyInt(ret, i, tlb);
 	}
-	return ret;
+	return ret.get();
 }
 #endif
 
@@ -180,6 +186,8 @@ void RunHardwareDetection()
 	TIMER(L"RunHardwareDetection");
 
 	ScriptInterface scriptInterface("Engine", "HWDetect", g_ScriptRuntime);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 
 	scriptInterface.RegisterFunction<void, bool, &SetDisableAudio>("SetDisableAudio");
 	scriptInterface.RegisterFunction<void, bool, &SetDisableS3TC>("SetDisableS3TC");
@@ -206,58 +214,58 @@ void RunHardwareDetection()
 	// (We'll use this same data for the opt-in online reporting system, so it
 	// includes some fields that aren't directly useful for the hwdetect script)
 
-	CScriptValRooted settings;
-	scriptInterface.Eval("({})", settings);
+	JS::RootedValue settings(cx);
+	scriptInterface.Eval("({})", &settings);
 
-	scriptInterface.SetProperty(settings.get(), "os_unix", OS_UNIX);
-	scriptInterface.SetProperty(settings.get(), "os_bsd", OS_BSD);
-	scriptInterface.SetProperty(settings.get(), "os_linux", OS_LINUX);
-	scriptInterface.SetProperty(settings.get(), "os_android", OS_ANDROID);
-	scriptInterface.SetProperty(settings.get(), "os_macosx", OS_MACOSX);
-	scriptInterface.SetProperty(settings.get(), "os_win", OS_WIN);
+	scriptInterface.SetProperty(settings, "os_unix", OS_UNIX);
+	scriptInterface.SetProperty(settings, "os_bsd", OS_BSD);
+	scriptInterface.SetProperty(settings, "os_linux", OS_LINUX);
+	scriptInterface.SetProperty(settings, "os_android", OS_ANDROID);
+	scriptInterface.SetProperty(settings, "os_macosx", OS_MACOSX);
+	scriptInterface.SetProperty(settings, "os_win", OS_WIN);
 
-	scriptInterface.SetProperty(settings.get(), "arch_ia32", ARCH_IA32);
-	scriptInterface.SetProperty(settings.get(), "arch_amd64", ARCH_AMD64);
-	scriptInterface.SetProperty(settings.get(), "arch_arm", ARCH_ARM);
+	scriptInterface.SetProperty(settings, "arch_ia32", ARCH_IA32);
+	scriptInterface.SetProperty(settings, "arch_amd64", ARCH_AMD64);
+	scriptInterface.SetProperty(settings, "arch_arm", ARCH_ARM);
 
 #ifdef NDEBUG
-	scriptInterface.SetProperty(settings.get(), "build_debug", 0);
+	scriptInterface.SetProperty(settings, "build_debug", 0);
 #else
-	scriptInterface.SetProperty(settings.get(), "build_debug", 1);
+	scriptInterface.SetProperty(settings, "build_debug", 1);
 #endif
-	scriptInterface.SetProperty(settings.get(), "build_opengles", CONFIG2_GLES);
+	scriptInterface.SetProperty(settings, "build_opengles", CONFIG2_GLES);
 
-	scriptInterface.SetProperty(settings.get(), "build_datetime", std::string(__DATE__ " " __TIME__));
-	scriptInterface.SetProperty(settings.get(), "build_revision", std::wstring(svn_revision));
+	scriptInterface.SetProperty(settings, "build_datetime", std::string(__DATE__ " " __TIME__));
+	scriptInterface.SetProperty(settings, "build_revision", std::wstring(svn_revision));
 
-	scriptInterface.SetProperty(settings.get(), "build_msc", (int)MSC_VERSION);
-	scriptInterface.SetProperty(settings.get(), "build_icc", (int)ICC_VERSION);
-	scriptInterface.SetProperty(settings.get(), "build_gcc", (int)GCC_VERSION);
-	scriptInterface.SetProperty(settings.get(), "build_clang", (int)CLANG_VERSION);
+	scriptInterface.SetProperty(settings, "build_msc", (int)MSC_VERSION);
+	scriptInterface.SetProperty(settings, "build_icc", (int)ICC_VERSION);
+	scriptInterface.SetProperty(settings, "build_gcc", (int)GCC_VERSION);
+	scriptInterface.SetProperty(settings, "build_clang", (int)CLANG_VERSION);
 
-	scriptInterface.SetProperty(settings.get(), "gfx_card", gfx::CardName());
-	scriptInterface.SetProperty(settings.get(), "gfx_drv_ver", gfx::DriverInfo());
+	scriptInterface.SetProperty(settings, "gfx_card", gfx::CardName());
+	scriptInterface.SetProperty(settings, "gfx_drv_ver", gfx::DriverInfo());
 
-	scriptInterface.SetProperty(settings.get(), "snd_card", std::wstring(snd_card));
-	scriptInterface.SetProperty(settings.get(), "snd_drv_ver", std::wstring(snd_drv_ver));
+	scriptInterface.SetProperty(settings, "snd_card", std::wstring(snd_card));
+	scriptInterface.SetProperty(settings, "snd_drv_ver", std::wstring(snd_drv_ver));
 
 	ReportGLLimits(scriptInterface, settings);
 
-	scriptInterface.SetProperty(settings.get(), "video_xres", g_VideoMode.GetXRes());
-	scriptInterface.SetProperty(settings.get(), "video_yres", g_VideoMode.GetYRes());
-	scriptInterface.SetProperty(settings.get(), "video_bpp", g_VideoMode.GetBPP());
+	scriptInterface.SetProperty(settings, "video_xres", g_VideoMode.GetXRes());
+	scriptInterface.SetProperty(settings, "video_yres", g_VideoMode.GetYRes());
+	scriptInterface.SetProperty(settings, "video_bpp", g_VideoMode.GetBPP());
 
-	scriptInterface.SetProperty(settings.get(), "video_desktop_xres", g_VideoMode.GetDesktopXRes());
-	scriptInterface.SetProperty(settings.get(), "video_desktop_yres", g_VideoMode.GetDesktopYRes());
-	scriptInterface.SetProperty(settings.get(), "video_desktop_bpp", g_VideoMode.GetDesktopBPP());
-	scriptInterface.SetProperty(settings.get(), "video_desktop_freq", g_VideoMode.GetDesktopFreq());
+	scriptInterface.SetProperty(settings, "video_desktop_xres", g_VideoMode.GetDesktopXRes());
+	scriptInterface.SetProperty(settings, "video_desktop_yres", g_VideoMode.GetDesktopYRes());
+	scriptInterface.SetProperty(settings, "video_desktop_bpp", g_VideoMode.GetDesktopBPP());
+	scriptInterface.SetProperty(settings, "video_desktop_freq", g_VideoMode.GetDesktopFreq());
 
 	struct utsname un;
 	uname(&un);
-	scriptInterface.SetProperty(settings.get(), "uname_sysname", std::string(un.sysname));
-	scriptInterface.SetProperty(settings.get(), "uname_release", std::string(un.release));
-	scriptInterface.SetProperty(settings.get(), "uname_version", std::string(un.version));
-	scriptInterface.SetProperty(settings.get(), "uname_machine", std::string(un.machine));
+	scriptInterface.SetProperty(settings, "uname_sysname", std::string(un.sysname));
+	scriptInterface.SetProperty(settings, "uname_release", std::string(un.release));
+	scriptInterface.SetProperty(settings, "uname_version", std::string(un.version));
+	scriptInterface.SetProperty(settings, "uname_machine", std::string(un.machine));
 
 #if OS_LINUX
 	{
@@ -265,61 +273,61 @@ void RunHardwareDetection()
 		if (ifs.good())
 		{
 			std::string str((std::istreambuf_iterator<char>(ifs)), std::istreambuf_iterator<char>());
-			scriptInterface.SetProperty(settings.get(), "linux_release", str);
+			scriptInterface.SetProperty(settings, "linux_release", str);
 		}
 	}
 #endif
 
-	scriptInterface.SetProperty(settings.get(), "cpu_identifier", std::string(cpu_IdentifierString()));
-	scriptInterface.SetProperty(settings.get(), "cpu_frequency", os_cpu_ClockFrequency());
-	scriptInterface.SetProperty(settings.get(), "cpu_pagesize", (u32)os_cpu_PageSize());
-	scriptInterface.SetProperty(settings.get(), "cpu_largepagesize", (u32)os_cpu_LargePageSize());
-	scriptInterface.SetProperty(settings.get(), "cpu_numprocs", (u32)os_cpu_NumProcessors());
+	scriptInterface.SetProperty(settings, "cpu_identifier", std::string(cpu_IdentifierString()));
+	scriptInterface.SetProperty(settings, "cpu_frequency", os_cpu_ClockFrequency());
+	scriptInterface.SetProperty(settings, "cpu_pagesize", (u32)os_cpu_PageSize());
+	scriptInterface.SetProperty(settings, "cpu_largepagesize", (u32)os_cpu_LargePageSize());
+	scriptInterface.SetProperty(settings, "cpu_numprocs", (u32)os_cpu_NumProcessors());
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "cpu_numpackages", (u32)topology::NumPackages());
-	scriptInterface.SetProperty(settings.get(), "cpu_coresperpackage", (u32)topology::CoresPerPackage());
-	scriptInterface.SetProperty(settings.get(), "cpu_logicalpercore", (u32)topology::LogicalPerCore());
-	scriptInterface.SetProperty(settings.get(), "cpu_numcaches", (u32)topology::NumCaches());
+	scriptInterface.SetProperty(settings, "cpu_numpackages", (u32)topology::NumPackages());
+	scriptInterface.SetProperty(settings, "cpu_coresperpackage", (u32)topology::CoresPerPackage());
+	scriptInterface.SetProperty(settings, "cpu_logicalpercore", (u32)topology::LogicalPerCore());
+	scriptInterface.SetProperty(settings, "cpu_numcaches", (u32)topology::NumCaches());
 #endif
 
-	scriptInterface.SetProperty(settings.get(), "numa_numnodes", (u32)numa_NumNodes());
-	scriptInterface.SetProperty(settings.get(), "numa_factor", numa_Factor());
-	scriptInterface.SetProperty(settings.get(), "numa_interleaved", numa_IsMemoryInterleaved());
+	scriptInterface.SetProperty(settings, "numa_numnodes", (u32)numa_NumNodes());
+	scriptInterface.SetProperty(settings, "numa_factor", numa_Factor());
+	scriptInterface.SetProperty(settings, "numa_interleaved", numa_IsMemoryInterleaved());
 
-	scriptInterface.SetProperty(settings.get(), "ram_total", (u32)os_cpu_MemorySize());
-	scriptInterface.SetProperty(settings.get(), "ram_total_os", (u32)os_cpu_QueryMemorySize());
-	scriptInterface.SetProperty(settings.get(), "ram_free", (u32)os_cpu_MemoryAvailable());
+	scriptInterface.SetProperty(settings, "ram_total", (u32)os_cpu_MemorySize());
+	scriptInterface.SetProperty(settings, "ram_total_os", (u32)os_cpu_QueryMemorySize());
+	scriptInterface.SetProperty(settings, "ram_free", (u32)os_cpu_MemoryAvailable());
 
 #if ARCH_X86_X64
-	scriptInterface.SetProperty(settings.get(), "x86_frequency", x86_x64::ClockFrequency());
+	scriptInterface.SetProperty(settings, "x86_frequency", x86_x64::ClockFrequency());
 
-	scriptInterface.SetProperty(settings.get(), "x86_vendor", (u32)x86_x64::Vendor());
-	scriptInterface.SetProperty(settings.get(), "x86_model", (u32)x86_x64::Model());
-	scriptInterface.SetProperty(settings.get(), "x86_family", (u32)x86_x64::Family());
+	scriptInterface.SetProperty(settings, "x86_vendor", (u32)x86_x64::Vendor());
+	scriptInterface.SetProperty(settings, "x86_model", (u32)x86_x64::Model());
+	scriptInterface.SetProperty(settings, "x86_family", (u32)x86_x64::Family());
 
 	u32 caps0, caps1, caps2, caps3;
 	x86_x64::GetCapBits(&caps0, &caps1, &caps2, &caps3);
-	scriptInterface.SetProperty(settings.get(), "x86_caps[0]", caps0);
-	scriptInterface.SetProperty(settings.get(), "x86_caps[1]", caps1);
-	scriptInterface.SetProperty(settings.get(), "x86_caps[2]", caps2);
-	scriptInterface.SetProperty(settings.get(), "x86_caps[3]", caps3);
+	scriptInterface.SetProperty(settings, "x86_caps[0]", caps0);
+	scriptInterface.SetProperty(settings, "x86_caps[1]", caps1);
+	scriptInterface.SetProperty(settings, "x86_caps[2]", caps2);
+	scriptInterface.SetProperty(settings, "x86_caps[3]", caps3);
 
-	scriptInterface.SetProperty(settings.get(), "x86_icaches", ConvertCaches(scriptInterface, x86_x64::L1I));
-	scriptInterface.SetProperty(settings.get(), "x86_dcaches", ConvertCaches(scriptInterface, x86_x64::L1D));
-	scriptInterface.SetProperty(settings.get(), "x86_tlbs", ConvertTLBs(scriptInterface));
+	scriptInterface.SetProperty(settings, "x86_icaches", ConvertCaches(scriptInterface, x86_x64::L1I));
+	scriptInterface.SetProperty(settings, "x86_dcaches", ConvertCaches(scriptInterface, x86_x64::L1D));
+	scriptInterface.SetProperty(settings, "x86_tlbs", ConvertTLBs(scriptInterface));
 #endif
 
-	scriptInterface.SetProperty(settings.get(), "timer_resolution", timer_Resolution());
+	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 11, scriptInterface.StringifyJSON(settings.get(), false));
+	g_UserReporter.SubmitReport("hwdetect", 11, scriptInterface.StringifyJSON(settings, false));
 
 	// Run the detection script:
 
 	scriptInterface.CallFunctionVoid(scriptInterface.GetGlobalObject(), "RunHardwareDetection", settings);
 }
 
-static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted settings)
+static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue settings)
 {
 	const char* errstr = "(error)";
 
@@ -327,20 +335,20 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	GLint i = -1; \
 	glGetIntegerv(GL_##id, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id, errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id, errstr); \
 	else \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id, i); \
+		scriptInterface.SetProperty(settings, "GL_" #id, i); \
 	} while (false)
 
 #define INTEGER2(id) do { \
 	GLint i[2] = { -1, -1 }; \
 	glGetIntegerv(GL_##id, i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", errstr); \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[0]", errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[1]", errstr); \
 	} else { \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", i[0]); \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", i[1]); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[1]", i[1]); \
 	} \
 	} while (false)
 
@@ -348,20 +356,20 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	GLfloat f = std::numeric_limits<GLfloat>::quiet_NaN(); \
 	glGetFloatv(GL_##id, &f); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id, errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id, errstr); \
 	else \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id, f); \
+		scriptInterface.SetProperty(settings, "GL_" #id, f); \
 	} while (false)
 
 #define FLOAT2(id) do { \
 	GLfloat f[2] = { std::numeric_limits<GLfloat>::quiet_NaN(), std::numeric_limits<GLfloat>::quiet_NaN() }; \
 	glGetFloatv(GL_##id, f); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) { \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", errstr); \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[0]", errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[1]", errstr); \
 	} else { \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[0]", f[0]); \
-		scriptInterface.SetProperty(settings.get(), "GL_" #id "[1]", f[1]); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[0]", f[0]); \
+		scriptInterface.SetProperty(settings, "GL_" #id "[1]", f[1]); \
 	} \
 	} while (false)
 
@@ -369,34 +377,34 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 	const char* c = (const char*)glGetString(GL_##id); \
 	if (!c) c = ""; \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) c = errstr; \
-	scriptInterface.SetProperty(settings.get(), "GL_" #id, std::string(c)); \
+	scriptInterface.SetProperty(settings, "GL_" #id, std::string(c)); \
 	}  while (false)
 
 #define QUERY(target, pname) do { \
 	GLint i = -1; \
 	pglGetQueryivARB(GL_##target, GL_##pname, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
-		scriptInterface.SetProperty(settings.get(), "GL_" #target ".GL_" #pname, errstr); \
+		scriptInterface.SetProperty(settings, "GL_" #target ".GL_" #pname, errstr); \
 	else \
-		scriptInterface.SetProperty(settings.get(), "GL_" #target ".GL_" #pname, i); \
+		scriptInterface.SetProperty(settings, "GL_" #target ".GL_" #pname, i); \
 	} while (false)
 
 #define VERTEXPROGRAM(id) do { \
 	GLint i = -1; \
 	pglGetProgramivARB(GL_VERTEX_PROGRAM_ARB, GL_##id, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
-		scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, errstr); \
+		scriptInterface.SetProperty(settings, "GL_VERTEX_PROGRAM_ARB.GL_" #id, errstr); \
 	else \
-		scriptInterface.SetProperty(settings.get(), "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
+		scriptInterface.SetProperty(settings, "GL_VERTEX_PROGRAM_ARB.GL_" #id, i); \
 	} while (false)
 
 #define FRAGMENTPROGRAM(id) do { \
 	GLint i = -1; \
 	pglGetProgramivARB(GL_FRAGMENT_PROGRAM_ARB, GL_##id, &i); \
 	if (ogl_SquelchError(GL_INVALID_ENUM)) \
-		scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, errstr); \
+		scriptInterface.SetProperty(settings, "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, errstr); \
 	else \
-		scriptInterface.SetProperty(settings.get(), "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
+		scriptInterface.SetProperty(settings, "GL_FRAGMENT_PROGRAM_ARB.GL_" #id, i); \
 	} while (false)
 
 #define BOOL(id) INTEGER(id)
@@ -670,30 +678,30 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 #define GLXQCR_INTEGER(id) do { \
 	unsigned int i = UINT_MAX; \
 	if (pglXQueryCurrentRendererIntegerMESA(id, &i)) \
-		scriptInterface.SetProperty(settings.get(), #id, i); \
+		scriptInterface.SetProperty(settings, #id, i); \
 	} while (false)
 
 #define GLXQCR_INTEGER2(id) do { \
 	unsigned int i[2] = { UINT_MAX, UINT_MAX }; \
 	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
-		scriptInterface.SetProperty(settings.get(), #id "[0]", i[0]); \
-		scriptInterface.SetProperty(settings.get(), #id "[1]", i[1]); \
+		scriptInterface.SetProperty(settings, #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings, #id "[1]", i[1]); \
 	} \
 	} while (false)
 
 #define GLXQCR_INTEGER3(id) do { \
 	unsigned int i[3] = { UINT_MAX, UINT_MAX, UINT_MAX }; \
 	if (pglXQueryCurrentRendererIntegerMESA(id, i)) { \
-		scriptInterface.SetProperty(settings.get(), #id "[0]", i[0]); \
-		scriptInterface.SetProperty(settings.get(), #id "[1]", i[1]); \
-		scriptInterface.SetProperty(settings.get(), #id "[2]", i[2]); \
+		scriptInterface.SetProperty(settings, #id "[0]", i[0]); \
+		scriptInterface.SetProperty(settings, #id "[1]", i[1]); \
+		scriptInterface.SetProperty(settings, #id "[2]", i[2]); \
 	} \
 	} while (false)
 
 #define GLXQCR_STRING(id) do { \
 	const char* str = pglXQueryCurrentRendererStringMESA(id); \
 	if (str) \
-		scriptInterface.SetProperty(settings.get(), #id ".string", str); \
+		scriptInterface.SetProperty(settings, #id ".string", str); \
 	} while (false)
 
 
@@ -706,7 +714,7 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, CScriptValRooted se
 
 		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);
 
-		scriptInterface.SetProperty(settings.get(), "glx_extensions", glxexts);
+		scriptInterface.SetProperty(settings, "glx_extensions", glxexts);
 
 		if (strstr(glxexts, "GLX_MESA_query_renderer") && pglXQueryCurrentRendererIntegerMESA && pglXQueryCurrentRendererStringMESA)
 		{

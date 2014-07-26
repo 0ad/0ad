@@ -50,6 +50,8 @@ public:
 	static Status Callback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)
 	{
 		GetAIsHelper* self = (GetAIsHelper*)cbData;
+		JSContext* cx = self->m_ScriptInterface.GetContext();
+		JSAutoRequest rq(cx);
 
 		// Extract the 3rd component of the path (i.e. the directory after simulation/ai/)
 		fs::wpath components = pathname.string();
@@ -57,11 +59,11 @@ public:
 		std::advance(it, 2);
 		std::wstring dirname = GetWstringFromWpath(*it);
 
-		CScriptValRooted ai;
-		self->m_ScriptInterface.Eval("({})", ai);
-		self->m_ScriptInterface.SetProperty(ai.get(), "id", dirname, true);
-		self->m_ScriptInterface.SetProperty(ai.get(), "data", self->m_ScriptInterface.ReadJSONFile(pathname), true);
-		self->m_AIs.push_back(ai);
+		JS::RootedValue ai(cx);
+		self->m_ScriptInterface.Eval("({})", &ai);
+		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
+		self->m_ScriptInterface.SetProperty(ai, "data", self->m_ScriptInterface.ReadJSONFile(pathname), true);
+		self->m_AIs.push_back(CScriptValRooted(cx, ai));
 
 		return INFO::OK;
 	}

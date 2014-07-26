@@ -27,7 +27,8 @@ struct ScriptInterface_NativeWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, JS::MutableHandleValue rval, F fptr  T0_A0(z,i)) { \
-			ScriptInterface::ToJSVal<R>(cx, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
+			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface; \
+			pScriptInterface->AssignOrToJSVal<R>(rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
 		}
 
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -53,7 +54,8 @@ struct ScriptInterface_NativeMethodWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, JS::MutableHandleValue rval, TC* c, F fptr  T0_A0(z,i)) { \
-			ScriptInterface::ToJSVal<R>(cx, rval, (c->*fptr)( A0(z,i) )); \
+			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface; \
+			pScriptInterface->AssignOrToJSVal<R>(rval, (c->*fptr)( A0(z,i) )); \
 		}
 
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -156,6 +158,24 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
 	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), jsRet); \
+	if (!ok) \
+		return false; \
+	return true; \
+}
+BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
+#undef OVERLOADS
+
+#define OVERLOADS(z, i, data) \
+template<typename R TYPENAME_T0_TAIL(z, i)> \
+bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) JS::MutableHandle<R> ret) \
+{ \
+	JSContext* cx = GetContext(); \
+	JSAutoRequest rq(cx); \
+	JS::RootedValue val1(cx, val); \
+	JS::AutoValueVector argv(cx); \
+	argv.resize(i); \
+	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), ret); \
 	if (!ok) \
 		return false; \
 	return true; \

@@ -193,6 +193,8 @@ static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUS
 
 std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface)
 {
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 	
 	std::vector<std::string> templates;
 	Status ok;
@@ -201,16 +203,16 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 
 	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
 	{
-		CScriptValRooted placeablesFilter = scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json");
+		JS::RootedValue placeablesFilter(cx, scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json").get());
 		
 		std::vector<CScriptValRooted> folders;
-		if (scriptInterface.GetProperty(placeablesFilter.get(), "templates", folders))
+		if (scriptInterface.GetProperty(placeablesFilter, "templates", folders))
 		{
 			templatePath = VfsPath(TEMPLATE_ROOT) / path;
 			//I have every object inside, just run for each
 			for (std::vector<CScriptValRooted>::iterator iterator = folders.begin(); iterator != folders.end();++iterator)
 			{
-				jsval val = (*iterator).get();
+				JS::RootedValue val(cx, (*iterator).get());
 				std::string directoryPath;
 				std::wstring fileFilter;
 				scriptInterface.GetProperty(val, "directory", directoryPath);

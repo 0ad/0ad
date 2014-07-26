@@ -115,6 +115,74 @@ public:
 		TS_ASSERT_EQUALS(prop_x1.get(), prop_a.get());
 		TS_ASSERT_EQUALS(prop_x1.get(), prop_b.get());
 	}
+	
+	/**
+	 * This test is mainly to make sure that all required template overloads get instantiated at least once so that compiler errors
+	 * in these functions are revealed instantly (but it also tests the basic functionality of these functions).
+	 */
+	void test_rooted_templates()
+	{
+		ScriptInterface script("Test", "Test", g_ScriptRuntime);
+
+		JSContext* cx = script.GetContext();
+		JSAutoRequest rq(cx);
+		
+		JS::RootedValue val(cx);
+		JS::RootedValue out(cx);
+		TS_ASSERT(script.Eval("({ '0':0, inc:function() { this[0]++; return this[0]; }, setTo:function(nbr) { this[0] = nbr; } })", &val));
+	
+		JS::RootedValue nbrVal(cx, JS::NumberValue(3));
+		int nbr = 0;
+		
+		// CallFunctionVoid JS::RootedValue& overload
+		script.CallFunctionVoid(val, "setTo", nbrVal);
+
+		// CallFunction JS::RootedValue* overload
+		script.CallFunction(val, "inc", &out);
+		
+		ScriptInterface::FromJSVal(cx, out, nbr);
+		TS_ASSERT_EQUALS(4, nbr);
+
+		// GetProperty tests JS::RootedValue* overload
+		nbr = 0;
+		script.GetProperty(val, "0", &out); // JS::RootedValue* overload
+		ScriptInterface::FromJSVal(cx, out, nbr);
+		TS_ASSERT_EQUALS(nbr, 4);
+
+		// GetPropertyInt tests JS::RootedValue* overload
+		nbr = 0;
+		script.GetPropertyInt(val, 0, &out);
+		ScriptInterface::FromJSVal(cx, out, nbr);
+		TS_ASSERT_EQUALS(nbr, 4);
+
+		handle_templates_test(script, val, &out, nbrVal);
+	}
+
+	void handle_templates_test(ScriptInterface& script, JS::HandleValue val, JS::MutableHandleValue out, JS::HandleValue nbrVal)
+	{
+		int nbr = 0;
+
+		// CallFunctionVoid JS::HandleValue overload
+		script.CallFunctionVoid(val, "setTo", nbrVal);
+
+		// CallFunction JS::MutableHandleValue overload
+		script.CallFunction(val, "inc", out);
+		
+		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		TS_ASSERT_EQUALS(4, nbr);
+
+		// GetProperty JS::MutableHandleValue overload
+		nbr = 0;
+		script.GetProperty(val, "0", out);
+		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		TS_ASSERT_EQUALS(nbr, 4);
+
+		// GetPropertyInt JS::MutableHandleValue overload
+		nbr = 0;
+		script.GetPropertyInt(val, 0, out);
+		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
+		TS_ASSERT_EQUALS(nbr, 4);
+	}
 
 	void test_random()
 	{

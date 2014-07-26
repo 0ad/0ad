@@ -88,18 +88,20 @@ QUERYHANDLER(GenerateMap)
 
 	// Random map
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 	
-	CScriptValRooted settings = scriptInterface.ParseJSON(*msg->settings);
+	JS::RootedValue settings(cx, scriptInterface.ParseJSON(*msg->settings).get());
 
-	CScriptValRooted attrs;
-	scriptInterface.Eval("({})", attrs);
-	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("random"));
-	scriptInterface.SetProperty(attrs.get(), "script", std::wstring(*msg->filename));
-	scriptInterface.SetProperty(attrs.get(), "settings", settings, false);
+	JS::RootedValue attrs(cx);
+	scriptInterface.Eval("({})", &attrs);
+	scriptInterface.SetProperty(attrs, "mapType", std::string("random"));
+	scriptInterface.SetProperty(attrs, "script", std::wstring(*msg->filename));
+	scriptInterface.SetProperty(attrs, "settings", settings, false);
 
 	try
 	{
-		StartGame(attrs);
+		StartGame(CScriptValRooted(cx, attrs));
 
 		msg->status = 0;
 	}
@@ -113,11 +115,11 @@ QUERYHANDLER(GenerateMap)
 		InitGame();
 
 		ScriptInterface& si = g_Game->GetSimulation2()->GetScriptInterface();
-		CScriptValRooted atts;
-		si.Eval("({})", atts);
-		si.SetProperty(atts.get(), "mapType", std::string("scenario"));
-		si.SetProperty(atts.get(), "map", std::wstring(L"maps/scenarios/_default"));
-		StartGame(atts);
+		JS::RootedValue atts(cx);
+		si.Eval("({})", &atts);
+		si.SetProperty(atts, "mapType", std::string("scenario"));
+		si.SetProperty(atts, "map", std::wstring(L"maps/scenarios/_default"));
+		StartGame(CScriptValRooted(cx, atts));
 
 		msg->status = -1;
 	}
@@ -125,20 +127,22 @@ QUERYHANDLER(GenerateMap)
 
 MESSAGEHANDLER(LoadMap)
 {
+	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
 	InitGame();
 
 	// Scenario
 	CStrW map = *msg->filename;
 	CStrW mapBase = map.BeforeLast(L".pmp"); // strip the file extension, if any
-
-	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	
-	CScriptValRooted attrs;
-	scriptInterface.Eval("({})", attrs);
-	scriptInterface.SetProperty(attrs.get(), "mapType", std::string("scenario"));
-	scriptInterface.SetProperty(attrs.get(), "map", std::wstring(mapBase));
+	JS::RootedValue attrs(cx);
+	scriptInterface.Eval("({})", &attrs);
+	scriptInterface.SetProperty(attrs, "mapType", std::string("scenario"));
+	scriptInterface.SetProperty(attrs, "map", std::wstring(mapBase));
 
-	StartGame(attrs);
+	StartGame(CScriptValRooted(cx, attrs));
 }
 
 MESSAGEHANDLER(ImportHeightmap)

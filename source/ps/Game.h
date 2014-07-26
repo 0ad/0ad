@@ -163,7 +163,7 @@ public:
 	{	return *m_ReplayLogger; }
 
 private:
-	void RegisterInit(const CScriptValRooted& attribs, const std::string& savedState);
+	void RegisterInit(const JS::HandleValue attribs, const std::string& savedState);
 	IReplayLogger* m_ReplayLogger;
 
 	std::vector<CColor> m_PlayerColours;
