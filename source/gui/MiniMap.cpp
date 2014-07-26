@@ -246,14 +246,17 @@ float CMiniMap::GetAngle()
 
 void CMiniMap::FireWorldClickEvent(int button, int clicks)
 {
+	JSContext* cx = g_GUI->GetActiveGUI()->GetScriptInterface()->GetContext();
+	JSAutoRequest rq(cx);
+	
 	float x, z;
 	GetMouseWorldCoordinates(x, z);
 
-	CScriptValRooted coords;
-	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", coords);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords.get(), "x", x, false);
-	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords.get(), "z", z, false);
-	ScriptEvent("worldclick", coords);
+	JS::RootedValue coords(cx);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", &coords);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "x", x, false);
+	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "z", z, false);
+	ScriptEvent("worldclick", CScriptValRooted(cx, coords));
 
 	UNUSED2(button);
 	UNUSED2(clicks);

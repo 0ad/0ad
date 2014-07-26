@@ -109,38 +109,41 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	PopPage();
 	
 	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
-	CScriptVal initDataVal;
+	JSContext* cx = scriptInterface->GetContext();
+	JS::RootedValue initDataVal(cx);
+	
 	if (initDataClone)
-		initDataVal = scriptInterface->ReadStructuredClone(initDataClone);
+		initDataVal.set(scriptInterface->ReadStructuredClone(initDataClone));
 	else
 	{
 		LOGERROR(L"Called PopPageCB when initData (which should contain the callback function name) isn't set!");
 		return;
 	}
 	
-	if (!scriptInterface->HasProperty(initDataVal.get(), "callback"))
+	if (!scriptInterface->HasProperty(initDataVal, "callback"))
 	{
 		LOGERROR(L"Called PopPageCB when the callback function name isn't set!");
 		return;
 	}
 	
 	std::string callback;
-	if (!scriptInterface->GetProperty(initDataVal.get(), "callback", callback))
+	if (!scriptInterface->GetProperty(initDataVal, "callback", callback))
 	{
 		LOGERROR(L"Failed to get the callback property as a string from initData in PopPageCB!");
 		return;
 	}
 	
-	if (!scriptInterface->HasProperty(scriptInterface->GetGlobalObject(), callback.c_str()))
+	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
+	if (!scriptInterface->HasProperty(global, callback.c_str()))
 	{
 		LOGERROR(L"The specified callback function %hs does not exist in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
 		return;
 	}
 
-	CScriptVal argVal;
+	JS::RootedValue argVal(cx);
 	if (args)
-		argVal = scriptInterface->ReadStructuredClone(args);
-	if (!scriptInterface->CallFunctionVoid(scriptInterface->GetGlobalObject(), callback.c_str(), argVal))
+		argVal.set(scriptInterface->ReadStructuredClone(args));
+	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
 	{
 		LOGERROR(L"Failed to call the callback function %hs in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
 		return;
@@ -149,17 +152,19 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 
 void CGUIManager::DisplayMessageBox(int width, int height, const CStrW& title, const CStrW& message)
 {
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 	// Set up scripted init data for the standard message box window
-	CScriptValRooted data;
-	m_ScriptInterface->Eval("({})", data);
-	m_ScriptInterface->SetProperty(data.get(), "width", width, false);
-	m_ScriptInterface->SetProperty(data.get(), "height", height, false);
-	m_ScriptInterface->SetProperty(data.get(), "mode", 2, false);
-	m_ScriptInterface->SetProperty(data.get(), "title", std::wstring(title), false);
-	m_ScriptInterface->SetProperty(data.get(), "message", std::wstring(message), false);
+	JS::RootedValue data(cx);
+	m_ScriptInterface->Eval("({})", &data);
+	m_ScriptInterface->SetProperty(data, "width", width, false);
+	m_ScriptInterface->SetProperty(data, "height", height, false);
+	m_ScriptInterface->SetProperty(data, "mode", 2, false);
+	m_ScriptInterface->SetProperty(data, "title", std::wstring(title), false);
+	m_ScriptInterface->SetProperty(data, "message", std::wstring(message), false);
 
 	// Display the message box
-	PushPage(L"page_msgbox.xml", m_ScriptInterface->WriteStructuredClone(data.get()));
+	PushPage(L"page_msgbox.xml", m_ScriptInterface->WriteStructuredClone(data));
 }
 
 void CGUIManager::LoadPage(SGUIPage& page)

@@ -479,22 +479,25 @@ void XmppClient::handleOOB(const glooxwrapper::JID&, const glooxwrapper::OOB&)
  */
 CScriptValRooted XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface)
 {
-	CScriptValRooted playerList;
-	scriptInterface.Eval("([])", playerList);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue playerList(cx);
+	scriptInterface.Eval("([])", &playerList);
 
 	// Convert the internal data structure to a Javascript object.
 	for (std::map<std::string, std::vector<std::string> >::const_iterator it = m_PlayerMap.begin(); it != m_PlayerMap.end(); ++it)
 	{
-		CScriptValRooted player;
-		scriptInterface.Eval("({})", player);
-		scriptInterface.SetProperty(player.get(), "name", wstring_from_utf8(it->first));
-		scriptInterface.SetProperty(player.get(), "presence", wstring_from_utf8(it->second[0]));
-		scriptInterface.SetProperty(player.get(), "rating", wstring_from_utf8(it->second[1]));
-		scriptInterface.SetProperty(player.get(), "role", wstring_from_utf8(it->second[2]));
-		scriptInterface.CallFunctionVoid(playerList.get(), "push", player);
+		JS::RootedValue player(cx);
+		scriptInterface.Eval("({})", &player);
+		scriptInterface.SetProperty(player, "name", wstring_from_utf8(it->first));
+		scriptInterface.SetProperty(player, "presence", wstring_from_utf8(it->second[0]));
+		scriptInterface.SetProperty(player, "rating", wstring_from_utf8(it->second[1]));
+		scriptInterface.SetProperty(player, "role", wstring_from_utf8(it->second[2]));
+		scriptInterface.CallFunctionVoid(playerList, "push", player);
 	}
 
-	return playerList;
+	return CScriptValRooted(cx, playerList);
 }
 
 /**
@@ -504,22 +507,25 @@ CScriptValRooted XmppClient::GUIGetPlayerList(ScriptInterface& scriptInterface)
  */
 CScriptValRooted XmppClient::GUIGetGameList(ScriptInterface& scriptInterface)
 {
-	CScriptValRooted gameList;
-	scriptInterface.Eval("([])", gameList);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue gameList(cx);
+	scriptInterface.Eval("([])", &gameList);
 	for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameList.begin(); it != m_GameList.end(); ++it)
 	{
-		CScriptValRooted game;
-		scriptInterface.Eval("({})", game);
+		JS::RootedValue game(cx);
+		scriptInterface.Eval("({})", &game);
 
 		const char* stats[] = { "name", "ip", "state", "nbp", "tnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition" };
 		short stats_length = 11;
 		for (short i = 0; i < stats_length; i++)
-			scriptInterface.SetProperty(game.get(), stats[i], wstring_from_utf8((*it)->findAttribute(stats[i]).to_string()));
+			scriptInterface.SetProperty(game, stats[i], wstring_from_utf8((*it)->findAttribute(stats[i]).to_string()));
 
-		scriptInterface.CallFunctionVoid(gameList.get(), "push", game);
+		scriptInterface.CallFunctionVoid(gameList, "push", game);
 	}
 
-	return gameList;
+	return CScriptValRooted(cx, gameList);;
 }
 
 /**
@@ -529,22 +535,25 @@ CScriptValRooted XmppClient::GUIGetGameList(ScriptInterface& scriptInterface)
  */
 CScriptValRooted XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface)
 {
-	CScriptValRooted boardList;
-	scriptInterface.Eval("([])", boardList);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue boardList(cx);
+	scriptInterface.Eval("([])", &boardList);
 	for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 	{
-		CScriptValRooted board;
-		scriptInterface.Eval("({})", board);
+		JS::RootedValue board(cx);
+		scriptInterface.Eval("({})", &board);
 
 		const char* attributes[] = { "name", "rank", "rating" };
 		short attributes_length = 3;
 		for (short i = 0; i < attributes_length; i++)
-			scriptInterface.SetProperty(board.get(), attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
+			scriptInterface.SetProperty(board, attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
 
-		scriptInterface.CallFunctionVoid(boardList.get(), "push", board);
+		scriptInterface.CallFunctionVoid(boardList, "push", board);
 	}
 
-	return boardList;
+	return CScriptValRooted(cx, boardList);
 }
 
 /*****************************************************
@@ -560,23 +569,26 @@ CScriptValRooted XmppClient::GuiPollMessage(ScriptInterface& scriptInterface)
 		return CScriptValRooted();
 
 	GUIMessage message = m_GuiMessageQueue.front();
-	CScriptValRooted messageVal;
-
-	scriptInterface.Eval("({})", messageVal);
-	scriptInterface.SetProperty(messageVal.get(), "type", message.type);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue messageVal(cx);
+ 
+	scriptInterface.Eval("({})", &messageVal);
+	scriptInterface.SetProperty(messageVal, "type", message.type);
 	if (!message.from.empty())
-		scriptInterface.SetProperty(messageVal.get(), "from", message.from);
+		scriptInterface.SetProperty(messageVal, "from", message.from);
 	if (!message.text.empty())
-		scriptInterface.SetProperty(messageVal.get(), "text", message.text);
+		scriptInterface.SetProperty(messageVal, "text", message.text);
 	if (!message.level.empty())
-		scriptInterface.SetProperty(messageVal.get(), "level", message.level);
+		scriptInterface.SetProperty(messageVal, "level", message.level);
 	if (!message.message.empty())
-		scriptInterface.SetProperty(messageVal.get(), "message", message.message);
+		scriptInterface.SetProperty(messageVal, "message", message.message);
 	if (!message.data.empty())
-		scriptInterface.SetProperty(messageVal.get(), "data", message.data);
+		scriptInterface.SetProperty(messageVal, "data", message.data);
 	
 	m_GuiMessageQueue.pop_front();
-	return messageVal;
+	return CScriptValRooted(cx, messageVal);
 }
 
 /**

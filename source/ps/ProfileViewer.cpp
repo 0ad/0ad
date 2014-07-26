@@ -489,19 +489,23 @@ namespace
 	{
 		ScriptInterface& scriptInterface;
 		CScriptVal root;
-		DumpTable(ScriptInterface& scriptInterface, CScriptVal root) :
+		DumpTable(ScriptInterface& scriptInterface, JS::HandleValue root) :
 			scriptInterface(scriptInterface), root(root)
 		{
 		}
 
 		void operator() (AbstractProfileTable* table)
 		{
-			CScriptVal t;
-			scriptInterface.Eval(L"({})", t);
-			scriptInterface.SetProperty(t.get(), "cols", DumpCols(table));
-			scriptInterface.SetProperty(t.get(), "data", DumpRows(table));
-
-			scriptInterface.SetProperty(root.get(), table->GetTitle().c_str(), t);
+			JSContext* cx = scriptInterface.GetContext();
+			JSAutoRequest rq(cx);
+			
+			JS::RootedValue t(cx);
+			scriptInterface.Eval(L"({})", &t);
+			scriptInterface.SetProperty(t, "cols", DumpCols(table));
+			scriptInterface.SetProperty(t, "data", DumpRows(table));
+			
+			JS::RootedValue tmpRoot(cx, root.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			scriptInterface.SetProperty(tmpRoot, table->GetTitle().c_str(), t);
 		}
 
 		std::vector<std::string> DumpCols(AbstractProfileTable* table)
@@ -518,25 +522,28 @@ namespace
 
 		CScriptVal DumpRows(AbstractProfileTable* table)
 		{
-			CScriptVal data;
-			scriptInterface.Eval("({})", data);
+			JSContext* cx = scriptInterface.GetContext();
+			JSAutoRequest rq(cx);
+			
+			JS::RootedValue data(cx);
+			scriptInterface.Eval("({})", &data);
 
 			const std::vector<ProfileColumn>& columns = table->GetColumns();
 
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
-				CScriptVal row;
-				scriptInterface.Eval("([])", row);
-				scriptInterface.SetProperty(data.get(), table->GetCellText(r, 0).c_str(), row);
+				JS::RootedValue row(cx);
+				scriptInterface.Eval("([])", &row);
+				scriptInterface.SetProperty(data, table->GetCellText(r, 0).c_str(), row);
 
 				if (table->GetChild(r))
-					scriptInterface.SetPropertyInt(row.get(), 0, DumpRows(table->GetChild(r)));
+					scriptInterface.SetPropertyInt(row, 0, DumpRows(table->GetChild(r)));
 
 				for (size_t c = 1; c < columns.size(); ++c)
-					scriptInterface.SetPropertyInt(row.get(), c, table->GetCellText(r, c));
+					scriptInterface.SetPropertyInt(row, c, table->GetCellText(r, c));
 			}
 
-			return data;
+			return data.get();
 		}
 
 	private:
@@ -587,14 +594,17 @@ void CProfileViewer::SaveToFile()
 
 CScriptVal CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
 {
-	CScriptVal root;
-	scriptInterface.Eval("({})", root);
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+		
+	JS::RootedValue root(cx);
+	scriptInterface.Eval("({})", &root);
 
 	std::vector<AbstractProfileTable*> tables = m->rootTables;
 	sort(tables.begin(), tables.end(), SortByName);
 	for_each(tables.begin(), tables.end(), DumpTable(scriptInterface, root));
 
-	return root;
+	return root.get();
 }
 
 void CProfileViewer::ShowTable(const CStr& table)

@@ -471,16 +471,18 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JSAutoRequest rq(cx);
 
 	// Set up the 'mouse' parameter
-	CScriptVal mouse;
-	m_pGUI->GetScriptInterface()->Eval("({})", mouse);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "x", m_pGUI->m_MousePos.x, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "y", m_pGUI->m_MousePos.y, false);
-	m_pGUI->GetScriptInterface()->SetProperty(mouse.get(), "buttons", m_pGUI->m_MouseButtons, false);
+	JS::RootedValue mouse(cx);
+	m_pGUI->GetScriptInterface()->Eval("({})", &mouse);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse, "x", m_pGUI->m_MousePos.x, false);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse, "y", m_pGUI->m_MousePos.y, false);
+	m_pGUI->GetScriptInterface()->SetProperty(mouse, "buttons", m_pGUI->m_MouseButtons, false);
 
-	jsval paramData[] = { mouse.get() };
-
-	jsval result;
-	bool ok = JS_CallFunctionValue(cx, GetJSObject(), (*it).second.get(), ARRAY_SIZE(paramData), paramData, &result);
+	JS::AutoValueVector paramData(cx);
+	paramData.append(mouse);
+	JS::RootedObject obj(cx, GetJSObject());
+	JS::RootedValue handlerVal(cx, (*it).second.get());
+	JS::RootedValue result(cx);
+	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData.length(), paramData.begin(), result.address());
 	if (!ok)
 	{
 		// We have no way to propagate the script exception, so just ignore it

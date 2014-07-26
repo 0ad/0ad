@@ -120,18 +120,22 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  * Makes calls to initialize the game view, world, and simulation objects.
  * Calls are made to facilitate progress reporting of the initialization.
  **/
-void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& savedState)
+void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& savedState)
 {
+	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
 
-	m_Simulation2->SetInitAttributes(attribs);
+	CScriptValRooted tmpAttribs(cx, attribs);
+	m_Simulation2->SetInitAttributes(tmpAttribs);
 
 	std::string mapType;
-	m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "mapType", mapType);
+	m_Simulation2->GetScriptInterface().GetProperty(attribs, "mapType", mapType);
 
 	float speed;
-	if (m_Simulation2->GetScriptInterface().HasProperty(attribs.get(), "gameSpeed") && m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "gameSpeed", speed))
+	if (m_Simulation2->GetScriptInterface().HasProperty(attribs, "gameSpeed") && m_Simulation2->GetScriptInterface().GetProperty(attribs, "gameSpeed", speed))
 		SetSimRate(speed);
 
 	LDR_BeginRegistering();
@@ -152,18 +156,18 @@ void CGame::RegisterInit(const CScriptValRooted& attribs, const std::string& sav
 		std::wstring scriptFile;
 		CScriptValRooted settings;
 
-		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "script", scriptFile);
-		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "settings", settings);
+		m_Simulation2->GetScriptInterface().GetProperty(attribs, "script", scriptFile);
+		m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
 
 		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
 	}
 	else
 	{
 		std::wstring mapFile;
-		m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "map", mapFile);
+		m_Simulation2->GetScriptInterface().GetProperty(attribs, "map", mapFile);
 		CScriptValRooted settings;
 		if (mapType == "skirmish")
-			m_Simulation2->GetScriptInterface().GetProperty(attribs.get(), "settings", settings);
+			m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
 
 		m_World->RegisterInit(mapFile, settings, m_PlayerID);
 	}
@@ -203,6 +207,9 @@ int CGame::LoadInitialState()
  **/
 PSRETURN CGame::ReallyStartGame()
 {
+	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
@@ -216,9 +223,10 @@ PSRETURN CGame::ReallyStartGame()
 			m_Simulation2->ReplaceSkirmishGlobals();
 			m_Simulation2->FlushDestroyedEntities();
 		}
-		CScriptVal settings;
-		m_Simulation2->GetScriptInterface().GetProperty(m_Simulation2->GetInitAttributes().get(), "settings", settings);
-		m_Simulation2->InitGame(settings);
+		JS::RootedValue settings(cx);
+		JS::RootedValue tmpInitAttributes(cx, m_Simulation2->GetInitAttributes().get());
+		m_Simulation2->GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);
+		m_Simulation2->InitGame(CScriptVal(settings));
 	}
 
 	// We need to do an initial Interpolate call to set up all the models etc,
@@ -234,10 +242,11 @@ PSRETURN CGame::ReallyStartGame()
 		Render();
 
 	// Call the reallyStartGame GUI function, but only if it exists
+	JS::RootedValue global(cx, g_GUI->GetActiveGUI()->GetGlobalObject());
 	if (g_GUI && g_GUI->HasPages())
 	{
-		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(g_GUI->GetActiveGUI()->GetGlobalObject(), "reallyStartGame"))
-			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(g_GUI->GetActiveGUI()->GetGlobalObject(), "reallyStartGame");
+		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(global, "reallyStartGame"))
+			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(global, "reallyStartGame");
 	}
 
 	if (g_NetClient)
@@ -267,9 +276,13 @@ void CGame::SetPlayerID(int playerID)
 		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
-void CGame::StartGame(const CScriptValRooted& attribs, const std::string& savedState)
+void CGame::StartGame(const CScriptValRooted& attribs1, const std::string& savedState)
 {
-	m_ReplayLogger->StartGame(attribs);
+	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue attribs(cx, attribs1.get()); // TODO: Get Handle parameter directly with SpiderMonkey 31
+	m_ReplayLogger->StartGame(attribs1);
 
 	RegisterInit(attribs, savedState);
 }

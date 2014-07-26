@@ -1021,7 +1021,7 @@ bool ScriptInterface::SetGlobal_(const char* name, jsval value, bool replace)
 	return ok;
 }
 
-bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, bool constant, bool enumerate)
+bool ScriptInterface::SetProperty_(JS::HandleValue obj, const char* name, JS::HandleValue value, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -1039,7 +1039,7 @@ bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, boo
 	return true;
 }
 
-bool ScriptInterface::SetProperty_(jsval obj, const wchar_t* name, jsval value, bool constant, bool enumerate)
+bool ScriptInterface::SetProperty_(JS::HandleValue obj, const wchar_t* name, JS::HandleValue value, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -1058,7 +1058,7 @@ bool ScriptInterface::SetProperty_(jsval obj, const wchar_t* name, jsval value, 
 	return true;
 }
 
-bool ScriptInterface::SetPropertyInt_(jsval obj, int name, jsval value, bool constant, bool enumerate)
+bool ScriptInterface::SetPropertyInt_(JS::HandleValue obj, int name, JS::HandleValue value, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(m->m_cx);
 	uint attrs = 0;
@@ -1076,7 +1076,7 @@ bool ScriptInterface::SetPropertyInt_(jsval obj, int name, jsval value, bool con
 	return true;
 }
 
-bool ScriptInterface::GetProperty_(jsval obj, const char* name, JS::MutableHandleValue out)
+bool ScriptInterface::GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out)
 {
 	JSAutoRequest rq(m->m_cx);
 	if (!obj.isObject())
@@ -1088,7 +1088,7 @@ bool ScriptInterface::GetProperty_(jsval obj, const char* name, JS::MutableHandl
 	return true;
 }
 
-bool ScriptInterface::GetPropertyInt_(jsval obj, int name, JS::MutableHandleValue out)
+bool ScriptInterface::GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue out)
 {
 	JSAutoRequest rq(m->m_cx);
 	if (!obj.isObject())
@@ -1100,7 +1100,7 @@ bool ScriptInterface::GetPropertyInt_(jsval obj, int name, JS::MutableHandleValu
 	return true;
 }
 
-bool ScriptInterface::HasProperty(jsval obj, const char* name)
+bool ScriptInterface::HasProperty(JS::HandleValue obj, const char* name)
 {
 	// TODO: proper errorhandling 
 	JSAutoRequest rq(m->m_cx);

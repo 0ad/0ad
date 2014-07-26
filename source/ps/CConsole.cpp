@@ -593,6 +593,10 @@ void CConsole::UseHistoryFile(const VfsPath& filename, int max_history_lines)
 
 void CConsole::ProcessBuffer(const wchar_t* szLine)
 {
+	shared_ptr<ScriptInterface> pScriptInterface = g_GUI->GetActiveGUI()->GetScriptInterface();
+	JSContext* cx = pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	
 	if (szLine == NULL) return;
 	if (wcslen(szLine) <= 0) return;
 
@@ -604,10 +608,10 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 
 	// Process it as JavaScript
 	
-	CScriptVal rval;
-	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval(szLine, rval);
-	if (!rval.undefined())
-		InsertMessageRaw(g_GUI->GetActiveGUI()->GetScriptInterface()->ToString(rval.get()));
+	JS::RootedValue rval(cx);
+	pScriptInterface->Eval(szLine, &rval);
+	if (!rval.isUndefined())
+		InsertMessageRaw(pScriptInterface->ToString(rval));
 }
 
 void CConsole::LoadHistory()

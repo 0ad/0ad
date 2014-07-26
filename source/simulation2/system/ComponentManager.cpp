@@ -147,11 +147,13 @@ bool CComponentManager::LoadScript(const VfsPath& filename, bool hotload)
 	return ok;
 }
 
-void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor, bool reRegister, bool systemComponent)
+void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor1, bool reRegister, bool systemComponent)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
 	JSContext* cx = componentManager->m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
+	
+	JS::RootedValue ctor(cx, ctor1.get()); // TODO: Get Handle parameter directly with SpiderMonkey 31
 
 	// Find the C++ component that wraps the interface
 	int cidWrapper = componentManager->GetScriptWrapper(iid);
@@ -231,11 +233,11 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 
 	std::string schema = "<empty/>";
 	{
-		CScriptValRooted prototype;
-		if (componentManager->m_ScriptInterface.GetProperty(ctor.get(), "prototype", prototype) &&
-			componentManager->m_ScriptInterface.HasProperty(prototype.get(), "Schema"))
+		JS::RootedValue prototype(cx);
+		if (componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &prototype) &&
+			componentManager->m_ScriptInterface.HasProperty(prototype, "Schema"))
 		{
-			componentManager->m_ScriptInterface.GetProperty(prototype.get(), "Schema", schema);
+			componentManager->m_ScriptInterface.GetProperty(prototype, "Schema", schema);
 		}
 	}
 
@@ -256,7 +258,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
 	JS::RootedValue protoVal(cx);
-	if (!componentManager->m_ScriptInterface.GetProperty(ctor.get(), "prototype", &protoVal))
+	if (!componentManager->m_ScriptInterface.GetProperty(ctor, "prototype", &protoVal))
 		return; // error
 
 	std::vector<std::string> methods;

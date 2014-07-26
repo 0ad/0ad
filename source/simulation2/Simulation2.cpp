@@ -367,22 +367,31 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		LDR_BeginRegistering();
 		CMapReader* mapReader = new CMapReader; // automatically deletes itself
 
-		// TODO: this duplicates CWorld::RegisterInit and could probably be cleaned up a bit
-		std::string mapType;
-		m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "mapType", mapType);
-		if (mapType == "random")
+		// These braces limit the scope of rq and cx (mainly because we're working with different contexts here).
+		// TODO: Check after the upgrade to SpiderMonkey ESR31 if m_InitAtrributes can be made a PersistentRooted<T>
+		// and check if we even need a request in this case.
 		{
-			// TODO: support random map scripts
-			debug_warn(L"Serialization test mode only supports scenarios");
-		}
-		else
-		{
-			std::wstring mapFile;
-			m_ComponentManager.GetScriptInterface().GetProperty(m_InitAttributes.get(), "map", mapFile);
+			// TODO: this duplicates CWorld::RegisterInit and could probably be cleaned up a bit
+			JSContext* cx = m_ComponentManager.GetScriptInterface().GetContext();
+			JSAutoRequest rq(cx);
+			
+			std::string mapType;
+			JS::RootedValue tmpInitAttributes(cx, m_InitAttributes.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			m_ComponentManager.GetScriptInterface().GetProperty(tmpInitAttributes, "mapType", mapType);
+			if (mapType == "random")
+			{
+				// TODO: support random map scripts
+				debug_warn(L"Serialization test mode only supports scenarios");
+			}
+			else
+			{
+				std::wstring mapFile;
+				m_ComponentManager.GetScriptInterface().GetProperty(tmpInitAttributes, "map", mapFile);
 
-			VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
-			mapReader->LoadMap(mapfilename, CScriptValRooted(), &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
-				NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+				VfsPath mapfilename = VfsPath(mapFile).ChangeExtension(L".pmp");
+				mapReader->LoadMap(mapfilename, CScriptValRooted(), &secondaryTerrain, NULL, NULL, NULL, NULL, NULL, NULL,
+					NULL, NULL, &secondaryContext, INVALID_PLAYER, true); // throws exception on failure
+			}
 		}
 		LDR_EndRegistering();
 		ENSURE(LDR_NonprogressiveLoad() == INFO::OK);
@@ -730,7 +739,7 @@ void CSimulation2::LoadMapSettings()
 	JS::RootedValue tmpMapSettings(cx, m->m_MapSettings.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
 	
 	// Initialize here instead of in Update()
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadMapSettings", m->m_MapSettings);
+	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadMapSettings", tmpMapSettings);
 
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
@@ -891,12 +900,14 @@ std::string CSimulation2::ReadJSON(VfsPath path)
 std::string CSimulation2::GetAIData()
 {
 	ScriptInterface& scriptInterface = GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
 	std::vector<CScriptValRooted> aiData = ICmpAIManager::GetAIs(scriptInterface);
 	
 	// Build single JSON string with array of AI data
-	CScriptValRooted ais;
-	if (!scriptInterface.Eval("({})", ais) || !scriptInterface.SetProperty(ais.get(), "AIData", aiData))
+	JS::RootedValue ais(cx);
+	if (!scriptInterface.Eval("({})", &ais) || !scriptInterface.SetProperty(ais, "AIData", aiData))
 		return std::string();
 	
-	return scriptInterface.StringifyJSON(ais.get());
+	return scriptInterface.StringifyJSON(ais);
 }
