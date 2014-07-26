@@ -1021,15 +1021,6 @@ bool ScriptInterface::SetGlobal_(const char* name, jsval value, bool replace)
 	return ok;
 }
 
-bool ScriptInterface::GetPropertyJS(jsval obj, const char* name, JS::MutableHandleValue out)
-{
-	JSContext* cx = GetContext();
-	JSAutoRequest rq(cx);
-	if (! GetProperty_(obj, name, out))
-		return false;
-	return true;
-}
-
 bool ScriptInterface::SetProperty_(jsval obj, const char* name, jsval value, bool constant, bool enumerate)
 {
 	JSAutoRequest rq(m->m_cx);

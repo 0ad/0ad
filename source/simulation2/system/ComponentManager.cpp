@@ -256,7 +256,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 
 	// Find all the ctor prototype's On* methods, and subscribe to the appropriate messages:
 	JS::RootedValue protoVal(cx);
-	if (!componentManager->m_ScriptInterface.GetPropertyJS(ctor.get(), "prototype", &protoVal))
+	if (!componentManager->m_ScriptInterface.GetProperty(ctor.get(), "prototype", &protoVal))
 		return; // error
 
 	std::vector<std::string> methods;
