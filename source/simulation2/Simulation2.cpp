@@ -101,7 +101,7 @@ public:
 
 	static bool LoadDefaultScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts);
 	static bool LoadScripts(CComponentManager& componentManager, std::set<VfsPath>* loadedScripts, const VfsPath& path);
-	static bool LoadTriggerScripts(CComponentManager& componentManager, const CScriptValRooted& mapSettings);
+	static bool LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings);
 	Status ReloadChangedFile(const VfsPath& path);
 
 	static Status ReloadChangedFileCB(void* param, const VfsPath& path)
@@ -190,13 +190,13 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 	return ok;
 }
 
-bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, const CScriptValRooted& mapSettings)
+bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, JS::HandleValue mapSettings)
 {
 	bool ok = true;
-	if (componentManager.GetScriptInterface().HasProperty(mapSettings.get(), "TriggerScripts"))
+	if (componentManager.GetScriptInterface().HasProperty(mapSettings, "TriggerScripts"))
 	{
 		std::vector<std::string> scriptNames;
-		componentManager.GetScriptInterface().GetProperty(mapSettings.get(), "TriggerScripts", scriptNames);
+		componentManager.GetScriptInterface().GetProperty(mapSettings, "TriggerScripts", scriptNames);
 		for (u32 i = 0; i < scriptNames.size(); ++i)
 		{
 			std::string scriptName = "maps/" + scriptNames[i];
@@ -355,7 +355,12 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 		ResetComponentState(secondaryComponentManager, false, false);
 
 		// Load the trigger scripts after we have loaded the simulation.
-		ENSURE(LoadTriggerScripts(secondaryComponentManager, m_MapSettings));
+		{
+			JSContext* cx = secondaryComponentManager.GetScriptInterface().GetContext();
+			JSAutoRequest rq(cx);
+			JS::RootedValue mapSettingsCloned(cx, secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(m_ComponentManager.GetScriptInterface(), m_MapSettings.get()));
+			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned));
+		}
 
 		// Load the map into the secondary simulation
 
@@ -719,6 +724,11 @@ void CSimulation2::LoadPlayerSettings(bool newPlayers)
 
 void CSimulation2::LoadMapSettings()
 {
+	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue tmpMapSettings(cx, m->m_MapSettings.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
+	
 	// Initialize here instead of in Update()
 	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadMapSettings", m->m_MapSettings);
 
@@ -726,7 +736,7 @@ void CSimulation2::LoadMapSettings()
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);
 
 	// Load the trigger scripts after we have loaded the simulation and the map.
-	m->LoadTriggerScripts(m->m_ComponentManager, m->m_MapSettings);
+	m->LoadTriggerScripts(m->m_ComponentManager, tmpMapSettings);
 }
 
 int CSimulation2::ProgressiveLoad()
