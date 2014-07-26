@@ -129,7 +129,7 @@ AuraManager.prototype.ApplyModifications = function(valueName, value, ent)
 {
 	// FIXME Due do a bug in IonMonkey v24, we must interprete this method
 	// When we upgrade to v31, remove the try-catch line.
-	// See #2486
+	// See #2684
 	try {} catch(e) {}
 
 	if (!this.modificationsCache[valueName] || !this.modificationsCache[valueName][ent])
@@ -144,7 +144,7 @@ AuraManager.prototype.ApplyTemplateModifications = function(valueName, value, pl
 {
 	// FIXME Due do a bug in IonMonkey v24, we must interprete this method
 	// When we upgrade to v31, remove the try-catch line.
-	// See #2486
+	// See #2684
 	try {} catch(e) {}
 
 	if (!this.templateModificationsCache[valueName] || !this.templateModificationsCache[valueName][player])
