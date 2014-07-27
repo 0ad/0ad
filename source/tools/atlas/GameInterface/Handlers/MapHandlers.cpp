@@ -127,11 +127,11 @@ QUERYHANDLER(GenerateMap)
 
 MESSAGEHANDLER(LoadMap)
 {
+	InitGame();
+	
 	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	
-	InitGame();
 
 	// Scenario
 	CStrW map = *msg->filename;
