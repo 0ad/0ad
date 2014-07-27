@@ -79,15 +79,17 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 bool CMapGeneratorWorker::Run()
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	
 	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
+	// Also we must not be in a request when calling the ScriptInterface destructor, so the autoFree object
+	// must be instantiated before the request (destructors are called in reverse order of instantiation)
 	struct AutoFree {
 		AutoFree(ScriptInterface* p) : m_p(p) {}
 		~AutoFree() { SAFE_DELETE(m_p); }
 		ScriptInterface* m_p;
 	} autoFree(m_ScriptInterface);
+	
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 	
 	m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
