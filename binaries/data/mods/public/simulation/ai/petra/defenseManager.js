@@ -387,13 +387,6 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		}
 		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
 			return;
-		var army = ent.getMetadata(PlayerID, "PartOfArmy");
-		if (army !== undefined)
-		{
-			army = self.getArmy(army);
-			if (army !== undefined)
-				army.removeOwn(gameState, ent.id(), ent);
-		}
 		garrisonManager.garrison(gameState, ent, target, "protection");
 	});
 };

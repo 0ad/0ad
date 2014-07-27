@@ -82,6 +82,13 @@ bool CMapGeneratorWorker::Run()
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 	
+	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
+	struct AutoFree {
+		AutoFree(ScriptInterface* p) : m_p(p) {}
+		~AutoFree() { SAFE_DELETE(m_p); }
+		ScriptInterface* m_p;
+	} autoFree(m_ScriptInterface);
+	
 	m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
 	// Replace RNG with a seeded deterministic function
@@ -131,9 +138,6 @@ bool CMapGeneratorWorker::Run()
 		LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
 		return false;
 	}
-	
-	// We must destroy the ScriptInterface in the same thread because the JSAPI requires that!
-	SAFE_DELETE(m_ScriptInterface);
 
 	return true;
 }

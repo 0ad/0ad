@@ -1207,8 +1207,8 @@ bool Autostart(const CmdLineArgs& args)
 			mapSize = size.ToUInt();
 		}
 
-		scriptInterface.SetProperty(settings, "Seed", seed);									// Random seed
-		scriptInterface.SetProperty(settings, "Size", mapSize);								// Random map size (in patches)
+		scriptInterface.SetProperty(settings, "Seed", seed);		// Random seed
+		scriptInterface.SetProperty(settings, "Size", mapSize);		// Random map size (in patches)
 
 		// Get optional number of players (default 2)
 		size_t numPlayers = 2;
