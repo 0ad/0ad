@@ -342,7 +342,7 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
-		if (target.hasClass("Support") && target.healthLevel() < 0.4)
+		if (target.hasClass("Support") && target.healthLevel() < 0.4 && !target.getMetadata(PlayerID, "transport"))
 		{
 			this.garrisonUnitForHealing(gameState, target);
 			continue;
