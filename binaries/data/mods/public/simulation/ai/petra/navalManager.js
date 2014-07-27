@@ -520,6 +520,8 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 		}
 		else if (goal === "transport")   // choose the maximum capacity, with a bonus if arrows or if siege transport
 		{
+			if (template.hasClass("Juggernaut"))  // TODO  deal with training restrictions
+				continue;
 			var capacity = +(template.garrisonMax() || 0);
 			if (capacity < 2)
 				continue;
