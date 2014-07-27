@@ -292,12 +292,6 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 			continue
 		if (plan.state !== "boarding")
 			continue
-//		if (plan.transportShips.length && !plan.countFreeSlots())
-//			continue;
-//		else if (!plan.transportShips.length && plan.units.length > 14)
-//			continue;
-		if (plan.units.length > 14)
-			continue;
 		plan.addUnit(entity, endPos);
 		return true;
 	}
@@ -315,6 +309,8 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 // split a transport plan in two, moving all entities not yet affected to a ship in the new plan
 m.NavalManager.prototype.splitTransport = function(gameState, plan)
 {
+	if (this.Config.debug > 0)
+		API3.warn(">>>> split of transport plan started <<<<");
 	var newplan = new m.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos, false);
 	if (newplan.failed)
 	{
@@ -325,11 +321,13 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 
 	var nbUnits = 0;
 	plan.units.forEach(function (ent) {
-		if (ent.setMetadata(PlayerID, "onBoard"))
+		if (ent.getMetadata(PlayerID, "onBoard"))
 			return;
 		++nbUnits;
 		newplan.addUnit(ent, ent.getMetadata(PlayerID, "endPos"));
 	});
+	if (this.Config.debug > 0)
+		API3.warn(">>>> previous plan left with units " + plan.units.length);
 	if (nbUnits)
 		this.transportPlans.push(newplan);
 	return (nbUnits !== 0);
@@ -413,7 +411,7 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 };
 
 // assigns free ships to plans that need some
-m.NavalManager.prototype.assignToPlans = function(gameState)
+m.NavalManager.prototype.assignShipsToPlans = function(gameState)
 {
 	for (var plan of this.transportPlans)
 		if (plan.needTransportShips)
@@ -564,7 +562,7 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 	}
 
 	// assign free ships to plans which need them
-	this.assignToPlans(gameState);
+	this.assignShipsToPlans(gameState);
 	// and require for more ships if needed
 	this.checkLevels(gameState, queues);
 	this.maintainFleet(gameState, queues);

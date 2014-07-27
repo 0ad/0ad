@@ -57,7 +57,7 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	for (var id of this.foeEntities)
 	{
 		var ent = gameState.getEntityById(id);
-		if (!ent)
+		if (!ent || !ent.position())
 			continue;
 		npos++;
 		var epos = ent.position();
@@ -106,11 +106,11 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 // add an entity to the enemy army
 // Will return true if the entity was added and false otherwise.
 // won't recalculate our position but will dirty it.
-m.Army.prototype.addFoe = function (gameState, enemyID, force)
+m.Army.prototype.addFoe = function (gameState, enemyId, force)
 {
-	if (this.foeEntities.indexOf(enemyID) !== -1)
+	if (this.foeEntities.indexOf(enemyId) !== -1)
 		return false;
-	var ent = gameState.getEntityById(enemyID);
+	var ent = gameState.getEntityById(enemyId);
 	if (ent === undefined || ent.position() === undefined)
 		return false;
 	
@@ -118,8 +118,8 @@ m.Army.prototype.addFoe = function (gameState, enemyID, force)
 	if (!force && API3.SquareVectorDistance(ent.position(), this.foePosition) > this.compactSize)
 			return false;
 	
-	this.foeEntities.push(enemyID);
-	this.assignedAgainst[enemyID] = [];
+	this.foeEntities.push(enemyId);
+	this.assignedAgainst[enemyId] = [];
 	this.positionLastUpdate = 0;
 	this.evaluateStrength(ent);
 	ent.setMetadata(PlayerID, "PartOfArmy", this.ID);
@@ -129,12 +129,12 @@ m.Army.prototype.addFoe = function (gameState, enemyID, force)
 
 // returns true if the entity was removed and false otherwise.
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs will happen.
-m.Army.prototype.removeFoe = function (gameState, enemyID, enemyEntity)
+m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 {
-	var idx = this.foeEntities.indexOf(enemyID);
+	var idx = this.foeEntities.indexOf(enemyId);
 	if (idx === -1)
 		return false;
-	var ent = enemyEntity === undefined ? gameState.getEntityById(enemyID) : enemyEntity;
+	var ent = enemyEntity === undefined ? gameState.getEntityById(enemyId) : enemyEntity;
 	if (ent === undefined)
 	{
 		warn("Trying to remove a non-existing enemy entity, crashing for stacktrace");
@@ -144,27 +144,30 @@ m.Army.prototype.removeFoe = function (gameState, enemyID, enemyEntity)
 	this.evaluateStrength(ent, false, true);
 	ent.setMetadata(PlayerID, "PartOfArmy", undefined);
 	
-	this.assignedAgainst[enemyID] = undefined;
+	this.assignedAgainst[enemyId] = undefined;
 	for (var to in this.assignedTo)
-		if (this.assignedTo[to] == enemyID)
+		if (this.assignedTo[to] == enemyId)
 			this.assignedTo[to] = undefined;
 	
 	return true;
 }
 
 // adds a defender but doesn't assign him yet.
-m.Army.prototype.addOwn = function (gameState, ID)
+// force is true when merging armies, so in this case we should add it even if no position as it can be in a ship
+m.Army.prototype.addOwn = function (gameState, id, force)
 {
-	if (this.ownEntities.indexOf(ID) !== -1)
+	if (this.ownEntities.indexOf(id) !== -1)
 		return false;
-	var ent = gameState.getEntityById(ID);
-	if (ent === undefined || ent.position() === undefined)
+	var ent = gameState.getEntityById(id);
+	if (ent === undefined)
+		return false;
+	if(!ent.position() && !force)
 		return false;
 
-	this.ownEntities.push(ID);
+	this.ownEntities.push(id);
 	this.evaluateStrength(ent, true);
 	ent.setMetadata(PlayerID, "PartOfArmy", this.ID);
-	this.assignedTo[ID] = 0;
+	this.assignedTo[id] = 0;
 
 	var plan = ent.getMetadata(PlayerID, "plan");
 	if (plan !== undefined)
@@ -178,15 +181,15 @@ m.Army.prototype.addOwn = function (gameState, ID)
 	return true;
 }
 
-m.Army.prototype.removeOwn = function (gameState, ID, Entity)
+m.Army.prototype.removeOwn = function (gameState, id, Entity)
 {
-	var idx = this.ownEntities.indexOf(ID);
+	var idx = this.ownEntities.indexOf(id);
 	if (idx === -1)
 		return false;
-	var ent = Entity === undefined ? gameState.getEntityById(ID) : Entity;
+	var ent = Entity === undefined ? gameState.getEntityById(id) : Entity;
 	if (ent === undefined)
 	{
-		warn( ID);
+		warn( id);
 		warn("Trying to remove a non-existing entity, crashing for stacktrace");
 		xgzrg();
 	}
@@ -199,13 +202,13 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	else
 		ent.setMetadata(PlayerID, "plan", undefined);
 
-	if (this.assignedTo[ID] !== 0)
+	if (this.assignedTo[id] !== 0)
 	{
-		var temp = this.assignedAgainst[this.assignedTo[ID]];
+		var temp = this.assignedAgainst[this.assignedTo[id]];
 		if (temp)
-			temp.splice(temp.indexOf(ID), 1);
+			temp.splice(temp.indexOf(id), 1);
 	}
-	this.assignedTo[ID] = undefined;
+	this.assignedTo[id] = undefined;
 
 	var formerSubrole = ent.getMetadata(PlayerID, "formerSubrole");
 	if (formerSubrole !== undefined)
@@ -217,12 +220,8 @@ m.Army.prototype.removeOwn = function (gameState, ID, Entity)
 	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
 	{
 		var planID = ent.getMetadata(PlayerID, "transport");
-		if (!planID) // no plans ? do not know what to do
-		{
-			warn(" ERROR in army.js: ent from army without position nor transport plan");
-			ent.destroy();
-		}
-		else
+		// no plans must mean that the unit was in a ship which was destroyed, so do nothing
+		if (planID)
 		{
 			if (gameState.ai.HQ.Config.debug > 0)
 				warn("ent from army still in transport plan: plan " + planID + " canceled");
@@ -283,7 +282,7 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 		this.addFoe(gameState, id);
 	// TODO: reassign those ?
 	for (var id of otherArmy.ownEntities)
-		this.addOwn(gameState, id);
+		this.addOwn(gameState, id, true);
 
 	this.recalculatePosition(gameState, true);
 	this.recalculateStrengths(gameState);
@@ -350,7 +349,8 @@ m.Army.prototype.checkEvents = function (gameState, events)
 			// we have converted an enemy, let's assign it as a defender
 			if (this.removeFoe(gameState, msg.entity))
 				this.addOwn(gameState, msg.entity);
-		} else if (msg.from === PlayerID)
+		}
+		else if (msg.from === PlayerID)
 			this.removeOwn(gameState, msg.entity);	// TODO: add allies
 	}
 }
@@ -374,10 +374,12 @@ m.Army.prototype.onUpdate = function (gameState)
 		{
 			var id = this.foeEntities[i];
 			var ent = gameState.getEntityById(id);
+			if (!ent || !ent.position())
+				continue;
 			if (API3.SquareVectorDistance(ent.position(), this.foePosition) > this.breakawaySize)
 			{
 				breakaways.push(id);
-				if(this.removeFoe(gameState, id))
+				if (this.removeFoe(gameState, id))
 					i--;
 			}
 		}

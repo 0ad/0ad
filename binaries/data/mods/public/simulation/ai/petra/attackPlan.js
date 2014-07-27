@@ -447,9 +447,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 	if (this.overseas && !gameState.ai.HQ.navalManager.seaTransportShips.length)
 		return 1;
 
-	// if we add units to this plan, wait next turn for the collections to be updated
-	if (this.assignUnits(gameState))
-		return 1;
+	this.assignUnits(gameState);
 
 	// special case: if we've reached max pop, and we can start the plan, start it.
 	if (gameState.getPopulationMax() - gameState.getPopulation() < 10)
@@ -623,7 +621,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 {
 	var plan = this.name;
 	var added = false;
-
+	var self = this;
 	// If we can not build units, assign all available except those affcted to allied defnse to the current attack
 	if (!this.canBuildUnits)
 	{
@@ -637,6 +635,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			if (ent.getMetadata(PlayerID, "allied"))
 				return;
 			ent.setMetadata(PlayerID, "plan", plan);
+			self.unitCollection.updateEnt(ent);
 			added = true; 
 		});
 		return added;
@@ -657,6 +656,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			if (num++ < 2)
 				return;
 			ent.setMetadata(PlayerID, "plan", plan);
+			self.unitCollection.updateEnt(ent);
 			added = true;
 		});
 		return added;
@@ -673,6 +673,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
 			return;
 		ent.setMetadata(PlayerID, "plan", plan);
+		self.unitCollection.updateEnt(ent);
 		added = true;
 	});
 	// Add units previously in a plan, but which left it because needed for defense or attack finished
@@ -682,6 +683,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
 			return;
 		ent.setMetadata(PlayerID, "plan", plan);
+		self.unitCollection.updateEnt(ent);
 		added = true;
 	});
 
@@ -703,6 +705,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		if (num++ < 9)
 			return;
 		ent.setMetadata(PlayerID, "plan", plan);
+		self.unitCollection.updateEnt(ent);
 		added = true;
 	});
 	return added;

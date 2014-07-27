@@ -42,7 +42,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 			API3.warn("transport plan with bad path: startIndex " + startIndex + " endIndex " + endIndex);
 		return false;
 	}
-	
+
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "transport", this.ID));
 	this.units.registerUpdates();
 
@@ -67,10 +67,6 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 	this.state = "boarding";
 	this.boardingPos = {};
 	this.needTransportShips = true;
-	if (units.length)
-		this.assignShip(gameState, units[0].position());
-	else
-		this.assignShip(gameState);
 	this.nTry = {};
 	return true;
 };
@@ -123,11 +119,18 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		gameState.ai.HQ.navalManager.splitTransport(gameState, this);
 };
 
-// Assign a ship to this plan. If pos is given, take the nearest from this position
-m.TransportPlan.prototype.assignShip = function(gameState, pos)
+m.TransportPlan.prototype.assignShip = function(gameState)
 {
 	var distmin = Math.min();
 	var nearest = undefined;
+	var pos = undefined;
+	// choose a unit of this plan not yet assigned to a ship
+	this.units.forEach(function (ent) {
+		if (pos || ent.getMetadata(PlayerID, "onBoard") !== undefined || !ent.position())
+			return;
+		pos = ent.position();
+	});
+	// and choose the nearest available ship from this unit
 	for each (var ship in gameState.ai.HQ.navalManager.seaTransportShips[this.sea]._entities)
 	{
 		if (ship.getMetadata(PlayerID, "transporter"))
