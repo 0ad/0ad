@@ -242,9 +242,9 @@ PSRETURN CGame::ReallyStartGame()
 		Render();
 
 	// Call the reallyStartGame GUI function, but only if it exists
-	JS::RootedValue global(cx, g_GUI->GetActiveGUI()->GetGlobalObject());
 	if (g_GUI && g_GUI->HasPages())
 	{
+		JS::RootedValue global(cx, g_GUI->GetActiveGUI()->GetGlobalObject());
 		if (g_GUI->GetActiveGUI()->GetScriptInterface()->HasProperty(global, "reallyStartGame"))
 			g_GUI->GetActiveGUI()->GetScriptInterface()->CallFunctionVoid(global, "reallyStartGame");
 	}
