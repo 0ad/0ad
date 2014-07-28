@@ -284,7 +284,6 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 				{
 					var oldPos = ent.getMetadata(PlayerID, "posGarrison");
 					var newPos = ent.position();
-					var distEnt = API3.SquareVectorDistance(self.boardingPos[shipId], ent.position());
 					if (oldPos[0] === newPos[0] && oldPos[1] === newPos[1])
 					{
 						if (distShip < 225)	// looks like we are blocked ... try to go out of this trap

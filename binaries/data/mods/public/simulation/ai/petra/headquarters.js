@@ -1701,8 +1701,8 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	if (!template.available(gameState))
 		return false;
 	var limits = gameState.getEntityLimits();
-	for (var limitClass in limits)
-		if (template.hasClass(limitClass) && gameState.getOwnStructures().filter(API3.Filters.byClass(limitClass)).length >= limits[limitClass])
+	for (var limitedClass in limits)
+		if (template.hasClass(limitedClass) && gameState.getEntityCounts()[limitedClass] >= limits[limitedClass])
 			return false;
 
 	return true;
