@@ -7,6 +7,7 @@ uniform mat4 shadowTransform;
 uniform float repeatScale;
 uniform float windAngle;
 uniform float waviness;			// "Wildness" of the reflections and refractions; choose based on texture
+uniform vec3 sunDir;
 
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
 	uniform vec4 shadowScale;
@@ -15,23 +16,33 @@ uniform float waviness;			// "Wildness" of the reflections and refractions; choo
 uniform float time;
 uniform float mapSize;
 
+uniform mat4 transform;
+
 varying vec3 worldPos;
 varying float waterDepth;
-varying vec4 waterInfo;
+varying vec2 waterInfo;
+
+varying float fwaviness;
+varying vec2 WindCosSin;
 
 #if USE_SHADOW && USE_SHADOWS_ON_WATER
 	varying vec4 v_shadow;
 #endif
+
 attribute vec3 a_vertex;
-attribute vec4 a_waterInfo;
+attribute vec2 a_waterInfo;
+attribute vec3 a_otherPosition;
+
 void main()
 {
-	worldPos = a_vertex;
+	worldPos = vec3(a_vertex.x,15.0,a_vertex.z);
 	waterInfo = a_waterInfo;
-	waterDepth = a_waterInfo.a;
+	waterDepth = a_waterInfo.g;
 	
-	float newX = a_vertex.x * cos(-windAngle) - a_vertex.z * sin(-windAngle);
-	float newY = a_vertex.x * sin(-windAngle) + a_vertex.z * cos(-windAngle);
+	WindCosSin = vec2(cos(-windAngle),sin(-windAngle));
+	
+	float newX = a_vertex.x * WindCosSin.x - a_vertex.z * WindCosSin.y;
+	float newY = a_vertex.x * WindCosSin.y + a_vertex.z * WindCosSin.x;
 	
 	gl_TexCoord[0] = vec4(newX,newY,time,0.0);
 	gl_TexCoord[0].xy *= repeatScale;
@@ -48,5 +59,8 @@ void main()
 		#endif
 	#endif
 	
-	gl_Position = gl_ModelViewProjectionMatrix * vec4(a_vertex, 1.0);
+	// Fix the waviness for local wind strength
+	fwaviness = waviness * ((0.15+a_waterInfo.r/1.15));
+	
+	gl_Position = transform * vec4(a_vertex, 1.0);
 }

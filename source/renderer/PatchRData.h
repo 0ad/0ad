@@ -21,6 +21,7 @@
 #include <vector>
 #include "graphics/SColor.h"
 #include "maths/Vector3D.h"
+#include "maths/Vector2D.h"
 #include "graphics/RenderableObject.h"
 #include "graphics/ShaderProgramPtr.h"
 #include "VertexBufferManager.h"
@@ -45,7 +46,7 @@ public:
 	void RenderSides(CShaderProgramPtr& shader);
 	void RenderPriorities(CTextRenderer& textRenderer);
 
-	void RenderWater(CShaderProgramPtr& shader, bool fixedPipeline = false);
+	void RenderWater(CShaderProgramPtr& shader, bool onlyShore = false, bool fixedPipeline = false);
 
 	static void RenderBases(const std::vector<CPatchRData*>& patches, const CShaderDefines& context, 
 			      ShadowMap* shadow, bool isDummyShader=false, const CShaderProgramPtr& dummy=CShaderProgramPtr());
@@ -105,9 +106,9 @@ private:
 	struct SWaterVertex {
 		// vertex position
 		CVector3D m_Position;
-		CVector4D m_WaterData;
+		CVector2D m_WaterData;
 	};
-	cassert(sizeof(SWaterVertex) == 28);
+	cassert(sizeof(SWaterVertex) == 20);
 
 	// build this renderdata object
 	void Build();
@@ -151,9 +152,11 @@ private:
 
 	// Water vertex buffer
 	CVertexBuffer::VBChunk* m_VBWater;
+	CVertexBuffer::VBChunk* m_VBWaterShore;
 
 	// Water indices buffer
 	CVertexBuffer::VBChunk* m_VBWaterIndices;
+	CVertexBuffer::VBChunk* m_VBWaterIndicesShore;
 
 	CSimulation2* m_Simulation;
 

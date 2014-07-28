@@ -69,7 +69,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			for (var entId of holder._entity.garrisoned)
 			{
 				var ent = gameState.getEntityById(entId);
-				if (!this.keepGarrisoned(ent, holder, enemiesAround))
+				if (ent.owner() === PlayerID && !this.keepGarrisoned(ent, holder, enemiesAround))
 					holder.unload(entId);
 			}
 			for (var j = 0; j < list.length; ++j)

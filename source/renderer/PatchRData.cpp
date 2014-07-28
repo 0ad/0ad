@@ -64,6 +64,7 @@ CPatchRData::CPatchRData(CPatch* patch, CSimulation2* simulation) :
 	m_VBBase(0), m_VBBaseIndices(0),
 	m_VBBlends(0), m_VBBlendIndices(0),
 	m_VBWater(0), m_VBWaterIndices(0),
+	m_VBWaterShore(0), m_VBWaterIndicesShore(0),
 	m_Simulation(simulation)
 {
 	ENSURE(patch);
@@ -82,6 +83,8 @@ CPatchRData::~CPatchRData()
 	if (m_VBBlendIndices) g_VBMan.Release(m_VBBlendIndices);
 	if (m_VBWater) g_VBMan.Release(m_VBWater);
 	if (m_VBWaterIndices) g_VBMan.Release(m_VBWaterIndices);
+	if (m_VBWaterShore) g_VBMan.Release(m_VBWaterShore);
+	if (m_VBWaterIndicesShore) g_VBMan.Release(m_VBWaterIndicesShore);
 }
 
 /**
@@ -1288,6 +1291,16 @@ void CPatchRData::BuildWater()
 		g_VBMan.Release(m_VBWaterIndices);
 		m_VBWaterIndices = 0;
 	}
+	if (m_VBWaterShore)
+	{
+		g_VBMan.Release(m_VBWaterShore);
+		m_VBWaterShore = 0;
+	}
+	if (m_VBWaterIndicesShore)
+	{
+		g_VBMan.Release(m_VBWaterIndicesShore);
+		m_VBWaterIndicesShore = 0;
+	}
 	m_WaterBounds.SetEmpty();
 
 	// We need to use this to access the water manager or we may not have the
@@ -1302,14 +1315,14 @@ void CPatchRData::BuildWater()
 	u16 water_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
 	memset(water_index_map, 0xFF, sizeof(water_index_map));
 
-	// TODO: This is not (yet) exported via the ICmp interface so... we stick to these values which can be compiled in defaults
+	// Build data for shore
+	std::vector<SWaterVertex> water_vertex_data_shore;
+	std::vector<GLushort> water_indices_shore;
+	u16 water_shore_index_map[PATCH_SIZE+1][PATCH_SIZE+1];
+	memset(water_shore_index_map, 0xFF, sizeof(water_shore_index_map));
+	
 	WaterManager* WaterMgr = g_Renderer.GetWaterManager();
 
-	/*if (WaterMgr->m_NeedInfoUpdate)
-	{
-		WaterMgr->m_NeedInfoUpdate = false;
-		WaterMgr->CreateSuperfancyInfo(m_Simulation);
-	}*/
 	CPatch* patch = m_Patch;
 	CTerrain* terrain = patch->m_Parent;
 
@@ -1322,7 +1335,10 @@ void CPatchRData::BuildWater()
 	// to whoever implements different water heights, this is a TODO: water height)
 	float waterHeight = cmpWaterManager->GetExactWaterLevel(0.0f,0.0f);
 
+	// The 4 points making a water tile.
 	int moves[4][2] = { {0,0}, {water_cell_size,0}, {0,water_cell_size}, {water_cell_size,water_cell_size} };
+	// Where to look for when checking for water for shore tiles.
+	int check[10][2] = { {0,0},{water_cell_size,0},{water_cell_size*2,0},{0,water_cell_size},{0,water_cell_size*2},{water_cell_size,water_cell_size},{water_cell_size*2,water_cell_size*2}, {-water_cell_size,0}, {0,-water_cell_size}, {-water_cell_size,-water_cell_size} };
 	
 	// build vertices, uv, and shader varying
 	for (ssize_t z = 0; z < PATCH_SIZE; z += water_cell_size)
@@ -1330,11 +1346,12 @@ void CPatchRData::BuildWater()
 		for (ssize_t x = 0; x < PATCH_SIZE; x += water_cell_size)
 		{
 			
-			// Check that this tile has at least one vertice underwater.
-			if (terrain->GetVertexGroundLevel(x+x1, z+z1) >= waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1, z+z1 + water_cell_size) >= waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1) >= waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1  + water_cell_size, z+z1 + water_cell_size) >= waterHeight)
+			// Check that this tile is close to water
+			bool nearWat = false;
+			for (size_t test = 0; test < 10; ++test)
+				if (terrain->GetVertexGroundLevel(x+x1+check[test][0], z+z1+check[test][1]) < waterHeight)
+					nearWat = true;
+			if (!nearWat)
 				continue;
 			
 			// This is actually lying and I should call CcmpTerrain
@@ -1344,164 +1361,145 @@ void CPatchRData::BuildWater()
 			 && !terrain->IsOnMap(x+x1 + water_cell_size, z+z1 + water_cell_size))
 			 continue;*/
 						
-			// Figure out our points. We might want to draw only one of two triangles per tile.
-			// In order: the one on the diagonal on top, the one of the diagonal on bottom, other on top, other on bottom.
-			// The numbers refer to "moves" above. -1 means "not rendering".
-			// by default the diagonal is the "x,z->x+1,z+1" one.
-			int points[4] = { 0, 3, 1, 2 };
-			
-			// If the other diagonal is over water completely, that means we have the wrong diagonal.
-			if (terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1) >= waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1, z+z1 + water_cell_size) >= waterHeight)
-			{
-					points[0] = 1; points[1] = 2; points[2] = 0; points[3] = 3;
-			}
-			
-			// check if the diagonal is completely out of the water, and if so, check which triangles we want to render (1 or 2)
-			if (terrain->GetVertexGroundLevel(x+x1 + moves[points[0]][0], z+z1 + moves[points[0]][1]) >= waterHeight
-				&& terrain->GetVertexGroundLevel(x+x1 + moves[points[1]][0], z+z1 + moves[points[1]][1]) >= waterHeight)
-			{
-				if (terrain->GetVertexGroundLevel(x+x1 + moves[points[2]][0], z+z1 + moves[points[2]][1]) >= waterHeight)
-					points[2] = -1;
-				else if (terrain->GetVertexGroundLevel(x+x1 + moves[points[3]][0], z+z1 + moves[points[3]][1]) >= waterHeight)
-					points[3] = -1;
-			}
-			
-			// Compute data.
 			for (int i = 0; i < 4; ++i)
 			{
-				if (points[i] == -1)
+				if (water_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
 					continue;
-				// Check if we already computed this vertex from an earlier strip
-				if (water_index_map[z+moves[points[i]][1]][x+moves[points[i]][0]] != 0xFFFF)
-					continue;
-			
-				ssize_t zz = z+z1+moves[points[i]][1];
-				ssize_t xx = x+x1+moves[points[i]][0];
+				
+				ssize_t zz = z+z1+moves[i][1];
+				ssize_t xx = x+x1+moves[i][0];
 				
 				SWaterVertex vertex;
-				
 				terrain->CalcPosition(xx,zz, vertex.m_Position);
 				float depth = waterHeight - vertex.m_Position.Y;
-				// Try and get the point on the shore if it's over water.
-				// In some cases this won't be possible.
-				if (depth < 0.0f)
-				{
-					float temp = 0.0f;
-					float left_t = 0.0f,right_t = 0.0f,top_t = 0.0f,bottom_t = 0.0f;
-					if (xx > 0)
-					{
-						temp = terrain->GetVertexGroundLevel(xx-1,zz);
-						if (temp < waterHeight)
-							left_t = 1.0f-(temp-waterHeight)/(temp-vertex.m_Position.Y);
-					}
-					if (xx < mapSize - 1)
-					{
-						temp = terrain->GetVertexGroundLevel(xx+1,zz);
-						if (temp < waterHeight)
-							right_t = 1.0f-(temp-waterHeight)/(temp-vertex.m_Position.Y);
-					}
-					if (zz > 0)
-					{
-						temp = terrain->GetVertexGroundLevel(xx,zz-1);
-						if (temp < waterHeight)
-							top_t = 1.0f-(temp-waterHeight)/(temp-vertex.m_Position.Y);
-					}
-					if (zz < mapSize - 1)
-					{
-						temp = terrain->GetVertexGroundLevel(xx,zz-1);
-						if (temp < waterHeight)
-							bottom_t = 1.0f-(temp-waterHeight)/(temp-vertex.m_Position.Y);
-					}
-					vertex.m_Position.X = vertex.m_Position.X + 4.0 * (right_t - left_t);
-					vertex.m_Position.Z = vertex.m_Position.Z + 4.0 * (bottom_t - top_t);
-				}
+				
 				vertex.m_Position.Y = waterHeight;
 				
 				m_WaterBounds += vertex.m_Position;
 				
-				vertex.m_WaterData = CVector4D(WaterMgr->m_WindStrength[xx + zz*mapSize],
-											   0.0f,
-											   WaterMgr->m_DistanceHeightmap[xx + zz*mapSize],
-											   depth);
+				vertex.m_WaterData = CVector2D(WaterMgr->m_WindStrength[xx + zz*mapSize], depth);
 				
-				water_index_map[z+moves[points[i]][1]][x+moves[points[i]][0]] = water_vertex_data.size();
+				water_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data.size();
 				water_vertex_data.push_back(vertex);
 			}
-			// Render them.
-			if (points[2] == 0) // Top point is wanted, render corresponding triangle
+			water_indices.push_back(water_index_map[z + moves[2][1]][x + moves[2][0]]);
+			water_indices.push_back(water_index_map[z + moves[0][1]][x + moves[0][0]]);
+			water_indices.push_back(water_index_map[z + moves[1][1]][x + moves[1][0]]);
+			water_indices.push_back(water_index_map[z + moves[1][1]][x + moves[1][0]]);
+			water_indices.push_back(water_index_map[z + moves[3][1]][x + moves[3][0]]);
+			water_indices.push_back(water_index_map[z + moves[2][1]][x + moves[2][0]]);
+			
+			// Check id this tile is partly over land.
+			// If so add a square over the terrain. This is necessary to render waves that go on shore.
+			if (terrain->GetVertexGroundLevel(x+x1, z+z1) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+x1, z+z1+water_cell_size) < waterHeight
+				&& terrain->GetVertexGroundLevel(x+x1 + water_cell_size, z+z1+water_cell_size) < waterHeight)
+				continue;
+			
+			for (int i = 0; i < 4; ++i)
 			{
-				water_indices.push_back(water_index_map[z + moves[points[1]][1]][x + moves[points[1]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[2]][1]][x + moves[points[2]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[0]][1]][x + moves[points[0]][0]]);
+				if (water_shore_index_map[z+moves[i][1]][x+moves[i][0]] != 0xFFFF)
+					continue;
+				ssize_t zz = z+z1+moves[i][1];
+				ssize_t xx = x+x1+moves[i][0];
+				
+				SWaterVertex vertex;
+				terrain->CalcPosition(xx,zz, vertex.m_Position);
+				
+				vertex.m_Position.Y += 0.02f;
+				m_WaterBounds += vertex.m_Position;
+				
+				vertex.m_WaterData = CVector2D(0.0f, -5.0f);
+				
+				water_shore_index_map[z+moves[i][1]][x+moves[i][0]] = water_vertex_data_shore.size();
+				water_vertex_data_shore.push_back(vertex);
 			}
-			else if (points[2] == 1)
+			if (terrain->GetTriangulationDir(x+x1,z+z1))
 			{
-				water_indices.push_back(water_index_map[z + moves[points[1]][1]][x + moves[points[1]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[0]][1]][x + moves[points[0]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[2]][1]][x + moves[points[2]][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[2][1]][x + moves[2][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[0][1]][x + moves[0][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[1][1]][x + moves[1][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[1][1]][x + moves[1][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[3][1]][x + moves[3][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[2][1]][x + moves[2][0]]);
 			}
-			if (points[3] == 3) // Bottom point is wanted, render corresponding triangle.
+			else
 			{
-				water_indices.push_back(water_index_map[z + moves[points[1]][1]][x + moves[points[1]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[0]][1]][x + moves[points[0]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[3]][1]][x + moves[points[3]][0]]);
-			}
-			else if (points[3] == 2)
-			{
-				water_indices.push_back(water_index_map[z + moves[points[1]][1]][x + moves[points[1]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[3]][1]][x + moves[points[3]][0]]);
-				water_indices.push_back(water_index_map[z + moves[points[0]][1]][x + moves[points[0]][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[3][1]][x + moves[3][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[2][1]][x + moves[2][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[0][1]][x + moves[0][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[3][1]][x + moves[3][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[0][1]][x + moves[0][0]]);
+				water_indices_shore.push_back(water_shore_index_map[z + moves[1][1]][x + moves[1][0]]);
 			}
 		}
 	}
 
 	// no vertex buffers if no data generated
-	if (water_indices.size() == 0)
-		return;
+	if (water_indices.size() != 0)
+	{
+		m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+		m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
+		
+		m_VBWaterIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
+	}
 
-	// allocate vertex buffer
-	m_VBWater = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
-	m_VBWater->m_Owner->UpdateChunkVertices(m_VBWater, &water_vertex_data[0]);
+	if (water_indices_shore.size() != 0)
+	{
+		m_VBWaterShore = g_VBMan.Allocate(sizeof(SWaterVertex), water_vertex_data_shore.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
+		m_VBWaterShore->m_Owner->UpdateChunkVertices(m_VBWaterShore, &water_vertex_data_shore[0]);
+		
+		// Construct indices buffer
+		m_VBWaterIndicesShore = g_VBMan.Allocate(sizeof(GLushort), water_indices_shore.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
+		m_VBWaterIndicesShore->m_Owner->UpdateChunkVertices(m_VBWaterIndicesShore, &water_indices_shore[0]);
+	}}
 
-	// Construct indices buffer
-	m_VBWaterIndices = g_VBMan.Allocate(sizeof(GLushort), water_indices.size(), GL_STATIC_DRAW, GL_ELEMENT_ARRAY_BUFFER);
-	m_VBWaterIndices->m_Owner->UpdateChunkVertices(m_VBWaterIndices, &water_indices[0]);
-}
-
-void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool fixedPipeline)
+void CPatchRData::RenderWater(CShaderProgramPtr& shader, bool onlyShore, bool fixedPipeline)
 {
 	ASSERT(m_UpdateFlags==0);
 
-	if (!m_VBWater)
+	if (g_Renderer.m_SkipSubmit || (!m_VBWater && !m_VBWaterShore))
 		return;
 
-	SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
-
-	// This is debug code. If it ends up in SVN, remove it.
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	// setup data pointers
-	GLsizei stride = sizeof(SWaterVertex);
-	shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
-	if (!fixedPipeline)
-		shader->VertexAttribPointer(str_a_waterInfo, 4, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
-
-	shader->AssertPointersBound();
-
-	// render
-	if (!g_Renderer.m_SkipSubmit)
+	if (m_VBWater != 0x0 && !onlyShore)
 	{
+		SWaterVertex *base=(SWaterVertex *)m_VBWater->m_Owner->Bind();
+		
+		// setup data pointers
+		GLsizei stride = sizeof(SWaterVertex);
+		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWater->m_Index].m_Position);
+		if (!fixedPipeline)
+			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWater->m_Index].m_WaterData);
+		
+		shader->AssertPointersBound();
+		
 		u8* indexBase = m_VBWaterIndices->m_Owner->Bind();
 		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndices->m_Count,
-			GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
+					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndices->m_Index));
+		
+		g_Renderer.m_Stats.m_DrawCalls++;
+		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 3;
 	}
-	
-	//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	// bump stats
-	g_Renderer.m_Stats.m_DrawCalls++;
-	g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndices->m_Count / 2;
+	if (m_VBWaterShore != 0x0 && g_Renderer.GetWaterManager()->m_WaterFancyEffects && !g_Renderer.GetWaterManager()->m_WaterUgly)
+	{
+		SWaterVertex *base=(SWaterVertex *)m_VBWaterShore->m_Owner->Bind();
+		
+		GLsizei stride = sizeof(SWaterVertex);
+		shader->VertexPointer(3, GL_FLOAT, stride, &base[m_VBWaterShore->m_Index].m_Position);
+		if (!fixedPipeline)
+			shader->VertexAttribPointer(str_a_waterInfo, 2, GL_FLOAT, false, stride, &base[m_VBWaterShore->m_Index].m_WaterData);
+		
+		shader->AssertPointersBound();
+		
+		u8* indexBase = m_VBWaterIndicesShore->m_Owner->Bind();
+		glDrawElements(GL_TRIANGLES, (GLsizei) m_VBWaterIndicesShore->m_Count,
+					   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_VBWaterIndicesShore->m_Index));
+		
+		g_Renderer.m_Stats.m_DrawCalls++;
+		g_Renderer.m_Stats.m_WaterTris += m_VBWaterIndicesShore->m_Count / 3;
+	}
 
 	CVertexBuffer::Unbind();
 }

@@ -30,15 +30,10 @@
 #include "renderer/VertexBufferManager.h"
 
 class CSimulation2;
+class CFrustum;
 
-struct SWavesVertex {
-	// vertex position
-	CVector3D m_Position;
-	u8 m_UV[2];
-};
-cassert(sizeof(SWavesVertex) == 16);
-
-
+struct CoastalPoint;
+struct WaveObject;
 
 /**
  * Class WaterManager: Maintain rendering-related water settings and textures
@@ -52,14 +47,26 @@ public:
 	CTexturePtr m_NormalMap[60];
 
 	float* m_WindStrength;	// How strong the waves are at point X. % of waviness.
-	u8* m_DistanceHeightmap;	// Returns how far from the shore a point is. 3-2-1-0 where 3 is "on land"
+	float* m_DistanceHeightmap; // How far from the shore a point is. Manhattan
 	CVector3D* m_BlurredNormalMap;	// Cache a slightly blurred map of the normals of the terrain.
 
+	std::vector< std::deque<CoastalPoint> > CoastalPointsChains;
+	
+	// Waves vertex buffers
+	std::vector< WaveObject* > m_ShoreWaves;	// TODO: once we get C++11, remove pointer
+	// Waves indices buffer. Only one since All Wave Objects have the same.
+	CVertexBuffer::VBChunk* m_ShoreWaves_VBIndices;
+	
 	size_t m_MapSize;
 	ssize_t m_TexSize;
 
+	CTexturePtr m_WaveTex;
+	CTexturePtr m_FoamTex;
+
 	GLuint m_depthTT;
-	GLuint m_FancyTexture;
+	GLuint m_FancyTextureNormal;
+	GLuint m_FancyTextureOther;
+	GLuint m_FancyTextureDepth;
 	GLuint m_ReflFboDepthTexture;
 	GLuint m_RefrFboDepthTexture;
 
@@ -104,6 +111,7 @@ public:
 	// framebuffer objects
 	GLuint m_RefractionFbo;
 	GLuint m_ReflectionFbo;
+	GLuint m_FancyEffectsFBO;
 
 	// Model-view-projection matrices for reflected & refracted cameras
 	// (used to let the vertex shader do projective texturing)
@@ -153,9 +161,9 @@ public:
 	void RecomputeBlurredNormalMap();
 	
 	/**
-	 * CreateSuperfancyInfo: creates textures and wave vertices for superfancy water
+	 * CreateWaveMeshes: Creates the waves objects (and meshes).
 	 */
-	void CreateSuperfancyInfo(CSimulation2* simulation);
+	void CreateWaveMeshes();
 
 	/**
 	 * Updates the map size. Will trigger a complete recalculation of fancy water information the next turn.
@@ -172,6 +180,8 @@ public:
 	 * and it hasn't been configured off)
 	 */
 	bool WillRenderFancyWater();
+	
+	void RenderWaves(const CFrustum& frustrum);
 };
 
 

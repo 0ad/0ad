@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<program type="glsl">
+
+    <vertex file="glsl/waves.vs">
+        <stream name="pos"/>
+        <stream name="uv0"/>
+        <attrib name="a_basePosition" semantics="gl_Vertex"/>
+        <attrib name="a_apexPosition" semantics="CustomAttribute0"/>
+		<attrib name="a_splashPosition" semantics="CustomAttribute1"/>
+		<attrib name="a_retreatPosition" semantics="CustomAttribute2"/>
+        <attrib name="a_normal" semantics="gl_Normal"/>
+		<attrib name="a_uv0" semantics="gl_MultiTexCoord0"/>
+   </vertex>
+
+    <fragment file="glsl/waves.fs"/>
+
+</program>

@@ -505,10 +505,23 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 
 	var best = 0;
 	var bestShip = undefined;
+	var limits = gameState.getEntityLimits();
+	var current = gameState.getEntityCounts();
 	for (var trainable of trainableShips)
 	{
 		var template = gameState.getTemplate(trainable);
 		if (!template.available(gameState))
+			continue;
+
+		var aboveLimit = false;
+		for (var limitedClass in limits)
+		{
+			if (!template.hasClass(limitedClass) || current[limitedClass] < limits[limitedClass])
+				continue;
+			aboveLimit = true;
+			break;
+		}
+		if (aboveLimit)
 			continue;
 
 		var arrows = +(template.getDefaultArrow() || 0);

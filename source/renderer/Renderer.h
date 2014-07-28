@@ -353,6 +353,7 @@ protected:
 	friend class InstancingModelRenderer;
 	friend class ShaderInstancingModelRenderer;
 	friend class TerrainRenderer;
+	friend class WaterRenderer;
 
 	//BEGIN: Implementation of SceneCollector
 	void Submit(CPatch* patch);
@@ -384,8 +385,8 @@ protected:
 	void RenderShadowMap(const CShaderDefines& context);
 
 	// render water reflection and refraction textures
-	SScreenRect RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
-	SScreenRect RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
+	void RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
+	void RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned& scissor);
 
 	void ComputeReflectionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;
 	void ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAligned& scissor) const;

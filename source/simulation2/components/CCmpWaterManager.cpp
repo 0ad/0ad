@@ -100,6 +100,7 @@ public:
 			g_Renderer.GetWaterManager()->RecomputeBlurredNormalMap();
 			g_Renderer.GetWaterManager()->RecomputeDistanceHeightmap();
 			g_Renderer.GetWaterManager()->RecomputeWindStrength();
+			g_Renderer.GetWaterManager()->CreateWaveMeshes();
 		}
 		
 		// Tell the terrain it'll need to recompute its cached render data
