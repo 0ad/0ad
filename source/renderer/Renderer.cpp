@@ -1158,14 +1158,11 @@ void CRenderer::ComputeRefractionCamera(CCamera& camera, const CBoundingBoxAlign
 	CMatrix3D scaleMat;
 	scaleMat.SetScaling(m_Height/float(std::max(1, m_Width)), 1.0f, 1.0f);
 	camera.m_ProjMat = scaleMat * camera.m_ProjMat;
-
-	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 0.5f);
-	SetObliqueFrustumClipping(camera, camPlane);
 }
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderReflections: render the water reflections to the reflection texture
-SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor)
+void CRenderer::RenderReflections(const CShaderDefines& context, const CBoundingBoxAligned& scissor)
 {
 	PROFILE3_GPU("water reflections");
 
@@ -1202,19 +1199,24 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 	
 	glClearColor(0.5f,0.5f,1.0f,0.0f);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+
 	glFrontFace(GL_CW);
-	
-	// Render sky, terrain and models
-	//m->skyManager.RenderSky();
-	//ogl_WarnIfError();
-	RenderPatches(context, CULL_REFLECTIONS);
-	ogl_WarnIfError();
-	RenderModels(context, CULL_REFLECTIONS);
-	ogl_WarnIfError();
-	RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT, true);
-	ogl_WarnIfError();
-	
+
+	if (!m_Options.m_WaterReflection)
+	{
+		m->skyManager.RenderSky();
+		ogl_WarnIfError();
+	}
+	else
+	{
+		// Render terrain and models
+		RenderPatches(context, CULL_REFLECTIONS);
+		ogl_WarnIfError();
+		RenderModels(context, CULL_REFLECTIONS);
+		ogl_WarnIfError();
+		RenderTransparentModels(context, CULL_REFLECTIONS, TRANSPARENT, true);
+		ogl_WarnIfError();
+	}
 	glFrontFace(GL_CCW);
 	
 	// Particles are always oriented to face the camera in the vertex shader,
@@ -1234,13 +1236,13 @@ SScreenRect CRenderer::RenderReflections(const CShaderDefines& context, const CB
 	// rebind post-processing frambuffer.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
 	
-	return screenScissor;
+	return;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // RenderRefractions: render the water refractions to the refraction texture
-SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned &scissor)
+void CRenderer::RenderRefractions(const CShaderDefines& context, const CBoundingBoxAligned &scissor)
 {
 	PROFILE3_GPU("water refractions");
 
@@ -1254,6 +1256,9 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 	CCamera normalCamera = m_ViewCamera;
 
 	ComputeRefractionCamera(m_ViewCamera, scissor);
+
+	CVector4D camPlane(0, -1, 0, wm.m_WaterHeight + 2.0f);
+	SetObliqueFrustumClipping(m_ViewCamera, camPlane);
 
 	m->SetOpenGLCamera(m_ViewCamera);
 
@@ -1295,7 +1300,7 @@ SScreenRect CRenderer::RenderRefractions(const CShaderDefines& context, const CB
 	// rebind post-processing frambuffer.
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, fbo);
 	
-	return screenScissor;
+	return;
 }
 
 void CRenderer::RenderSilhouettes(const CShaderDefines& context)
@@ -1486,25 +1491,10 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 		if (waterScissor.GetVolume() > 0 && m_WaterManager->WillRenderFancyWater())
 		{
 			PROFILE3_GPU("water scissor");
-			SScreenRect dirty = { INT_MAX, INT_MAX, INT_MIN, INT_MIN };
-
-			if (m_Options.m_WaterReflection)
-			{
-				SScreenRect reflectionScissor = RenderReflections(context, waterScissor);
-				dirty.x1 = std::min(dirty.x1, reflectionScissor.x1);
-				dirty.y1 = std::min(dirty.y1, reflectionScissor.y1);
-				dirty.x2 = std::max(dirty.x2, reflectionScissor.x2);
-				dirty.y2 = std::max(dirty.y2, reflectionScissor.y2);
-			}
+			RenderReflections(context, waterScissor);
 
 			if (m_Options.m_WaterRefraction)
-			{
-				SScreenRect refractionScissor = RenderRefractions(context, waterScissor);
-				dirty.x1 = std::min(dirty.x1, refractionScissor.x1);
-				dirty.y1 = std::min(dirty.y1, refractionScissor.y1);
-				dirty.x2 = std::max(dirty.x2, refractionScissor.x2);
-				dirty.y2 = std::max(dirty.y2, refractionScissor.y2);
-			}
+				RenderRefractions(context, waterScissor);
 		}
 	}
 
@@ -1862,6 +1852,8 @@ void CRenderer::RenderScene(Scene& scene)
 				scene.EnumerateObjects(refractionCamera.GetFrustum(), this);
 			}
 		}
+		// Render the waves to the Fancy effects texture
+		m_WaterManager->RenderWaves(frustum);
 	}
 
 	m_CurrentCullGroup = -1;
