@@ -683,7 +683,7 @@ UnitAI.prototype.UnitFsmSpec = {
 			// so try repairing it from here.
 			// TODO: need better handling of the can't-reach-target case
 			this.StopMoving();
-			this.SetNextState("INDIVIDUAL.REPAIR.REPAIRING");
+			this.SetNextStateAlwaysEntering("INDIVIDUAL.REPAIR.REPAIRING");
 		}
 	},
 
