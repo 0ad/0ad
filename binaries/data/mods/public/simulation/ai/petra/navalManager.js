@@ -267,6 +267,63 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			entity.setMetadata(PlayerID, "sea", sea);
 		}
 	}
+
+	var evts = events["Destroy"];
+	for (var evt of evts)
+	{
+		if (!evt.entityObj || evt.entityObj.owner() !== PlayerID || !evt.metadata || !evt.metadata[PlayerID])
+			continue;
+		if (!evt.entityObj.hasClass("Ship") || !evt.metadata[PlayerID]["transporter"])
+			continue;
+		var plan = this.getPlan(evt.metadata[PlayerID]["transporter"]);
+		if (!plan)
+			continue;
+
+		var shipId = evt.entityObj.id();
+		if (this.Config.debug > 0)
+			API3.warn("one ship " + shipId + " from plan " + plan.ID + " destroyed during " + plan.state);
+		if (plan.state === "boarding")
+		{
+			// just reset the units onBoard metadata and wait for a new ship to be assigned to this plan
+			plan.units.forEach(function (ent) {
+				if ((ent.getMetadata(PlayerID, "onBoard") === "onBoard" && ent.position())
+					|| ent.getMetadata(PlayerID, "onBoard") === shipId)
+					ent.setMetadata(PlayerID, "onBoard", undefined);
+			});
+		}
+		else if (plan.state === "sailing")
+		{
+			var endIndex = plan.endIndex;
+			var self = this;
+			plan.units.forEach(function (ent) {
+				if (!ent.position())  // unit from another ship of this plan ... do nothing
+					return;
+				var access = gameState.ai.accessibility.getAccessValue(ent.position());
+				var endPos = ent.getMetadata(PlayerID, "endPos");
+				ent.setMetadata(PlayerID, "transport", undefined);
+				ent.setMetadata(PlayerID, "onBoard", undefined);
+				ent.setMetadata(PlayerID, "endPos", undefined);
+				// nothing else to do if access = endIndex as already at destination
+				// otherwise, we should require another transport
+				// TODO if attacking and no more ships available, remove the units from the attack
+				// to avoid delaying it too much
+				if (access !== endIndex)
+					self.requireTransport(gameState, ent, access, endIndex, endPos);
+			});
+		}
+	}
+};
+
+
+m.NavalManager.prototype.getPlan = function(ID)
+{
+	for (var plan of this.transportPlans)
+	{
+		if (plan.ID !== ID)
+			continue;
+		return plan;
+	}
+	return undefined;
 };
 
 m.NavalManager.prototype.addPlan = function(plan)
