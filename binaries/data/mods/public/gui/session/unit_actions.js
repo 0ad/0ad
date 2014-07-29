@@ -163,7 +163,7 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation && entState.buildEntities && playerCheck(entState, targetState, ["Player"]))
+			if (targetState.foundation && entState.buildEntities && playerCheck(entState, targetState, ["Player", "Ally"]))
 				return {"possible": true};
 			return false;
 		},
@@ -186,7 +186,7 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (entState.buildEntities && targetState.needsRepair && playerCheck(entState, targetState, ["Player"]))
+			if (entState.buildEntities && targetState.needsRepair && playerCheck(entState, targetState, ["Player", "Ally"]))
 				return {"possible": true};
 			return false;
 		},
