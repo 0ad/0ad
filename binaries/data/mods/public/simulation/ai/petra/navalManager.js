@@ -290,6 +290,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 					|| ent.getMetadata(PlayerID, "onBoard") === shipId)
 					ent.setMetadata(PlayerID, "onBoard", undefined);
 			});
+			plan.needTransportShips = (plan.transportShips.length === 0);
 		}
 		else if (plan.state === "sailing")
 		{
@@ -352,7 +353,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 		plan.addUnit(entity, endPos);
 		return true;
 	}
-	var plan = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos, false);
+	var plan = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos);
 	if (plan.failed)
 	{
 		if (this.Config.debug > 0)
@@ -368,7 +369,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 {
 	if (this.Config.debug > 0)
 		API3.warn(">>>> split of transport plan started <<<<");
-	var newplan = new m.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos, false);
+	var newplan = new m.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos);
 	if (newplan.failed)
 	{
 		if (this.Config.debug > 0)

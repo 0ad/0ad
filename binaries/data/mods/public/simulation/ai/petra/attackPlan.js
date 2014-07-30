@@ -1442,16 +1442,12 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;
 		var withdrawal = (this.isStarted() && !this.overseas);
+		var self = this;
 		this.unitCollection.forEach(function(ent) {
 			ent.stopMoving();
 			if (withdrawal)
 				ent.move(rallyPoint[0], rallyPoint[1]);
-			if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
-			{
-				ent.setMetadata(PlayerID, "role", "worker");
-				ent.setMetadata(PlayerID, "subrole", undefined);
-			}
-			ent.setMetadata(PlayerID, "plan", -1);
+			self.removeUnit(ent);
 		});
 	}
 
@@ -1463,6 +1459,16 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	gameState.ai.queueManager.removeQueue("plan_" + this.name);
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+};
+
+m.AttackPlan.prototype.removeUnit = function(ent)
+{
+	if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
+	{
+		ent.setMetadata(PlayerID, "role", "worker");
+		ent.setMetadata(PlayerID, "subrole", undefined);
+	}
+	ent.setMetadata(PlayerID, "plan", -1);
 };
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
