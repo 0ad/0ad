@@ -32,7 +32,7 @@ public:
 
 	virtual CScriptVal ScriptCall(int player, const std::wstring& cmd, CScriptVal data)
 	{
-		return m_Script.Call<CScriptVal> ("ScriptCall", player, cmd, data);
+		return m_Script.Call<CScriptVal>("ScriptCall", player, cmd, data);
 	}
 };
 
