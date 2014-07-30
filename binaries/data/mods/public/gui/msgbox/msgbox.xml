@@ -3,9 +3,7 @@
 <objects>
 	<script file="gui/msgbox/msgbox.js"/>
 
-	<object hotkey="leave">
-		<action on="Press">Engine.PopGuiPage();</action>
-	</object>
+	<object name="mbLeaveHotkey" hotkey="leave" />
 
 	<object>
 		<object name="mbMain"

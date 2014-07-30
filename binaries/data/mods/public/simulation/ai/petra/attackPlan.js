@@ -59,7 +59,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	}
 	this.rallyPoint = rallyPoint;
 
-	this.overseas = false;
+	this.overseas = undefined;
 	this.paused = false;
 	this.maxCompletingTurn = 0;	
 
@@ -423,11 +423,12 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 				this.rallyPoint = rallySame;
 			else if (rallyDiff)
 			{
-				this.overseas = true;
 				this.rallyPoint = rallyDiff;
-				var sea = gameState.ai.HQ.getSeaIndex(gameState, rallyIndex, targetIndex);
-				if (sea !== undefined)
-					gameState.ai.HQ.navalManager.setMinimalTransportShips(gameState, sea, this.neededShips);
+				this.overseas = gameState.ai.HQ.getSeaIndex(gameState, rallyIndex, targetIndex);
+				if (this.overseas)
+					gameState.ai.HQ.navalManager.setMinimalTransportShips(gameState, this.overseas, this.neededShips);
+				else
+					return 0;
 			}
 		}
 	}
@@ -444,7 +445,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 	}
 
 	// if we need a transport, wait for some transport ships
-	if (this.overseas && !gameState.ai.HQ.navalManager.seaTransportShips.length)
+	if (this.overseas && !gameState.ai.HQ.navalManager.seaTransportShips[this.overseas].length)
 		return 1;
 
 	this.assignUnits(gameState);
@@ -622,7 +623,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 	var plan = this.name;
 	var added = false;
 	var self = this;
-	// If we can not build units, assign all available except those affcted to allied defnse to the current attack
+	// If we can not build units, assign all available except those affected to allied defense to the current attack
 	if (!this.canBuildUnits)
 	{
 		gameState.getOwnUnits().forEach(function(ent) {
@@ -1441,16 +1442,12 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
 		var rallyPoint = this.rallyPoint;
 		var withdrawal = (this.isStarted() && !this.overseas);
+		var self = this;
 		this.unitCollection.forEach(function(ent) {
 			ent.stopMoving();
 			if (withdrawal)
 				ent.move(rallyPoint[0], rallyPoint[1]);
-			if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
-			{
-				ent.setMetadata(PlayerID, "role", "worker");
-				ent.setMetadata(PlayerID, "subrole", undefined);
-			}
-			ent.setMetadata(PlayerID, "plan", -1);
+			self.removeUnit(ent);
 		});
 	}
 
@@ -1462,6 +1459,16 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	gameState.ai.queueManager.removeQueue("plan_" + this.name);
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
+};
+
+m.AttackPlan.prototype.removeUnit = function(ent)
+{
+	if (ent.hasClass("CitizenSoldier") && ent.getMetadata(PlayerID, "role") !== "worker")
+	{
+		ent.setMetadata(PlayerID, "role", "worker");
+		ent.setMetadata(PlayerID, "subrole", undefined);
+	}
+	ent.setMetadata(PlayerID, "plan", -1);
 };
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)

@@ -333,7 +333,7 @@ public:
 
     virtual int DoWhatever(int x, int y)
     {
-        return m_Script.Call<int> ("DoWhatever", x, y);
+        return m_Script.Call<int>("DoWhatever", x, y);
     }
 };
 

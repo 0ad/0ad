@@ -8,6 +8,13 @@ function init(data)
 	var mbButton2Obj = Engine.GetGUIObjectByName("mbButton2");
 	var mbButton3Obj = Engine.GetGUIObjectByName("mbButton3");
 
+	var mbLeaveHotkey = Engine.GetGUIObjectByName("mbLeaveHotkey");
+	// Default behaviour
+	mbLeaveHotkey.onPress = function()
+	{
+		Engine.PopGuiPage();
+	};
+
 	// Calculate size
 	var mbLRDiff = data.width / 2;     // Message box left/right difference from 50% of screen
 	var mbUDDiff = data.height / 2;    // Message box up/down difference from 50% of screen
@@ -47,39 +54,51 @@ function init(data)
 	var codes = data.buttonCode;
 	if (data.buttonCaptions.length >= 1)
 	{
-		mbButton1Obj.caption = data.buttonCaptions[0];
-		mbButton1Obj.onPress = function () 
+		var action = function () 
 		{ 
 			if (data.callback) 
 				Engine.PopGuiPageCB(0); 
 			else
 				Engine.PopGuiPage(); 
 		};
+
+		mbButton1Obj.caption = data.buttonCaptions[0];
+		mbButton1Obj.onPress = action;
 		mbButton1Obj.hidden = false;
+
+		mbLeaveHotkey.onPress = action;
 	}
 	if (data.buttonCaptions.length >= 2)
 	{
-		mbButton2Obj.caption = data.buttonCaptions[1];
-		mbButton2Obj.onPress = function () 
+		var action = function () 
 		{ 
 			if (data.callback) 
 				Engine.PopGuiPageCB(1); 
 			else
 				Engine.PopGuiPage(); 
 		};
+
+		mbButton2Obj.caption = data.buttonCaptions[1];
+		mbButton2Obj.onPress = action;
 		mbButton2Obj.hidden = false;
+
+		mbLeaveHotkey.onPress = action;
 	}
 	if (data.buttonCaptions.length >= 3)
 	{
-		mbButton3Obj.caption = data.buttonCaptions[2];
-		mbButton3Obj.onPress = function () 
+		var action = function () 
 		{ 
 			if (data.callback) 
 				Engine.PopGuiPageCB(2); 
 			else
 				Engine.PopGuiPage(); 
 		};
+
+		mbButton3Obj.caption = data.buttonCaptions[2];
+		mbButton3Obj.onPress = action;
 		mbButton3Obj.hidden = false;
+
+		mbLeaveHotkey.onPress = action;
 	}
 
 	switch (data.buttonCaptions.length)

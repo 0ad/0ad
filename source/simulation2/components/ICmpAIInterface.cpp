@@ -32,11 +32,11 @@ public:
 
 	virtual CScriptVal GetRepresentation()
 	{
-		return m_Script.Call<CScriptVal> ("GetRepresentation");
+		return m_Script.Call<CScriptVal>("GetRepresentation");
 	}
 	virtual CScriptVal GetFullRepresentation(bool flushEvents = false)
 	{
-		return m_Script.Call<CScriptVal> ("GetFullRepresentation",flushEvents);
+		return m_Script.Call<CScriptVal>("GetFullRepresentation",flushEvents);
 	}
 	
 };
