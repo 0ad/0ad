@@ -1944,6 +1944,18 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	Engine.ProfileStop();
 };
 
+m.HQ.prototype.getHolder = function(gameState, ent)
+{
+	var found = undefined;
+	gameState.getEntities().forEach(function (holder) {
+		if (found || !holder.isGarrisonHolder())
+			return;
+		if (holder._entity.garrisoned.indexOf(ent.id()) !== -1)
+			found = holder;
+	});
+	return found;
+};
+
 return m;
 
 }(PETRA);

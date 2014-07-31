@@ -1469,6 +1469,7 @@ m.AttackPlan.prototype.removeUnit = function(ent)
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	}
 	ent.setMetadata(PlayerID, "plan", -1);
+	this.unitCollection.updateEnt(ent);
 };
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)

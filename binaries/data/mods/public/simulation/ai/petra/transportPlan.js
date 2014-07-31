@@ -295,6 +295,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 							{
 								if (self.debug > 0)
 									API3.warn("unit blocked, but no ways out of the trap ... destroy it");
+								self.resetUnit(gameState, ent);
 								ent.destroy();
 								return;
 							}
@@ -399,34 +400,23 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			continue;
 		}
 		if (gameState.ai.HQ.Config.debug > 0)
-			API3.warn(">>> reloading failed ... <<<");
-		// destroy the unit if inaccessible otherwise leave it 
+			API3.warn(">>> transport " + this.ID + " reloading failed ... <<<");
+		// destroy the unit if inaccessible otherwise leave it there
 		var index = gameState.ai.accessibility.getAccessValue(ent.position());
 		if (gameState.ai.HQ.allowedRegions[index])
 		{
 			if (gameState.ai.HQ.Config.debug > 0)
-				API3.warn("recovered entity kept " + ent.id());
-			ent.setMetadata(PlayerID, "transport", undefined);
-			ent.setMetadata(PlayerID, "onBoard", undefined);
-			ent.setMetadata(PlayerID, "endPos", undefined);
-			// if from an army or attack, remove it
-			if (ent.getMetadata(PlayerID, "plan") >= 0)
-			{
-				var plan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
-				plan.removeUnit(ent);
-			}
-			if (ent.getMetadata(PlayerID, "PartOfArmy"))
-			{
-				var army = gameState.ai.HQ.defenseManager.getArmy(ent.getMetadata(PlayerID, "PartOfArmy"));
-				army.removeOwn(gameState, ent.id());
-			}
+				API3.warn(" recovered entity kept " + ent.id());
+			this.resetUnit(gameState, ent);
+			// TODO we should not destroy it, but now the unit could still be reloaded on the next turn
+			// and mess everything
+			ent.destroy();
 		}
 		else
 		{
 			if (gameState.ai.HQ.Config.debug > 0)
 				API3.warn("recovered entity destroyed " + ent.id());
-			ent.setMetadata(PlayerID, "transport", undefined);
-			ent.setMetadata(PlayerID, "onBoard", undefined);
+			this.resetUnit(gameState, ent);
 			ent.destroy();
 		}
 	}
@@ -449,16 +439,14 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				else
 				{
 					API3.warn("Petra transportPlan problem: unit not on ship without position ???");
-					ent.setMetadata(PlayerID, "transport", undefined);
-					ent.setMetadata(PlayerID, "onBoard", undefined);
+					this.resetUnit(gameState, ent);
 					ent.destroy();
 				}
 			}
 			else
 			{
 				API3.warn("Petra transportPlan problem: unit on ship, but no ship ???");
-				ent.setMetadata(PlayerID, "transport", undefined);
-				ent.setMetadata(PlayerID, "onBoard", undefined);
+				this.resetUnit(gameState, ent);
 				ent.destroy();
 			}
 		}
@@ -479,8 +467,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			{
 				if (gameState.ai.HQ.Config.debug > 0)
 					API3.warn("no way ... we destroy it");
-				ent.setMetadata(PlayerID, "transport", undefined);
-				ent.setMetadata(PlayerID, "onBoard", undefined);
+				this.resetUnit(gameState, ent);
 				ent.destroy();
 			}
 		}
@@ -558,6 +545,26 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		}
 	});
 };
+
+m.TransportPlan.prototype.resetUnit = function(gameState, ent)
+{
+	ent.setMetadata(PlayerID, "transport", undefined);
+	ent.setMetadata(PlayerID, "onBoard", undefined);
+	ent.setMetadata(PlayerID, "endPos", undefined);
+	// if from an army or attack, remove it
+	if (ent.getMetadata(PlayerID, "plan") >= 0)
+	{
+		var plan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
+		if (plan)
+			plan.removeUnit(ent);
+	}
+	if (ent.getMetadata(PlayerID, "PartOfArmy"))
+	{
+		var army = gameState.ai.HQ.defenseManager.getArmy(ent.getMetadata(PlayerID, "PartOfArmy"));
+		if (army)
+			army.removeOwn(gameState, ent.id());
+	}
+}
 
 return m;
 }(PETRA);
