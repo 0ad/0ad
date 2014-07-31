@@ -56,12 +56,10 @@ public:
 	virtual void String(const char* name, std::wstring& out, uint32_t minlength, uint32_t maxlength);
 
 	/// Deserialize a jsval, replacing 'out'
-	virtual void ScriptVal(const char* name, jsval& out) = 0;
-	virtual void ScriptVal(const char* name, CScriptVal& out) = 0;
-	virtual void ScriptVal(const char* name, CScriptValRooted& out) = 0;
+	virtual void ScriptVal(const char* name, JS::MutableHandleValue out) = 0;
 
-	/// Deserialize an object jsval, appending properties to object 'obj'
-	virtual void ScriptObjectAppend(const char* name, jsval& obj) = 0;
+	/// Deserialize an object value, appending properties to object 'objVal'
+	virtual void ScriptObjectAppend(const char* name, JS::HandleValue objVal) = 0;
 
 	/// Deserialize a JSString
 	virtual void ScriptString(const char* name, JSString*& out) = 0;

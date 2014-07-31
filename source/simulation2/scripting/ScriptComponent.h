@@ -52,12 +52,17 @@ public:
 	//   void CallVoid(const char* funcname);
 	//   template<typename T0> void CallVoid(const char* funcname, const T0& a0);
 	//   ...
+
+// TODO: Check if these temporary roots can be removed after SpiderMonkey 31 upgrade
 #define OVERLOADS(z, i, data) \
 	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
 	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
+		JSContext* cx = m_ScriptInterface.GetContext(); \
+		JSAutoRequest rq(cx); \
+		JS::RootedValue tmpInstance(cx, m_Instance.get()); \
 		R ret; \
-		if (m_ScriptInterface.CallFunction(m_Instance.get(), funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
+		if (m_ScriptInterface.CallFunction(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
 			return ret; \
 		LOGERROR(L"Error calling component script function %hs", funcname); \
 		return R(); \
@@ -65,7 +70,10 @@ public:
 	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
 	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
-		if (m_ScriptInterface.CallFunctionVoid(m_Instance.get(), funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
+		JSContext* cx = m_ScriptInterface.GetContext(); \
+		JSAutoRequest rq(cx); \
+		JS::RootedValue tmpInstance(cx, m_Instance.get()); \
+		if (m_ScriptInterface.CallFunctionVoid(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
 			return; \
 		LOGERROR(L"Error calling component script function %hs", funcname); \
 	}

@@ -58,7 +58,7 @@ public:
 	CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer);
 
 	void ScriptString(const char* name, JSString* string);
-	void HandleScriptVal(jsval val);
+	void HandleScriptVal(JS::HandleValue val);
 	void SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes);
 private:
 	ScriptInterface& m_ScriptInterface;
@@ -185,7 +185,7 @@ protected:
 		m_Impl.Put(name, (u8*)value.data(), value.length());
 	}
 
-	virtual void PutScriptVal(const char* UNUSED(name), jsval value)
+	virtual void PutScriptVal(const char* UNUSED(name), JS::HandleValue value)
 	{
 		m_ScriptImpl->HandleScriptVal(value);
 	}

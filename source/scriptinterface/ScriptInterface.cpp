@@ -964,12 +964,11 @@ JSObject* ScriptInterface::CreateCustomObject(const std::string & typeName)
 	return JS_NewObject(m->m_cx, (*it).second.m_Class, prototype, NULL);
 }
 
-bool ScriptInterface::CallFunctionVoid(jsval val, const char* name)
+bool ScriptInterface::CallFunctionVoid(JS::HandleValue val, const char* name)
 {
 	JSAutoRequest rq(m->m_cx);
 	JS::RootedValue jsRet(m->m_cx);
-	JS::RootedValue val1(m->m_cx, val);
-	return CallFunction_(val1, name, 0, NULL, &jsRet);
+	return CallFunction_(val, name, 0, NULL, &jsRet);
 }
 
 bool ScriptInterface::CallFunction_(JS::HandleValue val, const char* name, uint argc, jsval* argv, JS::MutableHandleValue ret)
@@ -1361,7 +1360,8 @@ std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
 std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 {
 	JSAutoRequest rq(m->m_cx);
-	if (JSVAL_IS_VOID(obj))
+
+	if (obj.isUndefined())
 		return L"(void 0)";
 
 	// Try to stringify as JSON if possible
@@ -1373,7 +1373,7 @@ std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
 		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
 
-		JSBool ok = JS_Stringify(m->m_cx, &obj, NULL, INT_TO_JSVAL(2), &StringifierW::callback, &str);
+		JSBool ok = JS_Stringify(m->m_cx, &obj, NULL, JS::NumberValue(2), &StringifierW::callback, &str);
 
 		// Restore error reporter
 		JS_SetErrorReporter(m->m_cx, er);
@@ -1389,7 +1389,8 @@ std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 	// so fall back to obj.toSource()
 
 	std::wstring source = L"(error)";
-	CallFunction(obj, "toSource", source);
+	JS::RootedValue tmpObj(m->m_cx, obj); // TODO: pass Handle as argument already
+	CallFunction(tmpObj, "toSource", source);
 	return source;
 }
 

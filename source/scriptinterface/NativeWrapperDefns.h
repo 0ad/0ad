@@ -129,16 +129,15 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) R& ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) R& ret) \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
 	JS::RootedValue jsRet(cx); \
-	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), &jsRet); \
+	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), &jsRet); \
 	if (!ok) \
 		return false; \
 	return FromJSVal(cx, jsRet, ret); \
@@ -148,16 +147,15 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::Rooted<R>* ret) \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
 	JS::MutableHandle<R> jsRet(ret); \
-	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), jsRet); \
+	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), jsRet); \
 	if (!ok) \
 		return false; \
 	return true; \
@@ -167,15 +165,14 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
-bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(z,i) JS::MutableHandle<R> ret) \
+bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_CONST_REF(z,i) JS::MutableHandle<R> ret) \
 { \
 	JSContext* cx = GetContext(); \
 	JSAutoRequest rq(cx); \
-	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), ret); \
+	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), ret); \
 	if (!ok) \
 		return false; \
 	return true; \

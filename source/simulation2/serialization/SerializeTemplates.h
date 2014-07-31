@@ -190,19 +190,6 @@ struct SerializeBool
 	}
 };
 
-struct SerializeScriptVal
-{
-	void operator()(ISerializer& serialize, const char* name, CScriptValRooted value)
-	{
-		serialize.ScriptVal(name, value);
-	}
-
-	void operator()(IDeserializer& deserialize, const char* name, CScriptValRooted& value)
-	{
-		deserialize.ScriptVal(name, value);
-	}
-};
-
 struct SerializeWaypoint
 {
 	void operator()(ISerializer& serialize, const char* UNUSED(name), const ICmpPathfinder::Waypoint& value)

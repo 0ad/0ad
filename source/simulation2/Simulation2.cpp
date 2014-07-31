@@ -639,12 +639,18 @@ ScriptInterface& CSimulation2::GetScriptInterface() const
 
 void CSimulation2::ReplaceSkirmishGlobals()
 {
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "ReplaceSkirmishGlobals");
+	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	GetScriptInterface().CallFunctionVoid(global, "ReplaceSkirmishGlobals");
 }
 
 void CSimulation2::InitGame(const CScriptVal& data)
 {
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "InitGame", data);
+	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	GetScriptInterface().CallFunctionVoid(global, "InitGame", data);
 }
 
 void CSimulation2::Update(int turnLength)
@@ -728,7 +734,10 @@ CScriptVal CSimulation2::GetMapSettings()
 
 void CSimulation2::LoadPlayerSettings(bool newPlayers)
 {
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadPlayerSettings", m->m_MapSettings, newPlayers);
+	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
+	GetScriptInterface().CallFunctionVoid(global, "LoadPlayerSettings", m->m_MapSettings, newPlayers);
 }
 
 void CSimulation2::LoadMapSettings()
@@ -736,10 +745,11 @@ void CSimulation2::LoadMapSettings()
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 	
+	JS::RootedValue global(cx, GetScriptInterface().GetGlobalObject());
 	JS::RootedValue tmpMapSettings(cx, m->m_MapSettings.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
 	
 	// Initialize here instead of in Update()
-	GetScriptInterface().CallFunctionVoid(GetScriptInterface().GetGlobalObject(), "LoadMapSettings", tmpMapSettings);
+	GetScriptInterface().CallFunctionVoid(global, "LoadMapSettings", tmpMapSettings);
 
 	if (!m->m_StartupScript.empty())
 		GetScriptInterface().LoadScript(L"map startup script", m->m_StartupScript);

@@ -147,7 +147,7 @@ void CDebugSerializer::PutString(const char* name, const std::string& value)
 	m_Stream << INDENT << name << ": " << "\"" << escaped << "\"\n";
 }
 
-void CDebugSerializer::PutScriptVal(const char* name, jsval value)
+void CDebugSerializer::PutScriptVal(const char* name, JS::HandleValue value)
 {
 	std::wstring source = m_ScriptInterface.ToString(value, true);
 

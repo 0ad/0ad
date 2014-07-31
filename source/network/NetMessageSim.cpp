@@ -124,13 +124,16 @@ u8* CSimulationMessage::Serialize(u8* pBuffer) const
 {
 	// TODO: ought to handle serialization exceptions
 	// TODO: ought to represent common commands more efficiently
-
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
+	
 	u8* pos = CNetMessage::Serialize(pBuffer);
 	CBufferBinarySerializer serializer(*m_ScriptInterface, pos);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", m_Data);
+	serializer.ScriptVal("command", tmpData);
 	return serializer.GetBuffer();
 }
 
@@ -138,14 +141,18 @@ const u8* CSimulationMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
 	// TODO: ought to handle serialization exceptions
 	// TODO: ought to represent common commands more efficiently
-
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue tmpData(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(*m_ScriptInterface, stream);
 	deserializer.NumberU32_Unbounded("client", m_Client);
 	deserializer.NumberI32_Unbounded("player", m_Player);
 	deserializer.NumberU32_Unbounded("turn", m_Turn);
-	deserializer.ScriptVal("command", m_Data);
+	deserializer.ScriptVal("command", &tmpData);
+	m_Data = CScriptValRooted(cx, tmpData);
 	return pEnd;
 }
 
@@ -153,12 +160,15 @@ size_t CSimulationMessage::GetSerializedLength() const
 {
 	// TODO: serializing twice is stupidly inefficient - we should just
 	// do it once, store the result, and use it here and in Serialize
-
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
+	
 	CLengthBinarySerializer serializer(*m_ScriptInterface);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", m_Data);
+	serializer.ScriptVal("command", tmpData);
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
@@ -186,28 +196,39 @@ CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface, jsval dat
 u8* CGameSetupMessage::Serialize(u8* pBuffer) const
 {
 	// TODO: ought to handle serialization exceptions
-
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
+	
 	u8* pos = CNetMessage::Serialize(pBuffer);
 	CBufferBinarySerializer serializer(m_ScriptInterface, pos);
-	serializer.ScriptVal("command", m_Data);
+	serializer.ScriptVal("command", tmpData);
 	return serializer.GetBuffer();
 }
 
 const u8* CGameSetupMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
 	// TODO: ought to handle serialization exceptions
-
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
+	
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
-	deserializer.ScriptVal("command", m_Data);
+	deserializer.ScriptVal("command", &tmpData);
+	m_Data = CScriptValRooted(cx, tmpData);
 	return pEnd;
 }
 
 size_t CGameSetupMessage::GetSerializedLength() const
 {
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
+	
 	CLengthBinarySerializer serializer(m_ScriptInterface);
-	serializer.ScriptVal("command", m_Data);
+	serializer.ScriptVal("command", tmpData);
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 

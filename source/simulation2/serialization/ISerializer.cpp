@@ -92,19 +92,9 @@ void ISerializer::String(const char* name, const std::wstring& value, uint32_t m
 	PutString(name, str);
 }
 
-void ISerializer::ScriptVal(const char* name, jsval value)
+void ISerializer::ScriptVal(const char* name, JS::HandleValue value)
 {
 	PutScriptVal(name, value);
-}
-
-void ISerializer::ScriptVal(const char* name, CScriptVal value)
-{
-	PutScriptVal(name, value.get());
-}
-
-void ISerializer::ScriptVal(const char* name, CScriptValRooted value)
-{
-	PutScriptVal(name, value.get());
 }
 
 void ISerializer::RawBytes(const char* name, const u8* data, size_t len)
