@@ -125,7 +125,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
-#define TO_JS_VAL(z, i, data) ToJSVal(cx, argv.handleAt(i), a##i);
+#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(argv.handleAt(i), a##i);
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
@@ -137,7 +137,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(
 	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
 	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), &jsRet); \
 	if (!ok) \
 		return false; \
@@ -156,7 +156,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(
 	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
 	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), jsRet); \
 	if (!ok) \
 		return false; \
@@ -174,7 +174,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(
 	JS::RootedValue val1(cx, val); \
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
-	BOOST_PP_REPEAT_##z (i, TO_JS_VAL, ~) \
+	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
 	bool ok = CallFunction_(val1, name, argv.length(), argv.begin(), ret); \
 	if (!ok) \
 		return false; \
@@ -182,6 +182,7 @@ bool ScriptInterface::CallFunction(jsval val, const char* name, T0_A0_CONST_REF(
 }
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
+#undef ASSIGN_OR_TO_JS_VAL
 
 // Clean up our mess
 #undef SCRIPT_PROFILE

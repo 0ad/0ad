@@ -129,31 +129,41 @@ public:
 		
 		JS::RootedValue val(cx);
 		JS::RootedValue out(cx);
-		TS_ASSERT(script.Eval("({ '0':0, inc:function() { this[0]++; return this[0]; }, setTo:function(nbr) { this[0] = nbr; } })", &val));
-	
+		TS_ASSERT(script.Eval("({ "
+			"'0':0,"
+			"inc:function() { this[0]++; return this[0]; }, "
+			"setTo:function(nbr) { this[0] = nbr; }, "
+			"add:function(nbr) { this[0] += nbr; return this[0]; } "
+			"})"
+			, &val));
+
 		JS::RootedValue nbrVal(cx, JS::NumberValue(3));
 		int nbr = 0;
 		
-		// CallFunctionVoid JS::RootedValue& overload
+		// CallFunctionVoid JS::RootedValue& parameter overload
 		script.CallFunctionVoid(val, "setTo", nbrVal);
 
-		// CallFunction JS::RootedValue* overload
+		// CallFunction JS::RootedValue* out parameter overload
 		script.CallFunction(val, "inc", &out);
 		
 		ScriptInterface::FromJSVal(cx, out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
+		
+		// CallFunction const JS::RootedValue& parameter overload
+		script.CallFunction(val, "add", nbrVal, nbr);
+		TS_ASSERT_EQUALS(7, nbr);
 
-		// GetProperty tests JS::RootedValue* overload
+		// GetProperty JS::RootedValue* overload
 		nbr = 0;
-		script.GetProperty(val, "0", &out); // JS::RootedValue* overload
+		script.GetProperty(val, "0", &out);
 		ScriptInterface::FromJSVal(cx, out, nbr);
-		TS_ASSERT_EQUALS(nbr, 4);
+		TS_ASSERT_EQUALS(nbr, 7);
 
-		// GetPropertyInt tests JS::RootedValue* overload
+		// GetPropertyInt JS::RootedValue* overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, &out);
 		ScriptInterface::FromJSVal(cx, out, nbr);
-		TS_ASSERT_EQUALS(nbr, 4);
+		TS_ASSERT_EQUALS(nbr, 7);
 
 		handle_templates_test(script, val, &out, nbrVal);
 	}
@@ -162,26 +172,30 @@ public:
 	{
 		int nbr = 0;
 
-		// CallFunctionVoid JS::HandleValue overload
+		// CallFunctionVoid JS::HandleValue parameter overload
 		script.CallFunctionVoid(val, "setTo", nbrVal);
 
-		// CallFunction JS::MutableHandleValue overload
+		// CallFunction JS::MutableHandleValue out parameter overload
 		script.CallFunction(val, "inc", out);
 		
 		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
 		TS_ASSERT_EQUALS(4, nbr);
+		
+		// CallFunction const JS::HandleValue& parameter overload
+		script.CallFunction(val, "add", nbrVal, nbr);
+		TS_ASSERT_EQUALS(7, nbr);
 
 		// GetProperty JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetProperty(val, "0", out);
 		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
-		TS_ASSERT_EQUALS(nbr, 4);
+		TS_ASSERT_EQUALS(nbr, 7);
 
 		// GetPropertyInt JS::MutableHandleValue overload
 		nbr = 0;
 		script.GetPropertyInt(val, 0, out);
 		ScriptInterface::FromJSVal(script.GetContext(), out, nbr);
-		TS_ASSERT_EQUALS(nbr, 4);
+		TS_ASSERT_EQUALS(nbr, 7);
 	}
 
 	void test_random()
