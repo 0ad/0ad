@@ -219,11 +219,14 @@ void StartGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs, int p
 	g_Game->StartGame(gameAttribs, "");
 }
 
-CScriptVal StartSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring name)
+CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
 {
-	CSimulation2* sim = g_Game->GetSimulation2();
-	JSContext* cx = sim->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
+	// We need to be careful with different compartments and contexts.
+	// The GUI calls this function from the GUI context and expects the return value in the same context.
+	// The game we start from here creates another context and expects data in this context.
+	
+	JSContext* cxGui = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cxGui);
 
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
@@ -231,27 +234,33 @@ CScriptVal StartSavedGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::w
 	ENSURE(!g_Game);
 
 	// Load the saved game data from disk
-	CScriptValRooted metadata;
+	JS::RootedValue guiContextMetadata(cxGui);
 	std::string savedState;
-	Status err = SavedGames::Load(name, sim->GetScriptInterface(), metadata, savedState);
+	Status err = SavedGames::Load(name, *(pCxPrivate->pScriptInterface), &guiContextMetadata, savedState);
 	if (err < 0)
-		return CScriptVal();
+		return JS::UndefinedValue();
 
 	g_Game = new CGame();
 	
-	JS::RootedValue gameMetadata(cx, metadata.get());
+	{
+		CSimulation2* sim = g_Game->GetSimulation2();
+		JSContext* cxGame = sim->GetScriptInterface().GetContext();
+		JSAutoRequest rq(cxGame);
+		
+		JS::RootedValue gameContextMetadata(cxGame, 
+			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), guiContextMetadata));
+		JS::RootedValue gameInitAttributes(cxGame);
+		sim->GetScriptInterface().GetProperty(gameContextMetadata, "initAttributes", &gameInitAttributes);
 
-	JS::RootedValue gameInitAttributes(cx);
-	sim->GetScriptInterface().GetProperty(gameMetadata, "initAttributes", &gameInitAttributes);
+		int playerID;
+		sim->GetScriptInterface().GetProperty(gameContextMetadata, "player", playerID);
 
-	int playerID;
-	sim->GetScriptInterface().GetProperty(gameMetadata, "player", playerID);
+		// Start the game
+		g_Game->SetPlayerID(playerID);
+		g_Game->StartGame(CScriptValRooted(cxGame, gameInitAttributes), savedState);
+	}
 
-	// Start the game
-	g_Game->SetPlayerID(playerID);
-	g_Game->StartGame(CScriptValRooted(cx, gameInitAttributes), savedState);
-
-	return gameMetadata.get();
+	return guiContextMetadata.get();
 }
 
 void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, CScriptVal GUIMetadata)
