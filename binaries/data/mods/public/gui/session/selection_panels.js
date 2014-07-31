@@ -802,12 +802,46 @@ g_SelectionPanels.Selection = {
 		if (!data.template)
 			return false;
 		data.name = getEntityNames(data.template);
-		data.count = g_Selection.groups.getCount(data.item);
+
+		var ents = g_Selection.groups.getEntsByName(data.item)
+		
+		data.count = ents.length;
+		for (var i in ents)
+		{
+			var state = GetExtendedEntityState(ents[i]);
+
+			if (state.resourceCarrying && state.resourceCarrying.length !== 0)
+			{
+				if (!data.carried)
+					data.carried = {};
+				var carrying = state.resourceCarrying[0];
+				if (data.carried[carrying.type])
+					data.carried[carrying.type] += carrying.amount;
+				else
+					data.carried[carrying.type] = carrying.amount;
+			}
+		}
 		return true;
 	},
 	"setTooltip": function(data)
 	{
-		data.button.tooltip = data.name;
+		if (data.carried)
+		{
+			var str = data.name + "\n";
+			var ress = ["food", "wood", "stone", "metal"];
+			for (var i = 0; i < 4; ++i)
+			{
+				if (data.carried[ress[i]])
+				{
+					str += getCostComponentDisplayName(ress[i]) + data.carried[ress[i]];
+					if (i !== 3)
+						str += " ";
+				}
+			}
+			data.button.tooltip = str;
+		}
+		else
+			data.button.tooltip = data.name;
 	},
 	"setCountDisplay": function(data)
 	{

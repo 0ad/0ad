@@ -122,10 +122,9 @@ void CStdDeserializer::FreeScriptBackrefs()
 
 ////////////////////////////////////////////////////////////////
 
-jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* appendParent)
+jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject appendParent)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
-
 	JSAutoRequest rq(cx);
 
 	uint8_t type;
@@ -142,20 +141,20 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 	case SCRIPT_TYPE_OBJECT:
 	case SCRIPT_TYPE_OBJECT_PROTOTYPE:
 	{
-		JSObject* obj;
+		JS::RootedObject obj(cx);
 		if (appendParent)
 		{
-			obj = appendParent;
+			obj.set(appendParent);
 		}
 		else if (type == SCRIPT_TYPE_ARRAY)
 		{
 			u32 length;
 			NumberU32_Unbounded("array length", length);
-			obj = JS_NewArrayObject(cx, length, NULL);
+			obj.set(JS_NewArrayObject(cx, length, NULL));
 		}
 		else if (type == SCRIPT_TYPE_OBJECT)
 		{
-			obj = JS_NewObject(cx, NULL, NULL, NULL);
+			obj.set(JS_NewObject(cx, NULL, NULL, NULL));
 		}
 		else // SCRIPT_TYPE_OBJECT_PROTOTYPE
 		{
@@ -163,18 +162,17 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 			String("proto name", prototypeName, 0, 256);
 
 			// Get constructor object
-			JSObject* proto = GetSerializablePrototype(prototypeName);
+			JS::RootedObject proto(cx, GetSerializablePrototype(prototypeName));
 			if (!proto)
 				throw PSERROR_Deserialize_ScriptError("Failed to find serializable prototype for object");
 
-			JSObject* parent = JS_GetParent(proto);
+			JS::RootedObject parent(cx, JS_GetParent(proto));
 			if (!proto || !parent)
 				throw PSERROR_Deserialize_ScriptError();
 
-			obj = JS_NewObject(cx, NULL, proto, parent);
+			obj.set(JS_NewObject(cx, NULL, proto, parent));
 			if (!obj)
 				throw PSERROR_Deserialize_ScriptError("JS_NewObject failed");
-			CScriptValRooted objRoot(cx, JS::ObjectValue(*obj));
 
 			// Does it have custom Deserialize function?
 			// if so, we let it handle the deserialized data, rather than adding properties directly
@@ -190,11 +188,12 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 				bool hasNullSerialize = hasCustomSerialize && JSVAL_IS_NULL(serialize);
 
 				// If Serialize is null, we'll still call Deserialize but with undefined argument
-				CScriptValRooted data;
+				JS::RootedValue data(cx);
 				if (!hasNullSerialize)
-					ScriptVal("data", data);
+					ScriptVal("data", &data);
 
-				m_ScriptInterface.CallFunctionVoid(JS::ObjectValue(*obj), "Deserialize", data);
+				JS::RootedValue objVal(cx, JS::ObjectValue(*obj));
+				m_ScriptInterface.CallFunctionVoid(objVal, "Deserialize", data);
 				
 				AddScriptBackref(obj);
 				
@@ -215,9 +214,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 		{
 			utf16string propname;
 			ReadStringUTF16("prop name", propname);
-
-			JS::RootedValue propval(cx, ReadScriptVal("prop value", NULL));
-			CScriptValRooted propvalRoot(cx, propval);
+			JS::RootedValue propval(cx, ReadScriptVal("prop value", JS::NullPtr()));
 
 			if (!JS_SetUCProperty(cx, obj, (const jschar*)propname.data(), propname.length(), propval.address()))
 				throw PSERROR_Deserialize_ScriptError();
@@ -325,7 +322,7 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JSObject* append
 		u32 arrayTag = ReserveScriptBackref();
 
 		// Get buffer object
-		jsval bufferVal = ReadScriptVal("buffer", NULL);
+		jsval bufferVal = ReadScriptVal("buffer", JS::NullPtr());
 
 		if (!bufferVal.isObject())
 			throw PSERROR_Deserialize_ScriptError();
@@ -420,27 +417,21 @@ void CStdDeserializer::ScriptString(const char* name, JSString*& out)
 		throw PSERROR_Deserialize_ScriptError("JS_NewUCStringCopyN failed");
 }
 
-void CStdDeserializer::ScriptVal(const char* name, jsval& out)
+void CStdDeserializer::ScriptVal(const char* name, JS::MutableHandleValue out)
 {
-	out = ReadScriptVal(name, NULL);
+	out.set(ReadScriptVal(name, JS::NullPtr()));
 }
 
-void CStdDeserializer::ScriptVal(const char* name, CScriptVal& out)
+void CStdDeserializer::ScriptObjectAppend(const char* name, JS::HandleValue objVal)
 {
-	out = ReadScriptVal(name, NULL);
-}
-
-void CStdDeserializer::ScriptVal(const char* name, CScriptValRooted& out)
-{
-	out = CScriptValRooted(m_ScriptInterface.GetContext(), ReadScriptVal(name, NULL));
-}
-
-void CStdDeserializer::ScriptObjectAppend(const char* name, jsval& obj)
-{
-	if (!obj.isObject())
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	
+	if (!objVal.isObject())
 		throw PSERROR_Deserialize_ScriptError();
 
-	ReadScriptVal(name, JSVAL_TO_OBJECT(obj));
+	JS::RootedObject obj(cx, &objVal.toObject());
+	ReadScriptVal(name, obj);
 }
 
 void CStdDeserializer::SetSerializablePrototypes(std::map<std::wstring, JSObject*>& prototypes)

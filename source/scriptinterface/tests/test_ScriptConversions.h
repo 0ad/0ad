@@ -40,7 +40,8 @@ class TestScriptConversions : public CxxTest::TestSuite
 		// We want to convert values to strings, but can't just call toSource() on them
 		// since they might not be objects. So just use uneval.
 		std::string source;
-		TS_ASSERT(script.CallFunction(JS::ObjectValue(*JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
+		JS::RootedValue global(cx, script.GetGlobalObject());
+		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
 
 		TS_ASSERT_STR_EQUALS(source, expected);
 	}
@@ -56,7 +57,8 @@ class TestScriptConversions : public CxxTest::TestSuite
 		ScriptInterface::ToJSVal(cx, &v1, value);
 
 		std::string source;
-		TS_ASSERT(script.CallFunction(JS::ObjectValue(*JS_GetGlobalForScopeChain(cx)), "uneval", CScriptVal(v1), source));
+		JS::RootedValue global(cx, script.GetGlobalObject());
+		TS_ASSERT(script.CallFunction(global, "uneval", v1, source));
 
 		if (expected)
 			TS_ASSERT_STR_EQUALS(source, expected);

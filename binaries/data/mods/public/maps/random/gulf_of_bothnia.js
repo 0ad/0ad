@@ -173,7 +173,10 @@ var playerAngle = new Array(numPlayers);
 var startAngle = -PI/6;
 for (var i = 0; i < numPlayers; i++)
 {
-	playerAngle[i] = startAngle + i*TWO_PI/(numPlayers-1)*2/3;
+	if (numPlayers == 1)
+		playerAngle[i] = startAngle + TWO_PI/3;
+	else
+		playerAngle[i] = startAngle + i*TWO_PI/(numPlayers-1)*2/3;
 	playerX[i] = 0.5 + 0.35*cos(playerAngle[i]);
 	playerZ[i] = 0.5 + 0.35*sin(playerAngle[i]);
 }

@@ -54,7 +54,7 @@ protected:
 	virtual void PutNumber(const char* name, fixed value);
 	virtual void PutBool(const char* name, bool value);
 	virtual void PutString(const char* name, const std::string& value);
-	virtual void PutScriptVal(const char* name, jsval value);
+	virtual void PutScriptVal(const char* name, JS::HandleValue value);
 	virtual void PutRaw(const char* name, const u8* data, size_t len);
 
 private:

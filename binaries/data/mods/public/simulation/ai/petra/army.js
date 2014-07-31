@@ -217,7 +217,8 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		ent.setMetadata(PlayerID, "subrole", undefined);
 	ent.setMetadata(PlayerID, "formerSubrole", undefined);
 
-	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
+// TODO be sure that all units in the transport need the cancelation
+/*	if (!ent.position())	// this unit must still be in a transport plan ... try to cancel it
 	{
 		var planID = ent.getMetadata(PlayerID, "transport");
 		// no plans must mean that the unit was in a ship which was destroyed, so do nothing
@@ -225,16 +226,11 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		{
 			if (gameState.ai.HQ.Config.debug > 0)
 				warn("ent from army still in transport plan: plan " + planID + " canceled");
-			for (var plan of gameState.ai.HQ.navalManager.transportPlans)
-			{
-				if (plan.ID !== planID)
-					continue;
-				if (!plan.canceled)
-					plan.cancelTransport(gameState);
-				break;
-			}
+			var plan = gameState.ai.HQ.navalManager.getPlan(planID);
+			if (plan && !plan.canceled)
+				plan.cancelTransport(gameState);
 		}
-	}
+	} */
 
 	return true;
 }

@@ -60,7 +60,7 @@ CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& script
 {
 }
 
-void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
+void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -119,7 +119,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 
 			// Now handle its array buffer
 			// this may be a backref, since ArrayBuffers can be shared by multiple views
-			HandleScriptVal(JS::ObjectValue(*JS_GetArrayBufferViewBuffer(obj)));
+			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(obj)));
+			HandleScriptVal(bufferVal);
 			break;
 		}
 		else if (JS_IsArrayBufferObject(obj))
@@ -182,10 +183,10 @@ void CBinarySerializerScriptImpl::HandleScriptVal(jsval val)
 						// If serialize is null, so don't serialize anything more
 						if (!serialize.isNull())
 						{
-							CScriptValRooted data;
-							if (!m_ScriptInterface.CallFunction(val, "Serialize", data))
+							JS::RootedValue data(cx);
+							if (!m_ScriptInterface.CallFunction(val, "Serialize", &data))
 								throw PSERROR_Serialize_ScriptError("Prototype Serialize function failed");
-							HandleScriptVal(data.get());
+							HandleScriptVal(data);
 						}
 						break;
 					}

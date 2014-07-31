@@ -74,7 +74,7 @@ Status SavePrefix(const std::wstring& prefix, const std::wstring& description, C
  *	loaded from simulation.dat inside the archive.
  * @return INFO::OK if successfully loaded, else an error Status
  */
-Status Load(const std::wstring& name, ScriptInterface& scriptInterface, CScriptValRooted& metadata, std::string& savedState);
+Status Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::MutableHandleValue metadata, std::string& savedState);
 
 /**
  * Get list of saved games for GUI script usage
