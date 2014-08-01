@@ -161,7 +161,6 @@ void main()
 	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
 	ww1.y = wwInterp.y;
 	
-#if USE_SUPERNORMAL
 	vec3 smallWW = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
 	vec3 smallWW2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
 	vec3 smallWWInterp = mix(smallWW, smallWW2, moddedTime) - vec3(0.5,0.0,0.5);
@@ -173,7 +172,6 @@ void main()
 	ww1 += vec3(smallWW)*(fwaviness/10.0*smallIntensity + smallBase);
 	
 	ww1 = mix(smallWW, ww1, waterInfo.r);
-#endif
 		
 	// Flatten them based on waviness.
 	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1, clamp(baseBump + fwaviness/flattenism,0.0,1.0)));
@@ -314,9 +312,11 @@ void main()
 		vec4 refTex = texture2D(reflectionMap, reflCoords);
 		reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);
 	#else
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / gl_TexCoord[1].z + 0.5,0.0,1.0);	// Unbias texture coords
-		vec3 refTex = texture2D(reflectionMap, reflCoords).rgb;
-		reflColor = refTex.rgb;
+		// Temp fix for some ATI cards (see irc logs on th 1st of august betwee, fexor and wraitii)
+		//reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / gl_TexCoord[1].z + 0.5,0.0,1.0);	// Unbias texture coords
+		//vec3 refTex = texture2D(reflectionMap, reflCoords).rgb;
+		//reflColor = refTex.rgb;
+		reflColor = vec3(0.15, 0.7, 0.92);
 	#endif
 
 	// TODO: At very low angles the reflection stuff doesn't really work any more:
