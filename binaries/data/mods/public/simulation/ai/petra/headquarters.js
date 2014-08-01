@@ -849,15 +849,6 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 
 	Engine.ProfileStop();
 
-/*	if (m.DebugEnabled())
-	{
-		gameState.sharedScript.CCResourceMaps["wood"].dumpIm("woodMap.png", 300);
-		gameState.sharedScript.CCResourceMaps["stone"].dumpIm("stoneMap.png", 300);
-		gameState.sharedScript.CCResourceMaps["metal"].dumpIm("metalMap.png", 300);
-		locateMap.dumpIm("cc_placement_base_" + best[1] + ".png",300);
-		obstructions.dumpIm("cc_placement_base_" + best[1] + "_obs.png", 20);
-	} */
-
 	var cut = 60;
 	if (fromStrategic)  // be less restrictive
 		cut = 30;
