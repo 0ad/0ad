@@ -260,11 +260,11 @@ void main()
 	float murky = mix(200.0,0.1,pow(murkiness,0.25));
 
 	#if USE_REFRACTION
-		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor*7.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor*7.0) / gl_TexCoord[2].z + 0.5,0.0,1.0);	// Unbias texture coords
 		vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 		if (refColor.r > refColor.g + refColor.b + 0.25)
 		{
-			refrCoords = clamp( (0.5*gl_TexCoord[2].xy + n.xz) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			refrCoords = clamp( (0.5*gl_TexCoord[2].xy + n.xz) / gl_TexCoord[2].z + 0.5,0.0,1.0);	// Unbias texture coords
 			refColor = texture2D(refractionMap, refrCoords).rgb;
 		}
 
@@ -310,11 +310,11 @@ void main()
 		//gl_FragColor = vec4(clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),1.0);
 		//return;
 		
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 4.0,waviness/10.0) * n.zx) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 4.0,waviness/10.0) * n.zx) / gl_TexCoord[1].z + 0.5,0.0,1.0);	// Unbias texture coords
 		vec4 refTex = texture2D(reflectionMap, reflCoords);
 		reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);
 	#else
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / gl_TexCoord[1].z + 0.5,0.0,1.0);	// Unbias texture coords
 		vec3 refTex = texture2D(reflectionMap, reflCoords).rgb;
 		reflColor = refTex.rgb;
 	#endif

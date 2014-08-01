@@ -46,11 +46,9 @@ void main()
 	
 	gl_TexCoord[0] = vec4(newX,newY,time,0.0);
 	gl_TexCoord[0].xy *= repeatScale;
-	gl_TexCoord[1] = reflectionMatrix * vec4(a_vertex, 1.0);		// projective texturing
-	gl_TexCoord[2] = refractionMatrix * vec4(a_vertex, 1.0);
-	gl_TexCoord[3] = losMatrix * vec4(a_vertex, 1.0);
-
-	gl_TexCoord[3].zw = vec2(a_vertex.xz)/mapSize;
+	gl_TexCoord[1].rgb = (reflectionMatrix * vec4(a_vertex, 1.0)).rga;		// projective texturing
+	gl_TexCoord[2].rgb = (refractionMatrix * vec4(a_vertex, 1.0)).rga;
+	gl_TexCoord[3].rg = (losMatrix * vec4(a_vertex, 1.0)).rg;
 	
 	#if USE_SHADOW && USE_SHADOWS_ON_WATER
 			v_shadow = shadowTransform * vec4(a_vertex, 1.0);

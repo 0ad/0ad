@@ -791,25 +791,6 @@ void WaterManager::CreateWaveMeshes()
 				}
 				vertices = reversed;
 			}
-			// very simple smoothing.
-			// Bump 1 for smoother.
-			/*for (int p = 0; p < 3; ++p)
-			{
-				for (size_t j = 1; j < waveSizes-1; ++j)
-				{
-					CVector3D realPos = (MeshPoints[j-1].m_BasePosition + MeshPoints[j+1].m_BasePosition)*0.5f;
-					MeshPoints[j].m_BasePosition = (MeshPoints[j].m_BasePosition + realPos)*0.5f;
-
-					realPos = (MeshPoints[j-1].m_ApexPosition + MeshPoints[j+1].m_ApexPosition)*0.5f;
-					MeshPoints[j].m_ApexPosition = (MeshPoints[j].m_ApexPosition + realPos)*0.5f;
-					
-					realPos = (MeshPoints[j-1].m_SplashPosition + MeshPoints[j+1].m_SplashPosition)*0.5f;
-					MeshPoints[j].m_SplashPosition = (MeshPoints[j].m_SplashPosition + realPos)*0.5f;
-					
-					realPos = (MeshPoints[j-1].m_RetreatPosition + MeshPoints[j+1].m_RetreatPosition)*0.5f;
-					MeshPoints[j].m_RetreatPosition = (MeshPoints[j].m_RetreatPosition + realPos)*0.5f;
-				}
-			}*/
 			j += width/2-1;
 			
 			shoreWave->m_VBvertices = g_VBMan.Allocate(sizeof(SWavesVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
@@ -824,9 +805,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
 	if (g_Renderer.m_SkipSubmit || !m_WaterFancyEffects)
 		return;
-	
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	
+		
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
 		
 	GLuint attachments[2] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
@@ -880,19 +859,14 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		
 		shad->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
 		
-		//glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
-		//			   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWaves_VBIndices->m_Index));
-
-		// bump stats
 		// TODO: figure out why this doesn't work.
 		//g_Renderer.m_Stats.m_DrawCalls++;
 		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
+		
 		CVertexBuffer::Unbind();
 	}
 	shad->Unbind();
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
 	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);
