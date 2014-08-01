@@ -113,7 +113,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	JS::RootedValue initDataVal(cx);
 	
 	if (initDataClone)
-		initDataVal.set(scriptInterface->ReadStructuredClone(initDataClone));
+		scriptInterface->ReadStructuredClone(initDataClone, &initDataVal);
 	else
 	{
 		LOGERROR(L"Called PopPageCB when initData (which should contain the callback function name) isn't set!");
@@ -142,7 +142,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 
 	JS::RootedValue argVal(cx);
 	if (args)
-		argVal.set(scriptInterface->ReadStructuredClone(args));
+		scriptInterface->ReadStructuredClone(args, &argVal);
 	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
 	{
 		LOGERROR(L"Failed to call the callback function %hs in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
@@ -239,9 +239,9 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	JS::RootedValue hotloadDataVal(cx);
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 	if (page.initData) 
-		initDataVal.set(scriptInterface->ReadStructuredClone(page.initData));
+		scriptInterface->ReadStructuredClone(page.initData, &initDataVal);
 	if (hotloadData)
-		hotloadDataVal.set(scriptInterface->ReadStructuredClone(hotloadData));
+		scriptInterface->ReadStructuredClone(hotloadData, &hotloadDataVal);
 	
 	// Call the init() function
 	if (!scriptInterface->CallFunctionVoid(

@@ -89,7 +89,8 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", simulation.GetInitAttributes());
 
-	JS::RootedValue guiMetadata(cx, simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone));
+	JS::RootedValue guiMetadata(cx);
+	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
 
 	// get some camera data
 	JS::RootedValue cameraMetadata(cx);

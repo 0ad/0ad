@@ -1451,12 +1451,14 @@ void ScriptInterface::ForceGC()
 	JS_GC(this->GetJSRuntime());
 }
 
-jsval ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext, jsval val)
+JS::Value ScriptInterface::CloneValueFromOtherContext(ScriptInterface& otherContext, JS::HandleValue val)
 {
 	PROFILE("CloneValueFromOtherContext");
-	shared_ptr<StructuredClone> structuredClone = otherContext.WriteStructuredClone(val); 
-	jsval clone = ReadStructuredClone(structuredClone); 
-	return clone;
+	JSAutoRequest rq(m->m_cx);
+	JS::RootedValue out(m->m_cx);
+	shared_ptr<StructuredClone> structuredClone = otherContext.WriteStructuredClone(val);
+	ReadStructuredClone(structuredClone, &out);
+	return out.get();
 }
 
 ScriptInterface::StructuredClone::StructuredClone() :
@@ -1487,10 +1489,8 @@ shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClo
 	return ret;
 }
 
-jsval ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr)
+void ScriptInterface::ReadStructuredClone(const shared_ptr<ScriptInterface::StructuredClone>& ptr, JS::MutableHandleValue ret)
 {
 	JSAutoRequest rq(m->m_cx);
-	jsval ret = JSVAL_VOID;
-	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, &ret, NULL, NULL);
-	return ret;
+	JS_ReadStructuredClone(m->m_cx, ptr->m_Data, ptr->m_Size, JS_STRUCTURED_CLONE_VERSION, ret.address(), NULL, NULL);
 }

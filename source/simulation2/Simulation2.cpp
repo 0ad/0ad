@@ -152,11 +152,14 @@ public:
 	static std::vector<SimulationCommand> CloneCommandsFromOtherContext(ScriptInterface& oldScript, ScriptInterface& newScript,
 		const std::vector<SimulationCommand>& commands)
 	{
+		JSContext* cxOld = oldScript.GetContext();
+		JSAutoRequest rqOld(cxOld);
+		
 		std::vector<SimulationCommand> newCommands = commands;
 		for (size_t i = 0; i < newCommands.size(); ++i)
 		{
-			newCommands[i].data = CScriptValRooted(newScript.GetContext(),
-				newScript.CloneValueFromOtherContext(oldScript, newCommands[i].data.get()));
+			JS::RootedValue tmpOldCommand(cxOld, newCommands[i].data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			newCommands[i].data = CScriptValRooted(newScript.GetContext(), newScript.CloneValueFromOtherContext(oldScript, tmpOldCommand));
 		}
 		return newCommands;
 	}
@@ -356,9 +359,16 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 
 		// Load the trigger scripts after we have loaded the simulation.
 		{
-			JSContext* cx = secondaryComponentManager.GetScriptInterface().GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedValue mapSettingsCloned(cx, secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(m_ComponentManager.GetScriptInterface(), m_MapSettings.get()));
+			JSContext* cx1 = m_ComponentManager.GetScriptInterface().GetContext();
+			JSAutoRequest rq1(cx1);
+			// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			JS::RootedValue tmpMapSettings(cx1, m_MapSettings.get());
+
+			JSContext* cx2 = secondaryComponentManager.GetScriptInterface().GetContext();
+			JSAutoRequest rq2(cx2);
+			JS::RootedValue mapSettingsCloned(cx2, 
+				secondaryComponentManager.GetScriptInterface().CloneValueFromOtherContext(
+					m_ComponentManager.GetScriptInterface(), tmpMapSettings));
 			ENSURE(LoadTriggerScripts(secondaryComponentManager, mapSettingsCloned));
 		}
 

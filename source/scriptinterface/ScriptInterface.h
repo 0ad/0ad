@@ -322,7 +322,7 @@ public:
 	 * Complex values (functions, XML, etc) won't be cloned correctly, but basic
 	 * types and cyclic references should be fine.
 	 */
-	jsval CloneValueFromOtherContext(ScriptInterface& otherContext, jsval val);
+	JS::Value CloneValueFromOtherContext(ScriptInterface& otherContext, JS::HandleValue val);
 
 	/**
 	 * Convert a jsval to a C++ type. (This might trigger GC.)
@@ -393,7 +393,7 @@ public:
 	};
 
 	shared_ptr<StructuredClone> WriteStructuredClone(jsval v);
-	jsval ReadStructuredClone(const shared_ptr<StructuredClone>& ptr);
+	void ReadStructuredClone(const shared_ptr<StructuredClone>& ptr, JS::MutableHandleValue ret);
 
 	/**
 	 * Converts |a| if needed and assigns it to |handle|.

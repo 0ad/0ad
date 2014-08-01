@@ -109,27 +109,33 @@ void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal args)
 	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args.get()));
 }
 
-CScriptVal GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal data)
+CScriptVal GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal data1)
 {
+	// TODO: With ESR31 we should be able to take JS::HandleValue directly 
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue data(cx, data1.get());
+	
 	if (!g_Game)
-		return JSVAL_VOID;
+		return JS::UndefinedValue();
 	CSimulation2* sim = g_Game->GetSimulation2();
 	ENSURE(sim);
 
 	CmpPtr<ICmpGuiInterface> cmpGuiInterface(*sim, SYSTEM_ENTITY);
 	if (!cmpGuiInterface)
-		return JSVAL_VOID;
+		return JS::UndefinedValue();
 
-	int player = -1;
-	if (g_Game)
-		player = g_Game->GetPlayerID();
+	int player = g_Game->GetPlayerID();
 
-	CScriptValRooted arg (sim->GetScriptInterface().GetContext(), sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data.get()));
-	CScriptVal ret (cmpGuiInterface->ScriptCall(player, name, arg.get()));
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret.get());
+	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+	JSAutoRequest rqSim(cxSim);
+	JS::RootedValue arg(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), data));
+	JS::RootedValue ret(cxSim, cmpGuiInterface->ScriptCall(player, name, CScriptVal(arg)).get());
+
+	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(sim->GetScriptInterface(), ret);
 }
 
-void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal cmd)
+void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal cmd1)
 {
 	if (!g_Game)
 		return;
@@ -139,10 +145,17 @@ void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal cmd)
 	CmpPtr<ICmpCommandQueue> cmpCommandQueue(*sim, SYSTEM_ENTITY);
 	if (!cmpCommandQueue)
 		return;
+	
+	// TODO: With ESR31 we should be able to take JS::HandleValue directly 
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue cmd(cx, cmd1.get());
 
-	jsval cmd2 = sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd.get());
+	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+	JSAutoRequest rqSim(cxSim);
+	JS::RootedValue cmd2(cxSim, sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), cmd));
 
-	cmpCommandQueue->PostNetworkCommand(cmd2);
+	cmpCommandQueue->PostNetworkCommand(CScriptVal(cmd2));
 }
 
 std::vector<entity_id_t> PickEntitiesAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y, int range)
@@ -202,21 +215,29 @@ void StartNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_NetServer->StartGame();
 }
 
-void StartGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs, int playerID)
+void StartGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs1, int playerID)
 {
 	ENSURE(!g_NetServer);
 	ENSURE(!g_NetClient);
 
 	ENSURE(!g_Game);
 	g_Game = new CGame();
+	
+	// TODO: With ESR31 we should be able to take JS::HandleValue directly 
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue attribs(cx, attribs1.get());
 
 	// Convert from GUI script context to sim script context
 	CSimulation2* sim = g_Game->GetSimulation2();
-	CScriptValRooted gameAttribs (sim->GetScriptInterface().GetContext(),
-			sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs.get()));
+	JSContext* cxSim = sim->GetScriptInterface().GetContext();
+	JSAutoRequest rqSim(cxSim);
+	
+	JS::RootedValue gameAttribs(cxSim, 
+		sim->GetScriptInterface().CloneValueFromOtherContext(*(pCxPrivate->pScriptInterface), attribs));
 
 	g_Game->SetPlayerID(playerID);
-	g_Game->StartGame(gameAttribs, "");
+	g_Game->StartGame(CScriptValRooted(cxSim, gameAttribs), "");
 }
 
 CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name)
@@ -339,12 +360,13 @@ void DisconnectNetworkGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 CScriptVal PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_NetClient)
-		return CScriptVal();
-
-	CScriptValRooted poll = g_NetClient->GuiPoll();
+		return JS::UndefinedValue();
 
 	// Convert from net client context to GUI script context
-	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), poll.get());
+	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
+	JSAutoRequest rqNet(cxNet);
+	JS::RootedValue pollNet(cxNet, g_NetClient->GuiPoll().get());
+	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
 }
 
 void AssignNetworkPlayer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int playerID, std::string guid)
@@ -435,11 +457,15 @@ CScriptVal LoadMapSettings(ScriptInterface::CxPrivate* pCxPrivate, VfsPath pathn
 CScriptVal GetMapSettings(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_Game)
-		return CScriptVal();
+		return JS::UndefinedValue();
 
+	JSContext* cx = g_Game->GetSimulation2()->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
+	JS::RootedValue mapSettings(cx, g_Game->GetSimulation2()->GetMapSettings().get());
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(
 		g_Game->GetSimulation2()->GetScriptInterface(),
-		g_Game->GetSimulation2()->GetMapSettings().get());
+		mapSettings);
 }
 
 /**

@@ -468,7 +468,8 @@ public:
 		JSContext* cx = m_ScriptInterface->GetContext();
 		JSAutoRequest rq(cx);
 		
-		JS::RootedValue state(cx, m_ScriptInterface->ReadStructuredClone(gameState));
+		JS::RootedValue state(cx);
+		m_ScriptInterface->ReadStructuredClone(gameState, &state);
 		
 		JS::RootedValue tmpVal(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 		ScriptInterface::ToJSVal(cx, &tmpVal, passabilityMap);
@@ -547,7 +548,10 @@ public:
 
 	void RegisterTechTemplates(const shared_ptr<ScriptInterface::StructuredClone>& techTemplates) {
 		JSContext* cx = m_ScriptInterface->GetContext();
-		m_TechTemplates = CScriptValRooted(cx, m_ScriptInterface->ReadStructuredClone(techTemplates));
+		JSAutoRequest rq(cx);
+		JS::RootedValue ret(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+		m_ScriptInterface->ReadStructuredClone(techTemplates, &ret);
+		m_TechTemplates = CScriptValRooted(cx, ret);
 	}
 	
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
@@ -622,7 +626,8 @@ public:
 			serializer.NumberU32_Unbounded("num commands", (u32)m_Players[i]->m_Commands.size());
 			for (size_t j = 0; j < m_Players[i]->m_Commands.size(); ++j)
 			{
-				JS::RootedValue val(cx, m_ScriptInterface->ReadStructuredClone(m_Players[i]->m_Commands[j]));
+				JS::RootedValue val(cx);
+				m_ScriptInterface->ReadStructuredClone(m_Players[i]->m_Commands[j], &val);
 				serializer.ScriptVal("command", val);
 			}
 
@@ -763,7 +768,7 @@ private:
 		JS::RootedValue state(cx);
 		{
 			PROFILE3("AI compute read state");
-			state.set(m_ScriptInterface->ReadStructuredClone(m_GameState));
+			m_ScriptInterface->ReadStructuredClone(m_GameState, &state);
 			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
 		}
@@ -1012,21 +1017,24 @@ public:
 
 	virtual void PushCommands()
 	{
-		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
-
 		std::vector<CAIWorker::SCommandSets> commands;
 		m_Worker.GetCommands(commands);
 
 		CmpPtr<ICmpCommandQueue> cmpCommandQueue(GetSystemEntity());
 		if (!cmpCommandQueue)
 			return;
-
+		
+		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue clonedCommandVal(cx);
+		
 		for (size_t i = 0; i < commands.size(); ++i)
 		{
 			for (size_t j = 0; j < commands[i].commands.size(); ++j)
 			{
-				cmpCommandQueue->PushLocalCommand(commands[i].player,
-					scriptInterface.ReadStructuredClone(commands[i].commands[j]));
+				scriptInterface.ReadStructuredClone(commands[i].commands[j], &clonedCommandVal);
+				cmpCommandQueue->PushLocalCommand(commands[i].player, CScriptVal(clonedCommandVal));
 			}
 		}
 	}
