@@ -865,20 +865,21 @@ AutoGCRooter* ScriptInterface::ReplaceAutoGCRooter(AutoGCRooter* rooter)
 	return ret;
 }
 
-jsval ScriptInterface::CallConstructor(jsval ctor, uint argc, jsval argv)
+void ScriptInterface::CallConstructor(JS::HandleValue ctor, JS::AutoValueVector& argv, JS::MutableHandleValue out)
 {
 	JSAutoRequest rq(m->m_cx);
 	if (!ctor.isObject())
 	{
 		LOGERROR(L"CallConstructor: ctor is not an object");
-		return JS::UndefinedValue();
+		out.setNull();
+		return;
 	}
 
 	// Passing argc 0 and argv JSVAL_VOID causes a crash in mozjs24
-	if (argc == 0)
-		return JS::ObjectValue(*JS_New(m->m_cx, &ctor.toObject(), 0, NULL));
+	if (argv.length() == 0)
+		out.setObjectOrNull(JS_New(m->m_cx, &ctor.toObject(), 0, NULL));
 	else
-		return JS::ObjectValue(*JS_New(m->m_cx, &ctor.toObject(), argc, &argv));
+		out.setObjectOrNull(JS_New(m->m_cx, &ctor.toObject(), argv.length(), argv.begin()));
 }
 
 void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)

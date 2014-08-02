@@ -114,7 +114,7 @@ private:
 			std::string constructor;
 			JS::RootedValue objectWithConstructor(cx); // object that should contain the constructor function
 			JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
-			CScriptVal ctor;
+			JS::RootedValue ctor(cx);
 			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
 				objectWithConstructor.set(m_ScriptInterface->GetGlobalObject());
@@ -135,8 +135,8 @@ private:
 			}
 
 			// Get the constructor function from the loaded scripts
-			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), ctor)
-				|| ctor.undefined())
+			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), &ctor)
+				|| ctor.isNull())
 			{
 				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
@@ -144,7 +144,7 @@ private:
 
 			m_ScriptInterface->GetProperty(metadata, "useShared", m_UseSharedComponent);
 
-			CScriptVal obj;
+			JS::RootedValue obj(cx);
 
 			// Set up the data to pass as the constructor argument
 			JS::RootedValue settings(cx);
@@ -156,9 +156,9 @@ private:
 
 			JS::AutoValueVector argv(cx);
 			argv.append(settings.get());
-			obj = m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0));
+			m_ScriptInterface->CallConstructor(ctor, argv, &obj);
 
-			if (obj.undefined())
+			if (obj.isNull())
 			{
 				LOGERROR(L"Failed to create AI player: %ls: error calling constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
@@ -423,10 +423,12 @@ public:
 		
 		JS::AutoValueVector argv(cx);
 		argv.append(settings);
-		m_SharedAIObj = CScriptValRooted(cx, m_ScriptInterface->CallConstructor(ctor, argv.length(), argv.handleAt(0)));
-	
+		// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+		JS::RootedValue tmpSharedAIObj(cx, m_SharedAIObj.get());
+		m_ScriptInterface->CallConstructor(ctor, argv, &tmpSharedAIObj);
+		m_SharedAIObj = CScriptValRooted(cx, tmpSharedAIObj);
 		
-		if (m_SharedAIObj.undefined())
+		if (tmpSharedAIObj.isNull())
 		{
 			LOGERROR(L"Failed to create shared AI component: %ls: error calling constructor '%hs'", path.string().c_str(), "SharedScript");
 			return false;

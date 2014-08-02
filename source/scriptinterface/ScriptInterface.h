@@ -136,9 +136,11 @@ public:
 
 	/**
 	 * Call a constructor function, equivalent to JS "new ctor(arg)".
-	 * @return The new object; or JSVAL_VOID on failure, and logs an error message
+	 * @param ctor An object that can be used as constructor
+	 * @param argv Constructor arguments
+	 * @param out The new object; On error an error message gets logged and out is Null (out.isNull() == true).
 	 */
-	jsval CallConstructor(jsval ctor, uint argc, jsval argv);
+	void CallConstructor(JS::HandleValue ctor, JS::AutoValueVector& argv, JS::MutableHandleValue out);
 
 	/**
 	 * Call the named property on the given object, with void return type and 0 arguments
