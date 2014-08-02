@@ -60,9 +60,11 @@ public:
 		std::wstring dirname = GetWstringFromWpath(*it);
 
 		JS::RootedValue ai(cx);
+		JS::RootedValue data(cx);
+		self->m_ScriptInterface.ReadJSONFile(pathname, &data);
 		self->m_ScriptInterface.Eval("({})", &ai);
 		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
-		self->m_ScriptInterface.SetProperty(ai, "data", self->m_ScriptInterface.ReadJSONFile(pathname), true);
+		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
 		self->m_AIs.push_back(CScriptValRooted(cx, ai));
 
 		return INFO::OK;

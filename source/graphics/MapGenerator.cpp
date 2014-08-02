@@ -108,7 +108,8 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
 
 	// Parse settings
-	JS::RootedValue settingsVal(cx, m_ScriptInterface->ParseJSON(m_Settings).get());
+	JS::RootedValue settingsVal(cx);
+	m_ScriptInterface->ParseJSON(m_Settings, &settingsVal);
 	if (settingsVal.isUndefined())
 	{
 		LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");

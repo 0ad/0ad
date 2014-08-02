@@ -392,7 +392,11 @@ CScriptValRooted CMapSummaryReader::GetMapSettings(ScriptInterface& scriptInterf
 	JS::RootedValue data(cx);
 	scriptInterface.Eval("({})", &data);
 	if (!m_ScriptSettings.empty())
-		scriptInterface.SetProperty(data, "settings", scriptInterface.ParseJSON(m_ScriptSettings), false);
+	{
+		JS::RootedValue scriptSettingsVal(cx);
+		scriptInterface.ParseJSON(m_ScriptSettings, &scriptSettingsVal);
+		scriptInterface.SetProperty(data, "settings", scriptSettingsVal, false);
+	}
 	return CScriptValRooted(cx, data);
 }
 
@@ -1269,8 +1273,10 @@ int CMapReader::GenerateMap()
 		if (m_ScriptFile.length())
 			scriptPath = L"maps/random/"+m_ScriptFile;
 
+		// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+		JS::RootedValue tmpScriptSettings(cx, m_ScriptSettings.get());
 		// Stringify settings to pass across threads
-		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(m_ScriptSettings.get());
+		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(&tmpScriptSettings);
 		
 		// Try to generate map
 		m_MapGen->GenerateMap(scriptPath, scriptSettings);

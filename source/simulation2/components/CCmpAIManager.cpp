@@ -100,7 +100,8 @@ private:
 			JSAutoRequest rq(cx);
 
 			OsPath path = L"simulation/ai/" + m_AIName + L"/data.json";
-			JS::RootedValue metadata(cx, m_Worker.LoadMetadata(path).get());
+			JS::RootedValue metadata(cx);
+			m_Worker.LoadMetadata(path, &metadata);
 			if (metadata.isUndefined())
 			{
 				LOGERROR(L"Failed to create AI player: can't find %ls", path.string().c_str());
@@ -741,15 +742,15 @@ public:
 	}
 
 private:
-	CScriptValRooted LoadMetadata(const VfsPath& path)
+	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)
 	{
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{
 			// Load and cache the AI player metadata
-			m_PlayerMetadata[path] = m_ScriptInterface->ReadJSONFile(path);
+			m_ScriptInterface->ReadJSONFile(path, out);
+			m_PlayerMetadata[path] = CScriptValRooted(m_ScriptInterface->GetContext(), out);
 		}
-
-		return m_PlayerMetadata[path];
+		out.set(m_PlayerMetadata[path].get());
 	}
 
 	void PerformComputation()

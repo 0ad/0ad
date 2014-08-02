@@ -724,7 +724,12 @@ CScriptValRooted CSimulation2::GetInitAttributes()
 
 void CSimulation2::SetMapSettings(const std::string& settings)
 {
-	m->m_MapSettings = m->m_ComponentManager.GetScriptInterface().ParseJSON(settings);
+	JSContext* cx = m->m_ComponentManager.GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+	JS::RootedValue tmpMapSettings(cx);
+	m->m_ComponentManager.GetScriptInterface().ParseJSON(settings, &tmpMapSettings);
+	m->m_MapSettings = CScriptValRooted(cx, tmpMapSettings); 
 }
 
 void CSimulation2::SetMapSettings(const CScriptValRooted& settings)
@@ -734,7 +739,11 @@ void CSimulation2::SetMapSettings(const CScriptValRooted& settings)
 
 std::string CSimulation2::GetMapSettingsString()
 {
-	return m->m_ComponentManager.GetScriptInterface().StringifyJSON(m->m_MapSettings.get());
+	JSContext* cx = m->m_ComponentManager.GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+	JS::RootedValue tmpMapSettings(cx, m->m_MapSettings.get());
+	return m->m_ComponentManager.GetScriptInterface().StringifyJSON(&tmpMapSettings);
 }
 
 CScriptVal CSimulation2::GetMapSettings()
@@ -929,5 +938,5 @@ std::string CSimulation2::GetAIData()
 	if (!scriptInterface.Eval("({})", &ais) || !scriptInterface.SetProperty(ais, "AIData", aiData))
 		return std::string();
 	
-	return scriptInterface.StringifyJSON(ais);
+	return scriptInterface.StringifyJSON(&ais);
 }

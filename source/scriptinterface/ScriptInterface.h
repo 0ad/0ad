@@ -268,19 +268,19 @@ public:
 	std::wstring ToString(jsval obj, bool pretty = false);
 
 	/**
-	 * Parse a UTF-8-encoded JSON string. Returns the undefined value on error.
+	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error and prints an error message.
 	 */
-	CScriptValRooted ParseJSON(const std::string& string_utf8);
+	void ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out);
 
 	/**
-	 * Read a JSON file. Returns the undefined value on error.
+	 * Read a JSON file. Returns the unmodified value on error and prints an error message.
 	 */
-	CScriptValRooted ReadJSONFile(const VfsPath& path);
+	void ReadJSONFile(const VfsPath& path, JS::MutableHandleValue out);
 
 	/**
 	 * Stringify to a JSON string, UTF-8 encoded. Returns an empty string on error.
 	 */
-	std::string StringifyJSON(jsval obj, bool indent = true);
+	std::string StringifyJSON(JS::MutableHandleValue obj, bool indent = true);
 	
 	/**
 	 * Report the given error message through the JS error reporting mechanism,

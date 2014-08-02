@@ -146,7 +146,7 @@ public:
 	 * The changes will be asynchronously propagated to all clients.
 	 * @param attrs game attributes, in the script context of scriptInterface
 	 */
-	void UpdateGameAttributes(const CScriptVal& attrs, ScriptInterface& scriptInterface);
+	void UpdateGameAttributes(JS::MutableHandleValue attrs, ScriptInterface& scriptInterface);
 
 	/**
 	 * Set the turn length to a fixed value.
@@ -220,7 +220,7 @@ private:
 	 * The changes will be propagated to all clients.
 	 * @param attrs game attributes, in the script context of GetScriptInterface()
 	 */
-	void UpdateGameAttributes(const CScriptValRooted& attrs);
+	void UpdateGameAttributes(JS::MutableHandleValue attrs);
 
 	/**
 	 * Make a player name 'nicer' by limiting the length and removing forbidden characters etc.

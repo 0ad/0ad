@@ -1147,13 +1147,16 @@ CScriptVal CComponentManager::Script_ReadCivJSONFile(ScriptInterface::CxPrivate*
 	return ReadJSONFile(pCxPrivate, L"civs", fileName);
 }
 
-CScriptVal CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName)
+JS::Value CComponentManager::ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 
 	VfsPath path = VfsPath(filePath) / fileName;
-
-	return componentManager->GetScriptInterface().ReadJSONFile(path).get();
+	JS::RootedValue out(cx);
+	componentManager->GetScriptInterface().ReadJSONFile(path, &out);
+	return out.get();
 }
 	
 Status CComponentManager::FindJSONFilesCallback(const VfsPath& pathname, const CFileInfo& UNUSED(fileInfo), const uintptr_t cbData)

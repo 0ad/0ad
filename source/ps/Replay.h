@@ -18,6 +18,8 @@
 #ifndef INCLUDED_REPLAY
 #define INCLUDED_REPLAY
 
+#include "scriptinterface/ScriptTypes.h"
+
 class CScriptValRooted;
 struct SimulationCommand;
 class ScriptInterface;
@@ -35,7 +37,7 @@ public:
 	/**
 	 * Started the game with the given game attributes.
 	 */
-	virtual void StartGame(const CScriptValRooted& attribs) = 0;
+	virtual void StartGame(JS::MutableHandleValue attribs) = 0;
 
 	/**
 	 * Run the given turn with the given collection of player commands.
@@ -69,7 +71,7 @@ public:
 	CReplayLogger(ScriptInterface& scriptInterface);
 	~CReplayLogger();
 
-	virtual void StartGame(const CScriptValRooted& attribs);
+	virtual void StartGame(JS::MutableHandleValue attribs);
 	virtual void Turn(u32 n, u32 turnLength, const std::vector<SimulationCommand>& commands);
 	virtual void Hash(const std::string& hash, bool quick);
 

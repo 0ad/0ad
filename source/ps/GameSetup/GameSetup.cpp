@@ -1184,7 +1184,8 @@ bool Autostart(const CmdLineArgs& args)
 		
 		// Random map definition will be loaded from JSON file, so we need to parse it
 		std::wstring scriptPath = L"maps/" + autoStartName.FromUTF8() + L".json";
-		JS::RootedValue scriptData(cx, scriptInterface.ReadJSONFile(scriptPath).get());
+		JS::RootedValue scriptData(cx);
+		scriptInterface.ReadJSONFile(scriptPath, &scriptData);
 		if (!scriptData.isUndefined() && scriptInterface.GetProperty(scriptData, "settings", &settings))
 		{
 			// JSON loaded ok - copy script name over to game attributes
@@ -1239,9 +1240,7 @@ bool Autostart(const CmdLineArgs& args)
 		// (Omitting this may cause the loading screen to display "Loading (undefined)",
 		// for example...)
 		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
-		CScriptValRooted mapSettings = scriptInterface.ParseJSON(mapSettingsJSON);
-
-		settings = mapSettings.get();
+		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
 		mapType = "scenario";
 	}
 	else if (mapDirectory == L"skirmishes")
@@ -1253,9 +1252,8 @@ bool Autostart(const CmdLineArgs& args)
 		// To prevent this, we mimic the behavior of the game setup screen by
 		// retrieving the map settings from the actual map xml...
 		CStr8 mapSettingsJSON = LoadSettingsOfScenarioMap("maps/" + autoStartName + ".xml");
-		CScriptValRooted mapSettings = scriptInterface.ParseJSON(mapSettingsJSON);
-
-		settings = mapSettings.get();
+		scriptInterface.ParseJSON(mapSettingsJSON, &settings);
+		
 		// ...and initialize the playerData array being edited by
 		// autostart-civ et.al. with the real map data, so sensible values
 		// are always present:
@@ -1364,7 +1362,7 @@ bool Autostart(const CmdLineArgs& args)
 
 		g_NetServer = new CNetServer(maxPlayers);
 
-		g_NetServer->UpdateGameAttributes(attrs.get(), scriptInterface);
+		g_NetServer->UpdateGameAttributes(&attrs, scriptInterface);
 
 		bool ok = g_NetServer->SetupConnection();
 		ENSURE(ok);

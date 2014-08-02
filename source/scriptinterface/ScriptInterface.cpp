@@ -1238,23 +1238,24 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
 	return ok;
 }
 
-CScriptValRooted ScriptInterface::ParseJSON(const std::string& string_utf8)
+void ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
 {
 	JSAutoRequest rq(m->m_cx);
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
  	utf16string string(attrsW.begin(), attrsW.end());
-	JS::RootedValue vp(m->m_cx);
-	if (!JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), &vp))
+	if (!JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), out))
+	{
 		LOGERROR(L"JS_ParseJSON failed!");
-	return CScriptValRooted(m->m_cx, vp);
+		return;
+	}
 }
 
-CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
+void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue out)
 {
 	if (!VfsFileExists(path))
 	{
 		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
-		return CScriptValRooted();
+		return;
 	}
 
 	CVFSFile file;
@@ -1264,12 +1265,12 @@ CScriptValRooted ScriptInterface::ReadJSONFile(const VfsPath& path)
 	if (ret != PSRETURN_OK)
 	{
 		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
-		return CScriptValRooted();
+		return;
 	}
 
 	std::string content(file.DecodeUTF8()); // assume it's UTF-8
 
-	return ParseJSON(content);
+	ParseJSON(content, out);
 }
 
 struct Stringifier
@@ -1299,11 +1300,14 @@ struct StringifierW
 	std::wstringstream stream;
 };
 
-std::string ScriptInterface::StringifyJSON(jsval obj, bool indent)
+// TODO: It's not quite clear why JS_Stringify needs JS::MutableHandleValue. |obj| should not get modified.
+// It probably has historical reasons and could be changed by SpiderMonkey in the future.
+std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool indent)
 {
 	JSAutoRequest rq(m->m_cx);
 	Stringifier str;
-	if (!JS_Stringify(m->m_cx, &obj, NULL, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &Stringifier::callback, &str))
+	JS::RootedValue indentVal(m->m_cx, indent ? JS::Int32Value(2) : JS::UndefinedValue());
+	if (!JS_Stringify(m->m_cx, obj.address(), NULL, indentVal, &Stringifier::callback, &str))
 	{
 		JS_ClearPendingException(m->m_cx);
 		LOGERROR(L"StringifyJSON failed");

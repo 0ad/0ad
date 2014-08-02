@@ -294,7 +294,7 @@ std::string CGUIManager::GetSavedGameData()
 	JS::RootedValue data(cx);
 	JS::RootedValue global(cx, top()->GetGlobalObject());
 	scriptInterface->CallFunction(global, "getSavedGameData", &data);
-	return scriptInterface->StringifyJSON(data, false);
+	return scriptInterface->StringifyJSON(&data, false);
 }
 
 void CGUIManager::RestoreSavedGameData(std::string jsonData)
@@ -304,7 +304,9 @@ void CGUIManager::RestoreSavedGameData(std::string jsonData)
 	JSAutoRequest rq(cx);
 	
 	JS::RootedValue global(cx, top()->GetGlobalObject());
-	scriptInterface->CallFunctionVoid(global, "restoreSavedGameData", scriptInterface->ParseJSON(jsonData));
+	JS::RootedValue dataVal(cx);
+	scriptInterface->ParseJSON(jsonData, &dataVal);
+	scriptInterface->CallFunctionVoid(global, "restoreSavedGameData", dataVal);
 }
 
 InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)

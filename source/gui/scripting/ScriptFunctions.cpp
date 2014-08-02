@@ -298,11 +298,15 @@ void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix,
 		LOGERROR(L"Failed to save game");
 }
 
-void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs)
+void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs1)
 {
 	ENSURE(g_NetServer);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue attribs(cx, attribs1.get());
 
-	g_NetServer->UpdateGameAttributes(attribs, *(pCxPrivate->pScriptInterface));
+	g_NetServer->UpdateGameAttributes(&attribs, *(pCxPrivate->pScriptInterface));
 }
 
 void StartNetworkHost(ScriptInterface::CxPrivate* pCxPrivate, std::wstring playerName)

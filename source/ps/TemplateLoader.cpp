@@ -203,7 +203,8 @@ std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::stri
 
 	if (templatesType == SIMULATION_TEMPLATES || templatesType == ALL_TEMPLATES)
 	{
-		JS::RootedValue placeablesFilter(cx, scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json").get());
+		JS::RootedValue placeablesFilter(cx);
+		scriptInterface.ReadJSONFile("simulation/data/placeablesFilter.json", &placeablesFilter);
 		
 		std::vector<CScriptValRooted> folders;
 		if (scriptInterface.GetProperty(placeablesFilter, "templates", folders))
