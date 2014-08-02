@@ -90,7 +90,7 @@ private:
 			m_Commands.clear();
 		}
 
-		bool Initialise(bool callConstructor)
+		bool Initialise()
 		{
 			// LoadScripts will only load each script once even though we call it for each player
 			if (!m_Worker.LoadScripts(m_AIName))
@@ -143,30 +143,20 @@ private:
 			}
 
 			m_ScriptInterface->GetProperty(metadata, "useShared", m_UseSharedComponent);
-			
+
 			CScriptVal obj;
 
-			if (callConstructor)
-			{
-				// Set up the data to pass as the constructor argument
-				JS::RootedValue settings(cx);
-				m_ScriptInterface->Eval(L"({})", &settings);
-				m_ScriptInterface->SetProperty(settings, "player", m_Player, false);
-				m_ScriptInterface->SetProperty(settings, "difficulty", m_Difficulty, false);
-				ENSURE(m_Worker.m_HasLoadedEntityTemplates);
-				m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
+			// Set up the data to pass as the constructor argument
+			JS::RootedValue settings(cx);
+			m_ScriptInterface->Eval(L"({})", &settings);
+			m_ScriptInterface->SetProperty(settings, "player", m_Player, false);
+			m_ScriptInterface->SetProperty(settings, "difficulty", m_Difficulty, false);
+			ENSURE(m_Worker.m_HasLoadedEntityTemplates);
+			m_ScriptInterface->SetProperty(settings, "templates", m_Worker.m_EntityTemplates, false);
 
-				JS::AutoValueVector argv(cx);
-				argv.append(settings.get());
-				obj = m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0));
-			}
-			else
-			{
-				// For deserialization, we want to create the object with the correct prototype
-				// but don't want to actually run the constructor again
-				// XXX: actually we don't currently use this path for deserialization - maybe delete it?
-				obj = m_ScriptInterface->NewObjectFromConstructor(ctor.get());
-			}
+			JS::AutoValueVector argv(cx);
+			argv.append(settings.get());
+			obj = m_ScriptInterface->CallConstructor(ctor.get(), argv.length(), argv.handleAt(0));
 
 			if (obj.undefined())
 			{
@@ -445,10 +435,10 @@ public:
 		return true;
 	}
 
-	bool AddPlayer(const std::wstring& aiName, player_id_t player, uint8_t difficulty, bool callConstructor)
+	bool AddPlayer(const std::wstring& aiName, player_id_t player, uint8_t difficulty)
 	{
 		shared_ptr<CAIPlayer> ai(new CAIPlayer(*this, aiName, player, difficulty, m_ScriptInterface));
-		if (!ai->Initialise(callConstructor))
+		if (!ai->Initialise())
 			return false;
 		
 		// this will be set to true if we need to load the shared Component.
@@ -689,7 +679,7 @@ public:
 			deserializer.String("name", name, 1, 256);
 			deserializer.NumberI32_Unbounded("player", player);
 			deserializer.NumberU8_Unbounded("difficulty",difficulty);
-			if (!AddPlayer(name, player, difficulty, true))
+			if (!AddPlayer(name, player, difficulty))
 				throw PSERROR_Deserialize_ScriptError();
 
 			uint32_t numCommands;
@@ -907,7 +897,7 @@ public:
 
 	virtual void AddPlayer(std::wstring id, player_id_t player, uint8_t difficulty)
 	{
-		m_Worker.AddPlayer(id, player, difficulty, true);
+		m_Worker.AddPlayer(id, player, difficulty);
 
 		// AI players can cheat and see through FoW/SoD, since that greatly simplifies
 		// their implementation.

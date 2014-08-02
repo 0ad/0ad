@@ -141,13 +141,6 @@ public:
 	jsval CallConstructor(jsval ctor, uint argc, jsval argv);
 
 	/**
-	 * Create an object as with CallConstructor except don't actually execute the
-	 * constructor function.
-	 * @return The new object; or JSVAL_VOID on failure, and logs an error message
-	 */
-	jsval NewObjectFromConstructor(jsval ctor);
-
-	/**
 	 * Call the named property on the given object, with void return type and 0 arguments
 	 */
 	bool CallFunctionVoid(JS::HandleValue val, const char* name);

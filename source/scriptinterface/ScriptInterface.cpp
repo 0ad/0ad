@@ -881,49 +881,6 @@ jsval ScriptInterface::CallConstructor(jsval ctor, uint argc, jsval argv)
 		return JS::ObjectValue(*JS_New(m->m_cx, &ctor.toObject(), argc, &argv));
 }
 
-jsval ScriptInterface::NewObjectFromConstructor(jsval ctor)
-{
-	JSAutoRequest rq(m->m_cx);
-	
-	if (!ctor.isObject())
-	{
-		LOGERROR(L"NewObjectFromConstructor: ctor is not an object");
-		return JS::UndefinedValue();
-	}
-	// Get the constructor's prototype
-	// (Can't use JS_GetPrototype, since we want .prototype not .__proto__)
-	JS::RootedValue protoVal(m->m_cx);
-	if (!JS_GetProperty(m->m_cx, &ctor.toObject(), "prototype", protoVal.address()))
-	{
-		LOGERROR(L"NewObjectFromConstructor: can't get prototype");
-		return JS::UndefinedValue();
-	}
-
-	if (!protoVal.isObject())
-	{
-		LOGERROR(L"NewObjectFromConstructor: prototype is not an object");
-		return JS::UndefinedValue();
-	}
-
-	JSObject* proto = &protoVal.toObject();
-	JSObject* parent = JS_GetParent(&ctor.toObject());
-
-	if (!proto || !parent)
-	{
-		LOGERROR(L"NewObjectFromConstructor: null proto/parent");
-		return JS::UndefinedValue();
-	}
-
-	JSObject* obj = JS_NewObject(m->m_cx, NULL, proto, parent);
-	if (!obj)
-	{
-		LOGERROR(L"NewObjectFromConstructor: object creation failed");
-		return JS::UndefinedValue();
-	}
-
-	return JS::ObjectValue(*obj);
-}
-
 void ScriptInterface::DefineCustomObjectType(JSClass *clasp, JSNative constructor, uint minArgs, JSPropertySpec *ps, JSFunctionSpec *fs, JSPropertySpec *static_ps, JSFunctionSpec *static_fs)
 {
 	JSAutoRequest rq(m->m_cx);
