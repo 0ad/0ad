@@ -392,7 +392,11 @@ CScriptValRooted CMapSummaryReader::GetMapSettings(ScriptInterface& scriptInterf
 	JS::RootedValue data(cx);
 	scriptInterface.Eval("({})", &data);
 	if (!m_ScriptSettings.empty())
-		scriptInterface.SetProperty(data, "settings", scriptInterface.ParseJSON(m_ScriptSettings), false);
+	{
+		JS::RootedValue scriptSettingsVal(cx);
+		scriptInterface.ParseJSON(m_ScriptSettings, &scriptSettingsVal);
+		scriptInterface.SetProperty(data, "settings", scriptSettingsVal, false);
+	}
 	return CScriptValRooted(cx, data);
 }
 
@@ -1256,6 +1260,9 @@ int CMapReader::LoadRMSettings()
 
 int CMapReader::GenerateMap()
 {
+	JSContext* cx = pSimulation2->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
 	if (!m_MapGen)
 	{
 		// Initialize map generator
@@ -1266,8 +1273,10 @@ int CMapReader::GenerateMap()
 		if (m_ScriptFile.length())
 			scriptPath = L"maps/random/"+m_ScriptFile;
 
+		// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+		JS::RootedValue tmpScriptSettings(cx, m_ScriptSettings.get());
 		// Stringify settings to pass across threads
-		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(m_ScriptSettings.get());
+		std::string scriptSettings = pSimulation2->GetScriptInterface().StringifyJSON(&tmpScriptSettings);
 		
 		// Try to generate map
 		m_MapGen->GenerateMap(scriptPath, scriptSettings);
@@ -1286,15 +1295,17 @@ int CMapReader::GenerateMap()
 		shared_ptr<ScriptInterface::StructuredClone> results = m_MapGen->GetResults();
 
 		// Parse data into simulation context
-		CScriptValRooted data(pSimulation2->GetScriptInterface().GetContext(), pSimulation2->GetScriptInterface().ReadStructuredClone(results));
-		if (data.undefined())
+		JS::RootedValue data(cx); 
+		pSimulation2->GetScriptInterface().ReadStructuredClone(results, &data);
+		
+		if (data.isUndefined())
 		{
 			// RMS failed - return to main menu
 			throw PSERROR_Game_World_MapLoadFailed("Error generating random map.\nCheck application log for details.");
 		}
 		else
 		{
-			m_MapData = data;
+			m_MapData = CScriptValRooted(cx, data);
 		}
 	}
 	else

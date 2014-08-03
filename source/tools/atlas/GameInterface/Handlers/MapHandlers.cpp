@@ -91,7 +91,8 @@ QUERYHANDLER(GenerateMap)
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	JS::RootedValue settings(cx, scriptInterface.ParseJSON(*msg->settings).get());
+	JS::RootedValue settings(cx);
+	scriptInterface.ParseJSON(*msg->settings, &settings);
 
 	JS::RootedValue attrs(cx);
 	scriptInterface.Eval("({})", &attrs);

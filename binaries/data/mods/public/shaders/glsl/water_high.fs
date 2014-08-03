@@ -28,6 +28,11 @@ varying vec3 worldPos;
 varying float waterDepth;
 varying vec2 waterInfo;
 
+varying vec4 normalCoords;
+varying vec3 reflectionCoords;
+varying vec3 refractionCoords;
+varying vec2 losCoords;
+
 varying float fwaviness;
 
 uniform float mapSize;
@@ -153,17 +158,16 @@ void main()
 	// This method uses 60 animated water frames. We're blending between each two frames
 	// TODO: could probably have fewer frames thanks to this blending.
 	// Scale the normal textures by waviness so that big waviness means bigger waves.
-	vec3 ww1 = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
-	vec3 ww2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
+	vec3 ww1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
+	vec3 ww2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).xzy;
 	vec3 wwInterp = mix(ww1, ww2, moddedTime) - vec3(0.5,0.0,0.5);
 
 	ww1.x = wwInterp.x * WindCosSin.x - wwInterp.z * WindCosSin.y;
 	ww1.z = wwInterp.x * WindCosSin.y + wwInterp.z * WindCosSin.x;
 	ww1.y = wwInterp.y;
 	
-#if USE_SUPERNORMAL
-	vec3 smallWW = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
-	vec3 smallWW2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
+	vec3 smallWW = texture2D(normalMap, (normalCoords.st + normalCoords.zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
+	vec3 smallWW2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * SmallMovement*waviness/10.0) * baseScale*3.0).xzy;
 	vec3 smallWWInterp = mix(smallWW, smallWW2, moddedTime) - vec3(0.5,0.0,0.5);
 
 	smallWW.x = smallWWInterp.x * WindCosSin.x - smallWWInterp.z * WindCosSin.y;
@@ -173,7 +177,6 @@ void main()
 	ww1 += vec3(smallWW)*(fwaviness/10.0*smallIntensity + smallBase);
 	
 	ww1 = mix(smallWW, ww1, waterInfo.r);
-#endif
 		
 	// Flatten them based on waviness.
 	vec3 n = normalize(mix(vec3(0.0,1.0,0.0),ww1, clamp(baseBump + fwaviness/flattenism,0.0,1.0)));
@@ -260,11 +263,11 @@ void main()
 	float murky = mix(200.0,0.1,pow(murkiness,0.25));
 
 	#if USE_REFRACTION
-		refrCoords = clamp( (0.5*gl_TexCoord[2].xy - n.xz * distoFactor*7.0) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+		refrCoords = clamp( (0.5*refractionCoords.xy - n.xz * distoFactor*7.0) / refractionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
 		vec3 refColor = texture2D(refractionMap, refrCoords).rgb;
 		if (refColor.r > refColor.g + refColor.b + 0.25)
 		{
-			refrCoords = clamp( (0.5*gl_TexCoord[2].xy + n.xz) / gl_TexCoord[2].w + 0.5,0.0,1.0);	// Unbias texture coords
+			refrCoords = clamp( (0.5*refractionCoords.xy + n.xz) / refractionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
 			refColor = texture2D(refractionMap, refrCoords).rgb;
 		}
 
@@ -310,13 +313,15 @@ void main()
 		//gl_FragColor = vec4(clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),clamp(disttt/300.0*disttt/300.0,0.0,1.0),1.0);
 		//return;
 		
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 4.0,waviness/10.0) * n.zx) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
+		reflCoords = clamp( (0.5*reflectionCoords.xy - waviness * mix(1.0, 4.0,waviness/10.0) * n.zx) / reflectionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
 		vec4 refTex = texture2D(reflectionMap, reflCoords);
 		reflColor = refTex.rgb * refTex.a + reflColor*(1.0-refTex.a);
 	#else
-		reflCoords = clamp( (0.5*gl_TexCoord[1].xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / gl_TexCoord[1].w + 0.5,0.0,1.0);	// Unbias texture coords
-		vec3 refTex = texture2D(reflectionMap, reflCoords).rgb;
-		reflColor = refTex.rgb;
+		// Temp fix for some ATI cards (see irc logs on th 1st of august betwee, fexor and wraitii)
+		//reflCoords = clamp( (0.5*reflectionCoords.xy - waviness * mix(1.0, 20.0,waviness/10.0) * n.zx) / reflectionCoords.z + 0.5,0.0,1.0);	// Unbias texture coords
+		//vec3 refTex = texture2D(reflectionMap, reflCoords).rgb;
+		//reflColor = refTex.rgb;
+		reflColor = vec3(0.15, 0.7, 0.82);
 	#endif
 
 	// TODO: At very low angles the reflection stuff doesn't really work any more:
@@ -332,7 +337,7 @@ void main()
 	// Specular.
 	specular = pow(ndoth, mix(5.0,2000.0, clamp(v.y*v.y*2.0,0.0,1.0)))*sunColor * 1.5;// * sunColor * 1.5 * ww.r;
 
-	losMod = texture2D(losMap, gl_TexCoord[3].st).a;
+	losMod = texture2D(losMap, losCoords.st).a;
 	losMod = losMod < 0.03 ? 0.0 : losMod;
 	
 	float wavesFresnel = 1.0;
@@ -358,10 +363,10 @@ void main()
 	#if USE_FANCY_EFFECTS
 		vec4 FoamEffects = texture2D(waterEffectsTexOther, gl_FragCoord.xy/screenSize);
 
-		vec3 foam1 = texture2D(normalMap, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).aaa;
-		vec3 foam2 = texture2D(normalMap2, (gl_TexCoord[0].st + gl_TexCoord[0].zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).aaa;
-		vec3 foam3 = texture2D(normalMap, gl_TexCoord[0].st/6.0 - gl_TexCoord[0].zw * 0.02).aaa;
-		vec3 foam4 = texture2D(normalMap2, gl_TexCoord[0].st/6.0 - gl_TexCoord[0].zw * 0.02).aaa;
+		vec3 foam1 = texture2D(normalMap, (normalCoords.st + normalCoords.zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).aaa;
+		vec3 foam2 = texture2D(normalMap2, (normalCoords.st + normalCoords.zw * BigMovement*waviness/10.0) * (baseScale - waviness/wavyEffect)).aaa;
+		vec3 foam3 = texture2D(normalMap, normalCoords.st/6.0 - normalCoords.zw * 0.02).aaa;
+		vec3 foam4 = texture2D(normalMap2, normalCoords.st/6.0 - normalCoords.zw * 0.02).aaa;
 		vec3 foaminterp = mix(foam1, foam2, moddedTime);
 		foaminterp *= mix(foam3, foam4, moddedTime);
 

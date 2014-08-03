@@ -93,11 +93,11 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 		JS::RootedValue val(cx);
 		if (!m_ScriptInterface.CallFunction(tmpInstance, "Serialize", &val))
 			LOGERROR(L"Script Serialize call failed");
-		serialize.ScriptVal("object", val);
+		serialize.ScriptVal("object", &val);
 	}
 	else
 	{
-		serialize.ScriptVal("object", tmpInstance);
+		serialize.ScriptVal("object", &tmpInstance);
 	}
 }
 

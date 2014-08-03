@@ -135,6 +135,9 @@ public:
 		// and prints a load of debug output so you can see if anything funny's going on
 
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		
 		TestStdoutLogger logger;
 
 		std::vector<CNetClient*> clients;
@@ -145,9 +148,9 @@ public:
 
 		CNetServer server;
 
-		CScriptValRooted attrs;
-		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", attrs);
-		server.UpdateGameAttributes(attrs.get(), scriptInterface);
+		JS::RootedValue attrs(cx);
+		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", &attrs);
+		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game);
 		CNetClient client2(&client2Game);
@@ -197,6 +200,9 @@ public:
 	void test_rejoin_DISABLED()
 	{
 		ScriptInterface scriptInterface("Engine", "Test", g_ScriptRuntime);
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		
 		TestStdoutLogger logger;
 
 		std::vector<CNetClient*> clients;
@@ -207,9 +213,9 @@ public:
 
 		CNetServer server;
 
-		CScriptValRooted attrs;
-		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", attrs);
-		server.UpdateGameAttributes(attrs.get(), scriptInterface);
+		JS::RootedValue attrs(cx);
+		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", &attrs);
+		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game);
 		CNetClient client2(&client2Game);

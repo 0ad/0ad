@@ -214,27 +214,33 @@ int WaterManager::LoadWaterTextures()
 	m_ReflectionTextureSize = g_Renderer.GetHeight() * 0.66;	// Higher settings give a better result
 	m_RefractionTextureSize = g_Renderer.GetHeight() * 0.33;	// Lower settings actually sorta look better since it blurs.
 	
+	if (round_down_to_pow2(m_ReflectionTextureSize)/m_ReflectionTextureSize < 0.65)
+		m_ReflectionTextureSize = round_up_to_pow2(m_ReflectionTextureSize);
+	else
+		m_ReflectionTextureSize = round_down_to_pow2(m_ReflectionTextureSize);
+	
+	if (round_down_to_pow2(m_RefractionTextureSize)/m_RefractionTextureSize < 0.7)
+		m_RefractionTextureSize = round_up_to_pow2(m_RefractionTextureSize);
+	else
+		m_RefractionTextureSize = round_down_to_pow2(m_RefractionTextureSize);
+	
 	// Create reflection texture
 	glGenTextures(1, &m_ReflectionTexture);
 	glBindTexture(GL_TEXTURE_2D, m_ReflectionTexture);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA,
-		(GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize,
-		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	
 	// Create refraction texture
 	glGenTextures(1, &m_RefractionTexture);
 	glBindTexture(GL_TEXTURE_2D, m_RefractionTexture);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB, 
-		(GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize,
-		0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGB8, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
 
 	// Create depth textures
 	glGenTextures(1, &m_ReflFboDepthTexture);
@@ -243,7 +249,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 	
 	glGenTextures(1, &m_RefrFboDepthTexture);
 	glBindTexture(GL_TEXTURE_2D, m_RefrFboDepthTexture);
@@ -251,7 +257,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	// Create the Fancy Effects texture
 	glGenTextures(1, &m_FancyTextureNormal);
@@ -791,25 +797,6 @@ void WaterManager::CreateWaveMeshes()
 				}
 				vertices = reversed;
 			}
-			// very simple smoothing.
-			// Bump 1 for smoother.
-			/*for (int p = 0; p < 3; ++p)
-			{
-				for (size_t j = 1; j < waveSizes-1; ++j)
-				{
-					CVector3D realPos = (MeshPoints[j-1].m_BasePosition + MeshPoints[j+1].m_BasePosition)*0.5f;
-					MeshPoints[j].m_BasePosition = (MeshPoints[j].m_BasePosition + realPos)*0.5f;
-
-					realPos = (MeshPoints[j-1].m_ApexPosition + MeshPoints[j+1].m_ApexPosition)*0.5f;
-					MeshPoints[j].m_ApexPosition = (MeshPoints[j].m_ApexPosition + realPos)*0.5f;
-					
-					realPos = (MeshPoints[j-1].m_SplashPosition + MeshPoints[j+1].m_SplashPosition)*0.5f;
-					MeshPoints[j].m_SplashPosition = (MeshPoints[j].m_SplashPosition + realPos)*0.5f;
-					
-					realPos = (MeshPoints[j-1].m_RetreatPosition + MeshPoints[j+1].m_RetreatPosition)*0.5f;
-					MeshPoints[j].m_RetreatPosition = (MeshPoints[j].m_RetreatPosition + realPos)*0.5f;
-				}
-			}*/
 			j += width/2-1;
 			
 			shoreWave->m_VBvertices = g_VBMan.Allocate(sizeof(SWavesVertex), vertices.size(), GL_STATIC_DRAW, GL_ARRAY_BUFFER);
@@ -824,9 +811,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
 	if (g_Renderer.m_SkipSubmit || !m_WaterFancyEffects)
 		return;
-	
-	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
-	
+		
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_FancyEffectsFBO);
 		
 	GLuint attachments[2] = { GL_COLOR_ATTACHMENT0_EXT, GL_COLOR_ATTACHMENT1_EXT };
@@ -880,19 +865,14 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 		
 		shad->Uniform(str_translation, m_ShoreWaves[a]->m_TimeDiff + 6.0f);
 		
-		//glDrawElements(GL_TRIANGLES, (GLsizei) (m_ShoreWaves[a]->m_Width-1)*(7*6),
-		//			   GL_UNSIGNED_SHORT, indexBase + sizeof(u16)*(m_ShoreWaves_VBIndices->m_Index));
-
-		// bump stats
 		// TODO: figure out why this doesn't work.
 		//g_Renderer.m_Stats.m_DrawCalls++;
 		//g_Renderer.m_Stats.m_WaterTris += m_ShoreWaves_VBIndices->m_Count / 3;
+		
 		CVertexBuffer::Unbind();
 	}
 	shad->Unbind();
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
-
-	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 
 	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);

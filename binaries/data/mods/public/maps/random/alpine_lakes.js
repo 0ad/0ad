@@ -442,7 +442,8 @@ setSunElevation(randFloat(PI/ 5, PI / 3));
 setWaterColour(0.0, 0.047, 0.286);				// dark majestic blue
 setWaterTint(0.471, 0.776, 0.863);				// light blue
 setWaterMurkiness(0.82);
-setWaterWaviness(2);
+setWaterWaviness(3.0);
+setWaterType("clap");
 
 // Export map data
 ExportMap();

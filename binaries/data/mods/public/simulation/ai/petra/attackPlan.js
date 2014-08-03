@@ -236,13 +236,16 @@ m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 			return enemyWonder.owner();
 	}
 
-	// then let's find our prefered target enemy, basically counting our enemies units.
+	// then let's find our prefered target enemy, basically counting our enemies units
+	// with priority to enemies with civ center
 	var enemyCount = {};
 	var enemyDefense = {};
+	var enemyCivCentre = {};
 	for (var i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		enemyCount[i] = 0;
 		enemyDefense[i] = 0;
+		enemyCivCentre[i] = false;
 	}
 	gameState.getEntities().forEach(function(ent) { 
 		if (gameState.isEntityEnemy(ent) && ent.owner() !== 0)
@@ -250,6 +253,8 @@ m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 			enemyCount[ent.owner()]++;
 			if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
 				enemyDefense[ent.owner()]++;
+			if (ent.hasClass("CivCentre"))
+				enemyCivCentre[ent.owner()] = true;
 		}
 	});
 	var max = 0;
@@ -257,10 +262,13 @@ m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 	{
 		if (this.type === "Rush" && enemyDefense[i] > 6)  // No rush if enemy too well defended (iberians)
 			continue;
-		if (enemyCount[i] > max)
+		var count = enemyCount[i];
+		if (enemyCivCentre[i])
+			count += 500;
+		if (count > max)
 		{
 			enemyPlayer = +i;
-			max = enemyCount[i];
+			max = count;
 		}
 	}
 	return enemyPlayer;
@@ -996,7 +1004,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 	else
 	{
 		gameState.ai.gameFinished = true;
-		m.debug ("I do not have any target. So I'll just assume I won the game.");
+		API3.warn("I do not have any target. So I'll just assume I won the game.");
 		return false;
 	}
 	return true;

@@ -446,14 +446,13 @@ log("Creating straggler island trees...");
 g_numStragglerTrees *= 10;
 createStragglerTrees(types, stayClasses(clIsland, 4));
 
-setWaterWaviness(10);
-
 // Set environment
 setSkySet("cumulus");
 setSunColour(0.866667, 0.776471, 0.486275);	
 setWaterColour(0, 0.501961, 1);		
 setWaterTint(0.501961, 1, 1);
-setWaterWaviness(10);
+setWaterWaviness(4.0);
+setWaterType("ocean");
 setWaterMurkiness(0.49);
 
 setFogFactor(0.3);

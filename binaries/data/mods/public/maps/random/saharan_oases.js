@@ -363,7 +363,8 @@ setSkySet("sunny");
 setSunColour(0.746, 0.718, 0.539);	
 setWaterColour(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);
-setWaterWaviness(1);
+setWaterWaviness(1.0);
+setWaterType("clap");
 setWaterMurkiness(0.5);
 
 // Export map data

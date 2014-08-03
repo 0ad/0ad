@@ -50,7 +50,7 @@ public:
 	float* m_DistanceHeightmap; // How far from the shore a point is. Manhattan
 	CVector3D* m_BlurredNormalMap;	// Cache a slightly blurred map of the normals of the terrain.
 
-	std::vector< std::deque<CoastalPoint> > CoastalPointsChains;
+	std::vector<std::deque<CoastalPoint> > CoastalPointsChains;
 	
 	// Waves vertex buffers
 	std::vector< WaveObject* > m_ShoreWaves;	// TODO: once we get C++11, remove pointer

@@ -133,7 +133,7 @@ u8* CSimulationMessage::Serialize(u8* pBuffer) const
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", tmpData);
+	serializer.ScriptVal("command", &tmpData);
 	return serializer.GetBuffer();
 }
 
@@ -168,13 +168,16 @@ size_t CSimulationMessage::GetSerializedLength() const
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", tmpData);
+	serializer.ScriptVal("command", &tmpData);
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
 CStr CSimulationMessage::ToString() const
 {
-	std::string source = utf8_from_wstring(m_ScriptInterface->ToString(m_Data.get()));
+	JSContext* cx = m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
+	std::string source = utf8_from_wstring(m_ScriptInterface->ToString(&tmpData));
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
@@ -202,7 +205,7 @@ u8* CGameSetupMessage::Serialize(u8* pBuffer) const
 	
 	u8* pos = CNetMessage::Serialize(pBuffer);
 	CBufferBinarySerializer serializer(m_ScriptInterface, pos);
-	serializer.ScriptVal("command", tmpData);
+	serializer.ScriptVal("command", &tmpData);
 	return serializer.GetBuffer();
 }
 
@@ -228,13 +231,16 @@ size_t CGameSetupMessage::GetSerializedLength() const
 	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
 	
 	CLengthBinarySerializer serializer(m_ScriptInterface);
-	serializer.ScriptVal("command", tmpData);
+	serializer.ScriptVal("command", &tmpData);
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
 CStr CGameSetupMessage::ToString() const
 {
-	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(m_Data.get()));
+	JSContext* cx = m_ScriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
+	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(&tmpData));
 
 	std::stringstream stream;
 	stream << "CGameSetupMessage { m_Data: " << source << " }";

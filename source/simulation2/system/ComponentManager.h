@@ -286,7 +286,7 @@ private:
 	static CScriptVal Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
 	static CScriptVal Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
 	static std::vector<std::string> Script_FindJSONFiles(ScriptInterface::CxPrivate* pCxPrivate, std::wstring subPath, bool recursive);
-	static CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName);
+	static JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName);
 	
 	// callback function to handle recursively finding files in a directory
 	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);

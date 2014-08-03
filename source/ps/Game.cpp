@@ -282,7 +282,7 @@ void CGame::StartGame(const CScriptValRooted& attribs1, const std::string& saved
 	JSAutoRequest rq(cx);
 	
 	JS::RootedValue attribs(cx, attribs1.get()); // TODO: Get Handle parameter directly with SpiderMonkey 31
-	m_ReplayLogger->StartGame(attribs1);
+	m_ReplayLogger->StartGame(&attribs);
 
 	RegisterInit(attribs, savedState);
 }

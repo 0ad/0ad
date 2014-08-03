@@ -276,7 +276,7 @@ public:
 		{
 			std::stringstream stream;
 			CDebugSerializer serialize(script, stream);
-			serialize.ScriptVal("script", obj);
+			serialize.ScriptVal("script", &obj);
 			TS_ASSERT_STR_EQUALS(stream.str(),
 					"script: {\n"
 					"  \"x\": 123,\n"
@@ -297,7 +297,7 @@ public:
 			std::stringstream stream;
 			CStdSerializer serialize(script, stream);
 
-			serialize.ScriptVal("script", obj);
+			serialize.ScriptVal("script", &obj);
 
 			TS_ASSERT_STREAM(stream, 119,
 					"\x03" // SCRIPT_TYPE_OBJECT
@@ -352,7 +352,7 @@ public:
 		std::stringstream stream;
 		CStdSerializer serialize(script, stream);
 
-		serialize.ScriptVal("script", obj);
+		serialize.ScriptVal("script", &obj);
 
 		if (expstream)
 		{
@@ -584,7 +584,7 @@ public:
 		TestLogger logger;
 
 		TS_ASSERT(script.Eval("([1, 2, function () { }])", &obj));
-		TS_ASSERT_THROWS(serialize.ScriptVal("script", obj), PSERROR_Serialize_InvalidScriptValue);
+		TS_ASSERT_THROWS(serialize.ScriptVal("script", &obj), PSERROR_Serialize_InvalidScriptValue);
 	}
 
 	void test_script_splice()
@@ -619,7 +619,7 @@ public:
 			std::stringstream stream;
 			CStdSerializer serialize(script, stream);
 
-			serialize.ScriptVal("script", obj);
+			serialize.ScriptVal("script", &obj);
 
 			CStdDeserializer deserialize(script, stream);
 

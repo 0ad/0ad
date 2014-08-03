@@ -59,7 +59,7 @@ public:
 		{
 			tmpRoot.set(m_LocalQueue[i].data.get());
 			serialize.NumberI32_Unbounded("player", m_LocalQueue[i].player);
-			serialize.ScriptVal("data", tmpRoot);
+			serialize.ScriptVal("data", &tmpRoot);
 		}
 	}
 
@@ -89,12 +89,16 @@ public:
 		m_LocalQueue.push_back(c);
 	}
 
-	virtual void PostNetworkCommand(CScriptVal cmd)
+	virtual void PostNetworkCommand(CScriptVal cmd1)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+		JSAutoRequest rq(cx);
+		
+		// TODO: With ESR31 we should be able to take JS::HandleValue directly
+		JS::RootedValue cmd(cx, cmd1.get());
 
 		PROFILE2_EVENT("post net command");
-		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(cmd.get(), false).c_str());
+		PROFILE2_ATTR("command: %s", GetSimContext().GetScriptInterface().StringifyJSON(&cmd, false).c_str());
 
 		// TODO: would be nicer to not use globals
 		if (g_Game && g_Game->GetTurnManager())

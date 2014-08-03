@@ -553,6 +553,7 @@ else if (random_terrain ==3){
 }
 setSunRotation(randFloat(0, TWO_PI));
 setSunElevation(randFloat(PI/ 5, PI / 3));
+setWaterWaviness(2);
 
 // Export map data
 ExportMap();

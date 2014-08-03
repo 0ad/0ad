@@ -472,7 +472,8 @@ setSkySet("cirrus");
 setWaterColour(0.753,0.635,0.345);				// muddy brown
 setWaterTint(0.161,0.514,0.635);				// clear blue for blueness
 setWaterMurkiness(0.8);
-setWaterWaviness(0.8);
+setWaterWaviness(1.0);
+setWaterType("clap");
 
 setFogThickness(0.25);
 setFogFactor(0.6);

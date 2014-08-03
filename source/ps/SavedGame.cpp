@@ -89,7 +89,8 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
 	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", simulation.GetInitAttributes());
 
-	JS::RootedValue guiMetadata(cx, simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone));
+	JS::RootedValue guiMetadata(cx);
+	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
 
 	// get some camera data
 	JS::RootedValue cameraMetadata(cx);
@@ -105,7 +106,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 	
 	simulation.GetScriptInterface().SetProperty(metadata, "description", description);
 	
-	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(metadata, true);
+	std::string metadataString = simulation.GetScriptInterface().StringifyJSON(&metadata, true);
 	
 	// Write the saved game as zip file containing the various components
 	PIArchiveWriter archiveWriter = CreateArchiveWriter_Zip(tempSaveFileRealPath, false);
@@ -160,12 +161,17 @@ public:
 
 	void ReadEntry(const VfsPath& pathname, const CFileInfo& fileInfo, PIArchiveFile archiveFile)
 	{
+		JSContext* cx = m_ScriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		
 		if (pathname == L"metadata.json")
 		{
 			std::string buffer;
 			buffer.resize(fileInfo.Size());
 			WARN_IF_ERR(archiveFile->Load("", DummySharedPtr((u8*)buffer.data()), buffer.size()));
-			m_Metadata = m_ScriptInterface.ParseJSON(buffer);
+			JS::RootedValue tmpMetadata(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
+			m_ScriptInterface.ParseJSON(buffer, &tmpMetadata);
+			m_Metadata = CScriptValRooted(cx, tmpMetadata);
 		}
 		else if (pathname == L"simulation.dat" && m_SavedState)
 		{

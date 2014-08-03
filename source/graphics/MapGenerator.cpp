@@ -108,7 +108,8 @@ bool CMapGeneratorWorker::Run()
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, std::string, bool, CMapGeneratorWorker::FindActorTemplates>("FindActorTemplates");
 
 	// Parse settings
-	JS::RootedValue settingsVal(cx, m_ScriptInterface->ParseJSON(m_Settings).get());
+	JS::RootedValue settingsVal(cx);
+	m_ScriptInterface->ParseJSON(m_Settings, &settingsVal);
 	if (settingsVal.isUndefined())
 	{
 		LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");
@@ -162,13 +163,18 @@ bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, st
 	return self->LoadScripts(name);
 }
 
-void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, CScriptValRooted data)
+void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, CScriptValRooted data1)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
+	
+	JSContext* cx = self->m_ScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue data(cx, data1.get());
 
 	// Copy results
 	CScopeLock lock(self->m_WorkerMutex);
-	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data.get());
+	self->m_MapData = self->m_ScriptInterface->WriteStructuredClone(data);
 	self->m_Progress = 0;
 }
 

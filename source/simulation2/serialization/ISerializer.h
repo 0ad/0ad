@@ -216,10 +216,11 @@ public:
 	void String(const char* name, const std::wstring& value, uint32_t minlength, uint32_t maxlength);
 
 	/**
-	 * Serialize a jsval.
+	 * Serialize a JS::MutableHandleValue.
 	 * The value must not contain any unserializable values (like functions).
+	 * NOTE: We have to use a mutable handle because JS_Stringify requires that for unknown reasons.
 	 */
-	void ScriptVal(const char* name, JS::HandleValue value);
+	void ScriptVal(const char* name, JS::MutableHandleValue value);
 
 	/**
 	 * Serialize a stream of bytes.
@@ -255,7 +256,8 @@ protected:
 	virtual void PutNumber(const char* name, fixed value) = 0;
 	virtual void PutBool(const char* name, bool value) = 0;
 	virtual void PutString(const char* name, const std::string& value) = 0;
-	virtual void PutScriptVal(const char* name, JS::HandleValue value) = 0;
+	// We have to use a mutable handle because JS_Stringify requires that for unknown reasons.
+	virtual void PutScriptVal(const char* name, JS::MutableHandleValue value) = 0;
 	virtual void PutRaw(const char* name, const u8* data, size_t len) = 0;
 };
 

@@ -722,7 +722,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		for (size_t i = 0; i < visiblePatches.size(); ++i)
 		{
 			CPatchRData* data = visiblePatches[i];
-			data->RenderWater(dummyShader, true,true);
+			data->RenderWater(dummyShader, true, true);
 		}
 		dummyShader->Unbind();
 		

@@ -506,7 +506,8 @@ setSkySet("sunny");
 setSunColour(0.917, 0.828, 0.734);
 setWaterColour(0.263,0.314,0.631);
 setWaterTint(0.133, 0.725,0.855);
-setWaterWaviness(3);
+setWaterWaviness(2.0);
+setWaterType("ocean");
 setWaterMurkiness(0.8);
 
 setTerrainAmbientColour(0.57, 0.58, 0.55);

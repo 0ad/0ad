@@ -320,7 +320,7 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());
 
 	// Send the same data to the reporting system
-	g_UserReporter.SubmitReport("hwdetect", 11, scriptInterface.StringifyJSON(settings, false));
+	g_UserReporter.SubmitReport("hwdetect", 11, scriptInterface.StringifyJSON(&settings, false));
 
 	// Run the detection script:
 	JS::RootedValue global(cx, scriptInterface.GetGlobalObject());
