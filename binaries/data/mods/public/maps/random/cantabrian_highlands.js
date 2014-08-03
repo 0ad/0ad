@@ -395,7 +395,8 @@ setSkySet("cirrus");
 setWaterColour(0.447, 0.412, 0.322);			// muddy brown
 setWaterTint(0.447, 0.412, 0.322);				// muddy brown
 setWaterMurkiness(1.0);
-setWaterWaviness(2.0);
+setWaterWaviness(3.0);
+setWaterType("lake");
 
 setFogThickness(0.25);
 setFogFactor(0.4);

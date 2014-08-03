@@ -607,7 +607,8 @@ setSunColour(0.711, 0.746, 0.574);
 setWaterColour(0.541,0.506,0.416);
 setWaterTint(0.694,0.592,0.522);
 setWaterMurkiness(1);
-setWaterWaviness(2.5);
+setWaterWaviness(3.0);
+setWaterType("lake");
 
 // Export map data
 ExportMap();

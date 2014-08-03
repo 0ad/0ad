@@ -470,7 +470,8 @@ createObjectGroups(group, 0,
 
 setWaterColour(0, 0.227, 0.843);
 setWaterTint(0, 0.545, 0.859);
-setWaterWaviness(1);
+setWaterWaviness(1.0);
+setWaterType("clap");
 setWaterMurkiness(0.75);
 
 // Export map data

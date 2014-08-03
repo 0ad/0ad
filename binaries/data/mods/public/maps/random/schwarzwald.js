@@ -26,7 +26,8 @@ setFogThickness(0.19);
 // water
 setWaterColour(0.501961, 0.501961, 0.501961);
 setWaterTint(0.25098, 0.501961, 0.501961);
-setWaterWaviness(0.3);
+setWaterWaviness(0.5);
+setWaterType("clap");
 setWaterMurkiness(0.75);
 
 // post processing
