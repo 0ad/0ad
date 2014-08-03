@@ -1319,7 +1319,7 @@ std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool inde
 }
 
 
-std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
+std::wstring ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 {
 	JSAutoRequest rq(m->m_cx);
 
@@ -1335,7 +1335,7 @@ std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
 		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
 
-		JSBool ok = JS_Stringify(m->m_cx, &obj, NULL, JS::NumberValue(2), &StringifierW::callback, &str);
+		JSBool ok = JS_Stringify(m->m_cx, obj.address(), NULL, JS::NumberValue(2), &StringifierW::callback, &str);
 
 		// Restore error reporter
 		JS_SetErrorReporter(m->m_cx, er);
@@ -1351,8 +1351,7 @@ std::wstring ScriptInterface::ToString(jsval obj, bool pretty)
 	// so fall back to obj.toSource()
 
 	std::wstring source = L"(error)";
-	JS::RootedValue tmpObj(m->m_cx, obj); // TODO: pass Handle as argument already
-	CallFunction(tmpObj, "toSource", source);
+	CallFunction(obj, "toSource", source);
 	return source;
 }
 

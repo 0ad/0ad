@@ -611,7 +611,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	JS::RootedValue rval(cx);
 	pScriptInterface->Eval(szLine, &rval);
 	if (!rval.isUndefined())
-		InsertMessageRaw(pScriptInterface->ToString(rval));
+		InsertMessageRaw(pScriptInterface->ToString(&rval));
 }
 
 void CConsole::LoadHistory()

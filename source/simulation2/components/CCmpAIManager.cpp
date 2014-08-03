@@ -608,7 +608,7 @@ public:
 			JS::RootedValue tmpSharedAIObj(cx, m_SharedAIObj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
 			if (!m_ScriptInterface->CallFunction(tmpSharedAIObj, "Serialize", &sharedData))
 				LOGERROR(L"AI shared script Serialize call failed");
-			serializer.ScriptVal("sharedData", sharedData);
+			serializer.ScriptVal("sharedData", &sharedData);
 		}
 		for (size_t i = 0; i < m_Players.size(); ++i)
 		{
@@ -621,7 +621,7 @@ public:
 			{
 				JS::RootedValue val(cx);
 				m_ScriptInterface->ReadStructuredClone(m_Players[i]->m_Commands[j], &val);
-				serializer.ScriptVal("command", val);
+				serializer.ScriptVal("command", &val);
 			}
 
 			JS::RootedValue tmpPlayerObj(cx, m_Players[i]->m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
@@ -631,11 +631,11 @@ public:
 				JS::RootedValue scriptData(cx);
 				if (!m_ScriptInterface->CallFunction(tmpPlayerObj, "Serialize", &scriptData))
 					LOGERROR(L"AI script Serialize call failed");
-				serializer.ScriptVal("data", scriptData);
+				serializer.ScriptVal("data", &scriptData);
 			}
 			else
 			{
-				serializer.ScriptVal("data", tmpPlayerObj);
+				serializer.ScriptVal("data", &tmpPlayerObj);
 			}
 		}
 	}

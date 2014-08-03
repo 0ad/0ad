@@ -185,13 +185,16 @@ void CNetClient::PushGuiMessage(const CScriptValRooted& message)
 
 std::wstring CNetClient::TestReadGuiMessages()
 {
+	JSContext* cx = GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	
 	std::wstring r;
 	while (true)
 	{
-		CScriptValRooted msg = GuiPoll();
-		if (msg.undefined())
+		JS::RootedValue msg(cx, GuiPoll().get());
+		if (msg.isUndefined())
 			break;
-		r += GetScriptInterface().ToString(msg.get()) + L"\n";
+		r += GetScriptInterface().ToString(&msg) + L"\n";
 	}
 	return r;
 }

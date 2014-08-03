@@ -59,7 +59,7 @@ public:
 		{
 			tmpRoot.set(m_LocalQueue[i].data.get());
 			serialize.NumberI32_Unbounded("player", m_LocalQueue[i].player);
-			serialize.ScriptVal("data", tmpRoot);
+			serialize.ScriptVal("data", &tmpRoot);
 		}
 	}
 

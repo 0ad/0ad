@@ -252,6 +252,6 @@ public:
 		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\": true\n}");
 
 		script.ParseJSON(stringified, &val);
-		TS_ASSERT_WSTR_EQUALS(script.ToString(val.get()), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
+		TS_ASSERT_WSTR_EQUALS(script.ToString(&val), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
 	}
 };
