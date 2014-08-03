@@ -1433,7 +1433,7 @@ ScriptInterface::StructuredClone::~StructuredClone()
 		JS_ClearStructuredClone(m_Data, m_Size);
 }
 
-shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(jsval v)
+shared_ptr<ScriptInterface::StructuredClone> ScriptInterface::WriteStructuredClone(JS::HandleValue v)
 {
 	JSAutoRequest rq(m->m_cx);
 	u64* data = NULL;

@@ -388,7 +388,7 @@ public:
 		size_t m_Size;
 	};
 
-	shared_ptr<StructuredClone> WriteStructuredClone(jsval v);
+	shared_ptr<StructuredClone> WriteStructuredClone(JS::HandleValue v);
 	void ReadStructuredClone(const shared_ptr<StructuredClone>& ptr, JS::MutableHandleValue ret);
 
 	/**

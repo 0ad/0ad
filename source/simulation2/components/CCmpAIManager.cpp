@@ -286,20 +286,26 @@ public:
 		self->LoadScripts(name);
 	}
 
-	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, CScriptValRooted cmd)
+	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, CScriptValRooted cmd1)
 	{
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
+		
+		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+		JSAutoRequest rq(cx);
+		// TODO: Get Handle parameter directly with SpiderMonkey 31
+		JS::RootedValue cmd(cx, cmd1.get());
+		
 		self->PostCommand(playerid, cmd);
 	}
 	
-	void PostCommand(int playerid, CScriptValRooted cmd)
+	void PostCommand(int playerid, JS::HandleValue cmd)
 	{
 		for (size_t i=0; i<m_Players.size(); i++)
 		{
 			if (m_Players[i]->m_Player == playerid)	
 			{
-				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd.get()));
+				m_Players[i]->m_Commands.push_back(m_ScriptInterface->WriteStructuredClone(cmd));
 				return;
 			}
 		}
@@ -913,14 +919,17 @@ public:
 	virtual void TryLoadSharedComponent()
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		
 		// load the technology templates
 		CmpPtr<ICmpTechnologyTemplateManager> cmpTechTemplateManager(GetSystemEntity());
 		ENSURE(cmpTechTemplateManager);
 		
 		// Get the game state from AIInterface
-		CScriptVal techTemplates = cmpTechTemplateManager->GetAllTechs();
+		JS::RootedValue techTemplates(cx, cmpTechTemplateManager->GetAllTechs().get());
 		
-		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates.get()));
+		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
 		m_Worker.TryLoadSharedComponent(true);
 	}
 
@@ -956,7 +965,7 @@ public:
 		
 		LoadPathfinderClasses(state);
 
-		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state.get()), *passabilityMap, *territoryMap);
+		m_Worker.RunGamestateInit(scriptInterface.WriteStructuredClone(state), *passabilityMap, *territoryMap);
 	}
 
 	virtual void StartComputation()

@@ -86,9 +86,14 @@ namespace {
 // Note that the initData argument may only contain clonable data.
 // Functions aren't supported for example!
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
+void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData1)
 {
-	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData.get()));
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue initData(cx, initData1.get());
+	
+	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData));
 }
 
 void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
@@ -104,9 +109,14 @@ void PopGuiPage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 // Note that the args argument may only contain clonable data.
 // Functions aren't supported for example!
 // TODO: Use LOGERROR to print a friendly error message when the requirements aren't met instead of failing with debug_warn when cloning.
-void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal args)
+void PopGuiPageCB(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal args1)
 {
-	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args.get()));
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue args(cx, args1.get());
+	
+	g_GUI->PopPageCB(pCxPrivate->pScriptInterface->WriteStructuredClone(args));
 }
 
 CScriptVal GuiInterfaceCall(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal data1)
@@ -284,16 +294,26 @@ CScriptVal StartSavedGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring n
 	return guiContextMetadata.get();
 }
 
-void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, CScriptVal GUIMetadata)
+void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std::wstring description, CScriptVal GUIMetadata1)
 {
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata.get());
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue GUIMetadata(cx, GUIMetadata1.get());
+	
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
 		LOGERROR(L"Failed to save game");
 }
 
-void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix, std::wstring description, CScriptVal GUIMetadata)
+void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix, std::wstring description, CScriptVal GUIMetadata1)
 {
-	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata.get());
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue GUIMetadata(cx, GUIMetadata1.get());
+	
+	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
 		LOGERROR(L"Failed to save game");
 }

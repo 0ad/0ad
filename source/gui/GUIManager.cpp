@@ -71,14 +71,19 @@ bool CGUIManager::HasPages()
 	return !m_PageStack.empty();
 }
 
-void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptInterface, CScriptVal initData)
+void CGUIManager::SwitchPage(const CStrW& pageName, ScriptInterface* srcScriptInterface, CScriptVal initData1)
 {
+	JSContext* cx = srcScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue initData(cx, initData1.get());
+	
 	// The page stack is cleared (including the script context where initData came from),
 	// therefore we have to clone initData.
 	shared_ptr<ScriptInterface::StructuredClone> initDataClone;
-	if (initData.get() != JSVAL_VOID)
+	if (!initData.isUndefined())
 	{
-		initDataClone = srcScriptInterface->WriteStructuredClone(initData.get());
+		initDataClone = srcScriptInterface->WriteStructuredClone(initData);
 	}
 	m_PageStack.clear();
 	PushPage(pageName, initDataClone);
