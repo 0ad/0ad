@@ -414,8 +414,8 @@ private:
 	bool GetProperty_(JS::HandleValue obj, const char* name, JS::MutableHandleValue out);
 	bool GetPropertyInt_(JS::HandleValue obj, int name, JS::MutableHandleValue value);
 	static bool IsExceptionPending(JSContext* cx);
-	static JSClass* GetClass(JSObject* obj);
-	static void* GetPrivate(JSObject* obj);
+	static JSClass* GetClass(JS::HandleObject obj);
+	static void* GetPrivate(JS::HandleObject obj);
 
 	class CustomType
 	{

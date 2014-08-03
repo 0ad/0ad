@@ -1375,12 +1375,12 @@ bool ScriptInterface::IsExceptionPending(JSContext* cx)
 	return JS_IsExceptionPending(cx) ? true : false;
 }
 
-JSClass* ScriptInterface::GetClass(JSObject* obj)
+JSClass* ScriptInterface::GetClass(JS::HandleObject obj)
 {
 	return JS_GetClass(obj);
 }
 
-void* ScriptInterface::GetPrivate(JSObject* obj)
+void* ScriptInterface::GetPrivate(JS::HandleObject obj)
 {
 	// TODO: use JS_GetInstancePrivate
 	return JS_GetPrivate(obj);

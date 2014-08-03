@@ -113,8 +113,9 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
 		SCRIPT_PROFILE \
-		if (ScriptInterface::GetClass(JS_THIS_OBJECT(cx, vp)) != CLS) return false; \
-		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(JS_THIS_OBJECT(cx, vp))); \
+		JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp)); \
+		if (ScriptInterface::GetClass(thisObj) != CLS) return false; \
+		TC* c = static_cast<TC*>(ScriptInterface::GetPrivate(thisObj)); \
 		if (! c) return false; \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
