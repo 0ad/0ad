@@ -23,6 +23,9 @@
 #include "ICmpTerrain.h"
 #include "simulation2/system/EntityMap.h"
 #include "simulation2/MessageTypes.h"
+#include "simulation2/components/ICmpFogging.h"
+#include "simulation2/components/ICmpMirage.h"
+#include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
 #include "simulation2/components/ICmpVision.h"
@@ -564,7 +567,6 @@ public:
 		case MT_Update:
 		{
 			m_DebugOverlayDirty = true;
-			UpdateTerritoriesLos();
 			ExecuteActiveQueries();
 			UpdateVisibilityData();
 			break;
@@ -1401,21 +1403,50 @@ public:
 				return VIS_VISIBLE;
 		}
 
+		// Mirage entities, whatever their position, are visible for one specific player
+		CmpPtr<ICmpMirage> cmpMirage(ent);
+		if (cmpMirage && cmpMirage->GetPlayer() != player)
+			return VIS_HIDDEN;
+
 		// Visible if within a visible region
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
 		if (los.IsVisible(i, j))
 			return VIS_VISIBLE;
 
+		if (!los.IsExplored(i, j))			
+			return VIS_HIDDEN;
+			
 		// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
-		if (los.IsExplored(i, j))
-		{
-			CmpPtr<ICmpVision> cmpVision(ent);
-			if (forceRetainInFog || (cmpVision && cmpVision->GetRetainInFog()))
-				return VIS_FOGGED;
-		}
+		CmpPtr<ICmpVision> cmpVision(ent);
+		if (!forceRetainInFog && !(cmpVision && cmpVision->GetRetainInFog()))
+			return VIS_HIDDEN;
 
-		// Otherwise not visible
+		if (cmpMirage && cmpMirage->GetPlayer() == player)
+			return VIS_FOGGED;
+
+		CmpPtr<ICmpOwnership> cmpOwnership(ent);
+		if (!cmpOwnership)
+			return VIS_VISIBLE;
+		
+		if (cmpOwnership->GetOwner() == player)
+		{
+			CmpPtr<ICmpFogging> cmpFogging(ent);
+			if (!cmpFogging)
+				return VIS_VISIBLE;
+			
+			// Fogged entities must not disappear while the mirage is not ready
+			if (!cmpFogging->IsMiraged(player))
+				return VIS_FOGGED;
+
+			return VIS_HIDDEN;
+		}
+	
+		// Fogged entities must not disappear while the mirage is not ready
+		CmpPtr<ICmpFogging> cmpFogging(ent);
+		if (cmpFogging && cmpFogging->WasSeen(player) && !cmpFogging->IsMiraged(player))
+			return VIS_FOGGED;
+				
 		return VIS_HIDDEN;
 	}
 
@@ -1487,18 +1518,29 @@ public:
 		EntityMap<EntityData>::iterator itEnts = m_EntityData.find(ent);
 		if (itEnts == m_EntityData.end())
 			return;
+
+		std::vector<u8> oldVisibilities;
+		std::vector<u8> newVisibilities;
 		
-		for (player_id_t player = 1; player <= MAX_LOS_PLAYER_ID; ++player)
+		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
 		{
 			u8 oldVis = (itEnts->second.visibilities >> (2*(player-1))) & 0x3;
 			u8 newVis = GetLosVisibility(itEnts->first, player, false);
+			
+			oldVisibilities.push_back(oldVis);
+			newVisibilities.push_back(newVis);
 
 			if (oldVis != newVis)
-			{
-				CMessageVisibilityChanged msg(player, ent, oldVis, newVis);
-				GetSimContext().GetComponentManager().PostMessage(ent, msg);
 				itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2*(player-1))) | (newVis << 2*(player-1));
-			}
+		}
+
+		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
+		{
+			if (oldVisibilities[player-1] == newVisibilities[player-1])
+				continue;
+			
+			CMessageVisibilityChanged msg(player, ent, oldVisibilities[player-1], newVisibilities[player-1]);
+			GetSimContext().GetComponentManager().PostMessage(ent, msg);
 		}
 	}
 

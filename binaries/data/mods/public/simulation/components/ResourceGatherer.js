@@ -243,11 +243,15 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 {
 	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
+	var type;
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	if (!cmpResourceSupply)
+	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
+	if (cmpResourceSupply)
+		type = cmpResourceSupply.GetType();
+	else if (cmpMirage && cmpMirage.ResourceSupply())
+		type = cmpMirage.GetType();
+	else
 		return 0;
-
-	var type = cmpResourceSupply.GetType();
 
 	var rates = this.GetGatherRates();
 
@@ -261,7 +265,12 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 		rate = rates[type.generic] / cmpPlayer.GetCheatTimeMultiplier();
 	}
 
+	if (cmpMirage)
+		return rate || 0;
+
 	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect. (GetDiminishingReturns will return null.)
+	// We can assume that for resources that are miraged this is the case. (else just add the diminishing returns data to the mirage data and remove the
+	// early return above)
 	// Note to people looking to change <DiminishingReturns> in a template: This is a bit complicated. Basically, the lower that number is
 	// the steeper diminishing returns will be. I suggest playing around with Wolfram Alpha or a graphing calculator a bit.
 	// In each of the following links, replace 0.65 with the gather rate of your worker for the resource with diminishing returns and
