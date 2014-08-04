@@ -96,8 +96,13 @@ void PushGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScr
 	g_GUI->PushPage(name, pCxPrivate->pScriptInterface->WriteStructuredClone(initData));
 }
 
-void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData)
+void SwitchGuiPage(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name, CScriptVal initData1)
 {
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: Get Handle parameter directly with SpiderMonkey 31
+	JS::RootedValue initData(cx, initData1.get());
+	
 	g_GUI->SwitchPage(name, pCxPrivate->pScriptInterface, initData);
 }
 

@@ -154,7 +154,7 @@ MESSAGEHANDLER(JavaScript)
 
 MESSAGEHANDLER(GuiSwitchPage)
 {
-	g_GUI->SwitchPage(*msg->page, NULL, JSVAL_VOID);
+	g_GUI->SwitchPage(*msg->page, NULL, JS::UndefinedHandleValue);
 }
 
 MESSAGEHANDLER(GuiMouseButtonEvent)

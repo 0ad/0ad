@@ -66,7 +66,7 @@ public:
 	/**
 	 * Load a new GUI page and make it active. All current pages will be destroyed.
 	 */
-	void SwitchPage(const CStrW& name, ScriptInterface* srcScriptInterface, CScriptVal initData);
+	void SwitchPage(const CStrW& name, ScriptInterface* srcScriptInterface, JS::HandleValue initData);
 
 	/**
 	 * Load a new GUI page and make it active. All current pages will be retained,
