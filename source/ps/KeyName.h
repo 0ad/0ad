@@ -35,37 +35,44 @@ extern int FindKeyCode( const CStr8& keyname );
 #endif
 
 enum {
-	// 'Keycodes' for the mouse buttons
-	MOUSE_LEFT = CUSTOM_SDL_KEYCODE + SDL_BUTTON_LEFT,
-	MOUSE_RIGHT = CUSTOM_SDL_KEYCODE + SDL_BUTTON_RIGHT,
-	MOUSE_MIDDLE = CUSTOM_SDL_KEYCODE + SDL_BUTTON_MIDDLE,
-
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	// SDL2 doesn't count wheels as buttons, so just give them the next sequential IDs
-	MOUSE_X1 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_X1,
-	MOUSE_X2 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_X2,
-	MOUSE_WHEELUP,
-	MOUSE_WHEELDOWN,
-#elif SDL_VERSION_ATLEAST(1, 2, 13)
-	// SDL 1.2 defines wheel buttons before X1/X2 buttons
-	MOUSE_WHEELUP = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELUP,
-	MOUSE_WHEELDOWN = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELDOWN,
-	MOUSE_X1 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_X1,
-	MOUSE_X2 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_X2,
-#else
-	// SDL <1.2.13 doesn't support X1/X2 buttons, so define them manually
-	MOUSE_WHEELUP = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELUP,
-	MOUSE_WHEELDOWN = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELDOWN,
-	MOUSE_X1 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELDOWN + 1,
-	MOUSE_X2 = CUSTOM_SDL_KEYCODE + SDL_BUTTON_WHEELDOWN + 2,
-#endif
-
+	// Start sequential IDs in the right place
+	EXTRA_KEYS_BASE = CUSTOM_SDL_KEYCODE,
 	// 'Keycodes' for the unified modifier keys
 	UNIFIED_SHIFT,
 	UNIFIED_CTRL,
 	UNIFIED_ALT,
 	UNIFIED_SUPER,
-	UNIFIED_LAST
+	UNIFIED_LAST,
+	// 'Keycodes' for the mouse buttons
+	// SDL2 doesn't count wheels as buttons, so just give them the previous sequential IDs
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	MOUSE_WHEELUP,
+	MOUSE_WHEELDOWN,
+#endif
+	// Base for mouse buttons.
+	// Everything less than MOUSE_BASE is not reported by an SDL mouse button event.
+	// Everything greater than MOUSE_BASE is reported by an SDL mouse button event.
+	MOUSE_BASE,
+	MOUSE_LEFT = MOUSE_BASE + SDL_BUTTON_LEFT,
+	MOUSE_RIGHT = MOUSE_BASE + SDL_BUTTON_RIGHT,
+	MOUSE_MIDDLE = MOUSE_BASE + SDL_BUTTON_MIDDLE,
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1,
+	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2,
+#elif SDL_VERSION_ATLEAST(1, 2, 13)
+	// SDL 1.2 defines wheel buttons before X1/X2 buttons
+	MOUSE_WHEELUP = MOUSE_BASE + SDL_BUTTON_WHEELUP,
+	MOUSE_WHEELDOWN = MOUSE_BASE + SDL_BUTTON_WHEELDOWN,
+	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1,
+	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2,
+#else
+	// SDL <1.2.13 doesn't support X1/X2 buttons, so define them manually
+	MOUSE_WHEELUP = MOUSE_BASE + SDL_BUTTON_WHEELUP,
+	MOUSE_WHEELDOWN = MOUSE_BASE + SDL_BUTTON_WHEELDOWN,
+	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_WHEELDOWN + 1,
+	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_WHEELDOWN + 2,
+#endif
+
 }; 
 
 #endif	// #ifndef INCLUDED_KEYNAME
