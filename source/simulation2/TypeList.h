@@ -81,6 +81,9 @@ COMPONENT(CommandQueue)
 INTERFACE(Decay)
 COMPONENT(Decay)
 
+INTERFACE(Fogging)
+COMPONENT(FoggingScripted)
+
 // Note: The VisualActor component relies on this component being initialized before itself, in order to support using
 // an entity's footprint shape for the selection boxes. This dependency is not strictly necessary, but it does avoid
 // some extra plumbing code to set up on-demand initialization. If you find yourself forced to break this dependency, 
@@ -96,6 +99,9 @@ COMPONENT(IdentityScripted)
 
 INTERFACE(Minimap)
 COMPONENT(Minimap)
+
+INTERFACE(Mirage)
+COMPONENT(MirageScripted)
 
 INTERFACE(Motion)
 COMPONENT(MotionBall)

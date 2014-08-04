@@ -332,34 +332,38 @@ static SKeycodeMapping keycodeMapping[] =
 
 void InitKeyNameMap()
 {
-	SKeycodeMapping* it = keycodeMapping;
-	while( it->keycode != 0 )
+	for (SKeycodeMapping* it = keycodeMapping; it->keycode != 0; it++)
 	{
-		keymap.insert( std::pair<CStr,int>( CStr( it->keyname ).LowerCase(), it->keycode ) );
-		if( it->altkeyname )
-			keymap.insert( std::pair<CStr,int>( CStr( it->altkeyname ).LowerCase(), it->keycode ) );
-		it++;
-	};
+		keymap.insert(std::pair<CStr,int>(CStr(it->keyname).LowerCase(), it->keycode));
+		if(it->altkeyname)
+			keymap.insert(std::pair<CStr,int>(CStr(it->altkeyname).LowerCase(), it->keycode));
+	}
+
+	// Extra mouse buttons.
+	for (int i = 1; i < 256; ++i) // There is no mouse 0
+	{
+		keymap.insert(std::pair<CStr,int>("mousebutton" + CStr::FromInt(i), MOUSE_BASE + i));
+		keymap.insert(std::pair<CStr,int>("mousen" + CStr::FromInt(i), MOUSE_BASE + i));
+	}
 }
 
-int FindKeyCode( const CStr& keyname )
+int FindKeyCode(const CStr& keyname)
 {
 	std::map<CStr,int>::iterator it;
-	it = keymap.find( keyname.LowerCase() );
-	if( it != keymap.end() )
-		return( it->second );
-	return( 0 );
+	it = keymap.find(keyname.LowerCase());
+	if (it != keymap.end())
+		return(it->second);
+	return 0;
 }
 
-CStr FindKeyName( int keycode )
-{	
+CStr FindKeyName(int keycode)
+{
 	SKeycodeMapping* it = keycodeMapping;
-	while( it->keycode != 0 )
-	{
-		if( it->keycode == keycode )
-			return( CStr( it->keyname ) );
-	}
-	return( CStr( "Unknown" ) );
+	while (it->keycode != 0)
+		if (it->keycode == keycode)
+			return CStr(it->keyname);
+
+	return CStr("Unknown");
 }
 
 

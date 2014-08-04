@@ -1987,7 +1987,9 @@ UnitAI.prototype.UnitFsmSpec = {
 					// check that we can gather from the resource we're supposed to gather from.
 					var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 					var cmpSupply = Engine.QueryInterface(this.gatheringTarget, IID_ResourceSupply);
-					if (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity))
+					var cmpMirage = Engine.QueryInterface(this.gatheringTarget, IID_Mirage);
+					if ((!cmpMirage || !cmpMirage.ResourceSupply()) &&
+					    (!cmpSupply || !cmpSupply.AddGatherer(cmpOwnership.GetOwner(), this.entity)))
 					{
 						// Save the current order's data in case we need it later
 						var oldType = this.order.data.type;
@@ -3896,6 +3898,10 @@ UnitAI.prototype.TargetIsAlive = function(ent)
 	if (cmpFormation)
 		return true;
 
+	var cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
+	if (cmpMirage)
+		return true;
+
 	var cmpHealth = Engine.QueryInterface(ent, IID_Health);
 	if (!cmpHealth)
 		return false;
@@ -4385,6 +4391,11 @@ UnitAI.prototype.CheckTargetVisible = function(target)
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (!cmpRangeManager)
 		return false;
+
+	// Entities that are hidden and miraged are considered visible
+	var cmpFogging = Engine.QueryInterface(target, IID_Fogging);
+	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
+		return true;
 
 	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner(), false) == "hidden")
 		return false;
@@ -5007,8 +5018,15 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 	// Save the resource type now, so if the resource gets destroyed
 	// before we process the order then we still know what resource
 	// type to look for more of
+	var type;
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var type = cmpResourceSupply.GetType();
+	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
+	if (cmpResourceSupply)
+		type = cmpResourceSupply.GetType();
+	else if (cmpMirage && cmpMirage.ResourceSupply())
+		type = cmpMirage.GetType();
+	else
+		error("CanGather allowed gathering from invalid entity");
 
 	// Also save the target entity's template, so that if it's an animal,
 	// we won't go from hunting slow safe animals to dangerous fast ones
@@ -5552,9 +5570,10 @@ UnitAI.prototype.CanGather = function(target)
 {
 	if (this.IsTurret())
 		return false;
-	// The target must be a valid resource supply.
+	// The target must be a valid resource supply, or the mirage of one.
 	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	if (!cmpResourceSupply)
+	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
+	if (!cmpResourceSupply && !(cmpMirage && cmpMirage.ResourceSupply()))
 		return false;
 
 	// Formation controllers should always respond to commands

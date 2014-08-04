@@ -335,6 +335,11 @@ BuildingAI.prototype.CheckTargetVisible = function(target)
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 
+	// Entities that are hidden and miraged are considered visible
+	var cmpFogging = Engine.QueryInterface(target, IID_Fogging);
+	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
+		return true;
+
 	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner(), false) == "hidden")
 		return false;
 

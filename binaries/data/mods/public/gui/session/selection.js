@@ -235,8 +235,10 @@ EntitySelection.prototype.getTemplateNames = function()
  */
 EntitySelection.prototype.update = function()
 {
-	var changed = false;
 	this.checkRenamedEntities();
+
+	var miraged = {};
+	var changed = false;
 	for each (var ent in this.selected)
 	{
 		var entState = GetEntityState(ent);
@@ -247,6 +249,13 @@ EntitySelection.prototype.update = function()
 			delete this.selected[ent];
 			this.groups.removeEnt(ent);
 			changed = true;
+			continue;
+		}
+
+		// Manually replace newly miraged entities by their mirages
+		if (entState.fogging && entState.fogging.mirage)
+		{
+			miraged[ent] = entState.fogging.mirage;
 			continue;
 		}
 
@@ -264,6 +273,9 @@ EntitySelection.prototype.update = function()
 			continue;
 		}
 	}
+
+	this.rebuildSelection(miraged);
+
 	if (changed)
 		this.onChange();
 };

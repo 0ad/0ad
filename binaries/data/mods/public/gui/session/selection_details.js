@@ -164,7 +164,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Gain: %(amount)s"), { amount: getTradingTooltip(entState.trader.goods.amount) });
 	}
 	// And for number of workers
-	else if (entState.foundation)
+	else if (entState.foundation && !entState.mirage)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;
@@ -172,7 +172,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("resourceCarryingText").caption = entState.foundation.numBuilders + "    ";
 		Engine.GetGUIObjectByName("resourceCarryingIcon").tooltip = sprintf(translate("Number of builders.\nTasking another to this foundation would speed construction up by %(numb)s%%"), { numb : Math.round((Math.pow((entState.foundation.numBuilders+1)/entState.foundation.numBuilders, 0.7) - 1.0)*100) });
 	}
-	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints))
+	else if (entState.resourceSupply && (!entState.resourceSupply.killBeforeGather || !entState.hitpoints) && !entState.mirage)
 	{
 		Engine.GetGUIObjectByName("resourceCarryingIcon").hidden = false;
 		Engine.GetGUIObjectByName("resourceCarryingText").hidden = false;

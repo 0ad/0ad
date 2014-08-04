@@ -172,6 +172,21 @@ void LoadHotkeys()
 	}
 }
 
+bool isNegated(const SKey& key)
+{
+	// Normal keycodes are below EXTRA_KEYS_BASE
+	if ((int)key.code < EXTRA_KEYS_BASE && g_keys[key.code] == key.negated)
+		return false;
+	// Mouse 'keycodes' are after the modifier keys
+	else if ((int)key.code > UNIFIED_LAST && g_mouse_buttons[key.code - UNIFIED_LAST] == key.negated)
+		return false;
+	// Modifier keycodes are between the normal keys and the mouse 'keys'
+	else if ((int)key.code < UNIFIED_LAST && (int)key.code > CUSTOM_SDL_KEYCODE && unified[key.code - UNIFIED_SHIFT] == key.negated)
+		return false;
+	else
+		return true;
+}
+
 InReaction HotkeyInputHandler( const SDL_Event_* ev )
 {
 	int keycode = 0;
@@ -185,19 +200,8 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	case SDL_MOUSEBUTTONDOWN:
 	case SDL_MOUSEBUTTONUP:
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-		if ((int)ev->ev.button.button <= SDL_BUTTON_RIGHT)
-#elif SDL_VERSION_ATLEAST(1, 2, 13)
-		if ((int)ev->ev.button.button <= SDL_BUTTON_X2)
-#else
-		if ((int)ev->ev.button.button <= SDL_BUTTON_WHEELDOWN)
-#endif
-		{
-			keycode = CUSTOM_SDL_KEYCODE + (int)ev->ev.button.button;
-			break;
-		}
-		return IN_PASS;
-
+		keycode = MOUSE_BASE + (int)ev->ev.button.button;
+		break;
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 	case SDL_MOUSEWHEEL:
 		if (ev->ev.wheel.y > 0)
@@ -292,48 +296,31 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 #else
 	bool typeKeyDown = ( ev->ev.type == SDL_KEYDOWN ) || ( ev->ev.type == SDL_MOUSEBUTTONDOWN );
 #endif
-	
+
 	// -- KEYDOWN SECTION -- 
 
 	std::vector<const char*> closestMapNames;
 	size_t closestMapMatch = 0;
 
-	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it )
+	for (std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it)
 	{
 		// If a key has been pressed, and this event triggers on its release, skip it.
 		// Similarly, if the key's been released and the event triggers on a keypress, skip it.
-		if( it->negated == typeKeyDown )
+		if (it->negated == typeKeyDown)
 			continue;
 
-		// Check to see if all auxiliary keys are down
-		
+		// Check for no unpermitted keys
 		bool accept = true;
+		for (std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end() && accept; ++itKey)
+			accept = isNegated(*itKey);
 
-		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); ++itKey )
-		{
-			bool rqdState = !itKey->negated;
-
-			if( (int)itKey->code < CUSTOM_SDL_KEYCODE )
-			{
-				if( g_keys[itKey->code] != rqdState ) accept = false;
-			}
-			else if( (int)itKey->code < UNIFIED_SHIFT )
-			{
-				if( g_mouse_buttons[itKey->code - CUSTOM_SDL_KEYCODE] != rqdState ) accept = false;
-			}
-			else if( (int)itKey->code < UNIFIED_LAST )
-			{
-				if( unified[itKey->code - UNIFIED_SHIFT] != rqdState ) accept = false;
-			}
-		}
-
-		if( accept && !( consoleCapture && it->name != "console.toggle" ) )
+		if (accept && !(consoleCapture && it->name != "console.toggle"))
 		{
 			// Check if this is an equally precise or more precise match
-			if( it->requires.size() + 1 >= closestMapMatch )
+			if (it->requires.size() + 1 >= closestMapMatch)
 			{
 				// Check if more precise
-				if( it->requires.size() + 1 > closestMapMatch )
+				if (it->requires.size() + 1 > closestMapMatch)
 				{
 					// Throw away the old less-precise matches
 					closestMapNames.clear();
@@ -355,38 +342,21 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 
 	// -- KEYUP SECTION --
 
-	for( std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it )
+	for (std::vector<SHotkeyMapping>::iterator it = g_HotkeyMap[keycode].begin(); it < g_HotkeyMap[keycode].end(); ++it)
 	{
 		// If it's a keydown event, won't cause HotKeyUps in anything that doesn't
 		// use this key negated => skip them
 		// If it's a keyup event, won't cause HotKeyUps in anything that does use
 		// this key negated => skip them too.
-		if( it->negated != typeKeyDown )
+		if (it->negated != typeKeyDown)
 			continue;
 
-		// Check to see if all auxiliary keys are down
-
+		// Check for no unpermitted keys
 		bool accept = true;
+		for (std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end() && accept; ++itKey)
+			accept = isNegated(*itKey);
 
-		for( std::vector<SKey>::iterator itKey = it->requires.begin(); itKey != it->requires.end(); ++itKey )
-		{
-			bool rqdState = !itKey->negated;
-
-			if( (int)itKey->code < CUSTOM_SDL_KEYCODE )
-			{
-				if( g_keys[itKey->code] != rqdState ) accept = false;
-			}
-			else if( (int)itKey->code < UNIFIED_SHIFT )
-			{
-				if( g_mouse_buttons[itKey->code - CUSTOM_SDL_KEYCODE] != rqdState ) accept = false;
-			}
-			else if( (int)itKey->code < UNIFIED_LAST )
-			{
-				if( unified[itKey->code - UNIFIED_SHIFT] != rqdState ) accept = false;
-			}
-		}
-
-		if( accept )
+		if (accept)
 		{
 			SDL_Event_ hotkeyNotification;
 			hotkeyNotification.ev.type = SDL_HOTKEYUP;
@@ -395,7 +365,7 @@ InReaction HotkeyInputHandler( const SDL_Event_* ev )
 		}
 	}
 
-	return( IN_PASS );
+	return IN_PASS;
 }
 
 bool HotkeyIsPressed(const CStr& keyname)

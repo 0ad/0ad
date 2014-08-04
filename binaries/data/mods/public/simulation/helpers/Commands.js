@@ -974,6 +974,11 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 			"queued": cmd.queued
 		});
 	}
+	
+	// Load a mirage for the owner of this new entity
+	var cmpFogging = Engine.QueryInterface(ent, IID_Fogging)
+	if (cmpFogging)
+		cmpFogging.LoadMirage(player);
 
 	return ent;
 }

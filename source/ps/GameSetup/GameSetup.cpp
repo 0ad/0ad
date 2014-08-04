@@ -485,7 +485,7 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 }
 
 
-static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcScriptInterface, CScriptVal initData)
+static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcScriptInterface, JS::HandleValue initData)
 {
 	{
 		// console
@@ -1029,7 +1029,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 				scriptInterface->Eval("({})", &data);
 				scriptInterface->SetProperty(data, "isStartup", true);
 			}
-			InitPs(setup_gui, L"page_pregame.xml", g_GUI->GetScriptInterface().get(), data.get());
+			InitPs(setup_gui, L"page_pregame.xml", g_GUI->GetScriptInterface().get(), data);
 		}
 	}
 	catch (PSERROR_Game_World_MapLoadFailed& e)
@@ -1037,7 +1037,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 		// Map Loading failed
 
 		// Start the engine so we have a GUI
-		InitPs(true, L"page_pregame.xml", NULL, JSVAL_VOID);
+		InitPs(true, L"page_pregame.xml", NULL, JS::UndefinedHandleValue);
 
 		// Call script function to do the actual work
 		//	(delete game data, switch GUI page, show error, etc.)
@@ -1352,7 +1352,7 @@ bool Autostart(const CmdLineArgs& args)
 
 	if (args.Has("autostart-host"))
 	{
-		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData.get());
+		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
 
 		size_t maxPlayers = 2;
 		if (args.Has("autostart-players"))
@@ -1373,7 +1373,7 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else if (args.Has("autostart-client"))
 	{
-		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData.get());
+		InitPs(true, L"page_loading.xml", &scriptInterface, mpInitData);
 
 		g_NetClient = new CNetClient(g_Game);
 		g_NetClient->SetUserName(userName);
@@ -1397,7 +1397,7 @@ bool Autostart(const CmdLineArgs& args)
 		PSRETURN ret = g_Game->ReallyStartGame();
 		ENSURE(ret == PSRETURN_OK);
 
-		InitPs(true, L"page_session.xml", NULL, JSVAL_VOID);
+		InitPs(true, L"page_session.xml", NULL, JS::UndefinedHandleValue);
 	}
 
 	return true;

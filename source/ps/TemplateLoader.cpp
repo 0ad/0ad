@@ -80,6 +80,21 @@ bool CTemplateLoader::LoadTemplateFile(const std::string& templateName, int dept
 		return true;
 	}
 
+	// Handle special case "mirage|foo"
+	if (templateName.find("mirage|") == 0)
+	{
+		// Load the base entity template, if it wasn't already loaded
+		std::string baseName = templateName.substr(7);
+		if (!LoadTemplateFile(baseName, depth+1))
+		{
+			LOGERROR(L"Failed to load entity template '%hs'", baseName.c_str());
+			return false;
+		}
+		// Copy a subset to the requested template
+		CopyMirageSubset(m_TemplateFileData[templateName], m_TemplateFileData[baseName]);
+		return true;
+	}
+
 	// Handle special case "foundation|foo"
 	if (templateName.find("foundation|") == 0)
 	{
@@ -383,6 +398,40 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 	}
 }
 
+void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
+{
+	// Currently used for mirage entities replacing real ones in fog-of-war
+
+	std::set<std::string> permittedComponentTypes;
+	permittedComponentTypes.insert("Footprint");
+	permittedComponentTypes.insert("Minimap");
+	permittedComponentTypes.insert("Ownership");
+	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("Selectable");
+	permittedComponentTypes.insert("VisualActor");
+
+	CParamNode::LoadXMLString(out, "<Entity/>");
+	out.CopyFilteredChildrenOfChild(in, "Entity", permittedComponentTypes);
+
+	// Select a subset of identity data. We don't want to have, for example, a CC mirage
+	// that has also the CC class and then prevents construction of other CCs
+	std::set<std::string> identitySubset;
+	identitySubset.insert("Civ");
+	identitySubset.insert("GenericName");
+	identitySubset.insert("SpecificName");
+	identitySubset.insert("Tooltip");
+	identitySubset.insert("History");
+	identitySubset.insert("Icon");
+	CParamNode identity;
+	CParamNode::LoadXMLString(identity, "<Identity/>");
+	identity.CopyFilteredChildrenOfChild(in.GetChild("Entity"), "Identity", identitySubset);
+	CParamNode::LoadXMLString(out, ("<Entity>"+utf8_from_wstring(identity.ToXML())+"</Entity>").c_str());
+
+	// Set the entity as mirage entity
+	CParamNode::LoadXMLString(out, "<Entity><Mirage/></Entity>");
+	CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Vision></Entity>");
+}
+
 void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in)
 {
 	// TODO: this is all kind of yucky and hard-coded; it'd be nice to have a more generic
@@ -397,6 +446,7 @@ void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in
 	permittedComponentTypes.insert("Obstruction");
 	permittedComponentTypes.insert("Selectable");
 	permittedComponentTypes.insert("Footprint");
+	permittedComponentTypes.insert("Fogging");
 	permittedComponentTypes.insert("Armour");
 	permittedComponentTypes.insert("Health");
 	permittedComponentTypes.insert("StatusBars");

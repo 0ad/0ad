@@ -1050,9 +1050,17 @@ function setup_atlas_project(project_name, target_type, rel_source_dirs, rel_inc
 		if target_type == "SharedLib" then
 			if _OPTIONS["macosx-bundle"] then
 				-- If we're building a bundle, it will be in ../Frameworks
-				linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
+				configuration "Debug"
+					linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name.."_dbg.dylib" }
+				configuration "Release"
+					linkoptions { "-install_name @executable_path/../Frameworks/lib"..project_name..".dylib" }
+				configuration { }
 			else
-				linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+				configuration "Debug"
+					linkoptions { "-install_name @executable_path/lib"..project_name.."_dbg.dylib" }
+				configuration "Release"
+					linkoptions { "-install_name @executable_path/lib"..project_name..".dylib" }
+				configuration { }
 			end
 		end
 	end
