@@ -318,16 +318,14 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	// to capture all mouse events until a mouseup after dragging).
 	// So we call two separate handler functions:
 	
-	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
-	JSContext* cx = scriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-
-	JS::RootedValue global(cx, top()->GetGlobalObject());
 	bool handled;
 
 	{
 		PROFILE("handleInputBeforeGui");
-		if (scriptInterface->CallFunction(global, "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
+		JSContext* cx = top()->GetScriptInterface()->GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue global(cx, top()->GetGlobalObject());
+		if (top()->GetScriptInterface()->CallFunction(global, "handleInputBeforeGui", *ev, top()->FindObjectUnderMouse(), handled))
 			if (handled)
 				return IN_HANDLED;
 	}
@@ -340,8 +338,13 @@ InReaction CGUIManager::HandleEvent(const SDL_Event_* ev)
 	}
 
 	{
+		// We can't take the following lines out of this scope because top() may be another gui page than it was when calling handleInputBeforeGui!
+		JSContext* cx = top()->GetScriptInterface()->GetContext();
+		JSAutoRequest rq(cx);
+		JS::RootedValue global(cx, top()->GetGlobalObject());
+
 		PROFILE("handleInputAfterGui");
-		if (scriptInterface->CallFunction(global, "handleInputAfterGui", *ev, handled))
+		if (top()->GetScriptInterface()->CallFunction(global, "handleInputAfterGui", *ev, handled))
 			if (handled)
 				return IN_HANDLED;
 	}
