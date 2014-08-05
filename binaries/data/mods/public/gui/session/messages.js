@@ -117,6 +117,12 @@ var g_NotificationsTypes =
 		if (player == Engine.GetPlayerID())
 			openDialog(notification.dialogName, notification.data, player);
 	},
+	"resetselectionpannel": function(notification, player)
+	{
+		if (player != Engine.GetPlayerID())
+			return;
+		g_Selection.rebuildSelection([]);
+	}
 };
 
 // Notifications
