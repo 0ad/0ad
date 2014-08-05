@@ -105,7 +105,7 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	var entitiesList = string.split(/\s+/);
 	
 	// Remove disabled entities
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player)
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 	var disabledEntities = cmpPlayer.GetDisabledTemplates();
 	
 	for (var i = entitiesList.length - 1; i >= 0; --i)
