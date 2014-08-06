@@ -49,12 +49,12 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	CFixedVector2D pos(fixed::FromFloat(pos3d.X), fixed::FromFloat(pos3d.Z));
 
 	// Get a rough group of entities using our approximated origin.
-	SpatialQueryArray ents;
+	std::vector<entity_id_t> ents;
 	cmpRangeManager->GetSubdivision()->GetNear(ents, pos, entity_pos_t::FromInt(range));
 
 	// Filter for relevent entities and calculate precise distances.
 	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
-	for (int i = 0; i < ents.size(); ++i)
+	for (size_t i = 0; i < ents.size(); ++i)
 	{
 		CmpPtr<ICmpSelectable> cmpSelectable(simulation, ents[i]);
 		if (!cmpSelectable)

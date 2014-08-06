@@ -981,10 +981,10 @@ public:
 			CFixedVector3D pos3d = cmpSourcePosition->GetPosition()+
 			    CFixedVector3D(entity_pos_t::Zero(), q.elevationBonus, entity_pos_t::Zero()) ;
 			// Get a quick list of entities that are potentially in range, with a cutoff of 2*maxRange
-			SpatialQueryArray ents;
+			std::vector<entity_id_t> ents;
 			m_Subdivision.GetNear(ents, pos, q.maxRange*2);
 
-			for (int i = 0; i < ents.size(); ++i)
+			for (size_t i = 0; i < ents.size(); ++i)
 			{
 				EntityMap<EntityData>::const_iterator it = m_EntityData.find(ents[i]);
 				ENSURE(it != m_EntityData.end());
@@ -1018,10 +1018,10 @@ public:
 		else
 		{
 			// Get a quick list of entities that are potentially in range
-			SpatialQueryArray ents;
+			std::vector<entity_id_t> ents;
 			m_Subdivision.GetNear(ents, pos, q.maxRange);
 
-			for (int i = 0; i < ents.size(); ++i)
+			for (size_t i = 0; i < ents.size(); ++i)
 			{
 				EntityMap<EntityData>::const_iterator it = m_EntityData.find(ents[i]);
 				ENSURE(it != m_EntityData.end());
