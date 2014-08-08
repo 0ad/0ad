@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -421,6 +421,8 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 		
 	JSContext* cx = pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
+	JS::RootedValue globalVal(cx, pGUI->GetGlobalObject());
+	JS::RootedObject globalObj(cx, &globalVal.toObject());
 	
 	const int paramCount = 1;
 	const char* paramNames[paramCount] = { "mouse" };
@@ -433,16 +435,17 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
-	JSFunction* func = JS_CompileFunction(cx, JSVAL_TO_OBJECT(pGUI->GetGlobalObject()),
-		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName.c_str(), 0);
+	JS::RootedFunction func(cx, JS_CompileFunction(cx, globalObj,
+		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName.c_str(), 0));
 
 	if (!func)
 		return; // JS will report an error message
-
-	SetScriptHandler(Action, JS_GetFunctionObject(func));
+	
+	JS::RootedObject funcObj(cx, JS_GetFunctionObject(func));
+	SetScriptHandler(Action, funcObj);
 }
 
-void IGUIObject::SetScriptHandler(const CStr& Action, JSObject* Function)
+void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 {
 	m_ScriptHandlers[Action] = CScriptValRooted(m_pGUI->GetScriptInterface()->GetContext(), JS::ObjectValue(*Function));
 }
@@ -490,7 +493,7 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	}
 }
 
-void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argument)
+void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValue Argument)
 {
 	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
@@ -499,12 +502,13 @@ void IGUIObject::ScriptEvent(const CStr& Action, const CScriptValRooted& Argumen
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
 
-	JSObject* object = GetJSObject();
-
-	jsval arg = Argument.get();
-
-	jsval result;
-	bool ok = JS_CallFunctionValue(cx, object, (*it).second.get(), 1, &arg, &result);
+	JS::AutoValueVector paramData(cx);
+	paramData.append(Argument.get());
+	JS::RootedObject obj(cx, GetJSObject());
+	// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
+	JS::RootedValue tmpScriptHandler(cx, (*it).second.get());
+	JS::RootedValue result(cx);
+	bool ok = JS_CallFunctionValue(cx, obj, tmpScriptHandler, paramData.length(), paramData.begin(), result.address());
 	if (!ok)
 	{
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());

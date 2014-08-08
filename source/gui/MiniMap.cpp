@@ -256,7 +256,7 @@ void CMiniMap::FireWorldClickEvent(int button, int clicks)
 	g_GUI->GetActiveGUI()->GetScriptInterface()->Eval("({})", &coords);
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "x", x, false);
 	g_GUI->GetActiveGUI()->GetScriptInterface()->SetProperty(coords, "z", z, false);
-	ScriptEvent("worldclick", CScriptValRooted(cx, coords));
+	ScriptEvent("worldclick", coords);
 
 	UNUSED2(button);
 	UNUSED2(clicks);

@@ -455,9 +455,9 @@ protected:
 	 * @param Action Name of action
 	 * @param Argument Argument to pass to action
 	 */
-	void ScriptEvent(const CStr& Action, const CScriptValRooted& Argument);
+	void ScriptEvent(const CStr& Action, JS::HandleValue Argument);
 
-	void SetScriptHandler(const CStr& Action, JSObject* Function);
+	void SetScriptHandler(const CStr& Action, JS::HandleObject Function);
 
 	/**
 	 * Inputes the object that is currently hovered, this function
