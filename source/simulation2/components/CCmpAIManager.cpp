@@ -572,7 +572,7 @@ public:
 		// Since the template data is shared between AI players, freeze it
 		// to stop any of them changing it and confusing the other players
 		m_EntityTemplates = CScriptValRooted(cx, tmpEntityTemplates);
-		m_ScriptInterface->FreezeObject(m_EntityTemplates.get(), true);
+		m_ScriptInterface->FreezeObject(tmpEntityTemplates, true);
 	}
 
 	void Serialize(std::ostream& stream, bool isDebug)
