@@ -100,6 +100,16 @@ Trigger.prototype.InitGame = function()
 		}
 	}
 
+	// Fix alliances
+	for (var i = 1; i < numberOfPlayers; ++i)
+	{
+		var cmpPlayer = TriggerHelper.GetPlayerComponent(i);
+		for (var j = 1; j < numberOfPlayers; ++j)
+			if (i != j) 
+				cmpPlayer.SetAlly(j);
+		cmpPlayer.SetLockTeams(true);
+	}
+	
 	// make gaia black
 	TriggerHelper.GetPlayerComponent(0).SetColour(0, 0, 0);
 	
@@ -133,22 +143,24 @@ Trigger.prototype.DefeatPlayerOnceCCIsDestroyed = function(data)
 {
 	// Defeat a player that has lost his civic center
 	if (data.entity == cmpTrigger.playerCivicCenter[data.from] && data.to == -1)
+	{
 		TriggerHelper.DefeatPlayer(data.from);
 	
-	// Check if only one player remains. He will be the winner.
-	var lastPlayerStanding = 0;
-	var numPlayersStanding = 0;
-	var numberOfPlayers = TriggerHelper.GetNumberOfPlayers();
-	for (var i = 1; i < numberOfPlayers; ++i)
-	{
-		if (TriggerHelper.GetPlayerComponent(i).GetState() == "active")
+		// Check if only one player remains. He will be the winner.
+		var lastPlayerStanding = 0;
+		var numPlayersStanding = 0;
+		var numberOfPlayers = TriggerHelper.GetNumberOfPlayers();
+		for (var i = 1; i < numberOfPlayers; ++i)
 		{
-			lastPlayerStanding = i;
-			++numPlayersStanding;
+			if (TriggerHelper.GetPlayerComponent(i).GetState() == "active")
+			{
+				lastPlayerStanding = i;
+				++numPlayersStanding;
+			}
 		}
+		if (numPlayersStanding == 1)
+			TriggerHelper.SetPlayerWon(lastPlayerStanding);
 	}
-	if (numPlayersStanding == 1)
-		TriggerHelper.SetPlayerWon(lastPlayerStanding);
 }
 
 var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);

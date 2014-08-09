@@ -20,36 +20,10 @@
 
 #include "simulation2/system/Component.h"
 #include "simulation2/serialization/SerializeTemplates.h"
-#include "ps/CLogger.h"
-
-/**
- * A simple fixed-size array that works similar to an std::vector
- * but is obviously limited in its max items
- */
-struct SpatialQueryArray
-{
-	enum { MAX_COUNT = 2048 };
-	int count;
-	uint32_t items[MAX_COUNT];
-
-	inline SpatialQueryArray() : count(0) {}
-	inline const uint32_t& operator[](int index) const { return items[index]; }
-	inline uint32_t& operator[](int index) { return items[index]; }
-	inline int size() const { return count; }
-	inline void clear() { count = 0; }
-	void make_unique() // removes any duplicate entries
-	{
-		if (count)
-		{
-			std::sort(items, items + count); // we need a sorted list for std::unique to work
-			count = int(std::unique(items, items + count) - items);
-		}
-	}
-};
 
 /**
  * A very basic subdivision scheme for finding items in ranges.
- * Items are stored in lists in fixed-size divisions.
+ * Items are stored in lists in dynamic-sized divisions.
  * Items have a size (min/max values of their axis-aligned bounding box)
  * and are stored in all divisions overlapping that area.
  *
@@ -80,23 +54,9 @@ class SpatialSubdivision
 			items.pop_back();
 		}
 
-		void copy_items(SpatialQueryArray& out)
+		void copy_items_at_end(std::vector<uint32_t>& out)
 		{
-			if (items.empty()) 
-				return; // nothing to copy
-
-			int dsti = out.count;				// the index in [out] where to start copying
-			int count = (int)items.size();
-			if ((dsti + count) > SpatialQueryArray::MAX_COUNT)
-			{
-				LOGWARNING(L"SpatialSubdivision Query too large. Results truncated.");
-				count = SpatialQueryArray::MAX_COUNT - dsti; // don't copy overflowing items
-			}
-			uint32_t* dst = &out.items[dsti];
-			uint32_t* src = &items[0];
-			for (int i = 0; i < count; ++i) // copy all items
-				dst[i] = src[i];
-			out.count += count;
+			out.insert(out.end(), items.begin(), items.end());
 		}
 	};
 
@@ -288,7 +248,7 @@ public:
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given axis-aligned square range.
 	 */
-	void GetInRange(SpatialQueryArray& out, CFixedVector2D posMin, CFixedVector2D posMax)
+	void GetInRange(std::vector<uint32_t>& out, CFixedVector2D posMin, CFixedVector2D posMax)
 	{
 		out.clear();
 		ENSURE(posMin.X <= posMax.X && posMin.Y <= posMax.Y);
@@ -301,18 +261,19 @@ public:
 		{
 			for (u32 i = i0; i <= i1; ++i)
 			{
-				m_Divisions[i + j*m_DivisionsW].copy_items(out);
+				m_Divisions[i + j*m_DivisionsW].copy_items_at_end(out);
 			}
 		}
 		// some buildings span several tiles, so we need to make it unique
-		out.make_unique();
+		std::sort(out.begin(), out.end());
+		out.erase(std::unique(out.begin(), out.end()), out.end());
 	}
 
 	/**
 	 * Returns a sorted list of unique items that includes all items
 	 * within the given circular distance of the given point.
 	 */
-	void GetNear(SpatialQueryArray& out, CFixedVector2D pos, entity_pos_t range)
+	void GetNear(std::vector<uint32_t>& out, CFixedVector2D pos, entity_pos_t range)
 	{
 		// TODO: be cleverer and return a circular pattern of divisions,
 		// not this square over-approximation

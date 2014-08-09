@@ -334,8 +334,9 @@ JSBool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::Hand
 			return JS_FALSE;
 		}
 
+		JS::RootedObject vpObj(cx, &vp.toObject());
 		CStr eventName (CStr(propName.substr(2)).LowerCase());
-		e->SetScriptHandler(eventName, &vp.toObject());
+		e->SetScriptHandler(eventName, vpObj);
 
 		return JS_TRUE;
 	}
@@ -628,7 +629,9 @@ JSBool JSI_IGUIObject::toString(JSContext* cx, uint argc, jsval* vp)
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
+	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
+	
+	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
 
@@ -645,7 +648,9 @@ JSBool JSI_IGUIObject::focus(JSContext* cx, uint argc, jsval* vp)
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
+	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
+	
+	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
 
@@ -661,7 +666,9 @@ JSBool JSI_IGUIObject::blur(JSContext* cx, uint argc, jsval* vp)
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
+	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
+ 
+	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
 
@@ -677,7 +684,9 @@ JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp)
 	JSAutoRequest rq(cx);
 	JS::CallReceiver rec = JS::CallReceiverFromVp(vp);
 	
-	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, JS_THIS_OBJECT(cx, vp), &JSI_IGUIObject::JSI_class, NULL);
+	JS::RootedObject thisObj(cx, JS_THIS_OBJECT(cx, vp));
+	
+	IGUIObject* e = (IGUIObject*)JS_GetInstancePrivate(cx, thisObj, &JSI_IGUIObject::JSI_class, NULL);
 	if (!e)
 		return JS_FALSE;
 

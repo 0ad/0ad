@@ -103,7 +103,15 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 		string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
 	
 	var entitiesList = string.split(/\s+/);
-
+	
+	// Remove disabled entities
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	var disabledEntities = cmpPlayer.GetDisabledTemplates();
+	
+	for (var i = entitiesList.length - 1; i >= 0; --i)
+		if (disabledEntities[entitiesList[i]])
+			entitiesList.splice(i, 1);
+	
 	// check if some templates need to show their advanced or elite version
 	var upgradeTemplate = function(templateName)
 	{
@@ -120,7 +128,7 @@ ProductionQueue.prototype.CalculateEntitiesList = function()
 	};
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var playerID = QueryOwnerInterface(this.entity, IID_Player).GetPlayerID();
+	var playerID = cmpPlayer.GetPlayerID();
 	for each (var templateName in entitiesList)
 		this.entitiesList.push(upgradeTemplate(templateName));
 	for each (var item in this.queue)
@@ -783,6 +791,13 @@ ProductionQueue.prototype.OnValueModification = function(msg)
 	// appropriately in the list
 	if (msg.component == "Promotion")
 		this.CalculateEntitiesList();
+};
+
+ProductionQueue.prototype.OnDisabledTemplatesChanged = function(msg)
+{
+	// if the disabled templates of the player is changed,
+	// update the entities list so that this is reflected there
+	this.CalculateEntitiesList();
 };
 
 Engine.RegisterComponentType(IID_ProductionQueue, "ProductionQueue", ProductionQueue);

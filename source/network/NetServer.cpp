@@ -217,7 +217,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	// Intermediate variables.
 	struct UPNPUrls urls;
 	struct IGDdatas data;
-	struct UPNPDev* devlist = 0;
+	struct UPNPDev* devlist = NULL;
 
 	// Cached root descriptor URL.
 	std::string rootDescURL;
@@ -225,12 +225,22 @@ void* CNetServerWorker::SetupUPnP(void*)
 	if (!rootDescURL.empty())
 		LOGMESSAGE(L"Net server: attempting to use cached root descriptor URL: %hs", rootDescURL.c_str());
 
-	// Init the return variable for UPNP_GetValidIGD to 1 so things behave when using cached URLs.
-	int ret = 1;
+	int ret = 0;
+	bool allocatedUrls = false;
 
-	// If we have a cached URL, try that first, otherwise try getting a valid UPnP device for 10 seconds. We also get our LAN address here.
-	if (!((!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
-	  || ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) != NULL && (ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress))) != 0)))
+	// Try a cached URL first
+	if (!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
+	{
+		LOGMESSAGE(L"Net server: using cached IGD = %hs", urls.controlURL);
+		ret = 1;
+	}
+	// No cached URL, or it did not respond. Try getting a valid UPnP device for 10 seconds.
+	else if ((devlist = upnpDiscover(10000, 0, 0, 0, 0, 0)) != NULL)
+	{
+		ret = UPNP_GetValidIGD(devlist, &urls, &data, internalIPAddress, sizeof(internalIPAddress));
+		allocatedUrls = ret != 0; // urls is allocated on non-zero return values
+	}
+	else
 	{
 		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
 		return NULL;
@@ -238,6 +248,9 @@ void* CNetServerWorker::SetupUPnP(void*)
 
 	switch (ret)
 	{
+	case 0:
+		LOGMESSAGE(L"Net server: No IGD found");
+		break;
 	case 1:
 		LOGMESSAGE(L"Net server: found valid IGD = %hs", urls.controlURL);
 		break;
@@ -295,7 +308,9 @@ void* CNetServerWorker::SetupUPnP(void*)
 	LOGMESSAGE(L"Net server: cached UPnP root descriptor URL as %hs", urls.controlURL);
 
 	// Make sure everything is properly freed.
-	FreeUPNPUrls(&urls);
+	if (allocatedUrls)
+		FreeUPNPUrls(&urls);
+    
 	freeUPNPDevlist(devlist);
 
 	return NULL;

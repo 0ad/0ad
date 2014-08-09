@@ -547,9 +547,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 	CFixedVector2D posMin (std::min(x0, x1) - r, std::min(z0, z1) - r);
 	CFixedVector2D posMax (std::max(x0, x1) + r, std::max(z0, z1) + r);
 
-	SpatialQueryArray unitShapes;
+	std::vector<entity_id_t> unitShapes;
 	m_UnitSubdivision.GetInRange(unitShapes, posMin, posMax);
-	for (int i = 0; i < unitShapes.size(); ++i)
+	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
@@ -563,9 +563,9 @@ bool CCmpObstructionManager::TestLine(const IObstructionTestFilter& filter, enti
 			return true;
 	}
 
-	SpatialQueryArray staticShapes;
+	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, posMin, posMax);
-	for (int i = 0; i < staticShapes.size(); ++i)
+	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());
@@ -885,9 +885,9 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 
 	ENSURE(x0 <= x1 && z0 <= z1);
 
-	SpatialQueryArray unitShapes;
+	std::vector<entity_id_t> unitShapes;
 	m_UnitSubdivision.GetInRange(unitShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (int i = 0; i < unitShapes.size(); ++i)
+	for (size_t i = 0; i < unitShapes.size(); ++i)
 	{
 		std::map<u32, UnitShape>::iterator it = m_UnitShapes.find(unitShapes[i]);
 		ENSURE(it != m_UnitShapes.end());
@@ -907,9 +907,9 @@ void CCmpObstructionManager::GetObstructionsInRange(const IObstructionTestFilter
 		squares.push_back(s);
 	}
 
-	SpatialQueryArray staticShapes;
+	std::vector<entity_id_t> staticShapes;
 	m_StaticSubdivision.GetInRange(staticShapes, CFixedVector2D(x0, z0), CFixedVector2D(x1, z1));
-	for (int i = 0; i < staticShapes.size(); ++i)
+	for (size_t i = 0; i < staticShapes.size(); ++i)
 	{
 		std::map<u32, StaticShape>::iterator it = m_StaticShapes.find(staticShapes[i]);
 		ENSURE(it != m_StaticShapes.end());

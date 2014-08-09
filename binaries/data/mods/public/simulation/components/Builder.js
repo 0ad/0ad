@@ -35,6 +35,14 @@ Builder.prototype.GetEntitiesList = function()
 		if (cmpIdentity)
 			string = string.replace(/\{civ\}/g, cmpIdentity.GetCiv());
 		entities = string.split(/\s+/);
+		
+		// Remove disabled entities
+		var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player)
+		var disabledEntities = cmpPlayer.GetDisabledTemplates();
+		
+		for (var i = entities.length - 1; i >= 0; --i)
+			if (disabledEntities[entities[i]])
+				entities.splice(i, 1);
 	}
 	return entities;
 };

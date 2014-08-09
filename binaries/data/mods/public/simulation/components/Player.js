@@ -42,6 +42,7 @@ Player.prototype.Init = function()
 		"metal": markForTranslation("Metal"),
 		"stone": markForTranslation("Stone"),
 	}
+	this.disabledTemplates = {};
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -697,6 +698,35 @@ Player.prototype.TributeResource = function(player, amounts)
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
 		cmpGUIInterface.PushNotification(notification);
+};
+
+Player.prototype.AddDisabledTemplate = function(template)
+{
+	this.disabledTemplates[template] = true;
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+};
+
+Player.prototype.RemoveDisabledTemplate = function(template)
+{
+	this.disabledTemplates[template] = false;
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+};
+
+Player.prototype.SetDisabledTemplates = function(templates)
+{
+	this.disabledTemplates = templates;
+	Engine.BroadcastMessage(MT_DisabledTemplatesChanged, {});
+	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
+	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
+};
+
+Player.prototype.GetDisabledTemplates = function(templates)
+{
+	return this.disabledTemplates;
 };
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

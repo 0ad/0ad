@@ -1135,16 +1135,18 @@ bool ScriptInterface::SetPrototype(JS::HandleValue obj, JS::HandleValue proto)
 	return JS_SetPrototype(m->m_cx, &obj.toObject(), &proto.toObject());
 }
 
-bool ScriptInterface::FreezeObject(jsval obj, bool deep)
+bool ScriptInterface::FreezeObject(JS::HandleValue objVal, bool deep)
 {
 	JSAutoRequest rq(m->m_cx);
-	if (!obj.isObject())
+	if (!objVal.isObject())
 		return false;
+	
+	JS::RootedObject obj(m->m_cx, &objVal.toObject());
 
 	if (deep)
-		return JS_DeepFreezeObject(m->m_cx, &obj.toObject());
+		return JS_DeepFreezeObject(m->m_cx, obj);
 	else
-		return JS_FreezeObject(m->m_cx, &obj.toObject());
+		return JS_FreezeObject(m->m_cx, obj);
 }
 
 bool ScriptInterface::LoadScript(const VfsPath& filename, const std::string& code)

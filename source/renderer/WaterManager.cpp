@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,6 +34,7 @@
 #include "maths/MathUtil.h"
 #include "maths/Vector2D.h"
 
+#include "ps/CLogger.h"
 #include "ps/Game.h"
 #include "ps/World.h"
 
@@ -231,7 +232,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_MIRRORED_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_MIRRORED_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_RGB, GL_UNSIGNED_BYTE, 0);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)m_ReflectionTextureSize, (GLsizei)m_ReflectionTextureSize, 0,  GL_RGBA, GL_UNSIGNED_BYTE, 0);
 	
 	// Create refraction texture
 	glGenTextures(1, &m_RefractionTexture);
@@ -257,7 +258,7 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)m_RefractionTextureSize, (GLsizei)m_RefractionTextureSize, 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
 
 	// Create the Fancy Effects texture
 	glGenTextures(1, &m_FancyTextureNormal);
@@ -446,8 +447,8 @@ void WaterManager::CreateWaveMeshes()
 		
 	// First step: get the points near the coast.
 	std::set<int> CoastalPointsSet;
-	for (size_t z = 0; z < SideSize; ++z)
-		for (size_t x = 0; x < SideSize; ++x)
+	for (size_t z = 1; z < SideSize-1; ++z)
+		for (size_t x = 1; x < SideSize-1; ++x)
 			if (abs(m_DistanceHeightmap[z*SideSize + x]-1.0f) < 0.2f)
 				CoastalPointsSet.insert(z*SideSize + x);
 	
@@ -596,7 +597,7 @@ void WaterManager::CreateWaveMeshes()
 			float outmost = 0.0f;	// how far to move on the shore.
 			float avgDepth = 0.0f;
 			int sign = 1;
-			CVector2D firstPerp, perp, lastPerp;
+			CVector2D firstPerp(0,0), perp(0,0), lastPerp(0,0);
 			for (size_t a = 0; a < waveSizes;++a)
 			{
 				lastPerp = perp;
