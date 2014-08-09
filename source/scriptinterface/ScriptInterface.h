@@ -404,6 +404,9 @@ public:
 
 private:
 	
+	// Prevent copying of ScriptInterface objects.
+	ScriptInterface(const ScriptInterface&) {}; 
+	
 	bool CallFunction_(JS::HandleValue val, const char* name, uint argc, jsval* argv, JS::MutableHandleValue ret);
 	bool Eval_(const char* code, JS::MutableHandleValue ret);
 	bool Eval_(const wchar_t* code, JS::MutableHandleValue ret);
