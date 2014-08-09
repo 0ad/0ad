@@ -78,6 +78,8 @@ class CDebuggingServer;
  */
 class ScriptInterface
 {
+	NONCOPYABLE(ScriptInterface);
+	
 public:
 
 	/**
@@ -403,9 +405,6 @@ public:
 	void AssignOrToJSVal(JS::MutableHandleValue handle, const T& a);
 
 private:
-	
-	// Prevent copying of ScriptInterface objects.
-	ScriptInterface(const ScriptInterface&) {}; 
 	
 	bool CallFunction_(JS::HandleValue val, const char* name, uint argc, jsval* argv, JS::MutableHandleValue ret);
 	bool Eval_(const char* code, JS::MutableHandleValue ret);
