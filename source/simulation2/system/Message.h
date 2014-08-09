@@ -31,14 +31,14 @@ public:
 	virtual int GetType() const = 0;
 	virtual const char* GetScriptHandlerName() const = 0;
 	virtual const char* GetScriptGlobalHandlerName() const = 0;
-	virtual jsval ToJSVal(ScriptInterface&) const = 0;
-	jsval ToJSValCached(ScriptInterface&) const;
+	virtual JS::Value ToJSVal(ScriptInterface&) const = 0;
+	JS::Value ToJSValCached(ScriptInterface&) const;
 private:
 	mutable CScriptValRooted m_Cached;
 };
 // TODO: GetType could be replaced with a plain member variable to avoid some
 // virtual calls, if that turns out to be worthwhile
 
-CMessage* CMessageFromJSVal(int mtid, ScriptInterface&, jsval);
+CMessage* CMessageFromJSVal(int mtid, ScriptInterface&, JS::HandleValue);
 
 #endif // INCLUDED_MESSAGE
