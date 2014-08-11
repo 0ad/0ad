@@ -22,41 +22,38 @@
 #include "simulation2/MessageTypes.h"
 
 #define TOJSVAL_SETUP() \
-	JSObject* obj; \
-	{\
-	JSAutoRequest rq(scriptInterface.GetContext()); \
-	obj = JS_NewObject(scriptInterface.GetContext(), NULL, NULL, NULL); \
+	JSContext* cx = scriptInterface.GetContext(); \
+	JSAutoRequest rq(cx); \
+	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL)); \
 	if (!obj) \
-		return JSVAL_VOID; \
-	}
+		return JS::UndefinedValue();
 
 #define SET_MSG_PROPERTY(name) \
 	do { \
-		JSAutoRequest rq(scriptInterface.GetContext()); \
-		JSContext* cx = scriptInterface.GetContext(); \
 		JS::RootedValue prop(cx);\
 		ScriptInterface::ToJSVal(cx, &prop, this->name); \
 		if (! JS_SetProperty(cx, obj, #name, prop.address())) \
-			return JSVAL_VOID; \
+			return JS::UndefinedValue(); \
 	} while (0);
 
 #define FROMJSVAL_SETUP() \
-	if ( JSVAL_IS_PRIMITIVE(val)) \
+	JSContext* cx = scriptInterface.GetContext(); \
+	JSAutoRequest rq(cx); \
+	if (val.isPrimitive()) \
 		return NULL; \
-	JSObject* obj = JSVAL_TO_OBJECT(val); \
-	JS::RootedValue prop(scriptInterface.GetContext());
+	JS::RootedObject obj(cx, &val.toObject()); \
+	JS::RootedValue prop(cx);
 
 #define GET_MSG_PROPERTY(type, name) \
 	type name; \
 	{ \
-	JSAutoRequest rq(scriptInterface.GetContext()); \
-	if (! JS_GetProperty(scriptInterface.GetContext(), obj, #name, prop.address())) \
+	if (! JS_GetProperty(cx, obj, #name, prop.address())) \
 		return NULL; \
-	if (! ScriptInterface::FromJSVal(scriptInterface.GetContext(), prop, name)) \
+	if (! ScriptInterface::FromJSVal(cx, prop, name)) \
 		return NULL; \
 	}
 
-jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
+JS::Value CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 {
 	if (m_Cached.uninitialised())
 		m_Cached = CScriptValRooted(scriptInterface.GetContext(), ToJSVal(scriptInterface));
@@ -66,13 +63,13 @@ jsval CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 
 ////////////////////////////////
 
-jsval CMessageTurnStart::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageTurnStart::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageTurnStart::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageTurnStart::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageTurnStart();
 }
@@ -80,13 +77,13 @@ CMessage* CMessageTurnStart::FromJSVal(ScriptInterface& UNUSED(scriptInterface),
 ////////////////////////////////
 
 #define MESSAGE_1(name, t0, a0) \
-	jsval CMessage##name::ToJSVal(ScriptInterface& scriptInterface) const \
+	JS::Value CMessage##name::ToJSVal(ScriptInterface& scriptInterface) const \
 	{ \
 		TOJSVAL_SETUP(); \
 		SET_MSG_PROPERTY(a0); \
-		return OBJECT_TO_JSVAL(obj); \
+		return JS::ObjectValue(*obj); \
 	} \
-	CMessage* CMessage##name::FromJSVal(ScriptInterface& scriptInterface, jsval val) \
+	CMessage* CMessage##name::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val) \
 	{ \
 		FROMJSVAL_SETUP(); \
 		GET_MSG_PROPERTY(t0, a0); \
@@ -100,16 +97,16 @@ MESSAGE_1(Update_Final, fixed, turnLength)
 
 ////////////////////////////////
 
-jsval CMessageInterpolate::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageInterpolate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(deltaSimTime);
 	SET_MSG_PROPERTY(offset);
 	SET_MSG_PROPERTY(deltaRealTime);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(float, deltaSimTime);
@@ -120,13 +117,13 @@ CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, jsval
 
 ////////////////////////////////
 
-jsval CMessageRenderSubmit::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageRenderSubmit::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
 	LOGWARNING(L"CMessageRenderSubmit::ToJSVal not implemented");
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessageRenderSubmit::FromJSVal not implemented");
 	return NULL;
@@ -134,13 +131,13 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 ////////////////////////////////
 
-jsval CMessageProgressiveLoad::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageProgressiveLoad::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
 	LOGWARNING(L"CMessageProgressiveLoad::ToJSVal not implemented");
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessageProgressiveLoad::FromJSVal not implemented");
 	return NULL;
@@ -148,13 +145,13 @@ CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInter
 
 ////////////////////////////////
 
-jsval CMessageDeserialized::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageDeserialized::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
 	LOGWARNING(L"CMessageDeserialized::ToJSVal not implemented");
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessageDeserialized::FromJSVal not implemented");
 	return NULL;
@@ -162,14 +159,14 @@ CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 ////////////////////////////////
 
-jsval CMessageCreate::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageCreate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageCreate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageCreate::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -178,14 +175,14 @@ CMessage* CMessageCreate::FromJSVal(ScriptInterface& scriptInterface, jsval val)
 
 ////////////////////////////////
 
-jsval CMessageDestroy::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageDestroy::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageDestroy::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageDestroy::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -194,16 +191,16 @@ CMessage* CMessageDestroy::FromJSVal(ScriptInterface& scriptInterface, jsval val
 
 ////////////////////////////////
 
-jsval CMessageOwnershipChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageOwnershipChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
 	SET_MSG_PROPERTY(from);
 	SET_MSG_PROPERTY(to);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -214,7 +211,7 @@ CMessage* CMessageOwnershipChanged::FromJSVal(ScriptInterface& scriptInterface, 
 
 ////////////////////////////////
 
-jsval CMessagePositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessagePositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
@@ -222,10 +219,10 @@ jsval CMessagePositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 	SET_MSG_PROPERTY(x);
 	SET_MSG_PROPERTY(z);
 	SET_MSG_PROPERTY(a);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -238,13 +235,13 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, j
 
 ////////////////////////////////
 
-jsval CMessageInterpolatedPositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessageInterpolatedPositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
 	LOGWARNING(L"CMessageInterpolatedPositionChanged::ToJSVal not implemented");
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessageInterpolatedPositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageInterpolatedPositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessageInterpolatedPositionChanged::FromJSVal not implemented");
 	return NULL;
@@ -252,15 +249,15 @@ CMessage* CMessageInterpolatedPositionChanged::FromJSVal(ScriptInterface& UNUSED
 
 ////////////////////////////////
 
-jsval CMessageTerritoryPositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageTerritoryPositionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
 	SET_MSG_PROPERTY(newTerritory);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageTerritoryPositionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageTerritoryPositionChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -270,15 +267,15 @@ CMessage* CMessageTerritoryPositionChanged::FromJSVal(ScriptInterface& scriptInt
 
 ////////////////////////////////
 
-jsval CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageMotionChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(starting);
 	SET_MSG_PROPERTY(error);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(bool, starting);
@@ -288,7 +285,7 @@ CMessage* CMessageMotionChanged::FromJSVal(ScriptInterface& scriptInterface, jsv
 
 ////////////////////////////////
 
-jsval CMessageTerrainChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageTerrainChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(i0);
@@ -298,7 +295,7 @@ jsval CMessageTerrainChanged::ToJSVal(ScriptInterface& scriptInterface) const
 	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(int32_t, i0);
@@ -310,17 +307,17 @@ CMessage* CMessageTerrainChanged::FromJSVal(ScriptInterface& scriptInterface, js
 
 ////////////////////////////////
 
-jsval CMessageVisibilityChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageVisibilityChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(player);
 	SET_MSG_PROPERTY(ent);
 	SET_MSG_PROPERTY(oldVisibility);
 	SET_MSG_PROPERTY(newVisibility);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageVisibilityChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageVisibilityChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(player_id_t, player);
@@ -332,55 +329,55 @@ CMessage* CMessageVisibilityChanged::FromJSVal(ScriptInterface& scriptInterface,
 
 ////////////////////////////////
 
-jsval CMessageWaterChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageWaterChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	return OBJECT_TO_JSVAL(obj);
 }
 
-CMessage* CMessageWaterChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageWaterChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageWaterChanged();
 }
 
 ////////////////////////////////
 
-jsval CMessageObstructionMapShapeChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageObstructionMapShapeChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageObstructionMapShapeChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageObstructionMapShapeChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageObstructionMapShapeChanged();
 }
 
 ////////////////////////////////
 
-jsval CMessageTerritoriesChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageTerritoriesChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageTerritoriesChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageTerritoriesChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageTerritoriesChanged();
 }
 
 ////////////////////////////////
 
-jsval CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(tag);
 	SET_MSG_PROPERTY(added);
 	SET_MSG_PROPERTY(removed);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessageRangeUpdate::FromJSVal not implemented");
 	return NULL;
@@ -388,13 +385,13 @@ CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface
 
 ////////////////////////////////
 
-jsval CMessagePathResult::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
+JS::Value CMessagePathResult::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
 	LOGWARNING(L"CMessagePathResult::ToJSVal not implemented");
-	return JSVAL_VOID;
+	return JS::UndefinedValue();
 }
 
-CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	LOGWARNING(L"CMessagePathResult::FromJSVal not implemented");
 	return NULL;
@@ -402,16 +399,16 @@ CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface)
 
 ////////////////////////////////
 
-jsval CMessageValueModification::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageValueModification::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entities);
 	SET_MSG_PROPERTY(component);
 	SET_MSG_PROPERTY(valueNames);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageValueModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageValueModification::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(std::vector<entity_id_t>, entities);
@@ -422,16 +419,16 @@ CMessage* CMessageValueModification::FromJSVal(ScriptInterface& scriptInterface,
 
 ////////////////////////////////
 
-jsval CMessageTemplateModification::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageTemplateModification::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(player);
 	SET_MSG_PROPERTY(component);
 	SET_MSG_PROPERTY(valueNames);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageTemplateModification::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageTemplateModification::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(player_id_t, player);
@@ -442,16 +439,16 @@ CMessage* CMessageTemplateModification::FromJSVal(ScriptInterface& scriptInterfa
 
 ////////////////////////////////
 
-jsval CMessageVisionRangeChanged::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageVisionRangeChanged::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
 	SET_MSG_PROPERTY(entity);
 	SET_MSG_PROPERTY(oldRange);
 	SET_MSG_PROPERTY(newRange);
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface, jsval val)
+CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface, JS::HandleValue val)
 {
 	FROMJSVAL_SETUP();
 	GET_MSG_PROPERTY(entity_id_t, entity);
@@ -462,20 +459,20 @@ CMessage* CMessageVisionRangeChanged::FromJSVal(ScriptInterface& scriptInterface
 
 ////////////////////////////////
 
-jsval CMessageMinimapPing::ToJSVal(ScriptInterface& scriptInterface) const
+JS::Value CMessageMinimapPing::ToJSVal(ScriptInterface& scriptInterface) const
 {
 	TOJSVAL_SETUP();
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
-CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface), jsval UNUSED(val))
+CMessage* CMessageMinimapPing::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
 	return new CMessageMinimapPing();
 }
 
 ////////////////////////////////////////////////////////////////
 
-CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, jsval val)
+CMessage* CMessageFromJSVal(int mtid, ScriptInterface& scriptingInterface, JS::HandleValue val)
 {
 	switch (mtid)
 	{

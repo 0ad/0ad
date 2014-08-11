@@ -33,8 +33,8 @@
 	virtual int GetType() const { return MT_##name; } \
 	virtual const char* GetScriptHandlerName() const { return "On" #name; } \
 	virtual const char* GetScriptGlobalHandlerName() const { return "OnGlobal" #name; } \
-	virtual jsval ToJSVal(ScriptInterface& scriptInterface) const; \
-	static CMessage* FromJSVal(ScriptInterface&, jsval val);
+	virtual JS::Value ToJSVal(ScriptInterface& scriptInterface) const; \
+	static CMessage* FromJSVal(ScriptInterface&, JS::HandleValue val);
 
 class SceneCollector;
 class CFrustum;

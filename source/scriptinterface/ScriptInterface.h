@@ -78,6 +78,8 @@ class CDebuggingServer;
  */
 class ScriptInterface
 {
+	NONCOPYABLE(ScriptInterface);
+	
 public:
 
 	/**

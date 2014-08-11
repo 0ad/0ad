@@ -291,7 +291,7 @@ private:
 	// callback function to handle recursively finding files in a directory
 	static Status FindJSONFilesCallback(const VfsPath&, const CFileInfo&, const uintptr_t);
 
-	CMessage* ConstructMessage(int mtid, CScriptVal data);
+	CMessage* ConstructMessage(int mtid, JS::HandleValue data);
 	void SendGlobalMessage(entity_id_t ent, const CMessage& msg);
 
 	void FlattenDynamicSubscriptions();

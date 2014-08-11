@@ -42,8 +42,8 @@ public:
 	virtual const char* GetScriptGlobalHandlerName() const { return globalHandlerName.c_str(); }
 	virtual jsval ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const { return msg.get(); }
 
-	CMessageScripted(int mtid, const std::string& name, const CScriptValRooted& msg) :
-		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(msg)
+	CMessageScripted(ScriptInterface& scriptInterface, int mtid, const std::string& name, JS::HandleValue msg) :
+		mtid(mtid), handlerName("On" + name), globalHandlerName("OnGlobal" + name), msg(scriptInterface.GetContext(), msg)
 	{
 	}
 
@@ -416,25 +416,29 @@ std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(Sc
 	return ret;
 }
 
-CMessage* CComponentManager::ConstructMessage(int mtid, CScriptVal data)
+CMessage* CComponentManager::ConstructMessage(int mtid, JS::HandleValue data)
 {
 	if (mtid == MT__Invalid || mtid > (int)m_MessageTypeIdsByName.size()) // (IDs start at 1 so use '>' here)
 		LOGERROR(L"PostMessage with invalid message type ID '%d'", mtid);
 
 	if (mtid < MT__LastNative)
 	{
-		return CMessageFromJSVal(mtid, m_ScriptInterface, data.get());
+		return CMessageFromJSVal(mtid, m_ScriptInterface, data);
 	}
 	else
 	{
-		return new CMessageScripted(mtid, m_MessageTypeNamesById[mtid],
-				CScriptValRooted(m_ScriptInterface.GetContext(), data));
+		return new CMessageScripted(m_ScriptInterface, mtid, m_MessageTypeNamesById[mtid], data);
 	}
 }
 
-void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, CScriptVal data)
+void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, CScriptVal data1)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	
+	JSContext* cx = componentManager->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: With ESR31 we should be able to take JS::HandleValue directly
+	JS::RootedValue data(cx, data1.get());
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
@@ -445,9 +449,14 @@ void CComponentManager::Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivat
 	delete msg;
 }
 
-void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, CScriptVal data)
+void CComponentManager::Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, CScriptVal data1)
 {
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData);
+	
+	JSContext* cx = componentManager->GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
+	// TODO: With ESR31 we should be able to take JS::HandleValue directly
+	JS::RootedValue data(cx, data1.get());
 
 	CMessage* msg = componentManager->ConstructMessage(mtid, data);
 	if (!msg)
