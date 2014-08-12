@@ -44,7 +44,7 @@ public:
 
 	virtual void RenderBeforeWater() { }
 
-	virtual void RenderAfterWater() { }
+	virtual void RenderAfterWater(int cullGroup) { }
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist
@@ -56,7 +56,7 @@ public:
 	 * Draw all ITerrainOverlay objects that exist
 	 * and that should be drawn after water.
 	 */
-	static void RenderOverlaysAfterWater();
+	static void RenderOverlaysAfterWater(int cullGroup);
 
 protected:
 	ITerrainOverlay(int priority);

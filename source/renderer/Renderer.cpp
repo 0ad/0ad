@@ -1540,7 +1540,7 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	}
 
 	// render debug-related terrain overlays
-	ITerrainOverlay::RenderOverlaysAfterWater();
+	ITerrainOverlay::RenderOverlaysAfterWater(cullGroup);
 	ogl_WarnIfError();
 
 	// render some other overlays after water (so they can be displayed on top of water)
