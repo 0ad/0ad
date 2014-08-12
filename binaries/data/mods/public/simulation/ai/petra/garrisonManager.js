@@ -77,7 +77,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				var ent = gameState.getEntityById(list[j]);
 				if (this.keepGarrisoned(ent, holder, enemiesAround))
 					continue;
-				if (ent.getMetadata(PlayerID, "garrisonHolder") === id)
+				if (ent.getMetadata(PlayerID, "garrisonHolder") == +id)
 					this.leaveGarrison(ent);
 				list.splice(j--, 1);
 			}

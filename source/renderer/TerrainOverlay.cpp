@@ -94,7 +94,7 @@ void ITerrainOverlay::RenderOverlaysBeforeWater()
 		g_TerrainOverlayList[i].first->RenderBeforeWater();
 }
 
-void ITerrainOverlay::RenderOverlaysAfterWater()
+void ITerrainOverlay::RenderOverlaysAfterWater(int cullGroup)
 {
 	if (g_TerrainOverlayList.empty())
 		return;
@@ -102,7 +102,7 @@ void ITerrainOverlay::RenderOverlaysAfterWater()
 	PROFILE3_GPU("terrain overlays (after)");
 
 	for (size_t i = 0; i < g_TerrainOverlayList.size(); ++i)
-		g_TerrainOverlayList[i].first->RenderAfterWater();
+		g_TerrainOverlayList[i].first->RenderAfterWater(cullGroup);
 }
 
 //////////////////////////////////////////////////////////////////////////

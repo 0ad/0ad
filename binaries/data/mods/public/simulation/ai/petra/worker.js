@@ -595,7 +595,7 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		// some simple accessibility check: if they're in an inaccessible square, we won't gather from them.
 		// (happen only at start of the game, as animals should not be able to walk to an inaccessible area)
 		// TODO as the animal can move, check again from time to time
-		if (supply.setMetadata(PlayerID, "inaccessible") === undefined)
+		if (supply.getMetadata(PlayerID, "inaccessible") === undefined)
 		{
 			var fakeMap = new API3.Map(gameState.sharedScript, gameState.getMap().data);
 			var mapPos = fakeMap.gamePosToMapPos(supply.position());
