@@ -1,0 +1,27 @@
+<skeletons>
+	<standard_skeleton title="grinder" id="grinder">
+		<bone name="ground">
+			<bone name="pivot">
+				<bone name="wheel_l"></bone>
+				<bone name="wheel_r"></bone>
+			</bone>
+			<bone name="donkey">
+				<bone name="prop_donkey001"></bone>
+				<bone name="prop_donkey002"></bone>
+			</bone>	  
+		</bone>		
+	</standard_skeleton>
+	<skeleton title="grinder" target="grinder">
+		<identifier><root>grinder</root></identifier>
+		<bone name="ground"><target>ground</target>
+			<bone name="pivot"><target>pivot</target>
+				<bone name="wheel_l"><target>wheel_l</target></bone>
+				<bone name="wheel_r"><target>wheel_r</target></bone>
+			</bone>
+			<bone name="donkey"><target>donkey</target>
+				<bone name="prop_donkey001"><target>prop_donkey001</target></bone>
+				<bone name="prop_donkey002"><target>prop_donkey001</target></bone>
+			</bone>	  	  
+		</bone>
+	</skeleton>	
+</skeletons>
