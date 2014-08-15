@@ -6,7 +6,9 @@
       <Radius>60</Radius>
       <Affects>Worker</Affects>
       <Modifications>
-        <Builder.Rate> <Multiply>1.15</Multiply> </Builder.Rate>
+        <Builder.Rate>
+		  <Multiply>1.15</Multiply>
+		</Builder.Rate>
       </Modifications>
       <AuraName>Builder Aura</AuraName>
       <AuraDescription>Buildings construct 15% faster within his vision.</AuraDescription>
@@ -15,10 +17,12 @@
       <Type>global</Type>
       <Affects>Temple</Affects>
       <Modifications>
-        <Cost.Resources.stone> <Add>-50</Add> </Cost.Resources.stone>
+        <Cost.Resources.stone>
+		  <Add>-100</Add>
+		</Cost.Resources.stone>
       </Modifications>
       <AuraName>Acropolis Aura</AuraName>
-      <AuraDescription>Temples are 50 stone cheaper during his lifetime.</AuraDescription>
+      <AuraDescription>Temples are 100 stone cheaper during his lifetime.</AuraDescription>
     </Aura2>
   </Auras>
   <Identity>

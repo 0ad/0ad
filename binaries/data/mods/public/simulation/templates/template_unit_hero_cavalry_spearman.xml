@@ -7,20 +7,16 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>30.0</Hack>
+      <Hack>16.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
+      <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Sword</Classes>
-		  <Multiplier>2.0</Multiplier>
+		  <Classes>Infantry Ranged</Classes>
+		  <Multiplier>2</Multiplier>
 		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Javelin</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
 		<BonusSiege>
 		  <Classes>Siege</Classes>
 		  <Multiplier>2.0</Multiplier>
@@ -36,10 +32,29 @@
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
     </Melee>
+    <Charge>
+      <Hack>64.0</Hack>
+	  <Bonuses>
+		<BonusPrimary>
+		  <Classes>Infantry Ranged</Classes>
+		  <Multiplier>2</Multiplier>
+		</BonusPrimary>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+		<CamelStench>
+		  <Classes>Camel</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</CamelStench>
+	  </Bonuses>
+    </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Hero Cavalry Spearman</GenericName>
+    <Tooltip>Counters: 2x vs. Siege Weapons and Ranged Infantry.
+Countered by: Spear Infantry, Elephants, and Camels.</Tooltip>
   </Identity>
   <Loot>
     <xp>500</xp>

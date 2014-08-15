@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/sele_infantry_spearman_b">
   <Armour>
-    <Hack>12</Hack>
-    <Pierce>9</Pierce>
-    <Crush>9</Crush>
+    <Hack>6</Hack>
+    <Pierce>5</Pierce>
+    <Crush>6</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>6.0</Hack>
+      <Hack>7</Hack>
     </Melee>
     <Charge>
-      <Hack>12.0</Hack>
+      <Hack>14</Hack>
     </Charge>
   </Attack>
   <Health>
@@ -25,12 +25,6 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/seleucids/infantry_spearman_a.xml</Actor>
   </VisualActor>

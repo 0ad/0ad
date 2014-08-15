@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
-    <Hack>2</Hack>
+    <Hack>4</Hack>
     <Pierce>30</Pierce>
     <Crush>10</Crush>
   </Armour>
@@ -24,7 +24,7 @@
     <Charge>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>100.0</Crush>
+      <Crush>120.0</Crush>
       <MaxRange>6.5</MaxRange>
       <MinRange>0.0</MinRange>
 	  <Bonuses>
@@ -54,13 +54,12 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>200</Max>
+    <Max>250</Max>
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>
-    <Classes datatype="tokens">Melee Ram</Classes>
-    <Tooltip>Classes: Siege Melee Ram.
-Counters: 1.5x vs. Gates. Generally good vs. Buildings.
+    <VisibleClasses datatype="tokens">Melee Ram</VisibleClasses>
+    <Tooltip>Counters: 1.5x vs. Gates. Generally good vs. Buildings.
 Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships).</Tooltip>
   </Identity>
   <Sound>

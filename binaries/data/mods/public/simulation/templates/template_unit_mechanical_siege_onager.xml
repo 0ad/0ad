@@ -2,7 +2,7 @@
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>30</Pierce>
+    <Pierce>20</Pierce>
     <Crush>10</Crush>
   </Armour>
   <Attack>
@@ -39,7 +39,7 @@
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
-      <wood>200</wood>
+      <wood>150</wood>
       <stone>100</stone>
     </Resources>
   </Cost>
@@ -48,12 +48,13 @@
     <Height>4.5</Height>
   </Footprint>
   <Health>
-    <Max>150</Max>
+    <Max>180</Max>
   </Health>
   <Identity>
     <GenericName>Siege Catapult</GenericName>
-    <Tooltip>Classes: Siege Ranged Catapult.
-Counters: Structures and Massed Infantry. Causes splash damage.
+    <VisibleClasses datatype="tokens">Ranged Catapult</VisibleClasses>
+    <Tooltip>Area (Splash) Damage Effect: 10 meters from impact. Can cause Friendly Fire.
+Counters: Structures and Massed Infantry. 1.25x vs. Fortresses.
 Countered by: Melee Cavalry.</Tooltip>
     <Classes datatype="tokens">Ranged Catapult</Classes>
   </Identity>

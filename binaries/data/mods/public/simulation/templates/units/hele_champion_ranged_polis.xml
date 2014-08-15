@@ -10,7 +10,6 @@
       <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>50</MaxRange>
-      <MinRange>10.0</MinRange>
     </Ranged>
   </Attack>
   <Identity>
@@ -28,9 +27,6 @@ Counters Support Units and Ranged Units. Countered by Melee Cavalry. Fast Move S
       <Speed>20.0</Speed>
     </Run>
   </UnitMotion>
-  <Vision>
-    <Range>66</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/hellenes/champion_unit_2.xml</Actor>
   </VisualActor>

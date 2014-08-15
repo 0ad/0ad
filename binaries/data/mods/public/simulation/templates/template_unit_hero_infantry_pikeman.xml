@@ -7,30 +7,41 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
+      <Hack>15.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
-		<BonusCavalry>
+		<BonusCavMelee>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavalry>
+		  <Multiplier>4.0</Multiplier>
+		</BonusCavMelee>
 	  </Bonuses>
     </Melee>
+    <Charge>
+      <Hack>30.0</Hack>
+      <Pierce>0.0</Pierce>
+      <MaxRange>8.0</MaxRange>
+	  <Bonuses>
+		<BonusCharge>
+		  <Classes>Cavalry</Classes>
+		  <Multiplier>4.0</Multiplier>
+		</BonusCharge>
+	  </Bonuses>
+    </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Hero Pikeman</GenericName>
+    <Tooltip>Counters: 4x vs. All Cavalry.
+Countered by: Ranged Units and Sword Infantry.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
-      formations/testudo
+      formations/syntagma
     </Formations>
   </Identity>
   <Loot>
-    <wood>10</wood>
-    <metal>10</metal>
+    <wood>100</wood>
+    <metal>100</metal>
   </Loot>
   <Stamina>
     <Max>1200</Max>
@@ -38,7 +49,7 @@
   <UnitMotion>
     <WalkSpeed>7.0</WalkSpeed>
     <Run>
-      <Speed>17.5</Speed>
+      <Speed>13</Speed>
     </Run>
   </UnitMotion>
 </Entity>

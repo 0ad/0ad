@@ -7,12 +7,12 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.3</Spread>
+      <Spread>1.5</Spread>
       <MaxRange>40</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>100</Max>
+    <Max>90</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>
@@ -23,12 +23,6 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
-    <Run>
-      <Speed>17.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/romans/infantry_javelinist_a.xml</Actor>
   </VisualActor>

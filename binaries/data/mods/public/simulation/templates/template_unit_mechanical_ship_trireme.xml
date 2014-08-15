@@ -40,13 +40,13 @@
     <Pickup>true</Pickup>
   </GarrisonHolder>
   <Health>
-    <Max>1400</Max>
+    <Max>1000</Max>
   </Health>
   <Identity>
     <GenericName>Medium Warship</GenericName>
-    <Tooltip>Classes: Mechanical Warship Medium Ranged Melee.
+    <Tooltip>Medium Warship, good for naval combat and transporting troops.
 Secondary Attack: Ramming.</Tooltip>
-    <Classes datatype="tokens">Warship Medium Ranged</Classes>
+    <VisibleClasses datatype="tokens">Warship Medium Ranged Ram</VisibleClasses>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <ResourceGatherer disable=""/>

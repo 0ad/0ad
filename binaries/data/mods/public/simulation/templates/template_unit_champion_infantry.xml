@@ -1,23 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
-  <Attack>
-    <Melee>
-      <Hack>23.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-    </Melee>
-    <Charge>
-      <Hack>46.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-      <PreferredClasses datatype="tokens">Organic</PreferredClasses>
-    </Charge>
-  </Attack>
   <Cost>
     <BuildTime>13</BuildTime>
     <Resources>

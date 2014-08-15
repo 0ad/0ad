@@ -48,14 +48,13 @@
     <Pickup>true</Pickup>
   </GarrisonHolder>
   <Health>
-    <Max>2000</Max>
+    <Max>1200</Max>
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Classes: Mechanical Warship Heavy Ranged Melee.
-Garrison with catapults to increase ranged fire power.
+    <Tooltip>Garrison with catapults to increase ranged fire power.
 Secondary Attack: Ramming.</Tooltip>
-    <Classes datatype="tokens">Warship Heavy Ranged</Classes>
+    <VisibleClasses datatype="tokens">Warship Heavy Ranged NavalSiege</VisibleClasses>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <Sound>

@@ -7,13 +7,12 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.3</Spread>
+      <Spread>1.75</Spread>
       <MaxRange>60.0</MaxRange>
-      <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>160</Max>
+    <Max>140</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>
@@ -27,12 +26,6 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
-    <Run>
-      <Speed>30.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/ptolemies/cavalry_archer_a.xml</Actor>
   </VisualActor>
