@@ -30,11 +30,11 @@
 			z="199"
 		>
 			<action on="Tick">
-				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.fps") == "false";
+				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.fps") !== "true";
 				updateFPS();
 			</action>
 			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "overlay.realtime", !this.hidden);
+				Engine.ConfigDB_CreateValue("user", "overlay.fps", ""+this.hidden);
 			</action>
 		</object>
 		
@@ -56,12 +56,11 @@
 			z="199"
 		>
 			<action on="Tick">
-				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.realtime") == "false";
-				var d = new Date();
-				this.caption = d.toLocaleTimeString();
+				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.realtime") !== "true";
+				this.caption = (new Date()).toLocaleTimeString();
 			</action>
 			<action on="Press">
-				Engine.ConfigDB_CreateValue("user", "overlay.realtime", !this.hidden);
+				Engine.ConfigDB_CreateValue("user", "overlay.realtime", ""+this.hidden);
 			</action>
 		</object>
 
