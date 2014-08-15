@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="100" name="Mesh">
+      <animations>
+        <animation file="quadraped/donkey_walk_01.dae" name="idle" speed="60"/>
+      </animations>
+      <mesh>skeletal/donkey.dae</mesh>
+      <textures><texture file="skeletal/animal_donkey.dds" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="death">
+      <props>
+        <prop actor="props/units/blood_01.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+</actor>

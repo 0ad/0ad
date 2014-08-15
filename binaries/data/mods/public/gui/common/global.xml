@@ -29,12 +29,39 @@
 			size="100%-80 70 100%-10 90"
 			z="199"
 		>
-			<action on="Tick"><![CDATA[
+			<action on="Tick">
+				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.fps") !== "true";
 				updateFPS();
-			]]></action>
-			<action on="Press"><![CDATA[
-				this.hidden = !this.hidden;
-			]]></action>
+			</action>
+			<action on="Press">
+				Engine.ConfigDB_CreateValue("user", "overlay.fps", ""+this.hidden);
+			</action>
+		</object>
+		
+		<!--
+		==========================================
+		- TIME COUNTER
+		==========================================
+		-->
+
+		<object name="timeCounter"
+			type="text"
+			ghost="true"
+			hidden="true"
+			hotkey="realtime.toggle"
+			sprite="colour: 0 0 0 200"
+			font="mono-stroke-10"
+			textcolor="white"
+			size="100%-80 100 100%-10 120"
+			z="199"
+		>
+			<action on="Tick">
+				this.hidden = Engine.ConfigDB_GetValue("user", "overlay.realtime") !== "true";
+				this.caption = (new Date()).toLocaleTimeString();
+			</action>
+			<action on="Press">
+				Engine.ConfigDB_CreateValue("user", "overlay.realtime", ""+this.hidden);
+			</action>
 		</object>
 
 		<!--
@@ -48,9 +75,9 @@
 			hotkey="screenshot.watermark"
 			z="200"
 		>
-			<action on="Press"><![CDATA[
+			<action on="Press">
 				this.hidden = !this.hidden;
-			]]></action>
+			</action>
 
 			<object name="glbWaterMarkProductLogo"
 				type="image"

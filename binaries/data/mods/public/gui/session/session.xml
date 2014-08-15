@@ -149,9 +149,14 @@
 	<!-- ================================  ================================ -->
 	<!-- Time elapsed counter -->
 	<!-- ================================  ================================ -->
-	
+
 	<object size="100%-120 45 100%-10 65" type="text" name="timeElapsedCounter" style="SettingsText" hotkey="timeelapsedcounter.toggle" hidden="true">
-	    <action on="Press">this.hidden = !this.hidden;</action>
+			<action on="Tick">
+				this.hidden = Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") !== "true";
+			</action>
+			<action on="Press">
+				Engine.ConfigDB_CreateValue("user", "gui.session.timeelapsedcounter", ""+this.hidden);
+			</action>
 	</object>
 
 	<!-- ================================  ================================ -->

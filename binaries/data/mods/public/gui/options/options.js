@@ -10,6 +10,9 @@ var options = {
 		[translate("Background Pause"), translate("Pause single player games when window loses focus"), {"config":"pauseonfocusloss"}, "boolean"],
 		[translate("Disable Welcome Screen"), translate("If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu."), {"config":"splashscreendisable"}, "boolean"],
 		[translate("Detailed Tooltips"), translate("Show detailed tooltips for trainable units in unit-producing buildings."), {"config":"showdetailedtooltips"}, "boolean"],
+		[translate("FPS Overlay"), translate("Show frames per second in top right corner."), {"config":"overlay.fps"}, "boolean"],
+		[translate("Realtime Overlay"), translate("Show current system time in top right corner."), {"config":"overlay.realtime"}, "boolean"],
+		[translate("Gametime Overlay"), translate("Show current simulation time in top right corner."), {"config":"gui.session.timeelapsedcounter"}, "boolean"],
 	],
 	"graphicsSetting":
 	[

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Base">
+      <animations>
+        <animation file="infantry/general/dude/dudeidle.psa" name="Idle" speed="50"/>
+        <animation file="biped/inf_salute_d.psa" name="Walk" speed="50"/>
+        <animation file="biped/inf_salute_e.psa" name="Walk" speed="50"/>
+        <animation file="biped/inf_salute_e.psa" name="run" speed="65"/>
+        <animation file="infantry/general/dude/dudeidle.psa" name="attack_melee" speed="1"/>
+        <animation file="biped/rider_sword_death_a.psa" name="death" speed="200"/>
+      </animations>
+      <mesh>skeletal/m_tunic_short.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/ptol_ptolemy_I.xml" attachpoint="shield"/>
+        <prop actor="props/units/weapons/spear_long.xml" attachpoint="r_hand"/>
+        <prop actor="props/units/heads/sele_perseus_brass.xml" attachpoint="helmet"/>
+        <prop actor="props/units/heads/head_kart_hannibal.xml" attachpoint="head"/>
+        <prop actor="props/units/cape_kart_hannibal.xml" attachpoint="shoulders"/>
+      </props>
+      <textures>         <texture file="skeletal/mace_su1_hypaspist_1.dds" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <material>player_trans.xml</material>
+</actor>
+

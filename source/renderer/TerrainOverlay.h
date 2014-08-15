@@ -44,7 +44,7 @@ public:
 
 	virtual void RenderBeforeWater() { }
 
-	virtual void RenderAfterWater(int cullGroup) { }
+	virtual void RenderAfterWater(int UNUSED(cullGroup)) { }
 
 	/**
 	 * Draw all ITerrainOverlay objects that exist

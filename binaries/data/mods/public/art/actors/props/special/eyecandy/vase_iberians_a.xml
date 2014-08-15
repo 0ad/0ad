@@ -23,7 +23,10 @@
   </group>
   <group>
     <variant>
-      <textures><texture file="props/vase_iberians.png" name="baseTex"/></textures>
+      <textures>
+        <texture file="props/vase_iberians.png" name="baseTex"/>
+      </textures>
     </variant>
   </group>
+  <material>player_trans.xml</material>
 </actor>

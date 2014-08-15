@@ -231,10 +231,6 @@ function init(initData, hotloadData)
 	}
 	global.music.setState(global.music.states.PEACE);
 	playRandomAmbient("temperate");
-
-	if (Engine.ConfigDB_GetValue("user", "gui.session.timeelapsedcounter") === "true")
-		Engine.GetGUIObjectByName("timeElapsedCounter").hidden = false;
-
 	onSimulationUpdate();
 
 	// Report the performance after 5 seconds (when we're still near

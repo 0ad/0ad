@@ -101,6 +101,7 @@ Trigger.prototype.InitGame = function()
 	}
 
 	// Fix alliances
+	/* Until we can do something about limiting the victory conditions available for this map to "None"
 	for (var i = 1; i < numberOfPlayers; ++i)
 	{
 		var cmpPlayer = TriggerHelper.GetPlayerComponent(i);
@@ -108,7 +109,7 @@ Trigger.prototype.InitGame = function()
 			if (i != j) 
 				cmpPlayer.SetAlly(j);
 		cmpPlayer.SetLockTeams(true);
-	}
+	}*/
 	
 	// make gaia black
 	TriggerHelper.GetPlayerComponent(0).SetColour(0, 0, 0);
