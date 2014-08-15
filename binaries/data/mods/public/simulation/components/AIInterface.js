@@ -129,7 +129,9 @@ AIInterface.prototype.OnGlobalPlayerDefeated = function(msg)
 
 AIInterface.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	this.events["EntityRenamed"].push(msg);
+	var cmpMirage = Engine.QueryInterface(msg.entity, IID_Mirage);
+	if (!cmpMirage)
+		this.events["EntityRenamed"].push(msg);
 };
 
 // When a new technology is researched, check which templates it affects,
