@@ -42,13 +42,13 @@
   <Identity>
     <Civ>maur</Civ>
     <GenericName>Warrior</GenericName>
-    <SpecificName>Yōddha</SpecificName>
+    <SpecificName>Yōddha योद्धा</SpecificName>
 	<SelectionGroupName>units/maur_champion_infantry</SelectionGroupName>
+    <VisibleClasses datatype="tokens">Siege</VisibleClasses>
     <History>.</History>
     <Icon>units/maur_champion_maceman.png</Icon>
-	<Tooltip>Classes: Champion Melee Infantry Swordsman.
-Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.
-Countered by: Archers and Cavalry Spearmen.</Tooltip>
+	<Tooltip>Counters: 2x vs. Structures, 1.25x vs. Spear Infantry and Elephants.
+Countered by: Archer Infantry and Archer Cavalry.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/mauryans/champion_maceman.xml</Actor>

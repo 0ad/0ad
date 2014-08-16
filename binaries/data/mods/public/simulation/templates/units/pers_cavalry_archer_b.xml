@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
   <Armour>
-    <Hack>5</Hack>
-    <Pierce>7</Pierce>
+    <Hack>3</Hack>
+    <Pierce>3</Pierce>
     <Crush>8</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Pierce>35.0</Pierce>
+      <Pierce>15.0</Pierce>
     </Ranged>
   </Attack>
   <Cost>
     <Population>3</Population>
     <BuildTime>18</BuildTime>
     <Resources>
-      <food>150</food>
+      <food>100</food>
       <wood>100</wood>
     </Resources>
   </Cost>
@@ -23,20 +23,16 @@
     <Height>5.0</Height>
   </Footprint>
   <Health>
-    <Max>220</Max>
+    <Max>200</Max>
   </Health>
   <Identity>
     <Civ>pers</Civ>
-    <Classes datatype="tokens">Chariot</Classes>
+    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
 	<SelectionGroupName>units/pers_cavalry_archer_b</SelectionGroupName>
 	<GenericName>Babylonian Scythed Chariot</GenericName>
     <SpecificName>Babiruviya Ratha</SpecificName>
     <History>Chariots were obsolete by the 5th and 4th centuries BC, but they were viewed as symbols of rank and class, hence their continued deployment on the battlefield in extremely limited roles well after their obsolescence. The crew was made up of an archer and a driver who rode in an armored car equipped with scythe-like blades underneath the chassis and the axels themselves sported a pair of the deadly knives.</History>
 	<Icon>units/pers_cavalry_archer.png</Icon>
-    <Tooltip>Classes: Ranged Cavalry Chariot Archer.
-Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.
-Countered by: Skirmishers and Elephants.
-Causes trample damage to enemy units.</Tooltip>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Loot>

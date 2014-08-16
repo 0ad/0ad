@@ -7,26 +7,20 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>0.8</Spread>
-      <MaxRange>56</MaxRange>
+      <Spread>1.0</Spread>
+      <MaxRange>48</MaxRange>
     </Ranged>
   </Attack>
   <Identity>
     <Rank>Elite</Rank>
   </Identity>
   <Health>
-    <Max>110</Max>
+    <Max>100</Max>
   </Health>
   <Promotion disable=""/>
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>6.6</WalkSpeed>
-    <Run>
-      <Speed>19.8</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/infantry_slinger_e.xml</Actor>
   </VisualActor>

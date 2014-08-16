@@ -6,8 +6,12 @@
       <Radius>60</Radius>
       <Affects>Worker</Affects>
       <Modifications>
-        <Builder.Rate> <Multiply>1.15</Multiply> </Builder.Rate>
-        <ResourceGatherer.BaseSpeed> <Multiply>1.15</Multiply> </ResourceGatherer.BaseSpeed>
+        <Builder.Rate>
+		  <Multiply>1.15</Multiply> 
+		</Builder.Rate>
+        <ResourceGatherer.BaseSpeed>
+		  <Multiply>1.15</Multiply>
+		</ResourceGatherer.BaseSpeed>
       </Modifications>
       <AuraName>Administrator Aura</AuraName>
       <AuraDescription> +15% Gather Rate and Build Rate of nearby units.</AuraDescription>

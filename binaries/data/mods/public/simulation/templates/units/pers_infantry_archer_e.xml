@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.0</Spread>
+      <Spread>1.5</Spread>
       <MaxRange>58.0</MaxRange>
     </Ranged>
   </Attack>
@@ -21,9 +21,6 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <Vision>
-    <Range>70</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/persians/infantry_archer_e.xml</Actor>
   </VisualActor>

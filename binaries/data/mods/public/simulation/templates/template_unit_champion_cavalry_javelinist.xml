@@ -8,37 +8,41 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Pierce>25.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>56</MaxRange>
+      <MaxRange>52</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
-      <Spread>1.2</Spread>
+      <Spread>1.25</Spread>
       <Bonuses>
-        <BonusPrimary>
-          <Classes>Infantry Bow</Classes>
-          <Multiplier>2.0</Multiplier>
-        </BonusPrimary>
-        <BonusSecondary>
-          <Classes>Cavalry Sword</Classes>
-          <Multiplier>1.5</Multiplier>
-        </BonusSecondary>
+		<BonusPrimary>
+		  <Classes>Support</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusPrimary>
+		<ElephantStench>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</ElephantStench>
+		<CamelStench>
+		  <Classes>Camel</Classes>
+		  <Multiplier>0.5</Multiplier>
+		</CamelStench>
       </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
     <Resources>
       <food>100</food>
-      <wood>70</wood>
+      <wood>75</wood>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Ranged Javelin</VisibleClasses>
     <GenericName>Champion Cavalry Skirmisher</GenericName>
-    <Tooltip>Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.
-Countered by: Spearmen and Elephants.</Tooltip>
+    <Tooltip>Counters: 1.5x vs. Support Units.
+Countered by: Skirmishers, Cavalry Swordsmen, and Elephants.</Tooltip>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>

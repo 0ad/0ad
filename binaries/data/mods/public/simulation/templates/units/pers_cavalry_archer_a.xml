@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/pers_cavalry_archer_b">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>8</Pierce>
+    <Hack>5</Hack>
+    <Pierce>5</Pierce>
     <Crush>9</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.3</Spread>
+      <Spread>1.5</Spread>
       <MaxRange>60.0</MaxRange>
-      <MinRange>16.0</MinRange>
     </Ranged>
   </Attack>
   <Footprint replace="">
@@ -17,7 +16,7 @@
     <Height>5.0</Height>
   </Footprint>
   <Health>
-    <Max>230</Max>
+    <Max>220</Max>
   </Health>
   <Identity>
     <Rank>Advanced</Rank>

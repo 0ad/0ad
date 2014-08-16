@@ -8,11 +8,11 @@
   <Attack>
     <Ranged>
       <MaxRange>48</MaxRange>
-      <Spread>1.0</Spread>
+      <Spread>1.25</Spread>
     </Ranged>
   </Attack>
   <Health>
-    <Max>160</Max>
+    <Max>150</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>
@@ -21,12 +21,6 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>13.0</WalkSpeed>
-    <Run>
-      <Speed>26.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/romans/cavalry_javelinist_e.xml</Actor>
   </VisualActor>

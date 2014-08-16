@@ -9,7 +9,7 @@
 		<TerrainAmbientColour r="0.329412" g="0.419608" b="0.501961"/>
 		<UnitsAmbientColour r="0.501961" g="0.501961" b="0.501961"/>
 		<Fog>
-			<FogFactor>0.00411133</FogFactor>
+			<FogFactor>0.00510742</FogFactor>
 			<FogThickness>0</FogThickness>
 			<FogColour r="0.74902" g="0.74902" b="0.74902"/>
 		</Fog>
@@ -17,13 +17,11 @@
 			<WaterBody>
 				<Type>lake</Type>
 				<Colour r="0.737255" g="0.592157" b="0.27451"/>
-				<Height>21.823</Height>
-				<Shininess>250</Shininess>
-				<Waviness>3.0</Waviness>
-				<Murkiness>0.800781</Murkiness>
 				<Tint r="0.439216" g="0.247059" b="0.156863"/>
-				<ReflectionTint r="0.403922" g="0.329412" b="0.27451"/>
-				<ReflectionTintStrength>0</ReflectionTintStrength>
+				<Height>21.823</Height>
+				<Waviness>4.99023</Waviness>
+				<Murkiness>0.899414</Murkiness>
+				<WindAngle>1.1781</WindAngle>
 			</WaterBody>
 		</Water>
 		<Postproc>
@@ -35,14 +33,14 @@
 		</Postproc>
 	</Environment>
 	<Camera>
-		<Position x="661.036" y="164.554" z="176.007"/>
+		<Position x="215.538" y="91.1563" z="545.103"/>
 		<Rotation angle="0"/>
 		<Declination angle="0.610865"/>
 	</Camera>
 	<ScriptSettings><![CDATA[
 {
   "CircularMap": true,
-  "Description": "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\u000a\u000aThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight.",
+  "Description": "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n\nThe rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight.",
   "GameType": "conquest",
   "Keywords": [],
   "LockTeams": false,

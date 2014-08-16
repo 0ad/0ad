@@ -56,11 +56,10 @@
   </Health>
   <Identity>
     <GenericName>Siege Tower</GenericName>
-	<Classes datatype="tokens">Ranged SiegeTower</Classes>
-    <Tooltip>Classes: Ranged SiegeTower.
-Garrison up to 20 infantry inside to increase arrow count from 0 to 10.
+	<VisibleClasses datatype="tokens">Ranged SiegeTower</VisibleClasses>
+    <Tooltip>Garrison up to 20 infantry inside to increase arrow count from 0 to 10.
 Counters: 2x vs. Buildings.
-Countered by: Melee Cavalry.</Tooltip>
+Countered by: Melee Cavalry, Siege.</Tooltip>
   </Identity>
   <Obstruction>
     <Unit radius="4.0"/>
