@@ -7,9 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
+      <Hack>12.0</Hack>
       <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusCavMelee>
 		  <Classes>Cavalry</Classes>
@@ -18,14 +20,16 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>20.0</Hack>
+      <Hack>24.0</Hack>
       <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
+      <MinRange>0.0</MinRange>
 	  <Bonuses>
-		<BonusCharge>
+		<BonusCav>
 		  <Classes>Cavalry</Classes>
 		  <Multiplier>4.0</Multiplier>
-		</BonusCharge>
+		</BonusCav>
 	  </Bonuses>
     </Charge>
   </Attack>

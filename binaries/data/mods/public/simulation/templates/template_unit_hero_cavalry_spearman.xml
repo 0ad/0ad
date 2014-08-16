@@ -30,10 +30,14 @@
 		  <Multiplier>0.5</Multiplier>
 		</CamelStench>
 	  </Bonuses>
-      <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
+      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
     <Charge>
       <Hack>64.0</Hack>
+      <Pierce>0.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>5.0</MaxRange>
+      <MinRange>0.0</MinRange>
 	  <Bonuses>
 		<BonusPrimary>
 		  <Classes>Infantry Ranged</Classes>
@@ -48,6 +52,7 @@
 		  <Multiplier>0.5</Multiplier>
 		</CamelStench>
 	  </Bonuses>
+      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Charge>
   </Attack>
   <Identity>
