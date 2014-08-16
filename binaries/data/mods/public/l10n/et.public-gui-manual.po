@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# unserializable <unserializable@freenet.de>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-25 20:40+0000\n"
+"Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +22,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Info"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Veebimaterjalid"
 
 #: gui/manual/manual.xml:23 (caption)
 msgid "Close"
@@ -32,11 +34,11 @@ msgstr "Sulge"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. mängujuhend"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -47,7 +49,7 @@ msgstr "Täname, et installeerisid 0 A.D.! Siin anname lühikese ülevaate selle
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Graafikaseaded"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +59,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Täisekraan- ja aknarežiimi vahel vahetab Alt + Enter. Aknarežiimis on võimalik akna suurust muuta. Kui mäng töötab liiga aeglaselt, on võimalik muuta mõningaid seadeid konfiguratsioonifailis: vt binaries/data/config/default.cfg mängu installatsioonikaustast ning proovi \"fancywater\" ja \"shadows\" seadete välja lülitamist."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mängimine"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Reaalaja-strateegiamängude sõpradele peaksid mängu- ja kontrollipõhimõtted olema tuttavad. Palju funktsionaalsust on veel puudu ja tasakaalustamata – paremat toimimist võib oodata beetaversioonidest alates."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -101,11 +103,11 @@ msgstr "• Hiirerull või \"+\" ja \"-\" klahvid suumimiseks."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mängurežiimid"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Põhimenüüst pääseb kahte mängužiimi:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Soolomäng[font=\"sans-14\"] — mängimiseks omaenda liivakastis või mõnede tehisvastastega. Tehisvastaste TI on arendamisprotsessis ning ei pruugi olla parimal tasemel, pakkudes siiski võimalust vastasseisude mängimiseks, kui inimesed puuduvad."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multimäng[font=\"sans-14\"] — mängi üle võrgu inimmängijate vastu."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -132,13 +134,13 @@ msgstr "Multimängu ülesseadmiseks peab üks mängijatest tegema \"Loo multimä
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mänguhäälestus"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Multimängus saab mängu häälestusseadeid määrata vaid mängu looja."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -167,15 +169,15 @@ msgstr "Kui olete valmis, vajutage \"Alusta mängu\" nupule."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kiirklahvid:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Alati"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Väljub mängust kinnitust küsimata."
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -215,47 +217,47 @@ msgstr "Shift + F2: Teeb hiiglasliku .bmp vormingus ekraanitõmmise (6400*4800 p
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Mängides"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Vasak-topelt-klikk [üksusel]: valib ekraanil mängija sama tüüpi üksused (k. a. erinevate auastmetega)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Vasak-kolmik-klikk [üksusel]: valib ekraanil mängija sama tüübi ning auastmega üksused"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + topelt-vasak-klikk [üksusel]: valib mängija sama tüüpi üksused kogu kaardil (k.a. erinevate auastmetega)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + kolmik-vasak-klikk [üksusel]: valib mängija sama tüübi ja sama auastmega üksused kogu kaardil"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
-msgstr ""
+msgstr "Shift + F5: Kiirsalvestus"
 
 #: gui/manual/intro.txt:54
 msgid "Shift + F8: Quickload"
-msgstr ""
+msgstr "Shift + F8: Kiirlaadimine"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr ""
+msgstr "F10: Avab/suleb menüü"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12: Peidab/näitab möödunud aja"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
@@ -263,42 +265,42 @@ msgstr "ESC: Sulgeb kõik dialoogid (vestlus, menüü) või tühistab üksuste v
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Enter: Avab/saadab vestlussõnumi"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr ""
+msgstr "T: Saadab sõnumi liitlastele"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr "Peata: peata/jätka mängu"
+msgstr "Pause: Peata/jätka mängu"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr ""
+msgstr "Delete: Hävitab hetkel valitud üksus(ed) & hoone(d)"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ""
+msgstr ",: Valib jõudeolekus sõjaväelased"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ""
+msgstr ".: Valib jõudeolekus töölised (k.a. omakaitseüksused)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: Peatab (halt!) hetkel valitud üksused."
 
 #: gui/manual/intro.txt:65
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1 (jne, kuni Ctrl + 0): Loob valitud üksustest/ehitistest kontrollgrupi 1 (jne, kuni 0)"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1 (jne, kuni 0): Aktiveerib üksused/ehitised kontrollgrupist 1 (jne, kuni 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
@@ -309,13 +311,13 @@ msgstr "Shift + 1 (jne, kuni 0): Lisab valitud üksuste/ehitiste hulka kontrollg
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5 (jne, kuni Ctrl + F8): Märgendab kaamera vaatepositsiooni."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7, and F8: Liigutab kaamera vastavalt märgendatud vaatepositsiooni. Kui kaamera juba asub märgendatud vaatepositsioonil, liigub tagasi eelmisele vaatele."
 
 #: gui/manual/intro.txt:70
 msgid ""
@@ -325,29 +327,29 @@ msgstr "Z, X, C, V, B, N, M: kui valitud on õppehooned, lisa 1., 2., .... jne n
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Muudab hiire toimimist"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + parem-klikk ehitisel: varju"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + paremklikk: lisab liikumise/ehituse/korjamise vms käsujärjekorda"
+msgstr "Shift + parem-klikk: lisab liikumise/ehituse/korjamise vms käsujärjekorda"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + vasakklikk üksuste treenimisel: loob üksuseid viieste rühmadena"
+msgstr "Shift + vasak-klikk üksuste treenimisel: loob üksuseid viieste rühmadena"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + vasakklikk või vasaklohistus kaardil oleval üksusel: lisab üksuse valikusse"
+msgstr "Shift + vasak-klikk või hiire vasak-lohistus kaardil oleval üksusel: lisab üksuse valikusse"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + vasakklikk või vasaklohistus kaardil oleval üksusel: eemaldab üksuse valikust"
+msgstr "Ctrl + vasak-klikk või hiire vasak-lohistus kaardil oleval üksusel: eemaldab üksuse valikust"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
@@ -356,13 +358,13 @@ msgstr "Alt + vasaklohistus kaardil olevatel üksustel: valib vaid sõjaväeüks
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + vasakklikk üksuse/grupi ikoonidel kui valitud on mitut tüüpi üksused: eemaldab need üksused valikust"
+msgstr "Ctrl + vasak-klikk üksuse/grupi ikoonidel kui valitud on mitut tüüpi üksused: eemaldab need üksused valikust"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Paremklikk kui valitud on hoone/hooned: seab sihtpunkti hoonest treenitud või hoonet varjendina kasutanud üksustele."
+msgstr "Parem-klikk kui valitud on hoone/hooned: seab sihtpunkti hoonest treenitud või hoonet varjendina kasutanud üksustele."
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
@@ -370,19 +372,19 @@ msgstr "Ctrl + paremklikk kui on valitud üksused:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "- kui kursor on ehitisel: varjumine"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr " - muidu: rünne"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Lisakihid"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Näitab/peidab GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -406,11 +408,11 @@ msgstr "Alt + Z: Lülita taeva kasutamine"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kaamera liigutamine"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"serif-14\"]W või [ülesnool]: Liiguta vaadet edasi"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -426,42 +428,42 @@ msgstr "D või [paremnool]: Liiguta vaadet paremale"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W või [ülesnool]: Pööra kaameravaadet ülespoole"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S või [allanool]: Pööra kaameravaadet allapoole"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A või [vasaknool]: Pööra kaameravaadet päripäeva"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D või [paremnool]: Päära kaameravaadet vastupäeva"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: Pööra kaameravaadet päripäeva"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E: Pööra kaameravaadet vastupäeva"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + kerimine üles: Pööra kaameravaadet päripäeva"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + kerimine alla: Pööra kaameravaadet vastupäeva"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Järgne valitud üksusele (jälgimise lõpetamiseks liigutada kaamerat)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
@@ -483,15 +485,15 @@ msgstr "Alt + W: lülitu läbi erinevate karkassrežiimide"
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Keskmine hiireklahv või / (kaldkriips): Pööramiseks hoida all ning liigutada hiirt"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Hoone vundamendi paigutamisel"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: pööra hoonet 15 kraadi vastupäeva"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"

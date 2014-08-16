@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# loms126 <loms126@126.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-21 02:56+0000\n"
+"Last-Translator: loms126 <loms126@126.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,12 +33,12 @@ msgstr "%(civilization)s 特点"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
+msgstr[0] "文明奖励"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "团队奖励"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -45,7 +47,7 @@ msgstr "特殊科技"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
+msgstr[0] "特殊建筑"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -61,7 +63,7 @@ msgstr "%(civilization)s 的历史"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "正在打开%(url)s\n在默认浏览器中。请稍后..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
@@ -113,7 +115,7 @@ msgstr "[%(date)s]"
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
@@ -194,7 +196,7 @@ msgstr "退出"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "窗口模式"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
@@ -299,7 +301,7 @@ msgstr "高级水面波浪效果"
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
-msgstr ""
+msgstr "渲染海洋波纹时使用真实法线替代平面贴图。"
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
@@ -486,7 +488,7 @@ msgstr "确认"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "脚本编辑器不可用或加载失败。请查看日志了解详情。"
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -685,7 +687,7 @@ msgstr "声音设置"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
-msgstr ""
+msgstr "大厅设置"
 
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
 msgid "Save"
@@ -868,7 +870,7 @@ msgstr "协助翻译！"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -954,7 +956,7 @@ msgstr "市场"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
-msgstr ""
+msgstr "杂项"
 
 #: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
 #: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
@@ -980,7 +982,7 @@ msgstr "总得分"
 
 #: gui/summary/summary.xml:231 (caption)
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr ""
+msgstr "建筑统计 (建造 / 损失 / 摧毁 )"
 
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
@@ -1097,7 +1099,7 @@ msgstr "素食者\\n比例"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
-msgstr ""
+msgstr "女性化"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
@@ -1113,7 +1115,7 @@ msgstr "继续"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"serif-bold-16\"]感谢您安装 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"

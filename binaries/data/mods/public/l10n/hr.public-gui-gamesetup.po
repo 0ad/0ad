@@ -6,12 +6,14 @@
 # Translators:
 # Bongo <ivanm.ploce@gmail.com>, 2014
 # Chris_Kay_083, 2014
+# TKaucic <tkaucic@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"PO-Revision-Date: 2014-08-13 20:01+0000\n"
+"Last-Translator: TKaucic <tkaucic@hotmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,17 +25,17 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "Umjetna inteligencija će biti onemogućena za ovog igrača."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr "Jako lagano"
+msgstr "Sandbox"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -69,7 +71,7 @@ msgstr "Čudo"
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
@@ -113,88 +115,88 @@ msgid ""
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only. Nonetheless, Petra has now an experimental support for naval"
 " maps."
-msgstr ""
+msgstr "%(warning)s Igrači koje kontrolira računalo ne podržavaju pomorske mape i mogu izazvati ozbiljne poteškoće u performansi. Preporučujemo da na pomorskim mapama igrate samo sa igračima koji su ljudi. Pored toga, Petra ima eksperimentalnu podršku pomorskih mapa."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
-msgstr ""
+msgstr "Upozorenje:"
 
 #: gui/gamesetup/gamesetup.js:113
 msgid "Return to the main menu."
-msgstr ""
+msgstr "Povratak u glavni izbornik."
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Povratak u lobi."
 
 #: gui/gamesetup/gamesetup.js:146
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Skirmish"
 
 #: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:635
 #: gui/gamesetup/gamesetup.js:1223
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Nasumično"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "Scenario"
-msgstr ""
+msgstr "Scenarij"
 
 #: gui/gamesetup/gamesetup.js:150 gui/gamesetup/gamesetup.js:1129
 #: gui/gamesetup/gamesetup.js:1206
 msgid "Default"
-msgstr ""
+msgstr "Uobičajeno"
 
 #: gui/gamesetup/gamesetup.js:151
 msgid "Naval Maps"
-msgstr ""
+msgstr "Pomorske mape"
 
 #: gui/gamesetup/gamesetup.js:152
 msgid "Demo Maps"
-msgstr ""
+msgstr "Demo mape"
 
 #: gui/gamesetup/gamesetup.js:153
 msgid "All Maps"
-msgstr ""
+msgstr "Sve mape"
 
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ništa"
 
 #: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "Nasumično"
 
 #: gui/gamesetup/gamesetup.js:759 gui/gamesetup/gamesetup.js:876
 msgid "You"
-msgstr ""
+msgstr "Vi"
 
 #: gui/gamesetup/gamesetup.js:953
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1092 gui/gamesetup/gamesetup.xml:110 (caption)
 msgid "Map Size:"
-msgstr ""
+msgstr "Veličina mape:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr "Otkrivena  karta:"
+msgstr "Otkrivena  mapa:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr "Istražena karta:"
+msgstr "Istražena mapa:"
 
 #: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -224,11 +226,11 @@ msgstr "Ne"
 
 #: gui/gamesetup/gamesetup.js:1224
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Nasumice odabire mapu sa popisa"
 
 #: gui/gamesetup/gamesetup.js:1231
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Nema opisa."
 
 #: gui/gamesetup/gamesetup.js:1237
 #, python-format
@@ -241,7 +243,7 @@ msgstr[2] ""
 #: gui/gamesetup/gamesetup.js:1377
 #, python-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1382
 msgid "Unassigned"
@@ -251,37 +253,37 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1610
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1587
 #, python-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s se pridružio/la"
 
 #: gui/gamesetup/gamesetup.js:1592
 #, python-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s je izašao/la"
 
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1598
 #, python-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1604
 #, python-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "%(username)s je spreman/na!"
 
 #: gui/gamesetup/gamesetup.js:1606
 #, python-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "%(username)s nije spreman/na."
 
 #: gui/gamesetup/gamesetup.js:1610
 msgid "Game settings have been changed"
@@ -310,60 +312,60 @@ msgstr "Izjavi kako prihavćaš trenutne postavke i kako si spreman za igru!"
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Igra od %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Povezivanje s poslužiteljem..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Mrežna poruka: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registriram se na poslužitelja..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Igra je već počela. Ponovo se pridružujem..."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
-msgstr ""
+msgstr "Naziv igre je već u upotrebi."
 
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Igra igrača %(playername)s"
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Učitavam “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Generiram “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr ""
+msgstr "AI konfiguracija:"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "AI igrač:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "AI težina:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "Odustani"
 
 #: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:366
 #: (caption)
@@ -372,15 +374,15 @@ msgstr "OK"
 
 #: gui/gamesetup/gamesetup.xml:15 (caption)
 msgid "Match Setup"
-msgstr ""
+msgstr "Postavke meča"
 
 #: gui/gamesetup/gamesetup.xml:21 (caption)
 msgid "Loading"
-msgstr ""
+msgstr "Učitavam"
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Učitavam podatke mape. Molimo pričekajte..."
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
@@ -404,19 +406,19 @@ msgstr "Ekipa"
 
 #: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
-msgstr ""
+msgstr "Označi igrača."
 
 #: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Konfiguriraj AI postavke."
 
 #: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Odaberi civilizaciju igrača."
 
 #: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
-msgstr ""
+msgstr "Odaberi ekipu igrača."
 
 #: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Map Type:"
@@ -424,11 +426,11 @@ msgstr "Tip Mape:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
-msgstr ""
+msgstr "Filter mape:"
 
 #: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
-msgstr ""
+msgstr "Odaberi mapu:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
@@ -436,52 +438,52 @@ msgstr "Broj Igrača:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
-msgstr ""
+msgstr "Odaberite vrstu mape."
 
 #: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
-msgstr ""
+msgstr "Odaberite filter mape."
 
 #: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Odaberite mapu na kojoj biste igrali."
 
 #: gui/gamesetup/gamesetup.xml:157 (tooltip)
 msgid "Select number of players."
-msgstr ""
+msgstr "Odaberite broj igrača."
 
 #: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Odaberite veličinu mape. (Veće mape mogu usporiti performanse.)"
 
 #: gui/gamesetup/gamesetup.xml:187 (caption)
 msgid "Send"
-msgstr ""
+msgstr "Pošalji"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
-msgstr ""
+msgstr "[Tooltip text]"
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
-msgstr ""
+msgstr "Započni igru!"
 
 #: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Započni novu igru sa trenutnim postavkama."
 
 #: gui/gamesetup/gamesetup.xml:231 (caption)
 msgid "Back"
-msgstr ""
+msgstr "Natrag"
 
 #: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
 #: (caption)
 msgid "More Options"
-msgstr ""
+msgstr "Više postavki"
 
 #: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
-msgstr ""
+msgstr "Pogledaj više postavki igre"
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
@@ -545,7 +547,7 @@ msgstr "Uključite ili isključite mogućnost ocjenjivanja igre za tablicu najus
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
-msgstr ""
+msgstr "Zatvori prozor s više postavki igre"
 
 #: gui/gamesetup/gamesetup_mp.xml:19 (caption)
 msgid "Multiplayer"
@@ -553,51 +555,51 @@ msgstr "Više igrača"
 
 #: gui/gamesetup/gamesetup_mp.xml:25 (caption)
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Pridružujem se postojećoj igri."
 
 #: gui/gamesetup/gamesetup_mp.xml:29 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:72 (caption)
 msgid "Player name:"
-msgstr ""
+msgstr "Ime igrača:"
 
 #: gui/gamesetup/gamesetup_mp.xml:39 (caption)
 msgid "Server Hostname or IP:"
-msgstr ""
+msgstr "Naziv ili IP poslužitelja:"
 
 #: gui/gamesetup/gamesetup_mp.xml:49 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:95 (caption)
 msgid "Continue"
-msgstr ""
+msgstr "Nastavi"
 
 #: gui/gamesetup/gamesetup_mp.xml:67 (caption)
 msgid "Set up your server to host."
-msgstr ""
+msgstr "Postavite svojeg poslužitelja."
 
 #: gui/gamesetup/gamesetup_mp.xml:84 (caption)
 msgid "Server name:"
-msgstr ""
+msgstr "Naziv poslužitelja:"
 
 #: gui/gamesetup/gamesetup_mp.xml:115 (caption)
 msgid "[Connection status]"
-msgstr ""
+msgstr "[Status konekcije]"
 
 #: gui/loading/loading.xml:48 (caption)
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Citat dana:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Bogata budala je težak teret.\" - Eshil"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"Od nje [smrti] same sve sile rajskih uvjerenja drže se po strani.\" - Eshil"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Bolje biti nego praviti se.\" - Eshil, \"Sedmorica protiv Tebe\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -609,17 +611,17 @@ msgstr ""
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"U srcu svakog tiranina izvire otrov zbog kojeg ne može vjerovati prijatelju.\" - Eshil, \"Okovani Prometej\""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"Vrijeme kako stari podučava sve stvari.\" - Eshil, \"Okovani Prometej\""
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"Mudrost dolazi kroz patnju...Usluge dolaze nama od bogova.\" - Eshil, \"Agamemnon\""
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -641,49 +643,49 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"Svaka isprika će poslužiti tiraninu.\" - Ezop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"Bolje biti mudar od tuđih nesreća nego od svojih.\" - Ezop"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr ""
+msgstr "\"Poznavanje stvara prezir, a poznanstvo omekšava predrasude.\" - Ezop"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "\"Lako je biti hrabar sa sigurne udaljenosti.\" - Ezop"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr ""
+msgstr "\"Štedljivost je kada spremiš danas ono što ćeš trebati sutra.\" - Ezop"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr ""
+msgstr "\"Fino perje ne pravi finu pticu.\" - Ezop"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
-msgstr ""
+msgstr "\"Nikad ne vjeruj savjetu čovjeka u nevolji.\" - Ezop"
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "\"Uvjeravanje je često korisnije od sile.\" - Ezop"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "\"Uobraženost može voditi do samouništenja.\" - Ezop"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"Polako i sigurno pobjeđuje utrku.\" - Ezop"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"Bogovi pomažu onima koji pomažu sami sebi.\" - Ezop"
 
 #: gui/text/quotes.txt:22
 msgid ""

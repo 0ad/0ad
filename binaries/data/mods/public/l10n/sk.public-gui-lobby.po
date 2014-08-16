@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# empy <martinplavala@gmail.com>, 2014
+# Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-07-29 17:10+0000\n"
+"Last-Translator: Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -79,7 +82,7 @@ msgstr "Ospravedlňujeme sa, popis nie je k dispozícií."
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Adresa hry '%(ip)s' je neplatná."
+msgstr "Adresa hry \"%(ip)s\" vyzerá byť neplatná."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -104,7 +107,7 @@ msgstr "%(oldnick)s sa odteraz volá %(newnick)s."
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Ospravedlňujeme sa, príkaz '%(cmd)s' nie je podporovaný."
+msgstr "Ospravedlňujeme sa, príkaz \"%(cmd)s\" nie je podporovaný."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
@@ -162,7 +165,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Prosím posielajte nevyžiadané správy (spam). Boli ste zablokovaný na 30 sekúnd."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -170,7 +173,7 @@ msgstr "Pripájam sa..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Registrujem vás..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
@@ -178,7 +181,7 @@ msgstr "Zadajte, prosím, svoje používateľské meno"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Užívateľské meno nesmie obsahovať hranaté zátvorky, znaky unicode, medzery, alebo čiarky"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -222,7 +225,7 @@ msgstr "Podmienky použitia"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Lobby hry viac hráčov"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
@@ -297,7 +300,7 @@ msgstr "Späť"
 
 #: gui/lobby/lobby.xml:218 (caption)
 msgid "Update"
-msgstr ""
+msgstr "Aktualizovať"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -309,7 +312,7 @@ msgstr "Prihlásiť sa do existujúceho účtu"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Pripájam sa do herného lobby"
 
 #: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
@@ -337,93 +340,93 @@ msgstr "Zrušiť"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Servisné požiadavky pre lobby hry viacerých hráčov"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definície:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"Službou\" sa nazýva lobby hry viac hráčov, poskytované spoločnosťou Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"Vy\" ste používateľ služby."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"My\" sme spolok všetkých členov tímu Wildfire games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Hodnotenie\" je proces analyzovania rôznych štatistík používateľa za účelom vytvorenia jednotného a prehľadného skóre."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Moderovanie\" je proces vynucovania podmienok používania."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Používaním služby sa zaväzujete k:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Dodržiavať všetky podmienky používania."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Povoľujete zber vašich štatistík za účelom hodnotenia používateľa a komunity."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Taktiež si vyhradzujeme právo k:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Moderovať službu."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Povoľovať druhým moderovať službu."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Zrušiť, alebo pozastaviť fungovanie služby v ľubovoľnom čase a na ľubovoľne dlhú dobu a bez predošlého oznámenia."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Hocikedy zmeniť službu, aj bez predošlého oznámenia."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Vymazať hociktoré, alebo všetky dáta služby, hocikedy a bez predošlého oznámenia."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Zbierať a zhromažďovať údaje o používateľoch služby, aj také, na základe ktorých je možné používateľa identifikovať, hocikedy a to najmä za účelom:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Súkromnej analýzy spoločnosťou Wildfire Games (WFG) a pridružených spoločností."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Zverejňovania anonymných údajov."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -431,66 +434,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Hocijak a hocikedy meniť tento dokument, pod podmienkou, že používateľovi služby budú zmeny vhodne oznámené (definícia vhodného oznámenia bude rozhodnutá načas, členmi tímu Wildfire Games (WFG) )."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Podmienky použitia pre lobby hry viacerých hráčov"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"Vydávať sa za\" znamená vykonávať činnosť, pri ktorej sa snažíte privlastniť si identitu iného používateľa, alebo presvedčiť ostatných, že ste iný používateľ, či osoba."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Posielať nevyžiadané správy\" znamená posielať nevhodné, alebo obťažujúce správy väčšiemu počtu používateľov."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Hodnotenie\"  má význam prehľadného používateľského skóre."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Hodnotené hry\" sú hry, následkom ktorých sa menia štatistiky používateľov."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Súhlasíte s tým, že:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Vytvorite len jeden účet pre jedného človeka, okrem prípadov, keď budete mať povolenie od člena tímu Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Nebudete posielať, ani uverejňovať znevažujúce vyhlásenia, pornografiu, nevhodný humor, alebo diskriminujúce vyhlásenia."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Nebudete ponižovať ostatných používateľov služby."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Nebudete používať službu k reklame produktov, tovaru, či služieb."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Nebudete napodobovať iného používateľa služby."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Nebudete posielať nevyžiadané správy."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -498,13 +501,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Nebudete sa snažiť manipulovať so štatistikami žiadneho používateľa, vrátane vás. (Príklady manipulovania so štatistikami sú: podvádzanie v hodnotených hrách, manipulácia so službou, alebo zneužívanie iných používateľov služby.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8.Dovolíte odstránenie vašeho konta a iných údajov zo služby, hocikedy, keď moderátor služby rozhodne, že vaše správanie porušuje tieto pravidlá."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -512,4 +515,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Hocijak a hocikedy meniť tento dokument, pod podmienkou, že používateľovi služby budú zmeny vhodne oznámené (definícia vhodného oznámenia bude rozhodnutá načas, členmi tímu Wildfire Games (WFG) )."

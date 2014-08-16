@@ -7,6 +7,7 @@
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
@@ -14,7 +15,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"PO-Revision-Date: 2014-07-29 18:10+0000\n"
+"Last-Translator: Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -39,7 +41,7 @@ msgstr "Strieborné sovy"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Bane v Laureione v Attice poskytujú aténčanom množstvo striebra z ktorého razia svoje známe a vysoko cenené mince, Aténske sovy."
+msgstr "Laurionské bane v Atike poskytovali Aténam strieborné bohatstvo, z ktorého razili svoje známe a vysoko cenené mince, na ktorých bola vyobrazená Aténina sova."
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -63,7 +65,7 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "Gréci boli veľmi úspešný v Helenizácií rôznych cudzincov. Počas helénskeho obdobia bola gréčtina medzinárodný jazyk, ktorým sa hovorilo od Španielska až po Indiu."
+msgstr "Gréci boli veľmi úspešní v helenizácii rôznych cudzincov. Počas helénskeho obdobia bola gréčtina medzinárodným jazykom, ktorým sa hovorilo od Španielska až po Indiu."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
@@ -81,7 +83,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Krátko po veľkých námorných víťazstvách v bitkách pri Salamis a Mykale sa grécke mestské štáty v roku 478 pr. n. l. spojili do Délijskej ligy, ktorej účelom bolo vytlačiť Peržanov z egejskej oblasti. Spriatelené štáty prispeli loďami a peniazmi, zatiaľ čo Aténčania ponúkli celé ich loďstvo."
+msgstr "Krátko po veľkých námorných víťazstvách v bitkách pri Salamis a Mykalé sa grécke mestské štáty v roku 478 pr. n. l. spojili do takzvanej Délijskej ligy, ktorej účelom bolo vytlačiť Peržanov z egejskej oblasti. Spriatelené štáty prispeli loďami a peniazmi, zatiaľ čo Aténčania ponúkli dokonca celé svoje loďstvo."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -118,23 +120,23 @@ msgstr "Thúkýdidés"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Alkibiadés"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Miltiadés"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Kleón"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Kleofón"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Thrasybulus"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
@@ -142,21 +144,21 @@ msgstr "Iphikrates"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Demostenes"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Aténske tirémy môžu trénovať Námornú pechotu (Epibastes Athenaikos)."
+msgstr "Aténske trirémy môžu trénovať námornú pechotu (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr "Iphicrateanove reformy"
+msgstr "Iphikratovské reformy"
 
 #: civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "Kamenné múry môžu byť postavené na neutrálnom území. Doba výstavby múrov sa zníži o 50%."
+msgstr "Kamenné hradby môžu byť postavené na neutrálnom území. Doba výstavby hradieb je znížená o 50%."
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -168,13 +170,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Dlhé múry Atén boli postavené pod záštitou prefíkaného Themistoklesa a rozšírené o 6 kilometrov dlhý úsek až po prístav Pireus. Toto zabezpečovalo mestské zásobovacie trasy a zabránilo nepriateľom počas obliehania mesto vyhladovať."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Hráč získava schopnosť zoradiť jednotky vyzbrojené kopijami do formácie Falanga poskytujúcej väčší útok a zbroj."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -188,7 +190,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "Klasická falangová formácia bola vyvinutá okolo VIII storočia pred Kristom.  Bola osem mužov hlboká a až osemsto mužov široká. Muži prekrývajúci ich štítmi, prezentovali impozantnú štítovú hradbu plnú 8 chodidiel dlhých oštepov.."
+msgstr "Klasická falangová formácia bola vyvinutá okolo VIII. storočia pred Kristom.  Bola osem mužov hlboká a až osemsto mužov široká. Muži v jej vnútri si navzájom prekryli štíty, prezentujúc tak impozantnú štítovú hradbu plnú 8 stôp dlhých oštepov.."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 #: civs/hele.jsonFactions[0].Heroes[0].History
@@ -203,7 +205,7 @@ msgstr "Generál, ktorý presvedčil Aténčanov investovať ich príjem zo stri
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Perikles bol najpoprednejším aténskym politikom 5. storočia pred Kristom."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -235,7 +237,7 @@ msgstr "Divadlo"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Civilizačný bonus Helenizácia. Postavenie divadla zväčší územný vplyv všetkých budov o 25%."
 
 #: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
 #: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
@@ -253,13 +255,13 @@ msgstr "Gymnazión"
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Trénuje jednotky šampiónov a skúma technológie týkajúce sa jednotiek šampiónov."
+msgstr "Trénuje jednotky šampiónov a s nimi súvisiace technológie."
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr "Gymnazión bolo v helénskych mestách životne dôležitým miestom, kde sa konali telesné cvičenia a nadväzoval sociálny kontakt."
+msgstr "Gymnazión bol v helénskych mestách veľmi dôležitým miestom, kde sa konali telesné cvičenia a nadväzoval sociálny kontakt."
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
@@ -267,7 +269,7 @@ msgstr "Prytaneión"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Trénuje hrdinov a skúma technológie týkajúce sa hrdinov."
+msgstr "Trénuje hrdinov a skúma s nimi súvisiace technológie."
 
 #: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
 msgid ""
@@ -355,35 +357,35 @@ msgstr "Boudica"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Prasutagus"
 
 #: civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Venutius"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Commius"
 
 #: civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellaunus"
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
@@ -406,7 +408,7 @@ msgstr "Briti si zvykli buď robiť na svoje telá trvalé značky vo forme teto
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Zvyšuje výškový bonus jednotiek nachádzajúcich sa vo veži."
+msgstr "Zvýši výškový bonus jednotiek nachádzajúcich sa vo veži."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -419,7 +421,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr "'Veľká veža'; keltské legendy sú plné príbehov o masívnych vysokých vežiach postavených najmocnejšími kráľmi, pozostatky niektorých z nich sa dokonca aj našli."
+msgstr "\"Veľká veža\"; keltské legendy sú plné príbehov o masívnych vysokých vežiach postavených najmocnejšími kráľmi, pozostatky niektorých z nich sa dokonca aj našli."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -439,7 +441,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr "Rímske meno Caractacus je jednoducho iba obmena z jeho skutočného Karatakos, pričom však bola vyrazená na jeho mnohých, mnohých minciach. Pod týmto menom vošiel do histórie ako divoký obranca Británie proti Rimanom po ich invázii v roku 43 po Kristovi. Ako syn kráľa Kunobeliosa z Catuvellauniskej kmeňovej konfederácie bojoval proti Rimanom deväť rokov iba s malým úspechom, nakoniec sa rozhodol uchýliť ku kmeňom vo Walese, kde však bol už definitívne porazený. Nakoniec vstúpil do Severnej Británie, kde bol odovzdaný do rúk Rimanom. Zobrali ho do Ríma, cisár Claudius mu udelil milosť a tak nakoniec zomrel v Taliansku. Tradícia hovorí o tom, že rovnako ako jeho žena konvertoval na kresťanskú vieru, ale tento fakt doposiaľ nebol ničím potvrdený. Pravdepodobne viac zaujímavejšie je to, že mu po jeho zajatí nevzali život. Bežným postupom Rimanov v takýchto záležitostiach totiž bola exemplárna poprava. Vtedy bol na vlastnú žiadosť predvedený pred cisára a senát za účelom vlastnej obhajoby. Čo im povedal sa presne nevie, ale podľa Tacitusa to bol slávny prejav..."
+msgstr "Rímske meno Caractacus je jednoducho iba obmena z jeho skutočného Karatakos, pričom však bola vyrazená na jeho mnohých, mnohých minciach. Pod týmto menom vošiel do histórie ako divoký obranca Británie proti Rimanom po ich invázii v roku 43 po Kristovi. Ako syn kráľa Kunobelinosa z Catuvellauniskej kmeňovej konfederácie bojoval proti Rimanom deväť rokov iba s malým úspechom, potom sa rozhodol uchýliť ku kmeňom vo Walese, kde však bol už definitívne porazený. Nakoniec vstúpil do Severnej Británie, kde bol odovzdaný do rúk Rimanom. Zobrali ho do Ríma, cisár Claudius mu udelil milosť a tak nakoniec zomrel v Taliansku. Tradícia hovorí o tom, že rovnako ako jeho žena konvertoval na kresťanskú vieru, ale tento fakt doposiaľ nebol ničím potvrdený. Pravdepodobne viac zaujímavejšie je to, že mu po jeho zajatí nevzali život. Bežným postupom Rimanov v takýchto záležitostiach totiž bola exemplárna poprava. Vtedy bol na vlastnú žiadosť predvedený pred cisára a senát za účelom svojej obhajoby. Čo im povedal sa presne nevie, ale podľa Tacitusa to bol slávny prejav..."
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 #: civs/celt.jsonFactions[0].Heroes[1].History
@@ -521,7 +523,7 @@ msgid ""
 "slaughtered as they could not withdraw to safety. Boudicca herself escaped, "
 "and then slew her daughters, and then herself, to avoid further shame at "
 "Roman hands."
-msgstr ""
+msgstr "Ammianus Marcellinus opísal, aké náročné by pre skupinu cudzincov bolo vysporiadať sa s Keltom v prípade, že by si zavolal na pomoc svoju manželku. Tá totižto bola silnejšia ako on a mohla ich zasypať údermi a kopancami silovo sa rovnajúcimi strelám z katapultu. Boudica, kráľovná Icenov, vraj bola \"veľmi vysoká a na pohľad desivá; jej hlas bol veľmi drsný a cez plecia jej padala veľká hromada červených vlasov\". Mala na sebe tuniku mnohých farieb, o ktorú bol brošňou pripevnený hrubý plášť. Boudica v skutočnosti najprv bola spolu so svojim manželom, Prasutagusom, kráľom Icenov, spojenkyňou Ríma. Prasutagus bol po krátkom povstaní blízkym rímskym spojencom, uznávali ho ako veľmi predvídavého človeka a umožnili mu slobodne vládnuť jeho kráľovstvu podľa tamojších tradícii, s jedinou výnimkou. Pred svojou smrťou sa dohodol so svojou manželkou a podriadenými, že jeho dcéry budú mať na starosti pod Boudiciným dohľadom až do svojej dospelosti fyzický chod územia, zatiaľ čo rímsky cisár bude jeho skutočným vládcom, bude vyberať dane a bude mať možnosť požiadať o vojenskú pomoc. Z veľkej časti teda to, čo mohol robiť aj dovtedy. Problém spočíval v tom, že Rimania neuznávali ženských dedičov a teda prehlásili cisárov nárok na Icenské kráľovstvo za jediný oficiálne platný. Ďalej uviedli, vraj bolo  normálnou rímskou tradíciou zachovať nezávislosť klientského kráľovstva iba po dobu života jeho počiatočného kráľa, ako sa to napríklad stalo v Gálii. Ríša teda formálne kráľovstvo zabrala a začala hneď vyberať kruté dane odvolávajúc sa na to, že Prasutagus mal voči nej dlh, pretože si počas života zobral niekoľko úverov, ktoré potom odmietal splatiť. Na Boudicinu sťažnosť súvisiacu s takýmto zaobchádzaním a odporom voči poslednej vôli jej manžela sa odpovedalo brutalitou; rímski vojaci ju zbičovali a jej dcéry, vtedy ešte iba deti, boli znásilnené. Boudica a jej poddaní boli z takéhoto zahanbenia kráľovnej a detí rozzúrení.  Kedže rímsky guvernér Británie bol práve zaujatí druidmi v Kambrii, dnešnom Walese, Boudica bola schopná prilákať na svoju stranu viac následovníkov aj mimo radov Icenov spolu s rastúcim rozčarovaním z Rimanov u ostatných kmeňov. Ona a jej armáda vyplienili tri mestá a porazili rímsku légiu, čím pripomenuli skutky Arminia, Germána, ktorý vyčistil svoje územia od Rimanov a aj tie svojich vlastných predkov, ktorí o storočie skôr odohnali Cézara. Porazená vďaka veľkému taktickému omylu v bitke pri Watling Street, vďaka ktorému bolo mnoho z jej síl zavraždených, pretože nemohli ustúpiť do bezpečia. Samotná Boudica utiekla, potom zabila svoje dcéry a nakoniec seba samu, aby zabránila ďalšej potupe v rukách Rimanov."
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
@@ -551,7 +553,7 @@ msgstr "Kartáginci"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "Kartáginské hradby, brány a veže majú 3x toľko zdravia čo klasické hradby, avšak stavajú sa 2x tak dlho."
 
 #: civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -566,22 +568,22 @@ msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Náklady na zdroje za výcvik jednotiek jazdcov (jazda a bojové slony) sú o 5% nižšie za každé príslušné zviera v ohrade."
+msgstr "Cena výcviku jednotiek na slonoch (vojnové slony) alebo koňoch (jazdci) je znížená o 5% za každé chytené zviera (podľa potreby)."
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
-msgstr "Súhrn"
+msgstr "Zhromažďovanie"
 
 #: civs/cart.jsonCivBonuses[1].History
 msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "Na rozdiel od Pyrenejského poloostrova bola severná Afrika známa ako zem koní, schopná vychovať až 100 000 koní ročne. Tiež bola domovom severoafrického lesného slona."
+msgstr "Rovnako ako Pyrenejský polostrov bola severná Afrika známa ako  krajina koní, schopná vychovať až 100 000 jazdeckých koní ročne. Tiež bola domovom severoafrického lesného slona."
 
 #: civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
-msgstr "+33% obchodné výnosy na medzinárodných trasách."
+msgstr "+33% výnosy z obchodu na medzinárodných trasách."
 
 #: civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -591,7 +593,7 @@ msgstr "Majstri obchodu"
 msgid ""
 "The Phoenicians and Carthaginians were broadly known as the greatest trading"
 " civilization of the ancient and classical world."
-msgstr ""
+msgstr "Féničania a Kartáginci boli široko-ďaleko známi ako najväčšia obchodnícka civilizácia starovekého a klasického sveta."
 
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
@@ -603,15 +605,15 @@ msgstr "Hamilkar Barkas"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Hasdrubal Bakas"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Hasdrubal Gisko"
 
 #: civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "Hanno Starší"
 
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
@@ -619,47 +621,47 @@ msgstr "Maharbal"
 
 #: civs/cart.jsonAINames[6]
 msgid "Mago Barca"
-msgstr ""
+msgstr "Mago Barkas"
 
 #: civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr ""
+msgstr "Hasdrubal Krásny"
 
 #: civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
-msgstr ""
+msgstr "Hanno Veľký"
 
 #: civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Himilco"
 
 #: civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr ""
+msgstr "Hampsicora"
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hannibal Gisco"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "Dido"
 
 #: civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr ""
+msgstr "Xantipus"
 
 #: civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
-msgstr ""
+msgstr "Himilco Phameas"
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "Hasdrubal Boetharch"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr ""
+msgstr "Dohľad všetkých obchodníkov a lodí sa zvýši o 25%."
 
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
@@ -674,7 +676,7 @@ msgstr "Nikto nevedel lepšie ako Kartágijci, kde v starovekom svete išli a ka
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr ""
+msgstr "Čas stavby administratívnych centier, chrámov a domov sa zníži o 25%."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -684,7 +686,7 @@ msgstr "Kolonizácia"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Kartáginci založili mnoho centier obchodu ako kolónii a napokon sami vládli nad vyše 300 mestami a obcami v severnej Afrike."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -712,7 +714,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "Maharbal bol drzým mladým veliteľom kavalérie Hannibala Barkasa počas 2. púnskej vojny. Pripisuje sa mu rotácia krídla légii v Cannae, čo malo za následok porážku, pri ktorej zahynulo 30.000 z 50.000 Rimanov, tak isto ako aj ďalšie významné víťazstvá v mnohých bitkách tejto vojny. Známy je najmä za svoj výrok po bitke o Cannae, 'Hannibal, vieš víťaziť, ale nevieš to víťazstvo využiť.'"
+msgstr "Maharbal bol drzým mladým veliteľom jazdy Hannibala Barkasa počas 2. púnskej vojny. Pripisuje sa mu rotácia krídla légii v Cannae, čo malo za následok porážku, pri ktorej zahynulo 30.000 z 50.000 Rimanov, tak isto ako aj ďalšie významné víťazstvá v mnohých bitkách tejto vojny. Známy je najmä za svoj výrok po bitke o Cannae, \"Hannibal, vieš víťaziť, ale nevieš to víťazstvo využiť.\""
 
 #: civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
@@ -720,13 +722,13 @@ msgstr "Námorná lodenica"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr ""
+msgstr "Buduje mocné vojnové lode kartáginského námorníctva."
 
 #: civs/cart.jsonStructures[0].History
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr ""
+msgstr "Stavba je založená na centrálnom ostrove vnútorného prístavu tak, aby v nej bolo možné uschovať flotilu kartáginského námorníctva v Kartágu."
 
 #: civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
@@ -734,7 +736,7 @@ msgstr "Keltské veľvyslanectvo"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr "Najať keltských žoldnierov."
+msgstr "Najíma keltských žoldnierov."
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
@@ -742,11 +744,11 @@ msgstr "Keltovia poskytovali kartágijskej armáde divokých žoldnierskych bojo
 
 #: civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr "Italické veľvyslanectvo"
+msgstr "Italiotské veľvyslanectvo"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
-msgstr "Najať italických žoldnierov."
+msgstr "Najíma italických žoldnierov."
 
 #: civs/cart.jsonStructures[2].History
 msgid ""
@@ -761,12 +763,12 @@ msgstr "Iberské veľvyslanectvo"
 
 #: civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
-msgstr "Najať iberských žoldnierov."
+msgstr "Najíma iberských žoldnierov."
 
 #: civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr "Iberovia boli známi ako neľútostní žoldnieri verní svojím pokladníkom."
+msgstr "Iberi boli známi ako neľútostní žoldnieri verní svojím pokladníkom."
 
 #: civs/cart.jsonHistory
 msgid ""
@@ -784,33 +786,33 @@ msgstr "Kelti"
 
 #: civs/celt.jsonFactions[0].Description
 msgid "British Isles"
-msgstr ""
+msgstr "Britské ostrovy"
 
 #: civs/celt.jsonFactions[1].Technologies[0].Description
 msgid ""
 "A set amount of ore and food from every structure destroyed or captured "
-msgstr ""
+msgstr "Isté množstvo rudy a jedla získané z každej zničenej alebo obsadenej stavby."
 
 #: civs/celt.jsonFactions[1].Technologies[0].Name
 #: civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Uae Uictos"
-msgstr ""
+msgstr "Uae Uictos"
 
 #: civs/celt.jsonFactions[1].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
-msgstr ""
+msgstr "Znamená \"Beda porazeným\". Boli to slová galského vodcu Brennosa vyrieknuté pri Kapitule v Ríme potom, čo si on a jeho ľudia zobrali svoju korisť."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "Galskí druidi získavajú malý útok nablízko."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
-msgstr ""
+msgstr "Karnutovia"
 
 #: civs/celt.jsonFactions[1].Technologies[1].History
 #: civs/gaul.jsonFactions[0].Technologies[1].History
@@ -818,7 +820,7 @@ msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
-msgstr ""
+msgstr "Karnutovia boli druidi z Aulercie. Keď bolo treba, bojovali, a z veľkej časti boli zodpovední aj za odvrátenie belgických nájazdov do Armoriky a Aulercie."
 
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
@@ -837,12 +839,12 @@ msgid ""
 " Marcellus, would be a fitting offering to the gods. He charged the Gaul, "
 "pierced his bright breastplate and cast him to the ground. It was an easy "
 "task to kill Britomartos and strip him of his armor."
-msgstr ""
+msgstr "Keď keltské armády stretli nepriateľa, ešte pred začiatkom bitky zvykol ich vodca ísť do prvej línie a vyzvať najstatočnejších nepriateľských bojovníkov do duelu. Typickým príkladom takéhoto stretnutia bol príbeh ako Marcus Claudius Marcellus zabil galského veliteľa pri Clastidiu (222 pred Kristom). Idúc s neveľkou armádou narazil Marcellus na spojené sily Insubrianov a Gaesatae neďaleko Clastidia. Galská armáda mala ako vždy veľmi naponáhlo, jej členovia vydávali desivé zvuky a ich kráľ, Britomartos si spomedzi svojich nepriateľov vybral práve Marcella kvôli jeho odznakom hodností, krikom ho vyzývajúc a mávajúc kopijou. Britomartos bol na bojisku výnimočnou osobnosťou, nielen kvôli svojej veľkosti ale taktiež aj kvôli  vzhľadu; oblečený vo svetlých farbách pôsobil veľkolepo a jeho zbroj sa leskla zlatom a striebrom. Táto zbroj by bola dobrou obeťou bohom, pomyslel si Marcellus. Vrhol sa na Gala, prebodol jeho lesklý pancier a zrazil ho k zemi. Bolo ľahké Britomartosa zabiť a vyzliecť ho z brnenia."
 
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
-msgstr ""
+msgstr "Britomartos"
 
 #: civs/celt.jsonFactions[1].Heroes[1].History
 #: civs/gaul.jsonFactions[0].Heroes[1].History
@@ -866,12 +868,12 @@ msgid ""
 "and Bran are often muddled with the earlier brothers Belinus and Brennus "
 "(the sons of Dunvallo Molmutius) who contended for power in northern Britain"
 " in around 390 B.C., and were regarded as gods in old Celtic tradition."
-msgstr ""
+msgstr "Brennus je meno, ktoré dali rímski historici slávnemu galskému vodcovi, ktorému sa v časoch Camilla podarilo obsadiť Rím. Podľa Geoffreyho z Monmouthu, klerika, ktorý napísal dielo \"História kráľov Británie\", Brennus a jeho brat Belinus napadli Galov a v roku 390 pred Kristom vyplienil Rím, dokazujúc tak, že Briti ovládli Rimanov, najväčšiu civilizáciu na svete, omnoho skôr, než sa Rimanom podarilo ovládnuť Britov. Z mnohých starovekých prameňov starších než Geoffrey vieme, že Rím síce bol vyplienený, ale v roku 387 a nie 390, a  že onen nájazd bol vedený mužom s menom Brennos (to bolo polatinčené na Brennus), ale on a jeho muži boli galskí Senóni, nie Briti. Na tomto je možné vidieť niekoľko prvkov Geoffreyho odlišnej interpretácie: prispôsobil si historického Brennusa/Brennosa, vymyslel brata Belina, požičal galskú inváziu, ale zato vynechal časti, kde Kelti pôsobili slabo alebo hlúpo. Takže niečo pridal a niečo odobral. Rovnako ako príbeh o Tróji, ani tento o vyplienení Ríma nie je čistým výmyslom, ale iba tvorivým preusporiadaním dostupných faktov s pridaním určitých detailov. Na základe ich historickej asociácie sú Beli a Bran často zamieňaní za ich predchodcov, bratov Belina a Brenna (synov Dunvalla Molmutia), ktorí okolo roku 390 pred Kristom zápasili v severnej Británii o moc a v starej keltskej tradícii boli považovaní za bohov."
 
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennos"
-msgstr ""
+msgstr "Brennos"
 
 #: civs/celt.jsonFactions[1].Heroes[2].History
 #: civs/gaul.jsonFactions[0].Heroes[2].History
@@ -885,12 +887,12 @@ msgid ""
 "was. Because we only know of him from Roman sources we don't know much about"
 " Vercingetorix as a child or young man, except that perhaps he was probably "
 "very high spirited and probably gained some renown in deeds."
-msgstr ""
+msgstr "Vercingetorix (galsky: Ver-Rix Cingetos) bol náčelníkom kmeňa Arvernov v Gálii (dnešnom Francúzsku). Začínajúc rokom 52 pred Kristom viedol vzburu proti útočiacim Rimanom pod velením Juliusa Cézara, pričom na jeho činy počas tejto vzbury sa spomína dodnes. Vercingetorix sa pravdepodobne narodil blízko hlavného mesta jeho kmeňa (Gergovie). Z toho mála informácii čo máme, vieme, že sa narodil asi v roku 72 pred Kristom, jeho otcom bol Celtius, a o matke nič nie je známe. Pretože sa o ňom dozvedáme iba z rímskych prameňov, veľa o tom, aký bol ako dieťa alebo ako mladý muž sa taktiež nevie, s výnimkou faktu, že bol veľmi temperamentný a za svoje skutky si získal uznanie."
 
 #: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
 #: civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
-msgstr ""
+msgstr "Uerkingetorix"
 
 #: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
 #: civs/gaul.jsonFactions[0].Name
@@ -899,15 +901,15 @@ msgstr "Galovia"
 
 #: civs/celt.jsonFactions[1].Description
 msgid "Mainland Europe"
-msgstr ""
+msgstr "Pevninská Európa"
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr ""
+msgstr "Melonas"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr ""
+msgstr "Kelti vyvinuli prvý rotačný mlyn."
 
 #: civs/celt.jsonHistory
 msgid ""
@@ -918,46 +920,46 @@ msgid ""
 "probably the largest contributing factor to their ultimate submission to "
 "Rome by 100 A.D. The other contributing factors were their lack of armor and"
 " their inability to counter the mighty legions and siege weapons of Rome."
-msgstr ""
+msgstr "Na svojom vrchole (okolo roku 200 pred Kristom) sa silná Keltská ríša rozkladala na územiach od Španielska až po Rumunsko a od severného Talianska až po Škótsko; aj keď v skutočnosti to nebola naozajstná ríša, pretože keltskí ľudia neboli zjednotení akoukoľvek formou vlády, ale iba jazykom a rôznymi sociálnymi aspektmi. Ich nedostatok súdržnosti zrejme aj najviac prispel k ich konečnému podriadeniu sa Rímu v roku 100 pred Kristom. Ďalšími faktormi boli nedostatok zbroje a neschopnosť Keltov čeliť slávnym légiám a obliehacím zbraniam Ríma."
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
-msgstr ""
+msgstr "Divico"
 
 #: civs/gaul.jsonAINames[4]
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambiorix"
 
 #: civs/gaul.jsonAINames[5]
 msgid "Ariovistus"
-msgstr ""
+msgstr "Ariovistus"
 
 #: civs/gaul.jsonAINames[6]
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivellaunus"
 
 #: civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr ""
+msgstr "Liscus"
 
 #: civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
-msgstr ""
+msgstr "Valetiacos"
 
 #: civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr ""
+msgstr "Isté množstvo kovu a jedla získané z každej zničenej alebo obsadenej stavby."
 
 #: civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
-msgstr ""
+msgstr "Znamená \"Beda porazeným\". Boli to slová galského vodcu Brennosa vyrieknuté pri Kapitule v Ríme potom, čo si on a jeho ľudia zobrali svoju korisť."
 
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
-msgstr ""
+msgstr "Kelti pevninskej Európy."
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -966,7 +968,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr ""
+msgstr "Galovia boli keltskými kmeňmi kontinentálnej Európy. Riadení kňazskou triedou Druidov predstavovali sofistikovanú kultúru pokročilého kovoobrábania, poľnohospodárstva, obchodu a dokonca aj cestného staviteľstva. S ťažkou pechotou a jazdou galskí bojovníci statočne odolávali Cézarovmu dobyvateľskému vojnovému ťaženiu a autoritárskej vláde Ríma."
 
 #: civs/hele.jsonName
 msgid "Hellenes"
@@ -974,26 +976,26 @@ msgstr "Heléni"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "10-15% lacnejšie technológie."
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
-msgstr ""
+msgstr "Oikoumene"
 
 #: civs/hele.jsonCivBonuses[0].History
 msgid ""
 "The Hellenes envisioned themselves as comprising the civilized world "
 "(oikoumene), surrounded by more or less developed barbarians. Many "
 "foreigners also considered them men of higher stature."
-msgstr ""
+msgstr "Heléni si predstavovali seba samých ako jediných zástupcov civilizovaného sveta (oikoumene) obklopených viac alebo menej rozvinutými barbarmi. Aj mnoho cudzincov ich považovalo za významnejších."
 
 #: civs/hele.jsonTeamBonuses[0].Description
 msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr ""
+msgstr "Všetky jednotky a spojenecké jednotky majú zväčšený dohľad. ~ 10%"
 
 #: civs/hele.jsonTeamBonuses[0].Name
 msgid "Oracle at Delphi"
-msgstr ""
+msgstr "Delfská veštiareň"
 
 #: civs/hele.jsonTeamBonuses[0].History
 msgid ""
@@ -1001,11 +1003,11 @@ msgid ""
 "sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
 "example, consulted the advice of the god before going to war with Cyrus the "
 "Great of Persia."
-msgstr ""
+msgstr "Posvätný Apolónov chrám v Delfách bol jedným z najviac cenených svätýň Helénmi a aj cudzincami. Lýdsky kráľ Krézus sem napríklad prišiel po božiu radu predtým, než sa vybral do vojny s Kýrosom Veľkým z Perzie."
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
-msgstr ""
+msgstr "Hráč získava formáciu Falanga."
 
 #: civs/hele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1014,11 +1016,11 @@ msgid ""
 "and combined pushing power. 'Othismos' refers to the point in a phalanx "
 "battle where both sides try to shove each other out of formation, attempting"
 " to breaking up the enemy lines and routing them."
-msgstr ""
+msgstr "Klasická falangová formácia bola vyvinutá okolo VIII. storočia pred Kristom. Bola osem mužov hlboká a až osemsto mužov široká. Muži v jej vnútri si navzájom prekryli štíty, prezentujúc tak impozantnú štítovú hradbu plnú 8 stôp dlhých oštepov.."
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr ""
+msgstr "Trirémy sú o 20% lacnejšie a ich stavba je o 20% rýchlejšia."
 
 #: civs/hele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1028,11 +1030,11 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr ""
+msgstr "Kráľ Sparty, ktorý bojoval a aj zomrel v bitke pri Termopylách v roku 480 pred Kristom. Úspešne so svojimi 7000 mužmi blokoval v úzkom priesmyku cestu obrovskej perzskej armáde, až pokiaľ Xerxes nebol upozornený na tajnú nezahatanú cestu. Keď Leonidas zbadal za svojim chrbtom nepriateľa, poslal domov väčšinu svojho vojska. Sám sa pri tom rozhodol zostať spoločne s 300 starostlivo vybranými hoplitmi a tak získať čas pre ostatných, aby mohli bezpečne ustúpiť."
 
 #: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
 msgid "Leonidas"
-msgstr ""
+msgstr "Leónidas"
 
 #: civs/hele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1045,11 +1047,11 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr ""
+msgstr "Xenofón (430-355 pred Kristom) bol grécky vojak a (neskôr) historik narodený v Aténach v rodine oligarchu, ktorý ešte ako mladík študoval u Sokrata. V roku 401 pred Kristom sa pridal k armáde greckych žoldnierov vedených Klearchom a štyrmi ďalšími generálmi pomáhajúcimi Kýrosovi Mladšiemu vo vojenskom ťažení proti jeho bratovi, kráľovi Artaxerxesovi II. Po tom, čo vďaka perzskej zrade boli zabití všetci vodcovia armády, Xenofón bol zvolený za jedného z 5 nových generálov. Po púti dlhej vyše 1,500 kilometrov trvajúcej 1,5 roku sa mu konečne podarilo doviesť svojich mužov domov, po ceste pritom bojujúc v desiatkach bitiek a šarvátok."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
-msgstr ""
+msgstr "Poleis"
 
 #: civs/hele.jsonFactions[0].Description
 msgid "Greek City-states"
@@ -1057,7 +1059,7 @@ msgstr "Grécke mestské štáty"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Description
 msgid "The player gains the Syntagma formation."
-msgstr ""
+msgstr "Hráč získava formáciu Syntagma."
 
 #: civs/hele.jsonFactions[1].Technologies[0].Name
 #: civs/mace.jsonFactions[0].Technologies[0].Name
@@ -1072,11 +1074,11 @@ msgid ""
 "SYNTAGMA formation, derived from the oblique battle front developed by the "
 "Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
 "arranged in the following way 16 men in width and 16 in depth."
-msgstr ""
+msgstr "Po príchode na trón sa Filip II. rozhodol zreformovať nezorganizovanú macedónsku armádu na obávanú profesionálnu silu. Jednou z konkrétnych reforiem je aj formácia SYNTAGMA, odvodená z prednej línie kosovitého tvaru vyvinutej tébskym veliteľom Epaminondásom. Falanga pozostávajúca z 256 mužov je tvorená 16 mužmi na šírku a 16 na hĺbku."
 
 #: civs/hele.jsonFactions[1].Technologies[1].Description
 msgid "Civic Centers have double Health."
-msgstr ""
+msgstr "Administratívne centrá majú dvojnásobné zdravie."
 
 #: civs/hele.jsonFactions[1].Technologies[1].Name
 #: civs/mace.jsonFactions[0].Technologies[2].Name
@@ -1093,7 +1095,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "Počínajúc Alexandrom, helénski panovníci založili po celých svojich ríšach mnoho miest, kde sa grécka kultúra a umenia miešali s miestnymi zvykmi tvoriac tak pestrú helénsku civilizáciu."
 
 #: civs/hele.jsonFactions[1].Heroes[0].History
 #: civs/mace.jsonFactions[0].Heroes[0].History
@@ -1107,7 +1109,7 @@ msgstr "Kráľ Macedónska (359-336 pr. n. l.), ktorý zaviedol rozsiahle peňa�
 
 #: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
 msgid "Philip II"
-msgstr ""
+msgstr "Filip II."
 
 #: civs/hele.jsonFactions[1].Heroes[1].History
 #: civs/mace.jsonFactions[0].Heroes[1].History
@@ -1141,7 +1143,7 @@ msgstr "Jeden z diadochov, macedónsky kráľ Démétrios (Démétrios I. Polior
 
 #: civs/hele.jsonFactions[1].Heroes[2].Name
 msgid "Demetrios Poliorcetes"
-msgstr ""
+msgstr "Demetrios Poliorketes"
 
 #: civs/hele.jsonFactions[1].Name
 msgid "Macedonia"
@@ -1149,7 +1151,7 @@ msgstr "Macedónsko"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr ""
+msgstr "Kráľovstvo susediace s gréckymi mestskými štátmi"
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -1163,7 +1165,7 @@ msgid ""
 " (431-404 B.C.), and the conquests of Alexander the Great (4th Century "
 "B.C.). Their civilization would endure until their final absorption by Rome "
 "in 146 B.C."
-msgstr ""
+msgstr "Heléni sú dodnes slávni kvôli ich architektúre, bojaschopnosti a kultúre. Helénski ľudia z Dorianskeho, Iónskeho a Aeolianskeho kmeňa sa postupne presúvali na územie dnešného Grécka v rozmedzí od roku 3000 pred Kristom až po 1100 pred Kristom, nahrádzajúc tak miestne kultúry Mykénčanov a Minojských Kréťanov. Najaktívnejší boli počas obdobia kolonizácie v 7. a 6. storočí pred Kristom, grécko-perzských vojen (499-449 pred Kristom), peloponézskej vojny (431-404 pred Kristom) a dobyvateľských aktivít Alexandra Veľkého (4. storočie pred Kristom). Ich civilizácia vydržala až pokým nebola pohltená Rímom v roku 146 pred Kristom."
 
 #: civs/iber.jsonName
 msgid "Iberians"
@@ -1175,40 +1177,40 @@ msgstr "Iberi začínajú so silným opevnením, ktoré pozostáva z kamenných 
 
 #: civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
-msgstr ""
+msgstr "Harritsu Leku"
 
 #: civs/iber.jsonCivBonuses[0].History
 msgid ""
 "With exception to alluvial plains and river valleys, stone is abundant in "
 "the Iberian Peninsula and was greatly used in construction of structures of "
 "all types."
-msgstr ""
+msgstr "S výnimkou riečnych nív a údolí bol Pyrenejský polostrov bohatý na kameň a teda sa aj hojne využíval na stavby všetkých druhov."
 
 #: civs/iber.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr ""
+msgstr "Cena tréningu jednotiek na koňoch (jazda) je znížená o 5% za každé chytené zviera."
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "Zaldi Saldoa"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
 "Not unlike Numidia in North Africa, the Iberian Peninsula was known as "
 "'horse country', capable of producing up to 100,000 new mounts each year."
-msgstr ""
+msgstr "Rovnako ako Numíbia, aj Pyrenejský polostrov bol známy ako \"krajina koní\", schopná vychovať až 100,000 jazdeckých koní ročne."
 
 #: civs/iber.jsonTeamBonuses[0].Description
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr ""
+msgstr "Občania-vojaci peší harcovníci a harcovníci na koňoch -20% cena pre spojencov."
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
-msgstr ""
+msgstr "Saripeko"
 
 #: civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -1216,67 +1218,67 @@ msgid ""
 "to serve as auxiliaries to their armies in foreign wars. Carthage is the "
 "most well known example, and we have evidence of them serving in such a "
 "capacity in Aquitania."
-msgstr ""
+msgstr "Iberi dlhodobo poskytovali žoldnierov ostatným národom, aby slúžili ako pomocné sily v zahraničných vojnách. Najznámejším príkladom boli Kartáginci, dokonca o ich službách v Aquitánii máme aj dôkazy."
 
 #: civs/iber.jsonAINames[0] civs/iber.jsonAINames[1]
 #: civs/iber.jsonFactions[0].Heroes[0].Name
 msgid "Viriato"
-msgstr ""
+msgstr "Viriato"
 
 #: civs/iber.jsonAINames[2] civs/iber.jsonFactions[0].Heroes[1].Name
 msgid "Karos"
-msgstr ""
+msgstr "Karos"
 
 #: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
 msgid "Indibil"
-msgstr ""
+msgstr "Indibil"
 
 #: civs/iber.jsonAINames[4]
 msgid "Audax"
-msgstr ""
+msgstr "Audax"
 
 #: civs/iber.jsonAINames[5]
 msgid "Ditalcus"
-msgstr ""
+msgstr "Ditalcus"
 
 #: civs/iber.jsonAINames[6]
 msgid "Minurus"
-msgstr ""
+msgstr "Minurus"
 
 #: civs/iber.jsonAINames[7]
 msgid "Tautalus"
-msgstr ""
+msgstr "Tautalos"
 
 #: civs/iber.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr ""
+msgstr "Podpáli zasiahnuté ciele, ktoré vďaka tomu budú postupne strácať životy, až pokiaľ ich niekto nevylieči, prípadne neopraví."
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
 "Iberian tribesmen were noted for wrapping bundles of grass about the shafts "
 "of their throwing spears, soaking that in some sort of flammable pitch, then"
 " setting it afire just before throwing."
-msgstr ""
+msgstr "Iberskí domorodci boli známi tým, že zvykli ovinúť rukoväte svojich kopijí zväzkami trávy, následne ich namočiť do nejakého druhu horľavej smoly a tesne pred hodom aj zapáliť."
 
 #: civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr ""
+msgstr "Cena kovu pre jednotky a technológie znížená o 50%."
 
 #: civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr ""
+msgstr "Maisu Burdina Langileak"
 
 #: civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Iberians were known to produce the finest iron and steel implements and "
 "weapons of the age. The famous 'Toledo Steel.'"
-msgstr ""
+msgstr "O Iberoch sa vedelo, že vyrábajú najlepšie železné a oceľové náradie aj zbrane svojich čias. Slávna \"Toledská oceľ\"."
 
 #: civs/iber.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1293,7 +1295,7 @@ msgid ""
 "losses in some requiring retreat). He succumbed instead to another treachery"
 " arranged by a later Roman commander, Q. Servilius Caepio, to have him "
 "assassinated by three comrades that were close to him."
-msgstr ""
+msgstr "Viriato, rovnako ako Vercingetorix medzi Galmi, bol najslávnejším z iberských kmeňových vojnových náčelníkov, proti Rimanom viedol v južnej polovici polostrova počas \"luzitánskych vojen\" od 147-139 pred Kristom najmenej 7 vojnových ťažení. Na známosť vyšiel ako preživší zradného masakru 9,000 mužov a predaja 21,000 starších, žien a detí Luzitáncov do otroctva. Spoločne s Rimanmi vedenými hispánskym guvernérom Serviom Sulpiciom Galbom podpísali mierovú zmluvu ako \"konečné riešenie\" luzitánskeho problému. Nehľadiac na tieto skromné začiatky sa v roku 151 pred Kristom stal vojnovým náčelníkom Luzitáncov. Bol inteligentným a skvelým taktikom, ktorý v žiadnej vojenskej zrážke nikdy nebol porazený (aj keď pri nejakom nevyhnutnom ústupe zvykol utrpieť straty). Zomrel vďaka ďalšej zrade zorganizovanej neskorším rímskym veliteľom, Q. Serviliom Caepiom, keď ho zabili jeho traja druhovia stojaci blízko neho."
 
 #: civs/iber.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1309,7 +1311,7 @@ msgid ""
 " a battle on the 23rd of August. Karos was wounded in an after battle small "
 "cavalry action the same evening and soon died thereafter, but he had carried"
 " off one of the most humiliating defeats that Rome ever suffered."
-msgstr ""
+msgstr "Karos bol náčelníkom kmeňa Bellov nachádzajúceho sa na východ od Keltiberov (v strede boli Numantíni). Vedúc spojené kmene centrálnej mesety (centrálnej náhornej plošiny) skryl 20,000 pešiakov a 5,000 jazdcov pozdĺž husto zalesnenej cesty. Q. Fulvius Nobilior zanedbal patričný výskum terénu a tak viedol svoju armádu v dlhom rade priamo do pasce. Po rozsiahlom prepadnutí tam vtedy padlo 10,000 z celkovo 15,000 rímskych legionárov. Písal sa 23. august roku 153 pred Kristom, deň, keď Rimania oslavovali sviatok Vulcana. Podľa neskoršej senátnej vyhlášky bol označený za \"zlovestný deň\", a na základe toho Rimania už nikdy znovu 23. augusta nebojovali. Karos bol zranený v malej jazdeckej akcii po bitke a čoskoro teda aj zomrel, ale i tak uštedril Rímu jednu z najponižujúcejších porážok, akú ten kedy utrpel."
 
 #: civs/iber.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1329,25 +1331,25 @@ msgid ""
 "were again defeated, Indibil losing his life in the final battle and "
 "Mandonio being captured then later put to death. From that date onward the "
 "Ilergetes remained a pacified tribe under Roman rule."
-msgstr ""
+msgstr "Indibil bol kráľom Ilergétov, veľkej federácie pozdĺž rieky Ebro na severozápade Pyrenejského polostrova. Počas Barcidskej expanzie od roku 212 pred Kristom sa pôvodne plánoval spojiť s Kartágincami kontrolujúcimi veľa území na juhu a západe, avšak po stratách a jeho vlastnom zajatí vo veľkej bitke ho Scipio Africanus presvedčil, niektorí hovoria vraj klamstvami, prejsť na stranu Rimanov. Avšak toto spojenectvo netrvalo dlho, pretože ich sľuby sa ukázali ako plané a správali sa viac ako dobyvatelia, než ako spojenci. Takže kým Rimania  v roku 206 pred Kristom ukončili prítomnosť Kartágincov v Hispánii, Indibil a ďalší kmeňový princ Mandonio, ktorý mohol byť jeho bratom, povstali vo vzbure proti Rímu. V bitke síce boli porazení, ale v roku 205 pred Kristom sa im podarilo dať dokopy ešte väčší prápor zjednocujúci všetkých Ilergétov. Nakoniec kvôli presile v počte aj výzbroji boli opäť porazení, Indibil v záverečnej bitke prišiel o život a Mandonia zajali a neskôr takisto odsúdili. Odvtedy už Ilergéti boli poslušným kmeňom pod nadvládou Ríma."
 
 #: civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: civs/iber.jsonStructures[0].Special
 msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr ""
+msgstr "Obranná aura - Dáva všetkým iberským jednotkám a budovám v dosahu tohto monumentu 10-15% útočný bonus. Limit výstavby: Na mape ich môže byť postavených iba 5."
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
 "'Revered Monument' The Iberians were a religious people who built small "
 "monuments to their various gods. These monuments could also serve as family "
 "tombs."
-msgstr ""
+msgstr "\"Ctený pamätník\" - Iberi boli veriaci ľudia stavajúci malé pamätníky ich rôznym bohom. Tieto pamätníky mohli tiež slúžiť aj ako rodinné hrobky."
 
 #: civs/iber.jsonHistory
 msgid ""
@@ -1357,7 +1359,7 @@ msgid ""
 "proved tenacious when Rome sought to take their land and freedom from them, "
 "and employed pioneering guerrilla tactics and flaming javelins as they "
 "fought back."
-msgstr ""
+msgstr "Iberi boli ľudia zahadného pôvodu a jazyka so silnou tradíciou v jazdectve a kovoobrábaní. Relatívne mierumilovná kultúra, zvyčajne bojovali v bitkách ostatných iba ako žoldnieri. Prejavili sa však nakoniec ako húževnatý ľud, keď sa im Rím snažil vziať ich pôdu a slobodu, využívajúc pri obrane partizánsky spôsob boja a horiace oštepy."
 
 #: civs/mace.jsonName civs/mace.jsonFactions[0].Name
 msgid "Macedonians"
@@ -1402,11 +1404,11 @@ msgid ""
 "The Greeks were highly successful in Hellenizing various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Gréci boli veľmi úspešní v helenizácii rôznych cudzincov. Počas helénskeho obdobia bola gréčtina medzinárodným jazykom, ktorým sa hovorilo od Španielska až po Indiu."
 
 #: civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
-msgstr "+15% tribút a obchodný bonus ku kovu."
+msgstr "+15% bonus pri darovaní a obchodovaní s kovom."
 
 #: civs/mace.jsonTeamBonuses[0].Name
 msgid "Standardized Currency"
@@ -1418,51 +1420,51 @@ msgid ""
 " currency the Diadochi in particular frequently depicted themselves as the "
 "rightful successor to Alexander the Great, attempting to legitimize their "
 "rule."
-msgstr "Macedónci a Diadochovia razili mince veľmi vysokej kvality. Na svojich minciach sa práve Diadochovia zvykli zobrazovať ako právoplatní nasledovníci Alexandra Veľkého, pokúšajúc sa tak zlegalizovať svoju vládu. "
+msgstr "Macedónci a Diadochovia razili mince veľmi vysokej kvality. Na svojich minciach sa práve Diadochovia zvykli zobrazovať ako právoplatní nástupcovia Alexandra Veľkého, pokúšajúc sa tak zlegalizovať svoju vládu. "
 
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
-msgstr ""
+msgstr "Antipatros"
 
 #: civs/mace.jsonAINames[3]
 msgid "Philip IV"
-msgstr ""
+msgstr "Filip IV."
 
 #: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
 msgid "Lysander"
-msgstr ""
+msgstr "Lysandros"
 
 #: civs/mace.jsonAINames[5]
 msgid "Lysimachus"
-msgstr ""
+msgstr "Lysimachus"
 
 #: civs/mace.jsonAINames[6]
 msgid "Pyrrhus of Epirus"
-msgstr ""
+msgstr "Pyrrhos Epirský"
 
 #: civs/mace.jsonAINames[7]
 msgid "Antigonus II Gonatas"
-msgstr ""
+msgstr "Antigonos II Gonatas"
 
 #: civs/mace.jsonAINames[8]
 msgid "Demetrius II Aetolicus"
-msgstr ""
+msgstr "Demetrius II Aetolicus"
 
 #: civs/mace.jsonAINames[9]
 msgid "Philip V"
-msgstr ""
+msgstr "Filip V"
 
 #: civs/mace.jsonAINames[10]
 msgid "Perseus"
-msgstr ""
+msgstr "Perseus"
 
 #: civs/mace.jsonAINames[11]
 msgid "Craterus"
-msgstr ""
+msgstr "Krateros"
 
 #: civs/mace.jsonAINames[12]
 msgid "Meleager"
-msgstr ""
+msgstr "Meleager"
 
 #: civs/mace.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -1484,28 +1486,28 @@ msgstr "Keď Filip II. prišiel na macedónsky trón, začal s celkovou reorgani
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr ""
+msgstr "Povýši hypaspistskú šampiónsku pechotu na Strieborné štíty s lepším útokom a zbrojou, ale aj vyššou cenou."
 
 #: civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
-msgstr ""
+msgstr "Kráľovský dar"
 
 #: civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
-msgstr ""
+msgstr "V Indii na konci jeho dlhej anabázy daroval Alexander zboru kráľovských hypaspistov štíty zo striebra za ich dlhú a hrdinskú službu v jeho armáde."
 
 #: civs/mace.jsonFactions[0].Technologies[2].Description
 #: civs/ptol.jsonFactions[0].Technologies[0].Description
 #: civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr ""
+msgstr "Administratívne centrá majú dvojnásobné zdravie a dvojnásobný východzí počet šípov."
 
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
-msgstr "Filip II Macedónsky"
+msgstr "Filip II. Macedónsky"
 
 #: civs/mace.jsonFactions[0].Heroes[2].Name
 msgid "Demetrios the Besieger"
@@ -1513,13 +1515,13 @@ msgstr "Démétrios Obliehateľ"
 
 #: civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr ""
+msgstr "Helénske kráľovstvo susediace s gréckymi mestskými štátmi."
 
 #: civs/mace.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr ""
+msgstr "Civilizačný bonus Helenizácia. Postavenie divadla zväčší územný vplyv všetkých budov o 25%. Stavebný limit: 1."
 
 #: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
 #: civs/sele.jsonStructures[0].Name
@@ -1530,7 +1532,7 @@ msgstr "Knižnica"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr ""
+msgstr "Tu sa skúmajú všetky špeciálne technológie. Výstavba tejto budovy zníži cenu ostatných technológii o 10%. Stavebný limit: 1."
 
 #: civs/mace.jsonStructures[1].History civs/ptol.jsonStructures[0].History
 #: civs/sele.jsonStructures[0].History
@@ -1542,15 +1544,15 @@ msgstr "Alexander Veľký zakladal knižnice po celom území svojej novej ríš
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Obliehacia dielňa"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr ""
+msgstr "Stavia a vylepšuje všetky macedónske obliehacie stroje."
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr ""
+msgstr "Macedónci boli inovátormi v oblasti techník obliehania."
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -1569,11 +1571,11 @@ msgstr "Maurjovci"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Maurovia majú +10% populačný limit (t.j. 330 namiesto bežných 300)."
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr ""
+msgstr "Cisár cisárov."
 
 #: civs/maur.jsonCivBonuses[0].History
 msgid ""
@@ -1583,15 +1585,15 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr ""
+msgstr "Maurjovská ríša sa skladala z mnohých predtým nezávislých kráľovstiev na ploche vyše 5 miliónov kilometrov štvorcových, s počtom obyvateľov blížiacim sa k 60 miliónom. Maurjovskí vladári držali titul Cisárov cisárov a velili stálej armáde pozostávajúcej z 600,000 pechoty, 9000 slonov, 8000 povozov a 30,000 kavalérie, čo ju robilo pravdepodobne najväčšou armádou svojich čias."
 
 #: civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
-msgstr ""
+msgstr "Maurovia majú prístup k 4 šampiónom."
 
 #: civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
-msgstr ""
+msgstr "Kšatrijská bojovnícka kasta."
 
 #: civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1599,20 +1601,20 @@ msgid ""
 "orders) in Hinduism. Traditionally Kshatriya constitute the military and "
 "ruling elite of the Vedic-Hindu social system outlined by the Vedas and the "
 "Laws of Manu."
-msgstr ""
+msgstr "Kšatrija alebo Kaštrija, čo znamená bojovník, je jednou zo štyroch varmasov (spoločenských vrstiev) v hinduizme. Tradične Kšatrija predstavovala vojenskú a vládnucu elitu vedického sociálneho systému ustanoveného Védami a Manuovými zákonmi."
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr ""
+msgstr "Chrámové technológie spojencov -50% cena a doba výskumu."
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr ""
+msgstr "Evanjelizmus."
 
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr ""
+msgstr "Ašóka Veľký vyslal misionárov na západ, aby šírili vieru v Budhu."
 
 #: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
@@ -1624,53 +1626,53 @@ msgstr "Ašóka Veľký"
 
 #: civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
-msgstr ""
+msgstr "Ašóka Maurja"
 
 #: civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
-msgstr ""
+msgstr "Acharya Bhadrabahu"
 
 #: civs/maur.jsonAINames[4]
 msgid "Bindusara Maurya"
-msgstr ""
+msgstr "Bindusara Maurja"
 
 #: civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
-msgstr ""
+msgstr "Dasaratha Maurja"
 
 #: civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
-msgstr ""
+msgstr "Samprati Maurja"
 
 #: civs/maur.jsonAINames[7]
 msgid "Salisuka Maurya"
-msgstr ""
+msgstr "Salisuka Maurja"
 
 #: civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
-msgstr ""
+msgstr "Devavarman Maurja"
 
 #: civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
-msgstr ""
+msgstr "Satadhanvan Maurja"
 
 #: civs/maur.jsonAINames[10]
 msgid "Brihadratha Maurya"
-msgstr ""
+msgstr "Brihadratha Maurja"
 
 #: civs/maur.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr ""
+msgstr "Zajmite 5 voľne žijúcich slonov a umiestnite ich do slonej stajne pre získanie bonusu až 25% v cene a dobe tréningu sloních jednotiek."
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr ""
+msgstr "Zhromažďovanie slonov"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr ""
+msgstr "Väčší dosah a rýchlejší tréning pre maurjovských peších lukostrelcov."
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
@@ -1680,27 +1682,27 @@ msgstr "Lukostrelecká tradícia"
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "India bola krajinou lukostrelectva. Väčšina každej indickej armády bola zložená z vynikajúco vytrénovaných lukostrelcov ozbrojených bambusovými lukmi."
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "Zakladateľ Maurjovskej ríše."
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "Posledný veľký cisár Maurjovskej dynastie."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr ""
+msgstr "Skvelý učiteľ a poradca Čandraguptu Mauriju."
 
 #: civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
-msgstr ""
+msgstr "Acharya Chāṇakya"
 
 #: civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Maurjovskí Indovia"
 
 #: civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
@@ -1710,7 +1712,7 @@ msgstr "Slonia stajňa"
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr ""
+msgstr "Vo fáze mesta trénuje lukostrelcov na slonoch a pracovných slonov, neskôr vo fáze metropoly aj šampiónskych vojnových slonov."
 
 #: civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
@@ -1721,7 +1723,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr ""
+msgstr "Spokojnosť: +10% zdravia a +10% rýchlosť zberu surovín pre všetkých občanov a spojeneckých občanov v jeho dosahu. Môže byť postavený kdekoľvek s výnimkou nepriateľského územia. Maximálny počet: 10."
 
 #: civs/maur.jsonHistory
 msgid ""
@@ -1733,7 +1735,7 @@ msgid ""
 "Acharya Chanakya, contributed to such varied fields such as economics, "
 "religion, diplomacy, warfare, and good governance. Under the rule of Ashoka "
 "the Great, the empire saw 40 years of peace, harmony, and prosperity."
-msgstr ""
+msgstr "Založená v roku 322 pred Kristom Čandraguptom Maurjom, bola Maurská ríša prvou, ktorá vládla väčšine indického subkontinentu, a zároveň aj jednou z najväčších a najľudnatejších ríš staroveku. Vojenstvo tejto ríše pozostávalo z lukostrelcov používajúcich bambusové luky s dlhým dostrelom, divokých bojových žien, kočov a tísicok ozbrojených vojnových slonov. Jej filozofi, najmä Acharya Chanakya, prispeli do množstva rôznych oblastí ako je ekonomika, diplomacia, vojenstvo a dobrá správa vecí verejných. Pod vládou Ašóku Veľkého zažila ríša 40 rokov mieru, harmónie a prosperity."
 
 #: civs/pers.jsonName
 msgid "Persians"
@@ -1743,11 +1745,11 @@ msgstr "Peržania"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr ""
+msgstr "Cena tréningu jednotiek na ťavách (obchodníkov) alebo koňoch (jazdcov) je znížená o 5% za každé chytené zviera (podľa potreby)."
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr ""
+msgstr "Chytajte ťavy a kone"
 
 #: civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -1755,17 +1757,17 @@ msgid ""
 "accompanied by great success (most notably during the battle of Sardis in "
 "546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
 "while Northern Arabia supplied 'one-hump' camels."
-msgstr ""
+msgstr "Peržania síce využívali jazdu na ťavách iba veľmi zriedkavo, ale zato skoro vždy sa to stretlo s veľkým úspechom (najpozoruhodnejší prípad nastal počas bitky o Sardis v roku 546 pred Kristom). Satrapa Baktria bola bohatým zdrojom dvojhrbých tiav, zatiaľ čo severná Arábia produkovala jednohrbé. "
 
 #: civs/pers.jsonCivBonuses[1].Description
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Peržania majú +10% populačný bonus (t.j. 330 namiesto bežných 300)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
-msgstr ""
+msgstr "Branná povinnosť Veľkokráľa"
 
 #: civs/pers.jsonCivBonuses[1].History
 msgid ""
@@ -1775,11 +1777,11 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "Peržania mohli a aj odviedli obrovské množstvo pešiakov počas vojny vzhľadom k samotnej veľkosti Achajmenskej ríše a spôsobom jej zriadenia. Vo všeobecnosti perzská pechota bola dobre trénovaná a bojovala s veľkou húževnatosťou. Avšak aj napriek tomu jej členovia boli slabí v boji nablízko. Navyše, s výnimkou elitných plukov, táto pechota nebola stálou profesionálnou silou."
 
 #: civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
-msgstr ""
+msgstr "+25% zisk z obchodu na pozemných trasách."
 
 #: civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
@@ -1791,63 +1793,63 @@ msgid ""
 " common until the Persian period. Darius the Great standardized coined money"
 " and his golden coins (known as 'darics') became commonplace not only "
 "throughout his empire, but as far to the west as Central Europe."
-msgstr ""
+msgstr "Mincovníctvo bolo objavené Lýdmi v 7. storočí pred Kristom, aj keď až do dôb Peržanov sa veľmi neujalo. Až Dareios Veľký štandardizoval razené peniaze a jeho zlaté mince (známe ako \"darice\") sa stali samozrejmosťou nielen po celej jeho ríši, ale aj tak ďaleko na západe ako je dnešná Stredná Európa."
 
 #: civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
-msgstr ""
+msgstr "Kurush II Veľký"
 
 #: civs/pers.jsonAINames[1] civs/pers.jsonFactions[0].Heroes[1].Name
 msgid "Darayavahush I"
-msgstr ""
+msgstr "Darayavahush I"
 
 #: civs/pers.jsonAINames[2]
 msgid "Cambyses II"
-msgstr ""
+msgstr "Cambyses II"
 
 #: civs/pers.jsonAINames[3]
 msgid "Bardiya"
-msgstr ""
+msgstr "Bardiya"
 
 #: civs/pers.jsonAINames[4] civs/pers.jsonFactions[0].Heroes[2].Name
 msgid "Xsayarsa I"
-msgstr ""
+msgstr "Xsayarsa I"
 
 #: civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
-msgstr ""
+msgstr "Artaxshacha I"
 
 #: civs/pers.jsonAINames[6]
 msgid "Darayavahush II"
-msgstr ""
+msgstr "Darayavahush II"
 
 #: civs/pers.jsonAINames[7]
 msgid "Darayavahush III"
-msgstr ""
+msgstr "Darayavahush III"
 
 #: civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr ""
+msgstr "Artachšačá II"
 
 #: civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
-msgstr ""
+msgstr "Artaxshacha III"
 
 #: civs/pers.jsonAINames[10]
 msgid "Haxamanish"
-msgstr ""
+msgstr "Haxamanish"
 
 #: civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
-msgstr ""
+msgstr "Xsayarsa II"
 
 #: civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr ""
+msgstr "Fenické trirémy získavajú jedinečnú schopnosť trénovať jednotky jazdy."
 
 #: civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr ""
+msgstr "Námorné remeslo"
 
 #: civs/pers.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1858,13 +1860,13 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "Raní achajmenskí vládcovia konali v záujme toho, aby sa Perzia stala prvou veľkou ázijskou ríšou, ktorej sa podarí ovládnuť moria. Veľký kráľ priateľsky vystupoval voči mnohým prímorským národom za účelom zaistenia si ich služieb, avšak podnikal aj rôzne námorné iniciatívy. Počas vlády Dareia Veľkého bol napríklad v Egypte vybudovaný kanál a perzské námorníctvo zase vyslané preskúmať rieku Indus. Podľa Herodota bolo asi 300 lodí v perzskej flotile uspôsobených tak, aby boli schopné prevážať kone a ich jazdcov."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr ""
+msgstr "Zvyšuje životy všetkých stavieb, ale zato aj ich dobu výstavby."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Persian Architecture"
@@ -1876,11 +1878,11 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Peržania postavili obdivuhodnú 1677 míľ dlhú Kráľovskú cestu zo Sárd do Sús; Dareios Veľký a Xerxes okrem toho aj veľkolepý Persepolis; Kýros Veľký výrazne vylepšil Ekbatanu a prakticky \"prestaval\" staré elamitské hlavné mesto Súsy."
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr ""
+msgstr "Zníži dobu tréningu anusijskej šampiónskej pechoty o polovicu."
 
 #: civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
@@ -1889,18 +1891,18 @@ msgstr "Nesmrteľní"
 #: civs/pers.jsonFactions[0].Technologies[3].Description
 #: civs/sele.jsonFactions[0].Technologies[3].Description
 msgid "+25% health for cavalry, but +10% train time."
-msgstr ""
+msgstr "+25% zdravie pre jazdu, ale zato aj +10% doba tréningu"
 
 #: civs/pers.jsonFactions[0].Technologies[3].Name
 #: civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "Nisanské vojnové kone"
 
 #: civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
-msgstr ""
+msgstr "Krásne a silné plemeno nisanských koní zvyšuje zdravie pre perzskú jazdu."
 
 #: civs/pers.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1910,11 +1912,11 @@ msgid ""
 "was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
 "second ruler of the Persians by that name, and so appears as Kurush II on "
 "his documents and coins. Kurush I was his grandfather."
-msgstr ""
+msgstr "Kýros (559-530 pred Kristom) - Syn minojskej princeznej a vládcu Ašanu; právom nazývaný ako \"Otec ríše\", ovládol Minoj, Lýdiu, Babylóniu a Baktriu, čím vytvoril Perzskú ríšu. Takisto bol známy aj ako láskavý dobyvateľ. Jeho pôvodné meno bolo Kurush. Technicky vzaté bol druhým vládcom Peržanov s rovnakým menom, a tak sa na svojich dokumentoch a minciach objavuje ako Kurush II. Kurush I. bol jeho dedo."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
-msgstr ""
+msgstr "Kurush II."
 
 #: civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1922,7 +1924,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr ""
+msgstr "Dareios (521-486 pred Kristom) - Syn Vishtaspu (Hystaspesa), satrapu Partie a Hyrkánie; skvelý vládca a obstojný generál, prišiel s myšlienkou rozdelenia ríše na satrapy a dobyl severozápad Indie, Tráciu a Macedónsko. Bol nazývaný ako \"Obchodník ríše\"."
 
 #: civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1930,29 +1932,29 @@ msgid ""
 "Cyrus the Great, Xerxes was an able administrator, who also extended "
 "Imperial rule into Chorasmia. Apart from his failed invasion of Greece, he "
 "was famous for his extensive building programme, especially at Persepolis."
-msgstr ""
+msgstr "Xerxes (485-465 pred Kristom) - Syn Dareiosa Veľkého a Atoosy, dcéry Kýrosa Veľkého, bol schopným vládcom, ktorému sa podarilo rozšíriť imperiálnu vládu do Chorézmu. Zanedbajúc jeho neúspešnú inváziu do Grécka, stal sa známym za svoj rozsiahly program výstavby, a to najmä v Perzepolise."
 
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr ""
+msgstr "Stajne jazdy. "
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr ""
+msgstr "Trénuje občanov-vojakov jazdcov."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr ""
+msgstr "Najlepšími vojakmi Perzskej ríše boli jazdci z východu."
 
 #: civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr ""
+msgstr "Apadana"
 
 #: civs/pers.jsonStructures[1].Special
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr ""
+msgstr "Trénuje hrdinov a perzských Nesmrteľných. Zaručuje aj pomalý prísun všetkých surovín ako \"tribút zo satráp\"."
 
 #: civs/pers.jsonStructures[1].History
 msgid ""
@@ -1961,7 +1963,7 @@ msgid ""
 "Persepolis. Functioning as the empire's central audience hall, the palace is"
 " famous for the reliefs of the tribute-bearers and of the army, including "
 "the Immortals."
-msgstr ""
+msgstr "Termín Apadana označuje veľký palác v štýle hypostylu, aký bolo možné nájsť v Perzii. Najznámejším a zďaleka aj najväčším príkladom bola veľká Apadana v Perzepolise. Pôsobiac ako centrálna verejná sála ríše je známa pre svoje podobizne poslov nesúcich tribút a členov armády, vrátane Nesmrteľných."
 
 #: civs/pers.jsonHistory
 msgid ""
@@ -1972,7 +1974,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr ""
+msgstr "Perzská ríša, keď na jej čele stála Achajmenská dynastia, bola jednou z najväčších ríš starovekého sveta, v dobe svojho vrcholu sa rozprestierajúca od údolia rieky Indus na východe až po Grécko na západe. Peržania boli priekopníkmi v oblasti staviteľstva budov, ktorí úspešne zaviedli centralizovanú vládu nad ľuďmi s rôznymi zvykmi, zákonmi, náboženstvami a jazykmi, budujúc pritom kozmopolitnú armádu zloženú z kontingentov každého z týchto národov."
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
@@ -1982,11 +1984,11 @@ msgstr "Ptolemaiovci"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr ""
+msgstr "Ptolemaiovci dostanú žoldniersky kemp, kasárne, ktoré sa stavajú na neutrálnom území a trénujú žoldnierskych vojakov."
 
 #: civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
-msgstr ""
+msgstr "Žoldnierska armáda"
 
 #: civs/ptol.jsonCivBonuses[0].History civs/ptol.jsonStructures[1].History
 msgid ""
@@ -1998,16 +2000,16 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr ""
+msgstr "Grécko-macedónska dynastia Ptolemaiov sa spoliehala na veľké množstvo gréckych a zahraničných žoldnierov tvoriacich prevažnú časť jej vojenskej sily, a to preto, lebo lojalita domácich egyptských jednotiek často nebola vôbec zaručená. Počas jedného povstania dokonca Ptolemaiovci na niekoľko desaťročí prišli o Horný Egypt. Žoldnieri boli na druhej strane bitkami zocelení a ich lojalita sa dala kúpiť, niekedy lacno, niekedy nie lacno. Na tom až tak nezáležalo, pretože Egypt bol pod vládou Ptolemaiovcov tak prosperujúci, že sa zrejme jednalo o najbohatší z Alexandrových nástupníckych štátov."
 
 #: civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr ""
+msgstr "Ptolemaiovskí Egypťania získajú 3 dodatočné technológie farmárčenia."
 
 #: civs/ptol.jsonCivBonuses[1].Name
 #: civs/ptol.jsonFactions[0].Technologies[2].Name
 msgid "Nile Delta"
-msgstr ""
+msgstr "Delta Nílú"
 
 #: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
 #: civs/theb.jsonCivBonuses[0].Description civs/theb.jsonCivBonuses[0].History
@@ -2024,163 +2026,163 @@ msgstr "Neznámy."
 
 #: civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr ""
+msgstr "Umožňuje chytanie voľne žijúcich slonov a tiav za účelom zníženia ich ceny tréningu."
 
 #: civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "Všetci spojenci automaticky získajú pomalý prísun jedla."
 
 #: civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "Obilnica Stredomoria"
 
 #: civs/ptol.jsonTeamBonuses[0].History
 msgid ""
 "Egypt was a net exporter of grain, so much so that large cities such as "
 "Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
 "their masses."
-msgstr ""
+msgstr "Egypt bol veľkým vývozcom obilia, a to až natoľko, že veľké mestá ako  Atény, Antiochia a Rím sa naňho museli spoliehať, ak chceli nakŕmiť svoje masy."
 
 #: civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr ""
+msgstr "Ptolemaios Sótér"
 
 #: civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr ""
+msgstr "Ptolemaios Filadelfos"
 
 #: civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
-msgstr ""
+msgstr "Ptolemaios Epigonos"
 
 #: civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr ""
+msgstr "Ptolemaios Euergetés"
 
 #: civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr ""
+msgstr "Ptolemaios Filopatór"
 
 #: civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr ""
+msgstr "Ptolemaios Epifanés"
 
 #: civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr ""
+msgstr "Ptolemaios Filométór"
 
 #: civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr ""
+msgstr "Ptolemaios Eupatór"
 
 #: civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr ""
+msgstr "Ptolemaios Alexander"
 
 #: civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr ""
+msgstr "Ptolemaios Neos Dyonýsos"
 
 #: civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
-msgstr ""
+msgstr "Ptolemaios Neos Filopatór"
 
 #: civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
-msgstr ""
+msgstr "Bereniké Filopatór"
 
 #: civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
-msgstr ""
+msgstr "Kleopatra Tryfaina"
 
 #: civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
-msgstr ""
+msgstr "Bereniké Epifaneia"
 
 #: civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
-msgstr ""
+msgstr "Kleopatra Filopatór"
 
 #: civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
-msgstr ""
+msgstr "Kleopatra Seléné"
 
 #: civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
-msgstr ""
+msgstr "Kleopatra II. Filométór Sóteira"
 
 #: civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
-msgstr ""
+msgstr "Arsinoé IV."
 
 #: civs/ptol.jsonAINames[18]
 msgid "Arsinoe II"
-msgstr ""
+msgstr "Arsinoé II."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
-msgstr ""
+msgstr "Dosah hrdinskej aury zväčšený o 50%."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
-msgstr ""
+msgstr "Faraónsky kult."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
 "Egyptian traditions in order to satiate the local populace and ingratiate "
 "themselves to the powerful priestly class in the country."
-msgstr ""
+msgstr "Macedónsko-grécki vládcovia dynastie Ptolemaiovcov dodržiavali mnoho starovekých egyptských tradícii, aby uspokojili domáci ľud a zavďačili sa mocnej triede kňazov v krajine."
 
 #: civs/ptol.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
-msgstr ""
+msgstr "Ptolemaiovskí Egypťania získajú 3 dodatočné technológie farmárčenia nad rámec maximálneho počtu farmárskych technológii bežne dostupných inej frakcii."
 
 #: civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Nile Delta had rich soil for farming, due to centuries of seasonal "
 "floods from the Nile depositing rich silt across the landscape."
-msgstr ""
+msgstr "Delta Nílu mala bohatú pôdu na farmárčenie, vzhľadom na stáročia sezónnych záplav roznášajúcich bohaté naplaveniny po krajine."
 
 #: civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaios I. Sótér"
 
 #: civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
-msgstr ""
+msgstr "Ptolemaios IV. Filopatór"
 
 #: civs/ptol.jsonFactions[0].Heroes[2].Name
 msgid "Kleopatra H' Philopater"
-msgstr ""
+msgstr "Kleopatra VII. Filopatór"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr ""
+msgstr "Ptolemaiovskí Egypťania"
 
 #: civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
-msgstr ""
+msgstr "Mocná grécko-macedónska dynastická vláda nad starovekým Egyptom."
 
 #: civs/ptol.jsonStructures[0].Special civs/sele.jsonStructures[0].Special
 msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr ""
+msgstr "Maximálne 1 postavená. Všetky špeciálne technológie a aj niektoré obyčajné patriace do fázy metropoly sú skúmané tu. Výstavba jednej tejto budovy zníži cenu ostatných technológii o 10%."
 
 #: civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
-msgstr ""
+msgstr "Stratópedo Misthophóron"
 
 #: civs/ptol.jsonStructures[1].Special
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr ""
+msgstr "Musí sa postaviť na neutrálnom území. Nemá žiadny územný vplyv. Trénuje všetky \"žoldnierske\" jednotky."
 
 #: civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2198,7 +2200,7 @@ msgid ""
 "Alexandria near the harbor mouth of that Nile Delta city. This structure "
 "could be seen for many kilometers out to sea and was one of the Seven "
 "Wonders of the World."
-msgstr ""
+msgstr "Ptolemaiovská dynastia v Egypte postavila veľkolepý Alexandrijský maják blízko hrdla prístavu mesta v delte Nílu. Túto stavbu bolo možné z mora vidieť na kilometre ďaleko a stala sa aj jedným zo siedmich divov sveta."
 
 #: civs/ptol.jsonHistory
 msgid ""
@@ -2206,7 +2208,7 @@ msgid ""
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr ""
+msgstr "Dynastia Ptolemaiovcov bola macedónsko-gréckou kráľovskou rodinou vládnucou Ptolemaiovskej ríši v Egypte počas helénskeho obdobia. Ich vláda trvala 275 rokov, od 305 pred Kristom po 30 pred Kristom. Boli poslednou dynastiou starovekého Egypta."
 
 #: civs/rome.jsonName
 msgid "Romans"
@@ -2225,7 +2227,7 @@ msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
-msgstr "Rimania na obranu zvyčajne používali formáciu Testudo, inak zvanú aj  'korytnačka': v nej boli legionári sformovaní do štvorcov (v ich vnútri nebol nik) po dvanásť mužov na každej strane, pričom stáli tak blízko pohromade, že sa ich štíty prekrývali ako rybie šupiny."
+msgstr "Rimania na obranu zvyčajne používali formáciu Testudo, inak zvanú aj  \"korytnačka\": v nej boli legionári sformovaní do štvorcov (v ich vnútri nebol nik) po dvanásť mužov na každej strane, pričom stáli tak blízko pohromade, že sa ich štíty prekrývali ako rybie šupiny."
 
 #: civs/rome.jsonCivBonuses[1].Description
 msgid ""
@@ -2261,59 +2263,59 @@ msgstr "Byť spojencom Ríma so sebou obnáša veľké výhody (tak isto ako aj 
 
 #: civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "Lucius Junius Brutus"
 
 #: civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
-msgstr ""
+msgstr "Lucius Tarquinius Collatinus"
 
 #: civs/rome.jsonAINames[2]
 msgid "Gaius Julius Caesar Octavianus"
-msgstr ""
+msgstr "Gaius Julius Caesar Octavianus"
 
 #: civs/rome.jsonAINames[3]
 msgid "Marcus Vipsanius Agrippa"
-msgstr ""
+msgstr "Marcus Vipsanius Agrippa"
 
 #: civs/rome.jsonAINames[4]
 msgid "Gaius Iulius Iullus"
-msgstr ""
+msgstr "Gaius Iulius Iullus"
 
 #: civs/rome.jsonAINames[5]
 msgid "Gaius Servilius Structus Ahala"
-msgstr ""
+msgstr "Gaius Servilius Structus Ahala"
 
 #: civs/rome.jsonAINames[6]
 msgid "Publius Cornelius Rufinus"
-msgstr ""
+msgstr "Publius Cornelius Rufinus"
 
 #: civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
-msgstr ""
+msgstr "Lucius Papirius Cursor"
 
 #: civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Aulus Manlius Capitolinus"
 
 #: civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
-msgstr ""
+msgstr "Publius Cornelius Scipio Africanus"
 
 #: civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
-msgstr ""
+msgstr "Publius Sempronius Tuditanus"
 
 #: civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
-msgstr ""
+msgstr "Marcus Cornelius Cethegus"
 
 #: civs/rome.jsonAINames[12]
 msgid "Quintus Caecilius Metellus Pius"
-msgstr ""
+msgstr "Quintus Caecilius Metellus Pius"
 
 #: civs/rome.jsonAINames[13]
 msgid "Marcus Licinius Crassus"
-msgstr ""
+msgstr "Marcus Licinius Crassus"
 
 #: civs/rome.jsonFactions[0].Technologies[0].Description
 msgid "Roman heroes can convert enemy units with great cost."
@@ -2329,7 +2331,7 @@ msgid ""
 "throughout its long history. The Romans lured enemies or neutral factions to"
 " their side by offering them certain privileges. In due period of time, "
 "friends as well as foes were subjugated."
-msgstr "'Rozdeľuj a panuj' bolo hlavným princípom zahraničnej politiky Ríma v priebehu jeho dlhej histórie. Rimania zvádzali nepriateľov alebo neutrálne frakcie na svoju stranu ponúkaním určitých privilégii. Za nejaký čas im tak priatelia, rovnako ako aj nepriatelia, boli podrobení."
+msgstr "\"Rozdeľuj a panuj\" bolo hlavným princípom zahraničnej politiky Ríma v priebehu jeho dlhej histórie. Rimania zvádzali nepriateľov alebo neutrálne frakcie na svoju stranu ponúkaním určitých privilégii. Za nejaký čas im tak priatelia, rovnako ako aj nepriatelia, boli podrobení."
 
 #: civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2340,7 +2342,7 @@ msgstr "Diktátor po dobu šiestich mesiacov počas druhej púnskej vojny. Namie
 
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 msgid "Quintus Fabius Maximus"
-msgstr ""
+msgstr "Quintus Fabius Maximus"
 
 #: civs/rome.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2353,7 +2355,7 @@ msgid ""
 "Greek culture and arts, which he enthusiastically promoted in Rome. He met "
 "his demise when his men were ambushed near Venusia. In honor of the respect "
 "the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-msgstr "Vojak počas prvej vojny proti Kartágu, hrdina druhej púnskej vojny a víťaz nad Galmi pri Clastidiu. Plutarch ho opisuje ako muža vojny so silným telom a železnou vôľou bojovať. Ako generál bol nesmierne schopný, stojac po boku Scipia Africanusa a Claudiusa Nera ako najefektívnejších rímskych generálov celej druhej púnskej vojny.  Okrem svojich vojenských úspechov bol Marcellus aj fanúšikom gréckej kultúry a umenia, ktorú v Ríme nadšene propagoval. Keď boli jeho muži prepadnutí neďaleko Venosy, zahynul. Na základe rešpektu, ktorý mal medzi ľudmi, mu bol udelený titul 'Meč Ríma'."
+msgstr "Vojak počas prvej vojny proti Kartágu, hrdina druhej púnskej vojny a víťaz nad Galmi pri Clastidiu. Plutarch ho opisuje ako muža vojny so silným telom a železnou vôľou bojovať. Ako generál bol nesmierne schopný, stojac po boku Scipia Africanusa a Claudiusa Nera ako najefektívnejších rímskych generálov celej druhej púnskej vojny.  Okrem svojich vojenských úspechov bol Marcellus aj fanúšikom gréckej kultúry a umenia, ktorú v Ríme nadšene propagoval. Keď boli jeho muži prepadnutí neďaleko Venosy, zahynul. Na základe rešpektu, ktorý mal medzi ľudmi, mu bol udelený titul \"Meč Ríma\"."
 
 #: civs/rome.jsonFactions[0].Heroes[1].Name
 msgid "Marcus Claudius Marcellus"
@@ -2391,7 +2393,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr ""
+msgstr "Niekedy to bol len dočasný tábor s výhľadom na trasu, po ktorej mala armáda pochodovať, inokedy obranná alebo aj útočná (pri obliehaniach) stavba. Vo vnútri Praetorianskej brány, ktorá buď smerovala na východ alebo na nepriateľa, boli postavené stany prvých stoviek vojakov alebo kohortov a taktiež tam boli umiestnené aj kohortské a iné prápory. Dekumánska brana bola presným opakom tej Praetorianskej, nachádzala sa v zadnej časti tábora a cez ňu boli vojaci prevádzaní na miesto určené na tresty a popravy. Celý tábor bol obohnaný živými múrmi obklopenými kanálom, ktorý sa kedykoľvek, keď to bolo možné, naplnil vodou, aby sa stavba dala lepšie brániť. Mnoho mestečiek začalo ako väčšie vojenské tábory a postupne sa rozvinulo na väčšie mestá."
 
 #: civs/rome.jsonStructures[1].Name
 msgid "Murus Latericius"
@@ -2425,17 +2427,17 @@ msgid ""
 "This unlocks the Seleucid expansion building, the Klēroukhia or Military "
 "Colony, similar to Civic Centers for other factions. It is weaker and "
 "carries a smaller territory influence, but is cheaper and built faster."
-msgstr ""
+msgstr "Toto sprístupní seleukovskú budovu určenú na zväčšovanie územia, Klēroukhiu alebo inak povedané vojenskú kolóniu, podobnú administratívnym centrám u ostatných frakciách. Je slabšia a má menší územný vplyv, ale zato je aj lacnejšia a rýchlejšie sa stavia."
 
 #: civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
-msgstr ""
+msgstr "Klerúchie"
 
 #: civs/sele.jsonCivBonuses[1].Description
 msgid ""
 "Choose between Traditional Army and Reform Army technologies that unlock "
 "different Champions."
-msgstr ""
+msgstr "Zvoľte si medzi technológiami tradičnej a reformnej armády, ktoré sprístupnia odlišných šampiónov."
 
 #: civs/sele.jsonCivBonuses[1].History
 #: civs/sele.jsonFactions[0].Technologies[1].History
@@ -2451,152 +2453,152 @@ msgstr "Seleucidské a v skutku Následnícke vedenie vojny sa v priebehu 3. a 2
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr ""
+msgstr "Spojenecké administratívne centrá sú o 20% lacnejšie."
 
 #: civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "Sýrske štvormestie"
 
 #: civs/sele.jsonTeamBonuses[0].History
 msgid ""
 "The political core of the Seleucid Empire consisted of four 'sister' cities:"
 " Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
-msgstr ""
+msgstr "Politické jadro Seleukovskej ríše skladajúce sa zo štyroch \"sesterských\" miest: Antiochie (hlavné mesto), Seleukie Pierie, Apamei a Laodicei."
 
 #: civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
-msgstr ""
+msgstr "Seleukos I. Nikator"
 
 #: civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr ""
+msgstr "Antiochos I. Sotér"
 
 #: civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr ""
+msgstr "Antiochos II. Theós"
 
 #: civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
-msgstr ""
+msgstr "Seleukos II. Kallinikos"
 
 #: civs/sele.jsonAINames[4]
 msgid "Seleucus III Ceraunus"
-msgstr ""
+msgstr "Seleukos III. Keraunos"
 
 #: civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr ""
+msgstr "Antiochos III. Veľký"
 
 #: civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
-msgstr ""
+msgstr "Seleukos IV. Filopatór"
 
 #: civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr ""
+msgstr "Antiochos IV. Epifanés"
 
 #: civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr ""
+msgstr "Antiochos V. Eupatór"
 
 #: civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
-msgstr ""
+msgstr "Démétrios I. Sótér "
 
 #: civs/sele.jsonAINames[10]
 msgid "Alexander I Balas"
-msgstr ""
+msgstr "Alexander I. Balás"
 
 #: civs/sele.jsonAINames[11] civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
-msgstr ""
+msgstr "Démétrios II. Níkátor"
 
 #: civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr ""
+msgstr "Antiochos VI. Dionýsos"
 
 #: civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
-msgstr ""
+msgstr "Diodotos Tryfón"
 
 #: civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr ""
+msgstr "Antiochos VII. Sidetés"
 
 #: civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
-msgstr ""
+msgstr "Alexander II. Zabinás"
 
 #: civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
-msgstr ""
+msgstr "Kleopatra Thea"
 
 #: civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
-msgstr ""
+msgstr "Seleukos V. Filométór"
 
 #: civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr ""
+msgstr "Antiochos VIII. Grypus"
 
 #: civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr ""
+msgstr "Antiochos IX. Cyzicenus"
 
 #: civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr ""
+msgstr "Seleukos VI. Epifanés"
 
 #: civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr ""
+msgstr "Antiochos X. Eusebés"
 
 #: civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
-msgstr ""
+msgstr "Démétrios III. Eukaréus"
 
 #: civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr ""
+msgstr "Antiochos XI. Epifanés"
 
 #: civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
-msgstr ""
+msgstr "Filip I. Filadelfos"
 
 #: civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr ""
+msgstr "Antiochos XII. Dionýsos"
 
 #: civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
-msgstr ""
+msgstr "Seleukos VII. Kybiosaktes"
 
 #: civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr ""
+msgstr "Antiochos XIII. Ázijský"
 
 #: civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
-msgstr ""
+msgstr "Filip II. Filorhómaios"
 
 #: civs/sele.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr ""
+msgstr "Tradičná armáda sprístupní Strieborné štíty a vozy s kosami, reformná zasa porímštených ťažkých šermiarov a ozbrojencov."
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
-msgstr ""
+msgstr "Tradičná armáda vs. Reformná armáda"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr ""
+msgstr "Jednorazový nákup 20 indických vojnových slonov z Maurjovskej ríše."
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
-msgstr ""
+msgstr "Manželské spojenectvo"
 
 #: civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2608,13 +2610,13 @@ msgid ""
 "alliance, he married his daughter to Chandragupta. In return, Chandragupta "
 "gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
 "military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr ""
+msgstr "Seleukos I. Nikator napadol v roku 305 pred Kristom región Pandžáb v Indii, čím konfrontoval Čandraguptu Maurju (Sandrokottosa), zakladateľa Maurjovskej ríše. Hovorí sa, že ten postavil armádu skladajúcu sa zo 600,000 mužov a 9,000 vojnových slonov (Plínius Starší, Naturalis Historia VI, 22.4). Seleukos tak nič nedosiahol a za účelom nastolenia mieru medzi dvoma mocnosťami a formalizovania ich spojenectva, vydal svoju dcéru za Čandraguptu. Ten mu na oplátku daroval oddiel 500 vojnových slonov, ktoré sa ukázali ako rozhodujúci vojenský prínos pri Seleukovom boji proti ostatným Alexandrovým nástupcom."
 
 #: civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
-msgstr ""
+msgstr "Krásne a silné plemeno nisanských koní zvyšuje zdravie pre seleukovskú jazdu."
 
 #: civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2626,11 +2628,11 @@ msgid ""
 "were the most extensive in Asia after that of Alexander. The whole region "
 "from Phrygia to the Indus was subject to Seleucus. — Appian, 'The Syrian "
 "Wars'."
-msgstr ""
+msgstr "Vždy číhajúc na ostatné národy, silný v zbraniach a presvedčivý v rade, on (Seleukos) postupne získal Mezopotámiu, Arménsko, \"Seleukovskú\" Kapadóciu, Perziu, Partiu, Baktriu, Arábiu, Tapúriu, Sogdiu, Arachóziu, Hyrkániu a aj ďalšie susedné národy predtým podmanené Alexandrom, až po rieku Indus, vďaka čomu mal najrozsiahlejšiu ríšu v Ázii hneď po tej Alexandrovej. Celá oblasť od Frýgie až po Indus patrila Seleukovi. — Appiános, \"Sýrske vojny\""
 
 #: civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "Seleukos I. Nikator"
 
 #: civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2643,11 +2645,11 @@ msgid ""
 "League and the Kingdom of Pergamon banded together with the Romans to defeat"
 " him at the Battle of Magnesia, forever burying the dream of reuniting "
 "Alexander's empire."
-msgstr ""
+msgstr "Antiochos na začiatku svojej vlády zdedil kráľovstvo s mnohými problémami. Od pokraja zrútenia sa mu podarilo dať naspäť dokopy to, čo Seleukos I. tak vydreto založil. Povstalecké východné satrapy Baktria a Partia boli zrazené na kolená, takže dočasne zabezpečovali jeho východné hranice. Potom obrátil svoju pozornosť na materské Grécko, pokúšajúc sa tak naplniť sny svojich otcov o napadnutí Grécka pod zámienkou oslobodenia. Achájsky spolok a Pergamské kráľovstvo sa však spojili s Rimanmi a v bitke pri Magnesii ho porazili, navždy tak pochovajúc sen o znovuzjednotení Alexandrovej ríše."
 
 #: civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr ""
+msgstr "Antiochos III. Veľký"
 
 #: civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2658,25 +2660,25 @@ msgid ""
 "conquest of Egypt (twice), which was halted by the threat of Roman "
 "intervention, and the beginning of the Jewish revolt of the Maccabees. He "
 "died of sudden illness while fighting off a Parthian invasion from the East."
-msgstr ""
+msgstr "Antiochos IV. Epifanés bol synom Antiocha III. Veľkého a bratom Seleuka IV. Filopatóra. Pôvodne sa volal Mitridates, ale buď po svojom nástupe na trón alebo po smrti svojho staršieho brata Antiocha prijal meno Antiochus. Medzi zaujímavé udalosti počas jeho vlády patrí skoro-dobytie Egypta (dvakrát), ktoré však bolo zastavené hrozbou zásahu Rimanov, a začiatok židovského povstania Makabejcov. Zomrel na náhlu chorobu počas odrážania Partskej invázie z východu."
 
 #: civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "Antiochos IV. Epifanés"
 
 #: civs/sele.jsonFactions[0].Description
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
-msgstr ""
+msgstr "Macedónsko-grécka dynastia vládnuca východnej časti bývalej Alexandrovej ríše."
 
 #: civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr ""
+msgstr "Trénuje všetky jazdecké jednotky okrem občianskej domobrannej jazdy."
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr ""
+msgstr "Vojenská kolónia"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""
@@ -2702,7 +2704,7 @@ msgstr "Seleucidskí králi pozvali Grékov, Macedóncov, Galátiov (Galov), Kr�
 #: civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr ""
+msgstr "Macedónsko-grécka dynastia vládnuca väčšine bývalej Alexandrovej ríše."
 
 #: civs/spart.jsonName civs/spart.jsonFactions[0].Name
 msgid "Spartans"
@@ -2710,7 +2712,7 @@ msgstr "Sparťania"
 
 #: civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr "Sparťania môžu použiť silnú formáciu zvanú falanga."
+msgstr "Sparťania môžu použiť mocnú formáciu zvanú Falanga."
 
 #: civs/spart.jsonCivBonuses[0].History
 msgid ""
@@ -2719,12 +2721,12 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Sparťania boli neohrozenými majstrami falangového vojenstva.  Kvôli svojej disciplíne boli tak obávaní, že občas sa zvykla nejaká nepriateľská armáda rozbiť a rozutekať bez jediného zarinčania štítu. Slovo 'othismos' sa vzťahuje na bod vo falangovej bitke, keď sa  obe strany snažia si navzájom rozvrátiť formácie, prelomiť súperovu líniu a nasmerovať ho na potrebné miesto."
+msgstr "Sparťania boli neohrozenými majstrami falangového vojenstva.  Kvôli svojej disciplíne boli tak obávaní, že občas sa zvykla nejaká nepriateľská armáda rozbiť a rozutekať bez jediného zarinčania štítu. Slovo \"othismos\" sa vzťahuje na bod vo falangovej bitke, keď sa  obe strany snažia si navzájom rozvrátiť formácie, prelomiť súperovu líniu a nasmerovať ho na potrebné miesto."
 
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr ""
+msgstr "Spartské povýšenia vojakov na ďalšie stupne v kasárňach nestoja žiadne suroviny, iba čas."
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -2739,7 +2741,7 @@ msgstr "Na základe Ústavy napísanej mýtickým zákonodarcom Lykurgom sa pre 
 
 #: civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr "Spojenci môžu trénovať Spartiates."
+msgstr "Spojenci môžu trénovať Sparťanov."
 
 #: civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
@@ -2751,58 +2753,58 @@ msgid ""
 "loose confederation, with Sparta as its leader, was later dubbed the "
 "Peloponnesian League by historians, but in ancient times was called 'The "
 "Lacedaemonians and their allies.'"
-msgstr "Veľa Peloponézčanov bolo nejakým spôsobom spojených so Spartou. Tejto voľnej konfederácii, so Spartou ako jej vodcom, bol neskôr historikmi daný názov Peloponézska liga, aj keď v starovekých dobách sa nazývala 'Lacedaemónci a ich spojenci.'"
+msgstr "Veľa Peloponézčanov bolo nejakým spôsobom spojených so Spartou. Tejto voľnej konfederácii, so Spartou ako jej vodcom, bol neskôr historikmi daný názov Peloponézska liga, aj keď v starovekých dobách sa nazývala \"Lacedaemónci a ich spojenci.\""
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr ""
+msgstr "Diénekés"
 
 #: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr ""
+msgstr "Brásidás"
 
 #: civs/spart.jsonAINames[3]
 msgid "Agis"
-msgstr ""
+msgstr "Agis"
 
 #: civs/spart.jsonAINames[4]
 msgid "Archidamus"
-msgstr ""
+msgstr "Archidámos"
 
 #: civs/spart.jsonAINames[6]
 msgid "Pausanias"
-msgstr ""
+msgstr "Pausaniás"
 
 #: civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr ""
+msgstr "Agésiláos"
 
 #: civs/spart.jsonAINames[8]
 msgid "Echestratus"
-msgstr ""
+msgstr "Echestratos"
 
 #: civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr ""
+msgstr "Eurykrates"
 
 #: civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr ""
+msgstr "Eukleidás"
 
 #: civs/spart.jsonAINames[11]
 msgid "Agesipolis"
-msgstr ""
+msgstr "Agésipolis"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "Spartské ženy nemôžu byť zajaté a budú sa zarputilo brániť proti akýmkoľvek útočníkom. Sú tiež schopné stavať obranné veže a palisády."
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
-msgstr ""
+msgstr "Ženská mystika"
 
 #: civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -2813,36 +2815,36 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr ""
+msgstr "Spartské ženy boli jedni z najslobodnejších v starovekom svete. Mohli vlastniť zem aj otrokov a dokonca trénovať nahé rovnako ako spartskí muži. Hovorilo sa, že iba spartské ženy mohli porodiť skutočných mužov. Takto zocelené nie raz pomohli zachrániť svoje mesto pred katastrofou, napríklad po prehranej bitke s Pyrrhosom Epirským v noci na ochranu mesta navŕšili hlinené valy, zatiaľ čo ich muži spali pripravujúc sa na ďalší deň obliehania."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr ""
+msgstr "Jednotky vo falangovej formácii sa pohybujú rýchlejšie."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
-msgstr ""
+msgstr "Tyrteánske Paény"
 
 #: civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr ""
+msgstr "Paény boli bojové hymny spievané hoplitmi pri prerážaní nepriateľských línii. Jedny z prvých známych Peán boli zložené Tirteom, bojovým básnikom Sparty, počas prvej messénskej vojny."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr ""
+msgstr "+25% zdravie pre pechotu s kopijami, ale zato aj +10% doba tréningu."
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
-msgstr ""
+msgstr "Agóge"
 
 #: civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr ""
+msgstr "Sparťania boli už od mladého veku trénovaní, aby sa z nich stali vynikajúci bojovníci a boli schopní znášať akékoľvek ťažkosti vojenského života."
 
 #: civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2852,7 +2854,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr ""
+msgstr "Kráľ Sparty, ktorý bojoval a aj zomrel v bitke pri Termopylách v roku 480 pred Kristom. Úspešne so svojimi 7000 mužmi blokoval v úzkom priesmyku cestu obrovskej perzskej armáde, až pokiaľ Xerxes nebol upozornený na tajnú nezahatanú cestu. Keď Leonidas zbadal za svojim chrbtom nepriateľa, poslal domov väčšinu svojho vojska. Sám sa pri tom rozhodol zostať spoločne s 300 starostlivo vybranými hoplitmi a tak získať čas pre ostatných, aby mohli bezpečne ustúpiť."
 
 #: civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"
@@ -2863,7 +2865,7 @@ msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr ""
+msgstr "Vzhľadom k tomu, že Brásidás im zaručil občianstvo výmenou za ich služby, otroci harcovníci bojujú za Spartu dlhšie a tvrdšie v jeho dosahu."
 
 #: civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2876,7 +2878,7 @@ msgid ""
 " the Battle of Megalopolis, the Macedonians prevailed in a long and bloody "
 "battle. Much like Leonidas 150 years earlier, instead of surrendering, Agis "
 "made a heroic final stand in order to buy time for his troops to retreat."
-msgstr ""
+msgstr "Agis III. bol 20. spartským kráľom Eurypontovskej dynastie. Dal dokopy spojenectvo južných gréckych štátov, aby bojovali proti macedónskej hegemónii, zatiaľ čo Alexander Veľký dobíjal nové územia v Ázii. Po získaní Kréty išiel obliehať mesto Megalopolis na Peloponéze, ktoré bolo macedónskym spojencom. Antipater, macedónsky vladár, viedol svoju armádu za účelom zastavenia tohto nového povstania. Po dlhej a krvavej bitke o Megalopolis nakoniec Macedónci zvíťazili. Podobne ako Leonidas o 150 rokov skôr, namiesto vzdania sa zaujal Agis hrdinské posledné stanovisko, aby tak získal pre svoje jednotky čas na ústup."
 
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
@@ -2884,17 +2886,17 @@ msgstr "Agis III"
 
 #: civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr ""
+msgstr "Syssitia"
 
 #: civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr ""
+msgstr "Trénuje hrdinov a Sparťanov, zároveň skúma aj technológie s nimi súvisiace."
 
 #: civs/spart.jsonStructures[1].History
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr ""
+msgstr "Syssitia bola jedáleň pre čistokrvných Sparťanov. Každý spartský šľachtic, dokonca aj kráľovia, v nej jedol."
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -2904,7 +2906,7 @@ msgid ""
 " at age seven. Thanks to its military might, Sparta led a coalition of Greek"
 " forces during the Greco-Persian Wars, and won over Athens in the "
 "Peloponnesian Wars, though at great cost."
-msgstr ""
+msgstr "Sparta bola popredným mestským štátom starovekého Grécka, a zároveň aj jeho dominantnou vojenskou silou od roku približne 650 pred Kristom. Spartská kultúra bola posadnutá vojenským výcvikom a dokonalosťou, pričom samotný výcvik sa pre chlapcov začínal vo veku 7 rokov. Vďaka svojej moci viedla Sparta počas grécko-perzských vojen grécku armádu a takisto zvíťazila aj nad Aténami v peloponézskych vojnách, hoci za veľkú cenu."
 
 #: civs/theb.jsonName civs/theb.jsonFactions[0].Name
 msgid "Thebans"
@@ -2921,62 +2923,62 @@ msgstr "Neznáma"
 
 #: civs/theb.jsonTeamBonuses[0].Name
 msgid "Boeotian Confederacy"
-msgstr ""
+msgstr "Boiótsky spolok"
 
 #: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
 msgid "Epaminondas"
-msgstr ""
+msgstr "Epaminondás"
 
 #: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
 msgid "Pelopidas"
-msgstr ""
+msgstr "Pelópidás"
 
 #: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
 msgid "Gorgidas"
-msgstr ""
+msgstr "Gorgidas"
 
 #: civs/theb.jsonAINames[3]
 msgid "Calydnus"
-msgstr ""
+msgstr "Kalydnos"
 
 #: civs/theb.jsonAINames[4]
 msgid "Ogyges"
-msgstr ""
+msgstr "Ogygos"
 
 #: civs/theb.jsonAINames[5]
 msgid "Cadmus"
-msgstr ""
+msgstr "Kadmos"
 
 #: civs/theb.jsonAINames[6]
 msgid "Pentheus"
-msgstr ""
+msgstr "Pentheus"
 
 #: civs/theb.jsonAINames[7]
 msgid "Polydorus"
-msgstr ""
+msgstr "Polydóros"
 
 #: civs/theb.jsonAINames[8]
 msgid "Nycteus"
-msgstr ""
+msgstr "Nykteus"
 
 #: civs/theb.jsonAINames[9]
 msgid "Lycus"
-msgstr ""
+msgstr "Lykos"
 
 #: civs/theb.jsonAINames[10]
 msgid "Labdacus"
-msgstr ""
+msgstr "Labdakos"
 
 #: civs/theb.jsonFactions[0].Description
 msgid ""
 "The great power of Central Greece and leader of the Boeotian confederacy."
-msgstr ""
+msgstr "Veľká sila stredného Grécka a vodca boiótskeho spolku."
 
 #: civs/theb.jsonStructures[1].History
 msgid ""
 "At the siege of the Athenian fortress at Delium, the Thebans employed what "
 "may be deemed the first recorded use of a flame thrower in warfare."
-msgstr ""
+msgstr "Pri obliehaní aténskej pevnosti Delium použili Tébania po prvý krát v historii vojenstva plameňomet."
 
 #: civs/theb.jsonHistory
 msgid ""
@@ -2989,4 +2991,4 @@ msgid ""
 "Philip II and Alexander the Great. Prior to its destruction by Alexander in "
 "335 BC, Thebes was a major force in Greek history, and was the most dominant"
 " city-state at the time of the Macedonian conquest of Greece."
-msgstr ""
+msgstr "Veľká moc stredného Grécka a vodca boiótskeho spolku, mesto Téby je sila, s ktorou treba počítať. Taktiež je to aj hlavný súper starovekých Atén, ktorý sa spojil s Peržanmi počas ich invázie vedenej Xerxesom v roku 480 pred Kristom. Tébske vojská pod vedením Epaminondása v bitke pri Leuktre v roku 371 pred Kristom porazili Sparťanov. Svätý oddiel Téb (ich elitná vojenská jednotka) s veľkou slávou padol v bitke pri Chaironei v roku 338 pred Kristom proti Filipovi II. a Alexandrovi Veľkému. V dobách pred svojim zánikom spôsobeným Alexandrom v roku 335 pred Kristom, boli Téby hlavnou silou gréckej histórie a najdominantnejším mestským štátom v časoch macedónskeho dobíjania Grécka."

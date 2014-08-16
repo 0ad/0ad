@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# azayrahmad <azayrahmad@gmail.com>, 2014
+# La Ode Muh. Fadlun Akbar <alunkeren@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-08-16 08:01+0000\n"
+"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +23,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informasi"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Lihat Online"
 
 #: gui/manual/manual.xml:23 (caption)
 msgid "Close"
@@ -32,11 +35,11 @@ msgstr "Tutup"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"serif-bold-18\"]Petunjuk Permainan 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -47,7 +50,7 @@ msgstr "Terima kasih sudah menginstall 0 A.D.! Halaman ini akan memberi tahu sec
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"serif-bold-16\"]Pengaturan grafik"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +60,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Anda dapat berpindah antara layar penuh dan mode jendela dengan menekan Alt + Enter. Di mode jendela, anda dapat mengubah ukuran jendela. Jika permainan berjalan sangat lambat, anda dapat mengubah beberapa pengaturan di berkas konfigurasi: cari binaries/data/config/default.cfg di lokasi di mana permainan dipasang, yang memberikan instruksi untuk suntingan, dan coba nonaktifkan pilihan \"fancywater\" dan \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mainkan Permainan"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Kontrol dan cara bermain permainan ini seharusanya sudah familiar dengan pemain dari permainan RTS tradisional. Sekarang ini masih banyak fitur yang kurang dan kekuatan peradaban yang tidak seimbang - anda mungkin harus menunggu sampai rilis beta supaya permainan ini dapat bekerja dengan baik."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -101,11 +104,11 @@ msgstr "• Roda mouse, atau tombol \"+\" dan \"-\" , untuk zoom."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mode"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Menu utama memberikan akses ke dua mode permainan:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +117,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Main sendiri[font=\"sans-14\"] — Bermain melawan satu atau lebih musuh komputer. Musuh komputer sedang dalam pengembangan dan mungkin tidak selalu diperbarui untuk menggunakan fitur-fitur baru permainan ini, tapi anda dapat setidaknya melawan musuh komputer jika anda tidak bisa bermain dengan orang lain."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Main Bersama[font=\"sans-14\"] — Bermain melawan pemain lain melalui internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -132,13 +135,13 @@ msgstr "Untuk bermain bersama, satu pemain harus memilih pilihan \"Buat Permaina
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pengaturan Permainan"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Di permainan bersama, hanya sang pembuat permainan(host) yang dapat mengubah pengaturan permainan."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -283,7 +286,7 @@ msgstr ",: Pilih prajurit yang  menganggur"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Pilih pekerja yang  menganggur (termasuk prajurit pekerja)"
+msgstr ".: Pilih pekerja yang  menganggur (termasuk prajurit rakyat)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."

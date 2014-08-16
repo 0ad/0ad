@@ -10,6 +10,7 @@
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
+# fri, 2014
 # Petr Hála <halapetr@selfnet.cz>, 2014
 # Rodeo65 <Rodeo65@centrum.cz>, 2014
 # Vit Pelcak, 2014
@@ -19,8 +20,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:06+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-08-05 17:41+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -122,7 +123,7 @@ msgid ""
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only. Nonetheless, Petra has now an experimental support for naval"
 " maps."
-msgstr ""
+msgstr "%(warning)s Umělá inteligence nepodporuje námořní mapy a může způsobit vážné výkonnostní potíže. Námořní mapy se doporučuje hrát jen s lidskými protivníky. Nicméně Petra má nyní pokusnou podporu pro  námořní mapy."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
@@ -628,7 +629,7 @@ msgstr "„Čas, jak stárne, učí a vyučuje všem věcem!“ – Aischylos, �
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "„Neboť moudrost je vůdce Zeus prazákona pán, protože v neštěstí je skryto ponaučení.“ – Aischylos, „Agamemnon“"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -1061,20 +1062,20 @@ msgstr "\"Rozmanitost názorů, jednota velení\" - Kýros II. Veliký"
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
-msgstr ""
+msgstr "„Ó, člověče, já jsem Kýros, jenž založil panství Peršanů, král Asie! Nezáviď mi tento pomník!“ – Náhrobní nápis Kýra II. Velikého"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr ""
+msgstr "Úspěch vždy vyžaduje více velkorysosti — přesto většina lidí, ztracených v temnotě svých nižších já, s ním nakládá jako s příležitostí k větší chtivosti.” – Kýros II. Veliký"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
-msgstr ""
+msgstr "\"Kdykoli lidé lžou nebo říkají pravdu, je to s jedním a tím samým cílem.\" - Dareios I."
 
 #: gui/text/quotes.txt:93
 msgid ""
@@ -1086,13 +1087,13 @@ msgstr "„Ušlechtilost dobytka se zakládá na tělesné síle, ušlechtilost 
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
-msgstr ""
+msgstr "„Pokud tvé tužby nejsou velké, připadá ti malé přání obrovským; neboť malá chuť dělá chudobu rovnu blahobytu.“ – Démokritos"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
-msgstr ""
+msgstr "„Přednes, přednes, přednes.“ – Démosthenés, když byl tázán, co jsou tři nejdůležitější prvky řečnického umění"
 
 #: gui/text/quotes.txt:96
 msgid ""
@@ -1131,11 +1132,11 @@ msgstr "\"Není to o tom, že bych byl bláznivý, jde jen o to, že moje hlava 
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr ""
+msgstr "\"Ať je tvoje řeč lepší než ticho, nebo zůstaň zticha.“ – Dionýsios I. ze Syrakus"
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr ""
+msgstr "\"Nic nemá větší sílu než nutnost.\" - Eurípidés"
 
 #: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
@@ -1145,11 +1146,11 @@ msgstr "\"Zbabělec se odvrátí, ale odvážný muž si zvolí nebezpečí.\" -
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
-msgstr ""
+msgstr "\"Zbabělci se v bitvě nepočítají; Jsou tam, ale neúčastní se.\" - Eurípidés"
 
 #: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr ""
+msgstr "\"Štěstěna bojuje vždy na uvážlivých.\" - Eurípidés"
 
 #: gui/text/quotes.txt:107
 msgid ""
@@ -1161,7 +1162,7 @@ msgstr "\"Oko za oko, zub za zub.\" - Chammurapi"
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Nepřišel jsem, abych vedl válku proti Italům, ale abych Itálii sjednotil proti Římu.\" - Hannibal Barkas"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
@@ -1172,11 +1173,11 @@ msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr ""
+msgstr "\"Moji předci ztroskotali na římské statečnosti. Já usiluji o to, aby se jiní z jejich strany vzdali mému štěstí v boji a mé statečnosti.“ – Hannibal Barkas"
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "\"Všechno se pohybuje a nic netrvá.\" - Hérakleitos z Efesu"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
@@ -1199,17 +1200,17 @@ msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr ""
+msgstr "\"Lakedaimoňané svedli nezapomenutelnou bitvu; Jasně ukázali, že jsou obratní válečníci, a že bojovali se začátečníky.“ – Hérodotos"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
-msgstr ""
+msgstr "\"To však je nejtrpčí bolestí mezi lidmi, když ten, kdo je chápavý, nemá v rukách žádnou moc.\" - Hérodotos"
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr ""
+msgstr "\"V příjemných zemích se rodí jemní lidé.\" - Hérodotos z Halikarnássu"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
@@ -1223,38 +1224,38 @@ msgstr "„Jsme jen prach a stín.“- Quintus Flaccus Horatius"
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
-msgstr ""
+msgstr "\"Nesvěřuji se žádnému pánu, abych jemu věrnost přísahal, nechávám se jako host zavát tam, kam mě zažene orkán."
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
-msgstr ""
+msgstr "\"Dobyté Řecko si podrobilo necivilizovaného vítěze a přineslo umění a vědu do rolnického Latia.\" - Horatius"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
-msgstr ""
+msgstr "\"Chraň se před nařčeními, i když jsou nepravdivá; neboť dav pravdu nezná a hledí jen na dobré jméno.“ – Isokratés"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr ""
+msgstr "\"Nikdy jsem se nenaučil naladit harfu, nebo hrát na flétnu; ale vím, jak se přivádí malé a  nevýznamné město ke slávě a velikosti.“ – Themistoklés"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr ""
+msgstr "\"Mám se sebou dva bohy, přesvědčování a nátlak.\" - Themistoklés"
 
 #: gui/text/quotes.txt:126
 msgid ""
 "\"For the Athenians command the rest of Greece, I command the Athenians; "
 "your mother commands me, and you command your mother.\" - Themistocles, in a"
 " statement to his son"
-msgstr ""
+msgstr "\"Co je jeho vůlí, to je také vůlí Athéňanů; neboť co on chce, to chce i jeho matka; co chce ona, to chce i Themistoklés, a co chce on, je opět vůlí všech Athéňanů.“ – Kleofantus, syn Themistoklův"
 
 #: gui/text/quotes.txt:127
 msgid "\"Strike, if you will, but listen.\" - Themistocles"
@@ -1264,7 +1265,7 @@ msgstr "\"Uhoď, chceš-li, ale naslouchej.\" - Themistoklés"
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr ""
+msgstr "\"Provdej se za dobrého muže a poroď dobré děti“ – Leónidás I. ke své ženě, než odešel k Thermopylám."
 
 #: gui/text/quotes.txt:129
 msgid ""
@@ -1274,7 +1275,7 @@ msgstr "„Přijď a vezmi si je!“ - Leonidas, k perskému poslu, který žád
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr ""
+msgstr "\"Pro přemýšlejícího člověka je doma tam, kde je moudrost.\" - Zarathuštra"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
@@ -1288,7 +1289,7 @@ msgstr "\"Ten muž, jenž uteče, může bojovat znovu.\" - Menander"
 msgid ""
 "\"At times discretion should be thrown aside, and with the foolish we should"
 " play the fool.\" - Menander"
-msgstr ""
+msgstr "\"Někdy se má rozum odložit stranou a u přihlouplých bychom ze sebe měli dělat blázny.“ – Menandros"
 
 #: gui/text/quotes.txt:134
 msgid ""
@@ -1300,57 +1301,57 @@ msgstr "\"Svoboda je jistým vlastnictvím těch, kdož mají odvahu ji bránit.
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
-msgstr ""
+msgstr "\"Hrobem vynikajících mužů je každá země. O nich nesvědčí jen nápis na kamenné desce ve vlasti, také v cizině bydlí, duchovně, ne hmotně, v nenapsané vzpomínce každého.“ – Periklés"
 
 #: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
-msgstr ""
+msgstr "\"Toho, kdo se vyhýbá politickým záležitostem, nepovažujeme za někoho, kdo miluje klid, nýbrž za muže, který je zde úplně zbytečný.“ – Periklés"
 
 #: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
-msgstr ""
+msgstr "\"Dali svůj život, za ni a za nás všechny, a pro sebe získali chválu, která nikdy nezestárne, nejskvostnější ze všech náhrobků...“ – Periklés, pohřební řeč"
 
 #: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
-msgstr ""
+msgstr "\"Uvažte, že štěstí závisí na svobodě, a svoboda na odvaze.“ – Periklés"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
-msgstr ""
+msgstr "\"Vaše říše je nyní jako nějaká tyranie: Možná by bylo chybou ji dobýt; bezpochyby je nebezpečné ji pustit.“ – Periklés"
 
 #: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
-msgstr ""
+msgstr "\"Když se vám budou zdát Athény významné, uvažte, že jejich nádhera byla získána smělými muži, a muži, kteří znali svou povinnost.“ – Periklés"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr ""
+msgstr "\"Jen proto, že se o politiku nezajímáš, ještě nemusí znamenat, že politika se nezajímá o tebe.“ – Periklés"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
-msgstr ""
+msgstr "\"Sladkou je válka jen nezkušeným. Zkušený má ale, když se blíží, nesmírný strach v srdci.“ – Pindaros"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr ""
+msgstr "\"Hodina odchodu přišla a my jdeme svými cestami — já zemřít, ty žít. Která je tou lepší, ví jen Bůh“ – Platón"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
@@ -1361,7 +1362,7 @@ msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
-msgstr ""
+msgstr "\"Každý muž, ať svým potomkům připomíná, že i oni jsou vojáky, a nesmí opustit řady předků, nebo ze zbabělosti zaostat.“ – Platón"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1374,7 +1375,7 @@ msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr ""
+msgstr "\"Demokracie, což je úchvatná forma vlády, je naplněna rozmanitostí a nepořádkem, a poskytuje určitý druh rovnosti zároveň lidem rovným i nerovným.“ – Platón"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
@@ -1420,21 +1421,21 @@ msgstr "\"Přestaňte uvádět zákony, my nosíme zbraně!\" - Gnaeus Pompeius 
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr ""
+msgstr "\"Mírou všech věcí je člověk - jsoucích, že jsou, a nejsoucích, že nejsou.“ – Prótagorás z Abdér"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr ""
+msgstr "\"Musíme se k sobě chovat tak, abychom se varovali toho, že bychom si ze svých přátel dělali nepřátele, a současně abychom ze svých nepřátel dělali sobě přátele.“ – Pythagoras"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"Když jsme vzteklí, měli bychom se zdržet mluvení a jednání.“ – Pythagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "„Moc je blízkým sousedem nutnosti.“ – Pythagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
@@ -1464,28 +1465,28 @@ msgstr "\"Geometrie záleží ve sčítání stran, hudba závisí na odstupu sf
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr ""
+msgstr "\"Cvič se ve spravedlnosti ve slově a skutku, a neupadej do návyku bezmyšlenkovitého jednání.“ – Pythagoras"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "„Ani nepomysli, že bys udělal něco, co se nemá udělat.“ – Pythagoras"
 
 #: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr ""
+msgstr "\"Když moudrý muž otevře svá ústa, představí se pozorovateli krása jeho duše, jako sochy v chrámu.“ – Pythagoras"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
-msgstr ""
+msgstr "„Pamatuj si, že všichni lidé tvrdí, že moudrost je nejvyšším dobrem, ale je jen málo těch, kteří po tomto nejvyšším dobru horlivě pátrají.“ – Pythagoras"
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Bez spravedlnosti se nedaří žádné říši.\" - Pythagoras"
 
 #: gui/text/quotes.txt:171
 msgid ""
@@ -1498,7 +1499,7 @@ msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr ""
+msgstr "\"Jsem pamětlivý lidské slabosti, přemítám nad mocí štěstěny a vím, že vše, co činíme, je vystaveno tisíci náhod.“ – Scipio Africanus starší"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1510,7 +1511,7 @@ msgstr "\"Připravuj se na válku, protože jsi nebyl schopen uchovat mír.\" - 
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "\"Jdi, poutníče, a zvěstuj Lakedaimonským, že my tu mrtvi ležíme, jak zákony kázaly nám.“ – Simónidés z Keu, nápis na pomníku v Thermopylách"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
@@ -1520,7 +1521,7 @@ msgstr "„Ani bozi nebojují s nutností.“ – Simónidés z Keu"
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr ""
+msgstr "\"Neustoupili jsme zpět, nýbrž jsme dali svůj život, abychom zachránili Řecko, když jeho osud stál na ostří nože.“ – Simónidés z Keu"
 
 #: gui/text/quotes.txt:177
 msgid ""

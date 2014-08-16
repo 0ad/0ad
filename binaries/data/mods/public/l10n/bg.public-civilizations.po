@@ -6,13 +6,15 @@
 # Translators:
 # Daniel Ignatov <sa3ana3a@abv.bg>, 2014
 # iron4o <ironsmile@gmail.com>, 2014
+# radochrist <ruzor@mail.bg>, 2014
 # yoreei <yoreei.grigorov@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"PO-Revision-Date: 2014-07-19 01:01+0000\n"
+"Last-Translator: radochrist <ruzor@mail.bg>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,17 +29,17 @@ msgstr "Атиняни"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Добива на метал увеличен с +10% за всяка следваща епоха"
+msgstr "Добива на метал се увеличава с +10% за всяка следваща епоха."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
-msgstr "Сребъдни сови"
+msgstr "Сребърни сови"
 
 #: civs/athen.jsonCivBonuses[0].History
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Мините в Лаурейон в Атика дали на Атиняните богатство от сребро, от което да излеят известната и много ценена монета, Атинянската Сова"
+msgstr "Мините в Лауриум в Атика дали на Атиняните богатство от сребро, от което да излеят известната и много ценена монета, Атинската сова."
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -65,12 +67,12 @@ msgstr "Гърците били много успешни в Елинизира�
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "Корабите се строят 25% по-бързо."
+msgstr "Корабите се строят с 25% по-бързо."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
 msgid "Delian League"
-msgstr "Делоски Морски Съюз"
+msgstr "Делоски морски съюз"
 
 #: civs/athen.jsonTeamBonuses[0].History
 #: civs/hele.jsonFactions[0].Technologies[1].History
@@ -92,55 +94,55 @@ msgstr "Перикъл"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Кимон"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Аристид"
 
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 msgid "Xenophon"
-msgstr "Ксенофон"
+msgstr "Ксенофонт"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Хипий"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Клисфен"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Тукидид"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Алкивиад"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Милтиад"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Клеон"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Клеофонт"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Трасибул"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
-msgstr "Епикрат"
+msgstr "Ификрат"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Демостен"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
@@ -148,7 +150,7 @@ msgstr "Атинянските тиреми могат да тренират м�
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr "Епикратски Реформи"
+msgstr "Ификратски реформи"
 
 #: civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -158,7 +160,7 @@ msgstr "Каменните стени могат да бъдат строени 
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr "Дълги Стени"
+msgstr "Дълги стени"
 
 #: civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -201,7 +203,7 @@ msgstr "Генералът, който убедил Атиняните да ив
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Перикъл е най-важният атински политик от 5 в. пр. Хр."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -284,13 +286,13 @@ msgstr "Като люлката на Западната цивилизация �
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Британци"
+msgstr "Брити"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr "Подобрен добив на грана от животновъдство и земеделие"
+msgstr "Подобрен добив на храна от животновъдство и земеделие"
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -306,7 +308,7 @@ msgstr "Представлява Келтски земеделски метод�
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Друдите увеличават малко бързината на атаките на войници в близост до тях."
+msgstr "Друдите увеличават с малко бързината на атаките на войници в близост до тях."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -334,7 +336,7 @@ msgstr "Друиди"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "Друидите на Келтите поддържали организирана религия, която напредвала технологиите на техните хора дори по време на война."
+msgstr "Келтските друиди поддържали организирана религия, която развивала технологиите на техните хора дори по време на война."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
@@ -344,7 +346,7 @@ msgstr "Karaktakos"
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr "Kunobelinos"
+msgstr "Кунобелин"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
@@ -2674,7 +2676,7 @@ msgstr ""
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr ""
+msgstr "Военна Колония"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""

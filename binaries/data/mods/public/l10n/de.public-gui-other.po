@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# leper <leper@wildfiregames.com>, 2014
+# Raymond Vetter, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-22 00:46+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,14 +34,14 @@ msgstr "%(civilization)s Spielinfo"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Zivilisationsbonus"
+msgstr[1] "Zivilisationsboni"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Teambonus"
+msgstr[1] "Teamboni"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -47,8 +50,8 @@ msgstr "Spezialtechnologien"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Spezialgebäude"
+msgstr[1] "Spezialgebäude"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -64,7 +67,7 @@ msgstr "Geschichte der %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr "Öffne %(url)s\nim Standard Web Browser. Bitte warten..."
+msgstr "Öffne %(url)s\nim Standardwebbrowser. Bitte warten..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
@@ -489,7 +492,7 @@ msgstr "Bestätigung"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Der Szenario-Editor ist nicht verfügbar oder kann nicht geladen werden. Schaue in der Spiel-Log für zusätzliche Informationen."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -781,11 +784,11 @@ msgstr "Hoste ein Mehrspielerspiel.\\n\\nBenötigt einen geöffneten UDP-Port 20
 
 #: gui/pregame/mainmenu.xml:268 (caption)
 msgid "Game Lobby"
-msgstr "Spiellobby"
+msgstr "Mehrspielerlobby"
 
 #: gui/pregame/mainmenu.xml:269 (tooltip)
 msgid "Launch the multiplayer lobby."
-msgstr "Multiplayer Lobby starten"
+msgstr "Mehrspielerlobby starten"
 
 #: gui/pregame/mainmenu.xml:299 (caption)
 msgid "Options"
@@ -871,7 +874,7 @@ msgstr "Bei der Übersetzung mithelfen!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Anklicken, um die Übersetzerseite von 0 A.D. im Browser zu öffnen."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -1501,7 +1504,7 @@ msgstr "- Reich an Eisen und Stein."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr "- Wald ist selten, aber besteht aus ertragreichen Baobab-Bäumen"
+msgstr "- Wald ist selten, aber besteht aus ertragreichen Baobab-Bäumen."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"

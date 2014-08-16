@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# w3as3l54, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-27 20:21+0000\n"
+"Last-Translator: w3as3l54\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,15 +22,15 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Informații"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Vizualizează online"
 
 #: gui/manual/manual.xml:23 (caption)
 msgid "Close"
-msgstr ""
+msgstr "Închide"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
@@ -36,18 +38,18 @@ msgstr ""
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Îţi mulţumim că ai instalat 0 A.D.! Această pagină îţi va oferi o privire de ansamblu asupra funcţionalităţilor din această versiune alpha, incompletă şi nefinalizată a jocului."
+msgstr "Îţi mulţumim că ai instalat 0 A.D.! Această pagină îţi va oferi o privire de ansamblu asupra funcţionalităţilor din această versiune alpha, o versiune a jocului care e incompletă, încă în dezvoltare."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Setări de grafică"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +59,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Puteți schimba între modul ecran compled și modul în fereastră prin apăsarea Alt + Enter. În modul fereastră puteți redimensiona fereastra. Dacă jocul rulează prea încet, puteți schimba unele setări în fișierul de configurare: căutați fișierul binaries/data/config/default.cfg în aceeași locație unde este instalat jocul. Fișierul conține instrucțiuni pentru editare. Încercați să dezactivați opțiunile \"fancywater\" și \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Cum să jucați"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"] Modul în care jocul se controlează și se joacă ar trebui să fie familiar jucătorilor de jocuri RTS. În prezent multă funcționalitate lipsește și statisticile nu sunt foarte bune. Probabil că aceste lipsuri vor fi rezolvate într-o versiune beta."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -77,35 +79,35 @@ msgstr "Controale de bază:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "Click cu butonul stâng pentru a selecta unități."
+msgstr "• Click cu butonul stâng pentru a selecta unități."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "Trage cu butonul stâng apăsat pentru a selecta grupuri de unități."
+msgstr "• Trage cu butonul stâng apăsat pentru a selecta grupuri de unități."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "Click cu butonul drept pentru a ordona unităților ținta."
+msgstr "• Click cu butonul drept pentru a ordona unităților ținta."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "Săgețile sau WASD mișcă poziția camerei."
+msgstr "• Tastele cu săgeți sau tastele WASD pentru a poziționa camera."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "Ctrl + săgețile, sau Shift + rotița șoricelului, pentru a roti camera."
+msgstr "• Ctrl + tastele săgeți, sau Shift + rotița mouse-ului, pentru a roti camera."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "Rotița șoricelului, sau \"+\" și \"-\" pentru a mări/micșora."
+msgstr "• Rotița mouseului, sau tastele \"+\" și \"-\" pentru a mări/micșora."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Moduri de joc"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Din meniul principal se pot accesa următoarele două moduri de joc:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Un singur jucător[font=\"sans-14\"] — joacă un joc solitar, sau împotriva unui sau mai multor jucători cu inteligență artificială. Jucătorii cu inteligență artificială nu sunt încă finalizați și de aceea s-ar putea să nu fie la curent cu toate facilitățile jocului. Dar este posibil să testați jocul prin meciuri împotriva jucătorilor cu inteligență artificială, dacă nu aveți posibilitatea de a juca împotriva unui om."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multijucător (multiplayer)[font=\"sans-14\"] — jucați împotriva altor jucători umani prin intermediul Internetului."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -128,17 +130,17 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Pentru a aranja un joc cu mai mulți jucători, unul din jucători trebuie să selecteze opțiunea \"Gazdă a jocului\". Jocul folosește portul UDP 20595, așa că gazda trebuie să configureze NAT/firewall-ul/sau altele pentru a permite asta. Ceilalți jucători selectează \"Conectare la joc\" și intoduc adresa IP a gazdei."
+msgstr "Pentru a aranja un joc cu mai mulți jucători, unul din jucători trebuie să selecteze opțiunea \"Gazdă a jocului\". Jocul folosește portul UDP 20595, în consecință, gazda trebuie să configureze NAT/firewall-ul/sau altele pentru a permite accesul la port. Ceilalți jucători selectează \"Conectare la joc\" și intoduc adresa IP a gazdei."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Setarea jocului"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Într-un meci cu mai mulți jucători doar gazda poate schimba opțiunile de setare ale jocului."
 
 #: gui/manual/intro.txt:31
 msgid ""

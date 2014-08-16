@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# TheBuG <Ruben.bilo@gmail.com>, 2014
+# Sander Deryckere, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-08-06 11:21+0000\n"
+"Last-Translator: TheBuG <Ruben.bilo@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +31,14 @@ msgstr "Cavalerie"
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Citizen"
-msgstr ""
+msgstr "Burger"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "Soldaat"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -68,7 +71,7 @@ msgstr "Basis"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "Mêlee"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -84,13 +87,13 @@ msgstr "Mêlee Ruiter"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "Steekspeer"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen zwaardvechters en belegeringstuigen, 1,5x tegen tirailleurs.\nZwak tegen: speervechters, boogschutters en olifanten."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -103,14 +106,14 @@ msgstr "Ruiter Speervechter"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "Zwaard"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
 msgid ""
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen boogschutters, alle ondersteunende eenheden en belegeringstuigen.\nZwak tegen: speervechters, ruitertirailleurs en olifanten."
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
@@ -148,7 +151,7 @@ msgstr "Boogschutter"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen speervechters, 1,5x tegen zwaardvechters.\nZwak tegen: tirailleurs en olifanten."
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
@@ -161,13 +164,13 @@ msgstr "Ruiter Boogschutter"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Werpspeer"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen, Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen boogschutters, 1,5x tegen ruiter-zwaardvechters.\nZwak tegen: speervechters en olifanten."
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:35
 msgid "Cavalry Skirmisher"
@@ -193,7 +196,7 @@ msgstr "Kampioen cavalerieboogschutter"
 msgid ""
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen and Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x Boogschutters, 1.5x Ruiter Zwaardvechters.\nZwak tegen: Speervechters en Olifanten."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
@@ -203,7 +206,7 @@ msgstr "Kampioen Ruitertirailleur"
 msgid ""
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen zwaardvechters en belegeringstuigen, 1.5x tegen tirailleurs.\nZwak tegen: speervechters, boogschutters en olifanten."
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:51
 msgid "Champion Cavalry Spearman"
@@ -245,7 +248,7 @@ msgstr "Kampioen infanterie"
 msgid ""
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr ""
+msgstr "Sterk tegen: 2x zwaardvechters, 1.25x ruiter speervechter.\nZwak tegen: ruiter zwaardvechter, ruiter schermutselaar."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -255,7 +258,7 @@ msgstr "Kampioenboogschutter"
 msgid ""
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr ""
+msgstr "Sterk tegen: 1,5x tegen speervechters, ruiter-boogschutters, olifanten en strijdwagens.\nZwak tegen: zwaardvechters en ruiter-speervechters."
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
@@ -265,7 +268,7 @@ msgstr "Kampioentirailleur"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "Piek"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:39
 msgid ""
@@ -293,7 +296,7 @@ msgstr "Kampioen speervechter"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen speervechters, 1.5x tegen olifanten.\nZwak tegen: boogschutters, ruiter-speervechters en ruiter-boogschutters."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -321,7 +324,7 @@ msgstr "Super Beleg"
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "Dog"
-msgstr ""
+msgstr "Hond"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""
@@ -390,7 +393,7 @@ msgstr "Held Boogschutter"
 msgid ""
 "Counters: +50% Attack vs. Spearmen, Cavalry Archers and Chariots. +100% Attack vs Elephants.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "Sterk tegen: 1,5x tegen speervechters, ruiter-boogschutters en strijdwagens. 2x tegen olifanten.\nZwak tegen: mêlee ruiters."
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:47
 msgid "Hero Skirmisher"
@@ -404,7 +407,7 @@ msgstr "Held piekenier"
 msgid ""
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen Ruiters.\nZwak tegen: Tirailleurs, Zwaardvechters, en Ruiter-Boogschutters."
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 msgid "Hero Spearman"
@@ -414,7 +417,7 @@ msgstr "Held speervechter"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen Speervechters, 1.5x tegen Tirailleurs en Olifanten.\nZwak tegen: Boogschutters, en Ruiter-Boogschutters."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:33
 msgid "Hero Swordsman"
@@ -429,7 +432,7 @@ msgstr "Mêlee Infanterie"
 msgid ""
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen Ruiters.\nZwak tegen: Tirailleurs, Zwaardvechters, en Ruiter-Boogschutters."
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -443,7 +446,7 @@ msgstr "Speervechter"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers, and 1.25x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen Speervechters, 1.5x tegen Tirailleurs, en 1.25x tegen Olifanten.\nZwak tegen: Boogschutters, Ruiter-Speervechters, en Ruiter-Boogschutters."
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:52
 msgid "Swordsman"
@@ -453,13 +456,13 @@ msgstr "Zwaardvechter"
 msgid ""
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Sterk tegen: 2x tegen Zwaardvechters, 1.25x tegen Ruiter-Speervechters.\nZwak tegen: Ruiter-Zwaardvechters, en Ruiter-Tirailleurs"
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:47
 msgid ""
 "Counters: 1.5x vs. Spearmen and Cavalry Archers, 1.25x vs. Elephants and Chariots.\n"
 "Countered by: Swordsmen, Cavalry Spearmen."
-msgstr ""
+msgstr "Sterk tegen: 1.5x tegen Speervechters en Ruiter-Boogschutters, 1.25x tegen Olifanten en Strijdwagens.\nZwak tegen: Zwaardvechters, en Ruiter-Speervechters."
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid "Skirmisher"
@@ -467,13 +470,13 @@ msgstr "Tirailleur"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:37
 msgid "Sling"
-msgstr ""
+msgstr "Slinger"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
 "Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
 "Countered by: Cavalry."
-msgstr ""
+msgstr "Sterk tegen: 1.5x tegen afstands-infanterie, 1.25x tegen mêlee-infanterie.\nZwak tegen: Ruiters"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -594,7 +597,7 @@ msgstr "Ondersteuning"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
-msgstr ""
+msgstr "Inspiratieaura"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:55
 msgid "Female Citizen"
@@ -602,7 +605,7 @@ msgstr "Vrouwelijke Burger"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "Nabije mannen werken 10% sneller."
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
@@ -898,12 +901,12 @@ msgstr "Toxotes Skithikos"
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 #: simulation/templates/units/hele_hero_xenophon.xml:13
 msgid "Formation Reforms"
-msgstr ""
+msgstr "Formatiehervormingen"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 #: simulation/templates/units/hele_hero_xenophon.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Speerwerpershervormingen"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:28
 msgid "Iphicrates"
@@ -912,12 +915,12 @@ msgstr "Iphicrates"
 #: simulation/templates/units/athen_hero_iphicrates.xml:14
 #: simulation/templates/units/hele_hero_xenophon.xml:14
 msgid "All units in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Alle eenheden in zijn formatie +15% snelheid en +1 bewapening."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 #: simulation/templates/units/hele_hero_xenophon.xml:23
 msgid "All Peltasts +15% speed."
-msgstr ""
+msgstr "Alle speerwerpers +15% snelheid."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphikratēs"
@@ -925,11 +928,11 @@ msgstr "Iphikratēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Builder Aura"
-msgstr ""
+msgstr "Bouwersaura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:20
 msgid "Acropolis Aura"
-msgstr ""
+msgstr "Acropolisaura"
 
 #: simulation/templates/units/athen_hero_pericles.xml:26
 msgid "Pericles"
@@ -937,11 +940,11 @@ msgstr "Perikles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
-msgstr ""
+msgstr "Gebouwen worden 15% sneller gebouwd onder zijn toezicht."
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr ""
+msgstr "Tempels zijn 50 steen goedkoper tijdens zijn leven."
 
 #: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Periklēs"
@@ -949,11 +952,11 @@ msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Naval Commander Aura"
-msgstr ""
+msgstr "Marinierscommandantaura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr ""
+msgstr "Marinearchitectenaura"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
@@ -961,11 +964,11 @@ msgstr "Themistocles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr ""
+msgstr "Indien bemand op een schip gaat zijn schip 50% sneller."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
-msgstr ""
+msgstr "Schepen worden 20% sneller gemaakt tijdens zijn leven."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistoklês"
@@ -1131,12 +1134,12 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:12
 msgid "Champion Army"
-msgstr ""
+msgstr "Kampioenenaura"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr ""
+msgstr "Kampioeinen hebben 5 extra aanvalskracht en zijn 25% sneller."
 
 #: simulation/templates/units/brit_hero_boudicca.xml:37
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:23
@@ -1155,12 +1158,12 @@ msgstr "Heldin"
 #: simulation/templates/units/mace_hero_demetrius.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:11
 msgid "Hero Aura"
-msgstr ""
+msgstr "Heldenaura"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "All Units +15% speed."
-msgstr ""
+msgstr "Alle eenheden zijn 15% sneller."
 
 #: simulation/templates/units/brit_hero_caratacos.xml:26
 msgid "Caratacos"
@@ -1168,7 +1171,7 @@ msgstr "Caratacos"
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:12
 msgid "Let all units heal at 1 HP per second"
-msgstr ""
+msgstr "Genees alle eenheden aan 1 leven per seconde."
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:20
 msgid "Cynvelin"
@@ -1329,7 +1332,7 @@ msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Lightning Aura"
-msgstr ""
+msgstr "Bliksemschichtaura"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:17
 msgid "Hamilcar Barca"
@@ -1341,14 +1344,14 @@ msgstr "Ḥimelqart Baraq"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:13
 msgid "Tactician Aura"
-msgstr ""
+msgstr "Tactisch aura"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:23
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr ""
+msgstr "\"Strateeg\"(TBD): De speler kan veranderingen in de duisternis zien zolang Hannibal in leven is.\nSterk tegen: 2x tegen Ruiters, 1.5x tegen gebouwen. 1.5x extra tegen poorten.\nZwak tegen: Tirailleurs en Zwaardvechters. Kan in verwarring raken."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:19
 msgid "Hannibal Barca"
@@ -1356,7 +1359,7 @@ msgstr "Hannibal Barkas"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "All allied units +2 attack within vision range of him."
-msgstr ""
+msgstr "Alle geallieerde eenheden onder zijn toezicht hebben 2 extra aanvalskracht."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:20
 msgid "Ḥannibaʿal Baraq"
@@ -1364,7 +1367,7 @@ msgstr "Ḥannibaʿal Baraq"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
-msgstr ""
+msgstr "Commandantenaura"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1562,7 +1565,7 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:11
 msgid "+10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "Ieder gedode eenheid levert 10 extra metaal op."
 
 #: simulation/templates/units/gaul_hero_brennus.xml:19
 msgid "Brennus"
@@ -1570,7 +1573,7 @@ msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr ""
+msgstr "Verzamelsnelheiden worden met 15% verhoogd tijdens zijn leven."
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:19
 msgid "Britomartus"
@@ -1578,7 +1581,7 @@ msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 msgid "+2 attack for all units within his aura."
-msgstr ""
+msgstr "Alle eenheden in zijn aura krijgen 2 extra aanvalskracht."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:28
 msgid "Vercingetorix"
@@ -1795,7 +1798,7 @@ msgstr "Merkataritza Itsasontzi"
 
 #: simulation/templates/units/iber_ship_trireme.xml:18
 msgid "Ponti"
-msgstr ""
+msgstr "Ponti"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
@@ -1847,7 +1850,7 @@ msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
-msgstr ""
+msgstr "Imperialistisch aura"
 
 #: simulation/templates/units/mace_hero_alexander.xml:36
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
@@ -1859,7 +1862,7 @@ msgstr "Alexander de Grote"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
-msgstr ""
+msgstr "Gebouwen krijgen 10% extra territorium tijdens zijn leven."
 
 #: simulation/templates/units/mace_hero_alexander.xml:35
 msgid "Mégās Aléxandros"
@@ -2281,7 +2284,7 @@ msgstr "Kurush II"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
 msgid "Leadership Aura"
-msgstr ""
+msgstr "Leiderschapsaura"
 
 #: simulation/templates/units/pers_hero_darius.xml:49
 msgid ""
@@ -2296,7 +2299,7 @@ msgstr "Darius de Grote"
 
 #: simulation/templates/units/pers_hero_darius.xml:12
 msgid "+15% Movement Speed of all units."
-msgstr ""
+msgstr "15% extra loopsnelheid voor alle eenheden."
 
 #: simulation/templates/units/pers_hero_darius.xml:47
 msgid "Darayavahush I"
@@ -2305,7 +2308,7 @@ msgstr "Darayavahush I"
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
-msgstr ""
+msgstr "Administratorsaura"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:18
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
@@ -2508,7 +2511,7 @@ msgstr "Kleopatra H' Philopater"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
-msgstr ""
+msgstr "Constructieaura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
 msgid "Mercenary Patron Aura"

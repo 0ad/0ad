@@ -8,6 +8,7 @@
 # asd, 2014
 # Erling Ekholt Kristiansen <kongrapemann@gmail.com>, 2014
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
+# Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 # joharei <johan.reitan@gmail.com>, 2013
 # Olav Lindekleiv <>, 2014
 msgid ""
@@ -15,8 +16,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-06-26 20:41+0000\n"
+"Last-Translator: Jarl.Arntzen <jarl.arntzen@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +65,7 @@ msgstr "Veldig vanskelig"
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "Conquest"
-msgstr ""
+msgstr "Erobring"
 
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
@@ -135,7 +136,7 @@ msgstr "Tilbake til lobby"
 #: gui/gamesetup/gamesetup.js:146
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Fortropp"
+msgstr "Trefning"
 
 #: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:635
 #: gui/gamesetup/gamesetup.js:1223
@@ -204,7 +205,7 @@ msgstr "Utforsket Kart"
 #: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.xml:280 (caption)
 msgid "Victory Condition:"
-msgstr "Seiersbetingelse:"
+msgstr "Betingelse for seier:"
 
 #: gui/gamesetup/gamesetup.js:1101 gui/gamesetup/gamesetup.js:1160
 #: gui/gamesetup/gamesetup.xml:330 (caption)
@@ -289,7 +290,7 @@ msgstr "* %(username)s er ikke klar."
 
 #: gui/gamesetup/gamesetup.js:1610
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Spill-innstillingene har blitt endret"
 
 #: gui/gamesetup/gamesetup.js:1635
 msgid "I'm not ready"
@@ -297,7 +298,7 @@ msgstr "Jeg er ikke klar"
 
 #: gui/gamesetup/gamesetup.js:1636
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Vis at du er klar til å spille"
 
 #: gui/gamesetup/gamesetup.js:1641 gui/gamesetup/gamesetup.js:1715
 msgid "I'm ready!"
@@ -305,11 +306,11 @@ msgstr "Jeg er klar!"
 
 #: gui/gamesetup/gamesetup.js:1642
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Vis at du er klar til å spille!"
 
 #: gui/gamesetup/gamesetup.js:1716
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Vis at du aksepterer de nåværende innstillingene og er klar til å spille!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -318,24 +319,24 @@ msgstr "%(name)ss spill"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Kobler til tjener..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, python-format
 msgid "Net message: %(message)s"
-msgstr "Net melding: %(message)s"
+msgstr "Nett-melding: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registrerer på tjeneren..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr "Spille har allerede startet, blir med igjen..."
+msgstr "Spillet har allerede startet, blir med igjen..."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
-msgstr ""
+msgstr "Spillnavnet er allerede i bruk."
 
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
@@ -354,7 +355,7 @@ msgstr "Genererer \"%(map)s\""
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr "AI Konfigurering"
+msgstr "Maskinspiller-oppsett"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
@@ -384,7 +385,7 @@ msgstr "Laster"
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Laster kart-data. Vennligst vent..."
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
@@ -416,7 +417,7 @@ msgstr "Konfigurer AI innstillinger"
 
 #: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
-msgstr "Velg spillers sivilisasjon"
+msgstr "Velg spillerens sivilisasjon"
 
 #: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
@@ -436,7 +437,7 @@ msgstr "Velg kart:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr "Antall Spillere:"
+msgstr "Antall spillere:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
@@ -464,7 +465,7 @@ msgstr "Send"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
-msgstr "[Verktøytips tekst]"
+msgstr "[Peketips tekst]"
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
@@ -529,7 +530,7 @@ msgstr "Gjem/vis utforsket kart (se gaia og bygninger)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
-msgstr "Velge låste lag."
+msgstr "Veksle låste lag."
 
 #: gui/gamesetup/gamesetup.xml:340 (caption)
 msgid "Cheats:"
@@ -537,7 +538,7 @@ msgstr "Juksekoder:"
 
 #: gui/gamesetup/gamesetup.xml:344 (tooltip)
 msgid "Toggle the usability of cheats."
-msgstr "Velge bruk av juksekoder."
+msgstr "Velg bruk av juksekoder."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"

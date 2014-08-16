@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Leszek S, 2014
+# mhnxo <mhnxo123@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-19 09:30+0000\n"
+"Last-Translator: Leszek S\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,11 +35,11 @@ msgstr "Wyjdź"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Instrukcja gry 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -47,7 +50,7 @@ msgstr "Dziękujemy za zainstalowanie 0 A.D.! Ta strona opisuje pokrótce cechy 
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Ustawienia grafiki"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +60,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Możesz przełączać pomiędzy trybem pełnoekranowym oraz okienkowym wciskając Alt + Enter. Możesz zmieniać rozmiar okna w trybie okienkowym. Jeżeli gra chodzi zbyt wolno możesz zmienić różne ustawienia w pliku konfiguracyjnym. Szukaj go w: binaries/data/config/default.cfg  w lokacji gdzie znajduje się gra. Spróbuj wtedy wyłączyć opcje \"fancywater\" oraz \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Rozgrywka"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Sterowanie oraz gameplay powinien być znany graczom  z klasycznych RTS'ów. Na razie brakuje wielu ulepszeń oraz statystyki są źle wyważone. W przyszłej wersji beta te błędy powinny zniknąć."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -101,11 +104,11 @@ msgstr "• Kółko myszy lub klawisze \"+\" i \"-\", aby sterować przybliżeni
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Tryby"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Menu główne daje dostęp do dwóch trybów gry:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +117,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr " [font=\"serif-bold-14\"]Pojedynczy gracz[font=\"serif-14\"] - graj w piaskownicy lub przeciwko jednemu lub więcej przeciwnikom sterowanym przez komputer. Gracze komputerowi są wciąż rozwijani i nie zawsze wykorzystują wszystkie możliwości gry, lecz możesz zagrać z takim przeciwnikiem, jeżeli nie masz możliwości grania z drugim człowiekiem."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Gra wieloosobowa[font=\"sans-14\"] — graj przeciwko innym graczom przez internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -132,13 +135,13 @@ msgstr "Aby uruchomić tryb rozgrywki dla wielu graczy, jeden z nich musi wybra�
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Konfiguracja rozgrywki"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]W grze wieloosobowej tylko gospodarz może zmienić ustawienia rozgrywki."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -167,15 +170,15 @@ msgstr "Kiedy będziesz gotów do grania, kliknij przycisk \"Rozpocznij grę\"."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Klawisze funkcyjne:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Zawsze"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Zamknij grę bez potwierdzenia"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -215,31 +218,31 @@ msgstr "Shift + F2: Zrób wielki zrzut ekranu (6400x4800 pikseli, w formacie .bm
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]W grze"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Potrójny lewoklik [na jednostce]: Zaznacz wszystkie jednostki tego samego rodzaju (nawet jeśli są różnych poziomów)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Podwójny lewoklik [na jednostce]: zaznacz wszystkie jednostki o tym samym rodzaju i tym samym poziomie na ekranie"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + Potrójny lewoklik [na jednostce]: Zaznacz wszystkie jednostki tego samego rodzaju na całej mapie (nawet jeśli są różnych poziomów)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Podwójny lewoklik [na jednostce]: Zaznacz wszystkie jednostki o tym rodzaju i poziomie na całej mapie"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -259,7 +262,7 @@ msgstr "F12: Pokaż/ukryj licznik czasu jaki upłynął."
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Zamknij wszystkie okna dialogowe (czat, menu) lub odznacz zaznaczone jednostki"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -325,11 +328,11 @@ msgstr "Z, X, C, V, B, N, M: z zaznaczonymi budynkami treningowymi. Dodaj 1, 2, 
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"serif-bold-14\"]Modyfikuj działania myszki"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + PPM na budynku typu Garnizon"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -370,19 +373,19 @@ msgstr "Ctrl + PPM na wybranych jednostkach:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "-Jeśli kursor znajduje się na strukturze: Garnizon"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "-Inaczej: Atakuj"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Nakładki"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Ukryj/pokaż GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -406,11 +409,11 @@ msgstr "Alt +Z: Przełącznik nieba"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Manipulacja kamerą"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W lub [strzałka w górę]: Przesuń ekran w górę"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -487,11 +490,11 @@ msgstr "Przytrzymaj Środkowy Przycisk Myszy lub klawisz / aby przesunąć kamer
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]W trakcie ustawiania budynku"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"serif-14\"][: Obróć budynek o 15 stopni przeciwnie do ruchu wskazówek zegara"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -521,7 +524,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Losowe ID użytkownika (umiejscowione w %APPDATA%\\0ad\\config\\user.cfg na Windowsie, ~/.config/0ad/config/user.cfg na Unixie), pozwól nam wykryć błąd, który powtarza się u wielu użytkowników."
 
 #: gui/manual/userreport.txt:6
 msgid ""

@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Raphael Mendonça, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-08-06 15:21+0000\n"
+"Last-Translator: Raphael Mendonça\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,14 +33,14 @@ msgstr "Jogo %(civilization)s"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bônus de Civilização"
+msgstr[1] "Bônus de Civilização"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bônus de Time"
+msgstr[1] "Bônus de Time"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -47,8 +49,8 @@ msgstr "Tecnologias Especiais"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Construção Especial"
+msgstr[1] "Construções Especiais"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -489,7 +491,7 @@ msgstr "Confirmação"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "O editor de cenário não esta disponível ou falhou ao carregar. Veja o log do jogo para obter mais informações."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -871,7 +873,7 @@ msgstr "Colabore com a tradução!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Clique para abrir a pagina de tradução do 0 A.D. no seu navegador"
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"

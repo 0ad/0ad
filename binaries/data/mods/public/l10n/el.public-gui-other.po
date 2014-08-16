@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# malvanos <malvanos@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-31 14:31+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,14 +33,14 @@ msgstr "%(civilization)s Παιξίμο Παιχνιδιού"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Οφέλη Πολιτισμού"
+msgstr[1] "Οφέλη Πολιτισμού"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Οφέλη Ομάδας"
+msgstr[1] "Οφέλη Ομάδας"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -47,8 +49,8 @@ msgstr "Ειδικές Τεχνολογίες"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ειδικά κτήρια"
+msgstr[1] "Ειδικά κτήρια"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -77,7 +79,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "λλ:δδ"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
@@ -116,7 +118,7 @@ msgstr "[%(date)s]"
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
@@ -164,7 +166,7 @@ msgstr "Καμία"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -1004,7 +1006,7 @@ msgstr "Προφυλακές"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "Στρατιωτική"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"

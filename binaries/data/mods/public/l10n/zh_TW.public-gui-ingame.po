@@ -14,8 +14,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-07-05 18:59+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +32,7 @@ msgstr "基本範圍：%(range)s"
 #: gui/session/input.js:152
 #, python-format
 msgid "Average bonus range: %(range)s"
-msgstr ""
+msgstr "額外範圍： %(range)s"
 
 #: gui/session/input.js:725
 msgid "Cannot build wall here!"
@@ -44,7 +44,7 @@ msgstr "暫停"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "繼續遊戲"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:478
@@ -104,7 +104,7 @@ msgstr "同盟"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:32 (tooltip)
 msgid "Neutral"
-msgstr "中性"
+msgstr "中立"
 
 #: gui/session/menu.js:287 gui/session/messages.js:609
 #: gui/session/diplomacy_window.xml:36 (tooltip)
@@ -117,46 +117,46 @@ msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "沒有陸地上的商人。"
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s 閒置"
 
 #: gui/session/menu.js:486
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
+msgstr[0] "有 %(numberTrading)s 個陸地商人正在進行貿易"
 
 #: gui/session/menu.js:489
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
+msgstr[0] "商船共有 %(numberGarrisoned)s 個守衛"
 
 #: gui/session/menu.js:492
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s ， %(garrisonedString)s ，及 %(inactiveString)s 。"
 
 #: gui/session/menu.js:500
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s ，及 %(garrisonedString)s 。"
 
 #: gui/session/menu.js:510 gui/session/menu.js:572
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s ，及 %(inactiveString)s 。"
 
 #: gui/session/menu.js:517 gui/session/menu.js:579
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s 。"
 
 #: gui/session/menu.js:527
 #, python-format
@@ -166,51 +166,51 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
+msgstr[0] "有 %(numberGarrisoned)s 個陸地商人駐守於商船"
 
 #: gui/session/menu.js:530
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s ，及 %(inactiveString)s 。"
 
 #: gui/session/menu.js:537
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s 。"
 
 #: gui/session/menu.js:546
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s 個陸地商人閒置"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
+msgstr[0] "有 %(inactiveString)s 。"
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "沒有商船。"
 
 #: gui/session/menu.js:565
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s 閒置"
 
 #: gui/session/menu.js:569
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
+msgstr[0] "有 %(numberTrading)s 艘商船正在貿易"
 
 #: gui/session/menu.js:588
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s 艘商船閒置"
 
 #: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
 msgid "Manual"
@@ -229,7 +229,7 @@ msgstr "開發者覆蓋層已關閉。"
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "進貢 %(resourceAmount)s %(resourceType)s 給 %(playerName)s 。Shift 加上點擊以進貢 %(greaterAmount)s 。"
 
 #: gui/session/messages.js:185
 #, python-format
@@ -242,19 +242,19 @@ msgstr "正等候其他玩家連接..."
 
 #: gui/session/messages.js:202
 msgid "Synchronising gameplay with other players..."
-msgstr ""
+msgstr "正在與其他玩家同步遊戲..."
 
 #: gui/session/messages.js:210
 msgid "Connected to the server."
-msgstr "已與伺服器連接。"
+msgstr "已連線至伺服器。"
 
 #: gui/session/messages.js:214
 msgid "Connection to the server has been authenticated."
-msgstr "已認證與伺服器間的連線。"
+msgstr "已驗證與伺服器間的連線。"
 
 #: gui/session/messages.js:219
 msgid "Connection to the server has been lost."
-msgstr "已丟失與伺服器間的連線。"
+msgstr "已失去與伺服器間的連線。"
 
 #: gui/session/messages.js:219
 msgid "The game has ended."
@@ -334,7 +334,7 @@ msgstr "%(player)s 已傳送給您 %(amounts)s。"
 #: gui/session/messages.js:478
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "您正被 %(attacker)s 攻擊！"
 
 #: gui/session/messages.js:495 gui/session/messages.js:500
 #, python-format
@@ -372,7 +372,7 @@ msgstr "私人"
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — 已包裝"
 
 #: gui/session/selection_details.js:44
 #, python-format
@@ -484,7 +484,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "類型："
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -498,12 +498,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "購買 %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "賣出 %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -513,11 +513,11 @@ msgstr "需要 %(technology)s"
 #: gui/session/selection_panels.js:332
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "卸下 %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "單擊卸下 1. Shift 並單擊卸下所有該類型的單位。"
 
 #: gui/session/selection_panels.js:400
 msgid "Lock Gate"
@@ -529,34 +529,34 @@ msgstr "開放大門"
 
 #: gui/session/selection_panels.js:511
 msgid "Pack"
-msgstr ""
+msgstr "打包"
 
 #: gui/session/selection_panels.js:513
 msgid "Unpack"
-msgstr ""
+msgstr "解壓縮"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "取消打包"
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "取消解壓縮"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "人口上限不足："
 
 #: gui/session/selection_panels.js:591
 #, python-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/selection_panels.js:710
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
+msgstr[0] "剩餘： %(number)s 要建造。"
 
 #: gui/session/selection_panels.js:938 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -566,12 +566,12 @@ msgstr "血:"
 #: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "狂暴"
 
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "積極的"
 
 #: gui/session/selection_panels_helpers.js:45
 msgctxt "stance"
@@ -586,22 +586,22 @@ msgstr "防禦"
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "固守原地"
 
 #: gui/session/selection_panels_helpers.js:70
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "現有數量： %(count)s ，限制： %(limit)s 。"
 
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s 將限制增大 %(change)s 。"
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s 將限制減少 %(change)s 。"
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -678,7 +678,7 @@ msgstr "勝利！"
 #: gui/session/session.js:629
 #, python-format
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s ， %(rangeLabel)s %(range)s"
 
 #: gui/session/session.js:802
 #, python-format
@@ -688,7 +688,7 @@ msgstr "%(time)s (%(speed)sx)"
 #: gui/session/session.js:891
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
-msgstr ""
+msgstr "未確認的環境類型： %(ambientType)s"
 
 #: gui/session/session.js:908
 #, python-format
@@ -700,7 +700,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "注意：時空隧道模式是開發者選項，不建議長時間使用。不恰當的使用可能會導致記憶體耗盡或是遊戲當機。"
 
 #: gui/session/session.js:913
 msgid "Time warp mode"
@@ -739,7 +739,7 @@ msgstr "目前駐軍: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:519
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "右鍵單擊以幫商人設定預設貿易路線。"
 
 #: gui/session/unit_actions.js:523
 #, python-format
@@ -748,7 +748,7 @@ msgstr "預期收益: %(gain)s"
 
 #: gui/session/unit_actions.js:645
 msgid "Unload All"
-msgstr ""
+msgstr "卸下所有"
 
 #: gui/session/unit_actions.js:680
 msgid "Stop"
@@ -760,7 +760,7 @@ msgstr "駐防"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "卸下"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -768,7 +768,7 @@ msgstr "修復"
 
 #: gui/session/unit_actions.js:752
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "在集合點集中"
 
 #: gui/session/unit_actions.js:775
 msgid "Back to Work"
@@ -788,11 +788,11 @@ msgstr "選取貿易貨品"
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "增加警報等級以保護更多單位"
 
 #: gui/session/unit_actions.js:843
 msgid "Raise an alert!"
-msgstr "引發警報!"
+msgstr "引發警報！"
 
 #: gui/session/unit_actions.js:861
 msgid "End of alert."
@@ -858,7 +858,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:297
 msgid "Charge Attack:"
-msgstr ""
+msgstr "衝鋒攻擊："
 
 #: gui/session/utility_functions.js:298
 msgid "Melee Attack:"
@@ -888,19 +888,19 @@ msgstr "%(attackLabel)s %(damageTypes)s"
 #: gui/session/utility_functions.js:512
 #, python-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/session/utility_functions.js:442
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s 到 %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:475
 #, python-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "城牆： %(costs)s"
 
 #: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
 #: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
@@ -910,16 +910,16 @@ msgstr "  "
 #: gui/session/utility_functions.js:476
 #, python-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "塔樓： %(costs)s"
 
 #: gui/session/utility_functions.js:498
 #, python-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/session/utility_functions.js:499
 msgid "Population Bonus:"
-msgstr ""
+msgstr "人口獎勵"
 
 #: gui/session/utility_functions.js:517
 msgid "Insufficient resources:"
@@ -1264,23 +1264,23 @@ msgstr "顯示選取狀態"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "尋路覆蓋層"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "障礙覆蓋層"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "單位移動覆蓋層"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "射程覆蓋層"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "邊框覆蓋層"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
@@ -1288,7 +1288,7 @@ msgstr "限制攝影機"
 
 #: gui/session/session.xml:124 (caption)
 msgid "Reveal map"
-msgstr "顯視地圖"
+msgstr "顯示地圖"
 
 #: gui/session/session.xml:132 (caption)
 msgid "Enable time warp"
@@ -1312,7 +1312,7 @@ msgstr "取消"
 
 #: gui/session/session.xml:207 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "只有隊伍"
 
 #: gui/session/session.xml:211 (caption)
 msgid "Send"
@@ -1324,23 +1324,23 @@ msgstr "選擇要觀看的玩家"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "觀察者模式(實驗性)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "貿易"
 
 #: gui/session/trade_window.xml:15 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "貿易商品選擇："
 
 #: gui/session/trade_window.xml:35 (tooltip)
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "選擇一種貨物做為交換的原始貨物，然後使用目標貨物的箭頭以做出交換(使用 Shift 將會把選定的資源置於100%)"
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1373,7 +1373,7 @@ msgstr "等級"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "生產隊列"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
@@ -1395,7 +1395,7 @@ msgstr "選單"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"

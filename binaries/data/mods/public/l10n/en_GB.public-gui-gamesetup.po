@@ -5,14 +5,15 @@
 # 
 # Translators:
 # leper <leper@wildfiregames.com>, 2014
+# leper <leper@wildfiregames.com>, 2014
 # Tanksy <jake_anderson_007@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-06-20 16:20+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -114,7 +115,7 @@ msgid ""
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only. Nonetheless, Petra has now an experimental support for naval"
 " maps."
-msgstr ""
+msgstr "%(warning)s The AI does not support naval maps and may cause severe performance issues. Naval maps are recommended to be played with human opponents only. Nonetheless, Petra has now an experimental support for naval maps."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
@@ -188,14 +189,14 @@ msgstr "Map Size:"
 #: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Revealed Map:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Explored Map:"
 
 #: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.xml:280 (caption)
@@ -341,12 +342,12 @@ msgstr "%(playername)s's game"
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Loading “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Generating “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -354,11 +355,11 @@ msgstr "AI Configuration"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "AI Player:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "AI Difficulty:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption)
@@ -515,13 +516,13 @@ msgstr "Select the game's starting resources."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Toggle revealed map (see everything)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Toggle explored map (see gaia and buildings)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -619,7 +620,7 @@ msgstr "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus B
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"Wisdom comes through suffering... Favours come to us from gods.\" - Aeschylus, \"Agamemnon\""
 
 #: gui/text/quotes.txt:8
 msgid ""

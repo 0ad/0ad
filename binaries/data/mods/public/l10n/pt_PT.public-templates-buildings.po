@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# mogafi, 2014
+# Nuno de Mendonça Raimundo <nnraimundo@outlook.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"PO-Revision-Date: 2014-08-02 11:10+0000\n"
+"Last-Translator: Nuno de Mendonça Raimundo <nnraimundo@outlook.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +23,11 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "Cívico"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "Edifício Civil"
+msgstr "Edifício Cívico"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
@@ -34,7 +37,7 @@ msgstr "CentroCívico"
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Construa para obter grandes porções de território. Recruta cidadãos. Guarnece: 20"
+msgstr "Construa para obter grandes porções de território. Recruta cidadãos. Guarnição: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
@@ -51,7 +54,7 @@ msgstr "Centro Cívico"
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
-msgstr ""
+msgstr "Aldeia"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
@@ -64,7 +67,7 @@ msgstr "Aumenta o limite populacional."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Aura Curativa"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -72,7 +75,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Town"
-msgstr ""
+msgstr "Vila"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
@@ -83,16 +86,16 @@ msgstr "Templo"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Recruta curandeiros. Guarneça até 20 unidades no seu interior para as curar a um ritmo rápido (3 pontos de vida por segundo). Desenvolve melhoramentos de cura e religião."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Cura unidades próximas a 1 ponto de vida por segundo."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Defensive"
-msgstr "Atitude defensiva"
+msgstr "Defensivo"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
@@ -105,7 +108,7 @@ msgstr "Torre"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr "Dispara flechas. Pode ser guarnecida para aumentar a sua defesa."
+msgstr "Dispara flechas. Guarneça com unidades para aumentar a sua defesa."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
@@ -120,12 +123,12 @@ msgstr "Atalaia"
 msgid ""
 "Build in neutral and friendly territories to scout areas of the map. Slowly "
 "loses health while in neutral territory."
-msgstr "Construir em territórios neutros e amigos para explorar áreas do mapa. Num território neutro, lentamente perde resistência."
+msgstr "Construa em territórios neutrais e aliados para explorar áreas do mapa. Deteriora-se aos poucos em território neutral."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Cerque a sua povoação para uma defesa mais robusta."
+msgstr "Cerque a sua povoação com muralhas para uma defesa mais robusta."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -134,25 +137,25 @@ msgstr "Muralha de Pedra"
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr "Por onde todas as unidades podem atravessar a  muralha. Pode ser encerrada para evitar o acesso."
+msgstr "Permite que as unidades atravessem uma muralha. Pode ser trancada para impedir qualquer acesso."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
-msgstr "Portão da cidade"
+msgstr "Porta da Cidade"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Protecção de Muralha"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr "As muralhas podem ser transformadas em portões."
+msgstr "Segmentos de muralhas podem ser convertidos em portas."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "As unidades colocadas em muralhas possuem 3 níveis suplementares de Armadura."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -160,7 +163,7 @@ msgstr "Converter Muralha de Pedra em Porta da Cidade"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr "Dispara flechas. Guarnecer para defender a muralha de ataques inimigos."
+msgstr "Dispara flechas. Guarneça com unidades para defender a muralha de ataques inimigos."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
@@ -173,20 +176,20 @@ msgstr "Muralha"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "Economia"
+msgstr "Económico"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr "Edifício económico"
+msgstr "Edifício Económico"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
-msgstr "Quinta"
+msgstr "Granja"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr "Armazém para comida. Desenvolve tecnologias alimentares."
+msgstr "Armazém para comida. Desenvolve tecnologias para optimizar a obtenção de alimentos. "
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -203,13 +206,13 @@ msgstr "Cria mercadores para comercializar com outros mercados. Permite trocar r
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
-msgstr "Armázem "
+msgstr "Armazém"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:22
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Local de armazenamento de madeira, pedra e metal. Desenvolve tecnologias para optimizar a recolha destes recursos."
+msgstr "Armazém de madeira, pedra e metal. Desenvolve tecnologias para optimizar a recolha destes recursos."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
@@ -222,7 +225,7 @@ msgstr "Povoação"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr "Militares"
+msgstr "Militar"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -235,7 +238,7 @@ msgstr "Quartel"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Recruta cidadãos soldados e desenvolve tecnologias para estas unidades. Guarnição: 10"
+msgstr "Recruta cidadãos-soldados. Desenvolve tecnologias para estas unidades. Guarnição: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -244,7 +247,7 @@ msgstr "Ferraria"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr "Desenvolve melhoramentos para armas e armaduras."
+msgstr "Desenvolve melhoramentos para armaduras e armas."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -266,7 +269,7 @@ msgstr "Embaixada"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "City"
-msgstr ""
+msgstr "Cidade"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 #: simulation/templates/template_structure_military_fortress.xml:31
@@ -278,11 +281,11 @@ msgstr "Fortaleza"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Recruta heróis, unidades de elite e maquinaria de cerco. Desenvolve tecnologias para maquinaria de cerco. Guarnece: 20"
+msgstr "Recruta heróis, unidades de elite e maquinaria de cerco. Desenvolve tecnologias para maquinaria de cerco. Guarnição: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "Recursos"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -297,7 +300,7 @@ msgstr "Curral"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Cria animais para obter comida. Recolha animais domésticos neste edifício para obter mais comida ou outras bonificações (funcionalidade ainda não implementada)."
+msgstr "Cria animais para obter comida. Recolha animais domésticos neste edifício para obter mais comida e outras bonificações (funcionalidade ainda não implementada)."
 
 #: simulation/templates/template_structure_resource_field.xml:25
 #: simulation/templates/template_structure_resource_field.xml:24
@@ -306,11 +309,11 @@ msgstr "Seara"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Cultiva vegetais. Máximo de 5 unidades por cada quinta."
+msgstr "Colha vegetais para obter comida. Máximo de 5 unidades na colheita."
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr "Este é um edifício especial para uma civilização específica."
+msgstr "Este é um edifício especial, exclusivo de uma civilização específica."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -322,7 +325,7 @@ msgstr "Edifício Especial"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr "Traz a glória à sua civilização e anexa um grande território ao seu império."
+msgstr "Glorifica a sua civilização e anexa uma grande porção de território ao seu império."
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
@@ -391,7 +394,7 @@ msgstr "Agrós"
 #: simulation/templates/structures/hele_fortress.xml:16
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr "Constrói maquinaria de cerco. Guarnece até 20 soldados para defender."
+msgstr "Permite construir maquinaria de cerco. Guarneça até 20 soldados no seu interior para uma defesa robusta."
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
@@ -436,7 +439,7 @@ msgstr "Atalaia Grega"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr "Recruta heróis e desenvolve tecnologias especiais."
+msgstr "Recruta heróis. Desenvolve tecnologias especiais."
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
@@ -469,7 +472,7 @@ msgstr "Neṓs"
 msgid ""
 "Exellinismós (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr "Exellinismós (Helenização): +20% influência territorial para todos os edifícios enquanto o Theatron existir."
+msgstr "Exellinismós (Helenização): aumenta +20% a influência territorial de todos os edifícios enquanto o Theatron existir."
 
 #: simulation/templates/structures/athen_theatron.xml:32
 #: simulation/templates/structures/hele_theatron.xml:32
@@ -533,7 +536,7 @@ msgstr "Pýrgos"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Traz a glória à sua civilização e anexa um grande território ao teu império. Guarneça até 30 unidades para serem curadas rapidamente."
+msgstr "Traz glória à sua civilização e anexa um grande território ao seu império. Guarneça até 30 unidades para serem curadas rapidamente."
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/hele_wonder.xml:17
@@ -552,7 +555,7 @@ msgstr "Gwersyllty"
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "-Town"
-msgstr ""
+msgstr "-Town"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -578,7 +581,7 @@ msgstr "Aumenta o limite populacional e defende as vias navegáveis"
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
-msgstr "Arquipélago "
+msgstr "Arquipélago"
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -743,7 +746,7 @@ msgstr "Mijdil"
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr "Constrói pesqueiros para obter comida e navios mercantes para comercializar com outros portos."
+msgstr "Constrói navios pesqueiros para obter comida e navios mercantes para comercializar com outros portos."
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
@@ -862,7 +865,7 @@ msgstr "Recruta heróis e soldados de elite gauleses. Constrói aríetes. "
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "Dun Gaulês"
+msgstr "Gallic Dun"
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
@@ -1108,7 +1111,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr "O famoso pilar de Asoka. Actualmente é uma estrutura sem utilidade"
+msgstr "O famoso pilar de Asoka. Actualmente é uma estrutura sem utilidade."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
@@ -1261,7 +1264,7 @@ msgstr "Palácio"
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr "Edifício especial.\nRecruta elefantes de guerra e mercenários Kárdakes."
+msgstr "Edifício especial.\nRecruta Elefantes de Guerra e mercenários Kárdakes."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
@@ -1273,11 +1276,11 @@ msgstr "Parihuvādā"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "-Barracks"
-msgstr ""
+msgstr "-Quartel"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr ""
+msgstr "Estábulos"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
@@ -1380,7 +1383,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Estrutura militar tipo quartel que pode ser construído em território neutro mas não tem influência territorial.\n- Recruta mercenário.\n- Distância mínima para outros edifícios militares: 100 metros."
+msgstr "Estrutura militar tipo quartel que pode ser construído em território neutro mas não tem influência territorial.\n- Recruta mercenários.\n- Distância mínima para outras Colónias Militares: 100 metros."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
@@ -1400,7 +1403,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr "Este é o edifício de expansão ptolemaico, idêntico aos Centros Cívicos das outras civilizações. É menos resistente e a sua influência territorial é menor, mas é mais barato e mais rápido de se construir.\n- Recruta colonos-soldados de várias nacionalidades.\n- Distância mín. para outras Colónias Militares: 100 metros."
+msgstr "Este é o edifício de expansão ptolemaico, idêntico aos Centros Cívicos das outras facções. É menos resistente e a sua influência territorial é menor, mas é mais barato e mais rápido de se construir.\n - Recruta colonos-soldados de várias nacionalidades.\n - Distância mín. para outras Colónias Militares: 100 metros."
 
 #: simulation/templates/structures/ptol_military_colony.xml:29
 #: simulation/templates/structures/sele_military_colony.xml:29
@@ -1535,7 +1538,7 @@ msgstr "Murus Circummunitionis"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr "Transformw a muralha de pedra num portão"
+msgstr "Converter a Muralha de Cerco num Portão"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
@@ -1555,7 +1558,7 @@ msgstr "Aedes"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Recruta curandeiros. Guarneça até 30 unidades no seu interior para serem curadas rapidamente. "
+msgstr "Recruta Sacerdotes. Guarnece até 30 unidades para as curar rapidamente."
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1581,7 +1584,7 @@ msgstr "Aedes Vestae"
 
 #: simulation/templates/structures/rome_tent.xml:31
 msgid "-Village"
-msgstr ""
+msgstr "-Village"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
@@ -1642,7 +1645,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Este é o edifício de expansão dos Selêucidas, similar aos Centros Cívicos de outras facções. É mais fraco e tem menor influência territorial, mas é mais barato e de mais rapida construção.\n- Recruta cidadãos-soldados de várias nacionalidades.\n- Distância mínima a outras colónias militares: 120 metros."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

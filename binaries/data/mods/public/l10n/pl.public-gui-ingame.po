@@ -15,11 +15,14 @@
 # lacek, 2014
 # LenaPL <polandlena@gmail.com>, 2014
 # Leszek S, 2014
+# Leszek S, 2014
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
+# zyxist <nightstorm@tlen.pl>, 2014
 # pawel10 <pawelklimek102@gmail.com>, 2014
+# rabusek <rabusek@gmail.com>, 2014
 # Robert "Szkodnix" Wolniak <robert.wolniak@gmail.com>, 2014
 # RosiakPL <Rosiak7777777@gmail.com>, 2014
 # tomekpg <tomekpg@op.pl>, 2014
@@ -30,8 +33,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-07-16 18:31+0000\n"
+"Last-Translator: rabusek <rabusek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,7 +63,7 @@ msgstr "Pauza"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Wznów"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:478
@@ -112,7 +115,7 @@ msgstr "Usuń"
 #: gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:28 (tooltip)
 msgid "Ally"
@@ -133,31 +136,31 @@ msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "Nie ma żadnych kupców lądowych."
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfLandTraders)s nieaktywny"
+msgstr[1] "%(numberOfLandTraders)s nieaktywnych"
+msgstr[2] "%(numberOfLandTraders)s nieaktywnych"
 
 #: gui/session/menu.js:486
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Istnieje %(numberTrading)s kupiec lądowy"
+msgstr[1] "Istnieje %(numberTrading)s kupców lądowych"
+msgstr[2] "Istnieje %(numberTrading)s kupców lądowych"
 
 #: gui/session/menu.js:489
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberGarrisoned)s jednostka znajduje się na statku handlowym"
+msgstr[1] "Liczba jednostek na statku handlowym wynosi %(numberGarrisoned)s"
+msgstr[2] "Liczba jednostek na statku handlowym wynosi %(numberGarrisoned)s"
 
 #: gui/session/menu.js:492
 #, python-format
@@ -188,14 +191,14 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jest %(numberGarrisoned)s kupiec lądowy na statku handlowym"
+msgstr[1] "Liczba kupców lądowych na statku handlowym wynosi %(numberGarrisoned)s"
+msgstr[2] "Liczba kupców lądowych na statku handlowym wynosi %(numberGarrisoned)s"
 
 #: gui/session/menu.js:530
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s oraz %(inactiveString)s."
 
 #: gui/session/menu.js:537
 #, python-format
@@ -206,9 +209,9 @@ msgstr "%(openingGarrisonedString)s."
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfLandTraders)s kupiec lądowy nieaktywny"
+msgstr[1] "%(numberOfLandTraders)s kupców lądowych nieaktywnych"
+msgstr[2] "%(numberOfLandTraders)s kupców lądowych nieaktywnych"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
@@ -226,25 +229,25 @@ msgstr "Nie ma statków kupieckich."
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(numberOfShipTraders)s nieaktywny"
+msgstr[1] "%(numberOfShipTraders)s nieaktywnych"
+msgstr[2] "%(numberOfShipTraders)s nieaktywnych"
 
 #: gui/session/menu.js:569
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jest %(numberTrading)s statek handlowy"
+msgstr[1] "Liczba statków handlowych wynosi %(numberTrading)s"
+msgstr[2] "Liczba statków handlowych wynosi %(numberTrading)s"
 
 #: gui/session/menu.js:588
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Jest %(numberOfShipTraders)s nieaktywny statek handlowy"
+msgstr[1] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
+msgstr[2] "Liczba nieaktywnych statków handlowych wynosi %(numberOfShipTraders)s"
 
 #: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
 msgid "Manual"
@@ -406,12 +409,12 @@ msgstr "Prywatne"
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Spakowany"
 
 #: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
-msgstr ""
+msgstr "[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, python-format
@@ -455,7 +458,7 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Zysk: %(amount)s"
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"
@@ -483,11 +486,11 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Okres:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Szybkość:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:633
 #: gui/session/utility_functions.js:324
@@ -497,7 +500,7 @@ msgstr "Zasięg:"
 #: gui/session/selection_details.js:251 gui/session/session.js:634
 #: gui/session/utility_functions.js:325
 msgid "meters"
-msgstr ""
+msgstr "metrów"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
@@ -522,7 +525,7 @@ msgstr "Klasy:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
-msgstr ""
+msgstr "Żywotność:"
 
 #: gui/session/selection_details.js:361 gui/session/session.js:622
 #, python-format
@@ -532,12 +535,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Kup %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Sprzedaj %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -547,7 +550,7 @@ msgstr "Wymaga technologii %(technology)s"
 #: gui/session/selection_panels.js:332
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Usuń %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
@@ -590,9 +593,9 @@ msgstr "%(population)s %(neededSlots)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pozostał: %(number)s do wybudowania."
+msgstr[1] "Pozostało: %(number)s do wybudowania."
+msgstr[2] "Pozostało: %(number)s do wybudowania."
 
 #: gui/session/selection_panels.js:938 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -632,12 +635,12 @@ msgstr "Obecny licznik: %(count)s, Limit: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s zwiększa poziom o %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s zmniejsza poziom o %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -750,7 +753,7 @@ msgstr "Rynek początkowy "
 #: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
 #, python-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Zysk: %(gain)s"
 
 #: gui/session/unit_actions.js:301
 msgid "Right-click on another market to set it as a destination trade market."
@@ -762,11 +765,11 @@ msgstr "Rynek docelowy"
 
 #: gui/session/unit_actions.js:309
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek początkowy dla szlaku handlowego."
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek docelowy dla szlaku handlowego."
 
 #: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
 #, python-format
@@ -780,7 +783,7 @@ msgstr "Kliknij prawym przyciskiem myszy, aby ustalić trasę domyślną dla now
 #: gui/session/unit_actions.js:523
 #, python-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Przewidywany zysk: %(gain)s"
 
 #: gui/session/unit_actions.js:645
 msgid "Unload All"
@@ -796,7 +799,7 @@ msgstr "Garnizon"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Usuń"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -804,7 +807,7 @@ msgstr "Napraw"
 
 #: gui/session/unit_actions.js:752
 msgid "Focus on Rally Point"
-msgstr "Pokaż punkt zborny"
+msgstr "Pokaż punkt zbiórki"
 
 #: gui/session/unit_actions.js:775
 msgid "Back to Work"
@@ -820,11 +823,11 @@ msgstr "Usuń straż"
 
 #: gui/session/unit_actions.js:824
 msgid "Select trading goods"
-msgstr ""
+msgstr "Zaznacz towary handlowe"
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Zwiększ poziom gotowości, aby chronić więcej jednostek"
 
 #: gui/session/unit_actions.js:843
 msgid "Raise an alert!"
@@ -935,7 +938,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/session/utility_functions.js:442
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s do %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:475
 #, python-format
@@ -1369,18 +1372,18 @@ msgstr "Tryb Obserwatora (eksperymentalny)"
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "Handel"
 
 #: gui/session/trade_window.xml:15 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Wybór towarów handlowych:"
 
 #: gui/session/trade_window.xml:35 (tooltip)
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Wybierz surowiec początkowy , a następnie użyj strzałek przy surowcu docelowym aby dokonać zmian (użyj klawisza Shift, wybrać 100% danego surowca)."
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"

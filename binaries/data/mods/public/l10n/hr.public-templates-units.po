@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Chris_Kay_083, 2014
+# TKaucic <tkaucic@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-08-13 19:12+0000\n"
+"Last-Translator: TKaucic <tkaucic@hotmail.com>\n"
 "Language-Team: Croatian (http://www.transifex.com/projects/p/0ad/language/hr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +26,19 @@ msgstr ""
 #: simulation/templates/template_unit_champion_cavalry.xml:38
 #: simulation/templates/template_unit_hero_cavalry.xml:26
 msgid "Cavalry"
-msgstr ""
+msgstr "konjica"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Citizen"
-msgstr ""
+msgstr "građanin"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "vojnik"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -52,7 +55,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "osnovni"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:51
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:50
@@ -68,11 +71,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "melee"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
-msgstr ""
+msgstr "melee konjica"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:35
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:50
@@ -84,7 +87,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "koplje"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
@@ -94,7 +97,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "konjički kopljanik"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:44
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:76
@@ -103,7 +106,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "mač"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
@@ -114,7 +117,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
-msgstr ""
+msgstr "Konjički Mačevalac"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:30
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:39
@@ -142,7 +145,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:37
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:38
 msgid "Archer"
-msgstr ""
+msgstr "Strijelac"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
 msgid ""
@@ -152,7 +155,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Strijelac Konjanik"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:34
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:38
@@ -161,7 +164,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Bacač koplja"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -217,11 +220,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/units/maur_elephant_archer_b.xml:24
 msgid "Elephant"
-msgstr ""
+msgstr "Slon"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
-msgstr ""
+msgstr "Ratni slon"
 
 #: simulation/templates/template_unit_champion_elephant_melee.xml:49
 msgid ""
@@ -313,15 +316,15 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege.xml:12
 #: simulation/templates/template_unit_mechanical_siege.xml:13
 msgid "Siege"
-msgstr ""
+msgstr "Opsada"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "super opsada"
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "Dog"
-msgstr ""
+msgstr "pas"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""

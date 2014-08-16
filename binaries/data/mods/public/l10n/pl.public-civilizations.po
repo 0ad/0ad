@@ -19,7 +19,9 @@
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
+# zyxist <nightstorm@tlen.pl>, 2014
 # pawel10 <pawelklimek102@gmail.com>, 2014
+# rabusek <rabusek@gmail.com>, 2014
 # Robert "Szkodnix" Wolniak <robert.wolniak@gmail.com>, 2014
 # RosiakPL <Rosiak7777777@gmail.com>, 2014
 # tomekpg <tomekpg@op.pl>, 2014
@@ -30,7 +32,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"PO-Revision-Date: 2014-07-16 19:11+0000\n"
+"Last-Translator: rabusek <rabusek@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +68,7 @@ msgstr "Kopalnie w Laureion w Attyce zapewniały Ateńczykom bogactwo srebra, kt
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Wybudowanie Theatronu zwiększa zasięg obszaru wszystkich budynków o +20%."
 
 #: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
 #: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
@@ -110,7 +113,7 @@ msgstr "Perykles"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Cimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
@@ -122,11 +125,11 @@ msgstr "Ksenofont"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Hippias"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Cleisthenes"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
@@ -142,15 +145,15 @@ msgstr "Miltiades"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Cleon"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Cleophon"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Thrasybulus"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
@@ -313,12 +316,12 @@ msgstr "Ulepszone pozyskiwanie żywności z hodowli i rolnictwa."
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
 msgid "Ardiosmanae"
-msgstr ""
+msgstr "Ardiosmanae"
 
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Reprezentuje zasady celtyckiego rolnictwa."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
@@ -329,12 +332,12 @@ msgstr "Druidzi odrobinę zwiększają szybkość ataku żołnierzy w swoim pobl
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr ""
+msgstr "Deas Celtica"
 
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Celtycka religia i druidyzm były inspiracją dla ich wojowniczości."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
@@ -399,7 +402,7 @@ msgstr ""
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
@@ -422,7 +425,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Zwiększa bonus wysokości dla jednostek obsadzających wieżę."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -619,15 +622,15 @@ msgstr "Hamilkar Barkas"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Hazdrubal Barkas"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Hazdrubal Giskon"
 
 #: civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "Hannon Wielki"
 
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
@@ -655,7 +658,7 @@ msgstr ""
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hannibal Giskon"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
@@ -671,7 +674,7 @@ msgstr ""
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "Hazdrubal Starszy"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
@@ -700,7 +703,7 @@ msgstr "Kolonizacja"
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "Kartagińczycy założyli wiele ośrodków handlu jako kolonie, uzyskując ostatecznie panowanie nad ponad 300 miastami w samej tylko Afryce Północnej."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -736,7 +739,7 @@ msgstr "Stocznia wojskowa"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr ""
+msgstr "Buduj potężne okręty wojenne flory kartagińskiej."
 
 #: civs/cart.jsonStructures[0].History
 msgid ""
@@ -758,7 +761,7 @@ msgstr "Celtowie dostarczali groźnych najemnych wojowników dla armii Kartagiń
 
 #: civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Ambasada Italijska"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -821,7 +824,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "Galijscy druidzi otrzymują niewielki atak wręcz."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
@@ -963,7 +966,7 @@ msgstr ""
 #: civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr ""
+msgstr "Określona ilość metalu i żywności z każdego zniszczonego lub przejętego budynku"
 
 #: civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1566,7 +1569,7 @@ msgstr ""
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr ""
+msgstr "Macedończycy byli mistrzami sztuki oblężniczej."
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -1992,7 +1995,7 @@ msgstr ""
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
-msgstr ""
+msgstr "Ptolemeusze"
 
 #: civs/ptol.jsonCivBonuses[0].Description
 msgid ""
@@ -2059,11 +2062,11 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr ""
+msgstr "Ptolemeusz Soter"
 
 #: civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr ""
+msgstr "Ptolemeusz Filadelfos"
 
 #: civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
@@ -2071,19 +2074,19 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr ""
+msgstr "Ptolemeusz Euergetes"
 
 #: civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr ""
+msgstr "Ptolemeusz Filopator"
 
 #: civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr ""
+msgstr "Ptolemeusz Epifanes"
 
 #: civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr ""
+msgstr "Ptolemeusz Filometor"
 
 #: civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
@@ -2091,11 +2094,11 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr ""
+msgstr "Ptolemeusz Aleksander"
 
 #: civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr ""
+msgstr "Ptolemeusz Neos Dionizos"
 
 #: civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
@@ -2115,7 +2118,7 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
-msgstr ""
+msgstr "Kleopatra Filopator"
 
 #: civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
@@ -2175,7 +2178,7 @@ msgstr "Kleopatra Wielka"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr ""
+msgstr "Egipcjanie ptolemejscy"
 
 #: civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."

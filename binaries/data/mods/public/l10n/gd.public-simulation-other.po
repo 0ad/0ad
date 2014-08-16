@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# GunChleoc, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"PO-Revision-Date: 2014-06-29 09:00+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -157,7 +159,7 @@ msgstr "Cuir grunn de shleaghairean air a' chiutha."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr ""
+msgstr "Rannsaich tochladh cloiche san taigh-stòrais."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
@@ -534,17 +536,17 @@ msgstr "aig an nàmhaid"
 #: simulation/components/EntityLimits.js:110
 #, python-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "Chan fhaod thu %(category)s a thogail on a tha %(limit)s dhiubh agad mar-thà"
 
 #: simulation/components/EntityLimits.js:112
 #, python-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "Chan fhaod thu %(category)s a thrèanadh on a tha %(limit)s dhiubh agad mar-thà"
 
 #: simulation/components/EntityLimits.js:116
 #, python-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "Chan fhaod thu %(category)s a chur ris on a tha %(limit)s dhiubh agad mar-thà"
 
 #: simulation/components/Player.js:40
 msgid "Food"
@@ -605,19 +607,19 @@ msgstr "Buannaichidh tu an ceann %(time)s"
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Seilcheig (0.1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Mall (0.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Socrach (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Saorsnail (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
@@ -742,7 +744,7 @@ msgid ""
 " Support for naval maps is also added. Note that it doesn't support saved "
 "games yet. Please report issues to Wildfire Games (see the link in the main "
 "menu)."
-msgstr ""
+msgstr "Tha i stèidhichte air Aegis ach chaidh atharrachadh gu mòr le mimo 's tha sinn an dùil gum bi i nas seasmhaiche. Chaidh taic ri mapaichean-mara a chur rithe cuideachd. Thoir an aire nach toir i taic ri geamaichean air an sàbhaladh fhathast. Innis duilgheadas sam bith do Wildfire Games (faic an ceangal sa phrìomh chlàr-taice)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 #: simulation/ai/tutorial-ai/data.jsondescription

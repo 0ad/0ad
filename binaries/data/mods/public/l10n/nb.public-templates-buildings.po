@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"PO-Revision-Date: 2014-07-16 13:22+0000\n"
+"Last-Translator: Jarl.Arntzen <jarl.arntzen@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +31,7 @@ msgstr "Samfunnsbygning"
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr ""
+msgstr "Samfunnssentrum"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
@@ -64,7 +66,7 @@ msgstr "Øk befolkningsgrensen."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Helbredelsesaura"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -77,17 +79,17 @@ msgstr "By"
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
 msgid "Temple"
-msgstr ""
+msgstr "Tempel"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Tren helbredere. Utstasjoner opp til 20 enheter for å helbrede dem raskt (3 HP per sekund). Utforsk helbredelse og religiøse forbedringer."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Helbreder enheter i nærheten med 1 HP per sekund."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
@@ -96,7 +98,7 @@ msgstr "Defensiv"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "Forsvarsbygninger"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
@@ -105,16 +107,16 @@ msgstr "ForsvarsTårn"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Skyter piler. Utstasjoner for å styrke forsvaret."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
-msgstr ""
+msgstr "Forsvarstårn"
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "Utpost"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
@@ -143,7 +145,7 @@ msgstr "Byport."
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Murbeskyttelse"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -152,7 +154,7 @@ msgstr "Lange vegger kan bygges om til porter."
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Enheter på murer har 3 ekstra Rustningnivå."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -173,11 +175,11 @@ msgstr "Bymur"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr ""
+msgstr "Økonomisk"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr ""
+msgstr "Økonomisk bygning"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
@@ -186,7 +188,7 @@ msgstr "Gårdsbruk"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "Leveringsplass for matressurser. Utforsk forbedringer i matsanking."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -209,7 +211,7 @@ msgstr "Lagerhus"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr "Leveringsplass for tømmer, stein og metallressurser. Utfors forbedringer av sanking for disse ressursene."
+msgstr "Leveringsplass for tømmer, stein og metallressurser. Utforsk forbedringer innen innsanking av disse ressursene."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
@@ -218,11 +220,11 @@ msgstr "Bygg et samfunnssenter på dette stedet og utvid ditt territorium."
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
 msgid "Settlement"
-msgstr ""
+msgstr "Boplass"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr ""
+msgstr "Militære"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -235,7 +237,7 @@ msgstr "Kaserner"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "Tren borger-soldater. Utforsk treningsforbedringer. Utstasjoner: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -249,13 +251,13 @@ msgstr "Forsk på forbedring av våpen og rustning."
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr ""
+msgstr "Brygge"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "Bygges ved kysten. Brukes for å produsere marine fartøy og for å åpne marin handel. Utforsk marine forbedringer."
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:28
@@ -278,7 +280,7 @@ msgstr "Festning"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Tren helter, mestere og beleiringsvåpen. Utforsk forbedringer av beleiringsvåpen. Stasjoner: 20."
+msgstr "Tren helter, stormestere og beleiringsvåpen. Utforsk forbedringer av beleiringsvåpen. Stasjoner: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -291,7 +293,7 @@ msgstr "Ressursbygning"
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "Innhegning"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
@@ -310,7 +312,7 @@ msgstr "Høst grønnsaker som mat. Maks sankere: 5."
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "Dette er en spesiell bygning, unik for hver sivilisasjon."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -322,7 +324,7 @@ msgstr "Spesialbygning"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr ""
+msgstr "Bring ære til din sivilisasjon og legg store landområder til ditt imperium."
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
@@ -391,7 +393,7 @@ msgstr ""
 #: simulation/templates/structures/hele_fortress.xml:16
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "Bygg beleiringsmaskiner. Stasjoner opp til 20 soldater inni for et standhaftig forsvar."
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
@@ -400,7 +402,7 @@ msgstr ""
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
-msgstr "Tren mester enheter"
+msgstr "Tren stormester enheter"
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
@@ -611,7 +613,7 @@ msgstr ""
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Tren Brythoniske helter og mesterere. Bygg rambukker for beleiring."
+msgstr "Tren Brythoniske helter og stormesterere. Bygg rambukker for beleiring."
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
@@ -767,7 +769,7 @@ msgstr "Keltisk ambassade"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Hyr inn Iberiske leiesoldater og utforsk forbedringer for disse."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -775,7 +777,7 @@ msgstr "Iberisk ambassade"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Hyr inn Italienske leiesoldater og utforsk forbedringer for disse."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
@@ -883,11 +885,11 @@ msgstr "Gallisk utpost"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr ""
+msgstr "Øk befolkningsgrensen med +10. Rekrutter nakne fanatikere."
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
-msgstr ""
+msgstr "Kro"
 
 #: simulation/templates/structures/gaul_tavern.xml:24
 msgid "Taberna"
@@ -967,7 +969,7 @@ msgstr ""
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr ""
+msgstr "Alle enheter innen synsvidde av dette monumentet vil kjempe hardere. Rekkevidde for effekten: 50 meter."
 
 #: simulation/templates/structures/iber_monument.xml:37
 msgid "Revered Monument"
@@ -1005,7 +1007,7 @@ msgstr ""
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Tren stormestere og helter. Utstasjoner opp til 15 soldater for et solid forsvar."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -1313,13 +1315,13 @@ msgstr ""
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr ""
+msgstr "Babylons hengende hager."
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr ""
+msgstr "Tren Egyptiske og Midt-østenske borger-soldater. Utforsk treningsforbedringer. Innkvarter: 10."
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1361,7 +1363,7 @@ msgstr ""
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map (Not "
 "implemented). Very large vision range: 180 meters."
-msgstr ""
+msgstr "Bygges langs kysten for å avsløre kystlinjene over hele kartet (ikke implementert). Veldig lang synsvidde: 180 meter."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
@@ -1384,7 +1386,7 @@ msgstr "Billig kaserne-liknende bygning som kan bygges i nøytralt territorium m
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr ""
+msgstr "Leir for leiesoldater"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratópedo Misthophóron"
@@ -1405,7 +1407,7 @@ msgstr "Dette er Ptolematiske utvidelsesbygningen, lik by-senter for andre folke
 #: simulation/templates/structures/ptol_military_colony.xml:29
 #: simulation/templates/structures/sele_military_colony.xml:29
 msgid "Military Colony"
-msgstr ""
+msgstr "Militær koloni"
 
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
@@ -1631,7 +1633,7 @@ msgstr ""
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "Bygg beleiringsmaskiner og tren opp stormestere. Stasjoner opp til 20 soldater inni for et standhaftig forsvar."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1642,7 +1644,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Dette er Selekuidiske utvidelsesbygningen, lik by-senter for andre folkeslag. Den er svakere og har et mindre territorium men er billigere og bygges raskere.\n- Tren nybygger-soldater av forskjellige nasjonaliteter.\n- Minimum avstand fra andre militærkolonner: 120 meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1671,7 +1673,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "Tren spartanske helter og spartiaiske stormester hoplitter."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"

@@ -5,6 +5,8 @@
 # 
 # Translators:
 # Antoine Adet <antoine.adet@gmail.com>, 2013
+# Buggi <buggi@filzmail.com>, 2014
+# Cajetan Bouchard <cajetan.bouchard@gmail.com>, 2014
 # Calinou, 2013
 # dourouc05 <dourouc05@gmail.com>, 2014
 # François Poirotte <clicky@erebot.net>, 2014
@@ -15,6 +17,7 @@
 # kalemiro <cuvillier.cl@gmail.com>, 2014
 # lemiaou, 2014
 # LordIgorIIIofKiev <igorpono@hotmail.com>, 2014
+# DiabloO <lowriders_diabloqm@hotmail.com>, 2014
 # minissimo <lucanium@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2013
 # nicolas caillard <nick2paris@gmail.com>, 2013
@@ -35,14 +38,14 @@
 # Tito221 <Titanomachy221@hotmail.fr>, 2013
 # Tonton <tontonloul@hotmail.fr>, 2013
 # Van Calster <r.vancalster@laposte.net>, 2014
-# Yannick Heintz <yannickheintz@gmail.com>, 2014
+# Yannick Heintz, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-08-11 18:26+0000\n"
+"Last-Translator: DiabloO <lowriders_diabloqm@hotmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -85,7 +88,7 @@ msgstr "Non"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr "Êtes-vous sûr de vouloir abandonner ?"
+msgstr "Êtes-vous sûr(e) de vouloir abandonner ?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
@@ -98,7 +101,7 @@ msgstr "Êtes-vous sûr(e) de vouloir quitter ? Tous les joueurs vont être dé
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr "Êtes-vous sûr de vouloir quitter ?"
+msgstr "Êtes-vous sûr(e) de vouloir quitter ?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
@@ -418,7 +421,7 @@ msgstr "[HORS LIGNE]  %(player)s"
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Grade"
+msgstr "%(rank)s Rang"
 
 #: gui/session/selection_details.js:68
 #, python-format
@@ -534,12 +537,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Acheter %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Vendre %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -593,7 +596,7 @@ msgstr "%(population)s %(neededSlots)s"
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Reste : %(number)s à construire."
-msgstr[1] "Restent : %(number)s à construire."
+msgstr[1] "Progression : %(number)s ."
 
 #: gui/session/selection_panels.js:938 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -797,7 +800,7 @@ msgstr "Mettre en garnison"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Décharger"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -993,7 +996,7 @@ msgstr "Marche"
 
 #: gui/session/utility_functions.js:611
 msgid "Run"
-msgstr "Course"
+msgstr "Cours"
 
 #: gui/session/utility_functions.js:613
 #, python-format
@@ -1049,7 +1052,7 @@ msgstr "Métal"
 #: gui/session/utility_functions.js:688
 msgctxt "firstWord"
 msgid "Ore"
-msgstr "Minerai"
+msgstr "Or"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1153,7 +1156,7 @@ msgstr "métal"
 #: gui/session/utility_functions.js:717
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr "minéral"
+msgstr "or"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using

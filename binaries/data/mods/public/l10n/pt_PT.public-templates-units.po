@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# mogafi, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-07-11 13:52+0000\n"
+"Last-Translator: mogafi\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +30,14 @@ msgstr "Cavalaria"
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Citizen"
-msgstr ""
+msgstr "Cidadão"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "Soldado"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -68,7 +70,7 @@ msgstr "Básico"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "Corpo-a-corpo"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -84,13 +86,13 @@ msgstr "Cavalaria Corpo-a-corpo"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "Lança"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Espadachins e Máquinas de Cerco, 1.5x contra Escaramuçadores.\nFraco contra: Lanceiros, Arqueiros, Elefantes."
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
@@ -103,14 +105,14 @@ msgstr "Cavaleiro lanceiro"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "Espada"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
 msgid ""
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Arqueiros, todas as unidades de apoio, e Máquinas de Cerco.\nFraco contra: Lanceiros, Cavaleiros Escaramuçadores, e Elefantes."
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
@@ -148,7 +150,7 @@ msgstr "Arqueiro"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
 "Countered by: Skirmishers and Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Lanceiros, 1.5 contra Espadachins.\nFraco contra: Escaramuçadores e Elefantes."
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
@@ -161,17 +163,17 @@ msgstr "Cavaleiro Arqueiro"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Azagaia"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen, Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Arqueiros, 1.5x contra Cavaleiros Espadachins.\nFraco contra: Lanceiros, Elefantes."
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:35
 msgid "Cavalry Skirmisher"
-msgstr "Cavaleiro escarumuçador  "
+msgstr "Cavaleiro Escarumuçador  "
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
@@ -193,17 +195,17 @@ msgstr "Cavaleiro Arqueiro de Elite"
 msgid ""
 "Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
 "Countered by: Spearmen and Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Arqueiros, 1.5 contra Cavaleiros Espadachins.\nFraco contra: Lanceiros e Elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
-msgstr "Cavaleiro Zagaieiro de Elite"
+msgstr "Cavaleiro Escaramuçador de Elite"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:52
 msgid ""
 "Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
 "Countered by: Spearmen, Archers, and Elephants."
-msgstr ""
+msgstr "Forte contra: 2x contra Espadachins e Máquinas de Cerco, 1.5x contra Escaramuçadores.\nFraco contra: Lanceiros, Arqueiros, e Elefantes."
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:51
 msgid "Champion Cavalry Spearman"
@@ -245,7 +247,7 @@ msgstr "Soldado campeão"
 msgid ""
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr ""
+msgstr "Forte contra: 2x contra Espadachins, 1.25x contra Cavaleiros Lanceiros.\nFraco contra: Cavaleiros Espadachins e Cavaleiros Escaramuçadores."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
@@ -255,24 +257,24 @@ msgstr "Arqueiro de Elite"
 msgid ""
 "Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
 "Countered by: Swordsmen and Cavalry Spearmen."
-msgstr ""
+msgstr "Forte contra: 1.5x contra Lanceiros, Cavaleiros Arqueiros, Elefantes, e Carros de Guerra.\nFraco contra: Espadachins e Cavaleiros Lanceiros."
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
 msgid "Champion Skirmisher"
-msgstr "Zagaieiro de Elite"
+msgstr " Escaramuçador de Elite"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "Pique"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:39
 msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
 "Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr "Categorias: Lanceiro, Infantaria, Corpo a Corpo, Elite.\nPontos fortes: 2x contra Cavalaria; 1,5 contra Elefantes.\nFraco contra: Espadachins, Zagaieiros e Cavaleiros Arqueiros."
+msgstr "Categorias: Lanceiro, Infantaria, Corpo a Corpo, Elite.\nPontos fortes: 2x contra Cavalaria; 1,5 contra Elefantes.\nFraco contra: Espadachins, Escaramuçadores e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
 msgid "Champion Pikeman"
@@ -283,7 +285,7 @@ msgid ""
 "Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Categorias: Lanceiro, Infantaria, Corpo-a-Corpo, Elite.\nPontos fortes: 2x contra Cavalaria.\nFraco contra: Zagaieiros, Espadachins e Cavaleiros Arqueiros."
+msgstr "Categorias: Lanceiro, Infantaria, Corpo-a-Corpo, Elite.\nPontos fortes: 2x contra Cavalaria.\nFraco contra: Escaramuçadores, Espadachins e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
@@ -293,7 +295,7 @@ msgstr "Lanceiro campeão"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Forte contra: 2x contra Lanceiros, 1.5x contra Elefantes.\nFraco contra: Arqueiros, Cavaleiros Lanceiros, e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -321,7 +323,7 @@ msgstr "Máquina de Cerco Superior"
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "Dog"
-msgstr ""
+msgstr "Cão"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""
@@ -380,7 +382,7 @@ msgid ""
 "Classes: Hero Melee Elephant.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Categorias: Herói, Elefante, Corpo-a-Corpo.\nPontos fortes: 2x contra Cavalaria; 1,5x contra Edifícios (1,5x adicionais contra Portões).\nFraco contra: Zagaieiros e Espadachins. Pode entrar em descontrolo."
+msgstr "Categorias: Herói, Elefante, Corpo-a-Corpo.\nPontos fortes: 2x contra Cavalaria; 1,5x contra Edifícios (1,5x adicionais contra Portões).\nFraco contra: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:38
 msgid "Hero Archer"
@@ -390,11 +392,11 @@ msgstr "Herói Arqueiro"
 msgid ""
 "Counters: +50% Attack vs. Spearmen, Cavalry Archers and Chariots. +100% Attack vs Elephants.\n"
 "Countered by: Melee Cavalry."
-msgstr ""
+msgstr "Forte contra: +50% ataque contra Lanceiros, Cavaleiros Arqueiros e Carros de Guerra. +100% ataque contra Elefantes.\nFraco contra: Cavalaria Corpo-a-corpo."
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:47
 msgid "Hero Skirmisher"
-msgstr "Herói Zagaieiro"
+msgstr "Herói Escaramuçador"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
@@ -404,7 +406,7 @@ msgstr "Herói Piqueiro"
 msgid ""
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr ""
+msgstr "Forte contra: 2x contra toda a Cavalaria.\nFraco contra: Escaramuçadores, Espadachins, e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 msgid "Hero Spearman"
@@ -414,7 +416,7 @@ msgstr "Herói Lanceiro"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
 "Countered by: Archers, Cavalry Archers."
-msgstr ""
+msgstr "Forte contra: 2x contra Lanceiros, 1.5x contra Escaramuçadores e Elefantes.\nFraco contra: Arqueiros, Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:33
 msgid "Hero Swordsman"
@@ -429,7 +431,7 @@ msgstr "Infantaria Corpo-a-Corpo"
 msgid ""
 "Counters: 2x vs. All Cavalry.\n"
 "Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr ""
+msgstr "Forte contra: 2x contra toda a Cavalaria.\nFraco contra: Escaramuçadores, Espadachins, Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -443,7 +445,7 @@ msgstr "Lanceiro"
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers, and 1.25x vs. Elephants.\n"
 "Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr ""
+msgstr "Forte contra: 2x contra Lanceiros, 1.5x contra Escaramuçadores, e 1.25x contra Elefantes.\nFraco contra: Arqueiros, Cavaleiros Lanceiros, e Cavaleiros Arqueiros."
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:52
 msgid "Swordsman"
@@ -453,27 +455,27 @@ msgstr "Espadachim"
 msgid ""
 "Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
 "Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr ""
+msgstr "Forte contra: 2x contra Espadachins, 1.25% contra Cavaleiros Lanceiros.\nFracon contra: Cavaleiros Espadachins, Cavaleiros Escaramuçadores."
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:47
 msgid ""
 "Counters: 1.5x vs. Spearmen and Cavalry Archers, 1.25x vs. Elephants and Chariots.\n"
 "Countered by: Swordsmen, Cavalry Spearmen."
-msgstr ""
+msgstr "Forte contra: 1.5x contra Lanceiros e Cavaleiros Arqueiros, 1.25x contra Elefantes e Carros de Guerras.\nFraco contra: Espadachins, Cavaleiros Lanceiros."
 
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid "Skirmisher"
-msgstr "Zagaieiro"
+msgstr "Escaramuçador"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:37
 msgid "Sling"
-msgstr ""
+msgstr "Funda"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
 "Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
 "Countered by: Cavalry."
-msgstr ""
+msgstr "Forte contra: 1.5x contra Infantaria de Alcance, 1.25x contra infantaria de Corpo-a-corpo.\nFraco contra: Cavalaria."
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -594,7 +596,7 @@ msgstr "Apoio"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
-msgstr ""
+msgstr "Aura de Inspiração"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:55
 msgid "Female Citizen"
@@ -602,7 +604,7 @@ msgstr "Cidadã"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "Homens nas proximidades trabalham 10% mais rápido"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
@@ -898,12 +900,12 @@ msgstr "Toxotes Skithikos"
 #: simulation/templates/units/athen_hero_iphicrates.xml:13
 #: simulation/templates/units/hele_hero_xenophon.xml:13
 msgid "Formation Reforms"
-msgstr ""
+msgstr "Reformas de formação"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 #: simulation/templates/units/hele_hero_xenophon.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Reformas de Peltasta"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:28
 msgid "Iphicrates"
@@ -912,12 +914,12 @@ msgstr "Ifícrates"
 #: simulation/templates/units/athen_hero_iphicrates.xml:14
 #: simulation/templates/units/hele_hero_xenophon.xml:14
 msgid "All units in his formation +15% speed and +1 armor."
-msgstr ""
+msgstr "Todas as unidades na sua formação ganham +15% de velocidade e +1 de armadura."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 #: simulation/templates/units/hele_hero_xenophon.xml:23
 msgid "All Peltasts +15% speed."
-msgstr ""
+msgstr "Todos os peltastas ganham 15% de velocidade."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphikratēs"
@@ -925,11 +927,11 @@ msgstr "Iphikratēs"
 
 #: simulation/templates/units/athen_hero_pericles.xml:11
 msgid "Builder Aura"
-msgstr ""
+msgstr "Aura de construtor"
 
 #: simulation/templates/units/athen_hero_pericles.xml:20
 msgid "Acropolis Aura"
-msgstr ""
+msgstr "Aura de Acrópole"
 
 #: simulation/templates/units/athen_hero_pericles.xml:26
 msgid "Pericles"
@@ -937,11 +939,11 @@ msgstr "Péricles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
-msgstr ""
+msgstr "Os edifícios são construidos 15% mais depressa dentro do seu campo de visão."
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr ""
+msgstr "Templos são mais baratos em 50 de pedra durante a sua vida."
 
 #: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Periklēs"
@@ -949,11 +951,11 @@ msgstr "Periklēs"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:11
 msgid "Naval Commander Aura"
-msgstr ""
+msgstr "Aura de Comandante Naval"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:20
 msgid "Naval Architect Aura"
-msgstr ""
+msgstr "Aura de Arquitecto Naval"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
@@ -961,11 +963,11 @@ msgstr "Temístocles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr ""
+msgstr "Quando guarnecido num navio, o navio é +50% mais rápido."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
-msgstr ""
+msgstr "Navios são construidos +20% mais rápido durante a sua vida."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistoklês"
@@ -1131,12 +1133,12 @@ msgstr "Delamokludda"
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:12
 msgid "Champion Army"
-msgstr ""
+msgstr "Exército Campeão"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
 msgid "+5 Attack and +25% Speed for Champion Units."
-msgstr ""
+msgstr "+5 ataque e +25% velocidade para Campeões."
 
 #: simulation/templates/units/brit_hero_boudicca.xml:37
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:23
@@ -1155,12 +1157,12 @@ msgstr "Heroína"
 #: simulation/templates/units/mace_hero_demetrius.xml:12
 #: simulation/templates/units/mace_hero_philip.xml:11
 msgid "Hero Aura"
-msgstr ""
+msgstr "Aura de Herói"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "All Units +15% speed."
-msgstr ""
+msgstr "Velocidade de todas as unidades +15%."
 
 #: simulation/templates/units/brit_hero_caratacos.xml:26
 msgid "Caratacos"
@@ -1168,7 +1170,7 @@ msgstr "Caratacos"
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:12
 msgid "Let all units heal at 1 HP per second"
-msgstr ""
+msgstr "Permite todas as unidades curarem 1 PV por segundo"
 
 #: simulation/templates/units/brit_hero_cynvelin.xml:20
 msgid "Cynvelin"
@@ -1329,7 +1331,7 @@ msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Lightning Aura"
-msgstr ""
+msgstr "Aura de relâmpago"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:17
 msgid "Hamilcar Barca"
@@ -1341,14 +1343,14 @@ msgstr "Ḥimelqart Baraq"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:13
 msgid "Tactician Aura"
-msgstr ""
+msgstr "Aura táctica"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:23
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
 "Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr ""
+msgstr "Abilidade \"Estratega\" (não implementado): O jogador consegue ver alterações dentro da névoa da guerra enquanto Hanibal viver.\nForte contra: 2x contra toda a Cavalaria, 1.5x contra todos os Edifícios. 1.5x extra contra Portões.\nFraco contra: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:19
 msgid "Hannibal Barca"
@@ -1356,7 +1358,7 @@ msgstr "Aníbal"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "All allied units +2 attack within vision range of him."
-msgstr ""
+msgstr "Todas as unidades aliadas +2 ataque dentro do seu campo de visão."
 
 #: simulation/templates/units/cart_hero_hannibal.xml:20
 msgid "Ḥannibaʿal Baraq"
@@ -1364,7 +1366,7 @@ msgstr "Ḥannibaʿal Baraq"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
-msgstr ""
+msgstr "Aura de Comandante"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1373,7 +1375,7 @@ msgstr "Maarbal"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 carga de ataque de Cavalaria dentro do seu campo de visão (actualmente inútil)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:18
 msgid "Maharbaʿal"
@@ -1389,7 +1391,7 @@ msgstr "Qešet"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:22
 msgid "Iberian Mercenary Skirmisher"
-msgstr "Zagaieiro Mercenário Ibérico"
+msgstr "Escaramuçador Mercenário Ibérico"
 
 #: simulation/templates/units/cart_infantry_javelinist_b.xml:23
 msgid "Sǝḫīr Kidōn"
@@ -1562,7 +1564,7 @@ msgstr "Gaesata"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:11
 msgid "+10 Metal loot for every enemy unit killed."
-msgstr ""
+msgstr "+10 Metal pilhado por cada unidade inimiga morta."
 
 #: simulation/templates/units/gaul_hero_brennus.xml:19
 msgid "Brennus"
@@ -1570,7 +1572,7 @@ msgstr "Brennus"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
-msgstr ""
+msgstr "Taxas de colheitas aumentadas em +15% durante a sua vida."
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:19
 msgid "Britomartus"
@@ -1578,7 +1580,7 @@ msgstr "Britomartus"
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:13
 msgid "+2 attack for all units within his aura."
-msgstr ""
+msgstr "+2 ataque para todas as unidades dentro da sua aura."
 
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:28
 msgid "Vercingetorix"
@@ -1795,7 +1797,7 @@ msgstr "Merkataritza Itsasontzi"
 
 #: simulation/templates/units/iber_ship_trireme.xml:18
 msgid "Ponti"
-msgstr ""
+msgstr "Ponti"
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
@@ -1819,7 +1821,7 @@ msgstr "Merkatari"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:13
 msgid "Odrysian Skirmish Cavalry"
-msgstr "Cavaleiro Zagaieiro de Odrísio"
+msgstr "Cavaleiro Escaramuçador de Odrísio"
 
 #: simulation/templates/units/mace_cavalry_javelinist_b.xml:14
 msgid "Hippakontistès Odrysón"
@@ -1847,11 +1849,11 @@ msgstr "Hypaspistes Argyraspides"
 
 #: simulation/templates/units/mace_hero_alexander.xml:10
 msgid "Imperialism Aura"
-msgstr ""
+msgstr "Aura de Imperialismo"
 
 #: simulation/templates/units/mace_hero_alexander.xml:36
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "Bónus de \"Heroísmo\": +20% bónus de ataque contra Heróis inimigos."
 
 #: simulation/templates/units/mace_hero_alexander.xml:34
 msgid "Alexander The Great"
@@ -1859,7 +1861,7 @@ msgstr "Alexandre Magno"
 
 #: simulation/templates/units/mace_hero_alexander.xml:11
 msgid "+10% territory effect for all buildings while he lives."
-msgstr ""
+msgstr "+10% de efeito territorial para todos os edifícios enquanto ele viver."
 
 #: simulation/templates/units/mace_hero_alexander.xml:35
 msgid "Mégās Aléxandros"
@@ -1883,7 +1885,7 @@ msgstr "Demétrio Poliorcetes"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:13
 msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr ""
+msgstr "+15% Alcance e +10 Ataque de Esmagamento para Máquinas de Cerco."
 
 #: simulation/templates/units/mace_hero_demetrius.xml:19
 msgid "Dēmḗtrios Poliorkḗtēs"
@@ -1895,7 +1897,7 @@ msgstr "Filipe II da Macedónia"
 
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "+5 Attack for Champion Units."
-msgstr ""
+msgstr "+5 ataque para Campeões."
 
 #: simulation/templates/units/mace_hero_philip.xml:18
 msgid "Phílippos B' ho Makedṓn"
@@ -1948,7 +1950,7 @@ msgstr "Thorakites"
 
 #: simulation/templates/units/mace_thureophoros.xml:9
 msgid "Heavy Skirmisher"
-msgstr "Zagaieiro Pesado"
+msgstr "Escaramuçador Pesado"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Thureophoros"
@@ -2025,13 +2027,13 @@ msgstr "Arqueira da Guarda Feminina"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:24
 msgid "-Cavalry"
-msgstr ""
+msgstr "-Cavalry"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid ""
 "Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr ""
+msgstr "Forte contra: 2x contra Lanceiros, 1.5x contra Espadachins. Aura de \"Fedor\" contra Cavalaria.\nFraco contra: Escaramuçadores e Espadachins. Pode entrar em descontrolo."
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
@@ -2265,7 +2267,7 @@ msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:12
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Aura de liderança da Frente"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:18
 msgid "Cyrus II The Great"
@@ -2273,7 +2275,7 @@ msgstr " Ciro o Grande"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "+2 attack for nearby cavalry units."
-msgstr ""
+msgstr "+2 ataque para Cavalaria próxima."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:19
 msgid "Kurush II"
@@ -2281,14 +2283,14 @@ msgstr "Ciro o Grande"
 
 #: simulation/templates/units/pers_hero_darius.xml:11
 msgid "Leadership Aura"
-msgstr ""
+msgstr "Aura de liderança"
 
 #: simulation/templates/units/pers_hero_darius.xml:49
 msgid ""
 "Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "Herói Arqueiro de Gadanha com Carro de Guerra.\nAura de Herói: \"Mercador do Império\". Aumenta os lucros do comércio durante a sua vida (não implementado).\nAtaque de alcance 2x contra Lanceiros. Ataque de alcance 1.5x contra Espadachins."
 
 #: simulation/templates/units/pers_hero_darius.xml:46
 msgid "Darius The Great"
@@ -2296,7 +2298,7 @@ msgstr "Dario I"
 
 #: simulation/templates/units/pers_hero_darius.xml:12
 msgid "+15% Movement Speed of all units."
-msgstr ""
+msgstr "+15% Velocidade de Movimento para todas as unidades."
 
 #: simulation/templates/units/pers_hero_darius.xml:47
 msgid "Darayavahush I"
@@ -2305,7 +2307,7 @@ msgstr "Dario I"
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
-msgstr ""
+msgstr "Aura de Administrador"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:18
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
@@ -2315,7 +2317,7 @@ msgstr "Xerxes I"
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% de Taxa de Colheita e Taxa de Construção para unidades próximas."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:19
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:43
@@ -2356,7 +2358,7 @@ msgstr "Hoplitas de Kárdakes "
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:13
 msgid "Cardaces Skirmisher"
-msgstr "Zagaieiro dos Cardaces"
+msgstr "Escaramuçador dos Cardaces"
 
 #: simulation/templates/units/pers_kardakes_skirmisher.xml:14
 msgid "Peltastes Kardakes"
@@ -2486,13 +2488,13 @@ msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Patriot Aura"
-msgstr ""
+msgstr "Aura Patriótica"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:26
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "Classes: Herói de Arqueiro de Infantaria.\nAura de \"Consorte\" (não implementado): Aumenta a eficácia de Heróis aliados no seu campo de visão. Diminui a eficácia dos Heróis inimigos."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:24
 msgid "Cleopatra VII"
@@ -2500,7 +2502,7 @@ msgstr "Cleópatra"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid "Egyptian units fight 20% faster in her vision range."
-msgstr ""
+msgstr "Unidades Egípcias lutam 20% mais depressa no seu campo de visão."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:25
 msgid "Kleopatra H' Philopater"
@@ -2508,11 +2510,11 @@ msgstr "Kleopatra H' Philopater"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
-msgstr ""
+msgstr "Aura de Construção"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
 msgid "Mercenary Patron Aura"
-msgstr ""
+msgstr "Aura de Mercenário Patrono"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:35
 msgid "Ptolemy I \"Savior\""
@@ -2520,11 +2522,11 @@ msgstr "Ptolemeu I Sóter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
-msgstr ""
+msgstr "Os edifícios são construidos 10% mais depressa dentro do seu campo de visão."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr ""
+msgstr "Mercenários custam -50% recursos durante a sua vida."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:36
 msgid "Ptolemaios A' Soter"
@@ -2532,7 +2534,7 @@ msgstr "Ptolemaios A' Soter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Raphia Aura"
-msgstr ""
+msgstr "Aura de Raphia"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:22
 msgid "Ptolemy IV \"Father Loving\""
@@ -2540,7 +2542,7 @@ msgstr "Ptolemeu IV Filopator"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Piqueiros Egípcios têm 40% mais vida durante a sua vida."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:23
 msgid "Ptolemaios D' Philopater"
@@ -2673,11 +2675,11 @@ msgstr "Extraordinarius"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:12
 msgid "Sword of Rome Aura"
-msgstr ""
+msgstr "Aura da Espada de Roma"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "+5 attack for Roman units within sight of him."
-msgstr ""
+msgstr "+5 ataque para as unidades Romanas dentro do seu campo de visão."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:18
 msgid "Marcus Claudius Marcellus"
@@ -2685,11 +2687,11 @@ msgstr "Marco Cláudio Marcelo"
 
 #: simulation/templates/units/rome_hero_maximus.xml:12
 msgid "Shield of Rome Aura"
-msgstr ""
+msgstr "Aura do Escudo de Roma"
 
 #: simulation/templates/units/rome_hero_maximus.xml:13
 msgid "+1 armour for all units and structures."
-msgstr ""
+msgstr "+1 de armadura para todas as unidades e edifícios."
 
 #: simulation/templates/units/rome_hero_maximus.xml:18
 msgid "Quintus Fabius Maximus"
@@ -2700,7 +2702,7 @@ msgid ""
 "\"Divide and Conquer\" Ability: Convert groups of enemy units to his side for 500 Metal. (Not implemented)\n"
 "Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
 "Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr ""
+msgstr "Abilidade \"Dividir para Conquistar\": Converte grupos de unidades inimigas para o seu lado por 500 Metal. (não implementado)\nForte contra: 2x contra Arqueiros, todas as unidades de apoio, e Máquinas de Cerco.\nFraco contra: Lanceiros, Cavaleiros Escaramuçadores, e Elefantes."
 
 #: simulation/templates/units/rome_hero_scipio.xml:5
 msgid "Scipio Africanus"
@@ -2814,15 +2816,15 @@ msgstr "Mercator Plebeius"
 msgid ""
 "Mercenary skirmisher.\n"
 "Bonus vs. Archers and Spearmen."
-msgstr "Zagaieiro mercenário.\nBónus contra Arqueiros e Lanceiros."
+msgstr "Escaramuçador mercenário.\nBónus contra Arqueiros e Lanceiros."
 
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
-msgstr "Zagaieiro Samnita"
+msgstr "Escaramuçador Samnita"
 
 #: simulation/templates/units/samnite_skirmisher.xml:6
 msgid "(Samnite Skirmisher)"
-msgstr "(Zagaieiro Samnita)"
+msgstr "(Escaramuçador Samnita)"
 
 #: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
@@ -2921,7 +2923,7 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Ilarchès Aura"
-msgstr ""
+msgstr "Aura de Ilarchès"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:24
 msgid "Antiochus III \"The Great\""
@@ -2929,7 +2931,7 @@ msgstr "Antíoco III Magno"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "Todas as unidades de Cavalaria +2 níveis de todos os tipos de armadura."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:25
 msgid "Antiokhos G' Mégās"
@@ -2937,7 +2939,7 @@ msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Aura de Conquista"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:24
 msgid "Antiochus IV \"The Righteous\""
@@ -2947,7 +2949,7 @@ msgstr "Antíoco IV Epifânio"
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "halved."
-msgstr ""
+msgstr "Todos os edifícios inimigos próximos, Máquinas de Cerco, e navios têm a sua vida reduzida para metade."
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:25
 msgid "Antiokhos D' Epiphanes"
@@ -2955,7 +2957,7 @@ msgstr "Antiokhos D' Epiphanes"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:13
 msgid "Zooiarchos Aura"
-msgstr ""
+msgstr "Aura de Zooiarchos"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:25
 msgid "Seleucus I \"The Victor\""
@@ -2963,7 +2965,7 @@ msgstr "Seleuco I Nicator"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:14
 msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr ""
+msgstr "Aumenta a velocidade de ataque dos Elefantes de Guerra em +20% dentro do seu campo de visão."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:26
 msgid "Seleukos A' Nikator"
@@ -3084,7 +3086,7 @@ msgstr "Ágis"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Reformas de Hilota"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:20
 #: simulation/templates/units/spart_hero_brasidas.xml:21
@@ -3094,11 +3096,11 @@ msgstr "Brásidas"
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr ""
+msgstr "Escaramuçadores Hilotas detro do seu campo de visão ganham +2 ataque e +1 a todos os tipos de armadura."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:11
 msgid "Last Stand Aura"
-msgstr ""
+msgstr "Aura de Derradeira Defesa"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:29
 msgid "Leonidas I"
@@ -3106,7 +3108,7 @@ msgstr "Leónidas I"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "+20% attack for nearby Hoplites and Spartiates."
-msgstr ""
+msgstr "+20% ataque para Hoplitas e Esparciatas próximos."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid "Leōnídēs"
@@ -3114,7 +3116,7 @@ msgstr "Leōnídēs"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:16
 msgid "Helot Skirmisher"
-msgstr "Zagaieiro Hilota"
+msgstr "Escaramuçador Hilota"
 
 #: simulation/templates/units/spart_infantry_javelinist_b.xml:17
 msgid "Akontistes Heilotes"

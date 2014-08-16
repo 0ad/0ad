@@ -4,12 +4,17 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrian Budasz <adrianbudasz@gmail.com>, 2014
+# FoskamPL <fifi4001@o2.pl>, 2014
+# Leszek S, 2014
+# zyxist <nightstorm@tlen.pl>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-08-07 11:10+0000\n"
+"Last-Translator: FoskamPL <fifi4001@o2.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +33,14 @@ msgstr "Kawaleria"
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Citizen"
-msgstr ""
+msgstr "Obywatel"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "Żołnierz"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -52,7 +57,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "Podstawowe"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:51
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:50
@@ -84,7 +89,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "Włócznia"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
@@ -103,7 +108,7 @@ msgstr "Włócznik konny"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "Miecz"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
@@ -152,7 +157,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Łucznik konny"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:34
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:38
@@ -161,7 +166,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Oszczep"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -187,7 +192,7 @@ msgstr "Elitarna kawaleria"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Elitarny łucznik konny"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
 msgid ""
@@ -249,7 +254,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
-msgstr ""
+msgstr "Elitarny łucznik"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
 msgid ""
@@ -265,7 +270,7 @@ msgstr "Elitarny oszczepnik"
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
-msgstr ""
+msgstr "Pika"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:39
 msgid ""
@@ -321,7 +326,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "Dog"
-msgstr ""
+msgstr "Pies"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""
@@ -347,7 +352,7 @@ msgstr "Zabij, aby zebrać jedzenie z tego obfitego oceanicznego zasobu."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Cetacean"
-msgstr ""
+msgstr "Waleń"
 
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
@@ -467,7 +472,7 @@ msgstr "Oszczepnik"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:37
 msgid "Sling"
-msgstr ""
+msgstr "Proca"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
@@ -477,7 +482,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
-msgstr ""
+msgstr "Procarz"
 
 #: simulation/templates/template_unit_mechanical_ship.xml:34
 #: simulation/templates/template_unit_mechanical_ship.xml:33
@@ -490,7 +495,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Lekki okręt wojenny"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -520,7 +525,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
-msgstr ""
+msgstr "Statek handlowy"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid ""
@@ -541,7 +546,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
-msgstr ""
+msgstr "Średni okręt wojenny"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:53
 msgid ""
@@ -574,7 +579,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
-msgstr ""
+msgstr "Taran"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:60
 msgid ""
@@ -602,17 +607,17 @@ msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "Mężczyźni w pobliżu pracują 10% szybciej."
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
 "Classes: Support Healer.\n"
 "Heal units."
-msgstr ""
+msgstr "Klasy: Wspomagający uzdrowiciel. Leczy jednostki."
 
 #: simulation/templates/template_unit_support_healer.xml:20
 msgid "Healer"
-msgstr ""
+msgstr "Uzdrowiciel"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid ""
@@ -742,7 +747,7 @@ msgstr "Kupiec"
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "Zaawansowane"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
@@ -937,11 +942,11 @@ msgstr "Perykles"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
-msgstr ""
+msgstr "Budynki w zasięgu jego wzroku powstają 15% szybciej."
 
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr ""
+msgstr "W czasie jego życia świątynie wymagają o 50 kamieni mniej."
 
 #: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Periklēs"
@@ -961,7 +966,7 @@ msgstr "Temistokles"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
-msgstr ""
+msgstr "Statek, na którym się znajduje, porusza się o 50% szybciej."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
@@ -975,7 +980,7 @@ msgstr "Temistokles"
 #: simulation/templates/units/hele_infantry_archer_b.xml:19
 #: simulation/templates/units/mace_infantry_archer_b.xml:19
 msgid "Cretan Mercenary Archer"
-msgstr ""
+msgstr "Kreteński łucznik najemny"
 
 #: simulation/templates/units/athen_infantry_archer_b.xml:22
 #: simulation/templates/units/hele_infantry_archer_b.xml:20
@@ -995,7 +1000,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:14
 msgid "Athenian Slinger Militia"
-msgstr ""
+msgstr "Ateński procarz"
 
 #: simulation/templates/units/athen_infantry_slinger_b.xml:15
 msgid "Psilós Athēnaïkós"
@@ -1184,7 +1189,7 @@ msgstr ""
 #: simulation/templates/units/celt_infantry_slinger_b.xml:15
 #: simulation/templates/units/gaul_infantry_slinger_b.xml:15
 msgid "Celtic Slinger"
-msgstr ""
+msgstr "Celtycki procarz"
 
 #: simulation/templates/units/brit_infantry_slinger_b.xml:14
 #: simulation/templates/units/celt_infantry_slinger_b.xml:16
@@ -1989,7 +1994,7 @@ msgstr ""
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr ""
+msgstr "Hinduski słoń bojowy"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -2035,7 +2040,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
-msgstr ""
+msgstr "Łucznik na słoniu"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:27
 msgid "Vachii Gaja"

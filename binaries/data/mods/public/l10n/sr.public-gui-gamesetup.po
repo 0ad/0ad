@@ -5,13 +5,15 @@
 # 
 # Translators:
 # MIlosSD <pirisd@gmail.com>, 2014
+# MIlosSD <pirisd@gmail.com>, 2014
 # Tpe3op <tre-zor@live.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:48+0000\n"
+"PO-Revision-Date: 2014-06-27 13:41+0000\n"
+"Last-Translator: MIlosSD <pirisd@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +25,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Ништа"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -69,7 +71,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
-msgstr ""
+msgstr "Ништа"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
@@ -130,7 +132,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:146
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "чаркање"
 
 #: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:635
 #: gui/gamesetup/gamesetup.js:1223
@@ -140,7 +142,7 @@ msgstr "Случајно"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "Scenario"
-msgstr ""
+msgstr "Сценарио"
 
 #: gui/gamesetup/gamesetup.js:150 gui/gamesetup/gamesetup.js:1129
 #: gui/gamesetup/gamesetup.js:1206
@@ -149,20 +151,20 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:151
 msgid "Naval Maps"
-msgstr ""
+msgstr "Поморска мапа"
 
 #: gui/gamesetup/gamesetup.js:152
 msgid "Demo Maps"
-msgstr ""
+msgstr "Демо мапа"
 
 #: gui/gamesetup/gamesetup.js:153
 msgid "All Maps"
-msgstr ""
+msgstr "Све мапе"
 
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Ништа"
 
 #: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
 msgctxt "civilization"
@@ -171,40 +173,40 @@ msgstr "Случајно"
 
 #: gui/gamesetup/gamesetup.js:759 gui/gamesetup/gamesetup.js:876
 msgid "You"
-msgstr ""
+msgstr "Ви"
 
 #: gui/gamesetup/gamesetup.js:953
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1092 gui/gamesetup/gamesetup.xml:110 (caption)
 msgid "Map Size:"
-msgstr ""
+msgstr "Величина мапе:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Откривена мапа:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
 #: gui/gamesetup/gamesetup.xml:320 (caption)
 msgid "Explored Map:"
-msgstr ""
+msgstr "Истражена мапа:"
 
 #: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.xml:280 (caption)
 msgid "Victory Condition:"
-msgstr ""
+msgstr "Услови за победу:"
 
 #: gui/gamesetup/gamesetup.js:1101 gui/gamesetup/gamesetup.js:1160
 #: gui/gamesetup/gamesetup.xml:330 (caption)
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Закључани тимови:"
 
 #: gui/gamesetup/gamesetup.js:1120 gui/gamesetup/gamesetup.js:1121
 #: gui/gamesetup/gamesetup.js:1123 gui/gamesetup/gamesetup.js:1176
@@ -224,44 +226,44 @@ msgstr "Не"
 
 #: gui/gamesetup/gamesetup.js:1224
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "Насумично изабира мапу из листе"
 
 #: gui/gamesetup/gamesetup.js:1231
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "Жао нам је, не постоји опис."
 
 #: gui/gamesetup/gamesetup.js:1237
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%(number)s играч. %(description)s"
+msgstr[1] "%(number)s играчи. %(description)s"
+msgstr[2] "%(number)s играчи. %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1377
 #, python-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "AI: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1382
 msgid "Unassigned"
-msgstr ""
+msgstr "Нераспоређени"
 
 #: gui/gamesetup/gamesetup.js:1587 gui/gamesetup/gamesetup.js:1592
 #: gui/gamesetup/gamesetup.js:1610
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1587
 #, python-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s се прикључио"
 
 #: gui/gamesetup/gamesetup.js:1592
 #, python-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s је напустио"
 
 #: gui/gamesetup/gamesetup.js:1597
 #, python-format
@@ -271,99 +273,99 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:1598
 #, python-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1604
 #, python-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s је спреман!"
 
 #: gui/gamesetup/gamesetup.js:1606
 #, python-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s није спреман!"
 
 #: gui/gamesetup/gamesetup.js:1610
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Подешавања игре су промењена."
 
 #: gui/gamesetup/gamesetup.js:1635
 msgid "I'm not ready"
-msgstr ""
+msgstr "Нисам спреман"
 
 #: gui/gamesetup/gamesetup.js:1636
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Изјавите да нисте спремни за игру."
 
 #: gui/gamesetup/gamesetup.js:1641 gui/gamesetup/gamesetup.js:1715
 msgid "I'm ready!"
-msgstr ""
+msgstr "Спреман сам!"
 
 #: gui/gamesetup/gamesetup.js:1642
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Изјавите да сте спремни за игру!"
 
 #: gui/gamesetup/gamesetup.js:1716
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Изјавите да прихватате тренутна подешавања и да сте спремни за игру!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s's партија"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Повезивање са сервером..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Net порука: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Пријављивање на сервер..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Партија је већ почела, поновно приступање..."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
-msgstr ""
+msgstr "Име партије се већ користи."
 
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s's партија"
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Учитавање “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Генерисање “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr ""
+msgstr "AI подешавања"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "AI играч:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "AI тежина:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "Обустави"
 
 #: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:366
 #: (caption)
@@ -372,180 +374,180 @@ msgstr "ОК"
 
 #: gui/gamesetup/gamesetup.xml:15 (caption)
 msgid "Match Setup"
-msgstr ""
+msgstr "Поставка партије"
 
 #: gui/gamesetup/gamesetup.xml:21 (caption)
 msgid "Loading"
-msgstr ""
+msgstr "Учитавање"
 
 #: gui/gamesetup/gamesetup.xml:25 (caption)
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Учитавање података мапе. Молим сачекајте..."
 
 #: gui/gamesetup/gamesetup.xml:40 (caption)
 msgid "Player Name"
-msgstr ""
+msgstr "Име играча"
 
 #: gui/gamesetup/gamesetup.xml:43 (caption)
 msgid "Player Placement"
-msgstr ""
+msgstr "Позиционирање играча"
 
 #: gui/gamesetup/gamesetup.xml:46 (caption)
 msgid "Civilization"
-msgstr ""
+msgstr "Цивилизација"
 
 #: gui/gamesetup/gamesetup.xml:55 (tooltip)
 msgid "View civilization info"
-msgstr ""
+msgstr "Погледај информације о цивилизацији"
 
 #: gui/gamesetup/gamesetup.xml:61 (caption)
 msgid "Team"
-msgstr ""
+msgstr "Тим"
 
 #: gui/gamesetup/gamesetup.xml:70 (tooltip)
 msgid "Select player."
-msgstr ""
+msgstr "Изабери играча."
 
 #: gui/gamesetup/gamesetup.xml:79 (tooltip)
 msgid "Configure AI settings."
-msgstr ""
+msgstr "Подеси AI подешавања."
 
 #: gui/gamesetup/gamesetup.xml:82 (tooltip)
 msgid "Select player's civilization."
-msgstr ""
+msgstr "Изабери играчеву цивилизацију"
 
 #: gui/gamesetup/gamesetup.xml:86 (tooltip)
 msgid "Select player's team."
-msgstr ""
+msgstr "Изабери играчев тим"
 
 #: gui/gamesetup/gamesetup.xml:98 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "Тип мапе:"
 
 #: gui/gamesetup/gamesetup.xml:101 (caption)
 msgid "Map Filter:"
-msgstr ""
+msgstr "Филтер мапе:"
 
 #: gui/gamesetup/gamesetup.xml:104 (caption)
 msgid "Select Map:"
-msgstr ""
+msgstr "Изабери мапу:"
 
 #: gui/gamesetup/gamesetup.xml:107 (caption)
 msgid "Number of Players:"
-msgstr ""
+msgstr "Број играча:"
 
 #: gui/gamesetup/gamesetup.xml:127 (tooltip)
 msgid "Select a map type."
-msgstr ""
+msgstr "Изабери тип мапе."
 
 #: gui/gamesetup/gamesetup.xml:136 (tooltip)
 msgid "Select a map filter."
-msgstr ""
+msgstr "Изабери филтер мапе."
 
 #: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
-msgstr ""
+msgstr "Изабери мапу на којој ће се играти."
 
 #: gui/gamesetup/gamesetup.xml:157 (tooltip)
 msgid "Select number of players."
-msgstr ""
+msgstr "Изабери број играча."
 
 #: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr ""
+msgstr "Изабери величину мапе. (Веће величине могу смањити перформансе.)"
 
 #: gui/gamesetup/gamesetup.xml:187 (caption)
 msgid "Send"
-msgstr ""
+msgstr "Пошаљи"
 
 #: gui/gamesetup/gamesetup.xml:201 (caption)
 msgid "[Tooltip text]"
-msgstr ""
+msgstr "[Текст савета]"
 
 #: gui/gamesetup/gamesetup.xml:213 (caption)
 msgid "Start game!"
-msgstr ""
+msgstr "Покрени игру!"
 
 #: gui/gamesetup/gamesetup.xml:214 (tooltip)
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "Покрени нову игру са тренутним подешавањима."
 
 #: gui/gamesetup/gamesetup.xml:231 (caption)
 msgid "Back"
-msgstr ""
+msgstr "Назад"
 
 #: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
 #: (caption)
 msgid "More Options"
-msgstr ""
+msgstr "Више опција"
 
 #: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
-msgstr ""
+msgstr "Погледај више опција игре"
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
-msgstr ""
+msgstr "Брзина игре:"
 
 #: gui/gamesetup/gamesetup.xml:274 (tooltip)
 msgid "Select game speed."
-msgstr ""
+msgstr "Изабери брзину игре."
 
 #: gui/gamesetup/gamesetup.xml:284 (tooltip)
 msgid "Select victory condition."
-msgstr ""
+msgstr "Изабери услов за победу."
 
 #: gui/gamesetup/gamesetup.xml:290 (caption)
 msgid "Population Cap:"
-msgstr ""
+msgstr "Максималан број становника:"
 
 #: gui/gamesetup/gamesetup.xml:294 (tooltip)
 msgid "Select population cap."
-msgstr ""
+msgstr "Изабери максималан број становника."
 
 #: gui/gamesetup/gamesetup.xml:300 (caption)
 msgid "Starting Resources:"
-msgstr ""
+msgstr "Почетни ресурси:"
 
 #: gui/gamesetup/gamesetup.xml:304 (tooltip)
 msgid "Select the game's starting resources."
-msgstr ""
+msgstr "Изабери почетне ресурсе у партији."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Омогући откривену мапу (све се види)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Омогући истражену мапу (види се гаја и зграде)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
-msgstr ""
+msgstr "Омогући закључане тимове."
 
 #: gui/gamesetup/gamesetup.xml:340 (caption)
 msgid "Cheats:"
-msgstr ""
+msgstr "Шифре:"
 
 #: gui/gamesetup/gamesetup.xml:344 (tooltip)
 msgid "Toggle the usability of cheats."
-msgstr ""
+msgstr "Омогући коришћење шифара."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
-msgstr ""
+msgstr "Бодована партија:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Омогућити да ли ће се ова партија бодовати за листу."
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
-msgstr ""
+msgstr "Затвори прозор са опцијама игре"
 
 #: gui/gamesetup/gamesetup_mp.xml:19 (caption)
 msgid "Multiplayer"
@@ -553,12 +555,12 @@ msgstr "Игра за више играча"
 
 #: gui/gamesetup/gamesetup_mp.xml:25 (caption)
 msgid "Joining an existing game."
-msgstr ""
+msgstr "Прикључивање постојећој партији"
 
 #: gui/gamesetup/gamesetup_mp.xml:29 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:72 (caption)
 msgid "Player name:"
-msgstr ""
+msgstr "Име играча:"
 
 #: gui/gamesetup/gamesetup_mp.xml:39 (caption)
 msgid "Server Hostname or IP:"

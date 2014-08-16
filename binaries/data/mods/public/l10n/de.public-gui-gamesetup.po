@@ -19,6 +19,7 @@
 # hunzel <nurmaguggen@hotmail.com>, 2014
 # J5lx <j5lx@fmail.co.uk>, 2014
 # jonnius <jonatan_zeidler@gmx.de>, 2014
+# leper <leper@wildfiregames.com>, 2014
 # Mansent, 2013
 # Marcel Haring, 2013-2014
 # mathias.n.graf <mathias.n.graf@gmail.com>, 2013
@@ -27,6 +28,7 @@
 # Patrick Kohan <patrick.kohan@gmail.com>, 2014
 # pointhi, 2014
 # raymond_de, 2014
+# Raymond Vetter, 2014
 # Raymond Vetter, 2014
 # santa41116, 2014
 # sdos77, 2014
@@ -41,6 +43,7 @@
 # tuxylord <s.balu@web.de>, 2014
 # wilhelm3 <isabusl@gmail.com>, 2014
 # Xaver, 2013
+# Xaver, 2014
 # xtother90, 2013
 # Yves_G, 2014
 msgid ""
@@ -48,8 +51,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-06-21 15:58+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -200,7 +203,7 @@ msgstr "Alle Karten"
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr "Keine"
+msgstr "Kein"
 
 #: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
 msgctxt "civilization"
@@ -360,11 +363,11 @@ msgstr "Netzwerknachricht: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr "Registrierung beim Server …"
+msgstr "Registriere beim Server …"
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr "Spiel hat bereits begonnen, neu einsteigen..."
+msgstr "Spiel hat bereits begonnen, wiederverbinden..."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
@@ -608,7 +611,7 @@ msgstr "Fortfahren"
 
 #: gui/gamesetup/gamesetup_mp.xml:67 (caption)
 msgid "Set up your server to host."
-msgstr "Eigenen Server erstellen"
+msgstr "Eigenen Server erstellen."
 
 #: gui/gamesetup/gamesetup_mp.xml:84 (caption)
 msgid "Server name:"
@@ -624,13 +627,13 @@ msgstr "Zitat des Tages:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr "\"Ein erfolgreicher Dummkopf ist eine schwere Last.\" - Aeschylus"
+msgstr "„Ein erfolgreicher Dummkopf ist eine schwere Last.“ – Aeschylus"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr "\"Von ihm [Tod] allein von allen Mächten des Himmels hält sich die Überredungskunst fern.\" - Aischylos"
+msgstr "„Von ihm [Tod] allein von allen Mächten des Himmels hält sich die Überredungskunst fern.“ – Aischylos"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
@@ -656,7 +659,7 @@ msgstr "„Die Zeit, sie lernt und lehret alternd alles Ding!“ – Aischylos, 
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "„Denn der Weisheit Führer ist\nZeus des Urgesetzes Herr,\nDass im Unglück Lehre wohnt.“ – Aischylos, „Agamemnon“"
 
 #: gui/text/quotes.txt:8
 msgid ""
@@ -674,7 +677,7 @@ msgstr "„Nur wenig Menschenherzen ist es eingepflanzt,\nDen Freund, umlacht vo
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr "\"Für blutigen Mord sei blutiger Mord! Wer tat, muß leiden! so heißt das Gesetz in den heiligen Sprüchen der Väter!\" - Aischylos"
+msgstr "„Für blutigen Mord sei blutiger Mord! Wer tat, muß leiden! so heißt das Gesetz in den heiligen Sprüchen der Väter!“ – Aischylos"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
@@ -682,11 +685,11 @@ msgstr "„Jede Ausrede genügt einem Tyrannen.“ – Äsop"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr "\"Lerne besser vom Unglück anderer als von deinem eigenen.\" - Äsop"
+msgstr "„Lerne besser vom Unglück anderer als von deinem eigenen.“ – Äsop"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr "\"Vertrautheit bringt Missachtung hervor; Bekanntschaft dämpft Vorurteile.\" - Äsop"
+msgstr "„Vertrautheit bringt Missachtung hervor; Bekanntschaft dämpft Vorurteile.“ – Äsop"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
@@ -694,25 +697,25 @@ msgstr "„Es ist immer leicht, aus sicherer Entfernung mutig zu sein.“ – Ä
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr "\"Es ist sparsam, sich heute für die Erfordernisse von morgen zu wappnen.\" - Äsop"
+msgstr "„Es ist sparsam, sich heute für die Erfordernisse von morgen zu wappnen.“ – Äsop"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr "\"Es sind nicht nur schöne Federn, die einen schönen Vogel ausmachen.\" - Äsop"
+msgstr "„Es sind nicht nur schöne Federn, die einen schönen Vogel ausmachen.“ – Äsop"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
-msgstr "\"Vertraue nie dem Rat eines Mannes in den Wirren seiner eigenen Schwierigkeiten.\" - Äsop"
+msgstr "„Vertraue nie dem Rat eines Mannes in den Wirren seiner eigenen Schwierigkeiten.“ – Äsop"
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr "\"Überzeugung ist oft effektiver als Gewalt.\" - Äsop"
+msgstr "„Überzeugung ist oft effektiver als Gewalt.“ – Äsop"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr "\"Selbstüberzeugung kann zu Selbstzerstörung führen.\" - Äsop"
+msgstr "„Selbstüberzeugung kann zu Selbstzerstörung führen.“ – Äsop"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
@@ -720,47 +723,47 @@ msgstr "„Die Schildkröte gewinnt das Rennen, während der Hase schläft.“ �
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr "\"Die Götter helfen denen, die sich selbst helfen.\" - Aesop"
+msgstr "„Die Götter helfen denen, die sich selbst helfen.“ – Aesop"
 
 #: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
-msgstr "\"Der Pfeil aber war mit den Federn des Adlers selbst geschmückt. Oft geben wir unseren Feinden das Mittel zu unserer Zerstörung.\" - Äsop"
+msgstr "„Der Pfeil aber war mit den Federn des Adlers selbst geschmückt. Oft geben wir unseren Feinden das Mittel zu unserer Zerstörung.“ – Äsop"
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr "\"Einheit gibt Stärke.\" - Äsop, \"Die Söhne des Bauern im Streit\""
+msgstr "„Einheit gibt Stärke.“ – Äsop, „Die Söhne des Bauern im Streit“"
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr "\"Versprechen der Feinde sind gemacht, um sie zu brechen.\" - Äsop"
+msgstr "„Versprechen der Feinde sind gemacht, um sie zu brechen.“ – Äsop"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr "\"Spartaner fragen nicht nach der Anzahl ihrer Feinde, sondern nur wo sie sich befinden.\" - \nAgis II von Sparta"
+msgstr "„Spartaner fragen nicht nach der Anzahl ihrer Feinde, sondern nur wo sie sich befinden.“ – Agis II von Sparta"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
-msgstr "\"Weine nicht für mich, ungerechterweise leidend wie ich, ich bin ein glücklicherer Fall als meine Mörder.\" - Agis IV. 24. Spartanischer König aus der Dynastie der Eurypontiden"
+msgstr "„Weine nicht für mich, ungerechterweise leidend wie ich, ich bin ein glücklicherer Fall als meine Mörder.“ – Agis IV. 24. Spartanischer König aus der Dynastie der Eurypontiden"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr "\"Der, der Gutes tut, dem soll Gutes geschehen; und der, der Böses tut, dem soll Böses geschehen, denn der Herr richtet über einen Mann gemäß dem Ausmaß seiner Arbeit.\" Achiqar, Assyrischer Weiser"
+msgstr "„Der, der Gutes tut, dem soll Gutes geschehen; und der, der Böses tut, dem soll Böses geschehen, denn der Herr richtet über einen Mann gemäß dem Ausmaß seiner Arbeit.“ – Achiqar, Assyrischer Weiser"
 
 #: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr "„Wäre ich nicht Alexander, wollte ich Diogenes sein.“ - Alexander der Große"
+msgstr "„Wäre ich nicht Alexander, wollte ich Diogenes sein.“ – Alexander der Große"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
@@ -771,29 +774,29 @@ msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr "\"Musst du noch lernen, dass das Ende und die Perfektion unserer Siege die Vermeidung der Laster und Gebrechen derer, die wir unterwerfen, ist?\" - Alexander der Große"
+msgstr "„Musst du noch lernen, dass das Ende und die Perfektion unserer Siege die Vermeidung der Laster und Gebrechen derer, die wir unterwerfen, ist?“ – Alexander der Große"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr "„Dem Stärksten.“ - Alexander der Große auf dem Totenbett, als er gefragt wurde, wem er das Reich hinterlassen werde"
+msgstr "„Dem Stärksten.“ – Alexander der Große auf dem Totenbett, als er gefragt wurde, wem er das Reich hinterlassen werde"
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr "„Es gibt kein unmöglich für den, der es versucht“ - Alexander der Große"
+msgstr "„Es gibt kein unmöglich für den, der es versucht“ – Alexander der Große"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr "\"Sex und Schlaf alleine erinnern mich, dass ich sterblich bin.\" - Alexander der Große"
+msgstr "„Sex und Schlaf alleine erinnern mich, dass ich sterblich bin.“ – Alexander der Große"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr "\"Die Agora ist ein bewährter Ort für Männer, um einander zu betrügen und zu beneiden.\" - Anacharsis"
+msgstr "„Die Agora ist ein bewährter Ort für Männer, um einander zu betrügen und zu beneiden.“ – Anacharsis"
 
 #: gui/text/quotes.txt:35
 msgid ""
@@ -804,7 +807,7 @@ msgstr "„Das geschriebene Gesetz ist wie ein Spinnennetz; die Armen und Schwac
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr "„Der Fuchs weiß viele verschiedene Sachen, der Igel aber nur eine große.“ – Archilochos"
+msgstr "„Der Fuchs kennt viele Tricks; der Igel einen guten.“ – Archilochos"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -822,7 +825,7 @@ msgstr "„Gib mir einen Punkt, wo ich hintreten kann, und ich bewege die Erde�
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr "„Von ihren Feinden, nicht von ihren Freunden, lernen Städte hohe Mauern und Kriegsschiffe zu bauen.“  - Aristophanes"
+msgstr "„Von ihren Feinden, nicht von ihren Freunden, lernen Städte hohe Mauern und Kriegsschiffe zu bauen.“  – Aristophanes"
 
 #: gui/text/quotes.txt:40
 msgid ""
@@ -834,7 +837,7 @@ msgstr "„Durch Worte schwingt der Genius sich auf, der Mensch erhebt sich!“ 
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr "Es ist die vereinnahmende Macht von großen Gedanken und Ideen, eine Sprache von ebensolcher Größe zu schaffen.\" - Aristophanes"
+msgstr "Es ist die vereinnahmende Macht von großen Gedanken und Ideen, eine Sprache von ebensolcher Größe zu schaffen.\" – Aristophanes"
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
@@ -844,7 +847,7 @@ msgstr "„Auf daß du den Herrn, der dich füttert, erkennst und dann, wenn die
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr "\"Den, der seine Laster besiegt, nenne ich tapferer als den, der seine Feinde besiegt.\" - Aristoteles"
+msgstr "„Den, der seine Laster besiegt, nenne ich tapferer als den, der seine Feinde besiegt.“ – Aristoteles"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
@@ -852,14 +855,14 @@ msgstr "„Unser Charakter ergibt sich aus unserem Benehmen.“ – Aristoteles"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr "„Es ist offensichtlich, dass der Staat ein Werk der Natur ist und der Mensch von Natur aus ein staatenbildendes Lebewesen.“ - Aristoteles, Politik"
+msgstr "„Es ist offensichtlich, dass der Staat ein Werk der Natur ist und der Mensch von Natur aus ein staatenbildendes Lebewesen.“ – Aristoteles, Politik"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
-msgstr "\"Wenn Freiheit und Gleichheit, wie manche glauben, hauptsächlich in der Demokratie zu finden sind, werden sie am besten erreicht, wenn alle Menschen gleichermaßen Anteil an der Regierung haben.\" - Aristoteles"
+msgstr "„Wenn Freiheit und Gleichheit, wie manche glauben, hauptsächlich in der Demokratie zu finden sind, werden sie am besten erreicht, wenn alle Menschen gleichermaßen Anteil an der Regierung haben.“ – Aristoteles"
 
 #: gui/text/quotes.txt:47
 msgid ""
@@ -869,43 +872,43 @@ msgstr "„Beide, sowohl der Oligarch als auch der Tyrann, misstrauen ihrem Volk
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr "\"Humor ist gesittete Unverschämtheit.\" - Aristoteles"
+msgstr "„Humor ist gesittete Unverschämtheit.“ – Aristoteles"
 
 #: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
-msgstr "\"Es ist die Einfachheit, die den Ungebildeten effektiver als den Gebildeten macht, wenn er vor Publikum spricht.\" - Aristoteles"
+msgstr "„Es ist die Einfachheit, die den Ungebildeten effektiver als den Gebildeten macht, wenn er vor Publikum spricht.“ – Aristoteles"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
-msgstr "\"Dichtung erfordert einen Mann mit einer speziellen Begabung, oder jemanden mit einem hauch von Verrücktheit.\" - Aristoteles"
+msgstr "„Dichtung erfordert einen Mann mit einer speziellen Begabung, oder jemanden mit einem hauch von Verrücktheit.“ – Aristoteles"
 
 #: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
-msgstr "\"Dies erreichte ich durch Philosophie: Was andere nur aufgrund ihrer Angst vor dem Gesetz tun, mache ich ohne befohlen worden zu sein.\" - Aristoteles"
+msgstr "„Dies erreichte ich durch Philosophie: Was andere nur aufgrund ihrer Angst vor dem Gesetz tun, mache ich ohne befohlen worden zu sein.“ – Aristoteles"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
-msgstr "\"Wähle den Kurs, den du annimmst mit Bedacht; aber wenn du ihn angenommen hast, wahre ihn mit Beständigkeit.\" - Bias von Priene"
+msgstr "„Wähle den Kurs, den du annimmst mit Bedacht; aber wenn du ihn angenommen hast, wahre ihn mit Beständigkeit.“ – Bias von Priene"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr "\"Wie dumm war der König, als er in Trauer sein Haar herausriss, als ob eine Glatze die Heilung gegen Trauer wäre.\" - Bion von Borysthenes"
+msgstr "„Wie dumm war der König, als er in Trauer sein Haar herausriss, als ob eine Glatze die Heilung gegen Trauer wäre.“ – Bion von Borysthenes"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr "\"Nicht er erwar ein Vermögen, sondern das Vermögen erwarb ihn.\" - Bion von Borysthenes"
+msgstr "„Nicht er erwar ein Vermögen, sondern das Vermögen erwarb ihn.“ – Bion von Borysthenes"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
@@ -915,17 +918,17 @@ msgstr "„Wehe den Besiegten!“ – Brennus"
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr "„So allen Tyrannen.“ - Marcus Iunius Brutus, nach der Ermordung von Gaius Iulius Caesar"
+msgstr "„So allen Tyrannen.“ – Marcus Iunius Brutus, nach der Ermordung von Gaius Iulius Caesar"
 
 #: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr "\"Flucht, ja, doch diesesmal mithilfe meiner Hände, nicht meiner Füße.\" - Marcus Iunius Brutus, vor seinem Selbstmord"
+msgstr "„Flucht, ja, doch diesesmal mithilfe meiner Hände, nicht meiner Füße.“ – Marcus Iunius Brutus, vor seinem Selbstmord"
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr "„Ich kam, sah und siegte.“ - Gaius Julius Cäsar"
+msgstr "„Ich kam, sah und siegte.“ – Gaius Julius Cäsar"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -933,62 +936,62 @@ msgstr "„Gerne glauben die Menschen das, was sie wollen.“ – Gaius Julius C
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr "„Der Würfel ist gefallen.“ - Gaius Julius Cäsar"
+msgstr "„Der Würfel ist gefallen.“ – Gaius Julius Cäsar"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr "„Es ist nicht der gut genährte, langhaarige Mann den ich fürchte, sondern der bleiche und der hungrige.“ - Gaius Iulius Caesar"
+msgstr "„Es ist nicht der gut genährte, langhaarige Mann den ich fürchte, sondern der bleiche und der hungrige.“ – Gaius Iulius Caesar"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr "„Schicke einen Dieb um einen Dieb zu fangen.“ - Callimachus"
+msgstr "„Schicke einen Dieb um einen Dieb zu fangen.“ – Callimachus"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr "\"Weise lernen mehr von Narren, als Narren von Weisen lernen.\" - Cato der Ältere"
+msgstr "„Weise lernen mehr von Narren, als Narren von Weisen lernen.“ – Cato der Ältere"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr "„Ferner glaube ich, dass Karthago zerstört werden sollte.“ - Cato der Ältere"
+msgstr "„Ferner glaube ich, dass Karthago zerstört werden sollte.“ – Cato der Ältere"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr "\"Die gesammte Menschheit beherrscht ihre Frauen und wir beherrschen die Menschheit, doch unsere Frauen herrschen über uns.\" - Cato der Ältere"
+msgstr "„Die gesammte Menschheit beherrscht ihre Frauen und wir beherrschen die Menschheit, doch unsere Frauen herrschen über uns.“ – Cato der Ältere"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr "\"Sei hart oder sanft, je nachdem was die Umstände erfordern.\" - Cato der Ältere"
+msgstr "„Sei hart oder sanft, je nachdem was die Umstände erfordern.“ – Cato der Ältere"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr "\"Der schlechteste Herrescher ist der, der sich selbst nicht beherrscht.\" - Cato der Ältere"
+msgstr "„Der schlechteste Herrescher ist der, der sich selbst nicht beherrscht.“ – Cato der Ältere"
 
 #: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
-msgstr "\"Derjenige der harte Strafen auferlegt wirkt auf die Mitmenschen abstoßen, während der, der mild Urteilt verachtet wird. Nur derjenige der gerechte Strafen auferlegt wird allerding von seinen Mitmenschen geachtet.\" - Chanakya"
+msgstr "„Derjenige der harte Strafen auferlegt wirkt auf die Mitmenschen abstoßend, während der, der mild Urteilt verachtet wird. Nur derjenige der gerechte Strafen auferlegt wird allerding von seinen Mitmenschen geachtet.“ – Chanakya"
 
 #: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr "\"Wenn ein König tatkräftig ist, sind seine Untertanen gleichermaßen aktiv.\" - Chanakya"
+msgstr "„Wenn ein König tatkräftig ist, sind seine Untertanen gleichermaßen aktiv.“ – Chanakya"
 
 #: gui/text/quotes.txt:70
 msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
-msgstr "\"Denn es gibt nur eine essentielle Gerechtigkeit, die die Gesellschaft festigt, und ein Gesetz, das diese Gerechtigkeit begründet. Dieses Gesetz ist die richtige Vernunft, die wahre Macht aller Gebote und Verbote.\" - Marcus Tullius Cicero"
+msgstr "„Denn es gibt nur eine essentielle Gerechtigkeit, die die Gesellschaft festigt, und ein Gesetz, das diese Gerechtigkeit begründet. Dieses Gesetz ist die richtige Vernunft, die wahre Macht aller Gebote und Verbote.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
@@ -1014,46 +1017,46 @@ msgstr "„Die Waffen sollen der Toga weichen, der Lorbeerkranz dem politischen 
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
-msgstr "„Auf mein Zeichen, entfesselt die Hölle“ - Maximus Decimus Meridius"
+msgstr "„Auf mein Zeichen, entfesselt die Hölle“ – Maximus Decimus Meridius"
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr "„Zeit heilt alle Wunden“ - Marcus Tullius Cicero"
+msgstr "„Zeit heilt alle Wunden“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
-msgstr "\"Das, Senatoren, ist es, wohin ein Gefallen von Banden hinführt. Sie unterlassen es, jemanden zu ermorden; dann brüsten sie sich damit, ihn verschont zu haben!\" - Marcus Tullius Cicero"
+msgstr "„Das, Senatoren, ist es, wohin ein Gefallen von Banden hinführt. Sie unterlassen es, jemanden zu ermorden; dann brüsten sie sich damit, ihn verschont zu haben!“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
-msgstr "\"Genie wird von Energie gefördert.\" - Marcus Tullius Cicero"
+msgstr "„Genie wird von Energie gefördert.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
-msgstr "„Solange es Leben gibt, gibt es Hoffnung.“ - Marcus Tullius Cicero"
+msgstr "„Solange es Leben gibt, gibt es Hoffnung.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
-msgstr "\"Wir dürfen nicht sagen das jeder Fehler ein törichter ist.\" - Marcus Tullius Cicero"
+msgstr "\"Wir dürfen nicht sagen das jeder Fehler ein törichter ist.\" – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr "\"Die Strafe soll angemessen zum Vergehen sein.\" - Marcus Tullius Cicero"
+msgstr "„Die Strafe soll angemessen zum Vergehen sein.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr "„Das Wohl des Volkes soll das höchste Gesetz sein.“ - Marcus Tullius Cicero"
+msgstr "„Das Wohl des Volkes soll das höchste Gesetz sein.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
-msgstr "\"Unbegrenztes Geld formt die Kräfte des Krieges.\" - Marcus Tullius Cicero"
+msgstr "„Unbegrenztes Geld formt die Kräfte des Krieges.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
@@ -1063,13 +1066,13 @@ msgstr "„Unter den Waffen schweigen die Gesetze.“ – Markus Tullius Cicero"
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
-msgstr "\"Ein Krieg wird von einem idealen Staat nie unternommen, außer in Verteidigung seiner Ehre oder seiner Sicherheit.\" - Marcus Tullius Cicero"
+msgstr "„Ein Krieg wird von einem idealen Staat nie unternommen, außer in Verteidigung seiner Ehre oder seiner Sicherheit.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr "\"Die erste Pflicht eines Mannes ist die Suche nach der Wahrheit und deren Überprüfung.\" - Marcus Tullius Cicero"
+msgstr "„Die erste Pflicht eines Mannes ist die Suche nach der Wahrheit und deren Überprüfung.“ – Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:87
 msgid ""
@@ -1083,7 +1086,7 @@ msgstr "„Ich bin Kyros – der König des Weltreichs …“ – Kyros der Gro�
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
-msgstr "\"Vielfalt in der Beratung, Einigkeit im Befehl.\" - Cyrus the Great"
+msgstr "„Vielfalt in der Beratung, Einigkeit im Befehl.“ – Kyrus the Great"
 
 #: gui/text/quotes.txt:90
 msgid ""
@@ -1096,54 +1099,54 @@ msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr "\"Erfolg fordert immer mehr Großzügigkeit — doch die meisten Leute behandeln ihn, verloren in der Dunkelheit ihres eigenen Egos, als Gelegenheit für mehr Gier.\" - Kyros der Große"
+msgstr "„Erfolg fordert immer mehr Großzügigkeit — doch die meisten Leute behandeln ihn, verloren in der Dunkelheit ihres eigenen Egos, als Gelegenheit für mehr Gier.” – Kyros der Große"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
-msgstr "\"Wann immer Männer lügen oder die Wahrheit sprechen, es ist mit ein und dem selben Objekt.\" - Darius"
+msgstr "„Wann immer Männer lügen oder die Wahrheit sprechen, es ist mit ein und dem selben Objekt.“ – Darius"
 
 #: gui/text/quotes.txt:93
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
-msgstr "\"Gute Zucht beruht bei Rindern auf physischer Gesundheit, aber beim Menschen auf eine gut geformten Charakter.\" - Demokrit"
+msgstr "„Gute Zucht beruht bei Rindern auf physischer Gesundheit, aber beim Menschen auf eine gut geformten Charakter.“ – Demokrit"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
-msgstr "\"Wenn deine Sehnsüchte nicht groß sind, erscheint dir ein kleiner Wunsch gewaltig; denn kleiner Appetit macht die Armut gleich dem Wohlstand.\" - Demokrit"
+msgstr "„Wenn deine Sehnsüchte nicht groß sind, erscheint dir ein kleiner Wunsch gewaltig; denn kleiner Appetit macht die Armut gleich dem Wohlstand.“ – Demokrit"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
-msgstr "\"Darbietung, Darbietung, Darbietung.\" - Demosthenes, gefragt, was die drei wichtigsten Elemente der Rhetorik sind"
+msgstr "„Darbietung, Darbietung, Darbietung.“ – Demosthenes, gefragt, was die drei wichtigsten Elemente der Rhetorik sind"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
-msgstr "\"Es ist nicht möglich, eine dauerhafte Macht auf Ungerechtigkeit, Meineid und Verrat zu gründen.\" - Demosthenes"
+msgstr "„Es ist nicht möglich, eine dauerhafte Macht auf Ungerechtigkeit, Meineid und Verrat zu gründen.“ – Demosthenes"
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr "\"Kleine Gelegenheiten sind oft Vorboten großer Unternehmungen.\" - Demosthenes "
+msgstr "„Kleine Gelegenheiten sind oft Vorboten großer Unternehmungen.“ – Demosthenes "
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
-msgstr "Jeder Vorteil in der Vergangenheit wird im Licht der letztendlichen Problemstellung beurteilt.\" - Demosthenes"
+msgstr "„Jeder Vorteil in der Vergangenheit wird im Licht der letztendlichen Problemstellung beurteilt.“ – Demosthenes"
 
 #: gui/text/quotes.txt:99
 msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr "„Geh mir ein wenig aus der Sonne!“ - Diogenes von Sinope zu Alexander dem Großen auf die Frage hin, welchen Wunsch er habe"
+msgstr "„Geh mir ein wenig aus der Sonne!“ – Diogenes von Sinope zu Alexander dem Großen auf die Frage hin, welchen Wunsch er habe"
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
@@ -1153,31 +1156,31 @@ msgstr " „Bürger der Welt.“ – Diogenes von Sinopes Antwort auf die Frage,
 msgid ""
 "\"It is not that I am mad, it is only that my head is different from "
 "yours.\" - Diogenes of Sinope"
-msgstr "\"Es ist nicht so, dass ich verrückt bin, es ist nur, dass mein Kopf sich von deinem unterscheidet.\" - Diogenes von Sinope"
+msgstr "„Es ist nicht so, dass ich verrückt bin, es ist nur, dass mein Kopf sich von deinem unterscheidet.“ – Diogenes von Sinope"
 
 #: gui/text/quotes.txt:102
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr "\"Deine Anprache sei besser als Stille, oder sei still.\" - Dyonisos I. von Syrakus"
+msgstr "„Deine Anprache sei besser als Stille, oder sei still.“ – Dyonisos I. von Syrakus"
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr "„Nichts hat mehr Stärke als Notwendigkeit“ - Euripides"
+msgstr "„Nichts hat mehr Stärke als Notwendigkeit“ – Euripides"
 
 #: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
-msgstr "\"Ein Feigling kehrt um, aber ein mutiger Mann wählt die Gefahr.\" - Euripidis"
+msgstr "„Ein Feigling kehrt um, aber ein mutiger Mann wählt die Gefahr.“ – Euripidis"
 
 #: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
-msgstr "\"Feiglinge zählen nicht in der Schlacht; Sie sind dort, aber nicht drin.\" - Euripides"
+msgstr "„Feiglinge zählen nicht in der Schlacht; Sie sind dort, aber nicht drin.“ – Euripides"
 
 #: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr "\"Die Gelegenheit kämpft immer auf Seiten der Umsichtigen.\" - Euripides"
+msgstr "„Die Gelegenheit kämpft immer auf Seiten der Umsichtigen.“ – Euripides"
 
 #: gui/text/quotes.txt:107
 msgid ""
@@ -1189,45 +1192,45 @@ msgstr "„Gesetzt, ein Mann hat das Auge eines Freigeborenen zerstört, so wird
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr "„Ich bin nicht gekommen, um Krieg gegen Italien zu führen, sondern um Italien gegen Rom zu vereinen.“ - Hannibal Barca"
+msgstr "„Ich bin nicht gekommen, um Krieg gegen Italien zu führen, sondern um Italien gegen Rom zu vereinen.“ – Hannibal Barca"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr "„Entweder ich finde einen Weg, oder ich mache einen“ - Hannibal Barca"
+msgstr "„Entweder ich finde einen Weg, oder ich mache einen.“ – Hannibal Barca"
 
 #: gui/text/quotes.txt:110
 msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr "\"Meine Vorfahren scheiterten an der römischen Tapferkeit. Ich strebe danach, dass andere sich ihrerseits meinem Kampfesglück und meiner Tapferkeit ergeben mögen.\" - Hannibal Barkas"
+msgstr "„Meine Vorfahren scheiterten an der römischen Tapferkeit. Ich strebe danach, dass andere sich ihrerseits meinem Kampfesglück und meiner Tapferkeit ergeben mögen.“ – Hannibal Barkas"
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr "\"Alles fließt, nichts steht still.\" - Heraklit"
+msgstr "„Alles fließt, nichts steht still.“ – Heraklit"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr "\"Nichts währt außer Veränderung.\" - Herakleitos"
+msgstr "„Nichts währt außer Veränderung.“ – Herakleitos"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr "„Man kann nicht zweimal in denselben Fluss steigen, denn andere Wasser strömen nach.“ - Heraklit, Fragmente, B 12"
+msgstr "„Man kann nicht zweimal in denselben Fluss steigen, denn andere Wasser strömen nach.“ – Heraklit, Fragmente, B 12"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr "„Der Charakter des Menschen ist sein Schicksal.“ - Heraklit"
+msgstr "„Der Charakter des Menschen ist sein Schicksal.“ – Heraklit"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
-msgstr "\"Umstände beherrschen Männer, Männer beherrschen nicht Umstände.\" - Herodotus"
+msgstr "„Umstände beherrschen Männer, Männer beherrschen nicht Umstände.“ – Herodotus"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr "\"Die Lakonier lieferten eine unvergessliche Schlacht; Sie machten klar, dass sie die Experten waren und dass sie gegen Amateure kämpften.\" - Herodot"
+msgstr "„Die Lakonier lieferten eine unvergessliche Schlacht; Sie machten klar, dass sie die Experten waren und dass sie gegen Amateure kämpften.“ – Herodot"
 
 #: gui/text/quotes.txt:117
 msgid ""
@@ -1237,15 +1240,15 @@ msgstr "„Das aber ist der bitterste Schmerz unter den Menschen, wenn der Einsi
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr "„Denn aus weichen Ländern pflegen weiche Männer zu kommen.“ - Herodot"
+msgstr "„Denn aus weichen Ländern pflegen weiche Männer zu kommen.“ – Herodot"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
-msgstr "„Süß und ehrenvoll ist es, fürs Vaterland zu sterben.“ - Horaz"
+msgstr "„Süß und ehrenvoll ist es, fürs Vaterland zu sterben.“ – Horaz"
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr "„Staub und Schatten sind wir.“ - Horaz"
+msgstr "„Staub und Schatten sind wir.“ – Horaz"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -1264,18 +1267,18 @@ msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
-msgstr "\"Schütze dich vor Anschuldigungen, selbst wenn sie falsch sind; denn die Menge kennt die Wahrheit nicht und schaut nur auf das Ansehen.\" - Isokrates"
+msgstr "„Schütze dich vor Anschuldigungen, selbst wenn sie falsch sind; denn die Menge kennt die Wahrheit nicht und schaut nur auf das Ansehen.“ – Isokrates"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr "„Ich habe nie gelernt eine Harfe zu stimmen, oder auf einer Flöte zu spielen; aber ich weiß wie eine kleine und unbedeutende Stadt zu Ruhm und Größe geführt wird.“ - Themistokles"
+msgstr "„Ich habe nie gelernt eine Harfe zu stimmen, oder auf einer Flöte zu spielen; aber ich weiß wie eine kleine und unbedeutende Stadt zu Ruhm und Größe geführt wird.“ – Themistokles"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr "„Ich habe zwei Götter bei mir, Überzeugung und Zwang.“ - Themistokles"
+msgstr "„Ich habe zwei Götter bei mir, Überzeugung und Zwang.“ – Themistokles"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1292,17 +1295,17 @@ msgstr "„Schlage immerhin, aber höre mich!“ – Themistokles"
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr "„Heirate einen guten Mann und gebäre gute Kinder.“ - Leonidas zu seiner Frau, bevor er zu den Thermopylen aufbrach."
+msgstr "„Heirate einen guten Mann und gebäre gute Kinder.“ – Leonidas zu seiner Frau, bevor er zu den Thermopylen aufbrach."
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
-msgstr "„Komm und hol sie dir!“ - Leonidas, zu einem Persischen Unterhändler, der verlangte, dass er und seine Männer ihre Waffen niederlegen"
+msgstr "„Komm und hol sie dir!“ – Leonidas, zu einem Persischen Unterhändler, der verlangte, dass er und seine Männer ihre Waffen niederlegen"
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr "\"Für einen denkenden Mann ist das Zuhause dort wo Weisheit ist.\" - Zoroaster"
+msgstr "\"Für einen denkenden Mann ist das Zuhause dort wo Weisheit ist.\" – Zoroaster"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
@@ -1310,63 +1313,63 @@ msgstr "„Ich nenn' die Feige: Feige; Trog nenn' ich den Trog!“ – Menander"
 
 #: gui/text/quotes.txt:132
 msgid "\"The man who runs may fight again.\" - Menander"
-msgstr "\"Der Mann, der wegrennt, kämpft wieder.\" -Menander"
+msgstr "„Der Mann, der wegrennt, kämpft wieder.“ – Menander"
 
 #: gui/text/quotes.txt:133
 msgid ""
 "\"At times discretion should be thrown aside, and with the foolish we should"
 " play the fool.\" - Menander"
-msgstr "\"Manchmal sollte man die Vernunft beiseite legen und mit den Törichten den Narren spielen.\" - Menander"
+msgstr "„Manchmal sollte man die Vernunft beiseite legen und mit den Törichten den Narren spielen.“ – Menander"
 
 #: gui/text/quotes.txt:134
 msgid ""
 "\"Freedom is the sure possession of those alone who have the courage to "
 "defend it.\" - Pericles"
-msgstr "\"Allein die bereit sind, ihre Freiheit zu verteidigen sind sicher frei\""
+msgstr "„Allein die bereit sind, ihre Freiheit zu verteidigen sind sicher frei“ – Perikles"
 
 #: gui/text/quotes.txt:135
 msgid ""
 "\"What you leave behind is not what is engraved in stone monuments, but what"
 " is woven into the lives of others.\" - Pericles"
-msgstr "\"Hervorragender Männer Grab ist jedes Land. Nicht nur die Aufschrift auf einer Tafel zeugt in der Heimat von ihnen, auch in der Fremde wohnt, geistig, nicht stofflich, in jedermann ungeschriebenes Gedächtnis.\" - Perikles"
+msgstr "„Hervorragender Männer Grab ist jedes Land. Nicht nur die Aufschrift auf einer Tafel zeugt in der Heimat von ihnen, auch in der Fremde wohnt, geistig, nicht stofflich, in jedermann ungeschriebenes Gedächtnis.“ – Perikles"
 
 #: gui/text/quotes.txt:136
 msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
-msgstr "\"Wir halten den, der sich den politischen Angelegenheiten fernhält, nicht für einen ruheliebenden, sondern für einen unnützen Menschen.\" - Perikles"
+msgstr "„Wir halten den, der sich den politischen Angelegenheiten fernhält, nicht für einen ruheliebenden, sondern für einen unnützen Menschen.“ – Perikles"
 
 #: gui/text/quotes.txt:137
 msgid ""
 "\"They gave her their lives, to Her and to all of us, and for their own "
 "selves they won praises that never grow old, the most splendid of "
 "sepulchers...\" - Pericles, Funeral Oration"
-msgstr "\"Sie gaben ihr Leben, für Sie und für uns alle, und für sich selbst gewannen sie Lobpreisungen, die nie alt werden, die prächtigsten aller Grabmäler...\" - Perikles, Begräbnisrede"
+msgstr "„Sie gaben ihr Leben, für Sie und für uns alle, und für sich selbst gewannen sie Lobpreisungen, die nie alt werden, die prächtigsten aller Grabmäler...“ – Perikles, Begräbnisrede"
 
 #: gui/text/quotes.txt:138
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
-msgstr "\"Bedenkt, dass Glück von der Freiheit abhängt, und die Freiheit vom Mut.\" - Perikles"
+msgstr "„Bedenkt, dass Glück von der Freiheit abhängt, und die Freiheit vom Mut.“ – Perikles"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
-msgstr "\"Unser Imperium ist jetzt wie eine Tyrannei: Es mag falsch gewesen sein, es aufzubauen; es ist zweifellos gefährlich, es wieder loszulassen.\" - Perikles"
+msgstr "„Unser Imperium ist jetzt wie eine Tyrannei: Es mag falsch gewesen sein, es aufzubauen; es ist zweifellos gefährlich, es wieder loszulassen.“ – Perikles"
 
 #: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
-msgstr "\"Wenn Euch Athen bedeutend erscheint, bedenkt, dass seine Pracht von wackeren Männern gekauft wurde, und von Männern, die ihre Pflicht kannten.\" - Perikles"
+msgstr "„Wenn Euch Athen bedeutend erscheint, bedenkt, dass seine Pracht von wackeren Männern gekauft wurde, und von Männern, die ihre Pflicht kannten.“ – Perikles"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr "\"Nur weil du dich nicht für die Politik interessierst, heißt das nicht, dass die Politik sich nicht für dich interessiert.\" - Perikles"
+msgstr "„Nur weil du dich nicht für die Politik interessierst, heißt das nicht, dass die Politik sich nicht für dich interessiert.“ – Perikles"
 
 #: gui/text/quotes.txt:142
 msgid ""
@@ -1378,53 +1381,53 @@ msgstr "„Süß ist der Krieg nur dem Unerfahrenen, der Erfahrene aber fürchte
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr "Die Stunde des Aufbruchs ist gekommen und wir gehen unserer Wege — ich zu sterben, du zu leben. Welcher besser ist, weiß nur Gott.\" - Plato"
+msgstr "„Die Stunde des Aufbruchs ist gekommen und wir gehen unserer Wege — ich zu sterben, du zu leben. Welcher besser ist, weiß nur Gott.“ – Plato"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
-msgstr "„Ein Leben ohne Prüfungen ist nicht lebenswert“ - Plato"
+msgstr "„Ein Leben ohne Prüfungen ist nicht lebenswert“ – Plato"
 
 #: gui/text/quotes.txt:145
 msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
-msgstr "Es möge jeder Mann seine Nachkommen erinnern, dass auch sie Soldaten sind, die die Reihen ihrer Vorfahren nicht verlassen dürfen, oder aus Feigheit zurückfallen.\" - Platon"
+msgstr "„Es möge jeder Mann seine Nachkommen erinnern, dass auch sie Soldaten sind, die die Reihen ihrer Vorfahren nicht verlassen dürfen, oder aus Feigheit zurückfallen.“ – Platon"
 
 #: gui/text/quotes.txt:146
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
-msgstr "\"Falsche Worte sind nicht selbst böse, aber sie infizieren die Seele mit Bösem.\" - Plato"
+msgstr "„Falsche Worte sind nicht selbst böse, aber sie infizieren die Seele mit Bösem.“ – Plato"
 
 #: gui/text/quotes.txt:147
 msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr "\"Die Demokratie, die eine bezaubernde Regierungsform ist, voll von Vielfalt und Unordnung, und die eine Art Gleichheit verteilt, sowohl den Gleichen, als auch den Ungleichen.\" - Plato"
+msgstr "„Die Demokratie, die eine bezaubernde Regierungsform ist, voll von Vielfalt und Unordnung, und die eine Art Gleichheit verteilt, sowohl den Gleichen, als auch den Ungleichen.“ – Plato"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
-msgstr "„Der Tod ist nicht das schlimmste, was dem Menschen passieren kann.“ - Plato"
+msgstr "„Der Tod ist nicht das schlimmste, was dem Menschen passieren kann.“ – Plato"
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr "„Nur die Toten sahen das Ende des Krieges.“ - Unbekannt"
+msgstr "„Nur die Toten sahen das Ende des Krieges.“ – Unbekannt"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
-msgstr "\"Unsere Not wird der wahre Schöpfer sein\" - Plato"
+msgstr "“Unsere Not wird der wahre Schöpfer sein” – Plato"
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
-msgstr "\"Ein Mann mit Mut hat jeden Segen\" - Plautus"
+msgstr "„Ein Mann mit Mut hat jeden Segen“ – Plautus"
 
 #: gui/text/quotes.txt:152
 msgid ""
 "\"No guest is so welcome in a friend's house that he will not become a "
 "nuisance after three days.\" - Plautus"
-msgstr "\"Kein Gast ist im Heim eines Freundes so willkommen, dass er nicht nach drei Tagen zur Last wird.\" - Plautus"
+msgstr "„Kein Gast ist im Heim eines Freundes so willkommen, dass er nicht nach drei Tagen zur Last wird.“ – Plautus"
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
@@ -1432,7 +1435,7 @@ msgstr "„Wen die Götter lieben, der stirbt jung.“ – Plautus"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
-msgstr "\"Lass Worten Taten folgen.\" - Plautus"
+msgstr "„Lass Worten Taten folgen.“ – Plautus"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
@@ -1442,103 +1445,103 @@ msgstr "„Trinkt, lebt wie die Griechen, esst, fresst euch voll, schlachtet das
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr "\"Hört auf, Gesetze anzuführen, wir tragen Waffen!\" - Gnaeus Pompeius Magnus (Pompeius)"
+msgstr "„Hört auf, Gesetze anzuführen, wir tragen Waffen!“ – Gnaeus Pompeius Magnus (Pompeius)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr "\"Der Mensch ist das Maß aller Dinge, der seienden, dass sie sind, der nichtseienden, dass sie nicht sind.\" - Protagoras"
+msgstr "„Der Mensch ist das Maß aller Dinge, der seienden, dass sie sind, der nichtseienden, dass sie nicht sind.“ – Protagoras"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr "\"Wir müssen uns untereinander so benehmen, dass wir vermeiden, dass wir aus unseren Freunden Feinde machen, und gleichzeitig dass wir aus unseren Feinden Freund machen.\" - Pythagoras"
+msgstr "„Wir müssen uns untereinander so benehmen, dass wir vermeiden, dass wir aus unseren Freunden Feinde machen, und gleichzeitig dass wir aus unseren Feinden Freund machen.“ – Pythagoras"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr "„In Wut sollten wir von beiden Abstand halten, Sprache und Handlung.“ - Pythagoras"
+msgstr "„In Wut sollten wir von beiden Abstand halten, Sprache und Handlung.“ – Pythagoras"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr "\"Macht ist ein enger Nachbar der Notwendigkeit.\" - Pythagoras"
+msgstr "„Macht ist ein enger Nachbar der Notwendigkeit.“ – Pythagoras"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr "„Zahlen regieren das Universum.“ - Pythagoras"
+msgstr "„Zahlen regieren das Universum.“ – Pythagoras"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr "\"Sei zufrieden damit, gutes zu tun, und lass andere so von dir reden, wie es ihnen gefällt.\" - Pythagoras"
+msgstr "„Sei zufrieden damit, Gutes zu tun, und lass andere so von dir reden, wie es ihnen gefällt.“ – Pythagoras"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr "\"Zorn beginnt in Torheit und endet in Reue\" - Pythagoras"
+msgstr "„Zorn beginnt in Torheit und endet in Reue.“ – Pythagoras"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr "\"Es gibt weder Wort noch Tat, die ein Echo in der Ewigkeit haben.\" - Pythagoras"
+msgstr "„Es gibt weder Wort noch Tat, die ein Echo in der Ewigkeit haben.“ – Pythagoras"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
-msgstr "\"Es liegt Geometrie im Summen der Saiten, es liegt Musik im Abstand der Sphären.\" - Pythagoras"
+msgstr "„Es liegt Geometrie im Summen der Saiten, es liegt Musik im Abstand der Sphären.“ – Pythagoras"
 
 #: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr "\"Übe Gerechtigkeit in Wort und Tat, und verfalle nicht in die Angewohnheit, bei irgendetwas gedankenlos vorzugehen.\" - Pythagoras"
+msgstr "„Übe Gerechtigkeit in Wort und Tat, und verfalle nicht in die Angewohnheit, bei irgendetwas gedankenlos vorzugehen.“ – Pythagoras"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr "\"Denk nicht einmal daran etwas zu tun, was nicht getan werden sollte\" - Pythagoras "
+msgstr "„Denk nicht einmal daran etwas zu tun, was nicht getan werden sollte.“ – Pythagoras "
 
 #: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr "\"Wenn der weise Mann seinen Mund öffnet, präsentiert sich die Schönheit seiner Seele dem Betrachter, wie die Statuen in einem Tempel.\" - Pythagoras"
+msgstr "„Wenn der weise Mann seinen Mund öffnet, präsentiert sich die Schönheit seiner Seele dem Betrachter, wie die Statuen in einem Tempel.“ – Pythagoras"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
-msgstr "\"Erinnere dich, dass alle Menschen behaupten, Weisheit sei das höchste Gut, aber dass es nur  wenige gibt, die diesem höchsten Gut eifrig nachspüren.\" - Pythagoras"
+msgstr "„Erinnere dich, dass alle Menschen behaupten, Weisheit sei das höchste Gut, aber dass es nur  wenige gibt, die diesem höchsten Gut eifrig nachspüren.“ – Pythagoras"
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr "\"Ohne Gerechtigkeit wird kein Reich gedeien.\" - Pythagoras"
+msgstr "„Ohne Gerechtigkeit wird kein Reich gedeien.“ – Pythagoras"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr "\"Denn Harmonie macht kleine Staaten groß, während Zwietracht selbst die mächtigsten Imperien untergräbt.\" - Sallust"
+msgstr "„Denn Harmonie macht kleine Staaten groß, während Zwietracht selbst die mächtigsten Imperien untergräbt.“ – Sallust"
 
 #: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr "\"Ich bin eingedenk der menschlichen Schwäche, ich sinne der Macht der Fortuna nach und weiß, dass alles, was wir tun, tausend Möglichkeiten ausgesetzt ist.\" - Scipio Africanus"
+msgstr "„Ich bin eingedenk der menschlichen Schwäche, ich sinne der Macht der Fortuna nach und weiß, dass alles, was wir tun, tausend Möglichkeiten ausgesetzt ist.“ – Scipio Africanus"
 
 #: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr "\"Bereite dich auf den Krieg vor, da du außerstande warst den Frieden zu erhalten.\" - Scipio Africanus"
+msgstr "„Bereite dich auf den Krieg vor, da du außerstande warst den Frieden zu erhalten.“ – Scipio Africanus"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr "\"Wanderer, kommst du nach Sparta, verkündige dorten, du habest uns hier liegen gesehen, wie das Gesetz es befahl.\" - Simonides von Keos, Inschrift auf dem Gedenkstein in den Thermopylen"
+msgstr "„Wanderer, kommst du nach Sparta, verkündige dorten, du habest uns hier liegen gesehen, wie das Gesetz es befahl.“ – Simonides von Keos, Inschrift auf dem Gedenkstein in den Thermopylen"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
@@ -1548,11 +1551,11 @@ msgstr "„Der Notwendigkeit aber streben selbst Götter nicht entgegen.“ – 
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr "\"Wir wichen nicht zurück, sondern gaben unser Leben, um Griechenland zu retten, als sein Schicksal auf Messers Schneide stand.\" - Simonides von Keos"
+msgstr "„Wir wichen nicht zurück, sondern gaben unser Leben, um Griechenland zu retten, als sein Schicksal auf Messers Schneide stand.“ – Simonides von Keos"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
 " it.\" - Thucydides"
-msgstr "\"Nur die Tapfersten sind sicherlich die, die die klarste Sicht auf das haben, was vor ihnen liegt, Ehre und Gefahr zugleich, und dennoch gehen sie hinaus, dem zu begegnen.\" - Thukydides"
+msgstr "„Nur die Tapfersten sind sicherlich die, die die klarste Sicht auf das haben, was vor ihnen liegt, Ehre und Gefahr zugleich, und dennoch gehen sie hinaus, dem zu begegnen.“ – Thukydides"

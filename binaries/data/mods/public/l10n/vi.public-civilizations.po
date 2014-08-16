@@ -5,13 +5,16 @@
 # 
 # Translators:
 # Huynh Yen Loc <yenloc@outlook.com>, 2014
+# Sortale <sortale.zerok@gmail.com>, 2014
+# viet2uyen <vietquyen1810@gmail.com>, 2014
 # YubiGalaxy <yubigalaxy@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"PO-Revision-Date: 2014-07-07 03:40+0000\n"
+"Last-Translator: Sortale <sortale.zerok@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/projects/p/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,11 +25,11 @@ msgstr ""
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr ""
+msgstr "Người Athen"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr ""
+msgstr "Tốc độ khai thác kim loại tăng +10% qua mỗi thời kỳ."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -36,7 +39,7 @@ msgstr "Con cú Bạc"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr ""
+msgstr "Các hầm mỏ tại Laureion thuộc Attica cung cấp cho Athens một lượng lớn bạc và được dùng để đúc loại tiền quý và nổi tiếng, Cú của Athena."
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -46,7 +49,7 @@ msgstr ""
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Xây lên một nhà hát kịch sẽ tăng mức chiếm lãnh thổ của mọi công trình khác thêm +20%."
 
 #: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
 #: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
@@ -60,11 +63,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Người Hy Lạp đã rất thành công trong việc Hy Lạp Hóa những tộc người khác. Trong thời đại Hy Lạp, tiếng Hy Lạp đã là ngôn ngữ chính thức của Thế Giới Cổ Đại, và được sử dụng rộng rãi từ Tây Ban Nha/Spain cho tới Ấn Độ/India."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Tàu được xây nhanh hơn 25%."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -83,55 +86,55 @@ msgstr ""
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr ""
+msgstr "Themistocles"
 
 #: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
-msgstr ""
+msgstr "Pericles"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Cimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Aristides"
 
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 msgid "Xenophon"
-msgstr ""
+msgstr "Xenophon"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Hippias"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Cleisthenes"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Thucydides"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Alcibiades"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Miltiades"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Cleon"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Cleophon"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Thrasybulus"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
@@ -139,11 +142,11 @@ msgstr "Iphicrates"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Demosthenes"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "Thuyền chiến Trireme của người Athen có thể huấn luyện Thủy quân (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -153,7 +156,7 @@ msgstr "Cải cách Iphicratean"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr ""
+msgstr "Tường đá có thể được xây trên lãnh địa trung lập. Thời gian xây tường thành  được giảm đi 50%."
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -165,13 +168,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Trường thành xứ Athen được xây dựng dưới sự bảo trợ của trí giả Themistocles và kéo dài 6 km từ thành phố cho đến cảng Piraeus. Nó đã bảo vệ tuyến cung ứng đường thủy của Athen và ngăn không cho kẻ thù cắt đứt lương thảo trong một cuộc vây hãm."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Người chơi có khả năng ra lệnh cho nhóm lính cầm giáo vào đội hình Phalanx, với khả năng tấn công và phòng thủ cao hơn."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -200,7 +203,7 @@ msgstr ""
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Pericles là chính trị gia nổi tiếng nhất ở Athen vào thế kỷ thứ 5 trước công nguyên."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -219,20 +222,20 @@ msgstr ""
 
 #: civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Một người  Hy Lạp ở bộ lạc Ionia "
 
 #: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
 #: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
 #: civs/theb.jsonStructures[0].Name
 msgid "Theatron"
-msgstr "Nhà hát kịch"
+msgstr "Theatron"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
 #: civs/theb.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "Văn minh Hy Lạp mang lại lợi ích. Xây dựng một Theatron để gia tăng ảnh hưởng lãnh thổ của tất cả công trình thêm 25%."
 
 #: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
 #: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
@@ -289,7 +292,7 @@ msgstr "Người Briton"
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Nâng cao sản lượng lương thực từ chăn nuôi và trồng trọt."
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -299,13 +302,13 @@ msgstr "Ardiosmanae"
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Đặc trưng cho phương thức canh tác của người Celt."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Người Druid gia tăng một ít tốc độ tấn công của những chiến binh gần họ."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -315,82 +318,82 @@ msgstr "Deas Celtica"
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Tín ngưỡng của người Celtic và tôn giáo druidry lấy cảm hứng từ chính sự hiếu chiến của họ."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Cộng vào tốc độ công nghệ."
 
 #: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
 #: civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
-msgstr ""
+msgstr "Druides"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
 #: civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Người Druid xứ Celt vẫn gìn giữ một tôn giáo chứa đựng những kỹ thuật tiên tiến ngay cả trong thời chiến."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Karatakos"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Kunobelinos"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr ""
+msgstr "Boudicca"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Prasutagus"
 
 #: civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Venutius"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Commius"
 
 #: civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellaunus"
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Gia tăng tốc độ tấn công và di chuyển cho những đơn vị cận chiến."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
 msgid "Sevili Dusios"
-msgstr ""
+msgstr "Sevili Dusios"
 
 #: civs/brit.jsonFactions[0].Technologies[0].History
 #: civs/celt.jsonFactions[0].Technologies[0].History
@@ -398,17 +401,17 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Người Briton bắt đầu thực hiện việc xăm hình hoặc vẽ bằng màu lấy từ cây tùng lam. Điều này khiến họ rất đáng sợ. "
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Giă tăng điểm thưởng cao cho những đơn vị đóng trong tòa tháp."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Turos Maros"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 #: civs/celt.jsonFactions[0].Technologies[1].History
@@ -416,7 +419,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr ""
+msgstr "'Great Tower'; truyền thuyết Celtic có nhiều câu truyện về những tòa tháp cao chọc trời được xây bởi những vị quyền quyền uy nhất, và một vài tòa tháp lớn còn lại đã được tìm thấy."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -436,7 +439,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr ""
+msgstr "Caractacus, tên kiểu Roma biến đổi từ tên thật Karatakos, là cái tên được khắc lên rất nhiêu đồng tiền của chính ông. Dưới cái tên này ông được nhớ đến như là người anh hùng xứ Britain chống quân Roman sau cuộc xâm lược năm 43 A.D. Con trai vua Cunobelin  của liên minh các bộ lạc vùng Catuvellauni, Karatakos chiến đấu chống quân Roman trong 9 năm với rất ít thành công, dẫn đến phải rút về các bộ lạc xứ Wale, nơi ông đã bị đánh bại hoàn toàn. Cuối cùng, ông chạy đến Bắc Britain, nơi vốn đã bị kiểm soát bởi quân Roman. Bị dẫn về Rome, Karatakos được Hoàng đế Claudius tha mạng và sau chết tại Italy. Người ta cho rằng ông đã cải đạo sang đạo Christianity cùng với vợ, những không có bằng chứng nào xác nhận điều này. Điều đáng chú ý hơn cả có lẽ là việc ông được tha mạng khi bị bắt. Luật pháp Roman thường xử tử những người này một cách công khai để ăn mừng chiến thắng. Karatakos được đem đến trước mặt Hoàng đế và Viện nguyên lão theo yêu cầu của chính ông để biện hộ cho chính mình. Những lời nói của ông không được ghi chép rõ ràng, nhưng Tacitus cho rằng đó là bài diễn thuyết nổi tiếng..."
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 #: civs/celt.jsonFactions[0].Heroes[1].History
@@ -474,7 +477,7 @@ msgid ""
 " was held up by the post-Roman Britons as one of their great heroes; a "
 "conqueror and uniter of petty kingdoms, something the post-Roman Britons or "
 "Romano-British sorely needed."
-msgstr ""
+msgstr "Kunobelinos, có lẽ thường được biết đến với tên latin là Cunobelin, là một nhà cai trị hùng mạnh có căn cứ gần khu vực Colchester ngày nay. Cai trị bộ tộc Catuvellauni từ Kamulodunon (thường được biết đến với tên gọi Camulodunum), ông ta là một vị võ vương, người đã chinh phục bộ tộc Trinovantes lân cận, người Romans gọi ông là Vua của người Britons. Tộc Trinovantes, mặc dù từng là đồng minh của người Roman, đã không nhận được giúp đỡ từ phía người Roman, bởi vì họ bị tấn công ngay sau thảm bại của Roman tai Germania. Kunobelinos chết bệnh sau khi chinh phục phần lớn nửa nam nước Anh (tiền in hình ông ta đã được đúc xuyên suốt cho tới biên giới của vùng đất mà sau này trở thành xứ Wales). Khi ông ta chết, con ông ta là Togdumnos lên thế vị, Togdumnos sau này chết trong một trận chiến với người Roman, em trai ông, Karatakos, lên kế vị. Trớ trêu thay, người con thứ ba của ông ta lại chính là người mời đạo quân người Roman đó. Kunobelinos có vẻ không thù ghét người Roman. Ông ta giao dịch với họ một cách tự do, nhưng cũng không ngần ngại khuất phục các đồng minh Roman, và còn gửi Adminius làm con nuôi để được huấn luyện ở Roman Gaul. Điều này giải thích tình bằng hữu của Adminius với người Roman, và ông ta đã được phong lãnh chúa cai trị người Cantaci, sống ở đất Kent, bởi cha của ông. Vùng đất này là vị trí trọng yếu với nền thương mại của Anh và chịu ảnh hưởng Roman, và trí tuệ sắc xảo của ông ta đã nhận thấy các mối quan hệ của người con út với các chính trị gia và thương gia người Roman và Gallo-Roman sẽ giúp ích rất nhiều với việc quản lý vùng đất này. Những người con khác của ông ta lại không ưa gì người Roman, và khi Kunobelinos chết đi, Togdumnos, lên làm vua, lại bắt giữ, xử tử hay trục xuất rất nhiều người thuộc phe cánh người Roman, ngay cả người em trai là Adminius, và vi vua bị phế truất của Atrebates. vua Verica, người cầu cứu các người quen ở Roman để khôi phục lại lãnh thổ. Kunobelinos ở thời của ông ta có thể là vị vua vĩ đại nhất của nước Anh. Ông ta đã chinh phục được một phần lãnh thổ rộng lớn với khởi đầu chỉ từ một liên minh bốn bộ lạc nhỏ của người Catuvellauni, và được công nhận là Vua của nước Anh. Tên tuổi của ông vĩ đại đến mức những bộ tộc ở vùng Cambria đã vể phe các con ông để chống lại người Roman và đồng minh Anh của họ, và Kunobelinos được coi là một trong những anh hùng vĩ đại đối với người Anh hậu Roman; người đã chinh phục và thống nhất các vương quốc nhỏ, điều mà người Anh hậu Roman hay còn gọi là Romano-British rất cần."
 
 #: civs/brit.jsonFactions[0].Heroes[2].History
 #: civs/celt.jsonFactions[0].Heroes[2].History
@@ -526,11 +529,11 @@ msgstr ""
 
 #: civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr ""
+msgstr "Kennel"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Người Anh [Britons] nổi tiếng với việc nuôi chiến cẩu [chó dùng trong chiến tranh]."
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -600,11 +603,11 @@ msgstr "Hamilcar Barca"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "Hasdrubal Barca"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "Hasdrubal Gisco"
 
 #: civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
@@ -620,7 +623,7 @@ msgstr ""
 
 #: civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr ""
+msgstr "Hasdrubal Người Công Bằng"
 
 #: civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
@@ -628,27 +631,27 @@ msgstr ""
 
 #: civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "Himilco"
 
 #: civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr ""
+msgstr "Hampsicora"
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "Hannibal Gisco"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "Dido"
 
 #: civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr ""
+msgstr "Xanthippus"
 
 #: civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
-msgstr ""
+msgstr "Himilco Phameas"
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
@@ -727,7 +730,7 @@ msgstr ""
 
 #: civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Sứ quán xứ Celt"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
@@ -739,7 +742,7 @@ msgstr ""
 
 #: civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "Sứ quán xứ Italia"
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
@@ -754,7 +757,7 @@ msgstr ""
 
 #: civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "Sứ quán xứ Iberian"
 
 #: civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
@@ -777,7 +780,7 @@ msgstr ""
 
 #: civs/celt.jsonName
 msgid "Celts"
-msgstr ""
+msgstr "Người Celt"
 
 #: civs/celt.jsonFactions[0].Description
 msgid "British Isles"
@@ -900,7 +903,7 @@ msgstr ""
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr ""
+msgstr "Melonas"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
@@ -1172,7 +1175,7 @@ msgstr ""
 
 #: civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
-msgstr ""
+msgstr "Harritsu Leku"
 
 #: civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -1189,7 +1192,7 @@ msgstr ""
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "Zaldi Saldoa"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -1205,7 +1208,7 @@ msgstr ""
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
-msgstr ""
+msgstr "Saripeko"
 
 #: civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -1226,23 +1229,23 @@ msgstr ""
 
 #: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
 msgid "Indibil"
-msgstr ""
+msgstr "Indibil"
 
 #: civs/iber.jsonAINames[4]
 msgid "Audax"
-msgstr ""
+msgstr "Audax"
 
 #: civs/iber.jsonAINames[5]
 msgid "Ditalcus"
-msgstr ""
+msgstr "Ditalcus"
 
 #: civs/iber.jsonAINames[6]
 msgid "Minurus"
-msgstr ""
+msgstr "Minurus"
 
 #: civs/iber.jsonAINames[7]
 msgid "Tautalus"
-msgstr ""
+msgstr "Tautalus"
 
 #: civs/iber.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -1252,7 +1255,7 @@ msgstr ""
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1267,7 +1270,7 @@ msgstr ""
 
 #: civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr ""
+msgstr "Maisu Burdina Langileak"
 
 #: civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1330,7 +1333,7 @@ msgstr ""
 
 #: civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: civs/iber.jsonStructures[0].Special
 msgid ""
@@ -1697,7 +1700,7 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Quân Indian thời đế quốc Mauryan"
 
 #: civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
@@ -1711,7 +1714,7 @@ msgstr ""
 
 #: civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Edict Pillar of Ashoka"
 
 #: civs/maur.jsonStructures[1].Special
 msgid ""
@@ -1734,7 +1737,7 @@ msgstr ""
 
 #: civs/pers.jsonName
 msgid "Persians"
-msgstr ""
+msgstr "Quân Persian"
 
 #: civs/pers.jsonCivBonuses[0].Description
 msgid ""
@@ -1824,7 +1827,7 @@ msgstr ""
 
 #: civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr ""
+msgstr "Artaxshacha II"
 
 #: civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
@@ -2040,67 +2043,67 @@ msgstr ""
 
 #: civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr ""
+msgstr "Ptolemy Soter"
 
 #: civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr ""
+msgstr "Ptolemy Philadelphus"
 
 #: civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
-msgstr ""
+msgstr "Ptolemy Epigone"
 
 #: civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr ""
+msgstr "Ptolemy Eurgetes"
 
 #: civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr ""
+msgstr "Ptolemy Philopater"
 
 #: civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr ""
+msgstr "Ptolemy Epiphanes"
 
 #: civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr ""
+msgstr "Ptolemy Philometor"
 
 #: civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr ""
+msgstr "Ptolemy Eupator"
 
 #: civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr ""
+msgstr "Ptolemy Alexander"
 
 #: civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr ""
+msgstr "Ptolemy Neos Dionysos"
 
 #: civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
-msgstr ""
+msgstr "Ptolemy Neos Philopater"
 
 #: civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
-msgstr ""
+msgstr "Berenice Philopater"
 
 #: civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
-msgstr ""
+msgstr "Cleopatra Tryphaena"
 
 #: civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
-msgstr ""
+msgstr "Berenice Epiphaneia"
 
 #: civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
-msgstr ""
+msgstr "Cleopatra Philopater"
 
 #: civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
-msgstr ""
+msgstr "Cleopatra Selene"
 
 #: civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
@@ -2144,19 +2147,19 @@ msgstr ""
 
 #: civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "Ptolemaios A' Soter"
 
 #: civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
-msgstr ""
+msgstr "Ptolemaios D' Philopater"
 
 #: civs/ptol.jsonFactions[0].Heroes[2].Name
 msgid "Kleopatra H' Philopater"
-msgstr ""
+msgstr "Kleopatra H' Philopater"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr ""
+msgstr "Ptolemaic Egyptians"
 
 #: civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
@@ -2290,7 +2293,7 @@ msgstr ""
 
 #: civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Aulus Manlius Capitolinus"
 
 #: civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
@@ -2415,7 +2418,7 @@ msgstr ""
 
 #: civs/sele.jsonName civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
-msgstr ""
+msgstr "Quân Seleucid"
 
 #: civs/sele.jsonCivBonuses[0].Description
 msgid ""
@@ -2740,7 +2743,7 @@ msgstr ""
 
 #: civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "Liên minh Peloponnesian"
 
 #: civs/spart.jsonTeamBonuses[0].History
 msgid ""
@@ -2752,43 +2755,43 @@ msgstr ""
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr ""
+msgstr "Dienekes"
 
 #: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr ""
+msgstr "Brasidas"
 
 #: civs/spart.jsonAINames[3]
 msgid "Agis"
-msgstr ""
+msgstr "Agis"
 
 #: civs/spart.jsonAINames[4]
 msgid "Archidamus"
-msgstr ""
+msgstr "Archidamus"
 
 #: civs/spart.jsonAINames[6]
 msgid "Pausanias"
-msgstr ""
+msgstr "Pausanias"
 
 #: civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr ""
+msgstr "Agesilaus"
 
 #: civs/spart.jsonAINames[8]
 msgid "Echestratus"
-msgstr ""
+msgstr "Echestratus"
 
 #: civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr ""
+msgstr "Eurycrates"
 
 #: civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr ""
+msgstr "Eucleidas"
 
 #: civs/spart.jsonAINames[11]
 msgid "Agesipolis"
-msgstr ""
+msgstr "Agesipolis"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
