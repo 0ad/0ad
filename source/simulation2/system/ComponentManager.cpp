@@ -500,6 +500,10 @@ void CComponentManager::Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPriv
 
 void CComponentManager::ResetState()
 {
+	// Delete all dynamic message subscriptions
+	m_DynamicMessageSubscriptionsNonsync.clear();
+	m_DynamicMessageSubscriptionsNonsyncByComponent.clear();
+
 	// Delete all IComponents
 	std::map<ComponentTypeId, std::map<entity_id_t, IComponent*> >::iterator iit = m_ComponentsByTypeId.begin();
 	for (; iit != m_ComponentsByTypeId.end(); ++iit)
