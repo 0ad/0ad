@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Jeff Huang <s8321414@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-20 06:40+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +22,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "資訊"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "線上查看"
 
 #: gui/manual/manual.xml:23 (caption)
 msgid "Close"
@@ -32,11 +34,11 @@ msgstr "關閉"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. 遊戲手冊"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -47,7 +49,7 @@ msgstr "感謝您安裝 0 A.D.！這個頁面將概述這個尚未完全、仍�
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]顯示設定"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +59,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]您可以使用 Alt + Enter 來切換全螢幕及視窗模式。在視窗模式時，您可以調整視窗大小。如果遊戲執行的太慢，您可以更改在設定檔中的一些設定：在安裝遊戲的地方尋找 /data/config/default.cfg 這個檔案，按照其中的介紹編輯，並嘗試停用「fancywater」及「陰影」選項。"
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]進行遊戲"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]遊戲的控制及進行方式應該對傳統的即時戰略遊戲的玩家而言非常熟悉。目前仍有許多遺失的特性及不平衡的數據 - 您也許會想要等待測試版釋出以讓它運作的更好。"
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -101,11 +103,11 @@ msgstr "• 滑鼠滾輪，或“+”、“-”鍵以縮放。"
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]模式"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]在主選單可以選擇兩種遊戲模式："
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]單人遊戲[font=\"sans-14\"] — 進行一個沙盒遊戲或是與一個或多個電腦對手對抗。電腦對手的 AI 仍在開發中，所以可能不會使用一些最新的特性，若您無法與人類玩家進行遊戲，您仍可以試著與目前的電腦玩家對抗。"
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]多人遊戲[font=\"sans-14\"] — 與人類玩家透過網際網路一同進行遊戲。"
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -132,13 +134,13 @@ msgstr "要設定多人遊戲，其中有一個玩家必須選擇「創建遊戲
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]遊戲設定"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]在一個多人遊戲中，只有主持人可以更改遊戲選項。"
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -167,15 +169,15 @@ msgstr "當您準備好開始時，按下「開始遊戲」按鈕。"
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]快捷鍵："
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]通用"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4：無需確認即可關閉遊戲"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -215,31 +217,31 @@ msgstr "Shift + F2：拍螢幕截圖 (儲存為 6400px*4800px，.bmp 格式，�
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]遊戲中"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]左鍵點擊兩次[單位上]：選擇螢幕上所有相同類型的單位(即使他們有著不同的等級)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "左鍵點擊三次[單位上]：選擇螢幕上所有相同種類與等級的單位"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + 左鍵點擊兩次[單位上]：選擇地圖上所有相同種類的單位 (即使不同等級)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + 左鍵點擊三次[單位上]：選擇地圖上所有相同種類與等級的單位"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -259,7 +261,7 @@ msgstr "F12：顯示/隱藏時間計時器"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC：關閉所有對話框(聊天、選單)或取消選中的單位"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -271,7 +273,7 @@ msgstr "T：發送團隊聊天"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause：暫停/繼續遊戲"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -279,11 +281,11 @@ msgstr "Delete：刪除目前選中的 單位/建築。"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ",：選中空閒的軍事單位"
+msgstr ",：選取空閒的軍事單位"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".：選中空閒的工人（包括民兵）"
+msgstr ".：選取空閒的工人（包括民兵）"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
@@ -325,11 +327,11 @@ msgstr "Z、X、C、V、B、N、M：在訓練單位的建築物被選取時，�
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]修改滑鼠動作"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + 右鍵點擊建築物：駐軍"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -370,19 +372,19 @@ msgstr "Ctrl + 右鍵點擊 單位選定時: "
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "- 若游標在建築物上：駐防"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "- 除此之外：攻擊移動"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]覆蓋層"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G：隱藏/顯示GU"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -406,11 +408,11 @@ msgstr "Alt + Z: 切換天空"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]視野控制"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W 或 [上方向鍵]：視野往上移動"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -483,15 +485,15 @@ msgstr "Alt + W：變換鎖定線框模式"
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "滑鼠中鍵或是 / (斜線)：持續按著並移動滑鼠以平移"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]擺放建築物時"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: 逆時針轉動建築物15度"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -521,7 +523,7 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• 隨機使用者 ID (在 Windows 中儲存在 %APPDATA%\\0ad\\config\\user.cfg ，Unix 系統下則是 ~/.config/0ad/config/user.cfg on Unix)，允許我們偵測來自同一使用者的回報。"
 
 #: gui/manual/userreport.txt:6
 msgid ""
@@ -533,7 +535,7 @@ msgstr "•遊戲版本和基本組建設定 (優化模式，CPU架構，時間�
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• 應體細節: OS 版本, 顯示卡驅動程式版本, OpenGL 能力, 螢幕尺寸, CPU 細節, RAM 大小."
+msgstr "• 硬體細節: OS 版本, 顯示卡驅動程式版本, OpenGL 能力, 螢幕尺寸, CPU 細節, RAM 大小."
 
 #: gui/manual/userreport.txt:8
 msgid ""

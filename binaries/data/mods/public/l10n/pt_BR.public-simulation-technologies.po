@@ -4,12 +4,18 @@
 # Ascendant project.
 # 
 # Translators:
+# Ernan, 2014
+# Guilherme Dias <guilherme325@gmail.com>, 2014
+# Leonardo Barcihello <barichello@gmail.com>, 2014
+# Raphael Mendonça, 2014
+# magalidade <tazer.extreme@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"PO-Revision-Date: 2014-07-11 19:53+0000\n"
+"Last-Translator: Guilherme Dias <guilherme325@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +77,7 @@ msgstr "Barda"
 #: simulation/data/technologies/persians/training_levy_cavalry.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/training_levy_infantry.jsonrequirementsTooltip
 msgid "Unlocked in Town Phase."
-msgstr "Desbloqueado na Fase de Vila"
+msgstr "Desbloqueado na Fase de Vilarejo"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.ptol
 #: simulation/data/technologies/armor_cav_chamfron.jsonspecificName.spart
@@ -158,7 +164,7 @@ msgstr "Armadura de ferro do Herói"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Desbloqueado na \"Fase Cidade\""
+msgstr "Desbloqueado na \"Fase Metropóle\""
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -244,7 +250,7 @@ msgstr "Armadura de corpo feita completamente de bronze. Somente os melhores sol
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "campeões tem +2 leveis de hack armor,mas também custam mais 10 de metal"
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -304,7 +310,7 @@ msgstr "Uma camada de bronze aplicada sobre a parte exterior dos escudos."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "Lanceiros de Infantaria +1 nivel de perfurar armadura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -888,7 +894,7 @@ msgstr "Usar o ferro em vez de bronze deu lanças adicionais com poder penetrant
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr ""
+msgstr "Todas as unidades de lança +2 de ataque perfurante."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
@@ -1119,7 +1125,7 @@ msgstr "O estado ou tribo, muitas vezes seria construir um salão de jantar para
 #: simulation/data/technologies/pop_civic_01.jsontooltip
 #: simulation/data/technologies/pop_civic_02.jsontooltip
 msgid "Civic Centers +5 population cap bonus."
-msgstr ""
+msgstr "Centros cívicos com +5 de capacidade populacional."
 
 #: simulation/data/technologies/pop_civic_01.jsongenericName
 msgid "Dining Hall"
@@ -1227,7 +1233,7 @@ msgstr "A tanga de lançamento de dardo (os gregos também chamavam os loops, ou
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsontooltip
 msgid "All Javelin units +2 pierce attack and +4 range."
-msgstr ""
+msgstr "Todas as unidades de lança +2 para ataque perfurante e +4 de alcance"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsongenericName
 msgid "Javelin Thong"
@@ -1452,7 +1458,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Advanced rank. This "
 "increases their military prowess, but decreases their meat gathering rates "
 "-25%. Unlocks Elite Citizen-Cavalry technology."
-msgstr ""
+msgstr "Promova todos seus cidadãos-soldados da cavalaria ao posto avançado. Isso aumenta sua proeza militar, mas diminui sua coleta de carne em -25%. Desbloqueia tecnologia de cavalaria de cidadãos de Elite."
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
@@ -1485,7 +1491,7 @@ msgid ""
 "Promote all of your citizen-soldier cavalrymen to Elite rank. This increases"
 " their military prowess, but decreases their meat gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Promova todos seus cidadãos-soldados da cavalaria para o posto de Elite. Isto aumenta sua proeza militar mas diminui as taxas de coleta de carne em -25%"
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
@@ -1493,18 +1499,18 @@ msgstr "Cidadão-Cavaleiro de Elite"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "Aprimore todos seus cidadãos-solados da infantaria para o posto de Elite."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Elite rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates another -25%."
-msgstr ""
+msgstr "Aprimore todos seus cidadãos-soldados da infantaria para o posto de Elite. Isso aumenta a proeza militar deles mas diminui as taxas de coletas de recursos em -25%"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsongenericName
 msgid "Elite Citizen-Infantry"
-msgstr ""
+msgstr "Cidadão da Infantaria de Elite"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsonspecificName.mace
@@ -1761,7 +1767,7 @@ msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr ""
+msgstr "Aprimore todos seus mercenários celtas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Celtas de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -1769,14 +1775,14 @@ msgstr "Mercenários Celtas Avançados"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr ""
+msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr ""
+msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Ibéricos de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
@@ -1784,14 +1790,14 @@ msgstr "Mercenários Ibéricos Avançados"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr ""
+msgstr "Aprimore todos seus mercenários italiotas para o posto avançado."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr ""
+msgstr "Aprimore todos seus mercenários italiotas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%. Desbloqueia tecnologia de Mercenários Italiotas de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
@@ -1799,13 +1805,13 @@ msgstr "Mercenários Italiotas Avançados"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr ""
+msgstr "Aprimore todos seus mercenários celtas para o posto de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Aprimore todos seus mercenários celtas para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
@@ -1813,13 +1819,13 @@ msgstr "Mercenários Celtas de Elite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr ""
+msgstr "Aprimore todos seus mercenários ibéricos para o posto de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Aprimore todos seus mercenários ibéricos para o posto avançado. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
@@ -1827,14 +1833,14 @@ msgstr "Mercenários Ibéricos de Elite"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr ""
+msgstr "Aprimore todos seus mercenários italiotas para o posto de Elite."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Aprimore todos seus mercenários italiotas para o posto de Elite. Isto aumenta sua proeza militar mas diminui as taxas de coleta de recursos em -25%."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
@@ -2150,19 +2156,19 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "Os Livros Sibilinos ou 'Libri Sibyllini' são uma compilação de declarações do oráculo, estabelecida em hexâmetros gregos, comprados de uma sibila pelo último rei de Roma, Tarquinius Superbus, e foi consultada durante crises momentâneas, através da história da República e do Império."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "O campo de visão de todas suas unidades aumenta em +25%."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Livros Sibilinos"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr ""
+msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"
@@ -2206,7 +2212,7 @@ msgstr "Nisian agora extinta raça de cavalo foi um dos maiores e robustos caval
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health, but also +10% train time."
-msgstr ""
+msgstr "Aumenta a resistência da cavalaria em +20% mas o seu tempo de recrutamento aumenta em +10%."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"

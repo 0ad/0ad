@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Swyter <Swyterzone@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-20 18:00+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,14 +33,14 @@ msgstr "Los %(civilization)s en el juego"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonificación de civilización"
+msgstr[1] "Bonificaciones de civilización"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bonificación de equipo"
+msgstr[1] "Bonificaciones de equipo"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -47,8 +49,8 @@ msgstr "Tecnologías especiales"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Edificio especial"
+msgstr[1] "Edificios especiales"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -133,7 +135,7 @@ msgstr "Cierre inesperado"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr "Versión de protocolo de red incorrecta"
+msgstr "Versión de protocolo de red incorrecto"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
@@ -228,7 +230,7 @@ msgstr "Ayuda detallada"
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr "Mostrar textos de ayuda con detalles sobre las unidades que se pueden reclutar en edificios de producción de unidades."
+msgstr "Mostrar textos de ayuda emergente con detalles sobre las unidades que se pueden reclutar en edificios de producción de unidades."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
@@ -366,7 +368,7 @@ msgstr "Volumen general"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr "Volumen general"
+msgstr "Volumen de sonido general"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
@@ -406,7 +408,7 @@ msgstr "Historial de chat"
 
 #: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr "Número de mensajes en el historial a cargar al entrar en la Sala Multijugador"
+msgstr "Número de mensajes en el historial a cargar al entrar en la Sala multijugador"
 
 #: gui/options/options.js:44
 msgid "Chat Timestamp"
@@ -414,7 +416,7 @@ msgstr "Mostrar fecha y hora"
 
 #: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
-msgstr "Muestra cuando se publicaron los mensajes en el chat de la Sala Multijugador"
+msgstr "Muestra cuando se publicaron los mensajes en el chat de la Sala multijugador"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
@@ -454,7 +456,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarjeta de vídeo sin soporte de shaders (también llamada de «fixed function») Esta opción no estará disponible en futuras versiones de 0 A.D. para dejar sitio a técnicas más avanzadas. Te aconsejamos que, si es posible, actualices tu gráfica a un modelo más reciente que sea compatible con shaders, ó sombreadores."
+msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarjeta de vídeo sin soporte de «shaders» (también llamada de «fixed function») Esta opción no estará disponible en futuras versiones de 0 A.D. para dejar sitio a técnicas más avanzadas. Te aconsejamos que, si es posible, actualices tu gráfica a un modelo más reciente que sea compatible con «shaders», ó sombreadores."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -462,7 +464,7 @@ msgstr "%(startWarning)sCuidado:%(endWarning)s Parece que estás usando una tarj
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:183
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr "Presiona \"Leer más\" o haz clic en \"Aceptar\" para continuar."
+msgstr "Presiona «Leer más» o haz clic en «Aceptar» para continuar."
 
 #: gui/pregame/mainmenu.js:184
 msgid "WARNING!"
@@ -489,7 +491,7 @@ msgstr "Confirmar decisión"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "El editor de escenarios no está disponible o no ha podido cargarse. Echa un vistazo a los archivos de registro del juego para obtener información adicional."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -556,7 +558,7 @@ msgstr "«%(label)s»"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr "La partida guardada será permanentemente borrada, ¿Seguro que quieres hacerlo?"
+msgstr "La partida guardada se borrará definitivamente. ¿Seguro que quieres hacerlo?"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "DELETE"
@@ -702,7 +704,7 @@ msgstr "¡Ayúdanos a mejorar 0 A.D.!"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "Puedes enviarnos automáticamente informes anónimos para ayudarnos a resolver problemas, mejorar el rendimiento y la compatibilidad."
+msgstr "Puedes enviarnos automáticamente informes anónimos para ayudarnos a mejorar el rendimiento, resolver problemas, y hacer el juego más compatible."
 
 #: gui/pregame/mainmenu.xml:132
 msgid "Thank you for helping improve 0 A.D.!"
@@ -871,7 +873,7 @@ msgstr "¡Ayúdanos con la traducción!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Haz clic para abrir la página de traducción de 0 A.D. en tu navegador."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -1126,7 +1128,7 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr "[icon=\"constructionIcon\"] Esta es una versión experimental temprana del juego. Faltan algunas características y contiene errores."
+msgstr "[icon=\"constructionIcon\"] Esta es una versión experimental y temprana del juego. Faltan algunas características y contiene errores."
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=iconLag]  The game lags when many units are moving."
@@ -1209,19 +1211,19 @@ msgstr "BATALLÓN SAGRADO CARTAGINÉS"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr "-Lancero Campeón y Lancero Campeón a Caballo de Cartago"
+msgstr "- Lancero campeón y Lancero campeón a caballo de Cartago"
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr "- Ambos cuestan comida y metal, y pueden sen reclutados en el templo, en vez de la fortaleza como los otros campeones."
+msgstr "- Ambos cuestan comida y metal, y pueden reclutarse en el templo, en vez de la fortaleza como los otros campeones."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr "-Usa los Lanceros como infantería pesada contra la Caballería. Usa la Caballería como un choque pesado contra las Armas de Asedio y Guerrilleros. "
+msgstr "-Usa los Lanceros como infantería pesada contra la Caballería. Usa la Caballería como un pesada pieza de choque contra las Armas de asedio y los Escaramuceros. "
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -1393,19 +1395,19 @@ msgstr "AVANZADAS"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr "-Constrúyelas en territorio neutral para descubrir un gran área."
+msgstr "- Constrúyelas en territorio neutral para descubrir un gran área."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr "-Baratas, 80 Madera."
+msgstr "- Baratas, cuestan 80 de Madera."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr "-Se construyen rápido, pero son débiles."
+msgstr "- Se construyen rápido, pero son débiles."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "-Pierde salud in territorio neutral, pero son reparables."
+msgstr "- Pierden salud en territorio neutral, pero se pueden reparar."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
@@ -1489,7 +1491,7 @@ msgstr "CLIMA DE LA SABANA"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr "- Generalmente llano, con unos pocos abrevaderos y afloramientos rocosos."
+msgstr "- Generalmente de orografía llana, con unos pocos abrevaderos y afloramientos rocosos."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
@@ -1523,7 +1525,7 @@ msgstr "- Poseen un ataque a distancia que mejora con cada unidad guarnecida en 
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr "Espartiatas"
+msgstr "ESPARTIATAS"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -1601,11 +1603,11 @@ msgstr "TEMPLOS"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- Una estructura necesaria en la Fase intermedia, con la que mejorar a la fase urbana."
+msgstr "- Una estructura necesaria en la Fase intermedia, con la que mejorar a la Fase urbana."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- Recluta a sanadores para curar a tus tropas en la batalla."
+msgstr "- Recluta a sanadores para curar a tus tropas en el campo de batalla."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
@@ -1627,7 +1629,7 @@ msgstr "TEMÍSTOCLES"
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr "- Héroe ateniense que comandó a los Griegos en las grandes batallas navales de Artemisio y Salamina."
+msgstr "- Héroe ateniense que comandó a los griegos en las grandes batallas navales de Artemisio y Salamina."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
@@ -1676,17 +1678,17 @@ msgstr "- Héroe íbero de la tribu lusitana."
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr "- Por lo menos 7 campañas contra los romanos durante las Guerras Lusitanas de 147 a 139 A.C."
+msgstr "- Por lo menos 7 campañas contra los romanos durante las Guerras Lusitanas de 147 a 139 a.C."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr "- Se mueven rápido y pueden cambiar entre espada y jabalina ardiente."
+msgstr "- Se mueve rápido y puede cambiar entre espada y jabalina en llamas."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr "- Su \"aura\" es la \"táctica de guerrilla\" que permite que las unidades íberas colindantes puedan emboscar a sus oponentes."
+msgstr "- Su «aura» es la «táctica de guerrilla», que permite que las unidades íberas colindantes puedan emboscar a sus oponentes."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -1700,7 +1702,7 @@ msgstr "- Enormes bestias de África y de India, entrenadas para la guerra."
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr "- Alto coste de alimentos y metal, pero muy poderosos. Más fuertes contra estructuras y caballería."
+msgstr "- Alto coste en alimentos y metal, pero son muy poderosos. Más fuertes contra estructuras y caballería."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
@@ -1720,12 +1722,12 @@ msgstr "- Un recurso oceánico."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 de Comida."
+msgstr "- Proporcionan 2000 de Comida."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr "- Recogido por botes pesqueros después de matarla."
+msgstr "- Su carne la explotan los botes pesqueros una vez muertas."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr "- Nada recorriendo los océanos del juego y huye cuando se le ataca."
+msgstr "- Nadan recorriendo los océanos del juego y huyen cuando se les ataca."

@@ -4,12 +4,16 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrian Budasz <adrianbudasz@gmail.com>, 2014
+# Leszek S, 2014
+# zyxist <nightstorm@tlen.pl>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-08-07 07:31+0000\n"
+"Last-Translator: Adrian Budasz <adrianbudasz@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,7 +114,7 @@ msgstr "Niestety polecenie '%(cmd)s' nie jest obsługiwane."
 #: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:754
@@ -162,7 +166,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Prosimy nie spamować. Zostałeś zablokowany na trzydzieści sekund."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -194,15 +198,15 @@ msgstr "Hasła nie zgadzają się"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Proszę przeczytać Warunki Usługi"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Proszę przeczytać Warunki Użytkowania"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Proszę wyrazić zgodę na Warunki Usługi oraz Warunki Użytkowania"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -214,11 +218,11 @@ msgstr "Połącz"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Warunki Usługi"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Warunki Użytkowania"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
@@ -226,7 +230,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading)
@@ -235,11 +239,11 @@ msgstr "Imię"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "Ocena"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Tabela wyników"
 
 #: gui/lobby/lobby.xml:64 (caption)
 msgid "Map Type:"
@@ -267,7 +271,7 @@ msgstr "Menu główne"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "Nazwa mapy"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
@@ -281,7 +285,7 @@ msgstr "Typ"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "Gracze"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
@@ -341,7 +345,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definicje"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -441,7 +445,7 @@ msgstr ""
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"Podszywanie\" oznacza działania, w których próbujesz wykorzystać tożsamość innego użytkownika do własnych celów."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
@@ -461,19 +465,19 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr "Wyrażasz zgodę na:"
+msgstr "Akceptujesz następujące warunki świadczenia usługi:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. możesz utworzyć co najwyżej jednego konta dla każdego unikalnego użytkownika, chyba że uzyskasz zgodę członka zespołu Widlfire Games (WFG) na inne działanie,"
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. zabronione jest publikowanie w usłudze obraźliwych, niegrzecznych lub dyskryminujących komentarzy,"
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
@@ -482,15 +486,15 @@ msgstr ""
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. zabronione jest wykorzystywanie usługi do promowania usług lub produktów,"
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. zabronione jest podszywanie się pod innych użytkowników usługi,"
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. zabronione jest spamowanie,"
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -498,13 +502,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. zabronione są próby sztucznej zmiany "
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. moderator może odebrać Ci dostęp do usługi, jeśli stwierdzi, iż Twoje zachowanie nie jest zgodne z przedstawionymi powyżej zasadami."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""

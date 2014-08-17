@@ -4,12 +4,16 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrian Budasz <adrianbudasz@gmail.com>, 2014
+# Leszek S, 2014
+# rabusek <rabusek@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-27 20:30+0000\n"
+"Last-Translator: Adrian Budasz <adrianbudasz@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,21 +30,21 @@ msgstr ", "
 #: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "Rozgrywka %(civilization)s"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Premia cywilizacyjna"
+msgstr[1] "Premie cywilizacyjne"
+msgstr[2] "Premie cywilizacyjne"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Premia drużynowa"
+msgstr[1] "Premie drużynowe"
+msgstr[2] "Premie drużynowe"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -49,13 +53,13 @@ msgstr "Technologie specjalne"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Budynek specjalny"
+msgstr[1] "Budynki specjalne"
+msgstr[2] "Budynki specjalne"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr "Herosi"
+msgstr "Bohaterowie"
 
 #: gui/civinfo/civinfo.js:157
 #, python-format
@@ -71,7 +75,7 @@ msgstr "Otwieranie %(url)s\nw domyślnej przeglądarce. Proszę czekać...."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr ""
+msgstr "Strona startowa"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
@@ -109,7 +113,7 @@ msgstr "Wymagany ciąg '%(string)s' nie został znaleziony w liście %(object)s.
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "yyyy-MM-dd HH:mm:ss"
+msgstr "dd-MM-yyyy HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
@@ -163,11 +167,11 @@ msgstr "Rozłączono"
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<niepoprawny>"
 
 #: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -208,7 +212,7 @@ msgstr "Uruchom 0 A.D w trybie okienkowym"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Pauza w tle"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
@@ -226,20 +230,20 @@ msgstr "Jeżeli wyłączysz ten ekran możesz być do tyłu z niektórymi ważny
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr "Szczegółowy panel"
+msgstr "Szczegółowe wskazówki"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Pokaż szczegółowe podpowiedzi o produkowanych jednostkach w budynkach produkcyjnych."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "Wybierz GLSL"
 
 #: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "Używaj shaderów OpenGL 2.0 (zalecane)"
 
 #: gui/options/options.js:17
 msgid "Post Processing"
@@ -299,7 +303,7 @@ msgstr "Wygładzone cienie"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
-msgstr ""
+msgstr "Fale w wysokiej jakości"
 
 #: gui/options/options.js:24
 msgid ""
@@ -309,11 +313,11 @@ msgstr ""
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
-msgstr ""
+msgstr "Realistyczna głębokość wody"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
-msgstr ""
+msgstr "Użyj rzeczywistej głębokości wody w obliczeniach podczas renderowania."
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
@@ -329,23 +333,23 @@ msgstr "Załamania na wodzie"
 
 #: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Użyj rzeczywistego modelu refrakcji wody zamiast przezroczystości."
 
 #: gui/options/options.js:28
 msgid "Shore Foam"
-msgstr ""
+msgstr "Piana morska na wybrzeżu"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr ""
+msgstr "Pokaż pianę na wodzie w pobliżu linii brzegowej w zależności od fal na wodzie"
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
-msgstr ""
+msgstr "Fale przy brzegu"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr ""
+msgstr "Pokaż załamujące się fale przy brzegu (wymaga HQ Waviness)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
@@ -357,67 +361,67 @@ msgstr "Rzucaj cienie na wodzie"
 
 #: gui/options/options.js:31
 msgid "VSync"
-msgstr ""
+msgstr "Synchronizacja pionowa"
 
 #: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Włącz synchronizację pionową, aby naprawić załamania ekranu. WYMAGA PONOWNEGO URUCHOMIENIA"
 
 #: gui/options/options.js:35
 msgid "Master Gain"
-msgstr ""
+msgstr "Głośność całkowita"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr ""
+msgstr "Całkowita głośność dźwięków w grze"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
-msgstr ""
+msgstr "Głośność muzyki"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
-msgstr ""
+msgstr "Głośność muzyki w trakcie gry"
 
 #: gui/options/options.js:37
 msgid "Ambient Gain"
-msgstr ""
+msgstr "Głośność otoczenia"
 
 #: gui/options/options.js:37
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "Głośność otoczenia w trakcie gry"
 
 #: gui/options/options.js:38
 msgid "Action Gain"
-msgstr ""
+msgstr "Głośność akcji"
 
 #: gui/options/options.js:38
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "Głośność akcji jednostek w trakcie gry"
 
 #: gui/options/options.js:39
 msgid "UI Gain"
-msgstr ""
+msgstr "Głośność UI"
 
 #: gui/options/options.js:39
 msgid "UI sound gain"
-msgstr ""
+msgstr "Głośność interfejsu użytkownika"
 
 #: gui/options/options.js:43
 msgid "Chat Backlog"
-msgstr ""
+msgstr "Historia czatu"
 
 #: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "Ilość przechowywanych wiadomości w historii czatu"
 
 #: gui/options/options.js:44
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "Czas wiadomości"
 
 #: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Pokaż czas otrzymania wiadomości na czacie"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
@@ -492,7 +496,7 @@ msgstr "Potwierdzenie"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Edytor scenariusza jest niedostępny lub nie mógł zostać załadowany. Sprawdź logi gry aby znaleźć dodatkowe informacje."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -617,7 +621,7 @@ msgstr "Język:"
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "Kod języka:"
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
@@ -627,7 +631,7 @@ msgstr "Anuluj"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "Zaawansowane"
 
 #: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
 #: (caption)
@@ -636,11 +640,11 @@ msgstr "Akceptuj"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "Kraj:"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr ""
+msgstr "Skrypt:"
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
@@ -650,16 +654,16 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
-msgstr ""
+msgstr "Wariant (nieużywane):"
 
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Nie zaimplementowano."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Słowa kluczowe (nieużywane):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
@@ -667,7 +671,7 @@ msgstr ""
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Wykorzystane pliki słownika:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
@@ -874,7 +878,7 @@ msgstr "Pomóż tłumaczyć grę!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Kliknij tutaj aby otworzyć stronę z tłumaczeniami 0 A.D. w przeglądarce."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -991,7 +995,7 @@ msgstr "Statystyki budynków (Zbudowane / Stracone / Zniszczone)"
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
 msgid "Total"
-msgstr ""
+msgstr "Całkowite"
 
 #: gui/summary/summary.xml:237 (caption)
 msgid "Houses"
@@ -1107,11 +1111,11 @@ msgstr "Feminizacja"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "Stosunek liczby zabitych do utraconych"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "Odkrycie mapy"
 
 #: gui/summary/summary.xml:989 (caption)
 msgid "Continue"
@@ -1119,11 +1123,11 @@ msgstr "Kontynuuj"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Dziękujemy za instalację 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
@@ -1300,7 +1304,7 @@ msgstr "- Unikalne \"Koszary\" dostępne dla Kartagińczyków."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- Wyszkol najemników ze zróżnicowanych etnicznie ambasad"
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
@@ -1344,7 +1348,7 @@ msgstr "- Trenuj elitarne jednostki mistrzów, bohaterów i machiny oblężnicze
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr ""
+msgstr "- Dodaje premię do przyrostu populacji"
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
@@ -1400,7 +1404,7 @@ msgstr "- Wybuduj na terytorium neutralnym, aby zwiększyć zasięg widoczności
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- Tanie, 80 jednostek drewna."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
@@ -1468,13 +1472,13 @@ msgstr "- Persowie mają również dostęp do dużej liczby technologii konstruk
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "CIĘŻKI OKRĘT WOJENNY"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- Najcięższy standardowy okręt wojenny. Dostępny dla: Rzymian, Kartagińczyków, Ptolemeuszy i Seleucydów."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
@@ -1707,7 +1711,7 @@ msgstr "- Wysoki koszt żywności i metalu, jednak bardzo potężne. Najsilniejs
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- Podatny na atak pieszych oszczepników."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."

@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# linux_eki <ekiuusi@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-07-22 03:40+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +37,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "Sotilas"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -84,7 +86,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "Keihäs"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
@@ -103,7 +105,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "Miekka"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
@@ -142,7 +144,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:37
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:38
 msgid "Archer"
-msgstr ""
+msgstr "Jousimies"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
 msgid ""
@@ -161,7 +163,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Keihäs"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -217,11 +219,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/units/maur_elephant_archer_b.xml:24
 msgid "Elephant"
-msgstr "Elefantti"
+msgstr "Norsu"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
-msgstr ""
+msgstr "Sotanorsu"
 
 #: simulation/templates/template_unit_champion_elephant_melee.xml:49
 msgid ""
@@ -235,7 +237,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry.xml:52
 #: simulation/templates/template_unit_infantry.xml:50
 msgid "Infantry"
-msgstr ""
+msgstr "Jalkaväki"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
@@ -321,7 +323,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:79
 msgid "Dog"
-msgstr ""
+msgstr "Koira"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""
@@ -339,7 +341,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
-msgstr ""
+msgstr "Kala"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
@@ -347,13 +349,13 @@ msgstr ""
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Cetacean"
-msgstr ""
+msgstr "Cetacean"
 
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
 msgid "Hero"
-msgstr ""
+msgstr "Sankari"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
@@ -433,7 +435,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
-msgstr ""
+msgstr "Peitsimies"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:37
 msgid "Spearman"
@@ -447,7 +449,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:52
 msgid "Swordsman"
-msgstr ""
+msgstr "Miekkamies"
 
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:40
 msgid ""
@@ -467,7 +469,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:37
 msgid "Sling"
-msgstr ""
+msgstr "Linko"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
@@ -477,12 +479,12 @@ msgstr ""
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
-msgstr ""
+msgstr "Linkomies"
 
 #: simulation/templates/template_unit_mechanical_ship.xml:34
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 msgid "Ship"
-msgstr ""
+msgstr "Laiva"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
 msgid "Classes: Mechanical Warship Light Ranged."
@@ -490,7 +492,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Kevyt sotalaiva"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -531,7 +533,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
-msgstr ""
+msgstr "Raskas sotalaiva"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid ""
@@ -602,7 +604,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "Läheiset miehet työskentelevät 10% nopeampaa"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
@@ -2999,7 +3001,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_spearman_b.xml:15
 msgid "Chalkaspides"
-msgstr ""
+msgstr "Chalkaspides"
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:21
 msgid "Gold Shield Pikeman"
@@ -3007,7 +3009,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_spearman_e.xml:22
 msgid "Chrysaspides"
-msgstr ""
+msgstr "Chrysaspides"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid ""

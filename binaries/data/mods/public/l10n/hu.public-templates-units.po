@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Nagy András <asd0707@freemail.hu>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:55+0000\n"
+"PO-Revision-Date: 2014-07-13 20:10+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,14 +30,14 @@ msgstr "Lovas"
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Citizen"
-msgstr ""
+msgstr "Polgár"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:52
 msgid "Soldier"
-msgstr ""
+msgstr "Katona"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:81
@@ -68,7 +70,7 @@ msgstr "Alap"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "Közelharc"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:52
 msgid "Melee Cavalry"
@@ -84,7 +86,7 @@ msgstr "Közelharci Lovasság"
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
-msgstr ""
+msgstr "Lándzsa"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
 msgid ""
@@ -94,7 +96,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "Lándzsás lovasság"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:44
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:76
@@ -103,7 +105,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
 msgid "Sword"
-msgstr ""
+msgstr "Kard"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
@@ -114,7 +116,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
-msgstr ""
+msgstr "Kardos lovasság"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:30
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:39
@@ -142,7 +144,7 @@ msgstr "Távolsági Lovas"
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:37
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:38
 msgid "Archer"
-msgstr ""
+msgstr "Íjász"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
 msgid ""
@@ -152,7 +154,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "Íjász lovasság"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:34
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:38
@@ -161,7 +163,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
 msgid "Javelin"
-msgstr ""
+msgstr "Dárda"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
 msgid ""
@@ -171,7 +173,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:35
 msgid "Cavalry Skirmisher"
-msgstr ""
+msgstr "Lovas csatár"
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
@@ -183,11 +185,11 @@ msgstr "Bajnoki Egység"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:37
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "Bajnok lovasság"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:40
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Bajnok lovas íjász"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
 msgid ""
@@ -197,7 +199,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Bajnok lovas csatár"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:52
 msgid ""
@@ -207,11 +209,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:51
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "Bajnok lovas lándzsás"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:77
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "Bajnok kardos lovas"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -1662,7 +1664,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
-msgstr ""
+msgstr "Xenophón"
 
 #: simulation/templates/units/hele_hero_xenophon.xml:29
 msgid "Xenophôn"
@@ -3201,4 +3203,4 @@ msgstr ""
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"
-msgstr ""
+msgstr "Hosszúhajó"

@@ -28,8 +28,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:09+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-08-04 14:21+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,12 +41,12 @@ msgstr ""
 #: gui/session/input.js:152
 #, python-format
 msgid "Basic range: %(range)s"
-msgstr ""
+msgstr "Temel alan: %(range)s"
 
 #: gui/session/input.js:152
 #, python-format
 msgid "Average bonus range: %(range)s"
-msgstr ""
+msgstr "Ortalama ikramiye alanı: %(range)s"
 
 #: gui/session/input.js:725
 msgid "Cannot build wall here!"
@@ -151,8 +151,8 @@ msgstr[1] "%(numberTrading)s kara ticareti var"
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s ticari gemideki garnizon"
+msgstr[1] "%(numberGarrisoned)s ticari gemideki garnizon"
 
 #: gui/session/menu.js:492
 #, python-format
@@ -183,8 +183,8 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] " %(numberGarrisoned)s ticaret gemisinde kara garnizonları vardır"
+msgstr[1] " %(numberGarrisoned)s ticaret gemisinde kara garnizonları vardır"
 
 #: gui/session/menu.js:530
 #, python-format
@@ -200,8 +200,8 @@ msgstr "%(openingGarrisonedString)s."
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s kara tüccarı devre dışı"
+msgstr[1] "%(numberOfLandTraders)s kara tüccarları devre dışı"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
@@ -225,8 +225,8 @@ msgstr[1] "%(numberOfShipTraders)s devre dışı"
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberTrading)s ticaret gemisi ticaret yapar"
+msgstr[1] "%(numberTrading)s ticaret gemisi ticaret yapar"
 
 #: gui/session/menu.js:588
 #, python-format
@@ -241,18 +241,18 @@ msgstr "Kılavuz"
 
 #: gui/session/menu.js:678
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Bu Geliştirici Kaplaması açıldı."
 
 #: gui/session/menu.js:680
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Bu Geliştirici Kaplaması kapandı."
 
 #: gui/session/menu.js:696
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Hediye %(resourceAmount)s %(resourceType)s  %(playerName)s 'a. Shift-tıklama ödeme %(greaterAmount)s."
 
 #: gui/session/messages.js:185
 #, python-format
@@ -521,12 +521,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Satın al %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Sat %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -540,7 +540,7 @@ msgstr "Kaldır %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Tek tıklamayla 1 tane kaldır. Shift tıklama ile bu tipteki tümünü kaldır."
 
 #: gui/session/selection_panels.js:400
 msgid "Lock Gate"
@@ -568,7 +568,7 @@ msgstr "Paketi Açmayı Durdur"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Yetersiz nüfüs kapasitesi:"
 
 #: gui/session/selection_panels.js:591
 #, python-format
@@ -620,12 +620,12 @@ msgstr "Mevcut Sayı: %(count)s, Limit: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s ile %(change)s kadar sınır büyür."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s ile %(change)s kadar sınır küçültülür."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -639,17 +639,17 @@ msgstr "Shift-tıklama"
 #: gui/session/selection_panels_helpers.js:123
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s  %(number)s (%(fullBatch)s + %(remainderBatch)s) yetiştir."
 
 #: gui/session/selection_panels_helpers.js:130
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s %(number)s (%(fullBatch)s) yetiştirin."
 
 #: gui/session/selection_panels_helpers.js:137
 #, python-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s to train %(number)s."
 
 #: gui/session/session.js:19
 msgid "You"
@@ -712,7 +712,7 @@ msgstr "%(time)s (%(speed)sx)"
 #: gui/session/session.js:891
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
-msgstr ""
+msgstr "Tanınmayan ortam tipi: %(ambientType)s"
 
 #: gui/session/session.js:908
 #, python-format
@@ -724,7 +724,7 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Not: zaman tüneli modu geliştirici seçeneğidir, ve zamanda büyük bölümlerin kullanımı için tasarlanmamıştır. Yanlış kullanımı oyunda bellek dolması veya çökmesine neden olabilir."
 
 #: gui/session/session.js:913
 msgid "Time warp mode"
@@ -732,7 +732,7 @@ msgstr "Zaman tüneli modu"
 
 #: gui/session/unit_actions.js:295
 msgid "Origin trade market."
-msgstr ""
+msgstr "Ticaret pazarı kökeni."
 
 #: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
 #: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
@@ -742,28 +742,28 @@ msgstr "Kazanç: %(gain)s"
 
 #: gui/session/unit_actions.js:301
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Bir hedef ticaret pazarı olarak ayarlamak için başka bir pazar üzerinde sağ tıklayın."
 
 #: gui/session/unit_actions.js:304
 msgid "Destination trade market."
-msgstr ""
+msgstr "Hedef ticaret pazarı."
 
 #: gui/session/unit_actions.js:309
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Ticaret kökenli pazar olarak ayarlamak için sağ tıklayın"
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Hedef ticari pazar sağ tıklama ile ayarlanır."
 
 #: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Geçerli garnizon: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:519
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Yeni tüccarlar için bir varsayılan yol kurmak için sağ tıklayın."
 
 #: gui/session/unit_actions.js:523
 #, python-format
@@ -784,7 +784,7 @@ msgstr "Garnizon"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Kaldır"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -1290,23 +1290,23 @@ msgstr "Ekran seçim durumu"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Yol Bulucu kaplaması"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Tıkama kaplaması"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "Birim hareket kaplaması"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Alan kaplaması"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Çerçeveleme kutu kaplaması"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
@@ -1366,7 +1366,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Orjinal değişikliklerden en iyi birini seçin, sonra değişiklik yapmak için hedef ürünler için ok kullanın (Shift ile seçildiğinde kaynaklar 100% olarak yerleştirilecek)."
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1405,7 +1405,7 @@ msgstr "Üretim kuyruğu"
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Gruplanmış birimlere tıklayın, çift tıklayarak gruplanmış birimlere odaklanın ve sağ tıklayarak grubu dağıtın."
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"

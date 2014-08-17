@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Jeff Huang <s8321414@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-28 03:20+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,17 +28,17 @@ msgstr "，"
 #: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s 特點"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
+msgstr[0] "文明加成"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "團隊加成"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -45,7 +47,7 @@ msgstr "特殊科技"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
+msgstr[0] "特殊建築"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -61,20 +63,20 @@ msgstr "%(civilization)s 歷史"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "正在開啟 %(url)s\n 在預設瀏覽器中。請稍候......"
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr ""
+msgstr "正在開啟頁面"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
-msgstr "FPS: %(fps)s"
+msgstr "FPS： %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
@@ -161,7 +163,7 @@ msgstr "無"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -198,7 +200,7 @@ msgstr "視窗模式"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "在新視窗中開啟0 A.D."
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -206,42 +208,42 @@ msgstr "背景暫停"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "當視窗失去焦點時暫停單人遊戲"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "停用歡迎畫面"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "如果您完全停用此畫面，您可能會錯過一些重要公告。\n您仍然可以從主選單中開啟它。"
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "詳細的工具提示"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "在可生產單位的建築物中顯示詳細的工具提示。"
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "偏好 GLSL"
 
 #: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "使用 OpenGL 2.0著色器(建議)"
 
 #: gui/options/options.js:17
 msgid "Post Processing"
-msgstr ""
+msgstr "後處理"
 
 #: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "使用螢幕空間後處理過濾器(HDR、Bloom、DOF 等)"
 
 #: gui/options/options.js:18
 msgid "Shadows"
@@ -253,11 +255,11 @@ msgstr "開啟陰影"
 
 #: gui/options/options.js:19
 msgid "Particles"
-msgstr ""
+msgstr "粒子效果"
 
 #: gui/options/options.js:19
 msgid "Enable particles"
-msgstr ""
+msgstr "開啟粒子效果"
 
 #: gui/options/options.js:20
 msgid "Show Sky"
@@ -269,23 +271,23 @@ msgstr "渲染天空"
 
 #: gui/options/options.js:21
 msgid "Smooth LOS"
-msgstr ""
+msgstr "LOS 平滑"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "平滑移除黑色區域及戰爭迷霧(需要 GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "單位側影"
 
 #: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "顯示被建築物遮擋的單位輪廓"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "陰影過濾"
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
@@ -293,21 +295,21 @@ msgstr "柔和陰影"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
-msgstr ""
+msgstr "高品質水面波浪效果"
 
 #: gui/options/options.js:24
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
-msgstr ""
+msgstr "使用真實法線渲染海洋波浪來替代平面貼圖。"
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
-msgstr ""
+msgstr "真實水深"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
-msgstr ""
+msgstr "使用真實水深來進行渲染計算"
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
@@ -315,99 +317,99 @@ msgstr "水面反射"
 
 #: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "使水面反射鏡像"
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
-msgstr "水面反射"
+msgstr "水面折射"
 
 #: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "使用不透明且有水面折射效果的地圖"
 
 #: gui/options/options.js:28
 msgid "Shore Foam"
-msgstr ""
+msgstr "海岸波浪"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr ""
+msgstr "在海岸邊的水面顯示泡沫"
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
-msgstr ""
+msgstr "海岸波浪"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr ""
+msgstr "在海岸邊顯示碎浪(需要高品質水面波浪效果)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
-msgstr ""
+msgstr "水中倒影"
 
 #: gui/options/options.js:30
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "顯示水中倒影"
 
 #: gui/options/options.js:31
 msgid "VSync"
-msgstr ""
+msgstr "垂直同步"
 
 #: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "使用垂直同步以修復螢幕撕裂。需要重新啟動遊戲"
 
 #: gui/options/options.js:35
 msgid "Master Gain"
-msgstr ""
+msgstr "主音量"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr ""
+msgstr "主音訊控制"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
-msgstr ""
+msgstr "音樂控制"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
-msgstr ""
+msgstr "遊戲內音樂控制"
 
 #: gui/options/options.js:37
 msgid "Ambient Gain"
-msgstr ""
+msgstr "環境音效控制"
 
 #: gui/options/options.js:37
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "遊戲內環境音效控制"
 
 #: gui/options/options.js:38
 msgid "Action Gain"
-msgstr ""
+msgstr "動作控制"
 
 #: gui/options/options.js:38
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "遊戲內單位動作音效控制"
 
 #: gui/options/options.js:39
 msgid "UI Gain"
-msgstr ""
+msgstr "使用者介面控制"
 
 #: gui/options/options.js:39
 msgid "UI sound gain"
-msgstr ""
+msgstr "使用者介面音效控制"
 
 #: gui/options/options.js:43
 msgid "Chat Backlog"
-msgstr ""
+msgstr "聊天記錄"
 
 #: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "加入大廳時，要載入的聊天記錄數"
 
 #: gui/options/options.js:44
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "聊天時間戳記"
 
 #: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
@@ -415,11 +417,11 @@ msgstr "顯示大廳對話時間"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
-msgstr "停用"
+msgstr "已停用"
 
 #: gui/pregame/mainmenu.js:109
 msgid "connecting to server"
-msgstr "連接到伺服器"
+msgstr "正在連線到伺服器"
 
 #: gui/pregame/mainmenu.js:114
 #, c-format
@@ -433,12 +435,12 @@ msgstr "上傳成功"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "上傳失敗 (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "上傳失敗 (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -451,7 +453,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)s 警告： %(endWarning)s 您似乎正使用非著色器（已修復功能）的顯示卡。這個選項將會在未來的 0 A.D. 版本中移除以便啟用更多的進階圖形特性。我們建議您盡速升級您的顯示卡到較新的，相容著色器語言的顯示卡。"
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -486,7 +488,7 @@ msgstr "確認"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "劇情編輯器無法使用或載入失敗。見遊戲日誌以獲得更多資訊。"
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -494,12 +496,12 @@ msgstr "錯誤"
 
 #: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr ""
+msgstr "啟動多人遊戲大廳。 [編譯時被禁用]"
 
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
 #: gui/pregame/mainmenu.xml:145 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "技術詳情"
 
 #: gui/pregame/mainmenu.js:335
 msgid "Manual"
@@ -511,39 +513,39 @@ msgstr "找不到遊戲存檔"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "此遊戲存檔可能不相容於："
 
 #: gui/savedgames/load.js:48
 #, python-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "它需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
 
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "當您執行 \"%(currentMod)s\" 時不需要任何 mod。"
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "它需要 \"%(requiredMod)s\" ，但您並未執行該 mod。"
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "它需要 mod \"%(requiredMod)s\" ，但您正在執行 \"%(currentMod)s\" 。"
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "您仍要繼續嗎？"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "警告"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
@@ -569,7 +571,7 @@ msgstr "覆蓋儲存"
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr "情景"
+msgstr "劇本"
 
 #: gui/summary/summary.js:510
 #, python-format
@@ -579,7 +581,7 @@ msgstr "時間已過: %(time)s"
 #: gui/summary/summary.js:531
 #, python-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:16 (caption)
 msgid "Civilizations"
@@ -611,7 +613,7 @@ msgstr "語言："
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "所在區域："
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
@@ -621,7 +623,7 @@ msgstr "取消"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "進階"
 
 #: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
 #: (caption)
@@ -630,42 +632,42 @@ msgstr "接受"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "國家："
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr ""
+msgstr "指令稿："
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "與語言代碼(在 ISO 15924中列出)一致的可選四字母指令稿代碼"
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
-msgstr ""
+msgstr "變體(未使用)："
 
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "尚未實現。"
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "關鍵字(未使用)："
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr ""
+msgstr "產生的區域設定："
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "使用的字典檔："
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr ""
+msgstr "自動偵測"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
@@ -673,7 +675,7 @@ msgstr "遊戲選項"
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
-msgstr ""
+msgstr "一般"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
@@ -699,7 +701,7 @@ msgstr "幫忙改善 0 A.D.！"
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr "您可以自動向我們發送能幫我們修復 bug 並改善效能和相容性的匿名回饋。"
+msgstr "您可以自動向我們發送能幫我們修復臭蟲並改善效能和相容性的匿名回饋。"
 
 #: gui/pregame/mainmenu.xml:132
 msgid "Thank you for helping improve 0 A.D.!"
@@ -715,7 +717,7 @@ msgstr "狀態：$status。"
 
 #: gui/pregame/mainmenu.xml:504
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:506
 msgid ""
@@ -729,11 +731,11 @@ msgstr "參與協助：play0ad.com"
 
 #: gui/pregame/mainmenu.xml:110 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "啟用回饋"
 
 #: gui/pregame/mainmenu.xml:141 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "停用回饋"
 
 #: gui/pregame/mainmenu.xml:184 (caption)
 msgid "Matches"
@@ -750,7 +752,7 @@ msgstr "戰役"
 #: gui/pregame/mainmenu.xml:199 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr "透過歷史戰役重溫歷史事件。[尚未提供]"
+msgstr "透過歷史戰役重溫歷史事件。[尚未實現]"
 
 #: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
@@ -808,11 +810,11 @@ msgstr "在新視窗中開啟地圖編輯器。您可以利用命令列執行遊
 
 #: gui/pregame/mainmenu.xml:345 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "歡迎畫面"
 
 #: gui/pregame/mainmenu.xml:346 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "顯示歡迎畫面。如果您不小心隱藏它的時候很有用。"
 
 #: gui/pregame/mainmenu.xml:402 (caption)
 msgid "Learn To Play"
@@ -820,7 +822,7 @@ msgstr "遊戲指南"
 
 #: gui/pregame/mainmenu.xml:403 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "開啟0 A.D. 遊戲手冊。"
 
 #: gui/pregame/mainmenu.xml:419 (caption)
 msgid "Single Player"
@@ -836,7 +838,7 @@ msgstr "多人遊戲"
 
 #: gui/pregame/mainmenu.xml:435 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
-msgstr "與一個或多人玩家進行多人遊戲。"
+msgstr "與一個或多個人類玩家進行多人遊戲。"
 
 #: gui/pregame/mainmenu.xml:449 (caption)
 msgid "Tools & Options"
@@ -856,19 +858,19 @@ msgstr "瞭解 0 A.D. 中文明的特色。"
 
 #: gui/pregame/mainmenu.xml:481 (caption)
 msgid "Exit"
-msgstr "退出"
+msgstr "結束"
 
 #: gui/pregame/mainmenu.xml:482 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "結束遊戲。"
 
 #: gui/pregame/mainmenu.xml:518 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "幫忙翻譯！"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "點擊以在您的瀏覽器中開啟0 A.D. 的翻譯頁面。"
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -890,11 +892,11 @@ msgstr "點擊以在瀏覽器中打開 0 A.D. IRC 聊天。（#0ad on webchat.qu
 
 #: gui/pregame/mainmenu.xml:554 (caption)
 msgid "Report a Bug"
-msgstr "報告 Bug"
+msgstr "回報臭蟲"
 
 #: gui/pregame/mainmenu.xml:555 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "點擊以連結至0 A.D. Trac 回報臭蟲、當機、或是錯誤。"
 
 #: gui/pregame/mainmenu.xml:583 (caption)
 msgid "WILDFIRE GAMES"
@@ -1001,7 +1003,7 @@ msgstr "前哨"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr "陸軍"
+msgstr "軍隊"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
@@ -1009,7 +1011,7 @@ msgstr "堡壘"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr ""
+msgstr "城鎮中心"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
@@ -1033,7 +1035,7 @@ msgstr "騎兵"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr "精英"
+msgstr "冠軍"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
@@ -1085,27 +1087,27 @@ msgstr "金屬交換量"
 
 #: gui/summary/summary.xml:739 (caption)
 msgid "Barter efficiency"
-msgstr ""
+msgstr "貿易效率"
 
 #: gui/summary/summary.xml:742 (caption)
 msgid "Trade income"
-msgstr "交易收入"
+msgstr "貿易收入"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "食草動物\\n比例"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
-msgstr ""
+msgstr "女性化"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "殺死/死亡\\n比例"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "地圖\\n已探索"
 
 #: gui/summary/summary.xml:989 (caption)
 msgid "Continue"
@@ -1113,29 +1115,29 @@ msgstr "繼續"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]感謝您安裝0 A.D.！"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"]  此為本遊戲的早期實驗版本。某些特性可能遺失並存在一些臭蟲。"
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr ""
+msgstr "[icon=iconLag]  大量單位移動時，遊戲可能會有延遲。"
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr ""
+msgstr "[icon=\"iconShip\"]  電腦對手不會使用船隻。"
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
-msgstr ""
+msgstr "[icon=\"iconMap\"]  大型地圖可能會造成一些問題。"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1150,25 +1152,25 @@ msgstr "- 可以建設在地圖上的任何地方，也可以在敵方領土上�
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr "- 當在中性或敵方領土上，會慢慢失去生命值。"
+msgstr "- 當在中立或敵方領土上，會慢慢失去生命值。"
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr "- 建設攻城武器和培訓民兵。"
+msgstr "- 建設攻城武器和訓練民兵。"
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr "- 緩慢的醫治多達 40個駐軍單位。"
+msgstr "- 緩慢的醫治多達40個駐軍單位。"
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "軍營"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- 訓練所有的民兵。部份文明也可以解鎖訓練冠軍的能力。"
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -1178,15 +1180,15 @@ msgstr "- 研究每個文明獨特的軍事科技。"
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- 在殖民早期建造的可訓練民兵的建築物。"
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- 在前進基地中建造以隨時補充新的士兵到軍隊中。"
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr "鐵匠"
+msgstr "兵工廠"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -1198,59 +1200,59 @@ msgstr "- 研究單位武器與盔甲的升級。"
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr "- 民兵駐防，加速研究。"
+msgstr "- 民兵駐防可以加速研究。"
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "迦太基神蹟"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- 迦太基的冠軍矛兵及冠軍矛騎兵。"
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr ""
+msgstr "- 同時耗費食物及金屬並可從修道院中訓練，而不像其他大多數的冠軍是在堡壘中訓練。"
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- 使用矛兵做為對抗騎兵的重要軍隊。使用騎兵來抵抗攻城武器及斥候。"
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr "拋石機"
+msgstr "投石機"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- 遠距離的攻城武器，並對建築物效果極佳。"
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr ""
+msgstr "- 可升級火燄彈，可以增加對建築物及單位的額外效率。"
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr "- 昂貴和緩慢的。"
+msgstr "- 昂貴且緩慢。"
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "- 移動時組裝成推車形式，攻擊時則拆裝成有強大火力的武器！"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "塞爾特戰船"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr ""
+msgstr "- 一個中型的「三列槳」式戰船。"
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
@@ -1258,7 +1260,7 @@ msgstr "- 船類裡獨一無二的船。"
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- 不像其他的三列槳戰船，它無法進行撞擊，但有著優越的生命值及護甲。"
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
@@ -1266,11 +1268,11 @@ msgstr "- 可水域上運送多達40個單位。"
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "城鎮中心"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "-你的新殖民地的“基礎”"
+msgstr "-你的新殖民地的「基礎」"
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
@@ -1278,11 +1280,11 @@ msgstr "- 佔領大片的領土。"
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr "-可以建設在友善或中性領土上。"
+msgstr "-可以建設在友善或中立領土上。"
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- 訓練女性市民及一些基礎的民兵。"
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -1290,17 +1292,17 @@ msgstr "大使館"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr ""
+msgstr "- 只在迦太基文明提供的特殊「軍營」。"
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- 從各個民族的大使館中訓練傭兵。"
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr ""
+msgstr "- 雇傭來的「民兵」是花費金屬而非食物。"
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -1308,41 +1310,41 @@ msgstr "捕魚"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- 在海洋中捕魚可以獲得大量的食物。"
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- 每次出海，漁船都會帶回大量的食物。"
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- 在船上駐守一個單位，可以讓漁船的捕魚速度加倍。"
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- 小心! 魚不是一種無限的資源!"
+msgstr "- 小心！魚不是一種無限的資源！"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "要塞"
+msgstr "堡壘"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr "- 要塞通常是每個文明最強壯的建築物。"
+msgstr "- 堡壘通常是每個文明最堅固的建築物。"
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr "- 培訓冠軍，英雄與攻城武器單位。"
+msgstr "- 訓練冠軍，英雄與攻城武器單位。"
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr "- 提升人口"
+msgstr "- 提升人口。"
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- 在裡面駐守士兵可以增加其在防禦時的開火速率。"
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -1350,35 +1352,35 @@ msgstr "採集資源"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr "- 利用民兵與女性人民來採集資源。"
+msgstr "- 利用民兵與女性市民來採集資源。"
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr ""
+msgstr "- 女性市民較擅長耕種及採集。"
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr ""
+msgstr "- 民兵較擅長採礦。"
 
 #: gui/text/tips/gathering.txt:8
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "- 更高級的民兵(進階、精英)更擅於戰鬥，但不擅於收集資源。"
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "伊菲克拉特斯"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- 改革了雅典的軍隊，使其更快並有更強的機動性。"
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "- 在他的隊伍裡的單位更快且更強壯。"
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
@@ -1386,35 +1388,35 @@ msgstr "- 當斥候存活時移動較快。"
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "前哨站"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- 建造在中立領土可以獲得更大的偵查範圍。"
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr "- 便宜，80木柴。"
+msgstr "- 便宜，80木頭。"
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr "- 較快建設，但是較弱。"
+msgstr "- 建設很快，但是很脆弱。"
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr "- 會在中性領土上慢慢的失去生命值，但是咳以維修。"
+msgstr "- 會在中立領土上慢慢的失去生命值，但是可以維修。"
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "木柵欄"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr "- 所有的文明可以很快的建立個便宜的木墻。"
+msgstr "- 所有的文明都可以很快的建立便宜的木牆。"
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr "- 大部份的文明可以升級到村莊階段"
+msgstr "- 大部份的文明可以在升級到村莊階段後使用它們。"
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
@@ -1424,103 +1426,103 @@ msgstr "- 可以被敵軍攻擊。不像城牆，只能以攻城武器攻擊。"
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "伯里克里斯"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- 西元前5世紀雅典最重要的政治家。"
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "- 在他的視野內建造建築物較快。"
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- 當他活著時，神殿較便宜。"
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "波斯建築"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- 波斯人的特殊科技。"
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr ""
+msgstr "- 所有波斯人的建築物均 +25% 強度。"
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- 但建造時間+20%做為代價。"
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "- 波斯人擁有大量的建築防禦技術。"
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "重型戰船"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- 最重型的標準戰船。下列文明可建造：羅馬、迦太基、托勒密、塞琉古。"
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr ""
+msgstr "- 駐守50個單位來提供密集的火力，包含弩砲及蠍型弩。"
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
-msgstr ""
+msgstr "- 也可以撞擊的方式來擊沉敵船。"
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "草原生物群落"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- 通常平坦，可能會有一些水坑或露出地面的岩石。"
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- 充滿了獵物。"
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- 蘊藏著各種礦產。"
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- 木頭雖然稀少，但麵包樹的產量相當高。"
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "防禦塔"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- 獨立的塔樓，可提供大範圍的防禦。"
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr "- 它們通常是耗費100木材及100石頭。伊比利人的防禦塔需耗費300石頭(因為它們更加強壯)。"
+msgstr "- 它們通常是耗費100木頭及100石頭。伊比利人的防禦塔需耗費300石頭(因為它們更加強壯)。"
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- 每多駐守一個單位就會增強攻擊力。"
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "斯巴達人"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -1528,61 +1530,61 @@ msgstr "- 遊戲裡最強的步兵。"
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- 斯巴達文明的步兵非常優秀。"
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid "- Long train time, but high armor and attack."
-msgstr "- 較長的培訓時間，但較高盔甲與攻擊。"
+msgstr "- 較長的訓練時間，但有較高防禦力與攻擊力。"
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- 使用「方陣」陣形可以獲得額外的防禦力。"
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "拱廊"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
-msgstr ""
+msgstr "- 一個希臘人的特殊起始建築物。"
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr "- 給 +10人口"
+msgstr "- +10人口上限。"
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
-msgstr ""
+msgstr "- 只在部份遊戲模式中啟用。"
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr ""
+msgstr "- 可以在自訂劇情時在劇情編輯器中找到。"
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "倉庫"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- 一種便宜的非食物資源(木頭、石頭、金屬)收集處。"
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "- 研究可以改進您的市民的採集能力的科技。"
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "馬其頓方陣"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- 適合「長槍兵」使用的陣型。"
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- 陣型緩慢且笨重。"
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
@@ -1598,15 +1600,15 @@ msgstr "神廟"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr "- 升級到城市階段需要鄉鎮階段"
+msgstr "- 用來升級到城市階段的鄉鎮階段建築物。"
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr "- 招募大夫醫治在戰場上的部隊。"
+msgstr "- 招募醫療者醫治您戰場上的部隊。"
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr "- 研究醫疗，宗教虔誠，與文化科技。"
+msgstr "- 研究醫療，宗教狂熱，與文化科技。"
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
@@ -1614,56 +1616,56 @@ msgstr "- 它的「靈氣」會醫治附近的單位。"
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr "- 受傷單位駐防，加速醫治。"
+msgstr "- 受傷單位駐防，加速醫療。"
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "地米斯托克利"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- 指揮希臘獲得阿提密斯海戰及薩拉米斯戰役勝利的希臘英雄。"
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- 在他活著的時候，所有船艦都建造的較快。"
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- 有他駐守的船隻會移動的更快。"
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "三列槳戰船"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- 中型戰船。"
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- 只有羅馬、迦太基、希臘及波斯可以建造。"
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- 擅長運輸或戰鬥。"
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr ""
+msgstr "- 駐守一個投石車可以進行長距離的攻城攻擊。"
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr ""
+msgstr "- 能夠進行對船的毀滅性攻擊，但每次使用之間必須等待。"
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "維里亞托"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
@@ -1673,11 +1675,11 @@ msgstr "- 魯斯塔尼亞部落的伊比利英雄。"
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- 至少參加了7次在西元前147年至139年對羅馬的「魯斯塔尼亞戰爭」。"
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- 移動快速且可以在劍與火燄標槍間切換。"
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
@@ -1691,13 +1693,13 @@ msgstr "戰象"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "- 來自非洲及印度的巨大野獸，訓練用來戰爭。"
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- 高食物及金屬花費，但非常強而有力。對建築物及騎兵尤其有效。"
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
@@ -1705,7 +1707,7 @@ msgstr "- 被步兵斥候反制。"
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- 在以下文明可用：孔雀王朝、托勒密、塞琉古及迦太基。"
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
@@ -1713,16 +1715,16 @@ msgstr "鯨魚"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr "- 一個海洋資源。"
+msgstr "- 一種海洋資源。"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr "- 2000 糧食。"
+msgstr "- 2000食物。"
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- 在鯨魚被殺死後可採集。"
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- 在海洋裡漫遊，被攻擊時會逃走。"

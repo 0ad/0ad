@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# abuyop <abuyop@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-07-01 11:31+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +22,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:12 (caption)
 msgid "Information"
-msgstr ""
+msgstr "Maklumat"
 
 #: gui/manual/manual.xml:20 (caption)
 msgid "View Online"
-msgstr ""
+msgstr "Lihat Atas Talian"
 
 #: gui/manual/manual.xml:23 (caption)
 msgid "Close"
@@ -32,11 +34,11 @@ msgstr "Tutup"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Manual permainan 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
@@ -47,7 +49,7 @@ msgstr "Terima kasih kerana memasang 0 A.D! Halaman ini akan menerangkan sedikit
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Tetapan grafik"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +59,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Anda boleh tukar diantara mod berskrin penuh dengan mod bertetingkap dengan menekan Alt + Enter. Dalam mod bertetingkap, anda boleh saizkan semula tetingkap permainan. Jika permainan menjadi terlalu perlahan, anda boleh ubah beberapa tetapan di dalam fail konfigurasi: cari di binaries/data/config/default.cfg pada lokasi permainan dipasang, yang mana ia menjelaskan arahan untuk penyuntingan, dan cuba lumpuhkan pilihan \"fancywater\" dan \"shadows\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Memainkan permainan"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"san-14\"]Kawalan dan cara bermainan dalam serupa dengan permainan RTS tradisional. Tetapi masih terdapat banyak fitur yang belum lengkap dan stat yang tidak-seimbang - anda perlu menunggu keluaran beta supaya ia dapat berfungsi dengan baik."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -101,11 +103,11 @@ msgstr "• Roda tetikus, atau kekunci \"+\" dan \"-\", untuk mengezum."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Mod"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Menu utama memberikan capaian ke dua mod permainan:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +116,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Pemain-tunggal[font=\"sans-14\"] — main permainan kotak pasir atau melawan satu atau lebih lawan AI. AI masih didalam pembangunan dan tidak selalu dikemaskini pada fitur baharu, tetapi anda boleh uji main permainan melawan pemain sebenar jika anda tidak dapat bermain dan pemain manusia."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Pemain Berbilang[font=\"sans-14\"] — main melawan manusia menerusi internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -132,13 +134,13 @@ msgstr "Untuk sediakan permainan pemain-berbilang, salah seorang pemain mestilah
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Persediaan permainan"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Di dalam permainan pemain berbilang, hanya hos boleh mengubah pilihan persediaan permainan."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -149,7 +151,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Mula-mula, pilih sama ada anda mahu main menggunakan peta rawak (dicipta secara automatik dari skrip peta rawak) atau senario (dicipta oleh pereka peta). Senario boleh ditapis untuk paparkan beberapa peta. Peta lalai ditunjuk secara serta-merta, tetapi peta suai biasanya dengan memilih \"Semua peta\" untuk lihat senarai peta yang tersedia. Kemudian pilih peta untuk main. \"Peta Demo\" direka untuk menguji fitur permainan tertentu sahaja dan amnya tidak begitu berguna untuk dimain."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -167,15 +169,15 @@ msgstr "Bila anda sudah sedia, klik butang \"Mula permainan\"."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Kekunci Panas:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Sentiasa"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Tutup permainan, tanpa pengesahan"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -215,31 +217,31 @@ msgstr "Shift + F2: Ambil cekupan skrin besar (6400px*4800px, dalam format .bmp,
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dalam Permainan"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dwi-klik Kiri [pada unit]: Pilih semua unit anda yang sama jenis di dalam skrin (walaupun mereka berbeza pangkat)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Klik Kiri Tiga Kali [pada unit]: Pilih semua unit anda yang sama jenielect all of your units of the same kind and ts dan sama pangkat di dalam skrin"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + Dwi-klik Kiri [pada unit]: Pilih semua unit anda yang sama jenis di dalam peta (walaupun mereka berbeza pangkat)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Klik Kiri Tiga Kali [pada unit]: Pilih semua unit anda yang sama jenis dan sama pangkat di dalam peta"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -259,7 +261,7 @@ msgstr "F12: Tunjuk/sembunyi kiraan berlalu masa"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Tutup semua dialogs (sembang, menu) atau kosongkan unit yang dipilih"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -271,7 +273,7 @@ msgstr "T: Hantar sembang pasukan"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: Jeda/sambung semula permainan"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -303,7 +305,7 @@ msgstr "Ctrl + 1 (dan seterusnya sehinggalah 0): Pilih unit/bangunan dalam kumpu
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1 (to 0): Tambah kumpulan kawalan 1 (sehingga 0) ke unit/bangunan terpilih"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -325,11 +327,11 @@ msgstr "Z, X, C, V, B, N, M: Dengan bangunan latihan dipilih. Tambah unit ke-1, 
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ubahsuai tindakan tetikus"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Klik Kanan pada bangunan: Garison"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -366,23 +368,23 @@ msgstr "Klik Kanan dengan satu atau lebih bangunan dipilih: tetapkan laluan gera
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgstr "Ctrl + Klik Kanan dengan unit terpilih:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "- Jika kursor berada di atas struktur: Garison"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "    - Jika tidak: Gerakan menyerang"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Tindihan Atas"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Sembunyi/tunjuk GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -393,12 +395,12 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Togol mod bingkai wayar (tekan sekali untuk tindan bingkai wayar diatas model berstruktur, dua kali untuk bingkai wayar berwarna mengikut tekstur, tiga kali untuk kembali ke mod bertekstur biasa)"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S: Togol bebayang unit (mungkin dapat berikan sedikit galakan prestasi)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
@@ -406,11 +408,11 @@ msgstr "Alt + Z: Togol langit"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Manipulasi kamera"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W atau [up]: Lata skrin ke atas"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -426,82 +428,82 @@ msgstr "D atau [right]: Lata skrin ke kanan"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W atau [up]: Putar kamera melihat ke atas"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S atau [down]: Putar kamera melihat ke bawah"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A atau [left]: Putar kamera melawan jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D atau [right]: Putar kamera melawan jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: Putar kamera mengikut jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E: Putar kamera melawan jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Putar Roda Tetikus Ke Atas: Putar kamera mengikut jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + Putar Roda Tetikus Ke Bawah: Putar kamera melawan jam disekitar rupa bumi"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Ikut unit terpilih (gerak kamera untuk hentikan kamera mengikuti unit tersebut)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: Tetap semula zum/orientasi kamera"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: Zum masuk (ditahan untuk zum berterusan)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: Zum keluar (ditahan untuk zum berterusan)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Togol melalui mod bingkai wayar"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Butang Tetikus Tengah atay / (Miring Hadapan): Ditahan dan gerak tetikus untuk dilata"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Semasa Meletak Bangunan"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: Putar bangunan 15 darjah melawan-jam"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: Putar bangunan 15 darjah mengikut jam"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Seret Kiri: Putar bangunan menggunakan tetikus (tapak bangunan akan diletak semula bila tetikus dilepas."
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -510,42 +512,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Oleh kerana ia merupakan permainan bersumber terbuka dan percuma, kami tidak mempunyai sumber untuk menguji terhadap pelbagai jenis sistem, tetapi kami mahu memberikan pengalaman permainan yang berkualiti terbaik kepada pemain sebaik yang mungkin. Bila anda benarkan maklumbalas automatik, kami akan menerima data yang dapat membantu kami memahami perkakasan yang sepatutnya disokong, dan untuk mengenalpasti masalah prestasi yang sepatutnya dibaiki."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "Data berikut akan dihantar ke dalam pelayan kami:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• ID pengguna rawak (disimpan dalam %APPDATA%\\0ad\\config\\user.cfg di dalam Windows, ~/.config/0ad/config/user.cfg on Unix), untuk membolehkan kami mengesan laporan dari pengguna yang serupa."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Nombor versi permainan dan tetapan binaan asas (mod pengoptimuman, senibina CPU, setem masa, versi pengompil)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "• Perincian perkakasan: versi OS, versi pemacu grafik, keupayaan OpenGL, saiz skrin, perincian CPU, saiz RAM."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Perincian prestasi: satu petikan data pemasaan beberapa saat selepas anda mulakan perlawanan atau mengubah tetapan grafik."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Data hanya melibatkan beberapa kilobait setiap kali anda menjalankan permainan, oleh itu penggunaan jalur lebar adalah minimum."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -554,4 +556,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Kami akan simpan data yang diserah dalam pelayan kami, dan mungkin menyiarkan statistik atau perincian bukan-dikenalpasti pengguna untuk membantu pembangun permainan lain dengan soalan yang serupa. Kami akan menyimpan alamat IP yang menyerah data tersebut, tetapi tidak akan menyiarkannya. Data yang disiar boleh dilihat di http://feedback.wildfiregames.com/"

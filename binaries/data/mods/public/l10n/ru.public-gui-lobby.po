@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Alexander Olkhovskiy, 2014
+# dr&mx <dronmax@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-07-03 18:30+0000\n"
+"Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +73,7 @@ msgstr "Неизвестно"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr "Выбрана случайная карта."
+msgstr "Случайная карта."
 
 #: gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
@@ -79,7 +82,7 @@ msgstr "К сожалению, описание недоступно."
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr "Этот адрес игры '%(ip)s' не является действительным."
+msgstr "Адрес игры '%(ip)s' не является действительным."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -144,7 +147,7 @@ msgstr "== %(message)s"
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:796
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -162,7 +165,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Пожалуйста не спамте. Вы будете заблокированы через 30 секунд."
+msgstr "Пожалуйста, не спамьте. Вы будете заблокированы через 30 секунд."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -178,7 +181,7 @@ msgstr "Пожалуйста, введите ваше имя профиля"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr "Имя пользователя не может содержать [,], юникод, пробел или запятые"
+msgstr "Имя пользователя не может содержать [, ], юникод, пробел или запятые"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -194,15 +197,15 @@ msgstr "Пароли не совпадают"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr "Пожалуста прочтите Условия Сервиса"
+msgstr "Пожалуста, прочтите Условия сервиса"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr "Прочтите Правила Использования"
+msgstr "Прочтите Правила использования"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "Пожалуйста согласитесь с Условиями Сервиса и Условия использования"
+msgstr "Пожалуйста, согласитесь с Условиями сервиса и Условия использования"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -214,15 +217,15 @@ msgstr "Присоединиться"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr "Условия Сервиса"
+msgstr "Условия сервиса"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr "Условия Использования"
+msgstr "Условия использования"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
-msgstr "Многопользовательское Лобби"
+msgstr "Многопользовательская комната"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
@@ -289,7 +292,7 @@ msgstr "Показать полные игры"
 
 #: gui/lobby/lobby.xml:204 (heading)
 msgid "Rank"
-msgstr "Звание"
+msgstr "Ранг"
 
 #: gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
@@ -309,15 +312,15 @@ msgstr "Войти в существующий аккаунт"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
-msgstr "Присоединиться к лобби"
+msgstr "Присоединиться к комнате"
 
 #: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
-msgstr "Логин"
+msgstr "Логин:"
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
-msgstr "Пароль"
+msgstr "Пароль:"
 
 #: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
@@ -325,11 +328,11 @@ msgstr "Регистрация"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr "Повторите пароль"
+msgstr "Повторите пароль:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "Я прочитал и согласен со Статьями Службы и Статьями Использования:"
+msgstr "Я прочитал и согласен с условиями сервиса и условиями использования:"
 
 #: gui/lobby/prelobby.xml:97 (caption)
 msgid "Cancel"
@@ -351,21 +354,21 @@ msgstr "* \"Сервис\" это Многопользовательское л�
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr "* \"Вы\" это пользователь сервиса."
+msgstr "* \"Вы\" - это пользователь сервиса."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr "* \"Мы\" это коллектив Wildfire Games (WFG)."
+msgstr "* \"Мы\" - это коллектив Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* \"Рейтинг\" относится к процессу анализа различных статистик пользователя для назначения единого комплексного показателя. "
+msgstr "* \"Рейтинг\" - анализ различных статистик пользователя для назначения единого комплексного показателя. "
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr "* \"Модерировать\" относится к процессу принуждения к выполнению требований."
+msgstr "* \"Модерирование\" - процесс принуждения выполнения требований."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
@@ -379,7 +382,7 @@ msgstr "1. Соблюдать выполнение всех требований
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr "2. Разрешить пользовательсткую определимую статистику для сбора данных для рейтинга, профиля пользователя и статистики сообщества."
+msgstr "2. Разрешаете идентифицировать свою пользовательсткую статистику для сбора данных для составления рейтинга, профиля пользователя и статистики сообщества."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
@@ -413,17 +416,17 @@ msgstr "5. Удалять что-либо и всю сервисную инфо�
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr "6. Собирать какую-либо или всю определяемую статистику в любое время без согласия:"
+msgstr "6. Собирать какую-либо или всю определяемую статистику в любое время без согласия для:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. Персональный анализ командой Wildfire Games (WFG) или филиалами."
+msgstr "а. Конфиденциального анализа командой Wildfire Games (WFG) или аффилированными лицами."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "б. Анонимизированной публичной публикации командой Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -441,23 +444,23 @@ msgstr "Условия Использования Многопользовате
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr "* \"Чужой логин\" относится к действию в котором Вы пытаетесь использовать чужой аккаунт для собственных целях."
+msgstr "* \"Чужой логин\" - относится к действию при котором Вы пытаетесь использовать чужой аккаунт в собственных целях."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr "* \"Спам\" относится к несущественным или неуместным сообщениям посылаемым большому числу получателей."
+msgstr "* \"Спам\" - относится к несущественным или неуместным сообщениям посылаемым большому числу получателей."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr "* \"Рейтинг\" относится  личному комплексной оценке."
+msgstr "* \"Рейтинг\" -  личностная комплексная оценка."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr "* \"Ранжированные игры\" относятся к играм в которых прослеживается рейтинг изменения статистики. "
+msgstr "* \"Ранжированные игры\" - игры в которых прослеживается рейтинг для изменения статистики. "
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -477,7 +480,7 @@ msgstr "2. Не публиковать оскорбляющие сообщени
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Не использовать сервис для умышленной дискредитации."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""

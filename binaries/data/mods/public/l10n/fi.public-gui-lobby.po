@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# linux_eki <ekiuusi@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-07-22 03:40+0000\n"
+"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -41,7 +43,7 @@ msgstr ""
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Satunnainen"
 
 #: gui/lobby/lobby.js:37
 msgid "Scenario"
@@ -49,28 +51,28 @@ msgstr "Skenaario"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
-msgstr ""
+msgstr "Kiireinen"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
-msgstr ""
+msgstr "Poissa"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
-msgstr ""
+msgstr "Paikalla"
 
 #: gui/lobby/lobby.js:318
 msgid "Offline"
-msgstr ""
+msgstr "Pois linjoilta"
 
 #: gui/lobby/lobby.js:323
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "Tuntematon"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Satunnaisesti valittu kartta."
 
 #: gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
@@ -79,7 +81,7 @@ msgstr "Pahoittelut, kuvausta ei saatavilla."
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Tämän pelin osoite '%(ip)s' ei kelpaa."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -99,12 +101,12 @@ msgstr "Nimi ei kelpaa: %(nick)s"
 #: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s tunnetaan nyt nimellä %(newnick)s."
 
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Olemme pahoillamme,  '%(cmd)s' komento ei ole tuettu."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
@@ -162,7 +164,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Älä spämmää. Sinut on estetty 30 sekunniksi."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -174,7 +176,7 @@ msgstr "Rekisteröidään..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Ole hyvä, kirjoita käyttäjänimesi"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -182,11 +184,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Ole hyvä, kirjoita salasana"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Ole hyvä ja kirjoita salasanasi uudelleen"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"

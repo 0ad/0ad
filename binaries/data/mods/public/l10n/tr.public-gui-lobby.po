@@ -4,12 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Doğu Kan, 2014
+# yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-08-05 15:21+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -178,7 +181,7 @@ msgstr "Lütfen kullanıcı adınızı girin"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Kullanıcı adları içeremez [, ], ingilizce olmayan karakter, boşluk, veya virgül"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -337,7 +340,7 @@ msgstr "İptal"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Lobi Hizmet Şartları"
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -347,7 +350,7 @@ msgstr "Tanımlar:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr " * Bu \"servis\" 0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Lobi Wildfire Games (WFG) tarafından sağlanmaktadır."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -355,21 +358,21 @@ msgstr " * \"Sen\" servis kullanıcısı olarak."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr " * \"Biz\" Wildfire Games (WFG)'in tüm kollektif takım üyeleri."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr " * \"Oylama\" Tek bir kapsamlı bir puan üretme amacıyla çeşitli kullanım istatistik analiz süreci belirtmektedir."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr " * \"Moderasyon\" kullanım ilkeleri uygulama sürecini ifade eder."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Bu hizmeti kullanarak şunları kabul ediyorsunuz:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
@@ -379,51 +382,51 @@ msgstr " 1. Takip eden tüm kullanım politikaları."
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr " 2. Kullanıcı tanımlanabilir istatistik değerlendirmesi, kullanıcı profilleri ve toplum istatistik amaçlar için toplanan verilere izin verilir."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Ayrıca haklarımız saklı olmak üzere:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr " 1. Servis moderasyonu."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr " 2. Servis moderasyonu başkalarına tayin edilebilir."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr " 3. Durdurma veya veya önceden haber vermeksizin herhangi bir zamanda hizmet kesilebilir."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Herhangi bir zaman ile veya duyuru yapılmaksızın servis değiştirilebilir."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Herhangi bir zaman ile veya duyuru yapılmaksızın servisteki verilerin bir kısmı veya tamamı silinebilir."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Kullanıcı rızası olmadan bir kısım veya tamamen kullanıcı istatistikleri toplanabilir:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Wildfire Games (WFG) takım üyeleri ve onun ortakları tarafından özel analizler."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Wildfire Games (WFG) takım üyeleri tarafından anonim kamu sürümleri."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -431,33 +434,33 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr " 7. Bu belge herhangi bir yolla; herhangibir zamanda değiştirildiğinde; hizmetin kullanıcı değişikliği hakkında yeterli bilgi vermek koşuluyla (Yeterli bildirim tanımı Wildfire Games (WFG) ekip üyelerinin bir panel tarafından anında tespit edilecek)."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 A.D. İmparatorlukların Yükselişi Çoklu Oyunculu Lobi Kullanım Şartları"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr " * \"Taklit etme\" Kendi amaçları için başkasının kimliğininden yararlanma girişimi bir eylem anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr " * \"Spam\" alıcılara çok sayıda gönderilen alakasız veya uygunsuz mesaj anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr " * \"Oylama\" kullanıcı başına kapsamlı puan anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr " * \"Sıralanmış oyunlar\" oylamada istatislikleri değişen oyunlar anlamına gelir."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -467,26 +470,26 @@ msgstr "Kabul ediyorsun:"
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr " 1. Wildfire Games (WFG) takım üyesi yetkilendirmediği sürece sadece serviste benzersiz kullanıcı başına bir hesap oluşturun."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Saygısız ifadeler, kaba mizah, pornografik içerik veya hizmet ayrımcı yorumlar göndermeyin."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Kasıtlı olarak hizmeti kullanarak başkalarının değerini düşürmeye çalışmayın."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Belirli mal, hizmet veya ürün tanıtmak için servisi kullanmayın."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Servisi diğer kullanıcıları taklit etmek için kullanmayın."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
@@ -498,13 +501,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Servisi kullanarak yapay olarak herhangibir kullanıcı hakkında ona etki edecek herhangi bir puan istatisliği tutmayın. (Örnek olarak, ancak hepsini olmasada: sıralı oyunları illegal değiştirmek, serviste ters mühendislik kullanmak, ve diğer servis kullanıcılarından yararlanmak.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Herhangi bir zamanda bir moderatör sizin davranışlarınızın kurallara uymadığını belirlerse servisin hesabınızı kaldıracağını kabul edersiniz."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -512,4 +515,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Bu belge herhangi bir yolla; herhangibir zamanda değiştirildiğinde; hizmetin kullanıcı değişikliği hakkında yeterli bilgi vermek koşuluyla (Yeterli bildirim tanımı Wildfire Games (WFG) ekip üyelerinin bir panel tarafından anında tespit edilecek)."

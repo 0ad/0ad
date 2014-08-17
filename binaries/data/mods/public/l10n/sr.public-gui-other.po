@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# MIlosSD <pirisd@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-27 13:31+0000\n"
+"Last-Translator: MIlosSD <pirisd@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,7 +23,7 @@ msgstr ""
 #: globalscripts/l10n.js:112
 msgctxt "enumeration"
 msgid ", "
-msgstr ""
+msgstr ","
 
 #: gui/civinfo/civinfo.js:108
 #, python-format
@@ -44,51 +46,51 @@ msgstr[2] ""
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
-msgstr ""
+msgstr "Специјалне технологије"
 
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Специјална грађевина"
+msgstr[1] "Специјалне грађевине"
+msgstr[2] "Специјалне грађевине"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr ""
+msgstr "Хероји"
 
 #: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Историја  %(civilization)s"
 
 #: gui/common/functions_global_object.js:75
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Отварам %(url)s\nу вашем веб прегледачу. Молим сачекајте..."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr ""
+msgstr "Отварање странице"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
-msgstr ""
+msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Учитавање обустављено"
 
 #: gui/common/functions_utility_list.js:14
 #: gui/common/functions_utility_list.js:44
@@ -100,74 +102,74 @@ msgstr ""
 #: gui/common/functions_utility_list.js:141
 #, python-format
 msgid "%(functionName)s: %(object)s not found."
-msgstr ""
+msgstr "%(functionName)s: %(object)s нису пронађени."
 
 #: gui/common/functions_utility_list.js:161
 #, python-format
 msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr ""
+msgstr "Затражени низ '%(string)s' није пронађен у %(object)s листи."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "Непознати разлог"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "Неочекивано искључивање"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Нетачна верзија мрежног протокола"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "Игра је већ покренута"
 
 #: gui/common/network.js:10
 #, python-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[Нетачна вредност %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Изгубљена је веза са сервером"
 
 #: gui/common/network.js:19
 #, python-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Разлог: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr ""
+msgstr "Веза обустављена"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Ништа"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -188,23 +190,23 @@ msgstr "ОК"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Retry"
-msgstr ""
+msgstr "Покушај поново"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Ignore"
-msgstr ""
+msgstr "Игнориши"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Abort"
-msgstr ""
+msgstr "Обустави"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Мод играња у прозору"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Покрени 0 A.D у прозору"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -216,17 +218,17 @@ msgstr ""
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Онемогући поздравни екран"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Ако онемогућите овај екран потпуно, можете пропостити важна обавештења.\nУвек га можете покренути користећи главни мени."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Детаљни савети"
 
 #: gui/options/options.js:12
 msgid ""
@@ -575,7 +577,7 @@ msgstr ""
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "Сценарио"
 
 #: gui/summary/summary.js:510
 #, python-format
@@ -597,7 +599,7 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:118 (caption)
 msgid "Close"
-msgstr ""
+msgstr "Затвори"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:316 (caption)
@@ -623,7 +625,7 @@ msgstr ""
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
 #: (caption) gui/savedgames/save.xml:37 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "Обустави"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
@@ -1023,19 +1025,19 @@ msgstr ""
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "статистика јединица (тренирани / изгубљени / убијени)"
 
 #: gui/summary/summary.xml:411 (caption)
 msgid "Infantry"
-msgstr ""
+msgstr "пешадија"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
-msgstr ""
+msgstr "радник"
 
 #: gui/summary/summary.xml:417 (caption)
 msgid "Cavalry"
-msgstr ""
+msgstr "коњица"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
@@ -1043,59 +1045,59 @@ msgstr ""
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
-msgstr ""
+msgstr "морнарица"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
-msgstr ""
+msgstr "статистика ресурса (прикупљени/искоришћени)"
 
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "храна"
 
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "дрво"
 
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "камен"
 
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "метал"
 
 #: gui/summary/summary.xml:584 (caption)
 msgid "Treasures collected"
-msgstr ""
+msgstr "сакупљена блага"
 
 #: gui/summary/summary.xml:587 (caption)
 msgid "Tributes (Sent / Received)"
-msgstr ""
+msgstr "трибути (послати/примљени)"
 
 #: gui/summary/summary.xml:727 (caption)
 msgid "Food exchanged"
-msgstr ""
+msgstr "размењена храна"
 
 #: gui/summary/summary.xml:730 (caption)
 msgid "Wood exchanged"
-msgstr ""
+msgstr "размењено дрво"
 
 #: gui/summary/summary.xml:733 (caption)
 msgid "Stone exchanged"
-msgstr ""
+msgstr "размењени камен"
 
 #: gui/summary/summary.xml:736 (caption)
 msgid "Metal exchanged"
-msgstr ""
+msgstr "размењени метал"
 
 #: gui/summary/summary.xml:739 (caption)
 msgid "Barter efficiency"
-msgstr ""
+msgstr "ефикасност цењкања"
 
 #: gui/summary/summary.xml:742 (caption)
 msgid "Trade income"
-msgstr ""
+msgstr "приход од трговине"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
@@ -1145,7 +1147,7 @@ msgstr ""
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "РИМСКИ ВОЈНИ ЛОГОР"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
@@ -1192,7 +1194,7 @@ msgstr ""
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "КОВАЧ"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
@@ -1208,7 +1210,7 @@ msgstr ""
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "КАРТАГИНСКА СВЕТА ЧЕТА"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
@@ -1228,7 +1230,7 @@ msgstr ""
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "КАТАПУЛТИ"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
@@ -1252,7 +1254,7 @@ msgstr ""
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "КЕЛТСКИ РАТНИ СПЛАВ"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
@@ -1292,7 +1294,7 @@ msgstr ""
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "АМБАСАДЕ"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
@@ -1310,7 +1312,7 @@ msgstr ""
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "ПЕЦАЊЕ"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
@@ -1332,7 +1334,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "ТВРЂАВА"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
@@ -1374,7 +1376,7 @@ msgstr ""
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "ИФИКРАТ"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
@@ -1412,7 +1414,7 @@ msgstr ""
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "ПАЛИСАДНИ ЗИД"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
@@ -1430,7 +1432,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "ПЕРИКЛЕ"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
@@ -1446,7 +1448,7 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "ПЕРСИЈСКА АРХИТЕКТУРА"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
@@ -1526,7 +1528,7 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "СПАРТИЈАТИ"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
@@ -1546,7 +1548,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "СТОА"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
@@ -1566,7 +1568,7 @@ msgstr ""
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "СКЛАДИШТА"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
@@ -1580,7 +1582,7 @@ msgstr ""
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "ФОРМАЦИЈА СИНТАГМА"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
@@ -1600,7 +1602,7 @@ msgstr ""
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "ХРАМОВИ"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
@@ -1715,15 +1717,15 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "КИТОВИ"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- Океански ресурс"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 хране."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

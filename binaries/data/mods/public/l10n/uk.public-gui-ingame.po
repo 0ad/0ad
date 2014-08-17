@@ -7,13 +7,15 @@
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
+# Dimaver <dimaver@ukr.net>, 2014
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:49+0000\n"
+"PO-Revision-Date: 2014-07-11 19:14+0000\n"
+"Last-Translator: Dimaver <dimaver@ukr.net>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +67,7 @@ msgstr "Підтвердження"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ви дійсно бажаєте вийти? Виходячи ви перервете гру в інших гравців."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -73,7 +75,7 @@ msgstr "Ви дійсно бажаєте вийти?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Я повернусь"
 
 #: gui/session/menu.js:169
 msgid "I resign"
@@ -274,7 +276,7 @@ msgstr ""
 
 #: gui/session/messages.js:219
 msgid "The game has ended."
-msgstr ""
+msgstr "Гру завершено."
 
 #: gui/session/messages.js:403
 msgid "Unknown player"
@@ -437,7 +439,7 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Отримано: %(amount)s"
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"

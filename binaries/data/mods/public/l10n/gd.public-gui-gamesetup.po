@@ -4,14 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# GunChleoc, 2014
 # Michael Bauer, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-06-29 08:11+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +114,7 @@ msgid ""
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only. Nonetheless, Petra has now an experimental support for naval"
 " maps."
-msgstr ""
+msgstr "%(warning)s Cha chuir an IF taic ri mapaichean-mara 's dh'fhaoidte gun adhbharaich seo trioblaidean mòra leis an dèanadas. Mholamaid nach cluich thu mapa-mara ach an aghaidh daoine. Co-dhiù no co-dheth, cuiridh Petra an taic ri mapaichean-mara fo dheuchainn a-nis."
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
@@ -342,12 +343,12 @@ msgstr "An geama aig %(playername)s"
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "A' luchdadh “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "A' gintinn “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -355,11 +356,11 @@ msgstr "Rèiteachadh na IF"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "Cluicheadair IF:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Duilgheadas na h-IF:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
 #: (caption)

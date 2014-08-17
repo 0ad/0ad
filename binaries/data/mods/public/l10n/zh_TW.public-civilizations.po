@@ -14,7 +14,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:44+0000\n"
+"PO-Revision-Date: 2014-08-15 03:20+0000\n"
+"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "雅典人"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "每個經過的時代，金屬礦物採集速率 +10%。"
+msgstr "每過一個時代，金屬礦物採集速率+10%。"
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -39,7 +40,7 @@ msgstr "銀鴞"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "阿提卡的拉瑞艾恩的礦場提供了雅典娜充足的銀礦，使得雅典娜的籌幣廠能夠造出昂貴且知名的銀幣 - 雅典娜之鴞。"
+msgstr "阿提卡的勞里厄姆的銀礦為最有名且昂貴的硬幣「雅典貓頭鷹」，提供了充足的原料。"
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -49,7 +50,7 @@ msgstr "阿提卡的拉瑞艾恩的礦場提供了雅典娜充足的銀礦，使
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr "建構Theatron以增加20%所有建築的領土。"
+msgstr "建造劇院以增加 +20% 所有建築的領土範圍。"
 
 #: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
 #: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
@@ -67,7 +68,7 @@ msgstr "希臘人對在傳播希臘文化上非常成功。在希臘化時代，
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "船的建造快25％"
+msgstr "船的建造快 25％。"
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -81,7 +82,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "在薩拉米斯及麥凱爾的海軍大勝利後不久，希臘城邦就在西元前 478 年成立所謂的提洛同盟，其目標是將波斯人驅離愛琴海地區。各個同盟城邦都貢獻了船艦或金錢，而雅典則貢獻了他們的整個海軍。"
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -146,7 +147,7 @@ msgstr "狄摩西尼"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "雅典戰船可以訓練陸戰隊員 (Epibastes Athenaikos)。"
+msgstr "雅典的三列槳戰船可以訓練海軍陸戰隊員 (Epibastes Athenaikos)。"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -156,7 +157,7 @@ msgstr "伊菲克拉特斯的軍事改革"
 msgid ""
 "Stone walls can be built in neutral territory. Construction time for walls "
 "is reduced by 50%."
-msgstr "城牆可以在中性領土上建設。城牆建設時間 -50%。"
+msgstr "石牆可以建造在中立領土上。石牆建設時間 -50%。"
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
@@ -168,19 +169,19 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "雅典長城是在老謀深算的地米斯托克利的主導下修建的，從城市延伸 6 公里到比雷埃夫斯的港口。它確保了城市海上補給線的安全，並且防止敵人圍攻而導致居民陷入饑荒。"
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "玩家獲得命令裝備矛的單位進入方陣以提供更強的攻擊及防禦的能力。"
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr "肉搏"
+msgstr "肉搏戰"
 
 #: civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -188,7 +189,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "經典的方陣陣型是大約在西元前八世紀被發展出來的。由縱向八人、橫向八百人所組成。以許多的盾牌構成了盾牆，並充滿了8呎的長矛。"
+msgstr "經典的方陣陣型是大約在西元前八世紀被發展出來的。由縱向八人、橫向八百人所組成。以許多的盾牌構成了盾牆，並有著滿滿的 8 呎長矛。"
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 #: civs/hele.jsonFactions[0].Heroes[0].History
@@ -199,11 +200,11 @@ msgid ""
 "in 479 B.C. Later, he pursued an active policy against the Persians in the "
 "Aegean, thereby laying the foundations of future Athenian power. Ostracised "
 "by the Athenians, he was forced to flee to the protection of the Persians."
-msgstr "一個極力勸說雅典人把他們在銀礦上所獲得的財富投入建造 200 艘三列槳戰船的將軍。這一行為竟成了左右波斯戰爭的關鍵，他在西元前 479 年指揮雅典的海軍在薩拉米灣的戰役中獲得勝利。爾後，他奉行著在愛琴海積極對抗波斯人的政策，奠定了雅典爾後力量的基石。但他之後被雅典人以貝殼流放法流放，被迫到波斯尋求庇護。"
+msgstr "一位極力勸說雅典人把他們在銀礦上所獲得的財富投入建造 200 艘三列槳戰船的將軍。這一行為竟成了左右波斯戰爭的關鍵，他在西元前 479 年指揮雅典的海軍在薩拉米灣的戰役中獲得勝利。爾後，他奉行著在愛琴海積極對抗波斯人的政策，奠定了雅典爾後力量的基石。但他之後被雅典人以貝殼流放法流放，被迫到波斯尋求庇護。"
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "伯里克里斯是西元前 5 世紀時，雅典最重要的政治家。"
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -235,7 +236,7 @@ msgstr "劇院"
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%."
-msgstr ""
+msgstr "希臘化的文明獎勵。建造劇院以使所有建築物的領土影響範圍增加 25%。"
 
 #: civs/athen.jsonStructures[0].History civs/hele.jsonStructures[0].History
 #: civs/mace.jsonStructures[0].History civs/spart.jsonStructures[0].History
@@ -253,13 +254,13 @@ msgstr "體育館"
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "培訓冠軍單位和研究有關冠軍單位的科技"
+msgstr "訓練精英單位和研究有關精英單位的科技。"
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr "在古希臘的城邦中，體育館是一個重要的設施，在那裡可以進行社交及體能訓練。"
+msgstr "在古希臘的城邦中，體育館是一個重要的設施，在那裡可以進行社交活動及體能訓練。"
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
@@ -267,7 +268,7 @@ msgstr "市政廳"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "培訓英雄單位和研究有關英雄單位的科技"
+msgstr "訓練英雄單位和研究有關英雄單位的科技。"
 
 #: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
 msgid ""
@@ -336,17 +337,17 @@ msgstr "德魯伊"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "塞爾特人的德魯伊保持著有組織的宗教以便即使是在戰時也能推動科技進步。"
+msgstr "塞爾特人的德魯伊保持著有組織的宗教，以便即使是在戰時也能推動科技進步。"
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Karatakos"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Kunobelinos"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
@@ -355,35 +356,35 @@ msgstr "布狄卡"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
-msgstr ""
+msgstr "Prasutagus"
 
 #: civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Venutius"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
-msgstr ""
+msgstr "Cogidubnus"
 
 #: civs/brit.jsonAINames[6]
 msgid "Commius"
-msgstr ""
+msgstr "Commius"
 
 #: civs/brit.jsonAINames[7]
 msgid "Comux"
-msgstr ""
+msgstr "Comux"
 
 #: civs/brit.jsonAINames[8]
 msgid "Adminius"
-msgstr ""
+msgstr "Adminius"
 
 #: civs/brit.jsonAINames[9]
 msgid "Dubnovellaunus"
-msgstr ""
+msgstr "Dubnovellaunus"
 
 #: civs/brit.jsonAINames[10]
 msgid "Vosenius"
-msgstr ""
+msgstr "Vosenius"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
@@ -406,7 +407,7 @@ msgstr "不列顛人開始透過紋身來在身上留下永久性的印記，或
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "增加駐塔單位的獎勵。"
+msgstr "增加駐守在塔裡單位的高度獎勵。"
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -439,7 +440,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr ""
+msgstr "卡拉塔可斯，羅馬寫法為 Caractacus，是由本名 Karatakos 轉變而來，在他的統治領域中許多種錢幣上都印有他的大名。西元 43 年羅馬人入侵後，卡拉塔可斯便帶領不列顛人奮勇抵抗羅馬人，因而留名青史。卡拉塔可斯，是卡圖維勞尼部落邦聯 (Catuvellauni tribal confederation) 國王邱諾貝林 (Cunobelin) 之子。他與羅馬人征戰九年，但幾無成效，後來敗逃到威爾斯的部落中，而該地也被羅馬人徹底擊敗。最後他逃到北不列顛，卻被該地交給羅馬人。羅馬人將卡拉塔可斯帶回羅馬，羅馬皇帝克勞狄一世免除了他的死罪，最終卒於義大利。傳說他隨夫人轉信基督教，但切確情形已不可考。生平較著名的事蹟即雖被羅馬人擒獲仍逃過一死，係因羅馬人傳統政策皆以公開處決這類人物作為慶祝，然而在卡拉塔可斯的請求之下，他被帶到皇帝與元老院的面前為自己陳情，當時他說了什麼已無可考，但據曾任元老院的塔西陀之著作中描述，演講相當出色…"
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 #: civs/celt.jsonFactions[0].Heroes[1].History
@@ -525,15 +526,15 @@ msgstr ""
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
-msgstr ""
+msgstr "不列顛群島的塞爾特人。"
 
 #: civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr "狗屋"
+msgstr "養狗場"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "不列顛人以培養戰犬聞名。"
 
 #: civs/brit.jsonHistory
 msgid ""
@@ -541,7 +542,7 @@ msgid ""
 "longswordsmen and powerful melee soldiers, they staged fearesome revolts "
 "against Rome to protect their customs and interests. Also, they built "
 "thousands of unique structures such as hill forts, crannogs and brochs."
-msgstr ""
+msgstr "不列顛人是居住在不列顛群島的塞爾特人。擁有雙輪馬車、長劍兵及強而有力的近戰士兵，他們一直與羅馬進行戰爭以保護他們的習俗及利益。同時，他們也建造了數以千計的獨特建築物，像是丘陵堡壘及圓形石塔。"
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
@@ -551,7 +552,7 @@ msgstr "迦太基人"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "迦太基的城牆、城門、以及塔樓都有一般城牆的 3 倍生命值，但同時得耗費 2 倍的建造時間。"
 
 #: civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -559,14 +560,14 @@ msgstr "三重城牆"
 
 #: civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr "古迦太基蓋三重城牆"
+msgstr "迦太基人建造三重城牆。"
 
 #: civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "每圈養一隻大象或戰馬就可以減少對應的單位(戰象或是騎兵)5%的資源消耗。"
+msgstr "每圈養一隻大象或戰馬就可以減少對應的單位 (戰象或是騎兵) 5% 的資源消耗。"
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
@@ -577,11 +578,11 @@ msgid ""
 "Not unlike the Iberian Peninsula, North Africa was known as horse country, "
 "capable of producing up to 100,000 new mounts each year. It was also the "
 "home of the North African Forest Elephant."
-msgstr "與伊比利半島不同，北非被稱為馬國，每年能生產多達100,000頭座騎。這裡也是北非森林象的家。"
+msgstr "與伊比利半島不同，北非被稱為馬國，每年能生產多達 100,000 頭座騎。這裡也是北非森林象的家。"
 
 #: civs/cart.jsonTeamBonuses[0].Description
 msgid "+33% trade profit international routes."
-msgstr "國際路線 +33%貿易利潤"
+msgstr "國際路線 +33% 貿易利潤。"
 
 #: civs/cart.jsonTeamBonuses[0].Name
 msgid "Trademasters"
@@ -591,27 +592,27 @@ msgstr "貿易大師"
 msgid ""
 "The Phoenicians and Carthaginians were broadly known as the greatest trading"
 " civilization of the ancient and classical world."
-msgstr ""
+msgstr "腓尼基人與迦太基人被多數人稱為古代及古典世界中最偉大的貿易文明。"
 
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
-msgstr "漢尼拔·巴卡"
+msgstr "漢尼拔．巴卡"
 
 #: civs/cart.jsonAINames[1] civs/cart.jsonFactions[0].Heroes[1].Name
 msgid "Hamilcar Barca"
-msgstr "哈米爾卡·巴卡"
+msgstr "哈米爾卡．巴卡"
 
 #: civs/cart.jsonAINames[2]
 msgid "Hasdrubal Barca"
-msgstr ""
+msgstr "哈斯德魯巴．巴卡"
 
 #: civs/cart.jsonAINames[3]
 msgid "Hasdrubal Gisco"
-msgstr ""
+msgstr "哈斯德魯巴．吉斯戈"
 
 #: civs/cart.jsonAINames[4]
 msgid "Hanno the Elder"
-msgstr ""
+msgstr "長者漢諾"
 
 #: civs/cart.jsonAINames[5] civs/cart.jsonFactions[0].Heroes[2].Name
 msgid "Maharbal"
@@ -619,47 +620,47 @@ msgstr "馬哈巴爾"
 
 #: civs/cart.jsonAINames[6]
 msgid "Mago Barca"
-msgstr ""
+msgstr "馬戈．巴卡"
 
 #: civs/cart.jsonAINames[7]
 msgid "Hasdrubal the Fair"
-msgstr ""
+msgstr "公正者 哈斯德魯巴"
 
 #: civs/cart.jsonAINames[8]
 msgid "Hanno the Great"
-msgstr ""
+msgstr "偉人漢諾"
 
 #: civs/cart.jsonAINames[9]
 msgid "Himilco"
-msgstr ""
+msgstr "希米爾科"
 
 #: civs/cart.jsonAINames[10]
 msgid "Hampsicora"
-msgstr ""
+msgstr "Hampsicora"
 
 #: civs/cart.jsonAINames[11]
 msgid "Hannibal Gisco"
-msgstr ""
+msgstr "漢尼拔．吉斯戈"
 
 #: civs/cart.jsonAINames[12]
 msgid "Dido"
-msgstr ""
+msgstr "狄多"
 
 #: civs/cart.jsonAINames[13]
 msgid "Xanthippus"
-msgstr ""
+msgstr "科桑西普斯"
 
 #: civs/cart.jsonAINames[14]
 msgid "Himilco Phameas"
-msgstr ""
+msgstr "希米爾科．菲米雅斯"
 
 #: civs/cart.jsonAINames[15]
 msgid "Hasdrubal the Boetharch"
-msgstr ""
+msgstr "哈斯德魯巴．博埃薩爾克"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Description
 msgid "All Traders and Ships +25% vision range."
-msgstr "所有商人與船 +25％ 視覺範圍"
+msgstr "所有商人與船 +25％視野。"
 
 #: civs/cart.jsonFactions[0].Technologies[0].Name
 msgid "Exploration"
@@ -674,17 +675,17 @@ msgstr "在古代，沒有人知道迦太基人去過哪裡以及要去哪裡；
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr ""
+msgstr "城鎮中心、神殿以及房舍 -25%建造時間。"
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
-msgstr ""
+msgstr "殖民"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "迦太基人建立了許多貿易中心作為殖民地，並且最終在僅在北非就保持了對超過 300 個城市的控制。"
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -693,7 +694,7 @@ msgid ""
 "B.C. While he ultimately lost the Second Punic War his victories at Trebia, "
 "Lake Trasimene, and Cannae, and the feat of crossing the Alps have secured "
 "his position as among the best tacticians and strategists in history."
-msgstr "迦太基最著名的兒子，漢尼拔‧巴卡，他是哈米爾卡‧巴卡的長子，被證實是比他父親更好的指揮官。生活於西元前247年-182年。儘管最終輸掉了第二次布匿戰爭，但他還是取得了很多著名的勝利，像是特雷比亞河戰役、特拉西美諾湖戰役及坎尼戰役等等，他也完成了跨越阿爾卑斯山的壯舉，使他成為了史上最好的戰術家及戰略家之一。"
+msgstr "迦太基最著名的兒子，漢尼拔‧巴卡 (Hannibal Barca)，是哈米爾卡‧巴卡 (Hamilcar Barca) 的長子；他證明了自己是比父親還優秀的指揮官。生卒年為於西元前 247 年至 182 年。儘管最終輸掉了第二次布匿大戰，但他還是取得了很多著名的勝利，像是特雷比亞河戰役、特拉西美諾湖戰役及坎尼戰役等等，他也完成了跨越阿爾卑斯山的壯舉，使他成為了史上最好的戰術家及戰略家之一。"
 
 #: civs/cart.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -702,7 +703,7 @@ msgid ""
 "B.C. While overshadowed by his sons, Hamilcar was great general in his own "
 "right, earning the nickname Baraq or Barca for the lightning speed of his "
 "advance."
-msgstr "漢尼拔的父親且為實質上的軍事獨裁者。哈米爾卡‧巴卡終其一生都是表現出色的軍人及政治家。生活於西元前275年-228年。雖然被他的兒子們盡掩光芒，哈米爾卡本身仍是大將軍，因為他閃電班的前進速度而贏得了巴拉克或巴薩的稱號。"
+msgstr "漢尼拔的父親且為實質上的軍事獨裁者。哈米爾卡‧巴卡 (Hamilcar Barca) 終其一生都是表現出色的軍人及政治家。生卒年為西元前 275 年至 228 年。雖然被他的兒子們盡掩光芒，哈米爾卡本身仍是個偉大將軍，他因閃電般的進軍速度而贏得了「巴拉克 (Baraq)」或「巴薩 (Barca)」的稱號。"
 
 #: civs/cart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -712,7 +713,7 @@ msgid ""
 "significant contributions to the winning of many other battles during the "
 "2nd Punic War. He is known for having said, after the battle of Cannae, "
 "'Hannibal, you know how to win the victory; just not what to do with it.'"
-msgstr "馬哈巴爾是第二次布匿戰爭中，漢尼拔的「性急且年輕的騎兵指揮官」。他相信在坎尼戰役中削弱羅馬軍團的側翼可以殲滅50,000個羅馬人中的30,000個，同時他也在贏得第二次布匿戰爭中其他的許多戰役做出貢獻。他最著名的一句話是，在坎尼戰役後說的：「漢尼拔，你知道如何贏得勝利，只是沒有去做。」"
+msgstr "馬哈巴爾 (Maharbal) 在第二次布匿大戰中，被漢尼拔．巴卡評為「年少輕狂的騎兵指揮官」。馬哈巴爾以坎尼 (Cannae) 戰役中削弱羅馬軍團的側翼，殲滅五萬羅馬人中的三萬而聞名，同時他也在第二次布匿大戰中其他的許多場勝戰中做出貢獻。在坎尼戰役後，他說了著名的一句話：「漢尼拔，你雖知道如何贏得勝利，卻不知該如何運用勝利。」"
 
 #: civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
@@ -720,13 +721,13 @@ msgstr "海軍造船廠"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
-msgstr ""
+msgstr "建造迦太基海軍的強力戰艦。"
 
 #: civs/cart.jsonStructures[0].History
 msgid ""
 "The structure is based upon the center island of the inner harbour "
 "constructed to house the war fleet of the Carthaginian navy at Carthage."
-msgstr ""
+msgstr "該建築物是根據建造迦太基海軍的在中心島嶼上的內港修改而成的。"
 
 #: civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
@@ -776,11 +777,11 @@ msgid ""
 "among the fiercest contenders on the high seas, and masters of naval trade. "
 "They deployed towered War Elephants on the battlefield to fearsome effect, "
 "and had defensive walls so strong, they were never breached."
-msgstr "迦太基是一個城邦，現在的突尼西亞，曾是地中海西部強大的力量，在西元前三世紀征服了現今的北非及西班牙。迦太基的水手在公海是強大的爭奪者，同時也精通海上貿易。他們在戰場上部署戰象以造成敵方的震懾，並像防禦城牆那麼強，他們從不毀約。"
+msgstr "迦太基是個城邦，約位在今日的突尼西亞，曾是地中海西部強大的力量，在西元前三世紀征服現今的北非及西班牙。迦太基的水手在公海是強大的爭奪者，同時也精通海上貿易。他們在戰場上部署戰象以造成敵方的震懾，並像防禦城牆那麼強，他們從不毀約。"
 
 #: civs/celt.jsonName
 msgid "Celts"
-msgstr ""
+msgstr "塞爾特人"
 
 #: civs/celt.jsonFactions[0].Description
 msgid "British Isles"
@@ -789,28 +790,28 @@ msgstr "不列顛群島"
 #: civs/celt.jsonFactions[1].Technologies[0].Description
 msgid ""
 "A set amount of ore and food from every structure destroyed or captured "
-msgstr ""
+msgstr "每個摧毀或佔領的建築物都會給予一定量的食物及礦產資源"
 
 #: civs/celt.jsonFactions[1].Technologies[0].Name
 #: civs/gaul.jsonFactions[0].Technologies[0].Name
 msgid "Uae Uictos"
-msgstr ""
+msgstr "Uae Uictos"
 
 #: civs/celt.jsonFactions[1].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated  It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
-msgstr ""
+msgstr "被打敗就意味著災難，這是高盧領袖布倫努斯在攻佔並掠奪了羅馬後，在古羅馬的丘比特神殿說的。"
 
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr ""
+msgstr "高盧的德魯伊增加些微的近戰攻擊力。"
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
 msgid "Carnutes"
-msgstr ""
+msgstr "卡爾努特斯"
 
 #: civs/celt.jsonFactions[1].Technologies[1].History
 #: civs/gaul.jsonFactions[0].Technologies[1].History
@@ -818,7 +819,7 @@ msgid ""
 "The Carnutes were druids from Aulercia. They fought when needed, and were "
 "largely responsible for turning back the Belgae incursions into Armorica and"
 " Aulercia."
-msgstr ""
+msgstr "卡努特斯是來自 Aulercia 的德魯伊。他們在需要時會義無反顧的戰鬥，並且是阻止貝爾蓋人對 Armorica 及 Aulercia 入侵的主要戰力。"
 
 #: civs/celt.jsonFactions[1].Heroes[0].History
 #: civs/gaul.jsonFactions[0].Heroes[0].History
@@ -842,7 +843,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[0].Name civs/gaul.jsonAINames[0]
 #: civs/gaul.jsonFactions[0].Heroes[0].Name
 msgid "Britomartos"
-msgstr ""
+msgstr "Britomartos"
 
 #: civs/celt.jsonFactions[1].Heroes[1].History
 #: civs/gaul.jsonFactions[0].Heroes[1].History
@@ -871,7 +872,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[1].Name civs/gaul.jsonAINames[1]
 #: civs/gaul.jsonFactions[0].Heroes[1].Name
 msgid "Brennos"
-msgstr ""
+msgstr "布倫努斯"
 
 #: civs/celt.jsonFactions[1].Heroes[2].History
 #: civs/gaul.jsonFactions[0].Heroes[2].History
@@ -890,12 +891,12 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
 #: civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
-msgstr ""
+msgstr "Uerkingetorix"
 
 #: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
 #: civs/gaul.jsonFactions[0].Name
 msgid "Gauls"
-msgstr ""
+msgstr "高盧人"
 
 #: civs/celt.jsonFactions[1].Description
 msgid "Mainland Europe"
@@ -903,11 +904,11 @@ msgstr "歐洲大陸"
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr ""
+msgstr "Melonas"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
-msgstr ""
+msgstr "塞爾特人研發出了第一臺旋轉式磨粉機。"
 
 #: civs/celt.jsonHistory
 msgid ""
@@ -922,42 +923,42 @@ msgstr ""
 
 #: civs/gaul.jsonAINames[3]
 msgid "Divico"
-msgstr ""
+msgstr "Divico"
 
 #: civs/gaul.jsonAINames[4]
 msgid "Ambiorix"
-msgstr ""
+msgstr "Ambiorix"
 
 #: civs/gaul.jsonAINames[5]
 msgid "Ariovistus"
-msgstr ""
+msgstr "Ariovistus"
 
 #: civs/gaul.jsonAINames[6]
 msgid "Cassivellaunus"
-msgstr ""
+msgstr "Cassivellaunus"
 
 #: civs/gaul.jsonAINames[7]
 msgid "Liscus"
-msgstr ""
+msgstr "Liscus"
 
 #: civs/gaul.jsonAINames[8]
 msgid "Valetiacos"
-msgstr ""
+msgstr "Valetiacos"
 
 #: civs/gaul.jsonFactions[0].Technologies[0].Description
 msgid ""
 "A set amount of metal and food from every structure destroyed or captured."
-msgstr ""
+msgstr "每個摧毀或佔領的建築物都會給予一定量的金屬及食物。"
 
 #: civs/gaul.jsonFactions[0].Technologies[0].History
 msgid ""
 "Means Woe to the Defeated. It was the words that the Gallic Leader, Brennos,"
 " spoke at the Capitol at Rome after they took their plunder."
-msgstr ""
+msgstr "被打敗就意味著災難，這是高盧領袖布倫努斯在攻佔並掠奪了羅馬後，在古羅馬的丘比特神殿說的。"
 
 #: civs/gaul.jsonFactions[0].Description
 msgid "The Celts of mainland Europe."
-msgstr ""
+msgstr "歐洲大陸的塞爾特人。"
 
 #: civs/gaul.jsonHistory
 msgid ""
@@ -966,7 +967,7 @@ msgid ""
 "metalworking, agriculture, trade and even road engineering. With heavy "
 "infantry and cavalry, Gallic warriors valiantly resisted Caesar's campaign "
 "of conquest and Rome's authoritarian rule."
-msgstr ""
+msgstr "高盧人是歐洲大陸的塞爾特部落。由德魯伊中類似於祭司的階級所主導，他們有著先進的金屬加工技術、農業、貿易、甚至是道路工程，是一個相當先進的文明。有著重裝步兵及騎兵，高盧的戰士英勇的抵抗凱撒大帝的征服及羅馬的專制統治。"
 
 #: civs/hele.jsonName
 msgid "Hellenes"
@@ -974,26 +975,26 @@ msgstr "希臘人"
 
 #: civs/hele.jsonCivBonuses[0].Description
 msgid "10-15% cheaper technologies."
-msgstr ""
+msgstr "科技研發費用減少 10-15%。"
 
 #: civs/hele.jsonCivBonuses[0].Name
 msgid "Oikoumene"
-msgstr ""
+msgstr "Oikoumene"
 
 #: civs/hele.jsonCivBonuses[0].History
 msgid ""
 "The Hellenes envisioned themselves as comprising the civilized world "
 "(oikoumene), surrounded by more or less developed barbarians. Many "
 "foreigners also considered them men of higher stature."
-msgstr ""
+msgstr "希臘人認為文明世界 (oikoumene) 由他們自身所構成，四周被發展程度或高或低的蠻族包圍。許多異族人也視他們為身材較高大的人。"
 
 #: civs/hele.jsonTeamBonuses[0].Description
 msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr "所有單位與盟國單位的LOS會增加~ 10%"
+msgstr "所有單位與盟友單位增加 10% 的視野"
 
 #: civs/hele.jsonTeamBonuses[0].Name
 msgid "Oracle at Delphi"
-msgstr ""
+msgstr "德爾斐的神諭"
 
 #: civs/hele.jsonTeamBonuses[0].History
 msgid ""
@@ -1001,11 +1002,11 @@ msgid ""
 "sanctuaries by Hellenes and foreigners alike. The Lydian king Croesus, for "
 "example, consulted the advice of the god before going to war with Cyrus the "
 "Great of Persia."
-msgstr ""
+msgstr "位於德爾菲 (Delphi) 的阿波羅神諭 (Oracle of Apollo)，被希臘人及外國人一致認為是最備受珍視的聖潔之地。舉例來說，利底亞  (Lydian) 國王克羅伊斯 (Croesus)，在與波斯的居魯士二世 (Cyrus the Great) 開戰前曾在這裡探尋神的旨意。"
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
-msgstr ""
+msgstr "玩家獲得方陣。"
 
 #: civs/hele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1014,11 +1015,11 @@ msgid ""
 "and combined pushing power. 'Othismos' refers to the point in a phalanx "
 "battle where both sides try to shove each other out of formation, attempting"
 " to breaking up the enemy lines and routing them."
-msgstr ""
+msgstr "古典的方陣約在西元前八世紀發展成形。它的縱深有八個人，而寬則是兩百人，士兵們重疊他們的盾牌並將所有向前推動的力量結合起來。「Othismos」是「肉搏」，是指方陣戰鬥中雙方衝撞對方的方陣的時間點，此時雙方都在嘗試突破對方的防線，以為繼續前進鋪路。"
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr ""
+msgstr "三列槳戰船建造花費便宜20%，且建造速度快20%。"
 
 #: civs/hele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1028,11 +1029,11 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr ""
+msgstr "斯巴達的國王，於西元前 480 年在溫泉關 (Thermopylae) 戰役中戰死。他成功以 7000 名的兵力，將數量遠遠超過他們的波斯軍隊阻擋在溫泉關的狹窄通道之外，但後來波斯國王薛西斯一世 (Xerxes) 找到一條通往斯巴達軍隊後方的秘密通道。列奧尼達 (Leonidas) 在發現敵軍繞道背後之時，只留下親手挑選的 300 名重裝步兵作後盾，並讓剩下的軍人返鄉；留下的軍隊奮戰直到最後一刻以爭取其他人撤退的時間。"
 
 #: civs/hele.jsonFactions[0].Heroes[1].Name civs/spart.jsonAINames[0]
 msgid "Leonidas"
-msgstr ""
+msgstr "列奧尼達"
 
 #: civs/hele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -1049,15 +1050,15 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
-msgstr ""
+msgstr "城邦"
 
 #: civs/hele.jsonFactions[0].Description
 msgid "Greek City-states"
-msgstr ""
+msgstr "希臘城邦"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Description
 msgid "The player gains the Syntagma formation."
-msgstr ""
+msgstr "玩家獲得了馬其頓方陣。"
 
 #: civs/hele.jsonFactions[1].Technologies[0].Name
 #: civs/mace.jsonFactions[0].Technologies[0].Name
@@ -1072,11 +1073,11 @@ msgid ""
 "SYNTAGMA formation, derived from the oblique battle front developed by the "
 "Theban commander Epaminondas. The phalanx, consisting of 256 men, is "
 "arranged in the following way 16 men in width and 16 in depth."
-msgstr ""
+msgstr "在腓力二世登上王位後，便著手將馬其頓原先的烏合之眾，整頓為一支令人心生畏懼的正規軍。其中一項改革為馬其頓方陣，在由底比斯指揮官伊巴密濃達 (Epaminodas) 所發展出來的底比斯斜線方陣的基礎上進行改進。每個方陣包含了 256 個人，由寬 16 人、縱深 16 人所組成。"
 
 #: civs/hele.jsonFactions[1].Technologies[1].Description
 msgid "Civic Centers have double Health."
-msgstr ""
+msgstr "城鎮中心有雙倍的生命值。"
 
 #: civs/hele.jsonFactions[1].Technologies[1].Name
 #: civs/mace.jsonFactions[0].Technologies[2].Name
@@ -1093,7 +1094,7 @@ msgid ""
 "Beginning with Alexander, the Hellenistic monarchs founded many cities "
 "throughout their empires, where Greek culture and art blended with local "
 "customs to create the motley Hellenistic civilization."
-msgstr ""
+msgstr "自亞歷山大大帝 (Alexandar) 開始，希臘的文化逐漸變為整個帝國的基礎，其中希臘文化及藝術與當地的風俗混合創造了形形色色的希臘化文明。"
 
 #: civs/hele.jsonFactions[1].Heroes[0].History
 #: civs/mace.jsonFactions[0].Heroes[0].History
@@ -1103,11 +1104,11 @@ msgid ""
 " Greek world. Greatly enlarged the size of Macedonia by conquering much of "
 "Thrace and subduing the Greeks. Murdered in Aegae while planning a campaign "
 "against Persia."
-msgstr "馬其頓(西元前359-336年)的國王，他進行了龐大的貨幣及軍事改革，此舉讓他的王國成為了希臘最強的帝國。透過征服色雷斯及希臘，大大的擴展了帝國的領土。但當他正計畫著對波斯開戰時，在馬其頓的首都 Aegae 被謀殺。"
+msgstr "馬其頓國王 (西元前 359 至 336 年)。他進行了龐大的貨幣及軍事改革，此舉讓他的王國成為了希臘最強的帝國。透過征服色雷斯及希臘，大大的擴展了帝國的領土。但當他正計畫著對波斯開戰時，在馬其頓的首都 Aegae 被謀殺。"
 
 #: civs/hele.jsonFactions[1].Heroes[0].Name civs/mace.jsonAINames[1]
 msgid "Philip II"
-msgstr ""
+msgstr "腓力二世"
 
 #: civs/hele.jsonFactions[1].Heroes[1].History
 #: civs/mace.jsonFactions[0].Heroes[1].History
@@ -1120,7 +1121,7 @@ msgid ""
 "India, he defeated king Porus at Hydaspes (326 B.C.), but his weary troops "
 "made him halt. Died in Babylon at the age of 33 while planning a campaign "
 "against Arabia."
-msgstr "亞歷山大大帝(馬其頓的國王，西元前336-323年) - 腓力二世所有兒子中最強而有力的一個。在征服了剩餘的色雷斯人及鎮壓了希臘的動盪後，他踏上了征服世界的征途。在格拉尼庫斯河戰役中打敗了波斯軍隊(西元前334年)、伊蘇斯戰役(西元前333年)以及高加米拉戰役(西元前331年)，他成為了波斯帝國的統治者。他進軍印度，在希達斯皮斯河戰役(西元前326年)中擊敗了波羅斯，但迫於他疲憊的軍隊的反對，終止了他的東征之途。在計畫攻打阿拉伯時，於巴比倫逝世，享年33歲。"
+msgstr "歷任國王中最強盛的英雄 - 腓力二世之子，馬其頓國王 (西元前 336-323 年)。在征服剩餘的色雷斯人，及鎮壓希臘的動盪後，他踏上征服世界的征途。在格拉尼庫斯河戰役中打敗了波斯軍隊 (西元前 334 年)、伊蘇斯戰役 (西元前 333 年) 以及高加米拉戰役 (西元前 331 年) 後，他成為波斯帝國的統治者。他進軍印度，在希達斯皮斯河戰役 (西元前 326 年) 中擊敗了波羅斯 (Porus) 國王，但迫於軍隊疲而停止了東征之途。在計畫攻打阿拉伯時，於巴比倫逝世，享年 33 歲。"
 
 #: civs/hele.jsonFactions[1].Heroes[1].Name civs/mace.jsonAINames[0]
 #: civs/mace.jsonFactions[0].Heroes[1].Name
@@ -1137,11 +1138,11 @@ msgid ""
 "his Asian possessions after the battle of Ipsos, he later won the Macedonian"
 " throne. Fearing lest they should be overpowered by Demetrios, the other "
 "Diadochi united against him and defeated him."
-msgstr "在繼業者中，馬其頓國王(西元前294-288年)，德米特里被認為是最勇敢及亞歷山大大帝的最可能繼承人之一。是安提柯一世(獨眼)的兒子，他在很年輕的時候就贏得了很多戰役，並在西元前306年與他父親同時是國王。在伊普蘇斯戰役後，他失去了他的亞洲領土，但後來贏得了馬其頓的王位。其他繼業者害怕被他俘虜，便聯合起來對抗並擊敗他。"
+msgstr "亞歷山大大帝繼業者之一，後任馬其頓國王 (西元前294-288年)。德米特里 (Demetrios) 被認為是最勇敢及亞歷山大大帝的最可能繼承人之一。是安提柯一世 (獨眼) 的兒子，他在很年輕的時候就贏得了很多戰役，並在西元前 306 年與他父親同時是國王。在伊普蘇斯戰役後，他失去了他的亞洲領土，但後來贏得了馬其頓的王位。其他繼業者害怕被他俘虜，便聯合起來對抗並擊敗他。"
 
 #: civs/hele.jsonFactions[1].Heroes[2].Name
 msgid "Demetrios Poliorcetes"
-msgstr ""
+msgstr "圍城者，德米特里一世"
 
 #: civs/hele.jsonFactions[1].Name
 msgid "Macedonia"
@@ -1149,7 +1150,7 @@ msgstr "馬其頓"
 
 #: civs/hele.jsonFactions[1].Description
 msgid "Kingdom bordering Greek city-states"
-msgstr ""
+msgstr "與希臘城邦接壤的王國"
 
 #: civs/hele.jsonHistory
 msgid ""
@@ -1171,11 +1172,11 @@ msgstr "伊比利人"
 
 #: civs/iber.jsonCivBonuses[0].Description
 msgid "Iberians start with a powerful prefabricated circuit of stone walls."
-msgstr "伊比利人在遊戲一開始就會有一圈已經建好的強大的石牆。"
+msgstr "伊比利人在遊戲一開始就會有一圈已經建好的強大石牆。"
 
 #: civs/iber.jsonCivBonuses[0].Name
 msgid "Harritsu Leku"
-msgstr ""
+msgstr "岩石之地"
 
 #: civs/iber.jsonCivBonuses[0].History
 msgid ""
@@ -1188,11 +1189,11 @@ msgstr "與一般的沖積平原及河谷不同的是，在伊比利半島有豐
 msgid ""
 "The resource cost of training horse-mounted units (cavalry) is reduced by 5%"
 " per animal corralled."
-msgstr ""
+msgstr "每圈養一隻動物就可以減少訓練騎乘單位(騎兵)5%的資源消耗。"
 
 #: civs/iber.jsonCivBonuses[1].Name
 msgid "Zaldi Saldoa"
-msgstr ""
+msgstr "薩爾迪·沙爾德瓦"
 
 #: civs/iber.jsonCivBonuses[1].History
 msgid ""
@@ -1204,11 +1205,11 @@ msgstr "與北非的努米底亞不同，伊比利半島被稱為「馬國」，
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr ""
+msgstr "盟友的步兵斥候及騎兵斥候-20%花費。"
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
-msgstr ""
+msgstr "Saripeko"
 
 #: civs/iber.jsonTeamBonuses[0].History
 msgid ""
@@ -1221,7 +1222,7 @@ msgstr "伊比利人以提供其他國家傭兵聞名，作為他們在對外戰
 #: civs/iber.jsonAINames[0] civs/iber.jsonAINames[1]
 #: civs/iber.jsonFactions[0].Heroes[0].Name
 msgid "Viriato"
-msgstr ""
+msgstr "維里亞托"
 
 #: civs/iber.jsonAINames[2] civs/iber.jsonFactions[0].Heroes[1].Name
 msgid "Karos"
@@ -1229,33 +1230,33 @@ msgstr "考羅什"
 
 #: civs/iber.jsonAINames[3] civs/iber.jsonFactions[0].Heroes[2].Name
 msgid "Indibil"
-msgstr ""
+msgstr "Indibil"
 
 #: civs/iber.jsonAINames[4]
 msgid "Audax"
-msgstr ""
+msgstr "Audax"
 
 #: civs/iber.jsonAINames[5]
 msgid "Ditalcus"
-msgstr ""
+msgstr "Ditalcus"
 
 #: civs/iber.jsonAINames[6]
 msgid "Minurus"
-msgstr ""
+msgstr "Minurus"
 
 #: civs/iber.jsonAINames[7]
 msgid "Tautalus"
-msgstr ""
+msgstr "Tautalus"
 
 #: civs/iber.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Causes targets struck to become inflamed and lose hitpoints at a constant "
 "rate until and if either healed or repaired, as appropriate."
-msgstr ""
+msgstr "造成目標發炎，並以穩定的速率損失生命值直到被治癒或修復。"
 
 #: civs/iber.jsonFactions[0].Technologies[0].Name
 msgid "Suzko Txabalina"
-msgstr ""
+msgstr "Suzko Txabalina"
 
 #: civs/iber.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1266,11 +1267,11 @@ msgstr "伊比利部落士兵將他們的長矛纏上草，並淋上瀝青之類
 
 #: civs/iber.jsonFactions[0].Technologies[1].Description
 msgid "Metal costs for units and technologies reduced by 50%."
-msgstr ""
+msgstr "單位及科技的金屬花費減少50%。"
 
 #: civs/iber.jsonFactions[0].Technologies[1].Name
 msgid "Maisu Burdina Langileak"
-msgstr ""
+msgstr "Maisu Burdina Langileak"
 
 #: civs/iber.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1333,14 +1334,14 @@ msgstr ""
 
 #: civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: civs/iber.jsonStructures[0].Special
 msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr "防禦靈氣 - 給予所有紀念碑視野範圍內的伊比利人單位及建築物 10-15% 的攻擊加成。建造限制：每張地圖最多建造5個。"
+msgstr "防禦靈氣 - 給予所有紀念碑視野範圍內的伊比利人單位及建築物10-15%的攻擊加成。建造限制：每張地圖最多建造5個。"
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
@@ -1402,7 +1403,7 @@ msgid ""
 "The Greeks were highly successful in Hellenizing various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "希臘人同化各種異族人相當成功。在希臘化時代時，希臘語是古代世界的通用語言，從西班牙到印度都被廣泛的使用。"
 
 #: civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
@@ -1422,47 +1423,47 @@ msgstr "馬其頓人及繼業者(專指亞歷山大大帝死後他的繼業者�
 
 #: civs/mace.jsonAINames[2]
 msgid "Antipater"
-msgstr ""
+msgstr "安提帕特"
 
 #: civs/mace.jsonAINames[3]
 msgid "Philip IV"
-msgstr ""
+msgstr "腓力四世"
 
 #: civs/mace.jsonAINames[4] civs/spart.jsonAINames[5]
 msgid "Lysander"
-msgstr ""
+msgstr "呂山德"
 
 #: civs/mace.jsonAINames[5]
 msgid "Lysimachus"
-msgstr ""
+msgstr "利西馬科斯"
 
 #: civs/mace.jsonAINames[6]
 msgid "Pyrrhus of Epirus"
-msgstr ""
+msgstr "摩羅西亞的皮洛士"
 
 #: civs/mace.jsonAINames[7]
 msgid "Antigonus II Gonatas"
-msgstr ""
+msgstr "安提柯二世"
 
 #: civs/mace.jsonAINames[8]
 msgid "Demetrius II Aetolicus"
-msgstr ""
+msgstr "德米特里二世"
 
 #: civs/mace.jsonAINames[9]
 msgid "Philip V"
-msgstr ""
+msgstr "腓力五世"
 
 #: civs/mace.jsonAINames[10]
 msgid "Perseus"
-msgstr ""
+msgstr "珀耳修斯"
 
 #: civs/mace.jsonAINames[11]
 msgid "Craterus"
-msgstr ""
+msgstr "克拉特魯斯"
 
 #: civs/mace.jsonAINames[12]
 msgid "Meleager"
-msgstr ""
+msgstr "麥萊亞戈"
 
 #: civs/mace.jsonFactions[0].Technologies[0].Description
 msgid ""
@@ -1484,24 +1485,24 @@ msgstr "當腓力二世登上馬其頓王國的寶座之後，他開始對馬其
 msgid ""
 "Upgrade Hypaspist Champion Infantry to Silver Shields, with greater attack "
 "and armor, but also greater cost."
-msgstr ""
+msgstr "升級精英盾兵到銀盾兵，有著更強大的攻擊力及護甲，但花費也較高。"
 
 #: civs/mace.jsonFactions[0].Technologies[1].Name
 msgid "Royal Gift"
-msgstr ""
+msgstr "皇家贈禮"
 
 #: civs/mace.jsonFactions[0].Technologies[1].History
 msgid ""
 "In India near the end of his long anabasis, Alexander gifted to the Royal "
 "Hypaspist corps shields of silver for their long and valiant service in his "
 "army."
-msgstr ""
+msgstr "於印度接近了他長征的末了時，亞歷山大大帝賜予皇家持盾衛隊銀盾，以慰勞他們在他的軍隊長久以來的英勇作戰。"
 
 #: civs/mace.jsonFactions[0].Technologies[2].Description
 #: civs/ptol.jsonFactions[0].Technologies[0].Description
 #: civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr ""
+msgstr "城鎮中心有雙倍的生命值與雙倍於預設值的射出箭矢。"
 
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
@@ -1513,13 +1514,13 @@ msgstr "圍城者，德米特里一世"
 
 #: civs/mace.jsonFactions[0].Description
 msgid "A Hellenistic kingdom bordering the Greek city-states."
-msgstr ""
+msgstr "一個與希臘城邦接壤的希臘化王國。"
 
 #: civs/mace.jsonStructures[0].Special
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr ""
+msgstr "希臘化的文明獎勵。建造劇院以使所有建築物的領土影響範圍增加25%。建造限制：1。"
 
 #: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
 #: civs/sele.jsonStructures[0].Name
@@ -1530,7 +1531,7 @@ msgstr "圖書館"
 msgid ""
 "All Special Technologies are researched here. Building one reduces the cost "
 "of all other remaining technologies by 10%. Build limit: 1."
-msgstr ""
+msgstr "所有特殊科技都在這裡研發。建造一個以降低其他所有剩餘科技的花費 10%。建造限制：1。"
 
 #: civs/mace.jsonStructures[1].History civs/ptol.jsonStructures[0].History
 #: civs/sele.jsonStructures[0].History
@@ -1542,15 +1543,15 @@ msgstr "亞歷山大大帝在他的新帝國裡建造了很多圖書館。這些
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "攻城武器製造所"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr ""
+msgstr "建造及升級所有馬其頓的攻城武器。"
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr ""
+msgstr "馬其頓人在攻城武器這一方面革新的能力相當強。"
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -1563,17 +1564,17 @@ msgstr "馬其頓是一個古希臘王國，集中在希臘半島的東北部。
 
 #: civs/maur.jsonName
 msgid "Mauryans"
-msgstr ""
+msgstr "孔雀王朝"
 
 #: civs/maur.jsonCivBonuses[0].Description
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "孔雀王朝有 +10% 的人口上限獎勵 (即人口上限為 330 而非平常的 300)。"
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
-msgstr ""
+msgstr "萬王之王。"
 
 #: civs/maur.jsonCivBonuses[0].History
 msgid ""
@@ -1583,15 +1584,15 @@ msgid ""
 "commanded a standing army of 600,000 infantry, 9000 elephants, 8000 "
 "chariots, and 30,000 cavalry, making it arguably the largest army of its "
 "time."
-msgstr ""
+msgstr "孔雀王朝涵蓋了數十個原先獨立的王國，其領土面積約有5百萬平方公里，人口總數約6千萬人。孔雀王朝的統治者有著萬王之王的稱號，並指揮著60萬名步兵、9000頭大象、8000輛雙輪戰車、以及3萬名騎兵，使其可以說是當時最大型的軍隊。"
 
 #: civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
-msgstr ""
+msgstr "孔雀王朝享有使用 4 種精英的權利。"
 
 #: civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
-msgstr ""
+msgstr "剎帝利武士種姓。"
 
 #: civs/maur.jsonCivBonuses[1].History
 msgid ""
@@ -1603,125 +1604,125 @@ msgstr ""
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr ""
+msgstr "盟友的神廟科技 -50% 花費及研究時間。"
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
-msgstr ""
+msgstr "福音主義。"
 
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr ""
+msgstr "阿育王派遣大往西方傳播佛學知識。"
 
 #: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
-msgstr ""
+msgstr "旃陀羅笈多"
 
 #: civs/maur.jsonAINames[1] civs/maur.jsonFactions[0].Heroes[1].Name
 msgid "Ashoka the Great"
-msgstr ""
+msgstr "阿育王"
 
 #: civs/maur.jsonAINames[2]
 msgid "Ashokavardhan Maurya"
-msgstr ""
+msgstr "Ashokavardhan Maurya"
 
 #: civs/maur.jsonAINames[3]
 msgid "Acharya Bhadrabahu"
-msgstr ""
+msgstr "聖者Bhadrabahu"
 
 #: civs/maur.jsonAINames[4]
 msgid "Bindusara Maurya"
-msgstr ""
+msgstr "賓頭娑羅"
 
 #: civs/maur.jsonAINames[5]
 msgid "Dasaratha Maurya"
-msgstr ""
+msgstr "達沙拉沙"
 
 #: civs/maur.jsonAINames[6]
 msgid "Samprati Maurya"
-msgstr ""
+msgstr "三缽羅底"
 
 #: civs/maur.jsonAINames[7]
 msgid "Salisuka Maurya"
-msgstr ""
+msgstr "舍利輸迦"
 
 #: civs/maur.jsonAINames[8]
 msgid "Devavarman Maurya"
-msgstr ""
+msgstr "提婆伐摩"
 
 #: civs/maur.jsonAINames[9]
 msgid "Satadhanvan Maurya"
-msgstr ""
+msgstr "薩塔陀拉"
 
 #: civs/maur.jsonAINames[10]
 msgid "Brihadratha Maurya"
-msgstr ""
+msgstr "巨車王"
 
 #: civs/maur.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr ""
+msgstr "捕獲最多 5 頭大地之母的大象，並讓他們駐守在象棚內以獲得減少大象單位 25% 花費及訓練時間的獎勵。"
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr ""
+msgstr "大象召集"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr ""
+msgstr "孔雀王朝的徒步弓箭手有更大的攻擊範圍與更快的訓練時間。"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
-msgstr ""
+msgstr "箭術傳統"
 
 #: civs/maur.jsonFactions[0].Technologies[1].History
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr ""
+msgstr "印度是弓箭之地。絕大多數的印度軍隊是由技術高超的弓箭手所組成，手持竹製長弓。"
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
-msgstr ""
+msgstr "孔雀王國的奠基者。"
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "孔雀王朝最後一位偉大的國王。"
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr ""
+msgstr "旃陀羅笈多的偉大導師及顧問。"
 
 #: civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
-msgstr ""
+msgstr "考底利耶"
 
 #: civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "孔雀王朝的印度人"
 
 #: civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
-msgstr ""
+msgstr "象棚"
 
 #: civs/maur.jsonStructures[0].Special
 msgid ""
 "Trains Elephant Archer and Worker Elephant at Town Phase, then adds the "
 "champion War Elephant at the City phase."
-msgstr ""
+msgstr "在鄉鎮階段訓練戰象射手及大象工人，然後在城市階段時加入精英戰象。"
 
 #: civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "阿育王法敕"
 
 #: civs/maur.jsonStructures[1].Special
 msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr ""
+msgstr "知足常樂：所有在它特定範圍內的市民及盟軍市民 +10% 生命值及 +10% 資源採集速率。可以建造在除了敵人領土以外的任何地方。最大建造數：10。"
 
 #: civs/maur.jsonHistory
 msgid ""
@@ -1737,17 +1738,17 @@ msgstr ""
 
 #: civs/pers.jsonName
 msgid "Persians"
-msgstr ""
+msgstr "波斯人"
 
 #: civs/pers.jsonCivBonuses[0].Description
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr ""
+msgstr "每圈養一隻動物在畜欄內就可以減少騎駱駝的單位 (貿易商人) 或是騎馬的單位 (騎兵) 5% 的資源消耗。"
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
-msgstr ""
+msgstr "圈養駱駝及馬"
 
 #: civs/pers.jsonCivBonuses[0].History
 msgid ""
@@ -1761,11 +1762,11 @@ msgstr ""
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "波斯有 +10% 的人口上限獎勵 (即人口上限為 330 而非平常的 300)。"
 
 #: civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
-msgstr ""
+msgstr "偉大國王的徵召"
 
 #: civs/pers.jsonCivBonuses[1].History
 msgid ""
@@ -1775,15 +1776,15 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr ""
+msgstr "由於阿契美尼德王朝的龐大規模及其組織結構，波斯人可以在戰時大量徵召步兵。儘管波斯步兵整體來說訓練有素且意志堅定。但是他們缺乏肉搏戰的經驗。而且，除了少數的精英部隊以外，波斯的步兵並非職業的常備軍。"
 
 #: civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
-msgstr "陸地路線 +25%貿易利潤"
+msgstr "陸地路線 +25%貿易利潤。"
 
 #: civs/pers.jsonTeamBonuses[0].Name
 msgid "Royal Road"
-msgstr ""
+msgstr "皇家大道"
 
 #: civs/pers.jsonTeamBonuses[0].History
 msgid ""
@@ -1795,59 +1796,59 @@ msgstr ""
 
 #: civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
-msgstr ""
+msgstr "居魯士二世"
 
 #: civs/pers.jsonAINames[1] civs/pers.jsonFactions[0].Heroes[1].Name
 msgid "Darayavahush I"
-msgstr ""
+msgstr "大流士一世"
 
 #: civs/pers.jsonAINames[2]
 msgid "Cambyses II"
-msgstr ""
+msgstr "岡比西斯二世"
 
 #: civs/pers.jsonAINames[3]
 msgid "Bardiya"
-msgstr ""
+msgstr "高墨達"
 
 #: civs/pers.jsonAINames[4] civs/pers.jsonFactions[0].Heroes[2].Name
 msgid "Xsayarsa I"
-msgstr ""
+msgstr "薛西斯一世"
 
 #: civs/pers.jsonAINames[5]
 msgid "Artaxshacha I"
-msgstr ""
+msgstr "阿爾塔薛西斯一世"
 
 #: civs/pers.jsonAINames[6]
 msgid "Darayavahush II"
-msgstr ""
+msgstr "大流士二世"
 
 #: civs/pers.jsonAINames[7]
 msgid "Darayavahush III"
-msgstr ""
+msgstr "大流士三世"
 
 #: civs/pers.jsonAINames[8]
 msgid "Artaxshacha II"
-msgstr ""
+msgstr "阿爾塔薛西斯二世"
 
 #: civs/pers.jsonAINames[9]
 msgid "Artaxshacha III"
-msgstr ""
+msgstr "阿爾塔薛西斯三世"
 
 #: civs/pers.jsonAINames[10]
 msgid "Haxamanish"
-msgstr ""
+msgstr "Haxamanish"
 
 #: civs/pers.jsonAINames[11]
 msgid "Xsayarsa II"
-msgstr ""
+msgstr "薛西斯二世"
 
 #: civs/pers.jsonFactions[0].Technologies[0].Description
 msgid "Phoenician triremes gain the unique ability to train cavalry units."
-msgstr ""
+msgstr "腓尼基人的三列槳戰船有一項獨特的能力，就是可以訓練騎兵單位。"
 
 #: civs/pers.jsonFactions[0].Technologies[0].Name
 msgid "Naval Craftsmanship"
-msgstr ""
+msgstr "海軍技術"
 
 #: civs/pers.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1858,17 +1859,17 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr ""
+msgstr "早期的阿契美尼德王朝統治者致力讓波斯成為亞洲第一個強大的海上王國。偉大的國王不僅表現出他對水手們的熱愛以換取他們的忠誠，他也鼓勵海洋活動。舉例來說，在大流士大帝統治期間，波斯在埃及修築了一條運河，並派遣了一支海軍部隊前去探勘印度河。根據希羅多德的記載，大約300多條船被改造為運輸船以載運馬和它們的騎士。"
 
 #: civs/pers.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr ""
+msgstr "增加所有建築物的生命值，但建造時間也會相對應的增加。"
 
 #: civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Persian Architecture"
-msgstr ""
+msgstr "波斯建築"
 
 #: civs/pers.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -1876,11 +1877,11 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "波斯人從薩第斯到蘇薩建造了驚人的1677英哩長的皇家道路；大流士大帝及薛西斯也建造了雄偉的波斯波利斯；居魯士大帝則是大大的改善了埃克巴坦那，並幾乎「重建」了古埃蘭首都蘇薩。"
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
-msgstr ""
+msgstr "精英盾矛兵的訓練時間減半。"
 
 #: civs/pers.jsonFactions[0].Technologies[2].Name
 msgid "Immortals"
@@ -1889,18 +1890,18 @@ msgstr "長生軍"
 #: civs/pers.jsonFactions[0].Technologies[3].Description
 #: civs/sele.jsonFactions[0].Technologies[3].Description
 msgid "+25% health for cavalry, but +10% train time."
-msgstr "騎兵 +25% 血, 但 +10% 培訓時間。"
+msgstr "騎兵 +25% 生命值，但訓練時間 +10%。"
 
 #: civs/pers.jsonFactions[0].Technologies[3].Name
 #: civs/sele.jsonFactions[0].Technologies[3].Name
 msgid "Nisean War Horses"
-msgstr ""
+msgstr "Nisean戰馬"
 
 #: civs/pers.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Persian cavalry."
-msgstr ""
+msgstr "美麗且強大的 Nisean 馬增加波斯騎兵的生命值。"
 
 #: civs/pers.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -1914,7 +1915,7 @@ msgstr ""
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
-msgstr ""
+msgstr "居魯士二世"
 
 #: civs/pers.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1934,25 +1935,25 @@ msgstr ""
 
 #: civs/pers.jsonStructures[0].Name civs/sele.jsonStructures[1].Name
 msgid "Cavalry Stables"
-msgstr "騎兵馬厩"
+msgstr "騎兵馬廄"
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "訓練市民騎兵。"
+msgstr "訓練騎兵民兵。"
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
-msgstr ""
+msgstr "東方騎兵是波斯帝國的最好的士兵。"
 
 #: civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr ""
+msgstr "阿帕達納"
 
 #: civs/pers.jsonStructures[1].Special
 msgid ""
 "Train heroes and Persian Immortals. Gives a slow trickle of all resources as"
 " 'Satrapy Tribute.'"
-msgstr ""
+msgstr "訓練英雄及波斯長生軍。緩慢的給予所有的資源，就像「總督進獻」一樣。"
 
 #: civs/pers.jsonStructures[1].History
 msgid ""
@@ -1976,17 +1977,17 @@ msgstr ""
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
-msgstr ""
+msgstr "托勒密"
 
 #: civs/ptol.jsonCivBonuses[0].Description
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr ""
+msgstr "托勒密有傭兵營，一個可以在中立領土上建造並訓練傭兵的軍營。"
 
 #: civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
-msgstr ""
+msgstr "傭兵軍團"
 
 #: civs/ptol.jsonCivBonuses[0].History civs/ptol.jsonStructures[1].History
 msgid ""
@@ -2002,12 +2003,12 @@ msgstr ""
 
 #: civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
-msgstr ""
+msgstr "托勒密埃及有額外的3個農耕技術。"
 
 #: civs/ptol.jsonCivBonuses[1].Name
 #: civs/ptol.jsonFactions[0].Technologies[2].Name
 msgid "Nile Delta"
-msgstr ""
+msgstr "尼羅河三角洲"
 
 #: civs/ptol.jsonCivBonuses[1].History civs/ptol.jsonCivBonuses[2].History
 #: civs/theb.jsonCivBonuses[0].Description civs/theb.jsonCivBonuses[0].History
@@ -2024,163 +2025,163 @@ msgstr "未知。"
 
 #: civs/ptol.jsonCivBonuses[2].Description
 msgid "Can capture gaia elephants and camels to reduce their training cost."
-msgstr ""
+msgstr "可以捕獲大地之母的大象及駱駝以減少他們的訓練花費。"
 
 #: civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr ""
+msgstr "所有盟友會自動獲得一個緩慢的食物收入。"
 
 #: civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
-msgstr ""
+msgstr "地中海的糧倉"
 
 #: civs/ptol.jsonTeamBonuses[0].History
 msgid ""
 "Egypt was a net exporter of grain, so much so that large cities such as "
 "Athens, Antioch, and Rome came to rely upon Egyptian grain in order to feed "
 "their masses."
-msgstr ""
+msgstr "埃及是一個糧食的淨出口國，所以很多大城市，像是雅典、安條克、以及羅馬都依賴埃及的糧食以養育自己的人民。"
 
 #: civs/ptol.jsonAINames[0]
 msgid "Ptolemy Soter"
-msgstr ""
+msgstr "托勒密一世·索塔爾一世"
 
 #: civs/ptol.jsonAINames[1]
 msgid "Ptolemy Philadelphus"
-msgstr ""
+msgstr "托勒密二世·費拉德爾甫斯"
 
 #: civs/ptol.jsonAINames[2]
 msgid "Ptolemy Epigone"
-msgstr ""
+msgstr "托勒密追隨者"
 
 #: civs/ptol.jsonAINames[3]
 msgid "Ptolemy Eurgetes"
-msgstr ""
+msgstr "托勒密三世·歐厄爾葛忒斯一世"
 
 #: civs/ptol.jsonAINames[4]
 msgid "Ptolemy Philopater"
-msgstr ""
+msgstr "托勒密四世·菲洛帕托爾"
 
 #: civs/ptol.jsonAINames[5]
 msgid "Ptolemy Epiphanes"
-msgstr ""
+msgstr "托勒密五世·埃庇法涅斯"
 
 #: civs/ptol.jsonAINames[6]
 msgid "Ptolemy Philometor"
-msgstr ""
+msgstr "托勒密六世·菲洛墨托爾"
 
 #: civs/ptol.jsonAINames[7]
 msgid "Ptolemy Eupator"
-msgstr ""
+msgstr "托勒密·歐帕托爾"
 
 #: civs/ptol.jsonAINames[8]
 msgid "Ptolemy Alexander"
-msgstr ""
+msgstr "托勒密十世·亞歷山大一世"
 
 #: civs/ptol.jsonAINames[9]
 msgid "Ptolemy Neos Dionysos"
-msgstr ""
+msgstr "托勒密十二世·吹笛者"
 
 #: civs/ptol.jsonAINames[10]
 msgid "Ptolemy Neos Philopater"
-msgstr ""
+msgstr "托勒密七世·奈俄斯·菲洛帕托爾"
 
 #: civs/ptol.jsonAINames[11]
 msgid "Berenice Philopater"
-msgstr ""
+msgstr "貝勒尼基三世·菲洛帕托爾"
 
 #: civs/ptol.jsonAINames[12]
 msgid "Cleopatra Tryphaena"
-msgstr ""
+msgstr "克婁巴特拉六世·特麗菲娜"
 
 #: civs/ptol.jsonAINames[13]
 msgid "Berenice Epiphaneia"
-msgstr ""
+msgstr "貝勒尼基四世·埃庇法內婭"
 
 #: civs/ptol.jsonAINames[14]
 msgid "Cleopatra Philopater"
-msgstr ""
+msgstr "克婁巴特拉七世·菲洛帕托爾"
 
 #: civs/ptol.jsonAINames[15]
 msgid "Cleopatra Selene"
-msgstr ""
+msgstr "克婁巴特拉一世·敘拉"
 
 #: civs/ptol.jsonAINames[16]
 msgid "Cleopatra II Philometora Soteira"
-msgstr ""
+msgstr "克婁巴特拉二世·菲洛墨托爾·索泰拉"
 
 #: civs/ptol.jsonAINames[17]
 msgid "Arsinoe IV"
-msgstr ""
+msgstr "阿爾西諾伊四世"
 
 #: civs/ptol.jsonAINames[18]
 msgid "Arsinoe II"
-msgstr ""
+msgstr "阿爾西諾伊二世"
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Description
 msgid "Hero aura range boosted by 50%."
-msgstr "英雄靈氣擴大50%範圍。"
+msgstr "英雄靈氣範圍擴大 50%。"
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
-msgstr ""
+msgstr "崇拜法老。"
 
 #: civs/ptol.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
 "Egyptian traditions in order to satiate the local populace and ingratiate "
 "themselves to the powerful priestly class in the country."
-msgstr ""
+msgstr "托勒密王朝的馬其頓-希臘統治者奉行著許多古埃及的傳統以滿足當地民眾並討好散佈在整個國家中有力的祭司階層。"
 
 #: civs/ptol.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
-msgstr ""
+msgstr "托勒密埃及有額外的3個農耕技術，比其他單個文明所包含的農耕技術還多。"
 
 #: civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Nile Delta had rich soil for farming, due to centuries of seasonal "
 "floods from the Nile depositing rich silt across the landscape."
-msgstr ""
+msgstr "尼羅河三角洲有相當肥沃的土壤可供耕種，這是因為幾個世紀以來的季節性洪水所沉積在地面的泥沙造成的。"
 
 #: civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
-msgstr ""
+msgstr "托勒密一世·索塔爾一世"
 
 #: civs/ptol.jsonFactions[0].Heroes[1].Name
 msgid "Ptolemaios D' Philopater"
-msgstr ""
+msgstr "托勒密四世·菲洛帕托爾"
 
 #: civs/ptol.jsonFactions[0].Heroes[2].Name
 msgid "Kleopatra H' Philopater"
-msgstr ""
+msgstr "托勒密七世·奈俄斯·菲洛帕托爾"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr ""
+msgstr "托勒密埃及"
 
 #: civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
-msgstr ""
+msgstr "偉大的希臘-馬其頓王朝統治了古埃及。"
 
 #: civs/ptol.jsonStructures[0].Special civs/sele.jsonStructures[0].Special
 msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr ""
+msgstr "最多建造一個。所有特殊科技及部份城市階段的一般科技都可以在這裡研究。建造一個以減少所有剩餘科技的花費10%。"
 
 #: civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
-msgstr ""
+msgstr "Stratópedo Misthophóron"
 
 #: civs/ptol.jsonStructures[1].Special
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr ""
+msgstr "必須建造在中立領土。沒有領土範圍效果。訓練所有「傭兵」單位。"
 
 #: civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2198,7 +2199,7 @@ msgid ""
 "Alexandria near the harbor mouth of that Nile Delta city. This structure "
 "could be seen for many kilometers out to sea and was one of the Seven "
 "Wonders of the World."
-msgstr ""
+msgstr "在埃及的托勒密王朝建造的雄偉的亞歷山大燈塔，靠近尼羅河城市的港口。這個建築物可以在海上的數公里之外就被看見，並曾是世界七大奇景之一。"
 
 #: civs/ptol.jsonHistory
 msgid ""
@@ -2206,7 +2207,7 @@ msgid ""
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr ""
+msgstr "托勒密王朝曾是在希臘化時期，統治在埃及的托勒密帝國的馬其頓希臘貴族家族。他們的統治持續了275年，從西元前305年到西元前35年。他們是古埃及的最後一個王朝。"
 
 #: civs/rome.jsonName
 msgid "Romans"
@@ -2231,7 +2232,7 @@ msgstr "羅馬人通常使用龜甲或「烏龜」陣型進行防禦：軍團會
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "任何在羅馬境內作戰的羅馬公民兵可以獲得暫時性的+10%加值在裝甲上。"
+msgstr "任何在羅馬境內作戰的羅馬公民兵可以獲得暫時性的 +10% 加值在裝甲上。"
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2261,59 +2262,59 @@ msgstr "與羅馬結盟會帶來極大的好處(同時也伴隨極大的危險)�
 
 #: civs/rome.jsonAINames[0]
 msgid "Lucius Junius Brutus"
-msgstr ""
+msgstr "盧基烏斯·尤尼烏斯·布魯圖斯"
 
 #: civs/rome.jsonAINames[1]
 msgid "Lucius Tarquinius Collatinus"
-msgstr ""
+msgstr "盧基烏斯·塔克尼烏斯·柯拉汀斯"
 
 #: civs/rome.jsonAINames[2]
 msgid "Gaius Julius Caesar Octavianus"
-msgstr ""
+msgstr "蓋烏斯•尤里烏斯•凱撒•奧古斯都"
 
 #: civs/rome.jsonAINames[3]
 msgid "Marcus Vipsanius Agrippa"
-msgstr ""
+msgstr "瑪爾庫斯·維普撒尼烏斯·阿格里帕"
 
 #: civs/rome.jsonAINames[4]
 msgid "Gaius Iulius Iullus"
-msgstr ""
+msgstr "Gaius Iulius Iullus"
 
 #: civs/rome.jsonAINames[5]
 msgid "Gaius Servilius Structus Ahala"
-msgstr ""
+msgstr "Gaius Servilius Structus Ahala"
 
 #: civs/rome.jsonAINames[6]
 msgid "Publius Cornelius Rufinus"
-msgstr ""
+msgstr "Publius Cornelius Rufinus"
 
 #: civs/rome.jsonAINames[7]
 msgid "Lucius Papirius Cursor"
-msgstr ""
+msgstr "盧基烏斯·帕皮爾斯·柯瑟"
 
 #: civs/rome.jsonAINames[8]
 msgid "Aulus Manlius Capitolinus"
-msgstr ""
+msgstr "Aulus Manlius Capitolinus"
 
 #: civs/rome.jsonAINames[9]
 msgid "Publius Cornelius Scipio Africanus"
-msgstr ""
+msgstr "征服非洲的 普布利烏斯·科爾內利烏斯·西庇阿"
 
 #: civs/rome.jsonAINames[10]
 msgid "Publius Sempronius Tuditanus"
-msgstr ""
+msgstr "Publius Sempronius Tuditanus"
 
 #: civs/rome.jsonAINames[11]
 msgid "Marcus Cornelius Cethegus"
-msgstr ""
+msgstr "Marcus Cornelius Cethegus"
 
 #: civs/rome.jsonAINames[12]
 msgid "Quintus Caecilius Metellus Pius"
-msgstr ""
+msgstr "Quintus Caecilius Metellus Pius"
 
 #: civs/rome.jsonAINames[13]
 msgid "Marcus Licinius Crassus"
-msgstr ""
+msgstr "馬庫斯·李錫尼·克拉蘇"
 
 #: civs/rome.jsonFactions[0].Technologies[0].Description
 msgid "Roman heroes can convert enemy units with great cost."
@@ -2329,7 +2330,7 @@ msgid ""
 "throughout its long history. The Romans lured enemies or neutral factions to"
 " their side by offering them certain privileges. In due period of time, "
 "friends as well as foes were subjugated."
-msgstr "「分而治之」在羅馬的長久歷史中一直都是外交政治的主要原則。羅馬人透過給敵人及中立者一定的特權來拉攏他們，慢慢的，所謂的朋友和敵人都被征服了。"
+msgstr "「各個擊破」在羅馬的長久歷史中一直都是外交政治的主要原則。羅馬人透過給敵人及中立者一定的特權來拉攏他們，慢慢的，所謂的朋友和敵人都被征服了。"
 
 #: civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2340,7 +2341,7 @@ msgstr "在第二次布匿戰爭期間，在有獨裁官的六個月裡。他採
 
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 msgid "Quintus Fabius Maximus"
-msgstr ""
+msgstr "Quintus Fabius Maximus"
 
 #: civs/rome.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2365,7 +2366,7 @@ msgid ""
 "His campaigns in Spain and Africa helped to bring Carthage to its knees "
 "during the Second Punic War. He defeated Hannibal at the Battle of Zama in "
 "202 B.C."
-msgstr "他是在與迦太基對抗時第一個獲得真正意義上的勝利的羅馬將軍。他在西班牙與非洲的戰役幫助他在第二次布匿戰爭中擊敗迦太基。並在西元前202年的札馬戰役中擊敗了漢尼拔。"
+msgstr "他是在與迦太基對抗時第一個獲得真正意義上的勝利的羅馬將軍。他在西班牙與非洲的戰役幫助他在第二次布匿戰爭中擊敗迦太基。並在西元前 202 年的札馬戰役中擊敗了漢尼拔。"
 
 #: civs/rome.jsonFactions[0].Heroes[2].Name
 msgid "Scipio Africanus"
@@ -2377,7 +2378,7 @@ msgstr "深挖壕溝的營地"
 
 #: civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "可以在中性或敵方領土上培訓民兵。"
+msgstr "可以在中立或敵方領土上訓練民兵。"
 
 #: civs/rome.jsonStructures[0].History
 msgid ""
@@ -2414,11 +2415,11 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "羅馬帝國是古代世界上最大的帝國之一，在它的巔峰時期，北達蘇格蘭，南至撒哈拉大沙漠，並包含了6000至8000萬的居民，占當時世界總人口的約四分之一。羅馬也在近800年的時間裡成為了地球上最強大的國家之一。羅馬人的建築技術在當時無人能比，也精於攻城武器並擁有強大的步兵及海軍。"
+msgstr "羅馬帝國是古代世界上最大的帝國之一，在它的巔峰時期，北達蘇格蘭，南至撒哈拉大沙漠，並包含了 6000 至 8000 萬的居民，占當時世界總人口的約四分之一。羅馬也在近 800 年的時間裡成為了地球上最強大的國家之一。羅馬人的建築技術在當時無人能比，也精於攻城武器並擁有強大的步兵及海軍。"
 
 #: civs/sele.jsonName civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
-msgstr ""
+msgstr "塞琉古"
 
 #: civs/sele.jsonCivBonuses[0].Description
 msgid ""
@@ -2429,13 +2430,13 @@ msgstr ""
 
 #: civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
-msgstr ""
+msgstr "Cleruchy"
 
 #: civs/sele.jsonCivBonuses[1].Description
 msgid ""
 "Choose between Traditional Army and Reform Army technologies that unlock "
 "different Champions."
-msgstr ""
+msgstr "在傳統軍隊及革新軍隊科技中選擇，這將會解鎖不同的精英單位。"
 
 #: civs/sele.jsonCivBonuses[1].History
 #: civs/sele.jsonFactions[0].Technologies[1].History
@@ -2451,152 +2452,152 @@ msgstr ""
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr ""
+msgstr "盟友的城鎮中心會便宜20%。"
 
 #: civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
-msgstr ""
+msgstr "敘利亞的Tetrapolis"
 
 #: civs/sele.jsonTeamBonuses[0].History
 msgid ""
 "The political core of the Seleucid Empire consisted of four 'sister' cities:"
 " Antioch (the capital), Seleucia Pieria, Apamea, and Laodicea."
-msgstr ""
+msgstr "塞琉古帝國的政治核心包含了四個「姐妹」城市：安條克(首都)、Seleucia Pieria、Apamea、Laodicea。"
 
 #: civs/sele.jsonAINames[0]
 msgid "Seleucus I Nicator"
-msgstr ""
+msgstr "勝利者 塞琉古一世"
 
 #: civs/sele.jsonAINames[1]
 msgid "Antiochus I Soter"
-msgstr ""
+msgstr "救主 安條克一世"
 
 #: civs/sele.jsonAINames[2]
 msgid "Antiochus II Theos"
-msgstr ""
+msgstr " 神 安條克二世"
 
 #: civs/sele.jsonAINames[3]
 msgid "Seleucus II Callinicus"
-msgstr ""
+msgstr "凱旋者 塞琉古二世"
 
 #: civs/sele.jsonAINames[4]
 msgid "Seleucus III Ceraunus"
-msgstr ""
+msgstr "閃電 塞琉古三世"
 
 #: civs/sele.jsonAINames[5]
 msgid "Antiochus III Megas"
-msgstr ""
+msgstr "大帝 安條克三世"
 
 #: civs/sele.jsonAINames[6]
 msgid "Seleucus IV Philopator"
-msgstr ""
+msgstr "篤愛父親者 塞琉古四世"
 
 #: civs/sele.jsonAINames[7]
 msgid "Antiochus IV Epiphanes"
-msgstr ""
+msgstr "神顯者 安條克四世"
 
 #: civs/sele.jsonAINames[8]
 msgid "Antiochus V Eupator"
-msgstr ""
+msgstr "父貴者 安條克五世"
 
 #: civs/sele.jsonAINames[9]
 msgid "Demetrius I Soter"
-msgstr ""
+msgstr "救主 德米特里一世"
 
 #: civs/sele.jsonAINames[10]
 msgid "Alexander I Balas"
-msgstr ""
+msgstr "闊佬 亞歷山大一世"
 
 #: civs/sele.jsonAINames[11] civs/sele.jsonAINames[15]
 msgid "Demetrius II Nicator"
-msgstr ""
+msgstr "勝利者 德米特里二世"
 
 #: civs/sele.jsonAINames[12]
 msgid "Antiochus VI Dionysus"
-msgstr ""
+msgstr "神顯者 安條克六世"
 
 #: civs/sele.jsonAINames[13]
 msgid "Diodotus Tryphon"
-msgstr ""
+msgstr "統領 狄奧多特·特里豐"
 
 #: civs/sele.jsonAINames[14]
 msgid "Antiochus VII Sidetes"
-msgstr ""
+msgstr "來自信德的人 安條克七世"
 
 #: civs/sele.jsonAINames[16]
 msgid "Alexander II Zabinas"
-msgstr ""
+msgstr "沽名者 亞歷山大二世"
 
 #: civs/sele.jsonAINames[17]
 msgid "Cleopatra Thea"
-msgstr ""
+msgstr "克麗奧佩脫拉·特亞"
 
 #: civs/sele.jsonAINames[18]
 msgid "Seleucus V Philometor"
-msgstr ""
+msgstr "篤愛母親者 塞琉古五世"
 
 #: civs/sele.jsonAINames[19]
 msgid "Antiochus VIII Grypus"
-msgstr ""
+msgstr "安條克八世"
 
 #: civs/sele.jsonAINames[20]
 msgid "Antiochus IX Cyzicenus"
-msgstr ""
+msgstr "敬神者 安條克九世"
 
 #: civs/sele.jsonAINames[21]
 msgid "Seleucus VI Epiphanes"
-msgstr ""
+msgstr "神選的·勝利者 塞琉古六世"
 
 #: civs/sele.jsonAINames[22]
 msgid "Antiochus X Eusebes"
-msgstr ""
+msgstr "敬神的·篤愛父親者 安條克十世"
 
 #: civs/sele.jsonAINames[23]
 msgid "Demetrius III Eucaerus"
-msgstr ""
+msgstr "德米特里三世"
 
 #: civs/sele.jsonAINames[24]
 msgid "Antiochus XI Epiphanes"
-msgstr ""
+msgstr "神選的·篤愛父親者 安條克十一世"
 
 #: civs/sele.jsonAINames[25]
 msgid "Philip I Philadelphus"
-msgstr ""
+msgstr "篤愛兄弟者 腓力一世"
 
 #: civs/sele.jsonAINames[26]
 msgid "Antiochus XII Dionysus"
-msgstr ""
+msgstr "酒神 安條克十二世"
 
 #: civs/sele.jsonAINames[27]
 msgid "Seleucus VII Kybiosaktes"
-msgstr ""
+msgstr "塞琉古七世"
 
 #: civs/sele.jsonAINames[28]
 msgid "Antiochus XIII Asiaticus"
-msgstr ""
+msgstr "安條克十三世"
 
 #: civs/sele.jsonAINames[29]
 msgid "Philip II Philoromaeus"
-msgstr ""
+msgstr "腓力二世"
 
 #: civs/sele.jsonFactions[0].Technologies[1].Description
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr ""
+msgstr "傳統軍隊解鎖銀盾兵及長柄刀雙輪戰車，革新軍隊解鎖羅馬重劍兵及鐵甲騎兵。"
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
-msgstr ""
+msgstr "傳統軍隊 vs. 革新軍隊"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr ""
+msgstr "從孔雀王朝一次性購購買20頭印度戰象。"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
-msgstr ""
+msgstr "聯姻"
 
 #: civs/sele.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -2614,7 +2615,7 @@ msgstr ""
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
-msgstr ""
+msgstr "美麗且強大的Nisean馬增加塞琉古騎兵的生命值。"
 
 #: civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2630,7 +2631,7 @@ msgstr ""
 
 #: civs/sele.jsonFactions[0].Heroes[0].Name
 msgid "Seleukos A' Nikator"
-msgstr ""
+msgstr "勝利者 塞琉古一世"
 
 #: civs/sele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -2647,7 +2648,7 @@ msgstr ""
 
 #: civs/sele.jsonFactions[0].Heroes[1].Name
 msgid "Antiokhos G' Megas"
-msgstr ""
+msgstr "來自信德的人 安條克七世"
 
 #: civs/sele.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2662,28 +2663,28 @@ msgstr ""
 
 #: civs/sele.jsonFactions[0].Heroes[2].Name
 msgid "Antiokhos D' Epiphanes"
-msgstr ""
+msgstr "神顯者 安條克四世"
 
 #: civs/sele.jsonFactions[0].Description
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
-msgstr ""
+msgstr "馬其頓-希臘王朝統治著先前亞歷山大的帝國的東部。"
 
 #: civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr ""
+msgstr "訓練所有除了騎兵民兵以外的單位。"
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr ""
+msgstr "軍事殖民地"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other "
 "factions. It is weaker and carries a smaller territory influence, but is "
 "cheaper and built faster."
-msgstr ""
+msgstr "這是塞琉古的擴張建築物，類似於其他文明的城鎮中心。它比較脆弱且領土範圍較小，但它較便宜且建造較快。"
 
 #: civs/sele.jsonStructures[2].History
 msgid ""
@@ -2702,15 +2703,15 @@ msgstr ""
 #: civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr ""
+msgstr "馬其頓-希臘王朝統治著先前亞歷山大的帝國大部份的領土。"
 
 #: civs/spart.jsonName civs/spart.jsonFactions[0].Name
 msgid "Spartans"
-msgstr ""
+msgstr "斯巴達人"
 
 #: civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr ""
+msgstr "斯巴達人可以使用強大的方陣陣型。"
 
 #: civs/spart.jsonCivBonuses[0].History
 msgid ""
@@ -2724,26 +2725,26 @@ msgstr ""
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr ""
+msgstr "斯巴達士兵的等級可在軍營不需任何資源的升級，只需要時間。"
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
-msgstr ""
+msgstr "來古格士律法"
 
 #: civs/spart.jsonCivBonuses[1].History
 msgid ""
 "Under the Constitution written by the mythical law-giver Lycurgus, the "
 "institution of The Agoge was established, where Spartans were trained from "
 "the age of 6 to be superior warriors in defense of the Spartan state."
-msgstr ""
+msgstr "根據被賦予神權的來古格士所制定的法律，因而確立了斯巴達的教育制度，斯巴達人從6歲開始就會被訓練為勇猛的戰士以防衛斯巴達人的領土。"
 
 #: civs/spart.jsonTeamBonuses[0].Description
 msgid "Allies can train Spartiates."
-msgstr ""
+msgstr "盟友可以訓練斯巴達戰士。"
 
 #: civs/spart.jsonTeamBonuses[0].Name
 msgid "Peloponnesian League"
-msgstr ""
+msgstr "伯羅奔尼撒聯盟"
 
 #: civs/spart.jsonTeamBonuses[0].History
 msgid ""
@@ -2755,54 +2756,54 @@ msgstr ""
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
-msgstr ""
+msgstr "狄耶涅克斯"
 
 #: civs/spart.jsonAINames[2] civs/spart.jsonFactions[0].Heroes[1].Name
 msgid "Brasidas"
-msgstr ""
+msgstr "伯拉西達"
 
 #: civs/spart.jsonAINames[3]
 msgid "Agis"
-msgstr ""
+msgstr "亞基斯"
 
 #: civs/spart.jsonAINames[4]
 msgid "Archidamus"
-msgstr ""
+msgstr "阿希達穆斯"
 
 #: civs/spart.jsonAINames[6]
 msgid "Pausanias"
-msgstr ""
+msgstr "鮑桑尼亞"
 
 #: civs/spart.jsonAINames[7]
 msgid "Agesilaus"
-msgstr ""
+msgstr "阿格西萊"
 
 #: civs/spart.jsonAINames[8]
 msgid "Echestratus"
-msgstr ""
+msgstr "埃凱司特拉托司"
 
 #: civs/spart.jsonAINames[9]
 msgid "Eurycrates"
-msgstr ""
+msgstr "歐里克拉鐵斯"
 
 #: civs/spart.jsonAINames[10]
 msgid "Eucleidas"
-msgstr ""
+msgstr "歐克里達斯"
 
 #: civs/spart.jsonAINames[11]
 msgid "Agesipolis"
-msgstr ""
+msgstr "阿格斯普里斯"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Description
 msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr ""
+msgstr "斯巴達的女性市民無法被俘虜，並會頑強的反抗任何攻擊者。她們也可以建造防禦塔及柵欄。"
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
-msgstr ""
+msgstr "女性奧秘"
 
 #: civs/spart.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -2813,36 +2814,36 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr ""
+msgstr "斯巴達的女性是古代世界中最自由的。她們可以擁有土地及奴隸，甚至可以像斯巴達男人一樣裸體運動。有人說，只有斯巴達女人才能生下真正的男人。這些堅若鋼鐵的女性們幫助她們的家園一次又一次的免於災難，例如，當與摩羅西亞國王皮洛士的一次戰鬥失利後，她們趁男性戰士睡覺時，連夜建造了一堵土牆以保護城市，為隔天的圍城作準備。"
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr ""
+msgstr "在方陣中的單位移動更快。"
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
-msgstr ""
+msgstr "Tyrtean Paeans"
 
 #: civs/spart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Paeans were battle hymns that were sung by the hoplites when they charged "
 "the enemy lines. One of the first known Paeans were composed by Tirteus, a "
 "warrior poet of Sparta, during the First Messenian War."
-msgstr ""
+msgstr "Paeans 是重裝步兵向敵人衝鋒時所唱的戰歌。其中最著名的一首是由一名叫作 Tirteus 的斯巴達軍旅詩人在第一次麥西尼亞戰爭時所寫。"
 
 #: civs/spart.jsonFactions[0].Technologies[2].Description
 msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "矛步兵血+25％，但培訓時間 +10％。"
+msgstr "矛兵生命值+25％，但訓練時間+10％。"
 
 #: civs/spart.jsonFactions[0].Technologies[2].Name
 msgid "The Agoge"
-msgstr ""
+msgstr "斯巴達教育"
 
 #: civs/spart.jsonFactions[0].Technologies[2].History
 msgid ""
 "Spartans were housed and trained from a young age to be superlative warriors"
 " and to endure any hardship a military life can give them."
-msgstr ""
+msgstr "斯巴達人從小就被編入團隊進行訓練，以成為最好的戰士，並確保能夠忍受艱苦的軍旅生活。"
 
 #: civs/spart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2863,7 +2864,7 @@ msgid ""
 "Because Brasidas has sponsored their citizenship in return for service, "
 "Helot Skirmishers fight longer and harder for Sparta while within range of "
 "him."
-msgstr ""
+msgstr "因為伯拉西達承諾會給予他們公民身份來換取服務，當奴隸斥候在他的視野範圍內時會更加勇猛、更難被打敗。"
 
 #: civs/spart.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2880,21 +2881,21 @@ msgstr ""
 
 #: civs/spart.jsonFactions[0].Heroes[2].Name
 msgid "Agis III"
-msgstr ""
+msgstr "亞基斯三世"
 
 #: civs/spart.jsonStructures[1].Name
 msgid "Syssition"
-msgstr ""
+msgstr "可供密談的餐廳"
 
 #: civs/spart.jsonStructures[1].Special
 msgid "Train heroes and Spartiates and research technologies related to them."
-msgstr ""
+msgstr "訓練英雄及斯巴達戰士，以及研究與其相關的科技。"
 
 #: civs/spart.jsonStructures[1].History
 msgid ""
 "The Syssition was the Mess Hall for full-blooded Spartiates. Every Spartan "
 "peer, even kings, belonged to one."
-msgstr ""
+msgstr "Syssition 是一個供純斯巴達血統的居民密談的餐廳。每個斯巴達貴族，甚至是國王，都隸屬於其中一個類似的地方。"
 
 #: civs/spart.jsonHistory
 msgid ""
@@ -2908,11 +2909,11 @@ msgstr ""
 
 #: civs/theb.jsonName civs/theb.jsonFactions[0].Name
 msgid "Thebans"
-msgstr ""
+msgstr "底比斯人"
 
 #: civs/theb.jsonCivBonuses[0].Name
 msgid "Oblique Order"
-msgstr ""
+msgstr "斜線方陣"
 
 #: civs/theb.jsonCivBonuses[1].Name
 #: civs/theb.jsonFactions[0].Technologies[1].Name
@@ -2921,7 +2922,7 @@ msgstr "未知"
 
 #: civs/theb.jsonTeamBonuses[0].Name
 msgid "Boeotian Confederacy"
-msgstr ""
+msgstr "古希臘皮奧夏聯盟"
 
 #: civs/theb.jsonAINames[0] civs/theb.jsonFactions[0].Heroes[0].Name
 msgid "Epaminondas"
@@ -2929,54 +2930,54 @@ msgstr "伊巴密濃達"
 
 #: civs/theb.jsonAINames[1] civs/theb.jsonFactions[0].Heroes[1].Name
 msgid "Pelopidas"
-msgstr ""
+msgstr "佩洛皮達斯"
 
 #: civs/theb.jsonAINames[2] civs/theb.jsonFactions[0].Heroes[2].Name
 msgid "Gorgidas"
-msgstr ""
+msgstr "戈爾吉達斯"
 
 #: civs/theb.jsonAINames[3]
 msgid "Calydnus"
-msgstr ""
+msgstr "卡呂德努斯"
 
 #: civs/theb.jsonAINames[4]
 msgid "Ogyges"
-msgstr ""
+msgstr "俄古革斯"
 
 #: civs/theb.jsonAINames[5]
 msgid "Cadmus"
-msgstr ""
+msgstr "卡德摩斯"
 
 #: civs/theb.jsonAINames[6]
 msgid "Pentheus"
-msgstr ""
+msgstr "彭透斯"
 
 #: civs/theb.jsonAINames[7]
 msgid "Polydorus"
-msgstr ""
+msgstr "波里德諾斯"
 
 #: civs/theb.jsonAINames[8]
 msgid "Nycteus"
-msgstr ""
+msgstr "倪克透斯"
 
 #: civs/theb.jsonAINames[9]
 msgid "Lycus"
-msgstr ""
+msgstr "呂庫斯"
 
 #: civs/theb.jsonAINames[10]
 msgid "Labdacus"
-msgstr ""
+msgstr "拉布達庫斯"
 
 #: civs/theb.jsonFactions[0].Description
 msgid ""
 "The great power of Central Greece and leader of the Boeotian confederacy."
-msgstr ""
+msgstr "希臘中部的大國及皮奧夏聯盟的領導者。"
 
 #: civs/theb.jsonStructures[1].History
 msgid ""
 "At the siege of the Athenian fortress at Delium, the Thebans employed what "
 "may be deemed the first recorded use of a flame thrower in warfare."
-msgstr ""
+msgstr "在圍攻位於代里恩的雅典要塞時，底比斯人是第一個被記載在戰爭中使用火燄噴射器的民族。"
 
 #: civs/theb.jsonHistory
 msgid ""

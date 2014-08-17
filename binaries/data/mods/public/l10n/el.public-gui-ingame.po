@@ -7,6 +7,8 @@
 # Adrian Pappas <pappasadrian@gmail.com>, 2013
 # crippledmoon <domas392@in.gr>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
+# firespin <dartworldgr@hotmail.com>, 2014
+# malvanos <malvanos@gmail.com>, 2014
 # ridergr <ridergr@gmail.com>, 2014
 # Savoritias <savoritiasshadow@gmail.com>, 2014
 # XTos <christos.kyratzis@gmail.com>, 2014
@@ -17,8 +19,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-07-20 08:31+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,7 +37,7 @@ msgstr "Βασικό βεληνεκές: %(range)s"
 #: gui/session/input.js:152
 #, python-format
 msgid "Average bonus range: %(range)s"
-msgstr ""
+msgstr "Μέσο εύρος μπόνους: %(range)s"
 
 #: gui/session/input.js:725
 msgid "Cannot build wall here!"
@@ -47,7 +49,7 @@ msgstr "Παύση"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Συνέχεια"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:478
@@ -70,7 +72,7 @@ msgstr "Επιβεβαίωση"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Είσαι σίγουρος ότι θέλεις να εγκαταλείψεις; Φεύγοντας θα αποσυνδέθουν όλοι οι άλλοι παίκτες."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -86,7 +88,7 @@ msgstr "Παραιτούμαι"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Θέλεις να παραιτηθείς ή θα επιστρέψεις σύντομα;"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -120,21 +122,21 @@ msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "Δεν υπάρχουν έμποροι στεριάς."
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s αδρανής"
+msgstr[1] "%(numberOfLandTraders)s αδρανείς"
 
 #: gui/session/menu.js:486
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Υπάρχει %(numberTrading)s έμπορος στεριάς που εμπορεύεται."
+msgstr[1] "Υπάρχουν %(numberTrading)s έμποροι στεριάς που εμπορεύονται"
 
 #: gui/session/menu.js:489
 #, python-format
@@ -147,22 +149,22 @@ msgstr[1] ""
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, και %(inactiveString)s."
 
 #: gui/session/menu.js:500
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, και %(garrisonedString)s."
 
 #: gui/session/menu.js:510 gui/session/menu.js:572
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, και %(inactiveString)s."
 
 #: gui/session/menu.js:517 gui/session/menu.js:579
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:527
 #, python-format
@@ -178,51 +180,51 @@ msgstr[1] ""
 #: gui/session/menu.js:530
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, και %(inactiveString)s."
 
 #: gui/session/menu.js:537
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:546
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s έμπορος στεριάς αδρανής"
+msgstr[1] "%(numberOfLandTraders)s έμποροι στεριάς  αδρανείς"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Υπάρχει %(inactiveString)s."
+msgstr[1] "Υπάρχουν %(inactiveString)s."
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Δεν υπάρχουν εμπορικά πλοία."
 
 #: gui/session/menu.js:565
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s αδρανής"
+msgstr[1] "%(numberOfShipTraders)s αδρανείς"
 
 #: gui/session/menu.js:569
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Υπάρχει %(numberTrading)s εμπορικό πλοίο με εμπόριο"
+msgstr[1] "Υπάρχουν %(numberTrading)s εμπορικά πλοία με εμπόριο"
 
 #: gui/session/menu.js:588
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s εμπορικό πλοίο αδρανές"
+msgstr[1] "%(numberOfShipTraders)s εμπορικά πλοία αδρανοί"
 
 #: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
 msgid "Manual"
@@ -230,18 +232,18 @@ msgstr "Εγχειρίδιο χρήσης"
 
 #: gui/session/menu.js:678
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Η προβολή επικάλυψης προγραμματιστή άνοιξε."
 
 #: gui/session/menu.js:680
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Η προβολή επικάλυψης προγραμματιστή έκλεισε."
 
 #: gui/session/menu.js:696
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Φόρος υποτέλειας %(resourceAmount)s %(resourceType)s σε \n %(playerName)s. Shift-κλικ για να αποδώσουν %(greaterAmount)s."
 
 #: gui/session/messages.js:185
 #, python-format
@@ -254,7 +256,7 @@ msgstr "Αναμονή για τη σύνδεση άλλων παιχτών."
 
 #: gui/session/messages.js:202
 msgid "Synchronising gameplay with other players..."
-msgstr ""
+msgstr "Συγχρονισμός παιχνιδιού με άλλους παίκτες ..."
 
 #: gui/session/messages.js:210
 msgid "Connected to the server."
@@ -262,7 +264,7 @@ msgstr "Σύνδεση με διακομιστή."
 
 #: gui/session/messages.js:214
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Η σύνδεση με το διακομιστή έχει επικυρωθεί."
 
 #: gui/session/messages.js:219
 msgid "Connection to the server has been lost."
@@ -279,7 +281,7 @@ msgstr "Άγνωστος παίκτης"
 #: gui/session/messages.js:411
 #, python-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s μπήκε στο παιχνίδι"
 
 #: gui/session/messages.js:414
 #, python-format
@@ -298,32 +300,32 @@ msgstr "%(player)s ηττήθηκε."
 #: gui/session/messages.js:429
 #, python-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "Είσαι τώρα σύμμαχος με %(player)s."
 
 #: gui/session/messages.js:431
 #, python-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "Είσαι τώρα σε πόλεμο με %(player)s."
 
 #: gui/session/messages.js:433
 #, python-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "Είσαι τώρα ουδέτερος με %(player)s."
 
 #: gui/session/messages.js:439
 #, python-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s είναι τώρα σε συμμαχία με εσένα."
 
 #: gui/session/messages.js:441
 #, python-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "%(player)s είναι τώρα σε πόλεμο με εσένα."
 
 #: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now neutral with you."
-msgstr ""
+msgstr "%(player)s είναι τώρα ουδέτερα με εσένα."
 
 #: gui/session/messages.js:462
 #, python-format
@@ -346,7 +348,7 @@ msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 #: gui/session/messages.js:478
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 
 #: gui/session/messages.js:495 gui/session/messages.js:500
 #, python-format
@@ -433,7 +435,7 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Όφελος: %(amount)s"
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"
@@ -441,7 +443,7 @@ msgstr "Αριθμός χτιστών"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Τρέχων/Μέγιστος συλλεκτών"
 
 #: gui/session/selection_details.js:196
 #, python-format
@@ -465,7 +467,7 @@ msgstr "Διάστημα:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Βαθμός:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:633
 #: gui/session/utility_functions.js:324
@@ -496,7 +498,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Τάξεις:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -510,12 +512,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Αγόρασε %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Πούλησε %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -525,7 +527,7 @@ msgstr "Απαιτείται η τεχνολογία %(technology)s"
 #: gui/session/selection_panels.js:332
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Ξεφόρτωμα %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
@@ -541,23 +543,23 @@ msgstr "Ξεκλείδωμα Πύλης"
 
 #: gui/session/selection_panels.js:511
 msgid "Pack"
-msgstr ""
+msgstr "Πακετάρισμα"
 
 #: gui/session/selection_panels.js:513
 msgid "Unpack"
-msgstr ""
+msgstr "Άνοιγμα πακέτου"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Ακύρωση πακεταρίσματος "
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Ακύρωση ξεπακεταρίσματος "
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Aνεπαρκής χωρητικότητα πληθυσμού:"
 
 #: gui/session/selection_panels.js:591
 #, python-format
@@ -568,8 +570,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Απομένει: %(number)s να χτιστεί."
+msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 
 #: gui/session/selection_panels.js:938 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -604,17 +606,17 @@ msgstr "Προάσπιση"
 #: gui/session/selection_panels_helpers.js:70
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Τρέχον αριθμός: %(count)s, Όριο: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s μεγεθύνει το όριο σε %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s μειώνει το όριο σε %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -628,17 +630,17 @@ msgstr "Shift-click"
 #: gui/session/selection_panels_helpers.js:123
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s για εκπαίδευση %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:130
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s  για εκπαίδευση %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:137
 #, python-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s για εκπαίδευση %(number)s."
 
 #: gui/session/session.js:19
 msgid "You"
@@ -650,7 +652,7 @@ msgstr "Γαία"
 
 #: gui/session/session.js:309 gui/session/session.js:325
 msgid "You have left the game."
-msgstr ""
+msgstr "Αποχώρησες από το παιχνίδι."
 
 #: gui/session/session.js:316
 msgid "You have been disconnected."
@@ -701,7 +703,7 @@ msgstr "%(time)s (%(speed)sx)"
 #: gui/session/session.js:891
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
-msgstr ""
+msgstr "Μη αναγνωρισμένος τύπος περιβάλλοντος: %(ambientType)s"
 
 #: gui/session/session.js:908
 #, python-format
@@ -717,33 +719,33 @@ msgstr "Σημείωση: Η λειτουργία χρονική δίνη είν
 
 #: gui/session/session.js:913
 msgid "Time warp mode"
-msgstr ""
+msgstr "Λειτουργία στρέβλωσης του χρόνου"
 
 #: gui/session/unit_actions.js:295
 msgid "Origin trade market."
-msgstr ""
+msgstr "Αρχική αγορά εμπορίου"
 
 #: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
 #: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
 #, python-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Κέρδος: %(gain)s"
 
 #: gui/session/unit_actions.js:301
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Κάντε δεξί κλικ σε μια άλλη αγορά για να την ορίσετε ως αγορά προορισμού."
 
 #: gui/session/unit_actions.js:304
 msgid "Destination trade market."
-msgstr ""
+msgstr "Προορισμός της αγοράς."
 
 #: gui/session/unit_actions.js:309
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προέλευσης."
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Κάντε δεξί κλικ για να ορίσετε την αγορά προορισμού."
 
 #: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
 #, python-format
@@ -752,16 +754,16 @@ msgstr "Τρέχουσα οχύρωση: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:519
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Κάντε δεξί κλικ για να καθοριστεί μια προεπιλεγμένη διαδρομή για τους νέους εμπόρους."
 
 #: gui/session/unit_actions.js:523
 #, python-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Αναμενόμενο κέρδος: %(gain)s"
 
 #: gui/session/unit_actions.js:645
 msgid "Unload All"
-msgstr ""
+msgstr "Ξεφόρτωμα όλων"
 
 #: gui/session/unit_actions.js:680
 msgid "Stop"
@@ -773,7 +775,7 @@ msgstr "Οχύρωση"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Ξεφορτώμα"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -781,7 +783,7 @@ msgstr "Επισκευή"
 
 #: gui/session/unit_actions.js:752
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Έμφαση στο σημείο Rally"
 
 #: gui/session/unit_actions.js:775
 msgid "Back to Work"
@@ -789,15 +791,15 @@ msgstr "Πίσω στη δουλειά"
 
 #: gui/session/unit_actions.js:791
 msgid "Guard"
-msgstr ""
+msgstr "Προφύλαξη"
 
 #: gui/session/unit_actions.js:808
 msgid "Remove guard"
-msgstr ""
+msgstr "Αφαίρεση προφύλαξης"
 
 #: gui/session/unit_actions.js:824
 msgid "Select trading goods"
-msgstr ""
+msgstr "Επιλογή ανταλλάξιμων αγαθών."
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
@@ -809,7 +811,7 @@ msgstr "Σήμανε συναγερμό!"
 
 #: gui/session/unit_actions.js:861
 msgid "End of alert."
-msgstr ""
+msgstr "Τέλος του συναγερμού"
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
@@ -826,7 +828,7 @@ msgstr "%(damage)s %(damageType)s"
 #: gui/session/utility_functions.js:174 gui/session/utility_functions.js:221
 #: gui/session/utility_functions.js:250 gui/session/utility_functions.js:276
 msgid "Hack"
-msgstr ""
+msgstr "Πελεκισμός"
 
 #: gui/session/utility_functions.js:179 gui/session/utility_functions.js:227
 #: gui/session/utility_functions.js:255 gui/session/utility_functions.js:282
@@ -873,7 +875,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:297
 msgid "Charge Attack:"
-msgstr ""
+msgstr "Επίθεση Επέλασης"
 
 #: gui/session/utility_functions.js:298
 msgid "Melee Attack:"
@@ -881,7 +883,7 @@ msgstr "Σώμα με σώμα Επίθεση"
 
 #: gui/session/utility_functions.js:299
 msgid "Ranged Attack:"
-msgstr ""
+msgstr "Απόστασης Επίθεση"
 
 #: gui/session/utility_functions.js:302
 msgid "Attack:"
@@ -925,7 +927,7 @@ msgstr "  "
 #: gui/session/utility_functions.js:476
 #, python-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Πύργοι: %(costs)s"
 
 #: gui/session/utility_functions.js:498
 #, python-format
@@ -934,11 +936,11 @@ msgstr "%(label)s %(populationBonus)s"
 
 #: gui/session/utility_functions.js:499
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Πληθυσμιακό Όφελος:"
 
 #: gui/session/utility_functions.js:517
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Μη επαρκείς πόροι"
 
 #: gui/session/utility_functions.js:528
 #, python-format
@@ -1218,7 +1220,7 @@ msgstr "Πολιτισμός"
 
 #: gui/session/diplomacy_window.xml:24 (caption)
 msgid "Theirs"
-msgstr ""
+msgstr "Δικά τους"
 
 #: gui/session/diplomacy_window.xml:27 (caption)
 msgid "A"
@@ -1275,31 +1277,31 @@ msgstr "Αλλαγή προοπτικής"
 
 #: gui/session/session.xml:70 (caption)
 msgid "Display selection state"
-msgstr ""
+msgstr "Εμφάνιση κατάστασης επιλογής"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Επικάλυψη εύρεσης μονοπατιού"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Επικάλυψη μπλοκαρίσματος"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr " Επικάλυψη μονάδα κίνησης"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Επικάλυψη απόστασης"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Πλαίσιο οριοθέτησης της επικάλυψης"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
-msgstr ""
+msgstr "Περιορισμός της κάμερας"
 
 #: gui/session/session.xml:124 (caption)
 msgid "Reveal map"
@@ -1307,11 +1309,11 @@ msgstr "Αποκάλυψη χάρτη"
 
 #: gui/session/session.xml:132 (caption)
 msgid "Enable time warp"
-msgstr ""
+msgstr "Ενεργοποίηση χρονική δίνης"
 
 #: gui/session/session.xml:142 (caption)
 msgid "Promote selected units"
-msgstr ""
+msgstr "Προαγωγή των επιλεγμένων μονάδων"
 
 #: gui/session/session.xml:169 (caption)
 msgid "Game Paused"
@@ -1327,7 +1329,7 @@ msgstr "Ακύρωση"
 
 #: gui/session/session.xml:207 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "Ομάδα Μόνο"
 
 #: gui/session/session.xml:211 (caption)
 msgid "Send"
@@ -1339,23 +1341,23 @@ msgstr "Επιλέξτε παίκτη προς προβολή"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "Λειτουργία Παρατηρητή (πειραματικό)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "Ανταλλαγή"
 
 #: gui/session/trade_window.xml:15 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Ανταλλαγή αγαθών επιλογή:"
 
 #: gui/session/trade_window.xml:35 (tooltip)
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Επιλέξτε ένα εμπόρευμα σαν προέλευση των αλλαγών, στη συνέχεια, χρησιμοποιήστε τα βέλη των στοχευμένων  εμπορευμάτων για να γίνουν οι αλλαγές (χρησιμοποιώντας το πλήκτρο Shift για να επιλέξετε, θα θέσει το επιλεγμένο πόρο έως 100%)."
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1388,13 +1390,13 @@ msgstr "Βαθμός"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "Σειρά παραγωγής"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Κάντε κλικ για να επιλέξετε ομαδικά μονάδες, κάντε διπλό κλικ για να επικεντρωθούν οι ομαδοποιημένες μονάδες και κάντε δεξί κλικ για να διαλύσετε την ομάδα."
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"
@@ -1410,7 +1412,7 @@ msgstr "ΜΕΝΟΥ"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Πατάντζαλι"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"

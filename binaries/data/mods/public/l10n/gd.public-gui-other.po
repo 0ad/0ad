@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# GunChleoc, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-29 08:21+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,18 +33,18 @@ msgstr "Cluiche %(civilization)s"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Buannachd an t-sìobhaltais"
+msgstr[1] "Buannachdan an t-sìobhaltais"
+msgstr[2] "Buannachdan an t-sìobhaltais"
+msgstr[3] "Buannachdan an t-sìobhaltais"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Buannachd an sgioba"
+msgstr[1] "Buannachdan an sgioba"
+msgstr[2] "Buannachdan an sgioba"
+msgstr[3] "Buannachdan an sgioba"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -51,10 +53,10 @@ msgstr "Teicneolasan sònraichte"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "Togalach sònraichte"
+msgstr[1] "Togalaichean sònraichte"
+msgstr[2] "Togalaichean sònraichte"
+msgstr[3] "Togalaichean sònraichte"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -70,7 +72,7 @@ msgstr "An eachdraidh aig %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "A' fosgladh %(url)s\n sa bhrabhsair-lìn bhunaiteach. Fuirich ort...."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
@@ -229,12 +231,12 @@ msgstr "Ma chuireas tu an sgrìn seo à comas gu tur, dh'fhaoidte gun caill thu 
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Gliocasan-sgrìn mionaideach"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas trèanadh ann an togalach a nì aonadan."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
@@ -495,7 +497,7 @@ msgstr "Dearbhadh"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Chan eil deasaiche nan cnàmh-sgeul ri làimh no dh'fhàillig leis an luchdadh. Thoir sùil air logaichean a' gheama airson barrachd fiosrachaidh."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -877,7 +879,7 @@ msgstr "Cuidich leinn leis an eadar-theangachadh!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Briog gus duilleag an eadar-theangachaidh aig 0 A.D. fhosgladh sa bhrabhsair agad."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"

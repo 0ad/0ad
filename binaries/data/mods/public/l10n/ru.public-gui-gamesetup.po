@@ -11,20 +11,26 @@
 # Anton Khabarov <2233009@gmail.com>, 2014
 # _Arkan0ID_ <vinnikf24@gmail.com>, 2014
 # Armen Dzhagaryan <kdar1987@gmail.com>, 2014
+# Homunkul <Behal.inc@gmail.com>, 2014
 # bigaltum <bigaltum@gmail.com>, 2014
 # Bogdan Artemyev <bogarto@mail.ru>, 2014
 # Cергей Исаченко <vortexius@gmail.com>, 2014
 # delpfine <delpfine2012@gmail.com>, 2014
+# delpfine <delpfine2012@gmail.com>, 2014
+# dr&mx <dronmax@gmail.com>, 2014
 # Eugene Kostrika <testiculi@yandex.ru>, 2013
 # Igor <ggg2134@mail.ru>, 2013
 # insolor <insolor@gmail.com>, 2014
 # Ivan <lis84@mail.ru>, 2013
+# vlitomsk <kvas.omsk@gmail.com>, 2014
 # Maksim Oreshkov <oreshkovmv@mail.ru>, 2014
 # Malik Khodjaev <loc.root.123@gmail.com>, 2013
+# Nikita Pavlyuk <nekit96-08@mail.ru>, 2014
 # Oleg Ekhlakov <subspam@mail.ru>, 2014
 # Pavel Kyzmin <Virus191288@gmail.com>, 2013
 # Pavel <mpolr21@gmail.com>, 2014
 # sad2shade <sad.2.shade@gmail.com>, 2014
+# Simple88, 2014
 # sorrymak <dearalcher@gmail.com>, 2013
 # under.quol <under.quol@gmail.com>, 2013
 # Vladislav <swsh0t@gmail.com>, 2013
@@ -32,14 +38,14 @@
 # zake1313 <mihfay@gmail.com>, 2014
 # Виталий <imprtat@gmail.com>, 2013
 # Кваша Владислав <vladislav.kwasha@yandex.ua>, 2014
-# Чувак <baclanenok@mail.ru>, 2013
+# Чувак, 2013-2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-08-05 16:21+0000\n"
+"Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -55,7 +61,7 @@ msgstr "Пусто"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr "Искусственный интеллект будет отключен для этого игрока."
+msgstr "Искусственный интеллект (ИИ) будет отключён для этого игрока."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -101,7 +107,7 @@ msgstr "Пусто"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
-msgstr "Безлимитно"
+msgstr "Неограниченно"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:15
@@ -127,7 +133,7 @@ msgstr "Много"
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "Очень Много"
+msgstr "Очень много"
 
 #: gui/gamesetup/gamesetup.js:15
 msgctxt "startingResources"
@@ -141,11 +147,11 @@ msgid ""
 "performance issues. Naval maps are recommended to be played with human "
 "opponents only. Nonetheless, Petra has now an experimental support for naval"
 " maps."
-msgstr "%(warning)s ИИ не поддерживает морские карты и может быть причиной больших проблем с производительностью. Морские карты рекомендованы для игры только людьми. Однако, ИИ Petra сейчас получила экспериментальную поддержку морских карт. "
+msgstr "%(warning)s ИИ не поддерживает морские карты и может быть причиной больших проблем с производительностью. Морские карты рекомендованы для игры только с людьми. Однако, ИИ Петра сейчас получил экспериментальную поддержку морских карт. "
 
 #: gui/gamesetup/gamesetup.js:73
 msgid "Warning:"
-msgstr "Предупреждение:"
+msgstr "Внимание:"
 
 #: gui/gamesetup/gamesetup.js:113
 msgid "Return to the main menu."
@@ -153,7 +159,7 @@ msgstr "Вернуться в главное меню."
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Return to the lobby."
-msgstr "Вернуться в лобби "
+msgstr "Вернуться в комнату."
 
 #: gui/gamesetup/gamesetup.js:146
 msgctxt "map"
@@ -164,7 +170,7 @@ msgstr "Схватка"
 #: gui/gamesetup/gamesetup.js:1223
 msgctxt "map"
 msgid "Random"
-msgstr "Случайная"
+msgstr "Случайно"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "Scenario"
@@ -195,7 +201,7 @@ msgstr "Пусто"
 #: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
 msgctxt "civilization"
 msgid "Random"
-msgstr "Случайная"
+msgstr "Случайно"
 
 #: gui/gamesetup/gamesetup.js:759 gui/gamesetup/gamesetup.js:876
 msgid "You"
@@ -215,7 +221,7 @@ msgstr "Размер карты:"
 #: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
 #: gui/gamesetup/gamesetup.xml:310 (caption)
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Раскрыто карты:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -227,7 +233,7 @@ msgstr "Исследовано карты:"
 #: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.xml:280 (caption)
 msgid "Victory Condition:"
-msgstr "Условия Победы:"
+msgstr "Условия победы:"
 
 #: gui/gamesetup/gamesetup.js:1101 gui/gamesetup/gamesetup.js:1160
 #: gui/gamesetup/gamesetup.xml:330 (caption)
@@ -263,7 +269,7 @@ msgstr "К сожалению, описание недоступно."
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s игрок. %(description)s"
-msgstr[1] "%(number)s игроков. %(description)s"
+msgstr[1] "%(number)s игрока. %(description)s"
 msgstr[2] "%(number)s игроков. %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1377
@@ -273,7 +279,7 @@ msgstr "ИИ: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1382
 msgid "Unassigned"
-msgstr "Пусто"
+msgstr "Не назначено"
 
 #: gui/gamesetup/gamesetup.js:1587 gui/gamesetup/gamesetup.js:1592
 #: gui/gamesetup/gamesetup.js:1610
@@ -321,7 +327,7 @@ msgstr "Я не готов"
 
 #: gui/gamesetup/gamesetup.js:1636
 msgid "State that you are not ready to play."
-msgstr "Установите здесь, если Вы не готовы играть."
+msgstr "Выберите если не готовы играть."
 
 #: gui/gamesetup/gamesetup.js:1641 gui/gamesetup/gamesetup.js:1715
 msgid "I'm ready!"
@@ -329,16 +335,16 @@ msgstr "Я готов!"
 
 #: gui/gamesetup/gamesetup.js:1642
 msgid "State that you are ready to play!"
-msgstr "Установите здесь, если Вы готовы играть."
+msgstr "Выберите если готовы играть!"
 
 #: gui/gamesetup/gamesetup.js:1716
 msgid "State that you accept the current settings and are ready to play!"
-msgstr "Установите здесь, если принимаете текущие установки игры и готовы играть!"
+msgstr "Выберите если принимаете текущие установки игры и готовы играть!"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr "%(name)s игра"
+msgstr "игра %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
@@ -364,7 +370,7 @@ msgstr "Название игры уже используется"
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "игра игрока %(playername)s"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -378,11 +384,11 @@ msgstr "Генерация “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr "Настройки ИИ"
+msgstr "Настройка ИИ"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr "ИИ Игрок:"
+msgstr "ИИ-игрок:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
@@ -400,7 +406,7 @@ msgstr "OK"
 
 #: gui/gamesetup/gamesetup.xml:15 (caption)
 msgid "Match Setup"
-msgstr "Настройки матча"
+msgstr "Настройки состязания"
 
 #: gui/gamesetup/gamesetup.xml:21 (caption)
 msgid "Loading"
@@ -472,7 +478,7 @@ msgstr "Выберите фильтр карт."
 
 #: gui/gamesetup/gamesetup.xml:146 (tooltip)
 msgid "Select a map to play on."
-msgstr "Выберите карту, чтобы играть."
+msgstr "Выберите карту для игры."
 
 #: gui/gamesetup/gamesetup.xml:157 (tooltip)
 msgid "Select number of players."
@@ -509,7 +515,7 @@ msgstr "Дополнительные настройки"
 
 #: gui/gamesetup/gamesetup.xml:254 (tooltip)
 msgid "See more game options"
-msgstr "См. больше вариантов игры"
+msgstr "Смотреть дополнительные настройки игры"
 
 #: gui/gamesetup/gamesetup.xml:270 (caption)
 msgid "Game Speed:"
@@ -543,17 +549,17 @@ msgstr "Выбери стартовые ресурсы."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr "Переключить видимость карты (видеть все)."
+msgstr "Переключить видимость карты (видеть всё)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr "Перекллючить разведку карты (видеть гею и здания)."
+msgstr "Переключить видимость карты (видеть гею и здания)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
-msgstr "Включить/выключить фиксированные команды."
+msgstr "Включить / выключить фиксированные команды."
 
 #: gui/gamesetup/gamesetup.xml:340 (caption)
 msgid "Cheats:"
@@ -561,7 +567,7 @@ msgstr "Читы:"
 
 #: gui/gamesetup/gamesetup.xml:344 (tooltip)
 msgid "Toggle the usability of cheats."
-msgstr "Включить/выключить возможность использования читов."
+msgstr "Включить / выключить возможность использования читов."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
@@ -569,7 +575,7 @@ msgstr "Оценка игры:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "Включите чтобы это игра была оценена для доски почета."
+msgstr "Включите если игру нужно оценить для доски почёта."
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
@@ -615,351 +621,351 @@ msgstr "Цитата дня:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "«Преуспевающие негодяи невыносимы.» — Эсхил"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "«Пред ней [смертью] одной бессильно Убеждение.» — Эсхил"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "«Не показное - подлинное мужество» — Эсхил, «Семеро против Фив»"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr ""
+msgstr "«Не клятва заставляет нас верить человеку, но человек – клятве.» — Эсхил"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "«Болезнь такая, видно, всем правителям присуща - никогда не доверять друзьям» — Эсхил, «Прометей прикованный»"
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "«Что ж, время, старясь, может научить всему.» — Эсхил, «Прометей прикованный»"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "«Мудрость приходит через страдание ... Милость приходит к нам от богов» — Эсхил. «Агамемнон»"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "«А Трое гибель понесла [Елена] в приданое.» — Эсхил. «Агамемнон»"
 
 #: gui/text/quotes.txt:9
 msgid ""
 "\"It is in the character of very few men to honor without envy a friend who "
 "has prospered.\" - Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "«Немногим людям свойственно друзей счастливых чтить и не завидовать.» — Эсхил. «Агамемнон»"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr ""
+msgstr "«Чей смертелен удар, тот смертельный удар заслужил. Что другим причинил, претерпи!» — Эсхил, «Плакальщицы»"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr "\"Любой повод послужит тирану.\" - Эзоп"
+msgstr "«Любой повод послужит тирану.» — Эзоп"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr "\"Лучше быть мудрым по несчастьям других, чем собственным.\" - Эзоп"
+msgstr "«Лучше быть мудрым по несчастьям других, чем собственным.» — Эзоп"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr ""
+msgstr "«Знакомство порождает неуважение; И к страшному можно привыкнуть.» — Эзоп"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr "\"Легко быть смелым с безопасного расстояния.\" - Эзоп"
+msgstr "«Легко быть смелым с безопасного расстояния.» — Эзоп"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr ""
+msgstr "«Ты летом пела, так зимой пляши в стужу» — Эзоп, «Муравей и цикада»"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr "\"Не только перья красят птиц.\" - Эзоп"
+msgstr "«Не только перья красят птиц.» — Эзоп"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
-msgstr ""
+msgstr "«Не задумываясь о последствиях для себя, не иди на поводу у другого.» — Эзоп, «Лисица и козёл»"
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr "\"Убеждения часто более действенны, чем сила.\" - Эзоп"
+msgstr "«Убеждения часто более действенны, чем сила.» — Эзоп"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr "\"Самомнение может привести к самоуничтожению.\" - Эзоп"
+msgstr "«Самомнение может привести к самоуничтожению.» — Эзоп"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr "\"Медленно едешь, но верно победишь в гонке.\" - Эзоп"
+msgstr "«Медленно едешь, но верно победишь в гонке.» — Эзоп"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr "\"Боги помогают тем, кто сам себе помогает.\" - Эзоп"
+msgstr "«Боги помогают тем, кто сам себе помогает.» — Эзоп"
 
 #: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
-msgstr ""
+msgstr "«Оперение стрелы было из перьев орла. Мы часто даем нашим врагам средства для нашего собственного уничтожения.» — Эзоп, «Орёл и стрела»"
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "«Союз даёт силу.» — Эзоп"
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr ""
+msgstr "«Были даны обещания вражеские чтобы их нарушать.» — Эзоп"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr "\"Спартанцы не спрашивают сколько их, спартанцы спрашивают, где они.\" - Агис II Спарты"
+msgstr "«Спартанцы не спрашивают \"сколько их\", спартанцы спрашивают \"где они\"?» — Агис II, царь Спарты"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
-msgstr ""
+msgstr "«Не плачь; меня подвергают смерти несправедливо и противозаконно; но я счастливее моих убийц» — Агис IV, 24-й спартанский царь из династии Эврипонтидов"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr ""
+msgstr "«Творящие добро встретят добро; творящие зло встретят зло, ибо Господь судит по делам» — Ахиакар, ассирийский мудрец"
 
 #: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr "\"Если бы я не был Александром, я бы хотел быть Диогеном.\" - Александр Македонский"
+msgstr "«Если бы я не был Александром, я бы хотел быть Диогеном.» — Александр Македонский"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr "\"Я не краду победу.\" - Александр Македонский"
+msgstr "«Я не краду победу.» — Александр Македонский"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "«Вы всё ещё считаете что конец и величие наших побед это стремление избежать пороков и немощи побеждённых?» — Александр Македонский "
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr ""
+msgstr "«Для сильнейшего!» — Александр, на смертном одре, когда его спросили, кто должен стать его преемником в качестве царя."
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr "\"Нет ничего невозможного для того, кто пытается.\" - Александр Македонский"
+msgstr "«Нет ничего невозможного для того, кто пытается.» — Александр Македонский"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr "\"Только секс и сон заставляют меня ощущать, что я смертный\" - Александр Македонский"
+msgstr "«Только секс и сон заставляют меня ощущать, что я смертный.» — Александр Македонский"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr ""
+msgstr "«Рынок — это место, нарочно назначенное, чтобы обманывать и обкрадывать друг друга.» — Анахарсис"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr ""
+msgstr "«Закон — паутина: маленькие насекомые погибают в ней, крупные же благополучно пробиваются.» — Анахарсис"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr ""
+msgstr "«У лисы есть много хитрых приёмов, но ёж знает одну большую хитрость!» — Архилох"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr ""
+msgstr "«Государства погибают тогда, когда перестают отличать дурных от хороших.» — Антисфен"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr ""
+msgstr "«Дайте мне точку опоры, и я переверну мир.» — Архимед, используя рычаг"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr ""
+msgstr "«От врагов, не от друзей же научились города крепостные строить стены и военные суда.» — Аристофан"
 
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
-msgstr ""
+msgstr "«От слов и ум к высотам устремляется, и возвышает человека.» — Аристофан"
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr ""
+msgstr "«Величие мыслей и идей рождает великий язык» — Аристофан"
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "«Чтобы ты укротителя знал и, когда он тебе только свистнет, на врагов, на которых натравит тебя, ты, подобно собаке, кидался.» — Аристофан"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "«Я считаю большей храбростью победу над своими желаниями, а не над своими врагами. Тяжелейшая из побед - это победа над собой.» — Аристотель"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "«Наш характер есть результат нашего поведения.» — Аристотель"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "«Человек по своей природе есть политическое животное.» — Аристотель"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
-msgstr ""
+msgstr "«Если, как полагают некоторые, свобода и равенство являются важнейшими признаками демократии, то это нашло бы своё осуществление главным образом в том, чтобы все непременно принимали участие в государственном управлении.» — Аристотель"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
-msgstr ""
+msgstr "«И олигарх и тиран подозревают людей, и поэтому лишают их их рук.» — Аристотель"
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr ""
+msgstr "«Остроумие является грамотной наглостью.» — Аристотель"
 
 #: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
-msgstr ""
+msgstr "«Люди необразованные в глазах толпы кажутся более убедительными, чем образованные.» — Аристотель"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
-msgstr ""
+msgstr "«Не было еще ни одного великого ума без примеси безумия.» — Аристотель"
 
 #: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
-msgstr ""
+msgstr "«Вот чему меня научила философия: я поступаю так или иначе не по чьему-либо приказу, но только из страха перед законом.» — Аристотель"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
-msgstr ""
+msgstr "«Не спеши браться за дело, а взявшись — будь твёрд.» — Биант Приенский"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr ""
+msgstr "«Бесполезно в горе рвать волосы — лысиной печаль не излечишь.» — Бион Борисфенит"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr ""
+msgstr "«Не скупой владеет богатством, а богатство — скупым.» — Бион Борисфенит"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr "\"Горе побежденным\" - Бренн"
+msgstr "«Горе побеждённым.» — Бренн"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "«Такова участь тиранов.» — Марк Юний Брут после убийства Гая Юлия Цезаря"
 
 #: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr ""
+msgstr "«Сбежать, да, но в этот раз — руками, а не ногами.» — Марк Юний Брут перед самоубийством"
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr "\"Пришел, увидел, победил.\" - Гай Юлий Цезарь"
+msgstr "«Пришёл, увидел, победил.» — Гай Юлий Цезарь"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "«Люди охотно верят тому, чему желают верить.» — Гай Юлий Цезарь"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "«Жребий брошен.» — Гай Юлий Цезарь"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "«Я боюсь не длинноволосых и упитанных, а бледных и выглядящих голодными» - Гай Юлий Цкзарь"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "«Стань вором, чтобы поймать вора.» — Каллимах из Кирены"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr "\"Умные большему учатся у дураков, чем дураки у умных.\" - Катон Старший"
+msgstr "«Умные большему учатся у дураков, чем дураки у умных.» — Марк Порций Катон Старший"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr "\"Кроме того, я думаю, что Карфаген необходимо разрушить.\" - Катон Старший"
+msgstr "«И все-таки Карфаген должен быть разрушен!» — Марк Порций Катон Старший"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr "\"Все народы правят своими женщинами, мы правим всеми народами, но наши женщины правят нами.\" - Катон Старший"
+msgstr "«Всё человечество правит своим женщинам, мы правим человечеством, но наши женщины правят нами.» — Марк Порций Катон Старший"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "«Будь твёрд или мягок, как этого требуют обстоятельства.»  — Марк Порций Катон Старший"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "«Худший правитель тот, кто не может управлять собой.»  — Марк Порций Катон Старший"
 
 #: gui/text/quotes.txt:68
 msgid ""
@@ -972,7 +978,7 @@ msgstr ""
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr ""
+msgstr "«Если царь добродетелен, тогда подданные также добродетельны.» — Чанакья"
 
 #: gui/text/quotes.txt:70
 msgid ""
@@ -983,13 +989,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
-msgstr "\"О времена,о нравы!\" - Марк Туллий Цицерон"
+msgstr "«О времена,о нравы!» — Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
-msgstr ""
+msgstr "«Никто не стар настолько, чтобы не рассчитывать прожить ещё год.» — Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:73
 msgid ""
@@ -1001,11 +1007,11 @@ msgstr ""
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
-msgstr ""
+msgstr "\"Урожай, Вы руки, к тоге; к гражданской похвале, Вы лавры\". - Маркус Тулиус Цицерон"
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
-msgstr ""
+msgstr "\"По моему сигналу, устроить ад.\" - Максим Децимус Меридиус"
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
@@ -1020,7 +1026,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Гений стимулируется энергией.\" - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
@@ -1030,17 +1036,17 @@ msgstr "\"Пока есть жизнь, есть и надежда.\" - Марк
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Мы не должны говорить, что каждая наша ошибка глупая\". - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Пусть наказание соответствует преступлению.\" - Марк Туллий Цицерон"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Позвольте благосостоянию людей быть окончательным законом\". - Маркус Тулиус Цицерон"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
@@ -1054,19 +1060,19 @@ msgstr "\"Законы молчат во время войны.\" - Марк Т�
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Война никогда не предпринимается идеальным государством, кроме защиты его чести или его безопасности\". - Маркус Тулиус Цицерон"
 
 #: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Первая обязанность человека - искать и расследовать правду\". - Маркус Тулиус Цицерон"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
-msgstr ""
+msgstr "\"В мире сыновья хоронят своих отцов, но во время войны отцы хоронят своих сыновей\". - Croesus (греческий язык: Kroisos), король Лидии"
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
@@ -1074,20 +1080,20 @@ msgstr "\"Я - Кир, царь мира...\" - Кир Великий"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Разнообразие в совете, единство в команде\". - Сайрус Великий"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
-msgstr ""
+msgstr "\"Не поэтому жалко мне этот кусочек земли, который покрывает мои кости\". - Эпитафия Кира Великого"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr ""
+msgstr "\"Успех всегда призывает к большему великодушию — хотя большинство людей, потерянных в темноте их собственных эго, рассматривает его как случай для большей жадности\". - Сайрус Великий"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1099,7 +1105,7 @@ msgstr ""
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
-msgstr ""
+msgstr "\"Хорошее размножение у рогатого скота зависит от физического здоровья, а в мужчинах на правильно построенном характере\". - Демокрит"
 
 #: gui/text/quotes.txt:94
 msgid ""
@@ -1127,7 +1133,7 @@ msgstr "\"С малых возможностей часто начинаются
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
-msgstr ""
+msgstr "\"Каждое преимущество в прошлом оценено в свете последней проблемы\". - Демосфен"
 
 #: gui/text/quotes.txt:99
 msgid ""
@@ -1154,37 +1160,37 @@ msgstr ""
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr ""
+msgstr "\"Ни у чего нет большей силы, чем страшная необходимость\". - Эврипид"
 
 #: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
-msgstr ""
+msgstr "\"Трус отворачивается, но выбор храброго человека - опасность\". - Эврипид"
 
 #: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
-msgstr ""
+msgstr "\"Трусов не считают в сражении; они там, но не в нём.\" - Эврипид"
 
 #: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr ""
+msgstr "\"Шанс борется на стороне благоразумного.\" - Эврипид"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr ""
+msgstr "\"Если человек потушить глаз другого человека, его глаза угаснет.\" - Хаммурапи"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Я пришел не к войне с итальянцами, но на помощь итальянцам против Рима.\" - Ганнибал Барка"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr ""
+msgstr "\"Либо я найду путь, либо сделаю свой.\" - Ганнибал Барка"
 
 #: gui/text/quotes.txt:110
 msgid ""
@@ -1195,30 +1201,30 @@ msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "«Все течёт, всё меняется.» — Гераклит"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Всё непостоянно кроме изменений.\" - Гераклит"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Войти дважды в одну реку невозможно.\" - Гераклит"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr ""
+msgstr "\"Характер - это судьба.\" - Гераклит"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
-msgstr ""
+msgstr "\"Обстоятельства исключают мужчин, мужчины не исключают обстоятельства.\" - Геродот"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr ""
+msgstr "«Лакедемоняне же доблестно бились с врагом и показали свою опытность в военном деле перед неумелым врагом.» — Геродот"
 
 #: gui/text/quotes.txt:117
 msgid ""
@@ -1228,15 +1234,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr ""
+msgstr "\"В мягких регионах рождаются мягкие мужчины\". - Геродот"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
-msgstr ""
+msgstr "\"Это сладко и благородно,  умереть за страну\". - Гораций"
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "\"Мы - есть прах и тень.\" - Гораций"
 
 #: gui/text/quotes.txt:121
 msgid ""
@@ -1266,7 +1272,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr "\"Со мной всегда 2 бога, Убеждение и Принуждение\" - Фемистокл"
+msgstr "«Со мной всегда два бога - Убеждение и Принуждение.» — Фемистокл"
 
 #: gui/text/quotes.txt:126
 msgid ""
@@ -1373,7 +1379,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
-msgstr ""
+msgstr "\"Жизнь без исследования не стоит жизни.\" - Платон"
 
 #: gui/text/quotes.txt:145
 msgid ""
@@ -1386,7 +1392,7 @@ msgstr ""
 msgid ""
 "\"False words are not only evil in themselves, but they infect the soul with"
 " evil.\" - Plato"
-msgstr ""
+msgstr "\"Лож, не только плоха сама по себе, но и заражает душу злом.\" - Платон"
 
 #: gui/text/quotes.txt:147
 msgid ""
@@ -1397,11 +1403,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
-msgstr ""
+msgstr "\"Смерть не самое худшее, что может случиться с мужчиной.\" - Платон"
 
 #: gui/text/quotes.txt:149
 msgid "\"Only the dead have seen the end of war.\" - Unknown"
-msgstr ""
+msgstr "\"Только мертвец видел окончание войны.\" - Неизвестный"
 
 #: gui/text/quotes.txt:150
 msgid "\"Our need will be the real creator.\" - Plato"
@@ -1409,7 +1415,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:151
 msgid "\"A man with courage has every blessing.\" - Plautus"
-msgstr ""
+msgstr "\"Благословен мужчина с мужеством.\" - Платон"
 
 #: gui/text/quotes.txt:152
 msgid ""
@@ -1419,7 +1425,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
-msgstr ""
+msgstr "\"Тот, кого любят Боги, умирает молодым.\" - Плавт"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
@@ -1449,7 +1455,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "\"В гневе мы должны воздерживаться от речи и действий.\" - Пифагор"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
@@ -1467,7 +1473,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "\"Агрессия начинается в глупости, и заканчивается в раскаянии\". - Пифагор"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
@@ -1487,7 +1493,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "\"Даже не думай делать то, что не можешь сделать.\" - Пифагор"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1504,20 +1510,20 @@ msgstr ""
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "\"Ни одно государство не будет процветать без правосудия.\" - Пифагор"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr ""
+msgstr "\"Гармония делает маленькие государства сильными, в то время как разногласия рушат самые могучие империи.\" - Саллюстий"
 
 #: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr "\"Я помню о человеческих слабостях и сомневаюсь в могуществе фортуны, я знаю что все что мы делаем создано тысячей шансов\" - Сципион Африканский"
+msgstr "«Я помню о человеческих слабостях и сомневаюсь в могуществе фортуны, я знаю, что всё, что мы делаем, создано тысячей шансов.» — Сципион Африканский"
 
 #: gui/text/quotes.txt:173
 msgid ""
@@ -1539,7 +1545,7 @@ msgstr "\"Даже боги не сражаются с неизбежность�
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr "\"Мы не дрогнув отдали свои жизни за спасение Греции, когда ее судьба висела на острие меча\" -  Симони́д Ке́осский"
+msgstr "\"Мы не дрогнув отдали свои жизни за спасение Греции,  когда её судьба висела на острие меча\" -  Симони́д Ке́осский"
 
 #: gui/text/quotes.txt:177
 msgid ""

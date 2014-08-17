@@ -4,13 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# abuyop <abuyop@gmail.com>, 2014
 # Mohd Shahril Bin Zainol Abidin <mohd_shahril_96@yahoo.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:49+0000\n"
+"PO-Revision-Date: 2014-06-25 13:41+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,24 +24,24 @@ msgstr ""
 #: gui/session/input.js:152
 #, python-format
 msgid "Basic range: %(range)s"
-msgstr ""
+msgstr "Jarak asas: %(range)s"
 
 #: gui/session/input.js:152
 #, python-format
 msgid "Average bonus range: %(range)s"
-msgstr ""
+msgstr "Purata jarak bonus: %(range)s"
 
 #: gui/session/input.js:725
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Tidak dapat bina dinding di sini!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:64 (caption)
 msgid "Pause"
-msgstr ""
+msgstr "Jeda"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Sambung Semula"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:478
@@ -53,7 +55,7 @@ msgstr "Tidak"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Anda pasti mahu mengundur diri?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
@@ -62,44 +64,44 @@ msgstr "Pengesahan"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Anda pasti mahu keluar? Jika keluar akan putuskan semua pemain lain."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Anda pasti mahu keluar?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Saya akan kembali"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Saya mengundur diri"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Anda mahu mengundur duru atau akan kembali kelak?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Musnahkan yang kini dipilih segalanya?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:660
 msgid "Delete"
-msgstr ""
+msgstr "Padam"
 
 #: gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Tiada"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:28 (tooltip)
 msgid "Ally"
-msgstr ""
+msgstr "Sekutu"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:32 (tooltip)
 msgid "Neutral"
-msgstr ""
+msgstr "Neutral"
 
 #: gui/session/menu.js:287 gui/session/messages.js:609
 #: gui/session/diplomacy_window.xml:36 (tooltip)
@@ -108,50 +110,50 @@ msgstr "Musuh"
 
 #: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "Tiada pedagang darat."
 
 #: gui/session/menu.js:482
 #, python-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s tidak aktif"
 
 #: gui/session/menu.js:486
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
+msgstr[0] "Terdapat %(numberTrading)s perdagangan pedagang darat"
 
 #: gui/session/menu.js:489
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
+msgstr[0] "%(numberGarrisoned)s mengawal kapal pedagang"
 
 #: gui/session/menu.js:492
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, %(garrisonedString)s, dan %(inactiveString)s."
 
 #: gui/session/menu.js:500
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, dan %(garrisonedString)s."
 
 #: gui/session/menu.js:510 gui/session/menu.js:572
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s, dan %(inactiveString)s."
 
 #: gui/session/menu.js:517 gui/session/menu.js:579
 #, python-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:527
 #, python-format
@@ -161,51 +163,51 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
+msgstr[0] "Terdapat %(numberGarrisoned)s pedagang darat mengawal kapal pedagang"
 
 #: gui/session/menu.js:530
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s, dan %(inactiveString)s."
 
 #: gui/session/menu.js:537
 #, python-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:546
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s pedagang darat tidak aktif"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
+msgstr[0] "Terdapat %(inactiveString)s."
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Tiada kapal dagang."
 
 #: gui/session/menu.js:565
 #, python-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s tidak aktif"
 
 #: gui/session/menu.js:569
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
+msgstr[0] "Terdapat %(numberTrading)s perdagangan kapal dagang"
 
 #: gui/session/menu.js:588
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfShipTraders)s kapal dagang tidak aktif"
 
 #: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
 msgid "Manual"
@@ -213,105 +215,105 @@ msgstr "Panduan"
 
 #: gui/session/menu.js:678
 msgid "The Developer Overlay was opened."
-msgstr ""
+msgstr "Tindanan Atas Pembangun telah dibuka."
 
 #: gui/session/menu.js:680
 msgid "The Developer Overlay was closed."
-msgstr ""
+msgstr "Tindanan Atas Pembangun telah ditutup."
 
 #: gui/session/menu.js:696
 #, python-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Ufti %(resourceAmount)s %(resourceType)s kepada %(playerName)s. Shift-click untuk membayar ufti %(greaterAmount)s."
 
 #: gui/session/messages.js:185
 #, python-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Mesej rangkaian: %(message)s"
 
 #: gui/session/messages.js:198
 msgid "Waiting for other players to connect..."
-msgstr ""
+msgstr "Menunggu pemain lain menyambung..."
 
 #: gui/session/messages.js:202
 msgid "Synchronising gameplay with other players..."
-msgstr ""
+msgstr "menyegerak permainan dengan pemain lain..."
 
 #: gui/session/messages.js:210
 msgid "Connected to the server."
-msgstr ""
+msgstr "Bersambung dengan pelayan."
 
 #: gui/session/messages.js:214
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Sambungan ke pelayan telah disahihkan."
 
 #: gui/session/messages.js:219
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Sambungan ke pelayan telah hilang."
 
 #: gui/session/messages.js:219
 msgid "The game has ended."
-msgstr ""
+msgstr "Permainan telah tamat."
 
 #: gui/session/messages.js:403
 msgid "Unknown player"
-msgstr ""
+msgstr "Pemain tidak diketahui"
 
 #: gui/session/messages.js:411
 #, python-format
 msgid "%(player)s has joined the game."
-msgstr ""
+msgstr "%(player)s telah menyertai permainan."
 
 #: gui/session/messages.js:414
 #, python-format
 msgid "%(player)s has left the game."
-msgstr ""
+msgstr "%(player)s telah meninggalkan permainan."
 
 #: gui/session/messages.js:419
 msgid "You have been defeated."
-msgstr ""
+msgstr "Anda telah kalah."
 
 #: gui/session/messages.js:421
 #, python-format
 msgid "%(player)s has been defeated."
-msgstr ""
+msgstr "%(player)s telah dikalahkan."
 
 #: gui/session/messages.js:429
 #, python-format
 msgid "You are now allied with %(player)s."
-msgstr ""
+msgstr "Anda telah kini bersekutu dengan %(player)s."
 
 #: gui/session/messages.js:431
 #, python-format
 msgid "You are now at war with %(player)s."
-msgstr ""
+msgstr "Anda kini berperang dengan %(player)s."
 
 #: gui/session/messages.js:433
 #, python-format
 msgid "You are now neutral with %(player)s."
-msgstr ""
+msgstr "Anda kini menjadi neutral dengan %(player)s."
 
 #: gui/session/messages.js:439
 #, python-format
 msgid "%(player)s is now allied with you."
-msgstr ""
+msgstr "%(player)s kini bersekutu dengan anda."
 
 #: gui/session/messages.js:441
 #, python-format
 msgid "%(player)s is now at war with you."
-msgstr ""
+msgstr "%(player)s kini berperang dengan anda."
 
 #: gui/session/messages.js:443
 #, python-format
 msgid "%(player)s is now neutral with you."
-msgstr ""
+msgstr "%(player)s kini neutral dengan anda."
 
 #: gui/session/messages.js:462
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s dan %(lastAmount)s"
 
 #: gui/session/messages.js:463 gui/session/utility_functions.js:187
 #: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
@@ -319,42 +321,42 @@ msgstr ""
 #: gui/session/utility_functions.js:613 gui/session/utility_functions.js:635
 #: gui/session/utility_functions.js:640
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/session/messages.js:468
 #, python-format
 msgid "%(player)s has sent you %(amounts)s."
-msgstr ""
+msgstr "%(player)s telah menghantar kepada anda %(amounts)s."
 
 #: gui/session/messages.js:478
 #, python-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "Anda telah diserang oleh %(attacker)s!"
 
 #: gui/session/messages.js:495 gui/session/messages.js:500
 #, python-format
 msgid "(%(context)s) * %(user)s %(message)s"
-msgstr ""
+msgstr "(%(context)s) * %(user)s %(message)s"
 
 #: gui/session/messages.js:508 gui/session/messages.js:512
 #, python-format
 msgid "* %(user)s %(message)s"
-msgstr ""
+msgstr "* %(user)s %(message)s"
 
 #: gui/session/messages.js:520 gui/session/messages.js:521
 #, python-format
 msgid "<%(user)s>"
-msgstr ""
+msgstr "<%(user)s>"
 
 #: gui/session/messages.js:524 gui/session/messages.js:529
 #, python-format
 msgid "(%(context)s) %(userTag)s %(message)s"
-msgstr ""
+msgstr "(%(context)s) %(userTag)s %(message)s"
 
 #: gui/session/messages.js:537 gui/session/messages.js:538
 #, python-format
 msgid "%(userTag)s %(message)s"
-msgstr ""
+msgstr "%(userTag)s %(message)s"
 
 #: gui/session/messages.js:596 gui/session/diplomacy_window.xml:21 (caption)
 msgid "Team"
@@ -362,265 +364,265 @@ msgstr "Pasukan"
 
 #: gui/session/messages.js:629
 msgid "Private"
-msgstr ""
+msgstr "Persendirian"
 
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Dipek"
 
 #: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
-msgstr ""
+msgstr "[LUAR TALIAN] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "Pangkat %(rank)s"
 
 #: gui/session/selection_details.js:68
 #, python-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
-msgstr ""
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
 #: gui/session/selection_details.js:95
 #, python-format
 msgid "%(experience)s %(current)s / %(required)s"
-msgstr ""
+msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
-msgstr ""
+msgstr "Pengalaman:"
 
 #: gui/session/selection_details.js:101
 #, python-format
 msgid "%(experience)s %(current)s"
-msgstr ""
+msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:115
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:116 gui/session/selection_details.js:149
 #: gui/session/selection_details.js:180
 #, python-format
 msgid "%(amount)s / %(max)s"
-msgstr ""
+msgstr "%(amount)s / %(max)s"
 
 #: gui/session/selection_details.js:125
 #, python-format
 msgid "%(resource)s:"
-msgstr ""
+msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Dapat: %(amount)s"
 
 #: gui/session/selection_details.js:173
 msgid "Number of builders"
-msgstr ""
+msgstr "Bilangan jurubina"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Pemungut maks/semasa"
 
 #: gui/session/selection_details.js:196
 #, python-format
 msgid "(%(genericName)s)"
-msgstr ""
+msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:226 gui/session/selection_panels.js:942
 #: gui/session/session.js:641
 msgid "Armor:"
-msgstr ""
+msgstr "Perisai:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:638 gui/session/session.js:642
 #, python-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Sela:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Kadar:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:633
 #: gui/session/utility_functions.js:324
 msgid "Range:"
-msgstr ""
+msgstr "Julat:"
 
 #: gui/session/selection_details.js:251 gui/session/session.js:634
 #: gui/session/utility_functions.js:325
 msgid "meters"
-msgstr ""
+msgstr "meter"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/session/selection_details.js:274
 #, python-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/session/selection_details.js:285
 #, python-format
 msgid "%(label)s %(details)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Kelas:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
-msgstr ""
+msgstr "Hitpoint:"
 
 #: gui/session/selection_details.js:361 gui/session/session.js:622
 #, python-format
 msgid "%(label)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Beli %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Jual %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Perlukan %(technology)s"
 
 #: gui/session/selection_panels.js:332
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "Nyahmuat %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Seklik untuk turunkan 1. Shift-klik untuk turunkan semua jenis yang sama."
 
 #: gui/session/selection_panels.js:400
 msgid "Lock Gate"
-msgstr ""
+msgstr "Kunci Pintu Pagar"
 
 #: gui/session/selection_panels.js:406
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Buka Pintu Pagar"
 
 #: gui/session/selection_panels.js:511
 msgid "Pack"
-msgstr ""
+msgstr "Tanggal"
 
 #: gui/session/selection_panels.js:513
 msgid "Unpack"
-msgstr ""
+msgstr "Pasang"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Batal Menanggal"
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Batal Memasang"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Kapasiti populasi tidak mencukupi:"
 
 #: gui/session/selection_panels.js:591
 #, python-format
 msgid "%(population)s %(neededSlots)s"
-msgstr ""
+msgstr "%(population)s %(neededSlots)s"
 
 #: gui/session/selection_panels.js:710
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
+msgstr[0] "Baki: %(number)s untuk dibina."
 
 #: gui/session/selection_panels.js:938 gui/session/session.js:621
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
 msgid "Health:"
-msgstr ""
+msgstr "Kesihatan:"
 
 #: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Ganas"
 
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Agresif"
 
 #: gui/session/selection_panels_helpers.js:45
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Pasif"
 
 #: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "Bertahan"
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Tidak Berganjak"
 
 #: gui/session/selection_panels_helpers.js:70
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Kiraan Semasa: %(count)s, Had: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s meluaskan had dengan %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s mengecilkan had dengan %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
 msgid "%(buildings)s*%(batchSize)s"
-msgstr ""
+msgstr "%(buildings)s*%(batchSize)s"
 
 #: gui/session/selection_panels_helpers.js:114
 msgid "Shift-click"
-msgstr ""
+msgstr "Shift-klik"
 
 #: gui/session/selection_panels_helpers.js:123
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s + %(remainderBatch)s)."
-msgstr ""
+msgstr "%(action)s untuk melatih %(number)s (%(fullBatch)s + %(remainderBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:130
 #, python-format
 msgid "%(action)s to train %(number)s (%(fullBatch)s)."
-msgstr ""
+msgstr "%(action)s untuk melatih %(number)s (%(fullBatch)s)."
 
 #: gui/session/selection_panels_helpers.js:137
 #, python-format
 msgid "%(action)s to train %(number)s."
-msgstr ""
+msgstr "%(action)s untuk melatih %(number)s."
 
 #: gui/session/session.js:19
 msgid "You"
@@ -632,23 +634,23 @@ msgstr "Gaia"
 
 #: gui/session/session.js:309 gui/session/session.js:325
 msgid "You have left the game."
-msgstr ""
+msgstr "Anda telah meninggalkan permainan."
 
 #: gui/session/session.js:316
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Anda telah terputus."
 
 #: gui/session/session.js:318
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Anda telah memenangi permainan!"
 
 #: gui/session/session.js:320
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Anda telah kalah..."
 
 #: gui/session/session.js:328
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Anda telah meninggalkan permainan."
 
 #: gui/session/session.js:472
 msgid "OK"
@@ -656,34 +658,34 @@ msgstr "OK"
 
 #: gui/session/session.js:474
 msgid "Press OK to continue"
-msgstr ""
+msgstr "Tekan OK untuk teruskan"
 
 #: gui/session/session.js:480
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Anda mahu keluar?"
 
 #: gui/session/session.js:486
 msgid "DEFEATED!"
-msgstr ""
+msgstr "KALAH!"
 
 #: gui/session/session.js:494
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "MENANG!"
 
 #: gui/session/session.js:629
 #, python-format
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
-msgstr ""
+msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 
 #: gui/session/session.js:802
 #, python-format
 msgid "%(time)s (%(speed)sx)"
-msgstr ""
+msgstr "%(time)s (%(speed)sx)"
 
 #: gui/session/session.js:891
 #, python-format
 msgid "Unrecognized ambient type: %(ambientType)s"
-msgstr ""
+msgstr "Jenis ambien tidak dikenali: %(ambientType)s"
 
 #: gui/session/session.js:908
 #, python-format
@@ -695,115 +697,115 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Perhatian: mod lompat masa adalah pilihan pembangun, tidak sesuai digunakan dalam tempoh yang lama. Menggunakannya secara salah boleh menyebabkan permainan mengalami kehabisan ingatan."
 
 #: gui/session/session.js:913
 msgid "Time warp mode"
-msgstr ""
+msgstr "Mod lompat masa"
 
 #: gui/session/unit_actions.js:295
 msgid "Origin trade market."
-msgstr ""
+msgstr "Asalan pasaran dagangan."
 
 #: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
 #: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
 #, python-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Dapat: %(gain)s"
 
 #: gui/session/unit_actions.js:301
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Klik-kanan pada pasar lain untuk tetapkan sebagai destinasi pasaran dagangan."
 
 #: gui/session/unit_actions.js:304
 msgid "Destination trade market."
-msgstr ""
+msgstr "Destinaso pasaran dagangan."
 
 #: gui/session/unit_actions.js:309
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Klik-kanan untuk tetapkan sebagai asalan pasaran dagangan"
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Klik-kanan untuk tetapkan sebagai destinasi pasaran dagangan."
 
 #: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Garison semasa: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:519
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Klik-kanan untuk wujudkan laluan lalai untuk pedagang baharu."
 
 #: gui/session/unit_actions.js:523
 #, python-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Dapatan dijangka: %(gain)s"
 
 #: gui/session/unit_actions.js:645
 msgid "Unload All"
-msgstr ""
+msgstr "Turunkan Semua"
 
 #: gui/session/unit_actions.js:680
 msgid "Stop"
-msgstr ""
+msgstr "Henti"
 
 #: gui/session/unit_actions.js:698
 msgid "Garrison"
-msgstr ""
+msgstr "Garison"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Turunkan"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
-msgstr ""
+msgstr "Baiki"
 
 #: gui/session/unit_actions.js:752
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Fokus pada Titik Bolak-Balik"
 
 #: gui/session/unit_actions.js:775
 msgid "Back to Work"
-msgstr ""
+msgstr "Kembali Kerja"
 
 #: gui/session/unit_actions.js:791
 msgid "Guard"
-msgstr ""
+msgstr "Kawal"
 
 #: gui/session/unit_actions.js:808
 msgid "Remove guard"
-msgstr ""
+msgstr "Buang pengawal"
 
 #: gui/session/unit_actions.js:824
 msgid "Select trading goods"
-msgstr ""
+msgstr "Pilih barangan dagangan"
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Tingkatkan tahap pengawasan untuk lebih lindungi unit"
 
 #: gui/session/unit_actions.js:843
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Tingkatkan pengawasan!"
 
 #: gui/session/unit_actions.js:861
 msgid "End of alert."
-msgstr ""
+msgstr "Henti pengawasan!"
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
 msgid "(None)"
-msgstr ""
+msgstr "(Tiada)"
 
 #: gui/session/utility_functions.js:172 gui/session/utility_functions.js:177
 #: gui/session/utility_functions.js:182 gui/session/utility_functions.js:248
 #: gui/session/utility_functions.js:253 gui/session/utility_functions.js:258
 #, python-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/session/utility_functions.js:174 gui/session/utility_functions.js:221
 #: gui/session/utility_functions.js:250 gui/session/utility_functions.js:276
@@ -813,29 +815,29 @@ msgstr "Godam"
 #: gui/session/utility_functions.js:179 gui/session/utility_functions.js:227
 #: gui/session/utility_functions.js:255 gui/session/utility_functions.js:282
 msgid "Pierce"
-msgstr ""
+msgstr "Tembus"
 
 #: gui/session/utility_functions.js:184 gui/session/utility_functions.js:233
 #: gui/session/utility_functions.js:260 gui/session/utility_functions.js:288
 msgid "Crush"
-msgstr ""
+msgstr "Remuk"
 
 #: gui/session/utility_functions.js:195
 #, python-format
 msgid "%(arrowString)s / %(timeString)s"
-msgstr ""
+msgstr "%(arrowString)s / %(timeString)s"
 
 #: gui/session/utility_functions.js:196
 #, python-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
-msgstr[0] ""
+msgstr[0] "%(arrows)s anak panah"
 
 #: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
 #, python-format
 msgid "%(time)s second"
 msgid_plural "%(time)s seconds"
-msgstr[0] ""
+msgstr[0] "%(time)s saat"
 
 #: gui/session/utility_functions.js:219 gui/session/utility_functions.js:225
 #: gui/session/utility_functions.js:231 gui/session/utility_functions.js:274
@@ -853,29 +855,29 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:297
 msgid "Charge Attack:"
-msgstr ""
+msgstr "Serangan Serbuan:"
 
 #: gui/session/utility_functions.js:298
 msgid "Melee Attack:"
-msgstr ""
+msgstr "Serangan Melee:"
 
 #: gui/session/utility_functions.js:299
 msgid "Ranged Attack:"
-msgstr ""
+msgstr "Serangan Jauh:"
 
 #: gui/session/utility_functions.js:302
 msgid "Attack:"
-msgstr ""
+msgstr "Serang:"
 
 #: gui/session/utility_functions.js:321
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
 #: gui/session/utility_functions.js:330
 #, python-format
 msgid "%(attackLabel)s %(damageTypes)s"
-msgstr ""
+msgstr "%(attackLabel)s %(damageTypes)s"
 
 #: gui/session/utility_functions.js:383 gui/session/utility_functions.js:384
 #: gui/session/utility_functions.js:385 gui/session/utility_functions.js:386
@@ -883,88 +885,88 @@ msgstr ""
 #: gui/session/utility_functions.js:512
 #, python-format
 msgid "%(component)s %(cost)s"
-msgstr ""
+msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
 #: gui/session/utility_functions.js:442
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s ke %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:475
 #, python-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Dinding:  %(costs)s"
 
 #: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
 #: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
 msgid "  "
-msgstr ""
+msgstr "  "
 
 #: gui/session/utility_functions.js:476
 #, python-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Menara:  %(costs)s"
 
 #: gui/session/utility_functions.js:498
 #, python-format
 msgid "%(label)s %(populationBonus)s"
-msgstr ""
+msgstr "%(label)s %(populationBonus)s"
 
 #: gui/session/utility_functions.js:499
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Bonus Populasi:"
 
 #: gui/session/utility_functions.js:517
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Sumber tidak mencukupi:"
 
 #: gui/session/utility_functions.js:528
 #, python-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #: gui/session/utility_functions.js:538
 msgid "???"
-msgstr ""
+msgstr "???"
 
 #: gui/session/utility_functions.js:582
 #, python-format
 msgid "%(rank)s %(name)s"
-msgstr ""
+msgstr "%(rank)s %(name)s"
 
 #: gui/session/utility_functions.js:606
 msgid "Speed:"
-msgstr ""
+msgstr "Kelajuan:"
 
 #: gui/session/utility_functions.js:609 gui/session/utility_functions.js:611
 #, python-format
 msgid "%(speed)s %(movementType)s"
-msgstr ""
+msgstr "%(speed)s %(movementType)s"
 
 #: gui/session/utility_functions.js:609
 msgid "Walk"
-msgstr ""
+msgstr "Jalan"
 
 #: gui/session/utility_functions.js:611
 msgid "Run"
-msgstr ""
+msgstr "Lari"
 
 #: gui/session/utility_functions.js:613
 #, python-format
 msgid "%(label)s %(speeds)s"
-msgstr ""
+msgstr "%(label)s %(speeds)s"
 
 #: gui/session/utility_functions.js:625 gui/session/utility_functions.js:627
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/utility_functions.js:629 gui/session/utility_functions.js:635
 #: gui/session/utility_functions.js:640
 #, python-format
 msgid "%(gain)s (%(player)s)"
-msgstr ""
+msgstr "%(gain)s (%(player)s)"
 
 #: gui/session/utility_functions.js:631
 msgid "you"
@@ -973,7 +975,7 @@ msgstr "anda"
 #: gui/session/utility_functions.js:637 gui/session/utility_functions.js:642
 #, python-format
 msgid "player %(name)s"
-msgstr ""
+msgstr "pemain %(name)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -981,7 +983,7 @@ msgstr ""
 #: gui/session/utility_functions.js:682
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Makanan"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -989,7 +991,7 @@ msgstr ""
 #: gui/session/utility_functions.js:684
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Daging"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -997,7 +999,7 @@ msgstr ""
 #: gui/session/utility_functions.js:686
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Logam"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1005,7 +1007,7 @@ msgstr ""
 #: gui/session/utility_functions.js:688
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Bijih"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1013,7 +1015,7 @@ msgstr ""
 #: gui/session/utility_functions.js:690
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Batu"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1021,7 +1023,7 @@ msgstr ""
 #: gui/session/utility_functions.js:692
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Runtuhan"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1029,7 +1031,7 @@ msgstr ""
 #: gui/session/utility_functions.js:694
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Batu"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1037,7 +1039,7 @@ msgstr ""
 #: gui/session/utility_functions.js:696
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Harta Karun"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1045,7 +1047,7 @@ msgstr ""
 #: gui/session/utility_functions.js:698
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Pokok"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1053,7 +1055,7 @@ msgstr ""
 #: gui/session/utility_functions.js:700
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Kayu"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1061,7 +1063,7 @@ msgstr ""
 #: gui/session/utility_functions.js:702
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Buah-buahan"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1069,7 +1071,7 @@ msgstr ""
 #: gui/session/utility_functions.js:704
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Bijirin"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1077,7 +1079,7 @@ msgstr ""
 #: gui/session/utility_functions.js:706
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Ikan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1085,7 +1087,7 @@ msgstr ""
 #: gui/session/utility_functions.js:711
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "makanan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1093,7 +1095,7 @@ msgstr ""
 #: gui/session/utility_functions.js:713
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "daging"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1101,7 +1103,7 @@ msgstr ""
 #: gui/session/utility_functions.js:715
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "logam"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1109,7 +1111,7 @@ msgstr ""
 #: gui/session/utility_functions.js:717
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "bijih"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1117,7 +1119,7 @@ msgstr ""
 #: gui/session/utility_functions.js:719
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "batu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1125,7 +1127,7 @@ msgstr ""
 #: gui/session/utility_functions.js:721
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "runtuhan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1133,7 +1135,7 @@ msgstr ""
 #: gui/session/utility_functions.js:723
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "batu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1141,7 +1143,7 @@ msgstr ""
 #: gui/session/utility_functions.js:725
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "harta karun"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1149,7 +1151,7 @@ msgstr ""
 #: gui/session/utility_functions.js:727
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "pokok"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1157,7 +1159,7 @@ msgstr ""
 #: gui/session/utility_functions.js:729
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "kayu"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1165,7 +1167,7 @@ msgstr ""
 #: gui/session/utility_functions.js:731
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "buah-buahan"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1173,7 +1175,7 @@ msgstr ""
 #: gui/session/utility_functions.js:733
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "bijirin"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1181,16 +1183,16 @@ msgstr ""
 #: gui/session/utility_functions.js:735
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Ikan"
 
 #: gui/session/diplomacy_window.xml:10 (caption)
 #: gui/session/top_panel/button_diplomacy.xml:8 (tooltip)
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomasi"
 
 #: gui/session/diplomacy_window.xml:15 (caption)
 msgid "Name"
-msgstr ""
+msgstr "Nama"
 
 #: gui/session/diplomacy_window.xml:18 (caption)
 msgid "Civilization"
@@ -1198,23 +1200,23 @@ msgstr "Tamadun"
 
 #: gui/session/diplomacy_window.xml:24 (caption)
 msgid "Theirs"
-msgstr ""
+msgstr "Mereka"
 
 #: gui/session/diplomacy_window.xml:27 (caption)
 msgid "A"
-msgstr ""
+msgstr "A"
 
 #: gui/session/diplomacy_window.xml:31 (caption)
 msgid "N"
-msgstr ""
+msgstr "N"
 
 #: gui/session/diplomacy_window.xml:35 (caption)
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: gui/session/diplomacy_window.xml:39 (caption)
 msgid "Tribute"
-msgstr ""
+msgstr "Ufti"
 
 #: gui/session/diplomacy_window.xml:73 (caption)
 #: gui/session/trade_window.xml:47 (caption)
@@ -1227,7 +1229,7 @@ msgstr "Sembang"
 
 #: gui/session/menu.xml:39 (caption)
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: gui/session/menu.xml:52 (caption)
 msgid "Settings"
@@ -1235,7 +1237,7 @@ msgstr "Tetapan"
 
 #: gui/session/menu.xml:76 (caption)
 msgid "Resign"
-msgstr ""
+msgstr "Undur"
 
 #: gui/session/menu.xml:87 (caption) gui/session/session.xml:323 (caption)
 msgid "Exit"
@@ -1243,63 +1245,63 @@ msgstr "Keluar"
 
 #: gui/session/minimap_panel.xml:15 (tooltip)
 msgid "Find idle worker"
-msgstr ""
+msgstr "Cari pekerja melahu"
 
 #: gui/session/session.xml:53 (caption)
 msgid "Control all units"
-msgstr ""
+msgstr "Kawal semua unit"
 
 #: gui/session/session.xml:63 (caption)
 msgid "Change perspective"
-msgstr ""
+msgstr "Ubah perspektif"
 
 #: gui/session/session.xml:70 (caption)
 msgid "Display selection state"
-msgstr ""
+msgstr "Papar keadaan pemilihan"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Tindihan atas pencari laluan"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Tindihan atas halangan"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "Tindihan atas gerakan unit"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Tindihan atas jauh"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Tindihan atas kotak melantun"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
-msgstr ""
+msgstr "Hadkan kamera"
 
 #: gui/session/session.xml:124 (caption)
 msgid "Reveal map"
-msgstr ""
+msgstr "Dedah peta"
 
 #: gui/session/session.xml:132 (caption)
 msgid "Enable time warp"
-msgstr ""
+msgstr "Benarkan lompat masa"
 
 #: gui/session/session.xml:142 (caption)
 msgid "Promote selected units"
-msgstr ""
+msgstr "Naik pangkat unit terpilih"
 
 #: gui/session/session.xml:169 (caption)
 msgid "Game Paused"
-msgstr ""
+msgstr "Permainan Dijeda"
 
 #: gui/session/session.xml:172 (caption)
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Klik untuk Sambung Semula Permainan"
 
 #: gui/session/session.xml:201 (caption)
 msgid "Cancel"
@@ -1307,7 +1309,7 @@ msgstr "Batal"
 
 #: gui/session/session.xml:207 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "Pasukan Sahaja"
 
 #: gui/session/session.xml:211 (caption)
 msgid "Send"
@@ -1315,99 +1317,99 @@ msgstr "Hantar"
 
 #: gui/session/top_panel.xml:18 (tooltip)
 msgid "Choose player to view"
-msgstr ""
+msgstr "Pilih pemain untuk lihat"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "Mod Pemerhati (eksperimental)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
 msgid "Trade"
-msgstr ""
+msgstr "Dagang"
 
 #: gui/session/trade_window.xml:15 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Pemilihan barangan dagangan:"
 
 #: gui/session/trade_window.xml:35 (tooltip)
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Pilih salah satu barangan sebagai awalan tawaran, kemudian guna anak panah pada barangan sasaran untuk membuat perubahan (guna Shift untuk pilih dan menyebabkan sumber terpilih menjadi 100%)."
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Tukar sumber:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:29 (tooltip)
 msgid "Hitpoints"
-msgstr ""
+msgstr "Hitpoint"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:38 (tooltip)
 msgid "Stamina"
-msgstr ""
+msgstr "Stamina"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:26 (tooltip)
 msgid "Stamina:"
-msgstr ""
+msgstr "Stamina:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:53 (tooltip)
 #: gui/session/session_objects/hero_icon.xml:9 (tooltip)
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Serangan dan Perisai"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:68 (tooltip)
 msgid "Experience"
-msgstr ""
+msgstr "Pengalaman"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:76 (tooltip)
 msgid "Rank"
-msgstr ""
+msgstr "Kedudukan"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "Baris gilir pengeluaran"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Klik untuk pilih unit berkumpulan, dwi-klik untuk fokuskan unit berkumpulan dan klik-kanan untuk bubarkan kumpulan."
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"
-msgstr ""
+msgstr "Kelajuan permainan"
 
 #: gui/session/top_panel/button_game_speed.xml:17 (tooltip)
 msgid "Choose game speed"
-msgstr ""
+msgstr "Pilih kelajuan permainan"
 
 #: gui/session/top_panel/button_menu.xml:15 (caption)
 msgid "MENU"
-msgstr ""
+msgstr "MENU"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"
-msgstr ""
+msgstr "makanan"
 
 #: gui/session/top_panel/resource_metal.xml:3 (tooltip)
 msgid "Metal"
-msgstr ""
+msgstr "logam"
 
 #: gui/session/top_panel/resource_population.xml:3 (tooltip)
 msgid "Population (current / limit)"
-msgstr ""
+msgstr "Populasi (semasa / had)"
 
 #: gui/session/top_panel/resource_stone.xml:3 (tooltip)
 msgid "Stone"
-msgstr ""
+msgstr "batu"
 
 #: gui/session/top_panel/resource_wood.xml:3 (tooltip)
 msgid "Wood"
-msgstr ""
+msgstr "kayu"

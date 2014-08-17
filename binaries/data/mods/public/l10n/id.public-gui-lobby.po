@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# azayrahmad <azayrahmad@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"PO-Revision-Date: 2014-08-16 09:11+0000\n"
+"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,17 +23,17 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Semua"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Semua"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Semua"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
@@ -41,7 +43,7 @@ msgstr ""
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Acak"
 
 #: gui/lobby/lobby.js:37
 msgid "Scenario"
@@ -134,7 +136,7 @@ msgstr ""
 #: gui/lobby/lobby.js:765
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -210,7 +212,7 @@ msgstr "Daftar"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
 msgid "Connect"
-msgstr ""
+msgstr "Hubungkan"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
@@ -235,7 +237,7 @@ msgstr "Nama"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "Peringkat"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
@@ -267,21 +269,21 @@ msgstr "Menu Utama"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "Nama Peta"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Ukuran"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Tipe"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "Pemain"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
@@ -289,15 +291,15 @@ msgstr "Tunjukan permainan penuh"
 
 #: gui/lobby/lobby.xml:204 (heading)
 msgid "Rank"
-msgstr ""
+msgstr "Peringkat"
 
 #: gui/lobby/lobby.xml:214 (caption)
 msgid "Back"
-msgstr ""
+msgstr "Kembali"
 
 #: gui/lobby/lobby.xml:218 (caption)
 msgid "Update"
-msgstr ""
+msgstr "Perbarui"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -341,7 +343,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Definisi:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""

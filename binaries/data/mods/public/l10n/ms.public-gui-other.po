@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# abuyop <abuyop@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-25 13:41+0000\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
 "Language-Team: Malay (http://www.transifex.com/projects/p/0ad/language/ms/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,68 +23,68 @@ msgstr ""
 #: globalscripts/l10n.js:112
 msgctxt "enumeration"
 msgid ", "
-msgstr ""
+msgstr ", "
 
 #: gui/civinfo/civinfo.js:108
 #, python-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "Permainan %(civilization)s"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
+msgstr[0] "Bonus Tamadun"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "Bonus Pasukan"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
-msgstr ""
+msgstr "Teknologi Khas"
 
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
+msgstr[0] "Bangunan Khas"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr ""
+msgstr "Adiwira"
 
 #: gui/civinfo/civinfo.js:157
 #, python-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Sejarah %(civilization)s"
 
 #: gui/common/functions_global_object.js:75
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Membuka %(url)s\n dalam pelayar sesawang lalai. Tunggu sebentar...."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
-msgstr ""
+msgstr "Membuka halaman"
 
 #: gui/common/functions_global_object.js:80
 #, python-format
 msgid "FPS: %(fps)s"
-msgstr ""
+msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "Pemuatan Dihenti Paksa"
 
 #: gui/common/functions_utility_list.js:14
 #: gui/common/functions_utility_list.js:44
@@ -94,74 +96,74 @@ msgstr ""
 #: gui/common/functions_utility_list.js:141
 #, python-format
 msgid "%(functionName)s: %(object)s not found."
-msgstr ""
+msgstr "%(functionName)s: %(object)s tidak ditemui."
 
 #: gui/common/functions_utility_list.js:161
 #, python-format
 msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr ""
+msgstr "Rentetan '%(string)s' yang dipinta tidak ditemui dalam senarai %(object)s."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, python-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, python-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "Sebab tidak diketahui"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "Dimatikan tanpa dijangka"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "Versi protokol rangkaian tidak betul"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "Permainan sudah pun bermula"
 
 #: gui/common/network.js:10
 #, python-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[Nilai %(id)s tidak sah]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "Sambungan ke pelayan terputus."
 
 #: gui/common/network.js:19
 #, python-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "Sebab: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr ""
+msgstr "Terputus"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "Tiada"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -182,236 +184,236 @@ msgstr "OK"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Retry"
-msgstr ""
+msgstr "Cuba lagi"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Ignore"
-msgstr ""
+msgstr "Abai"
 
 #: gui/msgbox/msgbox.js:41
 msgid "Abort"
-msgstr ""
+msgstr "Henti paksa"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Mod Bertetingkap"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Mula 0 A.D. dalam tetingkap"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Jeda Latar Belakang"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "Jeda permainan seorang pemain bila tetingkap kehilangan fokus"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Lumpuhkan Skrin Aluan"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Jika anda lumpuhkan skrin ini sepenuhnya, anda mungkin tertinggal pengumuman\npenting. Anda masih boleh lancarkannya melalui menu utama."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Tip Alat Lebih Terperinci"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Tunjuk tip alat lebih terperinci untuk unit boleh dilatih dalam bangunan pengeluaran-unit."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "Utamakan GLSL"
 
 #: gui/options/options.js:16
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "Guna pelorek OpenGL 2.0 (disarankan)"
 
 #: gui/options/options.js:17
 msgid "Post Processing"
-msgstr ""
+msgstr "Pasca Pemprosesan"
 
 #: gui/options/options.js:17
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Guna penapis pasca pemprosesan ruang-skrin (HDR, Bloom, DOF, dll)"
 
 #: gui/options/options.js:18
 msgid "Shadows"
-msgstr ""
+msgstr "Bayang"
 
 #: gui/options/options.js:18
 msgid "Enable shadows"
-msgstr ""
+msgstr "Benarkan bayang"
 
 #: gui/options/options.js:19
 msgid "Particles"
-msgstr ""
+msgstr "Butiran"
 
 #: gui/options/options.js:19
 msgid "Enable particles"
-msgstr ""
+msgstr "Benarkan butiran"
 
 #: gui/options/options.js:20
 msgid "Show Sky"
-msgstr ""
+msgstr "Tunjuk Langit"
 
 #: gui/options/options.js:20
 msgid "Render Sky"
-msgstr ""
+msgstr "Terap Langit"
 
 #: gui/options/options.js:21
 msgid "Smooth LOS"
-msgstr ""
+msgstr "LOS Lancar"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Alih keluar kegelapan dan kabus-perang secara lancar (Perlu Utamakan GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Bebayang Unit"
 
 #: gui/options/options.js:22
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Tunjuk garis luar unit disebalik bangunan"
 
 #: gui/options/options.js:23
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "Penapisan Bayang"
 
 #: gui/options/options.js:23
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Bayang lancar"
 
 #: gui/options/options.js:24
 msgid "HQ Waviness"
-msgstr ""
+msgstr "Alunan HQ"
 
 #: gui/options/options.js:24
 msgid ""
 "Use real normals for ocean-wave rendering, instead of applying them as a "
 "flat texture"
-msgstr ""
+msgstr "Guna normal sebenar untuk penerapan ombak-laut, selain dari penampakan sebagai tekstur rata"
 
 #: gui/options/options.js:25
 msgid "Real Water Depth"
-msgstr ""
+msgstr "Kedalaman Air Sebenar"
 
 #: gui/options/options.js:25
 msgid "Use actual water depth in rendering calculations"
-msgstr ""
+msgstr "Guna kedalaman air sebenar di dalam pengiraan penerapan"
 
 #: gui/options/options.js:26
 msgid "Water Reflections"
-msgstr ""
+msgstr "Pantulan Air"
 
 #: gui/options/options.js:26
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "Benarkan air memantulkan imej bayangan"
 
 #: gui/options/options.js:27
 msgid "Water Refraction"
-msgstr ""
+msgstr "Pembiasan Air"
 
 #: gui/options/options.js:27
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Guna peta pembiasan air sebenar bukannya kelutsinaran"
 
 #: gui/options/options.js:28
 msgid "Shore Foam"
-msgstr ""
+msgstr "Buih Pantai"
 
 #: gui/options/options.js:28
 msgid "Show foam on water near shore depending on water waviness"
-msgstr ""
+msgstr "Tunjuk buih pantai pada air berhampiran pantai yang bergantung pada ombak air"
 
 #: gui/options/options.js:29
 msgid "Shore Waves"
-msgstr ""
+msgstr "Ombak Pantai"
 
 #: gui/options/options.js:29
 msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr ""
+msgstr "Tunjuk ombak pecah bila menghampiri pantai (Perlukan Alunan HQ)"
 
 #: gui/options/options.js:30
 msgid "Water Shadows"
-msgstr ""
+msgstr "Bayang Air"
 
 #: gui/options/options.js:30
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Wujudkan bayang pada air"
 
 #: gui/options/options.js:31
 msgid "VSync"
-msgstr ""
+msgstr "VSync"
 
 #: gui/options/options.js:31
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Jalankan segerak menegak untuk membaiki koyakan skrin. PERLU MULAKAN SEMULA PERMAINAN"
 
 #: gui/options/options.js:35
 msgid "Master Gain"
-msgstr ""
+msgstr "Gandaan Master"
 
 #: gui/options/options.js:35
 msgid "Master audio gain"
-msgstr ""
+msgstr "Gandaan audio master"
 
 #: gui/options/options.js:36
 msgid "Music Gain"
-msgstr ""
+msgstr "Gandaan Muzik"
 
 #: gui/options/options.js:36
 msgid "In game music gain"
-msgstr ""
+msgstr "Dalam gandaan muzik permainan"
 
 #: gui/options/options.js:37
 msgid "Ambient Gain"
-msgstr ""
+msgstr "Gandaan Ambien"
 
 #: gui/options/options.js:37
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "Dalam gandaan bunyi ambien permainan"
 
 #: gui/options/options.js:38
 msgid "Action Gain"
-msgstr ""
+msgstr "Gandaan Aksi"
 
 #: gui/options/options.js:38
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "Dalam gandaan bunyi aksi unit"
 
 #: gui/options/options.js:39
 msgid "UI Gain"
-msgstr ""
+msgstr "Gandaan UI"
 
 #: gui/options/options.js:39
 msgid "UI sound gain"
-msgstr ""
+msgstr "Gandaan bunyi UI"
 
 #: gui/options/options.js:43
 msgid "Chat Backlog"
-msgstr ""
+msgstr "Log Belakang Sembang"
 
 #: gui/options/options.js:43
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "Bilangan mesej di log untuk dimuatkan bila menyertai lobi"
 
 #: gui/options/options.js:44
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "Setem Masa Sembang"
 
 #: gui/options/options.js:44
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Tunjuk masa yang mana mesej dipos dalam sembang lobi"
 
 #: gui/pregame/mainmenu.js:106
 msgid "disabled"
@@ -433,12 +435,12 @@ msgstr "muat naik berjaya"
 #: gui/pregame/mainmenu.js:123
 #, python-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "muat naik gagal (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:130
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "muat naik gagal (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:133
 msgid "unknown"
@@ -451,7 +453,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sAmaran:%(endWarning)s Anda kelihatan menggunakan grafik (fungsi tetap) bukan-pelorek. Pilihan ini akan dibuang dalam keluaran 0 A.D. akan datang, untuk membolehkan lagi fitur grafik lanjutan. Kami sarankan anda menukar kad grafik anda pada model serasi-pelorek yang lebih terkini."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -486,7 +488,7 @@ msgstr "Pengesahan"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Penyunting senario tidak tersedia atau gagal dimuatkan. Sila rujuk log permainan untuk maklumat lanjut."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -494,12 +496,12 @@ msgstr "Ralat"
 
 #: gui/pregame/mainmenu.js:325
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr ""
+msgstr "Lancar lobi pemain berbilang. [DILUMPUHKAN OLEH BINAAN]"
 
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
 #: gui/pregame/mainmenu.xml:145 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Perincian Teknikal"
 
 #: gui/pregame/mainmenu.js:335
 msgid "Manual"
@@ -507,65 +509,65 @@ msgstr "Panduan"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "Tiada permainan tersimpan ditemui"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Permainan tersimpan ini mungkin tidak serasi:"
 
 #: gui/savedgames/load.js:48
 #, python-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "Ia perlukan 0 A.D. versi %(requiredVersion)s, tetapi anda jalankan versi %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
 #, python-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "Ia tidak memerlukan sebarang mod tetapi anda jalankannya dengan \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
 #, python-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "Ia perlukan mod \"%(requiredMod)s\" tetapi anda jalankan tanpa mod."
 
 #: gui/savedgames/load.js:66
 #, python-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "Ia perlukan mod \"%(requiredMod)s\" tetapi anda jalankan dengan \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "Anda masih mahu teruskan?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "Amaran"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, python-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "Permainan tersimpan akan dipadam secara kekal, anda pasti mahu teruskan?"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "PADAM"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "Permainan tersimpan akan ditulis-ganti secara kekal, anda pasti mahu teruskan?"
 
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "TULIS-GANTI PERMAINAN TERSIMPAN"
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
@@ -574,20 +576,20 @@ msgstr "Senario"
 #: gui/summary/summary.js:510
 #, python-format
 msgid "Time elapsed: %(time)s"
-msgstr ""
+msgstr "Masa berlalu: %(time)s"
 
 #: gui/summary/summary.js:531
 #, python-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:16 (caption)
 msgid "Civilizations"
-msgstr ""
+msgstr "Tamadun"
 
 #: gui/civinfo/civinfo.xml:28 (caption)
 msgid "Civilization Selection"
-msgstr ""
+msgstr "Pemilihan Tamadun"
 
 #: gui/civinfo/civinfo.xml:118 (caption)
 msgid "Close"
@@ -596,12 +598,12 @@ msgstr "Tutup"
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:316 (caption)
 msgid "Language"
-msgstr ""
+msgstr "Bahasa"
 
 #: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
 #: (caption)
 msgid "Language:"
-msgstr ""
+msgstr "Bahasa:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and
@@ -611,7 +613,7 @@ msgstr ""
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "Lokal:"
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
@@ -621,75 +623,75 @@ msgstr "Batal"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
-msgstr ""
+msgstr "Lanjutan"
 
 #: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
 #: (caption)
 msgid "Accept"
-msgstr ""
+msgstr "Terima"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "Negara:"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
-msgstr ""
+msgstr "Skrip:"
 
 #: gui/locale/locale_advanced.xml:37 (tooltip)
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "Sebahagian kod skrip empat-huruf pilihan yang diikuti dengan kod bahasa (seperti yang tersenarai di dalam ISO15924)"
 
 #: gui/locale/locale_advanced.xml:41 (caption)
 msgid "Variant (unused):"
-msgstr ""
+msgstr "Varian (tidak diguna):"
 
 #: gui/locale/locale_advanced.xml:44 (tooltip)
 #: gui/locale/locale_advanced.xml:51 (tooltip)
 msgid "Not implemented yet."
-msgstr ""
+msgstr "Belum dilaksana lagi."
 
 #: gui/locale/locale_advanced.xml:48 (caption)
 msgid "Keywords (unused):"
-msgstr ""
+msgstr "Kata Kunci (tidak diguna):"
 
 #: gui/locale/locale_advanced.xml:55 (caption)
 msgid "Resulting locale:"
-msgstr ""
+msgstr "Lokal terhasil:"
 
 #: gui/locale/locale_advanced.xml:60 (caption)
 msgid "Dictionary files used:"
-msgstr ""
+msgstr "Fail kamus yang diguna:"
 
 #: gui/locale/locale_advanced.xml:70 (caption)
 msgid "Auto detect"
-msgstr ""
+msgstr "Kesan-sendiri"
 
 #: gui/options/options.xml:18 (caption)
 msgid "Game Options"
-msgstr ""
+msgstr "Pilihan Permainan"
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
-msgstr ""
+msgstr "Am"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
-msgstr ""
+msgstr "Tetapan Grafik"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
-msgstr ""
+msgstr "Tetapan Bunyi"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
-msgstr ""
+msgstr "Tetapan Lobi"
 
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
 msgid "Save"
-msgstr ""
+msgstr "Simpan"
 
 #: gui/pregame/mainmenu.xml:104
 msgid "Help improve 0 A.D.!"
@@ -715,7 +717,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:504
 msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgstr "Alpha XVI: Patañjali"
 
 #: gui/pregame/mainmenu.xml:506
 msgid ""
@@ -729,11 +731,11 @@ msgstr "Libatkan diri anda di: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:110 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Benarkan Maklumbalas"
 
 #: gui/pregame/mainmenu.xml:141 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Lumpuhkan Maklumbalas"
 
 #: gui/pregame/mainmenu.xml:184 (caption)
 msgid "Matches"
@@ -778,11 +780,11 @@ msgstr "Hoskan permainan pemain berbilang.\\n\\nMemerlukan port UDP 20595 dibuka
 
 #: gui/pregame/mainmenu.xml:268 (caption)
 msgid "Game Lobby"
-msgstr ""
+msgstr "Lobi Permainan"
 
 #: gui/pregame/mainmenu.xml:269 (tooltip)
 msgid "Launch the multiplayer lobby."
-msgstr ""
+msgstr "Lancar lobi pemain berbilang"
 
 #: gui/pregame/mainmenu.xml:299 (caption)
 msgid "Options"
@@ -790,11 +792,11 @@ msgstr "Pilihan"
 
 #: gui/pregame/mainmenu.xml:300 (tooltip)
 msgid "Adjust game settings."
-msgstr ""
+msgstr "Laras tetapan permainan."
 
 #: gui/pregame/mainmenu.xml:317 (tooltip)
 msgid "Choose the language of the game."
-msgstr ""
+msgstr "Pilih bahasa permainan."
 
 #: gui/pregame/mainmenu.xml:332 (caption)
 msgid "Scenario Editor"
@@ -808,11 +810,11 @@ msgstr "Buka Penyunting Senario Atlas dalam tetingkap baharu. Anda boleh jalanka
 
 #: gui/pregame/mainmenu.xml:345 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Skrin Aluan"
 
 #: gui/pregame/mainmenu.xml:346 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Tunjuk Skrin Aluan. Berguna jika anda sembunyi ia secara tidak sengaja."
 
 #: gui/pregame/mainmenu.xml:402 (caption)
 msgid "Learn To Play"
@@ -820,7 +822,7 @@ msgstr "Belajar Untuk Bermain"
 
 #: gui/pregame/mainmenu.xml:403 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Buka Panduan Permainan 0 A.D."
 
 #: gui/pregame/mainmenu.xml:419 (caption)
 msgid "Single Player"
@@ -860,15 +862,15 @@ msgstr "Keluar"
 
 #: gui/pregame/mainmenu.xml:482 (tooltip)
 msgid "Exits the game."
-msgstr ""
+msgstr "Keluar dari permainan."
 
 #: gui/pregame/mainmenu.xml:518 (caption)
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Bantu Menterjemah!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Klik untuk buka halaman terjemah 0 A.D. dalam pelayar anda."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -894,7 +896,7 @@ msgstr "Laporkan Pepijat"
 
 #: gui/pregame/mainmenu.xml:555 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Klik untuk lawati 0 A.D. Jejak untuk laporkan pepijat, kerosakan, atau ralat."
 
 #: gui/pregame/mainmenu.xml:583 (caption)
 msgid "WILDFIRE GAMES"
@@ -902,210 +904,210 @@ msgstr "WILDFIRE GAMES"
 
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
-msgstr ""
+msgstr "Padam"
 
 #: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
-msgstr ""
+msgstr "Muat"
 
 #: gui/savedgames/save.xml:15 (caption)
 msgid "Save Game"
-msgstr ""
+msgstr "Simpan Permainan"
 
 #: gui/savedgames/save.xml:29 (caption)
 msgid "Description:"
-msgstr ""
+msgstr "Keterangan:"
 
 #: gui/splashscreen/splashscreen.xml:12 (caption)
 msgid "Welcome to 0 A.D. !"
-msgstr ""
+msgstr "Selamat datang ke 0 A.D. !"
 
 #: gui/splashscreen/splashscreen.xml:20 (caption)
 msgid "Show this message in the future"
-msgstr ""
+msgstr "Tunjuk mesej ini di masa akan datang"
 
 #: gui/splashscreen/splashscreen.xml:38 (caption)
 msgid "Known issues (web)"
-msgstr ""
+msgstr "Isu diketahui (sesawang)"
 
 #: gui/summary/summary.xml:23 (caption)
 msgid "Summary"
-msgstr ""
+msgstr "Ringkasan"
 
 #: gui/summary/summary.xml:63 (caption)
 msgid "Score"
-msgstr ""
+msgstr "Skor"
 
 #: gui/summary/summary.xml:70 (caption)
 msgid "Buildings"
-msgstr ""
+msgstr "Bangunan"
 
 #: gui/summary/summary.xml:77 (caption)
 msgid "Units"
-msgstr ""
+msgstr "Unit"
 
 #: gui/summary/summary.xml:84 (caption)
 msgid "Resources"
-msgstr ""
+msgstr "Sumber"
 
 #: gui/summary/summary.xml:91 (caption)
 msgid "Market"
-msgstr ""
+msgstr "Pasar"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Pelbagai"
 
 #: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
 #: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
 #: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
 msgid "Player name"
-msgstr ""
+msgstr "Nama pemain"
 
 #: gui/summary/summary.xml:109 (caption)
 msgid "Economy score"
-msgstr ""
+msgstr "Skor ekonomi"
 
 #: gui/summary/summary.xml:112 (caption)
 msgid "Military score"
-msgstr ""
+msgstr "Skor ketenteraan"
 
 #: gui/summary/summary.xml:115 (caption)
 msgid "Exploration score"
-msgstr ""
+msgstr "Skor penjelajahan"
 
 #: gui/summary/summary.xml:118 (caption)
 msgid "Total score"
-msgstr ""
+msgstr "Jumlah skor"
 
 #: gui/summary/summary.xml:231 (caption)
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr ""
+msgstr "Statistik Bangunan (Dibina / Rosak / Musnah)"
 
 #: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
 #: gui/summary/summary.xml:581 (caption)
 msgid "Total"
-msgstr ""
+msgstr "Jumlah"
 
 #: gui/summary/summary.xml:237 (caption)
 msgid "Houses"
-msgstr ""
+msgstr "Rumah"
 
 #: gui/summary/summary.xml:240 (caption)
 msgid "Economic"
-msgstr ""
+msgstr "Ekonomi"
 
 #: gui/summary/summary.xml:243 (caption)
 msgid "Outposts"
-msgstr ""
+msgstr "Kotakara"
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "Ketenteraan"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
-msgstr ""
+msgstr "Kubu"
 
 #: gui/summary/summary.xml:252 (caption)
 msgid "Civ Centers"
-msgstr ""
+msgstr "Pusat Sivik"
 
 #: gui/summary/summary.xml:255 (caption)
 msgid "Wonders"
-msgstr ""
+msgstr "Keajaiban"
 
 #: gui/summary/summary.xml:405 (caption)
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "Statistik Unit (Dilatih / Hilang / Terbunuh)"
 
 #: gui/summary/summary.xml:411 (caption)
 msgid "Infantry"
-msgstr ""
+msgstr "Infantri"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
-msgstr ""
+msgstr "Pekerja"
 
 #: gui/summary/summary.xml:417 (caption)
 msgid "Cavalry"
-msgstr ""
+msgstr "Askar Berkuda"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "Pahlawan"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
-msgstr ""
+msgstr "Kelasi"
 
 #: gui/summary/summary.xml:566 (caption)
 msgid "Resource Statistics (Gathered / Used)"
-msgstr ""
+msgstr "Statistik Sumber (Terkumpul / Diguna)"
 
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "makanan"
 
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "kayu"
 
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "batu"
 
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "logam"
 
 #: gui/summary/summary.xml:584 (caption)
 msgid "Treasures collected"
-msgstr ""
+msgstr "Harta karun ditemui"
 
 #: gui/summary/summary.xml:587 (caption)
 msgid "Tributes (Sent / Received)"
-msgstr ""
+msgstr "Ufti (Diserah / Diterima)"
 
 #: gui/summary/summary.xml:727 (caption)
 msgid "Food exchanged"
-msgstr ""
+msgstr "Pertukaran makanan"
 
 #: gui/summary/summary.xml:730 (caption)
 msgid "Wood exchanged"
-msgstr ""
+msgstr "Pertukaran kayu"
 
 #: gui/summary/summary.xml:733 (caption)
 msgid "Stone exchanged"
-msgstr ""
+msgstr "Pertukaran batu"
 
 #: gui/summary/summary.xml:736 (caption)
 msgid "Metal exchanged"
-msgstr ""
+msgstr "Pertukaran logam"
 
 #: gui/summary/summary.xml:739 (caption)
 msgid "Barter efficiency"
-msgstr ""
+msgstr "Kecekapan sistem Barter"
 
 #: gui/summary/summary.xml:742 (caption)
 msgid "Trade income"
-msgstr ""
+msgstr "Pendapatan dagangan"
 
 #: gui/summary/summary.xml:873 (caption)
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "Vegetarian\\nnisbah"
 
 #: gui/summary/summary.xml:876 (caption)
 msgid "Feminisation"
-msgstr ""
+msgstr "Feminisasi"
 
 #: gui/summary/summary.xml:879 (caption)
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "Bunuh / Mati\\nnisbah"
 
 #: gui/summary/summary.xml:882 (caption)
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "Peta\\npenjelajahan"
 
 #: gui/summary/summary.xml:989 (caption)
 msgid "Continue"
@@ -1113,616 +1115,616 @@ msgstr "Teruskan"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Terima kasih kerana memasang 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"]  Ini merupakan versi eksperimental permainan. Terdapat fitur yang hilang dan mengandungi pepijat."
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr ""
+msgstr "[icon=iconLag]  Permainan akan menjadi lembab jika banyak unit yang bergerak."
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr ""
+msgstr "[icon=\"iconShip\"]  Pihak lawan komputer tidak dapat guna kapal."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
-msgstr ""
+msgstr "[icon=\"iconMap\"]  Peta bersaiz besar boleh menimbulkan masalah."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "KEM ASKAR ROM"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "- Bina di mana sahaja di atas peta, walaupun di dalam wilayah musuh. Sesuai membina pangkalan rahsia di dalam kawasan musuh atau untuk menggabungkan tenaga di dalam wilayah musuh."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr ""
+msgstr "- Hilang kesihatan bila berada di dalam kawasan neutral atau musuh."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- Bina senjata pengepung dan latih warga-aksar."
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr ""
+msgstr "- Sembuh secara perlahan-lahan sehingga 40 unit yang bergarison."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "BEREK"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- Latih semua warga-askar. Sesetengah puak boleh membuka latihan pahlawan juga."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- Penyelidikan teknologi unik ketenteraan bagi setiap puak."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Bina sorang warga-askar lebih awal ketika fasa penempatan anda."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Bina pengkalan terlebih dahulu untuk meneruskan lagi serangan anda dengan tentera baharu."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "TUKANG BESI"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- Penyelidikan struktur untuk semu puak."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- Penyelidikan tatar senjata dan perisai untuk unit anda."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr ""
+msgstr "- Garison warga-askar di dalam untuk penyeledikan lebih pantas."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "KUMPULAN KERAMAT CARTHAGE"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- Pahlawan Bertombak dan Pahlawan Kuda Bertombak untuk Carthage"
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr ""
+msgstr "- Berkos kedua-dua Makanan dan Logam dan boleh dilatih melalui Kuil, selain dari Kubu seperti pahlawan yang lain."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- Guna Askar Bertombak sebagai infantri berat melawan askar berkuda. Guna Aska Berkuda sebagai lawan terhadap senjata pengepung dan askar peninjau."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "TARBIL"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- Enjin pengepung berjarak jauh yang sesuai terhadap bangunan."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr ""
+msgstr "- Boleh ditatar untuk melontar objek berapi untuk lebih kesan terhadap bangunan dan unit."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr ""
+msgstr "- Mahal dan lambat bergerak."
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "- Boleh dipek ke dalam pedati untuk memudahkan pergerakan, dan dipasang semula menjadi senjata untuk menyerang."
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "TONGKANG PERANG CELT"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr ""
+msgstr "- Kapal perang \"trireme\" kelas sederhana."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
-msgstr ""
+msgstr "- Hanya satu-satunya jenis kapal tersebut."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- Tidak boleh merempuh seperti trireme lain, tetapi mempunyai hayat dan perisai yang lebih dari trireme lain."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
-msgstr ""
+msgstr "- Boleh membawa sehingga 40 unit melintasi air."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "PUSAT SIVIK"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- \"Teras\" koloni baharu anda."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr ""
+msgstr "- Jangkau keluasan wilayah lebih besar."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- Boleh dibina dalam wilayah rakan dan neutral."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- Latih Warga Perempuan dan Warga-Askar asas."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "KEDUTAAN"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr ""
+msgstr "- \"Berek\" khas tersedia dalam puak Carthage."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- Latih askar upahan dari setiap kedutaan bertema-etnik."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr ""
+msgstr "- \"Warga-aksar\" upahan memerlukan kos Makanan biasa kepada kos Logam."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "PERIKANAN"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- Menangkap ikan dilaut untuk dapatkan sumber makanan yang banyak."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- Bot nelayan dapat membawa sejumlah besar Makanan dalam satu perjalanan."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Garison Unit Sokongan di dalamnya untuk gandakan kadar penangkapan Bot Nelayan."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- Berhati-hati! Sumber ikan adalah sumber yang terhad!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "KUBU"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "- Kubu merupakan bangunan terkuat bagi setiap puak."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Latih Unit Pahlawan, Adiwira, dan Senjata Pengepung."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr ""
+msgstr "- Berikan galakan populasi."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- Garison askar di dalam untuk menambah lagi kuasa tembakan sebagai pertahanannya."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "PENGUMPULAN SUMBER"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "- Guna Warga-Askar dan Warga Perempuan menghimpun sumber."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr ""
+msgstr "- Warga Perempuan adalah bonus dengan Pertanian dan Pengumpulan Makanan."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr ""
+msgstr "- Warga-Aksar adalah bonus dengan Perlombongan."
 
 #: gui/text/tips/gathering.txt:8
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "- Lebih tinggi tahap Warga-Askar (Mahir, Elit), lebih baik ia bertempur, tetapi kurang efisyen bila membuat kerja pengumpulan sumber."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "IPHICRATES"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- Jeneral Athen yang merefomasi tentera Athen menjadi lebih pantas dan lebih mudah dipimpin."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "- Unit dalam formasi ini lebih pantas dan lebih kuat."
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "- Pertempuran lebih pantas ketika dia hidup."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "KOTAKARA"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- Bina dalam kawasan neutral untuk julat peninjauan yang lebih luas."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- Murah, menggunakan 80 unit Kayu."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "- Ia dapat dibina dengan  cepat, tetapi strukturnya lemah."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr ""
+msgstr "- Hilang nilai kesihatan ketika berada di dalam kawasan Neutral, tetapi boleh dibaiki."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "TEMBOK PALISADE"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "- Tembok kayu berkos murah dan lebih pantas untuk semua puak."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "- Kebanyakan puak dapat membuatnya di dalam Fasa Kampung."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr ""
+msgstr "- Boleh diserang oleh askar musuh, tidak seperti Tembok Bandar, yang hanya boleh diserang oleh senjata pengepung."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "PERICLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- Ahli politik Athen paling terkenal pada abad ke-5 S.M."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "- Bangunan dibina lebih pantas di dalam lingkungan penguasaan."
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- Kuil lebih berkos rendah di kawasan dia tinggal."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "SENIBINA PARSI"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- Teknologi khas untuk orang Parsi."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr ""
+msgstr "- Semua bangunan Parsi +25% lebih kuat."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "Masa pembinaan dilanjutkan sebanyak +20% sebagai timbal balas."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "- Orang Parsi dapat menerokai banyak teknologi struktur dan pertahanan."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "KAPAL PERANG BERAT"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- Kapal perang biasa yang paling berat. Hanya tersedia untuk: Rom, Carthage, Ptolemi, dan Seleucid."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr ""
+msgstr "- Garison sehingga 50 unit untuk kuasa menembak lebih kuat, termasuklah ballista dan scorpion."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
-msgstr ""
+msgstr "- Mempunyai serangan merempuh yang dapat tenggelamkan kapal musuh."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "SAVANNA BIOME"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- Umumnya berbentuk rata, dengan sedikit lubang-lubang air dan singkapan berbatu."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- Penuh sesak dengan haiwan ternakan untuk tujuan pemburuan."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- Kaya dengan pelbagai jenis perlombongan."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- Kayu sukar di dapati, tetapi ada banyak pokok Baobab yang menjana sumber kayu yang banyak."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "MENARA PERTAHANAN"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- Menara yang berdiri sendiri sesuai untuk mempertahankan kawasan luar bandar yang luas."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- Menara biasanya berkos 100 unit Kayu dan 100 unit Batu. Menara Pertahanan Iberia berkos 300 Batu (kerana ia lebih kuat)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- Mempunyai serangan jarak jauh yang meningkat untuk setiap unit yang digarison."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "SPARTIATES"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
-msgstr ""
+msgstr "- Unit infrantri paling kuat di dalam permainan."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- Infantri Pahlawan yang tersedia untuk puak Spartan."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid "- Long train time, but high armor and attack."
-msgstr ""
+msgstr "- Masa latihan lebih lama, tetapi perisai dan serangan lebih kuat."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- Guna formasi 'Phalanx' untuk bonus perisai tambahan."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
-msgstr ""
+msgstr "- Struktur permulaan khas untuk orang Yunani."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- Dianugerah +10 Populasi."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
-msgstr ""
+msgstr "- Hanya dibenarkan dalam beberapa mod permainan."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr ""
+msgstr "- Boleh diperoleh dalam penyunting Atlas untuk senario suai."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "GUDANG"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- Rumah simpanan murah untuk sumber bukan makanan (kayu, batu, logam)."
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "- Penyelidikan teknologi untuk mempertingkatkan keupayaan mengumpul warga anda."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "FORMASI SYNTAGMA"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- Formasi untuk infantri gaya 'pikeman'."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- Formasi adalah perlahan dan menyusahkan."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- Hampir kebal dari arah hadapan."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- Tidak kebal pada serangan dari arah belakang."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "KUIL"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr ""
+msgstr "- Struktur Fasa Pekan diperlukan untuk ditatar ke Fasa Bandar."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "- Rekrut Bomoh untuk merawat tentera anda di medan perang."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr ""
+msgstr "- Menyelidik penyembuhan, pemujaan beragama, dan teknologi budaya."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr ""
+msgstr "- \"Aura\"nya menyembuhkan unit berhampiran."
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr ""
+msgstr "- Garison unit yang cedera di dalam untuk kadar penyembuhan lebih pantas."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "THEMISTOCLES"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- Adiwira Athen yang memimpin Yunani pada peperangan laut diantara Artemisium dengan Salamis."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- Semua kapal dapat dibina dengan lebih pantas semasa dia hidup."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- Kapal yang dia masuki akan bergerak lebih pantas."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "TRIREME"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- Kapal Perang Saiz Sederhana."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- Hanay ada pada puak Rom, Carthagi, Yunani, dan Parsi."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- Sesuai untuk pengangkutan dan perlawanan."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr ""
+msgstr "- Garisonkan tarbil di dalam kapal untuk serangan pengepung berjarak-jauh."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr ""
+msgstr "- Berupaya memusnahkan serangan rempuhan kapal-dengan-kapal yang mesti dicas semula bagi setiap penggunaan."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "VIRIATO"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "- Adiwira Iberia dari puak Lusitani."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- Sekurang-kurangnya 7 kempen melawan Rom semasa 'Perang Lusitani' dari tahun 147 hingga 139 S.M."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Bergerak pantas dan boleh tukar senjata antara pedang dengan tombak berapi."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- \"Aura\"nya adalah \"Gerila Taktikal\" yang membolehkan unit Iberia berhampiran menyerang hendap pihak lawan."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "GAJAH PERANG"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "- Haiwan besar dari Afrika dan India, dilatih untuk kegunaan perang."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- Kos Makanan dan Logam tinggi, tetapi sangat kuat. Paling kuat terhadap Struktur dan Askar Berkuda."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- Tidak kebal terhadap peninjau infantri."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- Tersedia untuk: Maurya, Ptolemi, seleucid, dan Carthage."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "IKAN PAUS"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- Sumber laut"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 unit Makanan."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- Boleh diperoleh melalui Bot Nelayan selepas ikan paus dibunuh."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- Merayau di lautan dan akan lari bila ia diserang."

@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Nagy András <asd0707@freemail.hu>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"PO-Revision-Date: 2014-07-13 20:10+0000\n"
+"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,16 +22,16 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "Polgári"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr ""
+msgstr "Polgári épületek"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr ""
+msgstr "Polgáriközpont"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
@@ -51,7 +53,7 @@ msgstr ""
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
-msgstr ""
+msgstr "Falu"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
@@ -64,7 +66,7 @@ msgstr "Növeli a népesség maximális számát."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Gyógyító aura"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -72,7 +74,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Town"
-msgstr ""
+msgstr "Város"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
@@ -87,25 +89,25 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Közeli egységek gyógyítása 1HP ponttal másodpercenként."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "Defensive"
-msgstr "Defenzív"
+msgstr "Védelmi"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "Védelmi épület"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "Védelmi torony"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Nyilakat lő. Szállásolj el, hogy extra védelemhez juss."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
@@ -114,18 +116,18 @@ msgstr "Védelmi Torony"
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "Előörs"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and friendly territories to scout areas of the map. Slowly "
 "loses health while in neutral territory."
-msgstr ""
+msgstr "Építsd semleges és barátságos területekre, hogy felfedezd a területet. Lassan veszít az életéből amikor semleges területen van."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "Falazd körbe a városod, a jobb védelemért."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -143,24 +145,24 @@ msgstr "Városkapu"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Fal védelem"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr ""
+msgstr "Hosszú fal részek kapukká alakíthatóak."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Falon lévő egységen 3 extra pajzs szintet kapnak"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Kőfal átalakítása Városkapuvá"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "Nyilakat lő. Szállásolj be egységeket, hogy megvédd a város falat a támadókkal szemben."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
@@ -173,11 +175,11 @@ msgstr "Városfal"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr ""
+msgstr "Gazdasági"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr ""
+msgstr "Gazdasági épület"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
@@ -213,7 +215,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr ""
+msgstr "Építs Polgári központot ezen a helyen, hogy kibővítsd a területed."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
@@ -226,16 +228,16 @@ msgstr "Hadi"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "Hadi épületek"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr "Barakk"
+msgstr "Kaszárnyák"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "Polgár-katonák kiképzése. Kiképzési fejlesztések kutatása. Szállás: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -266,7 +268,7 @@ msgstr "Követség"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "City"
-msgstr ""
+msgstr "Város"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 #: simulation/templates/template_structure_military_fortress.xml:31
@@ -282,16 +284,16 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "Erőforrás"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr ""
+msgstr "Erőforrás épületek"
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "Karám"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
@@ -316,7 +318,7 @@ msgstr "Ez a speciális épület egyedülálló a civilizációk között."
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
-msgstr ""
+msgstr "Speciális épület"
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
@@ -391,7 +393,7 @@ msgstr "Agrós"
 #: simulation/templates/structures/hele_fortress.xml:16
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "Ostrom gépek építése. Max. 20 katona elszállásolása a védelem érdekében."
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
@@ -405,7 +407,7 @@ msgstr "Bajnokok kiképzése."
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
 msgid "Gymnasium"
-msgstr ""
+msgstr "Gymnasium"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásieon"
@@ -432,7 +434,7 @@ msgstr "Empórion"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Görög Örs"
+msgstr "Görög Előőrs"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
@@ -441,7 +443,7 @@ msgstr "Hősök kiképzése. Speciális technológiák kutatása."
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
-msgstr ""
+msgstr "Tanács Terem"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22

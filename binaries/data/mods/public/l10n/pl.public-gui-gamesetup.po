@@ -15,7 +15,9 @@
 # lacek, 2014
 # LenaPL <polandlena@gmail.com>, 2014
 # Leszek S, 2014
+# Leszek S, 2014
 # Mar321 <grobelskimarcin@gmail.com>, 2013
+# mhnxo <mhnxo123@gmail.com>, 2014
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
@@ -30,8 +32,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-07-19 10:00+0000\n"
+"Last-Translator: Leszek S\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -43,7 +45,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
@@ -89,7 +91,7 @@ msgstr "Cud"
 #: gui/gamesetup/gamesetup.js:8
 msgctxt "victory"
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/gamesetup/gamesetup.js:11
 msgid "Unlimited"
@@ -145,7 +147,7 @@ msgstr "Powróć do menu głównego."
 
 #: gui/gamesetup/gamesetup.js:117
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Powróć do menu głównego."
 
 #: gui/gamesetup/gamesetup.js:146
 msgctxt "map"
@@ -182,7 +184,7 @@ msgstr "Wszystkie mapy"
 #: gui/gamesetup/gamesetup.js:364
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Żaden"
 
 #: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
 msgctxt "civilization"
@@ -330,7 +332,7 @@ msgstr "Oświadcz, że akceptujesz obecne ustawienia i jesteś gotowy do gry!"
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "Gra  %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
@@ -347,7 +349,7 @@ msgstr "Rejestracja na serwerze..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Gra już się zaczęła. Ponowne łączenie."
 
 #: gui/gamesetup/gamesetup_mp.js:185
 msgid "Game name already in use."
@@ -356,7 +358,7 @@ msgstr "Nazwa gry jest już używana."
 #: gui/gamesetup/gamesetup_mp.js:241
 #, python-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "Gra użytkownika %(playername)s"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -535,13 +537,13 @@ msgstr "Wybierz początkowe zasoby w grze."
 #. options!
 #: gui/gamesetup/gamesetup.xml:314 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Wł./Wył.  odsłonięcie mapy (pełna widoczność)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:324 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Wł./Wył. zbadaną mapę (widać naturę i budynki)."
 
 #: gui/gamesetup/gamesetup.xml:334 (tooltip)
 msgid "Toggle locked teams."
@@ -557,11 +559,11 @@ msgstr "Wł./Wył. kody."
 
 #: gui/gamesetup/gamesetup.xml:350 (caption)
 msgid "Rated Game:"
-msgstr ""
+msgstr "Ocena gry:"
 
 #: gui/gamesetup/gamesetup.xml:354 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Wł./Wył. ocenę gry w tabeli wyników."
 
 #: gui/gamesetup/gamesetup.xml:367 (tooltip)
 msgid "Close more game options window"
@@ -699,11 +701,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "\"Powolny i wytrwały wygrywa wyścig.\" - Ezop"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"Bóg pomaga tym, co sami sobie pomagają.\" - Ezop"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -724,7 +726,7 @@ msgstr ""
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "\"Spartanie nie pytają ilu ich jest, tylko gdzie oni są.\" - Agis II"
 
 #: gui/text/quotes.txt:26
 msgid ""
@@ -908,7 +910,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr "\"Przybyłem, zobaczyłem, zwyciężyłem.\"  - Gajusz Julusz Cezar "
+msgstr "\"Przybyłem, zobaczyłem, zwyciężyłem.\"  - Gajusz Juliusz Cezar "
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -916,7 +918,7 @@ msgstr "\"Ludzie chętnie wierzą w to, czego pragną.\" - Gajusz Juliusz Cezar"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr "\"Kości zostały rzucone\" - Gajusz Julusz Cezar"
+msgstr "\"Kości zostały rzucone\" - Gajusz Juliusz Cezar"
 
 #: gui/text/quotes.txt:61
 msgid ""

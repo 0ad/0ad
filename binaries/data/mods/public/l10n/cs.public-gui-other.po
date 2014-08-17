@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-19 21:40+0000\n"
+"Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,16 +33,16 @@ msgstr "%(civilization)s hra"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Civilizační přídavek"
+msgstr[1] "Civilizační přídavky"
+msgstr[2] "Civilizačních přídavků"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Týmový přídavek"
+msgstr[1] "Týmové přídavky"
+msgstr[2] "Týmových přídavků"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -49,9 +51,9 @@ msgstr "Zvláštní technologie"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Zvláštní budova"
+msgstr[1] "Zvláštní budovy"
+msgstr[2] "Zvláštních budov"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -457,7 +459,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sVarování:%(endWarning)sVypadá to, že používáte grafickou kartu bez podpory shaderů (fixed function). Tato možnost bude v budoucích vydáních 0 A.D. odstraněna, aby bylo možné využívat pokročilé grafické možnosti. Doporučujeme upgradování vaší grafické karty na novější s podporou shaderů."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -492,7 +494,7 @@ msgstr "Potvrzení"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "Editor scénářů je nedostupný, nebo se jej nepodařilo nahrát. Pro další informace se podívejte do herních záznamů."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -874,7 +876,7 @@ msgstr "Pomozte s překladem!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohlížeči."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"

@@ -4,13 +4,17 @@
 # Ascendant project.
 # 
 # Translators:
+# rentt777 <35974380@qq.com>, 2014
 # hyln9 <hyln9@live.cn>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
+# loms126 <loms126@126.com>, 2014
 # loms126 <loms126@126.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
+# wuxb <wuxb45@gmail.com>, 2014
 # xingtong, 2013
+# yhcvb <yhcvb@126.com>, 2014
 # yukisola <yolandaapply@gmail.com>, 2014
 # zodiac8765 <zodiac8765@gmail.com>, 2014
 # 吴善俊 <sjwuny@126.com>, 2014
@@ -19,8 +23,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-08-09 03:10+0000\n"
+"Last-Translator: rentt777 <35974380@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -458,7 +462,7 @@ msgstr "间隔："
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "频率："
 
 #: gui/session/selection_details.js:249 gui/session/session.js:633
 #: gui/session/utility_functions.js:324
@@ -489,7 +493,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "类型："
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -503,12 +507,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "购买 %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "出售 %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -542,11 +546,11 @@ msgstr "解压"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "取消打包"
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "取消展开"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
@@ -765,7 +769,7 @@ msgstr "驻扎"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "卸载"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -785,15 +789,15 @@ msgstr "警戒"
 
 #: gui/session/unit_actions.js:808
 msgid "Remove guard"
-msgstr ""
+msgstr "移除守卫"
 
 #: gui/session/unit_actions.js:824
 msgid "Select trading goods"
-msgstr ""
+msgstr "选择交易的商品"
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "提升警报级别以保护更多单位"
 
 #: gui/session/unit_actions.js:843
 msgid "Raise an alert!"
@@ -801,7 +805,7 @@ msgstr "引发警报!"
 
 #: gui/session/unit_actions.js:861
 msgid "End of alert."
-msgstr ""
+msgstr "警报终止。"
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
@@ -839,7 +843,7 @@ msgstr "%(arrowString)s / %(timeString)s"
 #, python-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
-msgstr[0] ""
+msgstr[0] "%(arrows)s 支箭"
 
 #: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
 #, python-format
@@ -1317,7 +1321,7 @@ msgstr "取消"
 
 #: gui/session/session.xml:207 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "仅团队"
 
 #: gui/session/session.xml:211 (caption)
 msgid "Send"
@@ -1329,7 +1333,7 @@ msgstr "选择要查看的玩家"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "观察者模式(试验)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
@@ -1345,7 +1349,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "选择想要卖出的货物，然后使用想要换回的货物的箭头来完成交换。(使用 Shift 将会交换所有换回物，即100%)"
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1378,13 +1382,13 @@ msgstr "等级"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "生产队列"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "单击选择群组，双击跟踪群组，右击解散群组。"
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"

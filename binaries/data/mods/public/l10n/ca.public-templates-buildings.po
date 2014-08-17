@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Haommin <tfs.msimangu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"PO-Revision-Date: 2014-06-20 13:10+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,7 +66,7 @@ msgstr "Augmenta el límit de població."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Aura de curació"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -83,11 +85,11 @@ msgstr "Temple"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Recluta guaridors. S'hi poden refugiar fins a 20 unitats per curar-les ràpidament (3 punts de salut per segon). Investiga millores de curació i religioses."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Cura les unitats properes a 1 punt de salut per segon."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
@@ -143,7 +145,7 @@ msgstr "Porta de la ciutat"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Protecció de muralla"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -152,7 +154,7 @@ msgstr "Els segments llargs de muralla es poden convertir en portes."
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Les unitats a les muralles tenen 3 nivells més d'armadura."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -316,7 +318,7 @@ msgstr "Aquest és un edifici especial únic d'una civilització particular."
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
-msgstr ""
+msgstr "Edifici especial"
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
@@ -1642,7 +1644,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Aquest és l'edifici selèucida d'expansió de territori, semblant als centres cívics per a les altres faccions. És més dèbil i té menys influència sobre el territori, però és més barat i es construeix més ràpid.\n- Recluta soldats colons de diverses nacionalitats.\n- Distància mínima a altres colònies militars: 120 metres."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

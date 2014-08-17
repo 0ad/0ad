@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# mogafi, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"PO-Revision-Date: 2014-07-13 00:20+0000\n"
+"Last-Translator: mogafi\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,11 +26,11 @@ msgstr "Armadura de metal para o rosto do cavalo."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsontooltip
 msgid "Equip your cavalry mounts with armor. All Cavalry +1 Hack armor level."
-msgstr "Equipe a sua cavalaria com armaduras e aumente a armadura em +1."
+msgstr "Equipe a sua cavalaria com armadura. Toda a cavalaria +1 nível de Armadura de Corte."
 
 #: simulation/data/technologies/armor_cav_chamfron.jsongenericName
 msgid "Chamfron"
-msgstr "Barda"
+msgstr "Testeira"
 
 #: simulation/data/technologies/armor_cav_chamfron.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_hack_01.jsonrequirementsTooltip
@@ -87,17 +89,17 @@ msgstr "Prometoopidion"
 msgid ""
 "Body armor fashioned completely of iron, the hardest workable metal known to"
 " the ancients."
-msgstr "Armadura de corpo em ferro, o metal mais difícil a ser trabalhado pelos antigos. "
+msgstr "Armadura de corpo em ferro, o metal mais difícil de ser trabalhado pelos antigos. "
 
 #: simulation/data/technologies/armor_hero_01.jsontooltip
 msgid ""
 "All heroes +2 Hack Armor Levels and +2 Pierce Armor Levels, but also +50 "
 "Metal Cost."
-msgstr "Todos ps heróis têm +2 e +1 de armadura mas também um custo de recrutamento em +50 metais."
+msgstr "Todos os Heróis +2 níveis de Corte de Armadura.e +2 níveis de Perfuração de Armadura, mas também +50 de Custo de Metal."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr "Armadura de herói em ferro"
+msgstr "Armadura de Herói em ferro"
 
 #: simulation/data/technologies/armor_hero_01.jsonrequirementsTooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsonrequirementsTooltip
@@ -158,7 +160,7 @@ msgstr "Armadura de herói em ferro"
 #: simulation/data/technologies/successors/unlock_traditional_army.jsonrequirementsTooltip
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsonrequirementsTooltip
 msgid "Unlocked in City Phase."
-msgstr "Desbloqueado na Cidade."
+msgstr "Desbloqueado na Fase de Cidade."
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -175,17 +177,17 @@ msgstr "Lorica Ferrea"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsondescription
 msgid "Quilted linen or leather body armor for infantrymen."
-msgstr "Armadura de corpo acolchoada de linho ou couro para os soldados."
+msgstr "Armadura de corpo acolchoada de linho ou couro para soldados de infantaria."
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr "A armadura da infantaria aumenta em +1."
+msgstr "A armadura da infantaria aumenta em +1 de nível de Corte."
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
-msgstr "Armadura de corpo acolchoada"
+msgstr "Armadura de Corpo Acolchoada"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.pers
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.maur
@@ -229,7 +231,7 @@ msgstr "Armadura de corpo reforçada com placas de bronze."
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "Armadura de placas"
+msgstr "Armadura de Escamas"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -244,7 +246,7 @@ msgstr "Armadura de corpo em bronze. Só os melhores soldados eram equipados com
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr "Os campeões têm +2 de armadura mas também um custo de recrutamento em +10 metais."
+msgstr "Os campeões têm +2 níveis de Armadura de Corte mas também um custo de  +10 Metal."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -256,15 +258,15 @@ msgstr "Lorica Musculata"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsondescription
 msgid "Plywood construction for large shields."
-msgstr "Construção de contrachapa para grandes escudos."
+msgstr "Construção de contraplacado para escudos grandes."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr "Todos lanceiros têm +2 de armadura."
+msgstr "Lanceiros de Infantaria +2 Níveis de Perfuração de Armadura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
-msgstr "Construção de contrachapa para escudos"
+msgstr "Construção de contraplacado para escudos"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsonspecificName.spart
@@ -283,7 +285,7 @@ msgstr "Os melhores escudos têm reforços nos cantos (Roman scutum) ou à volta
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr "Aumenta em +1 a armadura da infantaria."
+msgstr "Lanceiros de Infantaria +1 Nível de Perfuração de Armadura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -304,7 +306,7 @@ msgstr "Uma camada de bronze aplicada sobre a parte exterior dos escudos."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr "Aumenta em +1 a armadura da infantaria."
+msgstr "Lanceiros de Infantaria +1 de Nível Perfuração de Armadura."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -330,7 +332,7 @@ msgstr "Só os soldados mais famosos tinha um escudo revestido a prata como é o
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr "Os campeões têm +2 de armadura mas também um custo de recrutamento em +10 metais."
+msgstr "Campeões +2 Níveis de Perfuração de Armadura, mas também +10 Custo de Metal."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -392,7 +394,7 @@ msgstr "Casco reforçado"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Desbloqueado na Aldeia."
+msgstr "Desbloqueado na Fase de Aldeia."
 
 #: simulation/data/technologies/armor_trade_convoys.jsondescription
 msgid "Increases defensive capability of traders."
@@ -400,7 +402,7 @@ msgstr "Aumenta as defesas dos comerciantes."
 
 #: simulation/data/technologies/armor_trade_convoys.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr "A armadura e o ataque dos comerciantes aumenta em +2."
+msgstr "Comerciantes +2 Níveis de Armadura de Corte e de Armadura de Perfuração."
 
 #: simulation/data/technologies/armor_trade_convoys.jsongenericName
 msgid "Trade convoys"
@@ -413,7 +415,7 @@ msgstr "Uma lança comprida construída especificamente para a cavalaria."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr "Equipe a sua cavalaria de contacto com melhores armas. O ataque de golpe da cavalaria de contacto aumenta em +2."
+msgstr "Equipe a sua cavalaria de contacto com melhores armas. O ataque de corte da cavalaria de contacto aumenta em +2."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -550,7 +552,7 @@ msgstr "O uso de entulho como material reduz o custo e o tempo de construção d
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsontooltip
 msgid "City walls -20% build time, but -1 crush armor level."
-msgstr "Muralhas com -20% de tempo de construção mas -1 na defesa de ataques de impacto."
+msgstr "Muralhas com -20% de tempo de construção mas -1 na defesa de ataques de esmagamento."
 
 #: simulation/data/technologies/buildtime_walls_rubble.jsongenericName
 msgid "Rubble Materials"
@@ -847,7 +849,7 @@ msgstr "O uso da alvenaria geométrica aumenta a resistência das muralhas."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr "Aumenta em +2 a defesa das muralhas mas também aumenta o seu tempo de construção em +10%."
+msgstr "Muralhas +2 Níveis de Armadura de Esmagamento, mas +10% de tempo de construção."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -862,7 +864,7 @@ msgstr "Era habitual um soldado de infantaria trazer consigo uma arma branca sec
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr "Aumenta o ataque de golpe de infantaria de contacto em +1."
+msgstr "Aumenta o ataque de corte de infantaria de contacto em +1."
 
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
@@ -888,7 +890,7 @@ msgstr "Usar ferro em vez de bronze originou lanças com um poder de perfuraçã
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
-msgstr "Aumenta o ataque de golpe de todas as unidades com lanças em +2."
+msgstr "Aumenta o ataque de corte de todas as unidades com lanças em +2."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
@@ -910,7 +912,7 @@ msgstr "Lança ou barda"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr "Campeões ou Cidadãos"
+msgstr "Campeões vs. Irregulares"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
@@ -958,7 +960,7 @@ msgstr "Lutar com lançar ou escamuraçar"
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr "Armadura para infantaria ou armadura para lanceiros"
+msgstr "Armadura de corte para infantaria ou armadura de Perfuração para lanceiros"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -988,7 +990,7 @@ msgstr "Tempo de construção de muralhas ou resistência"
 #: simulation/data/technologies/phase_city_athen.jsongenericName
 #: simulation/data/technologies/phase_city_generic.jsongenericName
 msgid "City Phase"
-msgstr "Cidade"
+msgstr "Fase de Cidade"
 
 #: simulation/data/technologies/phase_city_athen.jsondescription
 msgid ""
@@ -1002,7 +1004,7 @@ msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%. Silver Owls civ bonus "
 "grants an extra +10% metal gather rate to all workers."
-msgstr "Eleva para Cidade onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +50%. A Coruja de Prata garante +10% na capacidade de obtenção do metal."
+msgstr "Eleva para Cidade onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +50%. A Coruja de Prata garante +10% na taxa de obtenção de metal."
 
 #: simulation/data/technologies/phase_city_athen.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_britons.jsonrequirementsTooltip
@@ -1028,11 +1030,11 @@ msgstr "Eleva uma vila movimentada a cidade de grandes dimensões."
 msgid ""
 "Advance to City Phase, which unlocks Brythonic structures and units. "
 "Territory radius for Civic Centers increased by another +50%"
-msgstr "Eleva para Cidade onde estão disponíveis edifícios e unidades bretãs. A área territorial dos centros cívicos aumenta em +50%."
+msgstr "Avança para a fase de Cidade, onde estão disponíveis edifícios e unidades bretãs. A área territorial dos Centros Cívicos aumenta em +50%."
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
-msgstr "Cidade - Bretões"
+msgstr "Fase de Cidade - Bretões"
 
 #: simulation/data/technologies/phase_city_gauls.jsontooltip
 msgid ""
@@ -1042,7 +1044,7 @@ msgstr "Avançar para a Fase de Cidade, que disponibiliza estruturas e unidades 
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
-msgstr "Cidade - Gauleses"
+msgstr "Fase de Cidade - Gauleses"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1054,7 +1056,7 @@ msgstr "Eleva uma vila movimentada a cidade de grandes dimensões, plena de mara
 msgid ""
 "Advance to City Phase, which unlocks more structures and units. Territory "
 "radius for Civic Centers increased by another +50%"
-msgstr "Eleva para Cidade onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +50%."
+msgstr "Avançar para a fase de Cidade onde estão disponíveis novos edifícios e unidades. A área territorial dos centros cívicos aumenta em +50%."
 
 #: simulation/data/technologies/phase_city_pair_celts.jsongenericName
 msgid "Britons vs. Gauls"
@@ -1108,7 +1110,7 @@ msgstr "Avançar para a Fase de Vila, que desbloqueia novos edifícios e unidade
 
 #: simulation/data/technologies/phase_village.jsongenericName
 msgid "Village Phase"
-msgstr "Aldeia"
+msgstr "Fase de Aldeia"
 
 #: simulation/data/technologies/pop_civic_01.jsondescription
 msgid ""
@@ -1253,7 +1255,7 @@ msgstr "Aumenta a armadura na maquinaria de cerco"
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr "A armadura de toda a maquinaria de cerco aumenta em +2."
+msgstr "A armadura de corte de toda a maquinaria de cerco aumenta em +2."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1265,7 +1267,7 @@ msgstr "Desenvolvimento de tecnologia aumenta a eficiência da maquinaria de cer
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +5 Crush damage."
-msgstr "O ataque da maquinaria de cerco aumenta em +5."
+msgstr "Todas as Máquinas de Cerco +5 Dano de Esmagamento."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1406,7 +1408,7 @@ msgstr "Desbloqueia a capacidade de recrutar campeões a partir dos quartéis."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
-msgstr "Desbloqueia campeões"
+msgstr "Desbloqueia Campeões"
 
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.hele
 #: simulation/data/technologies/unlock_champion_units.jsonspecificName.mace
@@ -1532,7 +1534,7 @@ msgid ""
 "was via the city's harbor, not by storming its walls. Consequently, "
 "Carthaginian walls, gates, and wall towers have 3x the health of a standard "
 "wall, but also cost twice as much and take twice as long to build."
-msgstr "Os Cartagineses construíram as muralhas das suas cidades em três concentrados circuitos. Estas muralhas nunca foram destruídas. Quando Cartago foi tomada de assalto pelos Romanos, foi através do porto e não através das resistentes muralhas. Assim, as muralhas, os portões e as torres de vigia cartaginesas têm 3x mais resistência, 2x mais o custo e 2x mais o tempo de construção em relação as mesmas estruturas de outras civilizações."
+msgstr "Os Cartagineses construíram as muralhas das suas cidades em três circuitos concêntricos. Estas muralhas nunca foram destruídas. Quando Cartago foi tomada de assalto pelos Romanos, foi através do porto e não através das resistentes muralhas. Assim, as muralhas, os portões e as torres de vigia cartaginesas têm 3x mais resistência, 2x mais o custo e 2x mais o tempo de construção em relação às mesmas estruturas de outras civilizações."
 
 #: simulation/data/technologies/carthaginians/civbonus_triple_walls.jsongenericName
 msgid "Triple Walls"
@@ -1689,7 +1691,7 @@ msgstr "É mais rápido recrutar mercenários celtas."
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr "Fazer alianças com povoações celtas reduz o tempo de recrutamento dos mercenários celtas em -20%."
+msgstr "Alie com povoações celtas para reduzir o tempo de recrutamento de mercenários celtas em -20%."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -2138,7 +2140,7 @@ msgstr "Os Romanos eram mestres da logística de guerra. "
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr ""
+msgstr "Acampamentos Militares Entrincheirados e Muralhas de Cerco deterioram 50% mais devagar."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2150,19 +2152,19 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr ""
+msgstr "Os Livros Sibilinos ou \"Libri Sibyllini\" eram uma colecção de declarações de oráculo, escritas em Grego na forma hexamétrica, comprados a uma sibila pelo último rei de Roma, Tarquinius Superbus, e consultados em momentos de crise durante toda a história da República e do Império."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "+25% alcance de visão para todas as unidades."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
-msgstr ""
+msgstr "Livros Sibilinos"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr ""
+msgstr "Libri Sibyllini"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"

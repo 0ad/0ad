@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# leper <leper@wildfiregames.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"PO-Revision-Date: 2014-06-20 00:30+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,14 +33,14 @@ msgstr "%(civilization)s Gameplay"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Civilization Bonus"
+msgstr[1] "Civilization Bonuses"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Team Bonus"
+msgstr[1] "Team Bonuses"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -47,8 +49,8 @@ msgstr "Special Technologies"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Special Building"
+msgstr[1] "Special Buildings"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -64,7 +66,7 @@ msgstr "History of the %(civilization)s"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "Opening %(url)s\n in default web browser. Please wait...."
 
 #: gui/common/functions_global_object.js:75
 msgid "Opening page"
@@ -213,22 +215,22 @@ msgstr "Pause single player games when window loses focus"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Disable Welcome Screen"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "If you disable this screen completely, you may miss important announcements.\nYou can still launch it using the main menu."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Detailed Tooltips"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Show detailed tooltips for trainable units in unit-producing buildings."
 
 #: gui/options/options.js:16
 msgid "Prefer GLSL"
@@ -276,7 +278,7 @@ msgstr "Smooth LOS"
 
 #: gui/options/options.js:21
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 
 #: gui/options/options.js:22
 msgid "Unit Silhouettes"
@@ -489,7 +491,7 @@ msgstr "Confirmation"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "The scenario editor is not available or failed to load. See the game logs for additional information."
 
 #: gui/pregame/mainmenu.js:320
 msgid "Error"
@@ -502,7 +504,7 @@ msgstr "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 #: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
 #: gui/pregame/mainmenu.xml:145 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "Technical Details"
 
 #: gui/pregame/mainmenu.js:335
 msgid "Manual"
@@ -732,11 +734,11 @@ msgstr "Get involved at: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:110 (caption)
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Enable Feedback"
 
 #: gui/pregame/mainmenu.xml:141 (caption)
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Disable Feedback"
 
 #: gui/pregame/mainmenu.xml:184 (caption)
 msgid "Matches"
@@ -811,11 +813,11 @@ msgstr "Open the Atlas Scenario Editor in a new window. You can run this more re
 
 #: gui/pregame/mainmenu.xml:345 (caption)
 msgid "Welcome Screen"
-msgstr ""
+msgstr "Welcome Screen"
 
 #: gui/pregame/mainmenu.xml:346 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
+msgstr "Show the Welcome Screen. Useful if you hid it by mistake."
 
 #: gui/pregame/mainmenu.xml:402 (caption)
 msgid "Learn To Play"
@@ -823,7 +825,7 @@ msgstr "Learn To Play"
 
 #: gui/pregame/mainmenu.xml:403 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Open the 0 A.D. Game Manual."
 
 #: gui/pregame/mainmenu.xml:419 (caption)
 msgid "Single Player"
@@ -871,7 +873,7 @@ msgstr "Help with the Translation!"
 
 #: gui/pregame/mainmenu.xml:519 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
+msgstr "Click to open the 0 A.D. translate page in your browser."
 
 #: gui/pregame/mainmenu.xml:530 (caption)
 msgid "Website"
@@ -897,7 +899,7 @@ msgstr "Report a Bug"
 
 #: gui/pregame/mainmenu.xml:555 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 
 #: gui/pregame/mainmenu.xml:583 (caption)
 msgid "WILDFIRE GAMES"
@@ -1116,11 +1118,11 @@ msgstr "Continue"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""

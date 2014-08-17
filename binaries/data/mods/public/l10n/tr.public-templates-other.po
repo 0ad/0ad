@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"PO-Revision-Date: 2014-08-05 14:31+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,7 +39,7 @@ msgstr "Besin biriktirmek için bu çalılıklardan meyve toplayın."
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
-msgstr ""
+msgstr "Meyveler"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
@@ -53,7 +55,7 @@ msgstr "Genel Jeoloji"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:6
 msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "Bir maden yatağı, değerli Metallerin ender şekillerine erişim sağlar."
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -77,11 +79,11 @@ msgstr "Taş madeni"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "Bu kalıntılar kaynaklar için mayınlı olabilir."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "Soysal Kalıntılar"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -92,11 +94,11 @@ msgstr "Harabeler"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr ""
+msgstr "Çabuk elde edilebilir bir hazine."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "Soysal Hazine"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -128,7 +130,7 @@ msgstr "Birim"
 #: simulation/templates/campaigns/army_mace_standard.xml:22
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "Boğaz haritasında hangi ordunun görüneceği."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
@@ -156,7 +158,7 @@ msgstr " I. Leonidas'ın Ordusu"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
+msgstr "Bu önemli yunan şehri. Bölgeye 150 etkisi vardır."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -169,7 +171,7 @@ msgstr "Küçük Yunan Şehri"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr ""
+msgstr "Bu önemli yunan şehri. Bölgeye 300 etkisi vardır."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -314,7 +316,7 @@ msgstr "Kuzey Afrika Fili"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Okyanus gibi cömert kaynaktan yiyecek topla."
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
@@ -323,7 +325,7 @@ msgstr "Tonbalığı"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "Nehir kıyısında yetişen gibi cömert kaynaktan yiyecek topla."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -419,7 +421,7 @@ msgstr "Zebra"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
+msgstr "Dayanıklı Çalı"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
@@ -439,7 +441,7 @@ msgstr "Geçici Çalı"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "Halep Çamı Ağacı"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
@@ -447,7 +449,7 @@ msgstr "Elma Ağacı"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "Baobab"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -520,7 +522,7 @@ msgstr "Kavak Ağacı"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "Kara Kavak Ağacı"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -543,12 +545,12 @@ msgstr "Antik Kalıntılar"
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
 msgid "Stone Ruins"
-msgstr ""
+msgstr "Taş Kalıntılar"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr ""
+msgstr "Kelt Taş Abide"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
@@ -634,7 +636,7 @@ msgstr "Ahşap Köprü"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "Hekimleri ve Kutsal Süvari Birliğini Eğitme"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -646,11 +648,11 @@ msgstr "Tophet"
 
 #: simulation/templates/other/celt_homestead.xml:25
 msgid "A Celtic homestead."
-msgstr ""
+msgstr "Kelt toprağı."
 
 #: simulation/templates/other/celt_homestead.xml:22
 msgid "Homestead"
-msgstr ""
+msgstr "Toprak Parçası"
 
 #: simulation/templates/other/celt_homestead.xml:23
 msgid "Caer"
@@ -668,11 +670,11 @@ msgstr "kulübe"
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr ""
+msgstr "Nüfus Kapasitesini +10 Arttır"
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
-msgstr ""
+msgstr "Büyükev"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -687,7 +689,7 @@ msgstr "Dorik Sütunu"
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr ""
+msgstr "Düşen Dor Sütunu"
 
 #: simulation/templates/other/fence_long.xml:20
 #: simulation/templates/other/fence_short.xml:20
@@ -705,7 +707,7 @@ msgstr "Kısa Tahta Çit"
 #: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
 msgid "Stone Fence"
-msgstr ""
+msgstr "Kaya Engel"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
@@ -713,7 +715,7 @@ msgstr "Buğday Tarlası"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:33
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "Şifacıların eğitimi. Garnizonun 30 birime kadar hızlı bir şekilde iyileşmesini sağlar."
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Epic Temple"
@@ -733,7 +735,7 @@ msgstr "Propylaea"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:33
 msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "Nüfus Kapasitesini +10 Arttır. Özel birimler işe alarak."
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -742,15 +744,15 @@ msgstr "Saçak altı"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "Helen Kraliyet Saçak altı"
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
+msgstr "Helen Saçak altı"
 
 #: simulation/templates/other/maur_palace.xml:14
 msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr ""
+msgstr "Nüfus Kapasitesini +15 Arttır. Ek birimler ve kahramanlar işe alarak."
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
@@ -770,7 +772,7 @@ msgstr "büyük çivi"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
-msgstr ""
+msgstr "Eğik Çivili Çit"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
@@ -794,7 +796,7 @@ msgstr "Ahşap Kule"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
-msgstr ""
+msgstr "Çif Hisar"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:21
 msgid "Wooden Gate"
@@ -802,7 +804,7 @@ msgstr "Ahlap Geçit"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
-msgstr ""
+msgstr "Çit Geçidi"
 
 #: simulation/templates/other/palisades_rocks_long.xml:23
 #: simulation/templates/other/palisades_rocks_medium.xml:23
@@ -824,7 +826,7 @@ msgstr "Çit"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "Tahta Geçitten Tahta Duvara Çevir"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
@@ -841,19 +843,19 @@ msgstr "Gözetleme Kulesi"
 
 #: simulation/templates/other/palisades_small_spikes.xml:17
 msgid "Small Spikes"
-msgstr ""
+msgstr "Küçük Çiviler"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr ""
+msgstr "Çiviler Küçük"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:17
 msgid "Tall Spikes"
-msgstr ""
+msgstr "Uzun Çiviler"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
-msgstr ""
+msgstr "Çiviler Uzun"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -866,7 +868,7 @@ msgstr "Ev"
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
 msgid "Inn"
-msgstr ""
+msgstr "Konak"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
@@ -874,11 +876,11 @@ msgstr "Depo"
 
 #: simulation/templates/other/plane.xml:40
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "2. Dünya savaşı amerikan savaş uçağı."
 
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "P-51 Mustang"
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -895,7 +897,7 @@ msgstr "Küçük Piramid"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "Çürüyen bir askeri gemi enkazı. Herhangi bir işadamı için iyi bir fırsat."
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -906,21 +908,21 @@ msgstr "Gemi enkazı"
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "Batık Kargosu"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
+msgstr "Yaşam kaybı çok olan bir gemi enkazı. Herhangi bir işadamı için iyi bir fırsat."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "Küçük bir kargo gemisi enkazı. Herhangi bir işadamı için iyi bir fırsat."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "Ortasından parçalanmış kargo gemisi. Herhangi bir işadamı için iyi bir fırsat."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -945,15 +947,15 @@ msgstr "Masa"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "Dikdörtgen Masa"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "Kare Masa"
 
 #: simulation/templates/other/temp_hele_super_infantry_p.xml:5
 msgid "Spartiate with Xiphos"
-msgstr ""
+msgstr "Spartiate ile Xiphos"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:12
 msgid "This temple is unfinished and has fallen to ruin."
@@ -967,15 +969,15 @@ msgstr "Tamamlanmamış Yunan Tapınağı"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "Bu evler ile medeniyetteki ev için 10 nüfusluık değişimde, diğer kişiler için silinecektir"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "Bu evler ile medeniyetteki ev için 5 nüfusluık değişimde, diğer kişiler için silinecektir"
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "İşaretleyici"

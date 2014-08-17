@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:53+0000\n"
+"PO-Revision-Date: 2014-08-14 17:41+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,45 +24,45 @@ msgstr ""
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr "Uyarı: "
+msgstr "Uyarı: Bu gelişmiş bir eğitimdir ve oldukça hızlı ilerler. Eğer devam ettirmediyseniz sadece tekrar başlatıp tekrar deneyin. Alıştırma mükemmel kılar!"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "HM (Halk Merkezi) nden 5 kadın vatandaşla ilk eğitim grubu(shift tıklama) oluşturulabilir."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Şimdi, meyve toplamak için kadın vatandaş atayın, sizin süvarilerde tavuk avlayacak şehirli askerlerse odun toplayacak."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Şimdi toplayıcıları sizin sivil merkezden meyve ağaçlarının çevresine toplayın."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Eğer toplu iş için yeterli kaynak yoksa, kadın vatandaşlardan sonra bazı kalemşorleri eğitim için sıraya alın."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Kadın vatandaşların eğitimleri bittiğinde, kullanmak için yakınlarda 4 ev inşa edilecek."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Ağaçların kenarında sivil toplanma merkezi oluştur, daha fazla kalemşoru sıraya diz, hemen şimdi 6 eğitim yapacaksın."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
-msgstr ""
+msgstr "Sırada bir grup 5 kadın vatandaş."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
@@ -534,17 +536,17 @@ msgstr "düşman"
 #: simulation/components/EntityLimits.js:110
 #, python-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s yapı limiti %(limit)s e  ulaşıldı"
 
 #: simulation/components/EntityLimits.js:112
 #, python-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s eğitim limiti %(limit)s e  ulaşıldı"
 
 #: simulation/components/EntityLimits.js:116
 #, python-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "%(category)s limiti %(limit)s e  ulaşıldı"
 
 #: simulation/components/Player.js:40
 msgid "Food"

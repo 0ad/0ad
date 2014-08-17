@@ -8,6 +8,7 @@
 # asd, 2014
 # Erling Ekholt Kristiansen <kongrapemann@gmail.com>, 2014
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
+# Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 # joharei <johan.reitan@gmail.com>, 2013
 # Olav Lindekleiv <>, 2014
 msgid ""
@@ -15,8 +16,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 18:10+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-07-16 13:01+0000\n"
+"Last-Translator: Jarl.Arntzen <jarl.arntzen@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -68,7 +69,7 @@ msgstr "Bekreftelse"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Er du sikker på at du vil avslutte? Når du avslutter vil alle andre også kobles fra."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -76,15 +77,15 @@ msgstr "Er du sikker på at du vil avslutte?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Jeg kommer tilbake"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Jeg gir meg"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Vil du gi deg eller vil du komme tilbake?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -170,8 +171,8 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Det finnes %(numberGarrisoned)s landhandler utstasjonert på et handelsreisende skip"
+msgstr[1] "Det finnes %(numberGarrisoned)s landhandlere utstasjonert på et handelsreisende skip"
 
 #: gui/session/menu.js:530
 #, python-format
@@ -187,8 +188,8 @@ msgstr "%(openingGarrisonedString)s."
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s inaktiv landhandler"
+msgstr[1] "%(numberOfLandTraders)s inaktive landhandlere"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
@@ -199,7 +200,7 @@ msgstr[1] "Det finnes %(inactiveString)s."
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Det finnes ingen handelsskip"
 
 #: gui/session/menu.js:565
 #, python-format
@@ -212,15 +213,15 @@ msgstr[1] "%(numberOfShipTraders)s inaktive"
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberTrading)s handelsskip handler"
+msgstr[1] "%(numberTrading)s handelsskip handler"
 
 #: gui/session/menu.js:588
 #, python-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s handelsskip inaktivt"
+msgstr[1] "%(numberOfShipTraders)s  handelsskip inaktive"
 
 #: gui/session/menu.js:667 gui/session/menu.xml:17 (caption)
 msgid "Manual"
@@ -239,7 +240,7 @@ msgstr "Visningslaget for utviklere ble stengt. "
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Tilby %(resourceAmount)s %(resourceType)s til %(playerName)s. Shift-klikk for å tilby %(greaterAmount)s."
 
 #: gui/session/messages.js:185
 #, python-format
@@ -387,12 +388,12 @@ msgstr "%(genericName)s — Nedpakket"
 #: gui/session/selection_details.js:44
 #, python-format
 msgid "[OFFLINE] %(player)s"
-msgstr ""
+msgstr "[FRAKOBLET] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, python-format
 msgid "%(rank)s Rank"
-msgstr "%(rank)s Rang"
+msgstr "%(rank)s Grad"
 
 #: gui/session/selection_details.js:68
 #, python-format
@@ -459,7 +460,7 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Intervall:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
@@ -473,7 +474,7 @@ msgstr "Avstand:"
 #: gui/session/selection_details.js:251 gui/session/session.js:634
 #: gui/session/utility_functions.js:325
 msgid "meters"
-msgstr ""
+msgstr "meter"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, python-format
@@ -508,12 +509,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Kjøp %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Selg %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:950
 #, python-format
@@ -527,15 +528,15 @@ msgstr "Send ut %(name)s"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Klikk for å laste ut 1. Shift+klikk for å laste ut alle av denne typen."
 
 #: gui/session/selection_panels.js:400
 msgid "Lock Gate"
-msgstr ""
+msgstr "Lås port"
 
 #: gui/session/selection_panels.js:406
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Lås opp port"
 
 #: gui/session/selection_panels.js:511
 msgid "Pack"
@@ -547,11 +548,11 @@ msgstr "Pakk ut"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Avbryt pakking"
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Avbryt utpakking"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
@@ -648,7 +649,7 @@ msgstr "Gaia"
 
 #: gui/session/session.js:309 gui/session/session.js:325
 msgid "You have left the game."
-msgstr ""
+msgstr "Du har forlatt spillet."
 
 #: gui/session/session.js:316
 msgid "You have been disconnected."
@@ -715,7 +716,7 @@ msgstr ""
 
 #: gui/session/session.js:913
 msgid "Time warp mode"
-msgstr ""
+msgstr "Spillhastighet"
 
 #: gui/session/unit_actions.js:295
 msgid "Origin trade market."
@@ -771,7 +772,7 @@ msgstr "Stasjoner"
 
 #: gui/session/unit_actions.js:719
 msgid "Unload"
-msgstr ""
+msgstr "Last ut"
 
 #: gui/session/unit_actions.js:735
 msgid "Repair"
@@ -783,31 +784,31 @@ msgstr "Fokuser på samlingspunkt"
 
 #: gui/session/unit_actions.js:775
 msgid "Back to Work"
-msgstr ""
+msgstr "Tilbake til arbeidet"
 
 #: gui/session/unit_actions.js:791
 msgid "Guard"
-msgstr ""
+msgstr "Vokt"
 
 #: gui/session/unit_actions.js:808
 msgid "Remove guard"
-msgstr ""
+msgstr "Fjern vakt"
 
 #: gui/session/unit_actions.js:824
 msgid "Select trading goods"
-msgstr ""
+msgstr "Velg handelsvare"
 
 #: gui/session/unit_actions.js:841
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Hev alarmnivået for å beskytte flere enheter"
 
 #: gui/session/unit_actions.js:843
 msgid "Raise an alert!"
-msgstr ""
+msgstr "Slå alarm!"
 
 #: gui/session/unit_actions.js:861
 msgid "End of alert."
-msgstr ""
+msgstr "Alarm avsluttet."
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
@@ -918,7 +919,7 @@ msgstr "Vegger:  %(costs)s"
 #: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
 #: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
 msgid "  "
-msgstr ""
+msgstr "  "
 
 #: gui/session/utility_functions.js:476
 #, python-format
@@ -1273,27 +1274,27 @@ msgstr "Bytt perspektiv"
 
 #: gui/session/session.xml:70 (caption)
 msgid "Display selection state"
-msgstr ""
+msgstr "Vis utvalg"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Stifinner visningslag"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Hindring visningslag"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "Enhetsforflytning visningslag"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Rekkevidde visningslag"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Avgrensnings-boks visningslag"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
@@ -1353,7 +1354,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Velg en vare som start-vare og bruk deretter pilene for å gjøre endringer i mål-varen. Hold Shift for å velge 100% av ressursen."
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
