@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_wonder">
-  <Footprint replace="">
-    <Circle radius="30.0"/>
-    <Height>10.0</Height>
+  <Footprint>
+    <Square width="43.0" depth="43.0"/>
+    <Height>14.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>30</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>3</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
   <Identity>
-    <Civ>brit</Civ>
-    <SpecificName>Stonehenge</SpecificName>
+    <Civ>iber</Civ>
+    <SpecificName>Cancho Roano</SpecificName>
     <History>Stonehenge is a monumental structure built by pre-historic peoples from Britain from approximately 2500 BC to 2000 BC. Evidence suggests that the structure and the surrounding site served as a place of religious significance, time-keeping, and other societal functions, like burial.</History>
   </Identity>
   <Obstruction>
-    <Static width="30.0" depth="30.0"/>
+    <Static width="41.0" depth="41.0"/>
   </Obstruction>
   <VisualActor>
     <FoundationActor>structures/fndn_theatron.xml</FoundationActor>
-    <Actor>structures/celts/stone_monument_new.xml</Actor>
+    <Actor>structures/iberians/wonder.xml</Actor>
   </VisualActor>
 </Entity>
