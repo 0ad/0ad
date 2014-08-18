@@ -7,10 +7,10 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
+      <Hack>14.0</Hack>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
+      <Hack>28.0</Hack>
     </Charge>
   </Attack>
   <Health>
@@ -23,6 +23,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>21.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/ptolemies/infantry_spearman_2_e.xml</Actor>
   </VisualActor>

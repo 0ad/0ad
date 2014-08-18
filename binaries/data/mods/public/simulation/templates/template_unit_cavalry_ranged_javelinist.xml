@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged">
-  <Armour>
-    <Hack>1</Hack>
-    <Pierce>2</Pierce>
-    <Crush>1</Crush>
-  </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>15.0</Pierce>
+      <Pierce>20.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>40</MaxRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
@@ -16,17 +11,13 @@
       <RepeatTime>2000</RepeatTime>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Support</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
+		<BonusSecondary>
+		  <Classes>Cavalry Sword</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
 	  </Bonuses>
     </Ranged>
   </Attack>
@@ -37,14 +28,14 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>130</Max>
+    <Max>140</Max>
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Javelin</VisibleClasses>
     <GenericName>Cavalry Skirmisher</GenericName>
-    <History>The javelins thrown from a horse's back were probably 3 at most. The idea was to quickly advance with 3 in hand, then throw them all. After you had done that it was time to switch to your secondary weapon which was usually a spear or a sword. However, in the game - these units will only have ranged attack.</History>
-    <Tooltip>Counters: 1.5x vs. Support Units.
-Countered by: Javelin Infantry, Cavalry Swordsmen, and Elephants.</Tooltip>
+    <Rollover>The javelins thrown from a horse's back were probably 3 at most. The idea was to quickly advance with 3 in hand, then throw them all. After you had done that it was time to switch to your secondary weapon which was usually a spear or a sword. However, in the game - these units will only have ranged attack.</Rollover>
+    <Tooltip>Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.
+Countered by: Spearmen, Elephants.</Tooltip>
   </Identity>
   <Loot>
     <xp>130</xp>

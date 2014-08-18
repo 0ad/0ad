@@ -30,8 +30,9 @@
   </GarrisonHolder>
   <Identity>
     <GenericName>Fishing Boat</GenericName>
-    <Tooltip>Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate.</Tooltip>
-    <VisibleClasses datatype="tokens">FishingBoat</VisibleClasses>
+    <Tooltip>Classes: Mechanical Ship FishingBoat.
+Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate.</Tooltip>
+    <Classes datatype="tokens">FishingBoat</Classes>
   </Identity>
   <Obstruction>
     <Unit radius="2.0"/>

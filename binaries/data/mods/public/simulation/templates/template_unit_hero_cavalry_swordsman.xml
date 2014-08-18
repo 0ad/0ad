@@ -7,19 +7,19 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
+     <Hack>30.0</Hack>
+     <Pierce>0.0</Pierce>
+     <Crush>0.0</Crush>
+     <MaxRange>6.0</MaxRange>
+     <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Classes>Support</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
 		<BonusSecondary>
-		  <Classes>Cavalry Ranged</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Classes>Infantry Bow</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusSecondary>
 		<BonusSiege>
 		  <Classes>Siege</Classes>
@@ -34,39 +34,11 @@
 		  <Multiplier>0.5</Multiplier>
 		</CamelStench>
 	  </Bonuses>
-      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
+      <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
     </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Cavalry Ranged</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
-      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
-    </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Hero Cavalry Swordsman</GenericName>
-    <Tooltip>Counters: 2x vs. Siege Weapons, 1.5x vs. Ranged Infantry and Ranged Cavalry.
-Countered by: Spear Infantry, Elephants, and Camels.</Tooltip>
   </Identity>
 </Entity>

@@ -5,9 +5,17 @@
       <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
+      <Hack>30.0</Hack>
+      <Pierce>60.0</Pierce>
+      <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
+  <Cost>
+    <Resources>
+      <metal>20</metal>
+    </Resources>
+  </Cost>
   <Identity>
     <Civ>hele</Civ>
 	<GenericName>Companion Cavalry</GenericName>
@@ -17,6 +25,15 @@ Counters Cavalry and Archers. Countered by Champion Units.</Tooltip>
     <History>The Hetairoi, or Companion cavalry, were a preferred general stand in Macedonian armies. Macedonian noblemen made up this elite cavalry unit, which was key to victory for Macedonian kings starting with Philip II, who increased their number from 600 to several thousand.</History>
     <Icon>units/hele_champion_cavalry_mace.png</Icon>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed>11.0</WalkSpeed>
+    <Run>
+      <Speed>25.0</Speed>
+    </Run>
+  </UnitMotion>
+  <Vision>
+    <Range>77</Range>
+  </Vision>
   <VisualActor>
     <Actor>units/hellenes/champion_unit_4.xml</Actor>
   </VisualActor>

@@ -6,12 +6,12 @@
     <Crush>6</Crush>
   </Armour>
   <Cost>
-    <Population>3</Population>
+    <Population>4</Population>
     <BuildTime>20</BuildTime>
     <Resources>
-      <food>150</food>
+      <food>200</food>
       <wood>100</wood>
-      <metal>0</metal>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -23,7 +23,7 @@
   </Health>
   <Identity>
     <Civ>brit</Civ>
-    <VisibleClasses datatype="tokens">Chariot</VisibleClasses>
+    <Classes datatype="tokens">Chariot</Classes>
 	<GenericName>Celtic Chariot</GenericName>
     <SpecificName>Carbanto</SpecificName>
 	<SelectionGroupName>units/brit_champion_cavalry</SelectionGroupName>

@@ -16,6 +16,12 @@
   <Promotion>
     <Entity>units/iber_infantry_spearman_a</Entity>
   </Promotion>
+  <UnitMotion>
+    <WalkSpeed>8.0</WalkSpeed>
+    <Run>
+      <Speed>24.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/iberians/infantry_spearman_b.xml</Actor>
   </VisualActor>

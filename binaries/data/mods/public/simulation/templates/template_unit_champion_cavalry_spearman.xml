@@ -2,21 +2,25 @@
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
     <Hack>4</Hack>
-    <Pierce>7</Pierce>
-    <Crush>6</Crush>
+    <Pierce>6</Pierce>
+    <Crush>7</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>14.0</Hack>
+      <Hack>15.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>2</Multiplier>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
 		<BonusSiege>
 		  <Classes>Siege</Classes>
 		  <Multiplier>2.0</Multiplier>
@@ -32,37 +36,20 @@
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
-    <Charge>
-      <Hack>48.0</Hack>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>2</Multiplier>
-		</BonusPrimary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Cost>
-    <BuildTime>15</BuildTime>
+    <BuildTime>16</BuildTime>
     <Resources>
       <metal>80</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>200</Max>
+    <Max>230</Max>
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Champion Cavalry Spearman</GenericName>
-    <Tooltip>Counters: 2x vs. Siege Weapons and Ranged Infantry.
-Countered by: Spear Infantry, Elephants, and Camels.</Tooltip>
+	<Tooltip>Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.
+Countered by: Spearmen, Archers, and Elephants.</Tooltip>
   </Identity>
 </Entity>

@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>14.0</Hack>
+      <Hack>15.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
@@ -20,7 +20,7 @@
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>35.0</Hack>
+      <Hack>30.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
@@ -42,8 +42,9 @@
   <Identity>
     <GenericName>Champion Spearman</GenericName>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
-    <Tooltip>Counters: 2x vs. All Cavalry.
-Countered by: Ranged Units and Sword Infantry.</Tooltip>
+	<Tooltip>Classes: Champion Melee Infantry Spearman.
+Counters: 2x vs. All Cavalry.
+Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo

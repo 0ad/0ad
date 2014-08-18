@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
+      <Hack>30.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
@@ -19,25 +19,12 @@
 		</BonusCavMelee>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusCavMelee>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavMelee>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Hero Spearman</GenericName>
     <Tooltip>Counters: 2x vs. All Cavalry.
-Countered by: Ranged Units and Sword Infantry.</Tooltip>
+Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo
@@ -50,7 +37,7 @@ Countered by: Ranged Units and Sword Infantry.</Tooltip>
   <UnitMotion>
     <WalkSpeed>7.5</WalkSpeed>
     <Run>
-      <Speed>15</Speed>
+      <Speed>18.75</Speed>
     </Run>
   </UnitMotion>
 </Entity>

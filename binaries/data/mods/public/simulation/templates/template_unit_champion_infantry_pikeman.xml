@@ -1,37 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>10</Hack>
-    <Pierce>8</Pierce>
-    <Crush>8</Crush>
+    <Hack>15</Hack>
+    <Pierce>10</Pierce>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>12.0</Hack>
+      <Hack>10.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
-		<BonusCavMelee>
+		<BonusCavalry>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>4.0</Multiplier>
-		</BonusCavMelee>
+		  <Multiplier>2.0</Multiplier>
+		</BonusCavalry>
+		<BonusEles>
+		  <Classes>Elephant</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusEles>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>24.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>8.0</MaxRange>
-      <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>4.0</Multiplier>
-		</BonusCav>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Cost>
     <Resources>
@@ -45,11 +36,13 @@
     <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Champion Pikeman</GenericName>
 	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
-    <Tooltip>Counters: 4x vs. All Cavalry.
-Countered by: Ranged Units and Sword Infantry.</Tooltip>
+	<Tooltip>Classes: Champion Melee Infantry Spearman.
+Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.
+Countered by: Swordsmen, Skirmishers, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/syntagma
+      formations/testudo
     </Formations>
   </Identity>
   <Sound>

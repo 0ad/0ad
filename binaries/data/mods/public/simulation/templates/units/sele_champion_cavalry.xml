@@ -1,23 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>10</Pierce>
-    <Crush>8</Crush>
+    <Hack>10</Hack>
+    <Pierce>16</Pierce>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
-    <Melee>
-      <MaxRange>6.0</MaxRange>
-    </Melee>
     <Charge>
-      <Hack>50</Hack>
-      <Crush>50</Crush>
-      <MaxRange>6.0</MaxRange>
+      <Hack>50.0</Hack>
+      <Pierce>50.0</Pierce>
+      <Crush>50.0</Crush>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-	  <metal>100</metal>
+      <wood>0</wood>
+	  <metal>120</metal>
     </Resources>
   </Cost>
   <Identity>
@@ -29,11 +27,11 @@
     <RequiredTechnology>successors/unlock_reform_army</RequiredTechnology>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>10</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
-      <Speed>22</Speed>
-      <Range>1000</Range>
-      <RangeMin>10</RangeMin>
+      <Speed>25.0</Speed>
+      <Range>1000.0</Range>
+      <RangeMin>10.0</RangeMin>
     </Run>
   </UnitMotion>
   <VisualActor>

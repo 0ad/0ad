@@ -10,30 +10,35 @@
     </Entities>
   </Builder>
   <Cost>
-    <BuildTime>10</BuildTime>
+    <BuildTime>5</BuildTime>
     <Resources>
       <food>0</food>
-      <metal>40</metal>
+      <metal>50</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max>50</Max>
+  </Health>
   <Identity>
     <Civ>ptol</Civ>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
+    <Classes datatype="tokens">Mercenary</Classes>
 	<SelectionGroupName>units/ptol_infantry_archer_b</SelectionGroupName>
     <GenericName>Nubian Mercenary Archer</GenericName>
     <SpecificName>Kousít Misthophóros Toxóti̱s</SpecificName>
     <History>?</History>
-    <Icon>units/ptol_infantry_archer.png</Icon>
+    <Tooltip>Classes: Ranged Mercenary Infantry Archer Worker.
+Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.
+Countered by: Cavalry Swordsmen, Cavalry Skirmishers.</Tooltip>
+    <Icon>units/hele_infantry_archer.png</Icon>
     <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
-  <Looter disable=""/>
   <Promotion>
     <Entity>units/ptol_infantry_archer_a</Entity>
   </Promotion>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>10.0</WalkSpeed>
     <Run>
-      <Speed>18.0</Speed>
+      <Speed>20.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>
