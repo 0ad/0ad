@@ -564,7 +564,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 // picks the best template based on parameters and classes
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements)
 {
-	var units = gameState.findTrainableUnits(classes);
+	if (classes.indexOf("Hero") !== -1)
+		var units = gameState.findTrainableUnits(classes, []);
+	else
+		var units = gameState.findTrainableUnits(classes, ["Hero"]);
 	
 	if (units.length === 0)
 		return undefined;

@@ -322,11 +322,11 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 
 // picks the best template based on parameters and classes
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, parameters) {
-	var units = gameState.findTrainableUnits(classes);
-	
+	var units = gameState.findTrainableUnits(classes, ["Hero"]);  // heroes are not used inside aegis
+
 	if (units.length === 0)
 		return undefined;
-	
+
 	units.sort(function(a, b) {// }) {
 		var aDivParam = 0, bDivParam = 0;
 		var aTopParam = 0, bTopParam = 0;
