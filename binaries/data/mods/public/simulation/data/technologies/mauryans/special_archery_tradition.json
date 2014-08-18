@@ -9,6 +9,7 @@
 	"tooltip": "Range +10 meters for bow-wielding units. Archer units train time -20%, but also -20% health.",
 	"modifications": [
 		{"value": "Attack/Ranged/MaxRange", "add": 10.0},
+		{"value": "Vision/Range", "add": 10.0},
 		{"value": "Cost/BuildTime", "multiply": 0.8},
 		{"value": "Health/Max", "multiply": 0.8}],
 	"affects": ["Archer"],

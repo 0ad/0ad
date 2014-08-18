@@ -20,7 +20,8 @@
 	"tooltip": "All Javelin units +2 pierce attack and +4 range.",
 	"modifications": [
 		{"value": "Attack/Ranged/Pierce", "add": 2.0},
-		{"value": "Attack/Ranged/MaxRange", "add": 4.0}],
+		{"value": "Attack/Ranged/MaxRange", "add": 4.0},
+		{"value": "Vision/Range", "add": 4.0}],
 	"affects": ["Javelin"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
