@@ -20,6 +20,12 @@
     <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
     <Icon>units/celt_champion_infantry_brit.png</Icon>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed>6.0</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/champion_unit_3.xml</Actor>
   </VisualActor>

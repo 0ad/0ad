@@ -21,13 +21,13 @@
     <Pickup>true</Pickup>
   </GarrisonHolder>
   <Health>
-    <Max>300</Max>
+    <Max>400</Max>
   </Health>
   <Identity>
     <GenericName>Merchantman</GenericName>
-    <Tooltip>
+    <Tooltip>Classes: Mechanical Ship Trader.
 Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures.</Tooltip>
-    <VisibleClasses datatype="tokens">Trader</VisibleClasses>
+    <Classes datatype="tokens">Trader</Classes>
     <RequiredTechnology>phase_town</RequiredTechnology>
     <Formations disable=""/>
   </Identity>

@@ -1,41 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_melee">
-  <Armour>
-    <Hack>2</Hack>
-    <Pierce>4</Pierce>
-    <Crush>2</Crush>
-  </Armour>
   <Attack>
     <Melee>
-      <Hack>8.0</Hack>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>2</Multiplier>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
 	  </Bonuses>
     </Melee>
     <Charge>
-      <Hack>32.0</Hack>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Ranged</Classes>
-		  <Multiplier>2</Multiplier>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
 	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <wood>50</wood>
+      <wood>55</wood>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Spear</VisibleClasses>
     <GenericName>Cavalry Spearman</GenericName>
     <History>This was the weapon of choice from horseback. This was the unit that would eventually evolve to the medieval knight (after heavy influence by the Sarmartians and their lances). Infantry were an easy kill; just ride them down and skewer them with your stick and its point on the end. As with all cavalry - it was only the rich and the nobles who were able to fight from horseback due to the cost of owning such a beast.</History>
-    <Tooltip>Counters: 2x vs. Siege Weapons and Ranged Infantry.
-Countered by: Spear Infantry, Elephants, and Camels.</Tooltip>
+    <Tooltip>Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.
+Countered by: Spearmen, Archers, Elephants.</Tooltip>
   </Identity>
   <Loot>
     <xp>130</xp>

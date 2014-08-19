@@ -10,7 +10,7 @@
       <Hack>12.0</Hack>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
+      <Hack>25.0</Hack>
     </Charge>
   </Attack>
   <Health>
@@ -25,6 +25,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>12.5</WalkSpeed>
+    <Run>
+      <Speed>25.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/hellenes/cavalry_swordsman_a.xml</Actor>
   </VisualActor>

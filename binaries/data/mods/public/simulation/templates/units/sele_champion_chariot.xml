@@ -10,7 +10,7 @@
   </Attack>
   <Cost>
     <Population>3</Population>
-    <BuildTime>18</BuildTime>
+    <BuildTime>19</BuildTime>
     <Resources>
       <food>200</food>
       <wood>200</wood>
@@ -26,11 +26,14 @@
   </Health>
   <Identity>
     <Civ>sele</Civ>
-    <VisibleClasses datatype="tokens">Chariot Trample</VisibleClasses>
+    <Classes datatype="tokens">Champion Chariot</Classes>
 	<GenericName>Scythed Chariot</GenericName>
     <SpecificName>Drepanèphoros</SpecificName>
     <History>Expensive "suicide" unit. Mostly used to rush into infantry and cavalry formations to slaughter a bunch of enemies with scythes ("Trample Damage" aura) before getting destroyed themselves. Countered by: Skirmishers and Elephants.</History>
 	<Icon>units/pers_cavalry_archer.png</Icon>
+	<Tooltip>Classes: Champion Ranged Cavalry Chariot Archer.
+Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.
+Countered by: Skirmishers and Elephants.</Tooltip>
     <RequiredTechnology>successors/unlock_traditional_army</RequiredTechnology>
   </Identity>
   <Loot>
@@ -43,6 +46,12 @@
   <Obstruction>
     <Unit radius="2.0"/>
   </Obstruction>
+  <ResourceGatherer>
+    <MaxDistance>5.0</MaxDistance>
+    <Capacities>
+      <food>50</food>
+    </Capacities>
+  </ResourceGatherer>
   <UnitMotion>
     <WalkSpeed>11.0</WalkSpeed>
     <Run>

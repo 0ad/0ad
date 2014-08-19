@@ -10,7 +10,7 @@
       <Hack>17.0</Hack>
     </Melee>
     <Charge>
-      <Hack>42.0</Hack>
+      <Hack>34.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
@@ -24,6 +24,12 @@
     <Icon>units/macedonian_argyraspidai.png</Icon>
   </Identity>
   <Promotion disable=""/>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>15.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/macedonians/mace_champion_argyraspis.xml</Actor>
   </VisualActor>

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
+  <Armour>
+    <Hack>1</Hack>
+  </Armour>
   <Builder>
     <Entities datatype="tokens">
       structures/gaul_tavern
@@ -16,6 +19,12 @@
   <Promotion>
     <Entity>units/gaul_infantry_spearman_a</Entity>
   </Promotion>
+  <UnitMotion>
+    <WalkSpeed>8.2</WalkSpeed>
+    <Run>
+      <Speed>24.6</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/infantry_spearman_b.xml</Actor>
   </VisualActor>

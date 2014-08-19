@@ -8,9 +8,9 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>20.0</Pierce>
+      <Pierce>30.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>60</MaxRange>
+      <MaxRange>58</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
@@ -18,17 +18,13 @@
       <Spread>1.5</Spread>
 	  <Bonuses>
 		<BonusPrimary>
-		  <Classes>Infantry Melee</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>2.0</Multiplier>
 		</BonusPrimary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
+		<BonusSecondary>
+		  <Classes>Infantry Sword</Classes>
+		  <Multiplier>1.5</Multiplier>
+		</BonusSecondary>
 	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
     </Ranged>
@@ -42,8 +38,6 @@
   <Identity>
     <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <GenericName>Champion Cavalry Archer.</GenericName>
-    <Tooltip>Counters: 1.5x vs. Melee Infantry.
-Countered by: Javelin Infantry, Sword Cavalry, and Elephants.</Tooltip>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>

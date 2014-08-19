@@ -23,6 +23,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>6.5</WalkSpeed>
+    <Run>
+      <Speed>13.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/seleucids/infantry_swordsman_e.xml</Actor>
   </VisualActor>

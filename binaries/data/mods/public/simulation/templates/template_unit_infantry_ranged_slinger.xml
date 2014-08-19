@@ -2,7 +2,7 @@
 <Entity parent="template_unit_infantry_ranged">
   <Armour>
     <Hack>1</Hack>
-    <Pierce>1</Pierce>
+    <Pierce>2</Pierce>
     <Crush>1</Crush>
   </Armour>
   <Attack>
@@ -10,21 +10,21 @@
       <Hack>0.0</Hack>
       <Pierce>10.0</Pierce>
       <Crush>0.0</Crush>
-      <MaxRange>40.0</MaxRange>
+      <MaxRange>48.0</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
       <PrepareTime>900</PrepareTime>
       <RepeatTime>1500</RepeatTime>
       <Spread>1.5</Spread>
 	  <Bonuses>
-		<BonusPrimary>
+		<BonusInfantryRanged>
 		  <Classes>Infantry Ranged</Classes>
 		  <Multiplier>1.5</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Sword Infantry</Classes>
+		</BonusInfantryRanged>
+		<BonusInfantryMelee>
+		  <Classes>Infantry Melee</Classes>
 		  <Multiplier>1.25</Multiplier>
-		</BonusSecondary>
+		</BonusInfantryMelee>
 	  </Bonuses>
     </Ranged>
   </Attack>
@@ -36,8 +36,8 @@
   <Identity>
     <VisibleClasses datatype="tokens">Sling</VisibleClasses>
     <GenericName>Slinger</GenericName>
-    <Tooltip>Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Sword Infantry.
-Countered by: Melee Cavalry.</Tooltip>
+    <Tooltip>Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.
+Countered by: Cavalry.</Tooltip>
   </Identity>
   <Loot>
     <xp>75</xp>

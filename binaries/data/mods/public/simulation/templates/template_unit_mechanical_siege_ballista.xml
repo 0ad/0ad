@@ -35,8 +35,8 @@
   <Cost>
     <BuildTime>18</BuildTime>
     <Resources>
-      <wood>80</wood>
-      <metal>80</metal>
+      <wood>100</wood>
+      <metal>100</metal>
     </Resources>
     <Population>2</Population>
   </Cost>
@@ -45,11 +45,11 @@
     <Height>2.0</Height>
   </Footprint>
   <Health>
-    <Max>150</Max>
+    <Max>120</Max>
   </Health>
   <Identity>
     <GenericName>Bolt Shooter</GenericName>
-    <VisibleClasses datatype="tokens">Ranged BoltShooter</VisibleClasses>
+	<Classes datatype="tokens">BoltShooter Ranged</Classes>
     <Tooltip>Classes: Siege Ranged BoltShooter.
 Counters: 2x vs. Infantry and Cavalry units. Also useful vs. Buildings.
 Countered by: Melee Cavalry.</Tooltip>

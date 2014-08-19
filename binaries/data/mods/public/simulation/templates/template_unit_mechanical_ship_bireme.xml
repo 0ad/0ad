@@ -44,8 +44,8 @@
   </Health>
   <Identity>
     <GenericName>Light Warship</GenericName>
-    <Tooltip>Light Warship, good for harassing enemy coastlines and trade routes.</Tooltip>
-    <VisibleClasses datatype="tokens">Warship Light Bow Ranged</VisibleClasses>
+    <Tooltip>Classes: Mechanical Warship Light Ranged.</Tooltip>
+    <Classes datatype="tokens">Warship Light Bow Ranged</Classes>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <ResourceGatherer disable=""/>

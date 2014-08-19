@@ -841,8 +841,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 m.BaseManager.prototype.update = function(gameState, queues, events)
 {
 	if (this.anchor && this.anchor.getMetadata(PlayerID, "access") !== this.accessIndex)
-		warn("Petra baseManager problem with accessIndex " + this.accessIndex
-			+ " while metadata acess is " + this.anchor.getMetadata(PlayerID, "access"));
+		API3.warn("Petra baseManager " + this.ID + " problem with accessIndex " + this.accessIndex
+			+ " while metadata access is " + this.anchor.getMetadata(PlayerID, "access"));
 
 	Engine.ProfileStart("Base update - base " + this.ID);
 

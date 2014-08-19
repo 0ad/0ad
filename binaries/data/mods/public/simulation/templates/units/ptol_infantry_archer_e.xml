@@ -7,7 +7,7 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.5</Spread>
+      <Spread>1.0</Spread>
       <MaxRange>58.0</MaxRange>
     </Ranged>
   </Attack>
@@ -24,6 +24,12 @@
   <Stamina>
     <Max>690</Max>
   </Stamina>
+  <UnitMotion>
+    <WalkSpeed>9</WalkSpeed>
+    <Run>
+      <Speed>18.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/ptolemies/infantry_archer_b.xml</Actor>
   </VisualActor>

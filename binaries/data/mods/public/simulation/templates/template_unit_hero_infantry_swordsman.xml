@@ -7,45 +7,32 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
+      <Hack>30.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
 	  <Bonuses>
-		<BonusAllInfantry>
-		  <Classes>Infantry</Classes>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
 		  <Multiplier>1.5</Multiplier>
-		</BonusAllInfantry>
-		<BonusElephant>
+		</BonusSecondary>
+		<BonusTertiary>
 		  <Classes>Elephant</Classes>
 		  <Multiplier>1.5</Multiplier>
-		</BonusElephant>
+		</BonusTertiary>
 	  </Bonuses>
     </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>5.0</MaxRange>
-      <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusAllInfantry>
-		  <Classes>Infantry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusAllInfantry>
-		<BonusElephant>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusElephant>
-	  </Bonuses>
-    </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Hero Swordsman</GenericName>
-	<Tooltip>Counters: 1.5x vs. Infantry and Elephants.
-Countered by: Archer Infantry and Archer Cavalry.</Tooltip>
+    <Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.
+Countered by: Archers, Cavalry Archers.</Tooltip> 
   </Identity>
   <UnitMotion>
     <WalkSpeed>8.0</WalkSpeed>
@@ -55,4 +42,7 @@ Countered by: Archer Infantry and Archer Cavalry.</Tooltip>
       <RangeMin>8.0</RangeMin>
     </Run>
   </UnitMotion>
+  <Vision>
+    <Range>80</Range>
+  </Vision>
 </Entity>

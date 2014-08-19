@@ -2,13 +2,14 @@
 <Entity parent="units/pers_cavalry_archer_a">
   <Armour>
     <Hack>7</Hack>
-    <Pierce>7</Pierce>
+    <Pierce>9</Pierce>
     <Crush>10</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.25</Spread>
+      <Spread>1.0</Spread>
       <MaxRange>64.0</MaxRange>
+      <MinRange>12.0</MinRange>
     </Ranged>
   </Attack>
   <Health>

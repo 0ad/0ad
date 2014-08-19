@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
   <Armour>
-    <Hack>2</Hack>
+    <Hack>1</Hack>
     <Pierce>1</Pierce>
     <Crush>1</Crush>
   </Armour>
@@ -21,7 +21,7 @@
 	  <Bonuses>
 		<BonusSupport>
 		  <Classes>Support</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusSupport>
 		<BonusCav>
 		  <Classes>Cavalry</Classes>
@@ -43,11 +43,11 @@
 	  <Bonuses>
 		<BonusSupport>
 		  <Classes>Support</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusSupport>
 		<BonusCav>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
+		  <Multiplier>3.0</Multiplier>
 		</BonusCav>
 		<BonusHunt>
 		  <Classes>Animal</Classes>
@@ -79,7 +79,7 @@
     <VisibleClasses datatype="tokens">Dog</VisibleClasses>
     <GenericName>War Dog</GenericName>
     <Rank>Basic</Rank>
-    <Tooltip>Counters: 1.5x vs. Cavalry, Support Units, and Animals. Cannot attack structures.</Tooltip>
+    <Tooltip>Counters: 3x vs. Cavalry, 2x vs. Support, 1.5x vs. Animals. Cannot attack structures.</Tooltip>
   </Identity>
   <Loot>
     <xp>130</xp>

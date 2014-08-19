@@ -21,6 +21,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>8.0</WalkSpeed>
+    <Run>
+      <Speed>16.0</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/carthaginians/infantry_javelinist_e.xml</Actor>
   </VisualActor>

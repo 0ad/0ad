@@ -8,28 +8,24 @@
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>30.0</Pierce>
+      <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>60.0</MaxRange>
-      <MinRange>0.0</MinRange>
+      <MinRange>20.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
       <PrepareTime>1200</PrepareTime>
       <RepeatTime>2000</RepeatTime>
       <Spread>1.5</Spread>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Melee</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusPrimary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
+      <Bonuses>
+        <BonusPrimary>
+          <Classes>Infantry Spear</Classes>
+          <Multiplier>2.0</Multiplier>
+        </BonusPrimary>
+        <BonusSecondary>
+          <Classes>Infantry Sword</Classes>
+          <Multiplier>1.5</Multiplier>
+        </BonusSecondary>
+      </Bonuses>
     </Ranged>
   </Attack>
   <Cost>
@@ -37,14 +33,12 @@
     <Resources>
       <food>100</food>
       <wood>100</wood>
-      <metal>50</metal>
+      <metal>100</metal>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <GenericName>Hero Cavalry Archer</GenericName>
-    <Tooltip>Counters: 1.5x vs. Melee Infantry.
-Countered by: Javelin Infantry, Sword Cavalry, and Elephants.</Tooltip>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>

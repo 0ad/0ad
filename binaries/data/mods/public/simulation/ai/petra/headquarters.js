@@ -564,7 +564,10 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 // picks the best template based on parameters and classes
 m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements)
 {
-	var units = gameState.findTrainableUnits(classes);
+	if (classes.indexOf("Hero") !== -1)
+		var units = gameState.findTrainableUnits(classes, []);
+	else
+		var units = gameState.findTrainableUnits(classes, ["Hero"]);
 	
 	if (units.length === 0)
 		return undefined;
@@ -1689,7 +1692,13 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 
 	// build limits
 	var template = gameState.getTemplate(type);
-	if (!template.available(gameState))
+	if (!template)
+	{
+		this.stopBuilding.push(type);
+		if (this.Config.debug > 0)
+			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found ");
+	}
+	if (!template || !template.available(gameState))
 		return false;
 	var limits = gameState.getEntityLimits();
 	for (var limitedClass in limits)

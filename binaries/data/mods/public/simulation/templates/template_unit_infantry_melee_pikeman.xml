@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee">
   <Armour>
-    <Hack>5</Hack>
-    <Pierce>4</Pierce>
-    <Crush>5</Crush>
+    <Hack>10</Hack>
+    <Pierce>8</Pierce>
+    <Crush>8</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -13,7 +13,7 @@
 	  <Bonuses>
 		<BonusCavMelee>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>4.0</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusCavMelee>
 	  </Bonuses>
     </Melee>
@@ -24,7 +24,7 @@
 	  <Bonuses>
 		<BonusCharge>
 		  <Classes>Cavalry</Classes>
-		  <Multiplier>4.0</Multiplier>
+		  <Multiplier>2.0</Multiplier>
 		</BonusCharge>
 	  </Bonuses>
     </Charge>
@@ -38,8 +38,8 @@
     <VisibleClasses datatype="tokens">Spear Pike</VisibleClasses>
     <GenericName>Pikeman</GenericName>
 	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
-    <Tooltip>Counters: 4x vs. All Cavalry.
-Countered by: Ranged Units and Sword Infantry.</Tooltip>
+    <Tooltip>Counters: 2x vs. All Cavalry.
+Countered by: Skirmishers, Swordsmen, Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/syntagma
     </Formations>

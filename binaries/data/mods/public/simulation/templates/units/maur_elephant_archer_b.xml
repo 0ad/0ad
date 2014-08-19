@@ -6,10 +6,10 @@
     <Crush>10</Crush>
   </Armour>
   <Cost>
-    <BuildTime>18</BuildTime>
+    <BuildTime>20</BuildTime>
     <Resources>
       <food>150</food>
-      <wood>75</wood>
+      <wood>100</wood>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -17,7 +17,7 @@
     <Height>8.0</Height>
   </Footprint>
   <Health>
-    <Max>300</Max>
+    <Max>330</Max>
   </Health>
   <Identity>
     <Civ>maur</Civ>
@@ -27,7 +27,7 @@
     <SpecificName>Vachii Gaja</SpecificName>
     <Icon>units/maur_cavalry_archer.png</Icon>
     <History>Elephant Archer.</History>
-    <Tooltip>Counters: 1.5x vs. Melee Infantry. "Stench" aura vs. Cavalry.
+    <Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. "Stench" aura vs. Cavalry.
 Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
   <Promotion>

@@ -7,12 +7,12 @@
   </Armour>
   <Attack>
     <Ranged>
-      <Spread>1.0</Spread>
-      <MaxRange>48.0</MaxRange>
+      <Spread>0.8</Spread>
+      <MaxRange>56.0</MaxRange>
     </Ranged>
   </Attack>
   <Health>
-    <Max>100</Max>
+    <Max>110</Max>
   </Health>
   <Identity>
     <Rank>Elite</Rank>
@@ -21,6 +21,12 @@
   <ResourceGatherer>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
+  <UnitMotion>
+    <WalkSpeed>7.0</WalkSpeed>
+    <Run>
+      <Speed>20.4</Speed>
+    </Run>
+  </UnitMotion>
   <VisualActor>
     <Actor>units/iberians/infantry_slinger_e.xml</Actor>
   </VisualActor>

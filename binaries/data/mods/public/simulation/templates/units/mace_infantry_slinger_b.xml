@@ -18,12 +18,10 @@
     <SelectionGroupName>units/mace_infantry_slinger_b</SelectionGroupName>
     <GenericName>Rhodian Slinger</GenericName>
     <SpecificName>Sphendonetes Rhodikos</SpecificName>
-    <VisibleClasses datatype="tokens">Mercenary</VisibleClasses>
     <History></History>
     <Icon>units/hele_infantry_slinger.png</Icon>
     <RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <Looter disable=""/>
   <Promotion>
     <Entity>units/mace_infantry_slinger_a</Entity>
   </Promotion>

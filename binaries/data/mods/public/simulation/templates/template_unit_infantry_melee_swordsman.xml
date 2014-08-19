@@ -3,49 +3,56 @@
   <Armour>
     <Hack>3</Hack>
     <Pierce>1</Pierce>
-    <Crush>2</Crush>
+    <Crush>1</Crush>
   </Armour>
   <Attack>
     <Melee>
       <Hack>10.0</Hack>
       <Pierce>0.0</Pierce>
 	  <Bonuses>
-		<BonusAllInfantry>
-		  <Classes>Infantry</Classes>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
 		  <Multiplier>1.5</Multiplier>
-		</BonusAllInfantry>
-		<BonusElephant>
+		</BonusSecondary>
+		<BonusTertiary>
 		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusElephant>
+		  <Multiplier>1.25</Multiplier>
+		</BonusTertiary>
 	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>20.0</Hack>
 	  <Bonuses>
-		<BonusAllInfantry>
-		  <Classes>Infantry</Classes>
+		<BonusPrimary>
+		  <Classes>Infantry Spear</Classes>
+		  <Multiplier>2.0</Multiplier>
+		</BonusPrimary>
+		<BonusSecondary>
+		  <Classes>Infantry Javelin</Classes>
 		  <Multiplier>1.5</Multiplier>
-		</BonusAllInfantry>
-		<BonusElephant>
+		</BonusSecondary>
+		<BonusTertiary>
 		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusElephant>
+		  <Multiplier>1.25</Multiplier>
+		</BonusTertiary>
 	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <food>60</food>
-	  <metal>40</metal>
+      <metal>60</metal>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Sword</VisibleClasses>
     <GenericName>Swordsman</GenericName>
     <History>Weapon is basically a developed sickle. Probably from the club, to the axe, to the sickle to the sword. It was the Romans who used them to combat the long range of the sarissa. Their spears were so long they had to use two hands to wield them. In a formation they were almost impossible to maneuver. If flanked, they were easily cut down by a sword as demonstrated by the Romans at the battle of Cynoscephalae. Generally swordsmen were well armored, had shields, and tended to be nobles. A good sword was an expensive weapon.</History>
-	<Tooltip>Counters: 1.5x vs. Infantry and Elephants.
-Countered by: Archer Infantry and Archer Cavalry.</Tooltip>
+    <Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers, and 1.25x vs. Elephants.
+Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
   </Identity>
   <Loot>
     <metal>5</metal>

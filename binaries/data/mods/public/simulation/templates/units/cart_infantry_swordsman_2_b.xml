@@ -20,11 +20,10 @@
     <SelectionGroupName>units/cart_infantry_swordsman_2_b</SelectionGroupName>
     <GenericName>Samnite Swordsman</GenericName>
     <SpecificName>Seḫīr Romaḥ</SpecificName>
-    <VisibleClasses datatype="tokens">Italian Mercenary</VisibleClasses>
-    <History>The Samnites, Lucanians, and Italiote Greeks supplied Carthage with heavy infantry in their war with Rome.</History>
+    <Classes datatype="tokens">Italian Mercenary</Classes>
+    <History>TBD.</History>
     <Icon>units/cart_infantry_swordsman_2.png</Icon>
   </Identity>
-  <Looter disable=""/>
   <Promotion>
     <Entity>units/cart_infantry_swordsman_2_a</Entity>
   </Promotion>

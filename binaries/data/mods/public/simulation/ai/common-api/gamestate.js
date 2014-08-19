@@ -457,19 +457,19 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain) {
 	var count = this.countEntitiesByType(type, maintain);
 	
 	// Count building foundations
-	if (this.getTemplate(type).hasClass("Structure") === true)
+	var template = this.getTemplate(type);
+	if (template && template.hasClass("Structure") === true)
 		count += this.countFoundationsByType(type, true);
-	else if (this.getTemplate(type).resourceSupplyType() !== undefined)	// animal resources
+	else if (template && template.resourceSupplyType() !== undefined)	// animal resources
 		count += this.countEntitiesByType("resource|" + type, true);
 	else
 	{
 		// Count entities in building production queues
 		// TODO: maybe this fails for corrals.
-		this.getOwnTrainingFacilities().forEach(function(ent){
+		this.getOwnTrainingFacilities().forEach(function(ent) {
 			ent.trainingQueue().forEach(function(item) {
-				if (item.unitTemplate == type){
+				if (item.unitTemplate == type)
 					count += item.count;
-				}
 			});
 		});
 	}
@@ -544,33 +544,59 @@ m.GameState.prototype.getFishableSupplies = function(){
 };
 
 // This returns only units from buildings.
-m.GameState.prototype.findTrainableUnits = function(classes){
+m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
+{
 	var allTrainable = [];
 	this.getOwnStructures().forEach(function(ent) {
 		var trainable = ent.trainableEntities();
-		for (var i in trainable){
-			if (allTrainable.indexOf(trainable[i]) === -1) {
-				allTrainable.push(trainable[i]);
-			}
-		}
+		if (!trainable)
+			return;
+		for (var unit of trainable)
+			if (allTrainable.indexOf(unit) === -1)
+				allTrainable.push(unit);
 	});
 	var ret = [];
-	for (var i in allTrainable) {
+	var limits = this.getEntityLimits();
+	var current = this.getEntityCounts();
+	for (var i in allTrainable)
+	{
 		var template = this.getTemplate(allTrainable[i]);
-
-		if (template.hasClass("Hero"))	// disabling heroes for now
-			continue;
 
 		if (!template.available(this))
 			continue;
 		
 		var okay = true;
-		for (var o in classes)
-			if (!template.hasClass(classes[o]))
-				okay = false;
+		for (var clas of classes)
+		{
+			if (template.hasClass(clas))
+				continue;
+			okay = false;
+			break;
+		}
+		if (!okay)
+			continue;
 
-		if (okay)
-			ret.push( [allTrainable[i], template] );
+		for (var clas of anticlasses)
+		{
+			if (!template.hasClass(clas))
+				continue;
+			okay = false;
+			break;
+		}
+		if (!okay)
+			continue;
+
+		for (var limitedClass in limits)
+		{
+			if (!template.hasClass(limitedClass) || current[limitedClass] < limits[limitedClass])
+				continue;
+			okay = false;
+			break;
+		}
+		if (!okay)
+			continue;
+
+		ret.push( [allTrainable[i], template] );
 	}
 	return ret;
 };
