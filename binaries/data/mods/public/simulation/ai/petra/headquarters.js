@@ -1695,7 +1695,8 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	if (!template)
 	{
 		this.stopBuilding.push(type);
-		API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found ");
+		if (this.Config.debug > 0)
+			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found ");
 	}
 	if (!template || !template.available(gameState))
 		return false;
