@@ -457,19 +457,19 @@ m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain) {
 	var count = this.countEntitiesByType(type, maintain);
 	
 	// Count building foundations
-	if (this.getTemplate(type).hasClass("Structure") === true)
+	var template = this.getTemplate(type);
+	if (template && template.hasClass("Structure") === true)
 		count += this.countFoundationsByType(type, true);
-	else if (this.getTemplate(type).resourceSupplyType() !== undefined)	// animal resources
+	else if (template && template.resourceSupplyType() !== undefined)	// animal resources
 		count += this.countEntitiesByType("resource|" + type, true);
 	else
 	{
 		// Count entities in building production queues
 		// TODO: maybe this fails for corrals.
-		this.getOwnTrainingFacilities().forEach(function(ent){
+		this.getOwnTrainingFacilities().forEach(function(ent) {
 			ent.trainingQueue().forEach(function(item) {
-				if (item.unitTemplate == type){
+				if (item.unitTemplate == type)
 					count += item.count;
-				}
 			});
 		});
 	}

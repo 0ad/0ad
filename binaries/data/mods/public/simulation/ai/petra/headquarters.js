@@ -1692,7 +1692,12 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 
 	// build limits
 	var template = gameState.getTemplate(type);
-	if (!template.available(gameState))
+	if (!template)
+	{
+		this.stopBuilding.push(type);
+		API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found ");
+	}
+	if (!template || !template.available(gameState))
 		return false;
 	var limits = gameState.getEntityLimits();
 	for (var limitedClass in limits)
