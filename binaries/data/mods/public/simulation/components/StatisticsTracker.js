@@ -148,13 +148,13 @@ StatisticsTracker.prototype.GetStatistics = function()
 
 /**
  * Increments counter associated with certain entity/counter and type of given entity.
- * @param entity The entity id
+ * @param cmpIdentity The entity identity component
  * @param counter The name of the counter to increment (e.g. "unitsTrained")
  * @param type The type of the counter (e.g. "workers")
  */
-StatisticsTracker.prototype.CounterIncrement = function(entity, counter, type)
+StatisticsTracker.prototype.CounterIncrement = function(cmpIdentity, counter, type)
 {
-	var classes = entity.GetClassesList();
+	var classes = cmpIdentity.GetClassesList();
 	if (!classes)
 		return;
 	if (classes.indexOf(type) != -1)
