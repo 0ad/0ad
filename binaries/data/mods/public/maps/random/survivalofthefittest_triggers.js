@@ -85,7 +85,7 @@ Trigger.prototype.StartAnEnemyWave = function()
 Trigger.prototype.InitGame = function()
 {
 	var numberOfPlayers = TriggerHelper.GetNumberOfPlayers();
-	// Find all of the civic centers
+	// Find all of the civic centers, disable some structures
 	for (var i = 1; i < numberOfPlayers; ++i)
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -111,11 +111,24 @@ Trigger.prototype.InitGame = function()
 		cmpPlayer.SetLockTeams(true);
 	}*/
 	
-	// make gaia black
+	// Make gaia black
 	TriggerHelper.GetPlayerComponent(0).SetColour(0, 0, 0);
 	
 	// Place the treasures
 	this.PlaceTreasures();
+	
+	// Disable farms, civic centers and walls for all players 
+ 	for (var i = 1; i < numberOfPlayers; ++i) 
+ 	{ 
+		var cmpPlayer = TriggerHelper.GetPlayerComponent(i); 
+		var civ = cmpPlayer.GetCiv(); 
+		var disabledTemplates = {} 
+		disabledTemplates["structures/" + civ + "_field"] = true; 
+		disabledTemplates["structures/" + civ + "_civil_centre"] = true; 
+		disabledTemplates["structures/" + civ + "_wallset_stone"] = true; 
+		disabledTemplates["other/wallset_palisade"] = true; 
+		cmpPlayer.SetDisabledTemplates(disabledTemplates); 
+ 	} 
 }
 
 Trigger.prototype.PlaceTreasures = function()
