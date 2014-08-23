@@ -59,12 +59,12 @@ Heal.prototype.GetRange = function()
 
 Heal.prototype.GetUnhealableClasses = function()
 {
-	return this.template.UnhealableClasses._string;
+	return this.template.UnhealableClasses._string || "";
 };
 
 Heal.prototype.GetHealableClasses = function()
 {
-	return this.template.HealableClasses._string;
+	return this.template.HealableClasses._string || "";
 };
 
 /**
