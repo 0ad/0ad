@@ -28,7 +28,10 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			{
 				var ent = gameState.getEntityById(entId);
 				if (ent && ent.getMetadata(PlayerID, "garrisonHolder") == +id)
+				{
 					this.leaveGarrison(ent);
+					ent.stopMoving();
+				}
 			}
 			this.holders[id] = undefined;
 			continue;
@@ -78,7 +81,10 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				if (this.keepGarrisoned(ent, holder, enemiesAround))
 					continue;
 				if (ent.getMetadata(PlayerID, "garrisonHolder") == +id)
+				{
 					this.leaveGarrison(ent);
+					ent.stopMoving();
+				}
 				list.splice(j--, 1);
 			}
 			if (this.numberOfGarrisonedUnits(holder) === 0)
