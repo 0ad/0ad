@@ -66,7 +66,7 @@ public:
 		CMapReader* mapReader = new CMapReader(); // it'll call "delete this" itself
 
 		LDR_BeginRegistering();
-		mapReader->LoadMap(L"maps/scenarios/Median Oasis 01.pmp", CScriptValRooted(), &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
+		mapReader->LoadMap(L"maps/skirmishes/Median Oasis (2).pmp", CScriptValRooted(), &terrain, NULL, NULL, NULL, NULL, NULL, NULL, NULL,
 			&sim2, &sim2.GetSimContext(), -1, false);
 		LDR_EndRegistering();
 		TS_ASSERT_OK(LDR_NonprogressiveLoad());
