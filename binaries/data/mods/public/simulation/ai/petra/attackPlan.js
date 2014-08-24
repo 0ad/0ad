@@ -1363,7 +1363,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 				}
 				else
-					ent.attackMove(self.targetPos[0], self.targetPos[1]);
+					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
 			}
 			else
 			{
@@ -1389,7 +1389,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					ent.attack(mUnit[rand].id());
 				}
 				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
-					ent.attackMove(self.targetPos[0], self.targetPos[1]);
+					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
 				else if (mStruct.length !== 0)
 				{
 					mStruct.sort(function (structa,structb) {
