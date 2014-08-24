@@ -30,7 +30,8 @@ class TestListener
 public:
     TestListener() {}
     virtual ~TestListener() {}
-    virtual void process_commandline(int& /*argc*/, char** /*argv*/) {}
+    virtual void print_help(const char* /*name*/) {}
+    virtual bool process_commandline_args(int& /*i*/, int& /*argc*/, char* /*argv*/[]) { return false; }
 
     virtual void enterWorld(const WorldDescription & /*desc*/) {}
     virtual void enterSuite(const SuiteDescription & /*desc*/) {}
