@@ -1334,7 +1334,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 };
 
 // checks the status of the territory expansion. If no new economic bases created, build some strategic ones.
-m.HQ.prototype.checkBaseExpansion = function(gameState,queues)
+m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 {
 	if (queues.civilCentre.length() > 0)
 		return;

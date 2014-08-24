@@ -454,13 +454,16 @@ m.GameState.prototype.countEntitiesByType = function(type, maintain) {
 };
 
 m.GameState.prototype.countEntitiesAndQueuedByType = function(type, maintain) {
+	var template = this.getTemplate(type);
+	if (!template)
+		return 0;
+
 	var count = this.countEntitiesByType(type, maintain);
 	
 	// Count building foundations
-	var template = this.getTemplate(type);
-	if (template && template.hasClass("Structure") === true)
+	if (template.hasClass("Structure") === true)
 		count += this.countFoundationsByType(type, true);
-	else if (template && template.resourceSupplyType() !== undefined)	// animal resources
+	else if (template.resourceSupplyType() !== undefined)	// animal resources
 		count += this.countEntitiesByType("resource|" + type, true);
 	else
 	{

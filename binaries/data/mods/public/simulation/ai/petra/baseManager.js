@@ -109,13 +109,30 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				this.removeDropsite(gameState, ent);
 			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] == true)
 			{
-				// sounds like we lost our anchor. Let's try rebuilding it.
-				// TODO: currently the HQ manager sets us as initgathering, we probably ouht to do it
+				// sounds like we lost our anchor. Let's reaffect our units and buildings
 				this.anchor = undefined;
-
-				this.constructing = true;	// let's switch mode.
-				this.workers.forEach( function (worker) { worker.stopMoving(); });
-				queues.civilCentre.addItem(new m.ConstructionPlan(gameState, gameState.ai.HQ.bBase[0], { "base": this.ID, "baseAnchor": true }, ent.position()));
+				var distmin = Math.min();
+				var basemin = undefined;
+				for each (var base in gameState.ai.HQ.baseManagers)
+				{
+					if (!base.anchor)
+						continue;
+					var dist = API3.SquareVectorDistance(base.anchor.position(), ent.position());
+					if (base.accessIndex !== this.accessIndex)
+						dist += 100000000;
+					if (dist > distmin)
+						continue;
+					distmin = dist;
+					basemin = base;
+				}
+				if (this.Config.debug > 0)
+					API3.warn(" base " + this.ID + " detruite");
+				if (!basemin)
+					continue;
+				if (this.Config.debug > 0)
+					API3.warn(" >>> on echange units/buildings vers base " + basemin.ID); 
+				this.units.forEach( function (ent) { ent.setMetadata(PlayerID, "base", basemin.ID); });
+				this.buildings.forEach( function (ent) { ent.setMetadata(PlayerID, "base", basemin.ID); });
 			}
 			
 		}
@@ -840,6 +857,9 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 
 m.BaseManager.prototype.update = function(gameState, queues, events)
 {
+	if (!this.anchor)   // this base has been destroyed
+		return;
+
 	if (this.anchor && this.anchor.getMetadata(PlayerID, "access") !== this.accessIndex)
 		API3.warn("Petra baseManager " + this.ID + " problem with accessIndex " + this.accessIndex
 			+ " while metadata access is " + this.anchor.getMetadata(PlayerID, "access"));
