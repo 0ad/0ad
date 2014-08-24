@@ -1363,7 +1363,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 				}
 				else
-					ent.attackMove(self.targetPos[0], self.targetPos[1]);
+					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
 			}
 			else
 			{
@@ -1389,7 +1389,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					ent.attack(mUnit[rand].id());
 				}
 				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
-					ent.attackMove(self.targetPos[0], self.targetPos[1]);
+					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
 				else if (mStruct.length !== 0)
 				{
 					mStruct.sort(function (structa,structb) {
@@ -1426,10 +1426,34 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			this.target = this.getNearestTarget(gameState, this.position, true);
 			if (!this.target)
 			{
-				if (this.Config.debug > 0)
-					API3.warn("No new target found. Remaining units " + this.unitCollection.length);
-				Engine.ProfileStop();
-				return false;
+				// Check if we could help any current attack
+				var attackManager = gameState.ai.HQ.attackManager;
+				var accessIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
+				for (var attackType in attackManager.startedAttacks)
+				{
+					if (this.target)
+						break;
+					for (var attack of attackManager.startedAttacks[attackType])
+					{
+						if (attack.name === this.name)
+							continue;
+						if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
+							continue;
+						this.target = attack.target;
+						this.targetPlayer = attack.targetPlayer;
+						break;
+					}
+				}
+
+				if (!this.target)
+				{
+					if (this.Config.debug > 0)
+						API3.warn("No new target found. Remaining units " + this.unitCollection.length);
+					Engine.ProfileStop();
+					return false;
+				}
+				else if (this.Config.debug > 0)
+					API3.warn("We will help one of our other attacks");
 			}
 			this.targetPos = this.target.position();
 		}

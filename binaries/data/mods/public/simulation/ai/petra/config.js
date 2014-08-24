@@ -102,7 +102,7 @@ m.Config.prototype.updateDifficulty = function(difficulty)
 {
 	this.difficulty = difficulty;
 	// changing settings based on difficulty.
-	this.targetNumTraders = 2 * this.difficulty;
+	this.Economy.targetNumTraders = 2 * this.difficulty;
 	if (this.difficulty === 1)
 	{
 		this.Military.popForBarracks1 = 35;

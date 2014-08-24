@@ -130,7 +130,7 @@ var commands = {
 	"attack-walk": function(player, cmd, data)
 	{
 		GetFormationUnitAIs(data.entities, player).forEach(function(cmpUnitAI) {
-			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.queued);
+			cmpUnitAI.WalkAndFight(cmd.x, cmd.z, cmd.targetClasses, cmd.queued);
 		});
 	},
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -149,7 +149,7 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", &attrs);
+		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game);
@@ -214,7 +214,7 @@ public:
 		CNetServer server;
 
 		JS::RootedValue attrs(cx);
-		scriptInterface.Eval("({mapType:'scenario',map:'_default',thing:'example'})", &attrs);
+		scriptInterface.Eval("({mapType:'scenario',map:'maps/scenarios/Saharan Oases',mapPath:'maps/scenarios/',thing:'example'})", &attrs);
 		server.UpdateGameAttributes(&attrs, scriptInterface);
 
 		CNetClient client1(&client1Game);

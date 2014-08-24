@@ -83,7 +83,7 @@ if os.is("windows") then
 	has_broken_pch = false
 else
 
-	lcxxtestpath = rootdir.."/libraries/source/cxxtest-4.3/bin/cxxtestgen"
+	lcxxtestpath = rootdir.."/libraries/source/cxxtest-4.4/bin/cxxtestgen"
 
 	if os.is("linux") and arch == "amd64" then
 		nasmformat "elf64"

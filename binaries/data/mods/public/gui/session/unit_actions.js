@@ -60,7 +60,12 @@ var unitActions =
 	{
 		"execute": function(target, action, selection, queued)
 		{
-			Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "queued": queued});
+			if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
+				var targetClasses = { "attack": ["Unit"] };
+			else
+				var targetClasses = { "attack": ["Unit", "Structure"] };
+
+			Engine.PostNetworkCommand({"type": "attack-walk", "entities": selection, "x": target.x, "z": target.z, "targetClasses": targetClasses, "queued": queued});
 			Engine.GuiInterfaceCall("PlaySound", { "name": "order_walk", "entity": selection[0] });
 			return true;
 		},

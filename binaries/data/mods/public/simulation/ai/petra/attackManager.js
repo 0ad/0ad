@@ -240,21 +240,15 @@ m.AttackManager.prototype.getPlan = function(planName)
 {
 	for (var attackType in this.upcomingAttacks)
 	{
-		for (var i in this.upcomingAttacks[attackType])
-		{
-			var attack = this.upcomingAttacks[attackType][i];
+		for (var attack of this.upcomingAttacks[attackType])
 			if (attack.getName() == planName)
 				return attack;
-		}
 	}
 	for (var attackType in this.startedAttacks)
 	{
-		for (var i in this.startedAttacks[attackType])
-		{
-			var attack = this.startedAttacks[attackType][i];
+		for (var attack of this.startedAttacks[attackType])
 			if (attack.getName() == planName)
 				return attack;
-		}
 	}
 	return undefined;
 };
@@ -276,23 +270,23 @@ m.AttackManager.prototype.unpausePlan = function(planName)
 m.AttackManager.prototype.pauseAllPlans = function()
 {
 	for (var attackType in this.upcomingAttacks)
-		for (var i in this.upcomingAttacks[attackType])
-			this.upcomingAttacks[attackType][i].setPaused(true);
+		for (var attack of this.upcomingAttacks[attackType])
+			attack.setPaused(true);
 
 	for (var attackType in this.startedAttacks)
-		for (var i in this.startedAttacks[attackType])
-			this.startedAttacks[attackType][i].setPaused(true);
+		for (var attack of this.startedAttacks[attackType])
+			attack.setPaused(true);
 };
 
 m.AttackManager.prototype.unpauseAllPlans = function()
 {
 	for (var attackType in this.upcomingAttacks)
-		for (var i in this.upcomingAttacks[attackType])
-			this.upcomingAttacks[attackType][i].setPaused(false);
+		for (var attack of this.upcomingAttacks[attackType])
+			attack.setPaused(false);
 
 	for (var attackType in this.startedAttacks)
-		for (var i in this.startedAttacks[attackType])
-			this.startedAttacks[attackType][i].setPaused(false);
+		for (var attack of this.startedAttacks[attackType])
+			attack.setPaused(false);
 };
 
 return m;
