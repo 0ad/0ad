@@ -228,10 +228,10 @@ m.EntityCollection.prototype.move = function(x, z, queued)
 	return this;
 };
 
-m.EntityCollection.prototype.attackMove = function(x, z, queued)
+m.EntityCollection.prototype.attackMove = function(x, z, targetClasses, queued)
 {
 	queued = queued || false;
-	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "queued": queued});
+	Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": this.toIdArray(), "x": x, "z": z, "targetClasses": targetClasses, "queued": queued});
 	return this;
 };
 
