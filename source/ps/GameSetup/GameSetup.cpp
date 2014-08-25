@@ -412,8 +412,9 @@ std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 	}
 
 	g_modsLoaded = args.GetMultiple("mod");
-	// TODO: It would be nice to remove this hard-coding of public
+	// TODO: It would be nice to remove this hard-coding of public (remove it once mod is standalone)
 	g_modsLoaded.insert(g_modsLoaded.begin(), "public");
+	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
 
 	// Add the user mod if not explicitly disabled or we have a dev copy so
 	// that saved files end up in version control and not in the user mod.

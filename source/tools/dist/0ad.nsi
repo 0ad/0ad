@@ -58,6 +58,7 @@
   !insertmacro MUI_PAGE_INSTFILES
 
   !define MUI_FINISHPAGE_RUN $INSTDIR\binaries\system\pyrogenesis.exe
+  !define MUI_FINISHPAGE_RUN_PARAMETERS "-mod=public"
   !insertmacro MUI_PAGE_FINISH
   
   !insertmacro MUI_UNPAGE_CONFIRM
@@ -80,6 +81,8 @@ Section "!Game and data files" GameSection
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
   File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
+  SetOutPath "$INSTDIR\binaries\data\mods\mod"
+  File "${CHECKOUTPATH}\binaries\data\mods\mod\mod.zip"
 
   ;Store installation folder
   WriteRegStr SHCTX "Software\0 A.D." "" $INSTDIR
@@ -106,7 +109,8 @@ Section "!Game and data files" GameSection
   ;Create shortcuts
   CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
   SetOutPath "$INSTDIR\binaries\system" ;Set working directory of shortcuts
-  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
+  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-mod=public"
+  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Pyrogenesis mod selector.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
   SetOutPath "$INSTDIR"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk" "$INSTDIR\OpenLogsFolder.bat"

@@ -52,6 +52,7 @@
 #include "ps/SavedGame.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
+#include "ps/scripting/JSInterface_Mod.h"
 #include "ps/scripting/JSInterface_VFS.h"
 #include "ps/UserReport.h"
 #include "ps/GameSetup/Atlas.h"
@@ -762,11 +763,11 @@ int GetFps(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 
 CScriptVal GetGUIObjectByName(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), CStr name)
 {
-		IGUIObject* guiObj = g_GUI->FindObjectByName(name);
-		if (guiObj)
-			return OBJECT_TO_JSVAL(guiObj->GetJSObject());
-		else
-			return JSVAL_VOID;
+	IGUIObject* guiObj = g_GUI->FindObjectByName(name);
+	if (guiObj)
+		return OBJECT_TO_JSVAL(guiObj->GetJSObject());
+	else
+		return JSVAL_VOID;
 }
 
 // Return the date/time at which the current executable was compiled.
@@ -909,6 +910,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	JSI_Renderer::RegisterScriptFunctions(scriptInterface);
 	JSI_Console::RegisterScriptFunctions(scriptInterface);
 	JSI_ConfigDB::RegisterScriptFunctions(scriptInterface);
+	JSI_Mod::RegisterScriptFunctions(scriptInterface);
 	JSI_Sound::RegisterScriptFunctions(scriptInterface);
 	JSI_L10n::RegisterScriptFunctions(scriptInterface);
  
