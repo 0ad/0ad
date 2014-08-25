@@ -47,7 +47,7 @@ MESSAGEHANDLER(Init)
 	g_Quickstart = true;
 
 	// Mount mods if there are any specified as command line parameters
-	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS))
+	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS|INIT_MODS_PUBLIC))
 	{
 		// There are no mods specified on the command line,
 		// but there are in the config file, so mount those.

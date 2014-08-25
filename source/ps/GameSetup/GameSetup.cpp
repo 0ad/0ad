@@ -401,6 +401,7 @@ std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 {
 	const bool init_mods = (flags & INIT_MODS) == INIT_MODS;
 	const bool add_user = !InDevelopmentCopy() && !args.Has("noUserMod");
+	const bool add_public = (flags & INIT_MODS_PUBLIC) == INIT_MODS_PUBLIC;
 
 	if (!init_mods)
 	{
@@ -412,8 +413,10 @@ std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 	}
 
 	g_modsLoaded = args.GetMultiple("mod");
-	// TODO: It would be nice to remove this hard-coding of public (remove it once mod is standalone)
-	g_modsLoaded.insert(g_modsLoaded.begin(), "public");
+
+	if (add_public)
+		g_modsLoaded.insert(g_modsLoaded.begin(), "public");
+
 	g_modsLoaded.insert(g_modsLoaded.begin(), "mod");
 
 	// Add the user mod if not explicitly disabled or we have a dev copy so

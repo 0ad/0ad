@@ -1,0 +1,19 @@
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+##
+# NOTE: To modify this Relax NG grammar, edit the Relax NG Compact (.rnc) file
+#   and use a converter tool like trang to generate the Relax NG XML (.rng) file
+##
+
+element Textures {
+    element File {
+        attribute pattern { text }? &
+        attribute format { "dxt1" | "dxt3" | "dxt5" | "rgba" | "alpha" }? &
+        attribute mipmap { "true" | "false" }? &
+        attribute normal { "true" | "false" }? &
+        attribute alpha { "none" | "player" | "transparency" }? &
+        attribute filter { "box" | "triangle" | "kaiser" }? &
+        attribute kaiserwidth { xsd:float }? &
+        attribute kaiseralpha { xsd:float }? &
+        attribute kaiserstretch { xsd:float }?
+    }*
+}

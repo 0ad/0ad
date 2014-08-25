@@ -49,7 +49,11 @@ enum InitFlags
 	INIT_HAVE_DISPLAY_ERROR = 4,
 
 	// initialize the mod folders from command line parameters
-	INIT_MODS = 8
+	INIT_MODS = 8,
+
+	// mount the public mod
+	// needed by the map editor as "mod" does not provide everything it needs
+	INIT_MODS_PUBLIC = 16
 };
 
 enum ShutdownFlags
