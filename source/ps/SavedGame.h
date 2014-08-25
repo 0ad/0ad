@@ -102,7 +102,4 @@ CScriptValRooted GetEngineInfo(ScriptInterface& scriptInterface);
 
 }
 
-// list of mods currently loaded
-extern std::vector<std::string> g_modsLoaded;
-
 #endif // INCLUDED_SAVEDGAME

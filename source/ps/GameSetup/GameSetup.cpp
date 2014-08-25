@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,12 +64,12 @@
 #include "ps/Hotkey.h"
 #include "ps/Joystick.h"
 #include "ps/Loader.h"
+#include "ps/Mod.h"
 #include "ps/Overlay.h"
 #include "ps/Profile.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Profiler2.h"
 #include "ps/Pyrogenesis.h"	// psSetLogDir
-#include "ps/SavedGame.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/TouchInput.h"
 #include "ps/UserReport.h"
@@ -101,7 +101,12 @@
 extern void wmi_Shutdown();
 #endif
 
+extern void restart_engine();
+
 #include <iostream>
+
+#include <boost/algorithm/string/classification.hpp>
+#include <boost/algorithm/string/split.hpp>
 
 ERROR_GROUP(System);
 ERROR_TYPE(System, SDLInitFailed);
@@ -392,22 +397,59 @@ ErrorReactionInternal psDisplayError(const wchar_t* UNUSED(text), size_t UNUSED(
 	return ERI_NOT_IMPLEMENTED;
 }
 
-static std::vector<CStr> GetMods(const CmdLineArgs& args)
+std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags)
 {
-	std::vector<CStr> mods = args.GetMultiple("mod");
-	// List of the mods, to be used by the Gui
-	g_modsLoaded.clear();
-	for (size_t i = 0; i < mods.size(); ++i)
-		g_modsLoaded.push_back((std::string)mods[i]);
-	// TODO: It would be nice to remove this hard-coding
-	mods.insert(mods.begin(), "public");
+	const bool init_mods = (flags & INIT_MODS) == INIT_MODS;
+	const bool add_user = !InDevelopmentCopy() && !args.Has("noUserMod");
+
+	if (!init_mods)
+	{
+		// Add the user mod if it should be present
+		if (add_user && (g_modsLoaded.empty() || g_modsLoaded.back() != "user"))
+			g_modsLoaded.push_back("user");
+
+		return g_modsLoaded;
+	}
+
+	g_modsLoaded = args.GetMultiple("mod");
+	// TODO: It would be nice to remove this hard-coding of public
+	g_modsLoaded.insert(g_modsLoaded.begin(), "public");
 
 	// Add the user mod if not explicitly disabled or we have a dev copy so
 	// that saved files end up in version control and not in the user mod.
-	if (!InDevelopmentCopy() && !args.Has("noUserMod"))
-		mods.push_back("user");
+	if (add_user)
+		g_modsLoaded.push_back("user");
 
-	return mods;
+	return g_modsLoaded;
+}
+
+void MountMods(const Paths& paths, const std::vector<CStr>& mods)
+{
+	OsPath modPath = paths.RData()/"mods";
+	OsPath modUserPath = paths.UserData()/"mods";
+	for (size_t i = 0; i < mods.size(); ++i)
+	{
+		size_t priority = (i+1)*2;	// mods are higher priority than regular mountings, which default to priority 0
+		size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_REPLACEABLE;
+		size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
+
+		OsPath modName(mods[i]);
+		if (InDevelopmentCopy())
+		{
+			// We are running a dev copy, so only mount mods in the user mod path
+			// if the mod does not exist in the data path.
+			if (DirectoryExists(modPath / modName/""))
+				g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
+			else
+				g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority);
+		}
+		else
+		{
+			g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
+			// Ensure that user modified files are loaded, if they are present
+			g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority+1);
+		}
+	}
 }
 
 static void InitVfs(const CmdLineArgs& args, int flags)
@@ -434,41 +476,13 @@ static void InitVfs(const CmdLineArgs& args, int flags)
 	const size_t cacheSize = ChooseCacheSize();
 	g_VFS = CreateVfs(cacheSize);
 	
-	// Work out whether we are a dev version to make sure saved files
-	// (maps, etc) end up in version control.
 	const OsPath readonlyConfig = paths.RData()/"config"/"";
 	g_VFS->Mount(L"config/", readonlyConfig);
 
 	// Engine localization files.
 	g_VFS->Mount(L"l10n/", paths.RData()/"l10n"/"");
 
-	const std::vector<CStr> mods = GetMods(args);
-
-	OsPath modPath = paths.RData()/"mods";
-	OsPath modUserPath = paths.UserData()/"mods";
-	for (size_t i = 0; i < mods.size(); ++i)
-	{
-		size_t priority = (i+1)*2;	// mods are higher priority than regular mountings, which default to priority 0
-		size_t userFlags = VFS_MOUNT_WATCH|VFS_MOUNT_ARCHIVABLE|VFS_MOUNT_REPLACEABLE;
-		size_t baseFlags = userFlags|VFS_MOUNT_MUST_EXIST;
-		
-		OsPath modName(mods[i]);
-		if (InDevelopmentCopy())
-		{
-			// We are running a dev copy, so only mount mods in the user mod path
-			// if the mod does not exist in the data path.
-			if (DirectoryExists(modPath / modName/""))
-				g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
-			else
-				g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority);
-		}
-		else
-		{
-			g_VFS->Mount(L"", modPath / modName/"", baseFlags, priority);
-			// Ensure that user modified files are loaded, if they are present
-			g_VFS->Mount(L"", modUserPath / modName/"", userFlags, priority+1);
-		}
-	}
+	MountMods(paths, GetMods(args, flags));
 
 	// We mount these dirs last as otherwise writing could result in files being placed in a mod's dir.
 	g_VFS->Mount(L"screenshots/", paths.UserData()/"screenshots"/"");
@@ -566,10 +580,6 @@ static void ShutdownPs()
 
 	SAFE_DELETE(g_Console);
 	
-	// This is needed to ensure that no callbacks from the JSAPI try to use 
-	// the profiler when it's already destructed
-	g_ScriptRuntime.reset();
-
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
 }
@@ -670,15 +680,16 @@ void EndGame()
 }
 
 
-void Shutdown(int UNUSED(flags))
+void Shutdown(int flags)
 {
+	if ((flags & SHUTDOWN_FROM_CONFIG))
+		goto from_config;
+
 	EndGame();
 
 	SAFE_DELETE(g_XmppClient);
 
 	ShutdownPs();
-
-	in_reset_handlers();
 
 	TIMER_BEGIN(L"shutdown TexMan");
 	delete &g_TexMan;
@@ -705,14 +716,20 @@ void Shutdown(int UNUSED(flags))
 	g_UserReporter.Deinitialize();
 	TIMER_END(L"shutdown UserReporter");
 
+
 	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
 	//TIMER_BEGIN(L"shutdown DebuggingServer (if active)");
 	//delete g_DebuggingServer;
 	//TIMER_END(L"shutdown DebuggingServer (if active)");
 
+from_config:
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
 	TIMER_END(L"shutdown ConfigDB");
+
+	// This is needed to ensure that no callbacks from the JSAPI try to use
+	// the profiler when it's already destructed
+	g_ScriptRuntime.reset();
 
 	// resource
 	// first shut down all resource owners, and then the handle manager.
@@ -850,7 +867,7 @@ void EarlyInit()
 
 bool Autostart(const CmdLineArgs& args);
 
-void Init(const CmdLineArgs& args, int flags)
+bool Init(const CmdLineArgs& args, int flags)
 {
 	h_mgr_init();
 
@@ -898,13 +915,33 @@ void Init(const CmdLineArgs& args, int flags)
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
-
 #if CONFIG2_AUDIO
 	ISoundManager::CreateSoundManager();
 #endif
 
 	// g_ConfigDB, command line args, globals
 	CONFIG_Init(args);
+
+	// Check if there are mods specified on the command line,
+	// or if we already set the mods (~INIT_MODS),
+	// else check if there are mods that should be loaded specified
+	// in the config and load those (by aborting init and restarting
+	// the engine).
+	if (!args.Has("mod") && (flags & INIT_MODS) == INIT_MODS)
+	{
+		CStr modstring;
+		CFG_GET_VAL("mod.enabledmods", String, modstring);
+		if (!modstring.empty())
+		{
+			std::vector<CStr> mods;
+			boost::split(mods, modstring, boost::is_any_of(" "), boost::token_compress_on);
+			std::swap(g_modsLoaded, mods);
+
+			// Abort init and restart
+			restart_engine();
+			return false;
+		}
+	}
 
 	// before scripting 
 	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
@@ -922,6 +959,7 @@ void Init(const CmdLineArgs& args, int flags)
 		g_UserReporter.Initialize(); // after config
 
 	PROFILE2_EVENT("Init finished");
+	return true;
 }
 
 void InitGraphics(const CmdLineArgs& args, int flags)
@@ -1067,7 +1105,7 @@ void RenderCursor(bool RenderingState)
  * games do not use a "map" (format) but a small JavaScript program which
  * creates a map on the fly). It contains a section to initialize the game
  * setup screen.
- * @param mapPath Absolute path (from VSF root) to the map file to peek in.
+ * @param mapPath Absolute path (from VFS root) to the map file to peek in.
  * @return ScriptSettings in JSON format extracted from the map.
  */
 CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)

@@ -15,27 +15,10 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/self_test.h"
+#include "precompiled.h"
 
-// usually defined by main.cpp, used by engine's scripting/ScriptFunctions.cpp,
-// must be included here to placate linker.
-void kill_mainloop()
-{
-}
+#include "ps/Mod.h"
 
-void restart_mainloop_in_atlas()
-{
-}
+std::vector<CStr> g_modsLoaded;
 
-void restart_engine()
-{
-}
-
-// just so that cxxtestgen doesn't complain "No tests defined"
-class TestDummy : public CxxTest::TestSuite 
-{
-public:
-	void test_dummy()
-	{
-	}
-};
+CmdLineArgs g_args;

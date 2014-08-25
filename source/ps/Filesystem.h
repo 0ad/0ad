@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,8 +75,9 @@ public:
 	/**
 	 * Returns either PSRETURN_OK or PSRETURN_CVFSFile_LoadFailed
 	 * @note Dies if the file has already been successfully loaded
+	 * @param log Whether to log a failure to load a file
 	 */
-	PSRETURN Load(const PIVFS& vfs, const VfsPath& filename);
+	PSRETURN Load(const PIVFS& vfs, const VfsPath& filename, bool log = true);
 
 	/**
 	 * Returns buffer of this file as a stream of bytes

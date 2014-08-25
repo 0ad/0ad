@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,18 @@ enum InitFlags
 
 	// avoid setting display_error app hook
 	// needed by map editor because it has its own wx error display
-	INIT_HAVE_DISPLAY_ERROR = 4
+	INIT_HAVE_DISPLAY_ERROR = 4,
+
+	// initialize the mod folders from command line parameters
+	INIT_MODS = 8
+};
+
+enum ShutdownFlags
+{
+	// start shutdown from config down
+	// needed for loading mods as specified in the config
+	// without having to go through a full init-shutdown cycle
+	SHUTDOWN_FROM_CONFIG = 1
 };
 
 /**
@@ -62,7 +73,14 @@ extern void RenderCursor(bool RenderingState);
 
 
 class CmdLineArgs;
-extern void Init(const CmdLineArgs& args, int flags);
+class Paths;
+extern std::vector<CStr>& GetMods(const CmdLineArgs& args, int flags);
+extern void MountMods(const Paths& paths, const std::vector<CStr>& mods);
+/**
+ * Returns true if successful, false if mods changed and restart_engine was called.
+ * In the latter case the caller should call Shutdown() with SHUTDOWN_FROM_CONFIG.
+ */
+extern bool Init(const CmdLineArgs& args, int flags);
 extern void InitGraphics(const CmdLineArgs& args, int flags);
 extern void Shutdown(int flags);
 extern void CancelLoad(const CStrW& message);

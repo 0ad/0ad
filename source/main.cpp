@@ -392,6 +392,7 @@ static void MainControllerInit()
 
 static void MainControllerShutdown()
 {
+	in_reset_handlers();
 }
 
 
@@ -412,11 +413,23 @@ void restart_mainloop_in_atlas()
 	restart_in_atlas = true;
 }
 
+static bool restart = false;
+// trigger an orderly shutdown and restart the game.
+void restart_engine()
+{
+	quit = true;
+	restart = true;
+}
+
+extern CmdLineArgs g_args;
+
 // moved into a helper function to ensure args is destroyed before
 // exit(), which may result in a memory leak.
 static void RunGameOrAtlas(int argc, const char* argv[])
 {
 	CmdLineArgs args(argc, argv);
+
+	g_args = args;
 
 	// We need to initialise libxml2 in the main thread before
 	// any thread uses it. So initialise it here before we
@@ -433,11 +446,10 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	// run non-visual simulation replay if requested
 	if (args.Has("replay"))
 	{
-		// TODO: Support mods
 		Paths paths(args);
 		g_VFS = CreateVfs(20 * MiB);
 		g_VFS->Mount(L"cache/", paths.Cache(), VFS_MOUNT_ARCHIVABLE);
-		g_VFS->Mount(L"", paths.RData()/"mods"/"public", VFS_MOUNT_MUST_EXIST);
+		MountMods(paths, GetMods(args, INIT_MODS));
 
 		{
 			CReplayPlayer replay;
@@ -481,13 +493,25 @@ static void RunGameOrAtlas(int argc, const char* argv[])
 	g_frequencyFilter = CreateFrequencyFilter(res, 30.0);
 
 	// run the game
-	Init(args, 0);
-	InitGraphics(args, 0);
-	MainControllerInit();
-	while(!quit)
-		Frame();
-	Shutdown(0);
-	MainControllerShutdown();
+	int flags = INIT_MODS;
+	do
+	{
+		restart = false;
+		quit = false;
+		if (!Init(args, flags))
+		{
+			flags &= ~INIT_MODS;
+			Shutdown(SHUTDOWN_FROM_CONFIG);
+			continue;
+		}
+		InitGraphics(args, 0);
+		MainControllerInit();
+		while (!quit)
+			Frame();
+		Shutdown(0);
+		MainControllerShutdown();
+		flags &= ~INIT_MODS;
+	} while (restart);
 
 	if (restart_in_atlas)
 	{
@@ -519,7 +543,7 @@ extern "C" int main(int argc, char* argv[])
 				  << "This is not allowed because it can alter home directory \n"
 				  << "permissions and opens your system to vulnerabilities.   \n"
 				  << "(You received this message because you were either      \n"
-				  <<"  logged in as root or used e.g. the 'sudo' command.) \n"
+				  <<"  logged in as root or used e.g. the 'sudo' command.)    \n"
 				  << "********************************************************\n\n";
 		return EXIT_FAILURE;
 	}

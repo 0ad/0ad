@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,7 +46,14 @@ MESSAGEHANDLER(Init)
 	
 	g_Quickstart = true;
 
-	Init(g_AtlasGameLoop->args, g_InitFlags);
+	// Mount mods if there are any specified as command line parameters
+	if (!Init(g_AtlasGameLoop->args, g_InitFlags | INIT_MODS))
+	{
+		// There are no mods specified on the command line,
+		// but there are in the config file, so mount those.
+		Shutdown(SHUTDOWN_FROM_CONFIG);
+		ENSURE(Init(g_AtlasGameLoop->args, g_InitFlags));
+	}
 
 	// Initialise some graphics state for Atlas.
 	// (This must be done after Init loads the config DB,
