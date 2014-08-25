@@ -32,8 +32,10 @@ echo L\"${SVNREV}-release\" > export-win32/build/svn_revision/svn_revision.txt
 # Package the mod data
 # (The platforms differ only in line endings, so just do the Unix one instead of
 # generating two needlessly inconsistent packages)
-${EXE} -archivebuild=export-unix/binaries/data/mods/public -archivebuild-output=export-unix/binaries/data/mods/public/public.zip
+${EXE} -mod=mod -archivebuild=export-unix/binaries/data/mods/public -archivebuild-output=export-unix/binaries/data/mods/public/public.zip
 cp export-unix/binaries/data/mods/public/public.zip export-win32/binaries/data/mods/public/public.zip
+${EXE} -archivebuild=export-unix/binaries/data/mods/mod -archivebuild-output=export-unix/binaries/data/mods/public/mod/mod.zip
+cp export-unix/binaries/data/mods/mod/mod.zip export-win32/binaries/data/mods/mod/mod.zip
 
 # Collect the relevant files
 ln -Tsf export-unix ${PREFIX}
@@ -44,7 +46,7 @@ tar cf $PREFIX-unix-build.tar \
 	${PREFIX}/{source,build,libraries/source,binaries/system/readme.txt,binaries/data/l10n,binaries/data/tests,binaries/data/mods/_test.*,*.txt}
 tar cf $PREFIX-unix-data.tar \
 	--exclude='binaries/data/config/dev.cfg' \
-	 ${PREFIX}/binaries/data/{config,mods/public/public.zip,tools}
+	 ${PREFIX}/binaries/data/{config,mods/mod/mod.zip,mods/public/public.zip,tools}
 # TODO: ought to include generated docs in here, perhaps?
 
 # Compress

@@ -294,7 +294,6 @@
 					type="button"
 					size="0 0 100% 28"
 					tooltip_style="pgToolTip"
-					enabled="true"
 				>
 					<translatableAttribute id="caption">Options</translatableAttribute>
 					<translatableAttribute id="tooltip">Adjust game settings.</translatableAttribute>
@@ -349,6 +348,18 @@
 						closeMenu();
 						Engine.PushGuiPage("page_splashscreen.xml", { "page": "splashscreen", callback : "SplashScreenClosedCallback" } );
 						]]>
+					</action>
+				</object>
+				<object name="submenuModSelection"
+					style="StoneButtonFancy"
+					type="button"
+					size="0 128 100% 156"
+					tooltip_style="pgToolTip"
+				>
+					<translatableAttribute id="caption">Mod Selection</translatableAttribute>
+					<translatableAttribute id="tooltip">Select mods to use.</translatableAttribute>
+					<action on="Press">
+						Engine.SwitchGuiPage("page_modmod.xml", {});
 					</action>
 				</object>
 			</object>
@@ -450,7 +461,7 @@
 					<translatableAttribute id="tooltip">Game options and scenario design tools.</translatableAttribute>
 					<action on="Press">
 						closeMenu();
-						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 4);
+						openMenu("submenuToolsAndOptions", (this.parent.size.top+this.size.top), (this.size.bottom-this.size.top), 5);
 					</action>
 				</object>
 

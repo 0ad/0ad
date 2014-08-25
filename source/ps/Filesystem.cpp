@@ -111,7 +111,7 @@ CVFSFile::~CVFSFile()
 {
 }
 
-PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
+PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename, bool log /* = true */)
 {
 	// Load should never be called more than once, so complain
 	if (m_Buffer)
@@ -123,7 +123,8 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename)
 	Status ret = vfs->LoadFile(filename, m_Buffer, m_BufferSize);
 	if (ret != INFO::OK)
 	{
-		LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), (long long)ret);
+		if (log)
+			LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), (long long)ret);
 		m_Buffer.reset();
 		m_BufferSize = 0;
 		return PSRETURN_CVFSFile_LoadFailed;

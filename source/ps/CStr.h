@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -71,6 +71,8 @@ public:
 	CStr(const tchar* String) : std::tstring(String) {}
 	CStr(const tchar* String, size_t Length) : std::tstring(String, Length) {}
 	CStr(const std::tstring& String) : std::tstring(String) {}
+	template <class InputIterator>
+	CStr (InputIterator first, InputIterator last) : std::tstring(first, last) {}
 
 	/**
 	 * Repeat: Named constructor, to avoid overload overload.

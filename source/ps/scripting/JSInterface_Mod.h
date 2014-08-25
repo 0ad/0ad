@@ -15,27 +15,18 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/self_test.h"
+#ifndef INCLUDED_JSI_MOD
+#define INCLUDED_JSI_MOD
 
-// usually defined by main.cpp, used by engine's scripting/ScriptFunctions.cpp,
-// must be included here to placate linker.
-void kill_mainloop()
+class ScriptInterface;
+class CScriptVal;
+
+namespace JSI_Mod
 {
+	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+	CScriptVal GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate);
+	void RestartEngine(ScriptInterface::CxPrivate* pCxPrivate);
+	void SetMods(ScriptInterface::CxPrivate* pCxPrivate, std::vector<CStr> mods);
 }
 
-void restart_mainloop_in_atlas()
-{
-}
-
-void restart_engine()
-{
-}
-
-// just so that cxxtestgen doesn't complain "No tests defined"
-class TestDummy : public CxxTest::TestSuite 
-{
-public:
-	void test_dummy()
-	{
-	}
-};
+#endif

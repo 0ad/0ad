@@ -15,27 +15,13 @@
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "lib/self_test.h"
+#ifndef INCLUDED_MOD
+#define INCLUDED_MOD
 
-// usually defined by main.cpp, used by engine's scripting/ScriptFunctions.cpp,
-// must be included here to placate linker.
-void kill_mainloop()
-{
-}
+#include "ps/CStr.h"
+#include "ps/GameSetup/CmdLineArgs.h"
 
-void restart_mainloop_in_atlas()
-{
-}
+extern std::vector<CStr> g_modsLoaded;
+extern CmdLineArgs g_args;
 
-void restart_engine()
-{
-}
-
-// just so that cxxtestgen doesn't complain "No tests defined"
-class TestDummy : public CxxTest::TestSuite 
-{
-public:
-	void test_dummy()
-	{
-	}
-};
+#endif // INCLUDED_MOD
