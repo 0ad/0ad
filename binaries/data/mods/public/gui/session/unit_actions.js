@@ -470,7 +470,12 @@ var unitActions =
 			var cursor = "";
 			if (Engine.HotkeyIsPressed("session.attackmove"))
 			{
-				data = {command: "attack-walk"};
+				if (Engine.HotkeyIsPressed("session.attackmoveUnit"))
+					var targetClasses = { "attack": ["Unit"] };
+				else
+					var targetClasses = { "attack": ["Unit", "Structure"] };
+				data.command = "attack-walk";
+				data.targetClasses = targetClasses;
 				cursor = "action-attack-move";
 			}
 

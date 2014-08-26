@@ -5337,10 +5337,10 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 				if (!cmpUnitAI.CanAttack(targ))
 					continue;
 				var cmpIdentity = Engine.QueryInterface(targ, IID_Identity);
-				if (cmpIdentity && this.order.data.targetClasses.attack
+				if (this.order.data.targetClasses.attack && cmpIdentity
 					&& !MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.attack))
 					continue;
-				if (cmpIdentity && this.order.data.targetClasses.avoid
+				if (this.order.data.targetClasses.avoid && cmpIdentity
 					&& MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.avoid))
 					continue;
 				this.PushOrderFront("Attack", { "target": targ, "force": true });
