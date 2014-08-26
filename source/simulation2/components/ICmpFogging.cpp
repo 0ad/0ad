@@ -39,6 +39,11 @@ public:
 	{
 		return m_Script.Call<bool>("IsMiraged", player);
 	}
+
+	virtual void ForceMiraging(player_id_t player)
+	{
+		return m_Script.CallVoid("ForceMiraging", player);
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(FoggingScripted)

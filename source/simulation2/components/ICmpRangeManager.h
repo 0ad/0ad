@@ -339,6 +339,12 @@ public:
 	virtual void ExploreAllTiles(player_id_t p) = 0;
 
 	/**
+	 * Explore the tiles inside each player's territory.
+	 * This is done only at the beginning of the game.
+	 */
+	virtual void ExploreTerritories() = 0;
+
+	/**
 	 * Set whether the whole map should be made visible to the given player.
 	 * If player is -1, the map will be made visible to all players.
 	 */
