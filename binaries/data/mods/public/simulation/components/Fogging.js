@@ -106,6 +106,12 @@ Fogging.prototype.LoadMirage = function(player)
 		);
 };
 
+Fogging.prototype.ForceMiraging = function(player)
+{
+	this.seen[player] = true;
+	this.LoadMirage(player);
+};
+
 Fogging.prototype.IsMiraged = function(player)
 {
 	if (player >= this.mirages.length)

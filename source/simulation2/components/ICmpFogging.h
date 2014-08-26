@@ -32,6 +32,7 @@ class ICmpFogging : public IComponent
 public:
 	virtual bool WasSeen(player_id_t player) = 0;
 	virtual bool IsMiraged(player_id_t player) = 0;
+	virtual void ForceMiraging(player_id_t player) = 0;
 
 	DECLARE_INTERFACE_TYPE(Fogging)
 };

@@ -9,6 +9,20 @@ function ReplaceSkirmishGlobals()
 
 function InitGame(settings)
 {
+	if (settings.ExploreMap)
+	{
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		if (cmpRangeManager)
+			for (var i = 0; i < settings.PlayerData.length; i++)
+				cmpRangeManager.ExploreAllTiles(i+1);
+	}
+	else
+	{
+		// Explore the map only inside the players' territory borders
+		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+		cmpRangeManager.ExploreTerritories();
+	}
+
 	// No settings when loading a map in Atlas, so do nothing
 	if (!settings)
 		return;
