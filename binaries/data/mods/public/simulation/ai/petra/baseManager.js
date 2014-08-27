@@ -78,6 +78,13 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
 	this.accessIndex = gameState.ai.accessibility.getAccessValue(this.anchor.position());
+	// in case all our other bases were destroyed, reaffect these destroyed bases to this base
+	for each (var base in gameState.ai.HQ.baseManagers)
+	{
+		if (base.anchor || base.newbase)
+			continue;
+		base.newbase = this.ID;
+	}
 	return true;
 };
 
@@ -125,12 +132,13 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 					distmin = dist;
 					basemin = base;
 				}
-				if (this.Config.debug > 0)
-					API3.warn(" base " + this.ID + " detruite");
 				if (!basemin)
+				{
+					if (this.Config.debug > 0)
+						API3.warn(" base " + this.ID + " destroyed and no other bases found");
 					continue;
-				if (this.Config.debug > 0)
-					API3.warn(" >>> on echange units/buildings vers base " + basemin.ID); 
+				}
+				this.newbase = basemin.ID;
 				this.units.forEach( function (ent) { ent.setMetadata(PlayerID, "base", basemin.ID); });
 				this.buildings.forEach( function (ent) { ent.setMetadata(PlayerID, "base", basemin.ID); });
 			}
@@ -858,7 +866,16 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 m.BaseManager.prototype.update = function(gameState, queues, events)
 {
 	if (!this.anchor)   // this base has been destroyed
+	{
+		// transfer possible remaining units (probably they were in training during previous transfers)
+		if (this.newbase)
+		{
+			var newbase = this.newbase;
+			this.units.forEach( function (ent) { ent.setMetadata(PlayerID, "base", newbase); });
+			this.buildings.forEach( function (ent) { ent.setMetadata(PlayerID, "base", newbase); });
+		}
 		return;
+	}
 
 	if (this.anchor && this.anchor.getMetadata(PlayerID, "access") !== this.accessIndex)
 		API3.warn("Petra baseManager " + this.ID + " problem with accessIndex " + this.accessIndex

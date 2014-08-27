@@ -54,7 +54,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 		if (!holder.position())     // could happen with siege unit inside a ship
 			continue;
 
-		if (gameState.ai.playedTurn - holder.getMetadata(PlayerID, "holderUpdate") > 5)
+		if (gameState.ai.elapsedTime - holder.getMetadata(PlayerID, "holderTimeUpdate") > 3)
 		{
 			if (holder.attackRange("Ranged"))
 				var range = holder.attackRange("Ranged").max;
@@ -90,7 +90,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			if (this.numberOfGarrisonedUnits(holder) === 0)
 				this.holders[id] = undefined;
 			else
-				holder.setMetadata(PlayerID, "holderUpdate", gameState.ai.playedTurn);
+				holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 		}
 	}
 };
@@ -170,7 +170,7 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 	if (this.holders[holder.id()])    // already registered
 		return;
 	this.holders[holder.id()] = [];
-	holder.setMetadata(PlayerID, "holderUpdate", gameState.ai.playedTurn);
+	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
 return m;
