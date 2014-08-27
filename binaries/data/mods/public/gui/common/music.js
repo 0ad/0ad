@@ -34,7 +34,7 @@ function Music()
 		MENU : 1,
 		PEACE : 2,
 		BATTLE : 3,
-		VICTORY :4,
+		VICTORY : 4,
 		DEFEAT : 5
 	};
 
