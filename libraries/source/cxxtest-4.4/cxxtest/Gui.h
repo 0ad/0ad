@@ -27,14 +27,14 @@ public:
     GuiListener() : _state(GREEN_BAR) {}
     virtual ~GuiListener() {}
 
-    virtual void runGui(TestListener &listener)
+    virtual void runGui(int &argc, char **argv, TestListener &listener)
     {
-        enterGui();
+        enterGui(argc, argv);
         TestRunner::runAllTests(listener);
         leaveGui();
     }
 
-    virtual void enterGui() {}
+    virtual void enterGui(int & /*argc*/, char ** /*argv*/) {}
     virtual void leaveGui() {}
 
     //
@@ -171,30 +171,25 @@ private:
 template<class GuiT, class TuiT>
 class GuiTuiRunner : public TeeListener
 {
+    int* _argc;
+    char **_argv;
     GuiT _gui;
     TuiT _tui;
 
 public:
-    GuiTuiRunner() {}
+    GuiTuiRunner() : _argc(0), _argv(0) {}
 
-    bool process_commandline_args(int& i, int& argc, char* argv[])
+    void process_commandline(int& argc, char** argv)
     {
-        if (i == 0) // Init
-        {
-            setFirst(_gui);
-            setSecond(_tui);
-        }
-        return _gui.process_commandline_args(i, argc, argv);
-    }
-
-    void print_help(const char* name)
-    {
-        _gui.print_help(name);
+        _argc = &argc;
+        _argv = argv;
+        setFirst(_gui);
+        setSecond(_tui);
     }
 
     int run()
     {
-        _gui.runGui(*this);
+        _gui.runGui(*_argc, _argv, *this);
         return tracker().failedTests();
     }
 };
