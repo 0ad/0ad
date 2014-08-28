@@ -111,13 +111,19 @@ m.TrainingPlan.prototype.addItem = function(amount)
 m.TrainingPlan.prototype.promotedTypes = function(gameState)
 {
 	var types = [];
-	var template = this.template;
-	var promotion = template.promotion();
+	var promotion = this.template.promotion();
+	var previous;
 	while (promotion)
 	{
 		types.push(promotion);
-		template = gameState.getTemplate(promotion);
-		promotion = template.promotion();
+		previous = promotion;
+		promotion = gameState.getTemplate(promotion).promotion();
+		if (previous === promotion)
+		{
+			if (gameState.ai.Config.debug > 0)
+				API3.warn(" unit " + promotion + " is its own promoted unit");
+			promotion = undefined;
+		}
 	}
 	return types;
 };
