@@ -1512,10 +1512,15 @@ public:
 
 	void UpdateVisibility(entity_id_t ent)
 	{
+		// Warning: Code related to fogging (like posting VisibilityChanged messages) 
+		// shouldn't be invoked while keeping an iterator to an element of m_EntityData.
+		// Otherwise, by deleting mirage entities and so on, 
+		// that code will change the indexes in the map, leading to segfaults. 
 		EntityMap<EntityData>::iterator itEnts = m_EntityData.find(ent);
 		if (itEnts == m_EntityData.end())
 			return;
 
+		// So we just remember what visibilities to update and do that later.
 		std::vector<u8> oldVisibilities;
 		std::vector<u8> newVisibilities;
 		
@@ -1645,6 +1650,13 @@ public:
 	 */
 	void SeeExploredEntities(player_id_t p)
 	{
+		// Warning: Code related to fogging (like ForceMiraging) shouldn't be
+		// invoked while iterating through m_EntityData.
+		// Otherwise, by deleting mirage entities and so on, that code will 
+		// change the indexes in the map, leading to segfaults. 
+		// So we just remember what entities to mirage and do that later.
+		std::vector<entity_id_t> miragableEntities;
+		
 		for (EntityMap<EntityData>::iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), it->first);
@@ -1661,7 +1673,14 @@ public:
 
 			CmpPtr<ICmpFogging> cmpFogging(GetSimContext(), it->first);
 			if (cmpFogging)
-				cmpFogging->ForceMiraging(p);
+				miragableEntities.push_back(it->first);
+		}
+
+		for (std::vector<entity_id_t>::iterator it = miragableEntities.begin(); it != miragableEntities.end(); ++it)
+		{
+			CmpPtr<ICmpFogging> cmpFogging(GetSimContext(), *it);
+			ENSURE(cmpFogging && "Impossible to retrieve Fogging component, previously achieved");
+			cmpFogging->ForceMiraging(p);
 		}
 	}
 
