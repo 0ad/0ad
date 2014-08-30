@@ -521,7 +521,6 @@ ProductionQueue.prototype.OnDestroy = function()
 ProductionQueue.prototype.SpawnUnits = function(templateName, count, metadata)
 {
 	var cmpFootprint = Engine.QueryInterface(this.entity, IID_Footprint);
-	var cmpPosition = Engine.QueryInterface(this.entity, IID_Position);
 	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpRallyPoint = Engine.QueryInterface(this.entity, IID_RallyPoint);
 	
