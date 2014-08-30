@@ -38,7 +38,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 	if (!this.sea)
 	{
 		this.failed = true;
-		if (this.debug > 0)
+		if (this.debug > 1)
 			API3.warn("transport plan with bad path: startIndex " + startIndex + " endIndex " + endIndex);
 		return false;
 	}
@@ -53,7 +53,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 		this.units.updateEnt(ent);
 	}
 
-	if (this.debug > 0)
+	if (this.debug > 1)
 		API3.warn("Starting a new transport plan with ID " +  this.ID + " to index " + endIndex
 			+ " with units length " + units.length);
 
@@ -101,7 +101,7 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		{
 			ent.setMetadata(PlayerID, "onBoard", ship.id());
 			done = true;
-			if (self.debug > 0)
+			if (self.debug > 1)
 			{
 				if (ent.getMetadata(PlayerID, "role") === "attack")
 					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
@@ -272,7 +272,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 					if (self.nTry[shipId] > 1)	// we must have been blocked by something ... try with another boarding point
 					{
 						self.nTry[shipId] = 0;
-						if (self.debug > 0)
+						if (self.debug > 1)
 							API3.warn("ship " + shipId + " new attempt for a landing point ");
 						self.boardingPos[shipId] = self.getBoardingPos(gameState, self.startIndex, self.sea, undefined, false);
 					}
@@ -293,7 +293,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 								++self.nTry[ent.id()];
 							if (self.nTry[ent.id()] > 5)
 							{
-								if (self.debug > 0)
+								if (self.debug > 1)
 									API3.warn("unit blocked, but no ways out of the trap ... destroy it");
 								self.resetUnit(gameState, ent);
 								ent.destroy();
@@ -399,13 +399,13 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				ship.moveApart(recov.entPos, 15);
 			continue;
 		}
-		if (gameState.ai.HQ.Config.debug > 0)
+		if (gameState.ai.HQ.Config.debug > 1)
 			API3.warn(">>> transport " + this.ID + " reloading failed ... <<<");
 		// destroy the unit if inaccessible otherwise leave it there
 		var index = gameState.ai.accessibility.getAccessValue(ent.position());
 		if (gameState.ai.HQ.allowedRegions[index])
 		{
-			if (gameState.ai.HQ.Config.debug > 0)
+			if (gameState.ai.HQ.Config.debug > 1)
 				API3.warn(" recovered entity kept " + ent.id());
 			this.resetUnit(gameState, ent);
 			// TODO we should not destroy it, but now the unit could still be reloaded on the next turn
@@ -414,7 +414,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		}
 		else
 		{
-			if (gameState.ai.HQ.Config.debug > 0)
+			if (gameState.ai.HQ.Config.debug > 1)
 				API3.warn("recovered entity destroyed " + ent.id());
 			this.resetUnit(gameState, ent);
 			ent.destroy();
@@ -453,7 +453,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		else if (gameState.ai.accessibility.getAccessValue(ent.position()) !== this.endIndex)
 		{
 			// unit unloaded on a wrong region - try to regarrison it and move a bit the ship
-			if (gameState.ai.HQ.Config.debug > 0)
+			if (gameState.ai.HQ.Config.debug > 1)
 				API3.warn(">>> unit unloaded on a wrong region ! try to garrison it again <<<");
 			var ship = gameState.getEntityById(ent.getMetadata(PlayerID, "onBoard"));
 			if (ship && !this.canceled)
@@ -465,7 +465,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			}
 			else
 			{
-				if (gameState.ai.HQ.Config.debug > 0)
+				if (gameState.ai.HQ.Config.debug > 1)
 					API3.warn("no way ... we destroy it");
 				this.resetUnit(gameState, ent);
 				ent.destroy();
@@ -537,7 +537,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			if (self.nTry[shipId] > 2)	// we must have been blocked by something ... try with another boarding point
 			{
 				self.nTry[shipId] = 0;
-				if (self.debug > 0)
+				if (self.debug > 1)
 					API3.warn(shipId + " new attempt for a landing point ");
 				self.boardingPos[shipId] = self.getBoardingPos(gameState, self.endIndex, self.sea, undefined, true);
 			}

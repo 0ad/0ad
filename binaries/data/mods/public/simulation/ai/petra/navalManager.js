@@ -280,7 +280,7 @@ m.NavalManager.prototype.checkEvents = function(gameState, queues, events)
 			continue;
 
 		var shipId = evt.entityObj.id();
-		if (this.Config.debug > 0)
+		if (this.Config.debug > 1)
 			API3.warn("one ship " + shipId + " from plan " + plan.ID + " destroyed during " + plan.state);
 		if (plan.state === "boarding")
 		{
@@ -356,7 +356,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 	var plan = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos);
 	if (plan.failed)
 	{
-		if (this.Config.debug > 0)
+		if (this.Config.debug > 1)
 			API3.warn(">>>> transport plan aborted <<<<");
 		return false;
 	}
@@ -367,12 +367,12 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 // split a transport plan in two, moving all entities not yet affected to a ship in the new plan
 m.NavalManager.prototype.splitTransport = function(gameState, plan)
 {
-	if (this.Config.debug > 0)
+	if (this.Config.debug > 1)
 		API3.warn(">>>> split of transport plan started <<<<");
 	var newplan = new m.TransportPlan(gameState, [], plan.startIndex, plan.endIndex, plan.endPos);
 	if (newplan.failed)
 	{
-		if (this.Config.debug > 0)
+		if (this.Config.debug > 1)
 			API3.warn(">>>> split of transport plan aborted <<<<");
 		return false;
 	}
@@ -384,7 +384,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 		++nbUnits;
 		newplan.addUnit(ent, ent.getMetadata(PlayerID, "endPos"));
 	});
-	if (this.Config.debug > 0)
+	if (this.Config.debug > 1)
 		API3.warn(">>>> previous plan left with units " + plan.units.length);
 	if (nbUnits)
 		this.transportPlans.push(newplan);
@@ -625,7 +625,7 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 		var remaining = this.transportPlans[i].update(gameState);
 		if (remaining === 0)
 		{
-			if (this.Config.debug > 0)
+			if (this.Config.debug > 1)
 				API3.warn("no more units on transport plan " + this.transportPlans[i].ID);
 			this.transportPlans[i].releaseAll();
 			this.transportPlans.splice(i--, 1);

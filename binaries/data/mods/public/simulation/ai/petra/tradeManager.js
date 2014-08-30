@@ -109,7 +109,7 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 		}
 		if (distmax > 0)
 		{
-			if (this.Config.debug > 1)
+			if (this.Config.debug > 2)
 				API3.warn(" a second market will be built in base " + base);
 			// TODO build also docks when better
 			queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market", { "base": base }));
@@ -152,11 +152,11 @@ m.TradeManager.prototype.buildTradeRoute = function(gameState, queues)
 	}
 	if (distmax < 0)
 	{
-		if (this.Config.debug > 1)
+		if (this.Config.debug > 2)
 			API3.warn("no trade route possible");
 		return false;
 	}
-	if (this.Config.debug > 0)
+	if (this.Config.debug > 1)
 		API3.warn("one trade route set with gain " + Math.round(distmax / this.Config.distUnitGain));
 	return true;
 };
@@ -201,7 +201,7 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	else
 		tradingGoods[mostNeeded[0].type] += nextNeed;
 	Engine.PostCommand(PlayerID, {"type": "set-trading-goods", "tradingGoods": tradingGoods});
-	if (this.Config.debug == 2)
+	if (this.Config.debug > 2)
 		API3.warn(" trading goods set to " + uneval(tradingGoods));
 };
 
@@ -268,7 +268,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 		if (bestToSell !== undefined)
 		{
 			barterers[0].barter(buy, bestToSell, 100);
-			if (this.Config.debug > 1)
+			if (this.Config.debug > 2)
 				API3.warn("Necessity bartering: sold " + bestToSell +" for " + buy + " >> need sell " + needs[bestToSell]
 					 + " need buy " + needs[buy] + " rate buy " + rates[buy] + " available sell " + available[bestToSell]
 					 + " available buy " + available[buy] + " barterRate " + bestRate);
@@ -301,7 +301,7 @@ m.TradeManager.prototype.performBarter = function(gameState)
 	if (bestToBuy !== undefined)
 	{
 		barterers[0].barter(bestToBuy, "food", 100);
-		if (this.Config.debug > 1)
+		if (this.Config.debug > 2)
 			API3.warn("Contingency bartering: sold food for " + bestToBuy + " available sell " + available["food"]
 				 + " available buy " + available[bestToBuy] + " barterRate " + getBarterRate(prices, bestToBuy, "food"));
 		return true;
@@ -321,7 +321,7 @@ m.TradeManager.prototype.update = function(gameState, queues)
 	var target = this.tradeRoute.target;
 	if (!source || !target || !gameState.getEntityById(source.id()) || !gameState.getEntityById(target.id()))
 	{
-		if (this.Config.debug > 1)
+		if (this.Config.debug > 2)
 			API3.warn("We have lost our trade route");
 		this.tradeRoute = undefined;
 		return;

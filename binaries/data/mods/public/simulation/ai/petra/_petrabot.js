@@ -120,7 +120,7 @@ m.PetraBot.prototype.initPersonality = function()
 		this.Config.priorities.defenseBuilding = 60;
 	}
 
-	if (this.Config.debug == 0)
+	if (this.Config.debug < 2)
 		return;
 	API3.warn(" >>>  Petra bot: personality = " + uneval(this.Config.personality));
 };

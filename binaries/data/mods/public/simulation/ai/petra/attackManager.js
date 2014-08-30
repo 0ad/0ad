@@ -50,7 +50,7 @@ m.AttackManager.prototype.init = function(gameState, queues, allowRush)
 // Others once in a while
 m.AttackManager.prototype.update = function(gameState, queues, events)
 {
-	if (this.Config.debug == 2 && gameState.ai.elapsedTime > this.debugTime + 60)
+	if (this.Config.debug > 2 && gameState.ai.elapsedTime > this.debugTime + 60)
 	{
 		this.debugTime = gameState.ai.elapsedTime;
 		API3.warn(" upcoming attacks =================");
@@ -93,7 +93,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				}
 				else if (updateStep === 0 || updateStep === 3)
 				{
-					if (this.Config.debug)
+					if (this.Config.debug > 1)
 						API3.warn("Attack Manager: " + attack.getType() + " plan " + attack.getName() + " aborted.");
 					attack.Abort(gameState, this);
 					this.upcomingAttacks[attackType].splice(i--,1);
@@ -114,7 +114,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 							var chatText = "I'm starting an attack against " + targetName + ".";
 						gameState.ai.chatTeam(chatText);
 		
-						if (this.Config.debug)
+						if (this.Config.debug > 1)
 							API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
 						this.startedAttacks[attackType].push(attack);
 					}
@@ -137,7 +137,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 					var chatText = "I'm starting an attack against " + targetName + ".";
 				gameState.ai.chatTeam(chatText);
 					
-				if (this.Config.debug)
+				if (this.Config.debug > 1)
 					API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
 				this.startedAttacks[attackType].push(attack);
 				this.upcomingAttacks[attackType].splice(i--,1);
@@ -157,7 +157,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			var remaining = attack.update(gameState, events);
 			if (!remaining)
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Military Manager: " + attack.getType() + " plan " + attack.getName() + " is finished with remaining " + remaining);
 				attack.Abort(gameState);
 				this.startedAttacks[attackType].splice(i--,1);
@@ -176,7 +176,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Rush", data);
 			if (!attackPlan.failed)
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.totalNumber++;
 				this.upcomingAttacks["Rush"].push(attackPlan);
@@ -201,7 +201,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				this.attackPlansEncounteredWater = true; // hack
 			else
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
 				this.totalNumber++;
 				this.upcomingAttacks[type].push(attackPlan);
@@ -226,7 +226,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			var attackPlan = new m.AttackPlan(gameState, this.Config, this.totalNumber, "Raid", data);
 			if (!attackPlan.failed)
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.totalNumber++;
 				this.upcomingAttacks["Raid"].push(attackPlan);

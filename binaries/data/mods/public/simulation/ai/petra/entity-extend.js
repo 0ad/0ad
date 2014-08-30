@@ -65,5 +65,29 @@ m.getMaxStrength = function(ent, againstClass)
 	return strength * hp;
 };
 
+m.getHolder = function(ent, gameState)
+{
+	var found = undefined;
+	gameState.getEntities().forEach(function (holder) {
+		if (found || !holder.isGarrisonHolder())
+			return;
+		if (holder._entity.garrisoned.indexOf(ent.id()) !== -1)
+			found = holder;
+	});
+	return found;
+};
+
+m.dumpEntity = function(ent)
+{
+	if (!ent)
+		return;
+	API3.warn(" >>> pos " + ent.position() + " state " + ent.unitAIState());
+	API3.warn(" >>> role " + ent.getMetadata(PlayerID, "role") + " subrole " + ent.getMetadata(PlayerID, "subrole")
+		+ " garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder")
+		+ " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport")
+		+ " gather-type " + ent.getMetadata(PlayerID, "gather-type") + " target-foundation " + ent.getMetadata(PlayerID, "target-foundation")
+		+ " PartOfArmy " + ent.getMetadata(PlayerID, "PartOfArmy"));
+};
+
 return m;
 }(PETRA);

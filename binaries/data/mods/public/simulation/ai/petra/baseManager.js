@@ -134,7 +134,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				}
 				if (!basemin)
 				{
-					if (this.Config.debug > 0)
+					if (this.Config.debug > 1)
 						API3.warn(" base " + this.ID + " destroyed and no other bases found");
 					continue;
 				}
@@ -183,7 +183,7 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 {
 	if (this.dropsites[dropsite.id()])
 	{
-		if (this.Config.debug)
+		if (this.Config.debug > 1)
 			warn("assignResourceToDropsite: dropsite already in the list. Should never happen");
 		return;
 	}
@@ -387,7 +387,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		bestIdx = j;
 	}
 
-	if (this.Config.debug == 2)
+	if (this.Config.debug > 2)
 		warn(" for dropsite best is " + bestVal);
 
 	if (bestVal <= 0)
@@ -670,11 +670,13 @@ m.BaseManager.prototype.gatherersByType = function(gameState, type)
 m.BaseManager.prototype.pickBuilders = function(gameState, workers, number)
 {
 	var availableWorkers = this.workers.filter(function (ent) {
+		if (!ent.position())
+			return false;
 		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 			return false;
-		if (ent.getMetadata(PlayerID, "transport") !== undefined)
+		if (ent.getMetadata(PlayerID, "transport"))
 			return false;
-		if (ent.hasClass("Cavalry") || ent.hasClass("Ship") || ent.position() === undefined)
+		if (ent.hasClass("Cavalry") || ent.hasClass("Ship"))
 			return false;
 		return true;
 	}).toEntityArray();
@@ -800,7 +802,17 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 				});
 				if (assigned + addedToThis < targetNB)
 				{
-					var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined); }).toEntityArray();
+					var nonBuilderWorkers = workers.filter(function(ent) {
+						if (ent.getMetadata(PlayerID, "subrole") === "builder")
+							return false;
+						if (!ent.position())
+							return false;
+						if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+							return false;
+						if (ent.getMetadata(PlayerID, "transport"))
+							return false;
+						return true;
+					}).toEntityArray();
 					var time = target.buildTime();
 					nonBuilderWorkers.sort(function (workerA,workerB)
 					{
@@ -848,8 +860,18 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (assigned < targetNB/3)
 		{
 			if (builderWorkers.length + addedWorkers < targetNB*2)
-			{	
-				var nonBuilderWorkers = workers.filter(function(ent) { return (ent.getMetadata(PlayerID, "subrole") !== "builder" && ent.position() !== undefined && ent.getMetadata(PlayerID, "transport") === undefined); });
+			{
+				var nonBuilderWorkers = workers.filter(function(ent) {
+					if (ent.getMetadata(PlayerID, "subrole") === "builder")
+						return false;
+					if (!ent.position())
+						return false;
+					if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+						return false;
+					if (ent.getMetadata(PlayerID, "transport"))
+						return false;
+					return true;
+				});
 				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB/3 - assigned);
 				
 				nearestNonBuilders.forEach(function(ent) {
