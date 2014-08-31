@@ -633,7 +633,7 @@ LIB_DIRECTORY="mozjs24"
 
 pushd ../source/spidermonkey/ > /dev/null
 
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]] || [[ .already-built -ot README.txt ]]
 then
   INSTALL_DIR="$(pwd)"
   INCLUDE_DIR_DEBUG=$INSTALL_DIR/include-unix-debug
