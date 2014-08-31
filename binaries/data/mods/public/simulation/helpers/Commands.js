@@ -1264,9 +1264,10 @@ function GetFormationUnitAIs(ents, player, formationTemplate)
 	var nonformedUnitAIs = [];
 	for each (var ent in ents)
 	{
-		// Skip units with no UnitAI
+		// Skip units with no UnitAI or no position
 		var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-		if (!cmpUnitAI)
+		var cmpPosition = Engine.QueryInterface(ent, IID_Position);
+		if (!cmpUnitAI || !cmpPosition || !cmpPosition.IsInWorld())
 			continue;
 
 		var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
@@ -1388,11 +1389,6 @@ function ClusterEntities(ents, separationDistance)
 		matrix[i] = [];
 		clusters.push([ents[i]]);
 		var cmpPosition = Engine.QueryInterface(ents[i], IID_Position);
-		if (!cmpPosition)
-		{
-			error("Asked to cluster entities without position: "+ents[i]);
-			return clusters;
-		}
 		positions.push(cmpPosition.GetPosition2D());
 		for (var j = 0; j < i; j++)
 			matrix[i][j] = positions[i].distanceToSquared(positions[j]);

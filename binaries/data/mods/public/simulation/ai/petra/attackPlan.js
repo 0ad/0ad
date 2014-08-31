@@ -376,7 +376,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		return 2;
 	}
 
-	if (this.Config.debug > 2 && gameState.ai.playedTurn % 50 === 0)
+	if (this.Config.debug > 3 && gameState.ai.playedTurn % 50 === 0)
 		this.debugAttack();
 
 	// find our target
@@ -388,7 +388,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			var oldTargetPlayer = this.targetPlayer;
 			// may-be all our previous enemey targets have been destroyed ?
 			this.targetPlayer = this.getEnemyPlayer(gameState);
-			if (this.Config.debug > 0)
+			if (this.Config.debug > 1)
 				API3.warn(" === no more target for enemy player " + oldTargetPlayer + " let us switch against player " + this.targetPlayer);
 			this.target = this.getNearestTarget(gameState, this.rallyPoint);
 		}
@@ -471,7 +471,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		}
 		else	// Abort the plan so that its units will be reassigned to other plans.
 		{
-			if (this.Config.debug > 0)
+			if (this.Config.debug > 1)
 			{
 				var am = gameState.ai.HQ.attackManager;
 				API3.warn(" attacks upcoming: raid " + am.upcomingAttacks["Raid"].length
@@ -531,7 +531,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		}
 		var index = gameState.ai.accessibility.getAccessValue(entity.position());
 		if (index === rallyIndex)
-			entity.moveToRange(rallyPoint[0], rallyPoint[1], 0, 25, queued);
+			entity.moveToRange(rallyPoint[0], rallyPoint[1], 0, 15, queued);
 		else
 			gameState.ai.HQ.navalManager.requireTransport(gameState, entity, index, rallyIndex, rallyPoint);
 	});
@@ -569,7 +569,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		return va - vb;
 	});
 
-	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
+	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 === 0)
 	{
 		API3.warn("====================================");
 		API3.warn("======== build order for plan " + this.name);
@@ -605,14 +605,14 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 			// effectively removing the unit from the plan.
 			if (template === undefined)
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("attack no template found " + this.buildOrder[0][1]);
 				delete this.unitStat[this.buildOrder[0][4]];	// deleting the associated unitstat.
 				this.buildOrder.splice(0,1);
 			}
 			else
 			{
-				if (this.Config.debug > 1)
+				if (this.Config.debug > 2)
 					API3.warn("attack template " + template + " added for plan " + this.name);
 				var max = this.buildOrder[0][3]["batchSize"];
 				var specialData = "Plan_" + this.name + "_" + this.buildOrder[0][4];
@@ -622,7 +622,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 					var trainingPlan = new m.TrainingPlan(gameState, template, { "role": "attack", "plan": this.name, "special": specialData, "base": 0 }, max, max);
 				if (trainingPlan.template)
 					queue.addItem(trainingPlan);
-				else if (this.Config.debug > 0)
+				else if (this.Config.debug > 1)
 					API3.warn("training plan canceled because no template for " + template + "   build1 " + uneval(this.buildOrder[0][1])
 						+ " build3 " + uneval(this.buildOrder[0][3]["interests"]));
 			}
@@ -930,7 +930,7 @@ m.AttackPlan.prototype.setRallyPoint = function(gameState)
 // If we're here, it's because we have enough units.
 m.AttackPlan.prototype.StartAttack = function(gameState)
 {
-	if (this.Config.debug)
+	if (this.Config.debug > 1)
 		API3.warn("start attack " + this.name + " with type " + this.type);
 
 	if (!this.target || !gameState.getEntityById(this.target.id()))  // our target was destroyed during our preparation
@@ -985,7 +985,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 		{
 			if (!this.path[0][0][0] || !this.path[0][0][1])
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("StartAttack: Problem with path " + uneval(this.path));
 				return false;
 			}
@@ -1034,9 +1034,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	{
 		var done = true;
 		this.unitCollection.forEach(function (entity) {
-			if (self.Config.debug > 0 && entity.getMetadata(PlayerID, "transport") !== undefined)
+			if (self.Config.debug > 1 && entity.getMetadata(PlayerID, "transport") !== undefined)
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [entity.id()], "rgb": [2,2,0]});
-			else if (self.Config.debug > 0)
+			else if (self.Config.debug > 1)
 				Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [entity.id()], "rgb": [1,1,1]});
 			if (!done)
 				return;
@@ -1078,6 +1078,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// In case yes, we'll determine if we're simply off against an enemy army, a lone unit/building
 		// or if we reached the enemy base. Different plans may react differently.		
 		var attackedNB = 0;
+		var attackedUnitNB = 0;
 		var attackedEvents = events["Attacked"];
 		for (var evt of attackedEvents)
 		{
@@ -1086,14 +1087,26 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var attacker = gameState.getEntityById(evt.attacker);
 			var ourUnit = gameState.getEntityById(evt.target);
 
-			if (attacker && attacker.position() && attacker.hasClass("Unit") && attacker.owner() != 0)
+			if (attacker && (attacker.owner() != 0 || this.targetPlayer === 0))
+			{
 				attackedNB++;
-			// if we're being attacked by a building, flee.
-			if (attacker && ourUnit && attacker.hasClass("Structure"))
-				ourUnit.flee(attacker);
+				if (attacker.hasClass("Unit"))
+					attackedUnitNB++;
+			}
 		}
 		// Are we arrived at destination ?
-		if ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 3)
+		var maybe = true;
+		if (attackedUnitNB == 0)
+		{
+			var siegeNB = 0;
+			this.unitCollection.forEach( function (ent) {
+				if (self.isSiegeUnit(gameState, ent))
+					siegeNB++;
+			});
+			if (siegeNB == 0)
+				maybe = false;
+		}
+		if (maybe && ((gameState.ai.HQ.territoryMap.getOwner(this.position) === this.targetPlayer && attackedNB > 1) || attackedNB > 3))
 			this.state = "arrived";
 	}
 
@@ -1131,13 +1144,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			// there are walls but we can attack
 			if (nexttoWalls && this.unitCollection.filter(API3.Filters.byCanAttack("StoneWall")).length !== 0)
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and is not happy.");
 				this.state = "arrived";
 			}
 			else if (nexttoWalls)	// abort plan
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Attack Plan " + this.type + " " + this.name + " has met walls and gives up.");
 				Engine.ProfileStop();
 				return 0;
@@ -1153,7 +1166,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	{
 		if (API3.SquareVectorDistance(this.position, this.targetPos) < 10000)
 		{
-			if (this.Config.debug > 0)
+			if (this.Config.debug > 1)
 				API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
 			this.state = "arrived";
 		}
@@ -1164,7 +1177,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				this.unitCollection.move(this.path[0][0][0], this.path[0][0][1]);
 			else
 			{
-				if (this.Config.debug > 0)
+				if (this.Config.debug > 1)
 					API3.warn("Attack Plan " + this.type + " " + this.name + " has arrived to destination.");
 				this.state = "arrived";
 			}
@@ -1237,6 +1250,24 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
 		var enemyStructures = gameState.getEnemyStructures(this.targetPlayer);
 
+		var targetClassesUnit;
+		var targetClassesSiege;
+		if (this.type === "Rush")
+			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall", "Tower", "Fortress"]};
+		else
+		{
+			if (this.target.hasClass("Fortress"))
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall"]};
+			else if (this.target.hasClass("StoneWall"))
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress"]};
+			else
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"]};
+		}
+		if (this.target.hasClass("Structure"))
+			targetClassesSiege = {"attack": ["Structure"]};
+		else
+			targetClassesSiege = {"attack": ["Unit", "Structure"]};
+
 		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length === 0)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
@@ -1300,40 +1331,21 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			else if (ent.hasClass("Cavalry"))
 				range += 30;
 			range = range * range;
-			// let's filter targets further based on this unit.
 			var entIndex = gameState.ai.accessibility.getAccessValue(ent.position());
-			var mStruct = enemyStructures.filter(function (enemy) {
-				if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
-					return false;
-				if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
-					return false;
-				if (siegeUnit && enemy.foundationProgress() === 0)
-					return false;
-				if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
-					return false;
-				return true;
-			});
-			var nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
-			var mUnit = enemyUnits.filter(function (enemy) {
-				if (!enemy.position())
-					return false;
-				if (enemy.hasClass("Animal"))
-					return false;
-				if (nearby && enemy.hasClass("Female") && enemy.unitAIState().split(".")[1] == "FLEEING")
-					return false;
-				var dist = API3.SquareVectorDistance(enemy.position(), ent.position());
-				if (dist > range)
-					return false;
-				if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
-					return false;
-				enemy.setMetadata(PlayerID, "distance", Math.sqrt(dist));
-				return true;
-			});
 			// Checking for gates if we're a siege unit.
-			mUnit = mUnit.toEntityArray();
-			mStruct = mStruct.toEntityArray();
 			if (siegeUnit)
 			{
+				var mStruct = enemyStructures.filter(function (enemy) {
+					if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
+						return false;
+					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
+						return false;
+					if (enemy.foundationProgress() === 0)
+						return false;
+					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+						return false;
+					return true;
+				}).toEntityArray();
 				if (mStruct.length !== 0)
 				{
 					mStruct.sort(function (structa,structb)
@@ -1363,10 +1375,26 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 				}
 				else
-					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
+					ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesSiege);
 			}
 			else
 			{
+				var nearby = (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged"));
+				var mUnit = enemyUnits.filter(function (enemy) {
+					if (!enemy.position())
+						return false;
+					if (enemy.hasClass("Animal"))
+						return false;
+					if (nearby && enemy.hasClass("Female") && enemy.unitAIState().split(".")[1] == "FLEEING")
+						return false;
+					var dist = API3.SquareVectorDistance(enemy.position(), ent.position());
+					if (dist > range)
+						return false;
+					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+						return false;
+					enemy.setMetadata(PlayerID, "distance", Math.sqrt(dist));
+					return true;
+				}).toEntityArray();
 				if (mUnit.length !== 0)
 				{
 					mUnit.sort(function (unitA,unitB) {
@@ -1389,28 +1417,63 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					ent.attack(mUnit[rand].id());
 				}
 				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
-					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]});
-				else if (mStruct.length !== 0)
 				{
-					mStruct.sort(function (structa,structb) {
-						var vala = structa.costSum();
-						if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-							vala += 10000;
-						else if (structa.hasClass("ConquestCritical"))
-							vala += 100;
-						var valb = structb.costSum();
-						if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
-							valb += 10000;
-						else if (structb.hasClass("ConquestCritical"))
-							valb += 100;
-						return (valb - vala);
-					});
-					if (mStruct[0].hasClass("Gates"))
-						ent.attack(mStruct[0].id());
-					else
+					ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesUnit);
+					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]}, true);   // in case we are blocked by walls
+				}
+				else
+				{
+					var mStruct = enemyStructures.filter(function (enemy) {
+						if (!enemy.position() || (enemy.hasClass("StoneWall") && !ent.canAttackClass("StoneWall")))
+							return false;
+						if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
+							return false;
+						if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
+							return false;
+						return true;
+					}).toEntityArray();
+					if (mStruct.length !== 0)
 					{
-						var rand = Math.floor(Math.random() * mStruct.length * 0.2);
-						ent.attack(mStruct[rand].id());
+						mStruct.sort(function (structa,structb) {
+							var vala = structa.costSum();
+							if (structa.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+								vala += 10000;
+							else if (structa.hasClass("ConquestCritical"))
+								vala += 100;
+							var valb = structb.costSum();
+							if (structb.hasClass("Gates") && ent.canAttackClass("StoneWall"))
+								valb += 10000;
+							else if (structb.hasClass("ConquestCritical"))
+								valb += 100;
+							return (valb - vala);
+						});
+						if (mStruct[0].hasClass("Gates"))
+							ent.attack(mStruct[0].id());
+						else
+						{
+							var rand = Math.floor(Math.random() * mStruct.length * 0.2);
+							ent.attack(mStruct[rand].id());
+						}
+					}
+					else if (needsUpdate)  // really nothing   let's try to help our nearest unit
+					{
+						var distmin = Math.min();
+						var attackerId = undefined;
+						this.unitCollection.forEach( function (unit) {
+							if (!unit.position())
+								return;
+							if (unit.unitAIState().split(".")[1] !== "COMBAT" || unit.unitAIOrderData().length === 0
+								|| !unit.unitAIOrderData()[0]["target"])
+								return;
+							var dist = API3.SquareVectorDistance(unit.position(), ent.position());
+							if (dist > distmin)
+								return;
+							distmin = dist;
+							attackerId = unit.unitAIOrderData()[0]["target"];
+
+						});
+						if (attackerId)
+							ent.attack(attackerId);
 					}
 				}
 			}
@@ -1421,7 +1484,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		// updating targets.
 		if (!this.target || !gameState.getEntityById(this.target.id()))
 		{
-			if (this.Config.debug > 0)
+			if (this.Config.debug > 1)
 				API3.warn("Seems like our target has been destroyed. Switching.");
 			this.target = this.getNearestTarget(gameState, this.position, true);
 			if (!this.target)
@@ -1447,12 +1510,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 
 				if (!this.target)
 				{
-					if (this.Config.debug > 0)
+					if (this.Config.debug > 1)
 						API3.warn("No new target found. Remaining units " + this.unitCollection.length);
 					Engine.ProfileStop();
 					return false;
 				}
-				else if (this.Config.debug > 0)
+				else if (this.Config.debug > 1)
 					API3.warn("We will help one of our other attacks");
 			}
 			this.targetPos = this.target.position();

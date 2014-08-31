@@ -13,7 +13,7 @@ m.Worker = function(ent)
 
 m.Worker.prototype.update = function(baseManager, gameState)
 {
-	if (!this.ent.position())
+	if (!this.ent.position() || this.ent.getMetadata(PlayerID, "plan") === -2 || this.ent.getMetadata(PlayerID, "plan") === -3)
 		return;
 
 	// If we are waiting for a transport or we are sailing, just wait
@@ -490,7 +490,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 
 	// If we are here, we have nothing left to gather ... certainly no more resources of this type
 	gameState.ai.HQ.lastFailedGather[resource] = gameState.ai.elapsedTime;
-	if (gameState.ai.HQ.Config.debug > 1)
+	if (gameState.ai.HQ.Config.debug > 2)
 		warn(" >>>>> worker with gather-type " + resource + " with nothing to gather ");
 	this.ent.setMetadata(PlayerID, "subrole", "idle");
 	return false;

@@ -4,6 +4,7 @@ var PETRA = function(m)
 // this defines the medium difficulty
 m.Config = function() {
 	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
+	// debug level: 0=none, 1=sanity checks, 2=debug; 3=detailed debug
 	this.debug = 0;
 
 	this.Military = {

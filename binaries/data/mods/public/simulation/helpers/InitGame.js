@@ -9,6 +9,10 @@ function ReplaceSkirmishGlobals()
 
 function InitGame(settings)
 {
+	// No settings when loading a map in Atlas, so do nothing
+	if (!settings)
+		return;
+
 	if (settings.ExploreMap)
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
@@ -22,10 +26,6 @@ function InitGame(settings)
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		cmpRangeManager.ExploreTerritories();
 	}
-
-	// No settings when loading a map in Atlas, so do nothing
-	if (!settings)
-		return;
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);

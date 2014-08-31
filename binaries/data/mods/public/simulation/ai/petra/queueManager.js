@@ -377,7 +377,7 @@ m.QueueManager.prototype.switchResource = function(gameState, res)
 			this.accounts[j][res] += diff;
 			this.accounts[i][res] -= diff;
 			++otherQueue.switched;
-			if (this.Config.debug > 1)
+			if (this.Config.debug > 2)
 				API3.warn ("switching queue " + res + " from " + i + " to " + j + " in amount " + diff);
 			break;
 		}
@@ -429,7 +429,7 @@ m.QueueManager.prototype.update = function(gameState)
 	// Start the next item in the queue if we can afford it.
 	this.startNextItems(gameState);
 
-	if (this.Config.debug > 0 && gameState.ai.playedTurn%50 === 0)
+	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 === 0)
 		this.printQueues(gameState);
 	
 	Engine.ProfileStop();
@@ -511,7 +511,7 @@ m.QueueManager.prototype.getPriority = function(queueName)
 
 m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 {
-	if (this.Config.debug > 0)
+	if (this.Config.debug > 1)
 		API3.warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
 	var self = this;
 	if (this.queues[queueName] !== undefined)

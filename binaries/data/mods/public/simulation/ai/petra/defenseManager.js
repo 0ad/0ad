@@ -96,15 +96,6 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 			return true;
 	}
 
-	var myCCFoundations = gameState.getOwnFoundations().filter(API3.Filters.byClass("CivCentre"));
-	for (var i in myCCFoundations._entities)
-	{
-		if (!myCCFoundations._entities[i].getBuildersNb())
-			continue;
-		if (API3.SquareVectorDistance(myCCFoundations._entities[i].position(), entity.position()) < 6000)
-			return true;
-	}
-
 	if (this.Config.personality.cooperative > 0.3)
 	{
 		var allyCC = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre"));
@@ -119,8 +110,12 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	var myBuildings = gameState.getOwnStructures();
 	for (var i in myBuildings._entities)
+	{
+		if (myBuildings._entities[i].foundationProgress() === 0)
+			continue;
 		if (API3.SquareVectorDistance(myBuildings._entities[i].position(), entity.position()) < 6000)
 			return true;
+	}
 
 	return false;
 };
@@ -134,11 +129,9 @@ m.DefenseManager.prototype.checkEnemyUnits = function(gameState)
 		return;
 
 	var self = this;
-	var filter = API3.Filters.and(API3.Filters.byClass("Unit"), API3.Filters.byOwner(i));
-	var enemyUnits = gameState.updatingGlobalCollection("player-" +i + "-units", filter);
 
 	// loop through enemy units
-	enemyUnits.forEach( function (ent) {
+	gameState.getEnemyUnits(i).forEach( function (ent) {
 		// first check: is this unit already part of an army.
 		if (ent.getMetadata(PlayerID, "PartOfArmy") !== undefined)
 			return;
@@ -225,7 +218,7 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 		{
 			if (API3.SquareVectorDistance(bases[i].position(), army.foePosition) < 40000)
 			{
-				if(this.Config.debug > 0)
+				if(this.Config.debug > 1)
 					API3.warn("army in neutral territory, but still near one of our CC");
 				stillDangerous = true;
 				break;
@@ -329,7 +322,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 };
 
 // If our defense structures are attacked, garrison soldiers inside when possible
-// and if a support unit is attacked and has less than 30% health, garrison it inside the nearest cc
+// and if a support unit is attacked and has less than 45% health, garrison it inside the nearest cc
 m.DefenseManager.prototype.checkEvents = function(gameState, events)
 {
 	var self = this;
@@ -342,7 +335,8 @@ m.DefenseManager.prototype.checkEvents = function(gameState, events)
 		if (target.hasClass("Ship"))    // TODO integrate ships later   need to be sure it is accessible
 			continue;
 
-		if (target.hasClass("Support") && target.healthLevel() < 0.4 && !target.getMetadata(PlayerID, "transport"))
+		if (target.hasClass("Support") && target.healthLevel() < 0.45 && !target.getMetadata(PlayerID, "transport")
+			&& target.getMetadata(PlayerID, "plan") !== -2 && target.getMetadata(PlayerID, "plan") !== -3)
 		{
 			this.garrisonUnitForHealing(gameState, target);
 			continue;

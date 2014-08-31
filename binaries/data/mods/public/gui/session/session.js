@@ -534,7 +534,7 @@ function onSimulationUpdate()
 	updateTimeElapsedCounter();
 	updateTimeNotifications();
 
-	if (!g_IsObserver)
+	if (!g_IsObserver && !g_GameEnded)
 	{
 		updateResearchDisplay();
 		// Update music state on basis of battle state.

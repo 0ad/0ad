@@ -166,8 +166,7 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 		std::wstring mapFile;
 		m_Simulation2->GetScriptInterface().GetProperty(attribs, "map", mapFile);
 		CScriptValRooted settings;
-		if (mapType == "skirmish")
-			m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
+		m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
 
 		m_World->RegisterInit(mapFile, settings, m_PlayerID);
 	}
