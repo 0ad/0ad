@@ -77,7 +77,12 @@ Section "!Game and data files" GameSection
   SetOutPath "$INSTDIR"
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
-  File /r /x "public" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
+  !if INCLUDE_SOURCE
+    File /r /x "public" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
+  !else
+    ; Exclude debug DLLs and related files
+    File /r /x "public" /x "dev.cfg" /x "*_d.dll" /x "*_dbg.dll.*" /x "*_dbg.exe.*" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "jpeg-6bd.dll" /x "libcurld.dll" /x "libpng16d.dll" /x "miniupnpcd.dll" /x "mozjs24-ps-debug.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
+  !endif
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
   File "${CHECKOUTPATH}\binaries\data\mods\public\public.zip"
