@@ -163,7 +163,7 @@ GuiInterface.prototype.ClearRenamedEntities = function(player)
 
 GuiInterface.prototype.AddMiragedEntity = function(player, entity, mirage)
 {
-	if (player >= this.miragedEntities.length)
+	if (!this.miragedEntities[player])
 		this.miragedEntities[player] = [];
 
 	this.miragedEntities[player].push({"entity": entity, "newentity": mirage});
