@@ -22,6 +22,7 @@ GuiInterface.prototype.Init = function()
 	this.placementWallLastAngle = 0;
 	this.notifications = [];
 	this.renamedEntities = [];
+	this.miragedEntities = [];
 	this.timeNotificationID = 1;
 	this.timeNotifications = [];
 	this.entsRallyPointsDisplayed = [];
@@ -148,12 +149,24 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 
 GuiInterface.prototype.GetRenamedEntities = function(player)
 {
-	return this.renamedEntities;
+	if (this.miragedEntities[player])
+		return this.renamedEntities.concat(this.miragedEntities[player]);
+	else
+		return this.renamedEntities;
 };
 
 GuiInterface.prototype.ClearRenamedEntities = function(player)
 {
 	this.renamedEntities = [];
+	this.miragedEntities = [];
+};
+
+GuiInterface.prototype.AddMiragedEntity = function(player, entity, mirage)
+{
+	if (player >= this.miragedEntities.length)
+		this.miragedEntities[player] = [];
+
+	this.miragedEntities[player].push({"entity": entity, "newentity": mirage});
 };
 
 /**
