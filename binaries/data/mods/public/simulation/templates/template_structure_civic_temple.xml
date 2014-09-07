@@ -76,9 +76,12 @@
       units/{civ}_support_healer_b
     </Entities>
     <Technologies datatype="tokens">
-      pair_heal_01
-      pair_heal_02
-      pair_heal_03
+      heal_range
+      heal_range_2
+      heal_rate
+      heal_rate_2
+      heal_temple
+      health_regen_units
     </Technologies>
   </ProductionQueue>
   <Vision>

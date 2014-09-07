@@ -2,7 +2,7 @@
 <Entity parent="units/iber_infantry_slinger_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
+    <Pierce>3</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
@@ -22,7 +22,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>20.4</Speed>
     </Run>

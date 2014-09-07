@@ -1,24 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Attack>
-    <Melee>
-      <Hack>25.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-    </Charge>
-  </Attack>
   <Identity>
     <Civ>celt</Civ>
     <GenericName>Two-Handed Swordsman</GenericName>
     <SpecificName>Delamokludda</SpecificName>
-    <Tooltip>Brythonic Champion Swordsman.
-Counters Spear Units.</Tooltip>
+    <Tooltip>Brythonic Champion Swordsman.</Tooltip>
     <History>Two-handed swordsmen from Briton. These men are veteran soldiers who offer their lives in service to their Brythonic lords.</History>
     <Icon>units/celt_champion_infantry_brit.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>20.0</Speed>
     </Run>

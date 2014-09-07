@@ -3,33 +3,23 @@
   <Armour>
     <Hack>2</Hack>
     <Pierce>30</Pierce>
-    <Crush>10</Crush>
+    <Crush>1</Crush>
   </Armour>
   <Attack>
     <Ranged>
       <Hack>0.0</Hack>
-      <Pierce>30.0</Pierce>
-      <Crush>70.0</Crush>
-      <MaxRange>72</MaxRange>
+      <Pierce>10.0</Pierce>
+      <Crush>50.0</Crush>
+      <MaxRange>80</MaxRange>
       <MinRange>12.0</MinRange>
       <ProjectileSpeed>28.0</ProjectileSpeed>
       <PrepareTime>5000</PrepareTime>
       <RepeatTime>5000</RepeatTime>
       <Spread>6.0</Spread>
-      <Bonuses>
-        <BonusFort>
-          <Classes>Fortress</Classes>
-          <Multiplier>1.25</Multiplier>
-        </BonusFort>
-        <NerfWall>
-          <Classes>StoneWall</Classes>
-          <Multiplier>0.75</Multiplier>
-        </NerfWall>
-      </Bonuses>
       <Splash>
         <Shape>Circular</Shape>
         <Range>10</Range>
-        <FriendlyFire>true</FriendlyFire>
+        <FriendlyFire>false</FriendlyFire>
         <Hack>0.0</Hack>
         <Pierce>15.0</Pierce>
         <Crush>35.0</Crush>
@@ -39,8 +29,8 @@
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
-      <wood>200</wood>
-      <stone>100</stone>
+      <wood>350</wood>
+      <stone>350</stone>
     </Resources>
   </Cost>
   <Footprint replace="">
@@ -48,13 +38,11 @@
     <Height>4.5</Height>
   </Footprint>
   <Health>
-    <Max>150</Max>
+    <Max>200</Max>
   </Health>
   <Identity>
     <GenericName>Siege Catapult</GenericName>
-    <Tooltip>Classes: Siege Ranged Catapult.
-Counters: Structures and Massed Infantry. Causes splash damage.
-Countered by: Melee Cavalry.</Tooltip>
+    <Tooltip>Causes splash damage.</Tooltip>
     <Classes datatype="tokens">Ranged Catapult</Classes>
   </Identity>
   <Loot>
@@ -82,12 +70,12 @@ Countered by: Melee Cavalry.</Tooltip>
     <BarHeight>0.5</BarHeight>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>5.5</WalkSpeed>
+    <WalkSpeed>7</WalkSpeed>
     <Run>
       <Speed>10.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>80</Range>
+    <Range>120</Range>
   </Vision>
 </Entity>

@@ -2,13 +2,13 @@
 <Entity parent="units/iber_infantry_javelinist_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
+    <Pierce>3</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Pierce>0.0</Pierce>
-      <Crush>30.0</Crush>
+      <Pierce>7</Pierce>
+      <Crush>7</Crush>
       <Spread>1.0</Spread>
       <MaxRange>48</MaxRange>
     </Ranged>
@@ -24,7 +24,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>

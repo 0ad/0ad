@@ -2,52 +2,21 @@
 <Entity parent="template_unit_champion_elephant">
   <Attack>
     <Melee>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>20.0</Crush>
+      <Hack>28</Hack>
+      <Pierce>0</Pierce>
+      <Crush>40.0</Crush>
       <MaxRange>8.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
+      <RepeatTime>1500</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>60.0</Hack>
+      <Hack>80.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>60.0</Crush>
+      <Crush>80.0</Crush>
       <MaxRange>8.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusStructures>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2</Multiplier>
-		</BonusCav>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
     </Charge>
   </Attack>
   <Identity>
     <VisibleClasses datatype="tokens">Melee</VisibleClasses>
-    <Tooltip>Classes: Champion Melee Elephant.
-Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates. "Stench" aura vs. Cavalry.
-Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
 </Entity>

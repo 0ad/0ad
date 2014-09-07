@@ -13,25 +13,11 @@
       <MaxRange>4.0</MaxRange>
     </Slaughter>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>7</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>3.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusSupport>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSupport>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusCav>
-		<BonusHunt>
-		  <Classes>Animal</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusHunt>
-	  </Bonuses>
       <RestrictedClasses datatype="tokens">Structure</RestrictedClasses>
     </Melee>
     <Charge>
@@ -40,20 +26,6 @@
       <Crush>0.0</Crush>
       <MaxRange>3.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusSupport>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSupport>
-		<BonusCav>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>3.0</Multiplier>
-		</BonusCav>
-		<BonusHunt>
-		  <Classes>Animal</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusHunt>
-	  </Bonuses>
       <RestrictedClasses datatype="tokens">Structure</RestrictedClasses>
     </Charge>
   </Attack>
@@ -79,7 +51,7 @@
     <VisibleClasses datatype="tokens">Dog</VisibleClasses>
     <GenericName>War Dog</GenericName>
     <Rank>Basic</Rank>
-    <Tooltip>Counters: 3x vs. Cavalry, 2x vs. Support, 1.5x vs. Animals. Cannot attack structures.</Tooltip>
+    <Tooltip>Cannot attack structures.</Tooltip>
   </Identity>
   <Loot>
     <xp>130</xp>
@@ -124,7 +96,7 @@
     <Category>WarDog</Category>
   </TrainingRestrictions>
   <UnitMotion>
-    <WalkSpeed>13.0</WalkSpeed>
+    <WalkSpeed>14.5</WalkSpeed>
     <Run>
       <Speed>26.0</Speed>
       <Range>600.0</Range>

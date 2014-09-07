@@ -15,8 +15,8 @@
   </Auras>
   <Attack>
     <Melee>
-      <Hack>6.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>4.5</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>4.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -66,9 +66,9 @@
       <food.meat>1</food.meat>
       <wood.tree>0.7</wood.tree>
       <wood.ruins>5</wood.ruins>
-      <stone.rock>0.5</stone.rock>
+      <stone.rock>0.35</stone.rock>
       <stone.ruins>2</stone.ruins>
-      <metal.ore>0.5</metal.ore>
+      <metal.ore>0.35</metal.ore>
     </Rates>
   </ResourceGatherer>
   <Sound>
@@ -99,7 +99,7 @@
     <AlertReactiveLevel>1</AlertReactiveLevel>
   </UnitAI>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>
       <Range>200.0</Range>

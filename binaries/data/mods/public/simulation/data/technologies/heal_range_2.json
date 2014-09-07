@@ -1,5 +1,4 @@
 {
-	"pair": "pair_heal_02",	
 	"genericName": "Healing Range 2",
 	"specificName": {
 		"hele": "Akademia",
@@ -8,13 +7,14 @@
 		"athen": "Akademia"
 	},
 	"description": "Increases the healing range of all healers.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 200},
+	"cost": {"food": 1000, "wood": 0, "stone": 0, "metal": 500},
+	"supersedes": "heal_range",
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "healing_range.png",
 	"researchTime": 40,
-	"tooltip": "Healers +4 Healing Range.",
-	"modifications": [{"value": "Heal/Range", "add": 4.0}],
+	"tooltip": "Healers +8 Healing Range.",
+	"modifications": [{"value": "Heal/Range", "add": 8.0}],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

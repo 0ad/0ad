@@ -2,7 +2,8 @@
 	"genericName": "Town Phase",
 	"requirements": { "any": [{"tech":"phase_town_generic"}, {"tech":"phase_town_athen"}]},
 	"autoResearch": true,
-	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.30}],
-	"affects": ["CivCentre"],
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.30},
+		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"}],
+	"affects": ["CivCentre", "Infantry", "Cavalry"], 
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

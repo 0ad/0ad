@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_siege">
   <Armour>
-    <Hack>2</Hack>
-    <Pierce>30</Pierce>
-    <Crush>10</Crush>
+    <Hack>1</Hack>
+    <Pierce>40</Pierce>
+    <Crush>5</Crush>
   </Armour>
   <Attack>
     <Melee>
@@ -12,28 +12,14 @@
       <Crush>80.0</Crush>
       <MaxRange>6.5</MaxRange>
       <RepeatTime>1500</RepeatTime>
-	  <Bonuses>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-      <RestrictedClasses datatype="tokens">Organic</RestrictedClasses>
       <PreferredClasses datatype="tokens">Gates Structure</PreferredClasses>
     </Melee>
     <Charge>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>100.0</Crush>
+      <Crush>160.0</Crush>
       <MaxRange>6.5</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusGates>
-		  <Classes>Gates</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusGates>
-	  </Bonuses>
-      <RestrictedClasses datatype="tokens">Organic</RestrictedClasses>
       <PreferredClasses datatype="tokens">Gates Structure</PreferredClasses>
     </Charge>
   </Attack>
@@ -41,8 +27,8 @@
     <BuildTime>20</BuildTime>
     <Population>5</Population>
     <Resources>
-      <wood>200</wood>
-      <metal>100</metal>
+      <wood>350</wood>
+      <metal>200</metal>
     </Resources>
   </Cost>
   <GarrisonHolder>
@@ -54,14 +40,11 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>200</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>
     <Classes datatype="tokens">Melee Ram</Classes>
-    <Tooltip>Classes: Siege Melee Ram.
-Counters: 1.5x vs. Gates. Generally good vs. Buildings.
-Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships).</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
@@ -77,12 +60,12 @@ Countered by: Melee Cavalry. Cannot attack organic units (but can attack other s
     <BarHeight>0.5</BarHeight>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>11.0</Speed>
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>48</Range>
+    <Range>80</Range>
   </Vision>
 </Entity>

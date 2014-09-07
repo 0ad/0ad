@@ -7,8 +7,8 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>17.5</Hack>
+      <Pierce>0</Pierce>
       <Crush>25.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
@@ -45,9 +45,6 @@
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
-    <Tooltip>Classes: Hero Melee Elephant.
-Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.
-Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
   </Identity>
   <Sound>
     <SoundGroups>
@@ -63,7 +60,7 @@ Countered by: Skirmishers and Swordsmen. Can run amok.</Tooltip>
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>14.0</Speed>
       <Range>1000.0</Range>

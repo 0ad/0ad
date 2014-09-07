@@ -18,7 +18,7 @@
   </Loot>
   <Minimap>
     <Type>food</Type>
-    <Colour r="115" g="70" b="30"/>
+    <Colour b="30" g="70" r="115"/>
   </Minimap>
   <ResourceGatherer disable=""/>
   <UnitAI>
@@ -32,7 +32,7 @@
   </UnitAI>
   <Guard disable=""/>
   <UnitMotion>
-    <WalkSpeed>5.0</WalkSpeed>
+    <WalkSpeed>6.5</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
     </Run>

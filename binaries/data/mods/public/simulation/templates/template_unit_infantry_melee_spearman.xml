@@ -2,29 +2,17 @@
 <Entity parent="template_unit_infantry_melee">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>1</Pierce>
-    <Crush>2</Crush>
+    <Pierce>4</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>0.0</Pierce>
-	  <Bonuses>
-		<BonusCavMelee>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavMelee>
-	  </Bonuses>
+      <Hack>4.5</Hack>
+      <Pierce>8.5</Pierce>
     </Melee>
     <Charge>
-      <Hack>20.0</Hack>
-      <Pierce>0.0</Pierce>
-	  <Bonuses>
-		<BonusCharge>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCharge>
-	  </Bonuses>
+      <Hack>12.0</Hack>
+      <Pierce>24.0</Pierce>
     </Charge>
   </Attack>
   <Cost>
@@ -36,14 +24,12 @@
     <VisibleClasses datatype="tokens">Spear</VisibleClasses>
     <GenericName>Spearman</GenericName>
     <History>Probably one of the most primitive units in the game. Fighting with a sharp object at the end of the pole didn't require a lot of technology to develop. It also allowed the human to distance themselves from their attacker. As time passed the spears got longer and longer. Started with a fighting style similar to using a quarterstaff, then to using them in numbers as a 'pin cushion' vs. humans (sarissa in a phalanx). Later it was developed to combat cavalry. During the medieval period it evolved to the pike. These units tended to be armored as heavily as possible.</History>
-    <Tooltip>Counters: 2x vs. All Cavalry.
-Countered by: Skirmishers, Swordsmen, Cavalry Archers.</Tooltip>
   </Identity>
   <Loot>
     <wood>5</wood>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>9</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
     </Run>

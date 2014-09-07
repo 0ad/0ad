@@ -3,7 +3,7 @@
   <Armour>
     <Hack>1</Hack>
     <Pierce>1</Pierce>
-    <Crush>1</Crush>
+    <Crush>5</Crush>
   </Armour>
   <Cost>
     <Population>1</Population>
@@ -36,16 +36,6 @@
   <Identity>
     <GenericName>Unit</GenericName>
     <Classes datatype="tokens">Unit ConquestCritical</Classes>
-    <Formations datatype="tokens">
-      formations/scatter
-      formations/box
-      formations/column_closed
-      formations/line_closed
-      formations/column_open
-      formations/line_open
-      formations/flank
-      formations/battle_line
-    </Formations>
   </Identity>
   <Looter/>
   <Minimap>
@@ -69,10 +59,10 @@
       <treasure>1</treasure>
     </Rates>
     <Capacities>
-      <food>20</food>
-      <wood>20</wood>
-      <stone>20</stone>
-      <metal>20</metal>
+      <food>10</food>
+      <wood>10</wood>
+      <stone>10</stone>
+      <metal>10</metal>
     </Capacities>
   </ResourceGatherer>
   <Selectable>
@@ -103,7 +93,7 @@
   <Guard/>
   <UnitMotion>
     <FormationController>false</FormationController>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>9</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
       <Range>50.0</Range>

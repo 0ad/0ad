@@ -10,10 +10,6 @@
   </Attack>
   <Cost>
     <BuildTime>25</BuildTime>
-    <Resources>
-      <wood>200</wood>
-      <metal>100</metal>
-    </Resources>
   </Cost>
   <Footprint replace="">
     <Square width="7.0" depth="15.0"/>
@@ -25,9 +21,6 @@
 	<List datatype="tokens">Support Infantry</List>
 	<BuffHeal>1</BuffHeal>
   </GarrisonHolder>
-  <Health>
-    <Max>250</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
 	<GenericName>Assyrian Siege Ram</GenericName>

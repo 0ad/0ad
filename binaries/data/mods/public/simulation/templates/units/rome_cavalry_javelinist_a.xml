@@ -2,8 +2,8 @@
 <Entity parent="units/rome_cavalry_javelinist_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>4</Pierce>
-    <Crush>2</Crush>
+    <Pierce>2</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -24,7 +24,7 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>13.5</WalkSpeed>
+    <WalkSpeed>15</WalkSpeed>
     <Run>
       <Speed>27.0</Speed>
     </Run>

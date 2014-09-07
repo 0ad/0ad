@@ -1,72 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
-    <Hack>4</Hack>
-    <Pierce>6</Pierce>
-    <Crush>7</Crush>
+    <Hack>6</Hack>
+    <Pierce>5</Pierce>
+    <Crush>6</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>21</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSecondary>
-		<BonusSiege>
-		  <Classes>Siege</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSiege>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
+      <RepeatTime>750</RepeatTime>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
     <Charge>
-      <Hack>45.0</Hack>
+      <Hack>60.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSecondary>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Charge>
   </Attack>
   <Cost>
     <BuildTime>16</BuildTime>
     <Resources>
-      <metal>80</metal>
+      <wood>70</wood>
+      <metal>50</metal>
     </Resources>
   </Cost>
   <Health>
@@ -75,7 +36,5 @@
   <Identity>
     <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Champion Cavalry Swordsman</GenericName>
-	<Tooltip>Counters: 2x vs. Archers, All Support Units, and Siege Weapons.
-Countered by: Spearmen, Cavalry Skirmishers, and Elephants.</Tooltip>
   </Identity>
 </Entity>

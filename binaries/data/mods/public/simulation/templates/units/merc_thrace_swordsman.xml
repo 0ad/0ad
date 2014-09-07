@@ -2,12 +2,12 @@
 <Entity parent="template_unit_infantry_melee_swordsman">
   <Armour>
     <Hack>6</Hack>
-    <Pierce>3</Pierce>
+    <Pierce>5</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>16.0</Hack>
+      <Hack>11.5</Hack>
     </Melee>
     <Charge>
       <Hack>32.0</Hack>
@@ -34,7 +34,7 @@ Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>13.0</Speed>
     </Run>

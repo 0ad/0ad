@@ -28,6 +28,14 @@
     <Square width="42.0" depth="58.0"/>
     <Height>8.0</Height>
   </Footprint>
+  <GarrisonHolder>
+    <Max>20</Max>
+    <EjectHealth>0.1</EjectHealth>
+    <EjectClassesOnDestroy datatype="tokens">Unit</EjectClassesOnDestroy>
+    <List datatype="tokens">Support Infantry Cavalry</List>
+    <BuffHeal>0</BuffHeal>
+    <LoadingRange>2</LoadingRange>
+  </GarrisonHolder>
   <Health>
     <Max>5000</Max>
   </Health>
@@ -48,7 +56,11 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay disable=""/>
-  <TerritoryInfluence disable=""/>
+  <TerritoryInfluence>
+    <Root>true</Root>
+    <Radius>200</Radius>
+    <Weight>25000</Weight>
+  </TerritoryInfluence>
   <ProductionQueue>
     <BatchTimeModifier>0.7</BatchTimeModifier>
     <Entities datatype="tokens">

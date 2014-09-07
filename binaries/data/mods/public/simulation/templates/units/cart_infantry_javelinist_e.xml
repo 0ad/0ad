@@ -2,13 +2,15 @@
 <Entity parent="units/cart_infantry_javelinist_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
+    <Pierce>3</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
     <Ranged>
+      <Pierce>7</Pierce>
+      <Crush>7</Crush>
       <Spread>1.0</Spread>
-      <MaxRange>44</MaxRange>
+      <MaxRange>48</MaxRange>
     </Ranged>
   </Attack>
   <Health>
@@ -22,12 +24,12 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>
     </Run>
   </UnitMotion>
   <VisualActor>
-    <Actor>units/carthaginians/infantry_javelinist_e.xml</Actor>
+    <Actor>units/iberians/infantry_javelinist_e.xml</Actor>
   </VisualActor>
 </Entity>

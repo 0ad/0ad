@@ -1,21 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_archer">
-  <Armour>
-    <Hack>6.0</Hack>
-  </Armour>
-  <Attack>
-    <Ranged>
-      <Pierce>35.0</Pierce>
-    </Ranged>
-  </Attack>
   <Cost>
-    <Population>3</Population>
+    <Population>1</Population>
     <BuildTime>19</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>200</wood>
-      <metal>0</metal>
-    </Resources>
   </Cost>
   <Footprint replace="">
     <Square width="5.5" depth="10.0"/>
@@ -32,9 +19,7 @@
 	<SelectionGroupName>units/maur_champion_chariot</SelectionGroupName>
     <History>Champion Cavalry Archer.</History>
 	<Icon>units/maur_champion_chariot.png</Icon>
-	<Tooltip>Classes: Champion Ranged Cavalry Chariot Archer.
-Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.
-Countered by: Skirmishers and Elephants.</Tooltip>
+	<Tooltip>Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage.</Tooltip>
   </Identity>
   <Loot>
     <xp>200</xp>
@@ -53,7 +38,7 @@ Countered by: Skirmishers and Elephants.</Tooltip>
     </Capacities>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>16.0</WalkSpeed>
+    <WalkSpeed>19.0</WalkSpeed>
     <Run>
       <Speed>36.0</Speed>
     </Run>

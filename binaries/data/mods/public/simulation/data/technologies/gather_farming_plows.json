@@ -1,13 +1,13 @@
 {
 	"genericName": "Iron Plow",
 	"description": "A horse drawn instrument to turn the sod.",
-	"cost": {"food": 0, "wood": 100, "stone": 0, "metal": 100},
-	"requirements": {"tech": "phase_town"},
-	"requirementsTooltip": "Unlocked in Town Phase.",
+	"cost": {"food": 0, "wood": 200, "stone": 0, "metal": 100},
+	"requirements": {"tech": "phase_village"},
+	"requirementsTooltip": "Unlocked in Village Phase.",
 	"icon": "plow.png",
 	"researchTime": 40,
-	"tooltip": "Equip your workers with iron plows. +25% farming rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiply": 1.25}],
+	"tooltip": "Equip your workers with iron plows. +15% farming rate.",
+	"modifications": [{"value": "ResourceGatherer/Rates/food.grain", "multiply": 1.15}],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

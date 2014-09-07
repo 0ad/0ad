@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_special">
   <Armour>
-    <Hack>10.0</Hack>
-    <Pierce>40.0</Pierce>
-    <Crush>10.0</Crush>
+    <Hack>3.0</Hack>
+    <Pierce>25.0</Pierce>
+    <Crush>1.0</Crush>
     <Foundation>
-      <Hack>3.0</Hack>
-      <Pierce>8.0</Pierce>
-      <Crush>3.0</Crush>
+      <Hack>1.0</Hack>
+      <Pierce>5.0</Pierce>
+      <Crush>1.0</Crush>
     </Foundation>
   </Armour>
   <Attack>
@@ -33,7 +33,7 @@
   </BuildRestrictions>
   <Cost>
     <PopulationBonus>5</PopulationBonus>
-    <BuildTime>160</BuildTime>
+    <BuildTime>250</BuildTime>
     <Resources>
       <wood>400</wood>
       <stone>0</stone>
@@ -50,8 +50,8 @@
     <LoadingRange>6</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>3600</Max>
-    <Repairable>false</Repairable>
+    <Max>2500</Max>
+    <Repairable>true</Repairable>
     <SpawnEntityOnDeath>rubble/rubble_rome_sb</SpawnEntityOnDeath>
   </Health>
   <Identity>
@@ -76,7 +76,7 @@
     </SoundGroups>
   </Sound>
   <TerritoryDecay>
-    <HealthDecayRate>5</HealthDecayRate>
+    <HealthDecayRate>10</HealthDecayRate>
   </TerritoryDecay>
   <TerritoryInfluence disable=""/>
   <ProductionQueue>
@@ -90,9 +90,6 @@
       units/rome_mechanical_siege_scorpio_packed
       units/rome_mechanical_siege_ram
     </Entities>
-    <Technologies datatype="tokens">
-	  romans/decay_logistics
-    </Technologies>
   </ProductionQueue>
   <Vision>
     <Range>60</Range>

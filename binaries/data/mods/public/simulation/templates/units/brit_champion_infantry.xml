@@ -1,17 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Armour>
-    <Hack>8</Hack>
-    <Pierce>2</Pierce>
-  </Armour>
-  <Attack>
-    <Melee>
-      <Hack>25.0</Hack>
-    </Melee>
-    <Charge>
-      <Hack>50.0</Hack>
-    </Charge>
-  </Attack>
   <Identity>
     <Civ>brit</Civ>
     <GenericName>Brythonic Longswordsman</GenericName>
@@ -21,7 +9,7 @@
     <Icon>units/celt_champion_infantry_brit.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>6.0</WalkSpeed>
+    <WalkSpeed>7.5</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
     </Run>

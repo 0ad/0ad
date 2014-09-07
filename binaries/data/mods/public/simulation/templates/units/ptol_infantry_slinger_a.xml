@@ -2,7 +2,7 @@
 <Entity parent="units/ptol_infantry_slinger_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>3</Pierce>
+    <Pierce>2</Pierce>
     <Crush>4</Crush>
   </Armour>
   <Attack>
@@ -24,7 +24,7 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>9</WalkSpeed>
     <Run>
       <Speed>21.6</Speed>
     </Run>

@@ -2,7 +2,7 @@
 <Entity parent="units/ptol_infantry_javelinist_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>3</Pierce>
+    <Pierce>2</Pierce>
     <Crush>4</Crush>
   </Armour>
   <Attack>
@@ -24,7 +24,7 @@
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>10.5</WalkSpeed>
+    <WalkSpeed>12</WalkSpeed>
     <Run>
       <Speed>20.0</Speed>
     </Run>

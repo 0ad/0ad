@@ -5,11 +5,6 @@
     <SpecificName>Armamentarium</SpecificName>
     <History>The Roman army stored and repaired its equipment in the armamentarium of the camp.</History>
   </Identity>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-	  -pair_inf_armor_04
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/romans/blacksmith.xml</Actor>
   </VisualActor>

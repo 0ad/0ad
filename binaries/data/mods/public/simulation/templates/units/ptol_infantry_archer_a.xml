@@ -2,7 +2,7 @@
 <Entity parent="units/ptol_infantry_archer_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>3</Pierce>
+    <Pierce>2</Pierce>
     <Crush>4</Crush>
   </Armour>
   <Attack>
@@ -27,7 +27,7 @@
     <Max>700</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
+    <WalkSpeed>11</WalkSpeed>
     <Run>
       <Speed>19.0</Speed>
     </Run>

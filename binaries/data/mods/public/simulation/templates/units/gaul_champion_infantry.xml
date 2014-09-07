@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Cost>
-    <Resources>
-      <metal>75</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>gaul</Civ>
     <GenericName>Heavy Swordsman</GenericName>
@@ -14,7 +9,7 @@
     <Icon>units/celt_champion_infantry_gaul.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>21.0</Speed>
     </Run>

@@ -7,33 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
-     <Hack>30.0</Hack>
-     <Pierce>0.0</Pierce>
+     <Hack>21</Hack>
+     <Pierce>0</Pierce>
      <Crush>0.0</Crush>
      <MaxRange>6.0</MaxRange>
      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Support</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Infantry Bow</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSecondary>
-		<BonusSiege>
-		  <Classes>Siege</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSiege>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
       <PreferredClasses datatype="tokens">Organic Siege</PreferredClasses>
     </Melee>
   </Attack>

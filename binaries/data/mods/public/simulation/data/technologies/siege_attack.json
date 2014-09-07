@@ -1,15 +1,15 @@
 {
 	"genericName": "Advanced Siege",
 	"description": "Advanced technologies improve siege efficiency",
-	"cost": {"food": 0, "wood": 200, "stone": 0, "metal": 250},
+	"cost": {"food": 0, "wood": 1000, "stone": 0, "metal": 500},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "siege_ram.png",
 	"researchTime": 40,
-	"tooltip": "All siege weapons +5 Crush damage.",
+	"tooltip": "All siege weapons +25% Crush damage.",
 	"modifications": [
-		{"value": "Attack/Melee/Crush", "add": 5},
-		{"value": "Attack/Ranged/Crush", "add": 5}],
+		{"value": "Attack/Melee/Crush", "multiply": 1.25},
+		{"value": "Attack/Ranged/Crush", "multiply": 1.25}],
 	"affects": ["Siege"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

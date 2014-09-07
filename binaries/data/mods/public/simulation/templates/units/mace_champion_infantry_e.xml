@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/mace_champion_infantry_a">
-  <Armour>
-    <Hack>7</Hack>
-    <Pierce>6</Pierce>
-    <Crush>7</Crush>
-  </Armour>
   <Attack>
     <Melee>
-      <Hack>17.0</Hack>
+      <Hack>8.5</Hack>
+      <Pierce>17</Pierce>
     </Melee>
     <Charge>
-      <Hack>34.0</Hack>
-      <Pierce>0.0</Pierce>
-      <Crush>0.0</Crush>
+      <Hack>16.0</Hack>
+      <Pierce>48.0</Pierce>
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
@@ -25,7 +20,7 @@
   </Identity>
   <Promotion disable=""/>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
     </Run>

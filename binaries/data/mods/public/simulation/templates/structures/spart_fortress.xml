@@ -19,9 +19,10 @@
       units/spart_mechanical_siege_oxybeles_packed
     </Entities>
     <Technologies datatype="tokens">
-      -pair_champ_02
-      pair_siege_attack_cost
-      pair_siege_cost_armor
+      siege_attack
+      siege_armor
+      siege_cost_metal
+      siege_cost_wood
       siege_bolt_accuracy
     </Technologies>
   </ProductionQueue>

@@ -13,7 +13,7 @@
 	},
 	"description": "A long spear made specifically for cavalry.",
 	"cost": {"food": 0, "wood": 50, "stone": 0, "metal": 150},
-	"requirements": {"any": [{"tech": "phase_town"},{"civ": "celt"},{"civ": "brit"},{"civ": "gaul"}]},
+	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "spear_cavalry.png",
 	"researchTime": 40,

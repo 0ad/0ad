@@ -1,42 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
-  <Armour>
-    <Hack>7</Hack>
-    <Pierce>3</Pierce>
-    <Crush>1</Crush>
-  </Armour>
   <Attack>
     <Melee>
-      <Hack>0.0</Hack>
+      <Hack>0</Hack>
       <Crush>10.0</Crush>
-	  <Bonuses>
-		<BonusStructures>
-		  <Classes>Structure</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusStructures>
-		<BonusPrimary>
-		  <Classes>Infantry Spear</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
     </Melee>
     <Charge>
       <Hack>0.0</Hack>
       <Crush>20.0</Crush>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Spear</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.25</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
     </Charge>
   </Attack>
   <Identity>
@@ -46,9 +17,7 @@
 	<SelectionGroupName>units/maur_champion_infantry</SelectionGroupName>
     <History>.</History>
     <Icon>units/maur_champion_maceman.png</Icon>
-	<Tooltip>Classes: Champion Melee Infantry Swordsman.
-Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.
-Countered by: Archers and Cavalry Spearmen.</Tooltip>
+	<Tooltip>Classes: Champion Melee Infantry Swordsman.</Tooltip>
   </Identity>
   <VisualActor>
     <Actor>units/mauryans/champion_maceman.xml</Actor>

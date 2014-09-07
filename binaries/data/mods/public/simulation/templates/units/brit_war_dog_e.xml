@@ -2,12 +2,12 @@
 <Entity parent="units/brit_war_dog_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>5</Pierce>
-    <Crush>3</Crush>
+    <Pierce>3</Pierce>
+    <Crush>4</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>19.0</Hack>
+      <Hack>13.5</Hack>
     </Melee>
     <Charge>
       <Hack>57.0</Hack>
@@ -18,7 +18,7 @@
   </Identity>
   <Promotion disable=""/>
   <UnitMotion>
-    <WalkSpeed>12</WalkSpeed>
+    <WalkSpeed>13.5</WalkSpeed>
     <Run>
       <Speed>24</Speed>
     </Run>

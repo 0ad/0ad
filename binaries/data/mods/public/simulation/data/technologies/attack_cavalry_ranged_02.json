@@ -1,0 +1,26 @@
+{
+	"genericName": "Iron Weapons",
+	"specificName": {
+		"hele": "Xyston",
+		"mace": "Xyston",
+		"spart": "Xyston",
+		"athen": "Xyston",
+		"sele": "Xyston",
+		"ptol": "Xyston",
+		"theb": "Xyston",
+		"rome": "Hasta"
+	},
+	"description": "Replaces bronze weapons with iron.",
+	"cost": {"food": 500, "wood": 500, "stone": 0, "metal": 500},
+	"supersedes": "attack_cavalry_ranged_01",
+	"requirements": {"tech": "phase_city"},
+	"requirementsTooltip": "Unlocked in City Phase.",
+	"icon": "horse_rider.png",
+	"researchTime": 40,
+	"tooltip": "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack.",
+	"modifications": [{"value": "Attack/Ranged/Hack", "multiply": 1.2},
+		{"value": "Attack/Ranged/Pierce", "multiply": 1.2},
+		{"value": "Attack/Ranged/Crush", "multiply": 1.2}],
+	"affects": ["Cavalry Ranged"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

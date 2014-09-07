@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
-  <Armour>
-    <Hack>7</Hack>
-  </Armour>
-  <Attack>
-    <Melee>
-      <MaxRange>6.0</MaxRange>
-    </Melee>
-    <Charge>
-      <Hack>30.0</Hack>
-      <Pierce>60.0</Pierce>
-      <Crush>0.0</Crush>
-      <MaxRange>6.0</MaxRange>
-    </Charge>
-  </Attack>
   <Identity>
     <Civ>mace</Civ>
 	<GenericName>Companion Cavalry</GenericName>
@@ -23,7 +9,7 @@
 	<SelectionGroupName>units/mace_champion_cavalry</SelectionGroupName>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>11.0</WalkSpeed>
+    <WalkSpeed>12.5</WalkSpeed>
     <Run>
       <Speed>25.0</Speed>
     </Run>

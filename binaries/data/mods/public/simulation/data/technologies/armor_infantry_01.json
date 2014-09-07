@@ -1,0 +1,29 @@
+{
+	"genericName": "Quilted Body Armor",
+	"specificName": {
+		"generic": "Spolas",
+		"hele": "Spolas",
+		"mace": "Spolas",
+		"spart": "Spolas",
+		"athen": "Spolas",
+		"pers": "Spolas",
+		"rome": "Spolas",
+		"cart": "Spolas",
+		"iber": "Spolas",
+		"maur": "Spolas",
+		"celt": "Spolas",
+		"brit": "Spolas",
+		"gaul": "Spolas"
+	},
+	"description": "Quilted linen or leather body armor for infantrymen.",
+	"cost": {"food": 0, "wood": 1000, "stone": 0, "metal": 350},
+	"requirements": {"tech": "phase_town"},
+	"requirementsTooltip": "Unlocked in Town Phase.",
+	"icon": "armor_leather.png",
+	"researchTime": 40,
+	"tooltip": "All Infantry +1 Hack and Pierce Armor Level.",
+	"modifications": [{"value": "Armour/Hack", "add": 1.0},
+		{"value": "Armour/Pierce", "add": 1.0}],
+	"affects": ["Infantry"],
+	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
+}

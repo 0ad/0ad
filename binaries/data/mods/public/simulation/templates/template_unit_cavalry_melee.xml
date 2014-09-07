@@ -1,31 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry">
   <Armour>
-    <Hack>1</Hack>
-    <Pierce>5</Pierce>
-    <Crush>2</Crush>
+    <Hack>4</Hack>
+    <Pierce>2</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>10.5</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-		<BonusSiege>
-		  <Classes>Siege</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusSiege>
-	  </Bonuses>
+      <RepeatTime>750</RepeatTime>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
     <Charge>
@@ -34,16 +20,6 @@
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<ElephantStench>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</ElephantStench>
-		<CamelStench>
-		  <Classes>Camel</Classes>
-		  <Multiplier>0.5</Multiplier>
-		</CamelStench>
-	  </Bonuses>
       <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Charge>
   </Attack>
