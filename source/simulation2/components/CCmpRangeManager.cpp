@@ -1386,15 +1386,14 @@ public:
 		if (!cmpPosition || !cmpPosition->IsInWorld())
 			return VIS_HIDDEN;
 
-		CFixedVector2D pos = cmpPosition->GetPosition2D();
-
-		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
-
 		// Mirage entities, whatever the situation, are visible for one specific player
 		CmpPtr<ICmpMirage> cmpMirage(ent);
 		if (cmpMirage && cmpMirage->GetPlayer() != player)
 			return VIS_HIDDEN;
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
+		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
 		// Reveal flag makes all positioned entities visible
 		if (GetLosRevealAll(player))
