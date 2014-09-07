@@ -6,6 +6,7 @@
       <mesh>structural/celt_kennel_struct.dae</mesh>
       <props>
         <prop actor="props/structures/celts/kennel_props_new.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/kennel_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/kennel_beef.xml" attachpoint="root"/>
       </props>
@@ -27,6 +28,7 @@
         <prop actor="props/structures/celts/kennel_props_new.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/kennel_props_1.xml" attachpoint="root"/>
         <prop actor="props/structures/celts/kennel_beef.xml" attachpoint="root"/>
+        <prop actor="props/structures/celts/kennel_mud.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>

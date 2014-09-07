@@ -1391,6 +1391,11 @@ public:
 		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
+		// Mirage entities, whatever the situation, are visible for one specific player
+		CmpPtr<ICmpMirage> cmpMirage(ent);
+		if (cmpMirage && cmpMirage->GetPlayer() != player)
+			return VIS_HIDDEN;
+
 		// Reveal flag makes all positioned entities visible
 		if (GetLosRevealAll(player))
 		{
@@ -1399,11 +1404,6 @@ public:
 			else
 				return VIS_VISIBLE;
 		}
-
-		// Mirage entities, whatever their position, are visible for one specific player
-		CmpPtr<ICmpMirage> cmpMirage(ent);
-		if (cmpMirage && cmpMirage->GetPlayer() != player)
-			return VIS_HIDDEN;
 
 		// Visible if within a visible region
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
