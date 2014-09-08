@@ -1,5 +1,4 @@
 {
-	"pair": "pair_tower_01",	
 	"genericName": "Sentries",
 	"specificName": {
 		"hele": "Nyktophylakes",
@@ -11,7 +10,7 @@
 		"rome": "Vigiles"
 	},
 	"description": "A night's watch increases vigilance.",
-	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
+	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 0},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "helmet_corinthian_bronze.png",

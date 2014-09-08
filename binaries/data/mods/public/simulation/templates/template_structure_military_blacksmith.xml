@@ -48,14 +48,19 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Technologies datatype="tokens">
-	  pair_inf_01
-      pair_inf_02
-	  pair_inf_armor_01
-	  pair_inf_armor_02
-	  pair_inf_armor_03
-	  pair_inf_armor_04
-      pair_cav_01
-	  armor_hero_01
+      attack_infantry_melee_01
+      attack_infantry_melee_02
+      attack_infantry_ranged_01
+      attack_infantry_ranged_02
+      attack_cavalry_melee_01
+      attack_cavalry_melee_02
+      attack_cavalry_ranged_01
+      attack_cavalry_ranged_02
+      armor_infantry_01
+      armor_infantry_02
+      armor_cav_01
+      armor_cav_02
+      armor_hero_01
     </Technologies>
   </ProductionQueue>
   <Sound>

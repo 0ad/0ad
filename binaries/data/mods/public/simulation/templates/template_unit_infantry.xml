@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
+  <Armour>
+    <Hack>2</Hack>
+    <Pierce>4</Pierce>
+    <Crush>3</Crush>
+  </Armour>
   <Attack>
     <Slaughter>
       <Hack>50.0</Hack>
@@ -27,11 +32,11 @@
       structures/{civ}_wallset_stone
       structures/{civ}_civil_centre
       structures/{civ}_fortress
-	  structures/{civ}_wonder
+      structures/{civ}_wonder
     </Entities>
   </Builder>
   <Cost>
-    <BuildTime>12</BuildTime>
+    <BuildTime>10</BuildTime>
     <Resources>
       <food>50</food>
       <wood>0</wood>
@@ -72,9 +77,9 @@
       <food.meat>1</food.meat>
 	  <wood.tree>0.75</wood.tree>
 	  <wood.ruins>5</wood.ruins>
-      <stone.rock>0.75</stone.rock>
+      <stone.rock>0.5</stone.rock>
 	  <stone.ruins>2</stone.ruins>
-      <metal.ore>0.75</metal.ore>
+      <metal.ore>0.5</metal.ore>
     </Rates>
   </ResourceGatherer>
   <Selectable>
@@ -110,13 +115,13 @@
     <Max>1000</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>9</WalkSpeed>
     <Run>
       <Speed>18.75</Speed>
     </Run>
     <CostClass>infantry</CostClass>
   </UnitMotion>
   <Vision>
-    <Range>50</Range>
+    <Range>80</Range>
   </Vision>
 </Entity>

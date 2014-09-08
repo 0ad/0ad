@@ -1,5 +1,4 @@
 {
-	"pair": "pair_house_02",
 	"genericName": "Manors",
 	"specificName": {
 		"rome": "Insulae"
@@ -10,8 +9,8 @@
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "population.png",
 	"researchTime": 40,
-	"tooltip": "Houses +2 population cap bonus.",
-	"modifications": [{"value": "Cost/PopulationBonus", "add": 2.0}],
+	"tooltip": "Houses +20% population cap bonus.",
+	"modifications": [{"value": "Cost/PopulationBonus", "multiply": 1.2}],
 	"affects": ["House"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

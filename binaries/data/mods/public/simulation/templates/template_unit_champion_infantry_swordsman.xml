@@ -1,57 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>7</Hack>
-    <Pierce>4</Pierce>
+    <Hack>6</Hack>
+    <Pierce>7</Pierce>
     <Crush>6</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>15.5</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Spear</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
+      <RepeatTime>750</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
+      <Hack>44.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusPrimary>
-		  <Classes>Infantry Spear</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusPrimary>
-		<BonusSecondary>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusSecondary>
-	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <food>50</food>
-      <metal>80</metal>
+      <wood>75</wood>
+      <metal>50</metal>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Champion Swordsman</GenericName>
-	<Tooltip>Counters: 2x vs. Spearmen, 1.5x vs. Elephants.
-Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo
@@ -71,7 +49,7 @@ Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>
       <Range>600.0</Range>

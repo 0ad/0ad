@@ -107,6 +107,8 @@ WaterManager::WaterManager()
 	m_DistanceHeightmap = NULL;
 	m_BlurredNormalMap = NULL;
 	m_WindStrength = NULL;
+
+	m_ShoreWaves_VBIndices = NULL;
 	
 	m_WaterUgly = false;
 	m_WaterFancyEffects = false;
@@ -141,7 +143,15 @@ WaterManager::~WaterManager()
 
 	// TODO: when c++11 is around, use lambdas or something because short Korea is best Korea.
 	for (size_t i = 0; i < m_ShoreWaves.size(); ++i)
-		delete m_ShoreWaves[i];
+	{
+		WaveObject* obj = m_ShoreWaves[i];
+		if (obj->m_VBvertices)
+			g_VBMan.Release(obj->m_VBvertices);
+		delete obj;
+	}
+
+	if (m_ShoreWaves_VBIndices)
+		g_VBMan.Release(m_ShoreWaves_VBIndices);
 
 	SAFE_ARRAY_DELETE(m_DistanceHeightmap);
 	SAFE_ARRAY_DELETE(m_BlurredNormalMap);
@@ -439,8 +449,16 @@ void WaterManager::CreateWaveMeshes()
 
 	// TODO: when c++11 is around, use lambdas or something because short Korea is best Korea.
 	for (size_t i = 0; i < m_ShoreWaves.size(); ++i)
-		delete m_ShoreWaves[i];
+	{
+		WaveObject* obj = m_ShoreWaves[i];
+		if (obj->m_VBvertices)
+			g_VBMan.Release(obj->m_VBvertices);
+		delete obj;
+	}
 	m_ShoreWaves.clear();
+
+	if (m_ShoreWaves_VBIndices)
+		g_VBMan.Release(m_ShoreWaves_VBIndices);
 
 	if (m_Waviness < 5.0f && m_WaterType != L"ocean")
 		return;
@@ -455,6 +473,7 @@ void WaterManager::CreateWaveMeshes()
 	// Second step: create chains out of those coastal points.
 	static const int around[8][2] = { { -1,-1 }, { -1,0 }, { -1,1 }, { 0,1 }, { 1,1 }, { 1,0 }, { 1,-1 }, { 0,-1 } };
 
+	std::vector<std::deque<CoastalPoint> > CoastalPointsChains;
 	while (!CoastalPointsSet.empty())
 	{
 		int index = *(CoastalPointsSet.begin());

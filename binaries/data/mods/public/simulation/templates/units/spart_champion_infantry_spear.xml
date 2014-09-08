@@ -1,112 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Armour>
-    <Hack>7</Hack>
-    <Pierce>7</Pierce>
-    <Crush>6</Crush>
+    <Hack>10</Hack>
+    <Pierce>10</Pierce>
+    <Crush>10</Crush>
   </Armour>
-  <Attack>
-    <Melee>
-      <Hack>16.0</Hack>
-      <MaxRange>6.0</MaxRange>
-	  <Bonuses>
-		<BonusCarths>
-		  <Civ>cart</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusCarths>
-		<BonusBritons>
-		  <Civ>brit</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusBritons>
-		<BonusGauls>
-		  <Civ>gaul</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusGauls>
-		<BonusMauryans>
-		  <Civ>maur</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusMauryans>
-		<BonusIberians>
-		  <Civ>iber</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusIberians>
-		<BonusPersians>
-		  <Civ>pers</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusPersians>
-		<BonusRomans>
-		  <Civ>rome</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusRomans>
-	  </Bonuses>
-    </Melee>
-    <Charge>
-      <Hack>32.0</Hack>
-      <MaxRange>6.0</MaxRange>
-	  <Bonuses>
-		<BonusCarths>
-		  <Civ>cart</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusCarths>
-		<BonusBritons>
-		  <Civ>brit</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusBritons>
-		<BonusGauls>
-		  <Civ>gaul</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusGauls>
-		<BonusMauryans>
-		  <Civ>maur</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusMauryans>
-		<BonusIberians>
-		  <Civ>iber</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusIberians>
-		<BonusPersians>
-		  <Civ>pers</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusPersians>
-		<BonusRomans>
-		  <Civ>rome</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusRomans>
-	  </Bonuses>
-    </Charge>
-  </Attack>
-  <Cost>
-    <Resources>
-      <wood>0</wood>
-      <metal>80</metal>
-    </Resources>
-  </Cost>
   <Identity>
     <Civ>spart</Civ>
 	<GenericName>Spartan Hoplite</GenericName>
     <SpecificName>Spartiā́tes</SpecificName>
-    <Tooltip>Classes: Champion Melee Infantry Spearman.
-Counters: 2x vs. All Cavalry types. +10% Attack vs. All Non-Greek Units.
-Countered by: Skirmishers, Swordsmen, Cavalry Archers.</Tooltip>
+    <Tooltip>Classes: Champion Melee Infantry Spearman.</Tooltip>
     <History>The Spartans had a very peculiar form of government which enabled them to be professional soldiers. It not only enabled them, but actually forced them to be superior soldiers as a small group of Spartans had to dominate an enormous number of subjects and unwilling allies. The Spartan army was superior in Hellas, and in the rest of the known world. No other army was so well trained, and had such excellent equipment. They believed that traditional training was the key to success, and for centuries they were correct, as they rarely lost a battle in spite of their small numbers. Ironic enough, this concept ended the Spartan supremacy, as the Spartan phalanx could not resist the new sloped Theban phalanx and the invading integrated Macedonian forces. The end of the Spartan power marked the decline of the domination of traditional phalanx warfare.</History>
     <Icon>units/spart_champion_infantry_spear.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>

@@ -2,7 +2,7 @@
 <Entity parent="units/cart_infantry_archer_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
+    <Pierce>3</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
@@ -25,7 +25,7 @@
     <Max>690</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>6.7</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>16.75</Speed>
     </Run>

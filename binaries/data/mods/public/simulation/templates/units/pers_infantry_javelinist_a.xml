@@ -2,7 +2,7 @@
 <Entity parent="units/pers_infantry_javelinist_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>3</Pierce>
+    <Pierce>2</Pierce>
     <Crush>4</Crush>
   </Armour>
   <Attack>
@@ -21,7 +21,7 @@
     <Entity>units/pers_infantry_javelinist_e</Entity>
   </Promotion>
   <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
+    <WalkSpeed>10</WalkSpeed>
     <Run>
       <Speed>21.25</Speed>
     </Run>

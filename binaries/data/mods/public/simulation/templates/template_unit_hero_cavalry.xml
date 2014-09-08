@@ -9,8 +9,8 @@
     <BuildTime>50</BuildTime>
     <Resources>
       <food>100</food>
-	  <wood>0</wood>
-	  <stone>0</stone>
+      <wood>0</wood>
+      <stone>0</stone>
       <metal>250</metal>
     </Resources>
   </Cost>
@@ -42,7 +42,7 @@
       <attack>attack/weapon/sword.xml</attack>
       <death>actor/fauna/death/death_horse.xml</death>
       <trained>interface/alarm/alarm_create_cav.xml</trained>
-	</SoundGroups>
+    </SoundGroups>
   </Sound>
   <Stamina>
     <Max>2500</Max>
@@ -51,7 +51,7 @@
     <HeightOffset>6.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>13.0</WalkSpeed>
+    <WalkSpeed>14.5</WalkSpeed>
     <Run>
       <Speed>26.0</Speed>
       <Range>1000.0</Range>

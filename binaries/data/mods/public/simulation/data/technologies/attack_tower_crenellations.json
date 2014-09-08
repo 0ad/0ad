@@ -1,8 +1,7 @@
 {
-	"pair": "pair_tower_01",	
 	"genericName": "Crenellations",
 	"description": "Crenellations on the battlements allow soldiers wider range of fire in defending a keep.",
-	"cost": {"food": 0, "wood": 0, "stone": 100, "metal": 100},
+	"cost": {"food": 0, "wood": 0, "stone": 500, "metal": 250},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "crenelations.png",

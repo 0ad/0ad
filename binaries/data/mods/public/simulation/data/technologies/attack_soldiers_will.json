@@ -10,15 +10,17 @@
 		"sele": "Dynamis"
 	},
 	"description": "The will to fight is crucial to victory.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 300},
+	"cost": {"food": 3000, "wood": 3000, "stone": 3000, "metal": 3000},
 	"requirements": {"tech": "phase_city"},
 	"requirementsTooltip": "Unlocked in City Phase.",
 	"icon": "clenched_fist.png",
 	"researchTime": 40,
-	"tooltip": "Inspire your troops with higher pay. All citizen-Soldiers +2 attack.",
+	"tooltip": "Inspire your troops with higher pay. All soldiers +25% attack.",
 	"modifications": [
-		{"value": "Attack/Melee/Hack", "add": 2.0, "affects": "CitizenSoldier Melee"},
-		{"value": "Attack/Ranged/Pierce", "add": 2.0, "affects": "CitizenSoldier Ranged"}
+		{"value": "Attack/Melee/Hack", "multiply": 1.25, "affects": "CitizenSoldier Melee"},
+		{"value": "Attack/Ranged/Pierce", "multiply": 1.25, "affects": "CitizenSoldier Ranged"},
+		{"value": "Attack/Melee/Hack", "multiply": 1.25, "affects": "Champion Melee"},
+		{"value": "Attack/Ranged/Pierce", "multiply": 1.25, "affects": "Champion Ranged"}
 	],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

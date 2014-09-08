@@ -1,50 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>5</Pierce>
+    <Hack>5</Hack>
+    <Pierce>7</Pierce>
     <Crush>6</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>15.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>7</Hack>
+      <Pierce>14</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusCavMelee>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavMelee>
-	  </Bonuses>
+      <RepeatTime>750</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>15.0</Hack>
+      <Pierce>40.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
-	  <Bonuses>
-		<BonusCavMelee>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavMelee>
-	  </Bonuses>
     </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <food>50</food>
-      <metal>75</metal>
+      <wood>100</wood>
     </Resources>
   </Cost>
   <Identity>
     <GenericName>Champion Spearman</GenericName>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
-	<Tooltip>Classes: Champion Melee Infantry Spearman.
-Counters: 2x vs. All Cavalry.
-Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo
@@ -64,7 +48,7 @@ Countered by: Skirmishers, Swordsmen, and Cavalry Archers.</Tooltip>
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
+    <WalkSpeed>9</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
       <Range>600.0</Range>

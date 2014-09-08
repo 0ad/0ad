@@ -170,17 +170,17 @@ function damageTypeDetails(dmg)
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.hack,
+			damage: dmg.hack.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.pierce,
+			damage: dmg.pierce.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.crush,
+			damage: dmg.crush.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
 		}));
 
@@ -246,17 +246,17 @@ function damageTypesToText(dmg)
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.hack,
+			damage: dmg.hack.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.pierce,
+			damage: dmg.pierce.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
-			damage: dmg.crush,
+			damage: dmg.crush.toFixed(1),
 			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
 		}));
 

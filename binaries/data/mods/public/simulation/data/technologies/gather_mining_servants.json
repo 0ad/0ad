@@ -1,5 +1,4 @@
 {
-	"pair": "pair_gather_01",	
 	"genericName": "Servants",
 	"specificName": {
 		"hele": "Douloi",
@@ -8,13 +7,13 @@
 		"athen": "Douloi"
 	},
 	"description": "Increases stone gathering rates.",
-	"cost": {"food": 50, "wood": 0, "stone": 0, "metal": 0},
+	"cost": {"food": 200, "wood": 0, "stone": 0, "metal": 50},
 	"requirements": {"tech": "phase_village"},
 	"requirementsTooltip": "Hire servants to help mine stone. No requirements.",
 	"icon": "mining_stone.png",
 	"researchTime": 40,
-	"tooltip": "+25% stone gathering rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.25}],
+	"tooltip": "+15% stone gathering rate.",
+	"modifications": [{"value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.15}],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

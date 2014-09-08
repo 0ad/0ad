@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit">
   <Armour>
-    <Hack>1</Hack>
-    <Pierce>5</Pierce>
-    <Crush>2</Crush>
+    <Hack>3</Hack>
+    <Pierce>1</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Slaughter>
@@ -15,7 +15,7 @@
   </Attack>
   <Cost>
     <Population>1</Population>
-    <BuildTime>15</BuildTime>
+    <BuildTime>12</BuildTime>
     <Resources>
       <food>80</food>
     </Resources>
@@ -59,10 +59,10 @@
       <food.meat>5</food.meat>
     </Rates>
     <Capacities>
-      <food>30</food>
-      <wood>30</wood>
-      <stone>30</stone>
-      <metal>30</metal>
+      <food>20</food>
+      <wood>20</wood>
+      <stone>20</stone>
+      <metal>20</metal>
     </Capacities>
   </ResourceGatherer>
   <Selectable>
@@ -70,8 +70,7 @@
       <Texture>
         <MainTexture>circle/128x128.png</MainTexture>
         <MainTextureMask>circle/128x128_mask.png</MainTextureMask>
-        <!--<MainTexture>arrow/256x256.png</MainTexture>
-       <MainTextureMask>arrow/256x256_mask.png</MainTextureMask>-->
+        
       </Texture>
     </Overlay>
   </Selectable>
@@ -95,7 +94,7 @@
     <HeightOffset>6.5</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>13.0</WalkSpeed>
+    <WalkSpeed>14.5</WalkSpeed>
     <Run>
       <Speed>26.0</Speed>
       <Range>600.0</Range>
@@ -103,6 +102,6 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>60</Range>
+    <Range>96</Range>
   </Vision>
 </Entity>

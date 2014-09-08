@@ -1,28 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_javelinist">
   <Cost>
-    <Population>4</Population>
+    <Population>1</Population>
     <BuildTime>20</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
   </Cost>
   <Footprint replace="">
     <Square width="10.0" depth="10.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>200</Max>
-  </Health>
   <Identity>
     <Civ>celt</Civ>
     <Classes datatype="tokens">Chariot</Classes>
 	<GenericName>Celtic Chariot</GenericName>
     <SpecificName>Carbanto</SpecificName>
-    <Tooltip>Brythonic Champion Chariot.
-Counters Infantry. High trample damage.</Tooltip>
+    <Tooltip>Brythonic Champion Chariot.</Tooltip>
     <History>The Britons were one of the last European peoples to use two-horse chariots in combat. They had two iron-rimmed wheels and a flat riding platform that typically carried a driver and a warrior. Useless as shock weapons against tightly packed troops, they were useful for running down individual soldiers and as a stable mount to launch javelins from. The heads of defeated opponents often adorned the chassis to show the warrior's prowess.</History>
     <Icon>units/celt_champion_cavalry_brit.png</Icon>
   </Identity>
@@ -30,7 +21,7 @@ Counters Infantry. High trample damage.</Tooltip>
     <Unit radius="1.3"/>
   </Obstruction>
   <UnitMotion>
-    <WalkSpeed>16.0</WalkSpeed>
+    <WalkSpeed>17.5</WalkSpeed>
     <Run>
       <Speed>36.0</Speed>
     </Run>

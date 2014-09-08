@@ -2,7 +2,8 @@
 	"genericName": "City Phase",
 	"requirements": { "any": [{"tech":"phase_city_generic"}, {"tech":"phase_city_britons"}, {"tech":"city_phase_gauls"}, {"tech":"phase_city_pair_celts"}, {"tech":"phase_city_athen"}]},
 	"autoResearch": true,
-	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.50}],
-	"affects": ["CivCentre"],
+	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.50},
+		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"}],
+	"affects": ["CivCentre", "Infantry", "Cavalry"],
 	"soundComplete": "interface/alarm/alarm_phase.xml"
 }

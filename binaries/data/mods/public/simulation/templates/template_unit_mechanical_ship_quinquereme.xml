@@ -52,9 +52,7 @@
   </Health>
   <Identity>
     <GenericName>Heavy Warship</GenericName>
-    <Tooltip>Classes: Mechanical Warship Heavy Ranged Melee.
-Garrison with catapults to increase ranged fire power.
-Secondary Attack: Ramming.</Tooltip>
+    <Tooltip>Garrison with catapults to increase ranged fire power.</Tooltip>
     <Classes datatype="tokens">Warship Heavy Ranged</Classes>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
@@ -70,7 +68,7 @@ Secondary Attack: Ramming.</Tooltip>
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>14.5</WalkSpeed>
+    <WalkSpeed>16</WalkSpeed>
     <Run>
       <Speed>20</Speed>
     </Run>

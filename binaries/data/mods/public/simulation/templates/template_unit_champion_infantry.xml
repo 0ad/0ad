@@ -2,15 +2,15 @@
 <Entity parent="template_unit_champion">
   <Attack>
     <Melee>
-      <Hack>23.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>17.5</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
     </Melee>
     <Charge>
-      <Hack>46.0</Hack>
+      <Hack>50.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
@@ -21,10 +21,10 @@
   <Cost>
     <BuildTime>13</BuildTime>
     <Resources>
-      <food>50</food>
+      <food>100</food>
       <wood>0</wood>
       <stone>0</stone>
-      <metal>0</metal>
+      <metal>50</metal>
     </Resources>
   </Cost>
   <Health>
@@ -60,7 +60,7 @@
     <Max>1500</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>17.5</Speed>
       <Range>600.0</Range>

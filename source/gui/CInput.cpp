@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -521,7 +521,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 		{
 			DeleteCurSelection();
 		}
-		if (!pCaption->empty() && !m_iBufferPos == 0)
+		if (!pCaption->empty() && m_iBufferPos != 0)
 		{
 			m_iBufferPos_Tail = m_iBufferPos;
 			CStrW searchString = pCaption->Left( m_iBufferPos );
@@ -601,7 +601,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 				m_iBufferPos_Tail = m_iBufferPos;
 			}
 
-			if (!pCaption->empty() && !m_iBufferPos == 0)
+			if (!pCaption->empty() && m_iBufferPos != 0)
 			{
 				CStrW searchString = pCaption->Left( m_iBufferPos );
 

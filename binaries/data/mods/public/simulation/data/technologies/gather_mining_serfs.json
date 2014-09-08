@@ -1,5 +1,4 @@
-{
-	"pair": "pair_gather_02",	
+{	
 	"genericName": "Serfs",
 	"specificName": {
 		"hele": "Heilotes",
@@ -8,13 +7,14 @@
 		"athen": "Heilotes"
 	},
 	"description": "Increases stone gathering rates.",
-	"cost": {"food": 100, "wood": 100, "stone": 0, "metal": 0},
+	"cost": {"food": 250, "wood": 0, "stone": 0, "metal": 50},
+	"supersedes": "gather_mining_servants",
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "mining_stone.png",
 	"researchTime": 40,
-	"tooltip": "Compel serfs to help your workers mine stone. +25% stone gathering rate.",
-	"modifications": [{"value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.25}],
+	"tooltip": "Compel serfs to help your workers mine stone. +15% stone gathering rate.",
+	"modifications": [{"value": "ResourceGatherer/Rates/stone.rock", "multiply": 1.15}],
 	"affects": ["Worker"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

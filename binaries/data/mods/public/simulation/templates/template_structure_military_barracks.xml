@@ -4,7 +4,7 @@
     <Category>Barracks</Category>
   </BuildRestrictions>
   <Cost>
-    <BuildTime>200</BuildTime>
+    <BuildTime>150</BuildTime>
     <Resources>
       <wood>300</wood>
     </Resources>
@@ -48,9 +48,9 @@
   <ProductionQueue>
     <BatchTimeModifier>0.8</BatchTimeModifier>
     <Technologies datatype="tokens">
-      pair_levy_01
-	  training_conscription
-	  unlock_champion_units
+      heal_barracks
+      training_conscription
+      unlock_champion_units
     </Technologies>
   </ProductionQueue>
   <Sound>

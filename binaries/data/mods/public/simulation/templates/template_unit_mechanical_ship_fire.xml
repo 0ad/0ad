@@ -33,8 +33,7 @@
   <Identity>
     <GenericName>Fire Ship</GenericName>
     <Classes datatype="tokens">Warship Fireship Melee</Classes>
-    <Tooltip>Classes: Mechanical Warship Fireship Melee.
-Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly.</Tooltip>
+    <Tooltip>Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly.</Tooltip>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
   <Obstruction>
@@ -47,7 +46,7 @@ Rapidly drain the health of enemy ships. Slowly loses health due to being on fir
   </StatusBars>
   <ResourceGatherer disable=""/>
   <UnitMotion>
-    <WalkSpeed>16.0</WalkSpeed>
+    <WalkSpeed>17.5</WalkSpeed>
     <Run>
       <Speed>22.0</Speed>
     </Run>

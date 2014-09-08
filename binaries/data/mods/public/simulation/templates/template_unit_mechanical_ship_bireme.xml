@@ -44,7 +44,6 @@
   </Health>
   <Identity>
     <GenericName>Light Warship</GenericName>
-    <Tooltip>Classes: Mechanical Warship Light Ranged.</Tooltip>
     <Classes datatype="tokens">Warship Light Bow Ranged</Classes>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
@@ -61,7 +60,7 @@
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
   <UnitMotion>
-    <WalkSpeed>12.5</WalkSpeed>
+    <WalkSpeed>14</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>

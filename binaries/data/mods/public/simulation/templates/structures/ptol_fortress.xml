@@ -24,9 +24,11 @@
       units/ptol_mechanical_siege_tower
     </Entities>
     <Technologies datatype="tokens">
-	  pair_siege_attack_pack
-	  pair_siege_cost_armor
-	  siege_bolt_accuracy
+      siege_attack
+      siege_armor
+      siege_cost_metal
+      siege_cost_wood
+      siege_bolt_accuracy
     </Technologies>
   </ProductionQueue>
   <VisualActor>

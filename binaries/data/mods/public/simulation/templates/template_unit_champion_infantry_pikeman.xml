@@ -1,44 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>15</Hack>
+    <Hack>12</Hack>
     <Pierce>10</Pierce>
-    <Crush>10</Crush>
+    <Crush>7</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>4.5</Hack>
+      <Pierce>8.5</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
-      <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusCavalry>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavalry>
-		<BonusEles>
-		  <Classes>Elephant</Classes>
-		  <Multiplier>1.5</Multiplier>
-		</BonusEles>
-	  </Bonuses>
+      <RepeatTime>750</RepeatTime>
     </Melee>
+    <Charge>
+      <Hack>6.0</Hack>
+      <Pierce>24.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>8.0</MaxRange>
+      <MinRange>0.0</MinRange>
+    </Charge>
   </Attack>
   <Cost>
     <Resources>
-      <food>50</food>
-      <wood>0</wood>
-      <stone>0</stone>
-      <metal>75</metal>
+      <wood>100</wood>
     </Resources>
   </Cost>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Champion Pikeman</GenericName>
 	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
-	<Tooltip>Classes: Champion Melee Infantry Spearman.
-Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.
-Countered by: Swordsmen, Skirmishers, and Cavalry Archers.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/syntagma
@@ -62,7 +53,7 @@ Countered by: Swordsmen, Skirmishers, and Cavalry Archers.</Tooltip>
     <Max>1200</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>6.5</WalkSpeed>
+    <WalkSpeed>8</WalkSpeed>
     <Run>
       <Speed>13.0</Speed>
       <Range>600.0</Range>

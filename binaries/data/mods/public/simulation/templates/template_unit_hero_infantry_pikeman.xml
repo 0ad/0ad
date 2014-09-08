@@ -7,17 +7,11 @@
   </Armour>
   <Attack>
     <Melee>
-      <Hack>10.0</Hack>
-      <Pierce>0.0</Pierce>
+      <Hack>7</Hack>
+      <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1000</RepeatTime>
-	  <Bonuses>
-		<BonusCavalry>
-		  <Classes>Cavalry</Classes>
-		  <Multiplier>2.0</Multiplier>
-		</BonusCavalry>
-	  </Bonuses>
     </Melee>
   </Attack>
   <Identity>
@@ -36,7 +30,7 @@
     <Max>1200</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>7.0</WalkSpeed>
+    <WalkSpeed>8.5</WalkSpeed>
     <Run>
       <Speed>17.5</Speed>
     </Run>

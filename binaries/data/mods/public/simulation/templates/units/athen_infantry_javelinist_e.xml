@@ -2,7 +2,7 @@
 <Entity parent="units/athen_infantry_javelinist_a">
   <Armour>
     <Hack>3</Hack>
-    <Pierce>4</Pierce>
+    <Pierce>3</Pierce>
     <Crush>5</Crush>
   </Armour>
   <Attack>
@@ -22,7 +22,7 @@
     <BaseSpeed>0.5</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>20.0</Speed>
     </Run>

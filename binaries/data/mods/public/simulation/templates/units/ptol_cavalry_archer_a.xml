@@ -2,8 +2,8 @@
 <Entity parent="units/ptol_cavalry_archer_b">
   <Armour>
     <Hack>2</Hack>
-    <Pierce>4</Pierce>
-    <Crush>2</Crush>
+    <Pierce>2</Pierce>
+    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Ranged>
@@ -19,16 +19,17 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Obstruction>
-    <Unit radius="2.5"/>
+    <Unit radius="1.6"/>
   </Obstruction>
   <Promotion>
     <Entity>units/ptol_cavalry_archer_e</Entity>
   </Promotion>
   <ResourceGatherer>
+    <MaxDistance>3.0</MaxDistance>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
-    <WalkSpeed>10.0</WalkSpeed>
+    <WalkSpeed>11.5</WalkSpeed>
     <Run>
       <Speed>30.0</Speed>
     </Run>

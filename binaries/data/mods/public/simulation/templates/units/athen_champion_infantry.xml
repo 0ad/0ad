@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
-  <Attack>
-    <Melee>
-      <MaxRange>6.0</MaxRange>
-    </Melee>
-  </Attack>
   <Identity>
     <Civ>athen</Civ>
 	<GenericName>City Guard</GenericName>
@@ -13,7 +8,7 @@
     <Icon>units/athen_champion_infantry.png</Icon>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>8.5</WalkSpeed>
+    <WalkSpeed>10</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>
     </Run>

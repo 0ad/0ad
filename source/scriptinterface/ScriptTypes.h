@@ -51,6 +51,19 @@
 #  pragma GCC diagnostic ignored "-Wignored-qualifiers"
 # endif
 #endif
+#if CLANG_VERSION
+# pragma clang diagnostic push
+# pragma clang diagnostic ignored "-Wuninitialized"
+# pragma clang diagnostic ignored "-Wc++11-extensions"
+# pragma clang diagnostic ignored "-Wignored-qualifiers"
+// Ugly hack to deal with macro redefinitions from libc++
+# ifdef nullptr
+#  undef nullptr
+# endif
+# ifdef decltype
+#  undef decltype
+# endif
+#endif
 #if MSC_VERSION
 // warnings which are also disabled for the files that include this header
 
@@ -74,6 +87,9 @@
 
 #if MSC_VERSION
 # pragma warning(pop)
+#endif
+#if CLANG_VERSION
+# pragma clang diagnostic pop
 #endif
 #if GCC_VERSION >= 402
 # pragma GCC diagnostic warning "-Wunused-parameter"

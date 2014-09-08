@@ -1,5 +1,4 @@
 {
-	"pair": "pair_heal_01",	
 	"genericName": "Healing Range",
 	"specificName": {
 		"hele": "Olympic Pantheon",
@@ -8,13 +7,13 @@
 		"athen": "Olympic Pantheon"
 	},
 	"description": "Increases the healing range of all healers.",
-	"cost": {"food": 0, "wood": 0, "stone": 0, "metal": 100},
+	"cost": {"food": 500, "wood": 0, "stone": 0, "metal": 250},
 	"requirements": {"tech": "phase_town"},
 	"requirementsTooltip": "Unlocked in Town Phase.",
 	"icon": "healing_range.png",
 	"researchTime": 40,
-	"tooltip": "Healers +4 Healing Range.",
-	"modifications": [{"value": "Heal/Range", "add": 4.0}],
+	"tooltip": "Healers +8 Healing Range.",
+	"modifications": [{"value": "Heal/Range", "add": 8.0}],
 	"affects": ["Healer"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }

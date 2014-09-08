@@ -2,7 +2,7 @@
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Attack>
     <Melee>
-      <Hack>25.0</Hack>
+      <Hack>17.5</Hack>
     </Melee>
     <Charge>
       <Hack>50.0</Hack>
@@ -26,7 +26,7 @@ Countered by: Archers, Cavalry Spearmen, and Cavalry Archers.</Tooltip>
 	<RequiredTechnology>phase_city</RequiredTechnology>
   </Identity>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>

@@ -1,27 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
-  <Attack>
-    <Melee>
-      <MaxRange>6.0</MaxRange>
-	  <Bonuses>
-		<BonusGreeks>
-		  <Civ>spart</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusGreeks>
-	  </Bonuses>
-    </Melee>
-    <Charge>
-      <MaxRange>6.0</MaxRange>
-	  <Bonuses>
-		<BonusGreeks>
-		  <Civ>spart</Civ>
-		  <Classes></Classes>
-		  <Multiplier>1.1</Multiplier>
-		</BonusGreeks>
-	  </Bonuses>
-    </Charge>
-  </Attack>
   <Identity>
     <Civ>theb</Civ>
 	<GenericName>Theban Sacred Band Hoplite</GenericName>

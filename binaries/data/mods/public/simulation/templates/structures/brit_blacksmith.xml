@@ -7,18 +7,11 @@
     <Civ>brit</Civ>
     <SpecificName>Amoridas</SpecificName>
 	<History>Figured to have it represent an armory; these were common, and not all Celts (truthfully, not even most) had to provide their own weapons. Just, they had to provide their own GOOD weapons and armor, but mass-produced spears and javelins and shields were distributed freely at need. The possession of a armory by the local lord was considered quite prestigious among the Celts, especially the larger examples found in Gaul that could maintain armies.</History>
-    <RequiredTechnology>phase_village</RequiredTechnology>
+    <RequiredTechnology>phase_town</RequiredTechnology>
     <VisibleClasses datatype="tokens">
-	  -Town
-	  Village
-	</VisibleClasses>
+	  Town
+    </VisibleClasses>
   </Identity>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-	  -pair_inf_armor_03
-	  -pair_inf_armor_04
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/blacksmith.xml</Actor>
   </VisualActor>

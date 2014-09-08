@@ -2,39 +2,26 @@
 <Entity parent="template_unit_champion_infantry">
   <Armour>
     <Hack>4</Hack>
-    <Pierce>5</Pierce>
+    <Pierce>4</Pierce>
     <Crush>6</Crush>
   </Armour>
   <Attack>
     <Ranged>
-      <Hack>0.0</Hack>
-      <Pierce>15.0</Pierce>
-      <Crush>0.0</Crush>
+      <Hack>0</Hack>
+      <Pierce>17.5</Pierce>
+      <Crush>0</Crush>
       <MaxRange>58</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>75.0</ProjectileSpeed>
-      <PrepareTime>1200</PrepareTime>
-      <RepeatTime>2000</RepeatTime>
-      <Spread>1.25</Spread>
-      <Bonuses>
-        <BonusPrimary>
-          <Classes>Infantry Sword</Classes>
-          <Multiplier>2.0</Multiplier>
-        </BonusPrimary>
-        <BonusSecondary>
-          <Classes>Cavalry Spear</Classes>
-          <Multiplier>1.25</Multiplier>
-        </BonusSecondary>
-      </Bonuses>
+      <PrepareTime>1000</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <Spread>1.2</Spread>
       <PreferredClasses datatype="tokens">Organic</PreferredClasses>
     </Ranged>
   </Attack>
   <Cost>
     <Resources>
-      <food>50</food>
-      <wood>75</wood>
-      <stone>0</stone>
-      <metal>0</metal>
+      <wood>100</wood>
     </Resources>
   </Cost>
   <Health>
@@ -43,8 +30,6 @@
   <Identity>
     <VisibleClasses datatype="tokens">Ranged Archer</VisibleClasses>
     <GenericName>Champion Archer</GenericName>
-	<Tooltip>Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.
-Countered by: Cavalry Swordsmen and Cavalry Skirmishers.</Tooltip>
     <Formations datatype="tokens">
       formations/skirmish
     </Formations>
@@ -55,7 +40,7 @@ Countered by: Cavalry Swordsmen and Cavalry Skirmishers.</Tooltip>
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>9.0</WalkSpeed>
+    <WalkSpeed>10.5</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>

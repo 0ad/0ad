@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support">
   <Cost>
+    <BuildTime>15</BuildTime>
     <Resources>
       <food>100</food>
       <metal>80</metal>
@@ -44,7 +45,7 @@ Trade resources between your own markets and those of your allies.</Tooltip>
     <CanGuard>false</CanGuard>
   </UnitAI>
   <UnitMotion>
-    <WalkSpeed>8.0</WalkSpeed>
+    <WalkSpeed>9.5</WalkSpeed>
   </UnitMotion>
   <Vision>
     <Range>60</Range>
