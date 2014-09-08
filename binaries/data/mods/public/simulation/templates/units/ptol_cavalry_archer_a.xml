@@ -19,12 +19,13 @@
     <Rank>Advanced</Rank>
   </Identity>
   <Obstruction>
-    <Unit radius="2.5"/>
+    <Unit radius="1.6"/>
   </Obstruction>
   <Promotion>
     <Entity>units/ptol_cavalry_archer_e</Entity>
   </Promotion>
   <ResourceGatherer>
+    <MaxDistance>3.0</MaxDistance>
     <BaseSpeed>0.75</BaseSpeed>
   </ResourceGatherer>
   <UnitMotion>
