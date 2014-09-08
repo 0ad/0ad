@@ -84,24 +84,25 @@ namespace AtlasMessage {
 
 QUERYHANDLER(GenerateMap)
 {
-	InitGame();
-
-	// Random map
-	ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
-	JSContext* cx = scriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue settings(cx);
-	scriptInterface.ParseJSON(*msg->settings, &settings);
-
-	JS::RootedValue attrs(cx);
-	scriptInterface.Eval("({})", &attrs);
-	scriptInterface.SetProperty(attrs, "mapType", std::string("random"));
-	scriptInterface.SetProperty(attrs, "script", std::wstring(*msg->filename));
-	scriptInterface.SetProperty(attrs, "settings", settings, false);
-
 	try
 	{
+		InitGame();
+
+		// Random map
+		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+	
+		JS::RootedValue settings(cx);
+		scriptInterface.ParseJSON(*msg->settings, &settings);
+		scriptInterface.SetProperty(settings, "mapType", std::string("random"));
+
+		JS::RootedValue attrs(cx);
+		scriptInterface.Eval("({})", &attrs);
+		scriptInterface.SetProperty(attrs, "mapType", std::string("random"));
+		scriptInterface.SetProperty(attrs, "script", std::wstring(*msg->filename));
+		scriptInterface.SetProperty(attrs, "settings", settings);
+
 		StartGame(CScriptValRooted(cx, attrs));
 
 		msg->status = 0;
@@ -115,11 +116,29 @@ QUERYHANDLER(GenerateMap)
 
 		InitGame();
 
-		ScriptInterface& si = g_Game->GetSimulation2()->GetScriptInterface();
+		ScriptInterface& scriptInterface = g_Game->GetSimulation2()->GetScriptInterface();
+		JSContext* cx = scriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+
+		JS::RootedValue settings(cx);
+		scriptInterface.Eval("({})", &settings);
+		// Set up 8-element array of empty objects to satisfy init
+		JS::RootedValue playerData(cx);
+		scriptInterface.Eval("([])", &playerData);
+		for (int i = 0; i < 8; ++i)
+		{
+			JS::RootedValue player(cx);
+			scriptInterface.Eval("({})", &player);
+			scriptInterface.SetPropertyInt(playerData, i, player);
+		}
+		scriptInterface.SetProperty(settings, "mapType", std::string("scenario"));
+		scriptInterface.SetProperty(settings, "PlayerData", playerData);
+
 		JS::RootedValue atts(cx);
-		si.Eval("({})", &atts);
-		si.SetProperty(atts, "mapType", std::string("scenario"));
-		si.SetProperty(atts, "map", std::wstring(L"maps/scenarios/_default"));
+		scriptInterface.Eval("({})", &atts);
+		scriptInterface.SetProperty(atts, "mapType", std::string("scenario"));
+		scriptInterface.SetProperty(atts, "map", std::wstring(L"maps/scenarios/_default"));
+		scriptInterface.SetProperty(atts, "settings", settings);
 		StartGame(CScriptValRooted(cx, atts));
 
 		msg->status = -1;
