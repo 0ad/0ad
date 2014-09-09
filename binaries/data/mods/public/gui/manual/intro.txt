@@ -79,8 +79,8 @@ Alt + Left Drag over units on map: Only select military units
 Ctrl + Left Click on unit/group icon with multiple units selected: Deselect
 Right Click with a building/buildings selected: sets a rally point for units created/ungarrisoned from that building.
 Ctrl + Right Click with units selected:
-    - If the cursor is over a structure: Garrison
-    - Otherwise: Attack move
+    - If the cursor is over an allied structure: Garrison
+    - Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units). 
 
 [font="sans-bold-14"]Overlays
 [font="sans-14"]Alt + G: Hide/show the GUI
