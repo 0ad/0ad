@@ -66,6 +66,13 @@ else
 	end
 end
 
+-- Hack to force clang as default compiler on OS X
+-- TODO: proper clang support
+if os.is("macosx") then
+	premake.gcc.cc  = "clang"
+	premake.gcc.cxx = "clang++"
+end
+
 -- Set up the Solution
 solution "pyrogenesis"
 targetdir(rootdir.."/binaries/system")
