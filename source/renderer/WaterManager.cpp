@@ -458,7 +458,10 @@ void WaterManager::CreateWaveMeshes()
 	m_ShoreWaves.clear();
 
 	if (m_ShoreWaves_VBIndices)
+	{
 		g_VBMan.Release(m_ShoreWaves_VBIndices);
+		m_ShoreWaves_VBIndices = NULL;
+	}
 
 	if (m_Waviness < 5.0f && m_WaterType != L"ocean")
 		return;
