@@ -161,10 +161,9 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 #endif
 			return IN_HANDLED;
 		}
-		else if (hotkey == "profile2.enable")
+		else if (hotkey == "profile2.toggle")
 		{
-			g_Profiler2.EnableGPU();
-			g_Profiler2.EnableHTTP();
+			g_Profiler2.Toggle();
 			return IN_HANDLED;
 		}
 		break;

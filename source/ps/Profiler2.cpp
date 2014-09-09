@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -157,6 +157,7 @@ void CProfiler2::InitialiseGPU()
 void CProfiler2::EnableHTTP()
 {
 	ENSURE(m_Initialised);
+	LOGMESSAGERENDER(L"Starting profiler2 HTTP server");
 
 	// Ignore multiple enablings
 	if (m_MgContext)
@@ -175,12 +176,41 @@ void CProfiler2::EnableGPU()
 {
 	ENSURE(m_Initialised);
 	if (!m_GPU)
+	{
+		LOGMESSAGERENDER(L"Starting profiler2 GPU mode");
 		InitialiseGPU();
+	}
 }
 
 void CProfiler2::ShutdownGPU()
 {
+	LOGMESSAGERENDER(L"Shutting down profiler2 GPU mode");
 	SAFE_DELETE(m_GPU);
+}
+
+void CProfiler2::ShutDownHTTP()
+{
+	LOGMESSAGERENDER(L"Shutting down profiler2 HTTP server");
+	if (m_MgContext)
+	{
+		mg_stop(m_MgContext);
+		m_MgContext = NULL;
+	}
+}
+
+void CProfiler2::Toggle()
+{
+	// TODO: Maybe we can open the browser to the profiler page automatically
+	if (m_GPU && m_MgContext)
+	{
+		ShutdownGPU();
+		ShutDownHTTP();
+	}
+	else if (!m_GPU && !m_MgContext)
+	{
+		EnableGPU();
+		EnableHTTP();
+	}
 }
 
 void CProfiler2::Shutdown()
