@@ -8,6 +8,6 @@
 	"researchTime": 40,
 	"tooltip": "Units gain health over time while garrisoned in barracks.",
 	"modifications": [{"value": "GarrisonHolder/BuffHeal", "add": 1}],
-	"affects": ["Temple"],
+	"affects": ["Barracks"],
 	"soundComplete": "interface/alarm/alarm_upgradearmory.xml"
 }
