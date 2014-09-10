@@ -91,11 +91,8 @@ m.ResearchManager.prototype.researchTradeBonus = function(gameState, queues)
 };
 
 // Techs to be searched for as soon as they are available
-m.ResearchManager.prototype.researchWantedTechs = function(gameState, queues)
+m.ResearchManager.prototype.researchWantedTechs = function(techs)
 {
-	var techs = gameState.findAvailableTech();
-
-	var techName = undefined;
 	for (var tech of techs)
 	{
 		if (!tech[1]._template.modifications)
@@ -104,33 +101,39 @@ m.ResearchManager.prototype.researchWantedTechs = function(gameState, queues)
 		for (var i in template.modifications)
 		{
 			if (template.modifications[i].value.indexOf("ResourceGatherer/Capacities") !== -1)
-			{
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				return;
-			}
+				return tech[0];
 			else if (template.modifications[i].value === "ResourceGatherer/Rates/food.grain")
-			{
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				return;
-			}
-			else if (template.modifications[i].value === "Health/RegenRate")
-			{
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				return;
-			}
+				return tech[0];
+			else if (template.modifications[i].value === "ResourceGatherer/Rates/wood.tree")
+				return tech[0];
 			else if (template.modifications[i].value === "Attack/Ranged/MaxRange")
-			{
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				return;
-			}
-			else if (template.modifications[i].value === "BuildingAI/DefaultArrowCount"
-				&& template.affects.indexOf("Tower"))
-			{
-				queues.minorTech.addItem(new m.ResearchPlan(gameState, tech[0]));
-				return;
-			}
+				return tech[0];
 		}
 	}
+	return false;
+};
+
+// Techs to be searched for as soon as they are available, but only after phase 2
+m.ResearchManager.prototype.researchPreferredTechs = function(techs)
+{
+	for (var tech of techs)
+	{
+		if (!tech[1]._template.modifications)
+			continue;
+		var template = tech[1]._template;
+		for (var i in template.modifications)
+		{
+			if (template.modifications[i].value === "ResourceGatherer/Rates/stone.rock")
+				return tech[0];
+			else if (template.modifications[i].value === "ResourceGatherer/Rates/metal.ore")
+				return tech[0];
+			else if (template.modifications[i].value === "BuildingAI/DefaultArrowCount")
+				return tech[0];
+			else if (template.modifications[i].value === "Health/RegenRate")
+				return tech[0];
+		}
+	}
+	return false;
 };
 
 m.ResearchManager.prototype.update = function(gameState, queues)
@@ -140,33 +143,38 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	if (queues.minorTech.length() !== 0 || gameState.ai.playedTurn % 4 !== 0)
 		return;
 
-	this.researchWantedTechs(gameState, queues);
+	var techs = gameState.findAvailableTech();
+
+	var techName = this.researchWantedTechs(techs);
+	if (techName)
+	{
+		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
+		return;
+	}
 
 	if (gameState.currentPhase() < 2)
 		return;
 
-	var techs = gameState.findAvailableTech();
-	for (var tech of techs)
+	var techName = this.researchPreferredTechs(techs);
+	if (techName)
 	{
-		var techName = tech[0];
-		if (techName.indexOf("gather_mining_servants") !== -1 ||
-			techName.indexOf("gather_mining_shaftmining") !== -1)
-		{
-			queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
-			return;
-		}
+		queues.minorTech.addItem(new m.ResearchPlan(gameState, techName));
+		return;
 	}
 
 	if (gameState.currentPhase() < 3)
 		return;
 
-	// remove some tech not yet used by this AI
+	// remove some techs not yet used by this AI
 	for (var i = 0; i < techs.length; ++i)
 	{
-		var techName = techs[i][0];
-		if (techName.indexOf("heal_rate") !== -1 || techName.indexOf("heal_range") !== -1 ||
-			techName.indexOf("heal_temple") !== -1 || techName.indexOf("unlock_females_house") !== -1)
+		var template = tech[i][1]._template;
+		if (template.affects && template.affects.length === 1
+			&& (template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
+		{
 			techs.splice(i--, 1);
+			continue;
+		}
 	}
 	if (techs.length === 0)
 		return;

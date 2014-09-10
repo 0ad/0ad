@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -274,6 +274,16 @@ public:
 	 * before shutting down OpenGL.
 	 */
 	void ShutdownGPU();
+
+	/**
+	 * Call in main thread to shut down the profiler's HTTP server
+	 */
+	void ShutDownHTTP();
+
+	/**
+	 * Call in main thread to enable/disable the profiler
+	 */
+	void Toggle();
 
 	/**
 	 * Call in main thread to shut everything down.

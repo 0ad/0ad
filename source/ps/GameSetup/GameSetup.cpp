@@ -955,7 +955,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
-	CFG_GET_VAL("profiler2.http.autoenable", Bool, profilerHTTPEnable);
+	CFG_GET_VAL("profiler2.autoenable", Bool, profilerHTTPEnable);
 	if (profilerHTTPEnable)
 		g_Profiler2.EnableHTTP();
 
@@ -992,7 +992,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
 	bool profilerGPUEnable = false;
-	CFG_GET_VAL("profiler2.gpu.autoenable", Bool, profilerGPUEnable);
+	CFG_GET_VAL("profiler2.autoenable", Bool, profilerGPUEnable);
 	if (profilerGPUEnable)
 		g_Profiler2.EnableGPU();
 

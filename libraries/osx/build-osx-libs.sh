@@ -582,7 +582,7 @@ then
   mkdir -p source/build
   pushd source/build
 
-(CXX="clang" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS -stdlib=libstdc++" LDFLAGS="$LDFLAGS -lstdc++" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
+(CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" ../runConfigureICU MacOSX --prefix=$INSTALL_DIR --disable-shared --enable-static --disable-samples --enable-extras --enable-icuio --enable-layout --enable-tools && make ${JOBS} && make install) || die "ICU build failed"
   popd
   popd
   touch .already-built
