@@ -108,9 +108,10 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 				// Split into tokens
 				std::vector<std::wstring> oldTokens;
 				std::vector<std::wstring> newTokens;
-				if (!replacing) // ignore the old tokens if replace="" was given
+				if (!replacing && !node.m_Value.empty()) // ignore the old tokens if replace="" was given
 					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
-				boost::algorithm::split(newTokens, value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
+				if (!value.empty())
+					boost::algorithm::split(newTokens, value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
 
 				// Merge the two lists
 				std::vector<std::wstring> tokens = oldTokens;
