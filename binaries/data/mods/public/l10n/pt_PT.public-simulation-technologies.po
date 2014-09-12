@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-13 00:20+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-21 00:00+0000\n"
 "Last-Translator: mogafi\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -1868,16 +1868,17 @@ msgid "Crop Rotation"
 msgstr "Rotação das terras de cultivo "
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "O treino de combate com com lanças aumenta o dano causado pelas unidades lanceiras."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr "Treinar em lutar com lança aumenta o dano de unidades de infantarias que usam lanças."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Aumenta o ataque de golpe dos lanceiros em +2."
+msgid "Spear Infantry +2 hack attack."
+msgstr "Infantaria de Lanceiros +2 ataque de corte."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Luta de lanceiros"
+msgid "Infantry Spear Training"
+msgstr "Treino de Infantaria de Lanceiros"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1909,13 +1910,13 @@ msgstr "Os Espartanos não tinham o maior exército do mundo, mas tinham o melho
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Os espartanos eram internados e recebiam treino militar desde muito novos para se tornarem grandes guerreiros, de modo a estarem aptos a enfrentar qualquer adversidade na sua vida militar."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Resistência dos lanceiros de infantaria aumenta +25%, mas velocidade de recrutamento também aumenta +10%."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2056,8 +2057,8 @@ msgid ""
 msgstr "O recrutamento da infantaria campeã Anusiya é o dobro mais rápido mas perde um bocadinho de vida."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "É mais rápido recrutar infantaria campeã Anusiya em 50% mas também são mais fracos de saúde em -20."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

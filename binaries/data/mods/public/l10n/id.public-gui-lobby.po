@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-08-16 09:11+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-20 07:41+0000\n"
 "Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr "Semua"
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Skirmis"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
@@ -55,7 +55,7 @@ msgstr "Sibuk"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
-msgstr ""
+msgstr "Pergi"
 
 #: gui/lobby/lobby.js:314
 msgid "Online"
@@ -72,7 +72,7 @@ msgstr "Tidak diketahui"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Peta yang dipilih secara acak."
 
 #: gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
@@ -81,7 +81,7 @@ msgstr "Maaf, tidak ada deskripsi"
 #: gui/lobby/lobby.js:417
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Alamat '%(ip)s' permainan ini tidak sah."
 
 #: gui/lobby/lobby.js:495
 #, python-format
@@ -96,41 +96,41 @@ msgstr "%(nick)s telah keluar."
 #: gui/lobby/lobby.js:511
 #, python-format
 msgid "Invalid nickname: %(nick)s"
-msgstr ""
+msgstr "Nama tidak sah: %(nick)s"
 
 #: gui/lobby/lobby.js:518
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s sekarang dikenal sebagai %(newnick)s."
 
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Mohon maaf, perintah '%(cmd)s' tidak didukung."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:754
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:765
@@ -146,7 +146,7 @@ msgstr "== %(message)s"
 #. #TOC-Date-Field-Symbol-Table
 #: gui/lobby/lobby.js:796
 msgid "HH:mm"
-msgstr ""
+msgstr "JJ:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
@@ -154,17 +154,17 @@ msgstr ""
 #: gui/lobby/lobby.js:799
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:802
 #, python-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Mohon tidak spam. Anda telah diblokir selama 30 detik."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -176,19 +176,19 @@ msgstr "Mendaftarkan..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Mohon masukkan username anda"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Username tidak boleh mengandung [, ], unicode, spasi, atau koma"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Mohon masukkan kata sandi anda"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Mohon masukkan kata sandi anda lagi"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -196,15 +196,15 @@ msgstr "Password tidak sesuai"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Mohon membaca Persyaratan Layanan"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Mohon membaca Persyaratan Penggunaan"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Mohon setujui Persyaratan Layanan dan Persyaratan Penggunaan"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -216,11 +216,11 @@ msgstr "Hubungkan"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Persyaratan Pelayanan"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Persyaratan Penggunaan"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
@@ -228,7 +228,7 @@ msgstr "Lobi Main Bersama"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading)
@@ -241,7 +241,7 @@ msgstr "Peringkat"
 
 #: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Papan skor"
 
 #: gui/lobby/lobby.xml:64 (caption)
 msgid "Map Type:"
@@ -303,35 +303,35 @@ msgstr "Perbarui"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
-msgstr ""
+msgstr " Buat akun baru"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Masuk ke akun yang sudah ada"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Terhubung ke lobi permainan"
 
 #: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
-msgstr ""
+msgstr "Masuk:"
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
-msgstr ""
+msgstr "Kata sandi:"
 
 #: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
-msgstr ""
+msgstr "Pendaftaran"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr ""
+msgstr "Kata sandi lagi:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Saya telah membaca dan setuju dengan Persyaratan Layanan dan Persyaratan Penggunaan:"
 
 #: gui/lobby/prelobby.xml:97 (caption)
 msgid "Cancel"
@@ -339,7 +339,7 @@ msgstr "Batal"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Persyaratan Pelayanan Lobi Main Bersama 0 A.D. Empires Ascendant "
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
@@ -349,83 +349,83 @@ msgstr "Definisi:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "\"Layanan\" yang dimaksud adalah Lobi Main Bersama 0 A.D. Empires Ascendant dipersembahkan oleh Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr " * \"Anda\" adalah pengguna layanan."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr " * \"Kami\" adalah anggota tim Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analysing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr " * \"Peringkat\" merujuk pada proses analisis berbagai statistika pengguna untuk menghasilkan satu nilai komprehensif."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr " * \"Moderasi\" merujuk pada proses menegakkan aturan penggunaan."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Menggunakan layanan ini berarti anda setuju untuk:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Mengikuti seluruh aturan penggunaan."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Memperbolehkan statistika pengguna dikumpulkan untuk pemeringkatan, profil pengguna, dan statistika komunitas."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Kami juga berhak untuk:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Memoderasi layanan."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Menunjuk orang lain untuk memoderasi layanan."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Menghentikan atau memotong layanan kapanpun dengan atau tanpa pemberitahuan sebelumnya."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Mengubah layanan kapanpun dengan atau tanpa pengumuman."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Menghapus sebagian dan semua data layanan dengan atau tanpa pengumuman."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Mengumpulkan sebagian atau semua statistika pengguna kapanpun tanpa persetujuan untuk:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "a. Analisis pribadi oleh anggota tim Wildfire Games (WFG) dan afiliasinya."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "b. Peluncuran publik yang dianonimisasi oleh anggota tim Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -433,66 +433,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Mengubah dokumen ini dengan cara apapun kapanpun; dalam kondisi pengguna layanan diberikan pemberitahuan cukup mengenai pengubahan (definisi dari pemberitahuan cukup akan ditentukan saat itu oleh panel anggota tim Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Persyaratan Penggunaan Lobi Main Bersama 0 A.D. Empires Ascendant "
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr " * \"Berkedok\" merujuk pada tindakan memanfaatkan identitas orang lain untuk tujuan sendiri"
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr " * \"Spam\" merujuk pada pesan tidak sesuai dikirim kepada banyak penerima."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr " * \"Peringkat\" merujuk pada skor komprehensif tiap pengguna."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr " * \"Permainan diperingkati\" merujuk pada permainan dimana statistik pengubah peringkat ditelusuri."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Anda setuju untuk:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Buat hanya satu akun setiap pengguna unik pada layanan kecuali telah diijinkan anggota tim Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Tidak mengirim pernyataan kotor, humor kasar, pornografi, atau komentar merendahkan pada layanan."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Tidak merendahkan orang lain dengan sengaja menggunakan layanan ini."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Tidak menggunakan layanan ini untuk mengiklankan barang, jasa, atau produk tertentu."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Tidak berkedok sebagai pengguna lain layanan ini."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Tidak mengirim spam pada layanan ini."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -500,13 +500,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Tidak berniat mengubah peringkat pengguna atau statistik lain yang mempengaruhi (Contohnya: cheat pada permainan berperingkat, reverse engineer layanan, dan memanfaatkan pengguna lain dalam layanan)."
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Mengundurkan diri apabila moderator menetapkan bahwa tingkah laku anda tidak sesuai dengan peraturan ini."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -514,4 +514,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Mengubah dokumen ini dengan cara apapun kapanpun; dalam kondisi pengguna layanan diberikan pemberitahuan cukup mengenai pengubahan (definisi dari pemberitahuan cukup akan ditentukan saat itu oleh panel anggota tim Wildfire Games (WFG))."

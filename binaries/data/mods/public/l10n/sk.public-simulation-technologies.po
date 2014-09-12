@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-29 17:20+0000\n"
-"Last-Translator: Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1870,16 +1870,17 @@ msgid "Crop Rotation"
 msgstr "Striedanie plodín"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Tréning boja s kopijou zvyšuje silu útoku peších jednotiek s  touto zbraňou."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Kopijníci +2 sečný útok."
+msgid "Spear Infantry +2 hack attack."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Boj s kopijou"
+msgid "Infantry Spear Training"
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1911,13 +1912,13 @@ msgstr "Sparťania síce nemali najväčšiu armádu na svete, ale napriek tomu 
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Sparťania boli už od mladého veku trénovaní, aby sa z nich stali vynikajúci bojovníci a boli schopní znášať akékoľvek ťažkosti vojenského života."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% zdravie pre pechotu s kopijami, ale zato aj +10% doba tréningu."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2058,8 +2059,8 @@ msgid ""
 msgstr "Anusijská šampiónska pechota sa bude trénovať dvakrát tak rýchlo, avšak stratí trochu z maximálneho zdravia. "
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusijská šampiónska pechota -50% doba tréningu, ale zato aj -20 zdravia."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

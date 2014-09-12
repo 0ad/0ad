@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Kanetaka Suto, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-28 09:07+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-03 21:10+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_gaia.xml:5
+#: simulation/templates/template_gaia.xml:6
 msgid "Gaia"
 msgstr "自然"
 
@@ -117,7 +118,7 @@ msgstr "一般の財宝"
 msgid "Treasure"
 msgstr "財宝"
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "建物"
 
@@ -635,7 +636,7 @@ msgstr "木の橋"
 
 #: simulation/templates/other/cart_tophet.xml:25
 msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "医師と神聖隊騎兵を生産します。"
+msgstr "医師と神聖隊騎兵を養成します。"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
@@ -979,4 +980,36 @@ msgstr "一部の文明用でその他の文明にはない、人口上限5の�
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "マーカー"
+
+#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
+msgid "Lithóbolos"
+msgstr "Lithóbolos"
+
+#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybelḗs"
+msgstr "Oxybelḗs"
+
+#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:32
+msgid "Ballista"
+msgstr "バリスタ"
+
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybeles"
+msgstr "Oxybeles"
+
+#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
+msgid "Polybolos"
+msgstr "Polybolos"
+
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:29
+msgid "Scorpio"
+msgstr "Scorpio"

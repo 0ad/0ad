@@ -18,6 +18,7 @@
 # schaft <neooneone@gmail.com>, 2014
 # Serkan <fkserkank@gmail.com>, 2013
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
+# utkugun <utkugundogan@gmail.com>, 2014
 # Vilender <gokhanlnx@gmail.com>, 2013
 # volcanology <volkansag@hotmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014
@@ -28,9 +29,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-08-12 18:20+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-09 11:40+0000\n"
+"Last-Translator: utkugun <utkugundogan@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -190,7 +191,7 @@ msgstr ""
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Oyuncu mızraklı birliklere daha fazla saldırı ve zırh veren Falanks dizilişine geçme emri verme özelliğini kazanır."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -404,7 +405,7 @@ msgstr "Vosenius"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Melee askerleri için arttırılmış saldırı ve hareket oranı."
+msgstr "Yakın dövüş askerleri için arttırılmış saldırı ve hareket oranı."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -1220,7 +1221,7 @@ msgstr "Kuzey afrikadaki Numidia'nın aksine, İber yarımadası \"at ülkesi\" 
 msgid ""
 "Citizen-soldier infantry skirmishers and cavalry skirmishers -20% cost for "
 "allies."
-msgstr "Şehirli asker piyade avcılar ve süvari avcılar tüm müttefikler için %-20 maliyet sağlar."
+msgstr "Vatandaş asker piyade avcılar ve süvari avcılar tüm müttefikler için %-20 maliyet sağlar."
 
 #: civs/iber.jsonTeamBonuses[0].Name
 msgid "Saripeko"
@@ -1356,7 +1357,7 @@ msgid ""
 "Defensive Aura - Gives all Iberian units and buildings within vision range "
 "of the monument a 10-15% attack boost. Build Limit: Only 5 may be built per "
 "map."
-msgstr ""
+msgstr "Savunma Gücü - Tüm İber birimler ve yapılar anıtın görüş alanı içinde %10-15 daha fazla saldırı sağlarlar. Yapı Limiti: Her haritada yanlız 5 yapı."
 
 #: civs/iber.jsonStructures[0].History
 msgid ""
@@ -1517,7 +1518,7 @@ msgstr ""
 #: civs/ptol.jsonFactions[0].Technologies[0].Description
 #: civs/sele.jsonFactions[0].Technologies[0].Description
 msgid "Civic Centers have double Health and double default arrows."
-msgstr ""
+msgstr "Halk Merkezleri iki katı Sağlığa ve iki katı korunmaya sahiptir."
 
 #: civs/mace.jsonFactions[0].Heroes[0].Name
 msgid "Philip II of Macedon"
@@ -1562,11 +1563,11 @@ msgstr "Kuşatma Atölyesi"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr ""
+msgstr "Yapılar ve yükseltmeler tüm Makedon kuşatma araçları."
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
-msgstr ""
+msgstr "Bu Makedonların bölgesinde kuşatma sanatında yenilikler vardır."
 
 #: civs/mace.jsonHistory
 msgid ""
@@ -1585,7 +1586,7 @@ msgstr "Mauryalılar"
 msgid ""
 "Mauryans have a +10% population cap bonus (i.e., 330 pop cap instead of the "
 "usual 300)."
-msgstr ""
+msgstr "Mauryalılar %+10 nüfus kapasite bonusuna sahiptir (yani, 300 nufüs kapasitesi 330 olur)."
 
 #: civs/maur.jsonCivBonuses[0].Name
 msgid "Emperor of Emperors."
@@ -1628,7 +1629,7 @@ msgstr "Evanjelizm."
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr ""
+msgstr "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
 
 #: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
@@ -1686,7 +1687,7 @@ msgstr "Fil Sürüsü"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr ""
+msgstr "Mauryalı okcu piyade için büyük menzil ve hızlı eğitim zamanı."
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
@@ -1708,7 +1709,7 @@ msgstr "Maurya hanedanlığın son büyük imparatoru."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
-msgstr ""
+msgstr "Mauryalı Çandragupta büyük öğretmen ve danışman."
 
 #: civs/maur.jsonFactions[0].Heroes[2].Name
 msgid "Acharya Chāṇakya"
@@ -1954,7 +1955,7 @@ msgstr "süvari ahırları"
 
 #: civs/pers.jsonStructures[0].Special
 msgid "Train Cavalry citizen-soldiers."
-msgstr "tren süvari yuttaş askerler"
+msgstr "Süvari vatandaş askerleri eğit."
 
 #: civs/pers.jsonStructures[0].History
 msgid "The Persian Empire's best soldiers were Eastern horsemen."
@@ -2688,7 +2689,7 @@ msgstr "Bu Makedon-Yunan hanedanlığı İskender'in yönettiği en eski imparat
 
 #: civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "Şehirli Milis Süvarisi hariç tüm süvari birimlerinin eğitimleri."
+msgstr "Vatandaş Milis Süvarisi hariç tüm süvari birimlerinin eğitimleri."
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"

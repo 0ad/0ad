@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-30 12:51+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-22 20:50+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -89,7 +89,7 @@ msgstr "治療者を養成します。20ユニットまで駐屯させて、速�
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "近辺のユニットの耐久力が毎秒1回復します。"
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
@@ -120,9 +120,9 @@ msgstr "前哨地"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr "味方の領内か中立地帯に建てて一帯を偵察します。中立地帯では徐々に耐久力が減っていきます。"
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr "自領内か中立地帯に建てて一帯を偵察します。中立地帯では徐々に耐久力が減っていきます。"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -145,7 +145,7 @@ msgstr "城門"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "壁による防護"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -549,12 +549,6 @@ msgstr "Neṓs Parthenos "
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr "Gwersyllty"
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr "-町"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -1181,11 +1175,11 @@ msgstr "ペルシア宮殿"
 msgid "Apadana"
 msgstr "アパダナ"
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr "市民歩兵ユニットを召集します。"
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr "Padgan"
 
@@ -1272,10 +1266,6 @@ msgstr "ペルシアの特有の建物"
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
 msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr "-兵営"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
@@ -1580,10 +1570,6 @@ msgstr "ウェスタ神殿"
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr "-村"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."

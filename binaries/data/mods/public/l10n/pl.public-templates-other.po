@@ -7,13 +7,15 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014
 # Leszek S, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
+# Robert Wolniak <robert.wolniak@gmail.com>, 2014
+# slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-07 07:31+0000\n"
-"Last-Translator: Adrian Budasz <adrianbudasz@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-11 08:32+0000\n"
+"Last-Translator: Robert Wolniak <robert.wolniak@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +24,7 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: simulation/templates/template_gaia.xml:5
+#: simulation/templates/template_gaia.xml:6
 msgid "Gaia"
 msgstr "Gaja"
 
@@ -120,7 +122,7 @@ msgstr "Ogólny skarb"
 msgid "Treasure"
 msgstr "Skarb"
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "Struktura"
 
@@ -169,7 +171,7 @@ msgstr "Osada"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Poboczne greckie polis"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
@@ -189,7 +191,7 @@ msgstr "Greckie sanktuarium religijne"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
+msgstr "Szyk liniowy"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
@@ -241,7 +243,7 @@ msgstr "Potyczka"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Dozwolone tylko jednostki dystansowe"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -301,7 +303,7 @@ msgstr "Słoń"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "Słoń afrykański z buszu"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
@@ -313,7 +315,7 @@ msgstr "Słoń azjatycki"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
+msgstr "Północnoafrykański słoń"
 
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
@@ -327,7 +329,7 @@ msgstr "Tuńczyk"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:6
 msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+msgstr "Zbierz pożywienie z tego hojnego, nadbrzeżnego źródła."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -427,7 +429,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:6
 msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "Zbierz winogrona z tych winorośli jako Pożywienie"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
@@ -482,7 +484,7 @@ msgstr "Buk zwyczajny"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:10
 msgid "Gather figs for Food."
-msgstr ""
+msgstr "Zbierz figi jako Pożywienie"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
@@ -778,7 +780,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_curve.xml:16
 msgid "Wooden Wall Corner"
-msgstr ""
+msgstr "Kąt drewnianego muru"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
@@ -786,7 +788,7 @@ msgstr ""
 
 #: simulation/templates/other/palisades_rocks_end.xml:16
 msgid "Wooden Wall End"
-msgstr ""
+msgstr "Koniec drewnianego muru"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
@@ -878,7 +880,7 @@ msgstr "Magazyn"
 
 #: simulation/templates/other/plane.xml:40
 msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "Amerykański samolot bojowy z czasów 2 Wojny Światowej"
 
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
@@ -895,7 +897,7 @@ msgstr "Wielka Piramida"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
-msgstr ""
+msgstr "Mała piramida"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
@@ -945,15 +947,15 @@ msgstr ""
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "Stół"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "Prostokątny stół"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "Kwadratowy stół"
 
 #: simulation/templates/other/temp_hele_super_infantry_p.xml:5
 msgid "Spartiate with Xiphos"
@@ -982,4 +984,36 @@ msgstr ""
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
+msgstr "Znacznik"
+
+#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
+msgid "Lithóbolos"
 msgstr ""
+
+#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybelḗs"
+msgstr ""
+
+#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:32
+msgid "Ballista"
+msgstr "Balista"
+
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybeles"
+msgstr ""
+
+#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
+msgid "Polybolos"
+msgstr ""
+
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:29
+msgid "Scorpio"
+msgstr "Skorpion"

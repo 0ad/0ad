@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# acac97 <aleksandar.cvetic97@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-25 20:12+0000\n"
+"Last-Translator: acac97 <aleksandar.cvetic97@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +53,7 @@ msgstr ""
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
-msgstr ""
+msgstr "село"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
@@ -72,12 +74,12 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Town"
-msgstr ""
+msgstr "град"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
 msgid "Temple"
-msgstr ""
+msgstr "храм"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
@@ -118,8 +120,8 @@ msgstr "предстража"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
 msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:24
@@ -138,7 +140,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
-msgstr ""
+msgstr "градска капија"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
@@ -168,7 +170,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr ""
+msgstr "градски зид"
 
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
@@ -231,7 +233,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr ""
+msgstr "касарна"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
@@ -262,17 +264,17 @@ msgstr ""
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
-msgstr ""
+msgstr "амбасада"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "City"
-msgstr ""
+msgstr "град"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 #: simulation/templates/template_structure_military_fortress.xml:31
 #: simulation/templates/template_structure_military_fortress.xml:60
 msgid "Fortress"
-msgstr ""
+msgstr "тврђава"
 
 #: simulation/templates/template_structure_military_fortress.xml:61
 msgid ""
@@ -282,7 +284,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "ресурс"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -326,7 +328,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
-msgstr ""
+msgstr "чудо"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/hele_barracks.xml:20
@@ -546,12 +548,6 @@ msgstr ""
 #: simulation/templates/structures/celt_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
-msgstr ""
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
 msgstr ""
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
@@ -875,7 +871,7 @@ msgstr ""
 
 #: simulation/templates/structures/celt_wall_gate.xml:16
 msgid "Gate"
-msgstr ""
+msgstr "капија"
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
@@ -1019,7 +1015,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_library.xml:15
 #: simulation/templates/structures/sele_library.xml:15
 msgid "Library"
-msgstr ""
+msgstr "библиотека"
 
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/sele_library.xml:16
@@ -1179,11 +1175,11 @@ msgstr ""
 msgid "Apadana"
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr ""
 
@@ -1272,12 +1268,8 @@ msgid "Parihuvādā"
 msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr ""
-
-#: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr ""
+msgstr "штале"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
@@ -1365,7 +1357,7 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
-msgstr ""
+msgstr "Светионик"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pharos"
@@ -1393,7 +1385,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "колонија"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
@@ -1579,17 +1571,13 @@ msgstr ""
 msgid "Aedes Vestae"
 msgstr ""
 
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr ""
-
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr ""
+msgstr "шатор"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"

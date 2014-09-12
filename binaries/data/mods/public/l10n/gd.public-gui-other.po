@@ -5,12 +5,13 @@
 # 
 # Translators:
 # GunChleoc, 2014
+# GunChleoc, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-29 08:21+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-10 12:46+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -67,18 +68,18 @@ msgstr "Curaidhean"
 msgid "History of the %(civilization)s"
 msgstr "An eachdraidh aig %(civilization)s"
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "A' fosgladh %(url)s\n sa bhrabhsair-lìn bhunaiteach. Fuirich ort...."
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 msgid "Opening page"
 msgstr "A' fosgladh duilleige"
 
-#: gui/common/functions_global_object.js:80
+#: gui/common/functions_global_object.js:79
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -94,23 +95,6 @@ msgstr "HH:mm:ss"
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
 msgstr "Chaidh sgur dhen luchdadh"
-
-#: gui/common/functions_utility_list.js:14
-#: gui/common/functions_utility_list.js:44
-#: gui/common/functions_utility_list.js:69
-#: gui/common/functions_utility_list.js:84
-#: gui/common/functions_utility_list.js:101
-#: gui/common/functions_utility_list.js:113
-#: gui/common/functions_utility_list.js:125
-#: gui/common/functions_utility_list.js:141
-#, python-format
-msgid "%(functionName)s: %(object)s not found."
-msgstr "%(functionName)s: Cha deach %(object)s a lorg."
-
-#: gui/common/functions_utility_list.js:161
-#, python-format
-msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr "Cha deach an sreang \"%(string)s\" air iarraidh a lorg air an liosta aig %(object)s."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -174,32 +158,32 @@ msgstr "—"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "Ceart ma-thà"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Retry"
 msgstr "Feuch ris a-rithist"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Ignore"
 msgstr "Leig seachad"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Abort"
 msgstr "Sguir dheth"
 
@@ -238,189 +222,207 @@ msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Seall gliocasan-sgrìn mionaideach airson aonadan a ghabhas trèanadh ann an togalach a nì aonadan."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:13
+msgid "FPS Overlay"
+msgstr "Tar-chòmhdachadh FPS"
+
+#: gui/options/options.js:13
+msgid "Show frames per second in top right corner."
+msgstr "Seall na frèaman gach diog san oisean deas air a' bharr."
+
+#: gui/options/options.js:14
+msgid "Realtime Overlay"
+msgstr "Tar-chòmhdachadh fìor-ama"
+
+#: gui/options/options.js:14
+msgid "Show current system time in top right corner."
+msgstr "Seall àm làithreach an t-siostaim san oisean deas air a' bharr."
+
+#: gui/options/options.js:15
+msgid "Gametime Overlay"
+msgstr "Tar-chòmhdachadh àm a' gheama"
+
+#: gui/options/options.js:15
+msgid "Show current simulation time in top right corner."
+msgstr "Seall àm làithreach am broinn a' gheama san oisean deas air a' bharr."
+
+#: gui/options/options.js:19
 msgid "Prefer GLSL"
 msgstr "'S fhearr GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Cleachd sgàileadairean OpenGL 2.0 (mholamaid seo)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Post Processing"
 msgstr "Giullachd an dèidh làimh"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Cleachd criathragan giullachd-sgrìn an dèidh làimh (HDR, Bloom, DOF, agus msaa)"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Shadows"
 msgstr "Sgàilean"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Enable shadows"
 msgstr "Cuir na sgàilean an comas"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Particles"
 msgstr "Mìrean"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Enable particles"
 msgstr "Cuir na mìrean an comas"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Show Sky"
 msgstr "Seall na speuran"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Render Sky"
 msgstr "Reandaraich na speuran"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Smooth LOS"
 msgstr "LOS rèidh"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Tog dorchadas agus ceò a' chogaidh gu rèidh (Tha \"'S fearr GLSL\" riatanach)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Unit Silhouettes"
 msgstr "Sgàil-riochdan nan aonadan"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
 msgstr "Seall sgàil-riochdan de dh'aonadan a tha air cùlaibh thogalaichean"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Shadow Filtering"
 msgstr "Chriathradh sgàile"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Smooth shadows"
 msgstr "Sgàilean rèidhe"
 
-#: gui/options/options.js:24
-msgid "HQ Waviness"
-msgstr "Tonnachd àrd-chàileachd"
+#: gui/options/options.js:27
+msgid "Fast & Ugly Water"
+msgstr "Uisge luath ⁊ grannda"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:27
 msgid ""
-"Use real normals for ocean-wave rendering, instead of applying them as a "
-"flat texture"
-msgstr "Cleachd an ìre àbhaisteach airson reandaradh tuinn na mara seach inneach rèidh"
+"Use the lowest settings possible to render water. This makes other settings "
+"irrelevant."
+msgstr "Cleachd an roghainn as ìsle gus uisge a reandaradh. Cha bhi ciall sa h-uile roghainn eile tuilleadh an uairsin."
 
-#: gui/options/options.js:25
+#: gui/options/options.js:28
+msgid "HQ Water Effects"
+msgstr "Èifeachdan uisge le càileachd àrd"
+
+#: gui/options/options.js:28
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "cleachd èifeachdan uisge le càileachd as fhearr, a' reandaradh stuadhan cladaich, cop na mara 's lorgan nan long."
+
+#: gui/options/options.js:29
 msgid "Real Water Depth"
 msgstr "Fìor-dhoimhne uisge"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
 msgstr "Cleachd fìor-dhoimhne uisge ann an àireamhachadh an reandaraidh"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Water Reflections"
 msgstr "Faileas uisge"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
 msgstr "Leig le uisge dealbh faileis a thilgeil air ais"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Water Refraction"
 msgstr "Solas-briseadh uisge"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
 msgstr "Cleachd mapa fìor sholas-bhriseadh uisge seach trìd-shoilleireachd"
 
-#: gui/options/options.js:28
-msgid "Shore Foam"
-msgstr "Cop air cladach"
+#: gui/options/options.js:32
+msgid "Shadows on Water"
+msgstr "Sgàilean air an uisge"
 
-#: gui/options/options.js:28
-msgid "Show foam on water near shore depending on water waviness"
-msgstr "Seall cop air uisge faisg air a' chladach a-rèir tonnachd an uisge"
-
-#: gui/options/options.js:29
-msgid "Shore Waves"
-msgstr "Tuinn air cladach"
-
-#: gui/options/options.js:29
-msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "Seall briseadh nan tonn faisg air a' chladach (feumaidh seo tonnachd àrd-chàileachd)"
-
-#: gui/options/options.js:30
-msgid "Water Shadows"
-msgstr "Sgàilean uisge"
-
-#: gui/options/options.js:30
+#: gui/options/options.js:32
 msgid "Cast shadows on water"
 msgstr "Tilg sgàil air uisge"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "VSync"
 msgstr "Sioncronachadh-V"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ruith sioncronachadh inghearach gus sracadh na sgrìn a chàradh. FEUMAIDH TU AN GEAMA ATH-THÒISEACHADH"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master Gain"
 msgstr "Prìomh àirde"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master audio gain"
 msgstr "Prìomh àirde na fuaime"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Music Gain"
 msgstr "Àirde a' chiùil"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game music gain"
 msgstr "Àirde a' chiùil sa gheama"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "Ambient Gain"
 msgstr "Àirde na h-àrainneachd"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "In game ambient sound gain"
 msgstr "Àirde aig fuaimean na h-àrainneachd sa gheama"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "Action Gain"
 msgstr "Àirde na gnìomhachd"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "In game unit action sound gain"
 msgstr "Àirde aig fuaimean gnìomhachd nan aonadan sa gheama"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI Gain"
 msgstr "Àirde na h-eadar-aghaidh"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI sound gain"
 msgstr "Àirde aig fuaimean na h-eadar-aghaidh"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Chat Backlog"
 msgstr "Ro-loga na cabadaich"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "An àireamh de theachdaireachdan roimhe a thèid a luchdadh on loga nuair thig thu a-seach dhan lobaidh"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Chat Timestamp"
 msgstr "Stampaichean-tìde na cabadaich"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na lobaidh"
 
@@ -1141,10 +1143,6 @@ msgid "[icon=iconLag]  The game lags when many units are moving."
 msgstr "[icon=iconLag]  Thig dàil air a' gheama nuair a bhios mòran aonadan a' gluasad."
 
 #: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr "[icon=\"iconShip\"]  Chan urrainn dha nàmhaid coimpiutair longan a chleachdadh."
-
-#: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"]  Faodaidh mapaichean mòra duilgheadasan adhbharachadh."
 
@@ -1471,6 +1469,24 @@ msgid ""
 "technologies."
 msgstr "- Bidh uiread de theicneolasan togail is dìona ri fhaighinn dha na Pearsaich."
 
+#: gui/text/tips/pikemen.txt:1
+msgid "PIKEMEN"
+msgstr "PÌCEARAN"
+
+#: gui/text/tips/pikemen.txt:2
+msgid "- Heavily armored and slow. Low attack."
+msgstr "- Armachd throm orra 's slaodach. Ionnsaigh lag."
+
+#: gui/text/tips/pikemen.txt:4
+msgid ""
+"- Used against cavalry for a 4x attack bonus or against other melee infantry"
+" to pin them them in place."
+msgstr "- Cleachd iad an aghaidh eachraidh le buannachd de 4x air an ionnsaigh no an aghaidh coisridh dhlùithe gus am cumail far a bheil iad."
+
+#: gui/text/tips/pikemen.txt:6
+msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
+msgstr "- Ri làimh dha na Masadonaich, Seleucaich 's Ptolamaich."
+
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
 msgstr "LONG-CHOGAIDH THROM"
@@ -1542,12 +1558,38 @@ msgid "- Champion Infantry available to the Spartans faction."
 msgstr "- Laoch coisridh a tha ri fhaighinn airson nam Spartach."
 
 #: gui/text/tips/spartan_hoplites.txt:6
-msgid "- Long train time, but high armor and attack."
-msgstr "- Bheir e ùine mhòr gus an trèanadh, ach tha armachd 's ionnsaigh neartmhor aca."
+msgid ""
+"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
+"regular line infantry."
+msgstr "- Cleachd iad gus eachraidh an nàmhad a chur gu bàs no mar fheachd làidir gus taic a chur ris a' choisridh àbhaisteach agad."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
 msgstr "- Chleachd an cumadh \"falangas\" airson barrachd bhuannachdan air an armachd."
+
+#: gui/text/tips/spearmen.txt:1
+msgid "SPEARMEN"
+msgstr "SLEAGHAIREAN"
+
+#: gui/text/tips/spearmen.txt:2
+msgid "- The basic melee infantry for every faction in the game."
+msgstr "- Seo a' choisridh dhlùth bhunasach aig gach sluagh sa gheama."
+
+#: gui/text/tips/spearmen.txt:4
+msgid "- Used against cavalry for a 2x attack bonus."
+msgstr "- Cleachd iad an aghaidh eachraidh airson buannachd de 2x fhaighinn air an ionnsaigh."
+
+#: gui/text/tips/spearmen.txt:6
+msgid ""
+"- Decent hack attack and a good charge bonus make them good front line "
+"troops."
+msgstr "- Tha ionnsaigh spealgaidh nach eil dona aca agus buannachd mhath air cruinn-leum 's tha iad math air toiseach an fheachd."
+
+#: gui/text/tips/spearmen.txt:8
+msgid ""
+"- They are countered by ranged units and swordsmen, so support your spearmen"
+" with slingers or cavalry."
+msgstr "- Thèid aonadan astair 's claidheamhairean 'nan aghaidh, mar sin cuir taic ris na sleaghairean agad le longadairean no eachraidh."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-04 20:20+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-26 21:44+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -1868,16 +1868,17 @@ msgid "Crop Rotation"
 msgstr "輪作"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "槍兵の攻撃力を強化する槍術訓練です。"
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr "槍術訓練は槍を扱う歩兵ユニットの攻撃力を強化します。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "槍兵の打撃攻撃力が2増加します。"
+msgid "Spear Infantry +2 hack attack."
+msgstr "槍歩兵の打撃攻撃力が2増加します。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "槍術"
+msgid "Infantry Spear Training"
+msgstr "歩兵の槍訓練"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1909,13 +1910,13 @@ msgstr "スパルタの陸軍は当時世界最大ではありませんでした
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
 msgstr "スパルタ人はこどもの頃から合宿し訓練を受け、最高の戦士となり、軍人生活で起こりうるあらゆる困難に耐えました。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "槍兵の耐久力が25%増加しますが、養成時間が10%長くなります。"
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr "槍歩兵の耐久力が25%増加しますが、養成時間が10%長くなります。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2056,8 +2057,8 @@ msgid ""
 msgstr "アヌシヤ・チャンピオン歩兵の養成が2倍の速さになりますが、少し最大耐久力が減ります。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "アヌシヤ・チャンピオン歩兵の養成時間が50%減りますが、同時に耐久力が20減ります。"
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "アヌシヤ・チャンピオン歩兵の養成時間が50%減りますが、同時に耐久力が10減ります。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

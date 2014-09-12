@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-29 19:40+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-25 10:11+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -59,18 +59,20 @@ msgid "Basic"
 msgstr "Grundlegend"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:51
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:50
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:63
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:76
 #: simulation/templates/template_unit_champion_elephant_melee.xml:48
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:51
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:41
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:41
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:59
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:67
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:37
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:45
 #: simulation/templates/template_unit_infantry_melee.xml:26
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:35
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:61
 msgid "Melee"
 msgstr "Nahkampf"
 
@@ -78,102 +80,113 @@ msgstr "Nahkampf"
 msgid "Melee Cavalry"
 msgstr "Nahkampfkavallerie"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:35
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:50
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:34
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:63
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:41
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:59
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:33
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:37
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:36
 msgid "Spear"
 msgstr "Speer"
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:38
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:37
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:65
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:61
 msgid ""
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
-"Countered by: Spearmen, Archers, Elephants."
-msgstr "Sark gegen: 2x geg. Schwertkämpfer und Belagerungswaffen, 1.5x geg. Plänkler\nSchwach gegen: Speerkämpfer, Bogenschützen und Elefanten."
+"Counters: 2x vs. Siege Weapons and Ranged Infantry.\n"
+"Countered by: Spear Infantry, Elephants, and Camels."
+msgstr "Sark gegen: 2x geg. Belagerungswaffen und Fernkampf-Schwertkämpfer.\nSchwach gegen: Speerkämpfer, Elefanten und Kamele."
 
-#: simulation/templates/template_unit_cavalry_melee_spearman.xml:36
+#: simulation/templates/template_unit_cavalry_melee_spearman.xml:35
 msgid "Cavalry Spearman"
 msgstr "Berittener Speerträger"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:44
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:76
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:51
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:41
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:32
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:51
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:67
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:45
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:44
 msgid "Sword"
 msgstr "Schwert"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:47
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:78
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:69
 msgid ""
-"Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
-"Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "Stark gegen: 2x geg. Bogenschützen, alle Unterstützungseinheiten und Belagerungswaffen.\nSchwach gegen: Speerkämpfer, berittene Plänkler und Elefanten."
+"Counters: 2x vs. Siege Weapons, 1.5x vs. Ranged Infantry and Ranged Cavalry.\n"
+"Countered by: Spear Infantry, Elephants, and Camels."
+msgstr "Stark gegen: 2x geg. Belagerungswaffen, 1.5x geg. Fernkampf-Infanterie und Fernkampf-Kavallerie.\nSchwach gegen: Speer-Infanterie, Elefanten und Kamele."
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:45
 msgid "Cavalry Swordsman"
 msgstr "Berittener Schwertkämpfer"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:30
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:39
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:38
+#: simulation/templates/template_unit_cavalry_ranged.xml:38
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:43
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:42
 #: simulation/templates/template_unit_champion_infantry_archer.xml:44
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:52
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:40
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:40
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:48
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:44
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:44
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:42
 #: simulation/templates/template_unit_infantry_ranged.xml:28
 #: simulation/templates/template_unit_infantry_ranged.xml:27
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:52
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:55
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
 msgid "Ranged"
 msgstr "Fernkämpfer"
 
-#: simulation/templates/template_unit_cavalry_ranged.xml:29
+#: simulation/templates/template_unit_cavalry_ranged.xml:37
 msgid "Ranged Cavalry"
 msgstr "Berittener Fernkämpfer"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:34
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:39
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:31
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:43
 #: simulation/templates/template_unit_champion_infantry_archer.xml:44
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:40
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:44
 #: simulation/templates/template_unit_hero_infantry_archer.xml:39
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:37
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:38
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:39
 msgid "Archer"
 msgstr "Bogenschütze"
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:37
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:34
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:45
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:46
 msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants."
-msgstr "Stark gegen: 2x geg. Speerkämpfer, 1.5x geg. Schwertkämpfer.\nSchwach gegen: Plänkler und Elefanten."
+"Counters: 1.5x vs. Melee Infantry.\n"
+"Countered by: Javelin Infantry, Sword Cavalry, and Elephants."
+msgstr "Stark gegen: 1.5x geg. Nahkampf-Infanterie.\nSchwach gegen: Speer-Infanterie, berittene Bogenschützen und Elefanten."
 
-#: simulation/templates/template_unit_cavalry_ranged_archer.xml:35
+#: simulation/templates/template_unit_cavalry_ranged_archer.xml:32
 msgid "Cavalry Archer"
 msgstr "Berittener Bogenschütze"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:34
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:38
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:52
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:40
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:46
-#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:44
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:43
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:42
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:48
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:44
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:42
+#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:42
 msgid "Javelin"
 msgstr "Wurfspieß"
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:37
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:46
 msgid ""
-"Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
-"Countered by: Spearmen, Elephants."
-msgstr "Stark gegen: 2x geg. Bogenschützen, 1.5x geg. berittene Schwertkämpfer.\nSchwach gegen: Speerkämpfer und Elefanten."
+"Counters: 1.5x vs. Support Units.\n"
+"Countered by: Javelin Infantry, Cavalry Swordsmen, and Elephants."
+msgstr "Stark gegen: 1.5x geg. Unterstützungseinheiten.\nSchwach gegen: Speer-Infanterie, berittene Schwertkämpfer und Elefanten."
 
-#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:35
+#: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:44
 msgid "Cavalry Skirmisher"
 msgstr "Berittener Plänkler"
 
@@ -189,27 +202,21 @@ msgstr "Gardeeinheit"
 msgid "Champion Cavalry"
 msgstr "Gardereiter"
 
-#: simulation/templates/template_unit_champion_cavalry_archer.xml:40
+#: simulation/templates/template_unit_champion_cavalry_archer.xml:44
 msgid "Champion Cavalry Archer."
 msgstr "Berittener Gardebogenschütze."
 
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:40
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:44
 msgid ""
-"Counters: 2x vs. Archers, 1.5x vs. Cavalry Swordsmen.\n"
-"Countered by: Spearmen and Elephants."
-msgstr "Stark gegen: 2x geg. Bogenschützen, 1.5x geg. berittene Schwertkämpfer.\nSchwach gegen: Speerkämpfer und Elefanten."
+"Counters: 1.5x vs. Support Units.\n"
+"Countered by: Skirmishers, Cavalry Swordsmen, and Elephants."
+msgstr "Stark gegen: 1.5x geg. Unterstützungseinheiten.\nSchwach gegen: Plänkler, berittene Schwertkämpfer und Elefanten."
 
-#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:39
+#: simulation/templates/template_unit_champion_cavalry_javelinist.xml:43
 msgid "Champion Cavalry Skirmisher"
 msgstr "Berittener Gardeplänkler"
 
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:52
-msgid ""
-"Counters: 2x vs. Swordsmen and Siege Weapons, 1.5x vs. Skirmishers.\n"
-"Countered by: Spearmen, Archers, and Elephants."
-msgstr "Stark gegen: 2x geg. Schwertkämpfer und Belagerungswaffen, 1.5x geg. Plänkler.\nSchwach gegen: Speerkämpfer, Bogenschützen und Elefanten."
-
-#: simulation/templates/template_unit_champion_cavalry_spearman.xml:51
+#: simulation/templates/template_unit_champion_cavalry_spearman.xml:64
 msgid "Champion Cavalry Spearman"
 msgstr "Berittener Gardespeerkämpfer"
 
@@ -234,70 +241,78 @@ msgid ""
 "Countered by: Skirmishers and Swordsmen. Can run amok."
 msgstr "Klassen: Gardist Nahkampf Elefant.\nStark gegen: 2x geg. alle Reitereien, 1.5x geg. alle Bauwerke, +1.5x geg. Tore.\nSchwach gegen: Plänkler und Schwertkämpfer. Kann Amok laufen."
 
-#: simulation/templates/template_unit_champion_infantry.xml:34
+#: simulation/templates/template_unit_champion_infantry.xml:16
 #: simulation/templates/template_unit_hero_infantry.xml:23
 #: simulation/templates/template_unit_infantry.xml:52
 #: simulation/templates/template_unit_infantry.xml:50
 msgid "Infantry"
 msgstr "Infanterie"
 
-#: simulation/templates/template_unit_champion_infantry.xml:35
+#: simulation/templates/template_unit_champion_infantry.xml:17
 msgid "Champion Infantry"
 msgstr "Gardeinfanterie"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:46
+#: simulation/templates/template_unit_hero_infantry_archer.xml:40
+#: simulation/templates/template_unit_infantry_ranged_archer.xml:41
 msgid ""
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
-"Countered by: Cavalry Swordsmen and Cavalry Skirmishers."
-msgstr "Stark gegen: 2x geg. Schwertkämpfer, 1.25x geg. berittene Speerkämpfer.\nSchwach gegen: berittene Schwertkämpfer und berittene Plänkler."
+"Counters: 1.5x vs. Sword Infantry, 1.25x vs Spear Infantry.\n"
+"Countered by: Melee Cavalry."
+msgstr "Stark gegen: 1.5x geg. Fernkampfinfanterie, 1.25x geg. Schwert-Infanterie.\nSchwach gegen: Reitereien."
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:45
 msgid "Champion Archer"
 msgstr "Gardebogenschütze"
 
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:54
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:50
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:44
+#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
 msgid ""
-"Counters: 1.5x vs. Spearmen, Cavalry Archers, Elephants, and Chariots.\n"
-"Countered by: Swordsmen and Cavalry Spearmen."
-msgstr "Stark gegen: 1.5x geg. Speerkämpfer, berittene Bogenschützen, Elefanten und Streitwagen.\nSchwach gegen: Schwertkämpfer und berittene Speerkämpfer."
+"Counters: 1.5x vs. Spear Infantry, Ranged Cavalry, and Elephants.\n"
+"Countered by: Melee Cavalry and Sword Infantry."
+msgstr "Stark gegen: 1.5x geg. Fernkampfinfanterie, 1.25x geg. Nahkampfinfanterie.\nSchwach gegen: Reitereien."
 
-#: simulation/templates/template_unit_champion_infantry_javelinist.xml:53
+#: simulation/templates/template_unit_champion_infantry_javelinist.xml:49
 msgid "Champion Skirmisher"
 msgstr "Gardeplänkler"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:36
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:33
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
 msgstr "Pike"
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:39
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:35
+#: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 msgid ""
-"Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. Elephants.\n"
-"Countered by: Swordsmen, Skirmishers, and Cavalry Archers."
-msgstr "Klassen: Gardist Nahkampf Infanterie Lanzenträger.\nStark gegen: 2x geg. alle berittenen Einheiten, 1.5x geg. Elefanten. \nSchwach gegen: Schwertkämpfer, Plänkler und berittene Bogenschützen."
+"Counters: 4x vs. All Cavalry.\n"
+"Countered by: Ranged Units and Sword Infantry."
+msgstr "Stark gegen: 4x geg. alle Reitereien.\nSchwach gegen: Fernkampfeinheiten und Schwert-Infanterie."
 
-#: simulation/templates/template_unit_champion_infantry_pikeman.xml:37
+#: simulation/templates/template_unit_champion_infantry_pikeman.xml:46
 msgid "Champion Pikeman"
 msgstr "Gardepikenier"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:39
+#: simulation/templates/template_unit_infantry_melee_spearman.xml:39
 msgid ""
-"Classes: Champion Melee Infantry Spearman.\n"
 "Counters: 2x vs. All Cavalry.\n"
-"Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Klassen: Gardist Nahkampf Infanterie Lanzenträger.\nStark gegen: 2x geg. alle Reitereien.\nSchwach gegen: Plänkler, Schwertkämpfer und berittene Bogenschützen."
+"Countered by: Ranged Units and Sword Infantry."
+msgstr "Stark gegen: 2x geg. alle Reitereien.\nSchwach gegen: Fernkampfeinheiten und Schwert-Infanterie."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:43
 msgid "Champion Spearman"
 msgstr "Gardespeerkämpfer"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:53
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:47
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:47
 msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Stark gegen: 2x geg. Speerkämpfer, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Speerkämpfer und berittene Bogenschützen."
+"Counters: 1.5x vs. Infantry and Elephants.\n"
+"Countered by: Archer Infantry and Archer Cavalry."
+msgstr "Stark gegen: 1.5x geg. Infanterie und Elefanten.\nSchwach gegen: Bogenschützen und berittene Bogenschützen."
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:52
 msgid "Champion Swordsman"
@@ -316,6 +331,7 @@ msgstr "Mechanisches Gerät"
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical_siege.xml:12
 #: simulation/templates/template_unit_mechanical_siege.xml:13
+#: simulation/templates/units/maur_champion_infantry.xml:47
 msgid "Siege"
 msgstr "Belagerungswaffe"
 
@@ -329,9 +345,9 @@ msgstr "Hund"
 
 #: simulation/templates/template_unit_dog.xml:82
 msgid ""
-"Counters: 3x vs. Cavalry, 2x vs. Support, 1.5x vs. Animals. Cannot attack "
+"Counters: 1.5x vs. Cavalry, Support Units, and Animals. Cannot attack "
 "structures."
-msgstr "Stärken: 3x gegen Kavallerie, 2x gegen Unterstützung, 1.5x gegen Tiere. Kann Gebäude nicht angreifen."
+msgstr "Stärken: 1.5x gegen Kavallerie, Unterstützungseinheiten und Tiere. Kann Gebäude nicht angreifen."
 
 #: simulation/templates/template_unit_dog.xml:80
 msgid "War Dog"
@@ -363,19 +379,19 @@ msgstr "Held"
 msgid "Hero Cavalry"
 msgstr "Kavallerieheld"
 
-#: simulation/templates/template_unit_hero_cavalry_archer.xml:41
+#: simulation/templates/template_unit_hero_cavalry_archer.xml:45
 msgid "Hero Cavalry Archer"
 msgstr "Held der berittenen Bogenschützen"
 
-#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:41
+#: simulation/templates/template_unit_hero_cavalry_javelinist.xml:45
 msgid "Hero Cavalry Skirmisher"
 msgstr "Held der berittenen Plänkler"
 
-#: simulation/templates/template_unit_hero_cavalry_spearman.xml:42
+#: simulation/templates/template_unit_hero_cavalry_spearman.xml:60
 msgid "Hero Cavalry Spearman"
 msgstr "Berittener Heldenspeerkämpfer"
 
-#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:42
+#: simulation/templates/template_unit_hero_cavalry_swordsman.xml:68
 msgid "Hero Cavalry Swordsman"
 msgstr "Berittener Heldenschwertkämpfer"
 
@@ -390,50 +406,25 @@ msgstr "Klassen: Held Nahkampf Elefant.\nStark gegen: 2x geg. alle Reitereien, 1
 msgid "Hero Archer"
 msgstr "Bogenschützenheld"
 
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:48
-msgid ""
-"Counters: +50% Attack vs. Spearmen, Cavalry Archers and Chariots. +100% Attack vs Elephants.\n"
-"Countered by: Melee Cavalry."
-msgstr "Stark gegen: 2x geg. Elefanten, 1.5x geg. Speerkämpfer, berittene Bogenschützen und Streitwagen.\nSchwach gegen: Berittene Nahkämpfer."
-
-#: simulation/templates/template_unit_hero_infantry_javelinist.xml:47
+#: simulation/templates/template_unit_hero_infantry_javelinist.xml:43
 msgid "Hero Skirmisher"
 msgstr "Heldenplänkler"
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:34
 msgid "Hero Pikeman"
 msgstr "Heldenpikenier"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:26
-msgid ""
-"Counters: 2x vs. All Cavalry.\n"
-"Countered by: Skirmishers, Swordsmen, and Cavalry Archers."
-msgstr "Stark gegen: 2x geg. alle Reiterein.\nSchwach gegen: Plänkler, Schwertkämpfer und berittene Bogenschützen."
-
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:38
 msgid "Hero Spearman"
 msgstr "Heldenspeerkämpfer"
 
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:34
-msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers and Elephants.\n"
-"Countered by: Archers, Cavalry Archers."
-msgstr "Stark gegen: 2x geg. Speerkämpfer, 1.5x geg. Plänkler und Elefanten.\nSchwach gegen: Bogenschützen und berittene Bogenschützen."
-
-#: simulation/templates/template_unit_hero_infantry_swordsman.xml:33
+#: simulation/templates/template_unit_hero_infantry_swordsman.xml:46
 msgid "Hero Swordsman"
 msgstr "Heldenschwertkämpfer"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
 msgstr "Nahkampfinfanterie"
-
-#: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
-#: simulation/templates/template_unit_infantry_melee_spearman.xml:39
-msgid ""
-"Counters: 2x vs. All Cavalry.\n"
-"Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "Stark gegen: 2x geg. alle Reitereien.\nSchwach gegen: Plänkler, Schwertkämpfer und berittene Bogenschützen."
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:39
 msgid "Pikeman"
@@ -443,29 +434,11 @@ msgstr "Pikenier"
 msgid "Spearman"
 msgstr "Speerkämpfer"
 
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:54
-msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Skirmishers, and 1.25x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Stark gegen: 2x geg. Speerkämpfer, 1.5x geg. Plänkler und 1.25x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Speerkämpfer und berittene Bogenschützen."
-
-#: simulation/templates/template_unit_infantry_melee_swordsman.xml:52
+#: simulation/templates/template_unit_infantry_melee_swordsman.xml:45
 msgid "Swordsman"
 msgstr "Schwertkämpfer"
 
-#: simulation/templates/template_unit_infantry_ranged_archer.xml:40
-msgid ""
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
-"Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "Stark gegen: 2x geg. Schwertkämpfer, 1.25x geg. berittene Speerkämpfer.\nSchwach gegen: Berittene Schwertkämpfer und berittene Plänkler."
-
-#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:47
-msgid ""
-"Counters: 1.5x vs. Spearmen and Cavalry Archers, 1.25x vs. Elephants and Chariots.\n"
-"Countered by: Swordsmen, Cavalry Spearmen."
-msgstr "Stark gegen: 1.5x geg. Speerkämpfer und berittene Bogenschützen, 1.25x geg. Elefanten und Streitwagen.\nSchwach gegen: Schwertkämpfer und berittene Speerkämpfer."
-
-#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:45
+#: simulation/templates/template_unit_infantry_ranged_javelinist.xml:43
 msgid "Skirmisher"
 msgstr "Plänkler"
 
@@ -475,9 +448,9 @@ msgstr "Schleuder"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:39
 msgid ""
-"Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Melee Infantry.\n"
-"Countered by: Cavalry."
-msgstr "Stark gegen: 1.5x geg. Fernkampfinfanterie, 1.25x geg. Nahkampfinfanterie.\nSchwach gegen: Reitereien."
+"Counters: 1.5x vs. Ranged Infantry, 1.25x vs. Sword Infantry.\n"
+"Countered by: Melee Cavalry."
+msgstr "Stark gegen: 1.5x geg. Fernkampfinfanterie, 1.25x geg. Schwert-Infanterie.\nSchwach gegen: Reitereien."
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:38
 msgid "Slinger"
@@ -488,64 +461,112 @@ msgstr "Schleuderer"
 msgid "Ship"
 msgstr "Schiff"
 
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:35
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
+msgid "Warship"
+msgstr "Kriegsschiff"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+msgid "Light"
+msgstr "Leicht"
+
+#: simulation/templates/template_unit_mechanical_ship_bireme.xml:48
+msgid "Bow"
+msgstr "Bogen"
+
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:47
-msgid "Classes: Mechanical Warship Light Ranged."
-msgstr "Klassen: Mechanisch, Kriegsschiff, Leicht, Fernkampf."
+msgid "Light Warship, good for harassing enemy coastlines and trade routes."
+msgstr "Leichtes Kriegsschiff, gut um Feindküsten und Handelswege zu belästigen."
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
 msgstr "Leichtes Kriegsschiff"
 
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:35
+msgid "Fireship"
+msgstr "Feuerschiff"
+
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
-"Classes: Mechanical Warship Fireship Melee.\n"
-"Rapidly drain the health of enemy ships. Slowly loses health due to being on fire, so use the Fire Ship quickly."
-msgstr "Klassen: Mechanisch, Kriegsschiff, Brander, Nahkampf.\nFügt feindlichen Schiffen schnell großen Schaden zu. Erleidet aufgrund des Feuers selbst langsam Schaden und sollte deshalb zügig eingesetzt werden."
+"Rapidly drain the health of enemy ships. Slowly loses health due to being on"
+" fire, so use the Fire Ship quickly."
+msgstr "Verringert die Gesundheit feindlicher Schiffe rapide. Verliert aufgrund des Feuers langsam Gesundheit und sollte deshalb zügig eingesetzt werden."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
 msgstr "Brander"
 
+#: simulation/templates/template_unit_mechanical_ship_fishing.xml:34
+msgid "FishingBoat"
+msgstr "Fischerboot"
+
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
-"Classes: Mechanical Ship FishingBoat.\n"
-"Fish the waters for Food. Garrison a support or infantry unit inside to boost fishing rate."
-msgstr "Klassen: Mechanisch, Schiff, Fischerboot.\nErzeugt Nahrung durch Fischfang. Wird eine Unterstützungs- oder Infanterieeinheit eingeschifft, erhöht sich die Ausbeute."
+"Fish the waters for Food. Garrison a support or infantry unit inside to "
+"boost fishing rate."
+msgstr "Im Wasser fischen, um Nahrung zu produzieren. Quartieren Sie eine unterstützende Einheit oder eine Infanterieeinheit ein, um die Fischereirate zu erhöhen."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
 msgstr "Fischerboot"
 
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:30
+#: simulation/templates/template_unit_support_trader.xml:14
+msgid "Trader"
+msgstr "Händler"
+
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:28
 msgid ""
-"Classes: Mechanical Ship Trader.\n"
+"\n"
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% for each garrisoned). Gather profitable aquatic treasures."
-msgstr "Klassen: Mechanisch, Schiff, Händler.\nTreibe Handel zwischen Häfen, Quartiere Händler ein für höheren Profit (+20% für jeden Händler). Berge versunkene Schätze."
+msgstr "\nHandelt zwischen Häfen. Quartiere einen Händler für höheren Profit ein (+20% für jeden Händler). Sammelt profitable Wasserschätze."
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
 msgstr "Handelsschiff"
 
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+msgid "Heavy"
+msgstr "Schwer"
+
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:57
+msgid "NavalSiege"
+msgstr "Flottenbelagerung"
+
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid ""
-"Classes: Mechanical Warship Heavy Ranged Melee.\n"
 "Garrison with catapults to increase ranged fire power.\n"
 "Secondary Attack: Ramming."
-msgstr "Klassen: Mechanisch, Kriegsschiff, schwer, Fernkampf, Nahkampf.\nQuartiere Katapulte ein, um Fernkampf-Feuerkraft zu erhöhen.\nSekundäre Attacke: Rammen."
+msgstr "Quartiere Katapulte ein um Fernkampf Feuerkraft erhöhen.\nSekundäre Attacke: Rammen."
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
 msgstr "Schweres Kriegsschiff"
 
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
+msgid "Medium"
+msgstr "Mittel"
+
+#: simulation/templates/template_unit_mechanical_ship_trireme.xml:49
+#: simulation/templates/template_unit_mechanical_siege_ram.xml:61
+msgid "Ram"
+msgstr "Ramme"
+
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:47
 msgid ""
-"Classes: Mechanical Warship Medium Ranged Melee.\n"
+"Medium Warship, good for naval combat and transporting troops.\n"
 "Secondary Attack: Ramming."
-msgstr "Klassen: Mechanisch, Kriegsschiff, mittelschwer, Fernkampf, Nahkampf.\nSekundäre Attacke: Rammen."
+msgstr "Mittelgroßes Kriegsschiff, gut für Seeschlachten und zum transportieren von Truppen.\nSekundärer Angriff: Rammen."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
 msgstr "Mittelschweres Kriegsschiff"
+
+#: simulation/templates/template_unit_mechanical_siege_ballista.xml:52
+msgid "BoltShooter"
+msgstr "Bolt Shooter"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:53
 msgid ""
@@ -559,11 +580,15 @@ msgid "Bolt Shooter"
 msgstr "Bolzengeschütz"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:55
+msgid "Catapult"
+msgstr "Katapult"
+
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:56
 msgid ""
-"Classes: Siege Ranged Catapult.\n"
-"Counters: Structures and Massed Infantry. Causes splash damage.\n"
+"Area (Splash) Damage Effect: 10 meters from impact. Can cause Friendly Fire.\n"
+"Counters: Structures and Massed Infantry. 1.25x vs. Fortresses.\n"
 "Countered by: Melee Cavalry."
-msgstr "Klasse: Belagerung, Fernkampf, Katapult.\nStark gegen: Bauwerke und Infanterieformationen. Verursacht Flächenschaden.\nSchwach gegen: Berittene Nahkämpfer."
+msgstr "Bereich (Splash) Schäden Effekt: 10 Meter vom Aufprall. Kann Friendly Fire verursachen.\nStark gegen: Strukturen und Geballte Infanterie. 1.25x geg. Festungen.\nSchwach gegen: Nahkampf-Kavallerie."
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:54
 msgid "Siege Catapult"
@@ -571,22 +596,24 @@ msgstr "Belagerungskatapult"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:62
 msgid ""
-"Classes: Siege Melee Ram.\n"
 "Counters: 1.5x vs. Gates. Generally good vs. Buildings.\n"
 "Countered by: Melee Cavalry. Cannot attack organic units (but can attack other siege and ships)."
-msgstr "Klassen: Belagerung, Nahkampf, Ramme. \nStark gegen: 1.5x gegen Tore, allgemein gut gegen Gebäude. \nSchwach gegen: Nahkampfkavallerie. Kann keine Kampftruppen angreifen (kann aber andere Belagerungswaffen und Schiffe angreifen)."
+msgstr "Stark gegen: 1,5x gegen Tore, allgemein gut gegen Gebäude. \nSchwach gegen: Nahkampfkavallerie. Kann lebendige Einheiten nicht angreifen (kann aber andere Belagerungswaffen und Schiffe angreifen)."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:60
 msgid "Battering Ram"
 msgstr "Rammbock"
 
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:59
+msgid "SiegeTower"
+msgstr "Belagerungsturm"
+
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:60
 msgid ""
-"Classes: Ranged SiegeTower.\n"
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10.\n"
 "Counters: 2x vs. Buildings.\n"
-"Countered by: Melee Cavalry."
-msgstr "Klassen: Belagerungsturm, Fernkampf\nMit bis zu 20 Infanteristen besetzen um die Pfeilanzahl von 0 auf bis zu 10 zu steigern.\nStark gegen: 2x geg. Gebäude.\nSchwach gegen: Nahkampfkavallerie."
+"Countered by: Melee Cavalry, Siege."
+msgstr "Stationiere bis zu 20 Infanteristen ein, um die Pfeilanzahl von 0 bis zu 10 zu steigern.\nStark gegen: 2x gegen Gebäude\nSchwach gegen: Nahkampfkavallerie"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:58
 msgid "Siege Tower"
@@ -600,7 +627,7 @@ msgstr "Unterstützung"
 msgid "Inspiration Aura"
 msgstr "Inspirations-Aura"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:55
+#: simulation/templates/template_unit_support_female_citizen.xml:56
 msgid "Female Citizen"
 msgstr "Bürgerin"
 
@@ -633,10 +660,6 @@ msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
 msgstr "Klassen: Unterstützung, Händler.\nHandle mit Rohstoffen zwischen deinen Märkten und denen deiner Verbündeten."
-
-#: simulation/templates/template_unit_support_trader.xml:14
-msgid "Trader"
-msgstr "Händler"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
@@ -704,7 +727,7 @@ msgstr "Händler"
 #: simulation/templates/units/maur_infantry_spearman_a.xml:20
 #: simulation/templates/units/maur_infantry_swordsman_a.xml:20
 #: simulation/templates/units/maur_support_healer_a.xml:11
-#: simulation/templates/units/pers_cavalry_archer_a.xml:23
+#: simulation/templates/units/pers_cavalry_archer_a.xml:22
 #: simulation/templates/units/pers_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/pers_cavalry_javelinist_a_trireme.xml:18
 #: simulation/templates/units/pers_cavalry_spearman_a.xml:20
@@ -714,7 +737,7 @@ msgstr "Händler"
 #: simulation/templates/units/pers_infantry_javelinist_a.xml:18
 #: simulation/templates/units/pers_infantry_spearman_a.xml:20
 #: simulation/templates/units/pers_support_healer_a.xml:11
-#: simulation/templates/units/ptol_cavalry_archer_a.xml:19
+#: simulation/templates/units/ptol_cavalry_archer_a.xml:18
 #: simulation/templates/units/ptol_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/ptol_cavalry_spearman_a.xml:20
 #: simulation/templates/units/ptol_infantry_archer_a.xml:18
@@ -730,7 +753,7 @@ msgstr "Händler"
 #: simulation/templates/units/rome_infantry_spearman_a.xml:20
 #: simulation/templates/units/rome_infantry_swordsman_a.xml:20
 #: simulation/templates/units/rome_support_healer_a.xml:11
-#: simulation/templates/units/sele_cavalry_archer_a.xml:19
+#: simulation/templates/units/sele_cavalry_archer_a.xml:18
 #: simulation/templates/units/sele_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/sele_cavalry_spearman_a.xml:20
 #: simulation/templates/units/sele_infantry_archer_a.xml:18
@@ -820,7 +843,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/maur_infantry_swordsman_e.xml:20
 #: simulation/templates/units/maur_support_healer_e.xml:11
 #: simulation/templates/units/merc_thrace_swordsman.xml:23
-#: simulation/templates/units/pers_cavalry_archer_e.xml:19
+#: simulation/templates/units/pers_cavalry_archer_e.xml:18
 #: simulation/templates/units/pers_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/pers_cavalry_javelinist_e_trireme.xml:18
 #: simulation/templates/units/pers_cavalry_spearman_e.xml:20
@@ -830,7 +853,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/pers_infantry_javelinist_e.xml:18
 #: simulation/templates/units/pers_infantry_spearman_e.xml:20
 #: simulation/templates/units/pers_support_healer_e.xml:11
-#: simulation/templates/units/ptol_cavalry_archer_e.xml:19
+#: simulation/templates/units/ptol_cavalry_archer_e.xml:18
 #: simulation/templates/units/ptol_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/ptol_cavalry_spearman_e.xml:20
 #: simulation/templates/units/ptol_infantry_archer_e.xml:18
@@ -846,7 +869,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/rome_infantry_spearman_e.xml:20
 #: simulation/templates/units/rome_infantry_swordsman_e.xml:20
 #: simulation/templates/units/rome_support_healer_e.xml:11
-#: simulation/templates/units/sele_cavalry_archer_e.xml:19
+#: simulation/templates/units/sele_cavalry_archer_e.xml:18
 #: simulation/templates/units/sele_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/sele_cavalry_spearman_e.xml:20
 #: simulation/templates/units/sele_infantry_archer_e.xml:18
@@ -883,6 +906,10 @@ msgstr "Stadtwache"
 msgid "Epilektos"
 msgstr "Epilektos"
 
+#: simulation/templates/units/athen_champion_marine.xml:7
+msgid "Marine"
+msgstr "Marine"
+
 #: simulation/templates/units/athen_champion_marine.xml:5
 msgid "Athenian Marine"
 msgstr "Athenische Marine"
@@ -890,6 +917,29 @@ msgstr "Athenische Marine"
 #: simulation/templates/units/athen_champion_marine.xml:6
 msgid "Épibatēs Athēnaïkós"
 msgstr "Épibatēs Athēnaïkós"
+
+#: simulation/templates/units/athen_champion_ranged.xml:15
+#: simulation/templates/units/athen_infantry_archer_b.xml:20
+#: simulation/templates/units/athen_infantry_javelinist_b.xml:28
+#: simulation/templates/units/cart_cavalry_spearman_b.xml:15
+#: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:14
+#: simulation/templates/units/cart_cavalry_swordsman_b.xml:14
+#: simulation/templates/units/cart_infantry_javelinist_b.xml:24
+#: simulation/templates/units/cart_infantry_slinger_b.xml:24
+#: simulation/templates/units/cart_infantry_swordsman_2_b.xml:23
+#: simulation/templates/units/cart_infantry_swordsman_b.xml:23
+#: simulation/templates/units/mace_infantry_slinger_b.xml:21
+#: simulation/templates/units/merc_thorakites.xml:7
+#: simulation/templates/units/merc_thrace_swordsman.xml:24
+#: simulation/templates/units/merc_thureophoros.xml:11
+#: simulation/templates/units/ptol_cavalry_javelinist_b.xml:15
+#: simulation/templates/units/ptol_infantry_archer_b.xml:21
+#: simulation/templates/units/ptol_infantry_spearman_2_b.xml:24
+#: simulation/templates/units/ptol_infantry_swordsman_b.xml:23
+#: simulation/templates/units/sele_infantry_swordsman_b.xml:16
+#: simulation/templates/units/thrace_black_cloak.xml:21
+msgid "Mercenary"
+msgstr "Söldner"
 
 #: simulation/templates/units/athen_champion_ranged.xml:13
 msgid "Scythian Archer"
@@ -919,59 +969,58 @@ msgid "All units in his formation +15% speed and +1 armor."
 msgstr "Helden-Aura: Alle Einheiten in seiner Formation +15% Geschwindigkeit und +1 Rüstung."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
-#: simulation/templates/units/hele_hero_xenophon.xml:23
-msgid "All Peltasts +15% speed."
-msgstr "Alle Peltasten +15% Geschwindigkeit."
+msgid "All Peltasts +15% speed while he lives."
+msgstr "Alle Peltasten haben +15% Geschwindigkeit während der Lebenszeit."
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphikratēs"
 msgstr "Iphikratēs"
 
-#: simulation/templates/units/athen_hero_pericles.xml:11
+#: simulation/templates/units/athen_hero_pericles.xml:13
 msgid "Builder Aura"
 msgstr "Erbauer Aura"
 
-#: simulation/templates/units/athen_hero_pericles.xml:20
+#: simulation/templates/units/athen_hero_pericles.xml:24
 msgid "Acropolis Aura"
 msgstr "Acropolis Aura"
 
-#: simulation/templates/units/athen_hero_pericles.xml:26
+#: simulation/templates/units/athen_hero_pericles.xml:30
 msgid "Pericles"
 msgstr "Perikles"
 
-#: simulation/templates/units/athen_hero_pericles.xml:12
+#: simulation/templates/units/athen_hero_pericles.xml:14
 msgid "Buildings construct 15% faster within his vision."
 msgstr "Gebäude werden 15% schneller in seiner Sichtweite erbaut."
 
-#: simulation/templates/units/athen_hero_pericles.xml:21
-msgid "Temples are 50 stone cheaper during his lifetime."
-msgstr "Tempel sind 50 Steine billiger zu seinen Lebzeiten."
+#: simulation/templates/units/athen_hero_pericles.xml:25
+msgid "Temples are 100 stone cheaper during his lifetime."
+msgstr "Tempel sind 100 Steine billiger zu seinen Lebzeiten."
 
-#: simulation/templates/units/athen_hero_pericles.xml:27
+#: simulation/templates/units/athen_hero_pericles.xml:31
 msgid "Periklēs"
 msgstr "Periklēs"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:11
+#: simulation/templates/units/athen_hero_themistocles.xml:13
 msgid "Naval Commander Aura"
 msgstr "Naval Kommandant Aura"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:20
+#: simulation/templates/units/athen_hero_themistocles.xml:24
 msgid "Naval Architect Aura"
 msgstr "Naval Architect Aura"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:26
+#: simulation/templates/units/athen_hero_themistocles.xml:30
 msgid "Themistocles"
 msgstr "Themistokles"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:12
+#: simulation/templates/units/athen_hero_themistocles.xml:14
 msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr "Wenn in einem Schiff stationiert, ist das Schiff +50% schneller."
 
-#: simulation/templates/units/athen_hero_themistocles.xml:21
+#: simulation/templates/units/athen_hero_themistocles.xml:25
 msgid "Ships are built +20% faster during his lifespan."
 msgstr "Schiffe werden +20% schneller während seiner Lebensdauer gebaut."
 
-#: simulation/templates/units/athen_hero_themistocles.xml:27
+#: simulation/templates/units/athen_hero_themistocles.xml:31
 msgid "Themistoklês"
 msgstr "Themistoklês"
 
@@ -988,12 +1037,12 @@ msgid "Toxótēs Krētikós"
 msgstr "Toxótēs Krētikós"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:26
-#: simulation/templates/units/hele_infantry_javelinist_b.xml:23
+#: simulation/templates/units/hele_infantry_javelinist_b.xml:13
 msgid "Thracian Peltast"
 msgstr "Thrakischer Peltast"
 
 #: simulation/templates/units/athen_infantry_javelinist_b.xml:27
-#: simulation/templates/units/hele_infantry_javelinist_b.xml:24
+#: simulation/templates/units/hele_infantry_javelinist_b.xml:14
 msgid "Peltastḗs Thrâx"
 msgstr "Peltastḗs Thrâx"
 
@@ -1012,21 +1061,6 @@ msgstr "Athenischer Hoplit"
 #: simulation/templates/units/athen_infantry_spearman_b.xml:23
 msgid "Hoplī́tēs Athēnaïkós"
 msgstr "Hoplī́tēs Athēnaïkós"
-
-#: simulation/templates/units/athen_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/units/hele_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/units/mace_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/units/ptol_mechanical_siege_lithobolos_common.xml:5
-#: simulation/templates/units/sele_mechanical_siege_lithobolos_common.xml:5
-msgid "Lithóbolos"
-msgstr "Lithóbolos"
-
-#: simulation/templates/units/athen_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/units/hele_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/units/mace_mechanical_siege_oxybeles_common.xml:5
-#: simulation/templates/units/spart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybelḗs"
-msgstr "Oxybelḗs"
 
 #: simulation/templates/units/athen_ship_bireme.xml:5
 msgid "Penteconter"
@@ -1113,13 +1147,20 @@ msgstr "Keltische Kavallerie"
 msgid "Epos"
 msgstr "Epos"
 
+#: simulation/templates/units/brit_champion_cavalry.xml:26
+#: simulation/templates/units/celt_champion_cavalry_brit.xml:26
+#: simulation/templates/units/pers_cavalry_archer_b.xml:30
+#: simulation/templates/units/sele_champion_chariot.xml:29
+msgid "Chariot"
+msgstr "Streitwagen"
+
 #: simulation/templates/units/brit_champion_cavalry.xml:27
-#: simulation/templates/units/celt_champion_cavalry_brit.xml:22
+#: simulation/templates/units/celt_champion_cavalry_brit.xml:27
 msgid "Celtic Chariot"
 msgstr "Keltischer Streitwagen"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:28
-#: simulation/templates/units/celt_champion_cavalry_brit.xml:23
+#: simulation/templates/units/celt_champion_cavalry_brit.xml:28
 msgid "Carbanto"
 msgstr "Carbanto"
 
@@ -1134,8 +1175,8 @@ msgstr "Delamokludda"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:12
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:12
-msgid "Champion Army"
-msgstr "Champion Armee"
+msgid "Rebellious Rage"
+msgstr "Rebellische Wut"
 
 #: simulation/templates/units/brit_hero_boudicca.xml:13
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:13
@@ -1196,13 +1237,13 @@ msgstr "Keltischer Schleuderer"
 msgid "Iaosae"
 msgstr "Iaosae"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:17
+#: simulation/templates/units/brit_infantry_spearman_b.xml:14
 msgid "Celtic Spearman"
 msgstr "Keltischer Speerkämpfer"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:16
-#: simulation/templates/units/celt_infantry_spearman_b.xml:18
-#: simulation/templates/units/gaul_infantry_spearman_b.xml:15
+#: simulation/templates/units/brit_infantry_spearman_b.xml:13
+#: simulation/templates/units/celt_infantry_spearman_b.xml:15
+#: simulation/templates/units/gaul_infantry_spearman_b.xml:12
 msgid "Gaeroa"
 msgstr "Gaeroa"
 
@@ -1276,6 +1317,11 @@ msgstr "Numidische Kavallerie"
 msgid "Ḥayyāl Raḫūv Masili"
 msgstr "Ḥayyāl Raḫūv Masili"
 
+#: simulation/templates/units/cart_cavalry_spearman_b.xml:15
+#: simulation/templates/units/cart_infantry_swordsman_2_b.xml:23
+msgid "Italian"
+msgstr "Italiener"
+
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
 msgstr "Italische Kavallerie"
@@ -1283,6 +1329,12 @@ msgstr "Italische Kavallerie"
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
 msgstr "Ḥayyāl Romaḥ Raḫūv"
+
+#: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:14
+#: simulation/templates/units/cart_infantry_swordsman_b.xml:23
+#: simulation/templates/units/ptol_infantry_swordsman_b.xml:23
+msgid "Celt"
+msgstr "Kelte"
 
 #: simulation/templates/units/cart_cavalry_swordsman_2_b.xml:12
 msgid "Gallic Mercenary Cavalry"
@@ -1293,16 +1345,22 @@ msgstr "Berittener gallischer Söldner"
 msgid "Ḥayyāl Ḥerev Raḫūv"
 msgstr "Ḥayyāl Ḥerev Raḫūv"
 
+#: simulation/templates/units/cart_cavalry_swordsman_b.xml:14
+#: simulation/templates/units/cart_infantry_javelinist_b.xml:24
+#: simulation/templates/units/cart_infantry_slinger_b.xml:24
+msgid "Iberian"
+msgstr "Iberer"
+
 #: simulation/templates/units/cart_cavalry_swordsman_b.xml:12
 msgid "Iberian Heavy Cavalry"
 msgstr "Iberische schwere Kavallerie"
 
-#: simulation/templates/units/cart_champion_cavalry.xml:11
+#: simulation/templates/units/cart_champion_cavalry.xml:5
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:11
 msgid "Sacred Band Cavalry"
 msgstr "Berittene Heilige Schar"
 
-#: simulation/templates/units/cart_champion_cavalry.xml:12
+#: simulation/templates/units/cart_champion_cavalry.xml:6
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:12
 msgid "Sacred Band of Astarte"
 msgstr "Heilige Schar der Astarte"
@@ -1315,11 +1373,11 @@ msgstr "Nordafrikanischer Kriegselefant"
 msgid "Pil Malḥamit"
 msgstr "Pil Malḥamit"
 
-#: simulation/templates/units/cart_champion_infantry.xml:12
+#: simulation/templates/units/cart_champion_infantry.xml:5
 msgid "Sacred Band Infantry"
 msgstr "Heilige Schar: Infanterie"
 
-#: simulation/templates/units/cart_champion_infantry.xml:13
+#: simulation/templates/units/cart_champion_infantry.xml:6
 msgid "Sacred Band of Ba'al"
 msgstr "Heilige Schar des Ba'al"
 
@@ -1328,8 +1386,8 @@ msgid "Sacred Band Pikeman"
 msgstr "Hoplit der Heiligen Schar"
 
 #: simulation/templates/units/cart_champion_pikeman.xml:6
-msgid "Mašal"
-msgstr "Mašal"
+msgid "Mašal Ba'al"
+msgstr "Mašal Ba'al"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Lightning Aura"
@@ -1433,16 +1491,6 @@ msgstr "Gallischer Söldner mit Schwert"
 msgid "Seḫīr Ḥerev"
 msgstr "Seḫīr Ḥerev"
 
-#: simulation/templates/units/cart_mechanical_siege_ballista_common.xml:5
-#: simulation/templates/units/rome_mechanical_siege_ballista_common.xml:32
-#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
-msgid "Ballista"
-msgstr "Ballista"
-
-#: simulation/templates/units/cart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybeles"
-msgstr "Oxybeles"
-
 #: simulation/templates/units/cart_sacred_band_cavalry.xml:13
 msgid "Bonused vs. Ranged Units."
 msgstr "Bonus gegen Fernkämpfer"
@@ -1506,18 +1554,6 @@ msgstr "Kehinit"
 msgid "Mekir"
 msgstr "Mekir"
 
-#: simulation/templates/units/celt_champion_cavalry_brit.xml:24
-msgid ""
-"Brythonic Champion Chariot.\n"
-"Counters Infantry. High trample damage."
-msgstr "Britannischer Garde-Streitwagen.\nStark gegen Infanterie. Hoher Überfahrschaden."
-
-#: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
-msgid ""
-"Gallic Champion Cavalry.\n"
-"Counters Ranged Units."
-msgstr "Gallischer Gardereiter.\nStark gegen Fernkämpfer."
-
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
@@ -1528,38 +1564,26 @@ msgstr "Gallischer Adelsreiter"
 msgid "Gallic Brihent"
 msgstr "Gallischer Brihent"
 
-#: simulation/templates/units/celt_champion_infantry_brit.xml:15
-msgid ""
-"Brythonic Champion Swordsman.\n"
-"Counters Spear Units."
-msgstr "Britannischer Gardeschwertkämpfer\nStark gegen: Speereinheiten"
-
 #: simulation/templates/units/celt_champion_infantry_brit.xml:13
 msgid "Two-Handed Swordsman"
 msgstr "Zweihandschwertkämpfer"
 
-#: simulation/templates/units/celt_champion_infantry_gaul.xml:12
-msgid ""
-"Gallic Champion Swordsman.\n"
-"Counters Spearmen and Cavalry."
-msgstr "Gallischer Gardeschwertkämpfer.\nStark gegen Speerkämpfer und Kavallerie."
-
-#: simulation/templates/units/celt_champion_infantry_gaul.xml:10
-#: simulation/templates/units/gaul_champion_infantry.xml:10
+#: simulation/templates/units/celt_champion_infantry_gaul.xml:5
+#: simulation/templates/units/gaul_champion_infantry.xml:5
 msgid "Heavy Swordsman"
 msgstr "Schwerer Schwertkämpfer"
 
-#: simulation/templates/units/celt_champion_infantry_gaul.xml:11
-#: simulation/templates/units/gaul_champion_infantry.xml:11
+#: simulation/templates/units/celt_champion_infantry_gaul.xml:6
+#: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Solduros"
 msgstr "Solduros"
 
-#: simulation/templates/units/celt_fanatic.xml:15
+#: simulation/templates/units/celt_fanatic.xml:9
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
 msgid "Naked Fanatic"
 msgstr "Nackter Fanatiker"
 
-#: simulation/templates/units/celt_fanatic.xml:16
+#: simulation/templates/units/celt_fanatic.xml:10
 #: simulation/templates/units/gaul_champion_fanatic.xml:16
 msgid "Gaesata"
 msgstr "Gaesata"
@@ -1592,28 +1616,22 @@ msgstr "Vercingetorix"
 msgid "Thessalian Scout"
 msgstr "Thessalischer Aufklärer"
 
-#: simulation/templates/units/hele_champion_cavalry_mace.xml:23
+#: simulation/templates/units/hele_champion_cavalry_mace.xml:15
 msgid ""
 "Macedonian Champion Cavalry.\n"
 "Counters Cavalry and Archers. Countered by Champion Units."
 msgstr "Makedonische Gardekavallerie.\nStark gegen: Kavallerie und Bogenschützen.\nSchwach gegen: Gardeeinheiten."
 
-#: simulation/templates/units/hele_champion_cavalry_mace.xml:21
-#: simulation/templates/units/mace_champion_cavalry.xml:19
+#: simulation/templates/units/hele_champion_cavalry_mace.xml:13
+#: simulation/templates/units/mace_champion_cavalry.xml:13
 #: simulation/templates/units/sele_cavalry_spearman_b.xml:6
 msgid "Companion Cavalry"
 msgstr "Hetairenreiterei"
 
-#: simulation/templates/units/hele_champion_cavalry_mace.xml:22
-#: simulation/templates/units/mace_champion_cavalry.xml:20
+#: simulation/templates/units/hele_champion_cavalry_mace.xml:14
+#: simulation/templates/units/mace_champion_cavalry.xml:14
 msgid "Hetaîros"
 msgstr "Hetaîros"
-
-#: simulation/templates/units/hele_champion_infantry_mace.xml:7
-msgid ""
-"Macedonian Champion Pikeman.\n"
-"Heavy line infantry. Counters Cavalry and Infantry. Countered Ranged Units. Uses the Syntagma Formation."
-msgstr "Makedonischer Gardepikenier\nSchwere Linieninfanterie in Makedonischer Phalanx-Formation. Stark gegen Kavallerie und Infanterie. Stark gegen Fernkampfeinheiten."
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -1625,48 +1643,45 @@ msgstr "Pezhetairoi"
 msgid "Pezétairos"
 msgstr "Pezétairos"
 
-#: simulation/templates/units/hele_champion_infantry_polis.xml:100
-#: simulation/templates/units/spart_champion_infantry_spear.xml:102
+#: simulation/templates/units/hele_champion_infantry_polis.xml:99
+#: simulation/templates/units/spart_champion_infantry_spear.xml:99
 msgid ""
-"Classes: Champion Melee Infantry Spearman.\n"
-"Counters: 2x vs. All Cavalry types. +10% Attack vs. All Non-Greek Units.\n"
-"Countered by: Skirmishers, Swordsmen, Cavalry Archers."
-msgstr "Klassen: Gardist, Nahkampf, Infanterie, Lanzenträger.\nStark gegen: 2x geg. alle berittenen Einheiten. +10% Angriffsstärke geg. nichtgriechische Einheiten.\nSchwach gegen: Plänkler, Schwerkämpfer und berittenen Bogenschützen."
+"Counters: 2x vs. All Cavalry. 1.1x vs. Non-Greek Units.\n"
+"Countered by: Ranged Units and Sword Infantry."
+msgstr "Stark gegen: 2x geg. Reitereien. 1.1x geg. nicht-griechische Einheiten.\nSchwach gegen: Fernkampfeinheiten und Schwert-Infanterie."
 
-#: simulation/templates/units/hele_champion_infantry_polis.xml:98
-#: simulation/templates/units/spart_champion_infantry_spear.xml:100
+#: simulation/templates/units/hele_champion_infantry_polis.xml:97
+#: simulation/templates/units/spart_champion_infantry_spear.xml:97
 msgid "Spartan Hoplite"
 msgstr "Spartiat"
 
-#: simulation/templates/units/hele_champion_infantry_polis.xml:99
+#: simulation/templates/units/hele_champion_infantry_polis.xml:98
 msgid "Spartiā́tēs"
 msgstr "Spartiā́tēs"
 
-#: simulation/templates/units/hele_champion_ranged_polis.xml:20
+#: simulation/templates/units/hele_champion_ranged_polis.xml:19
 msgid ""
 "Poleis Champion Raider.\n"
 "Counters Support Units and Ranged Units. Countered by Melee Cavalry. Fast Move Speed."
 msgstr "Poleis Gardeplünderer.\nStark gegen: Unterstützungseinheiten und Fernkämpfer. Schwach gegen: Nahkampf-Kavallerie. Hohe Lauf-Geschwindigkeit."
 
-#: simulation/templates/units/hele_champion_ranged_polis.xml:18
+#: simulation/templates/units/hele_champion_ranged_polis.xml:17
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:47
 msgid "Athenian Light Hoplite"
 msgstr "Athenischer leichter Hoplit"
 
-#: simulation/templates/units/hele_champion_ranged_polis.xml:19
+#: simulation/templates/units/hele_champion_ranged_polis.xml:18
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:48
 msgid "Ékdromos Athēnaïkós"
 msgstr "Ékdromos Athēnaïkós"
 
-#: simulation/templates/units/hele_champion_swordsman_polis.xml:49
-msgid ""
-"Poleis Champion Raider.\n"
-"Counters Support Units, Spear units, and Ranged Units (if they can catch them). Countered by Archers."
-msgstr "Poleis Gardeplünderer.\nStark gegen: Unterstützungseinheiten, Speerkämpfer und Fernkämpfer (falls sie sie fangen können). Schwach gegen: Bogenschützen. Hohe Lauf-Geschwindigkeit."
-
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
 msgstr "Xenophon"
+
+#: simulation/templates/units/hele_hero_xenophon.xml:23
+msgid "All Peltasts +15% speed."
+msgstr "Alle Peltasten +15% Geschwindigkeit."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:29
 msgid "Xenophôn"
@@ -1682,11 +1697,11 @@ msgstr "Rhodischer Schleuderer"
 msgid "Sphendonetes Rhodikos"
 msgstr "Sphendonetes Rhodikos"
 
-#: simulation/templates/units/hele_infantry_spearman_b.xml:26
+#: simulation/templates/units/hele_infantry_spearman_b.xml:21
 msgid "Greek Hoplite"
 msgstr "Griechischer Hoplit"
 
-#: simulation/templates/units/hele_infantry_spearman_b.xml:27
+#: simulation/templates/units/hele_infantry_spearman_b.xml:22
 msgid "Hoplī́tēs Hellēnikós"
 msgstr "Hoplī́tēs Hellēnikós"
 
@@ -1733,11 +1748,10 @@ msgstr "Lantzari"
 
 #: simulation/templates/units/iber_champion_cavalry.xml:36
 msgid ""
-"Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings.\n"
 "Counters: 2x vs. Buildings, 1.5x vs. Archers.\n"
-"Countered by: Spearmen and Elephants."
-msgstr "Klassen: Gardist Fernkampf Reiterei Plänkler.\nSpezialfähigkeit: Brennende Wurfspieße. Stark geg. Gebäude.\nStark gegen: 2x geg. Gebäude, 1.5x geg. Bogenschützen.\nSchwach gegen: Lanzenträger und Elefanten."
+"Countered by: Spear Infantry, Sword Cavalry, and Elephants."
+msgstr "Spezialfähigkeit: Brennende Wurfspieße. Stark geg. Gebäude.\nStark gegen: 2x geg. Gebäude, 1.5x geg. Bogenschützen.\nSchwach gegen: Lanzenträger und Elefanten."
 
 #: simulation/templates/units/iber_champion_cavalry.xml:32
 msgid "Leial Zalduneria"
@@ -1837,6 +1851,12 @@ msgstr "Thessalischer Lanzenreiter"
 msgid "Xystophoros Thessalikos"
 msgstr "Xystophoros Thessalikos"
 
+#: simulation/templates/units/mace_champion_infantry_a.xml:33
+msgid ""
+"Counters: 2x vs. All Cavalry. 1.25x vs. Persians.\n"
+"Countered by: Ranged Units and Sword Infantry."
+msgstr "Stark gegen: 2x geg. Fernkampfinfanterie. 1.25x geg. Perser.\nSchwach gegen: Fernkampfeinheiten und Schwert-Infanterie."
+
 #: simulation/templates/units/mace_champion_infantry_a.xml:30
 msgid "Macedonian Shield Bearer"
 msgstr "Makedonischer Schildträger"
@@ -1917,11 +1937,11 @@ msgstr "Pyrrhos I."
 msgid "Pyrrhos ton Epeiros"
 msgstr "Pyrrhos ton Epeiros"
 
-#: simulation/templates/units/mace_infantry_javelinist_b.xml:23
+#: simulation/templates/units/mace_infantry_javelinist_b.xml:13
 msgid "Agrianian Peltast"
 msgstr "Agrianischer Peltast"
 
-#: simulation/templates/units/mace_infantry_javelinist_b.xml:24
+#: simulation/templates/units/mace_infantry_javelinist_b.xml:14
 msgid "Peltastes Agrianikos"
 msgstr "Peltastes Agrianikos"
 
@@ -1943,18 +1963,22 @@ msgid "Gýnē Makedonikós"
 msgstr "Gýnē Makedonikós"
 
 #: simulation/templates/units/mace_thorakites.xml:5
+#: simulation/templates/units/merc_thorakites.xml:5
 msgid "Armored Swordsman"
 msgstr "Gepanzerter Schwertkämpfer"
 
 #: simulation/templates/units/mace_thorakites.xml:6
+#: simulation/templates/units/merc_thorakites.xml:6
 msgid "Thorakites"
 msgstr "Thorakites"
 
 #: simulation/templates/units/mace_thureophoros.xml:9
+#: simulation/templates/units/merc_thureophoros.xml:9
 msgid "Heavy Skirmisher"
 msgstr "Schwerer Plänkler"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
+#: simulation/templates/units/merc_thureophoros.xml:10
 msgid "Thureophoros"
 msgstr "Thureophoroi"
 
@@ -1975,7 +1999,6 @@ msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur_champion_chariot.xml:35
-#: simulation/templates/units/sele_champion_chariot.xml:34
 msgid ""
 "Classes: Champion Ranged Cavalry Chariot Archer.\n"
 "Counters: 2x vs. Swordsmen, 1.5x vs. Spearmen. Deals Trample Damage.\n"
@@ -1999,43 +2022,38 @@ msgstr "Indischer Kriegselefant"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur_champion_infantry.xml:49
+#: simulation/templates/units/maur_champion_infantry.xml:50
 msgid ""
-"Classes: Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Structures, 1.25x vs. Spearmen and Elephants.\n"
-"Countered by: Archers and Cavalry Spearmen."
-msgstr "Klassen: Gardist, Nahkampf, Infanterie, Schwertkämpfer.\nStark gegen: 2x geg. Bauwerke, 1.25x geg. Lanzenträger und Elefanten.\nSchwach gegen: Bogenschützen und berittene Lanzenträger."
+"Counters: 2x vs. Structures, 1.25x vs. Spear Infantry and Elephants.\n"
+"Countered by: Archer Infantry and Archer Cavalry."
+msgstr "Stark gegen: 2x geg. Strukturen, 1.25x geg. Speer-Infanterie und Elefanten.\nSchwach gegen: Bogenschützen und berittene Bogenschützen."
 
 #: simulation/templates/units/maur_champion_infantry.xml:44
 msgid "Warrior"
 msgstr "Krieger"
 
 #: simulation/templates/units/maur_champion_infantry.xml:45
-msgid "Yōddha"
-msgstr "Yōddha"
+msgid "Yōddha योद्धा"
+msgstr "Yōddha योद्धा"
 
 #: simulation/templates/units/maur_champion_maiden.xml:16
 msgid "Maiden Guard"
 msgstr "Wächterin"
 
 #: simulation/templates/units/maur_champion_maiden.xml:17
-#: simulation/templates/units/maur_champion_maiden_archer.xml:18
+#: simulation/templates/units/maur_champion_maiden_archer.xml:17
 msgid "Visha Kanya"
 msgstr "Visha Kanya"
 
-#: simulation/templates/units/maur_champion_maiden_archer.xml:17
+#: simulation/templates/units/maur_champion_maiden_archer.xml:16
 msgid "Maiden Guard Archer"
 msgstr "Bogenschützin"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:24
-msgid "-Cavalry"
-msgstr "-Kavallerie"
-
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. \"Stench\" aura vs. Cavalry.\n"
+"Counters: 1.5x vs. Melee Infantry. \"Stench\" aura vs. Cavalry.\n"
 "Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "Stark gegen: 2x geg. Speerkämpfer, 1.5x geg. Schwertkämpfer. Flächeneffekt \"Gestank\" gegen Reitereien.\nSchwach gegen: Plänkler und Schwertkämpfer. Kann Amok laufen."
+msgstr "Stark gegen: 1.5x geg. Nahkampf-Infanterie. Flächeneffekt \"Gestank\" gegen Reitereien.\nSchwach gegen: Plänkler und Schwertkämpfer. Kann Amok laufen."
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
@@ -2103,11 +2121,11 @@ msgstr "Bambusspeerkämpfer"
 msgid "Kauntika"
 msgstr "Kauntika"
 
-#: simulation/templates/units/maur_infantry_swordsman_b.xml:26
+#: simulation/templates/units/maur_infantry_swordsman_b.xml:13
 msgid "Indian Swordsman"
 msgstr "Indischer Schwertkämpfer"
 
-#: simulation/templates/units/maur_infantry_swordsman_b.xml:27
+#: simulation/templates/units/maur_infantry_swordsman_b.xml:14
 msgid "Khadagdhari"
 msgstr "Khadagdhari"
 
@@ -2168,13 +2186,6 @@ msgstr "Brāhmaṇa Pujari"
 msgid "Vaishya"
 msgstr "Vaishya"
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
-msgid ""
-"Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Klassen: Söldner, Nahkampf, Fußtruppe, Schwertkämpfer.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Lanzenträger und berittene Bogenschützen."
-
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
 msgid "Thracian Mercenary Swordsman"
@@ -2197,14 +2208,6 @@ msgstr "Persischer Apfelträger"
 msgid "Arštibara"
 msgstr "Arštibara"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:36
-msgid ""
-"Classes: Ranged Cavalry Chariot Archer.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants.\n"
-"Causes trample damage to enemy units."
-msgstr "Klassen: Fernkampf, Reiterei, Streitwagen, Bogenschützen.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Schwertkämpfer.\nSchwach gegen: Plänkler und Elefanten.\nZusatzschaden durch Überrennen feindlicher Einheiten."
-
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babylonian Scythed Chariot"
 msgstr "Babylonischer Sichelstreitwagen"
@@ -2224,29 +2227,29 @@ msgstr "Medische leichte Kavallerie"
 msgid "Mada Asabara"
 msgstr "Mada Asabara"
 
-#: simulation/templates/units/pers_cavalry_spearman_b.xml:11
+#: simulation/templates/units/pers_cavalry_spearman_b.xml:6
 msgid "Cappadocian Cavalry"
 msgstr "Kappadokische Kavallerie"
 
-#: simulation/templates/units/pers_cavalry_spearman_b.xml:12
+#: simulation/templates/units/pers_cavalry_spearman_b.xml:7
 msgid "Katpaduka Asabara"
 msgstr "Katpaduka Asabara"
 
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:11
+#: simulation/templates/units/pers_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:12
 msgid "Hyrcanian Cavalry"
 msgstr "Hyrkanische Kavallerie"
 
-#: simulation/templates/units/pers_cavalry_swordsman_b.xml:12
+#: simulation/templates/units/pers_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/pers_cavalry_swordsman_b_trireme.xml:13
 msgid "Varkaniya Asabara"
 msgstr "Varkaniya Asabara"
 
-#: simulation/templates/units/pers_champion_cavalry.xml:23
+#: simulation/templates/units/pers_champion_cavalry.xml:25
 msgid "Bactrian Heavy Lancer"
 msgstr "Baktrischer schwerer Lanzenreiter"
 
-#: simulation/templates/units/pers_champion_cavalry.xml:24
+#: simulation/templates/units/pers_champion_cavalry.xml:26
 #: simulation/templates/units/pers_champion_cavalry_archer.xml:17
 msgid "Bakhtrish Asabara"
 msgstr "Bakhtrish Asabara"
@@ -2306,22 +2309,22 @@ msgstr "+15% Bewegungsgeschwindigkeit für alle Einheiten."
 msgid "Darayavahush I"
 msgstr "Darayavahush I."
 
-#: simulation/templates/units/pers_hero_xerxes.xml:12
+#: simulation/templates/units/pers_hero_xerxes.xml:16
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
 msgstr "Administrator Aura"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:18
+#: simulation/templates/units/pers_hero_xerxes.xml:22
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
 msgid "Xerxes I"
 msgstr "Xerxes I."
 
-#: simulation/templates/units/pers_hero_xerxes.xml:13
+#: simulation/templates/units/pers_hero_xerxes.xml:17
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid " +15% Gather Rate and Build Rate of nearby units."
 msgstr "+15% Sammel- und Baurate von in der Nähe befindlichen Einheiten."
 
-#: simulation/templates/units/pers_hero_xerxes.xml:19
+#: simulation/templates/units/pers_hero_xerxes.xml:23
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:43
 msgid "Xsayarsa I"
 msgstr "Hšayāŗšā I."
@@ -2334,11 +2337,11 @@ msgstr "Sogdischer Bogenschütze"
 msgid "Sugda Vaçabara"
 msgstr "Sugda Vaçabara"
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:24
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:19
 msgid "Anatolian Auxiliary"
 msgstr "Anatolischer Verbündeter"
 
-#: simulation/templates/units/pers_infantry_javelinist_b.xml:25
+#: simulation/templates/units/pers_infantry_javelinist_b.xml:20
 msgid "Spardiya Takabara"
 msgstr "Spardiya Takabara"
 
@@ -2358,11 +2361,11 @@ msgstr "Kardakenhoplit"
 msgid "Hoplites Kardakes"
 msgstr "Hoplites Kardakes"
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:13
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:5
 msgid "Cardaces Skirmisher"
 msgstr "Kardakenplänkler"
 
-#: simulation/templates/units/pers_kardakes_skirmisher.xml:14
+#: simulation/templates/units/pers_kardakes_skirmisher.xml:6
 msgid "Peltastes Kardakes"
 msgstr "Peltastes Kardakes"
 
@@ -2432,13 +2435,16 @@ msgstr "Aramäischer Händler"
 msgid "Tamkarum Arami"
 msgstr "Tamkarum Arami"
 
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:5
+msgid "Camel"
+msgstr "Kamel"
+
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 msgid ""
-"Classes: Ranged Cavalry Camel Archer.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants.\n"
-"\"Stench\" aura vs. Horses (Cavalry are less effective against Camels)."
-msgstr "Klassen: Fernkampf Reiterei Kamel Bogenschütze.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Schwertkämpfer.\nSchwach gegen: Plänkler und Elefanten.\nFlächeneffekt \"Gestank\" geg. Pferdereiter (Pferdereiterei ist weniger effektiv gegen Kamelreiterei)."
+"Counters: 1.5x vs. Melee Infantry.\n"
+"Countered by: Javelin Infantry, Cavalry Swordsmen, and Elephants.\n"
+"\"Stench\" Aura vs. Horse Cavalry."
+msgstr "Stark gegen: 1.5x gegen Nahkampf-Infanterie.\nSchwach gegen: Speer-Infanterie, Kavallerie Schwertkämpfer und Elefanten.\n\"Gestank\" Aura gegen Kavallerie."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2464,11 +2470,11 @@ msgstr "Makedonischer Siedlerreiter"
 msgid "Hippeus Makedonikós"
 msgstr "Hippeus Makedonikós"
 
-#: simulation/templates/units/ptol_champion_cavalry.xml:5
+#: simulation/templates/units/ptol_champion_cavalry.xml:13
 msgid "Royal Guard Cavalry"
 msgstr "Berittene königliche Wache"
 
-#: simulation/templates/units/ptol_champion_cavalry.xml:6
+#: simulation/templates/units/ptol_champion_cavalry.xml:14
 msgid "Agema Basilikos"
 msgstr "Agema Basilikos"
 
@@ -2494,9 +2500,9 @@ msgstr "Patriot Aura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:26
 msgid ""
-"Classes: Hero Infantry Archer.\n"
-"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr "Klassen: Held Infanterie Bogenschütze.\n\"Gemahlin\" Aura (TBD): Erhöhte Wirksamkeit der verbündeten Helden in ihrem Sichtbarkeitsbereich. Verminderte Wirksamkeit feindlicher Helden."
+"\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her "
+"vision. Decreased effectiveness for enemy heroes."
+msgstr "\"Gemahlin\" Aura (TBD): Erhöhte Wirksamkeit der verbündeten Helden in ihrem Sichtbarkeitsbereich. Verminderte Wirksamkeit feindlicher Helden."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:24
 msgid "Cleopatra VII"
@@ -2550,18 +2556,11 @@ msgstr "Ägyptische Pikeniere haben 40% mehr Gesundheit zu seinen Lebzeiten."
 msgid "Ptolemaios D' Philopater"
 msgstr "Ptolemaios D' Philopater"
 
-#: simulation/templates/units/ptol_infantry_archer_b.xml:29
-msgid ""
-"Classes: Ranged Mercenary Infantry Archer Worker.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
-"Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "Klassen: Fernkampf, Söldner, Infanterie, Bogenschütze, Arbeiter\nStark gegen: 2x gegen Schwertkämpfer, 1.25x gegen Berittene Speerträger\nSchwach gegen: Berittene Schwertkämpfer, Berittene Plänkler"
-
-#: simulation/templates/units/ptol_infantry_archer_b.xml:26
+#: simulation/templates/units/ptol_infantry_archer_b.xml:23
 msgid "Nubian Mercenary Archer"
 msgstr "Nubischer Söldnerbogenschütze"
 
-#: simulation/templates/units/ptol_infantry_archer_b.xml:27
+#: simulation/templates/units/ptol_infantry_archer_b.xml:24
 msgid "Kousít Misthophóros Toxóti̱s"
 msgstr "Kousít Misthophóros Toxóti̱s"
 
@@ -2601,7 +2600,7 @@ msgstr "Makhimos Phalangites"
 msgid "Gallikós Mistophorós"
 msgstr "Gallikós Mistophorós"
 
-#: simulation/templates/units/ptol_mechanical_siege_polybolos_common.xml:5
+#: simulation/templates/units/ptol_mechanical_siege_polybolos_common.xml:10
 msgid "Polybolos"
 msgstr "Polybolos"
 
@@ -2692,8 +2691,10 @@ msgid "Shield of Rome Aura"
 msgstr "Schild von Rom Aura"
 
 #: simulation/templates/units/rome_hero_maximus.xml:13
-msgid "+1 armour for all units and structures."
-msgstr "+1 Rüstung für alle Einheiten und Strukturen."
+msgid ""
+"+1 Hack, Pierce, and Crush armor for all units and structures while he "
+"lives."
+msgstr "+1 Hieb, Stich und Stoß-Rüstung für alle Einheiten und Gebäude, während er lebt."
 
 #: simulation/templates/units/rome_hero_maximus.xml:18
 msgid "Quintus Fabius Maximus"
@@ -2730,11 +2731,11 @@ msgstr "Triarius"
 msgid "Princeps"
 msgstr "Princeps"
 
-#: simulation/templates/units/rome_infantry_swordsman_b.xml:27
+#: simulation/templates/units/rome_infantry_swordsman_b.xml:19
 msgid "Roman Swordsman"
 msgstr "Römischer Schwertkämpfer"
 
-#: simulation/templates/units/rome_infantry_swordsman_b.xml:28
+#: simulation/templates/units/rome_infantry_swordsman_b.xml:20
 msgid "Hastatus"
 msgstr "Hastatus"
 
@@ -2754,13 +2755,13 @@ msgstr "Marianischer Legionär"
 msgid "Marian Legionarius"
 msgstr "Marian Legionarius"
 
+#: simulation/templates/units/rome_mechanical_siege_onager_unpacked.xml:32
+msgid "Ballista"
+msgstr "Ballista"
+
 #: simulation/templates/units/rome_mechanical_siege_ram.xml:9
 msgid "Aries"
 msgstr "Aries"
-
-#: simulation/templates/units/rome_mechanical_siege_scorpio_common.xml:29
-msgid "Scorpio"
-msgstr "Scorpio"
 
 #: simulation/templates/units/rome_ship_bireme.xml:5
 msgid "Liburnus"
@@ -2852,18 +2853,11 @@ msgstr "Söldnerschwertkämpfer.\nBonus vs. alle Speereinheiten."
 msgid "(Samnite Swordsman)"
 msgstr "(Samnitischer Schwertkämpfer)"
 
-#: simulation/templates/units/sele_cavalry_archer_b.xml:11
-msgid ""
-"Classes: Ranged Cavalry Camel Archer.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants."
-msgstr "Klassen: Fernkampf Kavallerie, Kamel Bogenschütze.\nStark gegen: 2x gegen Lanzenträger, 1.5x gegen Schwertkämpfer.\nSchwach gegen: Plänkler und Elefanten."
-
-#: simulation/templates/units/sele_cavalry_archer_b.xml:7
+#: simulation/templates/units/sele_cavalry_archer_b.xml:6
 msgid "Dahae Horse Archer"
 msgstr "Dahaenischer berittener Bogenschütze"
 
-#: simulation/templates/units/sele_cavalry_archer_b.xml:8
+#: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Hippotoxotès Dahae"
 msgstr "Hippotoxotès Dahae"
 
@@ -2883,13 +2877,17 @@ msgstr "Hippeus Medikos"
 msgid "Hippos Hetairike"
 msgstr "Hippos Hetairike"
 
-#: simulation/templates/units/sele_champion_cavalry.xml:23
+#: simulation/templates/units/sele_champion_cavalry.xml:25
 msgid "Seleucid Cataphract"
 msgstr "Seleukidischer Kataphrakt"
 
-#: simulation/templates/units/sele_champion_cavalry.xml:24
+#: simulation/templates/units/sele_champion_cavalry.xml:26
 msgid "Seleukidón Kataphraktos"
 msgstr "Seleukidón Kataphraktos"
+
+#: simulation/templates/units/sele_champion_chariot.xml:29
+msgid "Trample"
+msgstr "Trampeln"
 
 #: simulation/templates/units/sele_champion_chariot.xml:30
 msgid "Scythed Chariot"
@@ -3013,12 +3011,10 @@ msgstr "Goldschild Pikenier"
 msgid "Chrysaspides"
 msgstr "Chrysaspides"
 
-#: simulation/templates/units/sele_infantry_swordsman_b.xml:18
-msgid ""
-"Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Klassen: Söldner Bürger Nahkampf Infanterie Schwertkämpfer.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Lanzenträger und berittene Bogenschützen."
+#: simulation/templates/units/sele_infantry_swordsman_b.xml:16
+#: simulation/templates/units/thrace_black_cloak.xml:21
+msgid "Thracian"
+msgstr "Thrazier"
 
 #: simulation/templates/units/sele_ship_trireme.xml:6
 msgid "Seleucid Trireme"
@@ -3060,7 +3056,7 @@ msgstr "Spartanischer Pikenier"
 msgid "Phalangites Spartiatis"
 msgstr "Spartanische Phalangiten"
 
-#: simulation/templates/units/spart_champion_infantry_spear.xml:101
+#: simulation/templates/units/spart_champion_infantry_spear.xml:98
 msgid "Spartiáti̱s"
 msgstr "Spartiáti̱s"
 
@@ -3187,13 +3183,6 @@ msgstr "Speergardisten.\nStark gegen Nahkämpfer. Schwach gegen Fernkämpfer. Ex
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieros Lochos Hoplites"
 msgstr "Hieros Lochos Hoplites"
-
-#: simulation/templates/units/thrace_black_cloak.xml:21
-msgid ""
-"Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "Klassen: Söldner Gardist Nahkampf Infanterie Schwertkämpfer.\nStark gegen: 2x geg. Lanzenträger, 1.5x geg. Elefanten.\nSchwach gegen: Bogenschützen, berittene Lanzenträger und berittene Bogenschützen."
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"

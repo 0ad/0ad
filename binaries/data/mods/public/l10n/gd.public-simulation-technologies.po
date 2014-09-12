@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-29 09:31+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1868,16 +1868,17 @@ msgid "Crop Rotation"
 msgstr "Cuairteachadh barra"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Cuiridh trèanadh sabaide le sleaghan ris an dochann a nì sleaghairean coisridh."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "+2 air ionnsaigh spealgaidh nan sleaghairean."
+msgid "Spear Infantry +2 hack attack."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Sabaid na coisridh le sleaghan"
+msgid "Infantry Spear Training"
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1909,13 +1910,13 @@ msgstr "Cha bhiodh am feachd as motha fon ghrèin aig na Spartaich ach 's ann gu
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Chaidh na Spartaich a thrèanadh ann an ionadan sònraichte on òige ach am bhiodh iad nan sàr-ghaisgeach 's gun seasadh iad ri cruadal a' bheatha san arm."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Gheibh sleaghair coisridh +25% de shlàinte ach bheir iad +10% nas faide gus an trèanadh."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2056,8 +2057,8 @@ msgid ""
 msgstr "Cha toir trèanadh laoich coisridh Anusaidhea ach an dàrna leth de dh'ùine ach caillidh iad beagan slàinte."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Thèid laoich coisridh Anusaidhea a thrèanadh nas luaithe le -50% ach caillidh iad slàinte cuideachd le -20."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

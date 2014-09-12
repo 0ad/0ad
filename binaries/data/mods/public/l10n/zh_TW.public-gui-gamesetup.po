@@ -7,14 +7,15 @@
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # Cirro Yuan, 2013
 # Jeff Huang <s8321414@gmail.com>, 2013-2014
+# kevinchentw <kevinchen.gm@gmail.com>, 2014
 # kevinhykuo <kevinhykuo1994@gmail.com>, 2014
 # samrmrf, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-07-05 18:59+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-12 04:14+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -60,254 +61,234 @@ msgid "Very Hard"
 msgstr "極難"
 
 #. Translation: Type of victory condition.
-#: gui/gamesetup/gamesetup.js:8
-msgctxt "victory"
-msgid "Conquest"
-msgstr "征服"
-
-#: gui/gamesetup/gamesetup.js:8
-msgctxt "victory"
-msgid "Wonder"
-msgstr "奇觀"
-
-#: gui/gamesetup/gamesetup.js:8
-msgctxt "victory"
-msgid "None"
-msgstr "無"
-
-#: gui/gamesetup/gamesetup.js:11
+#: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
 msgstr "無限"
 
 #. Translation: Amount of starting resources.
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
 msgstr "非常低"
 
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
 msgstr "低"
 
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
 msgstr "中等"
 
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
 msgstr "高"
 
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
 msgstr "非常高"
 
-#: gui/gamesetup/gamesetup.js:15
+#: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Deathmatch"
 msgstr "死鬥"
 
-#: gui/gamesetup/gamesetup.js:72
-#, python-format
-msgid ""
-"%(warning)s The AI does not support naval maps and may cause severe "
-"performance issues. Naval maps are recommended to be played with human "
-"opponents only. Nonetheless, Petra has now an experimental support for naval"
-" maps."
-msgstr "%(warning)s 該 AI 尚未支援海洋地圖，可能導致遊戲發生嚴重的效能問題。建議只跟人類對手挑戰海洋地圖。不過，Petra 現在對海洋地圖有實驗性的支援。"
-
-#: gui/gamesetup/gamesetup.js:73
-msgid "Warning:"
-msgstr "警告："
-
-#: gui/gamesetup/gamesetup.js:113
+#: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
 msgstr "返回主選單。"
 
-#: gui/gamesetup/gamesetup.js:117
+#: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
 msgstr "返回大廳。"
 
-#: gui/gamesetup/gamesetup.js:146
+#: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
 msgstr "小規模戰鬥"
 
-#: gui/gamesetup/gamesetup.js:146 gui/gamesetup/gamesetup.js:635
-#: gui/gamesetup/gamesetup.js:1223
+#: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
+#: gui/gamesetup/gamesetup.js:1246
 msgctxt "map"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/gamesetup.js:146
+#: gui/gamesetup/gamesetup.js:139
 msgid "Scenario"
 msgstr "劇情"
 
-#: gui/gamesetup/gamesetup.js:150 gui/gamesetup/gamesetup.js:1129
-#: gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1152
+#: gui/gamesetup/gamesetup.js:1229
 msgid "Default"
 msgstr "預設"
 
-#: gui/gamesetup/gamesetup.js:151
+#: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
 msgstr "海洋地圖"
 
-#: gui/gamesetup/gamesetup.js:152
+#: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
 msgstr "展示地圖"
 
-#: gui/gamesetup/gamesetup.js:153
+#: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
 msgstr "所有地圖"
 
-#: gui/gamesetup/gamesetup.js:364
+#: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
 msgstr "無"
 
-#: gui/gamesetup/gamesetup.js:569 gui/gamesetup/gamesetup.js:1276
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1307
 msgctxt "civilization"
 msgid "Random"
 msgstr "隨機"
 
-#: gui/gamesetup/gamesetup.js:759 gui/gamesetup/gamesetup.js:876
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:893
 msgid "You"
 msgstr "您"
 
-#: gui/gamesetup/gamesetup.js:953
+#: gui/gamesetup/gamesetup.js:974
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1092 gui/gamesetup/gamesetup.xml:110 (caption)
+#: gui/gamesetup/gamesetup.js:1115 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr "地圖大小："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1094 gui/gamesetup/gamesetup.js:1153
-#: gui/gamesetup/gamesetup.xml:310 (caption)
+#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.xml:312 (caption)
 msgid "Revealed Map:"
 msgstr "已顯示的地圖："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1095 gui/gamesetup/gamesetup.js:1154
-#: gui/gamesetup/gamesetup.xml:320 (caption)
+#: gui/gamesetup/gamesetup.js:1118 gui/gamesetup/gamesetup.js:1177
+#: gui/gamesetup/gamesetup.xml:322 (caption)
 msgid "Explored Map:"
 msgstr "已探索的地圖："
 
-#: gui/gamesetup/gamesetup.js:1099 gui/gamesetup/gamesetup.js:1158
-#: gui/gamesetup/gamesetup.xml:280 (caption)
+#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
+#: gui/gamesetup/gamesetup.xml:282 (caption)
 msgid "Victory Condition:"
 msgstr "勝利條件："
 
-#: gui/gamesetup/gamesetup.js:1101 gui/gamesetup/gamesetup.js:1160
-#: gui/gamesetup/gamesetup.xml:330 (caption)
+#: gui/gamesetup/gamesetup.js:1124 gui/gamesetup/gamesetup.js:1183
+#: gui/gamesetup/gamesetup.xml:332 (caption)
 msgid "Teams Locked:"
 msgstr "團隊鎖定："
 
-#: gui/gamesetup/gamesetup.js:1120 gui/gamesetup/gamesetup.js:1121
-#: gui/gamesetup/gamesetup.js:1123 gui/gamesetup/gamesetup.js:1176
-#: gui/gamesetup/gamesetup.js:1177 gui/gamesetup/gamesetup.js:1179
-#: gui/gamesetup/gamesetup.js:1207 gui/gamesetup/gamesetup.js:1208
-#: gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
+#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
+#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
+#: gui/gamesetup/gamesetup.js:1233
 msgid "Yes"
 msgstr "是"
 
-#: gui/gamesetup/gamesetup.js:1120 gui/gamesetup/gamesetup.js:1121
-#: gui/gamesetup/gamesetup.js:1123 gui/gamesetup/gamesetup.js:1176
-#: gui/gamesetup/gamesetup.js:1177 gui/gamesetup/gamesetup.js:1179
-#: gui/gamesetup/gamesetup.js:1207 gui/gamesetup/gamesetup.js:1208
-#: gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
+#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
+#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
+#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
+#: gui/gamesetup/gamesetup.js:1233
 msgid "No"
 msgstr "否"
 
-#: gui/gamesetup/gamesetup.js:1224
+#: gui/gamesetup/gamesetup.js:1247
 msgid "Randomly selects a map from the list"
 msgstr "隨機從列表中選取地圖"
 
-#: gui/gamesetup/gamesetup.js:1231
+#: gui/gamesetup/gamesetup.js:1254
 msgid "Sorry, no description available."
 msgstr "抱歉，沒有可用的描述。"
 
-#: gui/gamesetup/gamesetup.js:1237
+#: gui/gamesetup/gamesetup.js:1257
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s 位玩家。%(description)s"
 
-#: gui/gamesetup/gamesetup.js:1377
+#: gui/gamesetup/gamesetup.js:1293
+msgid "Loading..."
+msgstr "載入中..."
+
+#: gui/gamesetup/gamesetup.js:1408
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "AI：%(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1382
+#: gui/gamesetup/gamesetup.js:1413
 msgid "Unassigned"
 msgstr "未指派"
 
-#: gui/gamesetup/gamesetup.js:1587 gui/gamesetup/gamesetup.js:1592
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1601 gui/gamesetup/gamesetup.js:1606
+#: gui/gamesetup/gamesetup.js:1624
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1587
+#: gui/gamesetup/gamesetup.js:1601
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s 已加入"
 
-#: gui/gamesetup/gamesetup.js:1592
+#: gui/gamesetup/gamesetup.js:1606
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s 已離開"
 
-#: gui/gamesetup/gamesetup.js:1597
+#: gui/gamesetup/gamesetup.js:1611
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1598
+#: gui/gamesetup/gamesetup.js:1612
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1604
+#: gui/gamesetup/gamesetup.js:1618
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s 準備好了！"
 
-#: gui/gamesetup/gamesetup.js:1606
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s 尚未準備好。"
 
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1624
 msgid "Game settings have been changed"
 msgstr "遊戲設定已變更"
 
-#: gui/gamesetup/gamesetup.js:1635
+#: gui/gamesetup/gamesetup.js:1649
 msgid "I'm not ready"
 msgstr "我還沒準備好"
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1650
 msgid "State that you are not ready to play."
 msgstr "表明您尚未準備就緒。"
 
-#: gui/gamesetup/gamesetup.js:1641 gui/gamesetup/gamesetup.js:1715
+#: gui/gamesetup/gamesetup.js:1655 gui/gamesetup/gamesetup.js:1729
 msgid "I'm ready!"
 msgstr "我準備好了！"
 
-#: gui/gamesetup/gamesetup.js:1642
+#: gui/gamesetup/gamesetup.js:1656
 msgid "State that you are ready to play!"
 msgstr "表明您準備好了！"
 
-#: gui/gamesetup/gamesetup.js:1716
+#: gui/gamesetup/gamesetup.js:1730
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "表明您接受目前的設定並準備好了！"
+
+#: gui/gamesetup/gamesetup.js:1849
+msgid "None"
+msgstr "無"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, python-format
@@ -331,14 +312,30 @@ msgstr "正與伺服器註冊..."
 msgid "Game has already started, rejoining..."
 msgstr "遊戲已經開始，正重新加入..."
 
-#: gui/gamesetup/gamesetup_mp.js:185
+#: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
 msgstr "遊戲名稱現正被使用中。"
 
-#: gui/gamesetup/gamesetup_mp.js:241
+#: gui/gamesetup/gamesetup_mp.js:249
 #, python-format
 msgid "%(playername)s's game"
 msgstr "%(playername)s 的遊戲"
+
+#: gui/gamesetup/victory_conditions/conquest.js:6
+msgid "Conquest"
+msgstr "征服"
+
+#: gui/gamesetup/victory_conditions/conquest.js:7
+msgid "Defeat all opponents"
+msgstr "擊敗所有對手"
+
+#: gui/gamesetup/victory_conditions/wonder.js:6
+msgid "Wonder"
+msgstr "奇觀"
+
+#: gui/gamesetup/victory_conditions/wonder.js:7
+msgid "Build a wonder to win"
+msgstr "建造奇觀以獲得勝利"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -362,190 +359,190 @@ msgstr "AI 玩家："
 msgid "AI Difficulty:"
 msgstr "AI 難度："
 
-#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:109
+#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
 #: (caption)
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:366
+#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:368
 #: (caption)
 msgid "OK"
 msgstr "確定"
 
-#: gui/gamesetup/gamesetup.xml:15 (caption)
+#: gui/gamesetup/gamesetup.xml:16 (caption)
 msgid "Match Setup"
 msgstr "競賽設定"
 
-#: gui/gamesetup/gamesetup.xml:21 (caption)
+#: gui/gamesetup/gamesetup.xml:22 (caption)
 msgid "Loading"
 msgstr "正在載入"
 
-#: gui/gamesetup/gamesetup.xml:25 (caption)
+#: gui/gamesetup/gamesetup.xml:26 (caption)
 msgid "Loading map data. Please wait..."
 msgstr "正載入地圖資料。請稍候..."
 
-#: gui/gamesetup/gamesetup.xml:40 (caption)
+#: gui/gamesetup/gamesetup.xml:41 (caption)
 msgid "Player Name"
 msgstr "玩家名稱"
 
-#: gui/gamesetup/gamesetup.xml:43 (caption)
+#: gui/gamesetup/gamesetup.xml:44 (caption)
 msgid "Player Placement"
 msgstr "玩家位置"
 
-#: gui/gamesetup/gamesetup.xml:46 (caption)
+#: gui/gamesetup/gamesetup.xml:47 (caption)
 msgid "Civilization"
 msgstr "文明"
 
-#: gui/gamesetup/gamesetup.xml:55 (tooltip)
+#: gui/gamesetup/gamesetup.xml:56 (tooltip)
 msgid "View civilization info"
 msgstr "檢視文明資訊"
 
-#: gui/gamesetup/gamesetup.xml:61 (caption)
+#: gui/gamesetup/gamesetup.xml:62 (caption)
 msgid "Team"
 msgstr "隊伍"
 
-#: gui/gamesetup/gamesetup.xml:70 (tooltip)
+#: gui/gamesetup/gamesetup.xml:71 (tooltip)
 msgid "Select player."
 msgstr "選取玩家。"
 
-#: gui/gamesetup/gamesetup.xml:79 (tooltip)
+#: gui/gamesetup/gamesetup.xml:81 (tooltip)
 msgid "Configure AI settings."
 msgstr "配置 AI 設定。"
 
-#: gui/gamesetup/gamesetup.xml:82 (tooltip)
+#: gui/gamesetup/gamesetup.xml:84 (tooltip)
 msgid "Select player's civilization."
 msgstr "選取玩家的文明。"
 
-#: gui/gamesetup/gamesetup.xml:86 (tooltip)
+#: gui/gamesetup/gamesetup.xml:88 (tooltip)
 msgid "Select player's team."
 msgstr "選取玩家的團隊。"
 
-#: gui/gamesetup/gamesetup.xml:98 (caption)
+#: gui/gamesetup/gamesetup.xml:100 (caption)
 msgid "Map Type:"
 msgstr "地圖類型："
 
-#: gui/gamesetup/gamesetup.xml:101 (caption)
+#: gui/gamesetup/gamesetup.xml:103 (caption)
 msgid "Map Filter:"
 msgstr "地圖篩選："
 
-#: gui/gamesetup/gamesetup.xml:104 (caption)
+#: gui/gamesetup/gamesetup.xml:106 (caption)
 msgid "Select Map:"
 msgstr "選取地圖："
 
-#: gui/gamesetup/gamesetup.xml:107 (caption)
+#: gui/gamesetup/gamesetup.xml:109 (caption)
 msgid "Number of Players:"
 msgstr "玩家數量："
 
-#: gui/gamesetup/gamesetup.xml:127 (tooltip)
+#: gui/gamesetup/gamesetup.xml:129 (tooltip)
 msgid "Select a map type."
 msgstr "選取地圖類型。"
 
-#: gui/gamesetup/gamesetup.xml:136 (tooltip)
+#: gui/gamesetup/gamesetup.xml:138 (tooltip)
 msgid "Select a map filter."
 msgstr "選取地圖篩選類型。"
 
-#: gui/gamesetup/gamesetup.xml:146 (tooltip)
+#: gui/gamesetup/gamesetup.xml:148 (tooltip)
 msgid "Select a map to play on."
 msgstr "選取要玩的地圖。"
 
-#: gui/gamesetup/gamesetup.xml:157 (tooltip)
+#: gui/gamesetup/gamesetup.xml:159 (tooltip)
 msgid "Select number of players."
 msgstr "選擇玩家的人數。"
 
-#: gui/gamesetup/gamesetup.xml:162 (tooltip)
+#: gui/gamesetup/gamesetup.xml:164 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "選取地圖大小。(大型地圖會降低執行效能。)"
 
-#: gui/gamesetup/gamesetup.xml:187 (caption)
+#: gui/gamesetup/gamesetup.xml:189 (caption)
 msgid "Send"
 msgstr "傳送"
 
-#: gui/gamesetup/gamesetup.xml:201 (caption)
+#: gui/gamesetup/gamesetup.xml:203 (caption)
 msgid "[Tooltip text]"
 msgstr "[提示框文字]"
 
-#: gui/gamesetup/gamesetup.xml:213 (caption)
+#: gui/gamesetup/gamesetup.xml:215 (caption)
 msgid "Start game!"
 msgstr "遊戲開始！"
 
-#: gui/gamesetup/gamesetup.xml:214 (tooltip)
+#: gui/gamesetup/gamesetup.xml:216 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "以目前的設定值展開新遊戲。"
 
-#: gui/gamesetup/gamesetup.xml:231 (caption)
+#: gui/gamesetup/gamesetup.xml:233 (caption)
 msgid "Back"
 msgstr "返回"
 
-#: gui/gamesetup/gamesetup.xml:253 (caption) gui/gamesetup/gamesetup.xml:265
+#: gui/gamesetup/gamesetup.xml:255 (caption) gui/gamesetup/gamesetup.xml:267
 #: (caption)
 msgid "More Options"
 msgstr "更多選項"
 
-#: gui/gamesetup/gamesetup.xml:254 (tooltip)
+#: gui/gamesetup/gamesetup.xml:256 (tooltip)
 msgid "See more game options"
 msgstr "查看更多遊戲選項"
 
-#: gui/gamesetup/gamesetup.xml:270 (caption)
+#: gui/gamesetup/gamesetup.xml:272 (caption)
 msgid "Game Speed:"
 msgstr "遊戲速度："
 
-#: gui/gamesetup/gamesetup.xml:274 (tooltip)
+#: gui/gamesetup/gamesetup.xml:276 (tooltip)
 msgid "Select game speed."
 msgstr "選取遊戲速度。"
 
-#: gui/gamesetup/gamesetup.xml:284 (tooltip)
+#: gui/gamesetup/gamesetup.xml:286 (tooltip)
 msgid "Select victory condition."
 msgstr "選取勝利條件。"
 
-#: gui/gamesetup/gamesetup.xml:290 (caption)
+#: gui/gamesetup/gamesetup.xml:292 (caption)
 msgid "Population Cap:"
 msgstr "人口上限："
 
-#: gui/gamesetup/gamesetup.xml:294 (tooltip)
+#: gui/gamesetup/gamesetup.xml:296 (tooltip)
 msgid "Select population cap."
 msgstr "選取人口上限。"
 
-#: gui/gamesetup/gamesetup.xml:300 (caption)
+#: gui/gamesetup/gamesetup.xml:302 (caption)
 msgid "Starting Resources:"
 msgstr "初始資源："
 
-#: gui/gamesetup/gamesetup.xml:304 (tooltip)
+#: gui/gamesetup/gamesetup.xml:306 (tooltip)
 msgid "Select the game's starting resources."
 msgstr "選取遊戲的初始資源。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:314 (tooltip)
+#: gui/gamesetup/gamesetup.xml:316 (tooltip)
 msgid "Toggle revealed map (see everything)."
 msgstr "切換是否使用顯示全地圖(可以看到所有東西)。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:324 (tooltip)
+#: gui/gamesetup/gamesetup.xml:326 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr "切換是否使用已探索的地圖(可以看到地形及建築物)。"
 
-#: gui/gamesetup/gamesetup.xml:334 (tooltip)
+#: gui/gamesetup/gamesetup.xml:336 (tooltip)
 msgid "Toggle locked teams."
 msgstr "切換是否鎖定隊伍。"
 
-#: gui/gamesetup/gamesetup.xml:340 (caption)
+#: gui/gamesetup/gamesetup.xml:342 (caption)
 msgid "Cheats:"
 msgstr "作弊秘技："
 
-#: gui/gamesetup/gamesetup.xml:344 (tooltip)
+#: gui/gamesetup/gamesetup.xml:346 (tooltip)
 msgid "Toggle the usability of cheats."
 msgstr "切換是否可以使用作弊秘技。"
 
-#: gui/gamesetup/gamesetup.xml:350 (caption)
+#: gui/gamesetup/gamesetup.xml:352 (caption)
 msgid "Rated Game:"
 msgstr "排名遊戲："
 
-#: gui/gamesetup/gamesetup.xml:354 (tooltip)
+#: gui/gamesetup/gamesetup.xml:356 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "切換本次遊戲是否計入排名。"
 
-#: gui/gamesetup/gamesetup.xml:367 (tooltip)
+#: gui/gamesetup/gamesetup.xml:369 (tooltip)
 msgid "Close more game options window"
 msgstr "關閉更多遊戲選項視窗"
 
@@ -558,7 +555,7 @@ msgid "Joining an existing game."
 msgstr "加入既有的遊戲。"
 
 #: gui/gamesetup/gamesetup_mp.xml:29 (caption)
-#: gui/gamesetup/gamesetup_mp.xml:72 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:67 (caption)
 msgid "Player name:"
 msgstr "玩家名稱："
 
@@ -567,19 +564,19 @@ msgid "Server Hostname or IP:"
 msgstr "伺服器主機名稱或 IP："
 
 #: gui/gamesetup/gamesetup_mp.xml:49 (caption)
-#: gui/gamesetup/gamesetup_mp.xml:95 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:91 (caption)
 msgid "Continue"
 msgstr "繼續"
 
-#: gui/gamesetup/gamesetup_mp.xml:67 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:62 (caption)
 msgid "Set up your server to host."
 msgstr "設置您的伺服器以主持。"
 
-#: gui/gamesetup/gamesetup_mp.xml:84 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:80 (caption)
 msgid "Server name:"
 msgstr "伺服器名稱："
 
-#: gui/gamesetup/gamesetup_mp.xml:115 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:110 (caption)
 msgid "[Connection status]"
 msgstr "[連線狀態]"
 
@@ -621,332 +618,332 @@ msgstr "「時間可以教你一切。」 ─ 埃斯庫羅斯「被縛的普羅�
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "「智慧從苦難中得來...... 恩惠由上天所給予。」─ 埃斯庫羅斯「阿伽門農」"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "「她 [海倫] 帶給特洛伊唯一的嫁妝，就只有毀滅而已。」─ 埃斯庫羅斯「阿伽門農」"
 
 #: gui/text/quotes.txt:9
 msgid ""
 "\"It is in the character of very few men to honor without envy a friend who "
 "has prospered.\" - Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "「只有少數人有能毫不嫉妒有著繁華富貴的朋友的人格。」─ 埃斯庫羅斯「阿伽門農」"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr ""
+msgstr "「對於致命傷就讓他以致命的一擊報復吧；這只是讓他更加的痛苦而已。」─ 埃斯庫羅斯"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "「對於暴君來說，欲加之罪，何患無辭？」─ 伊索寓言"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "「與其從自己的不幸學習，毋寧從他人的不幸學習要好的多。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
-msgstr ""
+msgstr "「親暱生狎侮；熟悉可以消弭偏見。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "「在安全的地方表現出勇敢的樣子總是比較容易。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr ""
+msgstr "「節儉就是『在今日作準備，以備明日之所需。』」─ 伊索寓言"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr ""
+msgstr "「只有漂亮的羽毛，是不能成為美麗的鳥的。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:17
 msgid ""
 "\"Never trust advice from a man in the throes of his own difficulty.\" - "
 "Aesop"
-msgstr ""
+msgstr "「絕不要相信深陷在自己的困境中之人的建議。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "「三寸不爛之舌往往比武力更有效。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "「滿招損，謙受益。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr ""
+msgstr "「穩紮穩打，無往不利。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "「天助自助者。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:22
 msgid ""
 "\"The shaft of the arrow had been feathered with one of the eagle's own "
 "plumes. We often give our enemies the means of our own destruction.\" - "
 "Aesop"
-msgstr ""
+msgstr "「射向老鷹的那支箭反倒裝飾著老鷹的羽毛。我們經常給予敵人創造毀滅自己的有利條件。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:23
 msgid "\"Union gives strength.\" - Aesop, \"The Bundle of Sticks\""
-msgstr ""
+msgstr "「團結帶來力量。」─ 伊索寓言「一捆火柴」"
 
 #: gui/text/quotes.txt:24
 msgid "\"Enemies' promises were made to be broken.\" - Aesop"
-msgstr ""
+msgstr "「敵人的話言而無信。」─ 伊索寓言"
 
 #: gui/text/quotes.txt:25
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "「斯巴達人不會問敵人有多少，只會問敵人在哪裡。」─ 斯巴達的阿基斯二世"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
-msgstr ""
+msgstr "「不要再為我而哭泣，而要為我所作的不公平痛苦，跟殺我的人比起來，我是比較快樂的。」─ 亞基斯四世，斯巴達歐里龐提德王朝第24任國王"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr ""
+msgstr "「行善之人應得福；作惡之人必有報，上天按其所作之事論其功過。」─ Ahiqar，亞述聖人"
 
 #: gui/text/quotes.txt:28
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "「我若不是亞歷山大，我願是第歐根尼。」─ 亞歷山大大帝"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"我要光明正大的取得勝利\" - 亞歷山大大帝"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "「你還不明白嗎？完美勝利的最終境界，是要避免複製被降服者的弱點與惡習。」─ 亞歷山大大帝"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr ""
+msgstr "「最強之人！」─ 亞歷山大大帝，在他臨終，被問及誰應該接下他的位置成為國王時"
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "「他將會去嘗試的事情沒有一件事是不可能的。」─ 亞歷山大大帝"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "「慾望和獨自的安眠讓我體認到，我仍是一個凡人。」─ 亞歷山大大帝"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr ""
+msgstr "「集市是一個讓人欺騙彼此，表現出貪婪行為的地方。」─ Anacharsis"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr ""
+msgstr "「成文法律就像蜘蛛網；這是真的，它會抓住弱者與貧民，但會被財大氣粗之人撕裂成碎片。」─ Anacharsis"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr ""
+msgstr "「狐狸有許多陰險的計謀；刺蝟只有唯一良計。」─ 阿爾基羅庫斯"
 
 #: gui/text/quotes.txt:37
 msgid ""
 "\"States are doomed when they are unable to distinguish good men from bad.\""
 " - Antisthenes"
-msgstr ""
+msgstr "「當一個國家不能區分好人與壞人時，它就要毀滅了。」─ 安提西尼"
 
 #: gui/text/quotes.txt:38
 msgid ""
 "\"Give me a place to stand, and I shall move the world.\" - Archimedes, on "
 "his usage of the lever."
-msgstr ""
+msgstr "「給我一個支點，我可以撬動地球。」─ 阿基米德，他在主張槓桿原理時所說"
 
 #: gui/text/quotes.txt:39
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr ""
+msgstr "「這是他們的敵人而非朋友，這些城市需要建造高牆及軍艦來得到教訓。」─ 阿里斯托芬"
 
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
-msgstr ""
+msgstr "「文字給予心靈翅膀，讓一個人飛騰到天堂。」─ 阿里斯托芬"
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr ""
+msgstr "「偉大的想法及觀點有著讓人信服的力量，讓人產生同等偉大的驚人之語。」─ 阿里斯托芬"
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "「飢餓不認朋友，只認得飼養者。」─ 阿里斯托芬"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "「我認為，與戰勝敵人的人相比，戰勝慾望的人更加勇敢。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "「我們的人格是行為的結果。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "「人天生就是政治動物。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
-msgstr ""
+msgstr "「如果自由與平等像是一些人所認為的，主要是在民主中發現的，那麼他們將會在政府中的每個人都分享到極致的狀態下發現到最好的一面。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
-msgstr ""
+msgstr "「因為政治寡頭與獨裁者都不信任人民，他們就剝奪了人民的武器。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr ""
+msgstr "「風趣是有教養的傲慢。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
-msgstr ""
+msgstr "「樸素使未受教育的人在面對大眾演講時比受過教育的人更有成效。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
-msgstr ""
+msgstr "「詩需要對它有特殊天賦的人，或是近乎瘋狂的人。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
-msgstr ""
+msgstr "「我已經從哲學中得知：我不受指揮的作這件事，而其他人只是出於對法律的恐懼而去作。」─ 亞里斯多德"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
-msgstr ""
+msgstr "「選擇時謹慎思考；但當你採用它了以後，就要堅持到底。」─ Priene 的拜亞斯"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr ""
+msgstr "「國王在悲痛時撕裂了他的頭髮，好像禿頭能治癒悲傷一般。」─ Borysthenes 的比昂"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr ""
+msgstr "「他沒有獲得財富；而財富已吞噬了他。」─ Borysthenes 的比昂"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "「被打敗就意味著災難。」─ 布倫努斯"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "「暴君總是如此。」─ 馬爾庫斯·尤尼烏斯·布魯圖，暗殺蓋烏斯·儒略·凱撒後"
 
 #: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr ""
+msgstr "「逃避？是的，但這次是我的手而不是腳。」─ 馬爾庫斯·尤尼烏斯·布魯圖，自殺前"
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「我至，我見，我征服。」─ 蓋烏斯·儒略·凱撒"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「人們心甘情願的相信他們所希望的。」─ 蓋烏斯·儒略·凱撒"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「骰子已經擲出，命運已定。」─ 蓋烏斯·儒略·凱撒"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「我不怕吃飽的長髮男人，但怕見到面黃肌瘦之人。」─ 蓋烏斯·儒略·凱撒"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "「以盜治盜。」─ 卡利馬科斯"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr ""
+msgstr "「智者從愚者處學到的比愚者從智者處學到的多。」─ 老加圖"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr ""
+msgstr "「此外，我認為迦太基應該被摧毀。」─ 老加圖"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr ""
+msgstr "「所有男人控制著他們的女人，我們統治所有的男人，但我們的女人統治著我們。」─ 老加圖"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "「嚴肅或輕鬆，視場合而定。」─ 老加圖"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "「最壞的統治者就是無法管好自己的人。」─ 老加圖"
 
 #: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
-msgstr ""
+msgstr "「給予過於嚴厲的懲罰令人感到厭惡；給予過輕的懲罰則近乎碑鄙。但能給予輕重適中的懲罰則令人尊敬。」─ 考底利耶"
 
 #: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr ""
+msgstr "「如果國王充滿活力，則他的臣民也將充滿活力。」─ 考底利耶"
 
 #: gui/text/quotes.txt:70
 msgid ""

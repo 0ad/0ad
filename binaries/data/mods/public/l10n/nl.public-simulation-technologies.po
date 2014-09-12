@@ -4,15 +4,16 @@
 # Ascendant project.
 # 
 # Translators:
+# Floretta <florisjan.gerrits@gmail.com>, 2014
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-06 11:41+0000\n"
-"Last-Translator: TheBuG <Ruben.bilo@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-09 21:31+0000\n"
+"Last-Translator: Floretta <florisjan.gerrits@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1869,16 +1870,17 @@ msgid "Crop Rotation"
 msgstr "Vruchtwisseling"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Extra trainingen voor speermannen verhoogt de schade die ze kunnen aanrichten."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Speermannen +2 slagkracht."
+msgid "Spear Infantry +2 hack attack."
+msgstr "Speermannen +2 slag kracht."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Infanterie speervechten."
+msgid "Infantry Spear Training"
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1910,13 +1912,13 @@ msgstr "De Spartanen hadden niet het grootste leger, maar wel het beste voor hun
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "De Spartanen werden van jonge leeftijd getraind om de beste krijgers te worden, en om elke ontbering door een militair leven aan te kunnen."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "+25% gezondheid voor speervechters, maar ook +10% rekruteertijd."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2057,8 +2059,8 @@ msgid ""
 msgstr "De Anusiya kampioenen worden dubbel zo snel gerekruteerd, maar ze verliezen ook een beetje van hun maximumgezondheid."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiya kampioenen -50% rekruteertijd, maar ook -20 gezondheid."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

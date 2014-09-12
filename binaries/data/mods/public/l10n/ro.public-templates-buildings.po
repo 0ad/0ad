@@ -5,14 +5,15 @@
 # 
 # Translators:
 # bogdomania <mintoi.bogdan@gmail.com>, 2014
+# coyoty <sacuiu.andy@gmail.com>, 2014
 # w3as3l54, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-11 16:31+0000\n"
-"Last-Translator: bogdomania <mintoi.bogdan@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-09 09:07+0000\n"
+"Last-Translator: coyoty <sacuiu.andy@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "Civic"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
@@ -32,12 +33,12 @@ msgstr "Structură civică"
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr "Centru civic"
+msgstr "Centru civil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr ""
+msgstr "Construiește pentru a dobândi bucăți mari de teritoriu. Antrenează cetățeni. Garnizoană: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
@@ -67,7 +68,7 @@ msgstr "Crește limita populației."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Aură vindecătoare"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -86,7 +87,7 @@ msgstr "Templu"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Antrenează vindecători. Pune în garnizoană până la 20 de unități pentru a îi vindeca într-un ritm rapid (3 HP per secundă). Cercetează îmbunătățiri pentru vindecare si religie."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
@@ -108,7 +109,7 @@ msgstr "Turn de apărare"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Trage săgeți. Pune în garnizoană pentru un plus de apărare."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:60
 msgid "Defense Tower"
@@ -117,13 +118,13 @@ msgstr "Turn de apărare"
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "Avantpost"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr ""
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr "Construiește în teritoriu neutru și propriu pentru a cerceta zone din hartă. Pierde viața încet cât timp e în teritoriu neutru."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -146,7 +147,7 @@ msgstr "Poarta orașului"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Zid de apărare."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -155,15 +156,15 @@ msgstr "Segmentele lungi de zid pot fi convertite în porți"
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Unitățile de pe ziduri au un plus de 3 nivele de armură."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Transformă zidul de piatră în poartă de oraș"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:56
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "Trage săgeți. Pune în garnizoană pentru a apăra un zid al orașului împotriva atacatorilor."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:55
 msgid "Wall Turret"
@@ -189,7 +190,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "Centru de colectare pentru resursele de mâncare. Cercetează îmbunătățiri pentru colectarea mâncării."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -201,7 +202,7 @@ msgstr "Piaţă"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Crează negustori pentru negoțul cu alte piețe. Schimbă resurse. Cercetează îmbunătățiri pentru negoț si troc."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 #: simulation/templates/template_structure_economic_storehouse.xml:21
@@ -212,7 +213,7 @@ msgstr "Depozit"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "Centru de colectare pentru resursele de lemn, piatră, și metal. Cercetează îmbunătățiri pentru colectarea acestor resurse."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
@@ -225,7 +226,7 @@ msgstr "Așezare"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr ""
+msgstr "Militari"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
@@ -238,7 +239,7 @@ msgstr "Barăci"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "Antrenează soldați-civili. Cercetează îmbunatățiti pentru antrenament. Garnizoană: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -247,18 +248,18 @@ msgstr "Fierar"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "Cercetează îmbunatăți pentru arme si armuri."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr ""
+msgstr "Port"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "Construiește pe un țărm pentru a construi nave și pentru a a deschide negoțul pe mare. Cercetează îmbunătățiri navale."
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:28
@@ -281,7 +282,7 @@ msgstr "Fortăreaţă"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr ""
+msgstr "Antrenează eroi, campioni, și arme de asediu. Cercetează îmbunătățiri pentru armele de asediu. Garnizoană: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -313,7 +314,7 @@ msgstr "Recoltați legume pentru alimente. Număr maxim de culegători: 5."
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "Aceasta este o clădire speciala, disponibilă unei singure civilizații."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -549,12 +550,6 @@ msgstr ""
 #: simulation/templates/structures/celt_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
-msgstr ""
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
 msgstr ""
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
@@ -1182,11 +1177,11 @@ msgstr "Palat persan"
 msgid "Apadana"
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr ""
 
@@ -1272,10 +1267,6 @@ msgstr "Clădire specială persană"
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
-msgstr ""
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
 msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:20
@@ -1582,10 +1573,6 @@ msgstr ""
 msgid "Aedes Vestae"
 msgstr ""
 
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr ""
-
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
 msgstr ""
@@ -1666,7 +1653,7 @@ msgstr ""
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
-msgstr ""
+msgstr "Senatul Spartan"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"

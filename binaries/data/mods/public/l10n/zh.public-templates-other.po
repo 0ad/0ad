@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-11 10:30+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,7 +19,7 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_gaia.xml:5
+#: simulation/templates/template_gaia.xml:6
 msgid "Gaia"
 msgstr "环境"
 
@@ -116,7 +117,7 @@ msgstr "通用资源"
 msgid "Treasure"
 msgstr "宝藏"
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "建筑"
 
@@ -713,7 +714,7 @@ msgstr "麦田"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:33
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "最多训练医生。可驻守30个单位以较快的速度治疗他们。"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Epic Temple"
@@ -979,3 +980,35 @@ msgstr ""
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
 msgstr ""
+
+#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
+msgid "Lithóbolos"
+msgstr "Lithóbolos"
+
+#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybelḗs"
+msgstr "Oxybelḗs"
+
+#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:32
+msgid "Ballista"
+msgstr "弩车"
+
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybeles"
+msgstr "Oxybeles"
+
+#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
+msgid "Polybolos"
+msgstr "扭力弹簧弩机"
+
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:29
+msgid "Scorpio"
+msgstr "Scorpio"

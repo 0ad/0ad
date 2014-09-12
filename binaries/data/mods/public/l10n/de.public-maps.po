@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-23 17:27+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-27 15:34+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -312,7 +312,7 @@ msgstr "Neuer Zufallskartengeneratortest"
 msgid ""
 "Players start in a tough map to play with scarce wood and dangerous polar "
 "animals."
-msgstr "Spieler beginnen in einer harten Karte, um mit knappen Holz und gefährlich polaren Tieren zu spielen."
+msgstr "Spieler starten auf einer schwierigen Karte, um mit knappen Holz und gefährlich polaren Tieren zu spielen."
 
 #: maps/random/northern_lights.jsonsettings.Name
 msgid "Northern Lights"
@@ -425,6 +425,17 @@ msgstr "Viele kleine Inseln, die durch schmale Landzungen verbunden sind."
 msgid "Snowflake Searocks"
 msgstr "Schneeflockenförmige Steilküste"
 
+#: maps/random/survivalofthefittest.jsonsettings.Description
+msgid ""
+"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"\n"
+"Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
+msgstr "WICHTIGER HINWEIS: KI-SPIELER FUNKTIONIEREN NICHT MIT DIESER MAP\n\nSchützen Sie Ihre Basis gegen endlose Wellen von Feinden. Verwenden Sie Ihre weiblichen Bürger um Ressourcen zu sammeln. Der letzte verbleibende Spieler ist der Sieger."
+
+#: maps/random/survivalofthefittest.jsonsettings.Name
+msgid "Survival of the Fittest"
+msgstr "Überleben des Stärkeren"
+
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
 msgstr "Die Spieler starten in der Prärie mit leicht geschwungenen Hügeln."
@@ -487,6 +498,63 @@ msgstr "Eine Demonstration von Mauerplatzierungsmethoden in Zufallskarten. Eine 
 msgid "Wall Demo"
 msgstr "Mauerdemo"
 
+#: maps/random/survivalofthefittest_triggers.js:79
+msgid "An enemy wave is attacking!"
+msgstr "Ein gegnerische Welle greift an!"
+
+#: maps/random/survivalofthefittest_triggers.js:137
+msgid "The first wave will start in 15 minutes!"
+msgstr "Die erste Welle startet in 15 Minuten!"
+
+#: maps/scenarios/Triggers_demo.js:73
+msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
+msgstr "Testet den Ja-Nein-Dialog. Möchten Sie sicher sagen oder eher nicht?"
+
+#: maps/scenarios/Triggers_demo.js:79
+msgid "Sure"
+msgstr "Sicher"
+
+#: maps/scenarios/Triggers_demo.js:83
+msgid "Say sure"
+msgstr "Sage sicher"
+
+#: maps/scenarios/Triggers_demo.js:89
+msgid "Rather not"
+msgstr "Eher nicht"
+
+#: maps/scenarios/Triggers_demo.js:93
+msgid "Say rather not"
+msgstr "Sage eher nicht"
+
+#: maps/scenarios/treasure_islands.js:10
+msgid "Collect the treasures before your enemy does! May the better win!"
+msgstr "Sammeln Sie Schätze bevor es deiner Gegner es tun! Möge der bessere gewinnen!"
+
+#: maps/scenarios/treasure_islands.js:37
+msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgstr "Ihres Feindes Schatztruhe ist bis zum Rand gefüllt ist, Sie verlieren!"
+
+#: maps/scenarios/treasure_islands.js:42
+msgid "Your treasury is filled to the brim, you are victorious!"
+msgstr "Ihre Schatzkammer ist bis zum Rand gefüllt, Sie sind siegreich!"
+
+#: maps/scenarios/treasure_islands.js:54
+msgid "Hurry up! Your enemy is close to victory!"
+msgstr "Beeile dich! Dein Feind ist dem Sieg nah!"
+
+#: maps/scenarios/treasure_islands.js:65
+#, python-format
+msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
+msgstr "Schätze zum sammeln übrig für den Sieg: %(remainingTreasures)s!"
+
+#: maps/scenarios/treasure_islands.js:73
+msgid "You have collected a treasure!"
+msgstr "Sie haben einen Schatz gesammelt!"
+
+#: maps/scenarios/treasure_islands.js:85
+msgid "Defeat your enemy to win!"
+msgstr "Besiege deinen Gegner, um zu gewinnen!"
+
 #: maps/scenarios/Arcadia 02.xml:41:Description
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
@@ -512,7 +580,8 @@ msgstr "Frühlingszeit in Arkadien, Griechenland. Der Frühlingsregen hat die Fl
 #: Iberians.xml:42:PlayerData[0].Name maps/scenarios/Sandbox -
 #: Romans.xml:42:PlayerData[0].Name maps/scenarios/Siwa
 #: Oasis.xml:31:PlayerData[0].Name maps/scenarios/The Massacre of
-#: Delphi.xml:41:PlayerData[0].Name maps/scenarios/Tropical
+#: Delphi.xml:41:PlayerData[0].Name maps/scenarios/Treasure
+#: Islands.xml:41:PlayerData[0].Name maps/scenarios/Tropical
 #: Island.xml:41:PlayerData[0].Name
 #: maps/scenarios/WallTest.xml:31:PlayerData[0].Name
 #: maps/scenarios/Walls.xml:31:PlayerData[0].Name
@@ -529,7 +598,7 @@ msgstr "Frühlingszeit in Arkadien, Griechenland. Der Frühlingsregen hat die Fl
 #: maps/skirmishes/Cycladic Archipelago (2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Death Canyon (2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Deccan Plateau (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Gallic Fields (3).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Gallic Fields (3).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Gambia River (3).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Golden Oasis (2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Greek Acropolis (2).xml:41:PlayerData[0].Name
@@ -537,7 +606,7 @@ msgstr "Frühlingszeit in Arkadien, Griechenland. Der Frühlingsregen hat die Fl
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Libyan Oases (4).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Libyan Oasis (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Lorraine Plain (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Lorraine Plain (2).xml:40:PlayerData[0].Name
 #: maps/skirmishes/Median Oasis (2).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Median Oasis (4).xml:42:PlayerData[0].Name
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:PlayerData[0].Name
@@ -545,12 +614,12 @@ msgstr "Frühlingszeit in Arkadien, Griechenland. Der Frühlingsregen hat die Fl
 #: maps/skirmishes/Neareastern Badlands (4).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Nile River (4).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Persian Highlands (4).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Punbjab (2).xml:42:PlayerData[0].Name
+#: maps/skirmishes/Punbjab (2).xml:40:PlayerData[0].Name
 #: maps/skirmishes/Saharan Oases (4).xml:41:PlayerData[0].Name
 #: maps/skirmishes/Sahel (4).xml:42:PlayerData[0].Name maps/skirmishes/Savanna
 #: River.xml:42:PlayerData[0].Name maps/skirmishes/Sicilia
 #: (2).xml:41:PlayerData[0].Name maps/skirmishes/Siwa Oasis
-#: (2).xml:41:PlayerData[0].Name maps/skirmishes/Sporades Islands
+#: (2).xml:40:PlayerData[0].Name maps/skirmishes/Sporades Islands
 #: (2).xml:42:PlayerData[0].Name maps/skirmishes/Syria
 #: (2).xml:41:PlayerData[0].Name maps/skirmishes/Team Oasis -
 #: 2v2.xml:42:PlayerData[0].Name maps/skirmishes/Thessalian Plains
@@ -578,7 +647,8 @@ msgstr "Spieler 1"
 #: Iberians.xml:42:PlayerData[1].Name maps/scenarios/Sandbox -
 #: Romans.xml:42:PlayerData[1].Name maps/scenarios/Siwa
 #: Oasis.xml:31:PlayerData[1].Name maps/scenarios/The Massacre of
-#: Delphi.xml:41:PlayerData[1].Name maps/scenarios/Tropical
+#: Delphi.xml:41:PlayerData[1].Name maps/scenarios/Treasure
+#: Islands.xml:41:PlayerData[1].Name maps/scenarios/Tropical
 #: Island.xml:41:PlayerData[1].Name
 #: maps/scenarios/WallTest.xml:31:PlayerData[1].Name
 #: maps/scenarios/Walls.xml:31:PlayerData[1].Name
@@ -594,7 +664,7 @@ msgstr "Spieler 1"
 #: maps/skirmishes/Cycladic Archipelago (2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Death Canyon (2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Deccan Plateau (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Gallic Fields (3).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Gallic Fields (3).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Gambia River (3).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Golden Oasis (2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Greek Acropolis (2).xml:41:PlayerData[1].Name
@@ -602,7 +672,7 @@ msgstr "Spieler 1"
 #: maps/skirmishes/Greek Acropolis Night (2).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Libyan Oases (4).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Libyan Oasis (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Lorraine Plain (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Lorraine Plain (2).xml:40:PlayerData[1].Name
 #: maps/skirmishes/Median Oasis (2).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Median Oasis (4).xml:42:PlayerData[1].Name
 #: maps/skirmishes/Mediterranean Cove (2).xml:41:PlayerData[1].Name
@@ -610,12 +680,12 @@ msgstr "Spieler 1"
 #: maps/skirmishes/Neareastern Badlands (4).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Nile River (4).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Persian Highlands (4).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Punbjab (2).xml:42:PlayerData[1].Name
+#: maps/skirmishes/Punbjab (2).xml:40:PlayerData[1].Name
 #: maps/skirmishes/Saharan Oases (4).xml:41:PlayerData[1].Name
 #: maps/skirmishes/Sahel (4).xml:42:PlayerData[1].Name maps/skirmishes/Savanna
 #: River.xml:42:PlayerData[1].Name maps/skirmishes/Sicilia
 #: (2).xml:41:PlayerData[1].Name maps/skirmishes/Siwa Oasis
-#: (2).xml:41:PlayerData[1].Name maps/skirmishes/Sporades Islands
+#: (2).xml:40:PlayerData[1].Name maps/skirmishes/Sporades Islands
 #: (2).xml:42:PlayerData[1].Name maps/skirmishes/Syria
 #: (2).xml:41:PlayerData[1].Name maps/skirmishes/Team Oasis -
 #: 2v2.xml:42:PlayerData[1].Name maps/skirmishes/Thessalian Plains
@@ -852,7 +922,7 @@ msgstr "Invasionstruppen"
 #: (2v2).xml:42:PlayerData[2].Name maps/skirmishes/Corinthian Isthmus
 #: (4).xml:41:PlayerData[2].Name maps/skirmishes/Corsica and Sardinia
 #: (4).xml:42:PlayerData[2].Name maps/skirmishes/Gallic Fields
-#: (3).xml:42:PlayerData[2].Name maps/skirmishes/Gambia River
+#: (3).xml:41:PlayerData[2].Name maps/skirmishes/Gambia River
 #: (3).xml:42:PlayerData[2].Name maps/skirmishes/Greek Acropolis
 #: (4).xml:41:PlayerData[2].Name maps/skirmishes/Libyan Oases
 #: (4).xml:42:PlayerData[2].Name maps/skirmishes/Median Oasis
@@ -1464,6 +1534,26 @@ msgstr "Griechische Verbündete"
 msgid "Third Macedonian War"
 msgstr "Dritter Makedonisch-Römischer Krieg"
 
+#: maps/scenarios/Treasure Islands.xml:41:Description
+msgid ""
+"Search treasures on small islands and on the water. Collect more treasures "
+"than your opponent to win."
+msgstr "Suche Schätze auf kleinen Inseln und auf dem Wasser. Sammle mehr Schätze als dein Gegner, um zu gewinnen."
+
+#: maps/scenarios/Treasure Islands.xml:41:Name
+msgid "Treasure Islands"
+msgstr "Schatz-Insel"
+
+#: maps/scenarios/Triggers_demo.xml:41:Description
+msgid ""
+"Demo map listening to various triggers and printing warning messages about "
+"them"
+msgstr "Demokarte hört auf verschiedene Trigger und geben Warnmeldungen über sie aus"
+
+#: maps/scenarios/Triggers_demo.xml:41:Name
+msgid "Triggers Demo"
+msgstr "Triggers Demo"
+
 #: maps/scenarios/Tropical Island.xml:41:Description
 msgid "Multiplayer map. A tropical paradise."
 msgstr "Mehrspielerkarte. Ein tropisches Paradies."
@@ -1679,14 +1769,16 @@ msgstr "Zwei Spieler Platz nehmen  Stellung auf der stark bewaldeten Hochebene v
 msgid "Deccan Plateau (2)"
 msgstr "Dekkan-Plateau (2)"
 
-#: maps/skirmishes/Gallic Fields (3).xml:42:Description
+#: maps/skirmishes/Gallic Fields (3).xml:41:Description
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
-"Each player begins the match with a wooden palisade and some guard towers atop a low embankment."
-msgstr "Verteidigt Deinen gallischen Außenposten gegen Angriffe Deiner tückischen Nachbarn!\n\nJeder Spieler beginnt das Spiel mit einer hölzernen Palisade und einigen Wachtürmen auf einem niedrigen Damm."
+"Each player begins the match with a wooden palisade and some guard towers atop a low embankment.\n"
+"\n"
+"Watch out for Romans passing by!"
+msgstr "Verteidigt Deinen gallischen Außenposten gegen Angriffe Deiner tückischen Nachbarn!\n\nJeder Spieler beginnt das Spiel mit einer hölzernen Palisade und einigen Wachtürmen auf einem niedrigen Damm.\n\nAchte auf Römer, die passieren!"
 
-#: maps/skirmishes/Gallic Fields (3).xml:42:Name
+#: maps/skirmishes/Gallic Fields (3).xml:41:Name
 msgid "Gallic Fields (3)"
 msgstr "Gallische Felder (3)"
 
@@ -1761,7 +1853,7 @@ msgstr "Ein alter Favorit. Die weit offene Fläche dieser Wüstenkarte wird von 
 msgid "Libyan Oasis (2)"
 msgstr "Libysche Oase (2)"
 
-#: maps/skirmishes/Lorraine Plain (2).xml:42:Description
+#: maps/skirmishes/Lorraine Plain (2).xml:40:Description
 msgid ""
 "The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
@@ -1770,7 +1862,7 @@ msgid ""
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
 msgstr "Die Karte wird in der Mitte mit einigen seichten Stellen anliegend von einem Fluss in Ost-West-Richtung durchquert.\n\nOffenbewaldet und grundsätzlich flach. Viel Raum für Bauwerke. Gut ausbalanciertes Rohstoffverhältnis.\n\nDie Territorien der Zivilisationen werden vom Hauptfluss und Nebenflüssen geteilt (mit den notwendigen Untiefen, um sie zu überqueren)."
 
-#: maps/skirmishes/Lorraine Plain (2).xml:42:Name
+#: maps/skirmishes/Lorraine Plain (2).xml:40:Name
 msgid "Lorraine Plain (2)"
 msgstr "Lothringisches Plateau (2)"
 
@@ -1838,14 +1930,14 @@ msgstr "Ein trockenes zentrales Becken, reich an Mineralien, von felsigen Hügel
 msgid "Persian Highlands (4)"
 msgstr "Persisches Hochland (4)"
 
-#: maps/skirmishes/Punbjab (2).xml:42:Description
+#: maps/skirmishes/Punbjab (2).xml:40:Description
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "Nordwest-Indien. Nahe gelegene Flüsse schwellen durch den Monsunregen an, sodass diese nur an einigen tückischen Furten überquert werden können\n\nDie Flüsse sind stark bewaldet, wobei Gras die umgebende Landschaft bedeckt. Vorsicht, Tiger verstecken sich im hohen Gras. Auch asiatische Elefanten sind oft gesehen."
 
-#: maps/skirmishes/Punbjab (2).xml:42:Name
+#: maps/skirmishes/Punbjab (2).xml:40:Name
 msgid "Punjab (2)"
 msgstr "Punjab (2)"
 
@@ -1887,14 +1979,14 @@ msgstr "Die große Mittelmeerinsel Sizilien wartet auf Eroberung."
 msgid "Sicilia (2)"
 msgstr "Sizilien (2)"
 
-#: maps/skirmishes/Siwa Oasis (2).xml:41:Description
+#: maps/skirmishes/Siwa Oasis (2).xml:40:Description
 msgid ""
 "A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
 "\n"
 "Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
 msgstr "Eine Dual-Pol-Karte mit nahezu allen Holz und tierischen Quellen in der Mitte der Karte konzentriert. Ackerland um den Oasen saugen die wenige Feuchtigkeit auf.\n\nStein und Metall kann nur in dem felsigen Hinterland gefunden werden. Schätze, wenn aktiviert, kann in den nahe gelegenen Wüsten gefunden werden."
 
-#: maps/skirmishes/Siwa Oasis (2).xml:41:Name
+#: maps/skirmishes/Siwa Oasis (2).xml:40:Name
 msgid "Siwa Oasis (2)"
 msgstr "Oase Siwa (2)"
 

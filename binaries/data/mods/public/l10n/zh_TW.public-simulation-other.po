@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-04 03:41+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-19 09:31+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -591,19 +591,9 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "資源不足 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:345
+#: simulation/components/ProductionQueue.js:361
 msgid "The production queue is full."
 msgstr "生產佇列已滿。"
-
-#: simulation/components/Wonder.js:53
-#, python-format
-msgid "%(player)s will have won in %(time)s"
-msgstr "%(player)s 將在 %(time)s 內獲勝"
-
-#: simulation/components/Wonder.js:61
-#, python-format
-msgid "You will have won in %(time)s"
-msgstr "您將在 %(time)s 內獲勝"
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
@@ -729,10 +719,9 @@ msgstr "電腦玩家 Aegis"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
-"The most stable AI currently available, Aegis is an improvement of earlier "
-"bots by Wratii. Note that it doesn't support saved games yet. Please report "
-"issues to Wildfire Games (see the link in the main menu)."
-msgstr "目前可用的 AI 中最穩定的，Aegis 是對 Wratii 早期 AI 的改進。需要注意的是它尚不支援已儲存的遊戲。請向 Wildfire Games 回報問題(見主選單中的連結)。"
+"[color=\"255 0 0 255\"]NO LONGER SUPPORTED[/color] \n"
+" Aegis is an improvement of earlier bots by Wratii. Note that it doesn't support saved games or naval maps."
+msgstr "[color=\"255 0 0 255\"]不再支援[/color] \n Aegis 是由 Wratii 從早期的機器人所改良的版本。需要注意的是，它並不支援已儲存的遊戲或海洋地圖。"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -740,13 +729,18 @@ msgstr "電腦玩家 Petra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Based on Aegis, but heavily modified by mimo and expected to be more robust."
-" Support for naval maps is also added. Note that it doesn't support saved "
-"games yet. Please report issues to Wildfire Games (see the link in the main "
-"menu)."
-msgstr "基於 Aegis，但由 mimo 做了大量的修改，並預期是更加完善。也支援海洋地圖。請向 Wildfire Games 回報問題(見主選單中的連結)。"
+"Started as a fork of Aegis bot, Petra is the most stable AI available. It "
+"supports naval maps and is generally more challenging, but doesn't support "
+"saved games yet. Please report issues to Wildfire Games (see the link in the"
+" main menu)."
+msgstr "是從一個 Aegis 的分支開始的，Petra 是一個更加穩定的人工智慧。它支援海洋地圖，且更具挑戰性，但目前仍不支援已儲存的遊戲。請向 Wildfire Games 回報問題(見主選單中的連結)。"
 
 #: simulation/ai/tutorial-ai/data.jsonname
-#: simulation/ai/tutorial-ai/data.jsondescription
 msgid "Tutorial AI"
 msgstr "教學 AI"
+
+#: simulation/ai/tutorial-ai/data.jsondescription
+msgid ""
+"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
+"scenario."
+msgstr "入門 AI 應該只能在「入門」劇情中使用。"

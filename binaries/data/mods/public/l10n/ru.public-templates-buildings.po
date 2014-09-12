@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-07 11:11+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 11:00+0000\n"
 "Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -122,9 +122,9 @@ msgstr "Застава"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr "Постройте на своей или на нейтральной территории для разведывания скрытых областей. На нейтральной территории медленно теряет здоровье."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr "Возводится на нейтральных или собственных территориях для разведки карты. Медленно теряет очки жизнеспособности на нейтральных участках."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -551,12 +551,6 @@ msgstr "Неос Парфенос"
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr "Гверсильты"
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr "-Небольшой город"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -1183,11 +1177,11 @@ msgstr "Персидский дворец"
 msgid "Apadana"
 msgstr "Ападана"
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr "Обучает пехоту."
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr "Падганы"
 
@@ -1274,10 +1268,6 @@ msgstr "Специальное персидское здание"
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
 msgstr "Парихувада"
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr "-Бараки"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
@@ -1582,10 +1572,6 @@ msgstr "Храм Весты"
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
 msgstr "Аедес Вестаэ"
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr "-Деревня"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."

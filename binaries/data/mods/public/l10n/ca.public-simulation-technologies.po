@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-20 13:10+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 15:30+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -1868,16 +1868,17 @@ msgid "Crop Rotation"
 msgstr "Rotació de conreus"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
 msgstr "L'entrenament augmenta l'atac de les unitats d'infanteria amb llances."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "+1 a l'atac de tall dels llancers."
+msgid "Spear Infantry +2 hack attack."
+msgstr "+2 a l'atac de tall de la infanteria amb llança."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Lluita amb llances"
+msgid "Infantry Spear Training"
+msgstr "Entrenament de llancers"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1909,12 +1910,12 @@ msgstr "Els espartans no tenien l'exèrcit més gran del món, però sí que ten
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Els espartans eren allotjats i entrenats des de ben petits per ser guerrers extraordinaris i per resistir qualsevol privació de la vida militar."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr "Els espartans eren allotjats i entrenats des dels 6 anys per ser guerrers extraordinaris i per resistir qualsevol privació de la vida militar."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
+msgid "+25% health for Spear Infantry, but also +10% train time."
 msgstr "+25% de salut per a la infanteria amb llança, però també +10% de temps de reclutament."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -2056,8 +2057,8 @@ msgid ""
 msgstr "La infanteria campiona Anusiya es recluta el doble de ràpid, però perden una mica de salut."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "El temps de reclutament de la infanteria campiona Anusiya es redueix el 50%, però també tenen -20 de salut."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "El temps de reclutament de la infanteria campiona Anusiya es redueix el 50%, però també tenen -10 de salut."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

@@ -5,15 +5,19 @@
 # 
 # Translators:
 # efrasiyab1 <ado.ender@gmail.com>, 2014
+# coolland <coolland10@gmail.com>, 2014
+# Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# receb, 2014
 # redbullah <redbullah@gmail.com>, 2014
+# utkugun <utkugundogan@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-12 17:10+0000\n"
-"Last-Translator: redbullah <redbullah@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-10 23:10+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -185,7 +189,7 @@ msgstr "Piyadeler için kapitone keten veya deriden vücut zırhı."
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_03.jsontooltip
 msgid "All Infantry +1 Hack Armor Level."
-msgstr ""
+msgstr "Tüm Piyadelere +1 Zırh Delme Seviyesi."
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
 msgid "Quilted Body Armor"
@@ -248,7 +252,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsontooltip
 msgid "Champions +2 Hack Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "Mükemmellere +2 Zırh Delme Seviyesi, bunun yanında +10 Metal maliyete sebep olur."
 
 #: simulation/data/technologies/armor_infantry_hack_04.jsongenericName
 msgid "Bronze Cuirass Body Armor"
@@ -264,7 +268,7 @@ msgstr "Büyük kalkanlar için inşaat kontrplağı."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsontooltip
 msgid "Infantry Spearmen +2 Pierce Armor Levels."
-msgstr ""
+msgstr "Mızraklı Piyadelere +2 Zırh Delme Seviyesi."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_01.jsongenericName
 msgid "Plywood Shield Construction"
@@ -287,7 +291,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Levels."
-msgstr ""
+msgstr "Mızraklı Piyadelere +1 Zırh Delme Seviyesi."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
@@ -308,7 +312,7 @@ msgstr "Kalkanın ön yüzüne çekiçle motiflenmiş bronzdan bir kaplama."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsontooltip
 msgid "Infantry Spearmen +1 Pierce Armor Level."
-msgstr ""
+msgstr "Mızraklı Piyadelere +1 Zırh Delme Seviyesi."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsongenericName
 msgid "Bronze Shield Facing"
@@ -334,7 +338,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsontooltip
 msgid "Champions +2 Pierce Armor Levels, but also +10 Metal Cost."
-msgstr ""
+msgstr "Mükemmellere +2 Zırh Delme Seviyesi, bunun yanında +10 Metal maliyete sebep olur."
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsongenericName
 msgid "Silver Shields"
@@ -363,17 +367,17 @@ msgstr "Kurşun karinali kaplama"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr ""
+msgstr "Bu hypozomata gemi türü yapımındaki destek."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr ""
+msgstr "Bu hypozomata geminin yapımındaki destek. tüm gemi zırh tiplerine +2 seviye etki eder."
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr ""
+msgstr "Hypozomata kuvvetlendirmesi"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -396,7 +400,7 @@ msgstr "Güçlendirilmiş gövde"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr ""
+msgstr "Köy Aşamasında Kilidi açıldı."
 
 #: simulation/data/technologies/armor_trade_convoys.jsondescription
 msgid "Increases defensive capability of traders."
@@ -404,7 +408,7 @@ msgstr "Tüccarların savunma yeteneklerini artır."
 
 #: simulation/data/technologies/armor_trade_convoys.jsontooltip
 msgid "Traders +2 Hack and Pierce armor levels."
-msgstr ""
+msgstr "Tüccarlar +2 Parçalama ve Zırh delme seviyesi sağlar."
 
 #: simulation/data/technologies/armor_trade_convoys.jsongenericName
 msgid "Trade convoys"
@@ -417,7 +421,7 @@ msgstr "Süvariler için özel olarak yapılmış uzun bir mızrak."
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. Melee Cavalry +2 Hack Attack."
-msgstr ""
+msgstr "Yakın dövüş süvarinizi daha iyi silahlarla donatın. Yakın dövüş süvarisi +2 Zırh Delme sağlar."
 
 #: simulation/data/technologies/attack_cav_lance.jsongenericName
 msgid "Cavalry Lance"
@@ -444,7 +448,7 @@ msgstr "Koruyucu birlikler savaşta nadir cesurluk ve yiğitlikte."
 #: simulation/data/technologies/attack_champions_elite.jsontooltip
 msgid ""
 "Guard units have uncommon courage and valor in battle. Champions +2 attack."
-msgstr ""
+msgstr "Koruyucu birlikler savaşta nadir cesaret ve yiğitlik sağlar. Mükemmellere +2 saldırı sağlar."
 
 #: simulation/data/technologies/attack_champions_elite.jsongenericName
 msgid "Heroism"
@@ -524,12 +528,12 @@ msgstr "Mazgallı Siperler "
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
-msgstr ""
+msgstr "bir gece vakti uyanıklık artar."
 
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid ""
 "Post sentries to double the number of default arrows in ungarrisoned Towers."
-msgstr ""
+msgstr "Garnizonsuz kulelerdeki posta nöbetcileri iki kat oka sahip olur."
 
 #: simulation/data/technologies/attack_tower_watch.jsongenericName
 msgid "Sentries"
@@ -562,7 +566,7 @@ msgstr "Taş Dolgu Malzemeleri"
 
 #: simulation/data/technologies/decay_outpost.jsondescription
 msgid "Outposts survive twice as long in neutral territory."
-msgstr ""
+msgstr "Karakollar tarafsız bölgede iki kat daha uzun hayatta kalır."
 
 #: simulation/data/technologies/decay_outpost.jsontooltip
 msgid "Territory decay -50% for Outposts."
@@ -717,15 +721,15 @@ msgstr "Çivi ve Çekiç"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsonrequirementsTooltip
 msgid "Equip your workers with helpful tools. No requirements."
-msgstr ""
+msgstr "İşçilerinizi yardımcı araçlarla donatın. Hiçbir gereksinime gerek yoktur."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsondescription
 msgid "Baskets to carry foraged food stuffs."
-msgstr ""
+msgstr "Sepetler besinleri taşır."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsontooltip
 msgid "Equip your foragers with wicker baskets. +50% fruit foraging rate."
-msgstr ""
+msgstr "Toplayıcılarınızı hasır sepet ile donatın. +50% meyve toplama oranı."
 
 #: simulation/data/technologies/gather_wicker_baskets.jsongenericName
 msgid "Wicker Baskets"
@@ -734,12 +738,12 @@ msgstr "Hasır Sepetler"
 #: simulation/data/technologies/heal_range.jsondescription
 #: simulation/data/technologies/heal_range_2.jsondescription
 msgid "Increases the healing range of all healers."
-msgstr ""
+msgstr "Tüm şifacıların iyileştirme menzilini artırır."
 
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +4 Healing Range."
-msgstr ""
+msgstr "Şifacı +4 İyileştirme Menzili."
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -754,7 +758,7 @@ msgstr "Olympic Pantheon"
 
 #: simulation/data/technologies/heal_range_2.jsongenericName
 msgid "Healing Range 2"
-msgstr ""
+msgstr "İyileştirme Menzili 2"
 
 #: simulation/data/technologies/heal_range_2.jsonspecificName.hele
 #: simulation/data/technologies/heal_range_2.jsonspecificName.mace
@@ -771,7 +775,7 @@ msgstr "Tüm tabiblerin iyileştirme oranını artırır."
 #: simulation/data/technologies/heal_rate.jsontooltip
 #: simulation/data/technologies/heal_rate_2.jsontooltip
 msgid "Healers +25% healing rate."
-msgstr ""
+msgstr "Şifacılar %+25 iyileştirme oranı sağlar."
 
 #: simulation/data/technologies/heal_rate.jsongenericName
 msgid "Healing Rate"
@@ -797,15 +801,15 @@ msgstr "Hipokrat Yemini"
 
 #: simulation/data/technologies/heal_temple.jsondescription
 msgid "Units garrisoned in a temple are healed faster."
-msgstr ""
+msgstr "Bir tapınakta konuşlandırılan birimler daha hızlı iyileşir."
 
 #: simulation/data/technologies/heal_temple.jsontooltip
 msgid "Temples +50% garrisoned healing rate."
-msgstr ""
+msgstr "Tapılaklar konuşlananlara %+50 iyileşme oranı sağlar."
 
 #: simulation/data/technologies/heal_temple.jsongenericName
 msgid "Divine Offerings"
-msgstr ""
+msgstr "Adaklar"
 
 #: simulation/data/technologies/heal_temple.jsonspecificName.hele
 #: simulation/data/technologies/heal_temple.jsonspecificName.mace
@@ -835,11 +839,11 @@ msgstr "Dokuma"
 
 #: simulation/data/technologies/health_regen_units.jsondescription
 msgid "Unlock health regeneration for your units."
-msgstr ""
+msgstr "Birimleriniz için sağlık yenilenme kilinidini aç."
 
 #: simulation/data/technologies/health_regen_units.jsontooltip
 msgid "Organic units will slowly regenerate health over time when idle."
-msgstr ""
+msgstr "Boştayken Organik birimleri zaman içinde yavaş yavaş yeniden sağlık kazanacaktır."
 
 #: simulation/data/technologies/health_regen_units.jsongenericName
 msgid "Battlefield Medicine"
@@ -847,11 +851,11 @@ msgstr "Savaş alanı Tıbbı"
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsondescription
 msgid "Using geometric masonry increases the sturdiness of defensive walls."
-msgstr ""
+msgstr "Geometrik taş işçiliği kullanarak savunma duvarlarınızın sağlamlığını artırın."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsontooltip
 msgid "City walls +2 crush armor levels, but +10% build time."
-msgstr ""
+msgstr "Şehir duvarları +2 zırh ezme seviyesine etki eder, ama %+10 yapı zamanına sebep olur."
 
 #: simulation/data/technologies/health_walls_geometric_masonry.jsongenericName
 msgid "Geometric Masonry"
@@ -866,7 +870,7 @@ msgstr ""
 
 #: simulation/data/technologies/melee_inf_sidearms.jsontooltip
 msgid "Melee infantry +1 hack attack."
-msgstr ""
+msgstr "Yakın dövüş süvarisi +1 saldırı kesme sağlar."
 
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
 msgid "Side Arms"
@@ -888,7 +892,7 @@ msgstr "Hançer"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsondescription
 msgid "Using iron instead of bronze gave spears additional piercing power."
-msgstr ""
+msgstr "Mızraklarda demir yerine bronz kullanırsan onlara delici ek güç sağlar."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsontooltip
 msgid "All Spear units +2 hack attack."
@@ -896,7 +900,7 @@ msgstr "Tüm Mızrak birimler+2 saldırı durdurma sağlar."
 
 #: simulation/data/technologies/melee_inf_spearheads.jsongenericName
 msgid "Iron Spearheads"
-msgstr ""
+msgstr "Demir Mızrakuçları"
 
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.ptol
 #: simulation/data/technologies/melee_inf_spearheads.jsonspecificName.spart
@@ -910,23 +914,23 @@ msgstr "Siderénies Aichmés"
 
 #: simulation/data/technologies/pair_cav_01.jsongenericName
 msgid "Lance vs. Chamfron"
-msgstr ""
+msgstr "Zıpkın vs. At başlığı"
 
 #: simulation/data/technologies/pair_champ_02.jsongenericName
 msgid "Champions vs. Part-timers"
-msgstr ""
+msgstr "Mükemmeller vs. Az çalışanlar"
 
 #: simulation/data/technologies/pair_gather_01.jsongenericName
 msgid "Servants vs. Wedge and Mallet"
-msgstr ""
+msgstr "Hizmetkar vs. Çivi ve Çekiç"
 
 #: simulation/data/technologies/pair_gather_02.jsongenericName
 msgid "Serfs vs. Shaft Mining"
-msgstr ""
+msgstr "Köleler vs Şaft Madenciliği"
 
 #: simulation/data/technologies/pair_gather_03.jsongenericName
 msgid "Slaves vs. Silver Mining"
-msgstr ""
+msgstr "Köleler vs. Gümüş Madenciliği "
 
 #: simulation/data/technologies/pair_gather_wood_01.jsongenericName
 msgid "Iron Axes vs. Wheelbarrow"
@@ -938,11 +942,11 @@ msgstr "İyileşme Sahası ve Oranı"
 
 #: simulation/data/technologies/pair_heal_02.jsongenericName
 msgid "Heal Range and Rate #2"
-msgstr ""
+msgstr "İyileşme Sahası ve Oranı #2"
 
 #: simulation/data/technologies/pair_heal_03.jsongenericName
 msgid "Garrison Healing vs. Self-Healing"
-msgstr ""
+msgstr "Garnizon İyileşmesi vs. Kendi kendine-İyileşme"
 
 #: simulation/data/technologies/pair_house_01.jsongenericName
 #: simulation/data/technologies/pair_house_02.jsongenericName
@@ -955,14 +959,14 @@ msgstr "Yan Askerlere karşı Düzensizler"
 
 #: simulation/data/technologies/pair_inf_02.jsongenericName
 msgid "Spear Fighting vs. Skirmishing"
-msgstr ""
+msgstr "Mızraklı Saldırısı vs. Tekil Saldırı"
 
 #: simulation/data/technologies/pair_inf_armor_01.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_02.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_03.jsongenericName
 #: simulation/data/technologies/pair_inf_armor_04.jsongenericName
 msgid "Infantry Hack Armor vs. Spearmen Pierce Armor"
-msgstr ""
+msgstr "Piyade Zırh Delme vs. Mızraklı Zırh Delme"
 
 #: simulation/data/technologies/pair_levy_01.jsongenericName
 msgid "Levy Infantry vs. Levy Cavalry"
@@ -974,7 +978,7 @@ msgstr "Saldırı vs. Maliyet"
 
 #: simulation/data/technologies/pair_siege_attack_pack.jsongenericName
 msgid "Attack vs. Packing"
-msgstr ""
+msgstr "Saldırı vs. Paketleme"
 
 #: simulation/data/technologies/pair_siege_cost_armor.jsongenericName
 msgid "Cost vs. Armor"
@@ -982,7 +986,7 @@ msgstr "Maliyet vs. Zırh"
 
 #: simulation/data/technologies/pair_tower_01.jsongenericName
 msgid "Night's Watch vs. Crenellations"
-msgstr ""
+msgstr "Gecenin Görünüşü vs. Mazgallı Surlar"
 
 #: simulation/data/technologies/pair_walls_01.jsongenericName
 msgid "Walls build time vs. Health"
@@ -1013,7 +1017,7 @@ msgstr ""
 #: simulation/data/technologies/phase_city_gauls.jsonrequirementsTooltip
 #: simulation/data/technologies/phase_city_generic.jsonrequirementsTooltip
 msgid "Requires 4 new Town Phase structures (except Walls and Civic Centers)."
-msgstr ""
+msgstr "4 yeni Şehir Aşaması yapısı gerekli (Duvarlar ve Sivil Merkezler hariç)."
 
 #: simulation/data/technologies/phase_city_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_city_generic.jsonspecificName.hele
@@ -1026,13 +1030,13 @@ msgstr "Megalopolis"
 #: simulation/data/technologies/phase_city_britons.jsondescription
 #: simulation/data/technologies/phase_city_gauls.jsondescription
 msgid "Advance from a bustling town to large city."
-msgstr ""
+msgstr "Kalabalık kasabadan büyük şehirleri geliştir."
 
 #: simulation/data/technologies/phase_city_britons.jsontooltip
 msgid ""
 "Advance to City Phase, which unlocks Brythonic structures and units. "
 "Territory radius for Civic Centers increased by another +50%"
-msgstr ""
+msgstr "Şehir Aşaması'na geçin, Britonik bina ve birlikleri açar. Şehir Merkezlerinin alan yarıçapı ekstra +%50 artar."
 
 #: simulation/data/technologies/phase_city_britons.jsongenericName
 msgid "City Phase - Britons"
@@ -1046,7 +1050,7 @@ msgstr ""
 
 #: simulation/data/technologies/phase_city_gauls.jsongenericName
 msgid "City Phase - Gauls"
-msgstr ""
+msgstr "Şehir Aşaması - Galyalılar"
 
 #: simulation/data/technologies/phase_city_generic.jsondescription
 msgid ""
@@ -1088,7 +1092,7 @@ msgstr ""
 #: simulation/data/technologies/phase_town_generic.jsonrequirementsTooltip
 msgid ""
 "Requires 5 Village Phase structures (except Palisades and Farm Fields)."
-msgstr ""
+msgstr "5 Köy Aşaması yapısı gerekli (Çitler ve Tarım Alanları hariç)."
 
 #: simulation/data/technologies/phase_town_athen.jsonspecificName.athen
 #: simulation/data/technologies/phase_town_generic.jsonspecificName.hele
@@ -1102,7 +1106,7 @@ msgstr "Komópolis"
 #: simulation/data/technologies/phase_town_generic.jsondescription
 msgid ""
 "Advances from a small village to a bustling town, ready to expand rapidly."
-msgstr ""
+msgstr "Küçük köyden kalabalık kasabaları geliştir, hızlıca genişmeye hazır ol."
 
 #: simulation/data/technologies/phase_town_generic.jsontooltip
 msgid ""
@@ -1202,15 +1206,15 @@ msgstr "İnsula"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsondescription
 msgid "Training increases damage of ranged infantry units."
-msgstr ""
+msgstr "Eğitim, piyadelerin verdiği zararı artırır."
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "Ranged infantry +2 pierce attack."
-msgstr ""
+msgstr "Dönüşümlü piyadenin delme saldırısına +2."
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
 msgid "Ranged Infantry Irregulars"
-msgstr ""
+msgstr "Düzensiz Sıralı Piyade"
 
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.ptol
 #: simulation/data/technologies/ranged_inf_irregulars.jsonspecificName.spart
@@ -1253,11 +1257,11 @@ msgstr "Amentum"
 
 #: simulation/data/technologies/siege_armor.jsondescription
 msgid "Increased armor on siege weapons"
-msgstr ""
+msgstr "Kuşatma silahlarının zırhları arttı."
 
 #: simulation/data/technologies/siege_armor.jsontooltip
 msgid "All Siege weapons +2 Hack armor levels."
-msgstr ""
+msgstr "Tüm Kuşatma silahları +2 Zırh Delme Seviyesi."
 
 #: simulation/data/technologies/siege_armor.jsongenericName
 msgid "Armor plating"
@@ -1269,7 +1273,7 @@ msgstr "Gelişmiş teknolojiler kuşatma verimliliğini artırır"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +5 Crush damage."
-msgstr ""
+msgstr "Tüm kuşatma silahlarına +5 yıkım hasarı."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1277,7 +1281,7 @@ msgstr "Gelişmiş Kuşatma"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsondescription
 msgid "Improvement to projectile accuracy"
-msgstr ""
+msgstr "Nişan isabeti iyileştirme"
 
 #: simulation/data/technologies/siege_bolt_accuracy.jsontooltip
 msgid "Bolt shooter accuracy increased 25%"
@@ -1293,7 +1297,7 @@ msgstr "Kuşatma silahları metal kaynaklara daha az gereksinim duyar."
 
 #: simulation/data/technologies/siege_cost_metal.jsontooltip
 msgid "Siege weapons cost 20% less metal"
-msgstr ""
+msgstr "Kuşatma silahları 20% daha az metale mal olur"
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
@@ -1309,7 +1313,7 @@ msgstr "Kuşatma silahlarında %20 daha az odun maliyeti"
 
 #: simulation/data/technologies/siege_cost_wood.jsongenericName
 msgid "Artillery Instructors"
-msgstr ""
+msgstr "Topçu Eğitmenleri"
 
 #: simulation/data/technologies/siege_packing.jsondescription
 msgid "Immobile siege weapons are assembled and disassembled faster"
@@ -1326,15 +1330,15 @@ msgstr "Askeri Mühendisler"
 #: simulation/data/technologies/speed_trader_01.jsondescription
 msgid ""
 "Increases movement rate of traders, which in turn increases trade income."
-msgstr ""
+msgstr "Tüccarların hareket hızları artar, böylelikle daha fazla ticaret geliri elde edersin."
 
 #: simulation/data/technologies/speed_trader_01.jsontooltip
 msgid "Traders +25% Walk Speed, which quickly increases trade income."
-msgstr ""
+msgstr "Tüccara +25% Yürüyüş Hızı, ticaret gelirleri hızlıca artar."
 
 #: simulation/data/technologies/speed_trader_01.jsongenericName
 msgid "Trade Convoys"
-msgstr ""
+msgstr "Ticaret Kervanları"
 
 #: simulation/data/technologies/training_conscription.jsondescription
 #: simulation/data/technologies/persians/training_conscription_infantry.jsondescription
@@ -1362,7 +1366,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_cavalry.jsontooltip
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Conscription."
-msgstr ""
+msgstr "Tüm süvarilere -20% eğitim zamanı, bunun yanında -10 sağlık. Zorunluğu askerliği aç."
 
 #: simulation/data/technologies/training_levy_cavalry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_cavalry.jsongenericName
@@ -1379,7 +1383,7 @@ msgstr ""
 #: simulation/data/technologies/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Conscription."
-msgstr ""
+msgstr "Tüm piyadelere -10% eğitim zamanı, bunun yanında -5 sağlık. Zorunluğu askerliği aç."
 
 #: simulation/data/technologies/training_levy_infantry.jsongenericName
 #: simulation/data/technologies/persians/training_levy_infantry.jsongenericName
@@ -1406,7 +1410,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_champion_units.jsontooltip
 msgid "Unlock the ability to train Champions at the barracks."
-msgstr ""
+msgstr "Kışlada Mükemmel eğitme gücünü aç."
 
 #: simulation/data/technologies/unlock_champion_units.jsongenericName
 msgid "Unlock Champion Units"
@@ -1429,7 +1433,7 @@ msgstr ""
 
 #: simulation/data/technologies/unlock_females_house.jsontooltip
 msgid "Unlock the ability to train women from houses."
-msgstr ""
+msgstr "Evlerden kadın yetiştirme gücünü aç."
 
 #: simulation/data/technologies/unlock_females_house.jsongenericName
 msgid "Fertility Festival"
@@ -1460,22 +1464,22 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_advanced_cavalry.jsongenericName
 msgid "Advanced Citizen-Cavalry"
-msgstr ""
+msgstr "Gelişmiş Vatandaş-Süvari"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Advanced rank."
-msgstr ""
+msgstr "Tüm vatandaş askerler süvarilerini Gelişmiş rütbeye yükselt."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsontooltip
 msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr ""
+msgstr "Tüm vatandaş asker piyadeleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır. Seçkin Vatandaş Piyade teknolojisinin klidini aç."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr ""
+msgstr "Gelişmiş Vatandaş-Piyade"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
@@ -1493,11 +1497,11 @@ msgstr ""
 
 #: simulation/data/technologies/upgrade_rank_elite_cavalry.jsongenericName
 msgid "Elite Citizen-Cavalry"
-msgstr ""
+msgstr "Seçkin Vatandaş-Süvari"
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsondescription
 msgid "Upgrade all of your citizen-soldier infantrymen to Elite rank."
-msgstr ""
+msgstr "Tüm vatandaş askerler süvarilerini Seçkin rütbeye yükselt."
 
 #: simulation/data/technologies/upgrade_rank_elite_infantry.jsontooltip
 msgid ""
@@ -1519,11 +1523,11 @@ msgstr "Zeugites"
 
 #: simulation/data/technologies/vision_outpost.jsondescription
 msgid "Outposts gain longer vision for scouting."
-msgstr ""
+msgstr "Karakollar gözcülük için büyük görüş alanı alırlar."
 
 #: simulation/data/technologies/vision_outpost.jsontooltip
 msgid "Vision Range +50% for Outposts."
-msgstr ""
+msgstr "Karakollar için %+50 Görüş Alanı."
 
 #: simulation/data/technologies/vision_outpost.jsongenericName
 msgid "Carrier Pigeons"
@@ -1545,23 +1549,23 @@ msgstr "Üçlü Duvarlar"
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their metal cost decreased."
-msgstr ""
+msgstr "Paralı kelt askerlerinin metal maliyeti düştü."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsontooltip
 msgid ""
 "Hire a Celtic mercenary captain to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Kelt paralı askerin ücretini -20 metal azaltmak için bir Kelt komutan al."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs.jsongenericName
 msgid "Celtic Mercenary Captain"
-msgstr ""
+msgstr "Gelişmiş Paralı Kaptanı"
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsontooltip
 msgid ""
 "Hire a Gallic mercenary general to reduce cost -20 metal for Celtic "
 "mercenaries."
-msgstr ""
+msgstr "Kelt paralı askerin ücretini -20 metal azaltmak için bir Galyalı bir general al."
 
 #: simulation/data/technologies/carthaginians/cost_celt_mercs_2.jsongenericName
 msgid "Gallic Mercenary General"
@@ -1580,7 +1584,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs.jsongenericName
 msgid "Lusitanian Mercenary Captain"
-msgstr ""
+msgstr "Lusitanialı Paralı Kaptan"
 
 #: simulation/data/technologies/carthaginians/cost_iberian_mercs_2.jsontooltip
 msgid ""
@@ -1615,31 +1619,31 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/cost_italian_mercs_2.jsongenericName
 msgid "Italiote Mercenary General"
-msgstr ""
+msgstr "İtalyan Paralı Generali"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_1.jsongenericName
 msgid "Celtic merc cost vs. recruit time #1"
-msgstr ""
+msgstr "Kelt paralı asker maliyeti vs. askere alma zamanı #1"
 
 #: simulation/data/technologies/carthaginians/pair_celt_mercs_2.jsongenericName
 msgid "Celtic merc cost vs. recruit time #2"
-msgstr ""
+msgstr "Kelt paralı asker maliyeti vs. askere alma zamanı #2"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_1.jsongenericName
 msgid "Iberian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "İber paralı asker maliyeti vs. askere alma zamanı #1"
 
 #: simulation/data/technologies/carthaginians/pair_iberian_mercs_2.jsongenericName
 msgid "Iberian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "İber paralı asker maliyeti vs. askere alma zamanı #2"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_1.jsongenericName
 msgid "Italian merc cost vs. recruit time #1"
-msgstr ""
+msgstr "İtalyan paralı asker maliyeti vs. askere alma zamanı #1"
 
 #: simulation/data/technologies/carthaginians/pair_italian_mercs_2.jsongenericName
 msgid "Italian merc cost vs. recruit time #2"
-msgstr ""
+msgstr "İtalyan paralı asker maliyeti vs. askere alma zamanı #2"
 
 #: simulation/data/technologies/carthaginians/special_colonisation.jsondescription
 msgid ""
@@ -1679,21 +1683,21 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsontooltip
 msgid "Shipyard increased batch construction speed bonus."
-msgstr ""
+msgstr "Tersane görev tamamlama hız ikramiyesi arttı."
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsongenericName
 msgid "Phoenician Naval Architects"
-msgstr ""
+msgstr "Fenike Gemi Ustaları"
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsondescription
 msgid "Celtic mercenaries have their train time decreased."
-msgstr ""
+msgstr "Kelt Paralı Askerlerinin eğitim süresi azaldı."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsontooltip
 msgid ""
 "Ally with Celtic towns to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Kelt Paralı Askerinin askere alınma süresini %-20 azaltmak için Kelt kasabaları ile müttefik olun."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs.jsongenericName
 msgid "Celtic Alliance"
@@ -1702,7 +1706,7 @@ msgstr "Kelt İttifakı"
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsontooltip
 msgid ""
 "Subjugate Gallic tribes to reduce recruit time -20% for Celtic mercenaries."
-msgstr ""
+msgstr "Kelt Paralı Askerlerinin askere alınma süresini %-20 azaltmak için Galya kasabalarını boyunduruk altına alın."
 
 #: simulation/data/technologies/carthaginians/traintime_celt_mercs_2.jsongenericName
 msgid "Gallic Hegemony"
@@ -1711,12 +1715,12 @@ msgstr "Galya Egemenliği"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsondescription
 msgid "Iberian mercenaries have their train time decreased."
-msgstr ""
+msgstr "İber Paralı Askerlerinin eğitim süresi azaldı."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsontooltip
 msgid ""
 "Ally with Iberian towns to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "İber Paralı Askerinin askere alınma süresini %-20 azaltmak için İber kasabaları ile müttefik olun."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs.jsongenericName
 msgid "Iberian Alliance"
@@ -1725,7 +1729,7 @@ msgstr "İberyalı İttifakı"
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Hispania to reduce recruit time -20% for Iberian mercenaries."
-msgstr ""
+msgstr "İber Paralı Askerlerinin askere alınma süresini %-20 azaltmak için Hispania kasabalarını boyunduruk altına alın."
 
 #: simulation/data/technologies/carthaginians/traintime_iberian_mercs_2.jsongenericName
 msgid "Iberian Hegemony"
@@ -1734,38 +1738,38 @@ msgstr "İberya Egemenliği"
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsondescription
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsondescription
 msgid "Italian mercenaries have their train time decreased."
-msgstr ""
+msgstr "İtalyan Paralı Askerlerinin eğitim süresi azaldı."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsontooltip
 msgid ""
 "Ally with Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "İtalyan Paralı Askerinin askere alınma süresini %-20 azaltmak için İtalyan kasabaları ile müttefik olun."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs.jsongenericName
 msgid "Italiote Alliance"
-msgstr ""
+msgstr "İtalyan İttifakı"
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsontooltip
 msgid ""
 "Subjugate Italiote towns to reduce recruit time -20% for Italian "
 "mercenaries."
-msgstr ""
+msgstr "İtalyan Paralı Askerlerinin askere alınma süresini %-20 azaltmak için italyan kasabalarını boyunduruk altına alın."
 
 #: simulation/data/technologies/carthaginians/traintime_italian_mercs_2.jsongenericName
 msgid "Italiote Hegemony"
-msgstr ""
+msgstr "İtalyan Egemenliği"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsondescription
 msgid "Upgrade all of your Celtic mercenaries to Advanced rank."
-msgstr ""
+msgstr "İleri rütbeler için tüm paralı Kelt askerlerini yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Celtic Mercenaries technology."
-msgstr ""
+msgstr "Tüm Kelt Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır. Seçkin Kelt Paralı Asker teknolojisinin klidini aç."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_celts.jsongenericName
 msgid "Advanced Celtic Mercenaries"
@@ -1773,76 +1777,76 @@ msgstr "Gelişmiş Kelt Paralı askerleri"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsondescription
 msgid "Upgrade all of your Iberian mercenaries to Advanced rank."
-msgstr ""
+msgstr "Tüm İber Paralı Askerleri Gelişmiş rütbeye yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Iberian Mercenaries technology."
-msgstr ""
+msgstr "Tüm İber Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır. Seçkin İber Paralı Asker teknolojisinin klidini aç."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_iberian.jsongenericName
 msgid "Advanced Iberian Mercenaries"
-msgstr ""
+msgstr "Gelişmiş İberyalı Paralı askerleri"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsondescription
 msgid "Upgrade all of your Italiote mercenaries to Advanced rank."
-msgstr ""
+msgstr "Tüm İtalyan Paralı Askerleri Gelişmiş rütbeye yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Advanced rank. This increases "
 "their military prowess, but decreases their resource gathering rates -25%. "
 "Unlocks Elite Italiote Mercenaries technology."
-msgstr ""
+msgstr "Tüm İtalyan Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır. Seçkin İtalyan Paralı Asker teknolojisinin klidini aç."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_advanced_italiote.jsongenericName
 msgid "Advanced Italiote Mercenaries"
-msgstr ""
+msgstr "Gelişmiş İtalyan Paralı askerleri"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsondescription
 msgid "Upgrade all of your Celtic Mercenaries to Elite rank."
-msgstr ""
+msgstr "Tüm Kelt Paralı Askerleri Seçkin rütbeye yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsontooltip
 msgid ""
 "Upgrade all of your Celtic mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Tüm Kelt Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsongenericName
 msgid "Elite Celtic Mercenaries"
-msgstr ""
+msgstr "Seçkin Kelt Paralı askerleri"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsondescription
 msgid "Upgrade all of your Iberian Mercenaries to Elite rank."
-msgstr ""
+msgstr "Tüm İber Paralı Askerleri Seçkin rütbeye yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsontooltip
 msgid ""
 "Upgrade all of your Iberian mercenaries to Elite rank. This increases their "
 "military prowess, but decreases their resource gathering rates another -25%."
-msgstr ""
+msgstr "Tüm İber Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsongenericName
 msgid "Elite Iberian Mercenaries"
-msgstr ""
+msgstr "İberyalı Seçkin Paralı askerler"
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsondescription
 msgid "Upgrade all of your Italiote Mercenaries to Elite rank."
-msgstr ""
+msgstr "Tüm İtalyan Paralı Askerleri Seçkin rütbeye yükselt."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsontooltip
 msgid ""
 "Upgrade all of your Italiote mercenaries to Elite rank. This increases their"
 " military prowess, but decreases their resource gathering rates another "
 "-25%."
-msgstr ""
+msgstr "Tüm İtalyan Paralı Askerleri Seçkin rütbeye yükselt. Bu onların askeri cesaretini artırır, ancak kaynak toplama oranlarınını %-25 azaltır."
 
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsongenericName
 msgid "Elite Italiote Mercenaries"
-msgstr ""
+msgstr "Seçkin İtalyan Paralı askerleri"
 
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsondescription
 msgid ""
@@ -1859,27 +1863,28 @@ msgstr "Ahşap İnşaat"
 msgid ""
 "Crop rotation increases yield by preventing the depletion of vital nutrients"
 " and minerals from the soil."
-msgstr ""
+msgstr "Ara vererek ekim yapmak topraktaki hayati besin ve minerallerin tükenmesi engelleyerek verimi artırır."
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
 msgid "Increase the yield of your farms. +25% farming rate."
-msgstr ""
+msgstr "Tarlalarınızın verimini artırın. +25% hasat hızı."
 
 #: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
 msgid "Crop Rotation"
-msgstr ""
+msgstr "Mahsul Rotasyonu"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr ""
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr "Mızraklı eğitim mızrak kullanan piyade birimlerinin hasar vermelerini arttırır."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Mızrakçı +2 saldırı darbesi."
+msgid "Spear Infantry +2 hack attack."
+msgstr "Mızraklı Piyade +2 Saldırı kesme."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr ""
+msgid "Infantry Spear Training"
+msgstr "Mızraklı PiyadeEğitimi"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1891,7 +1896,7 @@ msgstr "Hoplit"
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsondescription
 msgid "The Greeks used stone construction from early Mycenaean times."
-msgstr ""
+msgstr "Miken zamanlarının başlarında Yunanlar inşaat için taş kullanırdı."
 
 #: simulation/data/technologies/hellenes/civbonus_hellenic_architecture.jsongenericName
 msgid "Hellenic Architecture"
@@ -1911,13 +1916,13 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
 msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Mızraklı piyadeler için +25% sağlık bonusu, fakat +10% eğitim zamanı."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr "Mızraklı Piyade için %+25 sağlık, bunun yanında %+10 eğitim zamanı."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -1927,11 +1932,11 @@ msgstr "The Agoge"
 msgid ""
 "Athenian triremes can train Marines (Epibates Athenaikos) and Cretan "
 "Mercenary Archers (Toxotes Kretikos)."
-msgstr ""
+msgstr "Atinalılar üç sıra kürekli kadırga denizcilik (Epibates Athenaikos) yönetimi  yapabilirler ve Girit Paralı Okçu (Toxotes Kretikos) eğitimi."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsontooltip
 msgid "Athenian triremes can train Marines and Cretan Mercenary Archers."
-msgstr ""
+msgstr "Atinalılar üç sıra kürekli kadırga denizcilik yönetimi yapabilirler ve Girit Paralı Okçu eğitimi."
 
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsongenericName
 msgid "Iphicratean Reforms"
@@ -1976,7 +1981,7 @@ msgstr ""
 msgid ""
 "The Hellenic culture is very influential. +20% territory effect for all "
 "buildings."
-msgstr ""
+msgstr "Yunan kültürü çok etkili. Tüm yapılar için %+20 bölgesel etki sağlar."
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsongenericName
 msgid "Hellenization"
@@ -2012,14 +2017,14 @@ msgstr "Chakravarti Samrāt"
 msgid ""
 "The Indians had a tradition of fine archery and a penchant for using massed "
 "archers in battle."
-msgstr ""
+msgstr "Hintliler üstün bir okçuluk geleneği vardı ve savaşlarda okçuları yoğun biçimde kullanırlardı."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsontooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsontooltip
 msgid ""
 "Range +10 meters for bow-wielding units. Archer units train time -20%, but "
 "also -20% health."
-msgstr ""
+msgstr "Oklu birimleri için mesafe +10 metre arasında değişmektedir. Okcu birimlerin eğitim süresi %-20, bunun yanında %-20 sağlık."
 
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsongenericName
 #: simulation/data/technologies/persians/special_archery_tradition.jsongenericName
@@ -2055,11 +2060,11 @@ msgstr ""
 msgid ""
 "The Anusiya champion infantry train twice as fast, but lose a little max "
 "health."
-msgstr ""
+msgstr "Anusiya mükemmel piyade eğitimi iki kat daha hızlıdır, ama en fazla sağlıktan biraz eksiltir."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiya Şampiyon Piyadesine -50% yetiştirme süresi, ancak -20 can."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "Anusiya Mükemmel Piyadesi %-50 yetiştirme süresi, bunun yanında -10 sağlık."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
@@ -2075,7 +2080,7 @@ msgstr "İranlılar Sardis'ten Susa'ya uzanan 1677 mil uzunluğundaki olağanüs
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
-msgstr ""
+msgstr "Tüm Pers yapıları %+25 sağlığa, bunun yanında %+20 yapı süresine etki eder."
 
 #: simulation/data/technologies/persians/persian_architecture.jsongenericName
 msgid "Persian Architecture"
@@ -2100,7 +2105,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "Fenike üç sıra kürekli kadırgalar benzersiz süvari eğitim yeteneği kazandırır."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"
@@ -2114,7 +2119,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsontooltip
 msgid "Faster batch training speed for the Stables."
-msgstr ""
+msgstr "Ahırlar için toplu hızlı eğitim."
 
 #: simulation/data/technologies/persians/training_conscription_cavalry.jsongenericName
 msgid "Cavalry Conscription"
@@ -2128,21 +2133,21 @@ msgstr "Piyade Askere Çağırma"
 msgid ""
 "All cavalry -20% train time, but also -10 health. Unlocks Cavalry "
 "Conscription."
-msgstr ""
+msgstr "Tüm süvariler %-20 eğitim süresine,bunun yanında -10 sağlığa neden olur. Süvari Zorunlu askerlik Kilidi aç."
 
 #: simulation/data/technologies/persians/training_levy_infantry.jsontooltip
 msgid ""
 "All infantry -10% train time, but also -5 health. Unlocks Infantry "
 "Conscription."
-msgstr ""
+msgstr "Tüm piyadeler %-10 eğitim süresine,bunun yanında -5 sağlığa neden olur. Piyade Zorunlu askerlik Kilidi aç."
 
 #: simulation/data/technologies/romans/decay_logistics.jsondescription
 msgid "The Romans were masters of the logistics of warfare."
-msgstr ""
+msgstr "Romalılar savaş lojistiğinde ustaydılar."
 
 #: simulation/data/technologies/romans/decay_logistics.jsontooltip
 msgid "Entrenched Camps and Siege Walls decay 50% slower."
-msgstr ""
+msgstr "Yerleşik Kamplar ve Kuşatma Duvarları %50 daha yavaş çürüme sağlar."
 
 #: simulation/data/technologies/romans/decay_logistics.jsongenericName
 msgid "Roman Logistics"
@@ -2158,7 +2163,7 @@ msgstr ""
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
-msgstr ""
+msgstr "Tüm birimler için %+25 görüş alanı."
 
 #: simulation/data/technologies/romans/vision_sibylline.jsongenericName
 msgid "Sibylline Books"
@@ -2181,7 +2186,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsontooltip
 msgid "Civic centers +100% health and double default arrows."
-msgstr ""
+msgstr "Halk Merkezleri %+100 Sağlığa ve iki katı korunmaya sahiptir."
 
 #: simulation/data/technologies/successors/special_hellenistic_metropolis.jsongenericName
 msgid "Hellenistic Metropolis"
@@ -2195,7 +2200,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsontooltip
 msgid "Faster batch training speed for the Fortress."
-msgstr ""
+msgstr "Hisarlar için toplu hızlı eğitim."
 
 #: simulation/data/technologies/successors/special_parade_of_daphne.jsongenericName
 msgid "Parade of Daphne"
@@ -2210,7 +2215,7 @@ msgstr ""
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health, but also +10% train time."
-msgstr "Tüm süvariler +20% sağlığa, aynı zamanda +10% eğitim zamanına etki eder."
+msgstr "Tüm süvariler +20% sağlığa, bunun yanında +10% eğitim zamanına etki eder."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"
@@ -2226,11 +2231,11 @@ msgstr "Selevkos ordusunda yenilik."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsontooltip
 msgid "Unlock the Romanized Heavy Swordsman and Seleucid Cataphract."
-msgstr ""
+msgstr "Romalılaşmış Ağır Kılıçlı ve Selevkoslu Zırhlı at kilidini aç."
 
 #: simulation/data/technologies/successors/unlock_reform_army.jsongenericName
 msgid "Reform Army"
-msgstr ""
+msgstr "Devrim Ordusu"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsondescription
 msgid "The traditional army of the Seleucids."
@@ -2238,7 +2243,7 @@ msgstr "Geleneksel Selevkos ordusu"
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsontooltip
 msgid "Unlock the Silver Shield Pikeman and Scythed Chariot."
-msgstr ""
+msgstr "Gümüş kalkanlı mızraklı adam ve Tırpanlı Savaş arabası kilidini aç."
 
 #: simulation/data/technologies/successors/unlock_traditional_army.jsongenericName
 msgid "Traditional Army"
@@ -2248,13 +2253,13 @@ msgstr "Geleneksel Ordu"
 msgid ""
 "The Silver Shields, or Argyraspidai, were the elite heavy infantry arm of "
 "the Macedonian army."
-msgstr ""
+msgstr "Gümüş Kalkanlar, veya Argyraspidai, Makedon ordusunun seçkin ağır piyade kolu."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsontooltip
 msgid ""
 "Upgrade Shield Bearer Champion Infantry to Silver Shields, with greater "
 "attack, health, and armor."
-msgstr ""
+msgstr "Mükemmel Piyade Kalkanlısından Gümüş Kalkanlıya yükselt, büyük saldırı,sağlık, ve zırh."
 
 #: simulation/data/technologies/successors/upgrade_mace_silvershields.jsongenericName
 msgid "Silver Shields Regiment"

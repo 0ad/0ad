@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-28 11:40+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-04 06:30+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -1185,7 +1185,7 @@ msgstr "Háj"
 #: simulation/data/technologies/pop_house_02.jsondescription
 msgid ""
 "Homes tended to expand as the wealth and population of a settlement grew."
-msgstr ""
+msgstr "Příbytky tíhly k rozšiřování, jak rostla úroveň zdraví a počet obyvatel osady."
 
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +2 population cap bonus."
@@ -1869,16 +1869,17 @@ msgid "Crop Rotation"
 msgstr "Střídavé hospodářství"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
 msgstr "Výcvik v boji s oštěpy zvyšuje poškození pěších jednotek vybavených oštěpy."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Vojáci s oštěpem +2 k sečnému útoku."
+msgid "Spear Infantry +2 hack attack."
+msgstr "Pěchota bojující oštěpem +2 k sečnému útoku."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Pěší boj s oštěpy"
+msgid "Infantry Spear Training"
+msgstr "Cvičení pěchoty v zacházení s oštěpem"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1910,12 +1911,12 @@ msgstr "Sparťané neměli největší armádu světa, ale měli ve své době a
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Sparťané byli ubytováni a cvičeni od mladého věku tak, aby byli vynikajícími válečníky a aby vydrželi jakékoli strádání, které by jim vojenský život přinesl."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr "Sparťané byli ubytováni a cvičeni od mladého věku (šest let) tak, aby byli vynikajícími válečníky a aby vydrželi jakékoli strádání, které by jim vojenský život přinesl."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
+msgid "+25% health for Spear Infantry, but also +10% train time."
 msgstr "+25% zdraví pro jednotky s oštěpem, ale také +10% k délce výcviku."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -2057,8 +2058,8 @@ msgid ""
 msgstr "Anusiyjská elitní pěchota prodělává výcvik dvakrát tak rychle, ale ztrácí trochu na zdraví."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiyjská elitní pěchota -50% času na výcvik, ale i -20 zdraví."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "Anusiyjská elitní pěchota -50% času na výcvik, ale i -10 zdraví."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

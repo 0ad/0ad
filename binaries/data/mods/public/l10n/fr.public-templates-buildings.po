@@ -5,14 +5,16 @@
 # 
 # Translators:
 # DiabloO <lowriders_diabloqm@hotmail.com>, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2014
+# Polakrity <sxk-fr@live.fr>, 2014
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-11 18:26+0000\n"
-"Last-Translator: DiabloO <lowriders_diabloqm@hotmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-25 01:44+0000\n"
+"Last-Translator: Polakrity <sxk-fr@live.fr>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,9 +123,9 @@ msgstr "Avant-poste"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr "Construire en territoires neutres et alliés pour explorer des zones de la carte. Perd lentement des points de vie en territoire neutre."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr "Construire en territoire neutre ou sur votre territoire pour explorer des zones de la carte. Perd lentement sa santé en territoire neutre."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -146,7 +148,7 @@ msgstr "Porte de la cité"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr "Mur de protection"
+msgstr "Mur protecteur"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -258,7 +260,7 @@ msgstr "Port"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "Implanter au bord de l'eau pour construire des navires de guerre et ouvrir le commerce maritime. Rechercher les améliorations navales."
+msgstr "Construire au bord de l'eau pour produire des navires de guerre et ouvrir le commerce maritime. Rechercher les améliorations navales."
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:28
@@ -439,7 +441,7 @@ msgstr "Avant-poste grec"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr "Entraîner les Héros. Rechercher les technologies spéciales."
+msgstr "Entraîner les héros. Rechercher les technologies spéciales."
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
@@ -536,7 +538,7 @@ msgstr "Pýrgos"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Apporter la gloire à votre civilisation et ajouter de grandes étendues de terres à votre empire. Jusqu'à 30 unités en garnison pour les soigner rapidement."
+msgstr "Apporter la gloire à votre civilisation et ajoute de grandes étendues de terres à votre empire. Jusqu'à 30 unités en garnison pour les soigner rapidement."
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/hele_wonder.xml:17
@@ -550,12 +552,6 @@ msgstr "Neṓs Parthenos"
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr "Gwersyllty"
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr "-Ville"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -1008,7 +1004,7 @@ msgstr "Biko Sarbide"
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr "Former Champions et Héros. Jusqu'à 15 soldats en garnison pour une défense robuste."
+msgstr "Former les champions et héros. Jusqu'à 15 soldats en garnison pour une défense robuste."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -1156,7 +1152,7 @@ msgstr "Camp de Mercenaires."
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr "Capturez cette structure pour entraîner des mercenaires d'Égypte hellénistique."
+msgstr "Capturer cette structure pour entraîner des mercenaires d'Égypte hellénistique."
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
@@ -1182,11 +1178,11 @@ msgstr "Palais perse"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr "Lever des unités d'infanterie citoyenne."
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr "Padgan"
 
@@ -1275,10 +1271,6 @@ msgid "Parihuvādā"
 msgstr "Parihuvādā"
 
 #: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr "-Caserne"
-
-#: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
 msgstr "Etables"
 
@@ -1322,7 +1314,7 @@ msgstr "Jardins suspendus de Babylone"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr "Former des égyptiens et des citoyens-soldats du Moyen-Orient. Rechercher des améliorations de formation. Garnison : 10."
+msgstr "Former des égyptiens et des citoyens-soldats du Moyen-Orient. Recherche des améliorations de formation. Garnison : 10."
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1521,14 +1513,14 @@ msgstr "Porta Circummunitionis"
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr "Palissades en bois et tours constructible en territoire ennemi et neutre."
+msgstr "Une palissade en bois et tourbe constructible en territoire ennemi et neutre."
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr "Mur de Siège"
+msgstr "Mur de siège"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
@@ -1542,7 +1534,7 @@ msgstr "Convertir le Mur de siège en Porte de mur de siège"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr "Tour de Siège"
+msgstr "Tour de siège"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1581,10 +1573,6 @@ msgstr "Temple de Vesta"
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr "-Village"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
@@ -1634,7 +1622,7 @@ msgstr "Liménas"
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr "Construire des engins de siège et former les Champions. Jusqu'à 20 soldats en garnison pour une défense robuste."
+msgstr "Construire des engins de siège et former les champions. Jusqu'à 20 soldats en garnison pour une défense robuste."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1645,7 +1633,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "C'est le bâtiment d'expansion de Seleucid, semblable aux centres municipaux pour d'autres factions. Il est plus faible et rapporte une plus petite influence de territoire, mais est moins cher et se construit plus rapidement.\n- Former des soldats-colon de diverses nationalités.\n- Distance minimale d'autres colonies militaires : 120 mètres."
+msgstr "C'est le bâtiment d'expansion de Seleucid, semblable aux centres-ville des autres factions. Il est plus fragile et rapporte une plus petite zone d'influence de territoire, mais il est moins cher et se construit plus rapidement.\n- Former des soldats-colons de diverses nationalités.\n- Distance minimale entre chaque colonie militaire : 120 mètres."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1674,7 +1662,7 @@ msgstr "Gerousia"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Entraîner les héros spartiates et les hoplites champions."
+msgstr "Entraîner les héros spartiates et champions hoplites."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"

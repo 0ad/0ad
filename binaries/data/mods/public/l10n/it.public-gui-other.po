@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-23 11:01+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-25 14:29+0000\n"
 "Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -62,18 +62,18 @@ msgstr "Eroi"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s: Storia"
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "Apertura di %(url)s\nnel browser web predefinito. Attendere prego ...."
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 msgid "Opening page"
 msgstr "Apertura pagina"
 
-#: gui/common/functions_global_object.js:80
+#: gui/common/functions_global_object.js:79
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -89,23 +89,6 @@ msgstr "HH:mm:ss"
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
 msgstr "Caricamento Interrotto"
-
-#: gui/common/functions_utility_list.js:14
-#: gui/common/functions_utility_list.js:44
-#: gui/common/functions_utility_list.js:69
-#: gui/common/functions_utility_list.js:84
-#: gui/common/functions_utility_list.js:101
-#: gui/common/functions_utility_list.js:113
-#: gui/common/functions_utility_list.js:125
-#: gui/common/functions_utility_list.js:141
-#, python-format
-msgid "%(functionName)s: %(object)s not found."
-msgstr "%(functionName)s: %(object)s non trovato."
-
-#: gui/common/functions_utility_list.js:161
-#, python-format
-msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr "Stringa richiesta '%(string)s' non trovata nella lista %(object)s's."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -169,32 +152,32 @@ msgstr "No"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Sì"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "No"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Retry"
 msgstr "Riprova"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Ignore"
 msgstr "Ignora"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Abort"
 msgstr "Annullato"
 
@@ -233,189 +216,207 @@ msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Mostra informazioni dettagliate per le unità addestrabili negli edifici."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:13
+msgid "FPS Overlay"
+msgstr "Sovrapposizione FPS"
+
+#: gui/options/options.js:13
+msgid "Show frames per second in top right corner."
+msgstr "Mostra i fotogrammi al secondo in alto a destra."
+
+#: gui/options/options.js:14
+msgid "Realtime Overlay"
+msgstr "Sovrapposizione Tempo Reale"
+
+#: gui/options/options.js:14
+msgid "Show current system time in top right corner."
+msgstr "Visualizza l'ora di sistema in alto a destra."
+
+#: gui/options/options.js:15
+msgid "Gametime Overlay"
+msgstr "Sovrapposizione Tempo di Gioco"
+
+#: gui/options/options.js:15
+msgid "Show current simulation time in top right corner."
+msgstr "Mostra il tempo di gioco in alto a destra."
+
+#: gui/options/options.js:19
 msgid "Prefer GLSL"
 msgstr "Utilizza GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Utilizza gli shader OpenGL 2.0 (consigliato)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Post Processing"
 msgstr "Post Processing"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Usa filtri video postprocessing (HDR, Bloom, DOF, etc)"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Shadows"
 msgstr "Ombre"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Enable shadows"
 msgstr "Abilita le ombre"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Particles"
 msgstr "Particelle"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Enable particles"
 msgstr "Abilita le particelle"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Show Sky"
 msgstr "Mostra il Cielo"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Render Sky"
 msgstr "Mostra il Cielo"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Smooth LOS"
 msgstr "Sfuma i Bordi"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Visualizza l'area inesplorata e la nebbia di guerra in modo fluido (Richiede GLSL)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Unit Silhouettes"
 msgstr "Sagome delle Unità"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
 msgstr "Mostra i contorni delle unità dietro gli edifici"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Shadow Filtering"
 msgstr "Filtro Ombre"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Smooth shadows"
 msgstr "Ombre Sfumate"
 
-#: gui/options/options.js:24
-msgid "HQ Waviness"
-msgstr "Onde in Alta Qualità"
+#: gui/options/options.js:27
+msgid "Fast & Ugly Water"
+msgstr " Acqua Veloce & Brutta"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:27
 msgid ""
-"Use real normals for ocean-wave rendering, instead of applying them as a "
-"flat texture"
-msgstr "Utilizzare normali reali per il rendering delle onde, invece di applicare una texture piatta"
+"Use the lowest settings possible to render water. This makes other settings "
+"irrelevant."
+msgstr "Utilizza le impostazioni più basse per riprodurre l'acqua. Rende irrilevanti le altre impostazioni."
 
-#: gui/options/options.js:25
+#: gui/options/options.js:28
+msgid "HQ Water Effects"
+msgstr "Effetti Acqua HQ"
+
+#: gui/options/options.js:28
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Utilizza effetti di qualità superiore per l'acqua, riproducendo le onde costiere, la schiuma a riva, e le scie delle navi."
+
+#: gui/options/options.js:29
 msgid "Real Water Depth"
 msgstr "Profondità dell'Acqua"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
 msgstr "Utilizzare la profondità effettiva dell'acqua nel rendering"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Water Reflections"
 msgstr "Riflessioni dell'Acqua"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
 msgstr "Permettere all'acqua di riflettere un'immagine speculare"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Water Refraction"
 msgstr "Rifrazione dell'Acqua"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
 msgstr "Utilizzare una vera e propria mappa di rifrazione dell'acqua e non la trasparenza"
 
-#: gui/options/options.js:28
-msgid "Shore Foam"
-msgstr "Schiuma sulla Battigia"
+#: gui/options/options.js:32
+msgid "Shadows on Water"
+msgstr "Ombre sull'acqua"
 
-#: gui/options/options.js:28
-msgid "Show foam on water near shore depending on water waviness"
-msgstr "Mostra la schiuma sulle acque vicino alla riva a seconda dell'ondulazione dell'acqua"
-
-#: gui/options/options.js:29
-msgid "Shore Waves"
-msgstr "Onde sulla Battigia"
-
-#: gui/options/options.js:29
-msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "Mostra le onde che si infrangono sulle acque vicino alla riva (Richiede Onde HQ)"
-
-#: gui/options/options.js:30
-msgid "Water Shadows"
-msgstr "Ombre in Acqua"
-
-#: gui/options/options.js:30
+#: gui/options/options.js:32
 msgid "Cast shadows on water"
 msgstr "Proietta ombre sull'acqua"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "VSync"
 msgstr "Sincronia Verticale"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Mantiene la sincronia verticale per evitare sfarfallii. RICHIEDE IL RIAVVIO DEL GIOCO"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master Gain"
 msgstr "Volume Principale"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master audio gain"
 msgstr "Volume Audio Master"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Music Gain"
 msgstr "Volume Musica"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game music gain"
 msgstr "Volume Musica nel Gioco"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "Ambient Gain"
 msgstr "Volume Ambiente"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "In game ambient sound gain"
 msgstr "Volume Suono Ambiente nel Gioco"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "Action Gain"
 msgstr "Volume Azione"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "In game unit action sound gain"
 msgstr "Volume Suono Azione Unità nel Gioco"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI Gain"
 msgstr "Volume Interfaccia"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI sound gain"
 msgstr "Volume Suoni Interfaccia"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Chat Backlog"
 msgstr "Cronologia Chat"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Numero di messaggi arretrati da caricare quando si entra nel gruppo"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Chat Timestamp"
 msgstr "Data e Ora Chat"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Mostra l'ora in cui i messaggi sono inviati nella chat di gruppo"
 
@@ -1136,10 +1137,6 @@ msgid "[icon=iconLag]  The game lags when many units are moving."
 msgstr "[icon=iconLag] Il gioco è rallentato quando molte unità si muovono."
 
 #: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr "[icon=\"iconShip\"]  L'I.A. avversaria non può utilizzare navi."
-
-#: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"] Le mappe di grandi dimensioni possono causare problemi."
 
@@ -1466,6 +1463,24 @@ msgid ""
 "technologies."
 msgstr "- I Persiani hanno anche accesso a un gran numero di tecnologie strutturali e di difesa."
 
+#: gui/text/tips/pikemen.txt:1
+msgid "PIKEMEN"
+msgstr "PICCHIERI"
+
+#: gui/text/tips/pikemen.txt:2
+msgid "- Heavily armored and slow. Low attack."
+msgstr "- Pesantemente corazzati e lenti. Scarso attacco."
+
+#: gui/text/tips/pikemen.txt:4
+msgid ""
+"- Used against cavalry for a 4x attack bonus or against other melee infantry"
+" to pin them them in place."
+msgstr "- Usati contro la cavalleria per un bonus 4x di attacco o contro altra fanteria da mischia per bloccarla in un posto."
+
+#: gui/text/tips/pikemen.txt:6
+msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
+msgstr "- Disponibile per: Macedoni, Tolomei e Seleucidi,."
+
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
 msgstr "NAVE DA GUERRA PESANTE"
@@ -1537,12 +1552,38 @@ msgid "- Champion Infantry available to the Spartans faction."
 msgstr "- Fanteria Campione a disposizione della fazione Spartana."
 
 #: gui/text/tips/spartan_hoplites.txt:6
-msgid "- Long train time, but high armor and attack."
-msgstr "- Lunghi tempi di allenamento, ma elevati punti armatura e attacco."
+msgid ""
+"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
+"regular line infantry."
+msgstr "- Usali per macellare la cavalleria nemica o come forza d'urto per sostenere la linea di fanteria."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
 msgstr "- Utilizza la formazione 'falange' per avere bonus armatura supplementari."
+
+#: gui/text/tips/spearmen.txt:1
+msgid "SPEARMEN"
+msgstr "LANCIERI"
+
+#: gui/text/tips/spearmen.txt:2
+msgid "- The basic melee infantry for every faction in the game."
+msgstr "- La fanteria corpo a corpo di base per ogni fazione in gioco."
+
+#: gui/text/tips/spearmen.txt:4
+msgid "- Used against cavalry for a 2x attack bonus."
+msgstr "- Usata contro la cavalleria per un bonus di attacco 2x."
+
+#: gui/text/tips/spearmen.txt:6
+msgid ""
+"- Decent hack attack and a good charge bonus make them good front line "
+"troops."
+msgstr "- Attacco discreto e un buon bonus per la carica ne fanno buone truppe da prima linea."
+
+#: gui/text/tips/spearmen.txt:8
+msgid ""
+"- They are countered by ranged units and swordsmen, so support your spearmen"
+" with slingers or cavalry."
+msgstr "- Sono contrastate da unità a distanza e spadaccini, quindi supporta i lancieri con frombolieri o cavalleria."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

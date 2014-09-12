@@ -4,14 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# coyoty <sacuiu.andy@gmail.com>, 2014
 # w3as3l54, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-27 20:21+0000\n"
-"Last-Translator: w3as3l54\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-09 09:35+0000\n"
+"Last-Translator: coyoty <sacuiu.andy@gmail.com>\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,7 +35,7 @@ msgstr "Închide"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]Manualul jocului 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -169,15 +170,15 @@ msgstr "Cînd ești gata să începi, apasă butonul \"Începe jocul\"."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Scurtături:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Întotdeauna"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Inchide jocuul, fără confirmare"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -217,31 +218,31 @@ msgstr "Shift + F2: Fă o captură de ecran enormă (6400px*4800px, în formatul
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]În joc"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dublu click stânga [pe unitate]: Selectează toate unitățile de acelaș tip de pe ecran (chiar dacă au ranguri diferite)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Triplu click stănga [pe unitate]: Selectează toate unitățile de acelaș fel si rang de pe ecran"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + dublu click stânga [pe unitate]: Selectează toate unitățile de acelas fel de pe toată harta (chiar dacă au ranguri diferite)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + triplu click stânga [pe unitate]: Selectează toate unitățile de acelaș fel si rang de pe toată harta"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -261,7 +262,7 @@ msgstr "F12: Afișează/ascunde contorul cu timpul scurs"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Închide toate ferestrele (discuții, meniu) sau eliberează toate unitățile selectate"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -273,7 +274,7 @@ msgstr "T: Trimite conversația doar echipei"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pauză: Întrerupe/reia jocul"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -305,7 +306,7 @@ msgstr "1 (și tot așa în sus pînă la 0): Selectează unitățile/clădirile
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift +1 (până la 0): Adaugă grupul de control 1 (până la 0) pentru unitățile/clădirile selectate"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -327,33 +328,33 @@ msgstr "Z, X, C, V, B, N, M: Cu clădirile pentru antrenament selectate. Adaugă
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Modifică acțiunea mouse-ului"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + click dreapta pe clădire: Pune în garnizoană"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + click dreapta: Pune în coadă ordinul de mutare/construcție/colectare/etc"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr ""
+msgstr "Shift + click stânga atunci când antrenezi unități: Adaugă unități în grupuri de cinci"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + click stânga sau trage în stânga peste unitatea de pe hartă: Adaugă unitatea în selecție"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + click stânga sau trage în stânga peste o unitate de pe hartă: Scoate unitatea din selectie"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + trage în stânga peste unitățile de pe hartă: Selectează doar unitățile militare"
 
 #: gui/manual/intro.txt:79
 msgid ""

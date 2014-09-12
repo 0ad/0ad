@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 20:24+0200\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
 "PO-Revision-Date: 2014-05-25 21:41+0000\n"
 "Last-Translator: mustapha ali abdulkarim <baghdadhost@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
@@ -23,19 +23,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:733
+#: gui/scripting/ScriptFunctions.cpp:798
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (بناء مُخصّص)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:738
+#: gui/scripting/ScriptFunctions.cpp:803
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:759
+#: gui/scripting/ScriptFunctions.cpp:824
 msgid "custom build"
 msgstr "بناء مُخصّص"
 
@@ -43,7 +43,7 @@ msgstr "بناء مُخصّص"
 msgid "Long strings"
 msgstr "جُمل طويلة"
 
-#: ps/SavedGame.cpp:126
+#: ps/SavedGame.cpp:129
 #, c-format
 msgid "Saved game to '%ls'"
 msgstr "تم حفظ اللّعبة في %ls"
