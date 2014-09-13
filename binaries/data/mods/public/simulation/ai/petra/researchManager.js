@@ -168,7 +168,7 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	// remove some techs not yet used by this AI
 	for (var i = 0; i < techs.length; ++i)
 	{
-		var template = tech[i][1]._template;
+		var template = techs[i][1]._template;
 		if (template.affects && template.affects.length === 1
 			&& (template.affects[0] === "Healer" || template.affects[0] === "Outpost" || template.affects[0] === "StoneWall"))
 		{
