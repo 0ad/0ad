@@ -260,6 +260,12 @@ QUERYHANDLER(GetObjectMapSettings)
 														// TODO: X, Z maybe
 						}
 					}
+
+					// Adding actor seed
+					CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), id);
+					if (cmpVisual)
+						XML_Setting("ActorSeed", (unsigned int)cmpVisual->GetActorSeed());
+
 				}
 			}
 		}
