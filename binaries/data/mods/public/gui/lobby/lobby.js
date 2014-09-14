@@ -265,9 +265,9 @@ function updateGameList()
 				name = '[color="255 0 0"]' + g.name + '[/color]';
 			list_name.push(name);
 			list_ip.push(g.ip);
-			list_mapName.push(g.niceMapName);
+			list_mapName.push(translate(g.niceMapName));
 			list_mapSize.push(g.mapSize.split("(")[0]);
-			list_mapType.push(toTitleCase(g.mapType));
+			list_mapType.push(translate(toTitleCase(g.mapType)));
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
 			list.push(g.name);
 			list_data.push(c);
@@ -382,15 +382,15 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	Engine.GetGUIObjectByName("sgMapName").caption = g_GameList[g].niceMapName;
+	Engine.GetGUIObjectByName("sgMapName").caption = translate(g_GameList[g].niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
-	Engine.GetGUIObjectByName("sgMapType").caption = toTitleCase(g_GameList[g].mapType);
+	Engine.GetGUIObjectByName("sgMapType").caption = translate(toTitleCase(g_GameList[g].mapType));
 
 	// Display map description if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Description)
-		var mapDescription = mapData.settings.Description;
+		var mapDescription = translate(mapData.settings.Description);
 	else
 		var mapDescription = translate("Sorry, no description available.");
 
