@@ -255,7 +255,7 @@ function updateGameList()
 	{
 		if(!filterGame(g))
 		{
-			// Highlight games 'waiting' for this player, otherwise display as green
+			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
 			var name;
 			if (g.state == 'init')
 				name = '[color="0 125 0"]' + g.name + '[/color]';
