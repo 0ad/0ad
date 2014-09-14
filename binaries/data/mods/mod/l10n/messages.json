@@ -1,0 +1,44 @@
+[
+    {
+        "output": "mod-selector.pot",
+        "inputRoot": "..",
+        "project": "Pyrogenesis - Mod Selector",
+        "copyrightHolder": "Wildfire Games",
+        "rules": [
+            {
+                "extractor": "javascript",
+                "filemasks": [
+                    "gui/modmod/**.js"
+                ],
+                "options": {
+                   "keywords": {
+                        "translate": [1],
+                        "translatePlural": [1, 2],
+                        "translateWithContext": [[1], 2],
+                        "translatePluralWithContext": [[1], 2, 3],
+                        "markForTranslation": [1],
+                        "markForTranslationWithContext": [[1], 2]
+                    },
+                    "commentTags": [
+                        "Translation:"
+                    ]
+                }
+            },
+            {
+                "extractor": "xml",
+                "filemasks": [
+                    "gui/modmod/**.xml"
+                ],
+                "options": {
+                    "format": "none",
+                    "keywords": {
+                        "translatableAttribute": {
+                            "locationAttributes": ["id"]
+                        },
+                        "translate": {}
+                    }
+                }
+            }
+        ]
+    }
+]

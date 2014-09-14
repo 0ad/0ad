@@ -5,12 +5,13 @@
 # 
 # Translators:
 # GunChleoc, 2014
+# GunChleoc, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-29 09:00+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-10 12:46+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -46,7 +47,7 @@ msgstr "Suidhich ceann-cruinneachaidh an ionaid shìobhalta air na dearcan a-nis
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr "Cuir sleaghairean air a' chiutha trèanaidh às dèidh nam boireannach; cha bhi stòras gu leòr agad airson grunn."
+msgstr "Cuir longadairean air a' chiutha trèanaidh às dèidh nam boireannach; cha bhi stòras gu leòr agad airson grunn."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
@@ -58,7 +59,7 @@ msgstr "Nuair a bhios na boireannaich agad air an trèanadh, cleachd 4 dhiubh gu
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr "Suidhich ceann-cruinneachaidh an ionaid shìobhalta air na craobhan am fagas, cuir barrachd shleaghairean air a' chiutha, tha thu airson 6 a thrèanadh an-dràsta."
+msgstr "Suidhich ceann-cruinneachaidh an ionaid shìobhalta air na craobhan am fagas, cuir barrachd longadairean air a' chiutha, tha thu airson 6 a thrèanadh an-dràsta."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -591,19 +592,9 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr "Tha stòras a dhìth - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
-#: simulation/components/ProductionQueue.js:345
+#: simulation/components/ProductionQueue.js:361
 msgid "The production queue is full."
 msgstr "Tha an ciutha làn."
-
-#: simulation/components/Wonder.js:53
-#, python-format
-msgid "%(player)s will have won in %(time)s"
-msgstr "Buannaichidh %(player)s an ceann %(time)s"
-
-#: simulation/components/Wonder.js:61
-#, python-format
-msgid "You will have won in %(time)s"
-msgstr "Buannaichidh tu an ceann %(time)s"
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
@@ -729,10 +720,9 @@ msgstr "Bot Aegis"
 
 #: simulation/ai/aegis/data.jsondescription
 msgid ""
-"The most stable AI currently available, Aegis is an improvement of earlier "
-"bots by Wratii. Note that it doesn't support saved games yet. Please report "
-"issues to Wildfire Games (see the link in the main menu)."
-msgstr "Seo an IF as seasmhaiche a th' againn aig an àm seo. 'S e piseach air botaichean roimhe le Wratii a tha san Aegis. Thoir an aire nach toir e taic ri geamannan air an sàbhaladh fhathast. Nach innis thu do Wildfire Games mu dhuilgheadasan (cleachd an ceangal sa phrìomh chlàr-taice)?"
+"[color=\"255 0 0 255\"]NO LONGER SUPPORTED[/color] \n"
+" Aegis is an improvement of earlier bots by Wratii. Note that it doesn't support saved games or naval maps."
+msgstr "[color=\"255 0 0 255\"]CHAN EIL TAIC RI SEO TUILLEADH[/color] \n 'S e leasachadh air botaichean as sine a th' ann an Aegisa rinn Wratii. Thoir an aire nach toir e taic ri geamannan air an sàbhaladh no seòladaireachd."
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"
@@ -740,13 +730,18 @@ msgstr "Bot Peadra"
 
 #: simulation/ai/petra/data.jsondescription
 msgid ""
-"Based on Aegis, but heavily modified by mimo and expected to be more robust."
-" Support for naval maps is also added. Note that it doesn't support saved "
-"games yet. Please report issues to Wildfire Games (see the link in the main "
-"menu)."
-msgstr "Tha i stèidhichte air Aegis ach chaidh atharrachadh gu mòr le mimo 's tha sinn an dùil gum bi i nas seasmhaiche. Chaidh taic ri mapaichean-mara a chur rithe cuideachd. Thoir an aire nach toir i taic ri geamaichean air an sàbhaladh fhathast. Innis duilgheadas sam bith do Wildfire Games (faic an ceangal sa phrìomh chlàr-taice)."
+"Started as a fork of Aegis bot, Petra is the most stable AI available. It "
+"supports naval maps and is generally more challenging, but doesn't support "
+"saved games yet. Please report issues to Wildfire Games (see the link in the"
+" main menu)."
+msgstr "'S e an IF as seasmhaiche a th' ann am Petra a chaidh leasachadh o Aegis. Cuiridh i taic ri seòladaireachd 's tha i nas dùbhlanaiche san fharsaingeachd ach cha chur i taic ri geamannan air an sàbhaladh fhathast. Feuch an innis thu do Wildfire Games mu dhuilgheadas sam bith (faic an ceangal sa phrìomh chlàr-taice)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
-#: simulation/ai/tutorial-ai/data.jsondescription
 msgid "Tutorial AI"
 msgstr "IF Oideachaidh"
+
+#: simulation/ai/tutorial-ai/data.jsondescription
+msgid ""
+"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
+"scenario."
+msgstr "Cha bu chòir dhut IF Oideachaidh a chleachdadh ach sa chnàmh-sgeul \"Bun-oideachadh\"."

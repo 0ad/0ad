@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,8 +100,8 @@ class PlayerNotebookPage : public wxPanel
 {
 
 public:
-	PlayerNotebookPage(ScenarioEditor& scenarioEditor, wxWindow* parent, const wxString& name, size_t playerID)
-		: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_Name(name), m_PlayerID(playerID)
+	PlayerNotebookPage(wxWindow* parent, const wxString& name, size_t playerID)
+		: wxPanel(parent, wxID_ANY), m_Name(name), m_PlayerID(playerID)
 	{
 
 		m_Controls.page = this;
@@ -328,7 +328,6 @@ private:
 	bool m_CameraDefined;
 	wxString m_Name;
 	size_t m_PlayerID;
-	ScenarioEditor& m_ScenarioEditor;
 	
 	PlayerPageControls m_Controls;
 
@@ -347,15 +346,14 @@ END_EVENT_TABLE();
 class PlayerNotebook : public wxChoicebook
 {
 public:
-	PlayerNotebook(ScenarioEditor& scenarioEditor, wxWindow *parent)
-		: wxChoicebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/),
-		  m_ScenarioEditor(scenarioEditor)
+	PlayerNotebook(wxWindow *parent)
+		: wxChoicebook(parent, wxID_ANY/*, wxDefaultPosition, wxDefaultSize, wxNB_FIXEDWIDTH*/)
 	{
 	}
 
 	PlayerPageControls AddPlayer(wxString name, size_t player)
 	{
-		PlayerNotebookPage* playerPage = new PlayerNotebookPage(m_ScenarioEditor, this, name, player);
+		PlayerNotebookPage* playerPage = new PlayerNotebookPage(this, name, player);
 		AddPage(playerPage, name);
 		m_Pages.push_back(playerPage);
 		return playerPage->GetControls();
@@ -406,7 +404,6 @@ protected:
 	}
 
 private:
-	ScenarioEditor& m_ScenarioEditor;
 	std::vector<PlayerNotebookPage*> m_Pages;
 
 	DECLARE_EVENT_TABLE();
@@ -530,7 +527,6 @@ private:
 	bool m_InGUIUpdate;
 	AtObj m_PlayerDefaults;
 	PlayerNotebook* m_Players;
-	ScenarioEditor& m_ScenarioEditor;
 	std::vector<PlayerPageControls> m_PlayerControls;
 	Observable<AtObj>& m_MapSettings;
 	size_t m_NumPlayers;
@@ -555,7 +551,7 @@ BEGIN_EVENT_TABLE(PlayerSettingsControl, wxPanel)
 END_EVENT_TABLE();
 
 PlayerSettingsControl::PlayerSettingsControl(wxWindow* parent, ScenarioEditor& scenarioEditor)
-	: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_InGUIUpdate(false), m_MapSettings(scenarioEditor.GetMapSettings()), m_NumPlayers(0)
+	: wxPanel(parent, wxID_ANY), m_InGUIUpdate(false), m_MapSettings(scenarioEditor.GetMapSettings()), m_NumPlayers(0)
 {
 	// To prevent recursion, don't handle GUI events right now
 	m_InGUIUpdate = true;
@@ -571,7 +567,7 @@ PlayerSettingsControl::PlayerSettingsControl(wxWindow* parent, ScenarioEditor& s
 	boxSizer->Add(numPlayersSpin);
 	sizer->Add(boxSizer, wxSizerFlags().Expand().Proportion(0));
 	sizer->AddSpacer(5);
-	m_Players = new PlayerNotebook(m_ScenarioEditor, this);
+	m_Players = new PlayerNotebook(this);
 	sizer->Add(m_Players, wxSizerFlags().Expand().Proportion(1));
 
 	m_InGUIUpdate = false;

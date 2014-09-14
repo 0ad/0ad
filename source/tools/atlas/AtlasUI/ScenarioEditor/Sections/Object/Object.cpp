@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -64,7 +64,6 @@ class ObjectBottomBar : public wxPanel
 public:
 	ObjectBottomBar(
 		wxWindow* parent,
-		ScenarioEditor& scenarioEditor,
 		Observable<ObjectSettings>& objectSettings,
 		Observable<AtObj>& mapSettings,
 		ObjectSidebarImpl* p
@@ -91,7 +90,6 @@ private:
 	wxPanel* m_ViewerPanel;
 
 	ObjectSidebarImpl* p;
-	ScenarioEditor& m_ScenarioEditor;
 
 	DECLARE_EVENT_TABLE();
 };
@@ -166,7 +164,6 @@ ObjectSidebar::ObjectSidebar(
 
 	m_BottomBar = new ObjectBottomBar(
 		bottomBarContainer,
-		scenarioEditor,
 		scenarioEditor.GetObjectSettings(),
 		scenarioEditor.GetMapSettings(),
 		p
@@ -362,12 +359,11 @@ END_EVENT_TABLE();
 
 ObjectBottomBar::ObjectBottomBar(
 	wxWindow* parent,
-	ScenarioEditor& scenarioEditor,
 	Observable<ObjectSettings>& objectSettings,
 	Observable<AtObj>& mapSettings,
 	ObjectSidebarImpl* p
 )
-	: wxPanel(parent, wxID_ANY), p(p), m_ScenarioEditor(scenarioEditor)
+	: wxPanel(parent, wxID_ANY), p(p)
 {
 	m_ViewerWireframe = false;
 	m_ViewerMove = false;

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 20:24+0200\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
 "PO-Revision-Date: 2014-06-26 15:51+0000\n"
 "Last-Translator: Akmal <uzbadmin@gmail.com>\n"
 "Language-Team: Uzbek (http://www.transifex.com/projects/p/0ad/language/uz/)\n"
@@ -22,19 +22,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:733
+#: gui/scripting/ScriptFunctions.cpp:798
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (odatdagi tuzilish)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:738
+#: gui/scripting/ScriptFunctions.cpp:803
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:759
+#: gui/scripting/ScriptFunctions.cpp:824
 msgid "custom build"
 msgstr "odatdagi tuzilish"
 
@@ -42,7 +42,7 @@ msgstr "odatdagi tuzilish"
 msgid "Long strings"
 msgstr "Uzun qatorlar"
 
-#: ps/SavedGame.cpp:126
+#: ps/SavedGame.cpp:129
 #, c-format
 msgid "Saved game to '%ls'"
 msgstr "O‘yin '%ls'ga saqlandi"

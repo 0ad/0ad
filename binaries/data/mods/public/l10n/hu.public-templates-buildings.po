@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-13 20:10+0000\n"
-"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 10:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -120,9 +120,9 @@ msgstr "Előörs"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr "Építsd semleges és barátságos területekre, hogy felfedezd a területet. Lassan veszít az életéből amikor semleges területen van."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
@@ -549,12 +549,6 @@ msgstr "Neṓs Parthenos"
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr "Gwersyllty"
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr ""
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -1181,11 +1175,11 @@ msgstr "Perzsa Palota"
 msgid "Apadana"
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr "Gyalogos-polgár egységek adóztatása."
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr "Padgan"
 
@@ -1272,10 +1266,6 @@ msgstr "Perzsa különleges építmény"
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
 msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
@@ -1580,10 +1570,6 @@ msgstr "Vesta Temploma"
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-20 07:10+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-04 06:10+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -1470,11 +1470,11 @@ msgid ""
 "Upgrade all of your citizen-soldier infantrymen to Advanced rank. This "
 "increases their military prowess, but decreases their resource gathering "
 "rates -25%. Unlocks Elite Citizen-Infantry technology."
-msgstr "Befördert alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Sammel-Raten um -25%. Schaltet Elite-Infantrie-Bürger-Technologie frei."
+msgstr "Befördert alle Bürger-Soldaten Kavalleristen zum erweiterten Rang. Das erhöht ihre militärischen Fähigkeiten, jedoch senkt es die Sammel-Raten um -25%. Schaltet Elite-Infanterie-Bürger-Technologie frei."
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsongenericName
 msgid "Advanced Citizen-Infantry"
-msgstr "Fortgeschrittene Bürgerinfantrie"
+msgstr "Fortgeschrittene Bürger-Infanterie"
 
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.hele
 #: simulation/data/technologies/upgrade_rank_advanced_infantry.jsonspecificName.mace
@@ -1869,16 +1869,17 @@ msgid "Crop Rotation"
 msgstr "Wechselwirtschaft"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
 msgstr "Speerkampftraining erhöht den Schaden aller Infanterieeinheiten mit Speer."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Speerkämpfer erhalten +2 Hiebangriffe."
+msgid "Spear Infantry +2 hack attack."
+msgstr "Speer-Infanterie erhalten +2 Hiebangriffe."
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Infanterie-Speerkampf"
+msgid "Infantry Spear Training"
+msgstr "Infanterie-Speer Training"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1910,12 +1911,12 @@ msgstr "Die Spartaner hatten nicht die größte Armee der Welt, aber sie hatten 
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Spartaner wurden von Kindesbeinen an zu Kriegern ausgebildet, die ihresgleichen suchten, damit sie später jede Härte des militärischen Lebens ohne zu zögern auf sich nahmen."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr "Spartaner wurden ab dem Alter von 6 Jahren zu Kriegern ausgebildet, die ihresgleichen suchten, damit sie später jede Härte des militärischen Lebens ohne zu zögern auf sich nahmen."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
+msgid "+25% health for Spear Infantry, but also +10% train time."
 msgstr "+25% Gesundheit für Speer-Infanterie, aber auch +10% Trainingszeit."
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
@@ -2057,8 +2058,8 @@ msgid ""
 msgstr "Die Anusiyagardeinfanterie trainiert doppelt so schnell, verliert aber ein bisschen leben"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Anusiyagardeinfanterie -50% Ausbildungszeit, aber auch -20 Trefferpunkte."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "Anusiyagardeinfanterie -50% Ausbildungszeit, aber auch -10 Trefferpunkte."
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

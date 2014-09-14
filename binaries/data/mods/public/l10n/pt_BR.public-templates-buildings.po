@@ -4,15 +4,16 @@
 # Ascendant project.
 # 
 # Translators:
+# Erick Alves <erickalves@outlook.com>, 2014
 # mogafi, 2014
 # Pedro Augustus Diniz Falcão Silva <pedro.falcao.ufcg@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-09 21:01+0000\n"
-"Last-Translator: mogafi\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 10:01+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,21 +24,21 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr "Civilização"
+msgstr "Cívico"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr "Estrutura Civíl"
+msgstr "Estrutura Civil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:68
 #: simulation/templates/template_structure_civic_civil_centre.xml:31
 msgid "CivilCentre"
-msgstr "Centro Civil"
+msgstr "CentroCivil"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:63
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Construa para adquirir grandes porções de território. Treine cidadãos. Abriga: 20."
+msgstr "Construa para adquirir maiores extensões de território. Treine cidadãos. Abriga: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:62
 msgid "Civic Center"
@@ -86,11 +87,11 @@ msgstr "Templo"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Treine curandeiros. Abrigue até 20 unidades para curá-los rapidamente (3 de vida por segundo). Pesquise melhorias de cura e religiosas."
+msgstr "Treine curandeiros. Abrigue até 20 unidades para curá-las rapidamente (3 HP por segundo). Pesquise melhorias de cura e religião."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Cura unidades próximas em 1 de vida por segundo."
+msgstr "Cura unidades próximas a 1 HP por segundo."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:63
@@ -121,14 +122,14 @@ msgstr "Posto avançado"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
-msgstr "Construa em território neutro ou aliado para monitorar áreas do mapa. Perde integridade lentamente quando em território neutro."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
+msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Mure sua cidade para uma robusta defesa."
+msgstr "Mure sua cidade para uma defesa robusta."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -155,7 +156,7 @@ msgstr "Segmentos longos de parede podem ser convertidos em portões."
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr "Unidades em muralhas possuem 3 níveis extra de armadura."
+msgstr "Unidades em muralhas possuem 3 níveis extra de Armadura."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -176,7 +177,7 @@ msgstr "Muralha da Cidade"
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr "Economia"
+msgstr "Econômico"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
@@ -550,12 +551,6 @@ msgstr "Neṓs Parthenos"
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
 msgstr "Gwersyllty"
-
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr "- Cidade"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
@@ -1182,11 +1177,11 @@ msgstr "Palácio Persa"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr "Recrute cidadãos-soldados."
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr "Padgan"
 
@@ -1273,10 +1268,6 @@ msgstr "Construção especial Persa"
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
 msgstr "Parihuvādā"
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
-msgstr "-Quartel"
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
@@ -1581,10 +1572,6 @@ msgstr "Templo de Vesta"
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
 msgstr "Aedes Vestae"
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
-msgstr "-Aldeia"
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."

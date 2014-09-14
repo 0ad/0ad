@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -108,13 +108,10 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 				// Split into tokens
 				std::vector<std::wstring> oldTokens;
 				std::vector<std::wstring> newTokens;
-				if (!replacing) // ignore the old tokens if replace="" was given
-					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space());
-				boost::algorithm::split(newTokens, value, boost::algorithm::is_space());
-
-				// Delete empty tokens
-				oldTokens.erase(std::remove_if(oldTokens.begin(), oldTokens.end(), std::mem_fun_ref(&std::wstring::empty)), oldTokens.end());
-				newTokens.erase(std::remove_if(newTokens.begin(), newTokens.end(), std::mem_fun_ref(&std::wstring::empty)), newTokens.end());
+				if (!replacing && !node.m_Value.empty()) // ignore the old tokens if replace="" was given
+					boost::algorithm::split(oldTokens, node.m_Value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
+				if (!value.empty())
+					boost::algorithm::split(newTokens, value, boost::algorithm::is_space(), boost::algorithm::token_compress_on);
 
 				// Merge the two lists
 				std::vector<std::wstring> tokens = oldTokens;

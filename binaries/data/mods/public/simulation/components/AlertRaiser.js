@@ -38,11 +38,12 @@ AlertRaiser.prototype.SoundAlert = function()
 };
 
 AlertRaiser.prototype.UpdateUnits = function(units)
-{	
+{
+	var level = this.GetLevel();	
 	for each (var unit in units)
 	{
 		var cmpUnitAI = Engine.QueryInterface(unit, IID_UnitAI);
-		if (!cmpUnitAI)
+		if (!cmpUnitAI || !cmpUnitAI.ReactsToAlert(level))
 			continue;
 		cmpUnitAI.ReplaceOrder("Alert", {"raiser": this.entity, "force": true});
 		this.walkingUnits.push(unit);
@@ -78,12 +79,12 @@ AlertRaiser.prototype.IncreaseAlertLevel = function()
 		this.prodBuildings.push(building);
 	}
 
-	// Select units to put under alert, ignoring domestic animals (NB : war dogs are not domestic)
+	// Select units to put under alert, according to their reaction to this level
 	var rangeMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var level = this.GetLevel();
 	var units = rangeMan.ExecuteQuery(this.entity, 0, this.template.Range, players, IID_UnitAI).filter( function(e){
 		var cmpUnitAI = Engine.QueryInterface(e, IID_UnitAI);
-		return (!cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level) && !cmpUnitAI.IsDomestic());
+		return (!cmpUnitAI.IsUnderAlert() && cmpUnitAI.ReactsToAlert(level));
 		});
 
 	for each (var unit in units)

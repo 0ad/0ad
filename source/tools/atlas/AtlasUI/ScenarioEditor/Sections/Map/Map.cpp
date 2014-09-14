@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,7 +100,6 @@ private:
 
 	std::set<std::wstring> m_MapSettingsKeywords;
 	std::vector<wxChoice*> m_PlayerCivChoices;
-	ScenarioEditor& m_ScenarioEditor;
 	Observable<AtObj>& m_MapSettings;
 
 	DECLARE_EVENT_TABLE();
@@ -115,7 +114,7 @@ BEGIN_EVENT_TABLE(MapSettingsControl, wxPanel)
 END_EVENT_TABLE();
 
 MapSettingsControl::MapSettingsControl(wxWindow* parent, ScenarioEditor& scenarioEditor)
-	: wxPanel(parent, wxID_ANY), m_ScenarioEditor(scenarioEditor), m_MapSettings(scenarioEditor.GetMapSettings())
+	: wxPanel(parent, wxID_ANY), m_MapSettings(scenarioEditor.GetMapSettings())
 {
 	wxStaticBoxSizer* sizer = new wxStaticBoxSizer(wxVERTICAL, this, _("Map settings"));
 	SetSizer(sizer);

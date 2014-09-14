@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# acac97 <aleksandar.cvetic97@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-25 20:21+0000\n"
+"Last-Translator: acac97 <aleksandar.cvetic97@gmail.com>\n"
 "Language-Team: Serbian (http://www.transifex.com/projects/p/0ad/language/sr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,17 +23,17 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "сваки"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "сваки"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "сваки"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
@@ -49,7 +51,7 @@ msgstr "Сценарио"
 
 #: gui/lobby/lobby.js:305
 msgid "Busy"
-msgstr ""
+msgstr "заузет"
 
 #: gui/lobby/lobby.js:310
 msgid "Away"
@@ -70,7 +72,7 @@ msgstr "Непознато"
 
 #: gui/lobby/lobby.js:364
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Насумично одабрана мапа."
 
 #: gui/lobby/lobby.js:389
 msgid "Sorry, no description available."
@@ -226,12 +228,12 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "статус"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
 #: gui/lobby/lobby.xml:207 (heading)
 msgid "Name"
-msgstr ""
+msgstr "име"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
 msgid "Rating"
@@ -251,7 +253,7 @@ msgstr "Величина мапе:"
 
 #: gui/lobby/lobby.xml:93 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "играчи:"
 
 #: gui/lobby/lobby.xml:102 (caption)
 msgid "Join Game"
@@ -263,25 +265,25 @@ msgstr "Покрени игру за више играча"
 
 #: gui/lobby/lobby.xml:115 (caption)
 msgid "Main Menu"
-msgstr ""
+msgstr "главни мени"
 
 #: gui/lobby/lobby.xml:132 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "име мапе"
 
 #: gui/lobby/lobby.xml:135 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "величина"
 
 #: gui/lobby/lobby.xml:138 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "тип"
 
 #: gui/lobby/lobby.xml:141 (heading)
 msgid "Players"
-msgstr ""
+msgstr "играчи"
 
 #: gui/lobby/lobby.xml:171 (caption)
 msgid "Show full games"
@@ -317,7 +319,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
-msgstr ""
+msgstr "шифра:"
 
 #: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"

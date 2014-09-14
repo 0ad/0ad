@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,8 @@ public:
 	 * @param source entity emitting the sound (used for positioning)
 	 */
 	virtual void PlaySoundGroup(std::wstring name, entity_id_t source) = 0;
+
+	virtual void StopMusic() = 0;
 
 	DECLARE_INTERFACE_TYPE(SoundManager)
 };

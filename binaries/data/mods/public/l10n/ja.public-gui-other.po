@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-07-12 13:41+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-03 19:30+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -58,18 +58,18 @@ msgstr "英雄"
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)sの歴史"
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "%(url)sを\n既定のウェブブラウザーで開いています。お待ちください...."
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 msgid "Opening page"
 msgstr "ページを開く"
 
-#: gui/common/functions_global_object.js:80
+#: gui/common/functions_global_object.js:79
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -85,23 +85,6 @@ msgstr "HH:mm:ss"
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
 msgstr "読込みを中止しました"
-
-#: gui/common/functions_utility_list.js:14
-#: gui/common/functions_utility_list.js:44
-#: gui/common/functions_utility_list.js:69
-#: gui/common/functions_utility_list.js:84
-#: gui/common/functions_utility_list.js:101
-#: gui/common/functions_utility_list.js:113
-#: gui/common/functions_utility_list.js:125
-#: gui/common/functions_utility_list.js:141
-#, python-format
-msgid "%(functionName)s: %(object)s not found."
-msgstr "%(functionName)s: %(object)sが見つかりません。"
-
-#: gui/common/functions_utility_list.js:161
-#, python-format
-msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr "要求された文字列「%(string)s」は%(object)sのリストにありません。"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -165,32 +148,32 @@ msgstr "なし"
 msgid "<invalid>"
 msgstr "<無効>"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "はい"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "いいえ"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Retry"
 msgstr "リトライ"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Ignore"
 msgstr "無視"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Abort"
 msgstr "中止"
 
@@ -229,189 +212,207 @@ msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "ユニット養成施設で養成可能なユニットの詳細なツールチップを表示します。"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:13
+msgid "FPS Overlay"
+msgstr "FPSオーバーレイ"
+
+#: gui/options/options.js:13
+msgid "Show frames per second in top right corner."
+msgstr "1秒あたりの表示更新回数を右上隅に表示します。"
+
+#: gui/options/options.js:14
+msgid "Realtime Overlay"
+msgstr "現在時刻オーバーレイ"
+
+#: gui/options/options.js:14
+msgid "Show current system time in top right corner."
+msgstr "現在時刻を右上隅に表示します。"
+
+#: gui/options/options.js:15
+msgid "Gametime Overlay"
+msgstr "ゲーム時間オーバーレイ"
+
+#: gui/options/options.js:15
+msgid "Show current simulation time in top right corner."
+msgstr "現在のシミュレーション時間を右上隅に表示します。"
+
+#: gui/options/options.js:19
 msgid "Prefer GLSL"
 msgstr "GLSLの使用"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "OpenGL 2.0シェーダーを使います（推奨）"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Post Processing"
 msgstr "後処理"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "スクリーン空間での後処理フィルターの使用（HDR、ブルーム、DOFなど）"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Shadows"
 msgstr "影"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Enable shadows"
 msgstr "影を表示します"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Particles"
 msgstr "降水"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Enable particles"
 msgstr "降水を許可します"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Show Sky"
 msgstr "空の表示"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Render Sky"
 msgstr "空を描画します"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Smooth LOS"
 msgstr "滑らかな視界移動"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "暗闇と戦場の霧が滑らかに移動します（GLSLの使用が必要）"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Unit Silhouettes"
 msgstr "ユニットのシルエット"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
 msgstr "建物の影に隠れたユニットの輪郭を表示します"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Shadow Filtering"
 msgstr "影のフィルタリング"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Smooth shadows"
 msgstr "影を滑らかにします"
 
-#: gui/options/options.js:24
-msgid "HQ Waviness"
-msgstr "高品質の波"
+#: gui/options/options.js:27
+msgid "Fast & Ugly Water"
+msgstr "速いが粗い水面"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:27
 msgid ""
-"Use real normals for ocean-wave rendering, instead of applying them as a "
-"flat texture"
-msgstr "リアルな通常の海の波を描画し、平らな表面を使いません。"
+"Use the lowest settings possible to render water. This makes other settings "
+"irrelevant."
+msgstr "水面描画に最低限の設定を用います。この設定は他の設定を無効にします。"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:28
+msgid "HQ Water Effects"
+msgstr "高品質の水面効果"
+
+#: gui/options/options.js:28
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "水面に高品質な効果を与え、岸辺の波、泡、船の航跡を描画します。"
+
+#: gui/options/options.js:29
 msgid "Real Water Depth"
 msgstr "リアルな水深"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
 msgstr "実際の水深で描画計算します"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Water Reflections"
 msgstr "水面の反射"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
 msgstr "水面が反射で鏡のように像を映すようにします"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Water Refraction"
 msgstr "水面の屈折"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
 msgstr "リアルな水面屈折マップを用い、不透明にします。"
 
-#: gui/options/options.js:28
-msgid "Shore Foam"
-msgstr "岸の泡"
-
-#: gui/options/options.js:28
-msgid "Show foam on water near shore depending on water waviness"
-msgstr "岸の近くの水面の泡を表示を、波有効のとき行います"
-
-#: gui/options/options.js:29
-msgid "Shore Waves"
-msgstr "砕ける波"
-
-#: gui/options/options.js:29
-msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "岸の近くで砕ける波を表示します（高品質の波が必要）"
-
-#: gui/options/options.js:30
-msgid "Water Shadows"
+#: gui/options/options.js:32
+msgid "Shadows on Water"
 msgstr "水面の影"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:32
 msgid "Cast shadows on water"
 msgstr "水面に影を落とします"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "垂直同期を実行して画面の乱れを修正します。ゲームの再起動が必要です。"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master Gain"
 msgstr "全体音量"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master audio gain"
 msgstr "音楽音量"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Music Gain"
 msgstr "音楽の音量"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game music gain"
 msgstr "ゲーム内の音楽の音量"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "Ambient Gain"
 msgstr "環境音量"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "In game ambient sound gain"
 msgstr "ゲーム内の環境音の音量"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "Action Gain"
 msgstr "アクション音量"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "In game unit action sound gain"
 msgstr "ゲーム内のユニットのアクションの音量"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI Gain"
 msgstr "UI音量"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI sound gain"
 msgstr "UIの音量"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Chat Backlog"
 msgstr "チャット過去ログ"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "ロビーに入った時に表示する過去のメッセージ数"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Chat Timestamp"
 msgstr "発言時刻"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "ロビーチャットに投稿されたメッセージの時刻を表示する"
 
@@ -1132,10 +1133,6 @@ msgid "[icon=iconLag]  The game lags when many units are moving."
 msgstr "[icon=iconLag]  たくさんのユニットを動かすと動作が遅くなります。"
 
 #: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr "[icon=\"iconShip\"]  コンピューターの相手は船を使えません。"
-
-#: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"]  大きなマップで問題が発生することがあります。"
 
@@ -1462,6 +1459,24 @@ msgid ""
 "technologies."
 msgstr "- ペルシアはまた、建物と防御に関する多数のテクノロジーを開発可能です。"
 
+#: gui/text/tips/pikemen.txt:1
+msgid "PIKEMEN"
+msgstr "長槍兵"
+
+#: gui/text/tips/pikemen.txt:2
+msgid "- Heavily armored and slow. Low attack."
+msgstr "- 重装甲で遅く、攻撃力は低いです。"
+
+#: gui/text/tips/pikemen.txt:4
+msgid ""
+"- Used against cavalry for a 4x attack bonus or against other melee infantry"
+" to pin them them in place."
+msgstr "- 騎兵に対し4倍の攻撃力ボーナスを活かすか、他の近接攻撃歩兵を足止めするのに用います。"
+
+#: gui/text/tips/pikemen.txt:6
+msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
+msgstr "- マケドニア・セレウコス朝・プトレマイオス朝で養成可能です。"
+
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
 msgstr "大型軍艦"
@@ -1533,12 +1548,38 @@ msgid "- Champion Infantry available to the Spartans faction."
 msgstr "- チャンピオン歩兵がスパルタで利用可能になります。"
 
 #: gui/text/tips/spartan_hoplites.txt:6
-msgid "- Long train time, but high armor and attack."
-msgstr "- 養成に時間がかかりますが、高い防御力と攻撃力を持ちます。"
+msgid ""
+"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
+"regular line infantry."
+msgstr "- 敵の騎兵を屠るか、あるいは自軍の正規戦列歩兵を支援する衝撃力として用いましょう。"
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
 msgstr "- ファランクス陣形を採用して追加装甲ボーナスを得ましょう。"
+
+#: gui/text/tips/spearmen.txt:1
+msgid "SPEARMEN"
+msgstr "槍兵"
+
+#: gui/text/tips/spearmen.txt:2
+msgid "- The basic melee infantry for every faction in the game."
+msgstr "- 基本となる近接攻撃歩兵で、本ゲームの全勢力に登場します。"
+
+#: gui/text/tips/spearmen.txt:4
+msgid "- Used against cavalry for a 2x attack bonus."
+msgstr "- 騎兵に対し2倍の攻撃力ボーナスを有します。"
+
+#: gui/text/tips/spearmen.txt:6
+msgid ""
+"- Decent hack attack and a good charge bonus make them good front line "
+"troops."
+msgstr "- かなりの打撃攻撃と良好な突進ボーナスがあり、前線部隊に向いています。"
+
+#: gui/text/tips/spearmen.txt:8
+msgid ""
+"- They are countered by ranged units and swordsmen, so support your spearmen"
+" with slingers or cavalry."
+msgstr "- 遠隔攻撃ユニットと剣士が苦手なため、投石兵や騎兵で援護してください。"
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

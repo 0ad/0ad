@@ -6,14 +6,15 @@
 # Translators:
 # 61stylo <61stylo@live.nl>, 2014
 # efrasiyab1 <ado.ender@gmail.com>, 2014
+# Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-08-12 16:40+0000\n"
-"Last-Translator: efrasiyab1 <ado.ender@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-08 03:00+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -63,18 +64,18 @@ msgstr "Kahramanlar"
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "Açılıyor %(url)s\ninternet tarayıcısında. Lütfen bekleyin..."
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 msgid "Opening page"
 msgstr "Sayfa açılıyor"
 
-#: gui/common/functions_global_object.js:80
+#: gui/common/functions_global_object.js:79
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -90,23 +91,6 @@ msgstr "SS:dd:ss"
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
 msgstr "Yükleme İptal edildi"
-
-#: gui/common/functions_utility_list.js:14
-#: gui/common/functions_utility_list.js:44
-#: gui/common/functions_utility_list.js:69
-#: gui/common/functions_utility_list.js:84
-#: gui/common/functions_utility_list.js:101
-#: gui/common/functions_utility_list.js:113
-#: gui/common/functions_utility_list.js:125
-#: gui/common/functions_utility_list.js:141
-#, python-format
-msgid "%(functionName)s: %(object)s not found."
-msgstr "%(functionName)s: %(object)s bulunamadı."
-
-#: gui/common/functions_utility_list.js:161
-#, python-format
-msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr "İstenen yazı '%(string)s' %(object)s listesinde bulunamadı."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -170,32 +154,32 @@ msgstr "Yok"
 msgid "<invalid>"
 msgstr "<geçersiz>"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Hayır"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "Tamam"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Retry"
 msgstr "Tekrar dene"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Ignore"
 msgstr "Yoksay"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Abort"
 msgstr "İptal"
 
@@ -234,189 +218,207 @@ msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Birim üretim yapılarındaki eğitilebilir birimler için araç ipuçlarını göster."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:13
+msgid "FPS Overlay"
+msgstr "Yerleşik FPS"
+
+#: gui/options/options.js:13
+msgid "Show frames per second in top right corner."
+msgstr "Sağ üst köşede saniye başına çerçeve yenilenmesini göster."
+
+#: gui/options/options.js:14
+msgid "Realtime Overlay"
+msgstr "Yerleşik Gerçek zaman"
+
+#: gui/options/options.js:14
+msgid "Show current system time in top right corner."
+msgstr "Sağ üst köşede sistem saatini göster."
+
+#: gui/options/options.js:15
+msgid "Gametime Overlay"
+msgstr "Yerleşik Oyun süresi"
+
+#: gui/options/options.js:15
+msgid "Show current simulation time in top right corner."
+msgstr "Sağ üst köşede simüle saati göster."
+
+#: gui/options/options.js:19
 msgid "Prefer GLSL"
 msgstr "GLSL tercihi"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "OpenGL 2.0 gölgelendirme kullanın (önerilir)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Post Processing"
 msgstr "Yayın Düzenleme"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Ekran boşluk post işlemci filtreleri (HDR, Çiçeklenme, serbestlik, vb) kullanın"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Shadows"
 msgstr "Gölgeler"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Enable shadows"
 msgstr "Gölgeler aktif"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Particles"
 msgstr "Parçalar"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Enable particles"
 msgstr "Parçalar etkin"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Show Sky"
 msgstr "Gökyüzünü Göster"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Render Sky"
 msgstr "Gökyüzünü Oluştur"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Smooth LOS"
 msgstr "Düzgün LOS"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Sorunsuz olarak karanlık ve savaş sisini kaldırma (GLSL Tercihi Gerektirir)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Unit Silhouettes"
 msgstr "Birim Siluetleri"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
 msgstr "Binaların arkasında birimlerinin anahatlarını göster"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Shadow Filtering"
 msgstr "Gölge Filtrelemesi"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Smooth shadows"
 msgstr "Pürüzsüz gölgeler"
 
-#: gui/options/options.js:24
-msgid "HQ Waviness"
-msgstr "HQ Dalgalar"
+#: gui/options/options.js:27
+msgid "Fast & Ugly Water"
+msgstr "Hızlı & Biçimsiz Su"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:27
 msgid ""
-"Use real normals for ocean-wave rendering, instead of applying them as a "
-"flat texture"
-msgstr "Düz bir doku yerine, okyanus dalgası oluşturmak için gerçek normalleri kullanın"
+"Use the lowest settings possible to render water. This makes other settings "
+"irrelevant."
+msgstr "Su kaplama işlemede mümkün olan düşük ayarları kullan. Bunu yapmak diğer ayarları geçersiz kılar."
 
-#: gui/options/options.js:25
+#: gui/options/options.js:28
+msgid "HQ Water Effects"
+msgstr "HQ Su Efektleri"
+
+#: gui/options/options.js:28
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Kıyı dalgalarında, kıyıdaki köpüklerde ve gemi yollarındaki suyun işlenmesi için, yüksek kalite efektleri kullan, "
+
+#: gui/options/options.js:29
 msgid "Real Water Depth"
 msgstr "Gerçek Su Derinliği"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
 msgstr "Gerçek su derinliği hesaplamaları"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Water Reflections"
 msgstr "Su Yansımaları"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
 msgstr "Su resmi yansıtması izni"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Water Refraction"
 msgstr "Su Kırılması"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
 msgstr "Gerçek bir su kırılması haritası kullan ve şeffaflık yok"
 
-#: gui/options/options.js:28
-msgid "Shore Foam"
-msgstr "Kara baglantısı Köpüğü"
+#: gui/options/options.js:32
+msgid "Shadows on Water"
+msgstr "Suyun üzerinde Gölgeler"
 
-#: gui/options/options.js:28
-msgid "Show foam on water near shore depending on water waviness"
-msgstr "Suyun dalgalılığına bağlı olarak su kenarlarında köpük göster"
-
-#: gui/options/options.js:29
-msgid "Shore Waves"
-msgstr "Kara baglantısı Dalgaları"
-
-#: gui/options/options.js:29
-msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "Kıyıya yakın yerlerde dalga kırılmaları göster (Yüksek Kalite Dalgalar Gerektirir)"
-
-#: gui/options/options.js:30
-msgid "Water Shadows"
-msgstr "Su Gölgeleri"
-
-#: gui/options/options.js:30
+#: gui/options/options.js:32
 msgid "Cast shadows on water"
 msgstr "Su üzeri gölgeleri"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "VSync"
 msgstr "VSync"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Ekran yırtılmasını önlemek için Vsync'i aktif hale getir. OYUNU YENİDEN BAŞLATMAYI GEREKTİRİR."
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master Gain"
 msgstr "Ana Kazanç"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master audio gain"
 msgstr "Ana ses kazançı"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Music Gain"
 msgstr "Müzik Kazancı"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game music gain"
 msgstr "Oyun içi müzik kazancı"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "Ambient Gain"
 msgstr "Ortam Kazancı"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "In game ambient sound gain"
 msgstr "Oyundaki ortam ses kazancı"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "Action Gain"
 msgstr "Aksiyon Kazançı"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "In game unit action sound gain"
 msgstr "Oyundaki birim aksiyon ses kazancı"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI Gain"
 msgstr "Kullanıcı Arabirimi Kazancı"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI sound gain"
 msgstr "Kullanıcı arabirimi  ses kazancı"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Chat Backlog"
 msgstr "Sohbet Biriktirme Listesi"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Lobiye katılmadan yüklenecek birikim mesajların sayısı"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Chat Timestamp"
 msgstr "Sohbet Zaman damgası"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Sohbet lobisinde gönderilen mesajların zamanını göster"
 
@@ -1137,10 +1139,6 @@ msgid "[icon=iconLag]  The game lags when many units are moving."
 msgstr "[icon=iconLag]  Birçok birim taşınırken oyunda donma oluşmaktadır."
 
 #: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr "[icon=\"iconShip\"]  Bilgisayar rakip gemileri kullanamamaktadır."
-
-#: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"]  Büyük haritalarda sorunlar meydana gelmektedir."
 
@@ -1265,7 +1263,7 @@ msgstr "- Türünün tek örneği."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- Diğer triremesler gibi, çakma yapamazsın, ancak daha fazla sağlık ve zırhla yapılır."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
@@ -1281,7 +1279,7 @@ msgstr "- Yeni koloninin \"Vakfı\"."
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr ""
+msgstr "- Bölgenin büyük parçalarını talep et."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
@@ -1315,7 +1313,7 @@ msgstr "BALIKÇILIK"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- Denizlerde bol balık hasadı."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
@@ -1341,7 +1339,7 @@ msgstr "- Kale genellikle her grubun en kuvvetli binasıdır."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Mükemmel birimler, Kahramanlar ve Kuşatma Silahları yetiştir."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1361,11 +1359,11 @@ msgstr ""
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr "- Kadın Siviller Tarım ve Toplayıcılıkla bonuslandırıldı."
+msgstr "- Kadın Vatandaşlar Tarım ve Toplayıcılıkla bonuslandırıldı."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr "- Sivil-Askerler Madencilik ile bonuslandırıldı."
+msgstr "- Vatandaş-Askerler Madencilik ile bonuslandırıldı."
 
 #: gui/text/tips/gathering.txt:8
 msgid ""
@@ -1381,7 +1379,7 @@ msgstr "İPHİKRATES"
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- Atinalı orduları daha hızlı ve manevra kabiliyetini daha yüksek yapmak için uzman Atinalı general"
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
@@ -1435,7 +1433,7 @@ msgstr "PERİKLES"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- M.Ö 5. yüzyılda önde gelen Atinalı politikacı."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
@@ -1467,6 +1465,24 @@ msgid ""
 "technologies."
 msgstr "- Perslerde yapısal ve savunma teknolojilerinin çok sayıda erişebilirsiniz."
 
+#: gui/text/tips/pikemen.txt:1
+msgid "PIKEMEN"
+msgstr "KARGILILAR"
+
+#: gui/text/tips/pikemen.txt:2
+msgid "- Heavily armored and slow. Low attack."
+msgstr "- Ağır zırhlı ve yavaşlık. Düşük saldırıya sebep olur."
+
+#: gui/text/tips/pikemen.txt:4
+msgid ""
+"- Used against cavalry for a 4x attack bonus or against other melee infantry"
+" to pin them them in place."
+msgstr ""
+
+#: gui/text/tips/pikemen.txt:6
+msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
+msgstr ""
+
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
 msgstr "AĞIR SAVAŞ GEMİSİ"
@@ -1485,7 +1501,7 @@ msgstr ""
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
-msgstr ""
+msgstr "- Çakma saldırısı düşman gemilerini batırır."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
@@ -1497,7 +1513,7 @@ msgstr ""
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- Bol av için hayvanlarla dolu yerleri engellerle çevirin."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
@@ -1523,7 +1539,7 @@ msgstr ""
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- Her garnizon birimi için artarak değişen bir saldırı vardır."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
@@ -1535,14 +1551,40 @@ msgstr "- Oyundaki en güçlü piyade."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- Mükemmel Piyadeler Spartalılar için kullanılmalıdır."
 
 #: gui/text/tips/spartan_hoplites.txt:6
-msgid "- Long train time, but high armor and attack."
-msgstr "- Uzun eğitim zamanı, ama yüksek zırh ve saldırı."
+msgid ""
+"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
+"regular line infantry."
+msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
+msgstr "- Ek ikramiye elde etmek için 'Falanks' kullan."
+
+#: gui/text/tips/spearmen.txt:1
+msgid "SPEARMEN"
+msgstr "MIZRAKLILAR"
+
+#: gui/text/tips/spearmen.txt:2
+msgid "- The basic melee infantry for every faction in the game."
+msgstr "- Bu temel yakın dövüş süvarisi oyundaki her fonksiyon içindir."
+
+#: gui/text/tips/spearmen.txt:4
+msgid "- Used against cavalry for a 2x attack bonus."
+msgstr "- Süvarilere karşı kullanılmak için 2x saldırı ikramiyesi."
+
+#: gui/text/tips/spearmen.txt:6
+msgid ""
+"- Decent hack attack and a good charge bonus make them good front line "
+"troops."
+msgstr ""
+
+#: gui/text/tips/spearmen.txt:8
+msgid ""
+"- They are countered by ranged units and swordsmen, so support your spearmen"
+" with slingers or cavalry."
 msgstr ""
 
 #: gui/text/tips/stoa.txt:1
@@ -1551,7 +1593,7 @@ msgstr "STOA"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
-msgstr ""
+msgstr "- Helenler için özel bir başlangıç ​​yapı."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
@@ -1585,7 +1627,7 @@ msgstr "SYNTAGMA FORMASYONU"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- 'mızraklı' formatı için piyade sitili."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
@@ -1613,7 +1655,7 @@ msgstr "Savaşta olan askerlerinizi  iyileştirmek için sağlıkçıları silah
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr ""
+msgstr "- İyileştirme araştırması, dini bağlılık, ve kültürel teknolojiler."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
@@ -1660,7 +1702,7 @@ msgstr "- Ticaret ya da savaş için iyi."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr ""
+msgstr "- Uzun menzilli kuşatma saldırısı için garnizona bir mancınık."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""

@@ -1,7 +1,7 @@
 var userReportEnabledText; // contains the original version with "$status" placeholder
 var currentSubmenuType; // contains submenu type
 const MARGIN = 4; // menu border size
-const background = "hellenes1"; // Background type. Currently: 'hellenes1', 'persians1'.
+const background = "hellenes1"; // Background type.
 
 var g_ShowSplashScreens;
 
@@ -30,62 +30,34 @@ function getHotloadData()
 var t0 = new Date;
 function scrollBackgrounds(background)
 {
-	if (background == "hellenes1")
+	switch(background)
 	{
+	default:
+	case "hellenes1":
 		var layer1 = Engine.GetGUIObjectByName("backgroundHele1-1");
 		var layer2 = Engine.GetGUIObjectByName("backgroundHele1-2");
 		var layer3 = Engine.GetGUIObjectByName("backgroundHele1-3");
-		
+
 		layer1.hidden = false;
 		layer2.hidden = false;
 		layer3.hidden = false;
-	 
+
 		var screen = layer1.parent.getComputedSize();
 		var h = screen.bottom - screen.top; // height of screen
 		var w = h*16/9; // width of background image
-	
+
 		// Offset the layers by oscillating amounts
 		var t = (t0 - new Date) / 700;
 		var speed = 1/20;
 		var off1 = 0.02 * w * (1+Math.cos(t*speed));
 		var off2 = 0.12 * w * (1+Math.cos(t*speed)) - h*6/9;
 		var off3 = 0.16 * w * (1+Math.cos(t*speed));
-	
+
 		var left = screen.right - w * (1 + Math.ceil(screen.right / w));
 		layer1.size = new GUISize(left + off1, screen.top, screen.right + off1, screen.bottom);
 		layer2.size = new GUISize(screen.right/2 - h + off2, screen.top, screen.right/2 + h + off2, screen.bottom);
 		layer3.size = new GUISize(screen.right - h + off3, screen.top, screen.right + off3, screen.bottom);
-	}
-	
-	if (background == "persians1")
-	{
-		var layer1 = Engine.GetGUIObjectByName("backgroundPers1-1");
-		var layer2 = Engine.GetGUIObjectByName("backgroundPers1-2");
-		var layer3 = Engine.GetGUIObjectByName("backgroundPers1-3");
-		var layer4 = Engine.GetGUIObjectByName("backgroundPers1-4");
-		
-		layer1.hidden = false;
-		layer2.hidden = false;
-		layer3.hidden = false;
-		layer4.hidden = false;
-		
-		var screen = layer1.parent.getComputedSize();
-		var h = screen.bottom - screen.top; // height of screen
-		var screenWidth = screen.right - screen.left;
-		var w = h*16/9;
-		
-		var t = (t0 - new Date) / 1000;
-		var speed = 1/20;
-		var off1 = 0.01 * w * (Math.cos(t*speed));
-		var off2 = 0.03 * w * (Math.cos(t*speed));
-		var off3 =  0.07 * w * (1+Math.cos(t*speed)) + 0.5 * screenWidth - h*1.1;
-		var off4 =  0.16 * w * (1+Math.cos(t*speed)) - h*6/9;
-		
-		var left = screen.right - w * (1 + Math.ceil(screen.right / w)) - 0.5 * screenWidth + h;
-		layer1.size = new GUISize(left + off1, screen.top, screen.right + off1 + h, screen.bottom);
-		layer2.size = new GUISize(left + off2, screen.top, screen.right + off2 + h, screen.bottom);
-		layer3.size = new GUISize(screen.left + off3, screen.top, screen.left + 2 * h + off3, screen.bottom);
-		layer4.size = new GUISize(screen.left + off4, screen.top, screen.left + 2 * h + off4, screen.bottom);
+		break;
 	}
 }
 

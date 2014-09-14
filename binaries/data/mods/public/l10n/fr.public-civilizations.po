@@ -17,7 +17,7 @@
 # lemiaou, 2014
 # LordIgorIIIofKiev <igorpono@hotmail.com>, 2014
 # minissimo <lucanium@gmail.com>, 2014
-# Nicolas Auvray <na.itms76@gmail.com>, 2013
+# Nicolas Auvray <na.itms76@gmail.com>, 2013-2014
 # nicolas caillard <nick2paris@gmail.com>, 2013
 # Oimat <pgersberg@free.fr>, 2014
 # Olivier <olivier.torrens@gmail.com>, 2013
@@ -30,6 +30,7 @@
 # Sander Deryckere, 2014
 # slimkhan, 2014
 # Slim Khan, 2014
+# Polakrity <sxk-fr@live.fr>, 2014
 # tavariz <guipoi@yahoo.fr>, 2014
 # Thedemos <thekingadn@gmail.com>, 2014
 # Timothee KNOBLOCH <timothee.knobloch@gmail.com>, 2014
@@ -42,9 +43,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-20 09:00+0000\n"
-"Last-Translator: Vincent Pouliquen <vins_om@hotmail.fr>\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-25 21:51+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgstr "Athéniens"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Le taux d'exploitation des métaux augmente de +10% à chaque nouvelle phase."
+msgstr "Le taux d'exploitation du métal augmente de +10% à chaque nouvelle phase."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -69,7 +70,7 @@ msgstr "Chouettes d'argent"
 msgid ""
 "The mines at Laureion in Attica provided Athens with a wealth of silver from"
 " which to mint her famous and highly prized coin, The Athenian Owl."
-msgstr "Les mines du Laurion en Attique fournissaient à Athènes de l'argent en abondance, avec lequel était frappée sa célèbre et très précieuse monnaie, sur laquelle figurait la Chouette Athénienne."
+msgstr "Les mines du Laurion en Attique fournissaient à Athènes de l'argent en abondance, avec lequel était frappée sa célèbre et très précieuse monnaie, sur laquelle figurait la chouette athénienne."
 
 #: civs/athen.jsonCivBonuses[1].Description
 #: civs/hele.jsonCivBonuses[1].Description
@@ -93,11 +94,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr "Les Grecs ont très bien réussi à helléniser de nombreux étrangers. Au cours de l'époque hellénistique, le grec, largement parlé de l'Espagne à l'Inde, était la langue véhiculaire du Monde Antique."
+msgstr "Les Grecs ont très bien réussi à helléniser de nombreux étrangers. Au cours de l'époque hellénistique, le grec, largement parlé de l'Espagne à l'Inde, était la langue véhiculaire du monde antique."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "La construction des navires est 25% plus rapide."
+msgstr "Les navires se construisent 25% plus rapidement."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -111,7 +112,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr "Peu après les grandes victoires navales de Salamine et du Cap Mycale, les cités-états grecques instituèrent la Ligue dite de Délos en 478 avant JC, dont l'objectif était de repousser les Perses hors de la région Égéenne. Les cités alliées fournissaient des navires et de l'argent, tandis que les Athéniens offraient toute leur flotte."
+msgstr "Peu après les grandes victoires navales de Salamine et du Cap Mycale, les cités-états grecques instituèrent la Ligue dite de Délos en 478 avant J.-C., dont l'objectif était de repousser les Perses hors de la région Égéenne. Les cités alliées fournissaient des navires et de l'argent, tandis que les Athéniens offraient leur flotte entière."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -176,7 +177,7 @@ msgstr "Démosthène"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr "Les trirèmes athéniennes peuvent former de l'infanterie de marine (Epibastes Athenaikos)."
+msgstr "Les trirèmes athéniennes peuvent former de l'infanterie maritime (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
@@ -198,13 +199,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr "Les Longs Murs d’Athènes, érigés sous les auspices de l'astucieux Thémistocle, s'étendaient sur 6 km de la cité au port du Pirée. Ils sécurisaient les voies d'approvisionnement maritimes de la cité et empêchaient l'ennemi d'affamer la cité en cas de siège."
+msgstr "Les Longs Murs d’Athènes, érigés sous les auspices de l'astucieux Thémistocle, s'étendaient sur 6 km de la cité jusqu'au port du Pirée. Ils sécurisaient les voies d'approvisionnement maritimes de la cité et empêchaient l'ennemi d'affamer la cité en cas de siège."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr "Le joueur gagne la possibilité de placer ses troupes de lanciers en phalange (colonne anti-infanterie), leur conférant un bonus d'attaque et d'armure."
+msgstr "Le joueur gagne la possibilité d'ordonner à ses troupes de lanciers de se mettre en phalange (colonne anti-infanterie), leur conférant un bonus d'attaque et d'armure."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -218,7 +219,7 @@ msgid ""
 "eight men deep and up to eight hundred men wide. The men within overlapped "
 "their shields, presenting a formidable shield wall brimming with 8 foot "
 "spears."
-msgstr "La formation en phalange classique fut développée au tournant du VIIIe siècle av. JC. Elle se composait de 8 à 12 rangs et jusqu'à huit cents hommes de large. « Le bouclier s'appuyait sur le bouclier, l'homme sur l'homme » , présentant à l'ennemi un formidable mur hérissé de lances de 6 à 7 mètres de long."
+msgstr "La formation en phalange classique fut développée au tournant du VIIIe siècle av. J.-C. Elle se composait de 8 à 12 rangs et jusqu'à huit cents hommes de large. « Le bouclier s'appuyait sur le bouclier, l'homme sur l'homme » , présentant à l'ennemi un formidable mur hérissé de lances de 6 à 7 mètres de long."
 
 #: civs/athen.jsonFactions[0].Heroes[0].History
 #: civs/hele.jsonFactions[0].Heroes[0].History
@@ -233,7 +234,7 @@ msgstr "Le général qui persuada les Athéniens d'investir les revenus de leurs
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr "Périclès fut le plus grand politicien athénien du Ve siècle av. J.C."
+msgstr "Périclès fut le plus grand politicien athénien du Ve siècle av. J.-C."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -283,7 +284,7 @@ msgstr "Gymnasion"
 #: civs/athen.jsonStructures[1].Special
 msgid ""
 "Train champion units and research technologies pertaining to champion units."
-msgstr "Former des champions et rechercher leurs technologies associées."
+msgstr "Entraîne les unités championnes et les recherches technologies associées."
 
 #: civs/athen.jsonStructures[1].History civs/hele.jsonStructures[1].History
 msgid ""
@@ -297,7 +298,7 @@ msgstr "Prytaneion"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
-msgstr "Former des héros et rechercher leurs technologies associées."
+msgstr "Entraîne les héros et les recherches technologies associées."
 
 #: civs/athen.jsonStructures[2].History civs/hele.jsonStructures[2].History
 msgid ""
@@ -338,7 +339,7 @@ msgstr "Représente les méthodes de culture celtes."
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Les druides augmentent légèrement le taux d'attaque des soldats à proximité."
+msgstr "Les druides augmentent légèrement la vitesse d'attaque des soldats à proximité."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -418,7 +419,7 @@ msgstr "Vosenius"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr "Augmente le taux d'attaque et de mouvement des soldats de mêlée."
+msgstr "Augmente la vitesse d'attaque et de déplacement des soldats de mêlée."
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -436,7 +437,7 @@ msgstr "Les Bretons commencèrent la pratique des marques permanentes sur leur c
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr "Augmente le bonus de hauteur des unités en garnison dans les tours."
+msgstr "Augmente le nombre d'unités en garnison dans les tours."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
@@ -581,7 +582,7 @@ msgstr "Carthaginois"
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr "Les murs, les portes et les tours de Carthage ont 3x les points de santé d'un mur standard, mais aussi 2x le temps de construction."
+msgstr "Les murs, les portes et les tours carthaginois ont 3x plus de santé qu'un mur standard, mais aussi 2x de temps de construction."
 
 #: civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -589,14 +590,14 @@ msgstr "Remparts triples"
 
 #: civs/cart.jsonCivBonuses[0].History
 msgid "Carthaginians built triple city walls."
-msgstr "Les carthaginois ont construit des remparts triples."
+msgstr "Les carthaginois construisent des remparts triples."
 
 #: civs/cart.jsonCivBonuses[1].Description
 msgid ""
 "The resource cost of training elephant-mounted (war elephant) or horse-"
 "mounted units (cavalry) is reduced by 5% per animal corralled (as "
 "appropriate)."
-msgstr "Le coût de la formation des unités montées (cavalerie) ou de dressage d'éléphants de guerre est réduit de 5% par animal parqué (s’il y a lieu)."
+msgstr "Le coût de formation des unités montées (cavalerie) ou des éléphants de guerre est réduit de 5% par animal parqué (s’il y a lieu)."
 
 #: civs/cart.jsonCivBonuses[1].Name civs/ptol.jsonCivBonuses[2].Name
 msgid "Roundup"
@@ -621,7 +622,7 @@ msgstr "Maîtres marchands"
 msgid ""
 "The Phoenicians and Carthaginians were broadly known as the greatest trading"
 " civilization of the ancient and classical world."
-msgstr "Les phéniciens et les carthaginois étaient internationalement connus pour être les meilleures civilisations marchandes de l'époque antique et classique."
+msgstr "Les phéniciens et les carthaginois étaient connus pour être les meilleures civilisations marchandes de l'époque antique et classique."
 
 #: civs/cart.jsonAINames[0] civs/cart.jsonFactions[0].Heroes[0].Name
 msgid "Hannibal Barca"
@@ -704,7 +705,7 @@ msgstr "Dans le monde antique, personne ne savait mieux que les Carthaginois où
 
 #: civs/cart.jsonFactions[0].Technologies[1].Description
 msgid "Civic Centers, Temples, and Houses -25% build time."
-msgstr "Les centres-villes, les temples et les maisons ont -25% de temps de construction."
+msgstr "Les centres-villes, les temples et les maisons se construisent 25% plus vite."
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
@@ -835,7 +836,7 @@ msgstr "Malheurs aux vaincus furent les mots prononcés par le chef Gaulois, Bre
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr "Les druides gaullois acquièrent un peu d'attaque de mélée."
+msgstr "Les druides gaulois gagnent un peu d'attaque de mélée."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name
@@ -1019,7 +1020,7 @@ msgstr "Les Grecs se voyaient comme l'ensemble du monde civilisé (écoumène), 
 
 #: civs/hele.jsonTeamBonuses[0].Description
 msgid "All units and allied units have increased LOS. ~ 10%"
-msgstr "Toutes les unités et unités alliées ont un champ de vision étendu d'environ 10%"
+msgstr "Toutes vos unités et unités alliées ont un champ de vision étendu d'environ 10%."
 
 #: civs/hele.jsonTeamBonuses[0].Name
 msgid "Oracle at Delphi"
@@ -1048,7 +1049,7 @@ msgstr "La phalange classique a été développée aux alentours du VIIIème si�
 
 #: civs/hele.jsonFactions[0].Technologies[1].Description
 msgid "Triremes are 20% cheaper and build 20% faster."
-msgstr "Trirèmes sont 20% moins cher et se construisent 20% plus vite."
+msgstr "Les trirèmes coûtent 20% moins cher et se construisent 20% plus vite."
 
 #: civs/hele.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1894,7 +1895,7 @@ msgstr "Les premiers souverains achéménides se sont employés à faire des Per
 msgid ""
 "Increases hitpoints of all structures, but build time increased "
 "appropriately."
-msgstr "Augmente les points de vie de toutes les structures, mais également le temps de construction nécessaire."
+msgstr "Augmente les points de santé de tous les bâtiments, mais également leur temps de construction."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Name
 msgid "Persian Architecture"
@@ -2261,7 +2262,7 @@ msgstr "Les Romains utilisaient fréquemment la formation en 'tortue' pour se d�
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Tout les citoyens-soldats romains sur le territoire romain bénéficient d'un bonus non-permanent de +10% en armure."
+msgstr "Tous les citoyens-soldats romains combattant sur le territoire romain bénéficient d'un bonus non-permanent de +10% d'armure."
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
@@ -2465,7 +2466,7 @@ msgstr "Clérouquie"
 msgid ""
 "Choose between Traditional Army and Reform Army technologies that unlock "
 "different Champions."
-msgstr "Choisissez entre les technologies de l'Armée traditionnelle et l'Armée réformée qui débloquent différents Champions."
+msgstr "Choisissez entre les technologies de l'Armée traditionnelle et l'Armée réformée qui débloquent différents champions."
 
 #: civs/sele.jsonCivBonuses[1].History
 #: civs/sele.jsonFactions[0].Technologies[1].History
@@ -2481,7 +2482,7 @@ msgstr "Séleucos et la guerre de succession prirent place aux 3e et 2e siècles
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr "Les centres-villes alliés sont 20 % moins chers."
+msgstr "Les centres-villes alliés coûtent 20% moins cher."
 
 #: civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2617,7 +2618,7 @@ msgstr "L'armée traditionnelle débloque les boucliers d'argent et les chars à
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
-msgstr "Armée traditionnelle vs. Armée réformée"
+msgstr "Armée traditionnelle c. Armée réformée"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
@@ -2754,7 +2755,7 @@ msgstr "Les Spartiates étaient les maîtres incontestés de la guerre de Phalan
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Les promotions de grade des spartiates à la caserne ne coûtent pas de ressources, juste du temps."
+msgstr "Les promotions de grade des Spartiates à la caserne ne coûtent pas de ressources, juste du temps."
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -2828,7 +2829,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "Les Citoyennes de Sparte ne peuvent pas être capturées et  se défendront avec acharnement contre tous les attaquants. Elles sont également capables de construire des tours de défense et de palissades."
+msgstr "Les citoyennes de Sparte ne peuvent pas être capturées et se défendront avec acharnement contre tous les attaquants. Elles sont également capables de construire des tours de défense et des palissades."
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"

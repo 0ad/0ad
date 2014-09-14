@@ -25,6 +25,7 @@ Trigger.prototype.SpawnAndAttack = function()
 		cmd.type = "attack-walk";
 		cmd.entities = intruders[origin];
 		cmd.queued = true;
+		cmd.targetClasses = { "attack": ["Unit", "Structure"] };
 		ProcessCommand(0, cmd);
 	}
 

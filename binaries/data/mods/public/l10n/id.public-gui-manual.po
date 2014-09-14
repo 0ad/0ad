@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-08-16 08:01+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-25 01:44+0000\n"
 "Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -35,7 +35,7 @@ msgstr "Tutup"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"serif-bold-18\"]Petunjuk Permainan 0 A.D."
+msgstr "[font=\"sans-bold-18\"]Petunjuk permainan 0 A.D."
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -50,7 +50,7 @@ msgstr "Terima kasih sudah menginstall 0 A.D.! Halaman ini akan memberi tahu sec
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"serif-bold-16\"]Pengaturan grafik"
+msgstr "[font=\"sans-bold-16\"]Pengaturan grafis"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -152,7 +152,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Pertama, pilih apakah anda ingin bermain peta acak (dibuat secara otomatis dari skrip peta acak) atau skenario (dibuat oleh perancang peta). Skenario dapat disaring untuk hanya menampilkan beberapa peta. Peta baku akan ditampilkan langsung, namun peta khusus seringkali tidak jadi pilihlah \"Semua peta\" untuk melihat daftar seluruh peta yang tersedia. Lalu pilih sebuah peta untuk bermain. \"Peta Demo\" dirancang untuk menguji fitur permainan tertentu dan mungkin tidak berguna secara umum."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -170,15 +170,15 @@ msgstr "Saat kau sudah siap untuk bermain, Tekan tombol \"Mulai permainan\"."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pintasan:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Selalu"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Tutup permainan tanpa konfirmasi"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -218,25 +218,25 @@ msgstr "Shift + F2: Mengambil gambar layar/screenshot besar (6400px*4800px di da
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Dalam Permainan"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Klik Kiri Ganda [pada unit]: Pilih seluruh unit berjenis sama pada layar (meskipun pangkat berbeda)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Klik Kiri Tiga Kali [pada unit]: Pilih seluruh unit berjenis sama dan berpangkat sama pada layar"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Alt + Klik Kiri Ganda [pada unit]: Pilih seluruh unit berjenis sama di seluruh peta (meskipun pangkat berbeda)"
 
 #: gui/manual/intro.txt:52
 msgid ""
@@ -270,11 +270,11 @@ msgstr "Enter/return: Buka/kirim pesan"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr "T: Kirim pesan dengan tim"
+msgstr "T: Kirim pesan dengan regu"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: Jeda/Lanjutkan permainan"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
@@ -306,7 +306,7 @@ msgstr "1 (dan terus sampai 0): Memilih unit/bangunan di kontrol grup 1 (sampai 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1 (hingga 0): Tambah grup kontrol 1 (hingga 0) pada unit/bangunan terpilih"
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -328,15 +328,15 @@ msgstr "Z, X, C, V, B, N, M:  Dengan bangunan pelatihan dipilih. Tambahkan unit 
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Mengubah aksi mouse"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Klik kanan pada bangunan: Garnisun"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + Klik Kanan: Antrikan gerak/bangun/kumpul/dll"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -345,27 +345,27 @@ msgstr "Shift + Klik kiri saat melatih unit: Menambahkan unit dengan kelipatan 5
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + Klik Kiri atau Tarik Kiri pada unit di peta: Tambahkan unit ke seleksi"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + Klik Kiri atau Tarik kiri pada unit di peta: Kurangi unit dari seleksi"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + Tarik Kiri pada unit di peta: Pilih unit militer saja"
 
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "Ctrl + Klik Kiri pada ikon unit/grup ketika banyak unit diseleksi: Kurangi"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "Klik Kanan dengan bangunan diseleksi: buat titik keluar untuk unit yang dilatih/dikeluarkan dari bangunan tersebut"
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
@@ -373,19 +373,19 @@ msgstr "Ctrl + Klik Kanan dengan unit yang dipilih:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over a structure: Garrison"
-msgstr ""
+msgstr "-Jika kursor ada di atas gedung: Simpan"
 
 #: gui/manual/intro.txt:83
 msgid "    - Otherwise: Attack move"
-msgstr ""
+msgstr "- Selain itu: Serang bergerak"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Lapisan"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Sembunyikan/tampilkan GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -409,23 +409,23 @@ msgstr "Alt + Z: Aktifkan/nonaktifkan langit"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Manipulasi Kamera"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W atau [atas]: Geser layar ke atas"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
-msgstr ""
+msgstr "S atau [bawah]: Geser layar ke bawah"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr ""
+msgstr "A atau [kiri]: Geser layar ke kiri"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
-msgstr ""
+msgstr "D atau [kanan]: Geser layar ke kanan"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
@@ -480,21 +480,21 @@ msgstr "+: Perkecil (terus ditekan untuk terus memperkecil)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Ganti mode wireframe"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Tombol Tengah Mouse atau / (garis miring): Tahan dan gerakkan mouse untuk geser"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Ketika Peletakan Bangunan"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: Putar gedung 15 derajat berlawanan arah jarum jam"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -504,7 +504,7 @@ msgstr "]: Putar bangunan 15 derajat searah jarum jam"
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Tarik Kiri: Putar gedung menggunakan mouse (pondasi diletakkan ketika mouse dilepas)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -513,7 +513,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Sebagai permainan yang bebas dan bersumber terbuka, kami tidak memiliki sumberdadya untuk menguji pada aneka sistem, namun kami ingin menyediakan pengalaman berkualitas pada sebanyak mungkin pemain. Ketika anda mengaktifkan Timbal Balik Otomatis, kami akan menerima data untuk membantu memahami perangkat keras yang harus kami dukung, dan untuk mengidentifikasi masalah kinerja yang harus kami perbaiki."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -524,31 +524,31 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• ID pengguna acak (disimpan di %APPDATA%\\0ad\\config\\user.cfg pada Windows, ~/.config/0ad/config/user.cfg pada Unix), agar kami dapat mendeteksi laporan berulang dari pengguna sama."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Nomor versi permainan dan pengaturan dasar (mode optimisasi, arsitektur CPU, waktu, versi kompiler)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "• Rincian perangkat keras: Versi OS, versi driver grafis, kemampuan OpenGL, ukuran layar, rincian CPU, ukuran RAM."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Rincian kinerja: cuplikan data waktu beberapa detik setelah anda memulai peperangan atau mengubah pengaturan grafis"
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Data hanya beberapa kilobyte setiap kali anda menjalankan permainan, jadi penggunaan bandwith sedikit."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -557,4 +557,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Kami akan menyimpan data terkumpul pada server kami, dan akan mempublikasikan statistika atau rincian tanpa mengenali pengguna untuk membantu pengembang permainan lain dengan pertanyaan serupa. Kami akan menyimpan alamat IP pengumpul data untuk membantu mendeteksi penyalahgunaan layanan namun tidak akan mempublikasikannya. Data terpublikasi dapat dilihat di http://feedback.wildfiregames.com/"

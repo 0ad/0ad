@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-06-19 21:40+0000\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-08-17 15:51+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -64,18 +64,18 @@ msgstr "Hrdinové"
 msgid "History of the %(civilization)s"
 msgstr "Historie %(civilization)s"
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 #, python-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
 msgstr "Otevírá se %(url)s\nve výchozím prohlížeči internetu. Počkejte, prosím..."
 
-#: gui/common/functions_global_object.js:75
+#: gui/common/functions_global_object.js:74
 msgid "Opening page"
 msgstr "Otevírá se stránka"
 
-#: gui/common/functions_global_object.js:80
+#: gui/common/functions_global_object.js:79
 #, python-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
@@ -91,23 +91,6 @@ msgstr "hh:mm:ss"
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
 msgstr "Načítání přerušeno"
-
-#: gui/common/functions_utility_list.js:14
-#: gui/common/functions_utility_list.js:44
-#: gui/common/functions_utility_list.js:69
-#: gui/common/functions_utility_list.js:84
-#: gui/common/functions_utility_list.js:101
-#: gui/common/functions_utility_list.js:113
-#: gui/common/functions_utility_list.js:125
-#: gui/common/functions_utility_list.js:141
-#, python-format
-msgid "%(functionName)s: %(object)s not found."
-msgstr "%(functionName)s: %(object)s nenalezen."
-
-#: gui/common/functions_utility_list.js:161
-#, python-format
-msgid "Requested string '%(string)s' not found in %(object)s's list."
-msgstr "Požadovaný řetězec '%(string)s' nebyl nalezen v seznamu %(object)st."
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
@@ -171,32 +154,32 @@ msgstr "Žádný"
 msgid "<invalid>"
 msgstr "<neplatné>"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/msgbox/msgbox.js:33 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Ne"
 
-#: gui/msgbox/msgbox.js:37 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Retry"
 msgstr "Opakovat"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Ignore"
 msgstr "Nevšímat si"
 
-#: gui/msgbox/msgbox.js:41
+#: gui/msgbox/msgbox.js:48
 msgid "Abort"
 msgstr "Přerušit"
 
@@ -235,189 +218,207 @@ msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
 msgstr "Ukázat podrobné nástrojové rady pro jednotky vycvičitelné v budovách určených pro výcvik."
 
-#: gui/options/options.js:16
+#: gui/options/options.js:13
+msgid "FPS Overlay"
+msgstr "Překrytí FPS"
+
+#: gui/options/options.js:13
+msgid "Show frames per second in top right corner."
+msgstr "Ukázat počet snímků za sekundu v horním pravém rohu."
+
+#: gui/options/options.js:14
+msgid "Realtime Overlay"
+msgstr "Překrytí skutečným časem"
+
+#: gui/options/options.js:14
+msgid "Show current system time in top right corner."
+msgstr "Ukázat nynější systémový čas v horním pravém rohu."
+
+#: gui/options/options.js:15
+msgid "Gametime Overlay"
+msgstr "Překrytí herním časem"
+
+#: gui/options/options.js:15
+msgid "Show current simulation time in top right corner."
+msgstr "Ukázat nynější čas simulace v horním pravém rohu."
+
+#: gui/options/options.js:19
 msgid "Prefer GLSL"
 msgstr "Upřednostňovat GLSL"
 
-#: gui/options/options.js:16
+#: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "Použít OpenGL 2.0 shaders (doporučeno)"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Post Processing"
 msgstr "Následné zpracování"
 
-#: gui/options/options.js:17
+#: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr "Použít filtry pro následné zpracování plochy obrazovky (HDR, Bloom, DOF atd.)"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Shadows"
 msgstr "Stíny"
 
-#: gui/options/options.js:18
+#: gui/options/options.js:21
 msgid "Enable shadows"
 msgstr "Povolit stíny"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Particles"
 msgstr "Částice"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:22
 msgid "Enable particles"
 msgstr "Povolit částice"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Show Sky"
 msgstr "Ukázat nebe"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:23
 msgid "Render Sky"
 msgstr "Kreslit nebe"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Smooth LOS"
 msgstr "Hladká hranice zorného pole (LOS)"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
 msgstr "Jemně nadzvedne přechod mezi temnotou a válečnou mlhou (vyžaduje upřednostňování GLSL)"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Unit Silhouettes"
 msgstr "Obrysy jednotek"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
 msgstr "Ukázat obrysy jednotek za budovami"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Shadow Filtering"
 msgstr "Filtrování stínů"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:26
 msgid "Smooth shadows"
 msgstr "Měkké stíny"
 
-#: gui/options/options.js:24
-msgid "HQ Waviness"
-msgstr "HQ vlnění vody"
+#: gui/options/options.js:27
+msgid "Fast & Ugly Water"
+msgstr "Rychlá a nehezká voda"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:27
 msgid ""
-"Use real normals for ocean-wave rendering, instead of applying them as a "
-"flat texture"
-msgstr "Použít skutečné normálové vektory ke kreslení mořských vln namísto plochých textur."
+"Use the lowest settings possible to render water. This makes other settings "
+"irrelevant."
+msgstr "Použít nejnižší možnou kvalitu nastavení pro kreslení vody. Toto udělá ostatní nastavení bezvýznamnými."
 
-#: gui/options/options.js:25
+#: gui/options/options.js:28
+msgid "HQ Water Effects"
+msgstr "Vysoce kvalitní vodní efekty"
+
+#: gui/options/options.js:28
+msgid ""
+"Use higher-quality effects for water, rendering coastal waves, shore foam, "
+"and ships trails."
+msgstr "Použít vysoce kvalitní efekty pro vodu, kreslení pobřežních vln, pěnu u pobřeží a stopu tvořící se ve vodě za plavidly."
+
+#: gui/options/options.js:29
 msgid "Real Water Depth"
 msgstr "Skutečná hloubka vody"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
 msgstr "Použít opravdovou hloubku vody při výpočtech vykreslování"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Water Reflections"
 msgstr "Zrcadlení vody"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
 msgstr "Povolit, aby vody odrážela zrcadlový obraz"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Water Refraction"
 msgstr "Lom světla ve vodě"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
 msgstr "Použít mapu s opravdovým lámáním světla ve vodě a ne průhlednost"
 
-#: gui/options/options.js:28
-msgid "Shore Foam"
-msgstr "Pobřežní pěna"
+#: gui/options/options.js:32
+msgid "Shadows on Water"
+msgstr "Stíny na vodu"
 
-#: gui/options/options.js:28
-msgid "Show foam on water near shore depending on water waviness"
-msgstr "Ukázat zpěněné vlny v blízkosti pobřeží v závislosti na vlnění vody"
-
-#: gui/options/options.js:29
-msgid "Shore Waves"
-msgstr "Pobřežní vlny"
-
-#: gui/options/options.js:29
-msgid "Show breaking waves on water near shore (Requires HQ Waviness)"
-msgstr "Ukázat tříštící se vlny ve vodách v blízkosti pobřeží (vyžaduje HQ vlnění vody)"
-
-#: gui/options/options.js:30
-msgid "Water Shadows"
-msgstr "Vodní stíny"
-
-#: gui/options/options.js:30
+#: gui/options/options.js:32
 msgid "Cast shadows on water"
 msgstr "Vrhat stíny na vodu"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "VSync"
 msgstr "Vertikální synchronizace"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "Použít svislou synchronizaci k opravení trhání obrazovky. VYŽADUJE ZNOVUSPUŠTĚNÍ HRY"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master Gain"
 msgstr "Hlavní zesílení"
 
-#: gui/options/options.js:35
+#: gui/options/options.js:37
 msgid "Master audio gain"
 msgstr "Hlavní hlasitost"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "Music Gain"
 msgstr "Zesílení hudby"
 
-#: gui/options/options.js:36
+#: gui/options/options.js:38
 msgid "In game music gain"
 msgstr "Hudba na pozadí"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "Ambient Gain"
 msgstr "Šum okolí"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:39
 msgid "In game ambient sound gain"
 msgstr "Hlasitost šumění okolí"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "Action Gain"
 msgstr "Hluk jednotek"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:40
 msgid "In game unit action sound gain"
 msgstr "Zesílení hlasitosti činností jednotek"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI Gain"
 msgstr "Rozhraní"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:41
 msgid "UI sound gain"
 msgstr "Hlasitost rozhraní"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Chat Backlog"
 msgstr "Načtení zpráv rozhovoru"
 
-#: gui/options/options.js:43
+#: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "Počet posledních hlášení načtených při vstupu do zájmové skupiny"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Chat Timestamp"
 msgstr "Časové razítko rozhovoru"
 
-#: gui/options/options.js:44
+#: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Ukázat čas zpráv, které byly napsány při rozhovorech v zájmové skupině"
 
@@ -1138,10 +1139,6 @@ msgid "[icon=iconLag]  The game lags when many units are moving."
 msgstr "[icon=iconLag]  Hra se zadrhává, když je v pohybu moc jednotek."
 
 #: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconShip\"]  The computer opponent can't use ships."
-msgstr "[icon=\"iconShip\"]  Počítač v roli protivníka nemůže používat lodě."
-
-#: gui/splashscreen/splashscreen.txt:9
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"] Velké mapy mohou způsobovat problémy."
 
@@ -1468,6 +1465,24 @@ msgid ""
 "technologies."
 msgstr "- Peršané mají také přístup k velkému množství stavebních a obraných technologií."
 
+#: gui/text/tips/pikemen.txt:1
+msgid "PIKEMEN"
+msgstr "KOPINÍK"
+
+#: gui/text/tips/pikemen.txt:2
+msgid "- Heavily armored and slow. Low attack."
+msgstr "- Těžce vyzbrojený a pomalý. Pomalý útok."
+
+#: gui/text/tips/pikemen.txt:4
+msgid ""
+"- Used against cavalry for a 4x attack bonus or against other melee infantry"
+" to pin them them in place."
+msgstr "- Používáno proti jízdě kvůli zvýhodnění 4 x na útoku nebo proti jiné pěchotě pro boj na blízko pro její přidržení na místě."
+
+#: gui/text/tips/pikemen.txt:6
+msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
+msgstr "- Dostupné pro: Makedoňany, Seleukovce a Ptolemaiovce."
+
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
 msgstr "TĚŽKÁ VÁLEČNÁ LOĎ"
@@ -1539,12 +1554,38 @@ msgid "- Champion Infantry available to the Spartans faction."
 msgstr "- Elitní pěchota Sparťanů."
 
 #: gui/text/tips/spartan_hoplites.txt:6
-msgid "- Long train time, but high armor and attack."
-msgstr "- Dlouhá doba výcviku, ale má silné brnění i útok."
+msgid ""
+"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
+"regular line infantry."
+msgstr "- Používejte je na zabíjení nepřátelské jízdy nebo jako údernou sílu k podpoření vaší pravidelné řadové pěchoty."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
 msgstr "- Použít formaci falanga pro výhodu k brnění navíc."
+
+#: gui/text/tips/spearmen.txt:1
+msgid "SPEARMEN"
+msgstr "BOJOVNÍK S OŠTĚPEM"
+
+#: gui/text/tips/spearmen.txt:2
+msgid "- The basic melee infantry for every faction in the game."
+msgstr "- Základní pěchota pro boj na blízko používaná každou ze stran ve hře."
+
+#: gui/text/tips/spearmen.txt:4
+msgid "- Used against cavalry for a 2x attack bonus."
+msgstr "- Používáno proti jízdě pro zvýhodnění 2 x na útoku."
+
+#: gui/text/tips/spearmen.txt:6
+msgid ""
+"- Decent hack attack and a good charge bonus make them good front line "
+"troops."
+msgstr "- Slušný útok sekem a dobré zvýhodnění při výpadu z nich dělají dobré jednotky pro přední linii."
+
+#: gui/text/tips/spearmen.txt:8
+msgid ""
+"- They are countered by ranged units and swordsmen, so support your spearmen"
+" with slingers or cavalry."
+msgstr "- Jsou znevýhodněni při boji proti jednotkám bojujícím na dálku a proti bojovníkům s mečem, takže podporují vaše bojovníky s oštěpem společně s prakovníky nebo jízdou."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

@@ -13,9 +13,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-07-14 17:08+0000\n"
-"Last-Translator: dr&mx <dronmax@gmail.com>\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-17 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1872,16 +1872,17 @@ msgid "Crop Rotation"
 msgstr "Севооборот"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
-msgstr "Бои копейщиков увеличивают урон пехотинцев-копьеносцев."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "Копейщики получают +2 к рубящей атаке."
+msgid "Spear Infantry +2 hack attack."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "Бои копейщиков"
+msgid "Infantry Spear Training"
+msgstr ""
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1913,13 +1914,13 @@ msgstr "У спартанцев была не самая большая арми
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "Спартанцы обучались с детства терпеть любые трудности военной жизни чтобы быть превосходными воинами."
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "Добавляет +25% здоровья пешим копейщикам, но на +10% увеличивает время тренировки."
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr ""
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2060,8 +2061,8 @@ msgid ""
 msgstr "Анузийская элитная пехота передвигается в два раза быстрее, но теряет немного максимального здоровья."
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "Анузийская элитная пехота, -50% времени передвижения, но также -20 здоровья."
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

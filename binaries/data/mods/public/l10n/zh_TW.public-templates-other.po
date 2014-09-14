@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-15 03:50+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-18 04:20+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: simulation/templates/template_gaia.xml:5
+#: simulation/templates/template_gaia.xml:6
 msgid "Gaia"
 msgstr "大地之母"
 
@@ -118,7 +118,7 @@ msgstr "一般寶藏"
 msgid "Treasure"
 msgstr "寶藏"
 
-#: simulation/templates/template_structure.xml:47
+#: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "建築物"
 
@@ -981,3 +981,35 @@ msgstr "將有那些房舍的文明變為5單位容量的房舍，其他文明�
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
 msgstr "里程碑"
+
+#: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/ptol_mechanical_siege_lithobolos_common.xml:5
+#: simulation/templates/special_units/sele_mechanical_siege_lithobolos_common.xml:5
+msgid "Lithóbolos"
+msgstr "Lithóbolos"
+
+#: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybelḗs"
+msgstr "Oxybelḗs"
+
+#: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
+#: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:32
+msgid "Ballista"
+msgstr "弩炮"
+
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
+msgid "Oxybeles"
+msgstr "射箭機"
+
+#: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
+msgid "Polybolos"
+msgstr "Polybolos"
+
+#: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:29
+msgid "Scorpio"
+msgstr "蠍弩"

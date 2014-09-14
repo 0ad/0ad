@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-08-15 03:20+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-08-18 03:40+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -1869,16 +1869,17 @@ msgid "Crop Rotation"
 msgstr "輪作"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
-msgid "Spear fighting training increases damage of infantry spear units."
+msgid ""
+"Spear fighting training increases damage of spear-wielding infantry units."
 msgstr "長矛戰鬥訓練增加了持矛步兵單位的傷害力。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsontooltip
-msgid "Spearmen +2 hack attack."
-msgstr "長槍兵 +2 劈砍攻擊。"
+msgid "Spear Infantry +2 hack attack."
+msgstr "持矛步兵 +2 劈砍攻擊力。"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsongenericName
-msgid "Infantry Spear Fighting"
-msgstr "步兵長矛戰鬥"
+msgid "Infantry Spear Training"
+msgstr "步兵長矛訓練"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.hele
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonspecificName.mace
@@ -1910,13 +1911,13 @@ msgstr "斯巴達人並不具有世界上最大型的軍隊，但他們在當時
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsondescription
 msgid ""
-"Spartans were housed and trained from a young age to be superlative warriors"
-" and to endure any hardship a military life can give them."
-msgstr "斯巴達人從小就被編入團隊進行訓練，以成為最好的戰士，並確保能夠忍受艱苦的軍旅生活。"
+"Spartans were housed and trained from age 6 to be superlative warriors and "
+"to endure any hardship a military life can give them."
+msgstr "斯巴達人6歲就被編入團隊進行訓練，以成為最好的戰士，並確保能夠忍受艱苦的軍旅生活。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsontooltip
-msgid "+25% health for spear infantry, but also +10% train time."
-msgstr "矛步兵血+25％，但培訓時間 +10％。"
+msgid "+25% health for Spear Infantry, but also +10% train time."
+msgstr "持矛步兵 +25% 生命值，但也 +10% 訓練時間。"
 
 #: simulation/data/technologies/hellenes/spartans_agoge.jsongenericName
 msgid "The Agoge"
@@ -2057,8 +2058,8 @@ msgid ""
 msgstr "精英盾步兵的訓練速度是正常的兩倍快，但會減少些許的最大生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsontooltip
-msgid "Anusiya Champion Infantry -50% train time, but also -20 health."
-msgstr "精英盾步兵訓練時間 -50%，但也 -20 生命值。"
+msgid "Anusiya Champion Infantry -50% train time, but also -10 health."
+msgstr "精英盾步兵訓練時間 -50%，但也 -10 生命值。"
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"

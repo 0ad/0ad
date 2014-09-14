@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Raija <raija.seikola@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:39+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"POT-Creation-Date: 2014-08-16 16:13+0200\n"
+"PO-Revision-Date: 2014-09-01 18:51+0000\n"
+"Last-Translator: Raija <raija.seikola@gmail.com>\n"
 "Language-Team: Latvian (http://www.transifex.com/projects/p/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +53,7 @@ msgstr ""
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
-msgstr ""
+msgstr "Ciems"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
@@ -64,7 +66,7 @@ msgstr "Paaugstina populācijas limitu."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Ārstējošā Aura"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
@@ -72,7 +74,7 @@ msgstr ""
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
 msgid "Town"
-msgstr ""
+msgstr "Pilsēta"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
@@ -96,12 +98,12 @@ msgstr "Aizsargājošs"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "Aizsargēka"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:63
 #: simulation/templates/template_structure_defense_defense_tower.xml:32
 msgid "DefenseTower"
-msgstr ""
+msgstr "Aizsargtornis"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:61
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -118,8 +120,8 @@ msgstr ""
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
-"Build in neutral and friendly territories to scout areas of the map. Slowly "
-"loses health while in neutral territory."
+"Build in neutral and own territories to scout areas of the map. Slowly loses"
+" health while in neutral territory."
 msgstr ""
 
 #: simulation/templates/template_structure_defense_wall.xml:24
@@ -177,12 +179,12 @@ msgstr "Ekonomika"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr ""
+msgstr "Ekonomiskas nozīmes ēka"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
-msgstr ""
+msgstr "Zemnieku saimniecība"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
@@ -222,16 +224,16 @@ msgstr "Apmetne"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr ""
+msgstr "Karaspēks"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "Militāras nozīmes ēka"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr ""
+msgstr "Kazarmas"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
@@ -262,11 +264,11 @@ msgstr ""
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
-msgstr ""
+msgstr "Vēstniecība"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 msgid "City"
-msgstr ""
+msgstr "Lielpilsēta"
 
 #: simulation/templates/template_structure_military_fortress.xml:63
 #: simulation/templates/template_structure_military_fortress.xml:31
@@ -282,7 +284,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "Resurss"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
@@ -302,7 +304,7 @@ msgstr ""
 #: simulation/templates/template_structure_resource_field.xml:25
 #: simulation/templates/template_structure_resource_field.xml:24
 msgid "Field"
-msgstr ""
+msgstr "Lauks"
 
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Harvest vegetables for food. Max gatherers: 5."
@@ -316,7 +318,7 @@ msgstr ""
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
-msgstr ""
+msgstr "Speciāla ēka"
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
@@ -326,7 +328,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
-msgstr ""
+msgstr "Brīnums"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/hele_barracks.xml:20
@@ -548,12 +550,6 @@ msgstr ""
 msgid "Gwersyllty"
 msgstr ""
 
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
-msgid "-Town"
-msgstr ""
-
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
@@ -578,7 +574,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
-msgstr ""
+msgstr "Salu apmetne"
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -1179,11 +1175,11 @@ msgstr ""
 msgid "Apadana"
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:7
+#: simulation/templates/structures/pers_barracks.xml:12
 msgid "Levy citizen-infantry units."
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:5
+#: simulation/templates/structures/pers_barracks.xml:10
 msgid "Padgan"
 msgstr ""
 
@@ -1269,10 +1265,6 @@ msgstr ""
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
-msgstr ""
-
-#: simulation/templates/structures/pers_stables.xml:20
-msgid "-Barracks"
 msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:20
@@ -1577,10 +1569,6 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
-msgstr ""
-
-#: simulation/templates/structures/rome_tent.xml:31
-msgid "-Village"
 msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32

@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-06-19 19:38+0200\n"
-"PO-Revision-Date: 2014-08-03 03:30+0000\n"
-"Last-Translator: Dominik <incredipede@outlook.com>\n"
+"POT-Creation-Date: 2014-08-16 16:12+0200\n"
+"PO-Revision-Date: 2014-09-05 09:00+0000\n"
+"Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,7 +108,7 @@ msgstr "%(oldnick)s ist jetzt als %(newnick)s bekannt."
 #: gui/lobby/lobby.js:672
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr "Es tut uns Leid, das ‚%(cmd)s‘-Kommando wird nicht unterstützt."
+msgstr "Es tut uns leid, das ‚%(cmd)s‘-Kommando wird nicht unterstützt."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
 #: gui/lobby/lobby.js:752
@@ -166,7 +166,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:852
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Bitte verzichte auf das Spammen. Du wurdest für dreißig Sekunden geblockt."
+msgstr "Bitte verzichte auf das Spammen. Du wurdest für dreißig Sekunden blockiert."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -178,7 +178,7 @@ msgstr "Registriere..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr "Bitte geben Sie Ihren Benutzernamen ein"
+msgstr "Bitte gib Deinen Benutzernamen ein"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -186,11 +186,11 @@ msgstr "Benutzernamen können leider keine [, ], Unicodezeichen, Leerzeichen ode
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr "Bitte geben Sie Ihr Passwort ein"
+msgstr "Bitte gib Dein Passwort ein"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr "Bitte geben Sie Ihr Passwort erneut ein"
+msgstr "Bitte gib Dein Passwort erneut ein"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"

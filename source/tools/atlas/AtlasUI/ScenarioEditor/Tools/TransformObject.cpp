@@ -113,6 +113,7 @@ public:
 			Position entityPos;
 			long playerId = 0;
 			double orientation = 0;
+			unsigned int actorSeed = 0;
 
 			const wxXmlNode* xmlData = child->GetChildren();
 
@@ -149,9 +150,16 @@ public:
 				}
 				else if (xmlData->GetName() == wxT("Player"))
 				{
-					wxString x;
-					x = xmlData->GetNodeContent();
+					wxString x(xmlData->GetNodeContent());
 					x.ToLong(&playerId);
+				}
+				else if (xmlData->GetName() == wxT("ActorSeed"))
+				{
+					wxString x(xmlData->GetNodeContent());
+					unsigned long xTmp = 0;
+					x.ToULong(&xTmp);
+					wxASSERT(xTmp <= (unsigned long)UINT32_MAX);
+					actorSeed = xTmp;
 				}
 
 				xmlData = xmlData->GetNext();
@@ -161,7 +169,7 @@ public:
 			this->GetScenarioEditor().GetObjectSettings().SetPlayerID(playerId);
 			this->GetScenarioEditor().GetObjectSettings().NotifyObservers();
 
-			POST_MESSAGE(ObjectPreview, ((std::wstring)templateName.c_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), entityPos, false, Position(), orientation, 0, false));
+			POST_MESSAGE(ObjectPreview, ((std::wstring)templateName.c_str(), GetScenarioEditor().GetObjectSettings().GetSettings(), entityPos, false, Position(), orientation, actorSeed, false));
 
 			child = child->GetNext();
 		}
