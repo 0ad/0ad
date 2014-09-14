@@ -256,7 +256,13 @@ function updateGameList()
 		if(!filterGame(g))
 		{
 			// Highlight games 'waiting' for this player, otherwise display as green
-			var name = (g.state != 'waiting') ? '[color="0 125 0"]' + g.name + '[/color]' : '[color="orange"]' + g.name + '[/color]';
+			var name;
+			if (g.state == 'init')
+				name = '[color="0 125 0"]' + g.name + '[/color]';
+			else if (g.state == 'waiting')
+				name = '[color="255 127 0"]' + g.name + '[/color]';
+			else
+				name = '[color="255 0 0"]' + g.name + '[/color]';
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(g.niceMapName);
