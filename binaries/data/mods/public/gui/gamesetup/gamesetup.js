@@ -868,6 +868,9 @@ function selectMap(name)
 	if (!name)
 		return;
 
+	// reset the triggerSripts as some maps don't have one
+	g_GameAttributes.settings.TriggerScripts = undefined;
+
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
 
@@ -1335,15 +1338,13 @@ function onGameAttributesChange()
 function updateGameAttributes()
 {
 	if (g_IsNetworked)
-    {
+	{
 		Engine.SetNetworkGameAttributes(g_GameAttributes);
 		if (g_IsController && g_LoadingState >= 2)
 			sendRegisterGameStanza();
 	}
 	else
-    {
 		onGameAttributesChange();
-    }
 }
 
 function AIConfigCallback(ai) 

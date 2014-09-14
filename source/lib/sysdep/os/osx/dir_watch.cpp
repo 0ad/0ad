@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -119,7 +119,7 @@ static void fsevent_callback(
 
 FSEventStreamRef CreateEventStream( DirWatchMap path )
 {
-  if ( ( g_Stream == NULL ) && CanRunNotifications() )
+  if ( ( g_Stream == NULL ) && CanRunNotifications() && !path.empty() )
   {
     CFStringRef* pathLists = (CFStringRef*)malloc( sizeof(CFStringRef*) * path.size() );
     int   index = 0;

@@ -1502,6 +1502,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							continue;
 						if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
 							continue;
+						if (!attack.target || !gameState.getEntityById(attack.target.id()))
+							continue;
 						this.target = attack.target;
 						this.targetPlayer = attack.targetPlayer;
 						break;
