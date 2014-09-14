@@ -236,9 +236,20 @@ function updateGameList()
 	// to update the game info panel.
 	g_GameList = gameList;
 
-	// Sort the list of games to that games 'waiting' are displayed at the top
+	// Sort the list of games to that games 'waiting' are displayed at the top, followed by 'init', followed by 'running'.
+	var gameStatuses = ['waiting', 'init', 'running'];
 	g_GameList.sort(function (a,b) {
-		return a.state == 'waiting' ? -1 : b.state == 'waiting' ? +1 : 0;
+		if (gameStatuses.indexOf(a.state) < gameStatuses.indexOf(b.state))
+			return -1;
+		else if (gameStatuses.indexOf(a.state) > gameStatuses.indexOf(b.state))
+			return 1;
+
+		// Alphabetical comparison of names as tiebreaker.
+		if (a.name < b.name)
+			return -1;
+		else if (a.name > b.name)
+			return 1;
+		return 0;
 	});
 
 	var list_name = [];
