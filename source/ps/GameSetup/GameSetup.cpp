@@ -582,6 +582,8 @@ static void ShutdownPs()
 {
 	SAFE_DELETE(g_GUI);
 
+	UnloadHotkeys();
+
 	SAFE_DELETE(g_Console);
 	
 	// disable the special Windows cursor, or free textures for OGL cursors
