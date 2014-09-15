@@ -637,11 +637,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         ## Pull games and add each to the stanza        
         for JIDs in games:
           g = games[JIDs]
-          # Only send the games that are in the 'init' state and games
-          # that are in the 'waiting' state which the receiving player is in. TODO
-          # Split the rating off
-          if g['state'] == 'init' or (g['state'] == 'waiting' and self.nicks[str(JID)] in (formattedPlayer.split()[0] for formattedPlayer in g['players-init'])):
-            stz.addGame(g)
+          stz.addGame(g)
 
         ## Set additional IQ attributes
         iq = self.Iq()
@@ -664,10 +660,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
       ## Pull games and add each to the stanza
       for JIDs in games:
         g = games[JIDs]
-        # Only send the games that are in the 'init' state and games
-        # that are in the 'waiting' state which the receiving player is in. TODO
-        if g['state'] == 'init' or (g['state'] == 'waiting' and self.nicks[str(to)] in g['players-init']):
-          stz.addGame(g)
+        stz.addGame(g)
 
       ## Set additional IQ attributes
       iq = self.Iq()

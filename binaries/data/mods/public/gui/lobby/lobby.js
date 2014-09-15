@@ -236,9 +236,20 @@ function updateGameList()
 	// to update the game info panel.
 	g_GameList = gameList;
 
-	// Sort the list of games to that games 'waiting' are displayed at the top
+	// Sort the list of games to that games 'waiting' are displayed at the top, followed by 'init', followed by 'running'.
+	var gameStatuses = ['waiting', 'init', 'running'];
 	g_GameList.sort(function (a,b) {
-		return a.state == 'waiting' ? -1 : b.state == 'waiting' ? +1 : 0;
+		if (gameStatuses.indexOf(a.state) < gameStatuses.indexOf(b.state))
+			return -1;
+		else if (gameStatuses.indexOf(a.state) > gameStatuses.indexOf(b.state))
+			return 1;
+
+		// Alphabetical comparison of names as tiebreaker.
+		if (a.name < b.name)
+			return -1;
+		else if (a.name > b.name)
+			return 1;
+		return 0;
 	});
 
 	var list_name = [];
@@ -255,13 +266,19 @@ function updateGameList()
 	{
 		if(!filterGame(g))
 		{
-			// Highlight games 'waiting' for this player, otherwise display as green
-			var name = (g.state != 'waiting') ? '[color="0 125 0"]' + g.name + '[/color]' : '[color="orange"]' + g.name + '[/color]';
+			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
+			var name;
+			if (g.state == 'init')
+				name = '[color="0 125 0"]' + g.name + '[/color]';
+			else if (g.state == 'waiting')
+				name = '[color="255 127 0"]' + g.name + '[/color]';
+			else
+				name = '[color="255 0 0"]' + g.name + '[/color]';
 			list_name.push(name);
 			list_ip.push(g.ip);
-			list_mapName.push(g.niceMapName);
+			list_mapName.push(translate(g.niceMapName));
 			list_mapSize.push(g.mapSize.split("(")[0]);
-			list_mapType.push(toTitleCase(g.mapType));
+			list_mapType.push(translate(toTitleCase(g.mapType)));
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
 			list.push(g.name);
 			list_data.push(c);
@@ -376,15 +393,15 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("gameInfoEmpty").hidden = true;
 
 	// Display the map name, number of players, the names of the players, the map size and the map type.
-	Engine.GetGUIObjectByName("sgMapName").caption = g_GameList[g].niceMapName;
+	Engine.GetGUIObjectByName("sgMapName").caption = translate(g_GameList[g].niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
-	Engine.GetGUIObjectByName("sgMapType").caption = toTitleCase(g_GameList[g].mapType);
+	Engine.GetGUIObjectByName("sgMapType").caption = translate(toTitleCase(g_GameList[g].mapType));
 
 	// Display map description if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Description)
-		var mapDescription = mapData.settings.Description;
+		var mapDescription = translate(mapData.settings.Description);
 	else
 		var mapDescription = translate("Sorry, no description available.");
 
