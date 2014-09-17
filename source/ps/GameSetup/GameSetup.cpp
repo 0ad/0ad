@@ -1431,7 +1431,7 @@ bool Autostart(const CmdLineArgs& args)
 		g_NetClient->SetUserName(userName);
 
 		CStr ip = args.Get("autostart-client");
-		if (ip == "")
+		if (ip.empty())
 			ip = "127.0.0.1";
 
 		bool ok = g_NetClient->SetupConnection(ip);
