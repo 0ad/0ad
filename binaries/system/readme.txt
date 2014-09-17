@@ -7,20 +7,25 @@ Basic gameplay:
 -quickstart			load faster (disables audio and some system info logging)
 
 Autostart:
--autostart=TYPEDIR/MAPNAME		enables autostart, selects map in subdirectory of maps/
--autostart-ai=PLAYER:AI			adds named AI to the given PLAYER (e.g. 2:testbot)
--autostart-aidiff=PLAYER:level	changes the difficulty setting for AI PLAYER (0: easy, 3: very hard)
+-autostart="TYPEDIR/MAPNAME"	enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
+-autostart-ai=PLAYER:AI			sets the AI for PLAYER (e.g. 2:petra)
+-autostart-aidiff=PLAYER:DIFF	sets the DIFFiculty of PLAYER's AI (0: easy, 3: very hard)
+-autostart-civ=PLAYER:CIV		sets PLAYER's civilisation to CIV (skirmish and random maps only)
 Multiplayer:
--autostart-playername=NAME		multiplayer local player NAME (default 'anonymous')
--autostart-host					multiplayer host mode
--autostart-players=NUMBER		multiplayer host: NUMBER of client players (default 2)
--autostart-client				multiplayer client mode
--autostart-ip=IP				multiplayer client: connect to this host IP
-Random maps only:
--autostart-random=SEED			random map with SEED value (default 0, use -1 for random)
--autostart-size=TILES			random map SIZE in tiles (default 192)
--autostart-players=NUMBER		NUMBER of players on random map
--autostart-civ=PLAYER:CIV		changes the civilisation of player PLAYER to CIV (default athen)
+-autostart-playername=NAME		sets local player NAME (default 'anonymous')
+-autostart-host					sets multiplayer host mode
+-autostart-host-players=NUMBER	sets NUMBER of human players for multiplayer game (default 2)
+-autostart-client=IP			sets multiplayer client to join host at given IP address
+ Random maps only:
+-autostart-seed=SEED			sets random map SEED value (default 0, use -1 for random)
+-autostart-size=TILES			sets random map size in TILES (default 192)
+-autostart-players=NUMBER		sets NUMBER of players on random map (default 2)
+
+Examples:
+1) "Bob" will host a 2 player game on the Arcadia map:
+ -autostart="scenarios/Arcadia 02" -autostart-host -autostart-host-players=2 -autostart-playername="Bob"
+2) Load Alpine Lakes random map with random seed, 2 players (Athens and Britons), and player 2 is PetraBot:
+ -autostart="random/alpine_lakes" -autostart-seed=-1 -autostart-players=2 -autostart-civ=1:athen -autostart-civ=2:brit -autostart-ai=2:petra
 
 Configuration:
 -conf=KEY:VALUE		set a config value
