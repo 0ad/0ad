@@ -868,8 +868,9 @@ function selectMap(name)
 	if (!name)
 		return;
 
-	// reset the triggerSripts as some maps don't have one
+	// reset some map specific properties which are not necessarily redefined on each map
 	g_GameAttributes.settings.TriggerScripts = undefined;
+	g_GameAttributes.settings.CircularMap = undefined;
 
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});

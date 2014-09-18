@@ -66,9 +66,8 @@ var commands = {
 	"quit": function(player, cmd, data)
 	{
 		// Let the AI exit the game for testing purposes
-		// TODO broken, does this need a fix?
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": "quit"});
+		cmpGuiInterface.PushNotification({"type": "quit", "players": [player]});
 	},
 
 	"diplomacy": function(player, cmd, data)

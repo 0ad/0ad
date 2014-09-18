@@ -89,7 +89,7 @@ var g_NotificationsTypes =
 	},
 	"quit": function(notification, player)
 	{
-		exit(); // TODO this doesn't work anymore
+		Engine.Exit();
 	},
 	"tribute": function(notification, player)
 	{
