@@ -1661,6 +1661,8 @@ function toggleReady()
 
 function updateReadyUI()
 {
+	if (!g_IsNetworked)
+		return; // Disabled for single-player games.
 	var isAI = new Array(MAX_PLAYERS + 1);
 	for (var i = 0; i < isAI.length; ++i)
 		isAI[i] = true;
