@@ -73,14 +73,16 @@ Timer.prototype.OnUpdate = function(msg)
 	// Collect the timers that need to run
 	// (We do this in two stages to avoid deleting from the timer list while
 	// we're in the middle of iterating through it)
-	var run = new Set();
+	var run = [];
 	for (let id of this.timers.keys())
 	{
 		if (this.timers.get(id)[3] <= this.time)
-			run.add(id);
+			run.push(id);
 	}
-	for (let id of run)
+	for (var i = 0; i < run.length; ++i)
 	{
+		var id = run[i];
+
 		var t = this.timers.get(id);
 		if (!t)
 			continue; // an earlier timer might have cancelled this one, so skip it
@@ -108,7 +110,7 @@ Timer.prototype.OnUpdate = function(msg)
 			t[3] += t[4];
 			// Add it to the list to get re-executed if it's soon enough
 			if (t[3] <= this.time)
-				run.add(id);
+				run.push(id);
 		}
 		else
 		{
