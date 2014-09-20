@@ -26,6 +26,8 @@ from sleekxmpp.xmlstream import ElementBase, register_stanza_plugin, ET
 from sleekxmpp.xmlstream.handler import Callback
 from sleekxmpp.xmlstream.matcher import StanzaPath
 
+from sqlalchemy import func
+
 from LobbyRanking import session as db, Game, Player, PlayerInfo
 from ELO import get_rating_adjustment
 # Rating that new players should be inserted into the
@@ -37,6 +39,34 @@ class LeaderboardList():
   def __init__(self, room):
     self.room = room
     self.lastRated = ""
+
+  def getProfile(self, JID):
+    """
+      Retrieves the profile for the specified JID
+    """
+    stats = {}
+    player = db.query(Player).filter(Player.jid.ilike(str(JID)))
+    if not player.first():
+      return
+    if player.first().rating != -1:
+      stats['rating'] = str(player.first().rating)
+
+    if player.first().highest_rating != -1:
+      stats['highestRating'] = str(player.first().highest_rating)
+
+    playerID = player.first().id
+    players = db.query(Player).order_by(Player.rating.desc()).all()
+
+    for rank, user in enumerate(players):
+      if (user.jid.lower() == JID.lower()):
+        stats['rank'] = str(rank+1)
+        break
+
+    stats['totalGamesPlayed'] = str(db.query(PlayerInfo).filter_by(player_id=playerID).count())
+    stats['wins'] = str(db.query(Game).filter_by(winner_id=playerID).count())
+    stats['losses'] = str(db.query(PlayerInfo).filter_by(player_id=playerID).count() - db.query(Game).filter_by(winner_id=playerID).count())
+    return stats
+
   def getOrCreatePlayer(self, JID):
     """
       Stores a player(JID) in the database if they don't yet exist.
@@ -180,6 +210,14 @@ class LeaderboardList():
       name2, player2.rating, player2.rating + rating_adjustment2)
     player1.rating += rating_adjustment1
     player2.rating += rating_adjustment2
+    if not player1.highest_rating:
+      player1.highest_rating = -1
+    if not player2.highest_rating:
+      player2.highest_rating = -1
+    if player1.rating > player1.highest_rating:
+      player1.highest_rating = player1.rating
+    if player2.rating > player2.highest_rating:
+      player2.highest_rating = player2.rating
     db.commit()
     return self
 
@@ -426,6 +464,22 @@ class GameReportXmppPlugin(ElementBase):
       data[key] = item
     return data
 
+## Class for custom profile ##
+class ProfileXmppPlugin(ElementBase):
+  name = 'query'
+  namespace = 'jabber:iq:profile'
+  interfaces = set(('profile', 'command'))
+  sub_interfaces = interfaces
+  plugin_attrib = 'profile'
+  def addCommand(self, command):
+    commandXml = ET.fromstring("<command>%s</command>" % command)
+    self.xml.append(commandXml)
+  def addItem(self, player, rating, highestRating, rank, totalGamesPlayed, wins, losses):
+    itemXml = ET.Element("profile", {"player": player, "rating": rating, "highestRating": highestRating,
+                                      "rank" : rank, "totalGamesPlayed" : totalGamesPlayed, "wins" : wins,
+                                      "losses" : losses})
+    self.xml.append(itemXml)
+
 ## Main class which handles IQ data and sends new data ##
 class XpartaMuPP(sleekxmpp.ClientXMPP):
   """
@@ -454,6 +508,7 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
     register_stanza_plugin(Iq, GameListXmppPlugin)
     register_stanza_plugin(Iq, BoardListXmppPlugin)
     register_stanza_plugin(Iq, GameReportXmppPlugin)
+    register_stanza_plugin(Iq, ProfileXmppPlugin)
 
     self.register_handler(Callback('Iq Gamelist',
                                        StanzaPath('iq/gamelist'),
@@ -465,6 +520,11 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
                                        instream=True))
     self.register_handler(Callback('Iq GameReport',
                                        StanzaPath('iq/gamereport'),
+                                       self.iqhandler,
+                                       instream=True))
+                                       
+    self.register_handler(Callback('Iq Profile',
+                                       StanzaPath('iq/profile'),
                                        self.iqhandler,
                                        instream=True))
 
@@ -566,6 +626,15 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
             logging.error("Failed to process ratinglist request from %s" % iq['from'].bare)
         else:
           logging.error("Failed to process boardlist request from %s" % iq['from'].bare)
+      elif 'profile' in iq.plugins:
+        command = iq['profile']['command']
+        try:
+          self.sendProfile(iq['from'], command)
+        except:
+          try:
+            self.sendProfileNotFound(iq['from'], command)
+          except:
+            logging.debug("No record found for %s" % command)
       else:
         logging.error("Unknown 'get' type stanza request from %s" % iq['from'].bare)
     elif iq['type'] == 'result':
@@ -747,6 +816,73 @@ class XpartaMuPP(sleekxmpp.ClientXMPP):
         iq.send(block=False, now=True)
       except:
         logging.error("Failed to send rating list")
+
+  def sendProfile(self, to, player):
+    """
+      Send the profile to a specified player.
+    """
+    if to == "":
+      logging.error("Failed to send profile")
+      return
+
+    online = False;
+    ## Pull stats and add it to the stanza
+    for JID in self.nicks.keys():
+      if self.nicks[JID] == player:
+        stats = self.leaderboard.getProfile(JID)
+        online = True
+        break
+
+    if online == False:
+      stats = self.leaderboard.getProfile(player + "@" + str(to).split('@')[1])
+    stz = ProfileXmppPlugin()
+    iq = self.Iq()
+    iq['type'] = 'result'
+
+    stz.addItem(player, stats['rating'], stats['highestRating'], stats['rank'], stats['totalGamesPlayed'], stats['wins'], stats['losses'])
+    stz.addCommand(player)
+    iq.setPayload(stz)
+    ## Check recipient exists
+    if str(to) not in self.nicks:
+      logging.error("No player with the XmPP ID '%s' known to send profile to" % str(to))
+      return
+
+    ## Set additional IQ attributes
+    iq['to'] = to
+
+    ## Try sending the stanza
+    try:
+      iq.send(block=False, now=True)
+    except:
+      traceback.print_exc()
+      logging.error("Failed to send profile")
+
+  def sendProfileNotFound(self, to, player):
+    """
+      Send a profile not-found error to a specified player.
+    """
+    stz = ProfileXmppPlugin()
+    iq = self.Iq()
+    iq['type'] = 'result'
+
+    filler = str(0)
+    stz.addItem(player, str(-2), filler, filler, filler, filler, filler)
+    stz.addCommand(player)
+    iq.setPayload(stz)
+    ## Check recipient exists
+    if str(to) not in self.nicks:
+      logging.error("No player with the XmPP ID '%s' known to send profile to" % str(to))
+      return
+
+    ## Set additional IQ attributes
+    iq['to'] = to
+
+    ## Try sending the stanza
+    try:
+      iq.send(block=False, now=True)
+    except:
+      traceback.print_exc()
+      logging.error("Failed to send profile")
 
 ## Main Program ##
 if __name__ == '__main__':

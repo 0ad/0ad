@@ -19,7 +19,7 @@
 		</action>
 
 		<!-- Left panel: Player list. -->
-		<object name="leftPanel" size="20 30 20% 100%-50">
+		<object name="leftPanel" size="20 30 20% 100%-280">
 			<object name="playersBox" style="ModernList" type="olist" size="0 0 100% 100%" font="sans-bold-stroke-13">
 				<def id="status" width="26%">
 					<translatableAttribute id="heading">Status</translatableAttribute>
@@ -30,13 +30,60 @@
 				<def id="rating" width="24%">
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</def>
+				<action on="SelectionChange">
+					displayProfile("lobbylist");
+				</action>
 			</object>
 		</object>
 
-		<object name="leftButtonPanel" size="20 100%-45 20% 100%-20">
-			<object type="button" style="ModernButtonRed" size="0 0 100% 100%">
+		<object name="profilePanel" size="20 100%-275 20% 100%-80">
+			<object name="profileBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
+				<object name="profileArea" size="0 0 100% 100%" hidden="true">
+					<object name="usernameText" size="0 0 100% 45" type="text" style="ModernLabelText" text_align="center" font="sans-bold-16" />
+					<object name="roleText" size="0 45 100% 70" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-12" />
+					<object size="0 70 40%+40 90" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
+					</object>
+					<object name="rankText" size="40%+45 70 100% 90" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 90 40%+40 110" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
+					</object>
+					<object name="highestRatingText" size="40%+45 90 100% 110" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 110 40%+40 130" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Total Games:</translatableAttribute>
+					</object>
+					<object name="totalGamesText" size="40%+45 110 100% 130" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 130 40%+40 150" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Wins:</translatableAttribute>
+					</object>
+					<object name="winsText" size="40%+45 130 100% 150" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 150 40%+40 170" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Losses:</translatableAttribute>
+					</object>
+					<object name="lossesText" size="40%+45 150 100% 170" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 170 40%+40 190" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Win Rate:</translatableAttribute>
+					</object>
+					<object name="ratioText" size="40%+45 170 100% 190" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+				</object>
+			</object>
+		</object>
+
+		<object name="leftButtonPanel" size="20 100%-75 20% 100%-20">
+			<object type="button" style="ModernButtonRed" size="0 0 100% 25">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
-				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = false;Engine.GetGUIObjectByName("leaderboardFade").hidden = false;</action>
+				<action on="Press">
+					Engine.GetGUIObjectByName("leaderboard").hidden = false;
+					Engine.GetGUIObjectByName("fade").hidden = false;
+					displayProfile("leaderboard");
+				</action>
+			</object>
+			<object type="button" style="ModernButtonRed" size="0 30 100% 100%">
+				<translatableAttribute id="caption">User Profile Lookup</translatableAttribute>
+				<action on="Press">
+					Engine.GetGUIObjectByName("profileFetch").hidden = false;
+					Engine.GetGUIObjectByName("fade").hidden = false;
+				</action>
 			</object>
 		</object>
 
@@ -191,7 +238,7 @@
 
 		<!-- START Window for leaderboard stats -->
 		<!-- Add a translucent black background to fade out the menu page -->
-		<object hidden="true" name="leaderboardFade" type="image" z="100" sprite="ModernFade"/>
+		<object hidden="true" name="fade" type="image" z="100" sprite="ModernFade"/>
 		<object hidden="true" name="leaderboard" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="101">
 			<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
 				<translatableAttribute id="caption">Leaderboard</translatableAttribute>
@@ -209,10 +256,17 @@
 				<def id="rating" color="255 255 255" width="30%">
 					<translatableAttribute id="heading">Rating</translatableAttribute>
 				</def>
+				<action on="SelectionChange">
+					displayProfile("leaderboard");
+				</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%-133 100%-45 50%-5 100%-17">
 				<translatableAttribute id="caption">Back</translatableAttribute>
-				<action on="Press">Engine.GetGUIObjectByName("leaderboard").hidden = true;Engine.GetGUIObjectByName("leaderboardFade").hidden = true;</action>
+				<action on="Press">
+					Engine.GetGUIObjectByName("leaderboard").hidden = true;
+					Engine.GetGUIObjectByName("fade").hidden = true;
+					displayProfile("lobbylist");
+				</action>
 			</object>
 			<object type="button" style="ModernButtonRed" size="50%+5 100%-45 50%+133 100%-17">
 				<translatableAttribute id="caption">Update</translatableAttribute>
@@ -220,5 +274,61 @@
 			</object>
 		</object>
 		<!-- END Window for leaderboard stats -->
+		<object hidden="true" name="profileFetch" type="image" style="ModernDialog" size="50%-224 50%-160 50%+224 50%+160" z="102">
+			<object style="ModernLabelText" type="text" size="50%-128 -18 50%+128 14">
+				<translatableAttribute id="caption">User Profile Lookup</translatableAttribute>
+			</object>
+			<object type="text" size="15 25 40% 50" text_align="right" textcolor="white">
+					<translatableAttribute id="caption">Enter username:</translatableAttribute>
+			</object>
+			<object name="fetchInput" size="40%+10 25 100%-25 50" type="input" style="ModernInput" font="sans-13">
+				<action on="Press">displayProfile("fetch");</action>
+			</object>
+			<object type="button" style="ModernButtonRed" size="50%-64 60 50%+64 85">
+				<translatableAttribute id="caption">View Profile</translatableAttribute>
+				<action on="Press">displayProfile("fetch");</action>
+			</object>
+			<object name="profileWindowPanel" size="25 95 100%-25 100%-60">
+			<object name="profileWindowBox" type="image" sprite="ModernDarkBoxGold" size="0 0 100% 100%">
+				<object name="profileWindowArea" size="0 0 100% 100%" hidden="false">
+					<object name="profileUsernameText" size="0 0 100% 25" type="text" style="ModernLabelText" text_align="center" font="sans-bold-16" />
+					<object size="0 30 40%+40 50" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Current Rank:</translatableAttribute>
+					</object>
+					<object name="profileRankText" size="40%+45 30 100% 50" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 50 40%+40 70" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Highest Rating:</translatableAttribute>
+					</object>
+					<object name="profileHighestRatingText" size="40%+45 50 100% 70" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 70 40%+40 90" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Total Games:</translatableAttribute>
+					</object>
+					<object name="profileTotalGamesText" size="40%+45 70 100% 90" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 90 40%+40 110" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Wins:</translatableAttribute>
+					</object>
+					<object name="profileWinsText" size="40%+45 90 100% 110" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 110 40%+40 130" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Losses:</translatableAttribute>
+					</object>
+					<object name="profileLossesText" size="40%+45 110 100% 130" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+					<object size="0 130 40%+40 150" type="text" style="ModernLabelText" text_align="right" font="sans-bold-stroke-13">
+						<translatableAttribute id="caption">Win Rate:</translatableAttribute>
+					</object>
+					<object name="profileRatioText" size="40%+45 130 100% 150" type="text" style="ModernLabelText" text_align="left" font="sans-bold-stroke-12" />
+				</object>
+				<object name="profileErrorText" size="25% 25% 75% 75%" type="text" style="ModernLabelText" text_align="center" font="sans-bold-stroke-13" hidden="true">
+					<translatableAttribute id="caption">Player not found.</translatableAttribute>
+				</object>
+			</object>			
+			</object>
+			<object type="button" style="ModernButtonRed" size="50%-64 100%-50 50%+64 100%-25">
+				<translatableAttribute id="caption">Back</translatableAttribute>
+				<action on="Press">
+					Engine.GetGUIObjectByName("profileFetch").hidden = true;
+					Engine.GetGUIObjectByName("fade").hidden = true;
+				</action>
+			</object>
+		</object>
 	</object>
 </objects>

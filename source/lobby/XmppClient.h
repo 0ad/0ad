@@ -61,6 +61,7 @@ public:
 	void SendIqGetGameList();
 	void SendIqGetBoardList();
 	void SendIqGetRatingList();
+	void SendIqGetProfile(const std::string& player);
 	void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data);
 	void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data);
 	void SendIqUnregisterGame();
@@ -77,6 +78,7 @@ public:
 	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
 	CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface);
+	CScriptValRooted GUIGetProfile(ScriptInterface& scriptInterface);
 	//Script
 	ScriptInterface& GetScriptInterface();
 
@@ -143,6 +145,8 @@ private:
 	std::vector<const glooxwrapper::Tag*> m_GameList;
 	/// List of rankings
 	std::vector<const glooxwrapper::Tag*> m_BoardList;
+	/// Profile data
+	std::vector<const glooxwrapper::Tag*> m_Profile;
 	/// Queue of messages for the GUI
 	std::deque<GUIMessage> m_GuiMessageQueue;
 	/// Current room subject/topic.

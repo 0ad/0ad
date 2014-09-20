@@ -185,3 +185,67 @@ GameListQuery::~GameListQuery()
 		glooxwrapper::Tag::free(*it);
 	m_GameList.clear();
 }
+
+/******************************************************
+ * ProfileQuery, a custom IQ Stanza useful for fetching
+ * user profiles
+ * Example stanza:
+ * <profile player="foobar" highestRating="1500" rank="1895" totalGamesPlayed="50"
+ * 	wins="25" losses="25" /><command>foobar</command>
+ */
+ProfileQuery::ProfileQuery(const glooxwrapper::Tag* tag):StanzaExtension(ExtProfileQuery)
+{
+	if (!tag || tag->name() != "query" || tag->xmlns() != XMLNS_PROFILE)
+		return;
+
+	const glooxwrapper::Tag* c = tag->findTag_clone("query/command");
+	if (c)
+		m_Command = c->cdata();
+	glooxwrapper::Tag::free(c);
+
+	const glooxwrapper::ConstTagList profileTags = tag->findTagList_clone("query/profile");
+	glooxwrapper::ConstTagList::const_iterator it = profileTags.begin();
+	for (; it != profileTags.end(); ++it)
+		m_StanzaProfile.push_back(*it);
+}
+
+/**
+ * Required by gloox, used to find the Profile element in a received IQ.
+ */
+const glooxwrapper::string& ProfileQuery::filterString() const
+{
+	static const glooxwrapper::string filter = "/iq/query[@xmlns='" XMLNS_PROFILE "']";
+	return filter;
+}
+
+/**
+ * Required by gloox, used to serialize the Profile request into XML for sending.
+ */
+glooxwrapper::Tag* ProfileQuery::tag() const
+{
+	glooxwrapper::Tag* t = glooxwrapper::Tag::allocate("query");
+	t->setXmlns(XMLNS_PROFILE);
+
+	if (!m_Command.empty())
+		t->addChild(glooxwrapper::Tag::allocate("command", m_Command));
+
+	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaProfile.begin();
+	for (; it != m_StanzaProfile.end(); ++it)
+		t->addChild((*it)->clone());
+
+	return t;
+}
+
+glooxwrapper::StanzaExtension* ProfileQuery::clone() const
+{
+	ProfileQuery* q = new ProfileQuery();
+	return q;
+}
+
+ProfileQuery::~ProfileQuery()
+{
+	std::vector<const glooxwrapper::Tag*>::const_iterator it = m_StanzaProfile.begin();
+	for (; it != m_StanzaProfile.end(); ++it)
+		glooxwrapper::Tag::free(*it);
+	m_StanzaProfile.clear();
+}

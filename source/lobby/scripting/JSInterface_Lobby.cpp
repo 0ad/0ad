@@ -101,6 +101,13 @@ void JSI_Lobby::SendGetRatingList(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 	g_XmppClient->SendIqGetRatingList();
 }
 
+void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring player)
+{
+	if (!g_XmppClient)
+		return;
+	g_XmppClient->SendIqGetProfile(utf8_from_wstring(player));
+}
+
 void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data)
 {
 	if (!g_XmppClient)
@@ -159,6 +166,16 @@ CScriptVal JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 	CScriptValRooted boardList = g_XmppClient->GUIGetBoardList(*(pCxPrivate->pScriptInterface));
 
 	return boardList.get();
+}
+
+CScriptVal JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
+{
+	if (!g_XmppClient)
+		return CScriptVal();
+
+	CScriptValRooted profileFetch = g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface));
+
+	return profileFetch.get();
 }
 
 CScriptVal JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
