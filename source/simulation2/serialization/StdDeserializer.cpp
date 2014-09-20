@@ -389,6 +389,22 @@ jsval CStdDeserializer::ReadScriptVal(const char* UNUSED(name), JS::HandleObject
 
 		return JS::ObjectValue(*bufferObj);
 	}
+	case SCRIPT_TYPE_OBJECT_MAP:
+	{
+		u32 mapSize;
+		NumberU32_Unbounded("map size", mapSize);
+		JS::RootedValue mapVal(cx);
+		m_ScriptInterface.Eval("(new Map())", &mapVal);
+		
+		for (u32 i=0; i<mapSize; ++i)
+		{
+			JS::RootedValue key(cx, ReadScriptVal("map key", JS::NullPtr()));
+			JS::RootedValue value(cx, ReadScriptVal("map value", JS::NullPtr()));
+			m_ScriptInterface.CallFunctionVoid(mapVal, "set", key, value);
+		}
+		AddScriptBackref(&mapVal.toObject());
+		return mapVal;
+	}
 	default:
 		throw PSERROR_Deserialize_OutOfBounds();
 	}

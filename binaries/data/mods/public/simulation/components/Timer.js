@@ -7,7 +7,7 @@ Timer.prototype.Init = function()
 {
 	this.id = 0;
 	this.time = 0;
-	this.timers = {};
+	this.timers = new Map();
 	this.turnLength = 0;
 };
 
@@ -33,7 +33,7 @@ Timer.prototype.GetLatestTurnLength = function()
 Timer.prototype.SetTimeout = function(ent, iid, funcname, time, data)
 {
 	var id = ++this.id;
-	this.timers[id] = [ent, iid, funcname, this.time + time, 0, data];
+	this.timers.set(id, [ent, iid, funcname, this.time + time, 0, data]);
 	return id;
 };
 
@@ -51,7 +51,7 @@ Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, dat
 	if (typeof repeattime != "number" || !(repeattime > 0))
 		error("Invalid repeattime to SetInterval of "+funcname);
 	var id = ++this.id;
-	this.timers[id] = [ent, iid, funcname, this.time + time, repeattime, data];
+	this.timers.set(id, [ent, iid, funcname, this.time + time, repeattime, data]);
 	return id;
 };
 
@@ -60,7 +60,7 @@ Timer.prototype.SetInterval = function(ent, iid, funcname, time, repeattime, dat
  */
 Timer.prototype.CancelTimer = function(id)
 {
-	delete this.timers[id];
+	this.timers.delete(id);
 };
 
 
@@ -73,17 +73,15 @@ Timer.prototype.OnUpdate = function(msg)
 	// Collect the timers that need to run
 	// (We do this in two stages to avoid deleting from the timer list while
 	// we're in the middle of iterating through it)
-	var run = [];
-	for (var id in this.timers)
+	var run = new Set();
+	for (let id of this.timers.keys())
 	{
-		if (this.timers[id][3] <= this.time)
-			run.push(id);
+		if (this.timers.get(id)[3] <= this.time)
+			run.add(id);
 	}
-	for (var i = 0; i < run.length; ++i)
+	for (let id of run)
 	{
-		var id = run[i];
-
-		var t = this.timers[id];
+		var t = this.timers.get(id);
 		if (!t)
 			continue; // an earlier timer might have cancelled this one, so skip it
 
@@ -91,7 +89,7 @@ Timer.prototype.OnUpdate = function(msg)
 		if (!cmp)
 		{
 			// The entity was probably destroyed; clean up the timer
-			delete this.timers[id];
+			this.timers.delete(id);
 			continue;
 		}
 
@@ -110,12 +108,12 @@ Timer.prototype.OnUpdate = function(msg)
 			t[3] += t[4];
 			// Add it to the list to get re-executed if it's soon enough
 			if (t[3] <= this.time)
-				run.push(id);
+				run.add(id);
 		}
 		else
 		{
 			// Non-repeating time - delete it
-			delete this.timers[id];
+			this.timers.delete(id);
 		}
 	}
 }
