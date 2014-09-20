@@ -33,6 +33,7 @@ class Player(Base):
 	id = Column(Integer, primary_key=True)
 	jid = Column(String(255))
 	rating = Column(Integer)
+	highest_rating = Column(Integer)
 	games = relationship('Game', secondary='players_info')
 	# These two relations really only exist to satisfy the linkage
 	# between PlayerInfo and Player and Game and player.

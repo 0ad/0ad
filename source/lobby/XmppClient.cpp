@@ -102,19 +102,22 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 	const int mechs = gloox::SaslMechAll ^ gloox::SaslMechPlain;
 	m_client->setSASLMechanisms(mechs);
 
-	m_client->registerConnectionListener( this );
+	m_client->registerConnectionListener(this);
 	m_client->setPresence(gloox::Presence::Available, -1);
-	m_client->disco()->setVersion( "Pyrogenesis", "0.0.17" );
-	m_client->disco()->setIdentity( "client", "bot" );
+	m_client->disco()->setVersion("Pyrogenesis", "0.0.17");
+	m_client->disco()->setIdentity("client", "bot");
 	m_client->setCompression(false);
 
-	m_client->registerStanzaExtension( new GameListQuery() );
-	m_client->registerIqHandler( this, ExtGameListQuery);
+	m_client->registerStanzaExtension(new GameListQuery());
+	m_client->registerIqHandler(this, ExtGameListQuery);
 
-	m_client->registerStanzaExtension( new BoardListQuery() );
-	m_client->registerIqHandler( this, ExtBoardListQuery);
+	m_client->registerStanzaExtension(new BoardListQuery());
+	m_client->registerIqHandler(this, ExtBoardListQuery);
 
-	m_client->registerMessageHandler( this );
+	m_client->registerStanzaExtension(new ProfileQuery());
+	m_client->registerIqHandler(this, ExtProfileQuery);
+
+	m_client->registerMessageHandler(this);
 
 	// Uncomment to see the raw stanzas
 	//m_client->getWrapped()->logInstance().registerLogHandler( gloox::LogLevelDebug, gloox::LogAreaAll, this );
@@ -151,6 +154,8 @@ XmppClient::~XmppClient()
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameList.begin(); it != m_GameList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
+		glooxwrapper::Tag::free(*it);
+	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_Profile.begin(); it != m_Profile.end(); ++it)
 		glooxwrapper::Tag::free(*it);
 }
 
@@ -212,9 +217,12 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 		glooxwrapper::Tag::free(*it);
 	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_BoardList.begin(); it != m_BoardList.end(); ++it)
 		glooxwrapper::Tag::free(*it);
+	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_Profile.begin(); it != m_Profile.end(); ++it)
+		glooxwrapper::Tag::free(*it);
 	m_BoardList.clear();
 	m_GameList.clear();
 	m_PlayerMap.clear();
+	m_Profile.clear();
 
 	if(error == gloox::ConnAuthenticationFailed)
 		CreateSimpleMessage("system", "authentication failed", "error");
@@ -280,6 +288,22 @@ void XmppClient::SendIqGetBoardList()
 	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
 	iq.addExtension(b);
 	DbgXMPP("SendIqGetBoardList [" << tag_xml(iq) << "]");
+	m_client->send(iq);
+}
+
+/**
+ * Request the profile data from the server.
+ */
+void XmppClient::SendIqGetProfile(const std::string& player)
+{
+	glooxwrapper::JID xpartamuppJid(m_xpartamuppId);
+
+	// Send IQ
+	ProfileQuery* b = new ProfileQuery();
+	b->m_Command = player;
+	glooxwrapper::IQ iq(gloox::IQ::Get, xpartamuppJid);
+	iq.addExtension(b);
+	DbgXMPP("SendIqGetProfile [" << tag_xml(iq) << "]");
 	m_client->send(iq);
 }
 
@@ -518,8 +542,7 @@ CScriptValRooted XmppClient::GUIGetGameList(ScriptInterface& scriptInterface)
 		scriptInterface.Eval("({})", &game);
 
 		const char* stats[] = { "name", "ip", "state", "nbp", "tnbp", "players", "mapName", "niceMapName", "mapSize", "mapType", "victoryCondition" };
-		short stats_length = 11;
-		for (short i = 0; i < stats_length; i++)
+		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
 			scriptInterface.SetProperty(game, stats[i], wstring_from_utf8((*it)->findAttribute(stats[i]).to_string()));
 
 		scriptInterface.CallFunctionVoid(gameList, "push", game);
@@ -546,14 +569,40 @@ CScriptValRooted XmppClient::GUIGetBoardList(ScriptInterface& scriptInterface)
 		scriptInterface.Eval("({})", &board);
 
 		const char* attributes[] = { "name", "rank", "rating" };
-		short attributes_length = 3;
-		for (short i = 0; i < attributes_length; i++)
+		for (size_t i = 0; i < ARRAY_SIZE(attributes); ++i)
 			scriptInterface.SetProperty(board, attributes[i], wstring_from_utf8((*it)->findAttribute(attributes[i]).to_string()));
 
 		scriptInterface.CallFunctionVoid(boardList, "push", board);
 	}
 
 	return CScriptValRooted(cx, boardList);
+}
+
+/**
+ * Handle requests from the GUI for profile data.
+ *
+ * @return A JS array containing the specific user's profile data
+ */
+CScriptValRooted XmppClient::GUIGetProfile(ScriptInterface& scriptInterface)
+{
+	JSContext* cx = scriptInterface.GetContext();
+	JSAutoRequest rq(cx);
+
+	JS::RootedValue profileFetch(cx);
+	scriptInterface.Eval("([])", &profileFetch);
+	const char* stats[] = { "player", "rating", "totalGamesPlayed", "highestRating", "wins", "losses", "rank" };
+	for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_Profile.begin(); it != m_Profile.end(); ++it)
+	{
+		JS::RootedValue profile(cx);
+		scriptInterface.Eval("({})", &profile);
+
+		for (size_t i = 0; i < ARRAY_SIZE(stats); ++i)
+			scriptInterface.SetProperty(profile, stats[i], wstring_from_utf8((*it)->findAttribute(stats[i]).to_string()));
+
+		scriptInterface.CallFunctionVoid(profileFetch, "push", profile);
+	}
+
+	return CScriptValRooted(cx, profileFetch);
 }
 
 /*****************************************************
@@ -648,6 +697,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 	{
 		const GameListQuery* gq = iq.findExtension<GameListQuery>( ExtGameListQuery );
 		const BoardListQuery* bq = iq.findExtension<BoardListQuery>( ExtBoardListQuery );
+		const ProfileQuery* pq = iq.findExtension<ProfileQuery>( ExtProfileQuery );
 		if(gq)
 		{
 			for(std::vector<const glooxwrapper::Tag*>::const_iterator it = m_GameList.begin(); it != m_GameList.end(); ++it )
@@ -684,8 +734,19 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 				CreateSimpleMessage("system", "ratinglist updated", "internal");
 			}
 		}
+		if (pq)
+		{
+			for (std::vector<const glooxwrapper::Tag*>::const_iterator it = m_Profile.begin(); it != m_Profile.end(); ++it)
+				glooxwrapper::Tag::free(*it);
+			m_Profile.clear();
+
+			for (std::vector<const glooxwrapper::Tag*>::const_iterator it = pq->m_StanzaProfile.begin(); it != pq->m_StanzaProfile.end(); ++it)
+				m_Profile.push_back((*it)->clone());
+
+			CreateSimpleMessage("system", "profile updated", "internal");
+		}
 	}
-	else if(iq.subtype() == gloox::IQ::Error)
+	else if (iq.subtype() == gloox::IQ::Error)
 	{
 		gloox::StanzaError err = iq.error_error();
 		std::string msg = StanzaErrorToString(err);

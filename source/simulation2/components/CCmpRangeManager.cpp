@@ -290,6 +290,7 @@ public:
 	
 	// Cache for visibility tracking (not serialized)
 	i32 m_LosTilesPerSide;
+	bool m_GlobalVisibilityUpdate;
 	std::vector<u8> m_DirtyVisibility;
 	std::vector<std::set<entity_id_t> > m_LosTiles;
 	// List of entities that must be updated, regardless of the status of their tile
@@ -671,9 +672,10 @@ public:
 		m_LosStateRevealed.resize(m_TerrainVerticesPerSide*m_TerrainVerticesPerSide);
 		
 		m_DirtyVisibility.clear();
-		m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide, 1);
+		m_DirtyVisibility.resize(m_LosTilesPerSide*m_LosTilesPerSide);
 		m_LosTiles.clear();
 		m_LosTiles.resize(m_LosTilesPerSide*m_LosTilesPerSide);
+		m_GlobalVisibilityUpdate = true;
 
 		for (EntityMap<EntityData>::const_iterator it = m_EntityData.begin(); it != m_EntityData.end(); ++it)
 		{
@@ -1490,7 +1492,7 @@ public:
 		
 		for (i32 n = 0; n < m_LosTilesPerSide*m_LosTilesPerSide; ++n)
 		{
-			if (m_DirtyVisibility[n] == 1)
+			if (m_DirtyVisibility[n] == 1 || m_GlobalVisibilityUpdate)
 			{
 				for (std::set<entity_id_t>::iterator it = m_LosTiles[n].begin();
 					it != m_LosTiles[n].end();
@@ -1507,6 +1509,8 @@ public:
 			UpdateVisibility(*it);
 		}
 		m_ModifiedEntities.clear();
+
+		m_GlobalVisibilityUpdate = false;
 	}
 
 	void UpdateVisibility(entity_id_t ent)
@@ -1540,6 +1544,10 @@ public:
 			if (oldVisibilities[player-1] == newVisibilities[player-1])
 				continue;
 			
+			// A visibility update can be necessary for the next turn
+			if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), ent) == m_ModifiedEntities.end())
+				m_ModifiedEntities.push_back(ent);
+
 			CMessageVisibilityChanged msg(player, ent, oldVisibilities[player-1], newVisibilities[player-1]);
 			GetSimContext().GetComponentManager().PostMessage(ent, msg);
 		}
@@ -1554,6 +1562,9 @@ public:
 			ENSURE(player >= 0 && player <= MAX_LOS_PLAYER_ID);
 			m_LosRevealAll[player] = enabled;
 		}
+
+		// On next update, update the visibility of every entity in the world
+		m_GlobalVisibilityUpdate = true;
 	}
 
 	virtual bool GetLosRevealAll(player_id_t player)

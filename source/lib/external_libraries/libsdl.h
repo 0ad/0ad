@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -44,8 +44,13 @@
 # include "SDL_endian.h"
 
 # if MSC_VERSION
-#  pragma comment(lib, "SDL")
-#  pragma comment(lib, "SDLmain")
+#  if SDL_VERSION_ATLEAST(2,0,0)
+#   pragma comment(lib, "SDL2")
+#   pragma comment(lib, "SDL2main")
+#  else
+#   pragma comment(lib, "SDL")
+#   pragma comment(lib, "SDLmain")
+#  endif
 # endif
 
 #endif

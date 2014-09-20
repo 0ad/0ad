@@ -7,6 +7,7 @@ newoption { trigger = "icc", description = "Use Intel C++ Compiler (Linux only; 
 newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use the XmlPrinter runner which produces Jenkins-compatible output" }
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
+newoption { trigger = "sdl2", description = "Experimental build using SDL 2" }
 newoption { trigger = "with-c++11", description = "Enable C++11 on GCC" }
 newoption { trigger = "with-system-miniupnpc", description = "Search standard paths for libminiupnpc, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs24", description = "Search standard paths for libmozjs24, instead of using bundled copy" }

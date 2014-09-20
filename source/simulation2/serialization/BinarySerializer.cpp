@@ -223,6 +223,38 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_Serializer.Bool("value", b);
 				break;
 			}
+			else if (protokey == JSProto_Map)
+			{
+				// TODO: There's no C++ API (yet) to work with maps. This code relies on the internal 
+				// structure of the Iterator object returned by Map.entries(). This is not ideal
+				// because the structure could change in the future (and actually does change with v31).
+				// Change this code if SpiderMonkey gets such an API.
+				u32 mapSize;
+				m_ScriptInterface.GetProperty(val, "size", mapSize);
+				
+				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_MAP);
+				m_Serializer.NumberU32_Unbounded("map size", mapSize);
+				
+				JS::RootedValue keyValueIterator(cx);
+				m_ScriptInterface.CallFunction(val, "entries", &keyValueIterator);
+				for (u32 i=0; i<mapSize; ++i)
+				{
+					JS::RootedValue keyValuePair(cx);
+					ENSURE(m_ScriptInterface.CallFunction(keyValueIterator, "next", &keyValuePair));
+					
+					JS::RootedObject keyValuePairObj(cx, &keyValuePair.toObject());
+					
+					JS::RootedValue key(cx);
+					JS::RootedValue value(cx);
+					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, key.address()));
+					ENSURE(JS_GetElement(cx, keyValuePairObj, 1, value.address()));
+					
+					HandleScriptVal(key);
+					HandleScriptVal(value);
+				}
+				
+				break;
+			}
 			else
 			{
 				// Unrecognized class

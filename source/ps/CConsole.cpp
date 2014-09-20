@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -32,6 +32,7 @@
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
+#include "lib/utf8.h"
 #include "maths/MathUtil.h"
 #include "network/NetClient.h"
 #include "network/NetServer.h"
@@ -673,9 +674,11 @@ static bool isUnprintableChar(SDL_Keysym key)
 static bool isUnprintableChar(SDL_keysym key)
 #endif
 {
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	// U+0000 to U+001F are control characters
 	if (key.unicode < 0x20)
 	{
+#endif
 		switch (key.sym)
 		{
 			// We want to allow some, which are handled specially
@@ -691,9 +694,10 @@ static bool isUnprintableChar(SDL_keysym key)
 		default:
 			return true;
 		}
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	}
-
 	return false;
+#endif
 }
 
 InReaction conInputHandler(const SDL_Event_* ev)
@@ -729,6 +733,19 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	if (!g_Console->IsActive())
 		return IN_PASS;
 
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	// In SDL2, we no longer get Unicode wchars via SDL_Keysym
+	// we use text input events instead and they provide UTF-8 chars
+	if (ev->ev.type == SDL_TEXTINPUT && !HotkeyIsPressed("console.toggle"))
+	{
+		// TODO: this could be more efficient with an interface to insert UTF-8 strings directly
+		std::wstring wstr = wstring_from_utf8(ev->ev.text.text);
+		for (size_t i = 0; i < wstr.length(); ++i)
+			g_Console->InsertChar(0, wstr[i]);
+		return IN_HANDLED;
+	}
+#endif
+
 	if (ev->ev.type != SDL_KEYDOWN)
 		return IN_PASS;
 
@@ -739,7 +756,11 @@ InReaction conInputHandler(const SDL_Event_* ev)
 	if (!isUnprintableChar(ev->ev.key.keysym) &&
 		!HotkeyIsPressed("console.toggle"))
 	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		g_Console->InsertChar(sym, 0);
+#else
 		g_Console->InsertChar(sym, (wchar_t)ev->ev.key.keysym.unicode);
+#endif
 		return IN_HANDLED;
 	}
 

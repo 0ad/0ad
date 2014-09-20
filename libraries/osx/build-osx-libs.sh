@@ -26,6 +26,7 @@ ICONV_VERSION="libiconv-1.14"
 XML2_VERSION="libxml2-2.9.1"
 # * SDL 1.2.15+ required for Lion support
 SDL_VERSION="SDL-1.2.15"
+SDL2_VERSION="SDL2-2.0.3"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
 WXWIDGETS_VERSION="wxWidgets-3.0.1"
@@ -288,6 +289,39 @@ then
   # patch SDL to fix Mavericks build (fixed upstream, see https://bugzilla.libsdl.org/show_bug.cgi?id=2085 )
   # Don't use X11 - we don't need it and Mountain Lion removed it
   (patch -p0 -i ../../patches/sdl-mavericks-quartz-fix.diff && ./configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" --prefix="$INSTALL_DIR" --disable-video-x11 --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
+  popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+
+echo -e "Building SDL2..."
+
+LIB_VERSION="${SDL2_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY=$LIB_VERSION
+LIB_URL="http://www.libsdl.org/release/"
+
+mkdir -p sdl2
+pushd sdl2 > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib share
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # We don't want SDL2 to pull in system iconv, force it to detect ours with flags.
+  # Don't use X11 - we don't need it and Mountain Lion removed it
+  (./configure CPPFLAGS="-I${ICONV_DIR}/include" CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS -L${ICONV_DIR}/lib" --prefix="$INSTALL_DIR" --disable-video-x11 --without-x --enable-shared=no && make $JOBS && make install) || die "SDL build failed"
   popd
   touch .already-built
 else

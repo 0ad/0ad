@@ -153,8 +153,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 		}
 		else if (hotkey == "togglefullscreen")
 		{
-#if !OS_MACOSX
-			// TODO: Fix fullscreen toggling on OS X, see http://trac.wildfiregames.com/ticket/741
+#if !OS_MACOSX || SDL_VERSION_ATLEAST(2, 0, 0)
+			// Fullscreen toggling is broken on OS X w/ SDL 1.2, see http://trac.wildfiregames.com/ticket/741
 			g_VideoMode.ToggleFullscreen();
 #else
 			LOGWARNING(L"Toggling fullscreen and resizing are disabled on OS X due to a known bug. Please use the config file to change display settings.");

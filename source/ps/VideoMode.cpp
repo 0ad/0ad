@@ -65,6 +65,7 @@ void CVideoMode::ReadConfig()
 	CFG_GET_VAL("xres", Int, m_ConfigW);
 	CFG_GET_VAL("yres", Int, m_ConfigH);
 	CFG_GET_VAL("bpp", Int, m_ConfigBPP);
+	CFG_GET_VAL("display", Int, m_ConfigDisplay);
 	CFG_GET_VAL("force_s3tc_enable", Bool, m_ConfigForceS3TCEnable);
 }
 
@@ -80,7 +81,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 	if (!m_Window)
 	{
-		m_Window = SDL_CreateWindow("0 A.D.", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, w, h, flags);
+		m_Window = SDL_CreateWindow("0 A.D.", SDL_WINDOWPOS_UNDEFINED_DISPLAY(m_ConfigDisplay), SDL_WINDOWPOS_UNDEFINED_DISPLAY(m_ConfigDisplay), w, h, flags);
 		if (!m_Window)
 		{
 			// If fullscreen fails, try windowed mode
@@ -327,6 +328,13 @@ void CVideoMode::Shutdown()
 
 	m_IsFullscreen = false;
 	m_IsInitialised = false;
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	if (m_Window)
+	{
+		SDL_DestroyWindow(m_Window);
+		m_Window = NULL;
+	}
+#endif
 }
 
 void CVideoMode::EnableS3TC()

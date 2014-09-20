@@ -31,6 +31,10 @@
 #define ExtGameReport 1405
 #define XMLNS_GAMEREPORT "jabber:iq:gamereport"
 
+/// Global Profile Extension
+#define ExtProfileQuery 1406
+#define XMLNS_PROFILE "jabber:iq:profile"
+
 class GameReport : public glooxwrapper::StanzaExtension
 {
 public:
@@ -86,5 +90,25 @@ public:
 
 	glooxwrapper::string m_Command;
 	std::vector<const glooxwrapper::Tag*> m_StanzaBoardList;
+};
+
+class ProfileQuery : public glooxwrapper::StanzaExtension
+{
+public:
+	ProfileQuery(const glooxwrapper::Tag* tag = 0);
+
+	// Following four methods are all required by gloox
+	virtual StanzaExtension* newInstance(const glooxwrapper::Tag* tag) const
+	{
+		return new ProfileQuery(tag);
+	}
+	virtual const glooxwrapper::string& filterString() const;
+	virtual glooxwrapper::Tag* tag() const;
+	virtual glooxwrapper::StanzaExtension* clone() const;
+
+	~ProfileQuery();
+
+	glooxwrapper::string m_Command;
+	std::vector<const glooxwrapper::Tag*> m_StanzaProfile;
 };
 #endif

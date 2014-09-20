@@ -30,6 +30,7 @@ CInput
 #include "lib/ogl.h"
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
+#include "lib/utf8.h"
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/Globals.h"
@@ -84,7 +85,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 	{
 		return(ManuallyHandleHotkeyEvent(ev));
 	}
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	else if (ev->ev.type == SDL_KEYDOWN)
+#else // SDL2
+	else if (ev->ev.type == SDL_KEYDOWN || ev->ev.type == SDL_TEXTINPUT)
+#endif
 	{
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
@@ -92,8 +97,15 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 		bool shiftKeyPressed = g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT];
 
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 		int szChar = ev->ev.key.keysym.sym;
 		wchar_t cooked = (wchar_t)ev->ev.key.keysym.unicode;
+#else // SDL2
+		int szChar = 0;
+		if (ev->ev.type == SDL_KEYDOWN)
+			szChar = ev->ev.key.keysym.sym;
+		wchar_t cooked = 0;
+#endif
 
 		switch (szChar)
 		{
@@ -411,8 +423,21 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				}
 			default: //Insert a character
 				{
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 				if (cooked == 0)
 					return IN_PASS; // Important, because we didn't use any key
+#else // SDL2
+				// In SDL2, we no longer get Unicode wchars via SDL_Keysym
+				// we use text input events instead and they provide UTF-8 chars
+				if (ev->ev.type == SDL_KEYDOWN && cooked == 0)
+					return IN_HANDLED;
+				else if (ev->ev.type == SDL_TEXTINPUT)
+				{
+					std::wstring wstr = wstring_from_utf8(ev->ev.text.text);
+					for (size_t i = 0; i < wstr.length(); ++i)
+					{
+						cooked = wstr[i];
+#endif
 
 				// check max length
 				int max_length;
@@ -437,6 +462,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				++m_iBufferPos;
 
 				UpdateAutoScroll();
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+				}
+				}
+#endif
+
 				}
 				break;
 		}

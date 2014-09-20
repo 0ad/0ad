@@ -191,6 +191,126 @@ function updatePlayerList()
 }
 
 /**
+ * Display the profile of the selected player.
+ * Displays N/A for all stats until updateProfile is called when the stats
+ * 	are actually received from the bot.
+ * 
+ * @param caller From which screen is the user requesting data from?
+ */
+function displayProfile(caller)
+{
+	var playerList, rating;
+	if (caller == "leaderboard")
+		playerList = Engine.GetGUIObjectByName("leaderboardBox");
+	else if (caller == "lobbylist")
+		playerList = Engine.GetGUIObjectByName("playersBox");
+	else if (caller == "fetch")
+	{
+		Engine.SendGetProfile(Engine.GetGUIObjectByName("fetchInput").caption);
+		return;
+	}
+	else
+		return;
+
+	if (!playerList.list[playerList.selected])
+	{
+		Engine.GetGUIObjectByName("profileArea").hidden = true;
+		return;
+	}
+	Engine.GetGUIObjectByName("profileArea").hidden = false;
+
+	Engine.SendGetProfile(playerList.list[playerList.selected]);	
+
+	var user = playerList.list_name[playerList.selected];
+	var role = Engine.LobbyGetPlayerRole(playerList.list[playerList.selected]);
+	var userList = Engine.GetGUIObjectByName("playersBox");
+	if (role && caller == "lobbylist")
+	{
+		// Make the role uppercase.
+		role = role.charAt(0).toUpperCase() + role.slice(1);
+		if (role == "Moderator")
+			role = '[color="0 125 0"]' + translate(role) + '[/color]';
+	}
+	else
+		role = "";
+
+	Engine.GetGUIObjectByName("usernameText").caption = user;
+	Engine.GetGUIObjectByName("roleText").caption = translate(role);
+	Engine.GetGUIObjectByName("rankText").caption = translate("N/A");
+	Engine.GetGUIObjectByName("highestRatingText").caption = translate("N/A");
+	Engine.GetGUIObjectByName("totalGamesText").caption = translate("N/A");
+	Engine.GetGUIObjectByName("winsText").caption = translate("N/A");
+	Engine.GetGUIObjectByName("lossesText").caption = translate("N/A");
+	Engine.GetGUIObjectByName("ratioText").caption = translate("N/A");
+}
+
+/**
+ * Update the profile of the selected player with data from the bot.
+ *
+ */
+function updateProfile()
+{
+	var playerList, user;
+	var attributes = Engine.GetProfile();
+
+	if (!Engine.GetGUIObjectByName("profileFetch").hidden)
+	{
+		user = attributes[0].player;
+		if (attributes[0].rating == "-2") // Profile not found code
+		{
+			Engine.GetGUIObjectByName("profileWindowArea").hidden = true;
+			Engine.GetGUIObjectByName("profileErrorText").hidden = false;
+			return;
+		}
+		Engine.GetGUIObjectByName("profileWindowArea").hidden = false;
+		Engine.GetGUIObjectByName("profileErrorText").hidden = true;
+		
+		if (attributes[0].rating != "")
+			user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
+
+		Engine.GetGUIObjectByName("profileUsernameText").caption = user;
+		Engine.GetGUIObjectByName("profileRankText").caption = attributes[0].rank;
+		Engine.GetGUIObjectByName("profileHighestRatingText").caption = attributes[0].highestRating;
+		Engine.GetGUIObjectByName("profileTotalGamesText").caption = attributes[0].totalGamesPlayed;
+		Engine.GetGUIObjectByName("profileWinsText").caption = attributes[0].wins;
+		Engine.GetGUIObjectByName("profileLossesText").caption = attributes[0].losses;
+
+		var winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
+		if (attributes[0].totalGamesPlayed != 0)
+			Engine.GetGUIObjectByName("profileRatioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
+		else
+			Engine.GetGUIObjectByName("profileRatioText").caption = translate("-");
+		return;
+	}
+	else if (!Engine.GetGUIObjectByName("leaderboard").hidden)
+		playerList = Engine.GetGUIObjectByName("leaderboardBox");
+	else
+		playerList = Engine.GetGUIObjectByName("playersBox");
+	
+	if (attributes[0].rating == "-2")
+		return;
+	// Make sure the stats we have received coincide with the selected player.
+	if (attributes[0].player != playerList.list[playerList.selected])
+		return;
+	user = playerList.list_name[playerList.selected];
+	if (attributes[0].rating != "")
+		user = sprintf(translate("%(nick)s (%(rating)s)"), { nick: user, rating: attributes[0].rating });
+
+	Engine.GetGUIObjectByName("usernameText").caption = user;
+	Engine.GetGUIObjectByName("rankText").caption = attributes[0].rank;
+	Engine.GetGUIObjectByName("highestRatingText").caption = attributes[0].highestRating;
+	Engine.GetGUIObjectByName("totalGamesText").caption = attributes[0].totalGamesPlayed;
+	Engine.GetGUIObjectByName("winsText").caption = attributes[0].wins;
+	Engine.GetGUIObjectByName("lossesText").caption = attributes[0].losses;
+
+	var winRate = (attributes[0].wins / attributes[0].totalGamesPlayed * 100).toFixed(2);
+	if (attributes[0].totalGamesPlayed != 0)
+		Engine.GetGUIObjectByName("ratioText").caption = sprintf(translate("%(percentage)s%%"), { percentage: winRate });
+	else
+		Engine.GetGUIObjectByName("ratioText").caption = translate("-");
+}
+
+/**
  * Update the leaderboard from data cached in C++.
  */
 function updateLeaderboard()
@@ -592,8 +712,11 @@ function onTick()
 				case "ratinglist updated":
 					updatePlayerList();
 					break;
+				case "profile updated":
+					updateProfile();
+					break;
 				}
-				break
+				break;
 			}
 			break;
 		default:

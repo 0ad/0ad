@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -89,12 +89,14 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		// SET(keysym, "scancode", (int)val.ev.key.keysym.scancode); // (not in wsdl.h)
 		SET(keysym, "sym", (int)val.ev.key.keysym.sym);
 		// SET(keysym, "mod", (int)val.ev.key.keysym.mod); // (not in wsdl.h)
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 		if (val.ev.key.keysym.unicode)
 		{
 			std::wstring unicode(1, (wchar_t)val.ev.key.keysym.unicode);
 			SET(keysym, "unicode", unicode);
 		}
 		else
+#endif
 		{
 			SET(keysym, "unicode", CScriptVal(JSVAL_VOID));
 		}

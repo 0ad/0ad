@@ -34,6 +34,7 @@ public:
 	virtual void SendIqGetGameList() = 0;
 	virtual void SendIqGetBoardList() = 0;
 	virtual void SendIqGetRatingList() = 0;
+	virtual void SendIqGetProfile(const std::string& player) = 0;
 	virtual void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data) = 0;
 	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data) = 0;
 	virtual void SendIqUnregisterGame() = 0;
@@ -50,6 +51,7 @@ public:
 	virtual CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface) = 0;
 	virtual CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface) = 0;
 	virtual CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface) = 0;
+	virtual CScriptValRooted GUIGetProfile(ScriptInterface& scriptInterface) = 0;
 
 	virtual CScriptValRooted GuiPollMessage(ScriptInterface& scriptInterface) = 0;
 	virtual void SendMUCMessage(const std::string& message) = 0;
