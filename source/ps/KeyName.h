@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,21 +44,19 @@ enum {
 	UNIFIED_SUPER,
 	UNIFIED_LAST,
 	// 'Keycodes' for the mouse buttons
-	// SDL2 doesn't count wheels as buttons, so just give them the previous sequential IDs
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	MOUSE_WHEELUP,
-	MOUSE_WHEELDOWN,
-#endif
 	// Base for mouse buttons.
 	// Everything less than MOUSE_BASE is not reported by an SDL mouse button event.
 	// Everything greater than MOUSE_BASE is reported by an SDL mouse button event.
 	MOUSE_BASE,
 	MOUSE_LEFT = MOUSE_BASE + SDL_BUTTON_LEFT,
-	MOUSE_RIGHT = MOUSE_BASE + SDL_BUTTON_RIGHT,
 	MOUSE_MIDDLE = MOUSE_BASE + SDL_BUTTON_MIDDLE,
+	MOUSE_RIGHT = MOUSE_BASE + SDL_BUTTON_RIGHT,
 #if SDL_VERSION_ATLEAST(2, 0, 0)
-	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1,
-	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2,
+	// SDL2 doesn't count wheels as buttons, so just give them the previous sequential IDs
+	MOUSE_WHEELUP = MOUSE_BASE + 4,
+	MOUSE_WHEELDOWN = MOUSE_BASE + 5,
+	MOUSE_X1 = MOUSE_BASE + SDL_BUTTON_X1 + 2,
+	MOUSE_X2 = MOUSE_BASE + SDL_BUTTON_X2 + 2,
 #elif SDL_VERSION_ATLEAST(1, 2, 13)
 	// SDL 1.2 defines wheel buttons before X1/X2 buttons
 	MOUSE_WHEELUP = MOUSE_BASE + SDL_BUTTON_WHEELUP,

@@ -709,6 +709,12 @@ void Shutdown(int flags)
 
 	g_Profiler2.ShutdownGPU();
 
+	#if OS_WIN
+		TIMER_BEGIN(L"shutdown wmi");
+		wmi_Shutdown();
+		TIMER_END(L"shutdown wmi");
+	#endif
+
 	// Free cursors before shutting down SDL, as they may depend on SDL.
 	cursor_shutdown();
 
@@ -765,12 +771,6 @@ from_config:
 		delete &g_Profiler;
 		delete &g_ProfileViewer;
 	TIMER_END(L"shutdown misc");
-
-#if OS_WIN
-	TIMER_BEGIN(L"shutdown wmi");
-	wmi_Shutdown();
-	TIMER_END(L"shutdown wmi");
-#endif
 }
 
 #if OS_UNIX

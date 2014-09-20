@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,7 +44,7 @@
 
 #ifdef SDL_VIDEO_DRIVER_X11
 #include <GL/glx.h>
-#include <SDL/SDL_syswm.h>
+#include "SDL_syswm.h"
 
 // Define the GLX_MESA_query_renderer macros if built with
 // an old Mesa (<10.0) that doesn't provide them
@@ -707,9 +707,18 @@ static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue set
 
 	SDL_SysWMinfo wminfo;
 	SDL_VERSION(&wminfo.version);
-	if (SDL_GetWMInfo(&wminfo) && wminfo.subsystem == SDL_SYSWM_X11)
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	const int ret = SDL_GetWindowWMInfo(g_VideoMode.GetWindow(), &wminfo);
+#else
+	const int ret = SDL_GetWMInfo(&wminfo);
+#endif
+	if (ret && wminfo.subsystem == SDL_SYSWM_X11)
 	{
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		Display* dpy = wminfo.info.x11.display;
+#else
 		Display* dpy = wminfo.info.x11.gfxdisplay;
+#endif
 		int scrnum = DefaultScreen(dpy);
 
 		const char* glxexts = glXQueryExtensionsString(dpy, scrnum);

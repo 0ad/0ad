@@ -275,6 +275,9 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 				!g_keys[SDLK_LCTRL] && !g_keys[SDLK_RCTRL] &&
 				!g_keys[SDLK_LALT] && !g_keys[SDLK_RALT]) 
 			|| ev->ev.type == SDL_HOTKEYDOWN
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+			|| ev->ev.type == SDL_TEXTINPUT
+#endif
 			)
 		{
 			ret = GetFocusedObject()->ManuallyHandleEvent(ev);

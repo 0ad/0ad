@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,6 +100,7 @@ private:
 	int m_ConfigW;
 	int m_ConfigH;
 	int m_ConfigBPP;
+	int m_ConfigDisplay;
 	bool m_ConfigFullscreen;
 	bool m_ConfigForceS3TCEnable;
 
