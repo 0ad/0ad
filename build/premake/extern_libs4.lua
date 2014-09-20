@@ -576,18 +576,19 @@ extern_lib_defs = {
 					includedirs { libraries_dir .. "sdl/include/SDL" }
 				end
 			elseif not _OPTIONS["android"] then
-				-- Support SDL_CONFIG for overriding for the default PATH-based sdl-config
-				sdl_config_path = os.getenv("SDL_CONFIG")
-				if not sdl_config_path then
-					if _OPTIONS["sdl2"] then
+				-- Support SDL*_CONFIG for overriding the default PATH-based sdl*-config
+				if _OPTIONS["sdl2"] then
+					sdl_config_path = os.getenv("SDL2_CONFIG")
+					if not sdl_config_path then
 						sdl_config_path = "sdl2-config"
-					else
+					end
+				else
+					sdl_config_path = os.getenv("SDL_CONFIG")
+					if not sdl_config_path then
 						sdl_config_path = "sdl-config"
 					end
 				end
 
-				-- "pkg-config sdl --libs" appears to include both static and dynamic libs
-				-- when on MacPorts, which is bad, so use sdl-config instead
 				pkgconfig_cflags(nil, sdl_config_path.." --cflags")
 			end
 		end,
@@ -599,11 +600,14 @@ extern_lib_defs = {
 					add_default_lib_paths("sdl")
 				end
 			elseif not _OPTIONS["android"] then
-				sdl_config_path = os.getenv("SDL_CONFIG")
-				if not sdl_config_path then
-					if _OPTIONS["sdl2"] then
+				if _OPTIONS["sdl2"] then
+					sdl_config_path = os.getenv("SDL2_CONFIG")
+					if not sdl_config_path then
 						sdl_config_path = "sdl2-config"
-					else
+					end
+				else
+					sdl_config_path = os.getenv("SDL_CONFIG")
+					if not sdl_config_path then
 						sdl_config_path = "sdl-config"
 					end
 				end
