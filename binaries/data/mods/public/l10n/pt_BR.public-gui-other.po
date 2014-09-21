@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-09-11 07:50+0000\n"
-"Last-Translator: Sturm <gravador202@yahoo.com.br>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 23:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,11 +20,6 @@ msgstr ""
 "Generated-By: Potter 1.0\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: globalscripts/l10n.js:112
-msgctxt "enumeration"
-msgid ", "
-msgstr ","
 
 #: gui/civinfo/civinfo.js:108
 #, python-format
@@ -601,7 +596,7 @@ msgid "Close"
 msgstr "Fechar"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:316 (caption)
+#: (caption) gui/pregame/mainmenu.xml:315 (caption)
 msgid "Language"
 msgstr "Idioma"
 
@@ -720,17 +715,17 @@ msgstr "O feedback anônimo está atualmente habilitado."
 msgid "Status: $status."
 msgstr "Status: $status."
 
-#: gui/pregame/mainmenu.xml:504
+#: gui/pregame/mainmenu.xml:515
 msgid "Alpha XVI: Patañjali"
 msgstr "Alpha XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:506
+#: gui/pregame/mainmenu.xml:517
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "AVISO: Esta é uma versão em desenvolvimento do jogo. Muitos recursos ainda não foram adicionados."
 
-#: gui/pregame/mainmenu.xml:508
+#: gui/pregame/mainmenu.xml:519
 msgid "Get involved at: play0ad.com"
 msgstr "Participe: play0ad.com"
 
@@ -791,119 +786,127 @@ msgstr "Lobby do Jogo"
 msgid "Launch the multiplayer lobby."
 msgstr "Inicie o Lobby multiplayer."
 
-#: gui/pregame/mainmenu.xml:299 (caption)
+#: gui/pregame/mainmenu.xml:298 (caption)
 msgid "Options"
 msgstr "Opções"
 
-#: gui/pregame/mainmenu.xml:300 (tooltip)
+#: gui/pregame/mainmenu.xml:299 (tooltip)
 msgid "Adjust game settings."
 msgstr "Ajuste as configurações do jogo."
 
-#: gui/pregame/mainmenu.xml:317 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Escolha a linguagem do jogo."
 
-#: gui/pregame/mainmenu.xml:332 (caption)
+#: gui/pregame/mainmenu.xml:331 (caption)
 msgid "Scenario Editor"
 msgstr "Editor de Cenário"
 
-#: gui/pregame/mainmenu.xml:333 (tooltip)
+#: gui/pregame/mainmenu.xml:332 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abre o Editor de Cenário Atlas em uma nova janela. Você pode executá-lo de forma mais segura se abrir o jogo com o argumento de linha de comando \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:345 (caption)
+#: gui/pregame/mainmenu.xml:344 (caption)
 msgid "Welcome Screen"
 msgstr "Tela de Boas-vindas"
 
-#: gui/pregame/mainmenu.xml:346 (tooltip)
+#: gui/pregame/mainmenu.xml:345 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Mostrar Tela de Boas-Vindas. Útil se você ocultou por engano."
 
-#: gui/pregame/mainmenu.xml:402 (caption)
+#: gui/pregame/mainmenu.xml:359 (caption)
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:360 (tooltip)
+msgid "Select mods to use."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Learn To Play"
 msgstr "Aprenda a Jogar"
 
-#: gui/pregame/mainmenu.xml:403 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Abrir o manual do jogo."
 
-#: gui/pregame/mainmenu.xml:419 (caption)
+#: gui/pregame/mainmenu.xml:430 (caption)
 msgid "Single Player"
 msgstr "Um Jogador"
 
-#: gui/pregame/mainmenu.xml:420 (tooltip)
+#: gui/pregame/mainmenu.xml:431 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafie o computador para uma partida de um jogador."
 
-#: gui/pregame/mainmenu.xml:434 (caption)
+#: gui/pregame/mainmenu.xml:445 (caption)
 msgid "Multiplayer"
 msgstr "Multijogador"
 
-#: gui/pregame/mainmenu.xml:435 (tooltip)
+#: gui/pregame/mainmenu.xml:446 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lute contra um ou mais jogadores humanos em uma partida multijogador."
 
-#: gui/pregame/mainmenu.xml:449 (caption)
+#: gui/pregame/mainmenu.xml:460 (caption)
 msgid "Tools & Options"
 msgstr "Ferramentas & Opções"
 
-#: gui/pregame/mainmenu.xml:450 (tooltip)
+#: gui/pregame/mainmenu.xml:461 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Opções de jogo e ferramentas de edição de cenário."
 
-#: gui/pregame/mainmenu.xml:464 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption)
 msgid "History"
 msgstr "História"
 
-#: gui/pregame/mainmenu.xml:465 (tooltip)
+#: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Aprenda sobre as muitas civilizações presentes em 0 A.D."
 
-#: gui/pregame/mainmenu.xml:481 (caption)
+#: gui/pregame/mainmenu.xml:492 (caption)
 msgid "Exit"
 msgstr "Sair"
 
-#: gui/pregame/mainmenu.xml:482 (tooltip)
+#: gui/pregame/mainmenu.xml:493 (tooltip)
 msgid "Exits the game."
 msgstr "Sair do jogo."
 
-#: gui/pregame/mainmenu.xml:518 (caption)
+#: gui/pregame/mainmenu.xml:529 (caption)
 msgid "Help with the Translation!"
 msgstr "Colabore com a tradução!"
 
-#: gui/pregame/mainmenu.xml:519 (tooltip)
+#: gui/pregame/mainmenu.xml:530 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Clique para abrir a página de tradução do 0 A.D. no seu navegador"
 
-#: gui/pregame/mainmenu.xml:530 (caption)
+#: gui/pregame/mainmenu.xml:541 (caption)
 msgid "Website"
 msgstr "Website"
 
-#: gui/pregame/mainmenu.xml:531 (tooltip)
+#: gui/pregame/mainmenu.xml:542 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Clique para abrir play0ad.com em seu navegador de internet."
 
-#: gui/pregame/mainmenu.xml:542 (caption)
+#: gui/pregame/mainmenu.xml:553 (caption)
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:543 (tooltip)
+#: gui/pregame/mainmenu.xml:554 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Clique para abrir o chat IRC do 0 A.D. em seu navegador. (#0ad em webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "Report a Bug"
 msgstr "Reportar um Bug"
 
-#: gui/pregame/mainmenu.xml:555 (tooltip)
+#: gui/pregame/mainmenu.xml:566 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Clique para visitar o 0 A.D. Trac para reportar um problema, uma quebra, ou um erro."
 
-#: gui/pregame/mainmenu.xml:583 (caption)
+#: gui/pregame/mainmenu.xml:594 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 

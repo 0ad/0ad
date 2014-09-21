@@ -4,14 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Fabio Pedretti <fabio.ped@libero.it>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-06-26 11:54+0000\n"
-"Last-Translator: Fabio Pedretti <fabio.ped@libero.it>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-12 13:33+0000\n"
+"Last-Translator: SecondCloud500 <eddieven2000@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -371,12 +372,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic Destro con le unità selezionate:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
-msgstr "- Se il cursore è sopra una struttura: Presidia"
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- Se il cursore è su una struttura alleata: Presidia"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- Altrimenti: Muovi un attacco"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr ". Altrimenti: Spostamento offensivo (di default, tutte le strutture ed unità nemiche sul percorso vengono attaccate, usa Ctrl + Q + Click Destro per attaccare solo le unità).  "
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

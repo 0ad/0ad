@@ -6,13 +6,14 @@
 # Translators:
 # coyoty <sacuiu.andy@gmail.com>, 2014
 # w3as3l54, 2014
+# Zsofia Forro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-09-09 09:35+0000\n"
-"Last-Translator: coyoty <sacuiu.andy@gmail.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 22:27+0000\n"
+"Last-Translator: Zsofia Forro\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -46,7 +47,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Îţi mulţumim că ai instalat 0 A.D.! Această pagină îţi va oferi o privire de ansamblu asupra funcţionalităţilor din această versiune alpha, o versiune a jocului care e incompletă, încă în dezvoltare."
+msgstr "Vă mulţumim că ați instalat 0 A.D.! Această pagină vă va oferi o privire de ansamblu asupra funcţionalităţilor din această versiune alpha, o versiune incompletă a jocului care este încă în dezvoltare."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -60,7 +61,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Puteți schimba între modul ecran compled și modul în fereastră prin apăsarea Alt + Enter. În modul fereastră puteți redimensiona fereastra. Dacă jocul rulează prea încet, puteți schimba unele setări în fișierul de configurare: căutați fișierul binaries/data/config/default.cfg în aceeași locație unde este instalat jocul. Fișierul conține instrucțiuni pentru editare. Încercați să dezactivați opțiunile \"fancywater\" și \"shadows\"."
+msgstr "[font=\"sans-14\"]Puteți schimba între modul ecran complet și modul în fereastră prin apăsarea Alt + Enter. În modul fereastră puteți redimensiona fereastra. Dacă jocul rulează prea încet, puteți schimba unele setări în fișierul de configurare: căutați fișierul binaries/data/config/default.cfg în locația în care este instalat jocul. Fișierul conține instrucțiuni pentru editare. Încercați să dezactivați opțiunile „fancywater” și „shadows”."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -72,7 +73,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"] Modul în care jocul se controlează și se joacă ar trebui să fie familiar jucătorilor de jocuri RTS. În prezent multă funcționalitate lipsește și statisticile nu sunt foarte bune. Probabil că aceste lipsuri vor fi rezolvate într-o versiune beta."
+msgstr "[font=\"sans-14\"] Modul în care se controlează și se joacă jocul ar trebui să fie familiar celor obișnuiți cu jocurile de strategie în timp real. În prezent lipsesc multe caracteristici și statisticile nu sunt echilibrate. Probabil că va trebui să așteptați lansarea unei versiuni beta să funcționeze bine."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -80,19 +81,19 @@ msgstr "Controale de bază:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "• Click cu butonul stâng pentru a selecta unități."
+msgstr "• Clic cu butonul stâng pentru a selecta unități."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Trage cu butonul stâng apăsat pentru a selecta grupuri de unități."
+msgstr "• Clic și glisare cu butonul stâng pentru a selecta grupuri de unități."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "• Click cu butonul drept pentru a ordona unităților ținta."
+msgstr "• Clic cu butonul drept pentru a ordona unităților ținta."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Tastele cu săgeți sau tastele WASD pentru a poziționa camera."
+msgstr "• Tastele săgeți sau tastele WASD pentru a poziționa camera."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
@@ -100,7 +101,7 @@ msgstr "• Ctrl + tastele săgeți, sau Shift + rotița mouse-ului, pentru a ro
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Rotița mouseului, sau tastele \"+\" și \"-\" pentru a mări/micșora."
+msgstr "• Rotița mouse-ului sau tastele „+” și „-” pentru a mări/micșora."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -117,13 +118,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr "• [font=\"sans-bold-14\"]Un singur jucător[font=\"sans-14\"] — joacă un joc solitar, sau împotriva unui sau mai multor jucători cu inteligență artificială. Jucătorii cu inteligență artificială nu sunt încă finalizați și de aceea s-ar putea să nu fie la curent cu toate facilitățile jocului. Dar este posibil să testați jocul prin meciuri împotriva jucătorilor cu inteligență artificială, dacă nu aveți posibilitatea de a juca împotriva unui om."
+msgstr "• [font=\"sans-bold-14\"]Un singur jucător[font=\"sans-14\"] — joacă un joc solitar, sau împotriva unui sau mai multor jucători cu inteligență artificială. Jucătorii cu inteligență artificială nu sunt încă finalizați și s-ar putea să nu fie mereu la curent cu toate caracteristicile noi, dar puteți să testați jocul împotriva unui adversar dacă nu aveți posibilitatea de a juca împotriva unei persoane."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multijucător (multiplayer)[font=\"sans-14\"] — jucați împotriva altor jucători umani prin intermediul Internetului."
+msgstr "• [font=\"sans-bold-14\"]Mai mulți jucători[font=\"sans-14\"] — jucați împotriva unor adversari umani pe internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -131,7 +132,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Pentru a aranja un joc cu mai mulți jucători, unul din jucători trebuie să selecteze opțiunea \"Gazdă a jocului\". Jocul folosește portul UDP 20595, în consecință, gazda trebuie să configureze NAT/firewall-ul/sau altele pentru a permite accesul la port. Ceilalți jucători selectează \"Conectare la joc\" și intoduc adresa IP a gazdei."
+msgstr "Pentru a aranja un joc cu mai mulți jucători, unul din jucători trebuie să selecteze opțiunea „Găzduire joc”. Jocul folosește portul UDP 20595, deci gazda trebuie să configureze NAT/firewall-ul/sau altele pentru a permite acest lucru. Ceilalți jucători selectează „Conectare la joc” și intoduc adresa IP a gazdei."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -141,7 +142,7 @@ msgstr "[font=\"sans-bold-16\"]Setarea jocului"
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr "[font=\"sans-14\"]Într-un meci cu mai mulți jucători doar gazda poate schimba opțiunile de setare ale jocului."
+msgstr "[font=\"sans-14\"]Într-un joc cu mai mulți jucători doar gazda poate schimba opțiunile de setare a jocului."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -152,7 +153,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Mai întâi, selectați dacă vreți să jucați pe o hartă aleatorie (creată automat dintr-un script de hărți aleatorii) sau un scenariu (creat de un proiectant de hărți). Scenariile pot fi filtrate să arate doar anumite hărți. Hărțile prestabilite se afișează imediat, dar deseori nu și hărțile particularizate, deci selectați „Toate hărțile” pentru a vedea o listă cu toate hărțile disponibile. Apoi selectați o hartă pe care să jucați. „Hărțile Demo” sunt proiectate pentru a testa anumite caracteristici ale jocului și probabil că nu sunt folositoare în general."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -162,11 +163,11 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr "În final, schimbă setările. Pentru hărți aleatorii aceasta include numărul de jucători, dimensiunea hărții, etc. Pentru scenarii poți selecta doar ce jucător și pe cine v-a controla (asta determină undei vei începe pe hartă, etc). Opțiunile sunt fie o persoană, fie un jucător cu IA, sau fără jucător (unitățile existente vor ataca dușmanii care apar în câmpul lor de vedere, dar unități noi nu vor fi create, și nu vor fi trimite la atac unități)."
+msgstr "În final, schimbați setările. La hărțile aleatorii aceasta include numărul de jucători, dimensiunea hărții, etc. Pentru scenarii puteți selecta doar cine va controla care jucător (asta determină unde veți începe pe hartă, etc). Opțiunile sunt fie o persoană, fie un jucător cu IA, sau niciun jucător (unitățile existente vor ataca dușmanii care apar în câmpul lor de vedere, dar nu se vor crea noi unități și nu se vor fi trimite unități la atac)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Cînd ești gata să începi, apasă butonul \"Începe jocul\"."
+msgstr "Când sunteți pregătit să începeți, apăsați butonul „Începe jocul”."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -178,11 +179,11 @@ msgstr "[font=\"sans-bold-14\"]Întotdeauna"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: Inchide jocuul, fără confirmare"
+msgstr "[font=\"sans-14\"]Alt + F4: Închide jocul, fără confirmare"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr "Alt + Enter: Schimbă între modul modul ecran complet și fereastră"
+msgstr "Alt + Enter: Schimbă între modul modul ecran complet și în fereastră"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
@@ -196,7 +197,7 @@ msgstr "Alt + F: Arată/ascunde contorul de cadre (FPS)"
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr "F11: Activează/Dezactivează instrumentul de profilare în timp real (comută prin afișări de informație)"
+msgstr "F11: Activează/dezactivează instrumentul de profilare în timp real (comută prin afișări de informație)"
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
@@ -207,14 +208,14 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Fă o captură de ecran (în formatul .png, locația va fi afișată în partea de sus-stînga a interfeței după ce fișierul va fi salvat, și poate fi văzut în consolă/jurnal dacă nu o observi)"
+msgstr "F2: Fă o captură de ecran (în formatul .png, locația va fi afișată în partea stânga sus a interfeței după ce s-a salvat fișierul, și poate fi văzut și în consolă/jurnal dacă n-ați observat)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Fă o captură de ecran enormă (6400px*4800px, în formatul .bmp, destinația e arătată în partea stînga sus a interfeței după ce fișierul a fost salvat, și o poți vedea în consolă/înregistrări dacă nu ai reușit să o vezi)"
+msgstr "Shift + F2: Fă o captură de ecran enormă (6400px*4800px, în formatul .bmp, locația este arătată în partea stânga sus a interfeței după ce s-a salvat fișierul, și poate fi văzut și în consolă/jurnale dacă n-ați observat)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -224,25 +225,25 @@ msgstr "[font=\"sans-bold-14\"]În joc"
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Dublu click stânga [pe unitate]: Selectează toate unitățile de acelaș tip de pe ecran (chiar dacă au ranguri diferite)"
+msgstr "[font=\"sans-14\"]Dublu clic stânga [pe unitate]: Selectează toate unitățile de același tip de pe ecran (chiar dacă au ranguri diferite)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr "Triplu click stănga [pe unitate]: Selectează toate unitățile de acelaș fel si rang de pe ecran"
+msgstr "Triplu clic stânga [pe unitate]: Selectează toate unitățile de același fel și rang de pe ecran"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr "Alt + dublu click stânga [pe unitate]: Selectează toate unitățile de acelas fel de pe toată harta (chiar dacă au ranguri diferite)"
+msgstr "Alt + dublu clic stânga [pe unitate]: Selectează toate unitățile de același fel de pe toată harta (chiar dacă au ranguri diferite)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + triplu click stânga [pe unitate]: Selectează toate unitățile de acelaș fel si rang de pe toată harta"
+msgstr "Alt + triplu clic stânga [pe unitate]: Selectează toate unitățile de același fel si rang de pe toată harta"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -254,7 +255,7 @@ msgstr "Shift + F8: Încărcare rapidă"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr "F10: Meniul deschide/închide"
+msgstr "F10: Deschide/închide meniul"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
@@ -262,7 +263,7 @@ msgstr "F12: Afișează/ascunde contorul cu timpul scurs"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr "ESC: Închide toate ferestrele (discuții, meniu) sau eliberează toate unitățile selectate"
+msgstr "ESC: Închide toate ferestrele (conversații, meniu) sau eliberează toate unitățile selectate"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -270,7 +271,7 @@ msgstr "Enter/return: Deschide/trimite conversație"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr "T: Trimite conversația doar echipei"
+msgstr "T: Trimite conversație în echipă"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
@@ -296,35 +297,35 @@ msgstr "H: Oprește (întrerupe) unitățile selectate"
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (și tot așa în sus până la Ctrl + 0): Crează grupul de control 1 (pînă la 0) din unitățile/clădirile selectate"
+msgstr "Ctrl + 1 (și sus până la Ctrl + 0): Creează grupul de control 1 (până la 0) din unitățile/clădirile selectate"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr "1 (și tot așa în sus pînă la 0): Selectează unitățile/clădirile din grupul de control 1 (pînă la 0)"
+msgstr "1 (și sus până la 0): Selectează unitățile/clădirile din grupul de control 1 (până la 0)"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Shift +1 (până la 0): Adaugă grupul de control 1 (până la 0) pentru unitățile/clădirile selectate"
+msgstr "Shift +1 (până la 0): Adaugă grupul de control 1 (până la 0) la unitățile/clădirile selectate"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (și tot așa în sus pînă la F8): Marchează poziția curentă a camerei, pentru a sări acolo mai tîrziu"
+msgstr "Ctrl + F5 (și sus până la F8): Marchează poziția curentă a camerei, pentru a sări acolo mai târziu"
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5, F6, F7 și F8: Mută camera într-o poziție marcată. Duce înapoi la poziția dinainte dacă camera este deja deasupra poziției marcate."
+msgstr "F5, F6, F7 și F8: Mută camera într-o poziție marcată. Sari înapoi la poziția de dinainte dacă ea este deja deasupra poziției marcate."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Cu clădirile pentru antrenament selectate. Adaugă 1-a, a 2-a, ... unitate arătată la coada de antrenament pentru toate clădirile selectate."
+msgstr "Z, X, C, V, B, N, M: Cu clădirile de pregătire selectate. Adaugă prima, a doua, ... unitate arătată la șirul de pregătire pentru toate clădirile selectate."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -372,11 +373,14 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr ""
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr ""
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
 msgstr ""
 
 #: gui/manual/intro.txt:85

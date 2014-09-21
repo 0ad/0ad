@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:13+0200\n"
-"PO-Revision-Date: 2014-08-17 10:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-18 08:30+0000\n"
+"Last-Translator: yoreei <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,17 +28,17 @@ msgstr "Цивилен"
 msgid "Civic Structure"
 msgstr "Гражданска Структура"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
-#: simulation/templates/template_structure_civic_civil_centre.xml:31
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "Цивилен Център"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:63
+#: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Построй, за да получиш големи територии. Тренира граждани. Гарнизон: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:62
+#: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
 msgstr "Цивилен Център"
 
@@ -49,9 +49,6 @@ msgstr "Цивилен Център"
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
 msgstr "Село"
 
@@ -69,10 +66,13 @@ msgid "Healing Aura"
 msgstr "Лечебна Аура"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/celt_blacksmith.xml:11
+#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
 msgstr "Град"
 
@@ -92,7 +92,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Лекува околните единици с 1 ХП на секунда"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
 msgstr "Предпазва"
 
@@ -100,16 +100,16 @@ msgstr "Предпазва"
 msgid "Defensive Structure"
 msgstr "Предпазваща Структура"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
-#: simulation/templates/template_structure_defense_defense_tower.xml:32
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
 msgstr "Предпазваща Кула"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:61
+#: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
 msgstr "Изтрелва стрели. Гарнизирай, за да увеличиш защитата"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:60
+#: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
 msgstr "Предпазваща Кула"
 
@@ -160,11 +160,11 @@ msgstr "Единици в стени имат 3 допълнителни точ�
 msgid "Convert Stone Wall into City Gate"
 msgstr "Конвертирай Каменна стена към Градска Порта"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Стреля стрели. Гарнизирай, за да защитиш градската стена срещу нападатели."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "Стенна Оръдейна Кула"
 
@@ -266,17 +266,17 @@ msgstr "Строи се на брега. Конструира кораби и т
 msgid "Embassy"
 msgstr "Посолство"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
 msgstr "Град"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
-#: simulation/templates/template_structure_military_fortress.xml:31
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:25
+#: simulation/templates/template_structure_military_fortress.xml:54
 msgid "Fortress"
 msgstr "Замък"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:55
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
@@ -301,12 +301,12 @@ msgid ""
 " food or other bonus (Not yet implemented)."
 msgstr "Отглеждай стадни животни за храна. Прати домашни животни тук, за да получиш малко храна или друг бонус (Все още не е имплементирано)."
 
-#: simulation/templates/template_structure_resource_field.xml:25
-#: simulation/templates/template_structure_resource_field.xml:24
+#: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Поле"
 
-#: simulation/templates/template_structure_resource_field.xml:26
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "Бери зеленчуци за храна. Максимален брой събирачи: 5."
 
@@ -434,7 +434,7 @@ msgstr "Empórion"
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr "Гръзки Наблюдателница"
+msgstr "Гръцка Наблюдателница"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
@@ -701,7 +701,6 @@ msgstr "Не стреля и не поема гарнизон"
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
-#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Stonehenge"
 msgstr "Стоунхендж"
 
@@ -997,6 +996,10 @@ msgstr "Zabal Horma"
 msgid "Biko Sarbide"
 msgstr "Бико Сарбиде"
 
+#: simulation/templates/structures/iber_wonder.xml:17
+msgid "Cancho Roano"
+msgstr "Cancho Roano"
+
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
@@ -1175,11 +1178,11 @@ msgstr "Персийски Палас"
 msgid "Apadana"
 msgstr "Ападана"
 
-#: simulation/templates/structures/pers_barracks.xml:12
+#: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
 msgstr "Мобилизирай граждани-войни"
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr "Padgan"
 

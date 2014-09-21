@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:13+0200\n"
-"PO-Revision-Date: 2014-08-17 10:01+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 09:07+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
@@ -27,17 +27,17 @@ msgstr ""
 msgid "Civic Structure"
 msgstr "Samhällsbyggnad*"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
-#: simulation/templates/template_structure_civic_civil_centre.xml:31
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr ""
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:63
+#: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Bygg för att förvärva stora landområden. Träna invånare. Garnisonera: 20."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:62
+#: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
 msgstr "Samhällscenter"
 
@@ -48,9 +48,6 @@ msgstr "Samhällscenter"
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
 msgstr ""
 
@@ -68,10 +65,13 @@ msgid "Healing Aura"
 msgstr ""
 
 #: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/celt_blacksmith.xml:11
+#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
 msgstr ""
 
@@ -91,7 +91,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr ""
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
 msgstr ""
 
@@ -99,16 +99,16 @@ msgstr ""
 msgid "Defensive Structure"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
-#: simulation/templates/template_structure_defense_defense_tower.xml:32
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:61
+#: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
 msgstr ""
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:60
+#: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
 msgstr ""
 
@@ -159,11 +159,11 @@ msgstr ""
 msgid "Convert Stone Wall into City Gate"
 msgstr ""
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr ""
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr ""
 
@@ -265,17 +265,17 @@ msgstr ""
 msgid "Embassy"
 msgstr "Ambassad"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
 msgstr ""
 
-#: simulation/templates/template_structure_military_fortress.xml:63
-#: simulation/templates/template_structure_military_fortress.xml:31
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:25
+#: simulation/templates/template_structure_military_fortress.xml:54
 msgid "Fortress"
 msgstr "Fort"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:55
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
@@ -300,12 +300,12 @@ msgid ""
 " food or other bonus (Not yet implemented)."
 msgstr ""
 
-#: simulation/templates/template_structure_resource_field.xml:25
-#: simulation/templates/template_structure_resource_field.xml:24
+#: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr ""
 
-#: simulation/templates/template_structure_resource_field.xml:26
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr ""
 
@@ -700,7 +700,6 @@ msgstr "Skjuter inte, kan inte ha någon garnison."
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
-#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Stonehenge"
 msgstr "Stonehenge"
 
@@ -996,6 +995,10 @@ msgstr "Zabal Horma"
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
+#: simulation/templates/structures/iber_wonder.xml:17
+msgid "Cancho Roano"
+msgstr ""
+
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
@@ -1174,11 +1177,11 @@ msgstr "Persiskt palats"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_barracks.xml:12
+#: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
 msgstr "Uppbåda bosättarinfanterisoldater."
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr "Padgan"
 

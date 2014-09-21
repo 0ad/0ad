@@ -50,9 +50,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-09-04 07:10+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 00:30+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -71,7 +71,7 @@ msgstr "Grundreichweite: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Mittlere Bonusreichweite: %(range)s"
 
-#: gui/session/input.js:725
+#: gui/session/input.js:730
 msgid "Cannot build wall here!"
 msgstr "Hier kann keine Mauer gebaut werden!"
 
@@ -126,7 +126,7 @@ msgstr "Möchtest du abdanken oder kehrst du bald zurück?"
 msgid "Destroy everything currently selected?"
 msgstr "Willst du wirklich alles Ausgewählte zerstören?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:666
+#: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
 msgstr "Löschen"
 
@@ -715,7 +715,7 @@ msgstr "Drücke OK um fortzufahren"
 
 #: gui/session/session.js:476
 msgid "Do you want to quit?"
-msgstr "Willst du 0 A.D. beenden?"
+msgstr "Willst du das Spiel verlassen?"
 
 #: gui/session/session.js:482
 msgid "DEFEATED!"
@@ -751,99 +751,99 @@ msgstr "Anmerkung: Der Zeitreisemodus ist eine Entwickleroption und nicht für l
 msgid "Time warp mode"
 msgstr "Zeitreisemodus"
 
-#: gui/session/unit_actions.js:295
+#: gui/session/unit_actions.js:300
 msgid "Origin trade market."
 msgstr "Herkunftsmarkt."
 
-#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
-#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Ertrag: %(gain)s"
 
-#: gui/session/unit_actions.js:301
+#: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Auf einen anderen Markt rechtsklicken, um diesen als Zielmarkt zu wählen."
 
-#: gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:309
 msgid "Destination trade market."
 msgstr "Zielmarkt."
 
-#: gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
 msgstr "Rechtsklicken um als Herkunftsmarkt zu wählen"
 
-#: gui/session/unit_actions.js:314
+#: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
 msgstr "Rechtsklicken um als Zielmarkt zu wählen"
 
-#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Einquartiert: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:519
+#: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
 msgstr "Rechtsklick um eine Standardroute für neue Händler zu erstellen."
 
-#: gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Erwarteter Ertrag: %(gain)s"
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:655
 msgid "Unload All"
 msgstr "Alle ausquartieren"
 
-#: gui/session/unit_actions.js:661
+#: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Du kannst diese Einheit nicht im Nebel des Krieges zerstören"
 
-#: gui/session/unit_actions.js:689
+#: gui/session/unit_actions.js:699
 msgid "Stop"
 msgstr "Halt"
 
-#: gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:717
 msgid "Garrison"
 msgstr "Einquartieren"
 
-#: gui/session/unit_actions.js:728
+#: gui/session/unit_actions.js:738
 msgid "Unload"
 msgstr "Ausquartieren"
 
-#: gui/session/unit_actions.js:744
+#: gui/session/unit_actions.js:754
 msgid "Repair"
 msgstr "Reparieren"
 
-#: gui/session/unit_actions.js:761
+#: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
 msgstr "Kamera auf Sammelpunkt"
 
-#: gui/session/unit_actions.js:784
+#: gui/session/unit_actions.js:794
 msgid "Back to Work"
 msgstr "Zurück zur Arbeit"
 
-#: gui/session/unit_actions.js:800
+#: gui/session/unit_actions.js:810
 msgid "Guard"
 msgstr "Bewachen"
 
-#: gui/session/unit_actions.js:817
+#: gui/session/unit_actions.js:827
 msgid "Remove guard"
 msgstr "Bewachung beenden"
 
-#: gui/session/unit_actions.js:833
+#: gui/session/unit_actions.js:843
 msgid "Select trading goods"
 msgstr "Wähle Handelsware"
 
-#: gui/session/unit_actions.js:850
+#: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
 msgstr "Erhöht den Alarm, um mehr Einheiten zu schützen! "
 
-#: gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
 msgstr "Erhöhe den Alarm!"
 
-#: gui/session/unit_actions.js:870
+#: gui/session/unit_actions.js:880
 msgid "End of alert."
 msgstr "Alarm beenden."
 

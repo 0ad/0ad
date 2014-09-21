@@ -7,14 +7,15 @@
 # Doğu Kan, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # ambd <sitebu@yandex.com>, 2014
+# Volkan Gezer <volkangezer@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:13+0200\n"
-"PO-Revision-Date: 2014-09-08 02:50+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-09-12 11:25+0200\n"
+"PO-Revision-Date: 2014-09-20 23:10+0000\n"
+"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -198,7 +199,7 @@ msgid ""
 "Players start in the shores of the Mediterranean Sea with a river flowing between them.\n"
 "\n"
 "The Guadalquivir is the fifth longest river in the Iberian peninsula and the second longest river with its entire length in Spain. The Guadalquivir river is the only great navigable river in Spain. Currently it is navigable to Seville, but in Roman times it was navigable to Cordoba. The ancient city of Tartessos was said to have been located at the mouth of the Guadalquivir, although its site has not yet been found."
-msgstr ""
+msgstr "Oyuncular Akdeniz kıyısında aralarında akan bir nehir olan bir yerde başlar.\n\nGuadalquivir İber yarımadasındaki beşinci en uzun nehirdir ve İspanya'da tüm uzunluğu ile en uzun ikinci nehirdir. Guadalquivir nehri İspanya'da tek büyük gezilebilir nehirdir. Şu anda Sevilla gezilebilir, ama Roma döneminde bu yer Kordoba'dan beri gezilebilir bir yer. Tartessos antik kent alanı henüz bulunamamasına rağmen, Guadalquivir ağzında olduğu söylenmektedir."
 
 #: maps/random/guadalquivir_river.jsonsettings.Name
 msgid "Guadalquivir River"
@@ -405,7 +406,7 @@ msgid ""
 "Players start around the map with lines of water between them\n"
 "\n"
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up."
-msgstr ""
+msgstr "Oyuncular aralarında su hatları bulunan bir yerde başlar\n\nAfrika savannası avcılık için hayvanlarla çevrilidir, yakınlarında bol maden yatağı vardır. Kurak sezon yaklaşıyor ve sulama delikleri kuruyor."
 
 #: maps/random/sahel_watering_holes.jsonsettings.Name
 msgid "Sahel Watering Holes"
@@ -504,13 +505,13 @@ msgstr "Duvar Denemesi"
 msgid "An enemy wave is attacking!"
 msgstr "Düşman dalgası saldırıyor"
 
-#: maps/random/survivalofthefittest_triggers.js:137
+#: maps/random/survivalofthefittest_triggers.js:150
 msgid "The first wave will start in 15 minutes!"
 msgstr "Bu ilk dalga 15 dakika içinde başlayacak!"
 
 #: maps/scenarios/Triggers_demo.js:73
 msgid "Testing the yes-no dialog. Do you want to say sure or rather not?"
-msgstr "Evet-hayır diyalog testi. Tabiki veya daha iyisi yokmuyu söylemek istiyor musun?"
+msgstr "Evet-hayır diyalog testi. Tabiki veya daha iyisi yok muyu söylemek istiyor musun?"
 
 #: maps/scenarios/Triggers_demo.js:79
 msgid "Sure"
@@ -1439,7 +1440,7 @@ msgstr "Pers"
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
-msgstr ""
+msgstr "Afrika serengeti hayvan sürülerinde çapraz değişim planı vardır. Mineral zengini ve bol odun kaynağı bulunmaktadır."
 
 #: maps/scenarios/Serengeti.xml:31:Name
 msgid "Serengeti 1"
@@ -1461,7 +1462,7 @@ msgstr "Gemi Dizilişi"
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
-msgstr ""
+msgstr "Kartacalılara karşı Makedonlar karşı Perslere karşı İberler! Büyük bir vaha dağ merkezi ile çevrilidir ve bölgeleri ikiye ayırır."
 
 #: maps/scenarios/Siwa Oasis.xml:31:Name
 msgid "Siwa Oasis"
@@ -1479,7 +1480,7 @@ msgstr "Bölge Denemesi"
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
-msgstr ""
+msgstr "Keltlerin Yunanistan'ı istilası. Delphi çevresindeki toprakları güvence altına almak için zengin yayla ile merkezi vadi boyunca savaşın veya bırakıp gidin!"
 
 #: maps/scenarios/The Massacre of Delphi.xml:41:Name
 msgid "Massacre of Delphi"

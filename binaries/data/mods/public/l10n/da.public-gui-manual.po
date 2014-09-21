@@ -4,12 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 12:51+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +34,7 @@ msgstr "Luk"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. Spilmanual"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -132,13 +134,13 @@ msgstr "For at starte et multiplayer spil, skal en spiller vælge \"Opret spil\"
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr "[font=\"sans-bold-16\"]Spilsteup"
+msgstr "[font=\"sans-bold-16\"]Spilsetup"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]I et multiplayerspil er det kun værten der kan ændre spilindstillinger."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -369,11 +371,14 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Højreklik med enheder valgt:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr ""
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
 msgstr ""
 
 #: gui/manual/intro.txt:85

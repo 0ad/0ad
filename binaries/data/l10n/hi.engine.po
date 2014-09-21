@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# ramoer <ramoerram@live.com>, 2014
 # Ravi Kumar, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-04-24 04:45+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-21 08:10+0000\n"
+"Last-Translator: ramoer <ramoerram@live.com>\n"
 "Language-Team: Hindi (http://www.transifex.com/projects/p/0ad/language/hi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,19 +22,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:798
+#: gui/scripting/ScriptFunctions.cpp:799
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (कस्टम बिल्ड)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:803
+#: gui/scripting/ScriptFunctions.cpp:804
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:824
+#: gui/scripting/ScriptFunctions.cpp:825
 msgid "custom build"
 msgstr "कस्टम बिल्ड"
 
@@ -49,4 +50,4 @@ msgstr "'%ls' मे गेम सहेजा गया"
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr ""
+msgstr "स्क्रीनशॉट '%ls' में अंकित कर दिया गया"

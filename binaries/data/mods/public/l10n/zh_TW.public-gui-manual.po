@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-06-20 06:40+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-12 13:49+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -371,12 +371,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + 右鍵點擊 單位選定時: "
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
-msgstr "- 若游標在建築物上：駐防"
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- 若游標在盟軍建築物上：駐軍"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- 除此之外：攻擊移動"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "- 除此之外：攻擊移動（預設會將移動路線上所有的敵方單位及建築物作為目標，利用 Ctrl + Q + 右鍵點擊來僅將單位作為目標）。"
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

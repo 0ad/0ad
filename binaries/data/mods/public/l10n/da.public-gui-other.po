@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-17 10:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 12:41+0000\n"
+"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,11 +19,6 @@ msgstr ""
 "Generated-By: Potter 1.0\n"
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: globalscripts/l10n.js:112
-msgctxt "enumeration"
-msgid ", "
-msgstr ","
 
 #: gui/civinfo/civinfo.js:108
 #, python-format
@@ -32,14 +28,14 @@ msgstr "%(civilization)s Gameplay"
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Civilisationsbonus"
+msgstr[1] "Civilisationsbonusser"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Holdbonus"
+msgstr[1] "Holdbonusser"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
@@ -48,8 +44,8 @@ msgstr "Specialteknologier"
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Specialbygning"
+msgstr[1] "Specialbygninger"
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
@@ -304,7 +300,7 @@ msgstr ""
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "Hurtigt & Grimt Vand"
 
 #: gui/options/options.js:27
 msgid ""
@@ -348,7 +344,7 @@ msgstr ""
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
-msgstr ""
+msgstr "Skygger på Vand"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
@@ -599,7 +595,7 @@ msgid "Close"
 msgstr "Luk"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:316 (caption)
+#: (caption) gui/pregame/mainmenu.xml:315 (caption)
 msgid "Language"
 msgstr "Sprog"
 
@@ -718,17 +714,17 @@ msgstr "Anonymt feedback er nu aktiveret."
 msgid "Status: $status."
 msgstr "Status: $status."
 
-#: gui/pregame/mainmenu.xml:504
+#: gui/pregame/mainmenu.xml:515
 msgid "Alpha XVI: Patañjali"
 msgstr "Alpha XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:506
+#: gui/pregame/mainmenu.xml:517
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "ADVARSEL: Dette er en tidlig udviklerversion af spillet. Mange funktioner er endnu ikke blevet implementeret."
 
-#: gui/pregame/mainmenu.xml:508
+#: gui/pregame/mainmenu.xml:519
 msgid "Get involved at: play0ad.com"
 msgstr "Bliv involveret på: play0ad.com"
 
@@ -789,119 +785,127 @@ msgstr "Spillobby"
 msgid "Launch the multiplayer lobby."
 msgstr "Åben multiplayerlobbyen."
 
-#: gui/pregame/mainmenu.xml:299 (caption)
+#: gui/pregame/mainmenu.xml:298 (caption)
 msgid "Options"
 msgstr "Indstillinger"
 
-#: gui/pregame/mainmenu.xml:300 (tooltip)
+#: gui/pregame/mainmenu.xml:299 (tooltip)
 msgid "Adjust game settings."
 msgstr "Justér spilindstillinger."
 
-#: gui/pregame/mainmenu.xml:317 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Vælg spillets sprog."
 
-#: gui/pregame/mainmenu.xml:332 (caption)
+#: gui/pregame/mainmenu.xml:331 (caption)
 msgid "Scenario Editor"
 msgstr "Scenarieeditor"
 
-#: gui/pregame/mainmenu.xml:333 (tooltip)
+#: gui/pregame/mainmenu.xml:332 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Åbn Atlas Scenarieeditoren i et nyt vindue. Du kan køre den mere pålideligt ved at starte spillet med kommandolinjeargumentet \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:345 (caption)
+#: gui/pregame/mainmenu.xml:344 (caption)
 msgid "Welcome Screen"
 msgstr "Velkomstskærm "
 
-#: gui/pregame/mainmenu.xml:346 (tooltip)
+#: gui/pregame/mainmenu.xml:345 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:402 (caption)
+#: gui/pregame/mainmenu.xml:359 (caption)
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:360 (tooltip)
+msgid "Select mods to use."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Learn To Play"
 msgstr "Lær At Spille"
 
-#: gui/pregame/mainmenu.xml:403 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:419 (caption)
+#: gui/pregame/mainmenu.xml:430 (caption)
 msgid "Single Player"
 msgstr "Singleplayer"
 
-#: gui/pregame/mainmenu.xml:420 (tooltip)
+#: gui/pregame/mainmenu.xml:431 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Spil et singleplayer spil mod en computerstyret modstander."
 
-#: gui/pregame/mainmenu.xml:434 (caption)
+#: gui/pregame/mainmenu.xml:445 (caption)
 msgid "Multiplayer"
 msgstr "Multiplayer"
 
-#: gui/pregame/mainmenu.xml:435 (tooltip)
+#: gui/pregame/mainmenu.xml:446 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Spil imod en eller flere menneskelige modstandere i et spil med flere spillere."
 
-#: gui/pregame/mainmenu.xml:449 (caption)
+#: gui/pregame/mainmenu.xml:460 (caption)
 msgid "Tools & Options"
 msgstr "Værktøjer & Indstillinger"
 
-#: gui/pregame/mainmenu.xml:450 (tooltip)
+#: gui/pregame/mainmenu.xml:461 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Spilindstillinger og scenarieværktøjer."
 
-#: gui/pregame/mainmenu.xml:464 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption)
 msgid "History"
 msgstr "Historie"
 
-#: gui/pregame/mainmenu.xml:465 (tooltip)
+#: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Lær om de mange civilisationer i 0 A.D."
 
-#: gui/pregame/mainmenu.xml:481 (caption)
+#: gui/pregame/mainmenu.xml:492 (caption)
 msgid "Exit"
 msgstr "Afslut"
 
-#: gui/pregame/mainmenu.xml:482 (tooltip)
+#: gui/pregame/mainmenu.xml:493 (tooltip)
 msgid "Exits the game."
 msgstr "Afslutter spillet"
 
-#: gui/pregame/mainmenu.xml:518 (caption)
+#: gui/pregame/mainmenu.xml:529 (caption)
 msgid "Help with the Translation!"
 msgstr "Hjælp med oversættelsen!"
 
-#: gui/pregame/mainmenu.xml:519 (tooltip)
+#: gui/pregame/mainmenu.xml:530 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:530 (caption)
+#: gui/pregame/mainmenu.xml:541 (caption)
 msgid "Website"
 msgstr "Hjemmeside"
 
-#: gui/pregame/mainmenu.xml:531 (tooltip)
+#: gui/pregame/mainmenu.xml:542 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klik for at åbne play0ad.com i din browser."
 
-#: gui/pregame/mainmenu.xml:542 (caption)
+#: gui/pregame/mainmenu.xml:553 (caption)
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:543 (tooltip)
+#: gui/pregame/mainmenu.xml:554 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klik for at åbne 0 A.D. IRC-chatten i din browser (#0ad på webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "Report a Bug"
 msgstr "Rapportér et Problem"
 
-#: gui/pregame/mainmenu.xml:555 (tooltip)
+#: gui/pregame/mainmenu.xml:566 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:583 (caption)
+#: gui/pregame/mainmenu.xml:594 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 

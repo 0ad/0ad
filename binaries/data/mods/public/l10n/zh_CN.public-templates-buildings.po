@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# junxu <twtccw@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:13+0200\n"
-"PO-Revision-Date: 2014-08-17 09:46+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-14 14:10+0000\n"
+"Last-Translator: junxu <twtccw@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/0ad/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,25 +22,25 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "市民"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr ""
+msgstr "市民建筑"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
-#: simulation/templates/template_structure_civic_civil_centre.xml:31
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr ""
+msgstr "民事中心"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:63
+#: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr ""
+msgstr "建造以获取大片领土,训练市民.驻扎人数上限:20"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:62
+#: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
-msgstr ""
+msgstr "市政中心"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -48,286 +49,286 @@ msgstr ""
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
-msgstr ""
+msgstr "村庄"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
-msgstr ""
+msgstr "民房"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
-msgstr ""
+msgstr "提高人口上限"
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "治疗光环"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/celt_blacksmith.xml:11
+#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr ""
+msgstr "小镇"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
 msgid "Temple"
-msgstr ""
+msgstr "寺庙"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "训练治疗师.允许驻扎20人,能迅速治疗单位(每秒3点).可以研究治疗术以及提高信仰"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "治疗附近的单位(每秒1点)"
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
-msgstr ""
+msgstr "防卫"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "防御性建筑"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
-#: simulation/templates/template_structure_defense_defense_tower.xml:32
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr ""
+msgstr "防御塔"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:61
+#: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "发射箭矢,派守驻军将增强防卫能力"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:60
+#: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr ""
+msgstr "防御塔"
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "哨岗"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "建筑在中立地区或者拥有的领土内来监视地图.建筑在中立领土会逐渐损失生命值"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "在你的城镇周围建筑围墙来组织被监视"
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr ""
+msgstr "石质城墙"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "允许单位穿过城墙.能被锁住从而不许单位穿过"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
-msgstr ""
+msgstr "城市大门"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "城墙保护"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr ""
+msgstr "长的城墙可以被改造成大门"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "城墙上的单位拥有额外3点护甲"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "将石质城墙改造为城市大门"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "发射箭矢.派兵驻扎来保护城墙"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
-msgstr ""
+msgstr "城头炮塔"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr ""
+msgstr "城墙"
 
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr ""
+msgstr "经济"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr ""
+msgstr "经济建筑"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
-msgstr ""
+msgstr "农场及其建筑物"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "生产食物.研究提高食物收集的方法"
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Market"
-msgstr ""
+msgstr "市场"
 
 #: simulation/templates/template_structure_economic_market.xml:22
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "生产贸易单位来同其他市场进行贸易.贸易资源,研究可提高商业以及贸易水平"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
-msgstr ""
+msgstr "仓库"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:22
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "收集木材,石头以及金属资源,研究可以提高收集效率"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr ""
+msgstr "在此处建造市政中心以拓展你的领地"
 
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
 msgid "Settlement"
-msgstr ""
+msgstr "殖民"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr ""
+msgstr "军事"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "军事建筑"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr ""
+msgstr "兵营"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "训练市民战士,研究将提高训练效率,允许驻兵:10"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr ""
+msgstr "铁匠铺"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "研究武器以及护甲"
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr ""
+msgstr "船坞"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "再海岸线建造可以生产海军单位同事打开海上贸易渠道.研究可以增强海军"
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:28
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
-msgstr ""
+msgstr "大使馆"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
-msgstr ""
+msgstr "城市"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
-#: simulation/templates/template_structure_military_fortress.xml:31
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:25
+#: simulation/templates/template_structure_military_fortress.xml:54
 msgid "Fortress"
-msgstr ""
+msgstr "城堡"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:55
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr ""
+msgstr "训练英雄,攻城武器.研究将提升攻城武器,允许驻军:20"
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "资源"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr ""
+msgstr "资源建筑"
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "畜栏"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "放牧动物以获得食物.在此处放牧动物来源源不断获得食物一起额外物品(暂未生效)"
 
-#: simulation/templates/template_structure_resource_field.xml:25
-#: simulation/templates/template_structure_resource_field.xml:24
-msgid "Field"
-msgstr ""
-
+#: simulation/templates/template_structure_resource_field.xml:27
 #: simulation/templates/template_structure_resource_field.xml:26
+msgid "Field"
+msgstr "土地"
+
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr ""
+msgstr "收获蔬菜,最多收集者:5"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "这是对与每个文明独一无二的特殊建筑"
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
-msgstr ""
+msgstr "特殊建筑"
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr ""
+msgstr "给你的文明带来荣耀,并给你的王国带来大片土地"
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
-msgstr ""
+msgstr "奇迹"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/hele_barracks.xml:20
@@ -392,7 +393,7 @@ msgstr ""
 #: simulation/templates/structures/hele_fortress.xml:16
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "建造攻城机车,最多允许驻扎20个士兵,来破坏坚固的建筑"
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
@@ -700,7 +701,6 @@ msgstr ""
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
-#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Stonehenge"
 msgstr ""
 
@@ -996,6 +996,10 @@ msgstr ""
 msgid "Biko Sarbide"
 msgstr ""
 
+#: simulation/templates/structures/iber_wonder.xml:17
+msgid "Cancho Roano"
+msgstr ""
+
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
@@ -1174,11 +1178,11 @@ msgstr ""
 msgid "Apadana"
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:12
+#: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
 msgstr ""
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr ""
 

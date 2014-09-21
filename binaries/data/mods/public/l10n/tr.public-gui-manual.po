@@ -5,14 +5,15 @@
 # 
 # Translators:
 # Doğu Kan, 2014
+# Volkan Gezer <volkangezer@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-24 07:06+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-20 23:10+0000\n"
+"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -162,7 +163,7 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr "Ayar değişikliklerini bitirdiğinde. Rasgele haritalar için bu oyuncuların sayısını içerecektir, harita boyutu, vs. Senaryolar için yanlız hangi oyuncu için hangi kontroller seçebilirsin (haritada nerede başlayacağın gibi.).Bu seçenek, bir oyuncu, bir yapay zeka veya hiç bir oyuncunun olmamasını sağlar(mevcut olan birimler görüş haline gelen düşmanlara saldıracak, ancak ne yeni birimler oluşturulacak, nede saldırıya gidecekler)."
+msgstr "Ayar değişikliklerini bitirdiğinde. Rasgele haritalar için bu oyuncuların sayısını içerecektir, harita boyutu, vs. Senaryolar için yalnız hangi oyuncu için hangi kontroller seçebilirsin (haritada nerede başlayacağın gibi.).Bu seçenek, bir oyuncu, bir yapay zeka veya hiç bir oyuncunun olmamasını sağlar(mevcut olan birimler görüş haline gelen düşmanlara saldıracak, ancak ne yeni birimler oluşturulacak, nede saldırıya gidecekler)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -372,12 +373,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Sağ Tık seçilmiş birimlerle:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- İmleç bir yapının üzerindeyse: Askeri Birlik"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- Aksi Halde: Saldırı harekatı"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "    - Başka türlü: Saldırı hamlesi (hedef yoldaki tüm düşman birimleri ve yapıları için, yalnız hedef birimlerine Ctrl + Q + Sol tıklayarak kullanılır). "
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

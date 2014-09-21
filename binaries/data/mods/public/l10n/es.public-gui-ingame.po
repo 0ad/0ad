@@ -41,8 +41,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-17 10:10+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 11:50+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -62,7 +62,7 @@ msgstr "Alcance de visión básico: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Bonificación media de tiro: %(range)s"
 
-#: gui/session/input.js:725
+#: gui/session/input.js:730
 msgid "Cannot build wall here!"
 msgstr "¡No puedes construir murallas aquí!"
 
@@ -117,7 +117,7 @@ msgstr "¿Quieres abandonar o volverás en breve?"
 msgid "Destroy everything currently selected?"
 msgstr "¿Quieres destruir todo lo que está seleccionado?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:666
+#: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
 msgstr "Eliminar"
 
@@ -742,99 +742,99 @@ msgstr "Nota: la distorsión temporal es una opción de desarrollo, y no está p
 msgid "Time warp mode"
 msgstr "Distorsión temporal"
 
-#: gui/session/unit_actions.js:295
+#: gui/session/unit_actions.js:300
 msgid "Origin trade market."
 msgstr "Origen del intercambio comercial."
 
-#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
-#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Ganancia: %(gain)s"
 
-#: gui/session/unit_actions.js:301
+#: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Clic derecho sobre otro mercado para configurarlo como lugar de destino."
 
-#: gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:309
 msgid "Destination trade market."
 msgstr "Destino del intercambio comercial."
 
-#: gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
 msgstr "Clic derecho para configurarlo como mercado de procedencia"
 
-#: gui/session/unit_actions.js:314
+#: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
 msgstr "Clic derecho para establecerlo como mercado de destino."
 
-#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Guarnición actual: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:519
+#: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic derecho para establecer una ruta por defecto para nuevos mercaderes."
 
-#: gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Ganancia esperada: %(gain)s"
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:655
 msgid "Unload All"
 msgstr "Desalojar a todos"
 
-#: gui/session/unit_actions.js:661
+#: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "No puedes destruir esta entidad al estar en la niebla de guerra"
 
-#: gui/session/unit_actions.js:689
+#: gui/session/unit_actions.js:699
 msgid "Stop"
 msgstr "Detener"
 
-#: gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:717
 msgid "Garrison"
 msgstr "Guarnecer"
 
-#: gui/session/unit_actions.js:728
+#: gui/session/unit_actions.js:738
 msgid "Unload"
 msgstr "Desalojar"
 
-#: gui/session/unit_actions.js:744
+#: gui/session/unit_actions.js:754
 msgid "Repair"
 msgstr "Reparar"
 
-#: gui/session/unit_actions.js:761
+#: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
 msgstr "Ir al punto de encuentro"
 
-#: gui/session/unit_actions.js:784
+#: gui/session/unit_actions.js:794
 msgid "Back to Work"
 msgstr "Volver al trabajo"
 
-#: gui/session/unit_actions.js:800
+#: gui/session/unit_actions.js:810
 msgid "Guard"
 msgstr "Proteger"
 
-#: gui/session/unit_actions.js:817
+#: gui/session/unit_actions.js:827
 msgid "Remove guard"
 msgstr "Desproteger"
 
-#: gui/session/unit_actions.js:833
+#: gui/session/unit_actions.js:843
 msgid "Select trading goods"
 msgstr "Elige los bienes a comerciar"
 
-#: gui/session/unit_actions.js:850
+#: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
 msgstr "Aumenta el nivel de alerta para proteger a más unidades"
 
-#: gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
 msgstr "¡Dad la alarma!"
 
-#: gui/session/unit_actions.js:870
+#: gui/session/unit_actions.js:880
 msgid "End of alert."
 msgstr "Fin de la alarma."
 
@@ -863,7 +863,7 @@ msgstr "Perforación"
 #: gui/session/utility_functions.js:184 gui/session/utility_functions.js:233
 #: gui/session/utility_functions.js:260 gui/session/utility_functions.js:288
 msgid "Crush"
-msgstr "Triturar"
+msgstr "Destructor"
 
 #: gui/session/utility_functions.js:195
 #, python-format

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-17 10:01+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 23:50+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -19,11 +19,6 @@ msgstr ""
 "Generated-By: Potter 1.0\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: globalscripts/l10n.js:112
-msgctxt "enumeration"
-msgid ", "
-msgstr "，"
 
 #: gui/civinfo/civinfo.js:108
 #, python-format
@@ -597,7 +592,7 @@ msgid "Close"
 msgstr "关闭"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:316 (caption)
+#: (caption) gui/pregame/mainmenu.xml:315 (caption)
 msgid "Language"
 msgstr "语言"
 
@@ -716,17 +711,17 @@ msgstr "匿名反馈已启用"
 msgid "Status: $status."
 msgstr "状态: $status."
 
-#: gui/pregame/mainmenu.xml:504
+#: gui/pregame/mainmenu.xml:515
 msgid "Alpha XVI: Patañjali"
 msgstr "Alpha XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:506
+#: gui/pregame/mainmenu.xml:517
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被加进去。"
 
-#: gui/pregame/mainmenu.xml:508
+#: gui/pregame/mainmenu.xml:519
 msgid "Get involved at: play0ad.com"
 msgstr "欢迎加入：play0ad.com"
 
@@ -787,119 +782,127 @@ msgstr "游戏大厅"
 msgid "Launch the multiplayer lobby."
 msgstr "启动多人游戏大厅"
 
-#: gui/pregame/mainmenu.xml:299 (caption)
+#: gui/pregame/mainmenu.xml:298 (caption)
 msgid "Options"
 msgstr "选项"
 
-#: gui/pregame/mainmenu.xml:300 (tooltip)
+#: gui/pregame/mainmenu.xml:299 (tooltip)
 msgid "Adjust game settings."
 msgstr "调整游戏设置."
 
-#: gui/pregame/mainmenu.xml:317 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Choose the language of the game."
 msgstr "选择游戏语言。"
 
-#: gui/pregame/mainmenu.xml:332 (caption)
+#: gui/pregame/mainmenu.xml:331 (caption)
 msgid "Scenario Editor"
 msgstr "场景编辑器"
 
-#: gui/pregame/mainmenu.xml:333 (tooltip)
+#: gui/pregame/mainmenu.xml:332 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-editor\"启动游戏使此功能更稳定。"
 
-#: gui/pregame/mainmenu.xml:345 (caption)
+#: gui/pregame/mainmenu.xml:344 (caption)
 msgid "Welcome Screen"
 msgstr "欢迎屏幕"
 
-#: gui/pregame/mainmenu.xml:346 (tooltip)
+#: gui/pregame/mainmenu.xml:345 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
-#: gui/pregame/mainmenu.xml:402 (caption)
+#: gui/pregame/mainmenu.xml:359 (caption)
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:360 (tooltip)
+msgid "Select mods to use."
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:413 (caption)
 msgid "Learn To Play"
 msgstr "游戏教程"
 
-#: gui/pregame/mainmenu.xml:403 (tooltip)
+#: gui/pregame/mainmenu.xml:414 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr "打开 0 A.D. 游戏手册。"
 
-#: gui/pregame/mainmenu.xml:419 (caption)
+#: gui/pregame/mainmenu.xml:430 (caption)
 msgid "Single Player"
 msgstr "单人游戏"
 
-#: gui/pregame/mainmenu.xml:420 (tooltip)
+#: gui/pregame/mainmenu.xml:431 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "人机对战"
 
-#: gui/pregame/mainmenu.xml:434 (caption)
+#: gui/pregame/mainmenu.xml:445 (caption)
 msgid "Multiplayer"
 msgstr "多人对战"
 
-#: gui/pregame/mainmenu.xml:435 (tooltip)
+#: gui/pregame/mainmenu.xml:446 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "在多人游戏中和其他的人类玩家作战"
 
-#: gui/pregame/mainmenu.xml:449 (caption)
+#: gui/pregame/mainmenu.xml:460 (caption)
 msgid "Tools & Options"
 msgstr "工具和选项"
 
-#: gui/pregame/mainmenu.xml:450 (tooltip)
+#: gui/pregame/mainmenu.xml:461 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "游戏选项和场景编辑器"
 
-#: gui/pregame/mainmenu.xml:464 (caption)
+#: gui/pregame/mainmenu.xml:475 (caption)
 msgid "History"
 msgstr "历史"
 
-#: gui/pregame/mainmenu.xml:465 (tooltip)
+#: gui/pregame/mainmenu.xml:476 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "了解0 A.D.游戏中众多文明的特色"
 
-#: gui/pregame/mainmenu.xml:481 (caption)
+#: gui/pregame/mainmenu.xml:492 (caption)
 msgid "Exit"
 msgstr "退出"
 
-#: gui/pregame/mainmenu.xml:482 (tooltip)
+#: gui/pregame/mainmenu.xml:493 (tooltip)
 msgid "Exits the game."
 msgstr "退出游戏"
 
-#: gui/pregame/mainmenu.xml:518 (caption)
+#: gui/pregame/mainmenu.xml:529 (caption)
 msgid "Help with the Translation!"
 msgstr "协助翻译！"
 
-#: gui/pregame/mainmenu.xml:519 (tooltip)
+#: gui/pregame/mainmenu.xml:530 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
-#: gui/pregame/mainmenu.xml:530 (caption)
+#: gui/pregame/mainmenu.xml:541 (caption)
 msgid "Website"
 msgstr "官网"
 
-#: gui/pregame/mainmenu.xml:531 (tooltip)
+#: gui/pregame/mainmenu.xml:542 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "点击进入游戏官网play0ad.com"
 
-#: gui/pregame/mainmenu.xml:542 (caption)
+#: gui/pregame/mainmenu.xml:553 (caption)
 msgid "Chat"
 msgstr "聊天"
 
-#: gui/pregame/mainmenu.xml:543 (tooltip)
+#: gui/pregame/mainmenu.xml:554 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
 
-#: gui/pregame/mainmenu.xml:554 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "Report a Bug"
 msgstr "报告游戏错误"
 
-#: gui/pregame/mainmenu.xml:555 (tooltip)
+#: gui/pregame/mainmenu.xml:566 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
-#: gui/pregame/mainmenu.xml:583 (caption)
+#: gui/pregame/mainmenu.xml:594 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "野火游戏"
 
