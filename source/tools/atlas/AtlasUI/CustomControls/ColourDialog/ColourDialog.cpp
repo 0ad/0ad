@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -65,8 +65,11 @@ int ColourDialog::ShowModal()
 				wxString name = wxString::Format(_T("%s%d"), m_ConfigPath.c_str(), i);
 				wxColour colour = GetColourData().GetCustomColour(i);
 
-				wxString customColour = wxString::Format(_T("%d %d %d"), colour.Red(), colour.Green(), colour.Blue());
-				cfg->Write(name, customColour);
+				if (colour.IsOk())
+				{
+					wxString customColour = wxString::Format(_T("%d %d %d"), colour.Red(), colour.Green(), colour.Blue());
+					cfg->Write(name, customColour);
+				}
 			}
 		}
 	}
