@@ -114,13 +114,9 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 		this.unitStat["Hero"]                = { "priority": 1, "minSize": 0, "targetSize":  1, "batchSize": 1, "classes": ["Hero"],
 			"interests": [ ["strength",2], ["cost",1] ] };
 		this.neededShips = 5;
-		// decrease a bit the targetSize according to max population
-		if (gameState.getPopulationMax() < 300)
-		{
-			var reduc = Math.sqrt(gameState.getPopulationMax() / 300);
-			for (var unitCat in this.unitStat)
-				this.unitStat[unitCat]["targetSize"] = Math.floor(reduc * this.unitStat[unitCat]["targetSize"]);
-		}
+		// change the targetSize according to max population
+		for (var unitCat in this.unitStat)
+			this.unitStat[unitCat]["targetSize"] = Math.round(this.Config.popScaling * this.unitStat[unitCat]["targetSize"]);
 	}
 	else
 	{
