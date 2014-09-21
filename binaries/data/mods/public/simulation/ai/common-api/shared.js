@@ -325,7 +325,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 			continue;	// dead, presumably.
 		var changes = state.changedEntityTemplateInfo[id];
 		for each (var change in changes)
-			this._entities[id]._auraTemplateModif[change.variable] = change.value;
+			this._entities[id]._auraTemplateModif.set(change.variable, change.value);
 	}
 	Engine.ProfileStop();
 };
@@ -341,9 +341,9 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 		{
 			var changes = playerDiff[template];
 			if (!this._techModifications[player][template])
-				this._techModifications[player][template] = {};
+				this._techModifications[player][template] = new Map();
 			for each (var change in changes)
-				this._techModifications[player][template][change.variable] = change.value;
+				this._techModifications[player][template].set(change.variable, change.value);
 		}
 	}
 	Engine.ProfileStop();

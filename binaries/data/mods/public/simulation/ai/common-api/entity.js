@@ -8,7 +8,7 @@ m.Template = m.Class({
 	_init: function(template)
 	{
 		this._template = template;
-		this._tpCache = {};
+		this._tpCache = new Map();
 	},
 	
 	// helper function to return a template value, optionally adjusting for tech.
@@ -16,12 +16,12 @@ m.Template = m.Class({
 	get: function(string)
 	{
 		var value = this._template;
-		if (this._auraTemplateModif && this._auraTemplateModif[string])		{
-			return this._auraTemplateModif[string];
-		} else if (this._techModif && this._techModif[string]) {
-			return this._techModif[string];
+		if (this._auraTemplateModif && this._auraTemplateModif.has(string))		{
+			return this._auraTemplateModif.get(string);
+		} else if (this._techModif && this._techModif.has(string)) {
+			return this._techModif.get(string);
 		} else {
-			if (this._tpCache[string] == null)
+			if (!this._tpCache.has(string))
 			{
 				var args = string.split("/");
 				for (var i = 0; i < args.length; ++i)
@@ -32,10 +32,11 @@ m.Template = m.Class({
 						value = undefined;
 						break;
 					}
-				this._tpCache[string] = value;
+				this._tpCache.set(string, value);
 			}
-			return this._tpCache[string];
-		} 
+			return this._tpCache.get(string);
+		}
+ 
 	},
 
 	genericName: function() {
@@ -517,10 +518,10 @@ m.Entity = m.Class({
 
 		this._templateName = entity.template;
 		this._entity = entity;
-		this._auraTemplateModif = {};	// template modification from auras. this is only for this entity.
+		this._auraTemplateModif = new Map();	// template modification from auras. this is only for this entity.
 		this._ai = sharedAI;
 		if (!sharedAI._techModifications[entity.owner][this._templateName])
-			sharedAI._techModifications[entity.owner][this._templateName] = {};
+			sharedAI._techModifications[entity.owner][this._templateName] = new Map();
 		this._techModif = sharedAI._techModifications[entity.owner][this._templateName]; // save a reference to the template tech modifications
 	},
 
