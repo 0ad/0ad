@@ -30,8 +30,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-25 14:00+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 23:50+0000\n"
 "Last-Translator: Me Lazzi\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -51,7 +51,7 @@ msgstr "Gittata Base: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Bonus gittata media: %(range)s"
 
-#: gui/session/input.js:725
+#: gui/session/input.js:730
 msgid "Cannot build wall here!"
 msgstr "Non puoi costruire muri qui!"
 
@@ -106,7 +106,7 @@ msgstr "Vuoi abbandonare o ritornerai presto?"
 msgid "Destroy everything currently selected?"
 msgstr "Distruggere tutto ciò che è selezionato?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:666
+#: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
 msgstr "Elimina"
 
@@ -731,99 +731,99 @@ msgstr "Nota: la modalità distorsione temporale è un'opzione sviluppatore, e n
 msgid "Time warp mode"
 msgstr "Distorsione Temporale"
 
-#: gui/session/unit_actions.js:295
+#: gui/session/unit_actions.js:300
 msgid "Origin trade market."
 msgstr "Mercato d'origine."
 
-#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
-#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Guadagno: %(gain)s"
 
-#: gui/session/unit_actions.js:301
+#: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Clic destro su un altro mercato per impostarlo come un mercato commerciale di destinazione."
 
-#: gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:309
 msgid "Destination trade market."
 msgstr "Mercato di destinazione."
 
-#: gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
 msgstr "Clic destro per impostare come mercato d'origine"
 
-#: gui/session/unit_actions.js:314
+#: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
 msgstr "Clic destro per impostare come mercato di destinazione."
 
-#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Acquartierati: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:519
+#: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
 msgstr "Clic destro per stabilire una rotta iniziale per i nuovi commercianti."
 
-#: gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Guadagno atteso: %(gain)s"
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:655
 msgid "Unload All"
 msgstr "Sbarca tutti"
 
-#: gui/session/unit_actions.js:661
+#: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Non puoi distruggere questa entità perché è nella nebbia-di-guerra"
 
-#: gui/session/unit_actions.js:689
+#: gui/session/unit_actions.js:699
 msgid "Stop"
 msgstr "Stop"
 
-#: gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:717
 msgid "Garrison"
 msgstr "Guarnigione"
 
-#: gui/session/unit_actions.js:728
+#: gui/session/unit_actions.js:738
 msgid "Unload"
 msgstr "Sbarca"
 
-#: gui/session/unit_actions.js:744
+#: gui/session/unit_actions.js:754
 msgid "Repair"
 msgstr "Ripara"
 
-#: gui/session/unit_actions.js:761
+#: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
 msgstr "Focus sui punti di raccolta"
 
-#: gui/session/unit_actions.js:784
+#: gui/session/unit_actions.js:794
 msgid "Back to Work"
 msgstr "Torna al Lavoro"
 
-#: gui/session/unit_actions.js:800
+#: gui/session/unit_actions.js:810
 msgid "Guard"
 msgstr "Guardia"
 
-#: gui/session/unit_actions.js:817
+#: gui/session/unit_actions.js:827
 msgid "Remove guard"
 msgstr "Rimuovi Guardia"
 
-#: gui/session/unit_actions.js:833
+#: gui/session/unit_actions.js:843
 msgid "Select trading goods"
 msgstr "Seleziona beni commerciali"
 
-#: gui/session/unit_actions.js:850
+#: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
 msgstr "Aumenta il livello di allerta per proteggere più unità"
 
-#: gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
 msgstr "Lancia un Allarme!"
 
-#: gui/session/unit_actions.js:870
+#: gui/session/unit_actions.js:880
 msgid "End of alert."
 msgstr "Fine dell'allerta."
 

@@ -33,8 +33,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-19 18:11+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 23:50+0000\n"
 "Last-Translator: slodki12341 <slodki1234@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -54,7 +54,7 @@ msgstr "Podstawowy zasięg: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Średni bonus do zasięgu: %(range)s"
 
-#: gui/session/input.js:725
+#: gui/session/input.js:730
 msgid "Cannot build wall here!"
 msgstr "Tutaj nie można zbudować muru!"
 
@@ -109,7 +109,7 @@ msgstr "Chcesz zrezygnować, czy zamierzasz wrócić tu wkrótce?"
 msgid "Destroy everything currently selected?"
 msgstr "Zniszczyć wszystko obecnie zaznaczone?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:666
+#: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
 msgstr "Usuń"
 
@@ -744,99 +744,99 @@ msgstr "Uwaga: tryb zwielokrotnienia szybkości jest narzędziem deweloperskim i
 msgid "Time warp mode"
 msgstr "Tryb zwielokrotnienia szybkości."
 
-#: gui/session/unit_actions.js:295
+#: gui/session/unit_actions.js:300
 msgid "Origin trade market."
 msgstr "Rynek początkowy "
 
-#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
-#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Zysk: %(gain)s"
 
-#: gui/session/unit_actions.js:301
+#: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Kliknij prawym przyciskiem myszy na innym rynku, aby ustawić go jako rynek handlu docelowego."
 
-#: gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:309
 msgid "Destination trade market."
 msgstr "Rynek docelowy"
 
-#: gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
 msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek początkowy dla szlaku handlowego."
 
-#: gui/session/unit_actions.js:314
+#: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
 msgstr "Kliknij prawym przyciskiem myszy, aby ustawić rynek docelowy dla szlaku handlowego."
 
-#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Stan garnizonu: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:519
+#: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
 msgstr "Kliknij prawym przyciskiem myszy, aby ustalić trasę domyślną dla nowych handlarzy."
 
-#: gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Przewidywany zysk: %(gain)s"
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:655
 msgid "Unload All"
 msgstr "Rozładuj całkowicie"
 
-#: gui/session/unit_actions.js:661
+#: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Nie możesz zniszczyć tej jednostki, ponieważ jest ona we mgle wojny."
 
-#: gui/session/unit_actions.js:689
+#: gui/session/unit_actions.js:699
 msgid "Stop"
 msgstr "Stop"
 
-#: gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:717
 msgid "Garrison"
 msgstr "Garnizon"
 
-#: gui/session/unit_actions.js:728
+#: gui/session/unit_actions.js:738
 msgid "Unload"
 msgstr "Usuń"
 
-#: gui/session/unit_actions.js:744
+#: gui/session/unit_actions.js:754
 msgid "Repair"
 msgstr "Napraw"
 
-#: gui/session/unit_actions.js:761
+#: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
 msgstr "Pokaż punkt zbiórki"
 
-#: gui/session/unit_actions.js:784
+#: gui/session/unit_actions.js:794
 msgid "Back to Work"
 msgstr "Powrót do pracy"
 
-#: gui/session/unit_actions.js:800
+#: gui/session/unit_actions.js:810
 msgid "Guard"
 msgstr "Straż"
 
-#: gui/session/unit_actions.js:817
+#: gui/session/unit_actions.js:827
 msgid "Remove guard"
 msgstr "Usuń straż"
 
-#: gui/session/unit_actions.js:833
+#: gui/session/unit_actions.js:843
 msgid "Select trading goods"
 msgstr "Zaznacz towary handlowe"
 
-#: gui/session/unit_actions.js:850
+#: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
 msgstr "Zwiększ poziom gotowości, aby chronić więcej jednostek"
 
-#: gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
 msgstr "Podnieś alarm!"
 
-#: gui/session/unit_actions.js:870
+#: gui/session/unit_actions.js:880
 msgid "End of alert."
 msgstr "koniec alarmu."
 

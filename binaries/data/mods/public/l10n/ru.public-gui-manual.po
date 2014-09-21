@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-07-14 17:08+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 22:27+0000\n"
 "Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -373,12 +373,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + ПКМ с выбранными юнитами:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
-msgstr "- Если курсор находится над строением     Назначать на гарнизонную службу"
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- если курсор над союзной постройкой: Отправить в гарнизон"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- Иначе      Атака в движении"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "- Иначе: Атаковать в движении (по-умолчанию все вражеские юниты и постройки атакуются по пути следования; используй Ctrl + Q + Правая кнопка мыши для атаки только юнитов)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-06-23 12:42+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 20:13+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -371,12 +371,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + klepnutí pravým tlačítkem myši, když jsou vybrány jednotky:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "    - Když je ukazovátko myši nad budovou: Obsadit, ubytovat"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "    - V opačném případě: Zaútočit"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "    - Jinak: Zaútočit (Ve výchozím nastavení jsou zaměřeny všechny nepřátelské jednotky a veškeré budovy nacházející se podél cesty. Použijte Ctrl + Q + klepnutí pravým tlačítkem myši, aby byly zaměřeny pouze jednotky). "
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

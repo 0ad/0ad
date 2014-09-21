@@ -1,0 +1,135 @@
+# Translation template for Pyrogenesis - Mod Selector.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis - Mod
+# Selector project.
+# 
+# Translators:
+# fri, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"PO-Revision-Date: 2014-09-15 20:13+0000\n"
+"Last-Translator: fri\n"
+"Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: cs\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:94 (heading)
+#: gui/modmod/modmod.xml:135 (heading)
+msgid "Name"
+msgstr "Název"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Štítek"
+
+#: gui/modmod/modmod.js:30
+msgid "Folder"
+msgstr "Složka"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
+#: gui/modmod/modmod.xml:138 (heading)
+msgid "Version"
+msgstr "Verze"
+
+#: gui/modmod/modmod.js:36
+msgid "Type: Any"
+msgstr "Typ: Vše"
+
+#: gui/modmod/modmod.js:51
+msgid "Filter"
+msgstr "Filtr"
+
+#: gui/modmod/modmod.js:63
+msgid "Message: Mods Loaded."
+msgstr "Zpráva: Pozměněné verze nahrány"
+
+#: gui/modmod/modmod.js:360
+msgid "All dependencies met"
+msgstr "Všechny závislosti přítomny"
+
+#: gui/modmod/modmod.js:486
+msgid "No mod has been selected."
+msgstr "Nebyla vybrána žádná pozměněná verze"
+
+#: gui/modmod/modmod.xml:10 (caption)
+msgid "Modifications"
+msgstr "Pozměněné verze"
+
+#: gui/modmod/modmod.xml:18 (caption)
+msgid "Reset Filters"
+msgstr "vynulovat filtry"
+
+#: gui/modmod/modmod.xml:52 (caption)
+msgid "Negate"
+msgstr "Zrušit"
+
+#: gui/modmod/modmod.xml:87 (caption)
+msgid "Available Mods"
+msgstr "Dostupné pozměněné verze"
+
+#: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
+msgid "(Folder)"
+msgstr "(Složka)"
+
+#: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
+msgid "Mod Label"
+msgstr "Štítek pozměněné verze"
+
+#: gui/modmod/modmod.xml:106 (heading) gui/modmod/modmod.xml:147 (heading)
+msgid "Mod Type"
+msgstr "Typ pozměněné verze"
+
+#: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
+msgid "Dependencies"
+msgstr "Závislosti"
+
+#: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
+msgid "Website"
+msgstr "Stránka"
+
+#: gui/modmod/modmod.xml:119 (caption)
+msgid "Enable"
+msgstr "Povolit"
+
+#: gui/modmod/modmod.xml:128 (caption)
+msgid "Enabled Mods"
+msgstr "Povolené pozměněné verze"
+
+#: gui/modmod/modmod.xml:158 (caption)
+msgid "Up"
+msgstr "Nahoru"
+
+#: gui/modmod/modmod.xml:162 (caption)
+msgid "X"
+msgstr "X"
+
+#: gui/modmod/modmod.xml:166 (caption)
+msgid "Down"
+msgstr "Dolů"
+
+#: gui/modmod/modmod.xml:174 (caption)
+msgid "Quit"
+msgstr "Ukončit"
+
+#: gui/modmod/modmod.xml:179 (caption)
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: gui/modmod/modmod.xml:184 (caption)
+msgid "Save Configuration"
+msgstr "Nastavení ukládání"
+
+#: gui/modmod/modmod.xml:189 (caption)
+msgid "Start Mods"
+msgstr "Spustit pozměněné verze"
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Popis"

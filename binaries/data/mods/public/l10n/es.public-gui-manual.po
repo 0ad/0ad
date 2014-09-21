@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Swyter <Swyterzone@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-06-20 17:33+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-15 11:00+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -370,12 +371,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic derecho con unidades seleccionadas:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
-msgstr "- Si el puntero está sobre una estructura: Guarnecer"
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- Si el puntero se encuentra sobre una estructura aliada: Guarnecer"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- Sino: Mover atacando"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "- Sino: Atacar moviendo (por defecto atacarán a todas las unidades y estructuras enemigas que se crucen en su camino, presiona Ctrl + Q + clic derecho para atacar únicamente a unidades)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

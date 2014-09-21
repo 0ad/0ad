@@ -1544,7 +1544,7 @@ public:
 			if (oldVisibilities[player-1] == newVisibilities[player-1])
 				continue;
 			
-			// A visibility update can be necessary for the next turn
+			// Another visibility update can be necessary to take in account new mirages
 			if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), ent) == m_ModifiedEntities.end())
 				m_ModifiedEntities.push_back(ent);
 
@@ -1747,7 +1747,22 @@ public:
 					explored += !(m_LosState[idx] & (LOS_EXPLORED << (2*(owner-1))));
 					m_LosState[idx] |= ((LOS_VISIBLE | LOS_EXPLORED) << (2*(owner-1)));
 				}
-				m_DirtyVisibility[(j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO] = 1;
+
+				// Mark the LoS tiles around the updated vertex
+				// 1: left-up, 2: right-up, 3: left-down, 4: right-down
+				int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+				int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+
+				if (j > 0 && i > 0)
+					m_DirtyVisibility[n1] = 1;
+				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
+					m_DirtyVisibility[n2] = 1;
+				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
+					m_DirtyVisibility[n3] = 1;
+				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
+					m_DirtyVisibility[n4] = 1;
 			}
 
 			ASSERT(counts[idx] < 65535);
@@ -1777,7 +1792,22 @@ public:
 				m_LosState[idx] &= ~(LOS_VISIBLE << (2*(owner-1)));
 
 				i32 i = i0 + idx - idx0;
-				m_DirtyVisibility[(j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO] = 1;
+
+				// Mark the LoS tiles around the updated vertex
+				// 1: left-up, 2: right-up, 3: left-down, 4: right-down
+				int n1 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+				int n2 = ((j-1)/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
+				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
+
+				if (j > 0 && i > 0)
+					m_DirtyVisibility[n1] = 1;
+				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
+					m_DirtyVisibility[n2] = 1;
+				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
+					m_DirtyVisibility[n3] = 1;
+				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
+					m_DirtyVisibility[n4] = 1;
 			}
 		}
 	}

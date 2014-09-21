@@ -17,7 +17,6 @@ m.PetraBot = function PetraBot(settings)
 
 	this.Config = new m.Config();
 	this.Config.updateDifficulty(settings.difficulty);	
-	//this.Config.personality = settings.personality;	
 
 	this.savedEvents = {};
 };
@@ -27,6 +26,9 @@ m.PetraBot.prototype = new API3.BaseAI();
 m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 {
 	this.initPersonality();
+
+	if (gameState.getPopulationMax() < 300)
+		this.Config.popScaling = Math.sqrt(gameState.getPopulationMax() / 300);
 
 	this.priorities = this.Config.priorities;
 	// this.queues can only be modified by the queue manager or things will go awry.
@@ -109,8 +111,11 @@ m.PetraBot.prototype.initPersonality = function()
 	{
 		this.Config.personality.aggressive = Math.random();
 		this.Config.personality.cooperative = Math.random();
+		this.Config.personality.defensive = Math.random();
 	}
 
+	this.Config.Military.towerLapseTime += Math.round(20*(this.Config.personality.defensive - 0.5));
+	this.Config.Military.fortressLapseTime += Math.round(60*(this.Config.personality.defensive - 0.5));
 	if (this.Config.personality.aggressive > 0.7)
 	{
 		this.Config.Military.popForBarracks1 = 12;

@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-07-19 09:30+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-20 08:59+0000\n"
 "Last-Translator: Leszek S\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -372,12 +372,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + PPM na wybranych jednostkach:"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
-msgstr "-Jeśli kursor znajduje się na strukturze: Garnizon"
+msgid "    - If the cursor is over an allied structure: Garrison"
+msgstr "- Jeśli kursor znajduje się nad sprzymierzonym budynkiem: stacjonuj wewnątrz"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "-Inaczej: Atakuj"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "- W przeciwnym razie: przemieszczanie w trybie ataku (domyślnie wszystkie wrogie jednostki i budynki wzdłuż drogi są celami, użyj Ctrl + Q + prawy przycisk, aby celować tylko w jednostki)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

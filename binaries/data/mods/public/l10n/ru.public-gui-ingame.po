@@ -39,8 +39,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-08-17 11:00+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 22:27+0000\n"
 "Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
@@ -60,7 +60,7 @@ msgstr "Базовый счёт: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Дополнительный бонусный счёт: %(range)s"
 
-#: gui/session/input.js:725
+#: gui/session/input.js:730
 msgid "Cannot build wall here!"
 msgstr "Здесь невозможно построить стену!"
 
@@ -115,7 +115,7 @@ msgstr "Вы желаете сдаться или вскоре вернётес�
 msgid "Destroy everything currently selected?"
 msgstr "Удалить все выбранное?"
 
-#: gui/session/menu.js:189 gui/session/unit_actions.js:666
+#: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
 msgstr "Удалить"
 
@@ -750,99 +750,99 @@ msgstr "Заметка: режим искривления времени это 
 msgid "Time warp mode"
 msgstr "Искажение времени"
 
-#: gui/session/unit_actions.js:295
+#: gui/session/unit_actions.js:300
 msgid "Origin trade market."
 msgstr "Исходный пункт торгового рынка."
 
-#: gui/session/unit_actions.js:297 gui/session/unit_actions.js:304
-#: gui/session/unit_actions.js:314 gui/session/unit_actions.js:521
+#: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
 msgstr "Прирост: %(gain)s"
 
-#: gui/session/unit_actions.js:301
+#: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
 msgstr "Нажмите ПКМ на другом рынке чтобы выбрать целевой рынок."
 
-#: gui/session/unit_actions.js:304
+#: gui/session/unit_actions.js:309
 msgid "Destination trade market."
 msgstr "Место назначения торгового рынка."
 
-#: gui/session/unit_actions.js:309
+#: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
 msgstr "Нажмите ПКМ для выбора исходного торгового рынка"
 
-#: gui/session/unit_actions.js:314
+#: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
 msgstr "Нажмите ПКМ для выбора конечного торгового рынка. "
 
-#: gui/session/unit_actions.js:346 gui/session/unit_actions.js:477
+#: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
 msgstr "Текущий гарнизон: %(garrisoned)s/%(capacity)s"
 
-#: gui/session/unit_actions.js:519
+#: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
 msgstr "Щелкните правой кнопкой мыши, чтобы установить маршрут по умолчанию для новых торговцев."
 
-#: gui/session/unit_actions.js:523
+#: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
 msgstr "Ожидаемый прирост: %(gain)s"
 
-#: gui/session/unit_actions.js:645
+#: gui/session/unit_actions.js:655
 msgid "Unload All"
 msgstr "Вывести всех"
 
-#: gui/session/unit_actions.js:661
+#: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
 msgstr "Вы не можете разрушить объект закрытый туманом войны."
 
-#: gui/session/unit_actions.js:689
+#: gui/session/unit_actions.js:699
 msgid "Stop"
 msgstr "Стоп"
 
-#: gui/session/unit_actions.js:707
+#: gui/session/unit_actions.js:717
 msgid "Garrison"
 msgstr "Защищать"
 
-#: gui/session/unit_actions.js:728
+#: gui/session/unit_actions.js:738
 msgid "Unload"
 msgstr "Вывести"
 
-#: gui/session/unit_actions.js:744
+#: gui/session/unit_actions.js:754
 msgid "Repair"
 msgstr "Ремонт"
 
-#: gui/session/unit_actions.js:761
+#: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
 msgstr "Установить точку сбора"
 
-#: gui/session/unit_actions.js:784
+#: gui/session/unit_actions.js:794
 msgid "Back to Work"
 msgstr "Вернуть к работе"
 
-#: gui/session/unit_actions.js:800
+#: gui/session/unit_actions.js:810
 msgid "Guard"
 msgstr "Охрана"
 
-#: gui/session/unit_actions.js:817
+#: gui/session/unit_actions.js:827
 msgid "Remove guard"
 msgstr "Убрать охрану"
 
-#: gui/session/unit_actions.js:833
+#: gui/session/unit_actions.js:843
 msgid "Select trading goods"
 msgstr "Выбрать товары"
 
-#: gui/session/unit_actions.js:850
+#: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
 msgstr "Увеличьте степень тревоги для защиты большего числа юнитов."
 
-#: gui/session/unit_actions.js:852
+#: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
 msgstr "Поднять тревогу!"
 
-#: gui/session/unit_actions.js:870
+#: gui/session/unit_actions.js:880
 msgid "End of alert."
 msgstr "Отменить тревогу"
 

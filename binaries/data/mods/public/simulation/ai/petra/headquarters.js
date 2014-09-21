@@ -129,7 +129,8 @@ m.HQ.prototype.init = function(gameState, queues)
 		var self = this;
 		var width = gameState.getMap().width;
 		gameState.getOwnEntities().forEach( function (ent) {
-			if (ent.hasClass("Trader"))
+			// do not affect merchant ship immediately to trade as they may-be useful for transport
+			if (ent.hasClass("Trader") && !ent.hasClass("Ship"))
 				self.tradeManager.assignTrader(ent);
 			var pos = ent.position();
 			if (!pos)
@@ -417,7 +418,6 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				this.baseManagers[base].buildings.updateEnt(ent);
 				this.updateTerritories(gameState);
 				// let us hope this new base will fix our resource shortage
-				// TODO check it really does so
 				this.saveResources = undefined;
 			}
 			else if (ent.hasTerritoryInfluence())
@@ -1696,7 +1696,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	{
 		this.stopBuilding.push(type);
 		if (this.Config.debug > 0)
-			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found ");
+			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found.");
 	}
 	if (!template || !template.available(gameState))
 		return false;

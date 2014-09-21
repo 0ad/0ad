@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-07-17 20:13+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-12 23:22+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -371,12 +372,15 @@ msgid "Ctrl + Right Click with units selected:"
 msgstr "Ctrl + Clic Droit lorsque des unités sont sélectionnées :"
 
 #: gui/manual/intro.txt:82
-msgid "    - If the cursor is over a structure: Garrison"
+msgid "    - If the cursor is over an allied structure: Garrison"
 msgstr "- Si le curseur est sur une structure : Garnison"
 
 #: gui/manual/intro.txt:83
-msgid "    - Otherwise: Attack move"
-msgstr "- Sinon : Mouvement d'attaque"
+msgid ""
+"    - Otherwise: Attack move (by default all enemy units and structures "
+"along the way are targeted, use Ctrl + Q + Right Click to target only "
+"units). "
+msgstr "- Sinon : Mouvement d'attaque (par défaut, toutes les unités et structures ennemies sur votre chemin sont prises pour cible, utilisez Ctrl + Q + Clic droit pour ne cibler que les unités)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"

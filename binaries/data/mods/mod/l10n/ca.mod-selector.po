@@ -1,0 +1,135 @@
+# Translation template for Pyrogenesis - Mod Selector.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the Pyrogenesis - Mod
+# Selector project.
+# 
+# Translators:
+# Haommin <tfs.msimangu@gmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"PO-Revision-Date: 2014-09-13 22:31+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ca\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:94 (heading)
+#: gui/modmod/modmod.xml:135 (heading)
+msgid "Name"
+msgstr "Nom"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Etiqueta"
+
+#: gui/modmod/modmod.js:30
+msgid "Folder"
+msgstr "Carpeta"
+
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
+#: gui/modmod/modmod.xml:138 (heading)
+msgid "Version"
+msgstr "Versió"
+
+#: gui/modmod/modmod.js:36
+msgid "Type: Any"
+msgstr "Tipus: Qualsevol"
+
+#: gui/modmod/modmod.js:51
+msgid "Filter"
+msgstr "Filtre"
+
+#: gui/modmod/modmod.js:63
+msgid "Message: Mods Loaded."
+msgstr "Missatge: S'han carregat els mods."
+
+#: gui/modmod/modmod.js:360
+msgid "All dependencies met"
+msgstr "S'han trobat totes les dependències"
+
+#: gui/modmod/modmod.js:486
+msgid "No mod has been selected."
+msgstr "No s'ha seleccionat cap mod."
+
+#: gui/modmod/modmod.xml:10 (caption)
+msgid "Modifications"
+msgstr "Modificacions"
+
+#: gui/modmod/modmod.xml:18 (caption)
+msgid "Reset Filters"
+msgstr "Restableix els filtres"
+
+#: gui/modmod/modmod.xml:52 (caption)
+msgid "Negate"
+msgstr "Nega"
+
+#: gui/modmod/modmod.xml:87 (caption)
+msgid "Available Mods"
+msgstr "Mods disponibles"
+
+#: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
+msgid "(Folder)"
+msgstr "(Carpeta)"
+
+#: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
+msgid "Mod Label"
+msgstr "Etiqueta del mod"
+
+#: gui/modmod/modmod.xml:106 (heading) gui/modmod/modmod.xml:147 (heading)
+msgid "Mod Type"
+msgstr "Tipus de mod"
+
+#: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
+msgid "Dependencies"
+msgstr "Dependències"
+
+#: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
+msgid "Website"
+msgstr "Lloc web"
+
+#: gui/modmod/modmod.xml:119 (caption)
+msgid "Enable"
+msgstr "Activa"
+
+#: gui/modmod/modmod.xml:128 (caption)
+msgid "Enabled Mods"
+msgstr "Mods activats"
+
+#: gui/modmod/modmod.xml:158 (caption)
+msgid "Up"
+msgstr "Amunt"
+
+#: gui/modmod/modmod.xml:162 (caption)
+msgid "X"
+msgstr "X"
+
+#: gui/modmod/modmod.xml:166 (caption)
+msgid "Down"
+msgstr "Avall"
+
+#: gui/modmod/modmod.xml:174 (caption)
+msgid "Quit"
+msgstr "Surt"
+
+#: gui/modmod/modmod.xml:179 (caption)
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: gui/modmod/modmod.xml:184 (caption)
+msgid "Save Configuration"
+msgstr "Desa la configuració"
+
+#: gui/modmod/modmod.xml:189 (caption)
+msgid "Start Mods"
+msgstr "Inicia els mods"
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Descripció"

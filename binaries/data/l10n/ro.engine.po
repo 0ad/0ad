@@ -5,13 +5,14 @@
 # Translators:
 # Dumitru Ursu <dima@ceata.org>, 2014
 # Nicolae Crefelean <kneekoo@yahoo.com>, 2014
+# Zsofia Forro, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:12+0200\n"
-"PO-Revision-Date: 2014-05-21 07:32+0000\n"
-"Last-Translator: Nicolae Crefelean <kneekoo@yahoo.com>\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 22:08+0000\n"
+"Last-Translator: Zsofia Forro\n"
 "Language-Team: Romanian (http://www.transifex.com/projects/p/0ad/language/ro/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,19 +23,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:798
+#: gui/scripting/ScriptFunctions.cpp:799
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (construcție personalizată)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:803
+#: gui/scripting/ScriptFunctions.cpp:804
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:824
+#: gui/scripting/ScriptFunctions.cpp:825
 msgid "custom build"
 msgstr "construcție personalizată"
 
@@ -45,9 +46,9 @@ msgstr "Șiruri lungi de caractere"
 #: ps/SavedGame.cpp:129
 #, c-format
 msgid "Saved game to '%ls'"
-msgstr "Salvaează jocul '%ls'"
+msgstr "Jocul s-a salvat în '%ls'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr "Instantaneu salvat ca '%ls'"
+msgstr "Captură de ecran salvată ca '%ls'"

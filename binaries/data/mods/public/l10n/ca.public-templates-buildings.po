@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-08-16 16:13+0200\n"
-"PO-Revision-Date: 2014-08-17 14:01+0000\n"
+"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"PO-Revision-Date: 2014-09-13 22:27+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -28,17 +28,17 @@ msgstr "Cívic"
 msgid "Civic Structure"
 msgstr "Estructura cívica"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:68
-#: simulation/templates/template_structure_civic_civil_centre.xml:31
+#: simulation/templates/template_structure_civic_civil_centre.xml:71
+#: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
 msgstr "CentreCívic"
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:63
+#: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
 msgstr "Es pot construir per reclamar extensions grans de territori. Recluta ciutadans. Permet refugiar 20 unitats."
 
-#: simulation/templates/template_structure_civic_civil_centre.xml:62
+#: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
 msgstr "Centre cívic"
 
@@ -49,9 +49,6 @@ msgstr "Centre cívic"
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
-#: simulation/templates/structures/brit_blacksmith.xml:11
-#: simulation/templates/structures/celt_blacksmith.xml:11
-#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Village"
 msgstr "Poblat"
 
@@ -69,10 +66,13 @@ msgid "Healing Aura"
 msgstr "Aura de curació"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_embassy.xml:24
+#: simulation/templates/structures/brit_blacksmith.xml:11
+#: simulation/templates/structures/celt_blacksmith.xml:11
+#: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
 msgstr "Vila"
 
@@ -92,7 +92,7 @@ msgid "Heals nearby units at 1 HP per second."
 msgstr "Cura les unitats properes a 1 punt de salut per segon."
 
 #: simulation/templates/template_structure_defense.xml:15
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
 msgstr "Defensiu"
 
@@ -100,16 +100,16 @@ msgstr "Defensiu"
 msgid "Defensive Structure"
 msgstr "Estructura defensiva"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:63
-#: simulation/templates/template_structure_defense_defense_tower.xml:32
+#: simulation/templates/template_structure_defense_defense_tower.xml:57
+#: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
 msgstr "TorreDefensiva"
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:61
+#: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
 msgstr "Dispara fletxes. Refugieu-hi unitats per augmentar el poder defensiu."
 
-#: simulation/templates/template_structure_defense_defense_tower.xml:60
+#: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
 msgstr "Torre defensiva"
 
@@ -160,11 +160,11 @@ msgstr "Les unitats a les muralles tenen 3 nivells més d'armadura."
 msgid "Convert Stone Wall into City Gate"
 msgstr "Converteix muralla de pedra en porta de la ciutat"
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:56
+#: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
 msgstr "Dispara fletxes. Refugieu-hi unitats per defensar una muralla contra els atacants."
 
-#: simulation/templates/template_structure_defense_wall_tower.xml:55
+#: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
 msgstr "Torreta"
 
@@ -266,17 +266,17 @@ msgstr "S'ha de construir a la costa. Construeix vaixells i permet el comerç ma
 msgid "Embassy"
 msgstr "Ambaixada"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
+#: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
 msgstr "Ciutat"
 
-#: simulation/templates/template_structure_military_fortress.xml:63
-#: simulation/templates/template_structure_military_fortress.xml:31
-#: simulation/templates/template_structure_military_fortress.xml:60
+#: simulation/templates/template_structure_military_fortress.xml:57
+#: simulation/templates/template_structure_military_fortress.xml:25
+#: simulation/templates/template_structure_military_fortress.xml:54
 msgid "Fortress"
 msgstr "Fortalesa"
 
-#: simulation/templates/template_structure_military_fortress.xml:61
+#: simulation/templates/template_structure_military_fortress.xml:55
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
@@ -301,12 +301,12 @@ msgid ""
 " food or other bonus (Not yet implemented)."
 msgstr "Cria animals de granja per obtenir menjar. Assigneu animals domèstics aquí per guanyar una font lenta i constant de menjar o alguna altra bonificació (encara per implementar)."
 
-#: simulation/templates/template_structure_resource_field.xml:25
-#: simulation/templates/template_structure_resource_field.xml:24
+#: simulation/templates/template_structure_resource_field.xml:27
+#: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
 msgstr "Hort"
 
-#: simulation/templates/template_structure_resource_field.xml:26
+#: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
 msgstr "S'hi poden collir verdures per menjar. Màxim d'agricultors: 5."
 
@@ -646,7 +646,7 @@ msgstr "Destacament britó"
 msgid ""
 "Increase nearby farming output +25%. (Currently, a special technology can be"
 " researched to serve this function)"
-msgstr "Augmenta la producció de les granges properes un 25%. (Actualment es pot investigar una tecnologia especial per fer aquesta funció)"
+msgstr "Augmenta la producció dels horts propers un 25%. (Actualment es pot investigar una tecnologia especial per fer aquesta funció)"
 
 #: simulation/templates/structures/brit_rotarymill.xml:20
 #: simulation/templates/structures/celt_sb1.xml:23
@@ -701,7 +701,6 @@ msgstr "No dispara ni permet refugiar unitats."
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
 #: simulation/templates/structures/gaul_wonder.xml:9
-#: simulation/templates/structures/iber_wonder.xml:9
 msgid "Stonehenge"
 msgstr "Stonehenge"
 
@@ -997,6 +996,10 @@ msgstr "Zabal Horma"
 msgid "Biko Sarbide"
 msgstr "Biko Sarbide"
 
+#: simulation/templates/structures/iber_wonder.xml:17
+msgid "Cancho Roano"
+msgstr "Cancho Roano"
+
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
@@ -1175,11 +1178,11 @@ msgstr "Palau persa"
 msgid "Apadana"
 msgstr "Apadana"
 
-#: simulation/templates/structures/pers_barracks.xml:12
+#: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
 msgstr "Recluta soldats ciutadans d'infanteria."
 
-#: simulation/templates/structures/pers_barracks.xml:10
+#: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
 msgstr "Padgan"
 
