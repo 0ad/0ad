@@ -146,7 +146,7 @@
 				</object>
 			</object>
 			<object name="joinGameButton" type="button" style="ModernButtonRed" size="0 100%-85 100% 100%-60" hidden="true">
-				<translatableAttribute id="caption">Join Game</translatableAttribute>
+				<translatableAttribute id="caption" comment="Join the game currently selected in the list.">Join Game</translatableAttribute>
 				<action on="Press">
 					joinSelectedGame();
 				</action>
