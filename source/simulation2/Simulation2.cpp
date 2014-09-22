@@ -449,10 +449,11 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 //		m_ComponentManager.GetScriptInterface().DumpHeap();
 
 	// Run the GC occasionally
+	// No delay because a lot of garbage accumulates in one turn and in non-visual replays there are
+	// much more turns in the same time than in normal games.
 	// (TODO: we ought to schedule this for a frame where we're not
 	// running the sim update, to spread the load)
-	if (m_TurnNumber % 1 == 0)
-		m_ComponentManager.GetScriptInterface().MaybeIncrementalRuntimeGC();
+	m_ComponentManager.GetScriptInterface().MaybeIncrementalRuntimeGC(0.0f);
 
 	if (m_EnableOOSLog)
 		DumpState();

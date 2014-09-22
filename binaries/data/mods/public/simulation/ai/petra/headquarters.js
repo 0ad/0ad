@@ -1420,9 +1420,9 @@ m.HQ.prototype.buildDefenses = function(gameState, queues)
 			var attack = undefined;
 			// There can only be one upcoming attack
 			if (this.attackManager.upcomingAttacks["Attack"].length !== 0)
-				var attack = this.attackManager.upcomingAttacks["Attack"][0];
+				attack = this.attackManager.upcomingAttacks["Attack"][0];
 			else if (this.attackManager.upcomingAttacks["HugeAttack"].length !== 0)
-				var attack = this.attackManager.upcomingAttacks["HugeAttack"][0];
+				attack = this.attackManager.upcomingAttacks["HugeAttack"][0];
 
 			if (attack && !attack.unitStat["Siege"])
 				attack.addSiegeUnits(gameState);

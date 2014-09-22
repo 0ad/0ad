@@ -886,8 +886,11 @@ bool Init(const CmdLineArgs& args, int flags)
 	// (required for finding our output log files).
 	g_Logger = new CLogger;
 	
-	// Workaround until Simulation and AI use their own threads and also their own runtimes
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(384 * 1024 * 1024);
+	// Using a global object for the runtime is a workaround until Simulation and AI use 
+	// their own threads and also their own runtimes.
+	const int runtimeSize = 384 * 1024 * 1024;
+	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time

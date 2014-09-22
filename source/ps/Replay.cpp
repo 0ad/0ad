@@ -132,7 +132,10 @@ void CReplayPlayer::Replay(bool serializationtest)
 	new CProfileManager;
 	g_ScriptStatsTable = new CScriptStatsTable;
 	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(384 * 1024 * 1024);
+	
+	const int runtimeSize = 384 * 1024 * 1024;
+	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
 
 	CGame game(true);
 	g_Game = &game;

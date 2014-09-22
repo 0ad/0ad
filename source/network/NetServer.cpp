@@ -391,6 +391,8 @@ bool CNetServerWorker::RunStep()
 	// (Do as little work as possible while the mutex is held open,
 	// to avoid performance problems and deadlocks.)
 	
+	m_ScriptInterface->MaybeIncrementalRuntimeGC(0.5f);
+	
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
 
