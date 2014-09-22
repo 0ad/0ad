@@ -377,6 +377,10 @@ void CGUIManager::TickObjects()
 {
 	PROFILE3("gui tick");
 
+	// We share the script runtime with everything else that runs in the same thread.
+	// This call makes sure we trigger GC regularly even if the simulation is not running.
+	m_ScriptInterface->MaybeIncrementalRuntimeGC(1.0f);
+	
 	// Save an immutable copy so iterators aren't invalidated by tick handlers
 	PageStackType pageStack = m_PageStack;
 

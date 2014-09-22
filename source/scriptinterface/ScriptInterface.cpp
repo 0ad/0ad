@@ -135,9 +135,11 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 class ScriptRuntime
 {
 public:
-	ScriptRuntime(int runtimeSize): 
+	ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger): 
 		m_rooter(NULL),
-		m_LastGCBytes(0)
+		m_LastGCBytes(0),
+		m_LastGCCheck(0.0f),
+		m_HeapGrowthBytesGCTrigger(heapGrowthBytesGCTrigger)
 	{
 		m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS);
 
@@ -175,9 +177,10 @@ public:
 		ENSURE(m_dummyContext);
 	}
 	
-	void MaybeIncrementalGC()
+	void MaybeIncrementalGC(double delay)
 	{
-		PROFILE3("MaybeIncrementalGC");
+		PROFILE2("MaybeIncrementalGC");
+		
 		if (JS::IsIncrementalGCEnabled(m_rt))
 		{
 			// The idea is to get the heap size after a completed GC and trigger the next GC when the heap size has
@@ -185,8 +188,20 @@ public:
 			// In practice it doesn't quite work like that. When the incremental marking is completed, the sweeping kicks in.
 			// The sweeping actually frees memory and it does this in a background thread (if JS_USE_HELPER_THREADS is set).
 			// While the sweeping is happening we already run scripts again and produce new garbage.
+
+			const int GCSliceTimeBudget = 30; // Milliseconds an incremental slice is allowed to run
+			
+			// Have a minimum time in seconds to wait between GC slices and before starting a new GC to distribute the GC 
+			// load and to hopefully make it unnoticeable for the player. This value should be high enough to distribute 
+			// the load well enough and low enough to make sure we don't run out of memory before we can start with the 
+			// sweeping.
+			if (timer_Time() - m_LastGCCheck < delay)
+				return;
+			
+			m_LastGCCheck = timer_Time();
+			
 			int gcBytes = JS_GetGCParameter(m_rt, JSGC_BYTES);
-			//printf("gcBytes: %d \n", gcBytes);
+			//std::cout << "gcBytes: " << std::endl; // debugging
 			if (m_LastGCBytes > gcBytes || m_LastGCBytes == 0)
 			{
 				//printf("Setting m_LastGCBytes: %d \n", gcBytes); // debugging
@@ -196,16 +211,20 @@ public:
 			// Run an additional incremental GC slice if the currently running incremental GC isn't over yet 
 			// ... or
 			// start a new incremental GC if the JS heap size has grown enough for a GC to make sense
-			if (JS::IsIncrementalGCInProgress(m_rt) || (gcBytes - m_LastGCBytes > 20 * 1024 * 1024))
+			if (JS::IsIncrementalGCInProgress(m_rt) || (gcBytes - m_LastGCBytes > m_HeapGrowthBytesGCTrigger))
 			{
-				/* Use for debugging
-				if (JS::IsIncrementalGCInProgress(m_rt))
-					printf("Running incremental garbage collection because an incremental cycle is in progress. \n");
+				// Use for debugging
+				/*if (JS::IsIncrementalGCInProgress(m_rt))
+					printf("Running incremental GC because an incremental cycle is in progress. \n");
 				else
-					printf("Running incremental garbage collection because JSGC_BYTES - m_LastGCBytes > X ---- JSGC_BYTES: %d      m_LastGCBytes: %d", gcBytes, m_LastGCBytes);
-				*/
+					printf("Running incremental GC because JSGC_BYTES - m_LastGCBytes > m_HeapGrowthBytesGCTrigger "
+						" ---- JSGC_BYTES: %d    m_LastGCBytes: %d    m_HeapGrowthBytesGCTrigger: %d ", 
+						gcBytes, 
+						m_LastGCBytes, 
+						m_HeapGrowthBytesGCTrigger);
+				}*/
 				PrepareContextsForIncrementalGC();
-				JS::IncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME, 10);
+				JS::IncrementalGC(m_rt, JS::gcreason::REFRESH_FRAME, GCSliceTimeBudget);
 				m_LastGCBytes = gcBytes;
 			}
 		}
@@ -236,7 +255,9 @@ private:
 	// Workaround for: https://bugzilla.mozilla.org/show_bug.cgi?id=890243
 	JSContext* m_dummyContext;
 	
+	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
+	double m_LastGCCheck;
 	
 	void PrepareContextsForIncrementalGC()
 	{
@@ -374,9 +395,9 @@ private:
 	}
 };
 
-shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(int runtimeSize)
+shared_ptr<ScriptRuntime> ScriptInterface::CreateRuntime(int runtimeSize, int heapGrowthBytesGCTrigger)
 {
-	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize));
+	return shared_ptr<ScriptRuntime>(new ScriptRuntime(runtimeSize, heapGrowthBytesGCTrigger));
 }
 
 ////////////////////////////////////////////////////////////////
@@ -1398,9 +1419,9 @@ void ScriptInterface::DumpHeap()
 	fprintf(stderr, "# Bytes allocated after GC: %u\n", JS_GetGCParameter(GetJSRuntime(), JSGC_BYTES));
 }
 
-void ScriptInterface::MaybeIncrementalRuntimeGC()
+void ScriptInterface::MaybeIncrementalRuntimeGC(double delay)
 {
-	m->m_runtime->MaybeIncrementalGC();
+	m->m_runtime->MaybeIncrementalGC(delay);
 }
 
 void ScriptInterface::MaybeGC()

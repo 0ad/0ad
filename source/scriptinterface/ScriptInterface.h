@@ -59,6 +59,7 @@ class AutoGCRooter;
 
 // TODO: what's a good default?
 #define DEFAULT_RUNTIME_SIZE 16 * 1024 * 1024
+#define DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER 2 * 1024 *1024
 
 struct ScriptInterface_impl;
 
@@ -89,7 +90,8 @@ public:
 	 * Each runtime should only ever be used on a single thread.
 	 * @param runtimeSize Maximum size in bytes of the new runtime
 	 */
-	static shared_ptr<ScriptRuntime> CreateRuntime(int runtimeSize = DEFAULT_RUNTIME_SIZE);
+	static shared_ptr<ScriptRuntime> CreateRuntime(int runtimeSize = DEFAULT_RUNTIME_SIZE, 
+		int heapGrowthBytesGCTrigger = DEFAULT_HEAP_GROWTH_BYTES_GCTRIGGER);
 
 
 	/**
@@ -354,10 +356,12 @@ public:
 	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
 	 * such functionality currently isn't available out of the box.
 	 * It does incremental GC which means it will collect one slice each time it's called until the garbage collection is done.
-	 * This can and should be called quite regularly. It shouldn't cost much performance because it tries to run a GC only if 
-	 * necessary.
+	 * This can and should be called quite regularly. The delay parameter allows you to specify a minimum time since the last GC
+	 * in seconds (the delay should be a fraction of a second in most cases though). 
+	 * It will only start a new incremental GC or another GC slice if this time is exceeded. The user of this function is 
+	 * responsible for ensuring that GC can run with a small enough delay to get done with the work.
 	 */
-	void MaybeIncrementalRuntimeGC();
+	void MaybeIncrementalRuntimeGC(double delay);
 	
 	/**
 	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally
