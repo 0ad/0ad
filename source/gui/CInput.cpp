@@ -28,6 +28,7 @@ CInput
 #include "graphics/ShaderManager.h"
 #include "graphics/TextRenderer.h"
 #include "lib/ogl.h"
+#include "lib/external_libraries/libsdl.h"
 #include "lib/sysdep/clipboard.h"
 #include "lib/timer.h"
 #include "lib/utf8.h"
@@ -46,7 +47,7 @@ extern int g_yres;
 //-------------------------------------------------------------------
 CInput::CInput()
 	: m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
-	  m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5)
+	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_iComposedLength(0), m_iComposedPos(0), m_ComposingText(false)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
@@ -83,14 +84,80 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 
 	if (ev->ev.type == SDL_HOTKEYDOWN)
 	{
+		if (m_ComposingText)
+			return IN_HANDLED;
 		return(ManuallyHandleHotkeyEvent(ev));
 	}
-#if !SDL_VERSION_ATLEAST(2, 0, 0)
-	else if (ev->ev.type == SDL_KEYDOWN)
-#else // SDL2
-	else if (ev->ev.type == SDL_KEYDOWN || ev->ev.type == SDL_TEXTINPUT)
-#endif
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	// SDL2 has a new method of text input that better supports Unicode and CJK
+	// see https://wiki.libsdl.org/Tutorials/TextInput
+	else if (ev->ev.type == SDL_TEXTINPUT)
 	{
+		// Text has been committed, either single key presses or through an IME
+		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		std::wstring text = wstring_from_utf8(ev->ev.text.text);
+
+		m_WantedX=0.0f;
+
+		if (SelectingText())
+			DeleteCurSelection();
+
+		if (m_iBufferPos == (int)pCaption->length())
+			*pCaption += text;
+		else
+			*pCaption = pCaption->Left(m_iBufferPos) + text + pCaption->Right((long)pCaption->length()-m_iBufferPos);
+
+		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
+		
+		m_iBufferPos += text.length();
+		m_iBufferPos_Tail = -1;
+		
+		UpdateAutoScroll();
+
+		return IN_HANDLED;
+	}
+	else if (ev->ev.type == SDL_TEXTEDITING)
+	{
+		// Text is being composed with an IME
+		// TODO: indicate this by e.g. underlining the uncommitted text
+		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+		std::wstring text = wstring_from_utf8(ev->ev.edit.text);
+		
+		// Ignore spurious events
+		if (!m_ComposingText && ev->ev.edit.start == 0 && text.length() == 0)
+			return IN_HANDLED;
+
+		debug_printf(L"SDL_TEXTEDITING: text=%hs, start=%d, length=%d\n", ev->ev.edit.text, ev->ev.edit.start, ev->ev.edit.length);
+		m_WantedX=0.0f;
+		m_ComposingText = ev->ev.edit.start != 0 || text.length() != 0;
+
+		if (m_ComposingText && SelectingText())
+			DeleteCurSelection();
+
+		// Composed text is replaced each time
+		if (m_iBufferPos == (int)pCaption->length())
+			*pCaption = pCaption->Left(m_iBufferPos-m_iComposedPos) + text;
+		else
+			*pCaption = pCaption->Left(m_iBufferPos-m_iComposedPos) + text + pCaption->Right((long)pCaption->length()-m_iBufferPos+m_iComposedPos-m_iComposedLength);
+
+		m_iBufferPos = m_iBufferPos - m_iComposedPos + ev->ev.edit.start;
+		m_iComposedPos = ev->ev.edit.start;
+		m_iComposedLength = text.length();
+		
+		// TODO: composed text selection - what does ev.edit.length do?
+		m_iBufferPos_Tail = -1;
+		
+		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
+
+		UpdateAutoScroll();
+
+		return IN_HANDLED;
+	}
+#endif
+	else if (ev->ev.type == SDL_KEYDOWN)
+	{
+		if (m_ComposingText)
+			return IN_HANDLED;
 		// Since the GUI framework doesn't handle to set settings
 		//  in Unicode (CStrW), we'll simply retrieve the actual
 		//  pointer and edit that.
@@ -431,12 +498,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				// we use text input events instead and they provide UTF-8 chars
 				if (ev->ev.type == SDL_KEYDOWN && cooked == 0)
 					return IN_HANDLED;
-				else if (ev->ev.type == SDL_TEXTINPUT)
-				{
-					std::wstring wstr = wstring_from_utf8(ev->ev.text.text);
-					for (size_t i = 0; i < wstr.length(); ++i)
-					{
-						cooked = wstr[i];
 #endif
 
 				// check max length
@@ -462,11 +523,6 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				++m_iBufferPos;
 
 				UpdateAutoScroll();
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-				}
-				}
-#endif
-
 				}
 				break;
 		}
@@ -804,6 +860,9 @@ void CInput::HandleMessage(SGUIMessage &Message)
 				break;
 		}
 
+		if (m_ComposingText)
+			break;
+
 		// Okay, this section is about pressing the mouse and
 		//  choosing where the point should be placed. For
 		//  instance, if we press between a and b, the point
@@ -829,6 +888,9 @@ void CInput::HandleMessage(SGUIMessage &Message)
 
 	case GUIM_MOUSE_DBLCLICK_LEFT:
 		{
+			if (m_ComposingText)
+				break;
+
 			CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 
 			if (pCaption->length() == 0)
@@ -977,10 +1039,32 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		m_iBufferPos = 0;
 		m_PrevTime = 0.0;
 		m_CursorVisState = false;
-		
+
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		// Tell the IME where to draw the candidate list
+		SDL_Rect rect;
+		rect.h = m_CachedActualSize.GetSize().cy;
+		rect.w = m_CachedActualSize.GetSize().cx;
+		rect.x = m_CachedActualSize.TopLeft().x;
+		rect.y = m_CachedActualSize.TopLeft().y;
+		SDL_SetTextInputRect(&rect);
+#endif
 		break;
 
 	case GUIM_LOST_FOCUS:
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+		if (m_ComposingText)
+		{
+			// Simulate a final text editing event to clear the composition
+			SDL_Event_ evt;
+			evt.ev.type = SDL_TEXTEDITING;
+			evt.ev.edit.length = 0;
+			evt.ev.edit.start = 0;
+			evt.ev.edit.text[0] = 0;
+			ManuallyHandleEvent(&evt);
+		}
+#endif
+
 		m_iBufferPos = -1;
 		m_iBufferPos_Tail = -1;
 		break;

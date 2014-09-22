@@ -744,6 +744,7 @@ InReaction conInputHandler(const SDL_Event_* ev)
 			g_Console->InsertChar(0, wstr[i]);
 		return IN_HANDLED;
 	}
+	// TODO: text editing events for IME support
 #endif
 
 	if (ev->ev.type != SDL_KEYDOWN)
