@@ -88,7 +88,7 @@
 			</object>
 
 			<object name="modsAvailableList" style="ModernList" type="olist" size="0 25 100%-2 100%" font="sans-stroke-13">
-				<action on="SelectionChange">showModDescription(this.name, g_modsAvailable);</action>
+				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
 				<def id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
@@ -129,7 +129,7 @@
 			</object>
 
 			<object name="modsEnabledList" style="ModernList" type="olist" size="0 25 96%-5 100%" font="sans-stroke-13" tooltip_style="pgToolTip">
-				<action on="SelectionChange">showModDescription(this.name, g_modsEnabled);</action>
+				<action on="SelectionChange">showModDescription(this.name);</action>
 				<!-- List headers -->
 				<def id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
