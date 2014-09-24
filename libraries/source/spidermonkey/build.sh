@@ -103,6 +103,13 @@ else
   LIB_PREFIX=lib
   LIB_SRC_SUFFIX=.so
   LIB_DST_SUFFIX=.so
+  if [ "`uname -s`" = "OpenBSD" ]
+  then
+    DLL_SRC_SUFFIX=.so.1.0
+    DLL_DST_SUFFIX=.so.1.0
+    LIB_SRC_SUFFIX=.so.1.0
+    LIB_DST_SUFFIX=:so.1.0
+  fi
 fi
 
 # Copy files into the necessary locations for building and running the game
