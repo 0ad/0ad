@@ -58,7 +58,6 @@
   !insertmacro MUI_PAGE_INSTFILES
 
   !define MUI_FINISHPAGE_RUN $INSTDIR\binaries\system\pyrogenesis.exe
-  !define MUI_FINISHPAGE_RUN_PARAMETERS "-mod=public"
   !insertmacro MUI_PAGE_FINISH
   
   !insertmacro MUI_UNPAGE_CONFIRM
@@ -78,10 +77,10 @@ Section "!Game and data files" GameSection
   File "${CHECKOUTPATH}\*.txt"
   File "${CHECKOUTPATH}\source\tools\openlogsfolder\*.*"
   !if INCLUDE_SOURCE
-    File /r /x "public" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
+    File /r /x "public" /x "mod" /x "dev.cfg" "${CHECKOUTPATH}\binaries"
   !else
     ; Exclude debug DLLs and related files
-    File /r /x "public" /x "dev.cfg" /x "*_d.dll" /x "*_dbg.dll.*" /x "*_dbg.exe.*" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "jpeg-6bd.dll" /x "libcurld.dll" /x "libpng16d.dll" /x "miniupnpcd.dll" /x "mozjs24-ps-debug.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
+    File /r /x "public" /x "mod" /x "dev.cfg" /x "*_d.dll" /x "*_dbg.dll.*" /x "*_dbg.exe.*" /x "enetd.dll" /x "FColladaD.dll" /x "gloox-1.0d.dll" /x "glooxwrapper_dbg.*" /x "jpeg-6bd.dll" /x "libcurld.dll" /x "libpng16d.dll" /x "miniupnpcd.dll" /x "mozjs24-ps-debug.*" /x "msvc*d.dll" /x "zlib1d.dll" "${CHECKOUTPATH}\binaries"
   !endif
 
   SetOutPath "$INSTDIR\binaries\data\mods\public"
@@ -114,9 +113,8 @@ Section "!Game and data files" GameSection
   ;Create shortcuts
   CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
   SetOutPath "$INSTDIR\binaries\system" ;Set working directory of shortcuts
-  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-mod=public"
-  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Pyrogenesis mod selector.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
-  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-mod=public -editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
+  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\0 A.D..lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" ""
+  CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Map editor.lnk" "$INSTDIR\binaries\system\pyrogenesis.exe" "-editor" "$INSTDIR\binaries\data\tools\atlas\icons\ScenarioEditor.ico"
   SetOutPath "$INSTDIR"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Open logs folder.lnk" "$INSTDIR\OpenLogsFolder.bat"
   CreateShortCut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
