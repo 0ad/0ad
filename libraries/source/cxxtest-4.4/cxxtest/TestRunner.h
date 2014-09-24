@@ -25,10 +25,10 @@
 
 namespace CxxTest
 {
+extern bool g_RunDisabled;
+
 class TestRunner
 {
-    friend class PsTestRunner;
-
 public:
 
     static void setListener(TestListener* listener)
@@ -84,7 +84,7 @@ private:
         {
             for (TestDescription *td = sd.firstTest(); td; td = td->next())
             {
-                if (td->active())
+                if ((g_RunDisabled || !strstr(td->testName(), "DISABLED")) && td->active())
                 {
                     runTest(*td);
                 }

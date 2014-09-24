@@ -1327,12 +1327,12 @@ function configure_cxxtestgen()
 	local lcxxtestrootoptions = "--have-std"
 
 	if _OPTIONS["jenkins-tests"] then
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=XmlPrinter"
+		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=XmlPrinter"
 	else
 		if os.is("windows") then
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=Win32ODSPrinter"
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=Win32ODSPrinter"
 		else
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=ErrorPrinter"
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=ErrorPrinter"
 		end
 	end
 

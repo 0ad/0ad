@@ -1,0 +1,126 @@
+diff --git a/cxxtest/PsExtensions.cpp b/cxxtest/PsExtensions.cpp
+new file mode 100644
+index 0000000..e633195
+--- /dev/null
++++ b/cxxtest/PsExtensions.cpp
+@@ -0,0 +1,4 @@
++namespace CxxTest
++{
++    bool g_RunDisabled = false;
++}
+diff --git a/cxxtest/RealDescriptions.cpp b/cxxtest/RealDescriptions.cpp
+index 60b4f20..16adad0 100644
+--- a/cxxtest/RealDescriptions.cpp
++++ b/cxxtest/RealDescriptions.cpp
+@@ -248,7 +248,16 @@ unsigned RealWorldDescription::numTotalTests(void) const
+     unsigned count = 0;
+     for (const SuiteDescription *sd = firstSuite(); sd != 0; sd = sd->next())
+     {
+-        count += sd->numTests();
++        if (g_RunDisabled)
++            count += sd->numTests();
++        else
++        {
++            for (const TestDescription *td = sd->firstTest(); td != 0; td = td->next())
++            {
++                if (!strstr(td->testName(), "DISABLED"))
++                    count++;
++            }
++        }
+     }
+     return count;
+ }
+diff --git a/cxxtest/Root.cpp b/cxxtest/Root.cpp
+index 39aa599..809d1fc 100644
+--- a/cxxtest/Root.cpp
++++ b/cxxtest/Root.cpp
+@@ -25,5 +25,6 @@
+ #include <cxxtest/RealDescriptions.cpp>
+ #include <cxxtest/TestSuite.cpp>
+ #include <cxxtest/TestTracker.cpp>
++#include <cxxtest/PsExtensions.cpp>
+ 
+ #endif // __cxxtest__Root_cpp__
+diff --git a/cxxtest/TestMain.h b/cxxtest/TestMain.h
+index c4d14bb..83f040c 100644
+--- a/cxxtest/TestMain.h
++++ b/cxxtest/TestMain.h
+@@ -30,6 +30,8 @@
+ #   include <cstring>
+ #endif // _CXXTEST_OLD_STD
+ 
++#include "ps/DllLoader.h"
++
+ namespace CxxTest
+ {
+ 
+@@ -41,6 +43,8 @@ inline void print_help(const char* name)
+     CXXTEST_STD(cerr) << name << " --help" << CXXTEST_STD(endl);
+     CXXTEST_STD(cerr) << name << " --help-tests" << CXXTEST_STD(endl);
+     CXXTEST_STD(cerr) << name << " -v             Enable tracing output." << CXXTEST_STD(endl);
++    CXXTEST_STD(cerr) << name << " -disabled      Also run disabled tests." << CXXTEST_STD(endl);
++    CXXTEST_STD(cerr) << name << " -libdir <dir>  Specify library directory." << CXXTEST_STD(endl);
+ }
+ #endif
+ 
+@@ -84,20 +88,35 @@ int Main(TesterT& tmp, int argc, char* argv[])
+ //
+     while ((argc > 1) && (argv[1][0] == '-'))
+     {
++        int args = 1;
+         if (CXXTEST_STD(strcmp)(argv[1], "-v") == 0)
+         {
+             tracker().print_tracing = true;
+         }
++        else if (CXXTEST_STD(strcmp)(argv[1], "-libdir") == 0)
++        {
++            if (argc < 2)
++            {
++                CXXTEST_STD(cerr) << "ERROR: not enough arguments" << CXXTEST_STD(endl);
++                return -1;
++            }
++            DllLoader::OverrideLibdir(argv[2]);
++            args = 2;
++        }
++        else if (CXXTEST_STD(strcmp)(argv[1], "-disabled") == 0)
++        {
++            g_RunDisabled = true;
++        }
+         else
+         {
+             CXXTEST_STD(cerr) << "ERROR: unknown option '" << argv[1] << "'" << CXXTEST_STD(endl);
+             return -1;
+         }
+-        for (int i = 1; i < (argc - 1); i++)
++        for (int i = 1; i < (argc - args); i++)
+         {
+-            argv[i] = argv[i + 1];
++            argv[i] = argv[i + args];
+         }
+-        argc--;
++        argc -= args;
+     }
+ 
+ //
+diff --git a/cxxtest/TestRunner.h b/cxxtest/TestRunner.h
+index 25ff3f8..9c10fac 100644
+--- a/cxxtest/TestRunner.h
++++ b/cxxtest/TestRunner.h
+@@ -25,6 +25,8 @@
+ 
+ namespace CxxTest
+ {
++extern bool g_RunDisabled;
++
+ class TestRunner
+ {
+ public:
+@@ -82,7 +84,7 @@ private:
+         {
+             for (TestDescription *td = sd.firstTest(); td; td = td->next())
+             {
+-                if (td->active())
++                if ((g_RunDisabled || !strstr(td->testName(), "DISABLED")) && td->active())
+                 {
+                     runTest(*td);
+                 }
