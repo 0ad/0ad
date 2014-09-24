@@ -293,7 +293,7 @@ function filterMod(modFolder)
 	    && (mod.type || "") != modTypeFilter.list[modTypeFilter.selected])
 		return !negateFilter.checked;
 
-	if (genericFilter && genericFilter.caption && genericFilter.caption != "" && genericFilter.caption != "Filter")
+	if (genericFilter && genericFilter.caption && genericFilter.caption != "" && genericFilter.caption != translate("Filter"))
 	{
 		var t = genericFilter.caption;
 		if (modFolder.indexOf(t) === -1
