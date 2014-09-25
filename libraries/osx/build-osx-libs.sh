@@ -63,9 +63,10 @@ ENET_VERSION="enet-1.3.12"
 # Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 ARCH=${ARCH:="x86_64"}
 
-# Define compiler as "gcc" (in case anything expects e.g. gcc-4.2)
-# On newer OS X versions, this will be a symbolic link to LLVM GCC
-# TODO: don't rely on that
+# Define compiler as "clang", this is all Mavericks supports.
+# gcc symlinks may still exist, but they are simply clang with
+# slightly different config, which confuses build scripts.
+# llvm-gcc and gcc 4.2 are no longer supported by SpiderMonkey.
 export CC=${CC:="clang"} CXX=${CXX:="clang++"}
 export MIN_OSX_VERSION=${MIN_OSX_VERSION:="10.9"}
 
