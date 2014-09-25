@@ -158,7 +158,7 @@ public:
 					wxString x(xmlData->GetNodeContent());
 					unsigned long xTmp = 0;
 					x.ToULong(&xTmp);
-					wxASSERT(xTmp <= (unsigned long)UINT32_MAX);
+					wxASSERT(xTmp <= (unsigned long)std::numeric_limits<unsigned int>::max());
 					actorSeed = xTmp;
 				}
 

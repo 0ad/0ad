@@ -247,6 +247,7 @@ template FMVector3 FUStringConversion::ToVector3<char>(const char**);
 template FMVector4 FUStringConversion::ToVector4<char>(const char**);
 
 template bool FUStringConversion::ToBoolean<char>(const char*);
+template int FUStringConversion::ToInt32<char>(const char**);
 template unsigned int FUStringConversion::ToUInt32<char>(const char**);
 template unsigned int FUStringConversion::HexToUInt32<char>(const char**, unsigned int);
 

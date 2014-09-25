@@ -38,6 +38,33 @@ rootdir = "../.."
 
 dofile("extern_libs4.lua")
 
+-- detect compiler for non-Windows
+if os.is("macosx") then
+	cc = "clang"
+elseif os.is("linux") and _OPTIONS["icc"] then
+	cc = "icc"
+elseif not os.is("windows") then
+	cc = os.getenv("CC")
+	if cc == nil or cc == "" then
+		local hasgcc = os.execute("which gcc > .gccpath")
+		local f = io.open(".gccpath", "r")
+		local gccpath = f:read("*line")
+		f:close()
+		os.execute("rm .gccpath")
+		if gccpath == nil then
+			cc = "clang"
+		else
+			cc = "gcc"
+		end
+	end
+end
+
+-- TODO: proper clang support
+if cc == "clang" then
+	premake.gcc.cc  = "clang"
+	premake.gcc.cxx = "clang++"
+end
+
 -- detect CPU architecture (simplistic, currently only supports x86, amd64 and ARM)
 arch = "x86"
 if _OPTIONS["android"] then
@@ -51,7 +78,7 @@ else
 	if arch == "x86_64" or arch == "amd64" then
 		arch = "amd64"
 	else
-		os.execute("gcc -dumpmachine > .gccmachine.tmp")
+		os.execute(cc .. " -dumpmachine > .gccmachine.tmp")
 		local f = io.open(".gccmachine.tmp", "r")
 		local machine = f:read("*line")
 		f:close()
@@ -65,13 +92,6 @@ else
 			print("WARNING: Cannot determine architecture from GCC, assuming x86")
 		end
 	end
-end
-
--- Hack to force clang as default compiler on OS X
--- TODO: proper clang support
-if os.is("macosx") then
-	premake.gcc.cc  = "clang"
-	premake.gcc.cxx = "clang++"
 end
 
 -- Set up the Solution
@@ -109,7 +129,7 @@ else
 	-- It's too late to do this test by the time we start compiling the PCH file, so
 	-- do the test in this build script instead (which is kind of ugly - please fix if
 	-- you have a better idea)
-	if not _OPTIONS["icc"] then
+	if cc == "gcc" then
 		os.execute("gcc -dumpversion > .gccver.tmp")
 		local f = io.open(".gccver.tmp", "r")
 		major, dot, minor = f:read(1, 1, 1)
@@ -158,7 +178,7 @@ end
 function project_set_build_flags()
 
 	flags { "Symbols", "NoEditAndContinue" }
-	if not _OPTIONS["icc"] and (os.is("windows") or not _OPTIONS["minimal-flags"]) then
+	if cc ~= "icc" and (os.is("windows") or not _OPTIONS["minimal-flags"]) then
 		-- adds the -Wall compiler flag
 		flags { "ExtraWarnings" } -- this causes far too many warnings/remarks on ICC
 	end
@@ -218,7 +238,7 @@ function project_set_build_flags()
 		end
 
 	else	-- *nix
-		if _OPTIONS["icc"] and not _OPTIONS["minimal-flags"] then
+		if cc == "icc" and not _OPTIONS["minimal-flags"] then
 			buildoptions {
 				"-w1",
 				-- "-Wabi",
@@ -391,11 +411,13 @@ end
 -- bundled libs
 function project_add_x11_dirs()
 	if not os.is("windows") and not os.is("macosx") then
-		-- X11 includes may be installed in one of a gadzillion of three places
+		-- X11 includes may be installed in one of a gadzillion of five places
 		-- Famous last words: "You can't include too much! ;-)"
 		includedirs {
 			"/usr/X11R6/include/X11",
 			"/usr/X11R6/include",
+			"/usr/local/include/X11",
+			"/usr/local/include",
 			"/usr/include/X11"
 		}
 		libdirs { "/usr/X11R6/lib" }
@@ -1305,12 +1327,12 @@ function configure_cxxtestgen()
 	local lcxxtestrootoptions = "--have-std"
 
 	if _OPTIONS["jenkins-tests"] then
-		lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=XmlPrinter"
+		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=XmlPrinter"
 	else
 		if os.is("windows") then
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=Win32ODSPrinter"
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=Win32ODSPrinter"
 		else
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --gui=PsTestWrapper --runner=ErrorPrinter"
+			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=ErrorPrinter"
 		end
 	end
 

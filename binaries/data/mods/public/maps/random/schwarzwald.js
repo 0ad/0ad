@@ -345,6 +345,9 @@ function derivateEntitiesByHeight(hightRange, startLoc, entityList, maxTries, mi
 			if (heightmap[x][y] > hightRange.min && heightmap[x][y] < hightRange.max) // Has the right hight
 				validTiles.push([x, y]);
 	
+	if (!validTiles.length)
+		return;
+	
 	for (var tries = 0; tries < maxTries; tries++)
 	{
 		var tile = validTiles[randInt(validTiles.length)];

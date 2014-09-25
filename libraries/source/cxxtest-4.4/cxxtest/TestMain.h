@@ -30,6 +30,8 @@
 #   include <cstring>
 #endif // _CXXTEST_OLD_STD
 
+#include "ps/DllLoader.h"
+
 namespace CxxTest
 {
 
@@ -41,6 +43,8 @@ inline void print_help(const char* name)
     CXXTEST_STD(cerr) << name << " --help" << CXXTEST_STD(endl);
     CXXTEST_STD(cerr) << name << " --help-tests" << CXXTEST_STD(endl);
     CXXTEST_STD(cerr) << name << " -v             Enable tracing output." << CXXTEST_STD(endl);
+    CXXTEST_STD(cerr) << name << " -disabled      Also run disabled tests." << CXXTEST_STD(endl);
+    CXXTEST_STD(cerr) << name << " -libdir <dir>  Specify library directory." << CXXTEST_STD(endl);
 }
 #endif
 
@@ -84,20 +88,35 @@ int Main(TesterT& tmp, int argc, char* argv[])
 //
     while ((argc > 1) && (argv[1][0] == '-'))
     {
+        int args = 1;
         if (CXXTEST_STD(strcmp)(argv[1], "-v") == 0)
         {
             tracker().print_tracing = true;
+        }
+        else if (CXXTEST_STD(strcmp)(argv[1], "-libdir") == 0)
+        {
+            if (argc < 2)
+            {
+                CXXTEST_STD(cerr) << "ERROR: not enough arguments" << CXXTEST_STD(endl);
+                return -1;
+            }
+            DllLoader::OverrideLibdir(argv[2]);
+            args = 2;
+        }
+        else if (CXXTEST_STD(strcmp)(argv[1], "-disabled") == 0)
+        {
+            g_RunDisabled = true;
         }
         else
         {
             CXXTEST_STD(cerr) << "ERROR: unknown option '" << argv[1] << "'" << CXXTEST_STD(endl);
             return -1;
         }
-        for (int i = 1; i < (argc - 1); i++)
+        for (int i = 1; i < (argc - args); i++)
         {
-            argv[i] = argv[i + 1];
+            argv[i] = argv[i + args];
         }
-        argc--;
+        argc -= args;
     }
 
 //

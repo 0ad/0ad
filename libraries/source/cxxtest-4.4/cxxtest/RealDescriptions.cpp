@@ -248,7 +248,16 @@ unsigned RealWorldDescription::numTotalTests(void) const
     unsigned count = 0;
     for (const SuiteDescription *sd = firstSuite(); sd != 0; sd = sd->next())
     {
-        count += sd->numTests();
+        if (g_RunDisabled)
+            count += sd->numTests();
+        else
+        {
+            for (const TestDescription *td = sd->firstTest(); td != 0; td = td->next())
+            {
+                if (!strstr(td->testName(), "DISABLED"))
+                    count++;
+            }
+        }
     }
     return count;
 }

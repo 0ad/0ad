@@ -33,8 +33,6 @@
 # include "mocks/unistd.h"
 #endif
 
-#include <cxxtest/PsTestWrapper.h>
-
 class TestSysdep : public CxxTest::TestSuite 
 {
 public:

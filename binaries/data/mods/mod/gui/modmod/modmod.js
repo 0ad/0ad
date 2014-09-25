@@ -14,8 +14,8 @@ Example contents of g_mods:
 		name: "mod2",
 		label: "Mod 2",
 		version: "1.1",
-		type: "content|functionality|mixed/mod-pack",
-		url: "http://play0ad.wfg.com/",
+		type: "content|functionality|mixed/mod-pack", // optional
+		url: "http://play0ad.wfg.com/",	//optional
 		description: "",
 		dependencies: []
 	}
@@ -27,7 +27,7 @@ var g_mods = {}; // Contains all JSONs as explained in the structure above
 var g_modsEnabled = []; // folder names
 var g_modsAvailable = []; // folder names
 
-const g_sortByOptions = [translate("Name"), translate("Label"), translate("Folder"), translate("Version")];
+const g_sortByOptions = [translate("Name"), translate("Folder"), translate("Label"), translate("Version")];
 const SORT_BY_NAME = 0;
 const SORT_BY_FOLDER = 1;
 const SORT_BY_LABEL = 2;
@@ -42,7 +42,18 @@ var g_modTypes = [translate("Type: Any")];
  */
 function init()
 {
-	g_mods = Engine.GetAvailableMods();
+	let mods = Engine.GetAvailableMods();
+	let keys = ["name", "label", "description", "dependencies", "version"];
+	Object.keys(mods).forEach(function(k) {
+		for (let i = 0; i < keys.length; ++i)
+			if (!keys[i] in mods[k])
+			{
+				log("Skipping mod '"+k+"'. Missing property '"+keys[i]+"'.");
+				return;
+			}
+
+		g_mods[k] = mods[k];
+	});
 
 	g_modsEnabled = getExistingModsFromConfig();
 	g_modsAvailable = Object.keys(g_mods).filter(function(i) { return g_modsEnabled.indexOf(i) === -1; });
@@ -159,7 +170,7 @@ function generateModsList(listObjectName, mods)
 		}
 	}
 
-	var [names, folders, labels, types, urls, versions, dependencies] = [[],[],[],[],[],[],[]];
+	var [keys, names, folders, labels, types, urls, versions, dependencies] = [[],[],[],[],[],[],[],[]];
 	mods.forEach(function(foldername)
 	{
 		var mod = g_mods[foldername];
@@ -169,6 +180,7 @@ function generateModsList(listObjectName, mods)
 		if (filterMod(foldername))
 			return;
 
+		keys.push(foldername);
 		names.push(mod.name);
 		folders.push('[color="45 45 45"](' + foldername + ')[/color]');
 
@@ -189,7 +201,7 @@ function generateModsList(listObjectName, mods)
 	obj.list_modVersion = versions;
 	obj.list_modDependencies = dependencies;
 
-	obj.list = names;
+	obj.list = keys;
 
 	var modTypeFilter = Engine.GetGUIObjectByName("modTypeFilter");
 	modTypeFilter.list = g_modTypes;
@@ -293,14 +305,14 @@ function filterMod(modFolder)
 	    && (mod.type || "") != modTypeFilter.list[modTypeFilter.selected])
 		return !negateFilter.checked;
 
-	if (genericFilter && genericFilter.caption && genericFilter.caption != "" && genericFilter.caption != "Filter")
+	if (genericFilter && genericFilter.caption && genericFilter.caption != "" && genericFilter.caption != translate("Filter"))
 	{
 		var t = genericFilter.caption;
 		if (modFolder.indexOf(t) === -1
 		    && mod.name.indexOf(t) === -1
 		    && mod.label.indexOf(t) === -1
 		    && (mod.type || "").indexOf(t) === -1
-		    && mod.url.indexOf(t) === -1
+		    && (mod.url || "").indexOf(t) === -1
 		    && mod.version.indexOf(t) === -1
 		    && mod.description.indexOf(t) === -1
 		    && mod.dependencies.indexOf(t) === -1)
@@ -479,15 +491,15 @@ function sortMods()
 	generateModsList("modsEnabledList", g_modsEnabled);
 }
 
-function showModDescription(listObjectName, mod_keys)
+function showModDescription(listObjectName)
 {
 	var listObject = Engine.GetGUIObjectByName(listObjectName);
 	if (listObject.selected == -1)
 		var desc = '[color="255 100 100"]' + translate("No mod has been selected.") + '[/color]';
 	else
 	{
-		var mod_key = mod_keys[listObject.selected];
-		var desc = g_mods[mod_key].description;
+		let key = listObject.list[listObject.selected];
+		var desc = g_mods[key].description;
 	}
 
 	Engine.GetGUIObjectByName("globalModDescription").caption = desc;

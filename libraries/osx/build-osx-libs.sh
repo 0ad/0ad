@@ -387,15 +387,14 @@ then
   mkdir -p build-release
   pushd build-release
 
-  # disable XML and richtext support, to avoid dependency on expat
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --disable-richtext --with-expat=builtin --without-sdl"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
-
-  (../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  # patch to fix Atlas on VMs w/ software rendering (fixed upstream, see http://trac.wxwidgets.org/ticket/16555 )
+  (patch -p0 -d.. -i../../patches/wxwidgets-glcanvas-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built

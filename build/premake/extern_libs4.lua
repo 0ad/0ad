@@ -235,7 +235,8 @@ extern_lib_defs = {
 				-- Suppress all the Boost warnings on OS X by including it as a system directory
 				buildoptions { "-isystem../" .. libraries_dir .. "boost/include" }
 			end
-			if os.getversion().description == "OpenBSD" then
+			-- TODO: This actually applies to most libraries we use on BSDs, make this a global setting.
+			if os.is("bsd") then
 				includedirs { "/usr/local/include" }
 			end
 		end,
@@ -347,6 +348,8 @@ extern_lib_defs = {
 			elseif os.is("macosx") then
 				add_default_include_paths("iconv")
 				defines { "LIBICONV_STATIC" }
+			elseif os.getversion().description == "FreeBSD" then
+				defines { "HAVE_ICONV_CONST" }
 			end
 		end,
 		link_settings = function()
@@ -355,10 +358,18 @@ extern_lib_defs = {
 			end
 			add_default_links({
 				win_names  = { "libiconv" },
-				-- TODO: glibc provides symbols for this, so we should only include that (and depend on libiconv) on non-glibc unix
 				osx_names = { "iconv" },
 				dbg_suffix = "",
 			})
+			-- glibc (used on Linux and GNU/kFreeBSD) has iconv
+			-- FreeBSD 10+ has iconv as a part of libc
+			if os.is("bsd")
+			   and not (os.getversion().description == "FreeBSD" and os.getversion().majorversion >= 10
+			            or os.getversion().description == "GNU/kFreeBSD") then
+				add_default_links({
+					bsd_names = { "iconv" },
+				})
+			end
 		end,
 	},
 	icu = {
