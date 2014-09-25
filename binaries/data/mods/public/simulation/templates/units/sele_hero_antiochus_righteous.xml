@@ -7,10 +7,10 @@
       <AffectedPlayers>Enemy</AffectedPlayers>
       <Affects>Structure Mechanical</Affects>
       <Modifications>
-        <Health.Max> <Multiply>0.5</Multiply> </Health.Max>
+        <Health.Max> <Multiply>0.8</Multiply> </Health.Max>
       </Modifications>
       <AuraName>Conquest Aura</AuraName>
-      <AuraDescription>All nearby enemy buildings, siege engines, and ships have their health halved.</AuraDescription>
+      <AuraDescription>All nearby enemy buildings, siege engines, and ships have their health reduced by 20%.</AuraDescription>
     </Aura1>
   </Auras>
   <Builder>
