@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Ivailo Monev <xakepa10@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-08-17 10:01+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"PO-Revision-Date: 2014-09-22 19:00+0000\n"
+"Last-Translator: Ivailo Monev <xakepa10@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "Плодове"
 
 #: simulation/templates/template_gaia_flora_tree.xml:7
 msgid "Chop down to accumulate Wood."
-msgstr ""
+msgstr "Нарежи за усвояване на Дърво."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
@@ -78,18 +79,18 @@ msgstr "Каменна Мина"
 
 #: simulation/templates/template_gaia_ruins.xml:10
 msgid "These ruins that can be mined for resources."
-msgstr ""
+msgstr "Тези руини могат де се минират за ресурси."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "Основни Руини"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
 #: simulation/templates/gaia/special_ruins_column_doric.xml:9
 #: simulation/templates/other/unfinished_greek_temple.xml:9
 msgid "Ruins"
-msgstr ""
+msgstr "Руини"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
@@ -97,7 +98,7 @@ msgstr "Съкровище което лесно може да се вземе."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "Основно Съкровище"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -129,35 +130,35 @@ msgstr "Единица"
 #: simulation/templates/campaigns/army_mace_standard.xml:22
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
+msgstr "Ето как ще изглежда армия на Страт Карта."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
-msgstr ""
+msgstr "Армия на Александър Велики."
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "Армия на Александър Велики"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedonia"
-msgstr ""
+msgstr "Армия на Македония"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 msgid "Army of Macedon"
-msgstr ""
+msgstr "Армия на Македон"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I."
-msgstr ""
+msgstr "Армия на Леонид I."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "Army of Leonidas I"
-msgstr ""
+msgstr "Армия на Леонид I"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
+msgstr "Това е незначителен Гръцки град. Има териториален ефект 150."
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -166,79 +167,79 @@ msgstr "Селище"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "Незначителен Гръцки Полис"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:28
 msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr ""
+msgstr "Това е основен Гръцки град. Има териториален ефект 300."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "Гръцки Полис"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr ""
+msgstr "Религиозно Обежище"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr ""
+msgstr "Гръцко Религиозно Обежище"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
+msgstr "Боева Линия"
 
 #: simulation/templates/formations/box.xml:7
 msgid "Box"
-msgstr ""
+msgstr "Кутия"
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
-msgstr ""
+msgstr "4 единици получени"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
-msgstr ""
+msgstr "Затворена Колона"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr ""
+msgstr "Отворена Колона"
 
 #: simulation/templates/formations/flank.xml:7
 msgid "Flank"
-msgstr ""
+msgstr "Фланк"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
-msgstr ""
+msgstr "8 единици получени"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr ""
+msgstr "Затворена Линия"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr ""
+msgstr "Отворена Линия"
 
 #: simulation/templates/formations/phalanx.xml:7
 msgid "Phalanx"
-msgstr ""
+msgstr "Фаланкс"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "10 меле пехотинкси единици са нужни"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "Разпръсни"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
-msgstr ""
+msgstr "Скирмишър"
 
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
-msgstr ""
+msgstr "Само далекобойни единици са позволени"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -246,23 +247,23 @@ msgstr "Синтагма"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
-msgstr ""
+msgstr "9 пика пехотинкси единици са нужни"
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
-msgstr ""
+msgstr "Тестудо"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "9 меле пехотинкси единици са нужни"
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr ""
+msgstr "Залог"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "3 конни единици са нужни"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -282,11 +283,11 @@ msgstr "Кокошка"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:19
 msgid "Nile Crocodile"
-msgstr ""
+msgstr "Нилски крокодил"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "Крокодилус нилотикус"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -356,7 +357,7 @@ msgstr "Лъв"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "Лъвица"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
@@ -376,11 +377,11 @@ msgstr "Заек"
 
 #: simulation/templates/gaia/fauna_shark.xml:15
 msgid "Shark"
-msgstr ""
+msgstr "Акула"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
-msgstr ""
+msgstr "Велико Бяло"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
@@ -500,7 +501,7 @@ msgstr "Голямо Дъбово Дърво"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "Маслинено Дърво"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
@@ -553,7 +554,7 @@ msgstr "Келтски Правостоящ Камък"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "Птолемееви Египетски Статуи"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
@@ -825,7 +826,7 @@ msgstr "Палисада"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
+msgstr "Конвертирай Дървена Стена към Дървена Порта"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
@@ -896,7 +897,7 @@ msgstr "Малка Пирамида"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "Разлагащо се военно корабокрушение. Добра възможност за всеки бизнесмен."
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
@@ -917,11 +918,11 @@ msgstr "Корабокрушение със голяма загуба на жи�
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "Развалините на малък товарен кораб. Добра възможност за всеки бизнесмен."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "Торварен кораб натоварен наполовина. Добра възможност за всеки бизнесмен."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -968,18 +969,18 @@ msgstr "Незавършен Гръцки Храм"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr ""
+msgstr "Промените в 10-поп къщи за цивилизации с тези къщи, се изтриват за други civs"
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr ""
+msgstr "Промените в 5-поп къщи за цивилизации с тези къщи, се изтриват за други civs"
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "Маркер"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5

@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-16 14:01+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 11:43+0000\n"
 "Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -154,19 +154,19 @@ msgstr "—"
 msgid "<invalid>"
 msgstr "<invalid>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Tha"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Chan eil"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "Ceart ma-thà"
@@ -255,8 +255,10 @@ msgid "Post Processing"
 msgstr "Giullachd an dèidh làimh"
 
 #: gui/options/options.js:20
-msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Cleachd criathragan giullachd-sgrìn an dèidh làimh (HDR, Bloom, DOF, agus msaa)"
+msgid ""
+"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
+"GAME RESTART"
+msgstr "Cleachd criathragan iar-phròiseasaidh air rum na sgrìn (HDR, Bloom, DOF, is msaa). FEUMAIDH TU AN GEAMA TÒISEACHADH ÀS ÙR"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -422,38 +424,38 @@ msgstr "Stampaichean-tìde na cabadaich"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Seall an t-àm a thèid teachdaireachdan a phostadh gu cabadaich na lobaidh"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:78
 msgid "disabled"
 msgstr "à comas"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
 msgstr "a' ceangal ris an fhrithealaiche"
 
-#: gui/pregame/mainmenu.js:114
+#: gui/pregame/mainmenu.js:86
 #, c-format
 msgid "uploading (%f%%)"
 msgstr "'ga luchdadh suas (%f%%)"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
 msgstr "shoirbhich leis an luchdadh suas"
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:95
 #, python-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "dh'fhàillig leis an luchdadh suas (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:130
+#: gui/pregame/mainmenu.js:102
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "dh'fhàillig leis an luchdadh suas (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:133
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "chan eil fhios"
 
-#: gui/pregame/mainmenu.js:177
+#: gui/pregame/mainmenu.js:149
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -466,51 +468,51 @@ msgstr "%(startWarning)sWarning:%(endWarning)s Tha thu a' cleachdadh grafaigeach
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Brùth air \"Barrachd fiosrachaidh\" airson barrachd fiosrachaidh no air \"Ceart ma-thà\" airson leantainn air adhart."
 
-#: gui/pregame/mainmenu.js:184
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "RABHADH!"
 
-#: gui/pregame/mainmenu.js:186
+#: gui/pregame/mainmenu.js:158
 msgid "Read More"
 msgstr "Barrachd fiosrachaidh"
 
-#: gui/pregame/mainmenu.js:279
+#: gui/pregame/mainmenu.js:251
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Togail: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "A bheil thu cinnteach gu bheil thu airson 0 A.D. fhàgail?"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
 msgstr "Dearbhadh"
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Chan eil deasaiche nan cnàmh-sgeul ri làimh no dh'fhàillig leis an luchdadh. Thoir sùil air logaichean a' gheama airson barrachd fiosrachaidh."
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid "Error"
 msgstr "Mearachd"
 
-#: gui/pregame/mainmenu.js:325
+#: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Tòisich an lobaidh ioma-chluicheadair. [À COMAS LEIS AN TOGAIL]"
 
-#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
-#: gui/pregame/mainmenu.xml:145 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
+#: gui/pregame/mainmenu.xml:116 (caption)
 msgid "Technical Details"
 msgstr "Fiosrachadh teicnigeach"
 
-#: gui/pregame/mainmenu.js:335
+#: gui/pregame/mainmenu.js:307
 msgid "Manual"
 msgstr "Leabhar-mìneachaidh"
 
@@ -603,7 +605,7 @@ msgid "Close"
 msgstr "Dùin"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:315 (caption)
+#: (caption) gui/pregame/mainmenu.xml:286 (caption)
 msgid "Language"
 msgstr "Cànan"
 
@@ -700,220 +702,221 @@ msgstr "Roghainnean na lobaidh"
 msgid "Save"
 msgstr "Sàbhail"
 
-#: gui/pregame/mainmenu.xml:104
+#: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
 msgstr "Cuidich sinn le piseach a thoirt air 0 A.D!"
 
-#: gui/pregame/mainmenu.xml:106
+#: gui/pregame/mainmenu.xml:77
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "'S urrainn dhut fiosrachadh gun ainm a chur thugainn gu fèin-obrachail a chuidicheas ach an càraich sinn bugaichean is an toir sinn piseach air an dèanadas is co-chòrdalachd."
 
-#: gui/pregame/mainmenu.xml:132
+#: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Mòran taing gun cuidich thu le piseach a thoirt air 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:134
+#: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
 msgstr "Tha cur fiosrachaidh gun ainm an comas an-dràsta."
 
-#: gui/pregame/mainmenu.xml:136
+#: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
 msgstr "Staid: $status."
 
-#: gui/pregame/mainmenu.xml:515
+#: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVI: Patañjali"
 msgstr "Alpha XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:517
+#: gui/pregame/mainmenu.xml:488
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "RABHADH: Seo tionndadh leasachaidh tràth dhen gheama. Tha iomadh feart ri thighinn nach deach a chur ris fhathast."
 
-#: gui/pregame/mainmenu.xml:519
+#: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
 msgstr "Rach an sàs ann air: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:110 (caption)
+#: gui/pregame/mainmenu.xml:81 (caption)
 msgid "Enable Feedback"
 msgstr "Cuir fiosrachadh a-null"
 
-#: gui/pregame/mainmenu.xml:141 (caption)
+#: gui/pregame/mainmenu.xml:112 (caption)
 msgid "Disable Feedback"
 msgstr "Na cuir fiosrachadh a-null"
 
-#: gui/pregame/mainmenu.xml:184 (caption)
+#: gui/pregame/mainmenu.xml:155 (caption)
 msgid "Matches"
 msgstr "Maidsichean"
 
-#: gui/pregame/mainmenu.xml:185 (tooltip)
+#: gui/pregame/mainmenu.xml:156 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Briog an-seo gus geama aon chluicheadair ùr a thòiseachadh"
 
-#: gui/pregame/mainmenu.xml:198 (caption)
+#: gui/pregame/mainmenu.xml:169 (caption)
 msgid "Campaigns"
 msgstr "Iomairtean"
 
-#: gui/pregame/mainmenu.xml:199 (tooltip)
+#: gui/pregame/mainmenu.xml:170 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Atharrais an eachdraidh le iomairtean an airm eachdraidheil. [CHAN EIL SEO RI FHAIGHINN FHATHAST]"
 
-#: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Luchdaich geama"
 
-#: gui/pregame/mainmenu.xml:216 (tooltip)
+#: gui/pregame/mainmenu.xml:187 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Briog an-seo gus geama air a shàbhaladh a luchdadh."
 
-#: gui/pregame/mainmenu.xml:238 (caption)
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:209 (caption)
 msgid "Join Game"
 msgstr "Gabh pàirt ann an geama"
 
-#: gui/pregame/mainmenu.xml:239 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Gabh pàirt ann an geama ioma-chluicheadair a tha ann mar-thà."
 
-#: gui/pregame/mainmenu.xml:253 (caption)
+#: gui/pregame/mainmenu.xml:224 (caption)
 msgid "Host Game"
 msgstr "Òstaich geama"
 
-#: gui/pregame/mainmenu.xml:254 (tooltip)
+#: gui/pregame/mainmenu.xml:225 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Òstaich geama ioma-chluicheadair.\\n\\nFeumaidh am port UDP 20595 a bhith fosgailte."
 
-#: gui/pregame/mainmenu.xml:268 (caption)
+#: gui/pregame/mainmenu.xml:239 (caption)
 msgid "Game Lobby"
 msgstr "Lobaidh nan geama"
 
-#: gui/pregame/mainmenu.xml:269 (tooltip)
+#: gui/pregame/mainmenu.xml:240 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Tòisich an lobaidh ioma-chluicheadair."
 
-#: gui/pregame/mainmenu.xml:298 (caption)
+#: gui/pregame/mainmenu.xml:269 (caption)
 msgid "Options"
 msgstr "Roghainnean"
 
-#: gui/pregame/mainmenu.xml:299 (tooltip)
+#: gui/pregame/mainmenu.xml:270 (tooltip)
 msgid "Adjust game settings."
 msgstr "Cuir gleus air roghainnean a' gheama."
 
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:287 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Tagh cànan a' gheama."
 
-#: gui/pregame/mainmenu.xml:331 (caption)
+#: gui/pregame/mainmenu.xml:302 (caption)
 msgid "Scenario Editor"
 msgstr "Deasaiche chnàmh-sgeulan"
 
-#: gui/pregame/mainmenu.xml:332 (tooltip)
+#: gui/pregame/mainmenu.xml:303 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Fosgail an deasaiche chnàmh-sgeulan Atlas ann an uinneag ùr. 'S urrainn dhut a ruith ann an dòigh nas earbsaiche 's tu a' tòiseachadh a' gheama leis an argamaid \"-editor\" ait an loidhne-àithne."
 
-#: gui/pregame/mainmenu.xml:344 (caption)
+#: gui/pregame/mainmenu.xml:315 (caption)
 msgid "Welcome Screen"
 msgstr "Sgrìn fàilteachaidh"
 
-#: gui/pregame/mainmenu.xml:345 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Seall an sgrìn fàilteachaidh. Tha seo feumail ma dh'fhalaich thu le mearachd i."
 
-#: gui/pregame/mainmenu.xml:359 (caption)
+#: gui/pregame/mainmenu.xml:330 (caption)
 msgid "Mod Selection"
 msgstr "Taghadh nan tuilleadan"
 
-#: gui/pregame/mainmenu.xml:360 (tooltip)
+#: gui/pregame/mainmenu.xml:331 (tooltip)
 msgid "Select mods to use."
 msgstr "Tagh na tuilleadain a bu toil leat cleachdadh."
 
-#: gui/pregame/mainmenu.xml:413 (caption)
+#: gui/pregame/mainmenu.xml:384 (caption)
 msgid "Learn To Play"
 msgstr "Leabhar-mìneachaidh"
 
-#: gui/pregame/mainmenu.xml:414 (tooltip)
+#: gui/pregame/mainmenu.xml:385 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Fosgail an leabhar-mìneachaidh aig 0 A.D."
 
-#: gui/pregame/mainmenu.xml:430 (caption)
+#: gui/pregame/mainmenu.xml:401 (caption)
 msgid "Single Player"
 msgstr "Aon chluicheadair"
 
-#: gui/pregame/mainmenu.xml:431 (tooltip)
+#: gui/pregame/mainmenu.xml:402 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Thoir dùbhlan dhan choimpiutair airson maids aon chluicheadair."
 
-#: gui/pregame/mainmenu.xml:445 (caption)
+#: gui/pregame/mainmenu.xml:416 (caption)
 msgid "Multiplayer"
 msgstr "Ioma-chluicheadair"
 
-#: gui/pregame/mainmenu.xml:446 (tooltip)
+#: gui/pregame/mainmenu.xml:417 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Dèan sabaid an aghaidh cluicheadair daonna no dhà ann an geama ioma-chluicheadair"
 
-#: gui/pregame/mainmenu.xml:460 (caption)
+#: gui/pregame/mainmenu.xml:431 (caption)
 msgid "Tools & Options"
 msgstr "Innealan ⁊ Roghainnean"
 
-#: gui/pregame/mainmenu.xml:461 (tooltip)
+#: gui/pregame/mainmenu.xml:432 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Roghainnean a' gheama is innealan gus cnàmh-sgeulan a dhealbhachadh."
 
-#: gui/pregame/mainmenu.xml:475 (caption)
+#: gui/pregame/mainmenu.xml:446 (caption)
 msgid "History"
 msgstr "Eachdraidh"
 
-#: gui/pregame/mainmenu.xml:476 (tooltip)
+#: gui/pregame/mainmenu.xml:447 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Fiosrachadh mu na sìobhaltasan ann an 0 A.D."
 
-#: gui/pregame/mainmenu.xml:492 (caption)
+#: gui/pregame/mainmenu.xml:463 (caption)
 msgid "Exit"
 msgstr "Fàg an-seo"
 
-#: gui/pregame/mainmenu.xml:493 (tooltip)
+#: gui/pregame/mainmenu.xml:464 (tooltip)
 msgid "Exits the game."
 msgstr "Fàgaidh tu an geama."
 
-#: gui/pregame/mainmenu.xml:529 (caption)
+#: gui/pregame/mainmenu.xml:500 (caption)
 msgid "Help with the Translation!"
 msgstr "Cuidich leinn leis an eadar-theangachadh!"
 
-#: gui/pregame/mainmenu.xml:530 (tooltip)
+#: gui/pregame/mainmenu.xml:501 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Briog gus duilleag an eadar-theangachaidh aig 0 A.D. fhosgladh sa bhrabhsair agad."
 
-#: gui/pregame/mainmenu.xml:541 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Website"
 msgstr "Làrach-lìn"
 
-#: gui/pregame/mainmenu.xml:542 (tooltip)
+#: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Briog gus play0ad.com fhosgladh sa bhrabhsair-lìn agad."
 
-#: gui/pregame/mainmenu.xml:553 (caption)
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Chat"
 msgstr "Cabadaich"
 
-#: gui/pregame/mainmenu.xml:554 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Briog gus a' chabadaich IRC aig 0 A.D. fhosgladh sa bhrabhsair-lìn agad. (#0ad air webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:565 (caption)
+#: gui/pregame/mainmenu.xml:536 (caption)
 msgid "Report a Bug"
 msgstr "Dèan aithris air buga"
 
-#: gui/pregame/mainmenu.xml:566 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Briog gus tadhal air 0 A.D. Trac ach an dèan thu aithris air buga, tuisleadh no mearachd."
 
-#: gui/pregame/mainmenu.xml:594 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1149,6 +1152,12 @@ msgstr "[icon=iconLag]  Thig dàil air a' gheama nuair a bhios mòran aonadan a'
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"]  Faodaidh mapaichean mòra duilgheadasan adhbharachadh."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"[icon=\"iconFormation\"]  We disabled formations until we find out how to "
+"make them less laggy, more fun to play and historically accurate."
+msgstr "[icon=\"iconFormation\"]  Cuiridh sinn cumaidhean à comas gus an càraich sinn an dàil a dh'adhbhraicheas iad 's gus am bi iad as tlachdmhoire 's an giùlan mar bu chòir a thaobh an eachdraidh."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

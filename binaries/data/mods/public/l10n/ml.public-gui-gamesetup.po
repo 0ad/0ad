@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
 "PO-Revision-Date: 2014-08-17 09:45+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
@@ -104,7 +104,7 @@ msgid "Skirmish"
 msgstr ""
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1246
+#: gui/gamesetup/gamesetup.js:1250
 msgctxt "map"
 msgid "Random"
 msgstr ""
@@ -113,8 +113,8 @@ msgstr ""
 msgid "Scenario"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1152
-#: gui/gamesetup/gamesetup.js:1229
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1156
+#: gui/gamesetup/gamesetup.js:1233
 msgid "Default"
 msgstr ""
 
@@ -135,153 +135,153 @@ msgctxt "team"
 msgid "None"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1311
 msgctxt "civilization"
 msgid "Random"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:893
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:897
 msgid "You"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:974
+#: gui/gamesetup/gamesetup.js:978
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1115 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1119 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.js:1121 gui/gamesetup/gamesetup.js:1180
 #: gui/gamesetup/gamesetup.xml:312 (caption)
 msgid "Revealed Map:"
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1118 gui/gamesetup/gamesetup.js:1177
+#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
 #: gui/gamesetup/gamesetup.xml:322 (caption)
 msgid "Explored Map:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.js:1185
 #: gui/gamesetup/gamesetup.xml:282 (caption)
 msgid "Victory Condition:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1124 gui/gamesetup/gamesetup.js:1183
+#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
 #: gui/gamesetup/gamesetup.xml:332 (caption)
 msgid "Teams Locked:"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "Yes"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "No"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1247
+#: gui/gamesetup/gamesetup.js:1251
 msgid "Randomly selects a map from the list"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1254
+#: gui/gamesetup/gamesetup.js:1258
 msgid "Sorry, no description available."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1257
+#: gui/gamesetup/gamesetup.js:1261
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1293
+#: gui/gamesetup/gamesetup.js:1297
 msgid "Loading..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1408
+#: gui/gamesetup/gamesetup.js:1410
 #, python-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1413
+#: gui/gamesetup/gamesetup.js:1415
 msgid "Unassigned"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1601 gui/gamesetup/gamesetup.js:1606
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1603 gui/gamesetup/gamesetup.js:1608
+#: gui/gamesetup/gamesetup.js:1626
 #, python-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1601
+#: gui/gamesetup/gamesetup.js:1603
 #, python-format
 msgid "%(username)s has joined"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1606
+#: gui/gamesetup/gamesetup.js:1608
 #, python-format
 msgid "%(username)s has left"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1613
 #, python-format
 msgid "<%(username)s>"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1614
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1622
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1626
 msgid "Game settings have been changed"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1649
+#: gui/gamesetup/gamesetup.js:1651
 msgid "I'm not ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1650
+#: gui/gamesetup/gamesetup.js:1652
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1655 gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1657 gui/gamesetup/gamesetup.js:1733
 msgid "I'm ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1656
+#: gui/gamesetup/gamesetup.js:1658
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1730
+#: gui/gamesetup/gamesetup.js:1734
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1853
 msgid "None"
 msgstr ""
 

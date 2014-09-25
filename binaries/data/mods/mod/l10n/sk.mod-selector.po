@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
 "PO-Revision-Date: 2014-09-17 00:10+0000\n"
 "Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
@@ -57,6 +57,10 @@ msgstr "Všetky závislosti splnené"
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
 msgstr "Nie je vybratý žiaden mod."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Popis"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -129,7 +133,3 @@ msgstr "Uložiť konfiguráciu"
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr "Spustiť mody"
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Popis"

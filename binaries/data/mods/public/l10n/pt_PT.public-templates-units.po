@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-17 02:41+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 02:20+0000\n"
 "Last-Translator: mogafi\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -358,7 +358,7 @@ msgstr "Navio de Guerra Ligeiro"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Drena rapidamente a vida dos barcos inimigos. Perde vida lentamente devido a que está em chamas, por isso use este barco depressa."
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
@@ -386,7 +386,7 @@ msgstr "Mercador"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "Guarneça com catapultas para aumentar o poder de fogo de alcance."
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
@@ -402,7 +402,7 @@ msgstr "Oxibeles"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
-msgstr ""
+msgstr "Causa dano de salpico."
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
@@ -415,7 +415,7 @@ msgstr "Aríete"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Guarneça até 20 infantarias no seu interior para aumentar de 0 a 10 a quantidade de flechas disparadas."
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:52
 msgid "Siege Tower"
@@ -966,7 +966,7 @@ msgid "Heroine"
 msgstr "Heroína"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cynvelin.xml:11
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
 #: simulation/templates/units/gaul_hero_brennus.xml:10
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:12
@@ -984,13 +984,13 @@ msgstr "Velocidade de todas as unidades +15%."
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:12
+#: simulation/templates/units/brit_hero_cunobelin.xml:12
 msgid "Let all units heal at 1 HP per second"
 msgstr "Permite todas as unidades curarem 1 PV por segundo"
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:20
-msgid "Cynvelin"
-msgstr "Cynvelin"
+#: simulation/templates/units/brit_hero_cunobelin.xml:20
+msgid "Cunobelin"
+msgstr "Cunobelino"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
@@ -1312,11 +1312,11 @@ msgstr "Mekir"
 
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:16
 msgid "Brythonic Champion Chariot."
-msgstr ""
+msgstr "Carro de Guerra Bretão campeão."
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid "Gallic Champion Cavalry."
-msgstr ""
+msgstr "Cavalaria Gaulesa Campeã."
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -1727,7 +1727,7 @@ msgstr "Mulher macedónia"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gynḗ Makedonikḗ"
-msgstr ""
+msgstr "Gynḗ Makedonikḗ"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"

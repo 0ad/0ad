@@ -11,13 +11,16 @@
 # lkishalmi <lkishalmi@ovi.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
+# ricsipontaz <ricsipontaz@googlemail.com>, 2014
+# Tibor Buzási <tib.buzasi@gmail.com>, 2014
+# Tibor Buzási <tib.buzasi@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: lkishalmi <lkishalmi@ovi.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 12:38+0000\n"
+"Last-Translator: Tibor Buzási <tib.buzasi@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -139,24 +142,24 @@ msgstr[1] "%(numberTrading)s szárazföldi kereskedő üzletel."
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
+msgstr[1] "%(numberGarrisoned)s állomásozik egy kereskedőhajón"
 
 #: gui/session/menu.js:492
 #, python-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, %(garrisonedString)s, és %(inactiveString)s."
+msgstr "%(openingTradingString)s, %(garrisonedString)s és %(inactiveString)s."
 
 #: gui/session/menu.js:500
 #, python-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr "%(openingTradingString)s, és %(garrisonedString)s."
+msgstr "%(openingTradingString)s és %(garrisonedString)s."
 
 #: gui/session/menu.js:510 gui/session/menu.js:572
 #, python-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
-msgstr "%(openingTradingString)s, és %(inactiveString)s."
+msgstr "%(openingTradingString)s és %(inactiveString)s."
 
 #: gui/session/menu.js:517 gui/session/menu.js:579
 #, python-format
@@ -171,13 +174,13 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
+msgstr[1] "%(numberGarrisoned)s szárazföldi kereskedő állomásozik egy kereskedőhajón"
 
 #: gui/session/menu.js:530
 #, python-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s és %(inactiveString)s."
 
 #: gui/session/menu.js:537
 #, python-format
@@ -188,8 +191,8 @@ msgstr "%(openingGarrisonedString)s."
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
+msgstr[1] "%(numberOfLandTraders)s szárazföldi kereskedő inaktív"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
@@ -213,8 +216,8 @@ msgstr[1] "%(numberOfShipTraders)s inaktív"
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberTrading)s hajó kereskedik"
+msgstr[1] "%(numberTrading)s hajó kereskedik"
 
 #: gui/session/menu.js:588
 #, python-format
@@ -240,7 +243,7 @@ msgstr "A Fejlesztői Felület becsukódott."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "%(resourceAmount)s %(resourceType)s sarc fizetése %(playerName)s részére. Shift-kattintás %(greaterAmount)s sarc fizetéséhez."
 
 #: gui/session/messages.js:196
 #, python-format
@@ -327,7 +330,7 @@ msgstr "%(player)s semlegesen áll hozzád."
 #: gui/session/messages.js:473
 #, python-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
-msgstr ""
+msgstr "%(previousAmounts)s és %(lastAmount)s"
 
 #: gui/session/messages.js:474 gui/session/utility_functions.js:187
 #: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
@@ -383,7 +386,7 @@ msgstr "Privát"
 #: gui/session/selection_details.js:32
 #, python-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — becsomagolva"
 
 #: gui/session/selection_details.js:44
 #, python-format
@@ -432,14 +435,14 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, python-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Növekedés: %(amount)s"
 
 #: gui/session/selection_details.js:173
 #, c-format
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "Építők száma.\nTovábbi hozzárendelés ehhez az alaphoz %(numb)s%%-kal gyorsítaná fel az építés sebességét."
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -463,11 +466,11 @@ msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Időtartam:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Arány:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:629
 #: gui/session/utility_functions.js:324
@@ -498,11 +501,11 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Osztályok:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
-msgstr ""
+msgstr "Sebzéspontok:"
 
 #: gui/session/selection_details.js:361 gui/session/session.js:618
 #, python-format
@@ -512,12 +515,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "%(resource)s vétele"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "%(resource)s eladása"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
 #, python-format
@@ -527,15 +530,15 @@ msgstr "Szükséges hozzá: %(technology)s"
 #: gui/session/selection_panels.js:332
 #, python-format
 msgid "Unload %(name)s"
-msgstr ""
+msgstr "%(name)s kirakása"
 
 #: gui/session/selection_panels.js:333
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Egyetlen kattintás 1 egység kirakásához. Shift-kattintás az összes ilyen típusú egység kirakásához."
 
 #: gui/session/selection_panels.js:400
 msgid "Lock Gate"
-msgstr "kapu bezárása"
+msgstr "Kapu bezárása"
 
 #: gui/session/selection_panels.js:406
 msgid "Unlock Gate"
@@ -551,11 +554,11 @@ msgstr "Kicsomagolás"
 
 #: gui/session/selection_panels.js:515
 msgid "Cancel Packing"
-msgstr ""
+msgstr "Becsomagolás megszakítása"
 
 #: gui/session/selection_panels.js:517
 msgid "Cancel Unpacking"
-msgstr ""
+msgstr "Kicsomagolás megszakítása"
 
 #: gui/session/selection_panels.js:590
 msgid "Insufficient population capacity:"
@@ -570,8 +573,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s befejezetlen épület van hátra."
+msgstr[1] "%(number)s befejezetlen épület van hátra."
 
 #: gui/session/selection_panels.js:972 gui/session/session.js:617
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -601,22 +604,22 @@ msgstr "Defenzív"
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Ellenálló"
 
 #: gui/session/selection_panels_helpers.js:70
 #, python-format
 msgid "Current Count: %(count)s, Limit: %(limit)s."
-msgstr ""
+msgstr "Jelenlegi létszám: %(count)s, Határ: %(limit)s."
 
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s növeli a határt %(change)s egységgel."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s csökkenti a határt %(change)s egységgel."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -668,7 +671,7 @@ msgstr "Legyőztek..."
 
 #: gui/session/session.js:324
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Feladtad a játékot."
 
 #: gui/session/session.js:468
 msgid "OK"
@@ -684,7 +687,7 @@ msgstr "Ki akarsz lépni?"
 
 #: gui/session/session.js:482
 msgid "DEFEATED!"
-msgstr "LEGYŐZTEK"
+msgstr "LEGYŐZTEK!"
 
 #: gui/session/session.js:490
 msgid "VICTORIOUS!"
@@ -710,42 +713,42 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Megjegyzés: az időhurok mód egy fejlesztői eszköz, és nem hosszú idejű felhasználásra szánt. Nem megfelelő használata a játék összeomlását okozhatja, vagy kifuthat a memóriából."
 
 #: gui/session/session.js:902
 msgid "Time warp mode"
-msgstr ""
+msgstr "Időhurok mód"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
-msgstr ""
+msgstr "Küldőpiac"
 
 #: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, python-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Növekedés: %(gain)s"
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Jobb kattintás egy másik piacon a célpiacként való beállításhoz."
 
 #: gui/session/unit_actions.js:309
 msgid "Destination trade market."
-msgstr ""
+msgstr "Célpiac"
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Jobb kattintás a küldőpiacként való beállításhoz"
 
 #: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Jobb kattintás a célpiacként való beállításhoz"
 
 #: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, python-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Jelenlegi helyőrség: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
@@ -754,15 +757,15 @@ msgstr "Jobb egérgombbal új utat adhatsz meg a kereskedőknek."
 #: gui/session/unit_actions.js:533
 #, python-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Várt növekedés: %(gain)s"
 
 #: gui/session/unit_actions.js:655
 msgid "Unload All"
-msgstr ""
+msgstr "Összes egység kirakása"
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Nem tudod elpusztítani ezt az egységet, mert a háború ködében van."
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
@@ -782,7 +785,7 @@ msgstr "Javítás"
 
 #: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Fókuszálás a gyülekezőpontra"
 
 #: gui/session/unit_actions.js:794
 msgid "Back to Work"
@@ -790,19 +793,19 @@ msgstr "Vissza dolgozni!"
 
 #: gui/session/unit_actions.js:810
 msgid "Guard"
-msgstr ""
+msgstr "Járőrözés"
 
 #: gui/session/unit_actions.js:827
 msgid "Remove guard"
-msgstr ""
+msgstr "Járőrözés eltávolítása"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
-msgstr ""
+msgstr "Válaszd ki a kereskedelmi árukat"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Növeld a riasztási szintet több egység védelméhez"
 
 #: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
@@ -810,7 +813,7 @@ msgstr "Riasztás küldése"
 
 #: gui/session/unit_actions.js:880
 msgid "End of alert."
-msgstr ""
+msgstr "Riadó vége."
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
@@ -874,7 +877,7 @@ msgstr "(%(armorPercentage)s)"
 
 #: gui/session/utility_functions.js:297
 msgid "Charge Attack:"
-msgstr ""
+msgstr "Villámtámadás"
 
 #: gui/session/utility_functions.js:298
 msgid "Melee Attack:"
@@ -911,7 +914,7 @@ msgstr "%(component)s %(cost)s"
 #: gui/session/utility_functions.js:442
 #, python-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
-msgstr ""
+msgstr "%(resourceIcon)s %(minimum)s - %(resourceIcon)s %(maximum)s"
 
 #: gui/session/utility_functions.js:475
 #, python-format
@@ -1074,7 +1077,7 @@ msgstr "Fa"
 #: gui/session/utility_functions.js:700
 msgctxt "firstWord"
 msgid "Wood"
-msgstr "Fa"
+msgstr "Faanyag"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1114,7 +1117,7 @@ msgstr "Élelem"
 #: gui/session/utility_functions.js:713
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "hús"
+msgstr "Hús"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1130,7 +1133,7 @@ msgstr "Fém"
 #: gui/session/utility_functions.js:717
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr "érc"
+msgstr "Érc"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1178,7 +1181,7 @@ msgstr "Fa"
 #: gui/session/utility_functions.js:729
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Fa"
+msgstr "Faanyag"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1186,7 +1189,7 @@ msgstr "Fa"
 #: gui/session/utility_functions.js:731
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "gyümölcs"
+msgstr "Gyümölcs"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1194,7 +1197,7 @@ msgstr "gyümölcs"
 #: gui/session/utility_functions.js:733
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr "gabona"
+msgstr "Gabona"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1219,7 +1222,7 @@ msgstr "Civilizáció"
 
 #: gui/session/diplomacy_window.xml:24 (caption)
 msgid "Theirs"
-msgstr ""
+msgstr "Övék"
 
 #: gui/session/diplomacy_window.xml:27 (caption)
 msgid "A"
@@ -1231,11 +1234,11 @@ msgstr "S"
 
 #: gui/session/diplomacy_window.xml:35 (caption)
 msgid "E"
-msgstr ""
+msgstr "E"
 
 #: gui/session/diplomacy_window.xml:39 (caption)
 msgid "Tribute"
-msgstr ""
+msgstr "Sarc"
 
 #: gui/session/diplomacy_window.xml:73 (caption)
 #: gui/session/trade_window.xml:47 (caption)
@@ -1256,7 +1259,7 @@ msgstr "Beállítások"
 
 #: gui/session/menu.xml:76 (caption)
 msgid "Resign"
-msgstr ""
+msgstr "Feladni"
 
 #: gui/session/menu.xml:87 (caption) gui/session/session.xml:333 (caption)
 msgid "Exit"
@@ -1268,7 +1271,7 @@ msgstr "Tétlen lakos keresése"
 
 #: gui/session/session.xml:53 (caption)
 msgid "Control all units"
-msgstr ""
+msgstr "Összes egység irányítása"
 
 #: gui/session/session.xml:63 (caption)
 msgid "Change perspective"
@@ -1276,43 +1279,43 @@ msgstr "Perspektíva megváltoztatása"
 
 #: gui/session/session.xml:70 (caption)
 msgid "Display selection state"
-msgstr ""
+msgstr "Kiválasztási állapot megjelenítése"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Felderítő felület"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
-msgstr ""
+msgstr "Akadály felület"
 
 #: gui/session/session.xml:89 (caption)
 msgid "Unit motion overlay"
-msgstr ""
+msgstr "Egységmozgás felület"
 
 #: gui/session/session.xml:96 (caption)
 msgid "Range overlay"
-msgstr ""
+msgstr "Hatókör felület"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Határoló doboz felület"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
-msgstr ""
+msgstr "Kamera korlátozása"
 
 #: gui/session/session.xml:124 (caption)
 msgid "Reveal map"
-msgstr ""
+msgstr "Térkép felfedése"
 
 #: gui/session/session.xml:132 (caption)
 msgid "Enable time warp"
-msgstr ""
+msgstr "Időhurok engedélyezése"
 
 #: gui/session/session.xml:142 (caption)
 msgid "Promote selected units"
-msgstr ""
+msgstr "Kiválasztott egység előléptetése"
 
 #: gui/session/session.xml:174 (caption)
 msgid "Game Paused"
@@ -1320,7 +1323,7 @@ msgstr "Játék megállítva"
 
 #: gui/session/session.xml:177 (caption)
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Kattints a játék folytatásához"
 
 #: gui/session/session.xml:206 (caption)
 msgid "Cancel"
@@ -1328,7 +1331,7 @@ msgstr "Mégse"
 
 #: gui/session/session.xml:212 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "Csak csapat"
 
 #: gui/session/session.xml:216 (caption)
 msgid "Send"
@@ -1364,7 +1367,7 @@ msgstr "Kérdés"
 
 #: gui/session/dialogs/yes_no.xml:15 (caption)
 msgid "Yes or no?"
-msgstr ""
+msgstr "Igen vagy nem?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1372,7 +1375,7 @@ msgstr "Nyersanyag csere:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:29 (tooltip)
 msgid "Hitpoints"
-msgstr ""
+msgstr "Sebzéspontok:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:38 (tooltip)
 msgid "Stamina"
@@ -1397,13 +1400,13 @@ msgstr "Rang"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "Termelési sor"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Kattints a csoportosított egységek kiválasztásához, dupla kattints a csoportosított egységekre fókuszáláshoz és jobb kattints a csoport feloszlatásához!"
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"
@@ -1419,7 +1422,7 @@ msgstr "MENÜ"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVI : Patañjali"
-msgstr ""
+msgstr "ALPHA XVI : Patañjali"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"
@@ -1439,4 +1442,4 @@ msgstr "Kő"
 
 #: gui/session/top_panel/resource_wood.xml:3 (tooltip)
 msgid "Wood"
-msgstr "Fa"
+msgstr "Faanyag"

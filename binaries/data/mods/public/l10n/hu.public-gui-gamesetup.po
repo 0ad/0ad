@@ -11,13 +11,14 @@
 # lkishalmi <lkishalmi@ovi.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
+# ricsipontaz <ricsipontaz@googlemail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: lkishalmi <lkishalmi@ovi.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 11:21+0000\n"
+"Last-Translator: ricsipontaz <ricsipontaz@googlemail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -111,7 +112,7 @@ msgid "Skirmish"
 msgstr "Csata"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1246
+#: gui/gamesetup/gamesetup.js:1250
 msgctxt "map"
 msgid "Random"
 msgstr "Véletlenszerű"
@@ -120,8 +121,8 @@ msgstr "Véletlenszerű"
 msgid "Scenario"
 msgstr "Játszma"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1152
-#: gui/gamesetup/gamesetup.js:1229
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1156
+#: gui/gamesetup/gamesetup.js:1233
 msgid "Default"
 msgstr "Alapértelmezett"
 
@@ -142,153 +143,153 @@ msgctxt "team"
 msgid "None"
 msgstr "Nincs"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1311
 msgctxt "civilization"
 msgid "Random"
 msgstr "Véletlenszerű"
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:893
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:897
 msgid "You"
 msgstr "Te"
 
-#: gui/gamesetup/gamesetup.js:974
+#: gui/gamesetup/gamesetup.js:978
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1115 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1119 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr "Térkép mérete:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.js:1121 gui/gamesetup/gamesetup.js:1180
 #: gui/gamesetup/gamesetup.xml:312 (caption)
 msgid "Revealed Map:"
 msgstr "Felderített térkép:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1118 gui/gamesetup/gamesetup.js:1177
+#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
 #: gui/gamesetup/gamesetup.xml:322 (caption)
 msgid "Explored Map:"
 msgstr "Felfedezett térkép:"
 
-#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.js:1185
 #: gui/gamesetup/gamesetup.xml:282 (caption)
 msgid "Victory Condition:"
-msgstr "Győzelmi Feltétel:"
+msgstr "Győzelmi feltétel:"
 
-#: gui/gamesetup/gamesetup.js:1124 gui/gamesetup/gamesetup.js:1183
+#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
 #: gui/gamesetup/gamesetup.xml:332 (caption)
 msgid "Teams Locked:"
-msgstr "Zárolt Csapatok:"
+msgstr "Zárolt csapatok:"
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "Yes"
 msgstr "Igen"
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "No"
-msgstr "Ne"
+msgstr "Nem"
 
-#: gui/gamesetup/gamesetup.js:1247
+#: gui/gamesetup/gamesetup.js:1251
 msgid "Randomly selects a map from the list"
 msgstr "Véletlenszerűen választ a listán szereplő térképekből"
 
-#: gui/gamesetup/gamesetup.js:1254
+#: gui/gamesetup/gamesetup.js:1258
 msgid "Sorry, no description available."
 msgstr "Sajnos nem érhető el leírás."
 
-#: gui/gamesetup/gamesetup.js:1257
+#: gui/gamesetup/gamesetup.js:1261
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s játékos. %(description)s"
 msgstr[1] "%(number)s játékos. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1293
+#: gui/gamesetup/gamesetup.js:1297
 msgid "Loading..."
-msgstr "Betöltés..."
+msgstr "Betöltés…"
 
-#: gui/gamesetup/gamesetup.js:1408
+#: gui/gamesetup/gamesetup.js:1410
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "MI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1413
+#: gui/gamesetup/gamesetup.js:1415
 msgid "Unassigned"
 msgstr "Nincs hozzárendelve"
 
-#: gui/gamesetup/gamesetup.js:1601 gui/gamesetup/gamesetup.js:1606
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1603 gui/gamesetup/gamesetup.js:1608
+#: gui/gamesetup/gamesetup.js:1626
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1601
+#: gui/gamesetup/gamesetup.js:1603
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s csatlakozott"
 
-#: gui/gamesetup/gamesetup.js:1606
+#: gui/gamesetup/gamesetup.js:1608
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s kilépett"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1613
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1614
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr "*%(username)s készen áll!"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1622
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nem áll készen."
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1626
 msgid "Game settings have been changed"
 msgstr "Játékbeállítások módosítva"
 
-#: gui/gamesetup/gamesetup.js:1649
+#: gui/gamesetup/gamesetup.js:1651
 msgid "I'm not ready"
 msgstr "Nem állok készen"
 
-#: gui/gamesetup/gamesetup.js:1650
+#: gui/gamesetup/gamesetup.js:1652
 msgid "State that you are not ready to play."
 msgstr "Kijelented, hogy nem állsz készen a játékra."
 
-#: gui/gamesetup/gamesetup.js:1655 gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1657 gui/gamesetup/gamesetup.js:1733
 msgid "I'm ready!"
 msgstr "Készen állok!"
 
-#: gui/gamesetup/gamesetup.js:1656
+#: gui/gamesetup/gamesetup.js:1658
 msgid "State that you are ready to play!"
 msgstr "Kijelented, hogy készen állsz a játékra!"
 
-#: gui/gamesetup/gamesetup.js:1730
+#: gui/gamesetup/gamesetup.js:1734
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Kijelented, hogy elfogadod a jelenlegi beállításokat és készen állsz a játékra!"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1853
 msgid "None"
 msgstr "Nincs"
 
@@ -299,7 +300,7 @@ msgstr "%(name)s játéka"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr "Csatlakozás a szerverhez..."
+msgstr "Csatlakozás a kiszolgálóhoz…"
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, python-format
@@ -308,11 +309,11 @@ msgstr "Hálózati üzenet: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr "Regisztráció a szerveren..."
+msgstr "Regisztráció a kiszolgálón…"
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr "A játék már elkezdődött, visszakapcsolódás..."
+msgstr "A játék már elkezdődött, újrakapcsolódás…"
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
@@ -337,29 +338,29 @@ msgstr "Csoda"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr "Építs egy \"csodát\" a győzelemhez."
+msgstr "Építs egy „csodát” a győzelemhez."
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr "“%(map)s” betöltése"
+msgstr "„%(map)s” betöltése"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr "“%(map)s” készítése"
+msgstr "„%(map)s” készítése"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
-msgstr "MI Beállítása"
+msgstr "MI beállítása"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr "MI Játékos:"
+msgstr "MI játékos:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr "MI Nehézség:"
+msgstr "MI nehézség:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
 #: (caption)
@@ -369,11 +370,11 @@ msgstr "Mégse"
 #: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:368
 #: (caption)
 msgid "OK"
-msgstr "OK."
+msgstr "Ok"
 
 #: gui/gamesetup/gamesetup.xml:16 (caption)
 msgid "Match Setup"
-msgstr "Játszma Beállítás"
+msgstr "Játszma beállítás"
 
 #: gui/gamesetup/gamesetup.xml:22 (caption)
 msgid "Loading"
@@ -389,7 +390,7 @@ msgstr "Játékos neve"
 
 #: gui/gamesetup/gamesetup.xml:44 (caption)
 msgid "Player Placement"
-msgstr "Játékos Elhelyezése"
+msgstr "Játékos elhelyezése"
 
 #: gui/gamesetup/gamesetup.xml:47 (caption)
 msgid "Civilization"
@@ -409,7 +410,7 @@ msgstr "Játékos választása."
 
 #: gui/gamesetup/gamesetup.xml:81 (tooltip)
 msgid "Configure AI settings."
-msgstr "MI beállítás."
+msgstr "MI beállítása."
 
 #: gui/gamesetup/gamesetup.xml:84 (tooltip)
 msgid "Select player's civilization."
@@ -421,7 +422,7 @@ msgstr "Csapat kiválasztása."
 
 #: gui/gamesetup/gamesetup.xml:100 (caption)
 msgid "Map Type:"
-msgstr "Térkép Típusa:"
+msgstr "Térkép típusa:"
 
 #: gui/gamesetup/gamesetup.xml:103 (caption)
 msgid "Map Filter:"
@@ -486,7 +487,7 @@ msgstr "További beállítások mutatása"
 
 #: gui/gamesetup/gamesetup.xml:272 (caption)
 msgid "Game Speed:"
-msgstr "Játék Sebessége:"
+msgstr "Játék sebessége:"
 
 #: gui/gamesetup/gamesetup.xml:276 (tooltip)
 msgid "Select game speed."
@@ -506,7 +507,7 @@ msgstr "Népességhatár kiválasztása."
 
 #: gui/gamesetup/gamesetup.xml:302 (caption)
 msgid "Starting Resources:"
-msgstr "Kezdő Nyersanyagok:"
+msgstr "Kezdő nyersanyagok:"
 
 #: gui/gamesetup/gamesetup.xml:306 (tooltip)
 msgid "Select the game's starting resources."
@@ -516,7 +517,7 @@ msgstr "Kezdő nyersanyagok kiválasztása."
 #. options!
 #: gui/gamesetup/gamesetup.xml:316 (tooltip)
 msgid "Toggle revealed map (see everything)."
-msgstr "Felfedezett térkép bekapcsolása (mindent látni)."
+msgstr "Felfedezett térkép bekapcsolása (minden látszik)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -563,7 +564,7 @@ msgstr "Játékos neve:"
 
 #: gui/gamesetup/gamesetup_mp.xml:39 (caption)
 msgid "Server Hostname or IP:"
-msgstr "Szerver Neve vagy IP-je:"
+msgstr "Kiszolgáló neve vagy IP címe:"
 
 #: gui/gamesetup/gamesetup_mp.xml:49 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:91 (caption)
@@ -572,11 +573,11 @@ msgstr "Tovább"
 
 #: gui/gamesetup/gamesetup_mp.xml:62 (caption)
 msgid "Set up your server to host."
-msgstr "Szerver beállítása a kiszolgáláshoz."
+msgstr "Kiszolgáló beállítása."
 
 #: gui/gamesetup/gamesetup_mp.xml:80 (caption)
 msgid "Server name:"
-msgstr "Szerver neve:"
+msgstr "Kiszolgáló neve:"
 
 #: gui/gamesetup/gamesetup_mp.xml:110 (caption)
 msgid "[Connection status]"

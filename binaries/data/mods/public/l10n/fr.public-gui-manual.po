@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-12 23:22+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 22:46+0000\n"
 "Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "• Clic droit pour indiquer une cible aux unités."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr "• Touches directionnelles ou touches ZQSD pour déplacer la caméra."
+msgstr "• Touches directionnelles ou touches WASD pour déplacer la caméra."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
@@ -131,7 +131,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Pour créer une partie multijoueur, l'un des joueurs doit autoriser la connexion au port UDP 20595 de son NAT/pare-feu/... pour \"Héberger une partie\". Les autres joueurs peuvent alors \"Rejoindre une partie\" et entrer l'adresse IP de l'hôte."
+msgstr "Pour créer une partie multijoueur, l'un des joueurs doit autoriser la connexion au port UDP 20595 de son NAT/pare-feu/etc pour \"Héberger une partie\". Les autres joueurs peuvent alors \"Rejoindre une partie\" et entrer l'adresse IP de l'hôte."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -207,14 +207,14 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2 : Prendre une capture d'écran (au format PNG, l'emplacement est affiché dans le coin supérieur gauche de l'interface une fois le fichier enregistré, et peut également être trouvé dans console/logs si vous le manquez là.)"
+msgstr "F2 : Prendre une capture d'écran (au format .png, l'emplacement est affiché dans le coin supérieur gauche de l'interface une fois le fichier enregistré, et peut également être trouvé dans la console ou les logs si vous le manquez là)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Maj + F2 : Prendre une grande capture d'écran (6400px*4800px, au format BMP, l'emplacement est affiché dans le coin supérieur gauche de l'interface une fois le fichier enregistré, et peut également être trouvé dans console/logs si vous le manquez là.)"
+msgstr "Maj + F2 : Prendre une grande capture d'écran (6400px*4800px, au format .bmp, l'emplacement est affiché dans le coin supérieur gauche de l'interface une fois le fichier enregistré, et peut également être trouvé dans la console ou les logs si vous le manquez là)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -373,7 +373,7 @@ msgstr "Ctrl + Clic Droit lorsque des unités sont sélectionnées :"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr "- Si le curseur est sur une structure : Garnison"
+msgstr "- Si le curseur est sur une structure alliée : Garnison"
 
 #: gui/manual/intro.txt:83
 msgid ""
@@ -404,7 +404,7 @@ msgstr "Alt + W : Basculer entre les modes fil de fer (appuyez une fois pour obt
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr "Alt + S : Basculer l'affichage des silhouettes des unités (peut améliorer sensiblement les performances)"
+msgstr "Alt + S : Basculer l'affichage des silhouettes des unités (peut améliorer légèrement les performances)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
@@ -456,12 +456,12 @@ msgstr "E : Pivoter la caméra dans le sens antihoraire autour du terrain"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr "Maj + Molette de la Souris vers le Haut : Pivoter la caméra dans le sens horaire autour du terrain"
+msgstr "Maj + Molette de la souris vers le haut : Pivoter la caméra dans le sens horaire autour du terrain"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Maj + Molette de la Souris vers le Bas : Faire pivoter la caméra dans le sens antihoraire autour du terrain"
+msgstr "Maj + Molette de la souris vers le bas : Faire pivoter la caméra dans le sens antihoraire autour du terrain"
 
 #: gui/manual/intro.txt:105
 msgid ""
@@ -533,7 +533,7 @@ msgstr "• Un ID utilisateur aléatoire (stocké dans %APPDATA%\\0ad\\config\\u
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Numéro de version du jeu et les paramètres de compilation de base (mode d'optimisation, architecture du processeur, horodatage, version du compilateur)."
+msgstr "• Numéro de version du jeu et paramètres de compilation de base (mode d'optimisation, architecture du processeur, horodatage, version du compilateur)."
 
 #: gui/manual/userreport.txt:7
 msgid ""

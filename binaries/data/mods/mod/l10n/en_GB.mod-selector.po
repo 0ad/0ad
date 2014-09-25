@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
 "PO-Revision-Date: 2014-09-12 20:10+0000\n"
 "Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
@@ -57,6 +57,10 @@ msgstr "All dependencies met"
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
 msgstr "No mod has been selected."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Description"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -129,7 +133,3 @@ msgstr "Save Configuration"
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr "Start Mods"
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Description"

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
-"PO-Revision-Date: 2014-09-15 13:41+0000\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"PO-Revision-Date: 2014-09-24 11:39+0000\n"
 "Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -44,7 +44,7 @@ msgstr "Type: Alle"
 
 #: gui/modmod/modmod.js:51
 msgid "Filter"
-msgstr ""
+msgstr "Filter"
 
 #: gui/modmod/modmod.js:63
 msgid "Message: Mods Loaded."
@@ -58,13 +58,17 @@ msgstr ""
 msgid "No mod has been selected."
 msgstr ""
 
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Beskrivelse"
+
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
 msgstr "Modifikationer"
 
 #: gui/modmod/modmod.xml:18 (caption)
 msgid "Reset Filters"
-msgstr ""
+msgstr "Nulstil Filtre"
 
 #: gui/modmod/modmod.xml:52 (caption)
 msgid "Negate"
@@ -88,7 +92,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
 msgid "Dependencies"
-msgstr ""
+msgstr "Afhængigheder"
 
 #: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
 msgid "Website"
@@ -96,7 +100,7 @@ msgstr "Hjemmeside"
 
 #: gui/modmod/modmod.xml:119 (caption)
 msgid "Enable"
-msgstr ""
+msgstr "Aktivér"
 
 #: gui/modmod/modmod.xml:128 (caption)
 msgid "Enabled Mods"
@@ -124,12 +128,8 @@ msgstr "Annuller"
 
 #: gui/modmod/modmod.xml:184 (caption)
 msgid "Save Configuration"
-msgstr ""
+msgstr "Gem Indstillinger"
 
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr ""
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Beskrivelse"
