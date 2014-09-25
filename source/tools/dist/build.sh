@@ -23,7 +23,7 @@ svn export ${SVNWC} export-unix
 svn export --native-eol CRLF ${SVNWC} export-win32
 
 # Only include translations for a subset of languages
-find export-{unix,win32}/binaries/data/ -name "*.po" | grep -v '.*/\(ca\|cs\|de\|en_GB\|es\|fr\|gd\|gl\|it\|nl\|pt_PT\|pt_BR\)\.[A-Za-z0-9_.]\+\.po' | xargs rm
+find export-{unix,win32}/binaries/data/ -name "*.po" | grep -v '.*/\(ca\|cs\|de\|en_GB\|es\|fr\|gd\|gl\|it\|nl\|pt_PT\|pt_BR\)\.[-A-Za-z0-9_.]\+\.po' | xargs rm
 
 # Update the svn_revision, so these builds can be identified
 echo L\"${SVNREV}-release\" > export-unix/build/svn_revision/svn_revision.txt
