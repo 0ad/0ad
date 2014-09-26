@@ -5058,7 +5058,10 @@ UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued)
 	if (template.indexOf("resource|") != -1)
 		template = template.slice(9);
 
-	this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued);
+	if (!Engine.QueryInterface(this.entity, IID_ResourceGatherer))
+		this.AddOrder("Walk", { "x": x, "z": z, "force": false }, queued);
+	else
+		this.AddOrder("GatherNearPosition", { "type": type, "template": template, "x": x, "z": z, "force": false }, queued);
 };
 
 /**
