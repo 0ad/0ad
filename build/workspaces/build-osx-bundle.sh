@@ -84,7 +84,7 @@ if [ "$build_release" = "true" ]; then
   cd $build_path
   rm binaries/data/config/dev.cfg
   # Only include translations for a subset of languages
-  find binaries/data -name "*.po" | grep -v '.*/\(ca\|cs\|de\|en_GB\|es\|fr\|gd\|gl\|it\|nl\|pt_PT\|pt_BR\)\.[A-Za-z0-9_.]\+\.po' | xargs rm
+  find binaries/data -name "*.po" | grep -v '.*/\(ca\|cs\|de\|en_GB\|es\|fr\|gd\|gl\|it\|nl\|pt_PT\|pt_BR\)\.[-A-Za-z0-9_.]\+\.po' | xargs rm
   echo L\"${SVNREV}-release\" > build/svn_revision/svn_revision.txt
   cd build/workspaces
 fi
