@@ -391,7 +391,7 @@ void CSimulation2Impl::Update(int turnLength, const std::vector<SimulationComman
 			if (mapType == "random")
 			{
 				// TODO: support random map scripts
-				debug_warn(L"Serialization test mode only supports scenarios");
+				debug_warn(L"Serialization test mode does not support random maps");
 			}
 			else
 			{
