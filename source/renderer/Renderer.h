@@ -174,6 +174,7 @@ public:
 		bool m_VertexShader;
 		bool m_FragmentShader;
 		bool m_Shadows;
+		bool m_PrettyWater;
 	};
 
 public:
