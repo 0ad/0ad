@@ -58,6 +58,11 @@ public:
 	bool ToggleFullscreen();
 
 	/**
+	 * Update window position, to restore later if necessary (SDL2 only).
+	 */
+	void UpdatePosition(int x, int y);
+
+	/**
 	 * Update the graphics code to start drawing to the new size.
 	 * This should be called after the GL context has been resized.
 	 * This can also be used when the GL context is managed externally, not via SDL.
@@ -104,10 +109,12 @@ private:
 	bool m_ConfigFullscreen;
 	bool m_ConfigForceS3TCEnable;
 
-	// If we're fullscreen, size of window when we were last windowed (or the default window size
-	// if we started fullscreen), to support switching back to the old window size
+	// If we're fullscreen, size/position of window when we were last windowed (or the default window
+	// size/position if we started fullscreen), to support switching back to the old window size/position
 	int m_WindowedW;
 	int m_WindowedH;
+	int m_WindowedX;
+	int m_WindowedY;
 
 	// Whether we're currently being displayed fullscreen
 	bool m_IsFullscreen;
