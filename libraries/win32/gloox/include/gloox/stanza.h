@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -118,10 +118,49 @@ namespace gloox
       void removeExtensions();
 
       /**
+       * This function is used by StanzaExtensionFactory to signal ClientBase
+       * that this Stanza instance contains an embedded Stanza that needs to be
+       * checked for further StanzaExtensions.
+       * You should not need to use this function directly.
+       */
+      void setEmbeddedStanza() { m_hasEmbeddedStanza = true; }
+
+      /**
+       * This function indicates whether this Stanza instance contains an embedded
+       * Stanza that needs to be checked for further StanzaExtensions.
+       * You should not need to use this function directly.
+       * @return Whether this Stanza instance contains an embedded
+       * Stanza.
+       */
+      bool hasEmbeddedStanza() const { return m_hasEmbeddedStanza; }
+      
+      /**
+       * This function returns the embedded Stanza. It is only needed by
+       * ClientBase/StanzaExtensionFactory.
+       * If hasEmbeddedStanza() is true, this function checks every
+       * embedded StanzaExtension for an embedded Stanza and returns the first it finds.
+       * You should not need to use this function directly.
+       * @return The embedded Stanza. May be 0.
+       */
+      Stanza* embeddedStanza() const;
+      
+      /**
+       * This function returns the embedded Tag that the embedded Stanza is based on.
+       * It is only needed by ClientBase/StanzaExtensionFactory.
+       * If hasEmbeddedStanza() is true, this function checks every
+       * embedded StanzaExtension for an embedded Tag and returns the first it finds.
+       * You should not need to use this function directly.
+       *
+       * @return The embedded Tag. May be 0.
+       */
+      Tag* embeddedTag() const;
+
+      /**
        * Creates a Tag representation of the Stanza. The Tag is completely
        * independent of the Stanza and will not be updated when the Stanza
        * is modified.
        * @return A pointer to a Tag representation. It is the job of the
+       *
        * caller to delete the Tag.
        */
       virtual Tag* tag() const = 0;
@@ -166,6 +205,8 @@ namespace gloox
 
     private:
       Stanza( const Stanza& );
+      
+      bool m_hasEmbeddedStanza;
 
   };
 

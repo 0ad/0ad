@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -428,7 +428,7 @@ namespace gloox
        * Sets a URI to a photo.
        * @param extval The URI to the photo.
        */
-      void setPhoto( const std::string& extval );
+      void setPhotoUri( const std::string& extval );
 
       /**
        * Sets the photo directly.

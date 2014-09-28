@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -51,9 +51,10 @@ namespace gloox
       /**
        * Constructs a new object of the given type.
        * @param rcpt The receipt type.
+       * @param id The message ID.
        */
-      Receipt( ReceiptType rcpt )
-        : StanzaExtension( ExtReceipt ), m_rcpt( rcpt )
+      Receipt( ReceiptType rcpt, const std::string& id = EmptyString )
+        : StanzaExtension( ExtReceipt ), m_rcpt( rcpt ), m_id( id )
       {}
 
       /**
@@ -66,6 +67,12 @@ namespace gloox
        * @return The object's state.
        */
       ReceiptType rcpt() const { return m_rcpt; }
+
+      /**
+       * Returns the message id for acknowledgement tracking.
+       * @return The message ID for acknowledgement tracking.
+       */
+      std::string id() const { return m_id; }
 
       // reimplemented from StanzaExtension
       virtual const std::string& filterString() const;
@@ -87,6 +94,7 @@ namespace gloox
 
     private:
       ReceiptType m_rcpt;
+      std::string m_id;
 
   };
 

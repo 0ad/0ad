@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -129,7 +129,7 @@ namespace gloox
        * until data was available.
        * @return The state of the connection.
        */
-      ConnectionError recv( int timeout = -1 );
+      virtual ConnectionError recv( int timeout = -1 );
 
       /**
        * Reimplement this function to provide a username for connection purposes.
@@ -148,7 +148,7 @@ namespace gloox
 
       /**
        * Switches usage of SASL on/off. Default: on. SASL should only be disabled if there are
-       * problems with using it.
+       * problems with using it, and if an alternative authentication method exists.
        * @param sasl Whether to switch SASL usage on or off.
        */
       void setSasl( bool sasl ) { m_sasl = sasl; }
@@ -434,7 +434,7 @@ namespace gloox
 
       /**
        * Removes the given IqHandler from the list of handlers of pending operations, added
-       * using trackID(). Necessary, for example, when closing a GUI element that has an
+       * using send( IQ&, IqHandler*, int, bool ). Necessary, for example, when closing a GUI element that has an
        * operation pending.
        * @param ih The IqHandler to remove.
        * @since 0.8.7
@@ -679,6 +679,15 @@ namespace gloox
        */
       const StanzaExtensionList& presenceExtensions() const { return m_presenceExtensions; }
 
+      /**
+       * Returns a list of Tags that are currently in the send queue.
+       * You should not rely on the currentness of this data when there is an established connection.
+       * @return A 'decoupled' list of Tags (deep copies) in the send queue. The caller is responsible
+       * for deleting the tags.
+       * @since 1.0.6
+       */
+      const TagList sendQueue();
+
       // reimplemented from ParserHandler
       virtual void handleTag( Tag* tag );
 
@@ -707,6 +716,9 @@ namespace gloox
       virtual void handleHandshakeResult( const TLSBase* base, bool success, CertInfo &certinfo );
 
     protected:
+#ifdef CLIENTBASE_TEST
+    public:
+#endif
       /**
        * This function is called when resource binding yieled an error.
        * @param error A pointer to an Error object that contains more
@@ -787,9 +799,13 @@ namespace gloox
       void startSASL( SaslMechanism type );
 
       /**
-       * Releases SASL related resources.
+       * Verifies the server response after successful authentication (if applicable) and
+       * releases SASL related resources (if applicable).
+       * @param payload The server's verification string.
+       * @return @b True if verification is not supported by the chosen SASL mechanism or could be completed successfully,
+       * @b false if verification failed.
        */
-      void processSASLSuccess();
+      bool processSASLSuccess( const std::string& payload );
 
       /**
        * Processes the given SASL challenge and sends a response.
@@ -819,6 +835,35 @@ namespace gloox
        * @return @b True if TLS is supported, @b false otherwise.
        */
       bool hasTls();
+
+      /**
+       * Sends the given data unchecked over the underlying transport connection. Use at your own risk.
+       * The server will check any data received anyway and disconnect if something is wrong.
+       * @param xml The data to send.
+       */
+      void send( const std::string& xml );
+
+      /**
+       * This function checks if there are any unacknowledged Tags in the send queue and resends
+       * as necessary.
+       * @param handled The sequence number of the last handled stanza.
+       * @param resend Whether to resend unhandled stanzas.
+       * @note This function is part of @xep{0198}. You should not need to use it directly.
+       * @since 1.0.4
+       */
+      void checkQueue( int handled, bool resend );
+
+      /**
+       * Returns the number of sent stanzas, if Stream Management is enabled.
+       * @return The number of sent stanzas.
+       */
+      int stanzasSent() const { return m_smSent; }
+
+      /**
+       * Returns 32 octets of random characters.
+       * @return Random characters.
+       */
+      std::string getRandom();
 
       JID m_jid;                         /**< The 'self' JID. */
       JID m_authzid;                     /**< An optional authorization ID. See setAuthzid(). */
@@ -858,12 +903,29 @@ namespace gloox
 
       int m_availableSaslMechs;          /**< The SASL mechanisms the server offered. */
 
+      /**
+       * An enum for the Stream Management state machine.
+       */
+      enum SMContext
+      {
+        CtxSMInvalid,                    /**< Initial value. */
+        CtxSMFailed,                     /**< Either of the below failed. */
+        CtxSMEnable,                     /**< 'enable' request sent */
+        CtxSMResume,                     /**< 'resume' request sent */
+        CtxSMEnabled,                    /**< Stream Management successfully enabled. */
+        CtxSMResumed                     /**< Stream successfully resumed. */
+      };
+
+      SMContext m_smContext;             /**< The Stream Management state. Used in @xep{0198}. */
+      int m_smHandled;                   /**< The number of handled stanzas. Used in @xep{0198}.
+                                          * You should NOT mess with this. */
+
     private:
 #ifdef CLIENTBASE_TEST
     public:
 #endif
       /**
-       * @brief This is an implementation of an XMPP Ping (@xep{199}).
+       * @brief This is an implementation of an XMPP Ping (@xep{0199}).
        *
        * @author Jakob Schroeter <js@camaya.net>
        * @since 1.0
@@ -911,18 +973,24 @@ namespace gloox
 
       /**
        * This function is called right after the opening &lt;stream:stream&gt; was received.
+       * @param start The complete stream opening tag. Note that the XML representation (Tag::xml())
+       * will contain a closed stream tag. The original is open.
        */
-      virtual void handleStartNode() = 0;
+      virtual void handleStartNode( const Tag* start ) = 0;
 
       /**
        * This function is called for each Tag. Only stream initiation/negotiation should
        * be done here.
        * @param tag A Tag to handle.
+       * @return Returns @b true if the tag has been handled inside the function, @b false otherwise.
        */
       virtual bool handleNormalNode( Tag* tag ) = 0;
       virtual void rosterFilled() = 0;
       virtual void cleanup() {}
       virtual void handleIqIDForward( const IQ& iq, int context ) { (void) iq; (void) context; }
+      void send( Tag* tag, bool queue, bool del );
+      std::string hmac( const std::string& str, const std::string& key );
+      std::string hi( const std::string& str, const std::string& key, int iter );
 
       void parse( const std::string& data );
       void init();
@@ -936,7 +1004,6 @@ namespace gloox
       void notifySubscriptionHandlers( Subscription& s10n );
       void notifyTagHandlers( Tag* tag );
       void notifyOnDisconnect( ConnectionError e );
-      void send( const std::string& xml );
       void addFrom( Tag* tag );
       void addNamespace( Tag* tag );
 
@@ -976,6 +1043,7 @@ namespace gloox
       typedef std::multimap<const int, IqHandler*>         IqHandlerMap;
       typedef std::map<const std::string, TrackStruct>     IqTrackMap;
       typedef std::map<const std::string, MessageHandler*> MessageHandlerMap;
+      typedef std::map<int, Tag*>                          SMQueueMap;
       typedef std::list<MessageSession*>                   MessageSessionList;
       typedef std::list<MessageHandler*>                   MessageHandlerList;
       typedef std::list<PresenceHandler*>                  PresenceHandlerList;
@@ -987,6 +1055,7 @@ namespace gloox
       IqHandlerMapXmlns        m_iqNSHandlers;
       IqHandlerMap             m_iqExtHandlers;
       IqTrackMap               m_iqIDHandlers;
+      SMQueueMap               m_smQueue;
       MessageSessionList       m_messageSessions;
       MessageHandlerList       m_messageHandlers;
       PresenceHandlerList      m_presenceHandlers;
@@ -1003,6 +1072,7 @@ namespace gloox
 
       util::Mutex m_iqHandlerMapMutex;
       util::Mutex m_iqExtHandlerMapMutex;
+      util::Mutex m_queueMutex;
 
       Parser m_parser;
       LogSink m_logInstance;
@@ -1019,12 +1089,16 @@ namespace gloox
 
       SaslMechanism m_selectedSaslMech;
 
+      std::string m_clientFirstMessageBare;
+      std::string m_serverSignature;
+      std::string m_gs2Header;
       std::string m_ntlmDomain;
-      bool m_autoMessageSession;
       bool m_customConnection;
 
       int m_uniqueBaseId;
       util::AtomicRefCount m_nextId;
+
+      int m_smSent;
 
 #if defined( _WIN32 ) && !defined( __SYMBIAN32__ )
       CredHandle m_credHandle;

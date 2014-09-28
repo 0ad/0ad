@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -47,7 +47,13 @@ namespace gloox
        */
       virtual ~OpenSSLClient();
 
-    private:
+      // reimplemented from TLSBase
+      virtual bool hasChannelBinding() const;
+
+      // reimplemented from TLSBase
+      virtual const std::string channelBinding() const;
+
+  private:
       // reimplemented from OpenSSLBase
       virtual bool setType();
 

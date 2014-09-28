@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -24,10 +24,11 @@ namespace gloox
   {
     /**
      * @brief A simple implementation of a thread safe 32-bit
-     *  reference count.  Native functions are used where possible.
+     *  reference count. Native functions are used where possible.
      *  When not available, a mutex is used for locking and unlocking.
      *
      * @author Daniel Bowen
+     * @author Jakob Schröter <js@camaya.net>
      * @since 1.0.1
      */
     class GLOOX_API AtomicRefCount
@@ -40,15 +41,23 @@ namespace gloox
 
         /**
          * Increments the reference count, and returns the new value.
+         * @return The new value.
          */
         int increment();
 
         /**
          * Decrements the reference count, and returns the new value.
+         * @return The new value.
          */
         int decrement();
 
-      private:
+        /**
+         * Resets the reference count to zero.
+         * @since 1.0.4
+         */
+        void reset();
+        
+    private:
         AtomicRefCount& operator=( const AtomicRefCount& );
 
         volatile int m_count;

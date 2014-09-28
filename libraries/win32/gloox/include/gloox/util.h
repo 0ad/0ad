@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -20,6 +20,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <cstdlib>
 
 namespace gloox
 {
@@ -78,6 +79,13 @@ namespace gloox
      */
     GLOOX_API const std::string _lookup2( unsigned code, const char* values[],
                                 unsigned size, const std::string& def = EmptyString );
+
+    /**
+     * Returns the input string in hex notation.
+     * @param input The (binary) input string.
+     * @return The input string in hex notation.
+     */
+    std::string hex( const std::string& input );
 
     /**
      * A convenience function that executes the given function on each object in a given list.
