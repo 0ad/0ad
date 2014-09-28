@@ -144,7 +144,19 @@ ATLASDLLIMPEXP void Atlas_StartWindow(const wchar_t* type)
 	int argc = 1;
 	char atlas[] = "atlas";
 	char *argv[] = {atlas, NULL};
+#ifndef __WXOSX__
 	wxEntry(argc, argv);
+#else
+	// Fix for OS X init (see http://trac.wildfiregames.com/ticket/2427 )
+	// If we launched from in-game, SDL started NSApplication which will
+	// break some things in wxWidgets
+	wxEntryStart(argc, argv);
+	wxTheApp->OnInit();
+	wxTheApp->OnRun();
+	wxTheApp->OnExit();
+	wxEntryCleanup();
+#endif
+
 #endif
 }
 
@@ -174,6 +186,13 @@ ATLASDLLIMPEXP void Atlas_ReportError()
 class AtlasDLLApp : public wxApp
 {
 public:
+
+#ifdef __WXOSX__
+	virtual bool OSXIsGUIApplication()
+	{
+		return false;
+	}
+#endif
 
 	virtual bool OnInit()
 	{
