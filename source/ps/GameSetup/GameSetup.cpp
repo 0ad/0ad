@@ -583,8 +583,6 @@ static void ShutdownPs()
 	SAFE_DELETE(g_GUI);
 
 	UnloadHotkeys();
-
-	SAFE_DELETE(g_Console);
 	
 	// disable the special Windows cursor, or free textures for OGL cursors
 	cursor_draw(g_VFS, 0, g_mouse_x, g_yres-g_mouse_y, false);
@@ -738,6 +736,8 @@ from_config:
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
 	TIMER_END(L"shutdown ConfigDB");
+
+	SAFE_DELETE(g_Console);
 
 	// This is needed to ensure that no callbacks from the JSAPI try to use
 	// the profiler when it's already destructed

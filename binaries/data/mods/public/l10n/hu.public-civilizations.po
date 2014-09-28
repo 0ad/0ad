@@ -10,13 +10,14 @@
 # Aqualung <molnar.boldizsar@gmail.com>, 2014
 # Nagy András <asd0707@freemail.hu>, 2014
 # Peter Darvasi <darvasipeter@windowslive.com>, 2013-2014
+# Tibor Buzási <tib.buzasi@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-12 20:22+0000\n"
-"Last-Translator: Aqualung <molnar.boldizsar@gmail.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 17:00+0000\n"
+"Last-Translator: Tibor Buzási <tib.buzasi@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,13 +171,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Az athéni hosszú falak az agyafúrt Themisztoklész égisze alatt épültek, és 6km hosszan nyúltak ki a városból a pireuszi kikötőbe. Ez védte a város tengeri ellátási útvonalait és megakadályozta a kiéheztetést az ostrom során az ellenség részéről."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "A játékos megszerzi a lehetőségét annak, hogy dárdás csapatokat rendeljen falanksz formációba, jobb támadást és páncélt nyújtva."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -246,7 +247,7 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr "A görög színházakban a halhatatlan Aiszkhülösz, Szophoklész és más híres drámaírók művei kerültek bemutatásra a nép nagy örömére. Ezek különösen fontosak voltak a hellén kultúra szempontjából."
+msgstr "A görög színházakban Aiszkhülösz, Szophoklész és más tehetséges drámaírók halhatatlan művei kerültek bemutatásra a nép nagy örömére. Ezek különösen fontosak voltak a hellén kultúra szempontjából."
 
 #: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
 msgid "Gymnasion"
@@ -528,7 +529,7 @@ msgstr ""
 
 #: civs/brit.jsonStructures[0].Name
 msgid "Kennel"
-msgstr ""
+msgstr "Kutyaól"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
@@ -677,13 +678,13 @@ msgstr ""
 
 #: civs/cart.jsonFactions[0].Technologies[1].Name
 msgid "Colonization"
-msgstr ""
+msgstr "Gyarmatosítás"
 
 #: civs/cart.jsonFactions[0].Technologies[1].History
 msgid ""
 "Carthaginians established many trading centers as colonies and ultimately "
 "held dominion over 300 cities and towns in North Africa alone."
-msgstr ""
+msgstr "A karthágóiak több kereskedelmi központot állítottak alapítottak kolóniaként és csak Észak-Afrikában több mint 300 város és település felett bírták hatalmukat."
 
 #: civs/cart.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -926,7 +927,7 @@ msgstr ""
 #: civs/celt.jsonFactions[1].Heroes[2].Name civs/gaul.jsonAINames[2]
 #: civs/gaul.jsonFactions[0].Heroes[2].Name
 msgid "Uerkingetorix"
-msgstr ""
+msgstr "Vercingetorix"
 
 #: civs/celt.jsonFactions[1].Name civs/gaul.jsonName
 #: civs/gaul.jsonFactions[0].Name
@@ -939,7 +940,7 @@ msgstr "Európai Anyaföld"
 
 #: civs/celt.jsonStructures[0].Name civs/gaul.jsonStructures[0].Name
 msgid "Melonas"
-msgstr ""
+msgstr "Melonas"
 
 #: civs/celt.jsonStructures[0].History civs/gaul.jsonStructures[0].History
 msgid "The Celts developed the first rotary flour mill."
@@ -1369,7 +1370,7 @@ msgstr ""
 
 #: civs/iber.jsonStructures[0].Name
 msgid "Gur Oroigarri"
-msgstr ""
+msgstr "Gur Oroigarri"
 
 #: civs/iber.jsonStructures[0].Special
 msgid ""
@@ -1578,7 +1579,7 @@ msgstr "Nagy Sándor könyvtárakat alapított szerte új birodalmában. Ezek k�
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 msgid "Siege Workshop"
-msgstr ""
+msgstr "Ostromgépgyár"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
@@ -1750,7 +1751,7 @@ msgstr ""
 
 #: civs/maur.jsonStructures[1].Name
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Asóka Rendelet-oszlopa"
 
 #: civs/maur.jsonStructures[1].Special
 msgid ""
@@ -1982,7 +1983,7 @@ msgstr ""
 
 #: civs/pers.jsonStructures[1].Name
 msgid "Apadana"
-msgstr ""
+msgstr "Apadana"
 
 #: civs/pers.jsonStructures[1].Special
 msgid ""
@@ -2210,7 +2211,7 @@ msgstr ""
 
 #: civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
-msgstr ""
+msgstr "Stratópedo Misthophóron"
 
 #: civs/ptol.jsonStructures[1].Special
 msgid ""
@@ -2431,7 +2432,7 @@ msgstr ""
 
 #: civs/rome.jsonStructures[1].Name
 msgid "Murus Latericius"
-msgstr ""
+msgstr "Murus Latericius"
 
 #: civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
@@ -2712,7 +2713,7 @@ msgstr ""
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr ""
+msgstr "Katonai kolónia"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""

@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-15 11:00+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 11:21+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -49,7 +49,7 @@ msgstr "¡Gracias por instalar 0 A.D.! Esta página te dará una breve explicaci
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"sans-bold-16\"]Ajustes de gráficos"
+msgstr "[font=\"sans-bold-16\"]Ajustes gráficos"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -59,7 +59,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Puedes cambiar entre modo ventana y pantalla completa presionando Alt + Intro. En el modo ventana puedes redimensionar arrastrando desde las esquinas. Si el juego funciona demasiado despacio puedes probar a cambiar algún ajuste en el archivo de configuración: busca en binaries/data/config/default.cfg bajo la carpeta de instalación del juego, tiene las instrucciones de modificación dentro, prueba desactivando el agua realista con \"fancywater\" y las sombras con la opción \"shadow\"."
+msgstr "[font=\"sans-14\"]Puedes cambiar entre modo ventana y pantalla completa presionando Alt + Intro. En el modo ventana puedes redimensionar arrastrando desde las esquinas. Si el juego va demasiado lento puedes probar a cambiar algún ajuste en el archivo de configuración: busca en binaries/data/config/default.cfg bajo la carpeta de instalación del juego, tiene las instrucciones de modificación dentro, prueba desactivando el agua realista con \"fancywater\" y las sombras con la opción \"shadow\"."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -71,7 +71,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr "[font=\"sans-14\"]Los controles y la jugabilidad deberían ser familiares para los jugadores de los juegos RTS tradicionales. Ahora mismo falta un gran número de características, y el juego está poco equilibrado. Tendrás que esperar hasta que el juego haya madurado un poco más para que funcione como esperas que haga."
+msgstr "[font=\"sans-14\"]Los controles y la jugabilidad deberían ser familiares para los jugadores de juegos RTS tradicionales. Ahora mismo falta un gran número de características, y el juego está poco equilibrado. Tendrás que esperar hasta que el juego haya madurado un poco más para que funcione tal y como esperas."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -122,7 +122,7 @@ msgstr "• [font=\"sans-bold-14\"]Un jugador[font=\"sans-14\"] — juega una pa
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr "• [font=\"sans-bold-14\"]Multijugador[font=\"sans-14\"] — juega contra otros jugadores en la Internet."
+msgstr "• [font=\"sans-bold-14\"]Multijugador[font=\"sans-14\"] — juega contra otros jugadores reales por Internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -130,7 +130,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Para configurar una partida en multijugador, uno de los jugadores debe seleccionar la opción \"Crear partida\". El juego usa el puerto UDP 20595, por lo que el anfitrión deberá configurar su NAT/Firewall/etc para permitir el acceso. Los demás jugadores podrán seleccionar \"Unirse a una partida\" e introducir la dirección IP del servidor."
+msgstr "Para configurar una partida en multijugador, uno de los jugadores debe seleccionar la opción «Crear partida». El juego usa el puerto UDP 20595, por lo que el anfitrión deberá configurar su NAT/Firewall/otro para permitir el acceso. Los demás jugadores podrán seleccionar  «Unirse a una partida» e introducir la dirección IP del servidor."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -151,7 +151,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Primero elige si quieres jugar en un mapa aleatorio (creado de forma automática desde un script) o en un escenario (creado por una persona). Los escenarios se pueden filtrar para limitar la selección. Los mapas por defecto se muestran inmediatamente, los mapas personalizados no, así que selecciona \"Todos los mapas\" para ver una lista completa y elige un mapa en el que jugar. Los mapas de demostración han sido diseñados para probar diferentes conceptos e ideas que no son por lo general muy útiles."
+msgstr "Primero elige si quieres jugar en un mapa aleatorio (creado de forma automática desde un script) o en un escenario (creado por una persona). Los escenarios se pueden filtrar para limitar la selección. Los mapas por defecto se muestran inmediatamente, los mapas personalizados no, así que selecciona  «Todos los mapas» para ver una lista completa y elige un mapa en el que jugar. Los mapas de demostración han sido diseñados para probar diferentes conceptos e ideas que no son por lo general muy útiles."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -165,7 +165,7 @@ msgstr "Y por último el cambio de configuraciones. Para mapas aleatorios se inc
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Cuando estés listo para empezar, haz clic en el botón de «comenzar partida»."
+msgstr "Cuando estés listo para empezar, haz clic en el botón de «Comenzar partida»."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -199,14 +199,14 @@ msgstr "F11: Des/habilitar el analizador de rendimiento en tiempo real (alterna 
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr "Mayús + F11: Guarda los datos del perfil actual a «logs/profile.txt»"
+msgstr "Mayús + F11: Guarda los datos del perfil actual en «logs/profile.txt»"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Capturar la pantalla (En formato .png, la ubicación se muestra en la esquina superior izquierda de la interfaz después de que el archivo haya sido guardado, también se queda en la consola/registros)"
+msgstr "F2: Capturar la pantalla (En formato .png, la ubicación se muestra en la esquina superior izquierda de la interfaz una vez el archivo haya sido guardado, también se puede ver en la consola/registros)"
 
 #: gui/manual/intro.txt:46
 msgid ""
@@ -223,25 +223,25 @@ msgstr "[font=\"sans-bold-14\"]En la partida"
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Pulsar dos veces [en una unidad]: Selecciona todas tus unidades del mismo tipo en la pantalla (incluso si tienen distinto rango)"
+msgstr "[font=\"sans-14\"]Doble clic izquierdo [en una unidad]: Selecciona todas tus unidades del mismo tipo en pantalla (incluso si tienen distinto rango)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr "Pulsar tres veces [en una unidad]: Selecciona todas tus unidades del mismo tipo y rango en la pantalla"
+msgstr "Triple clic izquierdo [en una unidad]: Selecciona todas tus unidades del mismo tipo y rango en la pantalla"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr "Alt + Pulsar dos veces [en una unidad]: Selecciona todas tus unidades del mismo tipo en todo el mapa (incluso si tienen distinto rango)"
+msgstr "Alt + Doble clic izquierdo [en una unidad]: Selecciona todas tus unidades del mismo tipo en todo el mapa (incluso si tienen distinto rango)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + Pulsar tres veces [en una unidad]: Selecciona todas tus unidades del mismo tipo y rango en todo el mapa "
+msgstr "Alt + Triple clic izquierdo [en una unidad]: Selecciona todas tus unidades del mismo tipo y rango en todo el mapa "
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -305,7 +305,7 @@ msgstr "1 (hasta 0): Selecciona las unidades o edificios del grupo de control 1 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr "Mayús + 1 (hasta 0): Crea el grupo de control 1 (hasta 0) para las unidades o edificios seleccionados."
+msgstr "Mayús + 1 (hasta 0): Añade al grupo de control 1 (hasta 0) las unidades o edificios seleccionados."
 
 #: gui/manual/intro.txt:68
 msgid ""
@@ -335,7 +335,7 @@ msgstr "[font=\"sans-14\"]Ctrl + Clic derecho en el edificio: Guarnecer"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Mayús + Clic izquierdo: Poner en cola una orden de mover/construir/recolectar/etc"
+msgstr "Mayús + Clic izquierdo: Poner en cola una orden de mover/construir/recolectar/otro"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -364,7 +364,7 @@ msgstr "Ctrl + Clic izquierdo sobre un icono de unidad/grupo con múltiples unid
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Clic derecho en un edificio seleccionado: establece un punto de encuentro para las unidades creadas o sin guarnecer del edificio"
+msgstr "Clic derecho con un edificio ya seleccionado: establece un punto de encuentro para las unidades creadas o sin guarnecer del edificio"
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
@@ -470,7 +470,7 @@ msgstr "F: Sigue la unidad seleccionada (mueve la cámara para dejar de seguir a
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr "R: Restaurar la posición y orientación de la cámara por defecto"
+msgstr "R: Restaurar la posición y orientación de la cámara a los valores iniciales"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
@@ -488,7 +488,7 @@ msgstr "Alt + W: Itinerar entre los modos de «wireframe»."
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr "Botón central del ratón o / (barra diagonal): Mantenga presionado y mover el ratón para girar"
+msgstr "Botón central del ratón o / (barra diagonal): Mantenlo presionado mientras mueves el ratón para desplazar la cámara en esa dirección."
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
@@ -496,17 +496,17 @@ msgstr "[font=\"sans-bold-14\"]Durante el emplazamiento del edificio"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"sans-14\"][: Rota el edificio 15 grados en el sentido contrario de las agujas del reloj"
+msgstr "[font=\"sans-14\"][: Gira el edificio 15 grados en el sentido contrario de las agujas del reloj"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr "]: Rotar el edificio 15 grados en el sentido de las agujas del reloj"
+msgstr "]: Gira el edificio 15 grados en el sentido de las agujas del reloj"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Arrastrar con el botón izquierdo: Rotar un edificio usando el ratón (los cimientos se emplazarán una vez se suelte el botón)"
+msgstr "Arrastrar con el botón izquierdo: Gira un edificio usando el ratón (los cimientos se emplazarán una vez se suelte el botón)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -515,7 +515,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Como juego gratuito y de código abierto, no contamos con los recursos de pruebas de un gran arsenal computacional, pero queremos proporcionar la mejor experiencia al mayor número de jugadores posible. Cuando activas los informes automáticos, recibiremos datos que nos ayudarán a entender y centrarnos en el hardware que merece la pena, e identificar problemas de rendimiento para solucionarlos rápidamente."
+msgstr "Como juego gratuito y de código abierto, no contamos con los recursos de pruebas de un gran arsenal computacional, pero queremos proporcionar la mejor experiencia al mayor número de jugadores posible. Cuando activas los informes automáticos, recibiremos datos sobre tu equipo que nos ayudarán a entender y centrarnos en el hardware que merece la pena, e identificar problemas de rendimiento para solucionarlos rápidamente."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -526,13 +526,13 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "• Una ID aleatoria por usuario  (almacenada en %APPDATA%\\0ad\\config\\user.cfg en Windows, ~/.config/0ad/config/user.cfg en Unix), que nos permite detectar reportes repetidos del mismo usuario."
+msgstr "• Una ID aleatoria de usuario  (almacenada en %APPDATA%\\0ad\\config\\user.cfg en Windows, ~/.config/0ad/config/user.cfg en Unix), que nos permite detectar informes repetidos del mismo usuario."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Número de versión del juego y opciones de compilación (modo de optimización, arquitectura de CPU, fecha y hora, versión del compilador)."
+msgstr "• Número de versión del juego y opciones de compilación (métodos de optimización, arquitectura de CPU, fecha y hora, versión del compilador)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -544,13 +544,13 @@ msgstr "• Detalles de hardware: versión del S.O., versión de los controlador
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr "• Detalles de rendimiento: transmitirnos algunas cifras tras comenzar una partida o cuando cambies los ajustes gráficos."
+msgstr "• Detalles de rendimiento: transmitirnos algunas cifras de rendimiento tras comenzar una partida o cuando cambies los ajustes gráficos."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Los datos enviados solo suponen el coste de unos pocos kilobytes cada vez que ejecutas el juego, el uso de tu ancho de banda es mínimo."
+msgstr "Los datos enviados tan solo suponen el coste de unos pocos kilobytes cada vez que ejecutas el juego, el uso de tu ancho de banda es mínimo."
 
 #: gui/manual/userreport.txt:12
 msgid ""

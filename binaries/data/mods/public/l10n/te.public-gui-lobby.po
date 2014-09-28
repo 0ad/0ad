@@ -8,8 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-06-19 17:50+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 09:51+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Telugu (http://www.transifex.com/projects/p/0ad/language/te/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -47,91 +48,110 @@ msgstr "యాదృచ్ఛికం"
 msgid "Scenario"
 msgstr ""
 
-#: gui/lobby/lobby.js:305
+#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
+#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+msgid "N/A"
+msgstr ""
+
+#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#, python-format
+msgid "%(nick)s (%(rating)s)"
+msgstr ""
+
+#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
+#, c-format
+msgid "%(percentage)s%%"
+msgstr ""
+
+#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+msgid "-"
+msgstr ""
+
+#: gui/lobby/lobby.js:442
 msgid "Busy"
 msgstr "తీరికలేదు"
 
-#: gui/lobby/lobby.js:310
+#: gui/lobby/lobby.js:447
 msgid "Away"
 msgstr "దూరంగా ఉన్నాను"
 
-#: gui/lobby/lobby.js:314
+#: gui/lobby/lobby.js:451
 msgid "Online"
 msgstr "ఆన్‌లైన్"
 
-#: gui/lobby/lobby.js:318
+#: gui/lobby/lobby.js:455
 msgid "Offline"
 msgstr "ఆఫ్‌లైనులో ఉన్నారు"
 
-#: gui/lobby/lobby.js:323
+#: gui/lobby/lobby.js:460
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "తెలియదు"
 
-#: gui/lobby/lobby.js:364
+#: gui/lobby/lobby.js:501
 msgid "A randomly selected map."
 msgstr ""
 
-#: gui/lobby/lobby.js:389
+#: gui/lobby/lobby.js:526
 msgid "Sorry, no description available."
 msgstr "క్షమించండి, ఎటువంటి వివరణ అందుబాటులోలేదు."
 
-#: gui/lobby/lobby.js:417
+#: gui/lobby/lobby.js:554
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:495
+#: gui/lobby/lobby.js:632
 #, python-format
 msgid "%(nick)s has joined."
 msgstr ""
 
-#: gui/lobby/lobby.js:504
+#: gui/lobby/lobby.js:641
 #, python-format
 msgid "%(nick)s has left."
 msgstr ""
 
-#: gui/lobby/lobby.js:511
+#: gui/lobby/lobby.js:648
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:518
+#: gui/lobby/lobby.js:655
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:672
+#: gui/lobby/lobby.js:812
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:752
+#: gui/lobby/lobby.js:892
 #, python-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:894
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
+#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
 #, python-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:765
+#: gui/lobby/lobby.js:905
 #, python-format
 msgid "== %(message)s"
 msgstr ""
@@ -142,25 +162,25 @@ msgstr ""
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:796
+#: gui/lobby/lobby.js:936
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:799
+#: gui/lobby/lobby.js:939
 #, python-format
 msgid "[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:802
+#: gui/lobby/lobby.js:942
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:852
+#: gui/lobby/lobby.js:992
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
@@ -228,76 +248,117 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
+#: gui/lobby/lobby.xml:254 (heading)
 msgid "Name"
 msgstr "పేరు"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
 msgid "Rating"
 msgstr ""
 
-#: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
+#: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
+msgid "Current Rank:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
+msgid "Highest Rating:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
+msgid "Total Games:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
+msgid "Wins:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
+msgid "Losses:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
+msgid "Win Rate:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
 msgstr ""
 
-#: gui/lobby/lobby.xml:64 (caption)
+#: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
+msgid "User Profile Lookup"
+msgstr ""
+
+#: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
 msgstr "పటము రకం:"
 
-#: gui/lobby/lobby.xml:76 (caption)
+#: gui/lobby/lobby.xml:123 (caption)
 msgid "Map Size:"
 msgstr "పటము పరిమాణం"
 
-#: gui/lobby/lobby.xml:93 (caption)
+#: gui/lobby/lobby.xml:140 (caption)
 msgid "Players:"
 msgstr "ఆటగాళ్ళు:"
 
-#: gui/lobby/lobby.xml:102 (caption)
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby.xml:149 (caption)
 msgid "Join Game"
 msgstr "ఆటలో చేరు"
 
-#: gui/lobby/lobby.xml:108 (caption)
+#: gui/lobby/lobby.xml:155 (caption)
 msgid "Host Game"
 msgstr ""
 
-#: gui/lobby/lobby.xml:115 (caption)
+#: gui/lobby/lobby.xml:162 (caption)
 msgid "Main Menu"
 msgstr "ప్రధాన జాబితా"
 
-#: gui/lobby/lobby.xml:132 (heading)
+#: gui/lobby/lobby.xml:179 (heading)
 msgid "Map Name"
 msgstr ""
 
-#: gui/lobby/lobby.xml:135 (heading)
+#: gui/lobby/lobby.xml:182 (heading)
 msgctxt "map"
 msgid "Size"
 msgstr ""
 
-#: gui/lobby/lobby.xml:138 (heading)
+#: gui/lobby/lobby.xml:185 (heading)
 msgctxt "map"
 msgid "Type"
 msgstr ""
 
-#: gui/lobby/lobby.xml:141 (heading)
+#: gui/lobby/lobby.xml:188 (heading)
 msgid "Players"
 msgstr ""
 
-#: gui/lobby/lobby.xml:171 (caption)
+#: gui/lobby/lobby.xml:218 (caption)
 msgid "Show full games"
 msgstr "పూర్తి ఆటలను చూపించు"
 
-#: gui/lobby/lobby.xml:204 (heading)
+#: gui/lobby/lobby.xml:251 (heading)
 msgid "Rank"
 msgstr "ర్యాంకు"
 
-#: gui/lobby/lobby.xml:214 (caption)
+#: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
 msgid "Back"
 msgstr "వెనక్కి"
 
-#: gui/lobby/lobby.xml:218 (caption)
+#: gui/lobby/lobby.xml:272 (caption)
 msgid "Update"
 msgstr "నవీకరించు"
+
+#: gui/lobby/lobby.xml:282 (caption)
+msgid "Enter username:"
+msgstr ""
+
+#: gui/lobby/lobby.xml:288 (caption)
+msgid "View Profile"
+msgstr ""
+
+#: gui/lobby/lobby.xml:321 (caption)
+msgid "Player not found."
+msgstr ""
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"

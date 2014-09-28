@@ -5,14 +5,15 @@
 # 
 # Translators:
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
+# Lene Raastad <lene.raastad.lr@gmail.com>, 2014
 # bitnikc <nicolas@kolnescassis.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 09:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 12:38+0000\n"
+"Last-Translator: Lene Raastad <lene.raastad.lr@gmail.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +164,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:29
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "Champion Kaveleri Bueskytter"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
 msgid "Champion Cavalry Skirmisher"
@@ -171,11 +172,11 @@ msgstr "Mester ridende fortropp"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:37
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "Champion Kavaleri Spyd"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:38
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "Champion Kavaleri Sverd"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
@@ -192,11 +193,11 @@ msgstr "Krigselefant"
 #: simulation/templates/template_unit_infantry.xml:57
 #: simulation/templates/template_unit_infantry.xml:55
 msgid "Infantry"
-msgstr ""
+msgstr "Infanteri"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
-msgstr ""
+msgstr "Champion Infanerti"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
@@ -218,7 +219,7 @@ msgstr "Mester pikenér"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:30
 msgid "Champion Spearman"
-msgstr ""
+msgstr "Champion Spyd"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:32
 msgid "Champion Swordsman"
@@ -246,11 +247,11 @@ msgstr "Super-beleiring"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "Hund"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "Kan ikke angripe strukturer."
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
@@ -258,7 +259,7 @@ msgstr "Krigshund"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "Fauna"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -276,15 +277,15 @@ msgstr ""
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
 msgid "Hero"
-msgstr ""
+msgstr "Helt"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "Heltekavaleri"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:31
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "Heltekavaleri bueskytter"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:38
 msgid "Hero Cavalry Skirmisher"
@@ -296,11 +297,11 @@ msgstr "Kavalerispydmann helt"
 
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:20
 msgid "Hero Cavalry Swordsman"
-msgstr ""
+msgstr "Heltekavaleri Sverd "
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:28
 msgid "Hero Archer"
-msgstr ""
+msgstr "Heltekriger Bueskyter"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:29
 msgid "Hero Skirmisher"
@@ -308,15 +309,15 @@ msgstr "Heltefortropp"
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:19
 msgid "Hero Pikeman"
-msgstr ""
+msgstr "Heltekiger Spike"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:19
 msgid "Hero Spearman"
-msgstr ""
+msgstr "Heltekriger spyd"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
-msgstr ""
+msgstr "Heltekriger Sverd"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
@@ -349,11 +350,11 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_ship.xml:34
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 msgid "Ship"
-msgstr ""
+msgstr "Skip"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Lett krigsskip"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -363,7 +364,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:34
 msgid "Fire Ship"
-msgstr ""
+msgstr "Brannskip"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -373,17 +374,17 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
-msgstr ""
+msgstr "Fiskebåt"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:28
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Handle mellom havner. Stasjoner en megler for økt lønnsomhet (+20% per stasjonert). Samle verdifulle skatter fra havet. "
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
 msgid "Merchantman"
-msgstr ""
+msgstr "Handelsmann"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
@@ -391,11 +392,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
-msgstr ""
+msgstr "Tungt krigsskip"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
-msgstr ""
+msgstr "Medium Krigsskip"
 
 #: simulation/templates/template_unit_mechanical_siege_ballista.xml:45
 msgid "Bolt Shooter"
@@ -416,7 +417,7 @@ msgstr ""
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Stasjoner opptil 20 innfanteri på innsiden for å øke antall spyd fra 0 til 10."
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:52
 msgid "Siege Tower"
@@ -436,7 +437,7 @@ msgstr "Kvinnelig borger"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
-msgstr ""
+msgstr "Menn i nærheten jobber 10% raskere"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
@@ -456,7 +457,7 @@ msgstr "Klasser: Arbeidende hjelpe-slave.\nSanker med et begrenset varighet. Bon
 
 #: simulation/templates/template_unit_support_slave.xml:40
 msgid "Slave"
-msgstr ""
+msgstr "Slave"
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid ""
@@ -967,7 +968,7 @@ msgid "Heroine"
 msgstr ""
 
 #: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cynvelin.xml:11
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
 #: simulation/templates/units/gaul_hero_brennus.xml:10
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:12
@@ -985,12 +986,12 @@ msgstr ""
 msgid "Caratacos"
 msgstr ""
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:12
+#: simulation/templates/units/brit_hero_cunobelin.xml:12
 msgid "Let all units heal at 1 HP per second"
 msgstr ""
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:20
-msgid "Cynvelin"
+#: simulation/templates/units/brit_hero_cunobelin.xml:20
+msgid "Cunobelin"
 msgstr ""
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13

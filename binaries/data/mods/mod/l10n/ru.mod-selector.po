@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
 "PO-Revision-Date: 2014-09-13 22:31+0000\n"
 "Last-Translator: dr&mx <dronmax@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
@@ -57,6 +57,10 @@ msgstr "Все зависимости соблюдены"
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
 msgstr "Ни один мод не выбран."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Описание"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -129,7 +133,3 @@ msgstr "Сохранить конфигурацию"
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr "Запустить моды"
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Описание"

@@ -4,12 +4,14 @@
 # Selector project.
 # 
 # Translators:
+# Ivailo Monev <xakepa10@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
-"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"PO-Revision-Date: 2014-09-22 14:01+0000\n"
+"Last-Translator: Ivailo Monev <xakepa10@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,68 +27,72 @@ msgstr "Име"
 
 #: gui/modmod/modmod.js:30
 msgid "Label"
-msgstr ""
+msgstr "Обозначение"
 
 #: gui/modmod/modmod.js:30
 msgid "Folder"
-msgstr ""
+msgstr "Папка"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
 msgid "Version"
-msgstr ""
+msgstr "Версия"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr ""
+msgstr "Тип: Без значение"
 
 #: gui/modmod/modmod.js:51
 msgid "Filter"
-msgstr ""
+msgstr "Филтър"
 
 #: gui/modmod/modmod.js:63
 msgid "Message: Mods Loaded."
-msgstr ""
+msgstr "Съобщение: Модът Зареден."
 
 #: gui/modmod/modmod.js:360
 msgid "All dependencies met"
-msgstr ""
+msgstr "Всички зависимости са налице"
 
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
-msgstr ""
+msgstr "Не е избран мод."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Описание"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
-msgstr ""
+msgstr "Модификация"
 
 #: gui/modmod/modmod.xml:18 (caption)
 msgid "Reset Filters"
-msgstr ""
+msgstr "Преустанови Филтрите"
 
 #: gui/modmod/modmod.xml:52 (caption)
 msgid "Negate"
-msgstr ""
+msgstr "Негативизирай"
 
 #: gui/modmod/modmod.xml:87 (caption)
 msgid "Available Mods"
-msgstr ""
+msgstr "Налични Модове"
 
 #: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
 msgid "(Folder)"
-msgstr ""
+msgstr "(Папка)"
 
 #: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
 msgid "Mod Label"
-msgstr ""
+msgstr "Обозначение на Мода"
 
 #: gui/modmod/modmod.xml:106 (heading) gui/modmod/modmod.xml:147 (heading)
 msgid "Mod Type"
-msgstr ""
+msgstr "Тип на Мода"
 
 #: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
 msgid "Dependencies"
-msgstr ""
+msgstr "Зависимости"
 
 #: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
 msgid "Website"
@@ -94,27 +100,27 @@ msgstr "Уебсайт"
 
 #: gui/modmod/modmod.xml:119 (caption)
 msgid "Enable"
-msgstr ""
+msgstr "Позволен"
 
 #: gui/modmod/modmod.xml:128 (caption)
 msgid "Enabled Mods"
-msgstr ""
+msgstr "Позволени Модове"
 
 #: gui/modmod/modmod.xml:158 (caption)
 msgid "Up"
-msgstr ""
+msgstr "Нагоре"
 
 #: gui/modmod/modmod.xml:162 (caption)
 msgid "X"
-msgstr ""
+msgstr "Х"
 
 #: gui/modmod/modmod.xml:166 (caption)
 msgid "Down"
-msgstr ""
+msgstr "Наодлу"
 
 #: gui/modmod/modmod.xml:174 (caption)
 msgid "Quit"
-msgstr ""
+msgstr "Прекрати"
 
 #: gui/modmod/modmod.xml:179 (caption)
 msgid "Cancel"
@@ -122,12 +128,8 @@ msgstr "Отказ"
 
 #: gui/modmod/modmod.xml:184 (caption)
 msgid "Save Configuration"
-msgstr ""
+msgstr "Запази настроиките"
 
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
-msgstr ""
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr ""
+msgstr "Стартирай Модовете"

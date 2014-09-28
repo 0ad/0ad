@@ -1033,10 +1033,17 @@ function onGameAttributesChange()
 		var mapSelectionBox = Engine.GetGUIObjectByName("mapSelection");
 		mapSelectionBox.selected = mapSelectionBox.list_data.indexOf(mapName);
 		Engine.GetGUIObjectByName("mapSelectionText").caption = translate(getMapDisplayName(mapName));
-		var populationCapBox = Engine.GetGUIObjectByName("populationCap");
-		populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
-		var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
-		startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
+		if (mapSettings.PopulationCap)
+		{
+			var populationCapBox = Engine.GetGUIObjectByName("populationCap");
+			populationCapBox.selected = populationCapBox.list_data.indexOf(mapSettings.PopulationCap);
+		}		
+		if (mapSettings.StartingResources)
+		{
+			var startingResourcesBox = Engine.GetGUIObjectByName("startingResources");
+			startingResourcesBox.selected = startingResourcesBox.list_data.indexOf(mapSettings.StartingResources);
+		}
+
 		initMapNameList();
 	}
 

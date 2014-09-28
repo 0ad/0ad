@@ -5,13 +5,14 @@
 # 
 # Translators:
 # mogafi, 2014
+# Tiago Martins <tiguhmartins@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
-"PO-Revision-Date: 2014-09-17 02:30+0000\n"
-"Last-Translator: mogafi\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"PO-Revision-Date: 2014-09-23 18:10+0000\n"
+"Last-Translator: Tiago Martins <tiguhmartins@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "Nome"
 
 #: gui/modmod/modmod.js:30
 msgid "Label"
-msgstr ""
+msgstr "Etiqueta"
 
 #: gui/modmod/modmod.js:30
 msgid "Folder"
@@ -48,15 +49,19 @@ msgstr "Filtro"
 
 #: gui/modmod/modmod.js:63
 msgid "Message: Mods Loaded."
-msgstr ""
+msgstr "Mensagem: Mods Carregados."
 
 #: gui/modmod/modmod.js:360
 msgid "All dependencies met"
-msgstr ""
+msgstr "Todas as dependências satisfeitas"
 
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
-msgstr ""
+msgstr "Nenhum mod foi seleccionado."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Descrição"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -64,7 +69,7 @@ msgstr "Modificações"
 
 #: gui/modmod/modmod.xml:18 (caption)
 msgid "Reset Filters"
-msgstr "Repor filtros"
+msgstr "Repor Filtros"
 
 #: gui/modmod/modmod.xml:52 (caption)
 msgid "Negate"
@@ -72,7 +77,7 @@ msgstr "Negar"
 
 #: gui/modmod/modmod.xml:87 (caption)
 msgid "Available Mods"
-msgstr ""
+msgstr "Mods Disponíveis"
 
 #: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
 msgid "(Folder)"
@@ -80,15 +85,15 @@ msgstr "(Pasta)"
 
 #: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
 msgid "Mod Label"
-msgstr ""
+msgstr "Etiqueta do Mod"
 
 #: gui/modmod/modmod.xml:106 (heading) gui/modmod/modmod.xml:147 (heading)
 msgid "Mod Type"
-msgstr ""
+msgstr "Tipo de Mod"
 
 #: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
 msgid "Dependencies"
-msgstr "Dependencias"
+msgstr "Dependências"
 
 #: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
 msgid "Website"
@@ -96,11 +101,11 @@ msgstr "Site"
 
 #: gui/modmod/modmod.xml:119 (caption)
 msgid "Enable"
-msgstr "Abilitar"
+msgstr "Ativar"
 
 #: gui/modmod/modmod.xml:128 (caption)
 msgid "Enabled Mods"
-msgstr ""
+msgstr "Ativar Mods"
 
 #: gui/modmod/modmod.xml:158 (caption)
 msgid "Up"
@@ -128,8 +133,4 @@ msgstr "Guardar Configuração"
 
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
-msgstr ""
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Descrição"
+msgstr "Iniciar Mods"

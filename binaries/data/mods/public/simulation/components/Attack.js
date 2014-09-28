@@ -558,7 +558,7 @@ Attack.prototype.testCollision = function(ent, point, lateness)
 	if (targetShape.type === 'circle')
 	{
 		// Use VectorDistanceSquared and square targetShape.radius to avoid square roots.
-		return (point.horizDistanceTo(targetPosition) < (targetShape.radius * targetShape.radius));
+		return (targetPosition.horizDistanceTo(point) < (targetShape.radius * targetShape.radius));
 	}
 	else
 	{
@@ -609,7 +609,7 @@ Attack.prototype.MissileHit = function(data, lateness)
 	{
 		// If we didn't hit the main target look for nearby units
 		var cmpPlayer = Engine.QueryInterface(Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(data.playerId), IID_Player)
-		var ents = Damage.EntitiesNearPoint(data.position, data.position.horizDistanceTo(targetPosition) * 2, cmpPlayer.GetEnemies());
+		var ents = Damage.EntitiesNearPoint(data.position, targetPosition.horizDistanceTo(data.position) * 2, cmpPlayer.GetEnemies());
 
 		for (var i = 0; i < ents.length; i++)
 		{

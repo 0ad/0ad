@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
 "PO-Revision-Date: 2014-09-15 15:31+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
@@ -58,6 +58,10 @@ msgstr "Alle Abhängigkeiten erfüllt"
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
 msgstr "Kein Mod ausgewählt."
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "Beschreibung"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -130,7 +134,3 @@ msgstr "Konfiguration speichern"
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr "Mods starten"
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "Beschreibung"

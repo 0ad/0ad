@@ -472,13 +472,13 @@ function getEntityCostTooltip(template, trainNum, entity)
 		var wallCosts = getWallPieceTooltip([templateShort, templateMedium, templateLong]);
 		var towerCosts = getEntityCostComponentsTooltipString(templateTower);
 
-		cost += " " + sprintf(translate("Walls:  %(costs)s"), { costs: wallCosts.join(translate("  ")) }) + "\n";
-		cost += " " + sprintf(translate("Towers:  %(costs)s"), { costs: towerCosts.join(translate("  ")) });
+		cost += " " + sprintf(translate("Walls:  %(costs)s"), { costs: wallCosts.join("  ") }) + "\n";
+		cost += " " + sprintf(translate("Towers:  %(costs)s"), { costs: towerCosts.join("  ") });
 	}
 	else if (template.cost)
 	{
 		var costs = getEntityCostComponentsTooltipString(template, trainNum, entity);
-		cost = costs.join(translate("  "));
+		cost = costs.join("  ");
 	}
 	else
 	{
@@ -514,7 +514,7 @@ function getNeededResourcesTooltip(resources)
 			cost: resources[resource]
 		}));
 
-	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join(translate("  "));
+	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join("  ");
 }
 
 // ==============================================

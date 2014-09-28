@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 21:54+0200\n"
+"POT-Creation-Date: 2014-09-21 21:53+0200\n"
 "PO-Revision-Date: 2014-09-21 09:40+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
@@ -57,6 +57,10 @@ msgstr "依存性をすべて解決しました。"
 #: gui/modmod/modmod.js:486
 msgid "No mod has been selected."
 msgstr "MODが選択されていません。"
+
+#: gui/modmod/modmod.xml:116
+msgid "Description"
+msgstr "説明"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -129,7 +133,3 @@ msgstr "設定の保存"
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"
 msgstr "MODの開始"
-
-#: gui/modmod/modmod.xml:116
-msgid "Description"
-msgstr "説明"

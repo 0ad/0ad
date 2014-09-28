@@ -5,13 +5,14 @@
 # 
 # Translators:
 # Daniel Ignatov <sa3ana3a@abv.bg>, 2014
+# Ivailo Monev <xakepa10@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: Daniel Ignatov <sa3ana3a@abv.bg>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 19:20+0000\n"
+"Last-Translator: Ivailo Monev <xakepa10@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,22 +24,22 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Без значение"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Без значение"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Без значение"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Скирмишър"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
@@ -49,91 +50,110 @@ msgstr "Случаен"
 msgid "Scenario"
 msgstr "Сценарий"
 
-#: gui/lobby/lobby.js:305
+#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
+#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+msgid "N/A"
+msgstr "Не е наличен"
+
+#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#, python-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
+#, c-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/lobby.js:442
 msgid "Busy"
 msgstr "Зает"
 
-#: gui/lobby/lobby.js:310
+#: gui/lobby/lobby.js:447
 msgid "Away"
 msgstr "Отсъстващ"
 
-#: gui/lobby/lobby.js:314
+#: gui/lobby/lobby.js:451
 msgid "Online"
 msgstr "На линия"
 
-#: gui/lobby/lobby.js:318
+#: gui/lobby/lobby.js:455
 msgid "Offline"
 msgstr "Извън линия"
 
-#: gui/lobby/lobby.js:323
+#: gui/lobby/lobby.js:460
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Неизвестен"
 
-#: gui/lobby/lobby.js:364
+#: gui/lobby/lobby.js:501
 msgid "A randomly selected map."
 msgstr "Случайно избрана карта."
 
-#: gui/lobby/lobby.js:389
+#: gui/lobby/lobby.js:526
 msgid "Sorry, no description available."
 msgstr "Съжаляваме, няма наличие на описание"
 
-#: gui/lobby/lobby.js:417
+#: gui/lobby/lobby.js:554
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
+msgstr "Адресът на играта '%(ip)s' неизглежда валиден."
 
-#: gui/lobby/lobby.js:495
+#: gui/lobby/lobby.js:632
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s се присъедини."
 
-#: gui/lobby/lobby.js:504
+#: gui/lobby/lobby.js:641
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s напусна."
 
-#: gui/lobby/lobby.js:511
+#: gui/lobby/lobby.js:648
 #, python-format
 msgid "Invalid nickname: %(nick)s"
-msgstr ""
+msgstr "Невалидено призвище : %(nick)s"
 
-#: gui/lobby/lobby.js:518
+#: gui/lobby/lobby.js:655
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s вече се знае като %(newnick)s."
 
-#: gui/lobby/lobby.js:672
+#: gui/lobby/lobby.js:812
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "Съжеляваме, командата '%(cmd)s' не се поддържа."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:752
+#: gui/lobby/lobby.js:892
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:894
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
+#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:765
+#: gui/lobby/lobby.js:905
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -144,25 +164,25 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:796
+#: gui/lobby/lobby.js:936
 msgid "HH:mm"
 msgstr "ЧЧ:мм"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:799
+#: gui/lobby/lobby.js:939
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:802
+#: gui/lobby/lobby.js:942
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:852
+#: gui/lobby/lobby.js:992
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Моля, не генерирайте спам. Блокиран сте за 30 секунди."
 
@@ -172,7 +192,7 @@ msgstr "Свързване..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Регистриране..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
@@ -180,7 +200,7 @@ msgstr "Моля, въведете вашето потребителско им�
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Името на потребителя номоже да съдържа [, ], уникод, празно пространсво, или запетаи."
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -196,110 +216,151 @@ msgstr "Паролите не съвпадат"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Моля, прочетете Условията за Услугата"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Моля, прочетете Условията за Ползване"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Моля, съгласете се с Условията за Услугата и Условията за Ползване"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
-msgstr ""
+msgstr "Регистрирай"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
 msgid "Connect"
-msgstr ""
+msgstr "Свържи се"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Условията за Услугата"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr " Условията за Ползване"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Мултиплейър Лоби"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "Статус"
 
-#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
+#: gui/lobby/lobby.xml:254 (heading)
 msgid "Name"
 msgstr "Име"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "Степен"
 
-#: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
+#: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
+msgid "Current Rank:"
+msgstr "Текущ Ранг:"
+
+#: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
+msgid "Highest Rating:"
+msgstr "Най-висока Степен:"
+
+#: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
+msgid "Total Games:"
+msgstr "Общо Игри:"
+
+#: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
+msgid "Wins:"
+msgstr "Победи:"
+
+#: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
+msgid "Losses:"
+msgstr "Загуби:"
+
+#: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
+msgid "Win Rate:"
+msgstr "Степен на Победи:"
+
+#: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Ранглиста"
 
-#: gui/lobby/lobby.xml:64 (caption)
+#: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
+msgid "User Profile Lookup"
+msgstr "Търсене на Потребителски Профил"
+
+#: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "Тип на картата:"
 
-#: gui/lobby/lobby.xml:76 (caption)
+#: gui/lobby/lobby.xml:123 (caption)
 msgid "Map Size:"
 msgstr "Големина на картата:"
 
-#: gui/lobby/lobby.xml:93 (caption)
+#: gui/lobby/lobby.xml:140 (caption)
 msgid "Players:"
 msgstr "Играчи:"
 
-#: gui/lobby/lobby.xml:102 (caption)
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby.xml:149 (caption)
 msgid "Join Game"
 msgstr "Присъедини се към игра"
 
-#: gui/lobby/lobby.xml:108 (caption)
+#: gui/lobby/lobby.xml:155 (caption)
 msgid "Host Game"
 msgstr "Създай игра"
 
-#: gui/lobby/lobby.xml:115 (caption)
+#: gui/lobby/lobby.xml:162 (caption)
 msgid "Main Menu"
 msgstr "Главно Меню"
 
-#: gui/lobby/lobby.xml:132 (heading)
+#: gui/lobby/lobby.xml:179 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "Име на Карта"
 
-#: gui/lobby/lobby.xml:135 (heading)
+#: gui/lobby/lobby.xml:182 (heading)
 msgctxt "map"
 msgid "Size"
 msgstr "Размер"
 
-#: gui/lobby/lobby.xml:138 (heading)
+#: gui/lobby/lobby.xml:185 (heading)
 msgctxt "map"
 msgid "Type"
 msgstr "Тип"
 
-#: gui/lobby/lobby.xml:141 (heading)
+#: gui/lobby/lobby.xml:188 (heading)
 msgid "Players"
 msgstr "Играчи"
 
-#: gui/lobby/lobby.xml:171 (caption)
+#: gui/lobby/lobby.xml:218 (caption)
 msgid "Show full games"
-msgstr ""
+msgstr "Покажи пълни игри"
 
-#: gui/lobby/lobby.xml:204 (heading)
+#: gui/lobby/lobby.xml:251 (heading)
 msgid "Rank"
 msgstr "Ранк"
 
-#: gui/lobby/lobby.xml:214 (caption)
+#: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
 msgid "Back"
 msgstr "Назад"
 
-#: gui/lobby/lobby.xml:218 (caption)
+#: gui/lobby/lobby.xml:272 (caption)
 msgid "Update"
 msgstr "Обновление"
+
+#: gui/lobby/lobby.xml:282 (caption)
+msgid "Enter username:"
+msgstr "Въведете потревителско име:"
+
+#: gui/lobby/lobby.xml:288 (caption)
+msgid "View Profile"
+msgstr "Преглед на Профил"
+
+#: gui/lobby/lobby.xml:321 (caption)
+msgid "Player not found."
+msgstr "Играч не е намерен."
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -307,15 +368,15 @@ msgstr "Създай нов акаунт"
 
 #: gui/lobby/prelobby.xml:27 (caption)
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Вход в съществуващ акаунт"
 
 #: gui/lobby/prelobby.xml:33 (caption)
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Свързване с лобито на игра"
 
 #: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
-msgstr ""
+msgstr "Вход:"
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
@@ -327,11 +388,11 @@ msgstr "Регистрация"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr ""
+msgstr "Повторете парола:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Прочетох и се съгласявам с Условията за Услугата и Условията за Изплозване:"
 
 #: gui/lobby/prelobby.xml:97 (caption)
 msgid "Cancel"
@@ -343,7 +404,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Дефиниция:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -371,7 +432,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Използвайки услугата вие се съгласявате със:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."

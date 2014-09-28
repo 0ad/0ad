@@ -109,7 +109,7 @@ class LeaderboardList():
                dict.values(gamereport['playerStates']))):
       return None
 
-    players = map(lambda jid: db.query(Player).filter_by(jid=jid).first(),
+    players = map(lambda jid: db.query(Player).filter(Player.jid.ilike(str(jid))).first(),
                   dict.keys(gamereport['playerStates']))
 
     winning_jid = list(dict.keys({jid: state for jid, state in
@@ -152,7 +152,7 @@ class LeaderboardList():
     game = Game(map=gamereport['mapName'], duration=int(gamereport['timeElapsed']), teamsLocked=bool(gamereport['teamsLocked']), matchID=gamereport['matchID'])
     game.players.extend(players)
     game.player_info.extend(playerInfos)
-    game.winner = db.query(Player).filter_by(jid=winning_jid).first()
+    game.winner = db.query(Player).filter(Player.jid.ilike(str(winning_jid))).first()
     db.add(game)
     db.commit()
     return game
@@ -263,7 +263,7 @@ class LeaderboardList():
     """
     ratinglist = {}
     for JID in nicks.keys():
-      players = db.query(Player).filter_by(jid=str(JID))
+      players = db.query(Player).filter(Player.jid.ilike(str(JID)))
       if players.first():
         if players.first().rating == -1:
           ratinglist[nicks[JID]] = {'name': nicks[JID], 'rating': ''}

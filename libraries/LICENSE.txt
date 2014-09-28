@@ -8,8 +8,8 @@ win32/ contains headers and precompiled static libs for Windows builds.
   osx/build-osx-libs.sh
     MIT
 
-  source/cxxtest
-    LGPL v2.1 (see COPYING)
+  source/cxxtest-4.4
+    LGPL v3 (see COPYING)
 
   source/fcollada
     MIT (see src/FCollada/Copyright.txt)
@@ -59,8 +59,8 @@ win32/ contains headers and precompiled static libs for Windows builds.
   win32/opengl
     MIT
 
-  win32/sdl
-    LGPL v2.1
+  win32/sdl2
+    zlib license
 
   win32/vorbis
     BSD

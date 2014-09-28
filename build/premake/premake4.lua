@@ -1329,11 +1329,7 @@ function configure_cxxtestgen()
 	if _OPTIONS["jenkins-tests"] then
 		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=XmlPrinter"
 	else
-		if os.is("windows") then
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=Win32ODSPrinter"
-		else
-			lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=ErrorPrinter"
-		end
+		lcxxtestrootoptions = lcxxtestrootoptions .. " --runner=ErrorPrinter"
 	end
 
 	-- Precompiled headers - the header is added to all generated .cpp files

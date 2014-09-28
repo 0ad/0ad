@@ -5,14 +5,15 @@
 # 
 # Translators:
 # Jeff Huang <s8321414@gmail.com>, 2014
+# Mysterelee <8161525@qq.com>, 2014
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 22:27+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-23 10:00+0000\n"
+"Last-Translator: Mysterelee <8161525@qq.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -967,7 +968,7 @@ msgid "Heroine"
 msgstr "女英雄"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cynvelin.xml:11
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
 #: simulation/templates/units/gaul_hero_brennus.xml:10
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:12
@@ -985,13 +986,13 @@ msgstr "所有單位 +15% 速度。"
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:12
+#: simulation/templates/units/brit_hero_cunobelin.xml:12
 msgid "Let all units heal at 1 HP per second"
 msgstr "讓所有單位每秒回復 1 點的生命值"
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:20
-msgid "Cynvelin"
-msgstr "Cynvelin"
+#: simulation/templates/units/brit_hero_cunobelin.xml:20
+msgid "Cunobelin"
+msgstr "邱諾貝林"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
@@ -1317,7 +1318,7 @@ msgstr "布立吞精英馬戰車。"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid "Gallic Champion Cavalry."
-msgstr "高盧精英騎兵。"
+msgstr "高卢精英骑兵。"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -1367,7 +1368,7 @@ msgstr "每殺死一個敵方單位獲得+10金屬的戰利品。"
 
 #: simulation/templates/units/gaul_hero_brennus.xml:19
 msgid "Brennus"
-msgstr "Brennus"
+msgstr "布倫努斯"
 
 #: simulation/templates/units/gaul_hero_britomartus.xml:11
 msgid "Gathering rates increased with +15% during his lifetime."
@@ -1736,7 +1737,7 @@ msgstr "裝甲劍兵"
 
 #: simulation/templates/units/mace_thorakites.xml:6
 msgid "Thorakites"
-msgstr "Thorakites"
+msgstr "胸甲长盾矛兵"
 
 #: simulation/templates/units/mace_thureophoros.xml:9
 msgid "Heavy Skirmisher"
@@ -1744,7 +1745,7 @@ msgstr "重裝散兵"
 
 #: simulation/templates/units/mace_thureophoros.xml:10
 msgid "Thureophoros"
-msgstr "Thureophoros"
+msgstr "轻型长矛兵"
 
 #: simulation/templates/units/maur_cavalry_javelinist_b.xml:6
 msgid "Indian Light Cavalry"
@@ -1943,7 +1944,7 @@ msgstr "Brāhmaṇa Pujari"
 
 #: simulation/templates/units/maur_support_trader.xml:9
 msgid "Vaishya"
-msgstr "Vaishya"
+msgstr "吠舍"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid ""

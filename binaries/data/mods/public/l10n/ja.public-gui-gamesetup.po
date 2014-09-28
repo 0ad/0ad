@@ -17,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-25 21:30+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -113,7 +113,7 @@ msgid "Skirmish"
 msgstr "短期戦"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1246
+#: gui/gamesetup/gamesetup.js:1250
 msgctxt "map"
 msgid "Random"
 msgstr "ランダム"
@@ -122,8 +122,8 @@ msgstr "ランダム"
 msgid "Scenario"
 msgstr "シナリオ"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1152
-#: gui/gamesetup/gamesetup.js:1229
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1156
+#: gui/gamesetup/gamesetup.js:1233
 msgid "Default"
 msgstr "デフォルト"
 
@@ -144,152 +144,152 @@ msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1311
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:893
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:897
 msgid "You"
 msgstr "あなた"
 
-#: gui/gamesetup/gamesetup.js:974
+#: gui/gamesetup/gamesetup.js:978
 #, python-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1115 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1119 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr "マップの大きさ："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1117 gui/gamesetup/gamesetup.js:1176
+#: gui/gamesetup/gamesetup.js:1121 gui/gamesetup/gamesetup.js:1180
 #: gui/gamesetup/gamesetup.xml:312 (caption)
 msgid "Revealed Map:"
 msgstr "マップ可視化："
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1118 gui/gamesetup/gamesetup.js:1177
+#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
 #: gui/gamesetup/gamesetup.xml:322 (caption)
 msgid "Explored Map:"
 msgstr "探索済みマップ："
 
-#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.js:1185
 #: gui/gamesetup/gamesetup.xml:282 (caption)
 msgid "Victory Condition:"
 msgstr "勝利条件："
 
-#: gui/gamesetup/gamesetup.js:1124 gui/gamesetup/gamesetup.js:1183
+#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
 #: gui/gamesetup/gamesetup.xml:332 (caption)
 msgid "Teams Locked:"
 msgstr "固定チーム："
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "Yes"
 msgstr "はい"
 
-#: gui/gamesetup/gamesetup.js:1143 gui/gamesetup/gamesetup.js:1144
-#: gui/gamesetup/gamesetup.js:1146 gui/gamesetup/gamesetup.js:1199
-#: gui/gamesetup/gamesetup.js:1200 gui/gamesetup/gamesetup.js:1202
-#: gui/gamesetup/gamesetup.js:1230 gui/gamesetup/gamesetup.js:1231
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
+#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
+#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
+#: gui/gamesetup/gamesetup.js:1237
 msgid "No"
 msgstr "いいえ"
 
-#: gui/gamesetup/gamesetup.js:1247
+#: gui/gamesetup/gamesetup.js:1251
 msgid "Randomly selects a map from the list"
 msgstr "リストの中からマップをランダムに選択"
 
-#: gui/gamesetup/gamesetup.js:1254
+#: gui/gamesetup/gamesetup.js:1258
 msgid "Sorry, no description available."
 msgstr "すみませんが、説明はありません。"
 
-#: gui/gamesetup/gamesetup.js:1257
+#: gui/gamesetup/gamesetup.js:1261
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s人用。%(description)s"
 
-#: gui/gamesetup/gamesetup.js:1293
+#: gui/gamesetup/gamesetup.js:1297
 msgid "Loading..."
 msgstr "読込中..."
 
-#: gui/gamesetup/gamesetup.js:1408
+#: gui/gamesetup/gamesetup.js:1410
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1413
+#: gui/gamesetup/gamesetup.js:1415
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1601 gui/gamesetup/gamesetup.js:1606
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1603 gui/gamesetup/gamesetup.js:1608
+#: gui/gamesetup/gamesetup.js:1626
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1601
+#: gui/gamesetup/gamesetup.js:1603
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:1606
+#: gui/gamesetup/gamesetup.js:1608
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:1611
+#: gui/gamesetup/gamesetup.js:1613
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1612
+#: gui/gamesetup/gamesetup.js:1614
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)sが準備完了です。"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1622
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)sの準備がまだです。"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1626
 msgid "Game settings have been changed"
 msgstr "ゲーム設定が変更されました"
 
-#: gui/gamesetup/gamesetup.js:1649
+#: gui/gamesetup/gamesetup.js:1651
 msgid "I'm not ready"
 msgstr "わたしはまだ準備できていない"
 
-#: gui/gamesetup/gamesetup.js:1650
+#: gui/gamesetup/gamesetup.js:1652
 msgid "State that you are not ready to play."
 msgstr "プレイの準備ができていないことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1655 gui/gamesetup/gamesetup.js:1729
+#: gui/gamesetup/gamesetup.js:1657 gui/gamesetup/gamesetup.js:1733
 msgid "I'm ready!"
 msgstr "準備できた！"
 
-#: gui/gamesetup/gamesetup.js:1656
+#: gui/gamesetup/gamesetup.js:1658
 msgid "State that you are ready to play!"
 msgstr "プレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1730
+#: gui/gamesetup/gamesetup.js:1734
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "現行の設定を受け入れプレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1849
+#: gui/gamesetup/gamesetup.js:1853
 msgid "None"
 msgstr "なし"
 
@@ -681,7 +681,7 @@ msgstr "\"Self-conceit may lead to self-destruction.\" - Aesop"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
-msgstr "\"Slow and steady wins the race.\" - Aesop"
+msgstr "「手堅いのろまが一着になる」 - イソップ"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
@@ -929,7 +929,7 @@ msgstr "\"All mankind rules its women, and we rule all mankind, but our women ru
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
+msgstr "「場面に応じて厳しくも優しくもなれ」 - 大カト"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
@@ -1061,7 +1061,7 @@ msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr "\"Success always calls for greater generosity — though most people, lost in the darkness of their own egos, treat it as an occasion for greater greed.\" - Cyrus the Great"
+msgstr "「成功は常にさらなる寛大さを求める— だが多くの人々は自らの自我の暗闇に迷い、さらに欲を貪る機会と捉える」 - キュロス大王"
 
 #: gui/text/quotes.txt:92
 msgid ""
@@ -1154,7 +1154,7 @@ msgstr "\"If a man put out the eye of another man, his eye shall be put out.\" -
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr "\"I have come not to make war on the Italians, but to aid the Italians against Rome.\" - Hannibal Barca"
+msgstr "「私はイタリア人と戦うために来たのではない。ローマに抵抗するイタリア人の支援に来たのだ」 - ハンニバル・バルカ"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
@@ -1347,7 +1347,7 @@ msgstr "「別れの時間がやってきた、我らはそれぞれの道を歩
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
-msgstr "\"Life without examination is not worth living.\" - Plato"
+msgstr "「試練なき人生など生きるに値せず」 - プラトン"
 
 #: gui/text/quotes.txt:145
 msgid ""

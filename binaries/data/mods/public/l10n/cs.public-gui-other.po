@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-15 20:01+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 10:41+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -149,19 +149,19 @@ msgstr "Žádný"
 msgid "<invalid>"
 msgstr "<neplatné>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Ano"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Ne"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "OK"
@@ -250,8 +250,10 @@ msgid "Post Processing"
 msgstr "Následné zpracování"
 
 #: gui/options/options.js:20
-msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Použít filtry pro následné zpracování plochy obrazovky (HDR, Bloom, DOF atd.)"
+msgid ""
+"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
+"GAME RESTART"
+msgstr "Použít filtry pro další zpracování plochy obrazovky (HDR, Bloom, DOF atd.) VYŽADUJE OPĚTOVNÉ SPUŠTĚNÍ HRY"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -417,38 +419,38 @@ msgstr "Časové razítko rozhovoru"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Ukázat čas zpráv, které byly napsány při rozhovorech v zájmové skupině"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:78
 msgid "disabled"
 msgstr "vypnuto"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
 msgstr "Připojuje se k serveru"
 
-#: gui/pregame/mainmenu.js:114
+#: gui/pregame/mainmenu.js:86
 #, c-format
 msgid "uploading (%f%%)"
 msgstr "Odesílá se (%f%%)"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
 msgstr "Odesílání uspělo"
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:95
 #, python-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "Nahrání se nezdařilo (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:130
+#: gui/pregame/mainmenu.js:102
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "Nahrání se nezdařilo (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:133
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "Neznámý"
 
-#: gui/pregame/mainmenu.js:177
+#: gui/pregame/mainmenu.js:149
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -461,51 +463,51 @@ msgstr "%(startWarning)sVarování:%(endWarning)sVypadá to, že používáte gr
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Stiskněte, prosím, Číst více pro další informace nebo OK pro pokračování."
 
-#: gui/pregame/mainmenu.js:184
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "VAROVÁNÍ!"
 
-#: gui/pregame/mainmenu.js:186
+#: gui/pregame/mainmenu.js:158
 msgid "Read More"
 msgstr "Číst více"
 
-#: gui/pregame/mainmenu.js:279
+#: gui/pregame/mainmenu.js:251
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "Opravdu chcete ukončit 0 A.D.?"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
 msgstr "Potvrzení"
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Editor scénářů je nedostupný, nebo se jej nepodařilo nahrát. Pro další informace se podívejte do herních záznamů."
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid "Error"
 msgstr "Chyba"
 
-#: gui/pregame/mainmenu.js:325
+#: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Nahrává se zájmová skupina pro hru více hráčů. [DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
-#: gui/pregame/mainmenu.xml:145 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
+#: gui/pregame/mainmenu.xml:116 (caption)
 msgid "Technical Details"
 msgstr "Technické podrobnosti"
 
-#: gui/pregame/mainmenu.js:335
+#: gui/pregame/mainmenu.js:307
 msgid "Manual"
 msgstr "Příručka"
 
@@ -598,7 +600,7 @@ msgid "Close"
 msgstr "Zavřít"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:315 (caption)
+#: (caption) gui/pregame/mainmenu.xml:286 (caption)
 msgid "Language"
 msgstr "Jazyk"
 
@@ -695,220 +697,221 @@ msgstr "Nastavení zájmové skupiny"
 msgid "Save"
 msgstr "Uložit"
 
-#: gui/pregame/mainmenu.xml:104
+#: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
 msgstr "Pomozte zlepšit 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:106
+#: gui/pregame/mainmenu.xml:77
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Můžete nám automaticky poslat anonymní zpětnou vazbu, která nám pomůže při opravě chyb a zlepšování výkonu a kompatibility."
 
-#: gui/pregame/mainmenu.xml:132
+#: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "Děkujeme za pomoc při vylepšování 0 A.D.!"
 
-#: gui/pregame/mainmenu.xml:134
+#: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
 msgstr "Anonymní zpětná vazba je nyní povolena."
 
-#: gui/pregame/mainmenu.xml:136
+#: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
 msgstr "Stav: $status."
 
-#: gui/pregame/mainmenu.xml:515
+#: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVI: Patañjali"
 msgstr "Alfa XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:517
+#: gui/pregame/mainmenu.xml:488
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "VAROVÁNÍ: Toto je raná vývojová verze hry. Mnohé věci ještě nebyly udělány."
 
-#: gui/pregame/mainmenu.xml:519
+#: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
 msgstr "Pripojte se na: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:110 (caption)
+#: gui/pregame/mainmenu.xml:81 (caption)
 msgid "Enable Feedback"
 msgstr "Povolit zpětnou vazbu"
 
-#: gui/pregame/mainmenu.xml:141 (caption)
+#: gui/pregame/mainmenu.xml:112 (caption)
 msgid "Disable Feedback"
 msgstr "Zakázat zpětnou vazbu"
 
-#: gui/pregame/mainmenu.xml:184 (caption)
+#: gui/pregame/mainmenu.xml:155 (caption)
 msgid "Matches"
 msgstr "Zápasy"
 
-#: gui/pregame/mainmenu.xml:185 (tooltip)
+#: gui/pregame/mainmenu.xml:156 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Klepněte zde pro spuštění nové hry pro jednoho hráče."
 
-#: gui/pregame/mainmenu.xml:198 (caption)
+#: gui/pregame/mainmenu.xml:169 (caption)
 msgid "Campaigns"
 msgstr "Tažení"
 
-#: gui/pregame/mainmenu.xml:199 (tooltip)
+#: gui/pregame/mainmenu.xml:170 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Zažijte znovu historii prostřednictvím historických vojenských tažení. [NEIMPLEMENTOVÁNO]"
 
-#: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Načíst  hru"
 
-#: gui/pregame/mainmenu.xml:216 (tooltip)
+#: gui/pregame/mainmenu.xml:187 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Klepněte zde pro načtení uložené hry."
 
-#: gui/pregame/mainmenu.xml:238 (caption)
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:209 (caption)
 msgid "Join Game"
 msgstr "Připojit se ke hře"
 
-#: gui/pregame/mainmenu.xml:239 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Připojení se ke hře pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:253 (caption)
+#: gui/pregame/mainmenu.xml:224 (caption)
 msgid "Host Game"
 msgstr "Pořádat hru"
 
-#: gui/pregame/mainmenu.xml:254 (tooltip)
+#: gui/pregame/mainmenu.xml:225 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Pořádat hru pro více hráčů.\\n\\nVyžaduje otevření portu UDP 20595."
 
-#: gui/pregame/mainmenu.xml:268 (caption)
+#: gui/pregame/mainmenu.xml:239 (caption)
 msgid "Game Lobby"
 msgstr "Herní skupina"
 
-#: gui/pregame/mainmenu.xml:269 (tooltip)
+#: gui/pregame/mainmenu.xml:240 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Spustit skupinu hry pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:298 (caption)
+#: gui/pregame/mainmenu.xml:269 (caption)
 msgid "Options"
 msgstr "Možnosti"
 
-#: gui/pregame/mainmenu.xml:299 (tooltip)
+#: gui/pregame/mainmenu.xml:270 (tooltip)
 msgid "Adjust game settings."
 msgstr "Upravit nastavení hry."
 
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:287 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Vyberte jazyk hry."
 
-#: gui/pregame/mainmenu.xml:331 (caption)
+#: gui/pregame/mainmenu.xml:302 (caption)
 msgid "Scenario Editor"
 msgstr "Editor scénářů"
 
-#: gui/pregame/mainmenu.xml:332 (tooltip)
+#: gui/pregame/mainmenu.xml:303 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Otevřít editor scénářů Atlas v novém okně. Spolehlivěji jej můžete provozovat spuštěním hry s argumentem příkazového řádku \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:344 (caption)
+#: gui/pregame/mainmenu.xml:315 (caption)
 msgid "Welcome Screen"
 msgstr "Uvítací obrazovka"
 
-#: gui/pregame/mainmenu.xml:345 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Ukázat uvítací obrazovku. Užitečné v případě, že jste jim skryl omylem."
 
-#: gui/pregame/mainmenu.xml:359 (caption)
+#: gui/pregame/mainmenu.xml:330 (caption)
 msgid "Mod Selection"
 msgstr "Výběr pozměněné verze"
 
-#: gui/pregame/mainmenu.xml:360 (tooltip)
+#: gui/pregame/mainmenu.xml:331 (tooltip)
 msgid "Select mods to use."
 msgstr "Vybrat pozměněné verze k užití."
 
-#: gui/pregame/mainmenu.xml:413 (caption)
+#: gui/pregame/mainmenu.xml:384 (caption)
 msgid "Learn To Play"
 msgstr "Naučte se hrát"
 
-#: gui/pregame/mainmenu.xml:414 (tooltip)
+#: gui/pregame/mainmenu.xml:385 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Otevřít příručku k 0 A.D."
 
-#: gui/pregame/mainmenu.xml:430 (caption)
+#: gui/pregame/mainmenu.xml:401 (caption)
 msgid "Single Player"
 msgstr "Hra jednoho hráče"
 
-#: gui/pregame/mainmenu.xml:431 (tooltip)
+#: gui/pregame/mainmenu.xml:402 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Vyzvěte počítač jako soupeře ve hře pro jednoho hráče."
 
-#: gui/pregame/mainmenu.xml:445 (caption)
+#: gui/pregame/mainmenu.xml:416 (caption)
 msgid "Multiplayer"
 msgstr "Hra více hráčů"
 
-#: gui/pregame/mainmenu.xml:446 (tooltip)
+#: gui/pregame/mainmenu.xml:417 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Bojujte s jedním či více lidskými hráči ve hře pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:460 (caption)
+#: gui/pregame/mainmenu.xml:431 (caption)
 msgid "Tools & Options"
 msgstr "Nástroje a možnosti"
 
-#: gui/pregame/mainmenu.xml:461 (tooltip)
+#: gui/pregame/mainmenu.xml:432 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Herní možnosti a nástroje pro návrh scénářů."
 
-#: gui/pregame/mainmenu.xml:475 (caption)
+#: gui/pregame/mainmenu.xml:446 (caption)
 msgid "History"
 msgstr "Historie"
 
-#: gui/pregame/mainmenu.xml:476 (tooltip)
+#: gui/pregame/mainmenu.xml:447 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Učte se o mnoha civilizacích uváděných v 0 A.D."
 
-#: gui/pregame/mainmenu.xml:492 (caption)
+#: gui/pregame/mainmenu.xml:463 (caption)
 msgid "Exit"
 msgstr "Ukončit"
 
-#: gui/pregame/mainmenu.xml:493 (tooltip)
+#: gui/pregame/mainmenu.xml:464 (tooltip)
 msgid "Exits the game."
 msgstr "Ukončí hru."
 
-#: gui/pregame/mainmenu.xml:529 (caption)
+#: gui/pregame/mainmenu.xml:500 (caption)
 msgid "Help with the Translation!"
 msgstr "Pomozte s překladem!"
 
-#: gui/pregame/mainmenu.xml:530 (tooltip)
+#: gui/pregame/mainmenu.xml:501 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohlížeči."
 
-#: gui/pregame/mainmenu.xml:541 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Website"
 msgstr "Webové stránky"
 
-#: gui/pregame/mainmenu.xml:542 (tooltip)
+#: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klepněte pro otevření play0ad.com ve svém prohlížeči."
 
-#: gui/pregame/mainmenu.xml:553 (caption)
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Chat"
 msgstr "Rozhovor"
 
-#: gui/pregame/mainmenu.xml:554 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klepněte pro otevření rozhovoru IRC 0 A.D. ve svém prohlížeči. (#0ad on webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:565 (caption)
+#: gui/pregame/mainmenu.xml:536 (caption)
 msgid "Report a Bug"
 msgstr "Nahlásit chybu"
 
-#: gui/pregame/mainmenu.xml:566 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klepněte na 0 A.D. Trac pro nahlášení chyby, pádu nebo jiného problému."
 
-#: gui/pregame/mainmenu.xml:594 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1144,6 +1147,12 @@ msgstr "[icon=iconLag]  Hra se zadrhává, když je v pohybu moc jednotek."
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"] Velké mapy mohou způsobovat problémy."
+
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"[icon=\"iconFormation\"]  We disabled formations until we find out how to "
+"make them less laggy, more fun to play and historically accurate."
+msgstr "[icon=\"iconFormation\"]  Formace byly námi zakázány do doby, než bude nalezen způsob, jak je zrychlit, učinit zábavnějšími při hře a z pohledu dějepisu přesné."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

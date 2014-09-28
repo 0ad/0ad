@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Ivailo Monev <xakepa10@gmail.com>, 2014
 # radochrist <ruzor@mail.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 22:04+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 17:30+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -120,7 +121,7 @@ msgstr "Стрелящ"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:18
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "Стрелящ Конник"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:28
@@ -150,7 +151,7 @@ msgstr "Кавалерийски Скирмишър"
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
-msgstr ""
+msgstr "Елит"
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
@@ -166,7 +167,7 @@ msgstr "Елитен Кавалерийски Стрелец"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "Елит Конник Скирмишър"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:37
 msgid "Champion Cavalry Spearman"
@@ -191,7 +192,7 @@ msgstr "Боен Слон"
 #: simulation/templates/template_unit_infantry.xml:57
 #: simulation/templates/template_unit_infantry.xml:55
 msgid "Infantry"
-msgstr ""
+msgstr "Пехота"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
@@ -199,11 +200,11 @@ msgstr "Елитна Пехота"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
-msgstr ""
+msgstr "Елитен Стрелец"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:32
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "Елитен Скирмишър"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:30
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
@@ -245,11 +246,11 @@ msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "Куче"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "Не може да атакува зграда."
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
@@ -275,15 +276,15 @@ msgstr "Кит"
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
 msgid "Hero"
-msgstr ""
+msgstr "Герой"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "Геройски Кавалерист"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:31
 msgid "Hero Cavalry Archer"
-msgstr ""
+msgstr "Геройски Кавалерийски Стрелец"
 
 #: simulation/templates/template_unit_hero_cavalry_javelinist.xml:38
 msgid "Hero Cavalry Skirmisher"
@@ -299,7 +300,7 @@ msgstr "Геройски Кавалерийски Мечоносец"
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:28
 msgid "Hero Archer"
-msgstr ""
+msgstr "Геройски Стрелец"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:29
 msgid "Hero Skirmisher"
@@ -311,15 +312,15 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:19
 msgid "Hero Spearman"
-msgstr ""
+msgstr "Геройски Копиеносец"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
-msgstr ""
+msgstr "Геройски Мечоносец"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr ""
+msgstr "Меле Пехота"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pikeman"
@@ -352,7 +353,7 @@ msgstr "Кораб"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
-msgstr ""
+msgstr "Лек Военен Кораб"
 
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
@@ -427,11 +428,11 @@ msgstr "Подкрепа"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:12
 msgid "Inspiration Aura"
-msgstr ""
+msgstr "Аура на вдъхновението"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:55
 msgid "Female Citizen"
-msgstr ""
+msgstr "Женски Поданик"
 
 #: simulation/templates/template_unit_support_female_citizen.xml:13
 msgid "Nearby males work 10% faster"
@@ -575,7 +576,7 @@ msgstr "Търговец"
 #: simulation/templates/units/spart_support_healer_a.xml:11
 msgctxt "Rank"
 msgid "Advanced"
-msgstr ""
+msgstr "Напредничави"
 
 #: simulation/templates/units/athen_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/hele_cavalry_javelinist_b.xml:7
@@ -692,12 +693,12 @@ msgstr "Pródromos"
 #: simulation/templates/units/spart_support_healer_e.xml:11
 msgctxt "Rank"
 msgid "Elite"
-msgstr ""
+msgstr "Елит"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
 msgid "Greek Cavalry"
-msgstr ""
+msgstr "Гръцка Кавалерия"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
@@ -706,7 +707,7 @@ msgstr "Hippeús"
 
 #: simulation/templates/units/athen_champion_infantry.xml:5
 msgid "City Guard"
-msgstr ""
+msgstr "Градска Охрана"
 
 #: simulation/templates/units/athen_champion_infantry.xml:6
 msgid "Epilektos"
@@ -966,7 +967,7 @@ msgid "Heroine"
 msgstr "Героиня"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:10
-#: simulation/templates/units/brit_hero_cynvelin.xml:11
+#: simulation/templates/units/brit_hero_cunobelin.xml:11
 #: simulation/templates/units/gaul_hero_brennus.xml:10
 #: simulation/templates/units/gaul_hero_britomartus.xml:10
 #: simulation/templates/units/gaul_hero_vercingetorix.xml:12
@@ -984,13 +985,13 @@ msgstr ""
 msgid "Caratacos"
 msgstr "Caratacos"
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:12
+#: simulation/templates/units/brit_hero_cunobelin.xml:12
 msgid "Let all units heal at 1 HP per second"
 msgstr ""
 
-#: simulation/templates/units/brit_hero_cynvelin.xml:20
-msgid "Cynvelin"
-msgstr "Cynvelin"
+#: simulation/templates/units/brit_hero_cunobelin.xml:20
+msgid "Cunobelin"
+msgstr ""
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15

@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-20 23:00+0000\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-23 20:03+0000\n"
 "Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -150,19 +150,19 @@ msgstr "Yok"
 msgid "<invalid>"
 msgstr "<geçersiz>"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:308
+#: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Hayır"
 
-#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:186
+#: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
 msgstr "Tamam"
@@ -251,8 +251,10 @@ msgid "Post Processing"
 msgstr "Yayın Düzenleme"
 
 #: gui/options/options.js:20
-msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr "Ekran boşluk post işlemci filtreleri (HDR, Çiçeklenme, serbestlik, vb) kullanın"
+msgid ""
+"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
+"GAME RESTART"
+msgstr "Ekran uzayı sonradan işleme filtreleri kullan (HDR, Bloom, DOF, vb.) OYUNUN YENİDEN BAŞLATILMASINI GEREKTİRİR"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -418,38 +420,38 @@ msgstr "Sohbet Zaman damgası"
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "Sohbet lobisinde gönderilen mesajların zamanını göster"
 
-#: gui/pregame/mainmenu.js:106
+#: gui/pregame/mainmenu.js:78
 msgid "disabled"
 msgstr "devre dışı bırakılmış"
 
-#: gui/pregame/mainmenu.js:109
+#: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
 msgstr "sunucuya bağlanıyor"
 
-#: gui/pregame/mainmenu.js:114
+#: gui/pregame/mainmenu.js:86
 #, c-format
 msgid "uploading (%f%%)"
 msgstr "yükleniyor (%f%%)"
 
-#: gui/pregame/mainmenu.js:121
+#: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
 msgstr "yükleme başarılı"
 
-#: gui/pregame/mainmenu.js:123
+#: gui/pregame/mainmenu.js:95
 #, python-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "yükleme başarısız (%(errorCode)s)"
 
-#: gui/pregame/mainmenu.js:130
+#: gui/pregame/mainmenu.js:102
 #, python-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "yükleme başarısız (%(errorMessage)s)"
 
-#: gui/pregame/mainmenu.js:133
+#: gui/pregame/mainmenu.js:105
 msgid "unknown"
 msgstr "bilinmiyor"
 
-#: gui/pregame/mainmenu.js:177
+#: gui/pregame/mainmenu.js:149
 #, python-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
@@ -462,51 +464,51 @@ msgstr "%(startWarning)sUyarı:%(endWarning)s Gölgesiz(sabit işlevli) grafik k
 #. warning explains that the user is using “non-shader“ graphics,
 #. and that in the future this will not be supported by the game, so
 #. the user will need a better graphics card.
-#: gui/pregame/mainmenu.js:183
+#: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
 msgstr "Lütfen daha fazla bilgi için \"Devamını Oku\"ya basın ya da devam etmek için \"Tamam\"a basın."
 
-#: gui/pregame/mainmenu.js:184
+#: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
 msgstr "DİKKAT!"
 
-#: gui/pregame/mainmenu.js:186
+#: gui/pregame/mainmenu.js:158
 msgid "Read More"
 msgstr "Daha Fazlasını Oku"
 
-#: gui/pregame/mainmenu.js:279
+#: gui/pregame/mainmenu.js:251
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Yapı: %(buildDate)s (%(revision)s)"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
 msgstr "0 A.D.'den çıkmak istediğinize emin misiniz?"
 
-#: gui/pregame/mainmenu.js:310
+#: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
 msgstr "Onay"
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
 msgstr "Senaryo editörü mevcut değil ya da yüklenmesi başarısız. Daha fazla bilgi için oyun günlük dosyasına bakınız."
 
-#: gui/pregame/mainmenu.js:320
+#: gui/pregame/mainmenu.js:292
 msgid "Error"
 msgstr "Hata"
 
-#: gui/pregame/mainmenu.js:325
+#: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Çoklu oyuncu lobisini başlat. [YAPI DEVRE DIŞI]"
 
-#: gui/pregame/mainmenu.js:330 gui/pregame/mainmenu.xml:114 (caption)
-#: gui/pregame/mainmenu.xml:145 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
+#: gui/pregame/mainmenu.xml:116 (caption)
 msgid "Technical Details"
 msgstr "Teknik Detaylar"
 
-#: gui/pregame/mainmenu.js:335
+#: gui/pregame/mainmenu.js:307
 msgid "Manual"
 msgstr "Kılavuz"
 
@@ -599,7 +601,7 @@ msgid "Close"
 msgstr "Kapat"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:315 (caption)
+#: (caption) gui/pregame/mainmenu.xml:286 (caption)
 msgid "Language"
 msgstr "Dil"
 
@@ -696,220 +698,221 @@ msgstr "Lobi Ayarları"
 msgid "Save"
 msgstr "Kaydet"
 
-#: gui/pregame/mainmenu.xml:104
+#: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
 msgstr "0 A.D'nin gelişmesine yardım edin.!"
 
-#: gui/pregame/mainmenu.xml:106
+#: gui/pregame/mainmenu.xml:77
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
 msgstr "Hataları onarmakta bize yardımcı olmak için otomatik olarak anonim geribildirimler gönderebilir ve performans ile uyumluluk gelişimine yardım edebilirsiniz. "
 
-#: gui/pregame/mainmenu.xml:132
+#: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
 msgstr "0 A.D'nin gelişimine yardımcı olduğunuz için teşekkürler.!"
 
-#: gui/pregame/mainmenu.xml:134
+#: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
 msgstr "Anonim geribildirimler şimdi açıldı."
 
-#: gui/pregame/mainmenu.xml:136
+#: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
 msgstr "Durum: $status."
 
-#: gui/pregame/mainmenu.xml:515
+#: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVI: Patañjali"
 msgstr "Alfa XVI: Patañjali"
 
-#: gui/pregame/mainmenu.xml:517
+#: gui/pregame/mainmenu.xml:488
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "UYARI: Bu oyunun ilk gelişim sürümüdür.Birçok özellik henüz eklenmemiştir."
 
-#: gui/pregame/mainmenu.xml:519
+#: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
 msgstr "play0ad.com'a katılın"
 
-#: gui/pregame/mainmenu.xml:110 (caption)
+#: gui/pregame/mainmenu.xml:81 (caption)
 msgid "Enable Feedback"
 msgstr "Geribildirimi aç"
 
-#: gui/pregame/mainmenu.xml:141 (caption)
+#: gui/pregame/mainmenu.xml:112 (caption)
 msgid "Disable Feedback"
 msgstr "Geribildirimi devredışı bırak"
 
-#: gui/pregame/mainmenu.xml:184 (caption)
+#: gui/pregame/mainmenu.xml:155 (caption)
 msgid "Matches"
 msgstr "Müsabakalar"
 
-#: gui/pregame/mainmenu.xml:185 (tooltip)
+#: gui/pregame/mainmenu.xml:156 (tooltip)
 msgid "Click here to start a new single player game."
 msgstr "Yeni bir tek kişilik oyun başlatmak için buraya tıklayın"
 
-#: gui/pregame/mainmenu.xml:198 (caption)
+#: gui/pregame/mainmenu.xml:169 (caption)
 msgid "Campaigns"
 msgstr "Mücadeleler "
 
-#: gui/pregame/mainmenu.xml:199 (tooltip)
+#: gui/pregame/mainmenu.xml:170 (tooltip)
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Askeri mücadeleler yoluyla tarihi yeniden yaşayın. [HENÜZ UYGULANMADI]"
 
-#: gui/pregame/mainmenu.xml:215 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
 msgid "Load Game"
 msgstr "Oyunu Yükle"
 
-#: gui/pregame/mainmenu.xml:216 (tooltip)
+#: gui/pregame/mainmenu.xml:187 (tooltip)
 msgid "Click here to load a saved game."
 msgstr "Kayıtlı oyunu yüklemek için buraya tıklayın."
 
-#: gui/pregame/mainmenu.xml:238 (caption)
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:209 (caption)
 msgid "Join Game"
 msgstr "Oyuna Katıl"
 
-#: gui/pregame/mainmenu.xml:239 (tooltip)
+#: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Joining an existing multiplayer game."
 msgstr "Varolan bir çoklu oyuna katıl."
 
-#: gui/pregame/mainmenu.xml:253 (caption)
+#: gui/pregame/mainmenu.xml:224 (caption)
 msgid "Host Game"
 msgstr "Oyunu Kur"
 
-#: gui/pregame/mainmenu.xml:254 (tooltip)
+#: gui/pregame/mainmenu.xml:225 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Çok oyunculu oyun sunucusu barındır.\\n\\nUDP bağlantı noktası 20595'in açılması gerekli."
 
-#: gui/pregame/mainmenu.xml:268 (caption)
+#: gui/pregame/mainmenu.xml:239 (caption)
 msgid "Game Lobby"
 msgstr "Oyun Lobisi"
 
-#: gui/pregame/mainmenu.xml:269 (tooltip)
+#: gui/pregame/mainmenu.xml:240 (tooltip)
 msgid "Launch the multiplayer lobby."
 msgstr "Çoklu oyuncu lobisini başlat."
 
-#: gui/pregame/mainmenu.xml:298 (caption)
+#: gui/pregame/mainmenu.xml:269 (caption)
 msgid "Options"
 msgstr "Ayarlar"
 
-#: gui/pregame/mainmenu.xml:299 (tooltip)
+#: gui/pregame/mainmenu.xml:270 (tooltip)
 msgid "Adjust game settings."
 msgstr "Oyun ayarlarını ayarla."
 
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:287 (tooltip)
 msgid "Choose the language of the game."
 msgstr "Oyun lisanı seç."
 
-#: gui/pregame/mainmenu.xml:331 (caption)
+#: gui/pregame/mainmenu.xml:302 (caption)
 msgid "Scenario Editor"
 msgstr "Senaryo Düzenleyicisi"
 
-#: gui/pregame/mainmenu.xml:332 (tooltip)
+#: gui/pregame/mainmenu.xml:303 (tooltip)
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Atlas Senaryo Düzenleyicisi'ni yeni bir pencerede açın.  Oyunu komut-satırı argümanından \"-editor\" ile başlatarak, çok daha hatasızca çalıştırabilirsiniz."
 
-#: gui/pregame/mainmenu.xml:344 (caption)
+#: gui/pregame/mainmenu.xml:315 (caption)
 msgid "Welcome Screen"
 msgstr "Karşılama Ekranı"
 
-#: gui/pregame/mainmenu.xml:345 (tooltip)
+#: gui/pregame/mainmenu.xml:316 (tooltip)
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Karşılama Ekranını göster. Yanlışlıkla gizlemişseniz, çok kullanışlıdır."
 
-#: gui/pregame/mainmenu.xml:359 (caption)
+#: gui/pregame/mainmenu.xml:330 (caption)
 msgid "Mod Selection"
 msgstr "Mod Seçimi"
 
-#: gui/pregame/mainmenu.xml:360 (tooltip)
+#: gui/pregame/mainmenu.xml:331 (tooltip)
 msgid "Select mods to use."
 msgstr "Kullanılacak modları seç."
 
-#: gui/pregame/mainmenu.xml:413 (caption)
+#: gui/pregame/mainmenu.xml:384 (caption)
 msgid "Learn To Play"
 msgstr "Oynamayı Öğren"
 
-#: gui/pregame/mainmenu.xml:414 (tooltip)
+#: gui/pregame/mainmenu.xml:385 (tooltip)
 msgid "Open the 0 A.D. Game Manual."
 msgstr "0 A.D. Oyun Rehberini aç."
 
-#: gui/pregame/mainmenu.xml:430 (caption)
+#: gui/pregame/mainmenu.xml:401 (caption)
 msgid "Single Player"
 msgstr "Tek Oyunculu"
 
-#: gui/pregame/mainmenu.xml:431 (tooltip)
+#: gui/pregame/mainmenu.xml:402 (tooltip)
 msgid "Challenge the computer player to a single player match."
 msgstr "Bilgisayar'a karşı Tek kişilik oyuncu olarak mücadele edin."
 
-#: gui/pregame/mainmenu.xml:445 (caption)
+#: gui/pregame/mainmenu.xml:416 (caption)
 msgid "Multiplayer"
 msgstr "Çok Oyunculu"
 
-#: gui/pregame/mainmenu.xml:446 (tooltip)
+#: gui/pregame/mainmenu.xml:417 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Çoklu oyunda bir ya da daha fazla gerçek oyuncuya karşı savaşın"
 
-#: gui/pregame/mainmenu.xml:460 (caption)
+#: gui/pregame/mainmenu.xml:431 (caption)
 msgid "Tools & Options"
 msgstr "Araçlar & Ayarlar"
 
-#: gui/pregame/mainmenu.xml:461 (tooltip)
+#: gui/pregame/mainmenu.xml:432 (tooltip)
 msgid "Game options and scenario design tools."
 msgstr "Oyun seçenekleri ve senaryo tasarım araçları"
 
-#: gui/pregame/mainmenu.xml:475 (caption)
+#: gui/pregame/mainmenu.xml:446 (caption)
 msgid "History"
 msgstr "Tarih"
 
-#: gui/pregame/mainmenu.xml:476 (tooltip)
+#: gui/pregame/mainmenu.xml:447 (tooltip)
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "0 A.D'de yer alan medeniyetlere dair bilgi alın"
 
-#: gui/pregame/mainmenu.xml:492 (caption)
+#: gui/pregame/mainmenu.xml:463 (caption)
 msgid "Exit"
 msgstr "Çıkış"
 
-#: gui/pregame/mainmenu.xml:493 (tooltip)
+#: gui/pregame/mainmenu.xml:464 (tooltip)
 msgid "Exits the game."
 msgstr "Oyundan çık."
 
-#: gui/pregame/mainmenu.xml:529 (caption)
+#: gui/pregame/mainmenu.xml:500 (caption)
 msgid "Help with the Translation!"
 msgstr "Çeviriye destek ol!"
 
-#: gui/pregame/mainmenu.xml:530 (tooltip)
+#: gui/pregame/mainmenu.xml:501 (tooltip)
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "0 A.D. tercüme sayfasini tarayıcınızın üzerinden açmak için tıklayın."
 
-#: gui/pregame/mainmenu.xml:541 (caption)
+#: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Website"
 msgstr "Websitesi"
 
-#: gui/pregame/mainmenu.xml:542 (tooltip)
+#: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
 msgstr "play0ad.com sitesini tarayıcınızda açmak için tıklayın."
 
-#: gui/pregame/mainmenu.xml:553 (caption)
+#: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Chat"
 msgstr "Sohbet"
 
-#: gui/pregame/mainmenu.xml:554 (tooltip)
+#: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "0 A.D IRC konuşmasını web tarayıcınızda açmak için tıklayın. (#0ad webchat.quakenet.org dadır)"
 
-#: gui/pregame/mainmenu.xml:565 (caption)
+#: gui/pregame/mainmenu.xml:536 (caption)
 msgid "Report a Bug"
 msgstr "Hatayı Bildirin"
 
-#: gui/pregame/mainmenu.xml:566 (tooltip)
+#: gui/pregame/mainmenu.xml:537 (tooltip)
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "0 A.D. hata ve çökme rapor etmek için tıklayın."
 
-#: gui/pregame/mainmenu.xml:594 (caption)
+#: gui/pregame/mainmenu.xml:565 (caption)
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
@@ -1146,6 +1149,12 @@ msgstr "[icon=iconLag]  Birçok birim taşınırken oyunda donma oluşmaktadır.
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
 msgstr "[icon=\"iconMap\"]  Büyük haritalarda sorunlar meydana gelmektedir."
 
+#: gui/splashscreen/splashscreen.txt:9
+msgid ""
+"[icon=\"iconFormation\"]  We disabled formations until we find out how to "
+"make them less laggy, more fun to play and historically accurate."
+msgstr "[icon=\"iconFormation\"]  Düzenleri, daha az gecikmeli, oynanması daha eğlenceli ve tarihsel olarak daha gerçekçi yapıncaya kadar devre dışı bıraktık."
+
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
 msgstr "ROMALI ORDU KAMPI"
@@ -1187,11 +1196,11 @@ msgstr "- Her grup için özebir askeri teknolojiler araştır."
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- Yapıda vatandaş askerlerin eğitimi yerleşimlerin aşamasını yükseltir."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Yeni birliklerin ile saldırı ikmali için bir ileri üs oluşturun."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -1215,19 +1224,19 @@ msgstr "KARTACA KUTSAL BANDI"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- Kartacalılar için Mükemmel Mızraklılar ve Mükemmel Süvari Mızraklıları."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr ""
+msgstr "- Hem Gıda ve hemde Metal maliyeti ile diğer çoğu Kaledeki şampiyon gibi, Tapınaktan eğitilebilir."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- Süvarilere karşı Mızraklı gibi ağır piyade kullanın. Kuşatma silahlarının ve avcıların ağır şoklarından kurtulmak için süvari kullanın."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
@@ -1235,13 +1244,13 @@ msgstr "MANCINIKLAR"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- Menzilli kuşatma araçları yapılara karşı iyidir."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr ""
+msgstr "- Ateşli silahlarınızı yapıları ve birimleri daha iyi korumak için yükseltebilirsiniz."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
@@ -1251,7 +1260,7 @@ msgstr "- Pahalı ve yavaş."
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "- Hareket için sepetlerinin içine topla, ve sabit motorlar içine saldırı için ambalajından çıkarın!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
@@ -1303,13 +1312,13 @@ msgstr "- Özel \"Kışla\" Kartaca hizip kullanılabilir."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- Etnik elçiliklerden gelen her paralı askeri eğitin."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr ""
+msgstr "Paralı asker \"vatandaş-askerlerin\" normal Yiyecek maliyeti Metal maliyetine çevrildi."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
@@ -1327,7 +1336,7 @@ msgstr "- Balıkçı kayıkları her yolculukta önemli miktarda Besin taşır."
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- Garnizon Destek Birimleri Balık Teknelerinin toplama oranlarını ikiye katlar."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
@@ -1351,7 +1360,7 @@ msgstr "- Nüfusa artış verin."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- Garnizondaki askeri daha iyi savunmak için içeri bir ateş gücü ekleyin."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -1359,7 +1368,7 @@ msgstr "KAYNAK TOPLAMA"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "- Kaynak toplamak için Vatandaş-Askerleri ve Kadın Vatandaşları kullanın."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
@@ -1373,7 +1382,7 @@ msgstr "- Vatandaş-Askerler Madencilik ile bonuslandırıldı."
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "Vatandaş-Askerin yüksek seviyesi (Gelişmiş, Seçkin), bu ona iyi saldırı sağlar, ama bu daha az toplamaye neden olur."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
@@ -1423,13 +1432,13 @@ msgstr "- Tüm gruplar için mevcut olan hızlı, ucuz ahşap duvar."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "- En hiziplere Köy Aşamasında ulaşabilirsiniz."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr ""
+msgstr "- Saldırgan düşman askeri, Şehir Duvarları aksine, sadece kuşatma silahlarıyla birlikteyse saldırır."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
@@ -1481,11 +1490,11 @@ msgstr "- Ağır zırhlı ve yavaşlık. Düşük saldırıya sebep olur."
 msgid ""
 "- Used against cavalry for a 4x attack bonus or against other melee infantry"
 " to pin them them in place."
-msgstr ""
+msgstr "- Süvarilere karşı kullanılan 4x saldırı ikramiyesi veya diğer yakın dövüş piyadesine karşı onları kullanın."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- Kullanılabilir olanlar: Makedon, Selevkoslu, ve Ptolemaioslular."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -1495,13 +1504,13 @@ msgstr "AĞIR SAVAŞ GEMİSİ"
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- Ağır standart savaş gemisi. Kullanılabilir olanlar: Roma, Kartaca, Ptolemaios, ve  Selevkos."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr ""
+msgstr "- 50 birime kadarki garnizonlarlar büyük miktar ateş gücüne sahip olur, bunlar balistaslar ve akrepler içerir."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
@@ -1513,7 +1522,7 @@ msgstr "SAVANA EKOSİSTEMİ"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- Genellikle düz, birkaç sulama deliği ve kayalık mostralarlı."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
@@ -1525,7 +1534,7 @@ msgstr "- Tüm madenlik türlerinde zengindir."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- Odun seyrek olma eğilimindedir, ancak yüksek verim Baobab ağaçları vardır."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
@@ -1533,13 +1542,13 @@ msgstr "SAVUNMA KULELERİ"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- Kırsal alandaki büyük geniş alanları savunmak için bağımsız ayakta duran kuleler iyidir."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- Onların maliyeti genellikle 100 Odun ve 100 Taştır. İber Savunma Kuleleri ise 300 Taştır (çünkü onlar daha güçlüdür)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
@@ -1561,7 +1570,7 @@ msgstr "- Mükemmel Piyadeler Spartalılar için kullanılmalıdır."
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to bolster your "
 "regular line infantry."
-msgstr ""
+msgstr "- Düşman süvarilerinin katliam ve şok saldırılarına karşı düzenli hat piyadelerini kullanın."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -1583,13 +1592,13 @@ msgstr "- Süvarilere karşı kullanılmak için 2x saldırı ikramiyesi."
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- İyi bir bozguna uğratma saldırısı ve iyi bir ücret ikramiyesi cephede iyi asker oluşmasını sağlar."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Onlar düzenli birimlere ve kılıçlılara karşı koyabilir, yani senin mızraklı destek birimlerin ile mızraklalı veya süvarilerle birlikte."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
@@ -1651,7 +1660,7 @@ msgstr "TAPINAKLAR"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr ""
+msgstr "- Kasaba Aşaması yapısı Şehir Aşamasına yükseltilmesi gerekmektedir."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
@@ -1677,7 +1686,7 @@ msgstr "THEMISTOKLES"
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- Artemisium ve Salamis arasındaki deniz savaşında Atinalı komutan Yunanlıları komuta etti."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
@@ -1712,7 +1721,7 @@ msgstr "- Uzun menzilli kuşatma saldırısı için garnizona bir mancınık."
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr ""
+msgstr "- Yıkıcı bir gemiye karşı gemi saldırısında her çarpma saldırında bir tekrar yenilenmesi gerekiyor."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
@@ -1726,17 +1735,17 @@ msgstr "- Lusitani kabilesinin İber kahramanı."
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- M.Ö. 147 den 139'a kadar Romalılara karşı 'Lusitani Savaşlarında' en az 7 kez sefer düzenlenmiştir."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- Hızlı hareket ve kılıç ile alevli cirit arasında değiştirme yapabilirsiniz."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- Onun \"gücü\" \"Taktik Gerilla\" yakındaki Iber birimini pusuya düşürür."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
@@ -1750,7 +1759,7 @@ msgstr "- Afrika ve Hindistan'dan gelen savaş için eğitilmiş büyük hayvanl
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- Yüksek Gıda ve Metal, çok güçlendiricidir. Yapılara ve Süvarilere karşı güçlü kılar."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
@@ -1778,4 +1787,4 @@ msgstr "- Balina öldürüldükten sonra Balıkçı Kayıkları ile toplanabilir
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- Saldırılardan kaçmak ve oyunda okyanus etrafı için etrafta dolaşın."

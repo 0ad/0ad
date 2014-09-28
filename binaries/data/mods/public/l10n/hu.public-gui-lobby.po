@@ -5,13 +5,14 @@
 # 
 # Translators:
 # Kristóf Kófiás <kristof.kofias@gmail.com>, 2014
+# ricsipontaz <ricsipontaz@googlemail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-12 11:24+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: Kristóf Kófiás <kristof.kofias@gmail.com>\n"
+"POT-Creation-Date: 2014-09-21 21:52+0200\n"
+"PO-Revision-Date: 2014-09-22 13:51+0000\n"
+"Last-Translator: ricsipontaz <ricsipontaz@googlemail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,17 +24,17 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Bármilyen"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Bármilyen"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Bármilyen"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
@@ -49,91 +50,110 @@ msgstr "Véletlenszerű"
 msgid "Scenario"
 msgstr "Játszma"
 
-#: gui/lobby/lobby.js:305
+#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
+#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+msgid "N/A"
+msgstr "nem elérhető"
+
+#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#, python-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
+#, c-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/lobby.js:442
 msgid "Busy"
 msgstr "Elfoglalt"
 
-#: gui/lobby/lobby.js:310
+#: gui/lobby/lobby.js:447
 msgid "Away"
 msgstr "Távol"
 
-#: gui/lobby/lobby.js:314
+#: gui/lobby/lobby.js:451
 msgid "Online"
 msgstr "Online"
 
-#: gui/lobby/lobby.js:318
+#: gui/lobby/lobby.js:455
 msgid "Offline"
 msgstr "Offline"
 
-#: gui/lobby/lobby.js:323
+#: gui/lobby/lobby.js:460
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Ismeretlen"
 
-#: gui/lobby/lobby.js:364
+#: gui/lobby/lobby.js:501
 msgid "A randomly selected map."
 msgstr "Véletlenszerűen választott térkép."
 
-#: gui/lobby/lobby.js:389
+#: gui/lobby/lobby.js:526
 msgid "Sorry, no description available."
 msgstr "Sajnos nem érhető el leírás."
 
-#: gui/lobby/lobby.js:417
+#: gui/lobby/lobby.js:554
 #, python-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:495
+#: gui/lobby/lobby.js:632
 #, python-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s csatlakozott."
 
-#: gui/lobby/lobby.js:504
+#: gui/lobby/lobby.js:641
 #, python-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s távozott."
 
-#: gui/lobby/lobby.js:511
+#: gui/lobby/lobby.js:648
 #, python-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Érvénytelen becenév: %(nick)s"
 
-#: gui/lobby/lobby.js:518
+#: gui/lobby/lobby.js:655
 #, python-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s mostantól így ismert: %(newnick)s"
 
-#: gui/lobby/lobby.js:672
+#: gui/lobby/lobby.js:812
 #, python-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Sajnáljuk, de a/z/ '%(cmd)s' parancs nem támogatott."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:752
+#: gui/lobby/lobby.js:892
 #, python-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:754
+#: gui/lobby/lobby.js:894
 #, python-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:758 gui/lobby/lobby.js:769 gui/lobby/lobby.js:782
+#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
 #, python-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:760 gui/lobby/lobby.js:771 gui/lobby/lobby.js:784
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, python-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:765
+#: gui/lobby/lobby.js:905
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -144,39 +164,39 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:796
+#: gui/lobby/lobby.js:936
 msgid "HH:mm"
-msgstr "HH:mm"
+msgstr "HH.mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it
 #. in the options page).
-#: gui/lobby/lobby.js:799
+#: gui/lobby/lobby.js:939
 #, python-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:802
+#: gui/lobby/lobby.js:942
 #, python-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:852
+#: gui/lobby/lobby.js:992
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Kérjük, ne szemetelj. Le lettél tiltva 30 másodpercre."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr "Kapcsolódás..."
+msgstr "Kapcsolódás…"
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr "Regisztráció..."
+msgstr "Regisztráció…"
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Add meg a felhasználóneved"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
@@ -184,11 +204,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Add meg a jelszavadat"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Add meg ismét a jelszavadat"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
@@ -196,15 +216,15 @@ msgstr "A jelszavak nem egyeznek meg"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Olvasd el a szolgáltatási feltételeket"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Olvasd el a felhasználási feltételeket"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Fogad el a felhasználási, illetve a szolgáltatási feltételeket"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
@@ -216,90 +236,131 @@ msgstr "Kapcsolódás"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
-msgstr ""
+msgstr "Szolgáltatási feltételek"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
 msgid "Terms of Use"
-msgstr ""
+msgstr "Felhasználási feltételek"
 
 #: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Többjátékos váróterem"
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr "Státusz"
+msgstr "Állapot"
 
-#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:128 (heading)
-#: gui/lobby/lobby.xml:207 (heading)
+#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
+#: gui/lobby/lobby.xml:254 (heading)
 msgid "Name"
 msgstr "Név"
 
-#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:210 (heading)
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
 msgid "Rating"
 msgstr "Értékelés"
 
-#: gui/lobby/lobby.xml:38 (caption) gui/lobby/lobby.xml:197 (caption)
+#: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
+msgid "Current Rank:"
+msgstr "Jelenlegi rang:"
+
+#: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
+msgid "Highest Rating:"
+msgstr "Legmagasabb rang:"
+
+#: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
+msgid "Total Games:"
+msgstr "Összes játék:"
+
+#: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
+msgid "Wins:"
+msgstr "Győzelmek:"
+
+#: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
+msgid "Losses:"
+msgstr "Vereségek:"
+
+#: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
+msgid "Win Rate:"
+msgstr "Győzelmi arány:"
+
+#: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "Ranglista"
 
-#: gui/lobby/lobby.xml:64 (caption)
+#: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
+msgid "User Profile Lookup"
+msgstr "Felhasználói profil keresése"
+
+#: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
-msgstr "Térkép Típusa:"
+msgstr "Térkép típusa:"
 
-#: gui/lobby/lobby.xml:76 (caption)
+#: gui/lobby/lobby.xml:123 (caption)
 msgid "Map Size:"
 msgstr "Térkép mérete:"
 
-#: gui/lobby/lobby.xml:93 (caption)
+#: gui/lobby/lobby.xml:140 (caption)
 msgid "Players:"
 msgstr "Játékosok:"
 
-#: gui/lobby/lobby.xml:102 (caption)
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby.xml:149 (caption)
 msgid "Join Game"
 msgstr "Csatlakozás játékhoz"
 
-#: gui/lobby/lobby.xml:108 (caption)
+#: gui/lobby/lobby.xml:155 (caption)
 msgid "Host Game"
 msgstr "Házigazda mód"
 
-#: gui/lobby/lobby.xml:115 (caption)
+#: gui/lobby/lobby.xml:162 (caption)
 msgid "Main Menu"
 msgstr "Főmenü"
 
-#: gui/lobby/lobby.xml:132 (heading)
+#: gui/lobby/lobby.xml:179 (heading)
 msgid "Map Name"
-msgstr "Térkép Neve"
+msgstr "Térkép neve"
 
-#: gui/lobby/lobby.xml:135 (heading)
+#: gui/lobby/lobby.xml:182 (heading)
 msgctxt "map"
 msgid "Size"
 msgstr "Méret"
 
-#: gui/lobby/lobby.xml:138 (heading)
+#: gui/lobby/lobby.xml:185 (heading)
 msgctxt "map"
 msgid "Type"
 msgstr "Típus"
 
-#: gui/lobby/lobby.xml:141 (heading)
+#: gui/lobby/lobby.xml:188 (heading)
 msgid "Players"
 msgstr "Játékosok"
 
-#: gui/lobby/lobby.xml:171 (caption)
+#: gui/lobby/lobby.xml:218 (caption)
 msgid "Show full games"
 msgstr "Teljes játékok mutatása"
 
-#: gui/lobby/lobby.xml:204 (heading)
+#: gui/lobby/lobby.xml:251 (heading)
 msgid "Rank"
 msgstr "Rang"
 
-#: gui/lobby/lobby.xml:214 (caption)
+#: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
 msgid "Back"
 msgstr "Vissza"
 
-#: gui/lobby/lobby.xml:218 (caption)
+#: gui/lobby/lobby.xml:272 (caption)
 msgid "Update"
 msgstr "Frissítés"
+
+#: gui/lobby/lobby.xml:282 (caption)
+msgid "Enter username:"
+msgstr "Felhasználónév megadása:"
+
+#: gui/lobby/lobby.xml:288 (caption)
+msgid "View Profile"
+msgstr "Profil megtekintése"
+
+#: gui/lobby/lobby.xml:321 (caption)
+msgid "Player not found."
+msgstr "Nem található játékos"
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -331,7 +392,7 @@ msgstr "Jelszó ismét:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "Elolvastam és elfogadom a Felhasználási és Szolgáltatási Feltételeket:"
+msgstr "Elolvastam és elfogadom a Felhasználási és Szolgáltatási feltételeket:"
 
 #: gui/lobby/prelobby.xml:97 (caption)
 msgid "Cancel"
@@ -343,7 +404,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Értelmezések:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -371,11 +432,11 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "A szolgáltatás használatával elfogadod:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Követed a használat szabályait."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
@@ -463,7 +524,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Elfogadod:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
