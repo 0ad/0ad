@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2007-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2007-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -38,7 +38,7 @@ namespace gloox
     public:
       /**
        * Constructs a new ConnectionTCPServer object.
-       * @param ch An ConnectionHandler-derived object that will handle incoming connections.
+       * @param ch A ConnectionHandler-derived object that will handle incoming connections.
        * @param logInstance The log target. Obtain it from ClientBase::logInstance().
        * @param ip The local IP address to listen on. This must @b not be a hostname.
        * Leave this empty to listen on all local interfaces.

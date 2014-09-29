@@ -109,6 +109,8 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			g_ResizedW = ev->ev.window.data1;
 			g_ResizedH = ev->ev.window.data2;
 			break;
+		case SDL_WINDOWEVENT_MOVED:
+			g_VideoMode.UpdatePosition(ev->ev.window.data1, ev->ev.window.data2);
 		}
 		break;
 #else

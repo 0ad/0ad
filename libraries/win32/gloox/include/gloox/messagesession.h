@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -220,6 +220,12 @@ namespace gloox
         { m_messageHandler = 0; }
 
       /**
+       * A convenience function to quickly send a message.
+       * @param message The message to send.
+       */
+      virtual void send( const std::string& message );
+
+      /**
        * A convenience function to quickly send a message (optionally with subject). This is
        * the preferred way to send a message from a MessageSession.
        * @param message The message to send.
@@ -227,7 +233,7 @@ namespace gloox
        * @param sel An optional list of StanzaExtensions. The extensions will be owned by the message-to-be-sent;
        * do not attempt to re-use or delete them.
        */
-      virtual void send( const std::string& message, const std::string& subject = EmptyString,
+      virtual void send( const std::string& message, const std::string& subject,
                          const StanzaExtensionList& sel = StanzaExtensionList() );
 
       /**

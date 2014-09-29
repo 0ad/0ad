@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2004-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2004-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -104,7 +104,6 @@ namespace gloox
       void addCData();
       bool closeTag();
       bool isWhitespace( unsigned char c );
-      bool isValid( unsigned char c );
       void streamEvent( Tag* tag );
       ForwardScanState forwardScan( std::string::size_type& pos, const std::string& data,
                                     const std::string& needle );

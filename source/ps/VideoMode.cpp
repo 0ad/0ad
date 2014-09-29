@@ -50,7 +50,7 @@ CVideoMode::CVideoMode() :
 	m_IsFullscreen(false), m_IsInitialised(false), m_Window(NULL),
 	m_PreferredW(0), m_PreferredH(0), m_PreferredBPP(0), m_PreferredFreq(0),
 	m_ConfigW(0), m_ConfigH(0), m_ConfigBPP(0), m_ConfigFullscreen(false), m_ConfigForceS3TCEnable(true),
-	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H)
+	m_WindowedW(DEFAULT_WINDOW_W), m_WindowedH(DEFAULT_WINDOW_H), m_WindowedX(0), m_WindowedY(0)
 {
 	// (m_ConfigFullscreen defaults to false, so users don't get stuck if
 	// e.g. half the filesystem is missing and the config files aren't loaded)
@@ -72,16 +72,17 @@ void CVideoMode::ReadConfig()
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 {
 #if SDL_VERSION_ATLEAST(2, 0, 0)
-	
-	Uint32 flags = SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN;
+	Uint32 flags = 0;
 	if (fullscreen)
 		flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-	else
-		flags |= SDL_WINDOW_RESIZABLE;
 
 	if (!m_Window)
 	{
-		m_Window = SDL_CreateWindow("0 A.D.", SDL_WINDOWPOS_UNDEFINED_DISPLAY(m_ConfigDisplay), SDL_WINDOWPOS_UNDEFINED_DISPLAY(m_ConfigDisplay), w, h, flags);
+		// Note: these flags only take affect in SDL_CreateWindow
+		flags |= SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
+		m_WindowedX = m_WindowedY = SDL_WINDOWPOS_CENTERED_DISPLAY(m_ConfigDisplay);
+
+		m_Window = SDL_CreateWindow("0 A.D.", m_WindowedX, m_WindowedY, w, h, flags);
 		if (!m_Window)
 		{
 			// If fullscreen fails, try windowed mode
@@ -121,6 +122,14 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 	{
 		if (m_IsFullscreen != fullscreen)
 		{
+			if (!fullscreen)
+			{
+				// For some reason, when switching from fullscreen to windowed mode,
+				// we have to set the window size and position before and after switching
+				SDL_SetWindowSize(m_Window, w, h);
+				SDL_SetWindowPosition(m_Window, m_WindowedX, m_WindowedY);
+			}
+
 			if (SDL_SetWindowFullscreen(m_Window, flags) < 0)
 			{
 				LOGERROR(L"SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%hs\")",
@@ -130,7 +139,10 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		}
 
 		if (!fullscreen)
+		{
 			SDL_SetWindowSize(m_Window, w, h);
+			SDL_SetWindowPosition(m_Window, m_WindowedX, m_WindowedY);
+		}
 	}
 
 	// Grab the current video settings
@@ -282,7 +294,7 @@ bool CVideoMode::InitSDL()
 	u16 ramp[256];
 	SDL_CalculateGammaRamp(g_Gamma, ramp);
 	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
-		LOGWARNING(L"SDL_SetGamma failed");
+		LOGWARNING(L"SDL_SetWindowGammaRamp failed");
 #else
 # if OS_MACOSX
 	// Workaround for crash on Mavericks, see http://trac.wildfiregames.com/ticket/2272
@@ -448,6 +460,15 @@ bool CVideoMode::SetFullscreen(bool fullscreen)
 bool CVideoMode::ToggleFullscreen()
 {
 	return SetFullscreen(!m_IsFullscreen);
+}
+
+void CVideoMode::UpdatePosition(int x, int y)
+{
+	if (!m_IsFullscreen)
+	{
+		m_WindowedX = x;
+		m_WindowedY = y;
+	}
 }
 
 void CVideoMode::UpdateRenderer(int w, int h)

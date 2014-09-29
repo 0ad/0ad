@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2006-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2006-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -22,6 +22,7 @@ namespace gloox
 {
 
   class Tag;
+  class Stanza;
 
   /**
    * Supported Stanza extension types.
@@ -86,6 +87,8 @@ namespace gloox
                                      * (@xep{0060}) */
     ExtSHIM,                        /**< An extension dealing with Stanza Headers and Internet Metadata (@xep{0131}). */
     ExtAttention,                   /**< An extension dealing with Attention (@xep{0224}). */
+    ExtForward,                     /**< An extension dealing with Stanza Forwarding (@xep{0297}). */
+    ExtCarbons,                     /**< An extension dealing with Message Carbons (@xep{0280}). */
     ExtUser                         /**< User-supplied extensions must use IDs above this. Do
                                      * not hard-code ExtUser's value anywhere, it is subject
                                      * to change. */
@@ -188,6 +191,22 @@ namespace gloox
        * Virtual destructor.
        */
       virtual ~StanzaExtension() {}
+
+      /**
+       * This function returns the embedded Stanza, if any.
+       * You only have to reimplement it if your protocol flow contains embedded Stanzas.
+       *
+       * @return The embedded Stanza. May be 0.
+       */
+      virtual Stanza* embeddedStanza() const { return 0; }
+
+      /**
+       * This function returns the embedded Tag that the embedded Stanza is based on, if any.
+       * You only have to reimplement it if your protocol flow contains embedded Stanzas.
+       *
+       * @return The embedded Tag. May be 0.
+       */
+      virtual Tag* embeddedTag() const { return 0; }
 
       /**
        * Returns an XPath expression that describes a path to child elements of a

@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -138,6 +138,35 @@ namespace gloox
        * @param right The second JID.
        */
       bool operator!=( const JID& right ) const { return full() != right.full(); }
+
+      /**
+       * Compares two JIDs to see if the left is less than the right.
+       * Needed for JID to be a key in a map.
+       * @param right The second JID.
+       * @since 1.0.4
+       */
+      bool operator<( const JID& right ) const { return full() < right.full(); }
+
+      /**
+       * Compares two JIDs to see if the left is less than or equal to the right.
+       * @param right The second JID.
+       * @since 1.0.4
+       */
+      bool operator<=( const JID& right ) const { return full() <= right.full(); }
+
+      /**
+       * Compares two JIDs to see if the left is greater than the right.
+       * @param right The second JID.
+       * @since 1.0.4
+       */
+      bool operator>( const JID& right ) const { return full() > right.full(); }
+
+      /**
+       * Compares two JIDs to see if the left is greater than the right.
+       * @param right The second JID.
+       * @since 1.0.4
+       */
+      bool operator>=( const JID& right ) const { return full() >= right.full(); }
 
       /**
        * Converts to  @b true if the JID is valid, @b false otherwise.

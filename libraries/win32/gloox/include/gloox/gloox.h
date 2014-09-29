@@ -1,5 +1,5 @@
 /*
-  Copyright (c) 2005-2012 by Jakob Schroeter <js@camaya.net>
+  Copyright (c) 2005-2014 by Jakob Schroeter <js@camaya.net>
   This file is part of the gloox library. http://camaya.net/gloox
 
   This software is distributed under a license. The full license
@@ -313,13 +313,20 @@
  * supports it)
  * @li @xep{0145} @link gloox::Annotations Annotations @endlink
  * @li @xep{0153} @link gloox::VCardUpdate vCard-based Avatars @endlink
+ * @li @xep{0166} @link gloox::Jingle::SessionManager Jingle @endlink
  * @li @xep{0172} @link gloox::Nickname User Nickname @endlink
+ * @li @xep{0174} @link gloox::LinkLocal::Manager Link-local Messaging @endlink
+ * @li @xep{0176} @link gloox::Jingle::ICEUDP Jingle ICE-UDP Transport Method @endlink
  * @li @xep{0184} @link gloox::Receipt Message Receipts @endlink
+ * @li @xep{0198} Stream Management (integrated into @link gloox::Client @endlink)
  * @li @xep{0199} @link gloox::ClientBase::xmppPing() XMPP Ping @endlink
  * @li @xep{0203} @link gloox::DelayedDelivery Delayed Delivery @endlink (new spec)
  * @li @xep{0206} @link gloox::ConnectionBOSH see BOSH @endlink
  * @li @xep{0224} @link gloox::Attention Attention @endlink
+ * @li @xep{0234} @link gloox::Jingle::FileTransfer Jingle File Transfer @endlink
  * @li @xep{0256} @link gloox::LastActivity::Query Last Activity in Presence @endlink
+ * @li @xep{0280} @link gloox::Carbons Message Carbons @endlink
+ * @li @xep{0297} @link gloox::Forward Stanza Forwarding @endlink
  *
  * Further extensions can easily be implemented using
  * @link gloox::StanzaExtension StanzaExtensions @endlink.
@@ -563,20 +570,23 @@ namespace gloox
   /** Message Receipt namespace (@xep{0172}) */
   GLOOX_API extern const std::string XMLNS_NICKNAME;
 
+  /** Jabber RPC namespace (@xep{0009}) */
+  GLOOX_API extern const std::string XMLNS_JABBER_RPC;
+
   /** Jingle namespace (@xep{0166}) */
   GLOOX_API extern const std::string XMLNS_JINGLE;
 
-  /** Jingle Audio via RTP namespace (@xep{0167}) */
-  GLOOX_API extern const std::string XMLNS_JINGLE_AUDIO_RTP;
+  /** Jingle error namespace (@xep{0166}) */
+  GLOOX_API extern const std::string XMLNS_JINGLE_ERRORS;
 
   /** Jingle ICE-UDP Transport namespace (@xep{0176}) */
   GLOOX_API extern const std::string XMLNS_JINGLE_ICE_UDP;
 
-  /** Jingle Raw UDP Transport namespace (@xep{0177}) */
-  GLOOX_API extern const std::string XMLNS_JINGLE_RAW_UDP;
+  /** Jingle File Transfer namespace (@xep{0234}) */
+  GLOOX_API extern const std::string XMLNS_JINGLE_FILE_TRANSFER;
 
-  /** Jingle Video via RTP namespace (@xep{0180}) */
-  GLOOX_API extern const std::string XMLNS_JINGLE_VIDEO_RTP;
+  /** Jingle File Transfer namespace (multiple files) (@xep{0234}) */
+  GLOOX_API extern const std::string XMLNS_JINGLE_FILE_TRANSFER_MULTI;
 
   /** Stanza Headers and Internet Metadata (SHIM) namespace (@xep{0131}) */
   GLOOX_API extern const std::string XMLNS_SHIM;
@@ -584,6 +594,17 @@ namespace gloox
   /** Attention namespace (@xep{0224}) */
   GLOOX_API extern const std::string XMLNS_ATTENTION;
 
+  /** Stream Management namespace (@xep{0198}) */
+  GLOOX_API extern const std::string XMLNS_STREAM_MANAGEMENT;
+
+  /** Stanza Forwarding namespace (@xep{0297}) */
+  GLOOX_API extern const std::string XMLNS_STANZA_FORWARDING;
+
+  /** Message Carbons namespace (@xep{0280}) */
+  GLOOX_API extern const std::string XMLNS_MESSAGE_CARBONS;
+
+  /** Use of Cryptographic Hash Functions in XMPP namespace (@xep{0300}) */
+  GLOOX_API extern const std::string XMLNS_HASHES;
 
   /** Supported stream version (major). */
   GLOOX_API extern const std::string XMPP_STREAM_VERSION_MAJOR;
@@ -629,6 +650,20 @@ namespace gloox
     StreamEventAuthentication,      /**< The Client is about to authenticate. */
     StreamEventSessionInit,         /**< The Client is about to create a session. */
     StreamEventResourceBinding,     /**< The Client is about to bind a resource to the stream. */
+    StreamEventSMEnable,            /**< The Client is about to request Stream Management (@xep{0198}).
+                                     * @since 1.0.4 */
+    StreamEventSMResume,            /**< The Client is about to request resumption by means of Stream Management
+                                     * (@xep{0198}).
+                                     * @since 1.0.4 */
+    StreamEventSMResumed,           /**< The stream has successfully been resumed by means of Stream Management
+                                     * (@xep{0198}).
+                                     * @since 1.0.4 */
+    StreamEventSMEnableFailed,      /**< The attempt to enable Stream Management
+                                     * (@xep{0198}) failed. This is not critical.
+                                     * @since 1.0.4 */
+    StreamEventSMResumeFailed,      /**< The attempt to resume an aborted session by means of Stream Management
+                                     * (@xep{0198}) failed. This is not critical.
+                                     * @since 1.0.4 */
     StreamEventSessionCreation,     /**< The Client is about to create a session.
                                      * @since 0.9.1 */
     StreamEventRoster,              /**< The Client is about to request the roster. */
@@ -700,9 +735,10 @@ namespace gloox
                                            * Authentication). */
     StreamFeatureCompressZlib     =   64, /**< The server supports @xep{0138} (Stream
                                            * Compression) (Zlib). */
-    StreamFeatureCompressDclz     =  128  /**< The server supports @xep{0138} (Stream
+    StreamFeatureCompressDclz     =  128, /**< The server supports @xep{0138} (Stream
                                            * Compression) (LZW/DCLZ). */
-    // SASLMechanism below must be adjusted accordingly.
+    StreamFeatureStreamManagement =  256  /**< The server supports @xep{0198} (Stream Management). */
+    // SaslMechanism below must be adjusted accordingly.
   };
 
   /**
@@ -711,15 +747,17 @@ namespace gloox
   // must be adjusted with changes to StreamFeature enum above
   enum SaslMechanism
   {
-    SaslMechNone           =     0, /**< Invalid SASL Mechanism. */
-    SaslMechDigestMd5      =   256, /**< SASL Digest-MD5 according to RFC 2831. */
-    SaslMechPlain          =   512, /**< SASL PLAIN according to RFC 2595 Section 6. */
-    SaslMechAnonymous      =  1024, /**< SASL ANONYMOUS according to draft-ietf-sasl-anon-05.txt/
+    SaslMechNone          =      0, /**< Invalid SASL Mechanism. */
+    SaslMechScramSha1     =   2048, /**< SASL SCRAM-SHA-1-PLUS accroding to RFC 5801 */
+    SaslMechScramSha1Plus =   1024, /**< SASL SCRAM-SHA-1 accroding to RFC 5801 */
+    SaslMechDigestMd5     =   4096, /**< SASL Digest-MD5 according to RFC 2831. */
+    SaslMechPlain         =   8192, /**< SASL PLAIN according to RFC 2595 Section 6. */
+    SaslMechAnonymous     =  16384, /**< SASL ANONYMOUS according to draft-ietf-sasl-anon-05.txt/
                                      * RFC 2245 Section 6. */
-    SaslMechExternal       =  2048, /**< SASL EXTERNAL according to RFC 2222 Section 7.4. */
-    SaslMechGssapi         =  4096, /**< SASL GSSAPI (Win32 only). */
-    SaslMechNTLM           =  8192, /**< SASL NTLM (Win32 only). */
-    SaslMechAll            = 65535  /**< Includes all supported SASL mechanisms. */
+    SaslMechExternal      =  32768, /**< SASL EXTERNAL according to RFC 2222 Section 7.4. */
+    SaslMechGssapi        =  65536, /**< SASL GSSAPI (Win32 only). */
+    SaslMechNTLM          = 131072, /**< SASL NTLM (Win32 only). */
+    SaslMechAll           = 262143  /**< Includes all supported SASL mechanisms. */
   };
 
   /**
@@ -800,7 +838,7 @@ namespace gloox
     StreamErrorXmlNotWellFormed,    /**< The initiating entity has sent XML that is not well-formed as
                                      * defined by [XML]. */
     StreamErrorUndefined            /**< An undefined/unknown error occured. Also used if a diconnect was
-     * user-initiated. Also set before and during a established connection
+                                     * user-initiated. Also set before and during a established connection
                                      * (where obviously no error occured). */
   };
 
@@ -1017,6 +1055,7 @@ namespace gloox
     LogAreaClassSOCKS5Bytestream      = 0x000800, /**< Log messages from SOCKS5Bytestream. */
     LogAreaClassConnectionBOSH        = 0x001000, /**< Log messages from ConnectionBOSH */
     LogAreaClassConnectionTLS         = 0x002000, /**< Log messages from ConnectionTLS */
+    LogAreaLinkLocalManager           = 0x004000, /**< Log messages from LinkLocalManager */
     LogAreaAllClasses                 = 0x01FFFF, /**< All log messages from all the classes. */
     LogAreaXmlIncoming                = 0x020000, /**< Incoming XML. */
     LogAreaXmlOutgoing                = 0x040000, /**< Outgoing XML. */
