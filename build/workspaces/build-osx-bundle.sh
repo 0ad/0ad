@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# This script will build an OSX app bundle for 0 A.D.
+# This script will build an OS X app bundle for 0 A.D.
 #
 # App bundles are intended to be self-contained and portable.
 # An SDK is required, usually included with Xcode. The SDK ensures
@@ -17,12 +17,12 @@
 
 # Force build architecture, as sometimes environment is broken.
 # For a universal fat binary, the approach would be to build every
-# dependency with both archs and combine them with lipo, then do the
+# library with both archs and combine them with lipo, then do the
 # same thing with the game itself.
 # Choices are "x86_64" or  "i386" (ppc and ppc64 not supported)
 export ARCH=${ARCH:="x86_64"}
 
-# Set SDK and mimimum required OSX version
+# Set SDK and mimimum required OS X version
 # (As of Xcode 4.3, the SDKs are located directly in Xcode.app,
 #  but previously they were in /Developer/SDKs)
 #export SYSROOT=${SYSROOT="/Developer/SDKs/MacOSX10.5.sdk"}
@@ -40,7 +40,7 @@ export CC=${CC:="clang"} CXX=${CXX:="clang++"}
 
 # Unique identifier string for this bundle (reverse-DNS style)
 BUNDLE_IDENTIFIER=${BUNDLE_IDENTIFIER:="com.wildfiregames.0ad"}
-# Minimum version of OSX on which the bundle will run
+# Minimum version of OS X on which the bundle will run
 BUNDLE_MIN_OSX_VERSION="${MIN_OSX_VERSION}.0"
 
 die()
@@ -65,6 +65,8 @@ cd "$(dirname $0)"
 JOBS=${JOBS:="-j5"}
 build_release=false
 build_path="$HOME/0ad-export"
+# TODO: proper logging of all output, but show errors in terminal too
+build_log="$(pwd)/bundle-build.log"
 
 # Parse command-line options:
 for i in "$@"
@@ -75,16 +77,20 @@ do
   esac
 done
 
+rm -f $build_log
+
 # For release, export an SVN copy
 if [ "$build_release" = "true" ]; then
+  echo "\nExporting SVN and preparing release\n"
+
   BUNDLE_OUTPUT="$build_path/0ad.app"
   SVN_REV=`svnversion -n ../..`
   rm -rf $build_path
-  svn export ../.. $build_path || die "Error exporting SVN working directory"
+  svn export ../.. $build_path >> $build_log 2>&1 || die "Error exporting SVN working directory"
   cd $build_path
-  rm binaries/data/config/dev.cfg
+  rm -f binaries/data/config/dev.cfg
   # Only include translations for a subset of languages
-  . source/tools/dist/remove-incomplete-translations.sh $build_path/binaries/data
+  . source/tools/dist/remove-incomplete-translations.sh $build_path/binaries/data || die "Error excluding translations"
   echo L\"${SVNREV}-release\" > build/svn_revision/svn_revision.txt
   cd build/workspaces
 fi
@@ -101,26 +107,26 @@ BUNDLE_SHAREDSUPPORT=$BUNDLE_CONTENTS/SharedSupport
 
 # Build libraries against SDK
 echo "\nBuilding libaries\n"
-pushd ../../libraries/osx
-./build-osx-libs.sh $JOBS --force-rebuild || die "Libraries build script failed"
-popd
+pushd ../../libraries/osx > /dev/null
+./build-osx-libs.sh $JOBS --force-rebuild >> $build_log 2>&1 || die "Libraries build script failed"
+popd > /dev/null
 
 # Clean and update workspaces
 echo "\nGenerating workspaces\n"
 
-# Pass OSX options through to Premake
-(./clean-workspaces.sh && SYSROOT="$SYSROOT" MIN_OSX_VERSION="$MIN_OSX_VERSION" ./update-workspaces.sh --macosx-bundle="$BUNDLE_IDENTIFIER" --sysroot="$SYSROOT" --macosx-version-min="$MIN_OSX_VERSION") || die "update-workspaces.sh failed!"
+# Pass OS X options through to Premake
+(./clean-workspaces.sh && SYSROOT="$SYSROOT" MIN_OSX_VERSION="$MIN_OSX_VERSION" ./update-workspaces.sh --macosx-bundle="$BUNDLE_IDENTIFIER" --sysroot="$SYSROOT" --macosx-version-min="$MIN_OSX_VERSION") >> $build_log 2>&1 || die "update-workspaces.sh failed!"
 
-pushd gcc
+pushd gcc > /dev/null
 echo "\nBuilding game\n"
-(make clean && CC="$CC -arch $ARCH" CXX="$CXX -arch $ARCH" make ${JOBS}) || die "Game build failed!"
-popd
+(make clean && CC="$CC -arch $ARCH" CXX="$CXX -arch $ARCH" make ${JOBS}) >> $build_log 2>&1 || die "Game build failed!"
+popd > /dev/null
 
 # Run test to confirm all is OK
-pushd ../../binaries/system
+pushd ../../binaries/system > /dev/null
 echo "\nRunning tests\n"
 ./test || die "Post-build testing failed!"
-popd
+popd > /dev/null
 
 # Create bundle structure
 echo "\nCreating bundle directories\n"
@@ -132,15 +138,15 @@ mkdir -p ${BUNDLE_RESOURCES}
 mkdir -p ${BUNDLE_SHAREDSUPPORT}
 
 # Build archive(s) - don't archive the _test.* mods
-pushd ../../binaries/data/mods
+pushd ../../binaries/data/mods > /dev/null
 archives=""
 for modname in [a-zA-Z0-9]*
 do
   archives="${archives} ${modname}"
 done
-popd
+popd > /dev/null
 
-pushd ../../binaries/system
+pushd ../../binaries/system > /dev/null
 
 for modname in $archives
 do
@@ -151,7 +157,7 @@ do
   # For some reason the output directory has to exist?
   mkdir -p ${ARCHIVEBUILD_OUTPUT}
 
-  (./pyrogenesis -archivebuild=${ARCHIVEBUILD_INPUT} -archivebuild-output=${ARCHIVEBUILD_OUTPUT}/${modname}.zip) || die "Archive build for '${modname}' failed!"
+  (./pyrogenesis -archivebuild=${ARCHIVEBUILD_INPUT} -archivebuild-output=${ARCHIVEBUILD_OUTPUT}/${modname}.zip) >> $build_log 2>&1 || die "Archive build for '${modname}' failed!"
 done
 
 # Copy binaries
@@ -167,26 +173,27 @@ echo "\nCopying libs\n"
 cp -v libAtlasUI.dylib ${BUNDLE_FRAMEWORKS}
 cp -v libCollada.dylib ${BUNDLE_FRAMEWORKS}
 
-popd
+popd > /dev/null
 
 # Copy data
 echo "\nCopying non-archived game data\n"
-pushd ../../binaries/data
-if [ "$build_release" = "false"]; then
+pushd ../../binaries/data > /dev/null
+if [ "$build_release" = "false" ]; then
   mv config/dev.cfg config/dev.bak
 fi
 cp -R -v config ${BUNDLE_RESOURCES}/data/
 cp -R -v tools ${BUNDLE_RESOURCES}/data/
-if [ "$build_release" = "false"]; then
+if [ "$build_release" = "false" ]; then
   mv config/dev.bak config/dev.cfg
 fi
-popd
+popd > /dev/null
 cp -v ../resources/0ad.icns ${BUNDLE_RESOURCES}
 
 # Copy license/readmes
 # TODO: Also want copies in the DMG - decide on layout
 echo "\nCopying readmes\n"
 cp -v ../../*.txt ${BUNDLE_RESOURCES}
+cp -v ../../libraries/LICENSE.txt ${BUNDLE_RESOURCES}/LIB_LICENSE.txt
 
 # Create Info.plist
 echo "\nCreating Info.plist\n"
