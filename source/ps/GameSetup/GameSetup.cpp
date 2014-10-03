@@ -660,9 +660,7 @@ static void InitSDL()
 	}
 	atexit(SDL_Quit);
 
-#if SDL_VERSION_ATLEAST(2, 0, 0)
-	SDL_StartTextInput();
-#else
+#if !SDL_VERSION_ATLEAST(2, 0, 0)
 	SDL_EnableUNICODE(1);
 #endif
 }

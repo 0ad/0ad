@@ -136,6 +136,9 @@ protected:
 	// Called every time the auto-scrolling should be checked.
 	void UpdateAutoScroll();
 
+	// Clear composed IME input when supported (SDL2 only).
+	void ClearComposedText();
+
 protected:
 	// Cursor position 
 	//  (the second one is for selection of larger areas, -1 if not used)
@@ -154,6 +157,8 @@ protected:
 	bool m_ComposingText;
 	// The length and position of the current IME composition
 	int m_iComposedLength, m_iComposedPos;
+	// The position to insert committed text
+	int m_iInsertPos;
 
 	// the outer vector is lines, and the inner is X positions
 	//  in a row. So that we can determine where characters are

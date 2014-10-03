@@ -47,7 +47,8 @@ extern int g_yres;
 //-------------------------------------------------------------------
 CInput::CInput()
 	: m_iBufferPos(-1), m_iBufferPos_Tail(-1), m_SelectingText(false), m_HorizontalScroll(0.f),
-	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_iComposedLength(0), m_iComposedPos(0), m_ComposingText(false)
+	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
+	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0)
 {
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
@@ -78,6 +79,15 @@ CInput::~CInput()
 {
 }
 
+void CInput::ClearComposedText()
+{
+	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
+	pCaption->erase(m_iInsertPos, m_iComposedLength);
+	m_iBufferPos = m_iInsertPos;
+	m_iComposedLength = 0;
+	m_iComposedPos = 0;
+}
+
 InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 {
 	ENSURE(m_iBufferPos != -1);
@@ -102,10 +112,16 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		if (SelectingText())
 			DeleteCurSelection();
 
+		if (m_ComposingText)
+		{
+			ClearComposedText();
+			m_ComposingText = false;
+		}
+
 		if (m_iBufferPos == (int)pCaption->length())
-			*pCaption += text;
+			pCaption->append(text);
 		else
-			*pCaption = pCaption->Left(m_iBufferPos) + text + pCaption->Right((long)pCaption->length()-m_iBufferPos);
+			pCaption->insert(m_iBufferPos, text);
 
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 		
@@ -121,31 +137,39 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		// Text is being composed with an IME
 		// TODO: indicate this by e.g. underlining the uncommitted text
 		CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
-		std::wstring text = wstring_from_utf8(ev->ev.edit.text);
+		const char *rawText = ev->ev.edit.text;
+		int rawLength = strlen(rawText);
+		std::wstring wtext = wstring_from_utf8(rawText);
 		
-		// Ignore spurious events
-		if (!m_ComposingText && ev->ev.edit.start == 0 && text.length() == 0)
-			return IN_HANDLED;
-
-		debug_printf(L"SDL_TEXTEDITING: text=%hs, start=%d, length=%d\n", ev->ev.edit.text, ev->ev.edit.start, ev->ev.edit.length);
+		debug_printf(L"SDL_TEXTEDITING: text=%hs, start=%d, length=%d\n", rawText, ev->ev.edit.start, ev->ev.edit.length);
 		m_WantedX=0.0f;
-		m_ComposingText = ev->ev.edit.start != 0 || text.length() != 0;
 
-		if (m_ComposingText && SelectingText())
+		if (SelectingText())
 			DeleteCurSelection();
 
-		// Composed text is replaced each time
-		if (m_iBufferPos == (int)pCaption->length())
-			*pCaption = pCaption->Left(m_iBufferPos-m_iComposedPos) + text;
+		// Remember cursor position when text composition begins
+		if (!m_ComposingText)
+			m_iInsertPos = m_iBufferPos;
 		else
-			*pCaption = pCaption->Left(m_iBufferPos-m_iComposedPos) + text + pCaption->Right((long)pCaption->length()-m_iBufferPos+m_iComposedPos-m_iComposedLength);
+		{
+			// Composed text is replaced each time
+			ClearComposedText();
+		}
 
-		m_iBufferPos = m_iBufferPos - m_iComposedPos + ev->ev.edit.start;
-		m_iComposedPos = ev->ev.edit.start;
-		m_iComposedLength = text.length();
+		m_ComposingText = ev->ev.edit.start != 0 || rawLength != 0;
+		if (m_ComposingText)
+		{
+			pCaption->insert(m_iInsertPos, wtext);
+
+			// The text buffer is limited to SDL_TEXTEDITINGEVENT_TEXT_SIZE bytes, yet start
+			// increases without limit, so don't let it advance beyond the composed text length
+			m_iComposedLength = wtext.length();
+			m_iComposedPos = ev->ev.edit.start < m_iComposedLength ? ev->ev.edit.start : m_iComposedLength;
+			m_iBufferPos = m_iInsertPos + m_iComposedPos;
 		
-		// TODO: composed text selection - what does ev.edit.length do?
-		m_iBufferPos_Tail = -1;
+			// TODO: composed text selection - what does ev.edit.length do?
+			m_iBufferPos_Tail = -1;
+		}
 		
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
@@ -1048,6 +1072,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		rect.x = m_CachedActualSize.TopLeft().x;
 		rect.y = m_CachedActualSize.TopLeft().y;
 		SDL_SetTextInputRect(&rect);
+		SDL_StartTextInput();
 #endif
 		break;
 
@@ -1063,6 +1088,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 			evt.ev.edit.text[0] = 0;
 			ManuallyHandleEvent(&evt);
 		}
+		SDL_StopTextInput();
 #endif
 
 		m_iBufferPos = -1;

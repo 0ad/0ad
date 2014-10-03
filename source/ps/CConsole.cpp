@@ -92,6 +92,14 @@ void CConsole::ToggleVisible()
 {
 	m_bToggle = true;
 	m_bVisible = !m_bVisible;
+
+#if SDL_VERSION_ATLEAST(2, 0, 0)
+	// TODO: this should be based on input focus, not visibility
+	if (m_bVisible)
+		SDL_StartTextInput();
+	else
+		SDL_StopTextInput();
+#endif
 }
 
 void CConsole::SetVisible(bool visible)
