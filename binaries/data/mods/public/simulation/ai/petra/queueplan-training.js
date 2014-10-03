@@ -77,7 +77,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 			{
 				if (gameState.ai.HQ.isDangerousLocation(a.position()))
 					aa += 50;
-				if (gameState.ai.HQ.isDangerousLocation(a.position()))
+				if (gameState.ai.HQ.isDangerousLocation(b.position()))
 					bb += 50;
 			}
 			if (wantedIndex)
