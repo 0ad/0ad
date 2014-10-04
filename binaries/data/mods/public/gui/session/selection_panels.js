@@ -808,7 +808,7 @@ g_SelectionPanels.Selection = {
 		data.count = ents.length;
 		for (var i in ents)
 		{
-			var state = GetExtendedEntityState(ents[i]);
+			var state = GetEntityState(ents[i]);
 
 			if (state.resourceCarrying && state.resourceCarrying.length !== 0)
 			{
