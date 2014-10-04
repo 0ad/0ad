@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -50,6 +50,7 @@ InReaction GlobalsInputHandler(const SDL_Event_* ev)
 		case SDL_WINDOWEVENT_MINIMIZED:
 			g_app_minimized = true;
 			break;
+		case SDL_WINDOWEVENT_EXPOSED:
 		case SDL_WINDOWEVENT_RESTORED:
 			g_app_minimized = false;
 			break;

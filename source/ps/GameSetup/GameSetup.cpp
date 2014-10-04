@@ -358,7 +358,7 @@ static size_t ChooseCacheSize()
 	const ssize_t os = (ssize_t)OperatingSystemFootprint();
 	const ssize_t game = 300;	// estimated working set
 
-	ssize_t cache = 500;	// upper bound: total size of our data
+	ssize_t cache = 400;	// upper bound: total size of our data
 
 	// the cache reserves contiguous address space, which is a precious
 	// resource on 32-bit systems, so don't use too much:

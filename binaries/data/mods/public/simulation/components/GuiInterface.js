@@ -198,6 +198,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"position": null,
 		"production": null,
 		"rallyPoint": null,
+		"resourceCarrying": null,
 		"rotation": null,
 		"trader": null,
 		"unitAI": null,
@@ -345,6 +346,12 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		};
 	}
 
+	var cmpResourceGatherer = Engine.QueryInterface(ent, IID_ResourceGatherer);
+	if (cmpResourceGatherer)
+	{
+		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
+	}
+
 	var cmpGate = Engine.QueryInterface(ent, IID_Gate);
 	if (cmpGate)
 	{
@@ -384,7 +391,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"obstruction": null,
 		"turretParent":null,
 		"promotion": null,
-		"resourceCarrying": null,
 		"resourceDropsite": null,
 		"resourceGatherRates": null,
 		"resourceSupply": null,
@@ -502,7 +508,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	if (cmpResourceGatherer)
 	{
 		ret.resourceGatherRates = cmpResourceGatherer.GetGatherRates();
-		ret.resourceCarrying = cmpResourceGatherer.GetCarryingStatus();
 	}
 	
 	var cmpResourceDropsite = Engine.QueryInterface(ent, IID_ResourceDropsite);
