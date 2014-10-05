@@ -78,6 +78,7 @@ public:
 
 private:
 	void DeleteTexture();
+	bool CreateShader();
 	void ConstructTexture(int unit);
 	void RecomputeTexture(int unit);
 
@@ -87,6 +88,8 @@ private:
 	CSimulation2& m_Simulation;
 
 	bool m_Dirty;
+
+	bool m_ShaderInitialized;
 
 	GLuint m_Texture;
 	GLuint m_TextureSmooth1, m_TextureSmooth2;
