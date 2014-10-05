@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# ST Alfas, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-22 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-09-27 09:40+0000\n"
+"Last-Translator: ST Alfas\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,71 +23,71 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "ഏതെങ്കിലും"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "ഏതെങ്കിലും"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "ഏതെങ്കിലും"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "കലഹം"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "തോന്നുംപോലെ"
 
 #: gui/lobby/lobby.js:37
 msgid "Scenario"
-msgstr ""
+msgstr "തിരക്കഥ"
 
 #: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
 #: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
 msgid "N/A"
-msgstr ""
+msgstr "അജ്ഞാതം"
 
 #: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
 #, python-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
 #, c-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:442
 msgid "Busy"
-msgstr ""
+msgstr "തിരക്കില്‍"
 
 #: gui/lobby/lobby.js:447
 msgid "Away"
-msgstr ""
+msgstr "ദൂരെ"
 
 #: gui/lobby/lobby.js:451
 msgid "Online"
-msgstr ""
+msgstr "ഓണ്‍ലൈനില്‍"
 
 #: gui/lobby/lobby.js:455
 msgid "Offline"
-msgstr ""
+msgstr "ഓഫ്‍ലൈനില്‍"
 
 #: gui/lobby/lobby.js:460
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "അജ്ഞാതം"
 
 #: gui/lobby/lobby.js:501
 msgid "A randomly selected map."
@@ -109,7 +110,7 @@ msgstr ""
 #: gui/lobby/lobby.js:641
 #, python-format
 msgid "%(nick)s has left."
-msgstr ""
+msgstr "%(nick)s പോയി."
 
 #: gui/lobby/lobby.js:648
 #, python-format
@@ -130,31 +131,31 @@ msgstr ""
 #: gui/lobby/lobby.js:892
 #, python-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
 #: gui/lobby/lobby.js:894
 #, python-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
 #: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
 #, python-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
 #: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, python-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
 #: gui/lobby/lobby.js:905
 #, python-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the
@@ -172,7 +173,7 @@ msgstr ""
 #: gui/lobby/lobby.js:939
 #, python-format
 msgid "[%(time)s]"
-msgstr ""
+msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
 #: gui/lobby/lobby.js:942
@@ -186,7 +187,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "ബന്ധിപ്പിക്കുന്നു..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
@@ -226,11 +227,11 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
-msgstr ""
+msgstr "അംഗത്വമെടുക്കൂ"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
 msgid "Connect"
-msgstr ""
+msgstr "ബന്ധിപ്പിക്കൂ"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
 msgid "Terms of Service"
@@ -251,7 +252,7 @@ msgstr ""
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
 #: gui/lobby/lobby.xml:254 (heading)
 msgid "Name"
-msgstr ""
+msgstr "പേര്"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
 msgid "Rating"
@@ -259,7 +260,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
 msgid "Current Rank:"
-msgstr ""
+msgstr "നിലിവലെ റാങ്ക്:"
 
 #: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
 msgid "Highest Rating:"
@@ -267,19 +268,19 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
 msgid "Total Games:"
-msgstr ""
+msgstr "മൊത്തം കളികള്‍:"
 
 #: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
 msgid "Wins:"
-msgstr ""
+msgstr "വിജയം:"
 
 #: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
 msgid "Losses:"
-msgstr ""
+msgstr "പരാജയം:"
 
 #: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
 msgid "Win Rate:"
-msgstr ""
+msgstr "വിജയശതമാനം:"
 
 #: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
@@ -291,15 +292,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "ഭുപടതരം:"
 
 #: gui/lobby/lobby.xml:123 (caption)
 msgid "Map Size:"
-msgstr ""
+msgstr "ഭൂപട വലിപ്പം:"
 
 #: gui/lobby/lobby.xml:140 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "കളിക്കാര്‍:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:149 (caption)
@@ -312,25 +313,25 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:162 (caption)
 msgid "Main Menu"
-msgstr ""
+msgstr "പ്രധാന മെനു"
 
 #: gui/lobby/lobby.xml:179 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "ഭൂപടത്തിന്റെ പേര്"
 
 #: gui/lobby/lobby.xml:182 (heading)
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "വലുപ്പം"
 
 #: gui/lobby/lobby.xml:185 (heading)
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "തരം"
 
 #: gui/lobby/lobby.xml:188 (heading)
 msgid "Players"
-msgstr ""
+msgstr "കളിക്കാര്‍"
 
 #: gui/lobby/lobby.xml:218 (caption)
 msgid "Show full games"
@@ -338,15 +339,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:251 (heading)
 msgid "Rank"
-msgstr ""
+msgstr "റാങ്ക്"
 
 #: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
 msgid "Back"
-msgstr ""
+msgstr "തിരികെ"
 
 #: gui/lobby/lobby.xml:272 (caption)
 msgid "Update"
-msgstr ""
+msgstr "പുതുക്കൂ"
 
 #: gui/lobby/lobby.xml:282 (caption)
 msgid "Enter username:"
@@ -354,7 +355,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:288 (caption)
 msgid "View Profile"
-msgstr ""
+msgstr "പ്രൊഫൈല്‍ കാണുക"
 
 #: gui/lobby/lobby.xml:321 (caption)
 msgid "Player not found."
@@ -394,7 +395,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:97 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "റദ്ദാക്കൂ"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
@@ -402,7 +403,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "നിര്‍വചനങ്ങള്‍:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -420,7 +421,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
-" * \"Rating\" refers to the process of analysing various user statistics for"
+" * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
 msgstr ""
 

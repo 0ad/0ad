@@ -9,6 +9,7 @@
 # Deltamat <mathias.broendum@gmail.com>, 2014
 # Fijure <mathiasik@live.dk>, 2014
 # jarlgjessing <jarlgjessing@gmail.com>, 2014
+# Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 # MrKahr <mdsandersen@gmail.com>, 2014
 # Patrick Larsen <hatsen2000@gmail.com>, 2014
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
@@ -16,9 +17,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: Patrick Larsen <hatsen2000@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-10-05 15:30+0000\n"
+"Last-Translator: Mads Overgård Henningsen <mads.overgaard@live.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,7 +71,7 @@ msgstr "Bekræftelse"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Er du sikker på, at du vil forlade spillet? Hvis du forlader spillet vil øvrige spilleres forbindelse også afbrydes."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -86,7 +87,7 @@ msgstr "Jeg giver op"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Ønsker du at trække dig tilbage, eller vender du snart tilbage?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
@@ -120,7 +121,7 @@ msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "Der er ingen landhandlere."
 
 #: gui/session/menu.js:482
 #, python-format
@@ -133,15 +134,15 @@ msgstr[1] "%(numberOfLandTraders)s inaktive"
 #, python-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(numberTrading)s landhandler, der handler"
+msgstr[1] "Der er %(numberTrading)s landhandlere, der handler"
 
 #: gui/session/menu.js:489
 #, python-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberGarrisoned)s garnisonerede på et handlende handelsskib"
+msgstr[1] "%(numberGarrisoned)s garnisonerede på handlende handelsskibe"
 
 #: gui/session/menu.js:492
 #, python-format
@@ -172,8 +173,8 @@ msgid ""
 msgid_plural ""
 "There are %(numberGarrisoned)s land traders garrisoned on a trading merchant"
 " ship"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(numberGarrisoned)s landhandler garnisoneret på et handlende handelsskib."
+msgstr[1] "Der er %(numberGarrisoned)s landhandlere garnisoneret på et handlende handelsskib."
 
 #: gui/session/menu.js:530
 #, python-format
@@ -189,8 +190,8 @@ msgstr "%(openingGarrisonedString)s."
 #, python-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s inaktiv landhandler"
+msgstr[1] "%(numberOfLandTraders)s inaktive landhandlere"
 
 #: gui/session/menu.js:547 gui/session/menu.js:589
 #, python-format
@@ -214,8 +215,8 @@ msgstr[1] "%(numberOfShipTraders)s inaktive"
 #, python-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der er %(numberTrading)s handlende handelskib"
+msgstr[1] "Der er %(numberTrading)s handlende handelskibe"
 
 #: gui/session/menu.js:588
 #, python-format
@@ -440,7 +441,7 @@ msgstr "Indtægt: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "Antal byggere.\nEndnu en arbejder ville forøge konstruktionshastigheden med %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -499,7 +500,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Klasser:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -513,12 +514,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Køb %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Sælg %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
 #, python-format
@@ -571,8 +572,8 @@ msgstr "%(population)s %(neededSlots)s"
 #, python-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Mangler: %(number)s at bygger."
+msgstr[1] "Mangler: %(number)s at bygger."
 
 #: gui/session/selection_panels.js:972 gui/session/session.js:617
 #: gui/session/selection_panels_middle/single_details_area.xml:12 (tooltip)
@@ -602,7 +603,7 @@ msgstr "Defensiv"
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Stå stille"
 
 #: gui/session/selection_panels_helpers.js:70
 #, python-format
@@ -612,12 +613,12 @@ msgstr "Nuværende Antal: %(count)s, Max: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s forhøjer begrænsningen med %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s sænker begrænsningen med %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -763,7 +764,7 @@ msgstr "Aflæs Alle"
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Du kan ikke ødelægge denne instans, da den er i fog-of-war"
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
@@ -775,7 +776,7 @@ msgstr "Garnison"
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
-msgstr ""
+msgstr "Læs af"
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
@@ -803,7 +804,7 @@ msgstr "Vælg handelsvarer"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Forøg beredskabsniveauet for at beskytte flere enheder"
 
 #: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
@@ -918,11 +919,6 @@ msgstr "%(resourceIcon)s %(minimum)s til %(resourceIcon)s %(maximum)s"
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "Mure: %(costs)s"
-
-#: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
-#: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
-msgid "  "
-msgstr " "
 
 #: gui/session/utility_functions.js:476
 #, python-format
@@ -1277,11 +1273,11 @@ msgstr "Skift perspektiv"
 
 #: gui/session/session.xml:70 (caption)
 msgid "Display selection state"
-msgstr ""
+msgstr "Vis valg-tilstand"
 
 #: gui/session/session.xml:75 (caption)
 msgid "Pathfinder overlay"
-msgstr ""
+msgstr "Pathfinder-overlay"
 
 #: gui/session/session.xml:82 (caption)
 msgid "Obstruction overlay"
@@ -1297,7 +1293,7 @@ msgstr "Rækkeviddeoverlay"
 
 #: gui/session/session.xml:103 (caption)
 msgid "Bounding box overlay"
-msgstr ""
+msgstr "Bounding Box-overlay"
 
 #: gui/session/session.xml:110 (caption)
 msgid "Restrict camera"
@@ -1329,7 +1325,7 @@ msgstr "Annuller"
 
 #: gui/session/session.xml:212 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "Kun Team"
 
 #: gui/session/session.xml:216 (caption)
 msgid "Send"
@@ -1341,7 +1337,7 @@ msgstr "Vælg spiller at følge"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "Iagttager-Tilstand (Eksperimentel)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
@@ -1350,14 +1346,14 @@ msgstr "Handel"
 
 #: gui/session/trade_window.xml:15 (caption)
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "Handelsgods valgt:"
 
 #: gui/session/trade_window.xml:35 (tooltip)
 msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Vælg et handelsgods som midtpunkt for ændringerne, brug derefter pilene på det valgte gods for at lave ændringerne (brug Shift til at hæve den valgte ressource til 100%)."
 
 #: gui/session/dialogs/yes_no.xml:11 (caption)
 msgid "Question"
@@ -1398,13 +1394,13 @@ msgstr "Rang"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "Produktionskø"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "Klik for at vælge grupperede enheder, dobbeltklik for at fokusere på de grupperede enheder og højreklip for at opløse gruppen."
 
 #: gui/session/top_panel/button_game_speed.xml:9 (tooltip)
 msgid "Game speed"
@@ -1419,8 +1415,8 @@ msgid "MENU"
 msgstr "MENU"
 
 #: gui/session/top_panel/label.xml:4 (caption)
-msgid "ALPHA XVI : Patañjali"
-msgstr "ALPHA XVI : Patañjali"
+msgid "ALPHA XVII : Quercus"
+msgstr "ALPHA XVII : Quercus"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"

@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
 "PO-Revision-Date: 2014-09-15 15:31+0000\n"
 "Last-Translator: Raymond Vetter\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
@@ -27,12 +27,12 @@ msgid "Name"
 msgstr "Name"
 
 #: gui/modmod/modmod.js:30
-msgid "Label"
-msgstr "Label"
-
-#: gui/modmod/modmod.js:30
 msgid "Folder"
 msgstr "Ordner"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Label"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
@@ -43,19 +43,19 @@ msgstr "Version"
 msgid "Type: Any"
 msgstr "Typ: Jedes"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
 msgstr "Filter"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr "Nachricht: Mods geladen."
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr "Alle Abhängigkeiten erfüllt"
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr "Kein Mod ausgewählt."
 

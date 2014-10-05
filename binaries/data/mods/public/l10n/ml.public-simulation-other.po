@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# ST Alfas, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
-"PO-Revision-Date: 2014-09-22 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"PO-Revision-Date: 2014-09-27 10:20+0000\n"
+"Last-Translator: ST Alfas\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -453,7 +454,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "സഖ്യകക്ഷി"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -461,7 +462,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "സ്വന്തം"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -469,7 +470,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "നിഷ്പക്ഷം"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form:
@@ -477,7 +478,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "ശത്രു"
 
 #: simulation/components/BuildRestrictions.js:199
 #, python-format
@@ -509,28 +510,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "സ്വന്തം"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "സഖ്യകക്ഷി"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "നിഷ്പക്ഷം"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "ശത്രു"
 
 #: simulation/components/EntityLimits.js:110
 #, python-format
@@ -549,19 +550,19 @@ msgstr ""
 
 #: simulation/components/Player.js:40
 msgid "Food"
-msgstr ""
+msgstr "ഭക്ഷണം"
 
 #: simulation/components/Player.js:41
 msgid "Wood"
-msgstr ""
+msgstr "മരം"
 
 #: simulation/components/Player.js:42
 msgid "Metal"
-msgstr ""
+msgstr "ലോഹം"
 
 #: simulation/components/Player.js:43
 msgid "Stone"
-msgstr ""
+msgstr "കല്ല്"
 
 #: simulation/components/Player.js:236
 #, python-format
@@ -596,11 +597,11 @@ msgstr ""
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "ആമ (0.1X)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "മെല്ലെ (0.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
@@ -612,15 +613,15 @@ msgstr ""
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
-msgstr ""
+msgstr "സാധാരണ (1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "വേഗം (1.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[6].Name
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "വളരെ വേഗം (1.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[7].Name
 msgid "Insane (2x)"
@@ -632,48 +633,48 @@ msgstr ""
 
 #: simulation/data/player_defaults.jsonPlayerData[1].Name
 msgid "Player 1"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 1"
 
 #: simulation/data/player_defaults.jsonPlayerData[2].Name
 msgid "Player 2"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 2"
 
 #: simulation/data/player_defaults.jsonPlayerData[3].Name
 msgid "Player 3"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 3"
 
 #: simulation/data/player_defaults.jsonPlayerData[4].Name
 msgid "Player 4"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 4"
 
 #: simulation/data/player_defaults.jsonPlayerData[5].Name
 msgid "Player 5"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 5"
 
 #: simulation/data/player_defaults.jsonPlayerData[6].Name
 msgid "Player 6"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 6"
 
 #: simulation/data/player_defaults.jsonPlayerData[7].Name
 msgid "Player 7"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 7"
 
 #: simulation/data/player_defaults.jsonPlayerData[8].Name
 msgid "Player 8"
-msgstr ""
+msgstr "കളിക്കാരന്‍ 8"
 
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "വളരെ ചെറുത്"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "ചെറുത്"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "ചെറുത് (2 പേര്‍)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"

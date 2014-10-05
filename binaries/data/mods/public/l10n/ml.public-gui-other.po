@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# ST Alfas, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-22 10:11+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-09-27 10:31+0000\n"
+"Last-Translator: ST Alfas\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +49,7 @@ msgstr[1] ""
 
 #: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
 msgid "Heroes"
-msgstr ""
+msgstr "നായകന്മാര്‍"
 
 #: gui/civinfo/civinfo.js:157
 #, python-format
@@ -100,7 +101,7 @@ msgstr ""
 #: gui/common/functions_utility_loadsave.js:20
 #, python-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -139,32 +140,32 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "ഒന്നുമില്ല"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
-msgstr ""
+msgstr "അതെ"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
-msgstr ""
+msgstr "അല്ല"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
-msgstr ""
+msgstr "ശരി"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "വീണ്ടും ശ്രമിക്കൂ"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
@@ -176,7 +177,7 @@ msgstr ""
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "ജാലക മോഡ്"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
@@ -253,11 +254,11 @@ msgstr ""
 
 #: gui/options/options.js:21
 msgid "Shadows"
-msgstr ""
+msgstr "നിഴലുകള്‍"
 
 #: gui/options/options.js:21
 msgid "Enable shadows"
-msgstr ""
+msgstr "നിഴലുകള്‍ പ്രവര്‍ത്തനക്ഷമമാക്കൂ"
 
 #: gui/options/options.js:22
 msgid "Particles"
@@ -269,7 +270,7 @@ msgstr ""
 
 #: gui/options/options.js:23
 msgid "Show Sky"
-msgstr ""
+msgstr "ആകാശം കാണിക്കൂ"
 
 #: gui/options/options.js:23
 msgid "Render Sky"
@@ -444,7 +445,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:105
 msgid "unknown"
-msgstr ""
+msgstr "അജ്ഞാതം"
 
 #: gui/pregame/mainmenu.js:149
 #, python-format
@@ -465,11 +466,11 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
-msgstr ""
+msgstr "താക്കീത്!"
 
 #: gui/pregame/mainmenu.js:158
 msgid "Read More"
-msgstr ""
+msgstr "കൂടുതല്‍ വായിക്കൂ"
 
 #: gui/pregame/mainmenu.js:251
 #, python-format
@@ -482,7 +483,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "ഉറപ്പിക്കല്‍"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -492,7 +493,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:292
 msgid "Error"
-msgstr ""
+msgstr "പിശക്"
 
 #: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
@@ -501,7 +502,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
 #: gui/pregame/mainmenu.xml:116 (caption)
 msgid "Technical Details"
-msgstr ""
+msgstr "സാങ്കേതിക വിശദാംശങ്ങള്‍"
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
@@ -541,17 +542,17 @@ msgstr ""
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "ഇനിയും മുന്നോട്ട് പോവണോ?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "താക്കീത്"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, python-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -559,7 +560,7 @@ msgstr ""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "നീക്കം ചെയ്യൂ"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -571,7 +572,7 @@ msgstr ""
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "തിരക്കഥ"
 
 #: gui/summary/summary.js:510
 #, python-format
@@ -581,7 +582,7 @@ msgstr ""
 #: gui/summary/summary.js:531
 #, python-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/civinfo/civinfo.xml:16 (caption)
 msgid "Civilizations"
@@ -593,17 +594,17 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:118 (caption)
 msgid "Close"
-msgstr ""
+msgstr "അടക്കൂ"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:286 (caption)
 msgid "Language"
-msgstr ""
+msgstr "ഭാഷ"
 
 #: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
 #: (caption)
 msgid "Language:"
-msgstr ""
+msgstr "ഭാഷ:"
 
 #. A locale is a set of parameters that defines the user’s language, country
 #. and
@@ -613,13 +614,13 @@ msgstr ""
 #. such as ‘en_US’.
 #: gui/locale/locale.xml:31 (caption)
 msgid "Locale:"
-msgstr ""
+msgstr "പ്രദേശം:"
 
 #: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
 #: (caption) gui/savedgames/save.xml:37 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "റദ്ദാക്കൂ"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
@@ -628,11 +629,11 @@ msgstr ""
 #: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
 #: (caption)
 msgid "Accept"
-msgstr ""
+msgstr "സ്വീകരിക്കൂ"
 
 #: gui/locale/locale_advanced.xml:25 (caption)
 msgid "Country:"
-msgstr ""
+msgstr "രാജ്യം:"
 
 #: gui/locale/locale_advanced.xml:34 (caption)
 msgid "Script:"
@@ -675,23 +676,23 @@ msgstr ""
 
 #: gui/options/options.xml:22 (caption)
 msgid "General"
-msgstr ""
+msgstr "പൊതുവെ"
 
 #: gui/options/options.xml:34 (caption)
 msgid "Graphics Settings"
-msgstr ""
+msgstr "ഗ്രാഫിക്സ് സജ്ജീകരണങ്ങള്‍"
 
 #: gui/options/options.xml:46 (caption)
 msgid "Sound Settings"
-msgstr ""
+msgstr "ശബ്ദസജ്ജീകരണങ്ങള്‍"
 
 #: gui/options/options.xml:58 (caption)
 msgid "Lobby Settings"
-msgstr ""
+msgstr "ലോബി സജ്ജീകരണങ്ങള്‍"
 
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
 msgid "Save"
-msgstr ""
+msgstr "സൂക്ഷിക്കൂ"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
@@ -716,8 +717,8 @@ msgid "Status: $status."
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:486
-msgid "Alpha XVI: Patañjali"
-msgstr ""
+msgid "Alpha XVII: Quercus"
+msgstr "ആല്‍ഫ XVII: ക്യൂര്‍ക്കസ്"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
@@ -883,7 +884,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:512 (caption)
 msgid "Website"
-msgstr ""
+msgstr "വെബ്‍സൈറ്റ്"
 
 #: gui/pregame/mainmenu.xml:513 (tooltip)
 msgid "Click to open play0ad.com in your web browser."
@@ -961,7 +962,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:91 (caption)
 msgid "Market"
-msgstr ""
+msgstr "ചന്ത"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
@@ -1012,7 +1013,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "സൈന്യം"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
@@ -1040,11 +1041,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:417 (caption)
 msgid "Cavalry"
-msgstr ""
+msgstr "കുതിരപ്പട്ടാളം"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "യോദ്ധാവ്"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
@@ -1056,19 +1057,19 @@ msgstr ""
 
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "ഭക്ഷണം"
 
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "മരം"
 
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "കല്ല്"
 
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "ലോഹം"
 
 #: gui/summary/summary.xml:584 (caption)
 msgid "Treasures collected"
@@ -1563,8 +1564,8 @@ msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
-"regular line infantry."
+"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"regular infantry."
 msgstr ""
 
 #: gui/text/tips/spartan_hoplites.txt:8

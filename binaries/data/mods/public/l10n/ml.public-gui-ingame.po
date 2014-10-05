@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-08-17 09:45+0000\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-09-27 10:31+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
@@ -44,12 +44,12 @@ msgstr ""
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:19 (caption)
 msgid "Yes"
-msgstr ""
+msgstr "അതെ"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:24 (caption)
 msgid "No"
-msgstr ""
+msgstr "അല്ല"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
@@ -57,7 +57,7 @@ msgstr ""
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
-msgstr ""
+msgstr "ഉറപ്പിക്കല്‍"
 
 #: gui/session/menu.js:152
 msgid ""
@@ -91,7 +91,7 @@ msgstr ""
 #: gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "ഒന്നുമില്ല"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:28 (tooltip)
 msgid "Ally"
@@ -637,7 +637,7 @@ msgstr ""
 
 #: gui/session/session.js:19
 msgid "You"
-msgstr ""
+msgstr "നിങ്ങള്‍"
 
 #: gui/session/session.js:170
 msgid "Gaia"
@@ -665,7 +665,7 @@ msgstr ""
 
 #: gui/session/session.js:468
 msgid "OK"
-msgstr ""
+msgstr "ശരി"
 
 #: gui/session/session.js:470
 msgid "Press OK to continue"
@@ -911,11 +911,6 @@ msgstr ""
 msgid "Walls:  %(costs)s"
 msgstr ""
 
-#: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
-#: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
-msgid "  "
-msgstr ""
-
 #: gui/session/utility_functions.js:476
 #, python-format
 msgid "Towers:  %(costs)s"
@@ -995,7 +990,7 @@ msgstr ""
 #: gui/session/utility_functions.js:682
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "ഭക്ഷണം"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1011,7 +1006,7 @@ msgstr ""
 #: gui/session/utility_functions.js:686
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "ലോഹം"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1027,7 +1022,7 @@ msgstr ""
 #: gui/session/utility_functions.js:690
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "പാറ"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1043,7 +1038,7 @@ msgstr ""
 #: gui/session/utility_functions.js:694
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "കല്ല്"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1051,7 +1046,7 @@ msgstr ""
 #: gui/session/utility_functions.js:696
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "നിധി"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1059,7 +1054,7 @@ msgstr ""
 #: gui/session/utility_functions.js:698
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "മരം"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1067,7 +1062,7 @@ msgstr ""
 #: gui/session/utility_functions.js:700
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "മരം"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word
@@ -1091,7 +1086,7 @@ msgstr ""
 #: gui/session/utility_functions.js:706
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "മീന്‍"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1099,7 +1094,7 @@ msgstr ""
 #: gui/session/utility_functions.js:711
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "ഭക്ഷണം"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1115,7 +1110,7 @@ msgstr ""
 #: gui/session/utility_functions.js:715
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "ലോഹം"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1131,7 +1126,7 @@ msgstr ""
 #: gui/session/utility_functions.js:719
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "പാറ"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1147,7 +1142,7 @@ msgstr ""
 #: gui/session/utility_functions.js:723
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "കല്ല്"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1155,7 +1150,7 @@ msgstr ""
 #: gui/session/utility_functions.js:725
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "നിധി"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1163,7 +1158,7 @@ msgstr ""
 #: gui/session/utility_functions.js:727
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "മരം"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1171,7 +1166,7 @@ msgstr ""
 #: gui/session/utility_functions.js:729
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "മരം"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using
@@ -1195,7 +1190,7 @@ msgstr ""
 #: gui/session/utility_functions.js:735
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "മീന്‍"
 
 #: gui/session/diplomacy_window.xml:10 (caption)
 #: gui/session/top_panel/button_diplomacy.xml:8 (tooltip)
@@ -1204,7 +1199,7 @@ msgstr ""
 
 #: gui/session/diplomacy_window.xml:15 (caption)
 msgid "Name"
-msgstr ""
+msgstr "പേര്"
 
 #: gui/session/diplomacy_window.xml:18 (caption)
 msgid "Civilization"
@@ -1233,7 +1228,7 @@ msgstr ""
 #: gui/session/diplomacy_window.xml:73 (caption)
 #: gui/session/trade_window.xml:47 (caption)
 msgid "Close"
-msgstr ""
+msgstr "അടക്കൂ"
 
 #: gui/session/menu.xml:28 (caption)
 msgid "Chat"
@@ -1241,7 +1236,7 @@ msgstr ""
 
 #: gui/session/menu.xml:39 (caption)
 msgid "Save"
-msgstr ""
+msgstr "സൂക്ഷിക്കൂ"
 
 #: gui/session/menu.xml:52 (caption)
 msgid "Settings"
@@ -1317,7 +1312,7 @@ msgstr ""
 
 #: gui/session/session.xml:206 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "റദ്ദാക്കൂ"
 
 #: gui/session/session.xml:212 (caption)
 msgid "Team Only"
@@ -1386,7 +1381,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:76 (tooltip)
 msgid "Rank"
-msgstr ""
+msgstr "റാങ്ക്"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
@@ -1411,16 +1406,16 @@ msgid "MENU"
 msgstr ""
 
 #: gui/session/top_panel/label.xml:4 (caption)
-msgid "ALPHA XVI : Patañjali"
+msgid "ALPHA XVII : Quercus"
 msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"
-msgstr ""
+msgstr "ഭക്ഷണം"
 
 #: gui/session/top_panel/resource_metal.xml:3 (tooltip)
 msgid "Metal"
-msgstr ""
+msgstr "ലോഹം"
 
 #: gui/session/top_panel/resource_population.xml:3 (tooltip)
 msgid "Population (current / limit)"
@@ -1428,8 +1423,8 @@ msgstr ""
 
 #: gui/session/top_panel/resource_stone.xml:3 (tooltip)
 msgid "Stone"
-msgstr ""
+msgstr "കല്ല്"
 
 #: gui/session/top_panel/resource_wood.xml:3 (tooltip)
 msgid "Wood"
-msgstr ""
+msgstr "മരം"

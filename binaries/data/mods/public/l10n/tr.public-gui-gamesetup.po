@@ -5,11 +5,13 @@
 # 
 # Translators:
 # Abdullah Ilgaz <abdullahilgaz@live.com>, 2013-2014
+# Alp Eren <swertyy@hotmail.com>, 2014
 # Ebubekir Tabak <tec.1905@windowslive.com>, 2013
 # Emre AYTAÇ <eaytac@gmail.com>, 2013
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # faradundamarti <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
+# K. Emre, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
 # Mete Han <scorpion000000@hotmail.com>, 2013
@@ -29,9 +31,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-23 23:30+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-09-26 19:30+0000\n"
+"Last-Translator: Alp Eren <swertyy@hotmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -109,7 +111,7 @@ msgstr "Çok Yüksek"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr "Ölümüne "
+msgstr "Ölüm Maçı"
 
 #: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
@@ -125,7 +127,7 @@ msgid "Skirmish"
 msgstr "Çatışma"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1250
+#: gui/gamesetup/gamesetup.js:1257
 msgctxt "map"
 msgid "Random"
 msgstr "Rastgele"
@@ -134,8 +136,8 @@ msgstr "Rastgele"
 msgid "Scenario"
 msgstr "Senaryo"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1156
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1163
+#: gui/gamesetup/gamesetup.js:1240
 msgid "Default"
 msgstr "Varsayılan"
 
@@ -156,7 +158,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Yok"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1311
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1318
 msgctxt "civilization"
 msgid "Random"
 msgstr "Rastgele"
@@ -170,139 +172,139 @@ msgstr "Siz"
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1119 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr "Harita Boyutu:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1121 gui/gamesetup/gamesetup.js:1180
-#: gui/gamesetup/gamesetup.xml:312 (caption)
+#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.xml:315 (caption)
 msgid "Revealed Map:"
 msgstr "Açığa çıkarılan Haritası:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
-#: gui/gamesetup/gamesetup.xml:322 (caption)
+#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.xml:325 (caption)
 msgid "Explored Map:"
 msgstr "Araştırılmış Harita:"
 
-#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.js:1185
-#: gui/gamesetup/gamesetup.xml:282 (caption)
+#: gui/gamesetup/gamesetup.js:1133 gui/gamesetup/gamesetup.js:1192
+#: gui/gamesetup/gamesetup.xml:285 (caption)
 msgid "Victory Condition:"
 msgstr "Galibiyet Koşulu:"
 
-#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
-#: gui/gamesetup/gamesetup.xml:332 (caption)
+#: gui/gamesetup/gamesetup.js:1135 gui/gamesetup/gamesetup.js:1194
+#: gui/gamesetup/gamesetup.xml:335 (caption)
 msgid "Teams Locked:"
 msgstr "Kilitli takımlar:"
 
-#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
-#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
-#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
-#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
-#: gui/gamesetup/gamesetup.js:1237
+#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1244
 msgid "Yes"
 msgstr "Evet"
 
-#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
-#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
-#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
-#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
-#: gui/gamesetup/gamesetup.js:1237
+#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1244
 msgid "No"
 msgstr "Hayır"
 
-#: gui/gamesetup/gamesetup.js:1251
+#: gui/gamesetup/gamesetup.js:1258
 msgid "Randomly selects a map from the list"
 msgstr "Listeden rastgele bir harita seçer"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1265
 msgid "Sorry, no description available."
 msgstr "Üzgünüm, herhangi bir açıklama mevcut değil."
 
-#: gui/gamesetup/gamesetup.js:1261
+#: gui/gamesetup/gamesetup.js:1268
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s oyuncu. %(description)s"
 msgstr[1] "%(number)s oyuncu. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1297
+#: gui/gamesetup/gamesetup.js:1304
 msgid "Loading..."
 msgstr "Yükleniyor..."
 
-#: gui/gamesetup/gamesetup.js:1410
+#: gui/gamesetup/gamesetup.js:1417
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "Yapay Zeka: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1415
+#: gui/gamesetup/gamesetup.js:1422
 msgid "Unassigned"
 msgstr "Atanmamış"
 
-#: gui/gamesetup/gamesetup.js:1603 gui/gamesetup/gamesetup.js:1608
-#: gui/gamesetup/gamesetup.js:1626
+#: gui/gamesetup/gamesetup.js:1610 gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1633
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1603
+#: gui/gamesetup/gamesetup.js:1610
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s katıldı"
 
-#: gui/gamesetup/gamesetup.js:1608
+#: gui/gamesetup/gamesetup.js:1615
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s ayrıldı"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1614
+#: gui/gamesetup/gamesetup.js:1621
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1627
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s hazır!"
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1629
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s hazır değil."
 
-#: gui/gamesetup/gamesetup.js:1626
+#: gui/gamesetup/gamesetup.js:1633
 msgid "Game settings have been changed"
 msgstr "Oyun ayarları değiştirildi"
 
-#: gui/gamesetup/gamesetup.js:1651
+#: gui/gamesetup/gamesetup.js:1658
 msgid "I'm not ready"
 msgstr "Hazır değilim"
 
-#: gui/gamesetup/gamesetup.js:1652
+#: gui/gamesetup/gamesetup.js:1659
 msgid "State that you are not ready to play."
 msgstr "Oynamaya hazır olmayan devlet"
 
-#: gui/gamesetup/gamesetup.js:1657 gui/gamesetup/gamesetup.js:1733
+#: gui/gamesetup/gamesetup.js:1664 gui/gamesetup/gamesetup.js:1740
 msgid "I'm ready!"
 msgstr "Hazırım!"
 
-#: gui/gamesetup/gamesetup.js:1658
+#: gui/gamesetup/gamesetup.js:1665
 msgid "State that you are ready to play!"
 msgstr "Oynamaya hazır devlet."
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1741
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Geçerli ayarları kabul edilmiş ve oynamaya hazır bir devlet!"
 
-#: gui/gamesetup/gamesetup.js:1853
+#: gui/gamesetup/gamesetup.js:1860
 msgid "None"
 msgstr "Yok"
 
@@ -380,7 +382,7 @@ msgstr "Yapay zeka Zorluğu:"
 msgid "Cancel"
 msgstr "İptal"
 
-#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:368
+#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:371
 #: (caption)
 msgid "OK"
 msgstr "Tamam"
@@ -461,104 +463,104 @@ msgstr "Bir harita süzgeci seçin."
 msgid "Select a map to play on."
 msgstr "Oynamak için bir harita seçin."
 
-#: gui/gamesetup/gamesetup.xml:159 (tooltip)
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select number of players."
 msgstr "Oyuncu sayısı seç."
 
-#: gui/gamesetup/gamesetup.xml:164 (tooltip)
+#: gui/gamesetup/gamesetup.xml:167 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Harita boyutu seç. (Büyük boyutlar performansı düşürebilir.)"
 
-#: gui/gamesetup/gamesetup.xml:189 (caption)
+#: gui/gamesetup/gamesetup.xml:192 (caption)
 msgid "Send"
 msgstr "Gönder"
 
-#: gui/gamesetup/gamesetup.xml:203 (caption)
+#: gui/gamesetup/gamesetup.xml:206 (caption)
 msgid "[Tooltip text]"
 msgstr "[Alet ipucu bilgisi]"
 
-#: gui/gamesetup/gamesetup.xml:215 (caption)
+#: gui/gamesetup/gamesetup.xml:218 (caption)
 msgid "Start game!"
 msgstr "Oyuna başla!"
 
-#: gui/gamesetup/gamesetup.xml:216 (tooltip)
+#: gui/gamesetup/gamesetup.xml:219 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "Geçerli ayarlarla yeni bir oyun başlat."
 
-#: gui/gamesetup/gamesetup.xml:233 (caption)
+#: gui/gamesetup/gamesetup.xml:236 (caption)
 msgid "Back"
 msgstr "Geri"
 
-#: gui/gamesetup/gamesetup.xml:255 (caption) gui/gamesetup/gamesetup.xml:267
+#: gui/gamesetup/gamesetup.xml:258 (caption) gui/gamesetup/gamesetup.xml:270
 #: (caption)
 msgid "More Options"
 msgstr "Daha Fazla Ayar"
 
-#: gui/gamesetup/gamesetup.xml:256 (tooltip)
+#: gui/gamesetup/gamesetup.xml:259 (tooltip)
 msgid "See more game options"
 msgstr "Daha fazla oyun seçeneği görün"
 
-#: gui/gamesetup/gamesetup.xml:272 (caption)
+#: gui/gamesetup/gamesetup.xml:275 (caption)
 msgid "Game Speed:"
 msgstr "Oyun Hızı:"
 
-#: gui/gamesetup/gamesetup.xml:276 (tooltip)
+#: gui/gamesetup/gamesetup.xml:279 (tooltip)
 msgid "Select game speed."
 msgstr "Oyun hızını seçin."
 
-#: gui/gamesetup/gamesetup.xml:286 (tooltip)
+#: gui/gamesetup/gamesetup.xml:289 (tooltip)
 msgid "Select victory condition."
 msgstr "Galibiyet koşulunu seç."
 
-#: gui/gamesetup/gamesetup.xml:292 (caption)
+#: gui/gamesetup/gamesetup.xml:295 (caption)
 msgid "Population Cap:"
 msgstr "Nüfus tepe noktası: "
 
-#: gui/gamesetup/gamesetup.xml:296 (tooltip)
+#: gui/gamesetup/gamesetup.xml:299 (tooltip)
 msgid "Select population cap."
 msgstr "Nüfus tepe noktası seçin."
 
-#: gui/gamesetup/gamesetup.xml:302 (caption)
+#: gui/gamesetup/gamesetup.xml:305 (caption)
 msgid "Starting Resources:"
 msgstr "Başlangıç Kaynakları:"
 
-#: gui/gamesetup/gamesetup.xml:306 (tooltip)
+#: gui/gamesetup/gamesetup.xml:309 (tooltip)
 msgid "Select the game's starting resources."
 msgstr "Oyunun başlangıç kaynaklarını seç."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:316 (tooltip)
+#: gui/gamesetup/gamesetup.xml:319 (tooltip)
 msgid "Toggle revealed map (see everything)."
 msgstr "Açığa çıkarılan haritası değiştir(her şeyi gör)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:326 (tooltip)
+#: gui/gamesetup/gamesetup.xml:329 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr "Araştırılmış haritayı değiştir (Gaia ve binaları gör)."
 
-#: gui/gamesetup/gamesetup.xml:336 (tooltip)
+#: gui/gamesetup/gamesetup.xml:339 (tooltip)
 msgid "Toggle locked teams."
 msgstr "Takımları kilitle."
 
-#: gui/gamesetup/gamesetup.xml:342 (caption)
+#: gui/gamesetup/gamesetup.xml:345 (caption)
 msgid "Cheats:"
 msgstr "Hileler:"
 
-#: gui/gamesetup/gamesetup.xml:346 (tooltip)
+#: gui/gamesetup/gamesetup.xml:349 (tooltip)
 msgid "Toggle the usability of cheats."
 msgstr "Hile kullanımını aç."
 
-#: gui/gamesetup/gamesetup.xml:352 (caption)
+#: gui/gamesetup/gamesetup.xml:355 (caption)
 msgid "Rated Game:"
 msgstr "Oylanmış Oyun:"
 
-#: gui/gamesetup/gamesetup.xml:356 (tooltip)
+#: gui/gamesetup/gamesetup.xml:359 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "Eğer bu oyun liderlik tablosu için oylanacaksa seçimi değiştir."
 
-#: gui/gamesetup/gamesetup.xml:369 (tooltip)
+#: gui/gamesetup/gamesetup.xml:372 (tooltip)
 msgid "Close more game options window"
 msgstr "Daha fazla oyun seçeneği penceresini kapat"
 
@@ -771,14 +773,14 @@ msgstr "\"Sadece uyku ve seks bana ölümlü olduğumu hatırlatıyor.\" - Büy�
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr ""
+msgstr "\"Agora adamların aç gözlü davranmaları birbirlerini aldatmaları için kurulmuş bir yerdir.\" - Anacharsis"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr ""
+msgstr "\"Yazılı yasalar örümcek ağları gibidir; zayıf ve fakirleri yakaladıkları doğrudur. Fakat güçlü ve zenginler tarafından parçalara ayrılabilir.\" - Anacharsis"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
@@ -822,7 +824,7 @@ msgstr "\"Aç insanlar kendisini besleyenden başka dost olmayacağını bilir.\
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "\"Arzularının üstesinden gelebilen kişiyi düşmanlarının üstesinden gelebilen kişiden daha cesur sayarım.\" - Aristotle"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
@@ -1017,7 +1019,7 @@ msgstr "\"Hayat varsa, umut da vardır.\" - Marcus Tullius Cicero"
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Yaptığımız her hatanın aptalca olduğunu söylememeliyiz.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
@@ -1027,7 +1029,7 @@ msgstr "\"Bu suça bir karşılık verelim.\" - Marcus Tullius Cicero"
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Bırakın halkın refahı mutlak kanun olsun\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
@@ -1474,7 +1476,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "\"Yapılmaması gereken şeyler hakkında düşünmeyin bile.\" - Pythagoras"
 
 #: gui/text/quotes.txt:168
 msgid ""

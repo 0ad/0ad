@@ -5,13 +5,14 @@
 # 
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-24 11:39+0000\n"
-"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-10-05 16:20+0000\n"
+"Last-Translator: Mads Overgård Henningsen <mads.overgaard@live.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +60,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Du kan skifte mellem fuldskærms- og vinduetilstand ved at trykke Alt + Enter. I vinduetilstand kan du skalere vinduet. Hvis spillet kører for langsom kan du ændre nogle indstillinger i konfigurationsfilen: Led efter binaries/data/config/default.cfg i den placering, hvor spillet er installeret, der gives instruktioner til redigering, og prøv at slå \"fancywater\" og \"shadows\" indstillingerne fra."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -71,7 +72,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Styringen og gameplayet burde føles bekendt for spillere af andre RTS-spil. Der er i øjeblikket mange manglende funktioner og dårligt balancerede egenskaber - Du er nok nødt til at vente indtil en beta-udgivelse for at få et godt fungerende spil."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -116,13 +117,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — spil et sandkassespil eller mod en eller flere AI-modstandere. AI'en/AI'erne er under udvikling og kan være forældet i forhold til nye funktioner, men du kan teste spillet med en modstander, hvis du ikke har muligheden til at spille med en anden person."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — Spil mod andre personer over internettet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -151,7 +152,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "Vælg først om du ønsker at spille på en tilfældig bane (lavet automatisk af en script) eller et scenarie (lavet af en banedesigner). Scenarier kan filtreres til kun at vise nogle bestemte baner. Standardbanerne vises øjeblikkeligt, men brugerlavede baner vises oftest ikke som standard; Vælg \"Alle baner\" for at se en liste af alle tilgængelige baner. Vælg så en bane at spille. \"Demo Baner\" er designet til at teste bestemte gameplay-funktioner, og er oftest ikke generalt brugbare."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -177,7 +178,7 @@ msgstr "[font=\"sans-bold-14\"]Altid"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Luk spillet uden bekræftelse."
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -213,35 +214,35 @@ msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2: Tag et stort skærmbillede (6400px*4800px, i .bmp format, placeringen vises i det øverste venstre hjørne efter filen er blevet gemt, og kan også godt ses i konsollen, hvis ikke placeringen vises på skærmen med det samme)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]I Spil"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]Dobbelt-venstreklik [på en enhed]: Vælg alle dine lignende enheder på skærmen (selv, hvis de er i forskellige rang)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "Tredobbelt-venstreklik [på en enhed]: Vælg alle dine lignende enheder med samme rang, der befinder sig på skærmen"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "Dobbelt-venstreklik [på en enhed]: Vælg alle dine lignende enheder på skærmen (selv, hvis de er i forskellige rang)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Tredobbelt-venstreklik [på en enhed]: Vælg alle dine enheder af samme slags og rang som den klikkede enhed"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -311,19 +312,19 @@ msgstr "Shift + 1 (op til 0): Tilføj kontrolgruppe 1 (til 0) til den valgte enh
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5 (og lignende op til F8): Marker den nuværende kameraposition for at kunne hoppe tilbage til positionen på et senere tidspunkt."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7 og F8: Flyt kameraet til den markerede position. Hop tilbage til den sidste position, hvis kameraet allerede er over den markerede position."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: Med en træningsbygning valg. Tilføj den 1., 2., ... enhed vist til træningskøen for alle de valgte bygninger."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -331,11 +332,11 @@ msgstr "[font=\"sans-bold-14\"]Modificér musehandling"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Højreklik på bygning: Garnisonér"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + Højreklik: Stil handling i kø"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
@@ -344,12 +345,12 @@ msgstr "Shift + Venstreklik når man træner enheder: Tilføj enheder i grupper 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + Vensteklik eller Venstretræk over enhed på kortet: Tilføj enhed til valgte enheder"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + Venstreklik eller Venstretræk over enhed på kortet: Fjern enhed fra valgte enheder"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
@@ -358,7 +359,7 @@ msgstr "Alt + Træk Venstremuseknap over enheder på kortet: Vælg kun militære
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "Ctrl + Venstreklik på enheds-/gruppeikon med flere enheder valgt: Fravælg"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -372,22 +373,22 @@ msgstr "Ctrl + Højreklik med enheder valgt:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- Hvis musen er over en allieret bygning: Garnisonér"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Ellers: Angrebsflytning (Som standard vil alle fjendtlige enheder og strukture blive valgt som mål, brug Ctrl + Q + Højreklik for kun at vælge enheder som mål)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Overlays"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Skjul/Vis GUI'et"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -398,7 +399,7 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Slå wireframe-tilstand til/fra (tryk én gang for at få wireframes overlagt over modellerne, to gange for kun at få wireframed farvet af teksture, tre gange for at gå tilbage til normal visningstilstand)"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -415,7 +416,7 @@ msgstr "[font=\"sans-bold-14\"]Kamerabevægelse"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W or [pil op]: Panorér skærm opad"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
@@ -455,18 +456,18 @@ msgstr "E: Roter kameraet imod uret"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Musehjul Op: Rotér kameraet med uret om terrænet"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + Musehjul Ned: Rotér kameraet mod uret om terrænet"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Følg den valgte enhed (flyt kameraet for at stoppe det i at følge enheden)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
@@ -482,21 +483,21 @@ msgstr "-: Zoom ud (hold nede for fortsat zoom)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Skift mellem wireframe-tilstande"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Mellemmuseknap eller / (skråstreg): Hold inde og bevæg mus for at panorere"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Under Bygningsplacering"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: Rotér bygning 15 grader mod uret"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -506,7 +507,7 @@ msgstr "]: Rotér bygning 15 grader med uret"
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "Venstretræk: Roter bygning med musen (fundamentet vil blive placeret når knappen lettes)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -532,7 +533,7 @@ msgstr "• En tilfældig bruger ID (gemt i %APPDATA%\\0ad\\config\\user.cfg på
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Spilversionsnummer og basis build indstillinger (optimeringstilstand, CPU arkitektur, timestamp, compiler version)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -544,7 +545,7 @@ msgstr "• Hardwaredetaljer: Operativsystem, grafikdriverversion, OpenGL-evner,
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Ydelsesdetaljer: Et øjebliksbillede af timingsdata nogle få sekunder efter du starter et spil eller ændrer grafikindstillinger."
 
 #: gui/manual/userreport.txt:10
 msgid ""
