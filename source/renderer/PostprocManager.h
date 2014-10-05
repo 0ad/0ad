@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,8 +48,8 @@ private:
 	// The current screen dimensions in pixels.
 	int m_Width, m_Height;
 	
-	// Is the postproc manager initialised? Buffers created? Default effect loaded?
-	bool m_IsInitialised;
+	// Is the postproc manager initialized? Buffers created? Default effect loaded?
+	bool m_IsInitialized;
 	
 	// Creates blur textures at various scales, for bloom, DOF, etc.
 	void ApplyBlur();
@@ -68,16 +68,19 @@ private:
 	// the depth buffer, a number of blur textures, the screen size, the zNear/zFar planes and
 	// some other parameters used by the optional bloom/HDR pass.
 	void ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass);
-	
+
+	// Delete all allocated buffers/textures from GPU memory.
+	void Cleanup();
+
 public:
 	CPostprocManager();
 	~CPostprocManager();
 	
 	// Create all buffers/textures in GPU memory and set default effect.
 	void Initialize();
-	
-	// Delete all allocated buffers/textures from GPU memory.
-	void Cleanup();
+
+	// Update the size of the screen
+	void Resize();
 	
 	// Delete existing buffers/textures and create them again, using a new screen size if needed.
 	// (the textures are also attached to the framebuffers)
@@ -87,7 +90,7 @@ public:
 	void LoadEffect(CStrW &name);
 	
 	// Returns a list of xml files found in shaders/effects/postproc.
-	std::vector<CStrW> GetPostEffects() const;
+	static std::vector<CStrW> GetPostEffects();
 	
 	// Returns the name of the current effect.
 	inline const CStrW& GetPostEffect() const 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -37,7 +37,7 @@
 #if !CONFIG2_GLES
 
 CPostprocManager::CPostprocManager()
-	: m_IsInitialised(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColourTex1(0), m_ColourTex2(0), 
+	: m_IsInitialized(false), m_PingFbo(0), m_PongFbo(0), m_PostProcEffect(L"default"), m_ColourTex1(0), m_ColourTex2(0), 
 	  m_DepthTex(0), m_BloomFbo(0), m_BlurTex2a(0), m_BlurTex2b(0), m_BlurTex4a(0), m_BlurTex4b(0),
 	  m_BlurTex8a(0), m_BlurTex8b(0), m_WhichBuffer(true)
 {
@@ -45,53 +45,60 @@ CPostprocManager::CPostprocManager()
 
 CPostprocManager::~CPostprocManager()
 {
-	Cleanup();
-}
-
-
-void CPostprocManager::Initialize()
-{
-	RecreateBuffers();
-	m_IsInitialised = true;
-	SetPostEffect(L"default");
+	if (m_IsInitialized)
+		Cleanup();
 }
 
 void CPostprocManager::Cleanup()
 {
-	if (m_IsInitialised)
-	{
-		if (m_PingFbo) pglDeleteFramebuffersEXT(1, &m_PingFbo);
-		if (m_PongFbo) pglDeleteFramebuffersEXT(1, &m_PongFbo);
-		if (m_BloomFbo) pglDeleteFramebuffersEXT(1, &m_BloomFbo);
-		m_PingFbo = m_PongFbo = m_BloomFbo = 0;
-		
-		if (m_ColourTex1) glDeleteTextures(1, &m_ColourTex1);
-		if (m_ColourTex2) glDeleteTextures(1, &m_ColourTex2);
-		if (m_DepthTex) glDeleteTextures(1, &m_DepthTex);
-		m_ColourTex1 = m_ColourTex2 = m_DepthTex = 0;
-		
-		if (m_BlurTex2a) glDeleteTextures(1, &m_BlurTex2a);
-		if (m_BlurTex2b) glDeleteTextures(1, &m_BlurTex2b);
-		if (m_BlurTex4a) glDeleteTextures(1, &m_BlurTex4a);
-		if (m_BlurTex4b) glDeleteTextures(1, &m_BlurTex4b);
-		if (m_BlurTex8a) glDeleteTextures(1, &m_BlurTex8a);
-		if (m_BlurTex8b) glDeleteTextures(1, &m_BlurTex8b);
-		m_BlurTex2a = m_BlurTex2b = m_BlurTex4a = m_BlurTex4b = m_BlurTex8a = m_BlurTex8b = 0;
-	}
+	if (m_PingFbo) pglDeleteFramebuffersEXT(1, &m_PingFbo);
+	if (m_PongFbo) pglDeleteFramebuffersEXT(1, &m_PongFbo);
+	if (m_BloomFbo) pglDeleteFramebuffersEXT(1, &m_BloomFbo);
+	m_PingFbo = m_PongFbo = m_BloomFbo = 0;
+
+	if (m_ColourTex1) glDeleteTextures(1, &m_ColourTex1);
+	if (m_ColourTex2) glDeleteTextures(1, &m_ColourTex2);
+	if (m_DepthTex) glDeleteTextures(1, &m_DepthTex);
+	m_ColourTex1 = m_ColourTex2 = m_DepthTex = 0;
+
+	if (m_BlurTex2a) glDeleteTextures(1, &m_BlurTex2a);
+	if (m_BlurTex2b) glDeleteTextures(1, &m_BlurTex2b);
+	if (m_BlurTex4a) glDeleteTextures(1, &m_BlurTex4a);
+	if (m_BlurTex4b) glDeleteTextures(1, &m_BlurTex4b);
+	if (m_BlurTex8a) glDeleteTextures(1, &m_BlurTex8a);
+	if (m_BlurTex8b) glDeleteTextures(1, &m_BlurTex8b);
+	m_BlurTex2a = m_BlurTex2b = m_BlurTex4a = m_BlurTex4b = m_BlurTex8a = m_BlurTex8b = 0;
+}
+
+void CPostprocManager::Initialize()
+{
+	// The screen size starts out correct and then must be updated with Resize()
+	m_Width = g_Renderer.GetWidth();
+	m_Height = g_Renderer.GetHeight();
+
+	RecreateBuffers();
+	m_IsInitialized = true;
+}
+
+void CPostprocManager::Resize()
+{
+	m_Width = g_Renderer.GetWidth();
+	m_Height = g_Renderer.GetHeight();
+
+	// If the buffers were intialized, recreate them to the new size.
+	if (m_IsInitialized)
+		RecreateBuffers();
 }
 
 void CPostprocManager::RecreateBuffers()
 {
-	Cleanup();
-	
-	m_Width = g_Renderer.GetWidth();
-	m_Height = g_Renderer.GetHeight();
-	
+	if (m_IsInitialized) // Only cleanup if previously used
+		Cleanup();
+
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		glGenTextures(1, (GLuint*)&name); \
 		glBindTexture(GL_TEXTURE_2D, name); \
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, \
-			GL_UNSIGNED_BYTE, 0); \
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, w, h, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); \
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE); \
@@ -119,10 +126,11 @@ void CPostprocManager::RecreateBuffers()
 	// Allocate the Depth/Stencil texture.
 	glGenTextures(1, (GLuint*)&m_DepthTex);
 	glBindTexture(GL_TEXTURE_2D, m_DepthTex);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH24_STENCIL8_EXT, m_Width, m_Height,
-		      0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, 0);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE,
-			GL_NONE);
+				 0, GL_DEPTH_STENCIL_EXT, GL_UNSIGNED_INT_24_8_EXT, 0);
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_COMPARE_MODE, GL_NONE);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -134,8 +142,12 @@ void CPostprocManager::RecreateBuffers()
 	
 	pglGenFramebuffersEXT(1, &m_PingFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PingFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ColourTex1, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+							   GL_TEXTURE_2D, m_ColourTex1, 0);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+							   GL_TEXTURE_2D, m_DepthTex, 0);
 	
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -145,8 +157,12 @@ void CPostprocManager::RecreateBuffers()
 	
 	pglGenFramebuffersEXT(1, &m_PongFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_ColourTex2, 0);
-	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+							   GL_TEXTURE_2D, m_ColourTex2, 0);
+
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT,
+							   GL_TEXTURE_2D, m_DepthTex, 0);
 	
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
@@ -156,13 +172,17 @@ void CPostprocManager::RecreateBuffers()
 	
 	pglGenFramebuffersEXT(1, &m_BloomFbo);
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_BloomFbo);
-	/*pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, m_BloomTex1, 0);
+
+	/*
+	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT,
+							   GL_TEXTURE_2D, m_BloomTex1, 0);
 	
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
 		LOGWARNING(L"Framebuffer object incomplete (B): 0x%04X", status);
-	}*/
+	}
+	*/
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
@@ -332,6 +352,9 @@ void CPostprocManager::ApplyBlur()
 
 void CPostprocManager::CaptureRenderOutput()
 {
+	if (!m_IsInitialized)
+		Initialize();
+
 	// clear both FBOs and leave m_PingFbo selected for rendering; 
 	// m_WhichBuffer stays true at this point
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);	
@@ -350,6 +373,9 @@ void CPostprocManager::CaptureRenderOutput()
 
 void CPostprocManager::ReleaseRenderOutput()
 {
+	if (!m_IsInitialized)
+		Initialize();
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	
@@ -370,9 +396,9 @@ void CPostprocManager::ReleaseRenderOutput()
 
 void CPostprocManager::LoadEffect(CStrW &name)
 {
-	if (!m_IsInitialised) 
-		return;
-	
+	if (!m_IsInitialized)
+		Initialize();
+
 	if (name != L"default")
 	{
 		CStrW n = L"postproc/" + name;
@@ -458,14 +484,12 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 
 void CPostprocManager::ApplyPostproc()
 {
-	if (!m_IsInitialised) 
-		return;
-	
+	if (!m_IsInitialized)
+		Initialize();
+
 	// Don't do anything if we are using the default effect.
 	if (m_PostProcEffect == L"default")
-	{
 		return;
-	}
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT1_EXT, GL_TEXTURE_2D, 0, 0);
@@ -488,9 +512,7 @@ void CPostprocManager::ApplyPostproc()
 	ApplyBlur(); 
 
 	for (int pass = 0; pass < m_PostProcTech->GetNumPasses(); ++pass)
-	{
 		ApplyEffect(m_PostProcTech, pass);
-	}
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_PongFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, m_DepthTex, 0);
@@ -501,7 +523,7 @@ void CPostprocManager::ApplyPostproc()
 
 
 // Generate list of available effect-sets
-std::vector<CStrW> CPostprocManager::GetPostEffects() const
+std::vector<CStrW> CPostprocManager::GetPostEffects()
 {
 	std::vector<CStrW> effects;
 	
@@ -509,10 +531,8 @@ std::vector<CStrW> CPostprocManager::GetPostEffects() const
 	
 	VfsPaths pathnames;
 	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
-	{
 		LOGERROR(L"Error finding Post effects in '%ls'", path.string().c_str());
-	}
-	
+
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{
 		if (pathnames[i].Extension() != L".xml")
@@ -531,6 +551,9 @@ std::vector<CStrW> CPostprocManager::GetPostEffects() const
 
 void CPostprocManager::SetPostEffect(CStrW name)
 {
+	if (!m_IsInitialized)
+		Initialize();
+
 	LoadEffect(name);
 }
 
