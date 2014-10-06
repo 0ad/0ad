@@ -24,7 +24,7 @@ ZLIB_VERSION="zlib-1.2.8"
 CURL_VERSION="curl-7.32.0"
 ICONV_VERSION="libiconv-1.14"
 XML2_VERSION="libxml2-2.9.1"
-SDL2_VERSION="SDL2-2.0.3"
+SDL2_VERSION="SDL-2.0.4-9134"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
 WXWIDGETS_VERSION="wxWidgets-3.0.1"
@@ -268,7 +268,7 @@ echo -e "Building SDL2..."
 LIB_VERSION="${SDL2_VERSION}"
 LIB_ARCHIVE="$LIB_VERSION.tar.gz"
 LIB_DIRECTORY=$LIB_VERSION
-LIB_URL="http://www.libsdl.org/release/"
+LIB_URL="https://www.libsdl.org/tmp/"
 
 mkdir -p sdl2
 pushd sdl2 > /dev/null
