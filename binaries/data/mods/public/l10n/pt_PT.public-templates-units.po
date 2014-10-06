@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-25 02:20+0000\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"PO-Revision-Date: 2014-09-26 23:30+0000\n"
 "Last-Translator: mogafi\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
@@ -1330,7 +1330,7 @@ msgstr "Brihent Gaulês"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:7
 msgid "Brythonic Champion Swordsman."
-msgstr ""
+msgstr "Espadachim Campeão Bretão."
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:5
 msgid "Two-Handed Swordsman"
@@ -1338,7 +1338,7 @@ msgstr "Soldado com Espadão"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:7
 msgid "Gallic Champion Swordsman."
-msgstr ""
+msgstr "Espadachim Campeão Gaulês."
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_infantry.xml:5
@@ -1390,7 +1390,7 @@ msgstr "Batedor Tessálio"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:7
 msgid "Macedonian Champion Cavalry."
-msgstr ""
+msgstr "Cavalaria Campeã Macedónea"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:5
 #: simulation/templates/units/mace_champion_cavalry.xml:5
@@ -1407,7 +1407,7 @@ msgstr "Hetaîros"
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Uses the Syntagma Formation."
-msgstr ""
+msgstr "Piqueiro Campeão Macedónio.\nUnidade pesada de linha. Usa a formação \"Syntagma\"."
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -1422,7 +1422,7 @@ msgstr "Pezétairos"
 #: simulation/templates/units/hele_champion_infantry_polis.xml:15
 #: simulation/templates/units/spart_champion_infantry_spear.xml:12
 msgid "Classes: Champion Melee Infantry Spearman."
-msgstr ""
+msgstr "Classes: Infantaria Lanceira de Corpo-a-corpo Campeã."
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:13
 #: simulation/templates/units/spart_champion_infantry_spear.xml:10
@@ -1437,7 +1437,7 @@ msgstr "Spartiā́tēs"
 msgid ""
 "Poleis Champion Raider.\n"
 "    Fast Move Speed."
-msgstr ""
+msgstr "Salteador Campeão de Pólis.\nVelocidade de Movimento Rápida."
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:5
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:5
@@ -1451,7 +1451,7 @@ msgstr "Ékdromos Athēnaïkós"
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:7
 msgid "Poleis Champion Raider."
-msgstr ""
+msgstr "Salteador Campeão de Pólis."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
@@ -1524,7 +1524,7 @@ msgstr "Lantzari"
 msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Classes: Escaramuceiro de Cavalaria de Alcance Campeã.\nEspecial: Azagaia em chamas, Bom contra edifícios."
 
 #: simulation/templates/units/iber_champion_cavalry.xml:17
 msgid "Leial Zalduneria"
@@ -1763,7 +1763,7 @@ msgstr "Aśvārohagaṇaḥ"
 
 #: simulation/templates/units/maur_champion_chariot.xml:22
 msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr ""
+msgstr "Classes: Quadriga de Arqueiros de Cavalaria de Arremesso Campeã. Causa dano por atropelamento."
 
 #: simulation/templates/units/maur_champion_chariot.xml:17
 msgid "War Chariot"
@@ -1784,7 +1784,7 @@ msgstr "Gajendra"
 
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr ""
+msgstr "Classes: Infantaria Espadachim de Corpo-a-corpo Campeã."
 
 #: simulation/templates/units/maur_champion_infantry.xml:15
 msgid "Warrior"
@@ -2210,7 +2210,7 @@ msgstr "Tamkarum Arami"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr ""
+msgstr "Classes: Arqueiro a Camelo de Cavalaria de Alcance."
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2665,7 +2665,7 @@ msgstr "Seleukidón Kataphraktos"
 
 #: simulation/templates/units/sele_champion_chariot.xml:26
 msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr ""
+msgstr "Classes: Quadriga de Arqueiros de Cavalaria de Arremesso Campeã."
 
 #: simulation/templates/units/sele_champion_chariot.xml:22
 msgid "Scythed Chariot"
@@ -2726,8 +2726,8 @@ msgstr "Antíoco IV Epifânio"
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
-"halved."
-msgstr "Todos os edifícios inimigos próximos, Máquinas de Cerco, e navios têm a sua vida reduzida para metade."
+"reduced by 20%."
+msgstr "Todos os edifícios inimigos próximos, máquinas de cerco, e barcos sofrem uma redução de 20% de vida."
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:25
 msgid "Antiokhos D' Epiphanes"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
 "PO-Revision-Date: 2014-09-14 16:40+0000\n"
 "Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
@@ -26,12 +26,12 @@ msgid "Name"
 msgstr "İsim"
 
 #: gui/modmod/modmod.js:30
-msgid "Label"
-msgstr "Etiket"
-
-#: gui/modmod/modmod.js:30
 msgid "Folder"
 msgstr "Klasör"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Etiket"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
@@ -42,19 +42,19 @@ msgstr "Sürüm"
 msgid "Type: Any"
 msgstr "Tür: Herhangi bir"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
 msgstr "Süzgeç"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr "Mesaj: Modlar Yüklendi."
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr "Tüm bağımlılıkları bir araya geldi"
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr "Hiçbir mod seçilmemiştir."
 

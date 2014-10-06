@@ -10,14 +10,16 @@
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014
 # joharei <johan.reitan@gmail.com>, 2013
+# Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
+# Lene Raastad <lene.raastad.lr@gmail.com>, 2014
 # Olav Lindekleiv <>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-10-03 18:50+0000\n"
+"Last-Translator: Kurt-Håkon Eilertsen <kurt@kheds.com>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,10 +110,10 @@ msgstr "Tilbake til lobby"
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr "Trefning"
+msgstr "Treffning"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1250
+#: gui/gamesetup/gamesetup.js:1257
 msgctxt "map"
 msgid "Random"
 msgstr "Tilfeldig"
@@ -120,8 +122,8 @@ msgstr "Tilfeldig"
 msgid "Scenario"
 msgstr "Kartoppsett"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1156
-#: gui/gamesetup/gamesetup.js:1233
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1163
+#: gui/gamesetup/gamesetup.js:1240
 msgid "Default"
 msgstr "Standard"
 
@@ -142,7 +144,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Ingen"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1311
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1318
 msgctxt "civilization"
 msgid "Random"
 msgstr "Tilfeldig"
@@ -156,139 +158,139 @@ msgstr "Deg"
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1119 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:112 (caption)
 msgid "Map Size:"
 msgstr "Kartstørrelse:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1121 gui/gamesetup/gamesetup.js:1180
-#: gui/gamesetup/gamesetup.xml:312 (caption)
+#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
+#: gui/gamesetup/gamesetup.xml:315 (caption)
 msgid "Revealed Map:"
 msgstr "Avdekket Kart:"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.js:1122 gui/gamesetup/gamesetup.js:1181
-#: gui/gamesetup/gamesetup.xml:322 (caption)
+#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.js:1188
+#: gui/gamesetup/gamesetup.xml:325 (caption)
 msgid "Explored Map:"
 msgstr "Utforsket Kart"
 
-#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.js:1185
-#: gui/gamesetup/gamesetup.xml:282 (caption)
+#: gui/gamesetup/gamesetup.js:1133 gui/gamesetup/gamesetup.js:1192
+#: gui/gamesetup/gamesetup.xml:285 (caption)
 msgid "Victory Condition:"
-msgstr "Betingelse for seier:"
+msgstr "Seiersbetingelse:"
 
-#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
-#: gui/gamesetup/gamesetup.xml:332 (caption)
+#: gui/gamesetup/gamesetup.js:1135 gui/gamesetup/gamesetup.js:1194
+#: gui/gamesetup/gamesetup.xml:335 (caption)
 msgid "Teams Locked:"
 msgstr "Låste lag:"
 
-#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
-#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
-#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
-#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
-#: gui/gamesetup/gamesetup.js:1237
+#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1244
 msgid "Yes"
 msgstr "Ja"
 
-#: gui/gamesetup/gamesetup.js:1147 gui/gamesetup/gamesetup.js:1148
-#: gui/gamesetup/gamesetup.js:1150 gui/gamesetup/gamesetup.js:1203
-#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1206
-#: gui/gamesetup/gamesetup.js:1234 gui/gamesetup/gamesetup.js:1235
-#: gui/gamesetup/gamesetup.js:1237
+#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
+#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
+#: gui/gamesetup/gamesetup.js:1244
 msgid "No"
 msgstr "Nei"
 
-#: gui/gamesetup/gamesetup.js:1251
+#: gui/gamesetup/gamesetup.js:1258
 msgid "Randomly selects a map from the list"
 msgstr "Velger et tilfeldig kart fra listen"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1265
 msgid "Sorry, no description available."
 msgstr "Beklager, ingen beskrivelse tilgjengelig."
 
-#: gui/gamesetup/gamesetup.js:1261
+#: gui/gamesetup/gamesetup.js:1268
 #, python-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s spiller. %(description)s"
 msgstr[1] "%(number)s spillere. %(description)s"
 
-#: gui/gamesetup/gamesetup.js:1297
+#: gui/gamesetup/gamesetup.js:1304
 msgid "Loading..."
-msgstr ""
+msgstr "Laster..."
 
-#: gui/gamesetup/gamesetup.js:1410
+#: gui/gamesetup/gamesetup.js:1417
 #, python-format
 msgid "AI: %(ai)s"
 msgstr "Maskin: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1415
+#: gui/gamesetup/gamesetup.js:1422
 msgid "Unassigned"
 msgstr "Utilordnet"
 
-#: gui/gamesetup/gamesetup.js:1603 gui/gamesetup/gamesetup.js:1608
-#: gui/gamesetup/gamesetup.js:1626
+#: gui/gamesetup/gamesetup.js:1610 gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1633
 #, python-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1603
+#: gui/gamesetup/gamesetup.js:1610
 #, python-format
 msgid "%(username)s has joined"
 msgstr "%(username)s har blitt med"
 
-#: gui/gamesetup/gamesetup.js:1608
+#: gui/gamesetup/gamesetup.js:1615
 #, python-format
 msgid "%(username)s has left"
 msgstr "%(username)s har forlatt spillet"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1620
 #, python-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1614
+#: gui/gamesetup/gamesetup.js:1621
 #, python-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1627
 #, python-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s er klar!"
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1629
 #, python-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s er ikke klar."
 
-#: gui/gamesetup/gamesetup.js:1626
+#: gui/gamesetup/gamesetup.js:1633
 msgid "Game settings have been changed"
 msgstr "Spill-innstillingene har blitt endret"
 
-#: gui/gamesetup/gamesetup.js:1651
+#: gui/gamesetup/gamesetup.js:1658
 msgid "I'm not ready"
 msgstr "Jeg er ikke klar"
 
-#: gui/gamesetup/gamesetup.js:1652
+#: gui/gamesetup/gamesetup.js:1659
 msgid "State that you are not ready to play."
-msgstr "Vis at du er klar til å spille"
+msgstr "Vis at du ikke er klar til å spille"
 
-#: gui/gamesetup/gamesetup.js:1657 gui/gamesetup/gamesetup.js:1733
+#: gui/gamesetup/gamesetup.js:1664 gui/gamesetup/gamesetup.js:1740
 msgid "I'm ready!"
 msgstr "Jeg er klar!"
 
-#: gui/gamesetup/gamesetup.js:1658
+#: gui/gamesetup/gamesetup.js:1665
 msgid "State that you are ready to play!"
 msgstr "Vis at du er klar til å spille!"
 
-#: gui/gamesetup/gamesetup.js:1734
+#: gui/gamesetup/gamesetup.js:1741
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Vis at du aksepterer de nåværende innstillingene og er klar til å spille!"
 
-#: gui/gamesetup/gamesetup.js:1853
+#: gui/gamesetup/gamesetup.js:1860
 msgid "None"
 msgstr "Ingen"
 
@@ -329,7 +331,7 @@ msgstr "Erobring"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Beiseir alle motstandere"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -337,7 +339,7 @@ msgstr "Underverk"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Bygg et under for å vinne"
 
 #: gui/loading/loading.js:51
 #, python-format
@@ -366,7 +368,7 @@ msgstr "Maskinspiller vanskelighetsgrad:"
 msgid "Cancel"
 msgstr "Avbryt"
 
-#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:368
+#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:371
 #: (caption)
 msgid "OK"
 msgstr "OK"
@@ -447,104 +449,104 @@ msgstr "Velg et kartfilter."
 msgid "Select a map to play on."
 msgstr "Velg et kart å spille på."
 
-#: gui/gamesetup/gamesetup.xml:159 (tooltip)
+#: gui/gamesetup/gamesetup.xml:162 (tooltip)
 msgid "Select number of players."
 msgstr "Velg antall spillere."
 
-#: gui/gamesetup/gamesetup.xml:164 (tooltip)
+#: gui/gamesetup/gamesetup.xml:167 (tooltip)
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Velg kartstørrelse. (Større størrelser kan redusere ytelse.)"
 
-#: gui/gamesetup/gamesetup.xml:189 (caption)
+#: gui/gamesetup/gamesetup.xml:192 (caption)
 msgid "Send"
 msgstr "Send"
 
-#: gui/gamesetup/gamesetup.xml:203 (caption)
+#: gui/gamesetup/gamesetup.xml:206 (caption)
 msgid "[Tooltip text]"
 msgstr "[Peketips tekst]"
 
-#: gui/gamesetup/gamesetup.xml:215 (caption)
+#: gui/gamesetup/gamesetup.xml:218 (caption)
 msgid "Start game!"
 msgstr "Start spillet!"
 
-#: gui/gamesetup/gamesetup.xml:216 (tooltip)
+#: gui/gamesetup/gamesetup.xml:219 (tooltip)
 msgid "Start a new game with the current settings."
 msgstr "Start et nytt spill med valgte innstillinger."
 
-#: gui/gamesetup/gamesetup.xml:233 (caption)
+#: gui/gamesetup/gamesetup.xml:236 (caption)
 msgid "Back"
 msgstr "Tilbake"
 
-#: gui/gamesetup/gamesetup.xml:255 (caption) gui/gamesetup/gamesetup.xml:267
+#: gui/gamesetup/gamesetup.xml:258 (caption) gui/gamesetup/gamesetup.xml:270
 #: (caption)
 msgid "More Options"
 msgstr "Flere valg"
 
-#: gui/gamesetup/gamesetup.xml:256 (tooltip)
+#: gui/gamesetup/gamesetup.xml:259 (tooltip)
 msgid "See more game options"
 msgstr "Se flere spillvalg"
 
-#: gui/gamesetup/gamesetup.xml:272 (caption)
+#: gui/gamesetup/gamesetup.xml:275 (caption)
 msgid "Game Speed:"
 msgstr "Spillhastighet:"
 
-#: gui/gamesetup/gamesetup.xml:276 (tooltip)
+#: gui/gamesetup/gamesetup.xml:279 (tooltip)
 msgid "Select game speed."
 msgstr "Velg spillhastighet."
 
-#: gui/gamesetup/gamesetup.xml:286 (tooltip)
+#: gui/gamesetup/gamesetup.xml:289 (tooltip)
 msgid "Select victory condition."
 msgstr "Velg seiersbetingelse."
 
-#: gui/gamesetup/gamesetup.xml:292 (caption)
+#: gui/gamesetup/gamesetup.xml:295 (caption)
 msgid "Population Cap:"
 msgstr "Befolkningstak:"
 
-#: gui/gamesetup/gamesetup.xml:296 (tooltip)
+#: gui/gamesetup/gamesetup.xml:299 (tooltip)
 msgid "Select population cap."
 msgstr "Velg befolkningstak."
 
-#: gui/gamesetup/gamesetup.xml:302 (caption)
+#: gui/gamesetup/gamesetup.xml:305 (caption)
 msgid "Starting Resources:"
 msgstr "Startressurser:"
 
-#: gui/gamesetup/gamesetup.xml:306 (tooltip)
+#: gui/gamesetup/gamesetup.xml:309 (tooltip)
 msgid "Select the game's starting resources."
 msgstr "Velg spillets startressurser."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:316 (tooltip)
+#: gui/gamesetup/gamesetup.xml:319 (tooltip)
 msgid "Toggle revealed map (see everything)."
 msgstr "Gjem/vis kartet."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:326 (tooltip)
+#: gui/gamesetup/gamesetup.xml:329 (tooltip)
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr "Gjem/vis utforsket kart (se gaia og bygninger)."
 
-#: gui/gamesetup/gamesetup.xml:336 (tooltip)
+#: gui/gamesetup/gamesetup.xml:339 (tooltip)
 msgid "Toggle locked teams."
 msgstr "Veksle låste lag."
 
-#: gui/gamesetup/gamesetup.xml:342 (caption)
+#: gui/gamesetup/gamesetup.xml:345 (caption)
 msgid "Cheats:"
 msgstr "Juksekoder:"
 
-#: gui/gamesetup/gamesetup.xml:346 (tooltip)
+#: gui/gamesetup/gamesetup.xml:349 (tooltip)
 msgid "Toggle the usability of cheats."
 msgstr "Velg bruk av juksekoder."
 
-#: gui/gamesetup/gamesetup.xml:352 (caption)
+#: gui/gamesetup/gamesetup.xml:355 (caption)
 msgid "Rated Game:"
 msgstr "Vurderte Spill:"
 
-#: gui/gamesetup/gamesetup.xml:356 (tooltip)
+#: gui/gamesetup/gamesetup.xml:359 (tooltip)
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:369 (tooltip)
+#: gui/gamesetup/gamesetup.xml:372 (tooltip)
 msgid "Close more game options window"
 msgstr "Lukk vindu for flere spillvalg"
 

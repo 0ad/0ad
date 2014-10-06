@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
 "PO-Revision-Date: 2014-09-22 14:01+0000\n"
 "Last-Translator: Ivailo Monev <xakepa10@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
@@ -26,12 +26,12 @@ msgid "Name"
 msgstr "Име"
 
 #: gui/modmod/modmod.js:30
-msgid "Label"
-msgstr "Обозначение"
-
-#: gui/modmod/modmod.js:30
 msgid "Folder"
 msgstr "Папка"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Обозначение"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
@@ -42,19 +42,19 @@ msgstr "Версия"
 msgid "Type: Any"
 msgstr "Тип: Без значение"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
 msgstr "Филтър"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr "Съобщение: Модът Зареден."
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr "Всички зависимости са налице"
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr "Не е избран мод."
 

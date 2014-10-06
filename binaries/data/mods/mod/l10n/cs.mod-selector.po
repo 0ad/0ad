@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
 "PO-Revision-Date: 2014-09-15 20:13+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
@@ -26,12 +26,12 @@ msgid "Name"
 msgstr "Název"
 
 #: gui/modmod/modmod.js:30
-msgid "Label"
-msgstr "Štítek"
-
-#: gui/modmod/modmod.js:30
 msgid "Folder"
 msgstr "Složka"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "Štítek"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
@@ -42,19 +42,19 @@ msgstr "Verze"
 msgid "Type: Any"
 msgstr "Typ: Vše"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
 msgstr "Filtr"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr "Zpráva: Pozměněné verze nahrány"
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr "Všechny závislosti přítomny"
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr "Nebyla vybrána žádná pozměněná verze"
 

@@ -111,7 +111,7 @@ function selectCiv(code)
 	var bonusCaption = heading(translatePlural("Civilization Bonus", "Civilization Bonuses", civInfo.CivBonuses.length), 12) + '\n';
 	
 	for(var i = 0; i < civInfo.CivBonuses.length; ++i)
-		bonusCaption = subHeading(civInfo.CivBonuses[i]);
+		bonusCaption += subHeading(civInfo.CivBonuses[i]);
 
 	bonusCaption += heading(translatePlural("Team Bonus", "Team Bonuses", civInfo.TeamBonuses.length), 12) + '\n';
 	

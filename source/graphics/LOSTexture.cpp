@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -58,23 +58,10 @@ static const size_t g_BlurSize = 7;
 static const size_t g_SubTextureAlignment = 4;
 
 CLOSTexture::CLOSTexture(CSimulation2& simulation) :
-	m_Simulation(simulation), m_Dirty(true), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
+	m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
-	{
-		m_smoothShader = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
-		CShaderProgramPtr shader = m_smoothShader->GetShader();
-
-		if (m_smoothShader && shader)
-		{
-			pglGenFramebuffersEXT(1, &m_smoothFbo);
-		}
-		else
-		{
-			LOGERROR(L"Failed to load SmoothLOS shader, disabling.");
-			g_Renderer.m_Options.m_SmoothLOS = false;
-		}
-	}
+		CreateShader();
 }
 
 CLOSTexture::~CLOSTexture()
@@ -83,15 +70,38 @@ CLOSTexture::~CLOSTexture()
 		DeleteTexture();
 }
 
+// Create the LOS texture engine. Should be ran only once.
+bool CLOSTexture::CreateShader()
+{
+	m_smoothShader = g_Renderer.GetShaderManager().LoadEffect(str_los_interp);
+	CShaderProgramPtr shader = m_smoothShader->GetShader();
+
+	m_ShaderInitialized = m_smoothShader && shader;
+	
+	if (!m_ShaderInitialized)
+	{
+		LOGERROR(L"Failed to load SmoothLOS shader, disabling.");
+		g_Renderer.m_Options.m_SmoothLOS = false;
+		return false;
+	}
+		
+	pglGenFramebuffersEXT(1, &m_smoothFbo);
+	return true;
+}
+
 void CLOSTexture::DeleteTexture()
 {
 	glDeleteTextures(1, &m_Texture);
-	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
-	{
+
+	if (m_TextureSmooth1)
 		glDeleteTextures(1, &m_TextureSmooth1);
+
+	if (m_TextureSmooth2)
 		glDeleteTextures(1, &m_TextureSmooth2);
-	}
+
 	m_Texture = 0;
+	m_TextureSmooth1 = 0;
+	m_TextureSmooth2 = 0;
 }
 
 void CLOSTexture::MakeDirty()
@@ -122,16 +132,28 @@ void CLOSTexture::InterpolateLOS()
 {
 	if (CRenderer::IsInitialised() && !g_Renderer.m_Options.m_SmoothLOS)
 		return;
-	
+
+	if (!m_ShaderInitialized)
+	{
+		if (!CreateShader())
+			return;
+
+		// RecomputeTexture(0) will not cause the ConstructTexture to run.
+		// Force the textures to be created.
+		DeleteTexture();
+		ConstructTexture(0);
+		m_Dirty = true;
+	}
+
 	if (m_Dirty)
 	{
 		RecomputeTexture(0);
 		m_Dirty = false;
 	}
-	
+
 	GLint originalFBO;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &originalFBO);
-	
+
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, m_smoothFbo);
 	pglFramebufferTexture2DEXT(GL_FRAMEBUFFER_EXT, GL_COLOR_ATTACHMENT0_EXT, GL_TEXTURE_2D, 
 				   whichTex ? m_TextureSmooth2 : m_TextureSmooth1, 0);

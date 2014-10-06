@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -78,6 +78,7 @@ public:
 
 private:
 	void DeleteTexture();
+	bool CreateShader();
 	void ConstructTexture(int unit);
 	void RecomputeTexture(int unit);
 
@@ -87,6 +88,8 @@ private:
 	CSimulation2& m_Simulation;
 
 	bool m_Dirty;
+
+	bool m_ShaderInitialized;
 
 	GLuint m_Texture;
 	GLuint m_TextureSmooth1, m_TextureSmooth2;

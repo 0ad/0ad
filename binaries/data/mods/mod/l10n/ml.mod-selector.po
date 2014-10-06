@@ -4,12 +4,14 @@
 # Selector project.
 # 
 # Translators:
+# ST Alfas, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
-"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"PO-Revision-Date: 2014-09-27 09:20+0000\n"
+"Last-Translator: ST Alfas\n"
 "Language-Team: Malayalam (http://www.transifex.com/projects/p/0ad/language/ml/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,44 +23,44 @@ msgstr ""
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:94 (heading)
 #: gui/modmod/modmod.xml:135 (heading)
 msgid "Name"
-msgstr ""
+msgstr "പേര്"
+
+#: gui/modmod/modmod.js:30
+msgid "Folder"
+msgstr "ഫോള്‍ഡര്‍"
 
 #: gui/modmod/modmod.js:30
 msgid "Label"
 msgstr ""
 
-#: gui/modmod/modmod.js:30
-msgid "Folder"
-msgstr ""
-
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
 msgid "Version"
-msgstr ""
+msgstr "പതിപ്പ്"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr ""
+msgstr "തരം: ഏതെങ്കിലും"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
-msgstr ""
+msgstr "അരിപ്പ"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr ""
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr ""
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr ""
 
 #: gui/modmod/modmod.xml:116
 msgid "Description"
-msgstr ""
+msgstr "വിവരണം"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
@@ -70,7 +72,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:52 (caption)
 msgid "Negate"
-msgstr ""
+msgstr "നിഷേധിക്കുക"
 
 #: gui/modmod/modmod.xml:87 (caption)
 msgid "Available Mods"
@@ -78,7 +80,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
 msgid "(Folder)"
-msgstr ""
+msgstr "(ഫോള്‍ഡര്‍)"
 
 #: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
 msgid "Mod Label"
@@ -94,7 +96,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
 msgid "Website"
-msgstr ""
+msgstr "വെബ്‍സൈറ്റ്"
 
 #: gui/modmod/modmod.xml:119 (caption)
 msgid "Enable"
@@ -106,15 +108,15 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:158 (caption)
 msgid "Up"
-msgstr ""
+msgstr "മുകളിലേക്ക്"
 
 #: gui/modmod/modmod.xml:162 (caption)
 msgid "X"
-msgstr ""
+msgstr "X"
 
 #: gui/modmod/modmod.xml:166 (caption)
 msgid "Down"
-msgstr ""
+msgstr "താഴേക്ക്"
 
 #: gui/modmod/modmod.xml:174 (caption)
 msgid "Quit"
@@ -122,11 +124,11 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:179 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "റദ്ദാക്കൂ"
 
 #: gui/modmod/modmod.xml:184 (caption)
 msgid "Save Configuration"
-msgstr ""
+msgstr "ക്രമീകരണം സൂക്ഷിക്കൂ"
 
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:53+0200\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
 "PO-Revision-Date: 2014-09-23 04:10+0000\n"
 "Last-Translator: Mysterelee <8161525@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
@@ -26,12 +26,12 @@ msgid "Name"
 msgstr "名字"
 
 #: gui/modmod/modmod.js:30
-msgid "Label"
-msgstr "标签"
-
-#: gui/modmod/modmod.js:30
 msgid "Folder"
 msgstr "文件夹"
+
+#: gui/modmod/modmod.js:30
+msgid "Label"
+msgstr "标签"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
@@ -42,19 +42,19 @@ msgstr "版本"
 msgid "Type: Any"
 msgstr "类型：任何"
 
-#: gui/modmod/modmod.js:51
+#: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
 msgstr "过滤器"
 
-#: gui/modmod/modmod.js:63
+#: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
 msgstr "新信息：Mods 已载入。"
 
-#: gui/modmod/modmod.js:360
+#: gui/modmod/modmod.js:372
 msgid "All dependencies met"
 msgstr "所有依赖性已经满足"
 
-#: gui/modmod/modmod.js:486
+#: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
 msgstr "没有已被选取的 mod。"
 

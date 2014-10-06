@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-22 20:20+0000\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-09-30 20:30+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -233,7 +233,7 @@ msgstr "Mostra el temps de joc"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr "Mostra el temps de joc de la partida a la cantonada superior dreta."
+msgstr "Mostra el temps de joc a la cantonada superior dreta."
 
 #: gui/options/options.js:19
 msgid "Prefer GLSL"
@@ -303,7 +303,7 @@ msgstr "Suavitza les ombres"
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr "Aigua amb poc realisme"
+msgstr "Aigua de baixa qualitat"
 
 #: gui/options/options.js:27
 msgid ""
@@ -313,7 +313,7 @@ msgstr "Utilitza els paràmetres més baixos per renderitzar l'aigua. Fa que els
 
 #: gui/options/options.js:28
 msgid "HQ Water Effects"
-msgstr "Efectes d'aigua d'alta qualitat"
+msgstr "Aigua d'alta qualitat"
 
 #: gui/options/options.js:28
 msgid ""
@@ -718,8 +718,8 @@ msgid "Status: $status."
 msgstr "Estat: $status."
 
 #: gui/pregame/mainmenu.xml:486
-msgid "Alpha XVI: Patañjali"
-msgstr "Alfa XVI: Patañjali"
+msgid "Alpha XVII: Quercus"
+msgstr "Alfa XVII: Quercus"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
@@ -729,7 +729,7 @@ msgstr "ADVERTÈNCIA: Això és una versió de desenvolupament primerenca del jo
 
 #: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
-msgstr "Per a més informació: play0ad.com"
+msgstr "Si voleu participar, play0ad.com"
 
 #: gui/pregame/mainmenu.xml:81 (caption)
 msgid "Enable Feedback"
@@ -1150,7 +1150,7 @@ msgstr "[icon=\"iconMap\"]  Els mapes grans poden causar problemes."
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
 "make them less laggy, more fun to play and historically accurate."
-msgstr "[icon=\"iconFormation\"] S'han deshabilitat les formacions fins que es trobi una manera de fer-les més fluides, divertides i acurades."
+msgstr "[icon=\"iconFormation\"] S'han deshabilitat les formacions fins que es trobi una manera de fer-les més fluides, divertides i realistes."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1565,8 +1565,8 @@ msgstr "- Infanteria campiona disponible a la facció dels espartans."
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
-"- Use them to slaughter enemy cavalry or as a shock force to bolster your "
-"regular line infantry."
+"- Use them to slaughter enemy cavalry or as a shock force to support your "
+"regular infantry."
 msgstr "- Utilitzeu-los per aniquilar la cavalleria enemiga o com a força de xoc per reforçar la infanteria regular."
 
 #: gui/text/tips/spartan_hoplites.txt:8

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Included languages
-LANGS=("ca" "cs" "de" "en_GB" "es" "fr" "gd" "gl" "it" "nl" "pt_PT" "pt_BR")
+LANGS=("ca" "cs" "de" "en_GB" "es" "fr" "gd" "gl" "it" "nl" "pt_PT" "pt_BR" "ru" "tr")
 
 REGEX=$(printf "\|%s" "${LANGS[@]}")
 REGEX=".*/\("${REGEX:2}"\).[-A-Za-z0-9_.]\+\.po"

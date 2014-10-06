@@ -651,7 +651,7 @@ bool CRenderer::Open(int width, int height)
 }
 
 // resize renderer view
-void CRenderer::Resize(int width,int height)
+void CRenderer::Resize(int width, int height)
 {
 	// need to recreate the shadow map object to resize the shadow texture
 	m->shadow.RecreateTexture();
@@ -659,8 +659,7 @@ void CRenderer::Resize(int width,int height)
 	m_Width = width;
 	m_Height = height;
 	
-	if (m_Options.m_Postproc)
-		m->postprocManager.RecreateBuffers();
+	m->postprocManager.Resize();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////

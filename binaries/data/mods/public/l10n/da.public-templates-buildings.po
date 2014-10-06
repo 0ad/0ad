@@ -5,13 +5,14 @@
 # 
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-15 13:41+0000\n"
-"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"PO-Revision-Date: 2014-10-05 13:21+0000\n"
+"Last-Translator: Mads Overgård Henningsen <mads.overgaard@live.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +23,7 @@ msgstr ""
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "Borgerlig"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
@@ -31,7 +32,7 @@ msgstr "Civilbygning"
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr ""
+msgstr "CivilisationsCenter"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
@@ -50,7 +51,7 @@ msgstr "Civilisationscenter"
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
-msgstr ""
+msgstr "Landsby"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
@@ -74,7 +75,7 @@ msgstr "Helingsaura"
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr ""
+msgstr "By"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
@@ -85,11 +86,11 @@ msgstr "Tempel"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Træner helere. Garnisonér op til 20 enheder for at hele dem hurtigt (3 HP i sekundet). Opgraderer heling og religion."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Heler omkringliggende enheder 1 HP i sekundet."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:57
@@ -103,7 +104,7 @@ msgstr "Defensiv Bygning"
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr "ForsvarsTårn"
+msgstr "Forsvarstårn"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
@@ -122,12 +123,12 @@ msgstr "Udkigspost"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "Byg i neutralt eller eget territorium for at rekognoscere områder af kortet. Mister langsomt liv i neutralt territorium."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr "Mur den by af for et stærkt forsvar."
+msgstr "Byg mure om din by for at give den et stærkt forsvar."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
@@ -145,7 +146,7 @@ msgstr "Byport"
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Murbeskyttelse"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
@@ -154,7 +155,7 @@ msgstr "Lange mursegmenter kan omdannes til porte."
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Enheder, der befinder sig overpå mure får 3 ekstra rustningsniveauer."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
@@ -166,7 +167,7 @@ msgstr "Skyder pile. Garnisonér for at forsvare en bymur imod angribere."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
-msgstr ""
+msgstr "Murtårn"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
@@ -200,7 +201,7 @@ msgstr "Marked"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Laver handelsenheder, der handler mellem andre markeder. Bytter ressourcer. Forbedrer handel og byttehandel."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 #: simulation/templates/template_structure_economic_storehouse.xml:21
@@ -211,7 +212,7 @@ msgstr "Magasin"
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "Afsmidningsbygning til træ, sten og metal. Forbedrer indsamling af disse ressourcer."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
@@ -268,7 +269,7 @@ msgstr "Ambassade"
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
-msgstr ""
+msgstr "By"
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 #: simulation/templates/template_structure_military_fortress.xml:25
@@ -280,7 +281,7 @@ msgstr "Fæstning"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr ""
+msgstr "Træner helte, mestre og belejringsenheder. Forbedrer belejringsenheder. Garnison: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -299,7 +300,7 @@ msgstr "Dyrefold"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "Avler flokdyr til mad. Send husdyr hertil for at få ekstra mad og andre bonusser (Ikke implementeret endnu)."
 
 #: simulation/templates/template_structure_resource_field.xml:27
 #: simulation/templates/template_structure_resource_field.xml:26
@@ -646,7 +647,7 @@ msgstr "Britonisk Udkigspost"
 msgid ""
 "Increase nearby farming output +25%. (Currently, a special technology can be"
 " researched to serve this function)"
-msgstr ""
+msgstr "Forbedrer landbrugsoutput med +25%. (Lige nu kan en speciel teknologi forbedres, der giver denne funktion)"
 
 #: simulation/templates/structures/brit_rotarymill.xml:20
 #: simulation/templates/structures/celt_sb1.xml:23
@@ -824,7 +825,7 @@ msgstr "Cothon"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 15 units to heal them at a quick rate."
-msgstr ""
+msgstr "Træner præstinder, der heler dine tropper. Træner Sacred Band pikenerer. Garnisonér op til 15 enheder for at hele dem hurtigt."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -998,13 +999,13 @@ msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
-msgstr ""
+msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Træner mestre og helte. Garnisonér op til 15 soldater indeni for et stærkt forsvar."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -1167,7 +1168,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr ""
+msgstr "\"Satraphyldest\": Få ekstra mad, træ, sten og metal. Træner Persiske helte og deres \"Udødelige\" beskyttere. Byggebegrænsning: 1."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1260,7 +1261,7 @@ msgstr "Palads"
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "Speciel bygning.\nTræner krigselefanter og Kardakes lejesoldater."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
@@ -1395,7 +1396,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr ""
+msgstr "Dette er den Ptolemaiske faktions udvidelsesbygning, tilsvarende til de andre faktioners Civilbygning. Den er svagere og givere en mindre territoriel indflydelse, men er billigere og bygges hurtigere.\n - Træner bosættelsessoldater fra flere forskellige nationaliteter.\n - Minimum afstand fra andre Militærkolonier: 100 meter."
 
 #: simulation/templates/structures/ptol_military_colony.xml:29
 #: simulation/templates/structures/sele_military_colony.xml:29
@@ -1622,7 +1623,7 @@ msgstr "Liménas"
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "Bygger belejringsenheder og træner mestre. Garnisonér op til 20 soldater indeni for et stærkt forsvar."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1633,7 +1634,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Dette er Seleukidernes udvidelsesbygning, tilsvarende til de andre faktioners Civilbygning. Den er svagere og givere en mindre territoriel indflydelse, men er billigere og bygges hurtigere.\n - Træner bosættelsessoldater fra flere forskellige nationaliteter.\n - Minimum afstand fra andre Militærkolonier: 120 meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

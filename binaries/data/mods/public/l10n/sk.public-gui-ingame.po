@@ -6,6 +6,7 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
+# empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Patrik Loch <fantofas@gmail.com>, 2014
@@ -14,9 +15,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-21 21:52+0200\n"
-"PO-Revision-Date: 2014-09-17 00:00+0000\n"
-"Last-Translator: MiroslavR <miroslavr256@gmail.com>\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-10-01 19:33+0000\n"
+"Last-Translator: empy <martinplavala@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -447,7 +448,7 @@ msgstr "Zisk: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "Počet staviteľov.\nPriradením ďalšie k stavbe zrýchli stavbu budovy o %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -928,11 +929,6 @@ msgstr "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 #, python-format
 msgid "Walls:  %(costs)s"
 msgstr "Múry:  %(costs)s"
-
-#: gui/session/utility_functions.js:475 gui/session/utility_functions.js:476
-#: gui/session/utility_functions.js:481 gui/session/utility_functions.js:517
-msgid "  "
-msgstr " "
 
 #: gui/session/utility_functions.js:476
 #, python-format
@@ -1429,8 +1425,8 @@ msgid "MENU"
 msgstr "MENU"
 
 #: gui/session/top_panel/label.xml:4 (caption)
-msgid "ALPHA XVI : Patañjali"
-msgstr "ALFA XVI : Patañjali"
+msgid "ALPHA XVII : Quercus"
+msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"
