@@ -91,7 +91,7 @@ if [ "$build_release" = "true" ]; then
   rm -f binaries/data/config/dev.cfg
   # Only include translations for a subset of languages
   . source/tools/dist/remove-incomplete-translations.sh $build_path/binaries/data || die "Error excluding translations"
-  echo L\"${SVNREV}-release\" > build/svn_revision/svn_revision.txt
+  echo L\"${SVN_REV}-release\" > build/svn_revision/svn_revision.txt
   cd build/workspaces
 fi
 
