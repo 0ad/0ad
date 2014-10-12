@@ -698,6 +698,8 @@ Player.prototype.TributeResource = function(player, amounts)
 	var cmpGUIInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	if (cmpGUIInterface)
 		cmpGUIInterface.PushNotification(notification);
+
+	Engine.BroadcastMessage(MT_TributeExchanged, {"to": player, "from": this.playerID, "amounts": amounts});
 };
 
 Player.prototype.AddDisabledTemplate = function(template)

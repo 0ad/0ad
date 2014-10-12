@@ -16,7 +16,8 @@ AIInterface.prototype.EventNames = [
 	"EntityRenamed",
 	"OwnershipChanged",
 	"Garrison",
-	"UnGarrison"
+	"UnGarrison",
+	"TributeExchanged"
 ];
 
 AIInterface.prototype.Init = function()
@@ -132,6 +133,11 @@ AIInterface.prototype.OnGlobalEntityRenamed = function(msg)
 	var cmpMirage = Engine.QueryInterface(msg.entity, IID_Mirage);
 	if (!cmpMirage)
 		this.events["EntityRenamed"].push(msg);
+};
+
+AIInterface.prototype.OnGlobalTributeExchanged = function(msg)
+{
+	this.events["TributeExchanged"].push(msg);
 };
 
 // When a new technology is researched, check which templates it affects,
