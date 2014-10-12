@@ -46,6 +46,7 @@ m.HQ = function(Config)
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.navalManager = new m.NavalManager(this.Config);
 	this.researchManager = new m.ResearchManager(this.Config);
+	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.garrisonManager = new m.GarrisonManager();
 };
 
@@ -1936,6 +1937,8 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	
 	if (this.Config.difficulty > 0)
 		this.attackManager.update(gameState, queues, events);
+
+	this.diplomacyManager.update(gameState, events);
 
 	Engine.ProfileStop();
 };
