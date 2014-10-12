@@ -86,9 +86,15 @@ RallyPoint.prototype.Reset = function()
 
 RallyPoint.prototype.OnGlobalEntityRenamed = function(msg)
 {
-	for each (var data in this.data)
-		if (data && data.target && data.target == msg.entity)
+	for (var data of this.data)
+	{
+		if (!data)
+			continue;
+		if (data.target && data.target == msg.entity)
 			data.target = msg.newentity;
+		if (data.source && data.source == msg.entity)
+			data.source = msg.newentity;
+	}
 };
 
 Engine.RegisterComponentType(IID_RallyPoint, "RallyPoint", RallyPoint);
