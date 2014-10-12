@@ -912,8 +912,7 @@ function TryConstructBuilding(player, cmpPlayer, controlAllUnits, cmd)
 	
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
 	
-	// TODO: Enable this check once the AI gets technology support 
-	if (!cmpTechnologyManager.CanProduce(cmd.template) && !cmpPlayer.IsAI()) 
+	if (!cmpTechnologyManager.CanProduce(cmd.template))
 	{
 		if (g_DebugCommands)
 		{
