@@ -177,7 +177,12 @@ end
 
 function project_set_build_flags()
 
-	flags { "Symbols", "NoEditAndContinue" }
+	flags { "NoEditAndContinue" }
+
+	if not _OPTIONS["minimal-flags"] then
+		flags { "Symbols" }
+	end
+
 	if cc ~= "icc" and (os.is("windows") or not _OPTIONS["minimal-flags"]) then
 		-- adds the -Wall compiler flag
 		flags { "ExtraWarnings" } -- this causes far too many warnings/remarks on ICC
@@ -366,13 +371,11 @@ function project_set_build_flags()
 			end
 		end
 
-		if not _OPTIONS["minimal-flags"] then
-			buildoptions {
-				-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
-				-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
-				"-fvisibility=hidden"
-			}
-		end
+		buildoptions {
+			-- Hide symbols in dynamic shared objects by default, for efficiency and for equivalence with
+			-- Windows - they should be exported explicitly with __attribute__ ((visibility ("default")))
+			"-fvisibility=hidden"
+		}
 
 		if _OPTIONS["bindir"] then
 			defines { "INSTALLED_BINDIR=" .. _OPTIONS["bindir"] }
