@@ -1024,7 +1024,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		markets = gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).toEntityArray();
 
 	if (!markets.length)	// this is the first market. For the time being, place it arbitrarily by the ConstructionPlan
-		return [-1, -1, -1];
+		return [-1, -1, -1, 0];
 
 	// obstruction map
 	var obstructions = m.createObstructionMap(gameState, 0, template);
@@ -1076,18 +1076,19 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		API3.warn("We found a market position with bestVal = " + bestVal);	
 
 	if (bestVal === undefined)  // no constraints. For the time being, place it arbitrarily by the ConstructionPlan
-		return [-1, -1, -1];
+		return [-1, -1, -1, 0];
 
 	var expectedGain = Math.round(bestVal / this.Config.distUnitGain);
 	if (this.Config.debug > 1)
 		API3.warn("this would give a trading gain of " + expectedGain);
 	// do not keep it if gain is too small, except if this is our first BarterMarket 
-	if (expectedGain < 6 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0))
+	if (expectedGain < 3 ||
+		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0)))
 		return false;
 
 	var x = (bestIdx%width + 0.5) * gameState.cellSize;
 	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
-	return [x, z, this.basesMap.map[bestIdx]];
+	return [x, z, this.basesMap.map[bestIdx], expectedGain];
 };
 
 // Returns the best position to build defensive buildings (fortress and towers)
@@ -1716,7 +1717,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	this.lastTerritoryUpdate = gameState.ai.playedTurn;
 
 	var width = this.territoryMap.width;
-	var expansion = false;
+	var expansion = 0;
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
 		if (this.borderMap.map[j] === 2)
@@ -1760,7 +1761,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 				continue;
 			this.baseManagers[baseID].territoryIndices.push(j);
 			this.basesMap.map[j] = baseID;
-			expansion = true;
+			expansion++;
 		}
 	}
 
@@ -1770,6 +1771,9 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		return;
 	// We've increased our territory, so we may have some new room to build
 	this.stopBuilding = [];
+	// And if sufficient expansion, check if building a new market would improve our present trade routes
+	if (expansion > 200)
+		this.tradeManager.routeProspection = true;
 };
 
 // TODO: use pop(). Currently unused as this is too gameable.
@@ -1908,7 +1912,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 		}
 
 		if (this.Config.difficulty > 1)
-			this.tradeManager.update(gameState, queues);
+			this.tradeManager.update(gameState, events, queues);
 	}
 
 	this.garrisonManager.update(gameState, events);
