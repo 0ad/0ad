@@ -1092,6 +1092,14 @@ function handleInputAfterGui(ev)
 			}
 			else
 			{
+				// cancel if not enough resources
+				if (placementSupport.template && Engine.GuiInterfaceCall("GetNeededResources", GetTemplateData(placementSupport.template).cost))
+				{
+					placementSupport.Reset();
+					inputState = INPUT_NORMAL;
+					return true;
+				}
+
 				var snapData = Engine.GuiInterfaceCall("GetFoundationSnapData", {
 					"template": placementSupport.template,
 					"x": placementSupport.position.x,

@@ -9,3 +9,7 @@
 Engine.RegisterMessageType("EntityRenamed");
 
 Engine.RegisterMessageType("DiplomacyChanged");
+
+// Message of the form { "to": receiver, "from": sender, "amounts": amounts }.
+// sent whenever a tribute is sent
+Engine.RegisterMessageType("TributeExchanged");

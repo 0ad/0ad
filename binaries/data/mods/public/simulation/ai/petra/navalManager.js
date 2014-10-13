@@ -15,12 +15,6 @@ var PETRA = function(m)
 m.NavalManager = function(Config)
 {
 	this.Config = Config;
-	// accessibility zones for which we have a dock.
-	// Connexion is described as [landindex] = [seaIndexes];
-	// technically they also exist for sea zones but I don't care.
-	this.landZoneDocked = [];	
-	// list of seas I have a dock on.
-	this.accessibleSeas = [];
 	
 	// ship subCollections. Also exist for land zones, idem, not caring.
 	this.seaShips = [];
@@ -51,7 +45,7 @@ m.NavalManager.prototype.init = function(gameState, queues)
 	this.docks.allowQuickIter();
 	this.docks.registerUpdates();
 	
-	this.ships = gameState.getOwnUnits().filter(API3.Filters.byClass("Ship"));
+	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));
 	// note: those two can overlap (some transport ships are warships too and vice-versa).
 	this.transportShips = this.ships.filter(API3.Filters.and(API3.Filters.byCanGarrison(), API3.Filters.not(API3.Filters.byClass("FishingBoat"))));
 	this.warShips = this.ships.filter(API3.Filters.byClass("Warship"));
@@ -97,8 +91,6 @@ m.NavalManager.prototype.init = function(gameState, queues)
 			this.neededTransportShips.push(0);
 			this.neededWarShips.push(0);
 		}
-		
-		this.landZoneDocked.push([]);
 	}
 
 	// determination of the possible landing zones
@@ -193,11 +185,6 @@ m.NavalManager.prototype.assignDock = function(gameState, dock)
 		sea = this.getDockIndex(gameState, dock, true);
 		dock.setMetadata(PlayerID, "sea", sea);
 	}
-
-	if (this.landZoneDocked[land].indexOf(sea) === -1)
-		this.landZoneDocked[land].push(sea);
-	if (this.accessibleSeas.indexOf(sea) === -1)
-		this.accessibleSeas.push(sea);
 };
 
 // get the indices for our starting docks and those of our allies
@@ -224,17 +211,18 @@ m.NavalManager.prototype.getDockIndex = function(gameState, dock, onWater)
 	return index;
 };
 
+// get the list of seas around this region not connected by a dock
 m.NavalManager.prototype.getUnconnectedSeas = function(gameState, region)
 {
-	var seas = gameState.ai.accessibility.regionLinks[region]
-	if (seas.length === 0)
-		return [];
-
-	for (var i = 0; i < seas.length; ++i)
-	{
-		if (this.landZoneDocked[region].indexOf(seas[i]) !== -1)
+	var seas = gameState.ai.accessibility.regionLinks[region].slice();
+	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
+	docks.forEach(function (dock) {
+		if (dock.getMetadata(PlayerID, "access") !== region)
+			return;
+		var i = seas.indexOf(dock.getMetadata(PlayerID, "sea"));
+		if (i !== -1)
 			seas.splice(i--,1);
-	}
+	});
 	return seas;
 };
 
@@ -440,8 +428,6 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 	// check if we have enough transport ships per region.
 	for (var sea = 0; sea < this.seaShips.length; ++sea)
 	{
-		if (this.accessibleSeas.indexOf(sea) === -1)
-			continue;
 		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", sea) > 0)
 			continue;
 
@@ -506,19 +492,25 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 
 	if (gameState.getPopulation() > this.Config.Economy.popForDock)
 	{
-		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0 &&
-			gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_dock"), true) === 0)
+		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0
+			&& gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).length === 0
+			&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
 		{
-			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
+			var dockStarted = false;
+			for each (var base in gameState.ai.HQ.baseManagers)
 			{
-				var remaining = this.getUnconnectedSeas(gameState, gameState.ai.HQ.baseManagers[1].accessIndex);
+				if (dockStarted)
+					break;
+				if (!base.anchor || base.constructing)
+					continue;
+				var remaining = this.getUnconnectedSeas(gameState, base.accessIndex);
 				for (var sea of remaining)
 				{
-					if (gameState.ai.HQ.navalRegions.indexOf(sea) !== -1)
-					{
-						queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea }));
-						break;
-					}
+					if (gameState.ai.HQ.navalRegions.indexOf(sea) === -1)
+						continue;
+					queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": base.accessIndex, "sea": sea }));
+					dockStarted = true;
+					break;
 				}
 			}
 		}
@@ -617,8 +609,6 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 	
 	this.checkEvents(gameState, queues, events);
 
-	this.buildNavalStructures(gameState, queues);
-
 	// close previous transport plans if finished
 	for (var i = 0; i < this.transportPlans.length; ++i)
 	{
@@ -631,12 +621,16 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 			this.transportPlans.splice(i--, 1);
 		}
 	}
-
 	// assign free ships to plans which need them
 	this.assignShipsToPlans(gameState);
-	// and require for more ships if needed
-	this.checkLevels(gameState, queues);
-	this.maintainFleet(gameState, queues);
+
+	// and require for more ships/structures if needed
+	if (gameState.ai.playedTurn % 3 === 0)
+	{
+		this.checkLevels(gameState, queues);
+		this.maintainFleet(gameState, queues);
+		this.buildNavalStructures(gameState, queues);
+	}
 	// let inactive ships move apart from active ones (waiting for a better pathfinder)
 	this.moveApart(gameState);
 

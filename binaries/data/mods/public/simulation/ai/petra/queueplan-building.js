@@ -310,19 +310,14 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 };
 
 // Placement of buildings with Dock build category
-// TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
 m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 {
 	var template = this.template;
 
 	var cellSize = gameState.cellSize; // size of each tile
 
-	// First, find all tiles that are far enough away from obstructions:
-
 	var obstructionMap = m.createObstructionMap(gameState, 0, template);
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
-
-	// Compute each tile's closeness to friendly structures:
 
 	var friendlyTiles = new API3.Map(gameState.sharedScript);
 	
@@ -334,75 +329,23 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	}
 	else	// No position was specified so try and find a sensible place to build
 	{
-		// give a small > 0 level as the result of addInfluence is constrained to be > 0
-		// if we really need houses (i.e. townPhasing without enough village building), do not apply these constraints
-		if (this.metadata && this.metadata.base !== undefined)
-		{
-			var base = this.metadata.base;
-			for (var j = 0; j < friendlyTiles.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] === base)
-					friendlyTiles.map[j] = 45;
-		}
-		else
-		{
-			for (var j = 0; j < friendlyTiles.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] !== 0)
-					friendlyTiles.map[j] = 45;
-		}
-
-		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
-		{
-			gameState.getOwnStructures().forEach(function(ent) {
-				var pos = ent.position();
-				var x = Math.round(pos[0] / cellSize);
-				var z = Math.round(pos[1] / cellSize);
-
-				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
-				{
-					if (template.hasClass("Field"))
-						friendlyTiles.addInfluence(x, z, 20, 50);
-					else // If this is not a field add a negative influence because we want to leave this area for fields
-						friendlyTiles.addInfluence(x, z, 20, -20);
-				}
-				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-					friendlyTiles.addInfluence(x, z, 30, -50);
-				else if (template.hasClass("Military"))
-					friendlyTiles.addInfluence(x, z, 10, -40);
-			});
-		}
-	}
-
-	// requires to be inside our territory, and inside our base territory if required
-	// and if our first market, put it on border if possible to maximize distance with next market
-	var favorBorder = template.hasClass("BarterMarket");
-	var disfavorBorder = (template.buildCategory() === "Dock");
-	var preferredBase = (this.metadata && this.metadata.preferredBase);
-	if (this.metadata && this.metadata.base !== undefined)
-	{
-		var base = this.metadata.base;
 		for (var j = 0; j < friendlyTiles.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] !== base)
-				friendlyTiles.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
-				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
-				friendlyTiles.map[j] += 10;
-		}
-	}
-	else
-	{
-		for (var j = 0; j < friendlyTiles.map.length; ++j)
-		{
-			if (gameState.ai.HQ.basesMap.map[j] === 0)
-				friendlyTiles.map[j] = 0;
-			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
-				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
-				friendlyTiles.map[j] += 10;
+			if (obstructionMap.map[j] <= 0)
+				continue;
+			if (gameState.ai.HQ.basesMap.map[j] === 0)   // TODO docks could be allowed outside our territory 
+				continue;
+			if (this.metadata && this.metadata.land && gameState.ai.accessibility.landPassMap[j] !== this.metadata.land)
+				continue;
+			if (this.metadata && this.metadata.sea && gameState.ai.accessibility.navalPassMap[j] !== this.metadata.sea)
+				continue;
+			if (this.metadata && this.metadata.base !== undefined && gameState.ai.HQ.basesMap.map[j] !== this.metadata.base)
+				continue;
 
-			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
-				friendlyTiles.map[j] += 200;
+			if (this.metadata && this.metadata.preferredBase !== undefined && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
+				friendlyTiles.map[j] = 200;
+			else
+				friendlyTiles.map[j] = 50;
 		}
 	}
 
@@ -416,11 +359,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 
 	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
 	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
-
-	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
-		var secondBest = obstructionMap.findLowestNeighbor(x,z);
-	else
-		var secondBest = [x,z];
+	var secondBest = [x,z];
 
 	// Needed for dock placement whose position will be changed
 	var access = gameState.ai.accessibility.getAccessValue([x, z]);

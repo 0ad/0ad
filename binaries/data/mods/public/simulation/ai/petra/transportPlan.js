@@ -101,7 +101,7 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		{
 			ent.setMetadata(PlayerID, "onBoard", ship.id());
 			done = true;
-			if (self.debug > 1)
+			if (self.debug > 0)
 			{
 				if (ent.getMetadata(PlayerID, "role") === "attack")
 					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
@@ -169,7 +169,11 @@ m.TransportPlan.prototype.addUnit = function(unit, endPos)
 
 m.TransportPlan.prototype.releaseAll = function()
 {
-	this.ships.forEach(function (ent) { ent.setMetadata(PlayerID, "transporter", undefined); });
+	this.ships.forEach(function (ship) {
+		ship.setMetadata(PlayerID, "transporter", undefined);
+		if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
+			ship.setMetadata(PlayerID, "role", "trader");
+	});
 	this.units.forEach(function (ent) {
 		ent.setMetadata(PlayerID, "endPos", undefined);
 		ent.setMetadata(PlayerID, "onBoard", undefined);
@@ -180,7 +184,11 @@ m.TransportPlan.prototype.releaseAll = function()
 
 m.TransportPlan.prototype.releaseAllShips = function()
 {
-	this.ships.forEach(function (ent) { ent.setMetadata(PlayerID, "transporter", undefined) });
+	this.ships.forEach(function (ship) {
+		ship.setMetadata(PlayerID, "transporter", undefined)
+		if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
+			ship.setMetadata(PlayerID, "role", "trader");
+	});
 };
 
 m.TransportPlan.prototype.cancelTransport = function(gameState)
@@ -525,6 +533,8 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		{
 			ship.moveApart(self.boardingPos[shipId], 15);
 			ship.setMetadata(PlayerID, "transporter", undefined);
+			if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
+				ship.setMetadata(PlayerID, "role", "trader");
 			return;
 		}
 

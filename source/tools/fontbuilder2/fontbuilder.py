@@ -231,4 +231,4 @@ fonts = (
 
 for (name, (fontnames, loadopts), size, style) in fonts:
     print "%s..." % name
-    generate_font("../../../binaries/data/mods/public/fonts/%s" % name, fontnames, loadopts, size, style, dsizes)
+    generate_font("../../../binaries/data/mods/mod/fonts/%s" % name, fontnames, loadopts, size, style, dsizes)

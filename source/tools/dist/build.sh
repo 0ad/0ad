@@ -34,7 +34,7 @@ echo L\"${SVNREV}-release\" > export-win32/build/svn_revision/svn_revision.txt
 # generating two needlessly inconsistent packages)
 ${EXE} -mod=mod -archivebuild=export-unix/binaries/data/mods/public -archivebuild-output=export-unix/binaries/data/mods/public/public.zip
 cp export-unix/binaries/data/mods/public/public.zip export-win32/binaries/data/mods/public/public.zip
-${EXE} -archivebuild=export-unix/binaries/data/mods/mod -archivebuild-output=export-unix/binaries/data/mods/public/mod/mod.zip
+${EXE} -archivebuild=export-unix/binaries/data/mods/mod -archivebuild-output=export-unix/binaries/data/mods/mod/mod.zip
 cp export-unix/binaries/data/mods/mod/mod.zip export-win32/binaries/data/mods/mod/mod.zip
 
 # Collect the relevant files

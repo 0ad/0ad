@@ -57,8 +57,10 @@ static const size_t g_BlurSize = 7;
 // value. (See Trac #2594). Multiples of 4 are possibly good for performance anyway.
 static const size_t g_SubTextureAlignment = 4;
 
-CLOSTexture::CLOSTexture(CSimulation2& simulation) :
-	m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false), m_Texture(0), m_smoothFbo(0), m_MapSize(0), m_TextureSize(0), whichTex(true)
+CLOSTexture::CLOSTexture(CSimulation2& simulation)
+	: m_Simulation(simulation), m_Dirty(true), m_ShaderInitialized(false),
+	m_Texture(0), m_TextureSmooth1(0), m_TextureSmooth2(0),  m_smoothFbo(0),
+	m_MapSize(0), m_TextureSize(0), whichTex(true)
 {
 	if (CRenderer::IsInitialised() && g_Renderer.m_Options.m_SmoothLOS)
 		CreateShader();
