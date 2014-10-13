@@ -1600,6 +1600,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 			var templateFound = undefined;
 			for (var trainable of trainables)
 			{
+				if (gameState.isDisabledTemplates(trainable))
+					continue;
 				var template = gameState.getTemplate(trainable);
 				if (!template.hasClass("Infantry") || !template.hasClass("Ranged")
 					|| !template.hasClass("CitizenSoldier"))
@@ -1654,6 +1656,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		var trainables = nearestAnchor.trainableEntities();
 		for (var trainable of trainables)
 		{
+			if (gameState.isDisabledTemplates(trainable))
+				continue;
 			var template = gameState.getTemplate(trainable);
 			if (!template.hasClass("Infantry") || !template.hasClass("Melee")
 				|| !template.hasClass("CitizenSoldier"))
@@ -1691,6 +1695,12 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	// available room to build it
 	if (this.stopBuilding.indexOf(type) !== -1)
 		return false;
+
+	if (gameState.isDisabledTemplates(type))
+	{
+		this.stopBuilding.push(type);
+		return false;
+	}
 
 	// build limits
 	var template = gameState.getTemplate(type);

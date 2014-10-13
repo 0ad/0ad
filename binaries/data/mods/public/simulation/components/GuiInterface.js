@@ -99,6 +99,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
 			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
 			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
+			"disabledTemplates": cmpPlayer.disabledTemplates,
 			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
 			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
 			"researchedTechs": cmpTechnologyManager.GetResearchedTechs(),
