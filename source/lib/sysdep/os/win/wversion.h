@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,6 +35,8 @@ const size_t WVERSION_XP64  = 0x0502;
 const size_t WVERSION_VISTA = 0x0600;
 const size_t WVERSION_7     = 0x0601;
 const size_t WVERSION_8     = 0x0602;
+const size_t WVERSION_8_1   = 0x0603;
+const size_t WVERSION_10    = 0x0604;
 
 /**
  * @return one of the above WVERSION* values

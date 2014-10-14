@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -50,6 +50,10 @@ const wchar_t* wversion_Family()
 		return L"Win7";
 	case WVERSION_8:
 		return L"Win8";
+	case WVERSION_8_1:
+		return L"Win8.1";
+	case WVERSION_10:
+		return L"Win10";
 	default:
 		return L"Windows";
 	}
