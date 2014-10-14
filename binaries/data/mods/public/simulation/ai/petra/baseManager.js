@@ -445,7 +445,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			else if (count < 400 && numFarms + numFound === 0)
 			{
 				for (var i in queues.field.queue)
-					queues.field.queue[i].isGo = function() { return true; };	// start them
+					queues.field.queue[i].isGo = function() { return gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"); };	// start them
 			}
 			else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{

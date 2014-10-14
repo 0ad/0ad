@@ -567,6 +567,8 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 
 		if (!template.available(this))
 			continue;
+		if (this.isDisabledTemplates(allTrainable[i]))
+			continue;
 		
 		var okay = true;
 		for (var clas of classes)
@@ -698,6 +700,12 @@ m.GameState.prototype.getEntityLimits = function() {
 
 m.GameState.prototype.getEntityCounts = function() {
 	return this.playerData.entityCounts;
+};
+
+m.GameState.prototype.isDisabledTemplates = function(template) {
+	if (!this.playerData.disabledTemplates[template])
+		return false;
+	return this.playerData.disabledTemplates[template];
 };
 
 // Checks whether the maximum number of buildings have been cnstructed for a certain catergory

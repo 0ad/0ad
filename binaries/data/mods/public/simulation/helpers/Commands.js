@@ -55,7 +55,10 @@ var commands = {
 	"aichat": function(player, cmd, data)
 	{
 		var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
-		cmpGuiInterface.PushNotification({"type": cmd.type, "players": [player], "message": cmd.message});
+		var notification = { "players": [player] };
+		for (var key in cmd)
+			notification[key] = cmd[key];
+		cmpGuiInterface.PushNotification(notification);
 	},
 
 	"cheat": function(player, cmd, data)

@@ -81,6 +81,7 @@ AddMock(100, IID_Player, {
 	IsMutualAlly: function() { return false; },
 	IsNeutral: function() { return false; },
 	IsEnemy: function() { return true; },
+	GetDisabledTemplates: function() { return {}; },
 });
 
 AddMock(100, IID_EntityLimits, {
@@ -143,6 +144,7 @@ AddMock(101, IID_Player, {
 	IsMutualAlly: function() {return false; },
 	IsNeutral: function() { return false; },
 	IsEnemy: function() { return false; },
+	GetDisabledTemplates: function() { return {}; },
 });
 
 AddMock(101, IID_EntityLimits, {
@@ -212,6 +214,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			entityLimits: {"Foo": 10},
 			entityCounts: {"Foo": 5},
 			entityLimitChangers: {"Foo": {}},
+			disabledTemplates: {},
 			researchQueued: {},
 			researchStarted: {},
 			researchedTechs: {},
@@ -240,6 +243,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			entityLimits: {"Bar": 20},
 			entityCounts: {"Bar": 0},
 			entityLimitChangers: {"Bar": {}},
+			disabledTemplates: {},
 			researchQueued: {},
 			researchStarted: {},
 			researchedTechs: {},
@@ -276,6 +280,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			entityLimits: {"Foo": 10},
 			entityCounts: {"Foo": 5},
 			entityLimitChangers: {"Foo": {}},
+			disabledTemplates: {},
 			researchQueued: {},
 			researchStarted: {},
 			researchedTechs: {},
@@ -320,6 +325,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 			entityLimits: {"Bar": 20},
 			entityCounts: {"Bar": 0},
 			entityLimitChangers: {"Bar": {}},
+			disabledTemplates: {},
 			researchQueued: {},
 			researchStarted: {},
 			researchedTechs: {},

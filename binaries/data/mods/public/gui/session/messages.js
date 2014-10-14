@@ -50,8 +50,12 @@ var g_NotificationsTypes =
 			"type": "message",
 			"text": notification.message
 		}
-		if (notification.type == "aichat")
-			message["translate"] = true;
+		message["translate"] = true;
+		if ("translateParameters" in notification)
+		{
+			message["translateParameters"] = notification["translateParameters"];
+			message["parameters"] = notification["parameters"];
+		}
 		var guid = findGuidForPlayerID(g_PlayerAssignments, player);
 		if (guid == undefined)
 		{
@@ -495,9 +499,17 @@ function addChatMessage(msg, playerAssignments)
 
 		var message;
 		if ("translate" in msg && msg.translate)
+		{
 			message = translate(msg.text); // No need to escape, not a use message.
+			if ("translateParameters" in msg && msg.translateParameters)
+			{
+				var parameters = msg.parameters || {};
+				translateObjectKeys(parameters, msg.translateParameters);
+				message = sprintf(message, parameters);
+			}
+		}
 		else
-			message = escapeText(msg.text)
+			message = escapeText(msg.text);
 
 		if (msg.action)
 		{
