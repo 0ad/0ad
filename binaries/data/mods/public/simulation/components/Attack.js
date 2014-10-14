@@ -1,6 +1,6 @@
 function Attack() {}
 
-var bonusesSchema = 
+Attack.prototype.bonusesSchema = 
 	"<optional>" +
 		"<element name='Bonuses'>" +
 			"<zeroOrMore>" +
@@ -18,7 +18,7 @@ var bonusesSchema =
 		"</element>" +
 	"</optional>";
 
-var preferredClassesSchema =
+Attack.prototype.preferredClassesSchema =
 	"<optional>" +
 		"<element name='PreferredClasses' a:help='Space delimited list of classes preferred for attacking. If an entity has any of theses classes, it is preferred. The classes are in decending order of preference'>" +
 			"<attribute name='datatype'>" +
@@ -28,7 +28,7 @@ var preferredClassesSchema =
 		"</element>" +
 	"</optional>";
 
-var restrictedClassesSchema =
+Attack.prototype.restrictedClassesSchema =
 	"<optional>" +
 		"<element name='RestrictedClasses' a:help='Space delimited list of classes that cannot be attacked by this entity. If target entity has any of these classes, it cannot be attacked'>" +
 			"<attribute name='datatype'>" +
@@ -112,9 +112,9 @@ Attack.prototype.Schema =
 				"<element name='RepeatTime' a:help='Time between attacks (in milliseconds). The attack animation will be stretched to match this time'>" + // TODO: it shouldn't be stretched
 					"<data type='positiveInteger'/>" +
 				"</element>" +
-				bonusesSchema +
-				preferredClassesSchema +
-				restrictedClassesSchema +
+				Attack.prototype.bonusesSchema +
+				Attack.prototype.preferredClassesSchema +
+				Attack.prototype.restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -139,9 +139,9 @@ Attack.prototype.Schema =
 					"<ref name='nonNegativeDecimal'/>" +
 				"</element>" +
 				"<element name='Spread' a:help='Radius over which missiles will tend to land (when shooting to the maximum range). Roughly 2/3 will land inside this radius (in metres). Spread is linearly diminished as the target gets closer.'><ref name='nonNegativeDecimal'/></element>" +
-				bonusesSchema +
-				preferredClassesSchema +
-				restrictedClassesSchema +
+				Attack.prototype.bonusesSchema +
+				Attack.prototype.preferredClassesSchema +
+				Attack.prototype.restrictedClassesSchema +
 				"<optional>" +
 					"<element name='Splash'>" +
 						"<interleave>" +
@@ -151,7 +151,7 @@ Attack.prototype.Schema =
 							"<element name='Hack' a:help='Hack damage strength'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
 							"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
-							bonusesSchema +
+							Attack.prototype.bonusesSchema +
 						"</interleave>" +
 					"</element>" +
 				"</optional>" +
@@ -166,9 +166,9 @@ Attack.prototype.Schema =
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
 				"<element name='MinRange'><ref name='nonNegativeDecimal'/></element>" +
-				bonusesSchema +
-				preferredClassesSchema +
-				restrictedClassesSchema +
+				Attack.prototype.bonusesSchema +
+				Attack.prototype.preferredClassesSchema +
+				Attack.prototype.restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>" +
@@ -179,9 +179,9 @@ Attack.prototype.Schema =
 				"<element name='Pierce' a:help='Pierce damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='Crush' a:help='Crush damage strength'><ref name='nonNegativeDecimal'/></element>" +
 				"<element name='MaxRange'><ref name='nonNegativeDecimal'/></element>" + // TODO: how do these work?
-				bonusesSchema +
-				preferredClassesSchema +
-				restrictedClassesSchema +
+				Attack.prototype.bonusesSchema +
+				Attack.prototype.preferredClassesSchema +
+				Attack.prototype.restrictedClassesSchema +
 			"</interleave>" +
 		"</element>" +
 	"</optional>";
