@@ -1,9 +1,11 @@
 var PETRA = function(m)
 {
 
-// this defines the medium difficulty
-m.Config = function() {
-	this.difficulty = 2;	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
+m.Config = function(difficulty)
+{
+	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
+	this.difficulty = (difficulty !== undefined) ? difficulty : 2;
+
 	// debug level: 0=none, 1=sanity checks, 2=debug; 3=detailed debug
 	this.debug = 0;
 
@@ -102,25 +104,18 @@ m.Config = function() {
 	this.resources = ["food", "wood", "stone", "metal"];
 };
 
-//Config.prototype = new BaseConfig();
-
-m.Config.prototype.updateDifficulty = function(difficulty)
+m.Config.prototype.setConfig = function(gameState)
 {
-	this.difficulty = difficulty;
-	// changing settings based on difficulty.
-	this.Economy.targetNumTraders = 2 * this.difficulty;
-	if (this.difficulty === 1)
+	// initialize personality traits
+	if (this.difficulty > 1)
 	{
-		this.Military.popForBarracks1 = 35;
-		this.Military.popForBarracks2 = 150;	// shouldn't reach it
-		this.Military.popForBlacksmith = 150;	// shouldn't reach it
-
-		this.Economy.cityPhase = 1800;
-		this.Economy.popForMarket = 80;
-		this.Economy.femaleRatio = 0.6;
-		this.Economy.initialFields = 2;
+		this.personality.aggressive = Math.random();
+		this.personality.cooperative = Math.random();
+		this.personality.defensive = Math.random();
 	}
-	else if (this.difficulty === 0)
+
+	// changing settings based on difficulty (if < 2) or personality
+	if (this.difficulty === 0)
 	{
 		this.Military.popForBarracks1 = 60;
 		this.Military.popForBarracks2 = 150;	// shouldn't reach it
@@ -131,6 +126,40 @@ m.Config.prototype.updateDifficulty = function(difficulty)
 		this.Economy.femaleRatio = 0.7;
 		this.Economy.initialFields = 1;
 	}
+	else if (this.difficulty === 1)
+	{
+		this.Military.popForBarracks1 = 35;
+		this.Military.popForBarracks2 = 150;	// shouldn't reach it
+		this.Military.popForBlacksmith = 150;	// shouldn't reach it
+
+		this.Economy.cityPhase = 1800;
+		this.Economy.popForMarket = 80;
+		this.Economy.femaleRatio = 0.6;
+		this.Economy.initialFields = 2;
+	}
+	else
+	{
+		this.Military.towerLapseTime += Math.round(20*(this.personality.defensive - 0.5));
+		this.Military.fortressLapseTime += Math.round(60*(this.personality.defensive - 0.5));
+
+		if (this.personality.aggressive > 0.7)
+		{
+			this.Military.popForBarracks1 = 12;
+			this.Economy.popForTown = 55;
+			this.Economy.popForMarket = 60;
+			this.Economy.femaleRatio = 0.3;
+			this.priorities.defenseBuilding = 60;
+		}
+	}
+
+	this.Economy.targetNumTraders = 2 * this.difficulty;
+
+	if (gameState.getPopulationMax() < 300)
+		this.popScaling = Math.sqrt(gameState.getPopulationMax() / 300);
+
+	if (this.debug < 1)
+		return;
+	API3.warn(" >>>  Petra bot: personality = " + uneval(this.personality));
 };
 
 return m;

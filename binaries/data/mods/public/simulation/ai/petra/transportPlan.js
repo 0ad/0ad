@@ -26,7 +26,7 @@ var PETRA = function(m)
 m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 {
 	this.ID = m.playerGlobals[PlayerID].uniqueIDTPlans++;
-	this.debug = gameState.ai.HQ.Config.debug;
+	this.debug = gameState.Config.debug;
 	this.flotilla = false;   // when false, only one ship per transport ... not yet tested when true
 
 	this.endPos = endPos;
@@ -407,13 +407,13 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				ship.moveApart(recov.entPos, 15);
 			continue;
 		}
-		if (gameState.ai.HQ.Config.debug > 1)
+		if (this.debug > 1)
 			API3.warn(">>> transport " + this.ID + " reloading failed ... <<<");
 		// destroy the unit if inaccessible otherwise leave it there
 		var index = gameState.ai.accessibility.getAccessValue(ent.position());
 		if (gameState.ai.HQ.allowedRegions[index])
 		{
-			if (gameState.ai.HQ.Config.debug > 1)
+			if (this.debug > 1)
 				API3.warn(" recovered entity kept " + ent.id());
 			this.resetUnit(gameState, ent);
 			// TODO we should not destroy it, but now the unit could still be reloaded on the next turn
@@ -422,7 +422,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		}
 		else
 		{
-			if (gameState.ai.HQ.Config.debug > 1)
+			if (this.debug > 1)
 				API3.warn("recovered entity destroyed " + ent.id());
 			this.resetUnit(gameState, ent);
 			ent.destroy();
@@ -461,7 +461,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		else if (gameState.ai.accessibility.getAccessValue(ent.position()) !== this.endIndex)
 		{
 			// unit unloaded on a wrong region - try to regarrison it and move a bit the ship
-			if (gameState.ai.HQ.Config.debug > 1)
+			if (this.debug > 1)
 				API3.warn(">>> unit unloaded on a wrong region ! try to garrison it again <<<");
 			var ship = gameState.getEntityById(ent.getMetadata(PlayerID, "onBoard"));
 			if (ship && !this.canceled)
@@ -473,7 +473,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			}
 			else
 			{
-				if (gameState.ai.HQ.Config.debug > 1)
+				if (this.debug > 1)
 					API3.warn("no way ... we destroy it");
 				this.resetUnit(gameState, ent);
 				ent.destroy();

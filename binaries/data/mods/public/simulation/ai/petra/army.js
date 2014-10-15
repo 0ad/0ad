@@ -224,7 +224,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		// no plans must mean that the unit was in a ship which was destroyed, so do nothing
 		if (planID)
 		{
-			if (gameState.ai.HQ.Config.debug > 0)
+			if (gameState.Config.debug > 0)
 				warn("ent from army still in transport plan: plan " + planID + " canceled");
 			var plan = gameState.ai.HQ.navalManager.getPlan(planID);
 			if (plan && !plan.canceled)
