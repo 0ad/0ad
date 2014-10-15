@@ -9,7 +9,6 @@ newoption { trigger = "minimal-flags", description = "Only set compiler/linker f
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "sdl2", description = "Experimental build using SDL 2" }
 newoption { trigger = "with-c++11", description = "Enable C++11 on GCC" }
-newoption { trigger = "with-system-miniupnpc", description = "Search standard paths for libminiupnpc, instead of using bundled copy" }
 newoption { trigger = "with-system-mozjs24", description = "Search standard paths for libmozjs24, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }

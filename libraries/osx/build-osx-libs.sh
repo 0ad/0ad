@@ -42,12 +42,12 @@ NSPR_VERSION="4.10.3"
 # OS X only includes part of ICU, and only the dylib
 ICU_VERSION="icu4c-52_1"
 ENET_VERSION="enet-1.3.12"
+MINIUPNPC_VERSION="miniupnpc-1.9"
 # --------------------------------------------------------------
 # Bundled with the game:
 # * SpiderMonkey 24
 # * NVTT
 # * FCollada
-# * MiniUPnPc
 # --------------------------------------------------------------
 # Provided by OS X:
 # * OpenAL
@@ -112,7 +112,7 @@ download_lib()
 
   if [ ! -e $filename ]; then
     echo "Downloading $filename"
-    curl -L -O ${url}${filename} || die "Download of $url$filename failed"
+    curl -L -o ${filename} ${url}${filename} || die "Download of $url$filename failed"
   fi
 }
 
@@ -352,7 +352,7 @@ then
   mkdir -p build-release
   pushd build-release
 
-  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x"
+  CONF_OPTS="--prefix=$INSTALL_DIR --disable-shared --enable-macosx_arch=$ARCH --enable-unicode --with-cocoa --with-opengl --with-libiconv-prefix=${ICONV_DIR} --with-expat=builtin --with-libjpeg=builtin --with-png=builtin --without-libtiff --without-sdl --without-x"
   # wxWidgets configure now defaults to targeting 10.5, if not specified,
   # but that conflicts with our flags
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
@@ -549,7 +549,7 @@ then
   popd
   # TODO: how can we not build the dylibs?
   rm -f lib/*.dylib
-    touch .already-built
+  touch .already-built
 else
   already_built
 fi
@@ -613,6 +613,39 @@ then
 
   (./configure CFLAGS="$CFLAGS" LDFLAGS="$LDFLAGS" --prefix=${INSTALL_DIR} --enable-shared=no && make clean && make ${JOBS} && make install) || die "ENet build failed"
   popd
+  touch .already-built
+else
+  already_built
+fi
+popd > /dev/null
+
+# --------------------------------------------------------------
+echo -e "Building MiniUPnPc..."
+
+LIB_VERSION="${MINIUPNPC_VERSION}"
+LIB_ARCHIVE="$LIB_VERSION.tar.gz"
+LIB_DIRECTORY="$LIB_VERSION"
+LIB_URL="http://miniupnp.tuxfamily.org/files/download.php?file="
+
+mkdir -p miniupnpc
+pushd miniupnpc > /dev/null
+
+if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]] || [[ .already-built -ot $LIB_DIRECTORY ]]
+then
+  INSTALL_DIR="$(pwd)"
+
+  rm -f .already-built
+  download_lib $LIB_URL $LIB_ARCHIVE
+
+  rm -rf $LIB_DIRECTORY bin include lib share
+  tar -xf $LIB_ARCHIVE
+  pushd $LIB_DIRECTORY
+
+  # patch miniupnpc to fix symbol visibility (fixed upstream, see https://github.com/miniupnp/miniupnp/issues/63 )
+  (patch -p0 -i../../patches/miniupnpc-clang-fix.patch && make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS} && INSTALLPREFIX="$INSTALL_DIR" make install) || die "MiniUPnPc build failed"
+  popd
+  # TODO: how can we not build the dylibs?
+  rm -f lib/*.dylib
   touch .already-built
 else
   already_built
@@ -745,31 +778,6 @@ then
   (make clean && CXXFLAGS=$CXXFLAGS make ${JOBS}) || die "FCollada build failed"
   # Undo Makefile change
   mv Makefile.bak Makefile
-  popd
-  touch .already-built
-else
-  already_built
-fi
-popd > /dev/null
-
-# --------------------------------------------------------------
-# MiniUPnPc - no install
-echo -e "Building MiniUPnPc..."
-
-pushd ../source/miniupnpc > /dev/null
-
-if [[ "$force_rebuild" = "true" ]] || [[ ! -e .already-built ]]
-then
-  rm -f .already-built
-  rm -f lib/*.a
-  pushd src
-  rm -rf output
-  mkdir -p ../lib
-
-  (make clean && CFLAGS=$CFLAGS LDFLAGS=$LDFLAGS make ${JOBS}) || die "MiniUPnPc build failed"
-
-  cp libminiupnpc.a ../lib/
-
   popd
   touch .already-built
 else

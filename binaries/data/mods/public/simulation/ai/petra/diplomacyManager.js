@@ -36,6 +36,8 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 		{
 			if (this.Config.debug > 1)
 				API3.warn("Tribute " + uneval(tribute) + " sent to player " + i);
+			if (this.Config.chat)
+				m.chatSentTribute(gameState, i);
 			Engine.PostCommand(PlayerID, {"type": "tribute", "player": i, "amounts": tribute});
 		}
 	}

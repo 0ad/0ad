@@ -7,6 +7,8 @@ m.Config = function() {
 	// debug level: 0=none, 1=sanity checks, 2=debug; 3=detailed debug
 	this.debug = 0;
 
+	this.chat = true;   // false to prevent AI's chats
+
 	this.popScaling = 1;  // scale factor depending on the max population
 
 	this.Military = {

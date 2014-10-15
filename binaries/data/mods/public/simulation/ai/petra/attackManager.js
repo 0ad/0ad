@@ -102,20 +102,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				{
 					if (attack.StartAttack(gameState,this))
 					{
-						var targetName = gameState.sharedScript.playersData[attack.targetPlayer].name;
-						var proba = Math.random();
-						if (proba < 0.2)
-							var chatText = "I am launching an attack against " + targetName + ".";
-						else if (proba < 0.4)
-							var chatText = "Attacking " + targetName + ".";
-						else if (proba < 0.7)
-							var chatText = "I have sent an army against " + targetName + ".";
-						else
-							var chatText = "I'm starting an attack against " + targetName + ".";
-						gameState.ai.chatTeam(chatText);
-		
 						if (this.Config.debug > 1)
 							API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
+						if (this.Config.chat)
+							m.chatLaunchAttack(gameState, attack.targetPlayer);
 						this.startedAttacks[attackType].push(attack);
 					}
 					else
@@ -125,20 +115,10 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 			}
 			else
 			{
-				var targetName = gameState.sharedScript.playersData[attack.targetPlayer].name;
-				var proba = Math.random();
-				if (proba < 0.2)
-					var chatText = "I am launching an attack against " + targetName + ".";
-				else if (proba < 0.4)
-					var chatText = "Attacking " + targetName + ".";
-				else if (proba < 0.7)
-					var chatText = "I have sent an army against " + targetName + ".";
-				else
-					var chatText = "I'm starting an attack against " + targetName + ".";
-				gameState.ai.chatTeam(chatText);
-					
 				if (this.Config.debug > 1)
 					API3.warn("Attack Manager: Starting " + attack.getType() + " plan " + attack.getName());
+				if (this.Config.chat)
+					m.chatLaunchAttack(gameState, attack.targetPlayer);
 				this.startedAttacks[attackType].push(attack);
 				this.upcomingAttacks[attackType].splice(i--,1);
 			}

@@ -1,7 +1,7 @@
-Index: source/miniupnpc/src/declspec.h
+Index: declspec.h
 ===================================================================
---- source/miniupnpc/src/declspec.h	(revision 14819)
-+++ source/miniupnpc/src/declspec.h	(working copy)
+--- declspec.h
++++ declspec.h
 @@ -5,11 +5,15 @@
  	#ifdef MINIUPNP_EXPORTS
  		#define LIBSPEC __declspec(dllexport)

@@ -1,4 +1,4 @@
-/* $Id: upnpcommands.h,v 1.25 2012/09/27 15:42:10 nanard Exp $ */
+/* $Id: upnpcommands.h,v 1.26 2014/01/31 13:18:26 nanard Exp $ */
 /* Miniupnp project : http://miniupnp.free.fr/
  * Author : Thomas Bernard
  * Copyright (c) 2005-2011 Thomas Bernard
@@ -150,6 +150,7 @@ UPNP_GetPortMappingNumberOfEntries(const char* controlURL,
  * params :
  *  in   extPort
  *  in   proto
+ *  in   remoteHost
  *  out  intClient (16 bytes)
  *  out  intPort (6 bytes)
  *  out  desc (80 bytes)
@@ -164,6 +165,7 @@ UPNP_GetSpecificPortMappingEntry(const char * controlURL,
                                  const char * servicetype,
                                  const char * extPort,
                                  const char * proto,
+                                 const char * remoteHost,
                                  char * intClient,
                                  char * intPort,
                                  char * desc,
