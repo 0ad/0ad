@@ -11,7 +11,6 @@
         <prop actor="props/structures/gauls/outpost_windows.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_door.xml" attachpoint="root"/>
         <prop actor="props/structures/gauls/outpost_shields.xml" attachpoint="root"/>
-        <prop actor="units/celts/infantry_javelinist_e.xml" attachpoint="gar01"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
       </props>
@@ -47,6 +46,8 @@
     <variant name="garrisoned">
       <props>
         <prop actor="props/special/common/garrison_flag_celt.xml" attachpoint="garrisoned"/>
+        <prop actor="units/celts/infantry_javelinist_e.xml" attachpoint="gar01"/>
+
       </props>
     </variant>
     <variant name="death">
