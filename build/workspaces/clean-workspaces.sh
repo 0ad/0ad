@@ -24,7 +24,7 @@ if [ "`uname -s`" != "Darwin" ]; then
 
   (cd ../../libraries/source/fcollada/src && rm -rf ./output)
   (cd ../../libraries/source/spidermonkey && rm -f .already-built)
-  (cd ../../libraries/source/spidermonkey && rm -rf ./js-1.8.5)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
   (cd ../../libraries/source/nvtt/src && rm -rf ./build)
 fi
 
