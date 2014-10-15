@@ -789,31 +789,31 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	char buf[200];
 	if (mode == -1) // Date, time and revision.
 	{
-		UDate dateTime = L10n::Instance().ParseDateTime(__DATE__ " " __TIME__, "MMM d yyyy HH:mm:ss", Locale::getUS());
-		std::string dateTimeString = L10n::Instance().LocalizeDateTime(dateTime, L10n::DateTime, SimpleDateFormat::DATE_TIME);
+		UDate dateTime = g_L10n.ParseDateTime(__DATE__ " " __TIME__, "MMM d yyyy HH:mm:ss", Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::DateTime, SimpleDateFormat::DATE_TIME);
 		char svnRevision[32];
 		sprintf_s(svnRevision, ARRAY_SIZE(svnRevision), "%ls", svn_revision);
 		if (strcmp(svnRevision, "custom build") == 0)
 		{
 			// Translation: First item is a date and time, item between parenthesis is the Subversion revision number of the current build.
-			sprintf_s(buf, ARRAY_SIZE(buf), L10n::Instance().Translate("%s (custom build)").c_str(), dateTimeString.c_str());
+			sprintf_s(buf, ARRAY_SIZE(buf), g_L10n.Translate("%s (custom build)").c_str(), dateTimeString.c_str());
 		}
 		else
 		{
 			// Translation: First item is a date and time, item between parenthesis is the Subversion revision number of the current build.
-			sprintf_s(buf, ARRAY_SIZE(buf), L10n::Instance().Translate("%s (%ls)").c_str(), dateTimeString.c_str(), svn_revision);
+			sprintf_s(buf, ARRAY_SIZE(buf), g_L10n.Translate("%s (%ls)").c_str(), dateTimeString.c_str(), svn_revision);
 		}
 	}
 	else if (mode == 0) // Date.
 	{
-		UDate dateTime = L10n::Instance().ParseDateTime(__DATE__, "MMM d yyyy", Locale::getUS());
-		std::string dateTimeString = L10n::Instance().LocalizeDateTime(dateTime, L10n::Date, SimpleDateFormat::MEDIUM);
+		UDate dateTime = g_L10n.ParseDateTime(__DATE__, "MMM d yyyy", Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Date, SimpleDateFormat::MEDIUM);
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", dateTimeString.c_str());
 	}
 	else if (mode == 1) // Time.
 	{
-		UDate dateTime = L10n::Instance().ParseDateTime(__TIME__, "HH:mm:ss", Locale::getUS());
-		std::string dateTimeString = L10n::Instance().LocalizeDateTime(dateTime, L10n::Time, SimpleDateFormat::MEDIUM);
+		UDate dateTime = g_L10n.ParseDateTime(__TIME__, "HH:mm:ss", Locale::getUS());
+		std::string dateTimeString = g_L10n.LocalizeDateTime(dateTime, L10n::Time, SimpleDateFormat::MEDIUM);
 		sprintf_s(buf, ARRAY_SIZE(buf), "%s", dateTimeString.c_str());
 	}
 	else if (mode == 2) // Revision.
@@ -822,7 +822,7 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 		sprintf_s(svnRevision, ARRAY_SIZE(svnRevision), "%ls", svn_revision);
 		if (strcmp(svnRevision, "custom build") == 0)
 		{
-			sprintf_s(buf, ARRAY_SIZE(buf), "%s", L10n::Instance().Translate("custom build").c_str());
+			sprintf_s(buf, ARRAY_SIZE(buf), "%s", g_L10n.Translate("custom build").c_str());
 		}
 		else
 		{

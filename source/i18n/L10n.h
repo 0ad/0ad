@@ -32,12 +32,16 @@
 
 #include "lib/file/vfs/vfs_path.h"
 
+#include "ps/Singleton.h"
+
+#define g_L10n L10n::GetSingleton()
+
 /**
  * %Singleton for internationalization and localization.
  *
  * @sa http://trac.wildfiregames.com/wiki/Internationalization_and_Localization
  */
-class L10n
+class L10n : public Singleton<L10n>
 {
 	/**
 	 * Marks the L10n class as ‘noncopyable’.
@@ -75,14 +79,6 @@ public:
 		Date, ///< Only date.
 		Time ///< Only time.
 	};
-
-	/**
-	 * Returns the running instance of the internationalization and localization
-	 * singleton.
-	 *
-	 * If there is no instance yet, Instance() creates one and returns it.
-	 */
-	static L10n& Instance();
 
 	/**
 	 * Returns the current locale.

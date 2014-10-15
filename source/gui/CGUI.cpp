@@ -1263,7 +1263,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					XMBElement grandchild = grandchildren.Item(i);
 					if (grandchild.GetNodeName() == elmt_translate)
 					{
-						code += L10n::Instance().Translate(grandchild.GetText());
+						code += g_L10n.Translate(grandchild.GetText());
 					}
 					else if (grandchild.GetNodeName() == elmt_keep)
 					{
@@ -1304,12 +1304,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			CStr context(child.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
 			if (!context.empty())
 			{
-				CStr translatedValue(L10n::Instance().TranslateWithContext(context, value));
+				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
 				object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
 			}
 			else
 			{
-				CStr translatedValue(L10n::Instance().Translate(value));
+				CStr translatedValue(g_L10n.Translate(value));
 				object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
 			}
 		}
@@ -1332,7 +1332,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 				XMBElement grandchild = grandchildren.Item(i);
 				if (grandchild.GetNodeName() == elmt_translate)
 				{
-					translatedValue += L10n::Instance().Translate(grandchild.GetText());
+					translatedValue += g_L10n.Translate(grandchild.GetText());
 				}
 				else if (grandchild.GetNodeName() == elmt_keep)
 				{

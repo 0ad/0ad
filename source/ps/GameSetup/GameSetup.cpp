@@ -45,6 +45,7 @@
 #include "gui/GUI.h"
 #include "gui/GUIManager.h"
 #include "gui/scripting/ScriptFunctions.h"
+#include "i18n/L10n.h"
 #include "maths/MathUtil.h"
 #include "network/NetServer.h"
 #include "network/NetClient.h"
@@ -730,6 +731,8 @@ void Shutdown(int flags)
 	//delete g_DebuggingServer;
 	//TIMER_END(L"shutdown DebuggingServer (if active)");
 
+	delete &g_L10n;
+
 from_config:
 	TIMER_BEGIN(L"shutdown ConfigDB");
 	delete &g_ConfigDB;
@@ -949,6 +952,8 @@ bool Init(const CmdLineArgs& args, int flags)
 			return false;
 		}
 	}
+
+	new L10n;
 
 	// before scripting 
 	// JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)
