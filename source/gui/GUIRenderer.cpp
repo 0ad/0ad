@@ -201,7 +201,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 
 		if (!(*cit)->m_TextureName.empty())
 		{
-			CTextureProperties textureProps(L10n::Instance().LocalizePath((*cit)->m_TextureName));
+			CTextureProperties textureProps(g_L10n.LocalizePath((*cit)->m_TextureName));
 			textureProps.SetWrap((*cit)->m_WrapMode);
 			CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
 			texture->Prefetch();

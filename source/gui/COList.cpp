@@ -203,12 +203,12 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 						CStr context(grandchild.GetAttributes().GetNamedItem(attr_context)); // Read the context if any.
 						if (!context.empty())
 						{
-							CStr translatedValue(L10n::Instance().TranslateWithContext(context, value));
+							CStr translatedValue(g_L10n.TranslateWithContext(context, value));
 							oDef.m_Heading = translatedValue.FromUTF8();
 						}
 						else
 						{
-							CStr translatedValue(L10n::Instance().Translate(value));
+							CStr translatedValue(g_L10n.Translate(value));
 							oDef.m_Heading = translatedValue.FromUTF8();
 						}
 					}

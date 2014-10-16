@@ -36,12 +36,6 @@
 #include "ps/GameSetup/GameSetup.h"
 
 
-L10n& L10n::Instance()
-{
-	static L10n m_instance;
-	return m_instance;
-}
-
 L10n::L10n()
 	: currentLocaleIsOriginalGameLocale(false), useLongStrings(false), dictionary(new tinygettext::Dictionary())
 {

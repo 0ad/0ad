@@ -40,7 +40,6 @@ premake_args=""
 
 without_nvtt=false
 with_system_nvtt=false
-with_system_miniupnpc=false
 with_system_mozjs24=false
 enable_atlas=true
 
@@ -92,10 +91,6 @@ if [ "`uname -s`" != "Darwin" ]; then
   echo
   if [ "$with_system_nvtt" = "false" ] && [ "$without_nvtt" = "false" ]; then
     (cd ../../libraries/source/nvtt && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "NVTT build failed"
-  fi
-  echo
-  if [ "$with_system_miniupnpc" = "false" ]; then
-    (cd ../../libraries/source/miniupnpc && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "MiniUPnPc build failed"
   fi
   echo
 fi
