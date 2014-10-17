@@ -28,7 +28,6 @@ m.HQ = function(Config)
 	this.currentRates = { "food": 0, "wood": 0, "stone":0, "metal": 0 };
 	this.lastFailedGather = { "wood": undefined, "stone": undefined, "metal": undefined }; 
 
-
 	// this means we'll have about a big third of women, and thus we can maximize resource gathering rates.
 	this.femaleRatio = this.Config.Economy.femaleRatio;
 

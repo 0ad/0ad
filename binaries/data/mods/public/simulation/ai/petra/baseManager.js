@@ -590,8 +590,19 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 			// but we require a bit more to avoid too frequent changes
 			if ((scale*moreNeed.wanted - moreNeed.current) - (scale*lessNeed.wanted - lessNeed.current) > 1.5)
 			{
-				this.gatherersByType(gameState, lessNeed.type).forEach( function (ent) {
+				let only = undefined;
+				// in average, females are less efficient for stone and metal, and citizenSoldiers for food
+				let gatherers = this.gatherersByType(gameState, lessNeed.type);
+				if (lessNeed.type === "food" && gatherers.filter(API3.Filters.byClass("CitizenSoldier")).length)
+					only = "CitizenSoldier";
+				else if ((lessNeed.type === "stone" || lessNeed.type === "metal") && moreNeed.type !== "stone" && moreNeed.type !== "metal"
+					&& gatherers.filter(API3.Filters.byClass("Female")).length) 
+					only = "Female";
+
+				gatherers.forEach( function (ent) {
 					if (nb === 0)
+						return;
+					if (only && !ent.hasClass(only))
 						return;
 					--nb;
 					ent.stopMoving();
