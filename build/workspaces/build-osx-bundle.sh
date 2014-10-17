@@ -182,6 +182,7 @@ if [ "$build_release" = "false" ]; then
   mv config/dev.cfg config/dev.bak
 fi
 cp -R -v config ${BUNDLE_RESOURCES}/data/
+cp -R -v l10n ${BUNDLE_RESOURCES}/data/
 cp -R -v tools ${BUNDLE_RESOURCES}/data/
 if [ "$build_release" = "false" ]; then
   mv config/dev.bak config/dev.cfg

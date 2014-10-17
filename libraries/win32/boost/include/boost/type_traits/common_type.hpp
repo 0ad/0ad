@@ -24,8 +24,7 @@
 #endif
 
 //----------------------------------------------------------------------------//
-#if defined(BOOST_NO_CXX11_DECLTYPE) && !defined(BOOST_COMMON_TYPE_DONT_USE_TYPEOF) && !defined(BOOST_TYPEOF_SILENT)
-#define BOOST_TYPEOF_SILENT
+#if defined(BOOST_NO_CXX11_DECLTYPE) && !defined(BOOST_COMMON_TYPE_DONT_USE_TYPEOF)
 #include <boost/typeof/typeof.hpp>   // boost wonders never cease!
 #endif
 
@@ -121,7 +120,7 @@ namespace type_traits_detail {
         typedef BOOST_TYPEOF_TPL(declval_b() ? declval_T() : declval_U()) type;
 #endif
 
-#if defined(__GNUC__) && __GNUC__ == 3 && (__GNUC_MINOR__ == 2 || __GNUC_MINOR__ == 3)
+#if defined(__GNUC__) && __GNUC__ == 3 && __GNUC_MINOR__ == 3
     public:
         void public_dummy_function_just_to_silence_warning();
 #endif

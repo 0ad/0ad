@@ -38,4 +38,25 @@
 #include <boost/signals2/variadic_signal.hpp>
 #endif
 
+namespace boost
+{
+  namespace signals2
+  {
+    // free swap function, findable by ADL
+    template<typename Signature,
+      typename Combiner,
+      typename Group,
+      typename GroupCompare,
+      typename SlotFunction,
+      typename ExtendedSlotFunction,
+      typename Mutex>
+      void swap(
+        signal<Signature, Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex> &sig1,
+        signal<Signature, Combiner, Group, GroupCompare, SlotFunction, ExtendedSlotFunction, Mutex> &sig2)
+    {
+      sig1.swap(sig2);
+    }
+  }
+}
+
 #endif // BOOST_SIGNALS2_SIGNAL_HPP

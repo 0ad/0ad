@@ -108,8 +108,6 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 				var tileAccessible = (accessIndex === gameState.ai.accessibility.landPassMap[i]);
 			else
 				var tileAccessible = true;
-			if (placementType === "shore")
-				tileAccessible = true;
 			obstructionTiles[i] = (!tileAccessible || invalidTerritory || (passabilityMap.data[i] & obstructionMask)) ? 0 : 255;
 		}
 	}

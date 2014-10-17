@@ -1,6 +1,6 @@
 /////////////////////////////////////////////////////////////////////////////
 //
-// (C) Copyright Ion Gaztanaga  2007-2012
+// (C) Copyright Ion Gaztanaga  2007-2013
 //
 // Distributed under the Boost Software License, Version 1.0.
 //    (See accompanying file LICENSE_1_0.txt or copy at
@@ -16,9 +16,9 @@
 #include <cstddef>
 
 #if defined(BOOST_MSVC) || ((defined(_WIN32) || defined(__WIN32__) || defined(WIN32)) && defined(BOOST_INTEL))
-
-#define BOOST_INTRUSIVE_MSVC_COMPLIANT_PTR_TO_MEMBER
-#include <boost/cstdint.hpp>
+   #define BOOST_INTRUSIVE_MSVC_ABI_PTR_TO_MEMBER
+   #include <boost/cstdint.hpp>
+   #include <boost/static_assert.hpp>
 #endif
 
 namespace boost {
@@ -29,15 +29,39 @@ template<class Parent, class Member>
 inline std::ptrdiff_t offset_from_pointer_to_member(const Member Parent::* ptr_to_member)
 {
    //The implementation of a pointer to member is compiler dependent.
-   #if defined(BOOST_INTRUSIVE_MSVC_COMPLIANT_PTR_TO_MEMBER)
-   //msvc compliant compilers use their the first 32 bits as offset (even in 64 bit mode)
+   #if defined(BOOST_INTRUSIVE_MSVC_ABI_PTR_TO_MEMBER)
+
+   //MSVC compliant compilers use their the first 32 bits as offset (even in 64 bit mode)
    union caster_union
    {
       const Member Parent::* ptr_to_member;
       boost::int32_t offset;
    } caster;
+
+   //MSVC ABI can use up to 3 int32 to represent pointer to member data
+   //with virtual base classes, in those cases there is no simple to
+   //obtain the address of the parent. So static assert to avoid runtime errors
+   BOOST_STATIC_ASSERT( sizeof(caster) == sizeof(boost::int32_t) );
+
    caster.ptr_to_member = ptr_to_member;
    return std::ptrdiff_t(caster.offset);
+   //Additional info on MSVC behaviour for the future. For 2/3 int ptr-to-member 
+   //types dereference seems to be:
+   //
+   // vboffset = [compile_time_offset if 2-int ptr2memb] /
+   //            [ptr2memb.i32[2] if 3-int ptr2memb].
+   // vbtable = *(this + vboffset);
+   // adj = vbtable[ptr2memb.i32[1]];
+   // var = adj + (this + vboffset) + ptr2memb.i32[0];
+   //
+   //To reverse the operation we need to
+   // - obtain vboffset (in 2-int ptr2memb implementation only)
+   // - Go to Parent's vbtable and obtain adjustment at index ptr2memb.i32[1]
+   // - parent = member - adj - vboffset - ptr2memb.i32[0]
+   //
+   //Even accessing to RTTI we might not be able to obtain this information
+   //so anyone who thinks it's possible, please send a patch.
+
    //This works with gcc, msvc, ac++, ibmcpp
    #elif defined(__GNUC__)   || defined(__HP_aCC) || defined(BOOST_INTEL) || \
          defined(__IBMCPP__) || defined(__DECCXX)
@@ -84,8 +108,8 @@ inline const Parent *parent_from_member(const Member *member, const Member Paren
 }  //namespace intrusive {
 }  //namespace boost {
 
-#ifdef BOOST_INTRUSIVE_MSVC_COMPLIANT_PTR_TO_MEMBER
-#undef BOOST_INTRUSIVE_MSVC_COMPLIANT_PTR_TO_MEMBER
+#ifdef BOOST_INTRUSIVE_MSVC_ABI_PTR_TO_MEMBER
+#undef BOOST_INTRUSIVE_MSVC_ABI_PTR_TO_MEMBER
 #endif
 
 #include <boost/intrusive/detail/config_end.hpp>

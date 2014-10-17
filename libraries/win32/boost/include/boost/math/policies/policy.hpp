@@ -94,8 +94,7 @@ namespace policies{
 #define BOOST_MATH_MAX_ROOT_ITERATION_POLICY 200
 #endif
 
-#if !defined(__BORLANDC__) \
-   && !(defined(__GNUC__) && (__GNUC__ == 3) && (__GNUC_MINOR__ <= 2))
+#if !defined(__BORLANDC__)
 #define BOOST_MATH_META_INT(type, name, Default)\
    template <type N = Default> struct name : public boost::mpl::int_<N>{};\
    namespace detail{\
@@ -809,6 +808,16 @@ struct precision
       >::type
    >::type type;
 #endif
+};
+
+#endif
+
+#ifdef BOOST_MATH_USE_FLOAT128
+
+template <class Policy>
+struct precision<BOOST_MATH_FLOAT128_TYPE, Policy>
+{
+   typedef mpl::int_<113> type;
 };
 
 #endif

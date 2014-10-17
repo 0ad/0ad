@@ -95,7 +95,7 @@ m.TrainingPlan.prototype.start = function(gameState)
 			this.metadata.base = trainers[0].getMetadata(PlayerID, "base");
 		trainers[0].train(this.type, this.number, this.metadata, this.promotedTypes(gameState));
 	}
-	else if (gameState.ai.Config.debug > 1)
+	else if (gameState.Config.debug > 1)
 		warn(" no trainers for this queue " + this.type);
 	this.onStart(gameState);
 };
@@ -120,7 +120,7 @@ m.TrainingPlan.prototype.promotedTypes = function(gameState)
 		promotion = gameState.getTemplate(promotion).promotion();
 		if (previous === promotion)
 		{
-			if (gameState.ai.Config.debug > 0)
+			if (gameState.Config.debug > 0)
 				API3.warn(" unit " + promotion + " is its own promoted unit");
 			promotion = undefined;
 		}

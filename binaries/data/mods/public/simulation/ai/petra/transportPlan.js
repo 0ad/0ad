@@ -101,7 +101,7 @@ m.TransportPlan.prototype.assignUnitToShip = function(gameState, ent)
 		{
 			ent.setMetadata(PlayerID, "onBoard", ship.id());
 			done = true;
-			if (self.debug > 0)
+			if (self.debug > 1)
 			{
 				if (ent.getMetadata(PlayerID, "role") === "attack")
 					Engine.PostCommand(PlayerID,{"type": "set-shading-color", "entities": [ent.id()], "rgb": [2,0,0]});
@@ -252,7 +252,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 				var ship = gameState.getEntityById(shipId);
 				if (!self.boardingPos[shipId])
 				{
-					self.boardingPos[shipId] = self.getBoardingPos(gameState, self.startIndex, self.sea, ent.position(), false);
+					self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.startIndex, self.sea, ent.position(), false);
 					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 					ship.setMetadata(PlayerID, "timeGarrison", time);
 				}
@@ -282,7 +282,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 						self.nTry[shipId] = 0;
 						if (self.debug > 1)
 							API3.warn("ship " + shipId + " new attempt for a landing point ");
-						self.boardingPos[shipId] = self.getBoardingPos(gameState, self.startIndex, self.sea, undefined, false);
+						self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.startIndex, self.sea, undefined, false);
 					}
 					ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 					ship.setMetadata(PlayerID, "timeGarrison", time);				
@@ -328,7 +328,7 @@ m.TransportPlan.prototype.onBoarding = function(gameState)
 
 	this.ships.forEach(function (ship) {
 		self.boardingPos[ship.id()] = undefined;
-		self.boardingPos[ship.id()] = self.getBoardingPos(gameState, self.endIndex, self.sea, self.endPos, true);
+		self.boardingPos[ship.id()] = self.getBoardingPos(gameState, ship, self.endIndex, self.sea, self.endPos, true);
 		ship.move(self.boardingPos[ship.id()][0], self.boardingPos[ship.id()][1]);
 	});
 	this.state = "sailing";
@@ -351,7 +351,7 @@ m.TransportPlan.prototype.isOnBoard = function(ent)
 };
 
 // when avoidEnnemy is true, we try to not board/unboard in ennemy territory
-m.TransportPlan.prototype.getBoardingPos = function(gameState, landIndex, seaIndex, destination, avoidEnnemy)
+m.TransportPlan.prototype.getBoardingPos = function(gameState, ship, landIndex, seaIndex, destination, avoidEnnemy)
 {
 	if (!gameState.ai.HQ.navalManager.landingZones[landIndex][seaIndex])
 	{
@@ -359,7 +359,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, landIndex, seaInd
 		return destination;
 	}
 
-	var startPos = 	this.transportShips.getCentrePosition();
+	var startPos = ship.position();
 	var distmin = Math.min();
 	var posmin = destination;
 	var width = gameState.getMap().width;
@@ -380,7 +380,7 @@ m.TransportPlan.prototype.getBoardingPos = function(gameState, landIndex, seaInd
 		// require a small distance between all ships of the transport plan to avoid path finder problems
 		// this is also used when the ship is blocked and we want to find a new boarding point
 		for (var shipId in this.boardingPos)
-			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < 100)
+			if (this.boardingPos[shipId] !== undefined && API3.SquareVectorDistance(this.boardingPos[shipId], pos) < 225)
 				dist += 1000000;
 		if (dist > distmin)
 			continue;
@@ -488,7 +488,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	}
 	for (var shipId in shipsToMove)
 	{
-		this.boardingPos[shipId] = this.getBoardingPos(gameState, this.endIndex, this.sea, this.endPos, true);
+		this.boardingPos[shipId] = this.getBoardingPos(gameState, shipsToMove[shipId], this.endIndex, this.sea, this.endPos, true);
 		shipsToMove[shipId].move(this.boardingPos[shipId][0], this.boardingPos[shipId][1]);
 	}
 	this.unloaded = [];
@@ -497,7 +497,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 	{
 		this.ships.forEach(function (ship) {
 			self.boardingPos[ship.id()] = undefined;
-			self.boardingPos[ship.id()] = self.getBoardingPos(gameState, self.endIndex, self.sea, self.endPos, true);
+			self.boardingPos[ship.id()] = self.getBoardingPos(gameState, ship, self.endIndex, self.sea, self.endPos, true);
 			ship.move(self.boardingPos[ship.id()][0], self.boardingPos[ship.id()][1]);
 		});
 		this.canceled = undefined;
@@ -549,7 +549,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 				self.nTry[shipId] = 0;
 				if (self.debug > 1)
 					API3.warn(shipId + " new attempt for a landing point ");
-				self.boardingPos[shipId] = self.getBoardingPos(gameState, self.endIndex, self.sea, undefined, true);
+				self.boardingPos[shipId] = self.getBoardingPos(gameState, ship, self.endIndex, self.sea, undefined, true);
 			}
 			ship.move(self.boardingPos[shipId][0], self.boardingPos[shipId][1]);
 		}

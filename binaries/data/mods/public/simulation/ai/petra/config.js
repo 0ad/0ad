@@ -157,7 +157,7 @@ m.Config.prototype.setConfig = function(gameState)
 	if (gameState.getPopulationMax() < 300)
 		this.popScaling = Math.sqrt(gameState.getPopulationMax() / 300);
 
-	if (this.debug < 1)
+	if (this.debug < 2)
 		return;
 	API3.warn(" >>>  Petra bot: personality = " + uneval(this.personality));
 };
