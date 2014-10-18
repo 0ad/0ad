@@ -397,7 +397,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetEntityState(-1, 10), {
 	id: 10,
 	template: "example",
 	alertRaiser: null,
-	buildEntities: ["test1", "test2"],
+	builder: true,
 	identity: {
 		rank: "foo",
 		classes: ["class1", "class2"],
