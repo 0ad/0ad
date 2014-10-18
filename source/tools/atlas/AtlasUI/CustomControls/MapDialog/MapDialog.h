@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -31,7 +31,7 @@ enum MapDialogType { MAPDIALOG_OPEN, MAPDIALOG_SAVE };
 class MapDialog : public wxDialog
 {
 public:
-	MapDialog(wxWindow* parent, MapDialogType type);
+	MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon);
 
 	/**
 	 * Returns VFS path of selected map with .xml extension, else empty string
