@@ -675,9 +675,6 @@ extern_lib_defs = {
 		compile_settings = function()
 			add_source_include_paths("valgrind")
 		end,
-		link_settings = function()
-			add_source_lib_paths("valgrind")
-		end,
 	},
 	vorbis = {
 		compile_settings = function()
