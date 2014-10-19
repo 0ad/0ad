@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -85,6 +85,8 @@ private:
 	void SetOpenFilename(const wxString& filename);
 	wxString m_OpenFilename;
 	FileHistory m_FileHistory;
+
+	wxIcon m_Icon;
 
 	DECLARE_EVENT_TABLE();
 };

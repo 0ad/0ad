@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,12 +35,12 @@ enum {
 static const wxString scenarioPath(L"maps/scenarios/");
 static const wxString skirmishPath(L"maps/skirmishes/");
 
-MapDialog::MapDialog(wxWindow* parent, MapDialogType type)
+MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
 	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU), m_Type(type)
 {
 	Freeze();
 
-	SetIcon(wxIcon(_T("ICON_ScenarioEditor"))); // load from atlas.rc
+	SetIcon(icon);
 
 	if (m_Type == MAPDIALOG_OPEN)
 		SetTitle(_("Choose map to open"));

@@ -168,7 +168,7 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (targetState.foundation && entState.buildEntities && playerCheck(entState, targetState, ["Player", "Ally"]))
+			if (targetState.foundation && entState.builder && playerCheck(entState, targetState, ["Player", "Ally"]))
 				return {"possible": true};
 			return false;
 		},
@@ -191,7 +191,7 @@ var unitActions =
 		},
 		"getActionInfo": function(entState, targetState)
 		{
-			if (entState.buildEntities && targetState.needsRepair && playerCheck(entState, targetState, ["Player", "Ally"]))
+			if (entState.builder && targetState.needsRepair && playerCheck(entState, targetState, ["Player", "Ally"]))
 				return {"possible": true};
 			return false;
 		},
@@ -502,7 +502,7 @@ var unitActions =
 				data.resourceType = resourceType;
 				data.resourceTemplate = targetState.template;
 			}
-			else if (targetState.foundation && entState.buildEntities)
+			else if (targetState.foundation && entState.builder)
 			{
 				data.command = "build";
 				data.target = targetState.id;
@@ -748,7 +748,7 @@ var g_EntityCommands =
 	"repair": {
 		"getInfo": function(entState)
 		{
-			if (!entState.buildEntities)
+			if (!entState.builder)
 				return false;
 			return {
 				"tooltip": translate("Repair"),

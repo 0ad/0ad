@@ -256,18 +256,7 @@ function getAllTrainableEntitiesFromSelection()
 // Get all of the available entities which can be built by the selected entities
 function getAllBuildableEntities(selection)
 {
-	var buildableEnts = [];
-	var state;
-	// Get all buildable entities
-	for (var i in selection)
-	{
-		if ((state = GetEntityState(selection[i])) && state.buildEntities && state.buildEntities.length)
-			buildableEnts = buildableEnts.concat(state.buildEntities);
-	}
-
-	// Remove duplicates
-	removeDupes(buildableEnts);
-	return buildableEnts;
+	return Engine.GuiInterfaceCall("GetAllBuildableEntities", { "entities": selection });
 }
 
 function getAllBuildableEntitiesFromSelection()

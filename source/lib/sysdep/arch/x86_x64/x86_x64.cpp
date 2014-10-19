@@ -49,10 +49,20 @@ namespace x86_x64 {
 #if defined(_MSC_FULL_VER) && _MSC_FULL_VER >= 150030729
 // VC10+ and VC9 SP1: __cpuidex is already available
 #elif GCC_VERSION
-# define __cpuidex(regsArray, level, index)\
+# if defined(__i386__) && defined(__PIC__)
+#  define __cpuidex(regsArray, level, index)\
+	__asm__ __volatile__ ("pushl %%ebx\n"\
+		"cpuid\n"\
+		"mov %%ebx,%1\n"\
+		"popl %%ebx"\
+		: "=a" ((regsArray)[0]), "=r" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
+		: "0" (level), "2" (index));
+# else
+#  define __cpuidex(regsArray, level, index)\
 	__asm__ __volatile__ ("cpuid"\
-	: "=a" ((regsArray)[0]), "=b" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
-	: "0" (level), "2" (index));
+		: "=a" ((regsArray)[0]), "=b" ((regsArray)[1]), "=c" ((regsArray)[2]), "=d" ((regsArray)[3])\
+		: "0" (level), "2" (index));
+# endif
 #else
 # error "compiler not supported"
 #endif

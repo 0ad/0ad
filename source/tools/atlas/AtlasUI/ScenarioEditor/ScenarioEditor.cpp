@@ -380,15 +380,16 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	SetOpenFilename(_T(""));
 
 #if defined(__WXMSW__)
-	SetIcon(wxIcon(_T("ICON_ScenarioEditor"))); // load from atlas.rc
+	m_Icon = wxIcon(_T("ICON_ScenarioEditor")); // load from atlas.rc
 #else
 	{
 		const wxString relativePath (_T("tools/atlas/icons/ScenarioEditor.ico"));
 		wxFileName filename (relativePath, wxPATH_UNIX);
 		filename.MakeAbsolute(Datafile::GetDataDirectory());
-		SetIcon(wxIcon(filename.GetFullPath(), wxBITMAP_TYPE_ICO));
+		m_Icon = wxIcon(filename.GetFullPath(), wxBITMAP_TYPE_ICO);
 	}
 #endif
+	SetIcon(m_Icon);
 
 	wxToolTip::Enable(true);
 
@@ -663,7 +664,7 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 
 void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
-	MapDialog dlg (NULL, MAPDIALOG_OPEN);
+	MapDialog dlg (NULL, MAPDIALOG_OPEN, m_Icon);
 	if (dlg.ShowModal() == wxID_OK)
 	{
 		wxString filename = dlg.GetFilename();
@@ -740,7 +741,7 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 
 void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 {
-	MapDialog dlg(NULL, MAPDIALOG_SAVE);
+	MapDialog dlg(NULL, MAPDIALOG_SAVE, m_Icon);
 	if (dlg.ShowModal() == wxID_OK)
 	{
 		wxString filename(dlg.GetFilename());

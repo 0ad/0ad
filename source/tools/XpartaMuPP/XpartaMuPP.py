@@ -146,7 +146,7 @@ class LeaderboardList():
       jid = player.jid
       playerinfo = PlayerInfo(player=player)
       for reportname in stats:
-        setattr(playerinfo, reportname, get(reportname, jid))
+        setattr(playerinfo, reportname, get(reportname, jid.lower()))
       playerInfos.append(playerinfo)
 
     game = Game(map=gamereport['mapName'], duration=int(gamereport['timeElapsed']), teamsLocked=bool(gamereport['teamsLocked']), matchID=gamereport['matchID'])
@@ -335,7 +335,7 @@ class ReportManager():
       numPlayers = self.getNumPlayers(rawGameReport)
       JIDs = [None] * numPlayers
       if numPlayers - int(rawGameReport["playerID"]) > -1:
-        JIDs[int(rawGameReport["playerID"])-1] = str(JID)
+        JIDs[int(rawGameReport["playerID"])-1] = str(JID).lower()
       self.interimJIDTracker.append(JIDs)
     else:
       # We get the index at which the JIDs coresponding to the game are stored.
@@ -343,7 +343,7 @@ class ReportManager():
       # We insert the new report JID into the acending list of JIDs for the game.
       JIDs = self.interimJIDTracker[index]
       if len(JIDs) - int(rawGameReport["playerID"]) > -1:
-        JIDs[int(rawGameReport["playerID"])-1] = str(JID)
+        JIDs[int(rawGameReport["playerID"])-1] = str(JID).lower()
       self.interimJIDTracker[index] = JIDs
 
     self.checkFull()

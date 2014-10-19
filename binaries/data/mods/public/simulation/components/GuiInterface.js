@@ -187,7 +187,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"template": template,
 
 		"alertRaiser": null,
-		"buildEntities": null,
+		"builder": null,
 		"identity": null,
 		"fogging": null,
 		"foundation": null,
@@ -244,9 +244,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 
 	var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 	if (cmpBuilder)
-	{
-		ret.buildEntities = cmpBuilder.GetEntitiesList();
-	}
+		ret.builder = true;
 
 	var cmpPack = Engine.QueryInterface(ent, IID_Pack);
 	if (cmpPack)
@@ -985,6 +983,26 @@ GuiInterface.prototype.IsStanceSelected = function(player, data)
 		}
 	}
 	return false;
+};
+
+GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
+{
+	var buildableEnts = [];
+	for each (var ent in cmd.entities)
+	{
+		var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
+		if (!cmpBuilder)
+			continue;
+		if (buildableEnts.length)
+		{
+			for (var building of cmpBuilder.GetEntitiesList())
+				if (buildableEnts.indexOf(building) === -1)
+					buildableEnts.push(building);
+		}
+		else
+			buildableEnts = cmpBuilder.GetEntitiesList();
+	}
+	return buildableEnts;
 };
 
 GuiInterface.prototype.SetSelectionHighlight = function(player, cmd)
@@ -2007,6 +2025,7 @@ var exposedFunctions = {
 	"IsStanceSelected": 1,
 
 	"SetSelectionHighlight": 1,
+	"GetAllBuildableEntities": 1,
 	"SetStatusBars": 1,
 	"GetPlayerEntities": 1,
 	"DisplayRallyPoint": 1,
