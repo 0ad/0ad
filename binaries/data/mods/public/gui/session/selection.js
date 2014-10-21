@@ -319,7 +319,7 @@ EntitySelection.prototype.addList = function(ents, quiet)
 	{
 		// Only add entities we own to our selection
 		var entState = GetEntityState(ent);
-		if (!this.selected[ent] && (selection.length + i) <= MAX_SELECTION_SIZE && (allowUnownedSelect || (entState && entState.player == playerID)))
+		if (!this.selected[ent] && (selection.length + i) <= MAX_SELECTION_SIZE && entState && (allowUnownedSelect || entState.player == playerID))
 		{
 			added.push(ent);
 			this.selected[ent] = ent;
