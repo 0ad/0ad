@@ -1,6 +1,6 @@
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2013 Wildfire Games
+# Copyright (C) 2014 Wildfire Games
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -19,27 +19,35 @@
 # NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
 # HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# This software consists of voluntary contributions made by many
-# individuals. For the exact contribution history, see the revision
-# history and logs:
-# • http://babel.edgewall.org/log/trunk/babel/messages
-# • http://trac.wildfiregames.com/browser/ps/trunk/source/tools/i18n/potter
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import codecs, os, sys
+import codecs, re, os, sys
 import json as jsonParser
 
 from tokenize import generate_tokens, COMMENT, NAME, OP, STRING
 from textwrap import dedent
 
-from potter.util import parse_encoding, pathmatch, relpath
+def pathmatch(mask, path):
+    """ Matches paths to a mask, where the mask supports * and **.
 
-try:
-    stringType = unicode
-except:
-    stringType = str
+    Paths use / as the separator
+    * matches a sequence of characters without /.
+    ** matches a sequence of characters without / followed by a / and
+    sequence of characters without /
+    :return: true iff path matches the mask, false otherwise
+    """
+    s = re.split(r"([*][*]?)", mask)
+    p = ""
+    for i in xrange(len(s)):
+        if i % 2 != 0:
+            p = p + "[^/]+"
+            if len(s[i]) == 2:
+                p = p + "(/[^/]+)*"
+        else:
+            p = p + re.escape(s[i])
+    p = p + "$"
+    return re.match(p, path) != None
 
 
 class Extractor(object):
@@ -60,7 +68,7 @@ class Extractor(object):
     def run(self):
         """ Extracts messages.
 
-        :return:    An iterator over ``(message, context, location, comment)`` tuples.
+        :return:    An iterator over ``(message, plural, context, (location, pos), comment)`` tuples.
         :rtype:     ``iterator``
         """
         directoryAbsolutePath = os.path.abspath(self.directoryPath)
@@ -71,7 +79,7 @@ class Extractor(object):
             folders.sort()
             filenames.sort()
             for filename in filenames:
-                filename = relpath(os.path.join(root, filename).replace(os.sep, '/'), self.directoryPath)
+                filename = os.path.relpath(os.path.join(root, filename).replace(os.sep, '/'), self.directoryPath)
                 for filemask in self.excludeMasks:
                     if pathmatch(filemask, filename):
                         break
@@ -79,14 +87,14 @@ class Extractor(object):
                     for filemask in self.includeMasks:
                         if pathmatch(filemask, filename):
                             filepath = os.path.join(directoryAbsolutePath, filename)
-                            for message, context, position, comments in self.extractFromFile(filepath):
-                                yield message, context, filename + ":" + str(position), comments
+                            for message, plural, context, breadcrumb, position, comments in self.extractFromFile(filepath):
+                                yield message, plural, context, (filename + (":"+breadcrumb if breadcrumb else ""), position), comments
 
 
     def extractFromFile(self, filepath):
         """ Extracts messages from a specific file.
 
-        :return:    An iterator over ``(message, context, position, comments)`` tuples.
+        :return:    An iterator over ``(message, plural, context, position, comments)`` tuples.
         :rtype:     ``iterator``
         """
         pass
@@ -102,7 +110,7 @@ class javascript(Extractor):
 
     def extractJavascriptFromFile(self, fileObject):
 
-        from potter.jslexer import tokenize, unquote_string
+        from extractors.jslexer import tokenize, unquote_string
         funcname = message_lineno = None
         messages = []
         last_argument = None
@@ -257,10 +265,12 @@ class javascript(Extractor):
                     continue
 
                 messages = tuple(msgs)
-                if len(messages) == 1:
-                    messages = messages[0]
+                message = messages[0]
+                plural = None
+                if len(messages) == 2:
+                    plural = messages[1]
 
-                yield messages, context, lineno, comments
+                yield message, plural, context, None, lineno, comments
 
 
 
@@ -281,7 +291,7 @@ class txt(Extractor):
             for line in [line.strip("\n\r") for line in fileObject.readlines()]:
                 lineCount += 1
                 if line:
-                    yield line, None, str(lineCount), []
+                    yield line, None, None, None, lineCount, []
 
 
 
@@ -311,7 +321,7 @@ class json(Extractor):
     def extractFromFile(self, filepath):
         with codecs.open(filepath, "r", 'utf-8') as fileObject:
             for message, breadcrumbs in self.extractFromString(fileObject.read()):
-                yield message, None, self.formatBreadcrumbs(breadcrumbs), []
+                yield message, None, None, self.formatBreadcrumbs(breadcrumbs), -1, []
 
     def extractFromString(self, string):
         self.breadcrumbs = []
@@ -344,7 +354,7 @@ class json(Extractor):
         for keyword in dictionary:
             self.breadcrumbs.append(keyword)
             if keyword in self.keywords:
-                if isinstance(dictionary[keyword], stringType):
+                if isinstance(dictionary[keyword], unicode):
                     yield dictionary[keyword], self.breadcrumbs
                 elif isinstance(dictionary[keyword], list):
                     for message, breadcrumbs in self.extractList(dictionary[keyword]):
@@ -364,7 +374,7 @@ class json(Extractor):
         index = 0
         for listItem in itemsList:
             self.breadcrumbs.append(index)
-            if isinstance(listItem, stringType):
+            if isinstance(listItem, unicode):
                 yield listItem, self.breadcrumbs
             del self.breadcrumbs[-1]
             index += 1
@@ -372,7 +382,7 @@ class json(Extractor):
     def extractDictionary(self, dictionary):
         for keyword in dictionary:
             self.breadcrumbs.append(keyword)
-            if isinstance(dictionary[keyword], stringType):
+            if isinstance(dictionary[keyword], unicode):
                 yield dictionary[keyword], self.breadcrumbs
             del self.breadcrumbs[-1]
 
@@ -398,7 +408,7 @@ class xml(Extractor):
             xmlDocument = etree.parse(fileObject)
             for keyword in self.keywords:
                 for element in xmlDocument.iter(keyword):
-                    position = str(element.sourceline)
+                    position = element.sourceline
                     if element.text is not None:
                         context = None
                         comments = []
@@ -406,15 +416,16 @@ class xml(Extractor):
                             jsonExtractor = self.getJsonExtractor()
                             jsonExtractor.setOptions(self.keywords[keyword]["extractJson"])
                             for message, breadcrumbs in jsonExtractor.extractFromString(element.text):
-                                yield message, context, position + ":" + json.formatBreadcrumbs(breadcrumbs), comments
+                                yield message, None, context, json.formatBreadcrumbs(breadcrumbs), position, comments
                         else:
+                            breadcrumb = None
                             if "locationAttributes" in self.keywords[keyword]:
                                 attributes = [element.get(attribute) for attribute in self.keywords[keyword]["locationAttributes"] if attribute in element.attrib]
-                                position += " ({attributes})".format(attributes=", ".join(attributes))
+                                breadcrumb = "({attributes})".format(attributes=", ".join(attributes))
                             if "tagAsContext" in self.keywords[keyword]:
                                 context = keyword
                             if "context" in element.attrib:
-                                context = element.get("context")
+                                context = unicode(element.get("context"))
                             if "comment" in element.attrib:
                                 comment = element.get("comment")
                                 comment = u" ".join(comment.split()) # Remove tabs, line breaks and unecessary spaces.
@@ -423,9 +434,9 @@ class xml(Extractor):
                                 for splitText in element.text.split():
                                     # split on whitespace is used for token lists, there, a leading '-' means the token has to be removed, so it's not to be processed here either
                                     if splitText[0] != "-":
-                                        yield splitText, context, position, comments
+                                        yield unicode(splitText), None, context, breadcrumb, position, comments
                             else:
-                                yield element.text, context, position, comments
+                                yield unicode(element.text), None, context, breadcrumb, position, comments
 
 
 # Hack from http://stackoverflow.com/a/2819788
@@ -459,4 +470,4 @@ class ini(Extractor):
             context = None
             position = " ({})".format(keyword)
             comments = []
-            yield message, context, position, comments
+            yield message, None, context, None, position, comments

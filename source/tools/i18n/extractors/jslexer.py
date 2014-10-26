@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Copyright (C) 2008-2011 Edgewall Software
-# Copyright (C) 2013 Wildfire Games
+# Copyright (C) 2013-2014 Wildfire Games
 # All rights reserved.
 #
 # Redistribution and use in source and binary forms, with or without modification, are permitted provided that the
@@ -25,7 +25,7 @@
 # individuals. For the exact contribution history, see the revision
 # history and logs:
 # • http://babel.edgewall.org/log/trunk/babel/messages
-# • http://trac.wildfiregames.com/browser/ps/trunk/source/tools/i18n/potter
+# • http://trac.wildfiregames.com/browser/ps/trunk/source/tools/i18n/extractors/jslexer.py
 
 """A simple JavaScript 1.5 lexer which is used for the JavaScript
 extractor.
