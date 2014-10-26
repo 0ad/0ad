@@ -6,14 +6,15 @@
 # Translators:
 # Cheng-Chia Tseng <pswo10680@gmail.com>, 2014
 # Jeff Huang <s8321414@gmail.com>, 2014
+# Mysterelee <8161525@qq.com>, 2014
 # You-Ruei Tzeng <e222et@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-27 05:10+0000\n"
-"Last-Translator: Cheng-Chia Tseng <pswo10680@gmail.com>\n"
+"PO-Revision-Date: 2014-10-08 10:23+0000\n"
+"Last-Translator: Mysterelee <8161525@qq.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -263,7 +264,7 @@ msgstr "有襯墊的盔甲"
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.gaul
 #: simulation/data/technologies/armor_infantry_hack_01.jsonspecificName.iber
 msgid "Spolas"
-msgstr "Spolas"
+msgstr "軍團段甲"
 
 #: simulation/data/technologies/armor_infantry_02.jsondescription
 #: simulation/data/technologies/armor_infantry_hack_02.jsondescription
@@ -294,7 +295,7 @@ msgstr "步兵薄亞麻護甲"
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.mace
 #: simulation/data/technologies/armor_infantry_hack_02.jsonspecificName.rome
 msgid "Linothorakes"
-msgstr "Linothorakes"
+msgstr "層麻護甲"
 
 #: simulation/data/technologies/armor_infantry_hack_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_hack_02.jsontooltip
@@ -308,7 +309,7 @@ msgstr "使用青銅薄片強化的盔甲。"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsongenericName
 msgid "Scale Body Armor"
-msgstr "鱗甲"
+msgstr "魚鱗铠甲"
 
 #: simulation/data/technologies/armor_infantry_hack_03.jsonspecificName.rome
 msgid "Lorica Squamata"
@@ -395,11 +396,11 @@ msgstr "銅製護盾鑲邊"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.athen
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.hele
 msgid "Chalkaspides"
-msgstr "Chalkaspides"
+msgstr "銅盾步兵"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_03.jsonspecificName.mace
 msgid "Chrysaspides"
-msgstr "Chrysaspides"
+msgstr "金盾步兵"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsondescription
 msgid ""
@@ -422,7 +423,7 @@ msgstr "銀製盾牌"
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.hele
 #: simulation/data/technologies/armor_infantryspearmen_pierce_04.jsonspecificName.mace
 msgid "Argyraspides"
-msgstr "Argyraspides"
+msgstr "银盾军"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
@@ -438,17 +439,17 @@ msgstr "船體鉛殼"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
-msgstr "Hypozomata 支撐了整個船體。"
+msgstr "亞麻繩支撐了整個船體。"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsontooltip
 msgid ""
 "The hypozomata braces the ship's structure. +2 levels to all ship armor "
 "types."
-msgstr "Hypozomata 支撐了整個船體。所有船隻的所有傷害類型皆 +2 盔甲等級。"
+msgstr "亞麻繩支撐了整個船體。所有船隻的所有傷害類型皆 +2 盔甲等級。"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsongenericName
 msgid "Hypozomata undergirding"
-msgstr "Hypozomata undergirding"
+msgstr "亞麻繩底層加固"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
@@ -1008,11 +1009,11 @@ msgstr "銀之挖掘"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
-msgstr "Krenides 的礦脈"
+msgstr "克連尼地的礦脈"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
-msgstr "Laureion 的礦脈"
+msgstr "勞雷恩的礦脈"
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
@@ -1459,7 +1460,7 @@ msgstr "公眾集會"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.rome
 msgid "Comitium"
-msgstr "Comitium"
+msgstr "公共會場"
 
 #: simulation/data/technologies/pop_civic_02.jsonspecificName.athen
 msgid "Ekklesia"
@@ -2480,7 +2481,7 @@ msgid ""
 "utterances, set out in Greek hexameters, purchased from a sibyl by the last "
 "king of Rome, Tarquinius Superbus, and consulted at momentous crises through"
 " the history of the Republic and the Empire."
-msgstr "預知未來的書籍或稱「Libri Sibyllini」是一套神諭及談話的集合，記載於希臘的 Hexameters 中，由羅馬的最後一個國王，盧基烏斯·塔奎尼烏斯·蘇培布斯，從一位女預言家處購得，並透過共和國及帝國的歷史得知有重大危機即將發生。"
+msgstr "預知未來的書籍或稱「西彼拉占語集」是一套神諭及談話的集合，記載於希臘的六步格詩中，由羅馬的最後一個國王，盧基烏斯·塔奎尼烏斯·蘇培布斯，從一位女預言家處購得，並透過共和國及帝國的歷史得知有重大危機即將發生。"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsontooltip
 msgid "+25% Vision range for all units."
@@ -2492,7 +2493,7 @@ msgstr "預知未來的書籍"
 
 #: simulation/data/technologies/romans/vision_sibylline.jsonspecificName
 msgid "Libri Sibyllini"
-msgstr "Libri Sibyllini"
+msgstr "西彼拉占語集"
 
 #: simulation/data/technologies/successors/pair_unlock_champions.jsongenericName
 msgid "Traditional Army vs. Reform Army"

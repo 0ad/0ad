@@ -4,39 +4,40 @@
 # Ascendant project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-26 09:21+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Arabic (Egypt) (http://www.transifex.com/projects/p/0ad/language/ar_EG/)\n"
+"PO-Revision-Date: 2014-10-25 21:00+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Potter 1.0\n"
-"Language: ar_EG\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_cavalry.xml:33
 #: simulation/templates/template_unit_champion_cavalry.xml:22
 #: simulation/templates/template_unit_hero_cavalry.xml:26
 msgid "Cavalry"
-msgstr ""
+msgstr "მხედარი"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:57
 msgid "Citizen"
-msgstr ""
+msgstr "მოქალაქე"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:57
 msgid "Soldier"
-msgstr ""
+msgstr "ჯარისკაცი"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:53
@@ -53,7 +54,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "საწყისი"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:36
@@ -69,11 +70,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "შემტაკებელი"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:28
 msgid "Melee Cavalry"
-msgstr ""
+msgstr "შემტაკებელი მხედარი"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:20
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:36
@@ -85,11 +86,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:26
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:24
 msgid "Spear"
-msgstr ""
+msgstr "სასროლი შუბი"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
 msgid "Cavalry Spearman"
-msgstr ""
+msgstr "მხედარი სასროლი შუბით"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:30
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:37
@@ -98,11 +99,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
 msgid "Sword"
-msgstr ""
+msgstr "ხმალი"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:31
 msgid "Cavalry Swordsman"
-msgstr ""
+msgstr "ხმლიანი მხედარი"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:19
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:28
@@ -115,11 +116,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged.xml:27
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 msgid "Ranged"
-msgstr ""
+msgstr "მსროლელი"
 
 #: simulation/templates/template_unit_cavalry_ranged.xml:18
 msgid "Ranged Cavalry"
-msgstr ""
+msgstr "მსროლელი მხედარი"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:28
@@ -129,11 +130,11 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:27
 #: simulation/templates/template_unit_infantry_ranged_archer.xml:28
 msgid "Archer"
-msgstr ""
+msgstr "მშვილდოსანი"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:25
 msgid "Cavalry Archer"
-msgstr ""
+msgstr "მშვილდოსანი მხედარი"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:24
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:27
@@ -141,144 +142,144 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Javelin"
-msgstr ""
+msgstr "შუბოსანი"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:25
 msgid "Cavalry Skirmisher"
-msgstr ""
+msgstr "შემტაკებელი მხედარი"
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
-msgstr ""
+msgstr "ფალავანი"
 
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
-msgstr ""
+msgstr "ფალავანი ერთეული"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "ფალავანი მხედარი"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:29
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "ფალავანი მშვილდოსან მხედარი"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
 msgid "Champion Cavalry Skirmisher"
-msgstr ""
+msgstr "ფალავანი შემტაკებელი მხედარი"
 
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:37
 msgid "Champion Cavalry Spearman"
-msgstr ""
+msgstr "ფალავანი მხედარი სასროლი შუბით"
 
 #: simulation/templates/template_unit_champion_cavalry_swordsman.xml:38
 msgid "Champion Cavalry Swordsman"
-msgstr ""
+msgstr "ფალავანი ხმლიანი მხედარი"
 
 #: simulation/templates/template_unit_champion_elephant.xml:26
 #: simulation/templates/template_unit_hero_elephant_melee.xml:47
 #: simulation/templates/units/maur_elephant_archer_b.xml:24
 msgid "Elephant"
-msgstr ""
+msgstr "სპილო"
 
 #: simulation/templates/template_unit_champion_elephant.xml:27
 msgid "War Elephant"
-msgstr ""
+msgstr "საბრძოლო სპილო"
 
 #: simulation/templates/template_unit_champion_infantry.xml:34
 #: simulation/templates/template_unit_hero_infantry.xml:23
 #: simulation/templates/template_unit_infantry.xml:57
 #: simulation/templates/template_unit_infantry.xml:55
 msgid "Infantry"
-msgstr ""
+msgstr "ქვეითი"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
-msgstr ""
+msgstr "ფალავანი ქვეითი"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
-msgstr ""
+msgstr "ფალავანი მშვილდოსანი"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:32
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "ფალავანი შემტაკებელი"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:30
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:26
 msgid "Pike"
-msgstr ""
+msgstr "შუბი"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:31
 msgid "Champion Pikeman"
-msgstr ""
+msgstr "ფალავანი შუბოსანი"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:30
 msgid "Champion Spearman"
-msgstr ""
+msgstr "ფალავანი სასროლი შუბით"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:32
 msgid "Champion Swordsman"
-msgstr ""
+msgstr "ხმლიანი ფალავანი"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
-msgstr ""
+msgstr "მსროლელი ფალავანი"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:15
 #: simulation/templates/template_unit_mechanical.xml:14
 msgid "Mechanical"
-msgstr ""
+msgstr "მექანიკური"
 
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical_siege.xml:12
 #: simulation/templates/template_unit_mechanical_siege.xml:13
 msgid "Siege"
-msgstr ""
+msgstr "საალყე"
 
 #: simulation/templates/template_unit_champion_siege.xml:17
 msgid "Super Siege"
-msgstr ""
+msgstr "ძალიან საალყე"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "ძაღლი"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "შენობებს ვერ ესხმის თავს."
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
-msgstr ""
+msgstr "საბრძოლო ძაღლი"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "ფაუნა"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
-msgstr ""
+msgstr "თევზი"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "მოკალი, შემდეგ შეაგროვე ხორცი ოკეანის ამ გულუხვი წყაროდან."
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Cetacean"
-msgstr ""
+msgstr "ვეშაპისებრი"
 
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
 msgid "Hero"
-msgstr ""
+msgstr "გმირი"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "მხედარი გმირი"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:31
 msgid "Hero Cavalry Archer"
@@ -765,7 +766,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_pericles.xml:26
 msgid "Pericles"
-msgstr ""
+msgstr "პერიკლე"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
@@ -789,7 +790,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
-msgstr ""
+msgstr "თემისტოკლე"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."

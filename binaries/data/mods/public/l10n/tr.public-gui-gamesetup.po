@@ -11,13 +11,13 @@
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
 # faradundamarti <faradundamarti@yandex.com>, 2013
 # Furkan Çevik <furkan_ts1967@hotmail.com>, 2013
-# K. Emre, 2014
+# Kudret Emre <kudretemre@hotmail.com.tr>, 2014
 # mehmet akar <mehmettakar.35@gmail.com>, 2013
 # Merve BİÇKES <dark_angel_369_06@hotmail.com>, 2014
 # Mete Han <scorpion000000@hotmail.com>, 2013
 # Muhammed Aydın <mma-95@hotmail.com>, 2013
 # reprezalio <yenilmezzserdar@gmail.com>, 2014
-# Cumali <neooneone@gmail.com>, 2014
+# schaft <neooneone@gmail.com>, 2014
 # Serkan <fkserkank@gmail.com>, 2013
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # ubuntuki <aleverzurumlu@gmail.com>, 2014
@@ -32,8 +32,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-26 19:30+0000\n"
-"Last-Translator: Alp Eren <swertyy@hotmail.com>\n"
+"PO-Revision-Date: 2014-10-16 18:00+0000\n"
+"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -238,7 +238,7 @@ msgstr "Yükleniyor..."
 #: gui/gamesetup/gamesetup.js:1417
 #, python-format
 msgid "AI: %(ai)s"
-msgstr "Yapay Zeka: %(ai)s"
+msgstr "YZ: %(ai)s"
 
 #: gui/gamesetup/gamesetup.js:1422
 msgid "Unassigned"
@@ -371,11 +371,11 @@ msgstr "Yapay Zeka Ayarları"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr "Yapay Zeka Oyuncu:"
+msgstr "Yapay Zeka Oyuncusu:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr "Yapay zeka Zorluğu:"
+msgstr "Yapay Zeka Zorluğu:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
 #: (caption)
@@ -425,7 +425,7 @@ msgstr "Oyuncu seç."
 
 #: gui/gamesetup/gamesetup.xml:81 (tooltip)
 msgid "Configure AI settings."
-msgstr "Yapay zeka ayarla"
+msgstr "Yapay Zeka ayarlarını yapılandır."
 
 #: gui/gamesetup/gamesetup.xml:84 (tooltip)
 msgid "Select player's civilization."
@@ -514,7 +514,7 @@ msgstr "Galibiyet koşulunu seç."
 
 #: gui/gamesetup/gamesetup.xml:295 (caption)
 msgid "Population Cap:"
-msgstr "Nüfus tepe noktası: "
+msgstr "Nüfus Tepe Noktası: "
 
 #: gui/gamesetup/gamesetup.xml:299 (tooltip)
 msgid "Select population cap."
@@ -584,7 +584,7 @@ msgstr "Sunucu adı veya IP:"
 #: gui/gamesetup/gamesetup_mp.xml:49 (caption)
 #: gui/gamesetup/gamesetup_mp.xml:91 (caption)
 msgid "Continue"
-msgstr "Devam edin"
+msgstr "Devam et"
 
 #: gui/gamesetup/gamesetup_mp.xml:62 (caption)
 msgid "Set up your server to host."

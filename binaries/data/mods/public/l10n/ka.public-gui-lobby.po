@@ -1,0 +1,577 @@
+# Translation template for 0 A.D. — Empires Ascendant.
+# Copyright © 2014 Wildfire Games
+# This file is distributed under the same license as the 0 A.D. — Empires
+# Ascendant project.
+# 
+# Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: 0 A.D.\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"PO-Revision-Date: 2014-10-25 20:40+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Potter 1.0\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: gui/lobby/lobby.js:25
+msgctxt "map size"
+msgid "Any"
+msgstr "რომელიმე"
+
+#: gui/lobby/lobby.js:33
+msgctxt "player number"
+msgid "Any"
+msgstr "რომელიმე"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Any"
+msgstr "რომელიმე"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Skirmish"
+msgstr "შეტაკება"
+
+#: gui/lobby/lobby.js:37
+msgctxt "map"
+msgid "Random"
+msgstr "შემთხვევითი"
+
+#: gui/lobby/lobby.js:37
+msgid "Scenario"
+msgstr "სცენარი"
+
+#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
+#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+msgid "N/A"
+msgstr "ა/ე"
+
+#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#, python-format
+msgid "%(nick)s (%(rating)s)"
+msgstr "%(nick)s (%(rating)s)"
+
+#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
+#, c-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
+
+#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/lobby.js:442
+msgid "Busy"
+msgstr "დაკავებული"
+
+#: gui/lobby/lobby.js:447
+msgid "Away"
+msgstr "გასული"
+
+#: gui/lobby/lobby.js:451
+msgid "Online"
+msgstr "ხაზზე"
+
+#: gui/lobby/lobby.js:455
+msgid "Offline"
+msgstr "გამორთული"
+
+#: gui/lobby/lobby.js:460
+msgctxt "lobby presence"
+msgid "Unknown"
+msgstr "უცნობი"
+
+#: gui/lobby/lobby.js:501
+msgid "A randomly selected map."
+msgstr "შემთხვევითად არჩეული რუკა."
+
+#: gui/lobby/lobby.js:526
+msgid "Sorry, no description available."
+msgstr "ვწუხვარ, აღწერა არ არის ხელმისაწვდომი."
+
+#: gui/lobby/lobby.js:554
+#, python-format
+msgid "This game's address '%(ip)s' does not appear to be valid."
+msgstr "ამ თამაშის მისამართი '%(ip)s' არ არის სწორი."
+
+#: gui/lobby/lobby.js:632
+#, python-format
+msgid "%(nick)s has joined."
+msgstr "%(nick)s შემოერთდა."
+
+#: gui/lobby/lobby.js:641
+#, python-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s გავიდა."
+
+#: gui/lobby/lobby.js:648
+#, python-format
+msgid "Invalid nickname: %(nick)s"
+msgstr "არასწორი მეტსახელი: %(nick)s"
+
+#: gui/lobby/lobby.js:655
+#, python-format
+msgid "%(oldnick)s is now known as %(newnick)s."
+msgstr "%(oldnick)s არის ცნობილი როგორც %(newnick)s."
+
+#: gui/lobby/lobby.js:812
+#, python-format
+msgid "We're sorry, the '%(cmd)s' command is not supported."
+msgstr "ვწუხვართ, %(cmd)s ბრძანება არ არის მხარდაჭერილი."
+
+#. Translation: IRC message prefix when the sender uses the /me command.
+#: gui/lobby/lobby.js:892
+#, python-format
+msgid "* %(sender)s"
+msgstr "* %(sender)s"
+
+#. Translation: IRC message issued using the ‘/me’ command.
+#: gui/lobby/lobby.js:894
+#, python-format
+msgid "%(sender)s %(action)s"
+msgstr "%(sender)s %(action)s"
+
+#. Translation: IRC message prefix.
+#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
+#, python-format
+msgid "<%(sender)s>"
+msgstr "<%(sender)s>"
+
+#. Translation: IRC message.
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#, python-format
+msgid "%(sender)s %(message)s"
+msgstr "%(sender)s %(message)s"
+
+#. Translation: IRC system message.
+#: gui/lobby/lobby.js:905
+#, python-format
+msgid "== %(message)s"
+msgstr "== %(message)s"
+
+#. Translation: Time as shown in the multiplayer lobby (when you enable it in
+#. the
+#. options page).
+#. For a list of symbols that you can use, see:
+#. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
+#. #TOC-Date-Field-Symbol-Table
+#: gui/lobby/lobby.js:936
+msgid "HH:mm"
+msgstr "HH:mm"
+
+#. Translation: Time prefix as shown in the multiplayer lobby (when you enable
+#. it
+#. in the options page).
+#: gui/lobby/lobby.js:939
+#, python-format
+msgid "[%(time)s]"
+msgstr "[%(time)s]"
+
+#. Translation: IRC message format when there is a time prefix.
+#: gui/lobby/lobby.js:942
+#, python-format
+msgid "%(time)s %(message)s"
+msgstr "%(time)s %(message)s"
+
+#: gui/lobby/lobby.js:992
+msgid "Please do not spam. You have been blocked for thirty seconds."
+msgstr "გთხოვ, არ მოაყარო. შეზღუდული ხარ 30 წამით."
+
+#: gui/lobby/prelobby.js:40
+msgid "Connecting..."
+msgstr "დაკავშირება..."
+
+#: gui/lobby/prelobby.js:62
+msgid "Registering..."
+msgstr "აღრიცხვა..."
+
+#: gui/lobby/prelobby.js:99
+msgid "Please enter your username"
+msgstr "გთხოვ, შეიყვანე მომხმარებელი"
+
+#: gui/lobby/prelobby.js:105
+msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
+msgstr "მომხმარებელი არ უნდა შეიცავდეს [, ], საერთშიფრს, ჰარს ან მძიმეს"
+
+#: gui/lobby/prelobby.js:111
+msgid "Please enter your password"
+msgstr "გთხოვ, შეიყვანე დათქმული სიტყვა"
+
+#: gui/lobby/prelobby.js:124
+msgid "Please enter your password again"
+msgstr "გთხოვ, კიდევ ერთხელ შეიყვანე დათქმული სიტყვა"
+
+#: gui/lobby/prelobby.js:130
+msgid "Passwords do not match"
+msgstr "დათქმული სიტყვები არ ემთხვევა"
+
+#: gui/lobby/prelobby.js:136
+msgid "Please read the Terms of Service"
+msgstr "გთხოვ, წაიკითხე მომსახურების პირობები"
+
+#: gui/lobby/prelobby.js:142
+msgid "Please read the Terms of Use"
+msgstr "გთხოვ, წაიკითხე მოხმარების პირობები"
+
+#: gui/lobby/prelobby.js:148
+msgid "Please agree to the Terms of Service and Terms of Use"
+msgstr "გთხოვ, დაეთანხმე მომსახურების და მოხმარების პირობებს"
+
+#: gui/lobby/prelobby.js:246
+msgid "Register"
+msgstr "აღრიცხვა"
+
+#: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:109 (caption)
+msgid "Connect"
+msgstr "დაკავშირება"
+
+#: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:78 (caption)
+msgid "Terms of Service"
+msgstr "მომსახურების პირობები"
+
+#: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:83 (caption)
+msgid "Terms of Use"
+msgstr "მოხმარების პირობები"
+
+#: gui/lobby/lobby.xml:14 (caption) gui/lobby/prelobby.xml:18 (caption)
+msgid "Multiplayer Lobby"
+msgstr "ბევრი მოთამაშის ვესტიბიული"
+
+#: gui/lobby/lobby.xml:25 (heading)
+msgid "Status"
+msgstr "მდგომარეობა"
+
+#: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
+#: gui/lobby/lobby.xml:254 (heading)
+msgid "Name"
+msgstr "სახელი"
+
+#: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
+msgid "Rating"
+msgstr "შეფასება"
+
+#: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
+msgid "Current Rank:"
+msgstr "მიმდინარე შეფასება:"
+
+#: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
+msgid "Highest Rating:"
+msgstr "უმაღლესი შეფასება:"
+
+#: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
+msgid "Total Games:"
+msgstr "სულ თამაშები:"
+
+#: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
+msgid "Wins:"
+msgstr "მოგებები:"
+
+#: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
+msgid "Losses:"
+msgstr "წაგებები:"
+
+#: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
+msgid "Win Rate:"
+msgstr "მოგების სიხშირე:"
+
+#: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
+msgid "Leaderboard"
+msgstr "ლიდერების დაფა"
+
+#: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
+msgid "User Profile Lookup"
+msgstr "მოხმარებლის პროფილის ძებნა"
+
+#: gui/lobby/lobby.xml:111 (caption)
+msgid "Map Type:"
+msgstr "რუკის ტიპი:"
+
+#: gui/lobby/lobby.xml:123 (caption)
+msgid "Map Size:"
+msgstr "რუკის ზომა"
+
+#: gui/lobby/lobby.xml:140 (caption)
+msgid "Players:"
+msgstr "მოთამაშეები:"
+
+#. Join the game currently selected in the list.
+#: gui/lobby/lobby.xml:149 (caption)
+msgid "Join Game"
+msgstr "შეუერთდი თამაშს"
+
+#: gui/lobby/lobby.xml:155 (caption)
+msgid "Host Game"
+msgstr "უმასპინძლე თამაშს"
+
+#: gui/lobby/lobby.xml:162 (caption)
+msgid "Main Menu"
+msgstr "მთავარი მენიუ"
+
+#: gui/lobby/lobby.xml:179 (heading)
+msgid "Map Name"
+msgstr "რუკის სახელი"
+
+#: gui/lobby/lobby.xml:182 (heading)
+msgctxt "map"
+msgid "Size"
+msgstr "ზომა"
+
+#: gui/lobby/lobby.xml:185 (heading)
+msgctxt "map"
+msgid "Type"
+msgstr "ტიპი"
+
+#: gui/lobby/lobby.xml:188 (heading)
+msgid "Players"
+msgstr "მოთამაშეები"
+
+#: gui/lobby/lobby.xml:218 (caption)
+msgid "Show full games"
+msgstr "აჩვენე სრული თამაშები"
+
+#: gui/lobby/lobby.xml:251 (heading)
+msgid "Rank"
+msgstr "წოდება"
+
+#: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
+msgid "Back"
+msgstr "უკან"
+
+#: gui/lobby/lobby.xml:272 (caption)
+msgid "Update"
+msgstr "განახლება"
+
+#: gui/lobby/lobby.xml:282 (caption)
+msgid "Enter username:"
+msgstr "შეიყვანე მომხარებელი:"
+
+#: gui/lobby/lobby.xml:288 (caption)
+msgid "View Profile"
+msgstr "პროფილის ნახვა"
+
+#: gui/lobby/lobby.xml:321 (caption)
+msgid "Player not found."
+msgstr "მოთამაშე არ მოიძებნა."
+
+#: gui/lobby/prelobby.xml:23 (caption)
+msgid "Create a new account"
+msgstr "შექმენი ახალი ანგარიში"
+
+#: gui/lobby/prelobby.xml:27 (caption)
+msgid "Login to an existing account"
+msgstr "შედი არსებულ ანგარიშზე"
+
+#: gui/lobby/prelobby.xml:33 (caption)
+msgid "Connect to the game lobby"
+msgstr "შეუერთდი თამაშის ვესტიბიულს"
+
+#: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
+msgid "Login:"
+msgstr "მომხმარებელი:"
+
+#: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
+msgid "Password:"
+msgstr "დათქმული სიტყვა:"
+
+#: gui/lobby/prelobby.xml:59 (caption)
+msgid "Registration"
+msgstr "აღრიცხვა"
+
+#: gui/lobby/prelobby.xml:73 (caption)
+msgid "Password again:"
+msgstr "დათქმული სიტყვა ხელახლა:"
+
+#: gui/lobby/prelobby.xml:88 (caption)
+msgid "I have read and agree to the Terms of Service and Terms of Use:"
+msgstr "წაკითხული მაქვს და ვეთანხმები მომსახურების პირობებს და მოხმარების პირობებს:"
+
+#: gui/lobby/prelobby.xml:97 (caption)
+msgid "Cancel"
+msgstr "მოშორება"
+
+#: gui/lobby/Terms_of_Service.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
+msgstr "0 A.D. იმპერიების ძალა მრავალი მოთამაშის ვესტიბიულის მომსახურების პირობები"
+
+#: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
+msgid "Definitions:"
+msgstr "განმარტებები:"
+
+#: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
+msgid ""
+" * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
+"provided by Wildfire Games (WFG)."
+msgstr "* \"მომსახურება\" არის 0 A.D. იმპერიების ძალა მრავალი მოთამაშის ვესტიბიული წარმოდგენილი Wildfire Games-ის (WFG) მიერ."
+
+#: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
+msgid " * \"You\" are the user of the service."
+msgstr "* \"შენ\" ხარ ამ მომსახურების მომხმარებელი."
+
+#: gui/lobby/Terms_of_Service.txt:5
+msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
+msgstr "* \"ჩვენ\" ვართ Wildfire Games-ის (WFG) გუნდის ყველა წევრი."
+
+#: gui/lobby/Terms_of_Service.txt:6
+msgid ""
+" * \"Rating\" refers to the process of analyzing various user statistics for"
+" the purpose of generating a single comprehensive score."
+msgstr "* \"შეფასება\" უკავშირდება სხვადასხვა მომხმარებლის სტატისტიკის ანალიზის პროცესს ერთი, ამომწურავი ქულის წარმოქმნის მიზნით."
+
+#: gui/lobby/Terms_of_Service.txt:7
+msgid " * \"Moderate\" refers to the process of enforcing usage policies."
+msgstr "* \"განკარგვა\" უკავშირდება მოხმარების წესების დაძალების პროცესს."
+
+#: gui/lobby/Terms_of_Service.txt:8
+msgid "By using the service you agree to:"
+msgstr "მომსახურების გამოყენებით შენ ეთანხმები:"
+
+#: gui/lobby/Terms_of_Service.txt:9
+msgid " 1. Follow all usage policies."
+msgstr "1. მიჰყვები მოხმარების პოლიტიკას"
+
+#: gui/lobby/Terms_of_Service.txt:10
+msgid ""
+" 2. Allow user identifiable statistics to be gathered for the purposes of "
+"rating, user profiles, and community statistics."
+msgstr "2. იძლევი უფლებას რომ შეგროვდეს ამოცნობადი სტატისტიკა შეფასების განზრახვით, მომხმარებლის პროფილებისთვის და საზოგადოების სტატისტიკისთვის."
+
+#: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
+msgid "We also reserve the right to:"
+msgstr "ჩვენ ასევე ვიტოვებთ უფლებას რომ:"
+
+#: gui/lobby/Terms_of_Service.txt:12
+msgid " 1. Moderate the service."
+msgstr "1. განვკარგოთ მომსახურება."
+
+#: gui/lobby/Terms_of_Service.txt:13
+msgid " 2. Appoint others to moderate the service."
+msgstr "2. სხვებს განვაკარგვინოთ მომსახურება."
+
+#: gui/lobby/Terms_of_Service.txt:14
+msgid ""
+" 3. Discontinue or interrupt service at any time with or without prior "
+"announcement."
+msgstr "3. აღარ გავაგრძელოთ ან შევწყვიტოთ მომსახურება ნებისმიერ დროს წინასწარი განცხადებით ან მის გარეშე."
+
+#: gui/lobby/Terms_of_Service.txt:15
+msgid " 4. Change the service at any time with or without announcement."
+msgstr "4. შევცვალოთ მომსახურება ნებისმიერ დროს გამოცხადებით ან მის გარეშე."
+
+#: gui/lobby/Terms_of_Service.txt:16
+msgid ""
+" 5. Delete any and all service data at any time with or without "
+"announcement."
+msgstr "5. წავშალოთ მომსახურების ნებისმიერი და ყველა მონაცემი ნებისმიერ დროს გამოცხადებით ან მის გარეშე."
+
+#: gui/lobby/Terms_of_Service.txt:17
+msgid ""
+" 6. Collect any or all user identifiable statistics at any time without "
+"consent for:"
+msgstr "6. შევაგროვოთ ნებისმიერი ან ყველა ამოცნობადი ინფორმაცია ნებისმიერ დროს თანხმობის გარეშე:"
+
+#: gui/lobby/Terms_of_Service.txt:18
+msgid ""
+"  a. Private analysis by Wildfire Games (WFG) team members and their "
+"affiliates."
+msgstr "ა. პირადი ანალიზისთვის Wildfire Games-ის (WFG) ჯგუფის წევრებისთვის და მათთან დაკავშირებული ხალხისთვის."
+
+#: gui/lobby/Terms_of_Service.txt:19
+msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
+msgstr "ბ. ვერ ამოცნობადი საჯარო გამოცემებისთვის Wildfire Games-ის (WFG) ჯგუფის წევრებისგან."
+
+#: gui/lobby/Terms_of_Service.txt:20
+msgid ""
+" 7. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr "7. შევცვალოთ ეს დოკუმენტი ნებისმიერი სახით; ნებისმიერ დროს; იმ პირობით, რომ მომსახურების მომხმარებელს მიეცემა შესატყვისი შეტყობინება ცვლილების შესახებ (შესატყვისი შეტყობინების დახასიათება იქნება განსაზღვრული Wildfire Games-ის (WFG) წევრების მიერ)."
+
+#: gui/lobby/Terms_of_Use.txt:1
+msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
+msgstr "0 A.D. იმპერიების ძალა მრავალი მოთამაშის ვესტიბიულის მოხმარების პირობები"
+
+#: gui/lobby/Terms_of_Use.txt:5
+msgid ""
+" * \"Impersonate\" refers to the action in which you attempt to exploit "
+"another's identity for your own purposes."
+msgstr "* \"განსახიერება\" განსაზღვრავს ქმედებას, რომელშიც შენ ცდილობ სხვისი სახელის გამოყენებას შენი პირადი ინტერესებისთვის."
+
+#: gui/lobby/Terms_of_Use.txt:6
+msgid ""
+" * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
+"number of recipients."
+msgstr "* \"დაბინძურება\" განსაზღვრავს შეუსაბამო ან შეუფერებელი შეტყობინებების გაგზავნას ბევრ მომხმარებელთან."
+
+#: gui/lobby/Terms_of_Use.txt:7
+msgid " * \"Rating\" refers to the per-user comprehensive score."
+msgstr "* \"შეფასება\" განსაზღვრავს თითო მომხმარებლის ამომწურავ ქულას."
+
+#: gui/lobby/Terms_of_Use.txt:8
+msgid ""
+" * \"Ranked games\" refers to games in which rating changing statistics are "
+"tracked."
+msgstr "* \"შეფასებული თამაშები\" განსაზღვრავს თამაშებს რომლების შეფასებების ცვლილებების სტატისტიკა არის ნათვანთვალები."
+
+#: gui/lobby/Terms_of_Use.txt:9
+msgid "You agree to:"
+msgstr "შენ ეთანხმები:"
+
+#: gui/lobby/Terms_of_Use.txt:10
+msgid ""
+" 1. Only create one account per unique user on the service unless authorized"
+" by a Wildfire Games (WFG) team member."
+msgstr "1. შექმნი მხოლოდ ერთ ანგარიშს თითო მომხმარებლისთვის, თუ Wildfire Games-ის (WFG) წევრი არ დაგრთავს სხვაგვარად."
+
+#: gui/lobby/Terms_of_Use.txt:11
+msgid ""
+" 2. Not post profane statements, rude humor, pornographic content, or "
+"discriminatory comments on the service."
+msgstr "2. არ გამოაქვეყნებ საქმეში ჩაუხედავ განცხადებებს, ბინძურ ხუმრობას, პორნოგრაფიულ მასალას, ან დამამცირებელ კომენტარს მომსახურებაზე."
+
+#: gui/lobby/Terms_of_Use.txt:12
+msgid " 3. Not purposefully demean the worth of others using the service."
+msgstr ""
+
+#: gui/lobby/Terms_of_Use.txt:13
+msgid ""
+" 4. Not use the service to promote specific goods, services, or products."
+msgstr "4. არ გამოიყენებ მომსახურებას რომ დააწინაურო რაიმე საქონელი, მომსახურება ან ნაწარმი."
+
+#: gui/lobby/Terms_of_Use.txt:14
+msgid " 5. Not impersonate other users of the service."
+msgstr "5. არ განასახიერებ ამ მომსახურების სხვა მომხმარებლებს."
+
+#: gui/lobby/Terms_of_Use.txt:15
+msgid " 6. Not spam the service."
+msgstr "6. არ დააბინძურებ მომსახურებას."
+
+#: gui/lobby/Terms_of_Use.txt:16
+msgid ""
+" 7. Not attempt to artificially adjust any user of the service's rating or "
+"any of the statistics which impact it. (Examples of this are, but are not "
+"limited to: cheating in ranked games, reverse engineering the service, and "
+"taking advantage of other users of the service.)"
+msgstr "7. არ სცდი ნებისმიერი მომხმარებლის შეფასების ან სტატისტიკის ხელოვნურად შეცვლას, რაც მასზე იმოქმედებს. (ამის მაგალითებია, მაგრამ ამით არ მთავრდება: თაღლითობა შეფასებულ თამაშში, მომსახურების შეტრიალებული ინჟინერია და სხვა მომხმარებლების უპირატესობის გამოყენება.)"
+
+#: gui/lobby/Terms_of_Use.txt:17
+msgid ""
+" 8. Allow yourself to be removed from the service if at any time a moderator"
+" determines your behavior is not consistent with these rules."
+msgstr "8. მისცემ თავს უფლებას მოშორდე მომსახურებიდან, თუ რაღაც დროს პატრონი იპოვის შენს ქცევაში წესებთან შეუსაბამობას."
+
+#: gui/lobby/Terms_of_Use.txt:19
+msgid ""
+" 1. Change this document in any way; at any time; on the condition that the "
+"user of the service is given adequate notice of the change (the definition "
+"of adequate notice will be determined at the time by a panel of Wildfire "
+"Games (WFG) team members)."
+msgstr "1. შევცვალოთ ეს დოკუმენტი ნებისმიერი სახით; ნებისმიერ დროს; იმ პირობით, რომ მომსახურების მომხმარებელს მიეცემა შესატყვისი შეტყობინება ცვლილების შესახებ (შესატყვისი შეტყობინების დახასიათება იქნება განსაზღვრული Wildfire Games-ის (WFG) წევრების მიერ)."

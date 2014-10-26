@@ -3,48 +3,50 @@
 # This file is distributed under the same license as the Pyrogenesis project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2013-06-22 12:54+0000\n"
-"Language-Team: Arabic (Egypt) (http://www.transifex.com/projects/p/0ad/language/ar_EG/)\n"
+"PO-Revision-Date: 2014-10-24 11:31+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Potter 1.0\n"
-"Language: ar_EG\n"
-"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:799
 #, c-format
 msgid "%s (custom build)"
-msgstr ""
+msgstr "%s (ხელით ნაშენები)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:804
 #, c-format
 msgid "%s (%ls)"
-msgstr ""
+msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:825
 msgid "custom build"
-msgstr ""
+msgstr "ხელით ნაშენები"
 
 #: i18n/L10n.cpp:272
 msgid "Long strings"
-msgstr ""
+msgstr "გრძელი სიმები"
 
 #: ps/SavedGame.cpp:129
 #, c-format
 msgid "Saved game to '%ls'"
-msgstr ""
+msgstr "თამაში შენახულია '%ls'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr ""
+msgstr "ეკრანის სურათი ჩაწერილია '%ls'"

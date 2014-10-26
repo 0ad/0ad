@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
+"PO-Revision-Date: 2014-10-24 19:51+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -210,7 +211,7 @@ msgstr[1] "%(number)s xogadores. %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1304
 msgid "Loading..."
-msgstr ""
+msgstr "Cargando…"
 
 #: gui/gamesetup/gamesetup.js:1417
 #, python-format
@@ -322,7 +323,7 @@ msgstr "Conquista"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Derrotar a todos os adversarios"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -330,17 +331,17 @@ msgstr "Marabilla"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Construír unha marabilla para gañar"
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Cargando «%(map)s»"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Xerando «%(map)s»"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -348,11 +349,11 @@ msgstr "Configuración da IA"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "Xogador da IA:"
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Dificultade da IA:"
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
 #: (caption)
@@ -613,7 +614,7 @@ msgstr "«O tempo, a medida que pasa, apréndenolo todo.» — Esquilo, «Promet
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "«Á sabedoría chégase mediante o sufrimento… Os favores concédennolos os deuses.» — Esquilo, «Agamenón»."
 
 #: gui/text/quotes.txt:8
 msgid ""

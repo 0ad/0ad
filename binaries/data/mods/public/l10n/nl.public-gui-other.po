@@ -5,14 +5,15 @@
 # 
 # Translators:
 # Floretta <florisjan.gerrits@gmail.com>, 2014
+# Max Klaversma <maxklaversma@gmail.com>, 2014
 # Sander Deryckere, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-27 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-16 13:32+0000\n"
+"Last-Translator: Max Klaversma <maxklaversma@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -213,7 +214,7 @@ msgstr "Laat gedetailleerde tips voor train-bare manschappen in manschap produce
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "FPS overlay"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
@@ -221,19 +222,19 @@ msgstr "Weergeef de frames per seconde in de rechter bovenhoek"
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "Echte tijd overlay"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "Geef de huidige systeemtijd weer in de rechter bovenhoek."
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "Speltijd overlay"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Geef de huidige simulatietijd weer in de rechter bovenhoek."
 
 #: gui/options/options.js:19
 msgid "Prefer GLSL"
@@ -251,7 +252,7 @@ msgstr "Postproces"
 msgid ""
 "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
 "GAME RESTART"
-msgstr ""
+msgstr "Gebruik postprocesfilters op het scherm (HDR, Mist, DOF, etc). VEREIST EEN GAME HERSTART"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -303,23 +304,23 @@ msgstr "Zachte schaduwen"
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "Snel & Lelijk water"
 
 #: gui/options/options.js:27
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "Gebruik de laagst mogelijke instellingen om water te renderen. Dit maakt andere instellingen irrelevant."
 
 #: gui/options/options.js:28
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "HQ Watereffecten"
 
 #: gui/options/options.js:28
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Gebruik hogere kwaliteit effecten voor water, renderen van kustgolfen, schuimkoppen en hekgolven."
 
 #: gui/options/options.js:29
 msgid "Real Water Depth"
@@ -347,7 +348,7 @@ msgstr "Gebruik een realistische refractieafbeelding, en geen transparantie voor
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
-msgstr ""
+msgstr "Waterschaduwen"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
@@ -719,7 +720,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVII: Quercus"
-msgstr ""
+msgstr "Alpha XVII: Quercus"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
@@ -821,11 +822,11 @@ msgstr "Toon het welkomstscherm. Nuttig als je het per ongeluk verborgen had."
 
 #: gui/pregame/mainmenu.xml:330 (caption)
 msgid "Mod Selection"
-msgstr ""
+msgstr "Mod selectie"
 
 #: gui/pregame/mainmenu.xml:331 (tooltip)
 msgid "Select mods to use."
-msgstr ""
+msgstr "Selecteer te gebruiken mods."
 
 #: gui/pregame/mainmenu.xml:384 (caption)
 msgid "Learn To Play"
@@ -1150,7 +1151,7 @@ msgstr "[icon=\"iconMap\"]  Grote kaarten veroorzaken veel problemen."
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
 "make them less laggy, more fun to play and historically accurate."
-msgstr ""
+msgstr "[icon=\"iconFormation\"] We hebben formaties uitgeschakeld totdat we uitvinden hoe we deze minder lag kunnen laten produceren, leuker om te spelen laten zijn en meer historisch accurate kunnen maken."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1477,21 +1478,21 @@ msgstr "- Perzen hebben toegang tot een groot aantal structurele en defensieve t
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "PIEKENIERS"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- Zwaar gepantserd en slow. Slechte aanval."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry for a 4x attack bonus or against other melee infantry"
 " to pin them them in place."
-msgstr ""
+msgstr "- Te gebruiken tegen cavalerie voor een 4x aanvalsbonus of tegen andere man-tegen-man infanterie om ze op hun plaats te zetten."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- Beschikbaar voor: Macedonians, Seleucids en Ptolemies."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -1567,7 +1568,7 @@ msgstr "- Kampioen infanterie beschikbaar voor de Spartanen."
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- Gebruik ze om vijandelijke cavalerie af te slachten of als ondersteuning van je reguliere infanterie."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -1575,27 +1576,27 @@ msgstr "- Gebruik de 'falanx' formatie voor extra bescherming."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "SPEERVECHTERS"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- De basis man-tegen-man infanterie voor elke civilisatie in het spel."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- Gebruik tegen cavalerie voor een 2x aanvalsbonus."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- Fatsoenlijke hack aanval en een goede charge bonus maken ze tot goede frontlinie troepen."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Ze worden tegengegaan door ranged eenheden en zwaardvechters. Ondersteun je speervechters met katapulten en cavalerie."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

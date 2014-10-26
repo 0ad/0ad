@@ -9,14 +9,13 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-27 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
-"Language-Team: Chinese (Taiwan) (Big5)  (http://www.transifex.com/projects/p/0ad/language/zh_TW.Big5/)\n"
+"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Potter 1.0\n"
-"Language: zh_TW.Big5\n"
+"Language: ka\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gui/civinfo/civinfo.js:108
@@ -136,7 +135,7 @@ msgstr ""
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "არცერთი"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
@@ -146,18 +145,18 @@ msgstr ""
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
-msgstr ""
+msgstr "დიახ"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
-msgstr ""
+msgstr "არა"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
 #: gui/splashscreen/splashscreen.xml:27 (caption)
 msgid "OK"
-msgstr ""
+msgstr "კარგი"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
@@ -471,7 +470,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:251
 #, python-format
 msgid "Build: %(buildDate)s (%(revision)s)"
-msgstr ""
+msgstr "ააშენე: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
@@ -479,7 +478,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "დამოწმება"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -502,7 +501,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
-msgstr ""
+msgstr "სახელმძღვანელო"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
@@ -568,7 +567,7 @@ msgstr ""
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "სცენარი"
 
 #: gui/summary/summary.js:510
 #, python-format
@@ -590,7 +589,7 @@ msgstr ""
 
 #: gui/civinfo/civinfo.xml:118 (caption)
 msgid "Close"
-msgstr ""
+msgstr "დახურვა"
 
 #: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
 #: (caption) gui/pregame/mainmenu.xml:286 (caption)
@@ -616,7 +615,7 @@ msgstr ""
 #: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
 #: (caption) gui/savedgames/save.xml:37 (caption)
 msgid "Cancel"
-msgstr ""
+msgstr "მოშორება"
 
 #: gui/locale/locale.xml:41 (caption)
 msgid "Advanced"
@@ -688,7 +687,7 @@ msgstr ""
 
 #: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
 msgid "Save"
-msgstr ""
+msgstr "შენახვა"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
@@ -762,7 +761,7 @@ msgstr ""
 #. Join a game by specifying the host's IP address.
 #: gui/pregame/mainmenu.xml:209 (caption)
 msgid "Join Game"
-msgstr ""
+msgstr "შეუერთდი თამაშს"
 
 #: gui/pregame/mainmenu.xml:210 (tooltip)
 msgid "Joining an existing multiplayer game."
@@ -770,7 +769,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:224 (caption)
 msgid "Host Game"
-msgstr ""
+msgstr "უმასპინძლე თამაშს"
 
 #: gui/pregame/mainmenu.xml:225 (tooltip)
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
@@ -840,7 +839,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:416 (caption)
 msgid "Multiplayer"
-msgstr ""
+msgstr "ბევრი მოთამაშე"
 
 #: gui/pregame/mainmenu.xml:417 (tooltip)
 msgid "Fight against one or more human players in a multiplayer game."
@@ -864,7 +863,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:463 (caption)
 msgid "Exit"
-msgstr ""
+msgstr "გასვლა"
 
 #: gui/pregame/mainmenu.xml:464 (tooltip)
 msgid "Exits the game."
@@ -888,7 +887,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:524 (caption)
 msgid "Chat"
-msgstr ""
+msgstr "ლაყბობა"
 
 #: gui/pregame/mainmenu.xml:525 (tooltip)
 msgid ""
@@ -910,7 +909,7 @@ msgstr ""
 
 #: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
 msgid "Delete"
-msgstr ""
+msgstr "წაშლა"
 
 #: gui/savedgames/load.xml:35 (caption)
 msgid "Load"
@@ -958,7 +957,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:91 (caption)
 msgid "Market"
-msgstr ""
+msgstr "ბაზარი"
 
 #: gui/summary/summary.xml:98 (caption)
 msgid "Miscellaneous"
@@ -1001,7 +1000,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:240 (caption)
 msgid "Economic"
-msgstr ""
+msgstr "ეკონომიკური"
 
 #: gui/summary/summary.xml:243 (caption)
 msgid "Outposts"
@@ -1009,7 +1008,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:246 (caption)
 msgid "Military"
-msgstr ""
+msgstr "სამხედრო"
 
 #: gui/summary/summary.xml:249 (caption)
 msgid "Fortresses"
@@ -1029,7 +1028,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:411 (caption)
 msgid "Infantry"
-msgstr ""
+msgstr "ქვეითი"
 
 #: gui/summary/summary.xml:414 (caption)
 msgid "Worker"
@@ -1037,11 +1036,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:417 (caption)
 msgid "Cavalry"
-msgstr ""
+msgstr "მხედარი"
 
 #: gui/summary/summary.xml:420 (caption)
 msgid "Champion"
-msgstr ""
+msgstr "ფალავანი"
 
 #: gui/summary/summary.xml:426 (caption)
 msgid "Navy"
@@ -1053,19 +1052,19 @@ msgstr ""
 
 #: gui/summary/summary.xml:569 (caption)
 msgid "Food"
-msgstr ""
+msgstr "საჭმელი"
 
 #: gui/summary/summary.xml:572 (caption)
 msgid "Wood"
-msgstr ""
+msgstr "ხე"
 
 #: gui/summary/summary.xml:575 (caption)
 msgid "Stone"
-msgstr ""
+msgstr "ქვა"
 
 #: gui/summary/summary.xml:578 (caption)
 msgid "Metal"
-msgstr ""
+msgstr "ლითონი"
 
 #: gui/summary/summary.xml:584 (caption)
 msgid "Treasures collected"
@@ -1117,7 +1116,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:989 (caption)
 msgid "Continue"
-msgstr ""
+msgstr "გააგრძელე"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"

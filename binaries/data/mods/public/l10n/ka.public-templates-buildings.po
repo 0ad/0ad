@@ -4,41 +4,43 @@
 # Ascendant project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
-"Language-Team: Luxembourgish (http://www.transifex.com/projects/p/0ad/language/lb/)\n"
+"PO-Revision-Date: 2014-10-25 21:00+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
+"Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Potter 1.0\n"
-"Language: lb\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: ka\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 
 #: simulation/templates/template_structure_civic.xml:15
 msgid "Civic"
-msgstr ""
+msgstr "სამოქალაქო"
 
 #: simulation/templates/template_structure_civic.xml:14
 msgid "Civic Structure"
-msgstr ""
+msgstr "სამოქალაქო შენობა"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:71
 #: simulation/templates/template_structure_civic_civil_centre.xml:34
 msgid "CivilCentre"
-msgstr ""
+msgstr "სამოქალაქო ცენტრი"
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr ""
+msgstr "ააშენე რომ დაეუფლო დიდ ტერიტორიას. გამოზარდე მოქალაქეები. გარნიზონი: 20. "
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
-msgstr ""
+msgstr "სამოქალაქო ცენტრი"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_defense_outpost.xml:60
@@ -48,20 +50,20 @@ msgstr ""
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_resource_corral.xml:28
 msgid "Village"
-msgstr ""
+msgstr "სოფელი"
 
 #: simulation/templates/template_structure_civic_house.xml:33
 #: simulation/templates/template_structure_civic_house.xml:30
 msgid "House"
-msgstr ""
+msgstr "სახლი"
 
 #: simulation/templates/template_structure_civic_house.xml:31
 msgid "Increase the population limit."
-msgstr ""
+msgstr "გაზარდე მოსახლეობის ზღვარი."
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "მკურნალი ზეფირი"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -72,261 +74,261 @@ msgstr ""
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr ""
+msgstr "ქალაქი"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
 msgid "Temple"
-msgstr ""
+msgstr "ტაძარი"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "გამოზარდე მკურნალები. გარნიზონში ჩააყენე 20-მდე ერთეული, რომ სწრაფად უმკურნალო (3 დწ წამში). გამოიკვლიე სამკურნალო და რელიგიური გაუმჯობესებები."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "კურნავს ახლომახლო ერთეულებს 1 დწ წამში."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
-msgstr ""
+msgstr "თავდაცვითი"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "თავდაცვითი შენობა"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr ""
+msgstr "თავდაცვის კოშკი"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "ისვრის ისრებს. დამატებითი დაცვისთვის გარნიზონში ხალხი ჩაუყენე."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr ""
+msgstr "თავდაცვის კოშკი"
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "საგუშაგო"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "ააშენე ნეიტრალურ და საკუთარ ტერიტორიებზე რომ დაზვერო ადგილები რუკაზე. ნელა კარგავს ჯანმრთელობას ნეიტრალურ ტერიტორიაზე."
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "კედელი შენი ქალაქის კარგად დასაცავად."
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr ""
+msgstr "ქვის კედელი"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "ერთეულებს მიეცი უფლება გაიარონ ქალაქის კედელში. შესაზღუდად შესაძლებელია ჩაკეტვა."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
-msgstr ""
+msgstr "ქალაქის ჭიშკარი"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "კედლის დაცვა"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr ""
+msgstr "კედლის გრძელი მონაკვეთები შესაძლებელია კარიბჭეებად გადაკეთდნენ."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "კედელზე მდგომ ერთეულებს აქვთ 3 დამატებითი ჯავშნის დონე"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "გადააკეთე ქვის კედელი ქალაქის ჭიშკრად"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
-msgstr ""
+msgstr "ისვრის ისრებს. ქალაქის კედლის თავდამსხმელებისგან დასაცავად გარნიზონში ხალხი ჩააყენე."
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
-msgstr ""
+msgstr "კედლის კოშკი"
 
 #: simulation/templates/template_structure_defense_wallset.xml:10
 msgid "City Wall"
-msgstr ""
+msgstr "ქალაქის კედელი"
 
 #: simulation/templates/template_structure_economic.xml:15
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Economic"
-msgstr ""
+msgstr "ეკონომიკური"
 
 #: simulation/templates/template_structure_economic.xml:14
 msgid "Economic Structure"
-msgstr ""
+msgstr "ეკონომიკური შენობა"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:24
 #: simulation/templates/template_structure_economic_farmstead.xml:21
 msgid "Farmstead"
-msgstr ""
+msgstr "კომლი"
 
 #: simulation/templates/template_structure_economic_farmstead.xml:22
 msgid "Dropsite for the food resource. Research food gathering improvements."
-msgstr ""
+msgstr "საჭმლის დასაყრელი. გამოიკვლიე საჭმლის მოპოვების გაუმჯობესებები."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
 #: simulation/templates/template_structure_military_dock.xml:27
 msgid "Market"
-msgstr ""
+msgstr "ბაზარი"
 
 #: simulation/templates/template_structure_economic_market.xml:22
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "შექმენი სავაჭრო ერთეულები რომ ივაჭრონ სხვა ბაზრებს შორის. გაცვალე სახსრები. გამოიკვლიე სავაჭრო და ბარტერული გაუმჯობესებები."
 
 #: simulation/templates/template_structure_economic_storehouse.xml:29
 #: simulation/templates/template_structure_economic_storehouse.xml:21
 msgid "Storehouse"
-msgstr ""
+msgstr "საწყობი"
 
 #: simulation/templates/template_structure_economic_storehouse.xml:22
 msgid ""
 "Dropsite for wood, stone, and metal resources. Research gathering "
 "improvements for these resources."
-msgstr ""
+msgstr "ხის, ქვის და ლითონის დასაყრელი. გამოიკვლიე ამ სახსრების მოპოვების გაუმჯობესებები."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:11
 msgid "Build a Civic Center at this location to expand your territory."
-msgstr ""
+msgstr "აქ ააშენე სამოქალაქო ცენტრი რომ გააფართოო შენი ტერიტორია."
 
 #: simulation/templates/template_structure_gaia_settlement.xml:9
 #: simulation/templates/template_structure_gaia_settlement.xml:10
 msgid "Settlement"
-msgstr ""
+msgstr "დასახლება"
 
 #: simulation/templates/template_structure_military.xml:15
 msgid "Military"
-msgstr ""
+msgstr "სამხედრო"
 
 #: simulation/templates/template_structure_military.xml:14
 msgid "Military Structure"
-msgstr ""
+msgstr "სამხედრო შენობა"
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr ""
+msgstr "ყაზარმები"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr ""
+msgstr "გაწვრთენი მოქალაქე-ჯარისკაცები. გამოიკვლიე წვრთნის გაუმჯობესებები. გარნიზონი: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
 msgid "Blacksmith"
-msgstr ""
+msgstr "მჭედელი"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
-msgstr ""
+msgstr "გამოიკვლიე იარაღების და აბჯრის გაუმჯობესებები."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
 msgid "Dock"
-msgstr ""
+msgstr "ნავსაშენი"
 
 #: simulation/templates/template_structure_military_dock.xml:25
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "ააშენე სანაპიროზე რომ ააგო გემები და გახსნა საზღვაო ვაჭრობა. გამოიკვლიე საზღვაო გაუმჯობესებები."
 
 #: simulation/templates/template_structure_military_embassy.xml:24
 #: simulation/templates/template_structure_military_embassy.xml:28
 #: simulation/templates/structures/cart_embassy.xml:19
 #: simulation/templates/structures/cart_embassy.xml:20
 msgid "Embassy"
-msgstr ""
+msgstr "საელჩო"
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "City"
-msgstr ""
+msgstr "ქალაქი"
 
 #: simulation/templates/template_structure_military_fortress.xml:57
 #: simulation/templates/template_structure_military_fortress.xml:25
 #: simulation/templates/template_structure_military_fortress.xml:54
 msgid "Fortress"
-msgstr ""
+msgstr "ციხე-სიმაგრე"
 
 #: simulation/templates/template_structure_military_fortress.xml:55
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr ""
+msgstr "გაწვრთენი გმირები, ფალავნები და საალყო იარაღი. გამოიკვლიე საალყო იარაღის გაუმჯობესებები. გარნიზონი: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
-msgstr ""
+msgstr "სახსრები"
 
 #: simulation/templates/template_structure_resource.xml:17
 msgid "Resource Structure"
-msgstr ""
+msgstr "სახსრების შენობა"
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
 msgid "Corral"
-msgstr ""
+msgstr "ბაკი"
 
 #: simulation/templates/template_structure_resource_corral.xml:27
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "გამოზარდე ცხოველები საჭმლისთვის. მიეცი დავალება რომ გამოუშვა შინაური ცხოველები საჭმელის მოსაგროვებლად ან სხვა ჯილდოსთვის (ჯერ არ არის დანერგილი)."
 
 #: simulation/templates/template_structure_resource_field.xml:27
 #: simulation/templates/template_structure_resource_field.xml:26
 msgid "Field"
-msgstr ""
+msgstr "ველი"
 
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr ""
+msgstr "მოიწიე ბოსტნეული საჭმლისთვის. მაქს შემგროვებლები: 5."
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "ეს არის ცივილიზაციისთვის ერთადერთი, განსაკუთრებული შენობა."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
 #: simulation/templates/structures/celt_kennel.xml:32
 msgid "Special Building"
-msgstr ""
+msgstr "განსაკუთრებული შენობა"
 
 #: simulation/templates/template_structure_wonder.xml:36
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr ""
+msgstr "მოუტანე დიდება შენს ცივილიზაციას და მიუმატე მიწის დიდი ნაკვეთები იმპერიას."
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
-msgstr ""
+msgstr "საოცრება"
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/hele_barracks.xml:20
@@ -391,7 +393,7 @@ msgstr ""
 #: simulation/templates/structures/hele_fortress.xml:16
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "ააშენე საალყე ძრავები. გარნიზონში ჩაუყენე 20-მდე ჯარისკაცი მტკიცე დაცვისთვის."
 
 #: simulation/templates/structures/athen_fortress.xml:9
 msgid "Epiteíchisma"
@@ -400,12 +402,12 @@ msgstr ""
 #: simulation/templates/structures/athen_gymnasion.xml:22
 #: simulation/templates/structures/hele_gymnasion.xml:23
 msgid "Train champion units."
-msgstr ""
+msgstr "გაწვრთენი ფალავნები."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
 msgid "Gymnasium"
-msgstr ""
+msgstr "გიმნაზია"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
 msgid "Gymnásieon"
@@ -432,16 +434,16 @@ msgstr ""
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "ბერძნული საგუშაგო"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr ""
+msgstr "გაწვრთენი გმირები. გამოიკვლიე განსაკუთრებული ტექნოლოგიები."
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
-msgstr ""
+msgstr "კონსულის პალატა"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22
@@ -469,7 +471,7 @@ msgstr ""
 msgid ""
 "Exellinismós (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Exellinismós (ელინიზაცია): +20% ტერიტორიული გავლენა ყველა შენობისთვის, სანამ თეატრონი არსებობს."
 
 #: simulation/templates/structures/athen_theatron.xml:32
 #: simulation/templates/structures/hele_theatron.xml:32
@@ -477,7 +479,7 @@ msgstr ""
 #: simulation/templates/structures/spart_theatron.xml:32
 #: simulation/templates/structures/theb_theatron.xml:32
 msgid "Greek Theater"
-msgstr ""
+msgstr "ბერძნული თეატრი"
 
 #: simulation/templates/structures/athen_theatron.xml:33
 #: simulation/templates/structures/hele_theatron.xml:33
@@ -533,7 +535,7 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "ოუტანე დიდება შენს ცივილიზაციას და მიუმატე მიწის დიდი ნაკვეთები იმპერიას. გარნიზონში ჩაუყენე 30 ერთეულამდე და გამოაჯანმრთელე სწრაფი ტემპით."
 
 #: simulation/templates/structures/athen_wonder.xml:17
 #: simulation/templates/structures/hele_wonder.xml:17
@@ -568,11 +570,11 @@ msgstr ""
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways"
-msgstr ""
+msgstr "გაზარდე მოსახლეობის ზღვარი და დაიცავი სანაოსნო გზები"
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
-msgstr ""
+msgstr "კუნძულის დასახლება"
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -605,12 +607,12 @@ msgstr ""
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "გაწვრთენი ბრიტი გმირები და ფალავნები. ააგე საალყე გამრღვევები."
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
-msgstr ""
+msgstr "ბრიტული ბროშურა"
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/celt_house.xml:9
@@ -621,12 +623,12 @@ msgstr ""
 #: simulation/templates/structures/brit_kennel.xml:35
 #: simulation/templates/structures/celt_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr ""
+msgstr "გაწვრთენი კელტური საბრძოლო ძაღლები."
 
 #: simulation/templates/structures/brit_kennel.xml:33
 #: simulation/templates/structures/celt_kennel.xml:33
 msgid "Kennel"
-msgstr ""
+msgstr "საძაღლე"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/celt_market.xml:15
@@ -636,7 +638,7 @@ msgstr ""
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr ""
+msgstr "ბრიტული საგუშაგო"
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
 #: simulation/templates/structures/celt_sb1.xml:25
@@ -644,13 +646,13 @@ msgstr ""
 msgid ""
 "Increase nearby farming output +25%. (Currently, a special technology can be"
 " researched to serve this function)"
-msgstr ""
+msgstr "გაზარდე ახლომახლო ფერმერების შედეგი +25%. (ამჟამად განსაკუთრებული ტექნოლოგია შეიძლება იქნას გამოკვლეული რომ ამ ფუნქციამ იმუშაოს)"
 
 #: simulation/templates/structures/brit_rotarymill.xml:20
 #: simulation/templates/structures/celt_sb1.xml:23
 #: simulation/templates/structures/gaul_rotarymill.xml:20
 msgid "Rotary Mill"
-msgstr ""
+msgstr "მბრუნავი წისქვილი"
 
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/celt_sb1.xml:24
@@ -694,7 +696,7 @@ msgstr ""
 #: simulation/templates/structures/celt_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr ""
+msgstr "არ ისვრის, არც გარნიზონში იყენებს."
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
@@ -706,7 +708,7 @@ msgstr ""
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr ""
+msgstr "გაწვრთენი ჩრდილო აფრიკელი მოქალაქე-ჯარისკაცები. გამოიკვლიე ჩრდილო აფრიკელების განვითარებები."
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -717,7 +719,7 @@ msgstr ""
 #: simulation/templates/structures/ptol_field.xml:5
 #: simulation/templates/structures/ptol_temple.xml:12
 msgid "?"
-msgstr ""
+msgstr "?"
 
 #: simulation/templates/structures/cart_civil_centre.xml:5
 msgid "Merkāz"
@@ -736,11 +738,11 @@ msgstr ""
 msgid ""
 "Construct fishing boats to gather meat and merchant ships to trade with "
 "other docks."
-msgstr ""
+msgstr "ააგე თევზსაჭერი ნავები ხორცის მოსაგროვებლად და სავაჭრო გემები სხვა ნავსაშენებთან სავაჭროდ."
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
-msgstr ""
+msgstr "კომერციული ნავსადგური"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
@@ -748,31 +750,31 @@ msgstr ""
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr ""
+msgstr "დაიქირავე მებრძოლები."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "დაიქირავე კელტი მებრძოლები. კამოიკვლიე მათი განვითარებები."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "კელტური საელჩო"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "დაიქირავე იბერი მებრძოლები. გამოიკვლიე მათი განვითარებები."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "იბერული საელჩო"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "დაიქირავე იტალიელი მებრძოლები. გამოიკვლიე მათი განვითარებები."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
-msgstr ""
+msgstr "იტალიური საელჩო"
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -784,7 +786,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr ""
+msgstr "საველე ციხე-სიმაგრე"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
@@ -800,7 +802,7 @@ msgstr ""
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr ""
+msgstr "კართაგენული საგუშაგო"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -808,11 +810,11 @@ msgstr ""
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
-msgstr ""
+msgstr "ააგე და შეაკეთე ძლიერი საბრძოლო გემები."
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "საზღვაო ნავსაშენი"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Cothon"
@@ -822,7 +824,7 @@ msgstr ""
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 15 units to heal them at a quick rate."
-msgstr ""
+msgstr "გაწვრთენი ქალი მღვდლები რომ უმკურნალონ ჯარს. გაწვრთენი საღმრთო რაზმის შუბოსნები. გარნიზონში ჩაუყენე 15-მდე ერთეული რომ სწრაფად განიკურნონ."
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
@@ -845,42 +847,42 @@ msgstr ""
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
-msgstr ""
+msgstr "ბაალ ჰამონის ტაძარი"
 
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr ""
+msgstr "გაწვრთენი გალი გმირები და ფალავნები. ააგე საალყე გამრღვევები."
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr ""
+msgstr "გალური სიმაგრე"
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
-msgstr ""
+msgstr "კელტური საგუშაგო"
 
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
 msgid "Earthworks"
-msgstr ""
+msgstr "მიწის კონსტრუქცია"
 
 #: simulation/templates/structures/celt_wall_gate.xml:16
 msgid "Gate"
-msgstr ""
+msgstr "ჭიშკარი"
 
 #: simulation/templates/structures/gaul_outpost.xml:5
 msgid "Gallic Outpost"
-msgstr ""
+msgstr "გალური საგუშაგო"
 
 #: simulation/templates/structures/gaul_tavern.xml:26
 msgid "Add +10 to Population Cap. Recruit Naked Fanatics."
-msgstr ""
+msgstr "დაამატე +10 მოსახლეობის ზღვარს. დაიქირავე შიშველი ფანატიკოსები."
 
 #: simulation/templates/structures/gaul_tavern.xml:23
 msgid "Tavern"
-msgstr ""
+msgstr "სამიკიტნო"
 
 #: simulation/templates/structures/gaul_tavern.xml:24
 msgid "Taberna"
@@ -909,7 +911,7 @@ msgstr ""
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr ""
+msgstr "გაწვრთენი გმირები."
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -960,11 +962,11 @@ msgstr ""
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr ""
+msgstr "ამ ძეგლის ხედვაში მყოფი ყველა ერთეული უფრო ძლიერად იბრძოლებს. ეფექტის მანძილი: 50 მეტრი."
 
 #: simulation/templates/structures/iber_monument.xml:37
 msgid "Revered Monument"
-msgstr ""
+msgstr "დაფასებული ძეგლი"
 
 #: simulation/templates/structures/iber_monument.xml:38
 msgid "Gur Oroigarri"
@@ -972,7 +974,7 @@ msgstr ""
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
-msgstr ""
+msgstr "იბერული საგუშაგო"
 
 #: simulation/templates/structures/iber_storehouse.xml:5
 msgid "Ola"
@@ -1002,7 +1004,7 @@ msgstr ""
 msgid ""
 "Train Champions and Heroes. Garrison up to 15 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "გაწვრთენი ფალავნები და გმირები. გარნიზონში ჩაუყენე 15-მდე ჯარისკაცი მტკიცე დაცვისთვის."
 
 #: simulation/templates/structures/mace_library.xml:17
 #: simulation/templates/structures/ptol_library.xml:17
@@ -1010,13 +1012,13 @@ msgstr ""
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
-msgstr ""
+msgstr "გამოიკვლიე განსაკუთრებული ტექნოლოგიები და შეამცირე სხვა დანარჩენის კვლევის დრო."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
 #: simulation/templates/structures/sele_library.xml:15
 msgid "Library"
-msgstr ""
+msgstr "ბიბლიოთეკა"
 
 #: simulation/templates/structures/mace_library.xml:16
 #: simulation/templates/structures/sele_library.xml:16
@@ -1025,11 +1027,11 @@ msgstr ""
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "ააშენე საალყე ძრავები. გამოიკვლიე საალყე ტექნოლოგიები."
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
-msgstr ""
+msgstr "საალყე სახელოსნო"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeíon Poliorkías"
@@ -1065,11 +1067,11 @@ msgstr ""
 
 #: simulation/templates/structures/maur_elephant_stables.xml:26
 msgid "Train elephant units."
-msgstr ""
+msgstr "გაწვრთენი სპილოები."
 
 #: simulation/templates/structures/maur_elephant_stables.xml:21
 msgid "Elephant Stables"
-msgstr ""
+msgstr "სპილოების თავლები"
 
 #: simulation/templates/structures/maur_elephant_stables.xml:22
 msgid "Vāraṇaśālā"
@@ -1085,7 +1087,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_fortress.xml:7
 msgid "Train heroes and champion units."
-msgstr ""
+msgstr "გაწვრთენი გმირები და ფალავნები."
 
 #: simulation/templates/structures/maur_fortress.xml:5
 msgid "Durg"
@@ -1105,7 +1107,7 @@ msgstr ""
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr ""
+msgstr "ცნობილი აშოკას სვეტი. ამჟამად უსარგებლო შენობა."
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
@@ -1146,15 +1148,15 @@ msgstr ""
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "მოჯამაგირეების ბანაკი"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "შეიპყარი ეს შენობა, რომ გაწვრთნა მოჯამაგირეები ელინისტური ეგვიპტიდან."
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
-msgstr ""
+msgstr "მოჯამაგირეების ბანაკი (ეგვიპტური)"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:30
 msgid "Stratópedo Misthophóron Aigyptiakós"
@@ -1165,12 +1167,12 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr ""
+msgstr "\"სატრაპის ხარკი\": გაზარდე საჭმლის, ხის, ქვის და ლითონის სახსრები. გაწვრთენი სპარსული გმირები და მათი \"უკვდავი\" პირადი მცველები. აშენების ზღვარი: 1."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
 msgid "Persian Palace"
-msgstr ""
+msgstr "სპარსული სასახლე"
 
 #: simulation/templates/structures/pers_apadana.xml:27
 msgid "Apadana"
@@ -1178,7 +1180,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr ""
+msgstr "გადაახდევინე მოქალაქე-ქვეით ჯარს."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1190,7 +1192,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_civil_centre.xml:5
 msgid "Provincial Governor"
-msgstr ""
+msgstr "პროვინციელი მმართველი"
 
 #: simulation/templates/structures/pers_civil_centre.xml:6
 msgid "Xšaçapāvan"
@@ -1219,7 +1221,7 @@ msgstr ""
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr ""
+msgstr "გაწვრთენი გალავანი ცხენოსნები და ააგე საალყე გამრღვევები."
 
 #: simulation/templates/structures/pers_fortress.xml:5
 msgid "Didā"
@@ -1232,11 +1234,11 @@ msgstr ""
 #: simulation/templates/structures/pers_ishtar_gate.xml:21
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr ""
+msgstr "განსაკუთრებული იმპერიული რომაული შენობა."
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:20
 msgid "Ishtar Gate of Babylon"
-msgstr ""
+msgstr "ბაბილონის იშთარის ჭიშკარი"
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1248,21 +1250,21 @@ msgstr ""
 
 #: simulation/templates/structures/pers_palace.xml:30
 msgid "Build Limit: 1."
-msgstr ""
+msgstr "აშენების ზღვარი: 1."
 
 #: simulation/templates/structures/pers_palace.xml:24
 msgid "Palace"
-msgstr ""
+msgstr "სასახლე"
 
 #: simulation/templates/structures/pers_sb2.xml:26
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr ""
+msgstr "განსაკუთრებული შენობა.\nგაწვრთენი საბრძოლო სპილოები და კარდაკეს დაქირავებული მებრძოლები."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
-msgstr ""
+msgstr "განსაკუთრებული სპარსული შენობა"
 
 #: simulation/templates/structures/pers_sb2.xml:23
 msgid "Parihuvādā"
@@ -1270,15 +1272,15 @@ msgstr ""
 
 #: simulation/templates/structures/pers_stables.xml:20
 msgid "Stables"
-msgstr ""
+msgstr "თავლები"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
-msgstr ""
+msgstr "გაწვრთენი მოქალაქე-ცხენოსნები."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
-msgstr ""
+msgstr "ცხენოსნების თავლები"
 
 #: simulation/templates/structures/pers_stables.xml:19
 msgid "Paraspa"
@@ -1306,13 +1308,13 @@ msgstr ""
 
 #: simulation/templates/structures/pers_wonder.xml:12
 msgid "Hanging Gardens of Babylon"
-msgstr ""
+msgstr "ბაბილონის კიდული ბაღები"
 
 #: simulation/templates/structures/ptol_barracks.xml:19
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr ""
+msgstr "გაწვრთენი ეგვიპელი და შუა-აღმოსავლელი მოქალაქე-მებრძოლები. გამოიკვლიე წვრთნის განვითარებები. გარნიზონი: 10."
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1354,15 +1356,15 @@ msgstr ""
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map (Not "
 "implemented). Very large vision range: 180 meters."
-msgstr ""
+msgstr "ააშენე სანაპირზე რომ გამოაჩირო მთელი რუკის სანაპირო ზოლები (არ არის დანერგილი). ძალიან ფართე ხედვის არე: 180 მეტრი."
 
 #: simulation/templates/structures/ptol_lighthouse.xml:17
 msgid "Lighthouse"
-msgstr ""
+msgstr "შუქურა"
 
 #: simulation/templates/structures/ptol_lighthouse.xml:18
 msgid "Pharos"
-msgstr ""
+msgstr "ლამპარი"
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1373,11 +1375,11 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr ""
+msgstr "იაფი, ყაზარმის მაგვარი შენობა, რომელიც შეიძლება აშენდეს ნეიტრალურ ტერიტორიაზე, მაგრამ არ ახდენს ტერიტორიულ გავლენას.\n- გაწვრთენი დაქირავებული მებრძოლები.\n- უმოკლესი მანძილი სამხედრო დასახლებისგან: 100 მეტრი."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
-msgstr ""
+msgstr "დაქირავებული მებრძოლების ბანაკი"
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:30
 msgid "Stratópedo Misthophóron"
@@ -1386,19 +1388,19 @@ msgstr ""
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
 msgid "Colony"
-msgstr ""
+msgstr "კოლონია"
 
 #: simulation/templates/structures/ptol_military_colony.xml:33
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 100 meters."
-msgstr ""
+msgstr "ეს არის პტოლემეების გამავრცელებელი შენობა, მსგავსი სამოქალაქო ცენტრისა სხვა ხალხებისთვის. უფრო სუსტია და ნაკლებ ტერიტორიულ ზემოქმედებას ახდენს, მაგრამ უფრო იაფა და სწრაფად შენდება.\n- გაწვრთენი სხვადასხვა ერის ახალმოსახლე-ჯარისკაცები.\n- სხვა საბრძოლო კოლონიებისგან უმცირესი დაშორება: 100 მეტრი."
 
 #: simulation/templates/structures/ptol_military_colony.xml:29
 #: simulation/templates/structures/sele_military_colony.xml:29
 msgid "Military Colony"
-msgstr ""
+msgstr "სამხედრო კოლონია"
 
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
@@ -1430,21 +1432,21 @@ msgstr ""
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
-msgstr ""
+msgstr "ედფუს ტაძარი"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
-msgstr ""
+msgstr "ტრიუმფალური თაღი"
 
 #: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr ""
+msgstr "ააშენე რუკის ნებისმიერ ადგილას, მტრის ტერიტორიაზეც კი. ააგე საალყე იარაღები და გაწვრთენი მოქალაქე-ჯარისკაცები. ნელი ტემპით უმკურნალე გარნიზონში მყოფებს."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
-msgstr ""
+msgstr "ჩასანგრებული სამხედრო ბანაკი"
 
 #: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
@@ -1500,7 +1502,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
-msgstr ""
+msgstr "საალყე კედლის ჭიშკარი"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
@@ -1511,14 +1513,14 @@ msgstr ""
 #: simulation/templates/structures/rome_siege_wall_short.xml:38
 #: simulation/templates/structures/rome_wallset_siege.xml:8
 msgid "A wooden and turf palisade buildable in enemy and neutral territories."
-msgstr ""
+msgstr "მტრის და ნეიტრალურ ტერიტორიებზე შენებადი ხის და ტორფის მესერი."
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:51
 #: simulation/templates/structures/rome_siege_wall_medium.xml:45
 #: simulation/templates/structures/rome_siege_wall_short.xml:32
 #: simulation/templates/structures/rome_wallset_siege.xml:5
 msgid "Siege Wall"
-msgstr ""
+msgstr "საალყე კედელი"
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:52
 #: simulation/templates/structures/rome_siege_wall_medium.xml:46
@@ -1528,11 +1530,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_siege_wall_long.xml:58
 msgid "Convert Siege Wall into Siege Wall Gate"
-msgstr ""
+msgstr "გარდაქმენი საალყე კედელი საალყე კედლის კარიბჭედ"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr ""
+msgstr "საალყე კედლის კოშკი"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1548,11 +1550,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "გაწვრთენი მკურნალები. გარნიზონში ჩაუყენე 30-მდე ერთეული რომ სწრაფად განიკურნონ."
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
-msgstr ""
+msgstr "მარსის ტაძარი"
 
 #: simulation/templates/structures/rome_temple_mars.xml:13
 msgid "Aedes Martis"
@@ -1562,11 +1564,11 @@ msgstr ""
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr ""
+msgstr "ააშენე ეს ტაძარი რომ დიდად გაზარდო შენობების და ქალი-მოქალაქეების ერთგულება (ხელს უშლის მათ შეპყრობას)."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:12
 msgid "Temple of Vesta"
-msgstr ""
+msgstr "ვესტას ტაძარი"
 
 #: simulation/templates/structures/rome_temple_vesta.xml:13
 msgid "Aedes Vestae"
@@ -1574,11 +1576,11 @@ msgstr ""
 
 #: simulation/templates/structures/rome_tent.xml:32
 msgid "A temporary shelter for soldiers. +5 population bonus."
-msgstr ""
+msgstr "დროებითი თავშესაფარი ჯარისკაცებისთვის. +5 მოსახლეობის ჯილდო."
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
-msgstr ""
+msgstr "კარავი"
 
 #: simulation/templates/structures/rome_tent.xml:30
 msgid "Tabernāculum"
@@ -1620,7 +1622,7 @@ msgstr ""
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "ააშენე საალყე ძრავები და გაწვრთენი ფალავნები. გარნიზონში ჩაუყენე 20-მდე ჯარისკაცი მტკიცე დაცვისთვის."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1631,7 +1633,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "ეს არის სელევკიდების გამავრცელებელი შენობა, მსგავსი სამოქალაქო ცენტრისა სხვა ხალხებისთვის. უფრო სუსტია და ნაკლებ ტერიტორიულ ზემოქმედებას ახდენს, მაგრამ უფრო იაფა და სწრაფად შენდება. - გაწვრთენი სხვადასხვა ერის ახალმოსახლე-ჯარისკაცები. - სხვა საბრძოლო კოლონიებისგან უმცირესი დაშორება: 120 მეტრი."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1643,16 +1645,16 @@ msgstr ""
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
-msgstr ""
+msgstr "დაფნის სამოთხე"
 
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 15 soldiers inside for stout defense."
-msgstr ""
+msgstr "ააშელე საალყე ძრავები. გარნიზონში ჩაუყენე 15-მდე ჯარისკაცი მტკიცე დაცვისთვის."
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"
-msgstr ""
+msgstr "სპარტული სენატი"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"
@@ -1660,11 +1662,11 @@ msgstr ""
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr ""
+msgstr "გაწვრთენი სპარტანელი გმირები და სპარტანელი ფალავანი ჰოპლიტები."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
-msgstr ""
+msgstr "სამხედრო სასადილო"
 
 #: simulation/templates/structures/spart_syssiton.xml:22
 msgid "Syssítion"

@@ -4,13 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Leonardo Tada Antunes <leonardo_tada@hotmail.com>, 2014
+# Nicolas Frasson <nicfrasson@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-26 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-25 02:51+0000\n"
+"Last-Translator: Nicolas Frasson <nicfrasson@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +53,7 @@ msgstr "Cenário"
 #: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
 #: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
 #, python-format
@@ -65,7 +67,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:442
 msgid "Busy"
@@ -259,27 +261,27 @@ msgstr "Classificação"
 
 #: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
 msgid "Current Rank:"
-msgstr ""
+msgstr "Ranking Atual:"
 
 #: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Melhor classificação:"
 
 #: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
 msgid "Total Games:"
-msgstr ""
+msgstr "Total de Jogos:"
 
 #: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
 msgid "Wins:"
-msgstr ""
+msgstr "Vitórias:"
 
 #: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
 msgid "Losses:"
-msgstr ""
+msgstr "Perdas:"
 
 #: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
 msgid "Win Rate:"
-msgstr ""
+msgstr "Taxa de Vitória:"
 
 #: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
@@ -354,11 +356,11 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:288 (caption)
 msgid "View Profile"
-msgstr ""
+msgstr "Ver Perfil"
 
 #: gui/lobby/lobby.xml:321 (caption)
 msgid "Player not found."
-msgstr ""
+msgstr "Jogador não encontrado."
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
