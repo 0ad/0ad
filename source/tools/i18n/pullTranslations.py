@@ -1,7 +1,7 @@
 #!/usr/bin/env python2
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2013 Wildfire Games.
+# Copyright (C) 2014 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,7 @@
 
 """
     Although this script itself should work with both Python 2 and Python 3, it relies on the Transifex Client, which at
-    this moment (2013-10-12) does not support Python 3.
+    this moment (2014-10-23) does not support Python 3 in the latest stable release (0.10).
 
     As soon as Transifex Client supports Python 3, simply updating its folder should be enough to make this script work
     with Python 3 as well.
@@ -54,9 +54,6 @@ def main():
                     os.chdir(path)
                     project = Project(path)
                     project.pull(fetchall=True, force=True)
-                    # Use this to pull only the main languages (those that will most likely be included in A16)
-                    #project.pull(languages=['en', 'de', 'it', 'pt_PT', 'nl', 'es', 'fr'])
-
 
 
 if __name__ == "__main__":
