@@ -8,14 +8,15 @@
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
 # Dimaver <dimaver@ukr.net>, 2014
+# Vladislav Trotsky <flyboooy17@gmail.com>, 2014
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-12 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-23 12:03+0000\n"
+"Last-Translator: Andriy Nahirnjak <andriy.nagirnjak@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,11 +27,11 @@ msgstr ""
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr "Афінці"
+msgstr "Афіняни"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Рівень видобутку металу підвищується на +10% f відсотків за кожну минулу добу."
+msgstr "Рівень видобутку металу підвищується на +10% відсотків за кожну минулу добу."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -68,7 +69,7 @@ msgstr "Греки були дуже успішними в Еллінізаці�
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "Кораблі будуються на 25% f швидше."
+msgstr "Кораблі будуються на 25% швидше."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -282,7 +283,7 @@ msgid ""
 "Athens was famed as a center for the arts, learning and philosophy. The "
 "Athenians were also powerful warriors, particularly at sea. At its peak, "
 "Athens dominated a large part of the Hellenic world for several decades."
-msgstr ""
+msgstr "Афіни, колиска Західної цивілізації ті місце народження демократії, були відомі як центр мистецтв, освіти та філософії. Афінці також були могутніми воїнами, особливо на морі. У час свого розквіту Афіни володіли великою частиною елліністичного світу протягом кількох десятиліть."
 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
@@ -293,7 +294,7 @@ msgstr "Британці"
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Їжа покращеної якості - продукт скотарства і сільського господарства"
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -303,29 +304,29 @@ msgstr ""
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Представляє кельтські методи ведення сільського господарства."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Друїди, перебуваючи поблизу солдатів, у незначній мірі підвищують їхню швидкість атаки."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
 msgid "Deas Celtica"
-msgstr ""
+msgstr "Кельтські богині"
 
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Кельтська релігія і друїдистичні вірування сприяли їхньому войовничому світогляду."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
 #: civs/gaul.jsonTeamBonuses[0].Description
 msgid "Bonus to tech speed."
-msgstr ""
+msgstr "Бонус до швидкості розвитку технологій."
 
 #: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
 #: civs/gaul.jsonTeamBonuses[0].Name
@@ -337,17 +338,17 @@ msgstr "Друїди"
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Друїди кельтів підтримували організовану релігію, яка дозволяла технології їхнього народу розвиватися навіть під час війни"
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
 msgid "Karatakos"
-msgstr ""
+msgstr "Каратак"
 
 #: civs/brit.jsonAINames[1] civs/brit.jsonFactions[0].Heroes[1].Name
 #: civs/celt.jsonFactions[0].Heroes[1].Name
 msgid "Kunobelinos"
-msgstr ""
+msgstr "Кунобелін"
 
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
@@ -360,7 +361,7 @@ msgstr "Прасутаг"
 
 #: civs/brit.jsonAINames[4]
 msgid "Venutius"
-msgstr ""
+msgstr "Венуцій"
 
 #: civs/brit.jsonAINames[5]
 msgid "Cogidubnus"
@@ -389,7 +390,7 @@ msgstr "Восеніос"
 #: civs/brit.jsonFactions[0].Technologies[0].Description
 #: civs/celt.jsonFactions[0].Technologies[0].Description
 msgid "Increased attack and movement rate for melee soldiers."
-msgstr ""
+msgstr "Збільшена атака і швидкість руху для солдатів ближнього бою"
 
 #: civs/brit.jsonFactions[0].Technologies[0].Name
 #: civs/celt.jsonFactions[0].Technologies[0].Name
@@ -402,7 +403,7 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Британці наносили на свої тіла постійні знаки у вигляді тату або тимчасово размальовували себе фарбою синього кольору. Результат був дуже лякаючим."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
@@ -412,7 +413,7 @@ msgstr ""
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name
 msgid "Turos Maros"
-msgstr ""
+msgstr "Турос Марос"
 
 #: civs/brit.jsonFactions[0].Technologies[1].History
 #: civs/celt.jsonFactions[0].Technologies[1].History
@@ -420,7 +421,7 @@ msgid ""
 "'Great Tower'; Celtic legends abound with stories of massive tall towers "
 "built by the most powerful kings, and the remains of some very large towers "
 "have been found."
-msgstr ""
+msgstr "\"Велика вежа\"; кельтські легенди багаті на історії про великі високі вежі, які були збудовані найвеличнішими королями; досі знаходять руїни велетенських веж."
 
 #: civs/brit.jsonFactions[0].Heroes[0].History
 #: civs/celt.jsonFactions[0].Heroes[0].History
@@ -440,7 +441,7 @@ msgid ""
 "displays to celebrate. Karatakos was brought before the Emperor and Senate "
 "at his request to explain himself. What he said is not known for certainty, "
 "but Tacitus applies to him a famous speech..."
-msgstr ""
+msgstr "Карактак (римська форма імені) - змінене Каратак - його справжнє ім'я викарбоване на великій кількості монет. Під цим ім'ям пам'ятають запеклого захисника Британії від римлян під час їхнього вторгнення у 43 році. Каратак, син короля Кунобеліна з племінного об'єднання катувеллаунів, протягом дев'яти років боровся з римлянами, проте не дуже успішно. Зрештою він втік до племен в Уельсі, але там він зазнав остаточної поразки. Врешті-решт Каратак потрапив до Північної Британії, звідки його видали римлянам. У Римі британському вождю дозволили жити при імператорі Клавдії. Каратак помер в Італії. Народна традиція стверджує, що він прийняв християнство після своєї дружини, але точних відомостей про це немає. Цікаво, те, що лідеру варварів залишили життя після захоплення у полон. Згідно з політикою Риму таких людей убивали привселюдно на публічних святкуваннях. Каратака привели до імператора та сенату за його власним проханням пояснити свою позицію. Точно невідомо, що він сказав, проте Тацит адресує йому відому промову..."
 
 #: civs/brit.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -531,7 +532,7 @@ msgstr "Будка"
 
 #: civs/brit.jsonStructures[0].History
 msgid "The Britons were known for breeding war dogs."
-msgstr ""
+msgstr "Британці славилися виведенням бойових собак."
 
 #: civs/brit.jsonHistory
 msgid ""

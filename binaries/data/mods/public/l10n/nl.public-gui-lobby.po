@@ -4,13 +4,14 @@
 # Ascendant project.
 # 
 # Translators:
+# Max Klaversma <maxklaversma@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-26 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-16 13:10+0000\n"
+"Last-Translator: Max Klaversma <maxklaversma@gmail.com>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,21 +52,21 @@ msgstr "Scenario"
 #: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
 #: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
 msgid "N/A"
-msgstr ""
+msgstr "n.v.t."
 
 #: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
 #, python-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
 #, c-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:442
 msgid "Busy"
@@ -259,27 +260,27 @@ msgstr "Score"
 
 #: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
 msgid "Current Rank:"
-msgstr ""
+msgstr "Huidige rank:"
 
 #: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Hoogste score:"
 
 #: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
 msgid "Total Games:"
-msgstr ""
+msgstr "Aantal spellen:"
 
 #: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
 msgid "Wins:"
-msgstr ""
+msgstr "Overwinningen:"
 
 #: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
 msgid "Losses:"
-msgstr ""
+msgstr "Verliezen:"
 
 #: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
 msgid "Win Rate:"
-msgstr ""
+msgstr "Overwinning frequentie:"
 
 #: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
@@ -287,7 +288,7 @@ msgstr "Ranglijst"
 
 #: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Gebruikersprofiel zoeker"
 
 #: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
@@ -350,15 +351,15 @@ msgstr "Bijwerken"
 
 #: gui/lobby/lobby.xml:282 (caption)
 msgid "Enter username:"
-msgstr ""
+msgstr "Gebruikersnaam invoeren:"
 
 #: gui/lobby/lobby.xml:288 (caption)
 msgid "View Profile"
-msgstr ""
+msgstr "Bekijk profiel"
 
 #: gui/lobby/lobby.xml:321 (caption)
 msgid "Player not found."
-msgstr ""
+msgstr "Speler niet gevonden."
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -422,7 +423,7 @@ msgstr "* \"Wij\" zijn het collectief van Wildfire Games (WFG) team medewerkers.
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Score bepaling\" refereert aan het proces van het analyseren van verschillende gebruikersstatistieken met als doel het bepalen van één alomvattende score te bepalen."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."

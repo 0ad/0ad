@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-27 09:51+0000\n"
+"PO-Revision-Date: 2014-10-24 20:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -432,7 +433,7 @@ msgstr "Ganancia: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "Número de construtores.\nEncargar a outro construtor traballar nesta estrutura aceleraría a súa construción un %(numb)s%%."
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -491,7 +492,7 @@ msgstr "%(label)s %(details)s, %(rate)s"
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Clases:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -505,12 +506,12 @@ msgstr "%(label)s %(current)s/%(max)s."
 #: gui/session/selection_panels.js:87
 #, python-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Mercar %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, python-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Vender %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
 #, python-format
@@ -604,12 +605,12 @@ msgstr "Construídas: %(count)s. Límite: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, python-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s aumenta o límite en %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, python-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s diminúe o límite en %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, python-format
@@ -755,7 +756,7 @@ msgstr "Baleirar"
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Non podes destruír a entidade porque está cuberta pola néboa de guerra."
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
@@ -767,7 +768,7 @@ msgstr "Acuartelar"
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
-msgstr ""
+msgstr "Desaloxar"
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
@@ -1316,7 +1317,7 @@ msgstr "Cancelar"
 
 #: gui/session/session.xml:212 (caption)
 msgid "Team Only"
-msgstr ""
+msgstr "Equipo"
 
 #: gui/session/session.xml:216 (caption)
 msgid "Send"
@@ -1328,7 +1329,7 @@ msgstr "Escolle un xogador para ver"
 
 #: gui/session/top_panel.xml:26 (caption)
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "Espectador (experimental)"
 
 #: gui/session/trade_window.xml:9 (caption)
 #: gui/session/top_panel/button_trade.xml:10 (tooltip)
@@ -1344,15 +1345,15 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Selecciona un ben de orixe dos cambios, e usa as frechas do resto de bens para efectuar cambios. Selecciona mentres premes Maiús para poñer o recurso seleccionado ao 100%."
 
 #: gui/session/dialogs/yes_no.xml:11 (caption)
 msgid "Question"
-msgstr ""
+msgstr "Pregunta"
 
 #: gui/session/dialogs/yes_no.xml:15 (caption)
 msgid "Yes or no?"
-msgstr ""
+msgstr "Si ou non?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:7 (tooltip)
 msgid "Exchange resources:"
@@ -1385,7 +1386,7 @@ msgstr "Rango"
 
 #: gui/session/selection_panels_right/queue_panel.xml:8 (tooltip)
 msgid "Production queue"
-msgstr ""
+msgstr "Cola de produción"
 
 #: gui/session/session_objects/selection_group_icons.xml:8 (tooltip)
 msgid ""
@@ -1407,7 +1408,7 @@ msgstr "Menú"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVII : Quercus"
-msgstr ""
+msgstr "Alfa XVII: Quercus"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"

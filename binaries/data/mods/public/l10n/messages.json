@@ -11,7 +11,6 @@
                     "civs/**.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "Name",
                         "Description",
@@ -35,6 +34,7 @@
                     "gui/session/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -54,7 +54,6 @@
                     "gui/session/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "translatableAttribute": {
                             "locationAttributes": ["id"]
@@ -79,6 +78,7 @@
                     "gui/loading/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -100,7 +100,6 @@
                     "gui/loading/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "translatableAttribute": {
                             "locationAttributes": ["id"]
@@ -115,7 +114,6 @@
                     "gui/text/quotes.txt"
                 ],
                 "options": {
-                    "format": "none"
                 }
             }
         ]
@@ -132,6 +130,7 @@
                     "gui/lobby/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -151,7 +150,6 @@
                     "gui/lobby/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "translatableAttribute": {
                             "locationAttributes": ["id"]
@@ -167,7 +165,6 @@
                     "gui/lobby/Terms_of_Use.txt"
                 ],
                 "options": {
-                    "format": "none"
                 }
             }
         ]
@@ -184,6 +181,7 @@
                     "gui/manual/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -203,7 +201,6 @@
                     "gui/manual/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "translatableAttribute": {
                             "locationAttributes": ["id"]
@@ -219,7 +216,6 @@
                     "gui/manual/userreport.txt"
                 ],
                 "options": {
-                    "format": "none"
                 }
             }
         ]
@@ -245,6 +241,7 @@
                     "gui/summary/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -273,7 +270,6 @@
                     "gui/summary/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "translatableAttribute": {
                             "locationAttributes": ["id"]
@@ -289,7 +285,6 @@
                     "gui/text/tips/**.txt"
                 ],
                 "options": {
-                    "format": "none"
                 }
             }
         ]
@@ -307,7 +302,6 @@
                     "simulation/templates/units/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "GenericName": {},
                         "SpecificName": {},
@@ -342,7 +336,6 @@
                     "simulation/templates/structures/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "GenericName": {},
                         "SpecificName": {},
@@ -384,7 +377,6 @@
                     ]
                 },
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "GenericName": {},
                         "SpecificName": {},
@@ -418,7 +410,6 @@
                     "simulation/data/technologies/**.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "specificName",
                         "genericName",
@@ -443,6 +434,7 @@
                     "simulation/components/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "translate": [1],
                         "translatePlural": [1, 2],
@@ -463,7 +455,6 @@
                     "simulation/data/player_defaults.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "Name"
                     ]
@@ -475,7 +466,6 @@
                     "simulation/data/map_sizes.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "Name",
                         "LongName"
@@ -488,7 +478,6 @@
                     "simulation/ai/**.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "name",
                         "description"
@@ -509,7 +498,6 @@
                     "maps/random/**.json"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": [
                         "Name",
                         "Description"
@@ -524,6 +512,7 @@
                     "maps/random/**.js"
                 ],
                 "options": {
+                    "format": "javascript-format",
                     "keywords": {
                         "markForTranslation": [1],
                         "markForTranslationWithContext": [[1], 2]
@@ -540,7 +529,6 @@
                     "maps/skirmishes/**.xml"
                 ],
                 "options": {
-                    "format": "none",
                     "keywords": {
                         "ScriptSettings": {
                             "extractJson": {

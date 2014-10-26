@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-26 09:50+0000\n"
+"PO-Revision-Date: 2014-10-24 21:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -51,21 +52,21 @@ msgstr "Escenario"
 #: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
 #: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
 msgid "N/A"
-msgstr ""
+msgstr "N/D"
 
 #: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
 #, python-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
 #, c-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:442
 msgid "Busy"
@@ -259,27 +260,27 @@ msgstr "Cualificación"
 
 #: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
 msgid "Current Rank:"
-msgstr ""
+msgstr "Clasificación actual:"
 
 #: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
 msgid "Highest Rating:"
-msgstr ""
+msgstr "A cualificación máis alta:"
 
 #: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
 msgid "Total Games:"
-msgstr ""
+msgstr "Partidas totais:"
 
 #: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
 msgid "Wins:"
-msgstr ""
+msgstr "Vitorias:"
 
 #: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
 msgid "Losses:"
-msgstr ""
+msgstr "Derrotas:"
 
 #: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
 msgid "Win Rate:"
-msgstr ""
+msgstr "Taxa de vitorias:"
 
 #: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
@@ -287,7 +288,7 @@ msgstr "Podio"
 
 #: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Busca de perfís de usuarios"
 
 #: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
@@ -350,15 +351,15 @@ msgstr "Actualizar"
 
 #: gui/lobby/lobby.xml:282 (caption)
 msgid "Enter username:"
-msgstr ""
+msgstr "Indique o nome de usuario:"
 
 #: gui/lobby/lobby.xml:288 (caption)
 msgid "View Profile"
-msgstr ""
+msgstr "Ver o perfil"
 
 #: gui/lobby/lobby.xml:321 (caption)
 msgid "Player not found."
-msgstr ""
+msgstr "Non se atopou o xogador."
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -422,7 +423,7 @@ msgstr "• Enténdese por «nós» o colectivo de persoas que pertencen ao equi
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "• Enténdese por «cualificación» o proceso de analizar varias estatísticas dos usuarios co obxectivo de xerar unha puntuación sinxela que calquera poida entender."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."

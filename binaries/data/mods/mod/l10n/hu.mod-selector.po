@@ -4,12 +4,14 @@
 # Selector project.
 # 
 # Translators:
+# Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"PO-Revision-Date: 2014-10-18 00:00+0000\n"
+"Last-Translator: Gellért Gyuris <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,24 +27,24 @@ msgstr "Név"
 
 #: gui/modmod/modmod.js:30
 msgid "Folder"
-msgstr ""
+msgstr "Mappa"
 
 #: gui/modmod/modmod.js:30
 msgid "Label"
-msgstr ""
+msgstr "Címke"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
 #: gui/modmod/modmod.xml:138 (heading)
 msgid "Version"
-msgstr ""
+msgstr "Verzió"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr ""
+msgstr "Típus: Bármi"
 
 #: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
-msgstr ""
+msgstr "Szűrő"
 
 #: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
@@ -58,15 +60,15 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:116
 msgid "Description"
-msgstr ""
+msgstr "Leírás"
 
 #: gui/modmod/modmod.xml:10 (caption)
 msgid "Modifications"
-msgstr ""
+msgstr "Módosítások"
 
 #: gui/modmod/modmod.xml:18 (caption)
 msgid "Reset Filters"
-msgstr ""
+msgstr "Szűrők visszaállítása"
 
 #: gui/modmod/modmod.xml:52 (caption)
 msgid "Negate"
@@ -78,7 +80,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
 msgid "(Folder)"
-msgstr ""
+msgstr "(Mappa)"
 
 #: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
 msgid "Mod Label"
@@ -90,7 +92,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
 msgid "Dependencies"
-msgstr ""
+msgstr "Függőségek"
 
 #: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
 msgid "Website"
@@ -98,7 +100,7 @@ msgstr "Weboldal"
 
 #: gui/modmod/modmod.xml:119 (caption)
 msgid "Enable"
-msgstr ""
+msgstr "Engedélyezés"
 
 #: gui/modmod/modmod.xml:128 (caption)
 msgid "Enabled Mods"
@@ -106,7 +108,7 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:158 (caption)
 msgid "Up"
-msgstr ""
+msgstr "Fel"
 
 #: gui/modmod/modmod.xml:162 (caption)
 msgid "X"
@@ -114,11 +116,11 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:166 (caption)
 msgid "Down"
-msgstr ""
+msgstr "Le"
 
 #: gui/modmod/modmod.xml:174 (caption)
 msgid "Quit"
-msgstr ""
+msgstr "Kilépés"
 
 #: gui/modmod/modmod.xml:179 (caption)
 msgid "Cancel"
@@ -126,7 +128,7 @@ msgstr "Mégse"
 
 #: gui/modmod/modmod.xml:184 (caption)
 msgid "Save Configuration"
-msgstr ""
+msgstr "Beállítás mentése"
 
 #: gui/modmod/modmod.xml:189 (caption)
 msgid "Start Mods"

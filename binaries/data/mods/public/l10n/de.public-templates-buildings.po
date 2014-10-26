@@ -4,6 +4,7 @@
 # Ascendant project.
 # 
 # Translators:
+# Leonard König <leonard.r.koenig@gmail.com>, 2014
 # leper <leper@wildfiregames.com>, 2014
 # Raymond Vetter, 2014
 # richyguitar <richyguitargod@gmail.com>, 2014
@@ -14,8 +15,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-15 11:00+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2014-10-25 21:32+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +41,7 @@ msgstr "Verwaltungssitz"
 #: simulation/templates/template_structure_civic_civil_centre.xml:66
 msgid ""
 "Build to acquire large tracts of territory. Train citizens. Garrison: 20."
-msgstr "Bauen, um große Teile Land zu beanspruchen. Trainiere Dorfbewohner. Einquartieren: 20."
+msgstr "Bauen, um große Teile Land zu beanspruchen. Bilde Bürger aus. Einquartieren: 20."
 
 #: simulation/templates/template_structure_civic_civil_centre.xml:65
 msgid "Civic Center"
@@ -89,11 +90,11 @@ msgstr "Tempel"
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Trainiere Heiler. Quartiere bis zu 20 Einheiten ein, um sie schnell zu heilen (3 HP pro Sekunde). Erforsche Heilungs- und Religionsverbesserungen."
+msgstr "Bilde Heiler aus. Quartiere bis zu 20 Einheiten ein, um sie schnell zu heilen (3 Trefferpunkte pro Sekunde). Erforsche Heilungs- und Religionsverbesserungen."
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Heilt Einheiten in der Nähe mit 1 HP pro Sekunde."
+msgstr "Heilt Einheiten in der Nähe mit 1 Trefferpunkt pro Sekunde."
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:57
@@ -241,7 +242,7 @@ msgstr "Kaserne"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Trainiere Bürgersoldaten. Entwickle Verbesserungen für das Training. Einquartieren: 10."
+msgstr "Bilde Bürgersoldaten aus. Entwickle Ausbildungsverbesserungen. Einquartieren: 10."
 
 #: simulation/templates/template_structure_military_blacksmith.xml:31
 #: simulation/templates/template_structure_military_blacksmith.xml:29
@@ -284,7 +285,7 @@ msgstr "Festung"
 msgid ""
 "Train heroes, champions, and siege weapons. Research siege weapon "
 "improvements. Garrison: 20."
-msgstr "Trainiere Helden, bilde Gardisten aus und baue Belagerungswaffen. Erforsche Verbesserungen für Belagerungswaffen. Einquartieren: 20."
+msgstr "Bilde Helden und Gardisten aus und baue Belagerungswaffen. Erforsche Verbesserungen für Belagerungswaffen. Einquartieren: 20."
 
 #: simulation/templates/template_structure_resource.xml:19
 msgid "Resource"
@@ -442,7 +443,7 @@ msgstr "Griechischer Außenposten"
 
 #: simulation/templates/structures/athen_prytaneion.xml:26
 msgid "Train heroes. Research special technologies."
-msgstr "Trainiere Helden und erforsche spezielle Technologien."
+msgstr "Bilde Helden aus und erforsche Spezialtechnologien."
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
@@ -611,7 +612,7 @@ msgstr "Varmo"
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Trainiere britannische Helden und bilde Gardisten aus. Baue Rammböcke."
+msgstr "Bilde britannische Helden und Gardisten aus. Baue Rammböcke."
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
@@ -627,7 +628,7 @@ msgstr "Annedd"
 #: simulation/templates/structures/brit_kennel.xml:35
 #: simulation/templates/structures/celt_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr "Trainiere keltische Kampfhunde."
+msgstr "Bilde keltische Kampfhunde aus."
 
 #: simulation/templates/structures/brit_kennel.xml:33
 #: simulation/templates/structures/celt_kennel.xml:33
@@ -700,7 +701,7 @@ msgstr "Gwarchglawdd"
 #: simulation/templates/structures/celt_wall_tower.xml:13
 #: simulation/templates/structures/gaul_wall_tower.xml:13
 msgid "Does not shoot or garrison."
-msgstr "Schießt oder quartiert nicht ein."
+msgstr ""
 
 #: simulation/templates/structures/brit_wonder.xml:9
 #: simulation/templates/structures/celt_wonder.xml:9
@@ -712,7 +713,7 @@ msgstr "Stonehenge"
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr "Trainiere nordafrikanische Bürgersoldaten. Entwickle Verbesserungen für nordafrikanische Einheiten."
+msgstr "Bilde nordafrikanische Bürgersoldaten aus. Entwickle Verbesserungen für nordafrikanische Einheiten."
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
@@ -915,7 +916,7 @@ msgstr "Gymnásion"
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
 msgid "Train heroes."
-msgstr "Trainiere Helden."
+msgstr "Bilde Helden aus."
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
@@ -1016,7 +1017,7 @@ msgstr "Bilde Gardeeinheiten und Helden aus. Quartiere bis zu 15 Soldaten zur Ve
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
-msgstr "Erforsche besondere Technologien und reduziere damit die Forschungszeit für alle verbleibenden Technologien."
+msgstr "Erforsche Spezialtechnologien und reduziere damit die Forschungszeit für alle verbleibenden Technologien."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1171,7 +1172,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "„Satrap Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Trainiere Persische Helden und ihre „unsterbliche“ Leibgarde. Baulimit: 1."
+msgstr "„Satrap-Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Bilde Persische Helden und ihre „unsterbliche“ Leibgarde aus. Baulimit: 1."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1280,7 +1281,7 @@ msgstr "Ställe"
 
 #: simulation/templates/structures/pers_stables.xml:25
 msgid "Train citizen-cavalry units."
-msgstr "Trainiere berittene Bürger."
+msgstr "Bilde berittene Bürger aus."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1318,7 +1319,7 @@ msgstr "Hängende Gärten der Semiramis"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr "Trainiere Ägyptische und mittelöstliche Bürgersoldaten. Verbessere die Trainingsmethoden. Einquartieren: 10."
+msgstr "Bilde Ägyptische und mittelöstliche Bürgersoldaten aus. Verbessere die Trainingsmethoden. Einquartieren: 10."
 
 #: simulation/templates/structures/ptol_barracks.xml:17
 msgid "ḥwt-n-mš'"
@@ -1379,7 +1380,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Günstiges, Baracken ähnliches, Gebäude, welches im neutralen Bereich errichtet werden kann. Hat keinen territorialen Einfluss.\n- Trainiere Söldner.\n- Min. Abstand zu anderen Militär Siedlungen: 100 Meter."
+msgstr "Günstiges, Baracken ähnliches, Gebäude, welches im neutralen Bereich errichtet werden kann. Hat keinen territorialen Einfluss.\n- Heure Söldner an.\n- Min. Abstand zu anderen Militär Siedlungen: 100 Meter."
 
 #: simulation/templates/structures/ptol_mercenary_camp.xml:29
 msgid "Mercenary Camp"
@@ -1446,7 +1447,7 @@ msgstr "Triumphbogen"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Baue es überall auf der Karte, auch in gegnerischem Territorium. Trainiere Bürgersoldaten und konstruiere Belagerungswaffen. Heilt einquartierte Einheiten langsam."
+msgstr "Kann überall auf der Karte, auch in gegnerischem Territorium, gebaut werden. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Heilt einquartierte Einheiten langsam."
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
@@ -1554,7 +1555,7 @@ msgstr "Aedes"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Trainiere Heiler. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
+msgstr "Bilde Heiler aus. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
 
 #: simulation/templates/structures/rome_temple_mars.xml:12
 msgid "Temple of Mars"
@@ -1626,7 +1627,7 @@ msgstr "Liménas"
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr "Baue Belagerungswaffen und trainiere Gardeeinheiten. Quartiere bis zu 20 Soldaten zur Verteidigung ein."
+msgstr "Baue Belagerungswaffen und bilde Gardeeinheiten aus. Quartiere bis zu 20 Soldaten zur Verteidigung ein."
 
 #: simulation/templates/structures/sele_fortress.xml:9
 msgid "Phrourion"
@@ -1666,7 +1667,7 @@ msgstr "Gerusia"
 
 #: simulation/templates/structures/spart_syssiton.xml:26
 msgid "Train Spartan heroes and Spartiate champion hoplites."
-msgstr "Trainiere spartanische Helden und bilde Gardehopliten aus."
+msgstr "Bilde spartanische Helden und Gardehopliten aus."
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"

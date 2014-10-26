@@ -4,14 +4,15 @@
 # Ascendant project.
 # 
 # Translators:
+# Houssem Mhamdi <houss.sword@gmail.com>, 2014
 # salama <salamacast@yahoo.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-26 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-22 15:38+0000\n"
+"Last-Translator: Houssem Mhamdi <houss.sword@gmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,27 +24,27 @@ msgstr ""
 #: gui/lobby/lobby.js:25
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "أي"
 
 #: gui/lobby/lobby.js:33
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "أي"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "أي"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "مناوش"
 
 #: gui/lobby/lobby.js:37
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "عشوائي"
 
 #: gui/lobby/lobby.js:37
 msgid "Scenario"
@@ -70,32 +71,32 @@ msgstr ""
 
 #: gui/lobby/lobby.js:442
 msgid "Busy"
-msgstr ""
+msgstr "مشغول"
 
 #: gui/lobby/lobby.js:447
 msgid "Away"
-msgstr ""
+msgstr "بعيدا"
 
 #: gui/lobby/lobby.js:451
 msgid "Online"
-msgstr ""
+msgstr "متصل"
 
 #: gui/lobby/lobby.js:455
 msgid "Offline"
-msgstr ""
+msgstr "غير متصل"
 
 #: gui/lobby/lobby.js:460
 msgctxt "lobby presence"
 msgid "Unknown"
-msgstr ""
+msgstr "مجهول"
 
 #: gui/lobby/lobby.js:501
 msgid "A randomly selected map."
-msgstr ""
+msgstr "خريطة تم اختيارها عشوائيا."
 
 #: gui/lobby/lobby.js:526
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "عذرا، لا يوجد وصف متاح."
 
 #: gui/lobby/lobby.js:554
 #, python-format
@@ -187,7 +188,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "اتصال..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
@@ -247,7 +248,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:25 (heading)
 msgid "Status"
-msgstr ""
+msgstr "حالة"
 
 #: gui/lobby/lobby.xml:28 (heading) gui/lobby/lobby.xml:175 (heading)
 #: gui/lobby/lobby.xml:254 (heading)
@@ -256,35 +257,35 @@ msgstr "الاسم"
 
 #: gui/lobby/lobby.xml:31 (heading) gui/lobby/lobby.xml:257 (heading)
 msgid "Rating"
-msgstr ""
+msgstr "تصنيف"
 
 #: gui/lobby/lobby.xml:45 (caption) gui/lobby/lobby.xml:296 (caption)
 msgid "Current Rank:"
-msgstr ""
+msgstr "الرتبة الحالية:"
 
 #: gui/lobby/lobby.xml:49 (caption) gui/lobby/lobby.xml:300 (caption)
 msgid "Highest Rating:"
-msgstr ""
+msgstr "أعلى تصنيف:"
 
 #: gui/lobby/lobby.xml:53 (caption) gui/lobby/lobby.xml:304 (caption)
 msgid "Total Games:"
-msgstr ""
+msgstr "مجموع المباريات:"
 
 #: gui/lobby/lobby.xml:57 (caption) gui/lobby/lobby.xml:308 (caption)
 msgid "Wins:"
-msgstr ""
+msgstr "الانتصارات:"
 
 #: gui/lobby/lobby.xml:61 (caption) gui/lobby/lobby.xml:312 (caption)
 msgid "Losses:"
-msgstr ""
+msgstr "الخسائر:"
 
 #: gui/lobby/lobby.xml:65 (caption) gui/lobby/lobby.xml:316 (caption)
 msgid "Win Rate:"
-msgstr ""
+msgstr "معدل الفوز:"
 
 #: gui/lobby/lobby.xml:74 (caption) gui/lobby/lobby.xml:244 (caption)
 msgid "Leaderboard"
-msgstr ""
+msgstr "المتصدرين"
 
 #: gui/lobby/lobby.xml:82 (caption) gui/lobby/lobby.xml:279 (caption)
 msgid "User Profile Lookup"
@@ -292,7 +293,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:111 (caption)
 msgid "Map Type:"
-msgstr ""
+msgstr "نوع الخريطة:"
 
 #: gui/lobby/lobby.xml:123 (caption)
 msgid "Map Size:"
@@ -300,7 +301,7 @@ msgstr "حجم الخريطة:"
 
 #: gui/lobby/lobby.xml:140 (caption)
 msgid "Players:"
-msgstr ""
+msgstr "اللاعبون:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:149 (caption)
@@ -313,11 +314,11 @@ msgstr "استضف لعبة"
 
 #: gui/lobby/lobby.xml:162 (caption)
 msgid "Main Menu"
-msgstr ""
+msgstr "القائمة الرئيسية"
 
 #: gui/lobby/lobby.xml:179 (heading)
 msgid "Map Name"
-msgstr ""
+msgstr "اسم الخريطة"
 
 #: gui/lobby/lobby.xml:182 (heading)
 msgctxt "map"
@@ -331,7 +332,7 @@ msgstr "نوع"
 
 #: gui/lobby/lobby.xml:188 (heading)
 msgid "Players"
-msgstr ""
+msgstr "اللاعبون"
 
 #: gui/lobby/lobby.xml:218 (caption)
 msgid "Show full games"
@@ -343,23 +344,23 @@ msgstr "الرتبة"
 
 #: gui/lobby/lobby.xml:264 (caption) gui/lobby/lobby.xml:326 (caption)
 msgid "Back"
-msgstr ""
+msgstr "رجوع"
 
 #: gui/lobby/lobby.xml:272 (caption)
 msgid "Update"
-msgstr ""
+msgstr "تحديث"
 
 #: gui/lobby/lobby.xml:282 (caption)
 msgid "Enter username:"
-msgstr ""
+msgstr "أدخل اسم المستخدم:"
 
 #: gui/lobby/lobby.xml:288 (caption)
 msgid "View Profile"
-msgstr ""
+msgstr "مشاهدة الملف الشخصي"
 
 #: gui/lobby/lobby.xml:321 (caption)
 msgid "Player not found."
-msgstr ""
+msgstr "لاعب غير موجود."
 
 #: gui/lobby/prelobby.xml:23 (caption)
 msgid "Create a new account"
@@ -375,19 +376,19 @@ msgstr ""
 
 #: gui/lobby/prelobby.xml:36 (caption) gui/lobby/prelobby.xml:63 (caption)
 msgid "Login:"
-msgstr ""
+msgstr "تسجيل الدخول:"
 
 #: gui/lobby/prelobby.xml:44 (caption) gui/lobby/prelobby.xml:68 (caption)
 msgid "Password:"
-msgstr ""
+msgstr "كلمة المرور:"
 
 #: gui/lobby/prelobby.xml:59 (caption)
 msgid "Registration"
-msgstr ""
+msgstr "تسجيل"
 
 #: gui/lobby/prelobby.xml:73 (caption)
 msgid "Password again:"
-msgstr ""
+msgstr "أعد كلمة المرور:"
 
 #: gui/lobby/prelobby.xml:88 (caption)
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
@@ -403,7 +404,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "تعريفات:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -523,7 +524,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "أنت توافق على:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""

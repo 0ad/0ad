@@ -397,7 +397,10 @@ function updateGameList()
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
-			list_mapSize.push(g.mapSize.split("(")[0]);
+			if (+g.mapSize !== +g.mapSize) // NaN
+				list_mapSize.push(translate(g.mapSize));
+			else
+				list_mapSize.push(g_mapSizes.shortNames[g_mapSizes.tiles.indexOf(+g.mapSize)]);
 			list_mapType.push(translate(toTitleCase(g.mapType)));
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
 			list.push(g.name);
@@ -407,7 +410,6 @@ function updateGameList()
 	}
 
 	gamesBox.list_name = list_name;
-	//gamesBox.list_ip = list_ip;
 	gamesBox.list_mapName = list_mapName;
 	gamesBox.list_mapSize = list_mapSize;
 	gamesBox.list_mapType = list_mapType;
@@ -469,10 +471,6 @@ function formatPlayerListEntry(nickname, presence, rating)
 	if (role == "moderator")
 		nickname = g_modPrefix + nickname;
 	var formattedName = colorPlayerName(nickname);
-
-	// Give moderators special formatting.
-	if (role == "moderator")
-		formattedName = formattedName; //TODO
 
 	// Push this player's name and status onto the list
 	return [formattedName, formattedStatus, formattedRating];

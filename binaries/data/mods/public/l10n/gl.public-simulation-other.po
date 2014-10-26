@@ -4,12 +4,13 @@
 # Ascendant project.
 # 
 # Translators:
+# Adrián Chaves Fernández <adriyetichaves@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-22 09:51+0000\n"
+"PO-Revision-Date: 2014-10-24 20:21+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -535,17 +536,17 @@ msgstr "inimigo"
 #: simulation/components/EntityLimits.js:110
 #, python-format
 msgid "%(category)s build limit of %(limit)s reached"
-msgstr ""
+msgstr "Acadouse o límite de construción de «%(category)s» (%(limit)s)."
 
 #: simulation/components/EntityLimits.js:112
 #, python-format
 msgid "%(category)s training limit of %(limit)s reached"
-msgstr ""
+msgstr "Acadouse o límite de adestramento de «%(category)s» (%(limit)s)."
 
 #: simulation/components/EntityLimits.js:116
 #, python-format
 msgid "%(category)s limit of %(limit)s reached"
-msgstr ""
+msgstr "Acadouse o límite de «%(category)s» (%(limit)s)."
 
 #: simulation/components/Player.js:40
 msgid "Food"
@@ -596,19 +597,19 @@ msgstr "A cola de produción está completa."
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Tartaruga (×0,1)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Lento (×0,25)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "A modo (×0,5)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Tranquilamente (×0,75)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
@@ -722,7 +723,7 @@ msgid ""
 "supports naval maps and is generally more challenging, but doesn't support "
 "saved games yet. Please report issues to Wildfire Games (see the link in the"
 " main menu)."
-msgstr ""
+msgstr "Petra, que comezou sendo unha versión alternativa de Aegis, é actualmente a intelixencia artificial máis estábel dispoñíbel. É compatíbel con mapas navais e custa máis gañar contra ela, pero aínda non é compatíbel con partidas gardadas. Se descubre algún erro, informe a Wildfire Games mediante a ligazón do menú principal."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
@@ -732,4 +733,4 @@ msgstr "Aprendizaxe"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "A intelixencia artificial de titorial non debería usarse máis que no escenario «Titorial de introdución»."

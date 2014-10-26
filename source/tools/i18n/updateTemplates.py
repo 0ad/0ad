@@ -1,7 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # -*- coding:utf-8 -*-
 #
-# Copyright (C) 2013 Wildfire Games.
+# Copyright (C) 2014 Wildfire Games.
 # This file is part of 0 A.D.
 #
 # 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,13 @@
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-import codecs, json, os, textwrap
+import codecs, json, string, os, textwrap
 
-from potter.catalog import Catalog, Message
-from potter.extract import getExtractorInstance
-from potter.pofile import write_po
+from pology.catalog import Catalog
+from pology.message import Message
+from pology.monitored import Monpair, Monlist
+
+from lxml import etree
 
 
 l10nToolsDirectory = os.path.dirname(os.path.realpath(__file__))
@@ -67,7 +69,6 @@ def generateTemplatesForMessagesFile(messagesFilePath):
     rootPath = os.path.dirname(messagesFilePath)
 
     for templateSettings in settings:
-
         if "skip" in templateSettings and templateSettings["skip"] == "yes":
             continue
 
@@ -75,26 +76,34 @@ def generateTemplatesForMessagesFile(messagesFilePath):
         if "inputRoot" in templateSettings:
             inputRootPath = os.path.join(rootPath, templateSettings["inputRoot"])
 
-        template = Catalog()
-        template.project = templateSettings["project"]
-        template.copyright_holder = templateSettings["copyrightHolder"]
+        template = Catalog(os.path.join(rootPath, templateSettings["output"]), create=True, truncate=True)
+        h = template.update_header(templateSettings["project"], "Translation template for %project.", "Copyright © "+"2014"+" "+templateSettings["copyrightHolder"], "This file is distributed under the same license as the %project project.")
+        h.remove_field("Report-Msgid-Bugs-To")
+        h.remove_field("Last-Translator")
+        h.remove_field("Plural-Forms")
+        h.remove_field("Language-Team")
+        h.remove_field("Language")
+        h.author = Monlist()
 
         for rule in templateSettings["rules"]:
-
             if "skip" in rule and rule["skip"] == "yes":
                 continue
 
             options = rule.get("options", {})
-            extractor = getExtractorInstance(rule["extractor"], inputRootPath, rule["filemasks"], options)
-            for message, context, location, comments in extractor.run():
-                formatFlag = None
-                if "format" in options:
-                    formatFlag = options["format"]
-                template.add(message, context=context, locations=[location], auto_comments=comments, formatFlag=formatFlag)
+            extractorClass = getattr(__import__("extractors.extractors", {}, {}, [rule["extractor"]]), rule["extractor"])
+            extractor = extractorClass(inputRootPath, rule["filemasks"], options)
+            formatFlag = None
+            if "format" in options:
+                formatFlag = options["format"]
+            for message, plural, context, location, comments in extractor.run():
+                msg = Message({"msgid": message, "msgid_plural": plural, "msgctxt": context, "auto_comment": comments, "flag": [formatFlag] if formatFlag and string.find(message, "%") != -1 else None, "source": [location]})
+                if template.get(msg):
+                    template.get(msg).source.append(Monpair(location))
+                else:
+                    template.add(msg)
 
-        with codecs.open(os.path.join(rootPath, templateSettings["output"]), 'w', 'utf-8') as fileObject:
-            write_po(fileObject, template)
-
+        template.set_encoding("utf-8")
+        template.sync()
         print(u"Generated “{}” with {} messages.".format(templateSettings["output"], len(template)))
 
 

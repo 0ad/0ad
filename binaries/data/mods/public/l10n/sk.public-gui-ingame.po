@@ -6,6 +6,7 @@
 # Translators:
 # B2D <book2doc@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
+# Levi Taule <levi.taule@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
@@ -16,8 +17,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-10-01 19:33+0000\n"
-"Last-Translator: empy <martinplavala@gmail.com>\n"
+"PO-Revision-Date: 2014-10-19 15:00+0000\n"
+"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,7 +82,7 @@ msgstr "Vrátim sa"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr "Vzdám sa"
+msgstr "Vzdávam sa"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
@@ -200,9 +201,9 @@ msgstr[2] "%(numberOfLandTraders)s obchodníci sú neaktívni"
 #, python-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] "%(inactiveString)s."
-msgstr[1] "There are %(inactiveString)s."
-msgstr[2] "There are %(inactiveString)s."
+msgstr[0] "Je tu %(inactiveString)s."
+msgstr[1] "Sú tu %(inactiveString)s."
+msgstr[2] "Sú tu %(inactiveString)s."
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
@@ -242,7 +243,7 @@ msgstr "Vyvojárska vrstva bola otvorená."
 
 #: gui/session/menu.js:680
 msgid "The Developer Overlay was closed."
-msgstr "Vývojarska vrstva bola zatvorená."
+msgstr "Vývojárska vrstva bola zatvorená."
 
 #: gui/session/menu.js:696
 #, python-format
@@ -448,7 +449,7 @@ msgstr "Zisk: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr "Počet staviteľov.\nPriradením ďalšie k stavbe zrýchli stavbu budovy o %(numb)s%%"
+msgstr "Počet staviteľov.\nPriradene ďalších zrýchli stavbu budovy o %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -658,7 +659,7 @@ msgstr "Vy"
 
 #: gui/session/session.js:170
 msgid "Gaia"
-msgstr "Príroda"
+msgstr "Gaia"
 
 #: gui/session/session.js:305 gui/session/session.js:321
 msgid "You have left the game."
@@ -1238,7 +1239,7 @@ msgstr "N"
 
 #: gui/session/diplomacy_window.xml:35 (caption)
 msgid "E"
-msgstr "N"
+msgstr "V"
 
 #: gui/session/diplomacy_window.xml:39 (caption)
 msgid "Tribute"
@@ -1426,7 +1427,7 @@ msgstr "MENU"
 
 #: gui/session/top_panel/label.xml:4 (caption)
 msgid "ALPHA XVII : Quercus"
-msgstr ""
+msgstr "ALPHA XVII : Quercus"
 
 #: gui/session/top_panel/resource_food.xml:3 (tooltip)
 msgid "Food"

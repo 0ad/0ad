@@ -5,23 +5,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Pyrogenesis\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2014-10-26 02:04+0100\n"
+"PO-Revision-Date: 2014-10-26 02:04+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
+#. Translation: First item is a date and time, item between parenthesis is the Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:799
 #, c-format
 msgid "%s (custom build)"
 msgstr ""
 
-#. Translation: First item is a date and time, item between parenthesis is the
-#. Subversion revision number of the current build.
+#. Translation: First item is a date and time, item between parenthesis is the Subversion revision number of the current build.
 #: gui/scripting/ScriptFunctions.cpp:804
 #, c-format
 msgid "%s (%ls)"
@@ -31,7 +27,7 @@ msgstr ""
 msgid "custom build"
 msgstr ""
 
-#: i18n/L10n.cpp:272
+#: i18n/L10n.cpp:266
 msgid "Long strings"
 msgstr ""
 
@@ -45,4 +41,3 @@ msgstr ""
 #, c-format
 msgid "Screenshot written to '%ls'"
 msgstr ""
-

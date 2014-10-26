@@ -8,6 +8,7 @@
 # REN.Haowei <jean.clcf@gmail.com>, 2014
 # jiajinming <bfsujiajinming@hotmail.com>, 2014
 # loms126 <loms126@126.com>, 2014
+# Mysterelee <8161525@qq.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
 # samrmrf, 2013
 # simsilver <yihuanlingjian@gmail.com>, 2014
@@ -20,8 +21,8 @@ msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-10-08 11:07+0000\n"
+"Last-Translator: Mysterelee <8161525@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -107,12 +108,12 @@ msgstr "返回到主菜单."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "返回大厅。"
 
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr "散兵"
+msgstr "小规模战斗"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
 #: gui/gamesetup/gamesetup.js:1257
@@ -135,7 +136,7 @@ msgstr "海事地图"
 
 #: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
-msgstr "演示地图："
+msgstr "演示地图"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
@@ -220,7 +221,7 @@ msgstr[0] "%(number)s 玩家数. %(description)s"
 
 #: gui/gamesetup/gamesetup.js:1304
 msgid "Loading..."
-msgstr ""
+msgstr "加载中..."
 
 #: gui/gamesetup/gamesetup.js:1417
 #, python-format
@@ -319,7 +320,7 @@ msgstr "游戏已经开始，正在重新加入..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "游戏名称现正被使用中。"
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, python-format
@@ -332,7 +333,7 @@ msgstr "征服"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "击败所有对手"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -340,17 +341,17 @@ msgstr "奇迹"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "建造奇观以获得胜利"
 
 #: gui/loading/loading.js:51
 #, python-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "正在载入 「%(map)s」"
 
 #: gui/loading/loading.js:55
 #, python-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "正在产生「%(map)s」"
 
 #: gui/aiconfig/aiconfig.xml:13 (caption)
 msgid "AI Configuration"
@@ -358,11 +359,11 @@ msgstr "电脑玩家设置"
 
 #: gui/aiconfig/aiconfig.xml:18 (caption)
 msgid "AI Player:"
-msgstr ""
+msgstr "电脑玩家："
 
 #: gui/aiconfig/aiconfig.xml:26 (caption)
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "AI 難度："
 
 #: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
 #: (caption)
@@ -412,7 +413,7 @@ msgstr "选择玩家"
 
 #: gui/gamesetup/gamesetup.xml:81 (tooltip)
 msgid "Configure AI settings."
-msgstr "选择电脑玩家模式"
+msgstr "配置 AI 设置。"
 
 #: gui/gamesetup/gamesetup.xml:84 (tooltip)
 msgid "Select player's civilization."
@@ -591,57 +592,57 @@ msgstr "每日一语："
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "「一个好运的傻瓜是沉重的负担。」 — 埃斯库罗斯"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "「他[死神]拥有天堂一切的权力,但依旧保持孤傲。」 — 埃斯库罗斯"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "「做的比看起来好。」 — 埃斯库罗斯「七将攻忒拜」"
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr "“不是誓言使我们相信一个人,而是我们相信一个人才相信他的誓言。“ - 埃斯库罗斯"
+msgstr "「不是誓言使我们相信一个人,而是相信一个人才会相信他的誓言。」 — 埃斯库罗斯"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "「每个暴君的心里都有毒药,所以他无法相信朋友。」 — 埃斯库罗斯「被缚的普罗米修斯」"
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "「时间可以教你一切。」 — 埃斯库罗斯「被缚的普罗米修斯」"
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "「智慧从苦难中得来...... 恩惠由上天所给予。」— 埃斯库罗斯「阿伽门农」"
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "「她 [海伦] 带给特洛伊唯一的嫁妆,就只有毁灭而已。」— 埃斯库罗斯「阿伽门农」"
 
 #: gui/text/quotes.txt:9
 msgid ""
 "\"It is in the character of very few men to honor without envy a friend who "
 "has prospered.\" - Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "「只有少数人有能毫不嫉妒有著繁华富贵的朋友的人格。」— 埃斯库罗斯「阿伽门农」"
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr ""
+msgstr "「对於致命伤就让他以致命的一击报复吧;这只是让他更加的痛苦而已。」— 埃斯库罗斯"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
@@ -708,20 +709,20 @@ msgstr "“敌人言而无信。“ - 伊索寓言"
 msgid ""
 "\"Spartans do not ask how many, only where the enemy are.\" - Agis II of "
 "Sparta"
-msgstr ""
+msgstr "「斯巴达人不会问敌人有多少,只会问敌人在哪里。」— 斯巴达的阿基斯二世"
 
 #: gui/text/quotes.txt:26
 msgid ""
 "\"Weep not for me, suffering as I do unjustly, I am in a happier case than "
 "my murderers.\" - Agis IV, 24th Spartan king of the Eurypontid dynasty"
-msgstr ""
+msgstr "「不要再为我而哭泣,而要为我所作的不公平痛苦,跟杀我的人比起来,我是比较快乐的。」— 亚基斯四世,斯巴达欧里庞提德王朝第24任国王"
 
 #: gui/text/quotes.txt:27
 msgid ""
 "\"He who doeth good shall meet with good; and he who doeth evil shall meet "
 "with evil, for the Lord judgeth a man according to the measure of his "
 "work.\" - Ahiqar, Assyrian sage"
-msgstr ""
+msgstr "「行善之人应得福;作恶之人必有报,上天按其所作之事论其功过。」—亚希夸，亚述圣人"
 
 #: gui/text/quotes.txt:28
 msgid ""
@@ -731,47 +732,47 @@ msgstr "“我若不是亚历山大，我愿是第欧根尼。” - 亚历山大
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"我要光明正大的取得胜利\" - 亚历山大大帝"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "「你还不明白吗?完美胜利的最终境界,是要避免复制被降服者的弱点与恶习。」— 亚历山大大帝"
 
 #: gui/text/quotes.txt:31
 msgid ""
 "\"To the strongest!\" - Alexander, on his death bed, when asked who should "
 "succeed him as king"
-msgstr ""
+msgstr "「最强之人!」— 亚历山大大帝,在他临终,被问及谁应该接下他的位置成为国王时"
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "「他将会去尝试的事情没有一件事是不可能的。」— 亚历山大大帝"
 
 #: gui/text/quotes.txt:33
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "「欲望和独自的安眠让我体认到,我仍是一个凡人。」— 亚历山大大帝"
 
 #: gui/text/quotes.txt:34
 msgid ""
 "\"The agora is an established place for men to cheat one another, and behave"
 " covetously.\" - Anacharsis"
-msgstr "\"集市是人们尔虞我诈、耽耽逐逐的既定之地。\" - Anacharsis"
+msgstr "\"集市是人们尔虞我诈、耽耽逐逐的既定之地。\" - 阿纳卡西斯"
 
 #: gui/text/quotes.txt:35
 msgid ""
 "\"Written laws are like spiders’ webs; they will catch, it is true, the weak"
 " and poor, but would be torn in pieces by the rich and powerful.\" - "
 "Anacharsis"
-msgstr "“成文法如蛛网。它们会托住穷苦人，诚然；然而会被权贵扯得四分五裂。” -  Anacharsis（安纳查西斯）"
+msgstr "“成文法如蛛网。它们会托住穷苦人，诚然；然而会被权贵扯得四分五裂。” -  阿纳卡西斯"
 
 #: gui/text/quotes.txt:36
 msgid "\"The fox knows many tricks; the hedgehog one good one.\" - Archilochus"
-msgstr "\"狐狸有多计; 刺猬只有唯一良策。\" - Archilochus"
+msgstr "\"狐狸有多计; 刺猬只有唯一良策。\" - 阿尔基洛科斯"
 
 #: gui/text/quotes.txt:37
 msgid ""
@@ -789,321 +790,321 @@ msgstr "“给我一个支点，我可以撬动地球。” - 阿基米德"
 msgid ""
 "\"It is from their foes, not their friends, that cities learn the lesson of "
 "building high walls and ships of war.\" - Aristophanes"
-msgstr "“是敌人而不是朋友教育我们: 城市需要建造高墙。“ - 阿里斯托芬"
+msgstr "“是敌人而不是朋友教育我们：城市需要建造高墙。“ - 阿里斯托芬"
 
 #: gui/text/quotes.txt:40
 msgid ""
 "\"Words give wings to the mind and make a man soar to heaven.\" - "
 "Aristophanes"
-msgstr ""
+msgstr "「文字给予心灵翅膀，让一个人飞腾到天堂。」— 阿里斯托芬"
 
 #: gui/text/quotes.txt:41
 msgid ""
 "\"It is the compelling power of great thoughts and ideas to engender "
 "language of equal greatness.\" - Aristophanes"
-msgstr ""
+msgstr "「伟大的想法及观点有著让人信服的力量，让人产生同等伟大的惊人之语。」— 阿里斯托芬"
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "「饥饿不认朋友，只认得饲养者。」— 阿里斯托芬"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "「我认为,与战胜敌人的人相比，战胜欲望的人更加勇敢。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
-msgstr ""
+msgstr "「我们的人格是行为的结果。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr "人是政治动物——亚里士多德"
+msgstr "「人天生就是政治动物。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:46
 msgid ""
 "\"If liberty and equality, as is thought by some, are chiefly to be found in"
 " democracy, they will be best attained when all persons alike share in the "
 "government to the utmost.\" - Aristotle"
-msgstr ""
+msgstr "「如果自由与平等像是一些人所认为的，主要是在民主中发现的，那麼他们将会在政府中的每个人都分享到极致的状态下发现到最好的一面。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:47
 msgid ""
 "\"Both oligarch and tyrant mistrust the people, and therefore deprive them "
 "of their arms.\" - Aristotle"
-msgstr ""
+msgstr "「因为政治寡头与独裁者都不信任人民，他们就剥夺了人民的武器。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:48
 msgid "\"Wit is well-bred insolence.\" - Aristotle"
-msgstr ""
+msgstr "「风趣是有教养的傲慢。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:49
 msgid ""
 "\"It is simplicity that makes the uneducated more effective than the "
 "educated when addressing popular audiences.\" - Aristotle"
-msgstr ""
+msgstr "「朴素使未受教育的人在面对大众演讲时比受过教育的人更有成效。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:50
 msgid ""
 "\"Poetry demands a man with a special gift for it, or else one with a touch "
 "of madness in him.\" - Aristotle"
-msgstr ""
+msgstr "「诗需要对它有特殊天赋的人，或是近乎疯狂的人。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:51
 msgid ""
 "\"I have gained this by philosophy: that I do without being commanded what "
 "others do only from fear of the law.\" - Aristotle"
-msgstr ""
+msgstr "「我已经从哲学中得知：我不受指挥的作这件事，而其他人只是出於对法律的恐惧而去作。」— 亚里斯多德"
 
 #: gui/text/quotes.txt:52
 msgid ""
 "\"Choose the course which you adopt with deliberation; but when you have "
 "adopted it, then persevere in it with firmness.\" - Bias of Priene"
-msgstr ""
+msgstr "「选择时谨慎思考，但当你采用它了以后，就要坚持到底。」— 普利尼的毕亚斯"
 
 #: gui/text/quotes.txt:53
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr ""
+msgstr "「国王在悲痛时撕裂了他的头发，好像秃头能治愈悲伤一般。」— 博里斯塞讷斯的比翁"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr ""
+msgstr "「他没有获得财富；而财富已吞噬了他。」— 博里斯塞讷斯的比翁"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
-msgstr ""
+msgstr "「被打败就意味著灾难。」— 布伦努斯"
 
 #: gui/text/quotes.txt:56
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "「暴君总是如此。」— 马尔库斯·尤尼乌斯·布鲁图,暗杀盖乌斯·儒略·凯撒后"
 
 #: gui/text/quotes.txt:57
 msgid ""
 "\"Escape, yes, but this time with my hands, not my feet.\" - Marcus Junius "
 "Brutus, before committing suicide"
-msgstr ""
+msgstr "「逃避？是的，但这次是我的手而不是脚。」— 马尔库斯·尤尼乌斯·布鲁图,自杀前"
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「我至，我见，我征服。」— 盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「人们心甘情愿的相信他们所希望的。」— 盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:60
 msgid "\"The die is cast.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「骰子已经掷出，命运已定。」— 盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:61
 msgid ""
 "\"It is not the well-fed long-haired man I fear, but the pale and the hungry"
 " looking.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "「我不怕吃饱的长发男人，但怕见到面黄肌瘦之人。」— 盖乌斯·儒略·凯撒"
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "「以盗治盗。」— 卡利马科斯"
 
 #: gui/text/quotes.txt:63
 msgid ""
 "\"Wise men learn more from fools than fools from the wise.\" - Cato the "
 "Elder"
-msgstr ""
+msgstr "「智者从愚者处学到的比愚者从智者处学到的多。」— 老加图"
 
 #: gui/text/quotes.txt:64
 msgid ""
 "\"Moreover, I consider that Carthage should be destroyed.\" - Cato the Elder"
-msgstr ""
+msgstr "「此外，我认为迦太基应该被摧毁。」— 老加图"
 
 #: gui/text/quotes.txt:65
 msgid ""
 "\"All mankind rules its women, and we rule all mankind, but our women rule "
 "us.\" - Cato the Elder"
-msgstr ""
+msgstr "「所有男人控制著他们的女人，我们统治所有的男人,但我们的女人统治著我们。」— 老加图"
 
 #: gui/text/quotes.txt:66
 msgid "\"Be firm or mild as the occasion may require.\" - Cato the Elder"
-msgstr ""
+msgstr "「严肃或轻松,视场合而定。」— 老加图"
 
 #: gui/text/quotes.txt:67
 msgid "\"The worst ruler is one who cannot rule himself.\" - Cato the Elder"
-msgstr ""
+msgstr "「最坏的统治者就是无法管好自己的人。」— 老加图"
 
 #: gui/text/quotes.txt:68
 msgid ""
 "\"Whoever imposes severe punishment becomes repulsive to the people; while "
 "he who awards mild punishment becomes contemptible. But whoever imposes "
 "punishment as deserved becomes respectable.\" - Chanakya"
-msgstr ""
+msgstr "「给予过於严厉的惩罚令人感到厌恶；给予过轻的惩罚则近乎碑鄙。但能给予轻重适中的惩罚则令人尊敬。」— 考底利耶"
 
 #: gui/text/quotes.txt:69
 msgid ""
 "\"If a king is energetic, his subjects will be equally energetic.\" - "
 "Chanakya"
-msgstr ""
+msgstr "「如果国王充满活力，则他的臣民也将充满活力。」— 考底利耶"
 
 #: gui/text/quotes.txt:70
 msgid ""
 "\"For there is but one essential justice which cements society, and one law "
 "which establishes this justice. This law is right reason, which is the true "
 "rule of all commandments and prohibitions.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「唯一的公平巩固了社会,法律确立了这份公平。这个法律是所有戒律与禁令的真实法则。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:71
 msgid "\"O, the times, O, the customs!\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「习俗,与时俱进!」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:72
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
-msgstr ""
+msgstr "「没有人会老到认为他不能再多活一年。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:73
 msgid ""
 "\"We are not born, we do not live for ourselves alone; our country, our "
 "friends, have a share in us.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「我们并不是天生就是孤独的;我们的国家,我们的朋友,都是我们的一部份。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:74
 msgid ""
 "\"Yield, ye arms, to the toga; to civic praise, ye laurels.\" - Marcus "
 "Tullius Cicero"
-msgstr ""
+msgstr "「以你们的双手生产长袍;公民的赞扬是你们的殊荣。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:75
 msgid "\"At my signal, unleash Hell.\" - Maximus Decimus Meridius"
-msgstr ""
+msgstr "「听我的号令,释放出地狱。」— Maximus Decimus Meridius"
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「时间会治愈一切的伤痛。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:77
 msgid ""
 "\"That, Senators, is what a favour from gangs amounts to. They refrain from "
 "murdering someone; then they boast that they have spared him!\" - Marcus "
 "Tullius Cicero"
-msgstr ""
+msgstr "「也就是说,元老会议员同样也只会同流合污。他们克制住谋杀某人的冲动;却又吹嘘着他们放过了他!」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:78
 msgid "\"Genius is fostered by energy.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「天才由活力所培養。」─ 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「还有生命,就有希望。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:80
 msgid ""
 "\"We must not say that every mistake is a foolish one.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "「我们并不能说每一个错误都是愚蠢至极的。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:81
 msgid "\"Let the punishment match the offense.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「让惩罚符合罪过。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:82
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "「让人民的福祉成为最终的法律。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「无尽的钱构成了万恶的根源。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「在战时,法律是沉默的。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:85
 msgid ""
 "\"A war is never undertaken by the ideal State, except in defense of its "
 "honor or its safety.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「除非是捍卫荣誉或安全,否则一个理想的国家绝不会进行战争。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:86
 msgid ""
 "\"The first duty of a man is the seeking after and the investigation of "
 "truth.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "「一个人的首要责任就是追寻并研究真理。」— 马库斯·图利乌斯·基凯罗"
 
 #: gui/text/quotes.txt:87
 msgid ""
 "\"In peace the sons bury their fathers, but in war the fathers bury their "
 "sons.\" - Croesus (Greek: Kroisos), king of Lydia"
-msgstr ""
+msgstr "「一个人的首要责任就是追寻并研究真理。」— 克罗伊斯(古希腊语:克洛伊索斯),吕底亚国王"
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "「吾为居鲁士,世界之王......。」— 居鲁士大帝"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"
-msgstr ""
+msgstr "「多方商议,统一指挥。」— 居鲁士大帝"
 
 #: gui/text/quotes.txt:90
 msgid ""
 "\"Do not therefore begrudge me this bit of earth that covers my bones.\" - "
 "Epitaph of Cyrus the Great"
-msgstr ""
+msgstr "「不要因此而埋怨覆盖我的这一点土壤。」— 居鲁士大帝的墓志铭"
 
 #: gui/text/quotes.txt:91
 msgid ""
 "\"Success always calls for greater generosity — though most people, lost in "
 "the darkness of their own egos, treat it as an occasion for greater greed.\""
 " - Cyrus the Great"
-msgstr ""
+msgstr "「成功总是需要更大的宽容 —— 尽管对於大多数人来说,他们的自我已经在黑暗中迷失了,把它作为更大的贪婪的一部份。」— 居鲁士大帝"
 
 #: gui/text/quotes.txt:92
 msgid ""
 "\"Whether men lie, or say true, it is with one and the same object.\" - "
 "Darius I"
-msgstr ""
+msgstr "「不论人们说谎还是说真话,目标都是一样的。」— 大流士一世"
 
 #: gui/text/quotes.txt:93
 msgid ""
 "\"Good breeding in cattle depends on physical health, but in men on a well-"
 "formed character.\" - Democritus"
-msgstr ""
+msgstr "「养育牛只依赖身体的健康,但养育人则依靠著良好的品格。」— 德谟克利特"
 
 #: gui/text/quotes.txt:94
 msgid ""
 "\"If your desires are not great, a little will seem much to you; for small "
 "appetite makes poverty equivalent to wealth.\" - Democritus"
-msgstr ""
+msgstr "「如果你的欲望并不大,那么一点点对你来说便显的很多；对于小小的欲望，那么贫穷与与财富并无不同。」— 德谟克利特"
 
 #: gui/text/quotes.txt:95
 msgid ""
 "\"Delivery, delivery, delivery.\" - Demosthenes, when asked what were the "
 "three most important elements of rhetoric"
-msgstr ""
+msgstr "「姿态、姿态、姿态。」— 狄摩西尼,当被问及什麼是修辞学最重要的三个因素"
 
 #: gui/text/quotes.txt:96
 msgid ""
 "\"It is not possible to found a lasting power upon injustice, perjury, and "
 "treachery.\" - Demosthenes"
-msgstr ""
+msgstr "「不公正的行为、背信忘义、以及背叛,是不可能找到持久的动力的。」— 狄摩西尼"
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "「小小的机会往往预示著大大的冒险。」— 狄摩西尼"
 
 #: gui/text/quotes.txt:98
 msgid ""
 "\"Every advantage in the past is judged in the light of the final issue.\" -"
 " Demosthenes"
-msgstr ""
+msgstr "「过去的每个优势都将在回光返照之时被评定。」— 狄摩西尼"
 
 #: gui/text/quotes.txt:99
 msgid ""
@@ -1126,150 +1127,150 @@ msgstr "“并不是我疯了，只是我的脑袋和你（们）的不一样罢
 msgid ""
 "\"Let thy speech be better than silence, or be silent.\" - Dionysius I of "
 "Syracuse"
-msgstr ""
+msgstr "「让你的言语胜过沉默,否则就闭嘴。」—大狄奥尼西奥斯"
 
 #: gui/text/quotes.txt:103
 msgid "\"Nothing has more strength than dire necessity.\" - Euripides"
-msgstr ""
+msgstr "「没有什麼比极度的贫穷更有力量。」— 欧里庇得斯"
 
 #: gui/text/quotes.txt:104
 msgid "\"A coward turns away, but a brave man's choice is danger.\" - Euripides"
-msgstr ""
+msgstr "「懦夫转身离开,但勇敢之人的抉择是危险的。」— 欧里庇得斯"
 
 #: gui/text/quotes.txt:105
 msgid ""
 "\"Cowards do not count in battle; they are there, but not in it.\" - "
 "Euripides"
-msgstr ""
+msgstr "「懦夫在战斗里不算数;他们在那里,但心不在。」— 欧里庇得斯"
 
 #: gui/text/quotes.txt:106
 msgid "\"Chance fights ever on the side of the prudent.\" - Euripides"
-msgstr ""
+msgstr "「机会永远与谨慎战斗。」— 欧里庇得斯"
 
 #: gui/text/quotes.txt:107
 msgid ""
 "\"If a man put out the eye of another man, his eye shall be put out.\" - "
 "Hammurabi"
-msgstr ""
+msgstr "「如果一个人挖出了另一个人的眼睛,他的眼睛也该被挖出来。」—汉谟拉比"
 
 #: gui/text/quotes.txt:108
 msgid ""
 "\"I have come not to make war on the Italians, but to aid the Italians "
 "against Rome.\" - Hannibal Barca"
-msgstr ""
+msgstr "「我不是要让意大利人捲入战争,而是要帮助意大利人对抗罗马。」— 汉尼拔·巴卡"
 
 #: gui/text/quotes.txt:109
 msgid "\"I will either find a way, or make one.\" - Hannibal Barca"
-msgstr ""
+msgstr "「我会找到一条路,或是做一个。」— 汉尼拔·巴卡"
 
 #: gui/text/quotes.txt:110
 msgid ""
 "\"My ancestors yielded to Roman valour. I am endeavouring that others, in "
 "their turn, will be obliged to yield to my good fortune, and my valour.\" - "
 "Hannibal Barca"
-msgstr ""
+msgstr "「我的祖先屈从於罗马的勇猛。我尽力让其他人轮到他们不得不屈从於我的好运与勇猛。」— 汉尼拔·巴卡"
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "「万物皆动,无物为静。」— 赫拉克利特"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "「唯一不变的是变的本身。」— 赫拉克利特"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "「人不能两次踏入同一条河流,因为无论是这条河还是这个人都已经不同。」—  赫拉克利特"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr ""
+msgstr "「性格决定命运。」— 赫拉克利特"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
-msgstr ""
+msgstr "「命运控制著人们;而人们无法支配命运。」— 希罗多德"
 
 #: gui/text/quotes.txt:116
 msgid ""
 "\"The Lacedaemonians fought a memorable battle; they made it quite clear "
 "that they were the experts, and that they were fighting against amateurs.\" "
 "- Herodotus"
-msgstr ""
+msgstr "「拉科尼亚人打了一场令人难忘的战斗;他们看起来就像是,他们是专家,而与业余选手对抗。」— 希罗多德"
 
 #: gui/text/quotes.txt:117
 msgid ""
 "\"This is the bitterest pain among men, to have much knowledge but no "
 "power.\" - Herodotus"
-msgstr ""
+msgstr "「这是人们最剧烈的痛苦,有很多知识,但没有权力。」— 希罗多德"
 
 #: gui/text/quotes.txt:118
 msgid "\"In soft regions are born soft men.\" - Herodotus"
-msgstr ""
+msgstr "「在安稳的区域只会生出软弱的人。」— 希罗多德"
 
 #: gui/text/quotes.txt:119
 msgid "\"It is sweet and honorable to die for one's country.\" - Horace"
-msgstr ""
+msgstr "「为自己的国家而死是愉快且光荣的。」— 贺拉斯"
 
 #: gui/text/quotes.txt:120
 msgid "\"We are but dust and shadow.\" - Horace"
-msgstr ""
+msgstr "「我们不过是尘土与阴魂。」— 贺拉斯"
 
 #: gui/text/quotes.txt:121
 msgid ""
 "\"I am not bound over to swear allegiance to any master; where the storm "
 "drives me I turn in for shelter.\" - Horace"
-msgstr ""
+msgstr "「我不宣誓效忠任何主人;当风暴驱使我,我就躲进避难所里。」— 贺拉斯"
 
 #: gui/text/quotes.txt:122
 msgid ""
 "\"Conquered Greece took captive her savage conqueror and brought her arts "
 "into rustic Latium.\" - Horace"
-msgstr ""
+msgstr "「被征服的希腊让她的征服者深深的著迷,并把她的艺术带到了质朴的拉齐奥。」— 贺拉斯"
 
 #: gui/text/quotes.txt:123
 msgid ""
 "\"Guard yourself against accusations, even if they are false; for the "
 "multitude are ignorant of the truth and look only to reputation.\" - "
 "Isocrates"
-msgstr ""
+msgstr "「保卫自己免於指责,即便那些是假的;对於多数不知道真相的人们来说,则只追求声誉。」— 伊索克拉底"
 
 #: gui/text/quotes.txt:124
 msgid ""
 "\"I never learned how to tune a harp, or play upon a lute; but I know how to"
 " raise a small and inconsiderable city to glory and greatness.\" - "
 "Themistocles"
-msgstr ""
+msgstr "「我从未学会如何调整竖琴,或是弹奏鲁特琴;但我知道如何将一个小且无足轻重的城市带向光荣与伟大。」— 地米斯托克利"
 
 #: gui/text/quotes.txt:125
 msgid "\"I have with me two gods, Persuasion and Compulsion.\" - Themistocles"
-msgstr ""
+msgstr "「我有两位神,说服与强迫。」— 地米斯托克利"
 
 #: gui/text/quotes.txt:126
 msgid ""
 "\"For the Athenians command the rest of Greece, I command the Athenians; "
 "your mother commands me, and you command your mother.\" - Themistocles, in a"
 " statement to his son"
-msgstr ""
+msgstr "「雅典人指挥其余的希腊人,我指挥雅典人;你母亲命令我,你指挥你的母亲。」— 地米斯托克利,在一份对他儿子的声明中"
 
 #: gui/text/quotes.txt:127
 msgid "\"Strike, if you will, but listen.\" - Themistocles"
-msgstr ""
+msgstr "「弹奏,如果你愿意,但要仔细聆听。」— 地米斯托克利"
 
 #: gui/text/quotes.txt:128
 msgid ""
 "\"Marry a good man, and bear good children.\" - Leonidas, to his wife before"
 " he left for Thermopylae"
-msgstr ""
+msgstr "「嫁个好男人,然后生出勇猛的小孩。」— 列奥尼达一世,在他要前往温泉关前对他的妻子说"
 
 #: gui/text/quotes.txt:129
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
-msgstr ""
+msgstr "「杀光他们！」— 列奥尼达一世,於波斯的使者要求他们放下武器时"
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr ""
+msgstr "「对於一个有思想的人来说,智慧是无所不在的。」— 琐罗亚斯德"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
@@ -1302,7 +1303,7 @@ msgid ""
 "\"We do not say that a man who takes no interest in politics is a man who "
 "minds his own business; we say that he has no business here at all.\" - "
 "Pericles"
-msgstr ""
+msgstr "「我们不会说一个对政治不感兴趣的人是一个只顾著自己职责的人;我们会说他在这里没有任何职责。」— 伯里克利"
 
 #: gui/text/quotes.txt:137
 msgid ""
@@ -1315,37 +1316,37 @@ msgstr "\"他们献上自己的生命，为了她，我们所有人，和他们�
 msgid ""
 "\"Make up your minds that happiness depends on being free, and freedom "
 "depends on being courageous.\" - Pericles"
-msgstr "\"你们要坚信自由给予幸福，而勇气实现自由.\" - Pericles"
+msgstr "\"你们要坚信自由给予幸福，而勇气实现自由.\" - 伯里克利"
 
 #: gui/text/quotes.txt:139
 msgid ""
 "\"Your empire is now like a tyranny: it may have been wrong to take it; it "
 "is certainly dangerous to let it go.\" - Pericles"
-msgstr ""
+msgstr "「你的帝国现在就像是暴政横行,连假想如此都是错的;让它就这麼发展更是危险。」— 伯里克利"
 
 #: gui/text/quotes.txt:140
 msgid ""
 "\"If Athens shall appear great to you, consider then that her glories were "
 "purchased by valiant men, and by men who learned their duty.\" - Pericles"
-msgstr ""
+msgstr "「如果雅典对你来说很伟大,请将其视为由勇士所赢得,并且是由视其为己任的人所赢得。」— 伯里克利"
 
 #: gui/text/quotes.txt:141
 msgid ""
 "\"Just because you do not take an interest in politics doesn't mean politics"
 " won't take an interest in you.\" - Pericles"
-msgstr ""
+msgstr "「你不关心政治,并不代表政治不会来『关心』你。」— 伯里克利"
 
 #: gui/text/quotes.txt:142
 msgid ""
 "\"War is sweet to those who have no experience of it, but the experienced "
 "man trembles exceedingly at heart on its approach.\" - Pindar"
-msgstr ""
+msgstr "「战争对於那些没有经历过它的人来说是甜蜜的,但对於经历过的人来说则会打从心底颤抖不已。」— 品达"
 
 #: gui/text/quotes.txt:143
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr ""
+msgstr "「离别的时刻到了,我们将各走各的路 —— 我往死,你向生。只有神知道哪一个比较好。」— 柏拉图"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
@@ -1356,7 +1357,7 @@ msgid ""
 "\"Let every man remind their descendants that they also are soldiers who "
 "must not desert the ranks of their ancestors, or from cowardice fall "
 "behind.\" - Plato"
-msgstr ""
+msgstr "「让每个人提醒他们的后代,他们也都无法抛弃祖先的队伍,甚或是懦弱的后退。」— 柏拉图"
 
 #: gui/text/quotes.txt:146
 msgid ""
@@ -1369,7 +1370,7 @@ msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr ""
+msgstr "「民主是政府一种迷人的形式,包含了所有种类及混乱,并将公平与不公平都视为一种平等。」— 柏拉图"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"
@@ -1395,131 +1396,131 @@ msgstr "“客人住久了就是麻烦.\"——普劳图斯"
 
 #: gui/text/quotes.txt:153
 msgid "\"He whom the gods love dies young.\" - Plautus"
-msgstr ""
+msgstr "「天佑者早逝。」— 普劳图斯"
 
 #: gui/text/quotes.txt:154
 msgid "\"Practice yourself what you preach.\" - Plautus"
-msgstr ""
+msgstr "「反覆练习你所鼓吹的观念。」— 普劳图斯"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
-msgstr ""
+msgstr "「喝,活的像希腊人一样,吃,暴饮暴食。」— 普劳图斯"
 
 #: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr ""
+msgstr "「别再引述法律,我们有武器!」— 格奈乌斯·庞培(庞培大帝)"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr ""
+msgstr "「人是万物的尺度:是存在者存在的尺度,也是不存在者不存在的尺度。」— 普罗泰戈拉"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr ""
+msgstr "「我们应该检讨自己的行为,以避免我们的朋友成为敌人,并同时与我们的敌人交朋友。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
-msgstr ""
+msgstr "「愤怒时,我们应该避免说话或行动。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:160
 msgid "\"Power is the near neighbor of necessity.\" - Pythagoras"
-msgstr ""
+msgstr "「权力是必要的邻居。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:161
 msgid "\"Numbers rule the Universe.\" - Pythagoras"
-msgstr ""
+msgstr "「数字统治万物。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:162
 msgid ""
 "\"Rest satisfied with doing well, and leave others to talk of you as they "
 "please.\" - Pythagoras"
-msgstr ""
+msgstr "「在你表现好的时候放宽心,让其他人随心所欲的谈论你。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:163
 msgid "\"Anger begins in folly, and ends in repentance.\" - Pythagoras"
-msgstr ""
+msgstr "「愤怒以愚蠢开始,以后悔告终。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr ""
+msgstr "「没有言语或行动,但有永恒的共鸣。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
-msgstr ""
+msgstr "「几何图形间有著琴弦之声,球体之间有音乐。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr ""
+msgstr "「以言语及行动实践正义,但不要对任何事情轻举妄动。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr ""
+msgstr "「连想都不要想不该做的事情。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:168
 msgid ""
 "\"When the wise man opens his mouth, the beauties of his soul present "
 "themselves to the view, like the statues in a temple.\" - Pythagoras"
-msgstr ""
+msgstr "「当一个智者张开他的嘴巴,他灵魂深处的优点就会显现出来,就像寺院里的佛像一样。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:169
 msgid ""
 "\"Remind yourself that all men assert that wisdom is the greatest good, but "
 "that there are few who strenuously seek out that greatest good.\" - "
 "Pythagoras"
-msgstr ""
+msgstr "「提醒你自己,所有的人都声称智慧是最大的好处,但只有少数人在极力追寻这个最大的好处。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:170
 msgid "\"Without Justice, no realm may prosper.\" - Pythagoras"
-msgstr ""
+msgstr "「没有正义的国家是不会强盛的。」— 毕达哥拉斯"
 
 #: gui/text/quotes.txt:171
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr ""
+msgstr "「和谐使小国壮大,而不和谐则使最强盛的帝国毁坏。」— 撒路斯提乌斯"
 
 #: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr ""
+msgstr "「我意识到人类的弱点,我反思财富的威力,才知道我们所作的暴露在数千种可能性之中。」— 大西庇阿"
 
 #: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr ""
+msgstr "「去告诉斯巴达人,陌生人经过了这里,服从於他们的法律,我们说谎了。」— 西莫尼德斯,於温泉关上的墓志铭"
 
 #: gui/text/quotes.txt:174
 msgid ""
 "\"Go, tell the Spartans, stranger passing by that here, obedient to their "
 "laws, we lie.\" - Simonides of Ceos, epitaph on the Cenotaph of Thermopylae"
-msgstr ""
+msgstr "「去告诉斯巴达人,陌生人经过了这里,服从於他们的法律,我们说谎了。」— 西莫尼德斯"
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
-msgstr ""
+msgstr "「连神都无法对抗必然。」— 西莫尼德斯"
 
 #: gui/text/quotes.txt:176
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr ""
+msgstr "「当希腊在刀刃边缘时,我们没有退缩,但保全了生命拯救她。」— 西莫尼德斯"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
 " it.\" - Thucydides"
-msgstr ""
+msgstr "「那些對在眼前的事物有著最清晰的洞察力的人是最勇敢的人，不論是榮耀或危險都會勇敢的走出去面對它。」─ 修昔底德"
