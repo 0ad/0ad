@@ -119,7 +119,7 @@ void main()
 
     vec4 cosVec;
     // these determine the speed of the wind's "cosine" waves.
-    cosVec.w = 0;
+    cosVec.w = 0.0;
     cosVec.x = sim_time.x * modelPos[0] + position.x;
     cosVec.y = sim_time.x * modelPos[2] / 3.0 + instancingTransform[3][0];
     cosVec.z = sim_time.x * abswind / 4.0 + position.z;
