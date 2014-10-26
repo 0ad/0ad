@@ -77,10 +77,9 @@ def generateTemplatesForMessagesFile(messagesFilePath):
             inputRootPath = os.path.join(rootPath, templateSettings["inputRoot"])
 
         template = Catalog(os.path.join(rootPath, templateSettings["output"]), create=True, truncate=True)
-        h = template.update_header(templateSettings["project"], "Translation template for %project.", "Copyright © "+"2014"+" "+templateSettings["copyrightHolder"], "This file is distributed under the same license as the %project project.")
+        h = template.update_header(templateSettings["project"], "Translation template for %project.", "Copyright © "+"2014"+" "+templateSettings["copyrightHolder"], "This file is distributed under the same license as the %project project.", plforms="nplurals=2; plural=(n != 1);")
         h.remove_field("Report-Msgid-Bugs-To")
         h.remove_field("Last-Translator")
-        h.remove_field("Plural-Forms")
         h.remove_field("Language-Team")
         h.remove_field("Language")
         h.author = Monlist()
