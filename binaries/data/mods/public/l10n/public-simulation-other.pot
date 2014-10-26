@@ -1,18 +1,35 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-10-26 02:05+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
+
+#: simulation/ai/petra/chatHelper.js:9
+#, javascript-format
+msgid "I am launching an attack against %(name)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:11
+#, javascript-format
+msgid "I have just sent an army against %(name)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:22
+#, javascript-format
+msgid "Here is a gift for %(name)s, make a good use of it."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid "I see you are in a bad situation %(name)s, hope this will help."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -22,8 +39,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
-"Lets get started, first train a batch (shift click) of 5 female citizens from"
-" the CC (Civil Center)."
+"Lets get started, first train a batch (shift click) of 5 female citizens "
+"from the CC (Civil Center)."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
@@ -38,8 +55,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
-"Queue some slingers to train after the female citizens, you won't have enough"
-" resources for a batch."
+"Queue some slingers to train after the female citizens, you won't have "
+"enough resources for a batch."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
@@ -64,14 +81,14 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
-"Set the rally point back to the berries once all of the citizen soldiers have"
-" finished training."
+"Set the rally point back to the berries once all of the citizen soldiers "
+"have finished training."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
-"Send one citizen soldier to gather stone, send 2 others to build a storehouse"
-" near the southern trees."
+"Send one citizen soldier to gather stone, send 2 others to build a "
+"storehouse near the southern trees."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
@@ -85,8 +102,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
-"Your cavalryman has probably run out of chickens by now, there are some goats"
-" to the left of your base."
+"Your cavalryman has probably run out of chickens by now, there are some "
+"goats to the left of your base."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
@@ -119,8 +136,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
-"Make sure the workers from the berry bushes are used to gather from the field"
-" rather than standing idle when they run out."
+"Make sure the workers from the berry bushes are used to gather from the "
+"field rather than standing idle when they run out."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
@@ -181,7 +198,8 @@ msgid "Next queue a batch of slingers."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:183
-msgid "Send some of the stone miners to mine metal, getting ready for the next age."
+msgid ""
+"Send some of the stone miners to mine metal, getting ready for the next age."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:193
@@ -204,7 +222,8 @@ msgid "Queue 5 more females for construction work."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:213
-msgid "Queue a batch of slingers to gather the trees on the north side of your base."
+msgid ""
+"Queue a batch of slingers to gather the trees on the north side of your base."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:218
@@ -237,8 +256,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
-" - Use all of your resources, stockpiled resources are waste, having too much"
-" of a resource is waste."
+" - Use all of your resources, stockpiled resources are waste, having too "
+"much of a resource is waste."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:248
@@ -273,8 +292,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:273
 msgid ""
-"Each map is different, so you will need to play slightly differently on each."
-" This should give an outline for a high resource map."
+"Each map is different, so you will need to play slightly differently on "
+"each. This should give an outline for a high resource map."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:4
@@ -293,14 +312,14 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
-"Select the Civil Center building, and shift-click on the Hoplite icon (2nd in"
-" the row) once to begin training 5 Hoplites."
+"Select the Civil Center building, and shift-click on the Hoplite icon (2nd "
+"in the row) once to begin training 5 Hoplites."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:15
 msgid ""
-"Select the two idle female citizens and build a house nearby by selecting the"
-" house icon. Place the house by left-clicking on a piece of land."
+"Select the two idle female citizens and build a house nearby by selecting "
+"the house icon. Place the house by left-clicking on a piece of land."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
@@ -312,8 +331,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
-"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd in"
-" the row) in the Civil Center."
+"Build a set of 5 skirmishers by shift-clicking on the skirmisher icon (3rd "
+"in the row) in the Civil Center."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:33
@@ -376,8 +395,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:86
 msgid ""
-"Build a Blacksmith and research the Infantry Training technology (sword icon)"
-" to improve infantry hack attack."
+"Build a Blacksmith and research the Infantry Training technology (sword "
+"icon) to improve infantry hack attack."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
@@ -398,8 +417,8 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
-"Now that you are in City Phase, build a fortress nearby and use it to build 2"
-" Battering Rams."
+"Now that you are in City Phase, build a fortress nearby and use it to build "
+"2 Battering Rams."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
@@ -420,117 +439,110 @@ msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:85
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:108
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:156
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:160
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr ""
 
-#. Translation: territoryType being displayed in a translated sentence in the form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr ""
 
-#. Translation: territoryType being displayed in a translated sentence in the form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr ""
 
-#. Translation: territoryType being displayed in a translated sentence in the form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr ""
 
-#. Translation: territoryType being displayed in a translated sentence in the form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. Translation: territoryType being displayed in a translated sentence in the form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:199
-#, python-format
+#, javascript-format
 msgid ""
-"%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
-"%(validTerritories)s"
+"%(name)s cannot be built in %(territoryType)s territory. Valid territories: %"
+"(validTerritories)s"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:238
-#, python-format
+#, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:262
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr ""
 
 #: simulation/components/BuildRestrictions.js:275
-#, python-format
-msgid "%(name)s too far from a %(category)s, must be within %(distance)s meters"
+#, javascript-format
+msgid ""
+"%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr ""
 
-#. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
 #: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
 msgstr ""
 
-#. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
 msgstr ""
 
-#. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr ""
 
-#. Translation: Territory types being displayed as part of a list like "Valid
-#. territories: own, ally".
+#. Translation: Territory types being displayed as part of a list like "Valid territories: own, ally".
 #: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
 
 #: simulation/components/EntityLimits.js:110
-#, python-format
+#, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr ""
 
 #: simulation/components/EntityLimits.js:112
-#, python-format
+#, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr ""
 
 #: simulation/components/EntityLimits.js:116
-#, python-format
+#, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr ""
 
@@ -551,30 +563,30 @@ msgid "Stone"
 msgstr ""
 
 #: simulation/components/Player.js:236
-#, python-format
+#, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
 #: simulation/components/Player.js:238
-#, python-format
+#, javascript-format
 msgid ""
-"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
-"%(resourceAmount2)s %(resourceType2)s"
+"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
+"(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
 #: simulation/components/Player.js:240
-#, python-format
+#, javascript-format
 msgid ""
-"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
-"%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
+"(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr ""
 
 #: simulation/components/Player.js:242
-#, python-format
+#, javascript-format
 msgid ""
-"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
-"%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s,"
-" %(resourceAmount4)s %(resourceType4)s"
+"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, %"
+"(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, "
+"%(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
 #: simulation/components/ProductionQueue.js:361
@@ -716,6 +728,7 @@ msgid "Tutorial AI"
 msgstr ""
 
 #: simulation/ai/tutorial-ai/data.json:description
-msgid "The Tutorial AI should only be used on the \"Introductory Tutorial\" scenario."
+msgid ""
+"The Tutorial AI should only be used on the \"Introductory Tutorial\" "
+"scenario."
 msgstr ""
-
