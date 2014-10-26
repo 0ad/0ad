@@ -377,7 +377,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 		return 2;
 	}
 
-	if (this.Config.debug > 3 && gameState.ai.playedTurn % 50 === 0)
+	if (this.Config.debug > 3 && gameState.ai.playedTurn % 50 == 0)
 		this.debugAttack();
 
 	// find our target
@@ -502,7 +502,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			// We still have time left to recruit units and do stuffs.
 			this.trainMoreUnits(gameState);
 			// may happen if we have no more training facilities and build orders are canceled
-			if (this.buildOrder.length === 0)
+			if (this.buildOrder.length == 0)
 				return 0;	// will abort the plan
 		}
 		return 1;
@@ -570,7 +570,7 @@ m.AttackPlan.prototype.trainMoreUnits = function(gameState)
 		return va - vb;
 	});
 
-	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 === 0)
+	if (this.Config.debug > 1 && gameState.ai.playedTurn%50 == 0)
 	{
 		API3.warn("====================================");
 		API3.warn("======== build order for plan " + this.name);
@@ -731,10 +731,10 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	if (this.type === "Raid")
 		var targets = this.raidTargetFinder(gameState);
 	else if (this.type === "Rush" || this.type === "Attack")
-		var targets = this.rushTargetFinder(gameState);
+		var targets = this.rushTargetFinder(gameState, this.targetPlayer);
 	else
 		var targets = this.defaultTargetFinder(gameState);
-	if (targets.length === 0)
+	if (targets.length == 0)
 		return undefined;
 
 	var land = gameState.ai.accessibility.getAccessValue(position);
@@ -749,7 +749,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 		if (sameLand && gameState.ai.accessibility.getAccessValue(targets._entities[i].position()) !== land)
 			continue;
 		var dist = API3.SquareVectorDistance(targets._entities[i].position(), position);
-		if (dist < minDist || minDist === -1)
+		if (dist < minDist || minDist == -1)
 		{
 			minDist = dist;
 			index = i;
@@ -757,6 +757,8 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	}
 	if (!index)
 		return undefined;
+	// Rushes can change their enemy target if nothing found with the preferred enemy
+	this.targetPlayer = targets._entities[index].owner();
 	return targets._entities[index];
 };
 
@@ -786,11 +788,14 @@ m.AttackPlan.prototype.defaultTargetFinder = function(gameState)
 };
 
 // Rush target finder aims at isolated non-defended buildings
-m.AttackPlan.prototype.rushTargetFinder = function(gameState)
+m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 {
 	var targets = new API3.EntityCollection(gameState.sharedScript);
-	var buildings = gameState.getEnemyStructures().toEntityArray();
-	if (buildings.length === 0)
+	if (playerEnemy !== undefined)
+		var buildings = gameState.getEnemyStructures(this.targetPlayer).toEntityArray();
+	else
+		var buildings = gameState.getEnemyStructures().toEntityArray();
+	if (buildings.length == 0)
 		return targets;
 
 	this.position = this.unitCollection.getCentrePosition();
@@ -801,7 +806,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 	var target = undefined;
 	for (var building of buildings)
 	{
-		if (building.owner() === 0)
+		if (building.owner() == 0)
 			continue;
 		// TODO check on Arrow count
 		if (building.hasClass("CivCentre") || building.hasClass("Tower") || building.hasClass("Fortress"))
@@ -830,8 +835,13 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState)
 	if (target)
 		targets.addEnt(target);
 
-	if (targets.length == 0 && this.type === "Attack")
-		targets = this.defaultTargetFinder(gameState);
+	if (targets.length == 0)
+	{
+		if( this.type === "Attack")
+			targets = this.defaultTargetFinder(gameState);
+		else if (this.type === "Rush" && playerEnemy)
+			targets = this.rushTargetFinder(gameState);
+	}
 
 	return targets;
 };
@@ -1018,7 +1028,7 @@ m.AttackPlan.prototype.StartAttack = function(gameState)
 // Runs every turn after the attack is executed
 m.AttackPlan.prototype.update = function(gameState, events)
 {
-	if (this.unitCollection.length === 0)
+	if (this.unitCollection.length == 0)
 		return 0;
 
 	Engine.ProfileStart("Update Attack");
@@ -1053,7 +1063,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var attackedEvents = events["Attacked"];
 			for (var evt of attackedEvents)
 			{
-				if (IDs.indexOf(evt.target) === -1)
+				if (IDs.indexOf(evt.target) == -1)
 					continue;
 				var attacker = gameState.getEntityById(evt.attacker);
 				var ourUnit = gameState.getEntityById(evt.target);
@@ -1083,12 +1093,12 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var attackedEvents = events["Attacked"];
 		for (var evt of attackedEvents)
 		{
-			if (IDs.indexOf(evt.target) === -1)
+			if (IDs.indexOf(evt.target) == -1)
 				continue;
 			var attacker = gameState.getEntityById(evt.attacker);
 			var ourUnit = gameState.getEntityById(evt.target);
 
-			if (attacker && (attacker.owner() != 0 || this.targetPlayer === 0))
+			if (attacker && (attacker.owner() != 0 || this.targetPlayer == 0))
 			{
 				attackedNB++;
 				if (attacker.hasClass("Unit"))
@@ -1114,7 +1124,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 	if (this.state === "walking")
 	{
 		// basically haven't moved an inch: very likely stuck)
-		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 === 0)
+		if (API3.SquareVectorDistance(this.position, this.position5TurnsAgo) < 10 && this.path.length > 0 && gameState.ai.playedTurn % 5 == 0)
 		{
 			// check for stuck siege units
 			var farthest = 0;
@@ -1129,7 +1139,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (farthestEnt !== -1)
 				farthestEnt.destroy();
 		}
-		if (gameState.ai.playedTurn % 5 === 0)
+		if (gameState.ai.playedTurn % 5 == 0)
 			this.position5TurnsAgo = this.position;
 		
 		if (this.lastPosition && API3.SquareVectorDistance(this.position, this.lastPosition) < 20 && this.path.length > 0)
@@ -1196,14 +1206,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		});
 		if (this.type === "Rush")   // try to find a better target for rush
 		{
-			var targets = this.rushTargetFinder(gameState);
-			if (targets.length !== 0)
+			var newtarget = this.getNearestTarget(gameState, this.position);
+			if (newtarget)
 			{
-				for (var i in targets._entities)
-				{
-					this.target = targets._entities[i];
-					break;
-				}
+				this.target = newtarget;
 				this.targetPos = this.target.position();
 			}
 		}
@@ -1216,7 +1222,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var attackedEvents = events["Attacked"];
 		for (var evt of attackedEvents)
 		{
-			if (IDs.indexOf(evt.target) === -1)
+			if (IDs.indexOf(evt.target) == -1)
 				continue;
 			var attacker = gameState.getEntityById(evt.attacker);
 			if (!attacker || !attacker.position() || !attacker.hasClass("Unit"))
@@ -1269,7 +1275,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		else
 			targetClassesSiege = {"attack": ["Unit", "Structure"]};
 
-		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length === 0)
+		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length == 0)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
 
 		// Let's check a few units each time we update (currently 10) except when attack starts
@@ -1341,7 +1347,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return false;
 					if (API3.SquareVectorDistance(enemy.position(), ent.position()) > range)
 						return false;
-					if (enemy.foundationProgress() === 0)
+					if (enemy.foundationProgress() == 0)
 						return false;
 					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
 						return false;
@@ -1463,7 +1469,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						this.unitCollection.forEach( function (unit) {
 							if (!unit.position())
 								return;
-							if (unit.unitAIState().split(".")[1] !== "COMBAT" || unit.unitAIOrderData().length === 0
+							if (unit.unitAIState().split(".")[1] !== "COMBAT" || unit.unitAIOrderData().length == 0
 								|| !unit.unitAIOrderData()[0]["target"])
 								return;
 							var dist = API3.SquareVectorDistance(unit.position(), ent.position());
@@ -1481,6 +1487,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		}
 		this.unitCollUpdateArray.splice(0, lgth);
 		this.startingAttack = false;
+
+		// check if this enemy is defeated
+		if (this.target && this.target.owner() == 0 && this.targetPlayer != 0)
+			this.target = undefined;
 
 		// updating targets.
 		if (!this.target || !gameState.getEntityById(this.target.id()))

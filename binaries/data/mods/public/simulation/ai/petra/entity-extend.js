@@ -81,7 +81,7 @@ m.dumpEntity = function(ent)
 {
 	if (!ent)
 		return;
-	API3.warn(" >>> pos " + ent.position() + " state " + ent.unitAIState());
+	API3.warn(" >>> id " + ent.id() + " pos " + ent.position() + " state " + ent.unitAIState());
 	API3.warn(" >>> role " + ent.getMetadata(PlayerID, "role") + " subrole " + ent.getMetadata(PlayerID, "subrole")
 		+ " garrisoning " + ent.getMetadata(PlayerID, "garrisoning") + " garrisonHolder " + ent.getMetadata(PlayerID, "garrisonHolder")
 		+ " plan " + ent.getMetadata(PlayerID, "plan")	+ " transport " + ent.getMetadata(PlayerID, "transport")

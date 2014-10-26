@@ -24,13 +24,14 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 		buildNeutral = template.hasBuildTerritory("neutral");
 		buildEnemy = template.hasBuildTerritory("enemy");
 	}
-	
-	var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction") | gameState.getPassabilityClassMask("building-land");
+	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 	
 	if (placementType == "shore")
 	{
-		// TODO: this won't change much, should be cached, it's slow.
-		var obstructionTiles = new Uint8Array(passabilityMap.data.length);
+		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
+			| gameState.getPassabilityClassMask("building-shore")
+			| gameState.getPassabilityClassMask("default");
+
 		var okay = false;
 		for (var x = 0; x < passabilityMap.width; ++x)
 		{
@@ -88,13 +89,15 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 					}
 				obstructionTiles[i] = okay ? 255 : 0;
 			}
+
 		}
 	}
 	else
 	{
 		var playerID = PlayerID;
+		var obstructionMask = gameState.getPassabilityClassMask("foundationObstruction")
+			| gameState.getPassabilityClassMask("building-land");
 		
-		var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 		for (var i = 0; i < passabilityMap.data.length; ++i)
 		{
 			var tilePlayer = (territoryMap.data[i] & m.TERRITORY_PLAYER_MASK);
@@ -146,56 +149,7 @@ m.createTerritoryMap = function(gameState) {
 	return ret;
 };
 
-// map of our frontier : 2 means narrow border, 1 means large border
-m.createFrontierMap = function(gameState, borderMap)
-{
-	var territory = m.createTerritoryMap(gameState);
-	var around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
-
-	var map = new API3.Map(gameState.sharedScript);
-	var width = map.width;
-	var insideSmall = 10;
-	var insideLarge = 15;
-
-	for (var j = 0; j < territory.length; ++j)
-	{
-		if (territory.getOwnerIndex(j) !== PlayerID || (borderMap && borderMap.map[j] > 1))
-			continue;
-		var ix = j%width;
-		var iz = Math.floor(j/width);
-		for (var a of around)
-		{
-			var jx = ix + Math.round(insideSmall*a[0]);
-			if (jx < 0 || jx >= width)
-				continue;
-			var jz = iz + Math.round(insideSmall*a[1]);
-			if (jz < 0 || jz >= width)
-				continue;
-			if (borderMap && borderMap.map[jx+width*jz] > 1)
-				continue;
-			if (!gameState.isPlayerAlly(territory.getOwnerIndex(jx+width*jz)))
-			{
-				map.map[j] = 2;
-				break;
-			}
-			jx = ix + Math.round(insideLarge*a[0]);
-			if (jx < 0 || jx >= width)
-				continue;
-			jz = iz + Math.round(insideLarge*a[1]);
-			if (jz < 0 || jz >= width)
-				continue;
-			if (borderMap && borderMap.map[jx+width*jz] > 1)
-				continue;
-			if (!gameState.isPlayerAlly(territory.getOwnerIndex(jx+width*jz)))
-				map.map[j] = 1;
-		}
-	}
-
-//    m.debugMap(gameState, map);
-	return map;
-};
-
-// TODO foresee the case of square maps
+// TODO check if not already done in obstruction maps
 m.createBorderMap = function(gameState)
 {
 	var map = new API3.Map(gameState.sharedScript);
@@ -235,6 +189,97 @@ m.createBorderMap = function(gameState)
 
 //	map.dumpIm("border.png", 5);
 	return map;
+};
+
+// map of our frontier : 2 means narrow border, 1 means large border
+m.createFrontierMap = function(gameState, borderMap)
+{
+	var territoryMap = gameState.ai.HQ.territoryMap;
+	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+
+	var map = new API3.Map(gameState.sharedScript);
+	var width = map.width;
+	var insideSmall = 10;
+	var insideLarge = 15;
+
+	for (var j = 0; j < territoryMap.length; ++j)
+	{
+		if (territoryMap.getOwnerIndex(j) !== PlayerID || (borderMap && borderMap.map[j] > 1))
+			continue;
+		var ix = j%width;
+		var iz = Math.floor(j/width);
+		for (var a of around)
+		{
+			var jx = ix + Math.round(insideSmall*a[0]);
+			if (jx < 0 || jx >= width)
+				continue;
+			var jz = iz + Math.round(insideSmall*a[1]);
+			if (jz < 0 || jz >= width)
+				continue;
+			if (borderMap && borderMap.map[jx+width*jz] > 1)
+				continue;
+			if (!gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+			{
+				map.map[j] = 2;
+				break;
+			}
+			jx = ix + Math.round(insideLarge*a[0]);
+			if (jx < 0 || jx >= width)
+				continue;
+			jz = iz + Math.round(insideLarge*a[1]);
+			if (jz < 0 || jz >= width)
+				continue;
+			if (borderMap && borderMap.map[jx+width*jz] > 1)
+				continue;
+			if (!gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+				map.map[j] = 1;
+		}
+	}
+
+//    m.debugMap(gameState, map);
+	return map;
+};
+
+// return an measure of the proximity to our frontier (including our allies)
+// 0=inside, 1=less than 3 tiles, 2= less than 6 tiles, 3= less than 9 tiles, 4=less than 12 tiles, 5=above 12 tiles
+m.getFrontierProximity = function(gameState, j, borderMap)
+{
+	var territoryMap =  gameState.ai.HQ.territoryMap;
+	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
+
+	var map = new API3.Map(gameState.sharedScript);
+	var width = territoryMap.width;
+	const step = 3;
+
+	if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(j)))
+		return 0;
+
+	var ix = j%width;
+	var iz = Math.floor(j/width);
+	var best = 5;
+	for (let a of around)
+	{
+		for (let i = 1; i < 5; ++i)
+		{
+			let jx = ix + Math.round(i*step*a[0]);
+			if (jx < 0 || jx >= width)
+				continue;
+			var jz = iz + Math.round(i*step*a[1]);
+			if (jz < 0 || jz >= width)
+				continue;
+			if (borderMap && borderMap.map[jx+width*jz] > 1)
+				continue;
+			if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(jx+width*jz)))
+			{
+				best = Math.min(best, i);
+				break;
+			}
+		}
+		if (best === 1)
+			break;
+	}
+
+	return best;
 };
 
 m.debugMap = function(gameState, map)
