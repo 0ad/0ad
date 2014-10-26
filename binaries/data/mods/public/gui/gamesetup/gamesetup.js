@@ -1829,7 +1829,7 @@ function sendRegisterGameStanza()
 
 	// Map sizes only apply to random maps.
 	if (g_GameAttributes.mapType == "random")
-		var mapSize = Engine.GetGUIObjectByName("mapSize").list[selectedMapSize];
+		var mapSize = Engine.GetGUIObjectByName("mapSize").list_data[selectedMapSize];
 	else
 		var mapSize = "Default";
 
