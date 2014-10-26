@@ -24,6 +24,7 @@ DP4 result.position.w, program.local[3], position;
 
 #if MINIMAP_POINT
   MOV result.color, vertex.color;
+  MOV result.pointsize, program.local[8];
 #endif
 
 END

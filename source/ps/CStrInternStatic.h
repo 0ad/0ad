@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -117,6 +117,7 @@ X(overlay_solid)
 X(particle)
 X(particle_solid)
 X(playerColor)
+X(pointSize)
 X(qualityLevel)
 X(reflectionMap)
 X(reflectionMatrix)

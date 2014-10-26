@@ -2,6 +2,7 @@
 
 uniform mat4 transform;
 uniform mat4 textureTransform;
+uniform float pointSize;
 
 #if MINIMAP_BASE || MINIMAP_LOS
   attribute vec3 a_vertex;
@@ -27,6 +28,7 @@ void main()
   #endif
 
   #if MINIMAP_POINT
+    gl_PointSize = pointSize;
     gl_Position = transform * vec4(a_vertex, 0.0, 1.0);
     color = a_color;
   #endif
