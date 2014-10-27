@@ -79,7 +79,7 @@ class Extractor(object):
             folders.sort()
             filenames.sort()
             for filename in filenames:
-                filename = os.path.relpath(os.path.join(root, filename).replace(os.sep, '/'), self.directoryPath)
+                filename = os.path.relpath(os.path.join(root, filename), self.directoryPath).replace(os.sep, '/')
                 for filemask in self.excludeMasks:
                     if pathmatch(filemask, filename):
                         break
