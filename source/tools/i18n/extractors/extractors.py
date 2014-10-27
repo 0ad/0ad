@@ -261,7 +261,7 @@ class javascript(Extractor):
                     # An empty string msgid isn't valid, emit a warning
                     where = '%s:%i' % (hasattr(fileObject, 'name') and \
                                         fileObject.name or '(unknown)', lineno)
-                    print >> sys.stderr, self.empty_msgid_warning % where
+                    print(self.empty_msgid_warning % where, file=sys.stderr)
                     continue
 
                 messages = tuple(msgs)
