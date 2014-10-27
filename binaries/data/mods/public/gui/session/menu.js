@@ -105,11 +105,11 @@ function toggleMenu()
 
 // Menu buttons
 // =============================================================================
-function settingsMenuButton()
+function optionsMenuButton()
 {
 	closeMenu();
 	closeOpenDialogs();
-	openSettings();
+	openOptions();
 }
 
 function chatMenuButton()
@@ -201,7 +201,7 @@ function openSave()
 	Engine.PushGuiPage("page_savegame.xml", {"savedGameData":savedGameData, "callback":"resumeGame"});
 }
 
-function openSettings()
+function openOptions()
 {
 	pauseGame();
 	Engine.PushGuiPage("page_options.xml", {"callback":"resumeGame"});

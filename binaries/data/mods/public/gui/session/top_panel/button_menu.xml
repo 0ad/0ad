@@ -11,9 +11,8 @@
 	them on top of the main menu button -->
 	<object size="0 -4 100% 0" type="image" sprite="horizontalThinBorder" ghost="true"/>
 
-	<object size="50%-32 50%-16 50%+32 50%+16" type="image" sprite="menuButton" ghost="true">
-		<translatableAttribute id="caption">MENU</translatableAttribute>
-	</object>
+	<translatableAttribute id="caption">Menu</translatableAttribute>
+
 	<action on="Press">
 		toggleMenu();
 	</action>

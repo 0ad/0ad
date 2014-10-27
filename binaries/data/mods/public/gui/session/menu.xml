@@ -42,15 +42,15 @@
 			</action>
 		</object>
 		
-		<!-- Settings button -->
+		<!-- Options button -->
 		<object type="button"
-			name="settingsButton"
+			name="optionsButton"
 			style="StoneButtonFancy"
 			size="0 96 100% 124"
 			tooltip_style="sessionToolTip"
 		>
-			<translatableAttribute id="caption">Settings</translatableAttribute>
-			<action on="Press">settingsMenuButton();</action>
+			<translatableAttribute id="caption">Options</translatableAttribute>
+			<action on="Press">optionsMenuButton();</action>
 		</object>
 
 		<!-- Pause / Resume Button -->
