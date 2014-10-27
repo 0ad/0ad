@@ -67,8 +67,15 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	if (this.template.buildCategory() === "Dock")
 	{
 		// try to place it a bit inside the land if possible
-		for (var d = -10; d <= 2; d += 2)
-			builders[0].construct(this.type, pos.x+d*Math.sin(pos.angle), pos.z+d*Math.cos(pos.angle), pos.angle, this.metadata);
+		let cosang = Math.cos(pos.angle);
+		let sinang = Math.sin(pos.angle);
+		if (this.template.get("Obstruction") && this.template.get("Obstruction/Static"))
+			var radius = (+this.template.get("Obstruction/Static/@depth"))/2;
+		else
+			var radius = 0;
+		for (let step = 0; step < radius; step += gameState.cellSize)
+			builders[0].construct(this.type, pos.x+step*sinang, pos.z+step*cosang,
+					pos.angle, this.metadata);
 	}
 	else if (pos.x == pos.xx && pos.z == pos.zz)
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
@@ -228,7 +235,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				friendlyTiles.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && friendlyTiles.map[j] > 0)
 				friendlyTiles.map[j] += 10;
 
 			if (friendlyTiles.map[j] > 0)
@@ -244,11 +251,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		for (var j = 0; j < friendlyTiles.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] === 0)
+			if (gameState.ai.HQ.basesMap.map[j] == 0)
 				friendlyTiles.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] === 0 && friendlyTiles.map[j] > 0)
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && friendlyTiles.map[j] > 0)
 				friendlyTiles.map[j] += 10;
 
 			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
@@ -287,7 +294,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		var bestVal = bestTile[1];
 	}
 	
-	if (bestVal === undefined || bestVal === -1)
+	if (bestVal === undefined || bestVal == -1)
 	{
 		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
 		var bestIdx = bestTile[0];
@@ -321,47 +328,39 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var obstructionMap = m.createObstructionMap(gameState, 0, template);
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
 
-	var friendlyTiles = new API3.Map(gameState.sharedScript);
-	
-	if (this.position)	// If a position was specified then place the building as close to it as possible
+	var bestIdx = undefined;
+	var bestVal = 0;
+	var landPassMap = gameState.ai.accessibility.landPassMap;
+	var navalPassMap = gameState.ai.accessibility.navalPassMap;
+	for (let j = 0; j < territoryMap.length; ++j)
 	{
-		var x = Math.floor(this.position[0] / cellSize);
-		var z = Math.floor(this.position[1] / cellSize);
-		friendlyTiles.addInfluence(x, z, 255);
-	}
-	else	// No position was specified so try and find a sensible place to build
-	{
-		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		if (obstructionMap.map[j] <= 0)
+			continue;
+		if (this.metadata)
 		{
-			if (obstructionMap.map[j] <= 0)
+			if (this.metadata.land && landPassMap[j] !== this.metadata.land)
 				continue;
-			if (gameState.ai.HQ.basesMap.map[j] === 0)   // TODO docks could be allowed outside our territory 
+			if (this.metadata.sea && navalPassMap[j] !== this.metadata.sea)
 				continue;
-			if (this.metadata && this.metadata.land && gameState.ai.accessibility.landPassMap[j] !== this.metadata.land)
-				continue;
-			if (this.metadata && this.metadata.sea && gameState.ai.accessibility.navalPassMap[j] !== this.metadata.sea)
-				continue;
-			if (this.metadata && this.metadata.base !== undefined && gameState.ai.HQ.basesMap.map[j] !== this.metadata.base)
-				continue;
-
-			if (this.metadata && this.metadata.preferredBase !== undefined && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
-				friendlyTiles.map[j] = 200;
-			else
-				friendlyTiles.map[j] = 50;
 		}
-	}
+		let tileOwner = territoryMap.getOwnerIndex(j);
+		if (tileOwner !== 0 && gameState.isPlayerEnemy(tileOwner))
+			continue;
 
-	var radius = 1;
-	var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
-	var bestIdx = bestTile[0];
-	var bestVal = bestTile[1];
+		// if not in our (or allied) territory, we do not want it too far to be able to defend it
+		let nearby = m.getFrontierProximity(gameState, j, gameState.ai.HQ.borderMap);
+		if (nearby > 4)
+			continue;
+
+		bestVal = 1;
+		bestIdx = j;
+	}
 
 	if (bestVal <= 0)
 		return false;
 
-	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
-	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
-	var secondBest = [x,z];
+	var x = ((bestIdx % territoryMap.width) + 0.5) * cellSize;
+	var z = (Math.floor(bestIdx / territoryMap.width) + 0.5) * cellSize;
 
 	// Needed for dock placement whose position will be changed
 	var access = gameState.ai.accessibility.getAccessValue([x, z]);
@@ -370,24 +369,28 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	// is only the position on the shore, while the need the position of the center of the building
 	// We also need to find the angle of the building
 	var angle = this.getDockAngle(gameState, x, z);
-	if (!angle)
+	if (angle === false)
 		return false;
-	if (template.get("Obstruction") && template.get("Obstruction/Static")) 
-		var radius = (+template.get("Obstruction/Static/@depth"))/2;
-	else if (template.get("Obstruction") && template.get("Obstruction/Unit"))
-		var radius = +template.get("Obstruction/Unit/@radius");
-	else
-	{
-		warn("Error: try to place a building without obstruction " + this.type);
-		var radius = 0;
-	}
-	// Position of the center of the building
-	x = x + radius*Math.sin(angle);
-	z = z + radius*Math.cos(angle);
 
-	// default angle = 3*Math.PI/4;	
-	return { "x": x, "z": z, "angle": angle, "xx": secondBest[0], "zz": secondBest[1],
-		"base": gameState.ai.HQ.basesMap.map[bestIdx], "access": access };
+	// Assign this dock to a base
+	var baseIndex = gameState.ai.HQ.basesMap.map[bestIdx];
+	if (!baseIndex)
+	{
+		for (let i in gameState.ai.HQ.baseManagers)
+		{
+			let base = gameState.ai.HQ.baseManagers[i];
+			if (!base.anchor || !base.anchor.position())
+				continue;
+			if (base.accessIndex !== access)
+				continue;
+			baseIndex = i;
+			break;
+		}
+		if (!baseIndex)
+			API3.warn("Petra: dock constructed without base index " + baseIndex);
+	}
+
+	return { "x": x, "z": z, "angle": angle, "xx": x, "zz": z, "base": baseIndex, "access": access };
 };
 
 // Algorithm taken from the function GetDockAngle in helpers/Commands.js
@@ -412,7 +415,7 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
 			var j = pos[0] + pos[1]*gameState.ai.accessibility.width;
 			var seaAccess = gameState.ai.accessibility.navalPassMap[j];
 			var landAccess = gameState.ai.accessibility.landPassMap[j];
-			if (seaAccess === seaRef && landAccess < 2)
+			if (seaAccess == seaRef && landAccess < 2)
 				waterPoints.push(i);
 		}
 		var length = waterPoints.length;
