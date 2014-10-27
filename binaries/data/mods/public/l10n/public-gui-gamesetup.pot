@@ -5,11 +5,12 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-10-26 02:04+0100\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
+"PO-Revision-Date: 2014-10-26 18:14+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
@@ -211,6 +212,7 @@ msgstr ""
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
+msgstr[1] ""
 
 #: gui/gamesetup/gamesetup.js:1304
 msgid "Loading..."

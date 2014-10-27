@@ -74,8 +74,9 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		builders[0].construct(this.type, pos.x, pos.z, pos.angle, this.metadata);
 	else // try with the lowest, move towards us unless we're same
 	{
-		for (var step = 0; step <= 1; step += 0.2)
-			builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz), pos.angle, this.metadata);
+		for (let step = 0; step <= 1; step += 0.2)
+			builders[0].construct(this.type, (step*pos.x + (1-step)*pos.xx), (step*pos.z + (1-step)*pos.zz),
+				pos.angle, this.metadata);
 	}
 	this.onStart(gameState);
 	Engine.ProfileStop();
@@ -315,6 +316,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var template = this.template;
 
 	var cellSize = gameState.cellSize; // size of each tile
+	var territoryMap = gameState.ai.HQ.territoryMap;
 
 	var obstructionMap = m.createObstructionMap(gameState, 0, template);
 	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");

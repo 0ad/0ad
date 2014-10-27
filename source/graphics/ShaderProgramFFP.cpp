@@ -447,6 +447,7 @@ protected:
 		ID_transform,
 		ID_textureTransform,
 		ID_color,
+		ID_pointSize,
 	};
 public:
 	CShaderProgramFFP_GuiMinimap(const CShaderDefines& defines) :
@@ -456,6 +457,7 @@ public:
 		SetUniformIndex("transform", ID_transform);
 		SetUniformIndex("textureTransform", ID_textureTransform);
 		SetUniformIndex("color", ID_color);
+		SetUniformIndex("pointSize", ID_pointSize);
 
 		if (m_Defines.GetInt("MINIMAP_BASE") || m_Defines.GetInt("MINIMAP_LOS"))
 		{
@@ -486,6 +488,8 @@ public:
 	{
 		if (id.second == ID_color)
 			glColor4f(v0, v1, v2, v3);
+		else if (id.second == ID_pointSize)
+			glPointSize(v0);
 	}
 
 	virtual void Bind()

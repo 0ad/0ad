@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -495,6 +495,7 @@ void CMiniMap::Draw()
 	tech->BeginPass();
 	shader = tech->GetShader();
 	shader->Uniform(str_transform, baseTransform);
+	shader->Uniform(str_pointSize, 3.f);
 
 	CMatrix3D unitMatrix;
 	unitMatrix.SetIdentity();
@@ -577,7 +578,10 @@ void CMiniMap::Draw()
 
 	if (m_EntitiesDrawn > 0)
 	{
-		glPointSize(3.f);
+#if !CONFIG2_GLES
+		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+			glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
+#endif
 
 		u8* indexBase = m_IndexArray.Bind();
 		u8* base = m_VertexArray.Bind();
@@ -593,7 +597,10 @@ void CMiniMap::Draw()
 		g_Renderer.GetStats().m_DrawCalls++;
 		CVertexBuffer::Unbind();
 
-		glPointSize(1.0f);
+#if !CONFIG2_GLES
+		if (g_Renderer.GetRenderPath() == CRenderer::RP_SHADER)
+			glDisable(GL_VERTEX_PROGRAM_POINT_SIZE);
+#endif
 	}
 
 	tech->EndPass();
