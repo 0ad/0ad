@@ -1449,7 +1449,10 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	GetScene().GetLOSTexture().InterpolateLOS();
 	
 	if (m_Options.m_Postproc)
+	{
+		m->postprocManager.Initialize();
 		m->postprocManager.CaptureRenderOutput();
+	}
 
 	CShaderDefines context = m->globalContext;
 

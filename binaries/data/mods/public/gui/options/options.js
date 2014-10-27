@@ -17,11 +17,11 @@ var options = {
 	"graphicsSetting":
 	[
 		[translate("Prefer GLSL"), translate("Use OpenGL 2.0 shaders (recommended)"), {"renderer":"PreferGLSL", "config":"preferglsl"}, "boolean"],
-		[translate("Post Processing"), translate("Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES GAME RESTART"), {"renderer":"Postproc", "config":"postproc"}, "boolean"],
+		[translate("Post Processing"), translate("Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"), {"renderer":"Postproc", "config":"postproc"}, "boolean"],
 		[translate("Shadows"), translate("Enable shadows"), {"renderer":"Shadows", "config":"shadows"}, "boolean"],
 		[translate("Particles"), translate("Enable particles"), {"renderer":"Particles", "config":"particles"}, "boolean"],
 		[translate("Show Sky"), translate("Render Sky"), {"renderer":"ShowSky", "config":"showsky"}, "boolean"],
-		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
+		[translate("Smooth LOS"), translate("Lift darkness and fog-of-war smoothly"), {"renderer":"SmoothLOS", "config":"smoothlos"}, "boolean"],
 		[translate("Unit Silhouettes"), translate("Show outlines of units behind buildings"), {"renderer":"Silhouettes", "config":"silhouettes"}, "boolean"],
 		[translate("Shadow Filtering"), translate("Smooth shadows"), {"renderer":"ShadowPCF", "config":"shadowpcf"}, "boolean"],
 		[translate("Fast & Ugly Water"), translate("Use the lowest settings possible to render water. This makes other settings irrelevant."), {"renderer":"WaterUgly", "config":"waterugly"}, "boolean"],

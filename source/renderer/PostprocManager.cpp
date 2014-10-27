@@ -45,12 +45,14 @@ CPostprocManager::CPostprocManager()
 
 CPostprocManager::~CPostprocManager()
 {
-	if (m_IsInitialized)
-		Cleanup();
+	Cleanup();
 }
 
 void CPostprocManager::Cleanup()
 {
+	if (!m_IsInitialized) // Only cleanup if previously used
+		return;
+
 	if (m_PingFbo) pglDeleteFramebuffersEXT(1, &m_PingFbo);
 	if (m_PongFbo) pglDeleteFramebuffersEXT(1, &m_PongFbo);
 	if (m_BloomFbo) pglDeleteFramebuffersEXT(1, &m_BloomFbo);
@@ -72,12 +74,18 @@ void CPostprocManager::Cleanup()
 
 void CPostprocManager::Initialize()
 {
+	if (m_IsInitialized)
+		return;
+
 	// The screen size starts out correct and then must be updated with Resize()
 	m_Width = g_Renderer.GetWidth();
 	m_Height = g_Renderer.GetHeight();
 
 	RecreateBuffers();
 	m_IsInitialized = true;
+
+	// This might happen after the map is loaded and the effect chosen
+	SetPostEffect(m_PostProcEffect);
 }
 
 void CPostprocManager::Resize()
@@ -92,8 +100,7 @@ void CPostprocManager::Resize()
 
 void CPostprocManager::RecreateBuffers()
 {
-	if (m_IsInitialized) // Only cleanup if previously used
-		Cleanup();
+	Cleanup();
 
 	#define GEN_BUFFER_RGBA(name, w, h) \
 		glGenTextures(1, (GLuint*)&name); \
@@ -352,8 +359,7 @@ void CPostprocManager::ApplyBlur()
 
 void CPostprocManager::CaptureRenderOutput()
 {
-	if (!m_IsInitialized)
-		Initialize();
+	ENSURE(m_IsInitialized);
 
 	// clear both FBOs and leave m_PingFbo selected for rendering; 
 	// m_WhichBuffer stays true at this point
@@ -373,8 +379,7 @@ void CPostprocManager::CaptureRenderOutput()
 
 void CPostprocManager::ReleaseRenderOutput()
 {
-	if (!m_IsInitialized)
-		Initialize();
+	ENSURE(m_IsInitialized);
 
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
@@ -392,22 +397,6 @@ void CPostprocManager::ReleaseRenderOutput()
 	
 	pglBindFramebufferEXT(GL_FRAMEBUFFER_EXT, 0);
 }
-
-
-void CPostprocManager::LoadEffect(CStrW &name)
-{
-	if (!m_IsInitialized)
-		Initialize();
-
-	if (name != L"default")
-	{
-		CStrW n = L"postproc/" + name;
-		m_PostProcTech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern(n.ToUTF8()));
-	}
-	
-	m_PostProcEffect = name;
-}
-
 
 void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 {
@@ -484,8 +473,7 @@ void CPostprocManager::ApplyEffect(CShaderTechniquePtr &shaderTech1, int pass)
 
 void CPostprocManager::ApplyPostproc()
 {
-	if (!m_IsInitialized)
-		Initialize();
+	ENSURE(m_IsInitialized);
 
 	// Don't do anything if we are using the default effect.
 	if (m_PostProcEffect == L"default")
@@ -551,10 +539,16 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 
 void CPostprocManager::SetPostEffect(CStrW name)
 {
-	if (!m_IsInitialized)
-		Initialize();
+	if (m_IsInitialized)
+	{
+		if (name != L"default")
+		{
+			CStrW n = L"postproc/" + name;
+			m_PostProcTech = g_Renderer.GetShaderManager().LoadEffect(CStrIntern(n.ToUTF8()));
+		}
+	}
 
-	LoadEffect(name);
+	m_PostProcEffect = name;
 }
 
 #else
@@ -590,10 +584,6 @@ void CPostprocManager::Cleanup()
 }
 
 void CPostprocManager::RecreateBuffers()
-{
-}
-
-void CPostprocManager::LoadEffect(CStrW &UNUSED(name))
 {
 }
 
