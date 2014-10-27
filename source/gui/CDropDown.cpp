@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -296,92 +296,100 @@ void CDropDown::HandleMessage(SGUIMessage &Message)
 
 InReaction CDropDown::ManuallyHandleEvent(const SDL_Event_* ev)
 {
-	int szChar = ev->ev.key.keysym.sym;
+	InReaction result = IN_PASS;
 	bool update_highlight = false;
 
-	switch (szChar)
+	if (ev->ev.type == SDL_KEYDOWN)
 	{
-	case '\r':
-		m_Open=false;
-		break;
-
-	case SDLK_HOME:
-	case SDLK_END:
-	case SDLK_UP:
-	case SDLK_DOWN:
-	case SDLK_PAGEUP:
-	case SDLK_PAGEDOWN:
-		if (!m_Open)
-			return IN_PASS;
-		// Set current selected item to highlighted, before
-		//  then really processing these in CList::ManuallyHandleEvent()
-		GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
-		update_highlight = true;
-		break;
-
-	default:
-		// If we have inputed a character try to get the closest element to it.
-		// TODO: not too nice and doesn't deal with dashes.
-		if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
-					   || (szChar >= SDLK_0 && szChar <= SDLK_9)
-#if !SDL_VERSION_ATLEAST(2,0,0)
-					   || (szChar >= SDLK_KP0 && szChar <= SDLK_KP9)))
-#else // SDL2
-					   || (szChar >= SDLK_KP_0 && szChar <= SDLK_KP_9)))
-#endif
+		int szChar = ev->ev.key.keysym.sym;
+		
+		switch (szChar)
 		{
-			// arbitrary 1 second limit to add to string or start fresh.
-			// maximal amount of characters is 100, which imo is far more than enough.
-			if (timer_Time() - m_TimeOfLastInput > 1.0 || m_InputBuffer.length() >= 100)
-				m_InputBuffer = szChar;
-			else
-				m_InputBuffer += szChar;
-			
-			m_TimeOfLastInput = timer_Time();
-			
-			CGUIList *pList;
-			GUI<CGUIList>::GetSettingPointer(this, "list", pList);
-			// let's look for the closest element
-			// basically it's alphabetic order and "as many letters as we can get".
-			int closest = -1;
-			int bestIndex = -1;
-			int difference = 1250;
-			for (int i=0; i<(int)pList->m_Items.size(); ++i)
+		case '\r':
+			m_Open = false;
+			result = IN_HANDLED;
+			break;
+
+		case SDLK_HOME:
+		case SDLK_END:
+		case SDLK_UP:
+		case SDLK_DOWN:
+		case SDLK_PAGEUP:
+		case SDLK_PAGEDOWN:
+			if (!m_Open)
+				return IN_PASS;
+			// Set current selected item to highlighted, before
+			//  then really processing these in CList::ManuallyHandleEvent()
+			GUI<int>::SetSetting(this, "selected", m_ElementHighlight);
+			update_highlight = true;
+			break;
+
+		default:
+			// If we have inputed a character try to get the closest element to it.
+			// TODO: not too nice and doesn't deal with dashes.
+			if (m_Open && ((szChar >= SDLK_a && szChar <= SDLK_z) || szChar == SDLK_SPACE
+						   || (szChar >= SDLK_0 && szChar <= SDLK_9)
+	#if !SDL_VERSION_ATLEAST(2,0,0)
+						   || (szChar >= SDLK_KP0 && szChar <= SDLK_KP9)))
+	#else // SDL2
+						   || (szChar >= SDLK_KP_0 && szChar <= SDLK_KP_9)))
+	#endif
 			{
-				int indexOfDifference = 0;
-				int diff = 0;
-				for (size_t j=0; j < m_InputBuffer.length(); ++j)
+				// arbitrary 1 second limit to add to string or start fresh.
+				// maximal amount of characters is 100, which imo is far more than enough.
+				if (timer_Time() - m_TimeOfLastInput > 1.0 || m_InputBuffer.length() >= 100)
+					m_InputBuffer = szChar;
+				else
+					m_InputBuffer += szChar;
+			
+				m_TimeOfLastInput = timer_Time();
+			
+				CGUIList *pList;
+				GUI<CGUIList>::GetSettingPointer(this, "list", pList);
+				// let's look for the closest element
+				// basically it's alphabetic order and "as many letters as we can get".
+				int closest = -1;
+				int bestIndex = -1;
+				int difference = 1250;
+				for (int i=0; i<(int)pList->m_Items.size(); ++i)
 				{
-					diff = abs(pList->m_Items[i].GetOriginalString().LowerCase()[j] - (int)m_InputBuffer[j]);
-					if (diff == 0)
-						indexOfDifference = j+1;
-					else
-						break;
+					int indexOfDifference = 0;
+					int diff = 0;
+					for (size_t j=0; j < m_InputBuffer.length(); ++j)
+					{
+						diff = abs(pList->m_Items[i].GetOriginalString().LowerCase()[j] - (int)m_InputBuffer[j]);
+						if (diff == 0)
+							indexOfDifference = j+1;
+						else
+							break;
+					}
+					if (indexOfDifference > bestIndex || (indexOfDifference >= bestIndex && diff < difference))
+					{
+						bestIndex = indexOfDifference;
+						closest = i;
+						difference = diff;
+					}
 				}
-				if (indexOfDifference > bestIndex || (indexOfDifference >= bestIndex && diff < difference))
+				// let's select the closest element. There should basically always be one.
+				if (closest != -1)
 				{
-					bestIndex = indexOfDifference;
-					closest = i;
-					difference = diff;
+					GUI<int>::SetSetting(this, "selected", closest);
+					update_highlight = true;
+					GetScrollBar(0).SetPos(m_ItemsYPositions[closest] - 60);
 				}
+				result = IN_HANDLED;
 			}
-			// let's select the closest element. There should basically always be one.
-			if (closest != -1)
-			{
-				GUI<int>::SetSetting(this, "selected", closest);
-				update_highlight = true;
-				GetScrollBar(0).SetPos(m_ItemsYPositions[closest] - 60);
-			}
+			break;
 		}
-		break;
 	}
 
-	CList::ManuallyHandleEvent(ev);
+	if (CList::ManuallyHandleEvent(ev) == IN_HANDLED)
+		result = IN_HANDLED;
 
 	if (update_highlight)
 		GUI<int>::GetSetting(this, "selected", m_ElementHighlight);
 
-	return IN_HANDLED;
+	return result;
 }
 
 void CDropDown::SetupListRect()

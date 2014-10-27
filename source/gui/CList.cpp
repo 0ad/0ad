@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -259,43 +259,54 @@ void CList::HandleMessage(SGUIMessage &Message)
 
 InReaction CList::ManuallyHandleEvent(const SDL_Event_* ev)
 {
-	int szChar = ev->ev.key.keysym.sym;
+	InReaction result = IN_PASS;
 
-	switch (szChar)
+	if (ev->ev.type == SDL_KEYDOWN)
 	{
-	case SDLK_HOME:
-		SelectFirstElement();
-		UpdateAutoScroll();
-		break;
+		int szChar = ev->ev.key.keysym.sym;
 
-	case SDLK_END:
-		SelectLastElement();
-		UpdateAutoScroll();
-		break;
+		switch (szChar)
+		{
+		case SDLK_HOME:
+			SelectFirstElement();
+			UpdateAutoScroll();
+			result = IN_HANDLED;
+			break;
 
-	case SDLK_UP:
-		SelectPrevElement();
-		UpdateAutoScroll();
-		break;
+		case SDLK_END:
+			SelectLastElement();
+			UpdateAutoScroll();
+			result = IN_HANDLED;
+			break;
 
-	case SDLK_DOWN:
-		SelectNextElement();
-		UpdateAutoScroll();
-		break;
+		case SDLK_UP:
+			SelectPrevElement();
+			UpdateAutoScroll();
+			result = IN_HANDLED;
+			break;
 
-	case SDLK_PAGEUP:
-		GetScrollBar(0).ScrollMinusPlenty();
-		break;
+		case SDLK_DOWN:
+			SelectNextElement();
+			UpdateAutoScroll();
+			result = IN_HANDLED;
+			break;
 
-	case SDLK_PAGEDOWN:
-		GetScrollBar(0).ScrollPlusPlenty();
-		break;
+		case SDLK_PAGEUP:
+			GetScrollBar(0).ScrollMinusPlenty();
+			result = IN_HANDLED;
+			break;
 
-	default: // Do nothing
-		return IN_PASS;
+		case SDLK_PAGEDOWN:
+			GetScrollBar(0).ScrollPlusPlenty();
+			result = IN_HANDLED;
+			break;
+
+		default: // Do nothing
+			result = IN_PASS;
+		}
 	}
 
-	return IN_HANDLED;
+	return result;
 }
 
 void CList::Draw() 
@@ -462,7 +473,7 @@ void CList::SelectPrevElement()
 	int selected;
 	GUI<int>::GetSetting(this, "selected", selected);
 
-	if (selected >= 0)
+	if (selected > 0)
 	{
 		--selected;
 		GUI<int>::SetSetting(this, "selected", selected);
