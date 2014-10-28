@@ -26,14 +26,12 @@
 #include "graphics/Camera.h"
 #include "graphics/SColor.h"
 #include "graphics/ShaderProgramPtr.h"
+#include "lib/file/vfs/vfs_path.h"
 #include "lib/res/handle.h"
 #include "ps/Singleton.h"
 
 #include "graphics/ShaderDefines.h"
-#include "renderer/PostprocManager.h"
 #include "renderer/Scene.h"
-#include "renderer/TimeManager.h"
-#include "scriptinterface/ScriptInterface.h"
 
 // necessary declarations
 class CFontManager;
@@ -43,11 +41,13 @@ class CMaterialManager;
 class CModel;
 class CParticleManager;
 class CPatch;
+class CPostprocManager;
 class CShaderManager;
 class CSimulation2;
 class CTextureManager;
 class CTimeManager;
 class RenderPathVertexShader;
+class ScriptInterface;
 class SkyManager;
 class TerrainRenderer;
 class WaterManager;
@@ -60,11 +60,6 @@ enum ETransparentMode { TRANSPARENT, TRANSPARENT_OPAQUE, TRANSPARENT_BLEND };
 
 // access to sole renderer object
 #define g_Renderer CRenderer::GetSingleton()
-
-struct SScreenRect
-{
-	GLint x1, y1, x2, y2;
-};
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 // CRenderer: base renderer class - primary interface to the rendering engine

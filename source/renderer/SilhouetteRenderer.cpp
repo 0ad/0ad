@@ -31,6 +31,8 @@
 
 #include <cfloat>
 
+extern int g_xres, g_yres;
+
 // For debugging
 static const bool g_DisablePreciseIntersections = false;
 
@@ -233,7 +235,6 @@ void SilhouetteRenderer::ComputeSubmissions(const CCamera& camera)
 #if 0
 	// For debugging ray-patch intersections - casts a ton of rays and draws
 	// a sphere where they intersect
-	extern int g_xres, g_yres;
 	for (int y = 0; y < g_yres; y += 8)
 	{
 		for (int x = 0; x < g_xres; x += 8)
