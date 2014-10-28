@@ -102,7 +102,7 @@ def generateTemplatesForMessagesFile(messagesFilePath):
                     template.add(msg)
 
         template.set_encoding("utf-8")
-        template.sync()
+        template.sync(fitplural=True)
         print(u"Generated \"{}\" with {} messages.".format(templateSettings["output"], len(template)))
 
 
