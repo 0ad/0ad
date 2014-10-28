@@ -79,7 +79,7 @@ class Extractor(object):
             folders.sort()
             filenames.sort()
             for filename in filenames:
-                filename = os.path.relpath(os.path.join(root, filename).replace(os.sep, '/'), self.directoryPath)
+                filename = os.path.relpath(os.path.join(root, filename), self.directoryPath).replace(os.sep, '/')
                 for filemask in self.excludeMasks:
                     if pathmatch(filemask, filename):
                         break
@@ -261,7 +261,7 @@ class javascript(Extractor):
                     # An empty string msgid isn't valid, emit a warning
                     where = '%s:%i' % (hasattr(fileObject, 'name') and \
                                         fileObject.name or '(unknown)', lineno)
-                    print >> sys.stderr, self.empty_msgid_warning % where
+                    print(self.empty_msgid_warning % where, file=sys.stderr)
                     continue
 
                 messages = tuple(msgs)

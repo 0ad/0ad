@@ -63,6 +63,7 @@
 #include "renderer/ModelRenderer.h"
 #include "renderer/OverlayRenderer.h"
 #include "renderer/ParticleRenderer.h"
+#include "renderer/PostprocManager.h"
 #include "renderer/RenderModifiers.h"
 #include "renderer/ShadowMap.h"
 #include "renderer/SilhouetteRenderer.h"
@@ -72,8 +73,14 @@
 #include "renderer/TimeManager.h"
 #include "renderer/VertexBufferManager.h"
 #include "renderer/WaterManager.h"
+#include "scriptinterface/ScriptInterface.h"
 
 extern bool g_GameRestarted;
+
+struct SScreenRect
+{
+	GLint x1, y1, x2, y2;
+};
 
 ///////////////////////////////////////////////////////////////////////////////////
 // CRendererStatsTable - Profile display of rendering stats
@@ -1449,7 +1456,10 @@ void CRenderer::RenderSubmissions(const CBoundingBoxAligned& waterScissor)
 	GetScene().GetLOSTexture().InterpolateLOS();
 	
 	if (m_Options.m_Postproc)
+	{
+		m->postprocManager.Initialize();
 		m->postprocManager.CaptureRenderOutput();
+	}
 
 	CShaderDefines context = m->globalContext;
 

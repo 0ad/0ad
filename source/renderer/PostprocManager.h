@@ -72,22 +72,20 @@ private:
 	// Delete all allocated buffers/textures from GPU memory.
 	void Cleanup();
 
+	// Delete existing buffers/textures and create them again, using a new screen size if needed.
+	// (the textures are also attached to the framebuffers)
+	void RecreateBuffers();
+
 public:
 	CPostprocManager();
 	~CPostprocManager();
 	
 	// Create all buffers/textures in GPU memory and set default effect.
+	// @note Must be called before using in the renderer. May be called multiple times.
 	void Initialize();
 
 	// Update the size of the screen
 	void Resize();
-	
-	// Delete existing buffers/textures and create them again, using a new screen size if needed.
-	// (the textures are also attached to the framebuffers)
-	void RecreateBuffers();
-	
-	// Loads a new postproc effect. "default" effect does NOT load anything.
-	void LoadEffect(CStrW &name);
 	
 	// Returns a list of xml files found in shaders/effects/postproc.
 	static std::vector<CStrW> GetPostEffects();
@@ -98,19 +96,22 @@ public:
 		return m_PostProcEffect;
 	}
 	
-	// Matching setter that calls LoadEffect.
+	// Sets the current effect.
 	void SetPostEffect(CStrW name);
 
 	// Clears the two colour buffers and depth buffer, and redirects all rendering
-	// to our textures instead of directly to the system framebuffer. 
+	// to our textures instead of directly to the system framebuffer.
+	// @note CPostprocManager must be initialized first
 	void CaptureRenderOutput();
 	
 	// First renders blur textures, then calls ApplyEffect for each effect pass, 
 	// ping-ponging the buffers at each step.
+	// @note CPostprocManager must be initialized first
 	void ApplyPostproc();
 	
 	// Blits the final postprocessed texture to the system framebuffer. The system framebuffer
 	// is selected as the output buffer. Should be called before silhouette rendering.
+	// @note CPostprocManager must be initialized first
 	void ReleaseRenderOutput();
 };
 
