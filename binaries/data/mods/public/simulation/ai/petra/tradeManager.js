@@ -427,6 +427,13 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 	if (!presentRoute)
 		return;
 
+	if (!ent.position())
+	{
+		// This trader is garrisoned, we will decide later (when ungarrisoning) what to do
+		ent.setMetadata(PlayerID, "route", undefined);
+		return;
+	}
+
 	if (ent.hasClass("Ship"))
 		var access = ent.getMetadata(PlayerID, "sea");
 	else
