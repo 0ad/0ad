@@ -201,6 +201,9 @@ int WaterManager::LoadWaterTextures()
 		return 0;
 	}
 
+#if CONFIG2_GLES
+#warning Fix WaterManager::LoadWaterTextures on GLES
+#else
 	// Load normalmaps (for fancy water)
 	for (size_t i = 0; i < ARRAY_SIZE(m_NormalMap); ++i)
 	{
@@ -361,7 +364,7 @@ int WaterManager::LoadWaterTextures()
 
 	// Enable rendering, now that we've succeeded this far
 	m_RenderWater = true;
-
+#endif
 	return 0;
 }
 
@@ -842,6 +845,9 @@ void WaterManager::CreateWaveMeshes()
 
 void WaterManager::RenderWaves(const CFrustum& frustrum)
 {
+#if CONFIG2_GLES
+#warning Fix WaterManager::RenderWaves on GLES
+#else
 	if (g_Renderer.m_SkipSubmit || !m_WaterFancyEffects)
 		return;
 		
@@ -909,6 +915,7 @@ void WaterManager::RenderWaves(const CFrustum& frustrum)
 
 	glDisable(GL_BLEND);
 	glDepthFunc(GL_LEQUAL);
+#endif
 }
 
 ///////////////////////////////////////////////////////////////////

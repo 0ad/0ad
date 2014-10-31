@@ -579,6 +579,10 @@ void CPostprocManager::Initialize()
 {
 }
 
+void CPostprocManager::Resize()
+{
+}
+
 void CPostprocManager::Cleanup()
 {
 }
@@ -587,7 +591,7 @@ void CPostprocManager::RecreateBuffers()
 {
 }
 
-std::vector<CStrW> CPostprocManager::GetPostEffects() const
+std::vector<CStrW> CPostprocManager::GetPostEffects()
 {
 	return std::vector<CStrW>();
 }

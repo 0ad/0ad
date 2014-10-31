@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -485,6 +485,10 @@ void OverlayRenderer::RenderTexturedOverlayLines(CShaderProgramPtr shader, bool 
 
 void OverlayRenderer::RenderQuadOverlays()
 {
+#if CONFIG2_GLES
+#warning TODO: implement OverlayRenderer::RenderQuadOverlays for GLES
+	return;
+#endif
 	if (m->quadBatchMap.empty())
 		return;
 
@@ -709,6 +713,9 @@ void OverlayRenderer::RenderSphereOverlays()
 {
 	PROFILE3_GPU("overlays (spheres)");
 
+#if CONFIG2_GLES
+#warning TODO: implement OverlayRenderer::RenderSphereOverlays for GLES
+#else
 	if (g_Renderer.GetRenderPath() != CRenderer::RP_SHADER)
 		return;
 
@@ -757,4 +764,5 @@ void OverlayRenderer::RenderSphereOverlays()
 
 	glDepthMask(1);
 	glDisable(GL_BLEND);
+#endif
 }
