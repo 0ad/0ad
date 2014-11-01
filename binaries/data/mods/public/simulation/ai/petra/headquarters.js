@@ -566,7 +566,9 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 {
 	if (classes.indexOf("Hero") !== -1)
 		var units = gameState.findTrainableUnits(classes, []);
-	else
+	else if (classes.indexOf("Siege") !== -1)	// We do not want siege tower as AI does not know how to use it
+		var units = gameState.findTrainableUnits(classes, ["Tower"]);
+	else						// We do not want hero when not explicitely specified
 		var units = gameState.findTrainableUnits(classes, ["Hero"]);
 	
 	if (units.length === 0)
