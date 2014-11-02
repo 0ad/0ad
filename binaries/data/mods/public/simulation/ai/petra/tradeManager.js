@@ -304,10 +304,13 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 		var ent = evt.entityObj;
 		if (!ent || !ent.hasClass("Market") || !gameState.isPlayerAlly(ent.owner()))
 			continue;
-		if (this.Config.debug > 1 && evt.SuccessfulFoundation)
-			API3.warn("new market build ... checking routes");
-		else if (this.Config.debug > 1)
-			API3.warn("one market has been destroyed ... checking routes");
+		if (this.Config.debug > 1)
+		{
+			if (evt.SuccessfulFoundation)
+				API3.warn("new market build ... checking routes");
+			else
+				API3.warn("one market (or foundation) has been destroyed ... checking routes");
+		}
 		return true;
 	}
 
