@@ -65,6 +65,33 @@ m.getMaxStrength = function(ent, againstClass)
 	return strength * hp;
 };
 
+// Makes the worker deposit the currently carried resources at the closest accessible dropsite
+m.returnResources = function(ent, gameState)
+{
+	if (!ent.resourceCarrying() || ent.resourceCarrying().length == 0 || !ent.position())
+		return false;
+
+	var resource = ent.resourceCarrying()[0].type;
+
+	var closestDropsite = undefined;
+	var distmin = Math.min();
+	var access = gameState.ai.accessibility.getAccessValue(ent.position());
+	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
+		if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
+			return;
+		var dist = API3.SquareVectorDistance(ent.position(), dropsite.position());
+		if (dist > distmin)
+			return;
+		distmin = dist;
+		closestDropsite = dropsite;
+	});
+	
+	if (!closestDropsite)
+		return false;	
+	ent.returnResources(closestDropsite);
+	return true;
+};
+
 m.getHolder = function(ent, gameState)
 {
 	var found = undefined;
