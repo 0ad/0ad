@@ -5,30 +5,31 @@ var PETRA = function(m)
  * This class makes a worker do as instructed by the economy manager
  */
 
-m.Worker = function(ent)
+m.Worker = function(baseManager)
 {
-	this.ent = ent;
-	this.baseID = 0;
+	this.ent = undefined;
+	this.baseManager = baseManager
+	this.baseID = baseManager.ID;
 };
 
-m.Worker.prototype.update = function(baseManager, gameState)
+m.Worker.prototype.update = function(ent, gameState)
 {
-	if (!this.ent.position() || this.ent.getMetadata(PlayerID, "plan") === -2 || this.ent.getMetadata(PlayerID, "plan") === -3)
+	if (!ent.position() || ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 		return;
 
 	// If we are waiting for a transport or we are sailing, just wait
-	if (this.ent.getMetadata(PlayerID, "transport") !== undefined)
+	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
 
 	// If we're fighting or hunting, let's not start gathering
-	if (this.ent.unitAIState().split(".")[1] === "COMBAT")
+	if (ent.unitAIState().split(".")[1] === "COMBAT")
 		return;
 
 	// Okay so we have a few tasks.
 	// If we're gathering, we'll check that we haven't run idle.
 	// And we'll also check that we're gathering a resource we want to gather.
 
-	this.baseID = baseManager.ID;
+	this.ent = ent;
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	if (subrole === "gatherer")
@@ -41,12 +42,12 @@ m.Worker.prototype.update = function(baseManager, gameState)
 			if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 ||
 					this.ent.resourceCarrying()[0].type === this.ent.getMetadata(PlayerID, "gather-type"))
 			{
-				this.startGathering(gameState, baseManager);
+				this.startGathering(gameState);
 			}
-			else if (!this.returnResources(gameState))     // try to deposit resources
+			else if (!m.returnResources(this.ent, gameState))     // try to deposit resources
 			{
 				// no dropsite, abandon old resources and start gathering new ones
-				this.startGathering(gameState, baseManager);
+				this.startGathering(gameState);
 			}
 		}
 		else if (this.ent.unitAIState().split(".")[1] === "GATHER")
@@ -65,12 +66,12 @@ m.Worker.prototype.update = function(baseManager, gameState)
 					if ((nbGatherers > 0 && supply.resourceSupplyAmount()/nbGatherers < 40))
 					{
 						m.RemoveTCGatherer(gameState, supplyId);
-						this.startGathering(gameState, baseManager);
+						this.startGathering(gameState);
 					}
 					else
 					{
 						var gatherType = this.ent.getMetadata(PlayerID, "gather-type");
-						var nearby = baseManager.dropsiteSupplies[gatherType]["nearby"];
+						var nearby = this.baseManager.dropsiteSupplies[gatherType]["nearby"];
 						var isNearby = nearby.some(function(sup) {
 							if (sup.id === supplyId)
 								return true;
@@ -81,7 +82,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 						else
 						{
 							m.RemoveTCGatherer(gameState, supplyId);
-							this.startGathering(gameState, baseManager);
+							this.startGathering(gameState);
 						}
 					}
 				}
@@ -102,7 +103,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 					dropsite.setMetadata(PlayerID, "access", goalAccess);
 				}
 				if (access !== goalAccess)
-					this.returnResources(gameState);
+					m.returnResources(this.ent, gameState);
 			}
 		}
 	}
@@ -119,7 +120,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 			this.ent.setMetadata(PlayerID, "target-foundation", undefined);
 			// If worker elephant, move away to avoid being trapped in between constructions
 			if (this.ent.hasClass("Elephant"))
-				this.moveAway(baseManager, gameState);
+				this.moveAway(gameState);
 		}
 		else
 		{
@@ -190,7 +191,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 							dropsite.setMetadata(PlayerID, "access", goalAccess);
 						}
 						if (access !== goalAccess)
-							this.returnResources(gameState);
+							m.returnResources(this.ent, gameState);
 					}
 				}
 			}
@@ -209,7 +210,7 @@ m.Worker.prototype.update = function(baseManager, gameState)
 	}
 };
 
-m.Worker.prototype.startGathering = function(gameState, baseManager)
+m.Worker.prototype.startGathering = function(gameState)
 {
 	var self = this;
 	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
@@ -290,9 +291,9 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 	var supply;
 
 	// first look in our own base if accessible from our present position
-	if (baseManager.accessIndex === access)
+	if (this.baseManager.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["nearby"])))
+		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["nearby"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -311,7 +312,7 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 				return true;
 			}
 		}
-		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["medium"])))
+		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["medium"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -454,9 +455,9 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		return true;
 
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
-	if (baseManager.accessIndex === access)
+	if (this.baseManager.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, baseManager.dropsiteSupplies[resource]["faraway"])))
+		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["faraway"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -494,34 +495,6 @@ m.Worker.prototype.startGathering = function(gameState, baseManager)
 		warn(" >>>>> worker with gather-type " + resource + " with nothing to gather ");
 	this.ent.setMetadata(PlayerID, "subrole", "idle");
 	return false;
-};
-
-// Makes the worker deposit the currently carried resources at the closest accessible dropsite
-m.Worker.prototype.returnResources = function(gameState)
-{
-	if (!this.ent.resourceCarrying() || this.ent.resourceCarrying().length === 0 || !this.ent.position())
-		return false;
-
-	var resource = this.ent.resourceCarrying()[0].type;
-	var self = this;
-
-	var closestDropsite = undefined;
-	var distmin = Math.min();
-	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
-	gameState.getOwnDropsites(resource).forEach(function(dropsite) {
-		if (!dropsite.position() || dropsite.getMetadata(PlayerID, "access") !== access)
-			return;
-		var dist = API3.SquareVectorDistance(self.ent.position(), dropsite.position());
-		if (dist > distmin)
-			return;
-		distmin = dist;
-		closestDropsite = dropsite;
-	});
-	
-	if (!closestDropsite)
-		return false;	
-	this.ent.returnResources(closestDropsite);
-	return true;
 };
 
 // if position is given, we only check if we could hunt from this position but do nothing
@@ -789,8 +762,8 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 
 // Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
 // For the time being, we move towards the nearest gatherer (providing him a dropsite)
-m.Worker.prototype.moveAway = function(baseManager, gameState){
-	var gatherers = baseManager.workersBySubrole(gameState, "gatherer").toEntityArray();
+m.Worker.prototype.moveAway = function(gameState){
+	var gatherers = this.baseManager.workersBySubrole(gameState, "gatherer").toEntityArray();
 	var pos = this.ent.position();
 	var dist = Math.min();
 	var destination = pos;

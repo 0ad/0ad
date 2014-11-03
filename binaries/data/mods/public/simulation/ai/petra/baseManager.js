@@ -34,6 +34,7 @@ m.BaseManager = function(Config)
 m.BaseManager.prototype.init = function(gameState, unconstructed)
 {
 	this.constructing = unconstructed;
+	this.workerObject = new m.Worker(this);
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
@@ -94,16 +95,6 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 	var destEvents = events["Destroy"];
 	var createEvents = events["Create"];
 	var cFinishedEvents = events["ConstructionFinished"];
-
-	for (var evt of renameEvents)
-	{
-		var ent = gameState.getEntityById(evt.newentity);
-		if (!ent)
-			continue;
-		var workerObject = ent.getMetadata(PlayerID, "worker-object");
-		if (workerObject)
-			workerObject.ent = ent;
-	}
 
 	for (var evt of destEvents)
 	{
@@ -945,11 +936,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 
 	// TODO: do this incrementally a la defense.js
 	var self = this;
-	this.workers.forEach(function(ent) {
-		if (!ent.getMetadata(PlayerID, "worker-object"))
-			ent.setMetadata(PlayerID, "worker-object", new m.Worker(ent));
-		ent.getMetadata(PlayerID, "worker-object").update(self, gameState);
-	});
+	this.workers.forEach(function(ent) { self.workerObject.update(ent, gameState); });
 
 	Engine.ProfileStop();
 };
