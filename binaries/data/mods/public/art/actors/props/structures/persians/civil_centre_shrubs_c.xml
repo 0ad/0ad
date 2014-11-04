@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="pers civic plants c">
+      <mesh>props/pers_civic_shrub_c.dae</mesh>
+      <textures>
+      	<texture file="gaia/shrub_tropic_palm.png" name="baseTex"/>
+        <texture file="gaia/shrub_tropic_palm_norm.png" name="normTex"/>
+        <texture file="gaia/shrub_tropic_palm_spec.png" name="specTex"/>        
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
