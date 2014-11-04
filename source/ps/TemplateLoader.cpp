@@ -352,6 +352,7 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 	permittedComponentTypes.insert("Identity");
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
+	permittedComponentTypes.insert("Visibility");
 	permittedComponentTypes.insert("VisualActor");
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Obstruction");
@@ -408,6 +409,7 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("Selectable");
+	permittedComponentTypes.insert("Visibility");
 	permittedComponentTypes.insert("VisualActor");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
@@ -454,6 +456,7 @@ void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in
 	permittedComponentTypes.insert("Decay");
 	permittedComponentTypes.insert("Cost");
 	permittedComponentTypes.insert("Sound");
+	permittedComponentTypes.insert("Visibility");
 	permittedComponentTypes.insert("Vision");
 	permittedComponentTypes.insert("AIProxy");
 	permittedComponentTypes.insert("RallyPoint");
