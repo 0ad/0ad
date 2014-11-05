@@ -1047,7 +1047,7 @@ void CComponentManager::SendGlobalMessage(entity_id_t ent, const CMessage& msg)
 		std::vector<ComponentTypeId>::const_iterator ctit = it->second.begin();
 		for (; ctit != it->second.end(); ++ctit)
 		{
-			// Special case: Messages for non-local entities shouldn't be sent to script
+			// Special case: Messages for local entities shouldn't be sent to script
 			// components that subscribed globally, so that we don't have to worry about
 			// them accidentally picking up non-network-synchronised data.
 			if (ENTITY_IS_LOCAL(ent))

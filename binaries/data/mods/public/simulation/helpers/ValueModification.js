@@ -2,13 +2,12 @@
 
 function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
-	var cmpTechMan = QueryOwnerInterface(entity, IID_TechnologyManager);
-	if (cmpTechMan)
-		var value = cmpTechMan.ApplyModifications(tech_type, current_value, entity);
-	else
-		var value = current_value;
+	let value = current_value;
+	let cmpTechnologyManager = QueryOwnerInterface(entity, IID_TechnologyManager);
+	if (cmpTechnologyManager)
+		value = cmpTechnologyManager.ApplyModifications(tech_type, current_value, entity);
 
-	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
+	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager);
 	if (!cmpAuraManager)
 	    return value;
 	return cmpAuraManager.ApplyModifications(tech_type, value, entity);
@@ -16,23 +15,22 @@ function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 
 function ApplyValueModificationsToPlayer(tech_type, current_value, player_entity)
 {
-	var cmpTechMan = Engine.QueryInterface(player_entity, IID_TechnologyManager);
+	let cmpTechnologyManager = Engine.QueryInterface(player_entity, IID_TechnologyManager);
 
-	if (!cmpTechMan)
+	if (!cmpTechnologyManager)
 		return current_value;
 
-	return cmpTechMan.ApplyModifications(tech_type, current_value, player_entity);
+	return cmpTechnologyManager.ApplyModifications(tech_type, current_value, player_entity);
 }
 
 function ApplyValueModificationsToTemplate(tech_type, current_value, playerID, template)
 {
-	var cmpTechMan = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
-	if (cmpTechMan)
-		var value = cmpTechMan.ApplyModificationsTemplate(tech_type, current_value, template);
-	else
-		var value = current_value; 
+	let value = current_value;
+	let cmpTechnologyManager = QueryPlayerIDInterface(playerID, IID_TechnologyManager);
+	if (cmpTechnologyManager)
+		value = cmpTechnologyManager.ApplyModificationsTemplate(tech_type, current_value, template);
 
-	var cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager); 
+	let cmpAuraManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AuraManager); 
 	if (!cmpAuraManager)
 		return value; 
 	return cmpAuraManager.ApplyTemplateModifications(tech_type, value, playerID, template);
