@@ -491,7 +491,7 @@ m.Worker.prototype.startGathering = function(gameState)
 
 	// If we are here, we have nothing left to gather ... certainly no more resources of this type
 	gameState.ai.HQ.lastFailedGather[resource] = gameState.ai.elapsedTime;
-	if (gameState.Config.debug > 2)
+	if (gameState.ai.Config.debug > 2)
 		warn(" >>>>> worker with gather-type " + resource + " with nothing to gather ");
 	this.ent.setMetadata(PlayerID, "subrole", "idle");
 	return false;

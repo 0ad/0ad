@@ -25,8 +25,8 @@ var PETRA = function(m)
 
 m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 {
-	this.ID = m.playerGlobals[PlayerID].uniqueIDTPlans++;
-	this.debug = gameState.Config.debug;
+	this.ID = gameState.ai.uniqueIDs.transports++;
+	this.debug = gameState.ai.Config.debug;
 	this.flotilla = false;   // when false, only one ship per transport ... not yet tested when true
 
 	this.endPos = endPos;

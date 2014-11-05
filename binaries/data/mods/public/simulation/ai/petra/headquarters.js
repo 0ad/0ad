@@ -115,16 +115,17 @@ m.HQ.prototype.init = function(gameState, queues)
 	this.treasures.registerUpdates();
 
 	// Let's get our initial situation here.
+	var b0 = gameState.ai.uniqueIDs.bases;
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();	
-	for (var i = 0; i < ccEnts.length; ++i)
+	for (let i = 0; i < ccEnts.length; ++i)
 	{
-		this.baseManagers[i+1] = new m.BaseManager(this.Config);
-		this.baseManagers[i+1].init(gameState);
-		this.baseManagers[i+1].setAnchor(gameState, ccEnts[i]);
+		this.baseManagers[i+b0] = new m.BaseManager(gameState, this.Config);
+		this.baseManagers[i+b0].init(gameState);
+		this.baseManagers[i+b0].setAnchor(gameState, ccEnts[i]);
 	}
 	this.updateTerritories(gameState);
 
-	if (this.baseManagers[1])     // Affects entities in the different bases
+	if (this.baseManagers[b0])     // Affects entities in the different bases
 	{
 		var self = this;
 		var width = gameState.getMap().width;
@@ -364,8 +365,8 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 		if (ent.getMetadata(PlayerID, "base") == -1)
 		{
 			// Okay so let's try to create a new base around this.
-			var bID = m.playerGlobals[PlayerID].uniqueIDBases;
-			this.baseManagers[bID] = new m.BaseManager(this.Config);
+			var bID = gameState.ai.uniqueIDs.bases;
+			this.baseManagers[bID] = new m.BaseManager(gameState, this.Config);
 			this.baseManagers[bID].init(gameState, true);
 			this.baseManagers[bID].setAnchor(gameState, ent);
 
@@ -1946,7 +1947,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	for (var i in this.baseManagers)
 	{
 		this.baseManagers[i].checkEvents(gameState, events, queues);
-		if (((+i + gameState.ai.playedTurn)%(m.playerGlobals[PlayerID].uniqueIDBases - 1)) == 0)
+		if (((+i + gameState.ai.playedTurn)%(gameState.ai.uniqueIDs.bases - 1)) == 0)
 			this.baseManagers[i].update(gameState, queues, events);
 	}
 

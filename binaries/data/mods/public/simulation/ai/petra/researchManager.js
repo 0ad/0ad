@@ -28,7 +28,7 @@ m.ResearchManager.prototype.checkPhase = function(gameState, queues)
 		plan.lastIsGo = false;
 		plan.onStart = function (gameState) { gameState.ai.HQ.econState = "growth"; gameState.ai.HQ.OnTownPhase(gameState) };
 		plan.isGo = function (gameState) {
-			var ret = gameState.getPopulation() >= gameState.Config.Economy.popForTown;
+			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
 			if (ret && !this.lastIsGo)
 				this.onGo(gameState);
 			else if (!ret && this.lastIsGo)

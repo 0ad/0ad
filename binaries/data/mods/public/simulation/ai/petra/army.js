@@ -11,7 +11,7 @@ var PETRA = function(m)
 
 m.Army = function(gameState, owner, ownEntities, foeEntities)
 {
-	this.ID = m.playerGlobals[PlayerID].uniqueIDArmy++;
+	this.ID = gameState.ai.uniqueIDs.armies++;
 
 	this.Config = owner.Config; 
 	this.defenseRatio = this.Config.Defense.defenseRatio;
@@ -224,7 +224,7 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 		// no plans must mean that the unit was in a ship which was destroyed, so do nothing
 		if (planID)
 		{
-			if (gameState.Config.debug > 0)
+			if (gameState.ai.Config.debug > 0)
 				warn("ent from army still in transport plan: plan " + planID + " canceled");
 			var plan = gameState.ai.HQ.navalManager.getPlan(planID);
 			if (plan && !plan.canceled)
