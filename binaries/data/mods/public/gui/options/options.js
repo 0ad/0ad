@@ -97,6 +97,11 @@ function setupControl(option, i, prefix)
 	switch (option[3])
 	{
 		case "boolean":
+			// More space for the label
+			let text = Engine.GetGUIObjectByName(prefix + "Label[" + i + "]");
+			let size = text.size;
+			size.rright = 87;
+			text.size = size;
 			var control = Engine.GetGUIObjectByName(prefix + "Tickbox[" + i + "]");
 			var checked;
 			var onPress = function(){};
