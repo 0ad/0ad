@@ -4,16 +4,8 @@
   <castshadow/>
 
   <group>
-    <variant frequency="1" name="props-a">
-      <mesh>props/pers_barracks_props_a.dae</mesh>
-    </variant>
-    <variant frequency="1" name="props-b">
-      <mesh>props/pers_barracks_props_a.dae</mesh>
-    </variant>
-  </group>
-
-  <group>
-    <variant>
+    <variant frequency="1" name="Base">
+      <mesh>props/pers_fortress_paintings.dae</mesh>
       <textures>
          <texture file="structural/pers_struct.png" name="baseTex"/>
          <texture file="structural/pers_struct_norm.png" name="normTex"/>

@@ -12,10 +12,10 @@ var PETRA = function(m)
 	-updating whatever needs updating, keeping track of stuffs (rebuilding needs…)
  */
 
-m.BaseManager = function(Config)
+m.BaseManager = function(gameState, Config)
 {
 	this.Config = Config;
-	this.ID = m.playerGlobals[PlayerID].uniqueIDBases++;
+	this.ID = gameState.ai.uniqueIDs.bases++;
 	
 	// anchor building: seen as the main building of the base. Needs to have territorial influence
 	this.anchor = undefined;

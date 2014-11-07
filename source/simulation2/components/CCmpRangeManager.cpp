@@ -28,6 +28,7 @@
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpTerritoryManager.h"
+#include "simulation2/components/ICmpVisibility.h"
 #include "simulation2/components/ICmpVision.h"
 #include "simulation2/components/ICmpWaterManager.h"
 #include "simulation2/helpers/Render.h"
@@ -1377,10 +1378,6 @@ public:
 
 	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
 	{
-		// This function provides the real visibility of any entity (even local ones) at any time.
-		// The m_EntityData visibility is updated at most once per turn with this function's return value
-		// and must not be used for rendering
-
 		// Entities not with positions in the world are never visible
 		if (ent.GetId() == INVALID_ENTITY)
 			return VIS_HIDDEN;
@@ -1409,42 +1406,21 @@ public:
 		// Visible if within a visible region
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 
+		if (!los.IsExplored(i, j))
+			return VIS_HIDDEN;
+
+		// Try to ask the Visibility component of the entity, if any
+		CmpPtr<ICmpVisibility> cmpVisibility(ent);
+		if (cmpVisibility)
+			return cmpVisibility->GetLosVisibility(player, los.IsVisible(i, j), forceRetainInFog);
+
+		// Default behaviour
 		if (los.IsVisible(i, j))
 			return VIS_VISIBLE;
-
-		if (!los.IsExplored(i, j))			
-			return VIS_HIDDEN;
-			
-		// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
-		CmpPtr<ICmpVision> cmpVision(ent);
-		if (!forceRetainInFog && !(cmpVision && cmpVision->GetRetainInFog()))
-			return VIS_HIDDEN;
-
-		if (cmpMirage && cmpMirage->GetPlayer() == player)
-			return VIS_FOGGED;
-
-		CmpPtr<ICmpOwnership> cmpOwnership(ent);
-		if (!cmpOwnership)
-			return VIS_VISIBLE;
 		
-		if (cmpOwnership->GetOwner() == player)
-		{
-			CmpPtr<ICmpFogging> cmpFogging(ent);
-			if (!cmpFogging)
-				return VIS_VISIBLE;
-			
-			// Fogged entities must not disappear while the mirage is not ready
-			if (!cmpFogging->IsMiraged(player))
-				return VIS_FOGGED;
-
-			return VIS_HIDDEN;
-		}
-	
-		// Fogged entities must not disappear while the mirage is not ready
-		CmpPtr<ICmpFogging> cmpFogging(ent);
-		if (cmpFogging && cmpFogging->WasSeen(player) && !cmpFogging->IsMiraged(player))
+		if (forceRetainInFog)
 			return VIS_FOGGED;
-				
+		
 		return VIS_HIDDEN;
 	}
 

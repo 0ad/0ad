@@ -90,7 +90,7 @@ TechnologyManager.prototype.CanProduce = function (templateName)
 		return true; // If there is no required technology then this entity can be produced
 };
 
-TechnologyManager.prototype.IsTechnologyResearched = function (tech)
+TechnologyManager.prototype.IsTechnologyResearched = function(tech)
 {
 	return (this.researchedTechs[tech] !== undefined);
 };
@@ -126,7 +126,7 @@ TechnologyManager.prototype.CanResearch = function(tech)
 };
 
 // Private function for checking a set of requirements is met
-TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
+TechnologyManager.prototype.CheckTechnologyRequirements = function(reqs)
 {
 	// If there are no requirements then all requirements are met
 	if (!reqs)
@@ -185,7 +185,7 @@ TechnologyManager.prototype.CheckTechnologyRequirements = function (reqs)
 	return false;
 };
 
-TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
+TechnologyManager.prototype.OnGlobalOwnershipChanged = function(msg)
 {
 	// This automatically updates typeCounts, classCounts and typeCountsByClass
 	var playerID = (Engine.QueryInterface(this.entity, IID_Player)).GetPlayerID();
@@ -275,7 +275,7 @@ TechnologyManager.prototype.OnGlobalOwnershipChanged = function (msg)
 };
 
 // Marks a technology as researched.  Note that this does not verify that the requirements are met.
-TechnologyManager.prototype.ResearchTechnology = function (tech)
+TechnologyManager.prototype.ResearchTechnology = function(tech)
 {
 	this.StoppedResearch(tech); // The tech is no longer being currently researched
 
@@ -395,19 +395,19 @@ TechnologyManager.prototype.ApplyModificationsTemplate = function(valueName, cur
 };
 
 // Marks a technology as being queued for research
-TechnologyManager.prototype.QueuedResearch = function (tech, researcher)
+TechnologyManager.prototype.QueuedResearch = function(tech, researcher)
 {
 	this.researchQueued[tech] = researcher;
 };
 
 // Marks a technology as actively being researched
-TechnologyManager.prototype.StartedResearch = function (tech)
+TechnologyManager.prototype.StartedResearch = function(tech)
 {
 	this.researchStarted[tech] = true;
 };
 
 // Marks a technology as not being currently researched
-TechnologyManager.prototype.StoppedResearch = function (tech)
+TechnologyManager.prototype.StoppedResearch = function(tech)
 {
 	delete this.researchQueued[tech];
 	delete this.researchStarted[tech];

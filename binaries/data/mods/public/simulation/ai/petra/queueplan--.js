@@ -16,7 +16,7 @@ m.QueuePlan = function(gameState, type, metadata)
 		warn("Tried to add the inexisting template " + this.type + " to Petra. Please report this on the forums")
 		return false;
 	}
-	this.ID = m.playerGlobals[PlayerID].uniqueIDBOPlans++;
+	this.ID = gameState.ai.uniqueIDs.plans++;
 	this.cost = new API3.Resources(this.template.cost());
 	this.number = 1;
 

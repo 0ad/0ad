@@ -15,6 +15,13 @@ m.PetraBot = function PetraBot(settings)
 	this.playedTurn = 0;
 	this.elapsedTime = 0;
 
+	this.uniqueIDs = {
+		"armies": 0,
+		"bases": 1,	// base manager ID starts at one because "0" means "no base" on the map
+		"plans": 0,	// training/building/research plans
+		"transports": 1	// transport plans start at 1 because 0 might be used as none
+	}
+
 	this.Config = new m.Config(settings.difficulty);
 
 	this.savedEvents = {};
@@ -26,25 +33,16 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 {
 	this.Config.setConfig(gameState);
 
-	this.priorities = this.Config.priorities;
 	// this.queues can only be modified by the queue manager or things will go awry.
 	this.queues = {};
-	for (var i in this.priorities)
+	for (var i in this.Config.priorities)
 		this.queues[i] = new m.Queue();
 
 	this.queueManager = new m.QueueManager(this.Config, this.queues);
 
 	this.HQ = new m.HQ(this.Config);
-	gameState.Config = this.Config;
 
-	m.playerGlobals[PlayerID] = {};
-	m.playerGlobals[PlayerID].uniqueIDBOPlans = 0;	// training/building/research plans
-	m.playerGlobals[PlayerID].uniqueIDBases = 1;	// base manager ID. Starts at one because "0" means "no base" on the map
-	m.playerGlobals[PlayerID].uniqueIDTPlans = 1;	// transport plans. starts at 1 because 0 might be used as none.	
-	m.playerGlobals[PlayerID].uniqueIDArmy = 0;
-
-	var filter = API3.Filters.byClass("CivCentre");
-	var myKeyEntities = gameState.getOwnEntities().filter(filter);
+	var myKeyEntities = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre"));
 	if (myKeyEntities.length == 0)
 		myKeyEntities = gameState.getOwnEntities();
 

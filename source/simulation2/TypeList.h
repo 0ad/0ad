@@ -174,6 +174,9 @@ COMPONENT(UnitMotionScripted)
 INTERFACE(UnitRenderer)
 COMPONENT(UnitRenderer)
 
+INTERFACE(Visibility)
+COMPONENT(VisibilityScripted)
+
 INTERFACE(Vision)
 COMPONENT(Vision)
 

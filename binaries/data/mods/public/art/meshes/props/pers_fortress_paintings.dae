@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 2.72.0 commit date:2014-10-21, commit time:11:38, hash:9e963ae</authoring_tool>
+    </contributor>
+    <created>2014-11-06T12:15:56</created>
+    <modified>2014-11-06T12:15:56</modified>
+    <unit name="centimeter" meter="0.01"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_images/>
+  <library_geometries>
+    <geometry id="FortressMesh_008-mesh" name="FortressMesh.008">
+      <mesh>
+        <source id="FortressMesh_008-mesh-positions">
+          <float_array id="FortressMesh_008-mesh-positions-array" count="48">4.613277 -11.26757 4.357946 4.613277 -11.26757 1.20123 3.389612 -11.26757 1.20123 3.389612 -11.26757 4.357946 -4.613277 -11.26757 4.357946 -4.613277 -11.26757 1.20123 -3.389612 -11.26757 1.20123 -3.389612 -11.26757 4.357946 6.762402 -11.17147 10.19224 6.762402 -11.17147 2.650187 9.685994 -11.17147 2.650187 9.685992 -11.17147 10.19224 -9.755315 -11.17147 10.19224 -9.755317 -11.17147 2.650187 -6.831726 -11.17147 2.650187 -6.831726 -11.17147 10.19224</float_array>
+          <technique_common>
+            <accessor source="#FortressMesh_008-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="FortressMesh_008-mesh-normals">
+          <float_array id="FortressMesh_008-mesh-normals-array" count="24">0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0 0 -1 0</float_array>
+          <technique_common>
+            <accessor source="#FortressMesh_008-mesh-normals-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="FortressMesh_008-mesh-map-0">
+          <float_array id="FortressMesh_008-mesh-map-0-array" count="48">0.640146 0.4989999 0.640146 0.2505778 0.7364439 0.2505778 0.5243507 0.4989999 0.6206486 0.4989999 0.6206486 0.2505778 0.5243507 0.2505778 0.6206486 0.2505778 0.6206486 0.4989999 0.640146 0.2505778 0.640146 0.4989999 0.7364439 0.4989999 0.7364439 0.4989999 0.640146 0.4989999 0.7364439 0.2505778 0.5243507 0.2505778 0.5243507 0.4989999 0.6206486 0.2505778 0.5243507 0.4989999 0.5243507 0.2505778 0.6206486 0.4989999 0.7364439 0.2505778 0.640146 0.2505778 0.7364439 0.4989999</float_array>
+          <technique_common>
+            <accessor source="#FortressMesh_008-mesh-map-0-array" count="24" stride="2">
+              <param name="S" type="float"/>
+              <param name="T" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="FortressMesh_008-mesh-vertices">
+          <input semantic="POSITION" source="#FortressMesh_008-mesh-positions"/>
+        </vertices>
+        <polylist count="8">
+          <input semantic="VERTEX" source="#FortressMesh_008-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#FortressMesh_008-mesh-normals" offset="1"/>
+          <input semantic="TEXCOORD" source="#FortressMesh_008-mesh-map-0" offset="2" set="0"/>
+          <vcount>3 3 3 3 3 3 3 3 </vcount>
+          <p>3 0 0 2 0 1 1 0 2 7 1 3 4 1 4 5 1 5 9 2 6 10 2 7 11 2 8 14 3 9 15 3 10 12 3 11 0 4 12 3 4 13 1 4 14 6 5 15 7 5 16 5 5 17 8 6 18 9 6 19 11 6 20 13 7 21 14 7 22 12 7 23</p>
+        </polylist>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_controllers/>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene">
+      <node id="Fortress_001" name="Fortress_001" type="NODE">
+        <matrix sid="transform">1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 1</matrix>
+        <instance_geometry url="#FortressMesh_008-mesh"/>
+      </node>
+    </visual_scene>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

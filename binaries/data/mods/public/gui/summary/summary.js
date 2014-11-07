@@ -807,7 +807,7 @@ function init(data)
 			var teamHeading = Engine.GetGUIObjectByName("teamHeading"+pn+"t"+i);
 			var yStart = 30 + teams[i] * (PLAYER_BOX_Y_SIZE + PLAYER_BOX_GAP) + 2;
 			teamHeading.size = "50 "+yStart+" 100% "+(yStart+20);
-			teamHeading.caption = "Team total";
+			teamHeading.caption = translate("Team total");
 			
 			var left = 250;
 			for (var c in panel.counters)
@@ -823,8 +823,4 @@ function init(data)
 	}
 
 	selectPanel(0);
-}
-
-function onTick()
-{
 }
