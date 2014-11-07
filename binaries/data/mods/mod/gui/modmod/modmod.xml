@@ -56,7 +56,7 @@
 		<!-- Sort by -->
 		<object name="sortingWrapper" size="100%-400 74 100% 98">
 			<object type="text" size="0 0 75 100%" text_align="left" textcolor="white">
-				Sorting:
+				<translatableAttribute id="caption">Sorting:</translatableAttribute>
 			</object>
 			<object name="sortBy"
 				type="dropdown"
@@ -68,7 +68,7 @@
 			</object>
 			<!-- Checkboxes -->
 			<object type="text" size="75% 100%-24 100% 100%" text_align="left" textcolor="white">
-				Descending.
+				<translatableAttribute id="caption">Descending.</translatableAttribute>
 			</object>
 			<object name="isOrderDescending"
 				type="checkbox"
@@ -93,10 +93,10 @@
 				<def id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
-				<def id="modVersion" color="128 128 128" width="5%">
+				<def id="modVersion" color="128 128 128" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</def>
-				<def id="modFolderName" color="100 100 200" width="15%">
+				<def id="modFolderName" color="100 100 200" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</def>
 				<def id="modLabel" color="0 60 0" width="18%">
@@ -134,10 +134,10 @@
 				<def id="name" color="100 100 200" width="10%">
 					<translatableAttribute id="heading">Name</translatableAttribute>
 				</def>
-				<def id="modVersion" color="128 128 128" width="5%">
+				<def id="modVersion" color="128 128 128" width="7%">
 					<translatableAttribute id="heading">Version</translatableAttribute>
 				</def>
-				<def id="modFolderName" color="100 100 200" width="15%">
+				<def id="modFolderName" color="100 100 200" width="13%">
 					<translatableAttribute id="heading">(Folder)</translatableAttribute>
 				</def>
 				<def id="modLabel" color="0 60 0" width="18%">
