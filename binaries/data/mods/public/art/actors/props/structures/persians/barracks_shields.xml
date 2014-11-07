@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="base">
+      <mesh>props/pers_barracks_shields.dae</mesh>
+      <props>
+        <prop actor="props/units/shields/hele_round_back.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="shield-pers-aspis-1">
+      <textures><texture file="props/shield/pers_aspis_1.png" name="baseTex"/></textures>
+    </variant>
+    <variant frequency="1" name="shield-pers-aspis-2">
+      <textures><texture file="props/shield/pers_aspis_2.png" name="baseTex"/></textures>
+    </variant>
+  </group>
+  <material>playercolor_spec.xml</material>
+</actor>
