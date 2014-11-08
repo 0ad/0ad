@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="shrub spikes">
+      <mesh>gaia/shrub_fanpalm.dae</mesh>
+      <textures>
+      	<texture file="gaia/shrub_fanpalm.png" name="baseTex"/>
+        <texture file="gaia/shrub_fanpalm_norm.png" name="normTex"/>
+        <texture file="gaia/shrub_fanpalm_spec.png" name="specTex"/>        
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_parallax_spec.xml</material>
+</actor>
