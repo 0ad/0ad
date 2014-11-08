@@ -4,27 +4,57 @@
   <group>
     <variant frequency="1" name="Cypress Tree (Small)">
       <mesh>gaia/tree_cypress_sm.dae</mesh>
-      <textures><texture file="gaia/prop_tree_cypess.dds" name="baseTex"/></textures>
+      <props>
+        <prop actor="flora/trees/cypress_sm_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/prop_tree_cypess.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Medium)">
       <mesh>gaia/tree_cypress_med.dae</mesh>
-      <textures><texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/></textures>
+            <props>
+        <prop actor="flora/trees/cypress_med_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Large)">
       <mesh>gaia/tree_cypress_large.dae</mesh>
-      <textures><texture file="gaia/prop_tree_cypess_c.dds" name="baseTex"/></textures>
+            <props>
+        <prop actor="flora/trees/cypress_large_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/prop_tree_cypess_c.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Cypress Tree (XLarge)">
       <mesh>gaia/tree_cypress_xlarge.dae</mesh>
-      <textures><texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/></textures>
+            <props>
+        <prop actor="flora/trees/cypress_xlarge_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/prop_tree_cypess_b.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="2" name="Cypress Tree (Skinny)">
       <mesh>gaia/tree_cypress_skinny.dae</mesh>
-      <textures><texture file="gaia/tree_cypress_a.dds" name="baseTex"/></textures>
+            <props>
+        <prop actor="flora/trees/cypress_skinny_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_cypress_a.dds" name="baseTex"/>
+      </textures>
     </variant>
     <variant frequency="1" name="Cypress Tree (Tall)">
       <mesh>gaia/tree_cypress_tall.dae</mesh>
-      <textures><texture file="gaia/tree_cypress_a.dds" name="baseTex"/></textures>
+            <props>
+        <prop actor="flora/trees/cypress_tall_branches.xml" attachpoint="root"/>
+      </props>
+      <textures>
+        <texture file="gaia/tree_cypress_a.dds" name="baseTex"/>
+      </textures>
     </variant>
   </group>
   
