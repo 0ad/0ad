@@ -183,5 +183,14 @@ m.ResearchManager.prototype.update = function(gameState, queues)
 	queues.minorTech.addItem(new m.ResearchPlan(gameState, techs[p][0]));
 };
 
+m.ResearchManager.prototype.Serialize = function()
+{
+	return {};
+};
+
+m.ResearchManager.prototype.Deserialize = function(data)
+{
+};
+
 return m;
 }(PETRA);

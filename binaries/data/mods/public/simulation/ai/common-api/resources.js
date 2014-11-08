@@ -76,6 +76,21 @@ m.Resources.prototype.toInt = function() {
 	return sum;
 };
 
+m.Resources.prototype.Serialize = function()
+{
+	let amounts = {};
+	for (let key in this.types)
+		amounts[key] = this[key];
+	return { "amounts": amounts, "population": this.population };
+};
+
+m.Resources.prototype.Deserialize = function(data)
+{
+	for (let key in data.amounts)
+		this[key] = data.amounts[key];
+	this.population = data.population;
+};
+
 return m;
 
 }(API3);

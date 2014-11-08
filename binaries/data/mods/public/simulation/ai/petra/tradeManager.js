@@ -518,5 +518,43 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 	}
 };
 
+m.TradeManager.prototype.SerializedRoute = function(route)
+{
+	if (!route)
+		return route;
+	let ret = {};
+	for (let key in route)
+		ret[key] = ((key == "source" || key == "target") ? route[key].id() : route[key]);
+	return ret;
+};
+
+m.TradeManager.prototype.DeserializedRoute = function(gameState, route)
+{
+	if (!route)
+		return route;
+	let ret = {};
+	for (let key in route)
+		ret[key] = ((key == "source" || key == "target") ? gameState.getEntityById(route[key]) : route[key]);
+	return ret;
+};
+
+m.TradeManager.prototype.Serialize = function()
+{
+	return {
+		"tradeRoute": this.SerializedRoute(this.tradeRoute),
+		"potentialTradeRoute": this.SerializedRoute(this.potentialTradeRoute),
+		"routeProspection": this.routeProspection,
+		"targetNumTraders": this.targetNumTraders
+	};
+}
+
+m.TradeManager.prototype.Deserialize = function(data)
+{
+	this.tradeRoute = this.DeserializedRoute(data.tradeRoute);
+	this.potentialTradeRoute = this.DeserializedRoute(data.potentialTradeRoute);
+	this.routeProspection = data.routeProspection;
+	this.targetNumTraders = data.targetNumTraders;
+}
+
 return m;
 }(PETRA);

@@ -162,5 +162,20 @@ m.Config.prototype.setConfig = function(gameState)
 	API3.warn(" >>>  Petra bot: personality = " + uneval(this.personality));
 };
 
+m.Config.prototype.Serialize = function()
+{
+	var data = {};
+	for (let key in this)
+		if (this.hasOwnProperty(key))
+			data[key] = this[key];
+	return data;
+};
+
+m.Config.prototype.Deserialize = function(data)
+{
+	for (let key in data)
+		this[key] = data[key];
+};
+
 return m;
 }(PETRA);

@@ -74,14 +74,13 @@ m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 	this.events = sharedAI.events;
 	this.passabilityMap = sharedAI.passabilityMap;
 	this.territoryMap = sharedAI.territoryMap;
-	
-	if (this.isDeserialized && this.turn !== 0)
+
+	if (this.isDeserialized)
 	{
-		this.isDeserialized = false;
 		this.Init(state, playerID, sharedAI);
-		warn("AIs don't work completely with saved games yet. You may run into idle units and unused buildings.");
-	} else if (this.isDeserialized)
-		return;
+		this.isDeserialized = false;
+		API3.warn("AIs don't work completely with saved games yet. This is still experimental and buggy.");
+	}
 	this.OnUpdate(sharedAI);
 };
 

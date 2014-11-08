@@ -269,5 +269,20 @@ m.AttackManager.prototype.unpauseAllPlans = function()
 			attack.setPaused(false);
 };
 
+m.AttackManager.prototype.Serialize = function()
+{
+	// TODO the attackPlans have still to be serialized
+	return {
+		"maxRushes": this.maxRushes,
+		"rushSize": this.rushSize
+	};
+};
+
+m.AttackManager.prototype.Deserialize = function(data)
+{
+	for (let key in data)
+		this[key] = data[key];
+};
+
 return m;
 }(PETRA);

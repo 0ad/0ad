@@ -379,7 +379,7 @@ public:
 			return false;
 
 		// mainly here for the error messages
-		OsPath path = L"simulation/ai/common-api-v2/";
+		OsPath path = L"simulation/ai/common-api/";
 		
 		// Constructor name is SharedScript, it's in the module API3
 		// TODO: Hardcoding this is bad, we need a smarter way. 

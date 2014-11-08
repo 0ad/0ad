@@ -127,5 +127,18 @@ m.Queue.prototype.countAllByType = function(t)
 	return count;
 };
 
+m.Queue.prototype.Serialize = function()
+{
+	// TODO proper queues have still to be serialized
+	return { "queue": [], "paused": this.paused, "switched": this.switched };
+};
+
+m.Queue.prototype.Deserialize = function(data)
+{
+	this.queue = data.queue;
+	this.paused = data.paused;
+	this.switched = data.switched;
+};
+
 return m;
 }(PETRA);

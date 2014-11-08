@@ -941,6 +941,30 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	Engine.ProfileStop();
 };
 
+m.BaseManager.prototype.Serialize = function()
+{
+	return {
+		"ID": this.ID,
+		"anchor": ((this.anchor !== undefined) ? this.anchor.id() : undefined),
+		"accessIndex": this.accessIndex,
+		"maxDistResourceSquare": this.maxDistResourceSquare,
+		"constructing": this.constructing,
+//		"territoryIndices": this.territoryIndices,
+//		"dropsites": this.dropsites,
+//		"dropsiteSupplies": this.dropsiteSupplies,
+		"gatherers": this.gatherers
+	};
+};
+
+m.BaseManager.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data)
+		this[key] = data[key];
+
+	if (this.anchor)
+		this.anchor = gameState.getEntityById(this.anchor);
+};
+
 return m;
 
 }(PETRA);

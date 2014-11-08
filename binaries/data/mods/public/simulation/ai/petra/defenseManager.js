@@ -6,12 +6,8 @@ m.DefenseManager = function(Config)
 	this.armies = [];	// array of "army" Objects
 	this.Config = Config;
 	this.targetList = [];
-}
-
-m.DefenseManager.prototype.init = function(gameState)
-{
 	this.armyMergeSize = this.Config.Defense.armyMergeSize;
-};
+}
 
 m.DefenseManager.prototype.update = function(gameState, events)
 {
@@ -415,6 +411,23 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 	});
 	if (nearest)
 		garrisonManager.garrison(gameState, unit, nearest, "protection");
+};
+
+m.DefenseManager.prototype.Serialize = function()
+{
+	// TODO armies should still be serialized in defenseManager
+	let properties = {
+		"targetList" : this.targetList,
+		"armyMergeSize": this.armyMergeSize
+	};
+
+	return { "properties": properties };
+};
+
+m.DefenseManager.prototype.Deserialize = function(data)
+{
+	for (let key in data.properties)
+		this[key] = data.properties[key];
 };
 
 return m;

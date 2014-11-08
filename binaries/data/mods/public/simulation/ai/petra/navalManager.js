@@ -669,5 +669,34 @@ m.NavalManager.prototype.update = function(gameState, queues, events)
 	Engine.ProfileStop();
 };
 
+m.NavalManager.prototype.Serialize = function()
+{
+	let properties = {
+		"wantedTransportShips": this.wantedTransportShips,
+		"wantedWarShips": this.wantedWarShips,
+		"wantedFishShips": this.wantedFishShips,
+		"neededTransportShips": this.neededTransportShips,
+		"neededWarShips": this.neededWarShips,
+		"landingZones": this.landingZones
+	};
+
+	let transport = {};
+	for (let plan in this.transportPlans)
+		transport[plan] = this.transportPlans[plan].Serialize();
+
+	return { "properties": properties, "transport": transport };
+};
+
+m.NavalManager.prototype.Deserialize = function(data)
+{
+	for (let property in data.properties)
+		this[property] = data.properties[property];
+
+	this.transportPlans = [];
+//	for (let plan in data.transport)
+//		this.transportPlans[plan] = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos)
+};
+
+
 return m;
 }(PETRA);
