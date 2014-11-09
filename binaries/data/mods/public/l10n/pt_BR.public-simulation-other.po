@@ -1,27 +1,45 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Ernan, 2014
 # Leonardo Barcihello <barichello@gmail.com>, 2014
+# Matheus Clemente <matheus.xb@gmail.com>, 2014
 # Nicolas Frasson <nicfrasson@gmail.com>, 2014
 # Raphael Mendonça, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-10-25 03:10+0000\n"
-"Last-Translator: Nicolas Frasson <nicfrasson@gmail.com>\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-11-04 02:12+0000\n"
+"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/ai/petra/chatHelper.js:9
+#, javascript-format
+msgid "I am launching an attack against %(name)s."
+msgstr "Eu estou lançando um ataque contra %(name)s."
+
+#: simulation/ai/petra/chatHelper.js:11
+#, javascript-format
+msgid "I have just sent an army against %(name)s."
+msgstr "Eu acabei de enviar um exército contra %(name)s."
+
+#: simulation/ai/petra/chatHelper.js:22
+#, javascript-format
+msgid "Here is a gift for %(name)s, make a good use of it."
+msgstr "Aqui está um presente para %(name)s, faça bom use dele."
+
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid "I see you are in a bad situation %(name)s, hope this will help."
+msgstr "Eu vejo que você está em uma situação ruim, %(name)s, eu espero que isto vá ajudá-lo."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -432,78 +450,74 @@ msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "O inimigo foi derrotado. Todas as tarefas do tutorial estão agora concluídas ..."
 
 #: simulation/components/BuildRestrictions.js:85
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s não pode ser construído devido a um erro desconhecido"
 
 #: simulation/components/BuildRestrictions.js:108
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s não pode ser construído em área inexplorada"
 
 #: simulation/components/BuildRestrictions.js:156
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s não pode ser construído em outro edifício ou recurso"
 
 #: simulation/components/BuildRestrictions.js:160
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s não pode ser construído em terreno inválido"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "aliado"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "próprio"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutro"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "inimigo"
 
 #: simulation/components/BuildRestrictions.js:199
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s não pode ser construído em %(territoryType)s território. Territórios válidos: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:238
-#, python-format
+#, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s deve ser construído sobre um litoral válido"
 
 #: simulation/components/BuildRestrictions.js:262
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr "%(name)s muito perto de um %(category)s, deve ter pelo menos %(distance)s metros de distância"
 
 #: simulation/components/BuildRestrictions.js:275
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr "%(name)s muito longe de uma %(category)s, deve estar dentro de %(distance)s metros"
@@ -537,17 +551,17 @@ msgid "enemy"
 msgstr "inimigo"
 
 #: simulation/components/EntityLimits.js:110
-#, python-format
+#, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s limite de construções de %(limit)s alcançado"
 
 #: simulation/components/EntityLimits.js:112
-#, python-format
+#, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s limite de formação de %(limit)s alcançado"
 
 #: simulation/components/EntityLimits.js:116
-#, python-format
+#, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limite de %(limit)s alcançado"
 
@@ -568,26 +582,26 @@ msgid "Stone"
 msgstr "Pedra"
 
 #: simulation/components/Player.js:236
-#, python-format
+#, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Recursos insuficientes - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "

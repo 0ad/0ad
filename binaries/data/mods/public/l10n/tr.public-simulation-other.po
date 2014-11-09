@@ -1,7 +1,6 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
@@ -11,17 +10,35 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-10-16 18:23+0000\n"
-"Last-Translator: Volkan Gezer <volkangezer@gmail.com>\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-11-01 01:00+0000\n"
+"Last-Translator: yakup <mutouk@yandex.ru>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: simulation/ai/petra/chatHelper.js:9
+#, javascript-format
+msgid "I am launching an attack against %(name)s."
+msgstr "Ben %(name)s e karşı saldırı başlatıyorum."
+
+#: simulation/ai/petra/chatHelper.js:11
+#, javascript-format
+msgid "I have just sent an army against %(name)s."
+msgstr "Ben sadece %(name)s e karşı bir ordu gönderdim."
+
+#: simulation/ai/petra/chatHelper.js:22
+#, javascript-format
+msgid "Here is a gift for %(name)s, make a good use of it."
+msgstr "Burada %(name)s için bir hediye var, o bundan iyi faydalanacak."
+
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid "I see you are in a bad situation %(name)s, hope this will help."
+msgstr "Ben %(name)s nin kötü bir durumda olduğunu göryorum, umarım bu ona yardımcı olacak."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -432,78 +449,74 @@ msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Düşman mağlup oldu. Tüm görevler şimdi tamamlandı..."
 
 #: simulation/components/BuildRestrictions.js:85
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s bilinmeyen bir hatadan dolayı inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:108
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s keşfedilmemiş alana inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:156
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s diğer yapı veya kaynakların üzerine inşa edilemez"
 
 #: simulation/components/BuildRestrictions.js:160
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s geçersiz arazi üzerine inşa edilemez"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "müttefik"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "kendi"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "tarafsız"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "düşman"
 
 #: simulation/components/BuildRestrictions.js:199
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s  %(territoryType)s bölgesine inşa edilemez. Geçerli bölgeler: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:238
-#, python-format
+#, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s geçerli bir kıyı üzerine inşa edilmelidir"
 
 #: simulation/components/BuildRestrictions.js:262
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr "%(name)s %(category)s 'e çok yakın, en az %(distance)s metre ötede olmalı."
 
 #: simulation/components/BuildRestrictions.js:275
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr "%(name)s %(category)s 'e çok uzak, %(distance)s metre içinde olmalı."
@@ -537,17 +550,17 @@ msgid "enemy"
 msgstr "düşman"
 
 #: simulation/components/EntityLimits.js:110
-#, python-format
+#, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s yapı limiti %(limit)s e  ulaşıldı"
 
 #: simulation/components/EntityLimits.js:112
-#, python-format
+#, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s eğitim limiti %(limit)s e  ulaşıldı"
 
 #: simulation/components/EntityLimits.js:116
-#, python-format
+#, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limiti %(limit)s e  ulaşıldı"
 
@@ -568,26 +581,26 @@ msgid "Stone"
 msgstr "Taş"
 
 #: simulation/components/Player.js:236
-#, python-format
+#, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Yetersiz kaynaklar - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "

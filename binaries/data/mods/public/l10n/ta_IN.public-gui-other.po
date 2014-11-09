@@ -1,110 +1,109 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Navaneethasankar K, 2014
+# Vijayachander <vijaithunder@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-09-27 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
+"PO-Revision-Date: 2014-10-30 12:00+0000\n"
+"Last-Translator: Navaneethasankar K\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/projects/p/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ta_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s விளையாட்டு"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "சமூக நாகரீக வெகுமதி"
+msgstr[1] "சமூக நாகரீக வெகுமதிகள்"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "அணி வெகுமதி"
+msgstr[1] "அணி வெகுமதிகள்"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
-msgstr ""
+msgstr "சிறப்பு தொழில்நுட்பங்கள்"
 
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "சிறப்பு கட்டிடம்"
+msgstr[1] "சிறப்பு கட்டிடங்கள்"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
-msgstr ""
+msgstr "நாயகர்கள்"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "%(civilization)s ன் வரலாறு"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "உரலி %(url)s\n உலவியில் திறக்கப்படுகிறது. தயவுசெய்து காத்திருக்கவும்...."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "பக்கம் திறக்கப்படுகிறது"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
 msgstr ""
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "ஏற்றம் கைவிடப்பட்டது"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "தெரியாத காரணம்"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
@@ -116,75 +115,75 @@ msgstr ""
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "ஆட்டம் ஏற்கனவே துவக்கப்பட்டுவிட்டது"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[செல்லாத மதிப்பு %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "வழங்கியின் தொடர்பு இழந்தது"
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "காரணம்: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr ""
+msgstr "துண்டிக்கப்பட்டது"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
 msgid "None"
-msgstr ""
+msgstr "ஏதுமில்லை"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<செல்லாதது>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
-msgstr ""
+msgstr "ஆம்"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
-msgstr ""
+msgstr "இல்லை"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
-msgstr ""
+msgstr "சரி"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "மீண்டும் முயல்க"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr ""
+msgstr "தவிர்"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr ""
+msgstr "கைவிடு"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "சாளர முறை"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "சாளர முறையில் கி.பி 0 திறக்கப்பட்டது"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "பின்னணியில் தற்காலிகமாக நிறுத்துக"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
@@ -192,7 +191,7 @@ msgstr ""
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "வரவேற்பு திரையை முடக்கு"
 
 #: gui/options/options.js:11
 msgid ""
@@ -202,7 +201,7 @@ msgstr ""
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "விவரமான உதவிக்குறிப்புகள்"
 
 #: gui/options/options.js:12
 msgid ""
@@ -223,7 +222,7 @@ msgstr ""
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "வலது மேல் மூலையில் நேரத்தை காட்டு"
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
@@ -253,23 +252,23 @@ msgstr ""
 
 #: gui/options/options.js:21
 msgid "Shadows"
-msgstr ""
+msgstr "நிழல்கள்"
 
 #: gui/options/options.js:21
 msgid "Enable shadows"
-msgstr ""
+msgstr "நிழல்களை செயல்படுத்து"
 
 #: gui/options/options.js:22
 msgid "Particles"
-msgstr ""
+msgstr "துகள்கள்"
 
 #: gui/options/options.js:22
 msgid "Enable particles"
-msgstr ""
+msgstr "துகள்களை செயல்படுத்து"
 
 #: gui/options/options.js:23
 msgid "Show Sky"
-msgstr ""
+msgstr "வானத்தை காட்டு"
 
 #: gui/options/options.js:23
 msgid "Render Sky"
@@ -301,7 +300,7 @@ msgstr ""
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "விரைவு & அசுத்தமான நீர்"
 
 #: gui/options/options.js:27
 msgid ""
@@ -329,7 +328,7 @@ msgstr ""
 
 #: gui/options/options.js:30
 msgid "Water Reflections"
-msgstr ""
+msgstr "நீர் பிரதிபலிப்பு"
 
 #: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
@@ -337,7 +336,7 @@ msgstr ""
 
 #: gui/options/options.js:31
 msgid "Water Refraction"
-msgstr ""
+msgstr "நீர் ஒளிவிலகல்"
 
 #: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
@@ -345,7 +344,7 @@ msgstr ""
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
-msgstr ""
+msgstr "நீரில் நிழல்கள்"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
@@ -409,7 +408,7 @@ msgstr ""
 
 #: gui/options/options.js:46
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "உரையாடல் நேரமுத்திரை"
 
 #: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
@@ -417,37 +416,37 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:78
 msgid "disabled"
-msgstr ""
+msgstr "முடக்கப்பட்டது"
 
 #: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
-msgstr ""
+msgstr "வழங்கியுடன் இணைத்துக்கொண்டிருக்கிறது"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
-msgstr ""
+msgstr "தரவேற்றிக்கொண்டிருக்கிறது (%f%%)"
 
 #: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
-msgstr ""
+msgstr "தரவேற்றம் வெற்றி"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "தரவேற்றம் தோல்வி (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "தரவேற்றம் தோல்வி (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:105
 msgid "unknown"
-msgstr ""
+msgstr "அறியப்படாத"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
@@ -465,24 +464,24 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
-msgstr ""
+msgstr "எச்சரிக்கை!"
 
 #: gui/pregame/mainmenu.js:158
 msgid "Read More"
-msgstr ""
+msgstr "மேலும் வாசிக்க"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "நிச்சயமாக கி.பி 0 யை நிறுத்த விரும்புகிறீர்களா?"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "உறுதிசெய்"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -492,48 +491,48 @@ msgstr ""
 
 #: gui/pregame/mainmenu.js:292
 msgid "Error"
-msgstr ""
+msgstr "பிழை"
 
 #: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr ""
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
-msgstr ""
+msgstr "தொழில்நுட்ப விவரங்கள்"
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
-msgstr ""
+msgstr "கைமுறை"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "சேமித்த விளையாட்டுகள் ஏதுமில்லை"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "சேமித்த விளையாட்டு இணக்கமானதில்லை"
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "இதற்கு கி.பி 0-ன் %(requiredVersion)s பதிப்பு தேவை, நீங்கள் பதிப்பு %(currentVersion)s ஐ பயன்படுத்துகிறீர்கள்."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr ""
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr ""
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
@@ -541,17 +540,17 @@ msgstr ""
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "நீங்கள் மேலும் தொடர விரும்புகிறீர்களா?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "எச்சரிக்கை"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
@@ -559,7 +558,7 @@ msgstr ""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "அழி"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
@@ -571,131 +570,131 @@ msgstr ""
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "சூழ்நிலை"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
-msgstr ""
+msgstr "நேரம் முடிந்தது: %(time)s"
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr ""
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
-msgstr ""
+msgstr "நாகரிகங்கள்"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr ""
+msgstr "நாகரிகம் தேர்வு"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
-msgstr ""
+msgstr "மூடுக"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
-msgstr ""
+msgstr "மொழி"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "மொழி:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr ""
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
-msgstr ""
+msgstr "ரத்து"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "மேம்பட்ட"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "ஏற்க"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "நாடு:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
+msgstr "லிபி:"
+
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "மாறுபாடு (பயன்படுத்தப்படாதது):"
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
 msgstr ""
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "தானாக கண்டறி"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
 msgstr ""
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr ""
+msgstr "இதுவரை செயல்படுத்தப்படவில்லை."
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr ""
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
-msgstr ""
+msgstr "விளையாட்டு விருப்பங்கள்"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr ""
+msgstr "பொது"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
-msgstr ""
+msgstr "கிராபிக்ஸ் அமைப்புகள்"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
-msgstr ""
+msgstr "ஒலி அமைப்புகள்"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
-msgstr ""
+msgstr "முகவாயில் அமைப்புகள்"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
-msgstr ""
+msgstr "பதிக"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
-msgstr "0ஏடியை மேம்படுத்த உதவு"
+msgstr "கி.பி 0 யை மேம்படுத்த உதவு"
 
 #: gui/pregame/mainmenu.xml:77
 msgid ""
@@ -705,7 +704,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "0ஏடியை மேம்படுத்த உதவியதற்கு நன்றி"
+msgstr "கி.பி 0 யை மேம்படுத்த உதவியதற்கு நன்றி"
 
 #: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
@@ -729,396 +728,396 @@ msgstr ""
 msgid "Get involved at: play0ad.com"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
-msgstr ""
+msgstr "கருத்தை செயல்படுத்து"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
-msgstr ""
+msgstr "கருத்தை முடக்கு"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
 msgstr "பொருத்தங்கள்"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
+msgstr "பிரச்சாரங்கள்"
+
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+msgid "Load Game"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):209
+msgid "Join Game"
+msgstr "ஆட்டத்தில் இணைக"
+
+#: gui/pregame/mainmenu.xml:(caption):224
+msgid "Host Game"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):239
+msgid "Game Lobby"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):269
+msgid "Options"
+msgstr "விருப்பத்தேர்வுகள்"
+
+#: gui/pregame/mainmenu.xml:(caption):302
+msgid "Scenario Editor"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Welcome Screen"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):330
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):384
+msgid "Learn To Play"
+msgstr "விளையாட பழகு"
+
+#: gui/pregame/mainmenu.xml:(caption):401
+msgid "Single Player"
+msgstr "தனி நபர் ஆட்டம்"
+
+#: gui/pregame/mainmenu.xml:(caption):416
+msgid "Multiplayer"
+msgstr "பல நபர் ஆட்டம்"
+
+#: gui/pregame/mainmenu.xml:(caption):431
+msgid "Tools & Options"
+msgstr "கருவிகள் & விருப்பங்கள்"
+
+#: gui/pregame/mainmenu.xml:(caption):446
+msgid "History"
+msgstr "வரலாறு"
+
+#: gui/pregame/mainmenu.xml:(caption):463
+msgid "Exit"
+msgstr "வெளியேறு"
+
+#: gui/pregame/mainmenu.xml:(caption):500
+msgid "Help with the Translation!"
+msgstr "மொழிபெயர்க்க உதவு!"
+
+#: gui/pregame/mainmenu.xml:(caption):512
+msgid "Website"
+msgstr "வலைத்தளம்"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Chat"
+msgstr "உரையாடு"
+
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "பிழை அறிவிப்பு"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "வைட்பையர் கேம்ஸ்"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "தனி நபர் ஆட்டத்தைத்துவக்க இங்கே சொடுக்கவும்"
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
-msgid "Load Game"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
 msgstr ""
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
-msgid "Join Game"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:210 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):210
 msgid "Joining an existing multiplayer game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:224 (caption)
-msgid "Host Game"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:225 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):225
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:239 (caption)
-msgid "Game Lobby"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:240 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Launch the multiplayer lobby."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:269 (caption)
-msgid "Options"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:270 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Adjust game settings."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:287 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):287
 msgid "Choose the language of the game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:302 (caption)
-msgid "Scenario Editor"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:303 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:315 (caption)
-msgid "Welcome Screen"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:330 (caption)
-msgid "Mod Selection"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:331 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:384 (caption)
-msgid "Learn To Play"
-msgstr "விளையாட பழகு"
-
-#: gui/pregame/mainmenu.xml:385 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:401 (caption)
-msgid "Single Player"
-msgstr "தனி நபர் ஆட்டம்"
-
-#: gui/pregame/mainmenu.xml:402 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
 msgstr "கணிணியை தனிநபர் விளையாட்டுக்கு அழை"
 
-#: gui/pregame/mainmenu.xml:416 (caption)
-msgid "Multiplayer"
-msgstr "பல நபர் ஆட்டம்"
-
-#: gui/pregame/mainmenu.xml:417 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):417
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "பல நபர் ஆட்டத்தில் மனிதர்களோடு மோது"
 
-#: gui/pregame/mainmenu.xml:431 (caption)
-msgid "Tools & Options"
-msgstr "கருவிகள் & விருப்பங்கள்"
-
-#: gui/pregame/mainmenu.xml:432 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):432
 msgid "Game options and scenario design tools."
 msgstr "விளையாட்டு விருப்பம் & காட்சி வடிவமைப்பு கருவிகள்"
 
-#: gui/pregame/mainmenu.xml:446 (caption)
-msgid "History"
-msgstr "வரலாறு"
-
-#: gui/pregame/mainmenu.xml:447 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):447
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "0 ஏடியில் உள்ள பல தரப்பட்ட நாகரீகங்களை பற்றி தெரிந்து கொள்"
 
-#: gui/pregame/mainmenu.xml:463 (caption)
-msgid "Exit"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:464 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:500 (caption)
-msgid "Help with the Translation!"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:501 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:512 (caption)
-msgid "Website"
-msgstr "வலைத்தளம்"
-
-#: gui/pregame/mainmenu.xml:513 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Click to open play0ad.com in your web browser."
 msgstr "வலை உலாவியில் play0ad.com  பார்க்க சொடுக்கவும்"
 
-#: gui/pregame/mainmenu.xml:524 (caption)
-msgid "Chat"
-msgstr "உரையாடு"
-
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "வலை உலாவியில் 0 A.D. IRC உரையாடல் பார்க்க சொடுக்கவும்  (#0ad on webchat.quakenet.org) "
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr "பிழை அறிவிப்பு"
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr "வைட்பையர் கேம்ஸ்"
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr ""
+msgstr "அழி"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
 msgstr ""
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
 msgstr ""
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
 msgstr ""
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
 msgstr ""
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
 msgstr ""
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
 msgstr ""
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr ""
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr ""
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr ""
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr ""
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr ""
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr ""
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr ""
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
 msgstr ""
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
 msgstr ""
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
-msgstr ""
+msgstr "ராணுவ புள்ளிகள்"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
 msgstr ""
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
 msgstr ""
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr ""
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
 msgstr ""
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
 msgstr ""
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr ""
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
 msgstr ""
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr ""
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
 msgstr ""
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
 msgstr ""
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
 msgstr ""
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr ""
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr ""
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
-msgstr ""
+msgstr "பணியாள்"
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr ""
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr ""
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
 msgstr ""
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
 msgstr ""
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
-msgstr ""
+msgstr "உணவு"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
-msgstr ""
+msgstr "மரக்கட்டை"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr ""
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr ""
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
 msgstr ""
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
 msgstr ""
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
 msgstr ""
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
 msgstr ""
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
 msgstr ""
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
 msgstr ""
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
 msgstr ""
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
 msgstr ""
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
 msgstr ""
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
 msgstr ""
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
 msgstr ""
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
 msgstr ""
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr ""
 
@@ -1605,7 +1604,7 @@ msgstr ""
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- மக்கள் தொகையில் +10 வழங்கு."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
@@ -1697,7 +1696,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "நடுத்தர போர்க்கப்பல்"
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
@@ -1706,7 +1705,7 @@ msgstr ""
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "போக்குவரத்துக்கும் சண்டையிடுவதற்கும் சிறந்தது."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
@@ -1744,11 +1743,11 @@ msgstr ""
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "போர் யானைகள்"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "போர் பயிற்சி அளிக்கப்பட்ட இந்திய, ஆப்ரிக்க மிருகங்கள்."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
@@ -1766,15 +1765,15 @@ msgstr ""
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "திமிங்கலங்கள்"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "ஒரு கடல் சார்ந்த பொருள்"
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 உணவு."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."

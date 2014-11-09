@@ -1,27 +1,24 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # loms126 <loms126@126.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
 "PO-Revision-Date: 2014-09-27 10:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s 特点"
 
@@ -44,17 +41,17 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "特殊建筑"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
 msgstr "英雄"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 的历史"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
@@ -65,7 +62,7 @@ msgid "Opening page"
 msgstr "-- 正在打开"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
@@ -86,17 +83,17 @@ msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
 msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
@@ -117,7 +114,7 @@ msgid "Game has already started"
 msgstr "游戏已经开始"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
 msgstr "[无效的数值 %(id)s]"
 
@@ -126,7 +123,7 @@ msgid "Lost connection to the server."
 msgstr "与服务器连接中断"
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "原因: %(reason)s."
 
@@ -156,7 +153,7 @@ msgid "No"
 msgstr "否"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
 msgstr "确定"
 
@@ -422,7 +419,7 @@ msgid "connecting to server"
 msgstr "连接到服务器"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
 msgstr "上传 (%f%%)"
 
@@ -431,12 +428,12 @@ msgid "upload succeeded"
 msgstr "上传成功"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "上传失败 (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "上传失败 (%(errorMessage)s)"
 
@@ -445,7 +442,7 @@ msgid "unknown"
 msgstr "未知"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
@@ -470,7 +467,7 @@ msgid "Read More"
 msgstr "获取更多"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "创建: %(buildDate)s (%(revision)s)"
 
@@ -496,8 +493,8 @@ msgstr "错误"
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "启动多人游戏大厅.[编译时被禁用]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
 msgstr "技术详情"
 
@@ -514,24 +511,24 @@ msgid "This saved game may not be compatible:"
 msgstr "不兼容此保存游戏："
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "需要安装 0 A.D. 的 %(requiredVersion)s 版本, 正在使用版本 %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "当您运行 \"%(currentMod)s\" 时不需要任何mod。"
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "您未加载任何mod，需要mod \"%(requiredMod)s\" 。"
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
@@ -547,7 +544,7 @@ msgstr "警告"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
@@ -572,122 +569,122 @@ msgid "Scenario"
 msgstr "场景"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr "游戏时间: %(time)s"
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
 msgstr "文明"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
 msgstr "选择文明"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
 msgstr "关闭"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
 msgstr "语言"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "语言:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "所在区域:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "取消"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "高级"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "同意"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
 msgstr "国家:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
 msgstr "脚本:"
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "变形 （未使用）："
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "关键词(未使用):"
+
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "由此产生的区域设置："
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "使用的字典文件："
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "自动检测"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
 msgstr "与语言代码 （在 ISO 15924 中列出）一致的可选四字母脚本代码"
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr "变形 （未使用）："
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
 msgstr "尚未实施。"
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr "关键词(未使用):"
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr "由此产生的区域设置："
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr "使用的字典文件："
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr "自动检测"
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
 msgstr "游戏选项"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
 msgstr "通用的"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
 msgstr "图形设置"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
 msgstr "声音设置"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
 msgstr "大厅设置"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "保存"
 
@@ -727,396 +724,396 @@ msgstr "警告：这是一个早期开发的游戏版本。许多功能没有被
 msgid "Get involved at: play0ad.com"
 msgstr "欢迎加入：play0ad.com"
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
 msgstr "激活反馈"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
 msgstr "取消反馈"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
 msgstr "对战"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr "点击这里以开始单人游戏。"
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
 msgstr "战役"
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+msgid "Load Game"
+msgstr "载入游戏"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):209
+msgid "Join Game"
+msgstr "加入游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):224
+msgid "Host Game"
+msgstr "创建游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):239
+msgid "Game Lobby"
+msgstr "游戏大厅"
+
+#: gui/pregame/mainmenu.xml:(caption):269
+msgid "Options"
+msgstr "选项"
+
+#: gui/pregame/mainmenu.xml:(caption):302
+msgid "Scenario Editor"
+msgstr "场景编辑器"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Welcome Screen"
+msgstr "欢迎屏幕"
+
+#: gui/pregame/mainmenu.xml:(caption):330
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):384
+msgid "Learn To Play"
+msgstr "游戏教程"
+
+#: gui/pregame/mainmenu.xml:(caption):401
+msgid "Single Player"
+msgstr "单人游戏"
+
+#: gui/pregame/mainmenu.xml:(caption):416
+msgid "Multiplayer"
+msgstr "多人对战"
+
+#: gui/pregame/mainmenu.xml:(caption):431
+msgid "Tools & Options"
+msgstr "工具和选项"
+
+#: gui/pregame/mainmenu.xml:(caption):446
+msgid "History"
+msgstr "历史"
+
+#: gui/pregame/mainmenu.xml:(caption):463
+msgid "Exit"
+msgstr "退出"
+
+#: gui/pregame/mainmenu.xml:(caption):500
+msgid "Help with the Translation!"
+msgstr "协助翻译！"
+
+#: gui/pregame/mainmenu.xml:(caption):512
+msgid "Website"
+msgstr "官网"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Chat"
+msgstr "聊天"
+
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "报告游戏错误"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "野火游戏"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "点击这里以开始单人游戏。"
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "通过史诗般的战役来重现历史。[未加入此功能]"
 
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
-msgid "Load Game"
-msgstr "载入游戏"
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
 msgstr "加载已保存的游戏"
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
-msgid "Join Game"
-msgstr "加入游戏"
-
-#: gui/pregame/mainmenu.xml:210 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):210
 msgid "Joining an existing multiplayer game."
 msgstr "加入一个已创建的多人游戏"
 
-#: gui/pregame/mainmenu.xml:224 (caption)
-msgid "Host Game"
-msgstr "创建游戏"
-
-#: gui/pregame/mainmenu.xml:225 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):225
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "创建多人游戏.\\n\\n需要打开UDP 端口 20595."
 
-#: gui/pregame/mainmenu.xml:239 (caption)
-msgid "Game Lobby"
-msgstr "游戏大厅"
-
-#: gui/pregame/mainmenu.xml:240 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Launch the multiplayer lobby."
 msgstr "启动多人游戏大厅"
 
-#: gui/pregame/mainmenu.xml:269 (caption)
-msgid "Options"
-msgstr "选项"
-
-#: gui/pregame/mainmenu.xml:270 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Adjust game settings."
 msgstr "调整游戏设置."
 
-#: gui/pregame/mainmenu.xml:287 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):287
 msgid "Choose the language of the game."
 msgstr "选择游戏语言。"
 
-#: gui/pregame/mainmenu.xml:302 (caption)
-msgid "Scenario Editor"
-msgstr "场景编辑器"
-
-#: gui/pregame/mainmenu.xml:303 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "在新窗口打开场景编辑器。您可以在命令行以参数\"-editor\"启动游戏使此功能更稳定。"
 
-#: gui/pregame/mainmenu.xml:315 (caption)
-msgid "Welcome Screen"
-msgstr "欢迎屏幕"
-
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "显示欢迎屏幕（如果被您隐藏）。"
 
-#: gui/pregame/mainmenu.xml:330 (caption)
-msgid "Mod Selection"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:331 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:384 (caption)
-msgid "Learn To Play"
-msgstr "游戏教程"
-
-#: gui/pregame/mainmenu.xml:385 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
 msgstr "打开 0 A.D. 游戏手册。"
 
-#: gui/pregame/mainmenu.xml:401 (caption)
-msgid "Single Player"
-msgstr "单人游戏"
-
-#: gui/pregame/mainmenu.xml:402 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
 msgstr "人机对战"
 
-#: gui/pregame/mainmenu.xml:416 (caption)
-msgid "Multiplayer"
-msgstr "多人对战"
-
-#: gui/pregame/mainmenu.xml:417 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):417
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "在多人游戏中和其他的人类玩家作战"
 
-#: gui/pregame/mainmenu.xml:431 (caption)
-msgid "Tools & Options"
-msgstr "工具和选项"
-
-#: gui/pregame/mainmenu.xml:432 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):432
 msgid "Game options and scenario design tools."
 msgstr "游戏选项和场景编辑器"
 
-#: gui/pregame/mainmenu.xml:446 (caption)
-msgid "History"
-msgstr "历史"
-
-#: gui/pregame/mainmenu.xml:447 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):447
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "了解0 A.D.游戏中众多文明的特色"
 
-#: gui/pregame/mainmenu.xml:463 (caption)
-msgid "Exit"
-msgstr "退出"
-
-#: gui/pregame/mainmenu.xml:464 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
 msgstr "退出游戏"
 
-#: gui/pregame/mainmenu.xml:500 (caption)
-msgid "Help with the Translation!"
-msgstr "协助翻译！"
-
-#: gui/pregame/mainmenu.xml:501 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "单击在浏览器里打开0 A.D. 翻译页面。"
 
-#: gui/pregame/mainmenu.xml:512 (caption)
-msgid "Website"
-msgstr "官网"
-
-#: gui/pregame/mainmenu.xml:513 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Click to open play0ad.com in your web browser."
 msgstr "点击进入游戏官网play0ad.com"
 
-#: gui/pregame/mainmenu.xml:524 (caption)
-msgid "Chat"
-msgstr "聊天"
-
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "点击在浏览器里打开0 A.D. IRC(网络即时聊天) - 频道#0ad 在webchat.quakenet.org"
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr "报告游戏错误"
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "单击访问 0 A.D. Trac 报告bug，崩溃或错误。"
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr "野火游戏"
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "删除"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
 msgstr "加载"
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
 msgstr "保存游戏"
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
 msgstr "描述："
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
 msgstr "欢迎进入 0 A.D. ！"
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
 msgstr "以后显示此消息"
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
 msgstr "已知问题 (网页)"
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "摘要"
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "得分"
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "建筑"
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "单位"
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "资源"
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "市场"
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "杂项"
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
 msgstr "玩家名字"
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
 msgstr "经济得分"
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
 msgstr "军事得分"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
 msgstr "探索得分"
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
 msgstr "总得分"
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "建筑统计 (建造 / 损失 / 摧毁 )"
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
 msgstr "总计"
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
 msgstr "房屋"
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr "经济"
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
 msgstr "哨岗"
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr "军队"
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
 msgstr "要塞"
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
 msgstr "市政中心"
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
 msgstr "奇迹"
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "单位统计（训练/阵亡/歼灭）"
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr "步兵"
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
 msgstr "工人"
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr "骑兵"
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr "步行骑士"
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
 msgstr "海军"
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "资源统计(收集/使用)"
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
 msgstr "食物"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
 msgstr "木材"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr "石头"
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr "金矿"
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
 msgstr "收集的宝藏"
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
 msgstr "贡品(贡出/纳入)"
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
 msgstr "交换的食物"
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
 msgstr "交换的木材"
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
 msgstr "交换的石头"
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
 msgstr "交换的金属"
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
 msgstr "贸易效率"
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
 msgstr "贸易收入"
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
 msgstr "素食者\\n比例"
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
 msgstr "女性化"
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
 msgstr "杀死/死亡\\n比例"
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
 msgstr "地图\\n已探索"
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr "继续"
 

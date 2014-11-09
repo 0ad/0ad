@@ -1,27 +1,24 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
 "PO-Revision-Date: 2014-09-27 18:20+0000\n"
 "Last-Translator: fri\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s hra"
 
@@ -50,17 +47,17 @@ msgstr[0] "Zvláštní budova"
 msgstr[1] "Zvláštní budovy"
 msgstr[2] "Zvláštních budov"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
 msgstr "Hrdinové"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historie %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
@@ -71,7 +68,7 @@ msgid "Opening page"
 msgstr "Otevírá se stránka"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
@@ -92,17 +89,17 @@ msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "dd mm rrrr hh:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
 msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
@@ -123,7 +120,7 @@ msgid "Game has already started"
 msgstr "Hra již byla spuštěna"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
 msgstr "[Neplatná hodnota %(id)s]"
 
@@ -132,7 +129,7 @@ msgid "Lost connection to the server."
 msgstr "Spojení se serverem ztraceno."
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Důvod: %(reason)s."
 
@@ -162,7 +159,7 @@ msgid "No"
 msgstr "Ne"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
 msgstr "OK"
 
@@ -428,7 +425,7 @@ msgid "connecting to server"
 msgstr "Připojuje se k serveru"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
 msgstr "Odesílá se (%f%%)"
 
@@ -437,12 +434,12 @@ msgid "upload succeeded"
 msgstr "Odesílání uspělo"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "Nahrání se nezdařilo (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "Nahrání se nezdařilo (%(errorMessage)s)"
 
@@ -451,7 +448,7 @@ msgid "unknown"
 msgstr "Neznámý"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
@@ -476,7 +473,7 @@ msgid "Read More"
 msgstr "Číst více"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Sestaveno: %(buildDate)s (%(revision)s)"
 
@@ -502,8 +499,8 @@ msgstr "Chyba"
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Nahrává se zájmová skupina pro hru více hráčů. [DISABLED BY BUILD]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
 msgstr "Technické podrobnosti"
 
@@ -520,24 +517,24 @@ msgid "This saved game may not be compatible:"
 msgstr "Tato uložená hra nemusí být kompatibilní:"
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Je vyžadována verze %(requiredVersion)s 0 A.D., toto je však verze %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Není potřeba žádný mod, když hru provozujete s \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Je potřeba \"%(requiredMod)s\", zatímco nyní se nepoužívá žádný mod."
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
@@ -553,7 +550,7 @@ msgstr "Varování"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
@@ -578,122 +575,122 @@ msgid "Scenario"
 msgstr "Scénář"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr "Uplynulý čas: %(time)s"
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
 msgstr "Civilizace"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
 msgstr "Výběr civilizace"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
 msgstr "Zavřít"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
 msgstr "Jazyk"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Jazyk:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Jazyk:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Zrušit"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Pokročilé"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Přijmout"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
 msgstr "Země:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
 msgstr "Písmo:"
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "Varianta (nepoužito):"
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "Klíčová slova (nepoužito):"
+
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "Vytvořený jazyk:"
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "Použitý adresář s překlady:"
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Rozpoznat automaticky"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
 msgstr "Libovolný skriptový kód sestávající ze čtyř písmen (podle ISO 15924)"
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr "Varianta (nepoužito):"
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
 msgstr "Ještě neuděláno."
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr "Klíčová slova (nepoužito):"
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr "Vytvořený jazyk:"
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr "Použitý adresář s překlady:"
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr "Rozpoznat automaticky"
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
 msgstr "Herní možnosti"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
 msgstr "Obecné"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
 msgstr "Nastavení grafiky"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
 msgstr "Nastavení zvuku"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
 msgstr "Nastavení zájmové skupiny"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Uložit"
 
@@ -733,396 +730,396 @@ msgstr "VAROVÁNÍ: Toto je raná vývojová verze hry. Mnohé věci ještě neb
 msgid "Get involved at: play0ad.com"
 msgstr "Pripojte se na: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
 msgstr "Povolit zpětnou vazbu"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
 msgstr "Zakázat zpětnou vazbu"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
 msgstr "Zápasy"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr "Klepněte zde pro spuštění nové hry pro jednoho hráče."
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
 msgstr "Tažení"
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+msgid "Load Game"
+msgstr "Načíst  hru"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):209
+msgid "Join Game"
+msgstr "Připojit se ke hře"
+
+#: gui/pregame/mainmenu.xml:(caption):224
+msgid "Host Game"
+msgstr "Pořádat hru"
+
+#: gui/pregame/mainmenu.xml:(caption):239
+msgid "Game Lobby"
+msgstr "Herní skupina"
+
+#: gui/pregame/mainmenu.xml:(caption):269
+msgid "Options"
+msgstr "Možnosti"
+
+#: gui/pregame/mainmenu.xml:(caption):302
+msgid "Scenario Editor"
+msgstr "Editor scénářů"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Welcome Screen"
+msgstr "Uvítací obrazovka"
+
+#: gui/pregame/mainmenu.xml:(caption):330
+msgid "Mod Selection"
+msgstr "Výběr pozměněné verze"
+
+#: gui/pregame/mainmenu.xml:(caption):384
+msgid "Learn To Play"
+msgstr "Naučte se hrát"
+
+#: gui/pregame/mainmenu.xml:(caption):401
+msgid "Single Player"
+msgstr "Hra jednoho hráče"
+
+#: gui/pregame/mainmenu.xml:(caption):416
+msgid "Multiplayer"
+msgstr "Hra více hráčů"
+
+#: gui/pregame/mainmenu.xml:(caption):431
+msgid "Tools & Options"
+msgstr "Nástroje a možnosti"
+
+#: gui/pregame/mainmenu.xml:(caption):446
+msgid "History"
+msgstr "Historie"
+
+#: gui/pregame/mainmenu.xml:(caption):463
+msgid "Exit"
+msgstr "Ukončit"
+
+#: gui/pregame/mainmenu.xml:(caption):500
+msgid "Help with the Translation!"
+msgstr "Pomozte s překladem!"
+
+#: gui/pregame/mainmenu.xml:(caption):512
+msgid "Website"
+msgstr "Webové stránky"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Chat"
+msgstr "Rozhovor"
+
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "Nahlásit chybu"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "Klepněte zde pro spuštění nové hry pro jednoho hráče."
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Zažijte znovu historii prostřednictvím historických vojenských tažení. [NEIMPLEMENTOVÁNO]"
 
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
-msgid "Load Game"
-msgstr "Načíst  hru"
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
 msgstr "Klepněte zde pro načtení uložené hry."
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
-msgid "Join Game"
-msgstr "Připojit se ke hře"
-
-#: gui/pregame/mainmenu.xml:210 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):210
 msgid "Joining an existing multiplayer game."
 msgstr "Připojení se ke hře pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:224 (caption)
-msgid "Host Game"
-msgstr "Pořádat hru"
-
-#: gui/pregame/mainmenu.xml:225 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):225
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Pořádat hru pro více hráčů.\\n\\nVyžaduje otevření portu UDP 20595."
 
-#: gui/pregame/mainmenu.xml:239 (caption)
-msgid "Game Lobby"
-msgstr "Herní skupina"
-
-#: gui/pregame/mainmenu.xml:240 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Launch the multiplayer lobby."
 msgstr "Spustit skupinu hry pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:269 (caption)
-msgid "Options"
-msgstr "Možnosti"
-
-#: gui/pregame/mainmenu.xml:270 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Adjust game settings."
 msgstr "Upravit nastavení hry."
 
-#: gui/pregame/mainmenu.xml:287 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):287
 msgid "Choose the language of the game."
 msgstr "Vyberte jazyk hry."
 
-#: gui/pregame/mainmenu.xml:302 (caption)
-msgid "Scenario Editor"
-msgstr "Editor scénářů"
-
-#: gui/pregame/mainmenu.xml:303 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Otevřít editor scénářů Atlas v novém okně. Spolehlivěji jej můžete provozovat spuštěním hry s argumentem příkazového řádku \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:315 (caption)
-msgid "Welcome Screen"
-msgstr "Uvítací obrazovka"
-
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Ukázat uvítací obrazovku. Užitečné v případě, že jste jim skryl omylem."
 
-#: gui/pregame/mainmenu.xml:330 (caption)
-msgid "Mod Selection"
-msgstr "Výběr pozměněné verze"
-
-#: gui/pregame/mainmenu.xml:331 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
 msgstr "Vybrat pozměněné verze k užití."
 
-#: gui/pregame/mainmenu.xml:384 (caption)
-msgid "Learn To Play"
-msgstr "Naučte se hrát"
-
-#: gui/pregame/mainmenu.xml:385 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Otevřít příručku k 0 A.D."
 
-#: gui/pregame/mainmenu.xml:401 (caption)
-msgid "Single Player"
-msgstr "Hra jednoho hráče"
-
-#: gui/pregame/mainmenu.xml:402 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
 msgstr "Vyzvěte počítač jako soupeře ve hře pro jednoho hráče."
 
-#: gui/pregame/mainmenu.xml:416 (caption)
-msgid "Multiplayer"
-msgstr "Hra více hráčů"
-
-#: gui/pregame/mainmenu.xml:417 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):417
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Bojujte s jedním či více lidskými hráči ve hře pro více hráčů."
 
-#: gui/pregame/mainmenu.xml:431 (caption)
-msgid "Tools & Options"
-msgstr "Nástroje a možnosti"
-
-#: gui/pregame/mainmenu.xml:432 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):432
 msgid "Game options and scenario design tools."
 msgstr "Herní možnosti a nástroje pro návrh scénářů."
 
-#: gui/pregame/mainmenu.xml:446 (caption)
-msgid "History"
-msgstr "Historie"
-
-#: gui/pregame/mainmenu.xml:447 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):447
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Učte se o mnoha civilizacích uváděných v 0 A.D."
 
-#: gui/pregame/mainmenu.xml:463 (caption)
-msgid "Exit"
-msgstr "Ukončit"
-
-#: gui/pregame/mainmenu.xml:464 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
 msgstr "Ukončí hru."
 
-#: gui/pregame/mainmenu.xml:500 (caption)
-msgid "Help with the Translation!"
-msgstr "Pomozte s překladem!"
-
-#: gui/pregame/mainmenu.xml:501 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klepněte pro otevření překladatelské stránky 0 A.D. ve svém prohlížeči."
 
-#: gui/pregame/mainmenu.xml:512 (caption)
-msgid "Website"
-msgstr "Webové stránky"
-
-#: gui/pregame/mainmenu.xml:513 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klepněte pro otevření play0ad.com ve svém prohlížeči."
 
-#: gui/pregame/mainmenu.xml:524 (caption)
-msgid "Chat"
-msgstr "Rozhovor"
-
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klepněte pro otevření rozhovoru IRC 0 A.D. ve svém prohlížeči. (#0ad on webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr "Nahlásit chybu"
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klepněte na 0 A.D. Trac pro nahlášení chyby, pádu nebo jiného problému."
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Smazat"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
 msgstr "Načíst"
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
 msgstr "Uložit hru"
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
 msgstr "Popis:"
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
 msgstr "Vítejte v 0 A.D.!"
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
 msgstr "Zobrazit tuto zprávu i později"
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
 msgstr "Známé problémy (web)"
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Shrnutí"
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "Výsledek"
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "Budovy"
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "Jednotky"
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "Zdroje"
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "Trh"
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "Různé"
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
 msgstr "Jméno hráče"
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
 msgstr "Hospodářský výsledek"
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
 msgstr "Vojenský výsledek"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
 msgstr "Výsledek průzkumu"
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
 msgstr "Celkový výsledek"
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Statistiky budov (postaveno / ztraceno / zničeno)"
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
 msgstr "Celkem"
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
 msgstr "Domy"
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr "Hospodářství"
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
 msgstr "Rozhledny"
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr "Vojenství"
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
 msgstr "Pevnosti"
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
 msgstr "Správní střediska"
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
 msgstr "Divy světa"
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Statistiky jednotek (vycvičeno / ztraceno / zabito)"
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr "Pěchota"
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
 msgstr "Dělník"
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr "Jezdectvo"
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr "Elitní jednotka"
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
 msgstr "Loďstvo"
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Statistika zdrojů (shromážděno/použito)"
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
 msgstr "Jídlo"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
 msgstr "Dřevo"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr "Kámen"
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr "Kov"
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
 msgstr "Shromážděné poklady"
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
 msgstr "Poplatky (poslané/přijaté)"
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
 msgstr "Vyměněné jídlo"
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
 msgstr "Vyměněné dřevo"
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
 msgstr "Vyměněný kámen"
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
 msgstr "Vyměněný kov"
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
 msgstr "Účinnost výměnného obchodu"
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
 msgstr "Příjem z obchodu"
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
 msgstr "Poměr\\nvegetariánů"
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
 msgstr "Poženštění"
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
 msgstr "Poměr\\nZabití/Usmrcení"
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
 msgstr "Mapa\\nprozkoumáno"
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr "Pokračovat"
 

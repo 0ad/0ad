@@ -1,7 +1,6 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Aldicek <aldicek@ewt-net.de>, 2014
@@ -20,6 +19,7 @@
 # J5lx <j5lx@fmail.co.uk>, 2014
 # jonnius <jonatan_zeidler@gmx.de>, 2014
 # santa41116, 2014
+# leper <leper@wildfiregames.com>, 2014
 # Mansent, 2013
 # Marcel Haring, 2013-2014
 # mathias.n.graf <mathias.n.graf@gmail.com>, 2013
@@ -44,20 +44,19 @@
 # wilhelm3 <isabusl@gmail.com>, 2014
 # Xaver, 2013
 # Xaver, 2014
+# Xeramon <xeramon@live.de>, 2014
 # xtother90, 2013
 # Yves_G, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-10-22 20:31+0000\n"
+"POT-Creation-Date: 2014-10-26 02:04+0100\n"
+"PO-Revision-Date: 2014-11-06 21:43+0000\n"
 "Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: de\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -1610,7 +1609,7 @@ msgid ""
 "Alexander the Great founded libraries all over his new empire. These became "
 "a center of learning for an entirely new synthesized culture: the "
 "Hellenistic culture."
-msgstr "Alexander der Große gründete überall in seinem neuen Reich Bibliotheken. Diese wurden zu Zentren des Lernens für eine gänzlich neu geschaffene Kultur: die hellenische Kultur."
+msgstr "Alexander der Große gründete überall in seinem neuen Reich Bibliotheken. Diese wurden zu Zentren des Lernens für eine gänzlich neu geschaffene Kultur: die hellenistische Kultur."
 
 #: civs/mace.jsonStructures[2].Name civs/theb.jsonStructures[1].Name
 msgid "Siege Workshop"
@@ -1618,7 +1617,7 @@ msgstr "Belagerungswerkstatt"
 
 #: civs/mace.jsonStructures[2].Special
 msgid "Constructs and upgrades all Macedonian siege engines."
-msgstr "Baut und verbessert alle mazedonischen Belagerungswaffen."
+msgstr "Baut und verbessert alle makedonischen Belagerungswaffen."
 
 #: civs/mace.jsonStructures[2].History
 msgid "The Macedonians were innovators in area of siegecraft."
@@ -1734,7 +1733,7 @@ msgstr "Brihadratha"
 msgid ""
 "Capture up to 5 Gaia elephants and garrison them in the Elephant Stables to "
 "gain up to a 25% bonus in cost and train time of elephant units."
-msgstr "Fange bis zu 5 Gaia-Elefanten und quatiere sie in Elefantenställen ein, um einen Bonus von bis zu 25% auf Kosten und Ausbildungszeit für Elefanten-Einheiten zu erlangen."
+msgstr "Fang bis zu 5 Gaia-Elefanten und quartiere sie in den Elefantenställen ein, um bis zu 25% Bonus auf Kosten und Ausbildungszeit für Elefanten-Einheiten zu erlangen."
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
@@ -1742,7 +1741,7 @@ msgstr "Zusammentreiben von Elefanten"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr "Größere Reichweite und schnelleres Ausbildung für Maurya-Infanterie Bogenschützen."
+msgstr "Größere Reichweite und schnellere Ausbildung für Maurya-Infanterie Bogenschützen."
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
@@ -1752,7 +1751,7 @@ msgstr "Bogenschießtradition"
 msgid ""
 "India was a land of archery. The bulk of any Indian army was made up of "
 "highly skilled archers, armed with bamboo longbows."
-msgstr "Indien war das Land der Bogenschützen. Die Masse jedes indischen Heeres bestand aus hochqualifizierten Bogenschützen, die mit Bambus-Langbogen bewaffnet waren."
+msgstr "Indien war das Land der Bogenschützen. Die Masse jeder indischen Armee bestand aus hochqualifizierten Bogenschützen, die mit Bambus-Langbögen bewaffnet waren."
 
 #: civs/maur.jsonFactions[0].Heroes[0].History
 msgid "Founder of the Mauryan Empire."
@@ -1760,7 +1759,7 @@ msgstr "Begründer des Maurya-Reiches."
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr "Der letzte große Kaiser der Mauryanischen Dynastie."
+msgstr "Der letzte große Kaiser der Maurya-Dynastie."
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
@@ -1772,7 +1771,7 @@ msgstr "Acharya Chāṇakya"
 
 #: civs/maur.jsonFactions[0].Name
 msgid "Mauryan Indians"
-msgstr "Maurya-Reich"
+msgstr "Maurya-Inder"
 
 #: civs/maur.jsonStructures[0].Name
 msgid "Elephant Stables"
@@ -1793,7 +1792,7 @@ msgid ""
 "Contentment: +10% Health and +10% resource gathering rates for all citizens "
 "and allied citizens within its range. Can be built anywhere except in enemy "
 "territory. Max Built: 10."
-msgstr "Zufriedenheit: +10% Gesundheit und +10% Sammelrate von Ressourcen für alle Bürger und alliierten Bürger in seiner Reichweite. Kann überall außer in feindlichem Gebiet gebaut werden. Maximal: 10."
+msgstr "Zufriedenheit: +10% Gesundheit und +10% Sammelrate von Ressourcen für alle Bürger und alliierten Bürger in seiner Reichweite. Kann überall außer in feindlichem Gebiet gebaut werden. Baulimit: 10."
 
 #: civs/maur.jsonHistory
 msgid ""
@@ -1815,7 +1814,7 @@ msgstr "Perser"
 msgid ""
 "The resource cost of training camel-mounted (trader) or horse-mounted units "
 "(cavalry) is reduced by 5% per animal (as appropriate) corralled."
-msgstr "Ausbildungskosten von Kamel-/Pferdekavallerie sinken pro eingefangenem Kamel-/Pferd um 5%."
+msgstr "Die Ausbildungskosten von auf Kamelen (Händler) bzw. Pferden (Kavallerie) reitenden Einheiten sinken pro eingefangenem Kamel/Pferd um 5%."
 
 #: civs/pers.jsonCivBonuses[0].Name
 msgid "Corral Camels and Horses"
@@ -1827,13 +1826,13 @@ msgid ""
 "accompanied by great success (most notably during the battle of Sardis in "
 "546 B.C.) The satrapy of Bactria was a rich source of 'two-hump' camels, "
 "while Northern Arabia supplied 'one-hump' camels."
-msgstr "Auch wenn die Perser Kamele nur selten einsetzten, ging ihre Verwendung immer mit großen Erfolgen einher (am sichtbarsten in der Schlacht von Sardes, 546 v. Chr.). Die baktrische Satrappe war ein reicher Quell an Kamelen, wohingegen Nordarabien Dromedare beisteuerte."
+msgstr "Auch wenn die Perser Kamele nur selten einsetzten, so ging ihre Verwendung immer mit großen Erfolgen einher (am deutlichsten in der Schlacht von Sardes, 546 v. Chr.). Die baktrische Satrapie war ein reicher Quell an Kamelen, während Nordarabien Dromedare beisteuerte."
 
 #: civs/pers.jsonCivBonuses[1].Description
 msgid ""
 "Persians have a +10% population cap bonus (e.g. 330 pop cap instead of the "
 "usual 300)."
-msgstr "Perser haben einen Bevölkerungsbonus von +10% (z.B. eine Bevölkerungskapazität von 330 anstatt 300 Einheiten)."
+msgstr "Perser haben einen Bonus von +10% auf die Bevölkerungskapazität (d.h. 330 statt 300 Einheiten)."
 
 #: civs/pers.jsonCivBonuses[1].Name
 msgid "Great King's Levy"
@@ -1847,7 +1846,7 @@ msgid ""
 "great tenacity. However while this was true the infantry were poor hand-to-"
 "hand, close combat fighters. Also, with the exception of the elite "
 "regiments, the Persian infantry was not a standing professional force."
-msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, während der Kriegszeit eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie - mit Ausnahme der Eliteregimenter - keine stehende professionelle Streitmacht."
+msgstr "Die Perser konnten aufgrund der schieren Größe des Achämenidenreiches und der Art und Weise, wie es aufgebaut war, in Kriegszeiten eine große Menge an Infanterie ausheben. Allgemein war die persische Infanterie gut ausgebildet und kämpfte mit großer Hartnäckigkeit, allerdings war sie trotzdem eher schlecht im Kampf Mann gegen Mann. Außerdem war die persische Infanterie - mit Ausnahme der Eliteregimenter - keine stehende professionelle Streitmacht."
 
 #: civs/pers.jsonTeamBonuses[0].Description
 msgid "+25% trade profit land routes."
@@ -1863,7 +1862,7 @@ msgid ""
 " common until the Persian period. Darius the Great standardized coined money"
 " and his golden coins (known as 'darics') became commonplace not only "
 "throughout his empire, but as far to the west as Central Europe."
-msgstr "Die Münzprägung wurde von den Lydiern im 7. Jahrhundert v.Chr. erfunden, war aber bis zur Persischen Periode nicht sehr gebräuchlich. Darius der Große vereinheitlichte das Geprägte Geld und seine Goldmünzen (genannt Dareikos) wurden nicht nur in seinem Reich genutzt, sondern auch bis nach Mitteleuropa."
+msgstr "Die Münzprägung wurde von den Lydiern im 7. Jahrhundert v.Chr. erfunden, aber war bis zur Persischen Periode nicht sehr gebräuchlich. Darius der Große vereinheitlichte das geprägte Geld und seine Goldmünzen (genannt Dareikos) wurden nicht nur in seinem Reich genutzt, sondern auch bis nach Mitteleuropa."
 
 #: civs/pers.jsonAINames[0]
 msgid "Kurush II the Great"
@@ -1930,7 +1929,7 @@ msgid ""
 "example, a canal was built in Egypt and a Persian navy was sent exploring "
 "the Indus river. According to Herodotus, some 300 ships in the Persian navy "
 "were retrofitted to carry horses and their riders."
-msgstr "Die frühen Achämenidenherrscher machten Persien zum ersten asiatischen Großreich, welches die See beherrschte. Der Großkönig begünstigte die vielen Seevölker um deren Dienste zu sichern, startete aber auch selbst diverse Marineaktivitäten. Während der Herrschaft von Dareios I. wurde beispielsweise ein Kanal in Ägypten gebaut und eine persische Flotte zur Induserkundung ausgeschickt. Laut Herodot wurden etwa 300 Schiffe der persischen Marine nachgerüstet, um den Transport von Reitern und deren Pferden zu ermöglichen."
+msgstr "Die frühen Achämenidenherrscher machten Persien zum ersten asiatischen Großreich, welches die See beherrschte. Der Großkönig begünstigte die vielen Seevölker um deren Dienste zu sichern, führte aber auch selbst diverse Marineaktivitäten durch. Während der Herrschaft von Dareios I. wurde beispielsweise ein Kanal in Ägypten gebaut und eine persische Flotte ausgeschickt, um den Indus zu erkunden. Laut Herodot wurden etwa 300 Schiffe der persischen Marine nachgerüstet, um den Transport von Reitern und deren Pferden zu ermöglichen."
 
 #: civs/pers.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -1948,7 +1947,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr "Die Perser bauten die wundervolle 2700 km lange Königsstraße von Sardis nach Susa; Darius der Große und Xerxes bauten auch das zauberhafte Persepolis; Cyrus der Große verschönerte Ekbatana und erbaute die alte elamitische Hauptstadt Susa praktisch von Grund auf neu."
+msgstr "Die Perser bauten die wundervolle 2700 km lange Königsstraße von Sardis nach Susa; Darius der Große und Xerxes bauten auch das zauberhafte Persepolis; Kyros der Große verschönerte Ekbatana und erbaute die alte elamitische Hauptstadt Susa praktisch von Grund auf neu."
 
 #: civs/pers.jsonFactions[0].Technologies[2].Description
 msgid "Reduces train time for Anusiya champion infantry by half."
@@ -1982,7 +1981,7 @@ msgid ""
 "was also renown as a benevolent conqueror. (OP - Kurush). Technically the "
 "second ruler of the Persians by that name, and so appears as Kurush II on "
 "his documents and coins. Kurush I was his grandfather."
-msgstr "Kyros der Große (559-530 v. Chr.), der Sohn einer medischen Prinzessin und dem Regenten von Anschan, mit Recht \"Vater des Reiches\" genannt, eroberte Medien, Lydien, Babylonien und Baktrien, womit er das persische Reich begründete. Er war bekannt als wohlwollender Eroberer. (Altpersisch - Kurush). Er war technisch gesehen der zweite Regent der Perser mit diesem Namen, und so erscheint er als Kurush II. auf seinen Dokumenten und Münzen. Kurush I. war sein Großvater."
+msgstr "Kyros der Große (559-530 v. Chr.), der Sohn einer medischen Prinzessin und des Regenten von Anschan, mit Recht \"Vater des Reiches\" genannt, eroberte Medien, Lydien, Babylonien und Baktrien, womit er das persische Reich begründete. Er war auch bekannt als wohlwollender Eroberer. (Altpersisch - Kurush). Er war technisch gesehen der zweite Regent der Perser mit diesem Namen, und so erscheint er als Kurush II. auf seinen Dokumenten und Münzen. Kurush I. war sein Großvater."
 
 #: civs/pers.jsonFactions[0].Heroes[0].Name
 msgid "Kurush II"
@@ -1994,7 +1993,7 @@ msgid ""
 "Parthia and Hyrcania; a great administrator as well as a decent general, "
 "Darius introduced the division of the empire into satrapies and conquered NW"
 " India, Thrace and Macedonia. He was called the 'Merchant of the Empire'."
-msgstr "Dareios (521-486 v. Chr.), der Sohn des Vishtaspa (Hystaspes), der Satrap von Parthien und Hyrkanien; Als großer Verwalter und annehmbarer General führte er die Teilung des Reiches in Satrapien ein und eroberte Nordwest-Indien, Thrakien und Makedonien. Er wurde der \"Händler des Reiches\" genannt."
+msgstr "Dareios (521-486 v. Chr.), der Sohn des Vishtaspa (Hystaspes), der Satrap von Parthien und Hyrkanien; Als großer Verwalter und fähiger General führte er die Teilung des Reiches in Satrapien ein und eroberte Nordwest-Indien, Thrakien und Makedonien. Er wurde der \"Händler des Reiches\" genannt."
 
 #: civs/pers.jsonFactions[0].Heroes[2].History
 msgid ""
@@ -2044,7 +2043,7 @@ msgid ""
 "rule over various peoples with different customs, laws, religions and "
 "languages, and building a cosmopolitan army made up of contingents from each"
 " of these nations."
-msgstr "Das Persische Imperium war, als es von der Dynastie der Achaemenid regiert wurde, eines der größten Imperien der Antike, im Höhepunkt seiner macht spannend von Industal im Osten bis Ostgriechenland im Westen. Die Perser waren die Pioniere der Staatsbildung der antiken Welt, sie verhängten erfolgreich eine einheitliche Regierung über verschiedene Völker mit unterschiedlichen Bräuchen, Gesetzen, Religionen und Sprachen, und bauten eine internationale Armee auf, mit Aufgeboten aus jeder dieser Nationen."
+msgstr "Das Persische Imperium war, als es von der Dynastie der Achaemenid regiert wurde, eines der größten Imperien der Antike, das sich am Höhepunkt seiner Macht vom Industal im Osten bis Ostgriechenland im Westen erstreckte. Die Perser waren Pioniere in der Reichsbildung der antiken Welt, sie schufen erfolgreich eine einheitliche Regierung über verschiedene Völker mit unterschiedlichen Bräuchen, Gesetzen, Religionen und Sprachen, und bauten eine internationale Armee auf, mit Aufgeboten aus jeder dieser Nationen."
 
 #: civs/ptol.jsonName
 msgid "Ptolemies"
@@ -2054,7 +2053,7 @@ msgstr "Ptolemäer"
 msgid ""
 "The Ptolemies receive the Mercenary Camp, a barracks that is constructed in "
 "neutral territory and trains mercenary soldiers."
-msgstr "Die Ptolemäer erhalten die Söldner Camp, eine Kaserne, die im neutralen Bereich erbaut wurde und  Söldner trainiert."
+msgstr "Die Ptolemäer erhalten das Söldnerlager, eine Kaserne, die im neutralen Bereich erbaut wird und  Söldner ausbildet."
 
 #: civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
@@ -2070,7 +2069,7 @@ msgid ""
 "sometimes cheaply, sometimes not cheaply. This was of no matter, since Egypt"
 " under the Ptolemies was so prosperous as to be the richest of Alexander's "
 "successor states."
-msgstr "Die griechisch-makedonische Dynastie der Ptolemäer war von großen Zahlen von griechischen und ausländischen Söldnern für das Militär abhängig, hauptsächlich wegen der oft zweifelhaften Loyalität der einheimischen ägyptischen Einheiten. Tatsächlich war Oberägypten wegen eines Aufstandes der Einheimischen für die Ptolemäer für Jahrzehnte verloren. Söldner waren oft kampferprobt und ihre Loyalität käuflich, manchmal für wenig Geld, manchmal für mehr Geld. Das war aber unerheblich, da Ägypten unter den Ptolemäern so sehr florierte, dass es der reichste von allen Nachfolgestaaten Alexander des Großen war."
+msgstr "Die griechisch-makedonische Dynastie der Ptolemäer stützte sich auf eine große Anzahl von griechischen und ausländischen Söldnern für ihre Hauptstreitmacht, hauptsächlich wegen der oft zweifelhaften Loyalität der einheimischen ägyptischen Einheiten. Tatsächlich war Oberägypten wegen eines Aufstandes der Einheimischen für die Ptolemäer für Jahrzehnte verloren. Söldner waren oft kampferprobt und ihre Loyalität käuflich, manchmal für weniger, manchmal für mehr Geld. Das war aber unerheblich, da Ägypten unter den Ptolemäern so sehr florierte, dass es der reichste von allen Nachfolgestaaten Alexander des Großen war."
 
 #: civs/ptol.jsonCivBonuses[1].Description
 msgid "The Ptolemaic Egyptians receive 3 additional farming technologies."
@@ -2100,7 +2099,7 @@ msgstr "Erlaubt das Einfangen von Elefanten und Kamelen, um deren Ausbildungskos
 
 #: civs/ptol.jsonTeamBonuses[0].Description
 msgid "All allies automatically gain a slow trickle of food income."
-msgstr "Alle Verbündeten bekommen automatisch ein geringes Nahrungseinkommen."
+msgstr "Alle Verbündeten bekommen automatisch einen kleinen stetigen Zuwachs an Nahrung."
 
 #: civs/ptol.jsonTeamBonuses[0].Name
 msgid "Breadbasket of the Mediterranean"
@@ -2195,27 +2194,27 @@ msgstr "Reichweite der Heldenaura um 50% erhöht."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].Name
 msgid "Pharaonic Cult."
-msgstr "Pharaonenkult"
+msgstr "Pharaonenkult."
 
 #: civs/ptol.jsonFactions[0].Technologies[1].History
 msgid ""
 "The Macedonian-Greek rulers of the Ptolemaic dynasty observed many ancient "
 "Egyptian traditions in order to satiate the local populace and ingratiate "
 "themselves to the powerful priestly class in the country."
-msgstr "Die makedonisch-griechischen Herrscher der ptolemäischen Dynastie beobachteten viele altägyptische Traditionen, um die lokale Bevölkerung zu beruhigen und sich bei der mächtigen Priesterklasse des Landes beliebt zu machen."
+msgstr "Die makedonisch-griechischen Herrscher der ptolemäischen Dynastie wahrten viele altägyptische Traditionen, um die lokale Bevölkerung zu beruhigen und sich bei der mächtigen Priesterklasse des Landes beliebt zu machen."
 
 #: civs/ptol.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The Ptolemaic Egyptians receive 3 additional farming technologies above and "
 "beyond the maximum number of farming technologies usually available to a "
 "faction."
-msgstr "Die ptolemäischen Ägypter bekommen 3 zusätzliche landwirtschaftliche Technologien über der maximalen Zahl der landwirtschaftlichen Technologien, die einer Fraktion üblicherweise zur Verfügung stehen."
+msgstr "Die ptolemäischen Ägypter bekommen 3 landwirtschaftliche Technologien zusätzlich über der maximalen Zahl der landwirtschaftlichen Technologien, die einer Fraktion normalerweise zur Verfügung steht."
 
 #: civs/ptol.jsonFactions[0].Technologies[2].History
 msgid ""
 "The Nile Delta had rich soil for farming, due to centuries of seasonal "
 "floods from the Nile depositing rich silt across the landscape."
-msgstr "Das Nildelta hatte einen fruchtbaren Boden für die Landwirtschaft, aufgrund der saisonalen Fluten des Nils, die für Jahrhunderte reichhaltigen Schlamm über die Landschaft verteilt haben."
+msgstr "Das Nildelta hatte einen fruchtbaren Boden für die Landwirtschaft wegen der saisonalen Fluten des Nils, die über Jahrhunderte hinweg nährstoffreichen Schlamm über die Landschaft verteilt haben."
 
 #: civs/ptol.jsonFactions[0].Heroes[0].Name
 msgid "Ptolemaios A' Soter"
@@ -2231,7 +2230,7 @@ msgstr "Kleopatra H' Philopater"
 
 #: civs/ptol.jsonFactions[0].Name
 msgid "Ptolemaic Egyptians"
-msgstr "Ptolemaier"
+msgstr "Ptolemäische Ägypter"
 
 #: civs/ptol.jsonFactions[0].Description
 msgid "The great Greek-Macedonian dynastic rule over Ancient Egypt."
@@ -2242,7 +2241,7 @@ msgid ""
 "Maximum of 1 built. All Special Technologies and some regular city-phase "
 "technologies are researched here. Building one reduces the cost of all other"
 " remaining technologies by 10%."
-msgstr "Baulimit von 1 erreicht. Alle besonderen Technologien werden hier erforscht. Eins zu bauen reduziert die Kosten für alle verbleibenden Technologien um 10%. "
+msgstr "Baulimit 1. Alle besonderen Technologien und einige regulare Stadtphase-Technologien werden hier erforscht. Eines zu bauen reduziert die Kosten für alle verbleibenden Technologien um 10%. "
 
 #: civs/ptol.jsonStructures[1].Name
 msgid "Stratópedo Misthophóron"
@@ -2252,7 +2251,7 @@ msgstr "Stratópedo Misthophóron"
 msgid ""
 "Must be constructed in neutral territory. Has no territory radius effect. "
 "Trains all 'mercenary' units."
-msgstr "Muss auf neutralem Boden errichtet werden. Hat keinen Effekt auf den Radius von Territorien. Bildet alle Typen von Handelseinheiten aus."
+msgstr "Muss auf neutralem Boden errichtet werden. Hat keinen Effekt auf den Radius von Territorien. Bildet alle 'Söldner'-Einheiten aus."
 
 #: civs/ptol.jsonStructures[2].Name
 msgid "Lighthouse"
@@ -2262,7 +2261,7 @@ msgstr "Leuchtturm"
 msgid ""
 "When built along the shoreline, removes shroud of darkness over all the "
 "water, revealing all the coast lines on the map. Limit: 1."
-msgstr "Entfernt den über dem Wasser befindlichen Nebel des Krieges, sodass alle Küsten sichtbar werden. Baulimit: 1."
+msgstr "Wenn er an der Küste errichtet wird, entfernt er den Nebel des Krieges über dem Wasser, womit alle Küstenlinien sichtbar werden. Baulimit: 1."
 
 #: civs/ptol.jsonStructures[2].History
 msgid ""
@@ -2270,7 +2269,7 @@ msgid ""
 "Alexandria near the harbor mouth of that Nile Delta city. This structure "
 "could be seen for many kilometers out to sea and was one of the Seven "
 "Wonders of the World."
-msgstr "Die Ptolemäische Dynastie in Ägypten baute den prächtigen Leuchtturm von Alexandria nahe der Einfahrt zum Hafen nahe des Nildeltas. Dieses Gebäude konnte viele Kilometer weit auf See gesehen werden und war eines der Sieben Weltwunder."
+msgstr "Die Ptolemäische Dynastie in Ägypten baute den prächtigen Leuchtturm von Alexandria nahe der Einfahrt zum Hafen dieser Stadt am Nildelta. Dieses Bauwerk konnte über viele Kilometer auf dem Meer gesehen werden und war eines der Sieben Weltwunder."
 
 #: civs/ptol.jsonHistory
 msgid ""
@@ -2278,7 +2277,7 @@ msgid ""
 "Ptolemaic Empire in Egypt during the Hellenistic period. Their rule lasted "
 "for 275 years, from 305 BC to 30 BC. They were the last dynasty of ancient "
 "Egypt."
-msgstr "Die Ptolemäische Dynastie war eine Mazedonisch-Griechische Königsfamilie, die während der Hellenischen Periode regierte. 275 Jahre, von 305 v.Chr. bis 30v.Chr., regierten sie das Ptolemäische Imperium in Ägypten. Sie waren die letzte Dynastie des Antiken Ägypten."
+msgstr "Die ptolemäische Dynastie war eine mazedonisch-griechische Königsfamilie, die das ptolemäische Reich in Ägypten während der hellenistischen Epoche regierte. Ihre Herrschaft überdauerte 275 Jahre, von 305 v.Chr. bis 30v.Chr. Sie waren die letzte Dynastie des alten Ägyptens."
 
 #: civs/rome.jsonName
 msgid "Romans"
@@ -2297,17 +2296,17 @@ msgid ""
 "The Romans commonly used the Testudo or 'turtle' formation for defense: "
 "Legionaries were formed into hollow squares with twelve men on each side, "
 "standing so close together that their shields overlapped like fish scales."
-msgstr "Die Römer benutzten die Schildkrötenformation (auch Testudo) meistens zur Verteidigung: Legionäre formten Quadrate mit zwölf Kämpfern an jeder Seite, welche eng zusammen standen, sodass sich ihre Schilde wie Fischschuppen überlappten."
+msgstr "Die Römer benutzten die Schildkrötenformation (auch Testudo) meistens zur Verteidigung: Legionäre formten hohle Quadrate mit zwölf Kämpfern auf jeder Seite, die so eng zusammen standen, sodass sich ihre Schilde wie Fischschuppen überlappten."
 
 #: civs/rome.jsonCivBonuses[1].Description
 msgid ""
 "Any Roman citizen-soldier fighting within Roman territory gains a non-"
 "permanent +10% bonus in armor."
-msgstr "Jeder römische Bürgersoldat der auf römischem Territorium kämpft erhält temporär +10% Rüstung."
+msgstr "Jeder römische Bürgersoldat, der auf römischem Territorium kämpft erhält vorübergehend einen Bonus von +10% auf Rüstung."
 
 #: civs/rome.jsonCivBonuses[1].Name
 msgid "Citizenship"
-msgstr "Bürgerrecht"
+msgstr "Bürgerschaft"
 
 #: civs/rome.jsonCivBonuses[1].History
 msgid ""
@@ -2316,11 +2315,11 @@ msgid ""
 "peoples. It is said that harming a Roman citizen was akin to harming Rome "
 "herself, and would cause the entire might of Rome to fall upon the "
 "perpetrator."
-msgstr "Römischer Bürger wurden in der Antike sehr geschätzt. Sie hatten grundlegende Rechte und Privilegien, welche Menschen anderer Kulturkreise vorenthalten blieben. Es wurde erzählt einem Römer zu Schaden sei wie Rom selbst zu Schaden und würde somit die gesamt Macht Roms gegen den Täter aufbringen."
+msgstr "Die Römische Bürgerschaft wurde in der Antike hoch geschätzt. Römischen Bürgern wurden grundlegende Rechte und Privilegien geboten, anderen unterworfenen Völkern vorenthalten wurden. Man sagte, einem Römer zu Schaden sei so wie Rom selbst zu Schaden und das würde somit die gesamt Macht Roms gegen den Täter aufbringen."
 
 #: civs/rome.jsonTeamBonuses[0].Description
 msgid "Allied citizen-soldiers gain a +15% attack when in Roman territory."
-msgstr "Verbündete Bürgersoldaten erhalten in römischen Gebiet +15% Angriff."
+msgstr "Verbündete Bürgersoldaten erhalten in römischen Territorium +15% Angriff."
 
 #: civs/rome.jsonTeamBonuses[0].Name
 msgid "Socii"
@@ -2401,14 +2400,14 @@ msgid ""
 "throughout its long history. The Romans lured enemies or neutral factions to"
 " their side by offering them certain privileges. In due period of time, "
 "friends as well as foes were subjugated."
-msgstr "'Teile und herrsche' war das Motto der Außenpolitik des Römischen Reiches. Die Römer brachten Feinde als auch neutrale Nachbarn auf ihre Seite indem sie ihnen gewisse Privilegien zugestanden. Nach kurzer Zeit waren jedoch sowohl Freund als auch Feind unterworfen."
+msgstr "'Teile und herrsche' war das Motto der Außenpolitik des Römischen Reiches. Die Römer brachten Feinde oder auch neutrale Parteien auf ihre Seite, indem sie ihnen gewisse Privilegien zugestanden. Nach kurzer Zeit waren jedoch sowohl Freund als auch Feind unterworfen."
 
 #: civs/rome.jsonFactions[0].Heroes[0].History
 msgid ""
 "Dictator for six months during the Second Punic War. Instead of attacking "
 "the most powerful Hannibal, he started a very effective war of attrition "
 "against him."
-msgstr "Während des zweiten punischen Krieges war er sechs Monate lang Dikator. Anstatt den mächtigen Hannibal anzugreifen startete er einen sehr effektiven Zermürbungskrieg gegen ihn."
+msgstr "Sechs Monate lang Diktator im zweiten punischen Krieg. Anstatt den mächtigen Hannibal anzugreifen, begann er einen sehr effektiven Zermürbungskrieg gegen ihn."
 
 #: civs/rome.jsonFactions[0].Heroes[0].Name
 msgid "Quintus Fabius Maximus"
@@ -2425,7 +2424,7 @@ msgid ""
 "Greek culture and arts, which he enthusiastically promoted in Rome. He met "
 "his demise when his men were ambushed near Venusia. In honor of the respect "
 "the people held for him, Marcellus was granted the title of 'Sword of Rome.'"
-msgstr "Ein Krieger im ersten Krieg gegen Karthago und Held im zweiten punischen Krieg sowie Sieger über die Gallier bei der Schlacht von Clastidium. Plutarch beschreibt ihn als einen Mann des Krieges mit starkem Körper und Durchhaltevermögen sowie einem eisernen Willen zum Weiterkämpfen. Er war ein sehr fähiger General und galt neben Scipio Africanus und Claudius Nero als einer der effektivsten römischen Generäle des gesamten zweiten punischen Krieges. Neben seinen militärischen Erfolgen war Marcellus Anhänger der griechischen Kunst und Kultur, welche er in Rom sehr enthusiastisch vertrat. Er starb als seine Männer nahe der Stadt Venusia in einen Hinterhalt gerieten. Im Andenken an den Respekt den er bei vielen Menschen innehatte, bekam Marcellus den Titel 'Schwert von Rom'."
+msgstr "Ein Soldat im ersten Krieg gegen Karthago, ein Held im zweiten punischen Krieg und Sieger über die Gallier bei der Schlacht von Clastidium. Plutarch beschreibt ihn als einen Mann des Krieges mit starkem Körper und Durchhaltevermögen sowie einem eisernen Willen zum Weiterkämpfen. Als General war er außerordentlich fähig und galt neben Scipio Africanus und Claudius Nero als der erfolgreichste römische Generäle des gesamten zweiten punischen Krieges. Neben seinen militärischen Erfolgen war Marcellus Anhänger der griechischen Kunst und Kultur, die er in Rom sehr enthusiastisch vertrat. Er fand den Tod, als seine Männer nahe der Stadt Venusia in einen Hinterhalt gerieten. Im Andenken an den Respekt, den viele Menschen vor ihm hatten, bekam Marcellus den Titel 'Schwert von Rom'."
 
 #: civs/rome.jsonFactions[0].Heroes[1].Name
 msgid "Marcus Claudius Marcellus"
@@ -2449,7 +2448,7 @@ msgstr "Verschanztes Lager"
 
 #: civs/rome.jsonStructures[0].Special
 msgid "Trains citizen-soldiers from neutral or enemy territory."
-msgstr "Trainiere Bürgersoldaten auf neutralem oder feindlichem Boden."
+msgstr "Bildet Bürgersoldaten auf neutralem oder feindlichem Territorium aus."
 
 #: civs/rome.jsonStructures[0].History
 msgid ""
@@ -2463,7 +2462,7 @@ msgid ""
 "execution. It has a turf wall, and it's surrounded by a canal filled with "
 "water whenever possible for extra defense. Many towns started up as bigger "
 "military camps to evolve to more complicated cities."
-msgstr "Manchmal war es ein kurzfristiges Lager an Strecken, auf denen Truppenbewegungen stattfinden, manchmal auch ein Verteidigungs- oder Angriffsbauwerk (bei Belagerungen). Innerhalb der Tore befinden sich die Zelte der ersten Zenturie oder Kohorte, die Drachen (Kohortenabzeichen) und andere Abzeichen. Die Porta decumana befindet sich gegenüber der Porta praetoria im rückwärtigen Teil des Lagers, durch welche Soldaten zum für Bestrafung oder Exekution bestimmten Platz gebracht werden. Das Lager ist von einem Torfwall und, wenn möglich, von einem Wassergraben umgeben. Viele Städte waren anfangs größere Militärlager, die sich in komplexe Städte entwickelten."
+msgstr "Manchmal war es ein kurzfristiges Lager an Strecken, auf denen Truppenbewegungen stattfinden, manchmal auch ein Verteidigungs- oder Angriffsbauwerk (bei Belagerungen). Innerhalb des Haupttores (Porta Praetoria), das entweder nach Osten oder zum Feind ausgerichtet war, waren die Zelte der ersten Zenturie oder Kohorte aufgeschlagen, und die Dracostandarten (Abzeichen der Kohorten) und andere Flaggen befanden sich dort. Das Hintertor (Porta Decumana) liegt genau gegenüber dem Haupttor im rückwärtigen Teil des Lagers, durch das Soldaten zum für Bestrafung oder Exekution bestimmten Platz gebracht werden. Das Lager ist von einem Torfwall und, wenn möglich, von einem Wassergraben umgeben. Viele Städte waren anfangs größere Militärlager, die sich zu komplexen Städten entwickelten."
 
 #: civs/rome.jsonStructures[1].Name
 msgid "Murus Latericius"
@@ -2471,11 +2470,11 @@ msgstr "Murus Latericius"
 
 #: civs/rome.jsonStructures[1].Special
 msgid "Can be built in neutral and enemy territory to strangle enemy towns."
-msgstr "Kann auf neutralem und feindlichem Territorium gebaut werden um feindliche Städte abzuschneiden."
+msgstr "Kann auf neutralem und feindlichem Territorium gebaut werden um feindliche Städte einzukesseln."
 
 #: civs/rome.jsonStructures[1].History
 msgid "Turf walls built by legionaries during sieges."
-msgstr "Torfwälle die bei Belagerungen von Legionären errichtet wurden."
+msgstr "Torfwälle die während Belagerungen von Legionären errichtet wurden."
 
 #: civs/rome.jsonHistory
 msgid ""
@@ -2486,7 +2485,7 @@ msgid ""
 "nations on earth for almost 800 years. The Romans were the supreme builders "
 "of the ancient world, excelled at siege warfare and had an exquisite "
 "infantry and navy."
-msgstr "Die Römer kontrollierten eines der größten Reiche der Antike das sich in der Blütezeit von Südschottland bis zur Sahara erstreckte und von etwa 60 bis 80 Millionen Menschen bevölkert wurde, zur damaligen Zeit ein Viertel der Weltbevölkerung. Rom blieb fast 800 Jahre lang eine der stärksten Nationen der Erde. Die Römer waren die besten Architekten der Antike und hatten eine überragende Belagerungskriegsführung sowie eine vorzügliche Infanterie und Seestreitmacht."
+msgstr "Die Römer kontrollierten eines der größten Reiche der Antike das sich in der Blütezeit von Südschottland bis zur Sahara erstreckte und von etwa 60 bis 80 Millionen Menschen bevölkert wurde, zur damaligen Zeit ein Viertel der Weltbevölkerung. Rom blieb auch fast 800 Jahre lang eine der stärksten Nationen der Erde. Die Römer waren die besten Architekten der antiken Welt, zeichneten sich durch ihre Belagerungstaktik aus und hatten eine erlesene Infanterie und Marine."
 
 #: civs/sele.jsonName civs/sele.jsonFactions[0].Name
 msgid "Seleucids"
@@ -2497,7 +2496,7 @@ msgid ""
 "This unlocks the Seleucid expansion building, the Klēroukhia or Military "
 "Colony, similar to Civic Centers for other factions. It is weaker and "
 "carries a smaller territory influence, but is cheaper and built faster."
-msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz anderer Fraktionen. Es ist schwächer und hat einen geringeren Einflussbereich, aber es ist billiger und wird schneller gebaut."
+msgstr "Dies schaltet das seleukidische Erweiterungsgebäude frei, die Kleruchie oder Militärkolonie, ähnlich zum Verwaltungssitz der anderen Völker Sie ist schwächer und hat einen kleineren Einflussbereich, dafür aber billiger und schneller zu bauen."
 
 #: civs/sele.jsonCivBonuses[0].Name
 msgid "Cleruchy"
@@ -2519,7 +2518,7 @@ msgid ""
 " the cavalry arm. War with the Romans from the West and invasions from the "
 "Galatians also forced the Seleucids to reform their infantry regiments to be"
 " more flexible."
-msgstr "Die Kriegsführung der Seleukiden und auch deren Nachfolger entwickelte sich im Laufe des 3. und 2. Jahrhunderts. Kontakt mit expandierenden Ostvölkern, wie den Parthern, und andauernde Revolten periphärer Satrapien, wie Baktrien, zwangen die Seleukiden zu militärischen Reformen und Änderungen der Kampftaktik, speziell der Reiterei. Der Krieg mit den Römern im Westen und Überfälle der Galater zwangen die Seleukiden, ebenfalls ihre Fußtruppen zu reformieren, um sie flexibler werden zu lassen."
+msgstr "Die Kriegsführung der Seleukiden und deren Nachfolger entwickelte sich im Laufe des 3. und 2. Jahrhunderts. Kontakt mit expandierenden Ostvölkern, wie den Parthern, und andauernde Revolten periphärer Satrapien, wie Baktrien, zwangen die Seleukiden zu militärischen Reformen und Änderungen der Kampftaktik, speziell der Kavallerie. Der Krieg mit den Römern im Westen und Überfälle der Galater zwangen die Seleukiden auch, ihre Fußtruppen zu reformieren, um sie flexibler zu machen."
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
@@ -2655,7 +2654,7 @@ msgstr "Philipp II. Philorhomaios"
 msgid ""
 "Traditional Army unlocks Silver Shields and Scythed Chariots, Reform Army "
 "unlocks Romanized Heavy Swordsmen and Cataphracts."
-msgstr "Traditionelle Armee schaltet Silber Schilde und Sichelwagen frei, Reform Armee schaltet Romanisierung schwere Schwertkämpfer und Kataphrakte frei."
+msgstr "Traditionelle Armee schaltet Silberschilde und Sichelwagen frei, Reform Armee schaltet romanisierte schwere Schwertkämpfer und Kataphrakten frei."
 
 #: civs/sele.jsonFactions[0].Technologies[1].Name
 msgid "Traditional Army vs. Reform Army"
@@ -2680,13 +2679,13 @@ msgid ""
 "alliance, he married his daughter to Chandragupta. In return, Chandragupta "
 "gifted Seleucus a corps of 500 war elephants, which would prove a decisive "
 "military asset for Seleucus as he fought the rest of Alexander's successors."
-msgstr "Seleukos I. Nikator überfiel die Punjab-Region Indiens 305 v. Chr. und stand Chandragupta Maurya (Sandrokottos), dem Gründer Mauryareiches gegenüber. Es wird berichtet, dass Chandragupta eine Armee von 600.000 Mann und 9.000 Kriegselefanten aufgestellt hatte (Plinius der Ältere, Historia naturalis VI, 22.4). Seleukos blieb erfolglos und um Frieden zwischen den beiden Großmächten herzustellen und zu besiegeln, verheiratete er seine Tochter mit Chandragupta. Im Gegenzug schenkte Chandragupta Seleukos einen Trupp von 500 Kriegselefanten, die ein entscheidender Aktivposten für Seleukos waren, als er den Rest von Alexanders Nachfolgern bekämpfte."
+msgstr "Seleukos I. Nikator überfiel 305 v. Chr. die Punjab-Region in Indien und stand Chandragupta Maurya (Sandrokottos), dem Gründer des Mauryareiches gegenüber. Es wird berichtet, dass Chandragupta eine Armee von 600.000 Mann und 9.000 Kriegselefanten ins Feld führte (Plinius der Ältere, Historia naturalis VI, 22.4). Seleukos blieb erfolglos und um Frieden zwischen den beiden Großmächten herzustellen und zu besiegeln, verheiratete er seine Tochter mit Chandragupta. Im Gegenzug schenkte Chandragupta Seleukos einen Trupp von 500 Kriegselefanten, die ein entscheidender Aktivposten für Seleukos waren, als er den Rest von Alexanders Nachfolgern bekämpfte."
 
 #: civs/sele.jsonFactions[0].Technologies[3].History
 msgid ""
 "The beautiful and powerful breed of Nisean horses increases health for "
 "Seleucid cavalry."
-msgstr "Die schöne und mächtige Rasse der Nisean-Pferde erhöht Gesundheit für seleukide Kavallerie."
+msgstr "Die schöne und mächtige Rasse der Nisaia-Pferde erhöht die Gesundheit der seleukidischen Kavallerie."
 
 #: civs/sele.jsonFactions[0].Heroes[0].History
 msgid ""
@@ -2740,15 +2739,15 @@ msgstr "Antiokhos D' Epiphanes"
 msgid ""
 "The Macedonian-Greek dynasty that ruled the Eastern part of Alexander's "
 "former empire."
-msgstr "Die makedonisch-griechische Dynastie, welches den östlichen Teil von Alexanders Reich reagierte."
+msgstr "Die makedonisch-griechische Dynastie, welche den östlichen Teil von Alexanders Reich reagierte."
 
 #: civs/sele.jsonStructures[1].Special
 msgid "Trains all cavalry units except Citizen-Militia Cavalry."
-msgstr "Bildet alle berittenen Einheiten außer berittener Bürgermiliz aus."
+msgstr "Bildet alle berittenen Einheiten außer der berittenen Bürgermiliz aus."
 
 #: civs/sele.jsonStructures[2].Name
 msgid "Military Colony"
-msgstr "Militärische Siedlung"
+msgstr "Militärkolonie"
 
 #: civs/sele.jsonStructures[2].Special
 msgid ""
@@ -2769,12 +2768,12 @@ msgid ""
 "manpower for the imperial Seleucid army. A side effect of this system was "
 "that it drained the Greek homeland of military-aged men, a contributing "
 "factor to Greece's eventual conquest by Rome."
-msgstr "Die seleukidischen Könige luden die Griechen, Makedonier, Galater (Gallier), Kreter und Thraker ohne Unterschied ein, sich in den weiten Gebieten des Reichen anzusiedeln. Sie siedelten in militärischen Kolonien, sogenannten Kleruchen (klēroukhia). Unter dieser Vereinbarung wurde den Siedlern ein Stück Land, oder Kleros, gegeben, und im Gegenzug mussten sie in der Armee des Großkönigs dienen, wenn die Pflicht rief. Dadurch entstand eine obere Mittelschicht von militärischen Siedlern, die ihre Existenz und Besitztümer den syrischen Königen schuldeten und dabei halfen, die verfügbare Mannstärke der imperialen seleukidischen Armee zu erhöhen. Ein Nebeneffekt dieses Systems war, dass das griechische Mutterland Männer im richtigen Alter für das Militär verlor, was dazu beitrug, dass Griechenland im Endeffekt von Rom erobert wurde."
+msgstr "Die seleukidischen Könige luden die Griechen, Makedonier, Galater (Gallier), Kreter und Thraker ohne Unterschied ein, sich in den weiten Gebieten des Reichen anzusiedeln. Sie siedelten in militärischen Kolonien, sogenannten Kleruchien (klēroukhia). Unter dieser Vereinbarung wurde den Siedlern ein Stück Land, oder Kleros, gegeben, und im Gegenzug mussten sie in der Armee des Großkönigs dienen, wenn die Pflicht rief. Dadurch entstand eine obere Mittelschicht von militärischen Siedlern, die ihre Existenz und Besitztümer den syrischen Königen schuldeten und dabei halfen, die verfügbare Mannstärke der imperialen seleukidischen Armee zu erhöhen. Ein Nebeneffekt dieses Systems war, dass das griechische Mutterland Männer im passenden Alter für das Militär verlor, was dazu beitrug, dass Griechenland im Endeffekt von Rom erobert wurde."
 
 #: civs/sele.jsonHistory
 msgid ""
 "The Macedonian-Greek dynasty that ruled most of Alexander's former empire."
-msgstr "Die makedonisch-griechische Dynastie, welches das Meiste von Alexanders ehemaligem Reich reagierte."
+msgstr "Die makedonisch-griechische Dynastie, die den größten Teil von Alexanders ehemaligem Reich reagierte."
 
 #: civs/spart.jsonName civs/spart.jsonFactions[0].Name
 msgid "Spartans"
@@ -2782,7 +2781,7 @@ msgstr "Spartaner"
 
 #: civs/spart.jsonCivBonuses[0].Description
 msgid "Spartans can use the powerful Phalanx formation."
-msgstr "Spartaner können die mächtige Phalanxformation einnehmen."
+msgstr "Spartaner können die mächtige Phalanxformation benutzen."
 
 #: civs/spart.jsonCivBonuses[0].History
 msgid ""
@@ -2791,12 +2790,12 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Die Spartaner waren unbestrittene Meister der Kriegsführung mit Phalanxtaktiken. Die Spartaner waren wegen ihrer Disziplin so gefürchtet , dass feindliche Armeen mitunter auseinanderfielen und davonliefen, bevor auch nur ein einziges Schild auf ein anderes traf. 'Othismos‘ bezieht sich auf jenen Punkt, an dem beide Seiten versuchen, sich gegenseitig aus der Formation zu drängen, mit dem Ziel die gegnerische Formation aufzubrechen und in die Flucht zu jagen."
+msgstr "Die Spartaner waren unbestrittene Meister der Kriegsführung mit Phalanxtaktiken. Die Spartaner waren wegen ihrer Disziplin so gefürchtet , dass feindliche Armeen mitunter auseinander fielen und davonliefen, bevor auch nur ein einziger Schild auf einen anderen stieß. 'Othismos‘ bezieht sich auf jenen Punkt, an dem beide Seiten versuchen, sich gegenseitig aus der Formation zu drängen, mit dem Ziel die gegnerische Formation aufzubrechen und in die Flucht zu jagen."
 
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
 "The Spartan rank upgrades at the Barracks cost no resources, except time."
-msgstr "Die Beförderung der Spartanischen Baracken kosten außer Zeit keine Ressourcen. "
+msgstr "Die Beförderungen in den spartanischen Kasernen kosten keine Ressourcen, außer Zeit. "
 
 #: civs/spart.jsonCivBonuses[1].Name
 msgid "Laws of Lycurgus"
@@ -2823,7 +2822,7 @@ msgid ""
 "loose confederation, with Sparta as its leader, was later dubbed the "
 "Peloponnesian League by historians, but in ancient times was called 'The "
 "Lacedaemonians and their allies.'"
-msgstr "Große Teile der Peleponnes waren Sparta in der einen oder anderen Weise verbunden. Später wird dieses lockere Bündnis mit dem führenden Sparta von Historikern als Peloponnesischer Bund bezeichnet, in der Antike jedoch nannte man sie 'Die Lakedaimonier und ihre Mitkämpfer'."
+msgstr "Große Teile der Peleponnes waren Sparta in der einen oder anderen Weise verbunden. Dieser lockere Bund, mit Sparta als Anführer, wurde später Peloponnesischer Bund genannt, während er in alter Zeit 'Die Lakedaimonier und ihre Mitkämpfer' hieß."
 
 #: civs/spart.jsonAINames[1]
 msgid "Dienekes"
@@ -2870,7 +2869,7 @@ msgid ""
 "Spartan female citizens cannot be captured and will doggedly fight back "
 "against any attackers. They are also capable of constructing defense towers "
 "and palisades."
-msgstr "Spartanische Bürgerinnen können nicht gefangen werden und bekämpfen verbissen jeden Angreifer. Sie können auch Verteidigungstürme und Palisaden bauen."
+msgstr "Spartanische Bürgerinnen können nicht gefangen genommen werden und bekämpfen verbissen jeden Angreifer. Sie können auch Verteidigungstürme und Palisaden bauen."
 
 #: civs/spart.jsonFactions[0].Technologies[0].Name
 msgid "Feminine Mystique"
@@ -2885,11 +2884,11 @@ msgid ""
 "lost battle against Pyrrhus of Epirus they overnight built an earthen "
 "rampart to protect the city while their men slept in preparation for the "
 "next day's siege."
-msgstr "Spartas Frauen waren die freiesten der antiken Welt. Sie durften Land und Sklaven besitzen und wie die Männer nackt trainieren. Es heißt, dass nur Frauen aus Sparta echten Männern das Leben geben konnten. Diese stahlharten Frauen retteten so manche Stadt vor der Katastrophe, zum Beispiel nach der verlorenen Schlacht gegen Pyrrhos I von Epiros, als  die Frauen über Nacht einen Erdwall zur Verteidigung um die Stadt errichteten, während sich die Männer in Vorbereitung auf die Belagerung des nächsten Tages ausschliefen."
+msgstr "Spartas Frauen waren die freiesten der antiken Welt. Sie durften Land und Sklaven besitzen und wie die Männer nackt trainieren. Es heißt, dass nur Frauen aus Sparta echten Männern das Leben geben konnten. Diese stahlharten Frauen retteten so manche Stadt vor der Katastrophe, zum Beispiel nach der verlorenen Schlacht gegen Pyrrhos I von Epiros, als die Frauen über Nacht einen Erdwall zur Verteidigung um die Stadt errichteten, während sich die Männer in Vorbereitung auf die Belagerung des nächsten Tages ausschliefen."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr "In der Phalanx Formation bewegen sich Einheiten schneller."
+msgstr "Einheiten in der Phalanx Formation bewegen sich schneller."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"
@@ -2924,7 +2923,7 @@ msgid ""
 "unobstructed path. Finding the enemy at his rear, Leonidas sent home most of"
 " his troops, choosing to stay behind with 300 hand-picked hoplites and win "
 "time for the others to withdraw."
-msgstr "Der König von Sparta kämpfte und starb in der Schlacht bei den Thermopylen  480 v.Chr. Er blockierte den Weg der großen Persischen Armee an einer schmalen Stelle mit 7000 Mann, bis Xerxes einen geheimen unversperrten Weg bemerkte. Mit dem Feind im Rücken schickte Leonidas einen Großteil seiner Truppen nach Hause und sicherte mit 300 handverlesenen Hopliten deren Rückzug."
+msgstr "Der König von Sparta, der in der Schlacht bei den Thermopylen 480 v.Chr. kämpfte und starb. Er blockierte den Weg der riesigen persischen Armee an einer schmalen Stelle mit 7000 Mann, bis Xerxes einen geheimen unversperrten Weg bemerkte. Mit dem Feind im Rücken schickte Leonidas einen Großteil seiner Truppen nach Hause und entschied, mit 300 handverlesenen Hopliten zu bleiben und den Rückzug der anderen zu sichern."
 
 #: civs/spart.jsonFactions[0].Heroes[0].Name
 msgid "Leonidas I"

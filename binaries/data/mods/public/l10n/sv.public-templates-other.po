@@ -1,21 +1,18 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
 "PO-Revision-Date: 2014-08-17 09:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Swedish (http://www.transifex.com/projects/p/0ad/language/sv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: sv\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
@@ -32,29 +29,25 @@ msgstr ""
 msgid "Bush"
 msgstr "Buske"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
-
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
 msgstr ""
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
-msgid "Chop down to accumulate Wood."
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
 msgstr ""
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
 msgstr ""
 
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr ""
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr ""
-
-#: simulation/templates/template_gaia_geo_mineral.xml:6
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "En mineralfyndighet, ger tillgång till sällsynta former av dyrbara metaller."
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -64,9 +57,9 @@ msgstr "Mineral*"
 msgid "Metal Mine"
 msgstr "Metallgruva"
 
-#: simulation/templates/template_gaia_geo_rock.xml:6
-msgid "Mine these to provide Stone building material."
-msgstr "Bryt sten här för att få byggnadsmaterialet Sten."
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "En mineralfyndighet, ger tillgång till sällsynta former av dyrbara metaller."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -76,9 +69,9 @@ msgstr "Stenbumling"
 msgid "Stone Mine"
 msgstr "Stenbrott"
 
-#: simulation/templates/template_gaia_ruins.xml:10
-msgid "These ruins that can be mined for resources."
-msgstr ""
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "Bryt sten här för att få byggnadsmaterialet Sten."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -91,8 +84,8 @@ msgstr ""
 msgid "Ruins"
 msgstr ""
 
-#: simulation/templates/template_gaia_treasure.xml:10
-msgid "A treasure that can be quickly gathered."
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
 msgstr ""
 
 #: simulation/templates/template_gaia_treasure.xml:8
@@ -117,6 +110,10 @@ msgstr ""
 msgid "Treasure"
 msgstr ""
 
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr ""
+
 #: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr ""
@@ -125,18 +122,18 @@ msgstr ""
 msgid "Unit"
 msgstr ""
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
-#: simulation/templates/campaigns/army_mace_standard.xml:22
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
-msgid "This is what an army would look like on the Strat Map."
-msgstr ""
-
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
 msgstr ""
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 msgid "Army of Alexander the Great"
+msgstr ""
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
+#: simulation/templates/campaigns/army_mace_standard.xml:22
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+msgid "This is what an army would look like on the Strat Map."
 msgstr ""
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
@@ -155,10 +152,6 @@ msgstr ""
 msgid "Army of Leonidas I"
 msgstr ""
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
-msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
-
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
@@ -168,12 +161,16 @@ msgstr ""
 msgid "Minor Greek Polis"
 msgstr ""
 
-#: simulation/templates/campaigns/campaign_city_test.xml:28
-msgid "This is a major Greek city. Has a territory effect of 300."
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city. Has a territory effect of 150."
 msgstr ""
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
+msgstr ""
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city. Has a territory effect of 300."
 msgstr ""
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
@@ -188,12 +185,12 @@ msgstr ""
 msgid "Battle Line"
 msgstr ""
 
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr ""
-
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
+msgstr ""
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
 msgstr ""
 
 #: simulation/templates/formations/column_closed.xml:5
@@ -204,12 +201,12 @@ msgstr ""
 msgid "Column Open"
 msgstr ""
 
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr ""
-
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
+msgstr ""
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
 msgstr ""
 
 #: simulation/templates/formations/line_closed.xml:5
@@ -220,48 +217,48 @@ msgstr ""
 msgid "Line Open"
 msgstr ""
 
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr ""
-
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
+msgstr ""
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
 msgstr ""
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
 msgstr ""
 
+#: simulation/templates/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr ""
+
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "Skärmytsling"
 
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
+#: simulation/templates/formations/syntagma.xml:6
+msgid "9 pike infantry units required"
 msgstr ""
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
 msgstr ""
 
-#: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
+#: simulation/templates/formations/testudo.xml:6
+msgid "9 melee infantry units required"
 msgstr ""
 
 #: simulation/templates/formations/testudo.xml:7
 msgid "Testudo"
 msgstr ""
 
-#: simulation/templates/formations/testudo.xml:6
-msgid "9 melee infantry units required"
+#: simulation/templates/formations/wedge.xml:6
+msgid "3 cavalry units required"
 msgstr ""
 
 #: simulation/templates/formations/wedge.xml:7
 msgid "Wedge"
-msgstr ""
-
-#: simulation/templates/formations/wedge.xml:6
-msgid "3 cavalry units required"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_bear.xml:18
@@ -280,12 +277,12 @@ msgstr ""
 msgid "Chicken"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_crocodile.xml:19
-msgid "Nile Crocodile"
-msgstr ""
-
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_deer.xml:5
@@ -312,22 +309,22 @@ msgstr ""
 msgid "North African Elephant"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_fish.xml:6
-#: simulation/templates/gaia/fauna_fish_tuna.xml:6
-msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
-
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
-msgid "Collect food from this bountiful riparian resource."
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
 msgstr ""
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
 msgstr ""
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
@@ -374,12 +371,12 @@ msgstr ""
 msgid "Rabbit"
 msgstr ""
 
-#: simulation/templates/gaia/fauna_shark.xml:15
-msgid "Shark"
-msgstr ""
-
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
+msgstr ""
+
+#: simulation/templates/gaia/fauna_shark.xml:15
+msgid "Shark"
 msgstr ""
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
@@ -422,16 +419,16 @@ msgstr ""
 msgid "Hardy Bush"
 msgstr ""
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
-msgid "Gather grapes from these vines for Food."
-msgstr ""
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
 msgstr ""
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
+msgstr ""
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
 msgstr ""
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
@@ -477,12 +474,12 @@ msgstr ""
 msgid "European Beech Tree"
 msgstr ""
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
-msgid "Gather figs for Food."
-msgstr ""
-
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
+msgstr ""
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
 msgstr ""
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
@@ -633,10 +630,6 @@ msgstr ""
 msgid "Wooden Bridge"
 msgstr ""
 
-#: simulation/templates/other/cart_tophet.xml:25
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
-
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
 msgstr ""
@@ -645,8 +638,8 @@ msgstr ""
 msgid "Tophet"
 msgstr ""
 
-#: simulation/templates/other/celt_homestead.xml:25
-msgid "A Celtic homestead."
+#: simulation/templates/other/cart_tophet.xml:25
+msgid "Train physicians and Sacred Band Cavalrymen."
 msgstr ""
 
 #: simulation/templates/other/celt_homestead.xml:22
@@ -657,22 +650,26 @@ msgstr ""
 msgid "Caer"
 msgstr "Caer"
 
-#: simulation/templates/other/celt_hut.xml:23
-msgid "Add +2 to Population Cap."
+#: simulation/templates/other/celt_homestead.xml:25
+msgid "A Celtic homestead."
 msgstr ""
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr ""
 
-#: simulation/templates/other/celt_longhouse.xml:24
-#: simulation/templates/other/hellenic_propylaea.xml:28
-#: simulation/templates/other/hellenic_stoa.xml:28
-msgid "Add +10 to Population Cap."
+#: simulation/templates/other/celt_hut.xml:23
+msgid "Add +2 to Population Cap."
 msgstr ""
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
+msgstr ""
+
+#: simulation/templates/other/celt_longhouse.xml:24
+#: simulation/templates/other/hellenic_propylaea.xml:28
+#: simulation/templates/other/hellenic_stoa.xml:28
+msgid "Add +10 to Population Cap."
 msgstr ""
 
 #: simulation/templates/other/column_doric.xml:20
@@ -712,10 +709,6 @@ msgstr ""
 msgid "Wheat Field"
 msgstr ""
 
-#: simulation/templates/other/hellenic_epic_temple.xml:33
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Träna helare. Garnisonera upp till 30 enheter för att hela dem snabbt."
-
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Epic Temple"
 msgstr ""
@@ -724,16 +717,16 @@ msgstr ""
 msgid "Naos Parthenos"
 msgstr ""
 
+#: simulation/templates/other/hellenic_epic_temple.xml:33
+msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Träna helare. Garnisonera upp till 30 enheter för att hela dem snabbt."
+
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
 msgstr ""
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
 msgstr ""
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
@@ -745,16 +738,20 @@ msgstr ""
 msgid "Hellenic Royal Stoa"
 msgstr ""
 
+#: simulation/templates/other/hellenic_royal_stoa.xml:33
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr ""
+
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
 msgstr ""
 
-#: simulation/templates/other/maur_palace.xml:14
-msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr ""
-
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
+msgstr ""
+
+#: simulation/templates/other/maur_palace.xml:14
+msgid "Add +15 to Population Cap. Recruit extra units and heroes."
 msgstr ""
 
 #: simulation/templates/other/obelisk.xml:20
@@ -765,53 +762,44 @@ msgstr ""
 msgid "Egyptian Obelisk"
 msgstr ""
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
-msgid "Big Spike"
-msgstr ""
-
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
-msgid "Wooden Wall Corner"
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
-msgid "Wooden Wall End"
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_fort.xml:21
-msgid "Wooden Tower"
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
-msgid "Wooden Gate"
+#: simulation/templates/other/palisades_rocks_fort.xml:21
+msgid "Wooden Tower"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
-#: simulation/templates/other/wallset_palisade.xml:5
-msgid "Wooden Wall"
+#: simulation/templates/other/palisades_rocks_gate.xml:21
+msgid "Wooden Gate"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_long.xml:22
@@ -823,8 +811,21 @@ msgstr ""
 msgid "Palisade"
 msgstr ""
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+#: simulation/templates/other/palisades_rocks_medium.xml:23
+#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr ""
+
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
+msgstr ""
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+msgid "Outpost"
 msgstr ""
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
@@ -832,28 +833,24 @@ msgstr ""
 msgid "Wooden Watch Tower"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:15
-msgid "Outpost"
-msgstr ""
-
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
-msgstr ""
-
-#: simulation/templates/other/palisades_small_spikes.xml:17
-msgid "Small Spikes"
 msgstr ""
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
 msgstr ""
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
-msgid "Tall Spikes"
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
 msgstr ""
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
+msgstr ""
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
 msgstr ""
 
 #: simulation/templates/other/pers_apartment_block.xml:15
@@ -873,12 +870,12 @@ msgstr ""
 msgid "Warehouse"
 msgstr ""
 
-#: simulation/templates/other/plane.xml:40
-msgid "A World War 2 American fighter plane."
-msgstr ""
-
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
+msgstr ""
+
+#: simulation/templates/other/plane.xml:40
+msgid "A World War 2 American fighter plane."
 msgstr ""
 
 #: simulation/templates/other/pyramid_great.xml:9
@@ -894,15 +891,15 @@ msgstr ""
 msgid "Minor Pyramid"
 msgstr ""
 
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
-
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
+msgstr ""
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
 msgstr ""
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
@@ -956,12 +953,12 @@ msgstr ""
 msgid "Spartiate with Xiphos"
 msgstr ""
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
-
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
+msgstr ""
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
 msgstr ""
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5

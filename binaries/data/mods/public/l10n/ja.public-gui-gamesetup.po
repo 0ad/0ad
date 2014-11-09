@@ -1,7 +1,6 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Akihiro Kawakami <akinobu329@yahoo.co.jp>, 2013
@@ -17,15 +16,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
 "PO-Revision-Date: 2014-10-21 20:00+0000\n"
 "Last-Translator: llen_llen\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -155,35 +152,31 @@ msgid "You"
 msgstr "あなた"
 
 #: gui/gamesetup/gamesetup.js:978
-#, python-format
+#, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:112 (caption)
+#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
 msgstr "マップの大きさ："
 
-#. Make sure to differentiate between the revealed map and explored map
-#. options!
 #: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
-#: gui/gamesetup/gamesetup.xml:315 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):315
 msgid "Revealed Map:"
 msgstr "マップ可視化："
 
-#. Make sure to differentiate between the revealed map and explored map
-#. options!
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.js:1188
-#: gui/gamesetup/gamesetup.xml:325 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):325
 msgid "Explored Map:"
 msgstr "探索済みマップ："
 
 #: gui/gamesetup/gamesetup.js:1133 gui/gamesetup/gamesetup.js:1192
-#: gui/gamesetup/gamesetup.xml:285 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):285
 msgid "Victory Condition:"
 msgstr "勝利条件："
 
 #: gui/gamesetup/gamesetup.js:1135 gui/gamesetup/gamesetup.js:1194
-#: gui/gamesetup/gamesetup.xml:335 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):335
 msgid "Teams Locked:"
 msgstr "固定チーム："
 
@@ -212,7 +205,7 @@ msgid "Sorry, no description available."
 msgstr "すみませんが、説明はありません。"
 
 #: gui/gamesetup/gamesetup.js:1268
-#, python-format
+#, javascript-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s人用。%(description)s"
@@ -222,7 +215,7 @@ msgid "Loading..."
 msgstr "読込中..."
 
 #: gui/gamesetup/gamesetup.js:1417
-#, python-format
+#, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
@@ -232,37 +225,37 @@ msgstr "なし"
 
 #: gui/gamesetup/gamesetup.js:1610 gui/gamesetup/gamesetup.js:1615
 #: gui/gamesetup/gamesetup.js:1633
-#, python-format
+#, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1610
-#, python-format
+#, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
 #: gui/gamesetup/gamesetup.js:1615
-#, python-format
+#, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
 #: gui/gamesetup/gamesetup.js:1620
-#, python-format
+#, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
 #: gui/gamesetup/gamesetup.js:1621
-#, python-format
+#, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
 #: gui/gamesetup/gamesetup.js:1627
-#, python-format
+#, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)sが準備完了です。"
 
 #: gui/gamesetup/gamesetup.js:1629
-#, python-format
+#, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)sの準備がまだです。"
 
@@ -295,7 +288,7 @@ msgid "None"
 msgstr "なし"
 
 #: gui/gamesetup/gamesetup_mp.js:34
-#, python-format
+#, javascript-format
 msgid "%(name)s's game"
 msgstr "%(name)sのゲーム"
 
@@ -304,7 +297,7 @@ msgid "Connecting to server..."
 msgstr "サーバーに接続しています…"
 
 #: gui/gamesetup/gamesetup_mp.js:79
-#, python-format
+#, javascript-format
 msgid "Net message: %(message)s"
 msgstr "ネットメッセージ：%(message)s"
 
@@ -321,7 +314,7 @@ msgid "Game name already in use."
 msgstr "ゲーム名がすでに使われています。"
 
 #: gui/gamesetup/gamesetup_mp.js:249
-#, python-format
+#, javascript-format
 msgid "%(playername)s's game"
 msgstr "%(playername)sのゲーム"
 
@@ -342,249 +335,249 @@ msgid "Build a wonder to win"
 msgstr "奇観を建造する"
 
 #: gui/loading/loading.js:51
-#, python-format
+#, javascript-format
 msgid "Loading “%(map)s”"
 msgstr "「%(map)s」を読込み中"
 
 #: gui/loading/loading.js:55
-#, python-format
+#, javascript-format
 msgid "Generating “%(map)s”"
 msgstr "「%(map)s」を生成中"
 
-#: gui/aiconfig/aiconfig.xml:13 (caption)
+#: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
 msgstr "AI設定"
 
-#: gui/aiconfig/aiconfig.xml:18 (caption)
+#: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
 msgstr "AIプレイヤー："
 
-#: gui/aiconfig/aiconfig.xml:26 (caption)
+#: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
 msgstr "AI難易度："
 
-#: gui/aiconfig/aiconfig.xml:36 (caption) gui/gamesetup/gamesetup_mp.xml:104
-#: (caption)
+#: gui/aiconfig/aiconfig.xml:(caption):36
+#: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: gui/aiconfig/aiconfig.xml:41 (caption) gui/gamesetup/gamesetup.xml:371
-#: (caption)
+#: gui/aiconfig/aiconfig.xml:(caption):41
+#: gui/gamesetup/gamesetup.xml:(caption):371
 msgid "OK"
 msgstr "OK"
 
-#: gui/gamesetup/gamesetup.xml:16 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
 msgstr "対戦設定"
 
-#: gui/gamesetup/gamesetup.xml:22 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading"
 msgstr "読込み中"
 
-#: gui/gamesetup/gamesetup.xml:26 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
 msgstr "マップデータ読込み中。しばらくお待ちください…"
 
-#: gui/gamesetup/gamesetup.xml:41 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
 msgstr "プレイヤー名"
 
-#: gui/gamesetup/gamesetup.xml:44 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
 msgstr "プレイヤーの割当て"
 
-#: gui/gamesetup/gamesetup.xml:47 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
 msgstr "文明"
 
-#: gui/gamesetup/gamesetup.xml:56 (tooltip)
-msgid "View civilization info"
-msgstr "文明の情報を表示します"
-
-#: gui/gamesetup/gamesetup.xml:62 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Team"
 msgstr "チーム"
 
-#: gui/gamesetup/gamesetup.xml:71 (tooltip)
-msgid "Select player."
-msgstr "プレイヤーを選択します。"
-
-#: gui/gamesetup/gamesetup.xml:81 (tooltip)
-msgid "Configure AI settings."
-msgstr "AIの設定を調整します。"
-
-#: gui/gamesetup/gamesetup.xml:84 (tooltip)
-msgid "Select player's civilization."
-msgstr "プレイヤーの文明を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:88 (tooltip)
-msgid "Select player's team."
-msgstr "プレイヤーのチームを選択します。"
-
-#: gui/gamesetup/gamesetup.xml:100 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):100
 msgid "Map Type:"
 msgstr "マップの種類："
 
-#: gui/gamesetup/gamesetup.xml:103 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):103
 msgid "Map Filter:"
 msgstr "マップ絞込み："
 
-#: gui/gamesetup/gamesetup.xml:106 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):106
 msgid "Select Map:"
 msgstr "マップ選択："
 
-#: gui/gamesetup/gamesetup.xml:109 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
 msgstr "プレイヤー数："
 
-#: gui/gamesetup/gamesetup.xml:129 (tooltip)
-msgid "Select a map type."
-msgstr "マップの種類を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:138 (tooltip)
-msgid "Select a map filter."
-msgstr "マップの絞込みを選択します。"
-
-#: gui/gamesetup/gamesetup.xml:148 (tooltip)
-msgid "Select a map to play on."
-msgstr "プレイするマップを選択します。"
-
-#: gui/gamesetup/gamesetup.xml:162 (tooltip)
-msgid "Select number of players."
-msgstr "プレイヤーの人数を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:167 (tooltip)
-msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "マップの大きさを選択します。（大きくなるほど性能が落ちることがあります）"
-
-#: gui/gamesetup/gamesetup.xml:192 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
 msgstr "送信"
 
-#: gui/gamesetup/gamesetup.xml:206 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):206
 msgid "[Tooltip text]"
 msgstr "[Tooltip text]"
 
-#: gui/gamesetup/gamesetup.xml:218 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):218
 msgid "Start game!"
 msgstr "ゲーム開始！"
 
-#: gui/gamesetup/gamesetup.xml:219 (tooltip)
-msgid "Start a new game with the current settings."
-msgstr "現在の設定で新しいゲームを開始します。"
-
-#: gui/gamesetup/gamesetup.xml:236 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):236
 msgid "Back"
 msgstr "戻る"
 
-#: gui/gamesetup/gamesetup.xml:258 (caption) gui/gamesetup/gamesetup.xml:270
-#: (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):258
+#: gui/gamesetup/gamesetup.xml:(caption):270
 msgid "More Options"
 msgstr "詳細設定"
 
-#: gui/gamesetup/gamesetup.xml:259 (tooltip)
-msgid "See more game options"
-msgstr "ゲームの詳細設定を表示します"
-
-#: gui/gamesetup/gamesetup.xml:275 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):275
 msgid "Game Speed:"
 msgstr "ゲーム速度："
 
-#: gui/gamesetup/gamesetup.xml:279 (tooltip)
-msgid "Select game speed."
-msgstr "ゲーム速度を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:289 (tooltip)
-msgid "Select victory condition."
-msgstr "勝利条件を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:295 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):295
 msgid "Population Cap:"
 msgstr "人口上限："
 
-#: gui/gamesetup/gamesetup.xml:299 (tooltip)
-msgid "Select population cap."
-msgstr "人口上限を選択します。"
-
-#: gui/gamesetup/gamesetup.xml:305 (caption)
+#: gui/gamesetup/gamesetup.xml:(caption):305
 msgid "Starting Resources:"
 msgstr "開始時資源："
 
-#: gui/gamesetup/gamesetup.xml:309 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(caption):345
+msgid "Cheats:"
+msgstr "チート："
+
+#: gui/gamesetup/gamesetup.xml:(caption):355
+msgid "Rated Game:"
+msgstr "格付けする："
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):56
+msgid "View civilization info"
+msgstr "文明の情報を表示します"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):71
+msgid "Select player."
+msgstr "プレイヤーを選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):81
+msgid "Configure AI settings."
+msgstr "AIの設定を調整します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):84
+msgid "Select player's civilization."
+msgstr "プレイヤーの文明を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):88
+msgid "Select player's team."
+msgstr "プレイヤーのチームを選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):129
+msgid "Select a map type."
+msgstr "マップの種類を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):138
+msgid "Select a map filter."
+msgstr "マップの絞込みを選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):148
+msgid "Select a map to play on."
+msgstr "プレイするマップを選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):162
+msgid "Select number of players."
+msgstr "プレイヤーの人数を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):167
+msgid "Select map size. (Larger sizes may reduce performance.)"
+msgstr "マップの大きさを選択します。（大きくなるほど性能が落ちることがあります）"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):219
+msgid "Start a new game with the current settings."
+msgstr "現在の設定で新しいゲームを開始します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):259
+msgid "See more game options"
+msgstr "ゲームの詳細設定を表示します"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):279
+msgid "Select game speed."
+msgstr "ゲーム速度を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):289
+msgid "Select victory condition."
+msgstr "勝利条件を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):299
+msgid "Select population cap."
+msgstr "人口上限を選択します。"
+
+#: gui/gamesetup/gamesetup.xml:(tooltip):309
 msgid "Select the game's starting resources."
 msgstr "ゲーム開始時の資源を選択します。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:319 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):319
 msgid "Toggle revealed map (see everything)."
 msgstr "マップ全域を可視にするか切り替えます（すべて見えます）。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:329 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):329
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr "マップを探索済みにするか切り替えます（地形と建物が見えます）。"
 
-#: gui/gamesetup/gamesetup.xml:339 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):339
 msgid "Toggle locked teams."
 msgstr "チームを固定するか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:345 (caption)
-msgid "Cheats:"
-msgstr "チート："
-
-#: gui/gamesetup/gamesetup.xml:349 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):349
 msgid "Toggle the usability of cheats."
 msgstr "チートを利用可能にするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:355 (caption)
-msgid "Rated Game:"
-msgstr "格付けする："
-
-#: gui/gamesetup/gamesetup.xml:359 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):359
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "ゲームをランキング用に格付けするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:372 (tooltip)
+#: gui/gamesetup/gamesetup.xml:(tooltip):372
 msgid "Close more game options window"
 msgstr "ゲームの詳細設定ウィンドウを閉じます"
 
-#: gui/gamesetup/gamesetup_mp.xml:19 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):19
 msgid "Multiplayer"
 msgstr "マルチプレイヤー"
 
-#: gui/gamesetup/gamesetup_mp.xml:25 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):25
 msgid "Joining an existing game."
 msgstr "既存のゲームに参加します。"
 
-#: gui/gamesetup/gamesetup_mp.xml:29 (caption)
-#: gui/gamesetup/gamesetup_mp.xml:67 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):29
+#: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Player name:"
 msgstr "プレイヤー名："
 
-#: gui/gamesetup/gamesetup_mp.xml:39 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
 msgstr "サーバーのホスト名かIPアドレス："
 
-#: gui/gamesetup/gamesetup_mp.xml:49 (caption)
-#: gui/gamesetup/gamesetup_mp.xml:91 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):49
+#: gui/gamesetup/gamesetup_mp.xml:(caption):91
 msgid "Continue"
 msgstr "続行"
 
-#: gui/gamesetup/gamesetup_mp.xml:62 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
 msgstr "あなたのサーバーをホストにします。"
 
-#: gui/gamesetup/gamesetup_mp.xml:80 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "サーバー名："
 
-#: gui/gamesetup/gamesetup_mp.xml:110 (caption)
+#: gui/gamesetup/gamesetup_mp.xml:(caption):110
 msgid "[Connection status]"
 msgstr "[接続状況]"
 
-#: gui/loading/loading.xml:48 (caption)
+#: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
 msgstr "今日の名言："
 

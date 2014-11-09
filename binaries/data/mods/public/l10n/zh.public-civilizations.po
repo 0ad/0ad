@@ -1,7 +1,6 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # hyln9 <hyln9@live.cn>, 2014
@@ -10,6 +9,7 @@
 # Mysterelee <8161525@qq.com>, 2014
 # relaxbsd <relaxbsd@gmail.com>, 2014
 # samrmrf, 2013
+# Shirley Gao, 2014
 # simsilver <yihuanlingjian@gmail.com>, 2014
 # xingtong, 2013
 # liulitchi <xingzuo88@qq.com>, 2014
@@ -19,15 +19,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-10-08 10:41+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2014-10-26 02:04+0100\n"
+"PO-Revision-Date: 2014-10-31 02:34+0000\n"
+"Last-Translator: Shirley Gao\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -57,7 +55,7 @@ msgstr "雅典人从阿提卡的劳雷恩银矿采集丰富的银，铸造出著
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "建造一个剧院把所有建筑物的领土空间提高20%"
 
 #: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
 #: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
@@ -1444,7 +1442,7 @@ msgid ""
 "The Greeks were highly successful in Hellenizing various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "希腊人非常成功地希腊化了许多外国人。在那一段古希腊文明，希腊语从西班牙传布至印度。"
 
 #: civs/mace.jsonTeamBonuses[0].Description
 msgid "+15% tribute and trade bonus on metal."
@@ -1561,7 +1559,7 @@ msgstr ""
 msgid ""
 "The Hellenization civ bonus. Building a Theatron increases the territory "
 "effect of all buildings by 25%. Build limit: 1."
-msgstr ""
+msgstr "古希腊文化公民奖：建筑一个剧院把所有建筑物的领土影响提高 25%。限制 1 栋楼"
 
 #: civs/mace.jsonStructures[1].Name civs/ptol.jsonStructures[0].Name
 #: civs/sele.jsonStructures[0].Name
@@ -1629,7 +1627,7 @@ msgstr "孔雀王朝涵盖了数十个原先独立的王国,其领土面积约�
 
 #: civs/maur.jsonCivBonuses[1].Description
 msgid "The Mauryans enjoy access to 4 champions."
-msgstr ""
+msgstr "孔雀王朝人可以进入的4个胜利"
 
 #: civs/maur.jsonCivBonuses[1].Name
 msgid "Kṣhatriya Warrior Caste."
@@ -1645,7 +1643,7 @@ msgstr ""
 
 #: civs/maur.jsonTeamBonuses[0].Description
 msgid "Allied Temple techs -50% cost and research time."
-msgstr ""
+msgstr "联盟寺庙的科技，-50%的成本与搜索时间"
 
 #: civs/maur.jsonTeamBonuses[0].Name
 msgid "Evangelism."
@@ -1654,7 +1652,7 @@ msgstr "福音主义。"
 #: civs/maur.jsonTeamBonuses[0].History
 msgid ""
 "Ashoka the Great sent embassies West to spread knowledge of the Buddha."
-msgstr ""
+msgstr "伟大的阿育王送大使们到西方，传播佛主的智慧。"
 
 #: civs/maur.jsonAINames[0] civs/maur.jsonFactions[0].Heroes[0].Name
 msgid "Chandragupta Maurya"
@@ -1708,11 +1706,11 @@ msgstr ""
 
 #: civs/maur.jsonFactions[0].Technologies[0].Name
 msgid "Elephant Roundup"
-msgstr ""
+msgstr "大象围捕"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Description
 msgid "Greater range and faster train time for Mauryan infantry archers."
-msgstr ""
+msgstr "给孔雀王朝印度步兵弓箭手更大的范围与更短的培训时间"
 
 #: civs/maur.jsonFactions[0].Technologies[1].Name
 msgid "Archery Tradition"
@@ -1730,7 +1728,7 @@ msgstr "孔雀帝国创建者"
 
 #: civs/maur.jsonFactions[0].Heroes[1].History
 msgid "Last great emperor of the Mauryan dynasty."
-msgstr ""
+msgstr "孔雀王朝的最后一个伟大的皇帝"
 
 #: civs/maur.jsonFactions[0].Heroes[2].History
 msgid "Great teacher and advisor to Chandragupta Maurya."
@@ -2493,7 +2491,7 @@ msgstr ""
 
 #: civs/sele.jsonTeamBonuses[0].Description
 msgid "Allied Civic Centers are 20% cheaper."
-msgstr ""
+msgstr "盟国市民中心便宜20%"
 
 #: civs/sele.jsonTeamBonuses[0].Name
 msgid "Syrian Tetrapolis"
@@ -2634,7 +2632,7 @@ msgstr "传统军队 vs. 革新军队"
 #: civs/sele.jsonFactions[0].Technologies[2].Description
 msgid ""
 "A one-time purchase of 20 Indian War Elephants from the Mauryan Empire."
-msgstr ""
+msgstr "一次性从孔雀王朝帝国购买的 20 只大象"
 
 #: civs/sele.jsonFactions[0].Technologies[2].Name
 msgid "Marriage Alliance"
@@ -2859,7 +2857,7 @@ msgstr "斯巴达女性相对于其他古希腊城邦的女性而言拥有比较
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr ""
+msgstr "方阵里面的个体移动得更快"
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"

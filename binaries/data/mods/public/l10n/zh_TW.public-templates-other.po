@@ -1,22 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Jeff Huang <s8321414@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
 "PO-Revision-Date: 2014-08-18 04:20+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -33,29 +30,25 @@ msgstr "一般植物"
 msgid "Bush"
 msgstr "灌木"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "從灌木叢採集漿果以獲得食物。"
-
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
 msgstr "漿果"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
-msgid "Chop down to accumulate Wood."
-msgstr "伐木以累積木材。"
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "從灌木叢採集漿果以獲得食物。"
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
 msgstr "樹木"
 
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr "伐木以累積木材。"
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "一般地質"
-
-#: simulation/templates/template_gaia_geo_mineral.xml:6
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "礦藏，提供罕見種類的貴重金屬。"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -65,9 +58,9 @@ msgstr "礦產"
 msgid "Metal Mine"
 msgstr "金礦"
 
-#: simulation/templates/template_gaia_geo_rock.xml:6
-msgid "Mine these to provide Stone building material."
-msgstr "開採以提供建築石材。"
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "礦藏，提供罕見種類的貴重金屬。"
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -77,9 +70,9 @@ msgstr "岩石"
 msgid "Stone Mine"
 msgstr "石礦"
 
-#: simulation/templates/template_gaia_ruins.xml:10
-msgid "These ruins that can be mined for resources."
-msgstr "這些廢墟可提供開採資源。"
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "開採以提供建築石材。"
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -92,9 +85,9 @@ msgstr "一般廢墟"
 msgid "Ruins"
 msgstr "廢墟"
 
-#: simulation/templates/template_gaia_treasure.xml:10
-msgid "A treasure that can be quickly gathered."
-msgstr "可以快速收集的資源。"
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
+msgstr "這些廢墟可提供開採資源。"
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
@@ -118,6 +111,10 @@ msgstr "一般寶藏"
 msgid "Treasure"
 msgstr "寶藏"
 
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr "可以快速收集的資源。"
+
 #: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "建築物"
@@ -126,12 +123,6 @@ msgstr "建築物"
 msgid "Unit"
 msgstr "單位"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
-#: simulation/templates/campaigns/army_mace_standard.xml:22
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
-msgid "This is what an army would look like on the Strat Map."
-msgstr "這是一隻軍隊在戰略地圖上看起來的樣子。"
-
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
 msgstr "亞歷山大大帝的軍隊。"
@@ -139,6 +130,12 @@ msgstr "亞歷山大大帝的軍隊。"
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 msgid "Army of Alexander the Great"
 msgstr "亞歷山大大帝的軍隊"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
+#: simulation/templates/campaigns/army_mace_standard.xml:22
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+msgid "This is what an army would look like on the Strat Map."
+msgstr "這是一隻軍隊在戰略地圖上看起來的樣子。"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedonia"
@@ -156,10 +153,6 @@ msgstr "列奧尼達一世的軍隊。"
 msgid "Army of Leonidas I"
 msgstr "列奧尼達一世的軍隊"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
-msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "這是一個希臘的小城市。有150的領土效果。"
-
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
@@ -169,13 +162,17 @@ msgstr "殖民地"
 msgid "Minor Greek Polis"
 msgstr "小型希臘城邦"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:28
-msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr "這是一個希臘的主要城市。有300的領土效果。"
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city. Has a territory effect of 150."
+msgstr "這是一個希臘的小城市。有150的領土效果。"
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
 msgstr "希臘城邦"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city. Has a territory effect of 300."
+msgstr "這是一個希臘的主要城市。有300的領土效果。"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -189,13 +186,13 @@ msgstr "希臘宗教聖殿"
 msgid "Battle Line"
 msgstr "戰線"
 
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "方陣"
-
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
 msgstr "需要4個單位"
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
+msgstr "方陣"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
@@ -205,13 +202,13 @@ msgstr "密集縱隊"
 msgid "Column Open"
 msgstr "分散縱隊"
 
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "翼形"
-
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
 msgstr "需要8個單位"
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
+msgstr "翼形"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
@@ -221,49 +218,49 @@ msgstr "密集橫隊"
 msgid "Line Open"
 msgstr "分散橫隊"
 
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "方陣"
-
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
 msgstr "需要10個近戰步兵單位"
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "方陣"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
 msgstr "分散"
 
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "小規模戰鬥"
-
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
 msgstr "只允許遠程單位"
 
-#: simulation/templates/formations/syntagma.xml:7
-msgid "Syntagma"
-msgstr "馬其頓方陣"
+#: simulation/templates/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "小規模戰鬥"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
 msgstr "需要9個長槍步兵單位"
 
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "龜甲陣"
+#: simulation/templates/formations/syntagma.xml:7
+msgid "Syntagma"
+msgstr "馬其頓方陣"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
 msgstr "需要9個近戰步兵單位"
 
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "楔形隊形"
+#: simulation/templates/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "龜甲陣"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
 msgstr "需要3個騎兵單位"
+
+#: simulation/templates/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "楔形隊形"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -281,12 +278,12 @@ msgstr "駱駝"
 msgid "Chicken"
 msgstr "雞"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:19
-msgid "Nile Crocodile"
-msgstr "尼羅鱷"
-
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
+msgstr "尼羅鱷"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
 msgstr "尼羅鱷"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
@@ -313,23 +310,23 @@ msgstr "亞洲象"
 msgid "North African Elephant"
 msgstr "北部非洲象"
 
-#: simulation/templates/gaia/fauna_fish.xml:6
-#: simulation/templates/gaia/fauna_fish_tuna.xml:6
-msgid "Collect food from this bountiful oceanic resource."
-msgstr "從豐富的海洋資源中收集食物。"
-
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
 msgstr "鮪魚"
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
-msgid "Collect food from this bountiful riparian resource."
-msgstr "從豐富的沿岸資源中收集食物。"
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
+msgstr "從豐富的海洋資源中收集食物。"
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
 msgstr "吳郭魚"
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
+msgstr "從豐富的沿岸資源中收集食物。"
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -375,13 +372,13 @@ msgstr "豬"
 msgid "Rabbit"
 msgstr "兔子"
 
-#: simulation/templates/gaia/fauna_shark.xml:15
-msgid "Shark"
-msgstr "鯊魚"
-
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
 msgstr "大白鯊"
+
+#: simulation/templates/gaia/fauna_shark.xml:15
+msgid "Shark"
+msgstr "鯊魚"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
@@ -423,10 +420,6 @@ msgstr "斑馬"
 msgid "Hardy Bush"
 msgstr "耐寒灌木"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
-msgid "Gather grapes from these vines for Food."
-msgstr "從葡萄藤上採集葡萄以獲取食物。"
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
 msgstr "果樹"
@@ -434,6 +427,10 @@ msgstr "果樹"
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
 msgstr "葡萄"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
+msgstr "從葡萄藤上採集葡萄以獲取食物。"
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
@@ -478,13 +475,13 @@ msgstr "枯木"
 msgid "European Beech Tree"
 msgstr "歐洲山毛櫸樹"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
-msgid "Gather figs for Food."
-msgstr "採集無花果做為食物。"
-
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
 msgstr "無花果"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
+msgstr "採集無花果做為食物。"
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -634,10 +631,6 @@ msgstr "橋"
 msgid "Wooden Bridge"
 msgstr "木橋"
 
-#: simulation/templates/other/cart_tophet.xml:25
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "訓練醫生與聖隊騎兵。"
-
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
 msgstr "祭祀神廟"
@@ -646,9 +639,9 @@ msgstr "祭祀神廟"
 msgid "Tophet"
 msgstr "托菲特"
 
-#: simulation/templates/other/celt_homestead.xml:25
-msgid "A Celtic homestead."
-msgstr "塞爾特家園。"
+#: simulation/templates/other/cart_tophet.xml:25
+msgid "Train physicians and Sacred Band Cavalrymen."
+msgstr "訓練醫生與聖隊騎兵。"
 
 #: simulation/templates/other/celt_homestead.xml:22
 msgid "Homestead"
@@ -658,23 +651,27 @@ msgstr "家園"
 msgid "Caer"
 msgstr "Caer"
 
-#: simulation/templates/other/celt_hut.xml:23
-msgid "Add +2 to Population Cap."
-msgstr "將 +2 到人口限制中"
+#: simulation/templates/other/celt_homestead.xml:25
+msgid "A Celtic homestead."
+msgstr "塞爾特家園。"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr "棚屋"
+
+#: simulation/templates/other/celt_hut.xml:23
+msgid "Add +2 to Population Cap."
+msgstr "將 +2 到人口限制中"
+
+#: simulation/templates/other/celt_longhouse.xml:22
+msgid "Longhouse"
+msgstr "長屋"
 
 #: simulation/templates/other/celt_longhouse.xml:24
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
 msgstr "將 +10 到人口限制中。"
-
-#: simulation/templates/other/celt_longhouse.xml:22
-msgid "Longhouse"
-msgstr "長屋"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -713,10 +710,6 @@ msgstr "石頭圍籬"
 msgid "Wheat Field"
 msgstr "麥田"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:33
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "訓練醫療者。駐軍30個單位以較快的速度治療他們。"
-
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Epic Temple"
 msgstr "史詩神廟"
@@ -725,6 +718,10 @@ msgstr "史詩神廟"
 msgid "Naos Parthenos"
 msgstr "帕德嫩神廟"
 
+#: simulation/templates/other/hellenic_epic_temple.xml:33
+msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgstr "訓練醫療者。駐軍30個單位以較快的速度治療他們。"
+
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
 msgstr "門廊"
@@ -732,10 +729,6 @@ msgstr "門廊"
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
 msgstr "山門"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "將 +10 到人口限制中。招募特殊單位。"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -746,17 +739,21 @@ msgstr "拱廊"
 msgid "Hellenic Royal Stoa"
 msgstr "希臘皇家柱廊"
 
+#: simulation/templates/other/hellenic_royal_stoa.xml:33
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "將 +10 到人口限制中。招募特殊單位。"
+
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
 msgstr "希臘柱廊"
 
-#: simulation/templates/other/maur_palace.xml:14
-msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "將 +15 到人口限制中。招募額外單位及英雄。"
-
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
 msgstr "Harmya"
+
+#: simulation/templates/other/maur_palace.xml:14
+msgid "Add +15 to Population Cap. Recruit extra units and heroes."
+msgstr "將 +15 到人口限制中。招募額外單位及英雄。"
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -766,54 +763,45 @@ msgstr "方尖塔"
 msgid "Egyptian Obelisk"
 msgstr "埃及方尖塔"
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
-msgid "Big Spike"
-msgstr "大長釘"
-
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
 msgstr "柵欄角釘"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
-msgid "Wooden Wall Corner"
-msgstr "木牆角"
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
+msgstr "大長釘"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
 msgstr "柵欄曲線"
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
-msgid "Wooden Wall End"
-msgstr "木牆末端"
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
+msgstr "木牆角"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
 msgstr "柵欄末端"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:21
-msgid "Wooden Tower"
-msgstr "木製塔樓"
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
+msgstr "木牆末端"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
 msgstr "柵欄要塞"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
-msgid "Wooden Gate"
-msgstr "木門"
+#: simulation/templates/other/palisades_rocks_fort.xml:21
+msgid "Wooden Tower"
+msgstr "木製塔樓"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
 msgstr "柵欄門"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
-#: simulation/templates/other/wallset_palisade.xml:5
-msgid "Wooden Wall"
-msgstr "木牆"
+#: simulation/templates/other/palisades_rocks_gate.xml:21
+msgid "Wooden Gate"
+msgstr "木門"
 
 #: simulation/templates/other/palisades_rocks_long.xml:22
 #: simulation/templates/other/palisades_rocks_medium.xml:22
@@ -824,37 +812,46 @@ msgstr "木牆"
 msgid "Palisade"
 msgstr "柵欄"
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+#: simulation/templates/other/palisades_rocks_medium.xml:23
+#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr "木牆"
+
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "將木牆轉換為木門"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+msgid "Outpost"
+msgstr "前哨"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
 msgstr "木製瞭望塔"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:15
-msgid "Outpost"
-msgstr "前哨"
-
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
 msgstr "瞭望塔"
-
-#: simulation/templates/other/palisades_small_spikes.xml:17
-msgid "Small Spikes"
-msgstr "小型尖刺"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
 msgstr "小型尖刺"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
-msgid "Tall Spikes"
-msgstr "高尖刺"
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
+msgstr "小型尖刺"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
+msgstr "高尖刺"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
 msgstr "高尖刺"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
@@ -874,13 +871,13 @@ msgstr "客棧"
 msgid "Warehouse"
 msgstr "倉庫"
 
-#: simulation/templates/other/plane.xml:40
-msgid "A World War 2 American fighter plane."
-msgstr "一個第2次世界大戰美國戰鬥機。"
-
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
 msgstr "P-51野馬戰鬥機"
+
+#: simulation/templates/other/plane.xml:40
+msgid "A World War 2 American fighter plane."
+msgstr "一個第2次世界大戰美國戰鬥機。"
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -895,16 +892,16 @@ msgstr "大金字塔"
 msgid "Minor Pyramid"
 msgstr "小金字塔"
 
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "一個腐朽的軍隊沉船。任何商人的好機會。"
-
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
 msgstr "沉船"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "一個腐朽的軍隊沉船。任何商人的好機會。"
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
@@ -957,13 +954,13 @@ msgstr "方桌"
 msgid "Spartiate with Xiphos"
 msgstr "帶著長劍的斯巴達人"
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "此神廟未建成就變為廢墟了。"
-
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
 msgstr "未完成的希臘神殿"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "此神廟未建成就變為廢墟了。"
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

@@ -1,22 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Kanetaka Suto, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-10-21 16:34+0000\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-11-02 12:30+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ja\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -105,6 +102,10 @@ msgstr "剣"
 msgid "Cavalry Swordsman"
 msgstr "剣騎兵"
 
+#: simulation/templates/template_unit_cavalry_ranged.xml:18
+msgid "Ranged Cavalry"
+msgstr "遠隔攻撃騎兵"
+
 #: simulation/templates/template_unit_cavalry_ranged.xml:19
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:28
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:27
@@ -117,10 +118,6 @@ msgstr "剣騎兵"
 #: simulation/templates/template_unit_infantry_ranged.xml:26
 msgid "Ranged"
 msgstr "遠隔攻撃"
-
-#: simulation/templates/template_unit_cavalry_ranged.xml:18
-msgid "Ranged Cavalry"
-msgstr "遠隔攻撃騎兵"
 
 #: simulation/templates/template_unit_cavalry_ranged_archer.xml:24
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:28
@@ -148,13 +145,13 @@ msgstr "投槍"
 msgid "Cavalry Skirmisher"
 msgstr "騎馬散兵"
 
-#: simulation/templates/template_unit_champion.xml:6
-msgid "Champion"
-msgstr "チャンピオン"
-
 #: simulation/templates/template_unit_champion.xml:4
 msgid "Champion Unit"
 msgstr "チャンピオンユニット"
+
+#: simulation/templates/template_unit_champion.xml:6
+msgid "Champion"
+msgstr "チャンピオン"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
@@ -227,6 +224,10 @@ msgstr "チャンピオン剣士"
 msgid "Champion Ranged"
 msgstr "チャンピオン射撃兵"
 
+#: simulation/templates/template_unit_champion_siege.xml:17
+msgid "Super Siege"
+msgstr "スーパー包囲攻撃"
+
 #: simulation/templates/template_unit_champion_siege.xml:18
 #: simulation/templates/template_unit_mechanical.xml:15
 #: simulation/templates/template_unit_mechanical.xml:14
@@ -239,21 +240,17 @@ msgstr "機械"
 msgid "Siege"
 msgstr "包囲攻撃"
 
-#: simulation/templates/template_unit_champion_siege.xml:17
-msgid "Super Siege"
-msgstr "スーパー包囲攻撃"
-
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
 msgstr "犬"
 
-#: simulation/templates/template_unit_dog.xml:54
-msgid "Cannot attack structures."
-msgstr "建物を攻撃できません。"
-
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
 msgstr "軍犬"
+
+#: simulation/templates/template_unit_dog.xml:54
+msgid "Cannot attack structures."
+msgstr "建物を攻撃できません。"
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -263,13 +260,13 @@ msgstr "動物"
 msgid "Fish"
 msgstr "魚"
 
-#: simulation/templates/template_unit_fauna_hunt_whale.xml:17
-msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr "この豊かな海の幸を狩って、食料を採集します。"
-
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:16
 msgid "Cetacean"
 msgstr "鯨類"
+
+#: simulation/templates/template_unit_fauna_hunt_whale.xml:17
+msgid "Kill, then collect food from this bountiful oceanic resource."
+msgstr "この豊かな海の幸を狩って、食料を採集します。"
 
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
@@ -354,15 +351,19 @@ msgstr "船舶"
 msgid "Light Warship"
 msgstr "小型軍艦"
 
+#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
+msgid "Fire Ship"
+msgstr "炎上船"
+
 #: simulation/templates/template_unit_mechanical_ship_fire.xml:36
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
 msgstr "敵船の耐久力を急激に奪います。燃えているため徐々に耐久力を失います。よって火船は急いで使ってください。"
 
-#: simulation/templates/template_unit_mechanical_ship_fire.xml:34
-msgid "Fire Ship"
-msgstr "炎上船"
+#: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
+msgid "Fishing Boat"
+msgstr "漁船"
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:33
 msgid ""
@@ -370,9 +371,9 @@ msgid ""
 "boost fishing rate."
 msgstr "水域から魚をとり食料にします。補助あるいは歩兵ユニットを乗船させると漁業効率が改善します。"
 
-#: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
-msgid "Fishing Boat"
-msgstr "漁船"
+#: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
+msgid "Merchantman"
+msgstr "商業船舶"
 
 #: simulation/templates/template_unit_mechanical_ship_merchant.xml:28
 msgid ""
@@ -380,17 +381,13 @@ msgid ""
 "for each garrisoned). Gather profitable aquatic treasures."
 msgstr "港の間で交易をします。船に商人を乗せると利益が増加します（一人につき+20%）。水中の価値のある財宝を回収できます。"
 
-#: simulation/templates/template_unit_mechanical_ship_merchant.xml:27
-msgid "Merchantman"
-msgstr "商業船舶"
+#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
+msgid "Heavy Warship"
+msgstr "大型軍艦"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
 msgstr "投石機を搭載させると遠隔攻撃の火力が増します。"
-
-#: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
-msgid "Heavy Warship"
-msgstr "大型軍艦"
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -400,26 +397,26 @@ msgstr "中型軍艦"
 msgid "Bolt Shooter"
 msgstr "弩砲"
 
-#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
-msgid "Causes splash damage."
-msgstr "隊列を崩す効果を引き起こします。"
-
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:44
 msgid "Siege Catapult"
 msgstr "攻城投石機"
+
+#: simulation/templates/template_unit_mechanical_siege_onager.xml:45
+msgid "Causes splash damage."
+msgstr "隊列を崩す効果を引き起こします。"
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
 msgstr "破城槌"
 
+#: simulation/templates/template_unit_mechanical_siege_tower.xml:52
+msgid "Siege Tower"
+msgstr "攻城塔"
+
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
 msgstr "最大20人の歩兵を駐屯させて、矢の本数を0から10へ増やせます。"
-
-#: simulation/templates/template_unit_mechanical_siege_tower.xml:52
-msgid "Siege Tower"
-msgstr "攻城塔"
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -429,13 +426,17 @@ msgstr "補助"
 msgid "Inspiration Aura"
 msgstr "霊感オーラ"
 
+#: simulation/templates/template_unit_support_female_citizen.xml:13
+msgid "Nearby males work 10% faster"
+msgstr "付近の男性の仕事が10%速くなります"
+
 #: simulation/templates/template_unit_support_female_citizen.xml:55
 msgid "Female Citizen"
 msgstr "女性市民"
 
-#: simulation/templates/template_unit_support_female_citizen.xml:13
-msgid "Nearby males work 10% faster"
-msgstr "付近の男性の仕事が10%速くなります"
+#: simulation/templates/template_unit_support_healer.xml:20
+msgid "Healer"
+msgstr "治療者"
 
 #: simulation/templates/template_unit_support_healer.xml:21
 msgid ""
@@ -443,9 +444,9 @@ msgid ""
 "Heal units."
 msgstr "分類：補助　治療者。\nユニットを治療します。"
 
-#: simulation/templates/template_unit_support_healer.xml:20
-msgid "Healer"
-msgstr "治療者"
+#: simulation/templates/template_unit_support_slave.xml:40
+msgid "Slave"
+msgstr "奴隷"
 
 #: simulation/templates/template_unit_support_slave.xml:42
 msgid ""
@@ -453,19 +454,15 @@ msgid ""
 "Gatherer with a finite life span. Bonused at mining and lumbering."
 msgstr "分類：補助　労働者　奴隷。\n寿命のある採集者。採掘と伐採が得意です。"
 
-#: simulation/templates/template_unit_support_slave.xml:40
-msgid "Slave"
-msgstr "奴隷"
+#: simulation/templates/template_unit_support_trader.xml:15
+msgid "Trader"
+msgstr "商人"
 
 #: simulation/templates/template_unit_support_trader.xml:17
 msgid ""
 "Classes: Support Trader.\n"
 "Trade resources between your own markets and those of your allies."
 msgstr "分類：補助　商人。\n資源の取引を、自国や同盟国の市場間で行います。"
-
-#: simulation/templates/template_unit_support_trader.xml:15
-msgid "Trader"
-msgstr "商人"
 
 #: simulation/templates/units/athen_cavalry_javelinist_a.xml:18
 #: simulation/templates/units/athen_cavalry_swordsman_a.xml:20
@@ -684,7 +681,7 @@ msgstr "Pródromos"
 #: simulation/templates/units/sele_infantry_spearman_e.xml:20
 #: simulation/templates/units/sele_infantry_swordsman_e.xml:20
 #: simulation/templates/units/sele_support_healer_e.xml:11
-#: simulation/templates/units/spart_cavalry_javelinist_e.xml:13
+#: simulation/templates/units/spart_cavalry_javelinist_e.xml:18
 #: simulation/templates/units/spart_cavalry_spearman_e.xml:22
 #: simulation/templates/units/spart_champion_infantry_sword.xml:23
 #: simulation/templates/units/spart_infantry_javelinist_e.xml:18
@@ -733,24 +730,24 @@ msgstr "Toxotes Skithikos"
 msgid "Formation Reforms"
 msgstr "陣形改革"
 
-#: simulation/templates/units/athen_hero_iphicrates.xml:22
-#: simulation/templates/units/hele_hero_xenophon.xml:22
-msgid "Peltast Reforms"
-msgstr "投槍兵改革"
-
-#: simulation/templates/units/athen_hero_iphicrates.xml:28
-msgid "Iphicrates"
-msgstr "イピクラテス"
-
 #: simulation/templates/units/athen_hero_iphicrates.xml:14
 #: simulation/templates/units/hele_hero_xenophon.xml:14
 msgid "All units in his formation +15% speed and +1 armor."
 msgstr "彼と陣形を組んだ全てのユニットの移動速度を15%速く、装甲を1強化します。"
 
+#: simulation/templates/units/athen_hero_iphicrates.xml:22
+#: simulation/templates/units/hele_hero_xenophon.xml:22
+msgid "Peltast Reforms"
+msgstr "投槍兵改革"
+
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 #: simulation/templates/units/hele_hero_xenophon.xml:23
 msgid "All Peltasts +15% speed."
 msgstr "全投槍兵の速度が15%増加します。"
+
+#: simulation/templates/units/athen_hero_iphicrates.xml:28
+msgid "Iphicrates"
+msgstr "イピクラテス"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:29
 msgid "Iphikratēs"
@@ -760,21 +757,21 @@ msgstr "Iphikratēs"
 msgid "Builder Aura"
 msgstr "建築家オーラ"
 
-#: simulation/templates/units/athen_hero_pericles.xml:20
-msgid "Acropolis Aura"
-msgstr "アクロポリス・オーラ"
-
-#: simulation/templates/units/athen_hero_pericles.xml:26
-msgid "Pericles"
-msgstr "ペリクレス"
-
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
 msgstr "彼の視界内の建物の建設が15%速くなります。"
 
+#: simulation/templates/units/athen_hero_pericles.xml:20
+msgid "Acropolis Aura"
+msgstr "アクロポリス・オーラ"
+
 #: simulation/templates/units/athen_hero_pericles.xml:21
 msgid "Temples are 50 stone cheaper during his lifetime."
 msgstr "彼の生存中は神殿が石材50個分安くなります。"
+
+#: simulation/templates/units/athen_hero_pericles.xml:26
+msgid "Pericles"
+msgstr "ペリクレス"
 
 #: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Periklēs"
@@ -784,21 +781,21 @@ msgstr "Periklēs"
 msgid "Naval Commander Aura"
 msgstr "海軍司令官オーラ"
 
-#: simulation/templates/units/athen_hero_themistocles.xml:20
-msgid "Naval Architect Aura"
-msgstr "造船技師オーラ"
-
-#: simulation/templates/units/athen_hero_themistocles.xml:26
-msgid "Themistocles"
-msgstr "テミストクレス"
-
 #: simulation/templates/units/athen_hero_themistocles.xml:12
 msgid "When garrisoned in a ship, his ship is +50% faster."
 msgstr "彼が乗船した船の速さが50%増しになります。"
 
+#: simulation/templates/units/athen_hero_themistocles.xml:20
+msgid "Naval Architect Aura"
+msgstr "造船技師オーラ"
+
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
 msgstr "彼の存命中、船舶の建造が20%速くなります。"
+
+#: simulation/templates/units/athen_hero_themistocles.xml:26
+msgid "Themistocles"
+msgstr "テミストクレス"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistoklês"
@@ -870,21 +867,21 @@ msgstr "Ploîon Halieutikón"
 msgid "Ploîon Phortēgikón"
 msgstr "Ploîon Phortēgikón"
 
-#: simulation/templates/units/athen_ship_trireme.xml:6
-msgid "Athenian Trireme"
-msgstr "アテナイ三段櫂船"
-
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
 msgstr "Triḗrēs Athēnaía"
 
-#: simulation/templates/units/athen_support_female_citizen.xml:6
-msgid "Athenian Woman"
-msgstr "アテナイ女性"
+#: simulation/templates/units/athen_ship_trireme.xml:6
+msgid "Athenian Trireme"
+msgstr "アテナイ三段櫂船"
 
 #: simulation/templates/units/athen_support_female_citizen.xml:5
 msgid "Gýnē Athēnaïkós"
 msgstr "Gýnē Athēnaïkós"
+
+#: simulation/templates/units/athen_support_female_citizen.xml:6
+msgid "Athenian Woman"
+msgstr "アテナイ女性"
 
 #: simulation/templates/units/athen_support_healer_b.xml:6
 #: simulation/templates/units/hele_support_healer_b.xml:6
@@ -907,25 +904,25 @@ msgstr "Doulos"
 msgid "Émporos"
 msgstr "Émporos"
 
-#: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
-msgid "Raiding Cavalry"
-msgstr "奇襲騎兵"
-
 #: simulation/templates/units/brit_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/celt_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/gaul_cavalry_javelinist_b.xml:6
 msgid "Gaisaredos"
 msgstr "Gaisaredos"
 
-#: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
-msgid "Celtic Cavalry"
-msgstr "ケルト騎兵"
+#: simulation/templates/units/brit_cavalry_javelinist_b.xml:7
+msgid "Raiding Cavalry"
+msgstr "奇襲騎兵"
 
 #: simulation/templates/units/brit_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/celt_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/gaul_cavalry_swordsman_b.xml:6
 msgid "Epos"
 msgstr "Epos"
+
+#: simulation/templates/units/brit_cavalry_swordsman_b.xml:7
+msgid "Celtic Cavalry"
+msgstr "ケルト騎兵"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:14
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:14
@@ -1010,15 +1007,15 @@ msgstr "ケルト投石兵"
 msgid "Iaosae"
 msgstr "Iaosae"
 
-#: simulation/templates/units/brit_infantry_spearman_b.xml:14
-msgid "Celtic Spearman"
-msgstr "ケルト槍兵"
-
 #: simulation/templates/units/brit_infantry_spearman_b.xml:13
 #: simulation/templates/units/celt_infantry_spearman_b.xml:15
 #: simulation/templates/units/gaul_infantry_spearman_b.xml:15
 msgid "Gaeroa"
 msgstr "Gaeroa"
+
+#: simulation/templates/units/brit_infantry_spearman_b.xml:14
+msgid "Celtic Spearman"
+msgstr "ケルト槍兵"
 
 #: simulation/templates/units/brit_mechanical_siege_ram.xml:15
 #: simulation/templates/units/celt_mechanical_siege_ram.xml:21
@@ -1038,6 +1035,12 @@ msgstr "/Fishing Boat/"
 msgid "Curach"
 msgstr "Curach"
 
+#: simulation/templates/units/brit_ship_trireme.xml:18
+#: simulation/templates/units/celt_ship_trireme.xml:18
+#: simulation/templates/units/gaul_ship_trireme.xml:18
+msgid "Venetic Ponti"
+msgstr "Venetic Ponti"
+
 #: simulation/templates/units/brit_ship_trireme.xml:19
 #: simulation/templates/units/celt_ship_trireme.xml:19
 #: simulation/templates/units/gaul_ship_trireme.xml:19
@@ -1047,23 +1050,17 @@ msgid ""
 "Transport many soldiers across the sea."
 msgstr "分類：中型　軍艦　遠隔。\n海を越えて多くの兵士を輸送します。"
 
-#: simulation/templates/units/brit_ship_trireme.xml:18
-#: simulation/templates/units/celt_ship_trireme.xml:18
-#: simulation/templates/units/gaul_ship_trireme.xml:18
-msgid "Venetic Ponti"
-msgstr "Venetic Ponti"
+#: simulation/templates/units/brit_support_female_citizen.xml:18
+#: simulation/templates/units/celt_support_female_citizen.xml:18
+#: simulation/templates/units/gaul_support_female_citizen.xml:18
+msgid "Bodu"
+msgstr "Bodu"
 
 #: simulation/templates/units/brit_support_female_citizen.xml:19
 #: simulation/templates/units/celt_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
 msgstr "ケルト女性"
-
-#: simulation/templates/units/brit_support_female_citizen.xml:18
-#: simulation/templates/units/celt_support_female_citizen.xml:18
-#: simulation/templates/units/gaul_support_female_citizen.xml:18
-msgid "Bodu"
-msgstr "Bodu"
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/celt_support_healer_b.xml:6
@@ -1149,49 +1146,48 @@ msgstr "Mašal"
 msgid "Lightning Aura"
 msgstr "雷光オーラ"
 
-#: simulation/templates/units/cart_hero_hamilcar.xml:17
-msgid "Hamilcar Barca"
-msgstr "ハミルカル・バルカ"
-
 #: simulation/templates/units/cart_hero_hamilcar.xml:16
 msgid "Ḥimelqart Baraq"
 msgstr "Ḥimelqart Baraq"
+
+#: simulation/templates/units/cart_hero_hamilcar.xml:17
+msgid "Hamilcar Barca"
+msgstr "ハミルカル・バルカ"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:13
 msgid "Tactician Aura"
 msgstr "戦術家オーラ"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:23
-msgid ""
-"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives.\n"
-"Counters: 2x vs. All Cavalry, 1.5x vs. All Structures. Extra 1.5x vs. Gates.\n"
-"Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "「戦略家」特技（未定）：ハンニバル存命中、プレイヤーは戦場の霧内の変化を見ることができる。\n得意：2倍　対全騎兵、1.5倍　対全建物。さらに1.5倍　対門。\n苦手：散兵、剣士。暴れ出す。"
+#: simulation/templates/units/cart_hero_hannibal.xml:14
+msgid "All allied units +2 attack within vision range of him."
+msgstr "彼の視界内のすべての同盟ユニットの攻撃力が2増加します。"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:19
 msgid "Hannibal Barca"
 msgstr "ハンニバル・バルカ"
 
-#: simulation/templates/units/cart_hero_hannibal.xml:14
-msgid "All allied units +2 attack within vision range of him."
-msgstr "彼の視界内のすべての同盟ユニットの攻撃力が2増加します。"
-
 #: simulation/templates/units/cart_hero_hannibal.xml:20
 msgid "Ḥannibaʿal Baraq"
 msgstr "Ḥannibaʿal Baraq"
+
+#: simulation/templates/units/cart_hero_hannibal.xml:23
+msgid ""
+"\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
+"Can run amok."
+msgstr "「戦略家」特技（未定）：ハンニバル存命中、プレイヤーは戦場の霧内の変化を見ることができる。\n暴れ出すことあり。"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
 msgstr "司令官オーラ"
 
-#: simulation/templates/units/cart_hero_maharbal.xml:17
-msgid "Maharbal"
-msgstr "マハルバル"
-
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
 msgstr "彼の視界内の騎兵の突進攻撃力が5増加します（現状は無意味）。"
+
+#: simulation/templates/units/cart_hero_maharbal.xml:17
+msgid "Maharbal"
+msgstr "マハルバル"
 
 #: simulation/templates/units/cart_hero_maharbal.xml:18
 msgid "Maharbaʿal"
@@ -1265,16 +1261,16 @@ msgstr "Du-Mašōt"
 msgid "Noon-Mašōt"
 msgstr "Noon-Mašōt"
 
+#: simulation/templates/units/cart_ship_merchant.xml:9
+msgid "Seḥer"
+msgstr "Seḥer"
+
 #: simulation/templates/units/cart_ship_merchant.xml:11
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures. Carthaginians "
 "have +25% sea trading bonus."
 msgstr "港を渡り歩いて交易をします。船に商人を乗せると利益が増加します（一人につき+20%）。水中の価値のある財宝を回収できます。カルタゴは+25%の海洋交易ボーナスが付きます。"
-
-#: simulation/templates/units/cart_ship_merchant.xml:9
-msgid "Seḥer"
-msgstr "Seḥer"
 
 #: simulation/templates/units/cart_ship_quinquereme.xml:5
 msgid "Quinquereme"
@@ -1294,13 +1290,13 @@ msgstr "三段櫂船"
 msgid "Tlat-Mašōt"
 msgstr "Tlat-Mašōt"
 
-#: simulation/templates/units/cart_support_female_citizen.xml:6
-msgid "Carthaginian Woman"
-msgstr "カルタゴ女性"
-
 #: simulation/templates/units/cart_support_female_citizen.xml:5
 msgid "Aštāh"
 msgstr "Aštāh"
+
+#: simulation/templates/units/cart_support_female_citizen.xml:6
+msgid "Carthaginian Woman"
+msgstr "カルタゴ女性"
 
 #: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
@@ -1314,10 +1310,6 @@ msgstr "Mekir"
 msgid "Brythonic Champion Chariot."
 msgstr "ブリトンチャンピオン戦車。"
 
-#: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
-msgid "Gallic Champion Cavalry."
-msgstr "ガリアチャンピオン騎兵。"
-
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
 msgid "Gallic Noble Cavalry"
@@ -1328,17 +1320,17 @@ msgstr "ガリア貴族騎士"
 msgid "Gallic Brihent"
 msgstr "Gallic Brihent"
 
-#: simulation/templates/units/celt_champion_infantry_brit.xml:7
-msgid "Brythonic Champion Swordsman."
-msgstr "ブリトンチャンピオン剣士。"
+#: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
+msgid "Gallic Champion Cavalry."
+msgstr "ガリアチャンピオン騎兵。"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:5
 msgid "Two-Handed Swordsman"
 msgstr "両手剣士"
 
-#: simulation/templates/units/celt_champion_infantry_gaul.xml:7
-msgid "Gallic Champion Swordsman."
-msgstr "ガリアチャンピオン剣士。"
+#: simulation/templates/units/celt_champion_infantry_brit.xml:7
+msgid "Brythonic Champion Swordsman."
+msgstr "ブリトンチャンピオン剣士。"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_infantry.xml:5
@@ -1349,6 +1341,10 @@ msgstr "重装剣士"
 #: simulation/templates/units/gaul_champion_infantry.xml:6
 msgid "Solduros"
 msgstr "Solduros"
+
+#: simulation/templates/units/celt_champion_infantry_gaul.xml:7
+msgid "Gallic Champion Swordsman."
+msgstr "ガリアチャンピオン剣士。"
 
 #: simulation/templates/units/celt_fanatic.xml:15
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
@@ -1388,10 +1384,6 @@ msgstr "ウェルキンゲトリクス"
 msgid "Thessalian Scout"
 msgstr "テッサリア斥候騎兵"
 
-#: simulation/templates/units/hele_champion_cavalry_mace.xml:7
-msgid "Macedonian Champion Cavalry."
-msgstr "マケドニアチャンピオン騎兵。"
-
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:5
 #: simulation/templates/units/mace_champion_cavalry.xml:5
 #: simulation/templates/units/sele_cavalry_spearman_b.xml:6
@@ -1403,11 +1395,9 @@ msgstr "近衛騎兵"
 msgid "Hetaîros"
 msgstr "Hetaîros"
 
-#: simulation/templates/units/hele_champion_infantry_mace.xml:7
-msgid ""
-"Macedonian Champion Pikeman.\n"
-"Heavy line infantry. Uses the Syntagma Formation."
-msgstr "マケドニアチャンピオン長槍兵。\n重装戦列歩兵。シンタグマ陣形を用います。"
+#: simulation/templates/units/hele_champion_cavalry_mace.xml:7
+msgid "Macedonian Champion Cavalry."
+msgstr "マケドニアチャンピオン騎兵。"
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -1419,10 +1409,11 @@ msgstr "歩兵親衛隊"
 msgid "Pezétairos"
 msgstr "Pezétairos"
 
-#: simulation/templates/units/hele_champion_infantry_polis.xml:15
-#: simulation/templates/units/spart_champion_infantry_spear.xml:12
-msgid "Classes: Champion Melee Infantry Spearman."
-msgstr "分類：　チャンピオン　近接攻撃　歩兵　槍兵。"
+#: simulation/templates/units/hele_champion_infantry_mace.xml:7
+msgid ""
+"Macedonian Champion Pikeman.\n"
+"Heavy line infantry. Uses the Syntagma Formation."
+msgstr "マケドニアチャンピオン長槍兵。\n重装戦列歩兵。シンタグマ陣形を用います。"
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:13
 #: simulation/templates/units/spart_champion_infantry_spear.xml:10
@@ -1433,11 +1424,10 @@ msgstr "スパルタ重装歩兵"
 msgid "Spartiā́tēs"
 msgstr "Spartiā́tēs"
 
-#: simulation/templates/units/hele_champion_ranged_polis.xml:7
-msgid ""
-"Poleis Champion Raider.\n"
-"    Fast Move Speed."
-msgstr "ポリスチャンピオン急襲兵。\n移動が速いです。"
+#: simulation/templates/units/hele_champion_infantry_polis.xml:15
+#: simulation/templates/units/spart_champion_infantry_spear.xml:12
+msgid "Classes: Champion Melee Infantry Spearman."
+msgstr "分類：　チャンピオン　近接攻撃　歩兵　槍兵。"
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:5
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:5
@@ -1448,6 +1438,12 @@ msgstr "アテナイ中装歩兵"
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:6
 msgid "Ékdromos Athēnaïkós"
 msgstr "Ékdromos Athēnaïkós"
+
+#: simulation/templates/units/hele_champion_ranged_polis.xml:7
+msgid ""
+"Poleis Champion Raider.\n"
+"    Fast Move Speed."
+msgstr "ポリスチャンピオン急襲兵。\n移動が速いです。"
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:7
 msgid "Poleis Champion Raider."
@@ -1479,12 +1475,6 @@ msgstr "ギリシア重装歩兵"
 msgid "Hoplī́tēs Hellēnikós"
 msgstr "Hoplī́tēs Hellēnikós"
 
-#: simulation/templates/units/hele_mechanical_siege_tower.xml:6
-msgid ""
-"Siege Tower.\n"
-"Garrison up to 20 units inside for massive firepower."
-msgstr "攻城塔。\n最大20ユニットを中に駐屯させて、火力を強化出来ます。"
-
 #: simulation/templates/units/hele_mechanical_siege_tower.xml:5
 #: simulation/templates/units/mace_mechanical_siege_tower.xml:5
 #: simulation/templates/units/ptol_mechanical_siege_tower.xml:5
@@ -1492,11 +1482,11 @@ msgstr "攻城塔。\n最大20ユニットを中に駐屯させて、火力を�
 msgid "Helépolis"
 msgstr "Helépolis"
 
-#: simulation/templates/units/hele_ship_trireme.xml:6
+#: simulation/templates/units/hele_mechanical_siege_tower.xml:6
 msgid ""
-"Medium Warship.\n"
-"Ramming Secondary Attack."
-msgstr "中型軍艦。\n衝角攻撃で二次攻撃します。"
+"Siege Tower.\n"
+"Garrison up to 20 units inside for massive firepower."
+msgstr "攻城塔。\n最大20ユニットを中に駐屯させて、火力を強化出来ます。"
 
 #: simulation/templates/units/hele_ship_trireme.xml:5
 #: simulation/templates/units/mace_ship_trireme.xml:6
@@ -1504,13 +1494,19 @@ msgstr "中型軍艦。\n衝角攻撃で二次攻撃します。"
 msgid "Triḗrēs"
 msgstr "Triḗrēs"
 
-#: simulation/templates/units/hele_support_female_citizen.xml:6
-msgid "Greek Woman"
-msgstr "ギリシア女性"
+#: simulation/templates/units/hele_ship_trireme.xml:6
+msgid ""
+"Medium Warship.\n"
+"Ramming Secondary Attack."
+msgstr "中型軍艦。\n衝角攻撃で二次攻撃します。"
 
 #: simulation/templates/units/hele_support_female_citizen.xml:5
 msgid "Gýnē Hellenikos"
 msgstr "Gýnē Hellenikos"
+
+#: simulation/templates/units/hele_support_female_citizen.xml:6
+msgid "Greek Woman"
+msgstr "ギリシア女性"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1520,29 +1516,29 @@ msgstr "Kantabriako Zaldun"
 msgid "Lantzari"
 msgstr "Lantzari"
 
+#: simulation/templates/units/iber_champion_cavalry.xml:17
+msgid "Leial Zalduneria"
+msgstr "Leial Zalduneria "
+
 #: simulation/templates/units/iber_champion_cavalry.xml:21
 msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings."
 msgstr "分類：チャンピオン　遠隔　騎兵　散兵。\n特技：火投槍。対建物に威力。"
 
-#: simulation/templates/units/iber_champion_cavalry.xml:17
-msgid "Leial Zalduneria"
-msgstr "Leial Zalduneria "
-
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
 msgstr "Leial Ezpatari"
+
+#: simulation/templates/units/iber_hero_caros.xml:10
+msgid "Caros"
+msgstr "Caros"
 
 #: simulation/templates/units/iber_hero_caros.xml:12
 #: simulation/templates/units/iber_hero_indibil.xml:7
 #: simulation/templates/units/iber_hero_viriato.xml:12
 msgid "Hero Aura: \"Tactica Guerilla.\" TBD."
 msgstr "英雄オーラ：　 \"Tactica Guerilla.\" 未定。"
-
-#: simulation/templates/units/iber_hero_caros.xml:10
-msgid "Caros"
-msgstr "Caros"
 
 #: simulation/templates/units/iber_hero_indibil.xml:5
 msgid "Indibil"
@@ -1588,13 +1584,13 @@ msgstr "Merkataritza Itsasontzi"
 msgid "Ponti"
 msgstr "Ponti"
 
-#: simulation/templates/units/iber_support_female_citizen.xml:6
-msgid "Iberian Woman"
-msgstr "イベリア女性"
-
 #: simulation/templates/units/iber_support_female_citizen.xml:5
 msgid "Emazteki"
 msgstr "Emazteki"
+
+#: simulation/templates/units/iber_support_female_citizen.xml:6
+msgid "Iberian Woman"
+msgstr "イベリア女性"
 
 #: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
@@ -1640,25 +1636,21 @@ msgstr "Hypaspistes Argyraspides"
 msgid "Imperialism Aura"
 msgstr "帝政オーラ"
 
-#: simulation/templates/units/mace_hero_alexander.xml:36
-msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr "「英雄殺し」ボーナス： 敵の英雄に対し+20%の攻撃ボーナス。"
+#: simulation/templates/units/mace_hero_alexander.xml:11
+msgid "+10% territory effect for all buildings while he lives."
+msgstr "彼の存命中、全ての建物の領地半径が10%拡大します。"
 
 #: simulation/templates/units/mace_hero_alexander.xml:34
 msgid "Alexander The Great"
 msgstr "アレクサンドロス大王"
 
-#: simulation/templates/units/mace_hero_alexander.xml:11
-msgid "+10% territory effect for all buildings while he lives."
-msgstr "彼の存命中、全ての建物の領地半径が10%拡大します。"
-
 #: simulation/templates/units/mace_hero_alexander.xml:35
 msgid "Mégās Aléxandros"
 msgstr "Mégās Aléxandros"
 
-#: simulation/templates/units/mace_hero_craterus.xml:7
-msgid "Trusted general under Alexander the Great."
-msgstr "アレクサンドロス大王に従う人望の厚い将軍です。"
+#: simulation/templates/units/mace_hero_alexander.xml:36
+msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
+msgstr "「英雄殺し」ボーナス： 敵の英雄に対し+20%の攻撃ボーナス。"
 
 #: simulation/templates/units/mace_hero_craterus.xml:5
 msgid "Crateros"
@@ -1668,33 +1660,33 @@ msgstr "クラテロス"
 msgid "Kraterós"
 msgstr "Kraterós"
 
-#: simulation/templates/units/mace_hero_demetrius.xml:18
-msgid "Demetrius The Besieger"
-msgstr "デメトリオス攻城王"
+#: simulation/templates/units/mace_hero_craterus.xml:7
+msgid "Trusted general under Alexander the Great."
+msgstr "アレクサンドロス大王に従う人望の厚い将軍です。"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:13
 msgid "+15% Range and +10 Crush Attack for Siege Engines."
 msgstr "攻城兵器の遠隔攻撃力が15%、衝突攻撃力が10上昇します。"
 
+#: simulation/templates/units/mace_hero_demetrius.xml:18
+msgid "Demetrius The Besieger"
+msgstr "デメトリオス攻城王"
+
 #: simulation/templates/units/mace_hero_demetrius.xml:19
 msgid "Dēmḗtrios Poliorkḗtēs"
 msgstr "Dēmḗtrios Poliorkḗtēs"
-
-#: simulation/templates/units/mace_hero_philip.xml:17
-msgid "Philip II of Macedon"
-msgstr "マケドニアのピリッポス2世"
 
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "+5 Attack for Champion Units."
 msgstr "チャンピオンユニットの攻撃力が5上昇します。"
 
+#: simulation/templates/units/mace_hero_philip.xml:17
+msgid "Philip II of Macedon"
+msgstr "マケドニアのピリッポス2世"
+
 #: simulation/templates/units/mace_hero_philip.xml:18
 msgid "Phílippos B' ho Makedṓn"
 msgstr "Phílippos B' ho Makedṓn"
-
-#: simulation/templates/units/mace_hero_pyrrhus.xml:7
-msgid "\"Pyrrhic Victory\" Aura: TBD."
-msgstr "「ピュロス王の勝利」オーラ：未定。"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:5
 msgid "Pyrrhus of Epirus"
@@ -1703,6 +1695,10 @@ msgstr "ピュロス・エピロス王"
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhos ton Epeiros"
 msgstr "Pyrrhos ton Epeiros"
+
+#: simulation/templates/units/mace_hero_pyrrhus.xml:7
+msgid "\"Pyrrhic Victory\" Aura: TBD."
+msgstr "「ピュロス王の勝利」オーラ：未定。"
 
 #: simulation/templates/units/mace_infantry_javelinist_b.xml:23
 msgid "Agrianian Peltast"
@@ -1721,13 +1717,13 @@ msgstr "Poliorkitikós Kriós"
 msgid "Hemiolos"
 msgstr "Hemiolos"
 
-#: simulation/templates/units/mace_support_female_citizen.xml:6
-msgid "Macedonian Woman"
-msgstr "マケドニア女性"
-
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gynḗ Makedonikḗ"
 msgstr "Gynḗ Makedonikḗ"
+
+#: simulation/templates/units/mace_support_female_citizen.xml:6
+msgid "Macedonian Woman"
+msgstr "マケドニア女性"
 
 #: simulation/templates/units/mace_thorakites.xml:5
 msgid "Armored Swordsman"
@@ -1761,10 +1757,6 @@ msgstr "インド奇襲騎兵"
 msgid "Aśvārohagaṇaḥ"
 msgstr "Aśvārohagaṇaḥ"
 
-#: simulation/templates/units/maur_champion_chariot.xml:22
-msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr "分類：　チャンピオン　遠隔攻撃　騎兵　戦車　弓兵。蹂躙ダメージを与える。"
-
 #: simulation/templates/units/maur_champion_chariot.xml:17
 msgid "War Chariot"
 msgstr "戦車"
@@ -1772,6 +1764,10 @@ msgstr "戦車"
 #: simulation/templates/units/maur_champion_chariot.xml:18
 msgid "Rath"
 msgstr "Rath"
+
+#: simulation/templates/units/maur_champion_chariot.xml:22
+msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
+msgstr "分類：　チャンピオン　遠隔攻撃　騎兵　戦車　弓兵。蹂躙ダメージを与える。"
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1782,10 +1778,6 @@ msgstr "インド戦象"
 msgid "Gajendra"
 msgstr "Gajendra"
 
-#: simulation/templates/units/maur_champion_infantry.xml:20
-msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr "分類：　チャンピオン　近接攻撃　歩兵　剣士。"
-
 #: simulation/templates/units/maur_champion_infantry.xml:15
 msgid "Warrior"
 msgstr "戦士"
@@ -1793,6 +1785,10 @@ msgstr "戦士"
 #: simulation/templates/units/maur_champion_infantry.xml:16
 msgid "Yōddha"
 msgstr "Yōddha"
+
+#: simulation/templates/units/maur_champion_infantry.xml:20
+msgid "Classes: Champion Melee Infantry Swordsman."
+msgstr "分類：　チャンピオン　近接攻撃　歩兵　剣士。"
 
 #: simulation/templates/units/maur_champion_maiden.xml:5
 msgid "Maiden Guard"
@@ -1807,12 +1803,6 @@ msgstr "Visha Kanya"
 msgid "Maiden Guard Archer"
 msgstr "メイデン防衛弓兵"
 
-#: simulation/templates/units/maur_elephant_archer_b.xml:30
-msgid ""
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen. \"Stench\" aura vs. Cavalry.\n"
-"Countered by: Skirmishers and Swordsmen. Can run amok."
-msgstr "得意：2倍　対槍兵、1.5倍　対剣士。「悪臭」オーラ　対騎兵。\n苦手：散兵、剣士。暴れ出す。"
-
 #: simulation/templates/units/maur_elephant_archer_b.xml:26
 msgid "Elephant Archer"
 msgstr "騎象弓兵"
@@ -1821,12 +1811,9 @@ msgstr "騎象弓兵"
 msgid "Vachii Gaja"
 msgstr "Vachii Gaja"
 
-#: simulation/templates/units/maur_hero_ashoka.xml:36
-msgid ""
-"Hero Chariot Archer.\n"
-"Hero Aura: TBD.\n"
-"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
-msgstr "英雄戦車弓兵。\n英雄オーラ：未定。\n英雄特技：「アショーカの勅令」 - アショーカ存命中、アショーカ王の柱を建立できる。"
+#: simulation/templates/units/maur_elephant_archer_b.xml:30
+msgid "Can run amok."
+msgstr "暴れ出すことあり。"
 
 #: simulation/templates/units/maur_hero_ashoka.xml:32
 msgid "Ashoka the Great"
@@ -1836,13 +1823,12 @@ msgstr "アショーカ大王"
 msgid "Aśoka Devānāmpriya"
 msgstr "Aśoka Devānāmpriya"
 
-#: simulation/templates/units/maur_hero_chanakya.xml:32
+#: simulation/templates/units/maur_hero_ashoka.xml:36
 msgid ""
-"Classes: Hero Healer.\n"
-"Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
-"Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
-"Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
-msgstr "分類：英雄　治療者。\n英雄特技：「治療者」 -ユニット治療を増速で。\n英雄特技：「教師」 -建物の研究・養成が50%加速。\n英雄特技：「哲学者」 -チャーナキヤ固有の4つの特殊テクノロジーを研究。"
+"Hero Chariot Archer.\n"
+"Hero Aura: TBD.\n"
+"Hero Special: \"Edicts of Ashoka\" - Edict Pillars of Ashoka can be built during Ashoka's lifetime."
+msgstr "英雄戦車弓兵。\n英雄オーラ：未定。\n英雄特技：「アショーカの勅令」 - アショーカ存命中、アショーカ王の柱を建立できる。"
 
 #: simulation/templates/units/maur_hero_chanakya.xml:29
 msgid "Acharya Chanakya"
@@ -1852,16 +1838,24 @@ msgstr "アーチャーリヤ・チャーナキヤ"
 msgid "Acharya Chāṇakya"
 msgstr "アーチャーリヤ・チャーナキヤ"
 
-#: simulation/templates/units/maur_hero_maurya.xml:7
+#: simulation/templates/units/maur_hero_chanakya.xml:32
 msgid ""
-"Classes: Hero Melee Elephant.\n"
-"Hero Aura: TBD."
-msgstr "分類：英雄　近接　象。\n英雄オーラ：未定。"
+"Classes: Hero Healer.\n"
+"Hero Special: \"Healer\" - Heal units at an accelerated rate.\n"
+"Hero Special: \"Teacher\" - Empower a building to research and train +50% faster.\n"
+"Hero Special: \"Philosopher\" - Research 4 special technologies only available to Chanakya."
+msgstr "分類：英雄　治療者。\n英雄特技：「治療者」 -ユニット治療を増速で。\n英雄特技：「教師」 -建物の研究・養成が50%加速。\n英雄特技：「哲学者」 -チャーナキヤ固有の4つの特殊テクノロジーを研究。"
 
 #: simulation/templates/units/maur_hero_maurya.xml:5
 #: simulation/templates/units/maur_hero_maurya.xml:6
 msgid "Chandragupta Maurya"
 msgstr "チャンドラグプタ・マウリヤ"
+
+#: simulation/templates/units/maur_hero_maurya.xml:7
+msgid ""
+"Classes: Hero Melee Elephant.\n"
+"Hero Aura: TBD."
+msgstr "分類：英雄　近接　象。\n英雄オーラ：未定。"
 
 #: simulation/templates/units/maur_infantry_archer_b.xml:13
 msgid "Longbowman"
@@ -1912,10 +1906,6 @@ msgstr "Vanijyik Nauka"
 msgid "Classes: Mechanical Warship Medium Ranged Melee."
 msgstr "分類：機械　軍艦　中型　遠隔　近接。"
 
-#: simulation/templates/units/maur_support_elephant.xml:32
-msgid "Mobile dropsite. Can also assist in constructing buildings."
-msgstr "歩く資源回収施設です。建物の建設を助けることもできます。"
-
 #: simulation/templates/units/maur_support_elephant.xml:28
 msgid "Worker Elephant"
 msgstr "労働象"
@@ -1924,13 +1914,17 @@ msgstr "労働象"
 msgid "Karmākara Gaja"
 msgstr "Karmākara Gaja"
 
-#: simulation/templates/units/maur_support_female_citizen.xml:6
-msgid "Indian Woman"
-msgstr "インド女性"
+#: simulation/templates/units/maur_support_elephant.xml:32
+msgid "Mobile dropsite. Can also assist in constructing buildings."
+msgstr "歩く資源回収施設です。建物の建設を助けることもできます。"
 
 #: simulation/templates/units/maur_support_female_citizen.xml:5
 msgid "Naari"
 msgstr "Naari"
+
+#: simulation/templates/units/maur_support_female_citizen.xml:6
+msgid "Indian Woman"
+msgstr "インド女性"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
@@ -1944,13 +1938,6 @@ msgstr "Brāhmaṇa Pujari"
 msgid "Vaishya"
 msgstr "Vaishya"
 
-#: simulation/templates/units/merc_thrace_swordsman.xml:26
-msgid ""
-"Classes: Mercenary Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "分類：傭兵　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
-
 #: simulation/templates/units/merc_thrace_swordsman.xml:21
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:14
 msgid "Thracian Mercenary Swordsman"
@@ -1960,6 +1947,10 @@ msgstr "トラキア傭兵剣士"
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:15
 msgid "Rhomphaiaphoros Thrakikós"
 msgstr "Rhomphaiaphoros Thrakikós"
+
+#: simulation/templates/units/merc_thrace_swordsman.xml:26
+msgid "Classes: Mercenary Melee Infantry Swordsman."
+msgstr "分類：　傭兵　近接攻撃　歩兵　剣士。"
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1973,14 +1964,6 @@ msgstr "ペルシア林檎槍兵"
 msgid "Arštibara"
 msgstr "Arštibara"
 
-#: simulation/templates/units/pers_cavalry_archer_b.xml:35
-msgid ""
-"Classes: Ranged Cavalry Chariot Archer.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants.\n"
-"Causes trample damage to enemy units."
-msgstr "分類：遠隔攻撃　騎兵　戦車　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。\n踏み潰しダメージを敵ユニットに与える。"
-
 #: simulation/templates/units/pers_cavalry_archer_b.xml:31
 msgid "Babylonian Scythed Chariot"
 msgstr "バビロニア大鎌戦車"
@@ -1988,6 +1971,12 @@ msgstr "バビロニア大鎌戦車"
 #: simulation/templates/units/pers_cavalry_archer_b.xml:32
 msgid "Babiruviya Ratha"
 msgstr "Babiruviya Ratha"
+
+#: simulation/templates/units/pers_cavalry_archer_b.xml:35
+msgid ""
+"Classes: Ranged Cavalry Chariot Archer.\n"
+"Causes trample damage to enemy units."
+msgstr "分類：　遠隔攻撃　騎兵　戦車　弓兵。\n蹂躙ダメージを敵ユニットに与える。"
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -2047,13 +2036,13 @@ msgstr "アヌシヤ"
 msgid "Lead from the Front Aura"
 msgstr "陣頭指揮オーラ"
 
-#: simulation/templates/units/pers_hero_cyrus.xml:18
-msgid "Cyrus II The Great"
-msgstr "キュロス2世大王"
-
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "+2 attack for nearby cavalry units."
 msgstr "近辺の騎兵ユニットの攻撃力が2上昇します。"
+
+#: simulation/templates/units/pers_hero_cyrus.xml:18
+msgid "Cyrus II The Great"
+msgstr "キュロス2世大王"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:19
 msgid "Kurush II"
@@ -2063,6 +2052,18 @@ msgstr "クルシュ2世"
 msgid "Leadership Aura"
 msgstr "リーダーシップ・オーラ"
 
+#: simulation/templates/units/pers_hero_darius.xml:12
+msgid "+15% Movement Speed of all units."
+msgstr "全ユニットの速度が15%増加します。"
+
+#: simulation/templates/units/pers_hero_darius.xml:46
+msgid "Darius The Great"
+msgstr "ダレイオス大王"
+
+#: simulation/templates/units/pers_hero_darius.xml:47
+msgid "Darayavahush I"
+msgstr "ダーラヤワウシュ1世"
+
 #: simulation/templates/units/pers_hero_darius.xml:49
 msgid ""
 "Hero Scythe Chariot Archer.\n"
@@ -2070,32 +2071,20 @@ msgid ""
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
 msgstr "英雄　大鎌　戦車　弓兵。\n英雄オーラ：「帝国商人」。存命中、交易の利益率増加（未定）。\n遠隔攻撃力2倍　対槍兵。遠隔攻撃力1.5倍　対剣士。"
 
-#: simulation/templates/units/pers_hero_darius.xml:46
-msgid "Darius The Great"
-msgstr "ダレイオス大王"
-
-#: simulation/templates/units/pers_hero_darius.xml:12
-msgid "+15% Movement Speed of all units."
-msgstr "全ユニットの速度が15%増加します。"
-
-#: simulation/templates/units/pers_hero_darius.xml:47
-msgid "Darayavahush I"
-msgstr "ダーラヤワウシュ1世"
-
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
 msgid "Administrator Aura"
 msgstr "行政官オーラ"
 
-#: simulation/templates/units/pers_hero_xerxes.xml:18
-#: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
-msgid "Xerxes I"
-msgstr "クセルクセス1世"
-
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid " +15% Gather Rate and Build Rate of nearby units."
 msgstr "近辺のユニットの採集と建設の速度が15%増加します。"
+
+#: simulation/templates/units/pers_hero_xerxes.xml:18
+#: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
+msgid "Xerxes I"
+msgstr "クセルクセス1世"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:19
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:43
@@ -2178,13 +2167,13 @@ msgstr "フェニキア三段櫂船"
 msgid "Vazarka Hamaraniyanava"
 msgstr "Vazarka Hamaraniyanava"
 
-#: simulation/templates/units/pers_support_female_citizen.xml:6
-msgid "Mesopotamian Woman"
-msgstr "メソポタミア女性"
-
 #: simulation/templates/units/pers_support_female_citizen.xml:5
 msgid "Banu Miyanrudani"
 msgstr "Banu Miyanrudani"
+
+#: simulation/templates/units/pers_support_female_citizen.xml:6
+msgid "Mesopotamian Woman"
+msgstr "メソポタミア女性"
 
 #: simulation/templates/units/pers_support_healer_b.xml:6
 msgid "Median Magus"
@@ -2194,12 +2183,6 @@ msgstr "メディア魔術師"
 msgid "Maguš Mada"
 msgstr "Maguš Mada"
 
-#: simulation/templates/units/pers_support_trader.xml:14
-msgid ""
-"Trade resources between your own markets and those of your allies. Persians "
-"have a +25% land trading bonus."
-msgstr "自国と同盟国の市場の間で資源を取引します。ペルシアには+25%の陸路交易ボーナスがあります。"
-
 #: simulation/templates/units/pers_support_trader.xml:10
 msgid "Aramaean Merchant"
 msgstr "アラム商人"
@@ -2208,9 +2191,11 @@ msgstr "アラム商人"
 msgid "Tamkarum Arami"
 msgstr "Tamkarum Arami"
 
-#: simulation/templates/units/ptol_cavalry_archer_b.xml:11
-msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr "分類：　遠隔攻撃　騎兵　ラクダ　弓兵。"
+#: simulation/templates/units/pers_support_trader.xml:14
+msgid ""
+"Trade resources between your own markets and those of your allies. Persians "
+"have a +25% land trading bonus."
+msgstr "自国と同盟国の市場の間で資源を取引します。ペルシアには+25%の陸路交易ボーナスがあります。"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
@@ -2219,6 +2204,11 @@ msgstr "ナバテア弓ラクダ騎兵"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
 msgstr "Mutsābiq Gamal Nabatu"
+
+#: simulation/templates/units/ptol_cavalry_archer_b.xml:11
+#: simulation/templates/units/sele_cavalry_archer_b.xml:11
+msgid "Classes: Ranged Cavalry Camel Archer."
+msgstr "分類：　遠隔攻撃　騎兵　ラクダ　弓兵。"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2264,43 +2254,43 @@ msgstr "Tessarakonterēs"
 msgid "Patriot Aura"
 msgstr "愛国者オーラ"
 
+#: simulation/templates/units/ptol_hero_cleopatra.xml:13
+msgid "Egyptian units fight 20% faster in her vision range."
+msgstr "彼女の視界内のエジプトのユニットの攻撃が20%速くなります。"
+
+#: simulation/templates/units/ptol_hero_cleopatra.xml:24
+msgid "Cleopatra VII"
+msgstr "クレオパトラ7世"
+
+#: simulation/templates/units/ptol_hero_cleopatra.xml:25
+msgid "Kleopatra H' Philopater"
+msgstr "Kleopatra H' Philopater"
+
 #: simulation/templates/units/ptol_hero_cleopatra.xml:26
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
 msgstr "分類：英雄　歩兵　弓兵。\n「配偶者」オーラ（未定）：彼女の視界内の同盟の英雄の効力が増す。敵の英雄の効力が減る。"
 
-#: simulation/templates/units/ptol_hero_cleopatra.xml:24
-msgid "Cleopatra VII"
-msgstr "クレオパトラ7世"
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:13
-msgid "Egyptian units fight 20% faster in her vision range."
-msgstr "彼女の視界内のエジプトのユニットの攻撃が20%速くなります。"
-
-#: simulation/templates/units/ptol_hero_cleopatra.xml:25
-msgid "Kleopatra H' Philopater"
-msgstr "Kleopatra H' Philopater"
-
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
 msgstr "建設オーラ"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
-msgid "Mercenary Patron Aura"
-msgstr "傭兵保護者オーラ"
-
-#: simulation/templates/units/ptol_hero_ptolemy_I.xml:35
-msgid "Ptolemy I \"Savior\""
-msgstr "プトレマイオス1世「救済王」"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
 msgstr "彼の視界内の建物の建設が10%速くなります。"
 
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
+msgid "Mercenary Patron Aura"
+msgstr "傭兵保護者オーラ"
+
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenaries cost -50% resources during his lifetime."
 msgstr "彼の存命中、傭兵を雇う資源が50%減少します。"
+
+#: simulation/templates/units/ptol_hero_ptolemy_I.xml:35
+msgid "Ptolemy I \"Savior\""
+msgstr "プトレマイオス1世「救済王」"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:36
 msgid "Ptolemaios A' Soter"
@@ -2310,24 +2300,17 @@ msgstr "Ptolemaios A' Soter"
 msgid "Raphia Aura"
 msgstr "ラフィア・オーラ"
 
-#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:22
-msgid "Ptolemy IV \"Father Loving\""
-msgstr "プトレマイオス4世「愛父王」"
-
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
 msgstr "彼の存命中、エジプト長槍兵の耐久力が40%増加します。"
 
+#: simulation/templates/units/ptol_hero_ptolemy_IV.xml:22
+msgid "Ptolemy IV \"Father Loving\""
+msgstr "プトレマイオス4世「愛父王」"
+
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:23
 msgid "Ptolemaios D' Philopater"
 msgstr "Ptolemaios D' Philopater"
-
-#: simulation/templates/units/ptol_infantry_archer_b.xml:29
-msgid ""
-"Classes: Ranged Mercenary Infantry Archer Worker.\n"
-"Counters: 2x vs. Swordsmen, 1.25x vs. Cavalry Spearmen.\n"
-"Countered by: Cavalry Swordsmen, Cavalry Skirmishers."
-msgstr "分類：遠隔　傭兵　歩兵　弓兵　労働者。\n得意：2倍　対剣士、1.25倍　対槍騎兵。\n苦手：剣騎兵、騎馬散兵。"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:26
 msgid "Nubian Mercenary Archer"
@@ -2336,6 +2319,10 @@ msgstr "ヌビア傭兵射手"
 #: simulation/templates/units/ptol_infantry_archer_b.xml:27
 msgid "Kousít Misthophóros Toxóti̱s"
 msgstr "Kousít Misthophóros Toxóti̱s"
+
+#: simulation/templates/units/ptol_infantry_archer_b.xml:29
+msgid "Classes: Ranged Mercenary Infantry Archer Worker."
+msgstr "分類：　遠隔攻撃　傭兵　歩兵　弓兵　労働者。"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
@@ -2391,13 +2378,13 @@ msgstr "Octères"
 msgid "Pentères"
 msgstr "Pentères"
 
-#: simulation/templates/units/ptol_support_female_citizen.xml:11
-msgid "Egyptian Woman"
-msgstr "エジプト女性"
-
 #: simulation/templates/units/ptol_support_female_citizen.xml:10
 msgid "Gýnē Aigyptiakós"
 msgstr "Gýnē Aigyptiakós"
+
+#: simulation/templates/units/ptol_support_female_citizen.xml:11
+msgid "Egyptian Woman"
+msgstr "エジプト女性"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 msgid "Egyptian Priest"
@@ -2431,13 +2418,13 @@ msgstr "ローマ百人隊長"
 msgid "Centurio Legionarius"
 msgstr "Centurio Legionarius"
 
-#: simulation/templates/units/rome_champion_cavalry.xml:6
-msgid "Consular Bodyguard"
-msgstr "執政官親衛隊"
-
 #: simulation/templates/units/rome_champion_cavalry.xml:5
 msgid "Eques Consularis"
 msgstr "Eques Consularis"
+
+#: simulation/templates/units/rome_champion_cavalry.xml:6
+msgid "Consular Bodyguard"
+msgstr "執政官親衛隊"
 
 #: simulation/templates/units/rome_champion_infantry.xml:5
 msgid "Italic Heavy Infantry"
@@ -2471,16 +2458,15 @@ msgstr "すべてのユニットと建設物の装甲を1強化します。"
 msgid "Quintus Fabius Maximus"
 msgstr "クィントゥス・ファビウス・マキシムス"
 
-#: simulation/templates/units/rome_hero_scipio.xml:8
-msgid ""
-"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side for 500 Metal. (Not implemented)\n"
-"Counters: 2x vs. Archers, All Support Units, and Siege Weapons.\n"
-"Countered by: Spearmen, Cavalry Skirmishers, and Elephants."
-msgstr "「分割統治」特技：敵ユニット集団を金属500で寝返らせます（未実装）。\n得意：2倍　対弓兵、全補助ユニット、攻城兵器。\n苦手：槍兵、騎馬散兵、象。"
-
 #: simulation/templates/units/rome_hero_scipio.xml:5
 msgid "Scipio Africanus"
 msgstr "スキピオ・アフリカヌス"
+
+#: simulation/templates/units/rome_hero_scipio.xml:8
+msgid ""
+"\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
+"for 500 Metal. (Not implemented)"
+msgstr "「分割統治」特技：敵ユニット集団を金属500で寝返らせます（未実装）。"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:14
 msgid "Roman Skirmisher"
@@ -2546,29 +2532,29 @@ msgstr "Navicula Piscatoria"
 msgid "Corbita"
 msgstr "Corbita"
 
-#: simulation/templates/units/rome_ship_quinquereme.xml:6
-msgid "Roman Quinquereme"
-msgstr "ローマ五段櫂船"
-
 #: simulation/templates/units/rome_ship_quinquereme.xml:5
 msgid "Quinqueremis Romana"
 msgstr "Quinqueremis Romana"
 
-#: simulation/templates/units/rome_ship_trireme.xml:9
-msgid "Roman Trireme"
-msgstr "ローマ三段櫂船"
+#: simulation/templates/units/rome_ship_quinquereme.xml:6
+msgid "Roman Quinquereme"
+msgstr "ローマ五段櫂船"
 
 #: simulation/templates/units/rome_ship_trireme.xml:8
 msgid "Triremis Romana"
 msgstr "Triremis Romana"
 
-#: simulation/templates/units/rome_support_female_citizen.xml:6
-msgid "Roman Woman"
-msgstr "ローマ女性"
+#: simulation/templates/units/rome_ship_trireme.xml:9
+msgid "Roman Trireme"
+msgstr "ローマ三段櫂船"
 
 #: simulation/templates/units/rome_support_female_citizen.xml:5
 msgid "Romana"
 msgstr "Romana"
+
+#: simulation/templates/units/rome_support_female_citizen.xml:6
+msgid "Roman Woman"
+msgstr "ローマ女性"
 
 #: simulation/templates/units/rome_support_healer_b.xml:6
 msgid "State Priest"
@@ -2586,12 +2572,6 @@ msgstr "プレブスの商人"
 msgid "Mercator Plebeius"
 msgstr "Mercator Plebeius"
 
-#: simulation/templates/units/samnite_skirmisher.xml:7
-msgid ""
-"Mercenary skirmisher.\n"
-"Bonus vs. Archers and Spearmen."
-msgstr "傭兵散兵。\n弓兵と槍兵に対しボーナス。"
-
 #: simulation/templates/units/samnite_skirmisher.xml:5
 msgid "Samnite Skirmisher"
 msgstr "サムニウム散兵"
@@ -2600,11 +2580,11 @@ msgstr "サムニウム散兵"
 msgid "(Samnite Skirmisher)"
 msgstr "（サムニウム散兵）"
 
-#: simulation/templates/units/samnite_spearman.xml:7
+#: simulation/templates/units/samnite_skirmisher.xml:7
 msgid ""
-"Mercenary spearman.\n"
-"Bonus vs. All Cavalry Units."
-msgstr "傭兵槍兵。\n全騎兵ユニットに対しボーナス。"
+"Mercenary skirmisher.\n"
+"Bonus vs. Archers and Spearmen."
+msgstr "傭兵散兵。\n弓兵と槍兵に対しボーナス。"
 
 #: simulation/templates/units/samnite_spearman.xml:5
 msgid "Samnite Spearman"
@@ -2614,22 +2594,21 @@ msgstr "サムニウム槍兵"
 msgid "(Samnite Spearman)"
 msgstr "（サムニウム槍兵）"
 
-#: simulation/templates/units/samnite_swordsman.xml:7
+#: simulation/templates/units/samnite_spearman.xml:7
 msgid ""
-"Mercenary swordsman.\n"
-"Bonus vs. All Spear Units."
-msgstr "傭兵剣士。\n全槍ユニットに対しボーナス。"
+"Mercenary spearman.\n"
+"Bonus vs. All Cavalry Units."
+msgstr "傭兵槍兵。\n全騎兵ユニットに対しボーナス。"
 
 #: simulation/templates/units/samnite_swordsman.xml:6
 msgid "(Samnite Swordsman)"
 msgstr "（サムニウム剣士）"
 
-#: simulation/templates/units/sele_cavalry_archer_b.xml:11
+#: simulation/templates/units/samnite_swordsman.xml:7
 msgid ""
-"Classes: Ranged Cavalry Camel Archer.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Swordsmen.\n"
-"Countered by: Skirmishers and Elephants."
-msgstr "分類：遠隔　騎兵　ラクダ　弓兵。\n得意：2倍　対槍兵、1.5倍　対剣士。\n苦手：散兵、象。"
+"Mercenary swordsman.\n"
+"Bonus vs. All Spear Units."
+msgstr "傭兵剣士。\n全槍ユニットに対しボーナス。"
 
 #: simulation/templates/units/sele_cavalry_archer_b.xml:7
 msgid "Dahae Horse Archer"
@@ -2663,10 +2642,6 @@ msgstr "セレウコス朝重装騎兵"
 msgid "Seleukidón Kataphraktos"
 msgstr "Seleukidón Kataphraktos"
 
-#: simulation/templates/units/sele_champion_chariot.xml:26
-msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr "分類：　チャンピオン　遠隔攻撃　騎兵　戦車　弓兵。"
-
 #: simulation/templates/units/sele_champion_chariot.xml:22
 msgid "Scythed Chariot"
 msgstr "大鎌戦車"
@@ -2674,6 +2649,10 @@ msgstr "大鎌戦車"
 #: simulation/templates/units/sele_champion_chariot.xml:23
 msgid "Drepanèphoros"
 msgstr "Drepanèphoros"
+
+#: simulation/templates/units/sele_champion_chariot.xml:26
+msgid "Classes: Champion Ranged Cavalry Chariot Archer."
+msgstr "分類：　チャンピオン　遠隔攻撃　騎兵　戦車　弓兵。"
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
@@ -2703,13 +2682,13 @@ msgstr "Thorakitès Rhomaïkós"
 msgid "Ilarchès Aura"
 msgstr "騎兵隊長オーラ"
 
-#: simulation/templates/units/sele_hero_antiochus_great.xml:24
-msgid "Antiochus III \"The Great\""
-msgstr "アンティオコス 3 世大王"
-
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
 msgstr "すべての騎兵の全種装甲レベルを2上げます。"
+
+#: simulation/templates/units/sele_hero_antiochus_great.xml:24
+msgid "Antiochus III \"The Great\""
+msgstr "アンティオコス 3 世大王"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:25
 msgid "Antiokhos G' Mégās"
@@ -2719,15 +2698,15 @@ msgstr "Antiokhos G' Mégās"
 msgid "Conquest Aura"
 msgstr "征服オーラ"
 
-#: simulation/templates/units/sele_hero_antiochus_righteous.xml:24
-msgid "Antiochus IV \"The Righteous\""
-msgstr "アンティオコス 4 世顕神王"
-
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
 msgstr "近辺の敵の建物、攻城兵器、船舶のすべての耐久力が20%減少します。"
+
+#: simulation/templates/units/sele_hero_antiochus_righteous.xml:24
+msgid "Antiochus IV \"The Righteous\""
+msgstr "アンティオコス 4 世顕神王"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:25
 msgid "Antiokhos D' Epiphanes"
@@ -2737,13 +2716,13 @@ msgstr "Antiokhos D' Epiphanes"
 msgid "Zooiarchos Aura"
 msgstr "戦象隊長オーラ"
 
-#: simulation/templates/units/sele_hero_seleucus_victor.xml:25
-msgid "Seleucus I \"The Victor\""
-msgstr "セレウコス 1 世勝利王"
-
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:14
 msgid "Boosts War Elephant attack and speed +20% within his vision."
 msgstr "彼の視界内の戦象の攻撃力と速度が20%増加します。"
+
+#: simulation/templates/units/sele_hero_seleucus_victor.xml:25
+msgid "Seleucus I \"The Victor\""
+msgstr "セレウコス 1 世勝利王"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:26
 msgid "Seleukos A' Nikator"
@@ -2790,27 +2769,24 @@ msgid "Chrysaspides"
 msgstr "Chrysaspides"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
-msgid ""
-"Classes: Mercenary Citizen Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "分類：傭兵　市民　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
-
-#: simulation/templates/units/sele_ship_trireme.xml:6
-msgid "Seleucid Trireme"
-msgstr "セレウコス朝三段櫂船"
+msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
+msgstr "分類：　傭兵　市民　近接攻撃　歩兵　剣士。"
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
 msgstr "Seleukidó̱n Triērēs"
 
-#: simulation/templates/units/sele_support_female_citizen.xml:11
-msgid "Syrian Woman"
-msgstr "シリア女性"
+#: simulation/templates/units/sele_ship_trireme.xml:6
+msgid "Seleucid Trireme"
+msgstr "セレウコス朝三段櫂船"
 
 #: simulation/templates/units/sele_support_female_citizen.xml:10
 msgid "Syrías Gýnē"
 msgstr "Syrías Gýnē"
+
+#: simulation/templates/units/sele_support_female_citizen.xml:11
+msgid "Syrian Woman"
+msgstr "シリア女性"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:6
 msgid "Perioikoi Cavalryman"
@@ -2848,12 +2824,6 @@ msgstr "スキリタイ奇襲兵"
 msgid "Ékdromos Skiritis"
 msgstr "Ékdromos Skiritis"
 
-#: simulation/templates/units/spart_hero_agis.xml:13
-msgid ""
-"No hero aura. Has 2x health of other infantry heroes. Basically a very tough hoplite.\n"
-"Counters: 2x vs. all cavalry."
-msgstr "英雄オーラなし。他の歩兵英雄の2倍の耐久力。基本は非常に頑健な重装歩兵。\n得意：2倍　対全騎兵。"
-
 #: simulation/templates/units/spart_hero_agis.xml:11
 msgid "Agis III"
 msgstr "アギス3世"
@@ -2862,31 +2832,37 @@ msgstr "アギス3世"
 msgid "Agis"
 msgstr "アギス"
 
+#: simulation/templates/units/spart_hero_agis.xml:13
+msgid ""
+"No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
+" hoplite."
+msgstr "英雄オーラなし。他の歩兵英雄の2倍の耐久力。基本は非常に頑健な重装歩兵。"
+
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
 msgstr "ヘイロタイ改革"
-
-#: simulation/templates/units/spart_hero_brasidas.xml:20
-#: simulation/templates/units/spart_hero_brasidas.xml:21
-msgid "Brasidas"
-msgstr "ブラシダス"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
 msgstr "彼の視界内のヘイロタイ散兵の攻撃力が2、全タイプの装甲が1増加します。"
 
+#: simulation/templates/units/spart_hero_brasidas.xml:20
+#: simulation/templates/units/spart_hero_brasidas.xml:21
+msgid "Brasidas"
+msgstr "ブラシダス"
+
 #: simulation/templates/units/spart_hero_leonidas.xml:11
 msgid "Last Stand Aura"
 msgstr "最後の抵抗オーラ"
 
-#: simulation/templates/units/spart_hero_leonidas.xml:29
-msgid "Leonidas I"
-msgstr "レオニダス1世"
-
 #: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "+20% attack for nearby Hoplites and Spartiates."
 msgstr "近辺の重装歩兵とスパルタ市民の攻撃力が20%増加します。"
+
+#: simulation/templates/units/spart_hero_leonidas.xml:29
+msgid "Leonidas I"
+msgstr "レオニダス1世"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:30
 msgid "Leōnídēs"
@@ -2908,13 +2884,6 @@ msgstr "ペリオイコイ重装歩兵"
 msgid "Hoplī́tēs Perioïkós"
 msgstr "Hoplī́tēs Perioïkós"
 
-#: simulation/templates/units/spart_support_female_citizen.xml:29
-msgid ""
-"Classes: Citizen Support Worker Female.\n"
-"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming.\n"
-"Counters: 2.5x vs. Siege."
-msgstr "分類：市民　補助　労働者　女性。\n資源採集、建設に従事し、近辺の男性を励まし仕事を早めます。食料採集と農耕が得意です。\n得意：2.5倍　対攻城兵器。"
-
 #: simulation/templates/units/spart_support_female_citizen.xml:25
 msgid "Spartan Woman"
 msgstr "スパルタ女性"
@@ -2922,6 +2891,12 @@ msgstr "スパルタ女性"
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartiā̂tis"
 msgstr "Spartiā̂tis"
+
+#: simulation/templates/units/spart_support_female_citizen.xml:29
+msgid ""
+"Classes: Citizen Support Worker Female.\n"
+"Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming."
+msgstr "分類：　市民　補助　労働者　女性。\n資源採集、建設に従事し、近辺の男性を励まし仕事を早める。食料採集と農耕が得意。"
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Perioikos"
@@ -2954,22 +2929,13 @@ msgstr "投火器"
 msgid "Pyrobolos"
 msgstr "Pyrobolos"
 
-#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
-msgid ""
-"Champion Spearman.\n"
-"Counters Melee Units. Countered by Ranged Units. Extra Bonus vs. All Greek Units."
-msgstr "チャンピオン槍兵。\n得意は近接戦闘ユニット。苦手は遠隔攻撃ユニット。ギリシアの全ユニットに対しボーナス。"
-
 #: simulation/templates/units/thebes_sacred_band_hoplitai.xml:6
 msgid "Hieros Lochos Hoplites"
 msgstr "Hieros Lochos Hoplites"
 
-#: simulation/templates/units/thrace_black_cloak.xml:21
-msgid ""
-"Classes: Mercenary Champion Melee Infantry Swordsman.\n"
-"Counters: 2x vs. Spearmen, 1.5x vs. Elephants.\n"
-"Countered by: Archers, Cavalry Spearmen, and Cavalry Archers."
-msgstr "分類：傭兵　チャンピオン　近接　歩兵　剣士。\n得意：2倍　対槍兵、1.5倍　対象。\n苦手：弓兵、槍騎兵、弓騎兵。"
+#: simulation/templates/units/thebes_sacred_band_hoplitai.xml:7
+msgid "Champion Spearman."
+msgstr "チャンピオン槍兵。"
 
 #: simulation/templates/units/thrace_black_cloak.xml:19
 msgid "Thracian Black Cloak"
@@ -2978,6 +2944,10 @@ msgstr "トラキア黒衣隊"
 #: simulation/templates/units/thrace_black_cloak.xml:20
 msgid "Rhomphaiaphoros"
 msgstr "Rhomphaiaphoros"
+
+#: simulation/templates/units/thrace_black_cloak.xml:21
+msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
+msgstr "分類：　傭兵　チャンピオン　近接攻撃　歩兵　剣士。"
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

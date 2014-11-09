@@ -1,29 +1,27 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # Sturm <gravador202@yahoo.com.br>, 2014
+# Matheus Clemente <matheus.xb@gmail.com>, 2014
 # Raphael Mendonça, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-10-21 18:41+0000\n"
-"Last-Translator: Cleiton Nunes <umarekhawari@gmail.com>\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
+"PO-Revision-Date: 2014-11-04 02:12+0000\n"
+"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Jogo %(civilization)s"
 
@@ -49,17 +47,17 @@ msgid_plural "Special Buildings"
 msgstr[0] "Construção Especial"
 msgstr[1] "Construções Especiais"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
 msgstr "Heróis"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "História dos %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
@@ -70,7 +68,7 @@ msgid "Opening page"
 msgstr "Abrindo página"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
@@ -91,17 +89,17 @@ msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "aaaa-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
 msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
@@ -122,7 +120,7 @@ msgid "Game has already started"
 msgstr "O jogo já começou"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
 msgstr "[Valor inválido %(id)s]"
 
@@ -131,7 +129,7 @@ msgid "Lost connection to the server."
 msgstr "Conexão com servidor perdida."
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Razão: %(reason)s."
 
@@ -161,7 +159,7 @@ msgid "No"
 msgstr "Não"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
 msgstr "OK"
 
@@ -427,7 +425,7 @@ msgid "connecting to server"
 msgstr "conectando ao servidor"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
 msgstr "Enviando (%f%%)"
 
@@ -436,12 +434,12 @@ msgid "upload succeeded"
 msgstr "Enviado com sucesso!"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "falha de envio (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "falha de envio (%(errorMessage)s)"
 
@@ -450,7 +448,7 @@ msgid "unknown"
 msgstr "desconhecido"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
@@ -475,7 +473,7 @@ msgid "Read More"
 msgstr "Ler Mais"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
@@ -501,8 +499,8 @@ msgstr "Erro"
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Iniciar o lobby multijogador. [DESATIVADO POR COMPILAÇÃO]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
 msgstr "Detalhes Técnicos"
 
@@ -519,24 +517,24 @@ msgid "This saved game may not be compatible:"
 msgstr "Este jogo salvo pode não ser compatível:"
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Precisa da versão %(requiredVersion)s do 0 A.D., enquanto você está executando a versão %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Não necessita de qualquer mod enquanto você estiver executando com \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Ele precisa do mod \"%(requiredMod)s\" enquanto você estiver executando sem um mod."
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
@@ -552,7 +550,7 @@ msgstr "Aviso"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
@@ -577,122 +575,122 @@ msgid "Scenario"
 msgstr "Cenário"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr "Tempo decorrido: %(time)s"
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
 msgstr "Civilizações"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
 msgstr "Selecionar Civilização"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
 msgstr "Fechar"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
 msgstr "Idioma"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Idioma:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Localidade:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Avançado"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Aceitar"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
 msgstr "País:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
 msgstr "Script:"
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "Variante (não utilizado):"
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "Palavra-chave (não usadas):"
+
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "Localidade resultante:"
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "Dicionários de arquivos usados:"
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Auto detecção"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
 msgstr "Parte do código de script opcional de quatro-letras seguindo o código de idioma (conforme listado na ISO 15924)"
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr "Variante (não utilizado):"
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
 msgstr "Ainda não está implementado."
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr "Palavra-chave (não usadas):"
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr "Localidade resultante:"
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr "Dicionários de arquivos usados:"
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr "Auto detecção"
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
 msgstr "Opções de Jogo"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
 msgstr "Geral"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
 msgstr "Configurações Gráficas"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
 msgstr "Configurações de Áudio"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
 msgstr "Sala de configurações."
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Salvar"
 
@@ -720,7 +718,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVII: Quercus"
-msgstr ""
+msgstr "Alpha XVII: Quercus"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
@@ -732,396 +730,396 @@ msgstr "AVISO: Esta é uma versão em desenvolvimento do jogo. Muitos recursos a
 msgid "Get involved at: play0ad.com"
 msgstr "Participe: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
 msgstr "Ativar relatórios"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
 msgstr "Desativar relatórios"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
 msgstr "Partidas"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr "Clique aqui para começar um nova partida de um jogador."
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
 msgstr "Campanhas"
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+msgid "Load Game"
+msgstr "Carregar Jogo"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):209
+msgid "Join Game"
+msgstr "Juntar-se a uma Partida"
+
+#: gui/pregame/mainmenu.xml:(caption):224
+msgid "Host Game"
+msgstr "Hospedar uma Partida"
+
+#: gui/pregame/mainmenu.xml:(caption):239
+msgid "Game Lobby"
+msgstr "Lobby do Jogo"
+
+#: gui/pregame/mainmenu.xml:(caption):269
+msgid "Options"
+msgstr "Opções"
+
+#: gui/pregame/mainmenu.xml:(caption):302
+msgid "Scenario Editor"
+msgstr "Editor de Cenário"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Welcome Screen"
+msgstr "Tela de Boas-vindas"
+
+#: gui/pregame/mainmenu.xml:(caption):330
+msgid "Mod Selection"
+msgstr "Seleção de Mod"
+
+#: gui/pregame/mainmenu.xml:(caption):384
+msgid "Learn To Play"
+msgstr "Aprenda a Jogar"
+
+#: gui/pregame/mainmenu.xml:(caption):401
+msgid "Single Player"
+msgstr "Um Jogador"
+
+#: gui/pregame/mainmenu.xml:(caption):416
+msgid "Multiplayer"
+msgstr "Multijogador"
+
+#: gui/pregame/mainmenu.xml:(caption):431
+msgid "Tools & Options"
+msgstr "Ferramentas & Opções"
+
+#: gui/pregame/mainmenu.xml:(caption):446
+msgid "History"
+msgstr "História"
+
+#: gui/pregame/mainmenu.xml:(caption):463
+msgid "Exit"
+msgstr "Sair"
+
+#: gui/pregame/mainmenu.xml:(caption):500
+msgid "Help with the Translation!"
+msgstr "Colabore com a tradução!"
+
+#: gui/pregame/mainmenu.xml:(caption):512
+msgid "Website"
+msgstr "Website"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Chat"
+msgstr "Chat"
+
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "Reportar um Bug"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "Clique aqui para começar um nova partida de um jogador."
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Reviva a história através de campanhas militares históricas. [NÃO IMPLEMENTADO AINDA]"
 
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
-msgid "Load Game"
-msgstr "Carregar Jogo"
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
 msgstr "Clique aqui para carregar um jogo salvo."
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
-msgid "Join Game"
-msgstr "Juntar-se a uma Partida"
-
-#: gui/pregame/mainmenu.xml:210 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):210
 msgid "Joining an existing multiplayer game."
 msgstr "Juntando-se a uma partida multijogador já existente."
 
-#: gui/pregame/mainmenu.xml:224 (caption)
-msgid "Host Game"
-msgstr "Hospedar uma Partida"
-
-#: gui/pregame/mainmenu.xml:225 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):225
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Hospede uma partida multijogador.\\n\\nRequer que a porta UDP 20595 esteja aberta."
 
-#: gui/pregame/mainmenu.xml:239 (caption)
-msgid "Game Lobby"
-msgstr "Lobby do Jogo"
-
-#: gui/pregame/mainmenu.xml:240 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Launch the multiplayer lobby."
 msgstr "Inicie o Lobby multiplayer."
 
-#: gui/pregame/mainmenu.xml:269 (caption)
-msgid "Options"
-msgstr "Opções"
-
-#: gui/pregame/mainmenu.xml:270 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Adjust game settings."
 msgstr "Ajuste as configurações do jogo."
 
-#: gui/pregame/mainmenu.xml:287 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):287
 msgid "Choose the language of the game."
 msgstr "Escolha a linguagem do jogo."
 
-#: gui/pregame/mainmenu.xml:302 (caption)
-msgid "Scenario Editor"
-msgstr "Editor de Cenário"
-
-#: gui/pregame/mainmenu.xml:303 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Abre o Editor de Cenário Atlas em uma nova janela. Você pode executá-lo de forma mais segura se abrir o jogo com o argumento de linha de comando \"-editor\"."
 
-#: gui/pregame/mainmenu.xml:315 (caption)
-msgid "Welcome Screen"
-msgstr "Tela de Boas-vindas"
-
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Mostrar Tela de Boas-Vindas. Útil se você ocultou por engano."
 
-#: gui/pregame/mainmenu.xml:330 (caption)
-msgid "Mod Selection"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:331 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
-msgstr ""
+msgstr "Selecione mods para usar."
 
-#: gui/pregame/mainmenu.xml:384 (caption)
-msgid "Learn To Play"
-msgstr "Aprenda a Jogar"
-
-#: gui/pregame/mainmenu.xml:385 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Abrir o manual do jogo."
 
-#: gui/pregame/mainmenu.xml:401 (caption)
-msgid "Single Player"
-msgstr "Um Jogador"
-
-#: gui/pregame/mainmenu.xml:402 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
 msgstr "Desafie o computador para uma partida de um jogador."
 
-#: gui/pregame/mainmenu.xml:416 (caption)
-msgid "Multiplayer"
-msgstr "Multijogador"
-
-#: gui/pregame/mainmenu.xml:417 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):417
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Lute contra um ou mais jogadores humanos em uma partida multijogador."
 
-#: gui/pregame/mainmenu.xml:431 (caption)
-msgid "Tools & Options"
-msgstr "Ferramentas & Opções"
-
-#: gui/pregame/mainmenu.xml:432 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):432
 msgid "Game options and scenario design tools."
 msgstr "Opções de jogo e ferramentas de edição de cenário."
 
-#: gui/pregame/mainmenu.xml:446 (caption)
-msgid "History"
-msgstr "História"
-
-#: gui/pregame/mainmenu.xml:447 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):447
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Aprenda sobre as muitas civilizações presentes em 0 A.D."
 
-#: gui/pregame/mainmenu.xml:463 (caption)
-msgid "Exit"
-msgstr "Sair"
-
-#: gui/pregame/mainmenu.xml:464 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
 msgstr "Sair do jogo."
 
-#: gui/pregame/mainmenu.xml:500 (caption)
-msgid "Help with the Translation!"
-msgstr "Colabore com a tradução!"
-
-#: gui/pregame/mainmenu.xml:501 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Clique para abrir a página de tradução do 0 A.D. no seu navegador"
 
-#: gui/pregame/mainmenu.xml:512 (caption)
-msgid "Website"
-msgstr "Website"
-
-#: gui/pregame/mainmenu.xml:513 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Clique para abrir play0ad.com em seu navegador de internet."
 
-#: gui/pregame/mainmenu.xml:524 (caption)
-msgid "Chat"
-msgstr "Chat"
-
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Clique para abrir o chat IRC do 0 A.D. em seu navegador. (#0ad em webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr "Reportar um Bug"
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Clique para visitar o 0 A.D. Trac para reportar um problema, uma quebra, ou um erro."
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Deletar"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
 msgstr "Carregar"
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
 msgstr "Salvar Jogo"
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
 msgstr "Descrição:"
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
 msgstr "Bem-vindo ao 0 A.D. !"
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
 msgstr "Mostrar essa mensagem no futuro"
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
 msgstr "Problemas conhecidos (web)"
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Sumário"
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "Pontuação"
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "Construções"
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "Unidades"
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "Recursos"
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "Mercado"
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "Miscelânia"
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
 msgstr "Nome do Jogador"
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
 msgstr "Pontuação economica"
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
 msgstr "Pontuação militar"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
 msgstr "Pontuação de exploração"
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
 msgstr "Pontuação Total"
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Estatística de Edifícios (Construída / Perdido / Destruído)"
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
 msgstr "Total"
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
 msgstr "Casas"
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr "Economia"
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
 msgstr "Postos avançados"
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr "Militar"
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
 msgstr "Fortalezas"
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
 msgstr "Centros Cívicos"
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
 msgstr "Maravilhas"
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Unidades Estatísticas (Treinado / Perdido / Morto)"
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr "Infantaria"
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
 msgstr "Trabalhador"
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr "Cavaleiro"
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr "Campeão"
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
 msgstr "Marinha"
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Estatísticas de Recursos (Coletados / Usados)"
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
 msgstr "Comida"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
 msgstr "Madeira"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr "Pedra"
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr "Metal"
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
 msgstr "Tesouros coletados"
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
 msgstr "Tributos (Enviados / Recebidos)"
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
 msgstr "Alimentos negociados"
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
 msgstr "Madeira negociada"
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
 msgstr "Pedras negociadas"
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
 msgstr "Metais negociados"
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
 msgstr "Eficiência de troca"
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
 msgstr "Lucro comercial"
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
 msgstr "Vegetariano\\ntaxa"
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
 msgstr "Feminisação"
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
 msgstr "Matou / Morreu\\ntaxa"
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
 msgstr "Exploração de mapa:"
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr "Continuar"
 
@@ -1151,7 +1149,7 @@ msgstr "[icon=\"iconMap\"]  Mapas grandes podem causar problemas."
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
 "make them less laggy, more fun to play and historically accurate."
-msgstr ""
+msgstr "[icon=\"iconFormation\"] Nós desabilitamos formações até conseguirmos descobrir como torná-las menos \"lagadas\", mais divertidas de jogar e mais historicamente precisas."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1478,21 +1476,21 @@ msgstr "- Persas também têm acesso a grandes números de tecnologias defensiva
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "PIQUEIRO"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- Pesadamente blindado e lento. Ataque lento."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry for a 4x attack bonus or against other melee infantry"
 " to pin them them in place."
-msgstr ""
+msgstr "- Usado contra cavalaria para um bônus de ataque de 4x ou contra outras infantarias corpo-a-corpo para pregá-los em seu lugar."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- Disponível para: Macedônios, selêucidas e ptolomeus."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
@@ -1568,7 +1566,7 @@ msgstr "- Infantaria de Elite disponível para os Espartanos."
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- Use para massacrar cavalaria inimiga ou como força de choque para apoiar sua infantaria regular."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
@@ -1576,27 +1574,27 @@ msgstr "- Use a formação em Falange para maiores bônus de armadura."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "LANCEIRO"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- A infantiria corpo-a-corpo básica para cada facção no jogo."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- Usado contra cavalaria para bônus de ataque 2x."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- Ataque de corte decente e um bom bônus de arranca faz deles uma boa tropa de linha de frente."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- Eles são contrapostos por unidades de longo-alcance e espadachins, então apoie seus lanceiros com lançadores ou cavalaria."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
