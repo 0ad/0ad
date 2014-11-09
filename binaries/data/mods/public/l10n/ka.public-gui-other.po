@@ -1,136 +1,135 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
+"PO-Revision-Date: 2014-11-01 23:30+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ka\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "ცივილიზაციის %(civilization)s თამაში"
 
 #: gui/civinfo/civinfo.js:111
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
+msgstr[0] "ცივილიზაციის ჯილდოები"
 
 #: gui/civinfo/civinfo.js:116
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
+msgstr[0] "გუნდის ჯილდოები"
 
 #: gui/civinfo/civinfo.js:125
 msgid "Special Technologies"
-msgstr ""
+msgstr "განსაკუთრებული ტექნოლოგიები"
 
 #: gui/civinfo/civinfo.js:134
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
+msgstr[0] "განსაკუთრებული შენობები"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
-msgstr ""
+msgstr "გმირები"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "ცივილიზაციის %(civilization)s ისტორია"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "იხსნება %(url)s\nსაწყის მნახველში. გთხოვ, დაელოდე...."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "გვერდი იხსნება"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
-msgstr ""
+msgstr "ჩარჩო წამში: %(fps)s"
 
 #: gui/common/functions_utility.js:260
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:262
 msgid "HH:mm:ss"
-msgstr ""
+msgstr "HH:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
-msgstr ""
+msgstr "ჩატვირთვა შეწყდა"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr ""
+msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
-msgstr ""
+msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
-msgstr ""
+msgstr "უცნობი მიზეზი"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "მოულოდნელი გამორთვა"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "არასწორი ქსელის პროტოკოლის ვერსია"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
-msgstr ""
+msgstr "თამაში უკვე დაწყებულია"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
-msgstr ""
+msgstr "[არასწორი მნიშვნელობა %(id)s]"
 
 #: gui/common/network.js:19
 msgid "Lost connection to the server."
-msgstr ""
+msgstr "მომსახურესთან კავშირი დაიკარგა."
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
-msgstr ""
+msgstr "მიზეზი: %(reason)s."
 
 #: gui/common/network.js:20
 msgid "Disconnected"
-msgstr ""
+msgstr "გამოერთებულია"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -139,7 +138,7 @@ msgstr "არცერთი"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<არასწორი>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:44 gui/savedgames/load.js:106
@@ -154,302 +153,302 @@ msgid "No"
 msgstr "არა"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
 msgstr "კარგი"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Retry"
-msgstr ""
+msgstr "ხელახლა სცადე"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr ""
+msgstr "უგულვებელყავი"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
-msgstr ""
+msgstr "მოიშორე"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "ფანჯრებიანი მდგომარეობა"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "გაუშვი 0 A.D. ფანჯარაში"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "ფონში შესვენება"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "შეასვენე მარტო თამაში როცა ფანჯარა ყურადღებას დაკარგავს"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "გამორთე მისალმების მსახავი"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "თუ ამ მსახავს სრულიად გამორთავ, შეიძლება მნიშვნელოვანი განცხადებები ვერ ნახო.\nშეგიძლია ისევ გახსნა მთავარი მენიუდან."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "დაწვრილებითი მინიშნებები"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "აჩვენე დაწვრილებითი მინიშნებები გაწვრთნადი ერთეულებისთვის მათ მწარმოებელ შენობებში."
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "ჩარჩო წამში მაჩვენებელი"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "აჩვენე ჩარჩო წამში ზედა მარჯვენა კუთხეში. "
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "მიმდინარე დროის მაჩვენებელი"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "აჩვენე ახლანდელი დრო ზედა მარჯვენა კუთხეში."
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "თამაშის დროის მაჩვენებელი"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "აჩვენე ახლანდელი მოკატუნების დრო ზედა მარჯვენა კუთხეში."
 
 #: gui/options/options.js:19
 msgid "Prefer GLSL"
-msgstr ""
+msgstr "ამჯობინე GLSL"
 
 #: gui/options/options.js:19
 msgid "Use OpenGL 2.0 shaders (recommended)"
-msgstr ""
+msgstr "გამოიყენე OpenGL 2.0 მჩრდილავი (რჩეული)"
 
 #: gui/options/options.js:20
 msgid "Post Processing"
-msgstr ""
+msgstr "დამუშავების შემდეგი"
 
 #: gui/options/options.js:20
 msgid ""
 "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
 "GAME RESTART"
-msgstr ""
+msgstr "გამოიყენე მსახავ-სივრცის დამუშავების შემდეგი საწურები (HDR, Bloom, DOF და სხვა). საჭიროებს თამაშის გადატვირთვას"
 
 #: gui/options/options.js:21
 msgid "Shadows"
-msgstr ""
+msgstr "ჩრდილები"
 
 #: gui/options/options.js:21
 msgid "Enable shadows"
-msgstr ""
+msgstr "ჩართე ჩრდილები"
 
 #: gui/options/options.js:22
 msgid "Particles"
-msgstr ""
+msgstr "ნაწილაკები"
 
 #: gui/options/options.js:22
 msgid "Enable particles"
-msgstr ""
+msgstr "ჩართე ნაწილაკები"
 
 #: gui/options/options.js:23
 msgid "Show Sky"
-msgstr ""
+msgstr "აჩვენე ცა"
 
 #: gui/options/options.js:23
 msgid "Render Sky"
-msgstr ""
+msgstr "გამოსახე ცა"
 
 #: gui/options/options.js:24
 msgid "Smooth LOS"
-msgstr ""
+msgstr "გლუვი LOS"
 
 #: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr ""
+msgstr "გლუვად ასწიე სიბნელე და ომის ნისლი (საჭიროებს ამჯობინე GLSL-ის ჩართვას)"
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "ლანდები"
 
 #: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "აჩვენე შენობების და ხალხის მოხაზულობები შენობების მიღმა"
 
 #: gui/options/options.js:26
 msgid "Shadow Filtering"
-msgstr ""
+msgstr "ჩრდილის წურვა"
 
 #: gui/options/options.js:26
 msgid "Smooth shadows"
-msgstr ""
+msgstr "გლუვი ჩრდილები"
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "სწრაბი და მახინჯი წყალი"
 
 #: gui/options/options.js:27
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "გამოიყენე ყველაზე დაბალი შესაძლო გარემოცვები რომ აჩვენო წყალი. ეს შეუსაბამოს ხდის სხვა გარემოცვებს."
 
 #: gui/options/options.js:28
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "მაღალი ხარისხის წყლის შედეგი"
 
 #: gui/options/options.js:28
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "გამოიყენე უფრო მაღალი ხარისხის მოქმედებები წყალზე, სანაპიროს ტალღების დამუშავება, სანაპიროს ქაფი და გემის ნაკვალევები."
 
 #: gui/options/options.js:29
 msgid "Real Water Depth"
-msgstr ""
+msgstr "წყლის ნამდვილი სიღრმე"
 
 #: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
-msgstr ""
+msgstr "გამოთვლებში გამოიყენე წყლის ნამდვილი სიღმე."
 
 #: gui/options/options.js:30
 msgid "Water Reflections"
-msgstr ""
+msgstr "წყლის ანარეკლები"
 
 #: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
-msgstr ""
+msgstr "ჩართე წყალზე სარკესავით არეკვლა"
 
 #: gui/options/options.js:31
 msgid "Water Refraction"
-msgstr ""
+msgstr "წყალში გარდატეხა"
 
 #: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "გამოიყენე სინათლის წყალში ნამდვილი გარდატეხა და არა გამჭვირვალობა"
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
-msgstr ""
+msgstr "ჩრდილები წყალზე"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "აჩვენე ჩრდილები წყალზე"
 
 #: gui/options/options.js:33
 msgid "VSync"
-msgstr ""
+msgstr "შვეული თანხვედრა"
 
 #: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "გაუშვი შვეული თანხვედრა რომ გაასწორო მსახავის გაწყვეტა. საჭიროების თამაშის გადატვირთვას"
 
 #: gui/options/options.js:37
 msgid "Master Gain"
-msgstr ""
+msgstr "მთავარი ასაწევი"
 
 #: gui/options/options.js:37
 msgid "Master audio gain"
-msgstr ""
+msgstr "მთავარი ხმის ასაწევი"
 
 #: gui/options/options.js:38
 msgid "Music Gain"
-msgstr ""
+msgstr "მუსიკის ასაწევი"
 
 #: gui/options/options.js:38
 msgid "In game music gain"
-msgstr ""
+msgstr "თამაშის მუსიკის ასაწევი"
 
 #: gui/options/options.js:39
 msgid "Ambient Gain"
-msgstr ""
+msgstr "გარემომცველი ხმების ასაწევი"
 
 #: gui/options/options.js:39
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "თამაშის გარემომცველი ხმების ასაწევი"
 
 #: gui/options/options.js:40
 msgid "Action Gain"
-msgstr ""
+msgstr "მოქმედების ასაწევი"
 
 #: gui/options/options.js:40
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "თამაშში ერთეულების მოქმედებების ხმის ასაწევი"
 
 #: gui/options/options.js:41
 msgid "UI Gain"
-msgstr ""
+msgstr "სს ასაწევი"
 
 #: gui/options/options.js:41
 msgid "UI sound gain"
-msgstr ""
+msgstr "სამომხმარებლო სახის ხმის ასაწევი"
 
 #: gui/options/options.js:45
 msgid "Chat Backlog"
-msgstr ""
+msgstr "ლაყბობის უკუ ჩანაწერები"
 
 #: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "უკუ ჩანაწერების რაოდენობა, რაც უნდა გამოჩნდეს ვესტიბიულში შესვლისას "
 
 #: gui/options/options.js:46
 msgid "Chat Timestamp"
-msgstr ""
+msgstr "ლაყბობის დროის ბეჭედი"
 
 #: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "აჩვენე ვესტიბიულში დაწერილი შეტყობინებების დრო"
 
 #: gui/pregame/mainmenu.js:78
 msgid "disabled"
-msgstr ""
+msgstr "გამორთული"
 
 #: gui/pregame/mainmenu.js:81
 msgid "connecting to server"
-msgstr ""
+msgstr "მომსახურეს უკავშირდება"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
-msgstr ""
+msgstr "მიმდინარეობს ატვირთვა (%f%%)"
 
 #: gui/pregame/mainmenu.js:93
 msgid "upload succeeded"
-msgstr ""
+msgstr "ატვირთვა წარმატებით დასრულდა"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
-msgstr ""
+msgstr "ატვირთვა ჩავარდა (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
-msgstr ""
+msgstr "ატვირთვა ჩავარდა (%(errorMessage)s)"
 
 #: gui/pregame/mainmenu.js:105
 msgid "unknown"
-msgstr ""
+msgstr "უცნობი"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)s გაფრთხილება:%(endWarning)s ჩანს რომ შენ იყენებ სახვას მჩრდილავის გარეშე (ფიქსირებული ფუნქციით). ეს ასარჩევი 0 A.D.-ს სამომავლო გამოშვებებში მოშორდება, რომ უფრო გამოცდილი თვისებების გამოყენების საშუალება შეიქმნას. ჩვენ გირჩევთ რომ განაახლო სახვითი ბარათი უფრო ახალ, მჩრდილავთან შეთავსებად ნიმუშზე."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -457,24 +456,24 @@ msgstr ""
 #. the user will need a better graphics card.
 #: gui/pregame/mainmenu.js:155
 msgid "Please press \"Read More\" for more information or \"OK\" to continue."
-msgstr ""
+msgstr "გთხოვ, დააჭირე \"წაიკითხე მეტი\"-ს მეტი ინფორმაციისთვის, ან \"OK\"-ს რომ გააგრძელო."
 
 #: gui/pregame/mainmenu.js:156
 msgid "WARNING!"
-msgstr ""
+msgstr "გაფრთხილება!"
 
 #: gui/pregame/mainmenu.js:158
 msgid "Read More"
-msgstr ""
+msgstr "წაიკითხე მეტი"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "ააშენე: %(buildDate)s (%(revision)s)"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Are you sure you want to quit 0 A.D.?"
-msgstr ""
+msgstr "დარწმუნებული ხარ რომ 0 A.D.-დან გასვლა?"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
@@ -484,20 +483,20 @@ msgstr "დამოწმება"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "სცენარის შემსწორებელი არ არის წვდომადი ან ვერ ჩაიტვირთა. დამატებითი ინფორმაციისთვის ნახე თამაშის ჩანაწერები."
 
 #: gui/pregame/mainmenu.js:292
 msgid "Error"
-msgstr ""
+msgstr "შეცდომა"
 
 #: gui/pregame/mainmenu.js:297
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr ""
+msgstr "გაუშვი მრავალი მოთამაშის ვესტიბიული. [შენებისას გათიშული]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
-msgstr ""
+msgstr "ტექნიკური წვრილმანები"
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
@@ -505,1277 +504,1277 @@ msgstr "სახელმძღვანელო"
 
 #: gui/savedgames/load.js:10 gui/savedgames/save.js:30
 msgid "No saved games found"
-msgstr ""
+msgstr "შენახული თამაშები ვერ მოიძებნა"
 
 #: gui/savedgames/load.js:46
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "ეს შენახული თამაში შეიძლება არ იყოს შეთავსებადი:"
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
-msgstr ""
+msgstr "ის საჭიროებს 0 A.D.-ს ვერსია %(requiredVersion)s, როცა შენ გაშვებული გაქვს ვერსია %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "არ სჭირდება რაიმე ცვლილება, როცა გაქვს გაშვებული \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
-msgstr ""
+msgstr "სჭირდება ცვლილება \"%(requiredMod)s\" სანამ გაშვებული გაქვს ცვლილების გარეშე."
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
-msgstr ""
+msgstr "სჭირდება ცვლილება \"%(requiredMod)s\" სანამ გაშვებული გაქვს \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:71
 msgid "Do you still want to proceed?"
-msgstr ""
+msgstr "კვლავ გინდა გაგრძელება?"
 
 #: gui/savedgames/load.js:72
 msgid "Warning"
-msgstr ""
+msgstr "გაფრთხილება"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
-msgstr ""
+msgstr "\"%(label)s\""
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
-msgstr ""
+msgstr "შენახული თამაში სამუდამოდ წაიშლება, დარწმუნებული ხარ?"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:91
 msgid "DELETE"
-msgstr ""
+msgstr "წაშლა"
 
 #: gui/savedgames/save.js:61
 msgid "Saved game will be permanently overwritten, are you sure?"
-msgstr ""
+msgstr "შენახულ თამაშს სამუდამოდ გადაეწერება, დარწმუნებული ხარ?"
 
 #: gui/savedgames/save.js:61
 msgid "OVERWRITE SAVE"
-msgstr ""
+msgstr "გადაწერა შენახვა"
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
 msgstr "სცენარი"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr ""
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
-msgstr ""
+msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
-msgstr ""
+msgstr "ცივილიზაციები"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
-msgstr ""
+msgstr "ცივილიზაციების არჩევა"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
 msgstr "დახურვა"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
-msgstr ""
+msgstr "ენა"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
-msgstr ""
+msgstr "ენა:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
-msgstr ""
+msgstr "ადგილი:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "მოშორება"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "გამოცდილი"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
-msgstr ""
+msgstr "დათანხმება"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
-msgstr ""
+msgstr "ქვეყანა:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
-msgstr ""
+msgstr "სცენარი:"
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr "ვარიანტი (გამოუყენებელი):"
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr "საკვანძო სიტყვები (გამოუყენებელი):"
+
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr "საპასუხო ადგილი:"
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr "გამოყენებული ლექსიკონი ფაილები:"
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "ავტომატური გამოვლენა"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
-msgstr ""
+msgstr "არასავალდებულო ოთხ ასოიანი სცენარული კოდის ნაწილი რომელიც მოჰყვება ენის კოდს (როგორც ჩამოთვლილია ISO 15924-ში)"
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
-msgstr ""
+msgstr "ჯერ არ არის დანერგილი."
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr ""
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
-msgstr ""
+msgstr "თამაშის ასარჩევები"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
-msgstr ""
+msgstr "სახვითი გარემოცვები"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
-msgstr ""
+msgstr "ხმის გარემოცვები"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
-msgstr ""
+msgstr "ვესტიბიულის გარემოცვები"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "შენახვა"
 
 #: gui/pregame/mainmenu.xml:75
 msgid "Help improve 0 A.D.!"
-msgstr ""
+msgstr "დაეხმარე 0 A.D.-ს განვითარებაში!"
 
 #: gui/pregame/mainmenu.xml:77
 msgid ""
 "You can automatically send us anonymous feedback that will help us fix bugs,"
 " and improve performance and compatibility."
-msgstr ""
+msgstr "შენ შეგიძლია ავტომატურად გამოგზავნო უსახელო უკუკავშირი, რაც დაგვეხმარება გავასწოროთ წუნები, განვავითაროთ წარმოდგენა და შეთავსებადობა."
 
 #: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr ""
+msgstr "მადლობა, რომ ეხმარები 0 A.D.-ს!"
 
 #: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
-msgstr ""
+msgstr "უსახელო უკუძახილი ჩართულია."
 
 #: gui/pregame/mainmenu.xml:107
 msgid "Status: $status."
-msgstr ""
+msgstr "მდგომარეობა: $status."
 
 #: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVII: Quercus"
-msgstr ""
+msgstr "ალფა XVII: მუხა"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr ""
+msgstr "გაფრთხილება: ეს არის ადრეული განვითარების სახესხვაობა. ბევრი თვისება ჯერ არ დამატებულა."
 
 #: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
-msgstr ""
+msgstr "ჩაერთე საქმიანობაში play0ad.com-ზე"
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
-msgstr ""
+msgstr "ჩართე უკუძახილი"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
-msgstr ""
+msgstr "გამორთე უკუძახილი"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
-msgstr ""
+msgstr "თამაშები"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
-msgstr ""
+msgstr "ლაშქრობები"
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
-msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
-msgid "Click here to load a saved game."
-msgstr ""
+msgstr "ჩატვირთე თამაში"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
+#: gui/pregame/mainmenu.xml:(caption):209
 msgid "Join Game"
 msgstr "შეუერთდი თამაშს"
 
-#: gui/pregame/mainmenu.xml:210 (tooltip)
-msgid "Joining an existing multiplayer game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:224 (caption)
+#: gui/pregame/mainmenu.xml:(caption):224
 msgid "Host Game"
 msgstr "უმასპინძლე თამაშს"
 
-#: gui/pregame/mainmenu.xml:225 (tooltip)
-msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:239 (caption)
+#: gui/pregame/mainmenu.xml:(caption):239
 msgid "Game Lobby"
-msgstr ""
+msgstr "თამაშის ვესტიბიული"
 
-#: gui/pregame/mainmenu.xml:240 (tooltip)
-msgid "Launch the multiplayer lobby."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:269 (caption)
+#: gui/pregame/mainmenu.xml:(caption):269
 msgid "Options"
-msgstr ""
+msgstr "ასარჩევები"
 
-#: gui/pregame/mainmenu.xml:270 (tooltip)
-msgid "Adjust game settings."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:287 (tooltip)
-msgid "Choose the language of the game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:302 (caption)
+#: gui/pregame/mainmenu.xml:(caption):302
 msgid "Scenario Editor"
-msgstr ""
+msgstr "სცენარის გამომცემელი"
 
-#: gui/pregame/mainmenu.xml:303 (tooltip)
-msgid ""
-"Open the Atlas Scenario Editor in a new window. You can run this more "
-"reliably by starting the game with the command-line argument \"-editor\"."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:315 (caption)
+#: gui/pregame/mainmenu.xml:(caption):315
 msgid "Welcome Screen"
-msgstr ""
+msgstr "მისალმების მსახავი"
 
-#: gui/pregame/mainmenu.xml:316 (tooltip)
-msgid "Show the Welcome Screen. Useful if you hid it by mistake."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:330 (caption)
+#: gui/pregame/mainmenu.xml:(caption):330
 msgid "Mod Selection"
-msgstr ""
+msgstr "ცვლილების არჩევა"
 
-#: gui/pregame/mainmenu.xml:331 (tooltip)
-msgid "Select mods to use."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:384 (caption)
+#: gui/pregame/mainmenu.xml:(caption):384
 msgid "Learn To Play"
-msgstr ""
+msgstr "ისწავლე თამაში"
 
-#: gui/pregame/mainmenu.xml:385 (tooltip)
-msgid "Open the 0 A.D. Game Manual."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:401 (caption)
+#: gui/pregame/mainmenu.xml:(caption):401
 msgid "Single Player"
-msgstr ""
+msgstr "მარტო მოთამაშე"
 
-#: gui/pregame/mainmenu.xml:402 (tooltip)
-msgid "Challenge the computer player to a single player match."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:416 (caption)
+#: gui/pregame/mainmenu.xml:(caption):416
 msgid "Multiplayer"
 msgstr "ბევრი მოთამაშე"
 
-#: gui/pregame/mainmenu.xml:417 (tooltip)
-msgid "Fight against one or more human players in a multiplayer game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:431 (caption)
+#: gui/pregame/mainmenu.xml:(caption):431
 msgid "Tools & Options"
-msgstr ""
+msgstr "ხელსაწყოები და ასარჩევები"
 
-#: gui/pregame/mainmenu.xml:432 (tooltip)
-msgid "Game options and scenario design tools."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:446 (caption)
+#: gui/pregame/mainmenu.xml:(caption):446
 msgid "History"
-msgstr ""
+msgstr "ისტორია"
 
-#: gui/pregame/mainmenu.xml:447 (tooltip)
-msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:463 (caption)
+#: gui/pregame/mainmenu.xml:(caption):463
 msgid "Exit"
 msgstr "გასვლა"
 
-#: gui/pregame/mainmenu.xml:464 (tooltip)
-msgid "Exits the game."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:500 (caption)
+#: gui/pregame/mainmenu.xml:(caption):500
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "დაგვეხმარე გადათარგმნაში!"
 
-#: gui/pregame/mainmenu.xml:501 (tooltip)
-msgid "Click to open the 0 A.D. translate page in your browser."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:512 (caption)
+#: gui/pregame/mainmenu.xml:(caption):512
 msgid "Website"
-msgstr ""
+msgstr "ქსელნაკვეთი"
 
-#: gui/pregame/mainmenu.xml:513 (tooltip)
-msgid "Click to open play0ad.com in your web browser."
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:524 (caption)
+#: gui/pregame/mainmenu.xml:(caption):524
 msgid "Chat"
 msgstr "ლაყბობა"
 
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "შეატყობინე წუნის შესახებ"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "აქ დაწკაპე, რომ დაიწყო ახალი მარტო მოთამაშის თამაში. "
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
+msgid ""
+"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+msgstr "გააცოცხლე ისტორია ისტორიული სამხედრო ლაშქრობებით. [ჯერ არ არის განხორციელებული]"
+
+#: gui/pregame/mainmenu.xml:(tooltip):187
+msgid "Click here to load a saved game."
+msgstr "აქ დაწკაპე, რომ ჩატვირთო შენახული თამაში."
+
+#: gui/pregame/mainmenu.xml:(tooltip):210
+msgid "Joining an existing multiplayer game."
+msgstr "შეუერთდი არსებული მრავალ მოთამაშიან თამაშს."
+
+#: gui/pregame/mainmenu.xml:(tooltip):225
+msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
+msgstr "უმასპინძლე მრავალ მოთამაშიან თამაშს.\\n\\nUDP 20595 უნდა იყოს გახსნილი."
+
+#: gui/pregame/mainmenu.xml:(tooltip):240
+msgid "Launch the multiplayer lobby."
+msgstr "გაუშვი მრავალი მოთამაშის ვესტიბიული."
+
+#: gui/pregame/mainmenu.xml:(tooltip):270
+msgid "Adjust game settings."
+msgstr "მოარგე თამაშის გარემოცვები."
+
+#: gui/pregame/mainmenu.xml:(tooltip):287
+msgid "Choose the language of the game."
+msgstr "აირჩიე თამაშის ენა."
+
+#: gui/pregame/mainmenu.xml:(tooltip):303
+msgid ""
+"Open the Atlas Scenario Editor in a new window. You can run this more "
+"reliably by starting the game with the command-line argument \"-editor\"."
+msgstr "გახსენი Atlas სცენარის გამომცემი ახალ ფანჯარაში. შენ ეს შეგიძლია უფრო სანდოდ გახსნა თამაშის დაწყებისას ბრძანების ხაზში \"-editor\" არგუმენტის მიწოდებით."
+
+#: gui/pregame/mainmenu.xml:(tooltip):316
+msgid "Show the Welcome Screen. Useful if you hid it by mistake."
+msgstr "აჩვენე მისალმების მსახავი. გამოსადეგია, თუ ის შემთხვევით დამალე."
+
+#: gui/pregame/mainmenu.xml:(tooltip):331
+msgid "Select mods to use."
+msgstr "აირჩიე ცვლილება რომ გამოიყენო."
+
+#: gui/pregame/mainmenu.xml:(tooltip):385
+msgid "Open the 0 A.D. Game Manual."
+msgstr "გახსენი 0 A.D. თამაშის სახელმძღვანელო."
+
+#: gui/pregame/mainmenu.xml:(tooltip):402
+msgid "Challenge the computer player to a single player match."
+msgstr "გამოიწვიე გამომთვლელის მოთამაშე მარტო თამაშში."
+
+#: gui/pregame/mainmenu.xml:(tooltip):417
+msgid "Fight against one or more human players in a multiplayer game."
+msgstr "იბრძოლე ერთი ან მეტი ადამიანის წინააღმდეგ მრავალმოთამაშიან თამაშში."
+
+#: gui/pregame/mainmenu.xml:(tooltip):432
+msgid "Game options and scenario design tools."
+msgstr "თამაშის ასარჩევები და სცენარის ჩანაფიქრის ხელსაწყოები."
+
+#: gui/pregame/mainmenu.xml:(tooltip):447
+msgid "Learn about the many civilizations featured in 0 A.D."
+msgstr "ისწავლე 0 A.D.-ში გამოსახული ბევრი ცივილიზაციის შესახებ."
+
+#: gui/pregame/mainmenu.xml:(tooltip):464
+msgid "Exits the game."
+msgstr "გადის თამაშიდან."
+
+#: gui/pregame/mainmenu.xml:(tooltip):501
+msgid "Click to open the 0 A.D. translate page in your browser."
+msgstr "დაწკაპე რომ გახსნა 0 A.D.-ს თარგმნის გვერდი შენს მნახველში."
+
+#: gui/pregame/mainmenu.xml:(tooltip):513
+msgid "Click to open play0ad.com in your web browser."
+msgstr "დაწკაპე რომ გახსნა play0ad.com შენს მნახველში."
+
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
-msgstr ""
+msgstr "დაწკაპე რომ გახსნა 0 A.D. IRC ლაყბობა შენს მნახველში. (#0ad webchat.quakenet.org-ზე)"
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
-msgstr ""
+msgstr "დაწკაპე 0 A.D.-ს Trac-ზე შესასვლელად, რომ შეავსო წუნი, მარცხი, ან შეცდომა."
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr ""
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "წაშლა"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
-msgstr ""
+msgstr "ჩატვირთვა"
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
-msgstr ""
+msgstr "შეინახე თამაში"
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
-msgstr ""
+msgstr "დახასიათება:"
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
-msgstr ""
+msgstr "კეთილი იყოს შენი მობრძანება 0 A.D.-ზე!"
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
-msgstr ""
+msgstr "აჩვენე ეს შეტყობინება მომავალშიც"
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
-msgstr ""
+msgstr "ცნობილი საკითხები (ქსელი)"
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
-msgstr ""
+msgstr "შეჯამება"
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
-msgstr ""
+msgstr "ანგარიში"
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
-msgstr ""
+msgstr "შენობები"
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
-msgstr ""
+msgstr "ერთეულები"
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
-msgstr ""
+msgstr "სახსრები"
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "ბაზარი"
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
-msgstr ""
+msgstr "სხვადასხვა"
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
-msgstr ""
+msgstr "მოთამაშის სახელი"
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
-msgstr ""
+msgstr "ეკონომიკის ქულა"
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
-msgstr ""
+msgstr "სამხედრო ქულა"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
-msgstr ""
+msgstr "დაზვერვის ანგარიში"
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
-msgstr ""
+msgstr "ჯამური ქულა"
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr ""
+msgstr "შენობების სტატისტიკა (აშენებული / დაკარგული / დანანგრევი)"
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
-msgstr ""
+msgstr "ჯამი"
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
-msgstr ""
+msgstr "სახლები"
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr "ეკონომიკური"
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
-msgstr ""
+msgstr "საგუშაგოები"
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr "სამხედრო"
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
-msgstr ""
+msgstr "ციხე-სიმაგრეები"
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
-msgstr ""
+msgstr "სამოქალაქო ცენტრები"
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
-msgstr ""
+msgstr "საოცრებები"
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr ""
+msgstr "ერთეულიების სტატისტიკა (გაწვრთნილი / დაკარგული / მოკლული)"
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr "ქვეითი"
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
-msgstr ""
+msgstr "მუშა"
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr "მხედარი"
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr "ფალავანი"
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
-msgstr ""
+msgstr "ფლოტი"
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
-msgstr ""
+msgstr "სახსრების სტატისტიკა (შეგროვებული / გამოყენებული)"
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
 msgstr "საჭმელი"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
 msgstr "ხე"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr "ქვა"
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr "ლითონი"
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
-msgstr ""
+msgstr "შეგროვებული განძები"
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
-msgstr ""
+msgstr "ხარკი (გაგზავნილი / მიღებული)"
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
-msgstr ""
+msgstr "გაცვლილი საჭმელი"
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
-msgstr ""
+msgstr "გაცვლილი ხე"
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
-msgstr ""
+msgstr "გაცვლილი ქვა"
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
-msgstr ""
+msgstr "გაცვლილი ლითონი"
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
-msgstr ""
+msgstr "გაცვლის ეფექტურობა"
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
-msgstr ""
+msgstr "შემოსავალი ვაჭრობიდან"
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "ვეგეტარიანელობის\\nხარისხი"
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
-msgstr ""
+msgstr "ქალების ფარდობა"
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "მოკვლის / დახოცვის\\nხარისხი"
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "რუკის\\nდაზვერვა"
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr "გააგრძელე"
 
 #: gui/splashscreen/splashscreen.txt:1
 msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]გმადლობ 0 A.D.-ს დაყენებისთვის!"
 
 #: gui/splashscreen/splashscreen.txt:2
 msgid "[font=\"sans-16\"]"
-msgstr ""
+msgstr "[font=\"sans-16\"]"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"]  ეს არის თამაშის ადრეული საცდელი ვერსია. აკლია თვისებები და აქვს წუნები."
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr ""
+msgstr "[icon=iconLag]  თამაშს აქვს ჩამორჩენა, როცა ბევრი ერთეული მოძრაობს."
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
-msgstr ""
+msgstr "[icon=\"iconMap\"]  დიდმა რუკებმა შეიძლება პრობლემები გამოიწვიონ."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
 "make them less laggy, more fun to play and historically accurate."
-msgstr ""
+msgstr "[icon=\"iconFormation\"]  ჩვენ გავთიშეთ წყობები, სანამ გავარკვევთ როგორ გავხადოთ ნაკლებ ჩამომრჩენი, უფრო სასიამოვნო სათამაშო და ისტორიულად ზუსტი."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "რომაული სამხედრო ბანაკი"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "- ააშენე რუკაზე ნებისმიერ ადგილას, თუნდაც მოწინააღმდეგის ტერიტორიაზე. კარგია ფარული ბაზის ასაშენებლად მტრის ხაზის მიღმა, ან მტრის ტერიტორიაზე მატების გასამტკიცებლად."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
-msgstr ""
+msgstr "- კარგავს სიცოცხლეს ნეიტრალურ ან მტრის ტერიტორიაზე."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- ააშენე საალყე იარაღები და გაწვრთენი მოქალაქე-ჯარისკაცები."
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr ""
+msgstr "- ნელა კურნავს 40-მდე გარნიზონში ჩაყენებულს."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
-msgstr ""
+msgstr "ყაზარმა"
 
 #: gui/text/tips/barracks.txt:2
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- გაწვრთენი ყველა მოქალაქე-ჯარისკაცი. ასევე სხვადასხვა ჯგუფებს ფალავნების გაწვრთნის გახსნაც შეუძლიათ."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
-msgstr ""
+msgstr "- გამოიკვლიე თითოეული ჯგუფისთვის განსაკუთრებული სამხედრო ტექნოლოგიები."
 
 #: gui/text/tips/barracks.txt:6
 msgid ""
 "- Build one early to train citizen-soldiers while you phase up your "
 "settlement."
-msgstr ""
+msgstr "- ააშენე ადრეულად რომ გამოიყვანო მოქალაქე-ჯარისკაცები, სანამ დასახლებას უფრო მაღალ დონეზე აიყვან."
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- ააშენე წინა დასახლებაში, რომ შენი შეტევა ახალი ჯარით მოამარაგო."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
-msgstr ""
+msgstr "მჭედელი"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- გამოსაკვლევი შენობა ყველა ჯგუფისთვის."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- გამოიკვლიე იარაღი და ჯავშანი ყველასთვის."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე მოქალაქე-ჯარისკაცები რომ უფრო სწრაფად გამოიკვლიო."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
-msgstr ""
+msgstr "კართაგენული ფარული რაზმი"
 
 #: gui/text/tips/carth_sacred_band.txt:2
 msgid "- Champion Spearmen and Champion Cavalry Spearmen for Carthage."
-msgstr ""
+msgstr "- ფალავანი სასროლი შუბით და ფალავანი მხედარი სასროლი შუბით კართაგენისთვის."
 
 #: gui/text/tips/carth_sacred_band.txt:4
 msgid ""
 "- Both cost Food and Metal and are trainable from the Temple, instead of the"
 " Fortress like most other champions."
-msgstr ""
+msgstr "- ორივე ღირს საჭმელი და ლითონი და გაწვრთნადია ტაძრიდან სხვა ფალავნებისგან განსხვავებით, რომლებიც ციხე-სიმაგრეში იწვრთნებიან."
 
 #: gui/text/tips/carth_sacred_band.txt:6
 msgid ""
 "- Use the Spearmen as heavy infantry against cavalry. Use the Cavalry as "
 "heavy shock against siege weapons and skirmishers."
-msgstr ""
+msgstr "- გამოიყენე სასროლ შუბიანები როგორც მძიმე ქვეითები, მხედრების წინააღმდეგ. გამოიყენე მხედრები მძიმე დარტყმისთვის საალყე იარაღის და შემტაკებლების წინააღმდეგ."
 
 #: gui/text/tips/catapults.txt:1
 msgid "CATAPULTS"
-msgstr ""
+msgstr "ფილაკვნები"
 
 #: gui/text/tips/catapults.txt:2
 msgid "- Ranged siege engines that are good against buildings."
-msgstr ""
+msgstr "- მსროლელი საალყე ძრავები, რომლებიც კარგები არიან შენობების წინააღმდეგ."
 
 #: gui/text/tips/catapults.txt:4
 msgid ""
 "- May upgrade to flaming projectiles for extra effectiveness against "
 "buildings and units."
-msgstr ""
+msgstr "- შეიძლება გაძლიერდნენ ცეცხლოვან ჭურვებზე მეტი ეფექტურობისთვის შენობების და ერთეულების წინააღმდეგ."
 
 #: gui/text/tips/catapults.txt:6
 msgid "- Expensive and slow."
-msgstr ""
+msgstr "- ძვირი და ნელი."
 
 #: gui/text/tips/catapults.txt:8
 msgid ""
 "- Pack up into carts for movement, and unpack into stationary engines for "
 "attack!"
-msgstr ""
+msgstr "კალათაში შეფუთე გადაადგილებისთვის და უძრავ მდგომარეობაში გახსენი, რომ თავს დაესხას!"
 
 #: gui/text/tips/celtic_war_barge.txt:1
 msgid "CELTIC WAR BARGE"
-msgstr ""
+msgstr "კელტური საბრძოლო კაპარჭი"
 
 #: gui/text/tips/celtic_war_barge.txt:2
 msgid "- A medium \"trireme\"-class warship."
-msgstr ""
+msgstr "- საშუალო \"ტრირემის\" ხარისხის საბრძოლო გემი."
 
 #: gui/text/tips/celtic_war_barge.txt:4
 msgid "- The only ship of its kind."
-msgstr ""
+msgstr "- ერთადერთი გემი ასეთი სახეობის."
 
 #: gui/text/tips/celtic_war_barge.txt:6
 msgid "- Cannot ram, like other triremes, but has greater health and armour."
-msgstr ""
+msgstr "- გარღვევა არ შეუძლია, როგორც სხვა ტრირემებს, მაგრამ უფრო კარგი ჯანმრთელობა და ჯავშანი აქვს."
 
 #: gui/text/tips/celtic_war_barge.txt:8
 msgid "- Can transport up to 40 units across the waters."
-msgstr ""
+msgstr "- შეუძლია წყალზე გადაიყვანოს 40-მდე ერთეული."
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "სამოქალაქო ცენტრები"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr ""
+msgstr "- ახალი კოლონიის \"საფუძველი\""
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr ""
+msgstr "- დაისაკუთრე დიდი ტერიტორია."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
-msgstr ""
+msgstr "- შეიძლება აშენდეს მეგობრულ და ნეიტრალურ ტერიტორიებზე."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- გაწვრთენი ქალი მოქალაქეები და მოქალაქე-კარისკაცები."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
-msgstr ""
+msgstr "საელჩოები"
 
 #: gui/text/tips/embassies.txt:2
 msgid "- Special \"Barracks\" available to the Carthage faction."
-msgstr ""
+msgstr "- კართაგენელებისთვის ხელმისაწვდომი, განსაკუთრებული \"ყაზარმა\"."
 
 #: gui/text/tips/embassies.txt:4
 msgid "- Train mercenaries from each of the ethnically-themed embassies."
-msgstr ""
+msgstr "- გაწვრთენი დაქირავებული მებრძოლები თითოეული, ეთნიკურად დაყოფილი საელჩოდან."
 
 #: gui/text/tips/embassies.txt:6
 msgid ""
 "- Mercenary \"citizen-soldiers\" have their normal Food cost converted to "
 "Metal cost."
-msgstr ""
+msgstr "- დაქურავებულ \"მოქალაქე-ჯარისკაცს\" აქვს საჭმლის ღირებულება გადაყვანილი ლითონის ღირებულებაში."
 
 #: gui/text/tips/fishing.txt:1
 msgid "FISHING"
-msgstr ""
+msgstr "თევზაობა"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- ითევზავე ზღვაში უხვი მოსავლისთვის."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- მეთევზე ნავებს გადააქვთ დიდი რაოდენობით საჭმელი თითო მგზავრობაზე."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე მხარდამჭერი, რომ გააორმაგო თევზსაჭერი გემის შეგროვების ხარისხი."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr ""
+msgstr "- ფრთხილად! თევზი გამოლევადია!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr ""
+msgstr "ციხე-სიმაგრე"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."
-msgstr ""
+msgstr "- ჩვეულებრივ, ციხე-სიმაგრე არის ყველა ჯგუფის უძლიერესი შენობა. "
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- წვრთნის ფალავნებს, გმირებს და საალყე იარაღებს."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
-msgstr ""
+msgstr "- ზრდის მოსახლეობის ზღვარს."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე ჯარისკაცები, რომ გააძლიერო მისი დაცვა."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
-msgstr ""
+msgstr "სახსრების მოპოვება"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "- სახსრების მოსაპოვებლად გამოიყენე მოქალაქე-ჯარისკაცები და მოქალაქე ქალები."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."
-msgstr ""
+msgstr "- მოქალაქე ქალები უკეთესად მუშაობენ ფერმაში და საჭმლის მოპოვებისას."
 
 #: gui/text/tips/gathering.txt:6
 msgid "- Citizen-Soldiers are bonused with Mining."
-msgstr ""
+msgstr "- მოქალაქე-კარისკაცები კარგები არიან ქვის და ლითონის მოპოვებისას."
 
 #: gui/text/tips/gathering.txt:8
 msgid ""
 "- The higher the level of Citizen-Soldier (Advanced, Elite), the better he "
 "fights, but the less efficient he is at gathering."
-msgstr ""
+msgstr "- რაც უფრო მაღალია მოქალაქე-ჯარისკაცის დონე (გამოცდილი, რჩეული), უკეთ იბრძვის, მაგრამ ნაკლებ ეფექტურია მოპოვებისას."
 
 #: gui/text/tips/iphicrates.txt:1
 msgid "IPHICRATES"
-msgstr ""
+msgstr "იფიკრატე"
 
 #: gui/text/tips/iphicrates.txt:2
 msgid ""
 "- The Athenian general who reformed the Athenian army to be faster and more "
 "maneuverable."
-msgstr ""
+msgstr "- ათენელი გენერალი, ვინც გარდაქმნა ათენური ჯარი უფრო სრაფად და უფრო მოქნილად."
 
 #: gui/text/tips/iphicrates.txt:4
 msgid "- Units in his formation are faster and stronger."
-msgstr ""
+msgstr "- ერთეულები მის წყობაში არიან უფრო სწრაფები და ძლიერები. "
 
 #: gui/text/tips/iphicrates.txt:6
 msgid "- Skirmishers move faster while he lives."
-msgstr ""
+msgstr "- მის სიცოცხლეში შემტაკებელი უფრო სწრაფად მოძრაობენ."
 
 #: gui/text/tips/outposts.txt:1
 msgid "OUTPOSTS"
-msgstr ""
+msgstr "საგუშაგო"
 
 #: gui/text/tips/outposts.txt:2
 msgid "- Build in neutral territory for a large scouting range."
-msgstr ""
+msgstr "- ააშენე ნეიტრალურ ტერიტორიაზე დიდი სადაზვერვო მანძილისთვის."
 
 #: gui/text/tips/outposts.txt:4
 msgid "- Cheap, at 80 Wood."
-msgstr ""
+msgstr "- იაფია, 80 ხე ღირს."
 
 #: gui/text/tips/outposts.txt:6
 msgid "- They construct quickly, but are weak."
-msgstr ""
+msgstr "- სწრაფად შენდებიან, მაგრამ სუსტები არიან."
 
 #: gui/text/tips/outposts.txt:8
 msgid "- Lose health while in Neutral territory, but are repairable."
-msgstr ""
+msgstr "- ჯანმრთელობას კარგავენ ნეიტრალურ ტერიტორიებზე, მაგრამ შეკეთება შეიძლება."
 
 #: gui/text/tips/palisades.txt:1
 msgid "PALISADE WALLS"
-msgstr ""
+msgstr "მესერი კედლები"
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "- ყველა ჯგუფისთვის ხელმისაწვდომი, სწრაფი და იაფი ხის კედელი."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
-msgstr ""
+msgstr "- ჯგუფების უმეტესობას ისინი აქვთ სოფლის ფაზაში."
 
 #: gui/text/tips/palisades.txt:6
 msgid ""
 "- Attackable by enemy soldiers, unlike City Walls, which are only attackable"
 " by siege weapons."
-msgstr ""
+msgstr "- შეიძლება თავს დაესხან მტრის ჯარისკაცები ქალაქის კედლებისგან განსხვავებით, რომლებსაც მხოლოდ საალყე იარაღები ესხმიან თავს."
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "პერიკლე"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
-msgstr ""
+msgstr "- ძველი წელთაღრიცხვით მე-5 საუკუნის მოწინავე ათენელი პოლიტიკოსი."
 
 #: gui/text/tips/pericles.txt:4
 msgid "- Buildings construct faster within his range."
-msgstr ""
+msgstr "- მის ახლოს შედობები უფრო სწრაფად შენდება."
 
 #: gui/text/tips/pericles.txt:6
 msgid "- Temples are cheaper while he lives."
-msgstr ""
+msgstr "- მის სიცოცხლეში ტაძრები უფრო იაფია."
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "სპარსული ხუროთმოძღვრება"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."
-msgstr ""
+msgstr "- განსაკუთრებული ტექნოლოგია სპარსელებისთვის."
 
 #: gui/text/tips/persian_architecture.txt:4
 msgid "- All Persian buildings +25% stronger."
-msgstr ""
+msgstr "- ყველა სპარსული შენობა 25%-ით ძლიერია."
 
 #: gui/text/tips/persian_architecture.txt:6
 msgid "- Build time lengthened by +20% as a consequence."
-msgstr ""
+msgstr "- შედეგად შენების დრო იზრდება 20%-ით."
 
 #: gui/text/tips/persian_architecture.txt:8
 msgid ""
 "- Persians also have access to a great number of structural & defensive "
 "technologies."
-msgstr ""
+msgstr "- სპარსელებს აქვთ წვდომა ბევრ მშენებლობით და თავდაცვით ტექნოლოგიასთან."
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "შუბოსანი"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
-msgstr ""
+msgstr "- მძიმედ შეიარაღებული და ნელი. დაბალი თავდასხმა."
 
 #: gui/text/tips/pikemen.txt:4
 msgid ""
 "- Used against cavalry for a 4x attack bonus or against other melee infantry"
 " to pin them them in place."
-msgstr ""
+msgstr "- გამოიყენება მხედრების წინააღმდეგ 4-მაგი თავდასხმისთვის, ან სხვა შემტაკებლის წინააღმდეგ, მათ ერთ ადგილზე გასაჩერებლად."
 
 #: gui/text/tips/pikemen.txt:6
 msgid "- Available to: Macedonians, Seleucids, and Ptolemies."
-msgstr ""
+msgstr "- წვდომადია მაკედონელებისთვის, სელევკიდებისთვის და პტოლემეებისთვის."
 
 #: gui/text/tips/quinquereme.txt:1
 msgid "HEAVY WARSHIP"
-msgstr ""
+msgstr "მძიმე საბრძოლო გემი"
 
 #: gui/text/tips/quinquereme.txt:2
 msgid ""
 "- The heaviest standard warship. Available to: Rome, Carthage, Ptolemies, "
 "and Seleucids."
-msgstr ""
+msgstr "- ყველაზე მძიმე ჩვეულებრივი საბრძოლო გემი. წვდომადია რომაელებისთვის, კართაგენელებისთვის, პტოლემეებისთვის და სელევკიდებისთვის."
 
 #: gui/text/tips/quinquereme.txt:4
 msgid ""
 "- Garrison up to 50 units for tons of firepower, including ballistas and "
 "scorpions."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე 50-მდე ერთეული უზარმაზარი სასროლი ძალისთვის. გამოიყენება ფილაკვნებიც და მორიელებიც."
 
 #: gui/text/tips/quinquereme.txt:6
 msgid "- Has a ramming attack that sinks enemy ships."
-msgstr ""
+msgstr "- აქვს გამრღვევი თავდასხმა, რაც ძირავს მტრის გემებს."
 
 #: gui/text/tips/savanna_biome.txt:1
 msgid "SAVANNA BIOME"
-msgstr ""
+msgstr "სავანის ბიომი"
 
 #: gui/text/tips/savanna_biome.txt:2
 msgid "- Generally flat, with a few watering holes and rocky outcrops."
-msgstr ""
+msgstr "- ძირითადად ბრტყელი, მცირე რაოდენობით წყლის ხვრელებით და ქვიანი ადგილებით."
 
 #: gui/text/tips/savanna_biome.txt:4
 msgid "- Chock full of herd animals for plentiful hunting."
-msgstr ""
+msgstr "- სავსე ცხოველების ჯოგებით, ნაყოფიერი ნადირობისთვის."
 
 #: gui/text/tips/savanna_biome.txt:6
 msgid "- Rich in all types of mining."
-msgstr ""
+msgstr "- მდიდარი ყველა ტიპის მოპოვებისთვის."
 
 #: gui/text/tips/savanna_biome.txt:8
 msgid "- Wood tends to be sparse, but consists of high-yield Baobab trees."
-msgstr ""
+msgstr "- ხე მეჩხრადაა, მაგრამ შეიცავს მაღალი მოსავლიან ბაობაბის ხეებს."
 
 #: gui/text/tips/scout_towers.txt:1
 msgid "DEFENSE TOWERS"
-msgstr ""
+msgstr "თავდაცვის კოშკები"
 
 #: gui/text/tips/scout_towers.txt:2
 msgid "- Free-standing towers good for defending large areas of countryside."
-msgstr ""
+msgstr "- თავისუფლად მდგომი კოშკები, რომლებიც კარგები არიან ქალაქგარეთ სოფლების დიდი ფართობების დასაცავად."
 
 #: gui/text/tips/scout_towers.txt:4
 msgid ""
 "- They usually cost 100 Wood and 100 Stone. Iberian Defense Towers cost 300 "
 "Stone (because they're stronger)."
-msgstr ""
+msgstr "- ჩვეულებრივ მათი ფასია 100 ხე და 100 ქვა. იბერულ თავდაცვის კოშკებს სჭირდებათ 300 ქვა (იმიტომ, რომ უფრო ძლიერები არიან)."
 
 #: gui/text/tips/scout_towers.txt:6
 msgid "- Has a ranged attack that increases for each garrisoned unit."
-msgstr ""
+msgstr "- აქვს სასროლი თავდასხმა, რაც ძლიერდება თითოეული გარნიზონში ჩაყენებული კაცით."
 
 #: gui/text/tips/spartan_hoplites.txt:1
 msgid "SPARTIATES"
-msgstr ""
+msgstr "სპარტელები"
 
 #: gui/text/tips/spartan_hoplites.txt:2
 msgid "- Strongest infantry unit in the game."
-msgstr ""
+msgstr "- ყველაზე ძლიერი ქვეითები ამ თამაშში."
 
 #: gui/text/tips/spartan_hoplites.txt:4
 msgid "- Champion Infantry available to the Spartans faction."
-msgstr ""
+msgstr "- სპარტელებისთვის ფალავანი ქვეითები არიან ხელმისაწვდომი. "
 
 #: gui/text/tips/spartan_hoplites.txt:6
 msgid ""
 "- Use them to slaughter enemy cavalry or as a shock force to support your "
 "regular infantry."
-msgstr ""
+msgstr "- გამოიყენე მტრის მხედრების გასაჟლეტად, ან დამრტყმელ ძალად მუდმივი ქვეითების დასახმარებლად."
 
 #: gui/text/tips/spartan_hoplites.txt:8
 msgid "- Use the 'Phalanx' formation for extra armor bonuses."
-msgstr ""
+msgstr "- გამოიყენე წყობა 'ფალანქსი' დამატებით თავდაცვისთვის."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "სასროლ შუბიანი"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
-msgstr ""
+msgstr "- ძირითადი შემტაკებელი ქვეით თამაშის ყველა ჯგუფისთვის."
 
 #: gui/text/tips/spearmen.txt:4
 msgid "- Used against cavalry for a 2x attack bonus."
-msgstr ""
+msgstr "- გამოიყენება მხედრების წინააღმდეგ 2x თავდასხმისთვის."
 
 #: gui/text/tips/spearmen.txt:6
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- საკმაო თავდასხმა ცხენოსნებზე და კარგი იერიშის ჯილდო მათ ქმნის კარგ წინა ხაზის მებრძოლებად."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- მსროლელები და მოფარიკავეები სჯობიან მათ, ამიტომაც სასროლ შუბიანებს დაახმარე მეშურდულეები ან მხედრები."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"
-msgstr ""
+msgstr "სტოა"
 
 #: gui/text/tips/stoa.txt:2
 msgid "- A special starting structure for the Hellenes."
-msgstr ""
+msgstr "- განსაკუთრებული საწყისი შენობა ბერძნებისთვის."
 
 #: gui/text/tips/stoa.txt:4
 msgid "- Grants +10 Population."
-msgstr ""
+msgstr "- ასაჩუქრებს +10 მოსახლეობით."
 
 #: gui/text/tips/stoa.txt:6
 msgid "- Only enabled in some game modes."
-msgstr ""
+msgstr "- ჩართულია მხოლოდ რომელიღაც თამაშის მოდიფიკაციებში."
 
 #: gui/text/tips/stoa.txt:8
 msgid "- Can be found in the Atlas editor for custom scenarios."
-msgstr ""
+msgstr "- შეიძლება ნახო Atlas გამომცემში შერჩევით სცენარებში."
 
 #: gui/text/tips/storehouses.txt:1
 msgid "STOREHOUSES"
-msgstr ""
+msgstr "საწყობები"
 
 #: gui/text/tips/storehouses.txt:2
 msgid "- A cheap dropsite for non-food resources (wood, stone, metal)."
-msgstr ""
+msgstr "- იაფი დასაყრელი ადგილი არა საჭმლის სახსრებისთვის (ხე, ქვა, ლითონი)."
 
 #: gui/text/tips/storehouses.txt:4
 msgid ""
 "- Research technologies to improve the gathering capabilities of your "
 "citizens."
-msgstr ""
+msgstr "- გამოიკვლიე ტექნოლოგიები რომ გააუმჯობესო შენი მოქალაქეების მოპოვების შესაძლებლობები."
 
 #: gui/text/tips/syntagma.txt:1
 msgid "SYNTAGMA FORMATION"
-msgstr ""
+msgstr "წყობა სინტაგმა"
 
 #: gui/text/tips/syntagma.txt:2
 msgid "- A formation for 'pikeman' style infantry."
-msgstr ""
+msgstr "- წყობა 'შუბოსნის' მაგვარი ქვეითებისთვის."
 
 #: gui/text/tips/syntagma.txt:4
 msgid "- Formation is slow and cumbersome."
-msgstr ""
+msgstr "- წყობა არის ნელი და ვეებერთელა."
 
 #: gui/text/tips/syntagma.txt:6
 msgid "- Nearly invulnerable from the front."
-msgstr ""
+msgstr "- წინიდან თითქმის მოუხელთებელი."
 
 #: gui/text/tips/syntagma.txt:8
 msgid "- Vulnerable to attacks from the rear."
-msgstr ""
+msgstr "- უკნიდან თავდასხმებისგან დაუცველი."
 
 #: gui/text/tips/temples.txt:1
 msgid "TEMPLES"
-msgstr ""
+msgstr "ტაძრები"
 
 #: gui/text/tips/temples.txt:2
 msgid "- Town Phase structure required to upgrade to the City Phase."
-msgstr ""
+msgstr "- ქალაქის დონის შენობა, საჭიროა რომ გადახვიდე დიდი ქალაქის დონეზე."
 
 #: gui/text/tips/temples.txt:4
 msgid "- Recruit Healers to heal your troops on the battlefield."
-msgstr ""
+msgstr "- აიყვანე მკურნალები რომ შენს ჯარს უმკურნალო ბრძოლის ველზე."
 
 #: gui/text/tips/temples.txt:6
 msgid "- Research healing, religious devotion, and cultural technologies."
-msgstr ""
+msgstr "- გამოიკვლიე მკურნალობა, რელიგიური თავდადება და კულტურული ტექნოლოგიები."
 
 #: gui/text/tips/temples.txt:8
 msgid "- Its \"aura\" heals nearby units."
-msgstr ""
+msgstr "- მისი \"ზეფირი\" კურნავს ახლომახლო ერთეულებს."
 
 #: gui/text/tips/temples.txt:10
 msgid "- Garrison damaged units inside for quicker healing."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე დაზიანებულები, რომ სწრაფად განიკურნონ."
 
 #: gui/text/tips/themistocles.txt:1
 msgid "THEMISTOCLES"
-msgstr ""
+msgstr "თემისტოკლე"
 
 #: gui/text/tips/themistocles.txt:2
 msgid ""
 "- Athenian hero who commanded the Greeks at the great naval battles of "
 "Artemisium and Salamis."
-msgstr ""
+msgstr "- ათენელი გმირი, ვინც უძღვებოდა ბერძნებს არტემისის და სალამის დიდ სანაოსნო ბრძოლებში."
 
 #: gui/text/tips/themistocles.txt:4
 msgid "- All ships are built faster while he lives."
-msgstr ""
+msgstr "- მისი ცხოვრების განმავლობაში ყველა გემი უფრო სწრაფად იგება."
 
 #: gui/text/tips/themistocles.txt:6
 msgid "- The ship he is garrisoned inside moves much faster."
-msgstr ""
+msgstr "- გემი, რომელშიც ის არის გარნიზონში ჩაყენებული,  ბევრად სწრაფად მოძრაობს."
 
 #: gui/text/tips/triremes.txt:1
 msgid "TRIREME"
-msgstr ""
+msgstr "ტრირემა"
 
 #: gui/text/tips/triremes.txt:2
 msgid "- The Medium Warship."
-msgstr ""
+msgstr "- საშუალო საბრძოლო გემი."
 
 #: gui/text/tips/triremes.txt:4
 msgid ""
 "- Available to the Romans, Carthaginians, Hellenic factions, and Persians."
-msgstr ""
+msgstr "- წვდომადია რომაელებისთვის, კართაგენელებისთვის, ბერძნული ჯგუფებისთვის და სპარსებისთვის."
 
 #: gui/text/tips/triremes.txt:6
 msgid "- Good for transporting or fighting."
-msgstr ""
+msgstr "- კარგია გადაყვანისთვის, ან ბრძოლისთვის."
 
 #: gui/text/tips/triremes.txt:8
 msgid "- Garrison a catapult aboard for a long-range siege attack."
-msgstr ""
+msgstr "- გარნიზონში ჩაუყენე ფილაკვანი შორი საალყე თავდასხმისთვის."
 
 #: gui/text/tips/triremes.txt:10
 msgid ""
 "- Capable of a devastating ship-to-ship ramming attack that must recharge "
 "between each use."
-msgstr ""
+msgstr "- შეუძლია გემი გემზე ამაოხრებელი გამრღვევი თავდასხმა, რაც უნდა გადაიტენოს ყველა გამოყენების შემდეგ."
 
 #: gui/text/tips/viriato.txt:1
 msgid "VIRIATO"
-msgstr ""
+msgstr "ვირიატო"
 
 #: gui/text/tips/viriato.txt:2
 msgid "- Iberian hero of the Lusitani tribe."
-msgstr ""
+msgstr "- იბერი გმირი ლუსიტანის ტომიდან."
 
 #: gui/text/tips/viriato.txt:4
 msgid ""
 "- At least 7 campaigns against the Romans during the 'Lusitani Wars' from "
 "147 to 139 B.C."
-msgstr ""
+msgstr "- ყველაზე მცირე, 7 ლაშქრობა რომაელების წინააღმდეგ 'ლუსიტანის ბრძოლების' განმავლობაში 146-დან 139-მდე ძ.წ."
 
 #: gui/text/tips/viriato.txt:6
 msgid "- Fast moving and can switch between sword and flaming javelin."
-msgstr ""
+msgstr "- სწრაფად მოძრავია და შეუძლია გამოიყენოს ხმალიც და ცეცხლოვანი სატყორცნი შუბიც."
 
 #: gui/text/tips/viriato.txt:8
 msgid ""
 "- His \"aura\" is the \"Tactica Guerilla\" that allows nearby Iberian units "
 "to ambush their opponents."
-msgstr ""
+msgstr "- მისი \"ზეფირი\" არის \"პარტიზანის მოხერხება\" რაც აძლევს ახლომახო იბერებს ჩაუსაფრდნენ მოწინააღმდეგეს."
 
 #: gui/text/tips/war_elephants.txt:1
 msgid "WAR ELEPHANTS"
-msgstr ""
+msgstr "საბრძოლო სპილო"
 
 #: gui/text/tips/war_elephants.txt:2
 msgid "- Huge beasts from Africa and India, trained for war."
-msgstr ""
+msgstr "- დიდი ცხოველი აფრიკიდან და ინდოეთიდან, გაწვრთნილი საბრძოლველად."
 
 #: gui/text/tips/war_elephants.txt:4
 msgid ""
 "- High Food and Metal cost, but very powerful. Strongest against Structures "
 "and Cavalry."
-msgstr ""
+msgstr "- მაღალი საჭმლის და ლითონის ღირებულებით, მაგრამ ძალიან ძლიერი. უძლიერესი შენობების და მხედრების წინააღმდეგ."
 
 #: gui/text/tips/war_elephants.txt:6
 msgid "- Vulnerable to infantry skirmishers."
-msgstr ""
+msgstr "- დაუცველი ქვეითი შემტაკებლების მიმართ."
 
 #: gui/text/tips/war_elephants.txt:8
 msgid "- Available to: Mauryans, Ptolemies, Seleucids, and Carthaginians."
-msgstr ""
+msgstr "- წვდომადია მაურიელებისთვის, პტოლემეებისთვის, სელევკიდებისთვის და კართაგენელებისთვის."
 
 #: gui/text/tips/whales.txt:1
 msgid "WHALES"
-msgstr ""
+msgstr "ვეშაპები"
 
 #: gui/text/tips/whales.txt:2
 msgid "- An oceanic resource."
-msgstr ""
+msgstr "- ოკეანის საკვები საშუალება."
 
 #: gui/text/tips/whales.txt:4
 msgid "- 2000 Food."
-msgstr ""
+msgstr "- 2000 საკვები."
 
 #: gui/text/tips/whales.txt:6
 msgid "- Gatherable by Fishing Boats after the whale is killed."
-msgstr ""
+msgstr "- მოპოვებადია თევსაჭერი გემებისთვის მას შემდეგ, რაც ვეშაპი მოკვდება."
 
 #: gui/text/tips/whales.txt:8
 msgid "- Roam around the oceans of the game and flee when attacked."
-msgstr ""
+msgstr "- ხეტიალობს ოკეანეების გარშემო და გარბის როცა თავს ესხმიან."

@@ -85,5 +85,15 @@ m.DiplomacyManager.prototype.update = function(gameState, events)
 		this.tributes(gameState);
 };
 
+m.DiplomacyManager.prototype.Serialize = function()
+{
+	return { "lastTributeUpdate": this.lastTributeUpdate };
+};
+
+m.DiplomacyManager.prototype.Deserialize = function(data)
+{
+	this.lastTributeUpdate = data.lastTributeUpdate;
+};
+
 return m;
 }(PETRA);

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="cypress branches med">
+      <mesh>gaia/tree_cypress_med_branches.dae</mesh>
+      <textures>
+      	<texture file="gaia/tree_cypress.png" name="baseTex"/>
+        <texture file="gaia/tree_cypress_norm.png" name="normTex"/>
+        <texture file="gaia/tree_cypress_spec.png" name="specTex"/>        
+      </textures>
+    </variant>
+  </group>
+  <material>basic_trans_wind.xml</material>
+</actor>

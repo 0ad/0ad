@@ -1,25 +1,22 @@
 # Translation template for Pyrogenesis - Mod Selector.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the Pyrogenesis - Mod
-# Selector project.
+# This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"POT-Creation-Date: 2014-10-26 02:06+0100\n"
 "PO-Revision-Date: 2014-09-12 20:06+0000\n"
 "Language-Team: Latvian (http://www.transifex.com/projects/p/0ad/language/lv/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: lv\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);\n"
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:94 (heading)
-#: gui/modmod/modmod.xml:135 (heading)
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):94
+#: gui/modmod/modmod.xml:(heading):135
 msgid "Name"
 msgstr "Vārds"
 
@@ -31,8 +28,8 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
-#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:97 (heading)
-#: gui/modmod/modmod.xml:138 (heading)
+#: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):97
+#: gui/modmod/modmod.xml:(heading):138
 msgid "Version"
 msgstr ""
 
@@ -60,74 +57,74 @@ msgstr ""
 msgid "Description"
 msgstr ""
 
-#: gui/modmod/modmod.xml:10 (caption)
+#: gui/modmod/modmod.xml:(caption):10
 msgid "Modifications"
 msgstr ""
 
-#: gui/modmod/modmod.xml:18 (caption)
+#: gui/modmod/modmod.xml:(caption):18
 msgid "Reset Filters"
 msgstr ""
 
-#: gui/modmod/modmod.xml:52 (caption)
+#: gui/modmod/modmod.xml:(caption):52
 msgid "Negate"
 msgstr ""
 
-#: gui/modmod/modmod.xml:87 (caption)
+#: gui/modmod/modmod.xml:(caption):87
 msgid "Available Mods"
 msgstr ""
 
-#: gui/modmod/modmod.xml:100 (heading) gui/modmod/modmod.xml:141 (heading)
-msgid "(Folder)"
-msgstr ""
-
-#: gui/modmod/modmod.xml:103 (heading) gui/modmod/modmod.xml:144 (heading)
-msgid "Mod Label"
-msgstr ""
-
-#: gui/modmod/modmod.xml:106 (heading) gui/modmod/modmod.xml:147 (heading)
-msgid "Mod Type"
-msgstr ""
-
-#: gui/modmod/modmod.xml:109 (heading) gui/modmod/modmod.xml:150 (heading)
-msgid "Dependencies"
-msgstr ""
-
-#: gui/modmod/modmod.xml:112 (heading) gui/modmod/modmod.xml:153 (heading)
-msgid "Website"
-msgstr "Mājas lapa"
-
-#: gui/modmod/modmod.xml:119 (caption)
+#: gui/modmod/modmod.xml:(caption):119
 msgid "Enable"
 msgstr ""
 
-#: gui/modmod/modmod.xml:128 (caption)
+#: gui/modmod/modmod.xml:(caption):128
 msgid "Enabled Mods"
 msgstr ""
 
-#: gui/modmod/modmod.xml:158 (caption)
+#: gui/modmod/modmod.xml:(caption):158
 msgid "Up"
 msgstr ""
 
-#: gui/modmod/modmod.xml:162 (caption)
+#: gui/modmod/modmod.xml:(caption):162
 msgid "X"
 msgstr ""
 
-#: gui/modmod/modmod.xml:166 (caption)
+#: gui/modmod/modmod.xml:(caption):166
 msgid "Down"
 msgstr ""
 
-#: gui/modmod/modmod.xml:174 (caption)
+#: gui/modmod/modmod.xml:(caption):174
 msgid "Quit"
 msgstr ""
 
-#: gui/modmod/modmod.xml:179 (caption)
+#: gui/modmod/modmod.xml:(caption):179
 msgid "Cancel"
 msgstr "Atcelt"
 
-#: gui/modmod/modmod.xml:184 (caption)
+#: gui/modmod/modmod.xml:(caption):184
 msgid "Save Configuration"
 msgstr ""
 
-#: gui/modmod/modmod.xml:189 (caption)
+#: gui/modmod/modmod.xml:(caption):189
 msgid "Start Mods"
 msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):100 gui/modmod/modmod.xml:(heading):141
+msgid "(Folder)"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):103 gui/modmod/modmod.xml:(heading):144
+msgid "Mod Label"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):106 gui/modmod/modmod.xml:(heading):147
+msgid "Mod Type"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):109 gui/modmod/modmod.xml:(heading):150
+msgid "Dependencies"
+msgstr ""
+
+#: gui/modmod/modmod.xml:(heading):112 gui/modmod/modmod.xml:(heading):153
+msgid "Website"
+msgstr "Mājas lapa"

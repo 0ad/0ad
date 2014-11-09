@@ -205,5 +205,15 @@ m.GarrisonManager.prototype.registerHolder = function(gameState, holder)
 	holder.setMetadata(PlayerID, "holderTimeUpdate", gameState.ai.elapsedTime);
 };
 
+m.GarrisonManager.prototype.Serialize = function()
+{
+	return { "holders": this.holders };
+};
+
+m.GarrisonManager.prototype.Deserialize = function(data)
+{
+	this.holders = data.holders;
+};
+
 return m;
 }(PETRA);

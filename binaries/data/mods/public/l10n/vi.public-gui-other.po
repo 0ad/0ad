@@ -1,27 +1,24 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # Huynh Yen Loc <yenloc@outlook.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
+"POT-Creation-Date: 2014-10-26 18:14+0100\n"
 "PO-Revision-Date: 2014-10-23 14:33+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Vietnamese (http://www.transifex.com/projects/p/0ad/language/vi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: vi\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: gui/civinfo/civinfo.js:108
-#, python-format
+#, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Lối chơi của %(civilization)s"
 
@@ -44,17 +41,17 @@ msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Công trình đặc biệt"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:423 (caption)
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
 msgid "Heroes"
 msgstr "Anh hùng"
 
 #: gui/civinfo/civinfo.js:157
-#, python-format
+#, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Lịch sử của %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
-#, python-format
+#, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
@@ -65,7 +62,7 @@ msgid "Opening page"
 msgstr "Đang mở trang"
 
 #: gui/common/functions_global_object.js:79
-#, python-format
+#, javascript-format
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
@@ -86,17 +83,17 @@ msgid "yyyy-MM-dd HH:mm:ss"
 msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
-#, python-format
+#, javascript-format
 msgid "[%(date)s]"
 msgstr "[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
 msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
-#, python-format
+#, javascript-format
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
@@ -117,7 +114,7 @@ msgid "Game has already started"
 msgstr "Trò chơi đã được bắt đầu"
 
 #: gui/common/network.js:10
-#, python-format
+#, javascript-format
 msgid "[Invalid value %(id)s]"
 msgstr "[Giá trị không hợp lệ %(id)s]"
 
@@ -126,7 +123,7 @@ msgid "Lost connection to the server."
 msgstr "Mất kết nối với máy chủ."
 
 #: gui/common/network.js:19
-#, python-format
+#, javascript-format
 msgid "Reason: %(reason)s."
 msgstr "Lý do: %(reason)s."
 
@@ -156,7 +153,7 @@ msgid "No"
 msgstr "Không"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:27 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):27
 msgid "OK"
 msgstr "OK"
 
@@ -422,7 +419,7 @@ msgid "connecting to server"
 msgstr "đang kết nối với máy chủ"
 
 #: gui/pregame/mainmenu.js:86
-#, c-format
+#, javascript-format
 msgid "uploading (%f%%)"
 msgstr "đang tải lên (%f%%)"
 
@@ -431,12 +428,12 @@ msgid "upload succeeded"
 msgstr "tải lên thành công"
 
 #: gui/pregame/mainmenu.js:95
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorCode)s)"
 msgstr "tải lên thất bại (%(errorCode)s)"
 
 #: gui/pregame/mainmenu.js:102
-#, python-format
+#, javascript-format
 msgid "upload failed (%(errorMessage)s)"
 msgstr "tải lên thất bại (%(errorMessage)s)"
 
@@ -445,7 +442,7 @@ msgid "unknown"
 msgstr "không biết"
 
 #: gui/pregame/mainmenu.js:149
-#, python-format
+#, javascript-format
 msgid ""
 "%(startWarning)sWarning:%(endWarning)s You appear to be using non-shader "
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
@@ -470,7 +467,7 @@ msgid "Read More"
 msgstr "Đọc Thêm"
 
 #: gui/pregame/mainmenu.js:251
-#, python-format
+#, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Bản: %(buildDate)s (%(revision)s)"
 
@@ -496,8 +493,8 @@ msgstr "Lỗi"
 msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
 msgstr "Chạy phòng đợi cho chơi mạng. [BỊ TẮT TRONG BẢN XÂY DỰNG]"
 
-#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:85 (caption)
-#: gui/pregame/mainmenu.xml:116 (caption)
+#: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
+#: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
 msgstr "Chi Tiết Kỹ Thuật"
 
@@ -514,24 +511,24 @@ msgid "This saved game may not be compatible:"
 msgstr "Trò chơi được lưu này có thể không tương thích:"
 
 #: gui/savedgames/load.js:48
-#, python-format
+#, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Nó cần phiến bản 0 A.D. %(requiredVersion)s, và bạn đang dùng phiên bản %(currentVersion)s."
 
 #: gui/savedgames/load.js:58
-#, python-format
+#, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Nó không cần mod trong khi bạn lại đang dùng \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:62
-#, python-format
+#, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Nó cần mod \"%(requiredMod)s\" trong khi bạn lại đang không dùng mod."
 
 #: gui/savedgames/load.js:66
-#, python-format
+#, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
@@ -547,7 +544,7 @@ msgstr "Cảnh báo"
 
 #: gui/savedgames/load.js:108 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
-#, python-format
+#, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
@@ -572,122 +569,122 @@ msgid "Scenario"
 msgstr "Màn chơi"
 
 #: gui/summary/summary.js:510
-#, python-format
+#, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr "Thời gian trôi qua: %(time)s"
 
 #: gui/summary/summary.js:531
-#, python-format
+#, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/civinfo/civinfo.xml:16 (caption)
+#: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
 msgstr "Nền văn minh"
 
-#: gui/civinfo/civinfo.xml:28 (caption)
+#: gui/civinfo/civinfo.xml:(caption):28
 msgid "Civilization Selection"
 msgstr "Chọn nền văn minh"
 
-#: gui/civinfo/civinfo.xml:118 (caption)
+#: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
 msgstr "Đóng"
 
-#: gui/locale/locale.xml:14 (caption) gui/locale/locale_advanced.xml:14
-#: (caption) gui/pregame/mainmenu.xml:286 (caption)
+#: gui/locale/locale.xml:(caption):14
+#: gui/locale/locale_advanced.xml:(caption):14
+#: gui/pregame/mainmenu.xml:(caption):286
 msgid "Language"
 msgstr "Ngôn ngữ"
 
-#: gui/locale/locale.xml:17 (caption) gui/locale/locale_advanced.xml:17
-#: (caption)
+#: gui/locale/locale.xml:(caption):17
+#: gui/locale/locale_advanced.xml:(caption):17
 msgid "Language:"
 msgstr "Ngôn ngữ:"
 
 #. A locale is a set of parameters that defines the user’s language, country
-#. and
-#. any special variant preferences that the user wants to see in their user
-#. interface. Here, “Locale” refers to the code that identifies those
-#. settings,
-#. such as ‘en_US’.
-#: gui/locale/locale.xml:31 (caption)
+#. and any special variant preferences that the user wants to see in their
+#. user interface. Here, “Locale” refers to the code that identifies those
+#. settings, such as ‘en_US’.
+#: gui/locale/locale.xml:(caption):31
 msgid "Locale:"
 msgstr "Thông tin miền:"
 
-#: gui/locale/locale.xml:36 (caption) gui/locale/locale_advanced.xml:65
-#: (caption) gui/options/options.xml:69 (caption) gui/savedgames/load.xml:25
-#: (caption) gui/savedgames/save.xml:37 (caption)
+#: gui/locale/locale.xml:(caption):36
+#: gui/locale/locale_advanced.xml:(caption):65
+#: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
+#: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
-#: gui/locale/locale.xml:41 (caption)
+#: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
 msgstr "Nâng cao"
 
-#: gui/locale/locale.xml:46 (caption) gui/locale/locale_advanced.xml:75
-#: (caption)
+#: gui/locale/locale.xml:(caption):46
+#: gui/locale/locale_advanced.xml:(caption):75
 msgid "Accept"
 msgstr "Chấp nhận"
 
-#: gui/locale/locale_advanced.xml:25 (caption)
+#: gui/locale/locale_advanced.xml:(caption):25
 msgid "Country:"
 msgstr "Nước:"
 
-#: gui/locale/locale_advanced.xml:34 (caption)
+#: gui/locale/locale_advanced.xml:(caption):34
 msgid "Script:"
 msgstr "Mã ký tự:"
 
-#: gui/locale/locale_advanced.xml:37 (tooltip)
+#: gui/locale/locale_advanced.xml:(caption):41
+msgid "Variant (unused):"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):48
+msgid "Keywords (unused):"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):55
+msgid "Resulting locale:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):60
+msgid "Dictionary files used:"
+msgstr ""
+
+#: gui/locale/locale_advanced.xml:(caption):70
+msgid "Auto detect"
+msgstr "Tự phát hiện"
+
+#: gui/locale/locale_advanced.xml:(tooltip):37
 msgid ""
 "Optional four-letter script code part following the language code (as listed"
 " in ISO 15924)"
 msgstr "Mã ký tự tùy chọn theo sau mã ngôn ngữ"
 
-#: gui/locale/locale_advanced.xml:41 (caption)
-msgid "Variant (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:44 (tooltip)
-#: gui/locale/locale_advanced.xml:51 (tooltip)
+#: gui/locale/locale_advanced.xml:(tooltip):44
+#: gui/locale/locale_advanced.xml:(tooltip):51
 msgid "Not implemented yet."
 msgstr ""
 
-#: gui/locale/locale_advanced.xml:48 (caption)
-msgid "Keywords (unused):"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:55 (caption)
-msgid "Resulting locale:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:60 (caption)
-msgid "Dictionary files used:"
-msgstr ""
-
-#: gui/locale/locale_advanced.xml:70 (caption)
-msgid "Auto detect"
-msgstr "Tự phát hiện"
-
-#: gui/options/options.xml:18 (caption)
+#: gui/options/options.xml:(caption):18
 msgid "Game Options"
 msgstr "Tùy chỉnh game"
 
-#: gui/options/options.xml:22 (caption)
+#: gui/options/options.xml:(caption):22
 msgid "General"
 msgstr "Tổng quát"
 
-#: gui/options/options.xml:34 (caption)
+#: gui/options/options.xml:(caption):34
 msgid "Graphics Settings"
 msgstr "Thiết lập đồ họa"
 
-#: gui/options/options.xml:46 (caption)
+#: gui/options/options.xml:(caption):46
 msgid "Sound Settings"
 msgstr "Thiết lập âm thanh"
 
-#: gui/options/options.xml:58 (caption)
+#: gui/options/options.xml:(caption):58
 msgid "Lobby Settings"
 msgstr "Thiết lập phòng đợi"
 
-#: gui/options/options.xml:73 (caption) gui/savedgames/save.xml:47 (caption)
+#: gui/options/options.xml:(caption):73 gui/savedgames/save.xml:(caption):47
 msgid "Save"
 msgstr "Lưu"
 
@@ -727,396 +724,396 @@ msgstr "CHÚ Ý: Đây là bản đang còn được phát triển của trò ch
 msgid "Get involved at: play0ad.com"
 msgstr "Tham gia ở: play0ad.com"
 
-#: gui/pregame/mainmenu.xml:81 (caption)
+#: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
 msgstr "Bật phản hồi"
 
-#: gui/pregame/mainmenu.xml:112 (caption)
+#: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
 msgstr "Tắt phản hồi"
 
-#: gui/pregame/mainmenu.xml:155 (caption)
+#: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
 msgstr "Trận đấu"
 
-#: gui/pregame/mainmenu.xml:156 (tooltip)
-msgid "Click here to start a new single player game."
-msgstr "Click vào đây để bắt đầu màn chơi đơn mới."
-
-#: gui/pregame/mainmenu.xml:169 (caption)
+#: gui/pregame/mainmenu.xml:(caption):169
 msgid "Campaigns"
 msgstr "Nhiệm vụ"
 
-#: gui/pregame/mainmenu.xml:170 (tooltip)
+#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+msgid "Load Game"
+msgstr "Load Game"
+
+#. Join a game by specifying the host's IP address.
+#: gui/pregame/mainmenu.xml:(caption):209
+msgid "Join Game"
+msgstr "Tham Gia Màn Chơi"
+
+#: gui/pregame/mainmenu.xml:(caption):224
+msgid "Host Game"
+msgstr "Chủ Trận Đấu"
+
+#: gui/pregame/mainmenu.xml:(caption):239
+msgid "Game Lobby"
+msgstr "Phòng đợi"
+
+#: gui/pregame/mainmenu.xml:(caption):269
+msgid "Options"
+msgstr "Thiết lập"
+
+#: gui/pregame/mainmenu.xml:(caption):302
+msgid "Scenario Editor"
+msgstr "Chỉnh Sửa Màn Chơi"
+
+#: gui/pregame/mainmenu.xml:(caption):315
+msgid "Welcome Screen"
+msgstr "Màn hình chào"
+
+#: gui/pregame/mainmenu.xml:(caption):330
+msgid "Mod Selection"
+msgstr ""
+
+#: gui/pregame/mainmenu.xml:(caption):384
+msgid "Learn To Play"
+msgstr "Học Cách Chơi"
+
+#: gui/pregame/mainmenu.xml:(caption):401
+msgid "Single Player"
+msgstr "Chơi Đơn"
+
+#: gui/pregame/mainmenu.xml:(caption):416
+msgid "Multiplayer"
+msgstr "Nhiều Người Chơi"
+
+#: gui/pregame/mainmenu.xml:(caption):431
+msgid "Tools & Options"
+msgstr "Công cụ & Thiết lập"
+
+#: gui/pregame/mainmenu.xml:(caption):446
+msgid "History"
+msgstr "Lịch sử"
+
+#: gui/pregame/mainmenu.xml:(caption):463
+msgid "Exit"
+msgstr "Thoát"
+
+#: gui/pregame/mainmenu.xml:(caption):500
+msgid "Help with the Translation!"
+msgstr "Giúp đỡ dự án dịch!"
+
+#: gui/pregame/mainmenu.xml:(caption):512
+msgid "Website"
+msgstr "Trang web"
+
+#: gui/pregame/mainmenu.xml:(caption):524
+msgid "Chat"
+msgstr "Chat"
+
+#: gui/pregame/mainmenu.xml:(caption):536
+msgid "Report a Bug"
+msgstr "Báo lỗi"
+
+#: gui/pregame/mainmenu.xml:(caption):565
+msgid "WILDFIRE GAMES"
+msgstr "WILDFIRE GAMES"
+
+#: gui/pregame/mainmenu.xml:(tooltip):156
+msgid "Click here to start a new single player game."
+msgstr "Click vào đây để bắt đầu màn chơi đơn mới."
+
+#: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
 "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
 msgstr "Tái dựng lại lịch sử qua các chiến dịch quân sự. [CHƯA HOẠT ĐỘNG]"
 
-#: gui/pregame/mainmenu.xml:186 (caption) gui/savedgames/load.xml:15 (caption)
-msgid "Load Game"
-msgstr "Load Game"
-
-#: gui/pregame/mainmenu.xml:187 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
 msgstr "Click vào đây để load game đã save."
 
-#. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:209 (caption)
-msgid "Join Game"
-msgstr "Tham Gia Màn Chơi"
-
-#: gui/pregame/mainmenu.xml:210 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):210
 msgid "Joining an existing multiplayer game."
 msgstr "Tham gia màn chơi nhiều người hiện có."
 
-#: gui/pregame/mainmenu.xml:224 (caption)
-msgid "Host Game"
-msgstr "Chủ Trận Đấu"
-
-#: gui/pregame/mainmenu.xml:225 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):225
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Tạo một trò chơi qua mạng.\\n\\nYêu cầu cổng UDP 20595 phải đang mở."
 
-#: gui/pregame/mainmenu.xml:239 (caption)
-msgid "Game Lobby"
-msgstr "Phòng đợi"
-
-#: gui/pregame/mainmenu.xml:240 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):240
 msgid "Launch the multiplayer lobby."
 msgstr "Vào phòng đợi nhiều người chơi."
 
-#: gui/pregame/mainmenu.xml:269 (caption)
-msgid "Options"
-msgstr "Thiết lập"
-
-#: gui/pregame/mainmenu.xml:270 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Adjust game settings."
 msgstr "Tùy chỉnh thiết lập của game."
 
-#: gui/pregame/mainmenu.xml:287 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):287
 msgid "Choose the language of the game."
 msgstr "Chọn ngôn ngữ cho game."
 
-#: gui/pregame/mainmenu.xml:302 (caption)
-msgid "Scenario Editor"
-msgstr "Chỉnh Sửa Màn Chơi"
-
-#: gui/pregame/mainmenu.xml:303 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):303
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Mở chương trình Atlas trong cửa sổ mới. Bạn có thể chạy chương trình bằng cách chạy trò chơi với phần dòng lệnh \"-editor\" ở cuối. "
 
-#: gui/pregame/mainmenu.xml:315 (caption)
-msgid "Welcome Screen"
-msgstr "Màn hình chào"
-
-#: gui/pregame/mainmenu.xml:316 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):316
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Hiện Màn hình chào. Có ích khi bạn lỡ tắt đi."
 
-#: gui/pregame/mainmenu.xml:330 (caption)
-msgid "Mod Selection"
-msgstr ""
-
-#: gui/pregame/mainmenu.xml:331 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
 msgstr ""
 
-#: gui/pregame/mainmenu.xml:384 (caption)
-msgid "Learn To Play"
-msgstr "Học Cách Chơi"
-
-#: gui/pregame/mainmenu.xml:385 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
 msgstr "Mở Hướng dẫn cho 0 A.D."
 
-#: gui/pregame/mainmenu.xml:401 (caption)
-msgid "Single Player"
-msgstr "Chơi Đơn"
-
-#: gui/pregame/mainmenu.xml:402 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
 msgstr "Đấu với máy tính trong một màn chơi đơn."
 
-#: gui/pregame/mainmenu.xml:416 (caption)
-msgid "Multiplayer"
-msgstr "Nhiều Người Chơi"
-
-#: gui/pregame/mainmenu.xml:417 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):417
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Đấu với một hoặc nhiều người khác qua mạng."
 
-#: gui/pregame/mainmenu.xml:431 (caption)
-msgid "Tools & Options"
-msgstr "Công cụ & Thiết lập"
-
-#: gui/pregame/mainmenu.xml:432 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):432
 msgid "Game options and scenario design tools."
 msgstr "Thiết lập trò chơi và công cụ thiết kế màn chơi."
 
-#: gui/pregame/mainmenu.xml:446 (caption)
-msgid "History"
-msgstr "Lịch sử"
-
-#: gui/pregame/mainmenu.xml:447 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):447
 msgid "Learn about the many civilizations featured in 0 A.D."
 msgstr "Tìm hiểu về các nền văn minh có trong 0 A.D."
 
-#: gui/pregame/mainmenu.xml:463 (caption)
-msgid "Exit"
-msgstr "Thoát"
-
-#: gui/pregame/mainmenu.xml:464 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
 msgstr "Thoát khỏi game."
 
-#: gui/pregame/mainmenu.xml:500 (caption)
-msgid "Help with the Translation!"
-msgstr "Giúp đỡ dự án dịch!"
-
-#: gui/pregame/mainmenu.xml:501 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Nhấp vào để mở trang dự án dịch 0 A.D. trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:512 (caption)
-msgid "Website"
-msgstr "Trang web"
-
-#: gui/pregame/mainmenu.xml:513 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):513
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Click vào để mở play0ad.com trong trình duyệt."
 
-#: gui/pregame/mainmenu.xml:524 (caption)
-msgid "Chat"
-msgstr "Chat"
-
-#: gui/pregame/mainmenu.xml:525 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):525
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Click vào để mở phòng chat IRC cho 0 A.D. trong trình duyệt. (0ad trên webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:536 (caption)
-msgid "Report a Bug"
-msgstr "Báo lỗi"
-
-#: gui/pregame/mainmenu.xml:537 (tooltip)
+#: gui/pregame/mainmenu.xml:(tooltip):537
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Nhấp vào để vào trang 0 A.D. Trac để báo lỗi và sai sót trong game."
 
-#: gui/pregame/mainmenu.xml:565 (caption)
-msgid "WILDFIRE GAMES"
-msgstr "WILDFIRE GAMES"
-
-#: gui/savedgames/load.xml:30 (caption) gui/savedgames/save.xml:42 (caption)
+#: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
 msgstr "Xóa"
 
-#: gui/savedgames/load.xml:35 (caption)
+#: gui/savedgames/load.xml:(caption):35
 msgid "Load"
 msgstr "Tải"
 
-#: gui/savedgames/save.xml:15 (caption)
+#: gui/savedgames/save.xml:(caption):15
 msgid "Save Game"
 msgstr "Lưu game"
 
-#: gui/savedgames/save.xml:29 (caption)
+#: gui/savedgames/save.xml:(caption):29
 msgid "Description:"
 msgstr "Mô tả:"
 
-#: gui/splashscreen/splashscreen.xml:12 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):12
 msgid "Welcome to 0 A.D. !"
 msgstr "Chào mừng đến với 0 A.D. !"
 
-#: gui/splashscreen/splashscreen.xml:20 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):20
 msgid "Show this message in the future"
 msgstr "Hiện thông báo này tring tương lai"
 
-#: gui/splashscreen/splashscreen.xml:38 (caption)
+#: gui/splashscreen/splashscreen.xml:(caption):38
 msgid "Known issues (web)"
 msgstr "Các vấn đề hiện nay (web)"
 
-#: gui/summary/summary.xml:23 (caption)
+#: gui/summary/summary.xml:(caption):23
 msgid "Summary"
 msgstr "Tóm tắt"
 
-#: gui/summary/summary.xml:63 (caption)
+#: gui/summary/summary.xml:(caption):63
 msgid "Score"
 msgstr "Điểm số"
 
-#: gui/summary/summary.xml:70 (caption)
+#: gui/summary/summary.xml:(caption):70
 msgid "Buildings"
 msgstr "Công trình"
 
-#: gui/summary/summary.xml:77 (caption)
+#: gui/summary/summary.xml:(caption):77
 msgid "Units"
 msgstr "Đơn vị quân"
 
-#: gui/summary/summary.xml:84 (caption)
+#: gui/summary/summary.xml:(caption):84
 msgid "Resources"
 msgstr "Tài nguyên"
 
-#: gui/summary/summary.xml:91 (caption)
+#: gui/summary/summary.xml:(caption):91
 msgid "Market"
 msgstr "Chợ"
 
-#: gui/summary/summary.xml:98 (caption)
+#: gui/summary/summary.xml:(caption):98
 msgid "Miscellaneous"
 msgstr "Linh tinh"
 
-#: gui/summary/summary.xml:106 (caption) gui/summary/summary.xml:228 (caption)
-#: gui/summary/summary.xml:402 (caption) gui/summary/summary.xml:563 (caption)
-#: gui/summary/summary.xml:724 (caption) gui/summary/summary.xml:870 (caption)
+#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
+#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
+#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
 msgid "Player name"
 msgstr "Tên người chơi"
 
-#: gui/summary/summary.xml:109 (caption)
+#: gui/summary/summary.xml:(caption):109
 msgid "Economy score"
 msgstr "Điểm số Kinh tế"
 
-#: gui/summary/summary.xml:112 (caption)
+#: gui/summary/summary.xml:(caption):112
 msgid "Military score"
 msgstr "Điểm số Quân sự"
 
-#: gui/summary/summary.xml:115 (caption)
+#: gui/summary/summary.xml:(caption):115
 msgid "Exploration score"
 msgstr "Điểm số Khám phá"
 
-#: gui/summary/summary.xml:118 (caption)
+#: gui/summary/summary.xml:(caption):118
 msgid "Total score"
 msgstr "Điểm số Tổng hợp"
 
-#: gui/summary/summary.xml:231 (caption)
+#: gui/summary/summary.xml:(caption):231
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Thông số công trình (Xây / Bị phá hủy / Phá hủy)"
 
-#: gui/summary/summary.xml:234 (caption) gui/summary/summary.xml:408 (caption)
-#: gui/summary/summary.xml:581 (caption)
+#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
+#: gui/summary/summary.xml:(caption):581
 msgid "Total"
 msgstr "Tổng số"
 
-#: gui/summary/summary.xml:237 (caption)
+#: gui/summary/summary.xml:(caption):237
 msgid "Houses"
 msgstr "Nhà"
 
-#: gui/summary/summary.xml:240 (caption)
+#: gui/summary/summary.xml:(caption):240
 msgid "Economic"
 msgstr "Nền kinh tế"
 
-#: gui/summary/summary.xml:243 (caption)
+#: gui/summary/summary.xml:(caption):243
 msgid "Outposts"
 msgstr "Tiền trạm"
 
-#: gui/summary/summary.xml:246 (caption)
+#: gui/summary/summary.xml:(caption):246
 msgid "Military"
 msgstr "Quân đội"
 
-#: gui/summary/summary.xml:249 (caption)
+#: gui/summary/summary.xml:(caption):249
 msgid "Fortresses"
 msgstr "Thành trì"
 
-#: gui/summary/summary.xml:252 (caption)
+#: gui/summary/summary.xml:(caption):252
 msgid "Civ Centers"
 msgstr "Trung tâm văn minh"
 
-#: gui/summary/summary.xml:255 (caption)
+#: gui/summary/summary.xml:(caption):255
 msgid "Wonders"
 msgstr "Kỳ quan"
 
-#: gui/summary/summary.xml:405 (caption)
+#: gui/summary/summary.xml:(caption):405
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Thông số đơn vị quân (Đào tạo / Bị mất / Giết)"
 
-#: gui/summary/summary.xml:411 (caption)
+#: gui/summary/summary.xml:(caption):411
 msgid "Infantry"
 msgstr "Bộ binh"
 
-#: gui/summary/summary.xml:414 (caption)
+#: gui/summary/summary.xml:(caption):414
 msgid "Worker"
 msgstr ""
 
-#: gui/summary/summary.xml:417 (caption)
+#: gui/summary/summary.xml:(caption):417
 msgid "Cavalry"
 msgstr "Kỵ binh"
 
-#: gui/summary/summary.xml:420 (caption)
+#: gui/summary/summary.xml:(caption):420
 msgid "Champion"
 msgstr ""
 
-#: gui/summary/summary.xml:426 (caption)
+#: gui/summary/summary.xml:(caption):426
 msgid "Navy"
 msgstr "Hải quân"
 
-#: gui/summary/summary.xml:566 (caption)
+#: gui/summary/summary.xml:(caption):566
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Thông số tài nguyên (Khai thác / Sử dụng)"
 
-#: gui/summary/summary.xml:569 (caption)
+#: gui/summary/summary.xml:(caption):569
 msgid "Food"
 msgstr "Thịt"
 
-#: gui/summary/summary.xml:572 (caption)
+#: gui/summary/summary.xml:(caption):572
 msgid "Wood"
 msgstr "Gỗ"
 
-#: gui/summary/summary.xml:575 (caption)
+#: gui/summary/summary.xml:(caption):575
 msgid "Stone"
 msgstr "Đá"
 
-#: gui/summary/summary.xml:578 (caption)
+#: gui/summary/summary.xml:(caption):578
 msgid "Metal"
 msgstr "Kim loại"
 
-#: gui/summary/summary.xml:584 (caption)
+#: gui/summary/summary.xml:(caption):584
 msgid "Treasures collected"
 msgstr "Kho báu tìm được"
 
-#: gui/summary/summary.xml:587 (caption)
+#: gui/summary/summary.xml:(caption):587
 msgid "Tributes (Sent / Received)"
 msgstr "Cống nạp (Gửi / Nhận)"
 
-#: gui/summary/summary.xml:727 (caption)
+#: gui/summary/summary.xml:(caption):727
 msgid "Food exchanged"
 msgstr "Lương thực đã trao đổi"
 
-#: gui/summary/summary.xml:730 (caption)
+#: gui/summary/summary.xml:(caption):730
 msgid "Wood exchanged"
 msgstr "Gỗ đã trao đổi"
 
-#: gui/summary/summary.xml:733 (caption)
+#: gui/summary/summary.xml:(caption):733
 msgid "Stone exchanged"
 msgstr "Đá đã trao đổi"
 
-#: gui/summary/summary.xml:736 (caption)
+#: gui/summary/summary.xml:(caption):736
 msgid "Metal exchanged"
 msgstr "Kim loại đã trao đổi"
 
-#: gui/summary/summary.xml:739 (caption)
+#: gui/summary/summary.xml:(caption):739
 msgid "Barter efficiency"
 msgstr "Hiệu suất trao đổi"
 
-#: gui/summary/summary.xml:742 (caption)
+#: gui/summary/summary.xml:(caption):742
 msgid "Trade income"
 msgstr "Thu nhập qua trao đổi"
 
-#: gui/summary/summary.xml:873 (caption)
+#: gui/summary/summary.xml:(caption):873
 msgid "Vegetarian\\nratio"
 msgstr "Tỷ lệ\\nngười ăn chay"
 
-#: gui/summary/summary.xml:876 (caption)
+#: gui/summary/summary.xml:(caption):876
 msgid "Feminisation"
 msgstr "Phụ nữ"
 
-#: gui/summary/summary.xml:879 (caption)
+#: gui/summary/summary.xml:(caption):879
 msgid "Kill / Death\\nratio"
 msgstr "Tỷ lệ\\nGiết / Chết"
 
-#: gui/summary/summary.xml:882 (caption)
+#: gui/summary/summary.xml:(caption):882
 msgid "Map\\nexploration"
 msgstr "Khám phá\\nbản đồ"
 
-#: gui/summary/summary.xml:989 (caption)
+#: gui/summary/summary.xml:(caption):989
 msgid "Continue"
 msgstr "Tiếp tục"
 

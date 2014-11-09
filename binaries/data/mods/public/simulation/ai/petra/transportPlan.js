@@ -574,7 +574,17 @@ m.TransportPlan.prototype.resetUnit = function(gameState, ent)
 		if (army)
 			army.removeOwn(gameState, ent.id());
 	}
-}
+};
+
+m.TransportPlan.prototype.Serialize = function()
+{
+	// TODO transport plans have still to be serialized
+	return {};
+};
+
+m.TransportPlan.prototype.Deserialize = function(data)
+{
+};
 
 return m;
 }(PETRA);

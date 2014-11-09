@@ -1,20 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-06-19 17:54+0000\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-11-03 07:50+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ka\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
@@ -24,48 +23,44 @@ msgstr "ცხოველი"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr ""
+msgstr "მცენარეულობა"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
 msgid "Bush"
-msgstr ""
-
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr ""
+msgstr "ბუჩქი"
 
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
-msgstr ""
+msgstr "ცირცველი"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
-msgid "Chop down to accumulate Wood."
-msgstr ""
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "ამ ბუჩქებიდან შეაგროვე ხილი რომ საჭმელს დაამატო."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
 msgstr "ხე"
 
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr "მოჩეხე, რომ ხე შეაგროვო."
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
-msgstr ""
-
-#: simulation/templates/template_gaia_geo_mineral.xml:6
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr ""
+msgstr "გეოლოგია"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
-msgstr ""
+msgstr "მინერალი"
 
 #: simulation/templates/template_gaia_geo_mineral.xml:5
 msgid "Metal Mine"
-msgstr ""
+msgstr "ლითონის საბადო"
 
-#: simulation/templates/template_gaia_geo_rock.xml:6
-msgid "Mine these to provide Stone building material."
-msgstr ""
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "მინერალის საბადო, წარმოადგენს წვდომის ადგილს იშვიათი ფორმის ძვირფას ლითონებთან."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -73,15 +68,15 @@ msgstr "ქვა"
 
 #: simulation/templates/template_gaia_geo_rock.xml:5
 msgid "Stone Mine"
-msgstr ""
+msgstr "ქვის საბადო"
 
-#: simulation/templates/template_gaia_ruins.xml:10
-msgid "These ruins that can be mined for resources."
-msgstr ""
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "მოიპოვე, რომ გქონდეს ქვის შენობების ასაშენებლად საჭირო სახსრები."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr ""
+msgstr "ნანგრევები"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -90,13 +85,13 @@ msgstr ""
 msgid "Ruins"
 msgstr "ნანგრევები"
 
-#: simulation/templates/template_gaia_treasure.xml:10
-msgid "A treasure that can be quickly gathered."
-msgstr ""
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
+msgstr "ეს ნანგრევები შეიძლება მოპოვებული იქნას დამატებითი სახსრებისთვის."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr ""
+msgstr "განძი"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -116,47 +111,47 @@ msgstr ""
 msgid "Treasure"
 msgstr "განძი"
 
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr "განძი, რომელიც შეიძლება სწრაფად შეგროვდეს."
+
 #: simulation/templates/template_structure.xml:48
 msgid "Structure"
-msgstr ""
+msgstr "შენობა"
 
 #: simulation/templates/template_unit.xml:37
 msgid "Unit"
-msgstr ""
+msgstr "ერთეული"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+msgid "Army of Alexander the Great."
+msgstr "ალექსანდრე დიდის ჯარი."
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+msgid "Army of Alexander the Great"
+msgstr "ალექსანდრე დიდის ჯარი"
 
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
 #: simulation/templates/campaigns/army_mace_standard.xml:22
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
 msgid "This is what an army would look like on the Strat Map."
-msgstr ""
-
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
-msgid "Army of Alexander the Great."
-msgstr ""
-
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
-msgid "Army of Alexander the Great"
-msgstr ""
+msgstr "აი ასე უნდა გამოიყურებოდეს ჯარი საწყის რუკაზე."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedonia"
-msgstr ""
+msgstr "მაკედონიის ჯარი"
 
 #: simulation/templates/campaigns/army_mace_standard.xml:21
 msgid "Army of Macedon"
-msgstr ""
+msgstr "მაკედონიის ჯარი"
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I."
-msgstr ""
+msgstr "ლეონიდას I-ის ჯარი."
 
 #: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "Army of Leonidas I"
-msgstr ""
-
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
-msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr ""
+msgstr "ლეონიდას I-ის ჯარი"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
@@ -165,131 +160,135 @@ msgstr "დასახლება"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
-msgstr ""
+msgstr "პატარა ბერძნული ქალაქი"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:28
-msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr ""
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city. Has a territory effect of 150."
+msgstr "ეს არის პატარა ბერძნული ქალაქი. ტერიტორიული დაფარვა აქვს 150."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
-msgstr ""
+msgstr "ბერძნული ქალაქი"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city. Has a territory effect of 300."
+msgstr "ეს არის დიდი ბერძნული ქალაქი. ტერიტორიული დაფარვა აქვს 300."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
-msgstr ""
+msgstr "რელიგიური ტაძარი"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr ""
+msgstr "ბერძნული რელიგიური ტაძარი"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
-msgstr ""
-
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr ""
+msgstr "ბრძოლის ხაზი"
 
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
-msgstr ""
+msgstr "საჭიროებს 4 ერთეულს"
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
+msgstr "ყუთი"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
-msgstr ""
+msgstr "სვეტი დახურულია"
 
 #: simulation/templates/formations/column_open.xml:5
 msgid "Column Open"
-msgstr ""
-
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr ""
+msgstr "სვეტი ღიაა"
 
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
-msgstr ""
+msgstr "საჭიროებს 8 ერთეულს"
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
+msgstr "გვერდი"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
-msgstr ""
+msgstr "ხაზი დახურულია"
 
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
-msgstr ""
-
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr ""
+msgstr "ხაზი ღიაა"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
-msgstr ""
+msgstr "საჭიროებს 10 შემტაკებელ ქვეითს"
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "ფალანქსი"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
-msgstr ""
+msgstr "გაფანტვა"
+
+#: simulation/templates/formations/skirmish.xml:5
+msgid "Only ranged units allowed"
+msgstr "მხოლოდ მსროლელები დაიშვებიან"
 
 #: simulation/templates/formations/skirmish.xml:6
 msgid "Skirmish"
 msgstr "შეტაკება"
 
-#: simulation/templates/formations/skirmish.xml:5
-msgid "Only ranged units allowed"
-msgstr ""
+#: simulation/templates/formations/syntagma.xml:6
+msgid "9 pike infantry units required"
+msgstr "საჭიროებს 9 შუბოსან ქვეითს"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
-msgstr ""
-
-#: simulation/templates/formations/syntagma.xml:6
-msgid "9 pike infantry units required"
-msgstr ""
-
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr ""
+msgstr "სინტაგმ"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
-msgstr ""
+msgstr "საჭიროებს 9 შემტაკებელ ქვეითს"
 
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr ""
+#: simulation/templates/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "კუ"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
-msgstr ""
+msgstr "საჭიროებს 3 მხედარს"
+
+#: simulation/templates/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "სოლი"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
-msgstr ""
+msgstr "დათვი"
 
 #: simulation/templates/gaia/fauna_boar.xml:18
 msgid "Boar"
-msgstr ""
+msgstr "გარეული ღორი"
 
 #: simulation/templates/gaia/fauna_camel.xml:9
 msgid "Camel"
-msgstr ""
+msgstr "აქლემი"
 
 #: simulation/templates/gaia/fauna_chicken.xml:12
 msgid "Chicken"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_crocodile.xml:19
-msgid "Nile Crocodile"
-msgstr ""
+msgstr "ქათამი"
 
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
-msgstr ""
+msgstr "ნილოსის ნიანგი"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
+msgstr "ნილოსის ნიანგი"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
-msgstr ""
+msgstr "ირემი"
 
 #: simulation/templates/gaia/fauna_elephant.xml:13
 msgid "Elephant"
@@ -297,157 +296,157 @@ msgstr "სპილო"
 
 #: simulation/templates/gaia/fauna_elephant_african_bush.xml:46
 msgid "African Bush Elephant"
-msgstr ""
+msgstr "აფრიკული სპილო"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr ""
+msgstr "აფრიკული სპილო (სპლიყვი)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
-msgstr ""
+msgstr "აზიური სპილო"
 
 #: simulation/templates/gaia/fauna_elephant_north_african.xml:33
 msgid "North African Elephant"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_fish.xml:6
-#: simulation/templates/gaia/fauna_fish_tuna.xml:6
-msgid "Collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "შრდილო აფრიკული სპილო"
 
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
-msgstr ""
+msgstr "თინუსი"
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
-msgid "Collect food from this bountiful riparian resource."
-msgstr ""
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
+msgstr "შეაგროვე საჭმელი ოკეანის უხვი წყაროებიდან."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
-msgstr ""
+msgstr "ტილაფია"
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
+msgstr "შეაგროვე საჭმელი სანაპიროს უხვი წყაროებიდან."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
-msgstr ""
+msgstr "ქურციკი"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr ""
+msgstr "შირაფი (მოზრდილი)"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr ""
+msgstr "ჟირაფი (ახალგაზრდა)"
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
-msgstr ""
+msgstr "თხა"
 
 #: simulation/templates/gaia/fauna_horse.xml:9
 msgid "Horse"
-msgstr ""
+msgstr "ცხენი"
 
 #: simulation/templates/gaia/fauna_lion.xml:18
 msgid "Lion"
-msgstr ""
+msgstr "ლომი"
 
 #: simulation/templates/gaia/fauna_lioness.xml:18
 msgid "Lioness"
-msgstr ""
+msgstr "დედალი ლომი"
 
 #: simulation/templates/gaia/fauna_muskox.xml:9
 msgid "Muskox"
-msgstr ""
+msgstr "არქტიკური ძროხა"
 
 #: simulation/templates/gaia/fauna_peacock.xml:5
 msgid "Peacock"
-msgstr ""
+msgstr "ფარშევანგი"
 
 #: simulation/templates/gaia/fauna_pig.xml:5
 msgid "Pig"
-msgstr ""
+msgstr "ღორი"
 
 #: simulation/templates/gaia/fauna_rabbit.xml:9
 msgid "Rabbit"
-msgstr ""
-
-#: simulation/templates/gaia/fauna_shark.xml:15
-msgid "Shark"
-msgstr ""
+msgstr "კურდღელი"
 
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
-msgstr ""
+msgstr "დიდი თეთრი"
+
+#: simulation/templates/gaia/fauna_shark.xml:15
+msgid "Shark"
+msgstr "ზვიგენი"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
-msgstr ""
+msgstr "ცხვარი"
 
 #: simulation/templates/gaia/fauna_tiger.xml:18
 msgid "Tiger"
-msgstr ""
+msgstr "ვეფხვი"
 
 #: simulation/templates/gaia/fauna_walrus.xml:23
 msgid "Walrus"
-msgstr ""
+msgstr "ლომვეშაპი"
 
 #: simulation/templates/gaia/fauna_whale_fin.xml:4
 msgid "Fin Whale"
-msgstr ""
+msgstr "ფინვალი"
 
 #: simulation/templates/gaia/fauna_whale_humpback.xml:8
 msgid "Humpback Whale"
-msgstr ""
+msgstr "კუზიანი ვეშაპი"
 
 #: simulation/templates/gaia/fauna_wildebeest.xml:9
 msgid "Wildebeest"
-msgstr ""
+msgstr "ანტილოპა"
 
 #: simulation/templates/gaia/fauna_wolf.xml:18
 msgid "Wolf"
-msgstr ""
+msgstr "მგელი"
 
 #: simulation/templates/gaia/fauna_wolf_snow.xml:18
 msgid "Snow Wolf"
-msgstr ""
+msgstr "თეთრი მგელი"
 
 #: simulation/templates/gaia/fauna_zebra.xml:9
 msgid "Zebra"
-msgstr ""
+msgstr "ზებრა"
 
 #: simulation/templates/gaia/flora_bush_badlands.xml:8
 msgid "Hardy Bush"
-msgstr ""
-
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
-msgid "Gather grapes from these vines for Food."
-msgstr ""
+msgstr "ამტანი ბუჩქი"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
-msgstr ""
+msgstr "საკვები"
 
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
-msgstr ""
+msgstr "ყურძენი"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
+msgstr "საჭმლისთვის ვაზისგან მოაგროვე ყრძენი."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
-msgstr ""
+msgstr "ფოთლოვანი ბუჩქი"
 
 #: simulation/templates/gaia/flora_tree_aleppo_pine.xml:4
 msgid "Aleppo Pine Tree"
-msgstr ""
+msgstr "ალეპოს ფიჭვი"
 
 #: simulation/templates/gaia/flora_tree_apple.xml:8
 msgid "Apple Tree"
-msgstr ""
+msgstr "ვაშლის ხე"
 
 #: simulation/templates/gaia/flora_tree_baobab.xml:8
 msgid "Baobab"
-msgstr ""
+msgstr "ბაობაბი"
 
 #: simulation/templates/gaia/flora_tree_carob.xml:4
 msgid "Carob Tree"
@@ -461,7 +460,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_cypress.xml:4
 msgid "Cypress Tree"
-msgstr ""
+msgstr "კიპაროსი"
 
 #: simulation/templates/gaia/flora_tree_date_palm.xml:4
 msgid "Date Palm"
@@ -469,20 +468,20 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_dead.xml:4
 msgid "Dead Tree"
-msgstr ""
+msgstr "მოჭრილი ხე"
 
 #: simulation/templates/gaia/flora_tree_euro_beech.xml:4
 #: simulation/templates/gaia/flora_tree_euro_beech_aut.xml:4
 msgid "European Beech Tree"
-msgstr ""
-
-#: simulation/templates/gaia/flora_tree_fig.xml:10
-msgid "Gather figs for Food."
-msgstr ""
+msgstr "ევროპული წიფელი"
 
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
-msgstr ""
+msgstr "ლეღვი"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
+msgstr "მოაგროვე ლეღვი საჭმელად."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -491,36 +490,36 @@ msgstr ""
 #: simulation/templates/gaia/flora_tree_oak.xml:4
 #: simulation/templates/gaia/flora_tree_oak_aut.xml:4
 msgid "Oak Tree"
-msgstr ""
+msgstr "მუხა"
 
 #: simulation/templates/gaia/flora_tree_oak_large.xml:4
 msgid "Large Oak Tree"
-msgstr ""
+msgstr "დიდი მუხა"
 
 #: simulation/templates/gaia/flora_tree_olive.xml:8
 msgid "Olive Tree"
-msgstr ""
+msgstr "ზეთის ხილი"
 
 #: simulation/templates/gaia/flora_tree_palm_tropic.xml:4
 msgid "Palm"
-msgstr ""
+msgstr "პალმა"
 
 #: simulation/templates/gaia/flora_tree_palm_tropical.xml:4
 msgid "Tropical Palm"
-msgstr ""
+msgstr "ტროპიკული პალმა"
 
 #: simulation/templates/gaia/flora_tree_pine.xml:4
 #: simulation/templates/gaia/flora_tree_pine_w.xml:4
 msgid "Pine Tree"
-msgstr ""
+msgstr "ფიჭვი"
 
 #: simulation/templates/gaia/flora_tree_poplar.xml:4
 msgid "Poplar Tree"
-msgstr ""
+msgstr "ალვის ხე"
 
 #: simulation/templates/gaia/flora_tree_poplar_lombardy.xml:4
 msgid "Lombardy Poplar Tree"
-msgstr ""
+msgstr "ლომბარდიული ალვის ხე"
 
 #: simulation/templates/gaia/flora_tree_senegal_date_palm.xml:4
 msgid "Senegal Date Palm"
@@ -528,7 +527,7 @@ msgstr ""
 
 #: simulation/templates/gaia/flora_tree_tamarix.xml:4
 msgid "Tamarix Tree"
-msgstr ""
+msgstr "იალღუნი"
 
 #: simulation/templates/gaia/flora_tree_toona.xml:4
 msgid "Toona Tree"
@@ -537,26 +536,26 @@ msgstr ""
 #: simulation/templates/gaia/special_ruins.xml:10
 #: simulation/templates/gaia/special_ruins_column_doric.xml:10
 msgid "Ancient Ruins"
-msgstr ""
+msgstr "ძველი ნანგრევები"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:9
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:9
 msgid "Stone Ruins"
-msgstr ""
+msgstr "ქვის ნანგრევები"
 
 #: simulation/templates/gaia/special_ruins_standing_stone.xml:10
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:10
 msgid "Celtic Standing Stone"
-msgstr ""
+msgstr "კელტური მდგარი ქვა"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_egyptian.xml:10
 msgid "Ptolemaic Egyptian Statues"
-msgstr ""
+msgstr "პტოლემეების ეგვიპტური ძეგლები"
 
 #: simulation/templates/gaia/special_ruins_stone_statues_roman.xml:10
 msgid "Roman Statues"
-msgstr ""
+msgstr "რომაული ძეგლები"
 
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:10
 #: simulation/templates/gaia/special_treasure_food_bin.xml:10
@@ -565,253 +564,244 @@ msgstr ""
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:9
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:9
 msgid "Food Treasure"
-msgstr ""
+msgstr "საჭმლის განძი"
 
 #: simulation/templates/gaia/special_treasure_food_barrels_buried.xml:10
 msgid "Half-buried Barrels"
-msgstr ""
+msgstr "ნახევრად ჩაფულული კასრები"
 
 #: simulation/templates/gaia/special_treasure_food_persian_big.xml:10
 msgid "Persian Food Stores"
-msgstr ""
+msgstr "სპარსული საჭმლის საწყობები"
 
 #: simulation/templates/gaia/special_treasure_food_persian_small.xml:10
 msgid "Persian Food Treasure"
-msgstr ""
+msgstr "სპარსული საჭმლის განძი"
 
 #: simulation/templates/gaia/special_treasure_golden_fleece.xml:10
 msgid "Golden Fleece"
-msgstr ""
+msgstr "ოქროს საწმისი"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:9
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:9
 msgid "Metal Treasure"
-msgstr ""
+msgstr "ლითონის განძი"
 
 #: simulation/templates/gaia/special_treasure_metal.xml:10
 msgid "Secret Box"
-msgstr ""
+msgstr "ფარული ყუთი"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_bigl.xml:10
 msgid "Persian Wares"
-msgstr ""
+msgstr "სწარსული საქონელი"
 
 #: simulation/templates/gaia/special_treasure_metal_persian_small.xml:10
 msgid "Persian Rugs"
-msgstr ""
+msgstr "სპარსული ხალიჩები"
 
 #: simulation/templates/gaia/special_treasure_pegasus.xml:10
 msgid "Pegasus"
-msgstr ""
+msgstr "პეგასი"
 
 #: simulation/templates/gaia/special_treasure_standing_stone.xml:9
 #: simulation/templates/gaia/special_treasure_stone.xml:10
 msgid "Stone Treasure"
-msgstr ""
+msgstr "ქვის განძი"
 
 #: simulation/templates/gaia/special_treasure_wood.xml:10
 msgid "Wood Treasure"
-msgstr ""
+msgstr "ხის განძი"
 
 #: simulation/templates/other/bench.xml:20
 msgid "Bench"
-msgstr ""
+msgstr "მერხი"
 
 #: simulation/templates/other/bench.xml:21
 msgid "Wooden Bench"
-msgstr ""
+msgstr "ხის მერხი"
 
 #: simulation/templates/other/bridge_hele.xml:15
 #: simulation/templates/other/bridge_hele.xml:16
 msgid "Bridge"
-msgstr ""
+msgstr "ხიდი"
 
 #: simulation/templates/other/bridge_wooden.xml:15
 #: simulation/templates/other/bridge_wooden.xml:16
 msgid "Wooden Bridge"
-msgstr ""
-
-#: simulation/templates/other/cart_tophet.xml:25
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr ""
+msgstr "ხის ხიდი"
 
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
-msgstr ""
+msgstr "სამსხვერპლო ტაძარი"
 
 #: simulation/templates/other/cart_tophet.xml:23
 msgid "Tophet"
-msgstr ""
+msgstr "თოფეთი"
 
-#: simulation/templates/other/celt_homestead.xml:25
-msgid "A Celtic homestead."
-msgstr ""
+#: simulation/templates/other/cart_tophet.xml:25
+msgid "Train physicians and Sacred Band Cavalrymen."
+msgstr "გაწვრთენი ფიზიკოსები და ფარული რაძმის მხედრები."
 
 #: simulation/templates/other/celt_homestead.xml:22
 msgid "Homestead"
-msgstr ""
+msgstr "კარმიდამო"
 
 #: simulation/templates/other/celt_homestead.xml:23
 msgid "Caer"
 msgstr ""
 
-#: simulation/templates/other/celt_hut.xml:23
-msgid "Add +2 to Population Cap."
-msgstr ""
+#: simulation/templates/other/celt_homestead.xml:25
+msgid "A Celtic homestead."
+msgstr "კელტური კარმიდამო"
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
+msgstr "ქოხი"
+
+#: simulation/templates/other/celt_hut.xml:23
+msgid "Add +2 to Population Cap."
+msgstr "+2-ით გაზარდე მოსახლეობის ზღვარი."
+
+#: simulation/templates/other/celt_longhouse.xml:22
+msgid "Longhouse"
 msgstr ""
 
 #: simulation/templates/other/celt_longhouse.xml:24
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
-msgstr ""
-
-#: simulation/templates/other/celt_longhouse.xml:22
-msgid "Longhouse"
-msgstr ""
+msgstr "+10-ით გაზარდე მოსახლეობის ზღვარი."
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
 #: simulation/templates/other/column_doric_fallen_b.xml:20
 msgid "Column"
-msgstr ""
+msgstr "სვეტი"
 
 #: simulation/templates/other/column_doric.xml:21
 msgid "Doric Column"
-msgstr ""
+msgstr "დორიული სვეტი"
 
 #: simulation/templates/other/column_doric_fallen.xml:21
 #: simulation/templates/other/column_doric_fallen_b.xml:21
 msgid "Fallen Doric Column"
-msgstr ""
+msgstr "დაცემული დორიული სვეტი"
 
 #: simulation/templates/other/fence_long.xml:20
 #: simulation/templates/other/fence_short.xml:20
 msgid "Fence"
-msgstr ""
+msgstr "ღობე"
 
 #: simulation/templates/other/fence_long.xml:21
 msgid "Long Wooden Fence"
-msgstr ""
+msgstr "გრძელი ხის ღობე"
 
 #: simulation/templates/other/fence_short.xml:21
 msgid "Short Wooden Fence"
-msgstr ""
+msgstr "მოკლე ხის ღობ"
 
 #: simulation/templates/other/fence_stone.xml:20
 #: simulation/templates/other/fence_stone.xml:21
 msgid "Stone Fence"
-msgstr ""
+msgstr "ქვის ღობე"
 
 #: simulation/templates/other/generic_field.xml:9
 msgid "Wheat Field"
-msgstr ""
+msgstr "ხორბლის ყანა"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:30
+msgid "Epic Temple"
+msgstr "ეპიკური ტაძარი"
+
+#: simulation/templates/other/hellenic_epic_temple.xml:31
+msgid "Naos Parthenos"
+msgstr "ტაძარი პართენონი"
 
 #: simulation/templates/other/hellenic_epic_temple.xml:33
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "გაწვრთენი მკურნალები. გარნიზონში ჩაუყენე 30-მდე ერთეული რომ სწრაფად განიკურნონ."
 
-#: simulation/templates/other/hellenic_epic_temple.xml:30
-msgid "Epic Temple"
-msgstr ""
-
-#: simulation/templates/other/hellenic_epic_temple.xml:31
-msgid "Naos Parthenos"
-msgstr ""
-
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
-msgstr ""
+msgstr "პორტიკი"
 
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
-msgstr ""
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr ""
+msgstr "პროპილეა"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
 msgid "Stoa"
-msgstr ""
+msgstr "სტოა"
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:31
 msgid "Hellenic Royal Stoa"
-msgstr ""
+msgstr "ბერძნული სამეფო სტოა"
+
+#: simulation/templates/other/hellenic_royal_stoa.xml:33
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "+10-ით გაზარდე მოსახლეობის ზღვარი. აიყვანე განსაკუთრებული ერთეულები."
 
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
-msgstr ""
-
-#: simulation/templates/other/maur_palace.xml:14
-msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr ""
+msgstr "ბერძნული სტოა"
 
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
 msgstr ""
 
+#: simulation/templates/other/maur_palace.xml:14
+msgid "Add +15 to Population Cap. Recruit extra units and heroes."
+msgstr "+15-ით გაზარდე მოსახლეობის ზღვარი. აიყვანე დამატებითი ერთეულები და გმირები."
+
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
-msgstr ""
+msgstr "ობელისკი"
 
 #: simulation/templates/other/obelisk.xml:21
 msgid "Egyptian Obelisk"
-msgstr ""
-
-#: simulation/templates/other/palisades_angle_spike.xml:17
-msgid "Big Spike"
-msgstr ""
+msgstr "ეგვიპტური ობელისკი"
 
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
-msgstr ""
+msgstr "ღობის კუთხის წვერი"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
-msgid "Wooden Wall Corner"
-msgstr ""
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
+msgstr "დიდი წვერი"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
-msgstr ""
+msgstr "მრუდე ღობე"
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
-msgid "Wooden Wall End"
-msgstr ""
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
+msgstr "კედლის ხის კუთხე"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
-msgstr ""
+msgstr "ღობის დასასრული"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:21
-msgid "Wooden Tower"
-msgstr ""
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
+msgstr "ხის ღობის დასასრული"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
-msgstr ""
+msgstr "ხის ციხე-სიმაგრე"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
-msgid "Wooden Gate"
-msgstr ""
+#: simulation/templates/other/palisades_rocks_fort.xml:21
+msgid "Wooden Tower"
+msgstr "ხის კოშკი"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
-msgstr ""
+msgstr "ღობის ჭიშკარი"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
-#: simulation/templates/other/wallset_palisade.xml:5
-msgid "Wooden Wall"
-msgstr ""
+#: simulation/templates/other/palisades_rocks_gate.xml:21
+msgid "Wooden Gate"
+msgstr "ხის ჭიშკარი"
 
 #: simulation/templates/other/palisades_rocks_long.xml:22
 #: simulation/templates/other/palisades_rocks_medium.xml:22
@@ -820,44 +810,53 @@ msgstr ""
 #: simulation/templates/other/palisades_rocks_tower.xml:21
 #: simulation/templates/other/wallset_palisade.xml:6
 msgid "Palisade"
-msgstr ""
+msgstr "ღობე"
+
+#: simulation/templates/other/palisades_rocks_long.xml:23
+#: simulation/templates/other/palisades_rocks_medium.xml:23
+#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr "ხის კედელი"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr ""
-
-#: simulation/templates/other/palisades_rocks_outpost.xml:16
-#: simulation/templates/other/palisades_rocks_watchtower.xml:16
-msgid "Wooden Watch Tower"
-msgstr ""
+msgstr "გადააკეთე ხის კედელი ხის ჭიშკრად"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
 msgstr "საგუშაგო"
 
+#: simulation/templates/other/palisades_rocks_outpost.xml:16
+#: simulation/templates/other/palisades_rocks_watchtower.xml:16
+msgid "Wooden Watch Tower"
+msgstr "ხის სათვალთვალო კოშკი"
+
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
-msgstr ""
-
-#: simulation/templates/other/palisades_small_spikes.xml:17
-msgid "Small Spikes"
-msgstr ""
+msgstr "სათვალთვალო კოშკი"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
-msgstr ""
+msgstr "წვერები პატარა"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
-msgid "Tall Spikes"
-msgstr ""
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
+msgstr "პატარა წვერები"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
-msgstr ""
+msgstr "წვერები მაღალი"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
+msgstr "მაღალი წვერები"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
-msgstr ""
+msgstr "ოთახის ნაწილი"
 
 #: simulation/templates/other/pers_house_a.xml:12
 msgid "House"
@@ -866,102 +865,102 @@ msgstr "სახლი"
 #: simulation/templates/other/pers_house_b.xml:15
 #: simulation/templates/other/pers_inn.xml:15
 msgid "Inn"
-msgstr ""
+msgstr "სასტუმრო"
 
 #: simulation/templates/other/pers_warehouse.xml:12
 msgid "Warehouse"
-msgstr ""
-
-#: simulation/templates/other/plane.xml:40
-msgid "A World War 2 American fighter plane."
-msgstr ""
+msgstr "საწყობი"
 
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
-msgstr ""
+msgstr "P-51 მუსტანგი"
+
+#: simulation/templates/other/plane.xml:40
+msgid "A World War 2 American fighter plane."
+msgstr "მე-2 მსოფლიო ომის ამერიკული საბრძოლო თვითმფრინავი."
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
 msgid "Pyramid"
-msgstr ""
+msgstr "პირამიდა"
 
 #: simulation/templates/other/pyramid_great.xml:10
 msgid "Great Pyramid"
-msgstr ""
+msgstr "დიდი პირამიდა"
 
 #: simulation/templates/other/pyramid_minor.xml:10
 msgid "Minor Pyramid"
-msgstr ""
-
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr ""
+msgstr "მცირე პირამიდა"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
-msgstr ""
+msgstr "გემის ნამტვრევები"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "ხრწნადი სამხედრო გემის ნამსხვრევები. კარგი შემთხვევა ნებისმიერი საქმოსნისთვის."
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
-msgstr ""
+msgstr "გემის ნამტვრევების ტვირთი"
 
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr ""
+msgstr "გემის ნამსხვრევები ბევრი საცოცხლის დანაკარგით. კარგი შემთხვევა ნებისმიერი საქმოსნისთვის."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr ""
+msgstr "პატარა სატვირთო გემის ნამსხვრევები. კარგი შემთხვევა ნებისმიერი საქმოსნისთვის."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr ""
+msgstr "შუაზე გარღვეული სატვირთო გემი. კარგი შემთხვევა ნებისმიერი საქმოსნისთვის."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
-msgstr ""
+msgstr "დიდი ჯიხური"
 
 #: simulation/templates/other/stall_med.xml:12
 msgid "Medium stall"
-msgstr ""
+msgstr "საშუალო ჯიხური"
 
 #: simulation/templates/other/stall_small_a.xml:12
 msgid "Small stall"
-msgstr ""
+msgstr "პატარა ჯიხური"
 
 #: simulation/templates/other/stall_small_b.xml:12
 msgid "Small stall b"
-msgstr ""
+msgstr "პატარა ჯიხური ბ"
 
 #: simulation/templates/other/table_rectangle.xml:20
 #: simulation/templates/other/table_square.xml:20
 msgid "Table"
-msgstr ""
+msgstr "მაგიდა"
 
 #: simulation/templates/other/table_rectangle.xml:21
 msgid "Rectangle Table"
-msgstr ""
+msgstr "ოთხკუთხა მაგიდა"
 
 #: simulation/templates/other/table_square.xml:21
 msgid "Square Table"
-msgstr ""
+msgstr "კვადრატული მაგიდა"
 
 #: simulation/templates/other/temp_hele_super_infantry_p.xml:5
 msgid "Spartiate with Xiphos"
-msgstr ""
-
-#: simulation/templates/other/unfinished_greek_temple.xml:12
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr ""
+msgstr "სპარტელი ქსიფოსით"
 
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
-msgstr ""
+msgstr "დაუსრულებელი ბერძნული ტაძარი"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "ეს ტაძარი არის დაუსრულებელი და ნანგრევებადაა ქცეული."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""
@@ -978,7 +977,7 @@ msgstr ""
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
 msgid "Marker"
-msgstr ""
+msgstr "სანიშნე"
 
 #: simulation/templates/special_units/athen_mechanical_siege_lithobolos_common.xml:5
 #: simulation/templates/special_units/hele_mechanical_siege_lithobolos_common.xml:5
@@ -998,11 +997,11 @@ msgstr ""
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:28
 msgid "Ballista"
-msgstr ""
+msgstr "ბალისტა"
 
 #: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 msgid "Oxybeles"
-msgstr ""
+msgstr "ოქსიბელე"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"

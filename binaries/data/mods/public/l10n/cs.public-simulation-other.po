@@ -1,24 +1,41 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-22 09:51+0000\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-10-26 09:52+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+
+#: simulation/ai/petra/chatHelper.js:9
+#, javascript-format
+msgid "I am launching an attack against %(name)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:11
+#, javascript-format
+msgid "I have just sent an army against %(name)s."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:22
+#, javascript-format
+msgid "Here is a gift for %(name)s, make a good use of it."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:24
+#, javascript-format
+msgid "I see you are in a bad situation %(name)s, hope this will help."
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -429,78 +446,74 @@ msgid "The enemy has been defeated. All tutorial tasks are now completed…"
 msgstr "Nepřítel byl poražen. Všechny výukové úkoly jsou nyní hotové..."
 
 #: simulation/components/BuildRestrictions.js:85
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built due to unknown error"
 msgstr "%(name)s nelze postavit kvůli neznámé chybě"
 
 #: simulation/components/BuildRestrictions.js:108
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr "%(name)s nelze postavit v neprozkoumané oblasti"
 
 #: simulation/components/BuildRestrictions.js:156
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr "%(name)s nelze postavit na jiné stavbě nebo zdroji"
 
 #: simulation/components/BuildRestrictions.js:160
-#, python-format
+#, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr "%(name)s nelze postavit na neplatném území"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
 msgstr "spojenec"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
 msgstr "vlastní"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
 msgstr "neutrální"
 
 #. Translation: territoryType being displayed in a translated sentence in the
-#. form:
-#. "House cannot be built in %(territoryType)s territory.".
+#. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
 msgstr "nepřátelský"
 
 #: simulation/components/BuildRestrictions.js:199
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr "%(name)s nelze postavit na území %(territoryType)s. Platné území: %(validTerritories)s"
 
 #: simulation/components/BuildRestrictions.js:238
-#, python-format
+#, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr "%(name)s lze postavit jen na platné pobřežní čáře"
 
 #: simulation/components/BuildRestrictions.js:262
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr "%(name)s je příliš blízko %(category)s, musí být ve vzdálenosti alespoň %(distance)s metrů"
 
 #: simulation/components/BuildRestrictions.js:275
-#, python-format
+#, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
 msgstr "%(name)s je příliš daleko %(category)s, musí se nalézat do vzdálenosti %(distance)s metrů"
@@ -534,17 +547,17 @@ msgid "enemy"
 msgstr "nepřátelský"
 
 #: simulation/components/EntityLimits.js:110
-#, python-format
+#, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s stavebního limitu %(limit)s dosaženo"
 
 #: simulation/components/EntityLimits.js:112
-#, python-format
+#, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s kapacity výcviku %(limit)s dosaženo"
 
 #: simulation/components/EntityLimits.js:116
-#, python-format
+#, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limitu %(limit)s dosaženo"
 
@@ -565,26 +578,26 @@ msgid "Stone"
 msgstr "Kámen"
 
 #: simulation/components/Player.js:236
-#, python-format
+#, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 msgstr "Nedostatek surovin - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
-#, python-format
+#, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "

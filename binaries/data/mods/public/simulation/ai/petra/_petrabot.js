@@ -11,7 +11,6 @@ m.PetraBot = function PetraBot(settings)
 {
 	API3.BaseAI.call(this, settings);
 
-	this.turn = 0;
 	this.playedTurn = 0;
 	this.elapsedTime = 0;
 
@@ -20,7 +19,7 @@ m.PetraBot = function PetraBot(settings)
 		"bases": 1,	// base manager ID starts at one because "0" means "no base" on the map
 		"plans": 0,	// training/building/research plans
 		"transports": 1	// transport plans start at 1 because 0 might be used as none
-	}
+	};
 
 	this.Config = new m.Config(settings.difficulty);
 
@@ -31,24 +30,48 @@ m.PetraBot.prototype = new API3.BaseAI();
 
 m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 {
-	this.Config.setConfig(gameState);
+	if (this.isDeserialized)
+	{
+		this.turn = this.data.turn;
+		this.playedTurn = this.data.playedTurn;
+		this.elapsedTime = this.data.elapsedTime;
+		this.myIndex = this.data.myIndex;
+		this.savedEvents = this.data.savedEvents;
 
-	// this.queues can only be modified by the queue manager or things will go awry.
-	this.queues = {};
-	for (var i in this.Config.priorities)
-		this.queues[i] = new m.Queue();
+		this.Config.Deserialize(this.data.config);
 
-	this.queueManager = new m.QueueManager(this.Config, this.queues);
+		this.queueManager = new m.QueueManager(this.Config, {});
+		this.queueManager.Deserialize(this.data.queueManager);
+		this.queues = this.queueManager.queues;
 
-	this.HQ = new m.HQ(this.Config);
+		this.HQ = new m.HQ(this.Config);
+		this.HQ.init(gameState, this.queues);
+		this.HQ.Deserialize(gameState, this.data.HQ);
 
-	var myKeyEntities = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre"));
-	if (myKeyEntities.length == 0)
-		myKeyEntities = gameState.getOwnEntities();
+		this.uniqueIDs = this.data.uniqueIDs;
+		this.isDeserialized = false;
+		this.data = undefined;
+	}
+	else
+	{
+		this.Config.setConfig(gameState);
 
-	this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
+		// this.queues can only be modified by the queue manager or things will go awry.
+		this.queues = {};
+		for (var i in this.Config.priorities)
+			this.queues[i] = new m.Queue();
+
+		this.queueManager = new m.QueueManager(this.Config, this.queues);
+
+		this.HQ = new m.HQ(this.Config);
+
+		var myKeyEntities = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre"));
+		if (myKeyEntities.length == 0)
+			myKeyEntities = gameState.getOwnEntities();
+		this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
 	
-	this.HQ.init(gameState, this.queues);
+		this.HQ.init(gameState, this.queues);
+	}
 };
 
 m.PetraBot.prototype.OnUpdate = function(sharedScript)
@@ -97,15 +120,26 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 	this.turn++;
 };
 
-/*m.PetraBot.prototype.Deserialize = function(data, sharedScript)
+m.PetraBot.prototype.Serialize = function()
 {
+	return {
+		"uniqueIDs": this.uniqueIDs,
+		"turn": this.turn,
+		"playedTurn": this.playedTurn,
+		"elapsedTime": this.elapsedTime,
+		"myIndex": this.myIndex,
+		"savedEvents": this.savedEvents,
+		"config": this.Config.Serialize(),
+		"queueManager": this.queueManager.Serialize(),
+		"HQ": this.HQ.Serialize()
+	};
 };
 
-// Override the default serializer
-PetraBot.prototype.Serialize = function()
+m.PetraBot.prototype.Deserialize = function(data, sharedScript)
 {
-	return {};
-};*/
+	this.isDeserialized = true;
+	this.data = data;
+};
 
 return m;
 }());

@@ -33,8 +33,6 @@ m.SharedScript = function(settings)
 	// Resource maps data.
 	// By how much to divide the resource amount for plotting (ie a tree having 200 wood is "4").
 	this.decreaseFactor = {'wood': 50.0, 'stone': 90.0, 'metal': 90.0, 'food': 40.0};
-
-	this.turn = 0;
 }
 
 //Return a simple object (using no classes etc) that will be serialized
@@ -42,7 +40,19 @@ m.SharedScript = function(settings)
 //TODO: that
 m.SharedScript.prototype.Serialize = function()
 {
-	return { "players" : this._players, "templates" : this._templates, "techTp" : this._techTemplates };
+	// serializing entities without using the class.
+	var entities = []; 
+	for each (let ent in this._entities) 
+		entities.push( ent._entity );
+
+	return {
+		"players" : this._players,
+		"templates" : this._templates,
+		"techTp" : this._techTemplates,
+		"techModifications": this._techModifications,
+		"metadata": this._entityMetadata,
+		"entities": entities
+	};
 };
 
 // Called after the constructor when loading a saved game, with 'data' being
@@ -52,6 +62,14 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this._players = data.players;
 	this._templates = data.templates;
 	this._techTemplates = data.techTp;
+	this._techModifications = data.techModifications;
+	this._entityMetadata = data.metadata;
+	this._derivedTemplates = {};
+
+	this._entities = {};
+	for (let ent of data.entities)
+		this._entities[ent.id] = new m.Entity(this, ent); 
+
 	this.isDeserialized = true;
 };
 
@@ -118,7 +136,8 @@ m.SharedScript.prototype.GetTemplate = function(name)
 // Initialize the shared component.
 // We need to now the initial state of the game for this, as we will use it.
 // This is called right at the end of the map generation.
-m.SharedScript.prototype.init = function(state) {
+m.SharedScript.prototype.init = function(state, deserialization)
+{
 	this.ApplyTemplatesDelta(state);
 
 	this.passabilityClasses = state.passabilityClasses;
@@ -131,13 +150,11 @@ m.SharedScript.prototype.init = function(state) {
 	this.gameType = state.gameType;
 	this.barterPrices = state.barterPrices;
 
-	this._entities = {};
-	for (var id in state.entities)
+	if (!deserialization)
 	{
-		// entropy generator
-		for (var p = 0; p < id; ++p)
-			Math.random();
-		this._entities[id] = new m.Entity(this, state.entities[id]);
+		this._entities = {};
+		for (var id in state.entities)
+			this._entities[id] = new m.Entity(this, state.entities[id]);
 	}
 	// entity collection updated on create/destroy event.
 	this.entities = new m.EntityCollection(this, this._entities);
@@ -163,12 +180,12 @@ m.SharedScript.prototype.init = function(state) {
 // applies entity deltas, and each gamestate.
 m.SharedScript.prototype.onUpdate = function(state)
 {
-	if (this.isDeserialized && this.turn !== 0)
+	if (this.isDeserialized)
 	{
+		this.init(state, true);
 		this.isDeserialized = false;
-		this.init(state);
-	} else if (this.isDeserialized)
-		return;
+	}
+
 	// deals with updating based on create and destroy messages.
 	this.ApplyEntitiesDelta(state);
 	this.ApplyTemplatesDelta(state);
@@ -190,8 +207,6 @@ m.SharedScript.prototype.onUpdate = function(state)
 	// TODO: merge those two with "ApplyEntitiesDelta" since after all they do the same.
 	this.updateResourceMaps(this, this.events);
 	this.terrainAnalyzer.updateMapWithEvents(this);
-	
-	this.turn++;
 	
 	Engine.ProfileStop();
 };

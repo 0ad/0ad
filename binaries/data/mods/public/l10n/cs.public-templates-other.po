@@ -1,22 +1,19 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # fri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
 "PO-Revision-Date: 2014-08-17 10:01+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: cs\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
@@ -33,29 +30,25 @@ msgstr "Obecné rostlinstvo"
 msgid "Bush"
 msgstr "Křoví"
 
-#: simulation/templates/template_gaia_flora_bush_berry.xml:10
-msgid "Gather the fruit from these bushes to accumulate Food."
-msgstr "Sbírejte ovoce rostoucí na těchto keřích a hromaďte jídlo."
-
 #: simulation/templates/template_gaia_flora_bush_berry.xml:9
 msgid "Berries"
 msgstr "Drobné plody"
 
-#: simulation/templates/template_gaia_flora_tree.xml:7
-msgid "Chop down to accumulate Wood."
-msgstr "Pokácejte pro sbírání dřeva."
+#: simulation/templates/template_gaia_flora_bush_berry.xml:10
+msgid "Gather the fruit from these bushes to accumulate Food."
+msgstr "Sbírejte ovoce rostoucí na těchto keřích a hromaďte jídlo."
 
 #: simulation/templates/template_gaia_flora_tree.xml:5
 msgid "Tree"
 msgstr "Strom"
 
+#: simulation/templates/template_gaia_flora_tree.xml:7
+msgid "Chop down to accumulate Wood."
+msgstr "Pokácejte pro sbírání dřeva."
+
 #: simulation/templates/template_gaia_geo.xml:8
 msgid "Generic Geology"
 msgstr "Obecná geologie"
-
-#: simulation/templates/template_gaia_geo_mineral.xml:6
-msgid "A mineral deposit, providing access to rare forms of precious Metal."
-msgstr "Naleziště nerostů. Poskytuje přístup k vzácným druhům drahých kovů."
 
 #: simulation/templates/template_gaia_geo_mineral.xml:4
 msgid "Mineral"
@@ -65,9 +58,9 @@ msgstr "Nerost"
 msgid "Metal Mine"
 msgstr "Důl na kovy"
 
-#: simulation/templates/template_gaia_geo_rock.xml:6
-msgid "Mine these to provide Stone building material."
-msgstr "Provádějte zde těžbu a získávejte stavební materiál v podobě kamene."
+#: simulation/templates/template_gaia_geo_mineral.xml:6
+msgid "A mineral deposit, providing access to rare forms of precious Metal."
+msgstr "Naleziště nerostů. Poskytuje přístup k vzácným druhům drahých kovů."
 
 #: simulation/templates/template_gaia_geo_rock.xml:4
 msgid "Rock"
@@ -77,9 +70,9 @@ msgstr "Skála"
 msgid "Stone Mine"
 msgstr "Kamenolom"
 
-#: simulation/templates/template_gaia_ruins.xml:10
-msgid "These ruins that can be mined for resources."
-msgstr "Z těchto rozvalin by se daly těžit zdroje."
+#: simulation/templates/template_gaia_geo_rock.xml:6
+msgid "Mine these to provide Stone building material."
+msgstr "Provádějte zde těžbu a získávejte stavební materiál v podobě kamene."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
@@ -92,9 +85,9 @@ msgstr "Obecně zříceniny"
 msgid "Ruins"
 msgstr "Zříceniny"
 
-#: simulation/templates/template_gaia_treasure.xml:10
-msgid "A treasure that can be quickly gathered."
-msgstr "Poklad, který lze rychle sebrat."
+#: simulation/templates/template_gaia_ruins.xml:10
+msgid "These ruins that can be mined for resources."
+msgstr "Z těchto rozvalin by se daly těžit zdroje."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
@@ -118,6 +111,10 @@ msgstr "Obecný poklad"
 msgid "Treasure"
 msgstr "Poklad"
 
+#: simulation/templates/template_gaia_treasure.xml:10
+msgid "A treasure that can be quickly gathered."
+msgstr "Poklad, který lze rychle sebrat."
+
 #: simulation/templates/template_structure.xml:48
 msgid "Structure"
 msgstr "Stavba"
@@ -126,12 +123,6 @@ msgstr "Stavba"
 msgid "Unit"
 msgstr "Jednotka"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
-#: simulation/templates/campaigns/army_mace_standard.xml:22
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
-msgid "This is what an army would look like on the Strat Map."
-msgstr "Takto by armáda vypadala na strategické mapě."
-
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great."
 msgstr "Vojsko Alexandra Velikého."
@@ -139,6 +130,12 @@ msgstr "Vojsko Alexandra Velikého."
 #: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
 msgid "Army of Alexander the Great"
 msgstr "Vojsko Alexandra Velikého"
+
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
+#: simulation/templates/campaigns/army_mace_standard.xml:22
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+msgid "This is what an army would look like on the Strat Map."
+msgstr "Takto by armáda vypadala na strategické mapě."
 
 #: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedonia"
@@ -156,10 +153,6 @@ msgstr "Vojsko Leonidase I."
 msgid "Army of Leonidas I"
 msgstr "Vojsko Leonidase I"
 
-#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
-msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "Toto je méně významné řecké město. Jeho územní vliv je 150."
-
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
@@ -169,13 +162,17 @@ msgstr "Osada"
 msgid "Minor Greek Polis"
 msgstr "Menší řecký městský stát"
 
-#: simulation/templates/campaigns/campaign_city_test.xml:28
-msgid "This is a major Greek city. Has a territory effect of 300."
-msgstr "Toto je významné řecké město. Jeho územní vliv je 300."
+#: simulation/templates/campaigns/campaign_city_minor_test.xml:28
+msgid "This is a minor Greek city. Has a territory effect of 150."
+msgstr "Toto je méně významné řecké město. Jeho územní vliv je 150."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
 msgstr "Řecký městský stát"
+
+#: simulation/templates/campaigns/campaign_city_test.xml:28
+msgid "This is a major Greek city. Has a territory effect of 300."
+msgstr "Toto je významné řecké město. Jeho územní vliv je 300."
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:12
 msgid "Religious Sanctuary"
@@ -189,13 +186,13 @@ msgstr "Řecká náboženská svatyně"
 msgid "Battle Line"
 msgstr "Bojová linie"
 
-#: simulation/templates/formations/box.xml:7
-msgid "Box"
-msgstr "Bedna"
-
 #: simulation/templates/formations/box.xml:6
 msgid "4 units required"
 msgstr "Požadovány 4 jednotky "
+
+#: simulation/templates/formations/box.xml:7
+msgid "Box"
+msgstr "Bedna"
 
 #: simulation/templates/formations/column_closed.xml:5
 msgid "Column Closed"
@@ -205,13 +202,13 @@ msgstr "Kolona uzavřena"
 msgid "Column Open"
 msgstr "Kolona  otevřena"
 
-#: simulation/templates/formations/flank.xml:7
-msgid "Flank"
-msgstr "Křídlo"
-
 #: simulation/templates/formations/flank.xml:6
 msgid "8 units required"
 msgstr "Požadováno 8 jednotek"
+
+#: simulation/templates/formations/flank.xml:7
+msgid "Flank"
+msgstr "Křídlo"
 
 #: simulation/templates/formations/line_closed.xml:5
 msgid "Line Closed"
@@ -221,49 +218,49 @@ msgstr "Linie zavřena"
 msgid "Line Open"
 msgstr "Linie otevřena"
 
-#: simulation/templates/formations/phalanx.xml:7
-msgid "Phalanx"
-msgstr "Falanga"
-
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
 msgstr "Požadováno 10 jednotek pěchoty pro boj zblízka"
+
+#: simulation/templates/formations/phalanx.xml:7
+msgid "Phalanx"
+msgstr "Falanga"
 
 #: simulation/templates/formations/scatter.xml:5
 msgid "Scatter"
 msgstr "Rozptýlení"
 
-#: simulation/templates/formations/skirmish.xml:6
-msgid "Skirmish"
-msgstr "Potyčka"
-
 #: simulation/templates/formations/skirmish.xml:5
 msgid "Only ranged units allowed"
 msgstr "Povoleny pouze jednotky pro boj na dálku"
 
-#: simulation/templates/formations/syntagma.xml:7
-msgid "Syntagma"
-msgstr "Syntagma"
+#: simulation/templates/formations/skirmish.xml:6
+msgid "Skirmish"
+msgstr "Potyčka"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
 msgstr "Požadováno 9 pěších jednotek s kopím"
 
-#: simulation/templates/formations/testudo.xml:7
-msgid "Testudo"
-msgstr "Želva"
+#: simulation/templates/formations/syntagma.xml:7
+msgid "Syntagma"
+msgstr "Syntagma"
 
 #: simulation/templates/formations/testudo.xml:6
 msgid "9 melee infantry units required"
 msgstr "Požadováno 9 jednotek pěchoty pro boj zblízka"
 
-#: simulation/templates/formations/wedge.xml:7
-msgid "Wedge"
-msgstr "Klín"
+#: simulation/templates/formations/testudo.xml:7
+msgid "Testudo"
+msgstr "Želva"
 
 #: simulation/templates/formations/wedge.xml:6
 msgid "3 cavalry units required"
 msgstr "Požadovány 3 jezdecké jednotky"
+
+#: simulation/templates/formations/wedge.xml:7
+msgid "Wedge"
+msgstr "Klín"
 
 #: simulation/templates/gaia/fauna_bear.xml:18
 msgid "Bear"
@@ -281,13 +278,13 @@ msgstr "Velbloud"
 msgid "Chicken"
 msgstr "Kuře"
 
-#: simulation/templates/gaia/fauna_crocodile.xml:19
-msgid "Nile Crocodile"
-msgstr "Krokodýl nilský"
-
 #: simulation/templates/gaia/fauna_crocodile.xml:18
 msgid "Crocodylus niloticus"
 msgstr "Crocodylus niloticus"
+
+#: simulation/templates/gaia/fauna_crocodile.xml:19
+msgid "Nile Crocodile"
+msgstr "Krokodýl nilský"
 
 #: simulation/templates/gaia/fauna_deer.xml:5
 msgid "Deer"
@@ -313,23 +310,23 @@ msgstr "Asijský slon"
 msgid "North African Elephant"
 msgstr "Severoafrický slon"
 
-#: simulation/templates/gaia/fauna_fish.xml:6
-#: simulation/templates/gaia/fauna_fish_tuna.xml:6
-msgid "Collect food from this bountiful oceanic resource."
-msgstr "Sbírejte jídlo z tohoto hojného mořského zdroje."
-
 #: simulation/templates/gaia/fauna_fish.xml:5
 #: simulation/templates/gaia/fauna_fish_tuna.xml:5
 msgid "Tuna Fish"
 msgstr "Tuňák"
 
-#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
-msgid "Collect food from this bountiful riparian resource."
-msgstr "Sbírejte jídlo z tohoto hojného pobřežního zdroje."
+#: simulation/templates/gaia/fauna_fish.xml:6
+#: simulation/templates/gaia/fauna_fish_tuna.xml:6
+msgid "Collect food from this bountiful oceanic resource."
+msgstr "Sbírejte jídlo z tohoto hojného mořského zdroje."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
 msgstr "Tlamoun"
+
+#: simulation/templates/gaia/fauna_fish_tilapia.xml:6
+msgid "Collect food from this bountiful riparian resource."
+msgstr "Sbírejte jídlo z tohoto hojného pobřežního zdroje."
 
 #: simulation/templates/gaia/fauna_gazelle.xml:5
 msgid "Gazelle"
@@ -375,13 +372,13 @@ msgstr "Prase"
 msgid "Rabbit"
 msgstr "Králík"
 
-#: simulation/templates/gaia/fauna_shark.xml:15
-msgid "Shark"
-msgstr "Žralok"
-
 #: simulation/templates/gaia/fauna_shark.xml:14
 msgid "Great White"
 msgstr "Žralok bílý"
+
+#: simulation/templates/gaia/fauna_shark.xml:15
+msgid "Shark"
+msgstr "Žralok"
 
 #: simulation/templates/gaia/fauna_sheep.xml:11
 msgid "Sheep"
@@ -423,10 +420,6 @@ msgstr "Zebra"
 msgid "Hardy Bush"
 msgstr "Odolné křoví"
 
-#: simulation/templates/gaia/flora_bush_grapes.xml:6
-msgid "Gather grapes from these vines for Food."
-msgstr "Sbírejte hrozny z těchto rév na jídlo."
-
 #: simulation/templates/gaia/flora_bush_grapes.xml:4
 msgid "Forage"
 msgstr "Píce"
@@ -434,6 +427,10 @@ msgstr "Píce"
 #: simulation/templates/gaia/flora_bush_grapes.xml:5
 msgid "Grapes"
 msgstr "Hrozny"
+
+#: simulation/templates/gaia/flora_bush_grapes.xml:6
+msgid "Gather grapes from these vines for Food."
+msgstr "Sbírejte hrozny z těchto rév na jídlo."
 
 #: simulation/templates/gaia/flora_bush_temperate.xml:8
 msgid "Deciduous Bush"
@@ -478,13 +475,13 @@ msgstr "Uschlý strom"
 msgid "European Beech Tree"
 msgstr "Evropský buk"
 
-#: simulation/templates/gaia/flora_tree_fig.xml:10
-msgid "Gather figs for Food."
-msgstr "Sbírat fíky na jídlo."
-
 #: simulation/templates/gaia/flora_tree_fig.xml:8
 msgid "Fig"
 msgstr "Fík"
+
+#: simulation/templates/gaia/flora_tree_fig.xml:10
+msgid "Gather figs for Food."
+msgstr "Sbírat fíky na jídlo."
 
 #: simulation/templates/gaia/flora_tree_medit_fan_palm.xml:4
 msgid "Mediterranean Fan Palm"
@@ -634,10 +631,6 @@ msgstr "Most"
 msgid "Wooden Bridge"
 msgstr "Dřevěný most"
 
-#: simulation/templates/other/cart_tophet.xml:25
-msgid "Train physicians and Sacred Band Cavalrymen."
-msgstr "Cvičte lékaře a jezdectvo svatého oddílu."
-
 #: simulation/templates/other/cart_tophet.xml:22
 msgid "Sacrificial Temple"
 msgstr "Obětní chrám"
@@ -646,9 +639,9 @@ msgstr "Obětní chrám"
 msgid "Tophet"
 msgstr "Tophet"
 
-#: simulation/templates/other/celt_homestead.xml:25
-msgid "A Celtic homestead."
-msgstr "Keltská usedlost."
+#: simulation/templates/other/cart_tophet.xml:25
+msgid "Train physicians and Sacred Band Cavalrymen."
+msgstr "Cvičte lékaře a jezdectvo svatého oddílu."
 
 #: simulation/templates/other/celt_homestead.xml:22
 msgid "Homestead"
@@ -658,23 +651,27 @@ msgstr "Usedlost"
 msgid "Caer"
 msgstr "Caer"
 
-#: simulation/templates/other/celt_hut.xml:23
-msgid "Add +2 to Population Cap."
-msgstr "Přidat +2 k populačnímu limitu."
+#: simulation/templates/other/celt_homestead.xml:25
+msgid "A Celtic homestead."
+msgstr "Keltská usedlost."
 
 #: simulation/templates/other/celt_hut.xml:21
 msgid "Hut"
 msgstr "Chatrč"
+
+#: simulation/templates/other/celt_hut.xml:23
+msgid "Add +2 to Population Cap."
+msgstr "Přidat +2 k populačnímu limitu."
+
+#: simulation/templates/other/celt_longhouse.xml:22
+msgid "Longhouse"
+msgstr "Dlouhý dům"
 
 #: simulation/templates/other/celt_longhouse.xml:24
 #: simulation/templates/other/hellenic_propylaea.xml:28
 #: simulation/templates/other/hellenic_stoa.xml:28
 msgid "Add +10 to Population Cap."
 msgstr "Přidat +10 k populačnímu limitu."
-
-#: simulation/templates/other/celt_longhouse.xml:22
-msgid "Longhouse"
-msgstr "Dlouhý dům"
 
 #: simulation/templates/other/column_doric.xml:20
 #: simulation/templates/other/column_doric_fallen.xml:20
@@ -713,10 +710,6 @@ msgstr "Kamenný plot"
 msgid "Wheat Field"
 msgstr "Pšeničné pole"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:33
-msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Cvičte léčitele. Obsaďte posádkou až 30 vojáků pro rychlé hojení."
-
 #: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Epic Temple"
 msgstr "Působivý chrám"
@@ -725,6 +718,10 @@ msgstr "Působivý chrám"
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
+#: simulation/templates/other/hellenic_epic_temple.xml:33
+msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
+msgstr "Cvičte léčitele. Obsaďte posádkou až 30 vojáků pro rychlé hojení."
+
 #: simulation/templates/other/hellenic_propylaea.xml:25
 msgid "Portico"
 msgstr "Sloupová předsíň"
@@ -732,10 +729,6 @@ msgstr "Sloupová předsíň"
 #: simulation/templates/other/hellenic_propylaea.xml:26
 msgid "Propylaea"
 msgstr "Propylaea"
-
-#: simulation/templates/other/hellenic_royal_stoa.xml:33
-msgid "Add +10 to Population Cap. Recruit special units."
-msgstr "Přidat +10 k populačnímu limitu. Provést nábor zvláštních jednotek."
 
 #: simulation/templates/other/hellenic_royal_stoa.xml:30
 #: simulation/templates/other/hellenic_stoa.xml:25
@@ -746,17 +739,21 @@ msgstr "Krytá kolonáda"
 msgid "Hellenic Royal Stoa"
 msgstr "Helénská královská sloupová chodba"
 
+#: simulation/templates/other/hellenic_royal_stoa.xml:33
+msgid "Add +10 to Population Cap. Recruit special units."
+msgstr "Přidat +10 k populačnímu limitu. Provést nábor zvláštních jednotek."
+
 #: simulation/templates/other/hellenic_stoa.xml:26
 msgid "Hellenic Stoa"
 msgstr "Helénská krytá kolonáda"
 
-#: simulation/templates/other/maur_palace.xml:14
-msgid "Add +15 to Population Cap. Recruit extra units and heroes."
-msgstr "Přidat +15 k populačnímu limitu. Provést nábor dodatečných jednotek a hrdinů."
-
 #: simulation/templates/other/maur_palace.xml:12
 msgid "Harmya"
 msgstr "Harmya"
+
+#: simulation/templates/other/maur_palace.xml:14
+msgid "Add +15 to Population Cap. Recruit extra units and heroes."
+msgstr "Přidat +15 k populačnímu limitu. Provést nábor dodatečných jednotek a hrdinů."
 
 #: simulation/templates/other/obelisk.xml:20
 msgid "Obelisk"
@@ -766,54 +763,45 @@ msgstr "Obelisk"
 msgid "Egyptian Obelisk"
 msgstr "Egyptský obelisk"
 
-#: simulation/templates/other/palisades_angle_spike.xml:17
-msgid "Big Spike"
-msgstr "Velký bodec"
-
 #: simulation/templates/other/palisades_angle_spike.xml:16
 msgid "Palisade Angle Spike"
 msgstr "Špice hrany hradby z kůlů"
 
-#: simulation/templates/other/palisades_rocks_curve.xml:16
-msgid "Wooden Wall Corner"
-msgstr "Roh dřevěné hradby"
+#: simulation/templates/other/palisades_angle_spike.xml:17
+msgid "Big Spike"
+msgstr "Velký bodec"
 
 #: simulation/templates/other/palisades_rocks_curve.xml:15
 msgid "Palisade Curve"
 msgstr "Záhyb hradby z kůlů"
 
-#: simulation/templates/other/palisades_rocks_end.xml:16
-msgid "Wooden Wall End"
-msgstr "Konec dřevěné hradby"
+#: simulation/templates/other/palisades_rocks_curve.xml:16
+msgid "Wooden Wall Corner"
+msgstr "Roh dřevěné hradby"
 
 #: simulation/templates/other/palisades_rocks_end.xml:15
 msgid "Palisade End"
 msgstr "Konec hradby z kůlů"
 
-#: simulation/templates/other/palisades_rocks_fort.xml:21
-msgid "Wooden Tower"
-msgstr "Dřevěná věž"
+#: simulation/templates/other/palisades_rocks_end.xml:16
+msgid "Wooden Wall End"
+msgstr "Konec dřevěné hradby"
 
 #: simulation/templates/other/palisades_rocks_fort.xml:20
 msgid "Palisade Fort"
 msgstr "Tvrz s hradbou z kůlů"
 
-#: simulation/templates/other/palisades_rocks_gate.xml:21
-msgid "Wooden Gate"
-msgstr "Dřevěná brána"
+#: simulation/templates/other/palisades_rocks_fort.xml:21
+msgid "Wooden Tower"
+msgstr "Dřevěná věž"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"
 msgstr "Palisádová brána"
 
-#: simulation/templates/other/palisades_rocks_long.xml:23
-#: simulation/templates/other/palisades_rocks_medium.xml:23
-#: simulation/templates/other/palisades_rocks_short.xml:22
-#: simulation/templates/other/palisades_rocks_straight.xml:16
-#: simulation/templates/other/palisades_rocks_tower.xml:22
-#: simulation/templates/other/wallset_palisade.xml:5
-msgid "Wooden Wall"
-msgstr "Dřevěná hradba"
+#: simulation/templates/other/palisades_rocks_gate.xml:21
+msgid "Wooden Gate"
+msgstr "Dřevěná brána"
 
 #: simulation/templates/other/palisades_rocks_long.xml:22
 #: simulation/templates/other/palisades_rocks_medium.xml:22
@@ -824,38 +812,47 @@ msgstr "Dřevěná hradba"
 msgid "Palisade"
 msgstr "Hradba z kůlů"
 
+#: simulation/templates/other/palisades_rocks_long.xml:23
+#: simulation/templates/other/palisades_rocks_medium.xml:23
+#: simulation/templates/other/palisades_rocks_short.xml:22
+#: simulation/templates/other/palisades_rocks_straight.xml:16
+#: simulation/templates/other/palisades_rocks_tower.xml:22
+#: simulation/templates/other/wallset_palisade.xml:5
+msgid "Wooden Wall"
+msgstr "Dřevěná hradba"
+
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
 msgstr "Proměnit dřevěnou hradbu na dřevěnou bránu"
+
+#: simulation/templates/other/palisades_rocks_outpost.xml:15
+msgid "Outpost"
+msgstr "Rozhledna"
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:16
 #: simulation/templates/other/palisades_rocks_watchtower.xml:16
 msgid "Wooden Watch Tower"
 msgstr "Dřevěná pozorovatelna"
 
-#: simulation/templates/other/palisades_rocks_outpost.xml:15
-msgid "Outpost"
-msgstr "Rozhledna"
-
 #: simulation/templates/other/palisades_rocks_watchtower.xml:15
 msgid "Watchtower"
 msgstr "Strážní věž"
-
-#: simulation/templates/other/palisades_small_spikes.xml:17
-msgid "Small Spikes"
-msgstr "Malé bodce"
 
 #: simulation/templates/other/palisades_small_spikes.xml:16
 msgid "Spikes Small"
 msgstr "Malé bodce"
 
-#: simulation/templates/other/palisades_tall_spikes.xml:17
-msgid "Tall Spikes"
-msgstr "Dlouhé kůly"
+#: simulation/templates/other/palisades_small_spikes.xml:17
+msgid "Small Spikes"
+msgstr "Malé bodce"
 
 #: simulation/templates/other/palisades_tall_spikes.xml:16
 msgid "Spikes Tall"
 msgstr "Kůly dlouhé"
+
+#: simulation/templates/other/palisades_tall_spikes.xml:17
+msgid "Tall Spikes"
+msgstr "Dlouhé kůly"
 
 #: simulation/templates/other/pers_apartment_block.xml:15
 msgid "Apartment Block"
@@ -874,13 +871,13 @@ msgstr "Hostinec"
 msgid "Warehouse"
 msgstr "Sklad"
 
-#: simulation/templates/other/plane.xml:40
-msgid "A World War 2 American fighter plane."
-msgstr "Americké stíhací letadlo z druhé světové války"
-
 #: simulation/templates/other/plane.xml:38
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
+
+#: simulation/templates/other/plane.xml:40
+msgid "A World War 2 American fighter plane."
+msgstr "Americké stíhací letadlo z druhé světové války"
 
 #: simulation/templates/other/pyramid_great.xml:9
 #: simulation/templates/other/pyramid_minor.xml:9
@@ -895,16 +892,16 @@ msgstr "Velká pyramida"
 msgid "Minor Pyramid"
 msgstr "Malá pyramida"
 
-#: simulation/templates/other/special_treasure_shipwreck.xml:11
-msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Ztrouchnivělý vrak vojenské lodi. Dobrá příležitost pro každého obchodníka."
-
 #: simulation/templates/other/special_treasure_shipwreck.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:10
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:10
 msgid "Shipwreck"
 msgstr "Vrak lodi"
+
+#: simulation/templates/other/special_treasure_shipwreck.xml:11
+msgid "A decaying military shipwreck. A good opportunity for any businessman."
+msgstr "Ztrouchnivělý vrak vojenské lodi. Dobrá příležitost pro každého obchodníka."
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
@@ -957,13 +954,13 @@ msgstr "Čtvercový stůl"
 msgid "Spartiate with Xiphos"
 msgstr "Plnoprávný občan Sparty se Xiphem"
 
-#: simulation/templates/other/unfinished_greek_temple.xml:12
-msgid "This temple is unfinished and has fallen to ruin."
-msgstr "Chrám nebyl dokončen a stala se z něj zřícenina."
-
 #: simulation/templates/other/unfinished_greek_temple.xml:10
 msgid "Unfinished Greek Temple"
 msgstr "Nedokončený řecký chrám"
+
+#: simulation/templates/other/unfinished_greek_temple.xml:12
+msgid "This temple is unfinished and has fallen to ruin."
+msgstr "Chrám nebyl dokončen a stala se z něj zřícenina."
 
 #: simulation/templates/skirmish/structures/default_house_10.xml:5
 msgid ""

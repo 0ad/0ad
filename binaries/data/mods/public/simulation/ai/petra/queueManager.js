@@ -522,5 +522,42 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
 };
 
+m.QueueManager.prototype.Serialize = function()
+{
+	let accounts = {};
+	let queues = {};
+	for (let p in this.queues)
+	{
+		queues[p] = this.queues[p].Serialize();
+		accounts[p] = this.accounts[p].Serialize();
+	}
+
+	return {
+		"priorities": this.priorities,
+		"queues": queues,
+		"accounts": accounts
+	};
+}
+
+m.QueueManager.prototype.Deserialize = function(data)
+{
+	this.priorities = data.priorities;
+	this.queues = {};
+	this.accounts = {};
+
+	// the sorting is updated on priority change.
+	var self = this;
+	this.queueArrays = [];
+	for (let p in data.queues)
+	{
+		this.queues[p] = new m.Queue();
+		this.queues[p].Deserialize(data.queues[p]);
+		this.accounts[p] = new API3.Resources();
+		this.accounts[p].Deserialize(data.accounts[p]);
+		this.queueArrays.push([p, this.queues[p]]);
+	}
+	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
+};
+
 return m;
 }(PETRA);

@@ -1,7 +1,6 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
 # GunChleoc, 2014
@@ -9,21 +8,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 19:00+0200\n"
-"PO-Revision-Date: 2014-09-27 18:41+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2014-10-26 02:06+0100\n"
+"PO-Revision-Date: 2014-10-26 09:52+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: gd\n"
 "Plural-Forms: nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;\n"
 
 #: maps/random/aegean_sea.jsonsettings.Description
-msgid "Players start on two sides of a sea with scattered islands"
-msgstr "Tòisichidh na cluicheadairean air an dà oirthir aig muir sa bheil eileanan sgapte"
+msgid "Players start on two sides of a sea with scattered islands."
+msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -126,11 +123,11 @@ msgid "Continent"
 msgstr "Mòr-thìr"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
-#: maps/skirmishes/Corinthian Isthmus (2).xml:41:Description
+#: maps/skirmishes/Corinthian Isthmus (2).xml:Description:41
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
-"'Isthmus.'"
-msgstr "Dà chnap tìre meadhan-thìreach ceangailte ri chèile le tairbeart."
+"'Isthmus'."
+msgstr ""
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -271,8 +268,8 @@ msgid "Lorraine Plain"
 msgstr "Blàr Lorraine"
 
 #: maps/random/mainland.jsonsettings.Description
-msgid "A typical map without any water"
-msgstr "Mapa àbhaisteach gun uisge"
+msgid "A typical map without any water."
+msgstr ""
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
@@ -285,7 +282,7 @@ msgid ""
 msgstr "Tòisichidh na cluicheadairean ann an eileanan beaga taobh an ear air a' mhapa. Tha mòr-thìr gu siar orra deiseil airson tuineachadh."
 
 #: maps/random/migration.jsonsettings.Name
-#: maps/scenarios/Migration.xml:31:Name
+#: maps/scenarios/Migration.xml:Name:31
 msgid "Migration"
 msgstr "Eilthireachd"
 
@@ -301,8 +298,8 @@ msgid "Neareastern Badlands"
 msgstr "Fàsach an ear faisg"
 
 #: maps/random/new_rms_test.jsonsettings.Description
-msgid "A basic test of the random map generator - not playable"
-msgstr "Deuchainn bunasach air gineadair nam mapa air thuaiream - cha ghabh a chluich"
+msgid "A basic test of the random map generator - not playable."
+msgstr ""
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
@@ -384,7 +381,7 @@ msgid "Each players starts near a lush oasis in a large, desolate desert."
 msgstr "Tòisichidh gach cluicheadair faisg air innis-fhàsaich bheartach agus fàsach mòr lom timcheall orra."
 
 #: maps/random/saharan_oases.jsonsettings.Name maps/scenarios/Saharan
-#: Oases.xml:31:Name
+#: Oases.xml:Name:31
 msgid "Saharan Oases"
 msgstr "Innseachan-fàsaich Shathara"
 
@@ -394,7 +391,7 @@ msgid ""
 "wood is somewhat scarce."
 msgstr "Seo mapa caran fosgailte le pailteas bìdh is mèinneir fhad 's a tha fhiodh caran gann."
 
-#: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:42:Name
+#: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:Name:42
 msgid "Sahel"
 msgstr "Sàithil"
 
@@ -410,7 +407,7 @@ msgid "Sahel Watering Holes"
 msgstr "Tuill uisge sàithil"
 
 #: maps/random/schwarzwald.jsonsettings.Description
-msgid "A forest heavy map with a lake in the middle and plenty of resources"
+msgid "A forest heavy map with a lake in the middle and plenty of resources."
 msgstr ""
 
 #: maps/random/schwarzwald.jsonsettings.Name
@@ -455,8 +452,8 @@ msgid "The Nile"
 msgstr "An Nìl"
 
 #: maps/random/unknown.jsonsettings.Description
-msgid "The unknown... Warning: May be a naval map"
-msgstr "An aineol... Rabhadh: Dh'fhaoidte gur e mapa mara a th' ann"
+msgid "The unknown... Warning: May be a naval map."
+msgstr ""
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -543,7 +540,7 @@ msgid "Hurry up! Your enemy is close to victory!"
 msgstr "Greas ort! Tha do nàmhaid gu bhith buannachd fhaighinn!"
 
 #: maps/scenarios/treasure_islands.js:65
-#, python-format
+#, javascript-format
 msgid "Treasures remaining to collect for victory:  %(remainingTreasures)s!"
 msgstr "Na h-ulaidhean a dh'fheumas togail fhathast airson buannachd fhaighinn:  %(remainingTreasures)s!"
 
@@ -555,229 +552,229 @@ msgstr "Thog thu ulaidh!"
 msgid "Defeat your enemy to win!"
 msgstr "Cuir ruaig air an nàmhaid airson buannachd fhaighinn!"
 
-#: maps/scenarios/Arcadia 02.xml:41:Description
+#: maps/scenarios/Arcadia 02.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Earrach ann an Arcàidea sa Ghreug. Tha tuiltean an earraich air creagan a dhèanamh de na bhiodh 'nan sruth-chlaisean tioram feadh corr a' bhliadhna 's a sgaradh an dùthaich eadar dà threubh nàimhdeil. \n\nTòisichidh na cluicheadairean air gach taobh sgìre beanntach sa bheil beartas de stòras. Bidh togalach a bharrachd aig gach cluicheadair aig an toiseach ach an tog iad an tuineachadh nas luaithe."
 
-#: maps/scenarios/Arcadia 02.xml:41:PlayerData[0].Name
-#: maps/scenarios/Belgian_Bog_night.xml:42:PlayerData[0].Name
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[0].Name
-#: maps/scenarios/Demo_Trading.xml:31:PlayerData[0].Name maps/scenarios/Eire
-#: and Albion.xml:31:PlayerData[0].Name maps/scenarios/Fast
-#: Oasis.xml:31:PlayerData[0].Name
-#: maps/scenarios/Flight_demo_2.xml:31:PlayerData[0].Name
-#: maps/scenarios/Gold_Rush.xml:31:PlayerData[0].Name
-#: maps/scenarios/Introductory Tutorial.xml:42:PlayerData[0].Name
-#: maps/scenarios/Laconia 01.xml:31:PlayerData[0].Name
-#: maps/scenarios/Migration.xml:31:PlayerData[0].Name
-#: maps/scenarios/Necropolis.xml:41:PlayerData[0].Name maps/scenarios/Saharan
-#: Oases.xml:31:PlayerData[0].Name maps/scenarios/Sandbox -
-#: Britons.xml:41:PlayerData[0].Name maps/scenarios/Sandbox -
-#: Gauls.xml:41:PlayerData[0].Name maps/scenarios/Sandbox -
-#: Iberians.xml:42:PlayerData[0].Name maps/scenarios/Sandbox -
-#: Romans.xml:42:PlayerData[0].Name maps/scenarios/Siwa
-#: Oasis.xml:31:PlayerData[0].Name maps/scenarios/The Massacre of
-#: Delphi.xml:41:PlayerData[0].Name maps/scenarios/Treasure
-#: Islands.xml:41:PlayerData[0].Name maps/scenarios/Tropical
-#: Island.xml:41:PlayerData[0].Name
-#: maps/scenarios/WallTest.xml:31:PlayerData[0].Name
-#: maps/scenarios/Walls.xml:31:PlayerData[0].Name
-#: maps/scenarios/reservoir.xml:31:PlayerData[0].Name
-#: maps/scenarios/starting_economy_walkthrough.xml:42:PlayerData[0].Name
-#: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Bactria (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Corinthian Isthmus (4).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Cycladic Archipelago (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Death Canyon (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Deccan Plateau (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Gallic Fields (3).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Gambia River (3).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Golden Oasis (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Greek Acropolis (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Greek Acropolis (4).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Greek Acropolis Night (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Libyan Oases (4).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Libyan Oasis (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Lorraine Plain (2).xml:40:PlayerData[0].Name
-#: maps/skirmishes/Median Oasis (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Median Oasis (4).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Mediterranean Cove (2).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Neareastern Badlands (2).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Neareastern Badlands (4).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Nile River (4).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Persian Highlands (4).xml:42:PlayerData[0].Name
-#: maps/skirmishes/Punbjab (2).xml:40:PlayerData[0].Name
-#: maps/skirmishes/Saharan Oases (4).xml:41:PlayerData[0].Name
-#: maps/skirmishes/Sahel (4).xml:42:PlayerData[0].Name maps/skirmishes/Savanna
-#: River.xml:42:PlayerData[0].Name maps/skirmishes/Sicilia
-#: (2).xml:41:PlayerData[0].Name maps/skirmishes/Siwa Oasis
-#: (2).xml:40:PlayerData[0].Name maps/skirmishes/Sporades Islands
-#: (2).xml:42:PlayerData[0].Name maps/skirmishes/Syria
-#: (2).xml:41:PlayerData[0].Name maps/skirmishes/Team Oasis -
-#: 2v2.xml:42:PlayerData[0].Name maps/skirmishes/Thessalian Plains
-#: (4).xml:41:PlayerData[0].Name maps/skirmishes/Tuscan Acropolis
-#: (4).xml:41:PlayerData[0].Name maps/skirmishes/Watering Holes
-#: (4).xml:42:PlayerData[0].Name maps/skirmishes/Zagros Mountains
-#: (2).xml:42:PlayerData[0].Name
+#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
+#: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
+#: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
+#: Oasis.xml:PlayerData[0].Name:31
+#: maps/scenarios/Flight_demo_2.xml:PlayerData[0].Name:31
+#: maps/scenarios/Gold_Rush.xml:PlayerData[0].Name:31
+#: maps/scenarios/Introductory Tutorial.xml:PlayerData[0].Name:42
+#: maps/scenarios/Laconia 01.xml:PlayerData[0].Name:31
+#: maps/scenarios/Migration.xml:PlayerData[0].Name:31
+#: maps/scenarios/Necropolis.xml:PlayerData[0].Name:41 maps/scenarios/Saharan
+#: Oases.xml:PlayerData[0].Name:31 maps/scenarios/Sandbox -
+#: Britons.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
+#: Iberians.xml:PlayerData[0].Name:42 maps/scenarios/Sandbox -
+#: Romans.xml:PlayerData[0].Name:42 maps/scenarios/Siwa
+#: Oasis.xml:PlayerData[0].Name:31 maps/scenarios/The Massacre of
+#: Delphi.xml:PlayerData[0].Name:41 maps/scenarios/Treasure
+#: Islands.xml:PlayerData[0].Name:41 maps/scenarios/Tropical
+#: Island.xml:PlayerData[0].Name:41
+#: maps/scenarios/WallTest.xml:PlayerData[0].Name:31
+#: maps/scenarios/Walls.xml:PlayerData[0].Name:31
+#: maps/scenarios/reservoir.xml:PlayerData[0].Name:31
+#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[0].Name:42
+#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Bactria (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Belgian Bog (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Death Canyon (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Deccan Plateau (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Gallic Fields (3).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Gambia River (3).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Golden Oasis (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Greek Acropolis (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Greek Acropolis (4).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Greek Acropolis Night (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Libyan Oases (4).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Libyan Oasis (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Lorraine Plain (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Median Oasis (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Median Oasis (4).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Mediterranean Cove (2).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Neareastern Badlands (2).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Nile River (4).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Persian Highlands (4).xml:PlayerData[0].Name:42
+#: maps/skirmishes/Punbjab (2).xml:PlayerData[0].Name:40
+#: maps/skirmishes/Saharan Oases (4).xml:PlayerData[0].Name:41
+#: maps/skirmishes/Sahel (4).xml:PlayerData[0].Name:42 maps/skirmishes/Savanna
+#: River.xml:PlayerData[0].Name:42 maps/skirmishes/Sicilia
+#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Siwa Oasis
+#: (2).xml:PlayerData[0].Name:40 maps/skirmishes/Sporades Islands
+#: (2).xml:PlayerData[0].Name:42 maps/skirmishes/Syria
+#: (2).xml:PlayerData[0].Name:41 maps/skirmishes/Team Oasis -
+#: 2v2.xml:PlayerData[0].Name:42 maps/skirmishes/Thessalian Plains
+#: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Tuscan Acropolis
+#: (4).xml:PlayerData[0].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[0].Name:42 maps/skirmishes/Zagros Mountains
+#: (2).xml:PlayerData[0].Name:42
 msgid "Player 1"
 msgstr "Cluicheadair 1"
 
-#: maps/scenarios/Arcadia 02.xml:41:PlayerData[1].Name
-#: maps/scenarios/Belgian_Bog_night.xml:42:PlayerData[1].Name
-#: maps/scenarios/Demo_Trading.xml:31:PlayerData[1].Name maps/scenarios/Eire
-#: and Albion.xml:31:PlayerData[1].Name maps/scenarios/Fast
-#: Oasis.xml:31:PlayerData[1].Name
-#: maps/scenarios/Flight_demo_2.xml:31:PlayerData[1].Name
-#: maps/scenarios/Gold_Rush.xml:31:PlayerData[1].Name
-#: maps/scenarios/Introductory Tutorial.xml:42:PlayerData[1].Name
-#: maps/scenarios/Laconia 01.xml:31:PlayerData[1].Name
-#: maps/scenarios/Migration.xml:31:PlayerData[1].Name
-#: maps/scenarios/Necropolis.xml:41:PlayerData[1].Name maps/scenarios/Saharan
-#: Oases.xml:31:PlayerData[1].Name maps/scenarios/Sandbox -
-#: Britons.xml:41:PlayerData[1].Name maps/scenarios/Sandbox -
-#: Gauls.xml:41:PlayerData[1].Name maps/scenarios/Sandbox -
-#: Iberians.xml:42:PlayerData[1].Name maps/scenarios/Sandbox -
-#: Romans.xml:42:PlayerData[1].Name maps/scenarios/Siwa
-#: Oasis.xml:31:PlayerData[1].Name maps/scenarios/The Massacre of
-#: Delphi.xml:41:PlayerData[1].Name maps/scenarios/Treasure
-#: Islands.xml:41:PlayerData[1].Name maps/scenarios/Tropical
-#: Island.xml:41:PlayerData[1].Name
-#: maps/scenarios/WallTest.xml:31:PlayerData[1].Name
-#: maps/scenarios/Walls.xml:31:PlayerData[1].Name
-#: maps/scenarios/starting_economy_walkthrough.xml:42:PlayerData[1].Name
-#: maps/skirmishes/Acropolis Bay (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Alpine_Valleys_(2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Bactria (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Belgian Bog (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Caspian Sea (2v2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Corinthian Isthmus (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Corinthian Isthmus (4).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Corsica and Sardinia (4).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Cycladic Archipelago (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Death Canyon (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Deccan Plateau (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Gallic Fields (3).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Gambia River (3).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Golden Oasis (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Greek Acropolis (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Greek Acropolis (4).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Greek Acropolis Night (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Libyan Oases (4).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Libyan Oasis (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Lorraine Plain (2).xml:40:PlayerData[1].Name
-#: maps/skirmishes/Median Oasis (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Median Oasis (4).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Mediterranean Cove (2).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Neareastern Badlands (2).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Neareastern Badlands (4).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Nile River (4).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Persian Highlands (4).xml:42:PlayerData[1].Name
-#: maps/skirmishes/Punbjab (2).xml:40:PlayerData[1].Name
-#: maps/skirmishes/Saharan Oases (4).xml:41:PlayerData[1].Name
-#: maps/skirmishes/Sahel (4).xml:42:PlayerData[1].Name maps/skirmishes/Savanna
-#: River.xml:42:PlayerData[1].Name maps/skirmishes/Sicilia
-#: (2).xml:41:PlayerData[1].Name maps/skirmishes/Siwa Oasis
-#: (2).xml:40:PlayerData[1].Name maps/skirmishes/Sporades Islands
-#: (2).xml:42:PlayerData[1].Name maps/skirmishes/Syria
-#: (2).xml:41:PlayerData[1].Name maps/skirmishes/Team Oasis -
-#: 2v2.xml:42:PlayerData[1].Name maps/skirmishes/Thessalian Plains
-#: (4).xml:41:PlayerData[1].Name maps/skirmishes/Tuscan Acropolis
-#: (4).xml:41:PlayerData[1].Name maps/skirmishes/Watering Holes
-#: (4).xml:42:PlayerData[1].Name maps/skirmishes/Zagros Mountains
-#: (2).xml:42:PlayerData[1].Name
+#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
+#: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
+#: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
+#: Oasis.xml:PlayerData[1].Name:31
+#: maps/scenarios/Flight_demo_2.xml:PlayerData[1].Name:31
+#: maps/scenarios/Gold_Rush.xml:PlayerData[1].Name:31
+#: maps/scenarios/Introductory Tutorial.xml:PlayerData[1].Name:42
+#: maps/scenarios/Laconia 01.xml:PlayerData[1].Name:31
+#: maps/scenarios/Migration.xml:PlayerData[1].Name:31
+#: maps/scenarios/Necropolis.xml:PlayerData[1].Name:41 maps/scenarios/Saharan
+#: Oases.xml:PlayerData[1].Name:31 maps/scenarios/Sandbox -
+#: Britons.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
+#: Iberians.xml:PlayerData[1].Name:42 maps/scenarios/Sandbox -
+#: Romans.xml:PlayerData[1].Name:42 maps/scenarios/Siwa
+#: Oasis.xml:PlayerData[1].Name:31 maps/scenarios/The Massacre of
+#: Delphi.xml:PlayerData[1].Name:41 maps/scenarios/Treasure
+#: Islands.xml:PlayerData[1].Name:41 maps/scenarios/Tropical
+#: Island.xml:PlayerData[1].Name:41
+#: maps/scenarios/WallTest.xml:PlayerData[1].Name:31
+#: maps/scenarios/Walls.xml:PlayerData[1].Name:31
+#: maps/scenarios/starting_economy_walkthrough.xml:PlayerData[1].Name:42
+#: maps/skirmishes/Acropolis Bay (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Alpine_Valleys_(2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Bactria (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Belgian Bog (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Caspian Sea (2v2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Corinthian Isthmus (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Corinthian Isthmus (4).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Corsica and Sardinia (4).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Cycladic Archipelago (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Death Canyon (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Deccan Plateau (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Gallic Fields (3).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Gambia River (3).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Golden Oasis (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Greek Acropolis (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Greek Acropolis (4).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Greek Acropolis Night (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Libyan Oases (4).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Libyan Oasis (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Lorraine Plain (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Median Oasis (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Median Oasis (4).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Mediterranean Cove (2).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Neareastern Badlands (2).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Neareastern Badlands (4).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Nile River (4).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Persian Highlands (4).xml:PlayerData[1].Name:42
+#: maps/skirmishes/Punbjab (2).xml:PlayerData[1].Name:40
+#: maps/skirmishes/Saharan Oases (4).xml:PlayerData[1].Name:41
+#: maps/skirmishes/Sahel (4).xml:PlayerData[1].Name:42 maps/skirmishes/Savanna
+#: River.xml:PlayerData[1].Name:42 maps/skirmishes/Sicilia
+#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Siwa Oasis
+#: (2).xml:PlayerData[1].Name:40 maps/skirmishes/Sporades Islands
+#: (2).xml:PlayerData[1].Name:42 maps/skirmishes/Syria
+#: (2).xml:PlayerData[1].Name:41 maps/skirmishes/Team Oasis -
+#: 2v2.xml:PlayerData[1].Name:42 maps/skirmishes/Thessalian Plains
+#: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Tuscan Acropolis
+#: (4).xml:PlayerData[1].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[1].Name:42 maps/skirmishes/Zagros Mountains
+#: (2).xml:PlayerData[1].Name:42
 msgid "Player 2"
 msgstr "Cluicheadair 2"
 
-#: maps/scenarios/Arcadia 02.xml:41:Name
+#: maps/scenarios/Arcadia 02.xml:Name:41
 msgid "Arcadia 2"
 msgstr "Arcàidea 2"
 
-#: maps/scenarios/Azure Coast(2).xml:31:Description maps/scenarios/Azure
-#: Coast(4).xml:31:Description maps/scenarios/Azure Coast.xml:41:Description
+#: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
+#: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
 msgid "Help the young Massilia to settle or expel the Greeks from Gaul."
 msgstr ""
 
-#: maps/scenarios/Azure Coast(2).xml:31:PlayerData[0].Name
+#: maps/scenarios/Azure Coast(2).xml:PlayerData[0].Name:31
 msgid "Greeks"
 msgstr "Na Greugaich"
 
-#: maps/scenarios/Azure Coast(2).xml:31:PlayerData[1].Name
+#: maps/scenarios/Azure Coast(2).xml:PlayerData[1].Name:31
 msgid "Celts"
 msgstr "Ceiltich"
 
-#: maps/scenarios/Azure Coast(2).xml:31:Name
+#: maps/scenarios/Azure Coast(2).xml:Name:31
 msgid "Azure Coast 2"
 msgstr "An Costa Gorm 2"
 
-#: maps/scenarios/Azure Coast(4).xml:31:PlayerData[0].Name
+#: maps/scenarios/Azure Coast(4).xml:PlayerData[0].Name:31
 msgid "East"
 msgstr "An Taobh an Ear"
 
-#: maps/scenarios/Azure Coast(4).xml:31:PlayerData[1].Name
+#: maps/scenarios/Azure Coast(4).xml:PlayerData[1].Name:31
 msgid "West"
 msgstr "An Taobh Siar"
 
-#: maps/scenarios/Azure Coast(4).xml:31:PlayerData[2].Name
+#: maps/scenarios/Azure Coast(4).xml:PlayerData[2].Name:31
 msgid "South"
 msgstr "An Taobh a Deas"
 
-#: maps/scenarios/Azure Coast(4).xml:31:PlayerData[3].Name
+#: maps/scenarios/Azure Coast(4).xml:PlayerData[3].Name:31
 msgid "North"
 msgstr "An Taobh Tuath"
 
-#: maps/scenarios/Azure Coast(4).xml:31:Name
+#: maps/scenarios/Azure Coast(4).xml:Name:31
 msgid "Azure Coast 3"
 msgstr "An Costa Gorm 3"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[0].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[0].Name:41
 msgid "Antipolis"
 msgstr "Antipolis"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[1].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[1].Name:41
 msgid "Nikaia"
 msgstr "Nikaia"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[2].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[2].Name:41
 msgid "Massalia"
 msgstr "Massilia"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[3].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[3].Name:41
 msgid "Olbia"
 msgstr "Olbia"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[4].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[4].Name:41
 msgid "Deciates"
 msgstr "Deciates"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[5].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[5].Name:41
 msgid "Salluvii"
 msgstr "Salluvii"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[6].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[6].Name:41
 msgid "Cavares"
 msgstr "Cavares"
 
-#: maps/scenarios/Azure Coast.xml:41:PlayerData[7].Name
+#: maps/scenarios/Azure Coast.xml:PlayerData[7].Name:41
 msgid "Verguni"
 msgstr "Verguni"
 
-#: maps/scenarios/Azure Coast.xml:41:Name
+#: maps/scenarios/Azure Coast.xml:Name:41
 msgid "Azure Coast 1"
 msgstr "An Costa Gorm 1"
 
-#: maps/scenarios/Barcania.xml:31:Name
+#: maps/scenarios/Barcania.xml:Name:31
 msgid "Barcania"
 msgstr "Eilean Barca"
 
-#: maps/scenarios/Barcania.xml:31:Description
+#: maps/scenarios/Barcania.xml:Description:31
 msgid ""
 "A wild and wooded isle, full of forests, gold, and mystery...  mountains, "
 "seas, and thick forests make for a very dynamic and fast-paced 3-player map "
@@ -786,704 +783,704 @@ msgid ""
 "players."
 msgstr ""
 
-#: maps/scenarios/Battle for the Tiber.xml:31:Description
+#: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
 "Rome battles against the Etruscan city of Veii for control of the Tiber "
 "River basin."
 msgstr "Tha an Ròimh a' strì an aghaidh baile Veii nan Eatruscach ach am faigh iad smachd air machair an Tìobair."
 
-#: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[0].Name
+#: maps/scenarios/Battle for the Tiber.xml:PlayerData[0].Name:31
 msgid "Rome"
 msgstr "An Ròimh"
 
-#: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[1].Name
+#: maps/scenarios/Battle for the Tiber.xml:PlayerData[1].Name:31
 msgid "Veii"
 msgstr "Veii"
 
-#: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[2].Name
-#: maps/scenarios/Battle for the Tiber.xml:31:PlayerData[3].Name
+#: maps/scenarios/Battle for the Tiber.xml:PlayerData[2].Name:31
+#: maps/scenarios/Battle for the Tiber.xml:PlayerData[3].Name:31
 msgid "Gallic Invaders"
 msgstr "Muinntir na Gaille a' briseadh a-steach"
 
-#: maps/scenarios/Battle for the Tiber.xml:31:Name
+#: maps/scenarios/Battle for the Tiber.xml:Name:31
 msgid "Battle for the Tiber"
 msgstr "Strì an Tìobair"
 
-#: maps/scenarios/Belgian_Bog_night.xml:42:Description
+#: maps/scenarios/Belgian_Bog_night.xml:Description:42
 msgid "Two Celtic tribes face off across a large bog at night."
 msgstr "Thèid dà chinneadh Ceilteach an aghaidh càch a chèile thar boglaich mhòir air an oidhche."
 
-#: maps/scenarios/Belgian_Bog_night.xml:42:Name
+#: maps/scenarios/Belgian_Bog_night.xml:Name:42
 msgid "Belgian Bog Night"
 msgstr "Oidhche a' bhoglaich Bheilgich"
 
-#: maps/scenarios/Bridge_demo.xml:31:PlayerData[0].Name
+#: maps/scenarios/Bridge_demo.xml:PlayerData[0].Name:31
 msgid "Bridge Demo"
 msgstr "Taisbeanadh dhrochaidean"
 
-#: maps/scenarios/Bridge_demo.xml:31:PlayerData[1].Name
+#: maps/scenarios/Bridge_demo.xml:PlayerData[1].Name:31
 msgid "Other"
 msgstr "Eile"
 
-#: maps/scenarios/Bridge_demo.xml:31:Description
+#: maps/scenarios/Bridge_demo.xml:Description:31
 msgid "Demo map showing how to simulate bridges in the Atlas map editor."
 msgstr "Mapa taisbeanaidh a sheallas mar a chruthaicheas tu drochaidean mas-fhìor san deasaiche Atlas."
 
-#: maps/scenarios/Bridge_demo.xml:31:Name
+#: maps/scenarios/Bridge_demo.xml:Name:31
 msgid "Bridge demo"
 msgstr "Taisbeanadh dhrochaidean"
 
-#: maps/scenarios/Campaign Test Map 2 - heightmap.xml:42:Name
+#: maps/scenarios/Campaign Test Map 2 - heightmap.xml:Name:42
 msgid "Campaign Map - Test"
 msgstr "Mapa iomairte - Deuchainn"
 
-#: maps/scenarios/Campaign Test Map.xml:42:Description
+#: maps/scenarios/Campaign Test Map.xml:Description:42
 msgid "A test map for potential Strategic Campaigns."
 msgstr "Mapa deuchainn airson iomairtean ro-innleachd a dh'fhaodadh a bhith ann."
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[0].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[0].Name:42
 msgid "Delian League"
 msgstr "Lìg Dhealos"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[1].Name
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[3].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[1].Name:42
+#: maps/scenarios/Peloponnese.xml:PlayerData[3].Name:41
 msgid "Thebes"
 msgstr "Tìba"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[2].Name
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[5].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[2].Name:42
+#: maps/scenarios/Peloponnese.xml:PlayerData[5].Name:41
 msgid "Thessaly"
 msgstr "Teasalaidh"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[3].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[3].Name:42
 msgid "Megara"
 msgstr "Mégara"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[4].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[4].Name:42
 msgid "Eretria"
 msgstr "Erétria"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[5].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[5].Name:42
 msgid "Chalcis"
 msgstr "Chalcís"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[6].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[6].Name:42
 msgid "Peloponnesian League"
 msgstr "An Lìg Pheoloponnasach"
 
-#: maps/scenarios/Campaign Test Map.xml:42:PlayerData[7].Name
+#: maps/scenarios/Campaign Test Map.xml:PlayerData[7].Name:42
 msgid "Religious Institutions"
 msgstr "Buidhnean diadhach"
 
-#: maps/scenarios/Campaign Test Map.xml:42:Name
+#: maps/scenarios/Campaign Test Map.xml:Name:42
 msgid "Strategic Campaign Proof of Concept"
 msgstr "Beachd-fhanais air iomairtean ro-innleachd"
 
-#: maps/scenarios/Combat_demo.xml:30:Name
+#: maps/scenarios/Combat_demo.xml:Name:30
 msgid "Combat Demo"
 msgstr "Taisbeanadh còmhraige"
 
-#: maps/scenarios/Combat_demo.xml:30:Description
+#: maps/scenarios/Combat_demo.xml:Description:30
 msgid ""
 "A combat demonstration between a small number of ranged and melee infantry "
 "units."
 msgstr "Taisbeanadh còmhraige le àireamh bheag dhe choisridh astair is dhlùth."
 
-#: maps/scenarios/Combat_demo_(huge).xml:77:Name
+#: maps/scenarios/Combat_demo_(huge).xml:Name:77
 msgid "Combat Demo (Huge)"
 msgstr "Taisbeanadh air còmhrag (uabhasach mòr)"
 
-#: maps/scenarios/Combat_demo_(huge).xml:77:Description
+#: maps/scenarios/Combat_demo_(huge).xml:Description:77
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 aonadan. Cianail fhèin slaodach (tha feum air barrachd piseachaidh)."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:Description
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Sgoltadh creagach domhainn a' sgoradh an fhàsaich. Math airson geama ioma-chluicheadair.\n\n2 sgioba de 2 chluicheadair. Tòisichidh 1 chluicheadair anns gach sgioba le bunait is stòrasan. Cha bhi ach feachd mòr aig a' chluicheadair eile ach an toir iad taic ri a chuideachd."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[1].Name
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[3].Name
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
 msgid "Invasion Force"
 msgstr "Feachd a' briseadh a-steach"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:PlayerData[2].Name
-#: maps/scenarios/Demo_Trading.xml:31:PlayerData[2].Name maps/scenarios/Fast
-#: Oasis.xml:31:PlayerData[2].Name
-#: maps/scenarios/Gold_Rush.xml:31:PlayerData[2].Name
-#: maps/scenarios/Migration.xml:31:PlayerData[2].Name
-#: maps/scenarios/Necropolis.xml:41:PlayerData[2].Name maps/scenarios/Saharan
-#: Oases.xml:31:PlayerData[2].Name maps/scenarios/Sandbox -
-#: Britons.xml:41:PlayerData[2].Name maps/scenarios/Sandbox -
-#: Gauls.xml:41:PlayerData[2].Name maps/scenarios/Siwa
-#: Oasis.xml:31:PlayerData[2].Name maps/skirmishes/Caspian Sea
-#: (2v2).xml:42:PlayerData[2].Name maps/skirmishes/Corinthian Isthmus
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Corsica and Sardinia
-#: (4).xml:42:PlayerData[2].Name maps/skirmishes/Gallic Fields
-#: (3).xml:41:PlayerData[2].Name maps/skirmishes/Gambia River
-#: (3).xml:42:PlayerData[2].Name maps/skirmishes/Greek Acropolis
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Libyan Oases
-#: (4).xml:42:PlayerData[2].Name maps/skirmishes/Median Oasis
-#: (4).xml:42:PlayerData[2].Name maps/skirmishes/Neareastern Badlands
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Nile River
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Persian Highlands
-#: (4).xml:42:PlayerData[2].Name maps/skirmishes/Saharan Oases
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Sahel
-#: (4).xml:42:PlayerData[2].Name maps/skirmishes/Team Oasis -
-#: 2v2.xml:42:PlayerData[2].Name maps/skirmishes/Thessalian Plains
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Tuscan Acropolis
-#: (4).xml:41:PlayerData[2].Name maps/skirmishes/Watering Holes
-#: (4).xml:42:PlayerData[2].Name
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
+#: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
+#: Oasis.xml:PlayerData[2].Name:31
+#: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
+#: maps/scenarios/Migration.xml:PlayerData[2].Name:31
+#: maps/scenarios/Necropolis.xml:PlayerData[2].Name:41 maps/scenarios/Saharan
+#: Oases.xml:PlayerData[2].Name:31 maps/scenarios/Sandbox -
+#: Britons.xml:PlayerData[2].Name:41 maps/scenarios/Sandbox -
+#: Gauls.xml:PlayerData[2].Name:41 maps/scenarios/Siwa
+#: Oasis.xml:PlayerData[2].Name:31 maps/skirmishes/Caspian Sea
+#: (2v2).xml:PlayerData[2].Name:42 maps/skirmishes/Corinthian Isthmus
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Gallic Fields
+#: (3).xml:PlayerData[2].Name:41 maps/skirmishes/Gambia River
+#: (3).xml:PlayerData[2].Name:42 maps/skirmishes/Greek Acropolis
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Libyan Oases
+#: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Median Oasis
+#: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Neareastern Badlands
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Nile River
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Persian Highlands
+#: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Saharan Oases
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Sahel
+#: (4).xml:PlayerData[2].Name:42 maps/skirmishes/Team Oasis -
+#: 2v2.xml:PlayerData[2].Name:42 maps/skirmishes/Thessalian Plains
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Tuscan Acropolis
+#: (4).xml:PlayerData[2].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[2].Name:42
 msgid "Player 3"
 msgstr "Cluicheadair 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:42:Name
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
 msgid "Death Canyon - Invasion Force"
 msgstr "Sgoltadh a' bhàis - Feachd a' briseadh a-steach"
 
-#: maps/scenarios/Demo_Trading.xml:31:Description
+#: maps/scenarios/Demo_Trading.xml:Description:31
 msgid "A demonstration of the new trading feature."
 msgstr "Taisbeanadh air an fheart mhalairt ùir."
 
-#: maps/scenarios/Demo_Trading.xml:31:Name
+#: maps/scenarios/Demo_Trading.xml:Name:31
 msgid "Trading Demo"
 msgstr "Taisbeanadh a' mhalairt"
 
-#: maps/scenarios/Eire and Albion.xml:31:Description
+#: maps/scenarios/Eire and Albion.xml:Description:31
 msgid ""
 "A demo map of the British Isles, created with the assistance of a height "
 "map."
 msgstr "Mapa taisbeanaidh nan eileanan Breatannach air a chruthachadh le taic mapa-àirde."
 
-#: maps/scenarios/Eire and Albion.xml:31:Name
+#: maps/scenarios/Eire and Albion.xml:Name:31
 msgid "Eire and Albion (British Isles)"
 msgstr "Eire 's Albion (Na h-Eileanan Breatannach)"
 
-#: maps/scenarios/Fast Oasis.xml:31:Description
+#: maps/scenarios/Fast Oasis.xml:Description:31
 msgid ""
 "A small desert map. Each player starts near an oasis spotted about an otherwise bleak and sandy desert that is wide open to assault and depredation.\n"
 "\n"
 "Gameplay is tight and fast, with no time to stop and smell the roses."
 msgstr ""
 
-#: maps/scenarios/Fast Oasis.xml:31:PlayerData[3].Name
-#: maps/scenarios/Gold_Rush.xml:31:PlayerData[3].Name
-#: maps/scenarios/Necropolis.xml:41:PlayerData[3].Name maps/scenarios/Saharan
-#: Oases.xml:31:PlayerData[3].Name maps/scenarios/Siwa
-#: Oasis.xml:31:PlayerData[3].Name maps/skirmishes/Caspian Sea
-#: (2v2).xml:42:PlayerData[3].Name maps/skirmishes/Corinthian Isthmus
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Corsica and Sardinia
-#: (4).xml:42:PlayerData[3].Name maps/skirmishes/Greek Acropolis
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Libyan Oases
-#: (4).xml:42:PlayerData[3].Name maps/skirmishes/Median Oasis
-#: (4).xml:42:PlayerData[3].Name maps/skirmishes/Neareastern Badlands
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Nile River
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Persian Highlands
-#: (4).xml:42:PlayerData[3].Name maps/skirmishes/Saharan Oases
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Sahel
-#: (4).xml:42:PlayerData[3].Name maps/skirmishes/Team Oasis -
-#: 2v2.xml:42:PlayerData[3].Name maps/skirmishes/Thessalian Plains
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Tuscan Acropolis
-#: (4).xml:41:PlayerData[3].Name maps/skirmishes/Watering Holes
-#: (4).xml:42:PlayerData[3].Name
+#: maps/scenarios/Fast Oasis.xml:PlayerData[3].Name:31
+#: maps/scenarios/Gold_Rush.xml:PlayerData[3].Name:31
+#: maps/scenarios/Necropolis.xml:PlayerData[3].Name:41 maps/scenarios/Saharan
+#: Oases.xml:PlayerData[3].Name:31 maps/scenarios/Siwa
+#: Oasis.xml:PlayerData[3].Name:31 maps/skirmishes/Caspian Sea
+#: (2v2).xml:PlayerData[3].Name:42 maps/skirmishes/Corinthian Isthmus
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Corsica and Sardinia
+#: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Greek Acropolis
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Libyan Oases
+#: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Median Oasis
+#: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Neareastern Badlands
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Nile River
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Persian Highlands
+#: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Saharan Oases
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Sahel
+#: (4).xml:PlayerData[3].Name:42 maps/skirmishes/Team Oasis -
+#: 2v2.xml:PlayerData[3].Name:42 maps/skirmishes/Thessalian Plains
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Tuscan Acropolis
+#: (4).xml:PlayerData[3].Name:41 maps/skirmishes/Watering Holes
+#: (4).xml:PlayerData[3].Name:42
 msgid "Player 4"
 msgstr "Cluicheadair 4"
 
-#: maps/scenarios/Fast Oasis.xml:31:Name
+#: maps/scenarios/Fast Oasis.xml:Name:31
 msgid "Fast Oasis"
 msgstr "Innis-fhàsaich luath"
 
-#: maps/scenarios/Fishing_demo.xml:31:Name
+#: maps/scenarios/Fishing_demo.xml:Name:31
 msgid "Fishing Demo"
 msgstr "Taisbeanadh air iasgaich"
 
-#: maps/scenarios/Fishing_demo.xml:31:Description
+#: maps/scenarios/Fishing_demo.xml:Description:31
 msgid "Test out fishing with a fishing boat. Still in development."
 msgstr "Feuch ri iasgaich le bàta-iasgaich. 'Ga leasachadh fhathast."
 
-#: maps/scenarios/Flight_demo.xml:31:Description
+#: maps/scenarios/Flight_demo.xml:Description:31
 msgid "Has some experimental fighter plane prototypes."
 msgstr "Proto-sheòrsaichean deuchainneach air plèanaichean."
 
-#: maps/scenarios/Flight_demo.xml:31:Name
+#: maps/scenarios/Flight_demo.xml:Name:31
 msgid "Flight Demo"
 msgstr "Taisbeanadh air itealadh"
 
-#: maps/scenarios/Flight_demo_2.xml:31:Description
+#: maps/scenarios/Flight_demo_2.xml:Description:31
 msgid "Fly some Mustangs."
 msgstr "Stiùirich plèanaichean Mustang."
 
-#: maps/scenarios/Flight_demo_2.xml:31:Name
+#: maps/scenarios/Flight_demo_2.xml:Name:31
 msgid "Flight Demo 2"
 msgstr "Taisbeanadh air itealadh 2"
 
-#: maps/scenarios/Gold_Rush.xml:31:Description
+#: maps/scenarios/Gold_Rush.xml:Description:31
 msgid ""
 "A wide-open map with a central rocky region rich in Minerals (Metal "
 "Resource). This map may be played if the other more detailed maps cause "
 "uncomfortable lag."
 msgstr "Mapa fosgailte le sgìre creagach sa mheadhan air a bheil pailteas mèinneir (stòras meatailt). Gabhaidh am mapa seo a chluich ma bhios cus dàil mhì-chofhurtail air mapaichean eile."
 
-#: maps/scenarios/Gold_Rush.xml:31:Name
+#: maps/scenarios/Gold_Rush.xml:Name:31
 msgid "Gold Rush"
 msgstr "Boile an Òir"
 
-#: maps/scenarios/Gorge.xml:31:Description
+#: maps/scenarios/Gorge.xml:Description:31
 msgid "A riparian gorge meanders its way through the South lands of Gaul."
 msgstr "Mòr-ghil aibhne a' lùbadh thar taobh a deas na Gaille."
 
-#: maps/scenarios/Gorge.xml:31:Name
+#: maps/scenarios/Gorge.xml:Name:31
 msgid "Gorge"
 msgstr "Mòr-ghil"
 
-#: maps/scenarios/Height Map Import - Demo (Fractal).xml:31:Description
+#: maps/scenarios/Height Map Import - Demo (Fractal).xml:Description:31
 msgid "Importation of a height map created with fractals."
 msgstr "Ion-phortadh air mapa-àirde fractalach."
 
-#: maps/scenarios/Height Map Import - Demo (Fractal).xml:31:Name
+#: maps/scenarios/Height Map Import - Demo (Fractal).xml:Name:31
 msgid "Height Map Import Demo - Fractal"
 msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - Fractalach"
 
-#: maps/scenarios/Height Map Import - Demo (Greece).xml:31:Description
+#: maps/scenarios/Height Map Import - Demo (Greece).xml:Description:31
 msgid ""
 "An example of height map importation. Image was 1000x1000 grayscale PNG. This image can be found in the scenarios folder.\n"
 " \n"
 "(Smaller images are recommended, as the importer scales the scenario size by the resolution of the imported image.)"
 msgstr "Ball-eisimpleir air ion-phortach mhapaichean-àirde. 'S e PNG liath-sgèile 1000x1000 a bha san dealbh. Gheibh thu an dealbh seo ann am pasgan nan cnàmh-sgeulan.\n \n(Mholamaid dealbhan nas lugha on a chuireas an t-inneal ion-phortaidh sgèile na cnàmh-sgeòil air dùmhlachd-bhreacaidh an deilbh a chaidh ion-phortadh.)"
 
-#: maps/scenarios/Height Map Import - Demo (Greece).xml:31:Name
+#: maps/scenarios/Height Map Import - Demo (Greece).xml:Name:31
 msgid "Height Map Import Demo - Greece"
 msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - A' Ghreug"
 
-#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:31:Description
+#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Description:31
 msgid ""
 "An example of height map importation. Image was 512x512 grayscale PNG. This "
 "image can be found in the scenarios folder, but can be placed anywhere."
 msgstr "Ball-eisimpleir air ion-phortach mhapaichean-àirde. 'S e PNG liath-sgèile 512x512 a bha san dealbh. Gheibh thu an dealbh seo ann am pasgan nan cnàmh-sgeulan ach gabhaidh a chur àite sam bith."
 
-#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:31:Name
+#: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:31
 msgid "Height Map Import Demo - Greece (small)"
 msgstr "Taisbeanadh air ion-phortadh mapaichean-àirde - A' Ghreug (beag)"
 
-#: maps/scenarios/Introductory Tutorial.xml:42:Description
+#: maps/scenarios/Introductory Tutorial.xml:Description:42
 msgid "This is a basic tutorial to get you started playing 0 A.D."
 msgstr "Seo oideachadh bunasach ach an tòisich thu air 0 A.D. a chluich."
 
-#: maps/scenarios/Introductory Tutorial.xml:42:Name
+#: maps/scenarios/Introductory Tutorial.xml:Name:42
 msgid "Introductory Tutorial"
 msgstr "Bun-oideachadh"
 
-#: maps/scenarios/Laconia 01.xml:31:Description
+#: maps/scenarios/Laconia 01.xml:Description:31
 msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
 msgstr "Is gleann Laconia air a' Pheoloponnais dachaigh nam Spartach.\n\nTha na Masadonaich a' briseadh a-steach air dùthaich nam Spartach. an dèidh blàr neo-chothromach a chall an aghaidh an luchd brisidh a-steach, feumaidh na Spartaich an arm aca a thogail às ùr gu luath mus gabh na Masadonaich an gleann gu lèir."
 
-#: maps/scenarios/Laconia 01.xml:31:Name
+#: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
 msgstr "Laconia"
 
-#: maps/scenarios/Migration.xml:31:Description
+#: maps/scenarios/Migration.xml:Description:31
 msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
 msgstr "Mapa ioma-chluicheadair. Tòisichidh gach cluicheadair ann an eilean beag le stòras glè ghann faisg air tìr mòr.\n\nSeo mapa a chaidh a dhealbhach le buill na coimhearsnachd WFG: SMST, NOXAS1 agus Yodaspirine."
 
-#: maps/scenarios/Miletus.xml:31:PlayerData[0].Name
-#: maps/scenarios/Miletus.xml:31:Name
+#: maps/scenarios/Miletus.xml:PlayerData[0].Name:31
+#: maps/scenarios/Miletus.xml:Name:31
 msgid "Miletus"
 msgstr "Miletos"
 
-#: maps/scenarios/Miletus.xml:31:PlayerData[1].Name maps/scenarios/Sandbox -
-#: Ptolemies 2.xml:41:PlayerData[1].Name
+#: maps/scenarios/Miletus.xml:PlayerData[1].Name:31 maps/scenarios/Sandbox -
+#: Ptolemies 2.xml:PlayerData[1].Name:41
 msgid "Romans"
 msgstr "Na Ròmanaich"
 
-#: maps/scenarios/Miletus.xml:31:Description
+#: maps/scenarios/Miletus.xml:Description:31
 msgid "A sandbox scenario for one player."
 msgstr "Cnàmh-sgeul bogsa-gainmhich airson aon chluicheadair."
 
-#: maps/scenarios/Multiplayer_demo.xml:31:Name
+#: maps/scenarios/Multiplayer_demo.xml:Name:31
 msgid "Multiplayer Demo"
 msgstr "Taisbeanadh ioma-chluicheadair"
 
-#: maps/scenarios/Multiplayer_demo.xml:31:Description
+#: maps/scenarios/Multiplayer_demo.xml:Description:31
 msgid ""
 "Small map with lots of resources and some water, for testing gameplay in "
 "non-competitive multiplayer matches."
 msgstr "Mapa beag le mòran stòrasan is beagan uisge gus cluiche a' gheama fheuchainn ann am maidichean ioma-chluicheadair neo-chòmhstritheil."
 
-#: maps/scenarios/Necropolis.xml:41:Description
+#: maps/scenarios/Necropolis.xml:Description:41
 msgid ""
 "4 players duke it out over the vast Nile Delta. Each city starts out nestled atop a large acropolis, but resources are scarce, forcing each player to expand their resource operations into the surrounding lands.\n"
 "\n"
 "Scouts say the nearby branches of the Nile River are shallow and fordable in multiple locations, so should only serve as a minor barrier between enemy factions."
 msgstr "Tha 4 cluicheadairean a' dèanamh thar gobhlan mòr an Nìl. Tòisichidh gabh baile 'na acra-bhaile ach tha an stòras gann 's feumaidh gach cluicheadair cruinneachadh stòrais a leudachadh dhan tìr timcheall air ri linn sin.\n\nTha rabhadairean ag innse dhuinn gu bheil meuran an Nìl a tha faisg oirnn eu-domhain is gu bheil àthannan ann, mar sin cha bhi iad 'nam bacadh mòr eadar na nàimhdean."
 
-#: maps/scenarios/Necropolis.xml:41:Name
+#: maps/scenarios/Necropolis.xml:Name:41
 msgid "Necropolis"
 msgstr "Baile nam marbh"
 
-#: maps/scenarios/Pathfinding_demo.xml:31:Name
+#: maps/scenarios/Pathfinding_demo.xml:Name:31
 msgid "Pathfinding Demo"
 msgstr "Taisbeanadh air lorg-slighean"
 
-#: maps/scenarios/Pathfinding_demo.xml:31:Description
+#: maps/scenarios/Pathfinding_demo.xml:Description:31
 msgid "A map for testing unit movement algorithms."
 msgstr "Mapa gus algairimean ghluasaid a chur fo dheuchainn."
 
-#: maps/scenarios/Pathfinding_terrain_demo.xml:31:Name
+#: maps/scenarios/Pathfinding_terrain_demo.xml:Name:31
 msgid "Pathfinding Terrain Demo"
 msgstr "Taisbeanadh air lorg-slighean le cruth-tìre"
 
-#: maps/scenarios/Pathfinding_terrain_demo.xml:31:Description
+#: maps/scenarios/Pathfinding_terrain_demo.xml:Description:31
 msgid ""
 "A map for testing movement costs and terrain properties in the A* "
 "pathfinder."
 msgstr "Mapa gus cosgaisean gluasaid a chur fo dheuchainn leis an lorg-shlighean A*."
 
-#: maps/scenarios/Peloponnese.xml:41:Description
+#: maps/scenarios/Peloponnese.xml:Description:41
 msgid "A real-world map of the Greek homeland."
 msgstr "Mapa fìrinneach air dùthaich nan Greugach."
 
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[0].Name
+#: maps/scenarios/Peloponnese.xml:PlayerData[0].Name:41
 msgid "Athens"
 msgstr "Baile na h‑Àithne"
 
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[1].Name
+#: maps/scenarios/Peloponnese.xml:PlayerData[1].Name:41
 msgid "Sparta"
 msgstr "Sparta"
 
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[2].Name
+#: maps/scenarios/Peloponnese.xml:PlayerData[2].Name:41
 msgid "Elis"
 msgstr "Elis"
 
-#: maps/scenarios/Peloponnese.xml:41:PlayerData[4].Name
+#: maps/scenarios/Peloponnese.xml:PlayerData[4].Name:41
 msgid "Corinth"
 msgstr "Corinth"
 
-#: maps/scenarios/Peloponnese.xml:41:Name
+#: maps/scenarios/Peloponnese.xml:Name:41
 msgid "Peloponnesian Wars"
 msgstr "Cogaidhean a' Pheoloponnais"
 
-#: maps/scenarios/Polynesia.xml:42:Description
+#: maps/scenarios/Polynesia.xml:Description:42
 msgid "Demo map for new fancy water effects."
 msgstr "Mapa taisbeanaidh airson èifeachdan uisge snasail ùra."
 
-#: maps/scenarios/Polynesia.xml:42:PlayerData[0].Name
+#: maps/scenarios/Polynesia.xml:PlayerData[0].Name:42
 msgid "Samoa"
 msgstr "Samotha"
 
-#: maps/scenarios/Polynesia.xml:42:PlayerData[1].Name
+#: maps/scenarios/Polynesia.xml:PlayerData[1].Name:42
 msgid "Vanuatu"
 msgstr "Vanuatu"
 
-#: maps/scenarios/Polynesia.xml:42:Name
+#: maps/scenarios/Polynesia.xml:Name:42
 msgid "Polynesia"
 msgstr "Poilinèis"
 
-#: maps/scenarios/Resource_demo.xml:31:Name
+#: maps/scenarios/Resource_demo.xml:Name:31
 msgid "Resource demo"
 msgstr "Taisbeanadh air stòrasan"
 
-#: maps/scenarios/Resource_demo.xml:31:Description
+#: maps/scenarios/Resource_demo.xml:Description:31
 msgid "Demo map for resource gathering."
 msgstr "Taisbeanadh air cruinneachadh stòrasan"
 
-#: maps/scenarios/Saharan Oases.xml:31:Description
+#: maps/scenarios/Saharan Oases.xml:Description:31
 msgid ""
 "A desert biome map where each player has founded their colony at their own "
 "lush oasis. The rest of the map is generally wide-open and barren."
 msgstr "Mapa fàsaich far an stèidhich gach cluicheadair an tuineachadh aige aig an innis-fhàsaich bheartach aige fhèin. Tha an corr dhen mhapa fosgailte 's lom san fharsaingeachd."
 
-#: maps/scenarios/Sahel.xml:42:Description
+#: maps/scenarios/Sahel.xml:Description:42
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of food and mineral resources, while wood is somewhat scarce."
 msgstr "Deas air a' Mhonadh Atlais taobh tuath Afraga.\n\nMapa caran fosgailte le pailteas bìdh is mèinneir fhad 's a tha fiodh caran gann."
 
-#: maps/scenarios/Sahel.xml:42:PlayerData[0].Name
+#: maps/scenarios/Sahel.xml:PlayerData[0].Name:42
 msgid "Aulus Manlius Capitolinus"
 msgstr "Aulus Manlius Capitolinus"
 
-#: maps/scenarios/Sahel.xml:42:PlayerData[1].Name
+#: maps/scenarios/Sahel.xml:PlayerData[1].Name:42
 msgid "Hasdrubal the Fair"
 msgstr "Hasdrubal Bòidheach"
 
-#: maps/scenarios/Sahel.xml:42:PlayerData[2].Name
+#: maps/scenarios/Sahel.xml:PlayerData[2].Name:42
 msgid "Artaxshacha II"
 msgstr "Artaxshacha II"
 
-#: maps/scenarios/Sahel.xml:42:PlayerData[3].Name
+#: maps/scenarios/Sahel.xml:PlayerData[3].Name:42
 msgid "Tautalus"
 msgstr "Tautalo"
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:Description
+#: maps/scenarios/Sandbox - Athenians.xml:Description:42
 msgid ""
 "Play with the Athenians faction in a non-threatening sandbox environment."
 msgstr "Cluich mar Mhuinntir na h‑Àithne ann an àrainneachd bogsa-gainmhich neo-bhagarrach."
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[0].Name:42
 msgid "The Athenians"
 msgstr "Muinntir na h‑Àithne"
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[1].Name
-#: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[1].Name
-#: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[0].Name
-#: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[1].Name
+#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[1].Name:42
+#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[1].Name:41
+#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[0].Name:41
+#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[1].Name:41
 msgid "The Spartans"
 msgstr "Na Spartaich"
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[2].Name
-#: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[2].Name
-#: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[2].Name
+#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[2].Name:42
+#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[2].Name:41
+#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[2].Name:41
 msgid "The Persians"
 msgstr "Na Pearsaich"
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:PlayerData[3].Name
-#: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[3].Name
-#: maps/scenarios/Sandbox - Spartans.xml:41:PlayerData[3].Name
+#: maps/scenarios/Sandbox - Athenians.xml:PlayerData[3].Name:42
+#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[3].Name:41
+#: maps/scenarios/Sandbox - Spartans.xml:PlayerData[3].Name:41
 msgid "The Gauls"
 msgstr "Muinntir na Gaille"
 
-#: maps/scenarios/Sandbox - Athenians.xml:42:Name
+#: maps/scenarios/Sandbox - Athenians.xml:Name:42
 msgid "Sandbox - The Athenians"
 msgstr "Bogsa-gainmhich - Muinntir na h‑Àithne"
 
-#: maps/scenarios/Sandbox - Britons.xml:41:Description maps/scenarios/Sandbox
-#: - Gauls.xml:41:Description
+#: maps/scenarios/Sandbox - Britons.xml:Description:41 maps/scenarios/Sandbox
+#: - Gauls.xml:Description:41
 msgid "Play around with the Gallic faction in an idyllic sandbox setting."
 msgstr "Cluich le Muinntir na Gaille ann an suidheachadh bogsa-gainmhich sàr-sheallach."
 
-#: maps/scenarios/Sandbox - Britons.xml:41:PlayerData[3].Name
-#: maps/scenarios/Sandbox - Gauls.xml:41:PlayerData[3].Name
+#: maps/scenarios/Sandbox - Britons.xml:PlayerData[3].Name:41
+#: maps/scenarios/Sandbox - Gauls.xml:PlayerData[3].Name:41
 msgid "Roman Interlopers"
 msgstr "Sgimilearan Ròmanach"
 
-#: maps/scenarios/Sandbox - Britons.xml:41:Name
+#: maps/scenarios/Sandbox - Britons.xml:Name:41
 msgid "Sandbox - The Britons"
 msgstr "Bogsa-gainmhich - Na Breatannaich."
 
-#: maps/scenarios/Sandbox - Carthaginians.xml:41:Description
+#: maps/scenarios/Sandbox - Carthaginians.xml:Description:41
 msgid "Explore the Carthaginian Buildings and Units."
 msgstr "Faigh eòlas air togalaichean is aonadan nan Cartagach."
 
-#: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[0].Name
-#: maps/scenarios/Serengeti.xml:31:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[0].Name:41
+#: maps/scenarios/Serengeti.xml:PlayerData[0].Name:31
 msgid "Carthage"
 msgstr "Cartago"
 
-#: maps/scenarios/Sandbox - Carthaginians.xml:41:PlayerData[1].Name
-#: maps/scenarios/Sandbox - Persians.xml:41:PlayerData[1].Name
+#: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[1].Name:41
+#: maps/scenarios/Sandbox - Persians.xml:PlayerData[1].Name:41
 msgid "Creeps"
 msgstr ""
 
-#: maps/scenarios/Sandbox - Carthaginians.xml:41:Name
+#: maps/scenarios/Sandbox - Carthaginians.xml:Name:41
 msgid "Sandbox - The Carthaginians"
 msgstr "Bogsa-gainmhich - Na Cartagaich"
 
-#: maps/scenarios/Sandbox - Gauls.xml:41:Name
+#: maps/scenarios/Sandbox - Gauls.xml:Name:41
 msgid "Sandbox - The Gauls"
 msgstr "Bogsa-gainmhich - Muinntir na Gaille"
 
-#: maps/scenarios/Sandbox - Iberians.xml:42:Description
+#: maps/scenarios/Sandbox - Iberians.xml:Description:42
 msgid "A demo map for the Iberians."
 msgstr "Mapa taisbeanaidh airson nan Ibèirich."
 
-#: maps/scenarios/Sandbox - Iberians.xml:42:Name
+#: maps/scenarios/Sandbox - Iberians.xml:Name:42
 msgid "Sandbox - The Iberians"
 msgstr "Bogsa-gainmhich - Na h‑Ibèirich"
 
-#: maps/scenarios/Sandbox - Macedonians.xml:41:Description
+#: maps/scenarios/Sandbox - Macedonians.xml:Description:41
 msgid ""
 "Play with the Macedonians faction in a non-threatening sandbox environment."
 msgstr "Cluich 'nad Mhasadonach ann an àrainneachd bogsa-gainmhich neo-bhagarrach."
 
-#: maps/scenarios/Sandbox - Macedonians.xml:41:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[0].Name:41
 msgid "The Macedonians"
 msgstr "Na Masadonaich"
 
-#: maps/scenarios/Sandbox - Macedonians.xml:41:Name
+#: maps/scenarios/Sandbox - Macedonians.xml:Name:41
 msgid "Sandbox - The Macedonians"
 msgstr "Bogsa-gainmhich - Na Masadonaich"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:42:Description
+#: maps/scenarios/Sandbox - Mauryans.xml:Description:42
 msgid "Mauryan Indian faction showcase map."
 msgstr "Mapa taisbeanaidh airson nan Innsinich Mhauraidheach"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:42:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[0].Name:42
 msgid "Mauryan Indians"
 msgstr "Innseanaich Mauraidheach"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:42:PlayerData[1].Name
+#: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[1].Name:42
 msgid "Enemy"
 msgstr "An nàmhaid"
 
-#: maps/scenarios/Sandbox - Mauryans.xml:42:Name
+#: maps/scenarios/Sandbox - Mauryans.xml:Name:42
 msgid "Sandbox - The Mauryans"
 msgstr "Bogsa-gainmhich - Na Mauraidhich"
 
-#: maps/scenarios/Sandbox - Persians.xml:41:Description
+#: maps/scenarios/Sandbox - Persians.xml:Description:41
 msgid "Demo Map. Play with the Persian civilisation in a sandbox setting."
 msgstr "Mapa taisbeanaidh. Cluich 'nad Phearsach ann an àrainneachd bogsa-gainmhich."
 
-#: maps/scenarios/Sandbox - Persians.xml:41:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Persians.xml:PlayerData[0].Name:41
 msgid "Achaemenids"
 msgstr "Achaimenich"
 
-#: maps/scenarios/Sandbox - Persians.xml:41:Name
+#: maps/scenarios/Sandbox - Persians.xml:Name:41
 msgid "Sandbox - The Persians"
 msgstr "Bogsa-gainmhich - Na Pearsaich"
 
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:41:Description
+#: maps/scenarios/Sandbox - Ptolemies 2.xml:Description:41
 msgid ""
 "Play with the Ptolemaic Egyptians in a non-threatening sandbox setting."
 msgstr "Cluich leis na h-Èipheitich Ptolamach ann an suidheachadh bogsa-gainmhich gun bhagairt."
 
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:41:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[0].Name:41
 msgid "Ptolemy \"Savior\""
 msgstr "Ptolamaidh \"An t-Slànaighear\""
 
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:41:PlayerData[2].Name
+#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[2].Name:41
 msgid "Seleucids"
 msgstr "Seleucaich"
 
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:41:PlayerData[3].Name
+#: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[3].Name:41
 msgid "Libyans"
 msgstr "Libithich"
 
-#: maps/scenarios/Sandbox - Ptolemies 2.xml:41:Name
+#: maps/scenarios/Sandbox - Ptolemies 2.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians 2"
 msgstr "Bogsa-gainmhich - Na h-Èipheitich Ptolamach 2"
 
-#: maps/scenarios/Sandbox - Ptolemies.xml:41:Description
-#: maps/skirmishes/Sporades Islands (2).xml:42:Description
+#: maps/scenarios/Sandbox - Ptolemies.xml:Description:41
+#: maps/skirmishes/Sporades Islands (2).xml:Description:42
 msgid "An islands map good for intense naval combat."
 msgstr "Mapa dhe dh'eileanan a tha math airson còmhraige-mhara dèine."
 
-#: maps/scenarios/Sandbox - Ptolemies.xml:41:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[0].Name:41
 msgid "Ptolemaios A' Soter"
 msgstr "Ptolemaios A' Soter"
 
-#: maps/scenarios/Sandbox - Ptolemies.xml:41:PlayerData[1].Name
+#: maps/scenarios/Sandbox - Ptolemies.xml:PlayerData[1].Name:41
 msgid "Kautilya"
 msgstr "Kautilya"
 
-#: maps/scenarios/Sandbox - Ptolemies.xml:41:Name
+#: maps/scenarios/Sandbox - Ptolemies.xml:Name:41
 msgid "Sandbox - The Ptolemaic Egyptians"
 msgstr "Bogsa-gainmhich - Na h-Èipheitich Ptolamach"
 
-#: maps/scenarios/Sandbox - Romans.xml:42:Description
+#: maps/scenarios/Sandbox - Romans.xml:Description:42
 msgid "A sandbox scenario for players to try out the Roman civilisation."
 msgstr "Cnàmh-sgeul bogsa-gainmhich gus sìobhaltas nan Ròmanach fheuchainn."
 
-#: maps/scenarios/Sandbox - Romans.xml:42:Name
+#: maps/scenarios/Sandbox - Romans.xml:Name:42
 msgid "Sandbox - The Republican Romans"
 msgstr "Bogsa-gainmhich - Poblachd na Ròimhe"
 
-#: maps/scenarios/Sandbox - Seleucids.xml:41:Description
+#: maps/scenarios/Sandbox - Seleucids.xml:Description:41
 msgid "A sandbox scenario for players to try out the Seleucid civilisation."
 msgstr "Cnàmh-sgeul bogsa-gainmhich gus sìobhaltas nan Seleucach fheuchainn."
 
-#: maps/scenarios/Sandbox - Seleucids.xml:41:PlayerData[0].Name
+#: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[0].Name:41
 msgid "The Seleucids"
 msgstr "Na Seleucaich"
 
-#: maps/scenarios/Sandbox - Seleucids.xml:41:PlayerData[1].Name
+#: maps/scenarios/Sandbox - Seleucids.xml:PlayerData[1].Name:41
 msgid "The Ptolemies"
 msgstr "Na Ptolamaich"
 
-#: maps/scenarios/Sandbox - Seleucids.xml:41:Name
+#: maps/scenarios/Sandbox - Seleucids.xml:Name:41
 msgid "Sandbox - The Seleucids"
 msgstr "Bogsa-gainmhich - Na Seleucaich"
 
-#: maps/scenarios/Sandbox - Spartans.xml:41:Description
+#: maps/scenarios/Sandbox - Spartans.xml:Description:41
 msgid ""
 "Play with the Spartans faction in a non-threatening sandbox environment."
 msgstr "Cluich 'nad Spartach ann an àrainneachd bogsa-gainmhich neo-bhagarrach."
 
-#: maps/scenarios/Sandbox - Spartans.xml:41:Name
+#: maps/scenarios/Sandbox - Spartans.xml:Name:41
 msgid "Sandbox - The Spartans"
 msgstr "Bogsa-gainmhich - Na Spartaich"
 
-#: maps/scenarios/Savanna Ravine.xml:42:Name
+#: maps/scenarios/Savanna Ravine.xml:Name:42
 msgid "Savanna Ravine"
 msgstr "Sgoltadh sabhanna"
 
-#: maps/scenarios/Savanna Ravine.xml:42:Description
+#: maps/scenarios/Savanna Ravine.xml:Description:42
 msgid ""
 "A wide-open Savanna map with a small ravine running down the center, which "
 "is easily forded."
 msgstr "Mapa sabhanna fosgailte le sgoltadh beag thar a' mheadhain a ghabhas grunndadh tarsaing gu furasta."
 
-#: maps/scenarios/Serengeti.xml:31:PlayerData[1].Name
+#: maps/scenarios/Serengeti.xml:PlayerData[1].Name:31
 msgid "Iberia"
 msgstr "An Ibèir"
 
-#: maps/scenarios/Serengeti.xml:31:PlayerData[2].Name
+#: maps/scenarios/Serengeti.xml:PlayerData[2].Name:31
 msgid "Greece"
 msgstr "A' Ghreug"
 
-#: maps/scenarios/Serengeti.xml:31:PlayerData[3].Name
+#: maps/scenarios/Serengeti.xml:PlayerData[3].Name:31
 msgid "Persia"
 msgstr "A' Phears"
 
-#: maps/scenarios/Serengeti.xml:31:Description
+#: maps/scenarios/Serengeti.xml:Description:31
 msgid ""
 "The African serengeti has herds of animals criss crossing the plain. Mineral"
 " wealth is bountiful and wood is in full supply."
 msgstr "Siubhlaidh treudan de bheathaichean thairis machair an Serengeti. Tha pailteas mèinneir 's fiodha ann."
 
-#: maps/scenarios/Serengeti.xml:31:Name
+#: maps/scenarios/Serengeti.xml:Name:31
 msgid "Serengeti 1"
 msgstr "Serengeti 1"
 
-#: maps/scenarios/Ship Formations.xml:31:Description
+#: maps/scenarios/Ship Formations.xml:Description:31
 msgid "Ship formations mockup."
 msgstr "Mockup air cumaidhean luinge."
 
-#: maps/scenarios/Ship Formations.xml:31:PlayerData[0].Name
+#: maps/scenarios/Ship Formations.xml:PlayerData[0].Name:31
 msgid "Ships"
 msgstr "Longan"
 
-#: maps/scenarios/Ship Formations.xml:31:Name
+#: maps/scenarios/Ship Formations.xml:Name:31
 msgid "Ship Formations"
 msgstr "Cumaidhean luinge"
 
-#: maps/scenarios/Siwa Oasis.xml:31:Description
+#: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
 " mountainous spokes that divide the home territories of each player."
 msgstr "Cartago an aghaidh na Masadoine an aghaidh na Peirse an aghaidh na h-Ibèir! Tha innis-fhàsaich mhòr 'na cho-ionad airson clàran-cuibhle beanntach a sgaraicheas ranntairean nan cluicheadairean."
 
-#: maps/scenarios/Siwa Oasis.xml:31:Name
+#: maps/scenarios/Siwa Oasis.xml:Name:31
 msgid "Siwa Oasis"
 msgstr "Innis-fhàsaich Siobha"
 
-#: maps/scenarios/Territory Demo.xml:31:Description
+#: maps/scenarios/Territory Demo.xml:Description:31
 msgid "A demo map showing the territory effects of each type of structure."
 msgstr "Mapa taisbeanaidh a sheallas na buaidhean ranntair aig gach seòrsa de thogalach."
 
-#: maps/scenarios/Territory Demo.xml:31:Name
+#: maps/scenarios/Territory Demo.xml:Name:31
 msgid "Territory Demo"
 msgstr "Taisbeanadh ranntair"
 
-#: maps/scenarios/The Massacre of Delphi.xml:41:Description
+#: maps/scenarios/The Massacre of Delphi.xml:Description:41
 msgid ""
 "The Celts invade Greece. Fight through the central valley or cut through the"
 " rich highlands in order to secure the lands around Delphi!"
 msgstr "Tha muinntir na Gaille a' briseadh a-steach dhan Ghreug. Dèan blàr sa ghleann mheadhanach no rach tron tìr àrd gus an roinn timcheall air Delphi a ghabhail!"
 
-#: maps/scenarios/The Massacre of Delphi.xml:41:Name
+#: maps/scenarios/The Massacre of Delphi.xml:Name:41
 msgid "Massacre of Delphi"
 msgstr "Sgrios Dhelphi"
 
-#: maps/scenarios/The Persian Gates.xml:31:Description
+#: maps/scenarios/The Persian Gates.xml:Description:31
 msgid ""
 "\"It has always been the Greek Dream to go East.\"\n"
 "\n"
@@ -1492,271 +1489,271 @@ msgid ""
 "Will Alexander push his way through The Persian Gates and fulfill his destiny, or will Ariobarzanes defend the rugged ancient land of Persis against a foreign invader?"
 msgstr ""
 
-#: maps/scenarios/The Persian Gates.xml:31:PlayerData[0].Name
+#: maps/scenarios/The Persian Gates.xml:PlayerData[0].Name:31
 msgid "Alexandros Megas"
 msgstr "Alexandros Megas"
 
-#: maps/scenarios/The Persian Gates.xml:31:PlayerData[1].Name
+#: maps/scenarios/The Persian Gates.xml:PlayerData[1].Name:31
 msgid "Krateros"
 msgstr "Krateros"
 
-#: maps/scenarios/The Persian Gates.xml:31:PlayerData[2].Name
+#: maps/scenarios/The Persian Gates.xml:PlayerData[2].Name:31
 msgid "Ariobarzanes"
 msgstr "Ariobarzanes"
 
-#: maps/scenarios/The Persian Gates.xml:31:PlayerData[3].Name
+#: maps/scenarios/The Persian Gates.xml:PlayerData[3].Name:31
 msgid "Persians"
 msgstr "Na Pearsaich"
 
-#: maps/scenarios/The Persian Gates.xml:31:Name
+#: maps/scenarios/The Persian Gates.xml:Name:31
 msgid "The Persian Gates"
 msgstr "Geataichean na Peirse"
 
-#: maps/scenarios/Third Macedonian War.xml:31:Description
+#: maps/scenarios/Third Macedonian War.xml:Description:31
 msgid ""
 "The Romans encroach upon Macedonian lands for the third and final time. Can "
 "the once-proud Macedonians prevail against the Roman juggernaut?"
 msgstr "Tha na Ròmanaich a' briseadh a-steach air dùthaich nam Masadonach airson an treas turas. An seas na Masadonaich a bhiodh moiteil uair an aghaidh feachd mòr nan Ròmanach?"
 
-#: maps/scenarios/Third Macedonian War.xml:31:PlayerData[0].Name
+#: maps/scenarios/Third Macedonian War.xml:PlayerData[0].Name:31
 msgid "Lucius Aemilius Paullus"
 msgstr "Lucius Aemilius Paullus"
 
-#: maps/scenarios/Third Macedonian War.xml:31:PlayerData[1].Name
+#: maps/scenarios/Third Macedonian War.xml:PlayerData[1].Name:31
 msgid "Perseus of Macedon"
 msgstr "Perseus na Masadoin"
 
-#: maps/scenarios/Third Macedonian War.xml:31:PlayerData[2].Name
+#: maps/scenarios/Third Macedonian War.xml:PlayerData[2].Name:31
 msgid "Greek Allies"
 msgstr "Caidreabhaich Ghreugach"
 
-#: maps/scenarios/Third Macedonian War.xml:31:Name
+#: maps/scenarios/Third Macedonian War.xml:Name:31
 msgid "Third Macedonian War"
 msgstr "An treas cogadh Masadonach"
 
-#: maps/scenarios/Treasure Islands.xml:41:Description
+#: maps/scenarios/Treasure Islands.xml:Description:41
 msgid ""
 "Search treasures on small islands and on the water. Collect more treasures "
 "than your opponent to win."
 msgstr ""
 
-#: maps/scenarios/Treasure Islands.xml:41:Name
+#: maps/scenarios/Treasure Islands.xml:Name:41
 msgid "Treasure Islands"
 msgstr "Eileanan nan ulaidh"
 
-#: maps/scenarios/Triggers_demo.xml:41:Description
+#: maps/scenarios/Triggers_demo.xml:Description:41
 msgid ""
 "Demo map listening to various triggers and printing warning messages about "
 "them"
 msgstr "Mapa taisbeanaidh a dh'èisteas ri caochladh de thrigearan 's a nochdas teachdaireachdan rabhaidh mun dèidhinn."
 
-#: maps/scenarios/Triggers_demo.xml:41:Name
+#: maps/scenarios/Triggers_demo.xml:Name:41
 msgid "Triggers Demo"
 msgstr "Taisbeanadh air trigearan"
 
-#: maps/scenarios/Tropical Island.xml:41:Description
+#: maps/scenarios/Tropical Island.xml:Description:41
 msgid "Multiplayer map. A tropical paradise."
 msgstr "Mapa ioma-chluicheadair. Pàrras tropaigeach."
 
-#: maps/scenarios/Tropical Island.xml:41:Name
+#: maps/scenarios/Tropical Island.xml:Name:41
 msgid "Tropical Island"
 msgstr "Eilean tropaigeach"
 
-#: maps/scenarios/Units_demo.xml:92:Name
+#: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
 msgstr "Taisbeanadh nan aonadan"
 
-#: maps/scenarios/Units_demo.xml:92:Description
+#: maps/scenarios/Units_demo.xml:Description:92
 msgid "Every unit in the game."
 msgstr "Gach aonad a tha sa gheama."
 
-#: maps/scenarios/WallTest.xml:31:Description
-#: maps/scenarios/_default.xml:32:Description maps/scenarios/temperate
-#: map.xml:31:Description maps/skirmishes/Corinthian Isthmus
-#: (4).xml:41:Description
+#: maps/scenarios/WallTest.xml:Description:31
+#: maps/scenarios/_default.xml:Description:32 maps/scenarios/temperate
+#: map.xml:Description:31 maps/skirmishes/Corinthian Isthmus
+#: (4).xml:Description:41
 msgid "Give an interesting description of your map."
 msgstr "Thoir seachad tuairisgeul inntinneach airson a' mhapa agad."
 
-#: maps/scenarios/WallTest.xml:31:Name
+#: maps/scenarios/WallTest.xml:Name:31
 msgid "WallTest"
 msgstr "Deuchainn air ballachan"
 
-#: maps/scenarios/Walls.xml:31:Description
+#: maps/scenarios/Walls.xml:Description:31
 msgid "Walls."
 msgstr "Ballachan."
 
-#: maps/scenarios/Walls.xml:31:Name
+#: maps/scenarios/Walls.xml:Name:31
 msgid "Walls"
 msgstr "Ballachan"
 
-#: maps/scenarios/We are Legion.xml:31:Name
+#: maps/scenarios/We are Legion.xml:Name:31
 msgid "We Are Legion"
 msgstr "Lèigiunan"
 
-#: maps/scenarios/We are Legion.xml:31:Description
+#: maps/scenarios/We are Legion.xml:Description:31
 msgid "A quick battle demo map using Roman legionnaires."
 msgstr "Mapa taisbeanaidh luath air a' chòmhraig le lèigiunan Ròmanach."
 
-#: maps/scenarios/_default.xml:32:Name
+#: maps/scenarios/_default.xml:Name:32
 msgid "Unnamed map"
 msgstr "Mapa gun ainm"
 
-#: maps/scenarios/reservoir.xml:31:Description
+#: maps/scenarios/reservoir.xml:Description:31
 msgid "A demo showing water planes."
 msgstr "Taisbeanadh air plèanaichean uisge."
 
-#: maps/scenarios/reservoir.xml:31:Name
+#: maps/scenarios/reservoir.xml:Name:31
 msgid "Reservoir"
 msgstr "Loch-tasgaidh"
 
-#: maps/scenarios/road demo.xml:31:Description
+#: maps/scenarios/road demo.xml:Description:31
 msgid "Demo map showcasing Temperate Road decals."
 msgstr ""
 
-#: maps/scenarios/road demo.xml:31:Name
+#: maps/scenarios/road demo.xml:Name:31
 msgid "Road Decals Demo"
 msgstr ""
 
-#: maps/scenarios/shipattacks.xml:31:Description
+#: maps/scenarios/shipattacks.xml:Description:31
 msgid "Move ships around. Attack other ships."
 msgstr "Gluais longan mu thimcheall. Thoir ionnsaigh air longan eile."
 
-#: maps/scenarios/shipattacks.xml:31:Name
+#: maps/scenarios/shipattacks.xml:Name:31
 msgid "Ships Demo"
 msgstr "Taisbeanadh longan"
 
-#: maps/scenarios/starting_economy_walkthrough.xml:42:Description
+#: maps/scenarios/starting_economy_walkthrough.xml:Description:42
 msgid ""
 "This map will give a rough guide for starting the game effectively.  Early in the game the most important thing is to gather resources as fast as possible so you are able to build enough troops later.\n"
 "\n"
 "Warning: This is very fast at the start, be prepared to run through the initial bit several times."
 msgstr "Bheir am mapa seo stiùireadh goirid dhut air mar a thòisicheas tu air geama gu h‑èifeachdach. Tha e fìor chudromach gun cruinnich thu stòrasan cho luath 's a ghabhas ach an urrainn dhut feachd mòr a thogail an uairsin.\n\nRabhadh: Tha seo glè luath aig an toiseach is tha sinn an dùil gum feum thu dol troimhe turas no dhà."
 
-#: maps/scenarios/starting_economy_walkthrough.xml:42:Name
+#: maps/scenarios/starting_economy_walkthrough.xml:Name:42
 msgid "Starting Economy Walkthrough"
 msgstr "Treòir air an eaconamaidh tòiseachaidh"
 
-#: maps/scenarios/temperate map.xml:31:Name
+#: maps/scenarios/temperate map.xml:Name:31
 msgid "Base Temperate Map"
 msgstr "Mapa measarra bunasach"
 
-#: maps/skirmishes/Acropolis Bay (2).xml:41:Description
+#: maps/skirmishes/Acropolis Bay (2).xml:Description:41
 msgid ""
 "Each player starts the match atop a large flat plateau, otherwise known as an acropolis.\n"
 "\n"
 "To the East lies a large bay with fishing opportunities. To the West is a rugged hinterland with an unclaimed acropolis commanding the valley below."
 msgstr "Tòisichidh gach cluicheadair air mullach àrd-chlàir mhòir rèidh ris an canar acra-bhaile.\n\nTha camas gu ear le cothroman air iasgach. Tha talamh garbh gu siar le acra-bhaile gun sealbhadair aig a bheil smachd air an gleann gu h-ìosal."
 
-#: maps/skirmishes/Acropolis Bay (2).xml:41:Name
+#: maps/skirmishes/Acropolis Bay (2).xml:Name:41
 msgid "Acropolis Bay (2)"
 msgstr "Camas acra-bhaile (2)"
 
-#: maps/skirmishes/Alpine_Valleys_(2).xml:41:Description
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Description:41
 msgid ""
 "The high peaks and valleys of the Alps.\n"
 "\n"
 "Each player starts the match nestled in a safe green valley. Between lies the treacherous Alps mountain range."
 msgstr "Sgurran àrda 's glinn nan Alpannan.\n\nTòisichidh gach cluicheadair ann an gleann shàbhailte uaine. Tha monadh nan Alpannan cunnartach eatorra."
 
-#: maps/skirmishes/Alpine_Valleys_(2).xml:41:Name
+#: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
 msgid "Alpine Valleys (2)"
 msgstr "Glinn Alpach (2)"
 
-#: maps/skirmishes/Bactria (2).xml:42:Description
+#: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
 "The arid and mineral-rich lands of Bactria (modern-day Afghanistan) at the foot of the Hindu Kush mountains.\n"
 "\n"
 "The center of the map is a dried up mountain. On either side are mountains and foothills pierced by treacherous passes and old trade routes."
 msgstr "Na tìrean tiorama 's le pailteas mèinneir aig Bactria (Afganastan san latha an-diugh) aig bonn monadh Hiondu Kuis.\n\nIs beinn thioram a th' ann am meadhan a' mhapa. Tha beanntan 's cnuic ri gach taobh sa bheil bealaich cunnartach 's seann shlighean-malairt."
 
-#: maps/skirmishes/Bactria (2).xml:42:Name
+#: maps/skirmishes/Bactria (2).xml:Name:42
 msgid "Bactria (2)"
 msgstr "Bactria (2)"
 
-#: maps/skirmishes/Belgian Bog (2).xml:41:Description
+#: maps/skirmishes/Belgian Bog (2).xml:Description:41
 msgid ""
 "Two players face off across a large bog somewhere in the Rhine lowlands.\n"
 "\n"
 "Wood is abundant, but Metal and Stone are hard to find and extract. Hunting and foraging is plentiful."
 msgstr "Thèid dithis chluicheadair an aghaidh a chèile that boglach mòr àiteigin ann am machair na Rèine.\n\nTha fiodh pailt ach tha e doirbh meatailt no clach a lorg 's a thogail. Tha pailteas lusan 's sithinn ann."
 
-#: maps/skirmishes/Belgian Bog (2).xml:41:Name
+#: maps/skirmishes/Belgian Bog (2).xml:Name:41
 msgid "Belgian Bog (2)"
 msgstr "Boglach Beilgeach (2)"
 
-#: maps/skirmishes/Caspian Sea (2v2).xml:42:Description
+#: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
 "Two teams face off across  a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Thèid dà sgioba an aghaidh a chèile thar loch salainn fhada mhòir.\n\nTha èisg san loch meadhanach. Tha pailteas cloiche 's mèinneir ann cuideachd."
 
-#: maps/skirmishes/Caspian Sea (2v2).xml:42:Name
+#: maps/skirmishes/Caspian Sea (2v2).xml:Name:42
 msgid "Caspian Sea (2v2)"
 msgstr "Am Muir Caspach (2 an aghaidh 2)"
 
-#: maps/skirmishes/Corinthian Isthmus (2).xml:41:Name
+#: maps/skirmishes/Corinthian Isthmus (2).xml:Name:41
 msgid "Corinthian Isthmus (2)"
 msgstr "An Tairbeart Choirinteach (2)"
 
-#: maps/skirmishes/Corinthian Isthmus (4).xml:41:Name
+#: maps/skirmishes/Corinthian Isthmus (4).xml:Name:41
 msgid "Corinthian Isthmus (4)"
 msgstr "An Tairbeart Choirinteach (4)"
 
-#: maps/skirmishes/Corsica and Sardinia (4).xml:42:Description
+#: maps/skirmishes/Corsica and Sardinia (4).xml:Description:42
 msgid ""
 "The players start on two opposing islands, both with a very jagged relief that will make landing difficult.\n"
 "\n"
 "Originally occupied by the Torreans, then marginally settled by Etruscans, Phocaeans and Syracusans. Rome conquered these two islands from Carthage during the First Punic War and in 238 BC created the \"Corsica et Sardinia\" province. The Corsicans regularly revolted and over the course of a century, the island lost two thirds of its Corsican population."
 msgstr ""
 
-#: maps/skirmishes/Corsica and Sardinia (4).xml:42:Name
+#: maps/skirmishes/Corsica and Sardinia (4).xml:Name:42
 msgid "Corsica and Sardinia (4)"
 msgstr "Corsaca an aghaidh Sàrdainea (4)"
 
-#: maps/skirmishes/Cycladic Archipelago (2).xml:42:Description
+#: maps/skirmishes/Cycladic Archipelago (2).xml:Description:42
 msgid "A \"small island\"-style map set in the Aegean Sea."
 msgstr "Mapa le eileanan beaga sa Mhuir Àigeanach."
 
-#: maps/skirmishes/Cycladic Archipelago (2).xml:42:Name
+#: maps/skirmishes/Cycladic Archipelago (2).xml:Name:42
 msgid "Cycladic Archipelago (2)"
 msgstr "Innis-mhuir Siogladas (2)"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:41:Description
+#: maps/skirmishes/Cycladic Archipelago (3).xml:Description:41
 msgid ""
 "A \"small island\"-style map set in the Aegean Sea.\n"
 "\n"
 "Map size: Very Large"
 msgstr "Mapa le eileanan beaga sa Mhuir Àigeanach.\n\nMeud a' mhapa: glè mhòr."
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:41:PlayerData[0].Name
+#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[0].Name:41
 msgid "Samos"
 msgstr "Sámos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:41:PlayerData[1].Name
+#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[1].Name:41
 msgid "Lesbos"
 msgstr "Leasbhos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:41:PlayerData[2].Name
+#: maps/skirmishes/Cycladic Archipelago (3).xml:PlayerData[2].Name:41
 msgid "Delos"
 msgstr "Dileos"
 
-#: maps/skirmishes/Cycladic Archipelago (3).xml:41:Name
+#: maps/skirmishes/Cycladic Archipelago (3).xml:Name:41
 msgid "Cycladic Archipelago (3)"
 msgstr "Innis-mhuir Siogladas (3)"
 
-#: maps/skirmishes/Death Canyon (2).xml:42:Description
+#: maps/skirmishes/Death Canyon (2).xml:Description:42
 msgid ""
 "A deep rocky canyon slicing through the desert.\n"
 "\n"
 "Each player starts their colony on a plateau on either side of the ravine."
 msgstr "Sgoltadh creagach domhainn a' sgoradh an fhàsaich.\n\nStèidhichidh gach cluicheadair an tuineachadh aige air àrd-chlàr mu choinneamh an sgoltaidh."
 
-#: maps/skirmishes/Death Canyon (2).xml:42:Name
+#: maps/skirmishes/Death Canyon (2).xml:Name:42
 msgid "Death Canyon (2)"
 msgstr "Sgoltadh a' bhàis (2)"
 
-#: maps/skirmishes/Deccan Plateau (2).xml:41:Description
+#: maps/skirmishes/Deccan Plateau (2).xml:Description:41
 msgid ""
 "Two players square off across the heavily forested Deccan Plateau of central India.\n"
 "\n"
@@ -1765,11 +1762,11 @@ msgid ""
 "Virgin resources lie to the lowlands on either side of the plateau. The lowlands also offer opportunity for expansion and strategic maneuvering."
 msgstr "Thèid dithis chluicheadair an aghaidh a chèile air àrd-chlàr Dacain nan Innseachan meadhanach sa bhios pailteas choilltean.\n\nTòisichidh gach cluicheadair le tuathanas 's taigh-stòrais an-asgaidh.\n\nTha stòrasan ùra air an dùthaich ìosal gach taobh an àrd-chlàir. Tha cothroman leudachaidh 's ro-innealachd san dùthaich ìosal cuideachd."
 
-#: maps/skirmishes/Deccan Plateau (2).xml:41:Name
+#: maps/skirmishes/Deccan Plateau (2).xml:Name:41
 msgid "Deccan Plateau (2)"
 msgstr "Àrd-chlàr Dacain (2)"
 
-#: maps/skirmishes/Gallic Fields (3).xml:41:Description
+#: maps/skirmishes/Gallic Fields (3).xml:Description:41
 msgid ""
 "Defend your Gallic outpost against attacks from your treacherous neighbors!\n"
 "\n"
@@ -1778,69 +1775,69 @@ msgid ""
 "Watch out for Romans passing by!"
 msgstr ""
 
-#: maps/skirmishes/Gallic Fields (3).xml:41:Name
+#: maps/skirmishes/Gallic Fields (3).xml:Name:41
 msgid "Gallic Fields (3)"
 msgstr "Blàran na Gaille (3)"
 
-#: maps/skirmishes/Gambia River (3).xml:42:Description
+#: maps/skirmishes/Gambia River (3).xml:Description:42
 msgid ""
 "All players start on one bank of the river, with minimal harvestable metal. Across the Gambia River is a savanna with many deposits of metal to be claimed. \n"
 "\n"
 "(Warning: Large map. Good computer specs recommended)"
 msgstr "Tòisichidh gach cluicheadair air bot na h-aibhne le meatailt glè ghann. Tha sabhanna taobh eile Abhainn Ghaimbia le pailteas meatailt ri ghabhail.\n\n(Rabhadh: seo mapa mòr agus mholamaid coimpiutair luath)"
 
-#: maps/skirmishes/Gambia River (3).xml:42:Name
+#: maps/skirmishes/Gambia River (3).xml:Name:42
 msgid "Gambia River (3)"
 msgstr "Abhainn Ghaimbia (3)"
 
-#: maps/skirmishes/Golden Oasis (2).xml:42:Description
+#: maps/skirmishes/Golden Oasis (2).xml:Description:42
 msgid ""
 "Players start around a small oasis in the center of the map which holds much of the available wood on the map.\n"
 "\n"
 "Elsewhere, in the hinterlands, lies great riches, in the form of large deposits of gold and other metals."
 msgstr "Tòisichidh na cluicheadairean timcheall air innis-fhàsaich bheag ann am meadhan a' mhapa sa bheil a' mhòrchuid dhen fhiodh a tha ri fhaighinn air a' mhapa.\n\nTha beartas òir is meatailt eile ri bhuannachd air an corr dhen tìr."
 
-#: maps/skirmishes/Golden Oasis (2).xml:42:Name
+#: maps/skirmishes/Golden Oasis (2).xml:Name:42
 msgid "Gold Oasis (2)"
 msgstr "Innis-fhàsaich òir (2)"
 
-#: maps/skirmishes/Greek Acropolis (2).xml:41:Description
-#: maps/skirmishes/Greek Acropolis Night (2).xml:42:Description
+#: maps/skirmishes/Greek Acropolis (2).xml:Description:41
+#: maps/skirmishes/Greek Acropolis Night (2).xml:Description:42
 msgid ""
 "Two factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "Fhuair dà bhuidheann àite shàbhailte air àrd-chlàran creagach mòra ris an canar acra-bhailtean cuideachd.\n\nrannsaich an tìr ach an lorg thu ulaidh saor 's gum faigh thu stòras ùr."
 
-#: maps/skirmishes/Greek Acropolis (2).xml:41:Name
+#: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
 msgstr "Acra-bhaile Greugach (2)"
 
-#: maps/skirmishes/Greek Acropolis (4).xml:41:Description
+#: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
 "Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians."
 msgstr "Caidreabhaich neònach. Na Ròmanaich 's na Cartagaich an aghaidh nam Spartach 's Pearsach."
 
-#: maps/skirmishes/Greek Acropolis (4).xml:41:Name
+#: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"
 msgstr "Acra-bhaile Greugach (4)"
 
-#: maps/skirmishes/Greek Acropolis Night (2).xml:42:Name
+#: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
 msgstr "Oidhche air acra-bhaile Greugach (2)"
 
-#: maps/skirmishes/Libyan Oases (4).xml:42:Description
+#: maps/skirmishes/Libyan Oases (4).xml:Description:42
 msgid ""
 "An otherwise wide-open, flat desert map is pierced in the center by two lush oases.\n"
 "\n"
 "This represents the Libyan Desert, part of the Saharan Desert, West of the Nile River in Egypt."
 msgstr "Tha dà innis-fhàsaich bheartach ann am meadhan fàsaich rèidh fhosgailte.\n\nTha am mapa seo a' riochdachadh fàsach Libia a tha 'na phàirt dhen fhàsach Shathara gu siar air an abhainn Nìl san Èipheit."
 
-#: maps/skirmishes/Libyan Oases (4).xml:42:Name
+#: maps/skirmishes/Libyan Oases (4).xml:Name:42
 msgid "Libyan Oases (4)"
 msgstr "Innseachan-fàsaich Libia (4)"
 
-#: maps/skirmishes/Libyan Oasis (2).xml:42:Description
+#: maps/skirmishes/Libyan Oasis (2).xml:Description:42
 msgid ""
 "An old favorite. An otherwise wide-open, flat desert map is pierced in the center by a lush oasis.\n"
 "\n"
@@ -1849,11 +1846,11 @@ msgid ""
 "Iberians do not receive their circuit walls here. Instead, all factions receive 4 free Defense Towers."
 msgstr "Seo seann-mhapa mòr-chòrdte. Tha dà innis-fhàsaich bheartach ann am meadhan fàsaich rèidh fhosgailte.\n\nTha am mapa seo a' riochdachadh fàsach Libia a tha 'na phàirt dhen fhàsach Shathara gu siar air an abhainn Nìl san Èipheit.\n\nChan fhaigh na h-Ibèirich na ballachan tòiseachaidh aca, Gheibh gach buidheann 4 tùir dìona an-asgaidh an àite seo."
 
-#: maps/skirmishes/Libyan Oasis (2).xml:42:Name
+#: maps/skirmishes/Libyan Oasis (2).xml:Name:42
 msgid "Libyan Oasis (2)"
 msgstr "Innseachan-fàsaich Libia (2)"
 
-#: maps/skirmishes/Lorraine Plain (2).xml:40:Description
+#: maps/skirmishes/Lorraine Plain (2).xml:Description:40
 msgid ""
 "The map is cut through the center by a river traversing east-west with some shallows.\n"
 "\n"
@@ -1862,37 +1859,37 @@ msgid ""
 "Civ Territories are divided by main river and tributaries (with necessary shallows for crossings)."
 msgstr "Tha abhainn a' sgaradh a' mhapa seo on ear gu siar le tanalaich ann.\n\nCaran rèidh 's fosgailte le coilltean. Mòran rum airson togalaichean. Meidh mhath air na stòrasan.\n\nTha ranntairean nan sìobhaltasan 'gan sgaradh leis a' phrìomh abhainn 's a leth-aibhnean (le àthannan ann ach am faigh sibh thairis orra)."
 
-#: maps/skirmishes/Lorraine Plain (2).xml:40:Name
+#: maps/skirmishes/Lorraine Plain (2).xml:Name:40
 msgid "Lorraine Plain (2)"
 msgstr "Blàr Lorraine (2)"
 
-#: maps/skirmishes/Median Oasis (2).xml:41:Description maps/skirmishes/Median
-#: Oasis (4).xml:42:Description
+#: maps/skirmishes/Median Oasis (2).xml:Description:41 maps/skirmishes/Median
+#: Oasis (4).xml:Description:42
 msgid ""
 "A large oasis acts as the hub of mountainous spokes that divide the home "
 "territories of each player."
 msgstr "Tha innis-fhàsaich mhòr 'na cho-ionad airson clàran-cuibhle beanntach a sgaraicheas ranntairean nan cluicheadairean."
 
-#: maps/skirmishes/Median Oasis (2).xml:41:Name
+#: maps/skirmishes/Median Oasis (2).xml:Name:41
 msgid "Median Oasis (2)"
 msgstr "Innis-fhàsaich Mheadach (2)"
 
-#: maps/skirmishes/Median Oasis (4).xml:42:Name
+#: maps/skirmishes/Median Oasis (4).xml:Name:42
 msgid "Median Oasis (4)"
 msgstr "Innis-fhàsaich Mheadach (4)"
 
-#: maps/skirmishes/Mediterranean Cove (2).xml:41:Description
+#: maps/skirmishes/Mediterranean Cove (2).xml:Description:41
 msgid ""
 "A sheltered natural harbour on the Mediterranean coast provides the "
 "resources for battle."
 msgstr "Bheir òb nàdarra air oirthir na Mara Meadhanaiche na stòrasan airson a' chogaidh dhut."
 
-#: maps/skirmishes/Mediterranean Cove (2).xml:41:Name
+#: maps/skirmishes/Mediterranean Cove (2).xml:Name:41
 msgid "Mediterranean Coves (2)"
 msgstr "Òban na Mara Meadhanaiche (2)"
 
-#: maps/skirmishes/Neareastern Badlands (2).xml:42:Description
-#: maps/skirmishes/Neareastern Badlands (4).xml:41:Description
+#: maps/skirmishes/Neareastern Badlands (2).xml:Description:42
+#: maps/skirmishes/Neareastern Badlands (4).xml:Description:41
 msgid ""
 "The 'Cappadocia' region of Central-Eastern Anatolia.\n"
 "\n"
@@ -1901,173 +1898,173 @@ msgid ""
 "Stone and Metal resources are in abundance, especially Stone, but Wood is somewhat scarce."
 msgstr "Sgìre Chapadòcia san ear-mheadhanach Anatolach.\n\nTòisichidh gach cluicheadair air taobh siar a' mhapa le fàsach mhòr gun sealbhadair romhpa a ghabhas ceannsachadh 's creachadh.\n\nTha clachan 's meatailt pailt, gu h-àraidh na clachan, ach tha fiodh caran gann."
 
-#: maps/skirmishes/Neareastern Badlands (2).xml:42:Name
+#: maps/skirmishes/Neareastern Badlands (2).xml:Name:42
 msgid "Neareastern Badlands (2)"
 msgstr "Fàsach an ear faisg (2)"
 
-#: maps/skirmishes/Neareastern Badlands (4).xml:41:Name
+#: maps/skirmishes/Neareastern Badlands (4).xml:Name:41
 msgid "Neareastern Badlands (4)"
 msgstr "Fàsach an ear faisg (4)"
 
-#: maps/skirmishes/Nile River (4).xml:41:Description
+#: maps/skirmishes/Nile River (4).xml:Description:41
 msgid ""
 "An Egyptian desert map bisected by the broad Nile River. Organic resources "
 "cluster near the river, while mineral resources can be found in the desert "
 "hinterlands."
 msgstr "Mapa fàsach na h-Èipheite leis an abhainn Nìl leathann a' dol troimhpe. Tha stòras bìdh 's fiodha ri taobh na h-aibhne fhad 's a tha stòras mèinneir ri fhaighinn san fhàsach."
 
-#: maps/skirmishes/Nile River (4).xml:41:Name
+#: maps/skirmishes/Nile River (4).xml:Name:41
 msgid "Nile River (4)"
 msgstr "An Abhainn Nìl (4)"
 
-#: maps/skirmishes/Persian Highlands (4).xml:42:Description
+#: maps/skirmishes/Persian Highlands (4).xml:Description:42
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
 msgstr "Àrainn mheadhanach thioram le pailteas meatailt 's cnuic creagach 's beanntan timcheall orra."
 
-#: maps/skirmishes/Persian Highlands (4).xml:42:Name
+#: maps/skirmishes/Persian Highlands (4).xml:Name:42
 msgid "Persian Highlands (4)"
 msgstr "Àrd-tirean Pearsach (4)"
 
-#: maps/skirmishes/Punbjab (2).xml:40:Description
+#: maps/skirmishes/Punbjab (2).xml:Description:40
 msgid ""
 "Northwest India. Nearby rivers swell with monsoon rains, allowing for only a few treacherous crossings.\n"
 "\n"
 "The rivers are heavily forested, while grasslands carpet the surrounding countryside. Watch out for Tigers in the tall grass! Asian elephants are also a common sight."
 msgstr "Taobh siar-thuath nan Innseachan. Tha na h-aibhnean a' lìonadh le uisgeachan monsùn a nì na h-àthannan cunnartach.\n\nTha coille mòr ri taobh nan aibhnichean fhad 's a tha feur air an tìr timcheall orra. Thoir an aire air na tìgeirean san fheur àrd! Chithear ailbheanan Àisianach gu tric cuideachd."
 
-#: maps/skirmishes/Punbjab (2).xml:40:Name
+#: maps/skirmishes/Punbjab (2).xml:Name:40
 msgid "Punjab (2)"
 msgstr ""
 
-#: maps/skirmishes/Saharan Oases (4).xml:41:Description
+#: maps/skirmishes/Saharan Oases (4).xml:Description:41
 msgid ""
 "A desert biome map where each player has founded their colony at their own lush oasis.\n"
 "\n"
 "The rest of the map is generally wide-open and barren."
 msgstr "Mapa fàsaich far an stèidhich gach cluicheadair an tuineachadh aige aig an innis-fhàsaich bheartach aige fhèin.\n\nTha an corr dhen mhapa fosgailte 's lom san fharsaingeachd."
 
-#: maps/skirmishes/Saharan Oases (4).xml:41:Name
+#: maps/skirmishes/Saharan Oases (4).xml:Name:41
 msgid "Saharan Oases (4)"
 msgstr "Innseachan-fàsaich Shathara (4)"
 
-#: maps/skirmishes/Sahel (4).xml:42:Description
+#: maps/skirmishes/Sahel (4).xml:Description:42
 msgid ""
 "Situated Southside of the Atlas mountain range in North Africa.\n"
 "\n"
 "A somewhat open map with an abundance of animals and mineral resources, while wood is scarce."
 msgstr "Deas air a' Mhonadh Atlais taobh tuath Afraga.\n\nMapa caran fosgailte le pailteas bheathaichean is mèinneir fhad 's a tha fiodh gann."
 
-#: maps/skirmishes/Sahel (4).xml:42:Name
+#: maps/skirmishes/Sahel (4).xml:Name:42
 msgid "Sahel (4)"
 msgstr "Sàithil (4)"
 
-#: maps/skirmishes/Savanna River.xml:42:Description
+#: maps/skirmishes/Savanna River.xml:Description:42
 msgid "A large savanna is bisected by a narrow jungle stream."
 msgstr "Tha sruth dlùth-choillteach a' dol tro sabhanna mhòr."
 
-#: maps/skirmishes/Savanna River.xml:42:Name
+#: maps/skirmishes/Savanna River.xml:Name:42
 msgid "Savanna River (2)"
 msgstr "Abhainn sabhanna (2)"
 
-#: maps/skirmishes/Sicilia (2).xml:41:Description
+#: maps/skirmishes/Sicilia (2).xml:Description:41
 msgid "The large Mediterranean island of Sicily is open for conquest."
 msgstr "Tha eilean mòr Sisilidh sa Mhuir Mheadhanach fosgailte airson ceannsachadh."
 
-#: maps/skirmishes/Sicilia (2).xml:41:Name
+#: maps/skirmishes/Sicilia (2).xml:Name:41
 msgid "Sicilia (2)"
 msgstr "Sisilidh (2)"
 
-#: maps/skirmishes/Siwa Oasis (2).xml:40:Description
+#: maps/skirmishes/Siwa Oasis (2).xml:Description:40
 msgid ""
 "A dual oasis map with nearly all of the wood and animal resources concentrated in the middle of the map. Farmlands ring the oases sucking up what little moisture can be had.\n"
 "\n"
 "Stone and Metal can only be found in the rocky hinterlands. Treasures, if enabled, can be found scattered in the nearby deserts."
 msgstr ""
 
-#: maps/skirmishes/Siwa Oasis (2).xml:40:Name
+#: maps/skirmishes/Siwa Oasis (2).xml:Name:40
 msgid "Siwa Oasis (2)"
 msgstr "Innis-fhàsaich Siobha (2)"
 
-#: maps/skirmishes/Skirmish Demo.xml:42:Description
+#: maps/skirmishes/Skirmish Demo.xml:Description:42
 msgid "A demo Skirmish map."
 msgstr "Mapa taisbeanaidh air streup."
 
-#: maps/skirmishes/Skirmish Demo.xml:42:Name
+#: maps/skirmishes/Skirmish Demo.xml:Name:42
 msgid "Skirmish Demo"
 msgstr "Taisbeanadh air streupairean"
 
-#: maps/skirmishes/Sporades Islands (2).xml:42:Name
+#: maps/skirmishes/Sporades Islands (2).xml:Name:42
 msgid "Sporades Islands (2)"
 msgstr "Eileanan Sporadas (2)"
 
-#: maps/skirmishes/Syria (2).xml:41:Description
+#: maps/skirmishes/Syria (2).xml:Description:41
 msgid ""
 "A barren land with little wood and few animals. Treasures dot the landscape and will be essential to early growth.\n"
 "\n"
 "The player who sets up a profitable trade caravan earliest may gain a decisive advantage."
 msgstr "Tìr fàsach le coilltean 's beathaichean ganna. Tha ulaidhean sgapte air an tìr is bidh iad cudromach dhan fhàs thràth agad.\n\nDh'fhaoidte gum faigh an cluicheadair a stèidhicheas a' chiad carabhan malairt bhuannachail làmh an uachdair."
 
-#: maps/skirmishes/Syria (2).xml:41:Name
+#: maps/skirmishes/Syria (2).xml:Name:41
 msgid "Syria (2)"
 msgstr "Siridhea (2)"
 
-#: maps/skirmishes/Team Oasis - 2v2.xml:42:Description
+#: maps/skirmishes/Team Oasis - 2v2.xml:Description:42
 msgid ""
 "An oasis surrounded by mountains and desert. Farmlands near the water's edge"
 " provide much-needed boost in farming, but foraging and hunting are in short"
 " supply."
 msgstr "Innis-fhàsaich le beanntan 's fàsach timcheall oirre. Cuiridh achaidhean ri taobh an uisge ris an stòras bìdh agad ach tha sitheann is biadh eile gann."
 
-#: maps/skirmishes/Team Oasis - 2v2.xml:42:Name
+#: maps/skirmishes/Team Oasis - 2v2.xml:Name:42
 msgid "Team Oasis (2v2)"
 msgstr "Innish-fhasaich ann an sgioba (2 an aghaidh 2)"
 
-#: maps/skirmishes/Thessalian Plains (4).xml:41:Description
+#: maps/skirmishes/Thessalian Plains (4).xml:Description:41
 msgid ""
 "The rolling Thessalian plain is traversed with narrow streams, easily "
 "forded. Wide-open spaces allow for massive expansion, while each player "
 "starts the match safe atop a large acropolis."
 msgstr "Tha aibhnean caola a' sruthadh tron mhachair Teasalaidheach le àthannan furasta annta. Tha rum fosgailte ann airson leudachadh mòr fhad 's a thòisicheas gach cluicheadair air acra-bhaile shàbhailte."
 
-#: maps/skirmishes/Thessalian Plains (4).xml:41:Name
+#: maps/skirmishes/Thessalian Plains (4).xml:Name:41
 msgid "Thessalian Plains (4)"
 msgstr "Machair Teasalaidheach (4)"
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:41:Description
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Description:41
 msgid ""
 "Four factions find themselves perched safely atop large rocky plateaus, or acropolises.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources."
 msgstr "Fhuair ceithir buidhnean àite shàbhailte air àrd-chlàran creagach mòra ris an canar acra-bhailtean cuideachd.\n\nrannsaich an tìr ach an lorg thu ulaidh saor 's gum faigh thu stòras ùr."
 
-#: maps/skirmishes/Tuscan Acropolis (4).xml:41:Name
+#: maps/skirmishes/Tuscan Acropolis (4).xml:Name:41
 msgid "Tuscan Acropolis (4)"
 msgstr "Acra-bhaile Toscànach (4)"
 
-#: maps/skirmishes/Two Seas (6).xml:41:Description
+#: maps/skirmishes/Two Seas (6).xml:Description:41
 msgid ""
 "A large tropic map with two seas to the East and to the West. Good for two "
 "teams of three players or three teams of two players."
 msgstr ""
 
-#: maps/skirmishes/Two Seas (6).xml:41:Name
+#: maps/skirmishes/Two Seas (6).xml:Name:41
 msgid "Two Seas (6)"
 msgstr "Dà mhuir (6)"
 
-#: maps/skirmishes/Watering Holes (4).xml:42:Description
+#: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""
 "The African savanna is chocked full of animal life for hunting, while the nearby mineral deposits are plentiful. The dry season is approaching and the watering holes are drying up.\n"
 "\n"
 "Note: This is a very small \"fast and furious\" map. Iberians do not start with their custom circuit walls."
 msgstr "Tha sabhanna Afraga làn bheathaichean airson seilge fhad 's a tha pailteas stòrasan mèinneir am fagas. Tha an ràith thioram ri tighinn agus an t-uisge a' falbh o na tuill uisge.\n\nAn aire: 'S e mapa glè bheag 's luath a th' ann. Chan fhaigh na h-Ibèirich na ballachan tòiseachaidh àbhaisteach aca."
 
-#: maps/skirmishes/Watering Holes (4).xml:42:Name
+#: maps/skirmishes/Watering Holes (4).xml:Name:42
 msgid "Watering Holes (4)"
 msgstr "Tuill uisge (4)"
 
-#: maps/skirmishes/Zagros Mountains (2).xml:42:Description
+#: maps/skirmishes/Zagros Mountains (2).xml:Description:42
 msgid ""
 "The mountains buffering the Persian homeland, straddling Persis, Susiana, and Media.\n"
 "\n"
@@ -2076,6 +2073,6 @@ msgid ""
 "Access to untapped resources and territories can be found through the rugged hinterlands."
 msgstr "Tha beanntan a' sgaradh dùthaich nam Pearsach thar Persas, Susaidheana 's dùthaich nam Meadach.\n\nTòisichidh na cluicheadairean faisg air a' Chamas Phearsach san sgìre aca fhèin le teampall an-asgaidh.\n\nLorgar stòras saor tron tìr gharbh."
 
-#: maps/skirmishes/Zagros Mountains (2).xml:42:Name
+#: maps/skirmishes/Zagros Mountains (2).xml:Name:42
 msgid "Zagros Mountains (2)"
 msgstr "Beanntan Sagros (2)"

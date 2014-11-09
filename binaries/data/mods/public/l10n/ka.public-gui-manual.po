@@ -1,53 +1,52 @@
 # Translation template for 0 A.D. — Empires Ascendant.
 # Copyright © 2014 Wildfire Games
-# This file is distributed under the same license as the 0 A.D. — Empires
-# Ascendant project.
+# This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Rezo Imnadze <rezo@imnadze.ge>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2014-09-26 18:59+0200\n"
-"PO-Revision-Date: 2014-06-19 17:51+0000\n"
+"POT-Creation-Date: 2014-10-26 02:05+0100\n"
+"PO-Revision-Date: 2014-11-05 08:22+0000\n"
+"Last-Translator: Rezo Imnadze <rezo@imnadze.ge>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Potter 1.0\n"
 "Language: ka\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/manual/manual.xml:12 (caption)
+#: gui/manual/manual.xml:(caption):12
 msgid "Information"
-msgstr ""
+msgstr "ინფორმაცია"
 
-#: gui/manual/manual.xml:20 (caption)
+#: gui/manual/manual.xml:(caption):20
 msgid "View Online"
-msgstr ""
+msgstr "ხაზზე ნახვა"
 
-#: gui/manual/manual.xml:23 (caption)
+#: gui/manual/manual.xml:(caption):23
 msgid "Close"
 msgstr "დახურვა"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. თამაშის შიდა სახელმძღვანელო"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
-msgstr ""
+msgstr "[font=\"sans-14\"]"
 
 #: gui/manual/intro.txt:3
 msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr ""
+msgstr "მადლობა, რომ დააყენე 0 A.D.! ეს გვერდი მოგცემს თამაშის თვისებების ზოგად მიმოხილვას. თვითონ თამაში არასრულია, განვითარების მდგომარეობაშია და მხოლოდ ალფა ვერსიაა."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]სახვითი გარემოცვები"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,11 +56,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]შენ შეგიძლია გადართო მთელი მსახავიდან ფანჯრებიან მდგომარეობაზე ან პირიქით Alt + Enter-ზე დაჭერით. ფანჯრებიან მდგომარეობაში შეგიძლია ფანჯარას ზომა შეუცვალო. თუ თამაში შენელებულია, შენ შეგიძლია გარემოცვები შეცვალო მონახაზის ფაილში: ჩაიხედე binaries/data/config/default.cfg-ში იქიდან, სადაც თამაში არის დაყენებული. ეს მოგცემს მითითებებს შესწორებისთვის და სცადე, გამორთო \"fancywater\" და \"shadows\" ასარჩევები."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]თამაშისას"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -69,43 +68,43 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]მართვა და თამაში ნაცნობი უნდა იყოს ტრადიციული ნამდვილი დროით სტრატეგიული თამაშების მოთამაშეებისთვის. ამჟამად ბევრი თვისება აკლია და სტატისტიკა ცუდადაა გაწონასწორებული - სავარაუდოდ ბეტა გამოშვებას უნდა დაელოდო, რომ ამათმა კარგად იმუშაონ."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
-msgstr ""
+msgstr "ძირითადი სამართავები:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr ""
+msgstr "• მარცხენა-დაწკაპე რომ აირჩიო ერთეული. "
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr ""
+msgstr "• მარცხენა-დაწკაპე-და-გაათრიე რომ აირჩიო ერთეულების ჯგუფი."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr ""
+msgstr "• მარჯვენა დაწკაპე რომ ერთეულებს მიზნისკენ უბრძანო."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
-msgstr ""
+msgstr "• ისრები ან WASD ღილაკები რომ კამერა ამოძრაო."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr ""
+msgstr "• Ctrl + ისრები, ან shift + თაგვის რგოლი, რომ შეატრიალო კამერა."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr ""
+msgstr "• თაგვის რგოლი, ან \"+\" და \"-\" ღილაკები, რომ გაადიდო."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]ხერხები"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]მთავარი მენიუ გაძლევს წვდომას ორ თამაშის ხერხთან:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -114,13 +113,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]მარტო მოთამაშე[font=\"sans-14\"] — ითამაშე სასწავლო თამაში, ან ერთ ან მეტ ხი მოწინააღმდეგესთან. ხი/ხიები ვითარდებიან და შეიძლება არ იყვნენ მზად ახალი თვისებებისთვის, მაგრამ შეგიძლია თამაში გამოსცადო ნამდვილ მოწინააღმდეგესთან, თუ არ გაქვს შესაძლებლობა ადამიანთან ითამაშო."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]მრავალი მოთამაშე[font=\"sans-14\"] — ითამაშე ადამიანის წინააღმდეგ საერთქსელში."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -128,17 +127,17 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr ""
+msgstr "მოაწყვე მრავალი მოთამაშის თამაში, ერთმა უნდა აირჩიოს \"უმასპინძლე თამაშს\". თამაში იყენებს UDP შესაერთებელს 20595, ასე რომ მასპინძელმა NAT/ცეცხლოვანი კედელი/სხვა  უნდა მოაწყოს მის გამოსაყენებლად. სხვა მოთამაშეებს შეუძლიათ აირჩიონ \"შეუერთდი თამაშს\" და შეიყვანონ მასპინძლის IP მისამართი."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]თამაშის მოწყობა"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]ბევრი მოთამაშის თამაშში მხოლოდ მასპინძელს შეუძლია შეცვალოს თამაშის ასარჩევები."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -149,7 +148,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr ""
+msgstr "ჯერ, აირჩიე შემთხვევით რუკაზე თამაში გინდა (ავტომატურად შექმნილი შემთხვევითი რუკის შემქმნელით), თუ სცენარულზე (დამზადებული რუკის ხელსაწყოთი). სცენარები შეიძლება გამოიხშიროს. საწყისი რუკები დაუყონებლივ ჩანან, შერჩევითები - არა. ამოირჩიე \"ყველა რუკა\" რომ დაინახო ყველა შეასძლო რუკა. შემდეგ აირჩიე რუკა, რომელზეც თამაში გინდა. \"საჩვენებელი რუკები\" არიან გარკვეული თვისებების საცდელად და სავარაუდოდ ვერ გამოიყენებ."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -159,352 +158,352 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr ""
+msgstr "საბოლოოდ შეცვალე გარემოცვები. შემთხვევითი რუკებისთვის ეს შეიცავს მოთამაშეების რაოდენობას, ზომას და ა.შ. სცენარებისთვის შენ მხოლოდ შეგიძლია აირჩიო ვინ რომელი მოთამაშეა (წყვეტს ვინ სად იწყებს თამაშს რუკაზე და ა.შ.) ასარჩევია ან ადამიანი, ან ხი ან არცერთი (არსებული ერთეულები თავს დაესხიან მტრებს, რომლებიც მათ ხედვაში შედიან, მაგრამ ახალი ერთეულები არ შეიქმნებიან, არც გაიგზავნებიან ვინმესთან თავს დასახმელად)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr ""
+msgstr "როცა მზად იქნები თმაშის დასაწყებად, დააჭირე \"დაიწყე თამაში\" ღილაკს."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]ცხელი ღილაკები:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]მუდამ"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: დახურე თამაში, დადასტურების გარეშე"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
-msgstr ""
+msgstr "Alt + Enter: გადაწონე სრული ეკრანი და ფანჯრებიანი"
 
 #: gui/manual/intro.txt:41
 msgid "~ or F9: Show/hide console"
-msgstr ""
+msgstr "~ ან F9: აჩვენე/დამალე ბრჯენი"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr ""
+msgstr "Alt + F: აჩვენე/დამალე ჩარჩოს მთვლელი (FPS)"
 
 #: gui/manual/intro.txt:43
 msgid ""
 "F11: Enable/disable real-time profiler (toggles through the displays of "
 "information)"
-msgstr ""
+msgstr "F11: ჩართე/გამორთე ნამდვილი დროის გამრჩევი (გადაიწონება საინფორმაციო მსახველის გავლით)"
 
 #: gui/manual/intro.txt:44
 msgid "Shift + F11: Save current profiler data to \"logs/profile.txt\""
-msgstr ""
+msgstr "Shift + F11: შეინახე ახლანდელი გამრჩევის მონაცემები \"logs/profile.txt\"-ში"
 
 #: gui/manual/intro.txt:45
 msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr ""
+msgstr "F2: გადაიღე სურათი (.png ფორმატში, რომლის მდებარეობაც გამოჩნდება ზედა, მარცხენა კუთხეში მას შემდეგ, რაც ფაილი შეინახება და ასევე შეიძლება ნახო ბრჯენში ან ჩანაწერებში, თუ იქ ვერ მოასწრებ დანახვას)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr ""
+msgstr "Shift + F2: გადაიღე ძალიან დიდი სურათი (6400წ*4800წ, .bmp ფორმატში, რომლის მდებარეობაც გამოჩნდება ზედა, მარცხენა კუთხეში მას შემდეგ, რაც ფაილი შეინახება და ასევე შეიძლება ნახო ბრჯენში ან ჩანაწერებში, თუ იქ ვერ მოასწრებ დანახვას)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]თამაშში"
 
 #: gui/manual/intro.txt:49
 msgid ""
 "[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
 "the same kind on the screen (even if they're different ranks)"
-msgstr ""
+msgstr "[font=\"sans-14\"]ორმაგი წკაპი [ერთეულზე]: აირჩიე ერთი და იგივე ტიპის ყველა ერთეული ხილულ მსახველზე (ისინიც კი, ვინც სხვადასხვა წოდების არიან)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click [on unit]: Select all of your units of the same kind and "
 "the same rank on the screen"
-msgstr ""
+msgstr "სამმაგი მარცხენა წკაპი [ერთეულზე]: აირჩიე ერთი და იგივე ტიპის და წოდების ერთეულები ხილულ მსახველზე"
 
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click [on unit]: Select all your units of the same kind on"
 " the entire map (even if the are different ranks)"
-msgstr ""
+msgstr "ALT + ორმაგი მარცხენა წკაპი [ერთეულზე]: აირჩიე ერთი და იგივე ტიპის ყველა ერთეული მთელ რუკაზე (ისინიც კი, ვინც სხვადასხვა წოდების არიან)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click [on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + სამმაგი მარცხენა წკაპი [ერთეულზე]: აირჩიე ერთი და იგივე ტიპის და წოდების ერთეულები მთელ რუკაზე"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
-msgstr ""
+msgstr "Shift + F5: სწრაფი შენახვა"
 
 #: gui/manual/intro.txt:54
 msgid "Shift + F8: Quickload"
-msgstr ""
+msgstr "Shift +F8: სწრაფი ჩატვირთვა"
 
 #: gui/manual/intro.txt:55
 msgid "F10: Open/close menu"
-msgstr ""
+msgstr "F10: გახსები/დახურე მენიუ"
 
 #: gui/manual/intro.txt:56
 msgid "F12: Show/hide time elapsed counter"
-msgstr ""
+msgstr "F12: გამოაჩინე/დამალე გასული დროის მთვლელი"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: დახურე ყველა დიალოგი (ლაყბობა, მენიუ) ან მოიშორე მონიშვნა ერთეულებზე"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr ""
+msgstr "Enter/return: გახსენი ლაყბობა, გააგზავნე შეტყობინება"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr ""
+msgstr "T: გააგზავნე შეტყობინება ჯგუფში"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr ""
+msgstr "Pause: შეჩერება/დაბრუნება თამაშში"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr ""
+msgstr "Delete: წაშალე არჩეული ერთეული/ერთეულები/შენობა/შენობები"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ""
+msgstr ",: აირჩიე უსაქმო მებრძოლები"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ""
+msgstr ".: აირჩიე უსაქმე მუშები (მუშა მებრძოლების ჩათვლით)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr ""
+msgstr "H: გააჩერე (შეწყვიტე მოქმედება) არჩეული ერთეულები."
 
 #: gui/manual/intro.txt:65
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr ""
+msgstr "Ctrl + 1 (და ასე Ctrl + 0-მდე): შექმენი მართვის ჯგუფი 1 (-დან 0-მდე) არჩეული ერთეულებით/შენობებით"
 
 #: gui/manual/intro.txt:66
 msgid ""
 "1 (and so on up to 0): Select the units/buildings in control group 1 (to 0)"
-msgstr ""
+msgstr "1 (და ასე 0-მდე): აირჩიე ერთეულები/შენობები მართვის ჯგუფი 1-დან (0-მდე)"
 
 #: gui/manual/intro.txt:67
 msgid ""
 "Shift + 1 (to 0): Add control group 1 (to 0) to the selected units/buildings"
-msgstr ""
+msgstr "Shift + 1 (-დან 0-მდე): დაამატე მართვის ჯგუფი 1 (-დან 0-მდე) არჩეულ ერთეულს/შენობას"
 
 #: gui/manual/intro.txt:68
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr ""
+msgstr "Ctrl + F5 (და ასე F8-მდე): მონიშნე ახლანდელი კამერის მდებარეობა მოგვიანებით უკან გადმოსახტომად."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr ""
+msgstr "F5, F6, F7 და F8: გადაიტანე კამერა მონიშნულ ადგილთან. დაბრუნდი უკან, თუ კამერა უკვე მონიშნულ ადგილასაა."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr ""
+msgstr "Z, X, C, V, B, N, M: მონიშნული საწვრთნელი შენობით. დაამატე 1-ლი, მე-2, ... ნაჩვენები ერთეული საწვრთნელ რიგში ყველა არჩეული შენობისთვის."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]შეცვალე თაგვის საქციელი"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + მარჯვება წკაპი შენობაზე: გარნიზონში ჩააყენე"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr ""
+msgstr "Shift + მარჯვენა წკაპი: რიგში ჩააყენე წასვლის/აშენების/მოპოვების/ა.შ. ბრძანება."
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr ""
+msgstr "Shift + მარცხენა წკაპი ერთეულების გამოყვანაზე: დაამატე ერთეულები ხუთობით"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr ""
+msgstr "Shift + მარცხენა წკაპი ან მარცხენა მოთრევა ერთეულის თავზე: დაამატე ერთეული მონიშნულებს "
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr ""
+msgstr "Ctrl + მარცხენა წკაპი ან მარცხენა მოთრევა ერთეულის თავზე: მოაშორე ერთეული მონიშნულებიდან"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr ""
+msgstr "Alt + მარცხენა მოთრევა ერთეულის თავზე: მონიშნე მხოლოდ სამხედროები"
 
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr ""
+msgstr "Ctrl + მარცხენა წკაპი ერთეულის/ჯგუფის ხატულაზე ბევრი მონიშნული ერთულით: მონიშვნის მოხსნა"
 
 #: gui/manual/intro.txt:80
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr ""
+msgstr "მარჯვენა წკაპი მონიშული შენობისთვის/შენობებისთვის: აყენებს შეკრების ადგილს ამ შენომიდან შექმნილი/გარნიზონიდან გამოსული ერთეულებისთვის. "
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
-msgstr ""
+msgstr "Ctrl + მარჯვენა წკაპი მონიშნული ერთეულებით:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- თუ ისარი მოკავშირის შენობაზეა: გარნიზონში ჩაყენება"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- სხვა შემთხვევაში: თავდასხმა (საწყისად ყველა მოწინააღმდეგის ერთეული და შენობა არის მიზანში, გამოიყენე Ctrl + Q + მარჯვენა წკაპი მხოლოდ ერთეულები რომ ამოიღო მიზანში)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]გადაფარვები"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: დამალე/აჩვენე სამომხმარებლო სახე"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr ""
+msgstr "Alt + D: აჩვენე/დამალე განმავითარებლის გადაფარვა (განმავითარებლის ასარჩევებით)"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: გადაწონე კარკასული მდგომარეობა (დააჭირე ერთხელ, რომ მიიღო ქსოვილებიან ნიმუშებზე გადაფარებული კარკასები. ორჯერ, რომ მიიღო მხოლოდ ქსოვილებით გაფერადებული კარკასები. სამჯერ, რომ დაბრუნდე საწყის მდგომარეობაში)."
 
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr ""
+msgstr "Alt + S: გადაწონე ერთეულების ლანდები (შეიძლება მოგცეს მცირე წარმოდგენითი ზრდა)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
-msgstr ""
+msgstr "Alt + Z: გადაწონე ცა"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]კამერასთან მოპყრობა"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W ან [ზევით]: ასწიე მსახველი ზევით"
 
 #: gui/manual/intro.txt:94
 msgid "S or [down]: Pan screen down"
-msgstr ""
+msgstr "S ან [ქვევით]: დასწიე მსახველი ქვევით"
 
 #: gui/manual/intro.txt:95
 msgid "A or [left]: Pan screen left"
-msgstr ""
+msgstr "A ან [მარცხნივ]: გასწიე მსახველი მარცხნივ"
 
 #: gui/manual/intro.txt:96
 msgid "D or [right]: Pan screen right"
-msgstr ""
+msgstr "D ან [მარჯვნივ]: გასწიე მსახველი მარჯვნივ"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr ""
+msgstr "Ctrl + W ან [ზევით]: შეატრიალე კამერა რომ ზევით აიხედო"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr ""
+msgstr "Ctrl + S ან [დაბლა]: შეატრიალე კამერა ქვევით რომ დაიხედო"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Ctrl + A ან [მარცხნივ]: შეატრიალე კამერა საათის ისრის მიმართულებით მიწის გარშემო"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Ctrl + D ან [მარჯვნივ]: შეატრიალე კამერა საათის ისრის საწინააღმდეგოდ"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Q: შეატრიალე კამერა საათის ისრის მიმართულებით მიწის გარშემო"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "E: შეატრიალე კამერა საათის ისრის საწინააღმდეგოდ მიწის გარშემო"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + ზევით დარგოლვა: შეატრიალე კამერა საათის ისრის მიმართულებით მიწის გარშემო"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + ქვევით დარგოლვა: შეატრიალე კამერა საათის ისრის საწინააღმდეგოდ მიწის გარშემო"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: მიჰყევი მონიშნულ ერთეულს (გაამოწრავე კამერა რომ შეაჩერო მიყოლა)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr ""
+msgstr "R: გაანულე კამერის დაახლოება/მიმართულება"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: დააახლოვე (გეჭიროს უწყვეტი დაახლოებისთვის)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: დააშორე (გეჭიროს უწყვეტი დაშორებისთვის)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: გადაწონე კარკასული მდგომარეობის გავლით"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "თაგვის შუალ ღილაკი ან / (წინწახრილი ჭრილი): გეჭიროს და გაამოძრავე თაგვი მსახველის გასაწევად"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]შენობის დადგმისას"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgstr "[font=\"sans-14\"][: 15 გრადუსით შეატრიალე შენობა საათის ისრის საწინააღმდეგოდ"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
-msgstr ""
+msgstr "]: 15 გრადუსით შეატრიალე შენობა საათის ისრის მიმართულებით"
 
 #: gui/manual/intro.txt:115
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr ""
+msgstr "მარცხენა მოთრევა: შეატრიალე შენობა თაგვის გამოყენებით (საძირკველი დადგება თაგვის აშვებისას)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -513,42 +512,42 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "როგორც თავისუფალი, ღია კოდით თამაში, ჩვენ არ გვაქვს სახსრები რომ გამოვცადოთ ბევრ სისტემაზე, მაგრამ ჩვენ გვინდა რაც შეიძლება მეტი მოთამაშესთვის წარმოვადგინათ საუკეთესო ხარისხი. როცა შენ რთავ ავტომატურ უკუკავშირს, ჩვენ ვიღებთ მონაცემებს, რაც გვეხმარება გავარკვიოთ რომელ სიმყარეზე გავამახვილოთ ყურადღება მათი მხარდაჭერისთვის და გამოვარკვიოთ შემდგომში გასასწორებელი წარმოდგენის სისუსტეები."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr ""
+msgstr "შემდეგი მონაცემები გაიგზავნება ჩვენს მომსახურესთან:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• შემთხვევითი მომხარებლის ჭდე (შენახული %APPDATA%\\0ad\\config\\user.cfg-ში Windows-ისთვის, ~/.config/0ad/config/user.cfg-ში Unix-ისთვის), გვაძლევს საშუალებას ამოვიცნოთ გამეორებული მოხსენებები ერთი და იგივე მომხმარებლისგან."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• თამაშის სახესხვაობის ნომერი და ძირითადი შენების გარემოცვები (ოპტიმიზაციის ხერხი, CPU ხუროთმოძღვრება, დროის ბეჭედი, შემდგენელის სახესხვაობა)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr ""
+msgstr "• სიმყარის დეტალები: OS სახესხვაობა, სახვითი წამყვანის სახესხვაობა, OpenGL შესაძლებლობები, მსახავის ზომა, CPU წვრილმანები, RAM ზომა."
 
 #: gui/manual/userreport.txt:8
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• წარმოდგენის წვრილმანები: მონაცემების დროების სურათი თამაშის დაწყებიდან, ან სახვითი გარემოცვების შეცვლის შემდეგ რამდენიმე წამში."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "მონაცემები იქნება მხოლოდ რამდენიმე კილობაიტი, ყველა დაწყებულ თამაშზე, ასე რომ ქსელის გამოყენება იქნება უმცირესი."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -557,4 +556,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "გადმოცემულ მონაცემებს შევინახავთ ჩვენს მომსახურეზე და შეიძლება გამოვაქვეყნოთ არა-მომხმარებელ-ამოცნობადი წვრილმანები, რომ დავეხმაროთ სხვა თამაშის განმავითარებლებს მსგავს კითხვებში. ჩვენ შევინახავთ IP მისამართს, რომელმაც ინფორმაცია მოგვაწოდა, რომ გამოვამჟღავნოთ მომსახურების ბოროტად გამომყენებელი, მაგრამ ჩვენ მას არ გამოვაქვეყნებთ. გამოქვეყნებული მონაცემები შეგიძლია ნახო http://feedback.wildfiregames.com/-ზე."

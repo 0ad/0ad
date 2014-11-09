@@ -328,7 +328,6 @@ m.HQ.prototype.init = function(gameState, queues)
 	var allowRushes = (startingWood > 8500 && this.canBuildUnits);
 	this.attackManager.init(gameState, queues, allowRushes);
 	this.navalManager.init(gameState, queues);
-	this.defenseManager.init(gameState);
 	this.tradeManager.init(gameState);
 };
 
@@ -1959,6 +1958,86 @@ m.HQ.prototype.update = function(gameState, queues, events)
 	this.diplomacyManager.update(gameState, events);
 
 	Engine.ProfileStop();
+};
+
+m.HQ.prototype.Serialize = function()
+{
+	let properties = {
+		"targetNumBuilders": this.targetNumBuilders,
+		"econState": this.econState,
+		"phaseStarted": this.phaseStarted,
+		"wantedRates": this.wantedRates,
+		"currentRates": this.currentRates,
+		"lastFailedGather": this.lastFailedGather,
+		"femaleRatio": this.femaleRatio,
+		"lastTerritoryUpdate": this.lastTerritoryUpdate,
+		"stopBuilding": this.stopBuilding,
+		"towerStartTime": this.towerStartTime,
+		"towerLapseTime": this.towerLapseTime,
+		"fortressStartTime": this.fortressStartTime,
+		"fortressLapseTime": this.fortressLapseTime,
+		"targetNumWorkers": this.targetNumWorkers,
+		"bBase": this.bBase,
+		"bAdvanced": this.bAdvanced,
+		"saveResources": this.saveResources,
+		"canBuildUnits": this.canBuildUnits
+	};
+
+	let baseManagers = {};
+	for (let base in this.baseManagers)
+		baseManagers[base] = this.baseManagers[base].Serialize();
+
+	return {
+		"properties": properties,
+
+		"baseManagers": baseManagers,
+		"attackManager": this.attackManager.Serialize(),
+		"defenseManager": this.defenseManager.Serialize(),
+		"tradeManager": this.tradeManager.Serialize(),
+		"navalManager": this.navalManager.Serialize(),
+		"researchManager": this.researchManager.Serialize(),
+		"diplomacyManager": this.diplomacyManager.Serialize(),
+		"garrisonManager": this.garrisonManager.Serialize(),
+	};
+};
+
+m.HQ.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data.properties)
+		this[key] = data.properties[key];
+
+	this.baseManagers = {};
+	for (let base in data.baseManagers)
+	{
+		// the first call to deserialize set the ID base needed by entitycollections
+		this.baseManagers[base] = new m.BaseManager(gameState, this.Config);
+		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
+		this.baseManagers[base].init(gameState);
+		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
+	}
+
+	this.attackManager = new m.AttackManager(this.Config);
+	this.attackManager.Deserialize(data.attackManager);
+
+	this.defenseManager = new m.DefenseManager(this.Config);
+	this.defenseManager.Deserialize(data.defenseManager);
+
+	this.tradeManager = new m.TradeManager(this.Config);
+	this.tradeManager.init(gameState);
+	this.tradeManager.Deserialize(data.tradeManager);
+
+	this.navalManager = new m.NavalManager(this.Config);
+	this.navalManager.init(gameState);
+	this.navalManager.Deserialize(data.navalManager);
+
+	this.researchManager = new m.ResearchManager(this.Config);
+	this.garrisonManager.Deserialize(data.researchManager);
+
+	this.diplomacyManager = new m.DiplomacyManager(this.Config);
+	this.diplomacyManager.Deserialize(data.diplomacyManager);
+
+	this.garrisonManager = new m.GarrisonManager();
+	this.garrisonManager.Deserialize(data.garrisonManager);
 };
 
 return m;

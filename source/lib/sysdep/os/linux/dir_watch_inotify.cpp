@@ -1,4 +1,4 @@
-/* Copyright (c) 2012 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -102,7 +102,7 @@ static void inotify_event_loop_process_events()
 {
 	// Buffer for reading the events.
 	// Need to be careful about overflow here.
-	char buffer[65535];
+	char buffer[65535] = {0};
 
 	// Event iterator
 	ssize_t buffer_i = 0;
