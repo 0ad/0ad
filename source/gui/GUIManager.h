@@ -93,6 +93,11 @@ public:
 	Status ReloadChangedFile(const VfsPath& path);
 
 	/**
+	 * Called when we should reload all pages (e.g. translation hotloading update).
+	 */
+	Status ReloadAllPages();
+
+	/**
 	 * Pass input events to the currently active GUI page.
 	 */
 	InReaction HandleEvent(const SDL_Event_* ev);

@@ -528,6 +528,12 @@ public:
 	 */
 	VfsPath LocalizePath(VfsPath sourcePath);
 
+	/**
+	 * Loads @p path into the dictionary if it is a translation file of the
+	 * @link L10n::GetCurrentLocale() current locale@endlink.
+	 */
+	Status ReloadChangedFile(const VfsPath& path);
+
 private:
 
 	/**
