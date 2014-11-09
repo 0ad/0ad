@@ -395,7 +395,8 @@ CScriptVal PollNetworkClient(ScriptInterface::CxPrivate* pCxPrivate)
 	// Convert from net client context to GUI script context
 	JSContext* cxNet = g_NetClient->GetScriptInterface().GetContext();
 	JSAutoRequest rqNet(cxNet);
-	JS::RootedValue pollNet(cxNet, g_NetClient->GuiPoll().get());
+	JS::RootedValue pollNet(cxNet);
+	g_NetClient->GuiPoll(&pollNet);
 	return pCxPrivate->pScriptInterface->CloneValueFromOtherContext(g_NetClient->GetScriptInterface(), pollNet);
 }
 

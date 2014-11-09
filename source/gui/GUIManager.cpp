@@ -272,6 +272,15 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	return INFO::OK;
 }
 
+Status CGUIManager::ReloadAllPages()
+{
+	// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
+	for (PageStackType::iterator it = m_PageStack.begin(); it != m_PageStack.end(); ++it)
+		LoadPage(*it);
+
+	return INFO::OK;
+}
+
 CScriptVal CGUIManager::GetSavedGameData(ScriptInterface*& pPageScriptInterface)
 {
 	JSContext* cx = top()->GetScriptInterface()->GetContext();

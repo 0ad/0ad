@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -220,7 +220,7 @@ public:
 	 * The cache will be reset if *this* node is modified (e.g. by LoadXML),
 	 * but *not* if any child nodes are modified (so don't do that).
 	 */
-	jsval ToJSVal(JSContext* cx, bool cacheValue) const;
+	void ToJSVal(JSContext* cx, bool cacheValue, JS::MutableHandleValue ret) const;
 
 	/**
 	 * Returns the names/nodes of the children of this node, ordered by name
@@ -247,7 +247,7 @@ private:
 
 	void ResetScriptVal();
 
-	jsval ConstructJSVal(JSContext* cx) const;
+	void ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const;
 
 	std::wstring m_Value;
 	ChildrenMap m_Childs;

@@ -68,7 +68,20 @@ public:
 	CNetClient(CGame* game);
 
 	virtual ~CNetClient();
-
+	
+	/**
+	 * We assume that adding a tracing function that's only called
+	 * during GC is better for performance than using a 
+	 * PersistentRooted<T> where each value needs to be added to
+	 * the root set.
+	 */
+	static void Trace(JSTracer *trc, void *data)
+	{
+		reinterpret_cast<CNetClient*>(data)->TraceMember(trc);
+	}
+	
+	void TraceMember(JSTracer *trc);
+	
 	/**
 	 * Set the user's name that will be displayed to all players.
 	 * This must not be called after the connection setup.
@@ -115,13 +128,13 @@ public:
 	 *
 	 * @return next message, or the value 'undefined' if the queue is empty
 	 */
-	CScriptValRooted GuiPoll();
+	void GuiPoll(JS::MutableHandleValue);
 
 	/**
 	 * Add a message to the queue, to be read by GuiPoll.
 	 * The script value must be in the GetScriptInterface() JS context.
 	 */
-	void PushGuiMessage(const CScriptValRooted& message);
+	void PushGuiMessage(const JS::HandleValue message);
 
 	/**
 	 * Return a concatenation of all messages in the GUI queue,
@@ -215,7 +228,7 @@ private:
 	CStr m_GUID;
 
 	/// Queue of messages for GuiPoll
-	std::deque<CScriptValRooted> m_GuiMessageQueue;
+	std::deque<JS::Heap<JS::Value> > m_GuiMessageQueue;
 
 	/// Serialized game state received when joining an in-progress game
 	std::string m_JoinSyncBuffer;

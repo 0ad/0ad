@@ -67,7 +67,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 template<> void ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, JS::MutableHandleValue ret, CParamNode const& val)
 {
 	JSAutoRequest rq(cx);
-	ret.set(val.ToJSVal(cx, true));
+	val.ToJSVal(cx, true, ret);
 
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization

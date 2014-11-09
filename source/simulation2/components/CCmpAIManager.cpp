@@ -563,9 +563,10 @@ public:
 		JS::RootedValue tmpEntityTemplates(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 		m_ScriptInterface->Eval("({})", &tmpEntityTemplates);
 
+		JS::RootedValue val(cx);
 		for (size_t i = 0; i < templates.size(); ++i)
 		{
-			JS::RootedValue val(cx, templates[i].second->ToJSVal(cx, false));
+			templates[i].second->ToJSVal(cx, false, &val);
 			m_ScriptInterface->SetProperty(tmpEntityTemplates, templates[i].first.c_str(), val, true);
 		}
 
