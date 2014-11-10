@@ -68,6 +68,8 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.isDeserialized = false;
 		this.data = undefined;
 
+		this.HQ.start(gameState, true);
+
 		this.queueManager.printQueues(gameState);
 	}
 	else
@@ -99,6 +101,8 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 	for (var i in this.events)
 	{
+		if (i == "AIMetadata")   // not used inside petra
+			continue;
 		if(this.savedEvents[i] !== undefined)
 			this.savedEvents[i] = this.savedEvents[i].concat(this.events[i]);
 		else
@@ -122,12 +126,6 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 		this.HQ.update(this.gameState, this.queues, this.savedEvents);
 
 		this.queueManager.update(this.gameState);
-		
-		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
-		// TODO: remove this when the engine gives a random seed
-		var n = this.savedEvents["Create"].length % 29;
-		for (var i = 0; i < n; i++)
-			Math.random();
 		
 		for (var i in this.savedEvents)
 			this.savedEvents[i] = [];

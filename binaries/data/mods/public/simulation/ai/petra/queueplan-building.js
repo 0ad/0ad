@@ -49,7 +49,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	var pos = this.findGoodPosition(gameState);
 	if (!pos)
 	{
-		gameState.ai.HQ.stopBuilding.push(this.type);
+		gameState.ai.HQ.stopBuild(gameState, this.type);
 		Engine.ProfileStop();
 		return;
 	}
@@ -474,6 +474,43 @@ m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 	let cost = new API3.Resources();
 	cost.Deserialize(data.cost);
 	this.cost = cost;
+
+	// TODO find a way to properly serialize functions. For the time being, they are manually added
+	if (this.type == "structures/{civ}_house")
+	{
+		var difficulty = gameState.ai.Config.difficulty;
+		// change the starting condition according to the situation.
+		this.isGo = function (gameState) {
+			if (!self.canBuild(gameState, "structures/{civ}_house"))
+				return false;
+			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
+				return false;
+			var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
+
+			var freeSlots = 0;
+			// TODO how to modify with tech
+			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
+			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
+			if (gameState.ai.HQ.saveResources)
+				return (freeSlots <= 10);
+			else if (gameState.getPopulation() > 55 && difficulty > 1)
+				return (freeSlots <= 21);
+			else if (gameState.getPopulation() >= 30 && difficulty > 0)
+				return (freeSlots <= 15);
+			else
+				return (freeSlots <= 10);
+		};
+	}
+	else if (this.type == "structures/{civ}_market")
+	{
+		let priority = gameState.ai.Config.priorities.economicBuilding;
+		this.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", priority); };
+	}
+	else if (this.type == "structures/{civ}_barracks")
+	{
+		let priority = gameState.ai.Config.priorities.militaryBuilding;
+		this.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", priority); };
+	}
 };
 
 return m;

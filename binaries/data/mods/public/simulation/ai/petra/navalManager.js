@@ -348,6 +348,7 @@ m.NavalManager.prototype.requireTransport = function(gameState, entity, startInd
 			API3.warn(">>>> transport plan aborted <<<<");
 		return false;
 	}
+	plan.init(gameState);
 	this.transportPlans.push(plan);
 	return true;
 };
@@ -364,6 +365,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 			API3.warn(">>>> split of transport plan aborted <<<<");
 		return false;
 	}
+	newplan.init();
 
 	var nbUnits = 0;
 	plan.units.forEach(function (ent) {
@@ -680,21 +682,26 @@ m.NavalManager.prototype.Serialize = function()
 		"landingZones": this.landingZones
 	};
 
-	let transport = {};
+	let transports = {};
 	for (let plan in this.transportPlans)
-		transport[plan] = this.transportPlans[plan].Serialize();
+		transports[plan] = this.transportPlans[plan].Serialize();
 
-	return { "properties": properties, "transport": transport };
+	return { "properties": properties, "transports": transports };
 };
 
-m.NavalManager.prototype.Deserialize = function(data)
+m.NavalManager.prototype.Deserialize = function(gameState, data)
 {
-	for (let property in data.properties)
-		this[property] = data.properties[property];
+	for (let key in data.properties)
+		this[key] = data.properties[key];
 
 	this.transportPlans = [];
-//	for (let plan in data.transport)
-//		this.transportPlans[plan] = new m.TransportPlan(gameState, [entity], startIndex, endIndex, endPos)
+	for (let dataPlan in data.transports)
+	{
+		let plan = new m.TransportPlan(gameState, [], dataPlan.startIndex, dataPlan.endIndex, dataPlan.endPos);
+		plan.Deserialize(dataPlan);
+		plan.init(gameState);
+		this.transportPlans[plan].push(plan);
+	}
 };
 
 

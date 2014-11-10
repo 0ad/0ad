@@ -43,32 +43,32 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 		return false;
 	}
 
-	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "transport", this.ID));
-	this.units.registerUpdates();
-
 	for (var ent of units)
 	{
 		ent.setMetadata(PlayerID, "transport", this.ID);
 		ent.setMetadata(PlayerID, "endPos", endPos);
-		this.units.updateEnt(ent);
 	}
 
 	if (this.debug > 1)
 		API3.warn("Starting a new transport plan with ID " +  this.ID + " to index " + endIndex
 			+ " with units length " + units.length);
 
-	this.ships = gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
-	// note: those two can overlap (some transport ships are warships too and vice-versa).
-	this.transportShips = gameState.ai.HQ.navalManager.transportShips.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
-	
-	this.ships.registerUpdates();
-	this.transportShips.registerUpdates();
-
 	this.state = "boarding";
 	this.boardingPos = {};
 	this.needTransportShips = true;
 	this.nTry = {};
 	return true;
+};
+
+m.TransportPlan.prototype.init = function(gameState)
+{
+	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "transport", this.ID));
+	this.ships = gameState.ai.HQ.navalManager.ships.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
+	this.transportShips = gameState.ai.HQ.navalManager.transportShips.filter(API3.Filters.byMetadata(PlayerID, "transporter", this.ID));
+	
+	this.units.registerUpdates();
+	this.ships.registerUpdates();
+	this.transportShips.registerUpdates();
 };
 
 // count available slots
@@ -578,12 +578,29 @@ m.TransportPlan.prototype.resetUnit = function(gameState, ent)
 
 m.TransportPlan.prototype.Serialize = function()
 {
-	// TODO transport plans have still to be serialized
-	return {};
+	return {
+		"ID": this.ID,
+		"flotilla": this.flotilla,
+		"endPos": this.endPos,
+		"endIndex": this.endIndex,
+		"startIndex": this.startIndex,
+		"sea": this.sea,
+		"state": this.state,
+		"boardingPos": this.boardingPos,
+		"needTransportShips": this.needTransportShips,
+		"nTry": this.nTry,
+		"canceled": this.canceled,
+		"unloaded": this.unloaded,
+		"recovered": this.recovered
+	};
 };
 
 m.TransportPlan.prototype.Deserialize = function(data)
 {
+	for (let key in data)
+		this[key] = data[key];
+
+	this.failed = false;
 };
 
 return m;

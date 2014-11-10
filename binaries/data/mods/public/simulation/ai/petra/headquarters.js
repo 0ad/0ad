@@ -325,10 +325,25 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 		}
 	}
 
-	var allowRushes = (startingWood > 8500 && this.canBuildUnits);
-	this.attackManager.init(gameState, queues, allowRushes);
-	this.navalManager.init(gameState, queues);
+	this.attackManager.init(gameState);
+	if (startingWood > 8500 && this.canBuildUnits && !deserialization)
+		this.attackManager.setRushes();
+	this.navalManager.init(gameState);
 	this.tradeManager.init(gameState);
+};
+
+m.HQ.prototype.start = function(gameState, deserialization)
+{
+	if (deserialization)
+	{
+		var self = this;
+		gameState.getOwnEntities().forEach( function (ent) {
+			if (!ent.resourceDropsiteTypes() || ent.hasClass("Elephant"))
+				return;
+			let base = self.baseManagers[ent.getMetadata(PlayerID, "base")];
+			base.assignResourceToDropsite(gameState, ent);
+		});
+	}
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
@@ -1727,6 +1742,20 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	return true;
 };
 
+m.HQ.prototype.stopBuild = function(gameState, structure)
+{
+	let type = gameState.applyCiv(structure);
+	if (this.stopBuilding.indexOf(type) == -1)
+		this.stopBuilding.push(type);
+};
+
+m.HQ.prototype.restartBuild = function(gameState, structure)
+{
+	let index = this.stopBuilding.indexOf(gameState.applyCiv(structure));
+	if (index != -1)
+		this.stopBuilding.splice(index, 1);
+};
+
 m.HQ.prototype.updateTerritories = function(gameState)
 {
 	// TODO may-be update also when territory decreases. For the moment, only increases are taking into account
@@ -1988,89 +2017,6 @@ m.HQ.prototype.Serialize = function()
 		baseManagers[base] = this.baseManagers[base].Serialize();
 
 	if (this.Config.debug == -100)
-		API3.warn(" HQ serialization: properties >> " + uneval(properties));
-
-	return {
-		"properties": properties,
-
-		"baseManagers": baseManagers,
-		"attackManager": this.attackManager.Serialize(),
-		"defenseManager": this.defenseManager.Serialize(),
-		"tradeManager": this.tradeManager.Serialize(),
-		"navalManager": this.navalManager.Serialize(),
-		"researchManager": this.researchManager.Serialize(),
-		"diplomacyManager": this.diplomacyManager.Serialize(),
-		"garrisonManager": this.garrisonManager.Serialize(),
-	};
-};
-
-m.HQ.prototype.Deserialize = function(gameState, data)
-{
-	for (let key in data.properties)
-		this[key] = data.properties[key];
-
-	this.baseManagers = {};
-	for (let base in data.baseManagers)
-	{
-		// the first call to deserialize set the ID base needed by entitycollections
-		this.baseManagers[base] = new m.BaseManager(gameState, this.Config);
-		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
-		this.baseManagers[base].init(gameState);
-		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
-	}
-
-	this.attackManager = new m.AttackManager(this.Config);
-	this.attackManager.Deserialize(data.attackManager);
-
-	this.defenseManager = new m.DefenseManager(this.Config);
-	this.defenseManager.Deserialize(data.defenseManager);
-
-	this.tradeManager = new m.TradeManager(this.Config);
-	this.tradeManager.init(gameState);
-	this.tradeManager.Deserialize(data.tradeManager);
-
-	this.navalManager = new m.NavalManager(this.Config);
-	this.navalManager.init(gameState);
-	this.navalManager.Deserialize(data.navalManager);
-
-	this.researchManager = new m.ResearchManager(this.Config);
-	this.garrisonManager.Deserialize(data.researchManager);
-
-	this.diplomacyManager = new m.DiplomacyManager(this.Config);
-	this.diplomacyManager.Deserialize(data.diplomacyManager);
-
-	this.garrisonManager = new m.GarrisonManager();
-	this.garrisonManager.Deserialize(data.garrisonManager);
-};
-
-m.HQ.prototype.Serialize = function()
-{
-	let properties = {
-		"targetNumBuilders": this.targetNumBuilders,
-		"econState": this.econState,
-		"phaseStarted": this.phaseStarted,
-		"wantedRates": this.wantedRates,
-		"currentRates": this.currentRates,
-		"lastFailedGather": this.lastFailedGather,
-		"femaleRatio": this.femaleRatio,
-		"lastTerritoryUpdate": this.lastTerritoryUpdate,
-		"stopBuilding": this.stopBuilding,
-		"towerStartTime": this.towerStartTime,
-		"towerLapseTime": this.towerLapseTime,
-		"fortressStartTime": this.fortressStartTime,
-		"fortressLapseTime": this.fortressLapseTime,
-		"targetNumWorkers": this.targetNumWorkers,
-		"bBase": this.bBase,
-		"bAdvanced": this.bAdvanced,
-		"saveResources": this.saveResources,
-		"canBuildUnits": this.canBuildUnits
-	};
-
-	let baseManagers = {};
-	for (let base in this.baseManagers)
-		baseManagers[base] = this.baseManagers[base].Serialize();
-
-	if (this.Config.debug == -100)
 	{
 		API3.warn(" HQ serialization ---------------------");
 		API3.warn(" properties " + uneval(properties));
@@ -2127,10 +2073,10 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.navalManager = new m.NavalManager(this.Config);
 	this.navalManager.init(gameState);
-	this.navalManager.Deserialize(data.navalManager);
+	this.navalManager.Deserialize(gameState, data.navalManager);
 
 	this.researchManager = new m.ResearchManager(this.Config);
-	this.garrisonManager.Deserialize(data.researchManager);
+	this.researchManager.Deserialize(data.researchManager);
 
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.diplomacyManager.Deserialize(data.diplomacyManager);

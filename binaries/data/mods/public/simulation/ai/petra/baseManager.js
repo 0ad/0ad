@@ -950,7 +950,8 @@ m.BaseManager.prototype.Serialize = function()
 		"accessIndex": this.accessIndex,
 		"maxDistResourceSquare": this.maxDistResourceSquare,
 		"constructing": this.constructing,
-		"gatherers": this.gatherers
+		"gatherers": this.gatherers,
+		"territoryIndices": this.territoryIndices
 	};
 };
 

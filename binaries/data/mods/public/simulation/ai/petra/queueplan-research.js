@@ -71,6 +71,30 @@ m.ResearchPlan.prototype.Deserialize = function(gameState, data)
 	let cost = new API3.Resources();
 	cost.Deserialize(data.cost);
 	this.cost = cost;
+
+	// TODO find a way to properly serialize functions. For the time being, they are manually added
+	if (this.type == gameState.townPhase())
+	{
+		this.onStart = function (gameState) {
+			gameState.ai.HQ.econState = "growth";
+			 gameState.ai.HQ.OnTownPhase(gameState)
+		};
+		this.isGo = function (gameState) {
+			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
+			if (ret && !this.lastIsGo)
+				this.onGo(gameState);
+			else if (!ret && this.lastIsGo)
+				this.onNotGo(gameState);
+			this.lastIsGo = ret;
+			return ret;
+		};
+		this.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; };
+		this.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
+	}
+	else if (this.type == gameState.cityPhase())
+	{
+		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
+	}
 };
 
 return m;

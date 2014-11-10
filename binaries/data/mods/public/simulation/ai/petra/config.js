@@ -166,7 +166,7 @@ m.Config.prototype.Serialize = function()
 {
 	var data = {};
 	for (let key in this)
-		if (this.hasOwnProperty(key))
+		if (this.hasOwnProperty(key) && key != "debug")
 			data[key] = this[key];
 	return data;
 };

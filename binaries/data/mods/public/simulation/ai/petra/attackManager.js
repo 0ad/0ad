@@ -15,34 +15,34 @@ m.AttackManager = function(Config)
 	this.upcomingAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
 	this.startedAttacks = { "Rush": [], "Raid": [], "Attack": [], "HugeAttack": [] };
 	this.debugTime = 0;
+	this.maxRushes = 0;
+	this.rushSize = [];
 };
 
 // More initialisation for stuff that needs the gameState
-m.AttackManager.prototype.init = function(gameState, allowRush)
+m.AttackManager.prototype.init = function(gameState)
 {
 	this.outOfPlan = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", -1));
 	this.outOfPlan.allowQuickIter();
 	this.outOfPlan.registerUpdates();
+};
 
-	this.maxRushes = 0;
-	this.rushSize = [];
-	if (allowRush)
+m.AttackManager.prototype.setRushes = function()
+{
+	if (this.Config.personality.aggressive > 0.8)
 	{
-		if (this.Config.personality.aggressive > 0.8)
-		{
-			this.maxRushes = 3
-			this.rushSize = [ 16, 22, 28 ];
-		}
-		else if (this.Config.personality.aggressive > 0.6)
-		{
-			this.maxRushes = 2;
-			this.rushSize = [ 18, 28 ];
-		}
-		else if (this.Config.personality.aggressive > 0.3)
-		{
-			this.maxRushes = 1;
-			this.rushSize = [ 24 ];
-		}
+		this.maxRushes = 3
+		this.rushSize = [ 16, 22, 28 ];
+	}
+	else if (this.Config.personality.aggressive > 0.6)
+	{
+		this.maxRushes = 2;
+		this.rushSize = [ 18, 28 ];
+	}
+	else if (this.Config.personality.aggressive > 0.3)
+	{
+		this.maxRushes = 1;
+		this.rushSize = [ 24 ];
 	}
 };
 
@@ -274,21 +274,6 @@ m.AttackManager.prototype.unpauseAllPlans = function()
 
 m.AttackManager.prototype.Serialize = function()
 {
-	// TODO the attackPlans have still to be serialized
-	return {
-		"maxRushes": this.maxRushes,
-		"rushSize": this.rushSize
-	};
-};
-
-m.AttackManager.prototype.Deserialize = function(data)
-{
-	for (let key in data)
-		this[key] = data[key];
-};
-
-m.AttackManager.prototype.Serialize = function()
-{
 	let properties = {
 		"totalNumber": this.totalNumber,
 		"attackNumber": this.attackNumber,
@@ -321,7 +306,7 @@ m.AttackManager.prototype.Serialize = function()
 m.AttackManager.prototype.Deserialize = function(gameState, data)
 {
 	for (let key in data.properties)
-		this[key] = data[key];
+		this[key] = data.properties[key];
 
 	this.upcomingAttacks = {};
 	for (let key in data.upcomingAttacks)
