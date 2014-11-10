@@ -37,20 +37,38 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.elapsedTime = this.data.elapsedTime;
 		this.myIndex = this.data.myIndex;
 		this.savedEvents = this.data.savedEvents;
+		for (let key in this.savedEvents)
+		{
+			for (let i in this.savedEvents[key])
+			{
+				if (!this.savedEvents[key][i].entityObj)
+					continue;
+				let evt = this.savedEvents[key][i];
+				let evtmod = {};
+				for (let keyevt in evt)
+				{
+					evtmod[keyevt] = evt[keyevt];
+					evtmod.entityObj = new API3.Entity(gameState.sharedScript, evt.entityObj);
+					this.savedEvents[key][i] = evtmod;
+				}
+			}
+		}
 
 		this.Config.Deserialize(this.data.config);
 
 		this.queueManager = new m.QueueManager(this.Config, {});
-		this.queueManager.Deserialize(this.data.queueManager);
+		this.queueManager.Deserialize(gameState, this.data.queueManager);
 		this.queues = this.queueManager.queues;
 
 		this.HQ = new m.HQ(this.Config);
-		this.HQ.init(gameState, this.queues);
+		this.HQ.init(gameState, this.queues, true);
 		this.HQ.Deserialize(gameState, this.data.HQ);
 
 		this.uniqueIDs = this.data.uniqueIDs;
 		this.isDeserialized = false;
 		this.data = undefined;
+
+		this.queueManager.printQueues(gameState);
 	}
 	else
 	{
@@ -122,13 +140,30 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 m.PetraBot.prototype.Serialize = function()
 {
+	let savedEvents = {};
+	for (let key in this.savedEvents)
+	{
+		savedEvents[key] = this.savedEvents[key].slice();
+		for (let i in savedEvents[key])
+		{
+			if (!savedEvents[key][i].entityObj)
+				continue;
+			let evt = savedEvents[key][i];
+			let evtmod = {};
+			for (let keyevt in evt)
+				evtmod[keyevt] = evt[keyevt];
+			evtmod.entityObj = evt.entityObj._entity;
+			savedEvents[key][i] = evtmod;
+		}
+	}
+
 	return {
 		"uniqueIDs": this.uniqueIDs,
 		"turn": this.turn,
 		"playedTurn": this.playedTurn,
 		"elapsedTime": this.elapsedTime,
 		"myIndex": this.myIndex,
-		"savedEvents": this.savedEvents,
+		"savedEvents": savedEvents,
 		"config": this.Config.Serialize(),
 		"queueManager": this.queueManager.Serialize(),
 		"HQ": this.HQ.Serialize()

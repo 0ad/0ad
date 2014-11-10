@@ -32,7 +32,7 @@ m.DefenseManager.prototype.makeIntoArmy = function(gameState, entityID)
 			return;	// over
 
 	// Create a new army for it.
-	var army = new m.DefenseArmy(gameState, this, [], [entityID]);
+	var army = new m.DefenseArmy(gameState, [], [entityID]);
 	this.armies.push(army);
 };
 
@@ -415,19 +415,30 @@ m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 
 m.DefenseManager.prototype.Serialize = function()
 {
-	// TODO armies should still be serialized in defenseManager
 	let properties = {
 		"targetList" : this.targetList,
 		"armyMergeSize": this.armyMergeSize
 	};
 
-	return { "properties": properties };
+	let armies = [];
+	for (var army of this.armies)
+		armies.push(army.Serialize());
+
+	return { "properties": properties, "armies": armies };
 };
 
 m.DefenseManager.prototype.Deserialize = function(data)
 {
 	for (let key in data.properties)
 		this[key] = data.properties[key];
+
+	this.armies = [];
+	for (let dataArmy of data.armies)
+	{
+		let army = new m.DefenseArmy(gameState, [], []);
+		army.Deserialize(dataArmy);
+		this.armies.push(army);
+	}
 };
 
 return m;

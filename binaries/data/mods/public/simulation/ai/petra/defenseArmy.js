@@ -2,9 +2,9 @@ var PETRA = function(m)
 {
 
 // Specialization of Armies used by the defense manager.
-m.DefenseArmy = function(gameState, defManager, ownEntities, foeEntities)
+m.DefenseArmy = function(gameState, ownEntities, foeEntities)
 {
-	if (!m.Army.call(this, gameState, defManager, ownEntities, foeEntities))
+	if (!m.Army.call(this, gameState, ownEntities, foeEntities))
 		return false;
 
 	return true;
@@ -113,6 +113,27 @@ m.DefenseArmy.prototype.update = function (gameState)
 	var breakaways = this.onUpdate(gameState);
 
 	return breakaways;
+};
+
+m.DefenseArmy.prototype.Serialize = function()
+{
+	return {
+		"ID": this.ID,
+		"foePosition": this.foePosition,
+		"positionLastUpdate": this.positionLastUpdate,
+		"assignedAgainst": this.assignedAgainst,
+		"assignedTo": this.assignedTo,
+		"foeEntities": this.foeEntities,
+		"foeStrength": this.foeStrength,
+		"ownEntities": this.ownEntities,
+		"ownStrength": this.ownStrength,
+	};
+};
+
+m.DefenseArmy.prototype.Deserialize = function(data)
+{
+	for (var key in data)
+		this[key] = data[key]
 };
 
 return m;

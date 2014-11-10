@@ -50,7 +50,7 @@ m.HQ = function(Config)
 };
 
 // More initialisation for stuff that needs the gameState
-m.HQ.prototype.init = function(gameState, queues)
+m.HQ.prototype.init = function(gameState, queues, deserialization)
 {
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
@@ -125,7 +125,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	}
 	this.updateTerritories(gameState);
 
-	if (this.baseManagers[b0])     // Affects entities in the different bases
+	if (this.baseManagers[b0] && !deserialization)     // Affects entities in the different bases
 	{
 		var self = this;
 		var width = gameState.getMap().width;
@@ -138,7 +138,7 @@ m.HQ.prototype.init = function(gameState, queues)
 			{
 				// TODO temporarily assigned to base 1. Certainly a garrisoned unit,
 				// should assign it to the base of the garrison holder
-				self.baseManagers[1].assignEntity(ent);
+				self.baseManagers[b0].assignEntity(ent);
 				return;
 			}
 			ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
@@ -155,7 +155,7 @@ m.HQ.prototype.init = function(gameState, queues)
 				return;
 			}
 			// entity outside our territory, assign it to base 1
-			self.baseManagers[1].assignEntity(ent);
+			self.baseManagers[b0].assignEntity(ent);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				self.baseManagers[1].assignResourceToDropsite(gameState, ent);
 
@@ -165,7 +165,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	// we now have enough data to decide on a few things.
 	
 	// immediatly build a wood dropsite if possible.
-	if (this.baseManagers[1])
+	if (this.baseManagers[1] && gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_storehouse"), true) == 0)
 	{
 		var newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40 && this.canBuild(gameState, "structures/{civ}_storehouse"))
@@ -1987,6 +1987,9 @@ m.HQ.prototype.Serialize = function()
 	for (let base in this.baseManagers)
 		baseManagers[base] = this.baseManagers[base].Serialize();
 
+	if (this.Config.debug == -100)
+		API3.warn(" HQ serialization: properties >> " + uneval(properties));
+
 	return {
 		"properties": properties,
 
@@ -2018,6 +2021,102 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.attackManager = new m.AttackManager(this.Config);
 	this.attackManager.Deserialize(data.attackManager);
+
+	this.defenseManager = new m.DefenseManager(this.Config);
+	this.defenseManager.Deserialize(data.defenseManager);
+
+	this.tradeManager = new m.TradeManager(this.Config);
+	this.tradeManager.init(gameState);
+	this.tradeManager.Deserialize(data.tradeManager);
+
+	this.navalManager = new m.NavalManager(this.Config);
+	this.navalManager.init(gameState);
+	this.navalManager.Deserialize(data.navalManager);
+
+	this.researchManager = new m.ResearchManager(this.Config);
+	this.garrisonManager.Deserialize(data.researchManager);
+
+	this.diplomacyManager = new m.DiplomacyManager(this.Config);
+	this.diplomacyManager.Deserialize(data.diplomacyManager);
+
+	this.garrisonManager = new m.GarrisonManager();
+	this.garrisonManager.Deserialize(data.garrisonManager);
+};
+
+m.HQ.prototype.Serialize = function()
+{
+	let properties = {
+		"targetNumBuilders": this.targetNumBuilders,
+		"econState": this.econState,
+		"phaseStarted": this.phaseStarted,
+		"wantedRates": this.wantedRates,
+		"currentRates": this.currentRates,
+		"lastFailedGather": this.lastFailedGather,
+		"femaleRatio": this.femaleRatio,
+		"lastTerritoryUpdate": this.lastTerritoryUpdate,
+		"stopBuilding": this.stopBuilding,
+		"towerStartTime": this.towerStartTime,
+		"towerLapseTime": this.towerLapseTime,
+		"fortressStartTime": this.fortressStartTime,
+		"fortressLapseTime": this.fortressLapseTime,
+		"targetNumWorkers": this.targetNumWorkers,
+		"bBase": this.bBase,
+		"bAdvanced": this.bAdvanced,
+		"saveResources": this.saveResources,
+		"canBuildUnits": this.canBuildUnits
+	};
+
+	let baseManagers = {};
+	for (let base in this.baseManagers)
+		baseManagers[base] = this.baseManagers[base].Serialize();
+
+	if (this.Config.debug == -100)
+	{
+		API3.warn(" HQ serialization ---------------------");
+		API3.warn(" properties " + uneval(properties));
+		API3.warn(" baseManagers " + uneval(baseManagers));
+		API3.warn(" attackManager " + uneval(this.attackManager.Serialize()));
+		API3.warn(" defenseManager " + uneval(this.defenseManager.Serialize()));
+		API3.warn(" tradeManager " + uneval(this.tradeManager.Serialize()));
+		API3.warn(" navalManager " + uneval(this.navalManager.Serialize()));
+		API3.warn(" researchManager " + uneval(this.researchManager.Serialize()));
+		API3.warn(" diplomacyManager " + uneval(this.diplomacyManager.Serialize()));
+		API3.warn(" garrisonManager " + uneval(this.garrisonManager.Serialize()));
+	}
+
+	return {
+		"properties": properties,
+
+		"baseManagers": baseManagers,
+		"attackManager": this.attackManager.Serialize(),
+		"defenseManager": this.defenseManager.Serialize(),
+		"tradeManager": this.tradeManager.Serialize(),
+		"navalManager": this.navalManager.Serialize(),
+		"researchManager": this.researchManager.Serialize(),
+		"diplomacyManager": this.diplomacyManager.Serialize(),
+		"garrisonManager": this.garrisonManager.Serialize(),
+	};
+};
+
+m.HQ.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data.properties)
+		this[key] = data.properties[key];
+
+	this.baseManagers = {};
+	for (let base in data.baseManagers)
+	{
+		// the first call to deserialize set the ID base needed by entitycollections
+		this.baseManagers[base] = new m.BaseManager(gameState, this.Config);
+		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
+		this.baseManagers[base].init(gameState);
+		this.baseManagers[base].Deserialize(gameState, data.baseManagers[base]);
+	}
+
+	this.attackManager = new m.AttackManager(this.Config);
+	this.attackManager.Deserialize(gameState, data.attackManager);
+	this.attackManager.init(gameState);
+	this.attackManager.Deserialize(gameState, data.attackManager);
 
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.defenseManager.Deserialize(data.defenseManager);

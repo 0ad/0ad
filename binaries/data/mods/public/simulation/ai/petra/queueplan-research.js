@@ -49,5 +49,29 @@ m.ResearchPlan.prototype.start = function(gameState)
 	this.onStart(gameState);
 };
 
+m.ResearchPlan.prototype.Serialize = function()
+{
+	return {
+		"type": this.type,
+		"metadata": this.metadata,
+		"ID": this.ID,
+		"category": this.category,
+		"cost": this.cost.Serialize(),
+		"number": this.number,
+		"lastIsGo": this.lastIsGo,
+		"rush": this.rush
+	};
+};
+
+m.ResearchPlan.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data)
+		this[key] = data[key];
+
+	let cost = new API3.Resources();
+	cost.Deserialize(data.cost);
+	this.cost = cost;
+};
+
 return m;
 }(PETRA);

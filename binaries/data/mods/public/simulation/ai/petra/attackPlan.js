@@ -141,38 +141,13 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 
 	// TODO: there should probably be one queue per type of training building
 	gameState.ai.queueManager.addQueue("plan_" + this.name, priority);
-	this.queue = gameState.ai.queues["plan_" + this.name];
 	gameState.ai.queueManager.addQueue("plan_" + this.name +"_champ", priority+1);
-	this.queueChamp = gameState.ai.queues["plan_" + this.name +"_champ"];
 	gameState.ai.queueManager.addQueue("plan_" + this.name +"_siege", priority);
-	this.queueSiege = gameState.ai.queues["plan_" + this.name +"_siege"];
-	/*
-	this.unitStat["Siege"]["filter"] = function (ent) {
-		var strength = [ent.attackStrengths("Melee")["crush"],ent.attackStrengths("Ranged")["crush"]];
-		return (strength[0] > 15 || strength[1] > 15);
-	};*/
-
-	this.unitCollection = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", this.name));
-	this.unitCollection.registerUpdates();
-	
-	this.unit = {};
 	
 	// each array is [ratio, [associated classes], associated EntityColl, associated unitStat, name ]
 	this.buildOrder = [];
 	this.canBuildUnits = gameState.ai.HQ.canBuildUnits;
-	
-	// defining the entity collections. Will look for units I own, that are part of this plan.
-	// Also defining the buildOrders.
-	for (var cat in this.unitStat)
-	{
-		var Unit = this.unitStat[cat];
-		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]), API3.Filters.byMetadata(PlayerID, "plan",this.name));
-		this.unit[cat] = gameState.getOwnUnits().filter(filter);
-		this.unit[cat].registerUpdates();
-		if (this.canBuildUnits)
-			this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
-	}
-	
+
 	// some variables for during the attack
 	this.position5TurnsAgo = [0,0];
 	this.lastPosition = [0,0];
@@ -186,6 +161,30 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	this.pathSampling = 2;
 
 	return true;
+};
+
+m.AttackPlan.prototype.init = function(gameState)
+{
+	this.queue = gameState.ai.queues["plan_" + this.name];
+	this.queueChamp = gameState.ai.queues["plan_" + this.name +"_champ"];
+	this.queueSiege = gameState.ai.queues["plan_" + this.name +"_siege"];
+
+	this.unitCollection = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", this.name));
+	this.unitCollection.registerUpdates();
+	
+	this.unit = {};
+
+	// defining the entity collections. Will look for units I own, that are part of this plan.
+	// Also defining the buildOrders.
+	for (var cat in this.unitStat)
+	{
+		var Unit = this.unitStat[cat];
+		var filter = API3.Filters.and(API3.Filters.byClassesAnd(Unit["classes"]), API3.Filters.byMetadata(PlayerID, "plan",this.name));
+		this.unit[cat] = gameState.getOwnUnits().filter(filter);
+		this.unit[cat].registerUpdates();
+		if (this.canBuildUnits)
+			this.buildOrder.push([0, Unit["classes"], this.unit[cat], Unit, cat]);
+	}
 };
 
 m.AttackPlan.prototype.getName = function()
@@ -1582,14 +1581,31 @@ m.AttackPlan.prototype.removeUnit = function(ent)
 
 m.AttackPlan.prototype.checkEvents = function(gameState, events)
 {
+	if (this.target)
+	{
+		let renameEvents = events["EntityRenamed"];
+		for (let evt of renameEvents)
+		{
+			if (this.target.id() == evt.entity)
+			{
+				this.target = gameState.getEntityById(evt.newentity);
+				if (this.target)
+					this.targetPos = this.target.position();
+				else
+					this.targetPos = undefined;
+			}
+		}
+	}
+
 	if (this.state === "unexecuted")
 		return;
+
 	var TrainingEvents = events["TrainingFinished"];
-	for (var evt of TrainingEvents)
+	for (let evt of TrainingEvents)
 	{
-		for (var id of evt.entities)
+		for (let id of evt.entities)
 		{
-			var ent = gameState.getEntityById(id);
+			let ent = gameState.getEntityById(id);
 			if (!ent || ent.getMetadata(PlayerID, "plan") === undefined)
 				continue;
 			if (ent.getMetadata(PlayerID, "plan") === this.name)
@@ -1637,6 +1653,53 @@ m.AttackPlan.prototype.debugAttack = function()
 		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
 	}
 	API3.warn("------------------------------");
+};
+
+m.AttackPlan.prototype.Serialize = function()
+{
+	let properties = {
+		"name": this.name,
+		"type": this.type,
+		"state": this.state,
+		"rallyPoint": this.rallyPoint,
+		"overseas": this.overseas,
+		"paused": this.paused,
+		"maxCompletingTurn": this.maxCompletingTurn,
+		"neededShips": this.neededShips,
+		"unitStat": this.unitStat,
+		"path": this.path,
+		"pathSampling": this.pathSampling,
+		"pathWidth": this.pathWidth,
+		"position5TurnsAgo": this.position5TurnsAgo,
+		"lastPosition": this.lastPosition,
+		"position": this.position,
+		"targetPlayer": this.targetPlayer
+	};
+
+	let objects = {
+		"targetId": ((this.target !== undefined) ? this.target.id() : undefined)
+	};
+
+	return { "properties": properties, "objects": objects };
+};
+
+m.AttackPlan.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data.properties)
+		this[key] = data.properties[key];
+
+	let targetId = data.objects["targetId"];
+	if (targetId)
+	{
+		this.target = gameState.getEntityById(targetId);
+		this.targetPos = this.target.position();
+	}
+	else
+	{
+		this.target = undefined;
+		this.targetPos = undefined;
+	}
+	this.failed = undefined;
 };
 
 return m;

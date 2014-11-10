@@ -18,7 +18,7 @@ m.AttackManager = function(Config)
 };
 
 // More initialisation for stuff that needs the gameState
-m.AttackManager.prototype.init = function(gameState, queues, allowRush)
+m.AttackManager.prototype.init = function(gameState, allowRush)
 {
 	this.outOfPlan = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", -1));
 	this.outOfPlan.allowQuickIter();
@@ -159,6 +159,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Rushing plan " + this.totalNumber + " with maxRushes " + this.maxRushes);
 				this.totalNumber++;
+				attackPlan.init(gameState);
 				this.upcomingAttacks["Rush"].push(attackPlan);
 			}
 			this.rushNumber++;
@@ -184,6 +185,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				if (this.Config.debug > 1)
 					API3.warn("Military Manager: Creating the plan " + type + "  " + this.totalNumber);
 				this.totalNumber++;
+				attackPlan.init(gameState);
 				this.upcomingAttacks[type].push(attackPlan);
 			}
 			this.attackNumber++;
@@ -209,6 +211,7 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 				if (this.Config.debug > 1)
 					API3.warn("Headquarters: Raiding plan " + this.totalNumber);
 				this.totalNumber++;
+				attackPlan.init(gameState);
 				this.upcomingAttacks["Raid"].push(attackPlan);
 			}
 			this.raidNumber++;
@@ -282,6 +285,69 @@ m.AttackManager.prototype.Deserialize = function(data)
 {
 	for (let key in data)
 		this[key] = data[key];
+};
+
+m.AttackManager.prototype.Serialize = function()
+{
+	let properties = {
+		"totalNumber": this.totalNumber,
+		"attackNumber": this.attackNumber,
+		"rushNumber": this.rushNumber,
+		"raidNumber": this.raidNumber,
+		"debugTime": this.debugTime,
+		"maxRushes": this.maxRushes,
+		"rushSize": this.rushSize
+	};
+
+	let upcomingAttacks = {};
+	for (let key in this.upcomingAttacks)
+	{
+		upcomingAttacks[key] = [];
+		for (let attack of this.upcomingAttacks[key])
+			upcomingAttacks[key].push(attack.Serialize());
+	};
+
+	let startedAttacks = {};
+	for (let key in this.startedAttacks)
+	{
+		startedAttacks[key] = [];
+		for (let attack of this.startedAttacks[key])
+			startedAttacks[key].push(attack.Serialize());
+	};
+
+	return { "properties": properties, "upcomingAttacks": upcomingAttacks, "startedAttacks": startedAttacks };
+};
+
+m.AttackManager.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data.properties)
+		this[key] = data[key];
+
+	this.upcomingAttacks = {};
+	for (let key in data.upcomingAttacks)
+	{
+		this.upcomingAttacks[key] = [];
+		for (let dataAttack of data.upcomingAttacks[key])
+		{
+			let attack =  new m.AttackPlan(gameState, this.Config, 0);
+			attack.Deserialize(gameState, dataAttack);
+			attack.init(gameState);
+			this.upcomingAttacks[key].push(attack);
+		}
+	};
+
+	this.startedAttacks = {};
+	for (let key in data.startedAttacks)
+	{
+		this.startedAttacks[key] = [];
+		for (let dataAttack of data.startedAttacks[key])
+		{
+			let attack =  new m.AttackPlan(gameState, this.Config, 0);
+			attack.Deserialize(gameState, dataAttack);
+			attack.init(gameState);
+			this.startedAttacks[key].push(attack);
+		}
+	};
 };
 
 return m;

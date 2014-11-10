@@ -452,5 +452,29 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
 	return false;
 };
 
+m.ConstructionPlan.prototype.Serialize = function()
+{
+	return {
+		"type": this.type,
+		"metadata": this.metadata,
+		"ID": this.ID,
+		"category": this.category,
+		"cost": this.cost.Serialize(),
+		"number": this.number,
+		"position": this.position,
+		"lastIsGo": this.lastIsGo
+	};
+};
+
+m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data)
+		this[key] = data[key];
+
+	let cost = new API3.Resources();
+	cost.Deserialize(data.cost);
+	this.cost = cost;
+};
+
 return m;
 }(PETRA);
