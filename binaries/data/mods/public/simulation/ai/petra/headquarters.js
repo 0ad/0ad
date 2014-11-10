@@ -2065,7 +2065,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.attackManager.Deserialize(gameState, data.attackManager);
 
 	this.defenseManager = new m.DefenseManager(this.Config);
-	this.defenseManager.Deserialize(data.defenseManager);
+	this.defenseManager.Deserialize(gameState, data.defenseManager);
 
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.tradeManager.init(gameState);

@@ -427,7 +427,7 @@ m.DefenseManager.prototype.Serialize = function()
 	return { "properties": properties, "armies": armies };
 };
 
-m.DefenseManager.prototype.Deserialize = function(data)
+m.DefenseManager.prototype.Deserialize = function(gameState, data)
 {
 	for (let key in data.properties)
 		this[key] = data.properties[key];

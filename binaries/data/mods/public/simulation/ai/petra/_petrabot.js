@@ -69,8 +69,6 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.data = undefined;
 
 		this.HQ.start(gameState, true);
-
-		this.queueManager.printQueues(gameState);
 	}
 	else
 	{
