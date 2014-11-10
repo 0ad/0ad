@@ -37,20 +37,40 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.elapsedTime = this.data.elapsedTime;
 		this.myIndex = this.data.myIndex;
 		this.savedEvents = this.data.savedEvents;
+		for (let key in this.savedEvents)
+		{
+			for (let i in this.savedEvents[key])
+			{
+				if (!this.savedEvents[key][i].entityObj)
+					continue;
+				let evt = this.savedEvents[key][i];
+				let evtmod = {};
+				for (let keyevt in evt)
+				{
+					evtmod[keyevt] = evt[keyevt];
+					evtmod.entityObj = new API3.Entity(gameState.sharedScript, evt.entityObj);
+					this.savedEvents[key][i] = evtmod;
+				}
+			}
+		}
 
 		this.Config.Deserialize(this.data.config);
 
 		this.queueManager = new m.QueueManager(this.Config, {});
-		this.queueManager.Deserialize(this.data.queueManager);
+		this.queueManager.Deserialize(gameState, this.data.queueManager);
 		this.queues = this.queueManager.queues;
 
 		this.HQ = new m.HQ(this.Config);
-		this.HQ.init(gameState, this.queues);
+		this.HQ.init(gameState, this.queues, true);
 		this.HQ.Deserialize(gameState, this.data.HQ);
 
 		this.uniqueIDs = this.data.uniqueIDs;
 		this.isDeserialized = false;
 		this.data = undefined;
+
+		this.HQ.start(gameState, true);
+
+		this.queueManager.printQueues(gameState);
 	}
 	else
 	{
@@ -81,6 +101,8 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 	for (var i in this.events)
 	{
+		if (i == "AIMetadata")   // not used inside petra
+			continue;
 		if(this.savedEvents[i] !== undefined)
 			this.savedEvents[i] = this.savedEvents[i].concat(this.events[i]);
 		else
@@ -105,12 +127,6 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 		this.queueManager.update(this.gameState);
 		
-		// Generate some entropy in the random numbers (against humans) until the engine gets random initialised numbers
-		// TODO: remove this when the engine gives a random seed
-		var n = this.savedEvents["Create"].length % 29;
-		for (var i = 0; i < n; i++)
-			Math.random();
-		
 		for (var i in this.savedEvents)
 			this.savedEvents[i] = [];
 
@@ -122,13 +138,30 @@ m.PetraBot.prototype.OnUpdate = function(sharedScript)
 
 m.PetraBot.prototype.Serialize = function()
 {
+	let savedEvents = {};
+	for (let key in this.savedEvents)
+	{
+		savedEvents[key] = this.savedEvents[key].slice();
+		for (let i in savedEvents[key])
+		{
+			if (!savedEvents[key][i].entityObj)
+				continue;
+			let evt = savedEvents[key][i];
+			let evtmod = {};
+			for (let keyevt in evt)
+				evtmod[keyevt] = evt[keyevt];
+			evtmod.entityObj = evt.entityObj._entity;
+			savedEvents[key][i] = evtmod;
+		}
+	}
+
 	return {
 		"uniqueIDs": this.uniqueIDs,
 		"turn": this.turn,
 		"playedTurn": this.playedTurn,
 		"elapsedTime": this.elapsedTime,
 		"myIndex": this.myIndex,
-		"savedEvents": this.savedEvents,
+		"savedEvents": savedEvents,
 		"config": this.Config.Serialize(),
 		"queueManager": this.queueManager.Serialize(),
 		"HQ": this.HQ.Serialize()

@@ -311,6 +311,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 			else
 				API3.warn("one market (or foundation) has been destroyed ... checking routes");
 		}
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_market");
+		gameState.ai.HQ.restartBuild(gameState, "structures/{civ}_dock");
 		return true;
 	}
 
@@ -473,7 +475,10 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	this.checkRoutes(gameState);
 	var marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
 	if (!marketPos || marketPos[3] === 0)   // marketPos[3] is the expected gain
+	{
+		gameState.ai.HQ.stopBuild(gameState, "structures/{civ}_market");
 		return;
+	}
 	if (this.potentialTradeRoute && marketPos[3] < 2*this.potentialTradeRoute.gain
 		&& marketPos[3] < this.potentialTradeRoute.gain + 20)
 		return;

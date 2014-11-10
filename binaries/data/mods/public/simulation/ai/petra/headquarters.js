@@ -50,7 +50,7 @@ m.HQ = function(Config)
 };
 
 // More initialisation for stuff that needs the gameState
-m.HQ.prototype.init = function(gameState, queues)
+m.HQ.prototype.init = function(gameState, queues, deserialization)
 {
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
@@ -125,7 +125,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	}
 	this.updateTerritories(gameState);
 
-	if (this.baseManagers[b0])     // Affects entities in the different bases
+	if (this.baseManagers[b0] && !deserialization)     // Affects entities in the different bases
 	{
 		var self = this;
 		var width = gameState.getMap().width;
@@ -138,7 +138,7 @@ m.HQ.prototype.init = function(gameState, queues)
 			{
 				// TODO temporarily assigned to base 1. Certainly a garrisoned unit,
 				// should assign it to the base of the garrison holder
-				self.baseManagers[1].assignEntity(ent);
+				self.baseManagers[b0].assignEntity(ent);
 				return;
 			}
 			ent.setMetadata(PlayerID, "access", gameState.ai.accessibility.getAccessValue(ent.position()));
@@ -155,7 +155,7 @@ m.HQ.prototype.init = function(gameState, queues)
 				return;
 			}
 			// entity outside our territory, assign it to base 1
-			self.baseManagers[1].assignEntity(ent);
+			self.baseManagers[b0].assignEntity(ent);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				self.baseManagers[1].assignResourceToDropsite(gameState, ent);
 
@@ -165,7 +165,7 @@ m.HQ.prototype.init = function(gameState, queues)
 	// we now have enough data to decide on a few things.
 	
 	// immediatly build a wood dropsite if possible.
-	if (this.baseManagers[1])
+	if (this.baseManagers[1] && gameState.countEntitiesAndQueuedByType(gameState.applyCiv("structures/{civ}_storehouse"), true) == 0)
 	{
 		var newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40 && this.canBuild(gameState, "structures/{civ}_storehouse"))
@@ -325,10 +325,25 @@ m.HQ.prototype.init = function(gameState, queues)
 		}
 	}
 
-	var allowRushes = (startingWood > 8500 && this.canBuildUnits);
-	this.attackManager.init(gameState, queues, allowRushes);
-	this.navalManager.init(gameState, queues);
+	this.attackManager.init(gameState);
+	if (startingWood > 8500 && this.canBuildUnits && !deserialization)
+		this.attackManager.setRushes();
+	this.navalManager.init(gameState);
 	this.tradeManager.init(gameState);
+};
+
+m.HQ.prototype.start = function(gameState, deserialization)
+{
+	if (deserialization)
+	{
+		var self = this;
+		gameState.getOwnEntities().forEach( function (ent) {
+			if (!ent.resourceDropsiteTypes() || ent.hasClass("Elephant"))
+				return;
+			let base = self.baseManagers[ent.getMetadata(PlayerID, "base")];
+			base.assignResourceToDropsite(gameState, ent);
+		});
+	}
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
@@ -1727,6 +1742,20 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	return true;
 };
 
+m.HQ.prototype.stopBuild = function(gameState, structure)
+{
+	let type = gameState.applyCiv(structure);
+	if (this.stopBuilding.indexOf(type) == -1)
+		this.stopBuilding.push(type);
+};
+
+m.HQ.prototype.restartBuild = function(gameState, structure)
+{
+	let index = this.stopBuilding.indexOf(gameState.applyCiv(structure));
+	if (index != -1)
+		this.stopBuilding.splice(index, 1);
+};
+
 m.HQ.prototype.updateTerritories = function(gameState)
 {
 	// TODO may-be update also when territory decreases. For the moment, only increases are taking into account
@@ -1987,6 +2016,20 @@ m.HQ.prototype.Serialize = function()
 	for (let base in this.baseManagers)
 		baseManagers[base] = this.baseManagers[base].Serialize();
 
+	if (this.Config.debug == -100)
+	{
+		API3.warn(" HQ serialization ---------------------");
+		API3.warn(" properties " + uneval(properties));
+		API3.warn(" baseManagers " + uneval(baseManagers));
+		API3.warn(" attackManager " + uneval(this.attackManager.Serialize()));
+		API3.warn(" defenseManager " + uneval(this.defenseManager.Serialize()));
+		API3.warn(" tradeManager " + uneval(this.tradeManager.Serialize()));
+		API3.warn(" navalManager " + uneval(this.navalManager.Serialize()));
+		API3.warn(" researchManager " + uneval(this.researchManager.Serialize()));
+		API3.warn(" diplomacyManager " + uneval(this.diplomacyManager.Serialize()));
+		API3.warn(" garrisonManager " + uneval(this.garrisonManager.Serialize()));
+	}
+
 	return {
 		"properties": properties,
 
@@ -2017,7 +2060,9 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	}
 
 	this.attackManager = new m.AttackManager(this.Config);
-	this.attackManager.Deserialize(data.attackManager);
+	this.attackManager.Deserialize(gameState, data.attackManager);
+	this.attackManager.init(gameState);
+	this.attackManager.Deserialize(gameState, data.attackManager);
 
 	this.defenseManager = new m.DefenseManager(this.Config);
 	this.defenseManager.Deserialize(data.defenseManager);
@@ -2028,10 +2073,10 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.navalManager = new m.NavalManager(this.Config);
 	this.navalManager.init(gameState);
-	this.navalManager.Deserialize(data.navalManager);
+	this.navalManager.Deserialize(gameState, data.navalManager);
 
 	this.researchManager = new m.ResearchManager(this.Config);
-	this.garrisonManager.Deserialize(data.researchManager);
+	this.researchManager.Deserialize(data.researchManager);
 
 	this.diplomacyManager = new m.DiplomacyManager(this.Config);
 	this.diplomacyManager.Deserialize(data.diplomacyManager);

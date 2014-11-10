@@ -128,5 +128,29 @@ m.TrainingPlan.prototype.promotedTypes = function(gameState)
 	return types;
 };
 
+m.TrainingPlan.prototype.Serialize = function()
+{
+	return {
+		"type": this.type,
+		"metadata": this.metadata,
+		"ID": this.ID,
+		"category": this.category,
+		"cost": this.cost.Serialize(),
+		"number": this.number,
+		"maxMerge": this.maxMerge,
+		"lastIsGo": this.lastIsGo
+	};
+};
+
+m.TrainingPlan.prototype.Deserialize = function(gameState, data)
+{
+	for (let key in data)
+		this[key] = data[key];
+
+	let cost = new API3.Resources();
+	cost.Deserialize(data.cost);
+	this.cost = cost;
+};
+
 return m;
 }(PETRA);

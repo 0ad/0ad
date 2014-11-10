@@ -79,7 +79,7 @@ m.Resources.prototype.toInt = function() {
 m.Resources.prototype.Serialize = function()
 {
 	let amounts = {};
-	for (let key in this.types)
+	for (let key of this.types)
 		amounts[key] = this[key];
 	return { "amounts": amounts, "population": this.population };
 };

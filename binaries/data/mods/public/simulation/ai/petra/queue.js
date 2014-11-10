@@ -129,15 +129,34 @@ m.Queue.prototype.countAllByType = function(t)
 
 m.Queue.prototype.Serialize = function()
 {
-	// TODO proper queues have still to be serialized
-	return { "queue": [], "paused": this.paused, "switched": this.switched };
+	let queue = [];
+	for (let plan of this.queue)
+		queue.push(plan.Serialize());
+
+	return { "queue": queue, "paused": this.paused, "switched": this.switched };
 };
 
-m.Queue.prototype.Deserialize = function(data)
+m.Queue.prototype.Deserialize = function(gameState, data)
 {
-	this.queue = data.queue;
 	this.paused = data.paused;
 	this.switched = data.switched;
+	this.queue = [];
+	for (let dataPlan of data.queue)
+	{
+		if (dataPlan.category == "unit")
+			var plan = new m.TrainingPlan(gameState, dataPlan.type);
+		else if (dataPlan.category == "building")
+			var plan = new m.ConstructionPlan(gameState, dataPlan.type);
+		else if (dataPlan.category == "technology")
+			var plan = new m.ResearchPlan(gameState, dataPlan.type);
+		else
+		{
+			API3.warn("Petra deserialization error: plan " + dataPlan.category + " unknown.");
+			continue;
+		}
+		plan.Deserialize(gameState, dataPlan);
+		this.queue.push(plan);
+	}
 };
 
 return m;

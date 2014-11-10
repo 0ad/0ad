@@ -9,11 +9,11 @@ var PETRA = function(m)
  * Inherited by the defense manager and several of the attack manager's attack plan.
  */
 
-m.Army = function(gameState, owner, ownEntities, foeEntities)
+m.Army = function(gameState, ownEntities, foeEntities)
 {
 	this.ID = gameState.ai.uniqueIDs.armies++;
 
-	this.Config = owner.Config; 
+	this.Config = gameState.ai.Config;
 	this.defenseRatio = this.Config.Defense.defenseRatio;
 	this.compactSize = this.Config.Defense.armyCompactSize;
 	this.breakawaySize = this.Config.Defense.armyBreakawaySize;
@@ -72,7 +72,7 @@ m.Army.prototype.recalculatePosition = function(gameState, force)
 	}
 
 	this.positionLastUpdate = gameState.ai.elapsedTime;
-}
+};
 
 // helper
 m.Army.prototype.recalculateStrengths = function (gameState)
@@ -86,7 +86,7 @@ m.Army.prototype.recalculateStrengths = function (gameState)
 		this.evaluateStrength(gameState.getEntityById(id));
 	for (var id of this.ownEntities)
 		this.evaluateStrength(gameState.getEntityById(id), true);
-}
+};
 
 // adds or remove the strength of the entity either to the enemy or to our units.
 m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
@@ -101,7 +101,7 @@ m.Army.prototype.evaluateStrength = function (ent, isOwn, remove)
 		this.foeStrength += entStrength;
 	
 	// todo: deal with specifics.
-}
+};
 
 // add an entity to the enemy army
 // Will return true if the entity was added and false otherwise.
@@ -125,7 +125,7 @@ m.Army.prototype.addFoe = function (gameState, enemyId, force)
 	ent.setMetadata(PlayerID, "PartOfArmy", this.ID);
 
 	return true;
-}
+};
 
 // returns true if the entity was removed and false otherwise.
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs will happen.
@@ -150,7 +150,7 @@ m.Army.prototype.removeFoe = function (gameState, enemyId, enemyEntity)
 			this.assignedTo[to] = undefined;
 	
 	return true;
-}
+};
 
 // adds a defender but doesn't assign him yet.
 // force is true when merging armies, so in this case we should add it even if no position as it can be in a ship
@@ -179,7 +179,7 @@ m.Army.prototype.addOwn = function (gameState, id, force)
 		ent.setMetadata(PlayerID, "formerSubrole", subrole);
 	ent.setMetadata(PlayerID, "subrole", "defender");
 	return true;
-}
+};
 
 m.Army.prototype.removeOwn = function (gameState, id, Entity)
 {
@@ -233,14 +233,14 @@ m.Army.prototype.removeOwn = function (gameState, id, Entity)
 	} */
 
 	return true;
-}
+};
 
 // this one is "undefined entity" proof because it's called at odd times.
 // Orders a unit to attack an enemy.
 // overridden by specific army classes.
 m.Army.prototype.assignUnit = function (gameState, entID)
 {
-}
+};
 
 // resets the army properly.
 // assumes we already cleared dead units.
@@ -256,7 +256,7 @@ m.Army.prototype.clear = function (gameState)
 
 	this.recalculateStrengths(gameState);
 	this.recalculatePosition(gameState);
-}
+};
 
 // merge this army with another properly.
 // assumes units are in only one army.
@@ -284,7 +284,7 @@ m.Army.prototype.merge = function (gameState, otherArmy)
 	this.recalculateStrengths(gameState);
 	
 	return true;
-}
+};
 
 // TODO: when there is a technology update, we should probably recompute the strengths, or weird stuffs might happen.
 m.Army.prototype.checkEvents = function (gameState, events)
@@ -349,7 +349,7 @@ m.Army.prototype.checkEvents = function (gameState, events)
 		else if (msg.from === PlayerID)
 			this.removeOwn(gameState, msg.entity);	// TODO: add allies
 	}
-}
+};
 
 // assumes cleaned army.
 // this only checks for breakaways.
@@ -384,7 +384,7 @@ m.Army.prototype.onUpdate = function (gameState)
 	}
 
 	return breakaways;
-}
+};
 
 return m;
 }(PETRA);

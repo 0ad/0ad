@@ -524,12 +524,15 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 
 m.QueueManager.prototype.Serialize = function()
 {
-	let accounts = {};
-	let queues = {};
+	var accounts = {};
+	var queues = {};
 	for (let p in this.queues)
 	{
 		queues[p] = this.queues[p].Serialize();
 		accounts[p] = this.accounts[p].Serialize();
+		if (this.Config.debug == -100)
+			API3.warn("queueManager serialization: queue " + p + " >>> " + uneval(queues[p])
+				+ " with accounts " + uneval(accounts[p]));
 	}
 
 	return {
@@ -539,24 +542,23 @@ m.QueueManager.prototype.Serialize = function()
 	};
 }
 
-m.QueueManager.prototype.Deserialize = function(data)
+m.QueueManager.prototype.Deserialize = function(gameState, data)
 {
 	this.priorities = data.priorities;
 	this.queues = {};
 	this.accounts = {};
 
 	// the sorting is updated on priority change.
-	var self = this;
 	this.queueArrays = [];
 	for (let p in data.queues)
 	{
 		this.queues[p] = new m.Queue();
-		this.queues[p].Deserialize(data.queues[p]);
+		this.queues[p].Deserialize(gameState, data.queues[p]);
 		this.accounts[p] = new API3.Resources();
 		this.accounts[p].Deserialize(data.accounts[p]);
 		this.queueArrays.push([p, this.queues[p]]);
 	}
-	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
+	this.queueArrays.sort(function (a,b) { return (data.priorities[b[0]] - data.priorities[a[0]]) });
 };
 
 return m;

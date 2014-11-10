@@ -33,7 +33,8 @@ m.BaseManager = function(gameState, Config)
 
 m.BaseManager.prototype.init = function(gameState, unconstructed)
 {
-	this.constructing = unconstructed;
+	if (unconstructed !== undefined)
+		this.constructing = unconstructed;
 	this.workerObject = new m.Worker(this);
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
@@ -949,10 +950,8 @@ m.BaseManager.prototype.Serialize = function()
 		"accessIndex": this.accessIndex,
 		"maxDistResourceSquare": this.maxDistResourceSquare,
 		"constructing": this.constructing,
-//		"territoryIndices": this.territoryIndices,
-//		"dropsites": this.dropsites,
-//		"dropsiteSupplies": this.dropsiteSupplies,
-		"gatherers": this.gatherers
+		"gatherers": this.gatherers,
+		"territoryIndices": this.territoryIndices
 	};
 };
 
