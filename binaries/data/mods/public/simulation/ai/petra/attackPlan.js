@@ -1667,26 +1667,34 @@ m.AttackPlan.prototype.Serialize = function()
 		"maxCompletingTurn": this.maxCompletingTurn,
 		"neededShips": this.neededShips,
 		"unitStat": this.unitStat,
-		"path": this.path,
-		"pathSampling": this.pathSampling,
-		"pathWidth": this.pathWidth,
 		"position5TurnsAgo": this.position5TurnsAgo,
 		"lastPosition": this.lastPosition,
 		"position": this.position,
 		"targetPlayer": this.targetPlayer
 	};
 
+	let path = {
+		"path": this.path,
+		"pathSampling": this.pathSampling,
+		"pathWidth": this.pathWidth
+	};
+
 	let objects = {
 		"targetId": ((this.target !== undefined) ? this.target.id() : undefined)
 	};
 
-	return { "properties": properties, "objects": objects };
+	return { "properties": properties, "path": path, "objects": objects };
 };
 
 m.AttackPlan.prototype.Deserialize = function(gameState, data)
 {
 	for (let key in data.properties)
 		this[key] = data.properties[key];
+
+	// if the path was not fully computed, we will recompute it as it is not serialized
+	if (data.path.path != "toBeContinued")
+		for (let key in data.path)
+			this[key] = data.path[key];
 
 	let targetId = data.objects["targetId"];
 	if (targetId)
