@@ -695,12 +695,13 @@ m.NavalManager.prototype.Deserialize = function(gameState, data)
 		this[key] = data.properties[key];
 
 	this.transportPlans = [];
-	for (let dataPlan in data.transports)
+	for (let i in data.transports)
 	{
+		let dataPlan = data.transports[i];
 		let plan = new m.TransportPlan(gameState, [], dataPlan.startIndex, dataPlan.endIndex, dataPlan.endPos);
 		plan.Deserialize(dataPlan);
 		plan.init(gameState);
-		this.transportPlans[plan].push(plan);
+		this.transportPlans.push(plan);
 	}
 };
 

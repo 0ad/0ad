@@ -77,7 +77,7 @@ m.ResearchPlan.prototype.Deserialize = function(gameState, data)
 	{
 		this.onStart = function (gameState) {
 			gameState.ai.HQ.econState = "growth";
-			 gameState.ai.HQ.OnTownPhase(gameState)
+			gameState.ai.HQ.OnTownPhase(gameState);
 		};
 		this.isGo = function (gameState) {
 			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
@@ -93,7 +93,7 @@ m.ResearchPlan.prototype.Deserialize = function(gameState, data)
 	}
 	else if (this.type == gameState.cityPhase())
 	{
-		plan.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
+		this.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
 	}
 };
 
