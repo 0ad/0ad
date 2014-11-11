@@ -102,9 +102,9 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	if (this.Config.difficulty == 0)
 		this.targetNumWorkers = Math.max(1, Math.min(40, Math.floor(gameState.getPopulationMax())));
 	else if (this.Config.difficulty == 1)
-		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax())));
+		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax()/2)));
 	else
-		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3.0)));
+		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3)));
 
 	this.treasures = gameState.getEntities().filter(function (ent) {
 		var type = ent.resourceSupplyType();
