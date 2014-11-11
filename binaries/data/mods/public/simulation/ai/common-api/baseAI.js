@@ -79,7 +79,6 @@ m.BaseAI.prototype.HandleMessage = function(state, playerID, sharedAI)
 	{
 		this.Init(state, playerID, sharedAI);
 		this.isDeserialized = false;
-		API3.warn("AIs don't work completely with saved games yet. This is still experimental and buggy.");
 	}
 	this.OnUpdate(sharedAI);
 };

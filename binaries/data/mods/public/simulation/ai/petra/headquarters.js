@@ -192,51 +192,6 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	for (var i in this.bAdvanced)
 		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 
-	// adapt our starting strategy to the available resources
-	// - if on a small island, favor fishing and require less fields to save room for buildings
-	var startingSize = 0;
-	for (var region in this.allowedRegions)
-	{
-		for each (var base in this.baseManagers)
-		{
-			if (!base.anchor || base.accessIndex != +region)
-				continue;
-			startingSize += gameState.ai.accessibility.regionSize[region];
-			break;
-		}
-	}
-	if (this.Config.debug > 1)
-		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
-	if (startingSize < 1500)
-	{
-		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
-		this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
-	}
-	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
-	var startingWood = gameState.getResources()["wood"];
-	var check = {};
-	for (var proxim of ["nearby", "medium", "faraway"])
-	{
-		for each (var base in this.baseManagers)
-		{
-			for each (var supply in base.dropsiteSupplies["wood"][proxim])
-			{
-				if (check[supply.id])    // avoid double counting as same resource can appear several time
-					continue;
-				check[supply.id] = true;
-				startingWood += supply.ent.resourceSupplyAmount();
-			}
-		}
-	}
-	if (this.Config.debug > 1)
-		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
-	if (startingWood < 6000)
-	{
-		this.saveResources = true;
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
-	}
-
 	// Check if we will ever be able to produce units
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
@@ -326,8 +281,6 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	}
 
 	this.attackManager.init(gameState);
-	if (startingWood > 8500 && this.canBuildUnits && !deserialization)
-		this.attackManager.setRushes();
 	this.navalManager.init(gameState);
 	this.tradeManager.init(gameState);
 };
@@ -343,6 +296,56 @@ m.HQ.prototype.start = function(gameState, deserialization)
 			let base = self.baseManagers[ent.getMetadata(PlayerID, "base")];
 			base.assignResourceToDropsite(gameState, ent);
 		});
+	}
+	else
+	{
+		// adapt our starting strategy to the available resources
+		// - if on a small island, favor fishing and require less fields to save room for buildings
+		var startingSize = 0;
+		for (var region in this.allowedRegions)
+		{
+			for each (var base in this.baseManagers)
+			{
+				if (!base.anchor || base.accessIndex != +region)
+					continue;
+				startingSize += gameState.ai.accessibility.regionSize[region];
+				break;
+			}
+		}
+		if (this.Config.debug > 1)
+			API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
+		if (startingSize < 1500)
+		{
+			this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
+			this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
+			this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
+		}
+		// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
+		var startingWood = gameState.getResources()["wood"];
+		var check = {};
+		for (var proxim of ["nearby", "medium", "faraway"])
+		{
+			for each (var base in this.baseManagers)
+			{
+				for each (var supply in base.dropsiteSupplies["wood"][proxim])
+				{
+					if (check[supply.id])    // avoid double counting as same resource can appear several time
+						continue;
+					check[supply.id] = true;
+					startingWood += supply.ent.resourceSupplyAmount();
+				}
+			}
+		}
+		if (this.Config.debug > 1)
+			API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
+		if (startingWood < 6000)
+		{
+			this.saveResources = true;
+			this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
+		}
+
+		if (startingWood > 8500 && this.canBuildUnits)
+			this.attackManager.setRushes();
 	}
 };
 
@@ -2069,7 +2072,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 
 	this.tradeManager = new m.TradeManager(this.Config);
 	this.tradeManager.init(gameState);
-	this.tradeManager.Deserialize(data.tradeManager);
+	this.tradeManager.Deserialize(gameState, data.tradeManager);
 
 	this.navalManager = new m.NavalManager(this.Config);
 	this.navalManager.init(gameState);
