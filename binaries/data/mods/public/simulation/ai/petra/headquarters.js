@@ -50,7 +50,7 @@ m.HQ = function(Config)
 };
 
 // More initialisation for stuff that needs the gameState
-m.HQ.prototype.init = function(gameState, queues, deserialization)
+m.HQ.prototype.init = function(gameState, queues, deserializing)
 {
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
@@ -104,7 +104,7 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	else if (this.Config.difficulty == 1)
 		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax()/2)));
 	else
-		this.targetNumWorkers = Math.max(1, Math.min(120,Math.floor(gameState.getPopulationMax()/3)));
+		this.targetNumWorkers = Math.max(1, Math.min(120, Math.floor(gameState.getPopulationMax()/3)));
 
 	this.treasures = gameState.getEntities().filter(function (ent) {
 		var type = ent.resourceSupplyType();
@@ -125,7 +125,7 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	}
 	this.updateTerritories(gameState);
 
-	if (this.baseManagers[b0] && !deserialization)     // Affects entities in the different bases
+	if (this.baseManagers[b0] && !deserializing)     // Assign entities in the different bases
 	{
 		var self = this;
 		var width = gameState.getMap().width;
@@ -285,10 +285,16 @@ m.HQ.prototype.init = function(gameState, queues, deserialization)
 	this.tradeManager.init(gameState);
 };
 
-m.HQ.prototype.start = function(gameState, deserialization)
+m.HQ.prototype.start = function(gameState, deserializing)
 {
-	if (deserialization)
+	if (deserializing)
 	{
+		// Rebuild the base maps from the territory indices of each base
+		this.basesMap = new API3.Map(gameState.sharedScript);
+		for each (let base in this.baseManagers)
+			for (let j of base.territoryIndices)
+				this.basesMap.map[j] = base.ID;
+
 		var self = this;
 		gameState.getOwnEntities().forEach( function (ent) {
 			if (!ent.resourceDropsiteTypes() || ent.hasClass("Elephant"))
@@ -296,57 +302,56 @@ m.HQ.prototype.start = function(gameState, deserialization)
 			let base = self.baseManagers[ent.getMetadata(PlayerID, "base")];
 			base.assignResourceToDropsite(gameState, ent);
 		});
+		return;
 	}
-	else
-	{
-		// adapt our starting strategy to the available resources
-		// - if on a small island, favor fishing and require less fields to save room for buildings
-		var startingSize = 0;
-		for (var region in this.allowedRegions)
-		{
-			for each (var base in this.baseManagers)
-			{
-				if (!base.anchor || base.accessIndex != +region)
-					continue;
-				startingSize += gameState.ai.accessibility.regionSize[region];
-				break;
-			}
-		}
-		if (this.Config.debug > 1)
-			API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
-		if (startingSize < 1500)
-		{
-			this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
-			this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
-			this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
-		}
-		// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
-		var startingWood = gameState.getResources()["wood"];
-		var check = {};
-		for (var proxim of ["nearby", "medium", "faraway"])
-		{
-			for each (var base in this.baseManagers)
-			{
-				for each (var supply in base.dropsiteSupplies["wood"][proxim])
-				{
-					if (check[supply.id])    // avoid double counting as same resource can appear several time
-						continue;
-					check[supply.id] = true;
-					startingWood += supply.ent.resourceSupplyAmount();
-				}
-			}
-		}
-		if (this.Config.debug > 1)
-			API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
-		if (startingWood < 6000)
-		{
-			this.saveResources = true;
-			this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
-		}
 
-		if (startingWood > 8500 && this.canBuildUnits)
-			this.attackManager.setRushes();
+	// adapt our starting strategy to the available resources
+	// - if on a small island, favor fishing and require less fields to save room for buildings
+	var startingSize = 0;
+	for (var region in this.allowedRegions)
+	{
+		for each (var base in this.baseManagers)
+		{
+			if (!base.anchor || base.accessIndex != +region)
+				continue;
+			startingSize += gameState.ai.accessibility.regionSize[region];
+			break;
+		}
 	}
+	if (this.Config.debug > 1)
+		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
+	if (startingSize < 1500)
+	{
+		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
+		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
+		this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
+	}
+	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
+	var startingWood = gameState.getResources()["wood"];
+	var check = {};
+	for (var proxim of ["nearby", "medium", "faraway"])
+	{
+		for each (var base in this.baseManagers)
+		{
+			for each (var supply in base.dropsiteSupplies["wood"][proxim])
+			{
+				if (check[supply.id])    // avoid double counting as same resource can appear several time
+					continue;
+				check[supply.id] = true;
+				startingWood += supply.ent.resourceSupplyAmount();
+			}
+		}
+	}
+	if (this.Config.debug > 1)
+		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
+	if (startingWood < 6000)
+	{
+		this.saveResources = true;
+		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
+	}
+
+	if (startingWood > 8500 && this.canBuildUnits)
+		this.attackManager.setRushes();
 };
 
 // returns the sea index linking regions 1 and region 2 (supposed to be different land region)
