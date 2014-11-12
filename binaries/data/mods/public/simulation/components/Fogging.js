@@ -11,31 +11,30 @@ Fogging.prototype.Schema =
 Fogging.prototype.Init = function()
 {
 	this.mirages = [];
+	this.miraged = [];
 	this.seen = [];
 
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	for (var player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
 	{
 		this.mirages.push(INVALID_ENTITY);
+		this.miraged.push(false);
 		this.seen.push(false);
 	}
 };
 
 Fogging.prototype.LoadMirage = function(player)
 {
-	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var templateName = "mirage|" + cmpTemplateManager.GetCurrentTemplateName(this.entity);
-	
-	// If this is an entity without visibility (e.g. a foundation), it should be
-	// marked as seen for its owner	
-	var cmpParentOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (cmpParentOwnership && cmpParentOwnership.GetOwner() == player)
-		this.seen[player] = true;
+	this.miraged[player] = true;
 
-	if (!this.seen[player] || this.mirages[player] != INVALID_ENTITY)
-		return;
+	if (this.mirages[player] == INVALID_ENTITY)
+	{
+		var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+		var templateName = "mirage|" + cmpTemplateManager.GetCurrentTemplateName(this.entity);
 
-	this.mirages[player] = Engine.AddEntity(templateName);
+		this.mirages[player] = Engine.AddEntity(templateName);
+	}
+
 	var cmpMirage = Engine.QueryInterface(this.mirages[player], IID_Mirage);
 	if (!cmpMirage)
 	{
@@ -44,15 +43,16 @@ Fogging.prototype.LoadMirage = function(player)
 		return;
 	}
 
-	// Setup basic mirage properties
+	// Copy basic mirage properties
 	cmpMirage.SetPlayer(player);
 	cmpMirage.SetParent(this.entity);
 
 	// Copy cmpOwnership data
+	var cmpParentOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 	var cmpMirageOwnership = Engine.QueryInterface(this.mirages[player], IID_Ownership);
 	if (!cmpParentOwnership || !cmpMirageOwnership)
 	{
-		error("Failed to setup the ownership data of the fogged entity " + templateName);
+		error("Failed to copy the ownership data of the fogged entity " + templateName);
 		return;
 	}
 	cmpMirageOwnership.SetOwner(cmpParentOwnership.GetOwner());
@@ -62,7 +62,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMiragePosition = Engine.QueryInterface(this.mirages[player], IID_Position);
 	if (!cmpParentPosition || !cmpMiragePosition)
 	{
-		error("Failed to setup the position data of the fogged entity " + templateName);
+		error("Failed to copy the position data of the fogged entity " + templateName);
 		return;
 	}
 	if (!cmpParentPosition.IsInWorld())
@@ -78,7 +78,7 @@ Fogging.prototype.LoadMirage = function(player)
 	var cmpMirageVisualActor = Engine.QueryInterface(this.mirages[player], IID_Visual);
 	if (!cmpParentVisualActor || !cmpMirageVisualActor)
 	{
-		error("Failed to setup the visual data of the fogged entity " + templateName);
+		error("Failed to copy the visual data of the fogged entity " + templateName);
 		return;
 	}
 	cmpMirageVisualActor.SetActorSeed(cmpParentVisualActor.GetActorSeed());
@@ -86,11 +86,11 @@ Fogging.prototype.LoadMirage = function(player)
 	// Store valuable information into the mirage component (especially for the GUI)
 	var cmpFoundation = Engine.QueryInterface(this.entity, IID_Foundation);
 	if (cmpFoundation)
-		cmpMirage.AddFoundation(cmpFoundation.GetBuildPercentage());
+		cmpMirage.CopyFoundation(cmpFoundation.GetBuildPercentage());
 
 	var cmpHealth = Engine.QueryInterface(this.entity, IID_Health);
 	if (cmpHealth)
-		cmpMirage.AddHealth(
+		cmpMirage.CopyHealth(
 			cmpHealth.GetMaxHitpoints(), 
 			cmpHealth.GetHitpoints(), 
 			cmpHealth.IsRepairable() && (cmpHealth.GetHitpoints() < cmpHealth.GetMaxHitpoints())
@@ -98,7 +98,7 @@ Fogging.prototype.LoadMirage = function(player)
 
 	var cmpResourceSupply = Engine.QueryInterface(this.entity, IID_ResourceSupply);
 	if (cmpResourceSupply)
-		cmpMirage.AddResourceSupply(
+		cmpMirage.CopyResourceSupply(
 			cmpResourceSupply.GetMaxAmount(), 
 			cmpResourceSupply.GetCurrentAmount(), 
 			cmpResourceSupply.GetType(), 
@@ -121,7 +121,7 @@ Fogging.prototype.IsMiraged = function(player)
 	if (player >= this.mirages.length)
 		return false;
 
-	return this.mirages[player] != INVALID_ENTITY;
+	return this.miraged[player];
 };
 
 Fogging.prototype.GetMirage = function(player)
@@ -147,17 +147,10 @@ Fogging.prototype.OnVisibilityChanged = function(msg)
 
 	if (msg.newVisibility == VIS_VISIBLE)
 	{
+		this.miraged[msg.player] = false;
 		this.seen[msg.player] = true;
-
-		// Destroy mirages when we get back into LoS
-		if (this.mirages[msg.player] != INVALID_ENTITY)
-		{
-			Engine.DestroyEntity(this.mirages[msg.player]);
-			this.mirages[msg.player] = INVALID_ENTITY;
-		}
 	}
 
-	// Intermediate LoS state, meaning we must create a mirage
 	if (msg.newVisibility == VIS_FOGGED)
 		this.LoadMirage(msg.player);
 };

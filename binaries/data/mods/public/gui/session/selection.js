@@ -251,7 +251,9 @@ EntitySelection.prototype.update = function()
 		}
 
 		// Remove non-visible units (e.g. moved back into fog-of-war)
-		if (entState.visibility == "hidden")
+		// At the next update, mirages will be renamed to the real 
+		// entity they replace, so just ignore them now
+		if (entState.visibility == "hidden" && !entState.mirage)
 		{
 			// Disable any highlighting of the disappeared unit
 			_setHighlight([ent], 0, false);

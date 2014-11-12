@@ -20,7 +20,13 @@ Visibility.prototype.Init = function()
 Visibility.prototype.GetLosVisibility = function(player, isOutsideFog, forceRetainInFog)
 {
 	if (isOutsideFog)
+	{
+		var cmpMirage = Engine.QueryInterface(this.entity, IID_Mirage);
+		if (cmpMirage)
+			return VIS_HIDDEN;
+
 		return VIS_VISIBLE;
+	}
 
 	// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
 	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);

@@ -48,7 +48,7 @@ Mirage.prototype.SetPlayer = function(player)
 
 // Foundation data
 
-Mirage.prototype.AddFoundation = function(buildPercentage)
+Mirage.prototype.CopyFoundation = function(buildPercentage)
 {
 	this.foundation = true;
 	this.buildPercentage = buildPercentage;
@@ -66,7 +66,7 @@ Mirage.prototype.GetBuildPercentage = function()
 
 // Health data
 
-Mirage.prototype.AddHealth = function(maxHitpoints, hitpoints, needsRepair)
+Mirage.prototype.CopyHealth = function(maxHitpoints, hitpoints, needsRepair)
 {
 	this.health = true;
 	this.maxHitpoints = maxHitpoints;
@@ -96,7 +96,7 @@ Mirage.prototype.NeedsRepair = function()
 
 // ResourceSupply data
 
-Mirage.prototype.AddResourceSupply = function(maxAmount, amount, type, isInfinite)
+Mirage.prototype.CopyResourceSupply = function(maxAmount, amount, type, isInfinite)
 {
 	this.resourceSupply = true;
 	this.maxAmount = maxAmount;
@@ -134,16 +134,13 @@ Mirage.prototype.IsInfinite = function()
 
 Mirage.prototype.OnVisibilityChanged = function(msg)
 {
-	if (msg.player == this.player && msg.newVisibility == VIS_VISIBLE && this.parent == INVALID_ENTITY)
-		Engine.DestroyEntity(this.entity);
-};
-
-Mirage.prototype.OnDestroy = function(msg)
-{
-	if (this.parent == INVALID_ENTITY)
+	if (msg.player != this.player || msg.newVisibility != VIS_HIDDEN)
 		return;
 
-	Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: this.parent });
+	if (this.parent == INVALID_ENTITY)
+		Engine.DestroyEntity(this.entity);
+	else
+		Engine.BroadcastMessage(MT_EntityRenamed, { entity: this.entity, newentity: this.parent });
 };
 
 Engine.RegisterComponentType(IID_Mirage, "Mirage", Mirage);
