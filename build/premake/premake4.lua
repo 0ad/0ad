@@ -659,6 +659,8 @@ function setup_all_libs ()
 			"spidermonkey",
 			"boost",
 			"gloox",
+			"icu",
+			"iconv",
 			"tinygettext"
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})

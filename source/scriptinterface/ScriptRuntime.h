@@ -18,6 +18,7 @@
 #ifndef INCLUDED_SCRIPTRUNTIME
 #define INCLUDED_SCRIPTRUNTIME
 
+#include <sstream>
 #include <boost/flyweight.hpp>
 #include <boost/flyweight/key_value.hpp>
 #include <boost/flyweight/no_locking.hpp>
