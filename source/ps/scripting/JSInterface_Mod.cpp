@@ -76,7 +76,8 @@ CScriptVal JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
 			continue;
 
 		JS::RootedValue json(cx);
-		scriptInterface->ParseJSON(modinfo.GetAsString(), &json);
+		if (!scriptInterface->ParseJSON(modinfo.GetAsString(), &json))
+			continue;
 
 		// Valid mod, add it to our structure
 		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json.address());
@@ -101,7 +102,8 @@ CScriptVal JSI_Mod::GetAvailableMods(ScriptInterface::CxPrivate* pCxPrivate)
 			continue;
 
 		JS::RootedValue json(cx);
-		scriptInterface->ParseJSON(modinfo.GetAsString(), &json);
+		if (!scriptInterface->ParseJSON(modinfo.GetAsString(), &json))
+			continue;
 
 		// Valid mod, add it to our structure
 		JS_SetProperty(cx, obj, utf8_from_wstring(iter->string()).c_str(), json.address());

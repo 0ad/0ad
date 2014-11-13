@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -251,7 +251,7 @@ public:
 		std::string stringified = script.StringifyJSON(&val);
 		TS_ASSERT_STR_EQUALS(stringified, "{\n  \"x\": 1,\n  \"z\": [\n    2,\n    \"3\xE2\x98\xBA\xEF\xBF\xBD\"\n  ],\n  \"y\": true\n}");
 
-		script.ParseJSON(stringified, &val);
+		TS_ASSERT(script.ParseJSON(stringified, &val));
 		TS_ASSERT_WSTR_EQUALS(script.ToString(&val), L"({x:1, z:[2, \"3\\u263A\\uFFFD\"], y:true})");
 	}
 };

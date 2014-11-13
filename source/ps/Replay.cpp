@@ -167,7 +167,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 			std::string line;
 			std::getline(*m_Stream, line);
 			JS::RootedValue attribs(cx);
-			game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs);
+			ENSURE(game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
 
 			game.StartGame(CScriptValRooted(cx, attribs), "");
 

@@ -676,7 +676,7 @@ function loadMapData(name)
 				// To be defined later.
 				g_MapData[name] = { settings: { "Name": "", "Description": "" } };
 			else
-				g_MapData[name] = parseJSONData(name+".json");
+				g_MapData[name] = Engine.ReadJSONFile(name+".json");
 			break;
 
 		default:

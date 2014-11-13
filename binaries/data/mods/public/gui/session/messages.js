@@ -17,7 +17,9 @@ function getCheatsData()
 	var cheatFileList = getJSONFileList("simulation/data/cheats/");
 	for each (var fileName in cheatFileList)
 	{
-		var currentCheat = parseJSONData("simulation/data/cheats/"+fileName+".json");
+		var currentCheat = Engine.ReadJSONFile("simulation/data/cheats/"+fileName+".json");
+		if (!currentCheat)
+			continue;
 		if (Object.keys(cheats).indexOf(currentCheat.Name) !== -1)
 			warn("Cheat name '" + currentCheat.Name + "' is already present");
 		else

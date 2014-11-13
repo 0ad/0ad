@@ -53,37 +53,6 @@ function getJSONFileList(pathname)
 	return files;
 }
 
-
-// ====================================================================
-
-// Parse JSON data
-function parseJSONData(pathname)
-{
-	var data = {};
-
-	var rawData = Engine.ReadFile(pathname);
-	if (!rawData)
-	{
-		error(sprintf("Failed to read file: %(path)s", { path: pathname }));
-	}
-	else
-	{
-		try
-		{	// Catch nasty errors from JSON parsing
-			// TODO: Need more info from the parser on why it failed: line number, position, etc!
-			data = JSON.parse(rawData);
-			if (!data)
-				error(sprintf("Failed to parse JSON data in: %(path)s (check for valid JSON data)", { path: pathname }));
-		}
-		catch(err)
-		{
-			error(sprintf("%(error)s: parsing JSON data in %(path)s", { error: err.toString(), path: pathname }));
-		}
-	}
-
-	return data;
-}
-
 // ====================================================================
 
 // A sorting function for arrays of objects with 'name' properties, ignoring case
@@ -132,44 +101,17 @@ function toTitleCase (string)
 
 // ====================================================================
 
-// Parse and return JSON data from file in simulation/data/*
-// returns valid object or undefined on error
-function parseJSONFromDataFile(filename)
-{
-	var path = "simulation/data/"+filename;
-	var rawData = Engine.ReadFile(path);
-	if (!rawData)
-		error(sprintf("Failed to read file: %(path)s", { path: path }));
-
-	try
-	{
-		// Catch nasty errors from JSON parsing
-		// TODO: Need more info from the parser on why it failed: line number, position, etc!
-		var data = JSON.parse(rawData);
-		return data;
-	}
-	catch(err)
-	{
-		error(sprintf("%(error)s: parsing JSON data in %(path)s", { error: err.toString(), path: path }));
-	}
-
-	return undefined;
-}
-
-// ====================================================================
-
 // Load default player data, for when it's not otherwise specified
 function initPlayerDefaults()
 {
-	var defaults = [];
-
-	var data = parseJSONFromDataFile("player_defaults.json");
+	var data = Engine.ReadJSONFile("simulation/data/player_defaults.json");
 	if (!data || !data.PlayerData)
+	{
 		error("Failed to parse player defaults in player_defaults.json (check for valid JSON data)");
-	else
-		defaults = data.PlayerData;
+		return [];
+	}
 
-	return defaults;
+	return data.PlayerData;
 }
 
 // ====================================================================
@@ -184,21 +126,22 @@ function initMapSizes()
 		"default": 0
 	};
 
-	var data = parseJSONFromDataFile("map_sizes.json");
+	var data = Engine.ReadJSONFile("simulation/data/map_sizes.json");
 	if (!data || !data.Sizes)
-		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
-	else
 	{
-		translateObjectKeys(data, ["Name", "LongName"]);
-		for (var i = 0; i < data.Sizes.length; ++i)
-		{
-			sizes.shortNames.push(data.Sizes[i].Name);
-			sizes.names.push(data.Sizes[i].LongName);
-			sizes.tiles.push(data.Sizes[i].Tiles);
+		error("Failed to parse map sizes in map_sizes.json (check for valid JSON data)");
+		return sizes;
+	}
 
-			if (data.Sizes[i].Default)
-				sizes["default"] = i;
-		}
+	translateObjectKeys(data, ["Name", "LongName"]);
+	for (var i = 0; i < data.Sizes.length; ++i)
+	{
+		sizes.shortNames.push(data.Sizes[i].Name);
+		sizes.names.push(data.Sizes[i].LongName);
+		sizes.tiles.push(data.Sizes[i].Tiles);
+
+		if (data.Sizes[i].Default)
+			sizes["default"] = i;
 	}
 
 	return sizes;
@@ -215,20 +158,21 @@ function initGameSpeeds()
 		"default": 0
 	};
 
-	var data = parseJSONFromDataFile("game_speeds.json");
+	var data = Engine.ReadJSONFile("simulation/data/game_speeds.json");
 	if (!data || !data.Speeds)
-		error("Failed to parse game speeds in game_speeds.json (check for valid JSON data)");
-	else
 	{
-		translateObjectKeys(data, ["Name"]);
-		for (var i = 0; i < data.Speeds.length; ++i)
-		{
-			gameSpeeds.names.push(data.Speeds[i].Name);
-			gameSpeeds.speeds.push(data.Speeds[i].Speed);
+		error("Failed to parse game speeds in game_speeds.json (check for valid JSON data)");
+		return gameSpeeds;
+	}
 
-			if (data.Speeds[i].Default)
-				gameSpeeds["default"] = i;
-		}
+	translateObjectKeys(data, ["Name"]);
+	for (var i = 0; i < data.Speeds.length; ++i)
+	{
+		gameSpeeds.names.push(data.Speeds[i].Name);
+		gameSpeeds.speeds.push(data.Speeds[i].Speed);
+
+		if (data.Speeds[i].Default)
+			gameSpeeds["default"] = i;
 	}
 
 	return gameSpeeds;

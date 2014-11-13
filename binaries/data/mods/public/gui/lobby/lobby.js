@@ -498,7 +498,7 @@ function updateGameSelection()
 	if (g_GameList[g].mapType == "random" && g_GameList[g].mapName == "random")
 		mapData = {"settings": {"Description": translate("A randomly selected map.")}};
 	else if (g_GameList[g].mapType == "random" && Engine.FileExists(g_GameList[g].mapName + ".json"))
-		mapData = parseJSONData(g_GameList[g].mapName + ".json");
+		mapData = Engine.ReadJSONFile(g_GameList[g].mapName + ".json");
 	else if (Engine.FileExists(g_GameList[g].mapName + ".xml"))
 		mapData = Engine.LoadMapSettings(g_GameList[g].mapName + ".xml");
 	else

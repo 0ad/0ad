@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@
 #define INCLUDED_SCRIPTINTERFACE
 
 #include <memory>
-#include <vector>
 #include <string>
+#include <vector>
 
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
@@ -273,9 +273,11 @@ public:
 	std::wstring ToString(JS::MutableHandleValue obj, bool pretty = false);
 
 	/**
-	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error and prints an error message.
+	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error
+	 * and prints an error message.
+	 * @return true on success; false otherwise
 	 */
-	void ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out);
+	bool ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out);
 
 	/**
 	 * Read a JSON file. Returns the unmodified value on error and prints an error message.

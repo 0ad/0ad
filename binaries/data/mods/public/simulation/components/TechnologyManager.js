@@ -283,7 +283,7 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 
 	if (!template)
 	{
-		error("Tried to research invalid techonology: " + uneval(tech));
+		error("Tried to research invalid technology: " + uneval(tech));
 		return;
 	}
 

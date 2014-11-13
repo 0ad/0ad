@@ -1298,16 +1298,36 @@ bool ScriptInterface::Eval_(const wchar_t* code, JS::MutableHandleValue rval)
 	return ok;
 }
 
-void ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
+bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out)
 {
 	JSAutoRequest rq(m->m_cx);
 	std::wstring attrsW = wstring_from_utf8(string_utf8);
  	utf16string string(attrsW.begin(), attrsW.end());
-	if (!JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), out))
-	{
-		LOGERROR(L"JS_ParseJSON failed!");
-		return;
-	}
+	if (JS_ParseJSON(m->m_cx, reinterpret_cast<const jschar*>(string.c_str()), (u32)string.size(), out))
+		return true;
+
+	LOGERROR(L"JS_ParseJSON failed!");
+	if (!JS_IsExceptionPending(m->m_cx))
+		return false;
+
+	JS::RootedValue exc(m->m_cx);
+	if (!JS_GetPendingException(m->m_cx, exc.address()))
+		return false;
+
+	JS_ClearPendingException(m->m_cx);
+	// We expect an object of type SyntaxError
+	if (!exc.isObject())
+		return false;
+
+	JS::RootedValue rval(m->m_cx);
+	JS::RootedObject excObj(m->m_cx, &exc.toObject());
+	if (!JS_CallFunctionName(m->m_cx, excObj, "toString", 0, NULL, rval.address()))
+		return false;
+
+	std::wstring error;
+	ScriptInterface::FromJSVal(m->m_cx, rval, error);
+	LOGERROR(L"%ls", error.c_str());
+	return false;
 }
 
 void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue out)
@@ -1330,7 +1350,8 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 
 	std::string content(file.DecodeUTF8()); // assume it's UTF-8
 
-	ParseJSON(content, out);
+	if (!ParseJSON(content, out))
+		LOGERROR(L"Failed to parse '%ls'", path.string().c_str());
 }
 
 struct Stringifier

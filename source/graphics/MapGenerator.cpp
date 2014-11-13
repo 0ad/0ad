@@ -109,8 +109,7 @@ bool CMapGeneratorWorker::Run()
 
 	// Parse settings
 	JS::RootedValue settingsVal(cx);
-	m_ScriptInterface->ParseJSON(m_Settings, &settingsVal);
-	if (settingsVal.isUndefined())
+	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
 	{
 		LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");
 		return false;
