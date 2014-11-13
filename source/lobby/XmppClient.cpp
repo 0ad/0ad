@@ -19,19 +19,12 @@
 #include "XmppClient.h"
 #include "StanzaExtensions.h"
 
-#include "lib/utf8.h"
-
-// Debug
-#include "ps/CLogger.h"
-
-// Gloox
 #include "glooxwrapper/glooxwrapper.h"
-
-// Game - script
-#include "scriptinterface/ScriptInterface.h"
-
-// Configuration
+#include "i18n/L10n.h"
+#include "lib/utf8.h"
+#include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
+#include "scriptinterface/ScriptInterface.h"
 
 //debug
 #if 1
@@ -225,7 +218,7 @@ void XmppClient::onDisconnect(gloox::ConnectionError error)
 	m_Profile.clear();
 
 	if(error == gloox::ConnAuthenticationFailed)
-		CreateSimpleMessage("system", "authentication failed", "error");
+		CreateSimpleMessage("system", g_L10n.Translate("Authentication failed"), "error");
 	else
 		CreateSimpleMessage("system", "disconnected");
 }
@@ -461,15 +454,15 @@ void XmppClient::handleRegistrationResult(const glooxwrapper::JID&, gloox::Regis
 #define CASE(X, Y) case gloox::X: msg = Y; break
 		switch(result)
 		{
-		CASE(RegistrationNotAcceptable, "Registration not acceptable");
-		CASE(RegistrationConflict, "Registration conflict");
-		CASE(RegistrationNotAuthorized, "Registration not authorized");
-		CASE(RegistrationBadRequest, "Registration bad request");
-		CASE(RegistrationForbidden, "Registration forbidden");
-		CASE(RegistrationRequired, "Registration required");
-		CASE(RegistrationUnexpectedRequest, "Registration unexpected request");
-		CASE(RegistrationNotAllowed, "Registration not allowed");
-		default: msg = "Registration unknown error";
+		CASE(RegistrationNotAcceptable, g_L10n.Translate("Registration not acceptable"));
+		CASE(RegistrationConflict, g_L10n.Translate("Registration conflict"));
+		CASE(RegistrationNotAuthorized, g_L10n.Translate("Registration not authorized"));
+		CASE(RegistrationBadRequest, g_L10n.Translate("Registration bad request"));
+		CASE(RegistrationForbidden, g_L10n.Translate("Registration forbidden"));
+		CASE(RegistrationRequired, g_L10n.Translate("Registration required"));
+		CASE(RegistrationUnexpectedRequest, g_L10n.Translate("Registration unexpected request"));
+		CASE(RegistrationNotAllowed, g_L10n.Translate("Registration not allowed"));
+		default: msg = g_L10n.Translate("Registration unknown error");
 		}
 #undef CASE
 		CreateSimpleMessage("system", msg, "error");
@@ -754,7 +747,9 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 	}
 	else
 	{
-		CreateSimpleMessage("system", std::string("unknown subtype : ") + tag_name(iq), "error");
+		CreateSimpleMessage("system", g_L10n.Translate("unknown subtype (see logs)"), "error");
+		std::string tag = tag_name(iq);
+		LOGMESSAGE(L"unknown subtype '%hs'", tag.c_str());
 	}
 
 	return true;
@@ -998,32 +993,32 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
 #define CASE(X, Y) case gloox::X: return Y
 	switch (err)
 	{
-	CASE(StanzaErrorBadRequest, "Bad request");
-	CASE(StanzaErrorConflict, "Player name already in use");
-	CASE(StanzaErrorFeatureNotImplemented, "Feature not implemented");
-	CASE(StanzaErrorForbidden, "Forbidden");
-	CASE(StanzaErrorGone, "Recipient or server gone");
-	CASE(StanzaErrorInternalServerError, "Internal server error");
-	CASE(StanzaErrorItemNotFound, "Item not found");
-	CASE(StanzaErrorJidMalformed, "Jid malformed");
-	CASE(StanzaErrorNotAcceptable, "Not acceptable");
-	CASE(StanzaErrorNotAllowed, "Not allowed");
-	CASE(StanzaErrorNotAuthorized, "Not authorized");
-	CASE(StanzaErrorNotModified, "Not modified");
-	CASE(StanzaErrorPaymentRequired, "Payment required");
-	CASE(StanzaErrorRecipientUnavailable, "Recipient unavailable");
-	CASE(StanzaErrorRedirect, "Redirect");
-	CASE(StanzaErrorRegistrationRequired, "Registration required");
-	CASE(StanzaErrorRemoteServerNotFound, "Remote server not found");
-	CASE(StanzaErrorRemoteServerTimeout, "Remote server timeout");
-	CASE(StanzaErrorResourceConstraint, "Resource constraint");
-	CASE(StanzaErrorServiceUnavailable, "Service unavailable");
-	CASE(StanzaErrorSubscribtionRequired, "Subscribtion Required");
-	CASE(StanzaErrorUndefinedCondition, "Undefined condition");
-	CASE(StanzaErrorUnexpectedRequest, "Unexpected request");
-	CASE(StanzaErrorUnknownSender, "Unknown sender");
+	CASE(StanzaErrorBadRequest, g_L10n.Translate("Bad request"));
+	CASE(StanzaErrorConflict, g_L10n.Translate("Player name already in use"));
+	CASE(StanzaErrorFeatureNotImplemented, g_L10n.Translate("Feature not implemented"));
+	CASE(StanzaErrorForbidden, g_L10n.Translate("Forbidden"));
+	CASE(StanzaErrorGone, g_L10n.Translate("Recipient or server gone"));
+	CASE(StanzaErrorInternalServerError, g_L10n.Translate("Internal server error"));
+	CASE(StanzaErrorItemNotFound, g_L10n.Translate("Item not found"));
+	CASE(StanzaErrorJidMalformed, g_L10n.Translate("Jid malformed"));
+	CASE(StanzaErrorNotAcceptable, g_L10n.Translate("Not acceptable"));
+	CASE(StanzaErrorNotAllowed, g_L10n.Translate("Not allowed"));
+	CASE(StanzaErrorNotAuthorized, g_L10n.Translate("Not authorized"));
+	CASE(StanzaErrorNotModified, g_L10n.Translate("Not modified"));
+	CASE(StanzaErrorPaymentRequired, g_L10n.Translate("Payment required"));
+	CASE(StanzaErrorRecipientUnavailable, g_L10n.Translate("Recipient unavailable"));
+	CASE(StanzaErrorRedirect, g_L10n.Translate("Redirect"));
+	CASE(StanzaErrorRegistrationRequired, g_L10n.Translate("Registration required"));
+	CASE(StanzaErrorRemoteServerNotFound, g_L10n.Translate("Remote server not found"));
+	CASE(StanzaErrorRemoteServerTimeout, g_L10n.Translate("Remote server timeout"));
+	CASE(StanzaErrorResourceConstraint, g_L10n.Translate("Resource constraint"));
+	CASE(StanzaErrorServiceUnavailable, g_L10n.Translate("Service unavailable"));
+	CASE(StanzaErrorSubscribtionRequired, g_L10n.Translate("Subscribtion Required"));
+	CASE(StanzaErrorUndefinedCondition, g_L10n.Translate("Undefined condition"));
+	CASE(StanzaErrorUnexpectedRequest, g_L10n.Translate("Unexpected request"));
+	CASE(StanzaErrorUnknownSender, g_L10n.Translate("Unknown sender"));
 	default:
-		return "Error undefined";
+		return g_L10n.Translate("Error undefined");
 	}
 #undef CASE
 }

@@ -16,27 +16,6 @@ const COST_DISPLAY_NAMES = {
 // Utility functions
 //-------------------------------- --------------------------------
 
-function toTitleCase(word)
-{
-	if (word.length > 0)
-	{
-		var titleCased = word.substring(0, 1).toUpperCase();
-
-		if (word.length > 1)
-		{
-			titleCased += word.substring(1).toLowerCase();
-		}
-		return titleCased;
-	}
-
-	return word;
-}
-
-function rgbToGuiColor(color)
-{
-	return color.r + " " + color.g + " " + color.b;
-}
-
 //===============================================
 // Player functions
 

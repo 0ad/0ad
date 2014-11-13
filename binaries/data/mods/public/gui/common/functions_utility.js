@@ -87,20 +87,6 @@ function escapeText(text)
 
 // ====================================================================
 
-function toTitleCase (string)
-{
-	if (!string)
-		return string;
-
-	// Returns the title-case version of a given string.
-	string = string.toString();
-	string = string[0].toUpperCase() + string.substring(1).toLowerCase();
-
-	return string;
-}
-
-// ====================================================================
-
 // Load default player data, for when it's not otherwise specified
 function initPlayerDefaults()
 {
@@ -182,13 +168,12 @@ function initGameSpeeds()
 // ====================================================================
 
 // Convert integer color values to string (for use in GUI objects)
-function iColorToString(color)
+function rgbToGuiColor(color)
 {
-	var string = "0 0 0";
 	if (color && ("r" in color) && ("g" in color) && ("b" in color))
-		string = color.r + " " + color.g + " " + color.b;
+		return color.r + " " + color.g + " " + color.b;
 
-	return string;
+	return "0 0 0";
 }
 
 // ====================================================================

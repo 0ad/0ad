@@ -1290,7 +1290,7 @@ function onGameAttributesChange()
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[i] : {};
 
 		// Common to all game types
-		var color = iColorToString(getSetting(pData, pDefs, "Colour"));
+		var color = rgbToGuiColor(getSetting(pData, pDefs, "Colour"));
 		pColor.sprite = "colour:" + color + " 100";
 		pName.caption = translate(getSetting(pData, pDefs, "Name"));
 
@@ -1599,7 +1599,7 @@ function addChatMessage(msg)
 		var pData = mapSettings.PlayerData ? mapSettings.PlayerData[player] : {};
 		var pDefs = g_DefaultPlayerData ? g_DefaultPlayerData[player] : {};
 
-		color = iColorToString(getSetting(pData, pDefs, "Colour"));
+		color = rgbToGuiColor(getSetting(pData, pDefs, "Colour"));
 	}
 
 	var formatted;

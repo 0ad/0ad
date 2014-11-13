@@ -6,6 +6,8 @@ var g_specialKey = Math.random();
 var g_spamMonitor = {};
 var g_timestamp = Engine.ConfigDB_GetValue("user", "lobby.chattimestamp") == "true";
 var g_mapSizes = {};
+const g_mapTypesText = [translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
+const g_mapTypes = ["skirmish", "random", "scenario"];
 var g_userRating = ""; // Rating of user, defaults to Unrated
 var g_modPrefix = "@";
 // Block spammers for 30 seconds.
@@ -34,8 +36,8 @@ function init(attribs)
 	playersNumberFilter.list_data = ["",2,3,4,5,6,7,8];
 
 	var mapTypeFilter = Engine.GetGUIObjectByName("mapTypeFilter");
-	mapTypeFilter.list = [translateWithContext("map", "Any"), translateWithContext("map", "Skirmish"), translateWithContext("map", "Random"), translate("Scenario")];
-	mapTypeFilter.list_data = ["", "skirmish", "random", "scenario"];
+	mapTypeFilter.list = [translateWithContext("map", "Any")].concat(g_mapTypesText);
+	mapTypeFilter.list_data = [""].concat(g_mapTypes);
 
 	Engine.LobbySetPlayerPresence("available");
 	Engine.SendGetGameList();
@@ -387,7 +389,7 @@ function updateGameList()
 		if(!filterGame(g))
 		{
 			// 'waiting' games are highlighted in orange, 'running' in red, and 'init' in green.
-			var name;
+			let name;
 			if (g.state == 'init')
 				name = '[color="0 125 0"]' + g.name + '[/color]';
 			else if (g.state == 'waiting')
@@ -401,7 +403,8 @@ function updateGameList()
 				list_mapSize.push(translate(g.mapSize));
 			else
 				list_mapSize.push(g_mapSizes.shortNames[g_mapSizes.tiles.indexOf(+g.mapSize)]);
-			list_mapType.push(translate(toTitleCase(g.mapType)));
+			let idx = g_mapTypes.indexOf(g.mapType);
+			list_mapType.push(idx != -1 ? g_mapTypesText[idx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
 			list.push(g.name);
 			list_data.push(c);
@@ -515,7 +518,8 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
 	Engine.GetGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
-	Engine.GetGUIObjectByName("sgMapType").caption = translate(toTitleCase(g_GameList[g].mapType));
+	let idx = g_mapTypes.indexOf(g_GameList[g].mapType);
+	Engine.GetGUIObjectByName("sgMapType").caption = idx != -1 ? g_mapTypesText[idx] : "";
 
 	// Display map description if it exists, otherwise display a placeholder.
 	if (mapData && mapData.settings.Description)
