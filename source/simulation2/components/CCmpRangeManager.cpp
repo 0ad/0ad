@@ -1394,10 +1394,10 @@ public:
 		int i = (pos.X / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 		int j = (pos.Y / (int)TERRAIN_TILE_SIZE).ToInt_RoundToNearest();
 
-		// Reveal flag makes all positioned entities visible
+		// Reveal flag makes all positioned entities visible and all mirages useless
 		if (GetLosRevealAll(player))
 		{
-			if (LosIsOffWorld(i, j))
+			if (LosIsOffWorld(i, j) || cmpMirage)
 				return VIS_HIDDEN;
 			else
 				return VIS_VISIBLE;
