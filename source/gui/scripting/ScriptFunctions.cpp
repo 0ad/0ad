@@ -22,11 +22,11 @@
 #include "graphics/Camera.h"
 #include "graphics/GameView.h"
 #include "graphics/MapReader.h"
-#include "gui/GUIManager.h"
+#include "graphics/scripting/JSInterface_GameView.h"
 #include "gui/GUI.h"
+#include "gui/GUIManager.h"
 #include "gui/IGUIObject.h"
 #include "gui/scripting/JSInterface_GUITypes.h"
-#include "graphics/scripting/JSInterface_GameView.h"
 #include "i18n/L10n.h"
 #include "i18n/scripting/JSInterface_L10n.h"
 #include "lib/svn_revision.h"
@@ -38,38 +38,37 @@
 #include "network/NetClient.h"
 #include "network/NetServer.h"
 #include "network/NetTurnManager.h"
-#include "ps/CLogger.h"
 #include "ps/CConsole.h"
+#include "ps/CLogger.h"
 #include "ps/Errors.h"
-#include "ps/Game.h"
-#include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/GUID.h"
-#include "ps/World.h"
+#include "ps/Game.h"
+#include "ps/GameSetup/Atlas.h"
+#include "ps/GameSetup/Config.h"
+#include "ps/Globals.h"	// g_frequencyFilter
 #include "ps/Hotkey.h"
 #include "ps/Overlay.h"
 #include "ps/ProfileViewer.h"
 #include "ps/Pyrogenesis.h"
 #include "ps/SavedGame.h"
+#include "ps/UserReport.h"
+#include "ps/World.h"
 #include "ps/scripting/JSInterface_ConfigDB.h"
 #include "ps/scripting/JSInterface_Console.h"
 #include "ps/scripting/JSInterface_Mod.h"
 #include "ps/scripting/JSInterface_VFS.h"
-#include "ps/UserReport.h"
-#include "ps/GameSetup/Atlas.h"
-#include "ps/GameSetup/Config.h"
 #include "renderer/scripting/JSInterface_Renderer.h"
-#include "tools/atlas/GameInterface/GameLoop.h"
-
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpAIManager.h"
 #include "simulation2/components/ICmpCommandQueue.h"
 #include "simulation2/components/ICmpGuiInterface.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpSelectable.h"
+#include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/helpers/Selection.h"
 #include "soundmanager/SoundManager.h"
 #include "soundmanager/scripting/JSInterface_Sound.h"
+#include "tools/atlas/GameInterface/GameLoop.h"
 
 /*
  * This file defines a set of functions that are available to GUI scripts, to allow
@@ -834,6 +833,15 @@ std::wstring GetBuildTimestamp(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), i
 	return wstring_from_utf8(buf);
 }
 
+CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath)
+{
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
+	JS::RootedValue out(cx);
+	pCxPrivate->pScriptInterface->ReadJSONFile(filePath, &out);
+	return out.get();
+}
+
 //-----------------------------------------------------------------------------
 // Timer
 //-----------------------------------------------------------------------------
@@ -992,6 +1000,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, bool, &SetPaused>("SetPaused");
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
+	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &ReadJSONFile>("ReadJSONFile");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

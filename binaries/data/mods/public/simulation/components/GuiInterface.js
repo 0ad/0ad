@@ -194,6 +194,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"garrisonHolder": null,
 		"gate": null,
 		"guard": null,
+		"mirage": null,
 		"pack": null,
 		"player": -1,
 		"position": null,
@@ -206,8 +207,9 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"visibility": null,
 	};
 
-	// Used for several components
 	var cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
+	if (cmpMirage)
+		ret.mirage = true;
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 	if (cmpIdentity)
@@ -386,7 +388,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 		"barterMarket": null,
 		"buildingAI": null,
 		"healer": null,
-		"mirage": null,
 		"obstruction": null,
 		"turretParent":null,
 		"promotion": null,
@@ -396,8 +397,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	};
 
 	var cmpMirage = Engine.QueryInterface(ent, IID_Mirage);
-	if (cmpMirage)
-		ret.mirage = true;
 
 	var cmpIdentity = Engine.QueryInterface(ent, IID_Identity);
 

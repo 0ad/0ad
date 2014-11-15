@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,14 +18,15 @@
 #ifndef INCLUDED_SCRIPTINTERFACE
 #define INCLUDED_SCRIPTINTERFACE
 
-#include <memory>
-#include <vector>
-#include <string>
+#include <boost/random/linear_congruential.hpp>
+
+#include "lib/file/vfs/vfs_path.h"
 
 #include "ScriptTypes.h"
 #include "ScriptVal.h"
-
 #include "ps/Errors.h"
+#include "ps/Profile.h"
+
 ERROR_GROUP(Scripting);
 ERROR_TYPE(Scripting, SetupFailed);
 
@@ -43,12 +44,6 @@ ERROR_TYPE(Scripting, TypeDoesNotExist);
 ERROR_SUBGROUP(Scripting, DefineType);
 ERROR_TYPE(Scripting_DefineType, AlreadyExists);
 ERROR_TYPE(Scripting_DefineType, CreationFailed);
-
-#include "lib/file/vfs/vfs_path.h"
-#include "ps/Profile.h"
-#include "ps/utf16string.h"
-
-#include <boost/random/linear_congruential.hpp>
 
 class AutoGCRooter;
 
@@ -273,9 +268,11 @@ public:
 	std::wstring ToString(JS::MutableHandleValue obj, bool pretty = false);
 
 	/**
-	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error and prints an error message.
+	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error
+	 * and prints an error message.
+	 * @return true on success; false otherwise
 	 */
-	void ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out);
+	bool ParseJSON(const std::string& string_utf8, JS::MutableHandleValue out);
 
 	/**
 	 * Read a JSON file. Returns the unmodified value on error and prints an error message.
@@ -350,18 +347,6 @@ public:
 	 * This calls JS_MaybeGC directly, which does not do incremental GC. Usually you should prefer MaybeIncrementalRuntimeGC.
 	 */
 	void MaybeGC();
-	
-	/**
-	 * MaybeIncrementalRuntimeGC tries to determine whether a runtime-wide garbage collection would free up enough memory to 
-	 * be worth the amount of time it would take. It does this with our own logic and NOT some predefined JSAPI logic because
-	 * such functionality currently isn't available out of the box.
-	 * It does incremental GC which means it will collect one slice each time it's called until the garbage collection is done.
-	 * This can and should be called quite regularly. The delay parameter allows you to specify a minimum time since the last GC
-	 * in seconds (the delay should be a fraction of a second in most cases though). 
-	 * It will only start a new incremental GC or another GC slice if this time is exceeded. The user of this function is 
-	 * responsible for ensuring that GC can run with a small enough delay to get done with the work.
-	 */
-	void MaybeIncrementalRuntimeGC(double delay);
 	
 	/**
 	 * Triggers a full non-incremental garbage collection immediately. That should only be required in special cases and normally

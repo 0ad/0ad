@@ -141,10 +141,7 @@ g_SelectionPanels.Command = {
 	},
 	"setTooltip": function(data)
 	{
-		if (data.item.tooltip)
-			data.button.tooltip = data.item.tooltip
-		else
-			data.button.tooltip = toTitleCase(data.item.name);
+		data.button.tooltip = data.item.tooltip;
 	},
 	"setAction": function(data)
 	{

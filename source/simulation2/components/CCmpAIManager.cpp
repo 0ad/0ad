@@ -988,7 +988,7 @@ public:
 		// Get the game state from AIInterface
 		JS::RootedValue state(cx);
 		if (m_JustDeserialized)
-			state.set(cmpAIInterface->GetFullRepresentation(true).get());
+			state.set(cmpAIInterface->GetFullRepresentation(false).get());
 		else
 			state.set(cmpAIInterface->GetRepresentation().get());
 

@@ -192,7 +192,7 @@ function onTick()
 		else if (message.type == "system" && message.text == "registered")
 		{
 			// Great, we are registered. Switch to the connection window.
-			feedback.caption = toTitleCase(message.text);
+			feedback.caption = translate("Registered");
 			Engine.StopXmppClient();
 			g_LobbyIsConnecting = false;
 			Engine.GetGUIObjectByName("connectUsername").caption = username;
@@ -202,7 +202,7 @@ function onTick()
 		else if(message.type == "system" && (message.level == "error" || message.text == "disconnected"))
 		{
 			g_hasSystemMessage = true;
-			feedback.caption = toTitleCase(message.text);
+			feedback.caption = message.text == "disconnected" ? translate("Disconnected") : message.text;
 			Engine.StopXmppClient();
 			g_LobbyIsConnecting = false;
 		}

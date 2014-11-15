@@ -651,6 +651,7 @@ function setup_all_libs ()
 		source_dirs = {
 			"lobby",
 			"lobby/scripting",
+			"i18n",
 			"third_party/encryption"
 		}
 
@@ -658,6 +659,9 @@ function setup_all_libs ()
 			"spidermonkey",
 			"boost",
 			"gloox",
+			"icu",
+			"iconv",
+			"tinygettext"
 		}
 		setup_static_lib_project("lobby", source_dirs, extern_libs, {})
 

@@ -165,13 +165,13 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		{
 			var base = this.metadata.base;
 			for (var j = 0; j < friendlyTiles.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] === base)
+				if (gameState.ai.HQ.basesMap.map[j] == base)
 					friendlyTiles.map[j] = 45;
 		}
 		else
 		{
 			for (var j = 0; j < friendlyTiles.map.length; ++j)
-				if (gameState.ai.HQ.basesMap.map[j] !== 0)
+				if (gameState.ai.HQ.basesMap.map[j] != 0)
 					friendlyTiles.map[j] = 45;
 		}
 
@@ -231,7 +231,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		var base = this.metadata.base;
 		for (var j = 0; j < friendlyTiles.map.length; ++j)
 		{
-			if (gameState.ai.HQ.basesMap.map[j] !== base)
+			if (gameState.ai.HQ.basesMap.map[j] != base)
 				friendlyTiles.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
 				friendlyTiles.map[j] += 50;
@@ -258,7 +258,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && friendlyTiles.map[j] > 0)
 				friendlyTiles.map[j] += 10;
 
-			if (preferredBase && gameState.ai.HQ.basesMap.map[j] === this.metadata.preferredBase)
+			if (preferredBase && gameState.ai.HQ.basesMap.map[j] == this.metadata.preferredBase)
 				friendlyTiles.map[j] += 200;
 
 			if (friendlyTiles.map[j] > 0)

@@ -1670,7 +1670,9 @@ m.AttackPlan.prototype.Serialize = function()
 		"position5TurnsAgo": this.position5TurnsAgo,
 		"lastPosition": this.lastPosition,
 		"position": this.position,
-		"targetPlayer": this.targetPlayer
+		"targetPlayer": this.targetPlayer,
+		"target": ((this.target !== undefined) ? this.target.id() : undefined),
+		"targetPos": this.targetPos
 	};
 
 	let path = {
@@ -1679,11 +1681,7 @@ m.AttackPlan.prototype.Serialize = function()
 		"pathWidth": this.pathWidth
 	};
 
-	let objects = {
-		"targetId": ((this.target !== undefined) ? this.target.id() : undefined)
-	};
-
-	return { "properties": properties, "path": path, "objects": objects };
+	return { "properties": properties, "path": path };
 };
 
 m.AttackPlan.prototype.Deserialize = function(gameState, data)
@@ -1691,22 +1689,14 @@ m.AttackPlan.prototype.Deserialize = function(gameState, data)
 	for (let key in data.properties)
 		this[key] = data.properties[key];
 
+	if (this.target)
+		this.target = gameState.getEntityById(this.target);
+
 	// if the path was not fully computed, we will recompute it as it is not serialized
 	if (data.path.path != "toBeContinued")
 		for (let key in data.path)
 			this[key] = data.path[key];
 
-	let targetId = data.objects["targetId"];
-	if (targetId)
-	{
-		this.target = gameState.getEntityById(targetId);
-		this.targetPos = this.target.position();
-	}
-	else
-	{
-		this.target = undefined;
-		this.targetPos = undefined;
-	}
 	this.failed = undefined;
 };
 

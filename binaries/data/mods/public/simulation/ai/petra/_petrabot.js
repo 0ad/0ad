@@ -89,6 +89,8 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
 	
 		this.HQ.init(gameState, this.queues);
+
+		this.HQ.start(gameState);
 	}
 };
 

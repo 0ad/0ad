@@ -257,25 +257,25 @@ function openDiplomacy()
 		closeTrade();
 	isDiplomacyOpen = true;
 
-	var we = Engine.GetPlayerID();
-	var players = getPlayerData(g_PlayerAssignments);
+	let we = Engine.GetPlayerID();
+	let players = getPlayerData(g_PlayerAssignments);
 
 	// Get offset for one line
-	var onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
-	var rowsize = onesize.bottom - onesize.top;
+	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
+	let rowsize = onesize.bottom - onesize.top;
 
 	// We don't include gaia
-	for (var i = 1; i < players.length; i++)
+	for (let i = 1; i < players.length; ++i)
 	{
 		// Apply offset
-		var row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
-		var size = row.size;
+		let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
+		let size = row.size;
 		size.top = rowsize*(i-1);
 		size.bottom = rowsize*i;
 		row.size = size;
 
 		// Set background colour
-		var playerColor = players[i].color.r+" "+players[i].color.g+" "+players[i].color.b;
+		let playerColor = rgbToGuiColor(players[i].color);
 		row.sprite = "colour: "+playerColor + " 32";
 
 		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + players[i].name + "[/color]";
@@ -290,27 +290,27 @@ function openDiplomacy()
 		if (i == we || players[we].state != "active" || players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
-			for each (var a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
+			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
 				Engine.GetGUIObjectByName("diplomacyPlayer"+a+"["+(i-1)+"]").hidden = true;
 			continue;
 		}
 
 		// Tribute
-		for each (var resource in ["food", "wood", "stone", "metal"])
+		for each (let resource in ["food", "wood", "stone", "metal"])
 		{
-			var button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+toTitleCase(resource)+"["+(i-1)+"]");
+			let button = Engine.GetGUIObjectByName("diplomacyPlayerTribute"+resource[0].toUpperCase()+resource.substring(1)+"["+(i-1)+"]");
 			button.onpress = (function(player, resource, button){
 				// Implement something like how unit batch training works. Shift+click to send 500, shift+click+click to send 1000, etc.
 				// Also see input.js (searching for "INPUT_MASSTRIBUTING" should get all the relevant parts).
-				var multiplier = 1;
+				let multiplier = 1;
 				return function() {
-					var isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
+					let isBatchTrainPressed = Engine.HotkeyIsPressed("session.masstribute");
 					if (isBatchTrainPressed)
 					{
 						inputState = INPUT_MASSTRIBUTING;
 						multiplier += multiplier == 1 ? 4 : 5;
 					}
-					var amounts = {
+					let amounts = {
 						"food": (resource == "food" ? 100 : 0) * multiplier,
 						"wood": (resource == "wood" ? 100 : 0) * multiplier,
 						"stone": (resource == "stone" ? 100 : 0) * multiplier,
@@ -338,32 +338,12 @@ function openDiplomacy()
 
 		// Diplomacy settings
 		// Set up the buttons
-		for each (var setting in ["ally", "neutral", "enemy"])
+		for each (let setting in ["Ally", "Neutral", "Enemy"])
 		{
-			var button = Engine.GetGUIObjectByName("diplomacyPlayer"+toTitleCase(setting)+"["+(i-1)+"]");
+			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
-			if (setting == "ally")
-			{
-				if (players[we].isAlly[i])
-					button.caption = translate("x");
-				else
-					button.caption = "";
-			}
-			else if (setting == "neutral")
-			{
-				if (players[we].isNeutral[i])
-					button.caption = translate("x");
-				else
-					button.caption = "";
-			}
-			else // "enemy"
-			{
-				if (players[we].isEnemy[i])
-					button.caption = translate("x");
-				else
-					button.caption = "";
-			}
-			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting});
+			button.caption = players[we]["is"+setting][i] ? translate("x") : "";
+			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting.toLowerCase()});
 			button.hidden = false;
 		}
 	}
@@ -692,7 +672,7 @@ function closeOpenDialogs()
 
 function formatTributeTooltip(player, resource, amount)
 {
-	var playerColor = player.color.r + " " + player.color.g + " " + player.color.b;
+	let playerColor = rgbToGuiColor(player.color);
 	return sprintf(translate("Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click to tribute %(greaterAmount)s."), {
 		resourceAmount: amount,
 		resourceType: getLocalizedResourceName(resource, "withinSentence"),

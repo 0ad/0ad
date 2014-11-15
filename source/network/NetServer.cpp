@@ -28,6 +28,7 @@
 #include "lib/external_libraries/enet.h"
 #include "ps/CLogger.h"
 #include "scriptinterface/ScriptInterface.h"
+#include "scriptinterface/ScriptRuntime.h"
 #include "simulation2/Simulation2.h"
 #include "ps/ConfigDB.h"
 
@@ -391,7 +392,7 @@ bool CNetServerWorker::RunStep()
 	// (Do as little work as possible while the mutex is held open,
 	// to avoid performance problems and deadlocks.)
 	
-	m_ScriptInterface->MaybeIncrementalRuntimeGC(0.5f);
+	m_ScriptInterface->GetRuntime()->MaybeIncrementalGC(0.5f);
 	
 	JSContext* cx = m_ScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
