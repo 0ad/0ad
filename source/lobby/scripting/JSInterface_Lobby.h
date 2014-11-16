@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,12 +18,14 @@
 #ifndef INCLUDED_JSI_LOBBY
 #define INCLUDED_JSI_LOBBY
 
+#include "lib/config2.h"
 #include "scriptinterface/ScriptInterface.h"
 #include "scriptinterface/ScriptVal.h"
-#include "lib/config2.h" // for CONFIG2_LOBBY
 
 namespace JSI_Lobby
 {
+	void RegisterScriptFunctions(ScriptInterface& scriptInterface);
+
 	bool HasXmppClient(ScriptInterface::CxPrivate* pCxPrivate);
 	bool IsRankedGame(ScriptInterface::CxPrivate* pCxPrivate);
 	void SetRankedGame(ScriptInterface::CxPrivate* pCxPrivate, bool isRanked);
@@ -66,4 +68,3 @@ namespace JSI_Lobby
 }
 
 #endif
-
