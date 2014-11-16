@@ -51,6 +51,8 @@ function InitGame(settings)
 			cmpPlayer.SetResourceCounts(newResourceCounts);
 		}
 	}
+	let seed = settings.AISeed ? settings.AISeed : 0;
+	cmpAIManager.SetRNGSeed(seed);
 	cmpAIManager.TryLoadSharedComponent();
 	cmpAIManager.RunGamestateInit();
 }

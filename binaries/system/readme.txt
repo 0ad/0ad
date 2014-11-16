@@ -7,19 +7,20 @@ Basic gameplay:
 -quickstart			load faster (disables audio and some system info logging)
 
 Autostart:
--autostart="TYPEDIR/MAPNAME"	enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
--autostart-ai=PLAYER:AI			sets the AI for PLAYER (e.g. 2:petra)
--autostart-aidiff=PLAYER:DIFF	sets the DIFFiculty of PLAYER's AI (0: easy, 3: very hard)
--autostart-civ=PLAYER:CIV		sets PLAYER's civilisation to CIV (skirmish and random maps only)
+-autostart="TYPEDIR/MAPNAME"    enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
+-autostart-ai=PLAYER:AI	        sets the AI for PLAYER (e.g. 2:petra)
+-autostart-aidiff=PLAYER:DIFF   sets the DIFFiculty of PLAYER's AI (0: sandbox, 4: very hard)
+-autostart-civ=PLAYER:CIV       sets PLAYER's civilisation to CIV (skirmish and random maps only)
+-autostart-aiseed=AISEED        sets the seed used for the AI random generator (default 0, use -1 for random)
 Multiplayer:
--autostart-playername=NAME		sets local player NAME (default 'anonymous')
--autostart-host					sets multiplayer host mode
--autostart-host-players=NUMBER	sets NUMBER of human players for multiplayer game (default 2)
--autostart-client=IP			sets multiplayer client to join host at given IP address
+-autostart-playername=NAME      sets local player NAME (default 'anonymous')
+-autostart-host	                sets multiplayer host mode
+-autostart-host-players=NUMBER  sets NUMBER of human players for multiplayer game (default 2)
+-autostart-client=IP            sets multiplayer client to join host at given IP address
  Random maps only:
--autostart-seed=SEED			sets random map SEED value (default 0, use -1 for random)
--autostart-size=TILES			sets random map size in TILES (default 192)
--autostart-players=NUMBER		sets NUMBER of players on random map (default 2)
+-autostart-seed=SEED            sets random map SEED value (default 0, use -1 for random)
+-autostart-size=TILES           sets random map size in TILES (default 192)
+-autostart-players=NUMBER       sets NUMBER of players on random map (default 2)
 
 Examples:
 1) "Bob" will host a 2 player game on the Arcadia map:
