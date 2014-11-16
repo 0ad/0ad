@@ -27,6 +27,8 @@ function init()
 	gameSelection.list_data = gameListIds;
 	if (gameSelection.selected == -1) 
 		gameSelection.selected = 0;
+	else if (gameSelection.selected >= savedGames.length)    // happen when we delete the last saved game
+		gameSelection.selected = savedGames.length - 1;
 }
 
 function loadGame()
