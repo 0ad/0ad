@@ -6,7 +6,7 @@ function sortDecreasingDate(a, b)
 function generateLabel(metadata, engineInfo)
 {
 	var dateTimeString = Engine.FormatMillisecondsIntoDateString(metadata.time*1000, translate("yyyy-MM-dd HH:mm:ss"));
-	var dateString = sprintf(translate("[%(date)s]"), { date: dateTimeString });
+	var dateString = sprintf(translate("\\[%(date)s]"), { date: dateTimeString });
 	if (engineInfo)
 	{
 		if (!hasSameVersion(metadata, engineInfo))

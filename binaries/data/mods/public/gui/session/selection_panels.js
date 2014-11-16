@@ -940,7 +940,7 @@ g_SelectionPanels.Training = {
 		var tooltip = "";
 		var key = Engine.ConfigDB_GetValue("user", "hotkey.session.queueunit." + (data.i + 1));
 		if (key)
-			tooltip += "[color=\"255 251 131\"][font=\"sans-bold-16\"][" + key + "][/font][/color] ";
+			tooltip += "[color=\"255 251 131\"][font=\"sans-bold-16\"]\[" + key + "][/font][/color] ";
 
 		tooltip += getEntityNamesFormatted(data.template);
 		tooltip += getVisibleEntityClassesFormatted(data.template);
