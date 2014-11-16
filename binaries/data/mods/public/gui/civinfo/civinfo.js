@@ -1,11 +1,8 @@
-
 var g_CivData = {};
 
 function init(settings)
 {
-	// Initialize civ list
 	initCivNameList();
-	// TODO: Separate control for factions?
 }
 
 // Sort by culture, then by code equals culture and then by name ignoring case
@@ -78,7 +75,7 @@ function heading(string, size)
 
 function escapeChars(str)
 {
-	return str.replace(/\[/g, "&#91;").replace(/\]/g, "&#93;").replace(/"/g, "&#34;");
+	return str.replace(/"/g, "\\\\\"");
 };
 
 function subHeading(obj)

@@ -41,7 +41,7 @@ function displaySingle(entState, template)
 	// Indicate disconnected players by prefixing their name
 	if (g_Players[entState.player].offline)
 	{
-		playerName = sprintf(translate("[OFFLINE] %(player)s"), { player: playerName });
+		playerName = sprintf(translate("\\[OFFLINE] %(player)s"), { player: playerName });
 	}
 
 	// Rank

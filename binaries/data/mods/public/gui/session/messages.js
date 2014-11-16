@@ -271,7 +271,7 @@ function handleNetMessage(message)
 
 		g_PlayerAssignments = message.hosts;
 
-		if (g_IsController)
+		if (g_IsController && Engine.HasXmppClient())
 		{
 			var players = [ assignment.name for each (assignment in g_PlayerAssignments) ]
 			Engine.SendChangeStateGame(Object.keys(g_PlayerAssignments).length, players.join(", "));

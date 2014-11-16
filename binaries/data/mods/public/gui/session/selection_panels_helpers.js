@@ -111,7 +111,7 @@ function formatBatchTrainingString(buildingsCountToTrainFullBatch, fullBatchSize
 	}
 	var remainderBatchString = remainderBatch > 0 ? remainderBatch : "";
 	var batchDetailsString = "";
-	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font][font=\"sans-13\"]"
+	var action = "[font=\"sans-bold-13\"]" + translate("Shift-click") + "[/font]";
 
 	// We need to display the batch details part if there is either more than
 	// one building with full batch or one building with the full batch and

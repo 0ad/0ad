@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,20 +18,18 @@
 #include "precompiled.h"
 #include "TerrainProperties.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
-#include "ps/Filesystem.h"
-#include "ps/CLogger.h"
-
-#include "ps/Parser.h"
-#include "ps/XML/XeroXMB.h"
-#include "ps/XML/Xeromyces.h"
+#include <boost/tokenizer.hpp>
 
 #include "TerrainTextureManager.h"
-#include "ps/Overlay.h"
-
 #include "maths/MathUtil.h"
+#include "ps/CLogger.h"
+#include "ps/Filesystem.h"
+#include "ps/Overlay.h"
+#include "ps/XML/XeroXMB.h"
+#include "ps/XML/Xeromyces.h"
 
 CTerrainProperties::CTerrainProperties(CTerrainPropertiesPtr parent):
 	m_pParent(parent),
@@ -112,21 +110,12 @@ void CTerrainProperties::LoadXml(XMBElement node, CXeromyces *pFile, const VfsPa
 		{
 			// Parse a comma-separated list of groups, add the new entry to
 			// each of them
-			CParser parser;
-			CParserLine parserLine;
-			parser.InputTaskType("GroupList", "<_$value_,>_$value_");
-			
-			if (!parserLine.ParseString(parser, attr.Value))
-				continue;
 			m_Groups.clear();
-			for (size_t i=0;i<parserLine.GetArgCount();i++)
-			{
-				std::string value;
-				if (!parserLine.GetArgString(i, value))
-					continue;
-				CTerrainGroup *pType = g_TexMan.FindGroup(value);
-				m_Groups.push_back(pType);
-			}
+			boost::char_separator<char> sep(", ");
+			typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+			tokenizer tok(attr.Value, sep);
+			for(tokenizer::iterator it = tok.begin(); it != tok.end(); ++it)
+				m_Groups.push_back(g_TexMan.FindGroup(*it));
 		}
 		else if (attr.Name == attr_mmap)
 		{

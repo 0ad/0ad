@@ -187,7 +187,7 @@ public:
 	struct TextChunk
 	{
 		/**
-		 * A tag looks like this "Hello [B]there[/B] little"
+		 * A tag looks like this "Hello [b]there[/b] little"
 		 */
 		struct Tag
 		{
@@ -203,34 +203,37 @@ public:
 				TAG_COLOR,
 				TAG_IMGLEFT,
 				TAG_IMGRIGHT,
-				TAG_ICON
+				TAG_ICON,
+				TAG_INVALID
 			};
 
 			struct TagAttribute
 			{
-				std::string attrib;
-				std::string value;
+				std::wstring attrib;
+				std::wstring value;
 			};
 
 			/**
 			 * Set tag from string
 			 *
-			 * @param tagtype TagType by string, like 'IMG' for [IMG]
+			 * @param tagtype TagType by string, like 'img' for [img]
 			 * @return True if m_TagType was set.
 			 */
-			bool SetTagType(const CStr& tagtype);
+			bool SetTagType(const CStrW& tagtype);
+			TagType GetTagType(const CStrW& tagtype);
+
 
 			/**
-			 * In [B=Hello][/B]
+			 * In [b="Hello"][/b]
 			 * m_TagType is TAG_B
 			 */
 			TagType m_TagType;
 
 			/**
-			 * In [B=Hello][/B]
+			 * In [b="Hello"][/b]
 			 * m_TagValue is 'Hello'
 			 */
-			std::string m_TagValue;
+			std::wstring m_TagValue;
 
 			/**
 			 * Some tags need an additional attributes
@@ -244,7 +247,7 @@ public:
 		int m_From, m_To;
 
 		/**
-		 * Tags that are present. [A][B]
+		 * Tags that are present. [a][b]
 		 */
 		std::vector<Tag> m_Tags;
 	};
@@ -293,11 +296,6 @@ public:
 	void SetValue(const CStrW& str);
 
 	/**
-	 * Get String, without tags
-	 */
-	const CStrW& GetRawString() const { return m_RawString; }
-
-	/**
 	 * Get String, with tags
 	 */
 	const CStrW& GetOriginalString() const { return m_OriginalString; }
@@ -333,12 +331,12 @@ public:
 	 */
 	std::vector<int> m_Words;
 
+private:
 	/**
 	 * TextChunks
 	 */
 	std::vector<TextChunk> m_TextChunks;
 
-private:
 	/**
 	 * The full raw string. Stripped of tags.
 	 */
