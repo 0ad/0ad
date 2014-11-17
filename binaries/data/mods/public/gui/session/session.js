@@ -676,38 +676,36 @@ function updateGroups()
 
 function updateDebug()
 {
-	var simState = GetSimState();
-	var debug = Engine.GetGUIObjectByName("debug");
+	let simState = GetSimState();
+	let debug = Engine.GetGUIObjectByName("debug");
 
-	if (Engine.GetGUIObjectByName("devDisplayState").checked)
-	{
-		debug.hidden = false;
-	}
-	else
+	if (!Engine.GetGUIObjectByName("devDisplayState").checked)
 	{
 		debug.hidden = true;
 		return;
 	}
 
-	var conciseSimState = deepcopy(simState);
-	conciseSimState.players = "<<<omitted>>>";
-	var text = "simulation: " + uneval(conciseSimState);
+	debug.hidden = false;
 
-	var selection = g_Selection.toList();
+	let conciseSimState = deepcopy(simState);
+	conciseSimState.players = "<<<omitted>>>";
+	let text = "simulation: " + uneval(conciseSimState);
+
+	let selection = g_Selection.toList();
 	if (selection.length)
 	{
-		var entState = GetExtendedEntityState(selection[0]);
+		let entState = GetExtendedEntityState(selection[0]);
 		if (entState)
 		{
-			var template = GetTemplateData(entState.template);
+			let template = GetTemplateData(entState.template);
 			text += "\n\nentity: {\n";
-			for (var k in entState)
+			for (let k in entState)
 				text += "  "+k+":"+uneval(entState[k])+"\n";
 			text += "}\n\ntemplate: " + uneval(template);
 		}
 	}
 
-	debug.caption = text;
+	debug.caption = text.replace(/\[/g, "\\[");
 }
 
 function updatePlayerDisplay()

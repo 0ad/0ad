@@ -148,20 +148,20 @@ function exitMenuButton()
 	pauseGame();
 	if (g_IsNetworked && g_IsController)
 	{
-		var btCode = [leaveGame, resumeGame];
+		var btCode = [resumeGame, leaveGame];
 		var message = translate("Are you sure you want to quit? Leaving will disconnect all other players.");
 	}
 	else if (g_IsNetworked && !g_GameEnded && !g_IsObserver)
 	{
-		var btCode = [networkReturnQuestion, resumeGame];
+		var btCode = [resumeGame, networkReturnQuestion];
 		var message = translate("Are you sure you want to quit?");
 	}
 	else
 	{
-		var btCode = [leaveGame, resumeGame];
+		var btCode = [resumeGame, leaveGame];
 		var message = translate("Are you sure you want to quit?");
 	}
-	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("Yes"), translate("No")], btCode);
+	messageBox(400, 200, message, translate("Confirmation"), 0, [translate("No"), translate("Yes")], btCode);
 }
 
 function networkReturnQuestion()

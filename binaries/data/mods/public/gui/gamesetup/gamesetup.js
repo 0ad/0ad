@@ -806,6 +806,7 @@ function selectMapType(type)
 		// TODO: This should be remembered from the last session
 		g_GameAttributes.mapPath = "maps/scenarios/";
 		g_GameAttributes.map = g_GameAttributes.mapPath + (g_IsNetworked ? DEFAULT_NETWORKED_MAP : DEFAULT_OFFLINE_MAP);
+		g_GameAttributes.settings.AISeed = Math.floor(Math.random() * 65536);
 		break;
 
 	case "skirmish":
@@ -813,6 +814,7 @@ function selectMapType(type)
 		g_GameAttributes.settings = {
 			PlayerData: g_DefaultPlayerData.slice(0, 4),
 			Seed: Math.floor(Math.random() * 65536),
+			AISeed: Math.floor(Math.random() * 65536),
 			CheatsEnabled: g_GameAttributes.settings.CheatsEnabled
 		};
 		break;
@@ -822,6 +824,7 @@ function selectMapType(type)
 		g_GameAttributes.settings = {
 			PlayerData: g_DefaultPlayerData.slice(0, 4),
 			Seed: Math.floor(Math.random() * 65536),
+			AISeed: Math.floor(Math.random() * 65536),
 			CheatsEnabled: g_GameAttributes.settings.CheatsEnabled
 		};
 		break;

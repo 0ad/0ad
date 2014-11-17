@@ -225,7 +225,6 @@ public:
 		m_HasSharedComponent(false)
 	{
 
-		// TODO: ought to seed the RNG (in a network-synchronised way) before we use it
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
 		m_ScriptInterface->LoadGlobalScripts();
 
@@ -359,6 +358,11 @@ public:
 			img[i] = (u8)((data[i] * 255) / max);
 		
 		tex_write(&t, filename);
+	}
+
+	void SetRNGSeed(uint32_t seed)
+	{
+		m_RNG.seed(seed);
 	}
 
 	bool TryLoadSharedComponent(bool hasTechs)
@@ -917,6 +921,11 @@ public:
 			cmpRangeManager->SetLosRevealAll(player, true);
 	}
 	
+	virtual void SetRNGSeed(uint32_t seed)
+	{
+		m_Worker.SetRNGSeed(seed);
+	}
+
 	virtual void TryLoadSharedComponent()
 	{
 		ScriptInterface& scriptInterface = GetSimContext().GetScriptInterface();

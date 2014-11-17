@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,6 @@
 #ifndef INCLUDED_CONFIGDB
 #define INCLUDED_CONFIGDB
 
-#include "Parser.h"
 #include "CStr.h"
 #include "Singleton.h"
 
@@ -46,14 +45,13 @@ enum EConfigNamespace
 	CFG_LAST
 };
 
-typedef CParserValue CConfigValue;
-typedef std::vector<CParserValue> CConfigValueSet;
+typedef std::vector<CStr> CConfigValueSet;
 
 #define g_ConfigDB CConfigDB::GetSingleton()
 
 class CConfigDB: public Singleton<CConfigDB>
 {
-	static std::map <CStr, CConfigValueSet> m_Map[];
+	static std::map<CStr, CConfigValueSet> m_Map[];
 	static VfsPath m_ConfigFile[];
 
 public:
@@ -64,15 +62,15 @@ public:
 	 * will search CFG_COMMAND first, and then all namespaces from the specified
 	 * namespace down.
 	 */
-	void GetValueBool(EConfigNamespace ns, const CStr& name, bool& value);
-	///@copydoc CConfigDB::GetValueBool
-	void GetValueInt(EConfigNamespace ns, const CStr& name, int& value);
-	///@copydoc CConfigDB::GetValueBool
-	void GetValueFloat(EConfigNamespace ns, const CStr& name, float& value);
-	///@copydoc CConfigDB::GetValueBool
-	void GetValueDouble(EConfigNamespace ns, const CStr& name, double& value);
-	///@copydoc CConfigDB::GetValueBool
-	void GetValueString(EConfigNamespace ns, const CStr& name, std::string& value);
+	void GetValue(EConfigNamespace ns, const CStr& name, bool& value);
+	///@copydoc CConfigDB::GetValue
+	void GetValue(EConfigNamespace ns, const CStr& name, int& value);
+	///@copydoc CConfigDB::GetValue
+	void GetValue(EConfigNamespace ns, const CStr& name, float& value);
+	///@copydoc CConfigDB::GetValue
+	void GetValue(EConfigNamespace ns, const CStr& name, double& value);
+	///@copydoc CConfigDB::GetValue
+	void GetValue(EConfigNamespace ns, const CStr& name, std::string& value);
 
 	/**
 	 * Attempt to retrieve a vector of values corresponding to the given setting;
@@ -145,6 +143,6 @@ public:
 // convenience wrapper on top of CConfigValue::Get* simplifies user code and
 // avoids "assignment within condition expression" warnings.
 #define CFG_GET_VAL(name, type, destination)\
-	g_ConfigDB.GetValue##type(CFG_USER, name, destination)
+	g_ConfigDB.GetValue(CFG_USER, name, destination)
 
 #endif

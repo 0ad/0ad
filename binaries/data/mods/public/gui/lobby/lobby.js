@@ -79,7 +79,7 @@ function resetFilters()
 	Engine.GetGUIObjectByName("mapSizeFilter").selected = 0
 	Engine.GetGUIObjectByName("playersNumberFilter").selected = 0;
 	Engine.GetGUIObjectByName("mapTypeFilter").selected = 0;
-	Engine.GetGUIObjectByName("showFullFilter").checked = true;
+	Engine.GetGUIObjectByName("showFullFilter").checked = false;
 
 	// Update the list of games
 	updateGameList();
