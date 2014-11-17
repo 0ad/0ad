@@ -18,6 +18,8 @@
 #include "precompiled.h"
 #include "Hotkey.h"
 
+#include <boost/tokenizer.hpp>
+
 #include "lib/input.h"
 #include "ConfigDB.h"
 #include "CLogger.h"
@@ -62,81 +64,46 @@ std::map<std::string, bool> g_HotkeyStatus;
 // all key combinations that trigger it.
 static void LoadConfigBindings()
 {
-	std::map<CStr, CConfigValueSet> bindings = g_ConfigDB.GetValuesWithPrefix( CFG_COMMAND, "hotkey." );
-
-	CParser multikeyParser;
-	multikeyParser.InputTaskType( "multikey", "<[~$arg(_negate)]$value_+_>_[~$arg(_negate)]$value" );
-
-	for( std::map<CStr, CConfigValueSet>::iterator bindingsIt = bindings.begin(); bindingsIt != bindings.end(); ++bindingsIt )
+	std::map<CStr, CConfigValueSet> bindings = g_ConfigDB.GetValuesWithPrefix(CFG_COMMAND, "hotkey.");
+	for (std::map<CStr, CConfigValueSet>::iterator bindingsIt = bindings.begin(); bindingsIt != bindings.end(); ++bindingsIt)
 	{
 		std::string hotkeyName = bindingsIt->first.substr(7); // strip the "hotkey." prefix
-
-		for( CConfigValueSet::iterator it = bindingsIt->second.begin(); it != bindingsIt->second.end(); ++it )
+		for (CConfigValueSet::iterator it = bindingsIt->second.begin(); it != bindingsIt->second.end(); ++it)
 		{
-			std::string hotkey;
-			if( it->GetString( hotkey ) )
+			const CStr& hotkey = *it;
+			std::vector<SKey> keyCombination;
+
+			// Iterate through multiple-key bindings (e.g. Ctrl+I)
+			boost::char_separator<char> sep("+");
+			typedef boost::tokenizer<boost::char_separator<char> > tokenizer;
+			tokenizer tok(hotkey, sep);
+			for (tokenizer::iterator it = tok.begin(); it != tok.end(); ++it)
 			{
-				std::vector<SKey> keyCombination;
-
-				CParserLine multikeyIdentifier;
-				multikeyIdentifier.ParseString( multikeyParser, hotkey );
-
-				// Iterate through multiple-key bindings (e.g. Ctrl+I)
-
-				bool negateNext = false;
-
-				for( size_t t = 0; t < multikeyIdentifier.GetArgCount(); t++ )
+				// Attempt decode as key name
+				int mapping = FindKeyCode(*it);
+				if (!mapping)
 				{
-
-					if( multikeyIdentifier.GetArgString( (int)t, hotkey ) )
-					{
-						if( hotkey == "_negate" )
-						{
-							negateNext = true;
-							continue;
-						}
-
-						// Attempt decode as key name
-						int mapping = FindKeyCode( hotkey );
-
-						// Attempt to decode as a negation of a keyname
-						// Yes, it's going a bit far, perhaps.
-						// Too powerful for most uses, probably.
-						// However, it got some hardcoding out of the engine.
-						// Thus it makes me happy.
-
-						if( !mapping )
-						{
-							LOGWARNING(L"Hotkey mapping used invalid key '%hs'", hotkey.c_str() );
-							continue;
-						}
-
-						SKey key = { (SDLKEY)mapping, negateNext };
-						keyCombination.push_back(key);
-
-						negateNext = false;
-
-					}
+					LOGWARNING(L"Hotkey mapping used invalid key '%hs'", hotkey.c_str());
+					continue;
 				}
 
-				std::vector<SKey>::iterator itKey, itKey2;
+				SKey key = { (SDLKEY)mapping, false };
+				keyCombination.push_back(key);
+			}
 
-				for( itKey = keyCombination.begin(); itKey != keyCombination.end(); ++itKey )
-				{
-					SHotkeyMapping bindCode;
+			std::vector<SKey>::iterator itKey, itKey2;
+			for (itKey = keyCombination.begin(); itKey != keyCombination.end(); ++itKey)
+			{
+				SHotkeyMapping bindCode;
 
-					bindCode.name = hotkeyName;
-					bindCode.negated = itKey->negated;
+				bindCode.name = hotkeyName;
+				bindCode.negated = itKey->negated;
 
-					for( itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2 )
-					{
-						// Push any auxiliary keys.
-						if( itKey != itKey2 )
-							bindCode.requires.push_back( *itKey2 );
-					}
+				for (itKey2 = keyCombination.begin(); itKey2 != keyCombination.end(); ++itKey2)
+					if (itKey != itKey2) // Push any auxiliary keys
+						bindCode.requires.push_back(*itKey2);
 
-					g_HotkeyMap[itKey->code].push_back( bindCode );
-				}
+				g_HotkeyMap[itKey->code].push_back(bindCode);
 			}
 		}
 	}

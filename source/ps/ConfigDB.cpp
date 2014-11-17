@@ -22,11 +22,10 @@
 #include "CLogger.h"
 #include "ConfigDB.h"
 #include "Filesystem.h"
-#include "Parser.h"
 #include "ThreadUtil.h"
 #include "lib/allocators/shared_ptr.h"
 
-typedef std::map <CStr, CConfigValueSet> TConfigMap;
+typedef std::map<CStr, CConfigValueSet> TConfigMap;
 TConfigMap CConfigDB::m_Map[CFG_LAST];
 VfsPath CConfigDB::m_ConfigFile[CFG_LAST];
 
@@ -47,48 +46,76 @@ CConfigDB::CConfigDB()
 	ENSURE(err == 0);
 }
 
-#define GETVAL(T, type) \
-	void CConfigDB::GetValue##T(EConfigNamespace ns, const CStr& name, type& value) \
-	{ \
-		if (ns < 0 || ns >= CFG_LAST) \
-		{ \
-			debug_warn(L"CConfigDB: Invalid ns value"); \
-			return; \
-		} \
-		CScopeLock s(&cfgdb_mutex); \
-		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name); \
-		if (it != m_Map[CFG_COMMAND].end()) \
-		{ \
-			it->second[0].Get##T(value); \
-			return; \
-		} \
-		\
-		for (int search_ns = ns; search_ns >= 0; search_ns--) \
-		{ \
-			it = m_Map[search_ns].find(name); \
-			if (it != m_Map[search_ns].end()) \
-			{ \
-				it->second[0].Get##T(value); \
-				return; \
-			} \
-		} \
+#define CHECK_NS(rval)\
+	do {\
+		if (ns < 0 || ns >= CFG_LAST)\
+		{\
+			debug_warn(L"CConfigDB: Invalid ns value");\
+			return rval;\
+		}\
+	} while (false)
+
+namespace {
+template<typename T> void Get(const CStr& value, T& ret)
+{
+	std::stringstream ss(value);
+	ss >> ret;
+}
+template<> void Get<>(const CStr& value, bool& ret)
+{
+	ret = value == "true";
+}
+template<> void Get<>(const CStr& value, std::string& ret)
+{
+	ret = value;
+}
+std::string EscapeString(const CStr& str)
+{
+	std::string ret;
+	for (size_t i = 0; i < str.length(); ++i)
+	{
+		if (str[i] == '\\')
+			ret += "\\\\";
+		else if (str[i] == '"')
+			ret += "\\\"";
+		else
+			ret += str[i];
 	}
+	return ret;
+}
+} // namespace
 
-GETVAL(Bool, bool)
-GETVAL(Int, int)
-GETVAL(Float, float)
-GETVAL(Double, double)
-GETVAL(String, std::string)
-
+#define GETVAL(type)\
+	void CConfigDB::GetValue(EConfigNamespace ns, const CStr& name, type& value)\
+	{\
+		CHECK_NS();\
+		CScopeLock s(&cfgdb_mutex);\
+		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);\
+		if (it != m_Map[CFG_COMMAND].end())\
+		{\
+			Get(it->second[0], value);\
+			return;\
+		}\
+		for (int search_ns = ns; search_ns >= 0; search_ns--)\
+		{\
+			it = m_Map[search_ns].find(name);\
+			if (it != m_Map[search_ns].end())\
+			{\
+				Get(it->second[0], value);\
+				return;\
+			}\
+		}\
+	}
+GETVAL(bool)
+GETVAL(int)
+GETVAL(float)
+GETVAL(double)
+GETVAL(std::string)
 #undef GETVAL
 
 void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return;
-	}
+	CHECK_NS();
 
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
@@ -111,11 +138,7 @@ void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet
 
 EConfigNamespace CConfigDB::GetValueNamespace(EConfigNamespace ns, const CStr& name)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return CFG_LAST;
-	}
+	CHECK_NS(CFG_LAST);
 
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
@@ -137,11 +160,7 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 	CScopeLock s(&cfgdb_mutex);
 	std::map<CStr, CConfigValueSet> ret;
 
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return ret;
-	}
+	CHECK_NS(ret);
 
 	// Loop upwards so that values in later namespaces can override
 	// values in earlier namespaces
@@ -165,50 +184,32 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 
 void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return;
-	}
+	CHECK_NS();
 
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
 	if (it == m_Map[ns].end())
 		it = m_Map[ns].insert(m_Map[ns].begin(), make_pair(name, CConfigValueSet(1)));
 
-	it->second[0].m_String = value;
+	it->second[0] = value;
 }
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return;
-	}
+	CHECK_NS();
 
 	CScopeLock s(&cfgdb_mutex);
-	m_ConfigFile[ns]=path;
+	m_ConfigFile[ns] = path;
 }
 
 bool CConfigDB::Reload(EConfigNamespace ns)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return false;
-	}
+	CHECK_NS(false);
 
 	CScopeLock s(&cfgdb_mutex);
 
-	// Set up CParser
-	CParser parser;
-	CParserLine parserLine;
-	parser.InputTaskType("Assignment", "_$ident_=<_[-$arg(_minus)]_$value_,>_[-$arg(_minus)]_$value[[;]$rest]");
-	parser.InputTaskType("CommentOrBlank", "_[;[$rest]]");
-
-	// Open file with VFS
-	shared_ptr<u8> buffer; size_t buflen;
+	shared_ptr<u8> buffer;
+	size_t buflen;
 	{
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
@@ -216,65 +217,119 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			LOGMESSAGE(L"Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].string().c_str());
 			return false;
 		}
-		else
+
+		LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].string().c_str());
+		Status ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
+		if (ret != INFO::OK)
 		{
-			LOGMESSAGE(L"Loading config file \"%ls\"", m_ConfigFile[ns].string().c_str());
-			Status ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
-			if (ret != INFO::OK)
-			{
-				LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %lld", m_ConfigFile[ns].string().c_str(), (long long)ret);
-				return false;
-			}
+			LOGERROR(L"CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %lld", m_ConfigFile[ns].string().c_str(), (long long)ret);
+			return false;
 		}
 	}
 	
 	TConfigMap newMap;
+	char *filebuf = (char*)buffer.get();
+	char *filebufend = filebuf+buflen;
 	
-	char *filebuf=(char *)buffer.get();
-	char *filebufend=filebuf+buflen;
-	
-	// Read file line by line
-	char *next=filebuf-1;
-	do
+	bool quoted = false;
+	CStr name;
+	CStr value;
+	int line = 1;
+	std::vector<CStr> values;
+	for (char* pos = filebuf; pos < filebufend; ++pos)
 	{
-		char *pos=next+1;
-		next=(char *)memchr(pos, '\n', filebufend-pos);
-		if (!next) next=filebufend;
-
-		char *lend=next;
-		if (lend > filebuf && *(lend-1) == '\r') lend--;
-
-		// Send line to parser
-		bool parseOk=parserLine.ParseString(parser, std::string(pos, lend));
-		// Get name and value from parser
-		std::string name;
-		std::string value;
-		
-		if (parseOk &&
-			parserLine.GetArgCount()>=2 &&
-			parserLine.GetArgString(0, name) &&
-			parserLine.GetArgString(1, value))
+		switch (*pos)
 		{
-			// Add name and value to the map
-			size_t argCount = parserLine.GetArgCount();
+		case '\n':
+		case ';':
+			break; // We finished parsing this line
 
-			newMap[name].clear();
+		case ' ':
+		case '\r':
+			continue; // ignore
 
-			for( size_t t = 0; t < argCount; t++ )
+		case '=':
+			// Parse parameters (comma separated, possibly quoted)
+			for (++pos; pos < filebufend && *pos != '\n' && *pos != ';'; ++pos)
 			{
-				if( !parserLine.GetArgString( (int)t + 1, value ) )
-					continue;
-				CConfigValue argument;
-				argument.m_String = value;
-				newMap[name].push_back( argument );
-				if (name == "lobby.password")
-					value = "*******";
-				LOGMESSAGE(L"Loaded config string \"%hs\" = \"%hs\"", name.c_str(), value.c_str());
+				switch (*pos)
+				{
+				case '"':
+					quoted = true;
+					// parse until not quoted anymore
+					for (++pos; pos < filebufend && *pos != '\n' && *pos != '"'; ++pos)
+					{
+						if (*pos == '\\' && ++pos == filebufend)
+						{
+							LOGERROR(L"Escape character at end of input (line %d in '%ls')", line, m_ConfigFile[ns].string().c_str());
+							break;
+						}
+
+						value.push_back(*pos);
+					}
+					if (pos < filebufend && *pos == '"')
+						quoted = false;
+					else
+						--pos; // We should terminate the outer loop too
+					break;
+
+				case '\r':
+				case ' ':
+					break; // ignore
+
+				case ',':
+					if (!value.empty())
+						values.push_back(value);
+					value.clear();
+					break;
+
+				default:
+					value.push_back(*pos);
+					break;
+				}
+			}
+			if (quoted) // We ignore the invalid parameter
+				LOGERROR(L"Unmatched quote while parsing config file '%ls' on line %d", m_ConfigFile[ns].string().c_str(), line);
+			else if (!value.empty())
+				values.push_back(value);
+			value.clear();
+			quoted = false;
+			break; // We are either at the end of the line, or we still have a comment to parse
+
+		default:
+			name.push_back(*pos);
+			continue;
+		}
+		
+		// Consume the rest of the line
+		while (pos < filebufend && *pos != '\n')
+			++pos;
+		// Store the setting
+		if (!name.empty() && !values.empty())
+		{
+			newMap[name] = values;
+			if (name == "lobby.password")
+				LOGMESSAGE(L"Loaded config string \"%hs\"", name.c_str());
+			else
+			{
+				std::string vals;
+				for (size_t i = 0; i < newMap[name].size() - 1; ++i)
+					vals += "\"" + EscapeString(newMap[name][i]) + "\", ";
+				vals += "\"" + EscapeString(newMap[name][values.size()-1]) + "\"";
+				LOGMESSAGE(L"Loaded config string \"%hs\" = %hs", name.c_str(), vals.c_str());
 			}
 		}
+		else if (!name.empty())
+			LOGERROR(L"Encountered config setting '%hs' without value while parsing '%ls' on line %d", name.c_str(), m_ConfigFile[ns].string().c_str(), line);
+
+		name.clear();
+		values.clear();
+		++line;
 	}
-	while (next < filebufend);
-	
+
+	if (!name.empty())
+		LOGERROR(L"Config file does not have a new line after the last config setting '%hs'", name.c_str());
+
 	m_Map[ns].swap(newMap);
 
 	return true;
@@ -282,11 +337,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 bool CConfigDB::WriteFile(EConfigNamespace ns)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return false;
-	}
+	CHECK_NS(false);
 
 	CScopeLock s(&cfgdb_mutex);
 	return WriteFile(ns, m_ConfigFile[ns]);
@@ -294,25 +345,25 @@ bool CConfigDB::WriteFile(EConfigNamespace ns)
 
 bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 {
-	if (ns < 0 || ns >= CFG_LAST)
-	{
-		debug_warn(L"CConfigDB: Invalid ns value");
-		return false;
-	}
+	CHECK_NS(false);
 
 	CScopeLock s(&cfgdb_mutex);
 	shared_ptr<u8> buf;
 	AllocateAligned(buf, 1*MiB, maxSectorSize);
 	char* pos = (char*)buf.get();
-	TConfigMap &map=m_Map[ns];
-	for(TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
+	TConfigMap &map = m_Map[ns];
+	for (TConfigMap::const_iterator it = map.begin(); it != map.end(); ++it)
 	{
-		pos += sprintf(pos, "%s = \"%s\"\n", it->first.c_str(), it->second[0].m_String.c_str());
+		size_t i;
+		pos += sprintf(pos, "%s = ", it->first.c_str());
+		for (i = 0; i < it->second.size() - 1; ++i)
+			pos += sprintf(pos, "\"%s\", ", EscapeString(it->second[i]).c_str());
+		pos += sprintf(pos, "\"%s\"\n", EscapeString(it->second[i]).c_str());
 	}
 	const size_t len = pos - (char*)buf.get();
 
 	Status ret = g_VFS->CreateFile(path, buf, len);
-	if(ret < 0)
+	if (ret < 0)
 	{
 		LOGERROR(L"CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.string().c_str(), (int)ret);
 		return false;
@@ -320,3 +371,5 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 
 	return true;
 }
+
+#undef CHECK_NS
