@@ -992,14 +992,10 @@ GuiInterface.prototype.GetAllBuildableEntities = function(player, cmd)
 		var cmpBuilder = Engine.QueryInterface(ent, IID_Builder);
 		if (!cmpBuilder)
 			continue;
-		if (buildableEnts.length)
-		{
-			for (var building of cmpBuilder.GetEntitiesList())
-				if (buildableEnts.indexOf(building) === -1)
-					buildableEnts.push(building);
-		}
-		else
-			buildableEnts = cmpBuilder.GetEntitiesList();
+
+		for (var building of cmpBuilder.GetEntitiesList())
+			if (buildableEnts.indexOf(building) == -1)
+				buildableEnts.push(building);
 	}
 	return buildableEnts;
 };
