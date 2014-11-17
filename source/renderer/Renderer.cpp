@@ -445,16 +445,16 @@ CRenderer::CRenderer()
 	m_Options.m_DisplayFrustum = false;
 
 	// TODO: be more consistent in use of the config system
-	CFG_GET_VAL("preferglsl", Bool, m_Options.m_PreferGLSL);
-	CFG_GET_VAL("forcealphatest", Bool, m_Options.m_ForceAlphaTest);
-	CFG_GET_VAL("gpuskinning", Bool, m_Options.m_GPUSkinning);
-	CFG_GET_VAL("gentangents", Bool, m_Options.m_GenTangents);
-	CFG_GET_VAL("smoothlos", Bool, m_Options.m_SmoothLOS);
-	CFG_GET_VAL("postproc", Bool, m_Options.m_Postproc);
+	CFG_GET_VAL("preferglsl", m_Options.m_PreferGLSL);
+	CFG_GET_VAL("forcealphatest", m_Options.m_ForceAlphaTest);
+	CFG_GET_VAL("gpuskinning", m_Options.m_GPUSkinning);
+	CFG_GET_VAL("gentangents", m_Options.m_GenTangents);
+	CFG_GET_VAL("smoothlos", m_Options.m_SmoothLOS);
+	CFG_GET_VAL("postproc", m_Options.m_Postproc);
 
 	CStr skystring = "0 0 0";
 	CColor skycolor;
-	CFG_GET_VAL("skycolor", String, skystring);
+	CFG_GET_VAL("skycolor", skystring);
 	if (skycolor.ParseString(skystring, 255.f))
 		SetClearColor(skycolor.AsSColor4ub());
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,11 +19,11 @@
 
 #include "Config.h"
 
-#include "ps/ConfigDB.h"
+#include "lib/timer.h"
 #include "ps/CConsole.h"
 #include "ps/CLogger.h"
+#include "ps/ConfigDB.h"
 #include "ps/GameSetup/CmdLineArgs.h"
-#include "lib/timer.h"
 #include "soundmanager/ISoundManager.h"
 
 // (these variables are documented in the header.)
@@ -83,27 +83,27 @@ CStr g_AutostartMap = "";
 // Fill in the globals from the config files.
 static void LoadGlobals()
 {
-	CFG_GET_VAL("vsync", Bool, g_VSync);
+	CFG_GET_VAL("vsync", g_VSync);
 
-	CFG_GET_VAL("nos3tc", Bool, g_NoGLS3TC);
-	CFG_GET_VAL("noautomipmap", Bool, g_NoGLAutoMipmap);
-	CFG_GET_VAL("novbo", Bool, g_NoGLVBO);
-	CFG_GET_VAL("pauseonfocusloss", Bool, g_PauseOnFocusLoss);
-	CFG_GET_VAL("renderactors", Bool, g_RenderActors);
-	CFG_GET_VAL("shadows", Bool, g_Shadows);
-	CFG_GET_VAL("shadowpcf", Bool, g_ShadowPCF);
+	CFG_GET_VAL("nos3tc", g_NoGLS3TC);
+	CFG_GET_VAL("noautomipmap", g_NoGLAutoMipmap);
+	CFG_GET_VAL("novbo", g_NoGLVBO);
+	CFG_GET_VAL("pauseonfocusloss", g_PauseOnFocusLoss);
+	CFG_GET_VAL("renderactors", g_RenderActors);
+	CFG_GET_VAL("shadows", g_Shadows);
+	CFG_GET_VAL("shadowpcf", g_ShadowPCF);
 
-	CFG_GET_VAL("waterugly",Bool, g_WaterUgly);
-	CFG_GET_VAL("waterfancyeffects",Bool, g_WaterFancyEffects);
-	CFG_GET_VAL("waterrealdepth",Bool, g_WaterRealDepth);
-	CFG_GET_VAL("waterrefraction",Bool, g_WaterRefraction);
-	CFG_GET_VAL("waterreflection",Bool, g_WaterReflection);
-	CFG_GET_VAL("shadowsonwater",Bool, g_WaterShadows);
+	CFG_GET_VAL("waterugly", g_WaterUgly);
+	CFG_GET_VAL("waterfancyeffects", g_WaterFancyEffects);
+	CFG_GET_VAL("waterrealdepth", g_WaterRealDepth);
+	CFG_GET_VAL("waterrefraction", g_WaterRefraction);
+	CFG_GET_VAL("waterreflection", g_WaterReflection);
+	CFG_GET_VAL("shadowsonwater", g_WaterShadows);
 
-	CFG_GET_VAL("renderpath", String, g_RenderPath);
-	CFG_GET_VAL("particles", Bool, g_Particles);
-	CFG_GET_VAL("silhouettes", Bool, g_Silhouettes);
-	CFG_GET_VAL("showsky", Bool, g_ShowSky);
+	CFG_GET_VAL("renderpath", g_RenderPath);
+	CFG_GET_VAL("particles", g_Particles);
+	CFG_GET_VAL("silhouettes", g_Silhouettes);
+	CFG_GET_VAL("showsky", g_ShowSky);
 
 	if (g_SoundManager)
 	{
@@ -113,22 +113,22 @@ static void LoadGlobals()
 		float actionGain = 0.5f;
 		float uiGain = 0.5f;
 
-		CFG_GET_VAL("sound.mastergain", Float, gain);
-		CFG_GET_VAL("sound.musicgain", Float, musicGain);
-		CFG_GET_VAL("sound.ambientgain", Float, ambientGain);
-		CFG_GET_VAL("sound.actiongain", Float, actionGain);
-		CFG_GET_VAL("sound.uigain", Float, uiGain);
+		CFG_GET_VAL("sound.mastergain", gain);
+		CFG_GET_VAL("sound.musicgain", musicGain);
+		CFG_GET_VAL("sound.ambientgain", ambientGain);
+		CFG_GET_VAL("sound.actiongain", actionGain);
+		CFG_GET_VAL("sound.uigain", uiGain);
 
-	g_SoundManager->SetMasterGain(gain);
-	g_SoundManager->SetMusicGain(musicGain);
-	g_SoundManager->SetAmbientGain(ambientGain);
-	g_SoundManager->SetActionGain(actionGain);
-	g_SoundManager->SetUIGain(uiGain);
+		g_SoundManager->SetMasterGain(gain);
+		g_SoundManager->SetMusicGain(musicGain);
+		g_SoundManager->SetAmbientGain(ambientGain);
+		g_SoundManager->SetActionGain(actionGain);
+		g_SoundManager->SetUIGain(uiGain);
 	}
 
 
-	CFG_GET_VAL("jsdebugger.enable", Bool, g_JSDebuggerEnabled);
-	CFG_GET_VAL("profiler2.script.enable", Bool, g_ScriptProfilingEnabled);
+	CFG_GET_VAL("jsdebugger.enable", g_JSDebuggerEnabled);
+	CFG_GET_VAL("profiler2.script.enable", g_ScriptProfilingEnabled);
 
 	if (g_JSDebuggerEnabled)
 		LOGERROR(L"JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)");
@@ -224,7 +224,7 @@ void CONFIG_Init(const CmdLineArgs& args)
 
 	// Initialise console history file
 	int max_history_lines = 200;
-	CFG_GET_VAL("console.history.size", Int, max_history_lines);
+	CFG_GET_VAL("console.history.size", max_history_lines);
 	g_Console->UseHistoryFile(L"config/console.txt", max_history_lines);
 
 	// Collect information from system.cfg, the profile file,

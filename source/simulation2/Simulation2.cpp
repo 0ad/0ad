@@ -75,8 +75,8 @@ public:
 		// Tests won't have config initialised
 		if (CConfigDB::IsInitialised())
 		{
-			CFG_GET_VAL("ooslog", Bool, m_EnableOOSLog);
-			CFG_GET_VAL("serializationtest", Bool, m_EnableSerializationTest);
+			CFG_GET_VAL("ooslog", m_EnableOOSLog);
+			CFG_GET_VAL("serializationtest", m_EnableSerializationTest);
 		}
 	}
 

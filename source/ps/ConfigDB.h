@@ -140,9 +140,8 @@ public:
 
 
 // stores the value of the given key into <destination>. this quasi-template
-// convenience wrapper on top of CConfigValue::Get* simplifies user code and
-// avoids "assignment within condition expression" warnings.
-#define CFG_GET_VAL(name, type, destination)\
+// convenience wrapper on top of GetValue simplifies user code
+#define CFG_GET_VAL(name, destination)\
 	g_ConfigDB.GetValue(CFG_USER, name, destination)
 
 #endif

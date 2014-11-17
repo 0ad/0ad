@@ -67,7 +67,7 @@ CInput::CInput()
 	AddSetting(GUIST_CStrW,					"tooltip");
 	AddSetting(GUIST_CStr,					"tooltip_style");
 
-	CFG_GET_VAL("gui.cursorblinkrate", Double, m_CursorBlinkRate);
+	CFG_GET_VAL("gui.cursorblinkrate", m_CursorBlinkRate);
 
 	// Add scroll-bar
 	CGUIScrollBarVertical * bar = new CGUIScrollBarVertical();

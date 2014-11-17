@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,11 +33,11 @@ CJoystick::CJoystick() :
 void CJoystick::Initialise()
 {
 	bool joystickEnable = false;
-	CFG_GET_VAL("joystick.enable", Bool, joystickEnable);
+	CFG_GET_VAL("joystick.enable", joystickEnable);
 	if (!joystickEnable)
 		return;
 
-	CFG_GET_VAL("joystick.deadzone", Int, m_Deadzone);
+	CFG_GET_VAL("joystick.deadzone", m_Deadzone);
 
 	if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 	{
