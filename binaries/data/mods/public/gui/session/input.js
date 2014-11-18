@@ -840,11 +840,11 @@ function handleInputAfterGui(ev)
 	// Handle the time-warp testing features, restricted to single-player
 	if (!g_IsNetworked && Engine.GetGUIObjectByName("devTimeWarp").checked)
 	{
-		if (ev.type == "hotkeydown" && ev.hotkey == "timewarp.fastforward")
+		if (ev.type == "hotkeydown" && ev.hotkey == "session.timewarp.fastforward")
 			Engine.SetSimRate(20.0);
-		else if (ev.type == "hotkeyup" && ev.hotkey == "timewarp.fastforward")
+		else if (ev.type == "hotkeyup" && ev.hotkey == "session.timewarp.fastforward")
 			Engine.SetSimRate(1.0);
-		else if (ev.type == "hotkeyup" && ev.hotkey == "timewarp.rewind")
+		else if (ev.type == "hotkeyup" && ev.hotkey == "session.timewarp.rewind")
 			Engine.RewindTimeWarp();
 	}
 
@@ -1256,16 +1256,18 @@ function exchangeResources(command)
 // Camera jumping: when the user presses a hotkey the current camera location is marked.
 // When they press another hotkey the camera jumps back to that position. If the camera is already roughly at that location,
 // jump back to where it was previously.
-var jumpCameraPositions = [], jumpCameraLast;
+var jumpCameraPositions = [];
+var jumpCameraLast;
+var jumpCameraDistanceThreshold = Engine.ConfigDB_GetValue("user", "gui.session.camerajump.threshold");
 
 function jumpCamera(index)
 {
-	var position = jumpCameraPositions[index], distanceThreshold = Engine.ConfigDB_GetValue("user", "camerajump.threshold");
+	var position = jumpCameraPositions[index];
 	if (position)
 	{
 		if (jumpCameraLast &&
-				Math.abs(Engine.CameraGetX() - position.x) < distanceThreshold &&
-				Math.abs(Engine.CameraGetZ() - position.z) < distanceThreshold)
+				Math.abs(Engine.CameraGetX() - position.x) < jumpCameraDistanceThreshold &&
+				Math.abs(Engine.CameraGetZ() - position.z) < jumpCameraDistanceThreshold)
 			Engine.CameraMoveTo(jumpCameraLast.x, jumpCameraLast.z);
 		else
 		{

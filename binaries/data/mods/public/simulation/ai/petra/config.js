@@ -25,7 +25,6 @@ m.Config = function(difficulty)
 		"cityPhase" : 840,	// time to start trying to reach city phase
 		"popForMarket" : 50,
 		"popForDock" : 25,
-		"targetNumBuilders" : 1.5, // Base number of builders per foundation.
 		"targetNumTraders" : 4, // Target number of traders
 		"targetNumFishers" : 1, // Target number of fishers per sea
 		"femaleRatio" : 0.5, // percent of females among the workforce.

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,8 +23,8 @@
 #include "graphics/CinemaTrack.h"
 #include "graphics/ColladaManager.h"
 #include "graphics/HFTracer.h"
-#include "graphics/LightEnv.h"
 #include "graphics/LOSTexture.h"
+#include "graphics/LightEnv.h"
 #include "graphics/Model.h"
 #include "graphics/ObjectManager.h"
 #include "graphics/Patch.h"
@@ -37,6 +37,7 @@
 #include "graphics/scripting/JSInterface_GameView.h"
 #include "lib/input.h"
 #include "lib/timer.h"
+#include "lobby/IXmppClient.h"
 #include "maths/BoundingBoxAligned.h"
 #include "maths/MathUtil.h"
 #include "maths/Matrix3D.h"
@@ -58,7 +59,6 @@
 #include "simulation2/Simulation2.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpRangeManager.h"
-#include "lobby/IXmppClient.h"
 
 extern int g_xres, g_yres;
 
@@ -410,44 +410,44 @@ CTerritoryTexture& CGameView::GetTerritoryTexture()
 
 int CGameView::Initialize()
 {
-	CFG_GET_VAL("view.scroll.speed", Float, m->ViewScrollSpeed);
-	CFG_GET_VAL("view.scroll.speed.modifier", Float, m->ViewScrollSpeedModifier);
-	CFG_GET_VAL("view.rotate.x.speed", Float, m->ViewRotateXSpeed);
-	CFG_GET_VAL("view.rotate.x.min", Float, m->ViewRotateXMin);
-	CFG_GET_VAL("view.rotate.x.max", Float, m->ViewRotateXMax);
-	CFG_GET_VAL("view.rotate.x.default", Float, m->ViewRotateXDefault);
-	CFG_GET_VAL("view.rotate.y.speed", Float, m->ViewRotateYSpeed);
-	CFG_GET_VAL("view.rotate.y.speed.wheel", Float, m->ViewRotateYSpeedWheel);
-	CFG_GET_VAL("view.rotate.y.default", Float, m->ViewRotateYDefault);
-	CFG_GET_VAL("view.rotate.speed.modifier", Float, m->ViewRotateSpeedModifier);
-	CFG_GET_VAL("view.drag.speed", Float, m->ViewDragSpeed);
-	CFG_GET_VAL("view.zoom.speed", Float, m->ViewZoomSpeed);
-	CFG_GET_VAL("view.zoom.speed.wheel", Float, m->ViewZoomSpeedWheel);
-	CFG_GET_VAL("view.zoom.min", Float, m->ViewZoomMin);
-	CFG_GET_VAL("view.zoom.max", Float, m->ViewZoomMax);
-	CFG_GET_VAL("view.zoom.default", Float, m->ViewZoomDefault);
-	CFG_GET_VAL("view.zoom.speed.modifier", Float, m->ViewZoomSpeedModifier);
+	CFG_GET_VAL("view.scroll.speed", m->ViewScrollSpeed);
+	CFG_GET_VAL("view.scroll.speed.modifier", m->ViewScrollSpeedModifier);
+	CFG_GET_VAL("view.rotate.x.speed", m->ViewRotateXSpeed);
+	CFG_GET_VAL("view.rotate.x.min", m->ViewRotateXMin);
+	CFG_GET_VAL("view.rotate.x.max", m->ViewRotateXMax);
+	CFG_GET_VAL("view.rotate.x.default", m->ViewRotateXDefault);
+	CFG_GET_VAL("view.rotate.y.speed", m->ViewRotateYSpeed);
+	CFG_GET_VAL("view.rotate.y.speed.wheel", m->ViewRotateYSpeedWheel);
+	CFG_GET_VAL("view.rotate.y.default", m->ViewRotateYDefault);
+	CFG_GET_VAL("view.rotate.speed.modifier", m->ViewRotateSpeedModifier);
+	CFG_GET_VAL("view.drag.speed", m->ViewDragSpeed);
+	CFG_GET_VAL("view.zoom.speed", m->ViewZoomSpeed);
+	CFG_GET_VAL("view.zoom.speed.wheel", m->ViewZoomSpeedWheel);
+	CFG_GET_VAL("view.zoom.min", m->ViewZoomMin);
+	CFG_GET_VAL("view.zoom.max", m->ViewZoomMax);
+	CFG_GET_VAL("view.zoom.default", m->ViewZoomDefault);
+	CFG_GET_VAL("view.zoom.speed.modifier", m->ViewZoomSpeedModifier);
 
-	CFG_GET_VAL("joystick.camera.pan.x", Int, m->JoystickPanX);
-	CFG_GET_VAL("joystick.camera.pan.y", Int, m->JoystickPanY);
-	CFG_GET_VAL("joystick.camera.rotate.x", Int, m->JoystickRotateX);
-	CFG_GET_VAL("joystick.camera.rotate.y", Int, m->JoystickRotateY);
-	CFG_GET_VAL("joystick.camera.zoom.in", Int, m->JoystickZoomIn);
-	CFG_GET_VAL("joystick.camera.zoom.out", Int, m->JoystickZoomOut);
+	CFG_GET_VAL("joystick.camera.pan.x", m->JoystickPanX);
+	CFG_GET_VAL("joystick.camera.pan.y", m->JoystickPanY);
+	CFG_GET_VAL("joystick.camera.rotate.x", m->JoystickRotateX);
+	CFG_GET_VAL("joystick.camera.rotate.y", m->JoystickRotateY);
+	CFG_GET_VAL("joystick.camera.zoom.in", m->JoystickZoomIn);
+	CFG_GET_VAL("joystick.camera.zoom.out", m->JoystickZoomOut);
 
-	CFG_GET_VAL("view.height.smoothness", Float, m->HeightSmoothness);
-	CFG_GET_VAL("view.height.min", Float, m->HeightMin);
+	CFG_GET_VAL("view.height.smoothness", m->HeightSmoothness);
+	CFG_GET_VAL("view.height.min", m->HeightMin);
 
-	CFG_GET_VAL("view.pos.smoothness", Float, m->PosX.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", Float, m->PosY.m_Smoothness);
-	CFG_GET_VAL("view.pos.smoothness", Float, m->PosZ.m_Smoothness);
-	CFG_GET_VAL("view.zoom.smoothness", Float, m->Zoom.m_Smoothness);
-	CFG_GET_VAL("view.rotate.x.smoothness", Float, m->RotateX.m_Smoothness);
-	CFG_GET_VAL("view.rotate.y.smoothness", Float, m->RotateY.m_Smoothness);
+	CFG_GET_VAL("view.pos.smoothness", m->PosX.m_Smoothness);
+	CFG_GET_VAL("view.pos.smoothness", m->PosY.m_Smoothness);
+	CFG_GET_VAL("view.pos.smoothness", m->PosZ.m_Smoothness);
+	CFG_GET_VAL("view.zoom.smoothness", m->Zoom.m_Smoothness);
+	CFG_GET_VAL("view.rotate.x.smoothness", m->RotateX.m_Smoothness);
+	CFG_GET_VAL("view.rotate.y.smoothness", m->RotateY.m_Smoothness);
 
-	CFG_GET_VAL("view.near", Float, m->ViewNear);
-	CFG_GET_VAL("view.far", Float, m->ViewFar);
-	CFG_GET_VAL("view.fov", Float, m->ViewFOV);
+	CFG_GET_VAL("view.near", m->ViewNear);
+	CFG_GET_VAL("view.far", m->ViewFar);
+	CFG_GET_VAL("view.fov", m->ViewFOV);
 
 	// Convert to radians
 	m->RotateX.SetValue(DEGTORAD(m->ViewRotateXDefault));

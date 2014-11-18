@@ -122,8 +122,8 @@ CMiniMap::CMiniMap() :
 	// Tests won't have config initialised
 	if (CConfigDB::IsInitialised())
 	{
-		CFG_GET_VAL("gui.session.minimap.pingduration", Double, m_PingDuration);
-		CFG_GET_VAL("gui.session.minimap.blinkduration", Double, blinkDuration);
+		CFG_GET_VAL("gui.session.minimap.pingduration", m_PingDuration);
+		CFG_GET_VAL("gui.session.minimap.blinkduration", blinkDuration);
 	}
 	m_HalfBlinkDuration = blinkDuration/2;
 }

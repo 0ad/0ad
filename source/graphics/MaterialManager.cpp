@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -33,7 +33,7 @@
 CMaterialManager::CMaterialManager()
 {
 	qualityLevel = 5.0;
-	CFG_GET_VAL("materialmgr.quality", Float, qualityLevel);
+	CFG_GET_VAL("materialmgr.quality", qualityLevel);
 	qualityLevel = clamp(qualityLevel, 0.0f, 10.0f);
 }
 
@@ -133,8 +133,8 @@ CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 				CStr conf = attrs.GetNamedItem(at_conf);
 				if (!conf.empty())
 				{
-					CFG_GET_VAL("materialmgr." + conf + ".min", Float, valmin);
-					CFG_GET_VAL("materialmgr." + conf + ".max", Float, valmax);
+					CFG_GET_VAL("materialmgr." + conf + ".min", valmin);
+					CFG_GET_VAL("materialmgr." + conf + ".max", valmax);
 				}
 				else
 				{

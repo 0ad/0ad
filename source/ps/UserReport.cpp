@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -520,7 +520,7 @@ std::string CUserReporter::LoadUserID()
 	std::string userID;
 
 	// Read the user ID from user.cfg (if there is one)
-	CFG_GET_VAL("userreport.id", String, userID);
+	CFG_GET_VAL("userreport.id", userID);
 
 	// If we don't have a validly-formatted user ID, generate a new one
 	if (userID.length() != 16)
@@ -547,7 +547,7 @@ std::string CUserReporter::LoadUserID()
 bool CUserReporter::IsReportingEnabled()
 {
 	int version = -1;
-	CFG_GET_VAL("userreport.enabledversion", Int, version);
+	CFG_GET_VAL("userreport.enabledversion", version);
 	return (version >= REPORTER_VERSION);
 }
 
@@ -576,7 +576,7 @@ void CUserReporter::Initialize()
 
 	std::string userID = LoadUserID();
 	std::string url;
-	CFG_GET_VAL("userreport.url", String, url);
+	CFG_GET_VAL("userreport.url", url);
 
 	// Initialise everything except Win32 sockets (because our networking
 	// system already inits those)

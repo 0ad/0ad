@@ -1,4 +1,4 @@
-/* Copyright (c) 2011 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -776,9 +776,9 @@ CProfiler2GPU::CProfiler2GPU(CProfiler2& profiler) :
 	bool enabledARB = false;
 	bool enabledEXT = false;
 	bool enabledINTEL = false;
-	CFG_GET_VAL("profiler2.gpu.arb.enable", Bool, enabledARB);
-	CFG_GET_VAL("profiler2.gpu.ext.enable", Bool, enabledEXT);
-	CFG_GET_VAL("profiler2.gpu.intel.enable", Bool, enabledINTEL);
+	CFG_GET_VAL("profiler2.gpu.arb.enable", enabledARB);
+	CFG_GET_VAL("profiler2.gpu.ext.enable", enabledEXT);
+	CFG_GET_VAL("profiler2.gpu.intel.enable", enabledINTEL);
 
 	// Only enable either ARB or EXT, not both, because they are redundant
 	// (EXT is only needed for compatibility with older systems), and because

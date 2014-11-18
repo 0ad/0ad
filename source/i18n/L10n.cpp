@@ -48,7 +48,7 @@ L10n::L10n()
 	// Determine whether or not to print tinygettext messages to the standard
 	// error output, which it tinygettext’s default behavior, but not ours.
 	bool tinygettext_debug = false;
-	CFG_GET_VAL("tinygettext.debug", Bool, tinygettext_debug);
+	CFG_GET_VAL("tinygettext.debug", tinygettext_debug);
 	if (!tinygettext_debug)
 	{
 		tinygettext::Log::log_info_callback = 0;
@@ -219,7 +219,7 @@ void L10n::GetDictionaryLocale(std::string configLocaleString, Locale& outLocale
 void L10n::ReevaluateCurrentLocaleAndReload()
 {
 	std::string locale;
-	CFG_GET_VAL("locale", String, locale);
+	CFG_GET_VAL("locale", locale);
 
 	if (locale == "long")
 	{

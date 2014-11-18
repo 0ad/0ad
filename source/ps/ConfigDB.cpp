@@ -232,6 +232,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	char *filebufend = filebuf+buflen;
 	
 	bool quoted = false;
+	CStr header;
 	CStr name;
 	CStr value;
 	int line = 1;
@@ -247,6 +248,32 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		case ' ':
 		case '\r':
 			continue; // ignore
+
+		case '[':
+			header.clear();
+			for (++pos; pos < filebufend && *pos != '\n' && *pos != ']'; ++pos)
+				header.push_back(*pos);
+
+			if (pos == filebufend || *pos == '\n')
+			{
+				LOGERROR(L"Config header with missing close tag encountered on line %d in '%ls'", line, m_ConfigFile[ns].string().c_str());
+				header.clear();
+				++line;
+				continue;
+			}
+
+			LOGMESSAGE(L"Found config header '%hs'", header.c_str());
+			header.push_back('.');
+			while (++pos < filebufend && *pos != '\n' && *pos != ';')
+				if (*pos != ' ' && *pos != '\r')
+				{
+					LOGERROR(L"Config settings on the same line as a header on line %d in '%ls'", line, m_ConfigFile[ns].string().c_str());
+					break;
+				}
+			while (pos < filebufend && *pos != '\n')
+				++pos;
+			++line;
+			continue;
 
 		case '=':
 			// Parse parameters (comma separated, possibly quoted)
@@ -307,16 +334,17 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Store the setting
 		if (!name.empty() && !values.empty())
 		{
-			newMap[name] = values;
-			if (name == "lobby.password")
-				LOGMESSAGE(L"Loaded config string \"%hs\"", name.c_str());
+			CStr key(header + name);
+			newMap[key] = values;
+			if (key == "lobby.password")
+				LOGMESSAGE(L"Loaded config string \"%hs\"", key.c_str());
 			else
 			{
 				std::string vals;
-				for (size_t i = 0; i < newMap[name].size() - 1; ++i)
-					vals += "\"" + EscapeString(newMap[name][i]) + "\", ";
-				vals += "\"" + EscapeString(newMap[name][values.size()-1]) + "\"";
-				LOGMESSAGE(L"Loaded config string \"%hs\" = %hs", name.c_str(), vals.c_str());
+				for (size_t i = 0; i < newMap[key].size() - 1; ++i)
+					vals += "\"" + EscapeString(newMap[key][i]) + "\", ";
+				vals += "\"" + EscapeString(newMap[key][values.size()-1]) + "\"";
+				LOGMESSAGE(L"Loaded config string \"%hs\" = %hs", key.c_str(), vals.c_str());
 			}
 		}
 		else if (!name.empty())

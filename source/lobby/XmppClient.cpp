@@ -72,8 +72,8 @@ XmppClient::XmppClient(const std::string& sUsername, const std::string& sPasswor
 	// Read lobby configuration from default.cfg
 	std::string sServer;
 	std::string sXpartamupp;
-	CFG_GET_VAL("lobby.server", String, sServer);
-	CFG_GET_VAL("lobby.xpartamupp", String, sXpartamupp);
+	CFG_GET_VAL("lobby.server", sServer);
+	CFG_GET_VAL("lobby.xpartamupp", sXpartamupp);
 
 	m_xpartamuppId = sXpartamupp + "@" + sServer + "/CC";
 	glooxwrapper::JID clientJid(sUsername + "@" + sServer + "/0ad");

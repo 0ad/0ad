@@ -59,14 +59,14 @@ CVideoMode::CVideoMode() :
 void CVideoMode::ReadConfig()
 {
 	bool windowed = !m_ConfigFullscreen;
-	CFG_GET_VAL("windowed", Bool, windowed);
+	CFG_GET_VAL("windowed", windowed);
 	m_ConfigFullscreen = !windowed;
 
-	CFG_GET_VAL("xres", Int, m_ConfigW);
-	CFG_GET_VAL("yres", Int, m_ConfigH);
-	CFG_GET_VAL("bpp", Int, m_ConfigBPP);
-	CFG_GET_VAL("display", Int, m_ConfigDisplay);
-	CFG_GET_VAL("force_s3tc_enable", Bool, m_ConfigForceS3TCEnable);
+	CFG_GET_VAL("xres", m_ConfigW);
+	CFG_GET_VAL("yres", m_ConfigH);
+	CFG_GET_VAL("bpp", m_ConfigBPP);
+	CFG_GET_VAL("display", m_ConfigDisplay);
+	CFG_GET_VAL("force_s3tc_enable", m_ConfigForceS3TCEnable);
 }
 
 bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)

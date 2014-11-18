@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -261,7 +261,7 @@ Components should define a schema, which is used for several purposes:
 - (Hopefully at some point in the future) Automatic generation of editing tool UI.
 
 @c GetSchema must return a Relax NG fragment, which will be used to construct a single global schema file.
-(You can run the game with the @c -dumpSchema command-line argument to see the schema).
+(You can run the game with the @c -dumpSchema command-line argument to see the schema. Do not forget to also specify the used mods with @c -mod=<mod>.).
 The <a href="http://relaxng.org/tutorial-20011203.html">official tutorial</a> describes most of the details
 of the RNG language.
 
