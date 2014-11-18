@@ -272,7 +272,7 @@ void Render()
 		else
 		{
 			bool forceGL = false;
-			CFG_GET_VAL("nohwcursor", Bool, forceGL);
+			CFG_GET_VAL("nohwcursor", forceGL);
 
 #if CONFIG2_GLES
 #warning TODO: implement cursors for GLES
@@ -521,7 +521,7 @@ static void InitPs(bool setup_gui, const CStrW& gui_page, ScriptInterface* srcSc
 		g_Console->m_iFontOffset = 7;
 
 		double blinkRate = 0.5;
-		CFG_GET_VAL("gui.cursorblinkrate", Double, blinkRate);
+		CFG_GET_VAL("gui.cursorblinkrate", blinkRate);
 		g_Console->SetCursorBlinkRate(blinkRate);
 	}
 
@@ -940,7 +940,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	if (!args.Has("mod") && (flags & INIT_MODS) == INIT_MODS)
 	{
 		CStr modstring;
-		CFG_GET_VAL("mod.enabledmods", String, modstring);
+		CFG_GET_VAL("mod.enabledmods", modstring);
 		if (!modstring.empty())
 		{
 			std::vector<CStr> mods;
@@ -963,7 +963,7 @@ bool Init(const CmdLineArgs& args, int flags)
 	// Optionally start profiler HTTP output automatically
 	// (By default it's only enabled by a hotkey, for security/performance)
 	bool profilerHTTPEnable = false;
-	CFG_GET_VAL("profiler2.autoenable", Bool, profilerHTTPEnable);
+	CFG_GET_VAL("profiler2.autoenable", profilerHTTPEnable);
 	if (profilerHTTPEnable)
 		g_Profiler2.EnableHTTP();
 
@@ -1000,7 +1000,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 	// Optionally start profiler GPU timings automatically
 	// (By default it's only enabled by a hotkey, for performance/compatibility)
 	bool profilerGPUEnable = false;
-	CFG_GET_VAL("profiler2.autoenable", Bool, profilerGPUEnable);
+	CFG_GET_VAL("profiler2.autoenable", profilerGPUEnable);
 	if (profilerGPUEnable)
 		g_Profiler2.EnableGPU();
 
