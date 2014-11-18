@@ -632,7 +632,9 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 
 			if (ent.hasClass("Worker"))
 			{
-				if (self.anchor && self.anchor.needsRepair() === true)
+				// Just emergency repairing here. It is better managed in assignToFoundations
+				if (self.anchor && self.anchor.needsRepair() === true
+					&& gameState.getOwnEntitiesByMetadata("target-foundation", self.anchor.id()).length < 2)
 					ent.repair(self.anchor);
 				else
 				{
@@ -732,7 +734,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 	}
 	var workers = this.workers.filter(API3.Filters.not(API3.Filters.or(API3.Filters.byClass("Cavalry"), API3.Filters.byClass("Ship"))));
 	var builderWorkers = this.workersBySubrole(gameState, "builder");
-	var idleBuilderWorkers = this.workersBySubrole(gameState, "builder").filter(API3.Filters.isIdle());
+	var idleBuilderWorkers = builderWorkers.filter(API3.Filters.isIdle());
 
 	// if we're constructing and we have the foundations to our base anchor, only try building that.
 	if (this.constructing == true && this.buildings.filter(API3.Filters.and(API3.Filters.isFoundation(), API3.Filters.byMetadata(PlayerID, "baseAnchor", true))).length !== 0)
@@ -763,11 +765,8 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			});
 		}
 	}
-	var addedWorkers = 0;
-	
-	var maxTotalBuilders = Math.ceil(workers.length * 0.2);
-	if (this.constructing == true && maxTotalBuilders < 15)
-		maxTotalBuilders = 15;
+
+	var builderTot = builderWorkers.length - idleBuilderWorkers.length;	
 	
 	for (var target of foundations)
 	{
@@ -775,94 +774,36 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			continue; // we do not build fields
 
 		if (gameState.ai.HQ.isDangerousLocation(target.position()))
-			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall"))
+			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
 				continue;
 
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		var targetNB = this.Config.Economy.targetNumBuilders;	// TODO: dynamic that.
+		var maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		var targetNB = 2;
 		if (target.hasClass("House") || target.hasClass("Market"))
-			targetNB *= 2;
+			targetNB = 3;
 		else if (target.hasClass("Barracks") || target.hasClass("Tower"))
 			targetNB = 4;
 		else if (target.hasClass("Fortress"))
 			targetNB = 7;
 		if (target.getMetadata(PlayerID, "baseAnchor") == true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		{
 			targetNB = 15;
+			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
+		}
 
 		if (assigned < targetNB)
 		{
-			if (builderWorkers.length - idleBuilderWorkers.length + addedWorkers < maxTotalBuilders) {
-
-				var addedToThis = 0;
-				
-				idleBuilderWorkers.forEach(function(ent) {
-					if (ent.position() && API3.SquareVectorDistance(ent.position(), target.position()) < 10000 && assigned + addedToThis < targetNB)
-					{
-						addedWorkers++;
-						addedToThis++;
-						ent.setMetadata(PlayerID, "target-foundation", target.id());
-					}
-				});
-				if (assigned + addedToThis < targetNB)
-				{
-					var nonBuilderWorkers = workers.filter(function(ent) {
-						if (ent.getMetadata(PlayerID, "subrole") === "builder")
-							return false;
-						if (!ent.position())
-							return false;
-						if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
-							return false;
-						if (ent.getMetadata(PlayerID, "transport"))
-							return false;
-						return true;
-					}).toEntityArray();
-					var time = target.buildTime();
-					nonBuilderWorkers.sort(function (workerA,workerB)
-					{
-						var coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
-						// elephant moves slowly, so when far away they are only useful if build time is long
-						if (workerA.hasClass("Elephant"))
-							coeffA *= 0.5 * (1 + (Math.sqrt(coeffA)/150)*(30/time));
-						else if (workerA.getMetadata(PlayerID, "gather-type") === "food")
-							coeffA *= 3;
-						var coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
-						if (workerB.hasClass("Elephant"))
-							coeffB *= 0.5 * (1 + (Math.sqrt(coeffB)/150)*(30/time));
-						else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
-							coeffB *= 3;
-						return (coeffA - coeffB);						
-					});
-					var current = 0;
-					while (assigned + addedToThis < targetNB && current < nonBuilderWorkers.length)
-					{
-						addedWorkers++;
-						addedToThis++;
-						var ent = nonBuilderWorkers[current++];
-						ent.stopMoving();
-						ent.setMetadata(PlayerID, "subrole", "builder");
-						ent.setMetadata(PlayerID, "target-foundation", target.id());
-					};
-				}
-			}
-		}
-	}
-
-	// don't repair if we're still under attack, unless it's like a vital (civcentre or wall) building that's getting destroyed.
-	for (var target of damagedBuildings)
-	{
-		if (gameState.ai.HQ.isDangerousLocation(target.position()))
-			if (target.healthLevel() > 0.5 || (!target.hasClass("CivCentre") && !target.hasClass("StoneWall")))
-				continue;
-		else if (noRepair && !target.hasClass("CivCentre"))
-			continue;
-		
-		if (target.decaying())
-			continue;
-		
-		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
-		if (assigned < targetNB/3)
-		{
-			if (builderWorkers.length + addedWorkers < targetNB*2)
+			idleBuilderWorkers.forEach(function(ent) {
+				if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+					return;
+				if (assigned >= targetNB || !ent.position() || API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
+					return;
+				assigned++;
+				builderTot++;
+				ent.setMetadata(PlayerID, "target-foundation", target.id());
+			});
+			if (assigned < targetNB && builderTot < maxTotalBuilders)
 			{
 				var nonBuilderWorkers = workers.filter(function(ent) {
 					if (ent.getMetadata(PlayerID, "subrole") === "builder")
@@ -874,12 +815,99 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 					if (ent.getMetadata(PlayerID, "transport"))
 						return false;
 					return true;
+				}).toEntityArray();
+				var time = target.buildTime();
+				nonBuilderWorkers.sort(function (workerA,workerB)
+				{
+					let coeffA = API3.SquareVectorDistance(target.position(),workerA.position());
+					// elephant moves slowly, so when far away they are only useful if build time is long
+					if (workerA.hasClass("Elephant"))
+						coeffA *= 0.5 * (1 + (Math.sqrt(coeffA)/150)*(30/time));
+					else if (workerA.getMetadata(PlayerID, "gather-type") === "food")
+						coeffA *= 3;
+					let coeffB = API3.SquareVectorDistance(target.position(),workerB.position());
+					if (workerB.hasClass("Elephant"))
+						coeffB *= 0.5 * (1 + (Math.sqrt(coeffB)/150)*(30/time));
+					else if (workerB.getMetadata(PlayerID, "gather-type") === "food")
+						coeffB *= 3;
+					return (coeffA - coeffB);						
 				});
-				var nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), targetNB/3 - assigned);
+				let current = 0;
+				let nonBuilderTot = nonBuilderWorkers.length;
+				while (assigned < targetNB && builderTot < maxTotalBuilders && current < nonBuilderTot)
+				{
+					assigned++;
+					builderTot++;
+					var ent = nonBuilderWorkers[current++];
+					ent.stopMoving();
+					ent.setMetadata(PlayerID, "subrole", "builder");
+					ent.setMetadata(PlayerID, "target-foundation", target.id());
+				};
+			}
+		}
+	}
+
+	for (var target of damagedBuildings)
+	{
+		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
+		if (gameState.ai.HQ.isDangerousLocation(target.position()))
+			if (target.healthLevel() > 0.5 ||
+				(!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder")))
+				continue;
+		else if (noRepair && !target.hasClass("CivCentre"))
+			continue;
+		
+		if (target.decaying())
+			continue;
+		
+		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
+		var maxTotalBuilders = Math.ceil(workers.length * 0.2);
+		var targetNB = 1;
+		if (target.hasClass("Fortress"))
+			targetNB = 3;
+		if (target.getMetadata(PlayerID, "baseAnchor") == true || (target.hasClass("Wonder") && gameState.getGameType() === "wonder"))
+		{
+			maxTotalBuilders = Math.ceil(workers.length * 0.3);
+			targetNB = 5;
+			if (target.healthLevel() < 0.3)
+			{
+				maxTotalBuilders = Math.ceil(workers.length * 0.6);
+				targetNB = 7;
+			}
+
+		}
+
+		if (assigned < targetNB)
+		{
+			idleBuilderWorkers.forEach(function(ent) {
+				if (ent.getMetadata(PlayerID, "target-foundation") !== undefined)
+					return;
+				if (assigned >= targetNB || !ent.position() || API3.SquareVectorDistance(ent.position(), target.position()) > 40000)
+					return;
+				assigned++;
+				builderTot++;
+				ent.setMetadata(PlayerID, "target-foundation", target.id());
+			});
+			if (assigned < targetNB && builderTot < maxTotalBuilders)
+			{
+				let nonBuilderWorkers = workers.filter(function(ent) {
+					if (ent.getMetadata(PlayerID, "subrole") === "builder")
+						return false;
+					if (!ent.position())
+						return false;
+					if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
+						return false;
+					if (ent.getMetadata(PlayerID, "transport"))
+						return false;
+					return true;
+				});
+				let num = Math.min(nonBuilderWorkers.length, targetNB-assigned);
+				let nearestNonBuilders = nonBuilderWorkers.filterNearest(target.position(), num);
 				
 				nearestNonBuilders.forEach(function(ent) {
+					assigned++;
+					builderTot++;
 					ent.stopMoving();
-					addedWorkers++;
 					ent.setMetadata(PlayerID, "subrole", "builder");
 					ent.setMetadata(PlayerID, "target-foundation", target.id());
 				});

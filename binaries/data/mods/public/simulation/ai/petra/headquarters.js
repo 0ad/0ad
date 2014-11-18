@@ -18,8 +18,6 @@ m.HQ = function(Config)
 {
 	this.Config = Config;
 	
-	this.targetNumBuilders = this.Config.Economy.targetNumBuilders; // number of workers we want building stuff
-
 	this.econState = "growth";	// existing values: growth, townPhasing.
 	this.phaseStarted = undefined;
 
@@ -534,16 +532,25 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		});
 	});
 
-	// Adapt the batch size of the first queued workers and females to the present population
+	// Adapt the batch size of the first and second queued workers and females to the present population
 	// to ease a possible recovery if our population was drastically reduced by an attack
+	// (need to go up to second queued as it is accounted in queueManager)
 	if (numWorkers < 12)
 		var size = 1;
 	else
 		var size =  Math.min(5, Math.ceil(numWorkers / 10));
 	if (queues.villager.queue[0])
+	{
 		queues.villager.queue[0].number = Math.min(queues.villager.queue[0].number, size);
+		if (queues.villager.queue[1])
+			queues.villager.queue[1].number = Math.min(queues.villager.queue[1].number, size);
+	}
 	if (queues.citizenSoldier.queue[0])
+	{
 		queues.citizenSoldier.queue[0].number = Math.min(queues.citizenSoldier.queue[0].number, size);
+		if (queues.citizenSoldier.queue[1])
+			queues.citizenSoldier.queue[1].number = Math.min(queues.citizenSoldier.queue[1].number, size);
+	}
 
 	var numQueuedF = queues.villager.countQueuedUnits();
 	var numQueuedS = queues.citizenSoldier.countQueuedUnits();
@@ -1633,26 +1640,18 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 				if (gameState.isDisabledTemplates(trainable))
 					continue;
 				var template = gameState.getTemplate(trainable);
-				if (!template.hasClass("Infantry") || !template.hasClass("Ranged")
-					|| !template.hasClass("CitizenSoldier"))
+				if (!template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
+					continue;
+				// Keep non-ranged units only as long as no ranged one found
+				if (rangedUnit && !template.hasClass("Ranged"))
 					continue;
 				if (!total.canAfford(new API3.Resources(template.cost())))
-				{
-					if (rangedUnit)
-						continue;
-					// if we still have no ranged units, but can afford a melee unit, let's try it
-					var template = gameState.getTemplate(trainable);
-					if (!template.hasClass("Infantry") || !template.hasClass("Melee")
-						|| !template.hasClass("CitizenSoldier"))
-						continue;
-					if (!total.canAfford(new API3.Resources(template.cost())))
-						continue;
-				}
-				else
-					rangedUnit = true;
+					continue;
 				templateFound = [trainable, template];
-				if (rangedUnit)
-					break;
+				if (!template.hasClass("Ranged"))
+					continue;
+				rangedUnit = true;
+				break;
 			}
 			if (!templateFound)
 				continue;
@@ -1698,8 +1697,8 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 			break;
 		}
 	}
-	// Check first if we can afford it without touching other the accounts
-	// and if not, take some of ther accounted resources
+	// Check first if we can afford it without touching the other accounts
+	// and if not, take some of other accounted resources
 	// TODO sort the queues to be substracted
 	var cost = new API3.Resources(templateAnchor[1].cost());
 	if (!gameState.ai.queueManager.accounts["emergency"].canAfford(cost))
@@ -2000,7 +1999,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 m.HQ.prototype.Serialize = function()
 {
 	let properties = {
-		"targetNumBuilders": this.targetNumBuilders,
 		"econState": this.econState,
 		"phaseStarted": this.phaseStarted,
 		"wantedRates": this.wantedRates,
