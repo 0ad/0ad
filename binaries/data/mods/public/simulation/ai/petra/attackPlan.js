@@ -130,9 +130,17 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 
 	// Put some randomness on the attack size
 	var variation = 0.8 + 0.4*Math.random();
-	// and smaller sizes for easy difficulty level
+	// and lower priority and smaller sizes for easier difficulty levels
 	if (this.Config.difficulty < 2)
-		variation *= 0.7;
+	{
+		priority *= 0.6;
+		variation *= 0.6;
+	}
+	else if (this.Config.difficulty < 3)
+	{
+		priority *= 0.8;
+		variation *= 0.8;
+	}
 	for (var cat in this.unitStat)
 	{
 		this.unitStat[cat]["targetSize"] = Math.round(variation * this.unitStat[cat]["targetSize"]);
@@ -354,6 +362,8 @@ m.AttackPlan.prototype.addSiegeUnits = function(gameState)
 	if (gameState.civ() === "maur")
 		stat["classes"] = ["Elephant", "Champion"];
 	if (this.Config.difficulty < 2)
+		stat["targetSize"] = 1;
+	else if (this.Config.difficulty < 3)
 		stat["targetSize"] = 2;
 	this.addBuildOrder(gameState, "Siege", stat, true);
 	return true;

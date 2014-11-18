@@ -1159,11 +1159,11 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 }
 
 /*
- * Command line options for autostart (keep synchronized with readme.txt):
+ * Command line options for autostart (keep synchronized with binaries/system/readme.txt):
  *
  * -autostart="TYPEDIR/MAPNAME"         enables autostart and sets MAPNAME; TYPEDIR is skirmishes, scenarios, or random
  * -autostart-ai=PLAYER:AI              sets the AI for PLAYER (e.g. 2:petra)
- * -autostart-aidiff=PLAYER:DIFF        sets the DIFFiculty of PLAYER's AI (0: sandbox, 4: very hard)
+ * -autostart-aidiff=PLAYER:DIFF        sets the DIFFiculty of PLAYER's AI (0: sandbox, 5: very hard)
  * -autostart-civ=PLAYER:CIV            sets PLAYER's civilisation to CIV (skirmish and random maps only)
  * -autostart-aiseed=AISEED             sets the seed used for the AI random generator (default 0, use -1 for random)
  * Multiplayer:

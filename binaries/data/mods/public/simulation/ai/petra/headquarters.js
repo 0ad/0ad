@@ -97,9 +97,9 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 			API3.warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
 	}
 
-	if (this.Config.difficulty == 0)
+	if (this.Config.difficulty < 2)
 		this.targetNumWorkers = Math.max(1, Math.min(40, Math.floor(gameState.getPopulationMax())));
-	else if (this.Config.difficulty == 1)
+	else if (this.Config.difficulty < 3)
 		this.targetNumWorkers = Math.max(1, Math.min(60, Math.floor(gameState.getPopulationMax()/2)));
 	else
 		this.targetNumWorkers = Math.max(1, Math.min(120, Math.floor(gameState.getPopulationMax()/3)));
@@ -494,7 +494,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 // Called by the "town phase" research plan once it's started
 m.HQ.prototype.OnTownPhase = function(gameState)
 {
-	if (this.Config.difficulty >= 2 && this.femaleRatio > 0.4)
+	if (this.Config.difficulty > 2 && this.femaleRatio > 0.4)
 		this.femaleRatio = 0.4;
 
 	this.phaseStarted = 2;
@@ -503,7 +503,7 @@ m.HQ.prototype.OnTownPhase = function(gameState)
 // Called by the "city phase" research plan once it's started
 m.HQ.prototype.OnCityPhase = function(gameState)
 {
-	if (this.Config.difficulty >= 2 && this.femaleRatio > 0.3)
+	if (this.Config.difficulty > 2 && this.femaleRatio > 0.3)
 		this.femaleRatio = 0.3;
 
 	this.phaseStarted = 3;
@@ -1293,8 +1293,6 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (numPlanned < 3 || (numPlanned < 5 && gameState.getPopulation() > 80))
 	{
 		var plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
-		// make the difficulty available to the isGo function without having to pass it as argument
-		var difficulty = this.Config.difficulty;
 		var self = this;
 		// change the starting condition according to the situation.
 		plan.isGo = function (gameState) {
@@ -1310,9 +1308,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 			if (self.saveResources)
 				return (freeSlots <= 10);
-			else if (gameState.getPopulation() > 55 && difficulty > 1)
+			else if (gameState.getPopulation() > 55)
 				return (freeSlots <= 21);
-			else if (gameState.getPopulation() >= 30 && difficulty > 0)
+			else if (gameState.getPopulation() > 30)
 				return (freeSlots <= 15);
 			else
 				return (freeSlots <= 10);
