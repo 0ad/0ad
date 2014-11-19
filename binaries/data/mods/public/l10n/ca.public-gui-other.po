@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-09-30 20:30+0000\n"
+"POT-Creation-Date: 2014-11-09 02:34+0100\n"
+"PO-Revision-Date: 2014-11-09 21:53+0000\n"
 "Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
@@ -45,7 +45,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Edifici especial"
 msgstr[1] "Edificis especials"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Herois"
 
@@ -245,10 +245,8 @@ msgid "Post Processing"
 msgstr "Postprocessament gràfic"
 
 #: gui/options/options.js:20
-msgid ""
-"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
-"GAME RESTART"
-msgstr "Utilitza filtres de postprocessament d'imatges (HDR, Bloom, DOF, etc). REQUEREIX REINICIAR EL JOC"
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr "Utilitza filtres de postprocessament d'imatge (HDR, Bloom, DOF, etc)"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -279,8 +277,8 @@ msgid "Smooth LOS"
 msgstr "Suavitza la línia de visió"
 
 #: gui/options/options.js:24
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr "Suavitza el revelat de la foscor i la boira de guerra (Necessita activar l'opció \"Prefereix GLSL\")."
+msgid "Lift darkness and fog-of-war smoothly"
+msgstr "Suavitza el revelat de la foscor i la boira de guerra"
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -581,6 +579,10 @@ msgstr "Temps transcorregut: %(time)s"
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/summary/summary.js:810
+msgid "Team total"
+msgstr "Total de l'equip"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -938,186 +940,186 @@ msgstr "Mostra aquest missatge en el futur"
 msgid "Known issues (web)"
 msgstr "Problemes coneguts (web)"
 
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):19
 msgid "Summary"
 msgstr "Resum"
 
-#: gui/summary/summary.xml:(caption):63
+#: gui/summary/summary.xml:(caption):59
 msgid "Score"
 msgstr "Puntuació"
 
-#: gui/summary/summary.xml:(caption):70
+#: gui/summary/summary.xml:(caption):66
 msgid "Buildings"
 msgstr "Edificis"
 
-#: gui/summary/summary.xml:(caption):77
+#: gui/summary/summary.xml:(caption):73
 msgid "Units"
 msgstr "Unitats"
 
-#: gui/summary/summary.xml:(caption):84
+#: gui/summary/summary.xml:(caption):80
 msgid "Resources"
 msgstr "Recursos"
 
-#: gui/summary/summary.xml:(caption):91
+#: gui/summary/summary.xml:(caption):87
 msgid "Market"
 msgstr "Mercat"
 
-#: gui/summary/summary.xml:(caption):98
+#: gui/summary/summary.xml:(caption):94
 msgid "Miscellaneous"
 msgstr "Altres"
 
-#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
-#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
-#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
+#: gui/summary/summary.xml:(caption):102 gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):398 gui/summary/summary.xml:(caption):559
+#: gui/summary/summary.xml:(caption):720 gui/summary/summary.xml:(caption):866
 msgid "Player name"
 msgstr "Nom del jugador"
 
-#: gui/summary/summary.xml:(caption):109
+#: gui/summary/summary.xml:(caption):105
 msgid "Economy score"
 msgstr "Puntuació econòmica"
 
-#: gui/summary/summary.xml:(caption):112
+#: gui/summary/summary.xml:(caption):108
 msgid "Military score"
 msgstr "Puntuació militar"
 
-#: gui/summary/summary.xml:(caption):115
+#: gui/summary/summary.xml:(caption):111
 msgid "Exploration score"
 msgstr "Puntuació \nd'exploració"
 
-#: gui/summary/summary.xml:(caption):118
+#: gui/summary/summary.xml:(caption):114
 msgid "Total score"
 msgstr "Puntuació total"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):227
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Estadístiques dels edificis (Construïts / Perduts / Destruïts)"
 
-#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
-#: gui/summary/summary.xml:(caption):581
+#: gui/summary/summary.xml:(caption):230 gui/summary/summary.xml:(caption):404
+#: gui/summary/summary.xml:(caption):577
 msgid "Total"
 msgstr "Total"
 
-#: gui/summary/summary.xml:(caption):237
+#: gui/summary/summary.xml:(caption):233
 msgid "Houses"
 msgstr "Cases"
 
-#: gui/summary/summary.xml:(caption):240
+#: gui/summary/summary.xml:(caption):236
 msgid "Economic"
 msgstr "Econòmics"
 
-#: gui/summary/summary.xml:(caption):243
+#: gui/summary/summary.xml:(caption):239
 msgid "Outposts"
 msgstr "Destacaments"
 
-#: gui/summary/summary.xml:(caption):246
+#: gui/summary/summary.xml:(caption):242
 msgid "Military"
 msgstr "Militars"
 
-#: gui/summary/summary.xml:(caption):249
+#: gui/summary/summary.xml:(caption):245
 msgid "Fortresses"
 msgstr "Fortaleses"
 
-#: gui/summary/summary.xml:(caption):252
+#: gui/summary/summary.xml:(caption):248
 msgid "Civ Centers"
 msgstr "Centres cívics"
 
-#: gui/summary/summary.xml:(caption):255
+#: gui/summary/summary.xml:(caption):251
 msgid "Wonders"
 msgstr "Meravelles"
 
-#: gui/summary/summary.xml:(caption):405
+#: gui/summary/summary.xml:(caption):401
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Estadístiques de les unitats (Reclutades / Baixes pròpies / Baixes enemigues)"
 
-#: gui/summary/summary.xml:(caption):411
+#: gui/summary/summary.xml:(caption):407
 msgid "Infantry"
 msgstr "Infanteria"
 
-#: gui/summary/summary.xml:(caption):414
+#: gui/summary/summary.xml:(caption):410
 msgid "Worker"
 msgstr "Treballadors"
 
-#: gui/summary/summary.xml:(caption):417
+#: gui/summary/summary.xml:(caption):413
 msgid "Cavalry"
 msgstr "Cavalleria"
 
-#: gui/summary/summary.xml:(caption):420
+#: gui/summary/summary.xml:(caption):416
 msgid "Champion"
 msgstr "Campions"
 
-#: gui/summary/summary.xml:(caption):426
+#: gui/summary/summary.xml:(caption):422
 msgid "Navy"
 msgstr "Marina"
 
-#: gui/summary/summary.xml:(caption):566
+#: gui/summary/summary.xml:(caption):562
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Estadístiques de recursos (Recollits / Gastats)"
 
-#: gui/summary/summary.xml:(caption):569
+#: gui/summary/summary.xml:(caption):565
 msgid "Food"
 msgstr "menjar"
 
-#: gui/summary/summary.xml:(caption):572
+#: gui/summary/summary.xml:(caption):568
 msgid "Wood"
 msgstr "fusta"
 
-#: gui/summary/summary.xml:(caption):575
+#: gui/summary/summary.xml:(caption):571
 msgid "Stone"
 msgstr "pedra"
 
-#: gui/summary/summary.xml:(caption):578
+#: gui/summary/summary.xml:(caption):574
 msgid "Metal"
 msgstr "metall"
 
-#: gui/summary/summary.xml:(caption):584
+#: gui/summary/summary.xml:(caption):580
 msgid "Treasures collected"
 msgstr "Tresors recollits"
 
-#: gui/summary/summary.xml:(caption):587
+#: gui/summary/summary.xml:(caption):583
 msgid "Tributes (Sent / Received)"
 msgstr "Tributs (Enviats / Rebuts)"
 
-#: gui/summary/summary.xml:(caption):727
+#: gui/summary/summary.xml:(caption):723
 msgid "Food exchanged"
 msgstr "Menjar intercanviat"
 
-#: gui/summary/summary.xml:(caption):730
+#: gui/summary/summary.xml:(caption):726
 msgid "Wood exchanged"
 msgstr "Fusta intercanviada"
 
-#: gui/summary/summary.xml:(caption):733
+#: gui/summary/summary.xml:(caption):729
 msgid "Stone exchanged"
 msgstr "Pedra intercanviada"
 
-#: gui/summary/summary.xml:(caption):736
+#: gui/summary/summary.xml:(caption):732
 msgid "Metal exchanged"
 msgstr "Metall intercanviat"
 
-#: gui/summary/summary.xml:(caption):739
+#: gui/summary/summary.xml:(caption):735
 msgid "Barter efficiency"
 msgstr "Eficiència\ndel bescanvi"
 
-#: gui/summary/summary.xml:(caption):742
+#: gui/summary/summary.xml:(caption):738
 msgid "Trade income"
 msgstr "Ingressos del comerç"
 
-#: gui/summary/summary.xml:(caption):873
+#: gui/summary/summary.xml:(caption):869
 msgid "Vegetarian\\nratio"
 msgstr "Proporció de\\nvegetarians"
 
-#: gui/summary/summary.xml:(caption):876
+#: gui/summary/summary.xml:(caption):872
 msgid "Feminisation"
 msgstr "Feminització"
 
-#: gui/summary/summary.xml:(caption):879
+#: gui/summary/summary.xml:(caption):875
 msgid "Kill / Death\\nratio"
 msgstr "Proporció de baixes\\nenemigues / pròpies"
 
-#: gui/summary/summary.xml:(caption):882
+#: gui/summary/summary.xml:(caption):878
 msgid "Map\\nexploration"
 msgstr "Exploració\\ndel mapa"
 
-#: gui/summary/summary.xml:(caption):989
+#: gui/summary/summary.xml:(caption):985
 msgid "Continue"
 msgstr "Continua"
 

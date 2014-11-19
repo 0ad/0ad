@@ -3,11 +3,13 @@
 # This file is distributed under the same license as the Pyrogenesis - Mod Selector project.
 # 
 # Translators:
+# malvanos <malvanos@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-09-12 20:06+0000\n"
+"POT-Creation-Date: 2014-11-09 02:36+0100\n"
+"PO-Revision-Date: 2014-11-10 10:52+0000\n"
+"Last-Translator: malvanos <malvanos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,80 +24,88 @@ msgstr "Όνομα"
 
 #: gui/modmod/modmod.js:30
 msgid "Folder"
-msgstr ""
+msgstr "Φάκελος"
 
 #: gui/modmod/modmod.js:30
 msgid "Label"
-msgstr ""
+msgstr "Eτικέτα"
 
 #: gui/modmod/modmod.js:30 gui/modmod/modmod.xml:(heading):97
 #: gui/modmod/modmod.xml:(heading):138
 msgid "Version"
-msgstr ""
+msgstr "Έκδοση"
 
 #: gui/modmod/modmod.js:36
 msgid "Type: Any"
-msgstr ""
+msgstr "Τύπος: Οποιοσδήποτε"
 
 #: gui/modmod/modmod.js:62 gui/modmod/modmod.js:308
 msgid "Filter"
-msgstr ""
+msgstr "Φίλτρο"
 
 #: gui/modmod/modmod.js:74
 msgid "Message: Mods Loaded."
-msgstr ""
+msgstr "Μήνυμα"
 
 #: gui/modmod/modmod.js:372
 msgid "All dependencies met"
-msgstr ""
+msgstr "Όλες οι εξαρτήσεις ικανοποιούνται"
 
 #: gui/modmod/modmod.js:498
 msgid "No mod has been selected."
-msgstr ""
+msgstr "Δεν έχει επιλεχθεί κάποιο mod."
 
 #: gui/modmod/modmod.xml:116
 msgid "Description"
-msgstr ""
+msgstr "Περιγραφή"
 
 #: gui/modmod/modmod.xml:(caption):10
 msgid "Modifications"
-msgstr ""
+msgstr "Τροποποίησεις"
 
 #: gui/modmod/modmod.xml:(caption):18
 msgid "Reset Filters"
-msgstr ""
+msgstr "Επαναφορώ φίλτρων"
 
 #: gui/modmod/modmod.xml:(caption):52
 msgid "Negate"
+msgstr "Ακυρώση"
+
+#: gui/modmod/modmod.xml:(caption):59
+msgid "Sorting:"
+msgstr "Ταξινόμηση:"
+
+#: gui/modmod/modmod.xml:(caption):71
+msgid "Descending."
 msgstr ""
 
 #: gui/modmod/modmod.xml:(caption):87
 msgid "Available Mods"
-msgstr ""
+msgstr "Διαθέσημα Mods"
 
 #: gui/modmod/modmod.xml:(caption):119
 msgid "Enable"
-msgstr ""
+msgstr "Ενεργοποίηση"
 
 #: gui/modmod/modmod.xml:(caption):128
 msgid "Enabled Mods"
-msgstr ""
+msgstr "Ενεργοποιημένα Mods"
 
 #: gui/modmod/modmod.xml:(caption):158
 msgid "Up"
-msgstr ""
+msgstr "Πάνω"
 
 #: gui/modmod/modmod.xml:(caption):162
 msgid "X"
-msgstr ""
+msgstr "Χ"
 
 #: gui/modmod/modmod.xml:(caption):166
 msgid "Down"
-msgstr ""
+msgstr "Κάτω"
 
 #: gui/modmod/modmod.xml:(caption):174
 msgid "Quit"
-msgstr ""
+msgstr "Έξοδος"
 
 #: gui/modmod/modmod.xml:(caption):179
 msgid "Cancel"
@@ -103,15 +113,15 @@ msgstr "Ακύρωση"
 
 #: gui/modmod/modmod.xml:(caption):184
 msgid "Save Configuration"
-msgstr ""
+msgstr "Αποθήκευση Ρυθμίσεων"
 
 #: gui/modmod/modmod.xml:(caption):189
 msgid "Start Mods"
-msgstr ""
+msgstr "Έναρξη Mods"
 
 #: gui/modmod/modmod.xml:(heading):100 gui/modmod/modmod.xml:(heading):141
 msgid "(Folder)"
-msgstr ""
+msgstr "(Φάκελος)"
 
 #: gui/modmod/modmod.xml:(heading):103 gui/modmod/modmod.xml:(heading):144
 msgid "Mod Label"
@@ -119,11 +129,11 @@ msgstr ""
 
 #: gui/modmod/modmod.xml:(heading):106 gui/modmod/modmod.xml:(heading):147
 msgid "Mod Type"
-msgstr ""
+msgstr "Τύπος Mod"
 
 #: gui/modmod/modmod.xml:(heading):109 gui/modmod/modmod.xml:(heading):150
 msgid "Dependencies"
-msgstr ""
+msgstr "Εξαρτήσεις"
 
 #: gui/modmod/modmod.xml:(heading):112 gui/modmod/modmod.xml:(heading):153
 msgid "Website"

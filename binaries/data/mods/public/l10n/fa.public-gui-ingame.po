@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-09-27 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-09 02:34+0100\n"
+"PO-Revision-Date: 2014-11-19 12:31+0000\n"
+"Last-Translator: Mohsen Nouri <mohsen.nouri1372@gmail.com>\n"
 "Language-Team: Persian (http://www.transifex.com/projects/p/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "توقف بازی"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "ادامه"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:(caption):19
@@ -69,7 +70,7 @@ msgstr "آیا مطمئن هستید که می‌خواهید خارج شوید�
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "باز خواهم گشت"
 
 #: gui/session/menu.js:169
 msgid "I resign"
@@ -182,7 +183,7 @@ msgstr[0] ""
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
-msgstr[0] ""
+msgstr[0] "%(inactiveString)s وجود دارد."
 
 #: gui/session/menu.js:559
 msgid "There are no merchant ships."
@@ -328,7 +329,7 @@ msgstr "%(player)s برای شما %(amounts)s فرستاده است."
 #: gui/session/messages.js:493
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
-msgstr ""
+msgstr "شما توسط %(attacker)s مورد حمله قرار گرفته اید!"
 
 #: gui/session/messages.js:518
 #, javascript-format
@@ -460,7 +461,7 @@ msgstr "برد:"
 #: gui/session/selection_details.js:251 gui/session/session.js:630
 #: gui/session/utility_functions.js:325
 msgid "meters"
-msgstr ""
+msgstr "متر"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, javascript-format
@@ -495,12 +496,12 @@ msgstr "%(label)s %(current)s / %(max)s"
 #: gui/session/selection_panels.js:87
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "خرید %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "فروش %(resource)s"
 
 #: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
 #, javascript-format
@@ -634,7 +635,7 @@ msgstr "مادر طبیعت"
 
 #: gui/session/session.js:305 gui/session/session.js:321
 msgid "You have left the game."
-msgstr ""
+msgstr "شما بازی را ترک کرده اید."
 
 #: gui/session/session.js:312
 msgid "You have been disconnected."
@@ -756,7 +757,7 @@ msgstr "پادگان"
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
-msgstr ""
+msgstr "خالی کردن"
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
@@ -780,7 +781,7 @@ msgstr "پایان نگهبانی"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
-msgstr ""
+msgstr "کالا ها را برای تجارت انتخاب کنید"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
@@ -792,7 +793,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:880
 msgid "End of alert."
-msgstr ""
+msgstr "پایان هشدار."
 
 #: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
 #: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
@@ -830,13 +831,13 @@ msgstr ""
 #, javascript-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
-msgstr[0] ""
+msgstr[0] "%(arrows)s کماندار"
 
 #: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
 #, javascript-format
 msgid "%(time)s second"
 msgid_plural "%(time)s seconds"
-msgstr[0] ""
+msgstr[0] "%(time)s ثانیه"
 
 #: gui/session/utility_functions.js:219 gui/session/utility_functions.js:225
 #: gui/session/utility_functions.js:231 gui/session/utility_functions.js:274
@@ -1200,7 +1201,7 @@ msgid "Save"
 msgstr "ذخیره"
 
 #: gui/session/menu.xml:(caption):52
-msgid "Settings"
+msgid "Options"
 msgstr "تنظیمات"
 
 #: gui/session/menu.xml:(caption):76
@@ -1221,11 +1222,11 @@ msgstr "کنترل همه واحد‌ها"
 
 #: gui/session/session.xml:(caption):63
 msgid "Change perspective"
-msgstr ""
+msgstr "تعویض زاویه دید"
 
 #: gui/session/session.xml:(caption):70
 msgid "Display selection state"
-msgstr ""
+msgstr "نمایش حالت انتخابی"
 
 #: gui/session/session.xml:(caption):75
 msgid "Pathfinder overlay"
@@ -1241,7 +1242,7 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):96
 msgid "Range overlay"
-msgstr ""
+msgstr "پوشش محدوده"
 
 #: gui/session/session.xml:(caption):103
 msgid "Bounding box overlay"
@@ -1249,7 +1250,7 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):110
 msgid "Restrict camera"
-msgstr ""
+msgstr "محدود کردن دوربین"
 
 #: gui/session/session.xml:(caption):124
 msgid "Reveal map"
@@ -1261,11 +1262,11 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):142
 msgid "Promote selected units"
-msgstr ""
+msgstr "ارتقاء واحد انتخاب شده"
 
 #: gui/session/session.xml:(caption):174
 msgid "Game Paused"
-msgstr ""
+msgstr "بازی متوقف شد"
 
 #: gui/session/session.xml:(caption):177
 msgid "Click to Resume Game"
@@ -1277,7 +1278,7 @@ msgstr "لغو"
 
 #: gui/session/session.xml:(caption):212
 msgid "Team Only"
-msgstr ""
+msgstr "فقط تیم"
 
 #: gui/session/session.xml:(caption):216
 msgid "Send"
@@ -1289,16 +1290,16 @@ msgstr "یک بازیکن را برای مشاهده انتخاب کنید"
 
 #: gui/session/top_panel.xml:(caption):26
 msgid "Observer Mode (experimental)"
-msgstr ""
+msgstr "حالت ناظر(آزمایشی):"
 
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
 msgid "Trade"
-msgstr ""
+msgstr "تجارت"
 
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
-msgstr ""
+msgstr "انتخاب کالاها برای تجارت:"
 
 #: gui/session/trade_window.xml:(tooltip):35
 msgid ""
@@ -1309,11 +1310,11 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "سوال"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "بلی یا خیر؟"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
@@ -1346,13 +1347,13 @@ msgstr "مقام"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "صف تولید"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
 "Click to select grouped units, double-click to focus the grouped units and "
 "right-click to disband the group."
-msgstr ""
+msgstr "برای انتخاب یگان های گروه بندی شده کلیک کنید، برای تمرکز کردن روی یگان های گروه بندی شده دابل کلیک کنید و برای انحلال گروه راست کلیک کنید."
 
 #: gui/session/top_panel/button_game_speed.xml:(tooltip):9
 msgid "Game speed"
@@ -1362,8 +1363,8 @@ msgstr "سرعت بازی"
 msgid "Choose game speed"
 msgstr "انتخاب سرعت بازی"
 
-#: gui/session/top_panel/button_menu.xml:(caption):15
-msgid "MENU"
+#: gui/session/top_panel/button_menu.xml:(caption):14
+msgid "Menu"
 msgstr "منو"
 
 #: gui/session/top_panel/label.xml:(caption):4
