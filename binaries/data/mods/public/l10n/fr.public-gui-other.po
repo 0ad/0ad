@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-09-28 16:21+0000\n"
-"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
+"POT-Creation-Date: 2014-11-09 02:34+0100\n"
+"PO-Revision-Date: 2014-11-09 10:16+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -48,7 +48,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Bâtiment spécial"
 msgstr[1] "Bâtiments spéciaux"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Héros"
 
@@ -248,10 +248,8 @@ msgid "Post Processing"
 msgstr "Post-traitement"
 
 #: gui/options/options.js:20
-msgid ""
-"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
-"GAME RESTART"
-msgstr "Utiliser les filtres de post-traitement de l'image (HDR, Bloom, DOF, etc.). NÉCESSITE UN REDÉMARRAGE"
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -282,8 +280,8 @@ msgid "Smooth LOS"
 msgstr "Ligne de mire fluide"
 
 #: gui/options/options.js:24
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr "Lever doucement l'obscurité et le brouillard de guerre (nécessite Préférer GLSL)"
+msgid "Lift darkness and fog-of-war smoothly"
+msgstr ""
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -584,6 +582,10 @@ msgstr "Temps écoulé : %(time)s"
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/summary/summary.js:810
+msgid "Team total"
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -941,186 +943,186 @@ msgstr "Montrer ce message ultérieurement"
 msgid "Known issues (web)"
 msgstr "Problèmes connus (web)"
 
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):19
 msgid "Summary"
 msgstr "Résumé"
 
-#: gui/summary/summary.xml:(caption):63
+#: gui/summary/summary.xml:(caption):59
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):70
+#: gui/summary/summary.xml:(caption):66
 msgid "Buildings"
 msgstr "Bâtiments"
 
-#: gui/summary/summary.xml:(caption):77
+#: gui/summary/summary.xml:(caption):73
 msgid "Units"
 msgstr "Unités"
 
-#: gui/summary/summary.xml:(caption):84
+#: gui/summary/summary.xml:(caption):80
 msgid "Resources"
 msgstr "Ressources"
 
-#: gui/summary/summary.xml:(caption):91
+#: gui/summary/summary.xml:(caption):87
 msgid "Market"
 msgstr "Marché"
 
-#: gui/summary/summary.xml:(caption):98
+#: gui/summary/summary.xml:(caption):94
 msgid "Miscellaneous"
 msgstr "Divers"
 
-#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
-#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
-#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
+#: gui/summary/summary.xml:(caption):102 gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):398 gui/summary/summary.xml:(caption):559
+#: gui/summary/summary.xml:(caption):720 gui/summary/summary.xml:(caption):866
 msgid "Player name"
 msgstr "Nom du joueur"
 
-#: gui/summary/summary.xml:(caption):109
+#: gui/summary/summary.xml:(caption):105
 msgid "Economy score"
 msgstr "Économique"
 
-#: gui/summary/summary.xml:(caption):112
+#: gui/summary/summary.xml:(caption):108
 msgid "Military score"
 msgstr "Militaire"
 
-#: gui/summary/summary.xml:(caption):115
+#: gui/summary/summary.xml:(caption):111
 msgid "Exploration score"
 msgstr "Exploration"
 
-#: gui/summary/summary.xml:(caption):118
+#: gui/summary/summary.xml:(caption):114
 msgid "Total score"
 msgstr "Score total"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):227
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Statistiques des bâtiments (construits / perdus / détruits)"
 
-#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
-#: gui/summary/summary.xml:(caption):581
+#: gui/summary/summary.xml:(caption):230 gui/summary/summary.xml:(caption):404
+#: gui/summary/summary.xml:(caption):577
 msgid "Total"
 msgstr "Total"
 
-#: gui/summary/summary.xml:(caption):237
+#: gui/summary/summary.xml:(caption):233
 msgid "Houses"
 msgstr "Maisons"
 
-#: gui/summary/summary.xml:(caption):240
+#: gui/summary/summary.xml:(caption):236
 msgid "Economic"
 msgstr "Économique"
 
-#: gui/summary/summary.xml:(caption):243
+#: gui/summary/summary.xml:(caption):239
 msgid "Outposts"
 msgstr "Postes avancés"
 
-#: gui/summary/summary.xml:(caption):246
+#: gui/summary/summary.xml:(caption):242
 msgid "Military"
 msgstr "Militaire"
 
-#: gui/summary/summary.xml:(caption):249
+#: gui/summary/summary.xml:(caption):245
 msgid "Fortresses"
 msgstr "Forteresses"
 
-#: gui/summary/summary.xml:(caption):252
+#: gui/summary/summary.xml:(caption):248
 msgid "Civ Centers"
 msgstr "Centres-villes"
 
-#: gui/summary/summary.xml:(caption):255
+#: gui/summary/summary.xml:(caption):251
 msgid "Wonders"
 msgstr "Merveilles"
 
-#: gui/summary/summary.xml:(caption):405
+#: gui/summary/summary.xml:(caption):401
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Statistiques des unités (formées / perdues / tuées) "
 
-#: gui/summary/summary.xml:(caption):411
+#: gui/summary/summary.xml:(caption):407
 msgid "Infantry"
 msgstr "Infanterie"
 
-#: gui/summary/summary.xml:(caption):414
+#: gui/summary/summary.xml:(caption):410
 msgid "Worker"
 msgstr "Travailleur"
 
-#: gui/summary/summary.xml:(caption):417
+#: gui/summary/summary.xml:(caption):413
 msgid "Cavalry"
 msgstr "Cavalerie"
 
-#: gui/summary/summary.xml:(caption):420
+#: gui/summary/summary.xml:(caption):416
 msgid "Champion"
 msgstr "Champion"
 
-#: gui/summary/summary.xml:(caption):426
+#: gui/summary/summary.xml:(caption):422
 msgid "Navy"
 msgstr "Marine"
 
-#: gui/summary/summary.xml:(caption):566
+#: gui/summary/summary.xml:(caption):562
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Statistiques des ressources (collectées / utilisées)"
 
-#: gui/summary/summary.xml:(caption):569
+#: gui/summary/summary.xml:(caption):565
 msgid "Food"
 msgstr "Nourriture"
 
-#: gui/summary/summary.xml:(caption):572
+#: gui/summary/summary.xml:(caption):568
 msgid "Wood"
 msgstr "Bois"
 
-#: gui/summary/summary.xml:(caption):575
+#: gui/summary/summary.xml:(caption):571
 msgid "Stone"
 msgstr "Pierre"
 
-#: gui/summary/summary.xml:(caption):578
+#: gui/summary/summary.xml:(caption):574
 msgid "Metal"
 msgstr "Métal"
 
-#: gui/summary/summary.xml:(caption):584
+#: gui/summary/summary.xml:(caption):580
 msgid "Treasures collected"
 msgstr "Trésors collectés"
 
-#: gui/summary/summary.xml:(caption):587
+#: gui/summary/summary.xml:(caption):583
 msgid "Tributes (Sent / Received)"
 msgstr "Tributs (envoyés / reçus)"
 
-#: gui/summary/summary.xml:(caption):727
+#: gui/summary/summary.xml:(caption):723
 msgid "Food exchanged"
 msgstr "Nourriture échangée"
 
-#: gui/summary/summary.xml:(caption):730
+#: gui/summary/summary.xml:(caption):726
 msgid "Wood exchanged"
 msgstr "Bois échangé"
 
-#: gui/summary/summary.xml:(caption):733
+#: gui/summary/summary.xml:(caption):729
 msgid "Stone exchanged"
 msgstr "Pierre échangée"
 
-#: gui/summary/summary.xml:(caption):736
+#: gui/summary/summary.xml:(caption):732
 msgid "Metal exchanged"
 msgstr "Métal échangé"
 
-#: gui/summary/summary.xml:(caption):739
+#: gui/summary/summary.xml:(caption):735
 msgid "Barter efficiency"
 msgstr "Efficacité du troc"
 
-#: gui/summary/summary.xml:(caption):742
+#: gui/summary/summary.xml:(caption):738
 msgid "Trade income"
 msgstr "Revenus du commerce"
 
-#: gui/summary/summary.xml:(caption):873
+#: gui/summary/summary.xml:(caption):869
 msgid "Vegetarian\\nratio"
 msgstr "Ratio\\nvégétarien"
 
-#: gui/summary/summary.xml:(caption):876
+#: gui/summary/summary.xml:(caption):872
 msgid "Feminisation"
 msgstr "Féminisation"
 
-#: gui/summary/summary.xml:(caption):879
+#: gui/summary/summary.xml:(caption):875
 msgid "Kill / Death\\nratio"
 msgstr "Ratio\\nTués / Morts"
 
-#: gui/summary/summary.xml:(caption):882
+#: gui/summary/summary.xml:(caption):878
 msgid "Map\\nexploration"
 msgstr "Exploration\\nde la carte"
 
-#: gui/summary/summary.xml:(caption):989
+#: gui/summary/summary.xml:(caption):985
 msgid "Continue"
 msgstr "Continuer"
 

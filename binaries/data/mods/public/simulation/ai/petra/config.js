@@ -3,8 +3,8 @@ var PETRA = function(m)
 
 m.Config = function(difficulty)
 {
-	// 0 is sandbox, 1 is easy, 2 is medium, 3 is hard, 4 is very hard.
-	this.difficulty = (difficulty !== undefined) ? difficulty : 2;
+	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
+	this.difficulty = (difficulty !== undefined) ? difficulty : 3;
 
 	// debug level: 0=none, 1=sanity checks, 2=debug; 3=detailed debug
 	this.debug = 0;
@@ -112,24 +112,26 @@ m.Config.prototype.setConfig = function(gameState)
 		this.personality.cooperative = Math.random();
 		this.personality.defensive = Math.random();
 	}
+	else
+		this.personality.aggressive = 0.1;
 
-	// changing settings based on difficulty (if < 2) or personality
-	if (this.difficulty === 0)
+	// changing settings based on difficulty or personality
+	if (this.difficulty < 2)
 	{
 		this.Military.popForBarracks1 = 60;
-		this.Military.popForBarracks2 = 150;	// shouldn't reach it
-		this.Military.popForBlacksmith = 150;	// shouldn't reach it
+		this.Military.popForBarracks2 = 300;
+		this.Military.popForBlacksmith = 300;
 
 		this.Economy.cityPhase = 240000;
 		this.Economy.popForMarket = 200;
 		this.Economy.femaleRatio = 0.7;
 		this.Economy.initialFields = 1;
 	}
-	else if (this.difficulty === 1)
+	else if (this.difficulty < 3)
 	{
 		this.Military.popForBarracks1 = 35;
-		this.Military.popForBarracks2 = 150;	// shouldn't reach it
-		this.Military.popForBlacksmith = 150;	// shouldn't reach it
+		this.Military.popForBarracks2 = 150;
+		this.Military.popForBlacksmith = 150;
 
 		this.Economy.cityPhase = 1800;
 		this.Economy.popForMarket = 80;
@@ -151,7 +153,7 @@ m.Config.prototype.setConfig = function(gameState)
 		}
 	}
 
-	this.Economy.targetNumTraders = 2 * this.difficulty;
+	this.Economy.targetNumTraders = 2 + this.difficulty;
 
 	if (gameState.getPopulationMax() < 300)
 		this.popScaling = Math.sqrt(gameState.getPopulationMax() / 300);

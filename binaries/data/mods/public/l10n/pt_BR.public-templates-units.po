@@ -6,6 +6,7 @@
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # dexmendonca <dexmendoncadev@gmail.com>, 2014
 # Ernan, 2014
+# Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # mac.edgar <mac.edgar@hotmail.com>, 2014
 # Matheus Clemente <matheus.xb@gmail.com>, 2014
@@ -16,8 +17,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-11-04 02:21+0000\n"
-"Last-Translator: Matheus Clemente <matheus.xb@gmail.com>\n"
+"PO-Revision-Date: 2014-11-11 16:32+0000\n"
+"Last-Translator: Leonardo Augusto Suzin <leonardosuzin@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -258,7 +259,7 @@ msgstr "Cão de Guerra"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "Não pode atacar estruturas."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -367,7 +368,7 @@ msgstr "Barco Lança-Chamas"
 msgid ""
 "Rapidly drain the health of enemy ships. Slowly loses health due to being on"
 " fire, so use the Fire Ship quickly."
-msgstr ""
+msgstr "Drena a saúde de navios inimigos rapidamente. Perde saúde devagar por pegar fogo, então use rápido o Navio em Chamas."
 
 #: simulation/templates/template_unit_mechanical_ship_fishing.xml:32
 msgid "Fishing Boat"
@@ -395,7 +396,7 @@ msgstr "Navio de Guerra Pesado"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "Equipe com catapultas para aumentar o dano à distância."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -411,7 +412,7 @@ msgstr "Catapulta de Cerco"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
-msgstr ""
+msgstr "Cause dano em área."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
@@ -424,7 +425,7 @@ msgstr "Torre de Cerco"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Ocupe até 20 unidades de Infantaria para aumentar o número de flechas de 0 a 10."
 
 #: simulation/templates/template_unit_support.xml:12
 msgid "Support"
@@ -767,7 +768,7 @@ msgstr "Aura de Construtor"
 
 #: simulation/templates/units/athen_hero_pericles.xml:12
 msgid "Buildings construct 15% faster within his vision."
-msgstr ""
+msgstr "Prédios constroem 15% mais rápido dentro do raio de visão."
 
 #: simulation/templates/units/athen_hero_pericles.xml:20
 msgid "Acropolis Aura"
@@ -799,7 +800,7 @@ msgstr "Aura de Arquiteto Naval"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:21
 msgid "Ships are built +20% faster during his lifespan."
-msgstr ""
+msgstr "Navios são construídos 20% mais rápido durante sua vida."
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
@@ -1152,7 +1153,7 @@ msgstr "Mašal"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:10
 msgid "Lightning Aura"
-msgstr ""
+msgstr "Aura relâmpago"
 
 #: simulation/templates/units/cart_hero_hamilcar.xml:16
 msgid "Ḥimelqart Baraq"
@@ -1164,7 +1165,7 @@ msgstr "Amílcar Barca"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:13
 msgid "Tactician Aura"
-msgstr ""
+msgstr "Aura tática"
 
 #: simulation/templates/units/cart_hero_hannibal.xml:14
 msgid "All allied units +2 attack within vision range of him."

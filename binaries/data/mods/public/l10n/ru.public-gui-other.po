@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-10-08 10:11+0000\n"
-"Last-Translator: Алексей72 <Alteza.72ru@mail.ru>\n"
+"POT-Creation-Date: 2014-11-09 02:34+0100\n"
+"PO-Revision-Date: 2014-11-13 20:31+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -51,7 +51,7 @@ msgstr[0] "Специальное здание"
 msgstr[1] "Специальные здания"
 msgstr[2] "Специальные здания"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):423
+#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Герои"
 
@@ -251,10 +251,8 @@ msgid "Post Processing"
 msgstr "Постобработка"
 
 #: gui/options/options.js:20
-msgid ""
-"Use screen-space postprocessing filters (HDR, Bloom, DOF, etc). REQUIRES "
-"GAME RESTART"
-msgstr "Использовать фильтры постобработки изображения (HDR, Bloom, DOF, и т.д.). ТРЕБУЕТ ПЕРЕЗАПУСКА ИГРЫ"
+msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
+msgstr ""
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -285,8 +283,8 @@ msgid "Smooth LOS"
 msgstr "Размытая линия пределов видимости"
 
 #: gui/options/options.js:24
-msgid "Lift darkness and fog-of-war smoothly (Requires Prefer GLSL)"
-msgstr "Увеличить темноту и плавный туман войны (Необходим GLSL)"
+msgid "Lift darkness and fog-of-war smoothly"
+msgstr ""
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -587,6 +585,10 @@ msgstr "Прошло времени: %(time)s"
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
+
+#: gui/summary/summary.js:810
+msgid "Team total"
+msgstr ""
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -944,186 +946,186 @@ msgstr "Показывать это сообщение в будущем"
 msgid "Known issues (web)"
 msgstr "Известные проблемы (web)"
 
-#: gui/summary/summary.xml:(caption):23
+#: gui/summary/summary.xml:(caption):19
 msgid "Summary"
 msgstr "Итог"
 
-#: gui/summary/summary.xml:(caption):63
+#: gui/summary/summary.xml:(caption):59
 msgid "Score"
 msgstr "Очки"
 
-#: gui/summary/summary.xml:(caption):70
+#: gui/summary/summary.xml:(caption):66
 msgid "Buildings"
 msgstr "Постройки"
 
-#: gui/summary/summary.xml:(caption):77
+#: gui/summary/summary.xml:(caption):73
 msgid "Units"
 msgstr "Юниты"
 
-#: gui/summary/summary.xml:(caption):84
+#: gui/summary/summary.xml:(caption):80
 msgid "Resources"
 msgstr "Ресурсы"
 
-#: gui/summary/summary.xml:(caption):91
+#: gui/summary/summary.xml:(caption):87
 msgid "Market"
 msgstr "Рынок"
 
-#: gui/summary/summary.xml:(caption):98
+#: gui/summary/summary.xml:(caption):94
 msgid "Miscellaneous"
 msgstr "Разное"
 
-#: gui/summary/summary.xml:(caption):106 gui/summary/summary.xml:(caption):228
-#: gui/summary/summary.xml:(caption):402 gui/summary/summary.xml:(caption):563
-#: gui/summary/summary.xml:(caption):724 gui/summary/summary.xml:(caption):870
+#: gui/summary/summary.xml:(caption):102 gui/summary/summary.xml:(caption):224
+#: gui/summary/summary.xml:(caption):398 gui/summary/summary.xml:(caption):559
+#: gui/summary/summary.xml:(caption):720 gui/summary/summary.xml:(caption):866
 msgid "Player name"
 msgstr "Имя игрока"
 
-#: gui/summary/summary.xml:(caption):109
+#: gui/summary/summary.xml:(caption):105
 msgid "Economy score"
 msgstr "Экономический счет"
 
-#: gui/summary/summary.xml:(caption):112
+#: gui/summary/summary.xml:(caption):108
 msgid "Military score"
 msgstr "Военный счет"
 
-#: gui/summary/summary.xml:(caption):115
+#: gui/summary/summary.xml:(caption):111
 msgid "Exploration score"
 msgstr "Исследование"
 
-#: gui/summary/summary.xml:(caption):118
+#: gui/summary/summary.xml:(caption):114
 msgid "Total score"
 msgstr "Очков всего"
 
-#: gui/summary/summary.xml:(caption):231
+#: gui/summary/summary.xml:(caption):227
 msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
 msgstr "Статистика Зданий (Построено / Потеряно / Разрушено)"
 
-#: gui/summary/summary.xml:(caption):234 gui/summary/summary.xml:(caption):408
-#: gui/summary/summary.xml:(caption):581
+#: gui/summary/summary.xml:(caption):230 gui/summary/summary.xml:(caption):404
+#: gui/summary/summary.xml:(caption):577
 msgid "Total"
 msgstr "Всё"
 
-#: gui/summary/summary.xml:(caption):237
+#: gui/summary/summary.xml:(caption):233
 msgid "Houses"
 msgstr "Дома"
 
-#: gui/summary/summary.xml:(caption):240
+#: gui/summary/summary.xml:(caption):236
 msgid "Economic"
 msgstr "Экономика"
 
-#: gui/summary/summary.xml:(caption):243
+#: gui/summary/summary.xml:(caption):239
 msgid "Outposts"
 msgstr "Заставы"
 
-#: gui/summary/summary.xml:(caption):246
+#: gui/summary/summary.xml:(caption):242
 msgid "Military"
 msgstr "Военные"
 
-#: gui/summary/summary.xml:(caption):249
+#: gui/summary/summary.xml:(caption):245
 msgid "Fortresses"
 msgstr "Форт"
 
-#: gui/summary/summary.xml:(caption):252
+#: gui/summary/summary.xml:(caption):248
 msgid "Civ Centers"
 msgstr "Центры цивилизаций"
 
-#: gui/summary/summary.xml:(caption):255
+#: gui/summary/summary.xml:(caption):251
 msgid "Wonders"
 msgstr "Чудеса"
 
-#: gui/summary/summary.xml:(caption):405
+#: gui/summary/summary.xml:(caption):401
 msgid "Units Statistics (Trained / Lost / Killed)"
 msgstr "Статистика Юнитов (Натренировано / Потеряно / Убито)"
 
-#: gui/summary/summary.xml:(caption):411
+#: gui/summary/summary.xml:(caption):407
 msgid "Infantry"
 msgstr "Пехотинец"
 
-#: gui/summary/summary.xml:(caption):414
+#: gui/summary/summary.xml:(caption):410
 msgid "Worker"
 msgstr "Рабочий"
 
-#: gui/summary/summary.xml:(caption):417
+#: gui/summary/summary.xml:(caption):413
 msgid "Cavalry"
 msgstr "Конница"
 
-#: gui/summary/summary.xml:(caption):420
+#: gui/summary/summary.xml:(caption):416
 msgid "Champion"
 msgstr "Элита"
 
-#: gui/summary/summary.xml:(caption):426
+#: gui/summary/summary.xml:(caption):422
 msgid "Navy"
 msgstr "Флот"
 
-#: gui/summary/summary.xml:(caption):566
+#: gui/summary/summary.xml:(caption):562
 msgid "Resource Statistics (Gathered / Used)"
 msgstr "Статистика ресурсов (Добыто / Потрачено)"
 
-#: gui/summary/summary.xml:(caption):569
+#: gui/summary/summary.xml:(caption):565
 msgid "Food"
 msgstr "Еда"
 
-#: gui/summary/summary.xml:(caption):572
+#: gui/summary/summary.xml:(caption):568
 msgid "Wood"
 msgstr "Дерево"
 
-#: gui/summary/summary.xml:(caption):575
+#: gui/summary/summary.xml:(caption):571
 msgid "Stone"
 msgstr "Камень"
 
-#: gui/summary/summary.xml:(caption):578
+#: gui/summary/summary.xml:(caption):574
 msgid "Metal"
 msgstr "Метал"
 
-#: gui/summary/summary.xml:(caption):584
+#: gui/summary/summary.xml:(caption):580
 msgid "Treasures collected"
 msgstr "Собрано сокровищ"
 
-#: gui/summary/summary.xml:(caption):587
+#: gui/summary/summary.xml:(caption):583
 msgid "Tributes (Sent / Received)"
 msgstr "Дань (Отдано/Получено)"
 
-#: gui/summary/summary.xml:(caption):727
+#: gui/summary/summary.xml:(caption):723
 msgid "Food exchanged"
 msgstr "Обменено еды"
 
-#: gui/summary/summary.xml:(caption):730
+#: gui/summary/summary.xml:(caption):726
 msgid "Wood exchanged"
 msgstr "Обменено дерева"
 
-#: gui/summary/summary.xml:(caption):733
+#: gui/summary/summary.xml:(caption):729
 msgid "Stone exchanged"
 msgstr "Обменено камня"
 
-#: gui/summary/summary.xml:(caption):736
+#: gui/summary/summary.xml:(caption):732
 msgid "Metal exchanged"
 msgstr "Обменено метала"
 
-#: gui/summary/summary.xml:(caption):739
+#: gui/summary/summary.xml:(caption):735
 msgid "Barter efficiency"
 msgstr "Эффективность обмена"
 
-#: gui/summary/summary.xml:(caption):742
+#: gui/summary/summary.xml:(caption):738
 msgid "Trade income"
 msgstr "Доход от торговли"
 
-#: gui/summary/summary.xml:(caption):873
+#: gui/summary/summary.xml:(caption):869
 msgid "Vegetarian\\nratio"
 msgstr "Вегетарианцы\\nratio"
 
-#: gui/summary/summary.xml:(caption):876
+#: gui/summary/summary.xml:(caption):872
 msgid "Feminisation"
 msgstr "Феминизация"
 
-#: gui/summary/summary.xml:(caption):879
+#: gui/summary/summary.xml:(caption):875
 msgid "Kill / Death\\nratio"
 msgstr "Убито / смертей\\nratio"
 
-#: gui/summary/summary.xml:(caption):882
+#: gui/summary/summary.xml:(caption):878
 msgid "Map\\nexploration"
 msgstr "Карта\\nexploration"
 
-#: gui/summary/summary.xml:(caption):989
+#: gui/summary/summary.xml:(caption):985
 msgid "Continue"
 msgstr "Продолжить"
 

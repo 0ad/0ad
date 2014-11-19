@@ -478,7 +478,6 @@ m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 	// TODO find a way to properly serialize functions. For the time being, they are manually added
 	if (this.type == gameState.applyCiv("structures/{civ}_house"))
 	{
-		var difficulty = gameState.ai.Config.difficulty;
 		// change the starting condition according to the situation.
 		this.isGo = function (gameState) {
 			if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
@@ -493,9 +492,9 @@ m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 			if (gameState.ai.HQ.saveResources)
 				return (freeSlots <= 10);
-			else if (gameState.getPopulation() > 55 && difficulty > 1)
+			else if (gameState.getPopulation() > 55)
 				return (freeSlots <= 21);
-			else if (gameState.getPopulation() >= 30 && difficulty > 0)
+			else if (gameState.getPopulation() > 30)
 				return (freeSlots <= 15);
 			else
 				return (freeSlots <= 10);

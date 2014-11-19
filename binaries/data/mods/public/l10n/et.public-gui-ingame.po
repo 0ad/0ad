@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Andres <bigblackdog@mailinator.com>, 2014
 # Ildar Kamaev <thetechnorat@gmail.com>, 2014
 # kersurk <kersurk@gmail.com>, 2013
 # unserializable <unserializable@freenet.de>, 2014
@@ -10,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-09-27 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-09 02:34+0100\n"
+"PO-Revision-Date: 2014-11-13 19:21+0000\n"
+"Last-Translator: Andres <bigblackdog@mailinator.com>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -113,7 +114,7 @@ msgstr "x"
 
 #: gui/session/menu.js:476
 msgid "There are no land traders."
-msgstr ""
+msgstr "Ei ole maavahetajaid"
 
 #: gui/session/menu.js:482
 #, javascript-format
@@ -372,7 +373,7 @@ msgstr "Liitlased"
 
 #: gui/session/messages.js:637
 msgid "Private"
-msgstr ""
+msgstr "Privaatne"
 
 #: gui/session/selection_details.js:32
 #, javascript-format
@@ -401,7 +402,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
-msgstr ""
+msgstr "Kogemus:"
 
 #: gui/session/selection_details.js:101
 #, javascript-format
@@ -447,7 +448,7 @@ msgstr ""
 #: gui/session/selection_details.js:226 gui/session/selection_panels.js:976
 #: gui/session/session.js:637
 msgid "Armor:"
-msgstr ""
+msgstr "Varustus:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:634 gui/session/session.js:638
@@ -457,7 +458,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Intervall:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
@@ -466,12 +467,12 @@ msgstr ""
 #: gui/session/selection_details.js:249 gui/session/session.js:629
 #: gui/session/utility_functions.js:324
 msgid "Range:"
-msgstr ""
+msgstr "Vahemik:"
 
 #: gui/session/selection_details.js:251 gui/session/session.js:630
 #: gui/session/utility_functions.js:325
 msgid "meters"
-msgstr ""
+msgstr "meetrit"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, javascript-format
@@ -492,7 +493,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
 msgid "Classes:"
-msgstr ""
+msgstr "Klassid:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -533,7 +534,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:406
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Ava värav"
 
 #: gui/session/selection_panels.js:511
 msgid "Pack"
@@ -1214,8 +1215,8 @@ msgid "Save"
 msgstr "Salvesta"
 
 #: gui/session/menu.xml:(caption):52
-msgid "Settings"
-msgstr "Seaded"
+msgid "Options"
+msgstr ""
 
 #: gui/session/menu.xml:(caption):76
 msgid "Resign"
@@ -1376,9 +1377,9 @@ msgstr "Mängutempo"
 msgid "Choose game speed"
 msgstr "Vali mängutempo"
 
-#: gui/session/top_panel/button_menu.xml:(caption):15
-msgid "MENU"
-msgstr "MENÜÜ"
+#: gui/session/top_panel/button_menu.xml:(caption):14
+msgid "Menu"
+msgstr ""
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVII : Quercus"

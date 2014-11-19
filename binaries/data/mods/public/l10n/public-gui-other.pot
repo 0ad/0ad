@@ -5,46 +5,46 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D. — Empires Ascendant\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-09 02:34+0100\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-19 23:57+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/civinfo/civinfo.js:143
+#: gui/civinfo/civinfo.js:140
 #: gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""
@@ -65,11 +65,11 @@ msgstr ""
 msgid "FPS: %(fps)s"
 msgstr ""
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr ""
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr ""
 
@@ -83,7 +83,7 @@ msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
+msgid "\\[%(date)s]"
 msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:18
@@ -142,8 +142,8 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:40
 #: gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44
-#: gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89
 msgid "Yes"
@@ -151,8 +151,8 @@ msgstr ""
 
 #: gui/msgbox/msgbox.js:40
 #: gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44
-#: gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59
 #: gui/savedgames/save.js:89
 msgid "No"
@@ -495,7 +495,7 @@ msgid "Error"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302
@@ -513,56 +513,56 @@ msgstr ""
 msgid "No saved games found"
 msgstr ""
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr ""
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version %"
 "(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr ""
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr ""
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with \"%"
 "(currentMod)s\"."
 msgstr ""
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr ""
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr ""
 
-#: gui/savedgames/load.js:108
+#: gui/savedgames/load.js:110
 #: gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr ""
 
-#: gui/savedgames/load.js:108
+#: gui/savedgames/load.js:110
 #: gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr ""
 
-#: gui/savedgames/load.js:108
+#: gui/savedgames/load.js:110
 #: gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr ""
@@ -838,7 +838,8 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
 msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
@@ -1152,7 +1153,7 @@ msgid ""
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
 msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:7
@@ -1162,7 +1163,7 @@ msgstr ""
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
+"make them less laggy, more fun to play, and historically accurate."
 msgstr ""
 
 #: gui/text/tips/army_camp.txt:1

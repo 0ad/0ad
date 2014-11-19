@@ -88,7 +88,9 @@ class Extractor(object):
                         if pathmatch(filemask, filename):
                             filepath = os.path.join(directoryAbsolutePath, filename)
                             for message, plural, context, breadcrumb, position, comments in self.extractFromFile(filepath):
-                                yield message, plural, context, (filename + (":"+breadcrumb if breadcrumb else ""), position), comments
+                                # Replace spaces in filenames by non-breaking spaces so that word
+                                # wrapping in po files does not split up our paths
+                                yield message, plural, context, (filename.replace(' ', u"\xa0") + (":"+breadcrumb if breadcrumb else ""), position), comments
 
 
     def extractFromFile(self, filepath):

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
+# giangy <giancarlo.moi@tiscali.it>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-08-27 14:41+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-09 02:35+0100\n"
+"PO-Revision-Date: 2014-11-09 17:06+0000\n"
+"Last-Translator: giangy <giancarlo.moi@tiscali.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/0ad/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -966,13 +967,13 @@ msgstr "Questo tempio è incompleto e in rovina"
 msgid ""
 "Changes in a 10-pop house for civilisations with those houses, is deleted "
 "for other civs"
-msgstr "Si trasforma in una casa da +10 unità di popolazione per le civiltà che la utilizzano, è cancellata per le altre civiltà."
+msgstr "Si trasforma in una casa da +10 unità di popolazione per le civiltà che la utilizzano, è annullata per le altre civiltà."
 
 #: simulation/templates/skirmish/structures/default_house_5.xml:5
 msgid ""
 "Changes in a 5-pop house for civilisations with those houses, is deleted for"
 " other civs"
-msgstr "Si trasforma in una casa da +5 unità di popolazione per le civiltà che la utilizzano, è cancellata per le altre civiltà."
+msgstr "Si trasforma in una casa da +5 unità di popolazione per le civiltà che la utilizzano, è annullata per le altre civiltà."
 
 #: simulation/templates/special/marker_object_sound.xml:15
 #: simulation/templates/special/marker_object_sound.xml:16
@@ -988,6 +989,7 @@ msgid "Lithóbolos"
 msgstr "Lithóbolos"
 
 #: simulation/templates/special_units/athen_mechanical_siege_oxybeles_common.xml:5
+#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/hele_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/mace_mechanical_siege_oxybeles_common.xml:5
 #: simulation/templates/special_units/spart_mechanical_siege_oxybeles_common.xml:5
@@ -998,10 +1000,6 @@ msgstr "Oxybelḗ"
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:28
 msgid "Ballista"
 msgstr "Ballista"
-
-#: simulation/templates/special_units/cart_mechanical_siege_oxybeles_common.xml:5
-msgid "Oxybeles"
-msgstr "Oxybele"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"

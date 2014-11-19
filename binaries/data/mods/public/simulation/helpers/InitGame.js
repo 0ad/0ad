@@ -37,7 +37,8 @@ function InitGame(settings)
 		{
 			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1, +settings.PlayerData[i].AIDiff);
 			cmpPlayer.SetAI(true);
-			cmpPlayer.SetGatherRateMultiplier(+Math.max(0.5,(+settings.PlayerData[i].AIDiff+1)/3.0));	// Sandbox: 50%, easy: 66%, Medium: 100%, hard: 133%, very hard: 166%
+			// Sandbox: 50%, very easy: 50%, easy: 66%, Medium: 100%, hard: 133%, very hard: 166%
+			cmpPlayer.SetGatherRateMultiplier(Math.max(0.5,(+settings.PlayerData[i].AIDiff)/3.0));
 		}
 		if (settings.PopulationCap)
 			cmpPlayer.SetMaxPopulation(settings.PopulationCap);
