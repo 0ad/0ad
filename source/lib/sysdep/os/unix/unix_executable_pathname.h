@@ -20,12 +20,9 @@
  * SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#include "precompiled.h"
+#ifndef INCLUDED_UNIX_EXECUTABLE_PATHNAME
+#define INCLUDED_UNIX_EXECUTABLE_PATHNAME
 
-#include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/os/unix/unix_excecutable_pathname.h"
+OsPath unix_ExecutablePathname();
 
-OsPath sys_ExecutablePathname()
-{
-	return unix_ExecutablePathname();
-}
+#endif  // INCLUDED_UNIX_EXECUTABLE_PATHNAME

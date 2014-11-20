@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2014 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -28,7 +28,8 @@
 #include "lib/sysdep/filesystem.h"
 #include "lib/sysdep/sysdep.h"
 
-#if OS_LINUX
+#if OS_BSD || OS_LINUX
+# include "lib/sysdep/os/unix/unix_executable_pathname.h"
 # include "mocks/dlfcn.h"
 # include "mocks/unistd.h"
 #endif
@@ -58,8 +59,11 @@ public:
 
 		// Do some platform-specific tests, based on the
 		// implementations of sys_ExecutablePathname:
+	}
 
-#if OS_LINUX
+#if OS_BSD || OS_LINUX
+	void test_unix_ExecutablePathname()
+	{
 		// Since the implementation uses realpath, the tested files need to
 		// really exist. So set up a directory tree for testing:
 
@@ -105,34 +109,34 @@ public:
 		// Try with absolute paths
 		{
 			Mock_dladdr d(rootstr+"/example/executable");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d(rootstr+"/example/./a/b/../e/../../executable");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 
 		// Try with relative paths
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d("./executable");
 			Mock_getcwd m(rootstr+"/example/");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/executable");
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), rootstrw/L"example/executable");
 		}
 		{
 			Mock_dladdr d("../d/../../f/executable");
 			Mock_getcwd m(rootstr+"/example/a/b/c");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), rootstrw/L"example/a/f/executable");
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), rootstrw/L"example/a/f/executable");
 		}
 
 		// Try with pathless names
 		{
 			Mock_dladdr d("executable");
-			TS_ASSERT_PATH_EQUALS(sys_ExecutablePathname(), OsPath());
+			TS_ASSERT_PATH_EQUALS(unix_ExecutablePathname(), OsPath());
 		}
 
 		// Clean up the temporary files
@@ -148,11 +152,9 @@ public:
 			TS_ASSERT_EQUALS(rmdir(name.c_str()), 0);
 		}
 		TS_ASSERT_EQUALS(rmdir(root), 0);
-#endif // OS_LINUX
 	}
 
-	// Mock classes for test_sys_ExecutablePathname
-#if OS_LINUX
+	// Mock classes for test_unix_ExecutablePathname
 	class Mock_dladdr : public T::Base_dladdr
 	{
 	public:
@@ -176,7 +178,7 @@ public:
 	private:
 		std::string buf_;
 	};
-#endif
+#endif // OS_BSD || OS_LINUX
 
 private:
 	bool path_is_absolute(const wchar_t* path)
