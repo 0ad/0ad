@@ -20,14 +20,17 @@
 #include "ScenarioEditor.h"
 
 #include "wx/busyinfo.h"
+#include "wx/clipbrd.h"
 #include "wx/config.h"
 #include "wx/dir.h"
 #include "wx/evtloop.h"
 #include "wx/ffile.h"
 #include "wx/filename.h"
 #include "wx/image.h"
+#include "wx/sstream.h"
 #include "wx/sysopt.h"
 #include "wx/tooltip.h"
+#include "wx/xml/xml.h"
 
 #include "General/AtlasEventLoop.h"
 #include "General/Datafile.h"
@@ -310,6 +313,9 @@ enum
 	ID_SaveAs,
 	ID_ImportHeightmap,
 
+    ID_Copy,
+    ID_Paste,
+
 	ID_Wireframe,
 	ID_MessageTrace,
 	ID_Screenshot,
@@ -338,6 +344,8 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_Quit, ScenarioEditor::OnQuit)
 	EVT_MENU(wxID_UNDO, ScenarioEditor::OnUndo)
 	EVT_MENU(wxID_REDO, ScenarioEditor::OnRedo)
+    EVT_MENU(ID_Copy, ScenarioEditor::OnCopy)
+    EVT_MENU(ID_Paste, ScenarioEditor::OnPaste)
 
 	EVT_MENU(ID_Wireframe, ScenarioEditor::OnWireframe)
 	EVT_MENU(ID_MessageTrace, ScenarioEditor::OnMessageTrace)
@@ -349,6 +357,8 @@ BEGIN_EVENT_TABLE(ScenarioEditor, wxFrame)
 	EVT_MENU(ID_DumpBinaryState, ScenarioEditor::OnDumpState)
 	EVT_MENU(ID_RenderPathFixed, ScenarioEditor::OnRenderPath)
 	EVT_MENU(ID_RenderPathShader, ScenarioEditor::OnRenderPath)
+
+    EVT_MENU_OPEN(ScenarioEditor::OnMenuOpen)
 
 	EVT_IDLE(ScenarioEditor::OnIdle)
 END_EVENT_TABLE()
@@ -435,7 +445,14 @@ ScenarioEditor::ScenarioEditor(wxWindow* parent)
 	{
 		menuEdit->Append(wxID_UNDO, _("&Undo"));
 		menuEdit->Append(wxID_REDO, _("&Redo"));
+        menuEdit->AppendSeparator();
+        menuEdit->Append(ID_Copy, _("&Copy"));
+        menuEdit->Enable(ID_Copy, false);
+        menuEdit->Append(ID_Paste, _("&Paste"));
+        menuEdit->Enable(ID_Paste, false);
 	}
+
+    g_SelectedObjects.RegisterObserver(0, &ScenarioEditor::OnSelectedObjectsChange, this);
 
 	GetCommandProc().SetEditMenu(menuEdit);
 	GetCommandProc().Initialize();
@@ -619,6 +636,20 @@ void ScenarioEditor::OnUndo(wxCommandEvent&)
 void ScenarioEditor::OnRedo(wxCommandEvent&)
 {
 	GetCommandProc().Redo();
+}
+
+void ScenarioEditor::OnCopy(wxCommandEvent& WXUNUSED(event))
+{
+    if (GetToolManager().GetCurrentToolName() == _T("TransformObject"))
+        GetToolManager().GetCurrentTool()->OnCommand(_T("copy"), NULL);
+}
+
+void ScenarioEditor::OnPaste(wxCommandEvent& WXUNUSED(event))
+{
+    if (GetToolManager().GetCurrentToolName() != _T("TransformObject"))
+        GetToolManager().SetCurrentTool(_T("TransformObject"), NULL);
+
+    GetToolManager().GetCurrentTool()->OnCommand(_T("paste"), NULL);
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -864,6 +895,54 @@ void ScenarioEditor::OnDumpState(wxCommandEvent& event)
 	{
 		wxLogError(_("Error writing to file '%ls'"), filename.c_str());
 	}
+}
+
+void ScenarioEditor::OnSelectedObjectsChange(const std::vector<ObjectID>& selectedObjects)
+{
+    GetMenuBar()->Enable(ID_Copy, !selectedObjects.empty());
+}
+
+void ScenarioEditor::OnMenuOpen(wxMenuEvent& event)
+{
+    // This could be done far more elegantly if wxMenuItem had changeable id.
+    wxMenu* pasteMenuItem = NULL;
+    event.GetMenu()->FindItem(ID_Paste, &pasteMenuItem);
+
+    GetMenuBar()->Enable(ID_Paste, false);
+
+    if (!pasteMenuItem)
+        return;
+
+    wxString content;
+    if (wxTheClipboard->Open())
+    {
+        if (wxTheClipboard->IsSupported(wxDF_TEXT))
+        {
+            wxTextDataObject data;
+            wxTheClipboard->GetData(data);
+            content = data.GetText();
+        }
+
+        wxTheClipboard->Close();
+    }
+
+    if (content.empty())
+        return;
+
+    wxInputStream* is = new wxStringInputStream(content);
+    wxXmlDocument doc;
+    {
+        wxLogNull stopComplaining;
+        static_cast<void>(stopComplaining);
+        if (!doc.Load(*is))
+            return;
+    }
+
+    wxXmlNode* root = doc.GetRoot();
+    if (!root || root->GetName() != wxT("Entities"))
+        return;
+
+    GetMenuBar()->Enable(ID_Paste, true);
 }
 
 

@@ -46,6 +46,8 @@ public:
 	void OnQuit(wxCommandEvent& event);
 	void OnUndo(wxCommandEvent& event);
 	void OnRedo(wxCommandEvent& event);
+    void OnCopy(wxCommandEvent& event);
+    void OnPaste(wxCommandEvent& event);
 
 	void OnWireframe(wxCommandEvent& event);
 	void OnMessageTrace(wxCommandEvent& event);
@@ -55,6 +57,9 @@ public:
 	void OnCameraReset(wxCommandEvent& event);
 	void OnRenderPath(wxCommandEvent& event);
 	void OnDumpState(wxCommandEvent& event);
+    void OnSelectedObjectsChange(const std::vector<AtlasMessage::ObjectID>& selectedObjects);
+
+    void OnMenuOpen(wxMenuEvent& event);
 
 	bool OpenFile(const wxString& name, const wxString& filename);
 

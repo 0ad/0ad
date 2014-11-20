@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,6 +35,7 @@ public:
 	virtual bool OnMouse(wxMouseEvent& evt) = 0; // return true if handled
 	virtual bool OnKey(wxKeyEvent& evt, KeyEventType dir) = 0; // return true if handled
 	virtual void OnTick(float dt) = 0; // dt in seconds
+    virtual void OnCommand(const wxString& command, void* userData) = 0;
 
 	virtual ~ITool() {};
 };
@@ -166,6 +167,10 @@ private:
 	{
 		m_CurrentState->OnTick(static_cast<T*>(this), dt);
 	}
+
+    virtual void OnCommand(const wxString& WXUNUSED(command), void* WXUNUSED(userData))
+    {
+    }
 };
 
 
