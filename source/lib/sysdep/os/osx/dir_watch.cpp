@@ -37,7 +37,7 @@
 
 #include "ps/CLogger.h"
 
-FSEventStreamRef    g_Stream = NULL; 
+static FSEventStreamRef g_Stream = NULL; 
 
 struct DirWatch
 {
@@ -50,7 +50,7 @@ static DirWatchMap g_Paths;
 static DirWatchMap g_RootPaths;
 static DirWatchNotifications g_QueuedDirs;
 
-bool  CanRunNotifications()
+static bool CanRunNotifications()
 {
   int major = 0;
   int minor = 0;   
@@ -117,7 +117,7 @@ static void fsevent_callback(
 
 }
 
-FSEventStreamRef CreateEventStream( DirWatchMap path )
+static FSEventStreamRef CreateEventStream( DirWatchMap path )
 {
   if ( ( g_Stream == NULL ) && CanRunNotifications() && !path.empty() )
   {
@@ -147,7 +147,7 @@ FSEventStreamRef CreateEventStream( DirWatchMap path )
   return NULL;
 }
 
-void DeleteEventStream()
+static void DeleteEventStream()
 {
   if ( g_Stream != NULL )
   {
