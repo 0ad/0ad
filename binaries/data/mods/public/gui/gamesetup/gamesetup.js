@@ -1267,8 +1267,12 @@ function onGameAttributesChange()
 	// Load the description from the map file, if there is one
 	var description = mapSettings.Description ? translate(mapSettings.Description) : translate("Sorry, no description available.");
 
-	// Describe the number of players
-	var playerString = sprintf(translatePlural("%(number)s player. %(description)s", "%(number)s players. %(description)s", numPlayers), { number: numPlayers, description: description });
+	// Describe the number of players and the victory conditions
+	var playerString = sprintf(translatePlural("%(number)s player. ", "%(number)s players. ", numPlayers), { number: numPlayers });
+	let victory = translate(victories.text[victoryIdx]);
+	if (victoryIdx != VICTORY_DEFAULTIDX)
+		victory = "[color=\"orange\"]" + victory + "[/color]";
+	playerString += translate("Victory Condition:") + " " + victory + ".\n\n" + description;
 
 	for (var i = 0; i < MAX_PLAYERS; ++i)
 	{
