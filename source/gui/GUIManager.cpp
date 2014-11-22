@@ -282,19 +282,6 @@ Status CGUIManager::ReloadAllPages()
 	return INFO::OK;
 }
 
-CScriptVal CGUIManager::GetSavedGameData(ScriptInterface*& pPageScriptInterface)
-{
-	JSContext* cx = top()->GetScriptInterface()->GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue global(cx, top()->GetGlobalObject());
-	JS::RootedValue data(cx);
-	if (!top()->GetScriptInterface()->CallFunction(global, "getSavedGameData", &data))
-		LOGERROR(L"Failed to call getSavedGameData() on the current GUI page");
-	pPageScriptInterface = GetScriptInterface().get();
-	return CScriptVal(data);
-}
-
 std::string CGUIManager::GetSavedGameData()
 {
 	shared_ptr<ScriptInterface> scriptInterface = top()->GetScriptInterface();
