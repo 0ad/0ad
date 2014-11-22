@@ -10,7 +10,7 @@ m.Template = m.Class({
 		this._template = template;
 		this._tpCache = new Map();
 	},
-	
+
 	// helper function to return a template value, optionally adjusting for tech.
 	// TODO: there's no support for "_string" values here.
 	get: function(string)
@@ -44,7 +44,7 @@ m.Template = m.Class({
 			return undefined;
 		return this.get("Identity/GenericName");
 	},
-						  
+
 	rank: function() {
 		if (!this.get("Identity"))
 			return undefined;
@@ -61,13 +61,13 @@ m.Template = m.Class({
 	requiredTech: function() {
 		return this.get("Identity/RequiredTechnology");
 	},
-						  
+
 	available: function(gameState) {
 		if (this.requiredTech() === undefined)
 			return true;
 		return gameState.isResearched(this.get("Identity/RequiredTechnology"));
 	},
-						  
+
 	// specifically
 	phase: function() {
 		if (!this.get("Identity/RequiredTechnology"))
@@ -85,12 +85,12 @@ m.Template = m.Class({
 		var classes = this.classes();
 		return (classes && classes.indexOf(name) != -1);
 	},
-	
+
 	hasClasses: function(array) {
 		var classes = this.classes();
 		if (!classes)
 			return false;
-		
+
 		for (var i in array)
 			if (classes.indexOf(array[i]) === -1)
 				return false;
@@ -110,11 +110,11 @@ m.Template = m.Class({
 			ret[type] = +this.get("Cost/Resources/" + type);
 		return ret;
 	},
-	
+
 	costSum: function() {
 		if (!this.get("Cost"))
 			return undefined;
-		
+
 		var ret = 0;
 		for (var type in this.get("Cost/Resources"))
 			ret += +this.get("Cost/Resources/" + type);
@@ -141,7 +141,7 @@ m.Template = m.Class({
 
 		return 0; // this should never happen
 	},
-						  
+
 	/**
 	 * Returns the radius of a circle surrounding this entity's
 	 * footprint.
@@ -149,17 +149,17 @@ m.Template = m.Class({
 	footprintRadius: function() {
 		if (!this.get("Footprint"))
 			return undefined;
-		
+
 		if (this.get("Footprint/Square"))
 		{
 			var w = +this.get("Footprint/Square/@width");
 			var h = +this.get("Footprint/Square/@depth");
 			return Math.sqrt(w*w + h*h) / 2;
 		}
-		
+
 		if (this.get("Footprint/Circle"))
 			return +this.get("Footprint/Circle/@radius");
-		
+
 		return 0; // this should never happen
 	},
 
@@ -230,7 +230,7 @@ m.Template = m.Class({
 			crush: +(this.get("Attack/" + type + "/Crush") || 0)
 		};
 	},
-	
+
 	attackTimes: function(type) {
 		if (!this.get("Attack/" + type +""))
 			return undefined;
@@ -246,7 +246,7 @@ m.Template = m.Class({
 	getCounteredClasses: function() {
 		if (!this.get("Attack"))
 			return undefined;
-		
+
 		var Classes = [];
 		for (var i in this.get("Attack")) {
 			if (!this.get("Attack/" + i + "/Bonuses"))
@@ -300,7 +300,7 @@ m.Template = m.Class({
 	canAttackClass: function(saidClass) {
 		if (!this.get("Attack"))
 			return false;
-		
+
 		for (var i in this.get("Attack")) {
 			if (!this.get("Attack/" + i + "/RestrictedClasses") || !this.get("Attack/" + i + "/RestrictedClasses/_string"))
 				continue;
@@ -376,7 +376,9 @@ m.Template = m.Class({
 	resourceDropsiteTypes: function() {
 		if (!this.get("ResourceDropsite"))
 			return undefined;
-		return this.get("ResourceDropsite/Types").split(/\s+/);
+
+		let types = this.get("ResourceDropsite/Types");
+		return types ? types.split(/\s+/) : [];
 	},
 
 
@@ -415,7 +417,7 @@ m.Template = m.Class({
 			return undefined;
 		return this.get("Promotion/Entity");
 	},
-	
+
 	/**
 	 * Returns whether this is an animal that is too difficult to hunt.
 	 * (Any non domestic currently.)
@@ -441,7 +443,7 @@ m.Template = m.Class({
 			this.get("UnitAI/NaturalBehaviour") === "aggressive" ||
 			this.get("UnitAI/NaturalBehaviour") === "defensive");
 	},
-						  
+
 	walkSpeed: function() {
 		if (!this.get("UnitMotion") || !this.get("UnitMotion/WalkSpeed"))
 			 return undefined;
@@ -552,11 +554,11 @@ m.Entity = m.Class({
 	setMetadata: function(player, key, value) {
 		this._ai.setMetadata(player, this, key, value);
 	},
-	
+
 	deleteAllMetadata: function(player) {
 		delete this._ai._entityMetadata[player][this.id()];
 	},
-				  
+
 	deleteMetadata: function(player, key) {
 		this._ai.deleteMetadata(player, this, key);
 	},
@@ -568,10 +570,10 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.idle;
 	},
-	
+
 	unitAIState: function() { return this._entity.unitAIState; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
-	
+
 	// TODO  understand why we have sometimes rounding problems with maxHitpoints ? making wrongly isHurt=true
 	// problem seems to be with hele civs (i.e. spart)
 	hitpoints: function() { if (this._entity.hitpoints !== undefined) return this._entity.hitpoints; return undefined; },
@@ -605,7 +607,7 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.foundationProgress;
 	},
-	
+
 	getBuilders: function() {
 		if (this._entity.foundationProgress === undefined)
 			return undefined;
@@ -613,7 +615,7 @@ m.Entity = m.Class({
 			return [];
 		return this._entity.foundationBuilders;
 	},
-	
+
 	getBuildersNb: function() {
 		if (this._entity.foundationProgress === undefined)
 			return undefined;
@@ -631,11 +633,11 @@ m.Entity = m.Class({
 			return false;
 		return this._entity.owner === player;
 	},
-	
+
 	isFriendly: function(player) {
 		return this.isOwn(player); // TODO: diplomacy
 	},
-	
+
 	isEnemy: function(player) {
 		return !this.isOwn(player); // TODO: diplomacy
 	},
@@ -645,14 +647,14 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.resourceSupplyAmount;
 	},
-				  
+
 	resourceSupplyGatherers: function()
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
 			return this._entity.resourceSupplyGatherers;
 		return [];
 	},
-				  
+
 	isFull: function()
 	{
 		if (this._entity.resourceSupplyGatherers !== undefined)
@@ -666,12 +668,12 @@ m.Entity = m.Class({
 			return undefined;
 		return this._entity.resourceCarrying; 
 	},
-				  
+
 	currentGatherRate: function() {
 		// returns the gather rate for the current target if applicable.
 		if (!this.get("ResourceGatherer"))
 			return undefined;
-		
+
 		if (this.unitAIOrderData().length &&
 			(this.unitAIState().split(".")[1] === "GATHER" || this.unitAIState().split(".")[1] === "RETURNRESOURCE"))
 		{
@@ -681,19 +683,19 @@ m.Entity = m.Class({
 				ress = this._ai._entities[this.unitAIOrderData()[0]["target"]];
 			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
 				ress = this._ai._entities[this.unitAIOrderData()[1]["target"]];
-			
+
 			if (ress == undefined)
 				return undefined;
-			
+
 			var type = ress.resourceSupplyType();
 			var tstring = type.generic + "." + type.specific;
-				  
+
 			if (type.generic == "treasure")
 				return 1000;
-				
+
 			var speed = +this.get("ResourceGatherer/BaseSpeed");
 			speed *= +this.get("ResourceGatherer/Rates/" +tstring);
-				  
+
 			if (speed)
 				return speed;
 			return 0;
@@ -704,7 +706,7 @@ m.Entity = m.Class({
 	isGarrisonHolder: function() { return this.get("GarrisonHolder") },
 
 	garrisoned: function() { return new m.EntityCollection(this._ai, this._entity.garrisoned); },
-	
+
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 
 	// TODO: visibility
@@ -720,7 +722,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "walk-to-range", "entities": [this.id()], "x": x, "z": z, "min": min, "max": max, "queued": queued });
 		return this;
 	},
-	
+
 	attackMove: function(x, z, targetClasses, queued) {
 		queued = queued || false;
 		Engine.PostCommand(PlayerID,{"type": "attack-walk", "entities": [this.id()], "x": x, "z": z, "targetClasses": targetClasses, "queued": queued });
@@ -762,7 +764,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "attack", "entities": [this.id()], "target": unitId, "queued": false});
 		return this;
 	},
-	
+
 	// moveApart from a point in the opposite direction with a distance dist
 	moveApart: function(point, dist) {
 		if (this.position() !== undefined) {
@@ -774,7 +776,7 @@ m.Entity = m.Class({
 			{
 				direction[0] /= norm;
 				direction[1] /= norm;
-			}			
+			}
 			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + direction[0]*dist, "z": this.position()[1] + direction[1]*dist, "queued": false});
 		}
 		return this;
@@ -787,7 +789,7 @@ m.Entity = m.Class({
 			var dist = m.VectorDistance(unitToFleeFrom.position(), this.position() );
 			FleeDirection[0] = (FleeDirection[0]/dist) * 8;
 			FleeDirection[1] = (FleeDirection[1]/dist) * 8;
-			
+
 			Engine.PostCommand(PlayerID,{"type": "walk", "entities": [this.id()], "x": this.position()[0] + FleeDirection[0]*5, "z": this.position()[1] + FleeDirection[1]*5, "queued": false});
 		}
 		return this;
@@ -804,7 +806,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "repair", "entities": [this.id()], "target": target.id(), "autocontinue": false, "queued": queued});
 		return this;
 	},
-	
+
 	returnResources: function(target, queued) {
 		queued = queued || false;
 		Engine.PostCommand(PlayerID,{"type": "returnresource", "entities": [this.id()], "target": target.id(), "queued": queued});
@@ -815,7 +817,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "delete-entities", "entities": [this.id()] });
 		return this;
 	},
-	
+
 	barter: function(buyType, sellType, amount) {
 		Engine.PostCommand(PlayerID,{"type": "barter", "sell" : sellType, "buy" : buyType, "amount" : amount });
 		return this;
@@ -825,7 +827,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{"type": "setup-trade-route", "entities": [this.id()], "target": target.id(), "source": source.id(), "route": undefined, "queued": false });
 		return this;
 	},
-	
+
 	setRallyPoint: function(target, command) {
 		var data = {"command": command, "target": target.id()};
 		Engine.PostCommand(PlayerID, {"type": "set-rallypoint", "entities": [this.id()], "x": target.position()[0], "z": target.position()[1], "data": data});
@@ -880,7 +882,7 @@ m.Entity = m.Class({
 		});
 		return this;
 	},
-				  
+
 	 research: function(template) {
 		Engine.PostCommand(PlayerID,{ "type": "research", "entity": this.id(), "template": template });
 		return this;
@@ -890,7 +892,7 @@ m.Entity = m.Class({
 		Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": id });
 		return this;
 	},
-	
+
 	stopAllProduction: function(percentToStopAt) {
 		var queue = this._entity.trainingQueue;
 		if (!queue)

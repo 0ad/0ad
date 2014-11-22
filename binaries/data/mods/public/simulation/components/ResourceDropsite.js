@@ -3,14 +3,14 @@ function ResourceDropsite() {}
 ResourceDropsite.prototype.Schema =
 	"<element name='Types'>" +
 		"<list>" +
-			"<oneOrMore>" +
+			"<zeroOrMore>" +
 				"<choice>" +
 					"<value>food</value>" +
 					"<value>wood</value>" +
 					"<value>stone</value>" +
 					"<value>metal</value>" +
 				"</choice>" +
-			"</oneOrMore>" +
+			"</zeroOrMore>" +
 		"</list>" +
 	"</element>";
 
@@ -20,7 +20,8 @@ ResourceDropsite.prototype.Schema =
  */
 ResourceDropsite.prototype.GetTypes = function()
 {
-	return this.template.Types.split(/\s+/);
+	let types = ApplyValueModificationsToEntity("ResourceDropsite/Types", this.template.Types, this.entity);
+	return types ? types.split(/\s+/) : [];
 };
 
 /**
