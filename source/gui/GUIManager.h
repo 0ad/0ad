@@ -134,9 +134,7 @@ public:
 
  	/**
  	 * Calls the current page's script function getSavedGameData() and returns the result.
-	 * The first overload also returns a pointer to the ScriptInterface the returned CScriptVal belongs to.
  	 */
-	CScriptVal GetSavedGameData(ScriptInterface*& pPageScriptInterface);
 	std::string GetSavedGameData();
  
 	void RestoreSavedGameData(std::string jsonData);

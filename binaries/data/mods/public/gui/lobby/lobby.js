@@ -938,7 +938,7 @@ function ircFormat(text, from, color, key)
 		var timeString = Engine.FormatMillisecondsIntoDateString(time.getTime(), translate("HH:mm"));
 
 		// Translation: Time prefix as shown in the multiplayer lobby (when you enable it in the options page).
-		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("[%(time)s]"), { time: timeString }) + '[/font]';
+		var timePrefixString = '[font="sans-bold-13"]' + sprintf(translate("\\[%(time)s]"), { time: timeString }) + '[/font]';
 
 		// Translation: IRC message format when there is a time prefix.
 		return sprintf(translate("%(time)s %(message)s"), { time: timePrefixString, message: formattedMessage });

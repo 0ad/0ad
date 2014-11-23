@@ -34,7 +34,7 @@ Trigger.prototype.TreasureCollected = function(data)
 	{
 		cmpGUIInterface.PushNotification({
 			"players": [otherPlayer], 
-			"message": markForTranslation("Your enemy's treasury is filled to the brim, you loose!"),
+			"message": markForTranslation("Your enemy's treasury is filled to the brim, you lose!"),
 			"translateMessage": true
 		});
 		cmpGUIInterface.PushNotification({

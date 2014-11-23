@@ -50,6 +50,14 @@ public:
 		SetState(&Waiting);
 	}
 
+    virtual void OnCommand(const wxString& command, void* WXUNUSED(userData))
+    {
+        if (command == _T("copy"))
+            OnCopy();
+        else if (command == _T("paste"))
+            OnPasteStart();
+    }
+
 	void OnDisable()
 	{
 		g_SelectedObjects.clear();
@@ -57,9 +65,26 @@ public:
 		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 	}
 
+    bool OnCopy() const
+    {
+        if (g_SelectedObjects.empty())
+            return false;
+
+        AtlasMessage::qGetObjectMapSettings info(g_SelectedObjects);
+        info.Post();
+
+        if (wxTheClipboard->Open())
+        {
+            wxString text(info.xmldata.c_str());
+            wxTheClipboard->SetData(new wxTextDataObject(text));
+            wxTheClipboard->Close();
+        }
+
+        return true;
+    }
+
 	void OnPasteStart()
 	{
-		//PASTE
 		wxString entities;
 		if (wxTheClipboard->Open())
 		{
@@ -71,12 +96,8 @@ public:
 			}
 			wxTheClipboard->Close();
 		}
-		else
-		{
-			//TODO: Show something when the clipboard couldnt open
-		}
 
-		//First do we need to check if it is a correct xml string
+		// First do we need to check if it is a correct xml string
 		wxInputStream* is = new wxStringInputStream(entities);
 		wxXmlDocument doc;
 		if (!doc.Load(*is))
@@ -87,7 +108,7 @@ public:
 		if (root->GetName() != wxT("Entities"))
 			return;
 
-		//	Template, position,orientation
+		// Template, position,orientation
 		const wxXmlNode* child = root->GetChildren();
 
 		while (child)
@@ -95,11 +116,9 @@ public:
 			if (child->GetName() != wxT("Entity"))
 				return;
 
-			//TODO Validate all attributes
 			child = child->GetNext();
 		}
 
-		//Update selectedObjects??
 		g_SelectedObjects.clear();
 		POST_MESSAGE(SetSelectionPreview, (g_SelectedObjects));
 
@@ -328,28 +347,7 @@ public:
 			else if (evt.GetModifiers() == wxMOD_CONTROL)
 			{
 				if (evt.GetKeyCode() == 'C')
-				{
-					if (!g_SelectedObjects.empty())
-					{
-						//COPY current selections
-						AtlasMessage::qGetObjectMapSettings info(g_SelectedObjects);
-						info.Post();
-
-						//In xmldata is the configuration
-						//now send to clipboard
-						if (wxTheClipboard->Open())
-						{
-							wxString text(info.xmldata.c_str());
-							wxTheClipboard->SetData(new wxTextDataObject(text));
-							wxTheClipboard->Close();
-						}
-						else
-						{
-							//TODO: Say something about couldnt open clipboard
-						}
-						return true;
-					}
-				}
+                    return obj->OnCopy();
 				else if (evt.GetKeyCode() == 'V')
 				{
 					obj->OnPasteStart();

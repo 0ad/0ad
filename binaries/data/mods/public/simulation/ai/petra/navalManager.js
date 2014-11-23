@@ -365,7 +365,7 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 			API3.warn(">>>> split of transport plan aborted <<<<");
 		return false;
 	}
-	newplan.init();
+	newplan.init(gameState);
 
 	var nbUnits = 0;
 	plan.units.forEach(function (ent) {

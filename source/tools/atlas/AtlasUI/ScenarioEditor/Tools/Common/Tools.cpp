@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -28,6 +28,7 @@ class DummyTool : public ITool
 	bool OnMouse(wxMouseEvent& WXUNUSED(evt)) { return false; }
 	bool OnKey(wxKeyEvent& WXUNUSED(evt), KeyEventType) { return false; }
 	void OnTick(float) {}
+    void OnCommand(const wxString& WXUNUSED(command), void* WXUNUSED(userData)) {}
 } dummy;
 
 struct ToolManagerImpl

@@ -1013,7 +1013,7 @@ std::string XmppClient::StanzaErrorToString(gloox::StanzaError err)
 	CASE(StanzaErrorRemoteServerTimeout, g_L10n.Translate("Remote server timeout"));
 	CASE(StanzaErrorResourceConstraint, g_L10n.Translate("Resource constraint"));
 	CASE(StanzaErrorServiceUnavailable, g_L10n.Translate("Service unavailable"));
-	CASE(StanzaErrorSubscribtionRequired, g_L10n.Translate("Subscribtion Required"));
+	CASE(StanzaErrorSubscribtionRequired, g_L10n.Translate("Subscription Required"));
 	CASE(StanzaErrorUndefinedCondition, g_L10n.Translate("Undefined condition"));
 	CASE(StanzaErrorUnexpectedRequest, g_L10n.Translate("Unexpected request"));
 	CASE(StanzaErrorUnknownSender, g_L10n.Translate("Unknown sender"));
