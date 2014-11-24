@@ -437,44 +437,76 @@ function tryPlaceWall(queued)
 	return true;
 }
 
-// Limits bandboxed selections to certain types of entities based on priority
-function getPreferredEntities(ents)
+// Updates the bandbox object with new positions and visibility.
+// The coordinates [x0, y0, x1, y1] are returned for further use.
+function updateBandbox(bandbox, ev, hidden)
 {
-	var entStateList = [];
-	var preferredEnts = [];
+	var x0 = dragStart[0];
+	var y0 = dragStart[1];
+	var x1 = ev.x;
+	var y1 = ev.y;
+	// normalize the orientation of the rectangle
+	if (x0 > x1) { let t = x0; x0 = x1; x1 = t; }
+	if (y0 > y1) { let t = y0; y0 = y1; y1 = t; }
 
-	// Check if there are units in the selection and get a list of entity states
-	for each (var ent in ents)
-	{
-		var entState = GetEntityState(ent);
-		if (!entState)
-			continue;
-		if (hasClass(entState, "Unit"))
-			preferredEnts.push(ent);
+	bandbox.size = [x0, y0, x1, y1].join(" ");
+	bandbox.hidden = hidden;
 
-		entStateList.push(entState);
-	}
-
-	// If there are no units, check if there are defensive entities in the selection
-	if (!preferredEnts.length)
-		for (var i = 0; i < ents.length; i++)
-			if (hasClass(entStateList[i], "Defensive"))
-				preferredEnts.push(ents[i]);
-
-	return preferredEnts;
+	return [x0, y0, x1, y1];
 }
 
-// Removes any support units from the passed list of entities
-function getMilitaryEntities(ents)
-{
-	var militaryEnts = [];
-	for each (var ent in ents)
-	{
-		var entState = GetEntityState(ent);
-		if (!hasClass(entState, "Support"))
-			militaryEnts.push(ent);
+// Define some useful unit filters for getPreferredEntities
+var unitFilters = {
+	"isUnit": function (entity) {
+		var entState = GetEntityState(entity);
+		if (!entState)
+			return false;
+		return hasClass(entState, "Unit");
+	},
+	"isDefensive": function (entity) {
+		var entState = GetEntityState(entity);
+		if (!entState)
+			return false;
+		return hasClass(entState, "Defensive");
+	},
+	"isNotSupport": function (entity) {
+		var entState = GetEntityState(entity);
+		if (!entState)
+			return false;
+		return hasClass(entState, "Unit") && !hasClass(entState, "Support");
+	},
+	"isIdle": function (entity) {
+		var entState = GetEntityState(entity);
+		if (!entState)
+			return false;
+		return hasClass(entState, "Unit") && entState.unitAI.isIdle;
+	},
+	"isAnything": function (entity) {
+		return true;
 	}
-	return militaryEnts;
+};
+
+// Choose, inside a list of entities, which ones will be selected.
+// We may use several entity filters, until one returns at least one element.
+function getPreferredEntities(ents)
+{
+	// Default filters
+	var filters = [unitFilters.isUnit, unitFilters.isDefensive, unitFilters.isAnything];
+
+	// Handle hotkeys
+	if (Engine.HotkeyIsPressed("selection.milonly"))
+		filters = [unitFilters.isNotSupport];
+	if (Engine.HotkeyIsPressed("selection.idleonly"))
+		filters = [unitFilters.isIdle];
+
+	var preferredEnts = [];
+	for (var i = 0; i < filters.length; ++i)
+	{
+		preferredEnts = ents.filter(filters[i]);
+		if (preferredEnts.length > 0) 
+			break;
+	}
+	return preferredEnts;
 }
 
 function handleInputBeforeGui(ev, hoveredObject)
@@ -511,55 +543,25 @@ function handleInputBeforeGui(ev, hoveredObject)
 	switch (inputState)
 	{
 	case INPUT_BANDBOXING:
+		var bandbox = Engine.GetGUIObjectByName("bandbox");
 		switch (ev.type)
 		{
 		case "mousemotion":
-			var x0 = dragStart[0];
-			var y0 = dragStart[1];
-			var x1 = ev.x;
-			var y1 = ev.y;
-			if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
-			if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
+			var rect = updateBandbox(bandbox, ev, false);
 
-			var bandbox = Engine.GetGUIObjectByName("bandbox");
-			bandbox.size = [x0, y0, x1, y1].join(" ");
-			bandbox.hidden = false;
-
-			// TODO: Should we handle "control all units" here as well?
-			var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
-			g_Selection.setHighlightList(ents);
+			var ents = Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
+			var preferredEntities = getPreferredEntities(ents);
+			g_Selection.setHighlightList(preferredEntities);
 
 			return false;
 
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var x0 = dragStart[0];
-				var y0 = dragStart[1];
-				var x1 = ev.x;
-				var y1 = ev.y;
-				if (x0 > x1) { var t = x0; x0 = x1; x1 = t; }
-				if (y0 > y1) { var t = y0; y0 = y1; y1 = t; }
-
-				var bandbox = Engine.GetGUIObjectByName("bandbox");
-				bandbox.hidden = true;
+				var rect = updateBandbox(bandbox, ev, true);
 
 				// Get list of entities limited to preferred entities
-				// TODO: Should we handle "control all units" here as well?
-				var ents = Engine.PickFriendlyEntitiesInRect(x0, y0, x1, y1, Engine.GetPlayerID());
-				var preferredEntities = getPreferredEntities(ents)
-
-				if (preferredEntities.length)
-				{
- 					ents = preferredEntities;
-
-					if (Engine.HotkeyIsPressed("selection.milonly"))
-					{
-						var militaryEntities = getMilitaryEntities(ents);
-						if (militaryEntities.length)
-							ents = militaryEntities;
-					}
-				}
+				var ents = getPreferredEntities(Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID()));
 
 				// Remove the bandbox hover highlighting
 				g_Selection.setHighlightList([]);
@@ -585,7 +587,6 @@ function handleInputBeforeGui(ev, hoveredObject)
 			else if (ev.button == SDL_BUTTON_RIGHT)
 			{
 				// Cancel selection
-				var bandbox = Engine.GetGUIObjectByName("bandbox");
 				bandbox.hidden = true;
 
 				g_Selection.setHighlightList([]);
