@@ -180,15 +180,9 @@ m.TransportPlan.prototype.releaseAll = function()
 		ent.setMetadata(PlayerID, "transport", undefined);
 // TODO if the index of the endPos of the entity is !== , require again another transport (we could need land-sea-land-sea-land)
 	});
-};
-
-m.TransportPlan.prototype.releaseAllShips = function()
-{
-	this.ships.forEach(function (ship) {
-		ship.setMetadata(PlayerID, "transporter", undefined)
-		if (ship.getMetadata(PlayerID, "role") === "switchToTrader")
-			ship.setMetadata(PlayerID, "role", "trader");
-	});
+	this.transportShips.unregister();
+	this.ships.unregister();
+	this.units.unregister();
 };
 
 m.TransportPlan.prototype.cancelTransport = function(gameState)
@@ -564,9 +558,9 @@ m.TransportPlan.prototype.resetUnit = function(gameState, ent)
 	// if from an army or attack, remove it
 	if (ent.getMetadata(PlayerID, "plan") >= 0)
 	{
-		var plan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
-		if (plan)
-			plan.removeUnit(ent);
+		var attackPlan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
+		if (attackPan)
+			attackPlan.removeUnit(ent);
 	}
 	if (ent.getMetadata(PlayerID, "PartOfArmy"))
 	{
