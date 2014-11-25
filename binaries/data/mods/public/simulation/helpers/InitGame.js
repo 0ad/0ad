@@ -1,10 +1,19 @@
-function ReplaceSkirmishGlobals()
+/**
+ * Called when the map has been loaded, but before the simulation has started.
+ * Only called when a new game is started, not when loading a saved game.
+ */
+function PreInitGame()
 {
-	// This will be called after the map settings have been loaded,
-	// before the simulation has started.
-	// This is only called at the start of a new game, not when loading
-	// a saved game.
 	Engine.BroadcastMessage(MT_SkirmishReplace, {});
+
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let playerIds = cmpPlayerManager.GetAllPlayerEntities().slice(1); // ignore gaia
+	for (let playerId of playerIds)
+	{
+		let cmpTechnologyManager = Engine.QueryInterface(playerId, IID_TechnologyManager);
+		if (cmpTechnologyManager)
+			cmpTechnologyManager.UpdateAutoResearch();
+	}
 }
 
 function InitGame(settings)
@@ -13,25 +22,19 @@ function InitGame(settings)
 	if (!settings)
 		return;
 
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (settings.ExploreMap)
-	{
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		if (cmpRangeManager)
-			for (var i = 0; i < settings.PlayerData.length; i++)
-				cmpRangeManager.ExploreAllTiles(i+1);
-	}
+		for (var i = 0; i < settings.PlayerData.length; i++)
+			cmpRangeManager.ExploreAllTiles(i+1);
 	else
-	{
 		// Explore the map only inside the players' territory borders
-		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		cmpRangeManager.ExploreTerritories();
-	}
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	var cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
-	for (var i = 0; i < settings.PlayerData.length; ++i)
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
+	for (let i = 0; i < settings.PlayerData.length; ++i)
 	{
-		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
+		let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
@@ -45,9 +48,9 @@ function InitGame(settings)
 
 		if (settings.mapType !== "scenario" && settings.StartingResources)
 		{
-			var resourceCounts = cmpPlayer.GetResourceCounts();
-			var newResourceCounts = {};
-			for (var resouces in resourceCounts)
+			let resourceCounts = cmpPlayer.GetResourceCounts();
+			let newResourceCounts = {};
+			for (let resouces in resourceCounts)
 				newResourceCounts[resouces] = settings.StartingResources;
 			cmpPlayer.SetResourceCounts(newResourceCounts);
 		}
@@ -58,5 +61,5 @@ function InitGame(settings)
 	cmpAIManager.RunGamestateInit();
 }
 
-Engine.RegisterGlobal("ReplaceSkirmishGlobals", ReplaceSkirmishGlobals);
+Engine.RegisterGlobal("PreInitGame", PreInitGame);
 Engine.RegisterGlobal("InitGame", InitGame);

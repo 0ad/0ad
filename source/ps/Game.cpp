@@ -219,7 +219,7 @@ PSRETURN CGame::ReallyStartGame()
 			// And we need to flush destroyed entities otherwise the AI
 			// gets the wrong game state in the beginning and a bunch of
 			// "destroy" messages on turn 0, which just shouldn't happen.
-			m_Simulation2->ReplaceSkirmishGlobals();
+			m_Simulation2->PreInitGame();
 			m_Simulation2->FlushDestroyedEntities();
 		}
 		JS::RootedValue settings(cx);
