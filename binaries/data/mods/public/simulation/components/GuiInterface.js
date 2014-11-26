@@ -333,6 +333,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"canGuard": cmpUnitAI.CanGuard(),
 			"isGuarding": cmpUnitAI.IsGuardOf(),
 			"possibleStances": cmpUnitAI.GetPossibleStances(),
+			"isIdle":cmpUnitAI.IsIdle(),
 		};
 		// Add some information needed for ungarrisoning
 		if (cmpUnitAI.IsGarrisoned() && ret.player !== undefined)

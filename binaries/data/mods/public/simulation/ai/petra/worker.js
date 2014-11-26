@@ -21,6 +21,15 @@ m.Worker.prototype.update = function(ent, gameState)
 	if (ent.getMetadata(PlayerID, "transport") !== undefined)
 		return;
 
+	this.ent = ent;
+	var subrole = this.ent.getMetadata(PlayerID, "subrole");
+
+	// Check for inaccessible targets (in RMS maps, we quite often have chicken or bushes inside obstruction of other entities).
+	if (ent.unitAIState() === "INDIVIDUAL.GATHER.APPROACHING" || ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING")
+		if (this.isInaccessibleSupply(gameState) && ((subrole === "hunter" && !this.startHunting(gameState))
+				|| (subrole === "gatherer" && !this.startGathering(gameState))))
+			this.ent.stopMoving();
+
 	// If we're fighting or hunting, let's not start gathering
 	if (ent.unitAIState().split(".")[1] === "COMBAT")
 		return;
@@ -28,9 +37,6 @@ m.Worker.prototype.update = function(ent, gameState)
 	// Okay so we have a few tasks.
 	// If we're gathering, we'll check that we haven't run idle.
 	// And we'll also check that we're gathering a resource we want to gather.
-
-	this.ent = ent;
-	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	if (subrole === "gatherer")
 	{
@@ -52,7 +58,7 @@ m.Worker.prototype.update = function(ent, gameState)
 		}
 		else if (this.ent.unitAIState().split(".")[1] === "GATHER")
 		{
-			// we're already gathering. But let's check from time to time if there is nothing better
+			// we're already gathering. But let's check if there is nothing better
 			// in case UnitAI did something bad
 			if (this.ent.unitAIOrderData().length)
 			{
@@ -168,7 +174,7 @@ m.Worker.prototype.update = function(ent, gameState)
 					this.ent.setMetadata(PlayerID, "lastHuntSearch", gameState.ai.elapsedTime);
 			}
 		}
-		else if (gameState.ai.playedTurn % 10 === 0)  // Perform some checks from time to time
+		else	// Perform some sanity checks
 		{
 			if (this.ent.unitAIState().split(".")[1] === "GATHER"
 				|| this.ent.unitAIState().split(".")[1] === "RETURNRESOURCE")
@@ -259,7 +265,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	
 	var findSupply = function(ent, supplies) {
 		var ret = false;
-		for (var i = 0; i < supplies.length; ++i)
+		for (let i = 0; i < supplies.length; ++i)
 		{
 			// exhausted resource, remove it from this list
 			if (!supplies[i].ent || !gameState.getEntityById(supplies[i].id))
@@ -268,6 +274,9 @@ m.Worker.prototype.startGathering = function(gameState)
 				continue;
 			}
 			if (m.IsSupplyFull(gameState, supplies[i].ent) === true)
+				continue;
+			let inaccessibleTime = supplies[i].ent.getMetadata(PlayerID, "inaccessibleTime");
+			if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 				continue;
 			// check if available resource is worth one additionnal gatherer (except for farms)
 			var nbGatherers = supplies[i].ent.resourceSupplyGatherers().length
@@ -535,8 +544,9 @@ m.Worker.prototype.startHunting = function(gameState, position)
 	{
 		if (!supply.position())
 			return;
-		
-		if (supply.getMetadata(PlayerID, "inaccessible") === true)
+
+		let inaccessibleTime = supply.getMetadata(PlayerID, "inaccessibleTime");
+		if (inaccessibleTime && gameState.ai.elapsedTime < inaccessibleTime)
 			return;
 
 		if (m.IsSupplyFull(gameState, supply) === true)
@@ -564,23 +574,6 @@ m.Worker.prototype.startHunting = function(gameState, position)
 		// Only cavalry should hunt faraway
 		if (!isCavalry && dist > 25000)
 			return;
-
-		// some simple accessibility check: if they're in an inaccessible square, we won't gather from them.
-		// (happen only at start of the game, as animals should not be able to walk to an inaccessible area)
-		// TODO as the animal can move, check again from time to time
-		if (supply.getMetadata(PlayerID, "inaccessible") === undefined)
-		{
-			var fakeMap = new API3.Map(gameState.sharedScript, gameState.getMap().data);
-			var mapPos = fakeMap.gamePosToMapPos(supply.position());
-			var id = mapPos[0] + fakeMap.width*mapPos[1];
-			if (gameState.sharedScript.passabilityClasses["pathfinderObstruction"] & gameState.getMap().data[id])
-			{
-				supply.setMetadata(PlayerID, "inaccessible", true)
-				return;
-			}
-			else
-				supply.setMetadata(PlayerID, "inaccessible", false)
-		}
 
 		// Avoid ennemy territory
 		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(supply.position());
@@ -782,5 +775,33 @@ m.Worker.prototype.moveAway = function(gameState){
 	this.ent.move(destination[0], destination[1]);
 };
 
+// Check accessibility of the target when in approach (in RMS maps, we quite often have chicken or bushes
+// inside obstruction of other entities). The resource will be flagged as inaccessible during 10 mn (in case
+// it will be cleared later).
+m.Worker.prototype.isInaccessibleSupply = function(gameState)
+{
+	if (!this.ent.unitAIOrderData()[0] || !this.ent.unitAIOrderData()[0]["target"])
+		return false;
+	let approachingTime = this.ent.getMetadata(PlayerID, "approachingTime");
+	if (!approachingTime || gameState.ai.elapsedTime - approachingTime > 5)
+	{
+		let presentPos = this.ent.position();
+		let approachingPos = this.ent.getMetadata(PlayerID, "approachingPos");
+		if (!approachingPos || approachingPos[0] != presentPos[0] || approachingPos[1] != presentPos[1])
+		{
+			this.ent.setMetadata(PlayerID, "approachingTime", gameState.ai.elapsedTime);
+			this.ent.setMetadata(PlayerID, "approachingPos", presentPos);
+		}
+		else if (gameState.ai.elapsedTime - approachingTime > 15)
+		{
+			let targetId = this.ent.unitAIOrderData()[0]["target"];
+			let target = gameState.getEntityById(targetId);
+			if (target)
+				target.setMetadata(PlayerID, "inaccessibleTime", gameState.ai.elapsedTime + 600);
+			return true;
+		}
+	}
+	return false;
+}
 return m;
 }(PETRA);

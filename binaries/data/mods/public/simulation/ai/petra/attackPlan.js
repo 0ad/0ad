@@ -1554,6 +1554,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 {
 	// Do not use QuickIter with forEach when forEach removes elements
 	this.unitCollection.preventQuickIter();
+	this.unitCollection.unregister();
 	if (this.unitCollection.length)
 	{
 		// If the attack was started, and we are on the same land as the rallyPoint, go back there
@@ -1568,11 +1569,9 @@ m.AttackPlan.prototype.Abort = function(gameState)
 		});
 	}
 
-	for (var unitCat in this.unitStat) {
-		delete this.unitStat[unitCat];
-		delete this.unit[unitCat];
-	}
-	delete this.unitCollection;
+	for (let unitCat in this.unitStat)
+		this.unit[unitCat].unregister();
+
 	gameState.ai.queueManager.removeQueue("plan_" + this.name);
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");

@@ -1,4 +1,4 @@
-// Little helper functions to make applying tehnology more covenient
+// Little helper functions to make applying technology more convenient
 
 function ApplyValueModificationsToEntity(tech_type, current_value, entity)
 {
