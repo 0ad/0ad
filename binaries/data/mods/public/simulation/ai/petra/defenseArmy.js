@@ -32,7 +32,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 			continue;
 
 		if (eEnt.unitAIOrderData().length && eEnt.unitAIOrderData()[0]["target"] &&
-			eEnt.unitAIOrderData()[0]["target"] === entID)
+			eEnt.unitAIOrderData()[0]["target"] == entID)
 		{   // being attacked  >>> target the unit
 			idMin = id;
 			break;
@@ -68,7 +68,7 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 	var ownIndex = gameState.ai.accessibility.getAccessValue(ent.position());
 	var foePosition = gameState.getEntityById(idFoe).position();
 	var foeIndex = gameState.ai.accessibility.getAccessValue(foePosition);
-	if (ownIndex === foeIndex || ent.hasClass("Ship"))
+	if (ownIndex == foeIndex || ent.hasClass("Ship"))
 	{
 		this.assignedTo[entID] = idFoe;
 		this.assignedAgainst[idFoe].push(entID);
@@ -82,8 +82,8 @@ m.DefenseArmy.prototype.assignUnit = function (gameState, entID)
 // TODO: this should return cleverer results ("needs anti-elephant"…)
 m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
 {
-	// some preliminary checks because we don't update for tech
-	if (this.foeStrength < 0 || this.ownStrength < 0)
+	// some preliminary checks because we don't update for tech so entStrength removed can be > entStrength added 
+	if (this.foeStrength <= 0 || this.ownStrength <= 0)
 		this.recalculateStrengths(gameState);
 	
 	if (this.foeStrength * this.defenseRatio <= this.ownStrength)
@@ -93,26 +93,24 @@ m.DefenseArmy.prototype.needsDefenders = function (gameState, events)
 
 m.DefenseArmy.prototype.getState = function (gameState)
 {
-	if (this.foeEntities.length === 0)
+	if (this.foeEntities.length == 0)
 		return 0;
 	return 1;
 };
 
 m.DefenseArmy.prototype.update = function (gameState)
 {
-	for (var entId of this.ownEntities)
+	for (let entId of this.ownEntities)
 	{
-		var ent = gameState.getEntityById(entId);
+		let ent = gameState.getEntityById(entId);
 		if (!ent)
 			continue;
-		var orders = ent.unitAIOrderData();
-		if (orders.length === 0 && !ent.getMetadata(PlayerID, "transport"))
+		let orders = ent.unitAIOrderData();
+		if (orders.length == 0 && !ent.getMetadata(PlayerID, "transport"))
 			this.assignUnit(gameState, entId);
 	}
 
-	var breakaways = this.onUpdate(gameState);
-
-	return breakaways;
+	return this.onUpdate(gameState);
 };
 
 m.DefenseArmy.prototype.Serialize = function()
@@ -132,7 +130,7 @@ m.DefenseArmy.prototype.Serialize = function()
 
 m.DefenseArmy.prototype.Deserialize = function(data)
 {
-	for (var key in data)
+	for (let key in data)
 		this[key] = data[key]
 };
 

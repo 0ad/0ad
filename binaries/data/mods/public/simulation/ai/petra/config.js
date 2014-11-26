@@ -37,7 +37,7 @@ m.Config = function(difficulty)
 	// defense
 	this.Defense =
 	{
-		"defenseRatio" : 2,	// see defense.js for more info.
+		"defenseRatio" : 2,	// ratio of defenders/attackers.
 		"armyCompactSize" : 2000,	// squared. Half-diameter of an army.
 		"armyBreakawaySize" : 3500,  // squared.
 		"armyMergeSize" : 1400	// squared.

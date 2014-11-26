@@ -272,6 +272,13 @@ m.AttackManager.prototype.unpauseAllPlans = function()
 			attack.setPaused(false);
 };
 
+m.AttackManager.prototype.getAttackInPreparation = function(type)
+{
+	if (!this.upcomingAttacks[type].length)
+		return undefined;
+	return this.upcomingAttacks[type][0];
+};
+
 m.AttackManager.prototype.Serialize = function()
 {
 	let properties = {

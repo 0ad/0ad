@@ -453,68 +453,38 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 		});
 	});
 
-	if (numWorkers < 8)
+	for (let q in this.queues)
 	{
-		for (let q in this.queues)
-		{
-			let queue = this.queues[q];
-			if (!queue.paused
-				&& q != "citizenSoldier" && q != "villager"
-				&& (q != "civilCentre" || gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0))
-			{
-				queue.paused = true;
-				this.accounts[q].reset();
-			}
-			else if (queue.paused)
-				queue.paused = false;
-		}
-	}
-	else if (numWorkers < 16)
-	{
-		for (let q in this.queues)
-		{
-			let queue = this.queues[q];
-			if (!queue.paused
-				&& (q == "economicBuilding" || q == "militaryBuilding" || q == "defenseBuilding"
+		let toBePaused = false;
+		if (numWorkers < 8)
+			toBePaused = (q != "citizenSoldier" && q != "villager"
+				&& (q != "civilCentre" || gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0));
+		else if (numWorkers < 16)
+			toBePaused = (q == "economicBuilding" || q == "militaryBuilding" || q == "defenseBuilding"
 				|| (q == "civilCentre" && gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0)
-				|| q == "majorTech" || q == "minorTech" || q.indexOf("plan_") != -1))
-			{
-				queue.paused = true;
-				this.accounts[q].reset();
-			}
-			else if (queue.paused)
-				queue.paused = false;
-		}
-	}
-	else if (numWorkers < 24)
-	{
-		for (let q in this.queues)
-		{
-			let queue = this.queues[q];
-			if (!queue.paused
-				&& (q == "defenseBuilding"
+				|| q == "majorTech" || q == "minorTech" || q.indexOf("plan_") != -1);
+		else if (numWorkers < 24)
+			toBePaused = (q == "defenseBuilding"
 				|| (q == "civilCentre" && gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0)
-				|| q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1))
-			{
-				queue.paused = true;
-				this.accounts[q].reset();
-			}
-			else if (queue.paused)
-				queue.paused = false;
+				|| q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
 
-			// And reduce the batch sizes of attack queues
-			if (q.indexOf("plan_") != -1 && queue.queue[0])
-			{
-				queue.queue[0].number = 1;
-				if (queue.queue[1])
-					queue.queue[1].number = 1;
-			}
+		let queue = this.queues[q];
+		if (!queue.paused && toBePaused)
+		{
+			queue.paused = true;
+			this.accounts[q].reset();
+		}
+		else if (queue.paused && !toBePaused)
+			queue.paused = false;
+
+		// And reduce the batch sizes of attack queues
+		if (q.indexOf("plan_") != -1 && numWorkers < 24 && queue.queue[0])
+		{
+			queue.queue[0].number = 1;
+			if (queue.queue[1])
+				queue.queue[1].number = 1;
 		}
 	}
-	else
-		for (let q in this.queues)
-			if (this.queues[q].paused)
-				this.queues[q].paused = false;
 };
 
 m.QueueManager.prototype.pauseQueue = function(queue, scrapAccounts)
