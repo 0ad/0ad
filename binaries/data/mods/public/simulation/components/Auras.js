@@ -78,7 +78,7 @@ Auras.prototype.Init = function()
 		for (var value in this.template[name].Modifications)
 		{
 			var mod = {};
-			mod.value = value.replace(/\./g, "/");
+			mod.value = value.replace(/\./g, "/").replace(/\/\//g, ".");
 			if (this.template[name].Modifications[value].Add)
 				mod.add = +this.template[name].Modifications[value].Add;
 			else if (this.template[name].Modifications[value].Multiply)
