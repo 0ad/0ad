@@ -152,10 +152,10 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 					base.assignResourceToDropsite(gameState, ent);
 				return;
 			}
-			// entity outside our territory, assign it to base 1
+			// entity outside our territory, assign it to base b0
 			self.baseManagers[b0].assignEntity(ent);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
-				self.baseManagers[1].assignResourceToDropsite(gameState, ent);
+				self.baseManagers[b0].assignResourceToDropsite(gameState, ent);
 
 		});
 	}
@@ -781,7 +781,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
-	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
 	var dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"]))).toEntityArray();
 	var ccList = [];
 	for (var cc of ccEnts)
@@ -920,8 +920,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	// with the constraints that all CC have dist > 200 and at least one have dist < 400
 	// This needs at least 2 CC. Otherwise, go back to economic CC.
 
-	// TODO add CC foundations (needed for allied)
-	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
 	var ccList = [];
 	var numAllyCC = 0;
 	for (var cc of ccEnts)
@@ -1051,9 +1050,9 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 // TODO check that it is on same accessIndex
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
-	var markets = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("Market")).toEntityArray();
+	var markets = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities(), true).toEntityArray();
 	if (!markets.length)
-		markets = gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).toEntityArray();
+		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures(), true).toEntityArray();
 
 	if (!markets.length)	// this is the first market. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
@@ -1066,13 +1065,14 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	var bestIdx = undefined;
 	var bestVal = undefined;
 	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+	var isNavalMarket = template.hasClass("NavalMarket");
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
 		// do not try on the border of our territory
 		if (this.frontierMap.map[j] == 2)
 			continue;
-		if (this.basesMap.map[j] == 0)   // inaccessible cell
+		if (this.basesMap.map[j] == 0)   // only in our territory
 			continue;
 		if (obstructions.map[j] <= radius)  // check room around
 			continue;
@@ -1086,7 +1086,7 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		var maxDist = 0;
 		for (var market of markets)
 		{
-			if (template.hasClass("Dock") && market.hasClass("Dock"))
+			if (isNavalMarket && market.hasClass("NavalMarket"))
 			{
 				// TODO check that there are on the same sea. For the time being, we suppose it is true
 			}
@@ -1151,7 +1151,10 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var width = this.territoryMap.width;
 	var bestIdx = undefined;
 	var bestVal = undefined;
-	if (template.hasClass("Fortress"))
+
+	var isTower = template.hasClass("Tower");
+	var isFortress = template.hasClass("Fortress");
+	if (isFortress)
 		var radius = Math.floor(template.obstructionRadius() / gameState.cellSize) + 2;
 	else
 		var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
@@ -1163,7 +1166,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 			// do not try if well inside or outside territory
 			if (this.frontierMap.map[j] == 0)
 				continue
-			if (this.frontierMap.map[j] == 1 && template.hasClass("Tower"))
+			if (this.frontierMap.map[j] == 1 && isTower)
 				continue;
 		}
 		if (this.basesMap.map[j] == 0)   // inaccessible cell
@@ -1210,7 +1213,7 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 			if (!strPos)
 				continue;
 			var dist = API3.SquareVectorDistance(strPos, pos);
-			if ((template.hasClass("Tower") && str.hasClass("Tower")) || (template.hasClass("Fortress") && str.hasClass("Fortress")))
+			if ((isTower && str.hasClass("Tower")) || (isFortress && str.hasClass("Fortress")))
 				var cutDist = 4225; //  TODO check on true buildrestrictions instead of this 65*65
 			else
 				var cutDist = 900;  //  30*30   TODO maybe increase it
@@ -1574,7 +1577,7 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
  */
 m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 {
-	var ccEnts = gameState.getEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
 	var bestBase = 1;
 	var distMin = Math.min();
 	for (var cce of ccEnts)

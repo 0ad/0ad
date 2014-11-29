@@ -69,10 +69,10 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 		else if (target && target.hasClass("CivCentre"))
 		{
-			var myBuildings = gameState.getOwnStructures();
-			for (var i in myBuildings._entities)
+			var myBuildings = gameState.getOwnStructures().toEntityArray();
+			for (let building of myBuildings)
 			{
-				if (API3.SquareVectorDistance(myBuildings._entities[i].position(), entity.position()) > 30000)
+				if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
 					continue;
 				this.targetList.push(targetId);
 				return true;
@@ -104,12 +104,12 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 	}
 
-	var myBuildings = gameState.getOwnStructures();
-	for (var i in myBuildings._entities)
+	var myBuildings = gameState.getOwnStructures().toEntityArray();
+	for (let building of myBuildings)
 	{
-		if (myBuildings._entities[i].foundationProgress() === 0)
+		if (building.foundationProgress() == 0)
 			continue;
-		if (API3.SquareVectorDistance(myBuildings._entities[i].position(), entity.position()) < 6000)
+		if (API3.SquareVectorDistance(building.position(), entity.position()) < 6000)
 			return true;
 	}
 

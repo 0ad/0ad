@@ -254,15 +254,14 @@ m.AttackPlan.prototype.getEnemyPlayer = function(gameState)
 		enemyDefense[i] = 0;
 		enemyCivCentre[i] = false;
 	}
-	gameState.getEntities().forEach(function(ent) { 
-		if (gameState.isEntityEnemy(ent) && ent.owner() !== 0)
-		{
-			enemyCount[ent.owner()]++;
-			if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
-				enemyDefense[ent.owner()]++;
-			if (ent.hasClass("CivCentre"))
-				enemyCivCentre[ent.owner()] = true;
-		}
+	gameState.getEnemyEntities().forEach(function(ent) { 
+		if (ent.owner() == 0)
+			return;
+		enemyCount[ent.owner()]++;
+		if (ent.hasClass("Tower") || ent.hasClass("Fortress"))
+			enemyDefense[ent.owner()]++;
+		if (ent.hasClass("CivCentre"))
+			enemyCivCentre[ent.owner()] = true;
 	});
 	var max = 0;
 	for (var i in enemyCount)
@@ -771,25 +770,24 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 
 	// picking the nearest target
 	var minDist = -1;
-	var index = undefined;
-	for (var i in targets._entities)
-	{
-		if (!targets._entities[i].position())
-			continue;
-		if (sameLand && gameState.ai.accessibility.getAccessValue(targets._entities[i].position()) !== land)
-			continue;
-		var dist = API3.SquareVectorDistance(targets._entities[i].position(), position);
+	var target = undefined;
+	targets.forEach(function (ent) {
+		if (!ent.position())
+			return;
+		if (sameLand && gameState.ai.accessibility.getAccessValue(ent.position()) != land)
+			return;
+		var dist = API3.SquareVectorDistance(ent.position(), position);
 		if (dist < minDist || minDist == -1)
 		{
 			minDist = dist;
-			index = i;
+			target = ent;
 		}
-	}
-	if (!index)
+	});
+	if (!target)
 		return undefined;
 	// Rushes can change their enemy target if nothing found with the preferred enemy
-	this.targetPlayer = targets._entities[index].owner();
-	return targets._entities[index];
+	this.targetPlayer = target.owner();
+	return target;
 };
 
 // Default target finder aims for conquest critical targets

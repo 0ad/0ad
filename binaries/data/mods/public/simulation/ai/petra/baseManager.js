@@ -92,7 +92,6 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 
 m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 {
-	var renameEvents = events["EntityRenamed"];
 	var destEvents = events["Destroy"];
 	var createEvents = events["Create"];
 	var cFinishedEvents = events["ConstructionFinished"];
@@ -288,8 +287,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var obstructions = m.createObstructionMap(gameState, this.accessIndex, template);
 	obstructions.expandInfluences();
 	
-	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse")));
-
+	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse"))).toEntityArray();
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 
 	var width = obstructions.width;
@@ -337,12 +335,12 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 		if (total == 0)
 			continue;
 
-		for (var i in DPFoundations._entities)
+		for (let dp of DPFoundations)
 		{
-			var dpPos = gameState.getEntityById(i).position();
+			let dpPos = dp.position();
 			if (!dpPos)
 				continue;
-			var dist = API3.SquareVectorDistance(dpPos, pos);
+			let dist = API3.SquareVectorDistance(dpPos, pos);
 			if (dist < 3600)
 			{
 				total = 0;

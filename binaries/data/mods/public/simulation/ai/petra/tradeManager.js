@@ -323,8 +323,8 @@ m.TradeManager.prototype.checkEvents = function(gameState, events)
 // If an index is given, it returns the best route with this index or the best land route if index is a land index 
 m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 {
-	var market1 = gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).toEntityArray();
-	var market2 = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("Market")).toEntityArray();
+	var market1 = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures(), true).toEntityArray();
+	var market2 = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities(), true).toEntityArray();
 	if (market1.length + market2.length < 2)  // We have to wait  ... markets will be built soon
 	{
 		this.tradeRoute = undefined;
@@ -467,8 +467,8 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 		return;
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
-	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("Market")).length &&
-		!gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("Market")).length)
+	if (!gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures(), true).length &&
+		!gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities(), true).length)
 		return;
 	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_market"));
 	if (!template)
