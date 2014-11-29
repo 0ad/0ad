@@ -56,14 +56,13 @@ public:
 		// Check the file exists
 		struct stat s;
 		TSM_ASSERT_EQUALS(L"Path: "+path.string(), wstat(path, &s), 0);
-
-		// Do some platform-specific tests, based on the
-		// implementations of sys_ExecutablePathname:
 	}
 
-#if OS_BSD || OS_LINUX
 	void test_unix_ExecutablePathname()
 	{
+#if !(OS_BSD || OS_LINUX)
+	}
+#else
 		// Since the implementation uses realpath, the tested files need to
 		// really exist. So set up a directory tree for testing:
 
@@ -178,7 +177,7 @@ public:
 	private:
 		std::string buf_;
 	};
-#endif // OS_BSD || OS_LINUX
+#endif // !(OS_BSD || OS_LINUX)
 
 private:
 	bool path_is_absolute(const wchar_t* path)
