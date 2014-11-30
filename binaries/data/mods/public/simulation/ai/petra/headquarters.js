@@ -1259,10 +1259,9 @@ m.HQ.prototype.buildMarket = function(gameState, queues)
 		return;
 	if (!this.canBuild(gameState, "structures/{civ}_market"))
 		return;
-	var priority = this.Config.priorities.economicBuilding;
-	gameState.ai.queueManager.changePriority("economicBuilding", 3*priority);
+	gameState.ai.queueManager.changePriority("economicBuilding", 3*this.Config.priorities.economicBuilding);
 	var plan = new m.ConstructionPlan(gameState, "structures/{civ}_market");
-	plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", priority); };
+	plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", gameState.ai.Config.priorities.economicBuilding); };
 	queues.economicBuilding.addItem(plan);
 };
 
@@ -1296,10 +1295,9 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (numPlanned < 3 || (numPlanned < 5 && gameState.getPopulation() > 80))
 	{
 		var plan = new m.ConstructionPlan(gameState, "structures/{civ}_house");
-		var self = this;
 		// change the starting condition according to the situation.
 		plan.isGo = function (gameState) {
-			if (!self.canBuild(gameState, "structures/{civ}_house"))
+			if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
 				return false;
 			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
 				return false;
@@ -1309,7 +1307,7 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 			// TODO how to modify with tech
 			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
 			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
-			if (self.saveResources)
+			if (gameState.ai.HQ.saveResources)
 				return (freeSlots <= 10);
 			else if (gameState.getPopulation() > 55)
 				return (freeSlots <= 21);
@@ -1524,11 +1522,10 @@ m.HQ.prototype.constructTrainingBuildings = function(gameState, queues)
 		if (barrackNb == 0 && (gameState.getPopulation() > this.Config.Military.popForBarracks1 ||
 			(this.econState == "townPhasing" && gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length < 5)))
 		{
-			var priority = this.Config.priorities.militaryBuilding;
-			gameState.ai.queueManager.changePriority("militaryBuilding", 2*priority);
+			gameState.ai.queueManager.changePriority("militaryBuilding", 2*this.Config.priorities.militaryBuilding);
 			var preferredBase = this.findBestBaseForMilitary(gameState);
 			var plan = new m.ConstructionPlan(gameState, "structures/{civ}_barracks", { "preferredBase": preferredBase });
-			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", priority); };
+			plan.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", gameState.ai.Config.priorities.militaryBuilding); };
 			queues.militaryBuilding.addItem(plan);
 		}
 		// second barracks, then 3rd barrack, and optional 4th for some civs as they rely on barracks more.

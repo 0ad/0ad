@@ -143,15 +143,15 @@ m.Queue.prototype.Deserialize = function(gameState, data)
 	this.queue = [];
 	for (let dataPlan of data.queue)
 	{
-		if (dataPlan.category == "unit")
-			var plan = new m.TrainingPlan(gameState, dataPlan.type);
-		else if (dataPlan.category == "building")
-			var plan = new m.ConstructionPlan(gameState, dataPlan.type);
-		else if (dataPlan.category == "technology")
-			var plan = new m.ResearchPlan(gameState, dataPlan.type);
+		if (dataPlan.prop.category == "unit")
+			var plan = new m.TrainingPlan(gameState, dataPlan.prop.type);
+		else if (dataPlan.prop.category == "building")
+			var plan = new m.ConstructionPlan(gameState, dataPlan.prop.type);
+		else if (dataPlan.prop.category == "technology")
+			var plan = new m.ResearchPlan(gameState, dataPlan.prop.type);
 		else
 		{
-			API3.warn("Petra deserialization error: plan " + dataPlan.category + " unknown.");
+			API3.warn("Petra deserialization error: plan unknown " + uneval(dataPlan));
 			continue;
 		}
 		plan.Deserialize(gameState, dataPlan);
