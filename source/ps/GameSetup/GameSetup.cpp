@@ -1344,7 +1344,7 @@ bool Autostart(const CmdLineArgs& args)
 
 			CStr name = aiArgs[i].AfterFirst(":");
 			scriptInterface.SetProperty(player, "AI", std::string(name));
-			scriptInterface.SetProperty(player, "AIDiff", 2);
+			scriptInterface.SetProperty(player, "AIDiff", 3);
 			scriptInterface.SetPropertyInt(playerData, playerID-1, player);
 		}
 	}

@@ -730,8 +730,7 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
 	var self = this;
-	var foundations = gameState.getOwnFoundations();
-	var baseFoundations = foundations.filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
+	var baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	
 	var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
 

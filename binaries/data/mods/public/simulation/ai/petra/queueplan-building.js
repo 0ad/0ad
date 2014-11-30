@@ -32,8 +32,7 @@ m.ConstructionPlan.prototype.canStart = function(gameState)
 	if (this.template.requiredTech() && !gameState.isResearched(this.template.requiredTech()))
 		return false;
 
-	var builders = gameState.findBuilders(this.type);
-	return (builders.length != 0);
+	return (gameState.findBuilders(this.type).length != 0);
 };
 
 m.ConstructionPlan.prototype.start = function(gameState)
@@ -454,62 +453,36 @@ m.ConstructionPlan.prototype.getDockAngle = function(gameState, x, z)
 
 m.ConstructionPlan.prototype.Serialize = function()
 {
-	return {
-		"type": this.type,
-		"metadata": this.metadata,
-		"ID": this.ID,
+	let prop = {
 		"category": this.category,
+		"type": this.type,
+		"ID": this.ID,
+		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
 		"position": this.position,
-		"lastIsGo": this.lastIsGo
+		"lastIsGo": this.lastIsGo,
 	};
+
+	let func = {
+		"isGo": uneval(this.isGo),
+		"onStart": uneval(this.onStart)
+	};
+
+	return { "prop": prop, "func": func };
 };
 
 m.ConstructionPlan.prototype.Deserialize = function(gameState, data)
 {
-	for (let key in data)
-		this[key] = data[key];
+	for (let key in data.prop)
+		this[key] = data.prop[key];
 
 	let cost = new API3.Resources();
-	cost.Deserialize(data.cost);
+	cost.Deserialize(data.prop.cost);
 	this.cost = cost;
 
-	// TODO find a way to properly serialize functions. For the time being, they are manually added
-	if (this.type == gameState.applyCiv("structures/{civ}_house"))
-	{
-		// change the starting condition according to the situation.
-		this.isGo = function (gameState) {
-			if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_house"))
-				return false;
-			if (gameState.getPopulationMax() <= gameState.getPopulationLimit())
-				return false;
-			var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
-
-			var freeSlots = 0;
-			// TODO how to modify with tech
-			var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
-			freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
-			if (gameState.ai.HQ.saveResources)
-				return (freeSlots <= 10);
-			else if (gameState.getPopulation() > 55)
-				return (freeSlots <= 21);
-			else if (gameState.getPopulation() > 30)
-				return (freeSlots <= 15);
-			else
-				return (freeSlots <= 10);
-		};
-	}
-	else if (this.type == gameState.applyCiv("structures/{civ}_market"))
-	{
-		let priority = gameState.ai.Config.priorities.economicBuilding;
-		this.onStart = function(gameState) { gameState.ai.queueManager.changePriority("economicBuilding", priority); };
-	}
-	else if (this.type == gameState.applyCiv("structures/{civ}_barracks"))
-	{
-		let priority = gameState.ai.Config.priorities.militaryBuilding;
-		this.onStart = function(gameState) { gameState.ai.queueManager.changePriority("militaryBuilding", priority); };
-	}
+	for (let fun in data.func)
+		this[fun] = eval(data.func[fun]);
 };
 
 return m;

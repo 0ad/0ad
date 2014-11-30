@@ -141,25 +141,27 @@ m.TrainingPlan.prototype.promotedTypes = function(gameState)
 
 m.TrainingPlan.prototype.Serialize = function()
 {
-	return {
-		"type": this.type,
-		"metadata": this.metadata,
-		"ID": this.ID,
+	let prop = {
 		"category": this.category,
+		"type": this.type,
+		"ID": this.ID,
+		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
 		"maxMerge": this.maxMerge,
 		"lastIsGo": this.lastIsGo
 	};
+
+	return { "prop": prop };
 };
 
 m.TrainingPlan.prototype.Deserialize = function(gameState, data)
 {
-	for (let key in data)
-		this[key] = data[key];
+	for (let key in data.prop)
+		this[key] = data.prop[key];
 
 	let cost = new API3.Resources();
-	cost.Deserialize(data.cost);
+	cost.Deserialize(data.prop.cost);
 	this.cost = cost;
 };
 

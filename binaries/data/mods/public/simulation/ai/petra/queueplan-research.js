@@ -51,50 +51,38 @@ m.ResearchPlan.prototype.start = function(gameState)
 
 m.ResearchPlan.prototype.Serialize = function()
 {
-	return {
-		"type": this.type,
-		"metadata": this.metadata,
-		"ID": this.ID,
+	let prop = {
 		"category": this.category,
+		"type": this.type,
+		"ID": this.ID,
+		"metadata": this.metadata,
 		"cost": this.cost.Serialize(),
 		"number": this.number,
+		"rush": this.rush,
 		"lastIsGo": this.lastIsGo,
-		"rush": this.rush
 	};
+
+	let func = {
+		"isGo": uneval(this.isGo),
+		"onGo": uneval(this.onGo),
+		"onNotGo": uneval(this.onNotGo),
+		"onStart": uneval(this.onStart)
+	};
+
+	return { "prop": prop, "func": func };
 };
 
 m.ResearchPlan.prototype.Deserialize = function(gameState, data)
 {
-	for (let key in data)
-		this[key] = data[key];
+	for (let key in data.prop)
+		this[key] = data.prop[key];
 
 	let cost = new API3.Resources();
-	cost.Deserialize(data.cost);
+	cost.Deserialize(data.prop.cost);
 	this.cost = cost;
 
-	// TODO find a way to properly serialize functions. For the time being, they are manually added
-	if (this.type == gameState.townPhase())
-	{
-		this.onStart = function (gameState) {
-			gameState.ai.HQ.econState = "growth";
-			gameState.ai.HQ.OnTownPhase(gameState);
-		};
-		this.isGo = function (gameState) {
-			var ret = gameState.getPopulation() >= gameState.ai.Config.Economy.popForTown;
-			if (ret && !this.lastIsGo)
-				this.onGo(gameState);
-			else if (!ret && this.lastIsGo)
-				this.onNotGo(gameState);
-			this.lastIsGo = ret;
-			return ret;
-		};
-		this.onGo = function (gameState) { gameState.ai.HQ.econState = "townPhasing"; };
-		this.onNotGo = function (gameState) { gameState.ai.HQ.econState = "growth"; };
-	}
-	else if (this.type == gameState.cityPhase())
-	{
-		this.onStart = function (gameState) { gameState.ai.HQ.OnCityPhase(gameState) };
-	}
+	for (let fun in data.func)
+		this[fun] = eval(data.func[fun]);
 };
 
 return m;

@@ -131,24 +131,20 @@ m.TransportPlan.prototype.assignShip = function(gameState)
 		pos = ent.position();
 	});
 	// and choose the nearest available ship from this unit
-	for each (var ship in gameState.ai.HQ.navalManager.seaTransportShips[this.sea]._entities)
-	{
+	gameState.ai.HQ.navalManager.seaTransportShips[this.sea].forEach(function (ship) {
 		if (ship.getMetadata(PlayerID, "transporter"))
-			continue;
+			return;
 		if (pos)
 		{
 			var dist = API3.SquareVectorDistance(pos, ship.position());
 			if (dist > distmin)
-				continue;
+				return;
 			distmin = dist;
 			nearest = ship;
 		}
-		else
-		{
+		else if (!nearest)
 			nearest = ship;
-			break;
-		}
-	}
+	});
 	if (!nearest)
 		return false;
 
