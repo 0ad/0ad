@@ -17,7 +17,6 @@ m.GameState = function() {
 m.GameState.prototype.init = function(SharedScript, state, player) {
 	this.sharedScript = SharedScript;
 	this.EntCollecNames = SharedScript._entityCollectionsName;
-	this.EntCollec = SharedScript._entityCollections;
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.circularMap = SharedScript.circularMap;
 	this.templates = SharedScript._templates;
@@ -33,7 +32,6 @@ m.GameState.prototype.init = function(SharedScript, state, player) {
 m.GameState.prototype.update = function(SharedScript, state) {
 	this.sharedScript = SharedScript;
 	this.EntCollecNames = SharedScript._entityCollectionsName;
-	this.EntCollec = SharedScript._entityCollections;
 	this.timeElapsed = SharedScript.timeElapsed;
 	this.templates = SharedScript._templates;
 	this.techTemplates = SharedScript._techTemplates;
@@ -47,67 +45,54 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this.turnCache = {};
 };
 
-m.GameState.prototype.updatingCollection = function(id, filter, collection, allowQuick){
-	// automatically add the player ID in front.
-	id = this.player + "-" + id;
-	if (!this.EntCollecNames[id])  {
-		if (collection !== undefined)
-			this.EntCollecNames[id] = collection.filter(filter);
-		else {
-			this.EntCollecNames[id] = this.entities.filter(filter);
-		}
-		if (allowQuick)
-			this.EntCollecNames[id].allowQuickIter();
-		this.EntCollecNames[id].registerUpdates();
-		//	warn ("New Collection named " +id);
-	}
-	
-	return this.EntCollecNames[id];
-};
-m.GameState.prototype.destroyCollection = function(id){
-	// automatically add the player ID
-	id = this.player + "-" + id;
-	
-	if (this.EntCollecNames[id] !== undefined){
-		this.sharedScript.removeUpdatingEntityCollection(this.EntCollecNames[id]);
-		delete this.EntCollecNames[id];
-	}
-};
-m.GameState.prototype.getEC = function(id){
-	// automatically add the player ID
-	id = this.player + "-" + id;
-
-	if (this.EntCollecNames[id] !== undefined)
-		return this.EntCollecNames[id];
-	return undefined;
+m.GameState.prototype.updatingCollection = function(id, filter, collection, allowQuick)
+{
+	let gid = this.player + "-" + id;	// automatically add the player ID
+	return this.updatingGlobalCollection(gid, filter, collection, allowQuick);
 };
 
-m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection, allowQuick) {
-	if (!this.EntCollecNames[id]){
-		if (collection !== undefined)
-			this.EntCollecNames[id] = collection.filter(filter);
-		else
-			this.EntCollecNames[id] = this.entities.filter(filter);
-		if (allowQuick)
-			this.EntCollecNames[id].allowQuickIter();
-		this.EntCollecNames[id].registerUpdates();
-		//warn ("New Global Collection named " +id);
-	}
-	
-	return this.EntCollecNames[id];
+m.GameState.prototype.destroyCollection = function(id)
+{
+	let gid = this.player + "-" + id;	// automatically add the player ID
+	return this.destroyGlobalCollection(gid);
 };
+
+m.GameState.prototype.getEC = function(id)
+{
+	let gid = this.player + "-" + id;	// automatically add the player ID
+	return this.getGEC(gid);
+};
+
+m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection, allowQuick)
+{
+	if (this.EntCollecNames.has(id))
+		return this.EntCollecNames.get(id);
+
+	if (collection !== undefined)
+		var newCollection = collection.filter(filter);
+	else
+		var newCollection = this.entities.filter(filter);
+	if (allowQuick)
+		newCollection.allowQuickIter();
+	newCollection.registerUpdates();
+	this.EntCollecNames.set(id, newCollection);	
+	return newCollection;
+};
+
 m.GameState.prototype.destroyGlobalCollection = function(id)
 {
-	if (this.EntCollecNames[id] !== undefined){
-		this.sharedScript.removeUpdatingEntityCollection(this.EntCollecNames[id]);
-		delete this.EntCollecNames[id];
-	}
+	if (!this.EntCollecNames.has(id))
+		return;
+
+	this.sharedScript.removeUpdatingEntityCollection(this.EntCollecNames.get(id));
+	this.EntCollecNames.delete(id);
 };
+
 m.GameState.prototype.getGEC = function(id)
 {
-	if (this.EntCollecNames[id] !== undefined)
-		return this.EntCollecNames[id];
-	return undefined;
+	if (!this.EntCollecNames.has(id))
+		return undefined;
+	return this.EntCollecNames.get(id);
 };
 
 m.GameState.prototype.getTimeElapsed = function()

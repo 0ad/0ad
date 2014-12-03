@@ -20,9 +20,9 @@ m.SharedScript = function(settings)
 	this._techModifications = { 0 : {}, 1 : {}, 2 : {}, 3 : {}, 4 : {}, 5 : {}, 6 : {}, 7 : {}, 8 : {} };
 	
 	// array of entity collections
-	this._entityCollections = [];
+	this._entityCollections = new Map();
 	// each name is a reference to the actual one.
-	this._entityCollectionsName = {};
+	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
 	
@@ -237,13 +237,13 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		this.entities.addEnt(this._entities[evt.entity]);
 		
 		// Update all the entity collections since the create operation affects static properties as well as dynamic
-		for (var entCollection in this._entityCollections)
-			this._entityCollections[entCollection].updateEnt(this._entities[evt.entity]);
+		for (let entCol of this._entityCollections.values())
+			entCol.updateEnt(this._entities[evt.entity]);
 	}
 	for (var i in RenamingEvents)
 	{
 		var evt = RenamingEvents[i];
-		// Switch the metadata
+		// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
 		for (var p in this._players)
 		{
 			this._entityMetadata[this._players[p]][evt.newentity] = this._entityMetadata[this._players[p]][evt.entity];
@@ -309,10 +309,8 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		for (var j in this._players)
 			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
 		
-		for each (var entCol in this._entityCollections)
-		{
+		for (let entCol of this._entityCollections.values())
 			entCol.removeEnt(this._entities[evt.entity]);
-		}
 		this.entities.removeEnt(this._entities[evt.entity]);
 		
 		delete this._entities[evt.entity];
@@ -366,49 +364,37 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 
 m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection, noPush)
 {
-	if (!noPush) {
-		this._entityCollections.push(entCollection);
-	}
 	entCollection.setUID(this._entityCollectionsUID);
+	if (!noPush) {
+		this._entityCollections.set(this._entityCollectionsUID, entCollection);
+	}
 	for each (var prop in entCollection.dynamicProperties())
 	{
-		this._entityCollectionsByDynProp[prop] = this._entityCollectionsByDynProp[prop] || [];
-		this._entityCollectionsByDynProp[prop].push(entCollection);
+		this._entityCollectionsByDynProp[prop] = this._entityCollectionsByDynProp[prop] || new Map();
+		this._entityCollectionsByDynProp[prop].set(this._entityCollectionsUID, entCollection);
 	}
 	this._entityCollectionsUID++;
 };
 
 m.SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection)
 {
-	for (var i in this._entityCollections)
-	{
-		if (this._entityCollections[i].getUID() === entCollection.getUID())
-		{
-			this._entityCollections.splice(i, 1);
-		}
-	}
-	
-	for each (var prop in entCollection.dynamicProperties())
-	{
-		for (var i in this._entityCollectionsByDynProp[prop])
-		{
-			if (this._entityCollectionsByDynProp[prop][i].getUID() === entCollection.getUID())
-			{
-				this._entityCollectionsByDynProp[prop].splice(i, 1);
-			}
-		}
-	}
+	let uid = entCollection.getUID();
+
+	if (this._entityCollections.has(uid))
+		this._entityCollections.delete(uid);
+
+	for each (let prop in entCollection.dynamicProperties())
+		if (this._entityCollectionsByDynProp[prop].has(uid))
+			this._entityCollectionsByDynProp[prop].delete(uid);
 };
 
 m.SharedScript.prototype.updateEntityCollections = function(property, ent)
 {
-	if (this._entityCollectionsByDynProp[property] !== undefined)
-	{
-		for (var entCollectionid in this._entityCollectionsByDynProp[property])
-		{
-			this._entityCollectionsByDynProp[property][entCollectionid].updateEnt(ent);
-		}
-	}
+	if (this._entityCollectionsByDynProp[property] === undefined)
+		return;
+
+	for (let entCol of this._entityCollectionsByDynProp[property].values())
+		entCol.updateEnt(ent);
 }
 
 m.SharedScript.prototype.setMetadata = function(player, ent, key, value)
