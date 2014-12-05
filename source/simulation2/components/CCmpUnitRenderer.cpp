@@ -25,7 +25,7 @@
 #include "ICmpPosition.h"
 #include "ICmpRangeManager.h"
 #include "ICmpSelectable.h"
-#include "ICmpVision.h"
+#include "ICmpVisibility.h"
 
 #include "graphics/Frustum.h"
 #include "graphics/ModelAbstract.h"
@@ -388,8 +388,8 @@ void CCmpUnitRenderer::UpdateVisibility(SUnit& unit)
 	{
 		// The 'always visible' flag means we should always render the unit
 		// (regardless of whether the LOS system thinks it's visible)
-		CmpPtr<ICmpVision> cmpVision(unit.entity);
-		if (cmpVision && cmpVision->GetAlwaysVisible())
+		CmpPtr<ICmpVisibility> cmpVisibility(unit.entity);
+		if (cmpVisibility && cmpVisibility->GetAlwaysVisible())
 			unit.visibility = ICmpRangeManager::VIS_VISIBLE;
 		else
 		{

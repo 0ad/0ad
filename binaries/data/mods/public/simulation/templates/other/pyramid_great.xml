@@ -36,9 +36,11 @@
     <BarHeight>0.6</BarHeight>
     <HeightOffset>12.0</HeightOffset>
   </StatusBars>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>72</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>special/pyramid.xml</Actor>

@@ -39,9 +39,11 @@
     <HeightOffset>6.0</HeightOffset>
   </StatusBars>
   <TerritoryDecay disable=""/>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>4</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>props/special/eyecandy/table_rectangle.xml</Actor>

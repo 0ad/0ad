@@ -38,10 +38,12 @@
 		<PassabilityClass>unrestricted</PassabilityClass>
 		<CostClass>default</CostClass>
 	</UnitMotion>
-	<Vision>
+	<Visibility>
 		<RetainInFog>true</RetainInFog>
-		<Range>0</Range>
 		<AlwaysVisible>false</AlwaysVisible>
+	</Visibility>
+	<Vision>
+		<Range>0</Range>
 	</Vision>
 	<VisualActor>
 		<SilhouetteDisplay>false</SilhouetteDisplay>

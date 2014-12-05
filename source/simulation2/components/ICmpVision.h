@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,16 +23,12 @@
 #include "simulation2/helpers/Position.h"
 
 /**
- * Vision (LOS etc) interface (typically implemented by a scripted component).
+ * Vision range interface
  */
 class ICmpVision : public IComponent
 {
 public:
 	virtual entity_pos_t GetRange() = 0;
-
-	virtual bool GetRetainInFog() = 0;
-
-	virtual bool GetAlwaysVisible() = 0;
 
 	DECLARE_INTERFACE_TYPE(Vision)
 };

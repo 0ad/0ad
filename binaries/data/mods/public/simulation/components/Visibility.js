@@ -5,11 +5,16 @@ const VIS_VISIBLE = 2;
 function Visibility() {}
 
 Visibility.prototype.Schema =
-	"<empty/>";
+	"<element name='RetainInFog'>" +
+		"<data type='boolean'/>" +
+	"</element>" +
+	"<element name='AlwaysVisible'>" +
+		"<data type='boolean'/>" +
+	"</element>";
 
 Visibility.prototype.Init = function()
 {
-	
+
 };
 
 /**
@@ -29,8 +34,7 @@ Visibility.prototype.GetLosVisibility = function(player, isOutsideFog, forceReta
 	}
 
 	// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
-	var cmpVision = Engine.QueryInterface(this.entity, IID_Vision);
-	if (!forceRetainInFog && !(cmpVision && cmpVision.GetRetainInFog()))
+	if (!forceRetainInFog && !this.GetRetainInFog())
 		return VIS_HIDDEN;
 
 	var cmpMirage = Engine.QueryInterface(this.entity, IID_Mirage);
@@ -60,6 +64,16 @@ Visibility.prototype.GetLosVisibility = function(player, isOutsideFog, forceReta
 		return VIS_FOGGED;
 
 	return VIS_HIDDEN;
+};
+
+Visibility.prototype.GetRetainInFog = function()
+{
+	return this.template.RetainInFog == "true";
+};
+
+Visibility.prototype.GetAlwaysVisible = function()
+{
+	return this.template.AlwaysVisible == "true";
 };
 
 Engine.RegisterComponentType(IID_Visibility, "Visibility", Visibility);

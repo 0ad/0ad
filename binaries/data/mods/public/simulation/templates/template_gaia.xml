@@ -20,11 +20,12 @@
     <BarHeight>0.333</BarHeight>
     <HeightOffset>5.0</HeightOffset>
   </StatusBars>
-  <Visibility/>
-  <Vision>
-    <Range>0</Range>
+  <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
+  </Visibility>
+  <Vision>
+    <Range>0</Range>
   </Vision>
   <VisualActor>
     <SilhouetteDisplay>false</SilhouetteDisplay>

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,28 +38,18 @@ public:
 	// Template state:
 
 	entity_pos_t m_Range, m_BaseRange;
-	bool m_RetainInFog;
-	bool m_AlwaysVisible;
 
 	static std::string GetSchema()
 	{
 		return
 			"<element name='Range'>"
 				"<data type='nonNegativeInteger'/>"
-			"</element>"
-			"<element name='RetainInFog'>"
-				"<data type='boolean'/>"
-			"</element>"
-			"<element name='AlwaysVisible'>"
-				"<data type='boolean'/>"
 			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
 		m_BaseRange = m_Range = paramNode.GetChild("Range").ToFixed();
-		m_RetainInFog = paramNode.GetChild("RetainInFog").ToBool();
-		m_AlwaysVisible = paramNode.GetChild("AlwaysVisible").ToBool();
 	}
 
 	virtual void Deinit()
@@ -104,16 +94,6 @@ public:
 	virtual entity_pos_t GetRange()
 	{
 		return m_Range;
-	}
-
-	virtual bool GetRetainInFog()
-	{
-		return m_RetainInFog;
-	}
-
-	virtual bool GetAlwaysVisible()
-	{
-		return m_AlwaysVisible;
 	}
 };
 

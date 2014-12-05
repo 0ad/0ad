@@ -6,11 +6,12 @@
     <Floating>false</Floating>
     <TurnRate>6.0</TurnRate>
   </Position>
-  <Visibility/>
-  <Vision>
-    <Range>0</Range>
+  <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
+  </Visibility>
+  <Vision>
+    <Range>0</Range>
   </Vision>
   <VisualActor>
     <Actor>(should be overridden)</Actor>
