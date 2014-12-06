@@ -34,7 +34,7 @@ m.DiplomacyManager.prototype.tributes = function(gameState)
 				tribute[res] = Math.floor(0.3*availableResources[res] - allyResources[res]);
 				toSend = true;
 			}
-			else if (allyPop < Math.min(30, 0.5*gameState.Population()) && totalResources[res] > 500 && allyResources[res] < 100)
+			else if (allyPop < Math.min(30, 0.5*gameState.getPopulation()) && totalResources[res] > 500 && allyResources[res] < 100)
 			{
 				tribute[res] = 100;
 				toSend = true;
