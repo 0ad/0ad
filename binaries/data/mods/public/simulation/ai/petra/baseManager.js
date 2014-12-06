@@ -421,24 +421,17 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			var numQueue = queues.field.countQueuedUnits();
 
 			// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
-			if (count < 1200 && numFarms + numFound + numQueue == 0)     // tell the queue manager we'll be trying to build fields shortly.
+			if (numFarms + numFound + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 			{
-				for (var  i = 0; i < this.Config.Economy.initialFields; ++i)
-				{
-					var plan = new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID });
-					plan.isGo = function() { return false; };	// don't start right away.
-					queues.field.addItem(plan);
-				}
-			}
-			else if (count < 400 && numFarms + numFound == 0)
-			{
-				for (var i in queues.field.queue)
-					queues.field.queue[i].isGo = function() { return gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"); };	// start them
+				if (count < 600)
+					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 			}
 			else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				if ((!gameState.ai.HQ.saveResources && numFound < 2 && numFound + numQueue < 3) ||
-					(gameState.ai.HQ.saveResources && numFound < 1 && numFound + numQueue < 2))
+				let goal = this.Config.Economy.provisionFields;
+				if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
+					goal = Math.max(goal-1, 1);
+				if (numFound + numQueue < goal)
 					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 			}
 		}

@@ -10,36 +10,43 @@ var PETRA = function(m)
 m.DiplomacyManager = function(Config)
 {
 	this.Config = Config;
-	this.lastTributeUpdate = -1;
+	this.nextTributeUpdate = -1;
 };
 
 // Check if any allied needs help (tribute) and sent it if we have enough resource
 m.DiplomacyManager.prototype.tributes = function(gameState)
 {
-	this.lastTributeUpdate = gameState.ai.elapsedTime;
+	this.nextTributeUpdate = gameState.ai.elapsedTime + 30;
+	var totalResources = gameState.getResources();
 	var availableResources = gameState.ai.queueManager.getAvailableResources(gameState);
 	for (let i = 1; i < gameState.sharedScript.playersData.length; ++i)
 	{
 		if (i === PlayerID || !gameState.isPlayerAlly(i))
 			continue;
 		let allyResources = gameState.sharedScript.playersData[i].resourceCounts;
+		let allyPop = gameState.sharedScript.playersData[i].popCount;
 		let tribute = {};
 		let toSend = false;
 		for (let res in allyResources)
 		{
-			if (allyResources[res] > 500 || availableResources[res] < 1000*Math.ceil((allyResources[res]+1)/100))
-				continue;
-			tribute[res] = 100*Math.floor(availableResources[res]/1000);
-			toSend = true;
+			if (availableResources[res] > 200 && allyResources[res] < 0.2 * availableResources[res])
+			{
+				tribute[res] = Math.floor(0.3*availableResources[res] - allyResources[res]);
+				toSend = true;
+			}
+			else if (allyPop < Math.min(30, 0.5*gameState.Population()) && totalResources[res] > 500 && allyResources[res] < 100)
+			{
+				tribute[res] = 100;
+				toSend = true;
+			}
 		}
-		if (toSend)
-		{
-			if (this.Config.debug > 1)
-				API3.warn("Tribute " + uneval(tribute) + " sent to player " + i);
-			if (this.Config.chat)
-				m.chatSentTribute(gameState, i);
-			Engine.PostCommand(PlayerID, {"type": "tribute", "player": i, "amounts": tribute});
-		}
+		if (!toSend)
+			continue;
+		if (this.Config.debug > 1)
+			API3.warn("Tribute " + uneval(tribute) + " sent to player " + i);
+		if (this.Config.chat)
+			m.chatSentTribute(gameState, i);
+		Engine.PostCommand(PlayerID, {"type": "tribute", "player": i, "amounts": tribute});
 	}
 };
 
@@ -81,18 +88,18 @@ m.DiplomacyManager.prototype.update = function(gameState, events)
 {
 	this.checkEvents(gameState, events);
 
-	if (gameState.ai.elapsedTime - this.lastTributeUpdate > 60)
+	if (!gameState.ai.HQ.saveResources && gameState.ai.elapsedTime > this.nextTributeUpdate)
 		this.tributes(gameState);
 };
 
 m.DiplomacyManager.prototype.Serialize = function()
 {
-	return { "lastTributeUpdate": this.lastTributeUpdate };
+	return { "nextTributeUpdate": this.nextTributeUpdate };
 };
 
 m.DiplomacyManager.prototype.Deserialize = function(data)
 {
-	this.lastTributeUpdate = data.lastTributeUpdate;
+	this.nextTributeUpdate = data.nextTributeUpdate;
 };
 
 return m;

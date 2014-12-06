@@ -320,8 +320,8 @@ m.HQ.prototype.start = function(gameState, deserializing)
 		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
 	if (startingSize < 1500)
 	{
+		this.saveSpace = true;
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
 		this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
 	}
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
@@ -343,10 +343,7 @@ m.HQ.prototype.start = function(gameState, deserializing)
 	if (this.Config.debug > 1)
 		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
-	{
 		this.saveResources = true;
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
-	}
 
 	if (startingWood > 8500 && this.canBuildUnits)
 		this.attackManager.setRushes();
@@ -440,6 +437,7 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				this.updateTerritories(gameState);
 				// let us hope this new base will fix our resource shortage
 				this.saveResources = undefined;
+				this.saveSpace = undefined;
 			}
 			else if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
@@ -2013,6 +2011,7 @@ m.HQ.prototype.Serialize = function()
 		"bBase": this.bBase,
 		"bAdvanced": this.bAdvanced,
 		"saveResources": this.saveResources,
+		"saveSpace": this.saveSpace,
 		"canBuildUnits": this.canBuildUnits
 	};
 
