@@ -400,9 +400,9 @@ m.EntityCollection.prototype.updateEnt = function(ent, force)
 	}
 };
 
-m.EntityCollection.prototype.registerUpdates = function(noPush)
+m.EntityCollection.prototype.registerUpdates = function()
 {
-	this._ai.registerUpdatingEntityCollection(this,noPush);
+	this._ai.registerUpdatingEntityCollection(this);
 };
 
 m.EntityCollection.prototype.unregister = function()

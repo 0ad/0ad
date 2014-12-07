@@ -362,15 +362,14 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 	Engine.ProfileStop();
 };
 
-m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection, noPush)
+m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection)
 {
 	entCollection.setUID(this._entityCollectionsUID);
-	if (!noPush) {
-		this._entityCollections.set(this._entityCollectionsUID, entCollection);
-	}
+	this._entityCollections.set(this._entityCollectionsUID, entCollection);
 	for each (var prop in entCollection.dynamicProperties())
 	{
-		this._entityCollectionsByDynProp[prop] = this._entityCollectionsByDynProp[prop] || new Map();
+		if (!this._entityCollectionsByDynProp[prop])
+			this._entityCollectionsByDynProp[prop] = new Map();
 		this._entityCollectionsByDynProp[prop].set(this._entityCollectionsUID, entCollection);
 	}
 	this._entityCollectionsUID++;

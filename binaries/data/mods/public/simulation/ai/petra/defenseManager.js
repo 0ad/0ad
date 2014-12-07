@@ -94,12 +94,14 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	if (this.Config.personality.cooperative > 0.3)
 	{
-		var allyCC = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre"));
-		for (var i in allyCC._entities)
+		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
+		for (let cc of ccEnts)
 		{
-			if (this.Config.personality.cooperative < 0.6 && allyCC._entities[i].foundationProgress() !== undefined)
+			if (!gameState.isEntityExclusiveAlly(cc))
 				continue;
-			if (API3.SquareVectorDistance(allyCC._entities[i].position(), entity.position()) < 6000)
+			if (this.Config.personality.cooperative < 0.6 && cc.foundationProgress() !== undefined)
+				continue;
+			if (API3.SquareVectorDistance(cc.position(), entity.position()) < 6000)
 				return true;
 		}
 	}

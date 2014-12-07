@@ -58,7 +58,7 @@ m.NavalManager.prototype.init = function(gameState)
 	
 	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
 	{
-		if (gameState.ai.accessibility.regionType[i] !== "water")
+		if (gameState.ai.HQ.navalRegions.indexOf(i) === -1)
 		{
 			// push dummies
 			this.seaShips.push(new API3.EntityCollection(gameState.sharedScript));

@@ -325,31 +325,44 @@ m.GameState.prototype.getExclusiveAllies = function(){  // Player is not include
 	return ret;
 };
 
-m.GameState.prototype.isEntityAlly = function(ent) {
-	if (ent && ent.owner && (typeof ent.owner) === "function"){
+m.GameState.prototype.isEntityAlly = function(ent)
+{
+	if (!ent || !ent.owner)
+		return false;
+	if ((typeof ent.owner) === "function")
 		return this.playerData.isAlly[ent.owner()];
-	} else if (ent && ent.owner){
+	else
 		return this.playerData.isAlly[ent.owner];
-	}
-	return false;
 };
 
-m.GameState.prototype.isEntityEnemy = function(ent) {
-	if (ent && ent.owner && (typeof ent.owner) === "function"){
+m.GameState.prototype.isEntityExclusiveAlly = function(ent)
+{
+	if (!ent || !ent.owner)
+		return false;
+	if ((typeof ent.owner) === "function")
+		return (this.playerData.isAlly[ent.owner()] && ent.owner() !== this.player);
+	else
+		return (this.playerData.isAlly[ent.owner] && ent.owner !== this.player);
+};
+
+m.GameState.prototype.isEntityEnemy = function(ent)
+{
+	if (!ent || !ent.owner)
+		return false;
+	if ((typeof ent.owner) === "function")
 		return this.playerData.isEnemy[ent.owner()];
-	} else if (ent && ent.owner){
+	else
 		return this.playerData.isEnemy[ent.owner];
-	}
-	return false;
 };
  
-m.GameState.prototype.isEntityOwn = function(ent) {
-	if (ent && ent.owner && (typeof ent.owner) === "function"){
-		return ent.owner() == this.player;
-	} else if (ent && ent.owner){
-		return ent.owner == this.player;
-	}
-	return false;
+m.GameState.prototype.isEntityOwn = function(ent)
+{
+	if (!ent || !ent.owner)
+		return false;
+	if ((typeof ent.owner) === "function")
+		return ent.owner() === this.player;
+	else
+		return ent.owner === this.player;
 };
 
 m.GameState.prototype.getEntityById = function(id){
