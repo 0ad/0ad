@@ -19,6 +19,7 @@ m.BaseManager = function(gameState, Config)
 	
 	// anchor building: seen as the main building of the base. Needs to have territorial influence
 	this.anchor = undefined;
+	this.anchorId = undefined;
 	this.accessIndex = undefined;
 	
 	// Maximum distance (from any dropsite) to look for resources
@@ -76,6 +77,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 		return false;
 	}
 	this.anchor = anchorEntity;
+	this.anchorId = anchorEntity.id();
 	this.anchor.setMetadata(PlayerID, "base", this.ID);
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
@@ -109,6 +111,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			{
 				// sounds like we lost our anchor. Let's reaffect our units and buildings
 				this.anchor = undefined;
+				this.anchorId = undefined;
 				var distmin = Math.min();
 				var basemin = undefined;
 				for each (var base in gameState.ai.HQ.baseManagers)
@@ -163,6 +166,15 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 
 		// do necessary stuff here
+	}
+
+	let renameEvents = events["EntityRenamed"];
+	for (let evt of renameEvents)
+	{
+		if (!this.anchorId || this.anchorId !== evt.entity)
+			continue;
+		this.anchorId = evt.newentity;
+		this.anchor = gameState.getEntityById(evt.newentity);
 	}
 };
 
@@ -963,7 +975,7 @@ m.BaseManager.prototype.Serialize = function()
 {
 	return {
 		"ID": this.ID,
-		"anchor": ((this.anchor !== undefined) ? this.anchor.id() : undefined),
+		"anchorId": this.anchorId,
 		"accessIndex": this.accessIndex,
 		"maxDistResourceSquare": this.maxDistResourceSquare,
 		"constructing": this.constructing,
@@ -977,8 +989,7 @@ m.BaseManager.prototype.Deserialize = function(gameState, data)
 	for (let key in data)
 		this[key] = data[key];
 
-	if (this.anchor)
-		this.anchor = gameState.getEntityById(this.anchor);
+	this.anchor = ((this.anchorId !== undefined) ? gameState.getEntityById(this.anchorId) : undefined);
 };
 
 return m;
