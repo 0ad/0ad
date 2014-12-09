@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -81,34 +81,6 @@ public:
 		TS_ASSERT_WSTR_EQUALS(actor->ToXML(),
 				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Selectable><EditorOnly></EditorOnly><Overlay><Texture><MainTexture>actor.png</MainTexture><MainTextureMask>actor_mask.png</MainTextureMask></Texture></Overlay></Selectable>"
 				L"<VisualActor><Actor>example1</Actor><ActorOnly></ActorOnly><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
-
-		const CParamNode* preview = tempMan->LoadTemplate(ent2, "preview|unit", -1);
-		TS_ASSERT(preview != NULL);
-		TS_ASSERT_WSTR_EQUALS(preview->ToXML(),
-				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
-				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
-
-		const CParamNode* previewobstruct = tempMan->LoadTemplate(ent2, "preview|unitobstruct", -1);
-		TS_ASSERT(previewobstruct != NULL);
-		TS_ASSERT_WSTR_EQUALS(previewobstruct->ToXML(),
-				L"<Footprint><Circle radius=\"4\"></Circle><Height>1.0</Height></Footprint>"
-				L"<Obstruction>"
-					L"<Active>false</Active><BlockConstruction>true</BlockConstruction><BlockFoundation>false</BlockFoundation>"
-					L"<BlockMovement>true</BlockMovement><BlockPathfinding>false</BlockPathfinding>"
-					L"<DisableBlockMovement>false</DisableBlockMovement><DisableBlockPathfinding>false</DisableBlockPathfinding>"
-					L"<Unit radius=\"4\"></Unit>"
-				L"</Obstruction>"
-				L"<Position><Altitude>0</Altitude><Anchor>upright</Anchor><Floating>false</Floating><TurnRate>6.0</TurnRate></Position>"
-				L"<Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example</Actor><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
-
-		const CParamNode* previewactor = tempMan->LoadTemplate(ent2, "preview|actor|example2", -1);
-		TS_ASSERT(previewactor != NULL);
-		TS_ASSERT_WSTR_EQUALS(previewactor->ToXML(),
-				// the actor's <Selectable> element is not part of the preview element subset, hence not included
-				L"<Footprint><Circle radius=\"2.0\"></Circle><Height>1.0</Height></Footprint><Vision><AlwaysVisible>true</AlwaysVisible><Range>0</Range><RetainInFog>false</RetainInFog></Vision>"
-				L"<VisualActor><Actor>example2</Actor><ActorOnly></ActorOnly><DisableShadows></DisableShadows><SilhouetteDisplay>false</SilhouetteDisplay><SilhouetteOccluder>false</SilhouetteOccluder><VisibleInAtlasOnly>false</VisibleInAtlasOnly></VisualActor>");
 	}
 
 	void test_LoadTemplate_scriptcache()
