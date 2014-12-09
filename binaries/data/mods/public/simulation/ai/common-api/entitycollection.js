@@ -66,16 +66,6 @@ m.EntityCollection.prototype.defreeze = function()
 	this.frozen = false;
 };
 
-m.EntityCollection.prototype.allowQuickIter = function()
-{
-	return;
-};
-
-m.EntityCollection.prototype.preventQuickIter = function()
-{
-	return;
-};
-
 m.EntityCollection.prototype.toIdArray = function()
 {
 	let ret = [];
