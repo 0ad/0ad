@@ -15,15 +15,15 @@ var API3 = function(m)
  * But truly separating optimizes.
  */
 
-m.TerrainAnalysis = function() {
+m.TerrainAnalysis = function()
+{
 	this.cellSize = 4;
 }
 
 m.copyPrototype(m.TerrainAnalysis, m.Map);
 
-m.TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
-	var self = this;
-
+m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
+{
 	var passabilityMap = rawState.passabilityMap;
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
@@ -64,10 +64,10 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
 	var x = 0;
 	var y = 0;
 	var radius = 0;
-	for (var entI in sharedScript._entities)
+	for (let ent of sharedScript._entities.values())
 	{
-		var ent = sharedScript._entities[entI];
-		if (ent.hasClass("ForestPlant") === true) {
+		if (ent.hasClass("ForestPlant") === true)
+		{
 			pos = this.gamePosToMapPos(ent.position());
 			x = pos[0];
 			y = pos[1];
@@ -86,7 +86,9 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
 						obstructionTiles[(x+xx) + (y+yy)*this.width] = value + 1;
 				}
 			}
-		} else if (ent.hasClass("Geology") === true) {
+		}
+		else if (ent.hasClass("Geology") === true)
+		{
 			radius = Math.floor(ent.obstructionRadius() / 4);
 			pos = this.gamePosToMapPos(ent.position());
 			x = pos[0];
@@ -111,7 +113,8 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState) {
 };
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
-m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope){
+m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLand, limitDistance, quickscope)
+{
 	var w = this.width;
 	var p = startPoint;
 	var direction = 1;
@@ -120,28 +123,26 @@ m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLa
 		return undefined;
 	}
 	// quickscope
-	if (this.map[p[0] + w*p[1]] === 255) {
-		if (this.countConnected(p[0] + w*p[1], onLand) >= 2) {
+	if (this.map[p[0] + w*p[1]] === 255)
+		if (this.countConnected(p[0] + w*p[1], onLand) >= 2)
 			return p;
-		}
-	}
 	
 	var count = 0;
 	// search in a spiral pattern. We require a value that is actually accessible in this case, ie 255, 201 or 41 if land, 200/201 if water.
-	for (var i = 1; i < w; i++){
-		for (var j = 0; j < 2; j++){
-			for (var k = 0; k < i; k++){
+	for (var i = 1; i < w; i++)
+	{
+		for (var j = 0; j < 2; j++)
+		{
+			for (var k = 0; k < i; k++)
+			{
 				p[j] += direction;
 				// if the value is not markedly inaccessible
 				var index = p[0] + w*p[1];
-				if (this.map[index] !== 0 && this.map[index] !== 90 && this.map[index] !== 120 && this.map[index] !== 30 && this.map[index] !== 40){
-					if (quickscope || this.countConnected(index, onLand) >= 2){
+				if (this.map[index] !== 0 && this.map[index] !== 90 && this.map[index] !== 120 && this.map[index] !== 30 && this.map[index] !== 40)
+					if (quickscope || this.countConnected(index, onLand) >= 2)
 						return p;
-					}
-				}
-				if (limitDistance !== undefined && count > limitDistance){
+				if (limitDistance !== undefined && count > limitDistance)
 					return undefined;
-				}
 				count++;
 			}
 		}
@@ -153,7 +154,8 @@ m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLa
 
 // Returns an estimate of a tile accessibility. It checks neighboring cells over two levels.
 // returns a count. It's not integer. About 2 should be fairly accessible already.
-m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
+m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
+{
 	var count = 0.0;
 	
 	var w = this.width;
@@ -161,10 +163,13 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 					 [0,2], [0,-2], [2,0], [-2,0], [2,2], [-2,-2], [2,-2], [-2,2]/*,
 					 [1,2], [1,-2], [2,1], [-2,1], [-1,2], [-1,-2], [2,-1], [-2,-1]*/];
 	
-	for (var i in positions) {
+	for (var i in positions)
+	{
 		var index = startIndex + positions[i][0] + positions[i][1]*w;
-		if (this.map[index] !== 0) {
-			if (byLand) {
+		if (this.map[index] !== 0)
+		{
+			if (byLand)
+			{
 				if (this.map[index] === 201) count++;
 				else if (this.map[index] === 255) count++;
 				else if (this.map[index] === 41) count++;
@@ -174,7 +179,9 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 				else if (this.map[index] === 45) count += 0.08;
 				else if (this.map[index] === 46) count += 0.05;
 				else if (this.map[index] === 47) count += 0.03;
-			} else {
+			}
+			else
+			{
 				if (this.map[index] === 201) count++;
 				if (this.map[index] === 200) count++;
 			}
@@ -184,56 +191,56 @@ m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand){
 };
 
 // TODO: for now this resets to 255.
-m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI) {
-	var self = this;
-	
+m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
+{
 	var events = sharedAI.events["Destroy"];
 	var passabilityMap = sharedAI.passabilityMap;
 	
 	// looking for creation or destruction of entities, and updates the map accordingly.
-	for (var i in events) {
+	for (var i in events)
+	{
 		var e = events[i];
-		if (e.entityObj){
+		if (e.entityObj)
+		{
 			var ent = e.entityObj;
-			if (ent.hasClass("Geology")) {
-				var x = self.gamePosToMapPos(ent.position())[0];
-				var y = self.gamePosToMapPos(ent.position())[1];
+			if (ent.hasClass("Geology"))
+			{
+				var x = this.gamePosToMapPos(ent.position())[0];
+				var y = this.gamePosToMapPos(ent.position())[1];
 				// remove it. Don't really care about surrounding and possible overlappings.
-				var radius = Math.floor(ent.obstructionRadius() / self.cellSize);
+				var radius = Math.floor(ent.obstructionRadius() / this.cellSize);
 				for (var xx = -radius; xx <= radius;xx++)
 					for (var yy = -radius; yy <= radius;yy++)
 					{
-						if (x+xx >= 0 && x+xx < self.width && y+yy >= 0 && y+yy < self.height && this.map[(x+xx) + (y+yy)*self.width] === 30)
-						{
-							this.map[(x+xx) + (y+yy)*self.width] = 255;
-						}
+						if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height && this.map[(x+xx) + (y+yy)*this.width] === 30)
+							this.map[(x+xx) + (y+yy)*this.width] = 255;
 					}
-			} else if (ent.hasClass("ForestPlant")){
-				var x = self.gamePosToMapPos(ent.position())[0];
-				var y = self.gamePosToMapPos(ent.position())[1];
+			}
+			else if (ent.hasClass("ForestPlant"))
+			{
+				var x = this.gamePosToMapPos(ent.position())[0];
+				var y = this.gamePosToMapPos(ent.position())[1];
 				var nbOfNeigh = 0;
 				for (var xx = -1; xx <= 1;xx++)
 					for (var yy = -1; yy <= 1;yy++)
 					{
 						if (xx == 0 && yy == 0)
 							continue;
-						if (this.map[(x+xx) + (y+yy)*self.width] === 40)
+						if (this.map[(x+xx) + (y+yy)*this.width] === 40)
 							nbOfNeigh++;
-						else if (this.map[(x+xx) + (y+yy)*self.width] === 41)
-						{
-							this.map[(x+xx) + (y+yy)*self.width] = 255;
-						}
-						else if (this.map[(x+xx) + (y+yy)*self.width] > 41 && this.map[(x+xx) + (y+yy)*self.width] < 50)
-							this.map[(x+xx) + (y+yy)*self.width] = this.map[(x+xx) + (y+yy)*self.width] - 1;
+						else if (this.map[(x+xx) + (y+yy)*this.width] === 41)
+							this.map[(x+xx) + (y+yy)*this.width] = 255;
+						else if (this.map[(x+xx) + (y+yy)*this.width] > 41 && this.map[(x+xx) + (y+yy)*this.width] < 50)
+							this.map[(x+xx) + (y+yy)*this.width] = this.map[(x+xx) + (y+yy)*this.width] - 1;
 					}
 				if (nbOfNeigh > 0)
-					this.map[x + y*self.width] = this.map[x + y*self.width] = 40 + nbOfNeigh;
+					this.map[x + y*this.width] = this.map[x + y*this.width] = 40 + nbOfNeigh;
 				else
-					this.map[x + y*self.width] = this.map[x + y*self.width] = 255;
+					this.map[x + y*this.width] = this.map[x + y*this.width] = 255;
 			}
 		}
 	}
-}
+};
 
 /*
  * Accessibility inherits from TerrainAnalysis
@@ -250,9 +257,8 @@ m.Accessibility = function() {
 
 m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
 
-m.Accessibility.prototype.init = function(rawState, terrainAnalyser){
-	var self = this;
-	
+m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
+{
 	this.Map(rawState, terrainAnalyser.map);
 	this.landPassMap = new Uint8Array(terrainAnalyser.length);
 	this.navalPassMap = new Uint8Array(terrainAnalyser.length);
@@ -689,9 +695,11 @@ m.Accessibility.prototype.floodFill = function(startIndex, value, onWater)
 // creates a map of resource density
 m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 	
-	for (var resource in this.decreaseFactor){
+	for (var resource in this.decreaseFactor)
+	{
 		// if there is no resourceMap create one with an influence for everything with that resource
-		if (! this.resourceMaps[resource]){
+		if (!this.resourceMaps[resource])
+		{
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
 			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
@@ -700,9 +708,8 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 			this.CCResourceMaps[resource].setMaxVal(255);
 		}
 	}
-	for (var entI in sharedScript._entities)
+	for (let ent of sharedScript._entities.values())
 	{
-		var ent = sharedScript._entities[entI];
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
 			var resource = ent.resourceSupplyType().generic;
 			var x = Math.floor(ent.position()[0] / 4);
@@ -732,9 +739,11 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 // resources that are "part" of a dropsite are not counted.
 m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 	
-	for (var resource in this.decreaseFactor){
+	for (var resource in this.decreaseFactor)
+	{
 		// if there is no resourceMap create one with an influence for everything with that resource
-		if (! this.resourceMaps[resource]){
+		if (! this.resourceMaps[resource])
+		{
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
 			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
@@ -749,11 +758,14 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 	var destEvents = events["Destroy"];
 	var createEvents = events["Create"];
 	
-	for (var key in destEvents) {
+	for (var key in destEvents)
+	{
 		var e = destEvents[key];
-		if (e.entityObj){
+		if (e.entityObj)
+		{
 			var ent = e.entityObj;
-			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
+			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
+			{
 				var resource = ent.resourceSupplyType().generic;
 				var x = Math.floor(ent.position()[0] / 4);
 				var z = Math.floor(ent.position()[1] / 4);
@@ -775,13 +787,15 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 			}
 		}
 	}
-	for (var key in createEvents) {
+	for (var key in createEvents)
+	{
 		var e = createEvents[key];
-		if (e.entity){
-			var ent = sharedScript._entities[e.entity];
-			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure"){
+		if (e.entity && sharedScript._entities.has(e.entity))
+		{
+			var ent = sharedScript._entities.get(e.entity);
+			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
+			{
 				var resource = ent.resourceSupplyType().generic;
-				
 				var x = Math.floor(ent.position()[0] / 4);
 				var z = Math.floor(ent.position()[1] / 4);
 				var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);

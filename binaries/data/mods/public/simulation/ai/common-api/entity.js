@@ -680,9 +680,9 @@ m.Entity = m.Class({
 			var ress = undefined;
 			// this is an abuse of "_ai" but it works.
 			if (this.unitAIState().split(".")[1] === "GATHER" && this.unitAIOrderData()[0]["target"] !== undefined)
-				ress = this._ai._entities[this.unitAIOrderData()[0]["target"]];
+				ress = this._ai._entities.get(this.unitAIOrderData()[0]["target"]);
 			else if (this.unitAIOrderData()[1] !== undefined && this.unitAIOrderData()[1]["target"] !== undefined)
-				ress = this._ai._entities[this.unitAIOrderData()[1]["target"]];
+				ress = this._ai._entities.get(this.unitAIOrderData()[1]["target"]);
 
 			if (ress == undefined)
 				return undefined;

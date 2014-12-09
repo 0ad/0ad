@@ -42,7 +42,6 @@ m.NavalManager.prototype.init = function(gameState)
 	// finished docks
 	this.docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClassesOr(["Dock", "Shipyard"]),
 		API3.Filters.not(API3.Filters.isFoundation())));
-	this.docks.allowQuickIter();
 	this.docks.registerUpdates();
 	
 	this.ships = gameState.getOwnUnits().filter(API3.Filters.and(API3.Filters.byClass("Ship"), API3.Filters.not(API3.Filters.byMetadata(PlayerID, "role", "trader"))));

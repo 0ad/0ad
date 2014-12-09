@@ -45,10 +45,10 @@ m.GameState.prototype.update = function(SharedScript, state) {
 	this.turnCache = {};
 };
 
-m.GameState.prototype.updatingCollection = function(id, filter, collection, allowQuick)
+m.GameState.prototype.updatingCollection = function(id, filter, collection)
 {
 	let gid = this.player + "-" + id;	// automatically add the player ID
-	return this.updatingGlobalCollection(gid, filter, collection, allowQuick);
+	return this.updatingGlobalCollection(gid, filter, collection);
 };
 
 m.GameState.prototype.destroyCollection = function(id)
@@ -63,7 +63,7 @@ m.GameState.prototype.getEC = function(id)
 	return this.getGEC(gid);
 };
 
-m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection, allowQuick)
+m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection)
 {
 	if (this.EntCollecNames.has(id))
 		return this.EntCollecNames.get(id);
@@ -72,8 +72,6 @@ m.GameState.prototype.updatingGlobalCollection = function(id, filter, collection
 		var newCollection = collection.filter(filter);
 	else
 		var newCollection = this.entities.filter(filter);
-	if (allowQuick)
-		newCollection.allowQuickIter();
 	newCollection.registerUpdates();
 	this.EntCollecNames.set(id, newCollection);	
 	return newCollection;
@@ -365,9 +363,10 @@ m.GameState.prototype.isEntityOwn = function(ent)
 		return ent.owner === this.player;
 };
 
-m.GameState.prototype.getEntityById = function(id){
-	if (this.entities._entities[id])
-		return this.entities._entities[id];
+m.GameState.prototype.getEntityById = function(id)
+{
+	if (this.entities._entities.has(+id))
+		return this.entities._entities.get(+id);
 
 	return undefined;
 };
@@ -439,11 +438,11 @@ m.GameState.prototype.getOwnEntitiesByType = function(type, maintain){
 };
 
 m.GameState.prototype.getOwnTrainingFacilities = function(){
-	return this.updatingGlobalCollection("" + this.player + "-training-facilities", m.Filters.byTrainingQueue(), this.getOwnEntities(), true);
+	return this.updatingGlobalCollection("" + this.player + "-training-facilities", m.Filters.byTrainingQueue(), this.getOwnEntities());
 };
 
 m.GameState.prototype.getOwnResearchFacilities = function(){
-	return this.updatingGlobalCollection("" + this.player + "-research-facilities", m.Filters.byResearchAvailable(), this.getOwnEntities(), true);
+	return this.updatingGlobalCollection("" + this.player + "-research-facilities", m.Filters.byResearchAvailable(), this.getOwnEntities());
 };
 
 
@@ -528,20 +527,20 @@ m.GameState.prototype.getOwnFoundations = function() {
 
 m.GameState.prototype.getOwnDropsites = function(resource){
 	if (resource !== undefined)
-		return this.updatingCollection("dropsite-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities(), true);
-	return this.updatingCollection("dropsite-all", m.Filters.isDropsite(), this.getOwnEntities(), true);
+		return this.updatingCollection("dropsite-" + resource, m.Filters.isDropsite(resource), this.getOwnEntities());
+	return this.updatingCollection("dropsite-all", m.Filters.isDropsite(), this.getOwnEntities());
 };
 
 m.GameState.prototype.getResourceSupplies = function(resource){
-	return this.updatingGlobalCollection("resource-" + resource, m.Filters.byResource(resource), this.getEntities(), true);
+	return this.updatingGlobalCollection("resource-" + resource, m.Filters.byResource(resource), this.getEntities());
 };
 
 m.GameState.prototype.getHuntableSupplies = function(){
-	return this.updatingGlobalCollection("resource-hunt", m.Filters.isHuntable(), this.getEntities(), true);
+	return this.updatingGlobalCollection("resource-hunt", m.Filters.isHuntable(), this.getEntities());
 };
 
 m.GameState.prototype.getFishableSupplies = function(){
-	return this.updatingGlobalCollection("resource-fish", m.Filters.isFishable(), this.getEntities(), true);
+	return this.updatingGlobalCollection("resource-fish", m.Filters.isFishable(), this.getEntities());
 };
 
 // This returns only units from buildings.

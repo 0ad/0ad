@@ -42,10 +42,6 @@ m.BaseManager.prototype.init = function(gameState, unconstructed)
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
 	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));	
 
-	this.units.allowQuickIter();
-	this.workers.allowQuickIter();
-	this.buildings.allowQuickIter();
-	
 	this.units.registerUpdates();
 	this.workers.registerUpdates();
 	this.buildings.registerUpdates();
@@ -662,7 +658,7 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 
 m.BaseManager.prototype.workersBySubrole = function(gameState, subrole)
 {
-	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "subrole", subrole), this.workers, true);
+	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "subrole", subrole), this.workers);
 };
 
 m.BaseManager.prototype.gatherersByType = function(gameState, type)
@@ -727,7 +723,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (ent.foundationProgress() === undefined && ent.needsRepair())
 			return true;
 		return false;
-	}).toEntityArray();
+	});
 	
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length){
@@ -848,7 +844,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		}
 	}
 
-	for (var target of damagedBuildings)
+	for (var target of damagedBuildings.values())
 	{
 		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
 		if (gameState.ai.HQ.isDangerousLocation(target.position()))
@@ -946,12 +942,15 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		if(owner != 0 && !gameState.isPlayerAlly(owner))
 		{
 			// we're in enemy territory. If we're too close from the enemy, destroy us.
-			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-			for (var i in eEnts)
+			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre"));
+			for (var eEnt of eEnts.values())
 			{
-				var entPos = eEnts[i].position();
+				var entPos = eEnt.position();
 				if (API3.SquareVectorDistance(entPos, this.anchor.position()) < 8000)
+				{
 					this.anchor.destroy();
+					break;
+				}
 			}
 		}
 	}

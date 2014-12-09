@@ -69,8 +69,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 		else if (target && target.hasClass("CivCentre"))
 		{
-			var myBuildings = gameState.getOwnStructures().toEntityArray();
-			for (let building of myBuildings)
+			var myBuildings = gameState.getOwnStructures();
+			for (let building of myBuildings.values())
 			{
 				if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
 					continue;
@@ -94,8 +94,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	if (this.Config.personality.cooperative > 0.3)
 	{
-		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
-		for (let cc of ccEnts)
+		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+		for (let cc of ccEnts.values())
 		{
 			if (!gameState.isEntityExclusiveAlly(cc))
 				continue;
@@ -106,8 +106,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 	}
 
-	var myBuildings = gameState.getOwnStructures().toEntityArray();
-	for (let building of myBuildings)
+	var myBuildings = gameState.getOwnStructures();
+	for (let building of myBuildings.values())
 	{
 		if (building.foundationProgress() == 0)
 			continue;
@@ -208,8 +208,8 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 
 		// army in neutral territory // TODO check smaller distance with all our buildings instead of only ccs with big distance
 		var stillDangerous = false;
-		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
-	 	for (let base of bases)
+		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+	 	for (let base of bases.values())
 		{
 			if (!gameState.isEntityAlly(base))
 				continue;
