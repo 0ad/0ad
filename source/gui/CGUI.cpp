@@ -1068,7 +1068,7 @@ void CGUI::Xeromyces_ReadRootSetup(XMBElement Element, CXeromyces* pFile)
 	}
 }
 
-void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	ENSURE(pParent);
 	int i;
@@ -1285,7 +1285,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 		}
 		else if (element_name == elmt_repeat)
 		{
-			Xeromyces_ReadRepeat(child, pFile, object, Paths, nesting_depth);
+			Xeromyces_ReadRepeat(child, pFile, object, NameSubst, Paths, nesting_depth);
 		}
 		else if (element_name == elmt_translatableAttribute)
 		{
@@ -1446,29 +1446,33 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 	}
 }
 
-void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
+void CGUI::Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth)
 {
 	#define ELMT(x) int elmt_##x = pFile->GetElementID(#x)
 	#define ATTR(x) int attr_##x = pFile->GetAttributeID(#x)
 	ELMT(object);
 	ATTR(count);
+	ATTR(var);
 
 	XMBAttributeList attributes = Element.GetAttributes();
 
 	int count = CStr(attributes.GetNamedItem(attr_count)).ToInt();
+	CStr var("["+attributes.GetNamedItem(attr_var)+"]");
+	if (var.size() < 3)
+		var = "[n]";
 
 	for (int n = 0; n < count; ++n)
 	{
-		std::vector<std::pair<CStr, CStr> > subst;
-		subst.push_back(std::make_pair(CStr("[n]"), "[" + CStr::FromInt(n) + "]"));
+		NameSubst.push_back(std::make_pair(var, "[" + CStr::FromInt(n) + "]"));
 
 		XERO_ITER_EL(Element, child)
 		{
 			if (child.GetNodeName() == elmt_object)
 			{
-				Xeromyces_ReadObject(child, pFile, pParent, subst, Paths, nesting_depth);
+				Xeromyces_ReadObject(child, pFile, pParent, NameSubst, Paths, nesting_depth);
 			}
 		}
+		NameSubst.pop_back();
 	}
 }
 

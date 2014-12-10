@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -444,14 +444,15 @@ private:
 	 *
 	 * @see LoadXmlFile()
 	 */
-	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, const std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<repeat\>, which repeats its child \<object\>s
-	 * 'count' times, replacing the string "[n]" in its descendants' names
-	 * with "[0]", "[1]", etc.
+	 * 'count' times, replacing the string "[n]" (or the value of the attribute
+	 * 'var' enclosed in square brackets) in its descendants' names with "[0]",
+	 * "[1]", etc.
 	 */
-	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
+	void Xeromyces_ReadRepeat(XMBElement Element, CXeromyces* pFile, IGUIObject *pParent, std::vector<std::pair<CStr, CStr> >& NameSubst, boost::unordered_set<VfsPath>& Paths, u32 nesting_depth);
 
 	/**
 	 * Reads in the element \<script\> (the XMBElement) and executes
