@@ -75,9 +75,11 @@
     <Radius>100</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>72</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

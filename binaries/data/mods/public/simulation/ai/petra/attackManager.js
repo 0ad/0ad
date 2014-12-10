@@ -23,7 +23,6 @@ m.AttackManager = function(Config)
 m.AttackManager.prototype.init = function(gameState)
 {
 	this.outOfPlan = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "plan", -1));
-	this.outOfPlan.allowQuickIter();
 	this.outOfPlan.registerUpdates();
 };
 

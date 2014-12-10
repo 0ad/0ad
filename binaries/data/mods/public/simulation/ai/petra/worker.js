@@ -755,11 +755,11 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 // Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
 // For the time being, we move towards the nearest gatherer (providing him a dropsite)
 m.Worker.prototype.moveAway = function(gameState){
-	var gatherers = this.baseManager.workersBySubrole(gameState, "gatherer").toEntityArray();
+	var gatherers = this.baseManager.workersBySubrole(gameState, "gatherer");
 	var pos = this.ent.position();
 	var dist = Math.min();
 	var destination = pos;
-	for (var gatherer of gatherers)
+	for (var gatherer of gatherers.values())
 	{
 		if (!gatherer.position() || gatherer.getMetadata(PlayerID, "transport") !== undefined)
 			continue;

@@ -320,8 +320,8 @@ m.HQ.prototype.start = function(gameState, deserializing)
 		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
 	if (startingSize < 1500)
 	{
+		this.saveSpace = true;
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 3);
 		this.Config.Economy.targetNumFishers = Math.max(this.Config.Economy.targetNumFishers, 2);
 	}
 	// - count the available wood resource, and allow rushes only if enough (we should otherwise favor expansion)
@@ -343,10 +343,7 @@ m.HQ.prototype.start = function(gameState, deserializing)
 	if (this.Config.debug > 1)
 		API3.warn("startingWood: " + startingWood + "(cut at 8500 for no rush and 6000 for saveResources)");
 	if (startingWood < 6000)
-	{
 		this.saveResources = true;
-		this.Config.Economy.initialFields = Math.min(this.Config.Economy.initialFields, 2);
-	}
 
 	if (startingWood > 8500 && this.canBuildUnits)
 		this.attackManager.setRushes();
@@ -436,10 +433,12 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				if (this.baseManagers[base].constructing)
 					this.baseManagers[base].constructing = false;
 				this.baseManagers[base].anchor = ent;
+				this.baseManagers[base].anchorId = evt.newentity;
 				this.baseManagers[base].buildings.updateEnt(ent);
 				this.updateTerritories(gameState);
 				// let us hope this new base will fix our resource shortage
 				this.saveResources = undefined;
+				this.saveSpace = undefined;
 			}
 			else if (ent.hasTerritoryInfluence())
 				this.updateTerritories(gameState);
@@ -781,13 +780,13 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
-	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
-	var dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"]))).toEntityArray();
+	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+	var dpEnts = gameState.getOwnDropsites().filter(API3.Filters.not(API3.Filters.byClassesOr(["CivCentre", "Elephant"])));
 	var ccList = [];
-	for (var cc of ccEnts)
+	for (var cc of ccEnts.values())
 		ccList.push({"pos": cc.position(), "ally": gameState.isPlayerAlly(cc.owner())});
 	var dpList = [];
-	for (var dp of dpEnts)
+	for (var dp of dpEnts.values())
 		dpList.push({"pos": dp.position()});
 
 	var width = this.territoryMap.width;
@@ -920,10 +919,10 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	// with the constraints that all CC have dist > 200 and at least one have dist < 400
 	// This needs at least 2 CC. Otherwise, go back to economic CC.
 
-	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre")).toEntityArray();
+	var ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
 	var ccList = [];
 	var numAllyCC = 0;
-	for (var cc of ccEnts)
+	for (var cc of ccEnts.values())
 	{
 		var ally = gameState.isPlayerAlly(cc.owner());
 		ccList.push({"pos": cc.position(), "ally": ally});
@@ -1050,9 +1049,9 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 // TODO check that it is on same accessIndex
 m.HQ.prototype.findMarketLocation = function(gameState, template)
 {
-	var markets = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities(), true).toEntityArray();
+	var markets = gameState.updatingCollection("ExclusiveAllyMarkets", API3.Filters.byClass("Market"), gameState.getExclusiveAllyEntities()).toEntityArray();
 	if (!markets.length)
-		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures(), true).toEntityArray();
+		markets = gameState.updatingCollection("OwnMarkets", API3.Filters.byClass("Market"), gameState.getOwnStructures()).toEntityArray();
 
 	if (!markets.length)	// this is the first market. For the time being, place it arbitrarily by the ConstructionPlan
 		return [-1, -1, -1, 0];
@@ -2013,6 +2012,7 @@ m.HQ.prototype.Serialize = function()
 		"bBase": this.bBase,
 		"bAdvanced": this.bAdvanced,
 		"saveResources": this.saveResources,
+		"saveSpace": this.saveSpace,
 		"canBuildUnits": this.canBuildUnits
 	};
 

@@ -25,9 +25,11 @@
   <Selectable>
     <EditorOnly/>
   </Selectable>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>72</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>props/special/eyecandy/bridge_edge_wooden.xml</Actor>

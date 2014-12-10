@@ -20,9 +20,9 @@ m.SharedScript = function(settings)
 	this._techModifications = { 0 : {}, 1 : {}, 2 : {}, 3 : {}, 4 : {}, 5 : {}, 6 : {}, 7 : {}, 8 : {} };
 	
 	// array of entity collections
-	this._entityCollections = [];
+	this._entityCollections = new Map();
 	// each name is a reference to the actual one.
-	this._entityCollectionsName = {};
+	this._entityCollectionsName = new Map();
 	this._entityCollectionsByDynProp = {};
 	this._entityCollectionsUID = 0;
 	
@@ -42,7 +42,7 @@ m.SharedScript.prototype.Serialize = function()
 {
 	// serializing entities without using the class.
 	var entities = []; 
-	for each (let ent in this._entities) 
+	for (let ent of this._entities.values()) 
 		entities.push( ent._entity );
 
 	return {
@@ -66,9 +66,9 @@ m.SharedScript.prototype.Deserialize = function(data)
 	this._entityMetadata = data.metadata;
 	this._derivedTemplates = {};
 
-	this._entities = {};
+	this._entities = new Map();
 	for (let ent of data.entities)
-		this._entities[ent.id] = new m.Entity(this, ent); 
+		this._entities.set(ent.id, new m.Entity(this, ent)); 
 
 	this.isDeserialized = true;
 };
@@ -152,9 +152,9 @@ m.SharedScript.prototype.init = function(state, deserialization)
 
 	if (!deserialization)
 	{
-		this._entities = {};
+		this._entities = new Map();
 		for (var id in state.entities)
-			this._entities[id] = new m.Entity(this, state.entities[id]);
+			this._entities.set(+id, new m.Entity(this, state.entities[id]));
 	}
 	// entity collection updated on create/destroy event.
 	this.entities = new m.EntityCollection(this, this._entities);
@@ -233,17 +233,18 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		if (!state.entities[evt.entity])
 			continue; // Sometimes there are things like foundations which get destroyed too fast
 
-		this._entities[evt.entity] = new m.Entity(this, state.entities[evt.entity]);
-		this.entities.addEnt(this._entities[evt.entity]);
+		let entity = new m.Entity(this, state.entities[evt.entity]);
+		this._entities.set(evt.entity, entity);
+		this.entities.addEnt(entity);
 		
 		// Update all the entity collections since the create operation affects static properties as well as dynamic
-		for (var entCollection in this._entityCollections)
-			this._entityCollections[entCollection].updateEnt(this._entities[evt.entity]);
+		for (let entCol of this._entityCollections.values())
+			entCol.updateEnt(entity);
 	}
 	for (var i in RenamingEvents)
 	{
 		var evt = RenamingEvents[i];
-		// Switch the metadata
+		// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
 		for (var p in this._players)
 		{
 			this._entityMetadata[this._players[p]][evt.newentity] = this._entityMetadata[this._players[p]][evt.entity];
@@ -254,39 +255,31 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	{
 		var evt = TrainingEvents[i];
 		// Apply metadata stored in training queues
-		for each (var ent in evt.entities)
-		{
-			for (var key in evt.metadata)
-			{
-				this.setMetadata(evt.owner, this._entities[ent], key, evt.metadata[key])
-			}
-		}
+		for each (let entId in evt.entities)
+			for (let key in evt.metadata)
+				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key])
 	}
 	for (var i in ConstructionEvents)
 	{
 		var evt = ConstructionEvents[i];
 		// we'll move metadata.
-		if (!this._entities[evt.entity])
+		if (!this._entities.has(evt.entity))
 			continue;
-		var ent = this._entities[evt.entity];
-		var newEnt = this._entities[evt.newentity];
+		var ent = this._entities.get(evt.entity);
+		var newEnt = this._entities.get(evt.newentity);
 		if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.entity] !== undefined)
 			for (var key in this._entityMetadata[ent.owner()][evt.entity])
-			{
 				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key])
-			}
 		foundationFinished[evt.entity] = true;
 	}
 	for (var i in MetadataEvents)
 	{
 		var evt = MetadataEvents[i];
-		if (!this._entities[evt.id])
+		if (!this._entities.has(evt.id))
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
 						// Apply metadata (here for buildings for example)
 		for (var key in evt.metadata)
-		{
-			this.setMetadata(evt.owner, this._entities[evt.id], key, evt.metadata[key])
-		}
+			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key])
 	}
 	
 	for (var i = 0; i < DestroyEvents.length; ++i)
@@ -296,7 +289,7 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		// the "deleted" object remains in memory, and any older reference to it will still reference it as if it were not "deleted".
 		// Worse, they might prevent it from being garbage collected, thus making it stay alive and consuming ram needlessly.
 		// So take care, and if you encounter a weird bug with deletion not appearing to work correctly, this is probably why.
-		if (!this._entities[evt.entity])
+		if (!this._entities.has(evt.entity))
 			continue;// probably should remove the event.
 
 		if (foundationFinished[evt.entity])
@@ -305,30 +298,28 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		// The entity was destroyed but its data may still be useful, so
 		// remember the entity and this AI's metadata concerning it
 		evt.metadata = {};
-		evt.entityObj = this._entities[evt.entity];
+		evt.entityObj = this._entities.get(evt.entity);
 		for (var j in this._players)
 			evt.metadata[this._players[j]] = this._entityMetadata[this._players[j]][evt.entity];
 		
-		for each (var entCol in this._entityCollections)
-		{
-			entCol.removeEnt(this._entities[evt.entity]);
-		}
-		this.entities.removeEnt(this._entities[evt.entity]);
+		let entity = this._entities.get(evt.entity);
+		for (let entCol of this._entityCollections.values())
+			entCol.removeEnt(entity);
+		this.entities.removeEnt(entity);
 		
-		delete this._entities[evt.entity];
+		this._entities.delete(evt.entity);
 		for (var j in this._players)
 			delete this._entityMetadata[this._players[j]][evt.entity];
 	}
 
-	for (var id in state.entities)
+	for (let id in state.entities)
 	{
-		var changes = state.entities[id];
-
-		for (var prop in changes)
+		let changes = state.entities[id];
+		let entity = this._entities.get(+id);
+		for (let prop in changes)
 		{
-			this._entities[id]._entity[prop] = changes[prop];
-			
-			this.updateEntityCollections(prop, this._entities[id]);
+			entity._entity[prop] = changes[prop];
+			this.updateEntityCollections(prop, entity);
 		}
 	}
 
@@ -336,11 +327,12 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	// this supersedes tech-related changes.
 	for (var id in state.changedEntityTemplateInfo)
 	{
-		if (!this._entities[id])
+		if (!this._entities.has(+id))
 			continue;	// dead, presumably.
 		var changes = state.changedEntityTemplateInfo[id];
+		let entity = this._entities.get(+id);
 		for each (var change in changes)
-			this._entities[id]._auraTemplateModif.set(change.variable, change.value);
+			entity._auraTemplateModif.set(change.variable, change.value);
 	}
 	Engine.ProfileStop();
 };
@@ -364,51 +356,38 @@ m.SharedScript.prototype.ApplyTemplatesDelta = function(state)
 	Engine.ProfileStop();
 };
 
-m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection, noPush)
+m.SharedScript.prototype.registerUpdatingEntityCollection = function(entCollection)
 {
-	if (!noPush) {
-		this._entityCollections.push(entCollection);
-	}
 	entCollection.setUID(this._entityCollectionsUID);
+	this._entityCollections.set(this._entityCollectionsUID, entCollection);
 	for each (var prop in entCollection.dynamicProperties())
 	{
-		this._entityCollectionsByDynProp[prop] = this._entityCollectionsByDynProp[prop] || [];
-		this._entityCollectionsByDynProp[prop].push(entCollection);
+		if (!this._entityCollectionsByDynProp[prop])
+			this._entityCollectionsByDynProp[prop] = new Map();
+		this._entityCollectionsByDynProp[prop].set(this._entityCollectionsUID, entCollection);
 	}
 	this._entityCollectionsUID++;
 };
 
 m.SharedScript.prototype.removeUpdatingEntityCollection = function(entCollection)
 {
-	for (var i in this._entityCollections)
-	{
-		if (this._entityCollections[i].getUID() === entCollection.getUID())
-		{
-			this._entityCollections.splice(i, 1);
-		}
-	}
-	
-	for each (var prop in entCollection.dynamicProperties())
-	{
-		for (var i in this._entityCollectionsByDynProp[prop])
-		{
-			if (this._entityCollectionsByDynProp[prop][i].getUID() === entCollection.getUID())
-			{
-				this._entityCollectionsByDynProp[prop].splice(i, 1);
-			}
-		}
-	}
+	let uid = entCollection.getUID();
+
+	if (this._entityCollections.has(uid))
+		this._entityCollections.delete(uid);
+
+	for each (let prop in entCollection.dynamicProperties())
+		if (this._entityCollectionsByDynProp[prop].has(uid))
+			this._entityCollectionsByDynProp[prop].delete(uid);
 };
 
 m.SharedScript.prototype.updateEntityCollections = function(property, ent)
 {
-	if (this._entityCollectionsByDynProp[property] !== undefined)
-	{
-		for (var entCollectionid in this._entityCollectionsByDynProp[property])
-		{
-			this._entityCollectionsByDynProp[property][entCollectionid].updateEnt(ent);
-		}
-	}
+	if (this._entityCollectionsByDynProp[property] === undefined)
+		return;
+
+	for (let entCol of this._entityCollectionsByDynProp[property].values())
+		entCol.updateEnt(ent);
 }
 
 m.SharedScript.prototype.setMetadata = function(player, ent, key, value)

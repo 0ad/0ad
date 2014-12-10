@@ -101,11 +101,12 @@
   <TerritoryDecay>
     <HealthDecayRate>5</HealthDecayRate>
   </TerritoryDecay>
-  <Visibility/>
-  <Vision>
-    <Range>40</Range>
+  <Visibility>
     <RetainInFog>true</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
+  </Visibility>
+  <Vision>
+    <Range>40</Range>
   </Vision>
   <VisualActor>
     <ConstructionPreview/>

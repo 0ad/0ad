@@ -34,9 +34,11 @@
     <Static width="4.0" depth="4.0"/>
   </Obstruction>
   <TerritoryDecay disable=""/>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>12</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>props/special/eyecandy/obelisk.xml</Actor>

@@ -381,7 +381,7 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 			CParamNode::LoadXMLString(out, "<Entity><VisualActor><DisableShadows/></VisualActor></Entity>");
 
 		// Previews should always be visible in fog-of-war/etc
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible></Vision></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>false</RetainInFog><AlwaysVisible>true</AlwaysVisible></Visibility></Entity>");
 	}
 
 	if (corpse)
@@ -395,7 +395,7 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 			CParamNode::LoadXMLString(out, "<Entity><VisualActor><SilhouetteDisplay>false</SilhouetteDisplay></VisualActor></Entity>");
 
 		// Corpses should remain visible in fog-of-war
-		CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Vision></Entity>");
+		CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Visibility></Entity>");
 	}
 }
 
@@ -409,7 +409,6 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Ownership");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("Selectable");
-	permittedComponentTypes.insert("Visibility");
 	permittedComponentTypes.insert("VisualActor");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
@@ -431,7 +430,7 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 
 	// Set the entity as mirage entity
 	CParamNode::LoadXMLString(out, "<Entity><Mirage/></Entity>");
-	CParamNode::LoadXMLString(out, "<Entity><Vision><Range>0</Range><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Vision></Entity>");
+	CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible></Visibility></Entity>");
 }
 
 void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in)

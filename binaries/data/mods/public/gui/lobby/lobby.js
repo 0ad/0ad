@@ -399,10 +399,7 @@ function updateGameList()
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
-			if (+g.mapSize !== +g.mapSize) // NaN
-				list_mapSize.push(translate(g.mapSize));
-			else
-				list_mapSize.push(g_mapSizes.shortNames[g_mapSizes.tiles.indexOf(+g.mapSize)]);
+			list_mapSize.push(translatedMapSize(g_GameList[g].mapSize));
 			let idx = g_mapTypes.indexOf(g.mapType);
 			list_mapType.push(idx != -1 ? g_mapTypesText[idx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);
@@ -480,6 +477,18 @@ function formatPlayerListEntry(nickname, presence, rating)
 }
 
 /**
+ * Given a map size, returns that map size translated into the current
+ * language.
+ */
+function translatedMapSize(mapSize)
+{
+	if (+mapSize !== +mapSize) // NaN
+		return translate(mapSize);
+	else
+		return g_mapSizes.shortNames[g_mapSizes.tiles.indexOf(+mapSize)];
+}
+
+/**
  * Populate the game info area with information on the current game selection.
  */
 function updateGameSelection()
@@ -517,7 +526,7 @@ function updateGameSelection()
 	Engine.GetGUIObjectByName("sgMapName").caption = translate(g_GameList[g].niceMapName);
 	Engine.GetGUIObjectByName("sgNbPlayers").caption = g_GameList[g].nbp + "/" + g_GameList[g].tnbp;
 	Engine.GetGUIObjectByName("sgPlayersNames").caption = g_GameList[g].players;
-	Engine.GetGUIObjectByName("sgMapSize").caption = g_GameList[g].mapSize.split("(")[0];
+	Engine.GetGUIObjectByName("sgMapSize").caption = translatedMapSize(g_GameList[g].mapSize);
 	let idx = g_mapTypes.indexOf(g_GameList[g].mapType);
 	Engine.GetGUIObjectByName("sgMapType").caption = idx != -1 ? g_mapTypesText[idx] : "";
 

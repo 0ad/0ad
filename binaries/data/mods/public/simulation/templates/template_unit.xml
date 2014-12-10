@@ -104,11 +104,12 @@
     <PassabilityClass>default</PassabilityClass>
     <CostClass>default</CostClass>
   </UnitMotion>
-  <Visibility/>
-  <Vision>
-    <Range>10</Range>
+  <Visibility>
     <RetainInFog>false</RetainInFog>
     <AlwaysVisible>false</AlwaysVisible>
+  </Visibility>
+  <Vision>
+    <Range>10</Range>
   </Vision>
   <VisualActor>
     <SilhouetteDisplay>true</SilhouetteDisplay>

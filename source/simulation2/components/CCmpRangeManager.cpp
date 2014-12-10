@@ -417,10 +417,10 @@ public:
 			// Store the LOS data, if any
 			CmpPtr<ICmpVision> cmpVision(GetSimContext(), ent);
 			if (cmpVision)
-			{
 				entdata.visionRange = cmpVision->GetRange();
-				entdata.retainInFog = (cmpVision->GetRetainInFog() ? 1 : 0);
-			}
+			CmpPtr<ICmpVisibility> cmpVisibility(GetSimContext(), ent);
+			if (cmpVisibility)
+				entdata.retainInFog = (cmpVisibility->GetRetainInFog() ? 1 : 0);
 
 			// Remember this entity
 			m_EntityData.insert(ent, entdata);

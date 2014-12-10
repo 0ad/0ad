@@ -19,6 +19,7 @@ m.BaseManager = function(gameState, Config)
 	
 	// anchor building: seen as the main building of the base. Needs to have territorial influence
 	this.anchor = undefined;
+	this.anchorId = undefined;
 	this.accessIndex = undefined;
 	
 	// Maximum distance (from any dropsite) to look for resources
@@ -41,10 +42,6 @@ m.BaseManager.prototype.init = function(gameState, unconstructed)
 	this.workers = this.units.filter(API3.Filters.byMetadata(PlayerID,"role","worker"));
 	this.buildings = gameState.getOwnStructures().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));	
 
-	this.units.allowQuickIter();
-	this.workers.allowQuickIter();
-	this.buildings.allowQuickIter();
-	
 	this.units.registerUpdates();
 	this.workers.registerUpdates();
 	this.buildings.registerUpdates();
@@ -76,6 +73,7 @@ m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
 		return false;
 	}
 	this.anchor = anchorEntity;
+	this.anchorId = anchorEntity.id();
 	this.anchor.setMetadata(PlayerID, "base", this.ID);
 	this.anchor.setMetadata(PlayerID, "baseAnchor", true);
 	this.buildings.updateEnt(this.anchor);
@@ -109,6 +107,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			{
 				// sounds like we lost our anchor. Let's reaffect our units and buildings
 				this.anchor = undefined;
+				this.anchorId = undefined;
 				var distmin = Math.min();
 				var basemin = undefined;
 				for each (var base in gameState.ai.HQ.baseManagers)
@@ -163,6 +162,15 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 			continue;
 
 		// do necessary stuff here
+	}
+
+	let renameEvents = events["EntityRenamed"];
+	for (let evt of renameEvents)
+	{
+		if (!this.anchorId || this.anchorId !== evt.entity)
+			continue;
+		this.anchorId = evt.newentity;
+		this.anchor = gameState.getEntityById(evt.newentity);
 	}
 };
 
@@ -421,24 +429,17 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 			var numQueue = queues.field.countQueuedUnits();
 
 			// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
-			if (count < 1200 && numFarms + numFound + numQueue == 0)     // tell the queue manager we'll be trying to build fields shortly.
+			if (numFarms + numFound + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
 			{
-				for (var  i = 0; i < this.Config.Economy.initialFields; ++i)
-				{
-					var plan = new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID });
-					plan.isGo = function() { return false; };	// don't start right away.
-					queues.field.addItem(plan);
-				}
-			}
-			else if (count < 400 && numFarms + numFound == 0)
-			{
-				for (var i in queues.field.queue)
-					queues.field.queue[i].isGo = function() { return gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"); };	// start them
+				if (count < 600)
+					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 			}
 			else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
 			{
-				if ((!gameState.ai.HQ.saveResources && numFound < 2 && numFound + numQueue < 3) ||
-					(gameState.ai.HQ.saveResources && numFound < 1 && numFound + numQueue < 2))
+				let goal = this.Config.Economy.provisionFields;
+				if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
+					goal = Math.max(goal-1, 1);
+				if (numFound + numQueue < goal)
 					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
 			}
 		}
@@ -657,7 +658,7 @@ m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 
 m.BaseManager.prototype.workersBySubrole = function(gameState, subrole)
 {
-	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "subrole", subrole), this.workers, true);
+	return gameState.updatingCollection("subrole-" + subrole +"-base-" + this.ID, API3.Filters.byMetadata(PlayerID, "subrole", subrole), this.workers);
 };
 
 m.BaseManager.prototype.gatherersByType = function(gameState, type)
@@ -722,7 +723,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		if (ent.foundationProgress() === undefined && ent.needsRepair())
 			return true;
 		return false;
-	}).toEntityArray();
+	});
 	
 	// Check if nothing to build
 	if (!foundations.length && !damagedBuildings.length){
@@ -843,7 +844,7 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		}
 	}
 
-	for (var target of damagedBuildings)
+	for (var target of damagedBuildings.values())
 	{
 		// don't repair if we're still under attack, unless it's a vital (civcentre or wall) building that's getting destroyed.
 		if (gameState.ai.HQ.isDangerousLocation(target.position()))
@@ -941,12 +942,15 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		if(owner != 0 && !gameState.isPlayerAlly(owner))
 		{
 			// we're in enemy territory. If we're too close from the enemy, destroy us.
-			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-			for (var i in eEnts)
+			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre"));
+			for (var eEnt of eEnts.values())
 			{
-				var entPos = eEnts[i].position();
+				var entPos = eEnt.position();
 				if (API3.SquareVectorDistance(entPos, this.anchor.position()) < 8000)
+				{
 					this.anchor.destroy();
+					break;
+				}
 			}
 		}
 	}
@@ -970,7 +974,7 @@ m.BaseManager.prototype.Serialize = function()
 {
 	return {
 		"ID": this.ID,
-		"anchor": ((this.anchor !== undefined) ? this.anchor.id() : undefined),
+		"anchorId": this.anchorId,
 		"accessIndex": this.accessIndex,
 		"maxDistResourceSquare": this.maxDistResourceSquare,
 		"constructing": this.constructing,
@@ -984,8 +988,7 @@ m.BaseManager.prototype.Deserialize = function(gameState, data)
 	for (let key in data)
 		this[key] = data[key];
 
-	if (this.anchor)
-		this.anchor = gameState.getEntityById(this.anchor);
+	this.anchor = ((this.anchorId !== undefined) ? gameState.getEntityById(this.anchorId) : undefined);
 };
 
 return m;

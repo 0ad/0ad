@@ -30,7 +30,7 @@
 #include "ICmpTerrain.h"
 #include "ICmpUnitMotion.h"
 #include "ICmpValueModificationManager.h"
-#include "ICmpVision.h"
+#include "ICmpVisibility.h"
 
 #include "graphics/Decal.h"
 #include "graphics/Frustum.h"
@@ -562,8 +562,8 @@ void CCmpVisualActor::InitModel(const CParamNode& paramNode)
 		if (paramNode.GetChild("SilhouetteOccluder").ToBool())
 			modelFlags |= MODELFLAG_SILHOUETTE_OCCLUDER;
 
-		CmpPtr<ICmpVision> cmpVision(GetEntityHandle());
-		if (cmpVision && cmpVision->GetAlwaysVisible())
+		CmpPtr<ICmpVisibility> cmpVisibility(GetEntityHandle());
+		if (cmpVisibility && cmpVisibility->GetAlwaysVisible())
 			modelFlags |= MODELFLAG_IGNORE_LOS;
 
 		model.ToCModel()->AddFlagsRec(modelFlags);

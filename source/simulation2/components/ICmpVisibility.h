@@ -27,6 +27,10 @@ class ICmpVisibility : public IComponent
 public:
 	virtual ICmpRangeManager::ELosVisibility GetLosVisibility(player_id_t player, bool isOutsideFog, bool forceRetainInFog) = 0;
 
+	virtual bool GetRetainInFog() = 0;
+
+	virtual bool GetAlwaysVisible() = 0;
+
 	DECLARE_INTERFACE_TYPE(Visibility)
 };
 

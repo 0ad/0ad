@@ -56,9 +56,11 @@
       units/thrace_black_cloak
     </Entities>
   </ProductionQueue>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>40</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>special/greek_stoa_great.xml</Actor>

@@ -6,7 +6,7 @@ m.Config = function(difficulty)
 	// 0 is sandbox, 1 is very easy, 2 is easy, 3 is medium, 4 is hard and 5 is very hard.
 	this.difficulty = (difficulty !== undefined) ? difficulty : 3;
 
-	// debug level: 0=none, 1=sanity checks, 2=debug; 3=detailed debug
+	// debug level: 0=none, 1=sanity checks, 2=debug, 3=detailed debug, -100=serializatio debug
 	this.debug = 0;
 
 	this.chat = true;   // false to prevent AI's chats
@@ -28,7 +28,7 @@ m.Config = function(difficulty)
 		"targetNumTraders" : 4, // Target number of traders
 		"targetNumFishers" : 1, // Target number of fishers per sea
 		"femaleRatio" : 0.5, // percent of females among the workforce.
-		"initialFields" : 5
+		"provisionFields" : 3
 	};
 
 	this.distUnitGain = 110*110;   // TODO  take it directly from helpers/TraderGain.js
@@ -125,7 +125,7 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.cityPhase = 240000;
 		this.Economy.popForMarket = 200;
 		this.Economy.femaleRatio = 0.7;
-		this.Economy.initialFields = 1;
+		this.Economy.provisionFields = 1;
 	}
 	else if (this.difficulty < 3)
 	{
@@ -136,7 +136,7 @@ m.Config.prototype.setConfig = function(gameState)
 		this.Economy.cityPhase = 1800;
 		this.Economy.popForMarket = 80;
 		this.Economy.femaleRatio = 0.6;
-		this.Economy.initialFields = 2;
+		this.Economy.provisionFields = 2;
 	}
 	else
 	{

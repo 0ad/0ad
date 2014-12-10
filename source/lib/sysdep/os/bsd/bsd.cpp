@@ -23,7 +23,7 @@
 #include "precompiled.h"
 
 #include "lib/sysdep/sysdep.h"
-#include "lib/sysdep/os/unix/unix_excecutable_pathname.h"
+#include "lib/sysdep/os/unix/unix_executable_pathname.h"
 
 OsPath sys_ExecutablePathname()
 {

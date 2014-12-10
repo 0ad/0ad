@@ -35,9 +35,11 @@
   <StatusBars>
     <HeightOffset>8.0</HeightOffset>
   </StatusBars>
+  <Visibility>
+    <RetainInFog>true</RetainInFog>
+  </Visibility>
   <Vision>
     <Range>4</Range>
-    <RetainInFog>true</RetainInFog>
   </Vision>
   <VisualActor>
     <Actor>props/special/eyecandy/column_doric.xml</Actor>

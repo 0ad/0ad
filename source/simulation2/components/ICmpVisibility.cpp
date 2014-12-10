@@ -47,6 +47,16 @@ public:
 			return ICmpRangeManager::VIS_HIDDEN;
 		}
 	}
+
+	virtual bool GetRetainInFog()
+	{
+		return m_Script.Call<bool>("GetRetainInFog");
+	}
+
+	virtual bool GetAlwaysVisible()
+	{
+		return m_Script.Call<bool>("GetAlwaysVisible");
+	}
 };
 
 REGISTER_COMPONENT_SCRIPT_WRAPPER(VisibilityScripted)

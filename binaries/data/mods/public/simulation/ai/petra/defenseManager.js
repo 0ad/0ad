@@ -69,8 +69,8 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 		}
 		else if (target && target.hasClass("CivCentre"))
 		{
-			var myBuildings = gameState.getOwnStructures().toEntityArray();
-			for (let building of myBuildings)
+			var myBuildings = gameState.getOwnStructures();
+			for (let building of myBuildings.values())
 			{
 				if (API3.SquareVectorDistance(building.position(), entity.position()) > 30000)
 					continue;
@@ -94,18 +94,20 @@ m.DefenseManager.prototype.isDangerous = function(gameState, entity)
 
 	if (this.Config.personality.cooperative > 0.3)
 	{
-		var allyCC = gameState.getExclusiveAllyEntities().filter(API3.Filters.byClass("CivCentre"));
-		for (var i in allyCC._entities)
+		let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+		for (let cc of ccEnts.values())
 		{
-			if (this.Config.personality.cooperative < 0.6 && allyCC._entities[i].foundationProgress() !== undefined)
+			if (!gameState.isEntityExclusiveAlly(cc))
 				continue;
-			if (API3.SquareVectorDistance(allyCC._entities[i].position(), entity.position()) < 6000)
+			if (this.Config.personality.cooperative < 0.6 && cc.foundationProgress() !== undefined)
+				continue;
+			if (API3.SquareVectorDistance(cc.position(), entity.position()) < 6000)
 				return true;
 		}
 	}
 
-	var myBuildings = gameState.getOwnStructures().toEntityArray();
-	for (let building of myBuildings)
+	var myBuildings = gameState.getOwnStructures();
+	for (let building of myBuildings.values())
 	{
 		if (building.foundationProgress() == 0)
 			continue;
@@ -206,19 +208,19 @@ m.DefenseManager.prototype.checkEnemyArmies = function(gameState, events)
 
 		// army in neutral territory // TODO check smaller distance with all our buildings instead of only ccs with big distance
 		var stillDangerous = false;
-		if (this.Config.personality.cooperative > 0.3)
-			var bases = gameState.getAllyEntities().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-		else
-			var bases = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
-	 	for (var i in bases)
+		let bases = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+	 	for (let base of bases.values())
 		{
-			if (API3.SquareVectorDistance(bases[i].position(), army.foePosition) < 40000)
-			{
-				if(this.Config.debug > 1)
-					API3.warn("army in neutral territory, but still near one of our CC");
-				stillDangerous = true;
-				break;
-			}
+			if (!gameState.isEntityAlly(base))
+				continue;
+			if (this.Config.personality.cooperative < 0.3 && !gameState.isEntityOwn(base))
+				continue;
+			if (API3.SquareVectorDistance(base.position(), army.foePosition) > 40000)
+				continue;
+			if(this.Config.debug > 1)
+				API3.warn("army in neutral territory, but still near one of our CC");
+			stillDangerous = true;
+			break;
 		}
 		if (stillDangerous)
 			continue;
