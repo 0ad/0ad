@@ -705,7 +705,7 @@ m.Entity = m.Class({
 
 	isGarrisonHolder: function() { return this.get("GarrisonHolder") },
 
-	garrisoned: function() { return new m.EntityCollection(this._ai, this._entity.garrisoned); },
+	garrisoned: function() { return this._entity.garrisoned; },
 
 	canGarrisonInside: function() { return this._entity.garrisoned.length < this.garrisonMax(); },
 

@@ -395,6 +395,10 @@ m.GameState.prototype.getExclusiveAllyEntities = function() {
 	return this.entities.filter(m.Filters.byOwners(this.getExclusiveAllies()));
 };
 
+m.GameState.prototype.getAllyStructures = function() {
+	return this.updatingCollection("ally-structures", m.Filters.byClass("Structure"), this.getAllyEntities());
+};
+
 // Try to use a parameter for those three, it'll be a lot faster.
 
 m.GameState.prototype.getEnemyEntities = function(enemyID) {
@@ -406,7 +410,7 @@ m.GameState.prototype.getEnemyEntities = function(enemyID) {
 
 m.GameState.prototype.getEnemyStructures = function(enemyID) {
 	if (enemyID === undefined)
-		return this.getEnemyEntities().filter(m.Filters.byClass("Structure"));
+		return this.updatingCollection("enemy-structures", m.Filters.byClass("Structure"), this.getEnemyEntities());
 
 	return this.updatingGlobalCollection("" + enemyID + "-structures", m.Filters.byClass("Structure"), this.getEnemyEntities(enemyID));
 };

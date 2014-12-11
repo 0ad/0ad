@@ -82,7 +82,7 @@ m.TransportPlan.prototype.countFreeSlots = function()
 
 m.TransportPlan.prototype.countFreeSlotsOnShip = function(ship)
 {
-	var occupied = ship._entity.garrisoned.length
+	var occupied = ship.garrisoned().length
 		+ this.units.filter(API3.Filters.byMetadata(PlayerID, "onBoard", ship.id())).length;
 	return (ship.garrisonMax() - occupied);
 };
@@ -332,7 +332,7 @@ m.TransportPlan.prototype.isOnBoard = function(ent)
 {
 	var ret = false;
 	this.transportShips.forEach(function (ship) {
-		if (ret || ship._entity.garrisoned.indexOf(ent.id()) === -1)
+		if (ret || ship.garrisoned().indexOf(ent.id()) === -1)
 			return;
 		ret = true;
 		ent.setMetadata(PlayerID, "onBoard", "onBoard");
@@ -432,7 +432,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			var ship = gameState.getEntityById(ent.getMetadata(PlayerID, "onBoard"));
 			if (ship)
 			{
-				if (ship._entity.garrisoned.indexOf(entId) !== -1)
+				if (ship.garrisoned().indexOf(entId) !== -1)
 					ent.setMetadata(PlayerID, "onBoard", "onBoard");
 				else
 				{
@@ -500,7 +500,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 		var shipId = ship.id();
 		var dist = API3.SquareVectorDistance(ship.position(), self.boardingPos[shipId]);
 		var remaining = 0;
-		for (var entId of ship._entity.garrisoned)
+		for (var entId of ship.garrisoned())
 		{
 			var ent = gameState.getEntityById(entId);
 			if (!ent.getMetadata(PlayerID, "transport"))

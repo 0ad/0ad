@@ -446,7 +446,6 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	// Okay so we haven't found any appropriate dropsite anywhere.
 	// Try to help building one if any non-accessible foundation available
-	var foundations = gameState.getOwnFoundations().toEntityArray();
 	var shouldBuild = foundations.some(function(foundation) {
 		if (!foundation || foundation.getMetadata(PlayerID, "access") === access)
 			return false;

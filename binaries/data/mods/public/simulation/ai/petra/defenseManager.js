@@ -386,11 +386,11 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 // garrison a hurt unit inside the nearest healing structure
 m.DefenseManager.prototype.garrisonUnitForHealing = function(gameState, unit)
 {
-	var distmin = Math.min();
-	var nearest = undefined;
-	var unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
-	var garrisonManager = gameState.ai.HQ.garrisonManager;
-	gameState.getAllyEntities().filter(API3.Filters.byClass("Structure")).forEach(function(ent) {
+	let distmin = Math.min();
+	let nearest = undefined;
+	let unitAccess = gameState.ai.accessibility.getAccessValue(unit.position());
+	let garrisonManager = gameState.ai.HQ.garrisonManager;
+	gameState.getAllyStructures().forEach(function(ent) {
 		if (!ent.buffHeal())
 			return;
 		if (!MatchesClassList(ent.garrisonableClasses(), unit.classes()))
