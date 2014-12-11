@@ -713,7 +713,7 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		return added;
 
 	// For a rush, assign also workers (but keep a minimum number of defenders)
-	var worker = gameState.getOwnEntitiesByRole("worker", true).filter(API3.Filters.byClass("Unit"));
+	var worker = gameState.getOwnEntitiesByRole("worker", true);
 	var num = 0;
 	worker.forEach(function(ent) {
 		if (!ent.position())
@@ -1173,7 +1173,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				API3.warn("Start: Problem with path " + uneval(this.path));
 			// We're stuck, presumably. Check if there are no walls just close to us. If so, we're arrived, and we're gonna tear down some serious stone.
 			var nexttoWalls = false;
-			gameState.getEnemyEntities().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
+			gameState.getEnemyStructures().filter(API3.Filters.byClass("StoneWall")).forEach( function (ent) {
 				if (!nexttoWalls && API3.SquareVectorDistance(self.position, ent.position()) < 800)
 					nexttoWalls = true;
 			});

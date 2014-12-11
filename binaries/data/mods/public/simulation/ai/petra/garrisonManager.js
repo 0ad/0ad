@@ -44,7 +44,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 			var ent = gameState.getEntityById(list[j]);
 			if (!ent)	// unit must have been killed while garrisoning
 				list.splice(j--, 1);    
-			else if (holder._entity.garrisoned.indexOf(list[j]) !== -1)   // unit is garrisoned
+			else if (holder.garrisoned().indexOf(list[j]) !== -1)   // unit is garrisoned
 			{
 				this.leaveGarrison(ent);
 				list.splice(j--, 1);
@@ -101,7 +101,7 @@ m.GarrisonManager.prototype.update = function(gameState, queues)
 				return false;
 			});
 
-			for (var entId of holder._entity.garrisoned)
+			for (var entId of holder.garrisoned())
 			{
 				var ent = gameState.getEntityById(entId);
 				if (ent.owner() === PlayerID && !this.keepGarrisoned(ent, holder, enemiesAround))

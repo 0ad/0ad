@@ -140,7 +140,8 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 };
 
 
-m.createTerritoryMap = function(gameState) {
+m.createTerritoryMap = function(gameState)
+{
 	var map = gameState.ai.territoryMap;
 	
 	var ret = new API3.Map(gameState.sharedScript, map.data);	

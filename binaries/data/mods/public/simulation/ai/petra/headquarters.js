@@ -1823,44 +1823,8 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	// We've increased our territory, so we may have some new room to build
 	this.stopBuilding = [];
 	// And if sufficient expansion, check if building a new market would improve our present trade routes
-	if (expansion > 200)
+	if (expansion > 60)
 		this.tradeManager.routeProspection = true;
-};
-
-// TODO: use pop(). Currently unused as this is too gameable.
-m.HQ.prototype.garrisonAllFemales = function(gameState)
-{
-	var buildings = gameState.getOwnStructures().filter(API3.Filters.byCanGarrison()).toEntityArray();
-	var females = gameState.getOwnUnits().filter(API3.Filters.byClass("Support"));
-	
-	var cache = {};
-	
-	females.forEach( function (ent) {
-		if (!ent.position())
-			return;
-		for (var i in buildings)
-		{
-			var struct = buildings[i];
-			if (!cache[struct.id()])
-				cache[struct.id()] = 0;
-			if (struct.garrisoned() && struct.garrisonMax() - struct.garrisoned().length - cache[struct.id()] > 0)
-			{
-				ent.garrison(struct);
-				cache[struct.id()]++;
-				break;
-			}
-		}
-	});
-	this.hasGarrisonedFemales = true;
-};
-
-m.HQ.prototype.ungarrisonAll = function(gameState) {
-	this.hasGarrisonedFemales = false;
-	var buildings = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("Structure"),API3.Filters.byCanGarrison())).toEntityArray();
-	buildings.forEach( function (struct) {
-		if (struct.garrisoned() && struct.garrisoned().length)
-			struct.unloadAll();
-	});
 };
 
 // Count gatherers returning resources in the number of gatherers of resourceSupplies

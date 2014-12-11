@@ -4,16 +4,8 @@ var API3 = function(m)
 m.EntityCollection = function(sharedAI, entities, filters)
 {
 	this._ai = sharedAI;
-	if (entities && !(entities instanceof Map))
-	{
-		this._entities = new Map();
-		for (let key in entities)
-			this._entities.set(+key, entities[key]);
-	}
-	else
-		this._entities = entities || new Map();
+	this._entities = entities || new Map();
 	this._filters = filters || [];
-
 	this.dynamicProp = [];
 	for each (var filter in this._filters)
 		this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);

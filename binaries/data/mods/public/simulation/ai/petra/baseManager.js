@@ -939,18 +939,18 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 	if (this.constructing && this.anchor)
 	{
 		var owner = gameState.ai.HQ.territoryMap.getOwner(this.anchor.position());
-		if(owner != 0 && !gameState.isPlayerAlly(owner))
+		if(owner !== 0 && !gameState.isPlayerAlly(owner))
 		{
 			// we're in enemy territory. If we're too close from the enemy, destroy us.
-			var eEnts = gameState.getEnemyStructures().filter(API3.Filters.byClass("CivCentre"));
-			for (var eEnt of eEnts.values())
+			let ccEnts = gameState.updatingGlobalCollection("allCCs", API3.Filters.byClass("CivCentre"));
+			for (let cc of ccEnts.values())
 			{
-				var entPos = eEnt.position();
-				if (API3.SquareVectorDistance(entPos, this.anchor.position()) < 8000)
-				{
-					this.anchor.destroy();
-					break;
-				}
+				if (cc.owner() !== owner)
+					continue;
+				if (API3.SquareVectorDistance(cc.position(), this.anchor.position()) > 8000)
+					continue;
+				this.anchor.destroy();
+				break;
 			}
 		}
 	}

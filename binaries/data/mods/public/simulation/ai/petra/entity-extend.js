@@ -98,7 +98,7 @@ m.getHolder = function(ent, gameState)
 	gameState.getEntities().forEach(function (holder) {
 		if (found || !holder.isGarrisonHolder())
 			return;
-		if (holder._entity.garrisoned.indexOf(ent.id()) !== -1)
+		if (holder.garrisoned().indexOf(ent.id()) !== -1)
 			found = holder;
 	});
 	return found;
