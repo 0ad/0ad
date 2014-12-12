@@ -146,7 +146,7 @@ public:
 	 * @return Whether the specified locale is valid (@c true) or not
 	 *         (@c false).
 	 */
-	bool SaveLocale(Locale locale);
+	bool SaveLocale(const Locale& locale);
 
 	/**
 	 * Returns an array of supported locale codes sorted alphabetically.
@@ -295,7 +295,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	std::string GetDictionaryLocale(std::string configLocaleString);
+	std::string GetDictionaryLocale(const std::string& configLocaleString);
 
 	/**
 	 * Saves an instance of the recommended locale for the current user that the
@@ -319,7 +319,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Implementation_of_Internationalization_and_Localization#LongStringsLocale
 	 */
-	void GetDictionaryLocale(std::string configLocaleString, Locale& outLocale);
+	void GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale);
 
 	/**
 	 * Determines the best, supported locale for the current user, makes it the
@@ -350,7 +350,7 @@ public:
 	 * @return Whether @p locale is supported by both ICU and the game (@c true)
 	 *         or not (@c false).
 	 */
-	bool ValidateLocale(Locale locale);
+	bool ValidateLocale(const Locale& locale);
 
 	/**
 	 * Returns @c true if the locale is supported by both ICU and the game. It
@@ -477,7 +477,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa http://icu-project.org/apiref/icu4c521/classicu_1_1DateFormat.html
 	 */
-	std::string LocalizeDateTime(const UDate& dateTime, DateTimeType type, DateFormat::EStyle style);
+	std::string LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style);
 
 	/**
 	 * Returns the specified date using the specified date format.
@@ -494,7 +494,7 @@ public:
 	 * @sa http://en.wikipedia.org/wiki/Unix_time
 	 * @sa https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1#TOC-Date-Field-Symbol-Table
 	 */
-	std::string FormatMillisecondsIntoDateString(UDate milliseconds, const std::string& formatString);
+	std::string FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString);
 
 	/**
 	 * Returns the specified floating-point number as a string, with the number
@@ -526,7 +526,7 @@ public:
 	 *
 	 * @sa http://trac.wildfiregames.com/wiki/Localization#LocalizingImages
 	 */
-	VfsPath LocalizePath(VfsPath sourcePath);
+	VfsPath LocalizePath(const VfsPath& sourcePath);
 
 	/**
 	 * Loads @p path into the dictionary if it is a translation file of the
@@ -639,7 +639,7 @@ private:
 	 *        parsing.
 	 * @return ICU date formatter.
 	 */
-	DateFormat* CreateDateTimeInstance(DateTimeType type, DateFormat::EStyle style, const Locale& locale);
+	DateFormat* CreateDateTimeInstance(const DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale);
 };
 
 #endif // L10N_H

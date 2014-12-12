@@ -36,7 +36,6 @@
 #include "ps/Filesystem.h"
 #include "ps/GameSetup/GameSetup.h"
 
-
 static Status ReloadChangedFileCB(void* param, const VfsPath& path)
 {
 	return static_cast<L10n*>(param)->ReloadChangedFile(path);
@@ -87,7 +86,7 @@ bool L10n::SaveLocale(const std::string& localeCode)
 	return SaveLocale(Locale(Locale::createCanonical(localeCode.c_str())));
 }
 
-bool L10n::SaveLocale(Locale locale)
+bool L10n::SaveLocale(const Locale& locale)
 {
 	if (!ValidateLocale(locale))
 		return false;
@@ -105,7 +104,7 @@ bool L10n::ValidateLocale(const std::string& localeCode)
 // Returns true if both of these conditions are true:
 //  1. ICU has resources for that locale (which also ensures it's a valid locale string) 
 //  2. Either a dictionary for language_country or for language is available.
-bool L10n::ValidateLocale(Locale locale)
+bool L10n::ValidateLocale(const Locale& locale)
 {
 	if(locale.isBogus())
 		return false;
@@ -185,7 +184,7 @@ std::wstring L10n::GetFallbackToAvailableDictLocale(const Locale& locale)
 	return L"";
 }
 
-std::string L10n::GetDictionaryLocale(std::string configLocaleString)
+std::string L10n::GetDictionaryLocale(const std::string& configLocaleString)
 {
 	Locale out;
 	GetDictionaryLocale(configLocaleString, out);
@@ -193,7 +192,7 @@ std::string L10n::GetDictionaryLocale(std::string configLocaleString)
 }
 
 // First, try to get a valid locale from the config, then check if the system locale can be used and otherwise fall back to en_US.
-void L10n::GetDictionaryLocale(std::string configLocaleString, Locale& outLocale)
+void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& outLocale)
 {
 	if (!configLocaleString.empty())
 	{
@@ -385,7 +384,7 @@ UDate L10n::ParseDateTime(const std::string& dateTimeString, const std::string& 
 	return date;
 }
 
-std::string L10n::LocalizeDateTime(const UDate& dateTime, DateTimeType type, DateFormat::EStyle style)
+std::string L10n::LocalizeDateTime(const UDate& dateTime, const DateTimeType& type, const DateFormat::EStyle& style)
 {
 	UnicodeString utf16Date;
 
@@ -400,27 +399,29 @@ std::string L10n::LocalizeDateTime(const UDate& dateTime, DateTimeType type, Dat
 	return std::string(utf8Date, sink.NumberOfBytesWritten());
 }
 
-std::string L10n::FormatMillisecondsIntoDateString(UDate milliseconds, const std::string& formatString)
+std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString)
 {
-	UErrorCode success = U_ZERO_ERROR;
-	UnicodeString utf16Date;
-	UnicodeString utf16LocalizedDateTimeFormat = UnicodeString::fromUTF8(formatString.c_str());
+	UErrorCode status;
+	UnicodeString dateString;
+	std::string resultString;
 
-	// The format below should never reach the user, the one that matters is the
-	// one from the formatString parameter.
-	UnicodeString utf16SourceDateTimeFormat = UnicodeString::fromUTF8("No format specified (you should not be seeing this string!)");
+	UnicodeString unicodeFormat = UnicodeString::fromUTF8(formatString.c_str());
+	SimpleDateFormat* dateFormat = new SimpleDateFormat(unicodeFormat, status);
+	if (U_FAILURE(status))
+		LOGERROR(L"Error creating SimpleDateFormat: %hs", u_errorName(status));
 
-	SimpleDateFormat* dateFormatter = new SimpleDateFormat(utf16SourceDateTimeFormat, currentLocale, success);
-	dateFormatter->applyLocalizedPattern(utf16LocalizedDateTimeFormat, success);
-	dateFormatter->format(milliseconds, utf16Date);
-	delete dateFormatter;
+	const TimeZone* timeZone = TimeZone::getGMT();
 
-	char utf8Date[512];
-	CheckedArrayByteSink sink(utf8Date, ARRAY_SIZE(utf8Date));
-	utf16Date.toUTF8(sink);
-	ENSURE(!sink.Overflowed());
+	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
+	if (U_FAILURE(status))
+		LOGERROR(L"Error creating calendar: %hs", u_errorName(status));
+   
+	dateFormat->adoptCalendar(calendar);
+	dateFormat->format(milliseconds, dateString);
+	delete dateFormat;
 
-	return std::string(utf8Date, sink.NumberOfBytesWritten());
+	dateString.toUTF8String(resultString);
+	return resultString;
 }
 
 std::string L10n::FormatDecimalNumberIntoString(double number)
@@ -437,15 +438,13 @@ std::string L10n::FormatDecimalNumberIntoString(double number)
 	return std::string(utf8Number, sink.NumberOfBytesWritten());
 }
 
-VfsPath L10n::LocalizePath(VfsPath sourcePath)
+VfsPath L10n::LocalizePath(const VfsPath& sourcePath)
 {
-	VfsPath path = sourcePath;
-
 	VfsPath localizedPath = sourcePath.Parent() / L"l10n" / wstring_from_utf8(currentLocale.getLanguage()) / sourcePath.Filename();
-	if (VfsFileExists(localizedPath))
-		path = localizedPath;
+	if (!VfsFileExists(localizedPath))
+		return sourcePath;
 
-	return path;
+	return localizedPath;
 }
 
 Status L10n::ReloadChangedFile(const VfsPath& path)
@@ -573,7 +572,7 @@ void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dicti
 	}
 }
 
-DateFormat* L10n::CreateDateTimeInstance(L10n::DateTimeType type, DateFormat::EStyle style, const Locale& locale)
+DateFormat* L10n::CreateDateTimeInstance(const L10n::DateTimeType& type, const DateFormat::EStyle& style, const Locale& locale)
 {
 	switch(type)
 	{
