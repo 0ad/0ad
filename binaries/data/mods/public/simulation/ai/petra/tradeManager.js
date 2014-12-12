@@ -500,9 +500,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 	if (!template)
 		return;
 	this.checkRoutes(gameState);
-	Engine.ProfileStart("findMarketLocation");
 	var marketPos = gameState.ai.HQ.findMarketLocation(gameState, template);
-	Engine.ProfileStop();
 	if (!marketPos || marketPos[3] == 0)   // marketPos[3] is the expected gain
 	{	// no position found
 		gameState.ai.HQ.stopBuild(gameState, "structures/{civ}_market");

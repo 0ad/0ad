@@ -58,20 +58,19 @@ m.QueueManager.prototype.getTotalAccountedResources = function(gameState)
 
 m.QueueManager.prototype.currentNeeds = function(gameState)
 {
-	var needed = new API3.Resources();
+	let needed = new API3.Resources();
 	//queueArrays because it's faster.
-	for (var i in this.queueArrays)
+	for (let q of this.queueArrays)
 	{
-		var name = this.queueArrays[i][0];
-		var queue = this.queueArrays[i][1];
-		if (queue.length() == 0 || !queue.queue[0].isGo(gameState))
+		let queue = q[1];
+		if (!queue.length() || !queue.queue[0].isGo(gameState))
 			continue;
 		var costs = queue.queue[0].getCost();
 		needed.add(costs);
 	}
 	// get out current resources, not removing accounts.
-	var current = gameState.getResources();
-	for (var res of needed.types)
+	let current = gameState.getResources();
+	for (let res of needed.types)
 		needed[res] = Math.max(0, needed[res] - current[res]);
 
 	return needed;
@@ -91,17 +90,16 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 	var totalLong = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	var total;
 	//queueArrays because it's faster.
-	for (var i in this.queueArrays)
+	for (let q of this.queueArrays)
 	{
-		var name = this.queueArrays[i][0];
-		var queue = this.queueArrays[i][1];
+		var queue = q[1];
 		if (queue.paused)
 			continue;
-		for (var j = 0; j < queue.length(); ++j)
+		for (let j = 0; j < queue.length(); ++j)
 		{
 			if (j > 1)
 				break;
-			var cost = queue.queue[j].getCost();
+			let cost = queue.queue[j].getCost();
 			if (queue.queue[j].isGo(gameState))
 			{
 				if (j == 0)
@@ -111,7 +109,7 @@ m.QueueManager.prototype.wantedGatherRates = function(gameState)
 			}
 			else
 				total = totalLong;
-			for (var type in total)
+			for (let type in total)
 				total[type] += cost[type];
 			if (!queue.queue[j].isGo(gameState))
 				break;
@@ -387,13 +385,13 @@ m.QueueManager.prototype.switchResource = function(gameState, res)
 // Start the next item in the queue if we can afford it.
 m.QueueManager.prototype.startNextItems = function(gameState)
 {
-	for (var i in this.queueArrays)
+	for (let q of this.queueArrays)
 	{
-		var name = this.queueArrays[i][0];
-		var queue = this.queueArrays[i][1];
+		let name = q[0];
+		let queue = q[1];
 		if (queue.length() > 0 && !queue.paused)
 		{
-			var item = queue.getNext();
+			let item = queue.getNext();
 			if (this.accounts[name].canAfford(item.getCost()) && item.canStart(gameState))
 			{
 				this.finishingTime = gameState.ai.elapsedTime;

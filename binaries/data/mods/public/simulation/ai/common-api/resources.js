@@ -8,10 +8,7 @@ m.Resources = function(amounts, population)
 	for (let key of this.types)
 		this[key] = amounts[key] || 0;
 
-	if (population && population > 0)
-		this.population = parseInt(population);
-	else
-		this.population = 0;
+	this.population = (population && population > 0) ? population : 0;
 };
 
 m.Resources.prototype.types = [ "food", "wood", "stone", "metal" ];

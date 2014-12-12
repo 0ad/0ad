@@ -73,13 +73,13 @@ ResourceGatherer.prototype.Init = function()
  */
 ResourceGatherer.prototype.GetCarryingStatus = function()
 {
-	var ret = [];
-	for (var type in this.carrying)
+	let ret = [];
+	for (let type in this.carrying)
 	{
 		ret.push({
 			"type": type,
 			"amount": this.carrying[type],
-			"max": +this.GetCapacities()[type]
+			"max": +this.GetCapacity(type)
 		});
 	}
 	return ret;
@@ -91,7 +91,7 @@ ResourceGatherer.prototype.GetCarryingStatus = function()
  */
 ResourceGatherer.prototype.GiveResources = function(resources)
 {
-	for each (var resource in resources)
+	for each (let resource in resources)
 	{
 		this.carrying[resource.type] = +(resource.amount);
 	}
@@ -106,7 +106,7 @@ ResourceGatherer.prototype.GiveResources = function(resources)
 ResourceGatherer.prototype.GetMainCarryingType = function()
 {
 	// Return the first key, if any
-	for (var type in this.carrying)
+	for (let type in this.carrying)
 		return type;
 
 	return undefined;
@@ -125,32 +125,42 @@ ResourceGatherer.prototype.GetLastCarriedType = function()
 		return undefined;
 };
 
+ResourceGatherer.prototype.GetBaseSpeed = function()
+{
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let multiplier = cmpPlayer ? cmpPlayer.GetGatherRateMultiplier() : 1;
+	return multiplier * ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity);
+};
+
 ResourceGatherer.prototype.GetGatherRates = function()
 {
-	var ret = {};
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let ret = {};
+	let baseSpeed = this.GetBaseSpeed();
 
-	var baseSpeed = ApplyValueModificationsToEntity("ResourceGatherer/BaseSpeed", +this.template.BaseSpeed, this.entity) * cmpPlayer.GetGatherRateMultiplier();
-
-	for (var r in this.template.Rates)
+	for (let r in this.template.Rates)
 	{
-		var rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
+		let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + r, +this.template.Rates[r], this.entity);
 		ret[r] = rate * baseSpeed;
 	}
 
 	return ret;
 };
 
-ResourceGatherer.prototype.GetCapacities = function()
+ResourceGatherer.prototype.GetGatherRate = function(resourceType)
 {
-	var ret = {};
+	if (!this.template.Rates[resourceType])
+		return 0;
 
-	for (var r in this.template.Capacities)
-	{
-		ret[r] = ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + r, +this.template.Capacities[r], this.entity);
-	}
+	let baseSpeed = this.GetBaseSpeed();
+	let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + resourceType, +this.template.Rates[resourceType], this.entity);
+	return rate * baseSpeed;
+};
 
-	return ret;
+ResourceGatherer.prototype.GetCapacity = function(resourceType)
+{
+	if(!this.template.Capacities[resourceType])
+		return 0;
+	return ApplyValueModificationsToEntity("ResourceGatherer/Capacities/" + resourceType, +this.template.Capacities[resourceType], this.entity);
 };
 
 ResourceGatherer.prototype.GetRange = function()
@@ -165,22 +175,24 @@ ResourceGatherer.prototype.GetRange = function()
  */
 ResourceGatherer.prototype.TryInstantGather = function(target)
 {
-	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var type = cmpResourceSupply.GetType();
+	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	let type = cmpResourceSupply.GetType();
 
-	if (type.generic != "treasure") return false;
+	if (type.generic != "treasure")
+		return false;
 
-	var status = cmpResourceSupply.TakeResources(cmpResourceSupply.GetCurrentAmount());
+	let status = cmpResourceSupply.TakeResources(cmpResourceSupply.GetCurrentAmount());
 
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-	cmpPlayer.AddResource(type.specific, status.amount);
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer)
+		cmpPlayer.AddResource(type.specific, status.amount);
 
-	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseTreasuresCollectedCounter();
 
-	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);  
-	if (cmpTrigger)  
+	let cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);  
+	if (cmpTrigger && cmpPlayer) 
 		cmpTrigger.CallEvent("TreasureCollected", {"player": cmpPlayer.GetPlayerID(), "type": type.specific, "amount": status.amount });  
 
 	return true;
@@ -196,19 +208,19 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	if (!this.GetTargetGatherRate(target))
 		return { "exhausted": true };
 
-	var gatherAmount = 1;
+	let gatherAmount = 1;
 
-	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var type = cmpResourceSupply.GetType();
+	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	let type = cmpResourceSupply.GetType();
 
 	// Initialise the carried count if necessary
 	if (!this.carrying[type.generic])
 		this.carrying[type.generic] = 0;
 
 	// Find the maximum so we won't exceed our capacity
-	var maxGathered = this.GetCapacities()[type.generic] - this.carrying[type.generic];
+	let maxGathered = this.GetCapacity(type.generic) - this.carrying[type.generic];
 
-	var status = cmpResourceSupply.TakeResources(Math.min(gatherAmount, maxGathered));
+	let status = cmpResourceSupply.TakeResources(Math.min(gatherAmount, maxGathered));
 
 	this.carrying[type.generic] += status.amount;
 
@@ -217,7 +229,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	// Update stats of how much the player collected.
 	// (We have to do it here rather than at the dropsite, because we
 	// need to know what subtype it was)
-	var cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
+	let cmpStatisticsTracker = QueryOwnerInterface(this.entity, IID_StatisticsTracker);
 	if (cmpStatisticsTracker)
 		cmpStatisticsTracker.IncreaseResourceGatheredCounter(type.generic, status.amount, type.specific);
 
@@ -230,7 +242,7 @@ ResourceGatherer.prototype.PerformGather = function(target)
 	return {
 		"amount": status.amount,
 		"exhausted": status.exhausted,
-		"filled": (this.carrying[type.generic] >= this.GetCapacities()[type.generic])
+		"filled": (this.carrying[type.generic] >= this.GetCapacity(type.generic))
 	};
 };
 
@@ -241,11 +253,9 @@ ResourceGatherer.prototype.PerformGather = function(target)
  */
 ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
-
-	var type;
-	var cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
-	var cmpMirage = Engine.QueryInterface(target, IID_Mirage);
+	let type;
+	let cmpResourceSupply = Engine.QueryInterface(target, IID_ResourceSupply);
+	let cmpMirage = Engine.QueryInterface(target, IID_Mirage);
 	if (cmpResourceSupply)
 		type = cmpResourceSupply.GetType();
 	else if (cmpMirage && cmpMirage.ResourceSupply())
@@ -253,20 +263,18 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	else
 		return 0;
 
-	var rates = this.GetGatherRates();
+	let rate = 0;
+	if (type.specific)
+		rate = this.GetGatherRate(type.generic+"."+type.specific);
+	if (rate == 0 && type.generic)
+		rate = this.GetGatherRate(type.generic);
 
-	var rate;
-	if (type.specific && rates[type.generic+"."+type.specific])
-	{
-		rate = rates[type.generic+"."+type.specific] / cmpPlayer.GetCheatTimeMultiplier();
-	}
-	else if (type.generic && rates[type.generic])
-	{
-		rate = rates[type.generic] / cmpPlayer.GetCheatTimeMultiplier();
-	}
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cheatMultiplier = cmpPlayer ? cmpPlayer.GetCheatTimeMultiplier() : 1;
+	rate = rate / cheatMultiplier;
 
 	if (cmpMirage)
-		return rate || 0;
+		return rate;
 
 	// Apply diminishing returns with more gatherers, for e.g. infinite farms. For most resources this has no effect. (GetDiminishingReturns will return null.)
 	// We can assume that for resources that are miraged this is the case. (else just add the diminishing returns data to the mirage data and remove the
@@ -287,12 +295,12 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
 	// between -0.5 and 0.5. Adding 0.5 to that changes the range to 0 to 1. The diminishingReturns constant
 	// adjusts the period of the curve.
 	// Alternatively, just find scythetwirler (who came up with the math here) or alpha123 (who wrote the code) on IRC.
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
+	let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+	let diminishingReturns = cmpResourceSupply.GetDiminishingReturns();
 	if (diminishingReturns)
 		rate = (0.5 * Math.cos((cmpResourceSupply.GetGatherers().length - 1) * Math.PI / diminishingReturns) + 0.5) * rate;
 
-	return rate || 0;
+	return rate;
 };
 
 /**
@@ -302,8 +310,8 @@ ResourceGatherer.prototype.GetTargetGatherRate = function(target)
  */
 ResourceGatherer.prototype.CanCarryMore = function(type)
 {
-	var amount = (this.carrying[type] || 0);
-	return (amount < this.GetCapacities()[type]);
+	let amount = (this.carrying[type] || 0);
+	return (amount < this.GetCapacity(type));
 };
 
 /**
@@ -313,7 +321,7 @@ ResourceGatherer.prototype.CanCarryMore = function(type)
  */
 ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
 {
-	for (var type in this.carrying)
+	for (let type in this.carrying)
 		if (type != exceptedType)
 			return true;
 
@@ -327,16 +335,15 @@ ResourceGatherer.prototype.IsCarryingAnythingExcept = function(exceptedType)
  */
 ResourceGatherer.prototype.CommitResources = function(types)
 {
-	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	let cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
 
-	for each (var type in types)
-	{
-		if (type in this.carrying)
-		{
-			cmpPlayer.AddResource(type, this.carrying[type]);
-			delete this.carrying[type];
-		}
-	}
+	if (cmpPlayer)
+		for each (let type in types)
+			if (type in this.carrying)
+			{
+				cmpPlayer.AddResource(type, this.carrying[type]);
+				delete this.carrying[type];
+			}
 
 	Engine.PostMessage(this.entity, MT_ResourceCarryingChanged, { "to": this.GetCarryingStatus() });
 };

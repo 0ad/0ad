@@ -469,13 +469,16 @@ function addChatMessage(msg, playerAssignments)
 		[username, playerColor] = getUsernameAndColor(msg.player1);
 
 		// Format the amounts to proper English: 200 food, 100 wood, and 300 metal; 100 food; 400 wood and 200 stone
-		var amounts = Object.keys(msg.amounts)
+		let amounts = Object.keys(msg.amounts)
 			.filter(function (type) { return msg.amounts[type] > 0; })
-			.map(function (type) { return msg.amounts[type] + " " + type; });
+			.map(function (type) { return sprintf(translate("%(amount)s %(resourceType)s"), {
+				"amount": msg.amounts[type],
+				"resourceType": getLocalizedResourceName(type, "withinSentence")});
+			});
 
 		if (amounts.length > 1)
 		{
-			var lastAmount = amounts.pop();
+			let lastAmount = amounts.pop();
 			amounts = sprintf(translate("%(previousAmounts)s and %(lastAmount)s"), {
 				previousAmounts: amounts.join(translate(", ")),
 				lastAmount: lastAmount

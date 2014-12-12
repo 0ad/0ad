@@ -18,10 +18,9 @@ m.Filters = {
 	
 	byClassesAnd: function(clsList){
 		return {"func" : function(ent){
-			var ret = true;
-			for (var i in clsList){
-				ret = ret && ent.hasClass(clsList[i]);
-			}
+			let ret = true;
+			for (let cls of clsList)
+				ret = ret && ent.hasClass(cls);
 			return ret;
 		}, 
 		"dynamicProperties": []};
@@ -29,10 +28,9 @@ m.Filters = {
 	
 	byClassesOr: function(clsList){
 		return {"func" : function(ent){
-			var ret = false;
-			for (var i in clsList){
-				ret = ret || ent.hasClass(clsList[i]);
-			}
+			let ret = false;
+			for (let cls of clsList)
+				ret = ret || ent.hasClass(cls);
 			return ret;
 		}, 
 		"dynamicProperties": []};
@@ -97,11 +95,9 @@ m.Filters = {
 	
 	byOwners: function(owners){
 		return {"func" : function(ent){
-			for (var i in owners){
-				if (ent.owner() == +owners[i]){
+			for (let owner of owners)
+				if (ent.owner() === owner)
 					return true;
-				}
-			}
 			return false;
 		}, 
 		"dynamicProperties": ['owner']};
@@ -169,11 +165,10 @@ m.Filters = {
 	
 	byDistance: function(startPoint, dist){
 		return {"func": function(ent){
-			if (ent.position() === undefined){
+			if (ent.position() === undefined)
 				return false;
-			}else{
+			else
 				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
-			}
 		},
 		"dynamicProperties": ['position']};
 	},
@@ -181,22 +176,20 @@ m.Filters = {
 	// Distance filter with no auto updating, use with care 
 	byStaticDistance: function(startPoint, dist){
 		return {"func": function(ent){
-			if (!ent.position()){
+			if (!ent.position())
 				return false;
-			}else{
+			else
 				return (m.SquareVectorDistance(startPoint, ent.position()) < dist*dist);
-			}
 		},
 		"dynamicProperties": []};
 	},
 	
 	byTerritory: function(Map, territoryIndex){
 		return {"func": function(ent){
-			if (Map.point(ent.position()) == territoryIndex) {
+			if (Map.point(ent.position()) == territoryIndex)
 				return true;
-			} else {
+			else
 				return false;
-			}
 		},
 		"dynamicProperties": ['position']};
 	},
