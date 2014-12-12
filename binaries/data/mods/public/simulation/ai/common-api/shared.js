@@ -227,9 +227,9 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 	var MetadataEvents = state.events["AIMetadata"];
 	var ownershipChangeEvents = state.events["OwnershipChanged"];
 
-	for (var i = 0; i < CreateEvents.length; ++i)
+	for (let i = 0; i < CreateEvents.length; ++i)
 	{
-		var evt = CreateEvents[i];
+		let evt = CreateEvents[i];
 		if (!state.entities[evt.entity])
 			continue; // Sometimes there are things like foundations which get destroyed too fast
 
@@ -241,44 +241,41 @@ m.SharedScript.prototype.ApplyEntitiesDelta = function(state)
 		for (let entCol of this._entityCollections.values())
 			entCol.updateEnt(entity);
 	}
-	for (var i in RenamingEvents)
-	{
-		var evt = RenamingEvents[i];
-		// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
-		for (var p in this._players)
+
+	for (let evt of RenamingEvents)
+	{	// Switch the metadata: TODO entityCollections are updated only because of the owner change. Should be done properly
+		for (let p in this._players)
 		{
 			this._entityMetadata[this._players[p]][evt.newentity] = this._entityMetadata[this._players[p]][evt.entity];
 			this._entityMetadata[this._players[p]][evt.entity] = {};
 		}
 	}
-	for (var i in TrainingEvents)
-	{
-		var evt = TrainingEvents[i];
-		// Apply metadata stored in training queues
+
+	for (let evt of TrainingEvents)
+	{	// Apply metadata stored in training queues
 		for each (let entId in evt.entities)
 			for (let key in evt.metadata)
 				this.setMetadata(evt.owner, this._entities.get(entId), key, evt.metadata[key])
 	}
-	for (var i in ConstructionEvents)
-	{
-		var evt = ConstructionEvents[i];
-		// we'll move metadata.
+
+	for (let evt of ConstructionEvents)
+	{	// we'll move metadata.
 		if (!this._entities.has(evt.entity))
 			continue;
-		var ent = this._entities.get(evt.entity);
-		var newEnt = this._entities.get(evt.newentity);
+		let ent = this._entities.get(evt.entity);
+		let newEnt = this._entities.get(evt.newentity);
 		if (this._entityMetadata[ent.owner()] && this._entityMetadata[ent.owner()][evt.entity] !== undefined)
-			for (var key in this._entityMetadata[ent.owner()][evt.entity])
+			for (let key in this._entityMetadata[ent.owner()][evt.entity])
 				this.setMetadata(ent.owner(), newEnt, key, this._entityMetadata[ent.owner()][evt.entity][key])
 		foundationFinished[evt.entity] = true;
 	}
-	for (var i in MetadataEvents)
+
+	for (let evt of MetadataEvents)
 	{
-		var evt = MetadataEvents[i];
 		if (!this._entities.has(evt.id))
 			continue;	// might happen in some rare cases of foundations getting destroyed, perhaps.
 						// Apply metadata (here for buildings for example)
-		for (var key in evt.metadata)
+		for (let key in evt.metadata)
 			this.setMetadata(evt.owner, this._entities.get(evt.id), key, evt.metadata[key])
 	}
 	

@@ -297,29 +297,30 @@ m.GameState.prototype.isPlayerEnemy = function(id) {
 	return this.playerData.isEnemy[id];
 };
 
-m.GameState.prototype.getEnemies = function(){
-	var ret = [];
-	for (var i in this.playerData.isEnemy){
-		if (this.playerData.isEnemy[i]){
-			ret.push(i);
-		}
-	}
+m.GameState.prototype.getEnemies = function()
+{
+	let ret = [];
+	for (let i in this.playerData.isEnemy)
+		if (this.playerData.isEnemy[i])
+			ret.push(+i);
 	return ret;
 };
 
-m.GameState.prototype.getAllies = function(){
-	var ret = [];
-	for (var i in this.playerData.isAlly)
+m.GameState.prototype.getAllies = function()
+{
+	let ret = [];
+	for (let i in this.playerData.isAlly)
 		if (this.playerData.isAlly[i])
-			ret.push(i);
+			ret.push(+i);
 	return ret;
 };
 
-m.GameState.prototype.getExclusiveAllies = function(){  // Player is not included
-	var ret = [];
-	for (var i in this.playerData.isAlly)
+m.GameState.prototype.getExclusiveAllies = function()
+{	// Player is not included
+	let ret = [];
+	for (let i in this.playerData.isAlly)
 		if (this.playerData.isAlly[i] && +i !== this.player)
-			ret.push(i);
+			ret.push(+i);
 	return ret;
 };
 
@@ -562,17 +563,17 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 	var ret = [];
 	var limits = this.getEntityLimits();
 	var current = this.getEntityCounts();
-	for (var i in allTrainable)
+	for (let trainable of allTrainable)
 	{
-		var template = this.getTemplate(allTrainable[i]);
+		let template = this.getTemplate(trainable);
 
 		if (!template.available(this))
 			continue;
-		if (this.isDisabledTemplates(allTrainable[i]))
+		if (this.isDisabledTemplates(trainable))
 			continue;
 		
-		var okay = true;
-		for (var clas of classes)
+		let okay = true;
+		for (let clas of classes)
 		{
 			if (template.hasClass(clas))
 				continue;
@@ -582,7 +583,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		if (!okay)
 			continue;
 
-		for (var clas of anticlasses)
+		for (let clas of anticlasses)
 		{
 			if (!template.hasClass(clas))
 				continue;
@@ -592,7 +593,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		if (!okay)
 			continue;
 
-		for (var limitedClass in limits)
+		for (let limitedClass in limits)
 		{
 			if (!template.hasClass(limitedClass) || current[limitedClass] < limits[limitedClass])
 				continue;
@@ -602,7 +603,7 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 		if (!okay)
 			continue;
 
-		ret.push( [allTrainable[i], template] );
+		ret.push( [trainable, template] );
 	}
 	return ret;
 };
@@ -610,33 +611,33 @@ m.GameState.prototype.findTrainableUnits = function(classes, anticlasses)
 // Return all techs which can currently be researched
 // Does not factor cost.
 // If there are pairs, both techs are returned.
-m.GameState.prototype.findAvailableTech = function() {
-	
-	var allResearchable = [];
+m.GameState.prototype.findAvailableTech = function()
+{	
+	let allResearchable = [];
 	this.getOwnEntities().forEach(function(ent) {
-		var searchable = ent.researchableTechs();
-		for (var i in searchable) {
-			if (allResearchable.indexOf(searchable[i]) === -1) {
-				allResearchable.push(searchable[i]);
-			}
-		}
+		let searchable = ent.researchableTechs();
+		if (!searchable)
+			return;
+		for (let tech of searchable)
+			if (allResearchable.indexOf(tech) === -1)
+				allResearchable.push(tech);
 	});
 	
-	var ret = [];
-	for (var i in allResearchable) {
-		var template = this.getTemplate(allResearchable[i]);
-
+	let ret = [];
+	for (let tech of allResearchable)
+	{
+		let template = this.getTemplate(tech);
 		if (template.pairDef())
 		{
-			var techs = template.getPairedTechs();
+			let techs = template.getPairedTechs();
 			if (this.canResearch(techs[0]._templateName))
 				ret.push([techs[0]._templateName, techs[0]] );
 			if (this.canResearch(techs[1]._templateName))
 				ret.push([techs[1]._templateName, techs[1]] );
-		} else {
-			if (this.canResearch(allResearchable[i]) && template._templateName != this.townPhase() && template._templateName != this.cityPhase())
-				ret.push( [allResearchable[i], template] );
 		}
+		else
+			if (this.canResearch(tech) && template._templateName != this.townPhase() && template._templateName != this.cityPhase())
+				ret.push( [tech, template] );
 	}
 	return ret;
 };
@@ -645,9 +646,10 @@ m.GameState.prototype.findAvailableTech = function() {
  * Find buildings that are capable of training said template.
  * Getting the best is up to the AI.
  */
-m.GameState.prototype.findTrainers = function(template) {	
+m.GameState.prototype.findTrainers = function(template)
+{	
 	return this.getOwnTrainingFacilities().filter(function(ent) {
-		var trainable = ent.trainableEntities();
+		let trainable = ent.trainableEntities();
 		if (!trainable || trainable.indexOf(template) == -1)
 			return false;
 		return true;
@@ -657,18 +659,19 @@ m.GameState.prototype.findTrainers = function(template) {
 /**
  * Find units that are capable of constructing the given building type.
  */
-m.GameState.prototype.findBuilders = function(template) {
+m.GameState.prototype.findBuilders = function(template)
+{
 	return this.getOwnUnits().filter(function(ent) {
-		var buildable = ent.buildableEntities();
+		let buildable = ent.buildableEntities();
 		if (!buildable || buildable.indexOf(template) == -1)
 			return false;
-
 		return true;
 	});
 };
 
 // Find buildings that are capable of researching the given tech
-m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck) {
+m.GameState.prototype.findResearchers = function(templateName, noRequirementCheck)
+{
 	// let's check we can research the tech.
 	if (!this.canResearch(templateName, noRequirementCheck))
 		return [];
@@ -678,56 +681,46 @@ m.GameState.prototype.findResearchers = function(templateName, noRequirementChec
 	
 	return this.getOwnResearchFacilities().filter(function(ent) {
 		var techs = ent.researchableTechs();
-		for (var i in techs)
+		for (let tech of techs)
 		{
-			var thisTemp = self.getTemplate(techs[i]);
+			let thisTemp = self.getTemplate(tech);
 			if (thisTemp.pairDef())
 			{
 				var pairedTechs = thisTemp.getPairedTechs();
 				if (pairedTechs[0]._templateName == templateName || pairedTechs[1]._templateName == templateName)
 					return true;
-			} else {
-				if (techs[i] == templateName)
-					return true;
 			}
+			else
+				if (tech == templateName)
+					return true;
 		}
 		return false;
 	});
 };
 
-m.GameState.prototype.getEntityLimits = function() {
+m.GameState.prototype.getEntityLimits = function()
+{
 	return this.playerData.entityLimits;
 };
 
-m.GameState.prototype.getEntityCounts = function() {
+m.GameState.prototype.getEntityCounts = function()
+{
 	return this.playerData.entityCounts;
 };
 
-m.GameState.prototype.isDisabledTemplates = function(template) {
+m.GameState.prototype.isDisabledTemplates = function(template)
+{
 	if (!this.playerData.disabledTemplates[template])
 		return false;
 	return this.playerData.disabledTemplates[template];
 };
 
 // Checks whether the maximum number of buildings have been cnstructed for a certain catergory
-m.GameState.prototype.isEntityLimitReached = function(category) {
+m.GameState.prototype.isEntityLimitReached = function(category)
+{
 	if(this.playerData.entityLimits[category] === undefined || this.playerData.entityCounts[category] === undefined)
 		return false;
 	return (this.playerData.entityCounts[category] >= this.playerData.entityLimits[category]);
-};
-
-// defcon utilities
-m.GameState.prototype.timeSinceDefconChange = function() {
-	return this.getTimeElapsed()-this.ai.defconChangeTime;
-};
-m.GameState.prototype.setDefcon = function(level,force) {
-	if (this.ai.defcon >= level || force) {
-		this.ai.defcon = level;
-		this.ai.defconChangeTime = this.getTimeElapsed();
-	}
-};
-m.GameState.prototype.defcon = function() {
-	return this.ai.defcon;
 };
 
 return m;

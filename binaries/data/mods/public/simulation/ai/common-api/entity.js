@@ -82,17 +82,21 @@ m.Template = m.Class({
 	},
 
 	hasClass: function(name) {
-		var classes = this.classes();
+		if (!this._classes)
+			this._classes = this.classes();
+		var classes = this._classes;
 		return (classes && classes.indexOf(name) != -1);
 	},
 
 	hasClasses: function(array) {
-		var classes = this.classes();
+		if (!this._classes)
+			this._classes = this.classes();
+		let classes = this._classes;
 		if (!classes)
 			return false;
 
-		for (var i in array)
-			if (classes.indexOf(array[i]) === -1)
+		for (let cls of array)
+			if (classes.indexOf(cls) === -1)
 				return false;
 		return true;
 	},
@@ -248,7 +252,8 @@ m.Template = m.Class({
 			return undefined;
 
 		var Classes = [];
-		for (var i in this.get("Attack")) {
+		for (var i in this.get("Attack"))
+		{
 			if (!this.get("Attack/" + i + "/Bonuses"))
 				continue;
 			for (var o in this.get("Attack/" + i + "/Bonuses"))
@@ -264,7 +269,8 @@ m.Template = m.Class({
 		if (!this.get("Attack"))
 			return false;
 		var mcounter = [];
-		for (var i in this.get("Attack")) {
+		for (var i in this.get("Attack"))
+		{
 			if (!this.get("Attack/" + i + "/Bonuses"))
 				continue;
 			for (var o in this.get("Attack/" + i + "/Bonuses"))
@@ -285,7 +291,8 @@ m.Template = m.Class({
 			return undefined;
 
 		if (this.get("Attack/" + type + "/Bonuses"))
-			for (var o in this.get("Attack/" + type + "/Bonuses")) {
+			for (var o in this.get("Attack/" + type + "/Bonuses"))
+			{
 				if (!this.get("Attack/" + type + "/Bonuses/" + o + "/Classes"))
 					continue;
 				var total = this.get("Attack/" + type + "/Bonuses/" + o + "/Classes").split(" ");
@@ -897,11 +904,9 @@ m.Entity = m.Class({
 		var queue = this._entity.trainingQueue;
 		if (!queue)
 			return true;	// no queue, so technically we stopped all production.
-		for (var i in queue)
-		{
-			if (queue[i].progress < percentToStopAt)
-				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": queue[i].id });
-		}
+		for (var item of queue)
+			if (item.progress < percentToStopAt)
+				Engine.PostCommand(PlayerID,{ "type": "stop-production", "entity": this.id(), "id": item.id });
 		return this;
 	}
 });

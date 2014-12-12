@@ -634,9 +634,8 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	units.sort(function(a, b) {// }) {
 		var aDivParam = 0, bDivParam = 0;
 		var aTopParam = 0, bTopParam = 0;
-		for (var i in parameters) {
-			var param = parameters[i];
-			
+		for (let param of parameters)
+		{
 			if (param[0] == "base") {
 				aTopParam = param[1];
 				bTopParam = param[1];
@@ -696,17 +695,17 @@ m.HQ.prototype.bulkPickWorkers = function(gameState, newBaseID, number)
 
 	var needed = number;
 	var workers = new API3.EntityCollection(gameState.sharedScript);
-	for (var i in baseBest)
+	for (let base of baseBest)
 	{
-		if (baseBest[i].ID == newBaseID)
+		if (base.ID === newBaseID)
 			continue;
-		baseBest[i].pickBuilders(gameState, workers, needed);
+		base.pickBuilders(gameState, workers, needed);
 		if (workers.length < number)
 			needed = number - workers.length;
 		else
 			break;
 	}
-	if (workers.length == 0)
+	if (workers.length === 0)
 		return false;
 	return workers;
 };

@@ -10,7 +10,7 @@ m.TrainingPlan = function(gameState, type, metadata, number, maxMerge)
 	}
 
 	this.category = "unit";
-	this.cost = new API3.Resources(this.template.cost(), this.template._template.Cost.Population);
+	this.cost = new API3.Resources(this.template.cost(), +this.template._template.Cost.Population);
 	
 	this.number = number !== undefined ? number : 1;
 	this.maxMerge = maxMerge !== undefined ? maxMerge : 5;

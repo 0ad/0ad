@@ -74,11 +74,11 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 			// unless it's impassable already, mark it as 40.
 			if (obstructionTiles[x + y*this.width] !== 0)
 				obstructionTiles[x + y*this.width] = 40;
-			for (var i in square)
+			for (let sq of square)
 			{
-				xx = square[i][0];
-				yy = square[i][1];
-				if (x+i[0] >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height) {
+				xx = sq[0];
+				yy = sq[1];
+				if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height) {
 					value = obstructionTiles[(x+xx) + (y+yy)*this.width];
 					if (value === 255)
 						obstructionTiles[(x+xx) + (y+yy)*this.width] = 41;
@@ -156,35 +156,33 @@ m.TerrainAnalysis.prototype.findClosestPassablePoint = function(startPoint, onLa
 // returns a count. It's not integer. About 2 should be fairly accessible already.
 m.TerrainAnalysis.prototype.countConnected = function(startIndex, byLand)
 {
-	var count = 0.0;
-	
-	var w = this.width;
-	var positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1],
+	let count = 0.0;
+	let w = this.width;
+	let positions = [[0,1], [0,-1], [1,0], [-1,0], [1,1], [-1,-1], [1,-1], [-1,1],
 					 [0,2], [0,-2], [2,0], [-2,0], [2,2], [-2,-2], [2,-2], [-2,2]/*,
 					 [1,2], [1,-2], [2,1], [-2,1], [-1,2], [-1,-2], [2,-1], [-2,-1]*/];
 	
-	for (var i in positions)
+	for (let pos of positions)
 	{
-		var index = startIndex + positions[i][0] + positions[i][1]*w;
-		if (this.map[index] !== 0)
+		var index = startIndex + pos[0] + pos[1]*w;
+		if (this.map[index] === 0)
+			continue;
+		if (byLand)
 		{
-			if (byLand)
-			{
-				if (this.map[index] === 201) count++;
-				else if (this.map[index] === 255) count++;
-				else if (this.map[index] === 41) count++;
-				else if (this.map[index] === 42) count += 0.5;
-				else if (this.map[index] === 43) count += 0.3;
-				else if (this.map[index] === 44) count += 0.13;
-				else if (this.map[index] === 45) count += 0.08;
-				else if (this.map[index] === 46) count += 0.05;
-				else if (this.map[index] === 47) count += 0.03;
-			}
-			else
-			{
-				if (this.map[index] === 201) count++;
-				if (this.map[index] === 200) count++;
-			}
+			if (this.map[index] === 201) count++;
+			else if (this.map[index] === 255) count++;
+			else if (this.map[index] === 41) count++;
+			else if (this.map[index] === 42) count += 0.5;
+			else if (this.map[index] === 43) count += 0.3;
+			else if (this.map[index] === 44) count += 0.13;
+			else if (this.map[index] === 45) count += 0.08;
+			else if (this.map[index] === 46) count += 0.05;
+			else if (this.map[index] === 47) count += 0.03;
+		}
+		else
+		{
+			if (this.map[index] === 201) count++;
+			if (this.map[index] === 200) count++;
 		}
 	}
 	return count;
@@ -197,47 +195,45 @@ m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
 	var passabilityMap = sharedAI.passabilityMap;
 	
 	// looking for creation or destruction of entities, and updates the map accordingly.
-	for (var i in events)
+	for (let e of events)
 	{
-		var e = events[i];
-		if (e.entityObj)
+		if (!e.entityObj)
+			continue;
+		let ent = e.entityObj;
+		if (ent.hasClass("Geology"))
 		{
-			var ent = e.entityObj;
-			if (ent.hasClass("Geology"))
-			{
-				var x = this.gamePosToMapPos(ent.position())[0];
-				var y = this.gamePosToMapPos(ent.position())[1];
-				// remove it. Don't really care about surrounding and possible overlappings.
-				var radius = Math.floor(ent.obstructionRadius() / this.cellSize);
-				for (var xx = -radius; xx <= radius;xx++)
-					for (var yy = -radius; yy <= radius;yy++)
-					{
-						if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height && this.map[(x+xx) + (y+yy)*this.width] === 30)
-							this.map[(x+xx) + (y+yy)*this.width] = 255;
-					}
-			}
-			else if (ent.hasClass("ForestPlant"))
-			{
-				var x = this.gamePosToMapPos(ent.position())[0];
-				var y = this.gamePosToMapPos(ent.position())[1];
-				var nbOfNeigh = 0;
-				for (var xx = -1; xx <= 1;xx++)
-					for (var yy = -1; yy <= 1;yy++)
-					{
-						if (xx == 0 && yy == 0)
-							continue;
-						if (this.map[(x+xx) + (y+yy)*this.width] === 40)
-							nbOfNeigh++;
-						else if (this.map[(x+xx) + (y+yy)*this.width] === 41)
-							this.map[(x+xx) + (y+yy)*this.width] = 255;
-						else if (this.map[(x+xx) + (y+yy)*this.width] > 41 && this.map[(x+xx) + (y+yy)*this.width] < 50)
-							this.map[(x+xx) + (y+yy)*this.width] = this.map[(x+xx) + (y+yy)*this.width] - 1;
-					}
-				if (nbOfNeigh > 0)
-					this.map[x + y*this.width] = this.map[x + y*this.width] = 40 + nbOfNeigh;
-				else
-					this.map[x + y*this.width] = this.map[x + y*this.width] = 255;
-			}
+			let x = this.gamePosToMapPos(ent.position())[0];
+			let y = this.gamePosToMapPos(ent.position())[1];
+			// remove it. Don't really care about surrounding and possible overlappings.
+			let radius = Math.floor(ent.obstructionRadius() / this.cellSize);
+			for (let xx = -radius; xx <= radius;xx++)
+				for (let yy = -radius; yy <= radius;yy++)
+				{
+					if (x+xx >= 0 && x+xx < this.width && y+yy >= 0 && y+yy < this.height && this.map[(x+xx) + (y+yy)*this.width] === 30)
+						this.map[(x+xx) + (y+yy)*this.width] = 255;
+				}
+		}
+		else if (ent.hasClass("ForestPlant"))
+		{
+			let x = this.gamePosToMapPos(ent.position())[0];
+			let y = this.gamePosToMapPos(ent.position())[1];
+			let nbOfNeigh = 0;
+			for (let xx = -1; xx <= 1;xx++)
+				for (let yy = -1; yy <= 1;yy++)
+				{
+					if (xx == 0 && yy == 0)
+						continue;
+					if (this.map[(x+xx) + (y+yy)*this.width] === 40)
+						nbOfNeigh++;
+					else if (this.map[(x+xx) + (y+yy)*this.width] === 41)
+						this.map[(x+xx) + (y+yy)*this.width] = 255;
+					else if (this.map[(x+xx) + (y+yy)*this.width] > 41 && this.map[(x+xx) + (y+yy)*this.width] < 50)
+						this.map[(x+xx) + (y+yy)*this.width] = this.map[(x+xx) + (y+yy)*this.width] - 1;
+				}
+			if (nbOfNeigh > 0)
+				this.map[x + y*this.width] = this.map[x + y*this.width] = 40 + nbOfNeigh;
+			else
+				this.map[x + y*this.width] = this.map[x + y*this.width] = 255;
 		}
 	}
 };
@@ -338,10 +334,10 @@ m.Accessibility.prototype.getAccessValue = function(position, onWater) {
 	{
 		// quick spiral search.
 		var indx = [ [-1,-1],[-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1]]
-		for (var i in indx)
+		for (let i of indx)
 		{
-			var id0 = gamePos[0] + indx[i][0];
-			var id1 = gamePos[1] + indx[i][1];
+			let id0 = gamePos[0] + i[0];
+			let id1 = gamePos[1] + i[1];
 			if (id0 < 0 || id0 >= this.width || id1 < 0 || id1 >= this.width)
 				continue;
 			ret = this.landPassMap[id0 + this.width*id1];
@@ -438,12 +434,9 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 		return [startRegion, endRegion];
 	else
 	{
-		var rgs = this.regionLinks[startRegion];
-		for (var p in rgs)
-		{
-			if (this.regionLinks[rgs[p]].indexOf(endRegion) !== -1)
-				return [startRegion, rgs[p], endRegion];
-		}
+		for (let rgs of this.regionLinks[startRegion])
+			if (this.regionLinks[rgs].indexOf(endRegion) !== -1)
+				return [startRegion, rgs, endRegion];
 	}
 	// it appears to be difficult.
 	// computing A* over a graph with all nodes equally good (might want to change this sometimes), currently it returns the shortest path switch-wise.
@@ -492,9 +485,8 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 				break;
 			}
 		}
-		for (var i in this.regionLinks[currentRegion])
+		for (let region of this.regionLinks[currentRegion])
 		{
-			var region = this.regionLinks[currentRegion][i];
 			if(this.isOpened[region] === undefined)
 			{
 				this.parentSquare[region] = currentRegion;
@@ -506,7 +498,9 @@ m.Accessibility.prototype.getTrajectToIndex = function(istart, iend, noBound){
 					found = true;
 					break;
 				}
-			} else {
+			}
+			else
+			{
 				if (this.gCostArray[region] > 1 + this.gCostArray[currentRegion])
 				{
 					this.parentSquare[region] = currentRegion;
@@ -737,9 +731,9 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 // creates and maintains a map of unused resource density
 // this also takes dropsites into account.
 // resources that are "part" of a dropsite are not counted.
-m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
-	
-	for (var resource in this.decreaseFactor)
+m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
+{	
+	for (let resource in this.decreaseFactor)
 	{
 		// if there is no resourceMap create one with an influence for everything with that resource
 		if (! this.resourceMaps[resource])
@@ -752,66 +746,61 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events) {
 			this.CCResourceMaps[resource].setMaxVal(255);
 		}
 	}
-	
+
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
-	var destEvents = events["Destroy"];
-	var createEvents = events["Create"];
+	let destEvents = events["Destroy"];
+	let createEvents = events["Create"];
 	
-	for (var key in destEvents)
+	for (let e of destEvents)
 	{
-		var e = destEvents[key];
-		if (e.entityObj)
+		if (!e.entityObj)
+			continue;
+		let ent = e.entityObj;
+		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
-			var ent = e.entityObj;
-			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
+			let resource = ent.resourceSupplyType().generic;
+			let x = Math.floor(ent.position()[0] / 4);
+			let z = Math.floor(ent.position()[1] / 4);
+			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+			if (resource === "wood" || resource === "food")
 			{
-				var resource = ent.resourceSupplyType().generic;
-				var x = Math.floor(ent.position()[0] / 4);
-				var z = Math.floor(ent.position()[1] / 4);
-				var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-				
-				if (resource === "wood" || resource === "food")
-				{
-					this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
-					this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
-					this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
-				}
-				else if (resource === "stone" || resource === "metal")
-				{
-					this.resourceMaps[resource].addInfluence(x, z, 8, 50);
-					this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
-					this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
-					this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
-				}
+				this.resourceMaps[resource].addInfluence(x, z, 2, 5,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 9.0, -strength,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 15, -strength/2.0,'constant');
+			}
+			else if (resource === "stone" || resource === "metal")
+			{
+				this.resourceMaps[resource].addInfluence(x, z, 8, 50);
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/1.5);
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, -strength/2.0,'constant');
+				this.CCResourceMaps[resource].addInfluence(x, z, 30, -strength,'constant');
 			}
 		}
 	}
-	for (var key in createEvents)
+	for (let e of createEvents)
 	{
-		var e = createEvents[key];
-		if (e.entity && sharedScript._entities.has(e.entity))
+		if (!e.entity || !sharedScript._entities.has(e.entity))
+			continue;
+		let ent = sharedScript._entities.get(e.entity);
+		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
-			var ent = sharedScript._entities.get(e.entity);
-			if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
+			let resource = ent.resourceSupplyType().generic;
+			let x = Math.floor(ent.position()[0] / 4);
+			let z = Math.floor(ent.position()[1] / 4);
+			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
+			if (resource === "wood" || resource === "food")
 			{
-				var resource = ent.resourceSupplyType().generic;
-				var x = Math.floor(ent.position()[0] / 4);
-				var z = Math.floor(ent.position()[1] / 4);
-				var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
-				if (resource === "wood" || resource === "food")
-				{
-					this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
-					this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
-					this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
-				}
-				else if (resource === "stone" || resource === "metal")
-				{
-					this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
-					this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
-					this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
-					this.resourceMaps[resource].addInfluence(x, z, 8, -50);
-				}
+				this.CCResourceMaps[resource].addInfluence(x, z, 15, strength/2.0,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 9.0, strength,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 2, -5,'constant');
+			}
+			else if (resource === "stone" || resource === "metal")
+			{
+				this.CCResourceMaps[resource].addInfluence(x, z, 30, strength,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/1.5);
+				this.resourceMaps[resource].addInfluence(x, z, 12.0, strength/2.0,'constant');
+				this.resourceMaps[resource].addInfluence(x, z, 8, -50);
 			}
 		}
 	}

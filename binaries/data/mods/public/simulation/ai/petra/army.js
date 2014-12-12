@@ -36,10 +36,10 @@ m.Army = function(gameState, ownEntities, foeEntities)
 	this.ownStrength = 0;
 	
 	// actually add units
-	for (var i in foeEntities)
-		this.addFoe(gameState,foeEntities[i], true);
-	for (var i in ownEntities)
-		this.addOwn(gameState,ownEntities[i]);
+	for (let id of foeEntities)
+		this.addFoe(gameState, id, true);
+	for (let id of ownEntities)
+		this.addOwn(gameState, id);
 	
 	this.recalculatePosition(gameState, true);
 

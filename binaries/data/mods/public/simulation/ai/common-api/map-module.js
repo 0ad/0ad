@@ -290,22 +290,20 @@ m.Map.prototype.sumInfluence = function(cx, cy, radius)
  */
 m.Map.prototype.expandInfluences = function(maximum, map)
 {
-	var grid = this.map;
-	if (map !== undefined)
-		grid = map;
-	
-	if (maximum == undefined)
-		maximum = this.maxVal;
-	var w = this.width;
-	var h = this.height;
+	maximum = (maximum !== undefined) ? maximum : this.maxVal;
+	let grid = (map !== undefined) ? map : this.map;
+	let w = this.width;
+	let h = this.height;
+
 	for (let y = 0; y < h; ++y)
 	{
 		let min = maximum;
+		let x0 = y * w;
 		for (let x = 0; x < w; ++x)
 		{
-			let g = grid[x + y * w];
+			let g = grid[x + x0];
 			if (g > min)
-				grid[x + y * w] = min;
+				grid[x + x0] = min;
 			else if (g < min)
 				min = g;
 			++min;
@@ -315,9 +313,9 @@ m.Map.prototype.expandInfluences = function(maximum, map)
 		
 		for (let x = w - 2; x >= 0; --x)
 		{
-			let g = grid[x + y * w];
+			let g = grid[x + x0];
 			if (g > min)
-				grid[x + y * w] = min;
+				grid[x + x0] = min;
 			else if (g < min)
 				min = g;
 			++min;
@@ -362,6 +360,7 @@ m.Map.prototype.multiply = function(map, onlyBetter, divider, maxMultiplier)
 		if (map.map[i]/divider > 1)
 			this.map[i] = Math.min(maxMultiplier*this.map[i], this.map[i] * (map.map[i]/divider));
 };
+
 // add to current map by the parameter map pixelwise
 m.Map.prototype.add = function(map)
 {
@@ -379,8 +378,8 @@ m.Map.prototype.add = function(map)
 m.Map.prototype.findBestTile = function(radius, obstructionTiles)
 {
 	// Find the best non-obstructed tile
-	var bestIdx = 0;
-	var bestVal = -1;
+	let bestIdx = 0;
+	let bestVal = -1;
 	for (let i = 0; i < this.length; ++i)
 	{
 		if (obstructionTiles.map[i] > radius)
