@@ -152,7 +152,7 @@ ResourceGatherer.prototype.GetGatherRate = function(resourceType)
 		return 0;
 
 	let baseSpeed = this.GetBaseSpeed();
-	let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + resourceType, +this.template.Rates[resoureType], this.entity);
+	let rate = ApplyValueModificationsToEntity("ResourceGatherer/Rates/" + resourceType, +this.template.Rates[resourceType], this.entity);
 	return rate * baseSpeed;
 };
 
