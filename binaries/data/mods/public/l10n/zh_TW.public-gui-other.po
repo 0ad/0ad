@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-18 07:50+0000\n"
-"Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-20 10:12+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,35 +19,35 @@ msgstr ""
 "Language: zh_TW\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s 特點"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "文明加成"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "團隊加成"
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr "特殊科技"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "特殊建築"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "英雄"
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s 歷史"
@@ -68,11 +68,11 @@ msgstr "正在開啟頁面"
 msgid "FPS: %(fps)s"
 msgstr "FPS： %(fps)s"
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -86,8 +86,8 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
-msgstr "[%(date)s]"
+msgid "\\[%(date)s]"
+msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -143,13 +143,13 @@ msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "是"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "否"
@@ -490,8 +490,8 @@ msgid "Error"
 msgstr "錯誤"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr "啟動多人遊戲大廳。 [編譯時被禁用]"
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
@@ -506,53 +506,53 @@ msgstr "手動"
 msgid "No saved games found"
 msgstr "找不到遊戲存檔"
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr "此遊戲存檔可能不相容於："
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "它需要0 A.D. 版本 %(requiredVersion)s ，然而您執行的是 %(currentVersion)s 。"
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "當您執行 \"%(currentMod)s\" 時不需要任何 mod。"
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "它需要 \"%(requiredMod)s\" ，但您並未執行該 mod。"
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "它需要 mod \"%(requiredMod)s\" ，但您正在執行 \"%(currentMod)s\" 。"
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr "您仍要繼續嗎？"
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr "警告"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "「%(label)s」"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "儲存的遊戲將永遠刪除，您是否確定？"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "刪除"
 
@@ -827,8 +827,9 @@ msgstr "點擊這裏開始新的單人遊戲。"
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr "透過歷史戰役重溫歷史事件。[尚未實現]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
@@ -1136,8 +1137,8 @@ msgid ""
 msgstr "[icon=\"constructionIcon\"]  此為本遊戲的早期實驗版本。某些特性可能遺失並存在一些臭蟲。"
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr "[icon=iconLag]  大量單位移動時，遊戲可能會有延遲。"
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
@@ -1146,8 +1147,8 @@ msgstr "[icon=\"iconMap\"]  大型地圖可能會造成一些問題。"
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
-msgstr "[icon=\"iconFormation\"]  我們暫時停用了陣型系統，直到我們找出如何讓它造成較少的延遲、更好玩、且更貼近史實。"
+"make them less laggy, more fun to play, and historically accurate."
+msgstr ""
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

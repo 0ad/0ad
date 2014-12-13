@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-12 08:17+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-21 18:16+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -108,59 +108,59 @@ msgstr "同盟"
 msgid "Neutral"
 msgstr "中立"
 
-#: gui/session/menu.js:287 gui/session/messages.js:617
+#: gui/session/menu.js:287 gui/session/messages.js:619
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "敵対"
 
-#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
+#: gui/session/menu.js:345
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:476
+#: gui/session/menu.js:456
 msgid "There are no land traders."
 msgstr "商人がいません。"
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:462
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s人が待機"
 
-#: gui/session/menu.js:486
+#: gui/session/menu.js:466
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s人の陸の商人が取引中"
 
-#: gui/session/menu.js:489
+#: gui/session/menu.js:469
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s人が交易船内に乗船"
 
-#: gui/session/menu.js:492
+#: gui/session/menu.js:472
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s、%(garrisonedString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:500
+#: gui/session/menu.js:480
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s、そして%(garrisonedString)sしています。"
 
-#: gui/session/menu.js:510 gui/session/menu.js:572
+#: gui/session/menu.js:490 gui/session/menu.js:552
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:517 gui/session/menu.js:579
+#: gui/session/menu.js:497 gui/session/menu.js:559
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)sです。"
 
-#: gui/session/menu.js:527
+#: gui/session/menu.js:507
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -170,204 +170,204 @@ msgid_plural ""
 " ship"
 msgstr[0] "%(numberGarrisoned)s人の陸の商人が交易船に乗船"
 
-#: gui/session/menu.js:530
+#: gui/session/menu.js:510
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s、そして%(inactiveString)sしています。"
 
-#: gui/session/menu.js:537
+#: gui/session/menu.js:517
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)sしています。"
 
-#: gui/session/menu.js:546
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s人の陸の商人が待機"
 
-#: gui/session/menu.js:547 gui/session/menu.js:589
+#: gui/session/menu.js:527 gui/session/menu.js:569
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "%(inactiveString)sしています。"
 
-#: gui/session/menu.js:559
+#: gui/session/menu.js:539
 msgid "There are no merchant ships."
 msgstr "交易船がありません。"
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:545
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s隻が待機"
 
-#: gui/session/menu.js:569
+#: gui/session/menu.js:549
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s隻の交易船が取引中"
 
-#: gui/session/menu.js:588
+#: gui/session/menu.js:568
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s隻の交易船が待機"
 
-#: gui/session/menu.js:667 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:647 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "マニュアル"
 
-#: gui/session/menu.js:678
+#: gui/session/menu.js:658
 msgid "The Developer Overlay was opened."
 msgstr "開発者用オーバーレイを開きました。"
 
-#: gui/session/menu.js:680
+#: gui/session/menu.js:660
 msgid "The Developer Overlay was closed."
 msgstr "開発者用オーバーレイを閉じました。"
 
-#: gui/session/menu.js:696
+#: gui/session/menu.js:676
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "%(resourceType)s %(resourceAmount)sを%(playerName)sに貢ぎます。Shift+クリックで%(greaterAmount)s貢ぎます。"
 
-#: gui/session/messages.js:200
+#: gui/session/messages.js:202
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "ネットメッセージ：%(message)s"
 
-#: gui/session/messages.js:213
+#: gui/session/messages.js:215
 msgid "Waiting for other players to connect..."
 msgstr "他のプレイヤーの接続を待っています…"
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:219
 msgid "Synchronising gameplay with other players..."
 msgstr "他のプレイヤーと進行を同期しています…"
 
-#: gui/session/messages.js:225
+#: gui/session/messages.js:227
 msgid "Connected to the server."
 msgstr "サーバーに接続しました。"
 
-#: gui/session/messages.js:229
+#: gui/session/messages.js:231
 msgid "Connection to the server has been authenticated."
 msgstr "サーバーへの接続が認証されました。"
 
-#: gui/session/messages.js:234
+#: gui/session/messages.js:236
 msgid "Connection to the server has been lost."
 msgstr "サーバーとの接続が失われました。"
 
-#: gui/session/messages.js:234
+#: gui/session/messages.js:236
 msgid "The game has ended."
 msgstr "ゲームはすでに終了しました。"
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:420
 msgid "Unknown player"
 msgstr "不明なプレイヤー"
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:428
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)sがゲームに参加しました。"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:431
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)sがゲームを離れました。"
 
-#: gui/session/messages.js:434
+#: gui/session/messages.js:436
 msgid "You have been defeated."
 msgstr "あなたは敗北しました。"
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:438
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)sは敗北しました。"
 
-#: gui/session/messages.js:444
+#: gui/session/messages.js:446
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "あなたは%(player)sと同盟しました。"
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:448
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "あなたは%(player)sに宣戦しました。"
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:450
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "あなたは%(player)sと中立になりました。"
 
-#: gui/session/messages.js:454
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)sはあなたと同盟しました。"
 
-#: gui/session/messages.js:456
+#: gui/session/messages.js:458
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)sはあなたに宣戦しました。"
 
-#: gui/session/messages.js:458
+#: gui/session/messages.js:460
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)sはあなたと中立になりました。"
 
-#: gui/session/messages.js:477
+#: gui/session/messages.js:479
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s、%(lastAmount)s"
 
-#: gui/session/messages.js:478 gui/session/utility_functions.js:187
-#: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
-#: gui/session/utility_functions.js:292 gui/session/utility_functions.js:338
-#: gui/session/utility_functions.js:613 gui/session/utility_functions.js:635
-#: gui/session/utility_functions.js:640
+#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
+#: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
+#: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
+#: gui/session/utility_functions.js:619
 msgid ", "
 msgstr "、"
 
-#: gui/session/messages.js:483
+#: gui/session/messages.js:485
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)sはあなたに%(amounts)sを贈りました。"
 
-#: gui/session/messages.js:493
+#: gui/session/messages.js:495
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)sが攻撃してきました！"
 
-#: gui/session/messages.js:518
+#: gui/session/messages.js:520
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:526
+#: gui/session/messages.js:528
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:534 gui/session/messages.js:535
+#: gui/session/messages.js:536 gui/session/messages.js:537
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:538
+#: gui/session/messages.js:540
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:546
+#: gui/session/messages.js:548
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:604 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "チーム"
 
-#: gui/session/messages.js:637
+#: gui/session/messages.js:639
 msgid "Private"
 msgstr "プライベート"
 
@@ -378,8 +378,8 @@ msgstr "%(genericName)s — Packed"
 
 #: gui/session/selection_details.js:44
 #, javascript-format
-msgid "[OFFLINE] %(player)s"
-msgstr "[OFFLINE] %(player)s"
+msgid "\\[OFFLINE] %(player)s"
+msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -441,7 +441,7 @@ msgstr "現在の/最大の収集者数"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:226 gui/session/selection_panels.js:976
+#: gui/session/selection_details.js:226 gui/session/selection_panels.js:973
 #: gui/session/session.js:637
 msgid "Armor:"
 msgstr "防御："
@@ -461,12 +461,12 @@ msgid "Rate:"
 msgstr "間隔:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:629
-#: gui/session/utility_functions.js:324
+#: gui/session/utility_functions.js:303
 msgid "Range:"
 msgstr "射程:"
 
 #: gui/session/selection_details.js:251 gui/session/session.js:630
-#: gui/session/utility_functions.js:325
+#: gui/session/utility_functions.js:304
 msgid "meters"
 msgstr "メートル"
 
@@ -487,7 +487,7 @@ msgstr "%(label)s %(details)s、%(rangeLabel)s %(range)s%(meters)s、%(rate)s"
 msgid "%(label)s %(details)s, %(rate)s"
 msgstr "%(label)s %(details)s、%(rate)s"
 
-#: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
+#: gui/session/selection_details.js:307 gui/session/utility_functions.js:547
 msgid "Classes:"
 msgstr "分類："
 
@@ -510,60 +510,60 @@ msgstr "%(resource)sを購入"
 msgid "Sell %(resource)s"
 msgstr "%(resource)sを売却"
 
-#: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
+#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:981
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "%(technology)sが必要"
 
-#: gui/session/selection_panels.js:332
+#: gui/session/selection_panels.js:329
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "%(name)sを外に出す"
 
-#: gui/session/selection_panels.js:333
+#: gui/session/selection_panels.js:330
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "シングルクリックで1体を外に出します。Shift+クリックで同種のユニットをすべて外に出します。"
 
-#: gui/session/selection_panels.js:400
+#: gui/session/selection_panels.js:397
 msgid "Lock Gate"
 msgstr "門を閉ざす"
 
-#: gui/session/selection_panels.js:406
+#: gui/session/selection_panels.js:403
 msgid "Unlock Gate"
 msgstr "門を開く"
 
-#: gui/session/selection_panels.js:511
+#: gui/session/selection_panels.js:508
 msgid "Pack"
 msgstr "梱包"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:510
 msgid "Unpack"
 msgstr "展開"
 
-#: gui/session/selection_panels.js:515
+#: gui/session/selection_panels.js:512
 msgid "Cancel Packing"
 msgstr "梱包をキャンセル"
 
-#: gui/session/selection_panels.js:517
+#: gui/session/selection_panels.js:514
 msgid "Cancel Unpacking"
 msgstr "展開をキャンセル"
 
-#: gui/session/selection_panels.js:590
+#: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
 msgstr "人口上限の不足:"
 
-#: gui/session/selection_panels.js:591
+#: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:710
+#: gui/session/selection_panels.js:707
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "不足：%(number)s棟"
 
-#: gui/session/selection_panels.js:972 gui/session/session.js:617
+#: gui/session/selection_panels.js:969 gui/session/session.js:617
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "耐久力："
@@ -685,24 +685,24 @@ msgstr "勝利！"
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(details)s、%(rangeLabel)s %(range)s"
 
-#: gui/session/session.js:795
+#: gui/session/session.js:793
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)s倍)"
 
-#: gui/session/session.js:897
+#: gui/session/session.js:895
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Build: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:902
+#: gui/session/session.js:900
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "注：タイムワープモードは開発者用オプションであり、長時間を超えての使用を想定していません。不適切な使用は、ゲームがメモリーを使い果たす、すなわち異常終了する原因となる場合があります。"
 
-#: gui/session/session.js:902
+#: gui/session/session.js:900
 msgid "Time warp mode"
 msgstr "タイムワープモード"
 
@@ -802,361 +802,361 @@ msgstr "警報発報！"
 msgid "End of alert."
 msgstr "警報解除。"
 
-#: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
-#: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
+#: gui/session/utility_functions.js:147 gui/session/utility_functions.js:194
+#: gui/session/utility_functions.js:223 gui/session/utility_functions.js:249
 msgid "(None)"
 msgstr "(なし)"
 
-#: gui/session/utility_functions.js:172 gui/session/utility_functions.js:177
-#: gui/session/utility_functions.js:182 gui/session/utility_functions.js:248
-#: gui/session/utility_functions.js:253 gui/session/utility_functions.js:258
+#: gui/session/utility_functions.js:151 gui/session/utility_functions.js:156
+#: gui/session/utility_functions.js:161 gui/session/utility_functions.js:227
+#: gui/session/utility_functions.js:232 gui/session/utility_functions.js:237
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s%(damageType)s"
 
-#: gui/session/utility_functions.js:174 gui/session/utility_functions.js:221
-#: gui/session/utility_functions.js:250 gui/session/utility_functions.js:276
+#: gui/session/utility_functions.js:153 gui/session/utility_functions.js:200
+#: gui/session/utility_functions.js:229 gui/session/utility_functions.js:255
 msgid "Hack"
 msgstr "打撃"
 
-#: gui/session/utility_functions.js:179 gui/session/utility_functions.js:227
-#: gui/session/utility_functions.js:255 gui/session/utility_functions.js:282
+#: gui/session/utility_functions.js:158 gui/session/utility_functions.js:206
+#: gui/session/utility_functions.js:234 gui/session/utility_functions.js:261
 msgid "Pierce"
 msgstr "貫通"
 
-#: gui/session/utility_functions.js:184 gui/session/utility_functions.js:233
-#: gui/session/utility_functions.js:260 gui/session/utility_functions.js:288
+#: gui/session/utility_functions.js:163 gui/session/utility_functions.js:212
+#: gui/session/utility_functions.js:239 gui/session/utility_functions.js:267
 msgid "Crush"
 msgstr "衝突"
 
-#: gui/session/utility_functions.js:195
+#: gui/session/utility_functions.js:174
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/session/utility_functions.js:196
+#: gui/session/utility_functions.js:175
 #, javascript-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
 msgstr[0] "矢%(arrows)s本"
 
-#: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
+#: gui/session/utility_functions.js:176 gui/session/utility_functions.js:180
 #, javascript-format
 msgid "%(time)s second"
 msgid_plural "%(time)s seconds"
 msgstr[0] "%(time)s秒"
 
-#: gui/session/utility_functions.js:219 gui/session/utility_functions.js:225
-#: gui/session/utility_functions.js:231 gui/session/utility_functions.js:274
-#: gui/session/utility_functions.js:280 gui/session/utility_functions.js:286
+#: gui/session/utility_functions.js:198 gui/session/utility_functions.js:204
+#: gui/session/utility_functions.js:210 gui/session/utility_functions.js:253
+#: gui/session/utility_functions.js:259 gui/session/utility_functions.js:265
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/session/utility_functions.js:222 gui/session/utility_functions.js:228
-#: gui/session/utility_functions.js:234 gui/session/utility_functions.js:277
-#: gui/session/utility_functions.js:283 gui/session/utility_functions.js:289
+#: gui/session/utility_functions.js:201 gui/session/utility_functions.js:207
+#: gui/session/utility_functions.js:213 gui/session/utility_functions.js:256
+#: gui/session/utility_functions.js:262 gui/session/utility_functions.js:268
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/session/utility_functions.js:297
+#: gui/session/utility_functions.js:276
 msgid "Charge Attack:"
 msgstr "突進攻撃:"
 
-#: gui/session/utility_functions.js:298
+#: gui/session/utility_functions.js:277
 msgid "Melee Attack:"
 msgstr "近接攻撃:"
 
-#: gui/session/utility_functions.js:299
+#: gui/session/utility_functions.js:278
 msgid "Ranged Attack:"
 msgstr "遠隔攻撃:"
 
-#: gui/session/utility_functions.js:302
+#: gui/session/utility_functions.js:281
 msgid "Attack:"
 msgstr "攻撃："
 
-#: gui/session/utility_functions.js:321
+#: gui/session/utility_functions.js:300
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s、%(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:330
+#: gui/session/utility_functions.js:309
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:383 gui/session/utility_functions.js:384
-#: gui/session/utility_functions.js:385 gui/session/utility_functions.js:386
-#: gui/session/utility_functions.js:387 gui/session/utility_functions.js:388
-#: gui/session/utility_functions.js:512
+#: gui/session/utility_functions.js:362 gui/session/utility_functions.js:363
+#: gui/session/utility_functions.js:364 gui/session/utility_functions.js:365
+#: gui/session/utility_functions.js:366 gui/session/utility_functions.js:367
+#: gui/session/utility_functions.js:491
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/session/utility_functions.js:442
+#: gui/session/utility_functions.js:421
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)sから%(resourceIcon)s %(maximum)s"
 
-#: gui/session/utility_functions.js:475
+#: gui/session/utility_functions.js:454
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "壁: %(costs)s"
 
-#: gui/session/utility_functions.js:476
+#: gui/session/utility_functions.js:455
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "塔: %(costs)s"
 
-#: gui/session/utility_functions.js:498
+#: gui/session/utility_functions.js:477
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:499
+#: gui/session/utility_functions.js:478
 msgid "Population Bonus:"
 msgstr "人口ボーナス:"
 
-#: gui/session/utility_functions.js:517
+#: gui/session/utility_functions.js:496
 msgid "Insufficient resources:"
 msgstr "不足資源："
 
-#: gui/session/utility_functions.js:528
+#: gui/session/utility_functions.js:507
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:538
+#: gui/session/utility_functions.js:517
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:561
 #, javascript-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:606
+#: gui/session/utility_functions.js:585
 msgid "Speed:"
 msgstr "速度："
 
-#: gui/session/utility_functions.js:609 gui/session/utility_functions.js:611
+#: gui/session/utility_functions.js:588 gui/session/utility_functions.js:590
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(movementType)s %(speed)s"
 
-#: gui/session/utility_functions.js:609
+#: gui/session/utility_functions.js:588
 msgid "Walk"
 msgstr "歩行"
 
-#: gui/session/utility_functions.js:611
+#: gui/session/utility_functions.js:590
 msgid "Run"
 msgstr "走行"
 
-#: gui/session/utility_functions.js:613
+#: gui/session/utility_functions.js:592
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:625 gui/session/utility_functions.js:627
+#: gui/session/utility_functions.js:604 gui/session/utility_functions.js:606
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:629 gui/session/utility_functions.js:635
-#: gui/session/utility_functions.js:640
+#: gui/session/utility_functions.js:608 gui/session/utility_functions.js:614
+#: gui/session/utility_functions.js:619
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:631
+#: gui/session/utility_functions.js:610
 msgid "you"
 msgstr "あなた"
 
-#: gui/session/utility_functions.js:637 gui/session/utility_functions.js:642
+#: gui/session/utility_functions.js:616 gui/session/utility_functions.js:621
 #, javascript-format
 msgid "player %(name)s"
 msgstr "プレイヤー %(name)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:661
 msgctxt "firstWord"
 msgid "Food"
 msgstr "食料"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:684
+#: gui/session/utility_functions.js:663
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "肉"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:686
+#: gui/session/utility_functions.js:665
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "金属"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:688
+#: gui/session/utility_functions.js:667
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "鉱石"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:669
 msgctxt "firstWord"
 msgid "Rock"
 msgstr "岩"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:692
+#: gui/session/utility_functions.js:671
 msgctxt "firstWord"
 msgid "Ruins"
 msgstr "遺跡"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:673
 msgctxt "firstWord"
 msgid "Stone"
 msgstr "石材"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:696
+#: gui/session/utility_functions.js:675
 msgctxt "firstWord"
 msgid "Treasure"
 msgstr "財宝"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:677
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "木"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:700
+#: gui/session/utility_functions.js:679
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "木材"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:681
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "木の実"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:704
+#: gui/session/utility_functions.js:683
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "穀物"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:685
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "魚"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:711
+#: gui/session/utility_functions.js:690
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "食料"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:692
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "肉"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:694
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "金属"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:717
+#: gui/session/utility_functions.js:696
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "鉱石"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:719
+#: gui/session/utility_functions.js:698
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "岩"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:721
+#: gui/session/utility_functions.js:700
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "遺跡"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:723
+#: gui/session/utility_functions.js:702
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "石材"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:725
+#: gui/session/utility_functions.js:704
 msgctxt "withinSentence"
 msgid "Treasure"
 msgstr "財宝"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:727
+#: gui/session/utility_functions.js:706
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "木"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:729
+#: gui/session/utility_functions.js:708
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "木材"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:731
+#: gui/session/utility_functions.js:710
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "木の実"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:733
+#: gui/session/utility_functions.js:712
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "穀物"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:735
+#: gui/session/utility_functions.js:714
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "魚"

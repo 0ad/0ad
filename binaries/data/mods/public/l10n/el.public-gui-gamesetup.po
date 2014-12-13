@@ -14,8 +14,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-09-13 23:50+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-20 09:50+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -38,6 +38,11 @@ msgstr "Το AI θα απενεργοποιηθεί για αυτόν τον π�
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "Sandbox"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Very Easy"
+msgstr ""
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -109,7 +114,7 @@ msgid "Skirmish"
 msgstr "Αψιμαχία"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1257
+#: gui/gamesetup/gamesetup.js:1260
 msgctxt "map"
 msgid "Random"
 msgstr "Τυχαίο"
@@ -118,8 +123,8 @@ msgstr "Τυχαίο"
 msgid "Scenario"
 msgstr "Σενάριο"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1240
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1243
 msgid "Default"
 msgstr "Προεπιλογή"
 
@@ -140,149 +145,149 @@ msgctxt "team"
 msgid "None"
 msgstr "Καμία"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1318
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
 msgctxt "civilization"
 msgid "Random"
 msgstr "Τυχαίο"
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:897
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
 msgid "You"
 msgstr "Εσείς"
 
-#: gui/gamesetup/gamesetup.js:978
+#: gui/gamesetup/gamesetup.js:981
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:(caption):112
+#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
 msgstr "Μέγεθος Χάρτη:"
 
-#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
-#: gui/gamesetup/gamesetup.xml:(caption):315
+#: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
+#: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
 msgstr "Αποκάλυψη Χάρτη:"
 
-#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.js:1188
-#: gui/gamesetup/gamesetup.xml:(caption):325
+#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
+#: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
 msgstr "Εξερεύνησε Χάρτη"
 
-#: gui/gamesetup/gamesetup.js:1133 gui/gamesetup/gamesetup.js:1192
-#: gui/gamesetup/gamesetup.xml:(caption):285
+#: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
+#: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Προϋπόθεση νίκης:"
 
-#: gui/gamesetup/gamesetup.js:1135 gui/gamesetup/gamesetup.js:1194
-#: gui/gamesetup/gamesetup.xml:(caption):335
+#: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
+#: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
 msgstr "Κλειδωμένες ομάδες:"
 
-#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
-#: gui/gamesetup/gamesetup.js:1244
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
+#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
+#: gui/gamesetup/gamesetup.js:1247
 msgid "Yes"
 msgstr "Ναι"
 
-#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
-#: gui/gamesetup/gamesetup.js:1244
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
+#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
+#: gui/gamesetup/gamesetup.js:1247
 msgid "No"
 msgstr "Όχι"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1261
 msgid "Randomly selects a map from the list"
 msgstr "Επιλέγει έναν τυχαίο χάρτη από τη λίστα"
 
-#: gui/gamesetup/gamesetup.js:1265
+#: gui/gamesetup/gamesetup.js:1268
 msgid "Sorry, no description available."
 msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
-#: gui/gamesetup/gamesetup.js:1268
+#: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1304
+#: gui/gamesetup/gamesetup.js:1307
 msgid "Loading..."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1417
+#: gui/gamesetup/gamesetup.js:1420
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1422
+#: gui/gamesetup/gamesetup.js:1425
 msgid "Unassigned"
 msgstr "Δεν ορίστηκε"
 
-#: gui/gamesetup/gamesetup.js:1610 gui/gamesetup/gamesetup.js:1615
-#: gui/gamesetup/gamesetup.js:1633
+#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1613
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s εισήλθε"
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1618
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s έφυγε"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1623
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1624
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1627
+#: gui/gamesetup/gamesetup.js:1630
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s είναι έτοιμος!"
 
-#: gui/gamesetup/gamesetup.js:1629
+#: gui/gamesetup/gamesetup.js:1632
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s δεν είναι έτοιμος."
 
-#: gui/gamesetup/gamesetup.js:1633
+#: gui/gamesetup/gamesetup.js:1636
 msgid "Game settings have been changed"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1658
+#: gui/gamesetup/gamesetup.js:1661
 msgid "I'm not ready"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1659
+#: gui/gamesetup/gamesetup.js:1662
 msgid "State that you are not ready to play."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1664 gui/gamesetup/gamesetup.js:1740
+#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
 msgid "I'm ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1665
+#: gui/gamesetup/gamesetup.js:1668
 msgid "State that you are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1744
 msgid "State that you accept the current settings and are ready to play!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1860
+#: gui/gamesetup/gamesetup.js:1863
 msgid "None"
 msgstr "Κανένα"
 
@@ -361,7 +366,7 @@ msgid "Cancel"
 msgstr "Ακύρωση"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):369
 msgid "OK"
 msgstr "ΟΚ"
 
@@ -413,40 +418,36 @@ msgstr "Αριθμός Παικτών:"
 msgid "Send"
 msgstr "Αποστολή"
 
-#: gui/gamesetup/gamesetup.xml:(caption):206
-msgid "[Tooltip text]"
-msgstr "[Κείμενο ετικέτας επεξήγησης]"
-
-#: gui/gamesetup/gamesetup.xml:(caption):218
+#: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Start game!"
 msgstr "Έναρξη παιχνιδιού!"
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
 msgstr "Πίσω"
 
-#: gui/gamesetup/gamesetup.xml:(caption):258
-#: gui/gamesetup/gamesetup.xml:(caption):270
+#: gui/gamesetup/gamesetup.xml:(caption):256
+#: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
 msgstr "Περισσότερες Επιλογές"
 
-#: gui/gamesetup/gamesetup.xml:(caption):275
+#: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
 msgstr "Ταχύτητα παιχνιδιού:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):295
+#: gui/gamesetup/gamesetup.xml:(caption):293
 msgid "Population Cap:"
 msgstr "Ανώτατο όριο πληθυσμού:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):305
+#: gui/gamesetup/gamesetup.xml:(caption):303
 msgid "Starting Resources:"
 msgstr "Πόροι κατά την έναρξη:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):345
+#: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Cheats:"
 msgstr "Ζαβολιές:"
 
-#: gui/gamesetup/gamesetup.xml:(caption):355
+#: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
 msgstr ""
 
@@ -490,55 +491,55 @@ msgstr "Επιλογή αριθμού παικτών."
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "Επιλογή μεγέθους χάρτη. (τα μεγαλύτερα μεγέθη ίσως επηρεάσουν αρνητικά τις επιδόσεις)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):219
+#: gui/gamesetup/gamesetup.xml:(tooltip):217
 msgid "Start a new game with the current settings."
 msgstr "Έναρξη νέου παιχνιδιού με τις τρέχουσες ρυθμίσεις."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):259
+#: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"
 msgstr "Προβολή περισσότερων επιλογών για το παιχνίδι"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):279
+#: gui/gamesetup/gamesetup.xml:(tooltip):277
 msgid "Select game speed."
 msgstr "Επιλογή της ταχύτητας παιχνιδιού."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):289
+#: gui/gamesetup/gamesetup.xml:(tooltip):287
 msgid "Select victory condition."
 msgstr "Επιλογή συνθηκών/προϋποθέσεων νίκης."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):299
+#: gui/gamesetup/gamesetup.xml:(tooltip):297
 msgid "Select population cap."
 msgstr "Επιλογή ανώτατου ορίου πληθυσμού (μονάδων)."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):309
+#: gui/gamesetup/gamesetup.xml:(tooltip):307
 msgid "Select the game's starting resources."
 msgstr "Επιλογή των διαθέσιμων πόρων κατά την έναρξη του παιχνιδιού."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):319
+#: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Toggle revealed map (see everything)."
 msgstr ""
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):329
+#: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):339
+#: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
 msgstr "Εναλλαγή κλειδωμένων ομάδων."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):349
+#: gui/gamesetup/gamesetup.xml:(tooltip):347
 msgid "Toggle the usability of cheats."
 msgstr "Εναλλαγή χρήσης ζαβολιών."
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):359
+#: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):372
+#: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Close more game options window"
 msgstr "Κλείσιμο παραθύρου περισσότερων επιλογών"
 
@@ -571,10 +572,6 @@ msgstr "Διαμόρφωση διακομιστή ως host."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "Όνομα διακομιστή:"
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):110
-msgid "[Connection status]"
-msgstr "[Κατάσταση σύνδεσης]"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"

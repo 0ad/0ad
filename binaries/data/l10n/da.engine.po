@@ -5,12 +5,13 @@
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
 # Fijure <mathiasik@live.dk>, 2014
+# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-05-06 13:30+0000\n"
-"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-27 14:55+0000\n"
+"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,9 +37,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "custom build"
 
-#: i18n/L10n.cpp:266
+#: i18n/L10n.cpp:277
 msgid "Long strings"
 msgstr "Lange ord"
+
+#: lobby/XmppClient.cpp:221
+msgid "Authentication failed"
+msgstr "Kan ikke bekræfte "
+
+#: lobby/XmppClient.cpp:457
+msgid "Registration not acceptable"
+msgstr "Registrering ikke godkendt"
+
+#: lobby/XmppClient.cpp:458
+msgid "Registration conflict"
+msgstr ""
+
+#: lobby/XmppClient.cpp:459
+msgid "Registration not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:460
+msgid "Registration bad request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:461
+msgid "Registration forbidden"
+msgstr "Registrering Forbudt"
+
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+msgid "Registration required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:463
+msgid "Registration unexpected request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:464
+msgid "Registration not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:465
+msgid "Registration unknown error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr ""
+
+#: lobby/XmppClient.cpp:996
+msgid "Bad request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:997
+msgid "Player name already in use"
+msgstr ""
+
+#: lobby/XmppClient.cpp:998
+msgid "Feature not implemented"
+msgstr ""
+
+#: lobby/XmppClient.cpp:999
+msgid "Forbidden"
+msgstr "Forbudt"
+
+#: lobby/XmppClient.cpp:1000
+msgid "Recipient or server gone"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1001
+msgid "Internal server error"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1002
+msgid "Item not found"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1003
+msgid "Jid malformed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1004
+msgid "Not acceptable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1005
+msgid "Not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1006
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1007
+msgid "Not modified"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1008
+msgid "Payment required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1009
+msgid "Recipient unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1010
+msgid "Redirect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1012
+msgid "Remote server not found"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1013
+msgid "Remote server timeout"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1014
+msgid "Resource constraint"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1015
+msgid "Service unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1016
+msgid "Subscribtion Required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1017
+msgid "Undefined condition"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1018
+msgid "Unexpected request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1019
+msgid "Unknown sender"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1021
+msgid "Error undefined"
+msgstr ""
 
 #: ps/SavedGame.cpp:129
 #, c-format

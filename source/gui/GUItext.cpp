@@ -161,9 +161,9 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 						else
 							SpriteCall.m_Area += displacement;
 					}
-					else if(tagAttrib.attrib == L"tooltip")
+					else if (tagAttrib.attrib == L"tooltip")
 						SpriteCall.m_Tooltip = tagAttrib.value;
-					else if(tagAttrib.attrib == L"tooltip_style")
+					else if (tagAttrib.attrib == L"tooltip_style")
 						SpriteCall.m_TooltipStyle = tagAttrib.value;
 				}
 
@@ -364,6 +364,7 @@ void CGUIString::SetValue(const CStrW& str)
 								LOGERROR(L"Escape character at end of string '%ls'", str.c_str());
 								break;
 							}
+							// NOTE: We do not support \n in tag parameters
 							// fall-through
 						default:
 							param.push_back(str[p]);
@@ -421,6 +422,12 @@ void CGUIString::SetValue(const CStrW& str)
 			if (++p == l)
 			{
 				LOGERROR(L"Escape character at end of string '%ls'", str.c_str());
+				break;
+			}
+			if (str[p] == L'n')
+			{
+				++rawpos;
+				m_RawString.push_back(L'\n');
 				break;
 			}
 			// fall-through

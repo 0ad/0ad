@@ -75,15 +75,14 @@ function heading(string, size)
 
 function escapeChars(str)
 {
-	return str.replace(/"/g, "\\\\\"");
+	return str.replace(/"/g, "\\\"");
 };
 
 function subHeading(obj)
 {
-	var string = "";
 	if (!obj.Name)
-		return string;
-	string += '[color="white"][font="sans-bold-14"]' + obj.Name + '[/font] ';
+		return "";
+	let string = '[color="white"][font="sans-bold-14"]' + obj.Name + '[/font] ';
 	if (obj.History)
 		string += '[icon="iconInfo" tooltip="' + escapeChars(obj.History) + '" tooltip_style="civInfoTooltip"]';
 	if (obj.Description)

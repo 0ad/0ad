@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Catalanoic <catalanoic@gmail.com>, 2013
+# Marco tom Suden, 2014
 # Haommin <tfs.msimangu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-04-28 20:18+0000\n"
-"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-12-10 13:30+0000\n"
+"Last-Translator: Marco tom Suden\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,9 +37,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "versió personalitzada"
 
-#: i18n/L10n.cpp:266
+#: i18n/L10n.cpp:277
 msgid "Long strings"
 msgstr "Cadenes llargues"
+
+#: lobby/XmppClient.cpp:221
+msgid "Authentication failed"
+msgstr "Ha fallat l'autentificació"
+
+#: lobby/XmppClient.cpp:457
+msgid "Registration not acceptable"
+msgstr "No s'ha acceptat el registre"
+
+#: lobby/XmppClient.cpp:458
+msgid "Registration conflict"
+msgstr "Hi ha hagut un conflicte en el registre"
+
+#: lobby/XmppClient.cpp:459
+msgid "Registration not authorized"
+msgstr "No s'ha autoritzat el registre"
+
+#: lobby/XmppClient.cpp:460
+msgid "Registration bad request"
+msgstr "Hi ha hagut un error en la sol·licitud de registre"
+
+#: lobby/XmppClient.cpp:461
+msgid "Registration forbidden"
+msgstr "Es prohibeix el registre"
+
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+msgid "Registration required"
+msgstr "És necessari registrar-se"
+
+#: lobby/XmppClient.cpp:463
+msgid "Registration unexpected request"
+msgstr "Sol·licitud inesperada de registre"
+
+#: lobby/XmppClient.cpp:464
+msgid "Registration not allowed"
+msgstr "No es permet el registre"
+
+#: lobby/XmppClient.cpp:465
+msgid "Registration unknown error"
+msgstr "Hi ha hagut un error desconegut en el registre"
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr "subtipus desconegut (consulteu el registre)"
+
+#: lobby/XmppClient.cpp:996
+msgid "Bad request"
+msgstr "Error de sol·licitud"
+
+#: lobby/XmppClient.cpp:997
+msgid "Player name already in use"
+msgstr "El nom d'usuari ja està en ús"
+
+#: lobby/XmppClient.cpp:998
+msgid "Feature not implemented"
+msgstr "Funció per implementar"
+
+#: lobby/XmppClient.cpp:999
+msgid "Forbidden"
+msgstr "Prohibit"
+
+#: lobby/XmppClient.cpp:1000
+msgid "Recipient or server gone"
+msgstr "No hi ha destinatari o servidor"
+
+#: lobby/XmppClient.cpp:1001
+msgid "Internal server error"
+msgstr "Error intern del servidor"
+
+#: lobby/XmppClient.cpp:1002
+msgid "Item not found"
+msgstr "No s'ha trobat l'objecte"
+
+#: lobby/XmppClient.cpp:1003
+msgid "Jid malformed"
+msgstr "El Jid no és vàlid"
+
+#: lobby/XmppClient.cpp:1004
+msgid "Not acceptable"
+msgstr "No és acceptable"
+
+#: lobby/XmppClient.cpp:1005
+msgid "Not allowed"
+msgstr "No està permès"
+
+#: lobby/XmppClient.cpp:1006
+msgid "Not authorized"
+msgstr "No està autoritzat"
+
+#: lobby/XmppClient.cpp:1007
+msgid "Not modified"
+msgstr "No s'ha modificat"
+
+#: lobby/XmppClient.cpp:1008
+msgid "Payment required"
+msgstr "Es requereix un pagament"
+
+#: lobby/XmppClient.cpp:1009
+msgid "Recipient unavailable"
+msgstr "El destinatari no està disponible"
+
+#: lobby/XmppClient.cpp:1010
+msgid "Redirect"
+msgstr "Redirigeix"
+
+#: lobby/XmppClient.cpp:1012
+msgid "Remote server not found"
+msgstr "No s'ha trobat el servidor remot"
+
+#: lobby/XmppClient.cpp:1013
+msgid "Remote server timeout"
+msgstr "El temps de connexió del servidor remot s'ha esgotat"
+
+#: lobby/XmppClient.cpp:1014
+msgid "Resource constraint"
+msgstr "Restricció de recursos"
+
+#: lobby/XmppClient.cpp:1015
+msgid "Service unavailable"
+msgstr "El servei no està disponible"
+
+#: lobby/XmppClient.cpp:1016
+msgid "Subscribtion Required"
+msgstr "Es requereix una subscripció"
+
+#: lobby/XmppClient.cpp:1017
+msgid "Undefined condition"
+msgstr "No s'ha definit la condició"
+
+#: lobby/XmppClient.cpp:1018
+msgid "Unexpected request"
+msgstr "Sol·licitud inesperada"
+
+#: lobby/XmppClient.cpp:1019
+msgid "Unknown sender"
+msgstr "Emissor desconegut"
+
+#: lobby/XmppClient.cpp:1021
+msgid "Error undefined"
+msgstr "Error no definit"
 
 #: ps/SavedGame.cpp:129
 #, c-format

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-09 10:16+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-27 15:23+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
@@ -17,38 +17,38 @@ msgstr ""
 "Language: da\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Gameplay"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilisationsbonus"
 msgstr[1] "Civilisationsbonusser"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Holdbonus"
 msgstr[1] "Holdbonusser"
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr "Specialteknologier"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Specialbygning"
 msgstr[1] "Specialbygninger"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Helte"
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Historien om %(civilization)s"
@@ -69,11 +69,11 @@ msgstr "Åbningsside"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -87,8 +87,8 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
-msgstr "[%(date)s]"
+msgid "\\[%(date)s]"
+msgstr ""
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -144,13 +144,13 @@ msgid "<invalid>"
 msgstr "<ugyldig>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Ja"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Nej"
@@ -491,7 +491,7 @@ msgid "Error"
 msgstr "Fejl"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -507,53 +507,53 @@ msgstr "Manual"
 msgid "No saved games found"
 msgstr "Ingen gemte spil fundet"
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr "Det gemte spil er muligvis ikke kompatibelt."
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr ""
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr ""
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr ""
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr ""
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr "Vil du stadig fortsætte?"
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr "Advarsel"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Det gemte spil vil blive slettet permanent, er du sikker?"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "SLET"
 
@@ -828,8 +828,9 @@ msgstr "Tryk her for at begynde et nyt singleplayer-spil."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr "Genlev historien gennem historiske militærkampagner. [ENDNU IKKE IMPLEMENTERET]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
@@ -1044,7 +1045,7 @@ msgstr "Kavaleri"
 
 #: gui/summary/summary.xml:(caption):416
 msgid "Champion"
-msgstr ""
+msgstr "Elitesoldat"
 
 #: gui/summary/summary.xml:(caption):422
 msgid "Navy"
@@ -1137,8 +1138,8 @@ msgid ""
 msgstr "[icon=\"constructionIcon\"] Dette er en tidlig eksperimentel udgave af spillet. Funktioner mangler og det indeholder fejl."
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr "[icon=iconLag] Spillet kører langsomt når mange enheder bevæger sig."
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
+msgstr ""
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
@@ -1147,7 +1148,7 @@ msgstr "[icon=\"iconMap\"] Store baner kan give problemer."
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
+"make them less laggy, more fun to play, and historically accurate."
 msgstr ""
 
 #: gui/text/tips/army_camp.txt:1

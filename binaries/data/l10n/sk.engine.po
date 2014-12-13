@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-10-18 17:01+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-24 21:51+0000\n"
+"Last-Translator: empy <martinplavala@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,9 +38,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "vlastný build"
 
-#: i18n/L10n.cpp:266
+#: i18n/L10n.cpp:277
 msgid "Long strings"
 msgstr "Dlhé reťazce"
+
+#: lobby/XmppClient.cpp:221
+msgid "Authentication failed"
+msgstr "Overenie zlyhalo"
+
+#: lobby/XmppClient.cpp:457
+msgid "Registration not acceptable"
+msgstr "Neprijateľná registrácia"
+
+#: lobby/XmppClient.cpp:458
+msgid "Registration conflict"
+msgstr "Konflikt v registrácii"
+
+#: lobby/XmppClient.cpp:459
+msgid "Registration not authorized"
+msgstr "Neoprávnená registrácia"
+
+#: lobby/XmppClient.cpp:460
+msgid "Registration bad request"
+msgstr "Zlá požiadavka registrácie"
+
+#: lobby/XmppClient.cpp:461
+msgid "Registration forbidden"
+msgstr "Registrácia zakázaná"
+
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+msgid "Registration required"
+msgstr "Registrácia je potrebná"
+
+#: lobby/XmppClient.cpp:463
+msgid "Registration unexpected request"
+msgstr "Neočakávaná požiadavka v registrácii"
+
+#: lobby/XmppClient.cpp:464
+msgid "Registration not allowed"
+msgstr "Registrácia nepovolená"
+
+#: lobby/XmppClient.cpp:465
+msgid "Registration unknown error"
+msgstr "Neznáma chyba registrácie"
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr "neznámy subtyp (pozri log)"
+
+#: lobby/XmppClient.cpp:996
+msgid "Bad request"
+msgstr "Zlá požiadavka"
+
+#: lobby/XmppClient.cpp:997
+msgid "Player name already in use"
+msgstr "Prezývka sa už používa"
+
+#: lobby/XmppClient.cpp:998
+msgid "Feature not implemented"
+msgstr "Neimplementovaná funkcia"
+
+#: lobby/XmppClient.cpp:999
+msgid "Forbidden"
+msgstr "Zakázané"
+
+#: lobby/XmppClient.cpp:1000
+msgid "Recipient or server gone"
+msgstr "Príjemca, alebo server sa stratil"
+
+#: lobby/XmppClient.cpp:1001
+msgid "Internal server error"
+msgstr "Interná chyba servera"
+
+#: lobby/XmppClient.cpp:1002
+msgid "Item not found"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1003
+msgid "Jid malformed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1004
+msgid "Not acceptable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1005
+msgid "Not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1006
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1007
+msgid "Not modified"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1008
+msgid "Payment required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1009
+msgid "Recipient unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1010
+msgid "Redirect"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1012
+msgid "Remote server not found"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1013
+msgid "Remote server timeout"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1014
+msgid "Resource constraint"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1015
+msgid "Service unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1016
+msgid "Subscribtion Required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1017
+msgid "Undefined condition"
+msgstr "Nedefinovaná podmienka"
+
+#: lobby/XmppClient.cpp:1018
+msgid "Unexpected request"
+msgstr "Neočakávaná požiadavka"
+
+#: lobby/XmppClient.cpp:1019
+msgid "Unknown sender"
+msgstr "Neznámy odosielateľ"
+
+#: lobby/XmppClient.cpp:1021
+msgid "Error undefined"
+msgstr "Nedefinovaná chyba"
 
 #: ps/SavedGame.cpp:129
 #, c-format

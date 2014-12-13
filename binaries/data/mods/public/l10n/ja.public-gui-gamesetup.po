@@ -16,8 +16,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 18:14+0100\n"
-"PO-Revision-Date: 2014-11-09 07:03+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-30 17:58+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,11 @@ msgstr "このプレイヤーのAIが無効になります。"
 msgctxt "aiDiff"
 msgid "Sandbox"
 msgstr "練習"
+
+#: gui/aiconfig/aiconfig.js:29
+msgctxt "aiDiff"
+msgid "Very Easy"
+msgstr "とても簡単"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -111,7 +116,7 @@ msgid "Skirmish"
 msgstr "短期戦"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1257
+#: gui/gamesetup/gamesetup.js:1260
 msgctxt "map"
 msgid "Random"
 msgstr "ランダム"
@@ -120,8 +125,8 @@ msgstr "ランダム"
 msgid "Scenario"
 msgstr "シナリオ"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1163
-#: gui/gamesetup/gamesetup.js:1240
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
+#: gui/gamesetup/gamesetup.js:1243
 msgid "Default"
 msgstr "デフォルト"
 
@@ -142,148 +147,148 @@ msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1318
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:897
+#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
 msgid "You"
 msgstr "あなた"
 
-#: gui/gamesetup/gamesetup.js:978
+#: gui/gamesetup/gamesetup.js:981
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
 msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1126 gui/gamesetup/gamesetup.xml:(caption):112
+#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
 msgstr "マップの大きさ："
 
-#: gui/gamesetup/gamesetup.js:1128 gui/gamesetup/gamesetup.js:1187
-#: gui/gamesetup/gamesetup.xml:(caption):315
+#: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
+#: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
 msgstr "マップ可視化："
 
-#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.js:1188
-#: gui/gamesetup/gamesetup.xml:(caption):325
+#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
+#: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
 msgstr "探索済みマップ："
 
-#: gui/gamesetup/gamesetup.js:1133 gui/gamesetup/gamesetup.js:1192
-#: gui/gamesetup/gamesetup.xml:(caption):285
+#: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
+#: gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "勝利条件："
 
-#: gui/gamesetup/gamesetup.js:1135 gui/gamesetup/gamesetup.js:1194
-#: gui/gamesetup/gamesetup.xml:(caption):335
+#: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
+#: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
 msgstr "固定チーム："
 
-#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
-#: gui/gamesetup/gamesetup.js:1244
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
+#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
+#: gui/gamesetup/gamesetup.js:1247
 msgid "Yes"
 msgstr "はい"
 
-#: gui/gamesetup/gamesetup.js:1154 gui/gamesetup/gamesetup.js:1155
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1210
-#: gui/gamesetup/gamesetup.js:1211 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1241 gui/gamesetup/gamesetup.js:1242
-#: gui/gamesetup/gamesetup.js:1244
+#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
+#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
+#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
+#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
+#: gui/gamesetup/gamesetup.js:1247
 msgid "No"
 msgstr "いいえ"
 
-#: gui/gamesetup/gamesetup.js:1258
+#: gui/gamesetup/gamesetup.js:1261
 msgid "Randomly selects a map from the list"
 msgstr "リストの中からマップをランダムに選択"
 
-#: gui/gamesetup/gamesetup.js:1265
+#: gui/gamesetup/gamesetup.js:1268
 msgid "Sorry, no description available."
 msgstr "すみませんが、説明はありません。"
 
-#: gui/gamesetup/gamesetup.js:1268
+#: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
 msgid "%(number)s player. %(description)s"
 msgid_plural "%(number)s players. %(description)s"
 msgstr[0] "%(number)s人用。%(description)s"
 
-#: gui/gamesetup/gamesetup.js:1304
+#: gui/gamesetup/gamesetup.js:1307
 msgid "Loading..."
 msgstr "読込中..."
 
-#: gui/gamesetup/gamesetup.js:1417
+#: gui/gamesetup/gamesetup.js:1420
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1422
+#: gui/gamesetup/gamesetup.js:1425
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1610 gui/gamesetup/gamesetup.js:1615
-#: gui/gamesetup/gamesetup.js:1633
+#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1610
+#: gui/gamesetup/gamesetup.js:1613
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:1615
+#: gui/gamesetup/gamesetup.js:1618
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:1620
+#: gui/gamesetup/gamesetup.js:1623
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1621
+#: gui/gamesetup/gamesetup.js:1624
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1627
+#: gui/gamesetup/gamesetup.js:1630
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)sが準備完了です。"
 
-#: gui/gamesetup/gamesetup.js:1629
+#: gui/gamesetup/gamesetup.js:1632
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)sの準備がまだです。"
 
-#: gui/gamesetup/gamesetup.js:1633
+#: gui/gamesetup/gamesetup.js:1636
 msgid "Game settings have been changed"
 msgstr "ゲーム設定が変更されました"
 
-#: gui/gamesetup/gamesetup.js:1658
+#: gui/gamesetup/gamesetup.js:1661
 msgid "I'm not ready"
 msgstr "わたしはまだ準備できていない"
 
-#: gui/gamesetup/gamesetup.js:1659
+#: gui/gamesetup/gamesetup.js:1662
 msgid "State that you are not ready to play."
 msgstr "プレイの準備ができていないことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1664 gui/gamesetup/gamesetup.js:1740
+#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
 msgid "I'm ready!"
 msgstr "準備できた！"
 
-#: gui/gamesetup/gamesetup.js:1665
+#: gui/gamesetup/gamesetup.js:1668
 msgid "State that you are ready to play!"
 msgstr "プレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1741
+#: gui/gamesetup/gamesetup.js:1744
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "現行の設定を受け入れプレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1860
+#: gui/gamesetup/gamesetup.js:1863
 msgid "None"
 msgstr "なし"
 
@@ -362,7 +367,7 @@ msgid "Cancel"
 msgstr "キャンセル"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
-#: gui/gamesetup/gamesetup.xml:(caption):371
+#: gui/gamesetup/gamesetup.xml:(caption):369
 msgid "OK"
 msgstr "OK"
 
@@ -414,40 +419,36 @@ msgstr "プレイヤー数："
 msgid "Send"
 msgstr "送信"
 
-#: gui/gamesetup/gamesetup.xml:(caption):206
-msgid "[Tooltip text]"
-msgstr "[Tooltip text]"
-
-#: gui/gamesetup/gamesetup.xml:(caption):218
+#: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Start game!"
 msgstr "ゲーム開始！"
 
-#: gui/gamesetup/gamesetup.xml:(caption):236
+#: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
 msgstr "戻る"
 
-#: gui/gamesetup/gamesetup.xml:(caption):258
-#: gui/gamesetup/gamesetup.xml:(caption):270
+#: gui/gamesetup/gamesetup.xml:(caption):256
+#: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
 msgstr "詳細設定"
 
-#: gui/gamesetup/gamesetup.xml:(caption):275
+#: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
 msgstr "ゲーム速度："
 
-#: gui/gamesetup/gamesetup.xml:(caption):295
+#: gui/gamesetup/gamesetup.xml:(caption):293
 msgid "Population Cap:"
 msgstr "人口上限："
 
-#: gui/gamesetup/gamesetup.xml:(caption):305
+#: gui/gamesetup/gamesetup.xml:(caption):303
 msgid "Starting Resources:"
 msgstr "開始時資源："
 
-#: gui/gamesetup/gamesetup.xml:(caption):345
+#: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Cheats:"
 msgstr "チート："
 
-#: gui/gamesetup/gamesetup.xml:(caption):355
+#: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
 msgstr "格付けする："
 
@@ -491,55 +492,55 @@ msgstr "プレイヤーの人数を選択します。"
 msgid "Select map size. (Larger sizes may reduce performance.)"
 msgstr "マップの大きさを選択します。（大きくなるほど性能が落ちることがあります）"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):219
+#: gui/gamesetup/gamesetup.xml:(tooltip):217
 msgid "Start a new game with the current settings."
 msgstr "現在の設定で新しいゲームを開始します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):259
+#: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"
 msgstr "ゲームの詳細設定を表示します"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):279
+#: gui/gamesetup/gamesetup.xml:(tooltip):277
 msgid "Select game speed."
 msgstr "ゲーム速度を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):289
+#: gui/gamesetup/gamesetup.xml:(tooltip):287
 msgid "Select victory condition."
 msgstr "勝利条件を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):299
+#: gui/gamesetup/gamesetup.xml:(tooltip):297
 msgid "Select population cap."
 msgstr "人口上限を選択します。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):309
+#: gui/gamesetup/gamesetup.xml:(tooltip):307
 msgid "Select the game's starting resources."
 msgstr "ゲーム開始時の資源を選択します。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):319
+#: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Toggle revealed map (see everything)."
 msgstr "マップ全域を可視にするか切り替えます（すべて見えます）。"
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
-#: gui/gamesetup/gamesetup.xml:(tooltip):329
+#: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle explored map (see gaia and buildings)."
 msgstr "マップを探索済みにするか切り替えます（地形と建物が見えます）。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):339
+#: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
 msgstr "チームを固定するか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):349
+#: gui/gamesetup/gamesetup.xml:(tooltip):347
 msgid "Toggle the usability of cheats."
 msgstr "チートを利用可能にするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):359
+#: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle if this game will be rated for the leaderboard."
 msgstr "ゲームをランキング用に格付けするか切り替えます。"
 
-#: gui/gamesetup/gamesetup.xml:(tooltip):372
+#: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Close more game options window"
 msgstr "ゲームの詳細設定ウィンドウを閉じます"
 
@@ -572,10 +573,6 @@ msgstr "あなたのサーバーをホストにします。"
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
 msgstr "サーバー名："
-
-#: gui/gamesetup/gamesetup_mp.xml:(caption):110
-msgid "[Connection status]"
-msgstr "[接続状況]"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
@@ -957,7 +954,7 @@ msgstr "「何たる時代か！何たる風俗か！」 - マルクス・トゥ
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
-msgstr "\"No one is so old as to think that he cannot live one more year.\" - Marcus Tullius Cicero"
+msgstr "「どれだけ老いようともあと一年生きられないと思う者はいない」 - マルクス・トゥッリウス・キケロ"
 
 #: gui/text/quotes.txt:73
 msgid ""
@@ -1361,7 +1358,7 @@ msgid ""
 "\"Democracy, which is a charming form of government, full of variety and "
 "disorder, and dispensing a sort of equality to equals and unequals alike.\" "
 "- Plato"
-msgstr "\"Democracy, which is a charming form of government, full of variety and disorder, and dispensing a sort of equality to equals and unequals alike.\" - Plato"
+msgstr "「民主制、それは魅力的な政体であり、多様さと乱雑さの宝庫だ。そして平等な者にもそうでない者にも等しく平等性の類を分け与える」 - プラトン"
 
 #: gui/text/quotes.txt:148
 msgid "\"Death is not the worst that can happen to men.\" - Plato"

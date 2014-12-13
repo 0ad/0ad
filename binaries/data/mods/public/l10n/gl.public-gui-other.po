@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-09 10:16+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-12-08 11:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,38 +17,38 @@ msgstr ""
 "Language: gl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s — Características"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonificación da civilización"
 msgstr[1] "Bonificacións da civilización"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonificación do equipo"
 msgstr[1] "Bonificacións do equipo"
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr "Tecnoloxías especiais"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Estrutura especial"
 msgstr[1] "Estruturas especiais"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Heroes"
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s — Historia"
@@ -69,11 +69,11 @@ msgstr "Abrindo unha páxina"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -87,8 +87,8 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
-msgstr "[%(date)s]"
+msgid "\\[%(date)s]"
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -144,13 +144,13 @@ msgid "<invalid>"
 msgstr "Configuración rexional inexistente."
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Si"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Non"
@@ -245,7 +245,7 @@ msgstr "Post-procesamento"
 
 #: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Usar filtros de pos-procesamento do lado da pantalla (HDR, brillo, DOF, etc.)."
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -277,7 +277,7 @@ msgstr "Liña de visión suave"
 
 #: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr "Retirar o manto do descoñecido e maila néboa de guerra de maneira suave."
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -491,8 +491,8 @@ msgid "Error"
 msgstr "Erro"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr "Acceder á sala de espera para partidas de varios xogadores."
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgstr "Acceder á sala de espera para partidas de varios xogadores (desactivado ao compilar o xogo)."
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
@@ -507,53 +507,53 @@ msgstr "Manual"
 msgid "No saved games found"
 msgstr "Non se atoparon partidas gardadas."
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr "Pode que a partida non sexa compatíbel:"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Precisa da versión %(requiredVersion)s de 0 A.D. A versión que está a executar é a %(currentVersion)s."
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "A partida non emprega ningunha modificación, mentres que o xogo está a usar «%(currentMod)s»."
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "A partida emprega a modificación «%(requiredMod)s»,  mentres que o xogo non está a usar ningunha."
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "A partida emprega a modificación «%(requiredMod)s»,  mentres que o xogo está a usar «%(currentMod)s»."
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr "Estás seguro de que queres continuar?"
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr "Advertencia"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "«%(label)s»"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "A partida non se poderá recuperar, estás seguro de que queres eliminala?"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "Eliminar"
 
@@ -581,7 +581,7 @@ msgstr "%(mapName)s (%(mapType)s)"
 
 #: gui/summary/summary.js:810
 msgid "Team total"
-msgstr ""
+msgstr "Total do equipo"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -828,7 +828,8 @@ msgstr "Prema para xogar unha partida contra a intelixencia artificial."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
 msgstr "Revive a historia a través de campañas militares (esta funcionalidade aínda non está dispoñíbel)."
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
@@ -1137,8 +1138,8 @@ msgid ""
 msgstr "[icon=\"constructionIcon\"] Esta é unha versión experimental do xogo, cuxo desenvolvemento está aínda nos seus primeiros pasos. Faltan funcionalidades e existen erros."
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr "[icon=iconLag]  O xogo ralentízase cando hai moitas unidades movéndose ao mesmo tempo."
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
+msgstr "[icon=\"iconLag\"]  O xogo ralentízase cando hai moitas unidades movéndose ao mesmo tempo."
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
@@ -1147,7 +1148,7 @@ msgstr "[icon=\"iconMap\"]  Os mapas grandes poden dar problemas."
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
+"make them less laggy, more fun to play, and historically accurate."
 msgstr "[icon=\"iconFormation\"]  Desactivamos as formacións ata que poidamos facelas máis eficientes, máis interesantes para o xogo e máis correctas desde un punto de vista histórico."
 
 #: gui/text/tips/army_camp.txt:1

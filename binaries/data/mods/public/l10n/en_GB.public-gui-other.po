@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-09 10:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-21 22:41+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,38 +17,38 @@ msgstr ""
 "Language: en_GB\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Gameplay"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Civilization Bonus"
 msgstr[1] "Civilization Bonuses"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Team Bonus"
 msgstr[1] "Team Bonuses"
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr "Special Technologies"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Special Building"
 msgstr[1] "Special Buildings"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Heroes"
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "History of the %(civilization)s"
@@ -69,11 +69,11 @@ msgstr "Opening page"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -87,8 +87,8 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
-msgstr "[%(date)s]"
+msgid "\\[%(date)s]"
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -144,13 +144,13 @@ msgid "<invalid>"
 msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Yes"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "No"
@@ -209,27 +209,27 @@ msgstr "Show detailed tooltips for trainable units in unit-producing buildings."
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "FPS Overlay"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Show frames per second in top right corner."
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "Realtime Overlay"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr ""
+msgstr "Show current system time in top right corner."
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "Gametime Overlay"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Show current simulation time in top right corner."
 
 #: gui/options/options.js:19
 msgid "Prefer GLSL"
@@ -245,7 +245,7 @@ msgstr "Post Processing"
 
 #: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -277,7 +277,7 @@ msgstr "Smooth LOS"
 
 #: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr "Lift darkness and fog-of-war smoothly"
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -297,23 +297,23 @@ msgstr "Smooth shadows"
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
-msgstr ""
+msgstr "Fast & Ugly Water"
 
 #: gui/options/options.js:27
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "Use the lowest settings possible to render water. This makes other settings irrelevant."
 
 #: gui/options/options.js:28
 msgid "HQ Water Effects"
-msgstr ""
+msgstr "HQ Water Effects"
 
 #: gui/options/options.js:28
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Use higher-quality effects for water, rendering coastal waves, shore foam, and ships trails."
 
 #: gui/options/options.js:29
 msgid "Real Water Depth"
@@ -341,7 +341,7 @@ msgstr "Use a real water refraction map and not transparency"
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
-msgstr ""
+msgstr "Shadows on Water"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
@@ -491,8 +491,8 @@ msgid "Error"
 msgstr "Error"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
-msgstr "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgstr "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
@@ -507,53 +507,53 @@ msgstr "Manual"
 msgid "No saved games found"
 msgstr "No saved games found"
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr "This saved game may not be compatible:"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "It needs 0 A.D. version %(requiredVersion)s, while you are running version %(currentVersion)s."
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "It does not need any mod while you are running with \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "It needs the mod \"%(requiredMod)s\" while you are running with \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr "Do you still want to proceed?"
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr "Warning"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Saved game will be permanently deleted, are you sure?"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "DELETE"
 
@@ -581,7 +581,7 @@ msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:810
 msgid "Team total"
-msgstr ""
+msgstr "Team total"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -717,7 +717,7 @@ msgstr "Status: $status."
 
 #: gui/pregame/mainmenu.xml:486
 msgid "Alpha XVII: Quercus"
-msgstr ""
+msgstr "Alpha XVII: Quercus"
 
 #: gui/pregame/mainmenu.xml:488
 msgid ""
@@ -776,7 +776,7 @@ msgstr "Welcome Screen"
 
 #: gui/pregame/mainmenu.xml:(caption):330
 msgid "Mod Selection"
-msgstr ""
+msgstr "Mod Selection"
 
 #: gui/pregame/mainmenu.xml:(caption):384
 msgid "Learn To Play"
@@ -828,8 +828,9 @@ msgstr "Click here to start a new single player game."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
-msgstr "Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
+msgstr "Relive history through historical military campaigns. \\\\\\\\[NOT YET IMPLEMENTED]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."
@@ -867,7 +868,7 @@ msgstr "Show the Welcome Screen. Useful if you hid it by mistake."
 
 #: gui/pregame/mainmenu.xml:(tooltip):331
 msgid "Select mods to use."
-msgstr ""
+msgstr "Select mods to use."
 
 #: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
@@ -1137,8 +1138,8 @@ msgid ""
 msgstr "[icon=\"constructionIcon\"]  This is an early experimental version of the game. Features are missing and it contains bugs."
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
-msgstr "[icon=iconLag]  The game lags when many units are moving."
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
+msgstr "[icon=\"iconLag\"]  The game lags when many units are moving."
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
@@ -1147,8 +1148,8 @@ msgstr "[icon=\"iconMap\"]  Large maps can cause problems."
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
-msgstr ""
+"make them less laggy, more fun to play, and historically accurate."
+msgstr "[icon=\"iconFormation\"]  We disabled formations until we find out how to make them less laggy, more fun to play, and historically accurate."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
@@ -1475,7 +1476,7 @@ msgstr "- Persians also have access to a great number of structural & defensive 
 
 #: gui/text/tips/pikemen.txt:1
 msgid "PIKEMEN"
-msgstr ""
+msgstr "PIKEMEN"
 
 #: gui/text/tips/pikemen.txt:2
 msgid "- Heavily armored and slow. Low attack."
@@ -1573,7 +1574,7 @@ msgstr "- Use the 'Phalanx' formation for extra armour bonuses."
 
 #: gui/text/tips/spearmen.txt:1
 msgid "SPEARMEN"
-msgstr ""
+msgstr "SPEARMEN"
 
 #: gui/text/tips/spearmen.txt:2
 msgid "- The basic melee infantry for every faction in the game."
@@ -1587,13 +1588,13 @@ msgstr ""
 msgid ""
 "- Decent hack attack and a good charge bonus make them good front line "
 "troops."
-msgstr ""
+msgstr "- Decent hack attack and a good charge bonus make them good front line troops."
 
 #: gui/text/tips/spearmen.txt:8
 msgid ""
 "- They are countered by ranged units and swordsmen, so support your spearmen"
 " with slingers or cavalry."
-msgstr ""
+msgstr "- They are countered by ranged units and swordsmen, so support your spearmen with slingers or cavalry."
 
 #: gui/text/tips/stoa.txt:1
 msgid "STOA"

@@ -18,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-18 00:01+0000\n"
-"Last-Translator: Chris Vl <chrisvl97@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-20 09:50+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -110,62 +110,62 @@ msgstr "Σύμμαχ"
 msgid "Neutral"
 msgstr "Ουδέτερος"
 
-#: gui/session/menu.js:287 gui/session/messages.js:617
+#: gui/session/menu.js:287 gui/session/messages.js:619
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Εχθρός"
 
-#: gui/session/menu.js:348 gui/session/menu.js:355 gui/session/menu.js:362
+#: gui/session/menu.js:345
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:476
+#: gui/session/menu.js:456
 msgid "There are no land traders."
 msgstr "Δεν υπάρχουν έμποροι στεριάς."
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:462
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s αδρανής"
 msgstr[1] "%(numberOfLandTraders)s αδρανείς"
 
-#: gui/session/menu.js:486
+#: gui/session/menu.js:466
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Υπάρχει %(numberTrading)s έμπορος στεριάς που εμπορεύεται."
 msgstr[1] "Υπάρχουν %(numberTrading)s έμποροι στεριάς που εμπορεύονται"
 
-#: gui/session/menu.js:489
+#: gui/session/menu.js:469
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s φρουρούμενοι σε ένα εμπορικό πλοίο"
 msgstr[1] "%(numberGarrisoned)s τοποθετημένοι σε ένα εμπορικό πλοίο "
 
-#: gui/session/menu.js:492
+#: gui/session/menu.js:472
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:500
+#: gui/session/menu.js:480
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, και %(garrisonedString)s."
 
-#: gui/session/menu.js:510 gui/session/menu.js:572
+#: gui/session/menu.js:490 gui/session/menu.js:552
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:517 gui/session/menu.js:579
+#: gui/session/menu.js:497 gui/session/menu.js:559
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:527
+#: gui/session/menu.js:507
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -176,209 +176,209 @@ msgid_plural ""
 msgstr[0] "Υπάρχουν %(numberGarrisoned)s έμποροι γής φρουρούμενοι σε ένα εμπορικό πλοίο"
 msgstr[1] "Υπάρχουν %(numberGarrisoned)s έμποροι γής φρουρούμενοι σε ένα εμπορικό πλοίο"
 
-#: gui/session/menu.js:530
+#: gui/session/menu.js:510
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, και %(inactiveString)s."
 
-#: gui/session/menu.js:537
+#: gui/session/menu.js:517
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:546
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s έμπορος στεριάς αδρανής"
 msgstr[1] "%(numberOfLandTraders)s έμποροι στεριάς  αδρανείς"
 
-#: gui/session/menu.js:547 gui/session/menu.js:589
+#: gui/session/menu.js:527 gui/session/menu.js:569
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Υπάρχει %(inactiveString)s."
 msgstr[1] "Υπάρχουν %(inactiveString)s."
 
-#: gui/session/menu.js:559
+#: gui/session/menu.js:539
 msgid "There are no merchant ships."
 msgstr "Δεν υπάρχουν εμπορικά πλοία."
 
-#: gui/session/menu.js:565
+#: gui/session/menu.js:545
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s αδρανής"
 msgstr[1] "%(numberOfShipTraders)s αδρανείς"
 
-#: gui/session/menu.js:569
+#: gui/session/menu.js:549
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Υπάρχει %(numberTrading)s εμπορικό πλοίο με εμπόριο"
 msgstr[1] "Υπάρχουν %(numberTrading)s εμπορικά πλοία με εμπόριο"
 
-#: gui/session/menu.js:588
+#: gui/session/menu.js:568
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s εμπορικό πλοίο αδρανές"
 msgstr[1] "%(numberOfShipTraders)s εμπορικά πλοία αδρανοί"
 
-#: gui/session/menu.js:667 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:647 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Εγχειρίδιο χρήσης"
 
-#: gui/session/menu.js:678
+#: gui/session/menu.js:658
 msgid "The Developer Overlay was opened."
 msgstr "Η προβολή επικάλυψης προγραμματιστή άνοιξε."
 
-#: gui/session/menu.js:680
+#: gui/session/menu.js:660
 msgid "The Developer Overlay was closed."
 msgstr "Η προβολή επικάλυψης προγραμματιστή έκλεισε."
 
-#: gui/session/menu.js:696
+#: gui/session/menu.js:676
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Φόρος υποτέλειας %(resourceAmount)s %(resourceType)s σε \n %(playerName)s. Shift-κλικ για να αποδώσουν %(greaterAmount)s."
 
-#: gui/session/messages.js:200
+#: gui/session/messages.js:202
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Μήνυμα διαδικτύου: %(message)s"
 
-#: gui/session/messages.js:213
+#: gui/session/messages.js:215
 msgid "Waiting for other players to connect..."
 msgstr "Αναμονή για τη σύνδεση άλλων παιχτών."
 
-#: gui/session/messages.js:217
+#: gui/session/messages.js:219
 msgid "Synchronising gameplay with other players..."
 msgstr "Συγχρονισμός παιχνιδιού με άλλους παίκτες ..."
 
-#: gui/session/messages.js:225
+#: gui/session/messages.js:227
 msgid "Connected to the server."
 msgstr "Σύνδεση με διακομιστή."
 
-#: gui/session/messages.js:229
+#: gui/session/messages.js:231
 msgid "Connection to the server has been authenticated."
 msgstr "Η σύνδεση με το διακομιστή έχει επικυρωθεί."
 
-#: gui/session/messages.js:234
+#: gui/session/messages.js:236
 msgid "Connection to the server has been lost."
 msgstr "Η σύνδεση με το διακομιστή χάθηκε."
 
-#: gui/session/messages.js:234
+#: gui/session/messages.js:236
 msgid "The game has ended."
 msgstr "Το παιχνίδι τελείωσε."
 
-#: gui/session/messages.js:418
+#: gui/session/messages.js:420
 msgid "Unknown player"
 msgstr "Άγνωστος παίκτης"
 
-#: gui/session/messages.js:426
+#: gui/session/messages.js:428
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s μπήκε στο παιχνίδι"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:431
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s αποχώρησε από το παιχνίδι."
 
-#: gui/session/messages.js:434
+#: gui/session/messages.js:436
 msgid "You have been defeated."
 msgstr "Ηττήθηκες."
 
-#: gui/session/messages.js:436
+#: gui/session/messages.js:438
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s ηττήθηκε."
 
-#: gui/session/messages.js:444
+#: gui/session/messages.js:446
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Είσαι τώρα σύμμαχος με %(player)s."
 
-#: gui/session/messages.js:446
+#: gui/session/messages.js:448
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Είσαι τώρα σε πόλεμο με %(player)s."
 
-#: gui/session/messages.js:448
+#: gui/session/messages.js:450
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Είσαι τώρα ουδέτερος με %(player)s."
 
-#: gui/session/messages.js:454
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s είναι τώρα σε συμμαχία με εσένα."
 
-#: gui/session/messages.js:456
+#: gui/session/messages.js:458
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s είναι τώρα σε πόλεμο με εσένα."
 
-#: gui/session/messages.js:458
+#: gui/session/messages.js:460
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s είναι τώρα ουδέτερα με εσένα."
 
-#: gui/session/messages.js:477
+#: gui/session/messages.js:479
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s και %(lastAmount)s"
 
-#: gui/session/messages.js:478 gui/session/utility_functions.js:187
-#: gui/session/utility_functions.js:237 gui/session/utility_functions.js:263
-#: gui/session/utility_functions.js:292 gui/session/utility_functions.js:338
-#: gui/session/utility_functions.js:613 gui/session/utility_functions.js:635
-#: gui/session/utility_functions.js:640
+#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
+#: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
+#: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
+#: gui/session/utility_functions.js:619
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:483
+#: gui/session/messages.js:485
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "Ο %(player)s σου έστειλε %(amounts)s."
 
-#: gui/session/messages.js:493
+#: gui/session/messages.js:495
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Δέχθηκες επίθεση από %(attacker)s!"
 
-#: gui/session/messages.js:518
+#: gui/session/messages.js:520
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:526
+#: gui/session/messages.js:528
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:534 gui/session/messages.js:535
+#: gui/session/messages.js:536 gui/session/messages.js:537
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:538
+#: gui/session/messages.js:540
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:546
+#: gui/session/messages.js:548
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:604 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Ομάδα"
 
-#: gui/session/messages.js:637
+#: gui/session/messages.js:639
 msgid "Private"
 msgstr "Ιδιωτικό"
 
@@ -389,8 +389,8 @@ msgstr "%(genericName)s — Πλήρη"
 
 #: gui/session/selection_details.js:44
 #, javascript-format
-msgid "[OFFLINE] %(player)s"
-msgstr "[ΕΚΤΟΣ ΣΥΝΔΕΣΗΣ] %(player)s"
+msgid "\\[OFFLINE] %(player)s"
+msgstr ""
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -452,7 +452,7 @@ msgstr "Τρέχων/Μέγιστος συλλεκτών"
 msgid "(%(genericName)s)"
 msgstr "(%(genericName)s)"
 
-#: gui/session/selection_details.js:226 gui/session/selection_panels.js:976
+#: gui/session/selection_details.js:226 gui/session/selection_panels.js:973
 #: gui/session/session.js:637
 msgid "Armor:"
 msgstr "Πανοπλία:"
@@ -472,12 +472,12 @@ msgid "Rate:"
 msgstr "Βαθμός:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:629
-#: gui/session/utility_functions.js:324
+#: gui/session/utility_functions.js:303
 msgid "Range:"
 msgstr "Απόσταση:"
 
 #: gui/session/selection_details.js:251 gui/session/session.js:630
-#: gui/session/utility_functions.js:325
+#: gui/session/utility_functions.js:304
 msgid "meters"
 msgstr "μέτρα"
 
@@ -498,7 +498,7 @@ msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 msgid "%(label)s %(details)s, %(rate)s"
 msgstr "%(label)s %(details)s, %(rate)s"
 
-#: gui/session/selection_details.js:307 gui/session/utility_functions.js:568
+#: gui/session/selection_details.js:307 gui/session/utility_functions.js:547
 msgid "Classes:"
 msgstr "Τάξεις:"
 
@@ -521,61 +521,61 @@ msgstr "Αγόρασε %(resource)s"
 msgid "Sell %(resource)s"
 msgstr "Πούλησε %(resource)s"
 
-#: gui/session/selection_panels.js:219 gui/session/selection_panels.js:984
+#: gui/session/selection_panels.js:216 gui/session/selection_panels.js:981
 #, javascript-format
 msgid "Requires %(technology)s"
 msgstr "Απαιτείται η τεχνολογία %(technology)s"
 
-#: gui/session/selection_panels.js:332
+#: gui/session/selection_panels.js:329
 #, javascript-format
 msgid "Unload %(name)s"
 msgstr "Ξεφόρτωμα %(name)s"
 
-#: gui/session/selection_panels.js:333
+#: gui/session/selection_panels.js:330
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
 msgstr "Μονό-κλικ για να να ξεφορτώθει 1. Shift-κλικ για να ξεφορτώθουν πάντες αυτού του τύπου."
 
-#: gui/session/selection_panels.js:400
+#: gui/session/selection_panels.js:397
 msgid "Lock Gate"
 msgstr "Κλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:406
+#: gui/session/selection_panels.js:403
 msgid "Unlock Gate"
 msgstr "Ξεκλείδωμα Πύλης"
 
-#: gui/session/selection_panels.js:511
+#: gui/session/selection_panels.js:508
 msgid "Pack"
 msgstr "Πακετάρισμα"
 
-#: gui/session/selection_panels.js:513
+#: gui/session/selection_panels.js:510
 msgid "Unpack"
 msgstr "Άνοιγμα πακέτου"
 
-#: gui/session/selection_panels.js:515
+#: gui/session/selection_panels.js:512
 msgid "Cancel Packing"
 msgstr "Ακύρωση πακεταρίσματος "
 
-#: gui/session/selection_panels.js:517
+#: gui/session/selection_panels.js:514
 msgid "Cancel Unpacking"
 msgstr "Ακύρωση ξεπακεταρίσματος "
 
-#: gui/session/selection_panels.js:590
+#: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
 msgstr "Aνεπαρκής χωρητικότητα πληθυσμού:"
 
-#: gui/session/selection_panels.js:591
+#: gui/session/selection_panels.js:588
 #, javascript-format
 msgid "%(population)s %(neededSlots)s"
 msgstr "%(population)s %(neededSlots)s"
 
-#: gui/session/selection_panels.js:710
+#: gui/session/selection_panels.js:707
 #, javascript-format
 msgid "Remaining: %(number)s to build."
 msgid_plural "Remaining: %(number)s to build."
 msgstr[0] "Απομένει: %(number)s να χτιστεί."
 msgstr[1] "Απομένουν: %(number)s να χτιστούν."
 
-#: gui/session/selection_panels.js:972 gui/session/session.js:617
+#: gui/session/selection_panels.js:969 gui/session/session.js:617
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
 msgstr "Υγεία:"
@@ -697,24 +697,24 @@ msgstr "ΕΙΣΤΕ ΝΙΚΗΤΗΣ!"
 msgid "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/session.js:795
+#: gui/session/session.js:793
 #, javascript-format
 msgid "%(time)s (%(speed)sx)"
 msgstr "%(time)s (%(speed)sx)"
 
-#: gui/session/session.js:897
+#: gui/session/session.js:895
 #, javascript-format
 msgid "Build: %(buildDate)s (%(revision)s)"
 msgstr "Έκδοση: %(buildDate)s (%(revision)s)"
 
-#: gui/session/session.js:902
+#: gui/session/session.js:900
 msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
 msgstr "Σημείωση: Η λειτουργία χρονική δίνη είναι μια επιλογή προγραμματισμού, και δεν προορίζεται για χρήση σε μεγάλες χρονικές περιόδους. Χρησιμοποιώντας τη λάθος μπορεί να προκαλέσει το παιχνίδι να ξεμείνει από μνήμη ή να κρασάρει."
 
-#: gui/session/session.js:902
+#: gui/session/session.js:900
 msgid "Time warp mode"
 msgstr "Λειτουργία στρέβλωσης του χρόνου"
 
@@ -814,363 +814,363 @@ msgstr "Σήμανε συναγερμό!"
 msgid "End of alert."
 msgstr "Τέλος του συναγερμού"
 
-#: gui/session/utility_functions.js:168 gui/session/utility_functions.js:215
-#: gui/session/utility_functions.js:244 gui/session/utility_functions.js:270
+#: gui/session/utility_functions.js:147 gui/session/utility_functions.js:194
+#: gui/session/utility_functions.js:223 gui/session/utility_functions.js:249
 msgid "(None)"
 msgstr "(Καμία)"
 
-#: gui/session/utility_functions.js:172 gui/session/utility_functions.js:177
-#: gui/session/utility_functions.js:182 gui/session/utility_functions.js:248
-#: gui/session/utility_functions.js:253 gui/session/utility_functions.js:258
+#: gui/session/utility_functions.js:151 gui/session/utility_functions.js:156
+#: gui/session/utility_functions.js:161 gui/session/utility_functions.js:227
+#: gui/session/utility_functions.js:232 gui/session/utility_functions.js:237
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/session/utility_functions.js:174 gui/session/utility_functions.js:221
-#: gui/session/utility_functions.js:250 gui/session/utility_functions.js:276
+#: gui/session/utility_functions.js:153 gui/session/utility_functions.js:200
+#: gui/session/utility_functions.js:229 gui/session/utility_functions.js:255
 msgid "Hack"
 msgstr "Πελεκισμός"
 
-#: gui/session/utility_functions.js:179 gui/session/utility_functions.js:227
-#: gui/session/utility_functions.js:255 gui/session/utility_functions.js:282
+#: gui/session/utility_functions.js:158 gui/session/utility_functions.js:206
+#: gui/session/utility_functions.js:234 gui/session/utility_functions.js:261
 msgid "Pierce"
 msgstr "Τρύπημα"
 
-#: gui/session/utility_functions.js:184 gui/session/utility_functions.js:233
-#: gui/session/utility_functions.js:260 gui/session/utility_functions.js:288
+#: gui/session/utility_functions.js:163 gui/session/utility_functions.js:212
+#: gui/session/utility_functions.js:239 gui/session/utility_functions.js:267
 msgid "Crush"
 msgstr "Συντριβή"
 
-#: gui/session/utility_functions.js:195
+#: gui/session/utility_functions.js:174
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/session/utility_functions.js:196
+#: gui/session/utility_functions.js:175
 #, javascript-format
 msgid "%(arrows)s arrow"
 msgid_plural "%(arrows)s arrows"
 msgstr[0] "%(arrows)s βέλος"
 msgstr[1] "%(arrows)s βέλη"
 
-#: gui/session/utility_functions.js:197 gui/session/utility_functions.js:201
+#: gui/session/utility_functions.js:176 gui/session/utility_functions.js:180
 #, javascript-format
 msgid "%(time)s second"
 msgid_plural "%(time)s seconds"
 msgstr[0] "%(time)s δευτερόλεπτο"
 msgstr[1] "%(time)s δευτερόλεπτα"
 
-#: gui/session/utility_functions.js:219 gui/session/utility_functions.js:225
-#: gui/session/utility_functions.js:231 gui/session/utility_functions.js:274
-#: gui/session/utility_functions.js:280 gui/session/utility_functions.js:286
+#: gui/session/utility_functions.js:198 gui/session/utility_functions.js:204
+#: gui/session/utility_functions.js:210 gui/session/utility_functions.js:253
+#: gui/session/utility_functions.js:259 gui/session/utility_functions.js:265
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/session/utility_functions.js:222 gui/session/utility_functions.js:228
-#: gui/session/utility_functions.js:234 gui/session/utility_functions.js:277
-#: gui/session/utility_functions.js:283 gui/session/utility_functions.js:289
+#: gui/session/utility_functions.js:201 gui/session/utility_functions.js:207
+#: gui/session/utility_functions.js:213 gui/session/utility_functions.js:256
+#: gui/session/utility_functions.js:262 gui/session/utility_functions.js:268
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/session/utility_functions.js:297
+#: gui/session/utility_functions.js:276
 msgid "Charge Attack:"
 msgstr "Επίθεση Επέλασης"
 
-#: gui/session/utility_functions.js:298
+#: gui/session/utility_functions.js:277
 msgid "Melee Attack:"
 msgstr "Σώμα με σώμα Επίθεση"
 
-#: gui/session/utility_functions.js:299
+#: gui/session/utility_functions.js:278
 msgid "Ranged Attack:"
 msgstr "Απόστασης Επίθεση"
 
-#: gui/session/utility_functions.js:302
+#: gui/session/utility_functions.js:281
 msgid "Attack:"
 msgstr "Επίθεση:"
 
-#: gui/session/utility_functions.js:321
+#: gui/session/utility_functions.js:300
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"
 
-#: gui/session/utility_functions.js:330
+#: gui/session/utility_functions.js:309
 #, javascript-format
 msgid "%(attackLabel)s %(damageTypes)s"
 msgstr "%(attackLabel)s %(damageTypes)s"
 
-#: gui/session/utility_functions.js:383 gui/session/utility_functions.js:384
-#: gui/session/utility_functions.js:385 gui/session/utility_functions.js:386
-#: gui/session/utility_functions.js:387 gui/session/utility_functions.js:388
-#: gui/session/utility_functions.js:512
+#: gui/session/utility_functions.js:362 gui/session/utility_functions.js:363
+#: gui/session/utility_functions.js:364 gui/session/utility_functions.js:365
+#: gui/session/utility_functions.js:366 gui/session/utility_functions.js:367
+#: gui/session/utility_functions.js:491
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/session/utility_functions.js:442
+#: gui/session/utility_functions.js:421
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s μέχρι %(resourceIcon)s %(maximum)s"
 
-#: gui/session/utility_functions.js:475
+#: gui/session/utility_functions.js:454
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Τείχη:  %(costs)s"
 
-#: gui/session/utility_functions.js:476
+#: gui/session/utility_functions.js:455
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Πύργοι: %(costs)s"
 
-#: gui/session/utility_functions.js:498
+#: gui/session/utility_functions.js:477
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/session/utility_functions.js:499
+#: gui/session/utility_functions.js:478
 msgid "Population Bonus:"
 msgstr "Πληθυσμιακό Όφελος:"
 
-#: gui/session/utility_functions.js:517
+#: gui/session/utility_functions.js:496
 msgid "Insufficient resources:"
 msgstr "Μη επαρκείς πόροι"
 
-#: gui/session/utility_functions.js:528
+#: gui/session/utility_functions.js:507
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/session/utility_functions.js:538
+#: gui/session/utility_functions.js:517
 msgid "???"
 msgstr "???"
 
-#: gui/session/utility_functions.js:582
+#: gui/session/utility_functions.js:561
 #, javascript-format
 msgid "%(rank)s %(name)s"
 msgstr "%(rank)s %(name)s"
 
-#: gui/session/utility_functions.js:606
+#: gui/session/utility_functions.js:585
 msgid "Speed:"
 msgstr "Ταχύτητα:"
 
-#: gui/session/utility_functions.js:609 gui/session/utility_functions.js:611
+#: gui/session/utility_functions.js:588 gui/session/utility_functions.js:590
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/session/utility_functions.js:609
+#: gui/session/utility_functions.js:588
 msgid "Walk"
 msgstr "Περπάτα"
 
-#: gui/session/utility_functions.js:611
+#: gui/session/utility_functions.js:590
 msgid "Run"
 msgstr "Τρέξε"
 
-#: gui/session/utility_functions.js:613
+#: gui/session/utility_functions.js:592
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/session/utility_functions.js:625 gui/session/utility_functions.js:627
+#: gui/session/utility_functions.js:604 gui/session/utility_functions.js:606
 msgid "+"
 msgstr "+"
 
-#: gui/session/utility_functions.js:629 gui/session/utility_functions.js:635
-#: gui/session/utility_functions.js:640
+#: gui/session/utility_functions.js:608 gui/session/utility_functions.js:614
+#: gui/session/utility_functions.js:619
 #, javascript-format
 msgid "%(gain)s (%(player)s)"
 msgstr "%(gain)s (%(player)s)"
 
-#: gui/session/utility_functions.js:631
+#: gui/session/utility_functions.js:610
 msgid "you"
 msgstr "εσύ"
 
-#: gui/session/utility_functions.js:637 gui/session/utility_functions.js:642
+#: gui/session/utility_functions.js:616 gui/session/utility_functions.js:621
 #, javascript-format
 msgid "player %(name)s"
 msgstr "Ο παίκτης %(name)s"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:682
+#: gui/session/utility_functions.js:661
 msgctxt "firstWord"
 msgid "Food"
 msgstr "Τροφή"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:684
+#: gui/session/utility_functions.js:663
 msgctxt "firstWord"
 msgid "Meat"
 msgstr "Κρέας"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:686
+#: gui/session/utility_functions.js:665
 msgctxt "firstWord"
 msgid "Metal"
 msgstr "Μέταλλο"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:688
+#: gui/session/utility_functions.js:667
 msgctxt "firstWord"
 msgid "Ore"
 msgstr "Μετάλλευμα"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:690
+#: gui/session/utility_functions.js:669
 msgctxt "firstWord"
 msgid "Rock"
 msgstr "Βράχος"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:692
+#: gui/session/utility_functions.js:671
 msgctxt "firstWord"
 msgid "Ruins"
 msgstr "Ερείπια"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:694
+#: gui/session/utility_functions.js:673
 msgctxt "firstWord"
 msgid "Stone"
 msgstr "Πέτρα"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:696
+#: gui/session/utility_functions.js:675
 msgctxt "firstWord"
 msgid "Treasure"
 msgstr "Θησαυρός"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:698
+#: gui/session/utility_functions.js:677
 msgctxt "firstWord"
 msgid "Tree"
 msgstr "Δέντρο"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:700
+#: gui/session/utility_functions.js:679
 msgctxt "firstWord"
 msgid "Wood"
 msgstr "Ξυλεία"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:702
+#: gui/session/utility_functions.js:681
 msgctxt "firstWord"
 msgid "Fruit"
 msgstr "Φρούτα"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:704
+#: gui/session/utility_functions.js:683
 msgctxt "firstWord"
 msgid "Grain"
 msgstr "Σιτηρά"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
-#: gui/session/utility_functions.js:706
+#: gui/session/utility_functions.js:685
 msgctxt "firstWord"
 msgid "Fish"
 msgstr "Ψάρια"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:711
+#: gui/session/utility_functions.js:690
 msgctxt "withinSentence"
 msgid "Food"
 msgstr "Τροφή"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:713
+#: gui/session/utility_functions.js:692
 msgctxt "withinSentence"
 msgid "Meat"
 msgstr "Κρέας"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:715
+#: gui/session/utility_functions.js:694
 msgctxt "withinSentence"
 msgid "Metal"
 msgstr "Μέταλλο"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:717
+#: gui/session/utility_functions.js:696
 msgctxt "withinSentence"
 msgid "Ore"
 msgstr "Μετάλλευμα"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:719
+#: gui/session/utility_functions.js:698
 msgctxt "withinSentence"
 msgid "Rock"
 msgstr "Βράχος"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:721
+#: gui/session/utility_functions.js:700
 msgctxt "withinSentence"
 msgid "Ruins"
 msgstr "Ερείπια"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:723
+#: gui/session/utility_functions.js:702
 msgctxt "withinSentence"
 msgid "Stone"
 msgstr "Πέτρα"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:725
+#: gui/session/utility_functions.js:704
 msgctxt "withinSentence"
 msgid "Treasure"
 msgstr "Θησαυρός"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:727
+#: gui/session/utility_functions.js:706
 msgctxt "withinSentence"
 msgid "Tree"
 msgstr "Δέντρο"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:729
+#: gui/session/utility_functions.js:708
 msgctxt "withinSentence"
 msgid "Wood"
 msgstr "Ξυλεία"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:731
+#: gui/session/utility_functions.js:710
 msgctxt "withinSentence"
 msgid "Fruit"
 msgstr "Φρούτα"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:733
+#: gui/session/utility_functions.js:712
 msgctxt "withinSentence"
 msgid "Grain"
 msgstr "Σιτηρά"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
-#: gui/session/utility_functions.js:735
+#: gui/session/utility_functions.js:714
 msgctxt "withinSentence"
 msgid "Fish"
 msgstr "Ψάρια"

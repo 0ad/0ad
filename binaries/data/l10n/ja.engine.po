@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-09-23 02:30+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-28 17:51+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -35,9 +35,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "カスタムビルド"
 
-#: i18n/L10n.cpp:266
+#: i18n/L10n.cpp:277
 msgid "Long strings"
 msgstr "長い文字列"
+
+#: lobby/XmppClient.cpp:221
+msgid "Authentication failed"
+msgstr "認証の失敗"
+
+#: lobby/XmppClient.cpp:457
+msgid "Registration not acceptable"
+msgstr "受入れ不能な登録"
+
+#: lobby/XmppClient.cpp:458
+msgid "Registration conflict"
+msgstr "登録の衝突"
+
+#: lobby/XmppClient.cpp:459
+msgid "Registration not authorized"
+msgstr "認証されていない登録"
+
+#: lobby/XmppClient.cpp:460
+msgid "Registration bad request"
+msgstr "登録で不正な要求"
+
+#: lobby/XmppClient.cpp:461
+msgid "Registration forbidden"
+msgstr "禁止された登録"
+
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+msgid "Registration required"
+msgstr "登録が必要"
+
+#: lobby/XmppClient.cpp:463
+msgid "Registration unexpected request"
+msgstr "登録で予期しない要求"
+
+#: lobby/XmppClient.cpp:464
+msgid "Registration not allowed"
+msgstr "登録が許可されていない"
+
+#: lobby/XmppClient.cpp:465
+msgid "Registration unknown error"
+msgstr "登録で未知のエラー"
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr "未知のサブタイプ（ログを参照）"
+
+#: lobby/XmppClient.cpp:996
+msgid "Bad request"
+msgstr "不正な要求"
+
+#: lobby/XmppClient.cpp:997
+msgid "Player name already in use"
+msgstr "既に使われているプレイヤー名"
+
+#: lobby/XmppClient.cpp:998
+msgid "Feature not implemented"
+msgstr "未実装の機能"
+
+#: lobby/XmppClient.cpp:999
+msgid "Forbidden"
+msgstr "禁止された"
+
+#: lobby/XmppClient.cpp:1000
+msgid "Recipient or server gone"
+msgstr "受信先もしくはサーバーの消失"
+
+#: lobby/XmppClient.cpp:1001
+msgid "Internal server error"
+msgstr "内部サーバーエラー"
+
+#: lobby/XmppClient.cpp:1002
+msgid "Item not found"
+msgstr "アイテムが見つからない"
+
+#: lobby/XmppClient.cpp:1003
+msgid "Jid malformed"
+msgstr "異常なJID"
+
+#: lobby/XmppClient.cpp:1004
+msgid "Not acceptable"
+msgstr "受入れ不能"
+
+#: lobby/XmppClient.cpp:1005
+msgid "Not allowed"
+msgstr "許可されていない"
+
+#: lobby/XmppClient.cpp:1006
+msgid "Not authorized"
+msgstr "認証されていない"
+
+#: lobby/XmppClient.cpp:1007
+msgid "Not modified"
+msgstr "変更されていない"
+
+#: lobby/XmppClient.cpp:1008
+msgid "Payment required"
+msgstr "支払いが必要"
+
+#: lobby/XmppClient.cpp:1009
+msgid "Recipient unavailable"
+msgstr "受信先が利用不能"
+
+#: lobby/XmppClient.cpp:1010
+msgid "Redirect"
+msgstr "転送"
+
+#: lobby/XmppClient.cpp:1012
+msgid "Remote server not found"
+msgstr "リモートサーバーが見つからない"
+
+#: lobby/XmppClient.cpp:1013
+msgid "Remote server timeout"
+msgstr "リモートサーバーがタイムアウトした"
+
+#: lobby/XmppClient.cpp:1014
+msgid "Resource constraint"
+msgstr "リソースの制約"
+
+#: lobby/XmppClient.cpp:1015
+msgid "Service unavailable"
+msgstr "サービスが利用不能"
+
+#: lobby/XmppClient.cpp:1016
+msgid "Subscribtion Required"
+msgstr "サブスクリプションが必要"
+
+#: lobby/XmppClient.cpp:1017
+msgid "Undefined condition"
+msgstr "未定義の条件"
+
+#: lobby/XmppClient.cpp:1018
+msgid "Unexpected request"
+msgstr "予期しない要求"
+
+#: lobby/XmppClient.cpp:1019
+msgid "Unknown sender"
+msgstr "送信元不明"
+
+#: lobby/XmppClient.cpp:1021
+msgid "Error undefined"
+msgstr "未定義のエラー"
 
 #: ps/SavedGame.cpp:129
 #, c-format

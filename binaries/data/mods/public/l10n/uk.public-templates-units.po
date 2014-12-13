@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Vladislav Trotsky <flyboooy17@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-26 09:22+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-12-13 00:40+0000\n"
+"Last-Translator: Vladislav Trotsky <flyboooy17@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,14 +27,14 @@ msgstr "Кіннота"
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_infantry.xml:57
 msgid "Citizen"
-msgstr ""
+msgstr "Міський житель"
 
 #: simulation/templates/template_unit_cavalry.xml:32
 #: simulation/templates/template_unit_champion.xml:6
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:57
 msgid "Soldier"
-msgstr ""
+msgstr "Солдат"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:53
@@ -82,7 +83,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:26
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:24
 msgid "Spear"
-msgstr ""
+msgstr "Спис"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
 msgid "Cavalry Spearman"
@@ -95,7 +96,7 @@ msgstr "Кінний списоносець"
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
 msgid "Sword"
-msgstr ""
+msgstr "Меч"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:31
 msgid "Cavalry Swordsman"
@@ -138,7 +139,7 @@ msgstr "Кінні Лучники"
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:28
 #: simulation/templates/template_unit_infantry_ranged_javelinist.xml:27
 msgid "Javelin"
-msgstr ""
+msgstr "Дротик"
 
 #: simulation/templates/template_unit_cavalry_ranged_javelinist.xml:25
 msgid "Cavalry Skirmisher"
@@ -241,7 +242,7 @@ msgstr "Облога"
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "Собака"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
@@ -249,7 +250,7 @@ msgstr "Службова собака"
 
 #: simulation/templates/template_unit_dog.xml:54
 msgid "Cannot attack structures."
-msgstr ""
+msgstr "Не може атакувати будівлі."
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
@@ -265,7 +266,7 @@ msgstr "Китоподібні"
 
 #: simulation/templates/template_unit_fauna_hunt_whale.xml:17
 msgid "Kill, then collect food from this bountiful oceanic resource."
-msgstr ""
+msgstr "Вбий, а потім збери їжу з цього щедрого океанічного ресурсу."
 
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_hero.xml:20
@@ -718,7 +719,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_champion_ranged.xml:5
 msgid "Scythian Archer"
-msgstr ""
+msgstr "Скіфський лучник"
 
 #: simulation/templates/units/athen_champion_ranged.xml:6
 msgid "Toxotes Skithikos"
@@ -880,7 +881,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_support_female_citizen.xml:6
 msgid "Athenian Woman"
-msgstr ""
+msgstr "Афінянка"
 
 #: simulation/templates/units/athen_support_healer_b.xml:6
 #: simulation/templates/units/hele_support_healer_b.xml:6
@@ -926,7 +927,7 @@ msgstr "Кельтська кіннота"
 #: simulation/templates/units/brit_champion_cavalry.xml:14
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:14
 msgid "Celtic Chariot"
-msgstr ""
+msgstr "Кельтська колісниця"
 
 #: simulation/templates/units/brit_champion_cavalry.xml:15
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:15
@@ -959,7 +960,7 @@ msgstr "Боудіка"
 
 #: simulation/templates/units/brit_hero_boudicca_sword.xml:24
 msgid "Heroine"
-msgstr ""
+msgstr "Героїня"
 
 #: simulation/templates/units/brit_hero_caratacos.xml:10
 #: simulation/templates/units/brit_hero_cunobelin.xml:11
@@ -974,11 +975,11 @@ msgstr ""
 #: simulation/templates/units/brit_hero_caratacos.xml:11
 #: simulation/templates/units/cart_hero_hamilcar.xml:11
 msgid "All Units +15% speed."
-msgstr ""
+msgstr "+15% швидкості всім одиницям."
 
 #: simulation/templates/units/brit_hero_caratacos.xml:26
 msgid "Caratacos"
-msgstr ""
+msgstr "Каратак"
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:12
 msgid "Let all units heal at 1 HP per second"
@@ -986,7 +987,7 @@ msgstr ""
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:20
 msgid "Cunobelin"
-msgstr ""
+msgstr "Кунобелін"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
@@ -1059,7 +1060,7 @@ msgstr ""
 #: simulation/templates/units/celt_support_female_citizen.xml:19
 #: simulation/templates/units/gaul_support_female_citizen.xml:19
 msgid "Celtic Woman"
-msgstr ""
+msgstr "Жінка-кельт"
 
 #: simulation/templates/units/brit_support_healer_b.xml:6
 #: simulation/templates/units/celt_support_healer_b.xml:6
@@ -1080,7 +1081,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:6
 msgid "Numidian Cavalry"
-msgstr ""
+msgstr "Нумідійська кіннота"
 
 #: simulation/templates/units/cart_cavalry_javelinist_b.xml:7
 msgid "Ḥayyāl Raḫūv Masili"
@@ -1088,7 +1089,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:13
 msgid "Italic Cavalry"
-msgstr "Італійська кінниця"
+msgstr "Італійська кіннота"
 
 #: simulation/templates/units/cart_cavalry_spearman_b.xml:14
 msgid "Ḥayyāl Romaḥ Raḫūv"
@@ -1119,7 +1120,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_champion_elephant.xml:5
 msgid "North African War Elephant"
-msgstr ""
+msgstr "Північноафриканський бойовий слон"
 
 #: simulation/templates/units/cart_champion_elephant.xml:6
 msgid "Pil Malḥamit"
@@ -1295,7 +1296,7 @@ msgstr ""
 
 #: simulation/templates/units/cart_support_female_citizen.xml:6
 msgid "Carthaginian Woman"
-msgstr ""
+msgstr "Карфагенянка"
 
 #: simulation/templates/units/cart_support_healer_b.xml:6
 msgid "Kehinit"
@@ -1348,7 +1349,7 @@ msgstr ""
 #: simulation/templates/units/celt_fanatic.xml:15
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
 msgid "Naked Fanatic"
-msgstr ""
+msgstr "Голий фанатик"
 
 #: simulation/templates/units/celt_fanatic.xml:16
 #: simulation/templates/units/gaul_champion_fanatic.xml:16
@@ -1505,7 +1506,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_support_female_citizen.xml:6
 msgid "Greek Woman"
-msgstr ""
+msgstr "Грекиня"
 
 #: simulation/templates/units/iber_cavalry_javelinist_b.xml:6
 msgid "Kantabriako Zaldun"
@@ -1589,7 +1590,7 @@ msgstr ""
 
 #: simulation/templates/units/iber_support_female_citizen.xml:6
 msgid "Iberian Woman"
-msgstr ""
+msgstr "Іберійка"
 
 #: simulation/templates/units/iber_support_healer_b.xml:6
 msgid "Priestess of Ataekina"
@@ -1669,7 +1670,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_hero_demetrius.xml:18
 msgid "Demetrius The Besieger"
-msgstr ""
+msgstr "Деметрій I Поліокрет"
 
 #: simulation/templates/units/mace_hero_demetrius.xml:19
 msgid "Dēmḗtrios Poliorkḗtēs"
@@ -1689,7 +1690,7 @@ msgstr ""
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:5
 msgid "Pyrrhus of Epirus"
-msgstr ""
+msgstr "Пірр Епірський"
 
 #: simulation/templates/units/mace_hero_pyrrhus.xml:6
 msgid "Pyrrhos ton Epeiros"
@@ -1758,7 +1759,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_champion_chariot.xml:17
 msgid "War Chariot"
-msgstr ""
+msgstr "Військова колісниця"
 
 #: simulation/templates/units/maur_champion_chariot.xml:18
 msgid "Rath"
@@ -1771,7 +1772,7 @@ msgstr ""
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
 msgid "Indian War Elephant"
-msgstr ""
+msgstr "Індійський бойовий слон"
 
 #: simulation/templates/units/maur_champion_elephant.xml:6
 msgid "Gajendra"
@@ -1923,7 +1924,7 @@ msgstr ""
 
 #: simulation/templates/units/maur_support_female_citizen.xml:6
 msgid "Indian Woman"
-msgstr ""
+msgstr "Індіанка"
 
 #: simulation/templates/units/maur_support_healer_b.xml:6
 msgid "Brahmin Priest"
@@ -2057,7 +2058,7 @@ msgstr ""
 
 #: simulation/templates/units/pers_hero_darius.xml:46
 msgid "Darius The Great"
-msgstr ""
+msgstr "Дарій Великий"
 
 #: simulation/templates/units/pers_hero_darius.xml:47
 msgid "Darayavahush I"
@@ -2083,7 +2084,7 @@ msgstr ""
 #: simulation/templates/units/pers_hero_xerxes.xml:18
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
 msgid "Xerxes I"
-msgstr ""
+msgstr "Ксеркс I"
 
 #: simulation/templates/units/pers_hero_xerxes.xml:19
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:43
@@ -2198,7 +2199,7 @@ msgstr ""
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:7
 msgid "Nabataean Camel Archer"
-msgstr ""
+msgstr "Набатейський лучник на верблюді"
 
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:8
 msgid "Mutsābiq Gamal Nabatu"
@@ -2383,11 +2384,11 @@ msgstr ""
 
 #: simulation/templates/units/ptol_support_female_citizen.xml:11
 msgid "Egyptian Woman"
-msgstr ""
+msgstr "Єгиптянка"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:6
 msgid "Egyptian Priest"
-msgstr ""
+msgstr "Єгипетський жрець"
 
 #: simulation/templates/units/ptol_support_healer_b.xml:7
 msgid "Hiereús Aigyptikos"
@@ -2729,7 +2730,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:14
 msgid "Syrian Archer"
-msgstr ""
+msgstr "Сирійський лучник"
 
 #: simulation/templates/units/sele_infantry_archer_b.xml:15
 msgid "Toxótēs Syrías"
@@ -2785,7 +2786,7 @@ msgstr ""
 
 #: simulation/templates/units/sele_support_female_citizen.xml:11
 msgid "Syrian Woman"
-msgstr ""
+msgstr "Сирійка"
 
 #: simulation/templates/units/spart_cavalry_javelinist_b.xml:6
 msgid "Perioikoi Cavalryman"
@@ -2797,7 +2798,7 @@ msgstr ""
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:6
 msgid "Allied Greek Cavalry"
-msgstr ""
+msgstr "Союзна грецька кавалерія"
 
 #: simulation/templates/units/spart_cavalry_spearman_b.xml:7
 msgid "Hippeús Symmakhikós"

@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-09-26 09:50+0000\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-20 10:12+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Hebrew (http://www.transifex.com/projects/p/0ad/language/he/)\n"
 "MIME-Version: 1.0\n"
@@ -16,139 +16,139 @@ msgstr ""
 "Language: he\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/lobby/lobby.js:25
-msgctxt "map size"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:33
-msgctxt "player number"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:37
-msgctxt "map"
-msgid "Any"
-msgstr "כל"
-
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Skirmish"
 msgstr "התנגשות"
 
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Random"
 msgstr "אקראי "
 
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgid "Scenario"
 msgstr "תַסרִיט "
 
-#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
-#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+#: gui/lobby/lobby.js:27
+msgctxt "map size"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:35
+msgctxt "player number"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:39
+msgctxt "map"
+msgid "Any"
+msgstr "כל"
+
+#: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
+#: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
 msgstr ""
 
-#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
 msgstr ""
 
-#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
+#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
 msgstr ""
 
-#: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
+#: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
 msgstr ""
 
-#: gui/lobby/lobby.js:444
+#: gui/lobby/lobby.js:447
 msgid "Busy"
 msgstr "עסוק"
 
-#: gui/lobby/lobby.js:449
+#: gui/lobby/lobby.js:452
 msgid "Away"
 msgstr "רחוק"
 
-#: gui/lobby/lobby.js:453
+#: gui/lobby/lobby.js:456
 msgid "Online"
 msgstr "באינטרנט "
 
-#: gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:460
 msgid "Offline"
 msgstr "מנותק "
 
-#: gui/lobby/lobby.js:462
+#: gui/lobby/lobby.js:465
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "לא ידוע "
 
-#: gui/lobby/lobby.js:499
+#: gui/lobby/lobby.js:502
 msgid "A randomly selected map."
 msgstr " מפה שנבחרה באופן אקראי ."
 
-#: gui/lobby/lobby.js:524
+#: gui/lobby/lobby.js:528
 msgid "Sorry, no description available."
 msgstr "מצטער, אין תיאור זמין."
 
-#: gui/lobby/lobby.js:552
+#: gui/lobby/lobby.js:556
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:630
+#: gui/lobby/lobby.js:634
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s הצטרף "
 
-#: gui/lobby/lobby.js:639
+#: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s עזב"
 
-#: gui/lobby/lobby.js:646
+#: gui/lobby/lobby.js:650
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:653
+#: gui/lobby/lobby.js:657
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:810
+#: gui/lobby/lobby.js:814
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:890
+#: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
 msgstr ""
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:892
+#: gui/lobby/lobby.js:896
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr ""
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:896 gui/lobby/lobby.js:907 gui/lobby/lobby.js:920
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr ""
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
+#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr ""
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:903
+#: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
@@ -158,24 +158,24 @@ msgstr ""
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:934
+#: gui/lobby/lobby.js:938
 msgid "HH:mm"
 msgstr ""
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:937
+#: gui/lobby/lobby.js:941
 #, javascript-format
 msgid "[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:940
+#: gui/lobby/lobby.js:944
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr ""
 
-#: gui/lobby/lobby.js:990
+#: gui/lobby/lobby.js:994
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr ""
 
@@ -218,6 +218,14 @@ msgstr ""
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr ""
+
+#: gui/lobby/prelobby.js:195
+msgid "Registered"
+msgstr ""
+
+#: gui/lobby/prelobby.js:205
+msgid "Disconnected"
+msgstr "מנותק "
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
