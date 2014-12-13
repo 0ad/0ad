@@ -294,7 +294,7 @@ function pressedScenarioEditorButton()
 
 function getLobbyDisabledByBuild()
 {
-	return translate("Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]");
+	return translate("Launch the multiplayer lobby. \\[DISABLED BY BUILD]");
 }
 
 function getTechnicalDetails()

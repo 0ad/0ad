@@ -195,9 +195,6 @@ void GUITooltip::ShowTooltip(IGUIObject* obj, CPos pos, const CStr& style, CGUI*
 			debug_warn(L"Failed to retrieve tooltip text"); // shouldn't fail
 	}
 
-	// Do some minimal processing ("\n" -> newline, etc)
-	text = text.UnescapeBackslashes();
-
 	// Set tooltip's caption
 	if (usedobj->SetSetting("caption", text) != PSRETURN_OK)
 		debug_warn(L"Failed to set tooltip caption"); // shouldn't fail

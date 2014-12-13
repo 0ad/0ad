@@ -306,13 +306,6 @@ public:
 	void Replace(const CStr& StrToReplace, const CStr& ReplaceWith);
 
 	/**
-	 * Convert strings like  \\\n  into <backslash><newline>
-	 *
-	 * @return CStr converted copy of CStr.
-	 **/
-	CStr UnescapeBackslashes() const;
-
-	/**
 	 * Convert strings to printable ASCII characters with JSON-style escapes.
 	 */
 	std::string EscapeToPrintableASCII() const;

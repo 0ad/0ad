@@ -1305,12 +1305,12 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 			if (!context.empty())
 			{
 				CStr translatedValue(g_L10n.TranslateWithContext(context, value));
-				object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+				object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
 			}
 			else
 			{
 				CStr translatedValue(g_L10n.Translate(value));
-				object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+				object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
 			}
 		}
 		else if (element_name == elmt_attribute)
@@ -1339,7 +1339,7 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					translatedValue += grandchild.GetText();
 				}
 			}
-			object->SetSetting(attributeName, translatedValue.UnescapeBackslashes().FromUTF8(), true);
+			object->SetSetting(attributeName, translatedValue.FromUTF8(), true);
 		}
 		else if (element_name == elmt_include)
 		{

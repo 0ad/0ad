@@ -133,7 +133,7 @@ function updateSubject(newSubject)
 	var subjectBox = Engine.GetGUIObjectByName("subjectBox");
 	var logo = Engine.GetGUIObjectByName("logo");
 	// Load new subject and un-escape newlines.
-	subject.caption = newSubject.replace("\\n", "\n", "g");
+	subject.caption = newSubject;
 	// If the subject is only whitespace, hide it and reposition the logo.
 	if (subject.caption.match(/^([\s\t\r\n]*)$/g))
 	{

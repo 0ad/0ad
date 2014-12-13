@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -326,34 +326,6 @@ void CStr::Replace(const CStr& ToReplace, const CStr& ReplaceWith)
 			Pos += ReplaceWith.length();
 		}
 	}
-}
-
-CStr CStr::UnescapeBackslashes() const
-{
-	// Currently only handle \n and \\, because they're the only interesting ones
-	CStr NewString;
-	bool escaping = false;
-	for (size_t i = 0; i < length(); i++)
-	{
-		tchar ch = (*this)[i];
-		if (escaping)
-		{
-			switch (ch)
-			{
-			case 'n': NewString += '\n'; break;
-			default: NewString += ch; break;
-			}
-			escaping = false;
-		}
-		else
-		{
-			if (ch == '\\')
-				escaping = true;
-			else
-				NewString += ch;
-		}
-	}
-	return NewString;
 }
 
 std::string CStr::EscapeToPrintableASCII() const
