@@ -762,7 +762,7 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 	else if (this.type === "Rush" || this.type === "Attack")
 		var targets = this.rushTargetFinder(gameState, this.targetPlayer);
 	else
-		var targets = this.defaultTargetFinder(gameState);
+		var targets = this.defaultTargetFinder(gameState, this.targetPlayer);
 	if (targets.length == 0)
 		return undefined;
 
@@ -791,27 +791,27 @@ m.AttackPlan.prototype.getNearestTarget = function(gameState, position, sameLand
 };
 
 // Default target finder aims for conquest critical targets
-m.AttackPlan.prototype.defaultTargetFinder = function(gameState)
+m.AttackPlan.prototype.defaultTargetFinder = function(gameState, playerEnemy)
 {
 	var targets = undefined;
 	if (gameState.getGameType() === "wonder")
 	{
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Wonder"));
+		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Wonder"));
 		if (targets.length)
 			return targets;
 	}
 
-	var targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("CivCentre"));
+	var targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("CivCentre"));
 	if (!targets.length)
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	// If there's nothing, attack anything else that's less critical
 	if (!targets.length)
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Town"));
+		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Town"));
 	if (!targets.length)
-		targets = gameState.getEnemyStructures(this.targetPlayer).filter(API3.Filters.byClass("Village"));
+		targets = gameState.getEnemyStructures(playerEnemy).filter(API3.Filters.byClass("Village"));
 	// no buildings, attack anything conquest critical, even units
 	if (!targets.length)
-		targets = gameState.getEnemyEntities(this.targetPlayer).filter(API3.Filters.byClass("ConquestCritical"));
+		targets = gameState.getEnemyEntities(playerEnemy).filter(API3.Filters.byClass("ConquestCritical"));
 	return targets;
 };
 
@@ -820,7 +820,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 {
 	var targets = new API3.EntityCollection(gameState.sharedScript);
 	if (playerEnemy !== undefined)
-		var buildings = gameState.getEnemyStructures(this.targetPlayer).toEntityArray();
+		var buildings = gameState.getEnemyStructures(playerEnemy).toEntityArray();
 	else
 		var buildings = gameState.getEnemyStructures().toEntityArray();
 	if (buildings.length == 0)
@@ -866,7 +866,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	if (targets.length == 0)
 	{
 		if( this.type === "Attack")
-			targets = this.defaultTargetFinder(gameState);
+			targets = this.defaultTargetFinder(gameState, playerEnemy);
 		else if (this.type === "Rush" && playerEnemy)
 			targets = this.rushTargetFinder(gameState);
 	}
@@ -1546,6 +1546,14 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						this.targetPlayer = attack.targetPlayer;
 						break;
 					}
+				}
+
+				// If not, let's look for another enemy
+				if (!this.target)
+				{
+					this.targetPlayer = this.getEnemyPlayer(gameState);
+					if (this.targetPlayer)
+						this.target = this.getNearestTarget(gameState, this.position, true);
 				}
 
 				if (!this.target)
