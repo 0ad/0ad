@@ -797,7 +797,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	{	
 		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
 			continue;
-		// We require that it is accessible from our starting position
+		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;
@@ -948,7 +948,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	{
 		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
 			continue;
-		// We require that it is accessible from our starting position
+		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;

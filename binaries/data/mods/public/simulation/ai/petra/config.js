@@ -56,7 +56,7 @@ m.Config = function(difficulty)
 			"athen" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
 			"brit" : [ "structures/{civ}_rotarymill" ],
 			"cart" : [ "structures/{civ}_embassy_celtic",
-					"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
+				"structures/{civ}_embassy_iberian", "structures/{civ}_embassy_italiote" ],
 			"gaul" : [ "structures/{civ}_tavern" ],
 			"hele" : [ "structures/{civ}_gymnasion", "structures/{civ}_prytaneion", "structures/{civ}_theatron" ],
 			"iber" : [ "structures/{civ}_monument" ],

@@ -1513,8 +1513,8 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		this.unitCollUpdateArray.splice(0, lgth);
 		this.startingAttack = false;
 
-		// check if this enemy is defeated
-		if (this.target && this.target.owner() == 0 && this.targetPlayer != 0)
+		// check if this enemy has resigned
+		if (this.target && this.target.owner() === 0 && this.targetPlayer !== 0)
 			this.target = undefined;
 
 		// updating targets.
@@ -1528,17 +1528,19 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				// Check if we could help any current attack
 				var attackManager = gameState.ai.HQ.attackManager;
 				var accessIndex = gameState.ai.accessibility.getAccessValue(this.targetPos);
-				for (var attackType in attackManager.startedAttacks)
+				for (let attackType in attackManager.startedAttacks)
 				{
 					if (this.target)
 						break;
-					for (var attack of attackManager.startedAttacks[attackType])
+					for (let attack of attackManager.startedAttacks[attackType])
 					{
 						if (attack.name === this.name)
 							continue;
 						if (accessIndex !== gameState.ai.accessibility.getAccessValue(attack.targetPos))
 							continue;
 						if (!attack.target || !gameState.getEntityById(attack.target.id()))
+							continue;
+						if (attack.target.owner() === 0 && attack.targetPlayer !== 0)	// looks like it has resigned     
 							continue;
 						this.target = attack.target;
 						this.targetPlayer = attack.targetPlayer;

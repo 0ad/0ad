@@ -21,7 +21,7 @@ m.chatSentTribute = function(gameState, player)
 	if (proba < 0.5)
 		var message = "/team " + markForTranslation("Here is a gift for %(name)s, make a good use of it.");
 	else
-		var message = "/team " + markForTranslation("I see you are in a bad situation %(name)s, hope this will help."); 
+		var message = "/team " + markForTranslation("I see you are in a bad situation %(name)s, I hope this will help."); 
 
 	var chat = { "type": "aichat", "message": message, "translateMessage": true, "translateParameters": ["name"], "parameters": { "name": name } };
 	Engine.PostCommand(PlayerID, chat);
