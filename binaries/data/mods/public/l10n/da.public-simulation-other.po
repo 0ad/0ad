@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
+# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-26 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:58+0100\n"
+"PO-Revision-Date: 2014-11-27 15:05+0000\n"
+"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,62 +21,62 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I am launching an attack against %(name)s."
-msgstr ""
+msgstr "Jeg fører et angreb imod %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(name)s."
-msgstr ""
+msgstr "Jeg har lige sendt en hær imod %(name)s"
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid "Here is a gift for %(name)s, make a good use of it."
-msgstr ""
+msgstr "Her er en gave til %(name)s, brug den nu godt."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
 msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr ""
+msgstr "I jeg kan se, at du er i en skidt situation %(name)s, håber dette vil hjælpe."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
 "Warning: This is an advanced tutorial and goes quite fast. If you don't keep"
 " up just restart and try again. Practise makes perfect!"
-msgstr ""
+msgstr "Advarsel: Dette er en advanceret vejledning og går en smule stærkt. Hvis du ikke kan følge med, så bare genstart og prøv igen. Øvelse gør mester."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:8
 msgid ""
 "Lets get started, first train a batch (shift click) of 5 female citizens "
 "from the CC (Civil Center)."
-msgstr ""
+msgstr "Lad os komme i gang. Først træn en gruppe (Shift) af 5 kvindlige beboer fra CC (Civil Center)."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:13
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr ""
+msgstr "Nu, udsæt dine kvinlige beboer til at samle bær, din kavaleri til at jage kyllinger og beboer soldaterne til at samle træ."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
-msgstr ""
+msgstr "Sæt samlingsstedet for dit Civil Center på bærene"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:23
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr ""
+msgstr "Træn nogle Slyngemænd efter de kvindlige beboer, du har ikke nok ressourcer til at træne en hel gruppe."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr ""
+msgstr "Når dine kvindlige beboer er færdig med træning, brug 4 til at bygge et hus i nærheden."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr ""
+msgstr "Sæt dit Civil Centers samlingssted på de nærtliggende træer, træn flere Slyngemænd. Du skal bruge 6 lige nu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -83,19 +84,19 @@ msgstr "Sæt en gruppe på 5 kvindelige borgere i kø."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Brug shift-knappen til at klargøre en andet hus for de 4 byggerer"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Sæt samlingsstedet tilbage på bærene når alle dine beboer er færdig med at træne."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr ""
+msgstr "Send en beboersoldat til at samle sten, og 2 andre til at bygge et pakhus nær de sydliggende træer."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
@@ -104,13 +105,13 @@ msgstr "Sæt endnu en gruppe på 5 kvindelige borgere i kø."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr ""
+msgstr "Brug en kvindlig beboer til at lave en mark ved siden af dit Civil Center."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Dit kavaleri er muligvis løbet tør for kyllinger lige nu, der er flere geder til venstre for din base. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
@@ -128,7 +129,7 @@ msgstr "Sæt endnu et hus i kø."
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr ""
+msgstr "Bærbuskene er ved at blive overmandet, send nogle kvindlige beboer til at arbejde i marken, sæt et samlingssted der."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
@@ -138,13 +139,13 @@ msgstr "Sæt endnu en gruppe af 5 kvindelige borgere i kø, disse bør samle ste
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Flyt dine træhuggerer til træerne nær dit pakhus, så skal de ikke gå så langt."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr ""
+msgstr "Sørg for, at dine arbejderer fra bærbuskene bliver brugt til at samle fra markerne, i stedet for bare at stå stille når de løber tør for bær."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
@@ -152,27 +153,27 @@ msgstr "Sæt endnu et hus i kø til at blive bygget."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr ""
+msgstr "Klargør yderligere 5 kvindlige beboere. De skal indsamle træ."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
 "Build another field, this decreases the amount of walking for your female "
 "citizens."
-msgstr ""
+msgstr "Byg en anden mark, dette formindsker gåafstanden for dine kvindlige beboere."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:123
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr ""
+msgstr "Træn nogle flere slyngemænd, send dem ud for at samle sten. Træn 5, du har nok ikke nok ressourcer til en hel gruppe lige nu."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr ""
+msgstr "Klargør en gruppe af 5 kvindlige beboere, de skal samle træ"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
-msgstr ""
+msgstr "Klargør en gruppe af spydkæmpere"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
@@ -733,9 +734,8 @@ msgstr "Petra Bot"
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
-"supports naval maps and is generally more challenging, but doesn't support "
-"saved games yet. Please report issues to Wildfire Games (see the link in the"
-" main menu)."
+"supports naval maps and is generally more challenging. Please report issues "
+"to Wildfire Games (see the link in the main menu)."
 msgstr ""
 
 #: simulation/ai/tutorial-ai/data.jsonname

@@ -5,15 +5,16 @@
 # Translators:
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2014
 # Buggi <buggi@filzmail.com>, 2014
+# Marco tom Suden, 2014
 # Nicolas Auvray <na.itms76@gmail.com>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-09 02:34+0100\n"
-"PO-Revision-Date: 2014-11-09 10:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-12-10 13:41+0000\n"
+"Last-Translator: Marco tom Suden\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,38 +22,38 @@ msgstr ""
 "Language: fr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:105
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "Jouer avec les %(civilization)s"
 
-#: gui/civinfo/civinfo.js:111
+#: gui/civinfo/civinfo.js:108
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Bonus de civilisation"
 msgstr[1] "Bonus de civilisation"
 
-#: gui/civinfo/civinfo.js:116
+#: gui/civinfo/civinfo.js:113
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Bonus d'équipe"
 msgstr[1] "Bonus d'équipe"
 
-#: gui/civinfo/civinfo.js:125
+#: gui/civinfo/civinfo.js:122
 msgid "Special Technologies"
 msgstr "Technologies spéciales"
 
-#: gui/civinfo/civinfo.js:134
+#: gui/civinfo/civinfo.js:131
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Bâtiment spécial"
 msgstr[1] "Bâtiments spéciaux"
 
-#: gui/civinfo/civinfo.js:143 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Héros"
 
-#: gui/civinfo/civinfo.js:157
+#: gui/civinfo/civinfo.js:154
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Histoire des %(civilization)s"
@@ -73,11 +74,11 @@ msgstr "Ouverture de la page"
 msgid "FPS: %(fps)s"
 msgstr "FPS : %(fps)s"
 
-#: gui/common/functions_utility.js:260
+#: gui/common/functions_utility.js:189
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:262
+#: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -91,8 +92,8 @@ msgstr "dd-MM-yyyy HH:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
-msgid "[%(date)s]"
-msgstr "[%(date)s]"
+msgid "\\[%(date)s]"
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
@@ -148,13 +149,13 @@ msgid "<invalid>"
 msgstr "<invalide>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "Yes"
 msgstr "Oui"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
-#: gui/savedgames/load.js:44 gui/savedgames/load.js:106
+#: gui/savedgames/load.js:46 gui/savedgames/load.js:108
 #: gui/savedgames/save.js:59 gui/savedgames/save.js:89
 msgid "No"
 msgstr "Non"
@@ -249,7 +250,7 @@ msgstr "Post-traitement"
 
 #: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Utiliser les filtres de post-traitement (HDR, Bloom, DOF, etc) sur la largeur de l'écran"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -281,7 +282,7 @@ msgstr "Ligne de mire fluide"
 
 #: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr "Lever doucement l'obscurité et le brouillard de guerre (nécessite Préférer GLSL)"
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
@@ -495,7 +496,7 @@ msgid "Error"
 msgstr "Erreur"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. [DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
 msgstr "Ouvrir le hall multijoueur. [DÉSACTIVÉ LORS DE LA COMPILATION]"
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -511,53 +512,53 @@ msgstr "Manuel"
 msgid "No saved games found"
 msgstr "Pas de partie sauvegardée"
 
-#: gui/savedgames/load.js:46
+#: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
 msgstr "Cette partie enregistrée n'est peut-être pas compatible :"
 
-#: gui/savedgames/load.js:48
+#: gui/savedgames/load.js:50
 #, javascript-format
 msgid ""
 "It needs 0 A.D. version %(requiredVersion)s, while you are running version "
 "%(currentVersion)s."
 msgstr "Elle nécessite la version de 0 A.D. %(requiredVersion)s, alors que vous exécutez la version %(currentVersion)s."
 
-#: gui/savedgames/load.js:58
+#: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
 msgstr "Elle ne nécessite aucun mod, alors que vous utilisez actuellement \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:62
+#: gui/savedgames/load.js:64
 #, javascript-format
 msgid "It needs the mod \"%(requiredMod)s\" while you are running without a mod."
 msgstr "Elle nécessite le mod \"%(requiredMod)s\" alors que vous n'utilisez actuellement aucun mod."
 
-#: gui/savedgames/load.js:66
+#: gui/savedgames/load.js:68
 #, javascript-format
 msgid ""
 "It needs the mod \"%(requiredMod)s\" while you are running with "
 "\"%(currentMod)s\"."
 msgstr "Elle nécessite le mod \"%(requiredMod)s\" alors que vous utilisez actuellement \"%(currentMod)s\"."
 
-#: gui/savedgames/load.js:71
+#: gui/savedgames/load.js:73
 msgid "Do you still want to proceed?"
 msgstr "Voulez-vous toujours continuer ?"
 
-#: gui/savedgames/load.js:72
+#: gui/savedgames/load.js:74
 msgid "Warning"
 msgstr "Avertissement"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:61
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:61
 #: gui/savedgames/save.js:91
 #, javascript-format
 msgid "\"%(label)s\""
 msgstr "\"%(label)s\""
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "Saved game will be permanently deleted, are you sure?"
 msgstr "Cette sauvegarde sera supprimée définitivement, êtes-vous sûr(e) ?"
 
-#: gui/savedgames/load.js:108 gui/savedgames/save.js:91
+#: gui/savedgames/load.js:110 gui/savedgames/save.js:91
 msgid "DELETE"
 msgstr "SUPPRIMER"
 
@@ -585,7 +586,7 @@ msgstr "%(mapName)s - %(mapType)s"
 
 #: gui/summary/summary.js:810
 msgid "Team total"
-msgstr ""
+msgstr "Seulement équipe"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -832,7 +833,8 @@ msgstr "Cliquer ici pour commencer une partie en mode solo."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. [NOT YET IMPLEMENTED]"
+"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"IMPLEMENTED]"
 msgstr "Revivez l'histoire à travers des campagnes militaires historiques. [NON IMPLÉMENTÉ]"
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
@@ -1141,7 +1143,7 @@ msgid ""
 msgstr "[icon=\"constructionIcon\"] Ceci est une version expérimentale du jeu. Des fonctionnalités sont manquantes et elle contient des bogues."
 
 #: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=iconLag]  The game lags when many units are moving."
+msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
 msgstr "[icon=iconLag] Le jeu traîne quand de nombreuses unités sont en mouvement."
 
 #: gui/splashscreen/splashscreen.txt:7
@@ -1151,8 +1153,8 @@ msgstr "[icon=\"iconMap\"] Les grandes cartes peuvent causer des problèmes."
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play and historically accurate."
-msgstr "[icon=\"iconFormation\"] Nous avons désactivé les formations jusqu'à trouver comment les rendre moins saccadées, plus agréables à jouer et réalistes historiquement."
+"make them less laggy, more fun to play, and historically accurate."
+msgstr "[icon=\"iconFormation\"] Nous avons désactivé les formations jusqu'à ce qu'elles soient plus fluides, plus fun à jouer et plus réalistes historiquement"
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

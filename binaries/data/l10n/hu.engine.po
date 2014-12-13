@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Peter Darvasi <darvasipeter@windowslive.com>, 2014
+# Stew Den <stewden55@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-07-13 20:02+0000\n"
-"Last-Translator: Nagy András <asd0707@freemail.hu>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-12-06 22:41+0000\n"
+"Last-Translator: Stew Den <stewden55@hotmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,9 +36,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "egyedi verzió"
 
-#: i18n/L10n.cpp:266
+#: i18n/L10n.cpp:277
 msgid "Long strings"
 msgstr "Hosszú stringek"
+
+#: lobby/XmppClient.cpp:221
+msgid "Authentication failed"
+msgstr "Sikertelen bejelentkezés"
+
+#: lobby/XmppClient.cpp:457
+msgid "Registration not acceptable"
+msgstr "A regisztráció nem elfogadható"
+
+#: lobby/XmppClient.cpp:458
+msgid "Registration conflict"
+msgstr ""
+
+#: lobby/XmppClient.cpp:459
+msgid "Registration not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:460
+msgid "Registration bad request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:461
+msgid "Registration forbidden"
+msgstr "Regisztráció megtagadva"
+
+#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+msgid "Registration required"
+msgstr "Kötelező regisztráció"
+
+#: lobby/XmppClient.cpp:463
+msgid "Registration unexpected request"
+msgstr ""
+
+#: lobby/XmppClient.cpp:464
+msgid "Registration not allowed"
+msgstr "A regisztrációt nem engedélyezték"
+
+#: lobby/XmppClient.cpp:465
+msgid "Registration unknown error"
+msgstr "Ismeretlen regisztrációs hiba"
+
+#: lobby/XmppClient.cpp:750
+msgid "unknown subtype (see logs)"
+msgstr ""
+
+#: lobby/XmppClient.cpp:996
+msgid "Bad request"
+msgstr "Rossz kérés"
+
+#: lobby/XmppClient.cpp:997
+msgid "Player name already in use"
+msgstr "Ilyen játékos már létezik"
+
+#: lobby/XmppClient.cpp:998
+msgid "Feature not implemented"
+msgstr ""
+
+#: lobby/XmppClient.cpp:999
+msgid "Forbidden"
+msgstr "Megtagadva"
+
+#: lobby/XmppClient.cpp:1000
+msgid "Recipient or server gone"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1001
+msgid "Internal server error"
+msgstr "Szerver hiba történt"
+
+#: lobby/XmppClient.cpp:1002
+msgid "Item not found"
+msgstr "A termék nem található"
+
+#: lobby/XmppClient.cpp:1003
+msgid "Jid malformed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1004
+msgid "Not acceptable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1005
+msgid "Not allowed"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1006
+msgid "Not authorized"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1007
+msgid "Not modified"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1008
+msgid "Payment required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1009
+msgid "Recipient unavailable"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1010
+msgid "Redirect"
+msgstr "Átirányítás"
+
+#: lobby/XmppClient.cpp:1012
+msgid "Remote server not found"
+msgstr "A távoli szerver nem található"
+
+#: lobby/XmppClient.cpp:1013
+msgid "Remote server timeout"
+msgstr "A távoli szerveren időtúllépés van"
+
+#: lobby/XmppClient.cpp:1014
+msgid "Resource constraint"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1015
+msgid "Service unavailable"
+msgstr "A szolgáltatás nem elérhető."
+
+#: lobby/XmppClient.cpp:1016
+msgid "Subscribtion Required"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1017
+msgid "Undefined condition"
+msgstr ""
+
+#: lobby/XmppClient.cpp:1018
+msgid "Unexpected request"
+msgstr "Váratlan kérés"
+
+#: lobby/XmppClient.cpp:1019
+msgid "Unknown sender"
+msgstr "Ismeretlen küldő"
+
+#: lobby/XmppClient.cpp:1021
+msgid "Error undefined"
+msgstr "Hiba nincs definiálva "
 
 #: ps/SavedGame.cpp:129
 #, c-format

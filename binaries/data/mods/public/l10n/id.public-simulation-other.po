@@ -4,12 +4,14 @@
 # 
 # Translators:
 # azayrahmad <azayrahmad@gmail.com>, 2014
+# Joshua C <jrandiny2@gmail.com>, 2014
+# Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-26 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:58+0100\n"
+"PO-Revision-Date: 2014-11-23 04:30+0000\n"
+"Last-Translator: Tirtayasa <eggar4tirtayasa@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,22 +22,22 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I am launching an attack against %(name)s."
-msgstr ""
+msgstr "Saya melancarkan serangan kepada %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(name)s."
-msgstr ""
+msgstr "Saya baru saja mengirim pasukan kepada %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid "Here is a gift for %(name)s, make a good use of it."
-msgstr ""
+msgstr "Ini adalah hadiah untuk %(name)s, gunakan dengan baik."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
 msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr ""
+msgstr "Saya melihat anda sedang ada dalam situasi yang buruk %(name)s, semoga ini membantu,"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -433,17 +435,17 @@ msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr ""
+msgstr "Hentikan semua tentara mendapatkan sumberdaya dan bukan tugas kelompok kecil untuk menemukan kelompok musuh ditengah peta. warga perempuan bisa melanjutkan untuk mendapat sumberdaya"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr ""
+msgstr "markas musuh telah ditemukan. kirim senjata pengenpung dan semua sisa tentara untuk mengancurkan nya."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
-msgstr ""
+msgstr "Seluruh musuh telah dikalahkan. Semua tugas tutorial telah selesai..."
 
 #: simulation/components/BuildRestrictions.js:85
 #, javascript-format
@@ -733,10 +735,9 @@ msgstr "Petra Bot"
 #: simulation/ai/petra/data.jsondescription
 msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
-"supports naval maps and is generally more challenging, but doesn't support "
-"saved games yet. Please report issues to Wildfire Games (see the link in the"
-" main menu)."
-msgstr "Dimulai sebagai cabang dari Aegis bot, Petra adalah AI paling stabil yang tersedia. Petra mendukung peta lautan dan secara umum lebih menantang, namun belum mendukung permainan tersimpan. Mohon laporkan masalah pada Wildfire Games (lihat tautan di menu utama)."
+"supports naval maps and is generally more challenging. Please report issues "
+"to Wildfire Games (see the link in the main menu)."
+msgstr "Bermula sebagai garpu Aegis bot, Petra adalah AI yang paling stabil yg ada. itu mendukung peta angkatan laut dan umumnya lebih menantang. Tolong laporkan masalah pada Wildfire Games (Lihat link di dalam menu utama)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

@@ -4,12 +4,13 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014
+# Petri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-09-25 00:30+0000\n"
-"Last-Translator: linux_eki <ekiuusi@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-12-07 18:51+0000\n"
+"Last-Translator: Petri\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,11 +20,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:(caption):12
 msgid "Information"
-msgstr ""
+msgstr "Tiedot"
 
 #: gui/manual/manual.xml:(caption):20
 msgid "View Online"
-msgstr ""
+msgstr "Näytä Verkossa"
 
 #: gui/manual/manual.xml:(caption):23
 msgid "Close"
@@ -31,7 +32,7 @@ msgstr "Sulje"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr ""
+msgstr "[font=\"sans-bold-18\"]0 A.D. pelin käyttöohje"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -56,11 +57,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Voit vaihtaa kokonäyttö- ja ikkunanäyttötilan välillä välillä painamalla Alt + Enter. Voit muuttaa ikkunan kokoa ikkunanäyttötilassa. Jos peli toimii liian hitaasti, voit vaihtaa muutamia asetuksia konfiguraatiotiedostossa: katso binaries/data/config/default.cfg paikassa johon peli on asennettu. Tiedostossa on ohjeet muuttamiseen. Kokeile poistaa käytöstä \"fancywater\" ja \"shadows\"-optiot."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelataan peliä"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -68,7 +69,7 @@ msgid ""
 " traditional RTS games. There are currently a lot of missing features and "
 "poorly-balanced stats – you will probably have to wait until a beta release "
 "for it to work well."
-msgstr ""
+msgstr "[font=\"sans-14\"]Ohjaaminen ja pelaaminen on tuttua perinteisten RTS-pelien pelaajille. Pelissä on yhä paljon puuttuvia toimintoja ja huonosti tasapainoitettuja tilastoja - sinun tulee ehkä odottaa betajulkaisua ennen kuin ne toimivat kunnolla."
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
@@ -100,11 +101,11 @@ msgstr "• Hiiren rulla, tai \"+\" ja \"-\" näppäimet zoomaavat"
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelimuodot"
 
 #: gui/manual/intro.txt:20
 msgid "[font=\"sans-14\"]The main menu gives access to two game modes:"
-msgstr ""
+msgstr "[font=\"sans-14\"]Päävalikossa on pääsy kahteen pelimuotoon:"
 
 #: gui/manual/intro.txt:22
 msgid ""
@@ -113,13 +114,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — pelaa avoimen pelimaailman peliä taikka yhtä tai useampaa tekoälyvastustajaa vastaan. Tekoäly on kehitteillä ja sen uudet ominaisuudet eivät ole välttämättä ole saatavilla, mutta voit kuitenkin testata peliä todellista vastustajaa vastaan, jos et pysty pelaamaan ihmisen kanssa."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — pelaa verkossa toisia pelaajia vastaan."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -131,13 +132,13 @@ msgstr "Pystyttääksesi moninpelin, yhden pelaajan tulee valita \"Aloita moninp
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Pelin asetukset"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]Vain isäntä voi muuttaa pelin asetuksia moninpelissä."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -170,7 +171,7 @@ msgstr "[font=\"sans-bold-16\"]Pikanäppäimet:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Aina"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
@@ -214,31 +215,31 @@ msgstr "Shift + F2: Ota valtava kuvakaappaus (6400px*4800px, .bmp formaatissa, s
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Pelissä"
 
 #: gui/manual/intro.txt:49
 msgid ""
-"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
-"the same kind on the screen (even if they're different ranks)"
-msgstr ""
+"[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
+" the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"]Vasen Tuplaklikkaus \\[yksikköön]: Valitse näytön kaikki samanlaiset yksiköt. (vaikka ne olisivat eri arvoisia)"
 
 #: gui/manual/intro.txt:50
 msgid ""
-"Triple Left Click [on unit]: Select all of your units of the same kind and "
-"the same rank on the screen"
-msgstr ""
+"Triple Left Click \\[on unit]: Select all of your units of the same kind and"
+" the same rank on the screen"
+msgstr "Vasen Kolmoisklikkaus \\[yksikköön]: Valitse näytön kaikki samanlaiset yksiköt joilla on sama arvo."
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
-" the entire map (even if the are different ranks)"
-msgstr ""
+"Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
+"on the entire map (even if the are different ranks)"
+msgstr "Alt + Vasen Tuplaklikkaus \\[yksikköön]: Valitse kartan kaikki samanlaiset yksiköt (vaikka ne olisivat eri arvoisia)"
 
 #: gui/manual/intro.txt:52
 msgid ""
-"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Vasen Kolmoisklikkaus \\[yksikköön]: Valitse kartan kaikki samanlaiset yksiköt"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -258,7 +259,7 @@ msgstr "F12: Näytä/piilota paljonko aikaa kulunut pelissä"
 
 #: gui/manual/intro.txt:57
 msgid "ESC: Close all dialogs (chat, menu) or clear selected units"
-msgstr ""
+msgstr "ESC: Sulkee kaikki dialogit (chatti,valikko) tai poista yksiköiden valinta"
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
@@ -324,11 +325,11 @@ msgstr "Z, X, C, V, B, N, M: Kun koulutusrakennus valittu. Lisää 1. 2. 3. ... 
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Muokkaa hiiren toimintoja"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Oikea Hiiren Klikkaus rakennukseen: Varuskunta"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -369,22 +370,22 @@ msgstr "Ctrl + oikea hiirenklikkaus yksikkö valittuna:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "- Jos kursori on liittoutuneiden rakennuksen yllä: Varuskunta"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "- Muuten: Hyökkäysliike (oletuksena hyökätään kaikkiin vihollisyksiköihin ja -rakennuksiin kulkusuunnassa, käytä Ctrl + Q + Oikea Hiiren Klikkaus hyökätäksesi vain vihollisyksiköihin)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Yleisnäkymät"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Piilota/näytä GUI - graafinen käyttöliittymä"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -395,7 +396,7 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr ""
+msgstr "Alt + W: Vaihtaa rautalankamalli-tilan (paina kerran jolloin raukalankamalli peittää tekstuuri mallit, paina kahdesti jolloin saat vain rautalankamallit jotka ovat väritetty tekstuureilla, paina kolmasti palataksesi normaaliin tekstuuritilaan)"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -408,62 +409,62 @@ msgstr "Alt + Z: Vaihda taivasta"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Kameran käyttäminen"
 
 #: gui/manual/intro.txt:93
-msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W tai \\[up]: Siirrä näyttöaluetta ylös"
 
 #: gui/manual/intro.txt:94
-msgid "S or [down]: Pan screen down"
-msgstr "S tai [alas]: Liikuta näkymää alaspäin"
+msgid "S or \\[down]: Pan screen down"
+msgstr "S tai \\[down]: Siirrä näyttöaluetta alas"
 
 #: gui/manual/intro.txt:95
-msgid "A or [left]: Pan screen left"
-msgstr "A tai [vasen]: Liikuta näkymää vasemmalle"
+msgid "A or \\[left]: Pan screen left"
+msgstr "A or \\[left]: Siirrä näyttöaluetta vasemmalle"
 
 #: gui/manual/intro.txt:96
-msgid "D or [right]: Pan screen right"
-msgstr "D tai [oikea]: Liikuta näkymää oikealle"
+msgid "D or \\[right]: Pan screen right"
+msgstr "D tai \\[right]: Siirrä näyttöaluetta oikealle"
 
 #: gui/manual/intro.txt:97
-msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr "Ctrl + W tai [ylös]: Käännä kameraa ylöspäin"
+msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
+msgstr "Ctrl + W tai \\[up]: Käännä kameraa ylöspäin"
 
 #: gui/manual/intro.txt:98
-msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr "Ctrl + S tai [alas]: Käännä kameraa alaspäin"
+msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
+msgstr "Ctrl + S tai \\[down]: Käännä kameraa alaspäin"
 
 #: gui/manual/intro.txt:99
-msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A tai [vasen]: Käännä kameraa kelloa myötäpäivään"
+msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A tai \\[left]: Käännä kameraa myötäpäivään maastossa"
 
 #: gui/manual/intro.txt:100
-msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D tai [oikea]: Käännä kameraa kelloa vastapäivään"
+msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D tai \\[right]: Kännä kameraa vastapäivään maastossa"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
-msgstr "Q: Käännä kameraa kelloa myötäpäivään"
+msgstr "Q: Käännä kameraa myötäpäivään maastossa"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: Käännä kameraa kelloa vastapäivään"
+msgstr "E: Käännä kameraa vastapäivään maastossa"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
-msgstr ""
+msgstr "Shift + Hiiren Rulla Ylös: Käännä kameraa myötäpäivään maastossa"
 
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr ""
+msgstr "Shift + Hiiren Rulla Alas: Käännä kameraa vastapäivään maastossa"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr ""
+msgstr "F: Seuraa valittua yksikköä (siirrä kameraa pysäyttääksesi kameran seuraaminen)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
@@ -471,29 +472,29 @@ msgstr "R: Resetoi kameran tarkennus/suunta"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "+: Zoomaa (pidä painettuna = jatkuva zoomaus)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr ""
+msgstr "-: Loitonna (pidä painettuna = jatkuva loitonnus)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr ""
+msgstr "Alt + W: Vaihda rautalankamalli toimintatapojen välillä"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr ""
+msgstr "Keskimmäinen Hiiren painike tai / (vinoviiva): Pidä painettuna ja liikuta hiirtä näyttöalueen siirtämiseksi"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Rakennuksen siirtämisen aikana"
 
 #: gui/manual/intro.txt:113
-msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"]\\[: Käännä rakennusta 15 astetta vastapäivään"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
@@ -512,7 +513,7 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr ""
+msgstr "Ilmaisena, avoimen lähdekoodin pelinä meillä ei ole resursseja testata erilaisilla järjestelmillä, mutta haluamme tarjota parhaan pelikokemuksen niin monelle pelaajalle kuin mahdollista. Kun aktivoit automaattisen palautteen, me vastaanotamme tietoja, jotka auttavat meitä ymmärtämään laitteistoja, joita meidän tulisi keskittyä tukemaan ja tunnistamaan suorituskykyongelmat, jotka meidän pitäisi korjata."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
@@ -523,13 +524,13 @@ msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr ""
+msgstr "• Satunnainen käyttäjä ID (tallennettu kohteeseen %APPDATA%\\0ad\\config\\user.cfg Windows-käyttöjärjestelmässä, ~/.config/0ad/config/user.cfg Unix-käyttöjärjestelmässä), antaa meidän havaita toistuvat ilmoitukset samalta käyttäjältä."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr ""
+msgstr "• Pelin versionumero ja perus käännösasetukset (optimointi toimintatapa, CPU arkkitehtuuri, aikaleima, kääntäjän versio)"
 
 #: gui/manual/userreport.txt:7
 msgid ""
@@ -541,13 +542,13 @@ msgstr "• Laitteiston tiedot: Käyttöjärjestelmän versio, grafiikka ajurin 
 msgid ""
 "• Performance details: a snapshot of timing data a few seconds after you "
 "start a match or change graphics settings."
-msgstr ""
+msgstr "• Suorituskyvyn tiedot: kuvakaappaus ajoitustiedoista muutama sekunti sen jälkeen kun aloitat ottelun tai vaihdat grafiikka-asetuksia."
 
 #: gui/manual/userreport.txt:10
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr ""
+msgstr "Tietomäärä on vain muutamia kilotavuja aina kun pelaat peliä, joten verkon kaistan käyttö on hyvin pientä."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -556,4 +557,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr ""
+msgstr "Tallennamme lähetettyjä tietoja palvelimillemme. Voimme julkaista tilastoja tai yksityiskohtaisia tietoja, joista ei voida tunnistaa käyttäjiä auttaaksemme muita pelin kehittäjiä, joilla on samankaltaisia kysymyksiä.  Tallennamme tietoja lähettäneen IP-osoittteen, jotta voidaan havaita väärinkäyttöjä palvelussa. IP-osoitteita ei julkaista. Julkaistut tiedot voidaan nähdä osoitteessa: http://feedback.wildfiregames.com/"

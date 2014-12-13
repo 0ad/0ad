@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# liulitchi <xingzuo88@qq.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-10-08 07:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-25 05:04+0000\n"
+"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,139 +17,139 @@ msgstr ""
 "Language: zh\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: gui/lobby/lobby.js:25
-msgctxt "map size"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:33
-msgctxt "player number"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:37
-msgctxt "map"
-msgid "Any"
-msgstr "任意"
-
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Skirmish"
 msgstr "散兵"
 
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Random"
 msgstr "随机"
 
-#: gui/lobby/lobby.js:37
+#: gui/lobby/lobby.js:9
 msgid "Scenario"
 msgstr "场景"
 
-#: gui/lobby/lobby.js:239 gui/lobby/lobby.js:240 gui/lobby/lobby.js:241
-#: gui/lobby/lobby.js:242 gui/lobby/lobby.js:243 gui/lobby/lobby.js:244
+#: gui/lobby/lobby.js:27
+msgctxt "map size"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/lobby.js:35
+msgctxt "player number"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/lobby.js:39
+msgctxt "map"
+msgid "Any"
+msgstr "任意"
+
+#: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
+#: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
 msgstr ""
 
-#: gui/lobby/lobby.js:269 gui/lobby/lobby.js:297
+#: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
-
-#: gui/lobby/lobby.js:280 gui/lobby/lobby.js:308
-#, javascript-format
-msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
-msgid "-"
-msgstr ""
+#, javascript-format
+msgid "%(percentage)s%%"
+msgstr "%(percentage)s%%"
 
-#: gui/lobby/lobby.js:444
+#: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
+msgid "-"
+msgstr "-"
+
+#: gui/lobby/lobby.js:447
 msgid "Busy"
 msgstr "忙碌"
 
-#: gui/lobby/lobby.js:449
+#: gui/lobby/lobby.js:452
 msgid "Away"
 msgstr "离开"
 
-#: gui/lobby/lobby.js:453
+#: gui/lobby/lobby.js:456
 msgid "Online"
 msgstr "在线"
 
-#: gui/lobby/lobby.js:457
+#: gui/lobby/lobby.js:460
 msgid "Offline"
 msgstr "离线"
 
-#: gui/lobby/lobby.js:462
+#: gui/lobby/lobby.js:465
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "未知"
 
-#: gui/lobby/lobby.js:499
+#: gui/lobby/lobby.js:502
 msgid "A randomly selected map."
 msgstr "随机选取的地图"
 
-#: gui/lobby/lobby.js:524
+#: gui/lobby/lobby.js:528
 msgid "Sorry, no description available."
 msgstr "无可用的描述。"
 
-#: gui/lobby/lobby.js:552
+#: gui/lobby/lobby.js:556
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:630
+#: gui/lobby/lobby.js:634
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s 已加入"
 
-#: gui/lobby/lobby.js:639
+#: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s 已离开"
 
-#: gui/lobby/lobby.js:646
+#: gui/lobby/lobby.js:650
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "无效的用户名 %(nick)s"
 
-#: gui/lobby/lobby.js:653
+#: gui/lobby/lobby.js:657
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s 改名为 %(newnick)s 。"
 
-#: gui/lobby/lobby.js:810
+#: gui/lobby/lobby.js:814
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "对不起， 不支持 '%(cmd)s' 命令 。"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:890
+#: gui/lobby/lobby.js:894
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:892
+#: gui/lobby/lobby.js:896
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:896 gui/lobby/lobby.js:907 gui/lobby/lobby.js:920
+#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:898 gui/lobby/lobby.js:909 gui/lobby/lobby.js:922
+#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:903
+#: gui/lobby/lobby.js:907
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -158,24 +159,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:934
+#: gui/lobby/lobby.js:938
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:937
+#: gui/lobby/lobby.js:941
 #, javascript-format
 msgid "[%(time)s]"
 msgstr "[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:940
+#: gui/lobby/lobby.js:944
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:990
+#: gui/lobby/lobby.js:994
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "请不要发垃圾邮件，你将延迟30秒。"
 
@@ -219,6 +220,14 @@ msgstr "请阅读使用条款"
 msgid "Please agree to the Terms of Service and Terms of Use"
 msgstr "请同意“服务条款”和“使用条款”"
 
+#: gui/lobby/prelobby.js:195
+msgid "Registered"
+msgstr "已注册"
+
+#: gui/lobby/prelobby.js:205
+msgid "Disconnected"
+msgstr "断开"
+
 #: gui/lobby/prelobby.js:246
 msgid "Register"
 msgstr "注册"
@@ -241,7 +250,7 @@ msgstr "多人游戏大厅"
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr ""
+msgstr "当前队列："
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
@@ -253,15 +262,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr ""
+msgstr "胜者："
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"
-msgstr ""
+msgstr "输者："
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "胜率："
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -269,7 +278,7 @@ msgstr "排行榜"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "查询用户档案"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
@@ -318,7 +327,7 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr ""
+msgstr "未找到玩家"
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# leper <leper@wildfiregames.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-09-12 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-11-19 23:57+0100\n"
+"PO-Revision-Date: 2014-11-21 02:40+0000\n"
+"Last-Translator: leper <leper@wildfiregames.com>\n"
 "Language-Team: English (United Kingdom) (http://www.transifex.com/projects/p/0ad/language/en_GB/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,11 +19,11 @@ msgstr ""
 
 #: gui/manual/manual.xml:(caption):12
 msgid "Information"
-msgstr ""
+msgstr "Information"
 
 #: gui/manual/manual.xml:(caption):20
 msgid "View Online"
-msgstr ""
+msgstr "View Online"
 
 #: gui/manual/manual.xml:(caption):23
 msgid "Close"
@@ -55,7 +56,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr ""
+msgstr "[font=\"sans-14\"]You can switch between fullscreen and windowed mode by pressing Alt + Enter. In windowed mode, you can resize the window. If the game runs too slowly, you can change some settings in the configuration file: look for binaries/data/config/default.cfg in the location where the game is installed, which gives instructions for editing, and try disabling the \"fancywater\" and \"shadows\" options."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -112,13 +113,13 @@ msgid ""
 "and may not always be up to date on the new features, but you can test "
 "playing the game against an actual opponent if you aren't able to play with "
 "a human."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Single-player[font=\"sans-14\"] — play a sandbox game or against one or more AI opponents. The AI/AIs are under development and may not always be up to date on the new features, but you can test playing the game against an actual opponent if you aren't able to play with a human."
 
 #: gui/manual/intro.txt:24
 msgid ""
 "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human "
 "opponents over the internet."
-msgstr ""
+msgstr "• [font=\"sans-bold-14\"]Multiplayer[font=\"sans-14\"] — play against human opponents over the internet."
 
 #: gui/manual/intro.txt:26
 msgid ""
@@ -130,13 +131,13 @@ msgstr "To set up a multiplayer game, one player must select the \"Host game\" o
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Game setup"
 
 #: gui/manual/intro.txt:29
 msgid ""
 "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game "
 "setup options."
-msgstr ""
+msgstr "[font=\"sans-14\"]In a multiplayer game, only the host can alter the game setup options."
 
 #: gui/manual/intro.txt:31
 msgid ""
@@ -165,15 +166,15 @@ msgstr "When you are ready to start, click the \"Start game\" button."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
-msgstr ""
+msgstr "[font=\"sans-bold-16\"]Hotkeys:"
 
 #: gui/manual/intro.txt:38
 msgid "[font=\"sans-bold-14\"]Always"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Always"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -213,31 +214,31 @@ msgstr "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, locatio
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]In Game"
 
 #: gui/manual/intro.txt:49
 msgid ""
-"[font=\"sans-14\"]Double Left Click [on unit]: Select all of your units of "
-"the same kind on the screen (even if they're different ranks)"
-msgstr ""
+"[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
+" the same kind on the screen (even if they're different ranks)"
+msgstr "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of the same kind on the screen (even if they're different ranks)"
 
 #: gui/manual/intro.txt:50
 msgid ""
-"Triple Left Click [on unit]: Select all of your units of the same kind and "
-"the same rank on the screen"
-msgstr "Triple Left Click [on unit]: Select all of your units of the same kind and the same rank on the screen"
+"Triple Left Click \\[on unit]: Select all of your units of the same kind and"
+" the same rank on the screen"
+msgstr "Triple Left Click \\[on unit]: Select all of your units of the same kind and the same rank on the screen"
 
 #: gui/manual/intro.txt:51
 msgid ""
-"Alt + Double Left Click [on unit]: Select all your units of the same kind on"
-" the entire map (even if the are different ranks)"
-msgstr "Alt + Double Left Click [on unit]: Select all your units of the same kind on the entire map (even if the are different ranks)"
+"Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
+"on the entire map (even if the are different ranks)"
+msgstr "Alt + Double Left Click \\[on unit]: Select all your units of the same kind on the entire map (even if the are different ranks)"
 
 #: gui/manual/intro.txt:52
 msgid ""
-"Alt + Triple Left Click [on unit]: Select all your units of the same kind "
+"Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + Triple Left Click [on unit]: Select all your units of the same kind and rank on the entire map"
+msgstr "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind and rank on the entire map"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -323,11 +324,11 @@ msgstr "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd,
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Modify mouse action"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr ""
+msgstr "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -368,22 +369,22 @@ msgstr "Ctrl + Right Click with units selected:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
-msgstr ""
+msgstr "    - If the cursor is over an allied structure: Garrison"
 
 #: gui/manual/intro.txt:83
 msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr ""
+msgstr "    - Otherwise: Attack move (by default all enemy units and structures along the way are targeted, use Ctrl + Q + Right Click to target only units). "
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Overlays"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr ""
+msgstr "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
@@ -407,39 +408,39 @@ msgstr "Alt + Z: Toggle sky"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]Camera manipulation"
 
 #: gui/manual/intro.txt:93
-msgid "[font=\"sans-14\"]W or [up]: Pan screen up"
-msgstr ""
+msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
+msgstr "[font=\"sans-14\"]W or \\[up]: Pan screen up"
 
 #: gui/manual/intro.txt:94
-msgid "S or [down]: Pan screen down"
-msgstr "S or [down]: Pan screen down"
+msgid "S or \\[down]: Pan screen down"
+msgstr "S or \\[down]: Pan screen down"
 
 #: gui/manual/intro.txt:95
-msgid "A or [left]: Pan screen left"
-msgstr "A or [left]: Pan screen left"
+msgid "A or \\[left]: Pan screen left"
+msgstr "A or \\[left]: Pan screen left"
 
 #: gui/manual/intro.txt:96
-msgid "D or [right]: Pan screen right"
-msgstr "D or [right]: Pan screen right"
+msgid "D or \\[right]: Pan screen right"
+msgstr "D or \\[right]: Pan screen right"
 
 #: gui/manual/intro.txt:97
-msgid "Ctrl + W or [up]: Rotate camera to look upward"
-msgstr "Ctrl + W or [up]: Rotate camera to look upward"
+msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
+msgstr "Ctrl + W or \\[up]: Rotate camera to look upward"
 
 #: gui/manual/intro.txt:98
-msgid "Ctrl + S or [down]: Rotate camera to look downward"
-msgstr "Ctrl + S or [down]: Rotate camera to look downward"
+msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
+msgstr "Ctrl + S or \\[down]: Rotate camera to look downward"
 
 #: gui/manual/intro.txt:99
-msgid "Ctrl + A or [left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A or [left]: Rotate camera clockwise around terrain"
+msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
+msgstr "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
 
 #: gui/manual/intro.txt:100
-msgid "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D or [right]: Rotate camera anticlockwise around terrain"
+msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
+msgstr "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
@@ -488,11 +489,11 @@ msgstr "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mous
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr ""
+msgstr "[font=\"sans-bold-14\"]During Building Placement"
 
 #: gui/manual/intro.txt:113
-msgid "[font=\"sans-14\"][: Rotate building 15 degrees counter-clockwise"
-msgstr ""
+msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
+msgstr "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"
