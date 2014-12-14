@@ -6,6 +6,9 @@ m.getMaxStrength = function(ent, againstClass)
 {
 	var strength = 0.0;
 	var attackTypes = ent.attackTypes();
+	if (!attackTypes)
+		return strength;
+
 	var armourStrength = ent.armourStrengths();
 	var hp = ent.maxHitpoints() / 100.0;	// some normalization
 	for (let type of attackTypes)
