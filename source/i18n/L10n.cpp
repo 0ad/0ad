@@ -401,7 +401,7 @@ std::string L10n::LocalizeDateTime(const UDate& dateTime, const DateTimeType& ty
 
 std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, const std::string& formatString)
 {
-	UErrorCode status;
+	UErrorCode status = U_ZERO_ERROR;
 	UnicodeString dateString;
 	std::string resultString;
 
@@ -412,6 +412,7 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 
 	const TimeZone* timeZone = TimeZone::getGMT();
 
+	status = U_ZERO_ERROR;
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
 	if (U_FAILURE(status))
 		LOGERROR(L"Error creating calendar: %hs", u_errorName(status));
