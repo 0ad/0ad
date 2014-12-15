@@ -60,24 +60,6 @@ m.AssocArraytoArray = function(assocArray) {
 	return endArray;
 };
 
-m.MemoizeInit = function(obj)
-{
-	obj._memoizeCache = {};
-}
-
-m.Memoize = function(funcname, func)
-{
-	return function() {
-		var args = funcname + '|' + Array.prototype.join.call(arguments, '|');
-		if (args in this._memoizeCache)
-			return this._memoizeCache[args];
-
-		var ret = func.apply(this, arguments);
-		this._memoizeCache[args] = ret;
-		return ret;
-	};
-}
-
 m.ShallowClone = function(obj)
 {
 	var ret = {};

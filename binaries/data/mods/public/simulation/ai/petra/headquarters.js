@@ -596,7 +596,7 @@ m.HQ.prototype.findBestTrainableUnit = function(gameState, classes, requirements
 	if (classes.indexOf("Hero") != -1)
 		var units = gameState.findTrainableUnits(classes, []);
 	else if (classes.indexOf("Siege") != -1)	// We do not want siege tower as AI does not know how to use it
-		var units = gameState.findTrainableUnits(classes, ["Tower"]);
+		var units = gameState.findTrainableUnits(classes, ["SiegeTower"]);
 	else						// We do not want hero when not explicitely specified
 		var units = gameState.findTrainableUnits(classes, ["Hero"]);
 	
@@ -797,7 +797,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	{	
 		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
 			continue;
-		// We require that it is accessible from our starting position
+		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;
@@ -948,7 +948,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	{
 		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
 			continue;
-		// We require that it is accessible from our starting position
+		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;

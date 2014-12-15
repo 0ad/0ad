@@ -30,14 +30,14 @@ m.QueueManager = function(Config, queues)
 	this.accounts = {};
 
 	// the sorting is updated on priority change.
-	var self = this;
 	this.queueArrays = [];
 	for (var p in this.queues)
 	{
 		this.accounts[p] = new API3.Resources();
-		this.queueArrays.push([p,this.queues[p]]);
+		this.queueArrays.push([p, this.queues[p]]);
 	}
-	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
+	var priorities = this.priorities;
+	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]) });
 };
 
 m.QueueManager.prototype.getAvailableResources = function(gameState)
@@ -524,34 +524,34 @@ m.QueueManager.prototype.unpauseAll = function(but)
 
 m.QueueManager.prototype.addQueue = function(queueName, priority)
 {
-	if (this.queues[queueName] == undefined)
-	{
-		this.queues[queueName] = new m.Queue();
-		this.priorities[queueName] = priority;
-		this.accounts[queueName] = new API3.Resources();
+	if (this.queues[queueName] !== undefined)
+		return;
 
-		var self = this;
-		this.queueArrays = [];
-		for (var p in this.queues)
-			this.queueArrays.push([p,this.queues[p]]);
-		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
-	}
+	this.queues[queueName] = new m.Queue();
+	this.priorities[queueName] = priority;
+	this.accounts[queueName] = new API3.Resources();
+
+	this.queueArrays = [];
+	for (var p in this.queues)
+		this.queueArrays.push([p, this.queues[p]]);
+	var priorities = this.priorities;
+	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]) });
 };
 
 m.QueueManager.prototype.removeQueue = function(queueName)
 {
-	if (this.queues[queueName] !== undefined)
-	{
-		delete this.queues[queueName];
-		delete this.priorities[queueName];
-		delete this.accounts[queueName];
+	if (this.queues[queueName] === undefined)
+		return;
+
+	delete this.queues[queueName];
+	delete this.priorities[queueName];
+	delete this.accounts[queueName];
 		
-		var self = this;
-		this.queueArrays = [];
-		for (var p in this.queues)
-			this.queueArrays.push([p,this.queues[p]]);
-		this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
-	}
+	this.queueArrays = [];
+	for (var p in this.queues)
+		this.queueArrays.push([p, this.queues[p]]);
+	var priorities = this.priorities;
+	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]) });
 };
 
 m.QueueManager.prototype.getPriority = function(queueName)
@@ -563,13 +563,10 @@ m.QueueManager.prototype.changePriority = function(queueName, newPriority)
 {
 	if (this.Config.debug > 1)
 		API3.warn(">>> Priority of queue " + queueName + " changed from " + this.priorities[queueName] + " to " + newPriority);
-	var self = this;
 	if (this.queues[queueName] !== undefined)
 		this.priorities[queueName] = newPriority;
-	this.queueArrays = [];
-	for (var p in this.queues)
-		this.queueArrays.push([p,this.queues[p]]);
-	this.queueArrays.sort(function (a,b) { return (self.priorities[b[0]] - self.priorities[a[0]]) });
+	var priorities = this.priorities;
+	this.queueArrays.sort(function (a,b) { return (priorities[b[0]] - priorities[a[0]]) });
 };
 
 m.QueueManager.prototype.Serialize = function()

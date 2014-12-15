@@ -728,32 +728,30 @@ m.Worker.prototype.gatherNearestField = function(gameState, baseID)
  */
 m.Worker.prototype.buildAnyField = function(gameState, baseID)
 {
-	var self = this;
-	var baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
-	
+	var baseFoundations = gameState.getOwnFoundations().filter(API3.Filters.byMetadata(PlayerID, "base", baseID));	
 	var maxGatherers = gameState.getTemplate(gameState.applyCiv("structures/{civ}_field")).maxGatherers();
-
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
+	var pos = this.ent.position();
 	baseFoundations.forEach(function (found) {
-		if (found.hasClass("Field")) {
-			var current = found.getBuildersNb();
-			if (current === undefined || current >= maxGatherers)
-				return;
-			var dist = API3.SquareVectorDistance(found.position(), self.ent.position());
-			if (dist < bestFarmDist)
-			{
-				bestFarmEnt = found;
-				bestFarmDist = dist;
-			}
-		}
+		if (!found.hasClass("Field"))
+			return;
+		var current = found.getBuildersNb();
+		if (current === undefined || current >= maxGatherers)
+			return;
+		var dist = API3.SquareVectorDistance(found.position(), pos);
+		if (dist > bestFarmDist)
+			return;
+		bestFarmEnt = found;
+		bestFarmDist = dist;
 	});
 	return bestFarmEnt;
 };
 
 // Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
 // For the time being, we move towards the nearest gatherer (providing him a dropsite)
-m.Worker.prototype.moveAway = function(gameState){
+m.Worker.prototype.moveAway = function(gameState)
+{
 	var gatherers = this.baseManager.workersBySubrole(gameState, "gatherer");
 	var pos = this.ent.position();
 	var dist = Math.min();
