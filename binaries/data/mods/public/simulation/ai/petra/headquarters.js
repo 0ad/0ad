@@ -112,6 +112,26 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	});
 	this.treasures.registerUpdates();
 
+	if (deserializing)
+		return;
+
+	// TODO: change that to something dynamic.
+	var civ = gameState.playerData.civ;
+	// load units and buildings from the config files	
+	if (civ in this.Config.buildings.base)
+		this.bBase = this.Config.buildings.base[civ];
+	else
+		this.bBase = this.Config.buildings.base['default'];
+
+	if (civ in this.Config.buildings.advanced)
+		this.bAdvanced = this.Config.buildings.advanced[civ];
+	else
+		this.bAdvanced = this.Config.buildings.advanced['default'];	
+	for (var i in this.bBase)
+		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
+	for (var i in this.bAdvanced)
+		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
+
 	// Let's get our initial situation here.
 	var b0 = gameState.ai.uniqueIDs.bases;
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();	
@@ -123,7 +143,7 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	}
 	this.updateTerritories(gameState);
 
-	if (this.baseManagers[b0] && !deserializing)     // Assign entities in the different bases
+	if (this.baseManagers[b0])     // Assign entities in the different bases
 	{
 		var self = this;
 		var width = gameState.getMap().width;
@@ -156,7 +176,6 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 			self.baseManagers[b0].assignEntity(ent);
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				self.baseManagers[b0].assignResourceToDropsite(gameState, ent);
-
 		});
 	}
 
@@ -169,26 +188,6 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 		if (newDP.quality > 40 && this.canBuild(gameState, "structures/{civ}_storehouse"))
 			queues.dropsites.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_storehouse", { "base": 1 }, newDP.pos));
 	}
-
-	// TODO: change that to something dynamic.
-	var civ = gameState.playerData.civ;
-	
-	// load units and buildings from the config files
-	
-	if (civ in this.Config.buildings.base)
-		this.bBase = this.Config.buildings.base[civ];
-	else
-		this.bBase = this.Config.buildings.base['default'];
-
-	if (civ in this.Config.buildings.advanced)
-		this.bAdvanced = this.Config.buildings.advanced[civ];
-	else
-		this.bAdvanced = this.Config.buildings.advanced['default'];
-	
-	for (var i in this.bBase)
-		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
-	for (var i in this.bAdvanced)
-		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
 
 	// Check if we will ever be able to produce units
 	this.canBuildUnits = true;
@@ -2039,7 +2038,7 @@ m.HQ.prototype.Deserialize = function(gameState, data)
 	this.tradeManager.Deserialize(gameState, data.tradeManager);
 
 	this.navalManager = new m.NavalManager(this.Config);
-	this.navalManager.init(gameState);
+	this.navalManager.init(gameState, true);
 	this.navalManager.Deserialize(gameState, data.navalManager);
 
 	this.researchManager = new m.ResearchManager(this.Config);

@@ -32,6 +32,7 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 {
 	if (this.isDeserialized)
 	{
+		// WARNING: the deserializations should not modify the metadatas infos inside their init functions
 		this.turn = this.data.turn;
 		this.playedTurn = this.data.playedTurn;
 		this.elapsedTime = this.data.elapsedTime;
