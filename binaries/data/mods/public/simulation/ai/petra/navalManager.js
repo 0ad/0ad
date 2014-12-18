@@ -37,7 +37,7 @@ m.NavalManager = function(Config)
 };
 
 // More initialisation for stuff that needs the gameState
-m.NavalManager.prototype.init = function(gameState)
+m.NavalManager.prototype.init = function(gameState, deserializing)
 {
 	// finished docks
 	this.docks = gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClassesOr(["Dock", "Shipyard"]),
@@ -158,6 +158,9 @@ m.NavalManager.prototype.init = function(gameState)
 
 	for (var i in this.bNaval)
 		this.bNaval[i] = gameState.applyCiv(this.bNaval[i]);
+
+	if (deserializing)
+		return;
 
 	// Assign our docks
 	var self = this;

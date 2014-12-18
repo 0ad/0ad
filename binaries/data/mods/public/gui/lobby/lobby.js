@@ -399,7 +399,7 @@ function updateGameList()
 			list_name.push(name);
 			list_ip.push(g.ip);
 			list_mapName.push(translate(g.niceMapName));
-			list_mapSize.push(translatedMapSize(g_GameList[g].mapSize));
+			list_mapSize.push(translatedMapSize(g.mapSize));
 			let idx = g_mapTypes.indexOf(g.mapType);
 			list_mapType.push(idx != -1 ? g_mapTypesText[idx] : "");
 			list_nPlayers.push(g.nbp + "/" +g.tnbp);

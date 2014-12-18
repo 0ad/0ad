@@ -97,13 +97,13 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 	for (var evt of destEvents)
 	{
 		// let's check we haven't lost an important building here.
-		if (evt && !evt.SuccessfulFoundation && evt.entityObj != undefined && evt.metadata !== undefined && evt.metadata[PlayerID] &&
-			evt.metadata[PlayerID]["base"] !== undefined && evt.metadata[PlayerID]["base"] == this.ID)
+		if (evt && !evt.SuccessfulFoundation && evt.entityObj && evt.metadata && evt.metadata[PlayerID] &&
+			evt.metadata[PlayerID]["base"] && evt.metadata[PlayerID]["base"] == this.ID)
 		{
 			var ent = evt.entityObj;
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.removeDropsite(gameState, ent);
-			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] == true)
+			if (evt.metadata[PlayerID]["baseAnchor"] && evt.metadata[PlayerID]["baseAnchor"] === true)
 			{
 				// sounds like we lost our anchor. Let's reaffect our units and buildings
 				this.anchor = undefined;
