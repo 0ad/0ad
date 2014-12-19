@@ -27,7 +27,7 @@ m.Config = function(difficulty)
 		"popForDock" : 25,
 		"targetNumTraders" : 4, // Target number of traders
 		"targetNumFishers" : 1, // Target number of fishers per sea
-		"femaleRatio" : 0.5, // percent of females among the workforce.
+		"femaleRatio" : 0.5, // fraction of females among the workforce
 		"provisionFields" : 3
 	};
 

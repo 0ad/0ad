@@ -256,7 +256,9 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 			return;
 		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
 			return;
-		if (ent.hasClass("Siege") || ent.hasClass("Support") || ent.attackTypes() === undefined)
+		if (ent.hasClass("Support") || ent.attackTypes() === undefined)
+			return;
+		if (ent.hasClass("Siege") && !ent.hasClass("Melee"))
 			return;
 		if (ent.hasClass("FishingBoat") || ent.hasClass("Trader"))
 			return;

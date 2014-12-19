@@ -12,6 +12,7 @@ m.TradeManager = function(Config)
 	this.potentialTradeRoute = undefined;
 	this.routeProspection = false;
 	this.targetNumTraders = Math.round(this.Config.popScaling * this.Config.Economy.targetNumTraders);
+	this.warnedAllies = {};
 };
 
 m.TradeManager.prototype.init = function(gameState)
@@ -438,6 +439,18 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		API3.warn("one trade route set with gain " + candidate.gain);
 	this.tradeRoute = candidate;
 
+	if (this.Config.chat)
+	{
+		var owner = this.tradeRoute.source.owner();
+		if (owner === PlayerID)
+			owner = this.tradeRoute.target.owner();
+		if (owner !== PlayerID && !this.warnedAllies[owner])
+		{	// Warn an ally that we have a trade route with him
+			m.chatNewTradeRoute(gameState, owner);
+			this.warnedAllies[owner] = true;
+		}
+	}
+
 	if (accessIndex)
 	{
 		if (bestIndex.gain > 0)
@@ -576,7 +589,8 @@ m.TradeManager.prototype.Serialize = function()
 		"tradeRoute": this.routeEntToId(this.tradeRoute),
 		"potentialTradeRoute": this.routeEntToId(this.potentialTradeRoute),
 		"routeProspection": this.routeProspection,
-		"targetNumTraders": this.targetNumTraders
+		"targetNumTraders": this.targetNumTraders,
+		"warnedAllies": this.warnedAllies
 	};
 }
 
@@ -586,6 +600,7 @@ m.TradeManager.prototype.Deserialize = function(gameState, data)
 	this.potentialTradeRoute = this.routeIdToEnt(gameState, data.potentialTradeRoute);
 	this.routeProspection = data.routeProspection;
 	this.targetNumTraders = data.targetNumTraders;
+	this.warnedAllies = data.warnedAllies;
 }
 
 return m;
