@@ -30,7 +30,7 @@ class CCmpVision : public ICmpVision
 public:
 	static void ClassInit(CComponentManager& componentManager)
 	{
-		componentManager.SubscribeGloballyToMessageType(MT_ValueModification);
+		componentManager.SubscribeToMessageType(MT_ValueModification);
 	}
 
 	DEFAULT_COMPONENT_ALLOCATOR(Vision)
