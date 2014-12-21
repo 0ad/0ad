@@ -27,5 +27,18 @@ m.chatSentTribute = function(gameState, player)
 	Engine.PostCommand(PlayerID, chat);
 };
 
+m.chatNewTradeRoute = function(gameState, player)
+{
+	var name = gameState.sharedScript.playersData[player].name;
+	var proba = Math.random();
+	if (proba < 0.5)
+		var message = "/team " + markForTranslation("I have setup a new route with %(name)s. Trading will be profitable for all of us.");
+	else
+		var message = "/team " + markForTranslation("A new trade route is setup with %(name)s. Take your share of the profits");
+
+	var chat = { "type": "aichat", "message": message, "translateMessage": true, "translateParameters": ["name"], "parameters": { "name": name } };
+	Engine.PostCommand(PlayerID, chat);
+};
+
 return m;
 }(PETRA);

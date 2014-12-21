@@ -530,7 +530,8 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 		});
 	});
 
-	// Adapt the batch size of the first and second queued workers and females to the present population
+	// Anticipate the optimal batch size when this queue will start
+	// and adapt the batch size of the first and second queued workers and females to the present population
 	// to ease a possible recovery if our population was drastically reduced by an attack
 	// (need to go up to second queued as it is accounted in queueManager)
 	if (numWorkers < 12)
@@ -565,19 +566,27 @@ m.HQ.prototype.trainMoreWorkers = function(gameState, queues)
 
 	// default template
 	var template = gameState.applyCiv("units/{civ}_support_female_citizen");
-	// anticipate the optimal batch size when this queue will start
-	if (numTotal < 12)
-		var size = 1;
-	else
-		var size = Math.min(5, Math.ceil(numTotal / 10));
 
 	// Choose whether we want soldiers instead.
 	if ((numFemales+numQueuedF) > 8 && (numFemales+numQueuedF)/numTotal > this.femaleRatio)
 	{
 		if (numTotal < 45)
-			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]]);
+			var requirements = [ ["cost", 1], ["speed", 0.5], ["costsResource", 0.5, "stone"], ["costsResource", 0.5, "metal"]];
 		else
-			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], [ ["strength", 1] ]);
+			var requirements = [ ["strength", 1] ];
+
+		template = undefined;
+		var proba = Math.random();
+		if (proba < 0.6)
+		{	// we require at least 30% ranged and 30% melee
+			if (proba < 0.3)
+				var classes = ["CitizenSoldier", "Infantry", "Ranged"];
+			else
+				var classes = ["CitizenSoldier", "Infantry", "Melee"];
+			template = this.findBestTrainableUnit(gameState, classes, requirements);
+		}
+		if (!template)
+			template = this.findBestTrainableUnit(gameState, ["CitizenSoldier", "Infantry"], requirements);
 		if (!template)
 			template = gameState.applyCiv("units/{civ}_support_female_citizen");
 	}

@@ -1254,28 +1254,45 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				continue;
 			var ourUnit = gameState.getEntityById(evt.target);
 			if (this.isSiegeUnit(gameState, ourUnit))
-			{
-				// if siege units are attacked, we'll send some units to deal with enemies.
+			{	// if our siege units are attacked, we'll send some units to deal with enemies.
 				var collec = this.unitCollection.filter(API3.Filters.not(API3.Filters.byClass("Siege"))).filterNearest(ourUnit.position(), 5);
 				for (var ent of collec.values())
-					if (!this.isSiegeUnit(gameState, ent))
+				{
+					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
+						Continue;
+					ent.attack(attacker.id());
+					ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+				}
+				// And if this attacker is a non-ranged siege unit and our unit also, attack it
+				if (this.isSiegeUnit(gameState, attacker) && attacker.hasClass("Melee") && ourUnit.hasClass("Melee"))
+				{
+					ourUnit.attack(attacker.id());
+					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+				}
+			}
+			else
+			{
+				if (this.isSiegeUnit(gameState, attacker))
+				{	// if our unit is attacked by a siege unit, we'll send some melee units to help it.
+					var collec = this.unitCollection.filter(API3.Filters.byClass("Melee")).filterNearest(ourUnit.position(), 5);
+					for (var ent of collec.values())
 					{
 						ent.attack(attacker.id());
 						ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 					}
-			}
-			else
-			{
-				// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
-				var orderData = ourUnit.unitAIOrderData();
-				if (orderData.length !== 0 && orderData[0]["target"])
-				{
-					var target = gameState.getEntityById(orderData[0]["target"]);
-					if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
-						continue;
 				}
-				ourUnit.attack(attacker.id());
-				ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+				else
+				{	// if units are attacked, abandon their target (if it was a structure or a support) and retaliate
+					var orderData = ourUnit.unitAIOrderData();
+					if (orderData.length !== 0 && orderData[0]["target"])
+					{
+						var target = gameState.getEntityById(orderData[0]["target"]);
+						if (target && !target.hasClass("Structure") && !target.hasClass("Support"))
+							continue;
+					}
+					ourUnit.attack(attacker.id());
+					ourUnit.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
+				}
 			}
 		}
 		
