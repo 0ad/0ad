@@ -549,9 +549,10 @@ function handleInputBeforeGui(ev, hoveredObject)
 		case "mousemotion":
 			var rect = updateBandbox(bandbox, ev, false);
 
-			var ents = Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
+			// For performance reasons, do not select any units during bandboxing!
+			/*var ents = Engine.PickFriendlyEntitiesInRect(rect[0], rect[1], rect[2], rect[3], Engine.GetPlayerID());
 			var preferredEntities = getPreferredEntities(ents);
-			g_Selection.setHighlightList(preferredEntities);
+			g_Selection.setHighlightList(preferredEntities);*/
 
 			return false;
 
