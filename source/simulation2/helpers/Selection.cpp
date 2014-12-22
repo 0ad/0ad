@@ -133,6 +133,12 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
 
+	// Convert the given screen-aligned rectangle to one fitting the map coordinates
+	const CVector3D lowerLeftCorner = camera.GetWorldCoordinates(sx0,sy0,true);
+	//const CVector3D upperLeftCorner = camera.GetWorldCoordinates(sx0,sy1,true);
+	//const CVector3D lowerRightCorner = camera.GetWorldCoordinates(sx1,sy0,true);
+	const CVector3D upperRightCorner = camera.GetWorldCoordinates(sx1,sy1,true);
+
 	std::vector<entity_id_t> hitEnts;
 
 	const CSimulation2::InterfaceListUnordered& ents = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
@@ -162,19 +168,20 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 		if (!cmpVisual)
 			continue;
 
+		// Ignore entities that are located outside the selection rectangle.
+		// FIXME: Selection is still somewhat buggy but probably faster now.
 		CVector3D position = cmpVisual->GetPosition();
+		if(position.X < lowerLeftCorner.X ||
+		    position.Z > lowerLeftCorner.Z ||
+		    position.X > upperRightCorner.X ||
+		    position.Z < upperRightCorner.Z)
+			continue;
 
 		// Reject if it's not on-screen (e.g. it's behind the camera)
 		if (!camera.GetFrustum().IsPointVisible(position))
 			continue;
 
-		// Compare screen-space coordinates
-		float x, y;
-		camera.GetScreenCoordinates(position, x, y);
-		int ix = (int)x;
-		int iy = (int)y;
-		if (sx0 <= ix && ix <= sx1 && sy0 <= iy && iy <= sy1)
-			hitEnts.push_back(ent);
+		hitEnts.push_back(ent);
 	}
 
 	return hitEnts;
