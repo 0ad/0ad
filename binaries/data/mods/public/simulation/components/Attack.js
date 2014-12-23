@@ -280,15 +280,14 @@ Attack.prototype.GetPreference = function(target)
 	const targetClasses = cmpIdentity.GetClassesList();
 
 	var minPref = null;
-	for each (var type in this.GetAttackTypes())
+	for (var type of this.GetAttackTypes())
 	{
-		for each (var targetClass in targetClasses)
+		var preferredClasses = this.GetPreferredClasses(type);
+		for (var targetClass of targetClasses)
 		{
-			var pref = this.GetPreferredClasses(type).indexOf(targetClass);
+			var pref = preferredClasses.indexOf(targetClass);
 			if (pref != -1 && (minPref === null || minPref > pref))
-			{
 				minPref = pref;
-			}
 		}
 	}
 	return minPref;

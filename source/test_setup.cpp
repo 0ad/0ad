@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -73,7 +73,7 @@ class MiscSetup : public CxxTest::GlobalFixture
 		// Timer must be initialised, else things will break when tests do IO
 		timer_LatchStartTime();
 
-#if OS_MACOSX
+#if OS_MACOSX || OS_BSD
 		// See comment in GameSetup.cpp FixLocales
 		setlocale(LC_CTYPE, "UTF-8");
 #endif

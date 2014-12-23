@@ -171,7 +171,8 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 	{
 		if (reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError("ReRegistering component type that was not registered before"); // TODO: report the actual name
+			std::string msg("ReRegistering component type that was not registered before '"+cname+"'");
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
 			return;
 		}
 		// Allocate a new cid number
@@ -186,7 +187,8 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 
 		if (!componentManager->m_CurrentlyHotloading && !reRegister)
 		{
-			componentManager->m_ScriptInterface.ReportError("Registering component type with already-registered name"); // TODO: report the actual name
+			std::string msg("Registering component type with already-registered name '"+cname+"'");
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
 			return;
 		}
 
@@ -195,7 +197,8 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		// We can only replace scripted component types, not native ones
 		if (ctPrevious.type != CT_Script)
 		{
-			componentManager->m_ScriptInterface.ReportError("Loading script component type with same name as native component");
+			std::string msg("Loading script component type with same name '"+cname+"' as native component");
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
 			return;
 		}
 
@@ -286,7 +289,7 @@ void CComponentManager::Script_RegisterComponentType_Common(ScriptInterface::CxP
 		std::map<std::string, MessageTypeId>::const_iterator mit = componentManager->m_MessageTypeIdsByName.find(name);
 		if (mit == componentManager->m_MessageTypeIdsByName.end())
 		{
-			std::string msg = "Registered component has unrecognised '" + *it + "' message handler method";
+			std::string msg("Registered component has unrecognised '" + *it + "' message handler method");
 			componentManager->m_ScriptInterface.ReportError(msg.c_str());
 			return;
 		}
@@ -345,7 +348,10 @@ void CComponentManager::Script_RegisterInterface(ScriptInterface::CxPrivate* pCx
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError("Registering interface with already-registered name"); // TODO: report the actual name
+		{
+			std::string msg("Registering interface with already-registered name '"+name+"'");
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
+		}
 		return;
 	}
 
@@ -366,7 +372,10 @@ void CComponentManager::Script_RegisterMessageType(ScriptInterface::CxPrivate* p
 		// Redefinitions are fine (and just get ignored) when hotloading; otherwise
 		// they're probably unintentional and should be reported
 		if (!componentManager->m_CurrentlyHotloading)
-			componentManager->m_ScriptInterface.ReportError("Registering message type with already-registered name"); // TODO: report the actual name
+		{
+			std::string msg("Registering message type with already-registered name '"+name+"'");
+			componentManager->m_ScriptInterface.ReportError(msg.c_str());
+		}
 		return;
 	}
 
@@ -651,7 +660,16 @@ CComponentManager::ComponentTypeId CComponentManager::GetScriptWrapper(Interface
 	for (; it != m_ComponentTypesById.end(); ++it)
 		if (it->second.iid == iid && it->second.type == CT_ScriptWrapper)
 			return it->first;
-	LOGERROR(L"No script wrapper found for interface id %d", iid); // TODO: report name (if iid is valid at all)
+
+	std::map<std::string, InterfaceId>::const_iterator iiit = m_InterfaceIdsByName.begin();
+	for (; iiit != m_InterfaceIdsByName.end(); ++iiit)
+		if (iiit->second == iid)
+		{
+			LOGERROR(L"No script wrapper found for interface id %d '%hs'", iid, iiit->first.c_str());
+			return CID__Invalid;
+		}
+
+	LOGERROR(L"No script wrapper found for interface id %d", iid);
 	return CID__Invalid;
 }
 
@@ -673,6 +691,7 @@ entity_id_t CComponentManager::AllocateNewEntity(entity_id_t preferredId)
 {
 	// TODO: ensure this ID hasn't been allocated before
 	// (this might occur with broken map files)
+	// Trying to actually add two entities with the same id will fail in AddEntitiy
 	entity_id_t id = preferredId;
 
 	// Ensure this ID won't be allocated again
@@ -843,12 +862,11 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 		return INVALID_ENTITY;
 	}
 
-	// TODO: should assert that ent doesn't exist
-
 	const CParamNode* tmpl = cmpTemplateManager->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 
+	// This also ensures that ent does not exist
 	CEntityHandle handle = AllocateEntityHandle(ent);
 
 	// Construct a component for each child of the root element
