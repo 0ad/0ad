@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -109,8 +109,6 @@ private:
 			}
 
 			// Get the constructor name from the metadata
-			// If the AI doesn't use modules, we look for the constructor in the global object
-			// TODO: All AIs should use modules. Remove the condition if this requirement is met.
 			std::string moduleName;
 			std::string constructor;
 			JS::RootedValue objectWithConstructor(cx); // object that should contain the constructor function
@@ -118,17 +116,18 @@ private:
 			JS::RootedValue ctor(cx);
 			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
-				objectWithConstructor.set(m_ScriptInterface->GetGlobalObject());
+				LOGERROR(L"Failed to create AI player: %ls: missing 'moduleName'", path.string().c_str());
+				return false;
 			}
-			else
+
+			m_ScriptInterface->GetProperty(metadata, "moduleName", moduleName);
+			if (!m_ScriptInterface->GetProperty(global, moduleName.c_str(), &objectWithConstructor)
+			    || objectWithConstructor.isUndefined())
 			{
-				m_ScriptInterface->GetProperty(metadata, "moduleName", moduleName);
-				if(!m_ScriptInterface->GetProperty(global, moduleName.c_str(), &objectWithConstructor) || objectWithConstructor.isUndefined())
-				{
-					LOGERROR(L"Failed to create AI player: %ls: can't find the module that should contain the constructor: '%hs'", path.string().c_str(), moduleName.c_str());
-					return false;
-				}
+				LOGERROR(L"Failed to create AI player: %ls: can't find the module that should contain the constructor: '%hs'", path.string().c_str(), moduleName.c_str());
+				return false;
 			}
+
 			if (!m_ScriptInterface->GetProperty(metadata, "constructor", constructor))
 			{
 				LOGERROR(L"Failed to create AI player: %ls: missing 'constructor'", path.string().c_str());
@@ -137,7 +136,7 @@ private:
 
 			// Get the constructor function from the loaded scripts
 			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), &ctor)
-				|| ctor.isNull())
+			    || ctor.isNull())
 			{
 				LOGERROR(L"Failed to create AI player: %ls: can't find constructor '%hs'", path.string().c_str(), constructor.c_str());
 				return false;
@@ -397,7 +396,7 @@ public:
 		}
 		
 		if (!m_ScriptInterface->GetProperty(AIModule, "SharedScript", &ctor)
-			|| ctor.isUndefined())
+		    || ctor.isUndefined())
 		{
 			LOGERROR(L"Failed to create shared AI component: %ls: can't find constructor '%hs'", path.string().c_str(), "SharedScript");
 			return false;
