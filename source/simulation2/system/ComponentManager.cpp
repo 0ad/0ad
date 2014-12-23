@@ -691,6 +691,7 @@ entity_id_t CComponentManager::AllocateNewEntity(entity_id_t preferredId)
 {
 	// TODO: ensure this ID hasn't been allocated before
 	// (this might occur with broken map files)
+	// Trying to actually add two entities with the same id will fail in AddEntitiy
 	entity_id_t id = preferredId;
 
 	// Ensure this ID won't be allocated again
@@ -861,12 +862,11 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 		return INVALID_ENTITY;
 	}
 
-	// TODO: should assert that ent doesn't exist
-
 	const CParamNode* tmpl = cmpTemplateManager->LoadTemplate(ent, utf8_from_wstring(templateName), -1);
 	if (!tmpl)
 		return INVALID_ENTITY; // LoadTemplate will have reported the error
 
+	// This also ensures that ent does not exist
 	CEntityHandle handle = AllocateEntityHandle(ent);
 
 	// Construct a component for each child of the root element
