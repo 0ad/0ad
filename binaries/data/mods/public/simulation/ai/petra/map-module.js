@@ -115,7 +115,7 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 		}
 	}
 	
-	var map = new API3.Map(gameState.sharedScript, obstructionTiles);
+	var map = new API3.Map(gameState.sharedScript, "passability", obstructionTiles);
 	map.setMaxVal(255);
 	
 	if (template && template.buildDistance())
@@ -143,8 +143,8 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 m.createTerritoryMap = function(gameState)
 {
 	var map = gameState.ai.territoryMap;
-	
-	var ret = new API3.Map(gameState.sharedScript, map.data);	
+
+	var ret = new API3.Map(gameState.sharedScript, "territory", map.data);	
 	ret.getOwner = function(p) { return this.point(p) & m.TERRITORY_PLAYER_MASK; };
 	ret.getOwnerIndex = function(p) { return this.map[p] & m.TERRITORY_PLAYER_MASK; };
 	return ret;
@@ -153,9 +153,9 @@ m.createTerritoryMap = function(gameState)
 // TODO check if not already done in obstruction maps
 m.createBorderMap = function(gameState)
 {
-	var map = new API3.Map(gameState.sharedScript);
+	var map = new API3.Map(gameState.sharedScript, "territory");
 	var width = map.width;
-	var border = 15;
+	var border = Math.round(60 / map.cellSize);
 	if (gameState.ai.circularMap)
 	{
 		var ic = (width - 1) / 2;
@@ -198,10 +198,10 @@ m.createFrontierMap = function(gameState, borderMap)
 	var territoryMap = gameState.ai.HQ.territoryMap;
 	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
 
-	var map = new API3.Map(gameState.sharedScript);
+	var map = new API3.Map(gameState.sharedScript, "territory");
 	var width = map.width;
-	var insideSmall = 10;
-	var insideLarge = 15;
+	var insideSmall = Math.round(40 / map.cellSize);
+	var insideLarge = Math.round(60 / map.cellSize);
 
 	for (var j = 0; j < territoryMap.length; ++j)
 	{
@@ -248,9 +248,8 @@ m.getFrontierProximity = function(gameState, j, borderMap)
 	var territoryMap =  gameState.ai.HQ.territoryMap;
 	const around = [ [-0.7,0.7], [0,1], [0.7,0.7], [1,0], [0.7,-0.7], [0,-1], [-0.7,-0.7], [-1,0] ];
 
-	var map = new API3.Map(gameState.sharedScript);
 	var width = territoryMap.width;
-	const step = 3;
+	var step = Math.round(16 / territoryMap.cellSize);
 
 	if (gameState.isPlayerAlly(territoryMap.getOwnerIndex(j)))
 		return 0;

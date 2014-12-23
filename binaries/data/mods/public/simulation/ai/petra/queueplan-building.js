@@ -146,7 +146,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 
 	// Compute each tile's closeness to friendly structures:
 
-	var friendlyTiles = new API3.Map(gameState.sharedScript);
+	var friendlyTiles = new API3.Map(gameState.sharedScript, "passability");
 	
 	var alreadyHasHouses = false;
 

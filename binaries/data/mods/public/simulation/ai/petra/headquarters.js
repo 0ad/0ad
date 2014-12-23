@@ -52,7 +52,7 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 {
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
-	this.basesMap = new API3.Map(gameState.sharedScript);
+	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
 	// area of 10 cells on the border of the map : 0=inside map, 1=border map, 2=outside map
 	this.borderMap = m.createBorderMap(gameState);
 	// initialize frontier map. Each cell is 2 if on the near frontier, 1 on the frontier and 0 otherwise
@@ -287,7 +287,7 @@ m.HQ.prototype.start = function(gameState, deserializing)
 	if (deserializing)
 	{
 		// Rebuild the base maps from the territory indices of each base
-		this.basesMap = new API3.Map(gameState.sharedScript);
+		this.basesMap = new API3.Map(gameState.sharedScript, "territory");
 		for each (let base in this.baseManagers)
 			for (let j of base.territoryIndices)
 				this.basesMap.map[j] = base.ID;

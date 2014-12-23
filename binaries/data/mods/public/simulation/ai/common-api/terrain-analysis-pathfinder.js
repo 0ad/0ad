@@ -17,7 +17,7 @@ var API3 = function(m)
 m.aStarPath = function(gameState, onWater, disregardEntities, targetTerritory)
 {
 	// get the terrain analyzer map as a reference.
-	this.Map(gameState.ai, gameState.ai.terrainAnalyzer.map);
+	this.Map(gameState.ai, "passability", gameState.ai.terrainAnalyzer.map);
 	// get the accessibility as a reference
 	this.accessibility = gameState.ai.accessibility;
 	this.terrainAnalyzer = gameState.ai.terrainAnalyzer;
