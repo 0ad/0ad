@@ -17,8 +17,7 @@ var API3 = function(m)
 
 m.TerrainAnalysis = function()
 {
-	this.cellSize = 4;
-}
+};
 
 m.copyPrototype(m.TerrainAnalysis, m.Map);
 
@@ -27,11 +26,12 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	var passabilityMap = rawState.passabilityMap;
 	this.width = passabilityMap.width;
 	this.height = passabilityMap.height;
+	this.cellSize = passabilityMap.cellSize;
 	
 	// the first two won't change, the third is a reference to a value updated by C++
-	this.obstructionMaskLand = rawState.passabilityClasses["default"];
-	this.obstructionMaskWater = rawState.passabilityClasses["ship"];
-	this.obstructionMask = rawState.passabilityClasses["pathfinderObstruction"];
+	var obstructionMaskLand = rawState.passabilityClasses["default"];
+	var obstructionMaskWater = rawState.passabilityClasses["ship"];
+	var obstructionMask = rawState.passabilityClasses["pathfinderObstruction"];
 
 	var obstructionTiles = new Uint8Array(passabilityMap.data.length);
 	
@@ -48,11 +48,11 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 	for (var i = 0; i < passabilityMap.data.length; ++i)
 	{
 		// If impassable for land units, set to 0, else to 255.
-		obstructionTiles[i] = (passabilityMap.data[i] & this.obstructionMaskLand) ? 0 : 255;
+		obstructionTiles[i] = (passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
 		
-		if (!(passabilityMap.data[i] & this.obstructionMaskWater) && obstructionTiles[i] === 0)
+		if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 0)
 			obstructionTiles[i] = 200; // if navigable and not walkable (ie basic water), set to 200.
-		else if (!(passabilityMap.data[i] & this.obstructionMaskWater) && obstructionTiles[i] === 255)
+		else if (!(passabilityMap.data[i] & obstructionMaskWater) && obstructionTiles[i] === 255)
 			obstructionTiles[i] = 201; // navigable and walkable.
 	}
 
@@ -102,14 +102,7 @@ m.TerrainAnalysis.prototype.init = function(sharedScript,rawState)
 		}
 	}
 	// Okay now we have a pretty good knowledge of the map.
-	this.Map(rawState, obstructionTiles);
-
-	this.obstructionMaskLand = null;
-	this.obstructionMaskWater = null;
-	this.obstructionMask = null;
-	delete this.obstructionMaskLand;
-	delete this.obstructionMaskWater;
-	delete this.obstructionMask;
+	this.Map(rawState, "passability", obstructionTiles);
 };
 
 // Returns the (approximately) closest point which is passable by searching in a spiral pattern 
@@ -255,7 +248,7 @@ m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
 
 m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 {
-	this.Map(rawState, terrainAnalyser.map);
+	this.Map(rawState, "passability", terrainAnalyser.map);
 	this.landPassMap = new Uint8Array(terrainAnalyser.length);
 	this.navalPassMap = new Uint8Array(terrainAnalyser.length);
 
@@ -696,18 +689,17 @@ m.SharedScript.prototype.createResourceMaps = function(sharedScript) {
 		{
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
-			this.resourceMaps[resource].setMaxVal(255);
-			this.CCResourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
-			this.CCResourceMaps[resource].setMaxVal(255);
+			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
+			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
+	var cellSize = this.resourceMaps["food"].cellSize;
 	for (let ent of sharedScript._entities.values())
 	{
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure") {
 			var resource = ent.resourceSupplyType().generic;
-			var x = Math.floor(ent.position()[0] / 4);
-			var z = Math.floor(ent.position()[1] / 4);
+			var x = Math.floor(ent.position()[0] / cellSize);
+			var z = Math.floor(ent.position()[1] / cellSize);
 			var strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{
@@ -740,13 +732,11 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		{
 			// We're creting them 8-bit. Things could go above 255 if there are really tons of resources
 			// But at that point the precision is not really important anyway. And it saves memory.
-			this.resourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
-			this.resourceMaps[resource].setMaxVal(255);
-			this.CCResourceMaps[resource] = new m.Map(sharedScript, new Uint8Array(sharedScript.passabilityMap.data.length));
-			this.CCResourceMaps[resource].setMaxVal(255);
+			this.resourceMaps[resource] = new m.Map(sharedScript, "resource");
+			this.CCResourceMaps[resource] = new m.Map(sharedScript, "resource");
 		}
 	}
-
+	var cellSize = this.resourceMaps["food"].cellSize;
 	// Look for destroy events and subtract the entities original influence from the resourceMap
 	// TODO: perhaps do something when dropsites appear/disappear.
 	let destEvents = events["Destroy"];
@@ -760,8 +750,8 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
-			let x = Math.floor(ent.position()[0] / 4);
-			let z = Math.floor(ent.position()[1] / 4);
+			let x = Math.floor(ent.position()[0] / cellSize);
+			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{
@@ -786,8 +776,8 @@ m.SharedScript.prototype.updateResourceMaps = function(sharedScript, events)
 		if (ent && ent.position() && ent.resourceSupplyType() && ent.resourceSupplyType().generic !== "treasure")
 		{
 			let resource = ent.resourceSupplyType().generic;
-			let x = Math.floor(ent.position()[0] / 4);
-			let z = Math.floor(ent.position()[1] / 4);
+			let x = Math.floor(ent.position()[0] / cellSize);
+			let z = Math.floor(ent.position()[1] / cellSize);
 			let strength = Math.floor(ent.resourceSupplyMax()/this.decreaseFactor[resource]);
 			if (resource === "wood" || resource === "food")
 			{

@@ -6,28 +6,48 @@ var API3 = function(m)
  */
 
 // The function needs to be named too because of the copyConstructor functionality
-m.Map = function Map(sharedScript, originalMap, actualCopy)
+m.Map = function Map(sharedScript, type, originalMap, actualCopy)
 {
-	// get the map to find out the correct dimensions
-	var gameMap = sharedScript.passabilityMap;
-	this.width = gameMap.width;
-	this.height = gameMap.height;
-	this.length = gameMap.data.length;
-	
+	// get the correct dimensions according to the map type
+	if (type === "territory")
+	{
+		var map = sharedScript.territoryMap;
+		this.width = map.width;
+		this.height = map.height;
+		this.cellSize = map.cellSize;
+	}
+	else if (type === "resource")
+	{
+		this.cellSize = 4;
+		var map = sharedScript.passabilityMap;
+		this.width = map.width * map.cellSize / this.cellSize;
+		this.height = map.height * map.cellSize / this.cellSize;
+	}
+	else
+	{
+		var map = sharedScript.passabilityMap;
+		this.width = map.width;
+		this.height = map.height;
+		this.cellSize = map.cellSize;
+	}
+	this.length = this.width * this.height;
+
 	this.maxVal = 255;
+
+	// sanity check
+	if (originalMap && originalMap.length !== this.length)
+		warn("AI map size incompatibility with type " + type + ": original " + originalMap.length + " new " + this.length); 
 
 	if (originalMap && actualCopy)
 	{
 		this.map = new Uint8Array(this.length);
-		for (let i = 0; i < originalMap.length; ++i)
+		for (let i = 0; i < this.length; ++i)
 			this.map[i] = originalMap[i];
 	}
 	else if (originalMap)
 		this.map = originalMap;
 	else
 		this.map = new Uint8Array(this.length);
-
-	this.cellSize = 4;
 };
 
 m.Map.prototype.setMaxVal = function(val)

@@ -301,7 +301,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var width = obstructions.width;
 	var bestIdx = undefined;
 	var bestVal = undefined;
-	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	for (var p = 0; p < this.territoryIndices.length; ++p)
 	{
