@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -121,6 +121,42 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 	return hitEnts;
 }
 
+/**
+ * Used by EntitySelection::PickEntitiesInRect.
+ */
+static bool CheckEntityVisibleAndInRect(CEntityHandle handle, CmpPtr<ICmpRangeManager> cmpRangeManager, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables)
+{
+	// Check if this entity is only selectable in Atlas
+	CmpPtr<ICmpSelectable> cmpSelectable(handle);
+	if (!cmpSelectable || (!allowEditorSelectables && cmpSelectable->IsEditorOnly()))
+		return false;
+
+	// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
+	if (cmpRangeManager->GetLosVisibility(handle, owner) == ICmpRangeManager::VIS_HIDDEN)
+		return false;
+
+	// Find the current interpolated model position.
+	// (We just use the centre position and not the whole bounding box, because maybe
+	// that's better for users trying to select objects in busy areas)
+
+	CmpPtr<ICmpVisual> cmpVisual(handle);
+	if (!cmpVisual)
+		return false;
+
+	CVector3D position = cmpVisual->GetPosition();
+
+	// Reject if it's not on-screen (e.g. it's behind the camera)
+	if (!camera.GetFrustum().IsPointVisible(position))
+		return false;
+
+	// Compare screen-space coordinates
+	float x, y;
+	camera.GetScreenCoordinates(position, x, y);
+	int ix = (int)x;
+	int iy = (int)y;
+	return sx0 <= ix && ix <= sx1 && sy0 <= iy && iy <= sy1;
+}
+
 std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simulation, const CCamera& camera, int sx0, int sy0, int sx1, int sy1, player_id_t owner, bool allowEditorSelectables)
 {
 	PROFILE2("PickEntitiesInRect");
@@ -135,46 +171,24 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesInRect(CSimulation2& simul
 
 	std::vector<entity_id_t> hitEnts;
 
-	const CSimulation2::InterfaceListUnordered& ents = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
-	for (CSimulation2::InterfaceListUnordered::const_iterator it = ents.begin(); it != ents.end(); ++it)
+	if (owner != INVALID_PLAYER)
 	{
-		entity_id_t ent = it->first;
-		CEntityHandle handle = it->second->GetEntityHandle();
-
-		// Check if this entity is only selectable in Atlas
-		if (static_cast<ICmpSelectable*>(it->second)->IsEditorOnly() && !allowEditorSelectables)
-			continue;
-
-		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
-		if (cmpRangeManager->GetLosVisibility(handle, owner) == ICmpRangeManager::VIS_HIDDEN)
-			continue;
-
-		// Ignore entities not owned by 'owner'
-		CmpPtr<ICmpOwnership> cmpOwnership(handle);
-		if (owner != INVALID_PLAYER && (!cmpOwnership || cmpOwnership->GetOwner() != owner))
-			continue;
-
-		// Find the current interpolated model position.
-		// (We just use the centre position and not the whole bounding box, because maybe
-		// that's better for users trying to select objects in busy areas)
-
-		CmpPtr<ICmpVisual> cmpVisual(handle);
-		if (!cmpVisual)
-			continue;
-
-		CVector3D position = cmpVisual->GetPosition();
-
-		// Reject if it's not on-screen (e.g. it's behind the camera)
-		if (!camera.GetFrustum().IsPointVisible(position))
-			continue;
-
-		// Compare screen-space coordinates
-		float x, y;
-		camera.GetScreenCoordinates(position, x, y);
-		int ix = (int)x;
-		int iy = (int)y;
-		if (sx0 <= ix && ix <= sx1 && sy0 <= iy && iy <= sy1)
-			hitEnts.push_back(ent);
+		CComponentManager& componentManager = simulation.GetSimContext().GetComponentManager();
+		std::vector<entity_id_t> ents = cmpRangeManager->GetEntitiesByPlayer(owner);
+		for (std::vector<entity_id_t>::iterator it = ents.begin(); it != ents.end(); ++it)
+		{
+			if (CheckEntityVisibleAndInRect(componentManager.LookupEntityHandle(*it), cmpRangeManager, camera, sx0, sy0, sx1, sy1, owner, allowEditorSelectables))
+				hitEnts.push_back(*it);
+		}
+	}
+	else // owner == INVALID_PLAYER; Used when selecting units in Atlas or other mods that allow all kinds of selectables to be selected.
+	{
+		const CSimulation2::InterfaceListUnordered& selectableEnts = simulation.GetEntitiesWithInterfaceUnordered(IID_Selectable);
+		for (CSimulation2::InterfaceListUnordered::const_iterator it = selectableEnts.begin(); it != selectableEnts.end(); ++it)
+		{
+			if (CheckEntityVisibleAndInRect(it->second->GetEntityHandle(), cmpRangeManager, camera, sx0, sy0, sx1, sy1, owner, allowEditorSelectables))
+				hitEnts.push_back(it->first);
+		}
 	}
 
 	return hitEnts;
