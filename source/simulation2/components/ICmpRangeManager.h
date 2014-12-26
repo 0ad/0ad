@@ -380,6 +380,12 @@ public:
 	 */
 	virtual u8 GetPercentMapExplored(player_id_t player) = 0;
 
+	/**
+	 * Get percent map explored statistics for specified set of players.
+	 * Note: this function computes statistics from scratch and should not be called too often.
+	 */
+	virtual u8 GetUnionPercentMapExplored(std::vector<player_id_t> players) = 0;
+
 
 	/**
 	 * Perform some internal consistency checks for testing/debugging.

@@ -2048,6 +2048,32 @@ public:
 	{
 		return m_ExploredVertices.at((u8)player) * 100 / m_TotalInworldVertices;
 	}
+
+	virtual u8 GetUnionPercentMapExplored(std::vector<player_id_t> players)
+	{
+		u32 exploredVertices = 0;
+		std::vector<player_id_t>::iterator playerIt;
+
+		for (i32 j = 0; j < m_TerrainVerticesPerSide; j++)
+		{
+			for (i32 i = 0; i < m_TerrainVerticesPerSide; i++)
+			{
+				if (LosIsOffWorld(i, j))
+					continue;
+
+				for (playerIt = players.begin(); playerIt != players.end(); ++playerIt)
+				{
+					if (m_LosState[j*m_TerrainVerticesPerSide + i] & (LOS_EXPLORED << (2*((*playerIt)-1))))
+					{
+						exploredVertices += 1;
+						break;
+					}
+				}
+			}
+		}
+
+		return exploredVertices * 100 / m_TotalInworldVertices;
+	}
 };
 
 REGISTER_COMPONENT_TYPE(RangeManager)

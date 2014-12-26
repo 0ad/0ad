@@ -117,6 +117,7 @@ AddMock(100, IID_StatisticsTracker, {
 			},
 			"treasuresCollected": 0,
 			"percentMapExplored": 10,
+			"teamPercentMapExplored": 10
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -180,6 +181,7 @@ AddMock(101, IID_StatisticsTracker, {
 			},
 			"treasuresCollected": 0,
 			"percentMapExplored": 10,
+			"teamPercentMapExplored": 10
 		};
 	},
 	IncreaseTrainedUnitsCounter: function() { return 1; },
@@ -254,6 +256,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 	circularMap: false,
 	timeElapsed: 0,
 	gameType: "conquest",
+	barterPrices: {buy: {food: 150}, sell: {food: 25}}
 });
 
 TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
@@ -301,6 +304,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 				},
 				treasuresCollected: 0,
 				percentMapExplored: 10,
+				teamPercentMapExplored: 10
 			},
 		},
 		{
@@ -346,6 +350,7 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetExtendedSimulationState(), {
 				},
 				treasuresCollected: 0,
 				percentMapExplored: 10,
+				teamPercentMapExplored: 10
 			},
 		}
 	],

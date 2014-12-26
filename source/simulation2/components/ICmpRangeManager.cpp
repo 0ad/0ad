@@ -56,4 +56,5 @@ DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircul
 DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 DEFINE_INTERFACE_METHOD_2("SetSharedLos", void, ICmpRangeManager, SetSharedLos, player_id_t, std::vector<player_id_t>)
 DEFINE_INTERFACE_METHOD_1("GetPercentMapExplored", u8, ICmpRangeManager, GetPercentMapExplored, player_id_t)
+DEFINE_INTERFACE_METHOD_1("GetUnionPercentMapExplored", u8, ICmpRangeManager, GetUnionPercentMapExplored, std::vector<player_id_t>)
 END_INTERFACE_WRAPPER(RangeManager)

@@ -119,13 +119,23 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();
 
-	// and the game type
+	// Add the game type
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	ret.gameType = cmpEndGameManager.GetGameType();
+
+	// Add bartering prices
+	var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
+	ret.barterPrices = cmpBarter.GetPrices();
 
 	return ret;
 };
 
+/**
+ * Returns global information about the current game state, plus statistics.
+ * This is used by the GUI at the end of a game, in the summary screen.
+ * Note: Amongst statistics, the team exploration map percentage is computed from
+ * scratch, so the extended simulation state should not be requested too often.
+ */
 GuiInterface.prototype.GetExtendedSimulationState = function(player)
 {
 	// Get basic simulation info
@@ -140,10 +150,6 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
 		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
-
-	// Add bartering prices
-	var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
-	ret.barterPrices = cmpBarter.GetPrices();
 
 	return ret;
 };

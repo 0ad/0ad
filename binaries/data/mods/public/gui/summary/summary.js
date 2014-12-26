@@ -787,8 +787,7 @@ function init(data)
 		sumVegetarianRatio();
 		sumFeminisation();
 		sumKillDeathRatio();
-		// TODO: probably change from simple sum to union from range manager
-		panels.miscelanous.counters.mapExploration.teamsScores[playerState.team] += playerState.statistics.percentMapExplored;
+		panels.miscelanous.counters.mapExploration.teamsScores[playerState.team] = playerState.statistics.teamPercentMapExplored;
 		panels.miscelanous.counters.mapExploration.teamsScoresCaption[playerState.team] = panels.miscelanous.counters.mapExploration.teamsScores[playerState.team] + "%";
 	}
 	
