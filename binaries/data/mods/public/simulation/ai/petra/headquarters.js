@@ -53,10 +53,10 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	this.territoryMap = m.createTerritoryMap(gameState);
 	// initialize base map. Each pixel is a base ID, or 0 if not or not accessible
 	this.basesMap = new API3.Map(gameState.sharedScript, "territory");
-	// area of 10 cells on the border of the map : 0=inside map, 1=border map, 2=outside map
+	// area of n cells on the border of the map : 0=inside map, 1=border map, 2=border+inaccessible
 	this.borderMap = m.createBorderMap(gameState);
 	// initialize frontier map. Each cell is 2 if on the near frontier, 1 on the frontier and 0 otherwise
-	this.frontierMap = m.createFrontierMap(gameState, this.borderMap);
+	this.frontierMap = m.createFrontierMap(gameState);
 	// list of allowed regions
 	this.allowedRegions = {};
 
@@ -64,14 +64,16 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	this.navalMap = false;
 	this.navalRegions = [];
 
-	var totalSize = gameState.getMap().width * gameState.getMap().width;
+	var passabilityMap = gameState.getMap();
+	var totalSize = passabilityMap.width * passabilityMap.width;
 	var minLandSize = Math.floor(0.2*totalSize);
 	var minWaterSize = Math.floor(0.3*totalSize);
+	var cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
 	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
 	{
 		if (i == gameState.ai.myIndex)
 			this.allowedRegions[i] = true;
-		else if (gameState.ai.accessibility.regionType[i] === "land" && gameState.ai.accessibility.regionSize[i] > 20)
+		else if (gameState.ai.accessibility.regionType[i] === "land" && cellArea*gameState.ai.accessibility.regionSize[i] > 320)
 		{
 			var seaIndex = this.getSeaIndex(gameState, gameState.ai.myIndex, i);
 			if (!seaIndex)
@@ -94,7 +96,7 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	if (this.Config.debug > 2)
 	{
 		for (var region in this.allowedRegions)
-			API3.warn(" >>> zone " + region + " taille " + gameState.ai.accessibility.regionSize[region]);
+			API3.warn(" >>> zone " + region + " taille " + cellArea*gameState.ai.accessibility.regionSize[region]);
 	}
 
 	if (this.Config.difficulty < 2)
@@ -315,9 +317,11 @@ m.HQ.prototype.start = function(gameState, deserializing)
 			break;
 		}
 	}
+	var cell = gameState.getMap().cellSize;
+	startingSize = startingSize * cell * cell;
 	if (this.Config.debug > 1)
-		API3.warn("starting size " + startingSize + "(cut at 1500 for fish pushing)");
-	if (startingSize < 1500)
+		API3.warn("starting size " + startingSize + "(cut at 24000 for fish pushing)");
+	if (startingSize < 24000)
 	{
 		this.saveSpace = true;
 		this.Config.Economy.popForDock = Math.min(this.Config.Economy.popForDock, 16);
@@ -796,27 +800,29 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	for (var dp of dpEnts.values())
 		dpList.push({"pos": dp.position()});
 
-	var width = this.territoryMap.width;
-	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
 	var bestIdx = undefined;
 	var bestVal = undefined;
+	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+
+	var width = this.territoryMap.width;
+	var cellSize = this.territoryMap.cellSize;
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{	
-		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
+		if (this.territoryMap.getOwnerIndex(j) != 0)
 			continue;
 		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;
 		// and with enough room around to build the cc
-		if (obstructions.map[j] <= radius)
+		var i = API3.getMaxMapIndex(j, this.territoryMap, obstructions);
+		if (obstructions.map[i] <= radius)
 			continue;
 
 		var norm = 0.5;   // TODO adjust it, knowing that we will sum 5 maps
 		// checking distance to other cc
-		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		var minDist = Math.min();
 
 		for (var cc of ccList)
@@ -873,7 +879,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		if (norm == 0)
 			continue;
 
-		if (this.borderMap.map[j] == 1)	// disfavor the borders of the map
+		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
 		
 		var val = 2*gameState.sharedScript.CCResourceMaps[resource].map[j]
@@ -899,19 +905,19 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	if (bestVal < cut)
 		return false;
 	
-	var x = (bestIdx%width + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
+	var i = API3.getMaxMapIndex(bestIdx, this.territoryMap, obstructions);
+	var x = (i % obstructions.width + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
-	var index = gameState.ai.accessibility.landPassMap[bestIdx];
+	var index = gameState.ai.accessibility.landPassMap[i];
 	for each (var base in this.baseManagers)
 	{
-		if (base.anchor && base.accessIndex != index)
-		{
-			var sea = this.getSeaIndex(gameState, base.accessIndex, index);
-			if (sea !== undefined)
-				this.navalManager.setMinimalTransportShips(gameState, sea, 1);
-		}
+		if (!base.anchor || base.accessIndex === index)
+			continue;
+		var sea = this.getSeaIndex(gameState, base.accessIndex, index);
+		if (sea !== undefined)
+			this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 	}
 
 	return [x,z];
@@ -945,28 +951,30 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
-	var width = this.territoryMap.width;
-	var radius =  Math.ceil(template.obstructionRadius() / gameState.cellSize);
 	var bestIdx = undefined;
 	var bestVal = undefined;
+	var radius =  Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+
+	var width = this.territoryMap.width;
+	var cellSize = this.territoryMap.cellSize;
 	var currentVal, delta;
 	var distcc0, distcc1, distcc2;
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.territoryMap.getOwnerIndex(j) != 0 || this.borderMap.map[j] == 2)
+		if (this.territoryMap.getOwnerIndex(j) != 0)
 			continue;
 		// We require that it is accessible
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.allowedRegions[index])
 			continue;
 		// and with enough room around to build the cc
-		if (obstructions.map[j] <= radius)
+		var i = API3.getMaxMapIndex(j, this.territoryMap, obstructions);
+		if (obstructions.map[i] <= radius)
 			continue;
 
 		// checking distances to other cc
-		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		var minDist = Math.min();
 		distcc0 = undefined;
 
@@ -1015,7 +1023,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 			currentVal += delta*delta;
 		}
 		// disfavor border of the map
-		if (this.borderMap.map[j] == 1)
+		if (this.borderMap.map[j] > 0)
 			currentVal += 10000;		
 
 		if (bestVal !== undefined && currentVal > bestVal)
@@ -1032,19 +1040,19 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 	if (bestVal === undefined)
 		return undefined;
 
-	var x = (bestIdx%width + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
+	var i = API3.getMaxMapIndex(bestIdx, this.territoryMap, obstructions);
+	var x = (i % obstructions.width + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	// Define a minimal number of wanted ships in the seas reaching this new base
-	var index = gameState.ai.accessibility.landPassMap[bestIdx];
+	var index = gameState.ai.accessibility.landPassMap[i];
 	for each (var base in this.baseManagers)
 	{
-		if (base.anchor && base.accessIndex != index)
-		{
-			var sea = this.getSeaIndex(gameState, base.accessIndex, index);
-			if (sea !== undefined)
-				this.navalManager.setMinimalTransportShips(gameState, sea, 1);
-		}
+		if (!base.anchor || base.accessIndex === index)
+			continue;
+		var sea = this.getSeaIndex(gameState, base.accessIndex, index);
+		if (sea !== undefined)
+			this.navalManager.setMinimalTransportShips(gameState, sea, 1);
 	}
 
 	return [x,z];
@@ -1067,11 +1075,13 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
-	var width = this.territoryMap.width;
 	var bestIdx = undefined;
 	var bestVal = undefined;
-	var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 	var isNavalMarket = template.hasClass("NavalMarket");
+
+	var width = this.territoryMap.width;
+	var cellSize = this.territoryMap.cellSize;
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
@@ -1080,14 +1090,15 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 			continue;
 		if (this.basesMap.map[j] == 0)   // only in our territory
 			continue;
-		if (obstructions.map[j] <= radius)  // check room around
+		// with enough room around to build the cc
+		var i = API3.getMaxMapIndex(j, this.territoryMap, obstructions);
+		if (obstructions.map[i] <= radius)
 			continue;
-		var index = gameState.ai.accessibility.landPassMap[j];
+		var index = gameState.ai.accessibility.landPassMap[i];
 		if (!this.allowedRegions[index])
 			continue;
 
-		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		// checking distances to other markets
 		var maxDist = 0;
 		for (var market of markets)
@@ -1124,8 +1135,9 @@ m.HQ.prototype.findMarketLocation = function(gameState, template)
 		(expectedGain < 8 && (!template.hasClass("BarterMarket") || gameState.getOwnStructures().filter(API3.Filters.byClass("BarterMarket")).length > 0)))
 		return false;
 
-	var x = (bestIdx%width + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
+	var i = API3.getMaxMapIndex(bestIdx, this.territoryMap, obstructions);
+	var x = (i % obstructions.width + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 	return [x, z, this.basesMap.map[bestIdx], expectedGain];
 };
 
@@ -1154,16 +1166,17 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	var obstructions = m.createObstructionMap(gameState, 0, template);
 	obstructions.expandInfluences();
 
-	var width = this.territoryMap.width;
 	var bestIdx = undefined;
 	var bestVal = undefined;
+	var width = this.territoryMap.width;
+	var cellSize = this.territoryMap.cellSize;
 
 	var isTower = template.hasClass("Tower");
 	var isFortress = template.hasClass("Fortress");
 	if (isFortress)
-		var radius = Math.floor(template.obstructionRadius() / gameState.cellSize) + 2;
+		var radius = Math.floor((template.obstructionRadius() + 8) / obstructions.cellSize);
 	else
-		var radius = Math.ceil(template.obstructionRadius() / gameState.cellSize);
+		var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
@@ -1177,11 +1190,12 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 		}
 		if (this.basesMap.map[j] == 0)   // inaccessible cell
 			continue;
-		if (obstructions.map[j] <= radius)  // check room around
+		// and with enough room around to build the cc
+		var i = API3.getMaxMapIndex(j, this.territoryMap, obstructions);
+		if (obstructions.map[i] <= radius)
 			continue;
 
-		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		// checking distances to other structures
 		var minDist = Math.min();
 
@@ -1240,8 +1254,9 @@ m.HQ.prototype.findDefensiveLocation = function(gameState, template)
 	if (bestVal === undefined)
 		return undefined;
 
-	var x = (bestIdx%width + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx/width) + 0.5) * gameState.cellSize;
+	var i = API3.getMaxMapIndex(bestIdx, this.territoryMap, obstructions);
+	var x = (i % obstructions.width + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 	return [x, z, this.basesMap.map[bestIdx]];
 };
 
@@ -1774,11 +1789,13 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		return;
 	this.lastTerritoryUpdate = gameState.ai.playedTurn;
 
+	var passabilityMap = gameState.getMap();
 	var width = this.territoryMap.width;
+	var cellSize = this.territoryMap.cellSize;
 	var expansion = 0;
 	for (var j = 0; j < this.territoryMap.length; ++j)
 	{
-		if (this.borderMap.map[j] == 2)
+		if (this.borderMap.map[j] > 1)
 			continue;
 		if (this.territoryMap.getOwnerIndex(j) != PlayerID)
 		{
@@ -1796,18 +1813,27 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		}
 		else if (this.basesMap.map[j] == 0)
 		{
-			var index = gameState.ai.accessibility.landPassMap[j];
-			if (!this.allowedRegions[index])
+			var landPassable = false;
+			var ind = API3.getMapIndices(j, this.territoryMap, passabilityMap);
+			var access;
+			for (var k of ind)
+			{
+				if (!this.allowedRegions[gameState.ai.accessibility.landPassMap[k]])
+					continue;
+				landPassable = true;
+				access = gameState.ai.accessibility.landPassMap[k];
+				break;
+			}
+			if (!landPassable)
 				continue;
 			var distmin = Math.min();
 			var baseID = undefined;
-			var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-			pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+			var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 			for each (var base in this.baseManagers)
 			{
 				if (!base.anchor || !base.anchor.position())
 					continue;
-				if (base.accessIndex != index)
+				if (base.accessIndex != access)
 					continue;
 				var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 				if (dist >= distmin)
@@ -1823,14 +1849,15 @@ m.HQ.prototype.updateTerritories = function(gameState)
 		}
 	}
 
-	this.frontierMap =  m.createFrontierMap(gameState, this.borderMap);
+	this.frontierMap =  m.createFrontierMap(gameState);
 
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
 	this.stopBuilding = [];
 	// And if sufficient expansion, check if building a new market would improve our present trade routes
-	if (expansion > 60)
+	var cellArea = this.territoryMap.cellSize * this.territoryMap.cellSize;
+	if (expansion * cellArea > 960)
 		this.tradeManager.routeProspection = true;
 };
 
@@ -1875,7 +1902,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 				return;
 			if (!ent.position())
 				return;
-			var idlePos = ent.setMetadata(PlayerID, "idlePos");
+			var idlePos = ent.getMetadata(PlayerID, "idlePos");
 			if (idlePos === undefined || idlePos[0] !== ent.position()[0] || idlePos[1] !== ent.position()[1])
 			{
 				ent.setMetadata(PlayerID, "idlePos", ent.position());

@@ -72,7 +72,7 @@ m.ConstructionPlan.prototype.start = function(gameState)
 			var radius = (+this.template.get("Obstruction/Static/@depth"))/2;
 		else
 			var radius = 0;
-		for (let step = 0; step < radius; step += gameState.cellSize)
+		for (let step = 0; step < radius; step += 4)
 			builders[0].construct(this.type, pos.x+step*sinang, pos.z+step*cosang,
 					pos.angle, this.metadata);
 	}
@@ -135,18 +135,17 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		}
 	}
 
-	var cellSize = gameState.cellSize; // size of each tile
-
 	// First, find all tiles that are far enough away from obstructions:
 
-	var obstructionMap = m.createObstructionMap(gameState, 0, template);
-	obstructionMap.expandInfluences();
+	var obstructions = m.createObstructionMap(gameState, 0, template);
+	obstructions.expandInfluences();
 
-	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
+	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	// Compute each tile's closeness to friendly structures:
 
-	var friendlyTiles = new API3.Map(gameState.sharedScript, "passability");
+	var placement = new API3.Map(gameState.sharedScript, "territory");
+	var cellSize = placement.cellSize; // size of each tile
 	
 	var alreadyHasHouses = false;
 
@@ -154,7 +153,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		var x = Math.floor(this.position[0] / cellSize);
 		var z = Math.floor(this.position[1] / cellSize);
-		friendlyTiles.addInfluence(x, z, 255);
+		placement.addInfluence(x, z, 255);
 	}
 	else	// No position was specified so try and find a sensible place to build
 	{
@@ -163,15 +162,15 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		if (this.metadata && this.metadata.base !== undefined)
 		{
 			var base = this.metadata.base;
-			for (var j = 0; j < friendlyTiles.map.length; ++j)
+			for (var j = 0; j < placement.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] == base)
-					friendlyTiles.map[j] = 45;
+					placement.map[j] = 45;
 		}
 		else
 		{
-			for (var j = 0; j < friendlyTiles.map.length; ++j)
+			for (var j = 0; j < placement.map.length; ++j)
 				if (gameState.ai.HQ.basesMap.map[j] != 0)
-					friendlyTiles.map[j] = 45;
+					placement.map[j] = 45;
 		}
 
 		if (!gameState.ai.HQ.requireHouses || !template.hasClass("House"))
@@ -184,38 +183,38 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				if (ent.resourceDropsiteTypes() && ent.resourceDropsiteTypes().indexOf("food") !== -1)
 				{
 					if (template.hasClass("Field"))
-						friendlyTiles.addInfluence(x, z, 20, 50);
+						placement.addInfluence(x, z, 20, 50);
 					else // If this is not a field add a negative influence because we want to leave this area for fields
-						friendlyTiles.addInfluence(x, z, 20, -20);
+						placement.addInfluence(x, z, 20, -20);
 				}
 				else if (template.hasClass("House"))
 				{
 					if (ent.hasClass("House"))
 					{
-						friendlyTiles.addInfluence(x, z, 15, 40);    // houses are close to other houses
+						placement.addInfluence(x, z, 15, 40);    // houses are close to other houses
 						alreadyHasHouses = true;
 					}
 					else
-						friendlyTiles.addInfluence(x, z, 15, -40);   // and further away from other stuffs
+						placement.addInfluence(x, z, 15, -40);   // and further away from other stuffs
 				}
 				else if (template.hasClass("Farmstead") && (!ent.hasClass("Field")
 					&& (!ent.hasClass("StoneWall") || ent.hasClass("Gates"))))
-					friendlyTiles.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
+					placement.addInfluence(x, z, 25, -25);       // move farmsteads away to make room (StoneWall test needed for iber)
 				else if (template.hasClass("GarrisonFortress") && ent.genericName() == "House")
-					friendlyTiles.addInfluence(x, z, 30, -50);
+					placement.addInfluence(x, z, 30, -50);
 				else if (template.hasClass("Military"))
-					friendlyTiles.addInfluence(x, z, 10, -40);
+					placement.addInfluence(x, z, 10, -40);
 			});
 		}
 
 		if (template.hasClass("Farmstead"))
 		{
-			for (var j = 0; j < friendlyTiles.map.length; ++j)
+			for (var j = 0; j < placement.map.length; ++j)
 			{
-				var value = friendlyTiles.map[j] - (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
-				friendlyTiles.map[j] = value >= 0 ? value : 0;
+				var value = placement.map[j] - (gameState.sharedScript.resourceMaps["wood"].map[j])/3;
+				placement.map[j] = value >= 0 ? value : 0;
 				if (gameState.ai.HQ.borderMap.map[j] > 0)
-					friendlyTiles.map[j] /= 2;	// we need space around farmstead, so disfavor map border
+					placement.map[j] /= 2;	// we need space around farmstead, so disfavor map border
 			}
 		}
 	}
@@ -228,44 +227,44 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (this.metadata && this.metadata.base !== undefined)
 	{
 		var base = this.metadata.base;
-		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		for (var j = 0; j < placement.map.length; ++j)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] != base)
-				friendlyTiles.map[j] = 0;
+				placement.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
-				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && friendlyTiles.map[j] > 0)
-				friendlyTiles.map[j] += 10;
+				placement.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && placement.map[j] > 0)
+				placement.map[j] += 10;
 
-			if (friendlyTiles.map[j] > 0)
+			if (placement.map[j] > 0)
 			{
-				var x = (j % friendlyTiles.width + 0.5) * cellSize;
-				var z = (Math.floor(j / friendlyTiles.width) + 0.5) * cellSize;
+				var x = (j % placement.width + 0.5) * cellSize;
+				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (gameState.ai.HQ.isDangerousLocation([x, z]))
-					friendlyTiles.map[j] = 0;
+					placement.map[j] = 0;
 			}
 		}
 	}
 	else
 	{
-		for (var j = 0; j < friendlyTiles.map.length; ++j)
+		for (var j = 0; j < placement.map.length; ++j)
 		{
 			if (gameState.ai.HQ.basesMap.map[j] == 0)
-				friendlyTiles.map[j] = 0;
+				placement.map[j] = 0;
 			else if (favorBorder && gameState.ai.HQ.borderMap.map[j] > 0)
-				friendlyTiles.map[j] += 50;
-			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && friendlyTiles.map[j] > 0)
-				friendlyTiles.map[j] += 10;
+				placement.map[j] += 50;
+			else if (disfavorBorder && gameState.ai.HQ.borderMap.map[j] == 0 && placement.map[j] > 0)
+				placement.map[j] += 10;
 
 			if (preferredBase && gameState.ai.HQ.basesMap.map[j] == this.metadata.preferredBase)
-				friendlyTiles.map[j] += 200;
+				placement.map[j] += 200;
 
-			if (friendlyTiles.map[j] > 0)
+			if (placement.map[j] > 0)
 			{
-				var x = (j % friendlyTiles.width + 0.5) * cellSize;
-				var z = (Math.floor(j / friendlyTiles.width) + 0.5) * cellSize;
+				var x = (j % placement.width + 0.5) * cellSize;
+				var z = (Math.floor(j / placement.width) + 0.5) * cellSize;
 				if (gameState.ai.HQ.isDangerousLocation([x, z]))
-					friendlyTiles.map[j] = 0;
+					placement.map[j] = 0;
 			}
 		}
 	}
@@ -278,24 +277,24 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	var radius = 0;
 	if (template.hasClass("Fortress") || this.type === gameState.applyCiv("structures/{civ}_siege_workshop")
 		|| this.type === gameState.applyCiv("structures/{civ}_elephant_stables"))
-		radius = Math.floor(template.obstructionRadius() / cellSize) + 3;
+		radius = Math.floor((template.obstructionRadius() + 12) / obstructions.cellSize);
 	else if (template.resourceDropsiteTypes() === undefined && !template.hasClass("House") && !template.hasClass("Field"))
-		radius = Math.ceil(template.obstructionRadius() / cellSize) + 1;
+		radius = Math.ceil((template.obstructionRadius() + 4) / obstructions.cellSize);
 	else
-		radius = Math.ceil(template.obstructionRadius() / cellSize);
+		radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
 	// Find the best non-obstructed
 	if (template.hasClass("House") && !alreadyHasHouses)
 	{
-		// try to get some space first
-		var bestTile = friendlyTiles.findBestTile(10, obstructionMap);
+		// try to get some space to place several houses first
+		var bestTile = placement.findBestTile(3*radius, obstructions);
 		var bestIdx = bestTile[0];
 		var bestVal = bestTile[1];
 	}
 	
 	if (bestVal === undefined || bestVal == -1)
 	{
-		var bestTile = friendlyTiles.findBestTile(radius, obstructionMap);
+		var bestTile = placement.findBestTile(radius, obstructions);
 		var bestIdx = bestTile[0];
 		var bestVal = bestTile[1];
 	}
@@ -303,11 +302,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	if (bestVal <= 0)
 		return false;
 
-	var x = ((bestIdx % friendlyTiles.width) + 0.5) * cellSize;
-	var z = (Math.floor(bestIdx / friendlyTiles.width) + 0.5) * cellSize;
+	var x = ((bestIdx % obstructions.width) + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(bestIdx / obstructions.width) + 0.5) * obstructions.cellSize;
 
 	if (template.hasClass("House") || template.hasClass("Field") || template.resourceDropsiteTypes() !== undefined)
-		var secondBest = obstructionMap.findLowestNeighbor(x,z);
+		var secondBest = obstructions.findLowestNeighbor(x,z);
 	else
 		var secondBest = [x,z];
 
@@ -324,8 +323,8 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var cellSize = gameState.cellSize; // size of each tile
 	var territoryMap = gameState.ai.HQ.territoryMap;
 
-	var obstructionMap = m.createObstructionMap(gameState, 0, template);
-	//obstructionMap.dumpIm(template.buildCategory() + "_obstructions.png");
+	var obstructions = m.createObstructionMap(gameState, 0, template);
+	//obstructions.dumpIm(template.buildCategory() + "_obstructions.png");
 
 	var bestIdx = undefined;
 	var bestVal = 0;
@@ -333,7 +332,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
 	for (let j = 0; j < territoryMap.length; ++j)
 	{
-		if (obstructionMap.map[j] <= 0)
+		if (obstructions.map[j] <= 0)
 			continue;
 		if (this.metadata)
 		{
@@ -347,7 +346,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			continue;
 
 		// if not in our (or allied) territory, we do not want it too far to be able to defend it
-		let nearby = m.getFrontierProximity(gameState, j, gameState.ai.HQ.borderMap);
+		let nearby = m.getFrontierProximity(gameState, j);
 		if (nearby > 4)
 			continue;
 
