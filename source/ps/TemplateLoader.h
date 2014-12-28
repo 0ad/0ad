@@ -33,10 +33,14 @@ enum ETemplatesType
  * - the initialisation and deserialization of entity components in the 
  *   simulation (CmpTemplateManager).
  * - access to actor templates, obstruction data, etc. in RMS/RMGEN
+ * - access to various templates in the GUI, to display faction specificities
  *
  * Template names are intentionally restricted to ASCII strings for storage/serialization
  * efficiency (we have a lot of strings so this is significant);
  * they correspond to filenames so they shouldn't contain non-ASCII anyway.
+ *
+ *
+ * TODO: Find a way to validate templates outside of the simulation.
  */
 class CTemplateLoader
 {
@@ -48,7 +52,7 @@ public:
 	/**
 	 * Provides the file data for requested template.
 	 */
-	const CParamNode &GetTemplateFileData(const std::string& templateName);
+	const CParamNode& GetTemplateFileData(const std::string& templateName);
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplateFile.

@@ -24,6 +24,7 @@
 #include "lib/file/vfs/vfs_path.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "ps/TemplateLoader.h"
 #include "scriptinterface/ScriptVal.h"
 #include "scriptinterface/ScriptInterface.h"
 
@@ -139,6 +140,11 @@ public:
  
 	void RestoreSavedGameData(std::string jsonData);
 
+	/**
+	 * Retrieve the requested template, used for displaying faction specificities.
+	 */
+	const CParamNode& GetTemplate(const std::string& templateName);
+
 private:
 	struct SGUIPage
 	{
@@ -162,6 +168,8 @@ private:
 
 	typedef std::vector<SGUIPage> PageStackType;
 	PageStackType m_PageStack;
+
+	CTemplateLoader m_TemplateLoader;
 };
 
 extern CGUIManager* g_GUI;

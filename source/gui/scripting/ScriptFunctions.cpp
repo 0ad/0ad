@@ -842,6 +842,11 @@ CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fil
 	return out.get();
 }
 
+CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+{
+	return g_GUI->GetTemplate(templateName);
+}
+
 //-----------------------------------------------------------------------------
 // Timer
 //-----------------------------------------------------------------------------
@@ -1002,6 +1007,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &ReadJSONFile>("ReadJSONFile");
+	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
 
 	// User report functions
 	scriptInterface.RegisterFunction<bool, &IsUserReportEnabled>("IsUserReportEnabled");

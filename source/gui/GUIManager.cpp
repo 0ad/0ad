@@ -403,6 +403,15 @@ void CGUIManager::UpdateResolution()
 		it->gui->UpdateResolution();
 }
 
+const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
+{
+	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
+	if (!templateRoot.IsOk())
+		LOGERROR(L"Invalid template found for '%hs'", templateName.c_str());
+
+	return templateRoot;
+}
+
 // This returns a shared_ptr to make sure the CGUI doesn't get deallocated
 // while we're in the middle of calling a function on it (e.g. if a GUI script
 // calls SwitchPage)
