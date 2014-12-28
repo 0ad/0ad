@@ -842,7 +842,7 @@ CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fil
 	return out.get();
 }
 
-CParamNode GetTemplate(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName)
+CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
 {
 	return g_GUI->GetTemplate(templateName);
 }
