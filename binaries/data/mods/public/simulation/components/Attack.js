@@ -583,7 +583,7 @@ Attack.prototype.MissileHit = function(data, lateness)
 		var splashShape = this.template.Ranged.Splash.Shape;
 		var playersToDamage;
 		// If friendlyFire isn't enabled, get all player enemies to pass to "Damage.CauseSplashDamage".
-		if (friendlyFire == false)
+		if (friendlyFire == "false")
 		{
 			var cmpPlayer = Engine.QueryInterface(Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager).GetPlayerByID(data.playerId), IID_Player)
 			playersToDamage = cmpPlayer.GetEnemies();

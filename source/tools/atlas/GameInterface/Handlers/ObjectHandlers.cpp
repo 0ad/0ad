@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -878,6 +878,7 @@ BEGIN_COMMAND(DeleteObjects)
 			oldObjects.push_back(obj);
 			g_Game->GetSimulation2()->DestroyEntity(obj.entityID);
 		}
+		g_Game->GetSimulation2()->FlushDestroyedEntities();
 	}
 
 	void Undo()

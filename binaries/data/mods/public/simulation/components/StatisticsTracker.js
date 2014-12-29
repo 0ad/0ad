@@ -142,7 +142,8 @@ StatisticsTracker.prototype.GetStatistics = function()
 		"tributesReceived": this.tributesReceived,
 		"tradeIncome": this.tradeIncome,
 		"treasuresCollected": this.treasuresCollected,
-		"percentMapExplored": this.GetPercentMapExplored()
+		"percentMapExplored": this.GetPercentMapExplored(),
+		"teamPercentMapExplored": this.GetTeamPercentMapExplored()
 	};
 };
 
@@ -334,6 +335,35 @@ StatisticsTracker.prototype.GetPercentMapExplored = function()
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
+};
+
+/**
+ * Note: cmpRangeManager.GetUnionPercentMapExplored computes statistics from scratch!
+ * As a consequence, this function should not be called too often.
+ */
+StatisticsTracker.prototype.GetTeamPercentMapExplored = function()
+{
+	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
+	if (!cmpPlayer)
+		return 0;
+
+	var team = cmpPlayer.GetTeam();
+	// If teams are not locked, this statistic won't be displayed, so don't bother computing
+	if (team == -1 || !cmpPlayer.GetLockTeams())
+		return cmpRangeManager.GetPercentMapExplored(cmpPlayer.GetPlayerID());
+
+	var teamPlayers = [];
+	for (var i = 1; i < cmpPlayerManager.GetNumPlayers(); ++i)
+	{
+		let cmpOtherPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		if (cmpOtherPlayer && cmpOtherPlayer.GetTeam() == team)
+			teamPlayers.push(i);
+	}
+
+	return cmpRangeManager.GetUnionPercentMapExplored(teamPlayers);
 };
 
 Engine.RegisterComponentType(IID_StatisticsTracker, "StatisticsTracker", StatisticsTracker);

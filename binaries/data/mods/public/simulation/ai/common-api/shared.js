@@ -159,6 +159,24 @@ m.SharedScript.prototype.init = function(state, deserialization)
 	this.territoryMap = state.territoryMap;
 	this.territoryMap.cellSize = this.sizeMap / this.territoryMap.width;
 
+/*
+	var landPassMap = new Uint8Array(this.passabilityMap.data.length);
+	var waterPassMap = new Uint8Array(this.passabilityMap.data.length);
+	var obstructionMap = new Uint8Array(this.passabilityMap.data.length);
+	var obstructionMaskLand = this.passabilityClasses["default"];
+	var obstructionMaskWater = this.passabilityClasses["ship"];
+	var obstructionMask = this.passabilityClasses["pathfinderObstruction"];
+	for (var i = 0; i < this.passabilityMap.data.length; ++i)
+	{
+		landPassMap[i] = (this.passabilityMap.data[i] & obstructionMaskLand) ? 0 : 255;
+		waterPassMap[i] = (this.passabilityMap.data[i] & obstructionMaskWater) ? 0 : 255;
+		obstructionMap[i] = (this.passabilityMap.data[i] & obstructionMask) ? 0 : 255;
+	}
+	Engine.DumpImage("LandPassMap.png", landPassMap, this.passabilityMap.width, this.passabilityMap.height, 255);
+	Engine.DumpImage("WaterPassMap.png", waterPassMap, this.passabilityMap.width, this.passabilityMap.height, 255);
+	Engine.DumpImage("ObstrctionMap.png", obstructionMap, this.passabilityMap.width, this.passabilityMap.height, 255);
+*/
+
 	if (!deserialization)
 	{
 		this._entities = new Map();

@@ -298,17 +298,21 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 	var DPFoundations = gameState.getOwnFoundations().filter(API3.Filters.byType(gameState.applyCiv("foundation|structures/{civ}_storehouse"))).toEntityArray();
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).toEntityArray();
 
-	var width = obstructions.width;
 	var bestIdx = undefined;
 	var bestVal = undefined;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
 
+	var territoryMap = gameState.sharedScript.territoryMap;
+	var width = territoryMap.width;
+	var cellSize = territoryMap.cellSize;
+
 	for (var p = 0; p < this.territoryIndices.length; ++p)
 	{
 		var j = this.territoryIndices[p];
-		if (obstructions.map[j] <= radius)  // check room around
+		var i = API3.getMaxMapIndex(j, territoryMap, obstructions);
+		if (obstructions.map[i] <= radius)  // check room around
 			continue;
-		
+
 		// we add 3 times the needed resource and once the other two (not food)
 		var total = 0;
 		for (var i in gameState.sharedScript.resourceMaps)
@@ -322,8 +326,7 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 		total = 0.7*total;   // Just a normalisation factor as the locateMap is limited to 255
 
-		var pos = [j%width+0.5, Math.floor(j/width)+0.5];
-		pos = [gameState.cellSize*pos[0], gameState.cellSize*pos[1]];
+		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
 		for (var i in this.dropsites)
 		{
 			if (!gameState.getEntityById(i))
@@ -388,8 +391,9 @@ m.BaseManager.prototype.findBestDropsiteLocation = function(gameState, resource)
 
 	if (bestVal <= 0)
 		return {"quality": bestVal, "pos": [0, 0]};
-	var x = ((bestIdx % width) + 0.5) * gameState.cellSize;
-	var z = (Math.floor(bestIdx / width) + 0.5) * gameState.cellSize;
+	var i = API3.getMaxMapIndex(bestIdx, territoryMap, obstructions);
+	var x = ((i % obstructions.width) + 0.5) * obstructions.cellSize;
+	var z = (Math.floor(i / obstructions.width) + 0.5) * obstructions.cellSize;
 	return {"quality": bestVal, "pos": [x, z]};
 };
 

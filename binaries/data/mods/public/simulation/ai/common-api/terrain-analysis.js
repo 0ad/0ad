@@ -195,8 +195,9 @@ m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
 		let ent = e.entityObj;
 		if (ent.hasClass("Geology"))
 		{
-			let x = this.gamePosToMapPos(ent.position())[0];
-			let y = this.gamePosToMapPos(ent.position())[1];
+			let pos = this.gamePosToMapPos(ent.position());
+			let x = pos[0];
+			let y = pos[1];
 			// remove it. Don't really care about surrounding and possible overlappings.
 			let radius = Math.floor(ent.obstructionRadius() / this.cellSize);
 			for (let xx = -radius; xx <= radius;xx++)
@@ -208,8 +209,9 @@ m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
 		}
 		else if (ent.hasClass("ForestPlant"))
 		{
-			let x = this.gamePosToMapPos(ent.position())[0];
-			let y = this.gamePosToMapPos(ent.position())[1];
+			let pos = this.gamePosToMapPos(ent.position());
+			let x = pos[0];
+			let y = pos[1];
 			let nbOfNeigh = 0;
 			for (let xx = -1; xx <= 1;xx++)
 				for (let yy = -1; yy <= 1;yy++)
@@ -238,11 +240,10 @@ m.TerrainAnalysis.prototype.updateMapWithEvents = function(sharedAI)
  * it can also determine if any point is "probably" reachable, assuming the unit can get close enough
  * for optimizations it's called after the TerrainAnalyser has finished initializing his map
  * so this can use the land regions already.
-
  */
-m.Accessibility = function() {
-	
-}
+m.Accessibility = function()
+{	
+};
 
 m.copyPrototype(m.Accessibility, m.TerrainAnalysis);
 
@@ -262,13 +263,17 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	// So start at 2.
 	this.regionID = 2;
 	
-	for (var i = 0; i < this.landPassMap.length; ++i) {
-		if (this.map[i] !== 0) {	// any non-painted, non-inacessible area.
+	for (var i = 0; i < this.landPassMap.length; ++i)
+	{
+		if (this.map[i] !== 0)
+		{	// any non-painted, non-inacessible area.
 			if (this.landPassMap[i] === 0 && this.floodFill(i,this.regionID,false))
 				this.regionType[this.regionID++] = "land";
 			if (this.navalPassMap[i] === 0 && this.floodFill(i,this.regionID,true))
 				this.regionType[this.regionID++] = "water";
-		} else if (this.landPassMap[i] === 0) {	// any non-painted, inacessible area.
+		}
+		else if (this.landPassMap[i] === 0)
+		{	// any non-painted, inacessible area.
 			this.floodFill(i,1,false);
 			this.floodFill(i,1,true);
 		}
@@ -318,7 +323,8 @@ m.Accessibility.prototype.init = function(rawState, terrainAnalyser)
 	//Engine.DumpImage("NavalPassMap.png", this.navalPassMap, this.width, this.height, 255);
 };
 
-m.Accessibility.prototype.getAccessValue = function(position, onWater) {
+m.Accessibility.prototype.getAccessValue = function(position, onWater)
+{
 	var gamePos = this.gamePosToMapPos(position);
 	if (onWater === true)
 		return this.navalPassMap[gamePos[0] + this.width*gamePos[1]];

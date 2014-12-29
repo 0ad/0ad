@@ -470,53 +470,53 @@ m.NavalManager.prototype.assignShipsToPlans = function(gameState)
 m.NavalManager.prototype.moveApart = function(gameState)
 {
 	var self = this;
-	for (var sea = 0; sea < gameState.ai.accessibility.regionSize.length; ++sea)
-	{
-		this.seaShips[sea].forEach(function(ship) {
-			if (ship.hasClass("FishingBoat"))   // small ships should not be a problem
-				return;
-			if (ship.getMetadata(PlayerID, "transporter") === undefined)
+
+	this.ships.forEach(function(ship) {
+		if (ship.hasClass("FishingBoat"))   // small ships should not be a problem
+			return;
+		var sea = ship.getMetadata(PlayerID, "sea");
+		if (ship.getMetadata(PlayerID, "transporter") === undefined)
+		{
+			if (ship.isIdle())	// do not stay idle near a dock to not disturb other ships
 			{
-				if (ship.isIdle())   // do not stay idle near a dock to not disturb other ships
-				{
-					gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).forEach(function(dock) {
-						if (dock.getMetadata(PlayerID, "sea") !== sea)
-							return;
-						if (API3.SquareVectorDistance(ship.position(), dock.position()) > 2500)
-							return;
-						ship.moveApart(dock.position(), 50);
-					});
-				}
-				return;
+				gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).forEach(function(dock) {
+					if (dock.getMetadata(PlayerID, "sea") !== sea)
+						return;
+					if (API3.SquareVectorDistance(ship.position(), dock.position()) > 2500)
+						return;
+					ship.moveApart(dock.position(), 50);
+				});
 			}
-
-			self.seaShips[sea].forEach(function(blockingShip) {
-				if (blockingShip === ship || !blockingShip.isIdle())
-					return;
-				if (API3.SquareVectorDistance(ship.position(), blockingShip.position()) > 900)
-					return;
-				if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
-					blockingShip.moveApart(ship.position(), 12);
-				else
-					blockingShip.moveApart(ship.position(), 6);
-			});
-		});
-
-		gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byMetadata(PlayerID, "sea", sea)).forEach(function(ship) {
-			if (ship.getMetadata(PlayerID, "route") === undefined)
+			return;
+		}
+		// if transporter ship not idle, move away other ships which could block it
+		self.seaShips[sea].forEach(function(blockingShip) {
+			if (blockingShip === ship || !blockingShip.isIdle())
 				return;
-			self.seaShips[sea].forEach(function(blockingShip) {
-				if (blockingShip === ship || !blockingShip.isIdle())
-					return;
-				if (API3.SquareVectorDistance(ship.position(), blockingShip.position()) > 900)
-					return;
-				if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
-					blockingShip.moveApart(ship.position(), 12);
-				else
-					blockingShip.moveApart(ship.position(), 6);
-			});
+			if (API3.SquareVectorDistance(ship.position(), blockingShip.position()) > 900)
+				return;
+			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
+				blockingShip.moveApart(ship.position(), 12);
+			else
+				blockingShip.moveApart(ship.position(), 6);
 		});
-	}
+	});
+
+	gameState.ai.HQ.tradeManager.traders.filter(API3.Filters.byClass("Ship")).forEach(function(ship) {
+		if (ship.getMetadata(PlayerID, "route") === undefined)
+			return;
+		var sea = ship.getMetadata(PlayerID, "sea");
+		self.seaShips[sea].forEach(function(blockingShip) {
+			if (blockingShip === ship || !blockingShip.isIdle())
+				return;
+			if (API3.SquareVectorDistance(ship.position(), blockingShip.position()) > 900)
+				return;
+			if (blockingShip.getMetadata(PlayerID, "transporter") === undefined)
+				blockingShip.moveApart(ship.position(), 12);
+			else
+				blockingShip.moveApart(ship.position(), 6);
+		});
+	});
 };
 
 m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
