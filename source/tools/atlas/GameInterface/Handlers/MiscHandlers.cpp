@@ -127,6 +127,15 @@ QUERYHANDLER(Ping)
 {
 	UNUSED2(msg);
 }
+    
+MESSAGEHANDLER(SimStopMusic)
+{
+    UNUSED2(msg);
+    
+    CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+    if (cmpSoundManager)
+        cmpSoundManager->StopMusic();
+}
 
 MESSAGEHANDLER(SimStateSave)
 {
@@ -135,10 +144,6 @@ MESSAGEHANDLER(SimStateSave)
 
 MESSAGEHANDLER(SimStateRestore)
 {
-	CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-	if (cmpSoundManager)
-		cmpSoundManager->StopMusic();
-
 	AtlasView::GetView_Game()->RestoreState(*msg->label);
 }
 
