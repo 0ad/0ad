@@ -4,8 +4,9 @@
  * all other initialization must be done after loading map (terrain/entities).
  * DO NOT use other components here, as they may fail unpredictably.
  * settings is the object containing settings for this map.
- * newPlayers if true will remove any old player entities and add new ones
- *	(used when loading a map or when Atlas changes the number of players).
+ * newPlayers if true will remove old player entities or add new ones until
+ * the new number of player entities is obtained
+ * (used when loading a map or when Atlas changes the number of players).
  */
 function LoadPlayerSettings(settings, newPlayers)
 {
@@ -20,44 +21,39 @@ function LoadPlayerSettings(settings, newPlayers)
 
 	var playerDefaults = rawData.PlayerData;
 
-	// default number of players
-	var numPlayers = 8;
-
 	// Get player manager
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var numPlayers = cmpPlayerManager.GetNumPlayers();
 
-	// Remove existing players and add new ones
+	// Remove existing players or add new ones
 	if (newPlayers)
 	{
-		cmpPlayerManager.RemoveAllPlayers();
+		var settingsNumPlayers = 9; // default 8 players + gaia
 
 		if (settings.PlayerData)
-		{
-			// Get number of players including gaia
-			numPlayers = settings.PlayerData.length + 1;
-		}
+			settingsNumPlayers = settings.PlayerData.length + 1; // including gaia
 		else
-		{
 			warn("Player.js: Setup has no player data - using defaults");
-		}
 
-		for (var i = 0; i < numPlayers; ++i)
+		while (settingsNumPlayers > numPlayers)
 		{
 			// Add player entity to engine
 			// TODO: Get player template name from civ data
 			var entID = Engine.AddEntity("special/player");
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
-				throw("Player.js: Error creating player entity "+i);
+				throw("Player.js: Error creating player entity " + numPlayers);
 
-			cmpPlayer.SetPlayerID(i);
-
-			// Add player to player manager
 			cmpPlayerManager.AddPlayer(entID);
+			++numPlayers;
+		}
+
+		while (settingsNumPlayers < numPlayers)
+		{
+			cmpPlayerManager.RemoveLastPlayer();
+			--numPlayers;
 		}
 	}
-
-	numPlayers = cmpPlayerManager.GetNumPlayers();
 
 	// Initialize the player data
 	for (var i = 0; i < numPlayers; ++i)

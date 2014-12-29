@@ -56,10 +56,18 @@ PlayerManager.prototype.RemoveAllPlayers = function()
 {
 	// Destroy existing player entities
 	for each (var id in this.playerEntities)
-	{
 		Engine.DestroyEntity(id);
-	}
+
 	this.playerEntities = [];
+};
+
+PlayerManager.prototype.RemoveLastPlayer = function()
+{
+	if (this.playerEntities.length == 0) 
+		return;
+
+	var lastId = this.playerEntities.pop();
+	Engine.DestroyEntity(lastId);
 };
 
 PlayerManager.prototype.GetAllPlayerEntities = function()
