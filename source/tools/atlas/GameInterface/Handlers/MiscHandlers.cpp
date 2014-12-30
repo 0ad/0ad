@@ -130,11 +130,11 @@ QUERYHANDLER(Ping)
     
 MESSAGEHANDLER(SimStopMusic)
 {
-    UNUSED2(msg);
-    
-    CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
-    if (cmpSoundManager)
-        cmpSoundManager->StopMusic();
+	UNUSED2(msg);
+
+	CmpPtr<ICmpSoundManager> cmpSoundManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	if (cmpSoundManager)
+		cmpSoundManager->StopMusic();
 }
 
 MESSAGEHANDLER(SimStateSave)

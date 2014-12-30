@@ -401,7 +401,7 @@ void MapSidebar::OnMapReload()
 
 	// Reset sim test buttons
 	POST_MESSAGE(SimPlay, (0.f, false));
-    POST_MESSAGE(SimStopMusic, ());
+	POST_MESSAGE(SimStopMusic, ());
 	POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
 	m_SimState = SimInactive;
 	UpdateSimButtons();
@@ -481,7 +481,7 @@ void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
 	{
 		POST_MESSAGE(SimPlay, (0.f, true));
 		POST_MESSAGE(SimStateRestore, (L"default"));
-        POST_MESSAGE(SimStopMusic, ());
+		POST_MESSAGE(SimStopMusic, ());
 		POST_MESSAGE(SimPlay, (0.f, false));
 		POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
 		m_SimState = SimInactive;
@@ -490,7 +490,7 @@ void MapSidebar::OnSimReset(wxCommandEvent& WXUNUSED(event))
 	{
 		POST_MESSAGE(SimPlay, (0.f, true));
 		POST_MESSAGE(SimStateRestore, (L"default"));
-        POST_MESSAGE(SimStopMusic, ());
+		POST_MESSAGE(SimStopMusic, ());
 		POST_MESSAGE(SimPlay, (0.f, false));
 		POST_MESSAGE(GuiSwitchPage, (L"page_atlas.xml"));
 		m_SimState = SimInactive;
