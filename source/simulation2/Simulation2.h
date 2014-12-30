@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -46,6 +46,8 @@ class ScriptRuntime;
  */
 class CSimulation2
 {
+	NONCOPYABLE(CSimulation2);
+
 public:
 	// TODO: CUnitManager should probably be handled automatically by this
 	// module, but for now we'll have it passed in externally instead
@@ -265,11 +267,6 @@ public:
 
 private:
 	CSimulation2Impl* m;
-
-	// Helper for reading JSON files
-	std::string ReadJSON(VfsPath path);
-
-	NONCOPYABLE(CSimulation2);
 };
 
 #endif // INCLUDED_SIMULATION2
