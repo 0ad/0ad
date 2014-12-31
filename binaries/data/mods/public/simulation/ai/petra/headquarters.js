@@ -334,7 +334,7 @@ m.HQ.prototype.start = function(gameState, deserializing)
 	{
 		for each (var base in this.baseManagers)
 		{
-			for each (var supply in base.dropsiteSupplies["wood"][proxim])
+			for (var supply of base.dropsiteSupplies["wood"][proxim])
 			{
 				if (check[supply.id])    // avoid double counting as same resource can appear several time
 					continue;

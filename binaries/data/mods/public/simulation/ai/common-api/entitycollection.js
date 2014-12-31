@@ -7,8 +7,9 @@ m.EntityCollection = function(sharedAI, entities, filters)
 	this._entities = entities || new Map();
 	this._filters = filters || [];
 	this.dynamicProp = [];
-	for each (var filter in this._filters)
-		this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);
+	for (var filter of this._filters)
+		if (filter.dynamicProperties.length)
+			this.dynamicProp = this.dynamicProp.concat(filter.dynamicProperties);
 	
 	Object.defineProperty(this, "length", {
 		get: function () {
@@ -21,7 +22,7 @@ m.EntityCollection = function(sharedAI, entities, filters)
 m.EntityCollection.prototype.Serialize = function()
 {
 	var filters = [];
-	for each (var f in this._filters)
+	for (var f of this._filters)
 		filters.push(uneval(f));
 	return {
 		"ents": this.toIdArray(),
@@ -268,9 +269,9 @@ m.EntityCollection.prototype.addEnt = function(ent)
 // If an entitycollection is frozen, it will never automatically add a unit.
 // But can remove one.
 m.EntityCollection.prototype.updateEnt = function(ent, force)
-{	
+{
 	var passesFilters = true;
-	for each (let filter in this._filters)
+	for (var filter of this._filters)
 		passesFilters = passesFilters && filter.func(ent);
 
 	if (passesFilters)

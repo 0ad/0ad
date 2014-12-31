@@ -48,14 +48,14 @@ m.Filters = {
 		return {"func" : function(ent){
 			return (ent.getMetadata(player, key) == value);
 		},
-			"dynamicProperties": []};
+		"dynamicProperties": []};
 	},
 	
 	byHasMetadata: function(player, key){
 		return {"func" : function(ent){
 			return (ent.getMetadata(player, key) != undefined);
 		},
-			"dynamicProperties": ['metadata.' + key]};
+		"dynamicProperties": ['metadata.' + key]};
 	},
 
 	and: function(filter1, filter2){
@@ -107,7 +107,7 @@ m.Filters = {
 		return {"func" : function(ent){
 			return ent.garrisonMax() > 0;
 		},
-			"dynamicProperties": []};
+		"dynamicProperties": []};
 	},
 	byTrainingQueue: function(){
 		return {"func" : function(ent){
@@ -119,27 +119,27 @@ m.Filters = {
 		return {"func" : function(ent){
 			return ent.researchableTechs() !== undefined;
 		},
-			"dynamicProperties": []};
+		"dynamicProperties": []};
 	},
 	byTargetedEntity: function(targetID){
 		return {"func": function(ent) {
 			return (ent.unitAIOrderData().length && ent.unitAIOrderData()[0]["target"] && ent.unitAIOrderData()[0]["target"] == targetID);
 		},
-			"dynamicProperties": ['unitAIOrderData']};
+		"dynamicProperties": ['unitAIOrderData']};
 	},
 	
 	byCanAttack: function(saidClass){
 		return {"func" : function(ent){
 			return ent.canAttackClass(saidClass);
 		},
-			"dynamicProperties": []};
+		"dynamicProperties": []};
 	},
 	
 	isGarrisoned: function(){
 		return {"func" : function(ent){
 			return ent.position() === undefined;
 		},
-			"dynamicProperties": []};
+		"dynamicProperties": []};
 	},
 
 	isSoldier: function(){
