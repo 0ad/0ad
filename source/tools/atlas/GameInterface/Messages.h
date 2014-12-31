@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -100,6 +100,8 @@ MESSAGE(GuiCharEvent,
 		);
 
 //////////////////////////////////////////////////////////////////////////
+
+MESSAGE(SimStopMusic, );
 
 MESSAGE(SimStateSave,
 		((std::wstring, label)) // named slot to store saved data

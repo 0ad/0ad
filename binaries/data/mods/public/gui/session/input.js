@@ -1568,7 +1568,11 @@ function performGroup(action, groupId)
 		g_Selection.addList(toSelect);
 
 		if (action == "snap" && toSelect.length)
-			Engine.CameraFollow(toSelect[0]);
+		{
+			var position = GetEntityState(toSelect[0]).position;
+			if (position)
+				Engine.CameraMoveTo(position.x, position.z);
+		}
 		break;
 	case "save":
 	case "breakUp":

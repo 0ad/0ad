@@ -60,10 +60,10 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 		if (gameState.ai.HQ.navalRegions.indexOf(i) === -1)
 		{
 			// push dummies
-			this.seaShips.push(new API3.EntityCollection(gameState.sharedScript));
-			this.seaTransportShips.push(new API3.EntityCollection(gameState.sharedScript));
-			this.seaWarShips.push(new API3.EntityCollection(gameState.sharedScript));
-			this.seaFishShips.push(new API3.EntityCollection(gameState.sharedScript));
+			this.seaShips.push(undefined);
+			this.seaTransportShips.push(undefined);
+			this.seaWarShips.push(undefined);
+			this.seaFishShips.push(undefined);
 			this.wantedTransportShips.push(0);
 			this.wantedWarShips.push(0);
 			this.wantedFishShips.push(0);
@@ -432,6 +432,8 @@ m.NavalManager.prototype.maintainFleet = function(gameState, queues)
 	// check if we have enough transport ships per region.
 	for (var sea = 0; sea < this.seaShips.length; ++sea)
 	{
+		if (this.seaShips[sea] === undefined)
+			continue;
 		if (gameState.countOwnQueuedEntitiesWithMetadata("sea", sea) > 0)
 			continue;
 

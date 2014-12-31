@@ -842,6 +842,17 @@ CScriptVal ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fil
 	return out.get();
 }
 
+void WriteJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, CScriptVal scriptVal)
+{
+	JS::RootedValue val(pCxPrivate->pScriptInterface->GetContext(), scriptVal.get());
+	std::string str(pCxPrivate->pScriptInterface->StringifyJSON(&val, false));
+
+	VfsPath path(filePath);
+	WriteBuffer buf;
+	buf.Append(str.c_str(), str.length());
+	g_VFS->CreateFile(path, buf.Data(), buf.Size());
+}
+
 CParamNode GetTemplate(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::string templateName)
 {
 	return g_GUI->GetTemplate(templateName);
@@ -1007,6 +1018,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<int, &GetFps>("GetFPS");
 	scriptInterface.RegisterFunction<std::wstring, int, &GetBuildTimestamp>("GetBuildTimestamp");
 	scriptInterface.RegisterFunction<CScriptVal, std::wstring, &ReadJSONFile>("ReadJSONFile");
+	scriptInterface.RegisterFunction<void, std::wstring, CScriptVal, &WriteJSONFile>("WriteJSONFile");
 	scriptInterface.RegisterFunction<CParamNode, std::string, &GetTemplate>("GetTemplate");
 
 	// User report functions

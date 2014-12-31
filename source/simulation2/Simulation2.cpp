@@ -820,76 +820,64 @@ std::string CSimulation2::GenerateSchema()
 	return m->m_ComponentManager.GenerateSchema();
 }
 
-std::vector<std::string> CSimulation2::GetRMSData()
+static std::vector<std::string> GetJSONData(const VfsPath& path)
 {
-	VfsPath path(L"maps/random/");
 	VfsPaths pathnames;
-
-	std::vector<std::string> data;
-
-	// Find all ../maps/random/*.json
 	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
-	if (ret == INFO::OK)
-	{
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-		{
-			// Load JSON file
-			CVFSFile file;
-			PSRETURN ret = file.Load(g_VFS, *it);
-			if (ret != PSRETURN_OK)
-			{
-				LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
-			}
-			else
-			{
-				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
-			}
-		}
-	}
-	else
+	if (ret != INFO::OK)
 	{
 		// Some error reading directory
 		wchar_t error[200];
 		LOGERROR(L"Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		return std::vector<std::string>();
+	}
+
+	std::vector<std::string> data;
+	for (VfsPaths::const_iterator it = pathnames.begin(); it != pathnames.end(); ++it)
+	{
+		// Load JSON file
+		CVFSFile file;
+		PSRETURN ret = file.Load(g_VFS, *it);
+		if (ret != PSRETURN_OK)
+		{
+			LOGERROR(L"GetJSONData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+			continue;
+		}
+
+		data.push_back(file.DecodeUTF8()); // assume it's UTF-8
 	}
 
 	return data;
 }
 
+std::vector<std::string> CSimulation2::GetRMSData()
+{
+	return GetJSONData(L"maps/random/");
+}
+
 std::vector<std::string> CSimulation2::GetCivData()
 {
-	VfsPath path(L"civs/");
-	VfsPaths pathnames;
+	return GetJSONData(L"civs/");
+}
 
-	std::vector<std::string> data;
-
-	// Load all JSON files in civs directory
-	Status ret = vfs::GetPathnames(g_VFS, path, L"*.json", pathnames);
-	if (ret == INFO::OK)
+static std::string ReadJSON(const VfsPath& path)
+{
+	if (!VfsFileExists(path))
 	{
-		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
-		{
-			// Load JSON file
-			CVFSFile file;
-			PSRETURN ret = file.Load(g_VFS, *it);
-			if (ret != PSRETURN_OK)
-			{
-				LOGERROR(L"CSimulation2::GetCivData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
-			}
-			else
-			{
-				data.push_back(file.DecodeUTF8()); // assume it's UTF-8
-			}
-		}
-	}
-	else
-	{
-		// Some error reading directory
-		wchar_t error[200];
-		LOGERROR(L"CSimulation2::GetCivData: Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		return std::string();
 	}
 
-	return data;
+	// Load JSON file
+	CVFSFile file;
+	PSRETURN ret = file.Load(g_VFS, path);
+	if (ret != PSRETURN_OK)
+	{
+		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		return std::string();
+	}
+
+	return file.DecodeUTF8(); // assume it's UTF-8
 }
 
 std::string CSimulation2::GetPlayerDefaults()
@@ -900,32 +888,6 @@ std::string CSimulation2::GetPlayerDefaults()
 std::string CSimulation2::GetMapSizes()
 {
 	return ReadJSON(L"simulation/data/map_sizes.json");
-}
-
-std::string CSimulation2::ReadJSON(VfsPath path)
-{
-	std::string data;
-
-	if (!VfsFileExists(path))
-	{
-		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
-	}
-	else
-	{
-		// Load JSON file
-		CVFSFile file;
-		PSRETURN ret = file.Load(g_VFS, path);
-		if (ret != PSRETURN_OK)
-		{
-			LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
-		}
-		else
-		{
-			data = file.DecodeUTF8(); // assume it's UTF-8
-		}
-	}
-
-	return data;
 }
 
 std::string CSimulation2::GetAIData()

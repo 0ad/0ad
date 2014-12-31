@@ -1012,7 +1012,6 @@ std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool inde
 	{
 		JS_ClearPendingException(m->m_cx);
 		LOGERROR(L"StringifyJSON failed");
-		JS_ClearPendingException(m->m_cx);
 		return std::string();
 	}
 
