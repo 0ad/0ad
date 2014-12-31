@@ -25,6 +25,10 @@ function LoadPlayerSettings(settings, newPlayers)
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 
+	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
+	var templatesList = cmpTemplateManager.FindAllTemplates(false);
+	var previousPlayers = numPlayers;
+
 	// Remove existing players or add new ones
 	if (newPlayers)
 	{
@@ -35,11 +39,23 @@ function LoadPlayerSettings(settings, newPlayers)
 		else
 			warn("Player.js: Setup has no player data - using defaults");
 
+		previousPlayers = Math.min(numPlayers, settingsNumPlayers);
+
 		while (settingsNumPlayers > numPlayers)
 		{
 			// Add player entity to engine
-			// TODO: Get player template name from civ data
-			var entID = Engine.AddEntity("special/player");
+			var playerTemplate = "special/player";
+			if (numPlayers > 0)
+			{
+				var pDefs = playerDefaults ? playerDefaults[numPlayers] : {};
+				var pData = settings.PlayerData ? settings.PlayerData[numPlayers-1] : {};
+				var civ = getSetting(pData, pDefs, "Civ");
+			}
+			else
+				var civ = "gaia";
+			if (templatesList.indexOf("special/"+civ+"_player") !== -1)
+				playerTemplate = "special/"+civ+"_player";
+			var entID = Engine.AddEntity(playerTemplate);
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
 				throw("Player.js: Error creating player entity " + numPlayers);
@@ -53,6 +69,23 @@ function LoadPlayerSettings(settings, newPlayers)
 			cmpPlayerManager.RemoveLastPlayer();
 			--numPlayers;
 		}
+	}
+
+	// Even when no new player, we must check the template compatibility as player template may be civ dependent
+	for (var i = 1; i < previousPlayers; ++i)
+	{
+		var pDefs = playerDefaults ? playerDefaults[i] : {};
+		var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
+		var civ = getSetting(pData, pDefs, "Civ");
+		var neededTemplate = "special/player";
+		if (templatesList.indexOf("special/"+civ+"_player") !== -1)
+			neededTemplate = "special/"+civ+"_player";
+		var entID = cmpPlayerManager.GetPlayerByID(i);
+		if (cmpTemplateManager.GetCurrentTemplateName(entID) === neededTemplate)
+			continue;
+		// We need to recreate this player to have the right template
+		entID = Engine.AddEntity(neededTemplate);
+		cmpPlayerManager.ReplacePlayer(i, entID);
 	}
 
 	// Initialize the player data
