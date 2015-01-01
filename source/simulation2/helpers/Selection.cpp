@@ -27,40 +27,53 @@
 #include "simulation2/components/ICmpTemplateManager.h"
 #include "simulation2/components/ICmpSelectable.h"
 #include "simulation2/components/ICmpVisual.h"
+#include "simulation2/components/ICmpUnitRenderer.h"
 #include "simulation2/helpers/Spatial.h"
 #include "ps/CLogger.h"
 #include "ps/Profiler2.h"
 
-std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables, int range)
-{
-	PROFILE2("PickEntitiesAtPoint");
+entity_id_t EntitySelection::PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables)
+{	
+	PROFILE2("PickEntityAtPoint");
 	CVector3D origin, dir;
 	camera.BuildCameraRay(screenX, screenY, origin, dir);
+	
+	CmpPtr<ICmpUnitRenderer> cmpUnitRenderer(simulation.GetSimContext().GetSystemEntity());
+	ENSURE(cmpUnitRenderer);
 
+	std::vector<std::pair<CEntityHandle, CVector3D> > entities;
+	cmpUnitRenderer->PickAllEntitiesAtPoint(entities, origin, dir, allowEditorSelectables);
+	if (entities.empty())
+		return INVALID_ENTITY;
+	
+	// Filter for relevent entities in the list of candidates (all entities below the mouse)
+	std::vector<std::pair<float, CEntityHandle> > hits; // (dist^2, entity) pairs
+	for (size_t i = 0; i < entities.size(); ++i)
+	{
+		// Find the perpendicular distance from the object's centre to the picker ray
+		float dist2;
+		const CVector3D center = entities[i].second;
+		CVector3D closest = origin + dir * (center - origin).Dot(dir);
+		dist2 = (closest - center).LengthSquared();
+		hits.push_back(std::make_pair(dist2, entities[i].first));
+	}
+
+	// Sort hits by distance
+	struct SortFun {
+  		bool operator() ( std::pair<float, CEntityHandle> i, std::pair<float, CEntityHandle> j) { return (i.first<j.first);}
+	} sortFun;
+	std::sort(hits.begin(), hits.end(), sortFun);
+	
 	CmpPtr<ICmpRangeManager> cmpRangeManager(simulation, SYSTEM_ENTITY);
 	ENSURE(cmpRangeManager);
-
-	/* We try to approximate where the mouse is hovering by drawing a ray from
-	 * the center of the camera and through the mouse then taking the position
-	 * at which the ray intersects the terrain.                               */
-	// TODO: Do this smarter without being slow.
-	CVector3D pos3d = camera.GetWorldCoordinates(screenX, screenY, true);
-	// Change the position to 2D by removing the terrain height.
-	CFixedVector2D pos(fixed::FromFloat(pos3d.X), fixed::FromFloat(pos3d.Z));
-
-	// Get a rough group of entities using our approximated origin.
-	std::vector<entity_id_t> ents;
-	cmpRangeManager->GetSubdivision()->GetNear(ents, pos, entity_pos_t::FromInt(range));
-
-	// Filter for relevent entities and calculate precise distances.
-	std::vector<std::pair<float, entity_id_t> > hits; // (dist^2, entity) pairs
-	for (size_t i = 0; i < ents.size(); ++i)
+	
+	for (size_t i = 0; i < hits.size(); ++i)
 	{
-		CmpPtr<ICmpSelectable> cmpSelectable(simulation, ents[i]);
+		const CEntityHandle& handle = hits[i].second;
+		
+		CmpPtr<ICmpSelectable> cmpSelectable(handle);
 		if (!cmpSelectable)
 			continue;
-
-		CEntityHandle handle = cmpSelectable->GetEntityHandle();
 
 		// Check if this entity is only selectable in Atlas
 		if (!allowEditorSelectables && cmpSelectable->IsEditorOnly())
@@ -69,56 +82,10 @@ std::vector<entity_id_t> EntitySelection::PickEntitiesAtPoint(CSimulation2& simu
 		// Ignore entities hidden by LOS (or otherwise hidden, e.g. when not IsInWorld)
 		if (cmpRangeManager->GetLosVisibility(handle, player) == ICmpRangeManager::VIS_HIDDEN)
 			continue;
-
-		CmpPtr<ICmpVisual> cmpVisual(handle);
-		if (!cmpVisual)
-			continue;
-
-		CVector3D center;
-		float tmin, tmax;
-
-		CBoundingBoxOriented selectionBox = cmpVisual->GetSelectionBox();
-		if (selectionBox.IsEmpty())
-		{
-			if (!allowEditorSelectables)
-				continue;
-
-			// Fall back to using old AABB selection method for decals
-			//	see: http://trac.wildfiregames.com/ticket/1032
-			CBoundingBoxAligned aABBox = cmpVisual->GetBounds();
-			if (aABBox.IsEmpty())
-				continue;
-
-			if (!aABBox.RayIntersect(origin, dir, tmin, tmax))
-				continue;
-
-			aABBox.GetCentre(center);
-		}
-		else
-		{
-			if (!selectionBox.RayIntersect(origin, dir, tmin, tmax))
-				continue;
-
-			center = selectionBox.m_Center;
-		}
-
-		// Find the perpendicular distance from the object's centre to the picker ray
-		float dist2;
-		CVector3D closest = origin + dir * (center - origin).Dot(dir);
-		dist2 = (closest - center).LengthSquared();
-
-		hits.push_back(std::make_pair(dist2, ents[i]));
+			
+		return handle.GetId();
 	}
-
-	// Sort hits by distance
-	std::sort(hits.begin(), hits.end()); // lexicographic comparison
-
-	// Extract the entity IDs
-	std::vector<entity_id_t> hitEnts;
-	hitEnts.reserve(hits.size());
-	for (size_t i = 0; i < hits.size(); ++i)
-		hitEnts.push_back(hits[i].second);
-	return hitEnts;
+	return INVALID_ENTITY;
 }
 
 /**

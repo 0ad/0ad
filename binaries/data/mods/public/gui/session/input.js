@@ -32,11 +32,11 @@ const INPUT_MASSTRIBUTING = 10;
 
 var inputState = INPUT_NORMAL;
 
+const INVALID_ENTITY = 0;
+
 var mouseX = 0;
 var mouseY = 0;
 var mouseIsOverObject = false;
-// Distance to search for a selatable entity in. Bigger numbers are slower.
-var SELECTION_SEARCH_RADIUS = 100;
 
 // Number of pixels the mouse can move before the action is considered a drag
 var maxDragDelta = 4;
@@ -278,13 +278,13 @@ function determineAction(x, y, fromMinimap)
 	if (!g_DevSettings.controlAll && !allOwnedByPlayer)
 		return undefined;
 
-	var targets = [];
 	var target = undefined;
 	if (!fromMinimap)
-		targets = Engine.PickEntitiesAtPoint(x, y, SELECTION_SEARCH_RADIUS);
-
-	if (targets.length)
-		target = targets[0];
+	{
+		var ent = Engine.PickEntityAtPoint(x, y);
+		if (ent != INVALID_ENTITY)
+			target = ent;
+	}
 
 	// decide between the following ordered actions
 	// if two actions are possible, the first one is taken
@@ -853,15 +853,13 @@ function handleInputAfterGui(ev)
 	{
 		g_ShowAllStatusBars = (ev.type == "hotkeydown");
 		recalculateStatusBarDisplay();
-	}
-
-	if (ev.hotkey == "session.highlightguarding")
+	} 
+	else if (ev.hotkey == "session.highlightguarding")
 	{
 		g_ShowGuarding = (ev.type == "hotkeydown");
 		updateAdditionalHighlight();
 	}
-
-	if (ev.hotkey == "session.highlightguarded")
+	else if (ev.hotkey == "session.highlightguarded")
 	{
 		g_ShowGuarded = (ev.type == "hotkeydown");
 		updateAdditionalHighlight();
@@ -876,9 +874,9 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// Highlight the first hovered entity (if any)
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
-			if (ents.length)
-				g_Selection.setHighlightList([ents[0]]);
+			var ent = Engine.PickEntityAtPoint(ev.x, ev.y);
+			if (ent != INVALID_ENTITY)
+				g_Selection.setHighlightList([ent]);
 			else
 				g_Selection.setHighlightList([]);
 
@@ -930,9 +928,9 @@ function handleInputAfterGui(ev)
 		{
 		case "mousemotion":
 			// Highlight the first hovered entity (if any)
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
-			if (ents.length)
-				g_Selection.setHighlightList([ents[0]]);
+			var ent = Engine.PickEntityAtPoint(ev.x, ev.y);
+			if (ent != INVALID_ENTITY)
+				g_Selection.setHighlightList([ent]);
 			else
 				g_Selection.setHighlightList([]);
 
@@ -980,15 +978,19 @@ function handleInputAfterGui(ev)
 				return false;
 			}
 
-			var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
-			g_Selection.setHighlightList(ents);
+			var ent = Engine.PickEntityAtPoint(ev.x, ev.y);
+			if (ent != INVALID_ENTITY)
+				g_Selection.setHighlightList([ent]);
+			else
+				g_Selection.setHighlightList([]);
 			return false;
 
 		case "mousebuttonup":
 			if (ev.button == SDL_BUTTON_LEFT)
 			{
-				var ents = Engine.PickEntitiesAtPoint(ev.x, ev.y, SELECTION_SEARCH_RADIUS);
-				if (!ents.length)
+				var ents = [];
+				var selectedEntity = Engine.PickEntityAtPoint(ev.x, ev.y);
+				if (selectedEntity == INVALID_ENTITY)
 				{
 					if (!Engine.HotkeyIsPressed("selection.add") && !Engine.HotkeyIsPressed("selection.remove"))
 					{
@@ -999,7 +1001,6 @@ function handleInputAfterGui(ev)
 					return true;
 				}
 
-				var selectedEntity = ents[0];
 				var now = new Date();
 
 				// If camera following and we select different unit, stop
@@ -1052,7 +1053,7 @@ function handleInputAfterGui(ev)
 					prevClickedEntity = selectedEntity;
 
 					// We only want to include the first picked unit in the selection
-					ents = [ents[0]];
+					ents = [selectedEntity];
 				}
 
 				// Update the list of selected units
