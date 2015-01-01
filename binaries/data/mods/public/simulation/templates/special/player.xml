@@ -15,6 +15,7 @@
   </BattleDetection>
   <EntityLimits>
     <Limits>
+      <CivilCentre>1</CivilCentre>
       <DefenseTower>30</DefenseTower>
       <Fortress>10</Fortress>
       <Wonder>1</Wonder>
@@ -41,6 +42,11 @@
         <PtolemyIV>4</PtolemyIV>
       </Juggernaut>
     </LimitChangers>
+    <LimitRemovers>
+      <CivilCentre>
+        <RequiredTechs datatype="tokens">phase_town</RequiredTechs>
+      </CivilCentre>
+    </LimitRemovers>
   </EntityLimits>
   <Player/>
   <StatisticsTracker/>

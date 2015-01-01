@@ -13,9 +13,14 @@ EntityLimits.prototype.Schema =
 		"</Limits>" +
 		"<LimitChangers>" +
 			"<Monument>" +
-				"<CivCentre>2</CivCentre>" +
+				"<CivilCentre>2</CivilCentre>" +
 			"</Monument>" +
 		"</LimitChangers>" +
+		"<LimitRemovers>" +
+			"<CivilCentre>" +
+				"<RequiredTechs datatype=\"tokens\">town_phase</RequiredTechs>" +
+			"</CivilCentre>" +
+		"</LimitRemovers>" +
 	"</a:example>" +
 	"<element name='Limits'>" +
 		"<zeroOrMore>" +
@@ -37,12 +42,24 @@ EntityLimits.prototype.Schema =
 				"</zeroOrMore>" +
 			"</element>" +
 		"</zeroOrMore>" +
+	"</element>" +
+	"<element name='LimitRemovers'>" +
+		"<zeroOrMore>" +
+			"<element a:help='Specifies a category of building/unit on which to remove this limit. The limit will be removed if all the followings requirements are satisfied'>" +
+				"<anyName />" +
+				"<oneOrMore>" +
+					"<element a:help='Possible requirements are: RequiredTechs and RequiredClasses'>" +
+						"<anyName />" +
+						"<attribute name='datatype'>" +
+							"<value>tokens</value>" +
+						"</attribute>" +
+						"<text/>" +
+					"</element>" +
+				"</oneOrMore>" +
+			"</element>" +
+		"</zeroOrMore>" +
 	"</element>";
 
-
-/*
- *	TODO: Use an inheriting player_{civ}.xml template for civ-specific limits
- */
 
 const TRAINING = "training";
 const BUILD = "build";
@@ -50,23 +67,34 @@ const BUILD = "build";
 EntityLimits.prototype.Init = function()
 {
 	this.limit = {};
-	this.count = {};
+	this.count = {};	// counts entities which change the limit of the given category 
 	this.changers = {};
+	this.removers = {};
+	this.classCount = {};	// counts entities with the given class, used in the limit removal
+	this.removedLimit = {};
 	for (var category in this.template.Limits)
 	{
 		this.limit[category] = +this.template.Limits[category];
 		this.count[category] = 0;
-		if (!(category in this.template.LimitChangers))
-			continue;
-		this.changers[category] = {};
-		for (var c in this.template.LimitChangers[category])
-			this.changers[category][c] = +this.template.LimitChangers[category][c];
+		if (category in this.template.LimitChangers)
+		{
+			this.changers[category] = {};
+			for (var c in this.template.LimitChangers[category])
+				this.changers[category][c] = +this.template.LimitChangers[category][c];
+		}
+		if (category in this.template.LimitRemovers)
+		{
+			this.removedLimit[category] = this.limit[category];	// keep a copy of removeable limits for possible restoration
+			this.removers[category] = {};
+			for (var c in this.template.LimitRemovers[category])
+			{
+				this.removers[category][c] = this.template.LimitRemovers[category][c]._string.split(/\s+/);
+				if (c === "RequiredClasses")
+					for (var cls of this.removers[category][c])
+						this.classCount[cls] = 0;
+			}
+		}
 	}
-};
-
-EntityLimits.prototype.ChangeLimit = function(category, value)
-{
-	this.limit[category] += value;
 };
 
 EntityLimits.prototype.ChangeCount = function(category, value)
@@ -89,6 +117,34 @@ EntityLimits.prototype.GetLimitChangers = function()
 {
 	return this.changers;
 };
+
+EntityLimits.prototype.UpdateLimitsFromTech = function(tech)
+{
+	for (var category in this.removers)
+		if ("RequiredTechs" in this.removers[category] && this.removers[category]["RequiredTechs"].indexOf(tech) !== -1)
+			this.removers[category]["RequiredTechs"].splice(this.removers[category]["RequiredTechs"].indexOf(tech), 1);
+
+	this.UpdateLimitRemoval();
+};
+
+EntityLimits.prototype.UpdateLimitRemoval = function()
+{
+	for (var category in this.removers)
+	{
+		var nolimit = true;
+		if ("RequiredTechs" in this.removers[category])
+			nolimit = !this.removers[category]["RequiredTechs"].length;
+		if (nolimit && "RequiredClasses" in this.removers[category])
+			for (var cls of this.removers[category]["RequiredClasses"])
+				nolimit = nolimit && this.classCount[cls] > 0;
+
+		if (nolimit && this.limit[category] !== undefined)
+			this.limit[category] = undefined;
+		else if (!nolimit && this.limit[category] === undefined)
+			this.limit[category] = this.removedLimit[category];
+	}
+};
+
 
 EntityLimits.prototype.AllowedToCreate = function(limitType, category, count)
 {
@@ -137,7 +193,7 @@ EntityLimits.prototype.AllowedToTrain = function(category, count)
 };
 
 EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
-{	
+{
 	// check if we are adding or removing an entity from this player
 	var cmpPlayer = Engine.QueryInterface(this.entity, IID_Player);
 	if (!cmpPlayer)
@@ -161,12 +217,13 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 	if (cmpTrainingRestrictions)
 		category = cmpTrainingRestrictions.GetCategory();
 	if (category)
-		this.ChangeCount(category,modifier);
+		this.ChangeCount(category, modifier);
 
 	// Update entity limits
 	var cmpIdentity = Engine.QueryInterface(msg.entity, IID_Identity);
 	if (!cmpIdentity)
 		return;
+
 	// foundations shouldn't change the entity limits until they're completed
 	var cmpFoundation = Engine.QueryInterface(msg.entity, IID_Foundation);
 	if (cmpFoundation)
@@ -175,7 +232,20 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 	for (var category in this.changers)
 		for (var c in this.changers[category])
 			if (classes.indexOf(c) >= 0)
-				this.ChangeLimit(category, modifier * this.changers[category][c]);
+			{
+				if (this.limit[category])
+					this.limit[category] += modifier * this.changers[category][c];
+				if (this.removedLimit[category])	// update removed limits in case we want to restore it
+					this.removedLimit[category] += modifier * this.changers[category][c];
+			}
+
+	for (var category in this.removers)
+		if ("RequiredClasses" in this.removers[category])
+			for (var cls of this.removers[category]["RequiredClasses"])
+				if (classes.indexOf(cls) !== -1)
+					this.classCount[cls] += modifier;
+
+	this.UpdateLimitRemoval();
 };
 
 Engine.RegisterComponentType(IID_EntityLimits, "EntityLimits", EntityLimits);
