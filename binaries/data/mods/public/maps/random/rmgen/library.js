@@ -391,13 +391,13 @@ function getMapArea()
 
 function getNumPlayers()
 {
-	return g_MapSettings.PlayerData.length;
+	return g_MapSettings.PlayerData.length - 1;
 }
 
 function getCivCode(player)
 {
-	if (g_MapSettings.PlayerData[player].Civ)
-		return g_MapSettings.PlayerData[player].Civ;
+	if (g_MapSettings.PlayerData[player+1].Civ)
+		return g_MapSettings.PlayerData[player+1].Civ;
 
 	warn("undefined civ specified for player " + (player + 1) + ", falling back to '" + FALLBACK_CIV + "'");
 	return FALLBACK_CIV;
@@ -405,25 +405,25 @@ function getCivCode(player)
 
 function areAllies(player1, player2)
 {
-	if ((g_MapSettings.PlayerData[player1].Team === undefined) || (g_MapSettings.PlayerData[player2].Team === undefined) || (g_MapSettings.PlayerData[player2].Team == -1) || (g_MapSettings.PlayerData[player1].Team == -1))
+	if ((g_MapSettings.PlayerData[player1+1].Team === undefined) || (g_MapSettings.PlayerData[player2+1].Team === undefined) || (g_MapSettings.PlayerData[player2+1].Team == -1) || (g_MapSettings.PlayerData[player1+1].Team == -1))
 	{
 		return false;
 	}
 	else
 	{
-		return (g_MapSettings.PlayerData[player1].Team === g_MapSettings.PlayerData[player2].Team);
+		return (g_MapSettings.PlayerData[player1+1].Team === g_MapSettings.PlayerData[player2+1].Team);
 	}
 }
 
 function getPlayerTeam(player)
 {
-	if (g_MapSettings.PlayerData[player].Team === undefined)
+	if (g_MapSettings.PlayerData[player+1].Team === undefined)
 	{
 		return -1;
 	}
 	else
 	{
-		return g_MapSettings.PlayerData[player].Team;
+		return g_MapSettings.PlayerData[player+1].Team;
 	}
 }
 

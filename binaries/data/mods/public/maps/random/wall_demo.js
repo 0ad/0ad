@@ -35,7 +35,7 @@ const BUILDING_ANlE = -PI/4;
 // It takes an instance of the Fortress class instead of the default fortress type strings
 
 // The next argument is always the wall style string
-// Wall styles are chosen by strings so the civ strings got by g_MapSettings.PlayerData[playerId - 1].Civ can be used
+// Wall styles are chosen by strings so the civ strings got by getCivCode() can be used
 // Other styles may be present as well but besides the civ styles only 'palisades' includes all wall element types (yet)
 
 // The next argument is always the index of the player that owns the wall.
@@ -61,7 +61,7 @@ const distToOtherWalls = 10;
 var buildableMapSize = mapSize - 2 * distToMapBorder;
 var actualX = distToMapBorder;
 var actualY = distToMapBorder;
-// Wall styles are chosen by strings so the civ strings got by g_MapSettings.PlayerData[playerId - 1].Civ can be used
+// Wall styles are chosen by strings so the civ strings got by getCivCode() can be used
 // Other styles may be present as well but besides the civ styles only 'palisades' includes all wall element types (yet)
 const wallStyleList = ["athen", "brit", "cart", "celt", "gaul", "hele", "iber", "mace", "maur", "pers", "ptol", "rome", "sele", "spart", "rome_siege", "palisades"];
 

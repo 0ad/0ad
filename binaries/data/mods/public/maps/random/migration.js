@@ -225,7 +225,7 @@ for (var i = 0; i < numPlayers; i++)
 	//create docks
 	var dockLocation = getTIPIADBON([ix, iz], [mapSize / 2, mapSize / 2], [-3 , 2.6], 0.5, 3);
 	if (dockLocation !== undefined)
-		placeObject(dockLocation[0], dockLocation[1], "structures/" + g_MapSettings.PlayerData[id-1].Civ + "_dock", id, playerAngle[i] + PI);
+		placeObject(dockLocation[0], dockLocation[1], "structures/" + getCivCode(id-1) + "_dock", id, playerAngle[i] + PI);
 }
 
 

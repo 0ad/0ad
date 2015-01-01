@@ -178,7 +178,7 @@ function placeCivDefaultEntities(fx, fz, playerid, angle, kwargs)
 	if ('iberWall' in kwargs)
 		iberWall = kwargs['iberWall'];
 	// Place default civ starting entities
-	var civ = g_MapSettings.PlayerData[playerid-1].Civ;
+	var civ = getCivCode(playerid-1);
 	var civEntities = getStartingEntities(playerid-1);
 	var uDist = 6;
 	var uSpace = 2;
