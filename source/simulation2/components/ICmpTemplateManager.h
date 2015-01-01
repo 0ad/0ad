@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -72,6 +72,11 @@ public:
 	 * @return NULL on error
 	 */
 	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName) = 0;
+
+	/**
+	 * Check if the template XML file exists, without trying to load it.
+	 */
+	virtual bool TemplateExists(std::string templateName) = 0;
 
 	/**
 	 * Returns the template most recently specified for the entity 'ent'.

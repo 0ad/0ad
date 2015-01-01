@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -204,6 +204,13 @@ static Status AddActorToTemplates(const VfsPath& pathname, const CFileInfo& UNUS
 
 	templates.push_back("actor|" + std::string(name.begin(), name.end()));
 	return INFO::OK;
+}
+
+bool CTemplateLoader::TemplateExists(const std::string& templateName)
+{
+	size_t pos = templateName.rfind('|');
+	std::string baseName(pos != std::string::npos ? templateName.substr(pos+1) : templateName);
+	return VfsFileExists(VfsPath(TEMPLATE_ROOT) / wstring_from_utf8(baseName + ".xml"));
 }
 
 std::vector<std::string> CTemplateLoader::FindPlaceableTemplates(const std::string& path, bool includeSubdirectories, ETemplatesType templatesType, ScriptInterface& scriptInterface)

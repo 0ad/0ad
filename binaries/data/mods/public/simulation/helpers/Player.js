@@ -19,43 +19,35 @@ function LoadPlayerSettings(settings, newPlayers)
 	if (!(rawData && rawData.PlayerData))
 		throw("Player.js: Error reading player_defaults.json");
 
+	// Add gaia to simplify iteration
+	if (settings.PlayerData)
+		settings.PlayerData.unshift({});
+
 	var playerDefaults = rawData.PlayerData;
+	var playerData = settings.PlayerData;
 
 	// Get player manager
 	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var numPlayers = cmpPlayerManager.GetNumPlayers();
 
 	var cmpTemplateManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_TemplateManager);
-	var templatesList = cmpTemplateManager.FindAllTemplates(false);
-	var previousPlayers = numPlayers;
 
 	// Remove existing players or add new ones
 	if (newPlayers)
 	{
 		var settingsNumPlayers = 9; // default 8 players + gaia
 
-		if (settings.PlayerData)
-			settingsNumPlayers = settings.PlayerData.length + 1; // including gaia
+		if (playerData)
+			settingsNumPlayers = playerData.length; // includes gaia (see above)
 		else
 			warn("Player.js: Setup has no player data - using defaults");
-
-		previousPlayers = Math.min(numPlayers, settingsNumPlayers);
 
 		while (settingsNumPlayers > numPlayers)
 		{
 			// Add player entity to engine
-			var playerTemplate = "special/player";
-			if (numPlayers > 0)
-			{
-				var pDefs = playerDefaults ? playerDefaults[numPlayers] : {};
-				var pData = settings.PlayerData ? settings.PlayerData[numPlayers-1] : {};
-				var civ = getSetting(pData, pDefs, "Civ");
-			}
-			else
-				var civ = "gaia";
-			if (templatesList.indexOf("special/"+civ+"_player") !== -1)
-				playerTemplate = "special/"+civ+"_player";
-			var entID = Engine.AddEntity(playerTemplate);
+			var civ = getSetting(playerData, playerDefaults, i, "Civ");
+			var template = cmpTemplateManager.TemplateExists("special/"+civ+"_player") ? "special/"+civ+"_player" : "special/player";
+			var entID = Engine.AddEntity(template);
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
 				throw("Player.js: Error creating player entity " + numPlayers);
@@ -72,19 +64,15 @@ function LoadPlayerSettings(settings, newPlayers)
 	}
 
 	// Even when no new player, we must check the template compatibility as player template may be civ dependent
-	for (var i = 1; i < previousPlayers; ++i)
+	for (var i = 0; i < numPlayers; ++i)
 	{
-		var pDefs = playerDefaults ? playerDefaults[i] : {};
-		var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
-		var civ = getSetting(pData, pDefs, "Civ");
-		var neededTemplate = "special/player";
-		if (templatesList.indexOf("special/"+civ+"_player") !== -1)
-			neededTemplate = "special/"+civ+"_player";
+		var civ = getSetting(playerData, playerDefaults, i, "Civ");
+		var template = cmpTemplateManager.TemplateExists("special/"+civ+"_player") ? "special/"+civ+"_player" : "special/player";
 		var entID = cmpPlayerManager.GetPlayerByID(i);
-		if (cmpTemplateManager.GetCurrentTemplateName(entID) === neededTemplate)
+		if (cmpTemplateManager.GetCurrentTemplateName(entID) === template)
 			continue;
 		// We need to recreate this player to have the right template
-		entID = Engine.AddEntity(neededTemplate);
+		entID = Engine.AddEntity(template);
 		cmpPlayerManager.ReplacePlayer(i, entID);
 	}
 
@@ -92,79 +80,70 @@ function LoadPlayerSettings(settings, newPlayers)
 	for (var i = 0; i < numPlayers; ++i)
 	{
 		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
-		var pDefs = playerDefaults ? playerDefaults[i] : {};
+		cmpPlayer.SetName(getSetting(playerData, playerDefaults, i, "Name"));
+		cmpPlayer.SetCiv(getSetting(playerData, playerDefaults, i, "Civ"));
+		var colour = getSetting(playerData, playerDefaults, i, "Colour");
+		cmpPlayer.SetColour(colour.r, colour.g, colour.b);
 
-		// Skip gaia
-		if (i > 0)
+		// Special case for gaia
+		if (i == 0)
 		{
-			var pData = settings.PlayerData ? settings.PlayerData[i-1] : {};
-
-			cmpPlayer.SetName(getSetting(pData, pDefs, "Name"));
-			cmpPlayer.SetCiv(getSetting(pData, pDefs, "Civ"));
-			var colour = getSetting(pData, pDefs, "Colour");
-			cmpPlayer.SetColour(colour.r, colour.g, colour.b);
-
-			// Note: this is not yet implemented but I leave it commented to highlight it's easy
-			// If anyone ever adds handicap.
-			//if (getSetting(pData, pDefs, "GatherRateMultiplier") !== undefined)
-			//	cmpPlayer.SetGatherRateMultiplier(getSetting(pData, pDefs, "GatherRateMultiplier"));
-
-			if (getSetting(pData, pDefs, "PopulationLimit") !== undefined)
-				cmpPlayer.SetMaxPopulation(getSetting(pData, pDefs, "PopulationLimit"));
-
-			if (getSetting(pData, pDefs, "Resources") !== undefined)
-				cmpPlayer.SetResourceCounts(getSetting(pData, pDefs, "Resources"));
-
-			// If diplomacy explicitly defined, use that; otherwise use teams
-			if (getSetting(pData, pDefs, "Diplomacy") !== undefined)
-				cmpPlayer.SetDiplomacy(getSetting(pData, pDefs, "Diplomacy"));
-			else
-			{
-				// Init diplomacy
-				var myTeam = getSetting(pData, pDefs, "Team");
-
-				// Set all but self as enemies as SetTeam takes care of allies
-				for (var j = 0; j < numPlayers; ++j)
-				{
-					if (i == j)
-						cmpPlayer.SetAlly(j);
-					else
-						cmpPlayer.SetEnemy(j);
-				}
-				cmpPlayer.SetTeam((myTeam !== undefined) ? myTeam : -1);
-			}
-
-			// If formations explicitly defined, use that; otherwise use civ defaults
-			var formations = getSetting(pData, pDefs, "Formations");
-			if (formations !== undefined)
-				cmpPlayer.SetFormations(formations);
-			else
-			{
-				var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
-				if (!(rawFormations && rawFormations.Formations))
-					throw("Player.js: Error reading "+cmpPlayer.GetCiv()+".json");
-
-				cmpPlayer.SetFormations(rawFormations.Formations);
-			}
-
-			var startCam = getSetting(pData, pDefs, "StartingCamera");
-			if (startCam !== undefined)
-				cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
-		}
-		else
-		{
-			// Copy gaia data from defaults
-			cmpPlayer.SetName(pDefs.Name);
-			cmpPlayer.SetCiv(pDefs.Civ);
-			cmpPlayer.SetColour(pDefs.Colour.r, pDefs.Colour.g, pDefs.Colour.b);
-
 			// Gaia should be its own ally.
 			cmpPlayer.SetAlly(0);
 
 			// Gaia is everyone's enemy
 			for (var j = 1; j < numPlayers; ++j)
 				cmpPlayer.SetEnemy(j);
+
+			continue;
 		}
+
+		// Note: this is not yet implemented but I leave it commented to highlight it's easy
+		// If anyone ever adds handicap.
+		//if (getSetting(playerData, playerDefaults, i, "GatherRateMultiplier") !== undefined)
+		//	cmpPlayer.SetGatherRateMultiplier(getSetting(playerData, playerDefaults, i, "GatherRateMultiplier"));
+
+		if (getSetting(playerData, playerDefaults, i, "PopulationLimit") !== undefined)
+			cmpPlayer.SetMaxPopulation(getSetting(playerData, playerDefaults, i, "PopulationLimit"));
+
+		if (getSetting(playerData, playerDefaults, i, "Resources") !== undefined)
+			cmpPlayer.SetResourceCounts(getSetting(playerData, playerDefaults, i, "Resources"));
+
+		// If diplomacy explicitly defined, use that; otherwise use teams
+		if (getSetting(playerData, playerDefaults, i, "Diplomacy") !== undefined)
+			cmpPlayer.SetDiplomacy(getSetting(playerData, playerDefaults, i, "Diplomacy"));
+		else
+		{
+			// Init diplomacy
+			var myTeam = getSetting(playerData, playerDefaults, i, "Team");
+
+			// Set all but self as enemies as SetTeam takes care of allies
+			for (var j = 0; j < numPlayers; ++j)
+			{
+				if (i == j)
+					cmpPlayer.SetAlly(j);
+				else
+					cmpPlayer.SetEnemy(j);
+			}
+			cmpPlayer.SetTeam((myTeam !== undefined) ? myTeam : -1);
+		}
+
+		// If formations explicitly defined, use that; otherwise use civ defaults
+		var formations = getSetting(playerData, playerDefaults, i, "Formations");
+		if (formations !== undefined)
+			cmpPlayer.SetFormations(formations);
+		else
+		{
+			var rawFormations = Engine.ReadCivJSONFile(cmpPlayer.GetCiv()+".json");
+			if (!(rawFormations && rawFormations.Formations))
+				throw("Player.js: Error reading "+cmpPlayer.GetCiv()+".json");
+
+			cmpPlayer.SetFormations(rawFormations.Formations);
+		}
+
+		var startCam = getSetting(playerData, playerDefaults, i, "StartingCamera");
+		if (startCam !== undefined)
+			cmpPlayer.SetStartingCamera(startCam.Position, startCam.Rotation);
 	}
 
 	// NOTE: We need to do the team locking here, as otherwise
@@ -178,14 +157,14 @@ function LoadPlayerSettings(settings, newPlayers)
 }
 
 // Get a setting if it exists or return default
-function getSetting(settings, defaults, property)
+function getSetting(settings, defaults, idx, property)
 {
-	if (settings && (property in settings))
-		return settings[property];
+	if (settings && settings[idx] && (property in settings[idx]))
+		return settings[idx][property];
 
 	// Use defaults
-	if (defaults && (property in defaults))
-		return defaults[property];
+	if (defaults && defaults[idx] && (property in defaults[idx]))
+		return defaults[idx][property];
 
 	return undefined;
 }

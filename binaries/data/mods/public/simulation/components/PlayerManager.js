@@ -31,8 +31,7 @@ PlayerManager.prototype.AddPlayer = function(ent)
 /**
  * To avoid possible problems with cached quantities (as in TechnologyManager),
  * we first remove all entities from this player, and add them back after the replacement.
- * Futhermore, because of the Engine.FlushDestroyedComponents, it should only be called during setup/init
- * and not during the game
+ * Note: This should only be called during setup/init and not during the game
  */
 PlayerManager.prototype.ReplacePlayer = function(id, ent)
 {
