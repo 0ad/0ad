@@ -1259,7 +1259,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				for (var ent of collec.values())
 				{
 					if (this.isSiegeUnit(gameState, ent))	// needed as mauryan elephants are not filtered out
-						Continue;
+						continue;
 					ent.attack(attacker.id());
 					ent.setMetadata(PlayerID, "lastAttackPlanUpdateTime", time);
 				}
