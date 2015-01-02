@@ -6,23 +6,26 @@
       <animations>
         <animation event="0.5" load="0.0" name="attack_ranged" speed="100"/>
       </animations>
-      <mesh>structural/mace_cc_struct.dae</mesh>
+      <mesh>structural/sele_civ_center.dae</mesh>
       <props>
-        <prop actor="props/structures/macedonians/civic_centre_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_nature.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_trees.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_props_a.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_struct_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_shields.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_tiles.xml" attachpoint="root"/>
+        <prop actor="props/structures/decals/dirt_6x6.xml" attachpoint="root"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="loaded-projectile"/>
         <prop actor="props/units/weapons/arrow_front.xml" attachpoint="projectile"/>
+        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_cretan_date_short.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_cretan_date.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/palm_cretan_date.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_4" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_5" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_6" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_7" maxheight="20" minheight="-20"/>
+        <prop actor=""/>
       </props>
       <textures>
-        <texture file="structural/sele_struct.dds" name="baseTex"/>
-<texture file="structural/hele_struct_norm.png" name="normTex"/>
-	    <texture file="structural/hele_struct_spec.png" name="specTex"/>
-	    <texture file="structural/ao/mace_civic_centre.png" name="aoTex"/>
+        <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+        <texture file="structural/Sele_struct_2.png" name="normTex"/>
+        <texture file="structural/Sele_struct_2.png" name="specTex"/>
+        <texture file="structural/ao/sele_civic_center.png" name="aoTex"/>
       </textures>
     </variant>
   </group>
@@ -30,23 +33,17 @@
     <variant frequency="100" name="Idle"/>
     <variant name="garrisoned">
       <props>
-        <prop actor="props/special/common/garrison_flag_hele.xml" attachpoint="garrisoned"/>
+        <prop actor="props/special/common/garrison_flag_seleucids.xml" attachpoint="garrisoned"/>
       </props>
     </variant>
     <variant name="death">
       <props>
         <prop attachpoint="garrisoned"/>
-        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_smoke_small.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
         <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_decor.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_props_a.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_trees.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_struct_b.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_tiles.xml" attachpoint="root"/>
-        <prop actor="props/structures/macedonians/civic_centre_shields.xml" attachpoint="root"/>
       </props>
     </variant>
   </group>
-  <material>player_trans.xml</material>
+  <material>player_trans_ao.xml</material>
 </actor>
