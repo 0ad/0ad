@@ -276,7 +276,7 @@ Takes
 	heightmap		Optional, default is g_Map.height, an array of (map width) arrays of (map depth) floats
 	maxTries		Optional, default is 1000, an integer, how often random player distributions are rolled to be compared
 	minDistToBorder	Optional, default is 20, an integer, how far start locations have to be 
-	numberOfPlayers	Optional, default is g_MapSettings.PlayerData.length, an integer, how many start locations should be placed
+	numberOfPlayers	Optional, default is getNumPlayers, an integer, how many start locations should be placed
 Returns
 	An array of 2D points (arrays of length 2)
 */
@@ -284,7 +284,7 @@ function getStartLocationsByHeightmap(hightRange, maxTries, minDistToBorder, num
 {
 	maxTries = (maxTries || 1000);
 	minDistToBorder = (minDistToBorder || 20);
-	numberOfPlayers = (numberOfPlayers || g_MapSettings.PlayerData.length);
+	numberOfPlayers = (numberOfPlayers || getNumPlayers());
 	heightmap = (heightmap || g_Map.height);
 	
 	var validStartLocTiles = [];

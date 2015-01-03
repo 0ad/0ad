@@ -56,8 +56,8 @@ m.Map.prototype.gamePosToMapPos = function(p)
 m.Map.prototype.point = function(p)
 {
 	var q = this.gamePosToMapPos(p);
-	q[0] = q[0] >= this.width ? this.width : (q[0] < 0 ? 0 : q[0]);
-	q[1] = q[1] >= this.width ? this.width : (q[1] < 0 ? 0 : q[1]);
+	q[0] = q[0] >= this.width ? this.width-1 : (q[0] < 0 ? 0 : q[0]);
+	q[1] = q[1] >= this.width ? this.width-1 : (q[1] < 0 ? 0 : q[1]);
 	return this.map[q[0] + this.width * q[1]];
 };
 

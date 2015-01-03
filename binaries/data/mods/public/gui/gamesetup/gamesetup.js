@@ -993,6 +993,8 @@ function launchGame()
 	if (!g_GameAttributes.map)
 		return;
 
+	saveGameAttributes();
+
 	if (g_GameAttributes.map == "random")
 		selectMap(Engine.GetGUIObjectByName("mapSelection").list_data[Math.floor(Math.random() *
 			(Engine.GetGUIObjectByName("mapSelection").list.length - 1)) + 1]);
@@ -1049,8 +1051,6 @@ function launchGame()
 				g_GameAttributes.settings.PlayerData[i].Name = chosenName;
 		}
 	}
-
-	saveGameAttributes();
 
 	if (g_IsNetworked)
 	{

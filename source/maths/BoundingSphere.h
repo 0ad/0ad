@@ -55,6 +55,23 @@ public:
 	{
 		return m_Radius;
 	}
+	
+	/**
+	 * Check if the ray, defined by an origin point and a direction unit vector
+	 * interesects with the sphere
+	 */
+	bool RayIntersect(const CVector3D& origin, const CVector3D& dir) const
+	{
+		CVector3D v = m_Center - origin; // Vector v from the origin of the ray to the center of the sphere
+		float pcLen = dir.Dot(v); // Length of the projection of v onto the direction vector of the ray
+		if(pcLen <= 0)
+			return false; // Sphere behind the ray
+		// Get the shortest distance from the center of the sphere to the ray
+		v  = (dir * pcLen) - v;
+		if (v.LengthSquared() > m_Radius * m_Radius)
+			return false; // Distance to sphere center more than radius
+		return true;
+	}
 };
 
 #endif // INCLUDED_BOUNDINGSPHERE

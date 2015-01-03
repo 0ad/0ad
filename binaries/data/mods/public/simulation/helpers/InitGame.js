@@ -24,21 +24,21 @@ function InitGame(settings)
 
 	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (settings.ExploreMap)
-		for (var i = 0; i < settings.PlayerData.length; i++)
-			cmpRangeManager.ExploreAllTiles(i+1);
+		for (let i = 1; i < settings.PlayerData.length; ++i)
+			cmpRangeManager.ExploreAllTiles(i);
 	else
 		// Explore the map only inside the players' territory borders
 		cmpRangeManager.ExploreTerritories();
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);
-	for (let i = 0; i < settings.PlayerData.length; ++i)
+	for (let i = 1; i < settings.PlayerData.length; ++i)
 	{
-		let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i+1), IID_Player);
+		let cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
 		cmpPlayer.SetCheatsEnabled(!!settings.CheatsEnabled);
 		if (settings.PlayerData[i] && settings.PlayerData[i].AI && settings.PlayerData[i].AI != "")
 		{
-			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i+1, +settings.PlayerData[i].AIDiff);
+			cmpAIManager.AddPlayer(settings.PlayerData[i].AI, i, +settings.PlayerData[i].AIDiff);
 			cmpPlayer.SetAI(true);
 			// Sandbox: 50%, very easy: 50%, easy: 66%, Medium: 100%, hard: 133%, very hard: 166%
 			cmpPlayer.SetGatherRateMultiplier(Math.max(0.5,(+settings.PlayerData[i].AIDiff)/3.0));

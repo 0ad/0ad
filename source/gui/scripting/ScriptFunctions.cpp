@@ -173,9 +173,9 @@ void PostNetworkCommand(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal cmd1)
 	cmpCommandQueue->PostNetworkCommand(CScriptVal(cmd2));
 }
 
-std::vector<entity_id_t> PickEntitiesAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y, int range)
+entity_id_t PickEntityAtPoint(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x, int y)
 {
-	return EntitySelection::PickEntitiesAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetPlayerID(), false, range);
+	return EntitySelection::PickEntityAtPoint(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), x, y, g_Game->GetPlayerID(), false);
 }
 
 std::vector<entity_id_t> PickFriendlyEntitiesInRect(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int x0, int y0, int x1, int y1, int player)
@@ -959,7 +959,7 @@ void GuiScriptingInit(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, CScriptVal, &PostNetworkCommand>("PostNetworkCommand");
 
 	// Entity picking
-	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, &PickEntitiesAtPoint>("PickEntitiesAtPoint");
+	scriptInterface.RegisterFunction<entity_id_t, int, int, &PickEntityAtPoint>("PickEntityAtPoint");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, int, int, int, int, &PickFriendlyEntitiesInRect>("PickFriendlyEntitiesInRect");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, int, &PickFriendlyEntitiesOnScreen>("PickFriendlyEntitiesOnScreen");
 	scriptInterface.RegisterFunction<std::vector<entity_id_t>, std::string, bool, bool, bool, &PickSimilarFriendlyEntities>("PickSimilarFriendlyEntities");

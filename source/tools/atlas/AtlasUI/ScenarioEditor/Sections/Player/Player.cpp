@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -668,7 +668,7 @@ void PlayerSettingsControl::ReadFromEngine()
 		m_NumPlayers = MAX_NUM_PLAYERS;
 	}
 	else
-		m_NumPlayers = player.count();
+		m_NumPlayers = player.count() - 1; // skip gaia
 
 	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS && m_NumPlayers != 0);
 

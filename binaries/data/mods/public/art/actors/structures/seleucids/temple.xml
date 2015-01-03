@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actor version="1">
+  <castshadow/>
+  <group>
+    <variant frequency="1" name="Seleucid_Civic_Centre">
+      <props>
+        <prop actor="props/structures/decals/dirt_4x6.xml" attachpoint="root"/>
+        <prop actor="props/structures/seleucids/temple pediment.xml" attachpoint="root" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_1" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_2" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_3" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_4" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_5" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_6" maxheight="20" minheight="-20"/>
+        <prop actor="flora/trees/mediterranean_cypress.xml" attachpoint="bush_7" maxheight="20" minheight="-20"/>
+      </props>
+      <textures>
+        <texture file="structural/Sele_struct_2.png" name="baseTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="1" name="aa">
+      <mesh>structural/sele_temple.dae</mesh>
+      <textures>
+        <texture file="structural/ao/sele_temple.png" name="aoTex"/>
+      </textures>
+    </variant>
+  </group>
+  <group>
+    <variant frequency="100" name="Idle"/>
+    <variant name="garrisoned">
+      <props>
+        <prop actor="props/special/common/garrison_flag_seleucids.xml" attachpoint="garrisoned"/>
+      </props>
+    </variant>
+    <variant name="death">
+      <props>
+        <prop attachpoint="garrisoned"/>
+        <prop actor="particle/destruction_smoke_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large.xml" attachpoint="root"/>
+        <prop actor="particle/destruction_dust_large_gray.xml" attachpoint="root"/>
+      </props>
+    </variant>
+  </group>
+  <material>player_trans_ao.xml</material>
+</actor>

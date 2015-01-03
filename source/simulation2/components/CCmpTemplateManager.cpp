@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,6 +124,8 @@ public:
 
 	virtual const CParamNode* GetTemplateWithoutValidation(std::string templateName);
 
+	virtual bool TemplateExists(std::string templateName);
+
 	virtual const CParamNode* LoadLatestTemplate(entity_id_t ent);
 
 	virtual std::string GetCurrentTemplateName(entity_id_t ent);
@@ -210,6 +212,11 @@ const CParamNode* CCmpTemplateManager::GetTemplateWithoutValidation(std::string 
 		return NULL;
 
 	return &templateRoot;
+}
+
+bool CCmpTemplateManager::TemplateExists(std::string templateName)
+{
+	return m_templateLoader.TemplateExists(templateName);
 }
 
 const CParamNode* CCmpTemplateManager::LoadLatestTemplate(entity_id_t ent)

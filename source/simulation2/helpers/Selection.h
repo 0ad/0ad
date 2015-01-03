@@ -47,7 +47,7 @@ namespace EntitySelection
  *
  * @return ordered list of selected entities with the closest first.
  */
-std::vector<entity_id_t> PickEntitiesAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables, int range = 200);
+entity_id_t PickEntityAtPoint(CSimulation2& simulation, const CCamera& camera, int screenX, int screenY, player_id_t player, bool allowEditorSelectables);
 
 /**
  * Finds all selectable entities within the given screen coordinate rectangle,

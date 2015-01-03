@@ -346,6 +346,11 @@ TechnologyManager.prototype.ResearchTechnology = function(tech)
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	var ents = cmpRangeManager.GetEntitiesByPlayer(playerID);
 
+	// Change the EntityLimit if any
+	var cmpPlayerEntityLimits = QueryPlayerIDInterface(playerID, IID_EntityLimits);
+	if (cmpPlayerEntityLimits)
+		cmpPlayerEntityLimits.UpdateLimitsFromTech(tech);
+
 	// Call the related trigger event 
 	var cmpTrigger = Engine.QueryInterface(SYSTEM_ENTITY, IID_Trigger);
 	cmpTrigger.CallEvent("ResearchFinished", {"player": playerID, "tech": tech});

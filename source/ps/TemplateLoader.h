@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -53,6 +53,11 @@ public:
 	 * Provides the file data for requested template.
 	 */
 	const CParamNode& GetTemplateFileData(const std::string& templateName);
+
+	/**
+	 * Check if the template XML file exits, without trying to load it.
+	 */
+	bool TemplateExists(const std::string& templateName);
 
 	/**
 	 * Returns a list of strings that could be validly passed as @c templateName to LoadTemplateFile.

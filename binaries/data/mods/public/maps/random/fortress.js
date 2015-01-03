@@ -153,7 +153,7 @@ for (var i=0; i < numPlayers; i++)
 	createObjectGroup(group, 0);
 	
 	// Base texture
-	var civ = g_MapSettings.PlayerData[i].Civ;
+	var civ = getCivCode(i);
 	var tilesSize = (civ == "cart" ? 27 : 22);
 	
 	const minBoundX = (playerX[i] > tilesSize ? playerX[i] - tilesSize : 0);

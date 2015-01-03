@@ -112,11 +112,6 @@
 		<object size="100%-16 128 100% 144" type="checkbox" style="ModernTickBox" checked="true">
 			<action on="Press">
 				Engine.GameView_SetConstrainCameraEnabled(this.checked);
-				// Make selection more durable at the expense of speed if unchecked.
-				if (this.checked)
-					SELECTION_SEARCH_RADIUS -= 200;
-				else
-					SELECTION_SEARCH_RADIUS += 200; 
 			</action>
 		</object>
 
