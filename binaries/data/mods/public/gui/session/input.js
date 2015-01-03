@@ -473,7 +473,7 @@ var unitFilters = {
 		var entState = GetEntityState(entity);
 		if (!entState)
 			return false;
-		return hasClass(entState, "Unit") && !hasClass(entState, "Support");
+		return hasClass(entState, "Unit") && !hasClass(entState, "Support") && !hasClass(entState, "Domestic");
 	},
 	"isIdle": function (entity) {
 		var entState = GetEntityState(entity);
