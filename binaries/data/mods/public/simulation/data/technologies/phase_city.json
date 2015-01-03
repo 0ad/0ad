@@ -5,5 +5,6 @@
 	"modifications": [{"value": "TerritoryInfluence/Radius", "multiply": 1.50},
 		{"value": "Health/Max", "multiply": 1.2, "affects": "CitizenSoldier"}],
 	"affects": ["CivCentre", "Infantry", "Cavalry"],
-	"soundComplete": "interface/alarm/alarm_phase.xml"
+	"soundComplete": "interface/alarm/alarm_phase.xml",
+	"icon": "city_phase.png"
 }
