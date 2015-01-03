@@ -20,8 +20,8 @@ function LoadPlayerSettings(settings, newPlayers)
 		throw("Player.js: Error reading player_defaults.json");
 
 	// Add gaia to simplify iteration
-	if (settings.PlayerData)
-		settings.PlayerData.unshift({});
+	if (settings.PlayerData && settings.PlayerData[0])
+		settings.PlayerData.unshift(null);
 
 	var playerDefaults = rawData.PlayerData;
 	var playerData = settings.PlayerData;

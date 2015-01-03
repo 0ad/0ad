@@ -668,7 +668,10 @@ void PlayerSettingsControl::ReadFromEngine()
 		m_NumPlayers = MAX_NUM_PLAYERS;
 	}
 	else
-		m_NumPlayers = player.count() - 1; // skip gaia
+	{
+		++player; // skip gaia
+		m_NumPlayers = player.count();
+	}
 
 	wxASSERT(m_NumPlayers <= MAX_NUM_PLAYERS && m_NumPlayers != 0);
 
