@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_economic_farmstead">
   <Footprint>
     <Square width="20.0" depth="15.0"/>
@@ -16,7 +16,7 @@
     <Static width="18.0" depth="16.0"/>
   </Obstruction>
   <VisualActor>
-    <Actor>structures/hellenes/farmstead_new.xml</Actor>
+    <Actor>structures/seleucids/farmstead.xml</Actor>
     <FoundationActor>structures/fndn_4x2.xml</FoundationActor>
   </VisualActor>
 </Entity>
