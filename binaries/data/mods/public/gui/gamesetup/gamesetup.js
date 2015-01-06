@@ -951,6 +951,10 @@ function selectMap(name)
 		for (var prop in mapSettings)
 			g_GameAttributes.settings[prop] = mapSettings[prop];
 
+	// Ignore gaia
+	if (g_GameAttributes.settings.PlayerData.length && !g_GameAttributes.settings.PlayerData[0])
+		g_GameAttributes.settings.PlayerData.shift();
+
 	// Use default AI if the map doesn't specify any explicitly
 	for (var i = 0; i < g_GameAttributes.settings.PlayerData.length; ++i)
 	{
