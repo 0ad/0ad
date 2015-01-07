@@ -288,7 +288,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	ret = UPNP_GetSpecificPortMappingEntry(urls.controlURL,
 									 data.first.servicetype,
 									 psPort, protocall,
-#if MINIUPNPC_API_VERSION >= 10
+#if defined(MINIUPNPC_API_VERSION) && MINIUPNPC_API_VERSION >= 10
 									 NULL/*remoteHost*/,
 #endif
 									 intClient, intPort, NULL/*desc*/,

@@ -46,7 +46,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var ret = {
 		"players": []
 	};
-	
+
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
@@ -54,17 +54,20 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-		
+
 		// Work out what phase we are in
-		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		var phase = "";
-		if (cmpTechnologyManager.IsTechnologyResearched("phase_city"))
-			phase = "city";
-		else if (cmpTechnologyManager.IsTechnologyResearched("phase_town"))
-			phase = "town";
-		else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
-			phase = "village";
-		
+		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
+		if (cmpTechnologyManager)
+		{
+			if (cmpTechnologyManager.IsTechnologyResearched("phase_city"))
+				phase = "city";
+			else if (cmpTechnologyManager.IsTechnologyResearched("phase_town"))
+				phase = "town";
+			else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
+				phase = "village";
+		}
+
 		// store player ally/neutral/enemy data as arrays
 		var allies = [];
 		var mutualAllies = [];
@@ -91,30 +94,28 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			"team": cmpPlayer.GetTeam(),
 			"teamsLocked": cmpPlayer.GetLockTeams(),
 			"cheatsEnabled": cmpPlayer.GetCheatsEnabled(),
+			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
 			"phase": phase,
 			"isAlly": allies,
 			"isMutualAlly": mutualAllies,
 			"isNeutral": neutrals,
 			"isEnemy": enemies,
-			"entityLimits": cmpPlayerEntityLimits.GetLimits(),
-			"entityCounts": cmpPlayerEntityLimits.GetCounts(),
-			"entityLimitChangers": cmpPlayerEntityLimits.GetLimitChangers(),
-			"disabledTemplates": cmpPlayer.GetDisabledTemplates(),
-			"researchQueued": cmpTechnologyManager.GetQueuedResearch(),
-			"researchStarted": cmpTechnologyManager.GetStartedResearch(),
-			"researchedTechs": cmpTechnologyManager.GetResearchedTechs(),
-			"classCounts": cmpTechnologyManager.GetClassCounts(),
-			"typeCountsByClass": cmpTechnologyManager.GetTypeCountsByClass()
+			"entityLimits": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetLimits() : null,
+			"entityCounts": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetCounts() : null,
+			"entityLimitChangers": cmpPlayerEntityLimits ? cmpPlayerEntityLimits.GetLimitChangers() : null,
+			"researchQueued": cmpTechnologyManager ? cmpTechnologyManager.GetQueuedResearch() : null,
+			"researchStarted": cmpTechnologyManager ? cmpTechnologyManager.GetStartedResearch() : null,
+			"researchedTechs": cmpTechnologyManager ? cmpTechnologyManager.GetResearchedTechs() : null,
+			"classCounts": cmpTechnologyManager ? cmpTechnologyManager.GetClassCounts() : null,
+			"typeCountsByClass": cmpTechnologyManager ? cmpTechnologyManager.GetTypeCountsByClass() : null
 		};
 		ret.players.push(playerData);
 	}
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
-	{
 		ret.circularMap = cmpRangeManager.GetLosCircular();
-	}
-	
+
 	// Add timeElapsed
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();
@@ -148,7 +149,8 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
-		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
+		if (cmpPlayerStatisticsTracker)
+			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
 
 	return ret;
