@@ -45,7 +45,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		while (settingsNumPlayers > numPlayers)
 		{
 			// Add player entity to engine
-			var civ = getSetting(playerData, playerDefaults, i, "Civ");
+			var civ = getSetting(playerData, playerDefaults, numPlayers, "Civ");
 			var template = cmpTemplateManager.TemplateExists("special/"+civ+"_player") ? "special/"+civ+"_player" : "special/player";
 			var entID = Engine.AddEntity(template);
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
