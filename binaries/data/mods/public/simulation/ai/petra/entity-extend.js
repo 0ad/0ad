@@ -94,6 +94,43 @@ m.returnResources = function(ent, gameState)
 	return true;
 };
 
+/**
+ * get the best base (in terms of distance and accessIndex) for an entity
+ */
+m.getBestBase = function(ent, gameState)
+{
+	var pos = ent.position();
+	if (!pos)
+	{
+		var holder = m.getHolder(ent, gameState);
+		if (!holder || !holder.position())
+		{
+			API3.warn("Petra error: entity without position, but not garrisoned");
+			m.dumpEntity(ent);
+			return gameState.ai.HQ.baseManagers[0];
+		}
+		pos = holder.position();
+	}
+	var distmin = Math.min();
+	var bestbase = undefined;
+	var accessIndex = gameState.ai.accessibility.getAccessValue(pos);
+	for (var base of gameState.ai.HQ.baseManagers)
+	{
+		if (!base.anchor)
+			continue;
+		var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+		if (base.accessIndex !== accessIndex)
+			dist += 100000000;
+		if (dist > distmin)
+			continue;
+		distmin = dist;
+		bestbase = base;
+	}
+	if (!bestbase)
+		bestbase = gameState.ai.HQ.baseManagers[0];
+	return bestbase;
+};
+
 m.getHolder = function(ent, gameState)
 {
 	var found = undefined;

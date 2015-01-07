@@ -85,16 +85,16 @@ m.TrainingPlan.prototype.start = function(gameState)
 			let bBase = b.getMetadata(PlayerID, "base");
 			if (wantedIndex)
 			{
-				if (!aBase || gameState.ai.HQ.baseManagers[aBase].accessIndex != wantedIndex)
+				if (!aBase || gameState.ai.HQ.getBaseByID(aBase).accessIndex != wantedIndex)
 					aa += 30;
-				if (!bBase || gameState.ai.HQ.baseManagers[bBase].accessIndex != wantedIndex)
+				if (!bBase || gameState.ai.HQ.getBaseByID(bBase).accessIndex != wantedIndex)
 					bb += 30;
 			}
 			// then, if worker, small preference for bases with less workers
 			if (workerUnit && aBase && bBase && aBase != bBase)
 			{
-				let apop = gameState.ai.HQ.baseManagers[aBase].workers.length;
-				let bpop = gameState.ai.HQ.baseManagers[bBase].workers.length;
+				let apop = gameState.ai.HQ.getBaseByID(aBase).workers.length;
+				let bpop = gameState.ai.HQ.getBaseByID(bBase).workers.length;
 				if (apop > bpop)
 					aa++;
 				else if (bpop > apop)

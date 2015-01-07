@@ -5,11 +5,11 @@ var PETRA = function(m)
  * This class makes a worker do as instructed by the economy manager
  */
 
-m.Worker = function(baseManager)
+m.Worker = function(base)
 {
 	this.ent = undefined;
-	this.baseManager = baseManager
-	this.baseID = baseManager.ID;
+	this.base = base
+	this.baseID = base.ID;
 };
 
 m.Worker.prototype.update = function(ent, gameState)
@@ -22,6 +22,12 @@ m.Worker.prototype.update = function(ent, gameState)
 		return;
 
 	this.ent = ent;
+	// base 0 for unassigned entities has no accessIndex, so take the one from the entity
+	if (this.baseID === gameState.ai.HQ.baseManagers[0].ID)
+		this.accessIndex = gameState.ai.accessibility.getAccessValue(ent.position());
+	else
+		this.accessIndex = this.base.accessIndex;
+
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
 
 	// Check for inaccessible targets (in RMS maps, we quite often have chicken or bushes inside obstruction of other entities).
@@ -77,7 +83,7 @@ m.Worker.prototype.update = function(ent, gameState)
 					else
 					{
 						var gatherType = this.ent.getMetadata(PlayerID, "gather-type");
-						var nearby = this.baseManager.dropsiteSupplies[gatherType]["nearby"];
+						var nearby = this.base.dropsiteSupplies[gatherType]["nearby"];
 						var isNearby = nearby.some(function(sup) {
 							if (sup.id === supplyId)
 								return true;
@@ -152,9 +158,8 @@ m.Worker.prototype.update = function(ent, gameState)
 			{
 				// nothing to hunt around. Try another region if any
 				var nowhereToHunt = true;
-				for (var i in gameState.ai.HQ.baseManagers)
+				for (var base of gameState.ai.HQ.baseManagers)
 				{
-					var base = gameState.ai.HQ.baseManagers[i];
 					if (!base.anchor || !base.anchor.position())
 						continue;
 					var basePos = base.anchor.position();
@@ -222,40 +227,8 @@ m.Worker.prototype.startGathering = function(gameState)
 	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
 
 	// First look for possible treasure if any
-	var treasureFound = undefined;
-	var distmin = Math.min();
-	gameState.ai.HQ.treasures.forEach(function (treasure) {
-		var treasureAccess = treasure.getMetadata(PlayerID, "access");
-		if (!treasureAccess)
-		{
-			treasureAccess = gameState.ai.accessibility.getAccessValue(treasure.position());
-			treasure.setMetadata(PlayerID, "access", treasureAccess);
-		}
-		if (treasureAccess !== access)
-			return;
-		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
-		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
-			return;
-		var lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
-		// let some time for the previous gatherer to reach the treasure
-		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
-			return;
-		var dist = API3.SquareVectorDistance(self.ent.position(), treasure.position());
-		if (territoryOwner !== PlayerID && dist > 14000)  //  AI has no LOS, so restrict it a bit
-			return;
-		if (dist > distmin)
-			return;
-		distmin = dist;
-		treasureFound = treasure;
-	});
-	if (treasureFound)
-	{
-		treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
-		this.ent.gather(treasureFound);
-		m.AddTCGatherer(gameState, treasureFound.id());
-		this.ent.setMetadata(PlayerID, "supply", treasureFound.id());
+	if (this.gatherTreasure(gameState))
 		return true;
-	}
 
 	var resource = this.ent.getMetadata(PlayerID, "gather-type");
 
@@ -300,9 +273,9 @@ m.Worker.prototype.startGathering = function(gameState)
 	var supply;
 
 	// first look in our own base if accessible from our present position
-	if (this.baseManager.accessIndex === access)
+	if (this.base.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["nearby"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["nearby"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -321,7 +294,7 @@ m.Worker.prototype.startGathering = function(gameState)
 				return true;
 			}
 		}
-		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["medium"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["medium"])))
 		{
 			this.ent.gather(supply);
 			return true;
@@ -329,7 +302,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	// So if we're here we have checked our whole base for a proper resource (or it was not accessible)
 	// --> check other bases directly accessible
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
@@ -344,7 +317,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for each (var base in gameState.ai.HQ.baseManagers)
+		for (var base of gameState.ai.HQ.baseManagers)
 		{
 			if (base.ID === this.baseID)
 				continue;
@@ -364,7 +337,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
@@ -398,7 +371,7 @@ m.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing ... try bases which need a transport
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
@@ -412,7 +385,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	}
 	if (resource === "food")	// --> for food, try to gather from fields if any, otherwise build one if any
 	{
-		for each (var base in gameState.ai.HQ.baseManagers)
+		for (var base of gameState.ai.HQ.baseManagers)
 		{
 			if (base.accessIndex === access)
 				continue;
@@ -432,7 +405,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			}
 		}
 	}
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
@@ -463,15 +436,15 @@ m.Worker.prototype.startGathering = function(gameState)
 		return true;
 
 	// Still nothing, we look now for faraway resources, first in the accessible ones, then in the others
-	if (this.baseManager.accessIndex === access)
+	if (this.accessIndex === access)
 	{
-		if ((supply = findSupply(this.ent, this.baseManager.dropsiteSupplies[resource]["faraway"])))
+		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["faraway"])))
 		{
 			this.ent.gather(supply);
 			return true;
 		}
 	}
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.ID === this.baseID)
 			continue;
@@ -484,7 +457,7 @@ m.Worker.prototype.startGathering = function(gameState)
 			return true;
 		}
 	}
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (base.accessIndex === access)
 			continue;
@@ -505,10 +478,16 @@ m.Worker.prototype.startGathering = function(gameState)
 	return false;
 };
 
-// if position is given, we only check if we could hunt from this position but do nothing
-// otherwise the position of the entity is taken, and if something is found, we directly start the hunt
+/**
+ * if position is given, we only check if we could hunt from this position but do nothing
+ * otherwise the position of the entity is taken, and if something is found, we directly start the hunt
+ */
 m.Worker.prototype.startHunting = function(gameState, position)
 {
+	// First look for possible treasure if any
+	if (!position && this.gatherTreasure(gameState))
+		return true;
+
 	var resources = gameState.getHuntableSupplies();	
 	if (resources.length === 0)
 		return false;
@@ -748,11 +727,58 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 	return bestFarmEnt;
 };
 
-// Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
-// For the time being, we move towards the nearest gatherer (providing him a dropsite)
+/**
+ * Look for some treasure to gather
+ */
+m.Worker.prototype.gatherTreasure = function(gameState)
+{
+	var rates = this.ent.resourceGatherRates();
+	if (!rates || !rates["treasure"] || rates["treasure"] <= 0)
+		return false;
+	var treasureFound = undefined;
+	var distmin = Math.min();
+	var access = gameState.ai.accessibility.getAccessValue(this.ent.position());
+	for (var treasure of gameState.ai.HQ.treasures.values())
+	{
+		// let some time for the previous gatherer to reach the treasure befor trying again
+		var lastGathered = treasure.getMetadata(PlayerID, "lastGathered");
+		if (lastGathered && gameState.ai.elapsedTime - lastGathered < 20)
+			continue;
+		var treasureAccess = treasure.getMetadata(PlayerID, "access");
+		if (!treasureAccess)
+		{
+			treasureAccess = gameState.ai.accessibility.getAccessValue(treasure.position());
+			treasure.setMetadata(PlayerID, "access", treasureAccess);
+		}
+		if (treasureAccess !== access)
+			continue;
+		var territoryOwner = gameState.ai.HQ.territoryMap.getOwner(treasure.position());
+		if (territoryOwner !== 0 && !gameState.isPlayerAlly(territoryOwner))
+			continue;
+		var dist = API3.SquareVectorDistance(this.ent.position(), treasure.position());
+		if (territoryOwner !== PlayerID && dist > 14000)  //  AI has no LOS, so restrict it a bit
+			continue;
+		if (dist > distmin)
+			continue;
+		distmin = dist;
+		treasureFound = treasure;
+	}
+	if (!treasureFound)
+		return false;
+	treasureFound.setMetadata(PlayerID, "lastGathered", gameState.ai.elapsedTime);
+	this.ent.gather(treasureFound);
+	m.AddTCGatherer(gameState, treasureFound.id());
+	this.ent.setMetadata(PlayerID, "supply", treasureFound.id());
+	return true;
+};
+
+/**
+ * Workers elephant should move away from the buildings they've built to avoid being trapped in between constructions
+ * For the time being, we move towards the nearest gatherer (providing him a dropsite)
+ */
 m.Worker.prototype.moveAway = function(gameState)
 {
-	var gatherers = this.baseManager.workersBySubrole(gameState, "gatherer");
+	var gatherers = this.base.workersBySubrole(gameState, "gatherer");
 	var pos = this.ent.position();
 	var dist = Math.min();
 	var destination = pos;

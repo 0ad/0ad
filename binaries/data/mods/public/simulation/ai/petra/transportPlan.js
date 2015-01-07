@@ -184,22 +184,21 @@ m.TransportPlan.prototype.releaseAll = function()
 m.TransportPlan.prototype.cancelTransport = function(gameState)
 {
 	var ent = this.units.toEntityArray()[0];
-	var base = gameState.ai.HQ.baseManagers[ent.getMetadata(PlayerID, "base")];
+	var base = gameState.ai.HQ.getBaseByID(ent.getMetadata(PlayerID, "base"));
 	if (!base.anchor || !base.anchor.position())
 	{
-		for (var i in gameState.ai.HQ.baseManagers)
+		for (let newbase of gameState.ai.HQ.baseManagers)
 		{
-			base = gameState.ai.HQ.baseManagers[i];
-			if (base.anchor && base.anchor.position())
-			{
-				ent.setMetadata(PlayerID, "base", +i);
-				break;
-			}
+			if (!newbase.anchor || !newbase.anchor.position())
+				continue;
+			ent.setMetadata(PlayerID, "base", newbase.ID);
+			base = newbase;
+			break;
 		}
 		if (!base.anchor || !base.anchor.position())
 			return false;
 		this.units.forEach(function (ent) {
-			ent.setMetadata(PlayerID, "base", base);
+			ent.setMetadata(PlayerID, "base", base.ID);
 		});
 	}
 	this.endIndex = this.startIndex;
@@ -401,7 +400,7 @@ m.TransportPlan.prototype.onSailing = function(gameState)
 			API3.warn(">>> transport " + this.ID + " reloading failed ... <<<");
 		// destroy the unit if inaccessible otherwise leave it there
 		var index = gameState.ai.accessibility.getAccessValue(ent.position());
-		if (gameState.ai.HQ.allowedRegions[index])
+		if (gameState.ai.HQ.landRegions[index])
 		{
 			if (this.debug > 1)
 				API3.warn(" recovered entity kept " + ent.id());

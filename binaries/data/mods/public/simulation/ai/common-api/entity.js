@@ -578,7 +578,7 @@ m.Entity = m.Class({
 		return this._entity.idle;
 	},
 
-	unitAIState: function() { return this._entity.unitAIState; },
+	unitAIState: function() { if (this._entity.unitAIState) return this._entity.unitAIState; return undefined; },
 	unitAIOrderData: function() { return this._entity.unitAIOrderData; },
 
 	// TODO  understand why we have sometimes rounding problems with maxHitpoints ? making wrongly isHurt=true

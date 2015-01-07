@@ -43,11 +43,6 @@ m.createObstructionMap = function(gameState, accessIndex, template)
 				var iter = xter + yter*territoryMap.width;
 				var tilePlayer = (territoryMap.data[iter] & m.TERRITORY_PLAYER_MASK);
 				
-				//if (gameState.ai.myIndex !== gameState.ai.accessibility.landPassMap[i])
-				//{
-				//	obstructionTiles[i] = 0;
-				//	continue;
-				//}
 				if (gameState.isPlayerEnemy(tilePlayer) && tilePlayer !== 0)
 				{
 					obstructionTiles[i] = 0;

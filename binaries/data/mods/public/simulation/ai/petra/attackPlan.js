@@ -37,7 +37,7 @@ m.AttackPlan = function(gameState, Config, uniqueID, type, data)
 	
 	// get a starting rallyPoint ... will be improved later
 	var rallyPoint = undefined;
-	for each (var base in gameState.ai.HQ.baseManagers)
+	for (var base of gameState.ai.HQ.baseManagers)
 	{
 		if (!base.anchor || !base.anchor.position())
 			continue;
@@ -413,7 +413,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 			var rallySame = undefined;
 			var distminDiff = Math.min();
 			var rallyDiff = undefined;
-			for each (var base in gameState.ai.HQ.baseManagers)
+			for (var base of gameState.ai.HQ.baseManagers)
 			{
 				var anchor = base.anchor;
 				if (!anchor || !anchor.position())
