@@ -182,7 +182,7 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	let nobase = new m.BaseManager(gameState, this.Config);
 	nobase.init(gameState);
 	nobase.accessIndex = 0;
-	this.baseManagers.push(nobase);   // baseManager[0] will deal with unit/structure witout bases
+	this.baseManagers.push(nobase);   // baseManagers[0] will deal with unit/structure without base
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{
@@ -205,27 +205,15 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 			let index = pos[0] + pos[1]*gameState.ai.accessibility.width;
 			let land = gameState.ai.accessibility.landPassMap[index];
 			if (land > 1 && !this.landRegions[land])
-				API3.warn("entity " + ent.genericName() + " in a not allowed land region " + land);
-			if (land > 1 && !this.landRegions[land])
 				this.landRegions[land] = true;
 			let sea = gameState.ai.accessibility.navalPassMap[index];
 			if (sea > 1 && !this.navalRegions[sea])
-				API3.warn("entity " + ent.genericName() + " in a not allowed sea region " + sea);
-			if (sea > 1 && !this.navalRegions[sea])
 				this.navalRegions[sea] = true;
 		}
-		// if garrisoned units inside, ungarrison them except if a ship in which case we make a transport 
-		if (ent.isGarrisonHolder() && ent.garrisoned().length)
-		{
-API3.warn(">>>>>>>>>>>>>>>> ent " + ent.id() + " name " + ent.genericName()); 
-m.dumpEntity(ent);
-API3.warn(" garrisoned " + uneval(ent.garrisoned()));
-			if (!ent.hasClass("Ship"))
-				for (let id of ent.garrisoned())
-					ent.unload(id);
-			else
-warn(" ship garrisoned >>> create a transport");
-		}
+		// if garrisoned units inside, ungarrison them except if a ship in which case we will make a transport 
+		if (ent.isGarrisonHolder() && ent.garrisoned().length && !ent.hasClass("Ship"))
+			for (let id of ent.garrisoned())
+				ent.unload(id);
 		// do not affect merchant ship immediately to trade as they may-be useful for transport
 		if (ent.hasClass("Trader") && !ent.hasClass("Ship"))
 			this.tradeManager.assignTrader(ent);
@@ -923,7 +911,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		}
 		if (norm == 0)
 			continue;
-/* rototo		if (minDist > 170000 && !this.navalMap)   // Reject if too far from any allied cc (-> not connected)
+		if (minDist > 170000 && !this.navalMap)   // Reject if too far from any allied cc (-> not connected)
 		{
 			norm = 0;
 			continue;
@@ -939,7 +927,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 			}
 			else
 				norm *= 0.5;
-		} */
+		}
 
 		for (var dp of dpList)
 		{
@@ -2092,8 +2080,6 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.navalManager.update(gameState, queues, events);
 
-var rototo = false;
-if (rototo)
 	if (this.Config.difficulty > 0)
 		this.attackManager.update(gameState, queues, events);
 
