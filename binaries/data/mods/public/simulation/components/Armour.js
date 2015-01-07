@@ -50,14 +50,15 @@ Armour.prototype.SetInvulnerability = function(invulnerability)
 Armour.prototype.TakeDamage = function(hack, pierce, crush, source)
 {
 	// Alert target owner of attack
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	var cmpAttackDetection = QueryPlayerIDInterface(cmpOwnership.GetOwner(), IID_AttackDetection);
-	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
-	var now = cmpTimer.GetTime();
-	if (now > this.nextAlertTime)
+	var cmpAttackDetection = QueryOwnerInterface(this.entity, IID_AttackDetection);
+	if (cmpAttackDetection)
 	{
-		this.nextAlertTime = now + cmpAttackDetection.GetSuppressionTime();
-		cmpAttackDetection.AttackAlert(this.entity, source);
+		var now = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer).GetTime();
+		if (now > this.nextAlertTime)
+		{
+			this.nextAlertTime = now + cmpAttackDetection.GetSuppressionTime();
+			cmpAttackDetection.AttackAlert(this.entity, source);
+		}
 	}
 
 	if (this.invulnerable) 

@@ -46,7 +46,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var ret = {
 		"players": []
 	};
-	
+
 	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	var n = cmpPlayerMan.GetNumPlayers();
 	for (var i = 0; i < n; ++i)
@@ -54,7 +54,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayerEntityLimits = Engine.QueryInterface(playerEnt, IID_EntityLimits);
 		var cmpPlayer = Engine.QueryInterface(playerEnt, IID_Player);
-		
+
 		// Work out what phase we are in
 		var cmpTechnologyManager = Engine.QueryInterface(playerEnt, IID_TechnologyManager);
 		var phase = "";
@@ -64,7 +64,7 @@ GuiInterface.prototype.GetSimulationState = function(player)
 			phase = "town";
 		else if (cmpTechnologyManager.IsTechnologyResearched("phase_village"))
 			phase = "village";
-		
+
 		// store player ally/neutral/enemy data as arrays
 		var allies = [];
 		var mutualAllies = [];
@@ -111,10 +111,8 @@ GuiInterface.prototype.GetSimulationState = function(player)
 
 	var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (cmpRangeManager)
-	{
 		ret.circularMap = cmpRangeManager.GetLosCircular();
-	}
-	
+
 	// Add timeElapsed
 	var cmpTimer = Engine.QueryInterface(SYSTEM_ENTITY, IID_Timer);
 	ret.timeElapsed = cmpTimer.GetTime();
@@ -148,7 +146,8 @@ GuiInterface.prototype.GetExtendedSimulationState = function(player)
 	{
 		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
 		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
-		ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
+		if (cmpPlayerStatisticsTracker)
+			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetStatistics();
 	}
 
 	return ret;

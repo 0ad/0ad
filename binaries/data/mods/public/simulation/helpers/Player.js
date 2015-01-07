@@ -46,7 +46,7 @@ function LoadPlayerSettings(settings, newPlayers)
 		{
 			// Add player entity to engine
 			var civ = getSetting(playerData, playerDefaults, numPlayers, "Civ");
-			var template = cmpTemplateManager.TemplateExists("special/"+civ+"_player") ? "special/"+civ+"_player" : "special/player";
+			var template = cmpTemplateManager.TemplateExists("special/player_"+civ) ? "special/player_"+civ : "special/player";
 			var entID = Engine.AddEntity(template);
 			var cmpPlayer = Engine.QueryInterface(entID, IID_Player);
 			if (!cmpPlayer)
@@ -67,7 +67,7 @@ function LoadPlayerSettings(settings, newPlayers)
 	for (var i = 0; i < numPlayers; ++i)
 	{
 		var civ = getSetting(playerData, playerDefaults, i, "Civ");
-		var template = cmpTemplateManager.TemplateExists("special/"+civ+"_player") ? "special/"+civ+"_player" : "special/player";
+		var template = cmpTemplateManager.TemplateExists("special/player_"+civ) ? "special/player_"+civ : "special/player";
 		var entID = cmpPlayerManager.GetPlayerByID(i);
 		if (cmpTemplateManager.GetCurrentTemplateName(entID) === template)
 			continue;
