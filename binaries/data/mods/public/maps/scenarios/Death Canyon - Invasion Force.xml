@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Scenario version="5">
+	<Script><![CDATA[//
+
+	// Disable civ centers for players 2 and 4
+	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+ 	for (var i of [2, 4])
+ 	{
+		var cmpPlayer = Engine.QueryInterface(cmpPlayerManager.GetPlayerByID(i), IID_Player);
+		var civ = cmpPlayer.GetCiv();
+		var disabledTemplates = {}  
+		disabledTemplates["structures/" + civ + "_civil_centre"] = true;  
+		cmpPlayer.SetDisabledTemplates(disabledTemplates); 
+ 	}
+
+	//]]></Script>
 	<Environment>
 		<SkySet>overcast</SkySet>
 		<SunColour r="1.03932" g="0.872214" b="0.55838"/>
