@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -508,6 +508,9 @@ void MapSidebar::OnRandomReseed(wxCommandEvent& WXUNUSED(evt))
 
 void MapSidebar::OnRandomGenerate(wxCommandEvent& WXUNUSED(evt))
 {
+	if (m_ScenarioEditor.DiscardChangesDialog())
+		return;
+
 	wxChoice* scriptChoice = wxDynamicCast(FindWindow(ID_RandomScript), wxChoice);
 
 	if (scriptChoice->GetSelection() < 0)
