@@ -264,8 +264,8 @@ m.HQ.prototype.init = function(gameState, queues, deserializing)
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
 	{
-		var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_civil_centre"));
-		if (!template.available(gameState))
+		var template = gameState.applyCiv("structures/{civ}_civil_centre");
+		if (gameState.isDisabledTemplates(template) || !gameState.getTemplate(template).available(gameState))
 		{
 			if (this.Config.debug > 1)
 				API3.warn(" this AI is unable to produce any units");
@@ -2080,7 +2080,7 @@ m.HQ.prototype.update = function(gameState, queues, events)
 
 	this.navalManager.update(gameState, queues, events);
 
-	if (this.Config.difficulty > 0)
+	if (this.Config.difficulty > 0 && (this.numActiveBase() > 0 || !this.canBuildUnits))
 		this.attackManager.update(gameState, queues, events);
 
 	this.diplomacyManager.update(gameState, events);

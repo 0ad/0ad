@@ -912,7 +912,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 			for (var ent of this.buildings.values())
 				m.getBestBase(ent, gameState).assignEntity(ent, gameState);
 		}
-		else
+		else if (gameState.ai.HQ.canBuildUnits)
 		{
 			this.assignRolelessUnits(gameState);
 			this.reassignIdleWorkers(gameState);
