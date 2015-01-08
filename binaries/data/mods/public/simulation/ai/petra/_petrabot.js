@@ -36,7 +36,6 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.turn = this.data.turn;
 		this.playedTurn = this.data.playedTurn;
 		this.elapsedTime = this.data.elapsedTime;
-		this.myIndex = this.data.myIndex;
 		this.savedEvents = this.data.savedEvents;
 		for (let key in this.savedEvents)
 		{
@@ -84,11 +83,6 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 
 		this.HQ = new m.HQ(this.Config);
 
-		var myKeyEntities = gameState.getOwnEntities().filter(API3.Filters.byClass("CivCentre"));
-		if (myKeyEntities.length == 0)
-			myKeyEntities = gameState.getOwnEntities();
-		this.myIndex = this.accessibility.getAccessValue(myKeyEntities.toEntityArray()[0].position());
-	
 		this.HQ.init(gameState, this.queues);
 
 		this.HQ.start(gameState);
@@ -161,7 +155,6 @@ m.PetraBot.prototype.Serialize = function()
 		"turn": this.turn,
 		"playedTurn": this.playedTurn,
 		"elapsedTime": this.elapsedTime,
-		"myIndex": this.myIndex,
 		"savedEvents": savedEvents,
 		"config": this.Config.Serialize(),
 		"queueManager": this.queueManager.Serialize(),

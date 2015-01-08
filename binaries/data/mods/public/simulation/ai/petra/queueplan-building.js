@@ -374,14 +374,13 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var baseIndex = gameState.ai.HQ.basesMap.map[bestIdx];
 	if (!baseIndex)
 	{
-		for (let i in gameState.ai.HQ.baseManagers)
+		for (let base of gameState.ai.HQ.baseManagers)
 		{
-			let base = gameState.ai.HQ.baseManagers[i];
 			if (!base.anchor || !base.anchor.position())
 				continue;
 			if (base.accessIndex !== access)
 				continue;
-			baseIndex = i;
+			baseIndex = base.ID;
 			break;
 		}
 		if (!baseIndex)

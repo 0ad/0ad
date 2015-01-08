@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -75,6 +75,8 @@ public:
 	ToolManager& GetToolManager() { return m_ToolManager; }
 
 	void SelectPage(const wxString& classname) { m_SectionLayout.SelectPage(classname); }
+
+	bool DiscardChangesDialog();
 
 private:
 

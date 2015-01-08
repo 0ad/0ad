@@ -4,7 +4,12 @@
  */
 function PreInitGame()
 {
+	// We need to replace skirmish "default" entities with real ones.
+	// This needs to happen before AI initialization (in InitGame).
+	// And we need to flush destroyed entities otherwise the AI gets the wrong game state in 
+	// the beginning and a bunch of "destroy" messages on turn 0, which just shouldn't happen.
 	Engine.BroadcastMessage(MT_SkirmishReplace, {});
+	Engine.FlushDestroyedEntities(); 
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let playerIds = cmpPlayerManager.GetAllPlayerEntities().slice(1); // ignore gaia
@@ -14,6 +19,10 @@ function PreInitGame()
 		if (cmpTechnologyManager)
 			cmpTechnologyManager.UpdateAutoResearch();
 	}
+
+	// Explore the map inside the players' territory borders
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.ExploreTerritories();
 }
 
 function InitGame(settings)
@@ -22,13 +31,12 @@ function InitGame(settings)
 	if (!settings)
 		return;
 
-	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 	if (settings.ExploreMap)
+	{
+		let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		for (let i = 1; i < settings.PlayerData.length; ++i)
 			cmpRangeManager.ExploreAllTiles(i);
-	else
-		// Explore the map only inside the players' territory borders
-		cmpRangeManager.ExploreTerritories();
+	}
 
 	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
 	let cmpAIManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_AIManager);

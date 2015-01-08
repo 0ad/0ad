@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -84,7 +84,7 @@ CComponentManager::CComponentManager(CSimContext& context, shared_ptr<ScriptRunt
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddEntity> ("AddEntity");
 		m_ScriptInterface.RegisterFunction<int, std::string, CComponentManager::Script_AddLocalEntity> ("AddLocalEntity");
 		m_ScriptInterface.RegisterFunction<void, int, CComponentManager::Script_DestroyEntity> ("DestroyEntity");
-		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedComponents> ("FlushDestroyedComponents");
+		m_ScriptInterface.RegisterFunction<void, CComponentManager::Script_FlushDestroyedEntities> ("FlushDestroyedEntities");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadJSONFile> ("ReadJSONFile");
 		m_ScriptInterface.RegisterFunction<CScriptVal, std::wstring, CComponentManager::Script_ReadCivJSONFile> ("ReadCivJSONFile");
 		m_ScriptInterface.RegisterFunction<std::vector<std::string>, std::wstring, bool, CComponentManager::Script_FindJSONFiles> ("FindJSONFiles");
@@ -508,7 +508,7 @@ void CComponentManager::Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPriv
 	componentManager->DestroyComponentsSoon(ent);
 }
 
-void CComponentManager::Script_FlushDestroyedComponents(ScriptInterface::CxPrivate *pCxPrivate) 
+void CComponentManager::Script_FlushDestroyedEntities(ScriptInterface::CxPrivate *pCxPrivate) 
 { 
 	CComponentManager* componentManager = static_cast<CComponentManager*> (pCxPrivate->pCBData); 
 	componentManager->FlushDestroyedComponents(); 

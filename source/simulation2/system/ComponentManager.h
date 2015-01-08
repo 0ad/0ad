@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -283,7 +283,7 @@ private:
 	static int Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
 	static int Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
 	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
-	static void Script_FlushDestroyedComponents(ScriptInterface::CxPrivate* pCxPrivate);
+	static void Script_FlushDestroyedEntities(ScriptInterface::CxPrivate* pCxPrivate);
 	static CScriptVal Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
 	static CScriptVal Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
 	static std::vector<std::string> Script_FindJSONFiles(ScriptInterface::CxPrivate* pCxPrivate, std::wstring subPath, bool recursive);

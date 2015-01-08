@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -584,9 +584,17 @@ float ScenarioEditor::GetSpeedModifier()
 		return 1.f;
 }
 
-
-void ScenarioEditor::OnClose(wxCloseEvent&)
+void ScenarioEditor::OnClose(wxCloseEvent& event)
 {
+    if (event.CanVeto() && GetCommandProc().IsDirty())
+    {
+        if (wxMessageBox(_T("You have unsaved changes. Are you sure you want to quit?"), _T("Discard unsaved changes?"), wxICON_QUESTION | wxYES_NO) != wxYES)
+        {
+            event.Veto();
+            return;
+        }
+	}
+
 	m_ToolManager.SetCurrentTool(_T(""));
 
 	m_FileHistory.SaveToSubDir(*wxConfigBase::Get());
@@ -687,6 +695,8 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 
 	NotifyOnMapReload();
 
+	GetCommandProc().ClearCommands();
+
 	return true;
 	// TODO: Make this a non-undoable command
 }
@@ -695,6 +705,9 @@ bool ScenarioEditor::OpenFile(const wxString& name, const wxString& filename)
 
 void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 {
+	if (DiscardChangesDialog())
+		return;
+
 	MapDialog dlg (NULL, MAPDIALOG_OPEN, m_Icon);
 	if (dlg.ShowModal() == wxID_OK)
 	{
@@ -708,6 +721,9 @@ void ScenarioEditor::OnOpen(wxCommandEvent& WXUNUSED(event))
 
 void ScenarioEditor::OnImportHeightmap(wxCommandEvent& WXUNUSED(event))
 {
+	if (DiscardChangesDialog())
+		return;
+
 	wxFileDialog dlg (NULL, wxFileSelectorPromptStr,
 		_T(""), _T(""),
 		_T("Valid Image files|*.png;*.jpg;*.bmp|All files (*.*)|*.*"),
@@ -736,6 +752,9 @@ void ScenarioEditor::OnMRUFile(wxCommandEvent& event)
 		filename = L"maps/scenarios/" + filename;
 		m_FileHistory.RemoveFileFromHistory(event.GetId() - wxID_FILE1);
 	}
+
+	if (DiscardChangesDialog())
+		return;
 
 	if (!OpenFile(filename, filename))
 	{
@@ -767,6 +786,8 @@ void ScenarioEditor::OnSave(wxCommandEvent& event)
 		// Wait for it to finish saving
 		qPing qry;
 		qry.Post();
+
+        GetCommandProc().MarkAsSaved();
 	}
 }
 
@@ -789,6 +810,8 @@ void ScenarioEditor::OnSaveAs(wxCommandEvent& WXUNUSED(event))
 		// Wait for it to finish saving
 		qPing qry;
 		qry.Post();
+
+        GetCommandProc().MarkAsSaved();
 	}
 }
 
@@ -809,6 +832,12 @@ void ScenarioEditor::NotifyOnMapReload()
 
 	// Notify observers, here so it's independent of individual panels
 	m_MapSettings.NotifyObservers();
+}
+
+bool ScenarioEditor::DiscardChangesDialog()
+{
+	return GetCommandProc().IsDirty() &&
+		wxMessageBox(_T("You have unsaved changes. Are you sure you want to open another map?"), _T("Discard unsaved changes?"), wxICON_QUESTION | wxYES_NO) != wxYES;
 }
 
 //////////////////////////////////////////////////////////////////////////
