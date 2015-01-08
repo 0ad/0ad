@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -212,16 +212,11 @@ PSRETURN CGame::ReallyStartGame()
 	// Call the script function InitGame only for new games, not saved games
 	if (!m_IsSavedGame)
 	{
+		// Perform some simulation initializations (replace skirmish entities, explore territories, etc.) 
+		// that needs to be done before setting up the AI and shouldn't be done in Atlas
 		if (!g_AtlasGameLoop->running)
-		{
-			// We need to replace skirmish "default" entities with real ones.
-			// This needs to happen before AI initialization (in InitGame).
-			// And we need to flush destroyed entities otherwise the AI
-			// gets the wrong game state in the beginning and a bunch of
-			// "destroy" messages on turn 0, which just shouldn't happen.
 			m_Simulation2->PreInitGame();
-			m_Simulation2->FlushDestroyedEntities();
-		}
+
 		JS::RootedValue settings(cx);
 		JS::RootedValue tmpInitAttributes(cx, m_Simulation2->GetInitAttributes().get());
 		m_Simulation2->GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);

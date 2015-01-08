@@ -52,7 +52,7 @@ PlayerManager.prototype.ReplacePlayer = function(id, ent)
 	this.playerEntities[id] = ent;
 	cmpPlayer.SetDiplomacy(diplo);
 	Engine.DestroyEntity(oldent);
-	Engine.FlushDestroyedComponents();
+	Engine.FlushDestroyedEntities();
 
 	for (var e of entities)
 	{
