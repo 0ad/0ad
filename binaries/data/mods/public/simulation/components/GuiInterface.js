@@ -330,7 +330,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 			"garrisonedEntitiesCount": cmpGarrisonHolder.GetGarrisonedEntitiesCount()
 		};
 	}
-	
+
 	var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 	if (cmpUnitAI)
 	{
@@ -442,7 +442,6 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 				// not in world, set a default?
 				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
 			}
-			
 		}
 		else
 		{
@@ -524,7 +523,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"types": cmpResourceDropsite.GetTypes()
 		};
 	}
-	
+
 	var cmpPromotion = Engine.QueryInterface(ent, IID_Promotion);
 	if (cmpPromotion)
 	{
@@ -532,7 +531,7 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 			"curr": cmpPromotion.GetCurrentXp(),
 			"req": cmpPromotion.GetRequiredXp()
 		};
-	}	
+	}
 
 	var cmpFoundation = Engine.QueryInterface(ent, IID_Foundation);
 	if (!cmpFoundation && cmpIdentity && cmpIdentity.HasClass("BarterMarket"))
@@ -579,235 +578,22 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 	if (!template)
 		return null;
 
-	var ret = {};
-
-	if (template.Armour)
-	{
-		ret.armour = {
-			"hack": ApplyValueModificationsToTemplate("Armour/Hack", +template.Armour.Hack, player, template),
-			"pierce": ApplyValueModificationsToTemplate("Armour/Pierce", +template.Armour.Pierce, player, template),
-			"crush": ApplyValueModificationsToTemplate("Armour/Crush", +template.Armour.Crush, player, template),
-		};
-	}
-	
-	if (template.Attack)
-	{
-		ret.attack = {};
-		for (var type in template.Attack)
-		{
-			ret.attack[type] = {
-				"hack": ApplyValueModificationsToTemplate("Attack/"+type+"/Hack", +(template.Attack[type].Hack || 0), player, template),
-				"pierce": ApplyValueModificationsToTemplate("Attack/"+type+"/Pierce", +(template.Attack[type].Pierce || 0), player, template),
-				"crush": ApplyValueModificationsToTemplate("Attack/"+type+"/Crush", +(template.Attack[type].Crush || 0), player, template),
-				"minRange": ApplyValueModificationsToTemplate("Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0), player, template),
-				"maxRange": ApplyValueModificationsToTemplate("Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange, player, template),
-				"elevationBonus": ApplyValueModificationsToTemplate("Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0), player, template),
-			};
-		}
-	}
-
-	if (template.Auras)
-	{
-		ret.auras = {};
-		for each (var aura in template.Auras)
-			if (aura.AuraName)
-				ret.auras[aura.AuraName] = aura.AuraDescription || null;
-	}
-
-	if (template.BuildRestrictions)
-	{
-		// required properties
-		ret.buildRestrictions = {
-			"placementType": template.BuildRestrictions.PlacementType,
-			"territory": template.BuildRestrictions.Territory,
-			"category": template.BuildRestrictions.Category,
-		};
-		
-		// optional properties
-		if (template.BuildRestrictions.Distance)
-		{
-			ret.buildRestrictions.distance = {
-				"fromCategory": template.BuildRestrictions.Distance.FromCategory,
-			};
-			if (template.BuildRestrictions.Distance.MinDistance) ret.buildRestrictions.distance.min = +template.BuildRestrictions.Distance.MinDistance;
-			if (template.BuildRestrictions.Distance.MaxDistance) ret.buildRestrictions.distance.max = +template.BuildRestrictions.Distance.MaxDistance;
-		}
-	}
-
-	if (template.TrainingRestrictions)
-	{
-		ret.trainingRestrictions = {
-			"category": template.TrainingRestrictions.Category,
-		};
-	}
-
-	if (template.Cost)
-	{
-		ret.cost = {};
-		if (template.Cost.Resources.food) ret.cost.food = ApplyValueModificationsToTemplate("Cost/Resources/food", +template.Cost.Resources.food, player, template);
-		if (template.Cost.Resources.wood) ret.cost.wood = ApplyValueModificationsToTemplate("Cost/Resources/wood", +template.Cost.Resources.wood, player, template);
-		if (template.Cost.Resources.stone) ret.cost.stone = ApplyValueModificationsToTemplate("Cost/Resources/stone", +template.Cost.Resources.stone, player, template);
-		if (template.Cost.Resources.metal) ret.cost.metal = ApplyValueModificationsToTemplate("Cost/Resources/metal", +template.Cost.Resources.metal, player, template);
-		if (template.Cost.Population) ret.cost.population = ApplyValueModificationsToTemplate("Cost/Population", +template.Cost.Population, player, template);
-		if (template.Cost.PopulationBonus) ret.cost.populationBonus = ApplyValueModificationsToTemplate("Cost/PopulationBonus", +template.Cost.PopulationBonus, player, template);
-		if (template.Cost.BuildTime) ret.cost.time = ApplyValueModificationsToTemplate("Cost/BuildTime", +template.Cost.BuildTime, player, template);
-	}
-	
-	if (template.Footprint)
-	{
-		ret.footprint = {"height": template.Footprint.Height};
-		
-		if (template.Footprint.Square)
-			ret.footprint.square = {"width": +template.Footprint.Square["@width"], "depth": +template.Footprint.Square["@depth"]};
-		else if (template.Footprint.Circle)
-			ret.footprint.circle = {"radius": +template.Footprint.Circle["@radius"]};
-		else
-			warn("[GetTemplateData] Unrecognized Footprint type");
-	}
-	
-	if (template.Obstruction)
-	{
-		ret.obstruction = {
-			"active": ("" + template.Obstruction.Active == "true"),
-			"blockMovement": ("" + template.Obstruction.BlockMovement == "true"),
-			"blockPathfinding": ("" + template.Obstruction.BlockPathfinding == "true"),
-			"blockFoundation": ("" + template.Obstruction.BlockFoundation == "true"),
-			"blockConstruction": ("" + template.Obstruction.BlockConstruction == "true"),
-			"disableBlockMovement": ("" + template.Obstruction.DisableBlockMovement == "true"),
-			"disableBlockPathfinding": ("" + template.Obstruction.DisableBlockPathfinding == "true"),
-			"shape": {}
-		};
-		
-		if (template.Obstruction.Static)
-		{
-			ret.obstruction.shape.type = "static";
-			ret.obstruction.shape.width = +template.Obstruction.Static["@width"];
-			ret.obstruction.shape.depth = +template.Obstruction.Static["@depth"];
-		}
-		else if (template.Obstruction.Unit)
-		{
-			ret.obstruction.shape.type = "unit";
-			ret.obstruction.shape.radius = +template.Obstruction.Unit["@radius"];
-		}
-		else
-		{
-			ret.obstruction.shape.type = "cluster";
-		}
-	}
-
-	if (template.Pack)
-	{
-		ret.pack = {
-			"state": template.Pack.State,
-			"time": ApplyValueModificationsToTemplate("Pack/Time", +template.Pack.Time, player, template),
-		};
-	}
-
-	if (template.Health)
-	{
-		ret.health = Math.round(ApplyValueModificationsToTemplate("Health/Max", +template.Health.Max, player, template));
-	}
-
-	if (template.Identity)
-	{
-		ret.selectionGroupName = template.Identity.SelectionGroupName;
-		ret.name = {
-			"specific": (template.Identity.SpecificName || template.Identity.GenericName),
-			"generic": template.Identity.GenericName
-		};
-		ret.icon = template.Identity.Icon;
-		ret.tooltip =  template.Identity.Tooltip;
-		ret.gateConversionTooltip =  template.Identity.GateConversionTooltip;
-		ret.requiredTechnology = template.Identity.RequiredTechnology;
-		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
-	}
-
-	if (template.UnitMotion)
-	{
-		ret.speed = {
-			"walk": ApplyValueModificationsToTemplate("UnitMotion/WalkSpeed", +template.UnitMotion.WalkSpeed, player, template),
-		};
-		if (template.UnitMotion.Run) ret.speed.run = ApplyValueModificationsToTemplate("UnitMotion/Run/Speed", +template.UnitMotion.Run.Speed, player, template);
-	}
-
-	if (template.Trader)
-		ret.trader = template.Trader;
-
-	if (template.WallSet)
-	{
-		ret.wallSet = {
-			"templates": {
-				"tower": template.WallSet.Templates.Tower,
-				"gate": template.WallSet.Templates.Gate,
-				"long": template.WallSet.Templates.WallLong,
-				"medium": template.WallSet.Templates.WallMedium,
-				"short": template.WallSet.Templates.WallShort,
-			},
-			"maxTowerOverlap": +template.WallSet.MaxTowerOverlap,
-			"minTowerOverlap": +template.WallSet.MinTowerOverlap,
-		};
-	}
-	
-	if (template.WallPiece)
-	{
-		ret.wallPiece = {"length": +template.WallPiece.Length};
-	}
-
-	return ret;
+	return GetTemplateDataHelper(template, player);
 };
 
 GuiInterface.prototype.GetTechnologyData = function(player, name)
 {
 	var cmpTechTempMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_TechnologyTemplateManager);
 	var template = cmpTechTempMan.GetTemplate(name);
-	
+
 	if (!template)
 	{
 		warn("Tried to get data for invalid technology: " + name);
 		return null;
 	}
-	
-	var ret = {};
-	
-	// Get specific name for this civ or else the generic specific name 
+
 	var cmpPlayer = QueryPlayerIDInterface(player, IID_Player);
-	var specific = undefined;
-	if (template.specificName)
-	{
-		if (template.specificName[cmpPlayer.GetCiv()])
-			specific = template.specificName[cmpPlayer.GetCiv()];
-		else
-			specific = template.specificName['generic'];
-	}
-	
-	ret.name = {
-		"specific": specific,
-		"generic": template.genericName,
-	};
-	if (template.icon)
-		ret.icon = "technologies/" + template.icon;
-	else
-		ret.icon = null;
-	ret.cost = {
-		"food": template.cost ? (+template.cost.food) : 0,
-		"wood": template.cost ? (+template.cost.wood) : 0,
-		"metal": template.cost ? (+template.cost.metal) : 0,
-		"stone": template.cost ? (+template.cost.stone) : 0,
-		"time": template.researchTime ? (+template.researchTime) : 0,
-	}
-	ret.tooltip = template.tooltip;
-	
-	if (template.requirementsTooltip)
-		ret.requirementsTooltip = template.requirementsTooltip;
-	else
-		ret.requirementsTooltip = "";
-	
-	if (template.requirements.class)
-		ret.classRequirements = {"class": template.requirements.class, "number": template.requirements.number};
-	
-	ret.description = template.description;
-	
-	return ret;
+	return GetTechnologyDataHelper(template, cmpPlayer.GetCiv());
 };
 
 GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
@@ -819,7 +605,7 @@ GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 	
 	if (!cmpTechnologyManager)
 		return false;
-	
+
 	return cmpTechnologyManager.IsTechnologyResearched(tech);
 };
 
@@ -827,10 +613,10 @@ GuiInterface.prototype.IsTechnologyResearched = function(player, tech)
 GuiInterface.prototype.CheckTechnologyRequirements = function(player, tech)
 {
 	var cmpTechnologyManager = QueryPlayerIDInterface(player, IID_TechnologyManager);
-	
+
 	if (!cmpTechnologyManager)
 		return false;
-	
+
 	return cmpTechnologyManager.CanResearch(tech);
 };
 
