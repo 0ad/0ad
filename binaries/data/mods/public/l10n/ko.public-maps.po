@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Kevin Min <candyson1@naver.com>, 2015
 # Valtiel <shinhs6291@naver.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-01 14:20+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-06 13:25+0000\n"
+"Last-Translator: Kevin Min <candyson1@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +24,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
-msgstr ""
+msgstr "에게 해"
 
 #: maps/random/alpine_lakes.jsonsettings.Description
 msgid ""
@@ -33,7 +34,7 @@ msgstr ""
 
 #: maps/random/alpine_lakes.jsonsettings.Name
 msgid "Alpine Lakes"
-msgstr ""
+msgstr "알파인 호수"
 
 #: maps/random/alpine_valley.jsonsettings.Description
 msgid "High Alpine mountains bordering deep valleys."
@@ -61,7 +62,7 @@ msgstr ""
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
-msgstr ""
+msgstr "군도 "
 
 #: maps/random/ardennes_forest.jsonsettings.Description
 msgid ""
@@ -119,7 +120,7 @@ msgstr ""
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
-msgstr ""
+msgstr "대륙"
 
 #: maps/random/corinthian_isthmus.jsonsettings.Description
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Description:41
@@ -243,7 +244,7 @@ msgstr ""
 
 #: maps/random/lake.jsonsettings.Name
 msgid "Lake"
-msgstr ""
+msgstr "호수 "
 
 #: maps/random/latium.jsonsettings.Description
 msgid ""
@@ -322,7 +323,7 @@ msgstr ""
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
-msgstr ""
+msgstr "오아시스"
 
 #: maps/random/persian_highlands.jsonsettings.Description
 msgid ""
@@ -423,7 +424,7 @@ msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr ""
@@ -438,7 +439,7 @@ msgstr ""
 
 #: maps/random/syria.jsonsettings.Name
 msgid "Syria"
-msgstr ""
+msgstr "시리아"
 
 #: maps/random/the_nile.jsonsettings.Description
 msgid ""
@@ -527,7 +528,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
@@ -551,14 +552,14 @@ msgstr ""
 msgid "Defeat your enemy to win!"
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -626,7 +627,7 @@ msgstr ""
 msgid "Player 1"
 msgstr "플레이어 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -692,8 +693,8 @@ msgstr "플레이어 1"
 msgid "Player 2"
 msgstr "플레이어 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
 msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
@@ -715,19 +716,19 @@ msgstr ""
 
 #: maps/scenarios/Azure Coast(4).xml:PlayerData[0].Name:31
 msgid "East"
-msgstr ""
+msgstr "동"
 
 #: maps/scenarios/Azure Coast(4).xml:PlayerData[1].Name:31
 msgid "West"
-msgstr ""
+msgstr "서"
 
 #: maps/scenarios/Azure Coast(4).xml:PlayerData[2].Name:31
 msgid "South"
-msgstr ""
+msgstr "남"
 
 #: maps/scenarios/Azure Coast(4).xml:PlayerData[3].Name:31
 msgid "North"
-msgstr ""
+msgstr "북"
 
 #: maps/scenarios/Azure Coast(4).xml:Name:31
 msgid "Azure Coast 3"
@@ -790,7 +791,7 @@ msgstr ""
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[0].Name:31
 msgid "Rome"
-msgstr ""
+msgstr "로마"
 
 #: maps/scenarios/Battle for the Tiber.xml:PlayerData[1].Name:31
 msgid "Veii"
@@ -993,7 +994,7 @@ msgstr ""
 
 #: maps/scenarios/Fishing_demo.xml:Name:31
 msgid "Fishing Demo"
-msgstr ""
+msgstr "낚시 데모 "
 
 #: maps/scenarios/Fishing_demo.xml:Description:31
 msgid "Test out fishing with a fishing boat. Still in development."
@@ -1005,15 +1006,15 @@ msgstr ""
 
 #: maps/scenarios/Flight_demo.xml:Name:31
 msgid "Flight Demo"
-msgstr ""
+msgstr "비행 데모"
 
 #: maps/scenarios/Flight_demo_2.xml:Description:31
 msgid "Fly some Mustangs."
-msgstr ""
+msgstr "머스탱들을 조종해보세요. "
 
 #: maps/scenarios/Flight_demo_2.xml:Name:31
 msgid "Flight Demo 2"
-msgstr ""
+msgstr "비행 데모 2 "
 
 #: maps/scenarios/Gold_Rush.xml:Description:31
 msgid ""
@@ -1105,7 +1106,7 @@ msgstr ""
 
 #: maps/scenarios/Multiplayer_demo.xml:Name:31
 msgid "Multiplayer Demo"
-msgstr ""
+msgstr "멀티플레이어 데모 "
 
 #: maps/scenarios/Multiplayer_demo.xml:Description:31
 msgid ""
@@ -1180,11 +1181,11 @@ msgstr ""
 
 #: maps/scenarios/Polynesia.xml:Name:42
 msgid "Polynesia"
-msgstr ""
+msgstr "폴리네시아"
 
 #: maps/scenarios/Resource_demo.xml:Name:31
 msgid "Resource demo"
-msgstr ""
+msgstr "자원 데모"
 
 #: maps/scenarios/Resource_demo.xml:Description:31
 msgid "Demo map for resource gathering."
@@ -1226,26 +1227,26 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[0].Name:42
 msgid "The Athenians"
-msgstr ""
+msgstr "아테네 인들"
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[1].Name:42
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[1].Name:41
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[0].Name:41
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[1].Name:41
 msgid "The Spartans"
-msgstr ""
+msgstr "스파르탄들 "
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[2].Name:42
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[2].Name:41
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[2].Name:41
 msgid "The Persians"
-msgstr ""
+msgstr "페르시아 인들"
 
 #: maps/scenarios/Sandbox - Athenians.xml:PlayerData[3].Name:42
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[3].Name:41
 #: maps/scenarios/Sandbox - Spartans.xml:PlayerData[3].Name:41
 msgid "The Gauls"
-msgstr ""
+msgstr "갈리아 인들"
 
 #: maps/scenarios/Sandbox - Athenians.xml:Name:42
 msgid "Sandbox - The Athenians"
@@ -1272,7 +1273,7 @@ msgstr ""
 #: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[0].Name:41
 #: maps/scenarios/Serengeti.xml:PlayerData[0].Name:31
 msgid "Carthage"
-msgstr ""
+msgstr "카르타고"
 
 #: maps/scenarios/Sandbox - Carthaginians.xml:PlayerData[1].Name:41
 #: maps/scenarios/Sandbox - Persians.xml:PlayerData[1].Name:41
@@ -1289,7 +1290,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Iberians.xml:Description:42
 msgid "A demo map for the Iberians."
-msgstr ""
+msgstr "이베리안들을 위한 데모 지도입니다. "
 
 #: maps/scenarios/Sandbox - Iberians.xml:Name:42
 msgid "Sandbox - The Iberians"
@@ -1302,7 +1303,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Macedonians.xml:PlayerData[0].Name:41
 msgid "The Macedonians"
-msgstr ""
+msgstr "마케도니아 인들"
 
 #: maps/scenarios/Sandbox - Macedonians.xml:Name:41
 msgid "Sandbox - The Macedonians"
@@ -1419,15 +1420,15 @@ msgstr ""
 
 #: maps/scenarios/Serengeti.xml:PlayerData[1].Name:31
 msgid "Iberia"
-msgstr ""
+msgstr "이베리아"
 
 #: maps/scenarios/Serengeti.xml:PlayerData[2].Name:31
 msgid "Greece"
-msgstr ""
+msgstr "그리스"
 
 #: maps/scenarios/Serengeti.xml:PlayerData[3].Name:31
 msgid "Persia"
-msgstr ""
+msgstr "페르시아"
 
 #: maps/scenarios/Serengeti.xml:Description:31
 msgid ""
@@ -1437,7 +1438,7 @@ msgstr ""
 
 #: maps/scenarios/Serengeti.xml:Name:31
 msgid "Serengeti 1"
-msgstr ""
+msgstr "세렝게티 1"
 
 #: maps/scenarios/Ship Formations.xml:Description:31
 msgid "Ship formations mockup."
@@ -1445,7 +1446,7 @@ msgstr ""
 
 #: maps/scenarios/Ship Formations.xml:PlayerData[0].Name:31
 msgid "Ships"
-msgstr ""
+msgstr "선박들"
 
 #: maps/scenarios/Ship Formations.xml:Name:31
 msgid "Ship Formations"
@@ -1506,7 +1507,7 @@ msgstr "페르시아"
 
 #: maps/scenarios/The Persian Gates.xml:Name:31
 msgid "The Persian Gates"
-msgstr ""
+msgstr "페르시아의 문들"
 
 #: maps/scenarios/Third Macedonian War.xml:Description:31
 msgid ""
@@ -1528,7 +1529,7 @@ msgstr ""
 
 #: maps/scenarios/Third Macedonian War.xml:Name:31
 msgid "Third Macedonian War"
-msgstr ""
+msgstr "세번째 마케도니아-로마 전쟁"
 
 #: maps/scenarios/Treasure Islands.xml:Description:41
 msgid ""
@@ -1556,7 +1557,7 @@ msgstr ""
 
 #: maps/scenarios/Tropical Island.xml:Name:41
 msgid "Tropical Island"
-msgstr ""
+msgstr "열대섬"
 
 #: maps/scenarios/Units_demo.xml:Name:92
 msgid "Units Demo"
@@ -1583,11 +1584,11 @@ msgstr ""
 
 #: maps/scenarios/Walls.xml:Name:31
 msgid "Walls"
-msgstr ""
+msgstr "장벽들"
 
 #: maps/scenarios/We are Legion.xml:Name:31
 msgid "We Are Legion"
-msgstr ""
+msgstr "우리는 군단병"
 
 #: maps/scenarios/We are Legion.xml:Description:31
 msgid "A quick battle demo map using Roman legionnaires."
@@ -1603,7 +1604,7 @@ msgstr ""
 
 #: maps/scenarios/reservoir.xml:Name:31
 msgid "Reservoir"
-msgstr ""
+msgstr "저수지"
 
 #: maps/scenarios/road demo.xml:Description:31
 msgid "Demo map showcasing Temperate Road decals."
@@ -1656,7 +1657,7 @@ msgstr ""
 
 #: maps/skirmishes/Alpine_Valleys_(2).xml:Name:41
 msgid "Alpine Valleys (2)"
-msgstr ""
+msgstr "알프스 협곡 (2)"
 
 #: maps/skirmishes/Bactria (2).xml:Description:42
 msgid ""
@@ -1689,7 +1690,7 @@ msgstr ""
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Name:42
 msgid "Caspian Sea (2v2)"
-msgstr ""
+msgstr "카스피 해 (2v2)"
 
 #: maps/skirmishes/Corinthian Isthmus (2).xml:Name:41
 msgid "Corinthian Isthmus (2)"
@@ -1750,7 +1751,7 @@ msgstr ""
 
 #: maps/skirmishes/Death Canyon (2).xml:Name:42
 msgid "Death Canyon (2)"
-msgstr ""
+msgstr "죽음의 협곡 (2)"
 
 #: maps/skirmishes/Deccan Plateau (2).xml:Description:41
 msgid ""
@@ -1798,7 +1799,7 @@ msgstr ""
 
 #: maps/skirmishes/Golden Oasis (2).xml:Name:42
 msgid "Gold Oasis (2)"
-msgstr ""
+msgstr "황금의 오아시스 (2)"
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Description:41
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Description:42
@@ -1810,7 +1811,7 @@ msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (2).xml:Name:41
 msgid "Greek Acropolis (2)"
-msgstr ""
+msgstr "그리스 아크로폴리스 (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
@@ -1819,7 +1820,7 @@ msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"
-msgstr ""
+msgstr "그리스 아크로폴리스 (2)"
 
 #: maps/skirmishes/Greek Acropolis Night (2).xml:Name:42
 msgid "Greek Acropolis Night (2)"
@@ -1914,7 +1915,7 @@ msgstr ""
 
 #: maps/skirmishes/Nile River (4).xml:Name:41
 msgid "Nile River (4)"
-msgstr ""
+msgstr "나일 강 (4)"
 
 #: maps/skirmishes/Persian Highlands (4).xml:Description:42
 msgid ""
@@ -2007,7 +2008,7 @@ msgstr ""
 
 #: maps/skirmishes/Syria (2).xml:Name:41
 msgid "Syria (2)"
-msgstr ""
+msgstr "시리아 (2)"
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:Description:42
 msgid ""
@@ -2018,7 +2019,7 @@ msgstr ""
 
 #: maps/skirmishes/Team Oasis - 2v2.xml:Name:42
 msgid "Team Oasis (2v2)"
-msgstr ""
+msgstr "팀 오아시스 (2v2)"
 
 #: maps/skirmishes/Thessalian Plains (4).xml:Description:41
 msgid ""
@@ -2050,7 +2051,7 @@ msgstr ""
 
 #: maps/skirmishes/Two Seas (6).xml:Name:41
 msgid "Two Seas (6)"
-msgstr ""
+msgstr "두개의 바다 (6)"
 
 #: maps/skirmishes/Watering Holes (4).xml:Description:42
 msgid ""

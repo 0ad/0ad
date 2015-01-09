@@ -3,14 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# catopsi, 2015
+# Christo Keller <christoniancoder@gmail.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
 # malvanos <malvanos@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-06 09:50+0000\n"
+"Last-Translator: catopsi\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -50,107 +52,107 @@ msgstr "Οποιοδήποτε"
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "N / A"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
-#: gui/lobby/lobby.js:447
+#: gui/lobby/lobby.js:444
 msgid "Busy"
 msgstr "Απασχολημένος"
 
-#: gui/lobby/lobby.js:452
+#: gui/lobby/lobby.js:449
 msgid "Away"
 msgstr "Εκτός"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:453
 msgid "Online"
 msgstr "Συνδεδεμένος"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:457
 msgid "Offline"
 msgstr "Ανενεργός"
 
-#: gui/lobby/lobby.js:465
+#: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Άγνωστο"
 
-#: gui/lobby/lobby.js:502
+#: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
 msgstr "Ένας τυχαία επιλεγμένος χάρτης"
 
-#: gui/lobby/lobby.js:528
+#: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
 msgstr "Δυστυχώς, δεν υπάρχει περιγραφή."
 
-#: gui/lobby/lobby.js:556
+#: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr ""
 
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s προσήλθε."
 
-#: gui/lobby/lobby.js:643
+#: gui/lobby/lobby.js:652
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s αποχώρησε."
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:659
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Μη έγκυρο ψευδώνυμο: %(nick)s"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr ""
 
-#: gui/lobby/lobby.js:814
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr ""
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:894
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:907
+#: gui/lobby/lobby.js:916
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -160,24 +162,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:938
+#: gui/lobby/lobby.js:947
 msgid "HH:mm"
 msgstr "ΩΩ:λλ"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:941
+#: gui/lobby/lobby.js:950
 #, javascript-format
-msgid "[%(time)s]"
-msgstr "[%(time)s]"
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:944
+#: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Παρακαλώ μην σπαμάρετε. Έχετε μπλοκαριστεί για τριάντα δευτερόλεπτα."
 
@@ -259,15 +261,15 @@ msgstr ""
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
-msgstr ""
+msgstr "Συνολικά παιχνίδια:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr ""
+msgstr "Νίκες:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"
-msgstr ""
+msgstr "Ηττες:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
@@ -320,11 +322,11 @@ msgstr "Ενημέρωση"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr ""
+msgstr "Εισάγετε όνομα χρήστη"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr ""
+msgstr "Δείτε προφίλ:"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
@@ -417,7 +419,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "*\"Εσείς\" είστε ο χρήστης της υπηρεσίασ."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
@@ -435,7 +437,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Χρησιμοποιώντας την υπηρεσία συμφωνείτε σε:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
@@ -501,7 +503,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "0 Α.D. Empires Ascendant Πολλοί Παίκτες Λόμπι - Όροι Υπηρεσίας"
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""

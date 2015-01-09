@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-30 17:58+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-20 13:10+0000\n"
+"Last-Translator: llen_llen\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +147,7 @@ msgctxt "team"
 msgid "None"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "ランダム"
@@ -176,7 +176,7 @@ msgid "Explored Map:"
 msgstr "探索済みマップ："
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "勝利条件："
 
@@ -211,84 +211,84 @@ msgstr "すみませんが、説明はありません。"
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s人用。%(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s 人用。"
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "読込中..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "なし"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)sが参加しました"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)sが退出しました"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)sが準備完了です。"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)sの準備がまだです。"
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "ゲーム設定が変更されました"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "わたしはまだ準備できていない"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "プレイの準備ができていないことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "準備できた！"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "プレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "現行の設定を受け入れプレイの準備ができたことを表明します。"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "なし"
 
@@ -855,13 +855,13 @@ msgstr "\"Choose the course which you adopt with deliberation; but when you have
 msgid ""
 "\"How stupid it was for the king to tear out his hair in grief, as if "
 "baldness were a cure for sorrow.\" - Bion of Borysthenes"
-msgstr "\"How stupid it was for the king to tear out his hair in grief, as if baldness were a cure for sorrow.\" - Bion of Borysthenes"
+msgstr "「悲しいからと髪を引きちぎる王様は馬鹿だ。禿頭が悲しみを癒すと思っているのか」 - ボリュステネスのビオン"
 
 #: gui/text/quotes.txt:54
 msgid ""
 "\"He has not acquired a fortune; the fortune has acquired him.\" - Bion of "
 "Borysthenes"
-msgstr "「彼が富を得たのではなく、富が彼を得たのだ」 - ボリュステネスのビオン"
+msgstr "「彼が財産を持ったのではない、財産に持たれているのだ」 - ボリュステネスのビオン"
 
 #: gui/text/quotes.txt:55
 msgid "\"Woe to the Defeated\" - Brennus"
@@ -1254,11 +1254,11 @@ msgstr "「良き男と結婚し、良き子を儲けよ」 - レオニダス、
 msgid ""
 "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded "
 "that he and his men lay down their arms"
-msgstr "\"Come and get them!\" - Leonidas, to the Persian messenger who demanded that he and his men lay down their arms"
+msgstr "「奪いに来い！」 - レオニダス、彼とその兵に武器を捨てて投降せよと伝えたペルシャの使者に"
 
 #: gui/text/quotes.txt:130
 msgid "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
-msgstr "\"For a thinking man is where Wisdom is at home.\" - Zoroaster"
+msgstr "「考える者には知恵のある所こそが家である」 - ゾロアスター"
 
 #: gui/text/quotes.txt:131
 msgid "\"I call a fig a fig, a spade a spade.\" - Menander"
@@ -1334,7 +1334,7 @@ msgstr "\"War is sweet to those who have no experience of it, but the experience
 msgid ""
 "\"The hour of departure has arrived, and we go our ways — I to die, and you "
 "to live. Which is better God only knows.\" - Plato"
-msgstr "「別れの時間がやってきた、我らはそれぞれの道を歩む—　我は死に、汝は生きる。いずれが良いかは神のみぞ知る」 - プラトン"
+msgstr "「別れの時間がやってきた、我らはそれぞれの道を歩む——我は死に、汝は生きる。いずれが良いかは神のみぞ知る」 - プラトン"
 
 #: gui/text/quotes.txt:144
 msgid "\"Life without examination is not worth living.\" - Plato"
@@ -1392,19 +1392,19 @@ msgstr "\"Practice yourself what you preach.\" - Plautus"
 
 #: gui/text/quotes.txt:155
 msgid "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
-msgstr "\"Drink, live like the Greeks, eat, gorge.\" - Plautus"
+msgstr "「飲めや、ギリシャ人のように遊び暮らせ。食えや、たらふく腹を満たせ」 - プラウトゥス"
 
 #: gui/text/quotes.txt:156
 msgid ""
 "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey "
 "the Great)"
-msgstr "\"Stop quoting laws, we carry weapons!\" - Gnaeus Pompeius Magnus (Pompey the Great)"
+msgstr "「法を説くな、我々には武器がある！」 - グナエウス・ポンペイウス・マグヌス（大ポンペイウス）"
 
 #: gui/text/quotes.txt:157
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr "\"Man is the measure of all things: of things which are, that they are, and of things which are not, that they are not.\" - Protagoras"
+msgstr "「人間は万物の尺度である。そうであるものはそうであるからであり、そうでないものはそうでないからである」 - プロタゴラス"
 
 #: gui/text/quotes.txt:158
 msgid ""
@@ -1436,23 +1436,23 @@ msgstr "「怒りは無謀に始まり後悔に終わる」 - ピュタゴラス
 
 #: gui/text/quotes.txt:164
 msgid "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
-msgstr "\"There is no word or action but has its echo in Eternity.\" - Pythagoras"
+msgstr "「永遠の中に残響をひかぬ言葉も行いもない」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:165
 msgid ""
 "\"There is geometry in the humming of the strings, there is music in the "
 "spacing of the spheres.\" - Pythagoras"
-msgstr "\"There is geometry in the humming of the strings, there is music in the spacing of the spheres.\" - Pythagoras"
+msgstr "「弦の響き合う中に幾何学はある。球の広がりの中に音楽はある」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:166
 msgid ""
 "\"Practice justice in word and deed, and do not get in the habit of acting "
 "thoughtlessly about anything.\" - Pythagoras"
-msgstr "\"Practice justice in word and deed, and do not get in the habit of acting thoughtlessly about anything.\" - Pythagoras"
+msgstr "「言行で正義を実践せよ。何事にも考えなしにふるまう習慣をつけてはならぬ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:167
 msgid "\"Do not even think of doing what ought not to be done.\" - Pythagoras"
-msgstr "「なされるべきでないことをしようとは考えることすらしてはならぬ」 - ピュタゴラス"
+msgstr "「なすべきでないことをしようとは考えてすらならぬ」 - ピュタゴラス"
 
 #: gui/text/quotes.txt:168
 msgid ""
@@ -1475,20 +1475,20 @@ msgstr "「正義なく栄えられる王国などない」 - ピュタゴラス
 msgid ""
 "\"For harmony makes small states great, while discord undermines the "
 "mightiest empires.\" - Sallust"
-msgstr "\"For harmony makes small states great, while discord undermines the mightiest empires.\" - Sallust"
+msgstr "「絆は小さな国を大きくするが、不和は強大な帝国をも揺るがす」 - サッルスティウス"
 
 #: gui/text/quotes.txt:172
 msgid ""
 "\"I am mindful of human weakness, and I reflect upon the might of Fortune "
 "and know that everything that we do is exposed to a thousand chances.\" - "
 "Scipio Africanus"
-msgstr "\"I am mindful of human weakness, and I reflect upon the might of Fortune and know that everything that we do is exposed to a thousand chances.\" - Scipio Africanus"
+msgstr "「私は人間の弱さをよく知っている。そして運命の強大さを思えば、我々がなすことすべてが千の偶然によって試されるのだと思い知る」 - スキピオ・アフリカヌス"
 
 #: gui/text/quotes.txt:173
 msgid ""
 "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio "
 "Africanus"
-msgstr "\"Prepare for war, since you have been unable to endure a peace.\" - Scipio Africanus"
+msgstr "「戦争の準備だ。もう平和には耐えられないのだから」 - スキピオ・アフリカヌス"
 
 #: gui/text/quotes.txt:174
 msgid ""
@@ -1504,11 +1504,11 @@ msgstr "「神々でさえ必然には抗えぬ」 - ケオスのシモニデス
 msgid ""
 "\"We did not flinch but gave our lives to save Greece when her fate hung on "
 "a razor's edge.\" - Simonides of Ceos"
-msgstr "\"We did not flinch but gave our lives to save Greece when her fate hung on a razor's edge.\" - Simonides of Ceos"
+msgstr "「ギリシャの命運が刃の上で絶えんとした時、我らは臆せず命を捧げた」 - ケオスのシモニデス"
 
 #: gui/text/quotes.txt:177
 msgid ""
 "\"The bravest are surely those who have the clearest vision of what is "
 "before them, glory and danger alike, and yet notwithstanding, go out to meet"
 " it.\" - Thucydides"
-msgstr "\"The bravest are surely those who have the clearest vision of what is before them, glory and danger alike, and yet notwithstanding, go out to meet it.\" - Thucydides"
+msgstr "「最も勇敢な者とは、行く手にあるものが栄誉であろうと危険であろうと知っていながら、構わず向かって行く者である」 - トゥキュディデス"

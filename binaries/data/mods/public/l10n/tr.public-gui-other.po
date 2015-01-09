@@ -11,9 +11,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-23 12:51+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 10:08+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,38 +21,38 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Oynanabilirlik"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Medeniyet İkramiyesi"
 msgstr[1] "Medeniyet İkramiyeleri"
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Takım İkramiyesi"
 msgstr[1] "Takım İkramiyeleri"
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "Özel Teknolojiler"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Özel Yapı"
 msgstr[1] "Özel Yapılar"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Kahramanlar"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr " %(civilization)sin tarihi"
@@ -495,8 +495,8 @@ msgid "Error"
 msgstr "Hata"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
-msgstr "Çoklu oyuncu lobisini başlat. \\\\[YAPI DEVRE DIŞI]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
+msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
@@ -832,9 +832,9 @@ msgstr "Yeni bir tek kişilik oyun başlatmak için buraya tıklayın"
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
-msgstr "Askeri mücadeleler yoluyla tarihi yeniden yaşayın. \\\\\\\\[HENÜZ UYGULANMADI]"
+msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):187
 msgid "Click here to load a saved game."

@@ -6,12 +6,13 @@
 # Mosaab Alzoubi <moceap@hotmail.com>, 2013
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
 # Suhail Alkowaileet <xsoh.k7@gmail.com>, 2013
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:22+0100\n"
+"PO-Revision-Date: 2014-12-15 16:40+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr ""
 #: gui/scripting/ScriptFunctions.cpp:799
 #, c-format
 msgid "%s (custom build)"
-msgstr "%s (بناء مُخصّص)"
+msgstr "%s (بناء مخصّص)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
@@ -35,23 +36,23 @@ msgstr "%s (%ls)"
 
 #: gui/scripting/ScriptFunctions.cpp:825
 msgid "custom build"
-msgstr "بناء مُخصّص"
+msgstr "بناء مخصّص"
 
-#: i18n/L10n.cpp:277
+#: i18n/L10n.cpp:276
 msgid "Long strings"
 msgstr "جُمل طويلة"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr ""
+msgstr "فشل الاستيثاق"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "التّسجيل غير مقبول"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration conflict"
-msgstr ""
+msgstr "التّسجيل تعارض"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration not authorized"
@@ -59,47 +60,47 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr ""
+msgstr "التّسجيل طلب سيّء"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
-msgstr ""
+msgstr "التّسجيل محظور"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
 msgid "Registration required"
-msgstr ""
+msgstr "التّسجيل مطلوب"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "التّسجيل طلب غير متوقّع"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
-msgstr ""
+msgstr "التّسجيل غير مسموح"
 
 #: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "التّسجيل خطأ مجهول"
 
 #: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "مفتاح فرعيّ مجهول (طالع السجلّات)"
 
 #: lobby/XmppClient.cpp:996
 msgid "Bad request"
-msgstr ""
+msgstr "طلب سيّئ"
 
 #: lobby/XmppClient.cpp:997
 msgid "Player name already in use"
-msgstr ""
+msgstr "اسم اللاعب مستخدم بالفعل"
 
 #: lobby/XmppClient.cpp:998
 msgid "Feature not implemented"
-msgstr ""
+msgstr "لم تُنجَز الميزة"
 
 #: lobby/XmppClient.cpp:999
 msgid "Forbidden"
-msgstr ""
+msgstr "محظور"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Recipient or server gone"
@@ -107,23 +108,23 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1001
 msgid "Internal server error"
-msgstr ""
+msgstr "خطأ خادوم داخليّ"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Item not found"
-msgstr ""
+msgstr "لم يُعثر على العنصر"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid تالف"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Not acceptable"
-msgstr ""
+msgstr "غير مقبول"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Not allowed"
-msgstr ""
+msgstr "غير مسموح"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Not authorized"
@@ -131,7 +132,7 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1007
 msgid "Not modified"
-msgstr ""
+msgstr "غير معدّل"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Payment required"
@@ -143,15 +144,15 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1010
 msgid "Redirect"
-msgstr ""
+msgstr "إعادة توجيه"
 
 #: lobby/XmppClient.cpp:1012
 msgid "Remote server not found"
-msgstr ""
+msgstr "لم يُعثر على الخادوم البعيد"
 
 #: lobby/XmppClient.cpp:1013
 msgid "Remote server timeout"
-msgstr ""
+msgstr "انتهت مهلة الخادوم البعيد"
 
 #: lobby/XmppClient.cpp:1014
 msgid "Resource constraint"
@@ -159,34 +160,34 @@ msgstr ""
 
 #: lobby/XmppClient.cpp:1015
 msgid "Service unavailable"
-msgstr ""
+msgstr "الخدمة غير متوفّرة"
 
 #: lobby/XmppClient.cpp:1016
-msgid "Subscribtion Required"
-msgstr ""
+msgid "Subscription Required"
+msgstr "التّسجيل مطلوب"
 
 #: lobby/XmppClient.cpp:1017
 msgid "Undefined condition"
-msgstr ""
+msgstr "شرط غير معرّف"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Unexpected request"
-msgstr ""
+msgstr "طلب غير متوقٌع"
 
 #: lobby/XmppClient.cpp:1019
 msgid "Unknown sender"
-msgstr ""
+msgstr "مُرسِل مجهول"
 
 #: lobby/XmppClient.cpp:1021
 msgid "Error undefined"
-msgstr ""
+msgstr "خطأ غير معرّف"
 
 #: ps/SavedGame.cpp:129
 #, c-format
 msgid "Saved game to '%ls'"
-msgstr "تم حفظ اللّعبة في %ls"
+msgstr "حُفِظَت اللعبة في '%ls'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%ls'"
-msgstr "تم اخذ لقطة للشاشة الى '%ls'"
+msgstr "كُتِبَت لقطة الشاشة إلى '%ls'"

@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-10-26 09:52+0000\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "Creagan-mara bhleideagan-sneachda"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr ""
@@ -528,8 +528,8 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Tog na h-ulaidhean mus tog do nàmhaid iad! Gum buannaich am fear nas fhearr!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
-msgstr "Fhuair do nàmhaid torr ulaidhean 's chaill thu!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -552,14 +552,14 @@ msgstr "Thog thu ulaidh!"
 msgid "Defeat your enemy to win!"
 msgstr "Cuir ruaig air an nàmhaid airson buannachd fhaighinn!"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Earrach ann an Arcàidea sa Ghreug. Tha tuiltean an earraich air creagan a dhèanamh de na bhiodh 'nan sruth-chlaisean tioram feadh corr a' bhliadhna 's a sgaradh an dùthaich eadar dà threubh nàimhdeil. \n\nTòisichidh na cluicheadairean air gach taobh sgìre beanntach sa bheil beartas de stòras. Bidh togalach a bharrachd aig gach cluicheadair aig an toiseach ach an tog iad an tuineachadh nas luaithe."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -627,7 +627,7 @@ msgstr "Earrach ann an Arcàidea sa Ghreug. Tha tuiltean an earraich air creagan
 msgid "Player 1"
 msgstr "Cluicheadair 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -693,9 +693,9 @@ msgstr "Cluicheadair 1"
 msgid "Player 2"
 msgstr "Cluicheadair 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arcàidea 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

@@ -19,8 +19,9 @@
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
+# miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
-# pawel10 <pawelklimek102@gmail.com>, 2014
+# Paweł Klimek <pawelklimek102@gmail.com>, 2014
 # rabusek <rabusek@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # RosiakPL <Rosiak7777777@gmail.com>, 2014
@@ -32,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-26 04:51+0000\n"
+"Last-Translator: miragae <miragae@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +53,7 @@ msgstr "Podstawowy zasięg: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Średni bonus do zasięgu: %(range)s"
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "Tutaj nie można zbudować muru!"
 
@@ -124,7 +125,7 @@ msgstr "Sojusznik"
 msgid "Neutral"
 msgstr "Neutralny"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Wróg"
@@ -349,12 +350,17 @@ msgstr "%(player)s jest teraz z Tobą w stanie wojny."
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s jest teraz neutralny wobec Ciebie."
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr "%(amount)s %(resourceType)s"
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s oraz %(lastAmount)s"
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -362,46 +368,46 @@ msgstr "%(previousAmounts)s oraz %(lastAmount)s"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s wysłał Ci %(amounts)s."
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Zostałeś zaatakowany przez %(attacker)s!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Drużyna"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr "Prywatne"
 
@@ -413,7 +419,7 @@ msgstr "%(genericName)s — Spakowany"
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[OFFLINE] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -1416,7 +1422,7 @@ msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVII : Quercus"
-msgstr ""
+msgstr "ALFA XVII : Quercus"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

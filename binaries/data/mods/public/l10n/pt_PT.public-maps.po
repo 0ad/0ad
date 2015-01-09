@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-13 09:36+0000\n"
-"Last-Translator: mogafi\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Portuguese (Portugal) (http://www.transifex.com/projects/p/0ad/language/pt_PT/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -424,10 +424,10 @@ msgstr "Ilhas em Floco de Neve"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "NOTA IMPORTANTE: JOGADORES IA NÃO FUNCIONAM NESTE MAPA\n\nProteja a sua base contra vagas infindáveis de inimigos. Use as suas cidadãs para colher recursos. O último jogador de pé será o vencedor."
+msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -528,8 +528,8 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Apanhe os tesouros antes do inimigo. Que o melhor ganhe!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
-msgstr "A tesouraria do inimigo está cheia até ao cimo, você perde!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -552,14 +552,14 @@ msgstr "Você apanhou um tesouro!"
 msgid "Defeat your enemy to win!"
 msgstr "Derrote o inimigo para ganhar!"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "As chuvas da Primavera encheram o rio em Arcádia, na Grécia, em vez da secura nas outras estações do ano. Cada tribo guerreira tem direito uma margem montanhosa e rica em recursos. Uma Stoa com bónus de população +10 ajuda os jogadores a começarem a construir as suas novas colónias."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -627,7 +627,7 @@ msgstr "As chuvas da Primavera encheram o rio em Arcádia, na Grécia, em vez da
 msgid "Player 1"
 msgstr "Jogador 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -693,9 +693,9 @@ msgstr "Jogador 1"
 msgid "Player 2"
 msgstr "Jogador 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arcádia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -32,7 +32,7 @@ msgstr ""
 msgid "Average bonus range: %(range)s"
 msgstr ""
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "Tukaj ne moreš graditi obzidja"
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Neutral"
 msgstr ""
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr ""
@@ -338,12 +338,17 @@ msgstr ""
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -351,46 +356,46 @@ msgstr ""
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr ""
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr ""
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Ekipa"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr ""
 

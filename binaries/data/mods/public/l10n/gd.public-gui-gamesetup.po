@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -140,7 +140,7 @@ msgctxt "team"
 msgid "None"
 msgstr "—"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Air thuaiream"
@@ -169,7 +169,7 @@ msgid "Explored Map:"
 msgstr "Mapa air rùrachadh:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Cumha na buaidhe:"
 
@@ -204,87 +204,87 @@ msgstr "Duilich ach chan eil tuairisgeul ri làimh."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s chluicheadair. %(description)s"
-msgstr[1] "%(number)s chluicheadair. %(description)s"
-msgstr[2] "%(number)s cluicheadairean. %(description)s"
-msgstr[3] "%(number)s cluicheadair. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "'Ga luchdadh..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "IF: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Gun sònrachadh"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "Ghabh %(username)s ann"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "Dh'fhàg %(username)s"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* Tha %(username)s deiseil!"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* Chan eil %(username)s deiseil."
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "Chaidh roghainnean a' gheama atharrachadh"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Chan eil mi deiseil"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Innis nach eil thu deiseil airson cluiche."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Tha mi deiseil!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Innis gu bheil thu deiseil airson cluiche!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Innis gun gabh thu ris na roghainnean làithreach 's gu bheil thu deiseil airson cluiche!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Gun IF"
 

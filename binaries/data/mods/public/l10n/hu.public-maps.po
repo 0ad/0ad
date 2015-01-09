@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-12-06 22:41+0000\n"
-"Last-Translator: Stew Den <stewden55@hotmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-30 22:41+0000\n"
+"Last-Translator: Gellért Gyuris <gellert.gyuris@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -425,7 +425,7 @@ msgstr "Hópehely Tengerkövek"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr ""
@@ -529,7 +529,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
@@ -553,14 +553,14 @@ msgstr ""
 msgid "Defeat your enemy to win!"
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -628,7 +628,7 @@ msgstr ""
 msgid "Player 1"
 msgstr "1-es Játékos"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -694,9 +694,9 @@ msgstr "1-es Játékos"
 msgid "Player 2"
 msgstr "2-es Játékos"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Árkádia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
@@ -1316,7 +1316,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[0].Name:42
 msgid "Mauryan Indians"
-msgstr ""
+msgstr "Maurja indiaiak"
 
 #: maps/scenarios/Sandbox - Mauryans.xml:PlayerData[1].Name:42
 msgid "Enemy"
@@ -1349,7 +1349,7 @@ msgstr ""
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[2].Name:41
 msgid "Seleucids"
-msgstr ""
+msgstr "Szeleukidák"
 
 #: maps/scenarios/Sandbox - Ptolemies 2.xml:PlayerData[3].Name:41
 msgid "Libyans"
@@ -1873,11 +1873,11 @@ msgstr ""
 
 #: maps/skirmishes/Median Oasis (2).xml:Name:41
 msgid "Median Oasis (2)"
-msgstr ""
+msgstr "Méd Oázisok (2)"
 
 #: maps/skirmishes/Median Oasis (4).xml:Name:42
 msgid "Median Oasis (4)"
-msgstr ""
+msgstr "Méd Oázisok (4)"
 
 #: maps/skirmishes/Mediterranean Cove (2).xml:Description:41
 msgid ""

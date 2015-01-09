@@ -6,13 +6,14 @@
 # Levi Taule <levi.taule@gmail.com>, 2014
 # empy <martinplavala@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-24 21:51+0000\n"
-"Last-Translator: empy <martinplavala@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:22+0100\n"
+"PO-Revision-Date: 2014-12-27 20:00+0000\n"
+"Last-Translator: Roman Beňo <romanko.sk@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "vlastný build"
 
-#: i18n/L10n.cpp:277
+#: i18n/L10n.cpp:276
 msgid "Long strings"
 msgstr "Dlhé reťazce"
 
@@ -68,7 +69,7 @@ msgstr "Registrácia zakázaná"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
 msgid "Registration required"
-msgstr "Registrácia je potrebná"
+msgstr "Vyžaduje sa registrácia"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
@@ -104,7 +105,7 @@ msgstr "Zakázané"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Recipient or server gone"
-msgstr "Príjemca, alebo server sa stratil"
+msgstr "Príjemca alebo server sa stratil"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Internal server error"
@@ -112,59 +113,59 @@ msgstr "Interná chyba servera"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Item not found"
-msgstr ""
+msgstr "Položka nenájdená"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Jid malformed"
-msgstr ""
+msgstr "Chybné Jid"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Not acceptable"
-msgstr ""
+msgstr "Neprijateľné"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Not allowed"
-msgstr ""
+msgstr "Nepovolené"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Not authorized"
-msgstr ""
+msgstr "Neautorizované"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Not modified"
-msgstr ""
+msgstr "Neupravené"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Payment required"
-msgstr ""
+msgstr "Požadovaná platba"
 
 #: lobby/XmppClient.cpp:1009
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Príjemca nedostupný"
 
 #: lobby/XmppClient.cpp:1010
 msgid "Redirect"
-msgstr ""
+msgstr "Presmerovanie"
 
 #: lobby/XmppClient.cpp:1012
 msgid "Remote server not found"
-msgstr ""
+msgstr "Vzdialený server nenájdený"
 
 #: lobby/XmppClient.cpp:1013
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Časový limit odozvy vzdialeného servera"
 
 #: lobby/XmppClient.cpp:1014
 msgid "Resource constraint"
-msgstr ""
+msgstr "Obmedzenie zdroja"
 
 #: lobby/XmppClient.cpp:1015
 msgid "Service unavailable"
-msgstr ""
+msgstr "Služba nie je dostupná"
 
 #: lobby/XmppClient.cpp:1016
-msgid "Subscribtion Required"
-msgstr ""
+msgid "Subscription Required"
+msgstr "Vyžaduje sa schválenie"
 
 #: lobby/XmppClient.cpp:1017
 msgid "Undefined condition"

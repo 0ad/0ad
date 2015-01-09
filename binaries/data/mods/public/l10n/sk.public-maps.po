@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-10-26 09:52+0000\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
@@ -428,10 +428,10 @@ msgstr "Morské skaly tvaru vločky"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "DÔLEŽITÁ POZNÁMKA: HRÁČI AI NA TEJTO MAPE NEFUNGUJÚ\n\nObráňte svoju základňu pred nekončiacimi vlnami nepriateľov. Suroviny získavajte pomocou svojej občianky. Posledný hráč, ktorý zostane na bojisku, vyhrá hru."
+msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -532,8 +532,8 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Pozbierajte poklady predtým, ako ich získa nepriateľ! Nech vyhrá ten lepší!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
-msgstr "Pokladnica nepriateľa je naplnená až po okraj. Prehrali ste!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -556,14 +556,14 @@ msgstr "Zmocnili ste sa pokladu!"
 msgid "Defeat your enemy to win!"
 msgstr "Vyhráte, ak porazíte nepriateľa!"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Nastala jar v Arkádii, Grécku. Jarné dažde naplnili korytá potokov, ktoré počas zvyšku roka ostávajú suché, a rozdelili tak územia medzi dva súperiace kmene.\n\nHráči začínajú po oboch stranách horskej oblasti bohatej na prírodné zdroje. K rýchlemu začiatku budovania nových kolónií dopomôže niekoľko počiatočných budov navyše."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -631,7 +631,7 @@ msgstr "Nastala jar v Arkádii, Grécku. Jarné dažde naplnili korytá potokov,
 msgid "Player 1"
 msgstr "Hráč 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -697,9 +697,9 @@ msgstr "Hráč 1"
 msgid "Player 2"
 msgstr "Hráč 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arkádia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

@@ -6,15 +6,16 @@
 # Adrian Budasz <adrianbudasz@gmail.com>, 2014
 # Leszek S, 2014
 # Marcin Kozłowski <martinkoaz@gmail.com>, 2014
+# miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-27 09:20+0000\n"
+"Last-Translator: miragae <miragae@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,102 +60,102 @@ msgstr "Nie dotyczy"
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
-#: gui/lobby/lobby.js:447
+#: gui/lobby/lobby.js:444
 msgid "Busy"
 msgstr "Zajęty"
 
-#: gui/lobby/lobby.js:452
+#: gui/lobby/lobby.js:449
 msgid "Away"
 msgstr "Oddalony"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:453
 msgid "Online"
 msgstr "Dostępny"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:457
 msgid "Offline"
 msgstr "Rozłączony"
 
-#: gui/lobby/lobby.js:465
+#: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Nieznane"
 
-#: gui/lobby/lobby.js:502
+#: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
 msgstr "Losowo wybrana mapa."
 
-#: gui/lobby/lobby.js:528
+#: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
 msgstr "Przepraszamy, opis niedostępny."
 
-#: gui/lobby/lobby.js:556
+#: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Adres tej gry: '%(ip)s' nie jest poprawny."
 
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s dołączył do gry."
 
-#: gui/lobby/lobby.js:643
+#: gui/lobby/lobby.js:652
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s opuścił grę."
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:659
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Nieprawidłowa nazwa użytkownika: %(nick)s"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s nazywa się teraz %(newnick)s."
 
-#: gui/lobby/lobby.js:814
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Niestety polecenie '%(cmd)s' nie jest obsługiwane."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:894
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:907
+#: gui/lobby/lobby.js:916
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -164,24 +165,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:938
+#: gui/lobby/lobby.js:947
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:941
+#: gui/lobby/lobby.js:950
 #, javascript-format
-msgid "[%(time)s]"
-msgstr "[%(time)s]"
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:944
+#: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Prosimy nie spamować. Zostałeś zablokowany na trzydzieści sekund."
 
@@ -227,7 +228,7 @@ msgstr "Proszę wyrazić zgodę na Warunki Usługi oraz Warunki Użytkowania"
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "Zarejestrowany"
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
@@ -275,7 +276,7 @@ msgstr "Przegrane:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "Współczynnik zwycięstw:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
@@ -283,7 +284,7 @@ msgstr "Tabela wyników"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Podgląd profilu użytkownika"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
@@ -431,7 +432,7 @@ msgstr "\"My\" jesteśmy zespołem, składającym się ze wszystkich członków 
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr " * \"Ocena\" oznacza proces analizy różnych statystyk użytkownika w celu wyznaczenia całościowej punktacji."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
@@ -489,11 +490,11 @@ msgstr "6. Zbieranie pewnych lub wszystkich statystyk identyfikujących konkretn
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "  a. Osobista analiza wykonana przez członków zespołu Wildfire Games (WFG) i osób powiązanych."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr " b. Anonimowe publiczne wydanie przez członków zespołu Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -501,11 +502,11 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Możesz zmieniać ten dokument w dowolny sposób, w dowolnym czasie, pod warunkiem, że użytkownik usługi zostanie adekwatnie powiadomiony o zmianie (definicja adekwatnego powiadomienia zostanie określona przez członków zespołu Wildfire Games (WFG))."
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Warunki użytkowania Lobby trybu Multiplayer w 0 A.D."
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
@@ -517,17 +518,17 @@ msgstr "* \"Podszywanie\" oznacza działania, w których próbujesz wykorzystać
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr " * \"Spam\" oznacza nieistotne i nieodpowiednie wiadomości wysyłane do dużej liczby odbiorców."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr " * \"Ocena\" oznacza całościową punktację użytkownika."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr " * \"Gry rankingowe\" oznaczają gry, w których śledzone są statystyki wpływające na Ocenę gracza."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
@@ -547,7 +548,7 @@ msgstr "2. zabronione jest publikowanie w usłudze obraźliwych, niegrzecznych l
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Niedozwolone jest celowe poniżanie wartości innych użytkowników usługi."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
@@ -568,7 +569,7 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. zabronione są próby sztucznej zmiany "
+msgstr "7. Niedozwolona jest sztuczna zmiana Oceny użytkownika lub innych statystyk, które na nią wpływają (Na przykład, lecz nie tylko: oszukiwanie w grach rankingowych, inżynieria wsteczna usługi, wykorzystywanie innych użytkowników korzystających z usługi)."
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
@@ -582,4 +583,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Możesz zmieniać ten dokument w dowolny sposób, w dowolnym czasie, pod warunkiem, że użytkownik usługi zostanie adekwatnie powiadomiony o zmianie (definicja adekwatnego powiadomienia zostanie określona przez członków zespołu Wildfire Games (WFG))."

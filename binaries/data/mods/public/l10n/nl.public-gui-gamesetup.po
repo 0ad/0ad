@@ -6,6 +6,7 @@
 # BladeFalconheart, 2014
 # BoucheDag <bouche4dag@gmail.com>, 2014
 # ClementL <lewisclement@gmail.com>, 2014
+# Ellen Roels, 2015
 # Ilya <ilya.crols@gmail.com>, 2014
 # Jos Arends <Tekno23@hotmail.nl>, 2014
 # LTom, 2014
@@ -24,9 +25,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-05 16:21+0000\n"
+"Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -52,7 +53,7 @@ msgstr "Zandbak"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Heel makkelijk"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -155,7 +156,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Geen"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Willekeurig"
@@ -184,7 +185,7 @@ msgid "Explored Map:"
 msgstr "Verkende kaart:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Overwinningsvoorwaarde:"
 
@@ -219,85 +220,85 @@ msgstr "Sorry, geen beschrijving beschikbaar."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s player. %(description)s"
-msgstr[1] "%(number)s spelers. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s speler."
+msgstr[1] "%(number)s spelers."
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "Laden..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Niet toegekend"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s heeft zich aangesloten"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s is verdwenen"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s is gereed!"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s is niet gereed."
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "Spelinstellingen zijn veranderd"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Ik ben niet gereed"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Geef aan dat je nog niet klaar bent om te spelen."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Ik ben gereed!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Geef aan dat je klaar bent om te spelen!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Geef aan dat je de huidige instellingen aanvaard, en dat je klaar bent om te spelen."
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Geen"
 

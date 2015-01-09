@@ -6,8 +6,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:11+0000\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-19 13:50+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
@@ -16,41 +16,41 @@ msgstr ""
 "Language: lt\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr ""
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "Specialiosios technologijos"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Herojai"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr ""
@@ -480,7 +480,7 @@ msgstr "Ar tikrai nori išeiti iš 0 A.D.?"
 
 #: gui/pregame/mainmenu.js:282
 msgid "Confirmation"
-msgstr ""
+msgstr "Patvirtinimas"
 
 #: gui/pregame/mainmenu.js:292
 msgid ""
@@ -493,7 +493,7 @@ msgid "Error"
 msgstr "Klaida"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -569,7 +569,7 @@ msgstr ""
 
 #: gui/summary/summary.js:508
 msgid "Scenario"
-msgstr ""
+msgstr "Scenarijus"
 
 #: gui/summary/summary.js:510
 #, javascript-format
@@ -595,7 +595,7 @@ msgstr "Civilizacijos pasirinkimas"
 
 #: gui/civinfo/civinfo.xml:(caption):118
 msgid "Close"
-msgstr ""
+msgstr "Uždaryti"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
@@ -621,7 +621,7 @@ msgstr ""
 #: gui/options/options.xml:(caption):69 gui/savedgames/load.xml:(caption):25
 #: gui/savedgames/save.xml:(caption):37
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
@@ -830,7 +830,7 @@ msgstr "Spausk čia, kad pradėtum naują vieno žaidėjo žaidimą."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
@@ -916,7 +916,7 @@ msgstr ""
 
 #: gui/savedgames/load.xml:(caption):30 gui/savedgames/save.xml:(caption):42
 msgid "Delete"
-msgstr ""
+msgstr "Trinti"
 
 #: gui/savedgames/load.xml:(caption):35
 msgid "Load"

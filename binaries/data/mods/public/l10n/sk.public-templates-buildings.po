@@ -7,13 +7,14 @@
 # Levi Taule <levi.taule@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # MiroslavR <miroslavr256@gmail.com>, 2014
+# Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-26 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-27 19:51+0000\n"
+"Last-Translator: Roman Beňo <romanko.sk@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -407,6 +408,7 @@ msgid "Gymnasium"
 msgstr "Gymnasium"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
+#: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásieon"
 msgstr "Gymnásieon"
 
@@ -830,7 +832,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Trénuje kňažky liečiace vaše jednotky. Trénuje kopijníkov Svätého oddielu. Môžete sem umiestniť až 20 jednotiek, ktoré chcete rýchlo vyliečiť."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -905,10 +907,6 @@ msgstr "Sidirourgeíon"
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíchisma"
 msgstr "Teíchisma"
-
-#: simulation/templates/structures/hele_gymnasion.xml:22
-msgid "Gymnásion"
-msgstr "Gymnásion"
 
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
@@ -1006,7 +1004,7 @@ msgstr "Cancho Roano"
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Trénuje Šampiónov a Hrdinov. Vo vnútri je možné pre pevnejšiu obranu mať posádku až 20 vojakov."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1407,7 +1405,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Toto je ptolemajská budova určená na zväčšovanie územia, podobná občianskym centrám ostatných frakcií. Je slabšia a má menší územný vplyv, je však lacnejšia a rýchlejšie sa postaví. \n-Trénuje vojakov-osadníkov rôznych národností. \n- Minimálna vzdialenosť od ostatných vojenských kolónií: 120 metrov."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"

@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Attila Kocsner, 2014
+# Benedict Drummer <beni1099@gmail.com>, 2015
 # chris020891 <chris020891@gmail.com>, 2013-2014
 # davesajt <davesajthun@gmail.com>, 2014
 # Gellért Gyuris <gellert.gyuris@gmail.com>, 2014
@@ -16,9 +17,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-12-06 23:00+0000\n"
-"Last-Translator: Stew Den <stewden55@hotmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-01 14:11+0000\n"
+"Last-Translator: Benedict Drummer <beni1099@gmail.com>\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -147,7 +148,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Nincs"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Véletlenszerű"
@@ -176,7 +177,7 @@ msgid "Explored Map:"
 msgstr "Felfedezett térkép:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Győzelmi feltétel:"
 
@@ -211,85 +212,85 @@ msgstr "Sajnos nem érhető el leírás."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s játékos. %(description)s"
-msgstr[1] "%(number)s játékos. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] ""
+msgstr[1] ""
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "Betöltés…"
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "MI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Nincs hozzárendelve"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s csatlakozott"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s kilépett"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "*%(username)s készen áll!"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nem áll készen."
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "Játékbeállítások módosítva"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Nem állok készen"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Kijelented, hogy nem állsz készen a játékra."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Készen állok!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Kijelented, hogy készen állsz a játékra!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Kijelented, hogy elfogadod a jelenlegi beállításokat és készen állsz a játékra!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Nincs"
 
@@ -1036,7 +1037,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:88
 msgid "\"I am Cyrus, king of the world...\" - Cyrus the Great"
-msgstr ""
+msgstr "\"Cyrus vagyok, a világ ura...\" - Cyrus a hatalmas"
 
 #: gui/text/quotes.txt:89
 msgid "\"Diversity in counsel, unity in command.\" - Cyrus the Great"

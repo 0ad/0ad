@@ -6,6 +6,7 @@
 # attilla1996 <attilla1996@gmail.com>, 2014
 # David Exner <essdyk@gmail.com>, 2014
 # Devinate <m.brezek@gmail.com>, 2014
+# Filip Procházka <jacktech24@gmail.com>, 2015
 # fri, 2014
 # ike20 <mvaldman@seznam.cz>, 2014
 # OndraK <kajinond@fjfi.cvut.cz>, 2014
@@ -17,9 +18,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-01 20:50+0000\n"
+"Last-Translator: Filip Procházka <jacktech24@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -45,7 +46,7 @@ msgstr "Pískoviště"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Velmi lehká"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -148,7 +149,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Žádný"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Náhodná"
@@ -177,7 +178,7 @@ msgid "Explored Map:"
 msgstr "Prozkoumaná mapa:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Podmínka vítězství:"
 
@@ -212,86 +213,86 @@ msgstr "Bohužel, popis není dostupný."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s hráč. %(description)s"
-msgstr[1] "%(number)s hráči. %(description)s"
-msgstr[2] "%(number)s hráčů. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s hráč."
+msgstr[1] "%(number)s hráči."
+msgstr[2] "%(number)s hráčů."
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "Nahrává se..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "UI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Nepřiřazeno"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s se přidal"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s odešel"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s je připraven!"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s není připraven."
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "Nastavení hry byla změněna"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Nejsem připraven"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Oznamte, že nejste připraveni hrát."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Jsem připraven!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Oznamte, že jste připraveni hrát!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Oznamte, že přijímáte nynější nastavení a že jste připraveni hrát!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Žádná"
 
