@@ -242,6 +242,9 @@ function project_set_build_flags()
 		end
 
 	else	-- *nix
+
+		-- TODO, FIXME: This check is incorrect because it means that some additional flags will be added inside the "else" branch if the 
+		-- compiler is ICC and minimal-flags is specified (ticket: #2994)
 		if cc == "icc" and not _OPTIONS["minimal-flags"] then
 			buildoptions {
 				"-w1",
