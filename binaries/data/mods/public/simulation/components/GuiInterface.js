@@ -412,42 +412,45 @@ GuiInterface.prototype.GetExtendedEntityState = function(player, ent)
 	var cmpAttack = Engine.QueryInterface(ent, IID_Attack);
 	if (cmpAttack)
 	{
-		var type = cmpAttack.GetBestAttack(); // TODO: how should we decide which attack to show? show all?
-		ret.attack = cmpAttack.GetAttackStrengths(type);
-		var range = cmpAttack.GetRange(type);
-		ret.attack.type = type;
-		ret.attack.minRange = range.min;
-		ret.attack.maxRange = range.max;
-		var timers = cmpAttack.GetTimers(type);
-		ret.attack.prepareTime = timers.prepare;
-		ret.attack.repeatTime = timers.repeat;
-		if (type == "Ranged")
+		var types = cmpAttack.GetAttackTypes();
+		if (types.length)
+			ret.attack = {};
+		for (var type of types)
 		{
-			ret.attack.elevationBonus = range.elevationBonus;
+			ret.attack[type] = cmpAttack.GetAttackStrengths(type);
+			var range = cmpAttack.GetRange(type);
+			ret.attack[type].minRange = range.min;
+			ret.attack[type].maxRange = range.max;
+			var timers = cmpAttack.GetTimers(type);
+			ret.attack[type].prepareTime = timers.prepare;
+			ret.attack[type].repeatTime = timers.repeat;
+			if (type != "Ranged")
+			{
+				// not a ranged attack, set some defaults
+				ret.attack[type].elevationBonus = 0;
+				ret.attack[type].elevationAdaptedRange = ret.attack.maxRange;
+				continue;
+			}
+
+			ret.attack[type].elevationBonus = range.elevationBonus;
 			var cmpPosition = Engine.QueryInterface(ent, IID_Position);
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
 			var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 			if (cmpUnitAI && cmpPosition && cmpPosition.IsInWorld())
 			{
 				// For units, take the rage in front of it, no spread. So angle = 0
-				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
+				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 0);
 			}
 			else if(cmpPosition && cmpPosition.IsInWorld())
 			{
 				// For buildings, take the average elevation around it. So angle = 2*pi
-				ret.attack.elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 2*Math.PI);
+				ret.attack[type].elevationAdaptedRange = cmpRangeManager.GetElevationAdaptedRange(cmpPosition.GetPosition(), cmpPosition.GetRotation(), range.max, range.elevationBonus, 2*Math.PI);
 			}
 			else
 			{
 				// not in world, set a default?
-				ret.attack.elevationAdaptedRange = ret.attack.maxRange;
+				ret.attack[type].elevationAdaptedRange = ret.attack.maxRange;
 			}
-		}
-		else
-		{
-			// not a ranged attack, set some defaults
-			ret.attack.elevationBonus = 0;
-			ret.attack.elevationAdaptedRange = ret.attack.maxRange;
 		}
 	}
 

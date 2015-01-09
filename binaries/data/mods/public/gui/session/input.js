@@ -139,14 +139,14 @@ function updateBuildingPlacementPreview()
 				return false;
 			}
 
-			if (placementSupport.attack)
+			if (placementSupport.attack && placementSupport.attack.Ranged)
 			{
 				// building can be placed here, and has an attack
 				// show the range advantage in the tooltip
 				var cmd = {x: placementSupport.position.x, 
 				    z: placementSupport.position.z,
-				    range: placementSupport.attack.maxRange,
-				    elevationBonus: placementSupport.attack.elevationBonus,
+				    range: placementSupport.attack.Ranged.maxRange,
+				    elevationBonus: placementSupport.attack.Ranged.elevationBonus,
 				};
 				var averageRange = Engine.GuiInterfaceCall("GetAverageRangeForBuildings",cmd);
 				placementSupport.tooltipMessage = sprintf(translate("Basic range: %(range)s"), { range: Math.round(cmd.range/4) }) + "\n" + sprintf(translate("Average bonus range: %(range)s"), { range: Math.round((averageRange - cmd.range)/4) });
@@ -1239,7 +1239,7 @@ function startBuildingPlacement(buildTemplate, playerState)
 	    templateData.attack.Ranged.maxRange) 
 	{
 		// add attack information to display a good tooltip
-		placementSupport.attack = templateData.attack.Ranged;
+		placementSupport.attack = templateData.attack;
 	}
 }
 

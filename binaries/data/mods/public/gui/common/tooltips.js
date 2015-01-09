@@ -1,13 +1,12 @@
 const COST_DISPLAY_NAMES = {
-    "food": "[icon=\"iconFood\"]",
-    "wood": "[icon=\"iconWood\"]",
-    "stone": "[icon=\"iconStone\"]",
-    "metal": "[icon=\"iconMetal\"]",
-    "population": "[icon=\"iconPopulation\"]",
-    "time": "[icon=\"iconTime\"]"
+	"food": "[icon=\"iconFood\"]",
+	"wood": "[icon=\"iconWood\"]",
+	"stone": "[icon=\"iconStone\"]",
+	"metal": "[icon=\"iconMetal\"]",
+	"population": "[icon=\"iconPopulation\"]",
+	"time": "[icon=\"iconTime\"]"
 };
 
-// For the unit details panel
 function damageValues(dmg)
 {
 	if (!dmg)
@@ -16,7 +15,6 @@ function damageValues(dmg)
 	return [dmg.hack || 0, dmg.pierce || 0, dmg.crush || 0];
 }
 
-// For the unit details panel
 function damageTypeDetails(dmg)
 {
 	if (!dmg)
@@ -43,9 +41,9 @@ function damageTypeDetails(dmg)
 }
 
 // TODO color/font
-function attackRateDetails(entState)
+function attackRateDetails(entState, type)
 {
-	var time = entState.attack.repeatTime / 1000;
+	var time = entState.attack[type].repeatTime / 1000;
 	if (entState.buildingAI) {
 		var arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
 		return sprintf(translate("%(arrowString)s / %(timeString)s"), {
@@ -63,11 +61,14 @@ function armorLevelToPercentageString(level)
 	// 	return sprintf(translate("%(armorPercentage)s%"), { armorPercentage: (100 - Math.round(Math.pow(0.9, level) * 100)) }); // Not supported by our sprintf implementation.
 }
 
-// Also for the unit details panel
-function armorTypeDetails(dmg)
+function getArmorTooltip(dmg)
 {
+	var label = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]";
 	if (!dmg)
-		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
+		return sprintf(translate("%(label)s %(details)s"), {
+			"label": label,
+			"details": "[font=\"sans-12\"]" + translate("(None)") + "[/font]"
+		});
 
 	var dmgArray = [];
 	if (dmg.hack)
@@ -89,10 +90,12 @@ function armorTypeDetails(dmg)
 			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
 		}));
 
-	return dmgArray.join(translate(", "));
+	return sprintf(translate("%(label)s %(details)s"), {
+		"label": label,
+		"details": dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]")
+	});
 }
 
-// For the training tooltip
 function damageTypesToText(dmg)
 {
 	if (!dmg)
@@ -118,35 +121,6 @@ function damageTypesToText(dmg)
 	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
 }
 
-// Also for the training tooltip
-function armorTypesToText(dmg)
-{
-	if (!dmg)
-		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
-
-	var dmgArray = [];
-	if (dmg.hack)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			damage: dmg.hack,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
-		}));
-	if (dmg.pierce)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			damage: dmg.pierce,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
-		}));
-	if (dmg.crush)
-		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
-			damage: dmg.crush,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
-		}));
-
-	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
-}
-
 function getAttackTypeLabel(type)
 {
 	if (type === "Charge") return translate("Charge Attack:");
@@ -157,39 +131,67 @@ function getAttackTypeLabel(type)
 	return translate("Attack:");
 }
 
-function getEntityAttack(template)
+function getAttackTooltip(template)
 {
 	var attacks = [];
-	if (template.attack)
+	if (!template.attack)
+		return "";
+
+	if (template.buildingAI)
+		var rateLabel = "[font=\"sans-bold-13\"]" + translate("Interval:") + "[/font]";
+	else
+		var rateLabel = "[font=\"sans-bold-13\"]" + translate("Rate:") + "[/font]";
+
+	for (var type in template.attack)
 	{
-		// Don't show slaughter attack
-		delete template.attack['Slaughter'];
-		for (var type in template.attack)
+		if (type == "Slaughter")
+			continue; // Slaughter is not a real attack, so do not show it.
+		if (type == "Charge")
+			continue; // Charging isn't implemented yet and shouldn't be displayed.
+
+		var rate = sprintf(translate("%(label)s %(details)s"), {
+			label: rateLabel,
+			details: attackRateDetails(template, type)
+		});
+
+		var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
+		if (type != "Ranged")
 		{
-			if (type == "Charge")
-				continue; // Charging isn't implemented yet and shouldn't be displayed.
-			var attack = "";
-			var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
-			if (type == "Ranged")
-			{
-				// Show max attack range if ranged attack, also convert to tiles (4m per tile)
-				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s"), {
-					attackLabel: attackLabel,
-					damageTypes: damageTypesToText(template.attack[type]),
-					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
-					range: Math.round(template.attack[type].maxRange) + "[font=\"sans-10\"][color=\"orange\"] " + translate("meters") + "[/color][/font]"
-				});
-			}
-			else
-			{
-				attack = sprintf(translate("%(attackLabel)s %(damageTypes)s"), {
-					attackLabel: attackLabel,
-					damageTypes: damageTypesToText(template.attack[type])
-				});
-			}
-			attacks.push(attack);
+			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
+				attackLabel: attackLabel,
+				details: damageTypesToText(template.attack[type]),
+				rate: rate
+			}));
+			continue;
 		}
+
+		var realRange = template.attack[type].elevationAdaptedRange;
+		var range = Math.round(template.attack[type].maxRange);
+		var rangeLabel = "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]"
+		var relativeRange = Math.round((realRange - range));
+		var meters = "[font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]";
+
+		if (relativeRange) // show if it is non-zero
+			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
+				attackLabel: attackLabel,
+				details: damageTypesToText(template.attack[type]),
+				rangeLabel: rangeLabel,
+				range: range,
+				meters: meters,
+				relative: relativeRange > 0 ? "+" + relativeRange : relativeRange,
+				rate: rate
+			}));
+		else
+			attacks.push(sprintf(translate("%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"), {
+				attackLabel: attackLabel,
+				damageTypes: damageTypesToText(template.attack[type]),
+				rangeLabel: rangeLabel,
+				range: range,
+				meters: meters,
+				rate: rate
+			}));
 	}
+
 	return attacks.join(translate(", "));
 }
 
@@ -359,18 +361,33 @@ function getNeededResourcesTooltip(resources)
 	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join("  ");
 }
 
+function getSpeedTooltip(template)
+{
+	if (!template.speed)
+		return "";
+
+	var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
+	var speeds = [];
+	if (template.speed.walk)
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
+	if (template.speed.run)
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
+
+	return sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
+}
+
 
 function getEntityNames(template)
 {
 	if (template.name.specific)
-    {
+	{
 		if (template.name.generic && template.name.specific != template.name.generic)
 			return sprintf(translate("%(specificName)s (%(genericName)s)"), {
 				specificName: template.name.specific,
 				genericName: template.name.generic
 			});
-        return template.name.specific;
-    }
+		return template.name.specific;
+	}
 	if (template.name.generic)
 		return template.name.generic;
 
@@ -412,19 +429,4 @@ function getVisibleEntityClassesFormatted(template)
 		r += "[/font]";
 	}
 	return r;
-}
-
-function getEntitySpeed(template)
-{
-	if (!template.speed)
-		return "";
-
-	var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
-	var speeds = [];
-	if (template.speed.walk)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
-	if (template.speed.run)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
-
-	return sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
 }

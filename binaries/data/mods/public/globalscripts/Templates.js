@@ -100,6 +100,7 @@ function GetTemplateDataHelper(template, player)
 				"minRange": func("Attack/"+type+"/MinRange", +(template.Attack[type].MinRange || 0), player, template),
 				"maxRange": func("Attack/"+type+"/MaxRange", +template.Attack[type].MaxRange, player, template),
 				"elevationBonus": func("Attack/"+type+"/ElevationBonus", +(template.Attack[type].ElevationBonus || 0), player, template),
+				"repeatTime": +(template.Attack[type].RepeatTime || 0),
 			};
 		}
 	}

@@ -968,11 +968,11 @@ g_SelectionPanels.Training = {
 			if (data.template.health)
 				tooltip += "\n[font=\"sans-bold-13\"]" + translate("Health:") + "[/font] " + data.template.health;
 			if (data.template.attack)
-				tooltip += "\n" + getEntityAttack(data.template);
+				tooltip += "\n" + getAttackTooltip(data.template);
 			if (data.template.armour)
-				tooltip += "\n[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font] " + armorTypesToText(data.template.armour);
+				tooltip += "\n" + getArmorTooltip(data.template.armour);
 			if (data.template.speed)
-				tooltip += "\n" + getEntitySpeed(data.template);
+				tooltip += "\n" + getSpeedTooltip(data.template);
 		}
 		tooltip += "[color=\"255 251 131\"]" + formatBatchTrainingString(data.buildingsCountToTrainFullBatch, data.fullBatchSize, data.remainderBatch) + "[/color]";
 		if (!data.technologyEnabled)
