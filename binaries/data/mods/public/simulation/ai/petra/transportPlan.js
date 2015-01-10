@@ -554,7 +554,7 @@ m.TransportPlan.prototype.resetUnit = function(gameState, ent)
 	if (ent.getMetadata(PlayerID, "plan") >= 0)
 	{
 		var attackPlan = gameState.ai.HQ.attackManager.getPlan(ent.getMetadata(PlayerID, "plan"));
-		if (attackPan)
+		if (attackPlan)
 			attackPlan.removeUnit(ent, true);
 	}
 	if (ent.getMetadata(PlayerID, "PartOfArmy"))
