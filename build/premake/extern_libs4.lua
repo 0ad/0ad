@@ -727,11 +727,6 @@ extern_lib_defs = {
 		link_settings = function()
 			if os.is("windows") then
 				libdirs { libraries_dir.."wxwidgets/lib/vc_lib" }
-				configuration "Debug"
-					links { "wxmsw28ud_gl" }
-				configuration "Release"
-					links { "wxmsw28u_gl" }
-				configuration { }
 			else
 				wx_config_path = os.getenv("WX_CONFIG")
 				if not wx_config_path then
