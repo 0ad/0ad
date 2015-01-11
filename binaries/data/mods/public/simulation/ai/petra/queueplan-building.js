@@ -86,6 +86,10 @@ m.ConstructionPlan.prototype.start = function(gameState)
 	}
 	this.onStart(gameState);
 	Engine.ProfileStop();
+
+	// TODO should have a ConstructionStarted event in case the construct order fails
+	if (this.metadata && this.metadata.proximity)
+		gameState.ai.HQ.navalManager.createTransportIfNeeded(gameState, this.metadata.proximity, [pos.x, pos.z]);
 };
 
 // TODO for dock, we should allow building them outside territory, and we should check that we are along the right sea
@@ -101,8 +105,11 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		if (template.hasClass("CivCentre"))
 		{
-			if (this.metadata.type)
-				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.type);
+			if (this.metadata.resource)
+			{
+				var proximity = this.metadata.proximity ? this.metadata.proximity : undefined;
+				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
+			}
 			else
 				var pos = gameState.ai.HQ.findStrategicCCLocation(gameState, template);
 

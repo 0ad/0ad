@@ -23,7 +23,7 @@ var PETRA = function(m)
    transporter = this.ID
 */
 
-m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
+m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos, ship)
 {
 	this.ID = gameState.ai.uniqueIDs.transports++;
 	this.debug = gameState.ai.Config.debug;
@@ -34,16 +34,32 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 	this.startIndex = startIndex;
 	// TODO only cases with land-sea-land are allowed for the moment
 	// we could also have land-sea-land-sea-land
-	this.sea = gameState.ai.HQ.getSeaIndex(gameState, startIndex, endIndex);
-	if (!this.sea)
+	if (startIndex === 1)
 	{
-		this.failed = true;
-		if (this.debug > 1)
-			API3.warn("transport plan with bad path: startIndex " + startIndex + " endIndex " + endIndex);
-		return false;
+		// special transport from already garrisoned ship
+		if (!ship)
+		{
+			this.failed = true;
+			return false;
+		}
+		this.sea = ship.getMetadata(PlayerID, "sea");
+		ship.setMetadata(PlayerID, "transporter", this.ID);
+		for (let ent of units)
+			ent.setMetadata(PlayerID, "onBoard", "onBoard");
+	}
+	else
+	{
+		this.sea = gameState.ai.HQ.getSeaIndex(gameState, startIndex, endIndex);
+		if (!this.sea)
+		{
+			this.failed = true;
+			if (this.debug > 1)
+				API3.warn("transport plan with bad path: startIndex " + startIndex + " endIndex " + endIndex);
+			return false;
+		}
 	}
 
-	for (var ent of units)
+	for (let ent of units)
 	{
 		ent.setMetadata(PlayerID, "transport", this.ID);
 		ent.setMetadata(PlayerID, "endPos", endPos);
@@ -55,7 +71,7 @@ m.TransportPlan = function(gameState, units, startIndex, endIndex, endPos)
 
 	this.state = "boarding";
 	this.boardingPos = {};
-	this.needTransportShips = true;
+	this.needTransportShips = (ship === undefined);
 	this.nTry = {};
 	return true;
 };

@@ -409,24 +409,27 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 	{
 		if (type == "food")
 		{
-			var count = this.getResourceLevel(gameState, type);  // TODO animals are not accounted, may-be we should
-			var numFarms = gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_field"), true);
-			var numFound = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
-			var numQueue = queues.field.countQueuedUnits();
+			if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
+			{
+				var count = this.getResourceLevel(gameState, type);  // TODO animals are not accounted, may-be we should
+				var numFarms = gameState.countEntitiesByType(gameState.applyCiv("structures/{civ}_field"), true);
+				var numFound = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_field"), true);
+				var numQueue = queues.field.countQueuedUnits();
 
-			// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
-			if (numFarms + numFound + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
-			{
-				if (count < 600)
-					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
-			}
-			else if (gameState.ai.HQ.canBuild(gameState, "structures/{civ}_field"))	// let's see if we need to add new farms.
-			{
-				let goal = this.Config.Economy.provisionFields;
-				if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
-					goal = Math.max(goal-1, 1);
-				if (numFound + numQueue < goal)
-					queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+				// TODO  if not yet farms, add a check on time used/lost and build farmstead if needed
+				if (numFarms + numFound + numQueue === 0)	// starting game, rely on fruits as long as we have enough of them
+				{
+					if (count < 600)
+						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+				}
+				else
+				{
+					let goal = this.Config.Economy.provisionFields;
+					if (gameState.ai.HQ.saveResources || gameState.ai.HQ.saveSpace)
+						goal = Math.max(goal-1, 1);
+					if (numFound + numQueue < goal)
+						queues.field.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_field", { "base" : this.ID }));
+				}
 			}
 		}
 		else if (queues.dropsites.length() == 0 && gameState.countFoundationsByType(gameState.applyCiv("structures/{civ}_storehouse"), true) == 0)

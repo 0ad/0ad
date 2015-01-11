@@ -388,6 +388,37 @@ m.NavalManager.prototype.splitTransport = function(gameState, plan)
 	return (nbUnits !== 0);
 };
 
+/**
+ * create a transport from a garrisoned ship to a land location
+ * needed at start game when starting with a garrisoned ship
+ */
+m.NavalManager.prototype.createTransportIfNeeded = function(gameState, fromPos, toPos)
+{
+	let fromAccess = gameState.ai.accessibility.getAccessValue(fromPos);
+	if (fromAccess !== 1)
+		return;
+	let toAccess = gameState.ai.accessibility.getAccessValue(toPos);
+	if (toAccess < 2)
+		return;
+
+	for (let ship of this.ships.values())
+	{
+		if (!ship.isGarrisonHolder() || !ship.garrisoned().length)
+			continue;
+		if (ship.getMetadata(PlayerID, "transporter") !== undefined)
+			continue;
+		let units = [];
+		for (let entId of ship.garrisoned())
+			units.push(gameState.getEntityById(entId));
+		// TODO check that the garrisoned units have not another purpose
+		let plan = new m.TransportPlan(gameState, units, fromAccess, toAccess, toPos, ship);
+		if (plan.failed)
+			continue;
+		plan.init(gameState);
+		this.transportPlans.push(plan);
+	}
+};
+
 // set minimal number of needed ships when a new event (new base or new attack plan)
 m.NavalManager.prototype.setMinimalTransportShips = function(gameState, sea, number)
 {
@@ -606,15 +637,8 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 		if (!template.available(gameState))
 			continue;
 
-		var aboveLimit = false;
-		for (var limitedClass in limits)
-		{
-			if (!template.hasClass(limitedClass) || current[limitedClass] < limits[limitedClass])
-				continue;
-			aboveLimit = true;
-			break;
-		}
-		if (aboveLimit)
+		var category = template.trainingCategory();
+		if (category && limits[category] && current[category] >= limits[category])
 			continue;
 
 		var arrows = +(template.getDefaultArrow() || 0);
@@ -649,7 +673,7 @@ m.NavalManager.prototype.getBestShip = function(gameState, sea, goal)
 m.NavalManager.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Naval Manager update");
-	
+
 	this.checkEvents(gameState, queues, events);
 
 	// close previous transport plans if finished

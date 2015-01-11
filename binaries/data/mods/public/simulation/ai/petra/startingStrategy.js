@@ -9,6 +9,10 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	// Analysis of the terrain and the different access regions
 	this.regionAnalysis(gameState);
 
+	this.attackManager.init(gameState);
+	this.navalManager.init(gameState);
+	this.tradeManager.init(gameState);
+
 	// Make a list of buildable structures from the config file
 	this.structureAnalysis(gameState);
 
@@ -30,7 +34,7 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 	// Assign entities and resources in the different bases
 	this.assignStartingEntities(gameState);
 
-	// Check if we will ever be able to produce units
+	// If no base yet, check if we can construct one. If not, dispatch our units to possible tasks/attacks
 	this.canBuildUnits = true;
 	if (!gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")).length)
 	{
@@ -42,11 +46,9 @@ m.HQ.prototype.gameAnalysis = function(gameState)
 			this.canBuildUnits = false;
 			this.dispatchUnits(gameState);
 		}
+		else
+			this.buildFirstBase(gameState);
 	}
-
-	this.attackManager.init(gameState);
-	this.navalManager.init(gameState);
-	this.tradeManager.init(gameState);
 
 	// configure our first base strategy
 	if (this.baseManagers.length > 1)
@@ -106,7 +108,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		if (!bestbase)
 		{
 			// entity outside our territory
-			var bestbase = m.getBestBase(ent, gameState);
+			bestbase = m.getBestBase(ent, gameState);
 			bestbase.assignEntity(ent);
 			if (bestbase.ID !== this.baseManagers[0].ID && ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				bestbase.assignResourceToDropsite(gameState, ent);
@@ -114,7 +116,7 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 		// now assign entities garrisoned inside this entity
 		if (ent.isGarrisonHolder() && ent.garrisoned().length)
 			for (let id of ent.garrisoned())
-				bestBase.assignEntity(gameState.getEntityByID(id));
+				bestbase.assignEntity(gameState.getEntityById(id));
 	}
 };
 
@@ -224,6 +226,79 @@ m.HQ.prototype.structureAnalysis = function(gameState)
 		this.bBase[i] = gameState.applyCiv(this.bBase[i]);
 	for (var i in this.bAdvanced)
 		this.bAdvanced[i] = gameState.applyCiv(this.bAdvanced[i]);
+};
+
+/**
+ * build our first base
+ */
+m.HQ.prototype.buildFirstBase = function(gameState)
+{
+	var total = gameState.getResources();
+	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_civil_centre"));
+	if (!total.canAfford(new API3.Resources(template.cost())))
+	{
+/*		API3.warn("not enough resource to build a cc, try with a dock");
+		template = gameState.applyCiv("structures/{civ}_dock");
+		if (!gameState.isDisabledTemplates(template))
+		{
+			template = gameState.getTemplate(template);
+			if (!total.canAfford(new API3.Resources(template.cost())))
+			{
+				API3.warn("not enough resource for dock ... return");
+				return;
+			}
+			API3.warn("but we could still build a dock if it was implemented");
+			return;
+		} */
+		return;
+	}
+
+	// We first choose as startingPoint the point where we have the more units  
+	let startingPoint = [];
+	for (let ent of gameState.getOwnUnits().values())
+	{
+		if (!ent.hasClass("Worker") && !(ent.hasClass("Support") && ent.hasClass("Elephant")))
+			continue;
+		if (ent.hasClass("Cavalry"))
+			continue;
+		let pos = ent.position();
+		if (!pos)
+		{
+			let holder = m.getHolder(ent, gameState);
+			if (!holder || !holder.position())
+				continue;
+			pos = holder.position();
+		}
+		let gamepos = gameState.ai.accessibility.gamePosToMapPos(pos);
+		let index = gamepos[0] + gamepos[1]*gameState.ai.accessibility.width;
+		let land = gameState.ai.accessibility.landPassMap[index];
+		let sea = gameState.ai.accessibility.navalPassMap[index];
+		let found = false;
+		for (let point of startingPoint)
+		{
+			if (land !== point.land || sea !== point.sea)
+				continue;
+			if (API3.SquareVectorDistance(point.pos, pos) > 2500)
+				continue;
+			point.weight += 1;
+			found = true;
+			break;
+		}
+		if (!found)
+			startingPoint.push({"pos": pos, "land": land, "sea": sea, "weight": 1});
+	}
+	if (!startingPoint.length)
+	{
+		API3.warn("Petra error in buildFirstBase, can not find a starting position");
+		return;
+	}
+	let imax = 0;
+	for (let i = 1; i < startingPoint.length; ++i)
+		if (startingPoint[i].weight > startingPoint[imax].weight)
+			imax = i;
+
+	var template = gameState.applyCiv("structures/{civ}_civil_centre");
+	gameState.ai.queues.civilCentre.addItem(new m.ConstructionPlan(gameState, template, { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
 };
 
 /**

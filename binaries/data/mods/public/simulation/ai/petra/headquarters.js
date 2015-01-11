@@ -530,7 +530,7 @@ m.HQ.prototype.pickMostNeededResources = function(gameState)
 
 // Returns the best position to build a new Civil Centre
 // Whose primary function would be to reach new resources of type "resource".
-m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, fromStrategic)
+m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, proximity, fromStrategic)
 {	
 	// This builds a map. The procedure is fairly simple. It adds the resource maps
 	//	(which are dynamically updated and are made so that they will facilitate DP placement)
@@ -555,6 +555,20 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	var bestIdx = undefined;
 	var bestVal = undefined;
 	var radius = Math.ceil(template.obstructionRadius() / obstructions.cellSize);
+	var scale = 250 * 250;
+	var proxyAccess = undefined;
+	var nbShips = this.navalManager.transportShips.length;
+	if (proximity)	// this is our first base
+	{
+		// if our first base, ensure room around
+		radius = Math.ceil((template.obstructionRadius() + 8) / obstructions.cellSize);
+		// scale is the typical scale at which we want to find a location for our first base
+		// look for bigger scale if we start from a ship (access < 2) or from a small island
+		var cellArea = gameState.getMap().cellSize * gameState.getMap().cellSize;
+		proxyAccess = gameState.ai.accessibility.getAccessValue(proximity);
+		if (proxyAccess < 2 || cellArea*gameState.ai.accessibility.regionSize[proxyAccess] < 24000)
+			scale = 400 * 400;
+	}
 
 	var width = this.territoryMap.width;
 	var cellSize = this.territoryMap.cellSize;
@@ -567,6 +581,8 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		var index = gameState.ai.accessibility.landPassMap[j];
 		if (!this.landRegions[index])
 			continue;
+		if (proxyAccess && nbShips === 0 && proxyAccess !== index)
+			continue;
 		// and with enough room around to build the cc
 		var i = API3.getMaxMapIndex(j, this.territoryMap, obstructions);
 		if (obstructions.map[i] <= radius)
@@ -575,61 +591,71 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 		var norm = 0.5;   // TODO adjust it, knowing that we will sum 5 maps
 		// checking distance to other cc
 		var pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
-		var minDist = Math.min();
 
-		for (var cc of ccList)
+		if (proximity)	// this is our first cc, let's do it near our units 
 		{
-			var dist = API3.SquareVectorDistance(cc.pos, pos);
-			if (dist < 14000)    // Reject if too near from any cc
-			{
-				norm = 0
-				break;
-			}
-			if (!cc.ally)
-				continue;
-			if (dist < 30000)    // Reject if too near from an allied cc
-			{
-				norm = 0
-				break;
-			}
-			if (dist < 50000)   // Disfavor if quite near an allied cc
-				norm *= 0.5;
-			if (dist < minDist)
-				minDist = dist;
+			var dist = API3.SquareVectorDistance(proximity, pos);
+			norm /= (1 + dist/scale);
 		}
-		if (norm == 0)
-			continue;
-		if (minDist > 170000 && !this.navalMap)   // Reject if too far from any allied cc (-> not connected)
+		else
 		{
-			norm = 0;
-			continue;
-		}
-		else if (minDist > 130000)     // Disfavor if quite far from any allied cc
-		{
-			if (this.navalMap)
+			var minDist = Math.min();
+
+			for (var cc of ccList)
 			{
-				if (minDist > 250000)
+				var dist = API3.SquareVectorDistance(cc.pos, pos);
+				if (dist < 14000)    // Reject if too near from any cc
+				{
+					norm = 0
+					break;
+				}
+				if (!cc.ally)
+					continue;
+				if (dist < 30000)    // Reject if too near from an allied cc
+				{
+					norm = 0
+					break;
+				}
+				if (dist < 50000)   // Disfavor if quite near an allied cc
 					norm *= 0.5;
-				else
-					norm *= 0.8;
+				if (dist < minDist)
+					minDist = dist;
 			}
-			else
-				norm *= 0.5;
-		}
+			if (norm == 0)
+				continue;
 
-		for (var dp of dpList)
-		{
-			var dist = API3.SquareVectorDistance(dp.pos, pos);
-			if (dist < 3600)
+			if (minDist > 170000 && !this.navalMap)	// Reject if too far from any allied cc (not connected)
 			{
 				norm = 0;
-				break;
+				continue;
 			}
-			else if (dist < 6400)
-				norm *= 0.5;
+			else if (minDist > 130000)     // Disfavor if quite far from any allied cc
+			{
+				if (this.navalMap)
+				{
+					if (minDist > 250000)
+						norm *= 0.5;
+					else
+						norm *= 0.8;
+				}
+				else
+					norm *= 0.5;
+			}
+
+			for (var dp of dpList)
+			{
+				var dist = API3.SquareVectorDistance(dp.pos, pos);
+				if (dist < 3600)
+				{
+					norm = 0;
+					break;
+				}
+				else if (dist < 6400)
+					norm *= 0.5;
+			}
+			if (norm == 0)
+				continue;
 		}
-		if (norm == 0)
-			continue;
 
 		if (this.borderMap.map[j] > 0)	// disfavor the borders of the map
 			norm *= 0.5;
@@ -649,7 +675,7 @@ m.HQ.prototype.findEconomicCCLocation = function(gameState, template, resource, 
 	Engine.ProfileStop();
 
 	var cut = 60;
-	if (fromStrategic)  // be less restrictive
+	if (fromStrategic || proximity)  // be less restrictive
 		cut = 30;
 	if (this.Config.debug > 1)
 		API3.warn("we have found a base for " + resource + " with best (cut=" + cut + ") = " + bestVal);
@@ -695,7 +721,7 @@ m.HQ.prototype.findStrategicCCLocation = function(gameState, template)
 			++numAllyCC;
 	}
 	if (numAllyCC < 2)
-		return this.findEconomicCCLocation(gameState, template, "wood", true);
+		return this.findEconomicCCLocation(gameState, template, "wood", undefined, true);
 
 	Engine.ProfileStart("findStrategicCCLocation");
 
@@ -1149,10 +1175,10 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 {
 	if (queues.civilCentre.length() > 0)
 		return;
-	// first build one cc if none already available
+	// first build one cc if all have been destroyed
 	if (this.numActiveBase() < 1)
 	{
-		this.buildNewBase(gameState, queues);
+		this.buildFirstBase(gameState);
 		return;
 	}
 	// then expand if we have not enough room available for buildings
@@ -1176,7 +1202,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 	}
 };
 
-m.HQ.prototype.buildNewBase = function(gameState, queues, type)
+m.HQ.prototype.buildNewBase = function(gameState, queues, resource)
 {
 	if (this.numActiveBase() > 0 && gameState.currentPhase() == 1 && !gameState.isResearching(gameState.townPhase()))
 		return false;
@@ -1188,8 +1214,8 @@ m.HQ.prototype.buildNewBase = function(gameState, queues, type)
 
 	// base "-1" means new base.
 	if (this.Config.debug > 1)
-		API3.warn("new base planned with type " + type);
-	queues.civilCentre.addItem(new m.ConstructionPlan(gameState, template, { "base": -1, "type": type }));
+		API3.warn("new base planned with resource " + resource);
+	queues.civilCentre.addItem(new m.ConstructionPlan(gameState, template, { "base": -1, "resource": resource }));
 	return true;
 };
 
@@ -1520,9 +1546,9 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	if (!template || !template.available(gameState))
 		return false;
 	var limits = gameState.getEntityLimits();
-	for (var limitedClass in limits)
-		if (template.hasClass(limitedClass) && gameState.getEntityCounts()[limitedClass] >= limits[limitedClass])
-			return false;
+	var category = template.buildCategory();
+	if (category && limits[category] && gameState.getEntityCounts()[category] >= limits[category])
+		return false;
 
 	return true;
 };
