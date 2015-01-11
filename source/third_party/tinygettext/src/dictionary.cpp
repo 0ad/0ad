@@ -165,7 +165,7 @@ void
 Dictionary::add_translation(const std::string& msgid, const std::string& msgstr)
 {
   std::vector<std::string>& vec = entries[msgid];
-  if (vec.empty())
+  if (vec.empty() || msgstr.compare(vec[0]) == 0)
   {
     vec.push_back(msgstr);
   }
