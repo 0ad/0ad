@@ -648,7 +648,10 @@ GuiInterface.prototype.GetStartedResearch = function(player)
 GuiInterface.prototype.GetBattleState = function(player)
 {
 	var cmpBattleDetection = QueryPlayerIDInterface(player, IID_BattleDetection);
-	return cmpBattleDetection.GetState();
+	if (cmpBattleDetection)
+		return cmpBattleDetection.GetState();
+	else
+		return false;
 };
 
 // Returns a list of ongoing attacks against the player.
