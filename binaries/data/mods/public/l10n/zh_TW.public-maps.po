@@ -9,8 +9,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-18 07:50+0000\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-14 09:40+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -425,7 +425,7 @@ msgstr "雪片海岩"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr "重要通知：電腦玩家在此地圖無法運作。\n\n保護好您的基地不被無盡的敵人所消滅。使用您的女性市民來採集資源。最後一個存活的玩家即為贏家。"
@@ -529,7 +529,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "趕在您的敵人前收集寶藏！可以讓您更輕鬆的獲勝！"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "您敵人的金庫被填的滿滿的，您輸了！"
 
 #: maps/scenarios/treasure_islands.js:42
@@ -553,14 +553,14 @@ msgstr "您收集了一份寶藏！"
 msgid "Defeat your enemy to win!"
 msgstr "打敗您的敵人以獲得勝利！"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之中其餘的時間就只能見到乾涸的河床，分隔兩個敵對部落的土地。\n\n玩家於資源豐富的山區的任一側開始遊戲。額外的起始建築物協助玩家快速開始建造他們新的殖民地。"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -628,7 +628,7 @@ msgstr "在希臘阿卡迪亞的春日時分。若春雨下的不夠，一年之
 msgid "Player 1"
 msgstr "玩家 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -694,9 +694,9 @@ msgstr "玩家 1"
 msgid "Player 2"
 msgstr "玩家 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "阿卡迪亞 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr "阿卡迪亞"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

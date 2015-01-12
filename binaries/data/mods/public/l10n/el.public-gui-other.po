@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 10:08+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -18,38 +18,38 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Παιξίμο Παιχνιδιού"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "Οφέλη Πολιτισμού"
 msgstr[1] "Οφέλη Πολιτισμού"
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "Οφέλη Ομάδας"
 msgstr[1] "Οφέλη Ομάδας"
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "Ειδικές Τεχνολογίες"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "Ειδικά κτήρια"
 msgstr[1] "Ειδικά κτήρια"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Ήρωες"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "Ιστορία των %(civilization)s"
@@ -492,7 +492,7 @@ msgid "Error"
 msgstr "Σφάλμα"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -829,7 +829,7 @@ msgstr "Κλικ εδώ για να αρχίσετε ένα νέο παιχνί�
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 

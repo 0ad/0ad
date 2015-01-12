@@ -9,10 +9,12 @@
 # Ilya <ilya.crols@gmail.com>, 2014
 # Jos Arends <Tekno23@hotmail.nl>, 2014
 # LTom, 2014
+# LTom, 2014
 # luuk2305 <luuk@medenblik.net>, 2014
 # MathiasB, 2013
 # Matthijs de Rijk <MrTheRich@gmail.com>, 2013
 # Michiel <mvdijk@mivadi.com>, 2014
+# niektb <niektb95@gmail.com>, 2014
 # Sander Deryckere, 2013
 # Sander Deryckere, 2014
 # Spijker <woartel@hotmail.com>, 2014
@@ -25,8 +27,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-10-24 19:01+0000\n"
-"Last-Translator: Michiel <mvdijk@mivadi.com>\n"
+"PO-Revision-Date: 2014-12-23 11:20+0000\n"
+"Last-Translator: LTom\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,11 +38,11 @@ msgstr ""
 
 #: civs/athen.jsonName civs/athen.jsonFactions[0].Name
 msgid "Athenians"
-msgstr "Athene"
+msgstr "Atheners"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Mijnwerkers in metaalmijnen werken 10% sneller per nieuwe fase bereikt."
+msgstr "Mijnwerkers in metaalmijnen werken +10% sneller voor elke nieuwe bereikte fase."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -97,7 +99,7 @@ msgstr "Kort na de grote maritieme overwinningen te Salamis en Mykale stichtten 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
 msgid "Themistocles"
-msgstr "Themistocles"
+msgstr "Themistokles"
 
 #: civs/athen.jsonAINames[1] civs/athen.jsonFactions[0].Heroes[1].Name
 msgid "Pericles"
@@ -105,7 +107,7 @@ msgstr "Perikles"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr "Cimon"
+msgstr "Kimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
@@ -121,7 +123,7 @@ msgstr "Hippias"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr "Cleisthenes"
+msgstr "Kleisthenes"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
@@ -137,11 +139,11 @@ msgstr "Miltiades"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr "Cleon"
+msgstr "Kleon"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr "Cleophon"
+msgstr "Kleophon"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
@@ -297,7 +299,7 @@ msgstr "Als de geboorteplaats van de westerse beschavingen en de democratie was 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr "Brittannië"
+msgstr "Britten"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
@@ -319,7 +321,7 @@ msgstr "Stelt de Keltische landbouwmethodes voor."
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr "Druïdes verhogen de aanvalskracht van soldaten dichtbij hen."
+msgstr "Druïden verhogen de aanvalskracht van soldaten dichtbij hen."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -340,14 +342,14 @@ msgstr "Bonus voor technologie snelheid."
 #: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
 #: civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
-msgstr "Druïdes"
+msgstr "Druïden"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
 #: civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr "De Keltische druïdes onderhielden een georganiseerde religie die technologische vooruitgang bracht aan hun volk, zelfs tijdens oorlogen."
+msgstr "De Keltische druïden onderhielden een georganiseerde religie die technologische vooruitgang bracht aan hun volk, zelfs tijdens oorlogen."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
@@ -850,7 +852,7 @@ msgstr "Wee de verslagenen. Dat waren de woorden die de Gallische leider, Brenno
 #: civs/celt.jsonFactions[1].Technologies[1].Description
 #: civs/gaul.jsonFactions[0].Technologies[1].Description
 msgid "Gallic druids gain a small melee attack."
-msgstr "Gallische druïdes kunnen ook andere eenheden aanvallen."
+msgstr "Gallische druïden kunnen ook andere eenheden aanvallen."
 
 #: civs/celt.jsonFactions[1].Technologies[1].Name
 #: civs/gaul.jsonFactions[0].Technologies[1].Name

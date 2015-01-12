@@ -4,13 +4,15 @@
 # 
 # Translators:
 # Houssem Mhamdi <houss.sword@gmail.com>, 2014
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # salama <salamacast@yahoo.com>, 2014
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 17:11+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,31 +23,31 @@ msgstr ""
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Skirmish"
-msgstr "مناوش"
+msgstr "مناوشة"
 
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Random"
-msgstr "عشوائي"
+msgstr "عشوائيّ"
 
 #: gui/lobby/lobby.js:9
 msgid "Scenario"
-msgstr "القصة"
+msgstr "سيناريو"
 
 #: gui/lobby/lobby.js:27
 msgctxt "map size"
 msgid "Any"
-msgstr "أي"
+msgstr "أيّ"
 
 #: gui/lobby/lobby.js:35
 msgctxt "player number"
 msgid "Any"
-msgstr "أي"
+msgstr "أيّ"
 
 #: gui/lobby/lobby.js:39
 msgctxt "map"
 msgid "Any"
-msgstr "أي"
+msgstr "أيّ"
 
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
@@ -66,176 +68,176 @@ msgstr ""
 msgid "-"
 msgstr ""
 
-#: gui/lobby/lobby.js:447
+#: gui/lobby/lobby.js:444
 msgid "Busy"
 msgstr "مشغول"
 
-#: gui/lobby/lobby.js:452
+#: gui/lobby/lobby.js:449
 msgid "Away"
-msgstr "بعيدا"
+msgstr "بعيد"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:453
 msgid "Online"
-msgstr "متصل"
+msgstr "متّصل"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:457
 msgid "Offline"
-msgstr "غير متصل"
+msgstr "غير متّصل"
 
-#: gui/lobby/lobby.js:465
+#: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "مجهول"
 
-#: gui/lobby/lobby.js:502
+#: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
-msgstr "خريطة تم اختيارها عشوائيا."
+msgstr "خريطة مُحدَّدة عشوائيًّا."
 
-#: gui/lobby/lobby.js:528
+#: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
-msgstr "عذرا، لا يوجد وصف متاح."
+msgstr "آسفون، لا وصف متوفّر."
 
-#: gui/lobby/lobby.js:556
+#: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
-
-#: gui/lobby/lobby.js:634
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr ""
+msgstr "عنوان اللعبة '%(ip)s' هذا لا يبدو صالحًا."
 
 #: gui/lobby/lobby.js:643
 #, javascript-format
-msgid "%(nick)s has left."
-msgstr ""
+msgid "%(nick)s has joined."
+msgstr "انضمّ %(nick)s."
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:652
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "غادر %(nick)s."
+
+#: gui/lobby/lobby.js:659
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
-msgstr ""
+msgstr "اسم مستعار غير صالح: %(nick)s"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s معروف الآن كَـ %(newnick)s."
 
-#: gui/lobby/lobby.js:814
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "نحن آسفون، الأمر '%(cmd)s' غير مدعوم."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:894
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:907
+#: gui/lobby/lobby.js:916
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:938
+#: gui/lobby/lobby.js:947
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:941
+#: gui/lobby/lobby.js:950
 #, javascript-format
-msgid "[%(time)s]"
+msgid "\\[%(time)s]"
 msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:944
+#: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "فضلًا لا تنشر السّخام. لقد حُظرت لثلاثين ثانية."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr "اتصال..."
+msgstr "يتّصل..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr "يتم التسجيل..."
+msgstr "يسجّل..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr "الرجاء إدخال اسم المستخدم"
+msgstr "فضلًا أدخِل اسم المستخدم"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr "لا يمكن أن تحتوي أسماء المستخدمين [،]، يونيكود، فراغ، أو فواصل"
+msgstr "لا يمكن لأسماء المستخدمين احتواء [، أو ]، أو يونيكود، أو المسافات أو الفواصل"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr "الرجاء إدخال كلمة المرور"
+msgstr "فضلًا أدخِل كلمة المرور"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr "الرجاء إدخال كلمة المرور مرة أخرى"
+msgstr "فضلًا أدخِل كلمة المرور ثانيةً"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr "كلمة السر غير مطابقة"
+msgstr "كلمات المرور غير متطابقة"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr "يرجى قراءة شروط الخدمة"
+msgstr "فضلًا اقرأ شروط الخدمة"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr "يرجى قراءة شروط الاستخدام"
+msgstr "فضلًا اقرأ شروط الاستخدام"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr "يرجى الموافقة على شروط الخدمة وشروط الاستخدام"
+msgstr "فضلًا وافق على شروط الخدمة والاستخدام"
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "مسجّل"
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
-msgstr "انقطع الاتصال"
+msgstr "انقطع الاتّصال"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
-msgstr "قم بالتسجيل"
+msgstr "سجّل"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
-msgstr "اتصل"
+msgstr "اتّصل"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
@@ -243,19 +245,19 @@ msgstr "شروط الخدمة"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr "شروط الأستَخدَامْ"
+msgstr "شروط الاستخدام"
 
 #: gui/lobby/lobby.xml:(caption):14 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "ردهة اللاعبين"
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr "الرتبة الحالية:"
+msgstr "الرّتبة الحاليّة:"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
-msgstr "أعلى تصنيف:"
+msgstr "أعلى تقييم:"
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
@@ -275,11 +277,11 @@ msgstr "معدل الفوز:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
-msgstr "المتصدرين"
+msgstr "لوحة المتصدّرون"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "ابحث عن ملفّ شخصيّ لمستخدم"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
@@ -296,7 +298,7 @@ msgstr "اللاعبون:"
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:(caption):149
 msgid "Join Game"
-msgstr "انضم إلى لعبة"
+msgstr "انضمّ إلى اللعبة"
 
 #: gui/lobby/lobby.xml:(caption):155
 msgid "Host Game"
@@ -304,35 +306,35 @@ msgstr "استضف لعبة"
 
 #: gui/lobby/lobby.xml:(caption):162
 msgid "Main Menu"
-msgstr "القائمة الرئيسية"
+msgstr "القائمة الرّئيسيّة"
 
 #: gui/lobby/lobby.xml:(caption):218
 msgid "Show full games"
-msgstr ""
+msgstr "أظهر كامل الألعاب"
 
 #: gui/lobby/lobby.xml:(caption):264 gui/lobby/lobby.xml:(caption):326
 msgid "Back"
-msgstr "رجوع"
+msgstr "ارجع"
 
 #: gui/lobby/lobby.xml:(caption):272
 msgid "Update"
-msgstr "تحديث"
+msgstr "حدّث"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr "أدخل اسم المستخدم:"
+msgstr "أدخِل اسم المستخدم:"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr "مشاهدة الملف الشخصي"
+msgstr "مشاهدة الملفّ الشخصيّ"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr "لاعب غير موجود."
+msgstr "لم يُعثر على اللاعب."
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"
-msgstr "حالة"
+msgstr "الحالة"
 
 #: gui/lobby/lobby.xml:(heading):28 gui/lobby/lobby.xml:(heading):175
 #: gui/lobby/lobby.xml:(heading):254
@@ -341,7 +343,7 @@ msgstr "الاسم"
 
 #: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):257
 msgid "Rating"
-msgstr "تصنيف"
+msgstr "التقييم"
 
 #: gui/lobby/lobby.xml:(heading):179
 msgid "Map Name"
@@ -350,12 +352,12 @@ msgstr "اسم الخريطة"
 #: gui/lobby/lobby.xml:(heading):182
 msgctxt "map"
 msgid "Size"
-msgstr "حجم"
+msgstr "الحجم"
 
 #: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Type"
-msgstr "نوع"
+msgstr "النوع"
 
 #: gui/lobby/lobby.xml:(heading):188
 msgid "Players"
@@ -363,23 +365,23 @@ msgstr "اللاعبون"
 
 #: gui/lobby/lobby.xml:(heading):251
 msgid "Rank"
-msgstr "الرتبة"
+msgstr "الرّتبة"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr "إنشاء حساب جديد"
+msgstr "أنشئ حسابًا جديدًا"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr "تسجيل الدخول إلى حساب موجود"
+msgstr "لِج إلى حساب موجود"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "اتّصل بردهة اللعب"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr "تسجيل الدخول:"
+msgstr "لِج:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
@@ -387,15 +389,15 @@ msgstr "كلمة المرور:"
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
-msgstr "تسجيل"
+msgstr "سجّل"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr "أعد كلمة المرور:"
+msgstr "كلمة المرور ثانيةً:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr "لقد قرأت وأوافق على شروط الخدمة وشروط الاستخدام:"
+msgstr "لقد قرأت وأوافق على شروط الخدمة والاستخدام:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -407,7 +409,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr "تعريفات:"
+msgstr "التّعاريف:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
@@ -417,7 +419,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr " * \"أنت\" هو مستخدم الخدمة."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
@@ -435,21 +437,21 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "باستخدام الخدمة أنت توافق على:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr " 1. اتّباع كلّ سياسات الاستخدام."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr " 2. السماح بجمع إحصائيّات تعريف المستخدم لأغراض التقييم، ملفات المستخدمين الشخصيّة وإحصائيّات المجتمع."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "نحن نحتفظ بحقّ:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
@@ -463,17 +465,17 @@ msgstr ""
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr " 3. إيقاف أو قطع الخدمة في أيّ وقت مع أو دون إعلان مسبق."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr " 4. تغيير الخدمة في أيّ وقت مع أو دون إعلان مسبق."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr " 5. حذف أيّ من بيانات الخدمة أو كلّها في أيّ وقت مع أو دون إعلان مسبق."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
@@ -507,7 +509,7 @@ msgstr ""
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr " * \"الانتحال\" يعود إلى إجراء محاولتك لاستغلال معرّف آخر لمصالحك الخاصّة."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
@@ -548,7 +550,7 @@ msgstr ""
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr " 4. عدم استخدام الخدمة لترويج بضائع، أو خدمات أو منتجات محدّدة."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
@@ -556,7 +558,7 @@ msgstr ""
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr " 6. عدم نشر السّخام في الخدمة."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -570,7 +572,7 @@ msgstr ""
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr " 8. السماح لنفسك بأن تُزال من الخدمة في أيّ وقت يرى فيه المدير أنّ سلوكك ليس متناسقًا مع هذه القوانين."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""

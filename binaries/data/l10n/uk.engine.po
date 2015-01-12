@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
+# Victor Butko <victor.butko@gmail.com>, 2014
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 08:57+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:22+0100\n"
+"PO-Revision-Date: 2014-12-20 16:30+0000\n"
+"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,149 +37,149 @@ msgstr "%s (%ls)"
 msgid "custom build"
 msgstr "користувацька збірка"
 
-#: i18n/L10n.cpp:277
+#: i18n/L10n.cpp:276
 msgid "Long strings"
 msgstr "довгі рядки"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr ""
+msgstr "Помилка аутентифікації"
 
 #: lobby/XmppClient.cpp:457
 msgid "Registration not acceptable"
-msgstr ""
+msgstr "Реєстрація не може бути прийнята"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration conflict"
-msgstr ""
+msgstr "Конфлікт у реєстрації"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration not authorized"
-msgstr ""
+msgstr "Реєстрація не авторизована"
 
 #: lobby/XmppClient.cpp:460
 msgid "Registration bad request"
-msgstr ""
+msgstr "Помилка у запиті на реєстрацію"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration forbidden"
-msgstr ""
+msgstr "Реєстрацію заборонено"
 
 #: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
 msgid "Registration required"
-msgstr ""
+msgstr "Потрібна реєстрація"
 
 #: lobby/XmppClient.cpp:463
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Несподіваний запит реєстрації"
 
 #: lobby/XmppClient.cpp:464
 msgid "Registration not allowed"
-msgstr ""
+msgstr "Реєстрацію не дозволено"
 
 #: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "Невизначена помилка реєстрації"
 
 #: lobby/XmppClient.cpp:750
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "невідомий підтип (дивись журнал)"
 
 #: lobby/XmppClient.cpp:996
 msgid "Bad request"
-msgstr ""
+msgstr "Запит не пройшов"
 
 #: lobby/XmppClient.cpp:997
 msgid "Player name already in use"
-msgstr ""
+msgstr "Ім’я гравця вже використовується"
 
 #: lobby/XmppClient.cpp:998
 msgid "Feature not implemented"
-msgstr ""
+msgstr "Функція не реалізована"
 
 #: lobby/XmppClient.cpp:999
 msgid "Forbidden"
-msgstr ""
+msgstr "Заборонено"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Одержувач або сервер пропав"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Internal server error"
-msgstr ""
+msgstr "Внутрішня помилка сервера"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Item not found"
-msgstr ""
+msgstr "Елемент не знайдено"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid погано зформовано"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Not acceptable"
-msgstr ""
+msgstr "Не прийнятно"
 
 #: lobby/XmppClient.cpp:1005
 msgid "Not allowed"
-msgstr ""
+msgstr "Забороняється"
 
 #: lobby/XmppClient.cpp:1006
 msgid "Not authorized"
-msgstr ""
+msgstr "Не авторизовано"
 
 #: lobby/XmppClient.cpp:1007
 msgid "Not modified"
-msgstr ""
+msgstr "Не змінено"
 
 #: lobby/XmppClient.cpp:1008
 msgid "Payment required"
-msgstr ""
+msgstr "Потрібна оплата"
 
 #: lobby/XmppClient.cpp:1009
 msgid "Recipient unavailable"
-msgstr ""
+msgstr "Одержувач не доступний"
 
 #: lobby/XmppClient.cpp:1010
 msgid "Redirect"
-msgstr ""
+msgstr "Перенаправити"
 
 #: lobby/XmppClient.cpp:1012
 msgid "Remote server not found"
-msgstr ""
+msgstr "Віддалений сервер не знайдено"
 
 #: lobby/XmppClient.cpp:1013
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Таймаут віддаленого сервера"
 
 #: lobby/XmppClient.cpp:1014
 msgid "Resource constraint"
-msgstr ""
+msgstr "Обмеження ресурсів"
 
 #: lobby/XmppClient.cpp:1015
 msgid "Service unavailable"
-msgstr ""
+msgstr "Сервіс недоступний"
 
 #: lobby/XmppClient.cpp:1016
-msgid "Subscribtion Required"
-msgstr ""
+msgid "Subscription Required"
+msgstr "Потрібна підписка"
 
 #: lobby/XmppClient.cpp:1017
 msgid "Undefined condition"
-msgstr ""
+msgstr "Невизначений стан"
 
 #: lobby/XmppClient.cpp:1018
 msgid "Unexpected request"
-msgstr ""
+msgstr "Несподіваний запит"
 
 #: lobby/XmppClient.cpp:1019
 msgid "Unknown sender"
-msgstr ""
+msgstr "Невідомий відправник"
 
 #: lobby/XmppClient.cpp:1021
 msgid "Error undefined"
-msgstr ""
+msgstr "Помилку не визначено"
 
 #: ps/SavedGame.cpp:129
 #, c-format

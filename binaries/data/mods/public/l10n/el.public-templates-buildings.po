@@ -3,18 +3,21 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Christo Keller <christoniancoder@gmail.com>, 2014
 # Chris Vl <chrisvl97@gmail.com>, 2014
 # firespin <dartworldgr@hotmail.com>, 2014
+# Dimitrios Kekakos <mitsoskekakos@gmail.com>, 2014-2015
 # malvanos <malvanos@gmail.com>, 2014
 # Menelaos Vergis <menelaosvergis@gmail.com>, 2014
+# Nick Mantas <nmantas@aol.com>, 2014
 # Thanasis Mousiolis <thanasism@yahoo.com>, 2014
 # Traumflut <sophiareg95@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-11-18 00:11+0000\n"
-"Last-Translator: Chris Vl <chrisvl97@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-01 20:32+0000\n"
+"Last-Translator: Dimitrios Kekakos <mitsoskekakos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -119,7 +122,7 @@ msgstr "Αμυντικός Πύργος"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "Κατασκεύασε σε ουδέτερες και φιλικές περιοχές για να ανιχνεύσετε περιοχές του χάρτη. Σταδιακά χάνει υγεία αν βρίσκεται σε ουδέτερο έδαφος."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -196,7 +199,7 @@ msgstr "Αγρόκτημα"
 msgid ""
 "Create trade units to trade between other markets. Barter resources. "
 "Research trading and bartering improvements."
-msgstr ""
+msgstr "Δημιουργία εμπορικών μονάδων για συναλλαγές μεταξύ άλλων αγορών. Πόροι ανταλλαγών. Έρευνα συναλλαγών και βελτιώσεις ανταλλαγών."
 
 #: simulation/templates/template_structure_economic_market.xml:24
 #: simulation/templates/template_structure_economic_market.xml:21
@@ -254,7 +257,7 @@ msgstr "Σιδηρουργός"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr ""
+msgstr "Χτίσε πάνω σε μία ακτογραμμή για να δημιουργήσεις ναυτικά σκάφη και να ανοίξεις θαλάσσιο εμπόριο. Ερεύνησε ναυτικές βελτιώσεις."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -296,7 +299,7 @@ msgstr "Πόρος"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr ""
+msgstr "Ανέθρεψε κοπάδια ζώων για τροφή. Βάλε τα οικόσιτα ζώα εδώ για να έχεις μία μικρή αλλά σταθερή ροή τροφής ή άλλα μπόνους (Δεν έχει προστεθεί ακόμα)"
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -320,7 +323,7 @@ msgstr "Ειδικό κτήριο"
 
 #: simulation/templates/template_structure_special.xml:43
 msgid "This is a special building unique to a particular civilization."
-msgstr ""
+msgstr "Αυτό είναι ένα ειδικό κτίριο, μοναδικό για ένα συγκεκριμένο πολιτισμό."
 
 #: simulation/templates/template_structure_wonder.xml:35
 msgid "Wonder"
@@ -330,7 +333,7 @@ msgstr "Θαύμα"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire."
-msgstr ""
+msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας."
 
 #: simulation/templates/structures/athen_barracks.xml:18
 #: simulation/templates/structures/hele_barracks.xml:20
@@ -400,7 +403,7 @@ msgstr "Επιτείχισμα"
 #: simulation/templates/structures/spart_fortress.xml:10
 msgid ""
 "Build siege engines. Garrison up to 20 soldiers inside for stout defense."
-msgstr ""
+msgstr "Κατασκευάστε πολιορκητικές μηχανές. Συγκεντρώνει μέχρι 20 στρατιώτες για σθεναρή άμυνα."
 
 #: simulation/templates/structures/athen_gymnasion.xml:20
 #: simulation/templates/structures/hele_gymnasion.xml:21
@@ -408,6 +411,7 @@ msgid "Gymnasium"
 msgstr "Γυμνάσιο"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
+#: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásieon"
 msgstr "Γυμνάσιον"
 
@@ -442,7 +446,7 @@ msgstr "Ελληνική Προφυλακή."
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
-msgstr ""
+msgstr "Αίθουσα Συμβουλίου"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22
@@ -545,31 +549,31 @@ msgstr "Νέος Παρθένος"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "Φέρτε δόξα στον πολιτισμό σας και προσθέστε μεγάλες εκτάσεις γης στην αυτοκρατορία σας.Περιφρουρήστε με πάνω απο 30 μονάδες γιανα γιατρευτούν με ταχύτερο ρυθμό"
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/celt_barracks.xml:15
 #: simulation/templates/structures/gaul_barracks.xml:15
 msgid "Gwersyllty"
-msgstr ""
+msgstr "Gwersyllty"
 
 #: simulation/templates/structures/brit_blacksmith.xml:8
 #: simulation/templates/structures/celt_blacksmith.xml:8
 #: simulation/templates/structures/gaul_blacksmith.xml:8
 msgid "Amoridas"
-msgstr ""
+msgstr "Amoridas"
 
 #: simulation/templates/structures/brit_civil_centre.xml:9
 #: simulation/templates/structures/celt_civil_centre.xml:9
 #: simulation/templates/structures/gaul_civil_centre.xml:9
 msgid "Caer"
-msgstr ""
+msgstr "Caer"
 
 #: simulation/templates/structures/brit_corral.xml:9
 #: simulation/templates/structures/celt_corral.xml:9
 #: simulation/templates/structures/gaul_corral.xml:9
 msgid "Cavalidos"
-msgstr ""
+msgstr "Καβαλάρηδες"
 
 #: simulation/templates/structures/brit_crannog.xml:21
 msgid "Island Settlement"
@@ -584,7 +588,7 @@ msgstr "Αύξησε το πληθυσμιακό όριο και προστάτ�
 #: simulation/templates/structures/celt_dock.xml:15
 #: simulation/templates/structures/gaul_dock.xml:15
 msgid "Crannóc"
-msgstr ""
+msgstr "Crannóc"
 
 #: simulation/templates/structures/brit_defense_tower.xml:9
 #: simulation/templates/structures/brit_wall_tower.xml:11
@@ -593,24 +597,24 @@ msgstr ""
 #: simulation/templates/structures/gaul_defense_tower.xml:9
 #: simulation/templates/structures/gaul_wall_tower.xml:11
 msgid "Tyrau"
-msgstr ""
+msgstr "Tyrau"
 
 #: simulation/templates/structures/brit_farmstead.xml:8
 #: simulation/templates/structures/celt_farmstead.xml:8
 #: simulation/templates/structures/gaul_farmstead.xml:12
 msgid "Ffermdy"
-msgstr ""
+msgstr "Εφραίμ"
 
 #: simulation/templates/structures/brit_field.xml:5
 #: simulation/templates/structures/celt_field.xml:5
 #: simulation/templates/structures/gaul_field.xml:5
 msgid "Varmo"
-msgstr ""
+msgstr "Βάρμο"
 
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
-msgstr ""
+msgstr "Brythonic Broch"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
@@ -621,7 +625,7 @@ msgstr "Εκπαίδευσε Βρυθονικούς ήρωες και πρωτα
 #: simulation/templates/structures/celt_house.xml:9
 #: simulation/templates/structures/gaul_house.xml:9
 msgid "Annedd"
-msgstr ""
+msgstr "Annedd"
 
 #: simulation/templates/structures/brit_kennel.xml:33
 #: simulation/templates/structures/celt_kennel.xml:33
@@ -631,13 +635,13 @@ msgstr "Κυνοτροφείο"
 #: simulation/templates/structures/brit_kennel.xml:35
 #: simulation/templates/structures/celt_kennel.xml:35
 msgid "Train Celtic war dogs."
-msgstr ""
+msgstr "Εκπαιδεύστε Κελτικά πολεμικά σκυλιά"
 
 #: simulation/templates/structures/brit_market.xml:15
 #: simulation/templates/structures/celt_market.xml:15
 #: simulation/templates/structures/gaul_market.xml:15
 msgid "Marchnaty"
-msgstr ""
+msgstr "Αγορά"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
@@ -647,7 +651,7 @@ msgstr "Βρυθονική Προφυλακή"
 #: simulation/templates/structures/celt_sb1.xml:23
 #: simulation/templates/structures/gaul_rotarymill.xml:20
 msgid "Rotary Mill"
-msgstr ""
+msgstr "Μύλος"
 
 #: simulation/templates/structures/brit_rotarymill.xml:21
 #: simulation/templates/structures/celt_sb1.xml:24
@@ -667,17 +671,17 @@ msgstr "Ενισχύει την παραγωγή από τις φάρμες +25%
 #: simulation/templates/structures/celt_storehouse.xml:8
 #: simulation/templates/structures/gaul_storehouse.xml:8
 msgid "Ystordy"
-msgstr ""
+msgstr "αποθήκη"
 
 #: simulation/templates/structures/brit_temple.xml:19
 #: simulation/templates/structures/celt_temple.xml:19
 #: simulation/templates/structures/gaul_temple.xml:19
 msgid "Addoldy"
-msgstr ""
+msgstr "τόπος λατρείας"
 
 #: simulation/templates/structures/brit_wall_gate.xml:16
 msgid "Dor"
-msgstr ""
+msgstr "πόνος"
 
 #: simulation/templates/structures/brit_wall_long.xml:29
 #: simulation/templates/structures/brit_wall_medium.xml:26
@@ -693,7 +697,7 @@ msgstr ""
 #: simulation/templates/structures/gaul_wall_short.xml:13
 #: simulation/templates/structures/gaul_wallset_stone.xml:5
 msgid "Gwarchglawdd"
-msgstr ""
+msgstr "πολιορκία"
 
 #: simulation/templates/structures/brit_wall_tower.xml:13
 #: simulation/templates/structures/celt_wall_tower.xml:13
@@ -709,13 +713,13 @@ msgstr "Στόουνχεντζ"
 
 #: simulation/templates/structures/cart_barracks.xml:18
 msgid "Maḥanēt"
-msgstr ""
+msgstr "Maḥanēt"
 
 #: simulation/templates/structures/cart_barracks.xml:20
 msgid ""
 "Train North African citizen-soldiers. Research improvements for North "
 "African units."
-msgstr ""
+msgstr "Εκπαίδευσε βόρειο-αφρικανούς πολίτες-στρατιώτες. Ερεύνησε βελτιώσεις για βόρειο-αφρικανές μονάδες"
 
 #: simulation/templates/structures/cart_blacksmith.xml:5
 #: simulation/templates/structures/ptol_blacksmith.xml:5
@@ -726,16 +730,16 @@ msgstr ";"
 
 #: simulation/templates/structures/cart_civil_centre.xml:5
 msgid "Merkāz"
-msgstr ""
+msgstr "Merkāz"
 
 #: simulation/templates/structures/cart_corral.xml:12
 msgid "Rēfet"
-msgstr ""
+msgstr "Rēfet"
 
 #: simulation/templates/structures/cart_defense_tower.xml:9
 #: simulation/templates/structures/cart_wall_tower.xml:12
 msgid "Mijdil"
-msgstr ""
+msgstr "Mijdil"
 
 #: simulation/templates/structures/cart_dock.xml:17
 msgid "Commercial Port"
@@ -743,7 +747,7 @@ msgstr "Εμπορικός Λιμένας"
 
 #: simulation/templates/structures/cart_dock.xml:18
 msgid "Namel"
-msgstr ""
+msgstr "Namel"
 
 #: simulation/templates/structures/cart_dock.xml:20
 msgid ""
@@ -761,7 +765,7 @@ msgstr "Πρεσβεία Κελτών"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Στρατολόγησε Κέλτες μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -769,7 +773,7 @@ msgstr "Πρεσβεία Ιβήρων"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Στρατολόγησε Ιβήριους μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
@@ -777,15 +781,15 @@ msgstr "Πρεσβεία Ιταλιωτών"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr ""
+msgstr "Στρατολόγησε Ιταλούς μισθοφόρους. Ερεύνησε βελτιώσεις για αυτούς τους μισθοφόρους"
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
-msgstr ""
+msgstr "Aḥuzāh"
 
 #: simulation/templates/structures/cart_field.xml:5
 msgid "Šadd"
-msgstr ""
+msgstr "Šadd"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
@@ -793,15 +797,15 @@ msgstr "Οχυρό"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
-msgstr ""
+msgstr "Ḥamet"
 
 #: simulation/templates/structures/cart_house.xml:22
 msgid "Bet"
-msgstr ""
+msgstr "Στοίχημα"
 
 #: simulation/templates/structures/cart_market.xml:12
 msgid "Šūq"
-msgstr ""
+msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
@@ -809,7 +813,7 @@ msgstr "Καρχηδονική Προφυλακή"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
-msgstr ""
+msgstr "Maḥṣabah"
 
 #: simulation/templates/structures/cart_super_dock.xml:10
 msgid "Naval Shipyard"
@@ -817,7 +821,7 @@ msgstr "Ναυπηγείο Ναυτικού"
 
 #: simulation/templates/structures/cart_super_dock.xml:11
 msgid "Cothon"
-msgstr ""
+msgstr "Κοθόνι"
 
 #: simulation/templates/structures/cart_super_dock.xml:14
 msgid "Construct and repair mighty warships."
@@ -825,37 +829,37 @@ msgstr "Κατασκεύασε και επισκεύασε ισχυρά πολε
 
 #: simulation/templates/structures/cart_temple.xml:14
 msgid "Maqdaš"
-msgstr ""
+msgstr "Maqdaš"
 
 #: simulation/templates/structures/cart_temple.xml:16
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Εκπαιδεύστε ιέριες για να γιατρέψουν τα στρατεύματά σας.Περιφρουρήστε με πάνω από 20 μονάδες για να γιατρευτούν ταχύτερα"
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
 msgid "Jdar"
-msgstr ""
+msgstr "Jdar"
 
 #: simulation/templates/structures/cart_wall_gate.xml:9
 msgid "Mijdil-šaʿar"
-msgstr ""
+msgstr "Mijdil-šaʿar"
 
 #: simulation/templates/structures/cart_wall_long.xml:29
 #: simulation/templates/structures/cart_wall_medium.xml:23
 #: simulation/templates/structures/cart_wall_short.xml:10
 msgid "Homah"
-msgstr ""
+msgstr "Homah"
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
-msgstr ""
+msgstr "Ναός του Ba'al Hammon"
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr ""
+msgstr "Γαλατικό δινάριο"
 
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
@@ -869,7 +873,7 @@ msgstr "Κέλτικη Προφυλακή"
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
 msgid "Earthworks"
-msgstr ""
+msgstr "Κατασκευές απο το έδαφος"
 
 #: simulation/templates/structures/celt_wall_gate.xml:16
 msgid "Gate"
@@ -893,23 +897,19 @@ msgstr "Αύξηση +10  του πληθυσμιακού ορίου. Στρατ
 
 #: simulation/templates/structures/gaul_wall_gate.xml:16
 msgid "Duro"
-msgstr ""
+msgstr "Duro"
 
 #: simulation/templates/structures/hele_blacksmith.xml:11
 #: simulation/templates/structures/mace_blacksmith.xml:5
 #: simulation/templates/structures/sele_blacksmith.xml:5
 msgid "Sidirourgeíon"
-msgstr ""
+msgstr "Σιδηρουργείο"
 
 #: simulation/templates/structures/hele_fortress.xml:15
 #: simulation/templates/structures/mace_fortress.xml:15
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíchisma"
-msgstr ""
-
-#: simulation/templates/structures/hele_gymnasion.xml:22
-msgid "Gymnásion"
-msgstr "Γυμνάσιον"
+msgstr "Τόιχισμα"
 
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
@@ -918,36 +918,36 @@ msgstr "Εκπαίδεύστε Ήρωες."
 
 #: simulation/templates/structures/iber_barracks.xml:11
 msgid "Kaserna"
-msgstr ""
+msgstr "Κασέρι"
 
 #: simulation/templates/structures/iber_blacksmith.xml:5
 msgid "Harotz"
-msgstr ""
+msgstr "μεταλλουργός"
 
 #: simulation/templates/structures/iber_civil_centre.xml:5
 msgid "Oppidum"
-msgstr ""
+msgstr "πόλη"
 
 #: simulation/templates/structures/iber_corral.xml:12
 msgid "Saroe"
-msgstr ""
+msgstr "Εικόνες"
 
 #: simulation/templates/structures/iber_defense_tower.xml:27
 #: simulation/templates/structures/iber_wall_tower.xml:9
 msgid "Dorre"
-msgstr ""
+msgstr "Πύργος"
 
 #: simulation/templates/structures/iber_dock.xml:12
 msgid "Kai"
-msgstr ""
+msgstr "όταν"
 
 #: simulation/templates/structures/iber_farmstead.xml:5
 msgid "Baserri"
-msgstr ""
+msgstr "αγρόκτημα"
 
 #: simulation/templates/structures/iber_field.xml:5
 msgid "Soro"
-msgstr ""
+msgstr "ορρός"
 
 #: simulation/templates/structures/iber_fortress.xml:16
 msgid "Castro"
@@ -959,11 +959,11 @@ msgstr "Οικία"
 
 #: simulation/templates/structures/iber_market.xml:12
 msgid "Arruga"
-msgstr ""
+msgstr "Ρυτίδα"
 
 #: simulation/templates/structures/iber_monument.xml:37
 msgid "Revered Monument"
-msgstr ""
+msgstr "Ανεστραμένο μνημείο"
 
 #: simulation/templates/structures/iber_monument.xml:38
 msgid "Gur Oroigarri"
@@ -973,7 +973,7 @@ msgstr "Gur Oroigarri"
 msgid ""
 "All units within vision of this monument will fight harder. Effect Range: 50"
 " meters."
-msgstr ""
+msgstr "Όλες οι μονάδες που έχουν αυτό το μνημείο στο πεδίο της όρασης τους, πολεμάνε σκληρότερα. Εμβέλεια αποτελεσματικότητας: 50 μέτρα"
 
 #: simulation/templates/structures/iber_outpost.xml:5
 msgid "Iberian Outpost"
@@ -993,21 +993,21 @@ msgstr "Λόκι"
 #: simulation/templates/structures/iber_wall_short.xml:13
 #: simulation/templates/structures/iber_wallset_stone.xml:5
 msgid "Zabal Horma"
-msgstr ""
+msgstr "Zabal Horma"
 
 #: simulation/templates/structures/iber_wall_gate.xml:9
 msgid "Biko Sarbide"
-msgstr ""
+msgstr "Biko Sarbide"
 
 #: simulation/templates/structures/iber_wonder.xml:17
 msgid "Cancho Roano"
-msgstr ""
+msgstr "Cancho Roano"
 
 #: simulation/templates/structures/mace_fortress.xml:16
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Εκπαίδευσε πρωταθλητές και ήρωες. Συγκεντρώνει μέχρι 20 στρατιώτες μέσα για σθεναρή άμυνα"
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1026,11 +1026,11 @@ msgstr "Βιβλιοθήκη"
 msgid ""
 "Research special technologies and reduce the research time of all remaining "
 "technologies."
-msgstr ""
+msgstr "Ερεύνησε εξειδικευμένες τεχνολογίες και μείωσε τον χρόνο έρευνας για όλες τις υπόλοιπες τεχνολογίες"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:17
 msgid "Synergeíon Poliorkías"
-msgstr ""
+msgstr "Συνεργείο Πολιορκίας"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:18
 msgid "Siege Workshop"
@@ -1038,7 +1038,7 @@ msgstr "Πολιορκητικό Εργαστήρι"
 
 #: simulation/templates/structures/mace_siege_workshop.xml:20
 msgid "Build siege engines. Research siege technologies."
-msgstr ""
+msgstr "Δημιουργία πολιορκητικών μηχανών. Έρευνα τεχνολογιών πολιορκίας"
 
 #: simulation/templates/structures/mace_temple.xml:9
 msgid "Asclepeion"
@@ -1046,7 +1046,7 @@ msgstr "Ασκληπιείο"
 
 #: simulation/templates/structures/maur_barracks.xml:9
 msgid "Sainyavasa"
-msgstr ""
+msgstr "Sainyavasa"
 
 #: simulation/templates/structures/maur_blacksmith.xml:5
 msgid "Lohakāra"
@@ -1110,7 +1110,7 @@ msgstr "Uparaksana"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:26
 msgid "Edict Pillar of Ashoka"
-msgstr ""
+msgstr "Πυλώνας διατάγματος του Ashoka"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:27
 msgid "Śāsana Stambha Aśokā"
@@ -1151,7 +1151,7 @@ msgstr "Μεγάλη Στούπα"
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "Στρατόπεδο Μισθοφόρων "
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
@@ -1163,7 +1163,7 @@ msgstr "Στρατόπεδο Μισθοφόρων Αιγυπτιακών"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:33
 msgid "Capture this structure to train mercenaries from Hellenistic Egypt."
-msgstr ""
+msgstr "Αιχμαλώτισε αυτό το κατασκεύασμα για να εκπαιδεύσεις μισθοφόρους από την Ελληνιστική Αίγυπτο."
 
 #: simulation/templates/structures/pers_apadana.xml:26
 #: simulation/templates/structures/pers_palace.xml:23
@@ -1179,7 +1179,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr ""
+msgstr "\"Φόρος σατραπείας\": Απόκτησε μία μικρή αλλά σταθερή ροή πόρων τροφής, ξυλείας, πέτρας και μέταλλου. Εκπαίδευσε Πέρσες ήρωες και την \"Αθάνατη\" φρουρά τους. Όριο κατασκευής: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1481,7 +1481,7 @@ msgstr ""
 
 #: simulation/templates/structures/rome_farmstead.xml:12
 msgid "Villa"
-msgstr ""
+msgstr "Βίλα"
 
 #: simulation/templates/structures/rome_field.xml:5
 msgid "Ager"
@@ -1603,11 +1603,11 @@ msgstr "Πύλη"
 
 #: simulation/templates/structures/rome_wall_tower.xml:9
 msgid "Turris Lapidea"
-msgstr ""
+msgstr "Πύργος Λαπά"
 
 #: simulation/templates/structures/rome_wallset_siege.xml:6
 msgid "Murus Latericius"
-msgstr ""
+msgstr "Τοίχοισμα Λατρέσιου"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
@@ -1629,18 +1629,18 @@ msgstr "Φρούριο"
 msgid ""
 "Build siege engines and train Champions. Garrison up to 20 soldiers inside "
 "for stout defense."
-msgstr ""
+msgstr "Κατασκευάστε πολιορκητικές μηχανές και εκπαιδεύστε Πρωταθλητές.Περιφρουρίστε με παραπάνω απο 20 στρατιώτες στο εσωτερικό του για πιο σταθερή άμυνα"
 
 #: simulation/templates/structures/sele_military_colony.xml:33
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Αυτό είναι το κτίριο επέκτασης των Σελευκιδών, παρόμοιο με Αστικά Κέντρα άλλων φατριών. Είναι πιο αδύναμο και δίνει μικρότερη επιρροή περιοχής, αλλά είναι φθηνότερο και χτίζεται γρηγορότερα.\n- Εκπαιδεύει άποικους-στρατιώτες διαφόρων εθνικοτήτων .\n- Ελάχιστη απόσταση από τις άλλες Στρατιωτικές Αποικίες: 100 μέτρα."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
-msgstr ""
+msgstr "Εμποροσθοφυλακή"
 
 #: simulation/templates/structures/sele_temple.xml:9
 msgid "Naós"

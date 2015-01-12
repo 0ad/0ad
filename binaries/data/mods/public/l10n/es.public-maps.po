@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-05 12:32+0000\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-13 11:41+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -424,7 +424,7 @@ msgstr "Estribación nevada"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr "IMPORTANTE: LOS JUGADORES DE LA IA NO FUNCIONARÁN EN ESTE MAPA\n\nProteje tu base contra interminables oleadas de enemigos. Utiliza a tus ciudadanas para conseguir recursos. El último jugador que siga en pie será el ganador."
@@ -528,7 +528,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "¡Hazte con los tesoros antes de que lo haga el enemigo! ¡Que gane el mejor!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "¡Los arcones del enemigo están rebosantes de riquezas, has perdido!"
 
 #: maps/scenarios/treasure_islands.js:42
@@ -552,14 +552,14 @@ msgstr "¡Te acabas de hacer con un tesoro!"
 msgid "Defeat your enemy to win!"
 msgstr "¡Acaba con el enemigo para ganar!"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Es primavera en Arcadia, Grecia. Las lluvias primaverales hacen fluir caudales sobre lo que en cualquier otra parte del año serían secos arroyos, separando las tierras de dos tribus en guerra.\n\nLos jugadores comienzan a ambos lados de una región montañosa rica en recursos. Algunos edificios adicionales ayudarán a los jugadores a establecer sus nuevas colonias."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -627,7 +627,7 @@ msgstr "Es primavera en Arcadia, Grecia. Las lluvias primaverales hacen fluir ca
 msgid "Player 1"
 msgstr "Jugador 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -693,9 +693,9 @@ msgstr "Jugador 1"
 msgid "Player 2"
 msgstr "Jugador 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arcadia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr "Arcadia"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

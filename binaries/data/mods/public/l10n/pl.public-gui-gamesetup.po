@@ -15,14 +15,15 @@
 # lacek, 2014
 # LenaPL <polandlena@gmail.com>, 2014
 # Leszek S, 2014
-# Leszek S, 2014
+# Leszek S, 2014-2015
 # Mar321 <grobelskimarcin@gmail.com>, 2013
 # mhnxo <mhnxo123@gmail.com>, 2014
 # Michał Garapich <michal@garapich.pl>, 2013
 # Michał Olber <michal.olber@osworld.pl>, 2013
 # miragae <miragae@gmail.com>, 2014
+# miragae <miragae@gmail.com>, 2014
 # zyxist <nightstorm@tlen.pl>, 2014
-# pawel10 <pawelklimek102@gmail.com>, 2014
+# Paweł Klimek <pawelklimek102@gmail.com>, 2014
 # Robert Wolniak <robert.wolniak@gmail.com>, 2014
 # RosiakPL <Rosiak7777777@gmail.com>, 2014
 # slodki12341 <slodki1234@gmail.com>, 2014
@@ -32,9 +33,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-22 07:30+0000\n"
-"Last-Translator: zyxist <nightstorm@tlen.pl>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-04 10:30+0000\n"
+"Last-Translator: Leszek S\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +164,7 @@ msgctxt "team"
 msgid "None"
 msgstr "Żaden"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Losowe"
@@ -192,7 +193,7 @@ msgid "Explored Map:"
 msgstr "Odkryta mapa:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
 msgstr "Warunek zwycięstwa:"
 
@@ -227,86 +228,86 @@ msgstr "Przepraszamy, opis niedostępny."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] "%(number)s gracz. %(description)s"
-msgstr[1] "%(number)s graczy. %(description)s"
-msgstr[2] "%(number)s graczy. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s gracz. "
+msgstr[1] "%(number)s graczy. "
+msgstr[2] "%(number)s graczy. "
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
 msgstr "Wczytywanie..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Nieprzypisane"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s dołączył do gry"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s opuścił grę"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr "* %(username)s jest gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr "* %(username)s nie jest gotowy."
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
 msgstr "Ustawienia gry zostały zmienione"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Nie gotowy"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Oświadcz, że nie jesteś gotowy do gry."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Gotowy!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Oświadcz, że jesteś gotowy do gry!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
 msgstr "Oświadcz, że akceptujesz obecne ustawienia i jesteś gotowy do gry!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Żaden"
 
@@ -734,18 +735,18 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Gdybym nie był Aleksandrem, chciałbym być Diogenesem.\" - Aleksander Wielki"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"Nie chcę kradzionego zwycięstwa.\" - Aleksander Wielki"
 
 #: gui/text/quotes.txt:30
 msgid ""
 "\"Are you still to learn that the end and perfection of our victories is to "
 "avoid the vices and infirmities of those whom we subdue?\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Czy ciągle jeszcze nie wiesz, że celem naszych zwycięstw i pożytkiem z nich płynącym jest położenie kresu niegodziwości i słabości tych, których sobie podporządkowujemy?\" - Aleksander Wielki"
 
 #: gui/text/quotes.txt:31
 msgid ""
@@ -755,7 +756,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "\"Nie ma nic niemożliwego dla tego, który odważy się próbować\" - Aleksander Wielki"
 
 #: gui/text/quotes.txt:33
 msgid ""
@@ -992,7 +993,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:76
 msgid "\"Time heals all wounds.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Czas leczy rany.\" - Cyceron"
 
 #: gui/text/quotes.txt:77
 msgid ""
@@ -1007,7 +1008,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:79
 msgid "\"While there's life, there's hope.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Gdzie jest życie, jest nadzieja.\" - Cyceron"
 
 #: gui/text/quotes.txt:80
 msgid ""
@@ -1023,15 +1024,15 @@ msgstr ""
 msgid ""
 "\"Let the welfare of the people be the ultimate law.\" - Marcus Tullius "
 "Cicero"
-msgstr ""
+msgstr "\"Dob­ro lu­du naj­wyższym pra­wem.\" - Cyceron"
 
 #: gui/text/quotes.txt:83
 msgid "\"Endless money forms the sinews of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"Pieniądz jest nerwem wojny.\" - Cyceron"
 
 #: gui/text/quotes.txt:84
 msgid "\"Laws are silent in time of war.\" - Marcus Tullius Cicero"
-msgstr ""
+msgstr "\"W czasie wojny milczą prawa.\" - Cyceron"
 
 #: gui/text/quotes.txt:85
 msgid ""
@@ -1104,7 +1105,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:97
 msgid "\"Small opportunities often presage great enterprises.\" - Demosthenes"
-msgstr ""
+msgstr "\"Małe szanse są często początkiem wielkich przedsięwzięć.\" - Demostenes"
 
 #: gui/text/quotes.txt:98
 msgid ""
@@ -1178,19 +1179,19 @@ msgstr ""
 
 #: gui/text/quotes.txt:111
 msgid "\"Everything flows, nothing stands still.\" - Herakleitos"
-msgstr ""
+msgstr "\"Wszys­tko płynie, nic nie stoi w miejscu.\" - Heraklit z Efezu"
 
 #: gui/text/quotes.txt:112
 msgid "\"Nothing endures but change.\" - Herakleitos"
-msgstr ""
+msgstr "\"Nic nie trwa, tylko zmiany.” - Heraklit z Efezu"
 
 #: gui/text/quotes.txt:113
 msgid "\"You could not step twice into the same river.\" - Herakleitos"
-msgstr ""
+msgstr "\"Nie da się wejść dwa razy do tej samej rzeki.\" - Heraklit z Efezu"
 
 #: gui/text/quotes.txt:114
 msgid "\"Character is destiny.\" - Herakleitos"
-msgstr ""
+msgstr "\"Charakter człowieka jest jego przeznaczeniem.\" - Heraklit z Efezu"
 
 #: gui/text/quotes.txt:115
 msgid "\"Circumstances rule men; men do not rule circumstances.\" - Herodotus"
@@ -1422,13 +1423,13 @@ msgstr ""
 msgid ""
 "\"Man is the measure of all things: of things which are, that they are, and "
 "of things which are not, that they are not.\" - Protagoras"
-msgstr ""
+msgstr "\"Człowiek jest miarą wszystkich rzeczy, istniejących, że istnieją, i nieistniejących, że nie istnieją.\" - Protagoras"
 
 #: gui/text/quotes.txt:158
 msgid ""
 "\"We ought so to behave to one another as to avoid making enemies of our "
 "friends, and at the same time to make friends of our enemies.\" - Pythagoras"
-msgstr ""
+msgstr "\"Tak postępuj z przyjaciółmi, aby nie stali się nieprzyjaciółmi, a z nieprzyjaciółmi tak, żeby jak najprędzej stali się tobie przyjaciółmi.\" - Pitagoras"
 
 #: gui/text/quotes.txt:159
 msgid "\"In anger we should refrain both from speech and action.\" - Pythagoras"
@@ -1516,7 +1517,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:175
 msgid "\"Not even the gods fight against necessity.\" - Simonides of Ceos"
-msgstr ""
+msgstr "\"Z koniecznością nawet bogowie nie walczą.\" - Symonides z Keos"
 
 #: gui/text/quotes.txt:176
 msgid ""

@@ -5,15 +5,16 @@
 # Translators:
 # Dalrae Jin <lovely.serotonin@gmail.com>, 2014
 # jasonkimik <jasonkim@linux.com>, 2014
+# Kevin Min <candyson1@naver.com>, 2015
 # jjj <triplej03@nate.com>, 2014
 # Valtiel <shinhs6291@naver.com>, 2014
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-06 12:10+0000\n"
+"Last-Translator: Kevin Min <candyson1@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "범위: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "평균 추가범위: %(range)s"
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "여기에는 장벽을 세울 수 없습니다!"
 
@@ -103,7 +104,7 @@ msgstr "우리편"
 msgid "Neutral"
 msgstr "중립"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "적"
@@ -310,12 +311,17 @@ msgstr "%(player)s 와 전쟁중입니다."
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s 와 중립이 되었습니다."
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s 와 %(lastAmount)s"
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -323,46 +329,46 @@ msgstr "%(previousAmounts)s 와 %(lastAmount)s"
 msgid ", "
 msgstr ","
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s 가 %(amounts)s 를 보냈습니다."
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "%(attacker)s 에게 공격받고 있습니다!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "팀"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr "비공개 게임"
 
@@ -402,7 +408,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:115
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:116 gui/session/selection_details.js:149
 #: gui/session/selection_details.js:180
@@ -488,7 +494,7 @@ msgstr "계급:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
-msgstr ""
+msgstr "체력:"
 
 #: gui/session/selection_details.js:361 gui/session/session.js:618
 #, javascript-format
@@ -1204,7 +1210,7 @@ msgstr "저장"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Options"
-msgstr ""
+msgstr "옵션들"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Resign"
@@ -1324,15 +1330,15 @@ msgstr "자원 교환:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
-msgstr ""
+msgstr "체력"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Stamina"
-msgstr ""
+msgstr "스태미나"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Stamina:"
-msgstr ""
+msgstr "스태미나:"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):53
 #: gui/session/session_objects/hero_icon.xml:(tooltip):9
@@ -1341,7 +1347,7 @@ msgstr ""
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):68
 msgid "Experience"
-msgstr ""
+msgstr "경험치"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):76
 msgid "Rank"
@@ -1367,7 +1373,7 @@ msgstr ""
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "메뉴"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVII : Quercus"

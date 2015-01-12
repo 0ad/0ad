@@ -3,17 +3,20 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
 # Michiel <mvdijk@mivadi.com>, 2014
+# niektb <niektb95@gmail.com>, 2014
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2014
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
+# Yannick Vanroy <yannickvanroy94@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-31 17:21+0000\n"
-"Last-Translator: Stef Jansen <stefgijsberts.sg@gmail.com>\n"
+"PO-Revision-Date: 2015-01-05 17:11+0000\n"
+"Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +34,7 @@ msgstr "Metalen bewapening voor de paardenhoofden."
 msgid ""
 "Equip your cavalry mounts with armor. All Cavalry +1 Hack and Pierce armor "
 "level."
-msgstr "Rust je ruiters uit met extra pantser. Alle ruiters +1 slag pantser."
+msgstr "Rust je ruiters uit met extra pantser. Alle ruiters +1 slag- en steekpantser."
 
 #: simulation/data/technologies/armor_cav_01.jsongenericName
 #: simulation/data/technologies/armor_cav_02.jsongenericName
@@ -205,7 +208,7 @@ msgstr "Alle helden +2 slag- en steekpantser, maar ook +50 extra metaal kost."
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr "Yzeren heldenpantser"
+msgstr "IJzeren heldenpantser"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -564,7 +567,7 @@ msgstr "Vervang bronzen wapens door ijzeren."
 #: simulation/data/technologies/attack_cavalry_melee_02.jsontooltip
 msgid ""
 "Equip your melee cavalry with better weapons. +20% melee cavalry attack."
-msgstr ""
+msgstr "Rust je mêleeruiters uit met betere wapens. Mêleecavalerie +20% sterker."
 
 #: simulation/data/technologies/attack_cavalry_melee_02.jsongenericName
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsongenericName
@@ -578,16 +581,16 @@ msgstr "Training vergroot het bereik van de aanval."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsontooltip
 msgid "+20% ranged cavalry attack."
-msgstr ""
+msgstr "+20% afstandscavalarie aanvalskracht."
 
 #: simulation/data/technologies/attack_cavalry_ranged_01.jsongenericName
 msgid "Ranged Combat Cavalry Training"
-msgstr ""
+msgstr "Training voor afstandscavalarie"
 
 #: simulation/data/technologies/attack_cavalry_ranged_02.jsontooltip
 msgid ""
 "Equip your ranged cavalry with better weapons. +20% ranged cavalry attack."
-msgstr ""
+msgstr "Rust je afstandsruiters uit met betere wapens. afstandscavalerie +20% sterker."
 
 #: simulation/data/technologies/attack_champions_elite.jsondescription
 msgid "Guard units have uncommon bravery and valor in battle."
@@ -626,7 +629,7 @@ msgstr "Een infanteriesoldaat droeg vaak een tweede wapen naast zijn hoofdwapen.
 #: simulation/data/technologies/attack_infantry_melee_01.jsontooltip
 #: simulation/data/technologies/attack_infantry_melee_02.jsontooltip
 msgid "+20% melee infantry attack."
-msgstr ""
+msgstr "+20% mêlee infantrie aanvalskracht"
 
 #: simulation/data/technologies/attack_infantry_melee_01.jsongenericName
 #: simulation/data/technologies/melee_inf_sidearms.jsongenericName
@@ -657,7 +660,7 @@ msgstr "Pugio"
 
 #: simulation/data/technologies/attack_infantry_melee_02.jsondescription
 msgid "Using iron instead of bronze gave weapons additional power."
-msgstr ""
+msgstr "Het gebruik van ijzer in plaats van brons gaf de wapens extra kracht."
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsondescription
 #: simulation/data/technologies/attack_infantry_ranged_02.jsondescription
@@ -669,7 +672,7 @@ msgstr "Extra trainingen voor afstandseenheden verhoogt hun aanvalskracht."
 #: simulation/data/technologies/attack_infantry_ranged_02.jsontooltip
 #: simulation/data/technologies/ranged_inf_irregulars.jsontooltip
 msgid "+20% ranged infantry attack."
-msgstr ""
+msgstr "+20% afstandsinfantrie aanvalskracht"
 
 #: simulation/data/technologies/attack_infantry_ranged_01.jsongenericName
 #: simulation/data/technologies/ranged_inf_irregulars.jsongenericName
@@ -710,7 +713,7 @@ msgstr "De wil om te vechten is cruciaal voor de overwinning."
 
 #: simulation/data/technologies/attack_soldiers_will.jsontooltip
 msgid "Inspire your troops with higher pay. All soldiers +25% attack."
-msgstr ""
+msgstr "Inspireer je troepen door meer te betalen. Alle soldaten krijgen +25% aanvalskracht."
 
 #: simulation/data/technologies/attack_soldiers_will.jsongenericName
 msgid "Will to fight"
@@ -765,7 +768,7 @@ msgstr "Kantelen"
 
 #: simulation/data/technologies/attack_tower_defense.jsondescription
 msgid "Reinforce the foundations in preparation of an attack."
-msgstr ""
+msgstr "Versterk de fundamenten ter voorbereiding op een aanval."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
@@ -773,7 +776,7 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
-msgstr ""
+msgstr "Stevige Fundamenten"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
@@ -781,11 +784,11 @@ msgstr ""
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Verlengt het bereik van verdedigingstorens met 8 meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
-msgstr ""
+msgstr "Boogschutters"
 
 #: simulation/data/technologies/attack_tower_watch.jsondescription
 msgid "A night's watch increases vigilance."
@@ -857,7 +860,7 @@ msgstr "Verhoog de vervoerscapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_basket.jsontooltip
 msgid "Workers use baskets. +5 shuttle capacity for all resources."
-msgstr ""
+msgstr "Werkers gebruiken manden. +5 vervoerscapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_basket.jsongenericName
 msgid "Baskets"
@@ -865,11 +868,11 @@ msgstr "Rieten manden"
 
 #: simulation/data/technologies/gather_capacity_carts.jsontooltip
 msgid "Workers use horse-drawn carts. +10 shuttle capacity for all resources."
-msgstr ""
+msgstr "Werkers gebruiken paard en kar. +10 vervoerscapaciteit voor alle grondstoffen."
 
 #: simulation/data/technologies/gather_capacity_carts.jsongenericName
 msgid "Horse-drawn Carts"
-msgstr ""
+msgstr "Per paard getrokken Karren"
 
 #: simulation/data/technologies/gather_capacity_wheelbarrow.jsontooltip
 msgid "Workers use wheelbarrows. +5 shuttle capacity for all resources."
@@ -889,7 +892,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
-msgstr ""
+msgstr "Mest"
 
 #: simulation/data/technologies/gather_farming_plows.jsondescription
 msgid "A horse drawn instrument to turn the sod."
@@ -1055,11 +1058,11 @@ msgstr "Rieten mand"
 
 #: simulation/data/technologies/heal_barracks.jsondescription
 msgid "Units garrisoned in barracks heal over time."
-msgstr ""
+msgstr "Eenheden die zich in een kazerne bevinden genezen na verloop van tijd."
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr ""
+msgstr "Eenheden worden langzaam geheeld als ze in barakken verblijven."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1073,7 +1076,7 @@ msgstr "Verhoogd het bereik van alle helers."
 #: simulation/data/technologies/heal_range.jsontooltip
 #: simulation/data/technologies/heal_range_2.jsontooltip
 msgid "Healers +8 Healing Range."
-msgstr ""
+msgstr "Helers +8 bereik"
 
 #: simulation/data/technologies/heal_range.jsongenericName
 msgid "Healing Range"
@@ -1473,7 +1476,7 @@ msgstr "Tuinen gingen van eenvoudige omheinde gebieden, tot grote, zorgvuldig ge
 #: simulation/data/technologies/pop_house_01.jsontooltip
 #: simulation/data/technologies/pop_house_02.jsontooltip
 msgid "Houses +20% population cap bonus."
-msgstr ""
+msgstr "Huizen +20% populatielimiet bonus."
 
 #: simulation/data/technologies/pop_house_01.jsongenericName
 msgid "Home Garden"
@@ -1520,11 +1523,11 @@ msgstr ""
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
-msgstr ""
+msgstr "Verhoog de maximum bevolking met +50."
 
 #: simulation/data/technologies/pop_wonder.jsongenericName
 msgid "Glorious Expansion"
-msgstr ""
+msgstr "Glorieuze Expansie"
 
 #: simulation/data/technologies/ranged_inf_skirmishers.jsondescription
 msgid ""
@@ -1573,7 +1576,7 @@ msgstr "Geavanceerde technologieën verbeteren de belegeringsefficiëntie"
 
 #: simulation/data/technologies/siege_attack.jsontooltip
 msgid "All siege weapons +25% Crush damage."
-msgstr ""
+msgstr "Alle belegeringswapens +25% verpletterkracht."
 
 #: simulation/data/technologies/siege_attack.jsongenericName
 msgid "Advanced Siege"
@@ -1634,7 +1637,7 @@ msgstr "Fok de snelste paarden."
 #: simulation/data/technologies/speed_cavalry_01.jsontooltip
 #: simulation/data/technologies/speed_cavalry_02.jsontooltip
 msgid "+10% cavalry walk speed."
-msgstr ""
+msgstr "+10% cavalerie loopsnelheid."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
@@ -1646,7 +1649,7 @@ msgstr "Train je paarden zodat ze sneller lopen."
 
 #: simulation/data/technologies/speed_cavalry_02.jsongenericName
 msgid "Cavalry Speed Training"
-msgstr ""
+msgstr "Cavalerie Snelheidstraining"
 
 #: simulation/data/technologies/speed_trader_01.jsondescription
 msgid ""
@@ -2535,7 +2538,7 @@ msgstr "Het uitgestorven Niseaanse paardenras was ooit het grootste en sterkste 
 
 #: simulation/data/technologies/successors/special_war_horses.jsontooltip
 msgid "All cavalry +20% health."
-msgstr ""
+msgstr "Alle ruiters +20% gezondheid."
 
 #: simulation/data/technologies/successors/special_war_horses.jsongenericName
 msgid "Nisean War Horses"

@@ -617,25 +617,9 @@ function updateHero()
 	var healthLabel = "[font=\"sans-bold-13\"]" + translate("Health:") + "[/font]";
 	tooltip += "\n" + sprintf(translate("%(label)s %(current)s / %(max)s"), { label: healthLabel, current: heroState.hitpoints, max: heroState.maxHitpoints });
 	if (heroState.attack)
-	{
-		var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(heroState.attack.type) + "[/font]";
-		if (heroState.attack.type == "Ranged")
-			// Show max attack range if ranged attack, also convert to tiles (4m per tile)
-			tooltip += "\n" + sprintf(
-				translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s"),
-				{
-					attackLabel: attackLabel,
-					details: damageTypeDetails(heroState.attack),
-					rangeLabel: "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]",
-					range: Math.round(heroState.attack.maxRange) + " [font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]",
-				}
-			);
-		else
-			tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: attackLabel, details: damageTypeDetails(heroState.attack) });
-	}
+		tooltip += "\n" + getAttackTooltip(heroState);
 
-	var armorLabel = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]";
-	tooltip += "\n" + sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: damageTypeDetails(heroState.armour) });
+	tooltip += "\n" + getArmorTooltip(heroState.armour);
 	tooltip += "\n" + template.tooltip;
 
 	heroButton.tooltip = tooltip;

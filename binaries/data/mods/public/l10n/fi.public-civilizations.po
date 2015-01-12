@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Ildradil <piggmatias@gmail.com>, 2013
+# Petri, 2014
 # Vorezard <garrappp@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-12-08 20:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2014-12-13 18:31+0000\n"
+"Last-Translator: Petri\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -44,13 +45,13 @@ msgstr "Laureionin kaivokset Atticassa tuottivat Ateenalaisille omaisuuden hopea
 msgid ""
 "Constructing a Theatron increases the territory expanse of all buildings by "
 "+20%."
-msgstr ""
+msgstr "Teathronin rakentaminen lisää alueen laajentumista +20% kaikilla rakennuksilla ."
 
 #: civs/athen.jsonCivBonuses[1].Name civs/hele.jsonCivBonuses[1].Name
 #: civs/mace.jsonCivBonuses[2].Name civs/spart.jsonCivBonuses[2].Name
 #: civs/theb.jsonCivBonuses[2].Name
 msgid "Hellenization"
-msgstr ""
+msgstr "Hellenization"
 
 #: civs/athen.jsonCivBonuses[1].History civs/hele.jsonCivBonuses[1].History
 #: civs/spart.jsonCivBonuses[2].History civs/theb.jsonCivBonuses[2].History
@@ -58,11 +59,11 @@ msgid ""
 "The Greeks were highly successful in Hellenising various foreigners. During "
 "the Hellenistic Age, Greek was the lingua franca of the Ancient World, "
 "spoken widely from Spain to India."
-msgstr ""
+msgstr "Kreikkalaiset olivat erittäin onnistuneet vaikuttamaan  kielellisesti eri ulkomaalaisiin. Kreikka oli Frankkien kieli Hellenistisellä kaudella Muinaisessa Maailmassa, jota puhuttiin yleisesti Espanjasta Intiaan saakka."
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr ""
+msgstr "Laivat rakennetaan 25% nopeammin."
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -76,7 +77,7 @@ msgid ""
 "city-states instituted the so-called Delian League in 478 B.C., whose "
 "purpose was to push the Persians out of the Aegean region. The allied states"
 " contributed ships and money, while the Athenians offered their entire navy."
-msgstr ""
+msgstr "Heti suurten Salamisin ja Mykaleen meritaisteluiden jälkeen Kreikan kaupunkivaltiot laittoivat vireille ns. Delian Liigan 478 eKr, jonka tarkoituksena oli työntää Persialaiset pois Egeanmeren alueelta. Liittoutuneet valtiot avustivat antamalla laivoja ja rahaa, kun Ateenalaiset tarjosivat heidän koko laivastonsa."
 
 #: civs/athen.jsonAINames[0] civs/athen.jsonFactions[0].Heroes[0].Name
 #: civs/hele.jsonFactions[0].Heroes[0].Name
@@ -141,11 +142,11 @@ msgstr "Demosthenes"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
-msgstr ""
+msgstr "Ateenalainen triremes voi kouluttaa merisotilaita (Epibastes Athenaikos)."
 
 #: civs/athen.jsonFactions[0].Technologies[0].Name
 msgid "Iphicratean Reforms"
-msgstr ""
+msgstr "Ifikrateen Uudistukset"
 
 #: civs/athen.jsonFactions[0].Technologies[1].Description
 msgid ""
@@ -155,7 +156,7 @@ msgstr "Kivimuureja voidaan rakentaa neutraaliin hallintoalueeseen. Rakennusaika
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr ""
+msgstr "Pitkät Muurit"
 
 #: civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -163,19 +164,19 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Ateenan pitkät muurit rakennettiin juonikkaan Themistokleen alaisuudessa ja ne ulottuivat 6 km päähän kaupungista Pireuksen sataman porteille asti. Tämä turvasi kaupungin reitin merelle ja esti kaupunkia joutumasta nälänhätään piirityksen aikana."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Pelaaja saa mahdollisuuden järjestää keihäällä aseistetut joukot Phalanx-muodostelmaan, joka tarjoaa enemmän hyökkäysvoimaa ja panssaria."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
 #: civs/spart.jsonCivBonuses[0].Name
 msgid "Othismos"
-msgstr ""
+msgstr "Othismos"
 
 #: civs/athen.jsonFactions[0].Technologies[2].History
 msgid ""
@@ -223,7 +224,7 @@ msgstr ""
 #: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
 #: civs/theb.jsonStructures[0].Name
 msgid "Theatron"
-msgstr ""
+msgstr "Theatron"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
 #: civs/theb.jsonStructures[0].Special
@@ -243,7 +244,7 @@ msgstr "Kreikan teatterit olivat paikkoja joissa Sofokleen ja Aeschyluksen ja mo
 
 #: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
 msgid "Gymnasion"
-msgstr ""
+msgstr "Gymnasion"
 
 #: civs/athen.jsonStructures[1].Special
 msgid ""
@@ -258,7 +259,7 @@ msgstr ""
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr ""
+msgstr "Prytaneion"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -281,7 +282,7 @@ msgstr ""
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Kelttiläiset"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description

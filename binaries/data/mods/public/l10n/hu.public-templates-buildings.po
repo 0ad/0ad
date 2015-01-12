@@ -5,13 +5,13 @@
 # Translators:
 # Nagy András <asd0707@freemail.hu>, 2014
 # ricsipontaz <ricsipontaz@googlemail.com>, 2014
-# Tibor Buzási <tib.buzasi@gmail.com>, 2014
+# Tibor Buzási, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-26 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-04 14:51+0000\n"
+"Last-Translator: Tibor Buzási\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -66,7 +66,7 @@ msgstr "Gyógyító aura"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr "Közeli egységek gyógyítása 1 HP ponttal másodpercenként."
+msgstr "Közeli egységek gyógyítása 1 HP-val másodpercenként."
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
@@ -251,7 +251,7 @@ msgstr "Kovács"
 msgid ""
 "Build upon a shoreline to construct naval vessels and to open sea trade. "
 "Research naval improvements."
-msgstr "A partvonalra építhető hadihajók építésére és a tengeri kereskedelem megnyitására. Hatitengerészeti fejlesztések kutatása"
+msgstr "A partvonalra építhető hadihajók építésére és a tengeri kereskedelem megnyitására. Hatitengerészeti fejlesztések kutatása."
 
 #: simulation/templates/template_structure_military_dock.xml:27
 #: simulation/templates/template_structure_military_dock.xml:24
@@ -293,7 +293,7 @@ msgstr "Erőforrás"
 msgid ""
 "Raise herd animals for food. Task domestic animals here to gain a trickle of"
 " food or other bonus (Not yet implemented)."
-msgstr "Csordaállatok tenyésztése élelemért. Állatok beosztása ide csörgedező élelem erőforrás vagy más bónusz szerzésére (nem implementált)."
+msgstr "Csordaállatok tenyésztése élelemért. Háziállatok beosztása ide csörgedező élelem erőforrás vagy más bónusz szerzésére (nem implementált)."
 
 #: simulation/templates/template_structure_resource_corral.xml:28
 #: simulation/templates/template_structure_resource_corral.xml:26
@@ -307,7 +307,7 @@ msgstr "Mező"
 
 #: simulation/templates/template_structure_resource_field.xml:28
 msgid "Harvest vegetables for food. Max gatherers: 5."
-msgstr "Szüretelj zöldségeket további Élelemért. Maximum 5 gyűjtögető."
+msgstr "Szüretelj zöldségeket élelemért. Max. gyűjtögető: 5."
 
 #: simulation/templates/template_structure_special.xml:42
 #: simulation/templates/structures/brit_kennel.xml:32
@@ -405,6 +405,7 @@ msgid "Gymnasium"
 msgstr "Gymnasium"
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
+#: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásieon"
 msgstr "Gymnásieon"
 
@@ -542,7 +543,7 @@ msgstr "Neṓs Parthenos"
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Dicsőséget hoz a civilizációd számára és nagy földterületeket ad a birodalmadhoz. Akár 30 egység elszállásolása a gyors gyógyításhoz."
+msgstr "Dicsőséget hoz a civilizációd számára és nagy földterületeket ad a birodalmadhoz. Akár 30 egység elszállásolása a gyors gyógyításért."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/celt_barracks.xml:15
@@ -658,7 +659,7 @@ msgstr "Melonas"
 msgid ""
 "Increase nearby farming output +25%. (Currently, a special technology can be"
 " researched to serve this function)"
-msgstr "Növeli a környék termesztési jövedelmét +25%-kal. (Jelenleg egy speciális technológia szolgálja ezt a célt.)"
+msgstr "Növeli a környék termesztési jövedelmét +25%-kal. (Jelenleg egy speciális technológiát lehet kifejleszteni erre a célra.)"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/celt_storehouse.xml:8
@@ -828,7 +829,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Papnők képzése a csapatok gyógyítására. \"Szent Csapat\" lándzsások képzése. Akár 20 egység elszállásolása a gyors gyógyításhoz."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -903,10 +904,6 @@ msgstr "Sidirourgeíon"
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíchisma"
 msgstr "Teíchisma"
-
-#: simulation/templates/structures/hele_gymnasion.xml:22
-msgid "Gymnásion"
-msgstr "Gymnásion"
 
 #: simulation/templates/structures/hele_prytaneion.xml:23
 #: simulation/templates/structures/spart_gerousia.xml:23
@@ -1004,7 +1001,7 @@ msgstr "Cancho Roano"
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Bajnokok és Hősök képzése. Akár 20 katona elszállásolása a szilárd védelem érdekében."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1176,7 +1173,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "\"Satrapa sarc\": Csörgedező élelem, faanyag, kő és fém erőforrások szerzése. Perzsa hősök és \"halhatatlan\" kísérőik képzése. Építési határ: 1."
+msgstr "\"Satrapa sarc\": Csörgedező élelem, faanyag, kő és fém erőforrások szerzése. Perzsa hősök és \"halhatatlan\" kísérőik képzése. Max. építhető: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1405,7 +1402,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Ez a ptolemaidai kiegészítő épület, hasonló a városközpontokhoz más frakcióknál. Gyengébb és kisebb a területi befolyása, de olcsóbb és gyorsabban épül.\n- különböző nemzetiségű telepes katonák képzése\n- min. távolság más katonai létesítményektől: 120 méter."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1558,7 +1555,7 @@ msgstr "Aedes Martis"
 
 #: simulation/templates/structures/rome_temple_mars.xml:15
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
-msgstr "Gyógyítók kiképzése. Maximum 30 egység elszállásolása és gyors gyógyítása."
+msgstr "Gyógyítók kiképzése. Akár 30 egység elszállásolása a gyors gyógyításért."
 
 #: simulation/templates/structures/rome_temple_vesta.xml:12
 msgid "Temple of Vesta"
@@ -1572,7 +1569,7 @@ msgstr "Aedes Vestae"
 msgid ""
 "Build this temple to greatly increase the loyalty of your buildings and "
 "female-citizens (helps prevent their capture)."
-msgstr "Építsd meg ezt a templomot, hogy megemeld az épületeid és női lakosaid hűségét (segít megelőzni az elfogásukat)."
+msgstr "Építsd meg ezt a templomot, hogy megemeld az épületeid és női lakosaid hűségét (segít megelőzni az elfogásukat)!"
 
 #: simulation/templates/structures/rome_tent.xml:29
 msgid "Tent"
@@ -1608,7 +1605,7 @@ msgstr "Murus Latericius"
 
 #: simulation/templates/structures/rome_wonder.xml:17
 msgid "Aedes Iovis Optimi Maximi"
-msgstr "Aedes Iovis Optimi Maximi"
+msgstr "Iuppiter Optimus Maximus temploma"
 
 #: simulation/templates/structures/sele_barracks.xml:18
 msgid "Stratones"
@@ -1633,7 +1630,7 @@ msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Ez a Szeleukida kiegészítő épület, hasonló a városközpontokhoz más frakcióknál. Gyengébb és kisebb a területi befolyása, de olcsóbb és gyorsabban épül.\n- különböző nemzetiségű telepes katonák képzése\n- min. távolság más katonai kolóniáktól: 120 méter."
+msgstr "Ez a szeleukidai kiegészítő épület, hasonló a városközpontokhoz más frakcióknál. Gyengébb és kisebb a területi befolyása, de olcsóbb és gyorsabban épül.\n- különböző nemzetiségű telepes katonák képzése\n- min. távolság más katonai kolóniáktól: 120 méter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"
@@ -1653,7 +1650,7 @@ msgstr "Spártai Szenátus"
 
 #: simulation/templates/structures/spart_gerousia.xml:22
 msgid "Gerousia"
-msgstr "Gerousia"
+msgstr "Gerúszia"
 
 #: simulation/templates/structures/spart_syssiton.xml:21
 msgid "Military Mess Hall"
@@ -1669,4 +1666,4 @@ msgstr "Spártai hősök és hopliták kiképzése."
 
 #: simulation/templates/structures/spart_temple.xml:9
 msgid "Asklepeion"
-msgstr "Asklepeion"
+msgstr "Aszklepion"

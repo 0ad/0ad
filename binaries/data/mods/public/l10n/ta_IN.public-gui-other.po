@@ -5,12 +5,13 @@
 # Translators:
 # Navaneethasankar K, 2014
 # Vijayachander <vijaithunder@gmail.com>, 2014
+# Vinod V <vinod.vv@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-25 05:40+0000\n"
+"Last-Translator: Vinod V <vinod.vv@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/projects/p/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,38 +19,38 @@ msgstr ""
 "Language: ta_IN\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s விளையாட்டு"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
 msgstr[0] "சமூக நாகரீக வெகுமதி"
 msgstr[1] "சமூக நாகரீக வெகுமதிகள்"
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
 msgstr[0] "அணி வெகுமதி"
 msgstr[1] "அணி வெகுமதிகள்"
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "சிறப்பு தொழில்நுட்பங்கள்"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
 msgstr[0] "சிறப்பு கட்டிடம்"
 msgstr[1] "சிறப்பு கட்டிடங்கள்"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "நாயகர்கள்"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "%(civilization)s ன் வரலாறு"
@@ -107,11 +108,11 @@ msgstr "தெரியாத காரணம்"
 
 #: gui/common/network.js:7
 msgid "Unexpected shutdown"
-msgstr ""
+msgstr "எதிர்பாராத பணிநிறுத்தம்"
 
 #: gui/common/network.js:8
 msgid "Incorrect network protocol version"
-msgstr ""
+msgstr "தவறான நெட்வொர்க் நெறிமுறை பதிப்பு"
 
 #: gui/common/network.js:9
 msgid "Game has already started"
@@ -179,7 +180,7 @@ msgstr "சாளர முறை"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr "சாளர முறையில் கி.பி 0 திறக்கப்பட்டது"
+msgstr "சாளர முறையில் கி.பி 0 திறக்கவும்"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
@@ -197,7 +198,7 @@ msgstr "வரவேற்பு திரையை முடக்கு"
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "இந்த திரையை முடக்கினால், நீங்கள் முக்கியமான அறிவிப்புகள் இழக்கக் கூடும்.\nஇருப்பினும் முதன்மை மெனு மூலம் இதனை பெறலாம்."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
@@ -492,7 +493,7 @@ msgid "Error"
 msgstr "பிழை"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -821,7 +822,7 @@ msgstr "பிழை அறிவிப்பு"
 
 #: gui/pregame/mainmenu.xml:(caption):565
 msgid "WILDFIRE GAMES"
-msgstr "வைட்பையர் கேம்ஸ்"
+msgstr "வைல்ட்பையர் கேம்ஸ்"
 
 #: gui/pregame/mainmenu.xml:(tooltip):156
 msgid "Click here to start a new single player game."
@@ -829,7 +830,7 @@ msgstr "தனி நபர் ஆட்டத்தைத்துவக்க 
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
@@ -1425,7 +1426,7 @@ msgstr ""
 
 #: gui/text/tips/palisades.txt:2
 msgid "- A quick, cheap wooden wall available to all factions."
-msgstr ""
+msgstr "- அனைத்து பிரிவுகளில் கிடைக்கும் ஒரு விரைவான, மலிவான மர சுவர்."
 
 #: gui/text/tips/palisades.txt:4
 msgid "- Most factions have access to them in Village Phase."
@@ -1439,7 +1440,7 @@ msgstr ""
 
 #: gui/text/tips/pericles.txt:1
 msgid "PERICLES"
-msgstr ""
+msgstr "பெரிகிள்ஸ்"
 
 #: gui/text/tips/pericles.txt:2
 msgid "- The foremost Athenian politician of the 5th century BCE."
@@ -1455,7 +1456,7 @@ msgstr ""
 
 #: gui/text/tips/persian_architecture.txt:1
 msgid "PERSIAN ARCHITECTURE"
-msgstr ""
+msgstr "பாரசீக கட்டிடக்கலை"
 
 #: gui/text/tips/persian_architecture.txt:2
 msgid "- Special Technology for the Persians."

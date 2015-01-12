@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-23 11:41+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -424,10 +424,10 @@ msgstr "雪片海岩"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "重要通知：电脑玩家在此地图无法运作。\n\n保护好您的基地不被无尽的敌人所消灭。使用您的女性市民来采集资源。最后一个存活的玩家即为赢家。"
+msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -528,8 +528,8 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "赶在您的敌人前收集宝藏！可以让您更轻鬆的获胜！"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
-msgstr "您敌人的金库被填的满满的，您输了！"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -552,14 +552,14 @@ msgstr "您收集了一份宝藏！"
 msgid "Defeat your enemy to win!"
 msgstr "打败您的敌人以获得胜利！"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "在希腊阿卡迪亚的春日时分。若春雨下的不够，一年之中其馀的时间就只能见到干枯的河床，分隔两个敌对部落的土地。\n\n玩家于资源丰富的山区的任一侧开始游戏。额外的起始建筑物协助玩家快速开始建造他们新的殖民地。"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -627,7 +627,7 @@ msgstr "在希腊阿卡迪亚的春日时分。若春雨下的不够，一年之
 msgid "Player 1"
 msgstr "玩家1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -693,9 +693,9 @@ msgstr "玩家1"
 msgid "Player 2"
 msgstr "玩家2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "阿卡狄亚2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

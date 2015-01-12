@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Arthur.Tsu <viperasi@gmail.com>, 2015
 # junxu <twtccw@gmail.com>, 2014
 # liulitchi <xingzuo88@qq.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-11-18 14:23+0000\n"
-"Last-Translator: liulitchi <xingzuo88@qq.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-08 05:00+0000\n"
+"Last-Translator: Arthur.Tsu <viperasi@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/0ad/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -404,6 +405,7 @@ msgid "Gymnasium"
 msgstr ""
 
 #: simulation/templates/structures/athen_gymnasion.xml:21
+#: simulation/templates/structures/hele_gymnasion.xml:22
 msgid "Gymnásieon"
 msgstr ""
 
@@ -433,12 +435,12 @@ msgstr ""
 #: simulation/templates/structures/mace_outpost.xml:5
 #: simulation/templates/structures/spart_outpost.xml:5
 msgid "Greek Outpost"
-msgstr ""
+msgstr "希腊前哨"
 
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
-msgstr ""
+msgstr "评议大厅"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22
@@ -468,7 +470,7 @@ msgstr ""
 #: simulation/templates/structures/spart_theatron.xml:32
 #: simulation/templates/structures/theb_theatron.xml:32
 msgid "Greek Theater"
-msgstr ""
+msgstr "希腊剧院"
 
 #: simulation/templates/structures/athen_theatron.xml:33
 #: simulation/templates/structures/hele_theatron.xml:33
@@ -486,7 +488,7 @@ msgstr ""
 msgid ""
 "Exellinismós (Hellenization): +20% territory influence for all buildings "
 "while the Theatron exists."
-msgstr ""
+msgstr "Exellinismós(希腊):当剧场存在时,+20% 所有建筑物影响力"
 
 #: simulation/templates/structures/athen_wall_gate.xml:9
 #: simulation/templates/structures/hele_wall_gate.xml:9
@@ -541,7 +543,7 @@ msgstr ""
 msgid ""
 "Bring glory to your civilization and add large tracts of land to your "
 "empire. Garrison up to 30 units to heal them at a quick rate."
-msgstr ""
+msgstr "给你的文明带来荣耀,并给你的王国带来大片土地.驻扎并快速治疗30个单位."
 
 #: simulation/templates/structures/brit_barracks.xml:15
 #: simulation/templates/structures/celt_barracks.xml:15
@@ -901,10 +903,6 @@ msgstr ""
 #: simulation/templates/structures/mace_fortress.xml:15
 #: simulation/templates/structures/spart_fortress.xml:9
 msgid "Teíchisma"
-msgstr ""
-
-#: simulation/templates/structures/hele_gymnasion.xml:22
-msgid "Gymnásion"
 msgstr ""
 
 #: simulation/templates/structures/hele_prytaneion.xml:23

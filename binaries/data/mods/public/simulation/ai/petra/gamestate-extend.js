@@ -1,7 +1,7 @@
 var PETRA = function(m)
 {
 
-// Some functions that could be part of the gamestate but are Aegis specific.
+// Some functions that could be part of the gamestate.
 
 // The next three are to register that we assigned a gatherer to a resource this turn.
 // expects an entity

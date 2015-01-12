@@ -4,6 +4,7 @@
 # 
 # Translators:
 # Daniel Bautista <danielbautista@live.com>, 2014
+# Joel Toledo Montero <joel.jtm@gmail.com>, 2014
 # Jose Nathanael Romero Nieto <grupo103.romero.nathan@gmail.com>, 2014
 # Naresu Tenshi <naresutenshi@openmailbox.org>, 2014
 # Naresu Tenshi <naresutenshi@openmailbox.org>, 2014
@@ -11,9 +12,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-21 22:21+0000\n"
-"Last-Translator: Jose Nathanael Romero Nieto <grupo103.romero.nathan@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-19 22:40+0000\n"
+"Last-Translator: Joel Toledo Montero <joel.jtm@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/projects/p/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Alcance básico: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Bonificación de alcance promedio: %(range)s"
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "¡No se puede construir el muro aquí!"
 
@@ -46,7 +47,7 @@ msgstr "Continuar"
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:(caption):19
 msgid "Yes"
-msgstr "Sí"
+msgstr "Si"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:(caption):24
@@ -55,7 +56,7 @@ msgstr "No"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr "¿Esta seguro de renunciar?"
+msgstr "¿Estás seguro de rendirte?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
@@ -64,7 +65,7 @@ msgstr "Confirmación"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr "¿Estás seguro de querer salir? Abandonar desconectará a todos los otros jugadores."
+msgstr "¿Estás seguro de querer salir? Si abandonas, se desconectará a todos los otros jugadores."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
@@ -76,7 +77,7 @@ msgstr "Volveré"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr "Renuncio"
+msgstr "Me rindo"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
@@ -88,7 +89,7 @@ msgstr "¿Destruir todo lo seleccionado?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
-msgstr "Eleminar"
+msgstr "Eliminar"
 
 #: gui/session/menu.js:284
 msgctxt "team"
@@ -103,7 +104,7 @@ msgstr "Aliado"
 msgid "Neutral"
 msgstr "Neutral"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Enemigo"
@@ -235,7 +236,7 @@ msgstr "El Desarrollador de Superposición se cerró."
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Tributar %(resourceAmount)s de %(resourceType)s a %(playerName)s. Presiona Shift-click para tributar %(greaterAmount)s."
 
 #: gui/session/messages.js:202
 #, javascript-format
@@ -319,12 +320,17 @@ msgstr "%(player)s ahora esta en guerra contigo."
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s ahora es neutral contigo."
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s y %(lastAmount)s"
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -332,58 +338,58 @@ msgstr "%(previousAmounts)s y %(lastAmount)s"
 msgid ", "
 msgstr ", "
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s te ha enviado %(amounts)s."
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Has sido atacado por %(attacker)s!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Equipo"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr "Privado"
 
 #: gui/session/selection_details.js:32
 #, javascript-format
 msgid "%(genericName)s — Packed"
-msgstr ""
+msgstr "%(genericName)s — Empacado"
 
 #: gui/session/selection_details.js:44
 #, javascript-format
 msgid "\\[OFFLINE] %(player)s"
-msgstr ""
+msgstr "\\[DESCONECTADO] %(player)s"
 
 #: gui/session/selection_details.js:50
 #, javascript-format
@@ -427,7 +433,7 @@ msgstr "%(resource)s:"
 #: gui/session/selection_details.js:164
 #, javascript-format
 msgid "Gain: %(amount)s"
-msgstr "Gain: %(amount)s"
+msgstr "Gana: %(amount)s"
 
 #: gui/session/selection_details.js:173
 #, javascript-format
@@ -438,12 +444,12 @@ msgstr "Numero de constructores.\nAsignar a otro a esta construcción la acelera
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Recolectores actuales/máx"
 
 #: gui/session/selection_details.js:196
 #, javascript-format
 msgid "(%(genericName)s)"
-msgstr ""
+msgstr "(%(genericName)s)"
 
 #: gui/session/selection_details.js:226 gui/session/selection_panels.js:973
 #: gui/session/session.js:637
@@ -458,11 +464,11 @@ msgstr ""
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Intervalo:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Tasa:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:629
 #: gui/session/utility_functions.js:303
@@ -472,7 +478,7 @@ msgstr "Alcance:"
 #: gui/session/selection_details.js:251 gui/session/session.js:630
 #: gui/session/utility_functions.js:304
 msgid "meters"
-msgstr ""
+msgstr "metros"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, javascript-format
@@ -526,7 +532,7 @@ msgstr "Descargar %(name)s"
 
 #: gui/session/selection_panels.js:330
 msgid "Single-click to unload 1. Shift-click to unload all of this type."
-msgstr ""
+msgstr "Clic sencillo para descargar 1. Shift+clic para descargar todos los de este tipo."
 
 #: gui/session/selection_panels.js:397
 msgid "Lock Gate"
@@ -606,12 +612,12 @@ msgstr "Cantidad actual: %(count)s, Del limite: %(limit)s."
 #: gui/session/selection_panels_helpers.js:76
 #, javascript-format
 msgid "%(changer)s enlarges the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s mejora el límite con %(change)s."
 
 #: gui/session/selection_panels_helpers.js:78
 #, javascript-format
 msgid "%(changer)s lessens the limit with %(change)s."
-msgstr ""
+msgstr "%(changer)s disminuye el limite con %(change)s."
 
 #: gui/session/selection_panels_helpers.js:105
 #, javascript-format
@@ -620,7 +626,7 @@ msgstr ""
 
 #: gui/session/selection_panels_helpers.js:114
 msgid "Shift-click"
-msgstr "Shift-click "
+msgstr "Shift+clic"
 
 #: gui/session/selection_panels_helpers.js:123
 #, javascript-format
@@ -639,7 +645,7 @@ msgstr "%(action)s para entrenar %(number)s."
 
 #: gui/session/session.js:19
 msgid "You"
-msgstr "Tu"
+msgstr "Tú"
 
 #: gui/session/session.js:170
 msgid "Gaia"
@@ -667,11 +673,11 @@ msgstr "Has abandonado el juego."
 
 #: gui/session/session.js:468
 msgid "OK"
-msgstr "OK"
+msgstr "Aceptar"
 
 #: gui/session/session.js:470
 msgid "Press OK to continue"
-msgstr "Presiona OK para continuar"
+msgstr "Presiona Aceptar para continuar"
 
 #: gui/session/session.js:476
 msgid "Do you want to quit?"
@@ -793,7 +799,7 @@ msgstr "Quitar la guardia."
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
-msgstr ""
+msgstr "Selecciona los bienes a comerciar"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
@@ -979,7 +985,7 @@ msgstr "%(gain)s (%(player)s)"
 
 #: gui/session/utility_functions.js:610
 msgid "you"
-msgstr "Usted"
+msgstr "tú"
 
 #: gui/session/utility_functions.js:616 gui/session/utility_functions.js:621
 #, javascript-format
@@ -1236,7 +1242,7 @@ msgstr "Controla todas las unidades"
 
 #: gui/session/session.xml:(caption):63
 msgid "Change perspective"
-msgstr ""
+msgstr "Cambiar perspectiva"
 
 #: gui/session/session.xml:(caption):70
 msgid "Display selection state"
@@ -1276,7 +1282,7 @@ msgstr "Activar Time Warp"
 
 #: gui/session/session.xml:(caption):142
 msgid "Promote selected units"
-msgstr ""
+msgstr "Promover unidades seleccionadas"
 
 #: gui/session/session.xml:(caption):174
 msgid "Game Paused"
@@ -1320,7 +1326,7 @@ msgid ""
 "Select one goods as origin of the changes, then use the arrows of the target"
 " goods to make the changes (using Shift to select will put the selected "
 "resource to 100%)."
-msgstr ""
+msgstr "Selecciona un recurso como origen de los intercambios, después usa las flechas del recurso objetivo para realizar los intercambios (al presionar Shift para seleccionar, se establecerá el recurso al 100%)"
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"

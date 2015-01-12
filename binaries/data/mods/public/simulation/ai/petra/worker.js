@@ -678,21 +678,21 @@ m.Worker.prototype.startFishing = function(gameState)
 
 m.Worker.prototype.gatherNearestField = function(gameState, baseID)
 {
-	var self = this;
 	var ownFields = gameState.getOwnEntitiesByType(gameState.applyCiv("structures/{civ}_field"), true).filter(API3.Filters.byMetadata(PlayerID, "base", baseID));
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
 
-	ownFields.forEach(function (field) {
+	for (var field of ownFields.values())
+	{
 		if (m.IsSupplyFull(gameState, field) === true)
-			return;
-		var dist = API3.SquareVectorDistance(field.position(), self.ent.position());
+			continue;
+		var dist = API3.SquareVectorDistance(field.position(), this.ent.position());
 		if (dist < bestFarmDist)
 		{
 			bestFarmEnt = field;
 			bestFarmDist = dist;
 		}
-	});
+	}
 	if (bestFarmEnt)
 	{
 		m.AddTCGatherer(gameState, bestFarmEnt.id());
@@ -712,18 +712,19 @@ m.Worker.prototype.buildAnyField = function(gameState, baseID)
 	var bestFarmEnt = false;
 	var bestFarmDist = 10000000;
 	var pos = this.ent.position();
-	baseFoundations.forEach(function (found) {
+	for (var found of baseFoundations.values())
+	{
 		if (!found.hasClass("Field"))
-			return;
+			continue;
 		var current = found.getBuildersNb();
 		if (current === undefined || current >= maxGatherers)
-			return;
+			continue;
 		var dist = API3.SquareVectorDistance(found.position(), pos);
 		if (dist > bestFarmDist)
-			return;
+			continue;
 		bestFarmEnt = found;
 		bestFarmDist = dist;
-	});
+	}
 	return bestFarmEnt;
 };
 

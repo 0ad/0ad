@@ -5,14 +5,16 @@
 # Translators:
 # Majid Al-Dharrab, 2014
 # mustapha ali abdulkarim <baghdadhost@gmail.com>, 2014
+# Safa Alfulaij <safa1996alfulaij@gmail.com>, 2014
 # slimkhan, 2014
 # Tux-Tn <sarhanaissi@gmail.com>, 2013
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-14 16:31+0000\n"
+"Last-Translator: صفا الفليج <safaalfulaij@hotmail.com>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/0ad/language/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,11 +25,11 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:10
 msgctxt "ai"
 msgid "None"
-msgstr "لا شيء"
+msgstr "بلا"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr "سيعطَّل لاعب الحاسوب لهذا اللاعب."
+msgstr "سيُعطَّل الذّكاء الاصطناعيّ لهذا اللاعب."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -38,7 +40,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "سهل جدًّا"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -48,7 +50,7 @@ msgstr "سهل"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "متوسط"
+msgstr "متوسّط"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -58,38 +60,38 @@ msgstr "صعب"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr "صعب جدًا"
+msgstr "صعب جدًّا"
 
 #. Translation: Type of victory condition.
 #: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
-msgstr ""
+msgstr "غير محدودة"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "منخفضة جدًّا"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
-msgstr "منخفض"
+msgstr "منخفضة"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "متوسط"
+msgstr "متوسّطة"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
-msgstr "مرتفع"
+msgstr "مرتفعة"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "جدا مرتفع"
+msgstr "مرتفعة جدًّا"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -98,35 +100,35 @@ msgstr "قتال الموت"
 
 #: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
-msgstr "الرجوع إلى القائمة الرئيسية."
+msgstr "ارجع إلى القائمة الرّئيسيّة."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "ارجع إلى الرَّدهة."
 
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr "مناوش"
+msgstr "مناوشة"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
 #: gui/gamesetup/gamesetup.js:1260
 msgctxt "map"
 msgid "Random"
-msgstr "عشوائي"
+msgstr "عشوائيّ"
 
 #: gui/gamesetup/gamesetup.js:139
 msgid "Scenario"
-msgstr "القصة"
+msgstr "سيناريو"
 
 #: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
 #: gui/gamesetup/gamesetup.js:1243
 msgid "Default"
-msgstr ""
+msgstr "الافتراضيّ"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
-msgstr ""
+msgstr "الخرائط البحريّة"
 
 #: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
@@ -134,17 +136,17 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
-msgstr ""
+msgstr "كلّ الخرائط"
 
 #: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
-msgstr "لا شيء"
+msgstr "بلا"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
-msgstr "عشوائي"
+msgstr "عشوائيّة"
 
 #: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
 msgid "You"
@@ -153,7 +155,7 @@ msgstr "أنت"
 #: gui/gamesetup/gamesetup.js:981
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
@@ -170,14 +172,14 @@ msgid "Explored Map:"
 msgstr "استكشاف خريطة:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
-msgstr "شرط الفوز:"
+msgstr "شرط النّصر:"
 
 #: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
 #: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
-msgstr "الفرق ثابتة:"
+msgstr "الفِرَق مُقفلَة:"
 
 #: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
@@ -197,16 +199,16 @@ msgstr "لا"
 
 #: gui/gamesetup/gamesetup.js:1261
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "يختار خريطة عشوائيًّا من القائمة"
 
 #: gui/gamesetup/gamesetup.js:1268
 msgid "Sorry, no description available."
-msgstr "عذرا، لا يوجد وصف متاح."
+msgstr "آسفون، لا وصف متوفّر."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
@@ -214,113 +216,113 @@ msgstr[3] ""
 msgstr[4] ""
 msgstr[5] ""
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
-msgstr ""
+msgstr "يحمّل..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "حاسوب: %(ai)s"
+msgstr "الذّكاء الاصطناعيّ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
-msgstr "غير معين"
+msgstr "غير مُعيَّن"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "انضمّ %(username)s"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "غادر %(username)s"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr "* %(username)s مستعد !"
-
-#: gui/gamesetup/gamesetup.js:1632
-#, javascript-format
-msgid "* %(username)s is not ready."
-msgstr "* %(username)s غير مستعد."
+msgstr "* %(username)s جاهز!"
 
 #: gui/gamesetup/gamesetup.js:1636
+#, javascript-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s غير جاهز."
+
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
-msgstr "تم تغيير إعدادات اللعبة ."
+msgstr "تغيَّرت إعدادات اللعبة"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
-msgstr "انا لست مستعدا"
+msgstr "لستُ جاهزًا"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
-msgstr "الدولة التي لم تكن على استعداد."
+msgstr "حالة كونك غير جاهز للّعب."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
-msgstr "انا مستعد"
+msgstr "أنا جاهز!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
-msgstr "الدولة التي كنت على استعداد للعب!"
+msgstr "حالة كونك جاهز للّعب!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "حالة كونك قابل بالإعدادات الحالّيّة وجاهز للّعب."
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
-msgstr "لا شيء"
+msgstr "بلا"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "لعبة %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "يتّصل بالخادوم..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "رسالة شبكيّة: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "يسجّل مع الخادوم..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "اللعبة بدأت بالفعل، يعيد الانضمام..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "اسم اللعبة مُستخدَم بالفعل."
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "لعبة %(playername)s"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
@@ -328,7 +330,7 @@ msgstr "السيطرة"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "اهزم كلّ الخصوم"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -341,24 +343,24 @@ msgstr ""
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "يحمّل \"%(map)s\""
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "يولّد \"%(map)s\""
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
-msgstr "ضبط لاعب الحاسوب"
+msgstr "ضبط الذّكاء الاصطناعيّ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "لاعب الذّكاء الاصطناعيّ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "صعوبة الذّكاء الاصطناعيّ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
@@ -372,15 +374,15 @@ msgstr "حسنًا"
 
 #: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
-msgstr "إعداد المباراة"
+msgstr "إعداد المبارزة"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading"
-msgstr "يحمل"
+msgstr "يحمّل"
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "يحمّل بيانات الخريطة. فضلًا انتظر..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
@@ -388,7 +390,7 @@ msgstr "اسم اللاعب"
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
-msgstr "موضع اللّاعب"
+msgstr "موضع اللاعب"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
@@ -404,32 +406,32 @@ msgstr "نوع الخريطة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):103
 msgid "Map Filter:"
-msgstr "مرشح الخرائط:"
+msgstr "مرشّح الخرائط:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):106
 msgid "Select Map:"
-msgstr "اختر الخريطة:"
+msgstr "اختر خريطة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
-msgstr "عدد اللاعبين في المسابقة:"
+msgstr "عدد اللاعبين:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
-msgstr "أرسل"
+msgstr "أرسِل"
 
 #: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Start game!"
-msgstr "ابدأ اللعب!"
+msgstr "ابدأ اللعبة!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
-msgstr "رجوع"
+msgstr "ارجع"
 
 #: gui/gamesetup/gamesetup.xml:(caption):256
 #: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
-msgstr "خيارت أخرى"
+msgstr "خيارات أكثر"
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
@@ -437,19 +439,19 @@ msgstr "سرعة اللعبة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):293
 msgid "Population Cap:"
-msgstr "حد السكان:"
+msgstr "ذروة السكّانيّة:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):303
 msgid "Starting Resources:"
-msgstr "الموارد المبدئية:"
+msgstr "موارد البدء:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Cheats:"
-msgstr "الغش متاح:"
+msgstr "الغشّ:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
-msgstr "تصنيف اللعبة:"
+msgstr "لعبة مُقيَّمة:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):56
 msgid "View civilization info"
@@ -457,11 +459,11 @@ msgstr "اعرض معلومات الحضارة"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):71
 msgid "Select player."
-msgstr "اختر لاعب."
+msgstr "اختر لاعبًا."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid "Configure AI settings."
-msgstr "اضبط إعدادات لاعب الحاسوب."
+msgstr "اضبط إعدادات الذّكاء الاصطناعيّ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):84
 msgid "Select player's civilization."
@@ -473,15 +475,15 @@ msgstr "اختر فريق اللاعب."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):129
 msgid "Select a map type."
-msgstr "اختر نوع الخريطة."
+msgstr "اختر نوع خريطة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):138
 msgid "Select a map filter."
-msgstr "اختر مرشحُا للخرائط."
+msgstr "اختر مرشّح خرائط."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):148
 msgid "Select a map to play on."
-msgstr "اختر خريطة لتلعب فيها."
+msgstr "اختر خريطة للّعب عليها."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):162
 msgid "Select number of players."
@@ -489,15 +491,15 @@ msgstr "اختر عدد اللاعبين."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):167
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "اختر حجم الخريطة. (قد تقلل الأحجام الكبيرة من كفاءة الأداء)"
+msgstr "اختر حجم الخريطة. (الخرائط الكبيرة قد تُنقِص من الأداء.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):217
 msgid "Start a new game with the current settings."
-msgstr "ابدأ لعبة جديدة بالإعدادات الحالية."
+msgstr "ابدأ لعبة جديدة بالإعدادات الحالّيّة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"
-msgstr "شاهد المزيد من خيارات اللعبة"
+msgstr "عيّن خيارات أكثر للّعبة"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):277
 msgid "Select game speed."
@@ -505,15 +507,15 @@ msgstr "اختر سرعة اللعبة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):287
 msgid "Select victory condition."
-msgstr "اختر شرطًا للفوز."
+msgstr "اختر شرط النصر."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):297
 msgid "Select population cap."
-msgstr "اختر الحد الأقصى لتعداد السكان."
+msgstr "اختر ذروة سكّانيّة."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):307
 msgid "Select the game's starting resources."
-msgstr "اختر الموارد المبدئية في اللعبة."
+msgstr "اختر موارد بدء اللعبة."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
@@ -529,27 +531,27 @@ msgstr "تبديل استكشاف الخريطة (انظر غايا والمبا
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
-msgstr "اختر إن كنت تريد تثبيت الفرق."
+msgstr "بدّل قفل الفِرَق."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):347
 msgid "Toggle the usability of cheats."
-msgstr "اختر إن كنت تريد إتاحة استخدام رموز الغش."
+msgstr "بدّل قابليّة استخدام الغشّ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr "تبديل إذا كان سيتم تصنيف هذه اللعبة لـ المتصدرين."
+msgstr "بدّل إن كانت ستُقيَّم اللعبة للوحة المتصدّرين."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Close more game options window"
-msgstr "أغلق نافذة الخيارات الأخرى"
+msgstr "أغلق نافذة خيارات أكثر للّعبة"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):19
 msgid "Multiplayer"
-msgstr "لعب جماعي"
+msgstr "متعدّدة اللاعبين"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):25
 msgid "Joining an existing game."
-msgstr "الانضمام للعبة موجودة"
+msgstr "انضمّ إلى لعبة موجودة."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):29
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
@@ -558,16 +560,16 @@ msgstr "اسم اللاعب:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
-msgstr "اسم الخادوم المستضيف أو عنوان IP:"
+msgstr "اسم مضيف الخادوم أو م‌إ:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):49
 #: gui/gamesetup/gamesetup_mp.xml:(caption):91
 msgid "Continue"
-msgstr "استمر"
+msgstr "تابع"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):62
 msgid "Set up your server to host."
-msgstr "اضبط خادومك للاستضافة."
+msgstr "اضبط خادومك المضيف."
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
@@ -589,7 +591,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"أن تكون ليس كأن تبدو.\" - إسخيلوس، \"سبعة ضدّ طيبة\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -605,7 +607,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"الوقت وهو يَكْبُر يُعلِّم كلّ شيء.\" - إسخيلوس، \"برومثيوس في الأغلال\""
 
 #: gui/text/quotes.txt:7
 msgid ""
@@ -633,11 +635,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"
-msgstr ""
+msgstr "\"أيَّ عذر سيخدم الطّاغية.\" - إيسوب"
 
 #: gui/text/quotes.txt:12
 msgid "\"Better be wise by the misfortunes of others than by your own.\" - Aesop"
-msgstr ""
+msgstr "\"أن تكون حكيمًا من مصائب غيرك خيرًا من مصائبك.\" - إيسوب"
 
 #: gui/text/quotes.txt:13
 msgid "\"Familiarity breeds contempt; acquaintance softens prejudices.\" - Aesop"
@@ -645,15 +647,15 @@ msgstr ""
 
 #: gui/text/quotes.txt:14
 msgid "\"It is easy to be brave from a safe distance.\" - Aesop"
-msgstr ""
+msgstr "\"من السهل أن تكون شجاعًا من مسافة آمنة.\" - إيسوب"
 
 #: gui/text/quotes.txt:15
 msgid "\"It is thrifty to prepare today for the wants of tomorrow.\" - Aesop"
-msgstr ""
+msgstr "\"من الاقتصاد تجهيز اليوم لمتطلّبات الغدّ.\" - إيسوب"
 
 #: gui/text/quotes.txt:16
 msgid "\"It is not only fine feathers that make fine birds.\" - Aesop"
-msgstr ""
+msgstr "\"ليس الريش الجيّد ما يصنع الطائر الجيّد.\" - إيسوب"
 
 #: gui/text/quotes.txt:17
 msgid ""
@@ -663,11 +665,11 @@ msgstr ""
 
 #: gui/text/quotes.txt:18
 msgid "\"Persuasion is often more effectual than force.\" - Aesop"
-msgstr ""
+msgstr "\"الإقناع غالبًا فعّال أكثر من القوّة.\" - إيسوب"
 
 #: gui/text/quotes.txt:19
 msgid "\"Self-conceit may lead to self-destruction.\" - Aesop"
-msgstr ""
+msgstr "\"الغرور يؤدّي إلى تدمير الذّات.\" - إيسوب"
 
 #: gui/text/quotes.txt:20
 msgid "\"Slow and steady wins the race.\" - Aesop"
@@ -675,7 +677,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"الآلهة تساعد من يساعدوا أنفسهم.\" - إيسوب"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -715,11 +717,11 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"إن لم أكن الإسكندر، لكنت تمنّيت أن أكون ديوجين.\" - الإسكندر الأكبر"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"أنا لا أسرق النّصر.\" - الإسكندر الأكبر"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -736,7 +738,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:32
 msgid "\"There is nothing impossible to him who will try\" - Alexander the Great"
-msgstr ""
+msgstr "\"لا مستحيل أمام مَن يحاول.\" - الإسكندر الأكبر"
 
 #: gui/text/quotes.txt:33
 msgid ""
@@ -793,13 +795,13 @@ msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "\"الجوع ليس له من صديق إلّا من يُطعِمه.\" - أريستوفان"
 
 #: gui/text/quotes.txt:43
 msgid ""
 "\"I count him braver who overcomes his desires than him who overcomes his "
 "enemies.\" - Aristotle"
-msgstr ""
+msgstr "\"أنا أعتبر الإنسان الّذي يتغلّب على رغباته أكثر شجاعةً منه الّذي يتغلّب على أعدائه.\" - أرسطو"
 
 #: gui/text/quotes.txt:44
 msgid "\"Our characters are the result of our conduct.\" - Aristotle"
@@ -807,7 +809,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:45
 msgid "\"Man is by nature a political animal.\" - Aristotle"
-msgstr ""
+msgstr "\"الإنسان بطبيعته حيوان سياسيّ.\" - أرسطو"
 
 #: gui/text/quotes.txt:46
 msgid ""
@@ -880,7 +882,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:58
 msgid "\"I came, I saw, I conquered.\" - Gaius Julius Caesar"
-msgstr ""
+msgstr "\"أتيتُ، رأيتُ، انتصرتُ.\" - غايوس يوليوس قيصر"
 
 #: gui/text/quotes.txt:59
 msgid "\"Men willingly believe what they wish.\" - Gaius Julius Caesar"
@@ -898,7 +900,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:62
 msgid "\"Set a thief to catch a thief.\" - Callimachus"
-msgstr ""
+msgstr "\"عيّن لصًّا ليصطد لصًّا.\" - كاليماخوس"
 
 #: gui/text/quotes.txt:63
 msgid ""

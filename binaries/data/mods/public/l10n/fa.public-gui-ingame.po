@@ -3,15 +3,16 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Hessam Shahpouri <h.shahpouri@yandex.com>, 2014
 # Mohsen Nouri <mohsen.nouri1372@gmail.com>, 2014
 # omidh <omid_h28@hotmail.com>, 2013
 # VAHID SOHRABLOO <vahid4134@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-18 11:31+0000\n"
+"Last-Translator: Hessam Shahpouri <h.shahpouri@yandex.com>\n"
 "Language-Team: Persian (http://www.transifex.com/projects/p/0ad/language/fa/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,7 +30,7 @@ msgstr "برد عادی: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "میانگین برد اضافه: %(range)s"
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "ساخت دیوار در اینجا امکان پذیر نیست!"
 
@@ -101,7 +102,7 @@ msgstr "متحد"
 msgid "Neutral"
 msgstr "بی طرف"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "دشمن"
@@ -112,36 +113,36 @@ msgstr "x"
 
 #: gui/session/menu.js:456
 msgid "There are no land traders."
-msgstr ""
+msgstr "هیچ تاجر زمینی وجود ندارد."
 
 #: gui/session/menu.js:462
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
+msgstr[0] "%(numberOfLandTraders)s غیر فعال"
 
 #: gui/session/menu.js:466
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
+msgstr[0] "%(numberTrading)s تاجر زمینی درحال تجارت هستند"
 
 #: gui/session/menu.js:469
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
-msgstr[0] ""
+msgstr[0] "%(numberGarrisoned)s نفر در کشتی تجاری قرار دارند"
 
 #: gui/session/menu.js:472
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
-msgstr ""
+msgstr "%(openingTradingString)s، %(garrisonedString)s و %(inactiveString)s."
 
 #: gui/session/menu.js:480
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
-msgstr ""
+msgstr "%(openingTradingString)s و %(garrisonedString)s."
 
 #: gui/session/menu.js:490 gui/session/menu.js:552
 #, javascript-format
@@ -151,7 +152,7 @@ msgstr ""
 #: gui/session/menu.js:497 gui/session/menu.js:559
 #, javascript-format
 msgid "%(openingTradingString)s."
-msgstr ""
+msgstr "%(openingTradingString)s."
 
 #: gui/session/menu.js:507
 #, javascript-format
@@ -308,12 +309,17 @@ msgstr "%(player)s الان با شما در جنگ است."
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s الان نسبت به شما بی طرف است."
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s و %(lastAmount)s"
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -321,46 +327,46 @@ msgstr "%(previousAmounts)s و %(lastAmount)s"
 msgid ", "
 msgstr ""
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s برای شما %(amounts)s فرستاده است."
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "شما توسط %(attacker)s مورد حمله قرار گرفته اید!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "تیم"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr "خصوصی"
 

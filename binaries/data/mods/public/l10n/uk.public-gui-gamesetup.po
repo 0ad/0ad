@@ -6,13 +6,14 @@
 # Andrii Puzan <doctrina.90@mail.ru>, 2013
 # Andriy Nahirnjak <andriy.nagirnjak@gmail.com>, 2014
 # Bohdan Lepky <ntrxhm@gmail.com>, 2013
+# Victor Butko <victor.butko@gmail.com>, 2014
 # Сергій Дубик <dubyk@ukr.net>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-24 16:51+0000\n"
+"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +39,7 @@ msgstr "Пісочниця"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Дуже легко"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -48,7 +49,7 @@ msgstr "Легко"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr "Середній"
+msgstr "Нормально"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -63,7 +64,7 @@ msgstr "Дуже Тяжко"
 #. Translation: Type of victory condition.
 #: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
-msgstr ""
+msgstr "Необмежено"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:14
@@ -79,7 +80,7 @@ msgstr "Низько"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Середній"
+msgstr "Нормально"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -102,18 +103,18 @@ msgstr "Повернутися до головного меню."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "Повернутися до кімнати."
 
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Сутичка"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
 #: gui/gamesetup/gamesetup.js:1260
 msgctxt "map"
 msgid "Random"
-msgstr "Навгад"
+msgstr "Випадково"
 
 #: gui/gamesetup/gamesetup.js:139
 msgid "Scenario"
@@ -122,29 +123,29 @@ msgstr "Сценарій"
 #: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
 #: gui/gamesetup/gamesetup.js:1243
 msgid "Default"
-msgstr "дефолт"
+msgstr "Заумовчуванням"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
-msgstr "Морські карти"
+msgstr "Морські мапи"
 
 #: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
-msgstr "Демо карти"
+msgstr "Демо мапи"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
-msgstr "Всі карти"
+msgstr "Всі мапи"
 
 #: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
-msgstr "Пусто"
+msgstr "Нема"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
-msgstr "Навгад"
+msgstr "Випадково"
 
 #: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
 msgid "You"
@@ -157,27 +158,27 @@ msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
-msgstr "Розмір:"
+msgstr "Розмір мапи:"
 
 #: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Виявлено мапи:"
 
 #: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr ""
+msgstr "Розвідано мапи:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
-msgstr "Перемога:"
+msgstr "Умови перемоги:"
 
 #: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
 #: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
-msgstr "Заблоковані команди:"
+msgstr "Замкнені команди:"
 
 #: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
@@ -197,105 +198,105 @@ msgstr "Ні"
 
 #: gui/gamesetup/gamesetup.js:1261
 msgid "Randomly selects a map from the list"
-msgstr "Випадкова карта з списку"
+msgstr "Вибрати випадкову мапу зі списку"
 
 #: gui/gamesetup/gamesetup.js:1268
 msgid "Sorry, no description available."
-msgstr "Немає опису"
+msgstr "Вибачте, немає опису"
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
+msgstr[0] "%(number)s гравець"
+msgstr[1] "%(number)s гравців"
+msgstr[2] "%(number)s гравці"
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
-msgstr ""
+msgstr "Завантаження..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr "AI: %(ai)s"
+msgstr "ШІ: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
 msgstr "Непризначено"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s приєднався"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s вийшов"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
-
-#: gui/gamesetup/gamesetup.js:1632
-#, javascript-format
-msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s готовий!"
 
 #: gui/gamesetup/gamesetup.js:1636
+#, javascript-format
+msgid "* %(username)s is not ready."
+msgstr "* %(username)s не готовий."
+
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Ігрові настройки були змінені"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
-msgstr ""
+msgstr "Я не готовий"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Виберіть якщо не готові грати"
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
-msgstr ""
+msgstr "Я готовий!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Виберіть якщо ви готові грати!"
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Виберіть якщо ви приймаєте поточні настройки та готові грати!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
-msgstr "Пусто"
+msgstr "Нема"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "гра %(name)s"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "Підключення до сервера..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
@@ -304,58 +305,58 @@ msgstr "Net повідомлення: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Реєстрація на сервері ..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "Гра вже запущена, перезайдіть..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "Назва гри вже використовується."
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "гра гравця %(playername)s"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
-msgstr ""
+msgstr "Завоювання"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Розтрощи всіх противників"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
-msgstr "Чудо"
+msgstr "Диво світу"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Побудувати диво світу для перемоги"
 
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Завантаження “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Генерація “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
-msgstr "Налаштування AI"
+msgstr "Налаштування ШІ"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "ШІ-гравець:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "Складність ШІ:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
@@ -377,15 +378,15 @@ msgstr "Завантаження"
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "Завантаження даних мапи. Будь ласка зачекайте..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
-msgstr "Ім'я"
+msgstr "Ім'я гравця"
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
-msgstr "Розміщення"
+msgstr "Розміщення гравця"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
@@ -397,19 +398,19 @@ msgstr "Команда"
 
 #: gui/gamesetup/gamesetup.xml:(caption):100
 msgid "Map Type:"
-msgstr ""
+msgstr "Тип мапи:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):103
 msgid "Map Filter:"
-msgstr "Фільтр:"
+msgstr "Фільтр мапи:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):106
 msgid "Select Map:"
-msgstr "Карта:"
+msgstr "Виберіть мапу:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
-msgstr ""
+msgstr "Кількість гравців:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
@@ -421,7 +422,7 @@ msgstr "Розпочати!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
-msgstr ""
+msgstr "Повернутися"
 
 #: gui/gamesetup/gamesetup.xml:(caption):256
 #: gui/gamesetup/gamesetup.xml:(caption):268
@@ -446,7 +447,7 @@ msgstr "Коди:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
-msgstr ""
+msgstr "Оцінка гри:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):56
 msgid "View civilization info"
@@ -454,43 +455,43 @@ msgstr "Інформація про цивілізацію"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):71
 msgid "Select player."
-msgstr "Вибрати гравця."
+msgstr "Виберіть гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid "Configure AI settings."
-msgstr "Налаштувати опції AI"
+msgstr "Налаштувати параметри ШІ."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):84
 msgid "Select player's civilization."
-msgstr "Вибрати цивілізацію гравця"
+msgstr "Виберіть цивілізацію гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid "Select player's team."
-msgstr "Вибрати команду гравця."
+msgstr "Виберіть команду гравця."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):129
 msgid "Select a map type."
-msgstr "Вибрати тип карти."
+msgstr "Виберіть тип мапи."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):138
 msgid "Select a map filter."
-msgstr "Фільтрувати карти."
+msgstr "Виберіть фільтр мапи."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):148
 msgid "Select a map to play on."
-msgstr "Вибрати карту для гри."
+msgstr "Виберіть мапу для гри."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):162
 msgid "Select number of players."
-msgstr "Змінити кількість гравців."
+msgstr "Виберіть кількість гравців."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):167
 msgid "Select map size. (Larger sizes may reduce performance.)"
-msgstr "Вибрати розмір карти. (Великі можуть зменшити продуктивність.)"
+msgstr "Виберіть розмір мапи. (Великі можуть зменшити продуктивність.)"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):217
 msgid "Start a new game with the current settings."
-msgstr "Старт нової гри з поточними налаштуваннями."
+msgstr "Старт нової гри з поточними настройками."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"
@@ -498,51 +499,51 @@ msgstr "Показати більше ігрових опцій"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):277
 msgid "Select game speed."
-msgstr "Обрати швидкість гри."
+msgstr "Виберіть швидкість гри."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):287
 msgid "Select victory condition."
-msgstr "Вибрати умову перемоги."
+msgstr "Виберіть умову перемоги."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):297
 msgid "Select population cap."
-msgstr "Змінити ліміт населення."
+msgstr "Виберіть ліміт населення."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):307
 msgid "Select the game's starting resources."
-msgstr "Змінити початкові ресурси."
+msgstr "Виберіть початкові ресурси."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):317
 msgid "Toggle revealed map (see everything)."
-msgstr ""
+msgstr "Перемкнути виявлену мапу (видно все)."
 
 #. Make sure to differentiate between the revealed map and explored map
 #. options!
 #: gui/gamesetup/gamesetup.xml:(tooltip):327
 msgid "Toggle explored map (see gaia and buildings)."
-msgstr ""
+msgstr "Перемкнути досліджену мапу (видно гаіа та будівлі)."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):337
 msgid "Toggle locked teams."
-msgstr "Вкл/викл блокування команд."
+msgstr "Перемкнути замкнуті команди."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):347
 msgid "Toggle the usability of cheats."
-msgstr "Вкл/викл користування кодами."
+msgstr "Перемкнути можливість використання кодів."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):357
 msgid "Toggle if this game will be rated for the leaderboard."
-msgstr ""
+msgstr "Перемкнути, якщо гра буде оцінена для дошки пошани."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):370
 msgid "Close more game options window"
-msgstr "Закрити розширені опції гри"
+msgstr "Закрити вікно додаткових опцій"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):19
 msgid "Multiplayer"
-msgstr "Багато гравців"
+msgstr "Багатокористувацька гра"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):25
 msgid "Joining an existing game."
@@ -551,11 +552,11 @@ msgstr "Приєднатися до існуючої гри."
 #: gui/gamesetup/gamesetup_mp.xml:(caption):29
 #: gui/gamesetup/gamesetup_mp.xml:(caption):67
 msgid "Player name:"
-msgstr "Ім'я:"
+msgstr "Ім'я гравця:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):39
 msgid "Server Hostname or IP:"
-msgstr "Хост або ІР:"
+msgstr "Ім’я серверу або IP-адреса:"
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):49
 #: gui/gamesetup/gamesetup_mp.xml:(caption):91
@@ -572,61 +573,61 @@ msgstr "Ім'я серверу:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "Цитата дня:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"
-msgstr ""
+msgstr "\"Процвітаючі негідники нестерпні.\" - Есхіл"
 
 #: gui/text/quotes.txt:2
 msgid ""
 "\"From him [Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
-msgstr ""
+msgstr "\"Перед нею [смертю] одною безсиле Переконання\" - Есхіл"
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr ""
+msgstr "\"Не показне - справжня мужність\" - Есхіл, \"Семеро проти Фів\""
 
 #: gui/text/quotes.txt:4
 msgid ""
 "\"It is not the oath that makes us believe the man, but the man the oath.\" "
 "- Aeschylus"
-msgstr ""
+msgstr "\"Не клятва змушує нас вірити людині, але людина - клятві.\" - Есхіл"
 
 #: gui/text/quotes.txt:5
 msgid ""
 "\"In every tyrant's heart there springs in the end this poison, that he "
 "cannot trust a friend.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"Хвороба така, очевидно, всім правителям притаманна - ніколи не довіряти друзям\" - Есхіл, \"Прометей прикутий\""
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"Час, старіючи, може навчити всього.\" - Есхіл, \"Прометей прикутий\""
 
 #: gui/text/quotes.txt:7
 msgid ""
 "\"Wisdom comes through suffering... Favours come to us from gods.\" - "
 "Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"Мудрість приходить через страждання ... Милосердя приходить до нас від богів\" - Есхіл. \"Агамемнон\""
 
 #: gui/text/quotes.txt:8
 msgid ""
 "\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
-msgstr ""
+msgstr "\"Загибель Трої понесла [Олена] в придане.\" - Есхіл. \"Агамемнон\""
 
 #: gui/text/quotes.txt:9
 msgid ""
 "\"It is in the character of very few men to honor without envy a friend who "
 "has prospered.\" - Aeschylus, \"Agamemnon\""
-msgstr ""
+msgstr "\"Небагатьом людям властиво друзів щасливих шанувати і не заздрити.\" - Есхіл. \"Агамемнон\""
 
 #: gui/text/quotes.txt:10
 msgid ""
 "\"For a deadly blow let him pay with a deadly blow; it is for him who has "
 "done a deed to suffer.\" - Aeschylus"
-msgstr ""
+msgstr "\"Чий смертельний удар, той смертельний удар заслужив. Що іншим заподіяв, потерпай!\" - Есхіл"
 
 #: gui/text/quotes.txt:11
 msgid "\"Any excuse will serve a tyrant.\" - Aesop"

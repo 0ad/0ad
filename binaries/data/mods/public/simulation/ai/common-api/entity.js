@@ -457,6 +457,12 @@ m.Template = m.Class({
 		return this.get("UnitMotion/WalkSpeed");
 	},
 
+	trainingCategory: function() {
+		if (!this.get("TrainingRestrictions") || !this.get("TrainingRestrictions/Category"))
+			return undefined;
+		return this.get("TrainingRestrictions/Category");
+	},
+
 	buildCategory: function() {
 		if (!this.get("BuildRestrictions") || !this.get("BuildRestrictions/Category"))
 			return undefined;

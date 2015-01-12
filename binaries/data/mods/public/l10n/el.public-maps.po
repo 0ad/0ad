@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# catopsi, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-10-26 09:52+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-06 13:25+0000\n"
+"Last-Translator: catopsi\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -56,7 +57,7 @@ msgstr "Οροπέδιο Ανατολίας"
 msgid ""
 "A maze of islands of different sizes and shapes. Players start with more "
 "wood than normal."
-msgstr ""
+msgstr "Ενας λαβύρινθος απο νησιά,διαφορετικών μεγέθων και σχημάτων.Οι παίκτες ξεκενούν με περισσότερο ξυλο απο το κανονικό."
 
 #: maps/random/archipelago.jsonsettings.Name
 msgid "Archipelago"
@@ -114,7 +115,7 @@ msgstr "Φαράγγι"
 
 #: maps/random/continent.jsonsettings.Description
 msgid "All players starts on a continent surrounded by water."
-msgstr ""
+msgstr "Ολοι οι παίκτες ξεκινούν σε μια ηπειρο περιτριγυρισμενη απο νερό."
 
 #: maps/random/continent.jsonsettings.Name
 msgid "Continent"
@@ -154,7 +155,7 @@ msgstr "Κυκλαδίτικο Αρχιπέλαγος"
 
 #: maps/random/deep_forest.jsonsettings.Description
 msgid "A deep dark forest in Germania."
-msgstr ""
+msgstr "Ενα πυκνό σκοτεινό δάσος στην Γερμανία"
 
 #: maps/random/deep_forest.jsonsettings.Name
 msgid "Deep Forest"
@@ -220,7 +221,7 @@ msgstr "Υρκανικές Ακτές"
 
 #: maps/random/islands.jsonsettings.Description
 msgid "Players start in small islands while there are many others around."
-msgstr ""
+msgstr "Οι παίκτες ξεκινούν σε μικρά νησιά ενω υπάρχουν και άλλοι γύρω"
 
 #: maps/random/islands.jsonsettings.Name
 msgid "Islands"
@@ -387,7 +388,7 @@ msgstr "Όαση Σαχάρας"
 msgid ""
 "A somewhat open map with an abundance of food and mineral resources, while "
 "wood is somewhat scarce."
-msgstr ""
+msgstr "Ενας ανοιχτός τύπου χάρτης με αφθονία μαγητού και μεταλευμάτων ενώ η ξυλεία είναι σε αντίθεση δυσέυρετη "
 
 #: maps/random/sahel.jsonsettings.Name maps/scenarios/Sahel.xml:Name:42
 msgid "Sahel"
@@ -422,14 +423,14 @@ msgstr "Νιφαδωτά Βράχια Θάλασσας"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
 msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
-msgstr ""
+msgstr "Επιβίωση του ικανότερου"
 
 #: maps/random/syria.jsonsettings.Description
 msgid "Players start in a plains with slightly rolling highlands."
@@ -451,7 +452,7 @@ msgstr "Ο Νείλος"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map."
-msgstr ""
+msgstr "Το άγνωστο...Προσοχή :Πιθανόν να είναι ναυτικός χάρτης."
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -526,7 +527,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr ""
 
 #: maps/scenarios/treasure_islands.js:42
@@ -550,14 +551,14 @@ msgstr ""
 msgid "Defeat your enemy to win!"
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr ""
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -625,7 +626,7 @@ msgstr ""
 msgid "Player 1"
 msgstr "Παίκτης 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -691,9 +692,9 @@ msgstr "Παίκτης 1"
 msgid "Player 2"
 msgstr "Παίκτης 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Αρκαδία 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr ""
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

@@ -4,16 +4,18 @@
 # 
 # Translators:
 # bilsimon <simontje.bil@gmail.com>, 2014
+# Ellen Roels, 2015
 # Max Klaversma <maxklaversma@gmail.com>, 2014
+# niektb <niektb95@gmail.com>, 2014
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2014
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-11 11:41+0000\n"
-"Last-Translator: bilsimon <simontje.bil@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2015-01-05 16:51+0000\n"
+"Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,7 +25,7 @@ msgstr ""
 
 #: maps/random/aegean_sea.jsonsettings.Description
 msgid "Players start on two sides of a sea with scattered islands."
-msgstr ""
+msgstr "De spelers starten aan twee zijden van een zee met verspreide eilanden."
 
 #: maps/random/aegean_sea.jsonsettings.Name
 msgid "Aegean Sea"
@@ -427,10 +429,10 @@ msgstr "Sneeuwvlok zeerotsen"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "BELANRIJKE OPMERKING: COMPUTERGESTUURDE SPELERS WERKEN NIET OP DEZE MAP\n\nVerdedig je basis tegen eindeloze golven aan vijanden. Gebruik je vrouwelijke burgers om grondstoffen te verzamelen. De laatst overgebleven speler zal de winnaar zijn."
+msgstr "BELANRIJKE OPMERKING: COMPUTERGESTUURDE SPELERS WERKEN NIET OP DEZE MAP\n\nVerdedig je basis tegen eindeloze golven aan vijanden. Gebruik je vrouwelijke burgers om grondstoffen te verzamelen. De laatst overgebleven speler is de winnaar."
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -456,7 +458,7 @@ msgstr "De Nijl"
 
 #: maps/random/unknown.jsonsettings.Description
 msgid "The unknown... Warning: May be a naval map."
-msgstr ""
+msgstr "Het onbekende... Waarschuwing: Mogelijk een zeekaart."
 
 #: maps/random/unknown.jsonsettings.Name
 msgid "Unknown"
@@ -531,8 +533,8 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Verzamel de schatten voor de vijand! Moge de beste winnen!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
-msgstr "De vijands schatkist is tot aan de rand gevuld, jij verliest!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
+msgstr "De schatkist van de vijand is tot de nok gevuld, je hebt verloren!"
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -555,14 +557,14 @@ msgstr "Je hebt een schat gevonden!"
 msgid "Defeat your enemy to win!"
 msgstr "Versla je vijand om te winnen!"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "Lente in Arcadië, Griekenland. Lenteregens hebben het water in de kleine beekjes doen stijgen. Zo is het land verdeeld tussen twee strijdende stammen.\n\nSpelers starten een weerszijden van een bergachtige regio met veel grondstoffen. Extra startgebouwen helpen spelers om hun kolonie snel te starten."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -630,7 +632,7 @@ msgstr "Lente in Arcadië, Griekenland. Lenteregens hebben het water in de klein
 msgid "Player 1"
 msgstr "Speler 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -696,9 +698,9 @@ msgstr "Speler 1"
 msgid "Player 2"
 msgstr "Speler 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arcadië 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr "Arcadië"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

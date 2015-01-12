@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -88,7 +88,7 @@ std::string EscapeString(const CStr& str)
 #define GETVAL(type)\
 	void CConfigDB::GetValue(EConfigNamespace ns, const CStr& name, type& value)\
 	{\
-		CHECK_NS();\
+		CHECK_NS(;);\
 		CScopeLock s(&cfgdb_mutex);\
 		TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);\
 		if (it != m_Map[CFG_COMMAND].end())\
@@ -115,7 +115,7 @@ GETVAL(std::string)
 
 void CConfigDB::GetValues(EConfigNamespace ns, const CStr& name, CConfigValueSet& values)
 {
-	CHECK_NS();
+	CHECK_NS(;);
 
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[CFG_COMMAND].find(name);
@@ -184,7 +184,7 @@ std::map<CStr, CConfigValueSet> CConfigDB::GetValuesWithPrefix(EConfigNamespace 
 
 void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr& value)
 {
-	CHECK_NS();
+	CHECK_NS(;);
 
 	CScopeLock s(&cfgdb_mutex);
 	TConfigMap::iterator it = m_Map[ns].find(name);
@@ -196,7 +196,7 @@ void CConfigDB::SetValueString(EConfigNamespace ns, const CStr& name, const CStr
 
 void CConfigDB::SetConfigFile(EConfigNamespace ns, const VfsPath& path)
 {
-	CHECK_NS();
+	CHECK_NS(;);
 
 	CScopeLock s(&cfgdb_mutex);
 	m_ConfigFile[ns] = path;

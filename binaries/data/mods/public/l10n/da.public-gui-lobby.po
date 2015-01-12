@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-27 15:05+0000\n"
-"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 09:49+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -67,91 +67,91 @@ msgstr "%(percentage)s%%"
 msgid "-"
 msgstr "-"
 
-#: gui/lobby/lobby.js:447
+#: gui/lobby/lobby.js:444
 msgid "Busy"
 msgstr "Optaget"
 
-#: gui/lobby/lobby.js:452
+#: gui/lobby/lobby.js:449
 msgid "Away"
 msgstr "Ikke til stede"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:453
 msgid "Online"
 msgstr "Online"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:457
 msgid "Offline"
 msgstr "Offline"
 
-#: gui/lobby/lobby.js:465
+#: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Ukendt"
 
-#: gui/lobby/lobby.js:502
+#: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
 msgstr "En tilfældigt udvalgt bane."
 
-#: gui/lobby/lobby.js:528
+#: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
 msgstr "Der er desværre ingen beskrivelse tilgængelig."
 
-#: gui/lobby/lobby.js:556
+#: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
 msgstr "Spillets adresse '%(ip)s' er tilsyneladende ikke gyldig."
 
-#: gui/lobby/lobby.js:634
+#: gui/lobby/lobby.js:643
 #, javascript-format
 msgid "%(nick)s has joined."
 msgstr "%(nick)s har tilsluttet."
 
-#: gui/lobby/lobby.js:643
+#: gui/lobby/lobby.js:652
 #, javascript-format
 msgid "%(nick)s has left."
 msgstr "%(nick)s har forladt."
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:659
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
 msgstr "Ugyldigt øgenavn: %(nick)s"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
 msgstr "%(oldnick)s kendes nu som %(newnick)s."
 
-#: gui/lobby/lobby.js:814
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
 msgstr "Desværre, '%(cmd)s' kommandoen understøttes ikke."
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:894
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
 msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
 msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
 msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
 msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:907
+#: gui/lobby/lobby.js:916
 #, javascript-format
 msgid "== %(message)s"
 msgstr "== %(message)s"
@@ -161,24 +161,24 @@ msgstr "== %(message)s"
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:938
+#: gui/lobby/lobby.js:947
 msgid "HH:mm"
 msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:941
+#: gui/lobby/lobby.js:950
 #, javascript-format
-msgid "[%(time)s]"
-msgstr "[%(time)s]"
+msgid "\\[%(time)s]"
+msgstr ""
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:944
+#: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
 msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
 msgstr "Spam venligst ikke. Du er blevet blokeret i 30 sekunder."
 

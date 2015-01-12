@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adomas Jackevičius, 2014
 # banginis <asesuarbanesu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-19 13:50+0000\n"
+"Last-Translator: Adomas Jackevičius\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,9 +28,9 @@ msgstr ""
 msgid "Average bonus range: %(range)s"
 msgstr ""
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
-msgstr ""
+msgstr "Čia statyti sienos negalite!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
@@ -37,7 +38,7 @@ msgstr "Pauzė"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Tęsti"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:(caption):19
@@ -51,40 +52,40 @@ msgstr "Ne"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Ar tikrai norite pasiduoti?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
-msgstr ""
+msgstr "Patvirtinimas"
 
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ar tikrai norite išeiti? Išeinant bus atjungti visi kiti žaidėjai."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Are tikrai norite išeiti?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Aš sugrįšiu"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Aš pasiduodu"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Ar norite pasiduoti, ar planuojate greitai grįžti?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Sunaikinti viską kas pažymėta?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
-msgstr ""
+msgstr "Trinti"
 
 #: gui/session/menu.js:284
 msgctxt "team"
@@ -99,14 +100,14 @@ msgstr "Sąjungininkas"
 msgid "Neutral"
 msgstr "Neutralus"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Priešas"
 
 #: gui/session/menu.js:345
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:456
 msgid "There are no land traders."
@@ -249,7 +250,7 @@ msgstr "Tinklo žinutė: %(message)s"
 
 #: gui/session/messages.js:215
 msgid "Waiting for other players to connect..."
-msgstr ""
+msgstr "Laukiama kol prisijungs kiti žaidėjai..."
 
 #: gui/session/messages.js:219
 msgid "Synchronising gameplay with other players..."
@@ -257,7 +258,7 @@ msgstr ""
 
 #: gui/session/messages.js:227
 msgid "Connected to the server."
-msgstr ""
+msgstr "Prisijungta prie serverio."
 
 #: gui/session/messages.js:231
 msgid "Connection to the server has been authenticated."
@@ -269,7 +270,7 @@ msgstr ""
 
 #: gui/session/messages.js:236
 msgid "The game has ended."
-msgstr ""
+msgstr "Žaidimas baigėsi."
 
 #: gui/session/messages.js:420
 msgid "Unknown player"
@@ -287,7 +288,7 @@ msgstr ""
 
 #: gui/session/messages.js:436
 msgid "You have been defeated."
-msgstr ""
+msgstr "Jūs pralaimėjote."
 
 #: gui/session/messages.js:438
 #, javascript-format
@@ -324,61 +325,66 @@ msgstr ""
 msgid "%(player)s is now neutral with you."
 msgstr ""
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr ""
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr ""
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
 #: gui/session/utility_functions.js:619
 msgid ", "
-msgstr ""
+msgstr ","
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr ""
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Tave užpuolė %(attacker)s!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
-msgstr ""
+msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr ""
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
-msgstr ""
+msgstr "Komanda"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
-msgstr ""
+msgstr "Privatus"
 
 #: gui/session/selection_details.js:32
 #, javascript-format
@@ -407,7 +413,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
-msgstr ""
+msgstr "Patirtis:"
 
 #: gui/session/selection_details.js:101
 #, javascript-format
@@ -416,7 +422,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:115
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:116 gui/session/selection_details.js:149
 #: gui/session/selection_details.js:180
@@ -443,7 +449,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Dabartiniai/maksimalūs rinkėjai"
 
 #: gui/session/selection_details.js:196
 #, javascript-format
@@ -453,7 +459,7 @@ msgstr ""
 #: gui/session/selection_details.js:226 gui/session/selection_panels.js:973
 #: gui/session/session.js:637
 msgid "Armor:"
-msgstr ""
+msgstr "Šarvai:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:634 gui/session/session.js:638
@@ -467,12 +473,12 @@ msgstr "Intervalas:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
-msgstr ""
+msgstr "Dažnumas:"
 
 #: gui/session/selection_details.js:249 gui/session/session.js:629
 #: gui/session/utility_functions.js:303
 msgid "Range:"
-msgstr ""
+msgstr "Atstumas:"
 
 #: gui/session/selection_details.js:251 gui/session/session.js:630
 #: gui/session/utility_functions.js:304
@@ -498,7 +504,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:307 gui/session/utility_functions.js:547
 msgid "Classes:"
-msgstr ""
+msgstr "Klasės:"
 
 #: gui/session/selection_details.js:360
 msgid "Hitpoints:"
@@ -512,12 +518,12 @@ msgstr ""
 #: gui/session/selection_panels.js:87
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Pirkti %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Parduoti %(resource)s"
 
 #: gui/session/selection_panels.js:216 gui/session/selection_panels.js:981
 #, javascript-format
@@ -543,11 +549,11 @@ msgstr "Atrakinti vartus"
 
 #: gui/session/selection_panels.js:508
 msgid "Pack"
-msgstr ""
+msgstr "Supakuoti"
 
 #: gui/session/selection_panels.js:510
 msgid "Unpack"
-msgstr ""
+msgstr "Išpakuoti"
 
 #: gui/session/selection_panels.js:512
 msgid "Cancel Packing"
@@ -559,7 +565,7 @@ msgstr "Nutraukti išpakavimą"
 
 #: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Nepakankamas populiacijos talpumas:"
 
 #: gui/session/selection_panels.js:588
 #, javascript-format
@@ -645,31 +651,31 @@ msgstr ""
 
 #: gui/session/session.js:19
 msgid "You"
-msgstr ""
+msgstr "Tu"
 
 #: gui/session/session.js:170
 msgid "Gaia"
-msgstr ""
+msgstr "Gaja"
 
 #: gui/session/session.js:305 gui/session/session.js:321
 msgid "You have left the game."
-msgstr ""
+msgstr "Tu palikai žaidimą."
 
 #: gui/session/session.js:312
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Tu buvai atjungtas."
 
 #: gui/session/session.js:314
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Tu laimėjai susirėmimą!"
 
 #: gui/session/session.js:316
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Tu buvai sutriuškintas..."
 
 #: gui/session/session.js:324
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Tu palikai žaidimą."
 
 #: gui/session/session.js:468
 msgid "OK"
@@ -677,19 +683,19 @@ msgstr "Gerai"
 
 #: gui/session/session.js:470
 msgid "Press OK to continue"
-msgstr ""
+msgstr "Spauskite GERAI norėdami tęsti"
 
 #: gui/session/session.js:476
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Ar norite išeiti?"
 
 #: gui/session/session.js:482
 msgid "DEFEATED!"
-msgstr ""
+msgstr "PRALAIMĖJIMAS!"
 
 #: gui/session/session.js:490
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "PERGALĖ!"
 
 #: gui/session/session.js:625
 #, javascript-format
@@ -759,7 +765,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:655
 msgid "Unload All"
-msgstr ""
+msgstr "Išleisti Visus"
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
@@ -767,7 +773,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
-msgstr ""
+msgstr "Stabdyti"
 
 #: gui/session/unit_actions.js:717
 msgid "Garrison"
@@ -775,15 +781,15 @@ msgstr ""
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
-msgstr ""
+msgstr "Išleisti"
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
-msgstr ""
+msgstr "Taisyti"
 
 #: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Rodyti ties Susibūrimo Tašku"
 
 #: gui/session/unit_actions.js:794
 msgid "Back to Work"
@@ -791,11 +797,11 @@ msgstr "Grįžti prie darbo"
 
 #: gui/session/unit_actions.js:810
 msgid "Guard"
-msgstr ""
+msgstr "Saugoti"
 
 #: gui/session/unit_actions.js:827
 msgid "Remove guard"
-msgstr ""
+msgstr "Pašalinti sargybą"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
@@ -816,7 +822,7 @@ msgstr ""
 #: gui/session/utility_functions.js:147 gui/session/utility_functions.js:194
 #: gui/session/utility_functions.js:223 gui/session/utility_functions.js:249
 msgid "(None)"
-msgstr ""
+msgstr "(Nieko)"
 
 #: gui/session/utility_functions.js:151 gui/session/utility_functions.js:156
 #: gui/session/utility_functions.js:161 gui/session/utility_functions.js:227
@@ -889,7 +895,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:281
 msgid "Attack:"
-msgstr ""
+msgstr "Pulti:"
 
 #: gui/session/utility_functions.js:300
 #, javascript-format
@@ -919,12 +925,12 @@ msgstr ""
 #: gui/session/utility_functions.js:454
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Sienos:  %(costs)s"
 
 #: gui/session/utility_functions.js:455
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Bokšteliai:  %(costs)s"
 
 #: gui/session/utility_functions.js:477
 #, javascript-format
@@ -933,11 +939,11 @@ msgstr ""
 
 #: gui/session/utility_functions.js:478
 msgid "Population Bonus:"
-msgstr ""
+msgstr "Populiacijos Bonusas:"
 
 #: gui/session/utility_functions.js:496
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Nepakanka resursų:"
 
 #: gui/session/utility_functions.js:507
 #, javascript-format
@@ -964,11 +970,11 @@ msgstr ""
 
 #: gui/session/utility_functions.js:588
 msgid "Walk"
-msgstr ""
+msgstr "Eiti"
 
 #: gui/session/utility_functions.js:590
 msgid "Run"
-msgstr ""
+msgstr "Bėgti"
 
 #: gui/session/utility_functions.js:592
 #, javascript-format
@@ -987,7 +993,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:610
 msgid "you"
-msgstr ""
+msgstr "tu"
 
 #: gui/session/utility_functions.js:616 gui/session/utility_functions.js:621
 #, javascript-format
@@ -1006,7 +1012,7 @@ msgstr "Maistas"
 #: gui/session/utility_functions.js:663
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Mėsa"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1020,21 +1026,21 @@ msgstr "Metalas"
 #: gui/session/utility_functions.js:667
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Rūda"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:669
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Akmuo"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:671
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Griuvėsiai"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1048,14 +1054,14 @@ msgstr "Akmuo"
 #: gui/session/utility_functions.js:675
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Lobis"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:677
 msgctxt "firstWord"
 msgid "Tree"
-msgstr ""
+msgstr "Medis"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1069,14 +1075,14 @@ msgstr "Mediena"
 #: gui/session/utility_functions.js:681
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Vaisius"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:683
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Grūdai"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1097,7 +1103,7 @@ msgstr "Maistas"
 #: gui/session/utility_functions.js:692
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Mėsa"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1111,21 +1117,21 @@ msgstr "Metalas"
 #: gui/session/utility_functions.js:696
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Rūda"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:698
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Akmuo"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:700
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Griuvėsiai"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1139,14 +1145,14 @@ msgstr "Akmuo"
 #: gui/session/utility_functions.js:704
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "Lobis"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:706
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr ""
+msgstr "Medis"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1160,14 +1166,14 @@ msgstr "Mediena"
 #: gui/session/utility_functions.js:710
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Vaisius"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:712
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Grūdai"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1187,11 +1193,11 @@ msgstr "Vardas"
 
 #: gui/session/diplomacy_window.xml:(caption):18
 msgid "Civilization"
-msgstr ""
+msgstr "Civilizacija"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "Jų"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -1212,7 +1218,7 @@ msgstr ""
 #: gui/session/diplomacy_window.xml:(caption):73
 #: gui/session/trade_window.xml:(caption):47
 msgid "Close"
-msgstr ""
+msgstr "Uždaryti"
 
 #: gui/session/menu.xml:(caption):28
 msgid "Chat"
@@ -1224,7 +1230,7 @@ msgstr "Išsaugoti"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Options"
-msgstr ""
+msgstr "Nustatymai"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Resign"
@@ -1240,7 +1246,7 @@ msgstr "Rasti nieko neveikiantį darbininką"
 
 #: gui/session/session.xml:(caption):53
 msgid "Control all units"
-msgstr ""
+msgstr "Valdyti visus vienetus"
 
 #: gui/session/session.xml:(caption):63
 msgid "Change perspective"
@@ -1272,11 +1278,11 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):110
 msgid "Restrict camera"
-msgstr ""
+msgstr "Apriboti kamerą"
 
 #: gui/session/session.xml:(caption):124
 msgid "Reveal map"
-msgstr ""
+msgstr "Atidengti žemėlapį"
 
 #: gui/session/session.xml:(caption):132
 msgid "Enable time warp"
@@ -1296,19 +1302,19 @@ msgstr "Spustelkite, norėdami pratęsti žaidimą"
 
 #: gui/session/session.xml:(caption):206
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 #: gui/session/session.xml:(caption):212
 msgid "Team Only"
-msgstr ""
+msgstr "Tik Komandai"
 
 #: gui/session/session.xml:(caption):216
 msgid "Send"
-msgstr ""
+msgstr "Siųsti"
 
 #: gui/session/top_panel.xml:(tooltip):18
 msgid "Choose player to view"
-msgstr ""
+msgstr "Pasirinkite žaidėją stebėjimui"
 
 #: gui/session/top_panel.xml:(caption):26
 msgid "Observer Mode (experimental)"
@@ -1317,7 +1323,7 @@ msgstr ""
 #: gui/session/trade_window.xml:(caption):9
 #: gui/session/top_panel/button_trade.xml:(tooltip):10
 msgid "Trade"
-msgstr ""
+msgstr "Mainyti"
 
 #: gui/session/trade_window.xml:(caption):15
 msgid "Trading goods selection:"
@@ -1332,23 +1338,23 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Klausimas"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Taip ar ne?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Mainyti resursus:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
-msgstr ""
+msgstr "Gyvybės"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):38
 msgid "Stamina"
-msgstr ""
+msgstr "Ištvermė"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):26
 msgid "Stamina:"
@@ -1357,7 +1363,7 @@ msgstr "Ištvermė:"
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):53
 #: gui/session/session_objects/hero_icon.xml:(tooltip):9
 msgid "Attack and Armor"
-msgstr ""
+msgstr "Puolimas ir Šarvai"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):68
 msgid "Experience"
@@ -1365,11 +1371,11 @@ msgstr "Patirtis"
 
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):76
 msgid "Rank"
-msgstr ""
+msgstr "Rangas"
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "Gamybos eilė"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
@@ -1387,11 +1393,11 @@ msgstr "Pasirinkti žaidimo greitį"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Meniu"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVII : Quercus"
-msgstr ""
+msgstr "ALPHA XVII : Quercus"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

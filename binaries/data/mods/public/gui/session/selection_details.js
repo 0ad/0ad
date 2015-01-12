@@ -56,7 +56,7 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("rankIcon").hidden = true;
 		Engine.GetGUIObjectByName("rankIcon").tooltip = "";
 	}
-								
+
 	// Hitpoints
 	if (entState.hitpoints)
 	{
@@ -75,7 +75,7 @@ function displaySingle(entState, template)
 	{
 		Engine.GetGUIObjectByName("healthSection").hidden = true;
 	}
-	
+
 	// TODO: Stamina
 	var player = Engine.GetPlayerID();
 	if (entState.stamina && (entState.player == player || g_DevSettings.controlAll))
@@ -223,78 +223,13 @@ function displaySingle(entState, template)
 		Engine.GetGUIObjectByName("icon").sprite = "bkFillBlack";
 	}
 
-	var armorLabel = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]"
-	var armorString = sprintf(translate("%(label)s %(details)s"), { label: armorLabel, details: armorTypeDetails(entState.armour) });
+	var armorString = getArmorTooltip(entState.armour);
 
 	// Attack and Armor
 	if ("attack" in entState && entState.attack)
-	{
-		// Rate
-		if (entState.buildingAI)
-			var rateLabel = "[font=\"sans-bold-13\"]" + translate("Interval:") + "[/font]";
-		else
-			var rateLabel = "[font=\"sans-bold-13\"]" + translate("Rate:") + "[/font]";
-
-		var rate = sprintf(translate("%(label)s %(details)s"), {
-			label: rateLabel,
-			details: attackRateDetails(entState)
-		});
-
-		var attack;
-		var label = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(entState.attack.type) + "[/font]"
-		if (entState.attack.type == "Ranged")
-		{
-			var realRange = entState.attack.elevationAdaptedRange;
-			var range =  entState.attack.maxRange;
-			var rangeLabel = "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]"
-			var relativeRange = Math.round((realRange - range));
-			var meters = "[font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]";
-
-			if (relativeRange > 0)
-				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
-					label: label,
-					details: damageTypeDetails(entState.attack),
-					rangeLabel: rangeLabel,
-					range: Math.round(range),
-					meters: meters,
-					relative: "+" + relativeRange,
-					rate: rate
-				});
-			else if (relativeRange < 0)
-				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
-					label: label,
-					details: damageTypeDetails(entState.attack),
-					rangeLabel: rangeLabel,
-					range: Math.round(range),
-					meters: meters,
-					relative: relativeRange,
-					rate: rate
-				});
-			else // don't show when it's 0
-				attack = sprintf(translate("%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"), {
-					label: label,
-					details: damageTypeDetails(entState.attack),
-					rangeLabel: rangeLabel,
-					range: Math.round(range),
-					meters: meters,
-					rate: rate
-				});
-		}
-		else
-		{
-			attack = sprintf(translate("%(label)s %(details)s, %(rate)s"), {
-				label: label,
-				details: damageTypeDetails(entState.attack),
-				rate: rate
-			});
-		}
-
-		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = attack + "\n" + armorString;	
-	}
+		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = getAttackTooltip(entState) + "\n" + armorString;
 	else
-	{
 		Engine.GetGUIObjectByName("attackAndArmorStats").tooltip = armorString;
-	}
 
 	// Icon Tooltip
 	var iconTooltip = "";

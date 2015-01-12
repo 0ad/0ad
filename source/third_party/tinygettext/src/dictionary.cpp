@@ -169,7 +169,7 @@ Dictionary::add_translation(const std::string& msgid, const std::string& msgstr)
   {
     vec.push_back(msgstr);
   }
-  else
+  else if (vec[0] != msgstr)
   {
     log_warning << "collision in add_translation: '" 
                 << msgid << "' -> '" << msgstr << "' vs '" << vec[0] << "'" << std::endl;

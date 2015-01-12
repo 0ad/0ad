@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Victor Butko <victor.butko@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-22 15:40+0000\n"
+"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +20,12 @@ msgstr ""
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Сутичка"
 
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Random"
-msgstr "Навгад"
+msgstr "Випадкова"
 
 #: gui/lobby/lobby.js:9
 msgid "Scenario"
@@ -33,263 +34,263 @@ msgstr "Сценарій"
 #: gui/lobby/lobby.js:27
 msgctxt "map size"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/lobby/lobby.js:35
 msgctxt "player number"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/lobby/lobby.js:39
 msgctxt "map"
 msgid "Any"
-msgstr ""
+msgstr "Будь-який"
 
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "Н/Д"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
-#: gui/lobby/lobby.js:447
+#: gui/lobby/lobby.js:444
 msgid "Busy"
-msgstr ""
+msgstr "Зайнятий"
 
-#: gui/lobby/lobby.js:452
+#: gui/lobby/lobby.js:449
 msgid "Away"
-msgstr ""
+msgstr "Далеко"
 
-#: gui/lobby/lobby.js:456
+#: gui/lobby/lobby.js:453
 msgid "Online"
-msgstr ""
+msgstr "В мережі"
 
-#: gui/lobby/lobby.js:460
+#: gui/lobby/lobby.js:457
 msgid "Offline"
-msgstr ""
+msgstr "Поза мережею"
 
-#: gui/lobby/lobby.js:465
+#: gui/lobby/lobby.js:462
 msgctxt "lobby presence"
 msgid "Unknown"
 msgstr "Невідомо"
 
-#: gui/lobby/lobby.js:502
+#: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Випадково обрана мапа."
 
-#: gui/lobby/lobby.js:528
+#: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
-msgstr "Немає опису"
+msgstr "Вибачте, опис відсутній."
 
-#: gui/lobby/lobby.js:556
+#: gui/lobby/lobby.js:565
 #, javascript-format
 msgid "This game's address '%(ip)s' does not appear to be valid."
-msgstr ""
-
-#: gui/lobby/lobby.js:634
-#, javascript-format
-msgid "%(nick)s has joined."
-msgstr ""
+msgstr "Адреса гри '%(ip)s' не є дійсною"
 
 #: gui/lobby/lobby.js:643
 #, javascript-format
-msgid "%(nick)s has left."
-msgstr ""
+msgid "%(nick)s has joined."
+msgstr "%(nick)s приєднався."
 
-#: gui/lobby/lobby.js:650
+#: gui/lobby/lobby.js:652
+#, javascript-format
+msgid "%(nick)s has left."
+msgstr "%(nick)s пішов."
+
+#: gui/lobby/lobby.js:659
 #, javascript-format
 msgid "Invalid nickname: %(nick)s"
-msgstr ""
+msgstr "Невірне прізвисько: %(nick)s"
 
-#: gui/lobby/lobby.js:657
+#: gui/lobby/lobby.js:666
 #, javascript-format
 msgid "%(oldnick)s is now known as %(newnick)s."
-msgstr ""
+msgstr "%(oldnick)s тепер відомий як %(newnick)s."
 
-#: gui/lobby/lobby.js:814
+#: gui/lobby/lobby.js:823
 #, javascript-format
 msgid "We're sorry, the '%(cmd)s' command is not supported."
-msgstr ""
+msgstr "На жаль команда '%(cmd)s' не підтримується"
 
 #. Translation: IRC message prefix when the sender uses the /me command.
-#: gui/lobby/lobby.js:894
+#: gui/lobby/lobby.js:903
 #, javascript-format
 msgid "* %(sender)s"
-msgstr ""
+msgstr "* %(sender)s"
 
 #. Translation: IRC message issued using the ‘/me’ command.
-#: gui/lobby/lobby.js:896
+#: gui/lobby/lobby.js:905
 #, javascript-format
 msgid "%(sender)s %(action)s"
-msgstr ""
+msgstr "%(sender)s %(action)s"
 
 #. Translation: IRC message prefix.
-#: gui/lobby/lobby.js:900 gui/lobby/lobby.js:911 gui/lobby/lobby.js:924
+#: gui/lobby/lobby.js:909 gui/lobby/lobby.js:920 gui/lobby/lobby.js:933
 #, javascript-format
 msgid "<%(sender)s>"
-msgstr ""
+msgstr "<%(sender)s>"
 
 #. Translation: IRC message.
-#: gui/lobby/lobby.js:902 gui/lobby/lobby.js:913 gui/lobby/lobby.js:926
+#: gui/lobby/lobby.js:911 gui/lobby/lobby.js:922 gui/lobby/lobby.js:935
 #, javascript-format
 msgid "%(sender)s %(message)s"
-msgstr ""
+msgstr "%(sender)s %(message)s"
 
 #. Translation: IRC system message.
-#: gui/lobby/lobby.js:907
+#: gui/lobby/lobby.js:916
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
 #. Translation: Time as shown in the multiplayer lobby (when you enable it in
 #. the options page).
 #. For a list of symbols that you can use, see:
 #. https://sites.google.com/site/icuprojectuserguide/formatparse/datetime?pli=1
 #. #TOC-Date-Field-Symbol-Table
-#: gui/lobby/lobby.js:938
+#: gui/lobby/lobby.js:947
 msgid "HH:mm"
-msgstr ""
+msgstr "HH:mm"
 
 #. Translation: Time prefix as shown in the multiplayer lobby (when you enable
 #. it in the options page).
-#: gui/lobby/lobby.js:941
+#: gui/lobby/lobby.js:950
 #, javascript-format
-msgid "[%(time)s]"
-msgstr ""
+msgid "\\[%(time)s]"
+msgstr "\\[%(time)s]"
 
 #. Translation: IRC message format when there is a time prefix.
-#: gui/lobby/lobby.js:944
+#: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
-#: gui/lobby/lobby.js:994
+#: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr ""
+msgstr "Будь ласка не спамьте. Ви були заблоковані на тридцять секунд."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "З’єднання..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
-msgstr ""
+msgstr "Реєстрація..."
 
 #: gui/lobby/prelobby.js:99
 msgid "Please enter your username"
-msgstr ""
+msgstr "Будь ласка введіть ім’я користувача"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr ""
+msgstr "Імена користувачів не можуть містити в собі [, ], юнікод, пробіл або коми"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
-msgstr ""
+msgstr "Будь ласка введіть ваш пароль"
 
 #: gui/lobby/prelobby.js:124
 msgid "Please enter your password again"
-msgstr ""
+msgstr "Будь ласка введіть ваш пароль знову"
 
 #: gui/lobby/prelobby.js:130
 msgid "Passwords do not match"
-msgstr ""
+msgstr "Паролі не співпадають"
 
 #: gui/lobby/prelobby.js:136
 msgid "Please read the Terms of Service"
-msgstr ""
+msgstr "Будь ласка, прочитайте Умови Послуги"
 
 #: gui/lobby/prelobby.js:142
 msgid "Please read the Terms of Use"
-msgstr ""
+msgstr "Будь ласка, прочитайте Умови Використання"
 
 #: gui/lobby/prelobby.js:148
 msgid "Please agree to the Terms of Service and Terms of Use"
-msgstr ""
+msgstr "Будь ласка погодьтеся з Умовами Послуги та Умовами Використання"
 
 #: gui/lobby/prelobby.js:195
 msgid "Registered"
-msgstr ""
+msgstr "Зареєстрований"
 
 #: gui/lobby/prelobby.js:205
 msgid "Disconnected"
-msgstr "Відключено"
+msgstr "Від’єднано"
 
 #: gui/lobby/prelobby.js:246
 msgid "Register"
-msgstr ""
+msgstr "Зареєстрований"
 
 #: gui/lobby/prelobby.js:251 gui/lobby/prelobby.xml:(caption):109
 msgid "Connect"
-msgstr ""
+msgstr "З’єднатися"
 
 #: gui/lobby/prelobby.js:261 gui/lobby/prelobby.xml:(caption):78
 msgid "Terms of Service"
-msgstr ""
+msgstr "Умови Послуги"
 
 #: gui/lobby/prelobby.js:270 gui/lobby/prelobby.xml:(caption):83
 msgid "Terms of Use"
-msgstr ""
+msgstr "Умови використання"
 
 #: gui/lobby/lobby.xml:(caption):14 gui/lobby/prelobby.xml:(caption):18
 msgid "Multiplayer Lobby"
-msgstr ""
+msgstr "Багатокористувацька Кімната"
 
 #: gui/lobby/lobby.xml:(caption):45 gui/lobby/lobby.xml:(caption):296
 msgid "Current Rank:"
-msgstr ""
+msgstr "Поточний ранг:"
 
 #: gui/lobby/lobby.xml:(caption):49 gui/lobby/lobby.xml:(caption):300
 msgid "Highest Rating:"
-msgstr ""
+msgstr "Найвищий рейтинг: "
 
 #: gui/lobby/lobby.xml:(caption):53 gui/lobby/lobby.xml:(caption):304
 msgid "Total Games:"
-msgstr ""
+msgstr "Всього ігор:"
 
 #: gui/lobby/lobby.xml:(caption):57 gui/lobby/lobby.xml:(caption):308
 msgid "Wins:"
-msgstr ""
+msgstr "Перемог:"
 
 #: gui/lobby/lobby.xml:(caption):61 gui/lobby/lobby.xml:(caption):312
 msgid "Losses:"
-msgstr ""
+msgstr "Поразок:"
 
 #: gui/lobby/lobby.xml:(caption):65 gui/lobby/lobby.xml:(caption):316
 msgid "Win Rate:"
-msgstr ""
+msgstr "Частота перемог:"
 
 #: gui/lobby/lobby.xml:(caption):74 gui/lobby/lobby.xml:(caption):244
 msgid "Leaderboard"
-msgstr ""
+msgstr "Дошка пошани"
 
 #: gui/lobby/lobby.xml:(caption):82 gui/lobby/lobby.xml:(caption):279
 msgid "User Profile Lookup"
-msgstr ""
+msgstr "Перегляд профілю користувача"
 
 #: gui/lobby/lobby.xml:(caption):111
 msgid "Map Type:"
-msgstr ""
+msgstr "Тип мапи:"
 
 #: gui/lobby/lobby.xml:(caption):123
 msgid "Map Size:"
-msgstr "Розмір:"
+msgstr "Розмір мапи:"
 
 #: gui/lobby/lobby.xml:(caption):140
 msgid "Players:"
-msgstr ""
+msgstr "Гравці:"
 
 #. Join the game currently selected in the list.
 #: gui/lobby/lobby.xml:(caption):149
@@ -298,102 +299,102 @@ msgstr "Приєднатися до гри"
 
 #: gui/lobby/lobby.xml:(caption):155
 msgid "Host Game"
-msgstr "Сервер"
+msgstr "Створити гру"
 
 #: gui/lobby/lobby.xml:(caption):162
 msgid "Main Menu"
-msgstr ""
+msgstr "Головне меню"
 
 #: gui/lobby/lobby.xml:(caption):218
 msgid "Show full games"
-msgstr ""
+msgstr "Показати заповнені ігри"
 
 #: gui/lobby/lobby.xml:(caption):264 gui/lobby/lobby.xml:(caption):326
 msgid "Back"
-msgstr ""
+msgstr "Повернутися"
 
 #: gui/lobby/lobby.xml:(caption):272
 msgid "Update"
-msgstr ""
+msgstr "Оновити"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr ""
+msgstr "Введіть ім’я користувача:"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
-msgstr ""
+msgstr "Переглянути профіль"
 
 #: gui/lobby/lobby.xml:(caption):321
 msgid "Player not found."
-msgstr ""
+msgstr "Гравця не знайдено."
 
 #: gui/lobby/lobby.xml:(heading):25
 msgid "Status"
-msgstr ""
+msgstr "Стан"
 
 #: gui/lobby/lobby.xml:(heading):28 gui/lobby/lobby.xml:(heading):175
 #: gui/lobby/lobby.xml:(heading):254
 msgid "Name"
-msgstr "Назва"
+msgstr "ім’я"
 
 #: gui/lobby/lobby.xml:(heading):31 gui/lobby/lobby.xml:(heading):257
 msgid "Rating"
-msgstr ""
+msgstr "Рейтинг"
 
 #: gui/lobby/lobby.xml:(heading):179
 msgid "Map Name"
-msgstr ""
+msgstr "Назва мапи"
 
 #: gui/lobby/lobby.xml:(heading):182
 msgctxt "map"
 msgid "Size"
-msgstr ""
+msgstr "Розмір"
 
 #: gui/lobby/lobby.xml:(heading):185
 msgctxt "map"
 msgid "Type"
-msgstr ""
+msgstr "Тип"
 
 #: gui/lobby/lobby.xml:(heading):188
 msgid "Players"
-msgstr ""
+msgstr "Гравці"
 
 #: gui/lobby/lobby.xml:(heading):251
 msgid "Rank"
-msgstr "Розряд"
+msgstr "Ранг"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr ""
+msgstr "Створити новий аккаунт"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr ""
+msgstr "Увійти до існуючого аккаунту"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr ""
+msgstr "Приєднатися до ігрової кімнати"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
-msgstr ""
+msgstr "Логін:"
 
 #: gui/lobby/prelobby.xml:(caption):44 gui/lobby/prelobby.xml:(caption):68
 msgid "Password:"
-msgstr ""
+msgstr "Пароль:"
 
 #: gui/lobby/prelobby.xml:(caption):59
 msgid "Registration"
-msgstr ""
+msgstr "Реєстрація"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr ""
+msgstr "Знову пароль:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
-msgstr ""
+msgstr "Я прочитав і погоджуюсь з Умовами Послуги та Умовами Використання:"
 
 #: gui/lobby/prelobby.xml:(caption):97
 msgid "Cancel"
@@ -401,93 +402,93 @@ msgstr "Скасувати"
 
 #: gui/lobby/Terms_of_Service.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Service"
-msgstr ""
+msgstr "Умови Послуги багатокористувацької гри \"0 A.D. Влада Імперій\""
 
 #: gui/lobby/Terms_of_Service.txt:2 gui/lobby/Terms_of_Use.txt:2
 msgid "Definitions:"
-msgstr ""
+msgstr "Визначення:"
 
 #: gui/lobby/Terms_of_Service.txt:3 gui/lobby/Terms_of_Use.txt:3
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr ""
+msgstr "* \"Послуги\" багатокористувацької гри \"0 A.D. Влада Імперій\" забезпечуються Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
-msgstr ""
+msgstr "* \"Ви\" є користувачем послуги."
 
 #: gui/lobby/Terms_of_Service.txt:5
 msgid " * \"We\" are the collective of all Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "* \"Ми\" є сукупністю всіх учасників команди Wildfire Games (WFG)"
 
 #: gui/lobby/Terms_of_Service.txt:6
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr ""
+msgstr "* \"Рейтинг\" відноситься до процесу аналізу різних статистичних даних користувачів з метою отримання єдиного всеосяжного рахунка."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
-msgstr ""
+msgstr "* \"Модерація\" відноситься до процесу забезпечення дотримання політики використання."
 
 #: gui/lobby/Terms_of_Service.txt:8
 msgid "By using the service you agree to:"
-msgstr ""
+msgstr "Використовуючи послугу ви погоджуєтесь:"
 
 #: gui/lobby/Terms_of_Service.txt:9
 msgid " 1. Follow all usage policies."
-msgstr ""
+msgstr "1. Дотримуватися виконання всіх вимог."
 
 #: gui/lobby/Terms_of_Service.txt:10
 msgid ""
 " 2. Allow user identifiable statistics to be gathered for the purposes of "
 "rating, user profiles, and community statistics."
-msgstr ""
+msgstr "2. Дозволяєте ідентифікувати свою користувацьку статистику що до збору даних для складання рейтингу, профілю користувача і статистики спільноти."
 
 #: gui/lobby/Terms_of_Service.txt:11 gui/lobby/Terms_of_Use.txt:18
 msgid "We also reserve the right to:"
-msgstr ""
+msgstr "Ми також залишаємо за собою право:"
 
 #: gui/lobby/Terms_of_Service.txt:12
 msgid " 1. Moderate the service."
-msgstr ""
+msgstr "1. Модерувати послуги."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr ""
+msgstr "2. Призначати інших для модерування послуг."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr ""
+msgstr "3. Припиняти або переривати  послуги в будь-який час з або без попереднього оголошення."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr ""
+msgstr "4. Змінювати послуги в будь-який час з або без оголошення."
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr ""
+msgstr "5. Видаляти будь-що або всі дані послуг в будь-який час з або без оголошення."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr ""
+msgstr "6. Збирати ідентифікаційну статистику будь-якого або всіх користувачів в будь-який час без дозволу для:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr ""
+msgstr "а. Приватного аналізу учасниками команди Wildfire Games (WFG) та їх колегами."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr ""
+msgstr "б. Безіменної публічної публікації учасниками команди Wildfire Games (WFG)"
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -495,66 +496,66 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "7. Будь-як змінювати цей документ; в будь-який час; при умові, що користувач послуги отримає відповідне повідомлення про зміну (визначення відповідної зміни буде повідомлено в свій час через панель учасників команди Wildfire Games (WFG))"
 
 #: gui/lobby/Terms_of_Use.txt:1
 msgid "0 A.D. Empires Ascendant Multiplayer Lobby Terms of Use"
-msgstr ""
+msgstr "Умови використання багатокористувацької гри \"0 A.D. Влада Імперій\""
 
 #: gui/lobby/Terms_of_Use.txt:5
 msgid ""
 " * \"Impersonate\" refers to the action in which you attempt to exploit "
 "another's identity for your own purposes."
-msgstr ""
+msgstr "* \"Чужий логін\" - відноситься до дії при якому Ви намагаєтеся використовувати чужий аккаунт у власних цілях."
 
 #: gui/lobby/Terms_of_Use.txt:6
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr ""
+msgstr "* \"Спам\" відноситься до несуттєвих або недоречних повідомлень що посилаються великій кількості одержувачів."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr ""
+msgstr "* \"Рейтинг\" відноситься до всеосяжного рахунку для кожного користувача."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
 " * \"Ranked games\" refers to games in which rating changing statistics are "
 "tracked."
-msgstr ""
+msgstr "* \"Рангові ігри\" ігри, в яких простежується рейтинг для зміни статистики."
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr ""
+msgstr "Ви погоджуєтесь:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr ""
+msgstr "1. Створити тільки один аккаунт для унікального користувача Послуги, окрім дозволених учасниками команди Wildfire Games (WFG)."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr ""
+msgstr "2. Не публікувати образливі повідомлення, непристойний гумор, порнографію або дискримінуючі коментарі в Послугах."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr ""
+msgstr "3. Не використовувати сервіс для умисної дискредитації інших користувачів Послугою."
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr ""
+msgstr "4. Не використовувати Послугу для продажу певних товарів, сервісів, виробів."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr ""
+msgstr "5. Не видавати себе за іншого користувача послуги."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr ""
+msgstr "6. Не спаміти в послузі."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -562,13 +563,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr ""
+msgstr "7. Не намагайтеся штучно регулювати рейтинг будь-якого користувача послуги або яку-небудь статистику яка впливає на нього. (Приклади цього, але не заборонені: коди в рангованих іграх, зворотня розробка послуги та отримання вигоди від інших користувачів послуги.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr ""
+msgstr "8. Дозволяєте видалення себе з послуги, якщо в будь-який час модератор визначить що Ваша поведінка не узгоджується з цими правилами."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -576,4 +577,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr ""
+msgstr "1. Будь-як змінювати цей документ; в будь-який час; при умові, що користувач послуги отримає відповідне повідомлення про зміну (визначення відповідної зміни буде повідомлено в свій час через панель учасників команди Wildfire Games (WFG))"

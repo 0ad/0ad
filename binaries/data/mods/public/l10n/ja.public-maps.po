@@ -4,12 +4,13 @@
 # 
 # Translators:
 # Kanetaka Suto, 2014
+# llen_llen, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-10-31 02:27+0000\n"
-"Last-Translator: Kanetaka Suto\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-20 09:00+0000\n"
+"Last-Translator: llen_llen\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -423,10 +424,10 @@ msgstr "雪晶岩"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "重要な注意：　AIプレイヤーはこのマップで使えません\n\n基地を終わることのない敵襲から防衛してください。女性市民を用いて資源を集めましょう。最後に残ったプレイヤーが勝者となります。"
+msgstr "重要な注意：AIプレイヤーはこのマップで動作しません\n\n基地を絶えず押し寄せる敵から防衛してください。女性市民たちで資源を集めましょう。最後まで残ったプレイヤーが勝者となります。"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -527,7 +528,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "敵よりも先に財宝を集めてください。ご健闘を！"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "敵の宝物庫が満杯になりました。敗北です…"
 
 #: maps/scenarios/treasure_islands.js:42
@@ -551,14 +552,14 @@ msgstr "財宝を獲得しました！"
 msgid "Defeat your enemy to win!"
 msgstr "敵を倒して勝利せよ！"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
 msgstr "春のギリシアのアルカディアです。春の雨が、今を除けば一年中干上がっているであろう小川の川底を飲み込み、敵対する二つの部族の土地を隔てています。\n\nプレイヤーの開始位置は山岳地帯の両側で、資源に恵まれています。追加の開始時の建物によって、プレイヤーは新たな入植地の建設開始を早めることができます。"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -626,7 +627,7 @@ msgstr "春のギリシアのアルカディアです。春の雨が、今を除
 msgid "Player 1"
 msgstr "プレイヤー 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -692,9 +693,9 @@ msgstr "プレイヤー 1"
 msgid "Player 2"
 msgstr "プレイヤー 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "アルカディア 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr "アルカディア"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41

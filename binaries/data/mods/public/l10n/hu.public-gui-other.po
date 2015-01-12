@@ -4,13 +4,14 @@
 # 
 # Translators:
 # Stew Den <stewden55@hotmail.com>, 2014
-# Tibor Buzási <tib.buzasi@gmail.com>, 2014
+# Tibor Buzási, 2014
+# Tibor Buzási, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-12-06 22:50+0000\n"
-"Last-Translator: Stew Den <stewden55@hotmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2015-01-04 17:41+0000\n"
+"Last-Translator: Tibor Buzási\n"
 "Language-Team: Hungarian (http://www.transifex.com/projects/p/0ad/language/hu/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -18,38 +19,38 @@ msgstr ""
 "Language: hu\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
 msgstr "%(civilization)s Játékmenet"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Civilizáció bónusz"
+msgstr[1] "Civilizáció bónuszok"
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Csapat bónusz"
+msgstr[1] "Csapat bónuszok"
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "Speciális Technológiák"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Speciális épület"
+msgstr[1] "Speciális épületek"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Hős"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
 msgstr "A %(civilization)s civilizáció történelme"
@@ -59,7 +60,7 @@ msgstr "A %(civilization)s civilizáció történelme"
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "%(url)s megnyitása\naz alapértelmezett böngészőben. Kérlek, várj..."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
@@ -197,40 +198,40 @@ msgstr "Üdvözlő képernyő letiltása"
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Ha teljesen letiltod ezt a képernyőt, akkor fontos bejelentésekről maradhatsz le.\nTovábbra is elindíthatod a főmenüből."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Részletes eszköztippek"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Részletes eszköztippek megjelenítése a képezhető egységekhez az egységtermelő épületekben."
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "FPS felület"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Képkocka per másodperc (FPS) megjelenítése a jobb felső sarokban."
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "Tényleges idő felület"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
-msgstr "Rendszeridő mutatása a jobb felső sarokban."
+msgstr "Tényleges rendszeridő megjelenítése a jobb felső sarokban."
 
 #: gui/options/options.js:15
 msgid "Gametime Overlay"
-msgstr ""
+msgstr "Játékidő felület"
 
 #: gui/options/options.js:15
 msgid "Show current simulation time in top right corner."
-msgstr ""
+msgstr "Jelelegi szimulációs idő megjelenítése a jobb felső sarokban."
 
 #: gui/options/options.js:19
 msgid "Prefer GLSL"
@@ -242,11 +243,11 @@ msgstr "OpenGL 2.0 shaderek használata (ajánlott)"
 
 #: gui/options/options.js:20
 msgid "Post Processing"
-msgstr ""
+msgstr "Post Processing"
 
 #: gui/options/options.js:20
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
-msgstr ""
+msgstr "Screen-space post processing szűrők használata (HDR,ragyogás,mélységélesség stb.)"
 
 #: gui/options/options.js:21
 msgid "Shadows"
@@ -266,7 +267,7 @@ msgstr "Részecskék engedélyezése"
 
 #: gui/options/options.js:23
 msgid "Show Sky"
-msgstr "Ég mutatása"
+msgstr "Ég megjelenítése"
 
 #: gui/options/options.js:23
 msgid "Render Sky"
@@ -274,27 +275,27 @@ msgstr "Ég Renderelése"
 
 #: gui/options/options.js:24
 msgid "Smooth LOS"
-msgstr ""
+msgstr "Finom látóhatár"
 
 #: gui/options/options.js:24
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr ""
+msgstr " A sötétség és a háború ködének finom feltárása"
 
 #: gui/options/options.js:25
 msgid "Unit Silhouettes"
-msgstr ""
+msgstr "Egység sziluettek"
 
 #: gui/options/options.js:25
 msgid "Show outlines of units behind buildings"
-msgstr ""
+msgstr "Épületek mögött lévő egységek körvonalának megjelenítése"
 
 #: gui/options/options.js:26
 msgid "Shadow Filtering"
-msgstr "Árnyékok Szűrése"
+msgstr "Árnyékok szűrése"
 
 #: gui/options/options.js:26
 msgid "Smooth shadows"
-msgstr ""
+msgstr "Finom árnyékok"
 
 #: gui/options/options.js:27
 msgid "Fast & Ugly Water"
@@ -304,7 +305,7 @@ msgstr "Gyors és csúnya víz"
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
-msgstr ""
+msgstr "A legalacsonyabb beállítások használata a víz rendereléséhez. Ezzel szemben más beállítások irrelevánsak."
 
 #: gui/options/options.js:28
 msgid "HQ Water Effects"
@@ -314,31 +315,31 @@ msgstr "Jó minőségű vízeffektek"
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
-msgstr ""
+msgstr "Magasabb minőségű effektek használata a víz, a tengerparti hullámok, a partmenti hab és a hajók nyomvonalának rendereléséhez."
 
 #: gui/options/options.js:29
 msgid "Real Water Depth"
-msgstr "Valós Vízmélység"
+msgstr "Tényleges vízmélység."
 
 #: gui/options/options.js:29
 msgid "Use actual water depth in rendering calculations"
-msgstr "Vízmélység figyelembevétele renderelési számításoknál"
+msgstr "Tényleges vízmélység használata renderelési számításoknál"
 
 #: gui/options/options.js:30
 msgid "Water Reflections"
-msgstr "Víz Tükröződése"
+msgstr "Víz tükröződése"
 
 #: gui/options/options.js:30
 msgid "Allow water to reflect a mirror image"
-msgstr "A víz tükörként verheti vissza a képet"
+msgstr "Víz tükérképének engedélyezése"
 
 #: gui/options/options.js:31
 msgid "Water Refraction"
-msgstr ""
+msgstr "Víz fénytörése"
 
 #: gui/options/options.js:31
 msgid "Use a real water refraction map and not transparency"
-msgstr ""
+msgstr "Tényleges fénytörés használata víznél átlátszóság helyett"
 
 #: gui/options/options.js:32
 msgid "Shadows on Water"
@@ -346,7 +347,7 @@ msgstr "Árnyékok a vízen"
 
 #: gui/options/options.js:32
 msgid "Cast shadows on water"
-msgstr ""
+msgstr "Árnyékok vetése a vízre"
 
 #: gui/options/options.js:33
 msgid "VSync"
@@ -354,47 +355,47 @@ msgstr "VSync"
 
 #: gui/options/options.js:33
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
-msgstr ""
+msgstr "Függőleges szinkronizáció futtatása a képtörés javítására. A JÁTÉK ÚJRAINDÍTÁSÁT IGÉNYLI"
 
 #: gui/options/options.js:37
 msgid "Master Gain"
-msgstr ""
+msgstr "Fő erősítés"
 
 #: gui/options/options.js:37
 msgid "Master audio gain"
-msgstr ""
+msgstr "Fő hangerősítés"
 
 #: gui/options/options.js:38
 msgid "Music Gain"
-msgstr ""
+msgstr "Zene erősítése"
 
 #: gui/options/options.js:38
 msgid "In game music gain"
-msgstr ""
+msgstr "Játékbeli zene erősítése"
 
 #: gui/options/options.js:39
 msgid "Ambient Gain"
-msgstr ""
+msgstr "Környezet erősítése"
 
 #: gui/options/options.js:39
 msgid "In game ambient sound gain"
-msgstr ""
+msgstr "Játékbeli környezet hangjainak erősítése"
 
 #: gui/options/options.js:40
 msgid "Action Gain"
-msgstr ""
+msgstr "Akció erősítése"
 
 #: gui/options/options.js:40
 msgid "In game unit action sound gain"
-msgstr ""
+msgstr "Játékbeli akciók hangjainak erősítése"
 
 #: gui/options/options.js:41
 msgid "UI Gain"
-msgstr ""
+msgstr "Kezelőfelület erősítése"
 
 #: gui/options/options.js:41
 msgid "UI sound gain"
-msgstr ""
+msgstr "Kezelőfelület hangjainak erősítése"
 
 #: gui/options/options.js:45
 msgid "Chat Backlog"
@@ -402,7 +403,7 @@ msgstr "Chat Napló"
 
 #: gui/options/options.js:45
 msgid "Number of backlogged messages to load when joining the lobby"
-msgstr ""
+msgstr "Betöltendő tárolt üzenetek száma az előcsarnokhoz csatlakozáskor"
 
 #: gui/options/options.js:46
 msgid "Chat Timestamp"
@@ -410,7 +411,7 @@ msgstr "Chat Időbélyegző"
 
 #: gui/options/options.js:46
 msgid "Show time that messages are posted in the lobby chat"
-msgstr ""
+msgstr "Üzenetküldések időpontjának megjelenítése az előcsarnok chat-ben"
 
 #: gui/pregame/mainmenu.js:78
 msgid "disabled"
@@ -450,7 +451,7 @@ msgid ""
 "(fixed function) graphics. This option will be removed in a future 0 A.D. "
 "release, to allow for more advanced graphics features. We advise upgrading "
 "your graphics card to a more recent, shader-compatible model."
-msgstr ""
+msgstr "%(startWarning)sFigyelem:%(endWarning)s Úgy tűnik shader nélküli (fixed function) grafikát használsz. Ez a lehetőség egy későbbi 0 A.D. kiadásban el lesz távolítva, fejlettebb grafikai jellegzetességek engedélyezéséhez. Javasoljuk, hogy korszerűsítsd a grafikus kártyádat egy jóval újabb, shader-kompatibilis változatra."
 
 #. Translation: This is the second paragraph of a warning. The
 #. warning explains that the user is using “non-shader“ graphics,
@@ -485,20 +486,20 @@ msgstr "Megerősítés"
 msgid ""
 "The scenario editor is not available or failed to load. See the game logs "
 "for additional information."
-msgstr ""
+msgstr "A küldetésszerkesztő nem elérhető vagy nem töltődött be. További információért tekintsd meg a játéknaplókat."
 
 #: gui/pregame/mainmenu.js:292
 msgid "Error"
 msgstr "Hiba"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
-msgstr "Technikai Részletek"
+msgstr "Technikai részletek"
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
@@ -510,7 +511,7 @@ msgstr "Nincsenek mentett játékok"
 
 #: gui/savedgames/load.js:48
 msgid "This saved game may not be compatible:"
-msgstr ""
+msgstr "Ezzel a játékmentéssel kompatibilitási problémák lehetnek:"
 
 #: gui/savedgames/load.js:50
 #, javascript-format
@@ -522,7 +523,7 @@ msgstr "Ehhez a 0 A.D. következő verziója szükséges: %(requiredVersion)s, t
 #: gui/savedgames/load.js:60
 #, javascript-format
 msgid "It does not need any mod while you are running with \"%(currentMod)s\"."
-msgstr ""
+msgstr "Nincs szükség modulra, amíg a következőket futtatod: \"%(currentMod)s\"."
 
 #: gui/savedgames/load.js:64
 #, javascript-format
@@ -829,7 +830,7 @@ msgstr "Kattints ide új egyjátékos módú játék indításához."
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
@@ -1102,23 +1103,23 @@ msgstr "Kereskedelmi hat."
 
 #: gui/summary/summary.xml:(caption):738
 msgid "Trade income"
-msgstr ""
+msgstr "Kereskedelmi bevétel"
 
 #: gui/summary/summary.xml:(caption):869
 msgid "Vegetarian\\nratio"
-msgstr ""
+msgstr "Vegetariánus\\narány"
 
 #: gui/summary/summary.xml:(caption):872
 msgid "Feminisation"
-msgstr ""
+msgstr "Feminizáció"
 
 #: gui/summary/summary.xml:(caption):875
 msgid "Kill / Death\\nratio"
-msgstr ""
+msgstr "Ölés / Halál\\narány"
 
 #: gui/summary/summary.xml:(caption):878
 msgid "Map\\nexploration"
-msgstr ""
+msgstr "Térkép\\nfelfedezése"
 
 #: gui/summary/summary.xml:(caption):985
 msgid "Continue"
@@ -1136,32 +1137,32 @@ msgstr "[font=\"sans-16\"]"
 msgid ""
 "[icon=\"constructionIcon\"]  This is an early experimental version of the "
 "game. Features are missing and it contains bugs."
-msgstr ""
+msgstr "[icon=\"constructionIcon\"] Ez egy korai kísérleti verziója a játéknak. Egyes jellegzetességek hiányoznak és hibákat tartalmaz."
 
 #: gui/splashscreen/splashscreen.txt:5
 msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
-msgstr ""
+msgstr "[icon=\"iconLag\"] A játék szaggat, ha sok egység mozog."
 
 #: gui/splashscreen/splashscreen.txt:7
 msgid "[icon=\"iconMap\"]  Large maps can cause problems."
-msgstr ""
+msgstr "[icon=\"iconMap\"]  A nagy térképek problémákat okozhatnak."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid ""
 "[icon=\"iconFormation\"]  We disabled formations until we find out how to "
 "make them less laggy, more fun to play, and historically accurate."
-msgstr ""
+msgstr "[icon=\"iconFormation\"] Letiltottuk az alakulatokat, amíg nem tudjuk, hogyan tegyük őket kevésbbé szaggatásmentessé, szórakoztatóbbá és történelmileg pontosabbá."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"
-msgstr ""
+msgstr "RÓMAI HADSEREG TÁBORA"
 
 #: gui/text/tips/army_camp.txt:2
 msgid ""
 "- Build anywhere on the map, even in enemy territory. Good for building a "
 "secret base behind enemy lines or to consolidate gains within enemy "
 "territory."
-msgstr ""
+msgstr "- Építsd bárhova a térképen, akár ellenséges területre is! Jól használható titkos bázisnak az ellenséges frontvonal mögött, vagy a növekedés megerősítésére az ellenséges területen."
 
 #: gui/text/tips/army_camp.txt:4
 msgid "- Loses health when in neutral or enemy territory."
@@ -1169,11 +1170,11 @@ msgstr "- Életerőt veszt, ha semleges vagy ellenséges területen van."
 
 #: gui/text/tips/army_camp.txt:6
 msgid "- Construct siege weapons and train citizen-soldiers."
-msgstr ""
+msgstr "- Ostromgépek építése és polgári katonák képzése."
 
 #: gui/text/tips/army_camp.txt:8
 msgid "- Slowly heal up to 40 garrisoned units."
-msgstr ""
+msgstr "- Akár 40 elszállásolt egység lassú gyógyítása."
 
 #: gui/text/tips/barracks.txt:1
 msgid "BARRACKS"
@@ -1183,7 +1184,7 @@ msgstr "BARAKKOK"
 msgid ""
 "- Train all citizen-soldiers. Some factions can unlock the training of "
 "champions as well."
-msgstr ""
+msgstr "- Minden polgári katona képzése. Egyes nemzetek a bajnokok képzését is feloldhatják."
 
 #: gui/text/tips/barracks.txt:4
 msgid "- Research military technologies unique to each faction."
@@ -1197,7 +1198,7 @@ msgstr "- Építs egyet korán, hogy polgár-katonákat toborozz, míg felépít
 
 #: gui/text/tips/barracks.txt:8
 msgid "- Build in a forward base to resupply your assault with fresh troops."
-msgstr ""
+msgstr "- Építsd egy előretölt bázisra, hogy friss csapatutánpótlással támogasd a támadást."
 
 #: gui/text/tips/blacksmith.txt:1
 msgid "BLACKSMITH"
@@ -1205,15 +1206,15 @@ msgstr "KOVÁCS"
 
 #: gui/text/tips/blacksmith.txt:2
 msgid "- Research structure for all factions."
-msgstr ""
+msgstr "- Építmény kutatása minden nemzet számára."
 
 #: gui/text/tips/blacksmith.txt:4
 msgid "- Research weapon and armor upgrades for your units."
-msgstr ""
+msgstr "- Fegyver- és páncélfejlesztések kutatása az egységeid számára."
 
 #: gui/text/tips/blacksmith.txt:6
 msgid "- Garrison a citizen-soldier inside to research faster."
-msgstr ""
+msgstr "- Polgári katona szállásolása a gyorsabb kutatásért."
 
 #: gui/text/tips/carth_sacred_band.txt:1
 msgid "CARTHAGINIAN SACRED BAND"
@@ -1281,15 +1282,15 @@ msgstr ""
 
 #: gui/text/tips/civic_centres.txt:1
 msgid "CIVIC CENTERS"
-msgstr ""
+msgstr "VÁROSKÖZPONTOK"
 
 #: gui/text/tips/civic_centres.txt:2
 msgid "- The \"foundation\" of your new colony."
-msgstr "- Az új kolóniád \"befektetése\""
+msgstr "- Az új kolóniád \"alapja\""
 
 #: gui/text/tips/civic_centres.txt:4
 msgid "- Claim large tracts of territory."
-msgstr ""
+msgstr "- Nagy területek elfoglalása."
 
 #: gui/text/tips/civic_centres.txt:6
 msgid "- Can be built in friendly and neutral territory."
@@ -1297,7 +1298,7 @@ msgstr "- Barátságos vagy semleges területre építhető."
 
 #: gui/text/tips/civic_centres.txt:8
 msgid "- Train Female Citizens and basic Citizen-Soldiers."
-msgstr ""
+msgstr "- Női polgárok és alap polgári katonék képzése."
 
 #: gui/text/tips/embassies.txt:1
 msgid "EMBASSIES"
@@ -1323,7 +1324,7 @@ msgstr "HALÁSZAT"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr "- Horgássz a tengereken a remek zsákmányért."
+msgstr "- Halássz a tengereken a remek zsákmányért."
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
@@ -1349,7 +1350,7 @@ msgstr "- Az Erőd általában a népek legerősebb építménye."
 
 #: gui/text/tips/fortress.txt:4
 msgid "- Trains Champion Units, Heroes, and Siege Weapons."
-msgstr ""
+msgstr "- Bajnok egységek, hősök és ostromgépek képzése."
 
 #: gui/text/tips/fortress.txt:6
 msgid "- Gives a population boost."
@@ -1357,7 +1358,7 @@ msgstr "- Népességnövekedést okoz."
 
 #: gui/text/tips/fortress.txt:8
 msgid "- Garrison soldiers inside to add more firepower to its defense."
-msgstr ""
+msgstr "- Katonák elszállásolása a tűzerő növeléséért a védelemhez."
 
 #: gui/text/tips/gathering.txt:1
 msgid "RESOURCE GATHERING"
@@ -1365,7 +1366,7 @@ msgstr "NYERSANYAGGYŰJTÉS"
 
 #: gui/text/tips/gathering.txt:2
 msgid "- Use Citizen-Soldiers and Female Citizens to gather resources."
-msgstr ""
+msgstr "- Polgári katonák és női polgárok használata a nyersanyagok gyűjtögetéséhez."
 
 #: gui/text/tips/gathering.txt:4
 msgid "- Female Citizens are bonused with Farming and Foraging."

@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Victor Butko <victor.butko@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 10:12+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-24 18:50+0000\n"
+"Last-Translator: Victor Butko <victor.butko@gmail.com>\n"
 "Language-Team: Ukrainian (http://www.transifex.com/projects/p/0ad/language/uk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -16,55 +17,55 @@ msgstr ""
 "Language: uk\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: gui/civinfo/civinfo.js:105
+#: gui/civinfo/civinfo.js:104
 #, javascript-format
 msgid "%(civilization)s Gameplay"
-msgstr ""
+msgstr "%(civilization)s особливості гри"
 
-#: gui/civinfo/civinfo.js:108
+#: gui/civinfo/civinfo.js:107
 msgid "Civilization Bonus"
 msgid_plural "Civilization Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Бонус Цивілізації"
+msgstr[1] "Бонуси Цивілізації"
+msgstr[2] "Бонусів Цивілізації"
 
-#: gui/civinfo/civinfo.js:113
+#: gui/civinfo/civinfo.js:112
 msgid "Team Bonus"
 msgid_plural "Team Bonuses"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Бонус команди"
+msgstr[1] "Бонусм команди"
+msgstr[2] "Бонусів команди"
 
-#: gui/civinfo/civinfo.js:122
+#: gui/civinfo/civinfo.js:121
 msgid "Special Technologies"
 msgstr "Спеціальні технології"
 
-#: gui/civinfo/civinfo.js:131
+#: gui/civinfo/civinfo.js:130
 msgid "Special Building"
 msgid_plural "Special Buildings"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Особлива будівля"
+msgstr[1] "Особливі будівлі"
+msgstr[2] "Особливих будівель"
 
-#: gui/civinfo/civinfo.js:140 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
 msgid "Heroes"
 msgstr "Герої"
 
-#: gui/civinfo/civinfo.js:154
+#: gui/civinfo/civinfo.js:153
 #, javascript-format
 msgid "History of the %(civilization)s"
-msgstr ""
+msgstr "Історія %(civilization)s"
 
 #: gui/common/functions_global_object.js:74
 #, javascript-format
 msgid ""
 "Opening %(url)s\n"
 " in default web browser. Please wait...."
-msgstr ""
+msgstr "%(url)s відкривається\nв браузері за умовчуванням. Будь ласка зачекайте...."
 
 #: gui/common/functions_global_object.js:74
 msgid "Opening page"
-msgstr ""
+msgstr "Початкова сторінка"
 
 #: gui/common/functions_global_object.js:79
 #, javascript-format
@@ -73,7 +74,7 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:189
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
@@ -90,17 +91,17 @@ msgstr "yyyy-MM-dd HH:mm:ss"
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
 msgid "\\[%(date)s]"
-msgstr ""
+msgstr "\\[%(date)s]"
 
 #: gui/common/functions_utility_loadsave.js:18
 #, javascript-format
 msgid "%(dateString)s %(map)s - %(description)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s - %(description)s"
 
 #: gui/common/functions_utility_loadsave.js:20
 #, javascript-format
 msgid "%(dateString)s %(map)s"
-msgstr ""
+msgstr "%(dateString)s %(map)s"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -143,7 +144,7 @@ msgstr "Пусто"
 
 #: gui/locale/locale_advanced.js:91
 msgid "<invalid>"
-msgstr ""
+msgstr "<invalid>"
 
 #: gui/msgbox/msgbox.js:40 gui/pregame/mainmenu.js:280
 #: gui/savedgames/load.js:46 gui/savedgames/load.js:108
@@ -168,7 +169,7 @@ msgstr "Повтор"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Ignore"
-msgstr "Ігнор"
+msgstr "Ігнорувати"
 
 #: gui/msgbox/msgbox.js:48
 msgid "Abort"
@@ -176,50 +177,50 @@ msgstr "Відмінити"
 
 #: gui/options/options.js:9
 msgid "Windowed Mode"
-msgstr ""
+msgstr "Віконний режим"
 
 #: gui/options/options.js:9
 msgid "Start 0 A.D. in a window"
-msgstr ""
+msgstr "Запустити 0 A.D. у вікні"
 
 #: gui/options/options.js:10
 msgid "Background Pause"
-msgstr ""
+msgstr "Пауза в фоновому режимі"
 
 #: gui/options/options.js:10
 msgid "Pause single player games when window loses focus"
-msgstr ""
+msgstr "Зупиняти одиночну гру коли вікно становиться неактивним"
 
 #: gui/options/options.js:11
 msgid "Disable Welcome Screen"
-msgstr ""
+msgstr "Вимкнути екран вітання"
 
 #: gui/options/options.js:11
 msgid ""
 "If you disable this screen completely, you may miss important announcements.\n"
 "You can still launch it using the main menu."
-msgstr ""
+msgstr "Якщо повністю вимкнути екран, ви можете пропустити важливі повідомлення.\nВи ще можете включити це в головному меню."
 
 #: gui/options/options.js:12
 msgid "Detailed Tooltips"
-msgstr ""
+msgstr "Детальні підказки"
 
 #: gui/options/options.js:12
 msgid ""
 "Show detailed tooltips for trainable units in unit-producing buildings."
-msgstr ""
+msgstr "Показувати детальні підказки для тренувальних юнітів в будівлях що їх тренують"
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "Частота кадрів"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
-msgstr ""
+msgstr "Показувати фрейми в секунду в правому верхньому куті."
 
 #: gui/options/options.js:14
 msgid "Realtime Overlay"
-msgstr ""
+msgstr "Час"
 
 #: gui/options/options.js:14
 msgid "Show current system time in top right corner."
@@ -493,7 +494,7 @@ msgid "Error"
 msgstr "Помилка"
 
 #: gui/pregame/mainmenu.js:297
-msgid "Launch the multiplayer lobby. \\\\[DISABLED BY BUILD]"
+msgid "Launch the multiplayer lobby. \\[DISABLED BY BUILD]"
 msgstr ""
 
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
@@ -625,7 +626,7 @@ msgstr "Скасувати"
 
 #: gui/locale/locale.xml:(caption):41
 msgid "Advanced"
-msgstr ""
+msgstr "Покращений"
 
 #: gui/locale/locale.xml:(caption):46
 #: gui/locale/locale_advanced.xml:(caption):75
@@ -830,7 +831,7 @@ msgstr "Нажміть тут для початку нової гри"
 
 #: gui/pregame/mainmenu.xml:(tooltip):170
 msgid ""
-"Relive history through historical military campaigns. \\\\\\\\[NOT YET "
+"Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr ""
 
@@ -1015,11 +1016,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):242
 msgid "Military"
-msgstr ""
+msgstr "Військове"
 
 #: gui/summary/summary.xml:(caption):245
 msgid "Fortresses"
-msgstr ""
+msgstr "Фортеця"
 
 #: gui/summary/summary.xml:(caption):248
 msgid "Civ Centers"
@@ -1035,7 +1036,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):407
 msgid "Infantry"
-msgstr "Піхота"
+msgstr "Піхотинець"
 
 #: gui/summary/summary.xml:(caption):410
 msgid "Worker"
@@ -1043,11 +1044,11 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):413
 msgid "Cavalry"
-msgstr "Кіннота"
+msgstr "Кавалерист"
 
 #: gui/summary/summary.xml:(caption):416
 msgid "Champion"
-msgstr ""
+msgstr "Чемпіон"
 
 #: gui/summary/summary.xml:(caption):422
 msgid "Navy"
@@ -1071,7 +1072,7 @@ msgstr "Камінь"
 
 #: gui/summary/summary.xml:(caption):574
 msgid "Metal"
-msgstr "Металеві руди"
+msgstr "Метал"
 
 #: gui/summary/summary.xml:(caption):580
 msgid "Treasures collected"
@@ -1342,7 +1343,7 @@ msgstr ""
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"
-msgstr "Укріплення"
+msgstr "ФОРТЕЦЯ"
 
 #: gui/text/tips/fortress.txt:2
 msgid "- The Fortress is usually each faction's strongest building."

@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adomas Jackevičius, 2014
 # banginis <asesuarbanesu@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-11-20 09:50+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-19 14:00+0000\n"
+"Last-Translator: Adomas Jackevičius\n"
 "Language-Team: Lithuanian (http://www.transifex.com/projects/p/0ad/language/lt/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "Nieko"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "DI šiam žaidėjui bus apribotas"
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -35,7 +36,7 @@ msgstr "Smėlio dėžė"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Labai Lengva"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -66,27 +67,27 @@ msgstr "Neribota"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr "Labai mažai"
+msgstr "Labai Žemas"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
-msgstr "Mažai"
+msgstr "Žemas"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Vidutiniškai"
+msgstr "Vidutinis"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
-msgstr "Daug"
+msgstr "Aukštas"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
-msgstr "Labai daug"
+msgstr "Labai Aukštas"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -104,7 +105,7 @@ msgstr ""
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Susirėmimas"
 
 #: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
 #: gui/gamesetup/gamesetup.js:1260
@@ -114,7 +115,7 @@ msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:139
 msgid "Scenario"
-msgstr ""
+msgstr "Scenarijus"
 
 #: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
 #: gui/gamesetup/gamesetup.js:1243
@@ -138,14 +139,14 @@ msgctxt "team"
 msgid "None"
 msgstr "Nieko"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1321
+#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
 msgctxt "civilization"
 msgid "Random"
 msgstr "Atsitiktinis"
 
 #: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
 msgid "You"
-msgstr ""
+msgstr "Tu"
 
 #: gui/gamesetup/gamesetup.js:981
 #, javascript-format
@@ -154,27 +155,27 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
-msgstr ""
+msgstr "Žemėlapio Dydis:"
 
 #: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr ""
+msgstr "Atvertas Žemėlapis:"
 
 #: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr ""
+msgstr "Ištirinėtas Žemėlapis:"
 
 #: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
-msgstr ""
+msgstr "Pergalės Sąlyga:"
 
 #: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
 #: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Užrankintos Komandos:"
 
 #: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
@@ -202,86 +203,86 @@ msgstr "Deja, aprašymo nėra."
 
 #: gui/gamesetup/gamesetup.js:1271
 #, javascript-format
-msgid "%(number)s player. %(description)s"
-msgid_plural "%(number)s players. %(description)s"
+msgid "%(number)s player. "
+msgid_plural "%(number)s players. "
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
-#: gui/gamesetup/gamesetup.js:1307
+#: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
-msgstr ""
+msgstr "Kraunasi..."
 
-#: gui/gamesetup/gamesetup.js:1420
+#: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
 msgid "AI: %(ai)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1425
+#: gui/gamesetup/gamesetup.js:1429
 msgid "Unassigned"
-msgstr ""
+msgstr "Nepriskirtas"
 
-#: gui/gamesetup/gamesetup.js:1613 gui/gamesetup/gamesetup.js:1618
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1640
 #, javascript-format
 msgid "== %(message)s"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1613
+#: gui/gamesetup/gamesetup.js:1617
 #, javascript-format
 msgid "%(username)s has joined"
 msgstr "%(username)s prisijungė"
 
-#: gui/gamesetup/gamesetup.js:1618
+#: gui/gamesetup/gamesetup.js:1622
 #, javascript-format
 msgid "%(username)s has left"
 msgstr "%(username)s atsijungė"
 
-#: gui/gamesetup/gamesetup.js:1623
+#: gui/gamesetup/gamesetup.js:1627
 #, javascript-format
 msgid "<%(username)s>"
 msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1624
+#: gui/gamesetup/gamesetup.js:1628
 #, javascript-format
 msgid "%(username)s %(message)s"
 msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1630
+#: gui/gamesetup/gamesetup.js:1634
 #, javascript-format
 msgid "* %(username)s is ready!"
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1632
+#: gui/gamesetup/gamesetup.js:1636
 #, javascript-format
 msgid "* %(username)s is not ready."
 msgstr ""
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Žaidimo nustatymai buvo pakeisti"
 
-#: gui/gamesetup/gamesetup.js:1661
+#: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
 msgstr "Aš nepasiruošęs"
 
-#: gui/gamesetup/gamesetup.js:1662
+#: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
 msgstr "Pranešti, kad tu dar nepasiruošei žaidimui."
 
-#: gui/gamesetup/gamesetup.js:1667 gui/gamesetup/gamesetup.js:1743
+#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
 msgstr "Aš pasiruošęs!"
 
-#: gui/gamesetup/gamesetup.js:1668
+#: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
 msgstr "Pranešti, kad tu jau pasiruošei žaisti."
 
-#: gui/gamesetup/gamesetup.js:1744
+#: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Patvirtinkite, kad sutinkate su žaidimo nustatymais ir esate pasirengę žaisti!"
 
-#: gui/gamesetup/gamesetup.js:1863
+#: gui/gamesetup/gamesetup.js:1867
 msgid "None"
 msgstr "Nieko"
 
@@ -301,7 +302,7 @@ msgstr "Tinklo žinutė: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "Registruojamasi prie serverio..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
@@ -309,7 +310,7 @@ msgstr "Žaidimas jau prasidėjo, jungiamasi iš naujo..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "Žaidimo pavadinimas jau naudojamas."
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
@@ -322,7 +323,7 @@ msgstr "Užkariavimas"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "Sutriuškinti visus oponentus."
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -330,34 +331,34 @@ msgstr "Stebuklas"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "Pastatyti stebuklą, kad laimėtum"
 
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "Kraunamas “%(map)s”"
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "Generuojamas “%(map)s”"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
-msgstr ""
+msgstr "DI Nustatymai"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "DI Žaidėjas:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "DI Stiprumas:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
 msgid "Cancel"
-msgstr ""
+msgstr "Atšaukti"
 
 #: gui/aiconfig/aiconfig.xml:(caption):41
 #: gui/gamesetup/gamesetup.xml:(caption):369
@@ -370,7 +371,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading"
-msgstr ""
+msgstr "Kraunasi"
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
@@ -378,19 +379,19 @@ msgstr "Įkeliami žemėlapio duomenys. Palaukite..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
-msgstr ""
+msgstr "Žaidėjo Vardas"
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
-msgstr ""
+msgstr "Žaidėjo Pozicija"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
-msgstr ""
+msgstr "Civilizacija"
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Team"
-msgstr ""
+msgstr "Komanda"
 
 #: gui/gamesetup/gamesetup.xml:(caption):100
 msgid "Map Type:"
@@ -398,11 +399,11 @@ msgstr "Žemėlapio tipas:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):103
 msgid "Map Filter:"
-msgstr ""
+msgstr "Žemėlapių Filtras:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):106
 msgid "Select Map:"
-msgstr ""
+msgstr "Pažymėtas Žemėlapis:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
@@ -410,20 +411,20 @@ msgstr "Žaidėjų skaičius:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
-msgstr ""
+msgstr "Siųsti"
 
 #: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Start game!"
-msgstr ""
+msgstr "Pradėti žaidimą!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
-msgstr ""
+msgstr "Grįžti"
 
 #: gui/gamesetup/gamesetup.xml:(caption):256
 #: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
-msgstr ""
+msgstr "Daugiau Nustatymų"
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
@@ -451,7 +452,7 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):71
 msgid "Select player."
-msgstr ""
+msgstr "Pažymėti žaidėją."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid "Configure AI settings."

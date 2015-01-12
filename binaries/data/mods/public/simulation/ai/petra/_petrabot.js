@@ -61,14 +61,15 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 		this.queues = this.queueManager.queues;
 
 		this.HQ = new m.HQ(this.Config);
-		this.HQ.init(gameState, this.queues, true);
+		this.HQ.init(gameState, this.queues);
 		this.HQ.Deserialize(gameState, this.data.HQ);
 
 		this.uniqueIDs = this.data.uniqueIDs;
 		this.isDeserialized = false;
 		this.data = undefined;
 
-		this.HQ.start(gameState, true);
+		// initialisation needed after the completion of the deserialization
+		this.HQ.postinit(gameState);
 	}
 	else
 	{
@@ -85,7 +86,8 @@ m.PetraBot.prototype.CustomInit = function(gameState, sharedScript)
 
 		this.HQ.init(gameState, this.queues);
 
-		this.HQ.start(gameState);
+		// Analyze our starting position and set a strategy
+		this.HQ.gameAnalysis(gameState);
 	}
 };
 

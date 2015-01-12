@@ -5,15 +5,16 @@
 # Translators:
 # Doğu Kan, 2014
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# Salih Dursuntas <salihdt@gmail.com>, 2014
 # ambd <sitebu@yandex.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:06+0100\n"
-"PO-Revision-Date: 2014-11-01 01:10+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2014-12-13 02:24+0100\n"
+"PO-Revision-Date: 2014-12-20 11:20+0000\n"
+"Last-Translator: Salih Dursuntas <salihdt@gmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -333,7 +334,7 @@ msgid ""
 "A dry central plateau rich in minerals surrounded by rocky hills\n"
 "\n"
 "The southern parts of Zagros Mountains where the heart of the Persian empires and population. Although the altitude is high, the southern parts are drier that the northern Zagros, leading to a semi-arid climate. Still there are some sparse oak forests in the higher grounds."
-msgstr ""
+msgstr "Kayalık tepelerle çevrili, merkezi, yağışsız ve mineraller açısından zengin bir platodur\n\nZagros dağlarının güney kısımları Pers imparatorluğu ve nüfusunun kalbidir. Rakım yüksek olmasına rağmen, güney kısımları kuzey Zagros'tan daha az yağış alır ve bu durum yarı kurak iklime sebep olur. Yine de yükseklerde yer yer meşe ormanları vardır. "
 
 #: maps/random/persian_highlands.jsonsettings.Name
 msgid "Persian Highlands"
@@ -427,10 +428,10 @@ msgstr "Kartanesi Deniz kayaları"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS WONT WORK WITH THIS MAP\n"
+"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
-msgstr "ÖNEMLİ NOT: YAPAY ZEKA OYUNCULARI BU HARİTA İLE ÇALIŞMAMAKTADIR\n\nMerkezinizi düşmanın sonsuz saldırılarına karşı koruyun. Kaynak toplamak için kadın vatandaşı kullanın. Geriye kalan son oyuncu kazanacaktır."
+msgstr "ÖNEMLİ NOT: YAPAY ZEKA KULLANICILARI BU HARİTA İLE ÇALIŞMAZ\n\nÜssünüzü ardı arkası kesilmeyen düşman saldırılarına karşı koruyun. Kadın vatandaşları kayank toplamak için kullanın. En son ayakta kalan oyuncu kazanacaktır."
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -531,7 +532,7 @@ msgid "Collect the treasures before your enemy does! May the better win!"
 msgstr "Düşmanın yapmadan sen hazineleri topla! Daha iyi bir galibiyet olabilir!"
 
 #: maps/scenarios/treasure_islands.js:37
-msgid "Your enemy's treasury is filled to the brim, you loose!"
+msgid "Your enemy's treasury is filled to the brim, you lose!"
 msgstr "Düşmanın hazinesini ağzına kadar doldurdu, kaybettin!"
 
 #: maps/scenarios/treasure_islands.js:42
@@ -555,14 +556,14 @@ msgstr "Hazineyi topladın!"
 msgid "Defeat your enemy to win!"
 msgstr "Kazanmak için düşmanı yok et"
 
-#: maps/scenarios/Arcadia 02.xml:Description:41
+#: maps/scenarios/Arcadia.xml:Description:41
 msgid ""
 "Springtime in Arcadia, Greece. Spring rains have gorged what would otherwise be dry creek beds throughout the rest of the year, dividing the lands between two warring tribes. \n"
 "\n"
 "Players start on either side of a mountainous region rich in resources. Extra starting buildings help players jumpstart building their new colonies."
-msgstr ""
+msgstr "Arcadia, Yunanistan'da ilkbahar zamanı. İlbahar yağmurları yılın geri kalanında taşlık, kuru dere yatağı olan bu alanları suya boğdu ve toprakları savaşan iki kabile arasında böldü.\n\nOyuncular kaynaklar açısından zengin dağlık bölgenin herhangi bir tarafında oyuna başlar. Ekstra başlangıç binaları yeni kolonilerini hızlıca kurmada oyunculara yardım eder."
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[0].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
@@ -630,7 +631,7 @@ msgstr ""
 msgid "Player 1"
 msgstr "Oyuncu 1"
 
-#: maps/scenarios/Arcadia 02.xml:PlayerData[1].Name:41
+#: maps/scenarios/Arcadia.xml:PlayerData[1].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[1].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[1].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[1].Name:31 maps/scenarios/Fast
@@ -696,9 +697,9 @@ msgstr "Oyuncu 1"
 msgid "Player 2"
 msgstr "Oyuncu 2"
 
-#: maps/scenarios/Arcadia 02.xml:Name:41
-msgid "Arcadia 2"
-msgstr "Arkadia 2"
+#: maps/scenarios/Arcadia.xml:Name:41
+msgid "Arcadia"
+msgstr "Arcadia"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
@@ -784,7 +785,7 @@ msgid ""
 "with lots of potential for skirmishing and guerilla warfare as well as tough"
 " defensive fighting or aggressive maneuvers. 1 Celt player, 2 Hellenic "
 "players."
-msgstr ""
+msgstr "Ormanlar, altın ve gizemlerle dolu vahşi ve ağaçlık bir ada... Dağlar, denizler ve sık ormanlar 3 oyunculu harita çok dinamik, hızlı gelişen muharebeler, gerilla savaşları ya da savunma savaşları ve agresif manevralar için bir çok olanak barındırıyor. 1 Kelt oyuncu, 2 Yunan oyuncu."
 
 #: maps/scenarios/Battle for the Tiber.xml:Description:31
 msgid ""
@@ -902,7 +903,7 @@ msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
-msgstr ""
+msgstr "Çölü ikiye bölen derin ve kayalık bir kanyon. Çok oyunculu oyunlar için ideal.\n\n2 oyunculu 2 takım. Her takımdaki bir oyuncu, bir üs ve kaynaklarla başlar. Diğer oyucu ise arkadaşına yardım etmek için büyük bir ordu ile başlar."
 
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
 #: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
@@ -1051,7 +1052,7 @@ msgid ""
 "An example of height map importation. Image was 1000x1000 grayscale PNG. This image can be found in the scenarios folder.\n"
 " \n"
 "(Smaller images are recommended, as the importer scales the scenario size by the resolution of the imported image.)"
-msgstr ""
+msgstr "Yükseklik haritasının içe aktarımı için bir örnek. Görsel 1000X10000 siyah-beyaz PNG dosyasıydı. Bu görsel scenarios klasöründe bulunabilir.\n\n(İçe aktarılırken senaryo boyutu aktarılan görselin çözünürlüğüne göre ölçeklendirdiğinden, küçük görseller seçilmesi önerilir.)"
 
 #: maps/scenarios/Height Map Import - Demo (Greece).xml:Name:31
 msgid "Height Map Import Demo - Greece"
@@ -1061,7 +1062,7 @@ msgstr "Yüksek Harita Alma Deneme - Yunanistan"
 msgid ""
 "An example of height map importation. Image was 512x512 grayscale PNG. This "
 "image can be found in the scenarios folder, but can be placed anywhere."
-msgstr ""
+msgstr "Yükseklik haritasının içe aktarımı için bir örnek. Görsel 512X512 siyah-beyaz PNG dosyasıydı. Bu görsel scenarios klasöründedir, ancak herhangi bir yere de yerleştirilebilirdi."
 
 #: maps/scenarios/Height Map Import - Demo (Greece-Small).xml:Name:31
 msgid "Height Map Import Demo - Greece (small)"
@@ -1080,7 +1081,7 @@ msgid ""
 "The Peloponnesian valley of Laconia, homeland of the Spartans.\n"
 "\n"
 "The Macedonians are encroaching into Spartan lands. After losing a pitched battle against the invaders, the Spartans must rebuild their army quickly before the Macedonians overrun the entire valley."
-msgstr ""
+msgstr "Spartalıların vatanı, Laconia'nın Peloponnezyalı vadisi.\n\nMakedonyalılar Spartalılar'ın topraklarına göz koydular. İşgalcilere karşı büyük bir savaşı kaybeden Spartalılar, Makedonyalılar bütün vadiyi fethetmeden önce ordularını hızlıca yeniden oluşturmalılar."
 
 #: maps/scenarios/Laconia 01.xml:Name:31
 msgid "Laconia"
@@ -1091,7 +1092,7 @@ msgid ""
 "Multiplayer map. Each player starts out on a small island with minimal resources situated off the coast of a large land mass.\n"
 "\n"
 "This is a WFG community-designed map by: SMST, NOXAS1, and Yodaspirine."
-msgstr ""
+msgstr "Çok oyunculu harita. Her oyuncu küçük bir adada, kıyının hemen gerisinde yer alan büyükçe bir kara parçasındaki minimum kaynaklarla oyuna başlar.\n\nBu; WFG topluluğundan SMST, NOXAS1 ve Yodaspirine tarafından tasarlanmışbir haritadır."
 
 #: maps/scenarios/Miletus.xml:PlayerData[0].Name:31
 #: maps/scenarios/Miletus.xml:Name:31

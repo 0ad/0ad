@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-12-07 18:51+0000\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-13 17:50+0000\n"
 "Last-Translator: Petri\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
@@ -57,7 +57,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Voit vaihtaa kokonäyttö- ja ikkunanäyttötilan välillä välillä painamalla Alt + Enter. Voit muuttaa ikkunan kokoa ikkunanäyttötilassa. Jos peli toimii liian hitaasti, voit vaihtaa muutamia asetuksia konfiguraatiotiedostossa: katso binaries/data/config/default.cfg paikassa johon peli on asennettu. Tiedostossa on ohjeet muuttamiseen. Kokeile poistaa käytöstä \"fancywater\" ja \"shadows\"-optiot."
+msgstr "[font=\"sans-14\"]Voit vaihtaa kokonäyttö- ja ikkunanäyttötilan välillä välillä painamalla Alt + Enter. Voit muuttaa ikkunan kokoa ikkuna-näyttötilassa. Jos peli toimii liian hitaasti, voit vaihtaa muutamia asetuksia konfiguraatiotiedostossa: katso binaries/data/config/default.cfg paikassa johon peli on asennettu. Tiedostossa on ohjeet muuttamiseen. Kokeile poistaa käytöstä \"fancywater\" ja \"shadows\"-optiot."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -97,7 +97,7 @@ msgstr "• Ctrl + nuolinäppäimet tai shift + hiiren rulla, kääntävät kame
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Hiiren rulla, tai \"+\" ja \"-\" näppäimet zoomaavat"
+msgstr "• Hiiren rulla, tai \"+\" ja \"-\" näppäimet lähentävät ja loitontavat."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -149,7 +149,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Ensiksi valitse josko halua pelata satunnaista kartaa (luodaan skriptin avulla) tai valmista karttaa (karttasuunnittelijan tekemä). Valmiit kartat voidaan suodattaa näyttämään vain muutamia karttoja. Oletuskartat näkyvät heti, mutta erikoiskartat ovat piilossa joten valitse \"Kaikki kartat\" nähdäksesi koko karttalistauksen. Sen jälkeen valitse kartta jota pelata. \"Demo kartat\" ovat suunniteltu tiettyä pelimekaniikan testausta joten ne eivät ole kovinkaan käyttökelpoisia."
+msgstr "Valitse ensiksi karttatyppi jolla haluat pelata. Haluatko pelata satunnaista karttaa (luodaan skriptin avulla) tai valmista karttaa (karttasuunnittelijan tekemä). Valmiit kartat voidaan suodattaa näyttämään vain muutamia karttoja. Oletuskartat näkyvät heti, mutta erikoiskartat ovat piilossa joten valitse \"Kaikki kartat\" nähdäksesi koko karttalistauksen. Sen jälkeen valitse kartta jota pelata. \"Demo kartat\" ovat suunniteltu tiettyä pelimekaniikan testausta varten,  joten ne eivät ole kovinkaan käyttökelpoisia."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -232,8 +232,8 @@ msgstr "Vasen Kolmoisklikkaus \\[yksikköön]: Valitse näytön kaikki samanlais
 #: gui/manual/intro.txt:51
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
-"on the entire map (even if the are different ranks)"
-msgstr "Alt + Vasen Tuplaklikkaus \\[yksikköön]: Valitse kartan kaikki samanlaiset yksiköt (vaikka ne olisivat eri arvoisia)"
+"on the entire map (even if they have different ranks)"
+msgstr "Alt + Vasen Tuplaklikkaus \\[yksikköön]: Valitse kartan kaikki samanlaiset yksiköt. (vaikka ne olisivat eriarvoisia)"
 
 #: gui/manual/intro.txt:52
 msgid ""
@@ -472,11 +472,11 @@ msgstr "R: Resetoi kameran tarkennus/suunta"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
-msgstr "+: Zoomaa (pidä painettuna = jatkuva zoomaus)"
+msgstr "+: Lähennä (pidä painettuna = lähennä jatkuvasti)"
 
 #: gui/manual/intro.txt:108
 msgid "-: Zoom out (keep pressed for continuous zoom)"
-msgstr "-: Loitonna (pidä painettuna = jatkuva loitonnus)"
+msgstr "-: Loitonna (pidä painettuna = loitonna jatkuvasti)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"

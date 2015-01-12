@@ -7,13 +7,14 @@
 # iron4o <ironsmile@gmail.com>, 2014
 # Ivailo Monev <xakepa10@gmail.com>, 2014
 # yoreei <yoreei.grigorov@gmail.com>, 2014
+# yoreei <yoreei.grigorov@gmail.com>, 2014
 # Симон Болоканов <sbolokanov@abv.bg>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:57+0100\n"
-"PO-Revision-Date: 2014-12-01 11:41+0000\n"
-"Last-Translator: Симон Болоканов <sbolokanov@abv.bg>\n"
+"POT-Creation-Date: 2014-12-13 02:23+0100\n"
+"PO-Revision-Date: 2014-12-27 21:50+0000\n"
+"Last-Translator: yoreei <yoreei.grigorov@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -31,7 +32,7 @@ msgstr "Основен обхват: %(range)s"
 msgid "Average bonus range: %(range)s"
 msgstr "Среден бонус на обхвата: %(range)s"
 
-#: gui/session/input.js:730
+#: gui/session/input.js:731
 msgid "Cannot build wall here!"
 msgstr "Не може да се строи тук!"
 
@@ -103,7 +104,7 @@ msgstr "Съюзник"
 msgid "Neutral"
 msgstr "Неутрален"
 
-#: gui/session/menu.js:287 gui/session/messages.js:619
+#: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Враг"
@@ -235,7 +236,7 @@ msgstr "Подложка за Разработчици беше затворен
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
-msgstr ""
+msgstr "Дай %(resourceAmount)s %(resourceType)s на %(playerName)s.  Натисни със Shift, за да дадеш %(greaterAmount)s."
 
 #: gui/session/messages.js:202
 #, javascript-format
@@ -319,12 +320,17 @@ msgstr "%(player)s вече във война с вас."
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s вече е неутрален с вас."
 
-#: gui/session/messages.js:479
+#: gui/session/messages.js:474
+#, javascript-format
+msgid "%(amount)s %(resourceType)s"
+msgstr "%(amount)s %(resourceType)s"
+
+#: gui/session/messages.js:482
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s и %(lastAmount)s"
 
-#: gui/session/messages.js:480 gui/session/utility_functions.js:166
+#: gui/session/messages.js:483 gui/session/utility_functions.js:166
 #: gui/session/utility_functions.js:216 gui/session/utility_functions.js:242
 #: gui/session/utility_functions.js:271 gui/session/utility_functions.js:317
 #: gui/session/utility_functions.js:592 gui/session/utility_functions.js:614
@@ -332,46 +338,46 @@ msgstr "%(previousAmounts)s и %(lastAmount)s"
 msgid ", "
 msgstr ","
 
-#: gui/session/messages.js:485
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s ви изпрати %(amounts)s."
 
-#: gui/session/messages.js:495
+#: gui/session/messages.js:498
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Вие бяхте атакуван от %(attacker)s!"
 
-#: gui/session/messages.js:520
+#: gui/session/messages.js:523
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:528
+#: gui/session/messages.js:531
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:536 gui/session/messages.js:537
+#: gui/session/messages.js:539 gui/session/messages.js:540
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:540
+#: gui/session/messages.js:543
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:548
+#: gui/session/messages.js:551
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:606 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:609 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Отбор"
 
-#: gui/session/messages.js:639
+#: gui/session/messages.js:642
 msgid "Private"
 msgstr "Частен"
 
@@ -434,7 +440,7 @@ msgstr "Получен: %(amount)s"
 msgid ""
 "Number of builders.\n"
 "Tasking another to this foundation would speed construction up by %(numb)s%%"
-msgstr ""
+msgstr "Брои строители.\nДобавяйки още един към строежа ще увеличи конструкцията с %(numb)s%%"
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
@@ -713,7 +719,7 @@ msgstr "Извиване на времето"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
-msgstr ""
+msgstr "Начален пазар"
 
 #: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
@@ -723,33 +729,33 @@ msgstr "Получен: %(gain)s"
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Натисни с десен бутон върху друг пазар, за да го маркираш като пазар дестинация."
 
 #: gui/session/unit_actions.js:309
 msgid "Destination trade market."
-msgstr ""
+msgstr "Пазар дестинация."
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Натисни с десен бутон, за да го маркираш като начален пазар"
 
 #: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Натисни с десен бутон за да го маркираш като пазар дестинация."
 
 #: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, javascript-format
 msgid "Current garrison: %(garrisoned)s/%(capacity)s"
-msgstr ""
+msgstr "Текущ гарнизон: %(garrisoned)s/%(capacity)s"
 
 #: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Натисни с десен бутон, за да установиш път по подразбиране за нови търговци."
 
 #: gui/session/unit_actions.js:533
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Очаквана печалба: %(gain)s"
 
 #: gui/session/unit_actions.js:655
 msgid "Unload All"
@@ -757,7 +763,7 @@ msgstr "Разтовари Всички"
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Този обект не може да бъде унищожен, защото е в мъглата на войната"
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
@@ -765,7 +771,7 @@ msgstr "Спри"
 
 #: gui/session/unit_actions.js:717
 msgid "Garrison"
-msgstr ""
+msgstr "Гарнизон"
 
 #: gui/session/unit_actions.js:738
 msgid "Unload"
@@ -777,7 +783,7 @@ msgstr "Поправи"
 
 #: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Фокус на Рали Точка"
 
 #: gui/session/unit_actions.js:794
 msgid "Back to Work"
@@ -793,7 +799,7 @@ msgstr "Премахни пазач"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
-msgstr ""
+msgstr "Избери стока за търгуване"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
