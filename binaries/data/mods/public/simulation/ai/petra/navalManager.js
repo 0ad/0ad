@@ -580,7 +580,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 				{
 					if (!gameState.ai.HQ.navalRegions[sea])
 						continue;
-					queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": base.accessIndex, "sea": sea }));
+					queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
 					dockStarted = true;
 					break;
 				}
@@ -588,24 +588,33 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 		}
 	}
 
-	if (gameState.currentPhase() > 1 && gameState.getPopulation() > this.Config.Economy.popForTown + 15
-		&& queues.militaryBuilding.length() === 0 && this.bNaval.length !== 0)
-	{
-		var nNaval = 0;
-		for (var naval of this.bNaval)
-			nNaval += gameState.countEntitiesAndQueuedByType(naval, true);
+	if (gameState.currentPhase() < 2 || gameState.getPopulation() < this.Config.Economy.popForTown + 15
+		|| queues.militaryBuilding.length() !== 0 || this.bNaval.length === 0)
+		return;
+	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
+	if (!docks.length)
+		return;
+	var nNaval = 0;
+	for (var naval of this.bNaval)
+		nNaval += gameState.countEntitiesAndQueuedByType(naval, true);
 
-		var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock")).toEntityArray();
-		if (docks.length && (nNaval === 0 || (nNaval < this.bNaval.length && gameState.getPopulation() > 120)))
+	if (nNaval === 0 || (nNaval < this.bNaval.length && gameState.getPopulation() > 120))
+	{
+		for (var naval of this.bNaval)
 		{
-			for (var naval of this.bNaval)
+			if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
 			{
-				if (gameState.countEntitiesAndQueuedByType(naval, true) < 1 && gameState.ai.HQ.canBuild(gameState, naval))
+				var land = [];
+				for (var base of gameState.ai.HQ.baseManagers)
 				{
-					var sea = docks[0].getMetadata(PlayerID, "sea");
-					queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "sea": sea }));
-					break;
+					if (!base.anchor)
+						continue;
+					if (land.indexOf(base.accessIndex) === -1)
+						land.push(base.accessIndex);
 				}
+				var sea = docks.toEntityArray()[0].getMetadata(PlayerID, "sea");
+				queues.militaryBuilding.addItem(new m.ConstructionPlan(gameState, naval, { "land": land, "sea": sea }));
+				break;
 			}
 		}
 	}

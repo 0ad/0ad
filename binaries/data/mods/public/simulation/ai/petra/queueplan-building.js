@@ -343,7 +343,7 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			continue;
 		if (this.metadata)
 		{
-			if (this.metadata.land && landPassMap[j] !== this.metadata.land)
+			if (this.metadata.land && this.metadata.land.indexOf(landPassMap[j]) === -1)
 				continue;
 			if (this.metadata.sea && navalPassMap[j] !== this.metadata.sea)
 				continue;
