@@ -817,6 +817,23 @@ g_SelectionPanels.Selection = {
 				else
 					data.carried[carrying.type] = carrying.amount;
 			}
+
+			if (state.trader && state.trader.goods && state.trader.goods.amount)
+			{
+				if (!data.carried)
+					data.carried = {};
+				var amount = state.trader.goods.amount;
+				var type = state.trader.goods.type;
+				var totalGain = amount.traderGain;
+				if (amount.market1Gain)
+					totalGain += amount.market1Gain;
+				if (amount.market2Gain)
+					totalGain += amount.market2Gain;
+				if (data.carried[type])
+					data.carried[type] += totalGain;
+				else
+					data.carried[type] = totalGain;
+			}
 		}
 		return true;
 	},
