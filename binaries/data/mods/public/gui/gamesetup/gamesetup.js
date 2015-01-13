@@ -1938,7 +1938,7 @@ function getVictoryConditions()
 	var r = {};
 	r.text = [translate("None")];
 	r.data = ["endless"];
-	r.scripts = [[]];
+	r.scripts = [[""]];
 	for (var vc in g_VictoryConditions)
 	{
 		r.data.push(vc);
