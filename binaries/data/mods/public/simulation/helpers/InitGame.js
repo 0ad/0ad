@@ -27,6 +27,9 @@ function PreInitGame()
 
 function InitGame(settings)
 {
+	// Map dependent initialisations of components (i.e. garrisoned units)
+	Engine.BroadcastMessage(MT_InitGame, {});
+
 	// No settings when loading a map in Atlas, so do nothing
 	if (!settings)
 		return;

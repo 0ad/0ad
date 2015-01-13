@@ -53,6 +53,9 @@ GarrisonHolder.prototype.Schema =
 
 /**
  * Initialize GarrisonHolder Component
+ *
+ * Garrisoning when loading a map is set in the script of the map, by setting initGarrison 
+ * which should contain the array of garrisoned entities
  */
 GarrisonHolder.prototype.Init = function()
 {
@@ -296,7 +299,6 @@ GarrisonHolder.prototype.PerformGarrison = function(entity)
  */
 GarrisonHolder.prototype.Eject = function(entity, forced)
 {
-
 	var entityIndex = this.entities.indexOf(entity);
 	// Error: invalid entity ID, usually it's already been ejected
 	if (entityIndex == -1)
@@ -632,6 +634,23 @@ GarrisonHolder.prototype.OnGlobalEntityRenamed = function(msg)
 		this.Eject(msg.entity);
 		this.Garrison(msg.newentity);
 	}
+
+	if (!this.initGarrison)
+		return;
+
+	// update the pre-game garrison because of SkirmishReplacement
+	if (msg.entity == this.entity)
+	{
+		let cmpGarrisonHolder = Engine.QueryInterface(msg.newentity, IID_GarrisonHolder);
+		if (cmpGarrisonHolder)
+			cmpGarrisonHolder.initGarrison = this.initGarrison;
+	}
+	else
+	{
+		let entityIndex = this.initGarrison.indexOf(msg.entity);
+		if (entityIndex != -1)
+			this.initGarrison[entityIndex] = msg.newentity;
+	}
 };
 
 
@@ -695,6 +714,24 @@ GarrisonHolder.prototype.IsEjectable = function(entity)
 			return true;
 
 	return false;
+};
+
+/**
+ * Initialise the garrisoned units
+ */
+GarrisonHolder.prototype.OnGlobalInitGame = function(msg)
+{
+	if (!this.initGarrison)
+		return;
+
+	for (let ent of this.initGarrison)
+	{
+		let cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
+		if (!cmpUnitAI || !cmpUnitAI.CanGarrison(this.entity))
+			continue;
+		this.Garrison(ent);
+	}
+	this.initGarrison = undefined;
 };
 
 Engine.RegisterComponentType(IID_GarrisonHolder, "GarrisonHolder", GarrisonHolder);
