@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -69,20 +69,20 @@ bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING(L"Too few CRect parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING(L"Too few CRect parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING(L"Unable to parse CRect parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING(L"Unable to parse CRect parameters. Your input: '%hs'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
 
 	if (!stream.eof())
 	{
-		LOGWARNING(L"Too many CRect parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING(L"Too many CRect parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -134,13 +134,13 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING(L"Too few CSize parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING(L"Too few CSize parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING(L"Unable to parse CSize parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING(L"Unable to parse CSize parameters. Your input: '%hs'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
@@ -150,7 +150,7 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 
 	if (!stream.eof())
 	{
-		LOGWARNING(L"Too many CSize parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING(L"Too many CSize parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -169,13 +169,13 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING(L"Too few CPos parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING(L"Too few CPos parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING(L"Unable to parse CPos parameters. Your input: '%s'", Value.ToUTF8().c_str());
+			LOGWARNING(L"Unable to parse CPos parameters. Your input: '%hs'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
@@ -185,7 +185,7 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 
 	if (!stream.eof())
 	{
-		LOGWARNING(L"Too many CPos parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING(L"Too many CPos parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 

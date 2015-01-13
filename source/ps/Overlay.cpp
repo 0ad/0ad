@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -48,24 +48,24 @@ bool CColor::ParseString(const CStr8& Value, int DefaultAlpha)
 		stream >> values[i];
 		if ((stream.rdstate() & std::stringstream::failbit) != 0)
 		{
-			LOGWARNING(L"Unable to parse CColor parameters. Your input: '%s'", Value.c_str());
+			LOGWARNING(L"Unable to parse CColor parameters. Your input: '%hs'", Value.c_str());
 			return false;
 		}
 		if (values[i] < 0 || values[i] > 255)
 		{
-			LOGWARNING(L"Invalid value (<0 or >255) when parsing CColor parameters. Your input: '%s'", Value.c_str());
+			LOGWARNING(L"Invalid value (<0 or >255) when parsing CColor parameters. Your input: '%hs'", Value.c_str());
 			return false;
 		}
 	}
 
 	if (i < 3)
 	{
-		LOGWARNING(L"Not enough parameters when parsing as CColor. Your input: '%s'", Value.c_str());
+		LOGWARNING(L"Not enough parameters when parsing as CColor. Your input: '%hs'", Value.c_str());
 		return false;
 	}
 	if (!stream.eof())
 	{
-		LOGWARNING(L"Too many parameters when parsing as CColor. Your input: '%s'", Value.c_str());
+		LOGWARNING(L"Too many parameters when parsing as CColor. Your input: '%hs'", Value.c_str());
 		return false;
 	}
 
