@@ -701,7 +701,7 @@ then
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_DEBUG
   cp -R -L dist/include/* $INCLUDE_DIR_DEBUG/
-  cp *.a $INSTALL_DIR/lib
+  cp dist/lib/*.a $INSTALL_DIR/lib
   popd
   mv Makefile.in.bak Makefile.in
   mv shell/Makefile.in.bak shell/Makefile.in
@@ -714,7 +714,7 @@ then
   # js-config.h is different for debug and release builds, so we need different include directories for both
   mkdir -p $INCLUDE_DIR_RELEASE
   cp -R -L dist/include/* $INCLUDE_DIR_RELEASE/
-  cp *.a $INSTALL_DIR/lib
+  cp dist/lib/*.a $INSTALL_DIR/lib
   popd
   mv Makefile.in.bak Makefile.in
   mv shell/Makefile.in.bak shell/Makefile.in
