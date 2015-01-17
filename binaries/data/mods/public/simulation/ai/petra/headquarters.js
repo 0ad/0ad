@@ -30,7 +30,7 @@ m.HQ = function(Config)
 	this.femaleRatio = this.Config.Economy.femaleRatio;
 
 	this.lastTerritoryUpdate = -1;
-	this.stopBuilding = []; // list of buildings to stop (temporarily) production because no room
+	this.stopBuilding = new Map(); // list of buildings to stop (temporarily) production because no room
 
 	this.towerStartTime = 0;
 	this.towerLapseTime = this.Config.Military.towerLapseTime;
@@ -1121,12 +1121,11 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	if (numPlanned > 0 && this.econState == "townPhasing")
 	{
 		var count = gameState.getOwnStructures().filter(API3.Filters.byClass("Village")).length;
-		var index = this.stopBuilding.indexOf(gameState.applyCiv("structures/{civ}_house"));
-		if (count < 5 && index != -1)
+		if (count < 5 && this.stopBuilding.has(gameState.applyCiv("structures/{civ}_house")))
 		{
 			if (this.Config.debug > 1)
 				API3.warn("no room to place a house ... try to be less restrictive");
-			this.stopBuilding.splice(index, 1);
+			this.stopBuilding.delete(gameState.applyCiv("structures/{civ}_house"));
 			this.requireHouses = true;
 		}
 		var houseQueue = queues.house.queue;
@@ -1148,20 +1147,28 @@ m.HQ.prototype.buildMoreHouses = function(gameState,queues)
 	// When population limit too tight
 	//    - if no room to build, try to improve with technology
 	//    - otherwise increase temporarily the priority of houses
+	var house = gameState.applyCiv("structures/{civ}_house");
 	var HouseNb = gameState.countEntitiesByType(gameState.applyCiv("foundation|structures/{civ}_house"), true);
 	var freeSlots = 0;
-	var popBonus = gameState.getTemplate(gameState.applyCiv("structures/{civ}_house")).getPopulationBonus();
+	var popBonus = gameState.getTemplate(house).getPopulationBonus();
 	freeSlots = gameState.getPopulationLimit() + HouseNb*popBonus - gameState.getPopulation();
 	if (freeSlots < 5)
 	{
-		var index = this.stopBuilding.indexOf(gameState.applyCiv("structures/{civ}_house"));
-		if (index != -1)
+		if (this.stopBuilding.has(house))
 		{
-			if (this.Config.debug > 1)
-				API3.warn("no room to place a house ... try to improve with technology");
-			this.researchManager.researchPopulationBonus(gameState, queues);
+			if (this.stopBuilding.get(house) > gameState.ai.elapsedTime)
+			{
+				if (this.Config.debug > 1)
+					API3.warn("no room to place a house ... try to improve with technology");
+				this.researchManager.researchPopulationBonus(gameState, queues);
+			}
+			else
+			{
+				this.stopBuilding.delete(house);
+				var priority = 2*this.Config.priorities.house;
+			}
 		}
-		else if (index == -1)
+		else
 			var priority = 2*this.Config.priorities.house;
 	}
 	else
@@ -1182,7 +1189,7 @@ m.HQ.prototype.checkBaseExpansion = function(gameState, queues)
 		return;
 	}
 	// then expand if we have not enough room available for buildings
-	if (this.stopBuilding.length > 1)
+	if (this.stopBuilding.size > 1)
 	{
 		if (this.Config.debug > 2)
 			API3.warn("try to build a new base because not enough room to build " + uneval(this.stopBuilding));
@@ -1526,19 +1533,24 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 {
 	var type = gameState.applyCiv(structure); 
 	// available room to build it
-	if (this.stopBuilding.indexOf(type) != -1)
-		return false;
+	if (this.stopBuilding.has(type))
+	{
+		if (this.stopBuilding.get(type) > gameState.ai.elapsedTime)
+			return false;
+		else
+			this.stopBuilding.delete(type);
+	}
 
 	if (gameState.isDisabledTemplates(type))
 	{
-		this.stopBuilding.push(type);
+		this.stopBuilding.set(type, Infinity);
 		return false;
 	}
 
 	var template = gameState.getTemplate(type);
 	if (!template)
 	{
-		this.stopBuilding.push(type);
+		this.stopBuilding.set(type, Infinity);
 		if (this.Config.debug > 0)
 			API3.warn("Petra error: trying to build " + structure + " for civ " + gameState.civ() + " but no template found.");
 	}
@@ -1551,7 +1563,7 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 		var buildTerritories = template.buildTerritories();
 		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
 		{
-			this.stopBuilding.push(type);
+			this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
 			return false;
 		}
 	}
@@ -1568,15 +1580,16 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 m.HQ.prototype.stopBuild = function(gameState, structure)
 {
 	let type = gameState.applyCiv(structure);
-	if (this.stopBuilding.indexOf(type) == -1)
-		this.stopBuilding.push(type);
+	if (this.stopBuilding.has(type))
+		this.stopBuilding.set(type, Math.max(this.stopBuilding.get(type), gameState.ai.elapsedTime + 180));
+	else
+		this.stopBuilding.set(type, gameState.ai.elapsedTime + 180);
 };
 
 m.HQ.prototype.restartBuild = function(gameState, structure)
 {
-	let index = this.stopBuilding.indexOf(gameState.applyCiv(structure));
-	if (index != -1)
-		this.stopBuilding.splice(index, 1);
+	if (this.stopBuilding.has(type))
+		this.stopBuilding.delete(type);
 };
 
 m.HQ.prototype.updateTerritories = function(gameState)
@@ -1651,7 +1664,7 @@ m.HQ.prototype.updateTerritories = function(gameState)
 	if (!expansion)
 		return;
 	// We've increased our territory, so we may have some new room to build
-	this.stopBuilding = [];
+	this.stopBuilding.clear();
 	// And if sufficient expansion, check if building a new market would improve our present trade routes
 	var cellArea = this.territoryMap.cellSize * this.territoryMap.cellSize;
 	if (expansion * cellArea > 960)
