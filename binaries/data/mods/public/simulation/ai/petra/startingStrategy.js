@@ -99,24 +99,19 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
 			var base = this.baseManagers[i];
 			if (base.territoryIndices.indexOf(index) === -1)
 				continue;
-			base.assignEntity(ent);
-			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
-				base.assignResourceToDropsite(gameState, ent);
+			base.assignEntity(gameState, ent);
 			bestbase = base;
 			break;
 		}
-		if (!bestbase)
+		if (!bestbase)	// entity outside our territory
 		{
-			// entity outside our territory
 			bestbase = m.getBestBase(ent, gameState);
-			bestbase.assignEntity(ent);
-			if (bestbase.ID !== this.baseManagers[0].ID && ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
-				bestbase.assignResourceToDropsite(gameState, ent);
+			bestbase.assignEntity(gameState, ent);
 		}
 		// now assign entities garrisoned inside this entity
 		if (ent.isGarrisonHolder() && ent.garrisoned().length)
 			for (let id of ent.garrisoned())
-				bestbase.assignEntity(gameState.getEntityById(id));
+				bestbase.assignEntity(gameState, gameState.getEntityById(id));
 	}
 };
 
@@ -126,12 +121,13 @@ m.HQ.prototype.assignStartingEntities = function(gameState)
  */
 m.HQ.prototype.regionAnalysis = function(gameState)
 {
+	var accessibility = gameState.ai.accessibility;
 	let landIndex = undefined;
 	let seaIndex = undefined;
 	var ccEnts = gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre"));
 	for (let cc of ccEnts.values())
 	{
-		let land = gameState.ai.accessibility.getAccessValue(cc.position());
+		let land = accessibility.getAccessValue(cc.position());
 		if (land > 1)
 		{
 			landIndex = land;
@@ -144,13 +140,13 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 		{
 			if (!ent.position() || (!ent.hasClass("Unit") && !ent.trainableEntities()))
 				continue;
-			let land = gameState.ai.accessibility.getAccessValue(ent.position());
+			let land = accessibility.getAccessValue(ent.position());
 			if (land > 1)
 			{
 				landIndex = land;
 				break;
 			}
-			let sea = gameState.ai.accessibility.getAccessValue(ent.position(), true);
+			let sea = accessibility.getAccessValue(ent.position(), true);
 			if (!seaIndex && sea > 1)
 				seaIndex = sea;
 		}
@@ -161,18 +157,18 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 	var passabilityMap = gameState.getMap();
 	var totalSize = passabilityMap.width * passabilityMap.width;
 	var minLandSize = Math.floor(0.1*totalSize);
-	var minWaterSize = Math.floor(0.3*totalSize);
+	var minWaterSize = Math.floor(0.2*totalSize);
 	var cellArea = passabilityMap.cellSize * passabilityMap.cellSize;  
-	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
+	for (var i = 0; i < accessibility.regionSize.length; ++i)
 	{
 		if (landIndex && i == landIndex)
 			this.landRegions[i] = true;
-		else if (gameState.ai.accessibility.regionType[i] === "land" && cellArea*gameState.ai.accessibility.regionSize[i] > 320)
+		else if (accessibility.regionType[i] === "land" && cellArea*accessibility.regionSize[i] > 320)
 		{
 			if (landIndex)
 			{
 				var sea = this.getSeaIndex(gameState, landIndex, i);
-				if (sea && (gameState.ai.accessibility.regionSize[i] > minLandSize || gameState.ai.accessibility.regionSize[sea] > minWaterSize))
+				if (sea && (accessibility.regionSize[i] > minLandSize || accessibility.regionSize[sea] > minWaterSize))
 				{
 					this.navalMap = true;
 					this.landRegions[i] = true;
@@ -181,7 +177,7 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 			}
 			else
 			{
-				var traject = gameState.ai.accessibility.getTrajectToIndex(seaIndex, i);
+				var traject = accessibility.getTrajectToIndex(seaIndex, i);
 				if (traject && traject.length === 2)
 				{
 					this.navalMap = true;
@@ -190,11 +186,13 @@ m.HQ.prototype.regionAnalysis = function(gameState)
 				}
 			}
 		}
-		else if (gameState.ai.accessibility.regionType[i] === "water" && gameState.ai.accessibility.regionSize[i] > minWaterSize)
+		else if (accessibility.regionType[i] === "water" && accessibility.regionSize[i] > minWaterSize)
 		{
 			this.navalMap = true;
 			this.navalRegions[i] = true;
 		}
+		else if (accessibility.regionType[i] === "water" && cellArea*accessibility.regionSize[i] > 3600)
+			this.navalRegions[i] = true;
 	}
 
 	if (this.Config.debug < 3)
@@ -230,27 +228,29 @@ m.HQ.prototype.structureAnalysis = function(gameState)
 
 /**
  * build our first base
+ * if not enough resource, try first to do a dock
  */
 m.HQ.prototype.buildFirstBase = function(gameState)
 {
 	var total = gameState.getResources();
-	var template = gameState.getTemplate(gameState.applyCiv("structures/{civ}_civil_centre"));
-	if (!total.canAfford(new API3.Resources(template.cost())))
-	{
-/*		API3.warn("not enough resource to build a cc, try with a dock");
-		template = gameState.applyCiv("structures/{civ}_dock");
-		if (!gameState.isDisabledTemplates(template))
-		{
-			template = gameState.getTemplate(template);
-			if (!total.canAfford(new API3.Resources(template.cost())))
-			{
-				API3.warn("not enough resource for dock ... return");
-				return;
-			}
-			API3.warn("but we could still build a dock if it was implemented");
-			return;
-		} */
+	var template = gameState.applyCiv("structures/{civ}_civil_centre");
+	if (gameState.isDisabledTemplates(template))
 		return;
+	var template = gameState.getTemplate(template);
+	var goal = "civil_centre";
+	var docks = gameState.getOwnStructures().filter(API3.Filters.byClass("Dock"));
+	if (!total.canAfford(new API3.Resources(template.cost())) && !docks.length)
+	{
+		// not enough resource to build a cc, try with a dock to accumulate resources if none yet
+		if (gameState.ai.queues.dock.countQueuedUnits())
+			return;
+		template = gameState.applyCiv("structures/{civ}_dock");
+		if (gameState.isDisabledTemplates(template))
+			return;
+		template = gameState.getTemplate(template);
+		if (!total.canAfford(new API3.Resources(template.cost())))
+			return;
+		var goal = "dock";
 	}
 
 	// We first choose as startingPoint the point where we have the more units  
@@ -288,17 +288,20 @@ m.HQ.prototype.buildFirstBase = function(gameState)
 			startingPoint.push({"pos": pos, "land": land, "sea": sea, "weight": 1});
 	}
 	if (!startingPoint.length)
-	{
-		API3.warn("Petra error in buildFirstBase, can not find a starting position");
 		return;
-	}
+
 	let imax = 0;
 	for (let i = 1; i < startingPoint.length; ++i)
 		if (startingPoint[i].weight > startingPoint[imax].weight)
 			imax = i;
 
-	var template = gameState.applyCiv("structures/{civ}_civil_centre");
-	gameState.ai.queues.civilCentre.addItem(new m.ConstructionPlan(gameState, template, { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
+	if (goal === "dock")
+	{
+		let sea = startingPoint[imax].sea > 1 ? startingPoint[imax].sea : undefined;
+		gameState.ai.queues.dock.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "sea": sea, "proximity": startingPoint[imax].pos }));
+	}
+	else
+		gameState.ai.queues.civilCentre.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_civil_centre", { "base": -1, "resource": "wood", "proximity": startingPoint[imax].pos }));
 };
 
 /**

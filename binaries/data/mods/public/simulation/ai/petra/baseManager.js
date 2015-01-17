@@ -57,12 +57,14 @@ m.BaseManager.prototype.init = function(gameState, unconstructed)
 	}
 };
 
-m.BaseManager.prototype.assignEntity = function(unit)
+m.BaseManager.prototype.assignEntity = function(gameState, ent)
 {
-	unit.setMetadata(PlayerID, "base", this.ID);
-	this.units.updateEnt(unit);
-	this.workers.updateEnt(unit);
-	this.buildings.updateEnt(unit);
+	ent.setMetadata(PlayerID, "base", this.ID);
+	this.units.updateEnt(ent);
+	this.workers.updateEnt(ent);
+	this.buildings.updateEnt(ent);
+	if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+		this.assignResourceToDropsite(gameState, ent);
 };
 
 m.BaseManager.prototype.setAnchor = function(gameState, anchorEntity)
@@ -111,10 +113,10 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				let bestbase = m.getBestBase(ent, gameState);
 				this.newbaseID = bestbase.ID;
 				for (let entity of this.units.values())
-					bestbase.assignEntity(entity);
-				for (let entity of this.buildings.values()) 
-					bestbase.assignEntity(entity);
-			}	
+					bestbase.assignEntity(gameState, entity);
+				for (let entity of this.buildings.values())
+					bestbase.assignEntity(gameState, entity);
+			}
 		}
 	}
 
@@ -128,7 +130,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 		if (evt.newentity == evt.entity)  // repaired building
 			continue;
 			
-		if (ent.getMetadata(PlayerID,"base") == this.ID)
+		if (ent.getMetadata(PlayerID, "base") == this.ID)
 		{
 			if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
 				this.assignResourceToDropsite(gameState, ent);
@@ -171,6 +173,18 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 	this.dropsites[dropsite.id()] = true;
 
 	var self = this;
+	let dropsitePos = dropsite.position();
+	let accessIndex = this.accessIndex;
+	if (this.ID === gameState.ai.HQ.baseManagers[0].ID)
+	{
+		accessIndex = dropsite.getMetadata(PlayerID, "access");
+		if (!accessIndex)
+		{
+			accessIndex = gameState.ai.accessibility.getAccessValue(dropsitePos);
+			dropsite.setMetadata(PlayerID, "access", accessIndex);
+		}
+	}
+
 	for (var type of dropsite.resourceDropsiteTypes())
 	{
 		var resources = gameState.getResourceSupplies(type);
@@ -198,10 +212,10 @@ m.BaseManager.prototype.assignResourceToDropsite = function (gameState, dropsite
 				access = gameState.ai.accessibility.getAccessValue(supply.position());
 				supply.setMetadata(PlayerID, "access", access);
 			}
-			if (access != self.accessIndex)
+			if (access !== accessIndex)
 				return;
 
-			let dist = API3.SquareVectorDistance(supply.position(), dropsite.position());
+			let dist = API3.SquareVectorDistance(supply.position(), dropsitePos);
 			if (dist < self.maxDistResourceSquare)
 			{
 				if (dist < self.maxDistResourceSquare/16)        // distmax/4
@@ -538,9 +552,6 @@ m.BaseManager.prototype.assignRolelessUnits = function(gameState)
 // TODO: actually this probably should be in the HQ.
 m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 {
-	if (gameState.currentPhase() < 2)
-		return;
-
 	// change resource only towards one which is more needed, and if changing will not change this order
 	var nb = 1;    // no more than 1 change per turn (otherwise we should update the rates)
 	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
@@ -763,6 +774,10 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 			if (!target.hasClass("CivCentre") && !target.hasClass("StoneWall") && (!target.hasClass("Wonder") || gameState.getGameType() !== "wonder"))
 				continue;
 
+		// if our territory has shrinked since this foundation was positioned, do not build it
+		if (m.isNotWorthBuilding(target, gameState))
+			continue;
+
 		var assigned = gameState.getOwnEntitiesByMetadata("target-foundation", target.id()).length;
 		var maxTotalBuilders = Math.ceil(workers.length * 0.2);
 		var targetNB = 2;
@@ -776,6 +791,12 @@ m.BaseManager.prototype.assignToFoundations = function(gameState, noRepair)
 		{
 			targetNB = 15;
 			maxTotalBuilders = Math.max(maxTotalBuilders, 15);
+		}
+		// if no base yet, everybody should build
+		if (gameState.ai.HQ.numActiveBase() === 0)
+		{
+			targetNB = workers.length;
+			maxTotalBuilders = targetNB;
 		}
 
 		if (assigned < targetNB)
@@ -911,12 +932,19 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		if (gameState.ai.HQ.numActiveBase() > 0)
 		{
 			for (var ent of this.units.values())
-				m.getBestBase(ent, gameState).assignEntity(ent, gameState);
+				m.getBestBase(ent, gameState).assignEntity(gameState, ent);
 			for (var ent of this.buildings.values())
-				m.getBestBase(ent, gameState).assignEntity(ent, gameState);
+			{
+				if (ent.resourceDropsiteTypes() && !ent.hasClass("Elephant"))
+					this.removeDropsite(gameState, ent);
+				m.getBestBase(ent, gameState).assignEntity(gameState, ent);
+			}
 		}
 		else if (gameState.ai.HQ.canBuildUnits)
 		{
+			this.assignToFoundations(gameState);
+			if (gameState.ai.playedTurn % 4 === 0)
+				this.setWorkersIdleByPriority(gameState);
 			this.assignRolelessUnits(gameState);
 			this.reassignIdleWorkers(gameState);
 			for (var ent of this.workers.values())
@@ -967,7 +995,7 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 		}
 	}
 
-	if (gameState.ai.playedTurn % 2 == 0)
+	if (gameState.ai.playedTurn % 2 === 0 && gameState.currentPhase() > 1)
 		this.setWorkersIdleByPriority(gameState);
 
 	this.assignRolelessUnits(gameState);

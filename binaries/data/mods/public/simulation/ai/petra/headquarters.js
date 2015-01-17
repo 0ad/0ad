@@ -1535,7 +1535,6 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 		return false;
 	}
 
-	// build limits
 	var template = gameState.getTemplate(type);
 	if (!template)
 	{
@@ -1545,6 +1544,19 @@ m.HQ.prototype.canBuild = function(gameState, structure)
 	}
 	if (!template || !template.available(gameState))
 		return false;
+
+	if (this.numActiveBase() < 1)
+	{
+		// if no base, check that we can build outside our territory
+		var buildTerritories = template.buildTerritories();
+		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
+		{
+			this.stopBuilding.push(type);
+			return false;
+		}
+	}
+
+	// build limits
 	var limits = gameState.getEntityLimits();
 	var category = template.buildCategory();
 	if (category && limits[category] && gameState.getEntityCounts()[category] >= limits[category])

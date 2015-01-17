@@ -370,7 +370,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 		if (!m1.position())
 			continue;
 		var access1 = gameState.ai.accessibility.getAccessValue(m1.position());
-		var sea1 = m1.hasClass("Dock") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m1, true) : undefined;
+		var sea1 = m1.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m1, true) : undefined;
 		for (var m2 of market2)
 		{
 			if (m1.id() === m2.id())
@@ -378,7 +378,7 @@ m.TradeManager.prototype.checkRoutes = function(gameState, accessIndex)
 			if (!m2.position())
 				continue;
 			var access2 = gameState.ai.accessibility.getAccessValue(m2.position());
-			var sea2 = m2.hasClass("Dock") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true) : undefined;
+			var sea2 = m2.hasClass("NavalMarket") ? gameState.ai.HQ.navalManager.getDockIndex(gameState, m2, true) : undefined;
 			var land = (access1 == access2) ? access1 : undefined;
 			var sea = (sea1 && sea1 == sea2) ? sea1 : undefined;
 			if (!land && !sea)
@@ -502,7 +502,7 @@ m.TradeManager.prototype.checkTrader = function(gameState, ent)
 
 m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 {
-	if (queues.economicBuilding.countQueuedUnitsWithClass("Market") > 0)
+	if (queues.economicBuilding.countQueuedUnitsWithClass("Market") + queues.dock.countQueuedUnitsWithClass("Market") > 0)
 		return;
 	if (!gameState.ai.HQ.canBuild(gameState, "structures/{civ}_market"))
 		return;
@@ -520,8 +520,7 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 		return;
 	}
 	this.routeProspection = false;
-	if (this.potentialTradeRoute && marketPos[3] < 2*this.potentialTradeRoute.gain
-		&& marketPos[3] < this.potentialTradeRoute.gain + 20)
+	if (!this.isNewMarketWorth(marketPos[3]))
 		return;	// position found, but not enough gain compared to our present route
 
 	if (this.Config.debug > 1)
@@ -534,6 +533,14 @@ m.TradeManager.prototype.prospectForNewMarket = function(gameState, queues)
 				+ marketPos[3]);
 	}
 	queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_market"));
+};
+
+m.TradeManager.prototype.isNewMarketWorth = function(expectedGain)
+{
+	if (this.potentialTradeRoute && expectedGain < 2*this.potentialTradeRoute.gain
+		&& expectedGain < this.potentialTradeRoute.gain + 20)
+		return false;
+	return true;
 };
 
 m.TradeManager.prototype.update = function(gameState, events, queues)

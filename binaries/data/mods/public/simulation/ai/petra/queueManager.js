@@ -454,16 +454,16 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 	for (let q in this.queues)
 	{
 		let toBePaused = false;
-		if (numWorkers < 8)
-			toBePaused = (q != "citizenSoldier" && q != "villager"
-				&& (q != "civilCentre" || gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0));
+		if (gameState.ai.HQ.numActiveBase() === 0)
+			toBePaused = (q !== "dock" && q !== "civilCentre");
+		else if (numWorkers < 8)
+			toBePaused = (q !== "citizenSoldier" && q !== "villager");
 		else if (numWorkers < 16)
-			toBePaused = (q == "economicBuilding" || q == "militaryBuilding" || q == "defenseBuilding"
-				|| (q == "civilCentre" && gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0)
-				|| q == "majorTech" || q == "minorTech" || q.indexOf("plan_") != -1);
+			toBePaused = (q === "civilCentre" || q === "economicBuilding"
+				|| q === "militaryBuilding" || q === "defenseBuilding"
+				|| q === "majorTech" || q === "minorTech" || q.indexOf("plan_") !== -1);
 		else if (numWorkers < 24)
-			toBePaused = (q == "defenseBuilding"
-				|| (q == "civilCentre" && gameState.getOwnStructures().filter(API3.Filters.byClass("CivCentre")) > 0)
+			toBePaused = (q === "civilCentre" || q === "defenseBuilding"
 				|| q == "majorTech" || q.indexOf("_siege") != -1 || q.indexOf("_champ") != -1);
 
 		let queue = this.queues[q];

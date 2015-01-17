@@ -52,12 +52,24 @@ m.ConstructionPlan.prototype.start = function(gameState)
 		Engine.ProfileStop();
 		return;
 	}
+	else if (this.metadata && this.metadata.expectedGain)
+	{
+		// Check if this market is still worth building (others may have been built making it useless)
+		let tradeManager = gameState.ai.HQ.tradeManager;
+		tradeManager.checkRoutes(gameState);
+		if (!tradeManager.isNewMarketWorth(this.metadata.expectedGain))
+		{
+			Engine.ProfileStop();
+			return;
+		}
+	}
 	gameState.buildingsBuilt++;
 
 	if (this.metadata === undefined)
 		this.metadata = { "base": pos.base };
 	else if (this.metadata.base === undefined)
 		this.metadata.base = pos.base;
+
 	if (pos.access)
 		this.metadata.access = pos.access;   // needed for Docks for the position is on water
 	else
@@ -105,7 +117,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	{
 		if (template.hasClass("CivCentre"))
 		{
-			if (this.metadata.resource)
+			if (this.metadata && this.metadata.resource)
 			{
 				var proximity = this.metadata.proximity ? this.metadata.proximity : undefined;
 				var pos = gameState.ai.HQ.findEconomicCCLocation(gameState, template, this.metadata.resource, proximity);
@@ -132,11 +144,16 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 				// if this fortress is our first siege unit builder, just try the standard placement as we want siege units
 				return false;
 		}
-		else if (template.hasClass("Market"))
+		else if (template.hasClass("Market"))	// Docks (i.e. NavalMarket) are done before
 		{
 			var pos = gameState.ai.HQ.findMarketLocation(gameState, template);
 			if (pos && pos[2] > 0)
+			{
+				if (!this.metadata)
+					this.metadata = {};
+				this.metadata.expectedGain = pos[3];
 				return { "x": pos[0], "z": pos[1], "angle": 3*Math.PI/4, "xx": pos[0], "zz": pos[1], "base": pos[2] };
+			}
 			else if (!pos)
 				return false;
 		}
@@ -322,7 +339,10 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 		"base": gameState.ai.HQ.basesMap.map[bestIdx] };
 };
 
-// Placement of buildings with Dock build category
+/**
+ * Placement of buildings with Dock build category
+ * metadata.proximity is defined when first dock without any territory
+ */
 m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 {
 	var template = this.template;
@@ -337,6 +357,14 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 	var bestVal = 0;
 	var landPassMap = gameState.ai.accessibility.landPassMap;
 	var navalPassMap = gameState.ai.accessibility.navalPassMap;
+
+	var width = gameState.ai.HQ.territoryMap.width;
+	var cellSize = gameState.ai.HQ.territoryMap.cellSize;
+	var nbShips = gameState.ai.HQ.navalManager.transportShips.length;
+	var proxyAccess = undefined;
+	if (this.metadata.proximity)
+		proxyAccess = gameState.ai.accessibility.getAccessValue(this.metadata.proximity);
+
 	for (let j = 0; j < territoryMap.length; ++j)
 	{
 		if (obstructions.map[j] <= 0)
@@ -347,18 +375,32 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 				continue;
 			if (this.metadata.sea && navalPassMap[j] !== this.metadata.sea)
 				continue;
+			if (nbShips === 0 && proxyAccess && proxyAccess > 1 && landPassMap[j] !== proxyAccess)
+				continue;
 		}
 		let tileOwner = territoryMap.getOwnerIndex(j);
 		if (tileOwner !== 0 && gameState.isPlayerEnemy(tileOwner))
 			continue;
 
-		// if not in our (or allied) territory, we do not want it too far to be able to defend it
-		let nearby = m.getFrontierProximity(gameState, j);
-		if (nearby > 4)
-			continue;
-
-		bestVal = 1;
-		bestIdx = j;
+		if (this.metadata.proximity)
+		{
+			// if proximity is given, we look for the nearest point
+			let pos = [cellSize * (j%width+0.5), cellSize * (Math.floor(j/width)+0.5)];
+			let dist = API3.SquareVectorDistance(this.metadata.proximity, pos);
+			if (bestIdx !== undefined && dist > bestVal)
+				continue;
+			bestVal = dist;
+			bestIdx = j;
+		}
+		else
+		{
+			// if not in our (or allied) territory, we do not want it too far to be able to defend it
+			let nearby = m.getFrontierProximity(gameState, j);
+			if (nearby > 4)
+				continue;
+			bestVal = 1;
+			bestIdx = j;
+		}
 	}
 
 	if (bestVal <= 0)
@@ -391,7 +433,12 @@ m.ConstructionPlan.prototype.findDockPosition = function(gameState)
 			break;
 		}
 		if (!baseIndex)
-			API3.warn("Petra: dock constructed without base index " + baseIndex);
+		{
+			if (gameState.ai.HQ.numActiveBase() > 0)
+				API3.warn("Petra: dock constructed without base index " + baseIndex);
+			else
+				baseIndex = gameState.ai.HQ.baseManagers[0].ID;
+		}
 	}
 
 	return { "x": x, "z": z, "angle": angle, "xx": x, "zz": z, "base": baseIndex, "access": access };
