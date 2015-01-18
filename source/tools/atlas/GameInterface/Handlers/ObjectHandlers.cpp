@@ -712,7 +712,7 @@ QUERYHANDLER(PickSimilarObjects)
 
 MESSAGEHANDLER(ResetSelectionColor)
 {
-	UNUSED(msg);
+	UNUSED2(msg);
 	if (g_Selection.empty())
 		return;
 
