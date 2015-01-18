@@ -533,10 +533,11 @@ function onSimulationUpdate()
 	updateBuildingPlacementPreview();
 	updateTimeElapsedCounter();
 	updateTimeNotifications();
+	if (!g_IsObserver)
+		updateResearchDisplay();
 
 	if (!g_IsObserver && !g_GameEnded)
 	{
-		updateResearchDisplay();
 		// Update music state on basis of battle state.
 		var battleState = Engine.GuiInterfaceCall("GetBattleState", Engine.GetPlayerID());
 		if (battleState)
