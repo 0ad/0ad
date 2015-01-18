@@ -1588,6 +1588,7 @@ m.HQ.prototype.stopBuild = function(gameState, structure)
 
 m.HQ.prototype.restartBuild = function(gameState, structure)
 {
+	let type = gameState.applyCiv(structure);
 	if (this.stopBuilding.has(type))
 		this.stopBuilding.delete(type);
 };
