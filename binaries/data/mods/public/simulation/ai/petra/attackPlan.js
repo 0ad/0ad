@@ -1359,7 +1359,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				var target = gameState.getEntityById(orderData["target"]);
 				if (!target)
 					needsUpdate = true;
-				else if (target.hasClass("Structure"))
+				else if (target.hasClass("Structure") || (target.hasClass("Ship") && !ent.hasClass("Ship")))
 					maybeUpdate = true;
 				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged")
 					&& target.hasClass("Female") && target.unitAIState().split(".")[1] == "FLEEING")
@@ -1427,7 +1427,15 @@ m.AttackPlan.prototype.update = function(gameState, events)
 					}
 				}
 				else
-					ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesSiege);
+				{
+					if (!ent.hasClass("Ranged"))
+					{
+						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": ["Ship"]};
+						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
+					}
+					else
+						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesSiege);
+				}
 			}
 			else
 			{
@@ -1470,7 +1478,13 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				}
 				else if (API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500 )
 				{
-					ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesUnit);
+					if (!ent.hasClass("Ranged") && !ent.hasClass("Ship"))
+					{
+						let targetClasses = {"attack": targetClassesUnit.attack, "avoid": targetClassesUnit.avoid.concat("Ship")};
+						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
+					}
+					else
+						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClassesUnit);
 					ent.attackMove(self.targetPos[0], self.targetPos[1], {"attack": ["Unit", "Structure"]}, true);   // in case we are blocked by walls
 				}
 				else

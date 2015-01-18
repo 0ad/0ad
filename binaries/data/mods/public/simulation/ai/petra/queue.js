@@ -109,7 +109,7 @@ m.Queue.prototype.countQueuedUnitsWithClass = function(classe)
 			count += this.queue[i].number;
 	return count;
 };
-m.Queue.prototype.countQueuedUnitsWithMetadata = function(data,value)
+m.Queue.prototype.countQueuedUnitsWithMetadata = function(data, value)
 {
 	var count = 0;
 	for (var i in this.queue)

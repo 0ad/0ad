@@ -120,9 +120,9 @@ m.Worker.prototype.update = function(ent, gameState)
 		}
 	}
 	else if (subrole === "builder")
-	{	
+	{
 		if (this.ent.unitAIState().split(".")[1] === "REPAIR")
-			return;
+				return;
 		// okay so apparently we aren't working.
 		// Unless we've been explicitely told to keep our role, make us idle.
 		var target = gameState.getEntityById(this.ent.getMetadata(PlayerID, "target-foundation"));
@@ -273,7 +273,7 @@ m.Worker.prototype.startGathering = function(gameState)
 	var supply;
 
 	// first look in our own base if accessible from our present position
-	if (this.base.accessIndex === access)
+	if (this.accessIndex === access)
 	{
 		if ((supply = findSupply(this.ent, this.base.dropsiteSupplies[resource]["nearby"])))
 		{

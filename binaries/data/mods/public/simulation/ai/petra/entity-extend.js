@@ -143,6 +143,21 @@ m.getHolder = function(ent, gameState)
 	return found;
 };
 
+/**
+ * return true if it is not worth finishing this building (it would surely decay) 
+ * TODO implement the other conditions
+ */
+m.isNotWorthBuilding = function(ent, gameState)
+{
+	if (gameState.ai.HQ.territoryMap.getOwner(ent.position()) !== PlayerID)
+	{
+		let buildTerritories = ent.buildTerritories();
+		if (buildTerritories && (!buildTerritories.length || (buildTerritories.length === 1 && buildTerritories[0] === "own")))
+		return true;
+	}
+	return false;
+};
+
 m.dumpEntity = function(ent)
 {
 	if (!ent)

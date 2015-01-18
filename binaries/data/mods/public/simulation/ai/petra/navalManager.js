@@ -55,6 +55,18 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 	this.warShips.registerUpdates();
 	this.fishShips.registerUpdates();
 	
+	var fishes = gameState.getFishableSupplies();
+	var availableFishes = {};
+	for (let fish of fishes.values())
+	{
+		let sea = gameState.ai.accessibility.getAccessValue(fish.position(), true);
+		fish.setMetadata(PlayerID, "sea", sea);
+		if (availableFishes[sea])
+			availableFishes[sea] += fish.resourceSupplyAmount();
+		else
+			availableFishes[sea] = fish.resourceSupplyAmount();
+	}
+
 	for (var i = 0; i < gameState.ai.accessibility.regionSize.length; ++i)
 	{
 		if (!gameState.ai.HQ.navalRegions[i])
@@ -86,7 +98,10 @@ m.NavalManager.prototype.init = function(gameState, deserializing)
 			this.seaFishShips.push(collec);
 			this.wantedTransportShips.push(0);
 			this.wantedWarShips.push(0);
-			this.wantedFishShips.push(this.Config.Economy.targetNumFishers);
+			if (availableFishes[i] && availableFishes[i] > 1000)
+				this.wantedFishShips.push(this.Config.Economy.targetNumFishers);
+			else
+				this.wantedFishShips.push(0);
 			this.neededTransportShips.push(0);
 			this.neededWarShips.push(0);
 		}
@@ -564,7 +579,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 
 	if (gameState.getPopulation() > this.Config.Economy.popForDock)
 	{
-		if (queues.economicBuilding.countQueuedUnitsWithClass("NavalMarket") === 0
+		if (queues.dock.countQueuedUnitsWithClass("NavalMarket") === 0
 			&& gameState.getOwnStructures().filter(API3.Filters.and(API3.Filters.byClass("NavalMarket"), API3.Filters.isFoundation())).length === 0
 			&& gameState.ai.HQ.canBuild(gameState, "structures/{civ}_dock"))
 		{
@@ -580,7 +595,7 @@ m.NavalManager.prototype.buildNavalStructures = function(gameState, queues)
 				{
 					if (!gameState.ai.HQ.navalRegions[sea])
 						continue;
-					queues.economicBuilding.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
+					queues.dock.addItem(new m.ConstructionPlan(gameState, "structures/{civ}_dock", { "land": [base.accessIndex], "sea": sea }));
 					dockStarted = true;
 					break;
 				}

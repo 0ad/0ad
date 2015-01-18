@@ -13,3 +13,6 @@ Engine.RegisterMessageType("DiplomacyChanged");
 // Message of the form { "to": receiver, "from": sender, "amounts": amounts }.
 // sent whenever a tribute is sent
 Engine.RegisterMessageType("TributeExchanged");
+
+// Message sent by InitGame for component map-dependent initialization
+Engine.RegisterMessageType("InitGame");

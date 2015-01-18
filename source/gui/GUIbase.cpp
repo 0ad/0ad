@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -113,19 +113,19 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			coord++;
 			break;
 		default:
-			LOGWARNING(L"ClientArea definitions may only contain numerics. Your input: '%s'", Value.c_str());
+			LOGWARNING(L"ClientArea definitions may only contain numerics. Your input: '%hs'", Value.c_str());
 			return false;
 		}
 		if (coord > 3)
 		{
-			LOGWARNING(L"Too many CClientArea parameters (4 max). Your input: '%s'", Value.c_str());
+			LOGWARNING(L"Too many CClientArea parameters (4 max). Your input: '%hs'", Value.c_str());
 			return false;
 		}
 	}
 
 	if (coord < 3)
 	{
-		LOGWARNING(L"Too few CClientArea parameters (4 min). Your input: '%s'", Value.c_str());
+		LOGWARNING(L"Too few CClientArea parameters (4 min). Your input: '%hs'", Value.c_str());
 		return false;
 	}
 

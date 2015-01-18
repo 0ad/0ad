@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -366,6 +366,7 @@ public:
 		{
 			if (evt.LeftUp())
 			{
+				POST_MESSAGE(ResetSelectionColor, ());
 				SET_STATE(Waiting);
 				return true;
 			}

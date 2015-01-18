@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -41,6 +41,7 @@
 #include "renderer/Renderer.h"
 #include "renderer/WaterManager.h"
 #include "simulation2/Simulation2.h"
+#include "simulation2/components/ICmpObstruction.h"
 #include "simulation2/components/ICmpOwnership.h"
 #include "simulation2/components/ICmpPosition.h"
 #include "simulation2/components/ICmpPlayer.h"
@@ -58,6 +59,31 @@ namespace
 	bool SortObjectsList(const sObjectsListItem& a, const sObjectsListItem& b)
 	{
 		return wcscmp(a.name.c_str(), b.name.c_str()) < 0;
+	}
+}
+
+// Helpers for object constraints
+bool CheckEntityObstruction(entity_id_t ent)
+{
+	CmpPtr<ICmpObstruction> cmpObstruction(*g_Game->GetSimulation2(), ent);
+	if (cmpObstruction)
+	{
+		ICmpObstruction::EFoundationCheck result = cmpObstruction->CheckFoundation("default");
+		if (result != ICmpObstruction::FOUNDATION_CHECK_SUCCESS)
+			return false;
+	}
+	return true;
+}
+
+void CheckObstructionAndUpdateVisual(entity_id_t id)
+{
+	CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), id);
+	if (cmpVisual)
+	{
+		if (!CheckEntityObstruction(id))
+			cmpVisual->SetShadingColour(fixed::FromDouble(1.4), fixed::FromDouble(0.4), fixed::FromDouble(0.4), fixed::FromDouble(1));
+		else
+			cmpVisual->SetShadingColour(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
 	}
 }
 
@@ -473,6 +499,8 @@ MESSAGEHANDLER(MoveObjectPreview)
 			posFinal = posFixed + dir;
 		}
 		cmpPosition->JumpTo(posFinal.X, posFinal.Z);
+
+		CheckObstructionAndUpdateVisual(id);
 	}
 }
 
@@ -543,6 +571,8 @@ MESSAGEHANDLER(ObjectPreview)
 		CmpPtr<ICmpOwnership> cmpOwnership(*g_Game->GetSimulation2(), g_PreviewEntityID);
 		if (cmpOwnership)
 			cmpOwnership->SetOwner((player_id_t)msg->settings->player);
+
+		CheckObstructionAndUpdateVisual(g_PreviewEntityID);
 	}
 }
 
@@ -680,6 +710,19 @@ QUERYHANDLER(PickSimilarObjects)
 	msg->ids = EntitySelection::PickSimilarEntities(*g_Game->GetSimulation2(), *g_Game->GetView()->GetCamera(), templateName, owner, false, true, true, false);
 }
 
+MESSAGEHANDLER(ResetSelectionColor)
+{
+	UNUSED(msg);
+	if (g_Selection.empty())
+		return;
+
+	for (size_t i = 0; i < g_Selection.size(); ++i)
+	{
+		CmpPtr<ICmpVisual> cmpVisual(*g_Game->GetSimulation2(), g_Selection[i]);
+		if (cmpVisual)
+			cmpVisual->SetShadingColour(fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1), fixed::FromDouble(1));
+	}
+}
 
 BEGIN_COMMAND(MoveObjects)
 {
@@ -736,13 +779,16 @@ BEGIN_COMMAND(MoveObjects)
 		ObjectPositionMap::iterator it;
 		for (it = map.begin(); it != map.end(); ++it)
 		{
-			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)it->first);
+			entity_id_t id = (entity_id_t)it->first;
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
 			if (!cmpPosition)
 				return;
 
 			// Set 2D position, ignoring height
 			CVector3D pos = it->second;
 			cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+
+			CheckObstructionAndUpdateVisual(id);
 		}
 	}
 
