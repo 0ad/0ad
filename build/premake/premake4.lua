@@ -8,7 +8,6 @@ newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use t
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "sdl2", description = "Experimental build using SDL 2" }
-newoption { trigger = "with-c++11", description = "Enable C++11 on GCC" }
 newoption { trigger = "with-system-mozjs24", description = "Search standard paths for libmozjs24, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
@@ -107,7 +106,6 @@ configurations { "Release", "Debug" }
 if os.is("windows") then
 	nasmpath(rootdir.."/build/bin/nasm.exe")
 	lcxxtestpath = rootdir.."/build/bin/cxxtestgen.exe"
-	has_broken_pch = false
 else
 
 	lcxxtestpath = rootdir.."/libraries/source/cxxtest-4.4/bin/cxxtestgen"
@@ -120,25 +118,6 @@ else
 		nasmformat "macho"
 	else
 		nasmformat "elf"
-	end
-
-	-- GCC bug (http://gcc.gnu.org/bugzilla/show_bug.cgi?id=10591) - PCH breaks anonymous namespaces
-	-- Fixed in 4.2.0, but we have to disable PCH for earlier versions, else
-	-- it conflicts annoyingly with wx 2.8 headers.
-	-- It's too late to do this test by the time we start compiling the PCH file, so
-	-- do the test in this build script instead (which is kind of ugly - please fix if
-	-- you have a better idea)
-	if cc == "gcc" then
-		os.execute("gcc -dumpversion > .gccver.tmp")
-		local f = io.open(".gccver.tmp", "r")
-		major, dot, minor = f:read(1, 1, 1)
-		f:close()
-		major = 0+major -- coerce to number
-		minor = 0+minor
-		has_broken_pch = (major < 4 or (major == 4 and minor < 2))
-		if has_broken_pch then
-			print("WARNING: Detected GCC <4.2 -- disabling PCH for Atlas (will increase build times)")
-		end
 	end
 end
 
@@ -235,12 +214,6 @@ function project_set_build_flags()
 		flags { "NativeWChar" }
 		flags { "EnableSSE2" } -- Enable SSE2 code generation for VS
 
-		-- VC++ 2008 has implied FPO as the default (newer versions default to /Oy-)
-		-- disable it explicitly since it breaks our stack walker in release build
-		if _ACTION == "vs2008" then
-			buildoptions { "/Oy-" }
-		end
-
 	else	-- *nix
 
 		-- TODO, FIXME: This check is incorrect because it means that some additional flags will be added inside the "else" branch if the 
@@ -324,13 +297,10 @@ function project_set_build_flags()
 				end
 			end
 			
-			if _OPTIONS["with-c++11"] then
-				buildoptions {
-					-- Enable C++11 standard. VS2010 and higher automatically support C++11
-					-- but we have to enable it manually on GNU C++ and Intel C++
-					"-std=c++0x"
-				}
-			end
+			buildoptions {
+				-- Enable C++11 standard.
+				"-std=c++0x"
+			}
 
 			if arch == "arm" then
 				-- disable warnings about va_list ABI change and use
@@ -637,7 +607,7 @@ function setup_all_libs ()
 	setup_third_party_static_lib_project("tinygettext", source_dirs, extern_libs, { } )
 	
 	-- it's an external library and we don't want to modify its source to fix warnings, so we just disable them to avoid noise in the compile output
-	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" or _ACTION == "vs2013" then
+	if _ACTION == "vs2013" then
 		buildoptions { 
 			"/wd4127",
 			"/wd4309",
@@ -878,7 +848,7 @@ function setup_all_libs ()
 	end
 
 	-- runtime-library-specific
-	if _ACTION == "vs2005" or _ACTION == "vs2008" or _ACTION == "vs2010" or _ACTION == "vs2012" or _ACTION == "vs2013" then
+	if _ACTION == "vs2013" then
 		table.insert(source_dirs, "lib/sysdep/rtl/msc");
 	else
 		table.insert(source_dirs, "lib/sysdep/rtl/gcc");
@@ -1182,7 +1152,7 @@ function setup_atlas_projects()
 	atlas_extern_libs,
 	{	-- extra_params
 		pch_dir = rootdir.."/source/tools/atlas/AtlasUI/Misc/",
-		no_pch = (has_broken_pch),
+		no_pch = false,
 		extra_links = atlas_extra_links,
 		extra_files = { "Misc/atlas.rc" }
 	})
@@ -1324,7 +1294,7 @@ end
 -- builds (e.g. -j5). It's not guaranteed that prebuildcommands always run before building.
 -- All the *.cpp and *.h files need to be added to files no matter if prebuildcommands
 -- or customizations are used.
--- If no customizations are implemented for a specific action (e.g. vs2010), passing the
+-- If no customizations are implemented for a specific action (e.g. vs2013), passing the
 -- parameters won't have any effects.
 function configure_cxxtestgen()
 
@@ -1366,7 +1336,7 @@ function configure_cxxtestgen()
 		lcxxtestpath = path.translate(lcxxtestpath, "\\")
 	end
 
-	if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
+	if _ACTION ~= "gmake" and _ACTION ~= "vs2013" then
 		prebuildcommands { lcxxtestpath.." --root "..lcxxtestrootoptions.." -o "..lcxxtestrootfile }
 	end
 
@@ -1384,7 +1354,7 @@ function configure_cxxtestgen()
 			files { src_file }
 			cxxtesthdrfiles { v }
 
-			if _ACTION ~= "gmake" and _ACTION ~= "vs2010" and _ACTION ~= "vs2012" and _ACTION ~= "vs2013" then
+			if _ACTION ~= "gmake" and _ACTION ~= "vs2013" then
 				-- see detailed comment above.
 				src_file = path.rebase(src_file, path.getabsolute("."), _OPTIONS["outpath"])
 				v = path.rebase(v, path.getabsolute("."), _OPTIONS["outpath"])
