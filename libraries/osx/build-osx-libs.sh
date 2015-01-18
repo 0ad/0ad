@@ -27,7 +27,7 @@ XML2_VERSION="libxml2-2.9.1"
 SDL2_VERSION="SDL-2.0.4-9134"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
-WXWIDGETS_VERSION="wxWidgets-3.0.1"
+WXWIDGETS_VERSION="wxWidgets-3.0.2"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion
@@ -358,8 +358,8 @@ then
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
-  # patch to fix Atlas on VMs w/ software rendering (fixed upstream, see http://trac.wxwidgets.org/ticket/16555 )
-  (patch -p0 -d.. -i../../patches/wxwidgets-glcanvas-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  # patch to fix wxWidgets build on Yosemite (fixed upstream, see http://trac.wxwidgets.org/ticket/16329 )
+  (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
