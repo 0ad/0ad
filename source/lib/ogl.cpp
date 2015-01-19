@@ -393,9 +393,7 @@ static void dump_gl_error(GLenum err)
 #undef E
 }
 
-#ifndef ogl_WarnIfError
-	// don't include this function if it has been defined (in ogl.h) as a no-op
-void ogl_WarnIfError()
+void ogl_WarnIfErrorLoc(const char *file, int line)
 {
 	// glGetError may return multiple errors, so we poll it in a loop.
 	// the debug_printf should only happen once (if this is set), though.
@@ -416,9 +414,8 @@ void ogl_WarnIfError()
 	}
 
 	if(error_enountered)
-		debug_printf(L"OpenGL error(s) occurred: %04x\n", (unsigned int)first_error);
+		debug_printf(L"%hs:%d: OpenGL error(s) occurred: %04x\n", file, line, (unsigned int)first_error);
 }
-#endif
 
 
 // ignore and reset the specified error (as returned by glGetError).

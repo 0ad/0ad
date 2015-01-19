@@ -152,9 +152,11 @@ extern const char* ogl_ExtensionString();
  *
  * disabled in release mode for efficiency and to avoid annoying errors.
  **/
-extern void ogl_WarnIfError();
+extern void ogl_WarnIfErrorLoc(const char *file, int line);
 #ifdef NDEBUG
 # define ogl_WarnIfError()
+#else
+# define ogl_WarnIfError() ogl_WarnIfErrorLoc(__FILE__, __LINE__)
 #endif
 
 /**
