@@ -92,7 +92,7 @@ actually supported).
 #define pglGetUniformLocationARB glGetUniformLocation
 #define pglLinkProgramARB glLinkProgram
 #define pglShaderSourceARB glShaderSource
-#define pglUniform1fARB glUniform1i
+#define pglUniform1fARB glUniform1f
 #define pglUniform2fARB glUniform2f
 #define pglUniform3fARB glUniform3f
 #define pglUniform4fARB glUniform4f
