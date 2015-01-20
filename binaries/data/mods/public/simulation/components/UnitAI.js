@@ -5342,11 +5342,15 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 				if (this.order.data.targetClasses)
 				{
 					var cmpIdentity = Engine.QueryInterface(targ, IID_Identity);
-					if (this.order.data.targetClasses.attack && cmpIdentity
-						&& !MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.attack))
+					var targetClasses = this.order.data.targetClasses;
+					if (targetClasses.attack && cmpIdentity
+						&& !MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.attack))
 						continue;
-					if (this.order.data.targetClasses.avoid && cmpIdentity
-						&& MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.avoid))
+					if (targetClasses.avoid && cmpIdentity
+						&& MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.avoid))
+						continue;
+					// Only used by the AIs to prevent some choices of targets
+					if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 						continue;
 				}
 				this.PushOrderFront("Attack", { "target": targ, "force": true });
@@ -5364,11 +5368,15 @@ UnitAI.prototype.FindWalkAndFightTargets = function()
 		if (this.order.data.targetClasses)
 		{
 			var cmpIdentity = Engine.QueryInterface(targ, IID_Identity);
-			if (cmpIdentity && this.order.data.targetClasses.attack
-				&& !MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.attack))
+			var targetClasses = this.order.data.targetClasses;
+			if (cmpIdentity && targetClasses.attack
+				&& !MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.attack))
 				continue;
-			if (cmpIdentity && this.order.data.targetClasses.avoid
-				&& MatchesClassList(cmpIdentity.GetClassesList(), this.order.data.targetClasses.avoid))
+			if (cmpIdentity && targetClasses.avoid
+				&& MatchesClassList(cmpIdentity.GetClassesList(), targetClasses.avoid))
+				continue;
+			// Only used by the AIs to prevent some choices of targets
+			if (targetClasses.vetoEntities && targetClasses.vetoEntities[targ])
 				continue;
 		}
 		this.PushOrderFront("Attack", { "target": targ, "force": true });

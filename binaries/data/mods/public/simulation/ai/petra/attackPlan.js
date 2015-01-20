@@ -869,7 +869,7 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 
 	if (targets.length == 0)
 	{
-		if( this.type === "Attack")
+		if (this.type === "Attack")
 			targets = this.defaultTargetFinder(gameState, playerEnemy);
 		else if (this.type === "Rush" && playerEnemy)
 			targets = this.rushTargetFinder(gameState);
@@ -1302,23 +1302,52 @@ m.AttackPlan.prototype.update = function(gameState, events)
 		var enemyUnits = gameState.getEnemyUnits(this.targetPlayer);
 		var enemyStructures = gameState.getEnemyStructures(this.targetPlayer);
 
+		// Count the number of times an enemy is targeted, to prevent all units to follow the same target
+		let unitTargets = {};
+		for (let ent of this.unitCollection.values())
+		{
+			if (ent.hasClass("Ship"))	// TODO What to do with ships
+				continue;
+			let orderData = ent.unitAIOrderData();
+			if (!orderData || !orderData.length || !orderData[0]["target"])
+				continue;
+			let targetId = orderData[0]["target"];
+			let target = gameState.getEntityById(targetId);
+			if (!target || target.hasClass("Structure"))
+				continue;
+			if (!(targetId in unitTargets))
+			{
+				if (this.isSiegeUnit(gameState, target) || target.hasClass("Hero"))
+					unitTargets[targetId] = -8;
+				else if (target.hasClass("Champion") || target.hasClass("Ship"))
+					unitTargets[targetId] = -5;
+				else
+					unitTargets[targetId] = -3;
+			}
+			++unitTargets[targetId];
+		}
+		let veto = {};
+		for (let target in unitTargets)
+			if (unitTargets[target] > 0)
+				veto[target] = true;
+
 		var targetClassesUnit;
 		var targetClassesSiege;
 		if (this.type === "Rush")
-			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall", "Tower", "Fortress"]};
+			targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall", "Tower", "Fortress"], "vetoEntities": veto};
 		else
 		{
 			if (this.target.hasClass("Fortress"))
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall"]};
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["StoneWall"], "vetoEntities": veto};
 			else if (this.target.hasClass("StoneWall"))
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress"]};
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress"], "vetoEntities": veto};
 			else
-				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"]};
+				targetClassesUnit = {"attack": ["Unit", "Structure"], "avoid": ["Fortress", "StoneWall"], "vetoEntities": veto};
 		}
 		if (this.target.hasClass("Structure"))
-			targetClassesSiege = {"attack": ["Structure"]};
+			targetClassesSiege = {"attack": ["Structure"], "vetoEntities": veto};
 		else
-			targetClassesSiege = {"attack": ["Unit", "Structure"]};
+			targetClassesSiege = {"attack": ["Unit", "Structure"], "vetoEntities": veto};
 
 		if (this.unitCollUpdateArray === undefined || this.unitCollUpdateArray.length == 0)
 			this.unitCollUpdateArray = this.unitCollection.toIdArray();
@@ -1334,11 +1363,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			if (!ent || !ent.position())
 				continue;
 
-			var orderData = ent.unitAIOrderData();
-			if (orderData.length !== 0)
-				orderData = orderData[0];
-			else
-				orderData = undefined;
+			let targetId = undefined;
+			let orderData = ent.unitAIOrderData();
+			if (orderData && orderData.length && orderData[0]["target"])
+				targetId = orderData[0]["target"];
 	
 			// update the order if needed
 			var needsUpdate = false;
@@ -1346,19 +1374,29 @@ m.AttackPlan.prototype.update = function(gameState, events)
 			var siegeUnit = this.isSiegeUnit(gameState, ent);
 			if (ent.isIdle())
 				needsUpdate = true;
-			else if (siegeUnit && orderData && orderData["target"])
+			else if (siegeUnit && targetId)
 			{
-				var target = gameState.getEntityById(orderData["target"]);
+				var target = gameState.getEntityById(targetId);
 				if (!target)
 					needsUpdate = true;
-				else if(!target.hasClass("Structure"))
+				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
+				{
+					needsUpdate = true;
+					--unitTargets[targetId];
+				}
+				else if (!target.hasClass("Structure"))
 					maybeUpdate = true;
 			}
-			else if (orderData && orderData["target"])
+			else if (targetId)
 			{
-				var target = gameState.getEntityById(orderData["target"]);
+				var target = gameState.getEntityById(targetId);
 				if (!target)
 					needsUpdate = true;
+				else if (unitTargets[targetId] && unitTargets[targetId] > 0)
+				{
+					needsUpdate = true;
+					--unitTargets[targetId];
+				}
 				else if (target.hasClass("Structure") || (target.hasClass("Ship") && !ent.hasClass("Ship")))
 					maybeUpdate = true;
 				else if (!ent.hasClass("Cavalry") && !ent.hasClass("Ranged")
@@ -1430,7 +1468,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (!ent.hasClass("Ranged"))
 					{
-						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": ["Ship"]};
+						let targetClasses = {"attack": targetClassesSiege.attack, "avoid": ["Ship"], "vetoEntities": veto};
 						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
 					}
 					else
@@ -1452,6 +1490,9 @@ m.AttackPlan.prototype.update = function(gameState, events)
 						return false;
 					if (gameState.ai.accessibility.getAccessValue(enemy.position()) !== entIndex)
 						return false;
+					// if already too much units targeting this enemy, let's continue towards our main target
+					if (veto[enemy.id()] && API3.SquareVectorDistance(self.targetPos, ent.position()) > 2500)
+						return false;
 					enemy.setMetadata(PlayerID, "distance", Math.sqrt(dist));
 					return true;
 				}).toEntityArray();
@@ -1471,6 +1512,10 @@ m.AttackPlan.prototype.update = function(gameState, events)
 							vala -= distA;
 							valb -= distB;
 						}
+						if (veto[unitA.id()])
+							vala -= 20000;
+						if (veto[unitB.id()])
+							valb -= 20000;
 						return valb - vala;
 					});
 					var rand = Math.floor(Math.random() * mUnit.length * 0.1);
@@ -1480,7 +1525,7 @@ m.AttackPlan.prototype.update = function(gameState, events)
 				{
 					if (!ent.hasClass("Ranged") && !ent.hasClass("Ship"))
 					{
-						let targetClasses = {"attack": targetClassesUnit.attack, "avoid": targetClassesUnit.avoid.concat("Ship")};
+						let targetClasses = {"attack": targetClassesUnit.attack, "avoid": targetClassesUnit.avoid.concat("Ship"), "vetoEntities": veto};
 						ent.attackMove(self.targetPos[0], self.targetPos[1], targetClasses);
 					}
 					else
@@ -1712,8 +1757,7 @@ m.AttackPlan.prototype.hasForceOrder = function(data, value)
 
 m.AttackPlan.prototype.isSiegeUnit = function(gameState, ent)
 {
-	return (ent.hasClass("Siege") ||
-		(gameState.civ() === "maur" && ent.hasClass("Elephant") && ent.hasClass("Champion")));
+	return (ent.hasClass("Siege") || (ent.hasClass("Elephant") && ent.hasClass("Champion")));
 };
 
 m.AttackPlan.prototype.debugAttack = function()
