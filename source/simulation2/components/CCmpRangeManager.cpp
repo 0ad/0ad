@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -95,6 +95,16 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
 		playerMask |= CalcPlayerLosMask(players[i]);
 
 	return playerMask;
+}
+
+/**
+* Computes the 2-bit visibility for one player, given the total 32-bit visibilities
+*/
+static inline u8 GetPlayerVisibility(u32 visibilities, player_id_t player)
+{
+	if (player > 0 && player <= 16)
+		return (visibilities >> (2 *(player-1))) & 0x3;
+	return 0;
 }
 
 /**
@@ -1376,7 +1386,7 @@ public:
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
 
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
+	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
 	{
 		// Entities not with positions in the world are never visible
 		if (ent.GetId() == INVALID_ENTITY)
@@ -1422,6 +1432,39 @@ public:
 			return VIS_FOGGED;
 		
 		return VIS_HIDDEN;
+	}
+
+	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
+	{
+		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
+		return ComputeLosVisibility(handle, player, forceRetainInFog);
+	}
+
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
+	{
+		entity_id_t entId = ent.GetId();
+		
+		// Entities not with positions in the world are never visible
+		if (entId == INVALID_ENTITY)
+			return VIS_HIDDEN;
+		CmpPtr<ICmpPosition> cmpPosition(ent);
+		if (!cmpPosition || !cmpPosition->IsInWorld())
+			return VIS_HIDDEN;
+
+		CFixedVector2D pos = cmpPosition->GetPosition2D();
+		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
+
+		if (m_DirtyVisibility[n])
+			return ComputeLosVisibility(ent, player, forceRetainInFog);
+
+		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
+			return ComputeLosVisibility(ent, player, forceRetainInFog);
+
+		EntityMap<EntityData>::iterator it = m_EntityData.find(entId);
+		if (it == m_EntityData.end())
+			return ComputeLosVisibility(ent, player, forceRetainInFog);
+
+		return static_cast<ELosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
 	}
 
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
@@ -1505,8 +1548,8 @@ public:
 		
 		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
 		{
-			u8 oldVis = (itEnts->second.visibilities >> (2*(player-1))) & 0x3;
-			u8 newVis = GetLosVisibility(itEnts->first, player, false);
+			u8 oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
+			u8 newVis = ComputeLosVisibility(itEnts->first, player, false);
 			
 			oldVisibilities.push_back(oldVis);
 			newVisibilities.push_back(newVis);
