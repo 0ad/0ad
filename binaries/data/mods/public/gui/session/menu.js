@@ -209,6 +209,8 @@ function openOptions()
 
 function openChat()
 {
+	updateTeamCheckbox(false);
+
 	Engine.GetGUIObjectByName("chatInput").focus(); // Grant focus to the input area
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = false;
 }
@@ -218,6 +220,14 @@ function closeChat()
 	Engine.GetGUIObjectByName("chatInput").caption = ""; // Clear chat input
 	Engine.GetGUIObjectByName("chatInput").blur(); // Remove focus
 	Engine.GetGUIObjectByName("chatDialogPanel").hidden = true;
+}
+
+function updateTeamCheckbox(check)
+{
+	Engine.GetGUIObjectByName("toggleTeamChatLabel").hidden = g_IsObserver;
+	let toggleTeamChat = Engine.GetGUIObjectByName("toggleTeamChat");
+	toggleTeamChat.hidden = g_IsObserver;
+	toggleTeamChat.checked = !g_IsObserver && check;
 }
 
 function toggleChatWindow(teamChat)
@@ -237,7 +247,7 @@ function toggleChatWindow(teamChat)
 		chatInput.caption = ""; // Clear chat input
 	}
 
-	Engine.GetGUIObjectByName("toggleTeamChat").checked = teamChat;
+	updateTeamCheckbox(teamChat);
 	chatWindow.hidden = !chatWindow.hidden;
 }
 

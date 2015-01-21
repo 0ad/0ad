@@ -205,7 +205,7 @@
 		</object>
 
 		<object name="toggleTeamChat" size="30%+22 100%-36 30%+40 100%-6" type="checkbox" style="ModernTickBox"/>
-		<object size="30%+40 100%-40 60%+16 100%-12" type="text"  style="ModernLeftLabelText">
+		<object name="toggleTeamChatLabel" size="30%+40 100%-40 60%+16 100%-12" type="text" style="ModernLeftLabelText">
 			<translatableAttribute id="caption">Team Only</translatableAttribute>
 		</object>
 

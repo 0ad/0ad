@@ -362,7 +362,8 @@ function submitChatInput()
 			}
 		}
 
-		if (!isCheat)
+		// Observers should only send messages to "/all"
+		if (!isCheat && (!g_IsObserver || text.indexOf("/") == -1 || text.indexOf("/all ") == 0))
 		{
 			if (Engine.GetGUIObjectByName("toggleTeamChat").checked)
 				text = "/team " + text;
