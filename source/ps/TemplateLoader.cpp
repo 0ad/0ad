@@ -393,9 +393,9 @@ void CTemplateLoader::CopyPreviewSubset(CParamNode& out, const CParamNode& in, b
 
 	if (corpse)
 	{
-		// Corpses should include decay components and un-inactivate them
+		// Corpses should include decay components and activate them
 		if (out.GetChild("Entity").GetChild("Decay").IsOk())
-			CParamNode::LoadXMLString(out, "<Entity><Decay><Inactive disable=''/></Decay></Entity>");
+			CParamNode::LoadXMLString(out, "<Entity><Decay><Active>true</Active></Decay></Entity>");
 
 		// Corpses shouldn't display silhouettes (especially since they're often half underground)
 		if (out.GetChild("Entity").GetChild("VisualActor").IsOk())
