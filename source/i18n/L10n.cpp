@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -565,7 +565,7 @@ void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dicti
 	try
 	{
 		std::istringstream inputStream(poContent);
-		tinygettext::POParser::parse("virtual PO file", inputStream, *dictionary, false);
+		tinygettext::POParser::parse("virtual PO file", inputStream, *dictionary);
 	}
 	catch(std::exception& e)
 	{

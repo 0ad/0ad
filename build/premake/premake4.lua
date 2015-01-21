@@ -550,7 +550,7 @@ end
 function setup_third_party_static_lib_project (project_name, rel_source_dirs, extern_libs, extra_params)
 
 	setup_static_lib_project(project_name, rel_source_dirs, extern_libs, extra_params)
-	includedirs { source_root .. "third_party/" .. project_name .. "/include/" .. project_name }
+	includedirs { source_root .. "third_party/" .. project_name .. "/include/" }
 end
 
 function setup_shared_lib_project (project_name, rel_source_dirs, extern_libs, extra_params)

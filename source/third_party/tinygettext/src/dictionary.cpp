@@ -18,8 +18,9 @@
 #include "precompiled.h"
 
 #include <assert.h>
-#include "log_stream.hpp"
-#include "dictionary.hpp"
+
+#include "tinygettext/log_stream.hpp"
+#include "tinygettext/dictionary.hpp"
 
 namespace tinygettext {
 

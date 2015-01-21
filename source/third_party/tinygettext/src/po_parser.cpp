@@ -17,30 +17,30 @@
 
 #include "precompiled.h"
 
-#include "po_parser.hpp"
+#include "tinygettext/po_parser.hpp"
 
 #include <iostream>
 #include <ctype.h>
 #include <string>
 #include <istream>
 #include <string.h>
-#include <map>
+#include <unordered_map>
 #include <stdlib.h>
 
-#include "language.hpp"
-#include "log_stream.hpp"
-#include "iconv.hpp"
-#include "dictionary.hpp"
-#include "plural_forms.hpp"
+#include "tinygettext/language.hpp"
+#include "tinygettext/log_stream.hpp"
+#include "tinygettext/iconv.hpp"
+#include "tinygettext/dictionary.hpp"
+#include "tinygettext/plural_forms.hpp"
 
 namespace tinygettext {
 
 bool POParser::pedantic = true;
-
+
 void
-POParser::parse(const std::string& filename, std::istream& in, Dictionary& dict, bool use_fuzzy_)
+POParser::parse(const std::string& filename, std::istream& in, Dictionary& dict)
 {
-  POParser parser(filename, in, dict, use_fuzzy_);
+  POParser parser(filename, in, dict);
   parser.parse();
 }
 
@@ -93,9 +93,9 @@ POParser::next_line()
 }
 
 void
-POParser::get_string_line(std::ostringstream& out,std::string::size_type skip)
+POParser::get_string_line(std::ostringstream& out, size_t skip)
 {
-  if (skip+1 >= static_cast<std::string::size_type>(current_line.size()))
+  if (skip+1 >= static_cast<unsigned int>(current_line.size()))
     error("unexpected end of line");
 
   if (current_line[skip] != '"')
@@ -161,11 +161,11 @@ POParser::get_string_line(std::ostringstream& out,std::string::size_type skip)
 }
 
 std::string
-POParser::get_string(std::string::size_type skip)
+POParser::get_string(unsigned int skip)
 {
   std::ostringstream out;
 
-  if (skip+1 >= static_cast<std::string::size_type>(current_line.size()))
+  if (skip+1 >= static_cast<unsigned int>(current_line.size()))
     error("unexpected end of line");
 
   if (current_line[skip] == ' ' && current_line[skip+1] == '"')
@@ -179,7 +179,7 @@ POParser::get_string(std::string::size_type skip)
 
     for(;;)
     {
-      if (skip >= static_cast<std::string::size_type>(current_line.size()))
+      if (skip >= static_cast<unsigned int>(current_line.size()))
         error("unexpected end of line");
       else if (current_line[skip] == '\"')
       {
@@ -209,7 +209,7 @@ next:
         if (pedantic)
           warning("leading whitespace before string");
 
-      get_string_line(out, i);
+      get_string_line(out,  i);
       goto next;
     }
     else if (isspace(current_line[i]))
@@ -247,7 +247,7 @@ POParser::parse_header(const std::string& header)
       if (has_prefix(line, "Content-Type:"))
       {
         // from_charset = line.substr(len);
-        std::string::size_type len = strlen("Content-Type: text/plain; charset=");
+        unsigned int len = strlen("Content-Type: text/plain; charset=");
         if (line.compare(0, len, "Content-Type: text/plain; charset=") == 0)
         {
           from_charset = line.substr(len);
@@ -396,7 +396,7 @@ POParser::parse()
                    current_line.size() > 8 && 
                    isdigit(current_line[7]) && current_line[8] == ']')
           {
-            std::string::size_type number = static_cast<std::string::size_type>(current_line[7] - '0');
+            unsigned int number = static_cast<unsigned int>(current_line[7] - '0');
 	    std::string msgstr = get_string(9);
 
 	    if(!msgstr.empty())

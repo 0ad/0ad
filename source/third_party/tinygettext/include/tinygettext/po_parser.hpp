@@ -49,18 +49,18 @@ private:
   void parse_header(const std::string& header);
   void parse();
   void next_line();
-  std::string get_string(std::string::size_type skip);
-  void get_string_line(std::ostringstream& str,std::string::size_type skip);
+  std::string get_string(unsigned int skip);
+  void get_string_line(std::ostringstream& str, size_t skip);
   bool is_empty_line();
   bool prefix(const char* );
-  void error(const std::string& msg);
+  void error(const std::string& msg) __attribute__((__noreturn__));
   void warning(const std::string& msg);
 
 public:
   /** @param filename name of the istream, only used in error messages
       @param in stream from which the PO file is read.
       @param dict dictionary to which the strings are written */
-  static void parse(const std::string& filename, std::istream& in, Dictionary& dict, bool use_fuzzy = true);
+  static void parse(const std::string& filename, std::istream& in, Dictionary& dict);
   static bool pedantic;
 
 private:
