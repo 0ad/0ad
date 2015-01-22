@@ -227,7 +227,7 @@ static void HandleError(const CStrW& message, const VfsPath& pathname, Status er
 {
 	if (err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR("%s: pathname=%s, error=%s", message.c_str(), pathname.string8(), ErrorString(err));
+	LOGERROR("%s: pathname=%s, error=%s", utf8_from_wstring(message), pathname.string8(), utf8_from_wstring(ErrorString(err)));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)

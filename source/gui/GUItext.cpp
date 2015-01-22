@@ -306,7 +306,7 @@ void CGUIString::SetValue(const CStrW& str)
 			closing = false;
 			if (++p == l)
 			{
-				LOGERROR("Partial tag at end of string '%s'", str.c_str());
+				LOGERROR("Partial tag at end of string '%s'", utf8_from_wstring(str));
 				break;
 			}
 			if (str[p] == L'/')
@@ -314,12 +314,12 @@ void CGUIString::SetValue(const CStrW& str)
 				closing = true;
 				if (tags.empty())
 				{
-					LOGERROR("Encountered closing tag without having any open tags. At %d in '%s'", p, str.c_str());
+					LOGERROR("Encountered closing tag without having any open tags. At %d in '%s'", p, utf8_from_wstring(str));
 					break;
 				}
 				if (++p == l)
 				{
-					LOGERROR("Partial closing tag at end of string '%s'", str.c_str());
+					LOGERROR("Partial closing tag at end of string '%s'", utf8_from_wstring(str));
 					break;
 				}
 			}
@@ -332,7 +332,7 @@ void CGUIString::SetValue(const CStrW& str)
 				{
 				case L' ':
 					if (closing) // We still parse them to make error handling cleaner
-						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, str.c_str());
+						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, utf8_from_wstring(str));
 
 					// parse something="something else"
 					for (++p; p < l && str[p] != L'='; ++p)
@@ -340,23 +340,23 @@ void CGUIString::SetValue(const CStrW& str)
 
 					if (p == l)
 					{
-						LOGERROR("Parameter without value at pos %d '%s'", p, str.c_str());
+						LOGERROR("Parameter without value at pos %d '%s'", p, utf8_from_wstring(str));
 						break;
 					}
 					// fall-through
 				case L'=':
 					// parse a quoted parameter
 					if (closing) // We still parse them to make error handling cleaner
-						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, str.c_str());
+						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, utf8_from_wstring(str));
 
 					if (++p == l)
 					{
-						LOGERROR("Expected parameter, got end of string '%s'", str.c_str());
+						LOGERROR("Expected parameter, got end of string '%s'", utf8_from_wstring(str));
 						break;
 					}
 					if (str[p] != L'"')
 					{
-						LOGERROR("Unquoted parameters are not supported (at pos %d '%s')", p, str.c_str());
+						LOGERROR("Unquoted parameters are not supported (at pos %d '%s')", p, utf8_from_wstring(str));
 						break;
 					}
 					for (++p; p < l && str[p] != L'"'; ++p)
@@ -366,7 +366,7 @@ void CGUIString::SetValue(const CStrW& str)
 						case L'\\':
 							if (++p == l)
 							{
-								LOGERROR("Escape character at end of string '%s'", str.c_str());
+								LOGERROR("Escape character at end of string '%s'", utf8_from_wstring(str));
 								break;
 							}
 							// NOTE: We do not support \n in tag parameters
@@ -392,7 +392,7 @@ void CGUIString::SetValue(const CStrW& str)
 
 			if (!tag_.SetTagType(tag))
 			{
-				LOGERROR("Invalid tag '%s' at %d in '%s'", tag.c_str(), p, str.c_str());
+				LOGERROR("Invalid tag '%s' at %d in '%s'", utf8_from_wstring(tag), p, utf8_from_wstring(str));
 				break;
 			}
 			if (!closing)
@@ -415,7 +415,7 @@ void CGUIString::SetValue(const CStrW& str)
 			{
 				if (tag != tags.back())
 				{
-					LOGERROR("Closing tag '%s' does not match last opened tag '%s' at %d in '%s'", tag.c_str(), tags.back().c_str(), p, str.c_str());
+					LOGERROR("Closing tag '%s' does not match last opened tag '%s' at %d in '%s'", utf8_from_wstring(tag), utf8_from_wstring(tags.back()), p, utf8_from_wstring(str));
 					break;
 				}
 
@@ -426,7 +426,7 @@ void CGUIString::SetValue(const CStrW& str)
 		case L'\\':
 			if (++p == l)
 			{
-				LOGERROR("Escape character at end of string '%s'", str.c_str());
+				LOGERROR("Escape character at end of string '%s'", utf8_from_wstring(str));
 				break;
 			}
 			if (str[p] == L'n')

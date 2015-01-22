@@ -337,18 +337,18 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			CStr key(header + name);
 			newMap[key] = values;
 			if (key == "lobby.password")
-				LOGMESSAGE("Loaded config string \"%s\"", key.c_str());
+				LOGMESSAGE("Loaded config string \"%s\"", key);
 			else
 			{
 				std::string vals;
 				for (size_t i = 0; i < newMap[key].size() - 1; ++i)
 					vals += "\"" + EscapeString(newMap[key][i]) + "\", ";
 				vals += "\"" + EscapeString(newMap[key][values.size()-1]) + "\"";
-				LOGMESSAGE("Loaded config string \"%s\" = %s", key.c_str(), vals.c_str());
+				LOGMESSAGE("Loaded config string \"%s\" = %s", key, vals);
 			}
 		}
 		else if (!name.empty())
-			LOGERROR("Encountered config setting '%s' without value while parsing '%s' on line %d", name.c_str(), m_ConfigFile[ns].string8(), line);
+			LOGERROR("Encountered config setting '%s' without value while parsing '%s' on line %d", name, m_ConfigFile[ns].string8(), line);
 
 		name.clear();
 		values.clear();
@@ -356,7 +356,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 	}
 
 	if (!name.empty())
-		LOGERROR("Config file does not have a new line after the last config setting '%s'", name.c_str());
+		LOGERROR("Config file does not have a new line after the last config setting '%s'", name);
 
 	m_Map[ns].swap(newMap);
 

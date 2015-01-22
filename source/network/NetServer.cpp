@@ -810,7 +810,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		// Players who weren't already in the game are not allowed to join now that it's started
 		if (!isRejoining)
 		{
-			LOGMESSAGE("Refused connection after game start from not-previously-known user \"%s\"", username.c_str());
+			LOGMESSAGE("Refused connection after game start from not-previously-known user \"%s\"", utf8_from_wstring(username));
 			session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
 			return true;
 		}

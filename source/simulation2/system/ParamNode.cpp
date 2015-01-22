@@ -124,7 +124,7 @@ void CParamNode::ApplyLayer(const XMBFile& xmb, const XMBElement& element, const
 							tokens.erase(tokenIt);
 						else
 							LOGWARNING("[ParamNode] Could not remove token '%s' from node '%s'%s; not present in list nor inherited (possible typo?)",
-								newTokens[i].substr(1).c_str(), name.c_str(), sourceIdentifier ? (L" in '" + std::wstring(sourceIdentifier) + L"'").c_str() : L"");
+								utf8_from_wstring(newTokens[i].substr(1)), name, sourceIdentifier ? (" in '" + utf8_from_wstring(sourceIdentifier) + "'").c_str() : "");
 					}
 					else
 					{

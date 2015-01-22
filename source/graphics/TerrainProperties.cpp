@@ -56,8 +56,8 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 	if (rootName != "Terrains")
 	{
 		LOGERROR("TerrainProperties: Loading %s: Root node is not terrains (found \"%s\")",
-			pathname.string().c_str(),
-			rootName.c_str());
+			pathname.string8(),
+			rootName);
 		return CTerrainPropertiesPtr();
 	}
 	
@@ -80,8 +80,8 @@ CTerrainPropertiesPtr CTerrainProperties::FromXML(const CTerrainPropertiesPtr& p
 		else
 		{
 			LOGWARNING("TerrainProperties: Loading %s: Unexpected node %s\n",
-				pathname.string().c_str(),
-				XeroFile.GetElementString(child.GetNodeName()).c_str());
+				pathname.string8(),
+				XeroFile.GetElementString(child.GetNodeName()));
 			// Keep reading - typos shouldn't be showstoppers
 		}
 	}

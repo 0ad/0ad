@@ -354,7 +354,7 @@ Status CSoundManager::AlcInit()
 		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
 	else
 	{
-		LOGERROR("Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%s err=%x\n", m_Device, m_Context, dev_name, err);
+		LOGERROR("Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%s err=%x\n", (void *)m_Device, (void *)m_Context, dev_name, err);
 
 // FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX

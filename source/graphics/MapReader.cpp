@@ -1052,7 +1052,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		entity_id_t player = cmpPlayerManager->GetPlayerByID(PlayerID);
 		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
 		{	// Don't add entities with invalid player IDs
-			LOGERROR("Failed to load entity template '%s'", TemplateName.c_str());
+			LOGERROR("Failed to load entity template '%s'", utf8_from_wstring(TemplateName));
 		}
 		else
 		{
@@ -1430,7 +1430,7 @@ int CMapReader::ParseEntities()
 		entity_id_t player = cmpPlayerManager->GetPlayerByID(currEnt.playerID);
 		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
 		{	// Don't add entities with invalid player IDs
-			LOGERROR("Failed to load entity template '%s'", currEnt.templateName.c_str());
+			LOGERROR("Failed to load entity template '%s'", utf8_from_wstring(currEnt.templateName));
 		}
 		else
 		{

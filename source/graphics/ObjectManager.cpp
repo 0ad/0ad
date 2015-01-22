@@ -96,7 +96,7 @@ CObjectBase* CObjectManager::FindObjectBase(const CStrW& objectname)
 	else
 		delete obj;
 
-	LOGERROR("CObjectManager::FindObjectBase(): Cannot find object '%s'", objectname.c_str());
+	LOGERROR("CObjectManager::FindObjectBase(): Cannot find object '%s'", utf8_from_wstring(objectname));
 
 	return 0;
 }

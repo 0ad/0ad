@@ -222,7 +222,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%s': %s", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 	}
 
 	return data;
@@ -284,7 +284,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%s': %s", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 		return false;
 	}
 

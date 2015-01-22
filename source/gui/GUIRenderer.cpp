@@ -144,7 +144,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			// Check colour is valid
 			if (!GUI<CColor>::ParseString(value, color))
 			{
-				LOGERROR("GUI: Error parsing sprite 'colour' (\"%s\")", value.c_str());
+				LOGERROR("GUI: Error parsing sprite 'colour' (\"%s\")", utf8_from_wstring(value));
 				return;
 			}
 

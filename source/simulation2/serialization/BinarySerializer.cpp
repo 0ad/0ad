@@ -317,7 +317,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			}
 		}
 
-		LOGERROR("Cannot serialise JS objects of type 'function': %s", funcname.c_str());
+		LOGERROR("Cannot serialise JS objects of type 'function': %s", utf8_from_wstring(funcname));
 		throw PSERROR_Serialize_InvalidScriptValue();
 	}
 	case JSTYPE_STRING:

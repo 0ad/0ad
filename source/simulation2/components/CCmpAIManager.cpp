@@ -124,7 +124,7 @@ private:
 			if (!m_ScriptInterface->GetProperty(global, moduleName.c_str(), &objectWithConstructor)
 			    || objectWithConstructor.isUndefined())
 			{
-				LOGERROR("Failed to create AI player: %s: can't find the module that should contain the constructor: '%s'", path.string8(), moduleName.c_str());
+				LOGERROR("Failed to create AI player: %s: can't find the module that should contain the constructor: '%s'", path.string8(), moduleName);
 				return false;
 			}
 
@@ -138,7 +138,7 @@ private:
 			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), &ctor)
 			    || ctor.isNull())
 			{
-				LOGERROR("Failed to create AI player: %s: can't find constructor '%s'", path.string8(), constructor.c_str());
+				LOGERROR("Failed to create AI player: %s: can't find constructor '%s'", path.string8(), constructor);
 				return false;
 			}
 
@@ -160,7 +160,7 @@ private:
 
 			if (obj.isNull())
 			{
-				LOGERROR("Failed to create AI player: %s: error calling constructor '%s'", path.string8(), constructor.c_str());
+				LOGERROR("Failed to create AI player: %s: error calling constructor '%s'", path.string8(), constructor);
 				return false;
 			}
 
@@ -261,7 +261,7 @@ public:
 		VfsPaths pathnames;
 		if (vfs::GetPathnames(g_VFS, L"simulation/ai/" + moduleName + L"/", L"*.js", pathnames) < 0)
 		{
-			LOGERROR("Failed to load AI scripts for module %s", moduleName.c_str());
+			LOGERROR("Failed to load AI scripts for module %s", utf8_from_wstring(moduleName));
 			return false;
 		}
 
@@ -748,7 +748,7 @@ public:
 		std::pair<std::map<JSObject*, std::wstring>::iterator, bool> ret1 = m_SerializablePrototypes.insert(std::make_pair(obj, name));
 		std::pair<std::map<std::wstring, JSObject*>::iterator, bool> ret2 = m_DeserializablePrototypes.insert(std::make_pair(name, obj));
 		if (!ret1.second || !ret2.second)
-			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", obj, name.c_str());
+			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj, utf8_from_wstring(name));
 	}
 
 private:

@@ -137,7 +137,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 	if (!scriptInterface->HasProperty(global, callback.c_str()))
 	{
-		LOGERROR("The specified callback function %s does not exist in the page %s", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("The specified callback function %s does not exist in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
 		return;
 	}
 
@@ -146,7 +146,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 		scriptInterface->ReadStructuredClone(args, &argVal);
 	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
 	{
-		LOGERROR("Failed to call the callback function %s in the page %s", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("Failed to call the callback function %s in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
 		return;
 	}
 }
@@ -204,7 +204,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	if (root.GetNodeName() != elmt_page)
 	{
-		LOGERROR("GUI page '%s' must have root element <page>", page.name.c_str());
+		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(page.name));
 		return;
 	}
 
@@ -212,7 +212,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	{
 		if (node.GetNodeName() != elmt_include)
 		{
-			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", page.name.c_str());
+			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(page.name));
 			continue;
 		}
 
@@ -252,7 +252,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			hotloadDataVal)
 		)
 	{
-		LOGERROR("GUI page '%s': Failed to call init() function", page.name.c_str());
+		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(page.name));
 	}
 
 	m_CurrentGUI = oldGUI;
@@ -264,7 +264,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	{
 		if (it->inputs.count(path))
 		{
-			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), it->name.c_str());
+			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(it->name));
 			LoadPage(*it);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}

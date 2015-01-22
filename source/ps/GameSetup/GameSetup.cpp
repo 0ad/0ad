@@ -293,7 +293,7 @@ void Render()
 #warning TODO: cursors for Android
 #else
 			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
-				LOGWARNING("Failed to draw cursor '%s'", cursorName.c_str());
+				LOGWARNING("Failed to draw cursor '%s'", utf8_from_wstring(cursorName));
 #endif
 
 #if CONFIG2_GLES
@@ -1246,7 +1246,7 @@ bool Autostart(const CmdLineArgs& args)
 		else
 		{
 			// Problem with JSON file
-			LOGERROR("Autostart: Error reading random map script '%s'", scriptPath.c_str());
+			LOGERROR("Autostart: Error reading random map script '%s'", utf8_from_wstring(scriptPath));
 			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
 
@@ -1301,7 +1301,7 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		LOGERROR("Autostart: Unrecognized map type '%s'", mapDirectory.c_str());
+		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
 		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
 	}
 	scriptInterface.SetProperty(attrs, "mapType", mapType);

@@ -39,8 +39,8 @@ static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 		message.erase(message.length()-1);
 
 	LOGERROR("CXeromyces: Parse %s: %s:%d: %s",
-		error->level == XML_ERR_WARNING ? L"warning" : L"error",
-		error->file, error->line, message.c_str());
+		error->level == XML_ERR_WARNING ? "warning" : "error",
+		error->file, error->line, message);
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
 	// so the caching is less transparent than it should be
 }

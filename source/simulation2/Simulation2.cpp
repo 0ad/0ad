@@ -828,7 +828,7 @@ static std::vector<std::string> GetJSONData(const VfsPath& path)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("Error reading directory '%s': %s", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("Error reading directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 		return std::vector<std::string>();
 	}
 

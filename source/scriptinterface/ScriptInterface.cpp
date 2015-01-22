@@ -163,7 +163,7 @@ JSBool logmsg(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGMESSAGE("%s", str.c_str());
+	LOGMESSAGE("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -180,7 +180,7 @@ JSBool warn(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGWARNING("%s", str.c_str());
+	LOGWARNING("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -197,7 +197,7 @@ JSBool error(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGERROR("%s", str.c_str());
+	LOGERROR("%s", utf8_from_wstring(str));
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -946,7 +946,7 @@ bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandl
 
 	std::wstring error;
 	ScriptInterface::FromJSVal(m->m_cx, rval, error);
-	LOGERROR("%s", error.c_str());
+	LOGERROR("%s", utf8_from_wstring(error));
 	return false;
 }
 

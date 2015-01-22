@@ -48,12 +48,12 @@ static const int COMMAND_DELAY = 2;
 #define NETTURN_LOG(args)
 #endif
 
-static std::wstring Hexify(const std::string& s)
+static std::string Hexify(const std::string& s)
 {
-	std::wstringstream str;
+	std::stringstream str;
 	str << std::hex;
 	for (size_t i = 0; i < s.size(); ++i)
-		str << std::setfill(L'0') << std::setw(2) << (int)(unsigned char)s[i];
+		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
 	return str.str();
 }
 
@@ -220,7 +220,7 @@ bool CNetTurnManager::UpdateFastForward()
 
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 {
-	NETTURN_LOG((L"OnSyncError(%d, %ls)\n", turn, Hexify(expectedHash).c_str()));
+	NETTURN_LOG((L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str()));
 
 	// Only complain the first time
 	if (m_HasSyncError)
@@ -237,14 +237,14 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 
-	std::wstringstream msg;
-	msg << L"Out of sync on turn " << turn << L": expected hash " << Hexify(expectedHash) << L"\n\n";
-	msg << L"Current state: turn " << m_CurrentTurn << L", hash " << Hexify(hash) << L"\n\n";
-	msg << L"Dumping current state to " << path;
+	std::stringstream msg;
+	msg << "Out of sync on turn " << turn << ": expected hash " << Hexify(expectedHash) << "\n\n";
+	msg << "Current state: turn " << m_CurrentTurn << ", hash " << Hexify(hash) << "\n\n";
+	msg << "Dumping current state to " << utf8_from_wstring(path.string());
 	if (g_GUI)
-		g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
+		g_GUI->DisplayMessageBox(600, 350, L"Sync error", wstring_from_utf8(msg.str()));
 	else
-		LOGERROR("%s", msg.str().c_str());
+		LOGERROR("%s", msg.str());
 }
 
 void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
@@ -408,7 +408,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 		ENSURE(ok);
 	}
 
-	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %ls)\n", turn, Hexify(hash).c_str()));
+	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str()));
 
 	m_Replay.Hash(hash, quick);
 
@@ -546,7 +546,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
-			NETTURN_LOG((L"sync check %d: %d = %ls\n", it->first, cit->first, Hexify(cit->second).c_str()));
+			NETTURN_LOG((L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str()));
 			if (cit->second != expected)
 			{
 				// Oh no, out of sync
