@@ -231,8 +231,8 @@ static void DefaultError (void *iData, int iLine, const char *iError,
 {
     (void)iData;
     if (iToken)
-    	LOGERROR("Preprocessor error: line %d: %s: '%.*hs'\n",
-                  iLine, iError, int (iTokenLen), iToken);
+        LOGERROR("Preprocessor error: line %d: %s: '%s'\n",
+                  iLine, iError, std::string (iToken, iTokenLen));
     else
         LOGERROR("Preprocessor error: line %d: %s\n", iLine, iError);
 }
