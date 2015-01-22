@@ -321,7 +321,7 @@ public:
 			TS_ASSERT_WSTR_EQUALS(dst, expected_dst);
 	}
 
-	void test_printf()
+	void test_printf_overflow()
 	{
 		TEST_PRINTF(d10,10, s10, 4, "1234", "%d", 1234);
 		TEST_PRINTF(d10,5, s10, 4, "1234", "%d", 1234);
@@ -334,7 +334,7 @@ public:
 		TEST_PRINTF(d10,10, s10, -1, "abcdefghij", NULL);
 	}
 
-	void test_wprintf()
+	void test_wprintf_overflow()
 	{
 		TEST_WPRINTF(wd10,10, ws10, 4, L"1234", L"%d", 1234);
 		TEST_WPRINTF(wd10,5, ws10, 4, L"1234", L"%d", 1234);
@@ -345,5 +345,18 @@ public:
 		TEST_WPRINTF(wd10,0, ws10, -1, L"abcdefghij", L"%d", 1234);
 		TEST_WPRINTF(NULL,0, NULL, -1, L"", L"%d", 1234);
 		TEST_WPRINTF(wd10,10, ws10, -1, L"abcdefghij", NULL);
+	}
+
+	void test_printf_strings()
+	{
+		TEST_PRINTF(d10,10, s10, 3, "123", "%s", "123");
+		TEST_PRINTF(d10,10, s10, 3, "123", "%hs", "123");
+		TEST_PRINTF(d10,10, s10, 3, "123", "%ls", L"123");
+	}
+
+	void test_wprintf_strings()
+	{
+		TEST_WPRINTF(wd10,10, ws10, 3, L"123", L"%hs", "123");
+		TEST_WPRINTF(wd10,10, ws10, 3, L"123", L"%ls", L"123");
 	}
 };
