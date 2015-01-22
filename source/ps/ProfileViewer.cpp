@@ -570,12 +570,12 @@ void CProfileViewer::SaveToFile()
 
 		if (m->outputStream.fail())
 		{
-			LOGERROR(L"Failed to open profile log file");
+			LOGERROR("Failed to open profile log file");
 			return;
 		}
 		else
 		{
-			LOGMESSAGERENDER(L"Profiler snapshot saved to '%ls'", path.string().c_str());
+			LOGMESSAGERENDER("Profiler snapshot saved to '%ls'", path.string().c_str());
 		}
 	}
 

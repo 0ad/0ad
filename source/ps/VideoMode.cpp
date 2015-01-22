@@ -88,7 +88,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			// If fullscreen fails, try windowed mode
 			if (fullscreen)
 			{
-				LOGWARNING(L"Failed to set the video mode to fullscreen for the chosen resolution "
+				LOGWARNING("Failed to set the video mode to fullscreen for the chosen resolution "
 					L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
 					w, h, bpp, SDL_GetError());
 				// Using default size for the window for now, as the attempted setting
@@ -97,7 +97,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			}
 			else
 			{
-				LOGERROR(L"SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
+				LOGERROR("SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
 					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 				return false;
 			}
@@ -105,7 +105,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 		if (SDL_SetWindowDisplayMode(m_Window, NULL) < 0)
 		{
-			LOGERROR(L"SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}
@@ -113,7 +113,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		SDL_GLContext context = SDL_GL_CreateContext(m_Window);
 		if (!context)
 		{
-			LOGERROR(L"SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}
@@ -132,7 +132,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 			if (SDL_SetWindowFullscreen(m_Window, flags) < 0)
 			{
-				LOGERROR(L"SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%hs\")",
+				LOGERROR("SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%hs\")",
 					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 				return false;
 			}
@@ -172,7 +172,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		// If fullscreen fails, try windowed mode
 		if (fullscreen)
 		{
-			LOGWARNING(L"Failed to set the video mode to fullscreen for the chosen resolution "
+			LOGWARNING("Failed to set the video mode to fullscreen for the chosen resolution "
 				L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
 				w, h, bpp, SDL_GetError());
 			// Using default size for the window for now, as the attempted setting
@@ -181,7 +181,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		}
 		else
 		{
-			LOGERROR(L"SetVideoMode failed: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed: %dx%d:%d %d (\"%hs\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}
@@ -294,7 +294,7 @@ bool CVideoMode::InitSDL()
 	u16 ramp[256];
 	SDL_CalculateGammaRamp(g_Gamma, ramp);
 	if (SDL_SetWindowGammaRamp(m_Window, ramp, ramp, ramp) < 0)
-		LOGWARNING(L"SDL_SetWindowGammaRamp failed");
+		LOGWARNING("SDL_SetWindowGammaRamp failed");
 #else
 # if OS_MACOSX
 	// Workaround for crash on Mavericks, see http://trac.wildfiregames.com/ticket/2272
@@ -304,7 +304,7 @@ bool CVideoMode::InitSDL()
 	{
 # endif
 	if (SDL_SetGamma(g_Gamma, g_Gamma, g_Gamma) < 0)
-		LOGWARNING(L"SDL_SetGamma failed");
+		LOGWARNING("SDL_SetGamma failed");
 # if OS_MACOSX
 	}
 # endif

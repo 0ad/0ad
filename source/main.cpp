@@ -159,7 +159,7 @@ static InReaction MainInputHandler(const SDL_Event_* ev)
 			// Fullscreen toggling is broken on OS X w/ SDL 1.2, see http://trac.wildfiregames.com/ticket/741
 			g_VideoMode.ToggleFullscreen();
 #else
-			LOGWARNING(L"Toggling fullscreen and resizing are disabled on OS X due to a known bug. Please use the config file to change display settings.");
+			LOGWARNING("Toggling fullscreen and resizing are disabled on OS X due to a known bug. Please use the config file to change display settings.");
 #endif
 			return IN_HANDLED;
 		}

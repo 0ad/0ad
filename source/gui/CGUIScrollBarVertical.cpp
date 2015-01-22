@@ -51,7 +51,7 @@ void CGUIScrollBarVertical::Draw()
 {
 	if (!GetStyle())
 	{
-		LOGWARNING(L"Attempt to draw scrollbar without a style.");
+		LOGWARNING("Attempt to draw scrollbar without a style.");
 		return;
 	}
 

@@ -175,7 +175,7 @@ uint32_t CCmpProjectileManager::LaunchProjectile(entity_id_t source, CFixedVecto
 	{
 		// If the actor was actually loaded, complain that it doesn't have a projectile
 		if (!cmpSourceVisual->GetActorShortName().empty())
-			LOGERROR(L"Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", cmpSourceVisual->GetActorShortName().c_str());
+			LOGERROR("Unit with actor '%ls' launched a projectile but has no actor on 'projectile' attachpoint", cmpSourceVisual->GetActorShortName().c_str());
 		return 0;
 	}
 

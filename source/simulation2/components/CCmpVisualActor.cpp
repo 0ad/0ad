@@ -655,7 +655,7 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 			}
 			else
 			{
-				LOGERROR(L"[VisualActor] Cannot apply footprint-based SelectionShape; Footprint component not initialized.");
+				LOGERROR("[VisualActor] Cannot apply footprint-based SelectionShape; Footprint component not initialized.");
 			}
 		}
 		else if (shapeNode.GetChild("Box").IsOk())
@@ -669,12 +669,12 @@ void CCmpVisualActor::InitSelectionShapeDescriptor(const CParamNode& paramNode)
 		}
 		else if (shapeNode.GetChild("Cylinder").IsOk())
 		{
-			LOGWARNING(L"[VisualActor] TODO: Cylinder selection shapes are not yet implemented; defaulting to recursive bounding boxes");
+			LOGWARNING("[VisualActor] TODO: Cylinder selection shapes are not yet implemented; defaulting to recursive bounding boxes");
 		}
 		else
 		{
 			// shouldn't happen by virtue of validation against schema
-			LOGERROR(L"[VisualActor] No selection shape specified");
+			LOGERROR("[VisualActor] No selection shape specified");
 		}
 	}
 

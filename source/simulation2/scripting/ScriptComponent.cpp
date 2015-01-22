@@ -73,7 +73,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 	if (!m_ScriptInterface.CallFunctionVoid(tmpInstance, name, msgVal))
-		LOGERROR(L"Script message handler %hs failed", name);
+		LOGERROR("Script message handler %hs failed", name);
 }
 
 void CComponentTypeScript::Serialize(ISerializer& serialize)
@@ -92,7 +92,7 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	{
 		JS::RootedValue val(cx);
 		if (!m_ScriptInterface.CallFunction(tmpInstance, "Serialize", &val))
-			LOGERROR(L"Script Serialize call failed");
+			LOGERROR("Script Serialize call failed");
 		serialize.ScriptVal("object", &val);
 	}
 	else
@@ -118,7 +118,7 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 			deserialize.ScriptVal("object", &val);
 
 		if (!m_ScriptInterface.CallFunctionVoid(tmpInstance, "Deserialize", val))
-			LOGERROR(L"Script Deserialize call failed");
+			LOGERROR("Script Deserialize call failed");
 	}
 	else
 	{

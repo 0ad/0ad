@@ -271,7 +271,7 @@ public:
 		CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
 		if (!cmpPosition)
 		{
-			LOGERROR(L"Turret with parent without position component");
+			LOGERROR("Turret with parent without position component");
 			return;
 		}
 		if (!cmpPosition->IsInWorld())
@@ -482,7 +482,7 @@ public:
 	{
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::GetPosition called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::GetPosition called on entity when IsInWorld is false");
 			return CFixedVector3D();
 		}
 
@@ -493,7 +493,7 @@ public:
 	{
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::GetPosition2D called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::GetPosition2D called on entity when IsInWorld is false");
 			return CFixedVector2D();
 		}
 
@@ -504,7 +504,7 @@ public:
 	{ 
 		if (!m_InWorld) 
 		{ 
-			LOGERROR(L"CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false"); 
+			LOGERROR("CCmpPosition::GetPreviousPosition called on entity when IsInWorld is false"); 
 			return CFixedVector3D(); 
 		} 
 
@@ -515,7 +515,7 @@ public:
 	{ 
 		if (!m_InWorld) 
 		{ 
-			LOGERROR(L"CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false"); 
+			LOGERROR("CCmpPosition::GetPreviousPosition2D called on entity when IsInWorld is false"); 
 			return CFixedVector2D(); 
 		} 
 
@@ -589,7 +589,7 @@ public:
 	{
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::GetDistanceTravelled called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::GetDistanceTravelled called on entity when IsInWorld is false");
 			return fixed::Zero();
 		}
 
@@ -630,7 +630,7 @@ public:
 	{
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::GetInterpolatedPosition2D called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::GetInterpolatedPosition2D called on entity when IsInWorld is false");
 			return;
 		}
 
@@ -647,14 +647,14 @@ public:
 			CmpPtr<ICmpPosition> cmpPosition(GetSimContext(), m_TurretParent);
 			if (!cmpPosition)
 			{
-				LOGERROR(L"Turret with parent without position component");
+				LOGERROR("Turret with parent without position component");
 				CMatrix3D m;
 				m.SetIdentity();
 				return m;
 			}
 			if (!cmpPosition->IsInWorld())
 			{
-				LOGERROR(L"CCmpPosition::GetInterpolatedTransform called on turret entity when IsInWorld is false");
+				LOGERROR("CCmpPosition::GetInterpolatedTransform called on turret entity when IsInWorld is false");
 				CMatrix3D m;
 				m.SetIdentity();
 				return m;
@@ -670,7 +670,7 @@ public:
 		}
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::GetInterpolatedTransform called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::GetInterpolatedTransform called on entity when IsInWorld is false");
 			CMatrix3D m;
 			m.SetIdentity();
 			return m;
@@ -925,7 +925,7 @@ private:
 	{
 		if (!m_InWorld)
 		{
-			LOGERROR(L"CCmpPosition::UpdateXZRotation called on entity when IsInWorld is false");
+			LOGERROR("CCmpPosition::UpdateXZRotation called on entity when IsInWorld is false");
 			return;
 		}
 
@@ -940,7 +940,7 @@ private:
 		CmpPtr<ICmpTerrain> cmpTerrain(GetSystemEntity());
 		if (!cmpTerrain || !cmpTerrain->IsLoaded())
 		{
-			LOGERROR(L"Terrain not loaded");
+			LOGERROR("Terrain not loaded");
 			return;
 		}
 

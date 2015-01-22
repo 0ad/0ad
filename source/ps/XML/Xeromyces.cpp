@@ -38,7 +38,7 @@ static void errorHandler(void* UNUSED(userData), xmlErrorPtr error)
 	if (message.length() > 0 && message[message.length()-1] == '\n')
 		message.erase(message.length()-1);
 
-	LOGERROR(L"CXeromyces: Parse %ls: %hs:%d: %hs",
+	LOGERROR("CXeromyces: Parse %ls: %hs:%d: %hs",
 		error->level == XML_ERR_WARNING ? L"warning" : L"error",
 		error->file, error->line, message.c_str());
 	// TODO: The (non-fatal) warnings and errors don't get stored in the XMB,
@@ -89,7 +89,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 
 		// No source file or archive cache was found, so we can't load the
 		// XML file at all
-		LOGERROR(L"CCacheLoader failed to find archived or source file for: \"%ls\"", filename.string().c_str());
+		LOGERROR("CCacheLoader failed to find archived or source file for: \"%ls\"", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -111,7 +111,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 	CVFSFile input;
 	if (input.Load(vfs, filename))
 	{
-		LOGERROR(L"CXeromyces: Failed to open XML file %ls", filename.string().c_str());
+		LOGERROR("CXeromyces: Failed to open XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -120,7 +120,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOGERROR(L"CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
+		LOGERROR("CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 
@@ -167,7 +167,7 @@ PSRETURN CXeromyces::LoadString(const char* xml)
 	xmlDocPtr doc = xmlReadMemory(xml, (int)strlen(xml), "", NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOGERROR(L"CXeromyces: Failed to parse XML string");
+		LOGERROR("CXeromyces: Failed to parse XML string");
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 

@@ -749,7 +749,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 	{
 		CreateSimpleMessage("system", g_L10n.Translate("unknown subtype (see logs)"), "error");
 		std::string tag = tag_name(iq);
-		LOGMESSAGE(L"unknown subtype '%hs'", tag.c_str());
+		LOGMESSAGE("unknown subtype '%hs'", tag.c_str());
 	}
 
 	return true;
@@ -896,7 +896,7 @@ void XmppClient::SetPresence(const std::string& presence)
 	else IF("offline", Unavailable);
 	// The others are not to be set
 #undef IF
-	else LOGERROR(L"Unknown presence '%hs'", presence.c_str());
+	else LOGERROR("Unknown presence '%hs'", presence.c_str());
 }
 
 /**
@@ -952,7 +952,7 @@ void XmppClient::GetPresenceString(const gloox::Presence::PresenceType p, std::s
 	CASE(Error, "error");
 	CASE(Invalid, "invalid");
 	default:
-		LOGERROR(L"Unknown presence type '%d'", (int)p);
+		LOGERROR("Unknown presence type '%d'", (int)p);
 		break;
 #undef CASE
 	}
@@ -975,7 +975,7 @@ void XmppClient::GetRoleString(const gloox::MUCRoomRole r, std::string& role) co
 	CASE(RoleModerator, "moderator");
 	CASE(RoleInvalid, "invalid");
 	default:
-		LOGERROR(L"Unknown role type '%d'", (int)r);
+		LOGERROR("Unknown role type '%d'", (int)r);
 		break;
 #undef CASE
 	}

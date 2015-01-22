@@ -176,7 +176,7 @@ MESSAGEHANDLER(ImportHeightmap)
 	File file;
 	if (file.Open(src, O_RDONLY) < 0)
 	{
-		LOGERROR(L"Failed to load heightmap.");
+		LOGERROR("Failed to load heightmap.");
 		return;
 	}
 	
@@ -187,7 +187,7 @@ MESSAGEHANDLER(ImportHeightmap)
 	
 	if (read(file.Descriptor(), fileData.get(), fileSize) < 0)
 	{
-		LOGERROR(L"Failed to read heightmap image.");
+		LOGERROR("Failed to read heightmap image.");
 		file.Close();
 		return;
 	}
@@ -198,14 +198,14 @@ MESSAGEHANDLER(ImportHeightmap)
 	Tex tex;
 	if (tex.decode(fileData, fileSize) < 0)
 	{
-		LOGERROR(L"Failed to decode heightmap.");
+		LOGERROR("Failed to decode heightmap.");
 		return;
 	}
 
 	// Convert to uncompressed BGRA with no mipmaps
 	if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 	{
-		LOGERROR(L"Failed to transform heightmap.");
+		LOGERROR("Failed to transform heightmap.");
 		return;
 	}
 

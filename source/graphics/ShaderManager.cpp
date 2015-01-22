@@ -49,11 +49,11 @@ CShaderManager::CShaderManager()
 		TIMER_ACCRUE(tc_ShaderValidation);
 		CVFSFile grammar;
 		if (grammar.Load(g_VFS, L"shaders/program.rng") != PSRETURN_OK)
-			LOGERROR(L"Failed to read grammar shaders/program.rng");
+			LOGERROR("Failed to read grammar shaders/program.rng");
 		else
 		{
 			if (!m_Validator.LoadGrammar(grammar.GetAsString()))
-				LOGERROR(L"Failed to load grammar shaders/program.rng");
+				LOGERROR("Failed to load grammar shaders/program.rng");
 		}
 	}
 #endif
@@ -77,7 +77,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const CShaderDef
 	CShaderProgramPtr program;
 	if (!NewProgram(name, defines, program))
 	{
-		LOGERROR(L"Failed to load shader '%hs'", name);
+		LOGERROR("Failed to load shader '%hs'", name);
 		program = CShaderProgramPtr();
 	}
 
@@ -378,7 +378,7 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 	CShaderTechniquePtr tech(new CShaderTechnique());
 	if (!NewEffect(name.c_str(), defines, tech))
 	{
-		LOGERROR(L"Failed to load effect '%hs'", name.c_str());
+		LOGERROR("Failed to load effect '%hs'", name.c_str());
 		tech = CShaderTechniquePtr();
 	}
 

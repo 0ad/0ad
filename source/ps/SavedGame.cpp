@@ -244,7 +244,7 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 		if (!archiveReader)
 		{
 			// Triggered by e.g. the file being open in another program
-			LOGWARNING(L"Failed to read saved game '%ls'", realPath.string().c_str());
+			LOGWARNING("Failed to read saved game '%ls'", realPath.string().c_str());
 			continue; // skip this file
 		}
 

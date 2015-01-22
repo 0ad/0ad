@@ -126,7 +126,7 @@ void SkyManager::LoadSkyTextures()
 			if (g_VFS->LoadFile(path2, file, fileSize) < 0)
 			{
 				glDeleteTextures(1, &m_SkyCubeMap);
-				LOGERROR(L"Error creating sky cubemap.");
+				LOGERROR("Error creating sky cubemap.");
 				return;
 			}
 		}
@@ -207,7 +207,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	DirectoryNames subdirectories;
 	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
 	{
-		LOGERROR(L"Error opening directory '%ls'", path.string().c_str());
+		LOGERROR("Error opening directory '%ls'", path.string().c_str());
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 

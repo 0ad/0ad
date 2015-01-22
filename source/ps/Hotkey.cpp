@@ -83,7 +83,7 @@ static void LoadConfigBindings()
 				int mapping = FindKeyCode(*it);
 				if (!mapping)
 				{
-					LOGWARNING(L"Hotkey mapping used invalid key '%hs'", hotkey.c_str());
+					LOGWARNING("Hotkey mapping used invalid key '%hs'", hotkey.c_str());
 					continue;
 				}
 

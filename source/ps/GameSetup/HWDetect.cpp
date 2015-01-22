@@ -203,7 +203,7 @@ void RunHardwareDetection()
 	CVFSFile file;
 	if (file.Load(g_VFS, scriptName) != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load hardware detection script");
+		LOGERROR("Failed to load hardware detection script");
 		return;
 	}
 

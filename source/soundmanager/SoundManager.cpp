@@ -204,7 +204,7 @@ void ISoundManager::CloseGame()
 
 void CSoundManager::al_ReportError(ALenum err, const char* caller, int line)
 {
-	LOGERROR(L"OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
+	LOGERROR("OpenAL error: %hs; called from %hs (line %d)\n", alGetString(err), caller, line);
 }
 
 void CSoundManager::al_check(const char* caller, int line)
@@ -216,7 +216,7 @@ void CSoundManager::al_check(const char* caller, int line)
 
 Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
 {
-//	LOGERROR(L"GUI file '%ls' changed - reloading page", path.string().c_str());
+//	LOGERROR("GUI file '%ls' changed - reloading page", path.string().c_str());
 
 	return INFO::OK;
 }
@@ -338,7 +338,7 @@ Status CSoundManager::AlcInit()
 			}
 			else
 			{
-				LOGERROR(L"error in gensource = %d", err);
+				LOGERROR("error in gensource = %d", err);
 			}
 			delete[] sourceList;
 		}
@@ -354,7 +354,7 @@ Status CSoundManager::AlcInit()
 		debug_printf(L"Sound: AlcInit success, using %hs\n", dev_name);
 	else
 	{
-		LOGERROR(L"Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%x\n", m_Device, m_Context, dev_name, err);
+		LOGERROR("Sound: AlcInit failed, m_Device=%p m_Context=%p dev_name=%hs err=%x\n", m_Device, m_Context, dev_name, err);
 
 // FIXME Hack to get around exclusive access to the sound device
 #if OS_UNIX
@@ -654,7 +654,7 @@ void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, e
 		group = new CSoundGroup();
 		if (!group->LoadSoundGroup(L"audio/" + groupPath.string()))
 		{
-			LOGERROR(L"Failed to load sound group '%ls'", groupPath.string().c_str());
+			LOGERROR("Failed to load sound group '%ls'", groupPath.string().c_str());
 			delete group;
 			group = NULL;
 		}

@@ -126,7 +126,7 @@ static void* MgCallback(mg_event event, struct mg_connection *conn, const struct
 
 	case MG_EVENT_LOG:
 		// Called by Mongoose's cry()
-		LOGERROR(L"Mongoose error: %hs", request_info->log_message);
+		LOGERROR("Mongoose error: %hs", request_info->log_message);
 		return NULL;
 
 	case MG_INIT_SSL:
@@ -157,7 +157,7 @@ void CProfiler2::InitialiseGPU()
 void CProfiler2::EnableHTTP()
 {
 	ENSURE(m_Initialised);
-	LOGMESSAGERENDER(L"Starting profiler2 HTTP server");
+	LOGMESSAGERENDER("Starting profiler2 HTTP server");
 
 	// Ignore multiple enablings
 	if (m_MgContext)
@@ -177,20 +177,20 @@ void CProfiler2::EnableGPU()
 	ENSURE(m_Initialised);
 	if (!m_GPU)
 	{
-		LOGMESSAGERENDER(L"Starting profiler2 GPU mode");
+		LOGMESSAGERENDER("Starting profiler2 GPU mode");
 		InitialiseGPU();
 	}
 }
 
 void CProfiler2::ShutdownGPU()
 {
-	LOGMESSAGERENDER(L"Shutting down profiler2 GPU mode");
+	LOGMESSAGERENDER("Shutting down profiler2 GPU mode");
 	SAFE_DELETE(m_GPU);
 }
 
 void CProfiler2::ShutDownHTTP()
 {
-	LOGMESSAGERENDER(L"Shutting down profiler2 HTTP server");
+	LOGMESSAGERENDER("Shutting down profiler2 HTTP server");
 	if (m_MgContext)
 	{
 		mg_stop(m_MgContext);

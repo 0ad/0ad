@@ -244,7 +244,7 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	if (g_GUI)
 		g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
 	else
-		LOGERROR(L"%ls", msg.str().c_str());
+		LOGERROR("%ls", msg.str().c_str());
 }
 
 void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
@@ -327,7 +327,7 @@ void CNetTurnManager::QuickSave()
 	bool ok = m_Simulation2.SerializeState(stream);
 	if (!ok)
 	{
-		LOGERROR(L"Failed to quicksave game");
+		LOGERROR("Failed to quicksave game");
 		return;
 	}
 
@@ -337,7 +337,7 @@ void CNetTurnManager::QuickSave()
 	else
 		m_QuickSaveMetadata = std::string();
 
-	LOGMESSAGERENDER(L"Quicksaved game");
+	LOGMESSAGERENDER("Quicksaved game");
 
 }
 
@@ -347,7 +347,7 @@ void CNetTurnManager::QuickLoad()
 
 	if (m_QuickSaveState.empty())
 	{
-		LOGERROR(L"Cannot quickload game - no game was quicksaved");
+		LOGERROR("Cannot quickload game - no game was quicksaved");
 		return;
 	}
 
@@ -355,14 +355,14 @@ void CNetTurnManager::QuickLoad()
 	bool ok = m_Simulation2.DeserializeState(stream);
 	if (!ok)
 	{
-		LOGERROR(L"Failed to quickload game");
+		LOGERROR("Failed to quickload game");
 		return;
 	}
 
 	if (g_GUI && !m_QuickSaveMetadata.empty())
 		g_GUI->RestoreSavedGameData(m_QuickSaveMetadata);
 
-	LOGMESSAGERENDER(L"Quickloaded game");
+	LOGMESSAGERENDER("Quickloaded game");
 
 	// See RewindTimeWarp
 	ResetState(0, 1);

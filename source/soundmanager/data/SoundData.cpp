@@ -107,7 +107,7 @@ CSoundData* CSoundData::SoundDataFromOgg(const VfsPath& itemPath)
 	}
 	else
 	{
-		LOGERROR(L"could not initialize ogg data at %ls", itemPath.string().c_str());
+		LOGERROR("could not initialize ogg data at %ls", itemPath.string().c_str());
 		delete oggAnswer;
 	}
 

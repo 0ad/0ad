@@ -159,7 +159,7 @@ void CPostprocManager::RecreateBuffers()
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Framebuffer object incomplete (A): 0x%04X", status);
+		LOGWARNING("Framebuffer object incomplete (A): 0x%04X", status);
 	}
 	
 	pglGenFramebuffersEXT(1, &m_PongFbo);
@@ -174,7 +174,7 @@ void CPostprocManager::RecreateBuffers()
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Framebuffer object incomplete (B): 0x%04X", status);
+		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
 	}
 	
 	pglGenFramebuffersEXT(1, &m_BloomFbo);
@@ -187,7 +187,7 @@ void CPostprocManager::RecreateBuffers()
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Framebuffer object incomplete (B): 0x%04X", status);
+		LOGWARNING("Framebuffer object incomplete (B): 0x%04X", status);
 	}
 	*/
 
@@ -519,7 +519,7 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 	
 	VfsPaths pathnames;
 	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
-		LOGERROR(L"Error finding Post effects in '%ls'", path.string().c_str());
+		LOGERROR("Error finding Post effects in '%ls'", path.string().c_str());
 
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{

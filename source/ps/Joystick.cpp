@@ -41,13 +41,13 @@ void CJoystick::Initialise()
 
 	if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) < 0)
 	{
-		LOGERROR(L"CJoystick::Initialise failed to initialise joysticks (\"%hs\")", SDL_GetError());
+		LOGERROR("CJoystick::Initialise failed to initialise joysticks (\"%hs\")", SDL_GetError());
 		return;
 	}
 
 	int numJoysticks = SDL_NumJoysticks();
 
-	LOGMESSAGE(L"Found %d joystick(s)", numJoysticks);
+	LOGMESSAGE("Found %d joystick(s)", numJoysticks);
 
 	for (int i = 0; i < numJoysticks; ++i)
 	{
@@ -55,14 +55,14 @@ void CJoystick::Initialise()
 		SDL_Joystick* stick = SDL_JoystickOpen(i);
 		if (!stick)
 		{
-			LOGERROR(L"CJoystick::Initialise failed to open joystick %d (\"%hs\")", i, SDL_GetError());
+			LOGERROR("CJoystick::Initialise failed to open joystick %d (\"%hs\")", i, SDL_GetError());
 			continue;
 		}
 		const char* name = SDL_JoystickName(stick);
 #else // SDL 1.2
 		const char* name = SDL_JoystickName(i);
 #endif
-		LOGMESSAGE(L"Joystick %d: %hs", i, name);
+		LOGMESSAGE("Joystick %d: %hs", i, name);
 #if SDL_VERSION_ATLEAST(2, 0, 0)
 		SDL_JoystickClose(stick);
 #endif
@@ -75,7 +75,7 @@ void CJoystick::Initialise()
 		// Always pick the first joystick, and assume that's the right one
 		m_Joystick = SDL_JoystickOpen(0);
 		if (!m_Joystick)
-			LOGERROR(L"CJoystick::Initialise failed to open joystick (\"%hs\")", SDL_GetError());
+			LOGERROR("CJoystick::Initialise failed to open joystick (\"%hs\")", SDL_GetError());
 	}
 }
 

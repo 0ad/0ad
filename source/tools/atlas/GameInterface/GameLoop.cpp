@@ -178,7 +178,7 @@ static void* RunEngine(void* data)
 					debug_warn(L"Unrecognised message");
 					// CLogger might not be initialised, but this error will be sent
 					// to the debug output window anyway so people can still see it
-					LOGERROR(L"Unrecognised message (%hs)", name.c_str());
+					LOGERROR("Unrecognised message (%hs)", name.c_str());
 				}
 
 				if (msg->GetType() == IMessage::Query)

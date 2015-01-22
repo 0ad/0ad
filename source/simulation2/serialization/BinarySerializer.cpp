@@ -49,7 +49,7 @@ static u8 GetArrayType(JSArrayBufferViewType arrayType)
 	case js::ArrayBufferView::TYPE_UINT8_CLAMPED:
 		return SCRIPT_TYPED_ARRAY_UINT8_CLAMPED;
 	default:
-		LOGERROR(L"Cannot serialize unrecognized typed array view: %d", arrayType);
+		LOGERROR("Cannot serialize unrecognized typed array view: %d", arrayType);
 		throw PSERROR_Serialize_InvalidScriptValue();
 	}
 }
@@ -258,7 +258,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			else
 			{
 				// Unrecognized class
-				LOGERROR(L"Cannot serialise JS objects with unrecognized class '%hs'", jsclass->name);
+				LOGERROR("Cannot serialise JS objects with unrecognized class '%hs'", jsclass->name);
 				throw PSERROR_Serialize_InvalidScriptValue();
 			}
 		}
@@ -317,7 +317,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			}
 		}
 
-		LOGERROR(L"Cannot serialise JS objects of type 'function': %ls", funcname.c_str());
+		LOGERROR("Cannot serialise JS objects of type 'function': %ls", funcname.c_str());
 		throw PSERROR_Serialize_InvalidScriptValue();
 	}
 	case JSTYPE_STRING:

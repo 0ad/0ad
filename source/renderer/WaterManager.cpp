@@ -326,7 +326,7 @@ int WaterManager::LoadWaterTextures()
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Reflection framebuffer object incomplete: 0x%04X", status);
+		LOGWARNING("Reflection framebuffer object incomplete: 0x%04X", status);
 		g_Renderer.m_Options.m_WaterReflection = false;
 	}
 
@@ -341,7 +341,7 @@ int WaterManager::LoadWaterTextures()
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Refraction framebuffer object incomplete: 0x%04X", status);
+		LOGWARNING("Refraction framebuffer object incomplete: 0x%04X", status);
 		g_Renderer.m_Options.m_WaterRefraction = false;
 	}
 	
@@ -356,7 +356,7 @@ int WaterManager::LoadWaterTextures()
 	status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Fancy Effects framebuffer object incomplete: 0x%04X", status);
+		LOGWARNING("Fancy Effects framebuffer object incomplete: 0x%04X", status);
 		g_Renderer.m_Options.m_WaterRefraction = false;
 	}
 	

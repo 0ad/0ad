@@ -144,7 +144,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 			// Check colour is valid
 			if (!GUI<CColor>::ParseString(value, color))
 			{
-				LOGERROR(L"GUI: Error parsing sprite 'colour' (\"%ls\")", value.c_str());
+				LOGERROR("GUI: Error parsing sprite 'colour' (\"%ls\")", value.c_str());
 				return;
 			}
 
@@ -167,7 +167,7 @@ void GUIRenderer::UpdateDrawCallCache(DrawCalls &Calls, const CStr& SpriteName, 
 		else
 		{
 			// Otherwise, just complain and give up:
-			LOGERROR(L"Trying to use a sprite that doesn't exist (\"%hs\").", SpriteName.c_str());
+			LOGERROR("Trying to use a sprite that doesn't exist (\"%hs\").", SpriteName.c_str());
 			return;
 		}
 	}

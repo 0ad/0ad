@@ -187,7 +187,7 @@ bool CSimulation2Impl::LoadScripts(CComponentManager& componentManager, std::set
 		VfsPath filename = *it;
 		if (loadedScripts)
 			loadedScripts->insert(filename);
-		LOGMESSAGE(L"Loading simulation script '%ls'", filename.string().c_str());
+		LOGMESSAGE("Loading simulation script '%ls'", filename.string().c_str());
 		if (!componentManager.LoadScript(filename))
 			ok = false;
 	}
@@ -204,7 +204,7 @@ bool CSimulation2Impl::LoadTriggerScripts(CComponentManager& componentManager, J
 		for (u32 i = 0; i < scriptNames.size(); ++i)
 		{
 			std::string scriptName = "maps/" + scriptNames[i];
-			LOGMESSAGE(L"Loading trigger script '%hs'", scriptName.c_str());
+			LOGMESSAGE("Loading trigger script '%hs'", scriptName.c_str());
 			if (!componentManager.LoadScript(scriptName.data()))
 				ok = false;
 		}
@@ -224,7 +224,7 @@ Status CSimulation2Impl::ReloadChangedFile(const VfsPath& path)
 	if (!VfsFileExists(path))
 		return INFO::OK;
 
-	LOGMESSAGE(L"Reloading simulation script '%ls'", path.string().c_str());
+	LOGMESSAGE("Reloading simulation script '%ls'", path.string().c_str());
 	if (!m_ComponentManager.LoadScript(path, true))
 		return ERR::FAIL;
 
@@ -828,7 +828,7 @@ static std::vector<std::string> GetJSONData(const VfsPath& path)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 		return std::vector<std::string>();
 	}
 
@@ -840,7 +840,7 @@ static std::vector<std::string> GetJSONData(const VfsPath& path)
 		PSRETURN ret = file.Load(g_VFS, *it);
 		if (ret != PSRETURN_OK)
 		{
-			LOGERROR(L"GetJSONData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+			LOGERROR("GetJSONData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 			continue;
 		}
 
@@ -864,7 +864,7 @@ static std::string ReadJSON(const VfsPath& path)
 {
 	if (!VfsFileExists(path))
 	{
-		LOGERROR(L"File '%ls' does not exist", path.string().c_str());
+		LOGERROR("File '%ls' does not exist", path.string().c_str());
 		return std::string();
 	}
 
@@ -873,7 +873,7 @@ static std::string ReadJSON(const VfsPath& path)
 	PSRETURN ret = file.Load(g_VFS, path);
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		LOGERROR("Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
 		return std::string();
 	}
 

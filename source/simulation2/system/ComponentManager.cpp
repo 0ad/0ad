@@ -429,7 +429,7 @@ std::vector<IComponent*> CComponentManager::Script_GetComponentsWithInterface(Sc
 CMessage* CComponentManager::ConstructMessage(int mtid, JS::HandleValue data)
 {
 	if (mtid == MT__Invalid || mtid > (int)m_MessageTypeIdsByName.size()) // (IDs start at 1 so use '>' here)
-		LOGERROR(L"PostMessage with invalid message type ID '%d'", mtid);
+		LOGERROR("PostMessage with invalid message type ID '%d'", mtid);
 
 	if (mtid < MT__LastNative)
 	{
@@ -672,11 +672,11 @@ CComponentManager::ComponentTypeId CComponentManager::GetScriptWrapper(Interface
 	for (; iiit != m_InterfaceIdsByName.end(); ++iiit)
 		if (iiit->second == iid)
 		{
-			LOGERROR(L"No script wrapper found for interface id %d '%hs'", iid, iiit->first.c_str());
+			LOGERROR("No script wrapper found for interface id %d '%hs'", iid, iiit->first.c_str());
 			return CID__Invalid;
 		}
 
-	LOGERROR(L"No script wrapper found for interface id %d", iid);
+	LOGERROR("No script wrapper found for interface id %d", iid);
 	return CID__Invalid;
 }
 
@@ -753,7 +753,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	std::map<ComponentTypeId, ComponentType>::const_iterator it = m_ComponentTypesById.find(cid);
 	if (it == m_ComponentTypesById.end())
 	{
-		LOGERROR(L"Invalid component id %d", cid);
+		LOGERROR("Invalid component id %d", cid);
 		return NULL;
 	}
 
@@ -764,7 +764,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 	boost::unordered_map<entity_id_t, IComponent*>& emap1 = m_ComponentsByInterface[ct.iid];
 	if (emap1.find(ent.GetId()) != emap1.end())
 	{
-		LOGERROR(L"Multiple components for interface %d", ct.iid);
+		LOGERROR("Multiple components for interface %d", ct.iid);
 		return NULL;
 	}
 
@@ -780,7 +780,7 @@ IComponent* CComponentManager::ConstructComponent(CEntityHandle ent, ComponentTy
 		m_ScriptInterface.CallConstructor(tmpCtor, argv, &obj);
 		if (obj.isNull())
 		{
-			LOGERROR(L"Script component constructor failed");
+			LOGERROR("Script component constructor failed");
 			return NULL;
 		}
 	}
@@ -887,13 +887,13 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 		CComponentManager::ComponentTypeId cid = LookupCID(it->first);
 		if (cid == CID__Invalid)
 		{
-			LOGERROR(L"Unrecognised component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			LOGERROR("Unrecognised component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
 			return INVALID_ENTITY;
 		}
 
 		if (!AddComponent(handle, cid, it->second))
 		{
-			LOGERROR(L"Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			LOGERROR("Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
 			return INVALID_ENTITY;
 		}
 		// TODO: maybe we should delete already-constructed components if one of them fails?
@@ -1226,7 +1226,7 @@ std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"Error reading directory '%ls': %ls", cbData.path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("Error reading directory '%ls': %ls", cbData.path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 	
 	return cbData.templates;

@@ -308,7 +308,7 @@ void SaveGame(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename, std
 	
 	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::Save(filename, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
-		LOGERROR(L"Failed to save game");
+		LOGERROR("Failed to save game");
 }
 
 void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix, std::wstring description, CScriptVal GUIMetadata1)
@@ -320,7 +320,7 @@ void SaveGamePrefix(ScriptInterface::CxPrivate* pCxPrivate, std::wstring prefix,
 	
 	shared_ptr<ScriptInterface::StructuredClone> GUIMetadataClone = pCxPrivate->pScriptInterface->WriteStructuredClone(GUIMetadata);
 	if (SavedGames::SavePrefix(prefix, description, *g_Game->GetSimulation2(), GUIMetadataClone, g_Game->GetPlayerID()) < 0)
-		LOGERROR(L"Failed to save game");
+		LOGERROR("Failed to save game");
 }
 
 void SetNetworkGameAttributes(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal attribs1)
@@ -630,7 +630,7 @@ void SetTurnLength(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), int length)
 	if (g_NetServer)
 		g_NetServer->SetTurnLength(length);
 	else
-		LOGERROR(L"Only network host can change turn length");
+		LOGERROR("Only network host can change turn length");
 }
 
 // Focus the game camera on a given position.
@@ -676,7 +676,7 @@ void DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
 	OsPath realPath;
 	g_VFS->GetRealPath(filename, realPath);
-	LOGMESSAGERENDER(L"Terrain mipmap written to '%ls'", realPath.string().c_str());
+	LOGMESSAGERENDER("Terrain mipmap written to '%ls'", realPath.string().c_str());
 }
 
 void EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int numTurns)
@@ -906,7 +906,7 @@ void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
 	ONCE(InitJsTimers(*(pCxPrivate->pScriptInterface)));
 	
 	if (slot >= MAX_JS_TIMERS)
-		LOGERROR(L"Exceeded the maximum number of timer slots for scripts!");
+		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
 
 	js_start_times[slot].SetFromTimer();
 }
@@ -914,7 +914,7 @@ void StartJsTimer(ScriptInterface::CxPrivate* pCxPrivate, unsigned int slot)
 void StopJsTimer(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int slot)
 {
 	if (slot >= MAX_JS_TIMERS)
-		LOGERROR(L"Exceeded the maximum number of timer slots for scripts!");
+		LOGERROR("Exceeded the maximum number of timer slots for scripts!");
 
 	TimerUnit now;
 	now.SetFromTimer();

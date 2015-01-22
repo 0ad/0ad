@@ -231,10 +231,10 @@ static void DefaultError (void *iData, int iLine, const char *iError,
 {
     (void)iData;
     if (iToken)
-    	LOGERROR(L"Preprocessor error: line %d: %hs: '%.*hs'\n",
+    	LOGERROR("Preprocessor error: line %d: %hs: '%.*hs'\n",
                   iLine, iError, int (iTokenLen), iToken);
     else
-        LOGERROR(L"Preprocessor error: line %d: %hs\n", iLine, iError);
+        LOGERROR("Preprocessor error: line %d: %hs\n", iLine, iError);
 }
 
 //---------------------------------------------------------------------------//

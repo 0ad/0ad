@@ -748,7 +748,7 @@ public:
 	{
 		if (m_Queries.find(tag) == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: DestroyActiveQuery called with invalid tag %u", tag);
+			LOGERROR("CCmpRangeManager: DestroyActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -760,7 +760,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: EnableActiveQuery called with invalid tag %u", tag);
+			LOGERROR("CCmpRangeManager: EnableActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -773,7 +773,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: DisableActiveQuery called with invalid tag %u", tag);
+			LOGERROR("CCmpRangeManager: DisableActiveQuery called with invalid tag %u", tag);
 			return;
 		}
 
@@ -830,7 +830,7 @@ public:
 		std::map<tag_t, Query>::iterator it = m_Queries.find(tag);
 		if (it == m_Queries.end())
 		{
-			LOGERROR(L"CCmpRangeManager: ResetActiveQuery called with invalid tag %u", tag);
+			LOGERROR("CCmpRangeManager: ResetActiveQuery called with invalid tag %u", tag);
 			return r;
 		}
 
@@ -1166,11 +1166,11 @@ public:
 	{
 		// Min range must be non-negative
 		if (minRange < entity_pos_t::Zero())
-			LOGWARNING(L"CCmpRangeManager: Invalid min range %f in query for entity %u", minRange.ToDouble(), source);
+			LOGWARNING("CCmpRangeManager: Invalid min range %f in query for entity %u", minRange.ToDouble(), source);
 
 		// Max range must be non-negative, or else -1
 		if (maxRange < entity_pos_t::Zero() && maxRange != entity_pos_t::FromInt(-1))
-			LOGWARNING(L"CCmpRangeManager: Invalid max range %f in query for entity %u", maxRange.ToDouble(), source);
+			LOGWARNING("CCmpRangeManager: Invalid max range %f in query for entity %u", maxRange.ToDouble(), source);
 
 		Query q;
 		q.enabled = false;
@@ -1347,7 +1347,7 @@ public:
 		if (identifier == "injured")
 			return 2;
 
-		LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %hs", identifier.c_str());
+		LOGWARNING("CCmpRangeManager: Invalid flag identifier %hs", identifier.c_str());
 		return 0;
 	}
 
@@ -1364,7 +1364,7 @@ public:
 		// We don't have a flag set
 		if (flag == 0)
 		{
-			LOGWARNING(L"CCmpRangeManager: Invalid flag identifier %hs for entity %u", identifier.c_str(), ent);
+			LOGWARNING("CCmpRangeManager: Invalid flag identifier %hs for entity %u", identifier.c_str(), ent);
 			return;
 		}
 

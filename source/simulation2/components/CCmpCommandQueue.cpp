@@ -119,14 +119,14 @@ public:
 		{
 			bool ok = scriptInterface.CallFunctionVoid(global, "ProcessCommand", localCommands[i].player, localCommands[i].data);
 			if (!ok)
-				LOGERROR(L"Failed to call ProcessCommand() global script function");
+				LOGERROR("Failed to call ProcessCommand() global script function");
 		}
 
 		for (size_t i = 0; i < commands.size(); ++i)
 		{
 			bool ok = scriptInterface.CallFunctionVoid(global, "ProcessCommand", commands[i].player, commands[i].data);
 			if (!ok)
-				LOGERROR(L"Failed to call ProcessCommand() global script function");
+				LOGERROR("Failed to call ProcessCommand() global script function");
 		}
 	}
 };

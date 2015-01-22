@@ -493,7 +493,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			*m->m_pLastBreakFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 			
 			if (!JS_SetSingleStepMode(cx, script, true))
-				LOGERROR(L"JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
+				LOGERROR("JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
 			else
 			{
 				if (nextDbgCmd == DBG_CMD_SINGLESTEP)
@@ -516,7 +516,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 		else if (nextDbgCmd == DBG_CMD_CONTINUE)
 		{
 			if (!JS_SetSingleStepMode(cx, script, true))
-				LOGERROR(L"JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
+				LOGERROR("JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
 			else
 			{
 				// Setup a handler to check for break-requests from the DebuggingServer regularly
@@ -846,7 +846,7 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 	JSObject* replacer = JS_GetFunctionObject(fun);
 	if (!JS_Stringify(m->m_pScriptInterface->GetContext(), &obj, replacer, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &CyclicRefWorkaround::Stringifier::callback, &str))
 	{
-		LOGERROR(L"StringifyJSON failed");
+		LOGERROR("StringifyJSON failed");
 		jsval exec;
 		jsval execString;
 		if (JS_GetPendingException(m->m_pScriptInterface->GetContext(), &exec))
@@ -858,7 +858,7 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 				if (JSVAL_IS_STRING(execString))
 				{
 					std::string strExec = JS_EncodeString(m->m_pScriptInterface->GetContext(), JSVAL_TO_STRING(execString));
-					LOGERROR(L"Error: %hs", strExec.c_str());
+					LOGERROR("Error: %hs", strExec.c_str());
 				}
 			}
 			

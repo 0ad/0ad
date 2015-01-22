@@ -29,12 +29,12 @@ bool CNetHost::SendMessage(const CNetMessage* message, ENetPeer* peer, const cha
 	if (!packet)
 		return false;
 
-	LOGMESSAGE(L"Net: Sending message %hs of size %lu to %hs", message->ToString().c_str(), (unsigned long)packet->dataLength, peerName);
+	LOGMESSAGE("Net: Sending message %hs of size %lu to %hs", message->ToString().c_str(), (unsigned long)packet->dataLength, peerName);
 
 	// Let ENet send the message to peer
 	if (enet_peer_send(peer, DEFAULT_CHANNEL, packet) < 0)
 	{
-		LOGERROR(L"Net: Failed to send packet to peer");
+		LOGERROR("Net: Failed to send packet to peer");
 		return false;
 	}
 
@@ -62,7 +62,7 @@ ENetPacket* CNetHost::CreatePacket(const CNetMessage* message)
 	// Create a reliable packet
 	ENetPacket* packet = enet_packet_create(&buffer[0], size, ENET_PACKET_FLAG_RELIABLE);
 	if (!packet)
-		LOGERROR(L"Net: Failed to construct packet");
+		LOGERROR("Net: Failed to construct packet");
 
 	return packet;
 }

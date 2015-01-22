@@ -42,11 +42,11 @@ namespace
 		VfsPath* path = static_cast<VfsPath*>(cb_data);
 
 		if (severity == LOG_INFO)
-			LOGMESSAGE(L"%ls: %hs", path->string().c_str(), text);
+			LOGMESSAGE("%ls: %hs", path->string().c_str(), text);
 		else if (severity == LOG_WARNING)
-			LOGWARNING(L"%ls: %hs", path->string().c_str(), text);
+			LOGWARNING("%ls: %hs", path->string().c_str(), text);
 		else
-			LOGERROR(L"%ls: %hs", path->string().c_str(), text);
+			LOGERROR("%ls: %hs", path->string().c_str(), text);
 	}
 
 	void ColladaOutput(void* cb_data, const char* data, unsigned int length)
@@ -99,21 +99,21 @@ public:
 		if (!dll.IsLoaded() && !TryLoadDLL())
 			return ERR::FAIL;	
 
-		LOGMESSAGE(L"Hotloading skeleton definitions from '%ls'", path.string().c_str());
+		LOGMESSAGE("Hotloading skeleton definitions from '%ls'", path.string().c_str());
 		// Set the filename for the logger to report
 		set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&path)));
 
 		CVFSFile skeletonFile;
 		if (skeletonFile.Load(m_VFS, path) != PSRETURN_OK)
 		{
-			LOGERROR(L"Failed to read skeleton defintions from '%ls'", path.string().c_str());
+			LOGERROR("Failed to read skeleton defintions from '%ls'", path.string().c_str());
 			return ERR::FAIL;
 		}
 
 		int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 		if (ok < 0)
 		{
-			LOGERROR(L"Failed to load skeleton definitions from '%ls'", path.string().c_str());
+			LOGERROR("Failed to load skeleton definitions from '%ls'", path.string().c_str());
 			return ERR::FAIL;
 		}
 
@@ -189,7 +189,7 @@ public:
 	{
 		if (!dll.LoadDLL())
 		{
-			LOGERROR(L"Failed to load COLLADA conversion DLL");
+			LOGERROR("Failed to load COLLADA conversion DLL");
 			return false;
 		}
 
@@ -202,7 +202,7 @@ public:
 		}
 		catch (PSERROR_DllLoader&)
 		{
-			LOGERROR(L"Failed to load symbols from COLLADA conversion DLL");
+			LOGERROR("Failed to load symbols from COLLADA conversion DLL");
 			dll.Unload();
 			return false;
 		}
@@ -214,28 +214,28 @@ public:
 		VfsPaths pathnames;
 		if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L"*.xml", pathnames) < 0)
 		{
-			LOGERROR(L"No skeleton definition files present");
+			LOGERROR("No skeleton definition files present");
 			return false;
 		}
 
 		bool loaded = false;
 		for (VfsPaths::const_iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			LOGMESSAGE(L"Loading skeleton definitions from '%ls'", it->string().c_str());
+			LOGMESSAGE("Loading skeleton definitions from '%ls'", it->string().c_str());
 			// Set the filename for the logger to report
 			set_logger(ColladaLog, const_cast<void*>(static_cast<const void*>(&(*it))));
 
 			CVFSFile skeletonFile;
 			if (skeletonFile.Load(m_VFS, *it) != PSRETURN_OK)
 			{
-				LOGERROR(L"Failed to read skeleton defintions from '%ls'", it->string().c_str());
+				LOGERROR("Failed to read skeleton defintions from '%ls'", it->string().c_str());
 				continue;
 			}
 
 			int ok = set_skeleton_definitions((const char*)skeletonFile.GetBuffer(), (int)skeletonFile.GetBufferSize());
 			if (ok < 0)
 			{
-				LOGERROR(L"Failed to load skeleton definitions from '%ls'", it->string().c_str());
+				LOGERROR("Failed to load skeleton definitions from '%ls'", it->string().c_str());
 				continue;
 			}
 
@@ -243,7 +243,7 @@ public:
 		}
 
 		if (!loaded)
-			LOGERROR(L"Failed to load any skeleton definitions");
+			LOGERROR("Failed to load any skeleton definitions");
 
 		return loaded;
 	}
@@ -267,7 +267,7 @@ public:
 			VfsPaths paths;
 			if (vfs::GetPathnames(m_VFS, L"art/skeletons/", L"*.xml", paths) != INFO::OK)
 			{
-				LOGWARNING(L"Failed to load skeleton definitions");
+				LOGWARNING("Failed to load skeleton definitions");
 				return;
 			}
 
@@ -287,7 +287,7 @@ public:
 				//	should never happen, unless there really is a problem
 				if (m_VFS->GetFileInfo(*it, &fileInfo) != INFO::OK)
 				{
-					LOGERROR(L"Failed to stat '%ls' for DAE caching", it->string().c_str());
+					LOGERROR("Failed to stat '%ls' for DAE caching", it->string().c_str());
 				}
 				else
 				{
@@ -298,7 +298,7 @@ public:
 
 			// Check if we were able to load any skeleton files
 			if (m_skeletonHashes.empty())
-				LOGERROR(L"Failed to stat any skeleton definitions for DAE caching");
+				LOGERROR("Failed to stat any skeleton definitions for DAE caching");
 				// We can continue, something else will break if we try loading a skeletal model
 
 			m_skeletonHashInvalidated = false;

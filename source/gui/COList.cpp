@@ -158,7 +158,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			{
 				CColor color;
 				if (!GUI<CColor>::ParseString(attr_value.FromUTF8(), color))
-					LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
+					LOGERROR("GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 				else oDef.m_TextColor = color;
 			}
 			else if (attr_name == "id")
@@ -169,7 +169,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 			{
 				float width;
 				if (!GUI<float>::ParseString(attr_value.FromUTF8(), width))
-					LOGERROR(L"GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
+					LOGERROR("GUI: Error parsing '%hs' (\"%ls\")", attr_name.c_str(), attr_value.c_str());
 				else
 				{
 					// Check if it's a relative value, and save as decimal if so.
@@ -215,7 +215,7 @@ bool COList::HandleAdditionalChildren(const XMBElement& child, CXeromyces* pFile
 				}
 				else // Ignore.
 				{
-					LOGERROR(L"GUI: translatable attribute in olist def that isn't a heading. (object: %hs)", this->GetPresentableName().c_str());
+					LOGERROR("GUI: translatable attribute in olist def that isn't a heading. (object: %hs)", this->GetPresentableName().c_str());
 				}
 			}
 		}

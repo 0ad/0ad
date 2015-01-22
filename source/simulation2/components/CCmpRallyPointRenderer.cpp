@@ -521,7 +521,7 @@ void CCmpRallyPointRenderer::UpdateMarkers()
 
 		// the marker entity should be valid at this point, otherwise something went wrong trying to allocate it
 		if (m_MarkerEntityIds[i] == INVALID_ENTITY)
-			LOGERROR(L"Failed to create rally point marker entity");
+			LOGERROR("Failed to create rally point marker entity");
 
 		CmpPtr<ICmpPosition> markerCmpPosition(GetSimContext(), m_MarkerEntityIds[i]);
 		if (markerCmpPosition)

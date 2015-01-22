@@ -36,7 +36,7 @@
 	}\
 	/* unknown failure. We output an error message. */\
 	else if (err < 0)\
-		LOGERROR(L"Unknown failure in VFS %i", err );
+		LOGERROR("Unknown failure in VFS %i", err );
 	/* else: success */
 
 

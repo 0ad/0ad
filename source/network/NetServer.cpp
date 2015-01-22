@@ -94,7 +94,7 @@ public:
 
 		if (!session)
 		{
-			LOGMESSAGE(L"Net server: rejoining client disconnected before we sent to it");
+			LOGMESSAGE("Net server: rejoining client disconnected before we sent to it");
 			return;
 		}
 
@@ -177,7 +177,7 @@ bool CNetServerWorker::SetupConnection()
 	m_Host = enet_host_create(&addr, MAX_CLIENTS, CHANNEL_COUNT, 0, 0);
 	if (!m_Host)
 	{
-		LOGERROR(L"Net server: enet_host_create failed");
+		LOGERROR("Net server: enet_host_create failed");
 		return false;
 	}
 
@@ -224,7 +224,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	std::string rootDescURL;
 	CFG_GET_VAL("network.upnprootdescurl", rootDescURL);
 	if (!rootDescURL.empty())
-		LOGMESSAGE(L"Net server: attempting to use cached root descriptor URL: %hs", rootDescURL.c_str());
+		LOGMESSAGE("Net server: attempting to use cached root descriptor URL: %hs", rootDescURL.c_str());
 
 	int ret = 0;
 	bool allocatedUrls = false;
@@ -232,7 +232,7 @@ void* CNetServerWorker::SetupUPnP(void*)
 	// Try a cached URL first
 	if (!rootDescURL.empty() && UPNP_GetIGDFromUrl(rootDescURL.c_str(), &urls, &data, internalIPAddress, sizeof(internalIPAddress)))
 	{
-		LOGMESSAGE(L"Net server: using cached IGD = %hs", urls.controlURL);
+		LOGMESSAGE("Net server: using cached IGD = %hs", urls.controlURL);
 		ret = 1;
 	}
 	// No cached URL, or it did not respond. Try getting a valid UPnP device for 10 seconds.
@@ -243,23 +243,23 @@ void* CNetServerWorker::SetupUPnP(void*)
 	}
 	else
 	{
-		LOGMESSAGE(L"Net server: upnpDiscover failed and no working cached URL.");
+		LOGMESSAGE("Net server: upnpDiscover failed and no working cached URL.");
 		return NULL;
 	}
 
 	switch (ret)
 	{
 	case 0:
-		LOGMESSAGE(L"Net server: No IGD found");
+		LOGMESSAGE("Net server: No IGD found");
 		break;
 	case 1:
-		LOGMESSAGE(L"Net server: found valid IGD = %hs", urls.controlURL);
+		LOGMESSAGE("Net server: found valid IGD = %hs", urls.controlURL);
 		break;
 	case 2:
-		LOGMESSAGE(L"Net server: found a valid, not connected IGD = %hs, will try to continue anyway", urls.controlURL);
+		LOGMESSAGE("Net server: found a valid, not connected IGD = %hs, will try to continue anyway", urls.controlURL);
 		break;
 	case 3:
-		LOGMESSAGE(L"Net server: found a UPnP device unrecognized as IGD = %hs, will try to continue anyway", urls.controlURL);
+		LOGMESSAGE("Net server: found a UPnP device unrecognized as IGD = %hs, will try to continue anyway", urls.controlURL);
 		break;
 	default:
 		debug_warn(L"Unrecognized return value from UPNP_GetValidIGD");
@@ -269,17 +269,17 @@ void* CNetServerWorker::SetupUPnP(void*)
 	ret = UPNP_GetExternalIPAddress(urls.controlURL, data.first.servicetype, externalIPAddress);
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
-		LOGMESSAGE(L"Net server: GetExternalIPAddress failed with code %d (%hs)", ret, strupnperror(ret));
+		LOGMESSAGE("Net server: GetExternalIPAddress failed with code %d (%hs)", ret, strupnperror(ret));
 		return NULL;
 	}
-	LOGMESSAGE(L"Net server: ExternalIPAddress = %hs", externalIPAddress);
+	LOGMESSAGE("Net server: ExternalIPAddress = %hs", externalIPAddress);
 
 	// Try to setup port forwarding.
 	ret = UPNP_AddPortMapping(urls.controlURL, data.first.servicetype, psPort, psPort,
 							internalIPAddress, description, protocall, 0, leaseDuration);
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
-		LOGMESSAGE(L"Net server: AddPortMapping(%hs, %hs, %hs) failed with code %d (%hs)",
+		LOGMESSAGE("Net server: AddPortMapping(%hs, %hs, %hs) failed with code %d (%hs)",
 			   psPort, psPort, internalIPAddress, ret, strupnperror(ret));
 		return NULL;
 	}
@@ -296,17 +296,17 @@ void* CNetServerWorker::SetupUPnP(void*)
 
 	if (ret != UPNPCOMMAND_SUCCESS)
 	{
-		LOGMESSAGE(L"Net server: GetSpecificPortMappingEntry() failed with code %d (%hs)", ret, strupnperror(ret));
+		LOGMESSAGE("Net server: GetSpecificPortMappingEntry() failed with code %d (%hs)", ret, strupnperror(ret));
 		return NULL;
 	}
 
-	LOGMESSAGE(L"Net server: External %hs:%hs %hs is redirected to internal %hs:%hs (duration=%hs)",
+	LOGMESSAGE("Net server: External %hs:%hs %hs is redirected to internal %hs:%hs (duration=%hs)",
 				   externalIPAddress, psPort, protocall, intClient, intPort, duration);
 
 	// Cache root descriptor URL to try to avoid discovery next time.
 	g_ConfigDB.SetValueString(CFG_USER, "network.upnprootdescurl", urls.controlURL);
 	g_ConfigDB.WriteFile(CFG_USER);
-	LOGMESSAGE(L"Net server: cached UPnP root descriptor URL as %hs", urls.controlURL);
+	LOGMESSAGE("Net server: cached UPnP root descriptor URL as %hs", urls.controlURL);
 
 	// Make sure everything is properly freed.
 	if (allocatedUrls)
@@ -451,7 +451,7 @@ bool CNetServerWorker::RunStep()
 	int status = enet_host_service(m_Host, &event, HOST_SERVICE_TIMEOUT);
 	if (status < 0)
 	{
-		LOGERROR(L"CNetServerWorker: enet_host_service failed (%d)", status);
+		LOGERROR("CNetServerWorker: enet_host_service failed (%d)", status);
 		// TODO: notify game that the server has shut down
 		return false;
 	}
@@ -471,7 +471,7 @@ bool CNetServerWorker::RunStep()
 		// Report the client address
 		char hostname[256] = "(error)";
 		enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-		LOGMESSAGE(L"Net server: Received connection from %hs:%u", hostname, (unsigned int)event.peer->address.port);
+		LOGMESSAGE("Net server: Received connection from %hs:%u", hostname, (unsigned int)event.peer->address.port);
 
 		// Set up a session object for this peer
 
@@ -496,7 +496,7 @@ bool CNetServerWorker::RunStep()
 		CNetServerSession* session = static_cast<CNetServerSession*>(event.peer->data);
 		if (session)
 		{
-			LOGMESSAGE(L"Net server: Disconnected %hs", DebugName(session).c_str());
+			LOGMESSAGE("Net server: Disconnected %hs", DebugName(session).c_str());
 
 			// Remove the session first, so we won't send player-update messages to it
 			// when updating the FSM
@@ -522,7 +522,7 @@ bool CNetServerWorker::RunStep()
 			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, GetScriptInterface());
 			if (msg)
 			{
-				LOGMESSAGE(L"Net server: Received message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
+				LOGMESSAGE("Net server: Received message %hs of size %lu from %hs", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength(), DebugName(session).c_str());
 
 				HandleMessageReceive(msg, session);
 
@@ -566,7 +566,7 @@ void CNetServerWorker::HandleMessageReceive(const CNetMessage* message, CNetServ
 	// Update FSM
 	bool ok = session->Update(message->GetType(), (void*)message);
 	if (!ok)
-		LOGERROR(L"Net server: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)session->GetCurrState());
+		LOGERROR("Net server: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)session->GetCurrState());
 }
 
 void CNetServerWorker::SetupSession(CNetServerSession* session)
@@ -810,7 +810,7 @@ bool CNetServerWorker::OnAuthenticate(void* context, CFsmEvent* event)
 		// Players who weren't already in the game are not allowed to join now that it's started
 		if (!isRejoining)
 		{
-			LOGMESSAGE(L"Refused connection after game start from not-previously-known user \"%ls\"", username.c_str());
+			LOGMESSAGE("Refused connection after game start from not-previously-known user \"%ls\"", username.c_str());
 			session->Disconnect(NDR_SERVER_ALREADY_IN_GAME);
 			return true;
 		}

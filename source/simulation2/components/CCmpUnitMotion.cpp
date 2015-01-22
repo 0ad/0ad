@@ -814,7 +814,7 @@ void CCmpUnitMotion::PathResult(u32 ticket, const ICmpPathfinder::Path& path)
 	}
 	else
 	{
-		LOGWARNING(L"unexpected PathResult (%u %d %d)", GetEntityId(), m_State, m_PathState);
+		LOGWARNING("unexpected PathResult (%u %d %d)", GetEntityId(), m_State, m_PathState);
 	}
 }
 

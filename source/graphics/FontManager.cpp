@@ -59,7 +59,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	const VfsPath fntName(fontName.string() + ".fnt");
 	if (g_VFS->LoadFile(path / fntName, buf, size) < 0)
 	{
-		LOGERROR(L"Failed to open font file %ls", (path / fntName).string().c_str());
+		LOGERROR("Failed to open font file %ls", (path / fntName).string().c_str());
 		return false;
 	}
 	std::istringstream FNTStream(std::string((const char*)buf.get(), size));
@@ -68,7 +68,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	FNTStream >> Version;
 	if (Version != 101) // Make sure this is from a recent version of the font builder
 	{
-		LOGERROR(L"Font %hs has invalid version", fontName.c_str());
+		LOGERROR("Font %hs has invalid version", fontName.c_str());
 		return 0;
 	}
 
@@ -102,7 +102,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 
 		if (Codepoint < 0 || Codepoint > 0xFFFF)
 		{
-			LOGWARNING(L"Font %hs has invalid codepoint 0x%x", fontName.c_str(), Codepoint);
+			LOGWARNING("Font %hs has invalid codepoint 0x%x", fontName.c_str(), Codepoint);
 			continue;
 		}
 

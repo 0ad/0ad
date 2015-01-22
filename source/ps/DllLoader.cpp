@@ -196,13 +196,13 @@ void DllLoader::LogLoadError(const char* errors)
 	switch (m_LoadErrorLogMethod)
 	{
 	case CLogger::Normal:
-		LOGMESSAGE(L"DllLoader: %hs", errors);
+		LOGMESSAGE("DllLoader: %hs", errors);
 		break;
 	case CLogger::Warning:
-		LOGWARNING(L"DllLoader: %hs", errors);
+		LOGWARNING("DllLoader: %hs", errors);
 		break;
 	case CLogger::Error:
-		LOGERROR(L"DllLoader: %hs", errors);
+		LOGERROR("DllLoader: %hs", errors);
 		break;
 	}
 }

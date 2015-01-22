@@ -227,7 +227,7 @@ static void HandleError(const CStrW& message, const VfsPath& pathname, Status er
 {
 	if (err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR(L"%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
+	LOGERROR("%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
@@ -320,7 +320,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOGERROR(L"Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	

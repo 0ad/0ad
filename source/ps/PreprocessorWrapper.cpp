@@ -51,7 +51,7 @@ bool CPreprocessorWrapper::TestConditional(const CStr& expr)
 
 	if (!output)
 	{
-		LOGERROR(L"Failed to parse conditional expression '%hs'", expr.c_str());
+		LOGERROR("Failed to parse conditional expression '%hs'", expr.c_str());
 		return false;
 	}
 
@@ -72,7 +72,7 @@ CStr CPreprocessorWrapper::Preprocess(const CStr& input)
 
 	if (!output)
 	{
-		LOGERROR(L"Shader preprocessing failed");
+		LOGERROR("Shader preprocessing failed");
 		return "";
 	}
 

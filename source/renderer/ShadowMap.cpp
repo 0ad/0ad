@@ -406,7 +406,7 @@ void ShadowMapInternals::CreateTexture()
 	default: formatname = "DEPTH_COMPONENT"; break;
 	}
 
-	LOGMESSAGE(L"Creating shadow texture (size %dx%d) (format = %hs)",
+	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %hs)",
 		Width, Height, formatname);
 
 
@@ -494,7 +494,7 @@ void ShadowMapInternals::CreateTexture()
 
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"Framebuffer object incomplete: 0x%04X", status);
+		LOGWARNING("Framebuffer object incomplete: 0x%04X", status);
 
 		// Disable shadow rendering (but let the user try again if they want)
 		g_Renderer.m_Options.m_Shadows = false;

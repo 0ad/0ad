@@ -124,7 +124,7 @@ PSRETURN CVFSFile::Load(const PIVFS& vfs, const VfsPath& filename, bool log /* =
 	if (ret != INFO::OK)
 	{
 		if (log)
-			LOGERROR(L"CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), (long long)ret);
+			LOGERROR("CVFSFile: file %ls couldn't be opened (vfs_load: %lld)", filename.string().c_str(), (long long)ret);
 		m_Buffer.reset();
 		m_BufferSize = 0;
 		return PSRETURN_CVFSFile_LoadFailed;

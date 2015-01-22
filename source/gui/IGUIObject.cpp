@@ -561,7 +561,7 @@ bool IGUIObject::IsRootObject() const
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const
 {
-	LOGWARNING(L"IGUIObject: setting %hs was not found on an object", 
+	LOGWARNING("IGUIObject: setting %hs was not found on an object", 
 		Setting.c_str());
 	return PSRETURN_GUI_InvalidSetting;
 }

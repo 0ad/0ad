@@ -94,7 +94,7 @@ CDebuggingServer::CDebuggingServer() :
 	m_SettingBreakOnException = true;
 
 	EnableHTTP();
-	LOGWARNING(L"Javascript debugging webserver enabled.");
+	LOGWARNING("Javascript debugging webserver enabled.");
 }
 
 CDebuggingServer::~CDebuggingServer()
@@ -396,7 +396,7 @@ void* CDebuggingServer::MgDebuggingServerCallback(mg_event event, struct mg_conn
 
 	case MG_EVENT_LOG:
 		// Called by Mongoose's cry()
-		LOGERROR(L"Mongoose error: %hs", request_info->log_message);
+		LOGERROR("Mongoose error: %hs", request_info->log_message);
 		return NULL;
 
 	case MG_INIT_SSL:

@@ -82,7 +82,7 @@ bool CLOSTexture::CreateShader()
 	
 	if (!m_ShaderInitialized)
 	{
-		LOGERROR(L"Failed to load SmoothLOS shader, disabling.");
+		LOGERROR("Failed to load SmoothLOS shader, disabling.");
 		g_Renderer.m_Options.m_SmoothLOS = false;
 		return false;
 	}
@@ -163,7 +163,7 @@ void CLOSTexture::InterpolateLOS()
 	GLenum status = pglCheckFramebufferStatusEXT(GL_FRAMEBUFFER_EXT);
 	if (status != GL_FRAMEBUFFER_COMPLETE_EXT)
 	{
-		LOGWARNING(L"LOS framebuffer object incomplete: 0x%04X", status);
+		LOGWARNING("LOS framebuffer object incomplete: 0x%04X", status);
 	}
 
 	m_smoothShader->BeginPass();

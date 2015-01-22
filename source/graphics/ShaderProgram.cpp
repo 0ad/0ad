@@ -71,7 +71,7 @@ public:
 			glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &errPos);
 			int errLine = std::count(code.begin(), code.begin() + std::min((int)code.length(), errPos + 1), '\n') + 1;
 			char* errStr = (char*)glGetString(GL_PROGRAM_ERROR_STRING_ARB);
-			LOGERROR(L"Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string().c_str(), errLine, errStr);
+			LOGERROR("Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string().c_str(), errLine, errStr);
 			return false;
 		}
 
@@ -310,9 +310,9 @@ public:
 			pglGetShaderInfoLog(shader, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE(L"Info when compiling shader '%ls':\n%hs", file.string().c_str(), infolog);
+				LOGMESSAGE("Info when compiling shader '%ls':\n%hs", file.string().c_str(), infolog);
 			else
-				LOGERROR(L"Failed to compile shader '%ls':\n%hs", file.string().c_str(), infolog);
+				LOGERROR("Failed to compile shader '%ls':\n%hs", file.string().c_str(), infolog);
 
 			delete[] infolog;
 		}
@@ -357,9 +357,9 @@ public:
 			pglGetProgramInfoLog(m_Program, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE(L"Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+				LOGMESSAGE("Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
 			else
-				LOGERROR(L"Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+				LOGERROR("Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
 			
 			delete[] infolog;
 		}
@@ -561,7 +561,7 @@ public:
 			else if (id.second == GL_FLOAT_VEC4)
 				pglUniform4fARB(id.first, v0, v1, v2, v3);
 			else
-				LOGERROR(L"CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float, vec2, vec3, vec4)");
+				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected float, vec2, vec3, vec4)");
 		}
 	}
 
@@ -572,7 +572,7 @@ public:
 			if (id.second == GL_FLOAT_MAT4)
 				pglUniformMatrix4fvARB(id.first, 1, GL_FALSE, &v._11);
 			else
-				LOGERROR(L"CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
+				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
 	}
 
@@ -583,7 +583,7 @@ public:
 			if (id.second == GL_FLOAT_MAT4)
 				pglUniformMatrix4fvARB(id.first, count, GL_FALSE, &v->_11);
 			else
-				LOGERROR(L"CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
+				LOGERROR("CShaderProgramGLSL::Uniform(): Invalid uniform type (expected mat4)");
 		}
 	}
 
@@ -663,7 +663,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, frag_index_pair_t>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
-	LOGERROR(L"CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",
+	LOGERROR("CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",
 		vertexFile.string().c_str(), fragmentFile.string().c_str());
 	return NULL;
 }

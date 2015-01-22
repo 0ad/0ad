@@ -203,7 +203,7 @@ void L10n::GetDictionaryLocale(const std::string& configLocaleString, Locale& ou
 			return;
 		}
 		else
-			LOGWARNING(L"The configured locale is not valid or no translations are available. Falling back to another locale.");
+			LOGWARNING("The configured locale is not valid or no translations are available. Falling back to another locale.");
 	}
 	
 	Locale systemLocale = Locale::getDefault();
@@ -408,14 +408,14 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 	UnicodeString unicodeFormat = UnicodeString::fromUTF8(formatString.c_str());
 	SimpleDateFormat* dateFormat = new SimpleDateFormat(unicodeFormat, status);
 	if (U_FAILURE(status))
-		LOGERROR(L"Error creating SimpleDateFormat: %hs", u_errorName(status));
+		LOGERROR("Error creating SimpleDateFormat: %hs", u_errorName(status));
 
 	const TimeZone* timeZone = TimeZone::getGMT();
 
 	status = U_ZERO_ERROR;
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
 	if (U_FAILURE(status))
-		LOGERROR(L"Error creating calendar: %hs", u_errorName(status));
+		LOGERROR("Error creating calendar: %hs", u_errorName(status));
    
 	dateFormat->adoptCalendar(calendar);
 	dateFormat->format(milliseconds, dateString);
@@ -470,12 +470,12 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 	if (path.string().rfind(dictName) == std::string::npos)
 		return INFO::OK;
 
-	LOGMESSAGE(L"Hotloading translations from '%ls'", path.string().c_str());
+	LOGMESSAGE("Hotloading translations from '%ls'", path.string().c_str());
 
 	CVFSFile file;
 	if (file.Load(g_VFS, path) != PSRETURN_OK)
 	{
-		LOGERROR(L"Failed to read translations from '%ls'", path.string().c_str());
+		LOGERROR("Failed to read translations from '%ls'", path.string().c_str());
 		return ERR::FAIL;
 	}
 
@@ -505,7 +505,7 @@ void L10n::LoadDictionaryForCurrentLocale()
 		std::wstring dictName = GetFallbackToAvailableDictLocale(currentLocale);
 		if (vfs::GetPathnames(g_VFS, L"l10n/", dictName.append(L".*.po").c_str(), filenames) < 0)
 		{
-			LOGERROR(L"No files for the dictionary found, but at this point the input should already be validated!");
+			LOGERROR("No files for the dictionary found, but at this point the input should already be validated!");
 			return;
 		}
 	}
@@ -569,7 +569,7 @@ void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dicti
 	}
 	catch(std::exception& e)
 	{
-		LOGERROR(L"[Localization] Exception while reading virtual PO file: %hs", e.what());
+		LOGERROR("[Localization] Exception while reading virtual PO file: %hs", e.what());
 	}
 }
 

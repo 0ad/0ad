@@ -55,7 +55,7 @@ template<> void ScriptInterface::ToJSVal<IComponent*>(JSContext* cx, JS::Mutable
 	if (!val->NewJSObject(*ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface, &obj))
 	{
 		// Report as an error, since scripts really shouldn't try to use unscriptable interfaces
-		LOGERROR(L"IComponent does not have a scriptable interface");
+		LOGERROR("IComponent does not have a scriptable interface");
 		ret.setUndefined();
 		return;
 	}

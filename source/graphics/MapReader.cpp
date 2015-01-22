@@ -1052,7 +1052,7 @@ int CXMLReader::ReadEntities(XMBElement parent, double end_time)
 		entity_id_t player = cmpPlayerManager->GetPlayerByID(PlayerID);
 		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
 		{	// Don't add entities with invalid player IDs
-			LOGERROR(L"Failed to load entity template '%ls'", TemplateName.c_str());
+			LOGERROR("Failed to load entity template '%ls'", TemplateName.c_str());
 		}
 		else
 		{
@@ -1332,7 +1332,7 @@ int CMapReader::ParseTerrain()
 	//	an error here should stop the loading process
 #define GET_TERRAIN_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
-		{	LOGERROR(L"CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
+		{	LOGERROR("CMapReader::ParseTerrain() failed to get '%hs' property", #prop);\
 			throw PSERROR_Game_World_MapLoadFailed("Error parsing terrain data.\nCheck application log for details"); }
 
 	JS::RootedValue tmpMapData(cx, m_MapData.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
@@ -1411,7 +1411,7 @@ int CMapReader::ParseEntities()
 	std::vector<Entity> entities;
 
 	if (!pSimulation2->GetScriptInterface().GetProperty(tmpMapData, "entities", entities))
-		LOGWARNING(L"CMapReader::ParseEntities() failed to get 'entities' property");
+		LOGWARNING("CMapReader::ParseEntities() failed to get 'entities' property");
 
 	CSimulation2& sim = *pSimulation2;
 	CmpPtr<ICmpPlayerManager> cmpPlayerManager(sim, SYSTEM_ENTITY);
@@ -1430,7 +1430,7 @@ int CMapReader::ParseEntities()
 		entity_id_t player = cmpPlayerManager->GetPlayerByID(currEnt.playerID);
 		if (ent == INVALID_ENTITY || player == INVALID_ENTITY)
 		{	// Don't add entities with invalid player IDs
-			LOGERROR(L"Failed to load entity template '%ls'", currEnt.templateName.c_str());
+			LOGERROR("Failed to load entity template '%ls'", currEnt.templateName.c_str());
 		}
 		else
 		{
@@ -1476,14 +1476,14 @@ int CMapReader::ParseEnvironment()
 
 #define GET_ENVIRONMENT_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
-		LOGWARNING(L"CMapReader::ParseEnvironment() failed to get '%hs' property", #prop);
+		LOGWARNING("CMapReader::ParseEnvironment() failed to get '%hs' property", #prop);
 
 	JS::RootedValue envObj(cx);
 	GET_ENVIRONMENT_PROPERTY(tmpMapData, Environment, &envObj)
 
 	if (envObj.isUndefined())
 	{
-		LOGWARNING(L"CMapReader::ParseEnvironment(): Environment settings not found");
+		LOGWARNING("CMapReader::ParseEnvironment(): Environment settings not found");
 		return 0;
 	}
 
@@ -1581,7 +1581,7 @@ int CMapReader::ParseCamera()
 
 #define GET_CAMERA_PROPERTY(val, prop, out)\
 	if (!pSimulation2->GetScriptInterface().GetProperty(val, #prop, out))\
-		LOGWARNING(L"CMapReader::ParseCamera() failed to get '%hs' property", #prop);
+		LOGWARNING("CMapReader::ParseCamera() failed to get '%hs' property", #prop);
 
 	JS::RootedValue tmpMapData(cx, m_MapData.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 	JS::RootedValue cameraObj(cx);

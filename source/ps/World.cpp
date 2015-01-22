@@ -89,7 +89,7 @@ void CWorld::RegisterInit(const CStrW& mapFile, const CScriptValRooted& settings
 		catch (PSERROR_File& err)
 		{
 			delete reader;
-			LOGERROR(L"Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
+			LOGERROR("Failed to load map %ls: %hs", mapfilename.string().c_str(), err.what());
 			throw PSERROR_Game_World_MapLoadFailed("Failed to load map.\nCheck application log for details.");
 		}
 	}
