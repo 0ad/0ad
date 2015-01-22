@@ -214,15 +214,15 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 		// Handle missing files quietly
 		if (g_VFS->GetFileInfo(m_ConfigFile[ns], NULL) < 0)
 		{
-			LOGMESSAGE("Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].string().c_str());
+			LOGMESSAGE("Cannot find config file \"%ls\" - ignoring", m_ConfigFile[ns].string8());
 			return false;
 		}
 
-		LOGMESSAGE("Loading config file \"%ls\"", m_ConfigFile[ns].string().c_str());
+		LOGMESSAGE("Loading config file \"%ls\"", m_ConfigFile[ns].string8());
 		Status ret = g_VFS->LoadFile(m_ConfigFile[ns], buffer, buflen);
 		if (ret != INFO::OK)
 		{
-			LOGERROR("CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %lld", m_ConfigFile[ns].string().c_str(), (long long)ret);
+			LOGERROR("CConfigDB::Reload(): vfs_load for \"%ls\" failed: return was %lld", m_ConfigFile[ns].string8(), (long long)ret);
 			return false;
 		}
 	}
@@ -256,7 +256,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 			if (pos == filebufend || *pos == '\n')
 			{
-				LOGERROR("Config header with missing close tag encountered on line %d in '%ls'", line, m_ConfigFile[ns].string().c_str());
+				LOGERROR("Config header with missing close tag encountered on line %d in '%ls'", line, m_ConfigFile[ns].string8());
 				header.clear();
 				++line;
 				continue;
@@ -267,7 +267,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			while (++pos < filebufend && *pos != '\n' && *pos != ';')
 				if (*pos != ' ' && *pos != '\r')
 				{
-					LOGERROR("Config settings on the same line as a header on line %d in '%ls'", line, m_ConfigFile[ns].string().c_str());
+					LOGERROR("Config settings on the same line as a header on line %d in '%ls'", line, m_ConfigFile[ns].string8());
 					break;
 				}
 			while (pos < filebufend && *pos != '\n')
@@ -288,7 +288,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 					{
 						if (*pos == '\\' && ++pos == filebufend)
 						{
-							LOGERROR("Escape character at end of input (line %d in '%ls')", line, m_ConfigFile[ns].string().c_str());
+							LOGERROR("Escape character at end of input (line %d in '%ls')", line, m_ConfigFile[ns].string8());
 							break;
 						}
 
@@ -316,7 +316,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 				}
 			}
 			if (quoted) // We ignore the invalid parameter
-				LOGERROR("Unmatched quote while parsing config file '%ls' on line %d", m_ConfigFile[ns].string().c_str(), line);
+				LOGERROR("Unmatched quote while parsing config file '%ls' on line %d", m_ConfigFile[ns].string8(), line);
 			else if (!value.empty())
 				values.push_back(value);
 			value.clear();
@@ -348,7 +348,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			}
 		}
 		else if (!name.empty())
-			LOGERROR("Encountered config setting '%hs' without value while parsing '%ls' on line %d", name.c_str(), m_ConfigFile[ns].string().c_str(), line);
+			LOGERROR("Encountered config setting '%hs' without value while parsing '%ls' on line %d", name.c_str(), m_ConfigFile[ns].string8(), line);
 
 		name.clear();
 		values.clear();
@@ -393,7 +393,7 @@ bool CConfigDB::WriteFile(EConfigNamespace ns, const VfsPath& path)
 	Status ret = g_VFS->CreateFile(path, buf, len);
 	if (ret < 0)
 	{
-		LOGERROR("CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.string().c_str(), (int)ret);
+		LOGERROR("CConfigDB::WriteFile(): CreateFile \"%ls\" failed (error: %d)", path.string8(), (int)ret);
 		return false;
 	}
 

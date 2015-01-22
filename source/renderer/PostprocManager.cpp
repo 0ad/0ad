@@ -519,7 +519,7 @@ std::vector<CStrW> CPostprocManager::GetPostEffects()
 	
 	VfsPaths pathnames;
 	if(vfs::GetPathnames(g_VFS, path, 0, pathnames) < 0)
-		LOGERROR("Error finding Post effects in '%ls'", path.string().c_str());
+		LOGERROR("Error finding Post effects in '%ls'", path.string8());
 
 	for(size_t i = 0; i < pathnames.size(); i++)
 	{

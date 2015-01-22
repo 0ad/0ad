@@ -470,12 +470,12 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 	if (path.string().rfind(dictName) == std::string::npos)
 		return INFO::OK;
 
-	LOGMESSAGE("Hotloading translations from '%ls'", path.string().c_str());
+	LOGMESSAGE("Hotloading translations from '%ls'", path.string8());
 
 	CVFSFile file;
 	if (file.Load(g_VFS, path) != PSRETURN_OK)
 	{
-		LOGERROR("Failed to read translations from '%ls'", path.string().c_str());
+		LOGERROR("Failed to read translations from '%ls'", path.string8());
 		return ERR::FAIL;
 	}
 

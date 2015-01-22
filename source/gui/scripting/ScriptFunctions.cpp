@@ -676,7 +676,7 @@ void DumpTerrainMipmap(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 	g_Game->GetWorld()->GetTerrain()->GetHeightMipmap().DumpToDisk(filename);
 	OsPath realPath;
 	g_VFS->GetRealPath(filename, realPath);
-	LOGMESSAGERENDER("Terrain mipmap written to '%ls'", realPath.string().c_str());
+	LOGMESSAGERENDER("Terrain mipmap written to '%ls'", realPath.string8());
 }
 
 void EnableTimeWarpRecording(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), unsigned int numTurns)

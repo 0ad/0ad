@@ -264,7 +264,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	{
 		if (it->inputs.count(path))
 		{
-			LOGMESSAGE("GUI file '%ls' changed - reloading page '%ls'", path.string().c_str(), it->name.c_str());
+			LOGMESSAGE("GUI file '%ls' changed - reloading page '%ls'", path.string8(), it->name.c_str());
 			LoadPage(*it);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}

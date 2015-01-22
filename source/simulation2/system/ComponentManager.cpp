@@ -1226,7 +1226,7 @@ std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("Error reading directory '%ls': %ls", cbData.path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("Error reading directory '%ls': %ls", cbData.path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 	
 	return cbData.templates;

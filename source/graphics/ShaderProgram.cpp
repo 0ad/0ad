@@ -71,7 +71,7 @@ public:
 			glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &errPos);
 			int errLine = std::count(code.begin(), code.begin() + std::min((int)code.length(), errPos + 1), '\n') + 1;
 			char* errStr = (char*)glGetString(GL_PROGRAM_ERROR_STRING_ARB);
-			LOGERROR("Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string().c_str(), errLine, errStr);
+			LOGERROR("Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string8(), errLine, errStr);
 			return false;
 		}
 
@@ -310,9 +310,9 @@ public:
 			pglGetShaderInfoLog(shader, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE("Info when compiling shader '%ls':\n%hs", file.string().c_str(), infolog);
+				LOGMESSAGE("Info when compiling shader '%ls':\n%hs", file.string8(), infolog);
 			else
-				LOGERROR("Failed to compile shader '%ls':\n%hs", file.string().c_str(), infolog);
+				LOGERROR("Failed to compile shader '%ls':\n%hs", file.string8(), infolog);
 
 			delete[] infolog;
 		}
@@ -357,9 +357,9 @@ public:
 			pglGetProgramInfoLog(m_Program, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE("Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+				LOGMESSAGE("Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
 			else
-				LOGERROR("Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string().c_str(), m_FragmentFile.string().c_str(), infolog);
+				LOGERROR("Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
 			
 			delete[] infolog;
 		}

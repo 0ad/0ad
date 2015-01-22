@@ -69,7 +69,7 @@ void CFilePacker::Write(const VfsPath& filename)
 	const Status st = g_VFS->CreateFile(filename, m_writeBuffer.Data(), m_writeBuffer.Size());
 	if (st < 0)
 	{
-		LOGERROR("Failed to write file '%ls' with status '%lld'", filename.string().c_str(), (long long)st);
+		LOGERROR("Failed to write file '%ls' with status '%lld'", filename.string8(), (long long)st);
 		throw PSERROR_File_WriteFailed();
 	}
 }

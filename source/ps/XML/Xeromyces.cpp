@@ -89,7 +89,7 @@ PSRETURN CXeromyces::Load(const PIVFS& vfs, const VfsPath& filename)
 
 		// No source file or archive cache was found, so we can't load the
 		// XML file at all
-		LOGERROR("CCacheLoader failed to find archived or source file for: \"%ls\"", filename.string().c_str());
+		LOGERROR("CCacheLoader failed to find archived or source file for: \"%ls\"", filename.string8());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -111,7 +111,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 	CVFSFile input;
 	if (input.Load(vfs, filename))
 	{
-		LOGERROR("CXeromyces: Failed to open XML file %ls", filename.string().c_str());
+		LOGERROR("CXeromyces: Failed to open XML file %ls", filename.string8());
 		return PSRETURN_Xeromyces_XMLOpenFailed;
 	}
 
@@ -120,7 +120,7 @@ PSRETURN CXeromyces::ConvertFile(const PIVFS& vfs, const VfsPath& filename, cons
 		filename8.c_str(), NULL, XML_PARSE_NONET|XML_PARSE_NOCDATA);
 	if (! doc)
 	{
-		LOGERROR("CXeromyces: Failed to parse XML file %ls", filename.string().c_str());
+		LOGERROR("CXeromyces: Failed to parse XML file %ls", filename.string8());
 		return PSRETURN_Xeromyces_XMLParseError;
 	}
 

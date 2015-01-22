@@ -172,7 +172,7 @@ Paths::Paths(const CmdLineArgs& args)
 	// make sure it's valid
 	if(!FileExists(pathname))
 	{
-		LOGERROR("Cannot find executable (expected at '%ls')", pathname.string().c_str());
+		LOGERROR("Cannot find executable (expected at '%ls')", pathname.string8());
 		WARN_IF_ERR(StatusFromErrno());
 	}
 

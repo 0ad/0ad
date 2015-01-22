@@ -104,7 +104,7 @@ private:
 			m_Worker.LoadMetadata(path, &metadata);
 			if (metadata.isUndefined())
 			{
-				LOGERROR("Failed to create AI player: can't find %ls", path.string().c_str());
+				LOGERROR("Failed to create AI player: can't find %ls", path.string8());
 				return false;
 			}
 
@@ -116,7 +116,7 @@ private:
 			JS::RootedValue ctor(cx);
 			if (!m_ScriptInterface->HasProperty(metadata, "moduleName"))
 			{
-				LOGERROR("Failed to create AI player: %ls: missing 'moduleName'", path.string().c_str());
+				LOGERROR("Failed to create AI player: %ls: missing 'moduleName'", path.string8());
 				return false;
 			}
 
@@ -124,13 +124,13 @@ private:
 			if (!m_ScriptInterface->GetProperty(global, moduleName.c_str(), &objectWithConstructor)
 			    || objectWithConstructor.isUndefined())
 			{
-				LOGERROR("Failed to create AI player: %ls: can't find the module that should contain the constructor: '%hs'", path.string().c_str(), moduleName.c_str());
+				LOGERROR("Failed to create AI player: %ls: can't find the module that should contain the constructor: '%hs'", path.string8(), moduleName.c_str());
 				return false;
 			}
 
 			if (!m_ScriptInterface->GetProperty(metadata, "constructor", constructor))
 			{
-				LOGERROR("Failed to create AI player: %ls: missing 'constructor'", path.string().c_str());
+				LOGERROR("Failed to create AI player: %ls: missing 'constructor'", path.string8());
 				return false;
 			}
 
@@ -138,7 +138,7 @@ private:
 			if (!m_ScriptInterface->GetProperty(objectWithConstructor, constructor.c_str(), &ctor)
 			    || ctor.isNull())
 			{
-				LOGERROR("Failed to create AI player: %ls: can't find constructor '%hs'", path.string().c_str(), constructor.c_str());
+				LOGERROR("Failed to create AI player: %ls: can't find constructor '%hs'", path.string8(), constructor.c_str());
 				return false;
 			}
 
@@ -160,7 +160,7 @@ private:
 
 			if (obj.isNull())
 			{
-				LOGERROR("Failed to create AI player: %ls: error calling constructor '%hs'", path.string().c_str(), constructor.c_str());
+				LOGERROR("Failed to create AI player: %ls: error calling constructor '%hs'", path.string8(), constructor.c_str());
 				return false;
 			}
 
@@ -269,7 +269,7 @@ public:
 		{
 			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
 			{
-				LOGERROR("Failed to load script %ls", it->string().c_str());
+				LOGERROR("Failed to load script %ls", it->string8());
 				return false;
 			}
 		}
@@ -391,14 +391,14 @@ public:
 		JS::RootedValue ctor(cx);
 		if (!m_ScriptInterface->GetProperty(global, "API3", &AIModule) || AIModule.isUndefined())
 		{
-			LOGERROR("Failed to create shared AI component: %ls: can't find module '%hs'", path.string().c_str(), "API3");
+			LOGERROR("Failed to create shared AI component: %ls: can't find module '%hs'", path.string8(), "API3");
 			return false;
 		}
 		
 		if (!m_ScriptInterface->GetProperty(AIModule, "SharedScript", &ctor)
 		    || ctor.isUndefined())
 		{
-			LOGERROR("Failed to create shared AI component: %ls: can't find constructor '%hs'", path.string().c_str(), "SharedScript");
+			LOGERROR("Failed to create shared AI component: %ls: can't find constructor '%hs'", path.string8(), "SharedScript");
 			return false;
 		}
 		
@@ -440,7 +440,7 @@ public:
 		
 		if (tmpSharedAIObj.isNull())
 		{
-			LOGERROR("Failed to create shared AI component: %ls: error calling constructor '%hs'", path.string().c_str(), "SharedScript");
+			LOGERROR("Failed to create shared AI component: %ls: error calling constructor '%hs'", path.string8(), "SharedScript");
 			return false;
 		}
 		

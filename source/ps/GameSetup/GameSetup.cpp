@@ -1132,7 +1132,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 
 	if (INFO::OK != loadResult)
 	{
-		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%ls'", mapPath.string().c_str());
+		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%ls'", mapPath.string8());
 		throw PSERROR_Game_World_MapLoadFailed("Unable to load map file, check the path for typos.");
 	}
 	XMBElement mapElement = mapFile.GetRoot();

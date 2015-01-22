@@ -178,7 +178,7 @@ public:
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
-			LOGERROR("Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.string8());
 
 			// Replace with error texture to make it obvious
 			texture->SetHandle(m_ErrorHandle);
@@ -218,7 +218,7 @@ public:
 		// Upload to GL
 		if (!m_DisableGL && ogl_tex_upload(h, texture->m_Properties.m_Format) < 0)
 		{
-			LOGERROR("Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string8());
 
 			ogl_tex_free(h);
 
@@ -277,7 +277,7 @@ public:
 
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead
-			LOGERROR("CCacheLoader failed to find archived or source file for: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("CCacheLoader failed to find archived or source file for: \"%ls\"", texture->m_Properties.m_Path.string8());
 			texture->SetHandle(m_ErrorHandle);
 			return true;
 		}
@@ -345,7 +345,7 @@ public:
 				}
 				else
 				{
-					LOGERROR("Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+					LOGERROR("Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.string8());
 					texture->SetHandle(m_ErrorHandle);
 				}
 				texture->m_State = CTexture::LOADED;

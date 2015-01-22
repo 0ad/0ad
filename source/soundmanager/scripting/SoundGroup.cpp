@@ -197,7 +197,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 			itemRollOff = 0;
 		
 		if ( sndData->IsStereo() )
-			LOGWARNING( "OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string().c_str() );
+			LOGWARNING( "OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string8() );
 
 		hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 		hSound->SetRollOff(itemRollOff);
@@ -227,7 +227,7 @@ static void HandleError(const CStrW& message, const VfsPath& pathname, Status er
 {
 	if (err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR("%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
+	LOGERROR("%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string8(), ErrorString(err));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)

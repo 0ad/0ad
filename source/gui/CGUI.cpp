@@ -969,7 +969,7 @@ void CGUI::LoadXmlFile(const VfsPath& Filename, boost::unordered_set<VfsPath>& P
 	}
 	catch (PSERROR_GUI& e)
 	{
-		LOGERROR("Errors loading GUI file %ls (%u)", Filename.string().c_str(), e.getCode());
+		LOGERROR("Errors loading GUI file %ls (%u)", Filename.string8(), e.getCode());
 		return;
 	}
 }
@@ -1379,14 +1379,14 @@ void CGUI::Xeromyces_ReadObject(XMBElement Element, CXeromyces* pFile, IGUIObjec
 					CXeromyces XeroIncluded;
 					if (XeroIncluded.Load(g_VFS, *it) != PSRETURN_OK)
 					{
-						LOGERROR("GUI: Error reading included XML: '%ls'", (*it).string().c_str());
+						LOGERROR("GUI: Error reading included XML: '%ls'", (*it).string8());
 						continue;
 					}
 
 					XMBElement node = XeroIncluded.GetRoot();
 					if (node.GetNodeName() != XeroIncluded.GetElementID("object"))
 					{
-						LOGERROR("GUI: Error reading included XML: '%ls', root element must have be of type 'object'.", (*it).string().c_str());
+						LOGERROR("GUI: Error reading included XML: '%ls', root element must have be of type 'object'.", (*it).string8());
 						continue;
 					}
 					Xeromyces_ReadObject(node, &XeroIncluded, object, NameSubst, Paths, nesting_depth+1);
@@ -1512,7 +1512,7 @@ void CGUI::Xeromyces_ReadScript(XMBElement Element, CXeromyces* pFile, boost::un
 				}
 				catch (PSERROR_Scripting& e)
 				{
-					LOGERROR("GUI: Error executing script %ls: %hs", (*it).string().c_str(), e.what());
+					LOGERROR("GUI: Error executing script %ls: %hs", (*it).string8(), e.what());
 				}
 			}
 		}

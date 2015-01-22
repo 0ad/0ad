@@ -478,7 +478,7 @@ bool ScriptInterface::LoadGlobalScripts()
 	{
 		if (!LoadGlobalScriptFile(*it))
 		{
-			LOGERROR("LoadGlobalScripts: Failed to load script %ls", it->string().c_str());
+			LOGERROR("LoadGlobalScripts: Failed to load script %ls", it->string8());
 			return false;
 		}
 	}
@@ -866,7 +866,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	JSAutoRequest rq(m->m_cx);
 	if (!VfsFileExists(path))
 	{
-		LOGERROR("File '%ls' does not exist", path.string().c_str());
+		LOGERROR("File '%ls' does not exist", path.string8());
 		return false;
 	}
 
@@ -876,7 +876,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR("Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		LOGERROR("Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
 		return false;
 	}
 
@@ -954,7 +954,7 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 {
 	if (!VfsFileExists(path))
 	{
-		LOGERROR("File '%ls' does not exist", path.string().c_str());
+		LOGERROR("File '%ls' does not exist", path.string8());
 		return;
 	}
 
@@ -964,14 +964,14 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR("Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+		LOGERROR("Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
 		return;
 	}
 
 	std::string content(file.DecodeUTF8()); // assume it's UTF-8
 
 	if (!ParseJSON(content, out))
-		LOGERROR("Failed to parse '%ls'", path.string().c_str());
+		LOGERROR("Failed to parse '%ls'", path.string8());
 }
 
 struct Stringifier

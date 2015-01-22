@@ -134,10 +134,10 @@ bool CMapGeneratorWorker::Run()
 	}
 
 	// Load RMS
-	LOGMESSAGE("Loading RMS '%ls'", m_ScriptPath.string().c_str());
+	LOGMESSAGE("Loading RMS '%ls'", m_ScriptPath.string8());
 	if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
 	{
-		LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
+		LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string8());
 		return false;
 	}
 
@@ -210,7 +210,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 			PSRETURN ret = file.Load(g_VFS, *it);
 			if (ret != PSRETURN_OK)
 			{
-				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
 			}
 			else
 			{
@@ -222,7 +222,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%ls': %ls", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
 	return data;
@@ -271,11 +271,11 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			LOGMESSAGE("Loading map generator script '%ls'", it->string().c_str());
+			LOGMESSAGE("Loading map generator script '%ls'", it->string8());
 
 			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
 			{
-				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%ls'", it->string().c_str());
+				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%ls'", it->string8());
 				return false;
 			}
 		}
@@ -284,7 +284,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%ls': %ls", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 		return false;
 	}
 

@@ -120,7 +120,7 @@ CTextureConverter::SettingsFile* CTextureConverter::LoadSettings(const VfsPath& 
 
 	if (root.GetNodeName() != el_textures)
 	{
-		LOGERROR("Invalid texture settings file \"%ls\" (unrecognised root element)", path.string().c_str());
+		LOGERROR("Invalid texture settings file \"%ls\" (unrecognised root element)", path.string8());
 		return NULL;
 	}
 
@@ -326,14 +326,14 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	size_t fileSize;
 	if (m_VFS->LoadFile(src, file, fileSize) < 0)
 	{
-		LOGERROR("Failed to load texture \"%ls\"", src.string().c_str());
+		LOGERROR("Failed to load texture \"%ls\"", src.string8());
 		return false;
 	}
 
 	Tex tex;
 	if (tex.decode(file, fileSize) < 0)
 	{
-		LOGERROR("Failed to decode texture \"%ls\"", src.string().c_str());
+		LOGERROR("Failed to decode texture \"%ls\"", src.string8());
 		return false;
 	}
 
@@ -345,7 +345,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		// Convert to uncompressed 8-bit with no mipmaps
 		if (tex.transform_to((tex.m_Flags | TEX_GREY) & ~(TEX_DXT | TEX_MIPMAPS | TEX_ALPHA)) < 0)
 		{
-			LOGERROR("Failed to transform texture \"%ls\"", src.string().c_str());
+			LOGERROR("Failed to transform texture \"%ls\"", src.string8());
 			return false;
 		}
 	}
@@ -356,14 +356,14 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 		// (plain_transform doesn't know how to construct the alpha channel)
 		if (tex.m_Flags & TEX_GREY)
 		{
-			LOGERROR("Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string().c_str());
+			LOGERROR("Failed to convert grayscale texture \"%ls\" - only RGB textures are currently supported", src.string8());
 			return false;
 		}
 
 		// Convert to uncompressed BGRA with no mipmaps
 		if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 		{
-			LOGERROR("Failed to transform texture \"%ls\"", src.string().c_str());
+			LOGERROR("Failed to transform texture \"%ls\"", src.string8());
 			return false;
 		}
 	}
@@ -482,7 +482,7 @@ bool CTextureConverter::ConvertTexture(const CTexturePtr& texture, const VfsPath
 	return true;
 
 #else
-	LOGERROR("Failed to convert texture \"%ls\" (NVTT not available)", src.string().c_str());
+	LOGERROR("Failed to convert texture \"%ls\" (NVTT not available)", src.string8());
 	return false;
 #endif
 }

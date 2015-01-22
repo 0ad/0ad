@@ -216,7 +216,7 @@ void CSoundManager::al_check(const char* caller, int line)
 
 Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
 {
-//	LOGERROR("GUI file '%ls' changed - reloading page", path.string().c_str());
+//	LOGERROR("GUI file '%ls' changed - reloading page", path.string8());
 
 	return INFO::OK;
 }
@@ -654,7 +654,7 @@ void CSoundManager::PlayAsGroup(const VfsPath& groupPath, CVector3D sourcePos, e
 		group = new CSoundGroup();
 		if (!group->LoadSoundGroup(L"audio/" + groupPath.string()))
 		{
-			LOGERROR("Failed to load sound group '%ls'", groupPath.string().c_str());
+			LOGERROR("Failed to load sound group '%ls'", groupPath.string8());
 			delete group;
 			group = NULL;
 		}

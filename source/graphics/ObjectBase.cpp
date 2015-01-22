@@ -266,7 +266,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 			if (currentGroup->size() == 0)
 			{
-				LOGERROR("Actor group has zero variants ('%ls')", pathname.string().c_str());
+				LOGERROR("Actor group has zero variants ('%ls')", pathname.string8());
 			}
 
 			++currentGroup;

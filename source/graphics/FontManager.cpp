@@ -59,7 +59,7 @@ bool CFontManager::ReadFont(CFont* font, CStrIntern fontName)
 	const VfsPath fntName(fontName.string() + ".fnt");
 	if (g_VFS->LoadFile(path / fntName, buf, size) < 0)
 	{
-		LOGERROR("Failed to open font file %ls", (path / fntName).string().c_str());
+		LOGERROR("Failed to open font file %ls", (path / fntName).string8());
 		return false;
 	}
 	std::istringstream FNTStream(std::string((const char*)buf.get(), size));

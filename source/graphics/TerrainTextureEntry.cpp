@@ -47,7 +47,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, path) != PSRETURN_OK)
 	{
-		LOGERROR("Terrain xml not found (%hs)", path.string().c_str());
+		LOGERROR("Terrain xml not found (%hs)", path.string8());
 		return;
 	}
 
