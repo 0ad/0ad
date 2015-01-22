@@ -77,7 +77,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const CShaderDef
 	CShaderProgramPtr program;
 	if (!NewProgram(name, defines, program))
 	{
-		LOGERROR("Failed to load shader '%hs'", name);
+		LOGERROR("Failed to load shader '%s'", name);
 		program = CShaderProgramPtr();
 	}
 
@@ -378,7 +378,7 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 	CShaderTechniquePtr tech(new CShaderTechnique());
 	if (!NewEffect(name.c_str(), defines, tech))
 	{
-		LOGERROR("Failed to load effect '%hs'", name.c_str());
+		LOGERROR("Failed to load effect '%s'", name.c_str());
 		tech = CShaderTechniquePtr();
 	}
 

@@ -69,20 +69,20 @@ bool __ParseString<CRect>(const CStrW& Value, CRect &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CRect parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CRect parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CRect parameters. Your input: '%hs'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CRect parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CRect parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CRect parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -134,13 +134,13 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CSize parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CSize parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CSize parameters. Your input: '%hs'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CSize parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
@@ -150,7 +150,7 @@ bool __ParseString<CSize>(const CStrW& Value, CSize &Output)
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CSize parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CSize parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -169,13 +169,13 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 	{
 		if (stream.eof())
 		{
-			LOGWARNING("Too few CPos parameters (min %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+			LOGWARNING("Too few CPos parameters (min %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 			return false;
 		}
 		stream >> coords[i];
 		if ((stream.rdstate() & std::wstringstream::failbit) != 0)
 		{
-			LOGWARNING("Unable to parse CPos parameters. Your input: '%hs'", Value.ToUTF8().c_str());
+			LOGWARNING("Unable to parse CPos parameters. Your input: '%s'", Value.ToUTF8().c_str());
 			return false;
 		}
 	}
@@ -185,7 +185,7 @@ bool __ParseString<CPos>(const CStrW& Value, CPos &Output)
 
 	if (!stream.eof())
 	{
-		LOGWARNING("Too many CPos parameters (max %i). Your input: '%hs'", NUM_COORDS, Value.ToUTF8().c_str());
+		LOGWARNING("Too many CPos parameters (max %i). Your input: '%s'", NUM_COORDS, Value.ToUTF8().c_str());
 		return false;
 	}
 
@@ -339,7 +339,7 @@ PSRETURN GUI<T>::GetSettingPointer(const IGUIObject *pObject, const CStr& Settin
 	std::map<CStr, SGUISetting>::const_iterator it = pObject->m_Settings.find(Setting);
 	if (it == pObject->m_Settings.end())
 	{
-		LOGWARNING("setting %hs was not found on object %hs", 
+		LOGWARNING("setting %s was not found on object %s", 
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;
@@ -388,7 +388,7 @@ PSRETURN GUI<T>::SetSetting(IGUIObject *pObject, const CStr& Setting,
 
 	if (!pObject->SettingExists(Setting))
 	{
-		LOGWARNING("setting %hs was not found on object %hs", 
+		LOGWARNING("setting %s was not found on object %s", 
 			Setting.c_str(),
 			pObject->GetPresentableName().c_str());
 		return PSRETURN_GUI_InvalidSetting;

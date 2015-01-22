@@ -112,7 +112,7 @@ void CNetClientSession::Poll()
 			// Report the server address
 			char hostname[256] = "(error)";
 			enet_address_get_host_ip(&event.peer->address, hostname, ARRAY_SIZE(hostname));
-			LOGMESSAGE("Net client: Connected to %hs:%u", hostname, (unsigned int)event.peer->address.port);
+			LOGMESSAGE("Net client: Connected to %s:%u", hostname, (unsigned int)event.peer->address.port);
 
 			m_Client.HandleConnect();
 
@@ -133,7 +133,7 @@ void CNetClientSession::Poll()
 			CNetMessage* msg = CNetMessageFactory::CreateMessage(event.packet->data, event.packet->dataLength, m_Client.GetScriptInterface());
 			if (msg)
 			{
-				LOGMESSAGE("Net client: Received message %hs of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
+				LOGMESSAGE("Net client: Received message %s of size %lu from server", msg->ToString().c_str(), (unsigned long)msg->GetSerializedLength());
 
 				m_Client.HandleMessage(msg);
 

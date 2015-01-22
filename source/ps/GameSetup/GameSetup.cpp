@@ -293,7 +293,7 @@ void Render()
 #warning TODO: cursors for Android
 #else
 			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
-				LOGWARNING("Failed to draw cursor '%ls'", cursorName.c_str());
+				LOGWARNING("Failed to draw cursor '%s'", cursorName.c_str());
 #endif
 
 #if CONFIG2_GLES
@@ -656,7 +656,7 @@ static void InitSDL()
 
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOGERROR("SDL library initialization failed: %hs", SDL_GetError());
+		LOGERROR("SDL library initialization failed: %s", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);
@@ -819,16 +819,16 @@ static void FixLocales()
 		for (size_t i = 0; i < ARRAY_SIZE(LocaleEnvVars); i++)
 		{
 			if (char* envval = getenv(LocaleEnvVars[i]))
-				LOGWARNING("  %hs=\"%hs\"", LocaleEnvVars[i], envval);
+				LOGWARNING("  %s=\"%s\"", LocaleEnvVars[i], envval);
 			else
-				LOGWARNING("  %hs=\"(unset)\"", LocaleEnvVars[i]);
+				LOGWARNING("  %s=\"(unset)\"", LocaleEnvVars[i]);
 		}
 
 		// We should set LC_ALL since it overrides LANG
 		if (setenv("LC_ALL", std::locale::classic().name().c_str(), 1))
 			debug_warn(L"Invalid locale settings, and unable to set LC_ALL env variable.");
 		else
-			LOGWARNING("Setting LC_ALL env variable to: %hs", getenv("LC_ALL"));
+			LOGWARNING("Setting LC_ALL env variable to: %s", getenv("LC_ALL"));
 	}
 }
 #else
@@ -1132,7 +1132,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 
 	if (INFO::OK != loadResult)
 	{
-		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%ls'", mapPath.string8());
+		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%s'", mapPath.string8());
 		throw PSERROR_Game_World_MapLoadFailed("Unable to load map file, check the path for typos.");
 	}
 	XMBElement mapElement = mapFile.GetRoot();
@@ -1246,7 +1246,7 @@ bool Autostart(const CmdLineArgs& args)
 		else
 		{
 			// Problem with JSON file
-			LOGERROR("Autostart: Error reading random map script '%ls'", scriptPath.c_str());
+			LOGERROR("Autostart: Error reading random map script '%s'", scriptPath.c_str());
 			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
 
@@ -1301,7 +1301,7 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		LOGERROR("Autostart: Unrecognized map type '%ls'", mapDirectory.c_str());
+		LOGERROR("Autostart: Unrecognized map type '%s'", mapDirectory.c_str());
 		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
 	}
 	scriptInterface.SetProperty(attrs, "mapType", mapType);

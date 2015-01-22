@@ -258,7 +258,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			else
 			{
 				// Unrecognized class
-				LOGERROR("Cannot serialise JS objects with unrecognized class '%hs'", jsclass->name);
+				LOGERROR("Cannot serialise JS objects with unrecognized class '%s'", jsclass->name);
 				throw PSERROR_Serialize_InvalidScriptValue();
 			}
 		}
@@ -317,7 +317,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			}
 		}
 
-		LOGERROR("Cannot serialise JS objects of type 'function': %ls", funcname.c_str());
+		LOGERROR("Cannot serialise JS objects of type 'function': %s", funcname.c_str());
 		throw PSERROR_Serialize_InvalidScriptValue();
 	}
 	case JSTYPE_STRING:

@@ -30,7 +30,7 @@ public:
 	CStrInternInternals(const char* str, size_t len)
 		: data(str, str+len), hash(fnv_hash(str, len))
 	{
-// 		LOGWARNING("New interned string '%hs'", data.c_str());
+// 		LOGWARNING("New interned string '%s'", data.c_str());
 	}
 
 	bool operator==(const CStrInternInternals& b) const

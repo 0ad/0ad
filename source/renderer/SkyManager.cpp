@@ -207,7 +207,7 @@ std::vector<CStrW> SkyManager::GetSkySets() const
 	DirectoryNames subdirectories;
 	if(g_VFS->GetDirectoryEntries(path, 0, &subdirectories) < 0)
 	{
-		LOGERROR("Error opening directory '%ls'", path.string8());
+		LOGERROR("Error opening directory '%s'", path.string8());
 		return std::vector<CStrW>(1, GetSkySet()); // just return what we currently have
 	}
 

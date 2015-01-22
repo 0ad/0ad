@@ -113,19 +113,19 @@ bool CClientArea::SetClientArea(const CStr& Value)
 			coord++;
 			break;
 		default:
-			LOGWARNING("ClientArea definitions may only contain numerics. Your input: '%hs'", Value.c_str());
+			LOGWARNING("ClientArea definitions may only contain numerics. Your input: '%s'", Value.c_str());
 			return false;
 		}
 		if (coord > 3)
 		{
-			LOGWARNING("Too many CClientArea parameters (4 max). Your input: '%hs'", Value.c_str());
+			LOGWARNING("Too many CClientArea parameters (4 max). Your input: '%s'", Value.c_str());
 			return false;
 		}
 	}
 
 	if (coord < 3)
 	{
-		LOGWARNING("Too few CClientArea parameters (4 min). Your input: '%hs'", Value.c_str());
+		LOGWARNING("Too few CClientArea parameters (4 min). Your input: '%s'", Value.c_str());
 		return false;
 	}
 

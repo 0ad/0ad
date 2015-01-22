@@ -137,7 +137,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 	if (!scriptInterface->HasProperty(global, callback.c_str()))
 	{
-		LOGERROR("The specified callback function %hs does not exist in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("The specified callback function %s does not exist in the page %s", callback.c_str(), m_PageStack.back().name.c_str());
 		return;
 	}
 
@@ -146,7 +146,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 		scriptInterface->ReadStructuredClone(args, &argVal);
 	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
 	{
-		LOGERROR("Failed to call the callback function %hs in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("Failed to call the callback function %s in the page %s", callback.c_str(), m_PageStack.back().name.c_str());
 		return;
 	}
 }
@@ -204,7 +204,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	if (root.GetNodeName() != elmt_page)
 	{
-		LOGERROR("GUI page '%ls' must have root element <page>", page.name.c_str());
+		LOGERROR("GUI page '%s' must have root element <page>", page.name.c_str());
 		return;
 	}
 
@@ -212,7 +212,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	{
 		if (node.GetNodeName() != elmt_include)
 		{
-			LOGERROR("GUI page '%ls' must only have <include> elements inside <page>", page.name.c_str());
+			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", page.name.c_str());
 			continue;
 		}
 
@@ -252,7 +252,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			hotloadDataVal)
 		)
 	{
-		LOGERROR("GUI page '%ls': Failed to call init() function", page.name.c_str());
+		LOGERROR("GUI page '%s': Failed to call init() function", page.name.c_str());
 	}
 
 	m_CurrentGUI = oldGUI;
@@ -264,7 +264,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	{
 		if (it->inputs.count(path))
 		{
-			LOGMESSAGE("GUI file '%ls' changed - reloading page '%ls'", path.string8(), it->name.c_str());
+			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), it->name.c_str());
 			LoadPage(*it);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
@@ -407,7 +407,7 @@ const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 {
 	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
-		LOGERROR("Invalid template found for '%hs'", templateName.c_str());
+		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 
 	return templateRoot;
 }

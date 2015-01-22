@@ -97,7 +97,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			}
 			else
 			{
-				LOGERROR("SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%hs\")",
+				LOGERROR("SetVideoMode failed in SDL_CreateWindow: %dx%d:%d %d (\"%s\")",
 					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 				return false;
 			}
@@ -105,7 +105,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 		if (SDL_SetWindowDisplayMode(m_Window, NULL) < 0)
 		{
-			LOGERROR("SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed in SDL_SetWindowDisplayMode: %dx%d:%d %d (\"%s\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}
@@ -113,7 +113,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		SDL_GLContext context = SDL_GL_CreateContext(m_Window);
 		if (!context)
 		{
-			LOGERROR("SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed in SDL_GL_CreateContext: %dx%d:%d %d (\"%s\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}
@@ -132,7 +132,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 
 			if (SDL_SetWindowFullscreen(m_Window, flags) < 0)
 			{
-				LOGERROR("SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%hs\")",
+				LOGERROR("SetVideoMode failed in SDL_SetWindowFullscreen: %dx%d:%d %d (\"%s\")",
 					w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 				return false;
 			}
@@ -181,7 +181,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		}
 		else
 		{
-			LOGERROR("SetVideoMode failed: %dx%d:%d %d (\"%hs\")",
+			LOGERROR("SetVideoMode failed: %dx%d:%d %d (\"%s\")",
 				w, h, bpp, fullscreen ? 1 : 0, SDL_GetError());
 			return false;
 		}

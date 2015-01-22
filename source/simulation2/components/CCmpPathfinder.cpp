@@ -254,7 +254,7 @@ ICmpPathfinder::pass_class_t CCmpPathfinder::GetPassabilityClass(const std::stri
 {
 	if (m_PassClassMasks.find(name) == m_PassClassMasks.end())
 	{
-		LOGERROR("Invalid passability class name '%hs'", name.c_str());
+		LOGERROR("Invalid passability class name '%s'", name.c_str());
 		return 0;
 	}
 
@@ -270,7 +270,7 @@ ICmpPathfinder::cost_class_t CCmpPathfinder::GetCostClass(const std::string& nam
 {
 	if (m_UnitCostClassTags.find(name) == m_UnitCostClassTags.end())
 	{
-		LOGERROR("Invalid unit cost class name '%hs'", name.c_str());
+		LOGERROR("Invalid unit cost class name '%s'", name.c_str());
 		return m_UnitCostClassTags["default"];
 	}
 

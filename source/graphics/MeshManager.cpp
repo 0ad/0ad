@@ -53,7 +53,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 
 	if (pmdFilename.empty())
 	{
-		LOGERROR("Could not load mesh '%ls'", pathname.string8());
+		LOGERROR("Could not load mesh '%s'", pathname.string8());
 		return CModelDefPtr();
 	}
 
@@ -65,7 +65,7 @@ CModelDefPtr CMeshManager::GetMesh(const VfsPath& pathname)
 	}
 	catch (PSERROR_File&)
 	{
-		LOGERROR("Could not load mesh '%ls'", pmdFilename.string8());
+		LOGERROR("Could not load mesh '%s'", pmdFilename.string8());
 		return CModelDefPtr();
 	}
 }

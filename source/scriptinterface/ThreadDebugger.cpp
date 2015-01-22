@@ -858,7 +858,7 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 				if (JSVAL_IS_STRING(execString))
 				{
 					std::string strExec = JS_EncodeString(m->m_pScriptInterface->GetContext(), JSVAL_TO_STRING(execString));
-					LOGERROR("Error: %hs", strExec.c_str());
+					LOGERROR("Error: %s", strExec.c_str());
 				}
 			}
 			

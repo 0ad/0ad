@@ -428,7 +428,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateResultMessage* message = (CAuthenticateResultMessage*)event->GetParamRef();
 
-	LOGMESSAGE("Net: Authentication result: host=%u, %ls", message->m_HostID, message->m_Message.c_str());
+	LOGMESSAGE("Net: Authentication result: host=%u, %s", message->m_HostID, message->m_Message.c_str());
 
 	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
 

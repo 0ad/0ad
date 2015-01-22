@@ -71,7 +71,7 @@ void CMapWriter::SaveMap(const VfsPath& pathname, CTerrain* pTerrain,
 	}
 	catch (PSERROR_File_WriteFailed&)
 	{
-		LOGERROR("Failed to write map '%ls'", pathname.string8());
+		LOGERROR("Failed to write map '%s'", pathname.string8());
 		return;
 	}
 
@@ -447,5 +447,5 @@ void CMapWriter::WriteXML(const VfsPath& filename,
 		}
 	}
 	if (!XML_StoreVFS(g_VFS, filename))
-		LOGERROR("Failed to write map '%ls'", filename.string8());
+		LOGERROR("Failed to write map '%s'", filename.string8());
 }

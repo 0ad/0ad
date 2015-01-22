@@ -187,7 +187,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 
 			// Show error on the first failure to validate the template
 			if (!m_TemplateSchemaValidity[templateName])
-				LOGERROR("Failed to validate entity template '%hs'", templateName.c_str());
+				LOGERROR("Failed to validate entity template '%s'", templateName.c_str());
 		}
 		// Refuse to return invalid templates
 		if (!m_TemplateSchemaValidity[templateName])
@@ -198,7 +198,7 @@ const CParamNode* CCmpTemplateManager::GetTemplate(std::string templateName)
 	if (!templateRoot.IsOk())
 	{
 		// The validator should never let this happen
-		LOGERROR("Invalid root element in entity template '%hs'", templateName.c_str());
+		LOGERROR("Invalid root element in entity template '%s'", templateName.c_str());
 		return NULL;
 	}
 

@@ -244,7 +244,7 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	if (g_GUI)
 		g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
 	else
-		LOGERROR("%ls", msg.str().c_str());
+		LOGERROR("%s", msg.str().c_str());
 }
 
 void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)

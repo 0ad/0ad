@@ -1159,7 +1159,7 @@ public:
 	if (id == "model_solid_tex")
 		return new CShaderProgramFFP_ModelSolidTex(defines);
 
-	LOGERROR("CShaderProgram::ConstructFFP: '%hs': Invalid id", id.c_str());
+	LOGERROR("CShaderProgram::ConstructFFP: '%s': Invalid id", id.c_str());
 	debug_warn(L"CShaderProgram::ConstructFFP: Invalid id");
 	return NULL;
 }

@@ -73,7 +73,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 	if (!m_ScriptInterface.CallFunctionVoid(tmpInstance, name, msgVal))
-		LOGERROR("Script message handler %hs failed", name);
+		LOGERROR("Script message handler %s failed", name);
 }
 
 void CComponentTypeScript::Serialize(ISerializer& serialize)

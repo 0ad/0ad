@@ -408,14 +408,14 @@ std::string L10n::FormatMillisecondsIntoDateString(const UDate& milliseconds, co
 	UnicodeString unicodeFormat = UnicodeString::fromUTF8(formatString.c_str());
 	SimpleDateFormat* dateFormat = new SimpleDateFormat(unicodeFormat, status);
 	if (U_FAILURE(status))
-		LOGERROR("Error creating SimpleDateFormat: %hs", u_errorName(status));
+		LOGERROR("Error creating SimpleDateFormat: %s", u_errorName(status));
 
 	const TimeZone* timeZone = TimeZone::getGMT();
 
 	status = U_ZERO_ERROR;
 	Calendar* calendar = Calendar::createInstance(*timeZone, currentLocale, status);
 	if (U_FAILURE(status))
-		LOGERROR("Error creating calendar: %hs", u_errorName(status));
+		LOGERROR("Error creating calendar: %s", u_errorName(status));
    
 	dateFormat->adoptCalendar(calendar);
 	dateFormat->format(milliseconds, dateString);
@@ -470,12 +470,12 @@ Status L10n::ReloadChangedFile(const VfsPath& path)
 	if (path.string().rfind(dictName) == std::string::npos)
 		return INFO::OK;
 
-	LOGMESSAGE("Hotloading translations from '%ls'", path.string8());
+	LOGMESSAGE("Hotloading translations from '%s'", path.string8());
 
 	CVFSFile file;
 	if (file.Load(g_VFS, path) != PSRETURN_OK)
 	{
-		LOGERROR("Failed to read translations from '%ls'", path.string8());
+		LOGERROR("Failed to read translations from '%s'", path.string8());
 		return ERR::FAIL;
 	}
 
@@ -569,7 +569,7 @@ void L10n::ReadPoIntoDictionary(const std::string& poContent, tinygettext::Dicti
 	}
 	catch(std::exception& e)
 	{
-		LOGERROR("[Localization] Exception while reading virtual PO file: %hs", e.what());
+		LOGERROR("[Localization] Exception while reading virtual PO file: %s", e.what());
 	}
 }
 

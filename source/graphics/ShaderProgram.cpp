@@ -71,7 +71,7 @@ public:
 			glGetIntegerv(GL_PROGRAM_ERROR_POSITION_ARB, &errPos);
 			int errLine = std::count(code.begin(), code.begin() + std::min((int)code.length(), errPos + 1), '\n') + 1;
 			char* errStr = (char*)glGetString(GL_PROGRAM_ERROR_STRING_ARB);
-			LOGERROR("Failed to compile %hs program '%ls' (line %d):\n%hs", targetName, file.string8(), errLine, errStr);
+			LOGERROR("Failed to compile %s program '%s' (line %d):\n%s", targetName, file.string8(), errLine, errStr);
 			return false;
 		}
 
@@ -310,9 +310,9 @@ public:
 			pglGetShaderInfoLog(shader, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE("Info when compiling shader '%ls':\n%hs", file.string8(), infolog);
+				LOGMESSAGE("Info when compiling shader '%s':\n%s", file.string8(), infolog);
 			else
-				LOGERROR("Failed to compile shader '%ls':\n%hs", file.string8(), infolog);
+				LOGERROR("Failed to compile shader '%s':\n%s", file.string8(), infolog);
 
 			delete[] infolog;
 		}
@@ -357,9 +357,9 @@ public:
 			pglGetProgramInfoLog(m_Program, length, NULL, infolog);
 
 			if (ok)
-				LOGMESSAGE("Info when linking program '%ls'+'%ls':\n%hs", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
+				LOGMESSAGE("Info when linking program '%s'+'%s':\n%s", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
 			else
-				LOGERROR("Failed to link program '%ls'+'%ls':\n%hs", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
+				LOGERROR("Failed to link program '%s'+'%s':\n%s", m_VertexFile.string8(), m_FragmentFile.string8(), infolog);
 			
 			delete[] infolog;
 		}
@@ -663,7 +663,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 	const std::map<CStrIntern, int>& UNUSED(vertexIndexes), const std::map<CStrIntern, frag_index_pair_t>& UNUSED(fragmentIndexes),
 	int UNUSED(streamflags))
 {
-	LOGERROR("CShaderProgram::ConstructARB: '%ls'+'%ls': ARB shaders not supported on this device",
+	LOGERROR("CShaderProgram::ConstructARB: '%s'+'%s': ARB shaders not supported on this device",
 		vertexFile.string().c_str(), fragmentFile.string().c_str());
 	return NULL;
 }

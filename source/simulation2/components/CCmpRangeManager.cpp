@@ -1347,7 +1347,7 @@ public:
 		if (identifier == "injured")
 			return 2;
 
-		LOGWARNING("CCmpRangeManager: Invalid flag identifier %hs", identifier.c_str());
+		LOGWARNING("CCmpRangeManager: Invalid flag identifier %s", identifier.c_str());
 		return 0;
 	}
 
@@ -1364,7 +1364,7 @@ public:
 		// We don't have a flag set
 		if (flag == 0)
 		{
-			LOGWARNING("CCmpRangeManager: Invalid flag identifier %hs for entity %u", identifier.c_str(), ent);
+			LOGWARNING("CCmpRangeManager: Invalid flag identifier %s for entity %u", identifier.c_str(), ent);
 			return;
 		}
 

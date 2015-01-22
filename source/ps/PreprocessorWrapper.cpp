@@ -51,7 +51,7 @@ bool CPreprocessorWrapper::TestConditional(const CStr& expr)
 
 	if (!output)
 	{
-		LOGERROR("Failed to parse conditional expression '%hs'", expr.c_str());
+		LOGERROR("Failed to parse conditional expression '%s'", expr.c_str());
 		return false;
 	}
 

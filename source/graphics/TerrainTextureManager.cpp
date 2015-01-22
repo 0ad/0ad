@@ -89,7 +89,7 @@ CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_)
 			return m_TextureEntries[i];
 	}
 
-	LOGWARNING("CTerrainTextureManager: Couldn't find terrain %hs", tag.c_str());
+	LOGWARNING("CTerrainTextureManager: Couldn't find terrain %s", tag.c_str());
 	return 0;
 }
 
@@ -141,7 +141,7 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 
 void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
 {
-	//LOGMESSAGE("CTextureManager::RecurseDirectory(%ls)", path.string8());
+	//LOGMESSAGE("CTextureManager::RecurseDirectory(%s)", path.string8());
 
 	CTerrainPropertiesPtr props;
 
@@ -153,7 +153,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOGMESSAGE("CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string8());
+		LOGMESSAGE("CTerrainTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.string8());
 		props = parentProps;
 	}
 

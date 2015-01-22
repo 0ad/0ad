@@ -126,7 +126,7 @@ static void* MgCallback(mg_event event, struct mg_connection *conn, const struct
 
 	case MG_EVENT_LOG:
 		// Called by Mongoose's cry()
-		LOGERROR("Mongoose error: %hs", request_info->log_message);
+		LOGERROR("Mongoose error: %s", request_info->log_message);
 		return NULL;
 
 	case MG_INIT_SSL:

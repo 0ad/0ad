@@ -98,7 +98,7 @@ void CDecalRData::RenderDecals(std::vector<CDecalRData*>& decals, const CShaderD
 			
 			if (!techBase)
 			{
-				LOGERROR("Terrain renderer failed to load shader effect (%hs)\n", 			
+				LOGERROR("Terrain renderer failed to load shader effect (%s)\n", 			
 						material.GetShaderEffect().string().c_str());
 				continue;
 			}

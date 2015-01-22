@@ -90,7 +90,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 	if (root.GetNodeName() != el_actor)
 	{
-		LOGERROR("Invalid actor format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid actor format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 
@@ -266,7 +266,7 @@ bool CObjectBase::Load(const VfsPath& pathname)
 
 			if (currentGroup->size() == 0)
 			{
-				LOGERROR("Actor group has zero variants ('%ls')", pathname.string8());
+				LOGERROR("Actor group has zero variants ('%s')", pathname.string8());
 			}
 
 			++currentGroup;

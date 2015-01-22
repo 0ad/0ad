@@ -109,7 +109,7 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 			if (!pGUI->IconExists(path))
 			{
 				if (pObject)
-					LOGERROR("Trying to use an icon, imgleft or imgright-tag with an undefined icon (\"%hs\").", path.c_str());
+					LOGERROR("Trying to use an icon, imgleft or imgright-tag with an undefined icon (\"%s\").", path.c_str());
 				continue;
 			}
 
@@ -207,7 +207,7 @@ void CGUIString::GenerateTextCall(const CGUI *pGUI,
 
 					if (!GUI<CColor>::ParseString(it2->m_TagValue, TextCall.m_Color)
 					    && pObject)
-						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%hs\".", pObject->GetPresentableName().c_str());
+						LOGERROR("Error parsing the value of a [color]-tag in GUI text when reading object \"%s\".", pObject->GetPresentableName().c_str());
 					break;
 				case CGUIString::TextChunk::Tag::TAG_FONT:
 					// TODO Gee: (2004-08-15) Check if Font exists?
@@ -306,7 +306,7 @@ void CGUIString::SetValue(const CStrW& str)
 			closing = false;
 			if (++p == l)
 			{
-				LOGERROR("Partial tag at end of string '%ls'", str.c_str());
+				LOGERROR("Partial tag at end of string '%s'", str.c_str());
 				break;
 			}
 			if (str[p] == L'/')
@@ -314,12 +314,12 @@ void CGUIString::SetValue(const CStrW& str)
 				closing = true;
 				if (tags.empty())
 				{
-					LOGERROR("Encountered closing tag without having any open tags. At %d in '%ls'", p, str.c_str());
+					LOGERROR("Encountered closing tag without having any open tags. At %d in '%s'", p, str.c_str());
 					break;
 				}
 				if (++p == l)
 				{
-					LOGERROR("Partial closing tag at end of string '%ls'", str.c_str());
+					LOGERROR("Partial closing tag at end of string '%s'", str.c_str());
 					break;
 				}
 			}
@@ -332,7 +332,7 @@ void CGUIString::SetValue(const CStrW& str)
 				{
 				case L' ':
 					if (closing) // We still parse them to make error handling cleaner
-						LOGERROR("Closing tags do not support parameters (at pos %d '%ls')", p, str.c_str());
+						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, str.c_str());
 
 					// parse something="something else"
 					for (++p; p < l && str[p] != L'='; ++p)
@@ -340,23 +340,23 @@ void CGUIString::SetValue(const CStrW& str)
 
 					if (p == l)
 					{
-						LOGERROR("Parameter without value at pos %d '%ls'", p, str.c_str());
+						LOGERROR("Parameter without value at pos %d '%s'", p, str.c_str());
 						break;
 					}
 					// fall-through
 				case L'=':
 					// parse a quoted parameter
 					if (closing) // We still parse them to make error handling cleaner
-						LOGERROR("Closing tags do not support parameters (at pos %d '%ls')", p, str.c_str());
+						LOGERROR("Closing tags do not support parameters (at pos %d '%s')", p, str.c_str());
 
 					if (++p == l)
 					{
-						LOGERROR("Expected parameter, got end of string '%ls'", str.c_str());
+						LOGERROR("Expected parameter, got end of string '%s'", str.c_str());
 						break;
 					}
 					if (str[p] != L'"')
 					{
-						LOGERROR("Unquoted parameters are not supported (at pos %d '%ls')", p, str.c_str());
+						LOGERROR("Unquoted parameters are not supported (at pos %d '%s')", p, str.c_str());
 						break;
 					}
 					for (++p; p < l && str[p] != L'"'; ++p)
@@ -366,7 +366,7 @@ void CGUIString::SetValue(const CStrW& str)
 						case L'\\':
 							if (++p == l)
 							{
-								LOGERROR("Escape character at end of string '%ls'", str.c_str());
+								LOGERROR("Escape character at end of string '%s'", str.c_str());
 								break;
 							}
 							// NOTE: We do not support \n in tag parameters
@@ -392,7 +392,7 @@ void CGUIString::SetValue(const CStrW& str)
 
 			if (!tag_.SetTagType(tag))
 			{
-				LOGERROR("Invalid tag '%ls' at %d in '%ls'", tag.c_str(), p, str.c_str());
+				LOGERROR("Invalid tag '%s' at %d in '%s'", tag.c_str(), p, str.c_str());
 				break;
 			}
 			if (!closing)
@@ -415,7 +415,7 @@ void CGUIString::SetValue(const CStrW& str)
 			{
 				if (tag != tags.back())
 				{
-					LOGERROR("Closing tag '%ls' does not match last opened tag '%ls' at %d in '%ls'", tag.c_str(), tags.back().c_str(), p, str.c_str());
+					LOGERROR("Closing tag '%s' does not match last opened tag '%s' at %d in '%s'", tag.c_str(), tags.back().c_str(), p, str.c_str());
 					break;
 				}
 
@@ -426,7 +426,7 @@ void CGUIString::SetValue(const CStrW& str)
 		case L'\\':
 			if (++p == l)
 			{
-				LOGERROR("Escape character at end of string '%ls'", str.c_str());
+				LOGERROR("Escape character at end of string '%s'", str.c_str());
 				break;
 			}
 			if (str[p] == L'n')

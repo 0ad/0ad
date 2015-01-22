@@ -64,7 +64,7 @@ public:
 		R ret; \
 		if (m_ScriptInterface.CallFunction(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
 			return ret; \
-		LOGERROR("Error calling component script function %hs", funcname); \
+		LOGERROR("Error calling component script function %s", funcname); \
 		return R(); \
 	} \
 	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
@@ -75,7 +75,7 @@ public:
 		JS::RootedValue tmpInstance(cx, m_Instance.get()); \
 		if (m_ScriptInterface.CallFunctionVoid(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
 			return; \
-		LOGERROR("Error calling component script function %hs", funcname); \
+		LOGERROR("Error calling component script function %s", funcname); \
 	}
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS

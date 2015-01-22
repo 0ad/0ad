@@ -322,7 +322,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 			ComponentTypeId ctid = LookupCID(ctname);
 			if (ctid == CID__Invalid)
 			{
-				LOGERROR("Deserialization saw unrecognised component type '%hs'", ctname.c_str());
+				LOGERROR("Deserialization saw unrecognised component type '%s'", ctname.c_str());
 				return false;
 			}
 
@@ -349,7 +349,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 			ComponentTypeId ctid = LookupCID(ctname);
 			if (ctid == CID__Invalid)
 			{
-				LOGERROR("Deserialization saw unrecognised component type '%hs'", ctname.c_str());
+				LOGERROR("Deserialization saw unrecognised component type '%s'", ctname.c_str());
 				return false;
 			}
 
@@ -391,7 +391,7 @@ bool CComponentManager::DeserializeState(std::istream& stream)
 	}
 	catch (PSERROR_Deserialize& e)
 	{
-		LOGERROR("Deserialization failed: %hs", e.what());
+		LOGERROR("Deserialization failed: %s", e.what());
 		return false;
 	}
 }

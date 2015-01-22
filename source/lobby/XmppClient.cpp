@@ -749,7 +749,7 @@ bool XmppClient::handleIq(const glooxwrapper::IQ& iq)
 	{
 		CreateSimpleMessage("system", g_L10n.Translate("unknown subtype (see logs)"), "error");
 		std::string tag = tag_name(iq);
-		LOGMESSAGE("unknown subtype '%hs'", tag.c_str());
+		LOGMESSAGE("unknown subtype '%s'", tag.c_str());
 	}
 
 	return true;
@@ -896,7 +896,7 @@ void XmppClient::SetPresence(const std::string& presence)
 	else IF("offline", Unavailable);
 	// The others are not to be set
 #undef IF
-	else LOGERROR("Unknown presence '%hs'", presence.c_str());
+	else LOGERROR("Unknown presence '%s'", presence.c_str());
 }
 
 /**

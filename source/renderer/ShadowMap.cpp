@@ -406,7 +406,7 @@ void ShadowMapInternals::CreateTexture()
 	default: formatname = "DEPTH_COMPONENT"; break;
 	}
 
-	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %hs)",
+	LOGMESSAGE("Creating shadow texture (size %dx%d) (format = %s)",
 		Width, Height, formatname);
 
 

@@ -126,9 +126,9 @@ void ErrorReporter(JSContext* cx, const char* message, JSErrorReport* report)
 	}
 
 	if (isWarning)
-		LOGWARNING("%hs", msg.str().c_str());
+		LOGWARNING("%s", msg.str().c_str());
 	else
-		LOGERROR("%hs", msg.str().c_str());
+		LOGERROR("%s", msg.str().c_str());
 
 	// When running under Valgrind, print more information in the error message
 //	VALGRIND_PRINTF_BACKTRACE("->");
@@ -163,7 +163,7 @@ JSBool logmsg(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGMESSAGE("%ls", str.c_str());
+	LOGMESSAGE("%s", str.c_str());
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -180,7 +180,7 @@ JSBool warn(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGWARNING("%ls", str.c_str());
+	LOGWARNING("%s", str.c_str());
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -197,7 +197,7 @@ JSBool error(JSContext* cx, uint argc, jsval* vp)
 	std::wstring str;
 	if (!ScriptInterface::FromJSVal(cx, args.handleAt(0), str))
 		return JS_FALSE;
-	LOGERROR("%ls", str.c_str());
+	LOGERROR("%s", str.c_str());
 	args.rval().setUndefined();
 	return JS_TRUE;
 }
@@ -478,7 +478,7 @@ bool ScriptInterface::LoadGlobalScripts()
 	{
 		if (!LoadGlobalScriptFile(*it))
 		{
-			LOGERROR("LoadGlobalScripts: Failed to load script %ls", it->string8());
+			LOGERROR("LoadGlobalScripts: Failed to load script %s", it->string8());
 			return false;
 		}
 	}
@@ -866,7 +866,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 	JSAutoRequest rq(m->m_cx);
 	if (!VfsFileExists(path))
 	{
-		LOGERROR("File '%ls' does not exist", path.string8());
+		LOGERROR("File '%s' does not exist", path.string8());
 		return false;
 	}
 
@@ -876,7 +876,7 @@ bool ScriptInterface::LoadGlobalScriptFile(const VfsPath& path)
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR("Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
+		LOGERROR("Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
 		return false;
 	}
 
@@ -946,7 +946,7 @@ bool ScriptInterface::ParseJSON(const std::string& string_utf8, JS::MutableHandl
 
 	std::wstring error;
 	ScriptInterface::FromJSVal(m->m_cx, rval, error);
-	LOGERROR("%ls", error.c_str());
+	LOGERROR("%s", error.c_str());
 	return false;
 }
 
@@ -954,7 +954,7 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 {
 	if (!VfsFileExists(path))
 	{
-		LOGERROR("File '%ls' does not exist", path.string8());
+		LOGERROR("File '%s' does not exist", path.string8());
 		return;
 	}
 
@@ -964,14 +964,14 @@ void ScriptInterface::ReadJSONFile(const VfsPath& path, JS::MutableHandleValue o
 
 	if (ret != PSRETURN_OK)
 	{
-		LOGERROR("Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
+		LOGERROR("Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
 		return;
 	}
 
 	std::string content(file.DecodeUTF8()); // assume it's UTF-8
 
 	if (!ParseJSON(content, out))
-		LOGERROR("Failed to parse '%ls'", path.string8());
+		LOGERROR("Failed to parse '%s'", path.string8());
 }
 
 struct Stringifier

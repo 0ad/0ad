@@ -672,7 +672,7 @@ CComponentManager::ComponentTypeId CComponentManager::GetScriptWrapper(Interface
 	for (; iiit != m_InterfaceIdsByName.end(); ++iiit)
 		if (iiit->second == iid)
 		{
-			LOGERROR("No script wrapper found for interface id %d '%hs'", iid, iiit->first.c_str());
+			LOGERROR("No script wrapper found for interface id %d '%s'", iid, iiit->first.c_str());
 			return CID__Invalid;
 		}
 
@@ -887,13 +887,13 @@ entity_id_t CComponentManager::AddEntity(const std::wstring& templateName, entit
 		CComponentManager::ComponentTypeId cid = LookupCID(it->first);
 		if (cid == CID__Invalid)
 		{
-			LOGERROR("Unrecognised component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			LOGERROR("Unrecognised component type name '%s' in entity template '%s'", it->first.c_str(), templateName.c_str());
 			return INVALID_ENTITY;
 		}
 
 		if (!AddComponent(handle, cid, it->second))
 		{
-			LOGERROR("Failed to construct component type name '%hs' in entity template '%ls'", it->first.c_str(), templateName.c_str());
+			LOGERROR("Failed to construct component type name '%s' in entity template '%s'", it->first.c_str(), templateName.c_str());
 			return INVALID_ENTITY;
 		}
 		// TODO: maybe we should delete already-constructed components if one of them fails?
@@ -1226,7 +1226,7 @@ std::vector<std::string> CComponentManager::Script_FindJSONFiles(ScriptInterface
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("Error reading directory '%ls': %ls", cbData.path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("Error reading directory '%s': %s", cbData.path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 	
 	return cbData.templates;

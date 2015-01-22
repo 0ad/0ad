@@ -134,10 +134,10 @@ bool CMapGeneratorWorker::Run()
 	}
 
 	// Load RMS
-	LOGMESSAGE("Loading RMS '%ls'", m_ScriptPath.string8());
+	LOGMESSAGE("Loading RMS '%s'", m_ScriptPath.string8());
 	if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
 	{
-		LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string8());
+		LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%s'", m_ScriptPath.string8());
 		return false;
 	}
 
@@ -210,7 +210,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 			PSRETURN ret = file.Load(g_VFS, *it);
 			if (ret != PSRETURN_OK)
 			{
-				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%ls': %hs", path.string8(), GetErrorString(ret));
+				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
 			}
 			else
 			{
@@ -222,7 +222,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%ls': %ls", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%s': %s", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 	}
 
 	return data;
@@ -234,7 +234,7 @@ CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPriva
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	const CParamNode& templateRoot = self->m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
-		LOGERROR("Invalid template found for '%hs'", templateName.c_str());
+		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 	
 	return templateRoot;
 }
@@ -271,11 +271,11 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			LOGMESSAGE("Loading map generator script '%ls'", it->string8());
+			LOGMESSAGE("Loading map generator script '%s'", it->string8());
 
 			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
 			{
-				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%ls'", it->string8());
+				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%s'", it->string8());
 				return false;
 			}
 		}
@@ -284,7 +284,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%ls': %ls", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%s': %s", path.string8(), StatusDescription(ret, error, ARRAY_SIZE(error)));
 		return false;
 	}
 
