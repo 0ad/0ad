@@ -30,8 +30,6 @@
 #include "lib/debug.h"	// ErrorReactionInternal
 #include "lib/os_path.h"
 
-#include <cstdarg>	// needed for sys_vswprintf
-
 
 //
 // output
@@ -79,15 +77,6 @@ LIB_API bool sys_IsDebuggerPresent();
  * but only if LIB_STATIC_LINK)
  **/
 LIB_API std::wstring sys_WideFromArgv(const char* argv_i);
-
-/**
- * sys_vswprintf: doesn't quite follow the standard for vswprintf, but works
- * better across compilers:
- * - handles positional parameters and %lld
- * - always null-terminates the buffer, if count > 0
- * - returns -1 on overflow (if the output string (including null) does not fit in the buffer)
- **/
-extern int sys_vswprintf(wchar_t* buffer, size_t count, const wchar_t* format, va_list argptr);
 
 /**
  * describe the current OS error state.

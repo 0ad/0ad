@@ -81,6 +81,7 @@ class TestString_s : public CxxTest::TestSuite
 	const char* const s1;
 	const char* const s5;
 	const char* const s10;
+	const wchar_t* const ws10;
 
 	char d1[1];
 	char d2[2];
@@ -88,6 +89,7 @@ class TestString_s : public CxxTest::TestSuite
 	char d5[5];
 	char d6[6];
 	char d10[10];
+	wchar_t wd10[10];
 	char d11[11];
 
 	char no_null[7];
@@ -157,7 +159,7 @@ class TestString_s : public CxxTest::TestSuite
 
 public:
 	TestString_s()
-		: s0(""), s1("a"), s5("abcde"), s10("abcdefghij")
+		: s0(""), s1("a"), s5("abcde"), s10("abcdefghij"), ws10(L"abcdefghij")
 	{
 		const char no_null_tmp[] = { 'n','o','_','n','u','l','l'};
 		memcpy(no_null, no_null_tmp, sizeof(no_null));
@@ -294,13 +296,29 @@ public:
 	static void TEST_PRINTF(char* dst, size_t max_dst_chars, const char* dst_val,
 		int expected_ret, const char* expected_dst, const char* fmt, ...)
 	{
-		if (dst) strcpy(dst, dst_val);
+		if (dst)
+			strcpy(dst, dst_val);
 		va_list ap;
 		va_start(ap, fmt);
 		int ret = vsprintf_s(dst, max_dst_chars, fmt, ap);
 		va_end(ap);
 		TS_ASSERT_EQUALS(ret, expected_ret);
-		if (dst) TS_ASSERT_STR_EQUALS(dst, expected_dst);
+		if (dst)
+			TS_ASSERT_STR_EQUALS(dst, expected_dst);
+	}
+
+	static void TEST_WPRINTF(wchar_t* dst, size_t max_dst_chars, const wchar_t* dst_val,
+		int expected_ret, const wchar_t* expected_dst, const wchar_t* fmt, ...)
+	{
+		if (dst)
+			wcscpy(dst, dst_val);
+		va_list ap;
+		va_start(ap, fmt);
+		int ret = vswprintf_s(dst, max_dst_chars, fmt, ap);
+		va_end(ap);
+		TS_ASSERT_EQUALS(ret, expected_ret);
+		if (dst)
+			TS_ASSERT_WSTR_EQUALS(dst, expected_dst);
 	}
 
 	void test_printf()
@@ -314,5 +332,18 @@ public:
 		TEST_PRINTF(d10,0, s10, -1, "abcdefghij", "%d", 1234);
 		TEST_PRINTF(NULL,0, NULL, -1, "", "%d", 1234);
 		TEST_PRINTF(d10,10, s10, -1, "abcdefghij", NULL);
+	}
+
+	void test_wprintf()
+	{
+		TEST_WPRINTF(wd10,10, ws10, 4, L"1234", L"%d", 1234);
+		TEST_WPRINTF(wd10,5, ws10, 4, L"1234", L"%d", 1234);
+
+		SuppressErrors suppress;
+		TEST_WPRINTF(wd10,4, ws10, -1, L"", L"%d", 1234);
+		TEST_WPRINTF(wd10,3, ws10, -1, L"", L"%d", 1234);
+		TEST_WPRINTF(wd10,0, ws10, -1, L"abcdefghij", L"%d", 1234);
+		TEST_WPRINTF(NULL,0, NULL, -1, L"", L"%d", 1234);
+		TEST_WPRINTF(wd10,10, ws10, -1, L"abcdefghij", NULL);
 	}
 };

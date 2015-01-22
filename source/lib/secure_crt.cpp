@@ -237,7 +237,7 @@ int tvsprintf_s(tchar* dst, size_t max_dst_chars, const tchar* fmt, va_list ap)
 	}
 
 	const int ret = tvsnprintf(dst, max_dst_chars, fmt, ap);
-	if(ret >= int(max_dst_chars))	// not enough space
+	if(ret < 0 || ret >= int(max_dst_chars))	// not enough space
 	{
 		dst[0] = '\0';
 		return -1;
