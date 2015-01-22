@@ -711,7 +711,8 @@ function setup_all_libs ()
 		"maths",
 		"maths/scripting",
 		"i18n",
-		"i18n/scripting"
+		"i18n/scripting",
+		"third_party/cppformat",
 	}
 	extern_libs = {
 		"spidermonkey",

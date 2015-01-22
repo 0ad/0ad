@@ -109,13 +109,13 @@ public:
 		{
 			TestLogger log;
 			TS_ASSERT(! man.AddComponent(hnd1, 12345, noParam));
-			TS_ASSERT_WSTR_CONTAINS(log.GetOutput(), L"ERROR: Invalid component id 12345");
+			TS_ASSERT_STR_CONTAINS(log.GetOutput(), "ERROR: Invalid component id 12345");
 		}
 
 		{
 			TestLogger log;
 			TS_ASSERT(! man.AddComponent(hnd1, CID_Test1B, noParam));
-			TS_ASSERT_WSTR_CONTAINS(log.GetOutput(), L"ERROR: Multiple components for interface ");
+			TS_ASSERT_STR_CONTAINS(log.GetOutput(), "ERROR: Multiple components for interface ");
 		}
 	}
 
@@ -347,7 +347,7 @@ public:
 			// In SpiderMonkey 1.6, JS_ReportError calls the error reporter even if it's inside
 			// a try{} in the script; in recent versions (not sure when it changed) it doesn't
 			// so the error here won't get reported.
-			TS_ASSERT_WSTR_NOT_CONTAINS(log.GetOutput(), L"ERROR: JavaScript error: simulation/components/error.js line 4\nInvalid interface id");
+			TS_ASSERT_STR_NOT_CONTAINS(log.GetOutput(), "ERROR: JavaScript error: simulation/components/error.js line 4\nInvalid interface id");
 		}
 	}
 

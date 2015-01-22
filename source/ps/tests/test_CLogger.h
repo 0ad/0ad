@@ -24,8 +24,8 @@ class TestCLogger : public CxxTest::TestSuite
 public:
 	void test_basic()
 	{
-		logger->LogMessage(L"Test 1");
-		logger->LogMessage(L"Test 2");
+		logger->WriteMessage("Test 1", false);
+		logger->WriteMessage("Test 2", false);
 
 		ParseOutput();
 
@@ -34,65 +34,10 @@ public:
 		TS_ASSERT_EQUALS(lines[1], "Test 2");
 	}
 
-	void test_overflow()
-	{
-		const int buflen = 1024;
-
-		std::string msg0 (buflen-2, '*');
-		std::string msg1 (buflen-1, '*');
-		std::string msg2 (buflen,   '*');
-		std::string msg3 (buflen+1, '*');
-
-		std::string clipped (buflen-4, '*');
-		clipped += "...";
-
-		logger->LogMessage(L"%hs", msg0.c_str());
-		logger->LogMessage(L"%hs", msg1.c_str());
-		logger->LogMessage(L"%hs", msg2.c_str());
-		logger->LogMessage(L"%hs", msg3.c_str());
-
-		logger->LogMessageRender(L"%hs", msg0.c_str());
-		logger->LogMessageRender(L"%hs", msg1.c_str());
-		logger->LogMessageRender(L"%hs", msg2.c_str());
-		logger->LogMessageRender(L"%hs", msg3.c_str());
-
-		logger->LogWarning(L"%hs", msg0.c_str());
-		logger->LogWarning(L"%hs", msg1.c_str());
-		logger->LogWarning(L"%hs", msg2.c_str());
-		logger->LogWarning(L"%hs", msg3.c_str());
-
-		logger->LogError(L"%hs", msg0.c_str());
-		logger->LogError(L"%hs", msg1.c_str());
-		logger->LogError(L"%hs", msg2.c_str());
-		logger->LogError(L"%hs", msg3.c_str());
-
-		ParseOutput();
-
-		TS_ASSERT_EQUALS((int)lines.size(), 4*4);
-		TS_ASSERT_EQUALS(lines[0], msg0);
-		TS_ASSERT_EQUALS(lines[1], msg1);
-		TS_ASSERT_EQUALS(lines[2], clipped);
-		TS_ASSERT_EQUALS(lines[3], clipped);
-
-		TS_ASSERT_EQUALS(lines[4], msg0);
-		TS_ASSERT_EQUALS(lines[5], msg1);
-		TS_ASSERT_EQUALS(lines[6], clipped);
-		TS_ASSERT_EQUALS(lines[7], clipped);
-
-		TS_ASSERT_EQUALS(lines[8], "WARNING: "+msg0);
-		TS_ASSERT_EQUALS(lines[9], "WARNING: "+msg1);
-		TS_ASSERT_EQUALS(lines[10], "WARNING: "+clipped);
-		TS_ASSERT_EQUALS(lines[11], "WARNING: "+clipped);
-
-		TS_ASSERT_EQUALS(lines[12], "ERROR: "+msg0);
-		TS_ASSERT_EQUALS(lines[13], "ERROR: "+msg1);
-		TS_ASSERT_EQUALS(lines[14], "ERROR: "+clipped);
-		TS_ASSERT_EQUALS(lines[15], "ERROR: "+clipped);
-	}
-
 	void test_unicode()
 	{
-		logger->LogMessage(L"%lc %lc", 226, 295);
+		wchar_t str[] = { 226, 32, 295, 0 };
+		logger->WriteMessage(utf8_from_wstring(str).c_str(), false);
 
 		ParseOutput();
 
@@ -102,7 +47,7 @@ public:
 
 	void test_html()
 	{
-		logger->LogMessage(L"Test<a&b>c<d&e>");
+		logger->WriteMessage("Test<a&b>c<d&e>", false);
 
 		ParseOutput();
 

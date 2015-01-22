@@ -44,13 +44,13 @@ public:
 		{
 			TestLogger logger;
 			TS_ASSERT(!v.Validate(L"doc", L"<bogus/>"));
-			TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"Parse error: doc:1: Expecting element test, got bogus");
+			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "Parse error: doc:1: Expecting element test, got bogus");
 		}
 
 		{
 			TestLogger logger;
 			TS_ASSERT(!v.Validate(L"doc", L"bogus"));
-			TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"RelaxNGValidator: Failed to parse document");
+			TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "RelaxNGValidator: Failed to parse document");
 		}
 
 		TS_ASSERT(v.Validate(L"doc", L"<test/>"));
@@ -82,7 +82,7 @@ public:
 
 		TestLogger logger;
 		TS_ASSERT(!v.LoadGrammar("whoops"));
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"RelaxNGValidator: Failed to compile schema");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "RelaxNGValidator: Failed to compile schema");
 
 		TS_ASSERT(!v.Validate(L"doc", L"<test/>"));
 	}

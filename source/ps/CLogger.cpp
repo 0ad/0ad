@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -140,16 +140,15 @@ CLogger::~CLogger()
 	}
 }
 
-static std::string ToHTML(const wchar_t* message)
+static std::string ToHTML(const char* message)
 {
-	Status err;
-	std::string cmessage = utf8_from_wstring(message, &err);
+	std::string cmessage = message;
 	boost::algorithm::replace_all(cmessage, "&", "&amp;");
 	boost::algorithm::replace_all(cmessage, "<", "&lt;");
 	return cmessage;
 }
 
-void CLogger::WriteMessage(const wchar_t* message, bool doRender = false)
+void CLogger::WriteMessage(const char* message, bool doRender = false)
 {
 	std::string cmessage = ToHTML(message);
 
@@ -157,20 +156,20 @@ void CLogger::WriteMessage(const wchar_t* message, bool doRender = false)
 
 	++m_NumberOfMessages;
 //	if (m_UseDebugPrintf)
-//		debug_printf(L"MESSAGE: %ls\n", message);
+//		debug_printf(L"MESSAGE: %hs\n", message);
 
 	*m_MainLog << "<p>" << cmessage << "</p>\n";
 	m_MainLog->flush();
 	
 	if (doRender)
 	{
-		if (g_Console) g_Console->InsertMessage(L"INFO: %ls", message);
+		if (g_Console) g_Console->InsertMessage(L"INFO: %hs", message);
 
 		PushRenderMessage(Normal, message);
 	}
 }
 
-void CLogger::WriteError(const wchar_t* message)
+void CLogger::WriteError(const char* message)
 {
 	std::string cmessage = ToHTML(message);
 
@@ -178,9 +177,9 @@ void CLogger::WriteError(const wchar_t* message)
 
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
-		debug_printf(L"ERROR: %ls\n", message);
+		debug_printf(L"ERROR: %hs\n", message);
 
-	if (g_Console) g_Console->InsertMessage(L"ERROR: %ls", message);
+	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
 	*m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
 	m_InterestingLog->flush();
 
@@ -190,7 +189,7 @@ void CLogger::WriteError(const wchar_t* message)
 	PushRenderMessage(Error, message);
 }
 
-void CLogger::WriteWarning(const wchar_t* message)
+void CLogger::WriteWarning(const char* message)
 {
 	std::string cmessage = ToHTML(message);
 
@@ -198,9 +197,9 @@ void CLogger::WriteWarning(const wchar_t* message)
 
 	++m_NumberOfWarnings;
 	if (m_UseDebugPrintf)
-		debug_printf(L"WARNING: %ls\n", message);
+		debug_printf(L"WARNING: %hs\n", message);
 
-	if (g_Console) g_Console->InsertMessage(L"WARNING: %ls", message);
+	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
 	*m_InterestingLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";
 	m_InterestingLog->flush();
 
@@ -208,70 +207,6 @@ void CLogger::WriteWarning(const wchar_t* message)
 	m_MainLog->flush();
 
 	PushRenderMessage(Warning, message);
-}
-
-void CLogger::LogMessage(const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-	
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	WriteMessage(buffer);
-}
-
-void CLogger::LogMessageRender(const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-	
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	WriteMessage(buffer, true);
-}
-
-void CLogger::LogWarning(const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-	
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	WriteWarning(buffer);
-}
-
-void CLogger::LogError(const wchar_t* fmt, ...)
-{
-	va_list argp;
-	wchar_t buffer[BUFFER_SIZE] = {0};
-	
-	va_start(argp, fmt);
-	if (sys_vswprintf(buffer, ARRAY_SIZE(buffer), fmt, argp) == -1)
-	{
-		// Buffer too small - ensure the string is nicely terminated
-		wcscpy_s(buffer+ARRAY_SIZE(buffer)-4, 4, L"...");
-	}
-	va_end(argp);
-
-	WriteError(buffer);
 }
 
 void CLogger::Render()
@@ -300,26 +235,26 @@ void CLogger::Render()
 
 	for (std::deque<RenderedMessage>::iterator it = m_RenderMessages.begin(); it != m_RenderMessages.end(); ++it)
 	{
-		const wchar_t* type;
+		const char* type;
 		if (it->method == Normal)
 		{
-			type = L"info";
+			type = "info";
 			textRenderer.Color(0.0f, 0.8f, 0.0f);
 		}
 		else if (it->method == Warning)
 		{
-			type = L"warning";
+			type = "warning";
 			textRenderer.Color(1.0f, 1.0f, 0.0f);
 		}
 		else
 		{
-			type = L"error";
+			type = "error";
 			textRenderer.Color(1.0f, 0.0f, 0.0f);
 		}
 
 		CMatrix3D savedTransform = textRenderer.GetTransform();
 
-		textRenderer.PrintfAdvance(L"[%8.3f] %ls: ", it->time, type);
+		textRenderer.PrintfAdvance(L"[%8.3f] %hs: ", it->time, type);
 		// Display the actual message in white so it's more readable
 		textRenderer.Color(1.0f, 1.0f, 1.0f);
 		textRenderer.Put(0.0f, 0.0f, it->message.c_str());
@@ -334,26 +269,26 @@ void CLogger::Render()
 	textTech->EndPass();
 }
 
-void CLogger::PushRenderMessage(ELogMethod method, const wchar_t* message)
+void CLogger::PushRenderMessage(ELogMethod method, const char* message)
 {
 	double now = timer_Time();
 
 	// Add each message line separately
-	const wchar_t* pos = message;
-	const wchar_t* eol;
-	while ((eol = wcschr(pos, L'\n')) != NULL)
+	const char* pos = message;
+	const char* eol;
+	while ((eol = strchr(pos, '\n')) != NULL)
 	{
 		if (eol != pos)
 		{
-			RenderedMessage r = { method, now, std::wstring(pos, eol) };
+			RenderedMessage r = { method, now, std::string(pos, eol) };
 			m_RenderMessages.push_back(r);
 		}
 		pos = eol + 1;
 	}
 	// Add the last line, if we didn't end on a \n
-	if (*pos != L'\0')
+	if (*pos != '\0')
 	{
-		RenderedMessage r = { method, now, std::wstring(pos) };
+		RenderedMessage r = { method, now, std::string(pos) };
 		m_RenderMessages.push_back(r);
 	}
 }
@@ -398,10 +333,9 @@ TestLogger::~TestLogger()
 	g_Logger = m_OldLogger;
 }
 
-std::wstring TestLogger::GetOutput()
+std::string TestLogger::GetOutput()
 {
-	Status err;
-	return wstring_from_utf8(m_Stream.str(), &err);
+	return m_Stream.str();
 }
 
 TestStdoutLogger::TestStdoutLogger()

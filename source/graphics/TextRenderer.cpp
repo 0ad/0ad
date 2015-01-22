@@ -144,6 +144,14 @@ void CTextRenderer::Put(float x, float y, const wchar_t* buf)
 	PutString(x, y, new std::wstring(buf), true);
 }
 
+void CTextRenderer::Put(float x, float y, const char* buf)
+{
+	if (buf[0] == 0)
+		return; // empty string; don't bother storing
+
+	PutString(x, y, new std::wstring(wstring_from_utf8(buf)), true);
+}
+
 void CTextRenderer::Put(float x, float y, const std::wstring* buf)
 {
 	if (buf->empty())

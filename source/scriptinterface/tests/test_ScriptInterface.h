@@ -31,8 +31,8 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TestLogger logger;
 		TS_ASSERT(script.LoadScript(L"test.js", "var x = 1+1;"));
-		TS_ASSERT_WSTR_NOT_CONTAINS(logger.GetOutput(), L"JavaScript error");
-		TS_ASSERT_WSTR_NOT_CONTAINS(logger.GetOutput(), L"JavaScript warning");
+		TS_ASSERT_STR_NOT_CONTAINS(logger.GetOutput(), "JavaScript error");
+		TS_ASSERT_STR_NOT_CONTAINS(logger.GetOutput(), "JavaScript warning");
 	}
 
 	void test_loadscript_error()
@@ -40,7 +40,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "1+"));
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: syntax error");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: syntax error");
 	}
 
 	void test_loadscript_strict_warning()
@@ -49,7 +49,7 @@ public:
 		TestLogger logger;
 		// in strict mode, this inside a function doesn't point to the global object
 		TS_ASSERT(script.LoadScript(L"test.js", "var isStrict = (function() { return !this; })();warn('isStrict is '+isStrict);"));
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"WARNING: isStrict is true");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "WARNING: isStrict is true");
 	}
 
 	void test_loadscript_strict_error()
@@ -57,7 +57,7 @@ public:
 		ScriptInterface script("Test", "Test", g_ScriptRuntime);
 		TestLogger logger;
 		TS_ASSERT(!script.LoadScript(L"test.js", "with(1){}"));
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "JavaScript error: test.js line 1\nSyntaxError: strict mode code may not contain \'with\' statements");
 	}
 
 	void test_clone_basic()
