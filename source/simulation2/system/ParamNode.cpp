@@ -27,11 +27,6 @@
 
 #include <sstream>
 
-// Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
-#if MSC_VERSION
-#pragma warning(disable:4512)
-#endif
-
 #include <boost/algorithm/string.hpp>
 #include <boost/algorithm/string/join.hpp>	// this isn't in string.hpp in old Boosts
 

@@ -13,6 +13,7 @@
 # pragma warning(disable:4324)	// structure was padded due to __declspec(align())
 # pragma warning(disable:4351)	// yes, default init of array entries is desired
 # pragma warning(disable:4355)	// 'this' used in base member initializer list
+# pragma warning(disable:4512)	// assignment operator could not be generated
 # pragma warning(disable:4718)	// recursive call has no side effects, deleting
 # pragma warning(disable:4786)	// identifier truncated to 255 chars
 # pragma warning(disable:4996)	// function is deprecated
