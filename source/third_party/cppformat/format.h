@@ -706,12 +706,17 @@ public:
   MakeArg(void *value) { type = POINTER; pointer_value = value; }
   MakeArg(const void *value) { type = POINTER; pointer_value = value; }
 
+#if 0
+  // WFG: Removed this because otherwise you can pass a CStr8 or an enum etc
+  // into fmt::sprintf, and it will be interpreted as a CUSTOM type and then
+  // will throw an exception at runtime, which is terrible behaviour.
   template <typename T>
   MakeArg(const T &value) {
     type = CUSTOM;
     custom.value = &value;
     custom.format = &format_custom_arg<T>;
   }
+#endif
 };
 
 #define FMT_DISPATCH(call) static_cast<Impl*>(this)->call
