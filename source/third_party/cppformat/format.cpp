@@ -1,4 +1,9 @@
 /*
+ * Slightly modified version of cppformat, by Wildfire Games, for 0 A.D.
+ * Based on cppformat v0.11.0 from https://github.com/cppformat/cppformat
+ */
+
+/*
  Formatting library for C++
 
  Copyright (c) 2012 - 2014, Victor Zverovich
@@ -54,7 +59,7 @@ using fmt::LongLong;
 using fmt::ULongLong;
 using fmt::internal::Arg;
 
-#if _MSC_VER
+#ifdef _MSC_VER
 # pragma warning(push)
 # pragma warning(disable: 4127) // conditional expression is constant
 #endif
@@ -430,12 +435,12 @@ int fmt::internal::safe_strerror(
   if (message == buffer && strlen(buffer) == buffer_size - 1)
     result = ERANGE;
   buffer = message;
-#elif __MINGW32__
+#elif defined(__MINGW32__)
   errno = 0;
   (void)buffer_size;
   buffer = strerror(error_code);
   result = errno;
-#elif _WIN32
+#elif defined(_WIN32)
   result = strerror_s(buffer, buffer_size, error_code);
   // If the buffer is full then the message is probably truncated.
   if (result == 0 && std::strlen(buffer) == buffer_size - 1)
@@ -692,7 +697,7 @@ void fmt::BasicWriter<Char>::write_double(T value, const FormatSpec &spec) {
   Char fill = static_cast<Char>(spec.fill());
   for (;;) {
     std::size_t size = buffer_.capacity() - offset;
-#if _MSC_VER
+#ifdef _MSC_VER
     // MSVC's vsnprintf_s doesn't work with zero size, so reserve
     // space for at least one extra character to make the size non-zero.
     // Note that the buffer's capacity will increase by more than 1.
@@ -1299,6 +1304,6 @@ template void fmt::internal::PrintfFormatter<wchar_t>::format(
     BasicWriter<wchar_t> &writer, BasicStringRef<wchar_t> format,
     const ArgList &args);
 
-#if _MSC_VER
+#ifdef _MSC_VER
 # pragma warning(pop)
 #endif

@@ -1,4 +1,9 @@
 /*
+ * Slightly modified version of cppformat, by Wildfire Games, for 0 A.D.
+ * Based on cppformat v0.11.0 from https://github.com/cppformat/cppformat
+ */
+
+/*
  Formatting library for C++
 
  Copyright (c) 2012 - 2014, Victor Zverovich
@@ -39,7 +44,7 @@
 #include <string>
 #include <sstream>
 
-#if _SECURE_SCL
+#if defined(_SECURE_SCL) && _SECURE_SCL
 # include <iterator>
 #endif
 
@@ -78,7 +83,7 @@
 // since version 2013.
 # define FMT_USE_VARIADIC_TEMPLATES \
    (FMT_HAS_FEATURE(cxx_variadic_templates) || \
-       (FMT_GCC_VERSION >= 404 && __cplusplus >= 201103) || _MSC_VER >= 1800)
+       (FMT_GCC_VERSION >= 404 && __cplusplus >= 201103) || (defined(_MSC_VER) && _MSC_VER >= 1800))
 #endif
 
 #ifndef FMT_USE_RVALUE_REFERENCES
@@ -89,7 +94,7 @@
 # else
 #  define FMT_USE_RVALUE_REFERENCES \
     (FMT_HAS_FEATURE(cxx_rvalue_references) || \
-        (FMT_GCC_VERSION >= 403 && __cplusplus >= 201103) || _MSC_VER >= 1600)
+        (FMT_GCC_VERSION >= 403 && __cplusplus >= 201103) || (defined(_MSC_VER) && _MSC_VER >= 1600))
 # endif
 #endif
 
@@ -98,7 +103,7 @@
 #endif
 
 // Define FMT_USE_NOEXCEPT to make C++ Format use noexcept (C++11 feature).
-#if FMT_USE_NOEXCEPT || FMT_HAS_FEATURE(cxx_noexcept) || \
+#if (defined(FMT_USE_NOEXCEPT) && FMT_USE_NOEXCEPT) || FMT_HAS_FEATURE(cxx_noexcept) || \
   (FMT_GCC_VERSION >= 408 && __cplusplus >= 201103)
 # define FMT_NOEXCEPT(expr) noexcept(expr)
 #else
@@ -225,7 +230,7 @@ namespace internal {
 // output buffer, itself to avoid dynamic memory allocation.
 enum { INLINE_BUFFER_SIZE = 500 };
 
-#if _SECURE_SCL
+#if defined(_SECURE_SCL) && _SECURE_SCL
 // Use checked iterator to avoid warnings on MSVC.
 template <typename T>
 inline stdext::checked_array_iterator<T*> make_ptr(T *ptr, std::size_t size) {
@@ -344,7 +349,7 @@ void Array<T, SIZE>::append(const T *begin, const T *end) {
 template <typename Char>
 class BasicCharTraits {
  public:
-#if _SECURE_SCL
+#if defined(_SECURE_SCL) && _SECURE_SCL
   typedef stdext::checked_array_iterator<Char*> CharPtr;
 #else
   typedef Char *CharPtr;
@@ -1306,7 +1311,7 @@ class BasicWriter {
 
   typedef typename internal::CharTraits<Char>::CharPtr CharPtr;
 
-#if _SECURE_SCL
+#if defined(_SECURE_SCL) && _SECURE_SCL
   // Returns pointer value.
   static Char *get(CharPtr p) { return p.base(); }
 #else
