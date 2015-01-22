@@ -36,8 +36,15 @@ public:
 		TS_ASSERT_EQUALS(fmt::sprintf("%f", 0.5f), "0.500000");
 		TS_ASSERT_EQUALS(fmt::sprintf("%.1f", 0.1111f), "0.1");
 
-		TS_ASSERT_EQUALS(fmt::sprintf("%d",   0x100000001ULL), "1");
-		TS_ASSERT_EQUALS(fmt::sprintf("%ld",  0x100000001ULL), "4294967297");
+		TS_ASSERT_EQUALS(fmt::sprintf("%d", 0x100000001ULL), "1");
+		if (sizeof(long) == sizeof(int32_t))
+		{
+			TS_ASSERT_EQUALS(fmt::sprintf("%ld", 0x100000001ULL), "1");
+		}
+		else
+		{
+			TS_ASSERT_EQUALS(fmt::sprintf("%ld", 0x100000001ULL), "4294967297");
+		}
 		TS_ASSERT_EQUALS(fmt::sprintf("%lld", 0x100000001ULL), "4294967297");
 
 		TS_ASSERT_EQUALS(fmt::sprintf("T%sT", "abc"), "TabcT");
