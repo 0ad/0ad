@@ -756,8 +756,11 @@ void fmt::BasicWriter<Char>::write_str(
   const StrChar *s = str.value;
   std::size_t size = str.size;
   if (size == 0) {
-    if (!s)
-      throw FormatError("string pointer is null");
+    if (!s) {
+      Char err[] = { '(', 'n', 'u', 'l', 'l', ')' };
+      write_str(err, sizeof(err)/sizeof(Char), spec);
+      return;
+    }
     if (*s)
       size = std::char_traits<StrChar>::length(s);
   }
