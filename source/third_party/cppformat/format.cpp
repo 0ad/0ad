@@ -30,6 +30,8 @@
  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#include "precompiled.h"
+
 // Disable useless MSVC warnings.
 #undef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
