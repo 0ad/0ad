@@ -89,7 +89,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 			if (fullscreen)
 			{
 				LOGWARNING("Failed to set the video mode to fullscreen for the chosen resolution "
-					L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
+					"%dx%d:%d (\"%hs\"), falling back to windowed mode",
 					w, h, bpp, SDL_GetError());
 				// Using default size for the window for now, as the attempted setting
 				// could be as large, or larger than the screen size.
@@ -173,7 +173,7 @@ bool CVideoMode::SetVideoMode(int w, int h, int bpp, bool fullscreen)
 		if (fullscreen)
 		{
 			LOGWARNING("Failed to set the video mode to fullscreen for the chosen resolution "
-				L"%dx%d:%d (\"%hs\"), falling back to windowed mode",
+				"%dx%d:%d (\"%hs\"), falling back to windowed mode",
 				w, h, bpp, SDL_GetError());
 			// Using default size for the window for now, as the attempted setting
 			// could be as large, or larger than the screen size.

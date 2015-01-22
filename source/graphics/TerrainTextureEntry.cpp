@@ -253,7 +253,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		if (textures[i] < 0)
 		{
 			g_TexMan.m_TerrainAlphas.erase(it);
-			LOGERROR((L"Failed to load alphamap: " + amtype.string()).c_str());
+			LOGERROR("Failed to load alphamap: %s", amtype.string());
 			
 			VfsPath standard("standard");
 			if (path != standard)
