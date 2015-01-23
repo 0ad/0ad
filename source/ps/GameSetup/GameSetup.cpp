@@ -1186,12 +1186,6 @@ bool Autostart(const CmdLineArgs& args)
 {
 	CStr autoStartName = args.Get("autostart");
 
-#if OS_ANDROID
-	// HACK: currently the most convenient way to test maps on Android;
-	// should find a better solution
-	autoStartName = "scenarios/Arcadia 02";
-#endif
-
 	if (autoStartName.empty())
 		return false;
 
