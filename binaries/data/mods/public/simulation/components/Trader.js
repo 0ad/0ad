@@ -34,6 +34,8 @@ Trader.prototype.Init = function()
 Trader.prototype.CalculateGain = function(firstMarket, secondMarket)
 {
 	var gain = CalculateTraderGain(firstMarket, secondMarket, this.template, this.entity);
+	if (!gain)	// One of our markets must have been destroyed
+		return null;
 
 	// For ship increase gain for each garrisoned trader
 	// Calculate this here to save passing unnecessary stuff into the CalculateTraderGain function
