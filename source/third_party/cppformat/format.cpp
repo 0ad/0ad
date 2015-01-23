@@ -431,7 +431,7 @@ int fmt::internal::safe_strerror(
     int error_code, char *&buffer, std::size_t buffer_size) FMT_NOEXCEPT(true) {
   assert(buffer != 0 && buffer_size != 0);
   int result = 0;
-#ifdef _GNU_SOURCE
+#if defined(_GNU_SOURCE) && !defined(__BIONIC__)
   char *message = strerror_r(error_code, buffer, buffer_size);
   // If the buffer is full then the message is probably truncated.
   if (message == buffer && strlen(buffer) == buffer_size - 1)
