@@ -1073,7 +1073,9 @@ Status ogl_tex_bind(Handle ht, size_t unit)
 	// special case: disable texturing
 	if(ht == 0)
 	{
+#if !CONFIG2_GLES
 		glDisable(GL_TEXTURE_2D);
+#endif
 		return INFO::OK;
 	}
 
