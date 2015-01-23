@@ -502,11 +502,6 @@ end
 -- (See lib/sysdep/os/win/manifest.cpp)
 function project_add_manifest()
 	linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' processorArchitecture='X86' publicKeyToken='6595b64144ccf1df'\"" }
-	configuration "Debug"
-		linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.DebugCRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
-	configuration "Release"
-		linkoptions { "\"/manifestdependency:type='win32' name='Microsoft.VC80.CRT' version='8.0.50727.4053' processorArchitecture='x86' publicKeyToken='1fc8b3b9a1e18e3b'\"" }
-	configuration { }
 end
 
 --------------------------------------------------------------------------------
