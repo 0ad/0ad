@@ -664,7 +664,7 @@ CShaderProgram::CShaderProgram(int streamflags)
 	int UNUSED(streamflags))
 {
 	LOGERROR("CShaderProgram::ConstructARB: '%s'+'%s': ARB shaders not supported on this device",
-		vertexFile.string().c_str(), fragmentFile.string().c_str());
+		vertexFile.string8(), fragmentFile.string8());
 	return NULL;
 }
 #else
