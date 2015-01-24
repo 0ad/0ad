@@ -89,7 +89,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 		// Yes the mouse position is stored as float to avoid
 		//  constant conversions when operating in a
 		//  float-based environment.
-		m_MousePos = CPos((float)ev->ev.motion.x, (float)ev->ev.motion.y);
+		m_MousePos = CPos((float)ev->ev.motion.x * g_GuiScale, (float)ev->ev.motion.y * g_GuiScale);
 
 		SGUIMessage msg(GUIM_MOUSE_MOTION);
 		GUI<SGUIMessage>::RecurseObject(GUIRR_HIDDEN | GUIRR_GHOST, m_BaseObject, 
@@ -116,7 +116,7 @@ InReaction CGUI::HandleEvent(const SDL_Event_* ev)
 	CPos oldMousePos = m_MousePos;
 	if (ev->ev.type == SDL_MOUSEBUTTONDOWN || ev->ev.type == SDL_MOUSEBUTTONUP)
 	{
-		m_MousePos = CPos((float)ev->ev.button.x, (float)ev->ev.button.y);
+		m_MousePos = CPos((float)ev->ev.button.x * g_GuiScale, (float)ev->ev.button.y * g_GuiScale);
 	}
 
 	// Only one object can be hovered
@@ -868,7 +868,11 @@ void CGUI::DrawText(SGUIText &Text, const CColor &DefaultColor,
 	if (isClipped)
 	{
 		glEnable(GL_SCISSOR_TEST);
-		glScissor(clipping.left, g_yres - clipping.bottom, clipping.GetWidth(), clipping.GetHeight());
+		glScissor(
+			clipping.left / g_GuiScale,
+			g_yres - clipping.bottom / g_GuiScale,
+			clipping.GetWidth() / g_GuiScale,
+			clipping.GetHeight() / g_GuiScale);
 	}
 
 	CTextRenderer textRenderer(tech->GetShader());

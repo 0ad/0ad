@@ -57,6 +57,7 @@ float g_Gamma = 1.0f;
 CStr g_RenderPath = "default";
 
 int g_xres, g_yres;
+float g_GuiScale = 1.0f;
 bool g_VSync = false;
 
 bool g_Quickstart = false;
@@ -104,6 +105,7 @@ static void LoadGlobals()
 	CFG_GET_VAL("particles", g_Particles);
 	CFG_GET_VAL("silhouettes", g_Silhouettes);
 	CFG_GET_VAL("showsky", g_ShowSky);
+	CFG_GET_VAL("gui.scale", g_GuiScale);
 
 	if (g_SoundManager)
 	{

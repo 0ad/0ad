@@ -270,13 +270,16 @@ bool __ParseString<CGUIList>(const CStrW& UNUSED(Value), CGUIList& UNUSED(Output
 
 CMatrix3D GetDefaultGuiMatrix()
 {
+	float xres = g_xres * g_GuiScale;
+	float yres = g_yres * g_GuiScale;
+
 	CMatrix3D m;
 	m.SetIdentity();
 	m.Scale(1.0f, -1.f, 1.0f);
-	m.Translate(0.0f, (float)g_yres, -1000.0f);
+	m.Translate(0.0f, yres, -1000.0f);
 
 	CMatrix3D proj;
-	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	proj.SetOrtho(0.f, xres, 0.f, yres, -1.f, 1000.f);
 	m = proj * m;
 
 	return m;

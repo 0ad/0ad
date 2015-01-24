@@ -24,9 +24,8 @@
 #include "graphics/ShaderProgram.h"
 #include "lib/ogl.h"
 #include "ps/CStrIntern.h"
+#include "ps/GameSetup/Config.h"
 #include "renderer/Renderer.h"
-
-extern int g_xres, g_yres;
 
 CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
 	m_Shader(shader)
@@ -38,12 +37,15 @@ CTextRenderer::CTextRenderer(const CShaderProgramPtr& shader) :
 
 void CTextRenderer::ResetTransform()
 {
+	float xres = g_xres * g_GuiScale;
+	float yres = g_yres * g_GuiScale;
+
 	m_Transform.SetIdentity();
 	m_Transform.Scale(1.0f, -1.f, 1.0f);
-	m_Transform.Translate(0.0f, (float)g_yres, -1000.0f);
+	m_Transform.Translate(0.0f, yres, -1000.0f);
 
 	CMatrix3D proj;
-	proj.SetOrtho(0.f, (float)g_xres, 0.f, (float)g_yres, -1.f, 1000.f);
+	proj.SetOrtho(0.f, xres, 0.f, yres, -1.f, 1000.f);
 	m_Transform = proj * m_Transform;
 	m_Dirty = true;
 }

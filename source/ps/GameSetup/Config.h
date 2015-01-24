@@ -78,6 +78,7 @@ extern float g_Gamma;
 extern CStr g_RenderPath;
 
 extern int g_xres, g_yres;
+extern float g_GuiScale;
 extern bool g_VSync;
 
 extern bool g_Quickstart;

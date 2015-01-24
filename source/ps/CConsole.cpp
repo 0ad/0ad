@@ -84,7 +84,7 @@ void CConsole::SetSize(float X, float Y, float W, float H)
 void CConsole::UpdateScreenSize(int w, int h)
 {
 	float height = h * 0.6f;
-	SetSize(0, 0, (float)w, height);
+	SetSize(0, 0, w * g_GuiScale, height * g_GuiScale);
 }
 
 
