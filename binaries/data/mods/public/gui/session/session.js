@@ -237,8 +237,11 @@ function init(initData, hotloadData)
 	// the initial camera view) and a minute (when the profiler will
 	// have settled down if framerates as very low), to give some
 	// extremely rough indications of performance
-	setTimeout(function() { reportPerformance(5); }, 5000);
-	setTimeout(function() { reportPerformance(60); }, 60000);
+	//
+	// DISABLED: this information isn't currently useful for anything much,
+	// and it generates a massive amount of data to transmit and store
+	//setTimeout(function() { reportPerformance(5); }, 5000);
+	//setTimeout(function() { reportPerformance(60); }, 60000);
 }
 
 function selectViewPlayer(playerID)
