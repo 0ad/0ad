@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -39,7 +39,8 @@
 # define WIN32_LEAN_AND_MEAN
 #endif
 
-#if defined(__GNUC__) && (__GNUC__*100 + __GNUC_MINOR__) >= 402 // (older GCCs don't support this pragma)
+#ifdef __GNUC__
+# pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wredundant-decls" // triggered by wx/geometry.h
 #endif
 
@@ -72,8 +73,8 @@
 #include "wx/wfstream.h"
 #include "wx/zstream.h"
 
-#if defined(__GNUC__) && (__GNUC__*100 + __GNUC_MINOR__) >= 402
-# pragma GCC diagnostic warning "-Wredundant-decls" // re-enable
+#ifdef __GNUC__
+# pragma GCC diagnostic pop
 #endif
 
 #include <vector>
@@ -109,12 +110,10 @@
 
 #ifdef _WIN32
 # define ATLASDLLIMPEXP extern "C" __declspec(dllexport)
+#elif defined(__GNUC__)
+# define ATLASDLLIMPEXP extern "C" __attribute__ ((visibility ("default")))
 #else
-# if __GNUC__ >= 4
-#  define ATLASDLLIMPEXP extern "C" __attribute__ ((visibility ("default")))
-# else
-#  define ATLASDLLIMPEXP extern "C"
-# endif
+# define ATLASDLLIMPEXP extern "C"
 #endif
 
 // Abort with an obvious message if wx isn't Unicode, instead of complaining

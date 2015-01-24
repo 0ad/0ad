@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -70,7 +70,7 @@
  * NOTHROW_DECLARE void function();
  * NOTHROW_DEFINE void function() {}
  **/
-#if GCC_VERSION >= 303
+#if GCC_VERSION
 # define NOTHROW_DECLARE __attribute__((nothrow))
 # define NOTHROW_DEFINE	// not supported for definitions
 #elif MSC_VERSION
@@ -121,7 +121,7 @@
 #define HAVE_ASSUME_UNREACHABLE 1
 #if MSC_VERSION && !ICC_VERSION // (ICC ignores this)
 # define ASSUME_UNREACHABLE __assume(0)
-#elif GCC_VERSION >= 450
+#elif GCC_VERSION
 # define ASSUME_UNREACHABLE __builtin_unreachable()
 #else
 # define ASSUME_UNREACHABLE
@@ -327,10 +327,10 @@ template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
 
 // C99-style __func__
 // .. newer GCC already have it
-#if GCC_VERSION >= 300
+#if GCC_VERSION
 // nothing need be done
-// .. old GCC and MSVC have __FUNCTION__
-#elif GCC_VERSION >= 200 || MSC_VERSION
+// .. MSVC have __FUNCTION__
+#elif MSC_VERSION
 # define __func__ __FUNCTION__
 // .. unsupported
 #else

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -52,10 +52,6 @@
 # pragma warning(pop)
 #endif
 #if GCC_VERSION
-# pragma GCC diagnostic warning "-Wunused-parameter"
-# pragma GCC diagnostic warning "-Wredundant-decls"
-# pragma GCC diagnostic warning "-Wnon-virtual-dtor"
-// restore user flags and re-enable the warnings disabled a few lines above
 # pragma GCC diagnostic pop
 #endif
 
