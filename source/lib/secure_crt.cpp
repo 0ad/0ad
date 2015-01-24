@@ -58,6 +58,7 @@ STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 // add a corresponding #undef when adding a #define.
 #ifdef WSECURE_CRT
 # define tchar wchar_t
+# define tstring std::wstring
 # define T(string_literal) L ## string_literal
 # define tnlen wcsnlen
 # define tncpy_s wcsncpy_s
@@ -71,6 +72,7 @@ STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 # define tsprintf_s swprintf_s
 #else
 # define tchar char
+# define tstring std::string
 # define T(string_literal) string_literal
 # define tnlen strnlen
 # define tncpy_s strncpy_s
@@ -132,12 +134,12 @@ size_t tnlen(const tchar* str, size_t max_len)
 #endif // !OS_UNIX
 
 #if OS_ANDROID
-static std::wstring androidFormat(const tchar *fmt)
+static tstring androidFormat(const tchar *fmt)
 {
 	// FIXME handle %%hs, %%ls, etc
-	std::wstring ret(fmt);
-	boost::algorithm::replace_all(ret, L"%ls", L"%S");
-	boost::algorithm::replace_all(ret, L"%hs", L"%s");
+	tstring ret(fmt);
+	boost::algorithm::replace_all(ret, T("%ls"), T("%S"));
+	boost::algorithm::replace_all(ret, T("%hs"), T("%s"));
 	return ret;
 }
 #endif
