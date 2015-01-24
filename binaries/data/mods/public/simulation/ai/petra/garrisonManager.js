@@ -182,10 +182,10 @@ m.GarrisonManager.prototype.keepGarrisoned = function(ent, holder, enemiesAround
 			return false;
 		case 'trade':		// trader garrisoned in ship
 			return true;
-		case 'protection':	// hurt unit for healing or ranged infantry for defense
+		case 'protection':	// hurt unit for healing or infantry for defense
 			if (ent.isHurt() && holder.buffHeal())
 				return true;
-			if (enemiesAround && (ent.hasClass("Support") || (ent.hasClass("Ranged") && ent.hasClass("Infantry"))))
+			if (enemiesAround && (ent.hasClass("Support") || MatchesClassList(holder.getGarrisonArrowClasses(), ent.classes())))
 				return true;
 			return false;
 		default:

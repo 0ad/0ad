@@ -28,8 +28,8 @@ m.TradeManager.prototype.hasTradeRoute = function()
 
 m.TradeManager.prototype.assignTrader = function(ent)
 {
-	unit.setMetadata(PlayerID, "role", "trader");
-	this.traders.updateEnt(unit);
+	ent.setMetadata(PlayerID, "role", "trader");
+	this.traders.updateEnt(ent);
 };
 
 // TODO take trader ships into account

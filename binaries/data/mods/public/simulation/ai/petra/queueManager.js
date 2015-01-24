@@ -240,6 +240,22 @@ m.QueueManager.prototype.clear = function()
 };
 
 /**
+ * set accounts of queue i from the unaccounted resources
+ */
+m.QueueManager.prototype.setAccounts = function(gameState, cost, i)
+{
+	var available = this.getAvailableResources(gameState);
+	for (var res of this.accounts[i].types)
+	{
+		if (this.accounts[i][res] >= cost[res])
+			continue;
+		var diff = Math.min(available[res], cost[res] - this.accounts[i][res]);
+		this.accounts[i][res] += diff;
+	}
+};
+
+
+/**
  * transfer accounts from queue i to queue j
  */
 m.QueueManager.prototype.transferAccounts = function(cost, i, j)
@@ -457,7 +473,7 @@ m.QueueManager.prototype.checkPausedQueues = function(gameState)
 		if (gameState.ai.HQ.numActiveBase() === 0)
 			toBePaused = (q !== "dock" && q !== "civilCentre");
 		else if (numWorkers < 8)
-			toBePaused = (q !== "citizenSoldier" && q !== "villager");
+			toBePaused = (q !== "citizenSoldier" && q !== "villager" && q !== "emergency");
 		else if (numWorkers < 16)
 			toBePaused = (q === "civilCentre" || q === "economicBuilding"
 				|| q === "militaryBuilding" || q === "defenseBuilding"

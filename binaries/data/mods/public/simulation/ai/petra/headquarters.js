@@ -1414,70 +1414,47 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
  */  
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
-	var available = gameState.ai.queueManager.getAvailableResources(gameState);
-	var total = gameState.getResources();
-	var distcut = 20000;
+	if (gameState.ai.queues.emergency.countQueuedUnits() !== 0)
+		return;
 
+	// find nearest base anchor
+	var distcut = 20000;
 	var nearestAnchor = undefined;
-	var templateAnchor = undefined;
 	var distmin = undefined;
-	var rangedUnit = false;
-	for (var pos of positions)
+	for (let pos of positions)
 	{
-		var access = gameState.ai.accessibility.getAccessValue(pos);
+		let access = gameState.ai.accessibility.getAccessValue(pos);
 		// check nearest base anchor
-		for (var base of this.baseManagers)
+		for (let base of this.baseManagers)
 		{
 			if (!base.anchor || !base.anchor.position())
 				continue;
-			if (base.anchor.getMetadata(PlayerID, "access") != access)
+			if (base.anchor.getMetadata(PlayerID, "access") !== access)
 				continue;
-			var trainables = base.anchor.trainableEntities();
-			if (!trainables)     // base still in construction
+			if (!base.anchor.trainableEntities())	// base still in construction
 				continue;
-			var queue = base.anchor._entity.trainingQueue
+			let queue = base.anchor._entity.trainingQueue
 			if (queue)
 			{
-				var time = 0;
-				for (var item of queue)
+				let time = 0;
+				for (let item of queue)
 					if (item.progress > 0 || (item.metadata && item.metadata.garrisonType))
 						time += item.timeRemaining;
 				if (time/1000 > 5)
 					continue;
 			}
-			var templateFound = undefined;
-			for (var trainable of trainables)
-			{
-				if (gameState.isDisabledTemplates(trainable))
-					continue;
-				var template = gameState.getTemplate(trainable);
-				if (!template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
-					continue;
-				// Keep non-ranged units only as long as no ranged one found
-				if (rangedUnit && !template.hasClass("Ranged"))
-					continue;
-				if (!total.canAfford(new API3.Resources(template.cost())))
-					continue;
-				templateFound = [trainable, template];
-				if (!template.hasClass("Ranged"))
-					continue;
-				rangedUnit = true;
-				break;
-			}
-			if (!templateFound)
-				continue;
-			var dist = API3.SquareVectorDistance(base.anchor.position(), pos);
+			let dist = API3.SquareVectorDistance(base.anchor.position(), pos);
 			if (nearestAnchor && dist > distmin)
 				continue;
 			distmin = dist;
 			nearestAnchor = base.anchor;
-			templateAnchor = templateFound;
 		}
 	}
 	if (!nearestAnchor || distmin > distcut)
 		return;
 
-	var autogarrison = rangedUnit;
+	// We will choose randomly ranged and melee units, except when garrisonHolder is full
+	// in which case we prefer melee units
 	var numGarrisoned = this.garrisonManager.numberOfGarrisonedUnits(nearestAnchor);
 	if (nearestAnchor._entity.trainingQueue)
 	{
@@ -1485,48 +1462,56 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		{
 			if (item.metadata && item.metadata["garrisonType"])
 				numGarrisoned += item.count;
-			else if (!item.progress || !item.metadata || !item.metadata.trainer)
+			else if (!item.progress && (!item.metadata || !item.metadata.trainer))
 				nearestAnchor.stopProduction(item.id);
 		}
 	}
-	if (rangedUnit && numGarrisoned >= nearestAnchor.garrisonMax())
+	var autogarrison = (numGarrisoned < nearestAnchor.garrisonMax());
+	var rangedWanted = (Math.random() > 0.5 && autogarrison);
+
+	var total = gameState.getResources();
+	var templateFound = undefined;
+	var trainables = nearestAnchor.trainableEntities();
+	var garrisonArrowClasses = nearestAnchor.getGarrisonArrowClasses();
+	for (let trainable of trainables)
 	{
-		// No more room to garrison ... favor a melee unit
-		autogarrison = false;
-		var trainables = nearestAnchor.trainableEntities();
-		for (var trainable of trainables)
-		{
-			if (gameState.isDisabledTemplates(trainable))
-				continue;
-			var template = gameState.getTemplate(trainable);
-			if (!template.hasClass("Infantry") || !template.hasClass("Melee")
-				|| !template.hasClass("CitizenSoldier"))
-				continue;
-			if (!total.canAfford(new API3.Resources(template.cost())))
-				continue;
-			templateAnchor = [trainable, template];
+		if (gameState.isDisabledTemplates(trainable))
+			continue;
+		let template = gameState.getTemplate(trainable);
+		if (!template.hasClass("Infantry") || !template.hasClass("CitizenSoldier"))
+			continue;
+		if (autogarrison && !MatchesClassList(garrisonArrowClasses, template.classes()))
+			continue;
+		if (!total.canAfford(new API3.Resources(template.cost())))
+			continue;
+		templateFound = [trainable, template];
+		if (template.hasClass("Ranged") === rangedWanted)
 			break;
-		}
 	}
+	if (!templateFound)
+		return;
+
 	// Check first if we can afford it without touching the other accounts
 	// and if not, take some of other accounted resources
 	// TODO sort the queues to be substracted
-	var cost = new API3.Resources(templateAnchor[1].cost());
-	if (!gameState.ai.queueManager.accounts["emergency"].canAfford(cost))
+	let queueManager = gameState.ai.queueManager;
+	let cost = new API3.Resources(templateFound[1].cost());
+	queueManager.setAccounts(gameState, cost, "emergency");
+	if (!queueManager.accounts["emergency"].canAfford(cost))
 	{
-		for (var p in gameState.ai.queueManager.queues)
+		for (let p in queueManager.queues)
 		{
 			if (p === "emergency")
 				continue;
-			gameState.ai.queueManager.transferAccounts(cost, p, "emergency");
-			if (gameState.ai.queueManager.accounts["emergency"].canAfford(cost))
+			queueManager.transferAccounts(cost, p, "emergency");
+			if (queueManager.accounts["emergency"].canAfford(cost))
 				break;
 		}
 	}
 	var metadata = { "role": "worker", "base": nearestAnchor.getMetadata(PlayerID, "base"), "trainer": nearestAnchor.id() };
 	if (autogarrison)
 		metadata.garrisonType = "protection";
-	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateAnchor[0], metadata, 1, 1));
+	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
 };
 
 m.HQ.prototype.canBuild = function(gameState, structure)
