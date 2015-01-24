@@ -251,6 +251,10 @@ int tvsprintf_s(tchar* dst, size_t max_dst_chars, const tchar* fmt, va_list ap)
 	}
 
 #if OS_ANDROID
+	// Workaround for https://code.google.com/p/android/issues/detail?id=109074
+	// (vswprintf doesn't null-terminate strings)
+	memset(dst, 0, max_dst_chars * sizeof(tchar));
+
 	const int ret = tvsnprintf(dst, max_dst_chars, androidFormat(fmt).c_str(), ap);
 #else
 	const int ret = tvsnprintf(dst, max_dst_chars, fmt, ap);
