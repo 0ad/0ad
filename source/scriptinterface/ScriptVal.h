@@ -79,6 +79,21 @@ public:
 		m_Val.reset(new JS::PersistentRooted<T>(cx, val));
 	}
 
+	// TODO: Move assignment operator and move constructor only have to be
+	// explicitly defined for Visual Studio. VS2013 is still behind on C++11 support
+	// What's missing is what they call "Rvalue references v3.0", see
+	// https://msdn.microsoft.com/en-us/library/hh567368.aspx#rvref
+	DefPersistentRooted<T>& operator=(DefPersistentRooted<T>&& other)
+	{
+		m_Val = std::move(other.m_Val);
+		return *this;
+	}
+
+	DefPersistentRooted<T>(DefPersistentRooted<T>&& other)
+	{
+		m_Val = std::move(other.m_Val);
+	}
+
 private:
 	std::unique_ptr<JS::PersistentRooted<T> > m_Val;
 };
