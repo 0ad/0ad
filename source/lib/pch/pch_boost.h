@@ -3,7 +3,7 @@
 
 #include "lib/external_libraries/suppress_boost_warnings.h"
 
-#if MSC_VERSION >= 1600
+#if MSC_VERSION
 # define BOOST_HAS_STDINT_H
 #endif
 

@@ -17,13 +17,10 @@
 # pragma warning(disable:4718)	// recursive call has no side effects, deleting
 # pragma warning(disable:4786)	// identifier truncated to 255 chars
 # pragma warning(disable:4996)	// function is deprecated
-// .. VS2005 code analysis (very frequent ones)
-# if MSC_VERSION >= 1400
-#  pragma warning(disable:6011)	// dereferencing NULL pointer
-#  pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
-#  pragma warning(disable:6326)	// potential comparison of a constant with another constant
-#  pragma warning(disable:6334)	// sizeof operator applied to an expression with an operator might yield unexpected results
-# endif
+# pragma warning(disable:6011)	// dereferencing NULL pointer
+# pragma warning(disable:6246)	// local declaration hides declaration of the same name in outer scope
+# pragma warning(disable:6326)	// potential comparison of a constant with another constant
+# pragma warning(disable:6334)	// sizeof operator applied to an expression with an operator might yield unexpected results
 // .. Intel-specific
 # if ICC_VERSION
 #  pragma warning(disable:383)	// value copied to temporary, reference to temporary used

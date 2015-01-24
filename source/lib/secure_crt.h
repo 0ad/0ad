@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -37,7 +37,7 @@ namespace ERR
 }
 
 // if the platform lacks a secure CRT implementation, we'll provide one.
-#if MSC_VERSION >= 1400
+#if MSC_VERSION
 # define EMULATE_SECURE_CRT 0
 #else
 # define EMULATE_SECURE_CRT 1

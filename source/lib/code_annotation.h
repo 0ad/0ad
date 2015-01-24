@@ -295,7 +295,7 @@ switch(x % 2)
 #if GCC_VERSION
 # define RESTRICT __restrict__
 // .. VC8 provides __restrict
-#elif MSC_VERSION >= 1400
+#elif MSC_VERSION
 # define RESTRICT __restrict
 // .. ICC supports the keyword 'restrict' when run with the /Qrestrict option,
 //    but it always also supports __restrict__ or __restrict to be compatible
