@@ -332,6 +332,7 @@ extern_lib_defs = {
 				add_default_links({
 					win_names  = { "gloox-1.0" },
 					unix_names = { "gloox" },
+					no_delayload = 1,
 				})
 			end
 		end,
@@ -397,6 +398,7 @@ extern_lib_defs = {
 					win_names  = { "icuuc", "icuin" },
 					unix_names = { "icui18n", "icuuc" },
 					dbg_suffix = "",
+					no_delayload = 1,
 				})
 			end
 		end,
