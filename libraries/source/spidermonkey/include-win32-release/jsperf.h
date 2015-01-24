@@ -6,7 +6,10 @@
 #ifndef perf_jsperf_h
 #define perf_jsperf_h
 
-#include "jsapi.h"
+#include "jstypes.h"
+
+#include "js/TypeDecls.h"
+#include "js/Utility.h"
 
 namespace JS {
 
@@ -115,15 +118,15 @@ class JS_FRIEND_API(PerfMeasurement)
  * global object).  The JS-visible API is identical to the C++ API.
  */
 extern JS_FRIEND_API(JSObject*)
-    RegisterPerfMeasurement(JSContext *cx, JSObject *global);
+    RegisterPerfMeasurement(JSContext *cx, JS::HandleObject global);
 
 /*
- * Given a jsval which contains an instance of the aforementioned
- * wrapper class, extract the C++ object.  Returns NULL if the
- * jsval is not an instance of the wrapper.
+ * Given a Value which contains an instance of the aforementioned
+ * wrapper class, extract the C++ object.  Returns nullptr if the
+ * Value is not an instance of the wrapper.
  */
 extern JS_FRIEND_API(PerfMeasurement*)
-    ExtractPerfMeasurement(jsval wrapper);
+    ExtractPerfMeasurement(Value wrapper);
 
 } // namespace JS
 

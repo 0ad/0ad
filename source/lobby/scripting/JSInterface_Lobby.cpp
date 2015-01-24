@@ -42,15 +42,15 @@ void JSI_Lobby::RegisterScriptFunctions(ScriptInterface& scriptInterface)
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendGetBoardList>("SendGetBoardList");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendGetRatingList>("SendGetRatingList");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::SendGetProfile>("SendGetProfile");
-	scriptInterface.RegisterFunction<void, CScriptVal, &JSI_Lobby::SendRegisterGame>("SendRegisterGame");
-	scriptInterface.RegisterFunction<void, CScriptVal, &JSI_Lobby::SendGameReport>("SendGameReport");
+	scriptInterface.RegisterFunction<void, JS::HandleValue, &JSI_Lobby::SendRegisterGame>("SendRegisterGame");
+	scriptInterface.RegisterFunction<void, JS::HandleValue, &JSI_Lobby::SendGameReport>("SendGameReport");
 	scriptInterface.RegisterFunction<void, &JSI_Lobby::SendUnregisterGame>("SendUnregisterGame");
 	scriptInterface.RegisterFunction<void, std::wstring, std::wstring, &JSI_Lobby::SendChangeStateGame>("SendChangeStateGame");
-	scriptInterface.RegisterFunction<CScriptVal, &JSI_Lobby::GetPlayerList>("GetPlayerList");
-	scriptInterface.RegisterFunction<CScriptVal, &JSI_Lobby::GetGameList>("GetGameList");
-	scriptInterface.RegisterFunction<CScriptVal, &JSI_Lobby::GetBoardList>("GetBoardList");
-	scriptInterface.RegisterFunction<CScriptVal, &JSI_Lobby::GetProfile>("GetProfile");
-	scriptInterface.RegisterFunction<CScriptVal, &JSI_Lobby::LobbyGuiPollMessage>("LobbyGuiPollMessage");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetPlayerList>("GetPlayerList");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetGameList>("GetGameList");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetBoardList>("GetBoardList");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::GetProfile>("GetProfile");
+	scriptInterface.RegisterFunction<JS::Value, &JSI_Lobby::LobbyGuiPollMessage>("LobbyGuiPollMessage");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySendMessage>("LobbySendMessage");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetPlayerPresence>("LobbySetPlayerPresence");
 	scriptInterface.RegisterFunction<void, std::wstring, &JSI_Lobby::LobbySetNick>("LobbySetNick");
@@ -145,7 +145,7 @@ void JSI_Lobby::SendGetProfile(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), s
 	g_XmppClient->SendIqGetProfile(utf8_from_wstring(player));
 }
 
-void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data)
+void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
 {
 	if (!g_XmppClient)
 		return;
@@ -153,7 +153,7 @@ void JSI_Lobby::SendGameReport(ScriptInterface::CxPrivate* pCxPrivate, CScriptVa
 	g_XmppClient->SendIqGameReport(*(pCxPrivate->pScriptInterface), data);
 }
 
-void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, CScriptVal data)
+void JSI_Lobby::SendRegisterGame(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
 {
 	if (!g_XmppClient)
 		return;
@@ -175,54 +175,74 @@ void JSI_Lobby::SendChangeStateGame(ScriptInterface::CxPrivate* UNUSED(pCxPrivat
 	g_XmppClient->SendIqChangeStateGame(utf8_from_wstring(nbp), utf8_from_wstring(players));
 }
 
-CScriptVal JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetPlayerList(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
-		return CScriptVal();
+		return JS::UndefinedValue();
+
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 		
-	CScriptValRooted playerList = g_XmppClient->GUIGetPlayerList(*(pCxPrivate->pScriptInterface));
+	JS::RootedValue playerList(cx);
+	g_XmppClient->GUIGetPlayerList(*(pCxPrivate->pScriptInterface), &playerList);
 
-	return playerList.get();
+	return playerList;
 }
 
-CScriptVal JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetGameList(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
-		return CScriptVal();
+		return JS::UndefinedValue();
 
-	CScriptValRooted gameList = g_XmppClient->GUIGetGameList(*(pCxPrivate->pScriptInterface));
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 
-	return gameList.get();
+	JS::RootedValue gameList(cx);
+	g_XmppClient->GUIGetGameList(*(pCxPrivate->pScriptInterface), &gameList);
+
+	return gameList;
 }
 
-CScriptVal JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetBoardList(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
-		return CScriptVal();
+		return JS::UndefinedValue();
 
-	CScriptValRooted boardList = g_XmppClient->GUIGetBoardList(*(pCxPrivate->pScriptInterface));
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 
-	return boardList.get();
+	JS::RootedValue boardList(cx);
+	g_XmppClient->GUIGetBoardList(*(pCxPrivate->pScriptInterface), &boardList);
+
+	return boardList;
 }
 
-CScriptVal JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::GetProfile(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
-		return CScriptVal();
+		return JS::UndefinedValue();
 
-	CScriptValRooted profileFetch = g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface));
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 
-	return profileFetch.get();
+	JS::RootedValue profileFetch(cx);
+	g_XmppClient->GUIGetProfile(*(pCxPrivate->pScriptInterface), &profileFetch);
+
+	return profileFetch;
 }
 
-CScriptVal JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
+JS::Value JSI_Lobby::LobbyGuiPollMessage(ScriptInterface::CxPrivate* pCxPrivate)
 {
 	if (!g_XmppClient)
-		return CScriptVal();
+		return JS::UndefinedValue();
+
+	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
+	JSAutoRequest rq(cx);
 	
-	CScriptValRooted poll = g_XmppClient->GuiPollMessage(*(pCxPrivate->pScriptInterface));
+	JS::RootedValue poll(cx);
+	g_XmppClient->GuiPollMessage(*(pCxPrivate->pScriptInterface), &poll);
 
-	return poll.get();
+	return poll;
 }
 
 void JSI_Lobby::LobbySendMessage(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), std::wstring message)

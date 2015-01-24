@@ -34,7 +34,7 @@ public:
 	virtual JS::Value ToJSVal(ScriptInterface&) const = 0;
 	JS::Value ToJSValCached(ScriptInterface&) const;
 private:
-	mutable CScriptValRooted m_Cached;
+	mutable std::unique_ptr<JS::PersistentRootedValue> m_Cached;
 };
 // TODO: GetType could be replaced with a plain member variable to avoid some
 // virtual calls, if that turns out to be worthwhile

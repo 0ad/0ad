@@ -1,35 +1,20 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* Implementations of various class and method modifier attributes. */
 
-#ifndef mozilla_Attributes_h_
-#define mozilla_Attributes_h_
+#ifndef mozilla_Attributes_h
+#define mozilla_Attributes_h
 
 #include "mozilla/Compiler.h"
 
 /*
- * MOZ_INLINE is a macro which expands to tell the compiler that the method
- * decorated with it should be inlined.  This macro is usable from C and C++
- * code, even though C89 does not support the |inline| keyword.  The compiler
- * may ignore this directive if it chooses.
- */
-#if defined(__cplusplus)
-#  define MOZ_INLINE            inline
-#elif defined(_MSC_VER)
-#  define MOZ_INLINE            __inline
-#elif defined(__GNUC__)
-#  define MOZ_INLINE            __inline__
-#else
-#  define MOZ_INLINE            inline
-#endif
-
-/*
  * MOZ_ALWAYS_INLINE is a macro which expands to tell the compiler that the
  * method decorated with it must be inlined, even if the compiler thinks
- * otherwise.  This is only a (much) stronger version of the MOZ_INLINE hint:
+ * otherwise.  This is only a (much) stronger version of the inline hint:
  * compilers are not guaranteed to respect it (although they're much more likely
  * to do so).
  *
@@ -39,15 +24,17 @@
 #if defined(_MSC_VER)
 #  define MOZ_ALWAYS_INLINE_EVEN_DEBUG     __forceinline
 #elif defined(__GNUC__)
-#  define MOZ_ALWAYS_INLINE_EVEN_DEBUG     __attribute__((always_inline)) MOZ_INLINE
+#  define MOZ_ALWAYS_INLINE_EVEN_DEBUG     __attribute__((always_inline)) inline
 #else
-#  define MOZ_ALWAYS_INLINE_EVEN_DEBUG     MOZ_INLINE
+#  define MOZ_ALWAYS_INLINE_EVEN_DEBUG     inline
 #endif
 
-#if defined(DEBUG)
-#  define MOZ_ALWAYS_INLINE     MOZ_INLINE
-#else
+#if !defined(DEBUG)
 #  define MOZ_ALWAYS_INLINE     MOZ_ALWAYS_INLINE_EVEN_DEBUG
+#elif defined(_MSC_VER) && !defined(__cplusplus)
+#  define MOZ_ALWAYS_INLINE     __inline
+#else
+#  define MOZ_ALWAYS_INLINE     inline
 #endif
 
 /*
@@ -69,6 +56,9 @@
 #  endif
 #  if __has_extension(cxx_constexpr)
 #    define MOZ_HAVE_CXX11_CONSTEXPR
+#  endif
+#  if __has_extension(cxx_explicit_conversions)
+#    define MOZ_HAVE_EXPLICIT_CONVERSION
 #  endif
 #  if __has_extension(cxx_deleted_functions)
 #    define MOZ_HAVE_CXX11_DELETE
@@ -92,6 +82,9 @@
 #    if MOZ_GCC_VERSION_AT_LEAST(4, 6, 0)
 #      define MOZ_HAVE_CXX11_CONSTEXPR
 #    endif
+#    if MOZ_GCC_VERSION_AT_LEAST(4, 5, 0)
+#      define MOZ_HAVE_EXPLICIT_CONVERSION
+#    endif
 #    define MOZ_HAVE_CXX11_DELETE
 #  else
      /* __final is a non-C++11 GCC synonym for 'final', per GCC r176655. */
@@ -102,6 +95,9 @@
 #  define MOZ_HAVE_NEVER_INLINE          __attribute__((noinline))
 #  define MOZ_HAVE_NORETURN              __attribute__((noreturn))
 #elif defined(_MSC_VER)
+#  if _MSC_VER >= 1800
+#    define MOZ_HAVE_CXX11_DELETE
+#  endif
 #  if _MSC_VER >= 1700
 #    define MOZ_HAVE_CXX11_FINAL         final
 #  else
@@ -111,17 +107,50 @@
 #  define MOZ_HAVE_CXX11_OVERRIDE
 #  define MOZ_HAVE_NEVER_INLINE          __declspec(noinline)
 #  define MOZ_HAVE_NORETURN              __declspec(noreturn)
+// Staying away from explicit conversion operators in MSVC for now, see
+// http://stackoverflow.com/questions/20498142/visual-studio-2013-explicit-keyword-bug
 #endif
 
 /*
  * The MOZ_CONSTEXPR specifier declares that a C++11 compiler can evaluate a
  * function at compile time. A constexpr function cannot examine any values
  * except its arguments and can have no side effects except its return value.
+ * The MOZ_CONSTEXPR_VAR specifier tells a C++11 compiler that a variable's
+ * value may be computed at compile time.  It should be prefered to just
+ * marking variables as MOZ_CONSTEXPR because if the compiler does not support
+ * constexpr it will fall back to making the variable const, and some compilers
+ * do not accept variables being marked both const and constexpr.
  */
 #ifdef MOZ_HAVE_CXX11_CONSTEXPR
 #  define MOZ_CONSTEXPR         constexpr
+#  define MOZ_CONSTEXPR_VAR     constexpr
 #else
 #  define MOZ_CONSTEXPR         /* no support */
+#  define MOZ_CONSTEXPR_VAR     const
+#endif
+
+/*
+ * MOZ_EXPLICIT_CONVERSION is a specifier on a type conversion
+ * overloaded operator that declares that a C++11 compiler should restrict
+ * this operator to allow only explicit type conversions, disallowing
+ * implicit conversions.
+ *
+ * Example:
+ *
+ *   template<typename T>
+ *   class Ptr
+ *   {
+ *      T* ptr;
+ *      MOZ_EXPLICIT_CONVERSION operator bool() const {
+ *        return ptr != nullptr;
+ *      }
+ *   };
+ *
+ */
+#ifdef MOZ_HAVE_EXPLICIT_CONVERSION
+#  define MOZ_EXPLICIT_CONVERSION explicit
+#else
+#  define MOZ_EXPLICIT_CONVERSION /* no support */
 #endif
 
 /*
@@ -158,16 +187,42 @@
 
 /*
  * MOZ_ASAN_BLACKLIST is a macro to tell AddressSanitizer (a compile-time
- * instrumentation shipped with Clang) to not instrument the annotated function.
- * Furthermore, it will prevent the compiler from inlining the function because
- * inlining currently breaks the blacklisting mechanism of AddressSanitizer.
+ * instrumentation shipped with Clang and GCC) to not instrument the annotated
+ * function. Furthermore, it will prevent the compiler from inlining the
+ * function because inlining currently breaks the blacklisting mechanism of
+ * AddressSanitizer.
  */
-#if defined(MOZ_ASAN)
-#  define MOZ_ASAN_BLACKLIST MOZ_NEVER_INLINE __attribute__((no_address_safety_analysis))
-# else
-#  define MOZ_ASAN_BLACKLIST
+#if defined(__has_feature)
+#  if __has_feature(address_sanitizer)
+#    define MOZ_HAVE_ASAN_BLACKLIST
+#  endif
+#elif defined(__GNUC__)
+#  if defined(__SANITIZE_ADDRESS__)
+#    define MOZ_HAVE_ASAN_BLACKLIST
+#  endif
 #endif
 
+#if defined(MOZ_HAVE_ASAN_BLACKLIST)
+#  define MOZ_ASAN_BLACKLIST MOZ_NEVER_INLINE __attribute__((no_sanitize_address))
+#else
+#  define MOZ_ASAN_BLACKLIST /* nothing */
+#endif
+
+/*
+ * MOZ_TSAN_BLACKLIST is a macro to tell ThreadSanitizer (a compile-time
+ * instrumentation shipped with Clang) to not instrument the annotated function.
+ * Furthermore, it will prevent the compiler from inlining the function because
+ * inlining currently breaks the blacklisting mechanism of ThreadSanitizer.
+ */
+#if defined(__has_feature)
+#  if __has_feature(thread_sanitizer)
+#    define MOZ_TSAN_BLACKLIST MOZ_NEVER_INLINE __attribute__((no_sanitize_thread))
+#  else
+#    define MOZ_TSAN_BLACKLIST /* nothing */
+#  endif
+#else
+#  define MOZ_TSAN_BLACKLIST /* nothing */
+#endif
 
 #ifdef __cplusplus
 
@@ -393,17 +448,45 @@
  *   class uses this class, or if another class inherits from this class, then
  *   it is considered to be a non-heap class as well, although this attribute
  *   need not be provided in such cases.
+ * MOZ_HEAP_ALLOCATOR: Applies to any function. This indicates that the return
+ *   value is allocated on the heap, and will as a result check such allocations
+ *   during MOZ_STACK_CLASS and MOZ_NONHEAP_CLASS annotation checking.
  */
 #ifdef MOZ_CLANG_PLUGIN
-# define MOZ_MUST_OVERRIDE __attribute__((annotate("moz_must_override")))
-# define MOZ_STACK_CLASS __attribute__((annotate("moz_stack_class")))
-# define MOZ_NONHEAP_CLASS __attribute__((annotate("moz_nonheap_class")))
+#  define MOZ_MUST_OVERRIDE __attribute__((annotate("moz_must_override")))
+#  define MOZ_STACK_CLASS __attribute__((annotate("moz_stack_class")))
+#  define MOZ_NONHEAP_CLASS __attribute__((annotate("moz_nonheap_class")))
+/*
+ * It turns out that clang doesn't like void func() __attribute__ {} without a
+ * warning, so use pragmas to disable the warning. This code won't work on GCC
+ * anyways, so the warning is safe to ignore.
+ */
+#  define MOZ_HEAP_ALLOCATOR \
+    _Pragma("clang diagnostic push") \
+    _Pragma("clang diagnostic ignored \"-Wgcc-compat\"") \
+    __attribute__((annotate("moz_heap_allocator"))) \
+    _Pragma("clang diagnostic pop")
 #else
-# define MOZ_MUST_OVERRIDE /* nothing */
-# define MOZ_STACK_CLASS /* nothing */
-# define MOZ_NONHEAP_CLASS /* nothing */
+#  define MOZ_MUST_OVERRIDE /* nothing */
+#  define MOZ_STACK_CLASS /* nothing */
+#  define MOZ_NONHEAP_CLASS /* nothing */
+#  define MOZ_HEAP_ALLOCATOR /* nothing */
 #endif /* MOZ_CLANG_PLUGIN */
+
+/*
+ * MOZ_THIS_IN_INITIALIZER_LIST is used to avoid a warning when we know that
+ * it's safe to use 'this' in an initializer list.
+ */
+#ifdef _MSC_VER
+#  define MOZ_THIS_IN_INITIALIZER_LIST() \
+     __pragma(warning(push)) \
+     __pragma(warning(disable:4355)) \
+     this \
+     __pragma(warning(pop))
+#else
+#  define MOZ_THIS_IN_INITIALIZER_LIST() this
+#endif
 
 #endif /* __cplusplus */
 
-#endif  /* mozilla_Attributes_h_ */
+#endif /* mozilla_Attributes_h */

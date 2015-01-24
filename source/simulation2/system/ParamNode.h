@@ -22,7 +22,7 @@
 #include "maths/Fixed.h"
 #include "ps/CStrIntern.h"
 #include "ps/Errors.h"
-#include "scriptinterface/ScriptVal.h"
+#include "scriptinterface/ScriptTypes.h"
 
 #include <map>
 #include <set>
@@ -256,7 +256,7 @@ private:
 	/**
 	 * Caches the ToJSVal script representation of this node.
 	 */
-	mutable CScriptValRooted m_ScriptVal;
+	mutable std::shared_ptr<JS::PersistentRootedValue> m_ScriptVal;
 };
 
 #endif // INCLUDED_PARAMNODE

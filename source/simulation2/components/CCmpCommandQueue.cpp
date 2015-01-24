@@ -52,14 +52,12 @@ public:
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 		JSAutoRequest rq(cx);
-		
-		JS::RootedValue tmpRoot(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
+
 		serialize.NumberU32_Unbounded("num commands", (u32)m_LocalQueue.size());
 		for (size_t i = 0; i < m_LocalQueue.size(); ++i)
 		{
-			tmpRoot.set(m_LocalQueue[i].data.get());
 			serialize.NumberI32_Unbounded("player", m_LocalQueue[i].player);
-			serialize.ScriptVal("data", &tmpRoot);
+			serialize.ScriptVal("data", &m_LocalQueue[i].data);
 		}
 	}
 
@@ -76,25 +74,22 @@ public:
 			JS::RootedValue data(cx);
 			deserialize.NumberI32_Unbounded("player", player);
 			deserialize.ScriptVal("data", &data);
-			SimulationCommand c = { player, CScriptValRooted(cx, data) };
-			m_LocalQueue.push_back(c);
+			m_LocalQueue.emplace_back(SimulationCommand(player, cx, data));
 		}
 	}
 
-	virtual void PushLocalCommand(player_id_t player, CScriptVal cmd)
+	virtual void PushLocalCommand(player_id_t player, JS::HandleValue cmd)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
-
-		SimulationCommand c = { player, CScriptValRooted(cx, cmd) };
-		m_LocalQueue.push_back(c);
+		m_LocalQueue.emplace_back(SimulationCommand(player, cx, cmd));
 	}
 
-	virtual void PostNetworkCommand(CScriptVal cmd1)
+	virtual void PostNetworkCommand(JS::HandleValue cmd1)
 	{
 		JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
 		JSAutoRequest rq(cx);
 		
-		// TODO: With ESR31 we should be able to take JS::HandleValue directly
+		// TODO: This is a workaround because we need to pass a MutableHandle to StringifyJSON.
 		JS::RootedValue cmd(cx, cmd1.get());
 
 		PROFILE2_EVENT("post net command");
@@ -102,7 +97,7 @@ public:
 
 		// TODO: would be nicer to not use globals
 		if (g_Game && g_Game->GetTurnManager())
-			g_Game->GetTurnManager()->PostCommand(CScriptValRooted(cx, cmd));
+			g_Game->GetTurnManager()->PostCommand(cmd);
 	}
 
 	virtual void FlushTurn(const std::vector<SimulationCommand>& commands)

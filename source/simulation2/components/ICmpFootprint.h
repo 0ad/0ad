@@ -54,7 +54,7 @@ public:
 	 * Returns { "type": "circle", "radius": 5.0, "height": 1.0 }
 	 * or { "type": "square", "width": 5.0, "depth": 5.0, "height": 1.0 }
 	 */
-	CScriptVal GetShape_wrapper();
+	JS::Value GetShape_wrapper();
 
 	/**
 	 * Pick a sensible position to place a newly-spawned entity near this footprint,

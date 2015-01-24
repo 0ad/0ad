@@ -20,7 +20,7 @@
 
 #include "ISerializer.h"
 
-#include "scriptinterface/AutoRooters.h"
+#include "scriptinterface/third_party/ObjectToIDMap.h"
 
 #include "lib/byte_order.h"
 #include "lib/allocators/arena.h"
@@ -57,28 +57,21 @@ class CBinarySerializerScriptImpl
 public:
 	CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer);
 
-	void ScriptString(const char* name, JSString* string);
+	void ScriptString(const char* name, JS::HandleString string);
 	void HandleScriptVal(JS::HandleValue val);
-	void SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes);
+	void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes);
 private:
 	ScriptInterface& m_ScriptInterface;
 	ISerializer& m_Serializer;
 
-	// Pooling helps since we do a lot of short-lived allocations
-	typedef ProxyAllocator<std::pair<JSObject* const, u32>, Allocators::DynamicArena> ScriptBackrefsAlloc;
-	typedef std::map<JSObject*, u32, std::less<JSObject*>, ScriptBackrefsAlloc> backrefs_t;
-
-	Allocators::DynamicArena m_ScriptBackrefsArena;
-	backrefs_t m_ScriptBackrefs;
+	ObjectIdCache<u32> m_ScriptBackrefs;
 	u32 m_ScriptBackrefsNext;
-	u32 GetScriptBackrefTag(JSObject* obj);
+	u32 GetScriptBackrefTag(JS::HandleObject obj);
 
-	AutoGCRooter m_Rooter;
+	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
 
-	std::map<JSObject*, std::wstring> m_SerializablePrototypes;
-
-	bool IsSerializablePrototype(JSObject* prototype);
-	std::wstring GetPrototypeName(JSObject* prototype);
+	bool IsSerializablePrototype(JS::HandleObject prototype);
+	std::wstring GetPrototypeName(JS::HandleObject prototype);
 };
 
 /**
@@ -106,7 +99,7 @@ public:
 	{
 	}
 
-	virtual void SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes)
+	virtual void SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> >& prototypes)
 	{
 		m_ScriptImpl->SetSerializablePrototypes(prototypes);
 	}

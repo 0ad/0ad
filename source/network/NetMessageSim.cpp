@@ -110,30 +110,38 @@ public:
 };
 
 CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(&scriptInterface)
+	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(&scriptInterface), m_Data(scriptInterface.GetJSRuntime())
 {
 }
 
-CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, jsval data) :
+CSimulationMessage::CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data) :
 	CNetMessage(NMT_SIMULATION_COMMAND), m_ScriptInterface(&scriptInterface),
-	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetContext(), data)
+	m_Client(client), m_Player(player), m_Turn(turn), m_Data(scriptInterface.GetJSRuntime(), data)
 {
+}
+
+CSimulationMessage::CSimulationMessage(const CSimulationMessage& orig) :
+	m_Data(orig.m_ScriptInterface->GetJSRuntime()),
+	m_Client(orig.m_Client),
+	m_Player(orig.m_Player),
+	m_ScriptInterface(orig.m_ScriptInterface),
+	m_Turn(orig.m_Turn),
+	CNetMessage(orig)
+{
+	m_Data.set(orig.m_Data);
 }
 
 u8* CSimulationMessage::Serialize(u8* pBuffer) const
 {
 	// TODO: ought to handle serialization exceptions
 	// TODO: ought to represent common commands more efficiently
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
-	
 	u8* pos = CNetMessage::Serialize(pBuffer);
 	CBufferBinarySerializer serializer(*m_ScriptInterface, pos);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", &tmpData);
+
+	serializer.ScriptVal("command", const_cast<JS::PersistentRootedValue*>(&m_Data));
 	return serializer.GetBuffer();
 }
 
@@ -141,18 +149,13 @@ const u8* CSimulationMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
 	// TODO: ought to handle serialization exceptions
 	// TODO: ought to represent common commands more efficiently
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue tmpData(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(*m_ScriptInterface, stream);
 	deserializer.NumberU32_Unbounded("client", m_Client);
 	deserializer.NumberI32_Unbounded("player", m_Player);
 	deserializer.NumberU32_Unbounded("turn", m_Turn);
-	deserializer.ScriptVal("command", &tmpData);
-	m_Data = CScriptValRooted(cx, tmpData);
+	deserializer.ScriptVal("command", &m_Data);
 	return pEnd;
 }
 
@@ -160,24 +163,20 @@ size_t CSimulationMessage::GetSerializedLength() const
 {
 	// TODO: serializing twice is stupidly inefficient - we should just
 	// do it once, store the result, and use it here and in Serialize
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
-	
 	CLengthBinarySerializer serializer(*m_ScriptInterface);
 	serializer.NumberU32_Unbounded("client", m_Client);
 	serializer.NumberI32_Unbounded("player", m_Player);
 	serializer.NumberU32_Unbounded("turn", m_Turn);
-	serializer.ScriptVal("command", &tmpData);
+
+	// TODO: The cast can probably be removed if and when ScriptVal can take a JS::HandleValue instead of
+	// a JS::MutableHandleValue (relies on JSAPI change). Also search for other casts like this one in that case.
+	serializer.ScriptVal("command", const_cast<JS::PersistentRootedValue*>(&m_Data));
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
 CStr CSimulationMessage::ToString() const
 {
-	JSContext* cx = m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
-	std::string source = utf8_from_wstring(m_ScriptInterface->ToString(&tmpData));
+	std::string source = utf8_from_wstring(m_ScriptInterface->ToString(const_cast<JS::PersistentRootedValue*>(&m_Data)));
 
 	std::stringstream stream;
 	stream << "CSimulationMessage { m_Client: " << m_Client << ", m_Player: " << m_Player << ", m_Turn: " << m_Turn << ", m_Data: " << source << " }";
@@ -186,61 +185,45 @@ CStr CSimulationMessage::ToString() const
 
 
 CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface) :
-	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface)
+	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface), m_Data(scriptInterface.GetJSRuntime())
 {
 }
 
-CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface, jsval data) :
+CGameSetupMessage::CGameSetupMessage(ScriptInterface& scriptInterface, JS::HandleValue data) :
 	CNetMessage(NMT_GAME_SETUP), m_ScriptInterface(scriptInterface),
-	m_Data(scriptInterface.GetContext(), data)
+	m_Data(scriptInterface.GetJSRuntime(), data)
 {
 }
 
 u8* CGameSetupMessage::Serialize(u8* pBuffer) const
 {
 	// TODO: ought to handle serialization exceptions
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
-	
 	u8* pos = CNetMessage::Serialize(pBuffer);
 	CBufferBinarySerializer serializer(m_ScriptInterface, pos);
-	serializer.ScriptVal("command", &tmpData);
+	serializer.ScriptVal("command", const_cast<JS::PersistentRootedValue*>(&m_Data));
 	return serializer.GetBuffer();
 }
 
 const u8* CGameSetupMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
 	// TODO: ought to handle serialization exceptions
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
-	
 	const u8* pos = CNetMessage::Deserialize(pStart, pEnd);
 	std::istringstream stream(std::string(pos, pEnd));
 	CStdDeserializer deserializer(m_ScriptInterface, stream);
-	deserializer.ScriptVal("command", &tmpData);
-	m_Data = CScriptValRooted(cx, tmpData);
+	deserializer.ScriptVal("command", const_cast<JS::PersistentRootedValue*>(&m_Data));
 	return pEnd;
 }
 
 size_t CGameSetupMessage::GetSerializedLength() const
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade	
-	
 	CLengthBinarySerializer serializer(m_ScriptInterface);
-	serializer.ScriptVal("command", &tmpData);
+	serializer.ScriptVal("command", const_cast<JS::PersistentRootedValue*>(&m_Data));
 	return CNetMessage::GetSerializedLength() + serializer.GetLength();
 }
 
 CStr CGameSetupMessage::ToString() const
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	JS::RootedValue tmpData(cx, m_Data.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
-	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(&tmpData));
+	std::string source = utf8_from_wstring(m_ScriptInterface.ToString(const_cast<JS::PersistentRootedValue*>(&m_Data)));
 
 	std::stringstream stream;
 	stream << "CGameSetupMessage { m_Data: " << source << " }";

@@ -24,6 +24,9 @@ if [ "`uname -s`" != "Darwin" ]; then
 
   (cd ../../libraries/source/fcollada/src && rm -rf ./output)
   (cd ../../libraries/source/spidermonkey && rm -f .already-built)
+  (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs31)
+# Still delete the directory of the previous SpiderMonkey version to
+# avoid wasting disk space if people clean workspaces after updating.
   (cd ../../libraries/source/spidermonkey && rm -rf ./mozjs24)
   (cd ../../libraries/source/nvtt/src && rm -rf ./build)
 fi

@@ -886,12 +886,26 @@ bool Init(const CmdLineArgs& args, int flags)
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).
 	g_Logger = new CLogger;
+
+	new CProfileViewer;
+	new CProfileManager;	// before any script code
+
+	g_ScriptStatsTable = new CScriptStatsTable;
+	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
+
+	// Set up the console early, so that debugging
+	// messages can be logged to it. (The console's size
+	// and fonts are set later in InitPs())
+	g_Console = new CConsole();
+
+	// g_ConfigDB, command line args, globals
+	CONFIG_Init(args);
 	
 	// Using a global object for the runtime is a workaround until Simulation and AI use 
 	// their own threads and also their own runtimes.
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -912,25 +926,11 @@ bool Init(const CmdLineArgs& args, int flags)
 	hooks.translate_free = psTranslateFree;
 	app_hooks_update(&hooks);
 
-	// Set up the console early, so that debugging
-	// messages can be logged to it. (The console's size
-	// and fonts are set later in InitPs())
-	g_Console = new CConsole();
-
 	CNetHost::Initialize();
-
-	new CProfileViewer;
-	new CProfileManager;	// before any script code
-
-	g_ScriptStatsTable = new CScriptStatsTable;
-	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
 #if CONFIG2_AUDIO
 	ISoundManager::CreateSoundManager();
 #endif
-
-	// g_ConfigDB, command line args, globals
-	CONFIG_Init(args);
 
 	// Check if there are mods specified on the command line,
 	// or if we already set the mods (~INIT_MODS),
@@ -1453,7 +1453,7 @@ bool Autostart(const CmdLineArgs& args)
 	else
 	{
 		g_Game->SetPlayerID(1);
-		g_Game->StartGame(CScriptValRooted(cx, attrs), "");
+		g_Game->StartGame(&attrs, "");
 
 		LDR_NonprogressiveLoad();
 

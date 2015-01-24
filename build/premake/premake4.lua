@@ -8,7 +8,7 @@ newoption { trigger = "jenkins-tests", description = "Configure CxxTest to use t
 newoption { trigger = "minimal-flags", description = "Only set compiler/linker flags that are really needed. Has no effect on Windows builds" }
 newoption { trigger = "outpath", description = "Location for generated project files" }
 newoption { trigger = "sdl2", description = "Experimental build using SDL 2" }
-newoption { trigger = "with-system-mozjs24", description = "Search standard paths for libmozjs24, instead of using bundled copy" }
+newoption { trigger = "with-system-mozjs31", description = "Search standard paths for libmozjs31, instead of using bundled copy" }
 newoption { trigger = "with-system-nvtt", description = "Search standard paths for nvidia-texture-tools library, instead of using bundled copy" }
 newoption { trigger = "without-audio", description = "Disable use of OpenAL/Ogg/Vorbis APIs" }
 newoption { trigger = "without-lobby", description = "Disable the use of gloox and the multiplayer lobby" }
@@ -683,6 +683,7 @@ function setup_all_libs ()
 
 	source_dirs = {
 		"scriptinterface",
+		"scriptinterface/third_party"
 	}
 	extern_libs = {
 		"boost",

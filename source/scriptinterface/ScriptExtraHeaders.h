@@ -25,26 +25,15 @@
 #include "scriptinterface/ScriptTypes.h"
 
 // Ignore some harmless warnings
-// Not all of these warnings can be disabled in older versions of GCC.
-// The version checking was taken from the manual here:
-// 	http://gcc.gnu.org/onlinedocs/
-// Choose the version and navigate to "Options to Request or Suppress Warnings"
-// or for some flags "Options Controlling C++ Dialect".
-#if GCC_VERSION >= 402
-# if GCC_VERSION >= 406 // store user flags
-#  pragma GCC diagnostic push
-# endif
+#if GCC_VERSION
+# pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 # pragma GCC diagnostic ignored "-Wredundant-decls"
 # pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
-# if GCC_VERSION >= 407
-#  pragma GCC diagnostic ignored "-Wunused-local-typedefs" // caused by js/debug.h
-# endif
 #endif
 #if MSC_VERSION
-# pragma warning(push)
-# pragma warning(disable:4100) // "unreferenced formal parameter"
-# pragma warning(disable:4800) // "forcing value to bool 'true' or 'false' (performance warning)"
+// reduce the warning level for the SpiderMonkey headers
+# pragma warning(push, 1)
 #endif
 
 // Redefine signbit to fix build error in GCC
@@ -53,22 +42,21 @@
 #endif
 
 #include "jsfriendapi.h"
-#include "jsdbgapi.h"
+#include "js/OldDebugAPI.h"
 #include "js/GCAPI.h"
+#include "js/StructuredClone.h"
 
 #undef signbit
 
 #if MSC_VERSION
 # pragma warning(pop)
 #endif
-#if GCC_VERSION >= 402
+#if GCC_VERSION
 # pragma GCC diagnostic warning "-Wunused-parameter"
 # pragma GCC diagnostic warning "-Wredundant-decls"
 # pragma GCC diagnostic warning "-Wnon-virtual-dtor"
-# if GCC_VERSION >= 406
-// restore user flags (and we don't have to manually restore the warning levels for GCC >= 4.6)
-#  pragma GCC diagnostic pop
-# endif
+// restore user flags and re-enable the warnings disabled a few lines above
+# pragma GCC diagnostic pop
 #endif
 
 #endif // INCLUDED_SCRIPTEXTRAHEADERS

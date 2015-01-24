@@ -83,11 +83,21 @@ IGUIObject::~IGUIObject()
 			}
 		}
 	}
+
+	if (m_pGUI)
+		JS_RemoveExtraGCRootsTracer(m_pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
 }
 
 //-------------------------------------------------------------------
 //  Functions
 //-------------------------------------------------------------------
+void IGUIObject::SetGUI(CGUI * const &pGUI)
+{
+	if (!m_pGUI)
+		JS_AddExtraGCRootsTracer(pGUI->GetScriptInterface()->GetJSRuntime(), Trace, this);
+	m_pGUI = pGUI;
+}
+
 void IGUIObject::AddChild(IGUIObject *pChild)
 {
 	// 
@@ -435,8 +445,12 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 	char buf[64];
 	sprintf_s(buf, ARRAY_SIZE(buf), "__eventhandler%d (%s)", x++, Action.c_str());
 
+	JS::CompileOptions options(cx);
+	options.setFileAndLine(CodeName.c_str(), 0);
+	options.setCompileAndGo(true);
+
 	JS::RootedFunction func(cx, JS_CompileFunction(cx, globalObj,
-		buf, paramCount, paramNames, Code.c_str(), Code.length(), CodeName.c_str(), 0));
+		buf, paramCount, paramNames, Code.c_str(), Code.length(), options));
 
 	if (!func)
 		return; // JS will report an error message
@@ -447,7 +461,10 @@ void IGUIObject::RegisterScriptHandler(const CStr& Action, const CStr& Code, CGU
 
 void IGUIObject::SetScriptHandler(const CStr& Action, JS::HandleObject Function)
 {
-	m_ScriptHandlers[Action] = CScriptValRooted(m_pGUI->GetScriptInterface()->GetContext(), JS::ObjectValue(*Function));
+	// m_ScriptHandlers is only rooted after SetGUI() has been called (which sets up the GC trace callbacks),
+	// so we can't safely store objects in it if the GUI hasn't been set yet.
+	ENSURE(m_pGUI && "A GUI must be associated with the GUIObject before adding ScriptHandlers!");
+	m_ScriptHandlers[Action] = JS::Heap<JSObject*>(Function);
 }
 
 InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
@@ -466,7 +483,7 @@ InReaction IGUIObject::SendEvent(EGUIMessageType type, const CStr& EventName)
 
 void IGUIObject::ScriptEvent(const CStr& Action)
 {
-	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
+	auto it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
@@ -483,9 +500,9 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 	JS::AutoValueVector paramData(cx);
 	paramData.append(mouse);
 	JS::RootedObject obj(cx, GetJSObject());
-	JS::RootedValue handlerVal(cx, (*it).second.get());
+	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
-	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData.length(), paramData.begin(), result.address());
+	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result);
 	if (!ok)
 	{
 		// We have no way to propagate the script exception, so just ignore it
@@ -495,20 +512,18 @@ void IGUIObject::ScriptEvent(const CStr& Action)
 
 void IGUIObject::ScriptEvent(const CStr& Action, JS::HandleValue Argument)
 {
-	std::map<CStr, CScriptValRooted>::iterator it = m_ScriptHandlers.find(Action);
+	auto it = m_ScriptHandlers.find(Action);
 	if (it == m_ScriptHandlers.end())
 		return;
 
 	JSContext* cx = m_pGUI->GetScriptInterface()->GetContext();
 	JSAutoRequest rq(cx);
-
 	JS::AutoValueVector paramData(cx);
 	paramData.append(Argument.get());
 	JS::RootedObject obj(cx, GetJSObject());
-	// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
-	JS::RootedValue tmpScriptHandler(cx, (*it).second.get());
+	JS::RootedValue handlerVal(cx, JS::ObjectValue(*it->second));
 	JS::RootedValue result(cx);
-	bool ok = JS_CallFunctionValue(cx, obj, tmpScriptHandler, paramData.length(), paramData.begin(), result.address());
+	bool ok = JS_CallFunctionValue(cx, obj, handlerVal, paramData, &result);
 	if (!ok)
 	{
 		JS_ReportError(cx, "Errors executing script action \"%s\"", Action.c_str());
@@ -522,13 +537,12 @@ JSObject* IGUIObject::GetJSObject()
 	// Cache the object when somebody first asks for it, because otherwise
 	// we end up doing far too much object allocation. TODO: Would be nice to
 	// not have these objects hang around forever using up memory, though.
-	if (m_JSObject.uninitialised())
+	if (m_JSObject.uninitialized())
 	{
-		JS::RootedObject obj(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
-		m_JSObject = CScriptValRooted(cx, JS::ObjectValue(*obj));
-		JS_SetPrivate(obj, this);
+		m_JSObject.set(cx, m_pGUI->GetScriptInterface()->CreateCustomObject("GUIObject"));
+		JS_SetPrivate(m_JSObject.get(), this);
 	}
-	return &m_JSObject.get().toObject();
+	return m_JSObject.get();
 }
 
 CStr IGUIObject::GetPresentableName() const
@@ -557,6 +571,12 @@ bool IGUIObject::IsFocused() const
 bool IGUIObject::IsRootObject() const
 {
 	return (GetGUI() != 0 && m_pParent == GetGUI()->m_BaseObject);
+}
+
+void IGUIObject::TraceMember(JSTracer *trc)
+{
+	for (auto& handler : m_ScriptHandlers)
+		JS_CallHeapObjectTracer(trc, &handler.second, "IGUIObject::m_ScriptHandlers");
 }
 
 PSRETURN IGUIObject::LogInvalidSettings(const CStr8 &Setting) const

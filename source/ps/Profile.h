@@ -29,6 +29,11 @@
 #include "ps/Singleton.h"
 #include "ps/ThreadUtil.h"
 
+#include <boost/flyweight.hpp>
+#include <boost/flyweight/key_value.hpp>
+#include <boost/flyweight/no_locking.hpp>
+#include <boost/flyweight/no_tracking.hpp>
+
 #define PROFILE_AMORTIZE_FRAMES 30
 #define PROFILE_AMORTIZE_TURNS 1
 
@@ -37,6 +42,25 @@ class CProfileNodeTable;
 
 class CStr8;
 class CStrW;
+
+// To profile scripts usefully, we use a call hook that's called on every enter/exit,
+// and need to find the function name. But most functions are anonymous so we make do
+// with filename plus line number instead.
+// Computing the names is fairly expensive, and we need to return an interned char*
+// for the profiler to hold a copy of, so we use boost::flyweight to construct interned
+// strings per call location.
+//
+// TODO: Check again how much the overhead for getting filename and line really is and if
+// it has increased with the new approach after the SpiderMonkey 31 upgrade.
+//
+// Flyweight types (with no_locking because the call hooks are only used in the
+// main thread, and no_tracking because we mustn't delete values the profiler is
+// using and it's not going to waste much memory)
+typedef boost::flyweight<
+	std::string,
+	boost::flyweights::no_tracking,
+	boost::flyweights::no_locking
+> StringFlyweight;
 
 class CProfileNode
 {

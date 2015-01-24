@@ -69,13 +69,12 @@
 static void ReportGLLimits(ScriptInterface& scriptInterface, JS::HandleValue settings);
 
 #if ARCH_X86_X64
-CScriptVal ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache)
+void ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idxCache, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	JS::RootedValue ret(cx);
-	scriptInterface.Eval("[]", &ret);
+	scriptInterface.Eval("[]", ret);
 	for (size_t idxLevel = 0; idxLevel < x86_x64::Cache::maxLevels; ++idxLevel)
 	{
 		const x86_x64::Cache* pcache = x86_x64::Caches(idxCache+idxLevel);
@@ -91,16 +90,14 @@ CScriptVal ConvertCaches(ScriptInterface& scriptInterface, x86_x64::IdxCache idx
 		scriptInterface.SetProperty(cache, "totalsize", (u32)pcache->TotalSize());
 		scriptInterface.SetPropertyInt(ret, idxLevel, cache);
 	}
-	return ret.get();
 }
 
-CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
+void ConvertTLBs(ScriptInterface& scriptInterface, JS::MutableHandleValue ret)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	JS::RootedValue ret(cx);
-	scriptInterface.Eval("[]", &ret);
+	scriptInterface.Eval("[]", ret);
 	for(size_t i = 0; ; i++)
 	{
 		const x86_x64::Cache* ptlb = x86_x64::Caches(x86_x64::TLB+i);
@@ -115,7 +112,6 @@ CScriptVal ConvertTLBs(ScriptInterface& scriptInterface)
 		scriptInterface.SetProperty(tlb, "entries", (u32)ptlb->numEntries);
 		scriptInterface.SetPropertyInt(ret, i, tlb);
 	}
-	return ret.get();
 }
 #endif
 
@@ -312,9 +308,13 @@ void RunHardwareDetection()
 	scriptInterface.SetProperty(settings, "x86_caps[2]", caps2);
 	scriptInterface.SetProperty(settings, "x86_caps[3]", caps3);
 
-	scriptInterface.SetProperty(settings, "x86_icaches", ConvertCaches(scriptInterface, x86_x64::L1I));
-	scriptInterface.SetProperty(settings, "x86_dcaches", ConvertCaches(scriptInterface, x86_x64::L1D));
-	scriptInterface.SetProperty(settings, "x86_tlbs", ConvertTLBs(scriptInterface));
+	JS::RootedValue tmpVal(cx);
+	ConvertCaches(scriptInterface, x86_x64::L1I, &tmpVal);
+	scriptInterface.SetProperty(settings, "x86_icaches", tmpVal);
+	ConvertCaches(scriptInterface, x86_x64::L1D, &tmpVal);
+	scriptInterface.SetProperty(settings, "x86_dcaches", tmpVal);
+	ConvertTLBs(scriptInterface, &tmpVal);
+	scriptInterface.SetProperty(settings, "x86_tlbs", tmpVal);
 #endif
 
 	scriptInterface.SetProperty(settings, "timer_resolution", timer_Resolution());

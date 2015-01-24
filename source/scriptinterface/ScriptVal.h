@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,60 +22,65 @@
 #include <boost/shared_ptr.hpp>
 
 /**
- * A trivial wrapper around a jsval. Used to avoid template overload ambiguities
- * with jsval (which is just an integer), for any code that uses
- * ScriptInterface::ToJSVal or ScriptInterface::FromJSVal
+ * A default constructible wrapper around JS::PersistentRootedValue
+ *
+ * It's a very common case that we need to store JS::Values on the heap as
+ * class members and only need them conditionally or want to initialize
+ * them after the constructor because we don't have the runtime available yet.
+ * Use it in these cases, but prefer to use JS::PersistentRootedValue directly
+ * if initializing it with a runtime/context in the constructor isn't a problem.
  */
-class CScriptVal
+ template <typename T>
+class DefPersistentRooted
 {
 public:
-	CScriptVal() : m_Val(JSVAL_VOID) { }
-	CScriptVal(jsval val) : m_Val(val) { }
+	DefPersistentRooted()
+	{
+	}
 
-	/**
-	 * Returns the current value.
-	 */
-	const jsval& get() const { return m_Val; }
+	DefPersistentRooted(JSRuntime* rt)
+	{
+		m_Val.reset(new JS::PersistentRooted<T>(rt));
+	}
 
-	/**
-	 * Returns whether the value is JSVAL_VOID.
-	 */
-	bool undefined() const { return JSVAL_IS_VOID(m_Val) ? true : false; }
+	DefPersistentRooted(JSRuntime* rt, JS::HandleValue val)
+	{
+		m_Val.reset(new JS::PersistentRooted<T>(rt, val));
+	}
+
+	DefPersistentRooted(JSContext* cx, JS::Handle<T> val)
+	{
+		m_Val.reset(new JS::PersistentRooted<T>(cx, val));
+	}
+	
+	void clear()
+	{
+		m_Val = nullptr;
+	}
+
+	inline bool uninitialized()
+	{
+		return m_Val == nullptr;
+	}
+
+	inline JS::PersistentRooted<T>& get() const
+	{
+		ENSURE(m_Val);
+		return *m_Val;
+	}
+
+	inline void set(JSRuntime* rt, T val)
+	{
+		m_Val.reset(new JS::PersistentRooted<T>(rt, val));
+	}
+
+	inline void set(JSContext* cx, T val)
+	{
+		m_Val.reset(new JS::PersistentRooted<T>(cx, val));
+	}
 
 private:
-	jsval m_Val;
-};
-
-class CScriptValRooted
-{
-public:
-	CScriptValRooted() { }
-	CScriptValRooted(JSContext* cx, jsval val);
-	CScriptValRooted(JSContext* cx, CScriptVal val);
-
-	/**
-	 * Returns the current value (or JSVAL_VOID if uninitialised).
-	 */
-	jsval get() const;
-
-	/**
-	 * Returns reference to the current value.
-	 * Fails if the value is not yet initialised.
-	 */
-	jsval& getRef() const;
-
-	/**
-	 * Returns whether the value is uninitialised or is JSVAL_VOID.
-	 */
-	bool undefined() const;
-
-	/**
-	 * Returns whether the value is uninitialised.
-	 */
-	bool uninitialised() const;
-
-private:
-	boost::shared_ptr<jsval> m_Val;
+	std::unique_ptr<JS::PersistentRooted<T> > m_Val;
 };
 
 #endif // INCLUDED_SCRIPTVAL

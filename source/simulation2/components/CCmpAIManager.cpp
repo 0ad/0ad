@@ -79,15 +79,9 @@ private:
 	public:
 		CAIPlayer(CAIWorker& worker, const std::wstring& aiName, player_id_t player, uint8_t difficulty,
 				shared_ptr<ScriptInterface> scriptInterface) :
-			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), m_ScriptInterface(scriptInterface)
+			m_Worker(worker), m_AIName(aiName), m_Player(player), m_Difficulty(difficulty), 
+			m_ScriptInterface(scriptInterface), m_Obj(scriptInterface->GetJSRuntime())
 		{
-		}
-
-		~CAIPlayer()
-		{
-			// Clean up rooted objects before destroying their script context
-			m_Obj = CScriptValRooted();
-			m_Commands.clear();
 		}
 
 		bool Initialise()
@@ -144,8 +138,6 @@ private:
 
 			m_ScriptInterface->GetProperty(metadata, "useShared", m_UseSharedComponent);
 
-			JS::RootedValue obj(cx);
-
 			// Set up the data to pass as the constructor argument
 			JS::RootedValue settings(cx);
 			m_ScriptInterface->Eval(L"({})", &settings);
@@ -156,46 +148,32 @@ private:
 
 			JS::AutoValueVector argv(cx);
 			argv.append(settings.get());
-			m_ScriptInterface->CallConstructor(ctor, argv, &obj);
+			m_ScriptInterface->CallConstructor(ctor, argv, &m_Obj);
 
-			if (obj.isNull())
+			if (m_Obj.get().isNull())
 			{
 				LOGERROR("Failed to create AI player: %s: error calling constructor '%s'", path.string8(), constructor);
 				return false;
 			}
-
-			m_Obj = CScriptValRooted(cx, obj);
 			return true;
 		}
 
 		void Run(JS::HandleValue state, int playerID)
 		{
-			JSContext* cx = m_ScriptInterface->GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedValue tmpObj(cx, m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade			
-			
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(tmpObj, "HandleMessage", state, playerID);
+			m_ScriptInterface->CallFunctionVoid(m_Obj, "HandleMessage", state, playerID);
 		}
 		// overloaded with a sharedAI part.
 		// javascript can handle both natively on the same function.
-		void Run(JS::HandleValue state, int playerID, CScriptValRooted SharedAI)
+		void Run(JS::HandleValue state, int playerID, JS::HandleValue SharedAI)
 		{
-			JSContext* cx = m_ScriptInterface->GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedValue tmpObj(cx, m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade			
-			
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(tmpObj, "HandleMessage", state, playerID, SharedAI);
+			m_ScriptInterface->CallFunctionVoid(m_Obj, "HandleMessage", state, playerID, SharedAI);
 		}
-		void InitAI(JS::HandleValue state, CScriptValRooted SharedAI)
+		void InitAI(JS::HandleValue state, JS::HandleValue SharedAI)
 		{
-			JSContext* cx = m_ScriptInterface->GetContext();
-			JSAutoRequest rq(cx);
-			JS::RootedValue tmpObj(cx, m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade			
-			
 			m_Commands.clear();
-			m_ScriptInterface->CallFunctionVoid(tmpObj, "Init", state, m_Player, SharedAI);
+			m_ScriptInterface->CallFunctionVoid(m_Obj, "Init", state, m_Player, SharedAI);
 		}
 
 		CAIWorker& m_Worker;
@@ -204,8 +182,11 @@ private:
 		uint8_t m_Difficulty;
 		bool m_UseSharedComponent;
 		
+		// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
+		// members have to be called before the runtime destructor.
 		shared_ptr<ScriptInterface> m_ScriptInterface;
-		CScriptValRooted m_Obj;
+		
+		JS::PersistentRootedValue m_Obj;
 		std::vector<shared_ptr<ScriptInterface::StructuredClone> > m_Commands;
 	};
 
@@ -221,7 +202,13 @@ public:
 		m_TurnNum(0),
 		m_CommandsComputed(true),
 		m_HasLoadedEntityTemplates(false),
-		m_HasSharedComponent(false)
+		m_HasSharedComponent(false),
+		m_SerializablePrototypes(new ObjectIdCache<std::wstring>(g_ScriptRuntime)),
+		m_EntityTemplates(g_ScriptRuntime->m_rt),
+		m_TechTemplates(g_ScriptRuntime->m_rt),
+		m_SharedAIObj(g_ScriptRuntime->m_rt),
+		m_PassabilityMapVal(g_ScriptRuntime->m_rt),
+		m_TerritoryMapVal(g_ScriptRuntime->m_rt)
 	{
 
 		m_ScriptInterface->ReplaceNondeterministicRNG(m_RNG);
@@ -229,7 +216,10 @@ public:
 
 		m_ScriptInterface->SetCallbackData(static_cast<void*> (this));
 
-		m_ScriptInterface->RegisterFunction<void, int, CScriptValRooted, CAIWorker::PostCommand>("PostCommand");
+		m_SerializablePrototypes->init();
+		JS_AddExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
+
+		m_ScriptInterface->RegisterFunction<void, int, JS::HandleValue, CAIWorker::PostCommand>("PostCommand");
 		m_ScriptInterface->RegisterFunction<void, std::wstring, CAIWorker::IncludeModule>("IncludeModule");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::DumpHeap>("DumpHeap");
 		m_ScriptInterface->RegisterFunction<void, CAIWorker::ForceGC>("ForceGC");
@@ -239,13 +229,7 @@ public:
 
 	~CAIWorker()
 	{
-		// Clear rooted script values before destructing the script interface
-		m_EntityTemplates = CScriptValRooted();
-		m_PlayerMetadata.clear();
-		m_Players.clear();
-		m_GameState.reset();
-		m_PassabilityMapVal = CScriptValRooted();
-		m_TerritoryMapVal = CScriptValRooted();
+		JS_RemoveExtraGCRootsTracer(m_ScriptInterface->GetJSRuntime(), Trace, this);
 	}
 	
 	bool LoadScripts(const std::wstring& moduleName)
@@ -284,16 +268,10 @@ public:
 		self->LoadScripts(name);
 	}
 
-	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, CScriptValRooted cmd1)
+	static void PostCommand(ScriptInterface::CxPrivate* pCxPrivate, int playerid, JS::HandleValue cmd)
 	{
 		ENSURE(pCxPrivate->pCBData);
 		CAIWorker* self = static_cast<CAIWorker*> (pCxPrivate->pCBData);
-		
-		JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		// TODO: Get Handle parameter directly with SpiderMonkey 31
-		JS::RootedValue cmd(cx, cmd1.get());
-		
 		self->PostCommand(playerid, cmd);
 	}
 	
@@ -433,12 +411,9 @@ public:
 		
 		JS::AutoValueVector argv(cx);
 		argv.append(settings);
-		// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-		JS::RootedValue tmpSharedAIObj(cx, m_SharedAIObj.get());
-		m_ScriptInterface->CallConstructor(ctor, argv, &tmpSharedAIObj);
-		m_SharedAIObj = CScriptValRooted(cx, tmpSharedAIObj);
+		m_ScriptInterface->CallConstructor(ctor, argv, &m_SharedAIObj);
 		
-		if (tmpSharedAIObj.isNull())
+		if (m_SharedAIObj.get().isNull())
 		{
 			LOGERROR("Failed to create shared AI component: %s: error calling constructor '%s'", path.string8(), "SharedScript");
 			return false;
@@ -472,22 +447,14 @@ public:
 		
 		JS::RootedValue state(cx);
 		m_ScriptInterface->ReadStructuredClone(gameState, &state);
-		
-		JS::RootedValue tmpVal(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-		ScriptInterface::ToJSVal(cx, &tmpVal, passabilityMap);
-		m_PassabilityMapVal = CScriptValRooted(cx, tmpVal.get());
-		
-		ScriptInterface::ToJSVal(cx, &tmpVal, territoryMap);
-		m_TerritoryMapVal = CScriptValRooted(cx, tmpVal);
+		ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, passabilityMap);
+		ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, territoryMap);
 		
 		if (m_HasSharedComponent)
 		{
 			m_ScriptInterface->SetProperty(state, "passabilityMap", m_PassabilityMapVal, true);
 			m_ScriptInterface->SetProperty(state, "territoryMap", m_TerritoryMapVal, true);
-
-			JS::RootedValue tmpSharedAIObj(cx, m_SharedAIObj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade			
-			
-			m_ScriptInterface->CallFunctionVoid(tmpSharedAIObj, "init", state);
+			m_ScriptInterface->CallFunctionVoid(m_SharedAIObj, "init", state);
 			
 			for (size_t i = 0; i < m_Players.size(); ++i)
 			{
@@ -503,24 +470,18 @@ public:
 		ENSURE(m_CommandsComputed);
 
 		m_GameState = gameState;
-		
 		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
 
 		if (passabilityMap.m_DirtyID != m_PassabilityMap.m_DirtyID)
 		{
 			m_PassabilityMap = passabilityMap;
-			JS::RootedValue tmpVal(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-			ScriptInterface::ToJSVal(cx, &tmpVal, m_PassabilityMap);
-			m_PassabilityMapVal = CScriptValRooted(cx, tmpVal);
+			ScriptInterface::ToJSVal(cx, &m_PassabilityMapVal, m_PassabilityMap);
 		}
 
 		if (territoryMapDirty)
 		{
 			m_TerritoryMap = territoryMap;
-			JS::RootedValue tmpVal(cx);
-			ScriptInterface::ToJSVal(cx, &tmpVal, m_TerritoryMap);
-			m_TerritoryMapVal = CScriptValRooted(cx, tmpVal);
+			ScriptInterface::ToJSVal(cx, &m_TerritoryMapVal, m_TerritoryMap);
 		}
 
 		m_CommandsComputed = false;
@@ -548,12 +509,9 @@ public:
 		}
 	}
 
-	void RegisterTechTemplates(const shared_ptr<ScriptInterface::StructuredClone>& techTemplates) {
-		JSContext* cx = m_ScriptInterface->GetContext();
-		JSAutoRequest rq(cx);
-		JS::RootedValue ret(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-		m_ScriptInterface->ReadStructuredClone(techTemplates, &ret);
-		m_TechTemplates = CScriptValRooted(cx, ret);
+	void RegisterTechTemplates(const shared_ptr<ScriptInterface::StructuredClone>& techTemplates)
+	{
+		m_ScriptInterface->ReadStructuredClone(techTemplates, &m_TechTemplates);
 	}
 	
 	void LoadEntityTemplates(const std::vector<std::pair<std::string, const CParamNode*> >& templates)
@@ -563,20 +521,18 @@ public:
 
 		m_HasLoadedEntityTemplates = true;
 
-		JS::RootedValue tmpEntityTemplates(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-		m_ScriptInterface->Eval("({})", &tmpEntityTemplates);
+		m_ScriptInterface->Eval("({})", &m_EntityTemplates);
 
 		JS::RootedValue val(cx);
 		for (size_t i = 0; i < templates.size(); ++i)
 		{
 			templates[i].second->ToJSVal(cx, false, &val);
-			m_ScriptInterface->SetProperty(tmpEntityTemplates, templates[i].first.c_str(), val, true);
+			m_ScriptInterface->SetProperty(m_EntityTemplates, templates[i].first.c_str(), val, true);
 		}
 
 		// Since the template data is shared between AI players, freeze it
 		// to stop any of them changing it and confusing the other players
-		m_EntityTemplates = CScriptValRooted(cx, tmpEntityTemplates);
-		m_ScriptInterface->FreezeObject(tmpEntityTemplates, true);
+		m_ScriptInterface->FreezeObject(m_EntityTemplates, true);
 	}
 
 	void Serialize(std::ostream& stream, bool isDebug)
@@ -711,26 +667,24 @@ public:
 			//	prototypes could be stored in their ScriptInterface
 			deserializer.SetSerializablePrototypes(m_DeserializablePrototypes);
 
-			JS::RootedValue tmpPlayerObj(cx, m_Players.back()->m_Obj.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(tmpPlayerObj, "Deserialize");
+			bool hasCustomDeserialize = m_ScriptInterface->HasProperty(m_Players.back()->m_Obj, "Deserialize");
 			if (hasCustomDeserialize)
 			{
 				JS::RootedValue scriptData(cx);
 				deserializer.ScriptVal("data", &scriptData);
 				if (m_Players[i]->m_UseSharedComponent)
 				{
-					if (!m_ScriptInterface->CallFunctionVoid(tmpPlayerObj, "Deserialize", scriptData, m_SharedAIObj))
+					if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj, "Deserialize", scriptData, m_SharedAIObj))
 						LOGERROR("AI script Deserialize call failed");
 				}
-				else if (!m_ScriptInterface->CallFunctionVoid(tmpPlayerObj, "Deserialize", scriptData))
+				else if (!m_ScriptInterface->CallFunctionVoid(m_Players.back()->m_Obj, "Deserialize", scriptData))
 				{
 					LOGERROR("AI script deserialize() call failed");
 				}
 			}
 			else
 			{
-				deserializer.ScriptVal("data", &tmpPlayerObj);
-				m_Players.back()->m_Obj = CScriptValRooted(cx, tmpPlayerObj);
+				deserializer.ScriptVal("data", &m_Players.back()->m_Obj);
 			}
 		}
 	}
@@ -740,25 +694,43 @@ public:
 		return m_Players.size();
 	}
 
-	void RegisterSerializablePrototype(std::wstring name, CScriptVal proto)
+	void RegisterSerializablePrototype(std::wstring name, JS::HandleValue proto)
 	{
 		// Require unique prototype and name (for reverse lookup)
 		// TODO: this is yucky - see comment in Deserialize()
-		JSObject* obj = JSVAL_TO_OBJECT(proto.get());
-		std::pair<std::map<JSObject*, std::wstring>::iterator, bool> ret1 = m_SerializablePrototypes.insert(std::make_pair(obj, name));
-		std::pair<std::map<std::wstring, JSObject*>::iterator, bool> ret2 = m_DeserializablePrototypes.insert(std::make_pair(name, obj));
-		if (!ret1.second || !ret2.second)
-			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj, utf8_from_wstring(name));
+		ENSURE(proto.isObject() && "A serializable prototype has to be an object!");
+		JS::RootedObject obj(m_ScriptInterface->GetContext(), &proto.toObject());
+		if (m_SerializablePrototypes->has(obj) || m_DeserializablePrototypes.find(name) != m_DeserializablePrototypes.end())
+		{
+			LOGERROR("RegisterSerializablePrototype called with same prototype multiple times: p=%p n='%s'", (void *)obj.get(), utf8_from_wstring(name));
+			return;
+		}
+		m_SerializablePrototypes->add(m_ScriptInterface->GetContext(), obj, name);
+		m_DeserializablePrototypes[name] = JS::Heap<JSObject*>(obj);
 	}
 
 private:
+	static void Trace(JSTracer *trc, void *data)
+	{
+		reinterpret_cast<CAIWorker*>(data)->TraceMember(trc);
+	}
+
+	void TraceMember(JSTracer *trc)
+	{
+		for (auto& prototypes : m_DeserializablePrototypes)
+			JS_CallHeapObjectTracer(trc, &prototypes.second, "CAIWorker::m_DeserializablePrototypes");
+		for (auto& metadata : m_PlayerMetadata)
+			JS_CallHeapValueTracer(trc, &metadata.second, "CAIWorker::m_PlayerMetadata");
+	}
+
 	void LoadMetadata(const VfsPath& path, JS::MutableHandleValue out)
 	{
 		if (m_PlayerMetadata.find(path) == m_PlayerMetadata.end())
 		{
 			// Load and cache the AI player metadata
 			m_ScriptInterface->ReadJSONFile(path, out);
-			m_PlayerMetadata[path] = CScriptValRooted(m_ScriptInterface->GetContext(), out);
+			m_PlayerMetadata[path] = JS::Heap<JS::Value>(out);
+			return;
 		}
 		out.set(m_PlayerMetadata[path].get());
 	}
@@ -803,34 +775,37 @@ private:
 		}
 	}
 
+	// Take care to keep this declaration before heap rooted members. Destructors of heap rooted
+	// members have to be called before the runtime destructor.
 	shared_ptr<ScriptRuntime> m_ScriptRuntime;
+	
 	shared_ptr<ScriptInterface> m_ScriptInterface;
 	boost::rand48 m_RNG;
 	u32 m_TurnNum;
 
-	CScriptValRooted m_EntityTemplates;
+	JS::PersistentRootedValue m_EntityTemplates;
 	bool m_HasLoadedEntityTemplates;
-	CScriptValRooted m_TechTemplates;
+	JS::PersistentRootedValue m_TechTemplates;
 
-	std::map<VfsPath, CScriptValRooted> m_PlayerMetadata;
+	std::map<VfsPath, JS::Heap<JS::Value> > m_PlayerMetadata;
 	std::vector<shared_ptr<CAIPlayer> > m_Players; // use shared_ptr just to avoid copying
 
 	bool m_HasSharedComponent;
-	CScriptValRooted m_SharedAIObj;
+	JS::PersistentRootedValue m_SharedAIObj;
 	std::vector<SCommandSets> m_Commands;
 	
 	std::set<std::wstring> m_LoadedModules;
 	
 	shared_ptr<ScriptInterface::StructuredClone> m_GameState;
 	Grid<u16> m_PassabilityMap;
-	CScriptValRooted m_PassabilityMapVal;
+	JS::PersistentRootedValue m_PassabilityMapVal;
 	Grid<u8> m_TerritoryMap;
-	CScriptValRooted m_TerritoryMapVal;
+	JS::PersistentRootedValue m_TerritoryMapVal;
 
 	bool m_CommandsComputed;
 
-	std::map<JSObject*, std::wstring> m_SerializablePrototypes;
-	std::map<std::wstring, JSObject*> m_DeserializablePrototypes;
+	shared_ptr<ObjectIdCache<std::wstring> > m_SerializablePrototypes;
+	std::map<std::wstring, JS::Heap<JSObject*> > m_DeserializablePrototypes;
 };
 
 
@@ -936,7 +911,8 @@ public:
 		ENSURE(cmpTechTemplateManager);
 		
 		// Get the game state from AIInterface
-		JS::RootedValue techTemplates(cx, cmpTechTemplateManager->GetAllTechs().get());
+		JS::RootedValue techTemplates(cx);
+		cmpTechTemplateManager->GetAllTechs(&techTemplates);
 		
 		m_Worker.RegisterTechTemplates(scriptInterface.WriteStructuredClone(techTemplates));
 		m_Worker.TryLoadSharedComponent(true);
@@ -953,7 +929,8 @@ public:
 		
 		// Get the game state from AIInterface
 		// We flush events from the initialization so we get a clean state now.
-		JS::RootedValue state(cx, cmpAIInterface->GetFullRepresentation(true).get());
+		JS::RootedValue state(cx);
+		cmpAIInterface->GetFullRepresentation(&state, true);
 
 		// Get the passability data
 		Grid<u16> dummyGrid;
@@ -996,9 +973,9 @@ public:
 		// Get the game state from AIInterface
 		JS::RootedValue state(cx);
 		if (m_JustDeserialized)
-			state.set(cmpAIInterface->GetFullRepresentation(false).get());
+			cmpAIInterface->GetFullRepresentation(&state, false);
 		else
-			state.set(cmpAIInterface->GetRepresentation().get());
+			cmpAIInterface->GetRepresentation(&state);
 
 		// Get the passability data
 		Grid<u16> dummyGrid;
@@ -1045,7 +1022,7 @@ public:
 			for (size_t j = 0; j < commands[i].commands.size(); ++j)
 			{
 				scriptInterface.ReadStructuredClone(commands[i].commands[j], &clonedCommandVal);
-				cmpCommandQueue->PushLocalCommand(commands[i].player, CScriptVal(clonedCommandVal));
+				cmpCommandQueue->PushLocalCommand(commands[i].player, clonedCommandVal);
 			}
 		}
 	}

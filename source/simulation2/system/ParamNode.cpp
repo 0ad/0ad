@@ -305,16 +305,16 @@ void CParamNode::ToXML(std::wostream& strm) const
 
 void CParamNode::ToJSVal(JSContext* cx, bool cacheValue, JS::MutableHandleValue ret) const
 {
-	if (cacheValue && !m_ScriptVal.uninitialised())
+	if (cacheValue && m_ScriptVal != NULL)
 	{
-		ret.set(m_ScriptVal.get());
+		ret.set(*m_ScriptVal);
 		return;
 	}
 
 	ConstructJSVal(cx, ret);
 
 	if (cacheValue)
-		m_ScriptVal = CScriptValRooted(cx, ret);
+		m_ScriptVal.reset(new JS::PersistentRootedValue(cx, ret));
 }
 
 void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
@@ -344,7 +344,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 	// Got child nodes - convert this node into a hash-table-style object:
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL));
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -355,7 +355,7 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 	for (std::map<std::string, CParamNode>::const_iterator it = m_Childs.begin(); it != m_Childs.end(); ++it)
 	{
 		it->second.ConstructJSVal(cx, &childVal);
-		if (!JS_SetProperty(cx, obj, it->first.c_str(), childVal.address()))
+		if (!JS_SetProperty(cx, obj, it->first.c_str(), childVal))
 		{
 			ret.setUndefined();
 			return; // TODO: report error
@@ -372,9 +372,9 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 			ret.setUndefined();
 			return; // TODO: report error
 		}
-		
+
 		JS::RootedValue childVal(cx, JS::StringValue(str));
-		if (!JS_SetProperty(cx, obj, "_string", childVal.address()))
+		if (!JS_SetProperty(cx, obj, "_string", childVal))
 		{
 			ret.setUndefined();
 			return; // TODO: report error
@@ -386,5 +386,5 @@ void CParamNode::ConstructJSVal(JSContext* cx, JS::MutableHandleValue ret) const
 
 void CParamNode::ResetScriptVal()
 {
-	m_ScriptVal = CScriptValRooted();
+	m_ScriptVal = NULL;
 }

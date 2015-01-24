@@ -55,9 +55,11 @@ static u8 GetArrayType(JSArrayBufferViewType arrayType)
 }
 
 CBinarySerializerScriptImpl::CBinarySerializerScriptImpl(ScriptInterface& scriptInterface, ISerializer& serializer) :
-	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_Rooter(m_ScriptInterface),
-	m_ScriptBackrefsArena(1 * MiB), m_ScriptBackrefs(backrefs_t::key_compare(), ScriptBackrefsAlloc(m_ScriptBackrefsArena)), m_ScriptBackrefsNext(1)
+	m_ScriptInterface(scriptInterface), m_Serializer(serializer), m_ScriptBackrefs(scriptInterface.GetRuntime()), 
+	m_SerializablePrototypes(new ObjectIdCache<std::wstring>(scriptInterface.GetRuntime())), m_ScriptBackrefsNext(1)
 {
+	m_ScriptBackrefs.init();
+	m_SerializablePrototypes->init();
 }
 
 void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
@@ -119,7 +121,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			// Now handle its array buffer
 			// this may be a backref, since ArrayBuffers can be shared by multiple views
-			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(obj)));
+			JS::RootedValue bufferVal(cx, JS::ObjectValue(*JS_GetArrayBufferViewBuffer(cx, obj)));
 			HandleScriptVal(bufferVal);
 			break;
 		}
@@ -139,7 +141,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 		else
 		{
 			// Find type of object
-			JSClass* jsclass = JS_GetClass(obj);
+			const JSClass* jsclass = JS_GetClass(obj);
 			if (!jsclass)
 				throw PSERROR_Serialize_ScriptError("JS_GetClass failed");
 			JSProtoKey protokey = JSCLASS_CACHED_PROTO_KEY(jsclass);
@@ -148,11 +150,11 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 			{
 				// Object class - check for user-defined prototype
 				JS::RootedObject proto(cx);
-				JS_GetPrototype(cx, obj, proto.address());
+				JS_GetPrototype(cx, obj, &proto);
 				if (!proto)
 					throw PSERROR_Serialize_ScriptError("JS_GetPrototype failed");
 
-				if (m_SerializablePrototypes.empty() || !IsSerializablePrototype(proto))
+				if (m_SerializablePrototypes->empty() || !IsSerializablePrototype(proto))
 				{
 					// Standard Object prototype
 					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT);
@@ -165,19 +167,19 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 					// User-defined custom prototype
 					m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_PROTOTYPE);
 
-					const std::wstring& prototypeName = GetPrototypeName(proto);
+					const std::wstring prototypeName = GetPrototypeName(proto);
 					m_Serializer.String("proto name", prototypeName, 0, 256);
 
 					// Does it have custom Serialize function?
 					// if so, we serialize the data it returns, rather than the object's properties directly
-					JSBool hasCustomSerialize;
+					bool hasCustomSerialize;
 					if (!JS_HasProperty(cx, obj, "Serialize", &hasCustomSerialize))
 						throw PSERROR_Serialize_ScriptError("JS_HasProperty failed");
 
 					if (hasCustomSerialize)
 					{
 						JS::RootedValue serialize(cx);
-						if (!JS_LookupProperty(cx, obj, "Serialize", serialize.address()))
+						if (!JS_LookupProperty(cx, obj, "Serialize", &serialize))
 							throw PSERROR_Serialize_ScriptError("JS_LookupProperty failed");
 
 						// If serialize is null, so don't serialize anything more
@@ -208,7 +210,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				// Standard String object
 				m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_OBJECT_STRING);
 				// Get primitive value
-				JSString* str = JS_ValueToString(cx, val);
+				JS::RootedString str(cx, JS::ToString(cx, val));
 				if (!str)
 					throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
 				ScriptString("value", str);
@@ -239,15 +241,18 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 				m_ScriptInterface.CallFunction(val, "entries", &keyValueIterator);
 				for (u32 i=0; i<mapSize; ++i)
 				{
+					JS::RootedValue currentIterator(cx);
 					JS::RootedValue keyValuePair(cx);
-					ENSURE(m_ScriptInterface.CallFunction(keyValueIterator, "next", &keyValuePair));
-					
+					ENSURE(m_ScriptInterface.CallFunction(keyValueIterator, "next", &currentIterator));
+
+					// the Iterator has a property called "value" that contains the key-value pair of the map
+					m_ScriptInterface.GetProperty(currentIterator, "value", &keyValuePair);
 					JS::RootedObject keyValuePairObj(cx, &keyValuePair.toObject());
 					
 					JS::RootedValue key(cx);
 					JS::RootedValue value(cx);
-					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, key.address()));
-					ENSURE(JS_GetElement(cx, keyValuePairObj, 1, value.address()));
+					ENSURE(JS_GetElement(cx, keyValuePairObj, 0, &key));
+					ENSURE(JS_GetElement(cx, keyValuePairObj, 1, &value));
 					
 					HandleScriptVal(key);
 					HandleScriptVal(value);
@@ -276,15 +281,15 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 		for (size_t i = 0; i < ida.length(); ++i)
 		{
-			jsid id = ida[i];
+			JS::RootedId id(cx, ida[i]);
 
 			JS::RootedValue idval(cx);
 			JS::RootedValue propval(cx);
 			
 			// Get the property name as a string
-			if (!JS_IdToValue(cx, id, idval.address()))
+			if (!JS_IdToValue(cx, id, &idval))
 				throw PSERROR_Serialize_ScriptError("JS_IdToValue failed");
-			JSString* idstr = JS_ValueToString(cx, idval.get());
+			JS::RootedString idstr(cx, JS::ToString(cx, idval));
 			if (!idstr)
 				throw PSERROR_Serialize_ScriptError("JS_ValueToString failed");
 
@@ -292,7 +297,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 
 			// Use LookupProperty instead of GetProperty to avoid the danger of getters
 			// (they might delete values and trigger GC)
-			if (!JS_LookupPropertyById(cx, obj, id, propval.address()))
+			if (!JS_LookupPropertyById(cx, obj, id, &propval))
 				throw PSERROR_Serialize_ScriptError("JS_LookupPropertyById failed");
 
 			HandleScriptVal(propval);
@@ -304,10 +309,10 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	{
 		// We can't serialise functions, but we can at least name the offender (hopefully)
 		std::wstring funcname(L"(unnamed)");
-		JSFunction* func = JS_ValueToFunction(cx, val);
+		JS::RootedFunction func(cx, JS_ValueToFunction(cx, val));
 		if (func)
 		{
-			JSString* string = JS_GetFunctionId(func);
+			JS::RootedString string(cx, JS_GetFunctionId(func));
 			if (string)
 			{
 				size_t length;
@@ -323,7 +328,8 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	case JSTYPE_STRING:
 	{
 		m_Serializer.NumberU8_Unbounded("type", SCRIPT_TYPE_STRING);
-		ScriptString("string", val.toString());
+		JS::RootedString stringVal(cx, val.toString());
+		ScriptString("string", stringVal);
 		break;
 	}
 	case JSTYPE_NUMBER:
@@ -365,7 +371,7 @@ void CBinarySerializerScriptImpl::HandleScriptVal(JS::HandleValue val)
 	}
 }
 
-void CBinarySerializerScriptImpl::ScriptString(const char* name, JSString* string)
+void CBinarySerializerScriptImpl::ScriptString(const char* name, JS::HandleString string)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -385,7 +391,7 @@ void CBinarySerializerScriptImpl::ScriptString(const char* name, JSString* strin
 	m_Serializer.RawBytes(name, (const u8*)chars, length*2);
 }
 
-u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JSObject* obj)
+u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JS::HandleObject obj)
 {
 	// To support non-tree structures (e.g. "var x = []; var y = [x, x];"), we need a way
 	// to indicate multiple references to one object(/array). So every time we serialize a
@@ -395,33 +401,32 @@ u32 CBinarySerializerScriptImpl::GetScriptBackrefTag(JSObject* obj)
 	// The tags are stored in a map. Maybe it'd be more efficient to store it inline in the object
 	// somehow? but this works okay for now
 
-	std::pair<backrefs_t::iterator, bool> it = m_ScriptBackrefs.insert(std::make_pair(obj, m_ScriptBackrefsNext));
-
 	// If it was already there, return the tag
-	if (!it.second)
-		return it.first->second;
+	u32 tag;
+	if (m_ScriptBackrefs.find(obj, tag))
+		return tag;
 
-	// If it was newly inserted, we need to make sure it gets rooted
-	// for the duration that it's in m_ScriptBackrefs
-	m_Rooter.Push(it.first->first);
+	m_ScriptBackrefs.add(m_ScriptInterface.GetContext(), obj, m_ScriptBackrefsNext);
+
 	m_ScriptBackrefsNext++;
 	// Return a non-tag number so callers know they need to serialize the object
 	return 0;
 }
 
-bool CBinarySerializerScriptImpl::IsSerializablePrototype(JSObject* prototype)
+bool CBinarySerializerScriptImpl::IsSerializablePrototype(JS::HandleObject prototype)
 {
-	return m_SerializablePrototypes.find(prototype) != m_SerializablePrototypes.end();
+	return m_SerializablePrototypes->has(prototype);
 }
 
-std::wstring CBinarySerializerScriptImpl::GetPrototypeName(JSObject* prototype)
+std::wstring CBinarySerializerScriptImpl::GetPrototypeName(JS::HandleObject prototype)
 {
-	std::map<JSObject*, std::wstring>::iterator it = m_SerializablePrototypes.find(prototype);
-	ENSURE(it != m_SerializablePrototypes.end());
-	return it->second;
+	std::wstring ret;
+	bool found = m_SerializablePrototypes->find(prototype, ret);
+	ENSURE(found);
+	return ret;
 }
 
-void CBinarySerializerScriptImpl::SetSerializablePrototypes(std::map<JSObject*, std::wstring>& prototypes)
+void CBinarySerializerScriptImpl::SetSerializablePrototypes(shared_ptr<ObjectIdCache<std::wstring> > prototypes)
 {
 	m_SerializablePrototypes = prototypes;
 }

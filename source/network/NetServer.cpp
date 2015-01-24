@@ -365,7 +365,9 @@ void CNetServerWorker::Run()
 	
 	// To avoid the need for JS_SetContextThread, we create and use and destroy
 	// the script interface entirely within this network thread
-	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime());
+	m_ScriptInterface = new ScriptInterface("Engine", "Net server", ScriptInterface::CreateRuntime(g_ScriptRuntime));
+	m_GameAttributes.set(m_ScriptInterface->GetJSRuntime(), JS::UndefinedValue());
+
 	while (true)
 	{
 		if (!RunStep())
@@ -378,9 +380,9 @@ void CNetServerWorker::Run()
 		// Update profiler stats
 		m_Stats->LatchHostState(m_Host);
 	}
-
+	
 	// Clear roots before deleting their context
-	m_GameAttributes = CScriptValRooted();
+	m_GameAttributes.clear();
 	m_SavedCommands.clear();
 
 	SAFE_DELETE(m_ScriptInterface);
@@ -615,7 +617,7 @@ void CNetServerWorker::OnUserJoin(CNetServerSession* session)
 	AddPlayer(session->GetGUID(), session->GetUserName());
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes;
+	gameSetupMessage.m_Data = m_GameAttributes.get();
 	session->SendMessage(&gameSetupMessage);
 
 	CPlayerAssignmentMessage assignMessage;
@@ -1022,12 +1024,8 @@ void CNetServerWorker::StartGame()
 
 	m_State = SERVER_STATE_LOADING;
 
-	JSContext* cx = GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-	// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-	JS::RootedValue tmpGameAttributes(cx, m_GameAttributes.get());
 	// Send the final setup state to all clients
-	UpdateGameAttributes(&tmpGameAttributes);
+	UpdateGameAttributes(&m_GameAttributes.get());
 	SendPlayerAssignments();
 
 	CGameStartMessage gameStart;
@@ -1036,13 +1034,13 @@ void CNetServerWorker::StartGame()
 
 void CNetServerWorker::UpdateGameAttributes(JS::MutableHandleValue attrs)
 {
-	m_GameAttributes = CScriptValRooted(GetScriptInterface().GetContext(), attrs);
+	m_GameAttributes.set(m_ScriptInterface->GetJSRuntime(), attrs);
 
 	if (!m_Host)
 		return;
 
 	CGameSetupMessage gameSetupMessage(GetScriptInterface());
-	gameSetupMessage.m_Data = m_GameAttributes;
+	gameSetupMessage.m_Data.set(m_GameAttributes.get());
 	Broadcast(&gameSetupMessage);
 }
 

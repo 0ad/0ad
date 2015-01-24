@@ -175,14 +175,14 @@ public:
 		wait(clients, 100);
 
 		{
-			CScriptValRooted cmd;
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command]\\n'})", &cmd);
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
 		{
-			CScriptValRooted cmd;
-			client2.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client2 test sim command]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client2.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client2 test sim command]\\n'})", &cmd);
 			client2Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -244,8 +244,8 @@ public:
 		wait(clients, 100);
 
 		{
-			CScriptValRooted cmd;
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 1]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 1]\\n'})", &cmd);
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -256,8 +256,8 @@ public:
 		wait(clients, 100);
 
 		{
-			CScriptValRooted cmd;
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 2]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 2]\\n'})", &cmd);
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -311,8 +311,8 @@ public:
 		// CNetTurnManager::TurnNeedsFullHash to always return true)
 
 		{
-			CScriptValRooted cmd;
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 3]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 3]\\n'})", &cmd);
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
@@ -324,8 +324,8 @@ public:
 		wait(clients, 100);
 
 		{
-			CScriptValRooted cmd;
-			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 4]\\n'})", cmd);
+			JS::RootedValue cmd(cx);
+			client1.GetScriptInterface().Eval("({type:'debug-print', message:'[>>> client1 test sim command 4]\\n'})", &cmd);
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 

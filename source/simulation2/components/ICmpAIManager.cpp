@@ -39,8 +39,12 @@ struct GetAIsHelper
 	NONCOPYABLE(GetAIsHelper);
 public:
 	GetAIsHelper(ScriptInterface& scriptInterface) :
-		m_ScriptInterface(scriptInterface)
+		m_ScriptInterface(scriptInterface),
+		m_AIs(scriptInterface.GetJSRuntime())
 	{
+		JSContext* cx = m_ScriptInterface.GetContext();
+		JSAutoRequest rq(cx);
+		m_AIs.set(JS_NewArrayObject(cx, 0));
 	}
 
 	void Run()
@@ -66,18 +70,20 @@ public:
 		self->m_ScriptInterface.Eval("({})", &ai);
 		self->m_ScriptInterface.SetProperty(ai, "id", dirname, true);
 		self->m_ScriptInterface.SetProperty(ai, "data", data, true);
-		self->m_AIs.push_back(CScriptValRooted(cx, ai));
+		u32 length;
+		JS_GetArrayLength(cx, self->m_AIs, &length);
+		JS_SetElement(cx, self->m_AIs, length, ai);
 
 		return INFO::OK;
 	}
 
-	std::vector<CScriptValRooted> m_AIs;
+	JS::PersistentRootedObject m_AIs;
 	ScriptInterface& m_ScriptInterface;
 };
 
-std::vector<CScriptValRooted> ICmpAIManager::GetAIs(ScriptInterface& scriptInterface)
+JS::Value ICmpAIManager::GetAIs(ScriptInterface& scriptInterface)
 {
 	GetAIsHelper helper(scriptInterface);
 	helper.Run();
-	return helper.m_AIs;
+	return JS::ObjectValue(*helper.m_AIs);
 }

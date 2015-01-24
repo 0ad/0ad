@@ -110,7 +110,7 @@ public:
 	/**
 	 * Called by simulation code, to add a new command to be distributed to all clients and executed soon.
 	 */
-	virtual void PostCommand(CScriptValRooted data) = 0;
+	virtual void PostCommand(JS::HandleValue data) = 0;
 
 	/**
 	 * Called when all commands for a given turn have been received.
@@ -139,7 +139,7 @@ protected:
 	/**
 	 * Store a command to be executed at a given turn.
 	 */
-	void AddCommand(int client, int player, CScriptValRooted data, u32 turn);
+	void AddCommand(int client, int player, JS::HandleValue data, u32 turn);
 
 	/**
 	 * Called when this client has finished sending all its commands scheduled for the given turn.
@@ -199,7 +199,7 @@ public:
 
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
-	virtual void PostCommand(CScriptValRooted data);
+	virtual void PostCommand(JS::HandleValue data);
 	
 	/**
 	 * Notifiy the server that all commands are sent to prepare the connection for termination.
@@ -224,7 +224,7 @@ public:
 
 	virtual void OnSimulationMessage(CSimulationMessage* msg);
 
-	virtual void PostCommand(CScriptValRooted data);
+	virtual void PostCommand(JS::HandleValue data);
 
 protected:
 	virtual void NotifyFinishedOwnCommands(u32 turn);

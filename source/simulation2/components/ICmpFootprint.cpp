@@ -24,17 +24,18 @@
 #include "simulation2/system/SimContext.h"
 #include "maths/FixedVector3D.h"
 
-CScriptVal ICmpFootprint::GetShape_wrapper()
+JS::Value ICmpFootprint::GetShape_wrapper()
 {
 	EShape shape;
 	entity_pos_t size0, size1, height;
 	GetShape(shape, size0, size1, height);
 
 	JSContext* cx = GetSimContext().GetScriptInterface().GetContext();
+	JSAutoRequest rq(cx);
 
-	JSObject* obj = JS_NewObject(cx, NULL, NULL, NULL);
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
 	if (!obj)
-		return JSVAL_VOID;
+		return JS::UndefinedValue();
 
 	if (shape == CIRCLE)
 	{
@@ -44,9 +45,9 @@ CScriptVal ICmpFootprint::GetShape_wrapper()
 		ScriptInterface::ToJSVal<std::string>(cx, &ptype, "circle");
 		ScriptInterface::ToJSVal(cx, &pradius, size0);
 		ScriptInterface::ToJSVal(cx, &pheight, height);
-		JS_SetProperty(cx, obj, "type", ptype.address());
-		JS_SetProperty(cx, obj, "radius", pradius.address());
-		JS_SetProperty(cx, obj, "height", pheight.address());
+		JS_SetProperty(cx, obj, "type", ptype);
+		JS_SetProperty(cx, obj, "radius", pradius);
+		JS_SetProperty(cx, obj, "height", pheight);
 	}
 	else
 	{
@@ -58,17 +59,17 @@ CScriptVal ICmpFootprint::GetShape_wrapper()
 		ScriptInterface::ToJSVal(cx, &pwidth, size0);
 		ScriptInterface::ToJSVal(cx, &pdepth, size1);
 		ScriptInterface::ToJSVal(cx, &pheight, height);
-		JS_SetProperty(cx, obj, "type", ptype.address());
-		JS_SetProperty(cx, obj, "width", pwidth.address());
-		JS_SetProperty(cx, obj, "depth", pdepth.address());
-		JS_SetProperty(cx, obj, "height", pheight.address());
+		JS_SetProperty(cx, obj, "type", ptype);
+		JS_SetProperty(cx, obj, "width", pwidth);
+		JS_SetProperty(cx, obj, "depth", pdepth);
+		JS_SetProperty(cx, obj, "height", pheight);
 	}
 
-	return OBJECT_TO_JSVAL(obj);
+	return JS::ObjectValue(*obj);
 }
 
 BEGIN_INTERFACE_WRAPPER(Footprint)
 DEFINE_INTERFACE_METHOD_1("PickSpawnPoint", CFixedVector3D, ICmpFootprint, PickSpawnPoint, entity_id_t)
 DEFINE_INTERFACE_METHOD_1("PickSpawnPointBothPass", CFixedVector3D, ICmpFootprint, PickSpawnPointBothPass, entity_id_t)
-DEFINE_INTERFACE_METHOD_0("GetShape", CScriptVal, ICmpFootprint, GetShape_wrapper)
+DEFINE_INTERFACE_METHOD_0("GetShape", JS::Value, ICmpFootprint, GetShape_wrapper)
 END_INTERFACE_WRAPPER(Footprint)

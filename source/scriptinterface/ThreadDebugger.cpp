@@ -95,7 +95,7 @@ JSTrapStatus CheckForBreakRequestHandler_(JSContext* cx, JSScript* script, jsbyt
 }
 
 CMutex CallHookMutex;
-static void* CallHook_(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
+static void* CallHook_(JSContext* cx, JSStackFrame* fp, bool before, bool* UNUSED(ok), void* closure)
 {
 	CScopeLock lock(CallHookMutex);
 	CThreadDebugger* pThreadDebugger = (CThreadDebugger*) closure;
@@ -673,7 +673,7 @@ void CThreadDebugger::SaveCallstack()
 				functionID = JS_NewStringCopyZ(m->m_pScriptInterface->GetContext(), "anonymous");
 		}
 
-		JSBool ret = JS_DefineElement(m->m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
+		bool ret = JS_DefineElement(m->m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
 		ENSURE(ret);
 		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		counter++;
@@ -785,20 +785,20 @@ namespace CyclicRefWorkaround
 	
 	struct Stringifier
 	{
-		static JSBool callback(const jschar* buf, uint32 len, void* data)
+		static bool callback(const jschar* buf, uint32 len, void* data)
 		{
 			utf16string str(buf, buf+len);
 			std::wstring strw(str.begin(), str.end());
 
 			Status err; // ignore Unicode errors
 			static_cast<Stringifier*>(data)->stream << utf8_from_wstring(strw, &err);
-			return JS_TRUE;
+			return true;
 		}
 
 		std::stringstream stream;
 	};
 	
-	JSBool replacer(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+	bool replacer(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	{
 		jsval value = JS_ARGV(cx, vp)[1];
 		jsval key = JS_ARGV(cx, vp)[0];
@@ -824,14 +824,14 @@ namespace CyclicRefWorkaround
 				JS_SET_RVAL(cx, vp, ret);
 				g_LastKey = key;
 				g_LastValue = value;
-				return JS_TRUE;
+				return true;
 			}
 		}
 		g_LastKey = key;
 		g_LastValue = value;
 		g_RecursionDetectedInPrevReplacer = false;
 		JS_SET_RVAL(cx, vp, JS_ARGV(cx, vp)[1]);
-		return JS_TRUE;
+		return true;
 	}
 }
 

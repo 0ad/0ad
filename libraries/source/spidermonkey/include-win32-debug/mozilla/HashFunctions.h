@@ -1,7 +1,8 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* Utilities for hashing. */
 
@@ -42,13 +43,15 @@
  * in nsHashKeys.h.
  */
 
-#ifndef mozilla_HashFunctions_h_
-#define mozilla_HashFunctions_h_
+#ifndef mozilla_HashFunctions_h
+#define mozilla_HashFunctions_h
 
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
-#include "mozilla/StandardInteger.h"
+#include "mozilla/Char16.h"
 #include "mozilla/Types.h"
+
+#include <stdint.h>
 
 #ifdef __cplusplus
 namespace mozilla {
@@ -173,8 +176,8 @@ AddToHash(uint32_t hash, A* a)
    * catch data pointers and couldn't handle function pointers.
    */
 
-  MOZ_STATIC_ASSERT(sizeof(a) == sizeof(uintptr_t),
-                    "Strange pointer!");
+  static_assert(sizeof(a) == sizeof(uintptr_t),
+                "Strange pointer!");
 
   return detail::AddUintptrToHash<sizeof(uintptr_t)>(hash, uintptr_t(a));
 }
@@ -324,8 +327,24 @@ HashString(const uint16_t* str, size_t length)
   return detail::HashKnownLength(str, length);
 }
 
+#ifdef MOZ_CHAR16_IS_NOT_WCHAR
+MOZ_WARN_UNUSED_RESULT
+inline uint32_t
+HashString(const char16_t* str)
+{
+  return detail::HashUntilZero(str);
+}
+
+MOZ_WARN_UNUSED_RESULT
+inline uint32_t
+HashString(const char16_t* str, size_t length)
+{
+  return detail::HashKnownLength(str, length);
+}
+#endif
+
 /*
- * On Windows, wchar_t (PRUnichar) is not the same as uint16_t, even though it's
+ * On Windows, wchar_t (char16_t) is not the same as uint16_t, even though it's
  * the same width!
  */
 #ifdef WIN32
@@ -356,4 +375,5 @@ HashBytes(const void* bytes, size_t length);
 
 } /* namespace mozilla */
 #endif /* __cplusplus */
-#endif /* mozilla_HashFunctions_h_ */
+
+#endif /* mozilla_HashFunctions_h */

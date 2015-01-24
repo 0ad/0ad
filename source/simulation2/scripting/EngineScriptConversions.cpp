@@ -72,7 +72,10 @@ template<> void ScriptInterface::ToJSVal<CParamNode>(JSContext* cx, JS::MutableH
 	// Prevent modifications to the object, so that it's safe to share between
 	// components and to reconstruct on deserialization
 	if (ret.isObject())
-		JS_DeepFreezeObject(cx, &ret.toObject());
+	{
+		JS::RootedObject obj(cx, &ret.toObject());
+		JS_DeepFreezeObject(cx, obj);
+	}
 }
 
 template<> void ScriptInterface::ToJSVal<const CParamNode*>(JSContext* cx, JS::MutableHandleValue ret, const CParamNode* const& val)
@@ -95,13 +98,13 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValu
 	JS::RootedValue g(cx);
 	JS::RootedValue b(cx);
 	JS::RootedValue a(cx);
-	if (!JS_GetProperty(cx, obj, "r", r.address()) || !FromJSVal(cx, r, out.r))
+	if (!JS_GetProperty(cx, obj, "r", &r) || !FromJSVal(cx, r, out.r))
 		FAIL("Failed to get property CColor.r");
-	if (!JS_GetProperty(cx, obj, "g", g.address()) || !FromJSVal(cx, g, out.g))
+	if (!JS_GetProperty(cx, obj, "g", &g) || !FromJSVal(cx, g, out.g))
 		FAIL("Failed to get property CColor.g");
-	if (!JS_GetProperty(cx, obj, "b", b.address()) || !FromJSVal(cx, b, out.b))
+	if (!JS_GetProperty(cx, obj, "b", &b) || !FromJSVal(cx, b, out.b))
 		FAIL("Failed to get property CColor.b");
-	if (!JS_GetProperty(cx, obj, "a", a.address()) || !FromJSVal(cx, a, out.a))
+	if (!JS_GetProperty(cx, obj, "a", &a) || !FromJSVal(cx, a, out.a))
 		FAIL("Failed to get property CColor.a");
 
 	return true;
@@ -110,7 +113,7 @@ template<> bool ScriptInterface::FromJSVal<CColor>(JSContext* cx, JS::HandleValu
 template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandleValue ret, CColor const& val)
 {
 	JSAutoRequest rq(cx);
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL));
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -126,10 +129,10 @@ template<> void ScriptInterface::ToJSVal<CColor>(JSContext* cx, JS::MutableHandl
 	ToJSVal(cx, &b, val.b);
 	ToJSVal(cx, &a, val.a);
 
-	JS_SetProperty(cx, obj, "r", r.address());
-	JS_SetProperty(cx, obj, "g", g.address());
-	JS_SetProperty(cx, obj, "b", b.address());
-	JS_SetProperty(cx, obj, "a", a.address());
+	JS_SetProperty(cx, obj, "r", r);
+	JS_SetProperty(cx, obj, "g", g);
+	JS_SetProperty(cx, obj, "b", b);
+	JS_SetProperty(cx, obj, "a", a);
 
 	ret.setObject(*obj);
 }
@@ -160,13 +163,13 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector3D>(JSContext* cx, JS::Ha
 	JS::RootedObject obj(cx, &v.toObject());
 	JS::RootedValue p(cx);
 
-	if (!JS_GetProperty(cx, obj, "x", p.address())) return false; // TODO: report type errors
+	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
 	if (!FromJSVal(cx, p, out.X)) return false;
 
-	if (!JS_GetProperty(cx, obj, "y", p.address())) return false;
+	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
 	if (!FromJSVal(cx, p, out.Y)) return false;
 
-	if (!JS_GetProperty(cx, obj, "z", p.address())) return false;
+	if (!JS_GetProperty(cx, obj, "z", &p)) return false;
 	if (!FromJSVal(cx, p, out.Z)) return false;
 
 	return true;
@@ -178,9 +181,8 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 
 	// apply the Vector3D prototype to the return value;
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, 
-						&pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR3DPROTO).get().toObject(), 
-						NULL));
+	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR3DPROTO).toObject());
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
 
 	if (!obj)
 	{
@@ -195,9 +197,9 @@ template<> void ScriptInterface::ToJSVal<CFixedVector3D>(JSContext* cx, JS::Muta
 	ToJSVal(cx, &y, val.Y);
 	ToJSVal(cx, &z, val.Z);
 
-	JS_SetProperty(cx, obj, "x", x.address());
-	JS_SetProperty(cx, obj, "y", y.address());
-	JS_SetProperty(cx, obj, "z", z.address());
+	JS_SetProperty(cx, obj, "x", x);
+	JS_SetProperty(cx, obj, "y", y);
+	JS_SetProperty(cx, obj, "z", z);
 
 	ret.setObject(*obj);
 }
@@ -211,10 +213,10 @@ template<> bool ScriptInterface::FromJSVal<CFixedVector2D>(JSContext* cx, JS::Ha
 
 	JS::RootedValue p(cx);
 
-	if (!JS_GetProperty(cx, obj, "x", p.address())) return false; // TODO: report type errors
+	if (!JS_GetProperty(cx, obj, "x", &p)) return false; // TODO: report type errors
 	if (!FromJSVal(cx, p, out.X)) return false;
 
-	if (!JS_GetProperty(cx, obj, "y", p.address())) return false;
+	if (!JS_GetProperty(cx, obj, "y", &p)) return false;
 	if (!FromJSVal(cx, p, out.Y)) return false;
 
 	return true;
@@ -226,9 +228,8 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 
 	// apply the Vector2D prototype to the return value
  	ScriptInterface::CxPrivate* pCxPrivate = ScriptInterface::GetScriptInterfaceAndCBData(cx);
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, 
-						&pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR2DPROTO).get().toObject(), 
-						NULL));
+	JS::RootedObject proto(cx, &pCxPrivate->pScriptInterface->GetCachedValue(ScriptInterface::CACHE_VECTOR2DPROTO).toObject());
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, proto, JS::NullPtr()));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -240,8 +241,8 @@ template<> void ScriptInterface::ToJSVal<CFixedVector2D>(JSContext* cx, JS::Muta
 	ToJSVal(cx, &x, val.X);
 	ToJSVal(cx, &y, val.Y);
 
-	JS_SetProperty(cx, obj, "x", x.address());
-	JS_SetProperty(cx, obj, "y", y.address());
+	JS_SetProperty(cx, obj, "x", x);
+	JS_SetProperty(cx, obj, "y", y);
 
 	ret.setObject(*obj);
 }
@@ -260,10 +261,10 @@ template<> void ScriptInterface::ToJSVal<Grid<u8> >(JSContext* cx, JS::MutableHa
 	ScriptInterface::ToJSVal(cx, &w, val.m_W);
 	ScriptInterface::ToJSVal(cx, &h, val.m_H);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL));
-	JS_SetProperty(cx, obj, "width", w.address());
-	JS_SetProperty(cx, obj, "height", h.address());
-	JS_SetProperty(cx, obj, "data", data.address());
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS_SetProperty(cx, obj, "width", w);
+	JS_SetProperty(cx, obj, "height", h);
+	JS_SetProperty(cx, obj, "data", data);
 
 	ret.setObject(*obj);
 }
@@ -282,10 +283,10 @@ template<> void ScriptInterface::ToJSVal<Grid<u16> >(JSContext* cx, JS::MutableH
 	ScriptInterface::ToJSVal(cx, &w, val.m_W);
 	ScriptInterface::ToJSVal(cx, &h, val.m_H);
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL));
-	JS_SetProperty(cx, obj, "width", w.address());
-	JS_SetProperty(cx, obj, "height", h.address());
-	JS_SetProperty(cx, obj, "data", data.address());
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
+	JS_SetProperty(cx, obj, "width", w);
+	JS_SetProperty(cx, obj, "height", h);
+	JS_SetProperty(cx, obj, "data", data);
 
 	ret.setObject(*obj);
 }

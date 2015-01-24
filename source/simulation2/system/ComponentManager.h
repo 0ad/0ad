@@ -47,7 +47,7 @@ public:
 
 private:
 	// Component allocation types
-	typedef IComponent* (*AllocFunc)(ScriptInterface& scriptInterface, jsval ctor);
+	typedef IComponent* (*AllocFunc)(ScriptInterface& scriptInterface, JS::HandleValue ctor);
 	typedef void (*DeallocFunc)(IComponent*);
 
 	// ComponentTypes come in three types:
@@ -70,7 +70,7 @@ private:
 		DeallocFunc dealloc;
 		std::string name;
 		std::string schema; // RelaxNG fragment
-		CScriptValRooted ctor; // only valid if type == CT_Script
+		DefPersistentRooted<JS::Value> ctor; // only valid if type == CT_Script
 	};
 	
 	struct FindJSONFilesCallbackData
@@ -268,24 +268,24 @@ public:
 
 private:
 	// Implementations of functions exposed to scripts
-	static void Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor, bool reRegister, bool systemComponent);
-	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
-	static void Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
-	static void Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, CScriptVal ctor);
+	static void Script_RegisterComponentType_Common(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor, bool reRegister, bool systemComponent);
+	static void Script_RegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor);
+	static void Script_RegisterSystemComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor);
+	static void Script_ReRegisterComponentType(ScriptInterface::CxPrivate* pCxPrivate, int iid, std::string cname, JS::HandleValue ctor);
 	static void Script_RegisterInterface(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
 	static void Script_RegisterMessageType(ScriptInterface::CxPrivate* pCxPrivate, std::string name);
-	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, CScriptVal value);
+	static void Script_RegisterGlobal(ScriptInterface::CxPrivate* pCxPrivate, std::string name, JS::HandleValue value);
 	static IComponent* Script_QueryInterface(ScriptInterface::CxPrivate* pCxPrivate, int ent, int iid);
 	static std::vector<int> Script_GetEntitiesWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
 	static std::vector<IComponent*> Script_GetComponentsWithInterface(ScriptInterface::CxPrivate* pCxPrivate, int iid);
-	static void Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, CScriptVal data);
-	static void Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, CScriptVal data);
+	static void Script_PostMessage(ScriptInterface::CxPrivate* pCxPrivate, int ent, int mtid, JS::HandleValue data);
+	static void Script_BroadcastMessage(ScriptInterface::CxPrivate* pCxPrivate, int mtid, JS::HandleValue data);
 	static int Script_AddEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
 	static int Script_AddLocalEntity(ScriptInterface::CxPrivate* pCxPrivate, std::string templateName);
 	static void Script_DestroyEntity(ScriptInterface::CxPrivate* pCxPrivate, int ent);
 	static void Script_FlushDestroyedEntities(ScriptInterface::CxPrivate* pCxPrivate);
-	static CScriptVal Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
-	static CScriptVal Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
+	static JS::Value Script_ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
+	static JS::Value Script_ReadCivJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring fileName);
 	static std::vector<std::string> Script_FindJSONFiles(ScriptInterface::CxPrivate* pCxPrivate, std::wstring subPath, bool recursive);
 	static JS::Value ReadJSONFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filePath, std::wstring fileName);
 	

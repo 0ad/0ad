@@ -35,6 +35,8 @@ public:
 	void test_basic()
 	{
 		ComponentTestHelper test(g_ScriptRuntime);
+		JSContext* cx = test.GetScriptInterface().GetContext();
+		JSAutoRequest rq(cx);
 
 		std::vector<SimulationCommand> empty;
 
@@ -42,12 +44,12 @@ public:
 
 		TS_ASSERT(test.GetScriptInterface().Eval("var cmds = []; function ProcessCommand(player, cmd) { cmds.push([player, cmd]); }"));
 
-		CScriptVal cmd;
+		JS::RootedValue cmd(cx);
 
-		TS_ASSERT(test.GetScriptInterface().Eval("([1,2,3])", cmd));
+		TS_ASSERT(test.GetScriptInterface().Eval("([1,2,3])", &cmd));
 		cmp->PushLocalCommand(1, cmd);
 
-		TS_ASSERT(test.GetScriptInterface().Eval("({x:4})", cmd));
+		TS_ASSERT(test.GetScriptInterface().Eval("({x:4})", &cmd));
 		cmp->PushLocalCommand(-1, cmd);
 
 		test.Roundtrip();
@@ -55,7 +57,7 @@ public:
 		// Process the first two commands
 		cmp->FlushTurn(empty);
 
-		TS_ASSERT(test.GetScriptInterface().Eval("({y:5})", cmd));
+		TS_ASSERT(test.GetScriptInterface().Eval("({y:5})", &cmd));
 		cmp->PushLocalCommand(10, cmd);
 
 		// Process the next command

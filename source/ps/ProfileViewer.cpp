@@ -487,25 +487,33 @@ namespace
 
 	struct DumpTable
 	{
-		ScriptInterface& scriptInterface;
-		CScriptVal root;
+		ScriptInterface& m_ScriptInterface;
+		JS::PersistentRooted<JS::Value> m_Root;
 		DumpTable(ScriptInterface& scriptInterface, JS::HandleValue root) :
-			scriptInterface(scriptInterface), root(root)
+			m_ScriptInterface(scriptInterface), m_Root(scriptInterface.GetJSRuntime(), root)
+		{
+		}
+
+		// std::for_each requires a move constructor and the use of JS::PersistentRooted<T> apparently breaks a requirement for an 
+		// automatic move constructor
+		DumpTable(DumpTable && original) :
+			m_ScriptInterface(original.m_ScriptInterface),
+			m_Root(original.m_ScriptInterface.GetJSRuntime(), original.m_Root.get())
 		{
 		}
 
 		void operator() (AbstractProfileTable* table)
 		{
-			JSContext* cx = scriptInterface.GetContext();
+			JSContext* cx = m_ScriptInterface.GetContext();
 			JSAutoRequest rq(cx);
 			
 			JS::RootedValue t(cx);
-			scriptInterface.Eval(L"({})", &t);
-			scriptInterface.SetProperty(t, "cols", DumpCols(table));
-			scriptInterface.SetProperty(t, "data", DumpRows(table));
+			JS::RootedValue rows(cx, DumpRows(table));
+			m_ScriptInterface.Eval(L"({})", &t);
+			m_ScriptInterface.SetProperty(t, "cols", DumpCols(table));
+			m_ScriptInterface.SetProperty(t, "data", rows);
 			
-			JS::RootedValue tmpRoot(cx, root.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-			scriptInterface.SetProperty(tmpRoot, table->GetTitle().c_str(), t);
+			m_ScriptInterface.SetProperty(m_Root, table->GetTitle().c_str(), t);
 		}
 
 		std::vector<std::string> DumpCols(AbstractProfileTable* table)
@@ -520,30 +528,33 @@ namespace
 			return titles;
 		}
 
-		CScriptVal DumpRows(AbstractProfileTable* table)
+		JS::Value DumpRows(AbstractProfileTable* table)
 		{
-			JSContext* cx = scriptInterface.GetContext();
+			JSContext* cx = m_ScriptInterface.GetContext();
 			JSAutoRequest rq(cx);
 			
 			JS::RootedValue data(cx);
-			scriptInterface.Eval("({})", &data);
+			m_ScriptInterface.Eval("({})", &data);
 
 			const std::vector<ProfileColumn>& columns = table->GetColumns();
 
 			for (size_t r = 0; r < table->GetNumberRows(); ++r)
 			{
 				JS::RootedValue row(cx);
-				scriptInterface.Eval("([])", &row);
-				scriptInterface.SetProperty(data, table->GetCellText(r, 0).c_str(), row);
+				m_ScriptInterface.Eval("([])", &row);
+				m_ScriptInterface.SetProperty(data, table->GetCellText(r, 0).c_str(), row);
 
 				if (table->GetChild(r))
-					scriptInterface.SetPropertyInt(row, 0, DumpRows(table->GetChild(r)));
+				{
+					JS::RootedValue childRows(cx, DumpRows(table->GetChild(r)));
+					m_ScriptInterface.SetPropertyInt(row, 0, childRows);
+				}
 
 				for (size_t c = 1; c < columns.size(); ++c)
-					scriptInterface.SetPropertyInt(row, c, table->GetCellText(r, c));
+					m_ScriptInterface.SetPropertyInt(row, c, table->GetCellText(r, c));
 			}
 
-			return data.get();
+			return data;
 		}
 
 	private:
@@ -592,7 +603,7 @@ void CProfileViewer::SaveToFile()
 	m->outputStream.flush();
 }
 
-CScriptVal CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
+JS::Value CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
 {
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -604,7 +615,7 @@ CScriptVal CProfileViewer::SaveToJS(ScriptInterface& scriptInterface)
 	sort(tables.begin(), tables.end(), SortByName);
 	for_each(tables.begin(), tables.end(), DumpTable(scriptInterface, root));
 
-	return root.get();
+	return root;
 }
 
 void CProfileViewer::ShowTable(const CStr& table)

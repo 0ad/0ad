@@ -114,7 +114,14 @@ class CSimulationMessage : public CNetMessage
 {
 public:
 	CSimulationMessage(ScriptInterface& scriptInterface);
-	CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, jsval data);
+	CSimulationMessage(ScriptInterface& scriptInterface, u32 client, i32 player, u32 turn, JS::HandleValue data);
+
+	/** The compiler can't create a copy constructor because of the PersistentRooted member, 
+	 * so we have to write it manually.
+	 * NOTE: It doesn't clone the m_Data member and the copy will reference the same JS::Value!
+	 */
+	CSimulationMessage(const CSimulationMessage& orig);
+
 	virtual u8* Serialize(u8* pBuffer) const;
 	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
 	virtual size_t GetSerializedLength() const;
@@ -123,7 +130,7 @@ public:
 	u32 m_Client;
 	i32 m_Player;
 	u32 m_Turn;
-	CScriptValRooted m_Data;
+	JS::PersistentRooted<JS::Value> m_Data;
 private:
 	ScriptInterface* m_ScriptInterface;
 };
@@ -136,13 +143,13 @@ class CGameSetupMessage : public CNetMessage
 	NONCOPYABLE(CGameSetupMessage);
 public:
 	CGameSetupMessage(ScriptInterface& scriptInterface);
-	CGameSetupMessage(ScriptInterface& scriptInterface, jsval data);
+	CGameSetupMessage(ScriptInterface& scriptInterface, JS::HandleValue data);
 	virtual u8* Serialize(u8* pBuffer) const;
 	virtual const u8* Deserialize(const u8* pStart, const u8* pEnd);
 	virtual size_t GetSerializedLength() const;
 	virtual CStr ToString() const;
 
-	CScriptValRooted m_Data;
+	JS::PersistentRootedValue m_Data;
 private:
 	ScriptInterface& m_ScriptInterface;
 };

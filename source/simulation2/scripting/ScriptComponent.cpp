@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,44 +22,35 @@
 #include "simulation2/serialization/ISerializer.h"
 #include "simulation2/serialization/IDeserializer.h"
 
-CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, jsval instance) :
-	m_ScriptInterface(scriptInterface), m_Instance(CScriptValRooted(scriptInterface.GetContext(), instance))
+CComponentTypeScript::CComponentTypeScript(ScriptInterface& scriptInterface, JS::HandleValue instance) :
+	m_ScriptInterface(scriptInterface), m_Instance(scriptInterface.GetJSRuntime(), instance)
 {
 	// Cache the property detection for efficiency
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
-	m_HasCustomSerialize = m_ScriptInterface.HasProperty(tmpInstance, "Serialize");
-	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(tmpInstance, "Deserialize");
+	m_HasCustomSerialize = m_ScriptInterface.HasProperty(m_Instance, "Serialize");
+	m_HasCustomDeserialize = m_ScriptInterface.HasProperty(m_Instance, "Deserialize");
 
 	m_HasNullSerialize = false;
 	if (m_HasCustomSerialize)
 	{
 		JS::RootedValue val(cx);
-		if (m_ScriptInterface.GetProperty(tmpInstance, "Serialize", &val) && val.isNull())
+		if (m_ScriptInterface.GetProperty(m_Instance, "Serialize", &val) && val.isNull())
 			m_HasNullSerialize = true;
 	}
 }
 
 void CComponentTypeScript::Init(const CParamNode& paramNode, entity_id_t ent)
 {
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-	m_ScriptInterface.SetProperty(tmpInstance, "entity", (int)ent, true, false);
-	m_ScriptInterface.SetProperty(tmpInstance, "template", paramNode, true, false);
-	m_ScriptInterface.CallFunctionVoid(tmpInstance, "Init");
+	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
+	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
+	m_ScriptInterface.CallFunctionVoid(m_Instance, "Init");
 }
 
 void CComponentTypeScript::Deinit()
-{	
-	JSContext* cx = m_ScriptInterface.GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade
-	m_ScriptInterface.CallFunctionVoid(tmpInstance, "Deinit");
+{
+	m_ScriptInterface.CallFunctionVoid(m_Instance, "Deinit");
 }
 
 void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
@@ -71,8 +62,7 @@ void CComponentTypeScript::HandleMessage(const CMessage& msg, bool global)
 
 	JS::RootedValue msgVal(cx, msg.ToJSValCached(m_ScriptInterface));
 
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-	if (!m_ScriptInterface.CallFunctionVoid(tmpInstance, name, msgVal))
+	if (!m_ScriptInterface.CallFunctionVoid(m_Instance, name, msgVal))
 		LOGERROR("Script message handler %s failed", name);
 }
 
@@ -84,20 +74,19 @@ void CComponentTypeScript::Serialize(ISerializer& serialize)
 	
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 
 	// Support a custom "Serialize" function, which returns a new object that will be
 	// serialized instead of the component itself
 	if (m_HasCustomSerialize)
 	{
 		JS::RootedValue val(cx);
-		if (!m_ScriptInterface.CallFunction(tmpInstance, "Serialize", &val))
+		if (!m_ScriptInterface.CallFunction(m_Instance, "Serialize", &val))
 			LOGERROR("Script Serialize call failed");
 		serialize.ScriptVal("object", &val);
 	}
 	else
 	{
-		serialize.ScriptVal("object", &tmpInstance);
+		serialize.ScriptVal("object", &m_Instance);
 	}
 }
 
@@ -106,7 +95,6 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	JS::RootedValue tmpInstance(cx, m_Instance.get()); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
 	// Support a custom "Deserialize" function, to which we pass the deserialized data
 	// instead of automatically adding the deserialized properties onto the object
 	if (m_HasCustomDeserialize)
@@ -117,7 +105,7 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 		if (!m_HasNullSerialize)
 			deserialize.ScriptVal("object", &val);
 
-		if (!m_ScriptInterface.CallFunctionVoid(tmpInstance, "Deserialize", val))
+		if (!m_ScriptInterface.CallFunctionVoid(m_Instance, "Deserialize", val))
 			LOGERROR("Script Deserialize call failed");
 	}
 	else
@@ -126,10 +114,10 @@ void CComponentTypeScript::Deserialize(const CParamNode& paramNode, IDeserialize
 		{
 			// Use ScriptObjectAppend so we don't lose the carefully-constructed
 			// prototype/parent of this object
-			deserialize.ScriptObjectAppend("object", tmpInstance);
+			deserialize.ScriptObjectAppend("object", m_Instance);
 		}
 	}
 
-	m_ScriptInterface.SetProperty(tmpInstance, "entity", (int)ent, true, false);
-	m_ScriptInterface.SetProperty(tmpInstance, "template", paramNode, true, false);
+	m_ScriptInterface.SetProperty(m_Instance, "entity", (int)ent, true, false);
+	m_ScriptInterface.SetProperty(m_Instance, "template", paramNode, true, false);
 }

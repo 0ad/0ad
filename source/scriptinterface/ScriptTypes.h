@@ -18,6 +18,9 @@
 #ifndef INCLUDED_SCRIPTTYPES
 #define INCLUDED_SCRIPTTYPES
 
+#define JSGC_GENERATIONAL 1
+#define JSGC_USE_EXACT_ROOTING 1
+
 #ifdef _WIN32
 # define XP_WIN
 # ifndef WIN32
@@ -27,29 +30,21 @@
 
 // Guess whether the library was compiled with the release-mode or debug-mode ABI
 // (for JS_DumpHeap etc)
-#if defined(DEBUG) && !defined(WITH_SYSTEM_MOZJS24)
+#if defined(DEBUG) && !defined(WITH_SYSTEM_MOZJS31)
 # define MOZJS_DEBUG_ABI 1
 #else
 # define MOZJS_DEBUG_ABI 0
 #endif
 
-// Ignore some harmless warnings triggered by jsapi.h
-// Not all of these warnings can be disabled in older versions of GCC.
-// The version checking was taken from the manual here:
-// 	http://gcc.gnu.org/onlinedocs/
-// Choose the version and navigate to "Options to Request or Suppress Warnings"
-// or for some flags "Options Controlling C++ Dialect".
-#if GCC_VERSION >= 402
-# if GCC_VERSION >= 406 // store user flags
-#  pragma GCC diagnostic push
-# endif
+// Ignore some harmless warnings
+#if GCC_VERSION
+# pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 # pragma GCC diagnostic ignored "-Wredundant-decls"
 # pragma GCC diagnostic ignored "-Wundef" // Some versions of GCC will still print warnings (see http://gcc.gnu.org/bugzilla/show_bug.cgi?id=53431).
 # pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
-# if GCC_VERSION >= 403
-#  pragma GCC diagnostic ignored "-Wignored-qualifiers"
-# endif
+# pragma GCC diagnostic ignored "-Wignored-qualifiers"
+# pragma GCC diagnostic ignored "-Wextra"
 #endif
 #if CLANG_VERSION
 # pragma clang diagnostic push
@@ -65,46 +60,25 @@
 # endif
 #endif
 #if MSC_VERSION
-// warnings which are also disabled for the files that include this header
-
-// For the transition from JSBool to bool
-# pragma warning(disable:4800) // "forcing value to bool 'true' or 'false' (performance warning)
-# pragma warning(disable:4805) // '==' : unsafe mix of type 'JSBool' and type 'bool' in operation
-
-// warnings only disabled for the SpiderMonkey headers
-# pragma warning(push)
-# pragma warning(disable:4480) // "nonstandard extension used: specifying underlying type for enum"
-# pragma warning(disable:4100) // "unreferenced formal parameter"
-# pragma warning(disable:4265) // "class has virtual functions, but destructor is not virtual"
-# pragma warning(disable:4251) // "class 'X' needs to have dll-interface to be used by clients of struct 'Y'"
-# pragma warning(disable:4005) // "macro redefinition"
+// reduce the warning level for the SpiderMonkey headers
+# pragma warning(push, 1)
 #endif
 
 #include "jspubtd.h"
 #include "jsapi.h"
 
-
+// restore user flags and re-enable the warnings disabled a few lines above
 #if MSC_VERSION
 # pragma warning(pop)
 #endif
 #if CLANG_VERSION
 # pragma clang diagnostic pop
 #endif
-#if GCC_VERSION >= 402
-# pragma GCC diagnostic warning "-Wunused-parameter"
-# pragma GCC diagnostic warning "-Wredundant-decls"
-# pragma GCC diagnostic warning "-Wundef"
-# pragma GCC diagnostic ignored "-Wnon-virtual-dtor"
-# if GCC_VERSION >= 403
-#  pragma GCC diagnostic warning "-Wignored-qualifiers"
-# endif
-# if GCC_VERSION >= 406
-// restore user flags (and we don't have to manually restore the warning levels for GCC >= 4.6)
-#  pragma GCC diagnostic pop
-# endif
+#if GCC_VERSION
+# pragma GCC diagnostic pop
 #endif
 
-#if MOZJS_MAJOR_VERSION != 24
+#if MOZJS_MAJOR_VERSION != 31
 #error Your compiler is trying to use an incorrect major version of the SpiderMonkey library.
 #error The only version that works is the one in the libraries/spidermonkey/ directory,
 #error and it will not work with a typical system-installed version.
@@ -122,7 +96,5 @@
 #endif
 
 class ScriptInterface;
-class CScriptVal;
-class CScriptValRooted;
 
 #endif // INCLUDED_SCRIPTTYPES

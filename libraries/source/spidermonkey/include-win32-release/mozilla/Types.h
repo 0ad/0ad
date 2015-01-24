@@ -1,28 +1,22 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* mfbt foundational types and macros. */
 
-#ifndef mozilla_Types_h_
-#define mozilla_Types_h_
+#ifndef mozilla_Types_h
+#define mozilla_Types_h
 
 /*
  * This header must be valid C and C++, includable by code embedding either
  * SpiderMonkey or Gecko.
  */
 
-/*
- * Expose all the integer types defined in C99's <stdint.h> (and the integer
- * limit and constant macros, if compiling C code or if compiling C++ code and
- * the right __STDC_*_MACRO has been defined for each).  These are all usable
- * throughout mfbt code, and throughout Mozilla code more generally.
- */
-#include "mozilla/StandardInteger.h"
-
-/* Also expose size_t. */
+/* Expose all <stdint.h> types and size_t. */
 #include <stddef.h>
+#include <stdint.h>
 
 /* Implement compiler and linker macros needed for APIs. */
 
@@ -43,7 +37,7 @@
  * These macros are designed for use by library interfaces -- not for normal
  * methods or data used cross-file.
  */
-#if defined(WIN32) || defined(XP_OS2)
+#if defined(WIN32)
 #  define MOZ_EXPORT   __declspec(dllexport)
 #else /* Unix */
 #  ifdef HAVE_VISIBILITY_ATTRIBUTE
@@ -69,15 +63,11 @@
 #  else
 #    define MOZ_IMPORT_API __declspec(dllimport)
 #  endif
-#elif defined(XP_OS2)
-#  define MOZ_IMPORT_API  __declspec(dllimport)
 #else
 #  define MOZ_IMPORT_API MOZ_EXPORT
 #endif
 
 #if defined(_WIN32) && !defined(__MWERKS__)
-#  define MOZ_IMPORT_DATA  __declspec(dllimport)
-#elif defined(XP_OS2)
 #  define MOZ_IMPORT_DATA  __declspec(dllimport)
 #else
 #  define MOZ_IMPORT_DATA  MOZ_EXPORT
@@ -141,4 +131,4 @@
 #  define decltype __typeof__
 #endif
 
-#endif  /* mozilla_Types_h_ */
+#endif /* mozilla_Types_h */

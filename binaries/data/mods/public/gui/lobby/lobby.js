@@ -155,7 +155,10 @@ function updateSubject(newSubject)
 function updatePlayerList()
 {
 	var playersBox = Engine.GetGUIObjectByName("playersBox");
-	[playerList, presenceList, nickList, ratingList] = [[],[],[],[]];
+	var playerList = [];
+	var presenceList = [];
+	var nickList = [];
+	var ratingList = [];
 	var cleanPlayerList = Engine.GetPlayerList();
 	// Sort the player list, ignoring case.
 	cleanPlayerList.sort(function(a,b) 

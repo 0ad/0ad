@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -34,9 +34,9 @@ class IDeserializer;
 class CComponentTypeScript
 {
 public:
-	CComponentTypeScript(ScriptInterface& scriptInterface, jsval instance);
+	CComponentTypeScript(ScriptInterface& scriptInterface, JS::HandleValue instance);
 
-	jsval GetInstance() const { return m_Instance.get(); }
+	JS::Value GetInstance() const { return m_Instance.get(); }
 
 	void Init(const CParamNode& paramNode, entity_id_t ent);
 	void Deinit();
@@ -53,27 +53,27 @@ public:
 	//   template<typename T0> void CallVoid(const char* funcname, const T0& a0);
 	//   ...
 
-// TODO: Check if these temporary roots can be removed after SpiderMonkey 31 upgrade
+// CallRef is mainly used for returning script values with correct stack rooting.
 #define OVERLOADS(z, i, data) \
 	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
 	R Call(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
-		JSContext* cx = m_ScriptInterface.GetContext(); \
-		JSAutoRequest rq(cx); \
-		JS::RootedValue tmpInstance(cx, m_Instance.get()); \
 		R ret; \
-		if (m_ScriptInterface.CallFunction(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
+		if (m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
 			return ret; \
 		LOGERROR("Error calling component script function %s", funcname); \
 		return R(); \
 	} \
+	template<typename R  BOOST_PP_ENUM_TRAILING_PARAMS(i, typename T)> \
+	void CallRef(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a), R ret) \
+	{ \
+		if (!m_ScriptInterface.CallFunction(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a), ret)) \
+			LOGERROR("Error calling component script function %s", funcname); \
+	} \
 	BOOST_PP_IF(i, template<, ) BOOST_PP_ENUM_PARAMS(i, typename T) BOOST_PP_IF(i, >, ) \
 	void CallVoid(const char* funcname  BOOST_PP_ENUM_TRAILING_BINARY_PARAMS(i, const T, &a)) \
 	{ \
-		JSContext* cx = m_ScriptInterface.GetContext(); \
-		JSAutoRequest rq(cx); \
-		JS::RootedValue tmpInstance(cx, m_Instance.get()); \
-		if (m_ScriptInterface.CallFunctionVoid(tmpInstance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
+		if (m_ScriptInterface.CallFunctionVoid(m_Instance, funcname  BOOST_PP_ENUM_TRAILING_PARAMS(i, a))) \
 			return; \
 		LOGERROR("Error calling component script function %s", funcname); \
 	}
@@ -82,7 +82,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 
 private:
 	ScriptInterface& m_ScriptInterface;
-	CScriptValRooted m_Instance;
+	JS::PersistentRootedValue m_Instance;
 	bool m_HasCustomSerialize;
 	bool m_HasCustomDeserialize;
 	bool m_HasNullSerialize;

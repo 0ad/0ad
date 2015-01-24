@@ -24,7 +24,7 @@
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
 	JSAutoRequest rq(cx); \
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL)); \
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())); \
 	if (!obj) \
 		return JS::UndefinedValue();
 
@@ -32,7 +32,7 @@
 	do { \
 		JS::RootedValue prop(cx);\
 		ScriptInterface::ToJSVal(cx, &prop, this->name); \
-		if (! JS_SetProperty(cx, obj, #name, prop.address())) \
+		if (! JS_SetProperty(cx, obj, #name, prop)) \
 			return JS::UndefinedValue(); \
 	} while (0);
 
@@ -47,7 +47,7 @@
 #define GET_MSG_PROPERTY(type, name) \
 	type name; \
 	{ \
-	if (! JS_GetProperty(cx, obj, #name, prop.address())) \
+	if (! JS_GetProperty(cx, obj, #name, &prop)) \
 		return NULL; \
 	if (! ScriptInterface::FromJSVal(cx, prop, name)) \
 		return NULL; \
@@ -55,10 +55,10 @@
 
 JS::Value CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 {
-	if (m_Cached.uninitialised())
-		m_Cached = CScriptValRooted(scriptInterface.GetContext(), ToJSVal(scriptInterface));
+	if (!m_Cached)
+		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetJSRuntime(), ToJSVal(scriptInterface)));
 
-	return m_Cached.get();
+	return m_Cached->get();
 }
 
 ////////////////////////////////

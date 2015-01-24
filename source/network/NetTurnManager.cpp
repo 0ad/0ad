@@ -159,7 +159,7 @@ bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 		std::vector<SimulationCommand> commands;
 		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
 		{
-			commands.insert(commands.end(), it->second.begin(), it->second.end());
+			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
 		}
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
@@ -203,7 +203,7 @@ bool CNetTurnManager::UpdateFastForward()
 		std::vector<SimulationCommand> commands;
 		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
 		{
-			commands.insert(commands.end(), it->second.begin(), it->second.end());
+			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
 		}
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
@@ -256,7 +256,7 @@ void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 	m_Simulation2.Interpolate(simFrameLength, offset, realFrameLength);
 }
 
-void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, u32 turn)
+void CNetTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 turn)
 {
 	NETTURN_LOG((L"AddCommand(client=%d player=%d turn=%d)\n", client, player, turn));
 
@@ -266,10 +266,8 @@ void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, 
 		return;
 	}
 
-	SimulationCommand cmd;
-	cmd.player = player;
-	cmd.data = data;
-	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].push_back(cmd);
+	SimulationCommand cmd(player, m_Simulation2.GetScriptInterface().GetContext(), data);
+	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(std::move(cmd));
 }
 
 void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
@@ -374,12 +372,12 @@ CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClien
 {
 }
 
-void CNetClientTurnManager::PostCommand(CScriptValRooted data)
+void CNetClientTurnManager::PostCommand(JS::HandleValue data)
 {
 	NETTURN_LOG((L"PostCommand()\n"));
 
 	// Transmit command to server
-	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data.get());
+	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data);
 	m_NetClient.SendMessage(&msg);
 
 	// Add to our local queue
@@ -436,7 +434,7 @@ CNetLocalTurnManager::CNetLocalTurnManager(CSimulation2& simulation, IReplayLogg
 {
 }
 
-void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
+void CNetLocalTurnManager::PostCommand(JS::HandleValue data)
 {
 	// Add directly to the next turn, ignoring COMMAND_DELAY,
 	// because we don't need to compensate for network latency

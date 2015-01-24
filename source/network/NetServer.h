@@ -281,7 +281,10 @@ private:
 
 	PlayerAssignmentMap m_PlayerAssignments;
 
-	CScriptValRooted m_GameAttributes;
+	/**
+	 * Stores the most current game attributes.
+	 */
+	DefPersistentRooted<JS::Value> m_GameAttributes;
 
 	int m_AutostartPlayers;
 

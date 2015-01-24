@@ -57,6 +57,7 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 {
 	JSContext* cx = simulation.GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
+
 	// Determine the filename to save under
 	const VfsPath basenameFormat(L"saves/" + name);
 	const VfsPath filename = basenameFormat.ChangeExtension(L".0adsave");
@@ -81,13 +82,14 @@ Status SavedGames::Save(const std::wstring& name, const std::wstring& descriptio
 		WARN_RETURN(ERR::FAIL);
 
 	JS::RootedValue metadata(cx);
+	JS::RootedValue initAttributes(cx, simulation.GetInitAttributes());
 	simulation.GetScriptInterface().Eval("({})", &metadata);
 	simulation.GetScriptInterface().SetProperty(metadata, "version_major", SAVED_GAME_VERSION_MAJOR);
 	simulation.GetScriptInterface().SetProperty(metadata, "version_minor", SAVED_GAME_VERSION_MINOR);
 	simulation.GetScriptInterface().SetProperty(metadata, "mods", g_modsLoaded);
 	simulation.GetScriptInterface().SetProperty(metadata, "time", (double)now);
 	simulation.GetScriptInterface().SetProperty(metadata, "player", playerID);
-	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", simulation.GetInitAttributes());
+	simulation.GetScriptInterface().SetProperty(metadata, "initAttributes", initAttributes);
 
 	JS::RootedValue guiMetadata(cx);
 	simulation.GetScriptInterface().ReadStructuredClone(guiMetadataClone, &guiMetadata);
@@ -150,7 +152,9 @@ public:
 	 * types and confusing (a chain of pointers pointing to other pointers).
 	 */
 	CGameLoader(ScriptInterface& scriptInterface, std::string* savedState) :
-		m_ScriptInterface(scriptInterface), m_SavedState(savedState)
+		m_ScriptInterface(scriptInterface),
+		m_Metadata(scriptInterface.GetJSRuntime()),
+		m_SavedState(savedState)
 	{
 	}
 
@@ -169,9 +173,7 @@ public:
 			std::string buffer;
 			buffer.resize(fileInfo.Size());
 			WARN_IF_ERR(archiveFile->Load("", DummySharedPtr((u8*)buffer.data()), buffer.size()));
-			JS::RootedValue tmpMetadata(cx); // TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-			m_ScriptInterface.ParseJSON(buffer, &tmpMetadata);
-			m_Metadata = CScriptValRooted(cx, tmpMetadata);
+			m_ScriptInterface.ParseJSON(buffer, &m_Metadata);
 		}
 		else if (pathname == L"simulation.dat" && m_SavedState)
 		{
@@ -188,7 +190,7 @@ public:
 private:
 
 	ScriptInterface& m_ScriptInterface;
-	CScriptValRooted m_Metadata;
+	JS::PersistentRooted<JS::Value> m_Metadata;
 	std::string* m_SavedState;
 };
 
@@ -216,13 +218,13 @@ Status SavedGames::Load(const std::wstring& name, ScriptInterface& scriptInterfa
 	return INFO::OK;	
 }
 
-std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
+JS::Value SavedGames::GetSavedGames(ScriptInterface& scriptInterface)
 {
 	TIMER(L"GetSavedGames");
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
-	std::vector<CScriptValRooted> games;
+	JS::RootedObject games(cx, JS_NewArrayObject(cx, 0));
 
 	Status err;
 
@@ -261,10 +263,10 @@ std::vector<CScriptValRooted> SavedGames::GetSavedGames(ScriptInterface& scriptI
 		scriptInterface.Eval("({})", &game);
 		scriptInterface.SetProperty(game, "id", pathnames[i].Basename());
 		scriptInterface.SetProperty(game, "metadata", metadata);
-		games.push_back(CScriptValRooted(cx, game));
+		JS_SetElement(cx, games, i, game);
 	}
 
-	return games;
+	return JS::ObjectValue(*games);
 }
 
 bool SavedGames::DeleteSavedGame(const std::wstring& name)
@@ -289,7 +291,7 @@ bool SavedGames::DeleteSavedGame(const std::wstring& name)
 	return true;
 }
 
-CScriptValRooted SavedGames::GetEngineInfo(ScriptInterface& scriptInterface) 
+JS::Value SavedGames::GetEngineInfo(ScriptInterface& scriptInterface) 
 { 
 	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -299,6 +301,6 @@ CScriptValRooted SavedGames::GetEngineInfo(ScriptInterface& scriptInterface)
 	scriptInterface.SetProperty(metainfo, "version_major", SAVED_GAME_VERSION_MAJOR); 
 	scriptInterface.SetProperty(metainfo, "version_minor", SAVED_GAME_VERSION_MINOR); 
 	scriptInterface.SetProperty(metainfo, "mods"         , g_modsLoaded);
-	return CScriptValRooted(cx, metainfo); 
+	return metainfo;
 }
 

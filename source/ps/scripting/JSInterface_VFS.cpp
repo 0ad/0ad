@@ -46,20 +46,14 @@
 struct BuildDirEntListState
 {
 	JSContext* cx;
-	JSObject* filename_array;
+	JS::PersistentRootedObject filename_array;
 	int cur_idx;
 
 	BuildDirEntListState(JSContext* cx_)
-		: cx(cx_)
+		: cx(cx_),
+		filename_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty())),
+		cur_idx(0)
 	{
-		filename_array = JS_NewArrayObject(cx, 0, NULL);
-		JS_AddObjectRoot(cx, &filename_array);
-		cur_idx = 0;
-	}
-
-	~BuildDirEntListState()
-	{
-		JS_RemoveObjectRoot(cx, &filename_array);
 	}
 };
 
@@ -67,10 +61,12 @@ struct BuildDirEntListState
 static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED(fileINfo), uintptr_t cbData)
 {
 	BuildDirEntListState* s = (BuildDirEntListState*)cbData;
+	JSAutoRequest rq(s->cx);
 
+	JS::RootedObject filenameArrayObj(s->cx, s->filename_array);
 	JS::RootedValue val(s->cx);
 	ScriptInterface::ToJSVal( s->cx, &val, CStrW(pathname.string()) );
-	JS_SetElement(s->cx, s->filename_array, s->cur_idx++, val.address());
+	JS_SetElement(s->cx, filenameArrayObj, s->cur_idx++, val);
 	return INFO::OK;
 }
 
@@ -85,7 +81,7 @@ static Status BuildDirEntListCB(const VfsPath& pathname, const CFileInfo& UNUSED
 //
 // note: full pathnames of each file/subdirectory are returned,
 // ready for use as a "filename" for the other functions.
-CScriptVal JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse)
+JS::Value JSI_VFS::BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse)
 {
 	// convert to const wchar_t*; if there's no filter, pass 0 for speed
 	// (interpreted as: "accept all files without comparing").
@@ -144,7 +140,7 @@ unsigned int JSI_VFS::GetFileSize(ScriptInterface::CxPrivate* UNUSED(pCxPrivate)
 //
 // contents = readFile(filename);
 //   filename: VFS filename (may include path)
-CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
+JS::Value JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -161,7 +157,7 @@ CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstrin
 	// Decode as UTF-8
 	JS::RootedValue ret(cx);
 	ScriptInterface::ToJSVal(cx, &ret, contents.FromUTF8());
-	return ret.get();
+	return ret;
 }
 
 
@@ -169,7 +165,7 @@ CScriptVal JSI_VFS::ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstrin
 //
 // lines = readFileLines(filename);
 //   filename: VFS filename (may include path)
-CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
+JS::Value JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename)
 {
 	JSContext* cx = pCxPrivate->pScriptInterface->GetContext();
 	JSAutoRequest rq(cx);
@@ -190,16 +186,16 @@ CScriptVal JSI_VFS::ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::w
 	//
 
 	std::stringstream ss(contents);
-	JSObject* line_array = JS_NewArrayObject(cx, 0, NULL);
-
+	JS::RootedObject line_array(cx, JS_NewArrayObject(cx, JS::HandleValueArray::empty()));
 	std::string line;
 	int cur_line = 0;
+
 	while (std::getline(ss, line))
 	{
 		// Decode each line as UTF-8
 		JS::RootedValue val(cx);
 		ScriptInterface::ToJSVal(cx, &val, CStr(line).FromUTF8());
-		JS_SetElement(cx, line_array, cur_line++, val.address());
+		JS_SetElement(cx, line_array, cur_line++, val);
 	}
 
 	return JS::ObjectValue(*line_array);

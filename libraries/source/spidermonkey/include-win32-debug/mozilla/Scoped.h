@@ -1,11 +1,13 @@
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
- * License, v. 2.0. If a copy of the MPL was not distributed with this file,
- * You can obtain one at http://mozilla.org/MPL/2.0/. */
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* A number of structures to simplify scope-based RAII management. */
 
-#ifndef mozilla_Scoped_h_
-#define mozilla_Scoped_h_
+#ifndef mozilla_Scoped_h
+#define mozilla_Scoped_h
 
 /*
  * Resource Acquisition Is Initialization is a programming idiom used
@@ -50,8 +52,11 @@
  * the scope, graphics contexts, etc.
  */
 
+#include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/GuardObjects.h"
+#include "mozilla/Move.h"
+#include "mozilla/NullPtr.h"
 
 namespace mozilla {
 
@@ -80,12 +85,23 @@ class Scoped
     {
       MOZ_GUARD_OBJECT_NOTIFIER_INIT;
     }
+
     explicit Scoped(const Resource& v
                     MOZ_GUARD_OBJECT_NOTIFIER_PARAM)
       : value(v)
     {
       MOZ_GUARD_OBJECT_NOTIFIER_INIT;
     }
+
+    /* Move constructor. */
+    explicit Scoped(Scoped&& v
+                    MOZ_GUARD_OBJECT_NOTIFIER_PARAM)
+      : value(Move(v.value))
+    {
+      MOZ_GUARD_OBJECT_NOTIFIER_INIT;
+      v.value = Traits::empty();
+    }
+
     ~Scoped() {
       Traits::release(value);
     }
@@ -134,18 +150,26 @@ class Scoped
      *
      * @return this
      */
-    Scoped<Traits>& operator=(const Resource& other) {
+    Scoped& operator=(const Resource& other) {
       return reset(other);
     }
-    Scoped<Traits>& reset(const Resource& other) {
+    Scoped& reset(const Resource& other) {
       Traits::release(value);
       value = other;
       return *this;
     }
 
+    /* Move assignment operator. */
+    Scoped& operator=(Scoped&& rhs) {
+      MOZ_ASSERT(&rhs != this, "self-move-assignment not allowed");
+      this->~Scoped();
+      new(this) Scoped(Move(rhs));
+      return *this;
+    }
+
   private:
-    explicit Scoped(const Scoped<Traits>& value) MOZ_DELETE;
-    Scoped<Traits>& operator=(const Scoped<Traits>& value) MOZ_DELETE;
+    explicit Scoped(const Scoped& value) MOZ_DELETE;
+    Scoped& operator=(const Scoped& value) MOZ_DELETE;
 
   private:
     Resource value;
@@ -166,20 +190,30 @@ struct name : public mozilla::Scoped<Traits<Type> >            \
 {                                                              \
     typedef mozilla::Scoped<Traits<Type> > Super;              \
     typedef typename Super::Resource Resource;                 \
-    name& operator=(Resource ptr) {                            \
-      Super::operator=(ptr);                                   \
+    name& operator=(Resource rhs) {                            \
+      Super::operator=(rhs);                                   \
+      return *this;                                            \
+    }                                                          \
+    name& operator=(name&& rhs) {                              \
+      Super::operator=(Move(rhs));                             \
       return *this;                                            \
     }                                                          \
     explicit name(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM)        \
       : Super(MOZ_GUARD_OBJECT_NOTIFIER_ONLY_PARAM_TO_PARENT)  \
     {}                                                         \
-    explicit name(Resource ptr                                 \
+    explicit name(Resource rhs                                 \
                   MOZ_GUARD_OBJECT_NOTIFIER_PARAM)             \
-      : Super(ptr MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT)   \
+      : Super(rhs                                              \
+              MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT)       \
+    {}                                                         \
+    explicit name(name&& rhs                                   \
+                  MOZ_GUARD_OBJECT_NOTIFIER_PARAM)             \
+      : Super(Move(rhs)                                        \
+              MOZ_GUARD_OBJECT_NOTIFIER_PARAM_TO_PARENT)       \
     {}                                                         \
   private:                                                     \
-    explicit name(name& source) MOZ_DELETE;                    \
-    name& operator=(name& source) MOZ_DELETE;                  \
+    explicit name(name&) MOZ_DELETE;                           \
+    name& operator=(name&) MOZ_DELETE;                         \
 };
 
 /*
@@ -193,7 +227,7 @@ template<typename T>
 struct ScopedFreePtrTraits
 {
     typedef T* type;
-    static T* empty() { return NULL; }
+    static T* empty() { return nullptr; }
     static void release(T* ptr) { free(ptr); }
 };
 SCOPED_TEMPLATE(ScopedFreePtr, ScopedFreePtrTraits)
@@ -256,7 +290,7 @@ template <typename T>
 struct TypeSpecificScopedPointerTraits
 {
     typedef T* type;
-    const static type empty() { return NULL; }
+    const static type empty() { return nullptr; }
     const static void release(type value)
     {
       if (value)
@@ -268,4 +302,4 @@ SCOPED_TEMPLATE(TypeSpecificScopedPointer, TypeSpecificScopedPointerTraits)
 
 } /* namespace mozilla */
 
-#endif // mozilla_Scoped_h_
+#endif /* mozilla_Scoped_h */

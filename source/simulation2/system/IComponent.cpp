@@ -38,7 +38,7 @@ bool IComponent::NewJSObject(ScriptInterface& UNUSED(scriptInterface), JS::Mutab
 	return false;
 }
 
-jsval IComponent::GetJSInstance() const
+JS::Value IComponent::GetJSInstance() const
 {
-	return JSVAL_NULL;
+	return JS::NullValue();
 }

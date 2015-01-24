@@ -14,13 +14,11 @@
 # if defined(_M_X64) || defined(_M_AMD64) || defined(_AMD64_)
 #  define IS_LITTLE_ENDIAN 1
 #  undef  IS_BIG_ENDIAN
-#  define JS_BYTES_PER_WORD   8
-#  define JS_BITS_PER_WORD_LOG2   6
 # else  /* !(defined(_M_X64) || defined(_M_AMD64) || defined(_AMD64_)) */
 #  error "CPU type is unknown"
 # endif /* !(defined(_M_X64) || defined(_M_AMD64) || defined(_AMD64_)) */
 
-#elif defined(_WIN32) || defined(XP_OS2)
+#elif defined(_WIN32)
 
 # ifdef __WATCOMC__
 #  define HAVE_VA_LIST_AS_ARRAY 1
@@ -28,10 +26,8 @@
 
 # define IS_LITTLE_ENDIAN 1
 # undef  IS_BIG_ENDIAN
-# define JS_BYTES_PER_WORD   4
-# define JS_BITS_PER_WORD_LOG2   5
 
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(__powerpc__) || defined(__ppc__)
 # if __LITTLE_ENDIAN__
 #  define IS_LITTLE_ENDIAN 1
 #  undef  IS_BIG_ENDIAN
@@ -93,8 +89,7 @@
 # endif
 
 #elif defined(__sparc) || defined(__sparc__) || \
-      defined(_POWER) || defined(__powerpc__) || \
-      defined(__ppc__) || defined(__hppa) || \
+      defined(_POWER) || defined(__hppa) || \
       defined(_MIPSEB) || defined(_BIG_ENDIAN)
 /* IA64 running HP-UX will have _BIG_ENDIAN defined.
  * IA64 running Linux will have endian.h and be handled above.

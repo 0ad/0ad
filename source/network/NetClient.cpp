@@ -69,7 +69,8 @@ private:
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
-	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game)
+	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
+	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext())
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -544,7 +545,7 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 			*client->m_Game->GetSimulation2(), *client, client->m_HostID, client->m_Game->GetReplayLogger());
 
 	client->m_Game->SetPlayerID(player);
-	client->m_Game->StartGame(client->m_GameAttributes, "");
+	client->m_Game->StartGame(&client->m_GameAttributes, "");
 
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'start'})", &msg);
