@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Kevin Min <candyson1@naver.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-20 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-13 11:10+0000\n"
+"Last-Translator: Kevin Min <candyson1@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -469,28 +470,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "아군"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
-msgstr ""
+msgstr "자기의"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "중립"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "적군"
 
 #: simulation/components/BuildRestrictions.js:199
 #, javascript-format
@@ -522,28 +523,28 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "own"
-msgstr ""
+msgstr "자기의"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "아군"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "중립"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "적군"
 
 #: simulation/components/EntityLimits.js:110
 #, javascript-format
@@ -579,21 +580,21 @@ msgstr "돌"
 #: simulation/components/Player.js:236
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "자원 부족 -  %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
 #, javascript-format
@@ -601,7 +602,7 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "자원 부족 - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:361
 msgid "The production queue is full."
@@ -609,35 +610,35 @@ msgstr ""
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "거북이 속도 (0.1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "느리게 (0.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "여유있는 (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "편안한 (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
-msgstr ""
+msgstr "정상 속도 (1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[5].Name
 msgid "Fast (1.25x)"
-msgstr ""
+msgstr "빠르게 (1.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[6].Name
 msgid "Very Fast (1.5x)"
-msgstr ""
+msgstr "아주 빠르게 (1.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[7].Name
 msgid "Insane (2x)"
-msgstr ""
+msgstr "당신 미쳤네요 (2x)"
 
 #: simulation/data/player_defaults.jsonPlayerData[0].Name
 msgid "Gaia"
@@ -678,15 +679,15 @@ msgstr "플레이어 8"
 #: simulation/data/map_sizes.jsonSizes[0].Name
 #: simulation/data/map_sizes.jsonSizes[0].LongName
 msgid "Tiny"
-msgstr ""
+msgstr "아주 작음"
 
 #: simulation/data/map_sizes.jsonSizes[1].Name
 msgid "Small"
-msgstr ""
+msgstr "작음"
 
 #: simulation/data/map_sizes.jsonSizes[1].LongName
 msgid "Small (2 players)"
-msgstr ""
+msgstr "작음 (2인)"
 
 #: simulation/data/map_sizes.jsonSizes[2].Name
 msgid "Medium"
@@ -694,36 +695,36 @@ msgstr "보통"
 
 #: simulation/data/map_sizes.jsonSizes[2].LongName
 msgid "Medium (3 players)"
-msgstr ""
+msgstr "중간 크기 (3인)"
 
 #: simulation/data/map_sizes.jsonSizes[3].Name
 msgid "Normal"
-msgstr ""
+msgstr "일반"
 
 #: simulation/data/map_sizes.jsonSizes[3].LongName
 msgid "Normal (4 players)"
-msgstr ""
+msgstr "일반 (4인)"
 
 #: simulation/data/map_sizes.jsonSizes[4].Name
 msgid "Large"
-msgstr ""
+msgstr "큼"
 
 #: simulation/data/map_sizes.jsonSizes[4].LongName
 msgid "Large (6 players)"
-msgstr ""
+msgstr "큼 (6인)"
 
 #: simulation/data/map_sizes.jsonSizes[5].Name
 msgid "Very Large"
-msgstr ""
+msgstr "아주 큼"
 
 #: simulation/data/map_sizes.jsonSizes[5].LongName
 msgid "Very Large (8 players)"
-msgstr ""
+msgstr "아주 큼 (8인)"
 
 #: simulation/data/map_sizes.jsonSizes[6].Name
 #: simulation/data/map_sizes.jsonSizes[6].LongName
 msgid "Giant"
-msgstr ""
+msgstr "거인"
 
 #: simulation/ai/petra/data.jsonname
 msgid "Petra Bot"

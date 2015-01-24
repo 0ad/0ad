@@ -7,14 +7,14 @@
 # Ildar Kamaev <thetechnorat@gmail.com>, 2014
 # kersurk <kersurk@gmail.com>, 2014
 # kersurk <kersurk@gmail.com>, 2013
-# unserializable <unserializable@freenet.de>, 2014
+# unserializable <unserializable@freenet.de>, 2014-2015
 # unserializable <unserializable@freenet.de>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-20 09:24+0000\n"
+"Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,12 +25,12 @@ msgstr ""
 #: gui/session/input.js:152
 #, javascript-format
 msgid "Basic range: %(range)s"
-msgstr ""
+msgstr "Põhiulatus: %(range)s"
 
 #: gui/session/input.js:152
 #, javascript-format
 msgid "Average bonus range: %(range)s"
-msgstr ""
+msgstr "Keskmine põhiulatus: %(range)s"
 
 #: gui/session/input.js:731
 msgid "Cannot build wall here!"
@@ -38,7 +38,7 @@ msgstr "Siia ei saa müüri ehitada!"
 
 #: gui/session/menu.js:1 gui/session/menu.xml:(caption):64
 msgid "Pause"
-msgstr "Peata"
+msgstr "Paus"
 
 #: gui/session/menu.js:2
 msgid "Resume"
@@ -115,21 +115,21 @@ msgstr "x"
 
 #: gui/session/menu.js:456
 msgid "There are no land traders."
-msgstr "Ei ole maavahetajaid"
+msgstr "Maismaakaubavedajaid ei ole."
 
 #: gui/session/menu.js:462
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s inaktiivne"
+msgstr[1] "%(numberOfLandTraders)s inaktiivsed"
 
 #: gui/session/menu.js:466
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberTrading)s maismaakaubavedaja."
+msgstr[1] "%(numberTrading)s maismaakaubavedajat."
 
 #: gui/session/menu.js:469
 #, javascript-format
@@ -178,14 +178,14 @@ msgstr ""
 #: gui/session/menu.js:517
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
-msgstr ""
+msgstr "%(openingGarrisonedString)s."
 
 #: gui/session/menu.js:526
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfLandTraders)s maismaakaubavedaja inaktiivne"
+msgstr[1] "%(numberOfLandTraders)s maismaakaubavedajat inaktiivsed"
 
 #: gui/session/menu.js:527 gui/session/menu.js:569
 #, javascript-format
@@ -202,22 +202,22 @@ msgstr "Kaubalaevu ei ole."
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s inaktiivne"
+msgstr[1] "%(numberOfShipTraders)s inaktiivset"
 
 #: gui/session/menu.js:549
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tegutseb %(numberTrading)s kaubalaev"
+msgstr[1] "Tegutseb %(numberTrading)s kaubalaeva"
 
 #: gui/session/menu.js:568
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(numberOfShipTraders)s inaktiivne kaubalaev"
+msgstr[1] "%(numberOfShipTraders)s inaktiivset kaubalaeva"
 
 #: gui/session/menu.js:647 gui/session/menu.xml:(caption):17
 msgid "Manual"
@@ -241,7 +241,7 @@ msgstr ""
 #: gui/session/messages.js:202
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Võrguteade: %(message)s"
 
 #: gui/session/messages.js:215
 msgid "Waiting for other players to connect..."
@@ -323,7 +323,7 @@ msgstr "%(player)s on nüüd teie suhtes neutraalne."
 #: gui/session/messages.js:474
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
-msgstr ""
+msgstr "%(amount)s %(resourceType)s"
 
 #: gui/session/messages.js:482
 #, javascript-format
@@ -394,17 +394,17 @@ msgstr ""
 #: gui/session/selection_details.js:50
 #, javascript-format
 msgid "%(rank)s Rank"
-msgstr ""
+msgstr "%(rank)s auaste"
 
 #: gui/session/selection_details.js:68
 #, javascript-format
 msgid "%(hitpoints)s / %(maxHitpoints)s"
-msgstr ""
+msgstr "%(hitpoints)s / %(maxHitpoints)s"
 
 #: gui/session/selection_details.js:95
 #, javascript-format
 msgid "%(experience)s %(current)s / %(required)s"
-msgstr ""
+msgstr "%(experience)s %(current)s / %(required)s"
 
 #: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
@@ -413,7 +413,7 @@ msgstr "Kogemus:"
 #: gui/session/selection_details.js:101
 #, javascript-format
 msgid "%(experience)s %(current)s"
-msgstr ""
+msgstr "%(experience)s %(current)s"
 
 #: gui/session/selection_details.js:115
 msgid "∞"
@@ -423,17 +423,17 @@ msgstr "∞"
 #: gui/session/selection_details.js:180
 #, javascript-format
 msgid "%(amount)s / %(max)s"
-msgstr ""
+msgstr "%(amount)s / %(max)s"
 
 #: gui/session/selection_details.js:125
 #, javascript-format
 msgid "%(resource)s:"
-msgstr ""
+msgstr "%(resource)s:"
 
 #: gui/session/selection_details.js:164
 #, javascript-format
 msgid "Gain: %(amount)s"
-msgstr ""
+msgstr "Tulu: %(amount)s"
 
 #: gui/session/selection_details.js:173
 #, javascript-format
@@ -460,7 +460,7 @@ msgstr "Varustus:"
 #: gui/session/session.js:634 gui/session/session.js:638
 #, javascript-format
 msgid "%(label)s %(details)s"
-msgstr ""
+msgstr "%(label)s %(details)s"
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
@@ -485,12 +485,12 @@ msgstr "meetrit"
 msgid ""
 "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), "
 "%(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
 #: gui/session/selection_details.js:274
 #, javascript-format
 msgid "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
-msgstr ""
+msgstr "%(label)s %(details)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
 #: gui/session/selection_details.js:285
 #, javascript-format
@@ -508,22 +508,22 @@ msgstr ""
 #: gui/session/selection_details.js:361 gui/session/session.js:618
 #, javascript-format
 msgid "%(label)s %(current)s / %(max)s"
-msgstr ""
+msgstr "%(label)s %(current)s / %(max)s"
 
 #: gui/session/selection_panels.js:87
 #, javascript-format
 msgid "Buy %(resource)s"
-msgstr ""
+msgstr "Osta %(resource)s"
 
 #: gui/session/selection_panels.js:88
 #, javascript-format
 msgid "Sell %(resource)s"
-msgstr ""
+msgstr "Müü %(resource)s"
 
 #: gui/session/selection_panels.js:216 gui/session/selection_panels.js:981
 #, javascript-format
 msgid "Requires %(technology)s"
-msgstr ""
+msgstr "Vajab %(technology)s"
 
 #: gui/session/selection_panels.js:329
 #, javascript-format
@@ -536,7 +536,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:397
 msgid "Lock Gate"
-msgstr ""
+msgstr "Lukusta värav"
 
 #: gui/session/selection_panels.js:403
 msgid "Unlock Gate"
@@ -653,7 +653,7 @@ msgstr "Metsik"
 
 #: gui/session/session.js:305 gui/session/session.js:321
 msgid "You have left the game."
-msgstr ""
+msgstr "Lahkusite mängust."
 
 #: gui/session/session.js:312
 msgid "You have been disconnected."
@@ -725,7 +725,7 @@ msgstr "Päritoluturg."
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
 #, javascript-format
 msgid "Gain: %(gain)s"
-msgstr ""
+msgstr "Tulu: %(gain)s"
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
@@ -755,7 +755,7 @@ msgstr ""
 #: gui/session/unit_actions.js:533
 #, javascript-format
 msgid "Expected gain: %(gain)s"
-msgstr ""
+msgstr "Oodatav tulu: %(gain)s"
 
 #: gui/session/unit_actions.js:655
 msgid "Unload All"
@@ -823,7 +823,7 @@ msgstr ""
 #: gui/session/utility_functions.js:232 gui/session/utility_functions.js:237
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
-msgstr ""
+msgstr "%(damage)s %(damageType)s"
 
 #: gui/session/utility_functions.js:153 gui/session/utility_functions.js:200
 #: gui/session/utility_functions.js:229 gui/session/utility_functions.js:255
@@ -917,12 +917,12 @@ msgstr "%(resourceIcon)s %(minimum)s - %(resourceIcon)s %(maximum)s"
 #: gui/session/utility_functions.js:454
 #, javascript-format
 msgid "Walls:  %(costs)s"
-msgstr ""
+msgstr "Seinad: %(costs)s"
 
 #: gui/session/utility_functions.js:455
 #, javascript-format
 msgid "Towers:  %(costs)s"
-msgstr ""
+msgstr "Tornid: %(costs)s"
 
 #: gui/session/utility_functions.js:477
 #, javascript-format
@@ -940,7 +940,7 @@ msgstr "Ebapiisavad loodusvarad:"
 #: gui/session/utility_functions.js:507
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
-msgstr ""
+msgstr "%(specificName)s (%(genericName)s)"
 
 #: gui/session/utility_functions.js:517
 msgid "???"
@@ -1018,7 +1018,7 @@ msgstr "Metall"
 #: gui/session/utility_functions.js:667
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Maak"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1032,7 +1032,7 @@ msgstr ""
 #: gui/session/utility_functions.js:671
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Varemed"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1109,7 +1109,7 @@ msgstr "Metall"
 #: gui/session/utility_functions.js:696
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Maak"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1123,7 +1123,7 @@ msgstr ""
 #: gui/session/utility_functions.js:700
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "varemed"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1234,7 +1234,7 @@ msgstr "Välju"
 
 #: gui/session/minimap_panel.xml:(tooltip):15
 msgid "Find idle worker"
-msgstr ""
+msgstr "Leia jõudeolev tööline."
 
 #: gui/session/session.xml:(caption):53
 msgid "Control all units"
@@ -1262,7 +1262,7 @@ msgstr "Üksuste liikumise lisakiht"
 
 #: gui/session/session.xml:(caption):96
 msgid "Range overlay"
-msgstr ""
+msgstr "Ulatuste lisakiht"
 
 #: gui/session/session.xml:(caption):103
 msgid "Bounding box overlay"
@@ -1330,7 +1330,7 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Küsimus"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
@@ -1367,7 +1367,7 @@ msgstr ""
 
 #: gui/session/selection_panels_right/queue_panel.xml:(tooltip):8
 msgid "Production queue"
-msgstr ""
+msgstr "Tootmisjärjekord"
 
 #: gui/session/session_objects/selection_group_icons.xml:(tooltip):8
 msgid ""
@@ -1385,11 +1385,11 @@ msgstr "Vali mängutempo"
 
 #: gui/session/top_panel/button_menu.xml:(caption):14
 msgid "Menu"
-msgstr ""
+msgstr "Menüü"
 
 #: gui/session/top_panel/label.xml:(caption):4
 msgid "ALPHA XVII : Quercus"
-msgstr ""
+msgstr "ALPHA XVII : Quercus"
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

@@ -6,12 +6,13 @@
 # Jarl.Arntzen <jarl.arntzen@gmail.com>, 2014-2015
 # Kurt-Håkon Eilertsen <kurt@kheds.com>, 2014
 # Lene Raastad <lene.raastad.lr@gmail.com>, 2014
+# Ole Sannes Riiser <OLE-SR@online.no>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2015-01-03 23:20+0000\n"
-"Last-Translator: Jarl.Arntzen <jarl.arntzen@gmail.com>\n"
+"PO-Revision-Date: 2015-01-14 08:20+0000\n"
+"Last-Translator: Ole Sannes Riiser <OLE-SR@online.no>\n"
 "Language-Team: Norwegian Bokmål (http://www.transifex.com/projects/p/0ad/language/nb/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +73,7 @@ msgstr "Helbreder enheter i nærheten med 1 HP per sekund."
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr "Tren helbredere. Utstasjoner opp til 20 enheter for å helbrede dem raskt (3 HP per sekund). Utforsk helbredelse og religiøse forbedringer."
+msgstr "Tren helbredere. Utstasjoner opptil 20 enheter for å helbrede dem raskt (3 HP per sekund). Utforsk helbredelse og religiøse forbedringer."
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -92,7 +93,7 @@ msgstr "Tempel"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr "Forsvarsbygninger"
+msgstr "Forsvarsbygning"
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:57
@@ -116,7 +117,7 @@ msgstr "ForsvarsTårn"
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr "Bygg i nøytrale og eget territorium for å speide ut over kartområder. Mister sakte helse i nøytralt territorium."
+msgstr "Bygg i nøytralt og eget territorium for å speide ut over kartområder. Mister sakte helse i nøytralt territorium."
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
@@ -231,12 +232,12 @@ msgstr "Militære"
 
 #: simulation/templates/template_structure_military_barracks.xml:30
 msgid "Train citizen-soldiers. Research training improvements. Garrison: 10."
-msgstr "Tren borger-soldater. Utforsk treningsforbedringer. Utstasjoner: 10."
+msgstr "Tren borgersoldater. Utforsk treningsforbedringer. Utstasjoner: 10."
 
 #: simulation/templates/template_structure_military_barracks.xml:31
 #: simulation/templates/template_structure_military_barracks.xml:29
 msgid "Barracks"
-msgstr "Kaserner"
+msgstr "Kaserne"
 
 #: simulation/templates/template_structure_military_blacksmith.xml:30
 msgid "Research weapons and armor improvements."
@@ -608,12 +609,12 @@ msgstr "Varmo"
 #: simulation/templates/structures/brit_fortress.xml:21
 #: simulation/templates/structures/celt_fortress_b.xml:21
 msgid "Brythonic Broch"
-msgstr "Brythonic Broch"
+msgstr "Britonsk Broch"
 
 #: simulation/templates/structures/brit_fortress.xml:22
 #: simulation/templates/structures/celt_fortress_b.xml:22
 msgid "Train Brythonic heroes and champions. Construct siege rams."
-msgstr "Tren Brythoniske helter og stormesterere. Bygg rambukker for beleiring."
+msgstr "Tren britonske helter og stormesterere. Bygg rambukker for beleiring."
 
 #: simulation/templates/structures/brit_house.xml:9
 #: simulation/templates/structures/celt_house.xml:9
@@ -639,7 +640,7 @@ msgstr "Marchnaty"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr ""
+msgstr "Britonsk Utpost"
 
 #: simulation/templates/structures/brit_rotarymill.xml:20
 #: simulation/templates/structures/celt_sb1.xml:23
@@ -787,7 +788,7 @@ msgstr "Šadd"
 
 #: simulation/templates/structures/cart_fortress.xml:9
 msgid "Blockhouse Fort"
-msgstr ""
+msgstr "Bunkerfort"
 
 #: simulation/templates/structures/cart_fortress.xml:10
 msgid "Ḥamet"
@@ -803,7 +804,7 @@ msgstr "Šūq"
 
 #: simulation/templates/structures/cart_outpost.xml:5
 msgid "Carthaginian Outpost"
-msgstr ""
+msgstr "Kartagisk Utpost"
 
 #: simulation/templates/structures/cart_storehouse.xml:9
 msgid "Maḥṣabah"
@@ -848,7 +849,7 @@ msgstr "Homah"
 
 #: simulation/templates/structures/cart_wonder.xml:17
 msgid "Temple of Ba'al Hammon"
-msgstr ""
+msgstr "Ba'al Hammons tempel"
 
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
@@ -867,7 +868,7 @@ msgstr "Keltisk utpost"
 #: simulation/templates/structures/celt_slope_tower.xml:9
 #: simulation/templates/structures/celt_slope_wall.xml:9
 msgid "Earthworks"
-msgstr ""
+msgstr "Jordvoll"
 
 #: simulation/templates/structures/celt_wall_gate.xml:16
 msgid "Gate"
@@ -1112,7 +1113,7 @@ msgstr "Śāsana Stambha Aśokā"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr ""
+msgstr "Den kjente Ashoka-pillaren. For øyeblikket en ubrukelig bygning."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1145,7 +1146,7 @@ msgstr " "
 #: simulation/templates/structures/merc_camp_egyptian.xml:7
 #: simulation/templates/structures/ptol_mercenary_camp.xml:7
 msgid "MercenaryCamp"
-msgstr ""
+msgstr "LeiesoldatLeir"
 
 #: simulation/templates/structures/merc_camp_egyptian.xml:29
 msgid "Mercenary Camp (Egyptian)"
@@ -1181,7 +1182,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr ""
+msgstr "Skriv ut borger- og infanteri-enheter. "
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1230,12 +1231,12 @@ msgstr "Huvādā"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:20
 msgid "Ishtar Gate of Babylon"
-msgstr ""
+msgstr "Ishtars Babylonske Port"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:21
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr "Spesiell bygning fra det romerske imperium."
+msgstr "Spesialbygning fra det romerske imperium."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1251,7 +1252,7 @@ msgstr "Palass"
 
 #: simulation/templates/structures/pers_palace.xml:30
 msgid "Build Limit: 1."
-msgstr ""
+msgstr "Byggegrense: 1."
 
 #: simulation/templates/structures/pers_sb2.xml:22
 msgid "Persian Special Building"
@@ -1265,7 +1266,7 @@ msgstr "Parihuvādā"
 msgid ""
 "Special Building.\n"
 "Train War Elephants and Kardakes mercenaries."
-msgstr "Spesial Bygning\nTren krigselefanter og Kardakes leiesoldater."
+msgstr "Spesialbygning\nTren krigselefanter og Kardakes leiesoldater."
 
 #: simulation/templates/structures/pers_stables.xml:18
 msgid "Cavalry Stables"
@@ -1335,7 +1336,7 @@ msgstr "ḥwt-n-dpt.w"
 
 #: simulation/templates/structures/ptol_farmstead.xml:19
 msgid "pr-n-t"
-msgstr ""
+msgstr "pr-n-t"
 
 #: simulation/templates/structures/ptol_fortress.xml:9
 msgid "mktr-'a"
@@ -1380,7 +1381,7 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Billig kaserne-liknende bygning som kan bygges i nøytralt territorium men som ikke gir none påvirkning på territoriet.\n- Tren leiesoldater.\n- Minimum avstand fra andre militære bosettinger: 100 meter"
+msgstr "Billig kaserneliknende bygning som kan bygges i nøytralt territorium men som ikke gir none påvirkning på territoriet.\n- Tren leiesoldater.\n- Minimum avstand fra andre militære bosettinger: 100 meter"
 
 #: simulation/templates/structures/ptol_military_colony.xml:7
 #: simulation/templates/structures/sele_military_colony.xml:7
@@ -1402,7 +1403,7 @@ msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Dette er den ptolemaiske utvidelsesbygningen, lik samfunnssenter for andre folkeslag. Den er svakere og dekker et mindre territorium, men er billigere og bygges raskere.\n- Tren nybygger-soldater av forskjellige nasjonaliteter.\n- Minimum avstand fra andre militærkolonier: 120 meter."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1429,7 +1430,7 @@ msgstr "mktr"
 
 #: simulation/templates/structures/ptol_wonder.xml:17
 msgid "Temple of Edfu"
-msgstr ""
+msgstr "Edfus tempel"
 
 #: simulation/templates/structures/rome_arch.xml:22
 msgid "Triumphal Arch"
@@ -1437,11 +1438,11 @@ msgstr "Triumf bue"
 
 #: simulation/templates/structures/rome_army_camp.xml:59
 msgid "Entrenched Army Camp"
-msgstr ""
+msgstr "Befestet militærleir"
 
 #: simulation/templates/structures/rome_army_camp.xml:60
 msgid "Castrum Vallum"
-msgstr ""
+msgstr "Castrum Vallum"
 
 #: simulation/templates/structures/rome_army_camp.xml:65
 msgid ""
@@ -1451,19 +1452,19 @@ msgstr "Kan bygges hvor som helst på kartet, til og med i fiendes territorium. 
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
-msgstr ""
+msgstr "Castrum"
 
 #: simulation/templates/structures/rome_blacksmith.xml:5
 msgid "Armamentarium"
-msgstr ""
+msgstr "Krigsmateriellverksted"
 
 #: simulation/templates/structures/rome_civil_centre.xml:9
 msgid "Forum"
-msgstr ""
+msgstr "Forum"
 
 #: simulation/templates/structures/rome_corral.xml:12
 msgid "Saeptum"
-msgstr ""
+msgstr "Skillevegg"
 
 #: simulation/templates/structures/rome_defense_tower.xml:9
 msgid "Turris Lignea"
@@ -1642,7 +1643,7 @@ msgstr "Naós"
 
 #: simulation/templates/structures/sele_wonder.xml:12
 msgid "Paradise of Daphne"
-msgstr ""
+msgstr "Dafnes paradis"
 
 #: simulation/templates/structures/spart_gerousia.xml:21
 msgid "Spartan Senate"

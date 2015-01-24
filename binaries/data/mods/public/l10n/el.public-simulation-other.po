@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Argiris L. <archiemc1@gmail.com>, 2015
 # Christo Keller <christoniancoder@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-12-26 04:51+0000\n"
-"Last-Translator: Christo Keller <christoniancoder@gmail.com>\n"
+"PO-Revision-Date: 2015-01-10 22:30+0000\n"
+"Last-Translator: Argiris L. <archiemc1@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/0ad/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -83,19 +84,19 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr ""
+msgstr "Χρησιμοποίησε Shift-κλικ για να προσθέσεις στην σειρά παραγωγής άλλο ένα σπίτι για τους 4 χτίστες."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr ""
+msgstr "Όρισε το σημείο εκκίνησης πίσω στα μούρα μόλις όλοι οι πολίτες στρατιώτες έχουν τελειώσει την εκπαίδευση."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr ""
+msgstr "Στείλε έναν πολίτη στρατιώτη να συγκεντρώσει πέτρα, στείλε άλλους 2 να χτίσουν μια αποθήκη κοντά στα νότια δέντρα."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
@@ -110,7 +111,7 @@ msgstr ""
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr ""
+msgstr "Ο καβαλάρης σου θα έχει πιθανώς ξεμείνει από κοτόπουλα έως τώρα, υπάρχουν μερικές κατσίκες στα αριστερά της βάσης σου."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
@@ -122,7 +123,7 @@ msgstr ""
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:163
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:188
 msgid "Queue another house."
-msgstr ""
+msgstr "Πρόσθεσε στην σειρά παραγωγής άλλο ένα σπίτι. "
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:88
 msgid ""
@@ -138,13 +139,13 @@ msgstr ""
 msgid ""
 "Move your woodcutters to the trees near the storehouse so they don’t have to"
 " walk as far."
-msgstr ""
+msgstr "Μετακίνησε τους ξυλοκόπους σου στα δέντρα κοντά στην αποθήκη, ώστε να μην χρειάζεται να περπατήσουν τόσο μακριά."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:103
 msgid ""
 "Make sure the workers from the berry bushes are used to gather from the "
 "field rather than standing idle when they run out."
-msgstr ""
+msgstr "Βεβαιώσου ότι οι εργάτες από τους θάμνους μούρων θα χρησιμοποιηθούν για να συλλέξουν από το χωράφι, αντί να είναι αδρανείς όταν τελειώσουν."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
@@ -253,7 +254,7 @@ msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr ""
+msgstr "Τα βασικά σημεία που πρέπει να θυμάσαι είναι:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
@@ -470,7 +471,7 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
-msgstr ""
+msgstr "σύμμαχος"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
@@ -484,14 +485,14 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
-msgstr ""
+msgstr "ουδέτερος"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
-msgstr ""
+msgstr "εχθρός"
 
 #: simulation/components/BuildRestrictions.js:199
 #, javascript-format
@@ -530,21 +531,21 @@ msgstr ""
 #: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "ally"
-msgstr ""
+msgstr "σύμμαχος"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "neutral"
-msgstr ""
+msgstr "ουδέτερος"
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
 #: simulation/components/BuildRestrictions.js:312
 msgctxt "Territory type list"
 msgid "enemy"
-msgstr ""
+msgstr "εχθρός"
 
 #: simulation/components/EntityLimits.js:110
 #, javascript-format
@@ -580,21 +581,21 @@ msgstr "Πέτρα"
 #: simulation/components/Player.js:236
 #, javascript-format
 msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
+msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s"
 
 #: simulation/components/Player.js:238
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s"
-msgstr ""
+msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s"
 
 #: simulation/components/Player.js:240
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
-msgstr ""
+msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
 
 #: simulation/components/Player.js:242
 #, javascript-format
@@ -602,27 +603,27 @@ msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
 "%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s "
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
-msgstr ""
+msgstr "Ανεπαρκείς πόροι - %(resourceAmount1)s %(resourceType1)s, %(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 
 #: simulation/components/ProductionQueue.js:361
 msgid "The production queue is full."
-msgstr ""
+msgstr "Η σειρά παραγωγής είναι πλήρης."
 
 #: simulation/data/game_speeds.jsonSpeeds[0].Name
 msgid "Turtle (0.1x)"
-msgstr ""
+msgstr "Χελώνα (0.1x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[1].Name
 msgid "Slow (0.25x)"
-msgstr ""
+msgstr "Αργά (0.25x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[2].Name
 msgid "Leisurely (0.5x)"
-msgstr ""
+msgstr "Αβίαστα (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr ""
+msgstr "Χαλαρά (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
@@ -745,4 +746,4 @@ msgstr " Οδηγός εκμάθησης ΤΝ"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr ""
+msgstr "Ο Οδηγός εκμάθησης ΤΝ θα πρέπει να χρησιμοποιείται μόνο στο σενάριο \"Εισαγωγικός Οδηγός Εκμάθησης\"."

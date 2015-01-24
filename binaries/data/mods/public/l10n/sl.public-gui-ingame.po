@@ -9,12 +9,13 @@
 # Nenad Latinović <latinovic87@gmail.com>, 2013
 # Nikolina Bursać <nikolinabursac@gmail.com>, 2013
 # Rok Kepa <rokkepa@gmail.com>, 2014
+# Tilen Nosan <tilenn@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-22 11:22+0000\n"
+"Last-Translator: Tilen Nosan <tilenn@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -42,7 +43,7 @@ msgstr "Pavza"
 
 #: gui/session/menu.js:2
 msgid "Resume"
-msgstr ""
+msgstr "Nadaljuj"
 
 #: gui/session/menu.js:139 gui/session/menu.js:164 gui/session/menu.js:185
 #: gui/session/session.js:474 gui/session/dialogs/yes_no.xml:(caption):19
@@ -56,7 +57,7 @@ msgstr "Ne"
 
 #: gui/session/menu.js:141
 msgid "Are you sure you want to resign?"
-msgstr ""
+msgstr "Ste prepričani, da želite predati igro?"
 
 #: gui/session/menu.js:141 gui/session/menu.js:164 gui/session/menu.js:172
 msgid "Confirmation"
@@ -65,57 +66,57 @@ msgstr "Potrditev"
 #: gui/session/menu.js:152
 msgid ""
 "Are you sure you want to quit? Leaving will disconnect all other players."
-msgstr ""
+msgstr "Ste prepričani, da želite oditi? S tem boste prekinili vse ostale igralce."
 
 #: gui/session/menu.js:157 gui/session/menu.js:162
 msgid "Are you sure you want to quit?"
-msgstr ""
+msgstr "Ste prepričani, da želite zapustiti igro?"
 
 #: gui/session/menu.js:169
 msgid "I will return"
-msgstr ""
+msgstr "Vrnil se bom"
 
 #: gui/session/menu.js:169
 msgid "I resign"
-msgstr ""
+msgstr "Predajam se"
 
 #: gui/session/menu.js:172
 msgid "Do you want to resign or will you return soon?"
-msgstr ""
+msgstr "Se želite predati ali se boste kmalu vrnili?"
 
 #: gui/session/menu.js:189
 msgid "Destroy everything currently selected?"
-msgstr ""
+msgstr "Uniči vse v trenutnem izboru?"
 
 #: gui/session/menu.js:189 gui/session/unit_actions.js:676
 msgid "Delete"
-msgstr ""
+msgstr "Zbriši"
 
 #: gui/session/menu.js:284
 msgctxt "team"
 msgid "None"
-msgstr ""
+msgstr "Nihče"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
-msgstr ""
+msgstr "Zavezik"
 
 #: gui/session/menu.js:287 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
-msgstr ""
+msgstr "Nevtralen"
 
 #: gui/session/menu.js:287 gui/session/messages.js:622
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
-msgstr ""
+msgstr "Sovražnik"
 
 #: gui/session/menu.js:345
 msgid "x"
-msgstr ""
+msgstr "x"
 
 #: gui/session/menu.js:456
 msgid "There are no land traders."
-msgstr ""
+msgstr "Ni zemljiških trgovcev."
 
 #: gui/session/menu.js:462
 #, javascript-format
@@ -208,7 +209,7 @@ msgstr[3] ""
 
 #: gui/session/menu.js:539
 msgid "There are no merchant ships."
-msgstr ""
+msgstr "Ni trgovskih ladij."
 
 #: gui/session/menu.js:545
 #, javascript-format
@@ -263,31 +264,31 @@ msgstr ""
 
 #: gui/session/messages.js:215
 msgid "Waiting for other players to connect..."
-msgstr ""
+msgstr "Čakam, da se povežejo drugi igralci..."
 
 #: gui/session/messages.js:219
 msgid "Synchronising gameplay with other players..."
-msgstr ""
+msgstr "Sinhroniziranje igre z drugimi igralci...."
 
 #: gui/session/messages.js:227
 msgid "Connected to the server."
-msgstr ""
+msgstr "Povezan s strežnikom."
 
 #: gui/session/messages.js:231
 msgid "Connection to the server has been authenticated."
-msgstr ""
+msgstr "Povezava s strežnikom je potrjena."
 
 #: gui/session/messages.js:236
 msgid "Connection to the server has been lost."
-msgstr ""
+msgstr "Povezava s strežnikom je bila izgubljena."
 
 #: gui/session/messages.js:236
 msgid "The game has ended."
-msgstr ""
+msgstr "Igra je končana."
 
 #: gui/session/messages.js:420
 msgid "Unknown player"
-msgstr ""
+msgstr "Neznan igralec"
 
 #: gui/session/messages.js:428
 #, javascript-format
@@ -301,7 +302,7 @@ msgstr ""
 
 #: gui/session/messages.js:436
 msgid "You have been defeated."
-msgstr ""
+msgstr "Premagani ste."
 
 #: gui/session/messages.js:438
 #, javascript-format
@@ -426,7 +427,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:96 gui/session/selection_details.js:102
 msgid "Experience:"
-msgstr ""
+msgstr "Izkušnje:"
 
 #: gui/session/selection_details.js:101
 #, javascript-format
@@ -435,7 +436,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:115
 msgid "∞"
-msgstr ""
+msgstr "∞"
 
 #: gui/session/selection_details.js:116 gui/session/selection_details.js:149
 #: gui/session/selection_details.js:180
@@ -462,7 +463,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:181
 msgid "Current/max gatherers"
-msgstr ""
+msgstr "Trenutno/max nabiralcev"
 
 #: gui/session/selection_details.js:196
 #, javascript-format
@@ -472,7 +473,7 @@ msgstr ""
 #: gui/session/selection_details.js:226 gui/session/selection_panels.js:973
 #: gui/session/session.js:637
 msgid "Armor:"
-msgstr ""
+msgstr "Oklep:"
 
 #: gui/session/selection_details.js:227 gui/session/selection_details.js:238
 #: gui/session/session.js:634 gui/session/session.js:638
@@ -482,7 +483,7 @@ msgstr ""
 
 #: gui/session/selection_details.js:234
 msgid "Interval:"
-msgstr ""
+msgstr "Interval:"
 
 #: gui/session/selection_details.js:236
 msgid "Rate:"
@@ -496,7 +497,7 @@ msgstr ""
 #: gui/session/selection_details.js:251 gui/session/session.js:630
 #: gui/session/utility_functions.js:304
 msgid "meters"
-msgstr ""
+msgstr "metrov"
 
 #: gui/session/selection_details.js:254 gui/session/selection_details.js:264
 #, javascript-format
@@ -554,11 +555,11 @@ msgstr ""
 
 #: gui/session/selection_panels.js:397
 msgid "Lock Gate"
-msgstr ""
+msgstr "Zakleni vrata"
 
 #: gui/session/selection_panels.js:403
 msgid "Unlock Gate"
-msgstr ""
+msgstr "Odkleni vrata"
 
 #: gui/session/selection_panels.js:508
 msgid "Pack"
@@ -578,7 +579,7 @@ msgstr ""
 
 #: gui/session/selection_panels.js:587
 msgid "Insufficient population capacity:"
-msgstr ""
+msgstr "Nezadostna kapaciteta prebivalstva:"
 
 #: gui/session/selection_panels.js:588
 #, javascript-format
@@ -597,32 +598,32 @@ msgstr[3] ""
 #: gui/session/selection_panels.js:969 gui/session/session.js:617
 #: gui/session/selection_panels_middle/single_details_area.xml:(tooltip):12
 msgid "Health:"
-msgstr ""
+msgstr "Zdravje:"
 
 #: gui/session/selection_panels_helpers.js:39
 msgctxt "stance"
 msgid "Violent"
-msgstr ""
+msgstr "Nasilno"
 
 #: gui/session/selection_panels_helpers.js:42
 msgctxt "stance"
 msgid "Aggressive"
-msgstr ""
+msgstr "Napadlno"
 
 #: gui/session/selection_panels_helpers.js:45
 msgctxt "stance"
 msgid "Passive"
-msgstr ""
+msgstr "Pasivno"
 
 #: gui/session/selection_panels_helpers.js:48
 msgctxt "stance"
 msgid "Defensive"
-msgstr ""
+msgstr "Obrambno"
 
 #: gui/session/selection_panels_helpers.js:51
 msgctxt "stance"
 msgid "Standground"
-msgstr ""
+msgstr "Voljno"
 
 #: gui/session/selection_panels_helpers.js:70
 #, javascript-format
@@ -669,27 +670,27 @@ msgstr "Ti"
 
 #: gui/session/session.js:170
 msgid "Gaia"
-msgstr "Gaea"
+msgstr "Gaja"
 
 #: gui/session/session.js:305 gui/session/session.js:321
 msgid "You have left the game."
-msgstr ""
+msgstr "Zapustili ste igro."
 
 #: gui/session/session.js:312
 msgid "You have been disconnected."
-msgstr ""
+msgstr "Povezava je bila prekinjena."
 
 #: gui/session/session.js:314
 msgid "You have won the battle!"
-msgstr ""
+msgstr "Dobili ste bitko!"
 
 #: gui/session/session.js:316
 msgid "You have been defeated..."
-msgstr ""
+msgstr "Izgubili ste bitko..."
 
 #: gui/session/session.js:324
 msgid "You have abandoned the game."
-msgstr ""
+msgstr "Zapustili ste igro."
 
 #: gui/session/session.js:468
 msgid "OK"
@@ -697,19 +698,19 @@ msgstr "V redu"
 
 #: gui/session/session.js:470
 msgid "Press OK to continue"
-msgstr ""
+msgstr "Pritisnite V redu za nadaljevanje"
 
 #: gui/session/session.js:476
 msgid "Do you want to quit?"
-msgstr ""
+msgstr "Ali želite končati?"
 
 #: gui/session/session.js:482
 msgid "DEFEATED!"
-msgstr ""
+msgstr "PORAŽENI!"
 
 #: gui/session/session.js:490
 msgid "VICTORIOUS!"
-msgstr ""
+msgstr "ZMAGOVALNI!"
 
 #: gui/session/session.js:625
 #, javascript-format
@@ -731,15 +732,15 @@ msgid ""
 "Note: time warp mode is a developer option, and not intended for use over "
 "long periods of time. Using it incorrectly may cause the game to run out of "
 "memory or crash."
-msgstr ""
+msgstr "Opomba: ukrivljanje časa možnost za razvijalce in ni namenjena za daljšo časovno uporabo. Nepravilna uporaba lahko povzroči, da igra izgubi spomin in se sesuje."
 
 #: gui/session/session.js:900
 msgid "Time warp mode"
-msgstr ""
+msgstr "Način ukrivljanja časa"
 
 #: gui/session/unit_actions.js:300
 msgid "Origin trade market."
-msgstr ""
+msgstr "Izvorno tržišče"
 
 #: gui/session/unit_actions.js:302 gui/session/unit_actions.js:309
 #: gui/session/unit_actions.js:319 gui/session/unit_actions.js:531
@@ -749,19 +750,19 @@ msgstr ""
 
 #: gui/session/unit_actions.js:306
 msgid "Right-click on another market to set it as a destination trade market."
-msgstr ""
+msgstr "Desni klik na drugo tržnico, da jo nastavite za tržno destinacijo."
 
 #: gui/session/unit_actions.js:309
 msgid "Destination trade market."
-msgstr ""
+msgstr "Tržna destinacija."
 
 #: gui/session/unit_actions.js:314
 msgid "Right-click to set as origin trade market"
-msgstr ""
+msgstr "Z desnim klikom nastavite izvorno tržnico."
 
 #: gui/session/unit_actions.js:319
 msgid "Right-click to set as destination trade market."
-msgstr ""
+msgstr "Z desnim klikom nastavite tržno destinacijo."
 
 #: gui/session/unit_actions.js:351 gui/session/unit_actions.js:487
 #, javascript-format
@@ -770,7 +771,7 @@ msgstr ""
 
 #: gui/session/unit_actions.js:529
 msgid "Right-click to establish a default route for new traders."
-msgstr ""
+msgstr "Z desnim klikom uvedete privzeto pot za nove trgovce."
 
 #: gui/session/unit_actions.js:533
 #, javascript-format
@@ -783,11 +784,11 @@ msgstr ""
 
 #: gui/session/unit_actions.js:671
 msgid "You cannot destroy this entity because it is in the fog-of-war"
-msgstr ""
+msgstr "Tega ne morete uničiti, ker se nahaja pod meglo vojne."
 
 #: gui/session/unit_actions.js:699
 msgid "Stop"
-msgstr ""
+msgstr "Stop"
 
 #: gui/session/unit_actions.js:717
 msgid "Garrison"
@@ -799,31 +800,31 @@ msgstr ""
 
 #: gui/session/unit_actions.js:754
 msgid "Repair"
-msgstr ""
+msgstr "Popravi"
 
 #: gui/session/unit_actions.js:771
 msgid "Focus on Rally Point"
-msgstr ""
+msgstr "Osredotoči se na zbirališče"
 
 #: gui/session/unit_actions.js:794
 msgid "Back to Work"
-msgstr ""
+msgstr "Nazaj na delo"
 
 #: gui/session/unit_actions.js:810
 msgid "Guard"
-msgstr ""
+msgstr "Straži"
 
 #: gui/session/unit_actions.js:827
 msgid "Remove guard"
-msgstr ""
+msgstr "Odstrani stražarja"
 
 #: gui/session/unit_actions.js:843
 msgid "Select trading goods"
-msgstr ""
+msgstr "Izberi tržne dobrine"
 
 #: gui/session/unit_actions.js:860
 msgid "Increase the alert level to protect more units"
-msgstr ""
+msgstr "Povečajte nivo pripravljenosti, da zaščitite več enot"
 
 #: gui/session/unit_actions.js:862
 msgid "Raise an alert!"
@@ -959,7 +960,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:496
 msgid "Insufficient resources:"
-msgstr ""
+msgstr "Nezadostni resursi:"
 
 #: gui/session/utility_functions.js:507
 #, javascript-format
@@ -986,11 +987,11 @@ msgstr ""
 
 #: gui/session/utility_functions.js:588
 msgid "Walk"
-msgstr ""
+msgstr "Hodi"
 
 #: gui/session/utility_functions.js:590
 msgid "Run"
-msgstr ""
+msgstr "Teci"
 
 #: gui/session/utility_functions.js:592
 #, javascript-format
@@ -999,7 +1000,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:604 gui/session/utility_functions.js:606
 msgid "+"
-msgstr ""
+msgstr "+"
 
 #: gui/session/utility_functions.js:608 gui/session/utility_functions.js:614
 #: gui/session/utility_functions.js:619
@@ -1009,7 +1010,7 @@ msgstr ""
 
 #: gui/session/utility_functions.js:610
 msgid "you"
-msgstr ""
+msgstr "ti"
 
 #: gui/session/utility_functions.js:616 gui/session/utility_functions.js:621
 #, javascript-format
@@ -1021,56 +1022,56 @@ msgstr ""
 #: gui/session/utility_functions.js:661
 msgctxt "firstWord"
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:663
 msgctxt "firstWord"
 msgid "Meat"
-msgstr ""
+msgstr "Meso"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:665
 msgctxt "firstWord"
 msgid "Metal"
-msgstr ""
+msgstr "Kovina"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:667
 msgctxt "firstWord"
 msgid "Ore"
-msgstr ""
+msgstr "Ruda"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:669
 msgctxt "firstWord"
 msgid "Rock"
-msgstr ""
+msgstr "Skala"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:671
 msgctxt "firstWord"
 msgid "Ruins"
-msgstr ""
+msgstr "Razvaline"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:673
 msgctxt "firstWord"
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:675
 msgctxt "firstWord"
 msgid "Treasure"
-msgstr ""
+msgstr "Zaklad"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -1084,84 +1085,84 @@ msgstr "Drevo"
 #: gui/session/utility_functions.js:679
 msgctxt "firstWord"
 msgid "Wood"
-msgstr ""
+msgstr "Les"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:681
 msgctxt "firstWord"
 msgid "Fruit"
-msgstr ""
+msgstr "Sadje"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:683
 msgctxt "firstWord"
 msgid "Grain"
-msgstr ""
+msgstr "Žito"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
 #: gui/session/utility_functions.js:685
 msgctxt "firstWord"
 msgid "Fish"
-msgstr ""
+msgstr "Ribe"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:690
 msgctxt "withinSentence"
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:692
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr ""
+msgstr "Meso"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:694
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr ""
+msgstr "Kovina"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:696
 msgctxt "withinSentence"
 msgid "Ore"
-msgstr ""
+msgstr "Ruda"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:698
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr ""
+msgstr "Skala"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:700
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr ""
+msgstr "Razvaline"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:702
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:704
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr ""
+msgstr "Zaklad"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -1175,33 +1176,33 @@ msgstr "Drevo"
 #: gui/session/utility_functions.js:708
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr ""
+msgstr "Les"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:710
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr ""
+msgstr "Sadje"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:712
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr ""
+msgstr "Žito"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/session/utility_functions.js:714
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr ""
+msgstr "Ribe"
 
 #: gui/session/diplomacy_window.xml:(caption):10
 #: gui/session/top_panel/button_diplomacy.xml:(tooltip):8
 msgid "Diplomacy"
-msgstr ""
+msgstr "Diplomacija"
 
 #: gui/session/diplomacy_window.xml:(caption):15
 msgid "Name"
@@ -1213,7 +1214,7 @@ msgstr "Civilizacija"
 
 #: gui/session/diplomacy_window.xml:(caption):24
 msgid "Theirs"
-msgstr ""
+msgstr "Njihovo"
 
 #: gui/session/diplomacy_window.xml:(caption):27
 msgid "A"
@@ -1229,7 +1230,7 @@ msgstr ""
 
 #: gui/session/diplomacy_window.xml:(caption):39
 msgid "Tribute"
-msgstr ""
+msgstr "Dajatev"
 
 #: gui/session/diplomacy_window.xml:(caption):73
 #: gui/session/trade_window.xml:(caption):47
@@ -1242,15 +1243,15 @@ msgstr "Pogovor"
 
 #: gui/session/menu.xml:(caption):39
 msgid "Save"
-msgstr ""
+msgstr "Shrani"
 
 #: gui/session/menu.xml:(caption):52
 msgid "Options"
-msgstr ""
+msgstr "Možnosti"
 
 #: gui/session/menu.xml:(caption):76
 msgid "Resign"
-msgstr ""
+msgstr "Predaj se"
 
 #: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):333
 msgid "Exit"
@@ -1258,11 +1259,11 @@ msgstr "Izhod"
 
 #: gui/session/minimap_panel.xml:(tooltip):15
 msgid "Find idle worker"
-msgstr ""
+msgstr "Poišči nedejavnega delavca"
 
 #: gui/session/session.xml:(caption):53
 msgid "Control all units"
-msgstr ""
+msgstr "Kontroliraj vse enote"
 
 #: gui/session/session.xml:(caption):63
 msgid "Change perspective"
@@ -1302,7 +1303,7 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):132
 msgid "Enable time warp"
-msgstr ""
+msgstr "Omogoči ukrivljanje časa"
 
 #: gui/session/session.xml:(caption):142
 msgid "Promote selected units"
@@ -1310,11 +1311,11 @@ msgstr ""
 
 #: gui/session/session.xml:(caption):174
 msgid "Game Paused"
-msgstr ""
+msgstr "Igra je v premoru"
 
 #: gui/session/session.xml:(caption):177
 msgid "Click to Resume Game"
-msgstr ""
+msgstr "Klikni za nadaljevanje igre"
 
 #: gui/session/session.xml:(caption):206
 msgid "Cancel"
@@ -1322,7 +1323,7 @@ msgstr "Prekliči"
 
 #: gui/session/session.xml:(caption):212
 msgid "Team Only"
-msgstr ""
+msgstr "Samo ekipa"
 
 #: gui/session/session.xml:(caption):216
 msgid "Send"
@@ -1354,15 +1355,15 @@ msgstr ""
 
 #: gui/session/dialogs/yes_no.xml:(caption):11
 msgid "Question"
-msgstr ""
+msgstr "Vprašanje"
 
 #: gui/session/dialogs/yes_no.xml:(caption):15
 msgid "Yes or no?"
-msgstr ""
+msgstr "Da ali ne?"
 
 #: gui/session/selection_panels_left/barter_panel.xml:(tooltip):7
 msgid "Exchange resources:"
-msgstr ""
+msgstr "Izmenjaj resurse:"
 
 #: gui/session/selection_panels_middle/multiple_details_area.xml:(tooltip):29
 msgid "Hitpoints"
@@ -1417,11 +1418,11 @@ msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"
-msgstr ""
+msgstr "Hrana"
 
 #: gui/session/top_panel/resource_metal.xml:(tooltip):3
 msgid "Metal"
-msgstr ""
+msgstr "Kovina"
 
 #: gui/session/top_panel/resource_population.xml:(tooltip):3
 msgid "Population (current / limit)"
@@ -1429,8 +1430,8 @@ msgstr ""
 
 #: gui/session/top_panel/resource_stone.xml:(tooltip):3
 msgid "Stone"
-msgstr ""
+msgstr "Kamen"
 
 #: gui/session/top_panel/resource_wood.xml:(tooltip):3
 msgid "Wood"
-msgstr ""
+msgstr "Les"
