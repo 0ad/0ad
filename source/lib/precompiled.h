@@ -75,13 +75,10 @@ double __cdecl abs(double x);	// not declared by mathimf
 #if CONFIG_ENABLE_BOOST
 # include "lib/pch/pch_boost.h"
 using boost::shared_ptr;
-#elif HAVE_CPP0X
+#else
 # include <array>
 # include <memory>
 using std::shared_ptr;
-#else
-# include <memory>
-using std::tr1::shared_ptr;
 #endif
 
 // (must come after boost and common lib headers, but before re-enabling
