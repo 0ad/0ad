@@ -161,7 +161,7 @@ switch(x % 2)
 
 
 // generate a symbol containing the line number of the macro invocation.
-// used to give a unique name (per file) to types made by cassert.
+// used to give a unique name (per file) to types or variables.
 // we can't prepend __FILE__ to make it globally unique - the filename
 // may be enclosed in quotes. PASTE3_HIDDEN__ is needed to make sure
 // __LINE__ is expanded correctly.
@@ -174,13 +174,6 @@ switch(x % 2)
 //-----------------------------------------------------------------------------
 // cassert
 
-// Silence warnings about unused local typedefs
-#if GCC_VERSION >= 408
-# define UNUSED_ATTRIBUTE __attribute__((unused))
-#else
-# define UNUSED_ATTRIBUTE
-#endif
-
 /**
  * Compile-time assertion. Causes a compile error if the expression
  * evaluates to zero/false.
@@ -190,28 +183,7 @@ switch(x % 2)
  *
  * @param expr Expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) typedef static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
-template<bool> struct static_assert_;
-template<> struct static_assert_<true>
-{
-	typedef int type;
-};
-
-/**
- * @copydoc cassert(expr)
- *
- * This version must be used if expr uses a dependent type (e.g. depends on
- * a template parameter).
- **/
-#define cassert_dependent(expr) typedef typename static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
-
-/**
- * @copydoc cassert(expr)
- *
- * This version has a less helpful error message, but redefinition doesn't
- * trigger warnings.
- **/
-#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
+#define cassert(expr) static_assert((expr), #expr)
 
 
 /**
