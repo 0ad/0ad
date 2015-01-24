@@ -204,9 +204,10 @@ switch(x % 2)
  * assignment operator.
  */
 #define NONCOPYABLE(className)\
-private:\
-	className(const className&);\
-	const className& operator=(const className&)
+	public:\
+		className(const className&) = delete;\
+		const className& operator=(const className&) = delete;\
+	private:
 
 #if ICC_VERSION
 # define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)
