@@ -80,14 +80,16 @@ private:
 		// diffuse color from sunlight
 		SColor4ub m_DiffuseColor;
 		CVector3D m_Normal;
+		// pad to a power of two
+		u8 m_Padding[4];
 	};
-	cassert(sizeof(SBaseVertex) == 28);
+	cassert(sizeof(SBaseVertex) == 32);
 
 	struct SSideVertex {
 		// vertex position
 		CVector3D m_Position;
-		// add some padding
-		u32 m_Padding[1];
+		// pad to a power of two
+		u8 m_Padding[4];
 	};
 	cassert(sizeof(SSideVertex) == 16);
 
@@ -99,16 +101,20 @@ private:
 		// vertex uvs for alpha texture
 		float m_AlphaUVs[2];
 		CVector3D m_Normal;
+		// pad to a power of two
+		u8 m_Padding[28];
 	};
-	cassert(sizeof(SBlendVertex) == 36);
+	cassert(sizeof(SBlendVertex) == 64);
 
 	// Mixed Fancy/Simple water vertex description data structure
 	struct SWaterVertex {
 		// vertex position
 		CVector3D m_Position;
 		CVector2D m_WaterData;
+		// pad to a power of two
+		u8 m_Padding[12];
 	};
-	cassert(sizeof(SWaterVertex) == 20);
+	cassert(sizeof(SWaterVertex) == 32);
 
 	// build this renderdata object
 	void Build();

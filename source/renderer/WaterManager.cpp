@@ -65,8 +65,11 @@ struct SWavesVertex {
 
 	CVector2D m_PerpVect;
 	u8 m_UV[3];
+
+	// pad to a power of two
+	u8 m_Padding[5];
 };
-cassert(sizeof(SWavesVertex) == 60);
+cassert(sizeof(SWavesVertex) == 64);
 
 struct WaveObject
 {
