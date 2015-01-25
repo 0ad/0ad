@@ -74,6 +74,9 @@ var g_AssignedCount = 0;
 // tick handler
 var g_LoadingState = 0; // 0 = not started, 1 = loading, 2 = loaded
 
+// Filled by scripts in victory_conditions/
+var g_VictoryConditions = {};
+
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 function init(attribs)
@@ -1938,7 +1941,7 @@ function getVictoryConditions()
 	var r = {};
 	r.text = [translate("None")];
 	r.data = ["endless"];
-	r.scripts = [[""]];
+	r.scripts = [[]];
 	for (var vc in g_VictoryConditions)
 	{
 		r.data.push(vc);
