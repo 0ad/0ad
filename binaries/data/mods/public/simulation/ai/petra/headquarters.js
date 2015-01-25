@@ -1714,7 +1714,7 @@ m.HQ.prototype.isDangerousLocation = function(pos)
 m.HQ.prototype.update = function(gameState, queues, events)
 {
 	Engine.ProfileStart("Headquarters update");
-	
+
 	this.territoryMap = m.createTerritoryMap(gameState);
 
 	if (this.Config.debug > 1)

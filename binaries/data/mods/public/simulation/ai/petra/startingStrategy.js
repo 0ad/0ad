@@ -442,12 +442,23 @@ m.HQ.prototype.configFirstBase = function(gameState)
 		this.attackManager.setRushes();
 
 	// immediatly build a wood dropsite if possible.
-	var template = "structures/{civ}_storehouse";
-	if (gameState.countEntitiesAndQueuedByType(gameState.applyCiv(template), true) === 0 && this.canBuild(gameState, template))
+	var template = gameState.applyCiv("structures/{civ}_storehouse");
+	if (gameState.countEntitiesAndQueuedByType(template, true) === 0 && this.canBuild(gameState, template))
 	{
-		var newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
+		let newDP = this.baseManagers[1].findBestDropsiteLocation(gameState, "wood");
 		if (newDP.quality > 40)
+		{
+			// if we start with enough workers, put our available resources in this first dropsite
+			// same thing if our pop exceed the allowed one, as we would need several houses
+			let numWorkers = gameState.getOwnUnits().filter(API3.Filters.byClass("Worker")).length;
+			if ((numWorkers > 12 && newDP.quality > 60)
+				|| (gameState.getPopulation() > gameState.getPopulationLimit() + 20))
+			{
+				let cost = new API3.Resources(gameState.getTemplate(template).cost());
+				gameState.ai.queueManager.setAccounts(gameState, cost, "dropsites");
+			}
 			gameState.ai.queues.dropsites.addItem(new m.ConstructionPlan(gameState, template, { "base": this.baseManagers[1].ID }, newDP.pos));
+		}
 	}
 };
 
