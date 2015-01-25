@@ -35,21 +35,4 @@
 #include <boost/filesystem.hpp>
 namespace fs = boost::filesystem;
 
-#include <boost/shared_ptr.hpp>
-
-// (these ones are used more rarely, so we don't enable them in minimal configurations)
-#if !MINIMAL_PCH
-#include <boost/array.hpp>
-using boost::array;
-
-#include <boost/mem_fn.hpp>
-using boost::mem_fn;
-
-#include <boost/function.hpp>
-using boost::function;
-
-#include <boost/bind.hpp>
-using boost::bind;
-#endif // !MINIMAL_PCH
-
 #endif	// #ifndef INCLUDED_PCH_BOOST

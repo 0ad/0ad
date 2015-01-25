@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,9 +27,10 @@
 #ifndef INCLUDED_TERRAINPROPERTIES
 #define INCLUDED_TERRAINPROPERTIES
 
+#include <memory>
+
 #include "ps/CStr.h"
 #include "lib/file/vfs/vfs_path.h"
-#include <boost/shared_ptr.hpp>
 
 class CTerrainGroup;
 class XMBElement;

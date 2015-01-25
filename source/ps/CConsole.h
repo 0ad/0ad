@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,13 +27,11 @@
 #include <deque>
 #include <map>
 
-#include "lib/input.h"
+#include "graphics/ShaderProgramPtr.h"
 #include "lib/file/vfs/vfs_path.h"
+#include "lib/input.h"
 #include "ps/CStr.h"
 #include "ps/ThreadUtil.h"
-
-class CShaderProgram;
-typedef shared_ptr<CShaderProgram> CShaderProgramPtr;
 
 class CTextRenderer;
 

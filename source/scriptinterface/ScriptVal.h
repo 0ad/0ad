@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,7 +19,6 @@
 #define INCLUDED_SCRIPTVAL
 
 #include "ScriptTypes.h"
-#include <boost/shared_ptr.hpp>
 
 /**
  * A default constructible wrapper around JS::PersistentRootedValue

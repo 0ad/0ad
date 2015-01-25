@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,6 +20,6 @@
 
 // Forward-declare for CTextureManager handles
 class CTexture;
-typedef shared_ptr<CTexture> CTexturePtr;
+typedef std::shared_ptr<CTexture> CTexturePtr;
 
 #endif

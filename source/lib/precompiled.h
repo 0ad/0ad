@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -74,12 +74,11 @@ double __cdecl abs(double x);	// not declared by mathimf
 
 #if CONFIG_ENABLE_BOOST
 # include "lib/pch/pch_boost.h"
-using boost::shared_ptr;
-#else
-# include <array>
-# include <memory>
-using std::shared_ptr;
 #endif
+
+#include <array>
+#include <memory>
+using std::shared_ptr;
 
 // (must come after boost and common lib headers, but before re-enabling
 // warnings to avoid boost spew)

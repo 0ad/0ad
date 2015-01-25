@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -575,9 +575,9 @@ Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 	if (files != m_HotloadFiles.end())
 	{
 		// Reload all shaders using this file
-		for (std::set<boost::weak_ptr<CShaderProgram> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
+		for (std::set<std::weak_ptr<CShaderProgram> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
 		{
-			if (shared_ptr<CShaderProgram> program = it->lock())
+			if (std::shared_ptr<CShaderProgram> program = it->lock())
 				program->Reload();
 		}
 	}
