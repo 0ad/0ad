@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -110,7 +110,7 @@ SHAREABLE_PRIMITIVE(void*);
 		Shareable() {} \
 		Shareable(T const& rhs) { m = rhs; } \
 		const T* operator->() const { return &m; } \
-		operator const T() const { return m; } \
+		operator T() const { return m; } \
 		const T _Unwrap() const { return m; } \
 	}
 

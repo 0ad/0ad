@@ -17,7 +17,7 @@
 
 #include "precompiled.h"
 
-#include "unix_file_system.hpp"
+#include "tinygettext/unix_file_system.hpp"
 
 #include <sys/types.h>
 #include <fstream>
@@ -60,10 +60,10 @@ UnixFileSystem::open_directory(const std::string& pathname)
   }
 }
   
-std::auto_ptr<std::istream>
+std::unique_ptr<std::istream>
 UnixFileSystem::open_file(const std::string& filename)
 {
-  return std::auto_ptr<std::istream>(new std::ifstream(filename.c_str()));
+  return std::unique_ptr<std::istream>(new std::ifstream(filename.c_str()));
 }
 
 } // namespace tinygettext

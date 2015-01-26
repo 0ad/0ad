@@ -188,7 +188,7 @@ Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 			// Check for error ?
 			int err = errno;
 			initialized = -1;
-			LOGERROR(L"Error initializing inotify file descriptor; hotloading will be disabled, errno=%d", err);
+			LOGERROR("Error initializing inotify file descriptor; hotloading will be disabled, errno=%d", err);
 			errno = err;
 			return StatusFromErrno();	// NOWARN
 		}
@@ -198,7 +198,7 @@ Status dir_watch_Add(const OsPath& path, PDirWatch& dirWatch)
 		if (ret != 0)
 		{
 			initialized = -1;
-			LOGERROR(L"Error creating inotify event loop thread; hotloading will be disabled, err=%d", ret);
+			LOGERROR("Error creating inotify event loop thread; hotloading will be disabled, err=%d", ret);
 			errno = ret;
 			return StatusFromErrno();	// NOWARN
 		}

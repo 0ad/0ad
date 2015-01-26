@@ -5,15 +5,16 @@
 # Translators:
 # Ellen Roels, 2015
 # Mar, 2015
-# niektb <niektb95@gmail.com>, 2014
+# niektb <niektb95@gmail.com>, 2014-2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
+# Ruben De Smet <ruben.de.smet@telenet.be>, 2015
 # Sander Deryckere, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2015-01-08 14:01+0000\n"
-"Last-Translator: Mar\n"
+"PO-Revision-Date: 2015-01-16 19:31+0000\n"
+"Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -407,7 +408,7 @@ msgstr "Belegeringskatapult"
 
 #: simulation/templates/template_unit_mechanical_siege_onager.xml:45
 msgid "Causes splash damage."
-msgstr ""
+msgstr "Veroorzaakt splash schade."
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
@@ -991,7 +992,7 @@ msgstr "Genees alle eenheden aan 1 leven per seconde."
 
 #: simulation/templates/units/brit_hero_cunobelin.xml:20
 msgid "Cunobelin"
-msgstr ""
+msgstr "Cunobelinus"
 
 #: simulation/templates/units/brit_infantry_javelinist_b.xml:13
 #: simulation/templates/units/celt_infantry_javelinist_b.xml:15
@@ -1187,7 +1188,7 @@ msgstr "Commandantenaura"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "Alle cavalerie-eenheden onder zijn toezicht hebben +5 extra aanvalskracht (tijdelijk nutteloos)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1312,7 +1313,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:16
 msgid "Brythonic Champion Chariot."
-msgstr ""
+msgstr "Brythonische Strijdwagenkampioen."
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -1326,7 +1327,7 @@ msgstr "Gallische ruiter"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid "Gallic Champion Cavalry."
-msgstr ""
+msgstr "Gallische cavaleriekampioen."
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:5
 msgid "Two-Handed Swordsman"
@@ -1334,7 +1335,7 @@ msgstr "Tweehandige zwaardvechter"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:7
 msgid "Brythonic Champion Swordsman."
-msgstr ""
+msgstr "Brythonische Zwaardvechterskampioen."
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_infantry.xml:5
@@ -1348,7 +1349,7 @@ msgstr "Solduros"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:7
 msgid "Gallic Champion Swordsman."
-msgstr ""
+msgstr "Gallische Zwaardvechterskampioen."
 
 #: simulation/templates/units/celt_fanatic.xml:15
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
@@ -1401,7 +1402,7 @@ msgstr "Hetaîros"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:7
 msgid "Macedonian Champion Cavalry."
-msgstr ""
+msgstr "Macedonische Cavaleriekampioen."
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -1417,7 +1418,7 @@ msgstr "Pezétairos"
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Uses the Syntagma Formation."
-msgstr ""
+msgstr "Macedonische Piekenierskampioen.\nZware infanterie. Gebruik de Syntagmaformatie."
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:13
 #: simulation/templates/units/spart_champion_infantry_spear.xml:10
@@ -1431,7 +1432,7 @@ msgstr "Spartiā́tēs"
 #: simulation/templates/units/hele_champion_infantry_polis.xml:15
 #: simulation/templates/units/spart_champion_infantry_spear.xml:12
 msgid "Classes: Champion Melee Infantry Spearman."
-msgstr ""
+msgstr "Klassen: Kampioen Melee Infanterie Speerman."
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:5
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:5
@@ -1447,11 +1448,11 @@ msgstr "Ékdromos Athēnaïkós"
 msgid ""
 "Poleis Champion Raider.\n"
 "    Fast Move Speed."
-msgstr ""
+msgstr "Poleis Kampioen Rover\nHoge bewegingssnelheid."
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:7
 msgid "Poleis Champion Raider."
-msgstr ""
+msgstr "Poleis Kampioen Rover."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
@@ -1654,7 +1655,7 @@ msgstr "Mégās Aléxandros"
 
 #: simulation/templates/units/mace_hero_alexander.xml:36
 msgid "\"Herocide\" Bonus: +20% attack bonus vs. enemy Heroes."
-msgstr ""
+msgstr "\"Herocide\" Bonus: +20% aanvalsbonus tegen vijandelijke helden."
 
 #: simulation/templates/units/mace_hero_craterus.xml:5
 msgid "Crateros"
@@ -1670,7 +1671,7 @@ msgstr "Vertrouweling van Alexander de Grote."
 
 #: simulation/templates/units/mace_hero_demetrius.xml:13
 msgid "+15% Range and +10 Crush Attack for Siege Engines."
-msgstr ""
+msgstr "+15% bereik en +10 verbrijzelkracht voor belegeringswapens."
 
 #: simulation/templates/units/mace_hero_demetrius.xml:18
 msgid "Demetrius The Besieger"
@@ -1682,7 +1683,7 @@ msgstr "Dēmḗtrios Poliorkḗtēs"
 
 #: simulation/templates/units/mace_hero_philip.xml:12
 msgid "+5 Attack for Champion Units."
-msgstr ""
+msgstr "+5 aanvalskracht voor kampioenen."
 
 #: simulation/templates/units/mace_hero_philip.xml:17
 msgid "Philip II of Macedon"
@@ -1771,7 +1772,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:22
 msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr ""
+msgstr "Klassen: Kampioen Afstand Ruiter Strijdwagen Boogschutter.\nBrengt schade toe door vertrappeling."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1792,7 +1793,7 @@ msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr ""
+msgstr "Klassen: Kampioen Melee Infanterie Zwaardvechter."
 
 #: simulation/templates/units/maur_champion_maiden.xml:5
 msgid "Maiden Guard"
@@ -1817,7 +1818,7 @@ msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid "Can run amok."
-msgstr ""
+msgstr "Kan op hol slaan."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:32
 msgid "Ashoka the Great"
@@ -1954,7 +1955,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr ""
+msgstr "Klassen: Huurling Melee Infanterie Zwaardvechter."
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1980,7 +1981,7 @@ msgstr "Babiruviya Ratha"
 msgid ""
 "Classes: Ranged Cavalry Chariot Archer.\n"
 "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Klassen: Afstand Ruiter Strijdwagen Boogschutter.\nKan vijandige troepen verpletteren."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -2038,11 +2039,11 @@ msgstr "Anusiya"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:12
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Voorste leideraura."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "+2 attack for nearby cavalry units."
-msgstr ""
+msgstr "+2 aanvalskracht voor nabije cavalerie."
 
 #: simulation/templates/units/pers_hero_cyrus.xml:18
 msgid "Cyrus II The Great"
@@ -2073,7 +2074,7 @@ msgid ""
 "Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "Held Zeis Strijdwagen Boogschutter.\nHeldenaura: \"Koopman van het rijk\" Aura: Verhoogt de productiviteit van handel tijdens zijn leven (NTD).\nSterk tegen: 2x tegen speervechters, 1.5x tegen zwaardvechters."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2083,7 +2084,7 @@ msgstr "Administratorsaura"
 #: simulation/templates/units/pers_hero_xerxes.xml:13
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:13
 msgid " +15% Gather Rate and Build Rate of nearby units."
-msgstr ""
+msgstr "+15% verzamelsnelheid en bouwsnelheid van nabije troepen."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:18
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:42
@@ -2212,7 +2213,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 #: simulation/templates/units/sele_cavalry_archer_b.xml:11
 msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr ""
+msgstr "Klassen: Afstand Cavalerie Kameel Boogschutter."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2256,11 +2257,11 @@ msgstr "Tessarakonterēs"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:12
 msgid "Patriot Aura"
-msgstr ""
+msgstr "Patriotaura"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:13
 msgid "Egyptian units fight 20% faster in her vision range."
-msgstr ""
+msgstr "Egyptische eenheden vechten +20% sneller in haar gezichtsveld."
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:24
 msgid "Cleopatra VII"
@@ -2274,7 +2275,7 @@ msgstr "Kleopatra H' Philopater"
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "Klassen: Held Infanterie Boogschutter.\nHeldenaura (NTD):geallieerde helden in haar gezichtsveld worden sterker, vijandige helden worden zwakker."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2282,15 +2283,15 @@ msgstr "Constructieaura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
-msgstr ""
+msgstr "Gebouwen worden 10% sneller gebouwd onder zijn toezicht."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
 msgid "Mercenary Patron Aura"
-msgstr ""
+msgstr "Huurlingenpatroonaura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenaries cost -50% resources during his lifetime."
-msgstr ""
+msgstr "Huurlingen kosten -50% middelen tijdens zijn leven."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:35
 msgid "Ptolemy I \"Savior\""
@@ -2302,11 +2303,11 @@ msgstr "Ptolemaios A' Soter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Raphia Aura"
-msgstr ""
+msgstr "Raphia-aura"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Egyptische piekeniers hebben 40% meer levenspunten gedurende zijn leven."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:22
 msgid "Ptolemy IV \"Father Loving\""
@@ -2326,7 +2327,7 @@ msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:29
 msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr ""
+msgstr "Klassen: Afstand Huurling infanterie Boogschutter Werker."
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
@@ -2444,7 +2445,7 @@ msgstr "Zwaard van Rome aura"
 
 #: simulation/templates/units/rome_hero_marcellus.xml:13
 msgid "+5 attack for Roman units within sight of him."
-msgstr ""
+msgstr "+5 aanval voor Romeinse eenheiden binnen zijn zicht."
 
 #: simulation/templates/units/rome_hero_marcellus.xml:18
 msgid "Marcus Claudius Marcellus"
@@ -2470,7 +2471,7 @@ msgstr "Scipio Africanus"
 msgid ""
 "\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
 "for 500 Metal. (Not implemented)"
-msgstr ""
+msgstr "\"Verdeel en heers\" vermogen: Overtuig vijandige troepen om aan jouw kant te vechten voor 500 Metaal. (Nog niet geïmplementeerd)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:14
 msgid "Roman Skirmisher"
@@ -2656,7 +2657,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_chariot.xml:26
 msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr ""
+msgstr "Klassen: Kampioen Afstand Ruiter Strijdwagen Boogschutter."
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
@@ -2684,11 +2685,11 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Ilarchès Aura"
-msgstr ""
+msgstr "Ilarchès Aura"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
-msgstr ""
+msgstr "Alle cavalerie krijgt +2 niveaus van alle wapenrusting."
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:24
 msgid "Antiochus III \"The Great\""
@@ -2700,13 +2701,13 @@ msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Veroveringsaura"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
 "All nearby enemy buildings, siege engines, and ships have their health "
 "reduced by 20%."
-msgstr ""
+msgstr "Alle dichtbijzijnde, vijandelijke gebouwen, oorlogstuig en boten krijgen 20% verminderde gezondheid."
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:24
 msgid "Antiochus IV \"The Righteous\""
@@ -2718,11 +2719,11 @@ msgstr "Antiokhos D' Epiphanes"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:13
 msgid "Zooiarchos Aura"
-msgstr ""
+msgstr "Zooiarchos Aura"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:14
 msgid "Boosts War Elephant attack and speed +20% within his vision."
-msgstr ""
+msgstr "Verhoogt de aanval en snelheid van oorlogsolifanten in zijn gezichtsveld met +20%."
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:25
 msgid "Seleucus I \"The Victor\""
@@ -2774,7 +2775,7 @@ msgstr "Chrysaspides"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr ""
+msgstr "Klassen: Huurling Burger Melee Infanterie Zwaardvechter."
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2840,16 +2841,16 @@ msgstr "Agis"
 msgid ""
 "No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
 " hoplite."
-msgstr ""
+msgstr "Geen heldenaura. Heeft 2x gezondheid van alle andere infanteriehelden. Hij is dus gewoon een zeer sterke hopliet."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Helotenhervormingen"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr ""
+msgstr "Helotenvechters binnen zijn gezichtsveld krijgen +2 aanval en +1 op alle wapenrusting."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:20
 #: simulation/templates/units/spart_hero_brasidas.xml:21
@@ -2858,7 +2859,7 @@ msgstr "Brasidas"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:11
 msgid "Last Stand Aura"
-msgstr ""
+msgstr "Laatste overlevende-aura."
 
 #: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "+20% attack for nearby Hoplites and Spartiates."
@@ -2951,7 +2952,7 @@ msgstr "Rhomphaiaphoros"
 
 #: simulation/templates/units/thrace_black_cloak.xml:21
 msgid "Classes: Mercenary Champion Melee Infantry Swordsman."
-msgstr ""
+msgstr "Klassen: Huurling Kampioen Melee Infanterie Zwaardvechter."
 
 #: simulation/templates/units/viking_longboat.xml:5
 msgid "Longboat"

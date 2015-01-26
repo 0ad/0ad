@@ -80,7 +80,7 @@ void CReplayLogger::StartGame(JS::MutableHandleValue attribs)
 	*m_Stream << "start " << m_ScriptInterface.StringifyJSON(attribs, false) << "\n";
 }
 
-void CReplayLogger::Turn(u32 n, u32 turnLength, const std::vector<SimulationCommand>& commands)
+void CReplayLogger::Turn(u32 n, u32 turnLength, std::vector<SimulationCommand>& commands)
 {
 	JSContext* cx = m_ScriptInterface.GetContext();
 	JSAutoRequest rq(cx);
@@ -88,9 +88,7 @@ void CReplayLogger::Turn(u32 n, u32 turnLength, const std::vector<SimulationComm
 	*m_Stream << "turn " << n << " " << turnLength << "\n";
 	for (size_t i = 0; i < commands.size(); ++i)
 	{
-		// TODO: Check if this temporary root can be removed after SpiderMonkey 31 upgrade 
-		JS::RootedValue tmpCommand(cx, commands[i].data.get());
-		*m_Stream << "cmd " << commands[i].player << " " << m_ScriptInterface.StringifyJSON(&tmpCommand, false) << "\n";
+		*m_Stream << "cmd " << commands[i].player << " " << m_ScriptInterface.StringifyJSON(&commands[i].data, false) << "\n";
 	}
 	*m_Stream << "end\n";
 	m_Stream->flush();
@@ -135,7 +133,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 	
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
 
 	CGame game(true);
 	g_Game = &game;
@@ -169,7 +167,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 			JS::RootedValue attribs(cx);
 			ENSURE(game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &attribs));
 
-			game.StartGame(CScriptValRooted(cx, attribs), "");
+			game.StartGame(&attribs, "");
 
 			// TODO: Non progressive load can fail - need a decent way to handle this
 			LDR_NonprogressiveLoad();
@@ -192,8 +190,7 @@ void CReplayPlayer::Replay(bool serializationtest)
 			JS::RootedValue data(cx);
 			game.GetSimulation2()->GetScriptInterface().ParseJSON(line, &data);
 
-			SimulationCommand cmd = { player, CScriptValRooted(cx, data) };
-			commands.push_back(cmd);
+			commands.emplace_back(SimulationCommand(player, cx, data));
 		}
 		else if (type == "hash" || type == "hash-quick")
 		{

@@ -5,14 +5,14 @@
 # Translators:
 # SecondCloud500 <eddieven2000@gmail.com>, 2014
 # Marco tom Suden, 2014
-# Nicolas Auvray <na.itms76@gmail.com>, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # Toto AD <ad@imw.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-21 20:51+0000\n"
-"Last-Translator: Toto AD <ad@imw.fr>\n"
+"PO-Revision-Date: 2015-01-19 18:41+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -223,13 +223,13 @@ msgstr "[font=\"sans-bold-14\"]En jeu"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Double Clic Gauche [sur une unité] : Sélectionner toutes vos unités de même type sur l'écran (même de grades différents)"
+msgstr "[font=\"sans-14\"]Double Clic Gauche \\[sur une unité] : Sélectionner toutes vos unités de même type sur l'écran (même de grades différents)"
 
 #: gui/manual/intro.txt:50
 msgid ""
 "Triple Left Click \\[on unit]: Select all of your units of the same kind and"
 " the same rank on the screen"
-msgstr "Triple-clic gauche [sur une unité]: Sélectionner toutes vos unités de même type et de même grade à l'écran"
+msgstr "Triple-clic gauche \\[sur une unité]: Sélectionner toutes vos unités de même type et de même grade à l'écran"
 
 #: gui/manual/intro.txt:51
 msgid ""
@@ -241,7 +241,7 @@ msgstr "Alt + Double Click Gauche sur une unité : Sélectionne toutes vos unit�
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr "Alt + Triple clic gauche [sur une unité]: Sélectionner toutes vos unités de même type et de même grade sur la carte entière"
+msgstr "Alt + Triple clic gauche \\[sur une unité]: Sélectionner toutes vos unités de même type et de même grade sur la carte entière"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -415,35 +415,35 @@ msgstr "[font=\"sans-bold-14\"]Manipulation de la caméra"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr "[font=\"sans-14\"]W ou [haut] : Déplacer l'affichage vers le haut"
+msgstr "[font=\"sans-14\"]W ou \\[haut] : Déplacer l'affichage vers le haut"
 
 #: gui/manual/intro.txt:94
 msgid "S or \\[down]: Pan screen down"
-msgstr "S ou [bas] : Déplacer l'affichage vers le bas"
+msgstr "S ou \\[bas] : Déplacer l'affichage vers le bas"
 
 #: gui/manual/intro.txt:95
 msgid "A or \\[left]: Pan screen left"
-msgstr "A ou [gauche] : Déplacer l'affichage vers la gauche"
+msgstr "A ou \\[gauche] : Déplacer l'affichage vers la gauche"
 
 #: gui/manual/intro.txt:96
 msgid "D or \\[right]: Pan screen right"
-msgstr "D ou [droite] : Déplacer l'affichage vers la droite"
+msgstr "D ou \\[droite] : Déplacer l'affichage vers la droite"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Ctrl + W ou [haut] : Pivoter la caméra pour regarder vers le haut"
+msgstr "Ctrl + W ou \\[haut] : Pivoter la caméra pour regarder vers le haut"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Ctrl + S ou [bas] : Pivoter la caméra pour regarder vers le bas"
+msgstr "Ctrl + S ou \\[bas] : Pivoter la caméra pour regarder vers le bas"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
-msgstr "Ctrl + A ou [gauche] : Pivoter la caméra dans le sens horaire autour du terrain"
+msgstr "Ctrl + A ou \\[gauche] : Pivoter la caméra dans le sens horaire autour du terrain"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Ctrl + D ou [droite] : Pivoter la caméra dans le sens antihoraire autour du terrain"
+msgstr "Ctrl + D ou \\[droite] : Pivoter la caméra dans le sens antihoraire autour du terrain"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
@@ -496,7 +496,7 @@ msgstr "[font=\"sans-bold-14\"]Lors du placement d'un bâtiment"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
-msgstr "[font=\"sans-14\"][ : Tourner le bâtiment de 15 degrés dans le sens antihoraire"
+msgstr "[font=\"sans-14\"]\\[ : Tourner le bâtiment de 15 degrés dans le sens antihoraire"
 
 #: gui/manual/intro.txt:114
 msgid "]: Rotate building 15 degrees clockwise"

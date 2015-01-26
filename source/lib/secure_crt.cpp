@@ -32,6 +32,10 @@
 
 #include "lib/secure_crt.h"
 
+#if OS_ANDROID
+# include <boost/algorithm/string/replace.hpp>
+#endif
+
 // we were included from wsecure_crt.cpp; skip all stuff that
 // must only be done once.
 #ifndef WSECURE_CRT
@@ -54,6 +58,7 @@ STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 // add a corresponding #undef when adding a #define.
 #ifdef WSECURE_CRT
 # define tchar wchar_t
+# define tstring std::wstring
 # define T(string_literal) L ## string_literal
 # define tnlen wcsnlen
 # define tncpy_s wcsncpy_s
@@ -67,6 +72,7 @@ STATUS_ADD_DEFINITIONS(secureCrtStatusDefinitions);
 # define tsprintf_s swprintf_s
 #else
 # define tchar char
+# define tstring std::string
 # define T(string_literal) string_literal
 # define tnlen strnlen
 # define tncpy_s strncpy_s
@@ -127,6 +133,16 @@ size_t tnlen(const tchar* str, size_t max_len)
 }
 #endif // !OS_UNIX
 
+#if OS_ANDROID
+static tstring androidFormat(const tchar *fmt)
+{
+	// FIXME handle %%hs, %%ls, etc
+	tstring ret(fmt);
+	boost::algorithm::replace_all(ret, T("%ls"), T("%S"));
+	boost::algorithm::replace_all(ret, T("%hs"), T("%s"));
+	return ret;
+}
+#endif
 
 // copy at most <max_src_chars> (not including trailing null) from
 // <src> into <dst>, which must not overlap.
@@ -236,8 +252,16 @@ int tvsprintf_s(tchar* dst, size_t max_dst_chars, const tchar* fmt, va_list ap)
 		return -1;
 	}
 
+#if OS_ANDROID
+	// Workaround for https://code.google.com/p/android/issues/detail?id=109074
+	// (vswprintf doesn't null-terminate strings)
+	memset(dst, 0, max_dst_chars * sizeof(tchar));
+
+	const int ret = tvsnprintf(dst, max_dst_chars, androidFormat(fmt).c_str(), ap);
+#else
 	const int ret = tvsnprintf(dst, max_dst_chars, fmt, ap);
-	if(ret >= int(max_dst_chars))	// not enough space
+#endif
+	if(ret < 0 || ret >= int(max_dst_chars))	// not enough space
 	{
 		dst[0] = '\0';
 		return -1;

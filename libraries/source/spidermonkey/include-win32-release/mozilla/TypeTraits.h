@@ -1,12 +1,15 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 /* Template-based metaprogramming and type-testing facilities. */
 
-#ifndef mozilla_TypeTraits_h_
-#define mozilla_TypeTraits_h_
+#ifndef mozilla_TypeTraits_h
+#define mozilla_TypeTraits_h
+
+#include "mozilla/Types.h"
 
 /*
  * These traits are approximate copies of the traits and semantics from C++11's
@@ -62,6 +65,9 @@ template<> struct IsIntegralHelper<long long>          : TrueType {};
 template<> struct IsIntegralHelper<unsigned long long> : TrueType {};
 template<> struct IsIntegralHelper<bool>               : TrueType {};
 template<> struct IsIntegralHelper<wchar_t>            : TrueType {};
+#ifdef MOZ_CHAR16_IS_NOT_WCHAR
+template<> struct IsIntegralHelper<char16_t>           : TrueType {};
+#endif
 
 } /* namespace detail */
 
@@ -110,6 +116,31 @@ struct IsFloatingPoint
   : detail::IsFloatingPointHelper<typename RemoveCV<T>::Type>
 {};
 
+namespace detail {
+
+template<typename T>
+struct IsArrayHelper : FalseType {};
+
+template<typename T, decltype(sizeof(1)) N>
+struct IsArrayHelper<T[N]> : TrueType {};
+
+template<typename T>
+struct IsArrayHelper<T[]> : TrueType {};
+
+} // namespace detail
+
+/**
+ * IsArray determines whether a type is an array type, of known or unknown
+ * length.
+ *
+ * mozilla::IsArray<int>::value is false;
+ * mozilla::IsArray<int[]>::value is true;
+ * mozilla::IsArray<int[5]>::value is true.
+ */
+template<typename T>
+struct IsArray : detail::IsArrayHelper<typename RemoveCV<T>::Type>
+{};
+
 /**
  * IsPointer determines whether a type is a pointer type (but not a pointer-to-
  * member type).
@@ -126,7 +157,110 @@ struct IsPointer : FalseType {};
 template<typename T>
 struct IsPointer<T*> : TrueType {};
 
+/**
+ * IsLvalueReference determines whether a type is an lvalue reference.
+ *
+ * mozilla::IsLvalueReference<struct S*>::value is false;
+ * mozilla::IsLvalueReference<int**>::value is false;
+ * mozilla::IsLvalueReference<void (*)(void)>::value is false;
+ * mozilla::IsLvalueReference<int>::value is false;
+ * mozilla::IsLvalueReference<struct S>::value is false;
+ * mozilla::IsLvalueReference<struct S*&>::value is true;
+ * mozilla::IsLvalueReference<struct S&&>::value is false.
+ */
+template<typename T>
+struct IsLvalueReference : FalseType {};
+
+template<typename T>
+struct IsLvalueReference<T&> : TrueType {};
+
+/**
+ * IsRvalueReference determines whether a type is an rvalue reference.
+ *
+ * mozilla::IsRvalueReference<struct S*>::value is false;
+ * mozilla::IsRvalueReference<int**>::value is false;
+ * mozilla::IsRvalueReference<void (*)(void)>::value is false;
+ * mozilla::IsRvalueReference<int>::value is false;
+ * mozilla::IsRvalueReference<struct S>::value is false;
+ * mozilla::IsRvalueReference<struct S*&>::value is false;
+ * mozilla::IsRvalueReference<struct S&&>::value is true.
+ */
+template<typename T>
+struct IsRvalueReference : FalseType {};
+
+template<typename T>
+struct IsRvalueReference<T&&> : TrueType {};
+
+namespace detail {
+
+// __is_enum is a supported extension across all of our supported compilers.
+template<typename T>
+struct IsEnumHelper
+  : IntegralConstant<bool, __is_enum(T)>
+{};
+
+} // namespace detail
+
+/**
+ * IsEnum determines whether a type is an enum type.
+ *
+ * mozilla::IsEnum<enum S>::value is true;
+ * mozilla::IsEnum<enum S*>::value is false;
+ * mozilla::IsEnum<int>::value is false;
+ */
+template<typename T>
+struct IsEnum
+  : detail::IsEnumHelper<typename RemoveCV<T>::Type>
+{};
+
+namespace detail {
+
+// __is_class is a supported extension across all of our supported compilers:
+// http://llvm.org/releases/3.0/docs/ClangReleaseNotes.html
+// http://gcc.gnu.org/onlinedocs/gcc-4.4.7/gcc/Type-Traits.html#Type-Traits
+// http://msdn.microsoft.com/en-us/library/ms177194%28v=vs.100%29.aspx
+template<typename T>
+struct IsClassHelper
+  : IntegralConstant<bool, __is_class(T)>
+{};
+
+} // namespace detail
+
+/**
+ * IsClass determines whether a type is a class type (but not a union).
+ *
+ * struct S {};
+ * union U {};
+ * mozilla::IsClass<int>::value is false;
+ * mozilla::IsClass<const S>::value is true;
+ * mozilla::IsClass<U>::value is false;
+ */
+template<typename T>
+struct IsClass
+  : detail::IsClassHelper<typename RemoveCV<T>::Type>
+{};
+
 /* 20.9.4.2 Composite type traits [meta.unary.comp] */
+
+/**
+ * IsReference determines whether a type is an lvalue or rvalue reference.
+ *
+ * mozilla::IsReference<struct S*>::value is false;
+ * mozilla::IsReference<int**>::value is false;
+ * mozilla::IsReference<int&>::value is true;
+ * mozilla::IsReference<void (*)(void)>::value is false;
+ * mozilla::IsReference<const int&>::value is true;
+ * mozilla::IsReference<int>::value is false;
+ * mozilla::IsReference<struct S>::value is false;
+ * mozilla::IsReference<struct S&>::value is true;
+ * mozilla::IsReference<struct S*&>::value is true;
+ * mozilla::IsReference<struct S&&>::value is true.
+ */
+template<typename T>
+struct IsReference
+  : IntegralConstant<bool,
+                     IsLvalueReference<T>::value || IsRvalueReference<T>::value>
+{};
 
 /**
  * IsArithmetic determines whether a type is arithmetic.  A type is arithmetic
@@ -195,7 +329,68 @@ template<> struct IsPod<bool>               : TrueType {};
 template<> struct IsPod<float>              : TrueType {};
 template<> struct IsPod<double>             : TrueType {};
 template<> struct IsPod<wchar_t>            : TrueType {};
+#ifdef MOZ_CHAR16_IS_NOT_WCHAR
+template<> struct IsPod<char16_t>           : TrueType {};
+#endif
 template<typename T> struct IsPod<T*>       : TrueType {};
+
+namespace detail {
+
+// __is_empty is a supported extension across all of our supported compilers:
+// http://llvm.org/releases/3.0/docs/ClangReleaseNotes.html
+// http://gcc.gnu.org/onlinedocs/gcc-4.4.7/gcc/Type-Traits.html#Type-Traits
+// http://msdn.microsoft.com/en-us/library/ms177194%28v=vs.100%29.aspx
+template<typename T>
+struct IsEmptyHelper
+  : IntegralConstant<bool, IsClass<T>::value && __is_empty(T)>
+{};
+
+} // namespace detail
+
+/**
+ * IsEmpty determines whether a type is a class (but not a union) that is empty.
+ *
+ * A class is empty iff it and all its base classes have no non-static data
+ * members (except bit-fields of length 0) and no virtual member functions, and
+ * no base class is empty or a virtual base class.
+ *
+ * Intuitively, empty classes don't have any data that has to be stored in
+ * instances of those classes.  (The size of the class must still be non-zero,
+ * because distinct array elements of any type must have different addresses.
+ * However, if the Empty Base Optimization is implemented by the compiler [most
+ * compilers implement it, and in certain cases C++11 requires it], the size of
+ * a class inheriting from an empty |Base| class need not be inflated by
+ * |sizeof(Base)|.)  And intuitively, non-empty classes have data members and/or
+ * vtable pointers that must be stored in each instance for proper behavior.
+ *
+ *   static_assert(!mozilla::IsEmpty<int>::value, "not a class => not empty");
+ *   union U1 { int x; };
+ *   static_assert(!mozilla::IsEmpty<U1>::value, "not a class => not empty");
+ *   struct E1 {};
+ *   struct E2 { int : 0 };
+ *   struct E3 : E1 {};
+ *   struct E4 : E2 {};
+ *   static_assert(mozilla::IsEmpty<E1>::value &&
+ *                 mozilla::IsEmpty<E2>::value &&
+ *                 mozilla::IsEmpty<E3>::value &&
+ *                 mozilla::IsEmpty<E4>::value,
+ *                 "all empty");
+ *   union U2 { E1 e1; };
+ *   static_assert(!mozilla::IsEmpty<U2>::value, "not a class => not empty");
+ *   struct NE1 { int x; };
+ *   struct NE2 : virtual E1 {};
+ *   struct NE3 : E2 { virtual ~NE3() {} };
+ *   struct NE4 { virtual void f() {} };
+ *   static_assert(!mozilla::IsEmpty<NE1>::value &&
+ *                 !mozilla::IsEmpty<NE2>::value &&
+ *                 !mozilla::IsEmpty<NE3>::value &&
+ *                 !mozilla::IsEmpty<NE4>::value,
+ *                 "all empty");
+ */
+template<typename T>
+struct IsEmpty : detail::IsEmptyHelper<typename RemoveCV<T>::Type>
+{};
+
 
 namespace detail {
 
@@ -281,6 +476,13 @@ struct IsSame<T, T> : TrueType {};
 
 namespace detail {
 
+#if defined(__GNUC__) || defined(__clang__) || defined(_MSC_VER)
+
+template<class Base, class Derived>
+struct BaseOfTester : IntegralConstant<bool, __is_base_of(Base, Derived)> {};
+
+#else
+
 // The trickery used to implement IsBaseOf here makes it possible to use it for
 // the cases of private and multiple inheritance.  This code was inspired by the
 // sample code here:
@@ -328,6 +530,8 @@ struct BaseOfTester<Type, Type> : TrueType {};
 
 template<class Type>
 struct BaseOfTester<Type, const Type> : TrueType {};
+
+#endif
 
 } /* namespace detail */
 
@@ -454,6 +658,32 @@ struct RemoveCV
 };
 
 /* 20.9.7.2 Reference modifications [meta.trans.ref] */
+
+/**
+ * Converts reference types to the underlying types.
+ *
+ * mozilla::RemoveReference<T>::Type is T;
+ * mozilla::RemoveReference<T&>::Type is T;
+ * mozilla::RemoveReference<T&&>::Type is T;
+ */
+
+template<typename T>
+struct RemoveReference
+{
+    typedef T Type;
+};
+
+template<typename T>
+struct RemoveReference<T&>
+{
+    typedef T Type;
+};
+
+template<typename T>
+struct RemoveReference<T&&>
+{
+    typedef T Type;
+};
 
 /* 20.9.7.3 Sign modifications [meta.trans.sign] */
 
@@ -665,4 +895,4 @@ struct Conditional<false, A, B>
 
 } /* namespace mozilla */
 
-#endif  /* mozilla_TypeTraits_h_ */
+#endif /* mozilla_TypeTraits_h */

@@ -61,7 +61,7 @@ public:
 	 * Derrived classes should return true if they implement such a wrapper.
 	 */
 	virtual bool NewJSObject(ScriptInterface& scriptInterface, JS::MutableHandleObject out) const;
-	virtual jsval GetJSInstance() const;
+	virtual JS::Value GetJSInstance() const;
 	virtual int GetComponentTypeId() const = 0;
 
 private:

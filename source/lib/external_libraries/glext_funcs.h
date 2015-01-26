@@ -92,7 +92,7 @@ actually supported).
 #define pglGetUniformLocationARB glGetUniformLocation
 #define pglLinkProgramARB glLinkProgram
 #define pglShaderSourceARB glShaderSource
-#define pglUniform1fARB glUniform1i
+#define pglUniform1fARB glUniform1f
 #define pglUniform2fARB glUniform2f
 #define pglUniform3fARB glUniform3f
 #define pglUniform4fARB glUniform4f
@@ -106,6 +106,8 @@ actually supported).
 #define pglBufferSubDataARB glBufferSubData
 #define pglDeleteBuffersARB glDeleteBuffers
 #define pglGenBuffersARB glGenBuffers
+#define pglMapBufferARB glMapBuffer
+#define pglUnmapBufferARB glUnmapBuffer
 
 #define pglBindFramebufferEXT glBindFramebuffer
 #define pglCheckFramebufferStatusEXT glCheckFramebufferStatus
@@ -361,6 +363,10 @@ FUNC(void, glGetQueryObjectui64vEXT, (GLuint id, GLenum pname, GLuint64 *params)
 FUNC2(void, glQueryCounter, glQueryCounter, "3.3", (GLuint id, GLenum target))
 FUNC2(void, glGetQueryObjecti64v, glGetQueryObjecti64v, "3.3", (GLuint id, GLenum pname, GLint64 *params))
 FUNC2(void, glGetQueryObjectui64v, glGetQueryObjectui64v, "3.3", (GLuint id, GLenum pname, GLuint64 *params))
+
+// GL_ARB_map_buffer_range / GL3.0:
+FUNC2(void*, glMapBufferRange, glMapBufferRange, "3.0", (GLenum target, GLintptr offset, GLsizeiptr length, GLbitfield access))
+FUNC2(void, glFlushMappedBufferRange, glFlushMappedBufferRange, "3.0", (GLenum target, GLintptr offset, GLsizeiptr length))
 
 // GL_GREMEDY_string_marker (from gDEBugger)
 FUNC(int, glStringMarkerGREMEDY, (GLsizei len, const GLvoid *string))

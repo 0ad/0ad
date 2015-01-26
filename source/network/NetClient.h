@@ -219,7 +219,7 @@ private:
 	u32 m_HostID;
 
 	/// Latest copy of game setup attributes heard from the server
-	CScriptValRooted m_GameAttributes;
+	JS::PersistentRootedValue m_GameAttributes;
 
 	/// Latest copy of player assignments heard from the server
 	PlayerAssignmentMap m_PlayerAssignments;

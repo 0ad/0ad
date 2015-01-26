@@ -1,4 +1,5 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -9,6 +10,7 @@
 #define mozilla_GuardObjects_h
 
 #include "mozilla/Assertions.h"
+#include "mozilla/NullPtr.h"
 #include "mozilla/Types.h"
 
 #ifdef __cplusplus
@@ -66,13 +68,13 @@ namespace detail {
  * For more details, and examples of using these macros, see
  * https://developer.mozilla.org/en/Using_RAII_classes_in_Mozilla
  */
-class MOZ_EXPORT GuardObjectNotifier
+class GuardObjectNotifier
 {
   private:
     bool* statementDone;
 
   public:
-    GuardObjectNotifier() : statementDone(NULL) { }
+    GuardObjectNotifier() : statementDone(nullptr) { }
 
     ~GuardObjectNotifier() {
       *statementDone = true;
@@ -83,7 +85,7 @@ class MOZ_EXPORT GuardObjectNotifier
     }
 };
 
-class MOZ_EXPORT GuardObjectNotificationReceiver
+class GuardObjectNotificationReceiver
 {
   private:
     bool statementDone;

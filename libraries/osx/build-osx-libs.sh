@@ -27,7 +27,7 @@ XML2_VERSION="libxml2-2.9.1"
 SDL2_VERSION="SDL-2.0.4-9134"
 BOOST_VERSION="boost_1_52_0"
 # * wxWidgets 2.9+ is necessary for 64-bit OS X build w/ OpenGL support
-WXWIDGETS_VERSION="wxWidgets-3.0.1"
+WXWIDGETS_VERSION="wxWidgets-3.0.2"
 JPEG_VERSION="jpegsrc.v8d"
 JPEG_DIR="jpeg-8d" # Must match directory name inside source tarball
 # * libpng was included as part of X11 but that's removed from Mountain Lion
@@ -45,7 +45,7 @@ ENET_VERSION="enet-1.3.12"
 MINIUPNPC_VERSION="miniupnpc-1.9"
 # --------------------------------------------------------------
 # Bundled with the game:
-# * SpiderMonkey 24
+# * SpiderMonkey 31
 # * NVTT
 # * FCollada
 # --------------------------------------------------------------
@@ -358,8 +358,8 @@ then
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-version-min=$MIN_OSX_VERSION"
   fi
-  # patch to fix Atlas on VMs w/ software rendering (fixed upstream, see http://trac.wxwidgets.org/ticket/16555 )
-  (patch -p0 -d.. -i../../patches/wxwidgets-glcanvas-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
+  # patch to fix wxWidgets build on Yosemite (fixed upstream, see http://trac.wxwidgets.org/ticket/16329 )
+  (patch -p0 -d.. -i../../patches/wxwidgets-webkit-fix.diff && ../configure CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" $CONF_OPTS && make ${JOBS} && make install) || die "wxWidgets build failed"
   popd
   popd
   touch .already-built
@@ -657,10 +657,9 @@ popd > /dev/null
 # be customized, so we build and install them from bundled sources
 # --------------------------------------------------------------------
 echo -e "Building Spidermonkey..."
-
-LIB_VERSION="mozjs-24.2.0"
-LIB_ARCHIVE="$LIB_VERSION.tar.bz2"
-LIB_DIRECTORY="mozjs24"
+LIB_VERSION="mozjs-31.2.0"
+LIB_ARCHIVE="$LIB_VERSION.rc0.tar.bz2"
+LIB_DIRECTORY="mozjs31"
 
 pushd ../source/spidermonkey/ > /dev/null
 
@@ -679,10 +678,10 @@ then
   pushd $LIB_DIRECTORY/js/src
 
   # We want separate debug/release versions of the library, so change their install name in the Makefile
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1mozjs24-ps-debug/' Makefile.in
-  perl -i.bak -pe 's/js_static/mozjs24-ps-debug/g' shell/Makefile.in
+  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1mozjs31-ps-debug/' Makefile.in
+  perl -i.bak -pe 's/js_static/mozjs31-ps-debug/g' shell/Makefile.in
 
-  CONF_OPTS="--target=$ARCH-apple-darwin --prefix=${INSTALL_DIR} --with-system-nspr --with-nspr-prefix=${NSPR_DIR} --with-system-zlib=${ZLIB_DIR} --enable-threadsafe --disable-tests --disable-shared-js" # --enable-trace-logging"
+  CONF_OPTS="--target=$ARCH-apple-darwin --prefix=${INSTALL_DIR} --with-system-nspr --with-nspr-prefix=${NSPR_DIR} --with-system-zlib=${ZLIB_DIR} --enable-gcgenerational --disable-tests --disable-shared-js" # --enable-trace-logging"
   # Uncomment this line for 32-bit 10.5 cross compile:
   #CONF_OPTS="$CONF_OPTS --target=i386-apple-darwin9.0.0"
   if [[ $MIN_OSX_VERSION && ${MIN_OSX_VERSION-_} ]]; then
@@ -691,9 +690,6 @@ then
   if [[ $SYSROOT && ${SYSROOT-_} ]]; then
     CONF_OPTS="$CONF_OPTS --with-macosx-sdk=$SYSROOT"
   fi
-
-  # apply patch to fix clang build on Mavericks (see https://bugzilla.mozilla.org/show_bug.cgi?id=917526)
-  patch -p0 -d ../../ -i ../../../osx/patches/sm-mavericks-clang-fix.diff || die "Spidermonkey build failed"
 
   mkdir -p build-debug
   pushd build-debug
@@ -706,8 +702,8 @@ then
   mv Makefile.in.bak Makefile.in
   mv shell/Makefile.in.bak shell/Makefile.in
 
-  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1mozjs24-ps-release/' Makefile.in
-  perl -i.bak -pe 's/js_static/mozjs24-ps-release/g' shell/Makefile.in
+  perl -i.bak -pe 's/(^STATIC_LIBRARY_NAME\s+=).*/$1mozjs31-ps-release/' Makefile.in
+  perl -i.bak -pe 's/js_static/mozjs31-ps-release/g' shell/Makefile.in
   mkdir -p build-release
   pushd build-release
   (CC="clang" CXX="clang++" AR=ar CROSS_COMPILE=1 ../configure $CONF_OPTS --enable-optimize && make ${JOBS}) || die "Spidermonkey build failed"

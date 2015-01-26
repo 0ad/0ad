@@ -23,7 +23,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/Hotkey.h"
 
-#define SET(obj, name, value) STMT(JS::RootedValue v_(cx); ToJSVal(cx, &v_, (value)); JS_SetProperty(cx, (obj), (name), v_.address()))
+#define SET(obj, name, value) STMT(JS::RootedValue v_(cx); AssignOrToJSVal(cx, &v_, (value)); JS_SetProperty(cx, obj, (name), v_))
 	// ignore JS_SetProperty return value, because errors should be impossible
 	// and we can't do anything useful in the case of errors anyway
 
@@ -52,7 +52,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 	default: typeName = "(unknown)"; break;
 	}
 
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL));
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
 	if (!obj)
 	{
 		ret.setUndefined();
@@ -77,14 +77,14 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		// SET(obj, "which", (int)val.ev.key.which); // (not in wsdl.h)
 		// SET(obj, "state", (int)val.ev.key.state); // (not in wsdl.h)
 
-		JSObject* keysym = JS_NewObject(cx, NULL, NULL, NULL);
+		JS::RootedObject keysym(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
 		if (! keysym)
 		{
 			ret.setUndefined();
 			return;
 		}
 		JS::RootedValue keysymVal(cx, JS::ObjectValue(*keysym));
-		JS_SetProperty(cx, obj, "keysym", keysymVal.address());
+		JS_SetProperty(cx, obj, "keysym", keysymVal);
 
 		// SET(keysym, "scancode", (int)val.ev.key.keysym.scancode); // (not in wsdl.h)
 		SET(keysym, "sym", (int)val.ev.key.keysym.sym);
@@ -98,7 +98,7 @@ template<> void ScriptInterface::ToJSVal<SDL_Event_>(JSContext* cx, JS::MutableH
 		else
 #endif
 		{
-			SET(keysym, "unicode", CScriptVal(JSVAL_VOID));
+			SET(keysym, "unicode", JS::UndefinedHandleValue);
 		}
 		// TODO: scripts have no idea what all the key/mod enum values are;
 		// we should probably expose them as constants if we expect scripts to use them

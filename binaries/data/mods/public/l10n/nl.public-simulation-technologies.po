@@ -6,7 +6,7 @@
 # Ellen Roels, 2015
 # Floretta <florisjan.gerrits@gmail.com>, 2014
 # Michiel <mvdijk@mivadi.com>, 2014
-# niektb <niektb95@gmail.com>, 2014
+# niektb <niektb95@gmail.com>, 2014-2015
 # TheBuG <Ruben.bilo@gmail.com>, 2014
 # Sander Deryckere, 2014
 # Stef Jansen <stefgijsberts.sg@gmail.com>, 2014
@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2015-01-05 17:11+0000\n"
+"PO-Revision-Date: 2015-01-16 18:50+0000\n"
 "Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -705,7 +705,7 @@ msgstr "Átaktoi"
 
 #: simulation/data/technologies/attack_infantry_ranged_02.jsongenericName
 msgid "Ranged Infantry Masterclass"
-msgstr ""
+msgstr "Master afstandsinfanterie"
 
 #: simulation/data/technologies/attack_soldiers_will.jsondescription
 msgid "The will to fight is crucial to victory."
@@ -772,7 +772,7 @@ msgstr "Versterk de fundamenten ter voorbereiding op een aanval."
 
 #: simulation/data/technologies/attack_tower_defense.jsontooltip
 msgid "Increases armour level of the defense tower by 2 levels."
-msgstr ""
+msgstr "Doet wapenrusting van de verdedigingstoren toenemen met 2 niveaus."
 
 #: simulation/data/technologies/attack_tower_defense.jsongenericName
 msgid "Sturdy Foundations"
@@ -780,7 +780,7 @@ msgstr "Stevige Fundamenten"
 
 #: simulation/data/technologies/attack_tower_range.jsondescription
 msgid "Arrow shooters increase the maximum range of the fire arrows."
-msgstr ""
+msgstr "Pijlenschieters doen de maximum afstand van de vuurpijlen toenemen."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
@@ -884,11 +884,11 @@ msgstr "Kruiwagen"
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsondescription
 msgid "Extra nutrients for farms."
-msgstr ""
+msgstr "Extra voedingsstoffen voor boederijen."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsontooltip
 msgid "Workers +25% farming rate."
-msgstr ""
+msgstr "Werkers +25% Landbouwproductie."
 
 #: simulation/data/technologies/gather_farming_fertilizer.jsongenericName
 msgid "Fertilizer"
@@ -900,7 +900,7 @@ msgstr "Een instrument om de aarde te keren."
 
 #: simulation/data/technologies/gather_farming_plows.jsontooltip
 msgid "Equip your workers with iron plows. +15% farming rate."
-msgstr ""
+msgstr "Rust je werkers uit met ijzeren ploegen. +15% landbouwproductie."
 
 #: simulation/data/technologies/gather_farming_plows.jsongenericName
 msgid "Iron Plow"
@@ -908,11 +908,11 @@ msgstr "Ijzeren ploeg"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Training voor werkers om de landbouwproductie te verhogen."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr ""
+msgstr "Werkers +15% landbouwproductie."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
@@ -927,7 +927,7 @@ msgstr "Verhoog werksnelheid van houthakkers."
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsontooltip
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsontooltip
 msgid "Workers +15% lumbering rate for trees."
-msgstr ""
+msgstr "Werkers hakken +15% sneller bomen om."
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsongenericName
 msgid "Iron Ax Heads"
@@ -935,7 +935,7 @@ msgstr "Ijzeren bijlen"
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsontooltip
 msgid "Workers +50% lumbering rate for trees."
-msgstr ""
+msgstr "Werkers hakken +50% sneller bomen om."
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
@@ -954,7 +954,7 @@ msgstr "Verhoog snelheid van de werkers in de steenmijnen."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Verkrijg slaven om je werkers stenen te helpen mijnen. +15% extra steenmijnsnelheid."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -969,7 +969,7 @@ msgstr "Heilotes"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
-msgstr ""
+msgstr "+15% sneller mijnen van steen."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -994,7 +994,7 @@ msgstr "Verhoog de snelheid van werkers in metaalmijnen."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "Ontwikkel dieptemijnen. +15% metaal verzamelsnelheid."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -1002,7 +1002,7 @@ msgstr "Schachtmijnen"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "Ontdek een zilverader. +50% metaal mijnsnelheid."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1019,7 +1019,7 @@ msgstr "Mines van Laureion"
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
 "Buy slaves to help your workers mine for stone. +50% stone gathering rate."
-msgstr ""
+msgstr "Koop slaven om je werkers te helpen bij het mijnen naar steen. +50% mijnsnelheid voor steen."
 
 #: simulation/data/technologies/gather_mining_slaves.jsongenericName
 msgid "Slaves"
@@ -1034,7 +1034,7 @@ msgstr "Andrapodon"
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsontooltip
 msgid "+15% metal gathering rate."
-msgstr ""
+msgstr "+15% sneller mijnen van metaal."
 
 #: simulation/data/technologies/gather_mining_wedgemallet.jsongenericName
 msgid "Wedge and Mallet"
@@ -1519,7 +1519,7 @@ msgstr "Insulae"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Het wonder lokt meer mensen naar je beschaving."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
@@ -1641,7 +1641,7 @@ msgstr "+10% cavalerie loopsnelheid."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Paarden fokken"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."

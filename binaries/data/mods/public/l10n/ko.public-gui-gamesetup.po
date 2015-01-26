@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-01-06 13:43+0000\n"
+"PO-Revision-Date: 2015-01-13 11:20+0000\n"
 "Last-Translator: Kevin Min <candyson1@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -38,7 +38,7 @@ msgstr ""
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "아주 쉬움"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -122,7 +122,7 @@ msgstr "시나리오"
 #: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
 #: gui/gamesetup/gamesetup.js:1243
 msgid "Default"
-msgstr ""
+msgstr "기본값"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
@@ -153,7 +153,7 @@ msgstr "당신"
 #: gui/gamesetup/gamesetup.js:981
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
@@ -162,7 +162,7 @@ msgstr "맵 사이즈:"
 #: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr ""
+msgstr "공개된 지도"
 
 #: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
 #: gui/gamesetup/gamesetup.xml:(caption):323
@@ -207,7 +207,7 @@ msgstr "설명이 없어서 죄송합니다."
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
+msgstr[0] "%(number)s인"
 
 #: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
@@ -289,7 +289,7 @@ msgstr "없음"
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s의 게임"
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
@@ -336,7 +336,7 @@ msgstr ""
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "“%(map)s”를 로딩중"
 
 #: gui/loading/loading.js:55
 #, javascript-format
@@ -440,7 +440,7 @@ msgstr "기본 자원:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Cheats:"
-msgstr ""
+msgstr "치트들:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
@@ -566,11 +566,11 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup_mp.xml:(caption):80
 msgid "Server name:"
-msgstr ""
+msgstr "서버 이름:"
 
 #: gui/loading/loading.xml:(caption):48
 msgid "Quote of the Day:"
-msgstr ""
+msgstr "오늘의 명언:"
 
 #: gui/text/quotes.txt:1
 msgid "\"A prosperous fool is a grievous burden.\" - Aeschylus"

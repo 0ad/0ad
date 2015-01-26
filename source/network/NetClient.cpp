@@ -69,7 +69,8 @@ private:
 CNetClient::CNetClient(CGame* game) :
 	m_Session(NULL),
 	m_UserName(L"anonymous"),
-	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game)
+	m_GUID(ps_generate_guid()), m_HostID((u32)-1), m_ClientTurnManager(NULL), m_Game(game),
+	m_GameAttributes(game->GetSimulation2()->GetScriptInterface().GetContext())
 {
 	m_Game->SetTurnManager(NULL); // delete the old local turn manager so we don't accidentally use it
 
@@ -304,7 +305,7 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 
 		std::stringstream stream;
 
-		LOGMESSAGERENDER(L"Serializing game at turn %u for rejoining player", m_ClientTurnManager->GetCurrentTurn());
+		LOGMESSAGERENDER("Serializing game at turn %u for rejoining player", m_ClientTurnManager->GetCurrentTurn());
 		u32 turn = to_le32(m_ClientTurnManager->GetCurrentTurn());
 		stream.write((char*)&turn, sizeof(turn));
 
@@ -324,7 +325,7 @@ bool CNetClient::HandleMessage(CNetMessage* message)
 	// Update FSM
 	bool ok = Update(message->GetType(), message);
 	if (!ok)
-		LOGERROR(L"Net client: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)GetCurrState());
+		LOGERROR("Net client: Error running FSM update (type=%d state=%d)", (int)message->GetType(), (int)GetCurrState());
 	return ok;
 }
 
@@ -347,7 +348,7 @@ void CNetClient::LoadFinished()
 		stream.read((char*)&turn, sizeof(turn));
 		turn = to_le32(turn);
 
-		LOGMESSAGE(L"Rejoining client deserializing state at turn %u\n", turn);
+		LOGMESSAGE("Rejoining client deserializing state at turn %u\n", turn);
 
 		bool ok = m_Game->GetSimulation2()->DeserializeState(stream);
 		ENSURE(ok);
@@ -428,7 +429,7 @@ bool CNetClient::OnAuthenticate(void* context, CFsmEvent* event)
 
 	CAuthenticateResultMessage* message = (CAuthenticateResultMessage*)event->GetParamRef();
 
-	LOGMESSAGE(L"Net: Authentication result: host=%u, %ls", message->m_HostID, message->m_Message.c_str());
+	LOGMESSAGE("Net: Authentication result: host=%u, %s", message->m_HostID, utf8_from_wstring(message->m_Message));
 
 	bool  isRejoining = (message->m_Code == ARC_OK_REJOINING);
 
@@ -544,7 +545,7 @@ bool CNetClient::OnGameStart(void* context, CFsmEvent* event)
 			*client->m_Game->GetSimulation2(), *client, client->m_HostID, client->m_Game->GetReplayLogger());
 
 	client->m_Game->SetPlayerID(player);
-	client->m_Game->StartGame(client->m_GameAttributes, "");
+	client->m_Game->StartGame(&client->m_GameAttributes, "");
 
 	JS::RootedValue msg(cx);
 	client->GetScriptInterface().Eval("({'type':'start'})", &msg);

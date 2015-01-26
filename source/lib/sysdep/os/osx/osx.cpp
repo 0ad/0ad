@@ -1,4 +1,4 @@
-/* Copyright (c) 2014 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -35,12 +35,8 @@
 #include <mach-o/dyld.h> // _NSGetExecutablePath
 
 // Ignore deprecation warnings for 10.5 backwards compatibility
-#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
-# if GCC_VERSION >= 406 // store user flags
-#  pragma GCC diagnostic push
-# endif
-# pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#endif
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 
 Status sys_clipboard_set(const wchar_t* text)
 {
@@ -187,9 +183,4 @@ OsPath sys_ExecutablePathname()
 	return path;
 }
 
-#if GCC_VERSION >= 402
-# pragma GCC diagnostic warning "-Wdeprecated-declarations"
-# if GCC_VERSION >= 406
-#  pragma GCC diagnostic pop // restore user flags
-# endif
-#endif
+#pragma GCC diagnostic pop // restore user flags

@@ -4,31 +4,22 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
+/*
+ * JS allocation policies.
+ *
+ * The allocators here are for system memory with lifetimes which are not
+ * managed by the GC. See the comment at the top of vm/MallocProvider.h.
+ */
+
 #ifndef jsalloc_h
 #define jsalloc_h
 
+#include "js/TypeDecls.h"
 #include "js/Utility.h"
-
-struct JSContext;
 
 namespace js {
 
-/*
- * Allocation policies.  These model the concept:
- *  - public copy constructor, assignment, destructor
- *  - void *malloc_(size_t)
- *      Responsible for OOM reporting on NULL return value.
- *  - void *calloc_(size_t)
- *      Responsible for OOM reporting on NULL return value.
- *  - void *realloc_(size_t)
- *      Responsible for OOM reporting on NULL return value.
- *      The *used* bytes of the previous buffer is passed in
- *      (rather than the old allocation size), in addition to
- *      the *new* allocation size requested.
- *  - void free_(void *)
- *  - reportAllocOverflow()
- *      Called on overflow before the container returns NULL.
- */
+class ContextFriendFields;
 
 /* Policy for using system memory functions and doing no error reporting. */
 class SystemAllocPolicy
@@ -52,7 +43,7 @@ class SystemAllocPolicy
  */
 class TempAllocPolicy
 {
-    JSContext *const cx_;
+    ContextFriendFields *const cx_;
 
     /*
      * Non-inline helper to call JSRuntime::onOutOfMemory with minimal
@@ -61,29 +52,26 @@ class TempAllocPolicy
     JS_FRIEND_API(void *) onOutOfMemory(void *p, size_t nbytes);
 
   public:
-    TempAllocPolicy(JSContext *cx) : cx_(cx) {}
-
-    JSContext *context() const {
-        return cx_;
-    }
+    TempAllocPolicy(JSContext *cx) : cx_((ContextFriendFields *) cx) {} // :(
+    TempAllocPolicy(ContextFriendFields *cx) : cx_(cx) {}
 
     void *malloc_(size_t bytes) {
         void *p = js_malloc(bytes);
-        if (JS_UNLIKELY(!p))
-            p = onOutOfMemory(NULL, bytes);
+        if (MOZ_UNLIKELY(!p))
+            p = onOutOfMemory(nullptr, bytes);
         return p;
     }
 
     void *calloc_(size_t bytes) {
         void *p = js_calloc(bytes);
-        if (JS_UNLIKELY(!p))
-            p = onOutOfMemory(NULL, bytes);
+        if (MOZ_UNLIKELY(!p))
+            p = onOutOfMemory(nullptr, bytes);
         return p;
     }
 
     void *realloc_(void *p, size_t oldBytes, size_t bytes) {
         void *p2 = js_realloc(p, bytes);
-        if (JS_UNLIKELY(!p2))
+        if (MOZ_UNLIKELY(!p2))
             p2 = onOutOfMemory(p2, bytes);
         return p2;
     }

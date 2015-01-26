@@ -22,9 +22,16 @@
 #define jstypes_h
 
 #include "mozilla/Attributes.h"
-#include "mozilla/Util.h"
+#include "mozilla/Types.h"
 
+// jstypes.h is (or should be!) included by every file in SpiderMonkey.
+// js-config.h and jsversion.h also should be included by every file.
+// So include them here.
+// XXX: including them in js/RequiredDefines.h should be a better option, since
+// that is by definition the header file that should be included in all
+// SpiderMonkey code.  However, Gecko doesn't do this!  See bug 909576.
 #include "js-config.h"
+#include "jsversion.h"
 
 /***********************************************************************
 ** MACROS:      JS_EXTERN_API
@@ -70,8 +77,13 @@
 #  define JS_PUBLIC_DATA(t)  MOZ_IMPORT_DATA t
 #endif
 
-#define JS_FRIEND_API(t)    JS_PUBLIC_API(t)
-#define JS_FRIEND_DATA(t)   JS_PUBLIC_DATA(t)
+#if defined(STATIC_JS_API) || defined(EXPORT_JS_API) || defined(STATIC_EXPORTABLE_JS_API)
+#  define JS_FRIEND_API(t)    MOZ_EXPORT t
+#  define JS_FRIEND_DATA(t)   MOZ_EXPORT t
+#else
+#  define JS_FRIEND_API(t)   MOZ_IMPORT_API t
+#  define JS_FRIEND_DATA(t)  MOZ_IMPORT_DATA t
+#endif
 
 #if defined(_MSC_VER) && defined(_M_IX86)
 #define JS_FASTCALL __fastcall
@@ -80,26 +92,6 @@
 #else
 #define JS_FASTCALL
 #define JS_NO_FASTCALL
-#endif
-
-#ifndef JS_INLINE
-#define JS_INLINE MOZ_INLINE
-#endif
-
-#ifndef JS_ALWAYS_INLINE
-#define JS_ALWAYS_INLINE MOZ_ALWAYS_INLINE
-#endif
-
-#ifndef JS_NEVER_INLINE
-#define JS_NEVER_INLINE MOZ_NEVER_INLINE
-#endif
-
-#ifndef JS_WARN_UNUSED_RESULT
-# if defined __GNUC__
-#  define JS_WARN_UNUSED_RESULT __attribute__((warn_unused_result))
-# else
-#  define JS_WARN_UNUSED_RESULT
-# endif
 #endif
 
 /***********************************************************************
@@ -120,15 +112,6 @@
 #endif
 
 /***********************************************************************
-** MACROS:      JS_BEGIN_EXTERN_C
-**              JS_END_EXTERN_C
-** DESCRIPTION:
-**      Macro shorthands for conditional C++ extern block delimiters.
-***********************************************************************/
-#define JS_BEGIN_EXTERN_C      MOZ_BEGIN_EXTERN_C
-#define JS_END_EXTERN_C        MOZ_END_EXTERN_C
-
-/***********************************************************************
 ** MACROS:      JS_BIT
 **              JS_BITMASK
 ** DESCRIPTION:
@@ -140,8 +123,6 @@
 /***********************************************************************
 ** MACROS:      JS_HOWMANY
 **              JS_ROUNDUP
-**              JS_MIN
-**              JS_MAX
 ** DESCRIPTION:
 **      Commonly used macros for operations on compatible types.
 ***********************************************************************/
@@ -180,47 +161,6 @@
 # error "Implement me"
 #endif
 
-
-/************************************************************************
-** TYPES:       JSBool
-** DESCRIPTION:
-**  Use JSBool for variables and parameter types. Use JS_FALSE and JS_TRUE
-**      for clarity of target type in assignments and actual arguments. Use
-**      'if (bool)', 'while (!bool)', '(bool) ? x : y' etc., to test booleans
-**      just as you would C int-valued conditions.
-************************************************************************/
-typedef int JSBool;
-#define JS_TRUE (int)1
-#define JS_FALSE (int)0
-
-/***********************************************************************
-** MACROS:      JS_LIKELY
-**              JS_UNLIKELY
-** DESCRIPTION:
-**      These macros allow you to give a hint to the compiler about branch
-**      probability so that it can better optimize.  Use them like this:
-**
-**      if (JS_LIKELY(v == 1)) {
-**          ... expected code path ...
-**      }
-**
-**      if (JS_UNLIKELY(v == 0)) {
-**          ... non-expected code path ...
-**      }
-**
-***********************************************************************/
-#ifdef __GNUC__
-
-# define JS_LIKELY(x)   (__builtin_expect((x), 1))
-# define JS_UNLIKELY(x) (__builtin_expect((x), 0))
-
-#else
-
-# define JS_LIKELY(x)   (x)
-# define JS_UNLIKELY(x) (x)
-
-#endif
-
 /***********************************************************************
 ** MACROS:      JS_ARRAY_LENGTH
 **              JS_ARRAY_END
@@ -244,7 +184,11 @@ typedef int JSBool;
 #define JS_BITS_PER_BYTE 8
 #define JS_BITS_PER_BYTE_LOG2 3
 
-#define JS_BITS_PER_WORD (JS_BITS_PER_BYTE * JS_BYTES_PER_WORD)
+#if defined(JS_64BIT)
+# define JS_BITS_PER_WORD 64
+#else
+# define JS_BITS_PER_WORD 32
+#endif
 
 /***********************************************************************
 ** MACROS:      JS_FUNC_TO_DATA_PTR

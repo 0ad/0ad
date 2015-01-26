@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# unserializable <unserializable@freenet.de>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 10:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-19 20:11+0000\n"
+"Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -70,11 +71,11 @@ msgstr "FPS: %(fps)s"
 
 #: gui/common/functions_utility.js:189
 msgid "mm:ss"
-msgstr ""
+msgstr "mm:ss"
 
 #: gui/common/functions_utility.js:191
 msgid "HH:mm:ss"
-msgstr "tt:kk:ss"
+msgstr "tt:mm:ss"
 
 #: gui/common/functions_utility_error.js:22
 msgid "Loading Aborted"
@@ -82,7 +83,7 @@ msgstr "Laadimine katkestatud"
 
 #: gui/common/functions_utility_loadsave.js:8
 msgid "yyyy-MM-dd HH:mm:ss"
-msgstr "aaaa-kk-dd tt:mm:ss"
+msgstr "aaaa-kk-pp tt:mm:ss"
 
 #: gui/common/functions_utility_loadsave.js:9
 #, javascript-format
@@ -208,7 +209,7 @@ msgstr ""
 
 #: gui/options/options.js:13
 msgid "FPS Overlay"
-msgstr ""
+msgstr "FPS lisakiht"
 
 #: gui/options/options.js:13
 msgid "Show frames per second in top right corner."
@@ -496,7 +497,7 @@ msgstr ""
 #: gui/pregame/mainmenu.js:302 gui/pregame/mainmenu.xml:(caption):85
 #: gui/pregame/mainmenu.xml:(caption):116
 msgid "Technical Details"
-msgstr ""
+msgstr "Tehnilised detailid"
 
 #: gui/pregame/mainmenu.js:307
 msgid "Manual"
@@ -704,7 +705,7 @@ msgstr "Sa saad meile automaatselt saata anonüümset tagasisidet tänu millele 
 
 #: gui/pregame/mainmenu.xml:103
 msgid "Thank you for helping improve 0 A.D.!"
-msgstr "Aitäh, et aitasid täiendada 0 A.D. mängu!"
+msgstr "Täname, et aitad kaasa 0 A.D. täiendamisele!"
 
 #: gui/pregame/mainmenu.xml:105
 msgid "Anonymous feedback is currently enabled."
@@ -722,19 +723,19 @@ msgstr ""
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
-msgstr "HOIATUSEKS: Tegemist on mängu varase arendusversiooniga. Palju põhilist on veel lisamata."
+msgstr "HOIATUS: tegemist on mängu varase arendusversiooniga, mõndagi olulist on veel vajaka."
 
 #: gui/pregame/mainmenu.xml:490
 msgid "Get involved at: play0ad.com"
-msgstr "Tee kaasa: play0ad.com"
+msgstr "Aita kaasa: play0ad.com"
 
 #: gui/pregame/mainmenu.xml:(caption):81
 msgid "Enable Feedback"
-msgstr ""
+msgstr "Luba tagasiside"
 
 #: gui/pregame/mainmenu.xml:(caption):112
 msgid "Disable Feedback"
-msgstr ""
+msgstr "Keela tagasiside"
 
 #: gui/pregame/mainmenu.xml:(caption):155
 msgid "Matches"
@@ -803,7 +804,7 @@ msgstr "Välju"
 
 #: gui/pregame/mainmenu.xml:(caption):500
 msgid "Help with the Translation!"
-msgstr ""
+msgstr "Aita mängu tõlkida!"
 
 #: gui/pregame/mainmenu.xml:(caption):512
 msgid "Website"
@@ -871,7 +872,7 @@ msgstr ""
 
 #: gui/pregame/mainmenu.xml:(tooltip):385
 msgid "Open the 0 A.D. Game Manual."
-msgstr ""
+msgstr "Ava 0 A.D. mängujuhend."
 
 #: gui/pregame/mainmenu.xml:(tooltip):402
 msgid "Challenge the computer player to a single player match."
@@ -891,7 +892,7 @@ msgstr "Loe 0 A.D. mängus olevate tsivilisatsioonide kohta"
 
 #: gui/pregame/mainmenu.xml:(tooltip):464
 msgid "Exits the game."
-msgstr ""
+msgstr "Väljub mängust"
 
 #: gui/pregame/mainmenu.xml:(tooltip):501
 msgid "Click to open the 0 A.D. translate page in your browser."
@@ -1032,7 +1033,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):407
 msgid "Infantry"
-msgstr ""
+msgstr "Jalavägi"
 
 #: gui/summary/summary.xml:(caption):410
 msgid "Worker"
@@ -1040,7 +1041,7 @@ msgstr ""
 
 #: gui/summary/summary.xml:(caption):413
 msgid "Cavalry"
-msgstr ""
+msgstr "Ratsur"
 
 #: gui/summary/summary.xml:(caption):416
 msgid "Champion"
@@ -1321,21 +1322,21 @@ msgstr "KALASTAMINE"
 
 #: gui/text/tips/fishing.txt:2
 msgid "- Fish the seas for a bountiful harvest."
-msgstr ""
+msgstr "- püüa meredelt külluslikku kalasaaki"
 
 #: gui/text/tips/fishing.txt:4
 msgid "- Fishing boats carry a large amount of Food per trip."
-msgstr ""
+msgstr "- kalapaadid toimetavad kohale hulga toitu ühe retkega."
 
 #: gui/text/tips/fishing.txt:6
 msgid ""
 "- Garrison a Support Unit aboard to double the Fishing Boat's gathering "
 "rate."
-msgstr "- kaluripaadi kalastuskiiruse kahekordistamiseks saada pardale toetav üksus."
+msgstr "- kalapaadi kalastuskiiruse kahekordistamiseks saada pardale tugiüksus."
 
 #: gui/text/tips/fishing.txt:8
 msgid "- Careful! Fish are not an infinite resource!"
-msgstr "- Ettevaatust! Kalu ei ole lõpmatult!"
+msgstr "- Ettevaatust! Kalavaru ei ole lõpmatu!"
 
 #: gui/text/tips/fortress.txt:1
 msgid "FORTRESS"

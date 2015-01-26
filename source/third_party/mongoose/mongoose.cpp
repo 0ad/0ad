@@ -22,15 +22,9 @@
 # pragma comment(lib, "ws2_32.lib")
 #endif
 
-#if defined(__GNUC__)
-# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
-
-# if GCC_VERSION >= 402 // older GCCs don't support the diagnostic pragma at all
-#  pragma GCC diagnostic ignored "-Wunused-function"
-# endif
-# if GCC_VERSION >= 406 // new warning in 4.6
-#  pragma GCC diagnostic ignored "-Wunused-but-set-variable"
-# endif
+#ifdef __GNUC__
+# pragma GCC diagnostic ignored "-Wunused-function"
+# pragma GCC diagnostic ignored "-Wunused-but-set-variable"
 #endif
 
 #define NO_CGI

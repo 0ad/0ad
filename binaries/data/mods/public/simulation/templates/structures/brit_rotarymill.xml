@@ -10,6 +10,18 @@
       <metal>0</metal>
     </Resources>
   </Cost>
+  <Auras>
+    <Aura1>
+    <Type>range</Type>
+      <Radius>60</Radius>
+      <Affects>Worker</Affects>
+      <Modifications>
+        <ResourceGatherer.Rates.food..grain> <Multiply>1.25</Multiply> </ResourceGatherer.Rates.food..grain>
+      </Modifications>
+      <AuraName>Farming bonus</AuraName>
+      <AuraDescription>Boosts nearby farming with +25%.</AuraDescription>
+    </Aura1>
+  </Auras>
   <Footprint replace="">
     <Circle radius="9.0"/>
     <Height>6.0</Height>
@@ -19,19 +31,13 @@
     <Civ>Brit</Civ>
     <GenericName>Rotary Mill</GenericName>
     <SpecificName>Melonas</SpecificName>
-    <Tooltip>Increase nearby farming output +25%. (Currently, a special technology can be researched to serve this function)</Tooltip>
+    <Tooltip>Increase nearby farming output +25%.</Tooltip>
     <History>The Celts developed the first rotary flour mill.</History>
-    <Icon>structures/sb1.png</Icon>
+    <Icon>structures/rotarymill.png</Icon>
   </Identity>
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      celts/special_gather_crop_rotation
-    </Technologies>
-  </ProductionQueue>
   <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>

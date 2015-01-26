@@ -122,20 +122,20 @@ void CGame::SetTurnManager(CNetTurnManager* turnManager)
  **/
 void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& savedState)
 {
-	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
+	ScriptInterface& scriptInterface = m_Simulation2->GetScriptInterface();
+	JSContext* cx = scriptInterface.GetContext();
 	JSAutoRequest rq(cx);
 	
 	m_InitialSavedState = savedState;
 	m_IsSavedGame = !savedState.empty();
 
-	CScriptValRooted tmpAttribs(cx, attribs);
-	m_Simulation2->SetInitAttributes(tmpAttribs);
+	m_Simulation2->SetInitAttributes(attribs);
 
 	std::string mapType;
-	m_Simulation2->GetScriptInterface().GetProperty(attribs, "mapType", mapType);
+	scriptInterface.GetProperty(attribs, "mapType", mapType);
 
 	float speed;
-	if (m_Simulation2->GetScriptInterface().HasProperty(attribs, "gameSpeed") && m_Simulation2->GetScriptInterface().GetProperty(attribs, "gameSpeed", speed))
+	if (scriptInterface.HasProperty(attribs, "gameSpeed") && scriptInterface.GetProperty(attribs, "gameSpeed", speed))
 		SetSimRate(speed);
 
 	LDR_BeginRegistering();
@@ -154,21 +154,21 @@ void CGame::RegisterInit(const JS::HandleValue attribs, const std::string& saved
 	{
 		// Load random map attributes
 		std::wstring scriptFile;
-		CScriptValRooted settings;
+		JS::RootedValue settings(cx);
 
-		m_Simulation2->GetScriptInterface().GetProperty(attribs, "script", scriptFile);
-		m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
+		scriptInterface.GetProperty(attribs, "script", scriptFile);
+		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInitRMS(scriptFile, settings, m_PlayerID);
+		m_World->RegisterInitRMS(scriptFile, scriptInterface.GetJSRuntime(), settings, m_PlayerID);
 	}
 	else
 	{
 		std::wstring mapFile;
-		m_Simulation2->GetScriptInterface().GetProperty(attribs, "map", mapFile);
-		CScriptValRooted settings;
-		m_Simulation2->GetScriptInterface().GetProperty(attribs, "settings", settings);
+		JS::RootedValue settings(cx);
+		scriptInterface.GetProperty(attribs, "map", mapFile);
+		scriptInterface.GetProperty(attribs, "settings", &settings);
 
-		m_World->RegisterInit(mapFile, settings, m_PlayerID);
+		m_World->RegisterInit(mapFile, scriptInterface.GetJSRuntime(), settings, m_PlayerID);
 	}
 	if (m_GameView)
 		RegMemFun(g_Renderer.GetSingletonPtr()->GetWaterManager(), &WaterManager::LoadWaterTextures, L"LoadWaterTextures", 80);
@@ -218,9 +218,9 @@ PSRETURN CGame::ReallyStartGame()
 			m_Simulation2->PreInitGame();
 
 		JS::RootedValue settings(cx);
-		JS::RootedValue tmpInitAttributes(cx, m_Simulation2->GetInitAttributes().get());
+		JS::RootedValue tmpInitAttributes(cx, m_Simulation2->GetInitAttributes());
 		m_Simulation2->GetScriptInterface().GetProperty(tmpInitAttributes, "settings", &settings);
-		m_Simulation2->InitGame(CScriptVal(settings));
+		m_Simulation2->InitGame(settings);
 	}
 
 	// We need to do an initial Interpolate call to set up all the models etc,
@@ -270,14 +270,9 @@ void CGame::SetPlayerID(int playerID)
 		m_TurnManager->SetPlayerID(m_PlayerID);
 }
 
-void CGame::StartGame(const CScriptValRooted& attribs1, const std::string& savedState)
+void CGame::StartGame(JS::MutableHandleValue attribs, const std::string& savedState)
 {
-	JSContext* cx = m_Simulation2->GetScriptInterface().GetContext();
-	JSAutoRequest rq(cx);
-	
-	JS::RootedValue attribs(cx, attribs1.get()); // TODO: Get Handle parameter directly with SpiderMonkey 31
-	m_ReplayLogger->StartGame(&attribs);
-
+	m_ReplayLogger->StartGame(attribs);
 	RegisterInit(attribs, savedState);
 }
 

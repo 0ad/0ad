@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -51,8 +51,6 @@ private:
 	void inc_ref();
 	void dec_ref();
 	T* ptr;
-	typedef void (AtSmartPtr::*bool_type)() const;
-	void this_type_does_not_support_comparisions() const {}
 public:
 	// Constructors
 	AtSmartPtr() : ptr(NULL) {}
@@ -68,22 +66,9 @@ public:
 	//operator AtSmartPtr<const T> () { return AtSmartPtr<const T>(ptr); } // (actually provided by ConstCastHelper)
 	// Override ->
 	T* operator->() const { return ptr; }
-	// Test whether the pointer is pointing to anything using safe bool
-	operator bool_type() const { return (ptr!=NULL) == true ? &AtSmartPtr::this_type_does_not_support_comparisions : 0; }
+	// Test whether the pointer is pointing to anything
+	explicit operator bool() const { return ptr != NULL; }
 };
-
-template<typename T, typename U>
-	bool operator!=(const AtSmartPtr<T>& lhs, const U&)
-	{
-		lhs.this_type_does_not_support_comparisions();
-		return false;
-	}
-template<typename T, typename U>
-	bool operator==(const AtSmartPtr<T>& lhs, const U&)
-	{
-		lhs.this_type_does_not_support_comparisions();
-		return false;
-	}
 
 template<class ConstSmPtr, class T>
 ConstCastHelper<ConstSmPtr, T>::operator ConstSmPtr ()

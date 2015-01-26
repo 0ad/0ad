@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -23,6 +23,6 @@
  * in the whole of ShaderProgram.h
  */
 class CShaderProgram;
-typedef shared_ptr<CShaderProgram> CShaderProgramPtr;
+typedef std::shared_ptr<CShaderProgram> CShaderProgramPtr;
 
 #endif // INCLUDED_SHADERPROGRAMPTR

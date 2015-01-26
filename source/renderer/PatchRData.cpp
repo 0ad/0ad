@@ -766,7 +766,7 @@ void CPatchRData::RenderBases(const std::vector<CPatchRData*>& patches, const CS
 		{
 			if (itt->first->GetMaterial().GetShaderEffect().length() == 0)
 			{
-				LOGERROR(L"Terrain renderer failed to load shader effect.\n");
+				LOGERROR("Terrain renderer failed to load shader effect.\n");
 				continue;
 			}
 						

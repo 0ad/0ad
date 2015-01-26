@@ -28,7 +28,7 @@ public:
 	/**
 	 * Generic call function, for use by GUI scripts to talk to the GuiInterface script.
 	 */
-	virtual CScriptVal ScriptCall(int player, const std::wstring& cmd, CScriptVal data) = 0;
+	virtual void ScriptCall(int player, const std::wstring& cmd, JS::HandleValue data, JS::MutableHandleValue ret) = 0;
 	// TODO: some of the earlier functions should just use ScriptCall.
 
 	DECLARE_INTERFACE_TYPE(GuiInterface)

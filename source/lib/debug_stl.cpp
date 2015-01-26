@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -549,7 +549,7 @@ template<class T> bool get_container_info(const T& t, size_t size, size_t el_siz
 Status debug_stl_get_container_info(const wchar_t* type_name, const u8* p, size_t size,
 	size_t el_size, size_t* el_count, DebugStlIterator* el_iterator, void* it_mem)
 {
-#if MSC_VERSION >= 1400
+#if MSC_VERSION
 	UNUSED2(type_name);
 	UNUSED2(p);
 	UNUSED2(size);

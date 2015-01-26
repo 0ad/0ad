@@ -31,13 +31,6 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 
-// Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
-// and "find_format_store.hpp(74) : warning C4100: 'Input' : unreferenced formal parameter"
-#if MSC_VERSION
-#pragma warning(disable:4512)
-#pragma warning(disable:4100)
-#endif
-
 #include <boost/algorithm/string.hpp>
 
 
@@ -89,7 +82,7 @@ CTerrainTextureEntry* CTerrainTextureManager::FindTexture(const CStr& tag_)
 			return m_TextureEntries[i];
 	}
 
-	LOGWARNING(L"CTerrainTextureManager: Couldn't find terrain %hs", tag.c_str());
+	LOGWARNING("CTerrainTextureManager: Couldn't find terrain %s", tag.c_str());
 	return 0;
 }
 
@@ -141,7 +134,7 @@ void CTerrainTextureManager::LoadTextures(const CTerrainPropertiesPtr& props, co
 
 void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& parentProps, const VfsPath& path)
 {
-	//LOGMESSAGE(L"CTextureManager::RecurseDirectory(%ls)", path.string().c_str());
+	//LOGMESSAGE("CTextureManager::RecurseDirectory(%s)", path.string8());
 
 	CTerrainPropertiesPtr props;
 
@@ -153,7 +146,7 @@ void CTerrainTextureManager::RecurseDirectory(const CTerrainPropertiesPtr& paren
 	// No terrains.xml, or read failures -> use parent props (i.e. 
 	if (!props)
 	{
-		LOGMESSAGE(L"CTerrainTextureManager::RecurseDirectory(%ls): no terrains.xml (or errors while loading) - using parent properties", path.string().c_str());
+		LOGMESSAGE("CTerrainTextureManager::RecurseDirectory(%s): no terrains.xml (or errors while loading) - using parent properties", path.string8());
 		props = parentProps;
 	}
 

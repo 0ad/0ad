@@ -65,7 +65,7 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 
 	if (psaFilename.empty())
 	{
-		LOGERROR(L"Could not load animation '%ls'", pathname.string().c_str());
+		LOGERROR("Could not load animation '%s'", pathname.string8());
 		def = NULL;
 	}
 	else
@@ -76,14 +76,14 @@ CSkeletonAnimDef* CSkeletonAnimManager::GetAnimation(const VfsPath& pathname)
 		}
 		catch (PSERROR_File&)
 		{
-			LOGERROR(L"Could not load animation '%ls'", psaFilename.string().c_str());
+			LOGERROR("Could not load animation '%s'", psaFilename.string8());
 		}
 	}
 
 	if (def)
-		LOGMESSAGE(L"CSkeletonAnimManager::GetAnimation(%ls): Loaded successfully", pathname.string().c_str());
+		LOGMESSAGE("CSkeletonAnimManager::GetAnimation(%s): Loaded successfully", pathname.string8());
 	else
-		LOGERROR(L"CSkeletonAnimManager::GetAnimation(%ls): Failed loading, marked file as bad", pathname.string().c_str());
+		LOGERROR("CSkeletonAnimManager::GetAnimation(%s): Failed loading, marked file as bad", pathname.string8());
 
 	// Add to map
 	m_Animations[name] = def; // NULL if failed to load - we won't try loading it again

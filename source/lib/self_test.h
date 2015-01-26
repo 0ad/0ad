@@ -269,7 +269,10 @@ namespace CxxTest
 #define TS_ASSERT_PATH_EQUALS(path1, path2) TS_ASSERT_EQUALS((path1).string(), (path2).string())
 #define TSM_ASSERT_PATH_EQUALS(m, path1, path2) TSM_ASSERT_EQUALS(m, (path1).string(), (path2).string())
 
+bool ts_str_contains(const std::string& str1, const std::string& str2); // defined in test_setup.cpp
 bool ts_str_contains(const std::wstring& str1, const std::wstring& str2); // defined in test_setup.cpp
+#define TS_ASSERT_STR_CONTAINS(str1, str2) TSM_ASSERT(str1, ts_str_contains(str1, str2))
+#define TS_ASSERT_STR_NOT_CONTAINS(str1, str2) TSM_ASSERT(str1, !ts_str_contains(str1, str2))
 #define TS_ASSERT_WSTR_CONTAINS(str1, str2) TSM_ASSERT(str1, ts_str_contains(str1, str2))
 #define TS_ASSERT_WSTR_NOT_CONTAINS(str1, str2) TSM_ASSERT(str1, !ts_str_contains(str1, str2))
 

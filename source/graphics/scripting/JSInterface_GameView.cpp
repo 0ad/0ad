@@ -28,7 +28,7 @@ bool JSI_GameView::Get##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPriv
 { \
 	if (!g_Game || !g_Game->GetView()) \
 	{ \
-		LOGERROR(L"Trying to get a setting from GameView when it's not initialized!"); \
+		LOGERROR("Trying to get a setting from GameView when it's not initialized!"); \
 		return false; \
 	} \
 	return g_Game->GetView()->Get##NAME##Enabled(); \
@@ -38,7 +38,7 @@ void JSI_GameView::Set##NAME##Enabled(ScriptInterface::CxPrivate* UNUSED(pCxPriv
 { \
 	if (!g_Game || !g_Game->GetView()) \
 	{ \
-		LOGERROR(L"Trying to set a setting of GameView when it's not initialized!"); \
+		LOGERROR("Trying to set a setting of GameView when it's not initialized!"); \
 		return; \
 	} \
 	g_Game->GetView()->Set##NAME##Enabled(Enabled); \

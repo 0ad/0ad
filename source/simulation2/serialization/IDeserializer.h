@@ -62,7 +62,7 @@ public:
 	virtual void ScriptObjectAppend(const char* name, JS::HandleValue objVal) = 0;
 
 	/// Deserialize a JSString
-	virtual void ScriptString(const char* name, JSString*& out) = 0;
+	virtual void ScriptString(const char* name, JS::MutableHandleString out) = 0;
 
 	virtual void RawBytes(const char* name, u8* data, size_t len);
 

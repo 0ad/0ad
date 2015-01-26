@@ -59,8 +59,8 @@ public:
 
 	std::wstring value;
 
-	typedef std::multimap<const std::string, const AtNode::Ptr> child_maptype;
-	typedef std::pair<const std::string, const AtNode::Ptr> child_pairtype;
+	typedef std::multimap<std::string, AtNode::Ptr> child_maptype;
+	typedef std::pair<std::string, AtNode::Ptr> child_pairtype;
 
 	child_maptype children;
 

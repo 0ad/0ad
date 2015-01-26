@@ -73,12 +73,12 @@ public:
 	/*
 	Initialize the World - load the map and all objects
 	*/
-	void RegisterInit(const CStrW& mapFile, const CScriptValRooted& settings, int playerID);
+	void RegisterInit(const CStrW& mapFile, JSRuntime* rt, JS::HandleValue settings, int playerID);
 
 	/*
 	Initialize the World - generate and load the random map
 	*/
-	void RegisterInitRMS(const CStrW& scriptFile, const CScriptValRooted& settings, int playerID);
+	void RegisterInitRMS(const CStrW& scriptFile, JSRuntime* rt, JS::HandleValue settings, int playerID);
 
 	/**
 	 * Get the pointer to the terrain object.

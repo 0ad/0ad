@@ -41,6 +41,8 @@
 # include "boost/functional/hash.hpp"
 #endif
 
+#include "lib/utf8.h"
+
 #include <cstring>
 
 namespace ERR
@@ -123,6 +125,21 @@ public:
 	const String& string() const
 	{
 		return path;
+	}
+
+	/**
+	 * Return a UTF-8 version of the path, in a human-readable but potentially
+	 * lossy form. It is *not* safe to take this string and construct a new
+	 * Path object from it (it may fail for some non-ASCII paths) - it should
+	 * only be used for displaying paths to users.
+	 */
+	std::string string8() const
+	{
+		// TODO: On Unixes, this will only be correct for ASCII or ISO-8859-1
+		// encoded paths; we should probably assume UTF-8 encoding by default
+		// (but take care to handle non-valid-UTF-8 paths safely).
+
+		return utf8_from_wstring(path);
 	}
 
 	bool operator<(const Path& rhs) const

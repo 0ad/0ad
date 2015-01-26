@@ -233,9 +233,9 @@ EntityLimits.prototype.OnGlobalOwnershipChanged = function(msg)
 		for (var c in this.changers[category])
 			if (classes.indexOf(c) >= 0)
 			{
-				if (this.limit[category])
+				if (this.limit[category] != undefined)
 					this.limit[category] += modifier * this.changers[category][c];
-				if (this.removedLimit[category])	// update removed limits in case we want to restore it
+				if (this.removedLimit[category] != undefined)	// update removed limits in case we want to restore it
 					this.removedLimit[category] += modifier * this.changers[category][c];
 			}
 

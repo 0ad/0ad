@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,15 +24,16 @@
 #include <sstream>
 
 #include "ps/ThreadUtil.h"
+#include "third_party/cppformat/format.h"
 
 class CLogger;
 extern CLogger* g_Logger;
 
 
-#define LOGMESSAGE g_Logger->LogMessage
-#define LOGMESSAGERENDER g_Logger->LogMessageRender
-#define LOGWARNING g_Logger->LogWarning
-#define LOGERROR g_Logger->LogError
+#define LOGMESSAGE(...)       g_Logger->WriteMessage(fmt::sprintf(__VA_ARGS__).c_str(), false)
+#define LOGMESSAGERENDER(...) g_Logger->WriteMessage(fmt::sprintf(__VA_ARGS__).c_str(), true)
+#define LOGWARNING(...)       g_Logger->WriteWarning(fmt::sprintf(__VA_ARGS__).c_str())
+#define LOGERROR(...)         g_Logger->WriteError  (fmt::sprintf(__VA_ARGS__).c_str())
 
 /**
  * Error/warning/message logging class.
@@ -64,23 +65,17 @@ public:
 
 	// Functions to write different message types (Errors and warnings are placed 
 	// both in mainLog and intrestingLog.)
-	void WriteMessage(const wchar_t* message, bool doRender);
-	void WriteError  (const wchar_t* message);
-	void WriteWarning(const wchar_t* message);
+	void WriteMessage(const char* message, bool doRender);
+	void WriteError  (const char* message);
+	void WriteWarning(const char* message);
 	
-	// Functions to write a message, warning or error to file.
-	void LogMessage(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
-	void LogMessageRender(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
-	void LogWarning(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
-	void LogError(const wchar_t* fmt, ...) WPRINTF_ARGS(2);
-
 	// Render recent log messages onto the screen
 	void Render();
 	
 private:
 	void Init();
 
-	void PushRenderMessage(ELogMethod method, const wchar_t* message);
+	void PushRenderMessage(ELogMethod method, const char* message);
 
 	// Delete old timed-out entries from the list of text to render
 	void CleanupRenderQueue();
@@ -104,7 +99,7 @@ private:
 	{
 		ELogMethod method;
 		double time;
-		std::wstring message;
+		std::string message;
 	};
 	std::deque<RenderedMessage> m_RenderMessages;
 	double m_RenderLastEraseTime;
@@ -123,7 +118,7 @@ class TestLogger
 public:
 	TestLogger();
 	~TestLogger();
-	std::wstring GetOutput();
+	std::string GetOutput();
 private:
 	CLogger* m_OldLogger;
 	std::stringstream m_Stream;

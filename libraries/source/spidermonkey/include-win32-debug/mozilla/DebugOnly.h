@@ -1,4 +1,5 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -8,8 +9,8 @@
  * assertions).
  */
 
-#ifndef mozilla_DebugOnly_h_
-#define mozilla_DebugOnly_h_
+#ifndef mozilla_DebugOnly_h
+#define mozilla_DebugOnly_h
 
 namespace mozilla {
 
@@ -26,6 +27,9 @@ namespace mozilla {
  *
  * DebugOnly instances can only be coerced to T in debug builds.  In release
  * builds they don't have a value, so type coercion is not well defined.
+ *
+ * Note that DebugOnly instances still take up one byte of space, plus padding,
+ * when used as members of structs.
  */
 template<typename T>
 class DebugOnly
@@ -54,6 +58,7 @@ class DebugOnly
     operator const T&() const { return value; }
 
     T& operator->() { return value; }
+    const T& operator->() const { return value; }
 
 #else
     DebugOnly() { }
@@ -74,4 +79,4 @@ class DebugOnly
 
 }
 
-#endif  /* mozilla_DebugOnly_h_ */
+#endif /* mozilla_DebugOnly_h */

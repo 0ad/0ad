@@ -46,7 +46,7 @@ public:
 		xmlRelaxNGFreeParserCtxt(ctxt);
 
 		if (m_Schema == NULL)
-			LOGERROR(L"RelaxNGValidator: Failed to compile schema");
+			LOGERROR("RelaxNGValidator: Failed to compile schema");
 	}
 
 	~RelaxNGSchema()
@@ -108,14 +108,14 @@ bool RelaxNGValidator::ValidateEncoded(const std::wstring& filename, const std::
 
 	if (!m_Schema)
 	{
-		LOGERROR(L"RelaxNGValidator: No grammar loaded");
+		LOGERROR("RelaxNGValidator: No grammar loaded");
 		return false;
 	}
 
 	xmlDocPtr doc = xmlReadMemory(document.c_str(), (int)document.size(), utf8_from_wstring(filename).c_str(), NULL, XML_PARSE_NONET);
 	if (doc == NULL)
 	{
-		LOGERROR(L"RelaxNGValidator: Failed to parse document");
+		LOGERROR("RelaxNGValidator: Failed to parse document");
 		return false;
 	}
 
@@ -130,12 +130,12 @@ bool RelaxNGValidator::ValidateEncoded(const std::wstring& filename, const std::
 	}
 	else if (ret > 0)
 	{
-		LOGERROR(L"RelaxNGValidator: Validation failed");
+		LOGERROR("RelaxNGValidator: Validation failed");
 		return false;
 	}
 	else
 	{
-		LOGERROR(L"RelaxNGValidator: Internal error %d", ret);
+		LOGERROR("RelaxNGValidator: Internal error %d", ret);
 		return false;
 	}
 }

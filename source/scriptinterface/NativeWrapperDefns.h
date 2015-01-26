@@ -14,7 +14,17 @@
  * You should have received a copy of the GNU General Public License
  * along with 0 A.D.  If not, see <http://www.gnu.org/licenses/>.
  */
- #include "ps/GameSetup/Config.h"
+#include "ps/GameSetup/Config.h"
+
+template <typename T> struct ScriptInterface::WrapperIfHandle
+{
+	typedef T Type;
+};
+
+template <> struct ScriptInterface::WrapperIfHandle<JS::HandleValue>
+{
+	typedef HandleWrapper Type;
+};
 
 // (NativeWrapperDecls.h set up a lot of the macros we use here)
 
@@ -27,8 +37,7 @@ struct ScriptInterface_NativeWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, JS::MutableHandleValue rval, F fptr  T0_A0(z,i)) { \
-			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface; \
-			pScriptInterface->AssignOrToJSVal<R>(rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
+			ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, fptr(ScriptInterface::GetScriptInterfaceAndCBData(cx) A0_TAIL(z,i))); \
 		}
 
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -54,8 +63,7 @@ struct ScriptInterface_NativeMethodWrapper {
 	#define OVERLOADS(z, i, data) \
 		template<TYPENAME_T0_HEAD(z,i)  typename F> \
 		static void call(JSContext* cx, JS::MutableHandleValue rval, TC* c, F fptr  T0_A0(z,i)) { \
-			ScriptInterface* pScriptInterface = ScriptInterface::GetScriptInterfaceAndCBData(cx)->pScriptInterface; \
-			pScriptInterface->AssignOrToJSVal<R>(rval, (c->*fptr)( A0(z,i) )); \
+			ScriptInterface::AssignOrToJSValUnrooted<R>(cx, rval, (c->*fptr)( A0(z,i) )); \
 		}
 
 	BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
@@ -76,30 +84,29 @@ struct ScriptInterface_NativeMethodWrapper<void, TC> {
 // Fast natives don't trigger the hook we use for profiling, so explicitly
 // notify the profiler when these functions are being called.
 // ScriptInterface_impl::Register stores the name in a reserved slot.
-// (TODO: this doesn't work for functions registered via InterfaceScripted.h.
-// Maybe we should do some interned JS_GetFunctionId thing.)
 #define SCRIPT_PROFILE \
 	if (g_ScriptProfilingEnabled) \
 	{ \
-		ENSURE(JS_CALLEE(cx, vp).isObject() && JS_ObjectIsFunction(cx, &JS_CALLEE(cx, vp).toObject())); \
-		const char* name = "(unknown)"; \
-		jsval nameval; \
-		nameval = JS_GetReservedSlot( &JS_CALLEE(cx, vp).toObject(), 0); \
-		if (!nameval.isUndefined()) \
-			name = static_cast<const char*>(JSVAL_TO_PRIVATE(nameval)); \
-		CProfileSampleScript profile(name); \
+		std::string name = "(unknown)"; \
+		JS::RootedString str(cx, JS_GetFunctionId(JS_ValueToFunction(cx, args.calleev()))); \
+		if (str) \
+		{ \
+			JS::RootedValue strVal(cx, JS::StringValue(str)); \
+			ScriptInterface::FromJSVal(cx, strVal, name); \
+		} \
+		CProfileSampleScript profile(StringFlyweight(name).get().c_str()); \
 	}
 
 // JSFastNative-compatible function that wraps the function identified in the template argument list
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  R (*fptr) ( ScriptInterface::CxPrivate* T0_TAIL(z,i) )> \
-	JSBool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) { \
+	bool ScriptInterface::call(JSContext* cx, uint argc, jsval* vp) { \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
 		SCRIPT_PROFILE \
 		BOOST_PP_REPEAT_##z (i, CONVERT_ARG, ~) \
 		JS::RootedValue rval(cx); \
-		ScriptInterface_NativeWrapper<R>::call(cx, &rval, fptr  A0_TAIL(z,i)); \
+		ScriptInterface_NativeWrapper<R>::template call<T0_HEAD(z,i) R( ScriptInterface::CxPrivate* T0_TAIL(z,i))>(cx, &rval, fptr  A0_TAIL(z,i)); \
 		args.rval().set(rval); \
 		return !ScriptInterface::IsExceptionPending(cx); \
 	}
@@ -109,7 +116,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 // Same idea but for methods
 #define OVERLOADS(z, i, data) \
 	template <typename R, TYPENAME_T0_HEAD(z,i)  JSClass* CLS, typename TC, R (TC::*fptr) ( T0(z,i) )> \
-	JSBool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) { \
+	bool ScriptInterface::callMethod(JSContext* cx, uint argc, jsval* vp) { \
 		JS::CallArgs args = JS::CallArgsFromVp(argc, vp); \
 		JSAutoRequest rq(cx); \
 		SCRIPT_PROFILE \
@@ -126,7 +133,7 @@ BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 BOOST_PP_REPEAT(SCRIPT_INTERFACE_MAX_ARGS, OVERLOADS, ~)
 #undef OVERLOADS
 
-#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(argv.handleAt(i), a##i);
+#define ASSIGN_OR_TO_JS_VAL(z, i, data) AssignOrToJSVal(cx, argv.handleAt(i), a##i);
 
 #define OVERLOADS(z, i, data) \
 template<typename R TYPENAME_T0_TAIL(z, i)> \
@@ -138,7 +145,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), &jsRet); \
+	bool ok = CallFunction_(val, name, argv, &jsRet); \
 	if (!ok) \
 		return false; \
 	return FromJSVal(cx, jsRet, ret); \
@@ -156,7 +163,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), jsRet); \
+	bool ok = CallFunction_(val, name, argv, jsRet); \
 	if (!ok) \
 		return false; \
 	return true; \
@@ -173,7 +180,7 @@ bool ScriptInterface::CallFunction(JS::HandleValue val, const char* name, T0_A0_
 	JS::AutoValueVector argv(cx); \
 	argv.resize(i); \
 	BOOST_PP_REPEAT_##z (i, ASSIGN_OR_TO_JS_VAL, ~) \
-	bool ok = CallFunction_(val, name, argv.length(), argv.begin(), ret); \
+	bool ok = CallFunction_(val, name, argv, ret); \
 	if (!ok) \
 		return false; \
 	return true; \

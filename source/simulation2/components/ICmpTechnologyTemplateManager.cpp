@@ -30,9 +30,9 @@ class CCmpTechnologyTemplateManagerScripted : public ICmpTechnologyTemplateManag
 public:
 	DEFAULT_SCRIPT_WRAPPER(TechnologyTemplateManagerScripted)
 
-	virtual CScriptVal GetAllTechs()
+	virtual void GetAllTechs(JS::MutableHandleValue ret)
 	{
-		return m_Script.Call<CScriptVal>("GetAllTechs");
+		return m_Script.CallRef("GetAllTechs", ret);
 	}
 };
 

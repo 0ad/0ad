@@ -51,7 +51,7 @@ public:
 	 * Returns a vector of {"id":"value-for-AddPlayer", "name":"Human readable name"}
 	 * objects, based on all the available AI scripts.
 	 */
-	static std::vector<CScriptValRooted> GetAIs(ScriptInterface& scriptInterface);
+	static JS::Value GetAIs(ScriptInterface& scriptInterface);
 
 	DECLARE_INTERFACE_TYPE(AIManager)
 };

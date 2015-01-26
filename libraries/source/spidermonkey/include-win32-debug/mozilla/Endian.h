@@ -1,4 +1,5 @@
-/* -*- Mode: C++; tab-width: 2; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* -*- Mode: C++; tab-width: 8; indent-tabs-mode: nil; c-basic-offset: 2 -*- */
+/* vim: set ts=8 sts=2 et sw=2 tw=80: */
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
@@ -59,16 +60,16 @@
  * };
  */
 
-#ifndef mozilla_Endian_h_
-#define mozilla_Endian_h_
+#ifndef mozilla_Endian_h
+#define mozilla_Endian_h
 
 #include "mozilla/Assertions.h"
 #include "mozilla/Attributes.h"
 #include "mozilla/Compiler.h"
 #include "mozilla/DebugOnly.h"
-#include "mozilla/StandardInteger.h"
 #include "mozilla/TypeTraits.h"
 
+#include <stdint.h>
 #include <string.h>
 
 #if defined(_MSC_VER) && _MSC_VER >= 1300
@@ -90,7 +91,7 @@
 #  else
 #    error "CPU type is unknown"
 #  endif
-#elif defined(__APPLE__)
+#elif defined(__APPLE__) || defined(__powerpc__) || defined(__ppc__)
 #  if __LITTLE_ENDIAN__
 #    define MOZ_LITTLE_ENDIAN 1
 #  elif __BIG_ENDIAN__
@@ -118,17 +119,16 @@
  * cases.
  */
 #elif defined(__sparc) || defined(__sparc__) || \
-      defined(_POWER) || defined(__powerpc__) || \
-      defined(__ppc__) || defined(__hppa) || \
+      defined(_POWER) || defined(__hppa) || \
       defined(_MIPSEB) || defined(__ARMEB__) || \
-      defined(__s390__) || \
+      defined(__s390__) || defined(__AARCH64EB__) || \
       (defined(__sh__) && defined(__LITTLE_ENDIAN__)) || \
       (defined(__ia64) && defined(__BIG_ENDIAN__))
 #  define MOZ_BIG_ENDIAN 1
 #elif defined(__i386) || defined(__i386__) || \
       defined(__x86_64) || defined(__x86_64__) || \
       defined(_MIPSEL) || defined(__ARMEL__) || \
-      defined(__alpha__) || \
+      defined(__alpha__) || defined(__AARCH64EL__) || \
       (defined(__sh__) && defined(__BIG_ENDIAN__)) || \
       (defined(__ia64) && !defined(__BIG_ENDIAN__))
 #  define MOZ_LITTLE_ENDIAN 1
@@ -237,9 +237,9 @@ class EndianUtils
     {
       DebugOnly<const uint8_t*> byteDestPtr = static_cast<const uint8_t*>(dest);
       DebugOnly<const uint8_t*> byteSrcPtr = static_cast<const uint8_t*>(src);
-      MOZ_ASSERT((byteDestPtr < byteSrcPtr &&
+      MOZ_ASSERT((byteDestPtr <= byteSrcPtr &&
                   byteDestPtr + count <= byteSrcPtr) ||
-                 (byteSrcPtr < byteDestPtr &&
+                 (byteSrcPtr <= byteDestPtr &&
                   byteSrcPtr + count <= byteDestPtr));
     }
 
@@ -636,4 +636,4 @@ class NativeEndian MOZ_FINAL : public detail::Endian<MOZ_NATIVE_ENDIANNESS>
 
 } /* namespace mozilla */
 
-#endif /* mozilla_Endian_h_ */
+#endif /* mozilla_Endian_h */

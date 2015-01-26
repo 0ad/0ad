@@ -35,7 +35,7 @@ bool JSI_ConfigDB::GetConfigNamespace(std::wstring cfgNsString, EConfigNamespace
 		cfgNs = CFG_MOD;
 	else
 	{
-		LOGERROR(L"Invalid namespace name passed to the ConfigDB!");
+		LOGERROR("Invalid namespace name passed to the ConfigDB!");
 		cfgNs = CFG_DEFAULT;
 		return false;		
 	}

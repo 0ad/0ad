@@ -122,7 +122,7 @@ private:
 	
 	// callbacks for script functions
 	static bool LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, std::wstring name);
-	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, CScriptValRooted data);
+	static void ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data);
 	static void SetProgress(ScriptInterface::CxPrivate* pCxPrivate, int progress);
 	static void MaybeGC(ScriptInterface::CxPrivate* pCxPrivate);
 	static std::vector<std::string> GetCivData(ScriptInterface::CxPrivate* pCxPrivate);

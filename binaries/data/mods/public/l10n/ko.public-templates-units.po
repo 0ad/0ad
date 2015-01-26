@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2015-01-06 12:10+0000\n"
+"PO-Revision-Date: 2015-01-21 12:25+0000\n"
 "Last-Translator: Kevin Min <candyson1@naver.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
@@ -36,7 +36,7 @@ msgstr "시민"
 #: simulation/templates/template_unit_hero.xml:22
 #: simulation/templates/template_unit_infantry.xml:57
 msgid "Soldier"
-msgstr ""
+msgstr "군인"
 
 #: simulation/templates/template_unit_cavalry.xml:34
 #: simulation/templates/template_unit_dog.xml:53
@@ -53,7 +53,7 @@ msgstr ""
 #: simulation/templates/units/rome_support_healer_b.xml:10
 msgctxt "Rank"
 msgid "Basic"
-msgstr ""
+msgstr "기초"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:27
 #: simulation/templates/template_unit_champion_cavalry_spearman.xml:36
@@ -69,7 +69,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
-msgstr ""
+msgstr "근접"
 
 #: simulation/templates/template_unit_cavalry_melee.xml:28
 msgid "Melee Cavalry"
@@ -85,7 +85,7 @@ msgstr ""
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:26
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:24
 msgid "Spear"
-msgstr ""
+msgstr "창"
 
 #: simulation/templates/template_unit_cavalry_melee_spearman.xml:21
 msgid "Cavalry Spearman"
@@ -98,7 +98,7 @@ msgstr ""
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:18
 #: simulation/templates/template_unit_infantry_melee_swordsman.xml:24
 msgid "Sword"
-msgstr ""
+msgstr "검"
 
 #: simulation/templates/template_unit_cavalry_melee_swordsman.xml:31
 msgid "Cavalry Swordsman"
@@ -153,15 +153,15 @@ msgstr ""
 
 #: simulation/templates/template_unit_champion.xml:6
 msgid "Champion"
-msgstr ""
+msgstr "챔피언"
 
 #: simulation/templates/template_unit_champion_cavalry.xml:21
 msgid "Champion Cavalry"
-msgstr ""
+msgstr "챔피언 기병"
 
 #: simulation/templates/template_unit_champion_cavalry_archer.xml:29
 msgid "Champion Cavalry Archer."
-msgstr ""
+msgstr "챔피언 궁기병"
 
 #: simulation/templates/template_unit_champion_cavalry_javelinist.xml:28
 msgid "Champion Cavalry Skirmisher"
@@ -194,33 +194,33 @@ msgstr "보병"
 
 #: simulation/templates/template_unit_champion_infantry.xml:35
 msgid "Champion Infantry"
-msgstr ""
+msgstr "챔피언 보병"
 
 #: simulation/templates/template_unit_champion_infantry_archer.xml:32
 msgid "Champion Archer"
-msgstr ""
+msgstr "챔피언 궁병"
 
 #: simulation/templates/template_unit_champion_infantry_javelinist.xml:32
 msgid "Champion Skirmisher"
-msgstr ""
+msgstr "챔피언 산병"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:30
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:26
 msgid "Pike"
-msgstr "창병"
+msgstr "미늘창"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:31
 msgid "Champion Pikeman"
-msgstr ""
+msgstr "챔피언 미늘창병"
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:30
 msgid "Champion Spearman"
-msgstr ""
+msgstr "챔피언 창병"
 
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:32
 msgid "Champion Swordsman"
-msgstr ""
+msgstr "챔피언 검병"
 
 #: simulation/templates/template_unit_champion_ranged.xml:4
 msgid "Champion Ranged"
@@ -244,7 +244,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_dog.xml:51
 msgid "Dog"
-msgstr ""
+msgstr "개"
 
 #: simulation/templates/template_unit_dog.xml:52
 msgid "War Dog"
@@ -256,7 +256,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_fauna.xml:11
 msgid "Fauna"
-msgstr ""
+msgstr "동물"
 
 #: simulation/templates/template_unit_fauna_fish.xml:9
 msgid "Fish"
@@ -274,11 +274,11 @@ msgstr ""
 #: simulation/templates/template_unit_hero.xml:20
 #: simulation/templates/template_unit_hero_infantry.xml:24
 msgid "Hero"
-msgstr ""
+msgstr "영웅"
 
 #: simulation/templates/template_unit_hero_cavalry.xml:25
 msgid "Hero Cavalry"
-msgstr ""
+msgstr "영웅 기병대"
 
 #: simulation/templates/template_unit_hero_cavalry_archer.xml:31
 msgid "Hero Cavalry Archer"
@@ -298,7 +298,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_archer.xml:28
 msgid "Hero Archer"
-msgstr ""
+msgstr "영웅 궁병"
 
 #: simulation/templates/template_unit_hero_infantry_javelinist.xml:29
 msgid "Hero Skirmisher"
@@ -306,23 +306,23 @@ msgstr ""
 
 #: simulation/templates/template_unit_hero_infantry_pikeman.xml:19
 msgid "Hero Pikeman"
-msgstr ""
+msgstr "영웅 미늘창병"
 
 #: simulation/templates/template_unit_hero_infantry_spearman.xml:19
 msgid "Hero Spearman"
-msgstr ""
+msgstr "영웅 창병"
 
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:19
 msgid "Hero Swordsman"
-msgstr ""
+msgstr "영웅 검벼"
 
 #: simulation/templates/template_unit_infantry_melee.xml:25
 msgid "Melee Infantry"
-msgstr ""
+msgstr "근접 보병"
 
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:27
 msgid "Pikeman"
-msgstr ""
+msgstr "미늘창병"
 
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:25
 msgid "Spearman"
@@ -338,7 +338,7 @@ msgstr "산병"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:27
 msgid "Sling"
-msgstr ""
+msgstr "새총"
 
 #: simulation/templates/template_unit_infantry_ranged_slinger.xml:28
 msgid "Slinger"
@@ -347,7 +347,7 @@ msgstr "투석병"
 #: simulation/templates/template_unit_mechanical_ship.xml:34
 #: simulation/templates/template_unit_mechanical_ship.xml:33
 msgid "Ship"
-msgstr ""
+msgstr "선박"
 
 #: simulation/templates/template_unit_mechanical_ship_bireme.xml:46
 msgid "Light Warship"
@@ -409,7 +409,7 @@ msgstr ""
 
 #: simulation/templates/template_unit_mechanical_siege_ram.xml:46
 msgid "Battering Ram"
-msgstr ""
+msgstr "파성추"
 
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:52
 msgid "Siege Tower"
@@ -696,7 +696,7 @@ msgstr ""
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:6
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:6
 msgid "Greek Cavalry"
-msgstr ""
+msgstr "그리스 기병"
 
 #: simulation/templates/units/athen_cavalry_swordsman_b.xml:7
 #: simulation/templates/units/hele_cavalry_swordsman_b.xml:7
@@ -773,7 +773,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_pericles.xml:26
 msgid "Pericles"
-msgstr ""
+msgstr "페리클레스"
 
 #: simulation/templates/units/athen_hero_pericles.xml:27
 msgid "Periklēs"
@@ -797,7 +797,7 @@ msgstr ""
 
 #: simulation/templates/units/athen_hero_themistocles.xml:26
 msgid "Themistocles"
-msgstr ""
+msgstr "테미스토클레스"
 
 #: simulation/templates/units/athen_hero_themistocles.xml:27
 msgid "Themistoklês"
@@ -1453,7 +1453,7 @@ msgstr ""
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
-msgstr ""
+msgstr "크세노폰"
 
 #: simulation/templates/units/hele_hero_xenophon.xml:29
 msgid "Xenophôn"

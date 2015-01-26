@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -57,12 +57,6 @@ class CmpPtr
 private:
 	T* m;
 
-	// "Safe Bool Idiom" based on http://www.artima.com/cppsource/safebool.html
-	// to allow "if (cmp)" and "if (!cmp)" etc, without also allowing "int i = cmp"
-	// or "if (cmp1 == cmp2)" etc.
-	typedef void (CmpPtr::*bool_type)() const;
-	void this_type_does_not_support_comparisons() const {}
-
 public:
 	CmpPtr(const CSimContext& context, entity_id_t ent)
 	{
@@ -85,24 +79,10 @@ public:
 
 	T* operator->() { return m; }
 
-	operator bool_type() const
+	explicit operator bool() const
 	{
-		return (m != NULL) ? &CmpPtr::this_type_does_not_support_comparisons : 0;
+		return m != NULL;
 	}
 };
-
-template<typename T, typename U>
-bool operator!=(const CmpPtr<T>& lhs, const U& UNUSED(rhs))
-{
-	lhs.this_type_does_not_support_comparisons();
-	return false;
-}
-
-template<typename T, typename U>
-bool operator==(const CmpPtr<T>& lhs, const U& UNUSED(rhs))
-{
-	lhs.this_type_does_not_support_comparisons();
-	return false;
-}
 
 #endif // INCLUDED_CMPPTR

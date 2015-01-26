@@ -48,12 +48,12 @@ static const int COMMAND_DELAY = 2;
 #define NETTURN_LOG(args)
 #endif
 
-static std::wstring Hexify(const std::string& s)
+static std::string Hexify(const std::string& s)
 {
-	std::wstringstream str;
+	std::stringstream str;
 	str << std::hex;
 	for (size_t i = 0; i < s.size(); ++i)
-		str << std::setfill(L'0') << std::setw(2) << (int)(unsigned char)s[i];
+		str << std::setfill('0') << std::setw(2) << (int)(unsigned char)s[i];
 	return str.str();
 }
 
@@ -159,7 +159,7 @@ bool CNetTurnManager::Update(float simFrameLength, size_t maxTurns)
 		std::vector<SimulationCommand> commands;
 		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
 		{
-			commands.insert(commands.end(), it->second.begin(), it->second.end());
+			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
 		}
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
@@ -203,7 +203,7 @@ bool CNetTurnManager::UpdateFastForward()
 		std::vector<SimulationCommand> commands;
 		for (std::map<u32, std::vector<SimulationCommand> >::iterator it = m_QueuedCommands[0].begin(); it != m_QueuedCommands[0].end(); ++it)
 		{
-			commands.insert(commands.end(), it->second.begin(), it->second.end());
+			commands.insert(commands.end(), std::make_move_iterator(it->second.begin()), std::make_move_iterator(it->second.end()));
 		}
 		m_QueuedCommands.pop_front();
 		m_QueuedCommands.resize(m_QueuedCommands.size() + 1);
@@ -220,7 +220,7 @@ bool CNetTurnManager::UpdateFastForward()
 
 void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 {
-	NETTURN_LOG((L"OnSyncError(%d, %ls)\n", turn, Hexify(expectedHash).c_str()));
+	NETTURN_LOG((L"OnSyncError(%d, %hs)\n", turn, Hexify(expectedHash).c_str()));
 
 	// Only complain the first time
 	if (m_HasSyncError)
@@ -237,14 +237,14 @@ void CNetTurnManager::OnSyncError(u32 turn, const std::string& expectedHash)
 	m_Simulation2.DumpDebugState(file);
 	file.close();
 
-	std::wstringstream msg;
-	msg << L"Out of sync on turn " << turn << L": expected hash " << Hexify(expectedHash) << L"\n\n";
-	msg << L"Current state: turn " << m_CurrentTurn << L", hash " << Hexify(hash) << L"\n\n";
-	msg << L"Dumping current state to " << path;
+	std::stringstream msg;
+	msg << "Out of sync on turn " << turn << ": expected hash " << Hexify(expectedHash) << "\n\n";
+	msg << "Current state: turn " << m_CurrentTurn << ", hash " << Hexify(hash) << "\n\n";
+	msg << "Dumping current state to " << utf8_from_wstring(path.string());
 	if (g_GUI)
-		g_GUI->DisplayMessageBox(600, 350, L"Sync error", msg.str());
+		g_GUI->DisplayMessageBox(600, 350, L"Sync error", wstring_from_utf8(msg.str()));
 	else
-		LOGERROR(L"%ls", msg.str().c_str());
+		LOGERROR("%s", msg.str());
 }
 
 void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
@@ -256,7 +256,7 @@ void CNetTurnManager::Interpolate(float simFrameLength, float realFrameLength)
 	m_Simulation2.Interpolate(simFrameLength, offset, realFrameLength);
 }
 
-void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, u32 turn)
+void CNetTurnManager::AddCommand(int client, int player, JS::HandleValue data, u32 turn)
 {
 	NETTURN_LOG((L"AddCommand(client=%d player=%d turn=%d)\n", client, player, turn));
 
@@ -266,10 +266,8 @@ void CNetTurnManager::AddCommand(int client, int player, CScriptValRooted data, 
 		return;
 	}
 
-	SimulationCommand cmd;
-	cmd.player = player;
-	cmd.data = data;
-	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].push_back(cmd);
+	SimulationCommand cmd(player, m_Simulation2.GetScriptInterface().GetContext(), data);
+	m_QueuedCommands[turn - (m_CurrentTurn+1)][client].emplace_back(std::move(cmd));
 }
 
 void CNetTurnManager::FinishedAllCommands(u32 turn, u32 turnLength)
@@ -327,7 +325,7 @@ void CNetTurnManager::QuickSave()
 	bool ok = m_Simulation2.SerializeState(stream);
 	if (!ok)
 	{
-		LOGERROR(L"Failed to quicksave game");
+		LOGERROR("Failed to quicksave game");
 		return;
 	}
 
@@ -337,7 +335,7 @@ void CNetTurnManager::QuickSave()
 	else
 		m_QuickSaveMetadata = std::string();
 
-	LOGMESSAGERENDER(L"Quicksaved game");
+	LOGMESSAGERENDER("Quicksaved game");
 
 }
 
@@ -347,7 +345,7 @@ void CNetTurnManager::QuickLoad()
 
 	if (m_QuickSaveState.empty())
 	{
-		LOGERROR(L"Cannot quickload game - no game was quicksaved");
+		LOGERROR("Cannot quickload game - no game was quicksaved");
 		return;
 	}
 
@@ -355,14 +353,14 @@ void CNetTurnManager::QuickLoad()
 	bool ok = m_Simulation2.DeserializeState(stream);
 	if (!ok)
 	{
-		LOGERROR(L"Failed to quickload game");
+		LOGERROR("Failed to quickload game");
 		return;
 	}
 
 	if (g_GUI && !m_QuickSaveMetadata.empty())
 		g_GUI->RestoreSavedGameData(m_QuickSaveMetadata);
 
-	LOGMESSAGERENDER(L"Quickloaded game");
+	LOGMESSAGERENDER("Quickloaded game");
 
 	// See RewindTimeWarp
 	ResetState(0, 1);
@@ -374,12 +372,12 @@ CNetClientTurnManager::CNetClientTurnManager(CSimulation2& simulation, CNetClien
 {
 }
 
-void CNetClientTurnManager::PostCommand(CScriptValRooted data)
+void CNetClientTurnManager::PostCommand(JS::HandleValue data)
 {
 	NETTURN_LOG((L"PostCommand()\n"));
 
 	// Transmit command to server
-	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data.get());
+	CSimulationMessage msg(m_Simulation2.GetScriptInterface(), m_ClientId, m_PlayerId, m_CurrentTurn + COMMAND_DELAY, data);
 	m_NetClient.SendMessage(&msg);
 
 	// Add to our local queue
@@ -408,7 +406,7 @@ void CNetClientTurnManager::NotifyFinishedUpdate(u32 turn)
 		ENSURE(ok);
 	}
 
-	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %ls)\n", turn, Hexify(hash).c_str()));
+	NETTURN_LOG((L"NotifyFinishedUpdate(%d, %hs)\n", turn, Hexify(hash).c_str()));
 
 	m_Replay.Hash(hash, quick);
 
@@ -436,7 +434,7 @@ CNetLocalTurnManager::CNetLocalTurnManager(CSimulation2& simulation, IReplayLogg
 {
 }
 
-void CNetLocalTurnManager::PostCommand(CScriptValRooted data)
+void CNetLocalTurnManager::PostCommand(JS::HandleValue data)
 {
 	// Add directly to the next turn, ignoring COMMAND_DELAY,
 	// because we don't need to compensate for network latency
@@ -546,7 +544,7 @@ void CNetServerTurnManager::NotifyFinishedClientUpdate(int client, u32 turn, con
 
 		for (std::map<int, std::string>::iterator cit = it->second.begin(); cit != it->second.end(); ++cit)
 		{
-			NETTURN_LOG((L"sync check %d: %d = %ls\n", it->first, cit->first, Hexify(cit->second).c_str()));
+			NETTURN_LOG((L"sync check %d: %d = %hs\n", it->first, cit->first, Hexify(cit->second).c_str()));
 			if (cit->second != expected)
 			{
 				// Oh no, out of sync

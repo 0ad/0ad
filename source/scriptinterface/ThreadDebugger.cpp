@@ -95,7 +95,7 @@ JSTrapStatus CheckForBreakRequestHandler_(JSContext* cx, JSScript* script, jsbyt
 }
 
 CMutex CallHookMutex;
-static void* CallHook_(JSContext* cx, JSStackFrame* fp, JSBool before, JSBool* UNUSED(ok), void* closure)
+static void* CallHook_(JSContext* cx, JSStackFrame* fp, bool before, bool* UNUSED(ok), void* closure)
 {
 	CScopeLock lock(CallHookMutex);
 	CThreadDebugger* pThreadDebugger = (CThreadDebugger*) closure;
@@ -493,7 +493,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 			*m->m_pLastBreakFrame = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 			
 			if (!JS_SetSingleStepMode(cx, script, true))
-				LOGERROR(L"JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
+				LOGERROR("JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
 			else
 			{
 				if (nextDbgCmd == DBG_CMD_SINGLESTEP)
@@ -516,7 +516,7 @@ JSTrapStatus CThreadDebugger::BreakHandler(JSContext* cx, JSScript* script, jsby
 		else if (nextDbgCmd == DBG_CMD_CONTINUE)
 		{
 			if (!JS_SetSingleStepMode(cx, script, true))
-				LOGERROR(L"JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
+				LOGERROR("JS_SetSingleStepMode returned false!"); // TODO: When can this happen?
 			else
 			{
 				// Setup a handler to check for break-requests from the DebuggingServer regularly
@@ -673,7 +673,7 @@ void CThreadDebugger::SaveCallstack()
 				functionID = JS_NewStringCopyZ(m->m_pScriptInterface->GetContext(), "anonymous");
 		}
 
-		JSBool ret = JS_DefineElement(m->m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
+		bool ret = JS_DefineElement(m->m_pScriptInterface->GetContext(), jsArray, counter, STRING_TO_JSVAL(functionID), NULL, NULL, 0);
 		ENSURE(ret);
 		fp = JS_FrameIterator(m->m_pScriptInterface->GetContext(), &iter);
 		counter++;
@@ -785,20 +785,20 @@ namespace CyclicRefWorkaround
 	
 	struct Stringifier
 	{
-		static JSBool callback(const jschar* buf, uint32 len, void* data)
+		static bool callback(const jschar* buf, uint32 len, void* data)
 		{
 			utf16string str(buf, buf+len);
 			std::wstring strw(str.begin(), str.end());
 
 			Status err; // ignore Unicode errors
 			static_cast<Stringifier*>(data)->stream << utf8_from_wstring(strw, &err);
-			return JS_TRUE;
+			return true;
 		}
 
 		std::stringstream stream;
 	};
 	
-	JSBool replacer(JSContext* cx, uintN UNUSED(argc), jsval* vp)
+	bool replacer(JSContext* cx, uintN UNUSED(argc), jsval* vp)
 	{
 		jsval value = JS_ARGV(cx, vp)[1];
 		jsval key = JS_ARGV(cx, vp)[0];
@@ -824,14 +824,14 @@ namespace CyclicRefWorkaround
 				JS_SET_RVAL(cx, vp, ret);
 				g_LastKey = key;
 				g_LastValue = value;
-				return JS_TRUE;
+				return true;
 			}
 		}
 		g_LastKey = key;
 		g_LastValue = value;
 		g_RecursionDetectedInPrevReplacer = false;
 		JS_SET_RVAL(cx, vp, JS_ARGV(cx, vp)[1]);
-		return JS_TRUE;
+		return true;
 	}
 }
 
@@ -846,7 +846,7 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 	JSObject* replacer = JS_GetFunctionObject(fun);
 	if (!JS_Stringify(m->m_pScriptInterface->GetContext(), &obj, replacer, indent ? INT_TO_JSVAL(2) : JSVAL_VOID, &CyclicRefWorkaround::Stringifier::callback, &str))
 	{
-		LOGERROR(L"StringifyJSON failed");
+		LOGERROR("StringifyJSON failed");
 		jsval exec;
 		jsval execString;
 		if (JS_GetPendingException(m->m_pScriptInterface->GetContext(), &exec))
@@ -858,7 +858,7 @@ std::string CThreadDebugger::StringifyCyclicJSON(jsval obj, bool indent)
 				if (JSVAL_IS_STRING(execString))
 				{
 					std::string strExec = JS_EncodeString(m->m_pScriptInterface->GetContext(), JSVAL_TO_STRING(execString));
-					LOGERROR(L"Error: %hs", strExec.c_str());
+					LOGERROR("Error: %s", strExec.c_str());
 				}
 			}
 			

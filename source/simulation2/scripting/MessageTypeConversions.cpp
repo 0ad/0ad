@@ -24,7 +24,7 @@
 #define TOJSVAL_SETUP() \
 	JSContext* cx = scriptInterface.GetContext(); \
 	JSAutoRequest rq(cx); \
-	JS::RootedObject obj(cx, JS_NewObject(cx, NULL, NULL, NULL)); \
+	JS::RootedObject obj(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr())); \
 	if (!obj) \
 		return JS::UndefinedValue();
 
@@ -32,7 +32,7 @@
 	do { \
 		JS::RootedValue prop(cx);\
 		ScriptInterface::ToJSVal(cx, &prop, this->name); \
-		if (! JS_SetProperty(cx, obj, #name, prop.address())) \
+		if (! JS_SetProperty(cx, obj, #name, prop)) \
 			return JS::UndefinedValue(); \
 	} while (0);
 
@@ -47,7 +47,7 @@
 #define GET_MSG_PROPERTY(type, name) \
 	type name; \
 	{ \
-	if (! JS_GetProperty(cx, obj, #name, prop.address())) \
+	if (! JS_GetProperty(cx, obj, #name, &prop)) \
 		return NULL; \
 	if (! ScriptInterface::FromJSVal(cx, prop, name)) \
 		return NULL; \
@@ -55,10 +55,10 @@
 
 JS::Value CMessage::ToJSValCached(ScriptInterface& scriptInterface) const
 {
-	if (m_Cached.uninitialised())
-		m_Cached = CScriptValRooted(scriptInterface.GetContext(), ToJSVal(scriptInterface));
+	if (!m_Cached)
+		m_Cached.reset(new JS::PersistentRootedValue(scriptInterface.GetJSRuntime(), ToJSVal(scriptInterface)));
 
-	return m_Cached.get();
+	return m_Cached->get();
 }
 
 ////////////////////////////////
@@ -119,13 +119,13 @@ CMessage* CMessageInterpolate::FromJSVal(ScriptInterface& scriptInterface, JS::H
 
 JS::Value CMessageRenderSubmit::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	LOGWARNING(L"CMessageRenderSubmit::ToJSVal not implemented");
+	LOGWARNING("CMessageRenderSubmit::ToJSVal not implemented");
 	return JS::UndefinedValue();
 }
 
 CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessageRenderSubmit::FromJSVal not implemented");
+	LOGWARNING("CMessageRenderSubmit::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -133,13 +133,13 @@ CMessage* CMessageRenderSubmit::FromJSVal(ScriptInterface& UNUSED(scriptInterfac
 
 JS::Value CMessageProgressiveLoad::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	LOGWARNING(L"CMessageProgressiveLoad::ToJSVal not implemented");
+	LOGWARNING("CMessageProgressiveLoad::ToJSVal not implemented");
 	return JS::UndefinedValue();
 }
 
 CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessageProgressiveLoad::FromJSVal not implemented");
+	LOGWARNING("CMessageProgressiveLoad::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -147,13 +147,13 @@ CMessage* CMessageProgressiveLoad::FromJSVal(ScriptInterface& UNUSED(scriptInter
 
 JS::Value CMessageDeserialized::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	LOGWARNING(L"CMessageDeserialized::ToJSVal not implemented");
+	LOGWARNING("CMessageDeserialized::ToJSVal not implemented");
 	return JS::UndefinedValue();
 }
 
 CMessage* CMessageDeserialized::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessageDeserialized::FromJSVal not implemented");
+	LOGWARNING("CMessageDeserialized::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -237,13 +237,13 @@ CMessage* CMessagePositionChanged::FromJSVal(ScriptInterface& scriptInterface, J
 
 JS::Value CMessageInterpolatedPositionChanged::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	LOGWARNING(L"CMessageInterpolatedPositionChanged::ToJSVal not implemented");
+	LOGWARNING("CMessageInterpolatedPositionChanged::ToJSVal not implemented");
 	return JS::UndefinedValue();
 }
 
 CMessage* CMessageInterpolatedPositionChanged::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessageInterpolatedPositionChanged::FromJSVal not implemented");
+	LOGWARNING("CMessageInterpolatedPositionChanged::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -379,7 +379,7 @@ JS::Value CMessageRangeUpdate::ToJSVal(ScriptInterface& scriptInterface) const
 
 CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessageRangeUpdate::FromJSVal not implemented");
+	LOGWARNING("CMessageRangeUpdate::FromJSVal not implemented");
 	return NULL;
 }
 
@@ -387,13 +387,13 @@ CMessage* CMessageRangeUpdate::FromJSVal(ScriptInterface& UNUSED(scriptInterface
 
 JS::Value CMessagePathResult::ToJSVal(ScriptInterface& UNUSED(scriptInterface)) const
 {
-	LOGWARNING(L"CMessagePathResult::ToJSVal not implemented");
+	LOGWARNING("CMessagePathResult::ToJSVal not implemented");
 	return JS::UndefinedValue();
 }
 
 CMessage* CMessagePathResult::FromJSVal(ScriptInterface& UNUSED(scriptInterface), JS::HandleValue UNUSED(val))
 {
-	LOGWARNING(L"CMessagePathResult::FromJSVal not implemented");
+	LOGWARNING("CMessagePathResult::FromJSVal not implemented");
 	return NULL;
 }
 

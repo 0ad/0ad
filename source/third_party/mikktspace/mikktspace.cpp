@@ -10,12 +10,8 @@
 # pragma warning(disable:4189) // local variable is initialized but not referenced
 #endif
 
-#if defined(__GNUC__)
-# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
-
-# if GCC_VERSION >= 402 // older GCCs don't support the diagnostic pragma at all
-#  pragma GCC diagnostic ignored "-Wunused-variable"
-# endif
+#ifdef __GNUC__
+# pragma GCC diagnostic ignored "-Wunused-variable"
 #endif
 
 /** \file mikktspace/mikktspace.c

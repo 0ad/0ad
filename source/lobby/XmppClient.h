@@ -62,8 +62,8 @@ public:
 	void SendIqGetBoardList();
 	void SendIqGetRatingList();
 	void SendIqGetProfile(const std::string& player);
-	void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data);
-	void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data);
+	void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data);
+	void SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data);
 	void SendIqUnregisterGame();
 	void SendIqChangeStateGame(const std::string& nbp, const std::string& players);
 	void SetNick(const std::string& nick);
@@ -75,10 +75,10 @@ public:
 	void GetRole(const std::string& nickname, std::string& role);
 	void GetSubject(std::string& subject);
 
-	CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface);
-	CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface);
-	CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface);
-	CScriptValRooted GUIGetProfile(ScriptInterface& scriptInterface);
+	void GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
+	void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	//Script
 	ScriptInterface& GetScriptInterface();
 
@@ -132,7 +132,7 @@ public:
 		std::wstring from;
 		std::wstring message;
 	};
-	CScriptValRooted GuiPollMessage(ScriptInterface& scriptInterface);
+	void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret);
 	void SendMUCMessage(const std::string& message);
 	protected:
 	void PushGuiMessage(XmppClient::GUIMessage message);

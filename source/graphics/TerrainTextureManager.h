@@ -1,4 +1,4 @@
-/* Copyright (C) 2010 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -18,9 +18,9 @@
 #ifndef INCLUDED_TERRAINTEXTUREMANAGER
 #define INCLUDED_TERRAINTEXTUREMANAGER
 
-#include <vector>
 #include <map>
-#include <boost/shared_ptr.hpp>
+#include <memory>
+#include <vector>
 
 #include "lib/res/graphics/ogl_tex.h"
 #include "lib/res/handle.h"

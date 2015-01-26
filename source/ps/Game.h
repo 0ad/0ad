@@ -73,7 +73,7 @@ public:
 	 **/
 	bool m_Paused;
 
-	void StartGame(const CScriptValRooted& attribs, const std::string& savedState);
+	void StartGame(JS::MutableHandleValue attribs, const std::string& savedState);
 	PSRETURN ReallyStartGame();
 
 	/**

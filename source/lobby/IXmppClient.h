@@ -18,9 +18,9 @@
 #ifndef IXMPPCLIENT_H
 #define IXMPPCLIENT_H
 
+#include "scriptinterface/ScriptTypes.h"
+
 class ScriptInterface;
-class CScriptVal;
-class CScriptValRooted;
 
 class IXmppClient
 {
@@ -35,8 +35,8 @@ public:
 	virtual void SendIqGetBoardList() = 0;
 	virtual void SendIqGetRatingList() = 0;
 	virtual void SendIqGetProfile(const std::string& player) = 0;
-	virtual void SendIqGameReport(ScriptInterface& scriptInterface, CScriptVal data) = 0;
-	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, CScriptVal data) = 0;
+	virtual void SendIqGameReport(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
+	virtual void SendIqRegisterGame(ScriptInterface& scriptInterface, JS::HandleValue data) = 0;
 	virtual void SendIqUnregisterGame() = 0;
 	virtual void SendIqChangeStateGame(const std::string& nbp, const std::string& players) = 0;
 	virtual void SetNick(const std::string& nick) = 0;
@@ -48,12 +48,12 @@ public:
 	virtual void GetRole(const std::string& nickname, std::string& role) = 0;
 	virtual void GetSubject(std::string& subject) = 0;
 
-	virtual CScriptValRooted GUIGetPlayerList(ScriptInterface& scriptInterface) = 0;
-	virtual CScriptValRooted GUIGetGameList(ScriptInterface& scriptInterface) = 0;
-	virtual CScriptValRooted GUIGetBoardList(ScriptInterface& scriptInterface) = 0;
-	virtual CScriptValRooted GUIGetProfile(ScriptInterface& scriptInterface) = 0;
+	virtual void GUIGetPlayerList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetGameList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetBoardList(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
+	virtual void GUIGetProfile(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 
-	virtual CScriptValRooted GuiPollMessage(ScriptInterface& scriptInterface) = 0;
+	virtual void GuiPollMessage(ScriptInterface& scriptInterface, JS::MutableHandleValue ret) = 0;
 	virtual void SendMUCMessage(const std::string& message) = 0;
 };
 

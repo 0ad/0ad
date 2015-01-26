@@ -241,10 +241,10 @@ void WriteScreenshot(const VfsPath& extension)
 	{
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
-		LOGMESSAGERENDER(wstring_from_utf8(g_L10n.Translate("Screenshot written to '%ls'")).c_str(), realPath.string().c_str());
+		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
 	}
 	else
-		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+		LOGERROR("Error writing screenshot to '%s'", filename.string8());
 }
 
 
@@ -374,10 +374,10 @@ void WriteBigScreenshot(const VfsPath& extension, int tiles)
 	{
 		OsPath realPath;
 		g_VFS->GetRealPath(filename, realPath);
-        LOGMESSAGERENDER(wstring_from_utf8(g_L10n.Translate("Screenshot written to '%ls'")).c_str(), realPath.string().c_str());
+		LOGMESSAGERENDER(g_L10n.Translate("Screenshot written to '%s'"), realPath.string8());
 	}
 	else
-		LOGERROR(L"Error writing screenshot to '%ls'", filename.string().c_str());
+		LOGERROR("Error writing screenshot to '%s'", filename.string8());
 
 	free(tile_data);
 }

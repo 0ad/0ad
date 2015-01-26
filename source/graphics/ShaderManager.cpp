@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -49,11 +49,11 @@ CShaderManager::CShaderManager()
 		TIMER_ACCRUE(tc_ShaderValidation);
 		CVFSFile grammar;
 		if (grammar.Load(g_VFS, L"shaders/program.rng") != PSRETURN_OK)
-			LOGERROR(L"Failed to read grammar shaders/program.rng");
+			LOGERROR("Failed to read grammar shaders/program.rng");
 		else
 		{
 			if (!m_Validator.LoadGrammar(grammar.GetAsString()))
-				LOGERROR(L"Failed to load grammar shaders/program.rng");
+				LOGERROR("Failed to load grammar shaders/program.rng");
 		}
 	}
 #endif
@@ -77,7 +77,7 @@ CShaderProgramPtr CShaderManager::LoadProgram(const char* name, const CShaderDef
 	CShaderProgramPtr program;
 	if (!NewProgram(name, defines, program))
 	{
-		LOGERROR(L"Failed to load shader '%hs'", name);
+		LOGERROR("Failed to load shader '%s'", name);
 		program = CShaderProgramPtr();
 	}
 
@@ -378,7 +378,7 @@ CShaderTechniquePtr CShaderManager::LoadEffect(CStrIntern name, const CShaderDef
 	CShaderTechniquePtr tech(new CShaderTechnique());
 	if (!NewEffect(name.c_str(), defines, tech))
 	{
-		LOGERROR(L"Failed to load effect '%hs'", name.c_str());
+		LOGERROR("Failed to load effect '%s'", name.c_str());
 		tech = CShaderTechniquePtr();
 	}
 
@@ -575,9 +575,9 @@ Status CShaderManager::ReloadChangedFile(const VfsPath& path)
 	if (files != m_HotloadFiles.end())
 	{
 		// Reload all shaders using this file
-		for (std::set<boost::weak_ptr<CShaderProgram> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
+		for (std::set<std::weak_ptr<CShaderProgram> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
 		{
-			if (shared_ptr<CShaderProgram> program = it->lock())
+			if (std::shared_ptr<CShaderProgram> program = it->lock())
 				program->Reload();
 		}
 	}

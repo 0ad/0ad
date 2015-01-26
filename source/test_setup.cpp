@@ -100,6 +100,11 @@ static MiscSetup miscSetup;
 
 // Definition of functions from lib/self_test.h
 
+bool ts_str_contains(const std::string& str1, const std::string& str2)
+{
+	return str1.find(str2) != str1.npos;
+}
+
 bool ts_str_contains(const std::wstring& str1, const std::wstring& str2)
 {
 	return str1.find(str2) != str1.npos;

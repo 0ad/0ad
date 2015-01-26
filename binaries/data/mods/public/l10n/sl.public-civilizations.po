@@ -8,12 +8,13 @@
 # Nenad Latinović <inactive+holden1987@transifex.com>, 2013
 # Nenad Latinović <latinovic87@gmail.com>, 2013
 # Nikolina Bursać <nikolinabursac@gmail.com>, 2013
+# Tilen Nosan <tilenn@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-09-12 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-22 01:01+0000\n"
+"Last-Translator: Tilen Nosan <tilenn@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -65,7 +66,7 @@ msgstr "Grki so bili zelo uspešni pri helenizaciji raznih tujcev. V času helen
 
 #: civs/athen.jsonTeamBonuses[0].Description
 msgid "Ships construct 25% faster."
-msgstr "Izgradnja ladij 25% f hitreje. "
+msgstr "Izgradnja ladij 25% hitreje. "
 
 #: civs/athen.jsonTeamBonuses[0].Name
 #: civs/hele.jsonFactions[0].Technologies[1].Name
@@ -92,47 +93,47 @@ msgstr "Periklej"
 
 #: civs/athen.jsonAINames[2]
 msgid "Cimon"
-msgstr ""
+msgstr "Kimon"
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Aristid"
 
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 msgid "Xenophon"
-msgstr ""
+msgstr "Ksenofon"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
-msgstr ""
+msgstr "Hipij"
 
 #: civs/athen.jsonAINames[6]
 msgid "Cleisthenes"
-msgstr ""
+msgstr "Kleisten"
 
 #: civs/athen.jsonAINames[7]
 msgid "Thucydides"
-msgstr ""
+msgstr "Tukidid"
 
 #: civs/athen.jsonAINames[8]
 msgid "Alcibiades"
-msgstr ""
+msgstr "Alkibiad"
 
 #: civs/athen.jsonAINames[9]
 msgid "Miltiades"
-msgstr ""
+msgstr "Miltijad"
 
 #: civs/athen.jsonAINames[10]
 msgid "Cleon"
-msgstr ""
+msgstr "Kleon"
 
 #: civs/athen.jsonAINames[11]
 msgid "Cleophon"
-msgstr ""
+msgstr "Kleofont"
 
 #: civs/athen.jsonAINames[12]
 msgid "Thrasybulus"
-msgstr ""
+msgstr "Trazibul"
 
 #: civs/athen.jsonAINames[13] civs/athen.jsonFactions[0].Heroes[2].Name
 msgid "Iphicrates"
@@ -140,7 +141,7 @@ msgstr "Ifikrat"
 
 #: civs/athen.jsonAINames[14]
 msgid "Demosthenes"
-msgstr ""
+msgstr "Demosten"
 
 #: civs/athen.jsonFactions[0].Technologies[0].Description
 msgid "Athenian triremes can train Marines (Epibastes Athenaikos)."
@@ -158,7 +159,7 @@ msgstr "Kamniti zidovi se lahko zgradijo na nevtralnem območju. Čas izgradnje 
 
 #: civs/athen.jsonFactions[0].Technologies[1].Name
 msgid "Long Walls"
-msgstr "Dolgi zidovi"
+msgstr "Dolgi zid"
 
 #: civs/athen.jsonFactions[0].Technologies[1].History
 msgid ""
@@ -166,13 +167,13 @@ msgid ""
 "Themistocles and extended 6 km from the city to the port of Piraeus. This "
 "secured the city's sea supply routes and prevented an enemy from starving "
 "out the city during a siege."
-msgstr ""
+msgstr "Atenski \"dolgi zid\" je bil zgrajen pod pokroviteljstvom premetenega Temistokleja in se je raztezal 6 km od mesta do pirejskega pristanišča. Z njim so zavarovali morske oskrbovalne poti in preprečili, da bi med obleganjem zaradi lakote morali mesto zapustiti."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Description
 msgid ""
 "The player gains the ability to order spear-armed troops into Phalanx "
 "formation, providing greater attack and armor."
-msgstr ""
+msgstr "Igralec dobi možnost razvrščanja suličarjev v falango, s čimer zagotovi boljši napad in oklep."
 
 #: civs/athen.jsonFactions[0].Technologies[2].Name
 #: civs/hele.jsonFactions[0].Technologies[0].Name
@@ -201,7 +202,7 @@ msgstr "General, ki je prepričal Atence, da vložijo svoje prihodke, pridobljen
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Periklej je bil glavni atenski politik v 5. stol. pr. nš."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -220,13 +221,13 @@ msgstr "."
 
 #: civs/athen.jsonFactions[0].Description
 msgid "A Hellenic people of the Ionian tribe."
-msgstr ""
+msgstr "Helensko ljudstvo jonskega rodu."
 
 #: civs/athen.jsonStructures[0].Name civs/hele.jsonStructures[0].Name
 #: civs/mace.jsonStructures[0].Name civs/spart.jsonStructures[0].Name
 #: civs/theb.jsonStructures[0].Name
 msgid "Theatron"
-msgstr "Theatron (prostor za gledalce v grškem gledališču)"
+msgstr "Theatron (gledališče)"
 
 #: civs/athen.jsonStructures[0].Special civs/spart.jsonStructures[0].Special
 #: civs/theb.jsonStructures[0].Special
@@ -261,7 +262,7 @@ msgstr "V Helenskih mestih je bila gimnazija ključnega pomena. Tam so se izvaja
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr "prytaneion"
+msgstr "Pritanej"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -271,7 +272,7 @@ msgstr "Trenirajte junake in raziskovalno tehnologijo, ki se nanaša na junake."
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr "Prytaneion je zbirališče mestnih starešin za kosila in hitre odločitve."
+msgstr "Pritanej je zbirališče mestnih starešin za kosila in hitre odločitve."
 
 #: civs/athen.jsonHistory
 msgid ""
@@ -284,13 +285,13 @@ msgstr "Kot zibelka zahodne civilizacije in rojstni kraj demokracije, so Atene s
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Britanci"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
 #: civs/gaul.jsonCivBonuses[0].Description
 msgid "Enhanced food gained from ranching and farming. "
-msgstr ""
+msgstr "Izboljšanje hrane, pridobljene z živinorejo in poljedelstvom."
 
 #: civs/brit.jsonCivBonuses[0].Name civs/celt.jsonCivBonuses[0].Name
 #: civs/gaul.jsonCivBonuses[0].Name
@@ -300,13 +301,13 @@ msgstr ""
 #: civs/brit.jsonCivBonuses[0].History civs/celt.jsonCivBonuses[0].History
 #: civs/gaul.jsonCivBonuses[0].History
 msgid "Represents Celtic farming methods. "
-msgstr ""
+msgstr "Predstavlja keltske poljedelske metode."
 
 #: civs/brit.jsonCivBonuses[1].Description
 #: civs/celt.jsonCivBonuses[1].Description
 #: civs/gaul.jsonCivBonuses[1].Description
 msgid "Druids increase attack rates of soldiers near them slightly."
-msgstr ""
+msgstr "Druidi ob vojakih rahlo povečajo njihovo stopnjo napadalnosti."
 
 #: civs/brit.jsonCivBonuses[1].Name civs/celt.jsonCivBonuses[1].Name
 #: civs/gaul.jsonCivBonuses[1].Name
@@ -316,7 +317,7 @@ msgstr ""
 #: civs/brit.jsonCivBonuses[1].History civs/celt.jsonCivBonuses[1].History
 #: civs/gaul.jsonCivBonuses[1].History
 msgid "Celtic religion and druidry inspired their warlike mindset. "
-msgstr ""
+msgstr "Keltska religija in duhovščina so bili navdih za njihov bojevit značaj."
 
 #: civs/brit.jsonTeamBonuses[0].Description
 #: civs/celt.jsonTeamBonuses[0].Description
@@ -327,14 +328,14 @@ msgstr ""
 #: civs/brit.jsonTeamBonuses[0].Name civs/celt.jsonTeamBonuses[0].Name
 #: civs/gaul.jsonTeamBonuses[0].Name
 msgid "Druides"
-msgstr ""
+msgstr "Druidi"
 
 #: civs/brit.jsonTeamBonuses[0].History civs/celt.jsonTeamBonuses[0].History
 #: civs/gaul.jsonTeamBonuses[0].History
 msgid ""
 "The Druids of the Celts maintained an organized religion that advanced the "
 "technology of their people even during wartime."
-msgstr ""
+msgstr "Druidi - keltski duhovniki - so ohranjali organizirano religijo, ki je pospeševala tehnologijo njihovih ljudi med vojnim časom."
 
 #: civs/brit.jsonAINames[0] civs/brit.jsonFactions[0].Heroes[0].Name
 #: civs/celt.jsonFactions[0].Heroes[0].Name
@@ -349,7 +350,7 @@ msgstr ""
 #: civs/brit.jsonAINames[2] civs/brit.jsonFactions[0].Heroes[2].Name
 #: civs/celt.jsonFactions[0].Heroes[2].Name
 msgid "Boudicca"
-msgstr ""
+msgstr "Bodičeja"
 
 #: civs/brit.jsonAINames[3]
 msgid "Prasutagus"
@@ -399,12 +400,12 @@ msgid ""
 "The Britons took up the practice of either making permanent marks on their "
 "body in the form of tattoos or temporarily painted their bodies with woad "
 "paint. The effect was very frightening."
-msgstr ""
+msgstr "Britanci so imeli navado poslikovati telo bodisi trajno s tatuji bodisi z barvo iz oblajsta. Učinek je bil zastrašujoč."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Description
 #: civs/celt.jsonFactions[0].Technologies[1].Description
 msgid "Increases the height bonus of units garrisoned in a tower."
-msgstr ""
+msgstr "Poveča višinski bonus enot, nastanjenih v stolpu."
 
 #: civs/brit.jsonFactions[0].Technologies[1].Name
 #: civs/celt.jsonFactions[0].Technologies[1].Name

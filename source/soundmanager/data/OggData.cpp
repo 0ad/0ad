@@ -78,7 +78,7 @@ bool COggData::InitOggFile(const VfsPath& itemPath)
 			
 			if(alGetError() != AL_NO_ERROR) 
 			{
-				LOGERROR( L"- Error creating initial buffer !!\n");
+				LOGERROR( "- Error creating initial buffer !!\n");
 				return false;
 			}
 			else

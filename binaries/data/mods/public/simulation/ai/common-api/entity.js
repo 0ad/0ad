@@ -413,6 +413,12 @@ m.Template = m.Class({
 		return +this.get("BuildingAI/GarrisonArrowMultiplier");
 	},
 
+	getGarrisonArrowClasses: function() {
+		if (!this.get("BuildingAI"))
+			return undefined;
+		return this.get("BuildingAI/GarrisonArrowClasses").split(/\s+/);
+	},
+
 	buffHeal: function() {
 		if (!this.get("GarrisonHolder"))
 			return undefined;

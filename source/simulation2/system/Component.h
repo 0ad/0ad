@@ -42,7 +42,7 @@
 	}
 
 #define DEFAULT_COMPONENT_ALLOCATOR(cname) \
-	static IComponent* Allocate(ScriptInterface&, jsval) { return new CCmp##cname(); } \
+	static IComponent* Allocate(ScriptInterface&, JS::HandleValue) { return new CCmp##cname(); } \
 	static void Deallocate(IComponent* cmp) { delete static_cast<CCmp##cname*> (cmp); } \
 	virtual int GetComponentTypeId() const \
 	{ \
@@ -51,7 +51,7 @@
 
 #define DEFAULT_SCRIPT_WRAPPER(cname) \
 	static void ClassInit(CComponentManager& UNUSED(componentManager)) { } \
-	static IComponent* Allocate(ScriptInterface& scriptInterface, jsval instance) \
+	static IComponent* Allocate(ScriptInterface& scriptInterface, JS::HandleValue instance) \
 	{ \
 		return new CCmp##cname(scriptInterface, instance); \
 	} \
@@ -59,7 +59,7 @@
 	{ \
 		delete static_cast<CCmp##cname*> (cmp); \
 	} \
-	CCmp##cname(ScriptInterface& scriptInterface, jsval instance) : m_Script(scriptInterface, instance) { } \
+	CCmp##cname(ScriptInterface& scriptInterface, JS::HandleValue instance) : m_Script(scriptInterface, instance) { } \
 	static std::string GetSchema() \
 	{ \
 		return "<a:component type='script-wrapper'/><empty/>"; \
@@ -84,7 +84,7 @@
 	{ \
 		m_Script.Deserialize(paramNode, deserialize, GetEntityId()); \
 	} \
-	virtual jsval GetJSInstance() const \
+	virtual JS::Value GetJSInstance() const \
 	{ \
 		return m_Script.GetInstance(); \
 	} \

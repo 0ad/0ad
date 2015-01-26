@@ -20,8 +20,6 @@
 
 #include "scriptinterface/ScriptInterface.h"
 class CSimulation2;
-class ScriptInterface;
-class CScriptValRooted;
 class CGUIManager;
 
 /**
@@ -80,9 +78,9 @@ Status Load(const std::wstring& name, ScriptInterface& scriptInterface, JS::Muta
  * Get list of saved games for GUI script usage
  *
  * @param scriptInterface the ScriptInterface in which to create the return data.
- * @return list of objects containing saved game data
+ * @return array of objects containing saved game data
  */
-std::vector<CScriptValRooted> GetSavedGames(ScriptInterface& scriptInterface);
+JS::Value GetSavedGames(ScriptInterface& scriptInterface);
 
 /**
  * Permanently deletes the saved game archive with the given name
@@ -98,7 +96,7 @@ bool DeleteSavedGame(const std::wstring& name);
  * @param scriptInterface the ScriptInterface in which to create the return data.
  * @return list of objects containing saved game data
  */
-CScriptValRooted GetEngineInfo(ScriptInterface& scriptInterface);
+JS::Value GetEngineInfo(ScriptInterface& scriptInterface);
 
 }
 

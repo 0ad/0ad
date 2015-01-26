@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,7 +27,5 @@
 // .. CStr is included very frequently, so a reasonable amount of time is
 //    saved by including it here. (~10% in a full rebuild, as of r2365)
 #include "ps/CStr.h"
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
 
 #endif // HAVE_PCH

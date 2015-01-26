@@ -97,12 +97,12 @@ public:
 	 * Set the attributes identifying the scenario/RMS used to initialise this
 	 * simulation.
 	 */
-	void SetInitAttributes(const CScriptValRooted& settings);
+	void SetInitAttributes(JS::HandleValue settings);
 
 	/**
 	 * Get the data passed to SetInitAttributes.
 	 */
-	CScriptValRooted GetInitAttributes();
+	JS::Value GetInitAttributes();
 
 	/**
 	 * Set the initial map settings (as a UTF-8-encoded JSON string),
@@ -114,7 +114,7 @@ public:
 	 * Set the initial map settings, which will be used
 	 * to set up the simulation state.
 	 */
-	void SetMapSettings(const CScriptValRooted& settings);
+	void SetMapSettings(JS::HandleValue settings);
 
 	/**
 	 * Get the current map settings as a UTF-8 JSON string.
@@ -124,7 +124,7 @@ public:
 	/**
 	 * Get the current map settings.
 	 */
-	CScriptVal GetMapSettings();
+	void GetMapSettings(JS::MutableHandleValue ret);
 
 	/**
 	 * RegMemFun incremental loader function.
@@ -162,7 +162,7 @@ public:
 	 * (This mustn't be used when e.g. loading saved games, only when starting new ones.)
 	 * This calls the InitGame function defined in helpers/InitGame.js.
 	 */
-	void InitGame(const CScriptVal& data);
+	void InitGame(JS::HandleValue data);
 
 	void Update(int turnLength);
 	void Update(int turnLength, const std::vector<SimulationCommand>& commands);

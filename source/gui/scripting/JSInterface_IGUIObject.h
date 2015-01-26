@@ -25,13 +25,13 @@ namespace JSI_IGUIObject
 	extern JSClass JSI_class;
 	extern JSPropertySpec JSI_props[];
 	extern JSFunctionSpec JSI_methods[];
-	JSBool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
-	JSBool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JSBool UNUSED(strict), JS::MutableHandleValue vp);
-	JSBool construct(JSContext* cx, uint argc, jsval* vp);
-	JSBool toString(JSContext* cx, uint argc, jsval* vp);
-	JSBool focus(JSContext* cx, uint argc, jsval* vp);
-	JSBool blur(JSContext* cx, uint argc, jsval* vp);
-	JSBool getComputedSize(JSContext* cx, uint argc, jsval* vp);
+	bool getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
+	bool setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
+	bool construct(JSContext* cx, uint argc, jsval* vp);
+	bool toString(JSContext* cx, uint argc, jsval* vp);
+	bool focus(JSContext* cx, uint argc, jsval* vp);
+	bool blur(JSContext* cx, uint argc, jsval* vp);
+	bool getComputedSize(JSContext* cx, uint argc, jsval* vp);
 	void init(ScriptInterface& scriptInterface);
 }
 

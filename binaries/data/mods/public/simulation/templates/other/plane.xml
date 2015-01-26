@@ -27,8 +27,7 @@
     <EjectClassesOnDestroy datatype="tokens" /> 
   </GarrisonHolder>
   <Decay>
-    <Inactive/>
-	<SinkingAnim/>
+    <SinkingAnim>true</SinkingAnim>
     <DelayTime>0.0</DelayTime>
     <SinkRate>3.0</SinkRate>
     <SinkAccel>7.0</SinkAccel>

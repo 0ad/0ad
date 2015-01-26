@@ -515,7 +515,7 @@ public:
 		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
 		if (m_ControlGroup == INVALID_ENTITY)
 		{
-			LOGERROR(L"[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
+			LOGERROR("[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
 			return FOUNDATION_CHECK_FAIL_ERROR;
 		}
 
@@ -552,7 +552,7 @@ public:
 		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
 		if (m_ControlGroup == INVALID_ENTITY)
 		{
-			LOGERROR(L"[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
+			LOGERROR("[CmpObstruction] Cannot test for foundation obstructions; primary control group must be valid");
 			return false;
 		}
 
@@ -586,7 +586,7 @@ public:
 		// required precondition to use SkipControlGroupsRequireFlagObstructionFilter
 		if (m_ControlGroup == INVALID_ENTITY)
 		{
-			LOGERROR(L"[CmpObstruction] Cannot test for unit or structure obstructions; primary control group must be valid");
+			LOGERROR("[CmpObstruction] Cannot test for unit or structure obstructions; primary control group must be valid");
 			return ret;
 		}
 

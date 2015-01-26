@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -42,8 +42,6 @@
 #include "renderer/SkyManager.h"
 #include "renderer/TimeManager.h"
 #include "renderer/WaterManager.h"
-
-#include <boost/weak_ptr.hpp>
 
 #if ARCH_X86_X64
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"
@@ -98,7 +96,7 @@ void ModelRenderer::BuildPositionAndNormals(
 		// some broken situations
 		if (numVertices && vertices[0].m_Blend.m_Bone[0] == 0xff)
 		{
-			LOGERROR(L"Model %ls is boned with unboned animation", mdef->GetName().string().c_str());
+			LOGERROR("Model %s is boned with unboned animation", mdef->GetName().string8());
 			return;
 		}
 

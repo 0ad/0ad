@@ -310,7 +310,7 @@ m.DefenseManager.prototype.assignDefenders = function(gameState)
 
 	if (armiesNeeding.length === 0)
 		return;
-	// If shortage of defenders, produce ranged infantry garrisoned in nearest civil centre
+	// If shortage of defenders, produce infantry garrisoned in nearest civil centre
 	var armiesPos = [];
 	for (var a = 0; a < armiesNeeding.length; ++a)
 		armiesPos.push(armiesNeeding[a]["army"].foePosition);
@@ -360,25 +360,28 @@ m.DefenseManager.prototype.garrisonRangedUnitsInside = function(gameState, targe
 		return;
 	var index = gameState.ai.accessibility.getAccessValue(target.position());
 	var garrisonManager = gameState.ai.HQ.garrisonManager;
-	gameState.getOwnUnits().filter(API3.Filters.byClassesAnd(["Infantry", "Ranged"])).filterNearest(target.position()).forEach(function(ent) {
+	var garrisonArrowClasses = target.getGarrisonArrowClasses();
+	var units = gameState.getOwnUnits().filter(function (ent) { return MatchesClassList(garrisonArrowClasses, ent.classes()); }).filterNearest(target.position());
+	for (let ent of units.values())
+	{
 		if (garrisonManager.numberOfGarrisonedUnits(target) >= target.garrisonMax())
-			return;
+			break;
 		if (!ent.position())
-			return;
+			continue;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
-			return;
+			continue;
 		if (ent.getMetadata(PlayerID, "plan") === -2 || ent.getMetadata(PlayerID, "plan") === -3)
-			return;
+			continue;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
 		{
 			var subrole = ent.getMetadata(PlayerID, "subrole");
 			if (subrole && (subrole === "completing" || subrole === "walking" || subrole === "attacking")) 
-				return;
+				continue;
 		}
 		if (gameState.ai.accessibility.getAccessValue(ent.position()) !== index)
-			return;
+			continue;
 		garrisonManager.garrison(gameState, ent, target, "protection");
-	});
+	}
 };
 
 // garrison a hurt unit inside the nearest healing structure

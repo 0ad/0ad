@@ -26,11 +26,6 @@
 #include "lib/file/vfs/vfs_util.h"
 #include "ps/XML/Xeromyces.h"
 
-// Disable "'boost::algorithm::detail::is_classifiedF' : assignment operator could not be generated"
-#if MSC_VERSION
-#pragma warning(disable:4512)
-#endif
-
 #include <boost/algorithm/string.hpp>
 
 CArchiveBuilder::CArchiveBuilder(const OsPath& mod, const OsPath& tempdir) :

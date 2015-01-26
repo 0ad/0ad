@@ -73,7 +73,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		str << variation.color;
 		int r, g, b;
 		if (! (str >> r >> g >> b)) // Any trailing data is ignored
-			LOGERROR(L"Actor '%ls' has invalid RGB colour '%hs'", m_Base->m_ShortName.c_str(), variation.color.c_str());
+			LOGERROR("Actor '%s' has invalid RGB colour '%s'", utf8_from_wstring(m_Base->m_ShortName), variation.color);
 		else
 			m_Color = CColor(r/255.0f, g/255.0f, b/255.0f, 1.0f);
 	}
@@ -119,7 +119,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModelDefPtr modeldef (objectManager.GetMeshManager().GetMesh(m_ModelName));
 	if (!modeldef)
 	{
-		LOGERROR(L"CObjectEntry::BuildVariation(): Model %ls failed to load", m_ModelName.string().c_str());
+		LOGERROR("CObjectEntry::BuildVariation(): Model %s failed to load", m_ModelName.string8());
 		return false;
 	}
 
@@ -133,7 +133,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	
 	if (m_Samplers.size() == 0)
 	{
-		LOGERROR(L"Actor '%ls' has no textures.", m_Base->m_ShortName.c_str());
+		LOGERROR("Actor '%s' has no textures.", utf8_from_wstring(m_Base->m_ShortName));
 	}
 	
 	std::vector<CObjectBase::Samp>::iterator samp;
@@ -190,7 +190,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		// start up idling
 		if (!model->SetAnimation(GetRandomAnimation("idle")))
-			LOGERROR(L"Failed to set idle animation in model \"%ls\"", m_ModelName.string().c_str());
+			LOGERROR("Failed to set idle animation in model \"%s\"", m_ModelName.string8());
 	}
 
 	// build props - TODO, RC - need to fix up bounds here
@@ -209,7 +209,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 		CObjectEntry* oe = objectManager.FindObjectVariation(prop.m_ModelName.c_str(), selections);
 		if (!oe)
 		{
-			LOGERROR(L"Failed to build prop model \"%ls\" on actor \"%ls\"", prop.m_ModelName.c_str(), m_Base->m_ShortName.c_str());
+			LOGERROR("Failed to build prop model \"%s\" on actor \"%s\"", utf8_from_wstring(prop.m_ModelName), utf8_from_wstring(m_Base->m_ShortName));
 			continue;
 		}
 
@@ -240,7 +240,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 				propmodel->ToCModel()->SetAnimation(oe->GetRandomAnimation("idle"));
 		}
 		else
-			LOGERROR(L"Failed to find matching prop point called \"%hs\" in model \"%ls\" for actor \"%ls\"", ppn.c_str(), m_ModelName.string().c_str(), m_Base->m_ShortName.c_str());
+			LOGERROR("Failed to find matching prop point called \"%s\" in model \"%s\" for actor \"%s\"", ppn, m_ModelName.string8(), utf8_from_wstring(m_Base->m_ShortName));
 	}
 
 	// setup flags

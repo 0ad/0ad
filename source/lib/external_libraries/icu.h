@@ -23,15 +23,6 @@
 #ifndef INCLUDED_ICU
 #define INCLUDED_ICU
 
-#if MSC_VERSION
-# pragma warning(push)
-# pragma warning(disable:4512) // "assignment operator could not be generated"
-#endif
-
 #include <unicode/smpdtfmt.h>
-
-#if MSC_VERSION
-# pragma warning(pop)
-#endif
 
 #endif	// #ifndef INCLUDED_ICU

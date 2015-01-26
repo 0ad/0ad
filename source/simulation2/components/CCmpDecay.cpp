@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -70,6 +70,12 @@ public:
 	static std::string GetSchema()
 	{
 		return
+			"<element name='Active' a:help='If false, the entity will not do any decaying'>"
+				"<data type='boolean'/>"
+			"</element>"
+			"<element name='SinkingAnim' a:help='If true, the entity will decay in a ship-like manner'>"
+				"<data type='boolean'/>"
+			"</element>"
 			"<element name='DelayTime' a:help='Time to wait before starting to sink, in seconds'>"
 				"<ref name='nonNegativeDecimal'/>"
 			"</element>"
@@ -78,23 +84,13 @@ public:
 			"</element>"
 			"<element name='SinkAccel' a:help='Acceleration rate of sinking, in metres per second per second'>"
 				"<ref name='nonNegativeDecimal'/>"
-			"</element>"
-			"<optional>"
-				"<element name='Inactive' a:help='If this element is present, the entity will not do any decaying'>"
-					"<empty/>"
-				"</element>"
-			"</optional>"
-			"<optional>"
-				"<element name='SinkingAnim' a:help='If this element is present, the entity will decay in a ship-like manner'>"
-					"<empty/>"
-				"</element>"
-			"</optional>";
+			"</element>";
 	}
 
 	virtual void Init(const CParamNode& paramNode)
 	{
-		m_Active = !paramNode.GetChild("Inactive").IsOk();
-		m_ShipSink = paramNode.GetChild("SinkingAnim").IsOk();
+		m_Active = paramNode.GetChild("Active").ToBool();
+		m_ShipSink = paramNode.GetChild("SinkingAnim").ToBool();
 		m_DelayTime = paramNode.GetChild("DelayTime").ToFixed().ToFloat();
 		m_SinkRate = paramNode.GetChild("SinkRate").ToFixed().ToFloat();
 		m_SinkAccel = paramNode.GetChild("SinkAccel").ToFixed().ToFloat();

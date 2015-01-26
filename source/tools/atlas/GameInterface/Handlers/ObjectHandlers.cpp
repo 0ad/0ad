@@ -712,7 +712,7 @@ QUERYHANDLER(PickSimilarObjects)
 
 MESSAGEHANDLER(ResetSelectionColor)
 {
-	UNUSED(msg);
+	UNUSED2(msg);
 	if (g_Selection.empty())
 		return;
 
@@ -930,7 +930,7 @@ BEGIN_COMMAND(DeleteObjects)
 			entity_id_t ent = sim.AddEntity(oldObjects[i].templateName.FromUTF8(), oldObjects[i].entityID);
 			if (ent == INVALID_ENTITY)
 			{
-				LOGERROR(L"Failed to load entity template '%hs'", oldObjects[i].templateName.c_str());
+				LOGERROR("Failed to load entity template '%s'", oldObjects[i].templateName.c_str());
 			}
 			else
 			{

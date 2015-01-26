@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,11 +20,11 @@
 
 #include "Texture.h"
 
+#include <memory>
+
 #include "lib/ogl.h"
 #include "lib/file/vfs/vfs.h"
 #include "lib/res/handle.h"
-
-#include <boost/weak_ptr.hpp>
 
 class CTextureProperties;
 class CTextureManagerImpl;
@@ -303,7 +303,7 @@ private:
 
 	// Self-reference to let us recover the CTexturePtr for this object.
 	// (weak pointer to avoid cycles)
-	boost::weak_ptr<CTexture> m_Self;
+	std::weak_ptr<CTexture> m_Self;
 };
 
 #endif // INCLUDED_TEXTUREMANAGER

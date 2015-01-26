@@ -653,7 +653,7 @@ bool TerrainRenderer::RenderFancyWater(const CShaderDefines& context, int cullGr
 		
 		if (!m->fancyWaterShader)
 		{
-			LOGERROR(L"Failed to load water shader. Falling back to fixed pipeline water.\n");
+			LOGERROR("Failed to load water shader. Falling back to fixed pipeline water.\n");
 			WaterMgr->m_RenderWater = false;
 			return false;
 		}

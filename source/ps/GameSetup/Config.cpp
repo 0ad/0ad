@@ -57,6 +57,7 @@ float g_Gamma = 1.0f;
 CStr g_RenderPath = "default";
 
 int g_xres, g_yres;
+float g_GuiScale = 1.0f;
 bool g_VSync = false;
 
 bool g_Quickstart = false;
@@ -104,6 +105,7 @@ static void LoadGlobals()
 	CFG_GET_VAL("particles", g_Particles);
 	CFG_GET_VAL("silhouettes", g_Silhouettes);
 	CFG_GET_VAL("showsky", g_ShowSky);
+	CFG_GET_VAL("gui.scale", g_GuiScale);
 
 	if (g_SoundManager)
 	{
@@ -131,11 +133,11 @@ static void LoadGlobals()
 	CFG_GET_VAL("profiler2.script.enable", g_ScriptProfilingEnabled);
 
 	if (g_JSDebuggerEnabled)
-		LOGERROR(L"JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)");
+		LOGERROR("JS debugger temporarily disabled during the SpiderMonkey upgrade (check trac ticket #2348 for details)");
 	// Script Debugging and profiling does not make sense together because of the hooks
 	// that reduce performance a lot - and it wasn't tested if it even works together.
 	if (g_JSDebuggerEnabled && g_ScriptProfilingEnabled)
-		LOGERROR(L"Enabling both script profiling and script debugging is not supported!");
+		LOGERROR("Enabling both script profiling and script debugging is not supported!");
 }
 
 

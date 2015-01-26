@@ -7,11 +7,15 @@
 #ifndef js_CharacterEncoding_h
 #define js_CharacterEncoding_h
 
+#include "mozilla/NullPtr.h"
 #include "mozilla/Range.h"
 
+#include "js/TypeDecls.h"
 #include "js/Utility.h"
 
-#include "jspubtd.h"
+namespace js {
+struct ThreadSafeContext;
+}
 
 namespace JS {
 
@@ -41,21 +45,37 @@ class Latin1CharsZ : public mozilla::RangedPtr<unsigned char>
     typedef mozilla::RangedPtr<unsigned char> Base;
 
   public:
-    Latin1CharsZ() : Base(NULL, 0) {}
+    Latin1CharsZ() : Base(nullptr, 0) {}
 
     Latin1CharsZ(char *aBytes, size_t aLength)
       : Base(reinterpret_cast<unsigned char *>(aBytes), aLength)
     {
-        JS_ASSERT(aBytes[aLength] == '\0');
+        MOZ_ASSERT(aBytes[aLength] == '\0');
     }
 
     Latin1CharsZ(unsigned char *aBytes, size_t aLength)
       : Base(aBytes, aLength)
     {
-        JS_ASSERT(aBytes[aLength] == '\0');
+        MOZ_ASSERT(aBytes[aLength] == '\0');
     }
 
+    using Base::operator=;
+
     char *c_str() { return reinterpret_cast<char *>(get()); }
+};
+
+class UTF8Chars : public mozilla::Range<unsigned char>
+{
+    typedef mozilla::Range<unsigned char> Base;
+
+  public:
+    UTF8Chars() : Base() {}
+    UTF8Chars(char *aBytes, size_t aLength)
+      : Base(reinterpret_cast<unsigned char *>(aBytes), aLength)
+    {}
+    UTF8Chars(const char *aBytes, size_t aLength)
+      : Base(reinterpret_cast<unsigned char *>(const_cast<char *>(aBytes)), aLength)
+    {}
 };
 
 /*
@@ -66,19 +86,21 @@ class UTF8CharsZ : public mozilla::RangedPtr<unsigned char>
     typedef mozilla::RangedPtr<unsigned char> Base;
 
   public:
-    UTF8CharsZ() : Base(NULL, 0) {}
+    UTF8CharsZ() : Base(nullptr, 0) {}
 
     UTF8CharsZ(char *aBytes, size_t aLength)
       : Base(reinterpret_cast<unsigned char *>(aBytes), aLength)
     {
-        JS_ASSERT(aBytes[aLength] == '\0');
+        MOZ_ASSERT(aBytes[aLength] == '\0');
     }
 
     UTF8CharsZ(unsigned char *aBytes, size_t aLength)
       : Base(aBytes, aLength)
     {
-        JS_ASSERT(aBytes[aLength] == '\0');
+        MOZ_ASSERT(aBytes[aLength] == '\0');
     }
+
+    using Base::operator=;
 
     char *c_str() { return reinterpret_cast<char *>(get()); }
 };
@@ -102,21 +124,6 @@ class TwoByteChars : public mozilla::Range<jschar>
 };
 
 /*
- * A non-convertible variant of TwoByteChars that does not refer to characters
- * inlined inside a JSShortString or a JSInlineString. StableTwoByteChars are
- * thus safe to hold across a GC.
- */
-class StableTwoByteChars : public mozilla::Range<jschar>
-{
-    typedef mozilla::Range<jschar> Base;
-
-  public:
-    StableTwoByteChars() : Base() {}
-    StableTwoByteChars(jschar *aChars, size_t aLength) : Base(aChars, aLength) {}
-    StableTwoByteChars(const jschar *aChars, size_t aLength) : Base(const_cast<jschar *>(aChars), aLength) {}
-};
-
-/*
  * A TwoByteChars, but \0 terminated for compatibility with JSFlatString.
  */
 class TwoByteCharsZ : public mozilla::RangedPtr<jschar>
@@ -124,12 +131,35 @@ class TwoByteCharsZ : public mozilla::RangedPtr<jschar>
     typedef mozilla::RangedPtr<jschar> Base;
 
   public:
+    TwoByteCharsZ() : Base(nullptr, 0) {}
+
     TwoByteCharsZ(jschar *chars, size_t length)
       : Base(chars, length)
     {
-        JS_ASSERT(chars[length] = '\0');
+        MOZ_ASSERT(chars[length] == '\0');
     }
+
+    using Base::operator=;
 };
+
+typedef mozilla::RangedPtr<const jschar> ConstCharPtr;
+
+/*
+ * Like TwoByteChars, but the chars are const.
+ */
+class ConstTwoByteChars : public mozilla::RangedPtr<const jschar>
+{
+  public:
+    ConstTwoByteChars(const ConstTwoByteChars &s) : ConstCharPtr(s) {}
+    ConstTwoByteChars(const mozilla::RangedPtr<const jschar> &s) : ConstCharPtr(s) {}
+    ConstTwoByteChars(const jschar *s, size_t len) : ConstCharPtr(s, len) {}
+    ConstTwoByteChars(const jschar *pos, const jschar *start, size_t len)
+      : ConstCharPtr(pos, start, len)
+    {}
+
+    using ConstCharPtr::operator=;
+};
+
 
 /*
  * Convert a 2-byte character sequence to "ISO-Latin-1". This works by
@@ -138,14 +168,34 @@ class TwoByteCharsZ : public mozilla::RangedPtr<jschar>
  * output. The returned string is zero terminated. The returned string or the
  * returned string's |start()| must be freed with JS_free or js_free,
  * respectively. If allocation fails, an OOM error will be set and the method
- * will return a NULL chars (which can be tested for with the ! operator).
+ * will return a nullptr chars (which can be tested for with the ! operator).
  * This method cannot trigger GC.
  */
 extern Latin1CharsZ
-LossyTwoByteCharsToNewLatin1CharsZ(JSContext *cx, TwoByteChars tbchars);
+LossyTwoByteCharsToNewLatin1CharsZ(js::ThreadSafeContext *cx, TwoByteChars tbchars);
 
 extern UTF8CharsZ
-TwoByteCharsToNewUTF8CharsZ(JSContext *cx, TwoByteChars tbchars);
+TwoByteCharsToNewUTF8CharsZ(js::ThreadSafeContext *cx, TwoByteChars tbchars);
+
+uint32_t
+Utf8ToOneUcs4Char(const uint8_t *utf8Buffer, int utf8Length);
+
+/*
+ * Inflate bytes in UTF-8 encoding to jschars.
+ * - On error, returns an empty TwoByteCharsZ.
+ * - On success, returns a malloc'd TwoByteCharsZ, and updates |outlen| to hold
+ *   its length;  the length value excludes the trailing null.
+ */
+extern TwoByteCharsZ
+UTF8CharsToNewTwoByteCharsZ(JSContext *cx, const UTF8Chars utf8, size_t *outlen);
+
+/*
+ * The same as UTF8CharsToNewTwoByteCharsZ(), except that any malformed UTF-8 characters
+ * will be replaced by \uFFFD. No exception will be thrown for malformed UTF-8
+ * input.
+ */
+extern TwoByteCharsZ
+LossyUTF8CharsToNewTwoByteCharsZ(JSContext *cx, const UTF8Chars utf8, size_t *outlen);
 
 } // namespace JS
 

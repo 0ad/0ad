@@ -197,7 +197,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 			itemRollOff = 0;
 		
 		if ( sndData->IsStereo() )
-			LOGWARNING( L"OpenAL: stereo sounds can't be positioned: %ls", sndData->GetFileName()->string().c_str() );
+			LOGWARNING( "OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName()->string8() );
 
 		hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 		hSound->SetRollOff(itemRollOff);
@@ -227,7 +227,7 @@ static void HandleError(const CStrW& message, const VfsPath& pathname, Status er
 {
 	if (err == ERR::AGAIN)
 		return;	// open failed because sound is disabled (don't log this)
-	LOGERROR(L"%ls: pathname=%ls, error=%ls", message.c_str(), pathname.string().c_str(), ErrorString(err));
+	LOGERROR("%s: pathname=%s, error=%s", utf8_from_wstring(message), pathname.string8(), utf8_from_wstring(ErrorString(err)));
 }
 
 void CSoundGroup::PlayNext(const CVector3D& position, entity_id_t source)
@@ -320,7 +320,7 @@ bool CSoundGroup::LoadSoundGroup(const VfsPath& pathnameXML)
 
 	if (root.GetNodeName() != el_soundgroup)
 	{
-		LOGERROR(L"Invalid SoundGroup format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid SoundGroup format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return false;
 	}
 	

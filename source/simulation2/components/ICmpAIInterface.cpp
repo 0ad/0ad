@@ -30,13 +30,13 @@ class CCmpAIInterfaceScripted : public ICmpAIInterface
 public:
 	DEFAULT_SCRIPT_WRAPPER(AIInterfaceScripted)
 
-	virtual CScriptVal GetRepresentation()
+	virtual void GetRepresentation(JS::MutableHandleValue ret)
 	{
-		return m_Script.Call<CScriptVal>("GetRepresentation");
+		return m_Script.CallRef("GetRepresentation", ret);
 	}
-	virtual CScriptVal GetFullRepresentation(bool flushEvents = false)
+	virtual void GetFullRepresentation(JS::MutableHandleValue ret, bool flushEvents = false)
 	{
-		return m_Script.Call<CScriptVal>("GetFullRepresentation",flushEvents);
+		return m_Script.CallRef("GetFullRepresentation",flushEvents, ret);
 	}
 	
 };

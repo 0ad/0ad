@@ -5,13 +5,14 @@
 # Translators:
 # Ildar Kamaev <thetechnorat@gmail.com>, 2014
 # kersurk <kersurk@gmail.com>, 2013
+# unserializable <unserializable@freenet.de>, 2015
 # unserializable <unserializable@freenet.de>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:04+0100\n"
-"PO-Revision-Date: 2014-09-12 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-19 11:51+0000\n"
+"Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,7 @@ msgstr "Ateenlased"
 
 #: civs/athen.jsonCivBonuses[0].Description
 msgid "Metal mining gathering rates increased by +10% for each passing age."
-msgstr "Iga ajastu möödumisega kiireneb metallikaevandus 10%."
+msgstr "Iga ajastu möödumisel kiireneb metalli kaevandamine 10%."
 
 #: civs/athen.jsonCivBonuses[0].Name
 msgid "Silver Owls"
@@ -94,11 +95,11 @@ msgstr ""
 
 #: civs/athen.jsonAINames[3]
 msgid "Aristides"
-msgstr ""
+msgstr "Aristides"
 
 #: civs/athen.jsonAINames[4] civs/hele.jsonFactions[0].Heroes[2].Name
 msgid "Xenophon"
-msgstr ""
+msgstr "Xenophon"
 
 #: civs/athen.jsonAINames[5]
 msgid "Hippias"
@@ -199,7 +200,7 @@ msgstr ""
 
 #: civs/athen.jsonFactions[0].Heroes[1].History
 msgid "Pericles was the foremost Athenian politician of the 5th Century B.C."
-msgstr ""
+msgstr "Perikles oli Ateena juhtiv poliitik 5. sajandil eKr."
 
 #: civs/athen.jsonFactions[0].Heroes[2].History
 #: civs/maur.jsonFactions[0].Technologies[0].History
@@ -240,7 +241,7 @@ msgid ""
 "Greek theatres were places where the immortal tragedies of Aeschylus, "
 "Sophocles and many other talented dramatists were staged to the delight of "
 "the populace. They were instrumental in enriching Hellenic culture."
-msgstr ""
+msgstr "Kreeka teatrites etendati avalikkuse naudinguks Aischylos'e, Sophokles'e ja paljude teiste andekate dramaturgide tragöödiaid. Teatritel olid helleni kultuuri rikastamisel oluline roll."
 
 #: civs/athen.jsonStructures[1].Name civs/hele.jsonStructures[1].Name
 msgid "Gymnasion"
@@ -255,11 +256,11 @@ msgstr "Treeni eliitüksusi ja uuri nendega  seostuvaid tehnoloogiaid."
 msgid ""
 "The Gymnasion was a vital place in Hellenic cities, where physical exercises"
 " were performed and social contacts established."
-msgstr ""
+msgstr "Gümnaasium oli helleni linnades oluline koht, kus tehti füüsilisi harjutusi ning sõlmiti sotsiaalseid sidemeid."
 
 #: civs/athen.jsonStructures[2].Name civs/hele.jsonStructures[2].Name
 msgid "Prytaneion"
-msgstr ""
+msgstr "Prytaneion"
 
 #: civs/athen.jsonStructures[2].Special
 msgid "Train heroes and research technology pertaining to heroes."
@@ -269,7 +270,7 @@ msgstr "Treeni sangareid ja uuri nendega seostuvaid tehnoloogiaid."
 msgid ""
 "The Prytaneion is the meeting place for the city elders to dine and to make "
 "swift decisions."
-msgstr ""
+msgstr "Prytaneion on linnajuhtide einestamis- ja kohtumispaik, kus otsuseid langetatakse kiirelt."
 
 #: civs/athen.jsonHistory
 msgid ""
@@ -282,7 +283,7 @@ msgstr "Lääne tsivilisatsiooni hälli ja demokraatia sünnipaigana oli Ateena 
 #: civs/brit.jsonName civs/brit.jsonFactions[0].Name
 #: civs/celt.jsonFactions[0].Name
 msgid "Britons"
-msgstr ""
+msgstr "Britid"
 
 #: civs/brit.jsonCivBonuses[0].Description
 #: civs/celt.jsonCivBonuses[0].Description
@@ -518,7 +519,7 @@ msgstr ""
 
 #: civs/brit.jsonFactions[0].Description
 msgid "The Celts of the British Isles."
-msgstr ""
+msgstr "Keldid Briti saartelt."
 
 #: civs/brit.jsonStructures[0].Name
 msgid "Kennel"
@@ -538,13 +539,13 @@ msgstr ""
 
 #: civs/cart.jsonName
 msgid "Carthaginians"
-msgstr ""
+msgstr "Kartaagolased"
 
 #: civs/cart.jsonCivBonuses[0].Description
 msgid ""
 "Carthaginian walls, gates, and towers have 3x health of a standard wall, but"
 " also 2x build time."
-msgstr ""
+msgstr "Kartaagolaste linnamüürid, väravad ja kaitsetornid on tavalisest 3x vastupidavamad, kuid nende ehitamine ka kestab 2x kauem."
 
 #: civs/cart.jsonCivBonuses[0].Name
 msgid "Triple Walls"
@@ -709,7 +710,7 @@ msgstr ""
 
 #: civs/cart.jsonStructures[0].Name
 msgid "Naval Shipyard"
-msgstr ""
+msgstr "Mereväe laevatehas"
 
 #: civs/cart.jsonStructures[0].Special
 msgid "Construct the powerful warships of the Carthaginian navy."
@@ -723,15 +724,15 @@ msgstr ""
 
 #: civs/cart.jsonStructures[1].Name
 msgid "Celtic Embassy"
-msgstr ""
+msgstr "Kelti saatkond"
 
 #: civs/cart.jsonStructures[1].Special
 msgid "Hire Celtic mercenaries."
-msgstr ""
+msgstr "Värba kelti palgasõdureid."
 
 #: civs/cart.jsonStructures[1].History
 msgid "The Celts supplied fierce warrior mercenaries for Carthaginian armies."
-msgstr ""
+msgstr "Keltide raevukad palgasõdurid teenisid ka Kartaago armeedes."
 
 #: civs/cart.jsonStructures[2].Name
 msgid "Italiote Embassy"
@@ -739,7 +740,7 @@ msgstr ""
 
 #: civs/cart.jsonStructures[2].Special
 msgid "Hire Italian mercenaries."
-msgstr ""
+msgstr "Värba Itaalia palgasõdureid."
 
 #: civs/cart.jsonStructures[2].History
 msgid ""
@@ -750,16 +751,16 @@ msgstr ""
 
 #: civs/cart.jsonStructures[3].Name
 msgid "Iberian Embassy"
-msgstr ""
+msgstr "Ibeeria saatkond"
 
 #: civs/cart.jsonStructures[3].Special
 msgid "Hire Iberian mercenaries."
-msgstr ""
+msgstr "Värba Ibeeria palgasõdureid."
 
 #: civs/cart.jsonStructures[3].History
 msgid ""
 "The Iberians were known as fierce mercenaries, loyal to their paymasters."
-msgstr ""
+msgstr "Ibeerlased olid tuntud raevukate ja maksjale lojaalsete palgasõduritena."
 
 #: civs/cart.jsonHistory
 msgid ""
@@ -773,7 +774,7 @@ msgstr ""
 
 #: civs/celt.jsonName
 msgid "Celts"
-msgstr ""
+msgstr "Keldid"
 
 #: civs/celt.jsonFactions[0].Heroes[1].History
 msgid ""
@@ -1035,7 +1036,7 @@ msgstr ""
 
 #: civs/hele.jsonFactions[0].Technologies[0].Description
 msgid "The player gains the Phalanx formation."
-msgstr "Mängijale saab kasutada faalanksformatsiooni."
+msgstr "Mängija saab kasutada faalanksformatsiooni."
 
 #: civs/hele.jsonFactions[0].Technologies[0].History
 msgid ""
@@ -1075,7 +1076,7 @@ msgid ""
 "one of the 5 new generals to lead the army. After a trek of over 1,500 "
 "kilometers and 1 1/2 years, Xenophon finally helped lead his men home, "
 "fighting dozens of battles and skirmishes along the way."
-msgstr ""
+msgstr "Xenophon (~430-355 eKr) oli Kreeka sõjaväelane ning hilisemas elus ajaloolane. Ta sündis Ateena oligarhiperekonnas ning oli nooruses Sokratese õpilane. 401 eKr ühines Xenophon Clearchus'e ja veel nelja kindrali juhitud Kreeka palgasõdurite armeega, mis aitas Kyros Nooremat tema sõjakäigul oma venna, kuningas Artaxerxes II vastu. Kui palgasõdurite juhid reeturlike pärslaste poolt tapeti, valiti Xenophon üheks viiest uuest armeekindralist. Pärast rohkem kui 1500 kilomeetrist pooleteist aastat kestnud rännakut, tosinaid lahinguid ning kokkupõrkeid, jõudis Xenophon oma meestega koju."
 
 #: civs/hele.jsonFactions[0].Name
 msgid "Poleis"
@@ -2016,7 +2017,7 @@ msgstr ""
 
 #: civs/ptol.jsonCivBonuses[0].Name
 msgid "Mercenary Army"
-msgstr ""
+msgstr "Palgasõdurite armee"
 
 #: civs/ptol.jsonCivBonuses[0].History civs/ptol.jsonStructures[1].History
 msgid ""
@@ -2399,7 +2400,7 @@ msgstr ""
 
 #: civs/rome.jsonFactions[0].Heroes[2].Name
 msgid "Scipio Africanus"
-msgstr ""
+msgstr "Scipio Africanus"
 
 #: civs/rome.jsonStructures[0].Name
 msgid "Entrenched Camp"
@@ -2749,7 +2750,7 @@ msgid ""
 "and run away before a single shield clashed. 'Othismos' refers to the point "
 "in a phalanx battle where both sides try to shove each other out of "
 "formation, attempting to breaking up the enemy lines and routing them."
-msgstr "Spartalased olid vaieldamatud meistrid faalanksite sõjakunstis. Hirm spartalaste distsipliini ees oli nõnda suur, et tuli ette vastaste armee lagunemist ja plehkupanekut enne lähikokkupõrke toimumist.  'Othismos' viitab faalanksite lahingus hetkele mil mõlemad pooled üritavad vastase formatsiooni hävitada, püüdes esmalt read lõhkuda ning siis eraldada."
+msgstr "Spartalased olid vaieldamatud meistrid faalanksisõjas. Hirm spartalaste distsipliini ees oli nõnda suur, et tuli ette vastaste armee lagunemist ja plehkupanekut enne lähikokkupõrke toimumist.  'Othismos' viitab faalanksite lahingus hetkele mil mõlemad pooled üritavad vastase formatsiooni hävitada, püüdes esmalt read lõhkuda ning siis eraldada."
 
 #: civs/spart.jsonCivBonuses[1].Description
 msgid ""
@@ -2847,7 +2848,7 @@ msgstr ""
 
 #: civs/spart.jsonFactions[0].Technologies[1].Description
 msgid "Units in phalanx formation move faster."
-msgstr ""
+msgstr "Faalanksformatsioonis üksused liiguvad kiiremini."
 
 #: civs/spart.jsonFactions[0].Technologies[1].Name
 msgid "Tyrtean Paeans"

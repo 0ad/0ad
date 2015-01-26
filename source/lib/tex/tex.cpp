@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -657,7 +657,7 @@ u32 Tex::get_average_colour() const
 	Tex basetex = *this;
 	uint8_t *data = new uint8_t[last_level_size];
 	memcpy(data, m_Data.get() + m_Ofs + size - last_level_size, last_level_size);
-	boost::shared_ptr<uint8_t> sdata(data, ArrayDeleter());
+	shared_ptr<uint8_t> sdata(data, ArrayDeleter());
 	basetex.wrap(1, 1, m_Bpp, m_Flags, sdata, 0);
 
 	// convert to BGRA

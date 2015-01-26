@@ -26,7 +26,7 @@ bool JSI_Console::CheckGlobalInitialized()
 {	
 	if (!g_Console)
 	{
-		LOGERROR(L"Trying to access the console when it's not initialized!");
+		LOGERROR("Trying to access the console when it's not initialized!");
 		return false;
 	}
 	return true;

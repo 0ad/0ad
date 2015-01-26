@@ -91,6 +91,13 @@ public:
 	/**
 	 * Print text at (x,y) under the current transform.
 	 * Does not alter the current transform.
+	 * @p buf must be a UTF-8 string.
+	 */
+	void Put(float x, float y, const char* buf);
+
+	/**
+	 * Print text at (x,y) under the current transform.
+	 * Does not alter the current transform.
 	 * @p buf must remain valid until Render() is called.
 	 * (This should be used to minimise memory copies when possible.)
 	 */

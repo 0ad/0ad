@@ -62,7 +62,7 @@ namespace
 		g_Game->SetPlayerID(1);
 	}
 
-	void StartGame(const CScriptValRooted& attrs)
+	void StartGame(JS::MutableHandleValue attrs)
 	{
 		g_Game->StartGame(attrs, "");
 
@@ -103,7 +103,7 @@ QUERYHANDLER(GenerateMap)
 		scriptInterface.SetProperty(attrs, "script", std::wstring(*msg->filename));
 		scriptInterface.SetProperty(attrs, "settings", settings);
 
-		StartGame(CScriptValRooted(cx, attrs));
+		StartGame(&attrs);
 
 		msg->status = 0;
 	}
@@ -139,7 +139,7 @@ QUERYHANDLER(GenerateMap)
 		scriptInterface.SetProperty(atts, "mapType", std::string("scenario"));
 		scriptInterface.SetProperty(atts, "map", std::wstring(L"maps/scenarios/_default"));
 		scriptInterface.SetProperty(atts, "settings", settings);
-		StartGame(CScriptValRooted(cx, atts));
+		StartGame(&atts);
 
 		msg->status = -1;
 	}
@@ -162,7 +162,7 @@ MESSAGEHANDLER(LoadMap)
 	scriptInterface.SetProperty(attrs, "mapType", std::string("scenario"));
 	scriptInterface.SetProperty(attrs, "map", std::wstring(mapBase));
 
-	StartGame(CScriptValRooted(cx, attrs));
+	StartGame(&attrs);
 }
 
 MESSAGEHANDLER(ImportHeightmap)
@@ -176,7 +176,7 @@ MESSAGEHANDLER(ImportHeightmap)
 	File file;
 	if (file.Open(src, O_RDONLY) < 0)
 	{
-		LOGERROR(L"Failed to load heightmap.");
+		LOGERROR("Failed to load heightmap.");
 		return;
 	}
 	
@@ -187,7 +187,7 @@ MESSAGEHANDLER(ImportHeightmap)
 	
 	if (read(file.Descriptor(), fileData.get(), fileSize) < 0)
 	{
-		LOGERROR(L"Failed to read heightmap image.");
+		LOGERROR("Failed to read heightmap image.");
 		file.Close();
 		return;
 	}
@@ -198,14 +198,14 @@ MESSAGEHANDLER(ImportHeightmap)
 	Tex tex;
 	if (tex.decode(fileData, fileSize) < 0)
 	{
-		LOGERROR(L"Failed to decode heightmap.");
+		LOGERROR("Failed to decode heightmap.");
 		return;
 	}
 
 	// Convert to uncompressed BGRA with no mipmaps
 	if (tex.transform_to((tex.m_Flags | TEX_BGR | TEX_ALPHA) & ~(TEX_DXT | TEX_MIPMAPS)) < 0)
 	{
-		LOGERROR(L"Failed to transform heightmap.");
+		LOGERROR("Failed to transform heightmap.");
 		return;
 	}
 

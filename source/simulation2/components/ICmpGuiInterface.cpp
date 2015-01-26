@@ -30,9 +30,9 @@ class CCmpGuiInterfaceScripted : public ICmpGuiInterface
 public:
 	DEFAULT_SCRIPT_WRAPPER(GuiInterfaceScripted)
 
-	virtual CScriptVal ScriptCall(int player, const std::wstring& cmd, CScriptVal data)
+	virtual void ScriptCall(int player, const std::wstring& cmd, JS::HandleValue data, JS::MutableHandleValue ret)
 	{
-		return m_Script.Call<CScriptVal>("ScriptCall", player, cmd, data);
+		m_Script.CallRef("ScriptCall", player, cmd, data, ret);
 	}
 };
 

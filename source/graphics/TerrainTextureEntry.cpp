@@ -47,7 +47,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 	CXeromyces XeroFile;
 	if (XeroFile.Load(g_VFS, path) != PSRETURN_OK)
 	{
-		LOGERROR(L"Terrain xml not found (%hs)", path.string().c_str());
+		LOGERROR("Terrain xml not found (%s)", path.string8());
 		return;
 	}
 
@@ -70,7 +70,7 @@ CTerrainTextureEntry::CTerrainTextureEntry(CTerrainPropertiesPtr properties, con
 
 	if (root.GetNodeName() != el_terrain)
 	{
-		LOGERROR(L"Invalid terrain format (unrecognised root element '%hs')", XeroFile.GetElementString(root.GetNodeName()).c_str());
+		LOGERROR("Invalid terrain format (unrecognised root element '%s')", XeroFile.GetElementString(root.GetNodeName()).c_str());
 		return;
 	}
 	
@@ -253,7 +253,7 @@ void CTerrainTextureEntry::LoadAlphaMaps(VfsPath &amtype)
 		if (textures[i] < 0)
 		{
 			g_TexMan.m_TerrainAlphas.erase(it);
-			LOGERROR((L"Failed to load alphamap: " + amtype.string()).c_str());
+			LOGERROR("Failed to load alphamap: %s", amtype.string8());
 			
 			VfsPath standard("standard");
 			if (path != standard)

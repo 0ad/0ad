@@ -60,7 +60,7 @@ void* CMapGeneratorWorker::RunThread(void *data)
 
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(data);
 
-	self->m_ScriptInterface = new ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(RMS_RUNTIME_SIZE));
+	self->m_ScriptInterface = new ScriptInterface("RMS", "MapGenerator", ScriptInterface::CreateRuntime(g_ScriptRuntime, RMS_RUNTIME_SIZE));
 
 	// Run map generation scripts
 	if ((!self->Run()) || (self->m_Progress > 0))
@@ -99,7 +99,7 @@ bool CMapGeneratorWorker::Run()
 
 	// Functions for RMS
 	m_ScriptInterface->RegisterFunction<bool, std::wstring, CMapGeneratorWorker::LoadLibrary>("LoadLibrary");
-	m_ScriptInterface->RegisterFunction<void, CScriptValRooted, CMapGeneratorWorker::ExportMap>("ExportMap");
+	m_ScriptInterface->RegisterFunction<void, JS::HandleValue, CMapGeneratorWorker::ExportMap>("ExportMap");
 	m_ScriptInterface->RegisterFunction<void, int, CMapGeneratorWorker::SetProgress>("SetProgress");
 	m_ScriptInterface->RegisterFunction<void, CMapGeneratorWorker::MaybeGC>("MaybeGC");
 	m_ScriptInterface->RegisterFunction<std::vector<std::string>, CMapGeneratorWorker::GetCivData>("GetCivData");
@@ -111,7 +111,7 @@ bool CMapGeneratorWorker::Run()
 	JS::RootedValue settingsVal(cx);
 	if (!m_ScriptInterface->ParseJSON(m_Settings, &settingsVal) && settingsVal.isUndefined())
 	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to parse settings");
+		LOGERROR("CMapGeneratorWorker::Run: Failed to parse settings");
 		return false;
 	}
 	
@@ -119,7 +119,7 @@ bool CMapGeneratorWorker::Run()
 	u32 seed;
 	if (!m_ScriptInterface->GetProperty(settingsVal, "Seed", seed))
 	{	// No seed specified
-		LOGWARNING(L"CMapGeneratorWorker::Run: No seed value specified - using 0");
+		LOGWARNING("CMapGeneratorWorker::Run: No seed value specified - using 0");
 		seed = 0;
 	}
 
@@ -129,15 +129,15 @@ bool CMapGeneratorWorker::Run()
 	JS::RootedValue global(cx, m_ScriptInterface->GetGlobalObject());
 	if (!m_ScriptInterface->SetProperty(global, "g_MapSettings", settingsVal))
 	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to define g_MapSettings");
+		LOGERROR("CMapGeneratorWorker::Run: Failed to define g_MapSettings");
 		return false;
 	}
 
 	// Load RMS
-	LOGMESSAGE(L"Loading RMS '%ls'", m_ScriptPath.string().c_str());
+	LOGMESSAGE("Loading RMS '%s'", m_ScriptPath.string8());
 	if (!m_ScriptInterface->LoadGlobalScriptFile(m_ScriptPath))
 	{
-		LOGERROR(L"CMapGeneratorWorker::Run: Failed to load RMS '%ls'", m_ScriptPath.string().c_str());
+		LOGERROR("CMapGeneratorWorker::Run: Failed to load RMS '%s'", m_ScriptPath.string8());
 		return false;
 	}
 
@@ -162,14 +162,9 @@ bool CMapGeneratorWorker::LoadLibrary(ScriptInterface::CxPrivate* pCxPrivate, st
 	return self->LoadScripts(name);
 }
 
-void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, CScriptValRooted data1)
+void CMapGeneratorWorker::ExportMap(ScriptInterface::CxPrivate* pCxPrivate, JS::HandleValue data)
 {
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
-	
-	JSContext* cx = self->m_ScriptInterface->GetContext();
-	JSAutoRequest rq(cx);
-	// TODO: Get Handle parameter directly with SpiderMonkey 31
-	JS::RootedValue data(cx, data1.get());
 
 	// Copy results
 	CScopeLock lock(self->m_WorkerMutex);
@@ -210,7 +205,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 			PSRETURN ret = file.Load(g_VFS, *it);
 			if (ret != PSRETURN_OK)
 			{
-				LOGERROR(L"CMapGeneratorWorker::GetCivData: Failed to load file '%ls': %hs", path.string().c_str(), GetErrorString(ret));
+				LOGERROR("CMapGeneratorWorker::GetCivData: Failed to load file '%s': %s", path.string8(), GetErrorString(ret));
 			}
 			else
 			{
@@ -222,7 +217,7 @@ std::vector<std::string> CMapGeneratorWorker::GetCivData(ScriptInterface::CxPriv
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"CMapGeneratorWorker::GetCivData: Error reading directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::GetCivData: Error reading directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 	}
 
 	return data;
@@ -234,7 +229,7 @@ CParamNode CMapGeneratorWorker::GetTemplate(ScriptInterface::CxPrivate* pCxPriva
 	CMapGeneratorWorker* self = static_cast<CMapGeneratorWorker*>(pCxPrivate->pCBData);
 	const CParamNode& templateRoot = self->m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
-		LOGERROR(L"Invalid template found for '%hs'", templateName.c_str());
+		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 	
 	return templateRoot;
 }
@@ -271,11 +266,11 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		for (VfsPaths::iterator it = pathnames.begin(); it != pathnames.end(); ++it)
 		{
-			LOGMESSAGE(L"Loading map generator script '%ls'", it->string().c_str());
+			LOGMESSAGE("Loading map generator script '%s'", it->string8());
 
 			if (!m_ScriptInterface->LoadGlobalScriptFile(*it))
 			{
-				LOGERROR(L"CMapGeneratorWorker::LoadScripts: Failed to load script '%ls'", it->string().c_str());
+				LOGERROR("CMapGeneratorWorker::LoadScripts: Failed to load script '%s'", it->string8());
 				return false;
 			}
 		}
@@ -284,7 +279,7 @@ bool CMapGeneratorWorker::LoadScripts(const std::wstring& libraryName)
 	{
 		// Some error reading directory
 		wchar_t error[200];
-		LOGERROR(L"CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%ls': %ls", path.string().c_str(), StatusDescription(ret, error, ARRAY_SIZE(error)));
+		LOGERROR("CMapGeneratorWorker::LoadScripts: Error reading scripts in directory '%s': %s", path.string8(), utf8_from_wstring(StatusDescription(ret, error, ARRAY_SIZE(error))));
 		return false;
 	}
 

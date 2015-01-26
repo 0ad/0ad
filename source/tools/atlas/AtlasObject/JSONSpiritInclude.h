@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,12 +20,7 @@
 #define JSON_SPIRIT_INCLUDE_H
 
 #ifdef __GNUC__
-# define GCC_VERSION (__GNUC__*100 + __GNUC_MINOR__)
-#else
-# define GCC_VERSION 0
-#endif
-
-#if GCC_VERSION >= 402 // (older GCCs don't support this pragma)
+# pragma GCC diagnostic push
 # pragma GCC diagnostic ignored "-Wunused-parameter"
 #endif
 
@@ -42,8 +37,8 @@
  #pragma warning(default: 4512)
 #endif
 
-#if GCC_VERSION >= 402
-# pragma GCC diagnostic warning "-Wunused-parameter"
+#ifdef __GNUC__
+# pragma GCC diagnostic pop
 #endif
 
 #endif // JSON_SPIRIT_INCLUDE_H

@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -19,6 +19,11 @@
 
 #include "TextureManager.h"
 
+#include <boost/functional/hash.hpp>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
+#include <iomanip>
+
 #include "graphics/TextureConverter.h"
 #include "lib/allocators/shared_ptr.h"
 #include "lib/res/h_mgr.h"
@@ -30,11 +35,6 @@
 #include "ps/CLogger.h"
 #include "ps/Filesystem.h"
 #include "ps/Profile.h"
-
-#include <iomanip>
-#include <boost/unordered_map.hpp>
-#include <boost/unordered_set.hpp>
-#include <boost/functional/hash.hpp>
 
 struct TPhash
 	 : std::unary_function<CTextureProperties, std::size_t>,
@@ -178,7 +178,7 @@ public:
 		Handle h = ogl_tex_load(m_VFS, path, RES_UNIQUE);
 		if (h <= 0)
 		{
-			LOGERROR(L"Texture failed to load; \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("Texture failed to load; \"%s\"", texture->m_Properties.m_Path.string8());
 
 			// Replace with error texture to make it obvious
 			texture->SetHandle(m_ErrorHandle);
@@ -218,7 +218,7 @@ public:
 		// Upload to GL
 		if (!m_DisableGL && ogl_tex_upload(h, texture->m_Properties.m_Format) < 0)
 		{
-			LOGERROR(L"Texture failed to upload: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("Texture failed to upload: \"%s\"", texture->m_Properties.m_Path.string8());
 
 			ogl_tex_free(h);
 
@@ -277,7 +277,7 @@ public:
 
 			// No source file or archive cache was found, so we can't load the
 			// real texture at all - return the error texture instead
-			LOGERROR(L"CCacheLoader failed to find archived or source file for: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+			LOGERROR("CCacheLoader failed to find archived or source file for: \"%s\"", texture->m_Properties.m_Path.string8());
 			texture->SetHandle(m_ErrorHandle);
 			return true;
 		}
@@ -299,7 +299,7 @@ public:
 		PrepareCacheKey(texture, hash, version);
 		VfsPath looseCachePath = m_CacheLoader.LooseCachePath(sourcePath, hash, version);
 
-//		LOGWARNING(L"Converting texture \"%ls\"", srcPath.c_str());
+//		LOGWARNING("Converting texture \"%s\"", srcPath.c_str());
 
 		CTextureConverter::Settings settings = GetConverterSettings(texture);
 
@@ -345,7 +345,7 @@ public:
 				}
 				else
 				{
-					LOGERROR(L"Texture failed to convert: \"%ls\"", texture->m_Properties.m_Path.string().c_str());
+					LOGERROR("Texture failed to convert: \"%s\"", texture->m_Properties.m_Path.string8());
 					texture->SetHandle(m_ErrorHandle);
 				}
 				texture->m_State = CTexture::LOADED;
@@ -469,9 +469,9 @@ public:
 		if (files != m_HotloadFiles.end())
 		{
 			// Flag all textures using this file as needing reloading
-			for (std::set<boost::weak_ptr<CTexture> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
+			for (std::set<std::weak_ptr<CTexture> >::iterator it = files->second.begin(); it != files->second.end(); ++it)
 			{
-				if (shared_ptr<CTexture> texture = it->lock())
+				if (std::shared_ptr<CTexture> texture = it->lock())
 				{
 					texture->m_State = CTexture::UNLOADED;
 					texture->SetHandle(m_DefaultHandle);
@@ -507,7 +507,7 @@ private:
 
 	// Store the set of textures that need to be reloaded when the given file
 	// (a source file or settings.xml) is modified
-	typedef boost::unordered_map<VfsPath, std::set<boost::weak_ptr<CTexture> > > HotloadFilesMap;
+	typedef boost::unordered_map<VfsPath, std::set<std::weak_ptr<CTexture>, std::owner_less<std::weak_ptr<CTexture>>>> HotloadFilesMap;
 	HotloadFilesMap m_HotloadFiles;
 
 	// Cache for the conversion settings files
@@ -552,7 +552,7 @@ bool CTexture::TryLoad()
 	// If we have already tried prefetch loading, and it failed, bump the conversion request to HIGH priority.
 	if (m_State == UNLOADED || m_State == PREFETCH_NEEDS_LOADING || m_State == PREFETCH_NEEDS_CONVERTING)
 	{
-		if (shared_ptr<CTexture> self = m_Self.lock())
+		if (std::shared_ptr<CTexture> self = m_Self.lock())
 		{
 			if (m_State != PREFETCH_NEEDS_CONVERTING && m_TextureManager->TryLoadingCached(self))
 				m_State = LOADED;
@@ -568,7 +568,7 @@ void CTexture::Prefetch()
 {
 	if (m_State == UNLOADED)
 	{
-		if (shared_ptr<CTexture> self = m_Self.lock())
+		if (std::shared_ptr<CTexture> self = m_Self.lock())
 		{
 			m_State = PREFETCH_NEEDS_LOADING;
 		}

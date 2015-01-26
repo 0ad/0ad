@@ -57,13 +57,13 @@ void CModelAbstract::CalcSelectionBox()
 			{
 				// TODO: unimplemented
 				m_SelectionBox.SetEmpty();
-				LOGWARNING(L"[ModelAbstract] TODO: Cylinder selection boxes are not yet implemented. Use BOX or BOUNDS selection shapes instead.");
+				LOGWARNING("[ModelAbstract] TODO: Cylinder selection boxes are not yet implemented. Use BOX or BOUNDS selection shapes instead.");
 			}
 			break;
 		default:
 			{
 				m_SelectionBox.SetEmpty();
-				//LOGWARNING(L"[ModelAbstract] Unrecognized selection shape type: %ld", m_CustomSelectionShape->m_Type);
+				//LOGWARNING("[ModelAbstract] Unrecognized selection shape type: %ld", m_CustomSelectionShape->m_Type);
 				debug_warn("[ModelAbstract] Unrecognized selection shape type");
 			}
 			break;

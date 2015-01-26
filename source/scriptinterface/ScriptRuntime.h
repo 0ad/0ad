@@ -19,17 +19,11 @@
 #define INCLUDED_SCRIPTRUNTIME
 
 #include <sstream>
-#include <boost/flyweight.hpp>
-#include <boost/flyweight/key_value.hpp>
-#include <boost/flyweight/no_locking.hpp>
-#include <boost/flyweight/no_tracking.hpp>
 
 #include "ScriptTypes.h"
 #include "ScriptExtraHeaders.h"
 
 #define STACK_CHUNK_SIZE 8192
-
-class AutoGCRooter;
 
 /**
  * Abstraction around a SpiderMonkey JSRuntime.
@@ -44,7 +38,7 @@ class AutoGCRooter;
 class ScriptRuntime
 {
 public:
-	ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger);
+	ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger);
 	~ScriptRuntime();
 
 	/**
@@ -56,105 +50,51 @@ public:
 	 * in seconds (the delay should be a fraction of a second in most cases though). 
 	 * It will only start a new incremental GC or another GC slice if this time is exceeded. The user of this function is 
 	 * responsible for ensuring that GC can run with a small enough delay to get done with the work.
-	 */	
+	 */
 	void MaybeIncrementalGC(double delay);
+	void ShrinkingGC();
 	
 	void RegisterContext(JSContext* cx);
 	void UnRegisterContext(JSContext* cx);
 	
+	/**
+	 * Registers an object to be freed/finalized by the ScriptRuntime. Freeing is
+	 * guaranteed to happen after the next minor GC has completed, but might also
+	 * happen a bit later. This is only needed in very special situations
+	 * and you should only use it if you know exactly why you need it!
+	 * Specify a deleter for the shared_ptr to free the void pointer correctly
+	 * (by casting to the right type before calling delete for example).
+	 */
+	void AddDeferredFinalizationObject(const std::shared_ptr<void>& obj);
+
 	JSRuntime* m_rt;
-	AutoGCRooter* m_rooter;
 
 private:
 	
 	void PrepareContextsForIncrementalGC();
+	void GCCallbackMember();
 	
 	// Workaround for: https://bugzilla.mozilla.org/show_bug.cgi?id=890243
 	JSContext* m_dummyContext;
 	
 	std::list<JSContext*> m_Contexts;
+	std::vector<std::shared_ptr<void> > m_FinalizationListObjectIdCache;
+	static bool m_Initialized;
 	
 	int m_RuntimeSize;
 	int m_HeapGrowthBytesGCTrigger;
 	int m_LastGCBytes;
 	double m_LastGCCheck;
 
+	static void GCCallback(JSRuntime *rt, JSGCStatus status, void *data);
+
 	static void* jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), 
-		bool UNUSED(isConstructing), JSBool before, 
-		JSBool* UNUSED(ok), void* closure);
-
+		bool UNUSED(isConstructing), bool before,
+		bool* UNUSED(ok), void* closure);
+	
 	static void* jshook_function(JSContext* cx, JSAbstractFramePtr fp, 
-		bool UNUSED(isConstructing), JSBool before, 
-		JSBool* UNUSED(ok), void* closure);
-
-	static void jshook_trace(JSTracer* trc, void* data);
-
-	// To profile scripts usefully, we use a call hook that's called on every enter/exit,
-	// and need to find the function name. But most functions are anonymous so we make do
-	// with filename plus line number instead.
-	// Computing the names is fairly expensive, and we need to return an interned char*
-	// for the profiler to hold a copy of, so we use boost::flyweight to construct interned
-	// strings per call location.
-
-	// Identifies a location in a script
-	struct ScriptLocation
-	{
-		JSContext* cx;
-		JSScript* script;
-		jsbytecode* pc;
-
-		bool operator==(const ScriptLocation& b) const
-		{
-			return cx == b.cx && script == b.script && pc == b.pc;
-		}
-
-		friend std::size_t hash_value(const ScriptLocation& loc)
-		{
-			std::size_t seed = 0;
-			boost::hash_combine(seed, loc.cx);
-			boost::hash_combine(seed, loc.script);
-			boost::hash_combine(seed, loc.pc);
-			return seed;
-		}
-	};
-
-	// Computes and stores the name of a location in a script
-	struct ScriptLocationName
-	{
-		ScriptLocationName(const ScriptLocation& loc)
-		{
-			JSContext* cx = loc.cx;
-			JSScript* script = loc.script;
-			jsbytecode* pc = loc.pc;
-
-			std::string filename = JS_GetScriptFilename(cx, script);
-			size_t slash = filename.rfind('/');
-			if (slash != filename.npos)
-				filename = filename.substr(slash+1);
-
-			uint line = JS_PCToLineNumber(cx, script, pc);
-
-			std::stringstream ss;
-			ss << "(" << filename << ":" << line << ")";
-			name = ss.str();
-		}
-
-		std::string name;
-	};
-
-	// Flyweight types (with no_locking because the call hooks are only used in the
-	// main thread, and no_tracking because we mustn't delete values the profiler is
-	// using and it's not going to waste much memory)
-	typedef boost::flyweight<
-		std::string,
-		boost::flyweights::no_tracking,
-		boost::flyweights::no_locking
-	> StringFlyweight;
-	typedef boost::flyweight<
-		boost::flyweights::key_value<ScriptLocation, ScriptLocationName>,
-		boost::flyweights::no_tracking,
-		boost::flyweights::no_locking
-	> LocFlyweight;
+		bool UNUSED(isConstructing), bool before,
+		bool* UNUSED(ok), void* closure);
 
 };
 

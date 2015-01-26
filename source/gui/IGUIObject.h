@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -59,7 +59,6 @@ The base class of an object
 struct SGUISetting;
 struct SGUIStyle;
 class CGUI;
-class CScriptValRooted;
 
 //--------------------------------------------------------
 //  Macros
@@ -142,9 +141,9 @@ class IGUIObject
 	friend class GUITooltip;
 
 	// Allow getProperty to access things like GetParent()
-	friend JSBool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
-	friend JSBool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JSBool UNUSED(strict), JS::MutableHandleValue vp);
-	friend JSBool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp);
+	friend bool JSI_IGUIObject::getProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, JS::MutableHandleValue vp);
+	friend bool JSI_IGUIObject::setProperty(JSContext* cx, JS::HandleObject obj, JS::HandleId id, bool UNUSED(strict), JS::MutableHandleValue vp);
+	friend bool JSI_IGUIObject::getComputedSize(JSContext* cx, uint argc, jsval* vp);
 
 public:
 	IGUIObject();
@@ -365,7 +364,7 @@ protected:
 	 */
 	virtual float GetBufferedZ() const;
 
-	void SetGUI(CGUI * const &pGUI) { m_pGUI = pGUI; }
+	void SetGUI(CGUI * const &pGUI);
 
 	/**
 	 * Set parent of this object
@@ -502,6 +501,13 @@ private:
 	 */
 	PSRETURN LogInvalidSettings(const CStr8& Setting) const;
 
+	static void Trace(JSTracer *trc, void *data)
+	{
+		reinterpret_cast<IGUIObject*>(data)->TraceMember(trc);
+	}
+
+	void TraceMember(JSTracer *trc);
+
 	// Variables
 
 protected:
@@ -551,10 +557,10 @@ private:
 	CGUI									*m_pGUI;
 
 	// Internal storage for registered script handlers.
-	std::map<CStr, CScriptValRooted> m_ScriptHandlers;
+	std::map<CStr, JS::Heap<JSObject*> > m_ScriptHandlers;
 	
 	// Cached JSObject representing this GUI object
-	CScriptValRooted						m_JSObject;
+	DefPersistentRooted<JSObject*>			 m_JSObject;
 };
 
 

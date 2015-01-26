@@ -1,4 +1,4 @@
-/* Copyright (c) 2010 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -95,17 +95,6 @@
 #  define HAVE_C99 1
 # endif
 #endif
-
-
-// do we have (at least rudimentary) support for C++0x?
-#ifndef HAVE_CPP0X
-# if defined(__GXX_EXPERIMENTAL_CPP0X__) || MSC_VERSION >= 1600 || ICC_VERSION >= 1200
-#  define HAVE_CPP0X 1
-# else
-#  define HAVE_CPP0X 0
-# endif
-#endif
-
 
 // Streaming SIMD Extensions (not supported by all GCC)
 // this only ascertains compiler support; use x86_x64::Cap to

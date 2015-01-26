@@ -5,14 +5,14 @@
 # Translators:
 # Ildar Kamaev <thetechnorat@gmail.com>, 2014
 # kersurk <kersurk@gmail.com>, 2013
-# unserializable <unserializable@freenet.de>, 2014
+# unserializable <unserializable@freenet.de>, 2014-2015
 # unserializable <unserializable@freenet.de>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-01-20 10:12+0000\n"
+"Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -38,7 +38,7 @@ msgstr "Liivakast"
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "Väga lihtne"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
@@ -79,7 +79,7 @@ msgstr "Vähe"
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
-msgstr "Keskmine"
+msgstr "Keskmiselt"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
@@ -153,7 +153,7 @@ msgstr "Sina"
 #: gui/gamesetup/gamesetup.js:981
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
 #: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
@@ -177,7 +177,7 @@ msgstr "Võidutingimus:"
 #: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
 #: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
-msgstr ""
+msgstr "Meeskonnad fikseeritud:"
 
 #: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
 #: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
@@ -207,12 +207,12 @@ msgstr "Vabandame, kirjeldus puudub."
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s mängija. "
+msgstr[1] "%(number)s mängijat. "
 
 #: gui/gamesetup/gamesetup.js:1311
 msgid "Loading..."
-msgstr ""
+msgstr "Laadimine..."
 
 #: gui/gamesetup/gamesetup.js:1424
 #, javascript-format
@@ -261,27 +261,27 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.js:1640
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "Mängu seaded on muudetud"
 
 #: gui/gamesetup/gamesetup.js:1665
 msgid "I'm not ready"
-msgstr ""
+msgstr "Ma pole valmis"
 
 #: gui/gamesetup/gamesetup.js:1666
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "Anna teada, et sa ei ole mänguks valmis."
 
 #: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
 msgid "I'm ready!"
-msgstr ""
+msgstr "Olen valmis!"
 
 #: gui/gamesetup/gamesetup.js:1672
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "Anna teada, et oled mänguks valmis!"
 
 #: gui/gamesetup/gamesetup.js:1748
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "Anna teada, et aktsepteerid praeguseid seadeid ning oled valmis mängima!"
 
 #: gui/gamesetup/gamesetup.js:1867
 msgid "None"
@@ -299,7 +299,7 @@ msgstr "Ühendun serveriga..."
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "Võrguteade: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
@@ -585,7 +585,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:3
 msgid "\"To be rather than to seem.\" - Aeschylus, \"Seven Against Thebes\""
-msgstr "\"Olla, mitte näida.\" -- Aeschylos, \"Seitse Teeba vastu\""
+msgstr "\"Olla, mitte näida.\" -- Aeschylus, \"Seitse Teeba vastu\""
 
 #: gui/text/quotes.txt:4
 msgid ""
@@ -601,7 +601,7 @@ msgstr "\"Türannide südameisse tilgub viimaks see mürk, ei saa usaldada sõpr
 
 #: gui/text/quotes.txt:6
 msgid "\"Time as he grows old teaches all things.\" - Aeschylus, \"Prometheus Bound\""
-msgstr ""
+msgstr "\"Aeg, nii kuis ta vananeb, õpetab kõike.\" -- Aeschylos, \"Aheldatud Prometheus\""
 
 #: gui/text/quotes.txt:7
 msgid ""
@@ -671,7 +671,7 @@ msgstr "\"Aeglane ja püsiv võidab võidujooksu.\" - Aesop"
 
 #: gui/text/quotes.txt:21
 msgid "\"The gods help them that help themselves.\" - Aesop"
-msgstr ""
+msgstr "\"Jumalad aitavad neid, kes end ise aitavad.\" -- Aesopos"
 
 #: gui/text/quotes.txt:22
 msgid ""
@@ -711,11 +711,11 @@ msgstr ""
 msgid ""
 "\"If I were not Alexander, I should wish to be Diogenes.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Kui ma poleks Aleksander, sooviksin olla Diogenes.\" -- Aleksander Suur"
 
 #: gui/text/quotes.txt:29
 msgid "\"I do not steal victory.\" - Alexander the Great"
-msgstr ""
+msgstr "\"Võitu ma ei varasta.\" -- Aleksander Suur"
 
 #: gui/text/quotes.txt:30
 msgid ""
@@ -738,7 +738,7 @@ msgstr ""
 msgid ""
 "\"Sex and sleep alone make me conscious that I am mortal.\" - Alexander the "
 "Great"
-msgstr ""
+msgstr "\"Vaid seks ja uni teevad mind teadlikuks oma surelikkusest.\" - Aleksander Suur"
 
 #: gui/text/quotes.txt:34
 msgid ""
@@ -789,7 +789,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:42
 msgid "\"Hunger knows no friend but its feeder.\" - Aristophanes"
-msgstr ""
+msgstr "\"Nälg ei tea muud sõpra peale toitja.\" - Aristophanes"
 
 #: gui/text/quotes.txt:43
 msgid ""
@@ -866,7 +866,7 @@ msgstr "\"Häda kaotajaile\" - Brennus"
 msgid ""
 "\"Thus always to tyrants.\" - Marcus Junius Brutus, after assassinating "
 "Gaius Julius Caesar"
-msgstr ""
+msgstr "\"Nii ikka türannidele.\" - Marcus Junius Brutus pärast Gaius Julius Caesar'i tapmist"
 
 #: gui/text/quotes.txt:57
 msgid ""
@@ -949,7 +949,7 @@ msgstr "\"Oh ajad, oh kombed!\" - Marcus Tullius Cicero"
 msgid ""
 "\"No one is so old as to think that he cannot live one more year.\" - Marcus"
 " Tullius Cicero"
-msgstr ""
+msgstr "\"Keegi pole nii vana, et mitte uskuda võimalusse veel üks aasta elada.\" - Marcus Tullius Cicero"
 
 #: gui/text/quotes.txt:73
 msgid ""
@@ -1094,11 +1094,11 @@ msgid ""
 "\"Yes, stand a little out of my sunshine.\" - Diogenes of Sinope, when "
 "Alexander the Great found him sunbathing and asked if he could help in in "
 "any way"
-msgstr ""
+msgstr "\"Jah, astu mu päikesevalguse eest kõrvale.\" - Diogenes Sinopest Aleksander Suurele, kui see ta päevitamast leidis ning küsis kas saab kuidagi abiks olla."
 
 #: gui/text/quotes.txt:100
 msgid "\"I am a citizen of the world.\" - Diogenes of Sinope"
-msgstr ""
+msgstr "\"Mina olen maailmakodanik.\" - Diogenes Sinopest"
 
 #: gui/text/quotes.txt:101
 msgid ""

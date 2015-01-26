@@ -18,7 +18,7 @@
 #include "precompiled.h"
 
 #include <iostream>
-#include "log.hpp"
+#include "tinygettext/log.hpp"
 
 namespace tinygettext {
 

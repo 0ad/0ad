@@ -43,7 +43,7 @@ public:
 		case ICmpRangeManager::VIS_VISIBLE:
 			return ICmpRangeManager::VIS_VISIBLE;
 		default:
-			LOGERROR(L"Received the invalid visibility value %d from the Visibility scripted component!", visibility);
+			LOGERROR("Received the invalid visibility value %d from the Visibility scripted component!", visibility);
 			return ICmpRangeManager::VIS_HIDDEN;
 		}
 	}

@@ -293,7 +293,7 @@ void Render()
 #warning TODO: cursors for Android
 #else
 			if (cursor_draw(g_VFS, cursorName.c_str(), g_mouse_x, g_yres-g_mouse_y, forceGL) < 0)
-				LOGWARNING(L"Failed to draw cursor '%ls'", cursorName.c_str());
+				LOGWARNING("Failed to draw cursor '%s'", utf8_from_wstring(cursorName));
 #endif
 
 #if CONFIG2_GLES
@@ -656,7 +656,7 @@ static void InitSDL()
 
 	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER|SDL_INIT_NOPARACHUTE) < 0)
 	{
-		LOGERROR(L"SDL library initialization failed: %hs", SDL_GetError());
+		LOGERROR("SDL library initialization failed: %s", SDL_GetError());
 		throw PSERROR_System_SDLInitFailed();
 	}
 	atexit(SDL_Quit);
@@ -814,21 +814,21 @@ static void FixLocales()
 	}
 	catch (std::runtime_error&)
 	{
-		LOGWARNING(L"Invalid locale settings");
+		LOGWARNING("Invalid locale settings");
 
 		for (size_t i = 0; i < ARRAY_SIZE(LocaleEnvVars); i++)
 		{
 			if (char* envval = getenv(LocaleEnvVars[i]))
-				LOGWARNING(L"  %hs=\"%hs\"", LocaleEnvVars[i], envval);
+				LOGWARNING("  %s=\"%s\"", LocaleEnvVars[i], envval);
 			else
-				LOGWARNING(L"  %hs=\"(unset)\"", LocaleEnvVars[i]);
+				LOGWARNING("  %s=\"(unset)\"", LocaleEnvVars[i]);
 		}
 
 		// We should set LC_ALL since it overrides LANG
 		if (setenv("LC_ALL", std::locale::classic().name().c_str(), 1))
 			debug_warn(L"Invalid locale settings, and unable to set LC_ALL env variable.");
 		else
-			LOGWARNING(L"Setting LC_ALL env variable to: %hs", getenv("LC_ALL"));
+			LOGWARNING("Setting LC_ALL env variable to: %s", getenv("LC_ALL"));
 	}
 }
 #else
@@ -886,12 +886,26 @@ bool Init(const CmdLineArgs& args, int flags)
 	// This must come after VFS init, which sets the current directory
 	// (required for finding our output log files).
 	g_Logger = new CLogger;
+
+	new CProfileViewer;
+	new CProfileManager;	// before any script code
+
+	g_ScriptStatsTable = new CScriptStatsTable;
+	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
+
+	// Set up the console early, so that debugging
+	// messages can be logged to it. (The console's size
+	// and fonts are set later in InitPs())
+	g_Console = new CConsole();
+
+	// g_ConfigDB, command line args, globals
+	CONFIG_Init(args);
 	
 	// Using a global object for the runtime is a workaround until Simulation and AI use 
 	// their own threads and also their own runtimes.
 	const int runtimeSize = 384 * 1024 * 1024;
 	const int heapGrowthBytesGCTrigger = 20 * 1024 * 1024;
-	g_ScriptRuntime = ScriptInterface::CreateRuntime(runtimeSize, heapGrowthBytesGCTrigger);
+	g_ScriptRuntime = ScriptInterface::CreateRuntime(shared_ptr<ScriptRuntime>(), runtimeSize, heapGrowthBytesGCTrigger);
 
 	// Special command-line mode to dump the entity schemas instead of running the game.
 	// (This must be done after loading VFS etc, but should be done before wasting time
@@ -912,25 +926,11 @@ bool Init(const CmdLineArgs& args, int flags)
 	hooks.translate_free = psTranslateFree;
 	app_hooks_update(&hooks);
 
-	// Set up the console early, so that debugging
-	// messages can be logged to it. (The console's size
-	// and fonts are set later in InitPs())
-	g_Console = new CConsole();
-
 	CNetHost::Initialize();
-
-	new CProfileViewer;
-	new CProfileManager;	// before any script code
-
-	g_ScriptStatsTable = new CScriptStatsTable;
-	g_ProfileViewer.AddRootTable(g_ScriptStatsTable);
 
 #if CONFIG2_AUDIO
 	ISoundManager::CreateSoundManager();
 #endif
-
-	// g_ConfigDB, command line args, globals
-	CONFIG_Init(args);
 
 	// Check if there are mods specified on the command line,
 	// or if we already set the mods (~INIT_MODS),
@@ -1132,7 +1132,7 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 
 	if (INFO::OK != loadResult)
 	{
-		LOGERROR(L"LoadSettingsOfScenarioMap: Unable to load map file '%ls'", mapPath.string().c_str());
+		LOGERROR("LoadSettingsOfScenarioMap: Unable to load map file '%s'", mapPath.string8());
 		throw PSERROR_Game_World_MapLoadFailed("Unable to load map file, check the path for typos.");
 	}
 	XMBElement mapElement = mapFile.GetRoot();
@@ -1185,12 +1185,6 @@ CStr8 LoadSettingsOfScenarioMap(const VfsPath &mapPath)
 bool Autostart(const CmdLineArgs& args)
 {
 	CStr autoStartName = args.Get("autostart");
-
-#if OS_ANDROID
-	// HACK: currently the most convenient way to test maps on Android;
-	// should find a better solution
-	autoStartName = "scenarios/Arcadia 02";
-#endif
 
 	if (autoStartName.empty())
 		return false;
@@ -1246,7 +1240,7 @@ bool Autostart(const CmdLineArgs& args)
 		else
 		{
 			// Problem with JSON file
-			LOGERROR(L"Autostart: Error reading random map script '%ls'", scriptPath.c_str());
+			LOGERROR("Autostart: Error reading random map script '%s'", utf8_from_wstring(scriptPath));
 			throw PSERROR_Game_World_MapLoadFailed("Error reading random map script.\nCheck application log for details.");
 		}
 
@@ -1301,7 +1295,7 @@ bool Autostart(const CmdLineArgs& args)
 	}
 	else
 	{
-		LOGERROR(L"Autostart: Unrecognized map type '%ls'", mapDirectory.c_str());
+		LOGERROR("Autostart: Unrecognized map type '%s'", utf8_from_wstring(mapDirectory));
 		throw PSERROR_Game_World_MapLoadFailed("Unrecognized map type.\nConsult readme.txt for the currently supported types.");
 	}
 	scriptInterface.SetProperty(attrs, "mapType", mapType);
@@ -1336,7 +1330,7 @@ bool Autostart(const CmdLineArgs& args)
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
 					// playerID is certainly bigger than this map player number
-					LOGWARNING(L"Autostart: Invalid player %d in autostart-ai option", playerID);
+					LOGWARNING("Autostart: Invalid player %d in autostart-ai option", playerID);
 					continue;
 				}
 				scriptInterface.Eval("({})", &player);
@@ -1363,7 +1357,7 @@ bool Autostart(const CmdLineArgs& args)
 				if (mapDirectory == L"scenarios" || mapDirectory == L"skirmishes")
 				{
 					// playerID is certainly bigger than this map player number
-					LOGWARNING(L"Autostart: Invalid player %d in autostart-aidiff option", playerID);
+					LOGWARNING("Autostart: Invalid player %d in autostart-aidiff option", playerID);
 					continue;
 				}
 				scriptInterface.Eval("({})", &player);
@@ -1391,7 +1385,7 @@ bool Autostart(const CmdLineArgs& args)
 					if (mapDirectory == L"skirmishes")
 					{
 						// playerID is certainly bigger than this map player number
-						LOGWARNING(L"Autostart: Invalid player %d in autostart-civ option", playerID);
+						LOGWARNING("Autostart: Invalid player %d in autostart-civ option", playerID);
 						continue;
 					}
 					scriptInterface.Eval("({})", &player);
@@ -1403,7 +1397,7 @@ bool Autostart(const CmdLineArgs& args)
 			}
 		}
 		else
-			LOGWARNING(L"Autostart: Option 'autostart-civ' is invalid for scenarios");
+			LOGWARNING("Autostart: Option 'autostart-civ' is invalid for scenarios");
 	}
 
 	// Add player data to map settings
@@ -1459,7 +1453,7 @@ bool Autostart(const CmdLineArgs& args)
 	else
 	{
 		g_Game->SetPlayerID(1);
-		g_Game->StartGame(CScriptValRooted(cx, attrs), "");
+		g_Game->StartGame(&attrs, "");
 
 		LDR_NonprogressiveLoad();
 

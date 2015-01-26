@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -103,7 +103,7 @@ void SetSettings(const sEnvironmentSettings& s)
 	wm->m_Waviness = s.waterwaviness;
 	wm->m_Murkiness = s.watermurkiness;
 	wm->m_WindAngle = s.windangle;
-	wm->m_WaterType = s.watertype._Unwrap();
+	wm->m_WaterType = *s.watertype;
 	
 #define COLOUR(A, B) B = CColor(A->r/255.f, A->g/255.f, A->b/255.f, 1.f)
 	COLOUR(s.watercolour, wm->m_WaterColor);

@@ -54,7 +54,7 @@ const u8* CNetMessage::Deserialize(const u8* pStart, const u8* pEnd)
 {
 	if (pStart + 3 > pEnd)
 	{
-		LOGERROR(L"CNetMessage: Corrupt packet (smaller than header)");
+		LOGERROR("CNetMessage: Corrupt packet (smaller than header)");
 		return NULL;
 	}
 
@@ -68,7 +68,7 @@ const u8* CNetMessage::Deserialize(const u8* pStart, const u8* pEnd)
 
 	if (pStart + size != pEnd)
 	{
-		LOGERROR(L"CNetMessage: Corrupt packet (incorrect size)");
+		LOGERROR("CNetMessage: Corrupt packet (incorrect size)");
 		return NULL;
 	}
 
@@ -184,7 +184,7 @@ CNetMessage* CNetMessageFactory::CreateMessage(const void* pData,
 		break;
 
 	default:
-		LOGERROR(L"CNetMessageFactory::CreateMessage(): Unknown message type '%d' received", header.GetType());
+		LOGERROR("CNetMessageFactory::CreateMessage(): Unknown message type '%d' received", header.GetType());
 		break;
 	}
 

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,7 +21,8 @@
 #define USE_SHADER_XML_VALIDATION 1
 
 #include <boost/unordered_map.hpp>
-#include <boost/weak_ptr.hpp>
+#include <memory>
+#include <set>
 
 #include "graphics/ShaderDefines.h"
 #include "graphics/ShaderProgram.h"
@@ -31,7 +32,6 @@
 # include "ps/XML/RelaxNG.h"
 #endif
 
-#include <set>
 
 /**
  * Shader manager: loads and caches shader programs.
@@ -118,7 +118,7 @@ private:
 	EffectCacheMap m_EffectCache;
 
 	// Store the set of shaders that need to be reloaded when the given file is modified
-	typedef boost::unordered_map<VfsPath, std::set<boost::weak_ptr<CShaderProgram> > > HotloadFilesMap;
+	typedef boost::unordered_map<VfsPath, std::set<std::weak_ptr<CShaderProgram>, std::owner_less<std::weak_ptr<CShaderProgram>>>> HotloadFilesMap;
 	HotloadFilesMap m_HotloadFiles;
 
 #if USE_SHADER_XML_VALIDATION

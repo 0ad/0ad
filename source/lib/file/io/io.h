@@ -54,7 +54,7 @@ namespace io {
 // never reused (avoids displacing other items).
 static inline UniqueRange Allocate(size_t size, size_t alignment = maxSectorSize)
 {
-	return RVALUE(AllocateAligned(size, alignment));
+	return std::move(AllocateAligned(size, alignment));
 }
 
 
@@ -190,7 +190,7 @@ public:
 
 		const bool temporaryBuffersRequested = (op.buf == 0);
 		if(temporaryBuffersRequested)
-			buffers = RVALUE(io::Allocate(blockSize * p.queueDepth, p.alignment));
+			buffers = std::move(io::Allocate(blockSize * p.queueDepth, p.alignment));
 
 		for(size_t i = 0; i < ARRAY_SIZE(controlBlocks); i++)
 		{

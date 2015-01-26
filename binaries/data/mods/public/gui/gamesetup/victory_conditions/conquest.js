@@ -1,6 +1,3 @@
-if (!g_VictoryConditions)
-	var g_VictoryConditions = {};
-
 var vc = {};
 
 vc.name = translate("Conquest");

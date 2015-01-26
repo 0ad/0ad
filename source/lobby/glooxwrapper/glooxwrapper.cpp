@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -20,9 +20,9 @@
 #include "glooxwrapper.h"
 
 #include <gloox/connectionlistener.h>
-#include <gloox/messagehandler.h>
 #include <gloox/error.h>
 #include <gloox/glooxversion.h>
+#include <gloox/messagehandler.h>
 
 #if OS_WIN
 const std::string gloox::EmptyString = "";
@@ -355,21 +355,21 @@ void glooxwrapper::Client::registerConnectionListener(glooxwrapper::ConnectionLi
 {
 	gloox::ConnectionListener* listener = new ConnectionListenerWrapper(hnd);
 	m_Wrapped->registerConnectionListener(listener);
-	m_Impl->m_ConnectionListeners.push_back(boost::shared_ptr<gloox::ConnectionListener>(listener));
+	m_Impl->m_ConnectionListeners.push_back(shared_ptr<gloox::ConnectionListener>(listener));
 }
 
 void glooxwrapper::Client::registerMessageHandler(glooxwrapper::MessageHandler* hnd)
 {
 	gloox::MessageHandler* handler = new MessageHandlerWrapper(hnd);
 	m_Wrapped->registerMessageHandler(handler);
-	m_Impl->m_MessageHandlers.push_back(boost::shared_ptr<gloox::MessageHandler>(handler));
+	m_Impl->m_MessageHandlers.push_back(shared_ptr<gloox::MessageHandler>(handler));
 }
 
 void glooxwrapper::Client::registerIqHandler(glooxwrapper::IqHandler* ih, int exttype)
 {
 	gloox::IqHandler* handler = new IqHandlerWrapper(ih);
 	m_Wrapped->registerIqHandler(handler, exttype);
-	m_Impl->m_IqHandlers.push_back(boost::shared_ptr<gloox::IqHandler>(handler));
+	m_Impl->m_IqHandlers.push_back(shared_ptr<gloox::IqHandler>(handler));
 }
 
 bool glooxwrapper::Client::removePresenceExtension(int type)
@@ -615,7 +615,7 @@ void glooxwrapper::Registration::registerRegistrationHandler(RegistrationHandler
 {
 	gloox::RegistrationHandler* handler = new RegistrationHandlerWrapper(rh);
 	m_Wrapped->registerRegistrationHandler(handler);
-	m_RegistrationHandlers.push_back(boost::shared_ptr<gloox::RegistrationHandler>(handler));
+	m_RegistrationHandlers.push_back(shared_ptr<gloox::RegistrationHandler>(handler));
 }
 
 

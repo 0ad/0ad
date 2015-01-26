@@ -190,7 +190,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"parser error");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
 	}
 
 	void test_invalid_dae()
@@ -205,7 +205,7 @@ public:
 
 		CModelDefPtr modeldef = meshManager->GetMesh(testDAE);
 		TS_ASSERT(! modeldef);
-		TS_ASSERT_WSTR_CONTAINS(logger.GetOutput(), L"parser error");
+		TS_ASSERT_STR_CONTAINS(logger.GetOutput(), "parser error");
 	}
 
 	void test_load_nonexistent_pmd()

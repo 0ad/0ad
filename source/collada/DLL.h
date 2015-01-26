@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,12 +24,10 @@
 # else
 #  define EXPORT extern "C" __declspec(dllimport)
 # endif
+#elif defined(__GNUC__)
+# define EXPORT extern "C" __attribute__ ((visibility ("default")))
 #else
-# if __GNUC__ >= 4
-#  define EXPORT extern "C" __attribute__ ((visibility ("default")))
-# else
-#  define EXPORT extern "C"
-# endif
+# define EXPORT extern "C"
 #endif
 
 #define LOG_INFO 0

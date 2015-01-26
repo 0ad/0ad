@@ -112,32 +112,31 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 	shared_ptr<ScriptInterface> scriptInterface = m_PageStack.back().gui->GetScriptInterface();
 	JSContext* cx = scriptInterface->GetContext();
 	JS::RootedValue initDataVal(cx);
-	
 	if (initDataClone)
 		scriptInterface->ReadStructuredClone(initDataClone, &initDataVal);
 	else
 	{
-		LOGERROR(L"Called PopPageCB when initData (which should contain the callback function name) isn't set!");
+		LOGERROR("Called PopPageCB when initData (which should contain the callback function name) isn't set!");
 		return;
 	}
 	
 	if (!scriptInterface->HasProperty(initDataVal, "callback"))
 	{
-		LOGERROR(L"Called PopPageCB when the callback function name isn't set!");
+		LOGERROR("Called PopPageCB when the callback function name isn't set!");
 		return;
 	}
 	
 	std::string callback;
 	if (!scriptInterface->GetProperty(initDataVal, "callback", callback))
 	{
-		LOGERROR(L"Failed to get the callback property as a string from initData in PopPageCB!");
+		LOGERROR("Failed to get the callback property as a string from initData in PopPageCB!");
 		return;
 	}
 	
 	JS::RootedValue global(cx, scriptInterface->GetGlobalObject());
 	if (!scriptInterface->HasProperty(global, callback.c_str()))
 	{
-		LOGERROR(L"The specified callback function %hs does not exist in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("The specified callback function %s does not exist in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
 		return;
 	}
 
@@ -146,7 +145,7 @@ void CGUIManager::PopPageCB(shared_ptr<ScriptInterface::StructuredClone> args)
 		scriptInterface->ReadStructuredClone(args, &argVal);
 	if (!scriptInterface->CallFunctionVoid(global, callback.c_str(), argVal))
 	{
-		LOGERROR(L"Failed to call the callback function %hs in the page %ls", callback.c_str(), m_PageStack.back().name.c_str());
+		LOGERROR("Failed to call the callback function %s in the page %s", callback, utf8_from_wstring(m_PageStack.back().name));
 		return;
 	}
 }
@@ -204,7 +203,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 
 	if (root.GetNodeName() != elmt_page)
 	{
-		LOGERROR(L"GUI page '%ls' must have root element <page>", page.name.c_str());
+		LOGERROR("GUI page '%s' must have root element <page>", utf8_from_wstring(page.name));
 		return;
 	}
 
@@ -212,7 +211,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 	{
 		if (node.GetNodeName() != elmt_include)
 		{
-			LOGERROR(L"GUI page '%ls' must only have <include> elements inside <page>", page.name.c_str());
+			LOGERROR("GUI page '%s' must only have <include> elements inside <page>", utf8_from_wstring(page.name));
 			continue;
 		}
 
@@ -252,7 +251,7 @@ void CGUIManager::LoadPage(SGUIPage& page)
 			hotloadDataVal)
 		)
 	{
-		LOGERROR(L"GUI page '%ls': Failed to call init() function", page.name.c_str());
+		LOGERROR("GUI page '%s': Failed to call init() function", utf8_from_wstring(page.name));
 	}
 
 	m_CurrentGUI = oldGUI;
@@ -264,7 +263,7 @@ Status CGUIManager::ReloadChangedFile(const VfsPath& path)
 	{
 		if (it->inputs.count(path))
 		{
-			LOGMESSAGE(L"GUI file '%ls' changed - reloading page '%ls'", path.string().c_str(), it->name.c_str());
+			LOGMESSAGE("GUI file '%s' changed - reloading page '%s'", path.string8(), utf8_from_wstring(it->name));
 			LoadPage(*it);
 			// TODO: this can crash if LoadPage runs an init script which modifies the page stack and breaks our iterators
 		}
@@ -407,7 +406,7 @@ const CParamNode& CGUIManager::GetTemplate(const std::string& templateName)
 {
 	const CParamNode& templateRoot = m_TemplateLoader.GetTemplateFileData(templateName).GetChild("Entity");
 	if (!templateRoot.IsOk())
-		LOGERROR(L"Invalid template found for '%hs'", templateName.c_str());
+		LOGERROR("Invalid template found for '%s'", templateName.c_str());
 
 	return templateRoot;
 }

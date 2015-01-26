@@ -30,7 +30,7 @@
 class ICmpTechnologyTemplateManager : public IComponent
 {
 public:
-	virtual CScriptVal GetAllTechs() = 0;
+	virtual void GetAllTechs(JS::MutableHandleValue ret) = 0;
 
 	DECLARE_INTERFACE_TYPE(TechnologyTemplateManager)
 };

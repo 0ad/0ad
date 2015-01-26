@@ -27,7 +27,11 @@
 #include "ps/Singleton.h"
 
 class ScriptInterface;
-class CScriptVal;
+
+namespace JS
+{
+	class Value;
+}
 
 /**
  * Struct ProfileColumn: Describes one column of an AbstractProfileTable.
@@ -187,7 +191,7 @@ public:
 	 * SaveToJS: Return a script value containing the current profiler data
 	 * (for all profile tables).
 	 */
-	CScriptVal SaveToJS(ScriptInterface& scriptInterface);
+	JS::Value SaveToJS(ScriptInterface& scriptInterface);
 
 	/**
 	 * ShowTable: Set the named profile table to be the displayed one. If it

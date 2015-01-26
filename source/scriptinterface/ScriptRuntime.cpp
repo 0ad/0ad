@@ -19,7 +19,6 @@
 
 #include "ScriptRuntime.h"
 
-#include "AutoRooters.h"
 #include "ps/GameSetup/Config.h"
 #include "ps/Profile.h"
 
@@ -89,20 +88,45 @@ void GCSliceCallbackHook(JSRuntime* UNUSED(rt), JS::GCProgress progress, const J
 	#endif
 }
 
-ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger): 
-	m_rooter(NULL),
+void ScriptRuntime::GCCallback(JSRuntime* UNUSED(rt), JSGCStatus status, void *data)
+{
+	if (status == JSGC_END)
+		reinterpret_cast<ScriptRuntime*>(data)->GCCallbackMember();
+}
+
+void ScriptRuntime::GCCallbackMember()
+{
+	m_FinalizationListObjectIdCache.clear();
+}
+
+void ScriptRuntime::AddDeferredFinalizationObject(const std::shared_ptr<void>& obj)
+{
+	m_FinalizationListObjectIdCache.push_back(obj);
+}
+
+bool ScriptRuntime::m_Initialized = false;
+
+ScriptRuntime::ScriptRuntime(shared_ptr<ScriptRuntime> parentRuntime, int runtimeSize, int heapGrowthBytesGCTrigger):
 	m_LastGCBytes(0),
 	m_LastGCCheck(0.0f),
 	m_HeapGrowthBytesGCTrigger(heapGrowthBytesGCTrigger),
 	m_RuntimeSize(runtimeSize)
 {
-	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS);
+	if (!m_Initialized)
+	{
+		ENSURE(JS_Init());
+		m_Initialized = true;
+	}
 
+	JSRuntime* parentJSRuntime = parentRuntime ? parentRuntime->m_rt : nullptr;
+	m_rt = JS_NewRuntime(runtimeSize, JS_USE_HELPER_THREADS, parentJSRuntime);
 	ENSURE(m_rt); // TODO: error handling
 
-	JS_SetNativeStackQuota(m_rt, 128 * sizeof(size_t) * 1024);
 	if (g_ScriptProfilingEnabled)
 	{
+		// Execute and call hooks are disabled if the runtime debug mode is disabled
+		JS_SetRuntimeDebugMode(m_rt, true);
+
 		// Profiler isn't thread-safe, so only enable this on the main thread
 		if (ThreadUtil::IsMainThread())
 		{
@@ -115,6 +139,7 @@ ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger):
 	}
 	
 	JS::SetGCSliceCallback(m_rt, GCSliceCallbackHook);
+	JS_SetGCCallback(m_rt, ScriptRuntime::GCCallback, this);
 	
 	JS_SetGCParameter(m_rt, JSGC_MAX_MALLOC_BYTES, m_RuntimeSize);
 	JS_SetGCParameter(m_rt, JSGC_MAX_BYTES, m_RuntimeSize);
@@ -124,17 +149,16 @@ ScriptRuntime::ScriptRuntime(int runtimeSize, int heapGrowthBytesGCTrigger):
 	// We disable it to make it more clear if full GCs happen triggered by this JSAPI internal mechanism.
 	JS_SetGCParameter(m_rt, JSGC_DYNAMIC_HEAP_GROWTH, false);
 	
-	JS_AddExtraGCRootsTracer(m_rt, jshook_trace, this);
-	
 	m_dummyContext = JS_NewContext(m_rt, STACK_CHUNK_SIZE);
 	ENSURE(m_dummyContext);
 }
 
 ScriptRuntime::~ScriptRuntime()
 {
-	JS_RemoveExtraGCRootsTracer(m_rt, jshook_trace, this);
 	JS_DestroyContext(m_dummyContext);
+	JS_SetGCCallback(m_rt, nullptr, nullptr);
 	JS_DestroyRuntime(m_rt);
+	ENSURE(m_FinalizationListObjectIdCache.empty() && "Leak: Removing callback while some objects still aren't finalized!");
 }
 
 void ScriptRuntime::RegisterContext(JSContext* cx)
@@ -215,10 +239,20 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 				}
 				else
 				{
+					if (gcBytes > m_RuntimeSize * 0.75)
+					{
+						ShrinkingGC();
 #if GC_DEBUG_PRINT
-					printf("Running full GC because gcBytes > m_RuntimeSize / 2. \n");
+						printf("Running shrinking GC because gcBytes > m_RuntimeSize * 0.75. \n");
 #endif
-					JS_GC(m_rt);
+					}
+					else
+					{
+#if GC_DEBUG_PRINT
+						printf("Running full GC because gcBytes > m_RuntimeSize / 2. \n");
+#endif
+						JS_GC(m_rt);
+					}
 				}
 			}
 			else
@@ -237,7 +271,15 @@ void ScriptRuntime::MaybeIncrementalGC(double delay)
 	}
 }
 
-void* ScriptRuntime::jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), bool UNUSED(isConstructing), JSBool before, JSBool* UNUSED(ok), void* closure)
+void ScriptRuntime::ShrinkingGC()
+{
+	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_COMPARTMENT);
+	JS::PrepareForFullGC(m_rt);
+	JS::ShrinkingGC(m_rt, JS::gcreason::REFRESH_FRAME);
+	JS_SetGCParameter(m_rt, JSGC_MODE, JSGC_MODE_INCREMENTAL);
+}
+
+void* ScriptRuntime::jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNUSED(fp), bool UNUSED(isConstructing), bool before, bool* UNUSED(ok), void* closure)
 {
 	if (before)
 		g_Profiler.StartScript("script invocation");
@@ -247,15 +289,17 @@ void* ScriptRuntime::jshook_script(JSContext* UNUSED(cx), JSAbstractFramePtr UNU
 	return closure;
 }
 
-void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool UNUSED(isConstructing), JSBool before, JSBool* UNUSED(ok), void* closure)
+void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool UNUSED(isConstructing), bool before, bool* UNUSED(ok), void* closure)
 {
+	JSAutoRequest rq(cx);
+
 	if (!before)
 	{
 		g_Profiler.Stop();
 		return closure;
 	}
 
-	JSFunction* fn = fp.maybeFun();
+	JS::RootedFunction fn(cx, fp.maybeFun());
 	if (!fn)
 	{
 		g_Profiler.StartScript("(function)");
@@ -263,7 +307,7 @@ void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool 
 	}
 
 	// Try to get the name of non-anonymous functions
-	JSString* name = JS_GetFunctionId(fn);
+	JS::RootedString name(cx, JS_GetFunctionId(fn));
 	if (name)
 	{
 		char* chars = JS_EncodeString(cx, name);
@@ -275,23 +319,16 @@ void* ScriptRuntime::jshook_function(JSContext* cx, JSAbstractFramePtr fp, bool 
 		}
 	}
 
-	// No name - compute from the location instead
-	JSScript* script;
-	uint lineno;
-	JS_DescribeScriptedCaller(cx, &script, &lineno);
-	ENSURE(script == fp.script());
-	ScriptLocation loc = { cx, fp.script(), JS_LineNumberToPC(cx, script, lineno) };
-	g_Profiler.StartScript(LocFlyweight(loc).get().name.c_str());
+	// No name - use fileName and line instead
+	JS::AutoFilename fileName;
+	unsigned lineno;
+	JS::DescribeScriptedCaller(cx, &fileName, &lineno);
+
+	std::stringstream ss;
+	ss << "(" << fileName.get() << ":" << lineno << ")";
+	g_Profiler.StartScript(StringFlyweight(ss.str()).get().c_str());
 
 	return closure;
-}
-
-void ScriptRuntime::jshook_trace(JSTracer* trc, void* data)
-{
-	ScriptRuntime* m = static_cast<ScriptRuntime*>(data);
-
-	if (m->m_rooter)
-		m->m_rooter->Trace(trc);
 }
 
 void ScriptRuntime::PrepareContextsForIncrementalGC()

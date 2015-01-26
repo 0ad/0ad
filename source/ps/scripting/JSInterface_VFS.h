@@ -1,4 +1,4 @@
-/* Copyright (C) 2009 Wildfire Games.
+/* Copyright (C) 2014 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -38,7 +38,7 @@ namespace JSI_VFS
 	//
 	// note: full pathnames of each file/subdirectory are returned,
 	// ready for use as a "filename" for the other functions.
-	CScriptVal BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse);
+	JS::Value BuildDirEntList(ScriptInterface::CxPrivate* pCxPrivate, std::wstring path, std::wstring filterStr, bool recurse);
 
 	// Return true iff the file exists
 	//
@@ -62,13 +62,13 @@ namespace JSI_VFS
 	//
 	// contents = readFile(filename);
 	//   filename: VFS filename (may include path)
-	CScriptVal ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	JS::Value ReadFile(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 
 	// Return file contents as an array of lines.
 	//
 	// lines = readFileLines(filename);
 	//   filename: VFS filename (may include path)
-	CScriptVal ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
+	JS::Value ReadFileLines(ScriptInterface::CxPrivate* pCxPrivate, std::wstring filename);
 }
 
 #endif

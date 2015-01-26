@@ -27,12 +27,12 @@ public:
 	 * Returns a script object that represents the current world state,
 	 * to be passed to AI scripts.
 	 */
-	virtual CScriptVal GetRepresentation() = 0;
+	virtual void GetRepresentation(JS::MutableHandleValue ret) = 0;
 	/**
 	 * Returns a script object that represents the current world state,
 	 * to be passed to AI scripts. No caching for initialization
 	 */
-	virtual CScriptVal GetFullRepresentation(bool flushEvents) = 0;
+	virtual void GetFullRepresentation(JS::MutableHandleValue ret, bool flushEvents) = 0;
 
 	DECLARE_INTERFACE_TYPE(AIInterface)
 };

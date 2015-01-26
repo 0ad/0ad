@@ -1,4 +1,4 @@
-/* Copyright (c) 2013 Wildfire Games
+/* Copyright (c) 2015 Wildfire Games
  *
  * Permission is hereby granted, free of charge, to any person obtaining
  * a copy of this software and associated documentation files (the
@@ -70,7 +70,7 @@
  * NOTHROW_DECLARE void function();
  * NOTHROW_DEFINE void function() {}
  **/
-#if GCC_VERSION >= 303
+#if GCC_VERSION
 # define NOTHROW_DECLARE __attribute__((nothrow))
 # define NOTHROW_DEFINE	// not supported for definitions
 #elif MSC_VERSION
@@ -121,7 +121,7 @@
 #define HAVE_ASSUME_UNREACHABLE 1
 #if MSC_VERSION && !ICC_VERSION // (ICC ignores this)
 # define ASSUME_UNREACHABLE __assume(0)
-#elif GCC_VERSION >= 450
+#elif GCC_VERSION
 # define ASSUME_UNREACHABLE __builtin_unreachable()
 #else
 # define ASSUME_UNREACHABLE
@@ -161,7 +161,7 @@ switch(x % 2)
 
 
 // generate a symbol containing the line number of the macro invocation.
-// used to give a unique name (per file) to types made by cassert.
+// used to give a unique name (per file) to types or variables.
 // we can't prepend __FILE__ to make it globally unique - the filename
 // may be enclosed in quotes. PASTE3_HIDDEN__ is needed to make sure
 // __LINE__ is expanded correctly.
@@ -174,13 +174,6 @@ switch(x % 2)
 //-----------------------------------------------------------------------------
 // cassert
 
-// Silence warnings about unused local typedefs
-#if GCC_VERSION >= 408
-# define UNUSED_ATTRIBUTE __attribute__((unused))
-#else
-# define UNUSED_ATTRIBUTE
-#endif
-
 /**
  * Compile-time assertion. Causes a compile error if the expression
  * evaluates to zero/false.
@@ -190,28 +183,7 @@ switch(x % 2)
  *
  * @param expr Expression that is expected to evaluate to non-zero at compile-time.
  **/
-#define cassert(expr) typedef static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
-template<bool> struct static_assert_;
-template<> struct static_assert_<true>
-{
-	typedef int type;
-};
-
-/**
- * @copydoc cassert(expr)
- *
- * This version must be used if expr uses a dependent type (e.g. depends on
- * a template parameter).
- **/
-#define cassert_dependent(expr) typedef typename static_assert_<(expr)>::type UID__ UNUSED_ATTRIBUTE
-
-/**
- * @copydoc cassert(expr)
- *
- * This version has a less helpful error message, but redefinition doesn't
- * trigger warnings.
- **/
-#define cassert2(expr) extern char CASSERT_FAILURE[1][(expr)]
+#define cassert(expr) static_assert((expr), #expr)
 
 
 /**
@@ -232,9 +204,10 @@ template<> struct static_assert_<true>
  * assignment operator.
  */
 #define NONCOPYABLE(className)\
-private:\
-	className(const className&);\
-	const className& operator=(const className&)
+	public:\
+		className(const className&) = delete;\
+		const className& operator=(const className&) = delete;\
+	private:
 
 #if ICC_VERSION
 # define ASSUME_ALIGNED(ptr, multiple) __assume_aligned(ptr, multiple)
@@ -322,7 +295,7 @@ private:\
 #if GCC_VERSION
 # define RESTRICT __restrict__
 // .. VC8 provides __restrict
-#elif MSC_VERSION >= 1400
+#elif MSC_VERSION
 # define RESTRICT __restrict
 // .. ICC supports the keyword 'restrict' when run with the /Qrestrict option,
 //    but it always also supports __restrict__ or __restrict to be compatible
@@ -341,17 +314,6 @@ private:\
 // number of array elements
 //
 
-#if GCC_VERSION
-
-// The function trick below does not work in GCC. Instead use the old fashioned
-// divide-by-sizeof-element. This causes problems when the argument to
-// ARRAY_SIZE is a pointer and not an array, but we will catch those when we
-// compile on something other than GCC.
-
-#define ARRAY_SIZE(name) (sizeof(name) / (sizeof((name)[0])))
-
-#else
-
 // (function taking a reference to an array and returning a pointer to
 // an array of characters. it's only declared and never defined; we just
 // need it to determine n, the size of the array that was passed.)
@@ -362,14 +324,13 @@ template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
 // pointer is passed, which can easily happen under maintenance.)
 #define ARRAY_SIZE(name) (sizeof(*ArraySizeDeducer(name)))
 
-#endif // GCC_VERSION
 
 // C99-style __func__
 // .. newer GCC already have it
-#if GCC_VERSION >= 300
+#if GCC_VERSION
 // nothing need be done
-// .. old GCC and MSVC have __FUNCTION__
-#elif GCC_VERSION >= 200 || MSC_VERSION
+// .. MSVC have __FUNCTION__
+#elif MSC_VERSION
 # define __func__ __FUNCTION__
 // .. unsupported
 #else
@@ -416,75 +377,5 @@ template<typename T, size_t n> char (*ArraySizeDeducer(T (&)[n]))[n];
 // widening it via preprocessor.
 #define WIDEN2(x) L ## x
 #define WIDEN(x) WIDEN2(x)
-
-
-//-----------------------------------------------------------------------------
-// C++0x rvalue references (required for UniqueRange)
-
-/**
- * expands to the type `rvalue reference to T'; used in function
- * parameter declarations. for example, UniqueRange's move ctor is:
- * UniqueRange(RVALUE_REF(UniqueRange) rvalue) { ... }
- **/
-#define RVALUE_REF(T) T&&
-
-/**
- * convert an rvalue to an lvalue
- **/
-#define LVALUE(rvalue) rvalue	// in C++0x, a named rvalue reference is already an lvalue
-
-/**
- * convert anything (lvalue or rvalue) to an rvalue
- **/
-#define RVALUE(lvalue) std::move(lvalue)
-
-
-#if !HAVE_CPP0X	// partial emulation
-
-// lvalue references are wrapped in this class, which is the
-// actual argument passed to the "move ctor" etc.
-template<typename T>
-class RValue
-{
-public:
-	explicit RValue(T& lvalue): lvalue(lvalue) {}
-	T& LValue() const { return lvalue; }
-
-private:
-	// (avoid "assignment operator could not be generated" warning)
-	const RValue& operator=(const RValue&);
-
-	T& lvalue;
-};
-
-// (to deduce T automatically, we need function templates)
-
-template<class T>
-static inline RValue<T> ToRValue(T& lvalue)
-{
-	return RValue<T>(lvalue);
-}
-
-template<class T>
-static inline RValue<T> ToRValue(const T& lvalue)
-{
-	return RValue<T>((T&)lvalue);
-}
-
-template<class T>
-static inline RValue<T> ToRValue(const RValue<T>& rvalue)
-{
-	return RValue<T>(rvalue.LValue());
-}
-
-#undef RVALUE_REF
-#undef LVALUE
-#undef RVALUE
-
-#define RVALUE_REF(T) const RValue<T>&
-#define LVALUE(rvalue) rvalue.LValue()
-#define RVALUE(lvalue) ToRValue(lvalue)
-
-#endif	// #if !HAVE_CPP0X
 
 #endif	// #ifndef INCLUDED_CODE_ANNOTATION

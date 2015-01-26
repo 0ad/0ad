@@ -112,7 +112,7 @@ bool CSoundBase::InitOpenAL()
 	}
 	else
 	{
-//		LOGERROR(L"Source not allocated by SoundManager\n", 0);
+//		LOGERROR("Source not allocated by SoundManager\n", 0);
 	}
 	return false;
 }
