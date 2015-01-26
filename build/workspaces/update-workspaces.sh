@@ -40,7 +40,7 @@ premake_args=""
 
 without_nvtt=false
 with_system_nvtt=false
-with_system_mozjs24=false
+with_system_mozjs31=false
 enable_atlas=true
 
 for i in "$@"
@@ -49,7 +49,7 @@ do
     --without-nvtt ) without_nvtt=true; premake_args="${premake_args} --without-nvtt" ;;
     --with-system-nvtt ) with_system_nvtt=true; premake_args="${premake_args} --with-system-nvtt" ;;
     --with-system-miniupnpc ) echo "NOTE: the --with-system-miniupnpc option is deprecated, system miniupnpc is now required"; echo ;;
-    --with-system-mozjs24 ) with_system_mozjs24=true; premake_args="${premake_args} --with-system-mozjs24" ;;
+    --with-system-mozjs31 ) with_system_mozjs31=true; premake_args="${premake_args} --with-system-mozjs31" ;;
     --enable-atlas ) enable_atlas=true ;;
     --disable-atlas ) enable_atlas=false ;;
     -j* ) JOBS=$i ;;
@@ -85,7 +85,7 @@ if [ "`uname -s`" != "Darwin" ]; then
   # Build/update bundled external libraries
   (cd ../../libraries/source/fcollada/src && ${MAKE} ${JOBS}) || die "FCollada build failed"
   echo
-  if [ "$with_system_mozjs24" = "false" ]; then
+  if [ "$with_system_mozjs31" = "false" ]; then
     (cd ../../libraries/source/spidermonkey && MAKE=${MAKE} JOBS=${JOBS} ./build.sh) || die "SpiderMonkey build failed"
   fi
   echo
