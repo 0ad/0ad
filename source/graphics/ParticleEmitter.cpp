@@ -31,7 +31,7 @@
 CParticleEmitter::CParticleEmitter(const CParticleEmitterTypePtr& type) :
 	m_Type(type), m_Active(true), m_NextParticleIdx(0), m_EmissionRoundingError(0.f),
 	m_LastUpdateTime(type->m_Manager.GetCurrentTime()),
-	m_IndexArray(GL_DYNAMIC_DRAW),
+	m_IndexArray(GL_STATIC_DRAW),
 	m_VertexArray(GL_DYNAMIC_DRAW),
 	m_LastFrameNumber(-1)
 {
@@ -169,6 +169,11 @@ void CParticleEmitter::UpdateArrayData(int frameNumber)
 	m_ParticleBounds = bounds;
 
 	m_VertexArray.Upload();
+}
+
+void CParticleEmitter::PrepareForRendering()
+{
+	m_VertexArray.PrepareForRendering();
 }
 
 void CParticleEmitter::Bind(const CShaderProgramPtr& shader)

@@ -947,6 +947,12 @@ function selectMap(name)
 	var mapData = loadMapData(name);
 	var mapSettings = (mapData && mapData.settings ? deepcopy(mapData.settings) : {});
 
+	// Reset victory conditions
+	var victories = getVictoryConditions();
+	var victoryIdx = (mapSettings.GameType !== undefined && victories.data.indexOf(mapSettings.GameType) != -1 ? victories.data.indexOf(mapSettings.GameType) : VICTORY_DEFAULTIDX);
+	g_GameAttributes.settings.GameType = victories.data[victoryIdx];
+	g_GameAttributes.settings.VictoryScripts = victories.scripts[victoryIdx];
+
 	// Copy any new settings
 	g_GameAttributes.map = name;
 	g_GameAttributes.script = mapSettings.Script;

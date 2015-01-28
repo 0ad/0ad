@@ -20,6 +20,10 @@ sub vfs_to_physical
 {
     my ($vfspath) = @_;
     my $fn = "$vfsroot/public/$vfspath";
+    if (not -e $fn)
+    {
+        $fn = "$vfsroot/mod/$vfspath";
+    }
     return $fn;
 }
 
@@ -40,10 +44,11 @@ sub find_files
         return if /~$/;
         return unless -f $_;
         return unless /\.($extn)$/;
-        $n =~ s~\Q$vfsroot\E/public/~~;
+        $n =~ s~\Q$vfsroot\E/(public|mod)/~~;
         push @files, $n;
     };
     find({ wanted => $find_process }, "$vfsroot/public/$vfspath");
+    find({ wanted => $find_process }, "$vfsroot/mod/$vfspath") if -d "$vfsroot/mod/$vfspath";
 
     return @files;
 }
@@ -175,7 +180,7 @@ sub add_maps_xml
 {
     print "Loading maps XML...\n";
     my @mapfiles = find_files('maps/scenarios', 'xml');
-	push @mapfiles, find_files('maps/skirmishes', 'xml');
+    push @mapfiles, find_files('maps/skirmishes', 'xml');
     for my $f (sort @mapfiles)
     {
         print "  $f\n";
@@ -235,7 +240,7 @@ sub add_maps_pmp
     }
 
     my @mapfiles = find_files('maps/scenarios', 'pmp');
-	push @mapfiles, find_files('maps/skirmishes', 'pmp');
+    push @mapfiles, find_files('maps/skirmishes', 'pmp');
     for my $f (sort @mapfiles)
     {
         push @files, $f;
@@ -325,7 +330,8 @@ sub add_gui_xml
         else
         {
             my $xml = XMLin(vfs_to_physical($f), ForceArray => [qw(object script action sprite image)], KeyAttr => [], KeepRoot => 1) or die "Failed to parse '$f': $!";
-            if ((keys %$xml)[0] eq 'objects')
+            my $name = (keys %$xml)[0];
+            if ($name eq 'objects' or $name eq 'object')
             {
                 push @deps, [ $f, $_->{file} ] for grep { ref $_ and $_->{file} } @{$xml->{objects}{script}};
                 my $add_objects;
@@ -340,15 +346,15 @@ sub add_gui_xml
                 };
                 $add_objects->($xml->{objects});
             }
-            elsif ((keys %$xml)[0] eq 'setup')
+            elsif ($name eq 'setup')
             {
                 # TODO: look at sprites, styles, etc
             }
-            elsif ((keys %$xml)[0] eq 'styles')
+            elsif ($name eq 'styles')
             {
                 # TODO: look at sprites, styles, etc
             }
-            elsif ((keys %$xml)[0] eq 'sprites')
+            elsif ($name eq 'sprites')
             {
                 for my $sprite (@{$xml->{sprites}{sprite}})
                 {
@@ -360,7 +366,7 @@ sub add_gui_xml
             }
             else
             {
-                print Dumper $xml;
+                print "Unexpected GUI XML root element '$name':\n" . Dumper $xml;
                 exit;
             }
         }

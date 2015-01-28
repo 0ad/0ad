@@ -110,6 +110,13 @@ function deleteGame()
 	messageBox(500, 200, sprintf(translate("\"%(label)s\""), { label: gameLabel }) + "\n" + translate("Saved game will be permanently deleted, are you sure?"), translate("DELETE"), 0, btCaptions, btCode);
 }
 
+function deleteGameWithoutConfirmation()
+{
+	var gameSelection = Engine.GetGUIObjectByName("gameSelection");
+	var gameID = gameSelection.list_data[gameSelection.selected];
+	reallyDeleteGame(gameID);
+}
+
 function reallyDeleteGame(gameID)
 {
 	if (!Engine.DeleteSavedGame(gameID))

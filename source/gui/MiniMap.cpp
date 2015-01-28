@@ -580,6 +580,8 @@ void CMiniMap::Draw()
 		m_VertexArray.Upload();
 	}
 
+	m_VertexArray.PrepareForRendering();
+
 	if (m_EntitiesDrawn > 0)
 	{
 #if !CONFIG2_GLES

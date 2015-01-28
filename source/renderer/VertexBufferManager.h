@@ -36,11 +36,14 @@ public:
 	 *
 	 * @param vertexSize size of each vertex in the buffer
 	 * @param numVertices number of vertices in the buffer
-	 * @param usage typically GL_STATIC_DRAW or GL_DYNAMIC_DRAW
+	 * @param usage GL_STATIC_DRAW, GL_DYNAMIC_DRAW, GL_STREAM_DRAW
 	 * @param target typically GL_ARRAY_BUFFER or GL_ELEMENT_ARRAY_BUFFER
+	 * @param backingStore if usage is STATIC, this is NULL; else for DYNAMIC/STREAM,
+	 *            this must be a copy of the vertex data that remains valid for the
+	 *            lifetime of the VBChunk
 	 * @return chunk, or NULL if no free chunks available
 	 */
-	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target);
+	CVertexBuffer::VBChunk* Allocate(size_t vertexSize, size_t numVertices, GLenum usage, GLenum target, void* backingStore = NULL);
 
 	/// Returns the given @p chunk to its owning buffer
 	void Release(CVertexBuffer::VBChunk* chunk);
@@ -50,9 +53,6 @@ public:
 
 	size_t GetBytesReserved();
 	size_t GetBytesAllocated();
-
-	/// Returns the maximum possible size of a single vertex buffer
-	size_t GetMaxBufferSize() const { return MAX_VB_SIZE_BYTES; }
 
 	/// Explicit shutdown of the vertex buffer subsystem; releases all currently-allocated buffers.
 	void Shutdown();

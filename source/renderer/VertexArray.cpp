@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,6 +22,7 @@
 #include "lib/sysdep/rtl.h"
 #include "maths/Vector3D.h"
 #include "maths/Vector4D.h"
+#include "ps/CLogger.h"
 #include "graphics/Color.h"
 #include "graphics/SColor.h"
 #include "renderer/VertexArray.h"
@@ -273,6 +274,10 @@ void VertexArray::Layout()
 		m_BackingStore = (char*)rtl_AllocateAligned(m_Stride * m_NumVertices, 16);
 }
 
+void VertexArray::PrepareForRendering()
+{
+	m_VB->m_Owner->PrepareForRendering(m_VB);
+}
 
 // (Re-)Upload the attributes.
 // Create the VBO if necessary.
@@ -281,10 +286,13 @@ void VertexArray::Upload()
 	ENSURE(m_BackingStore);
 	
 	if (!m_VB)
-		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target);
+		m_VB = g_VBMan.Allocate(m_Stride, m_NumVertices, m_Usage, m_Target, m_BackingStore);
 
-	if (!m_VB) // failed to allocate VBO
+	if (!m_VB)
+	{
+		LOGERROR("Failed to allocate VBO for vertex array");
 		return;
+	}
 
 	m_VB->m_Owner->UpdateChunkVertices(m_VB, m_BackingStore);
 }
@@ -305,6 +313,9 @@ u8* VertexArray::Bind()
 // Free the backing store to save some memory
 void VertexArray::FreeBackingStore()
 {
+	// In streaming modes, the backing store must be retained
+	ENSURE(!CVertexBuffer::UseStreaming(m_Usage));
+
 	rtl_FreeAligned(m_BackingStore);
 	m_BackingStore = 0;
 }

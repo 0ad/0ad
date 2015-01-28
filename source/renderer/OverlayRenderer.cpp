@@ -126,7 +126,7 @@ struct OverlayRendererInternals
 const float OverlayRenderer::OVERLAY_VOFFSET = 0.2f;
 
 OverlayRendererInternals::OverlayRendererInternals()
-	: quadVertices(GL_DYNAMIC_DRAW), quadIndices(GL_DYNAMIC_DRAW)
+	: quadVertices(GL_DYNAMIC_DRAW), quadIndices(GL_STATIC_DRAW)
 {
 	quadAttributePos.elems = 3;
 	quadAttributePos.type = GL_FLOAT;
@@ -351,6 +351,8 @@ void OverlayRenderer::PrepareForRendering()
 
 	m->quadVertices.Upload();
 	// don't free the backing store! we'll overwrite it on the next frame to save a reallocation.
+
+	m->quadVertices.PrepareForRendering();
 }
 
 void OverlayRenderer::RenderOverlaysBeforeWater()
