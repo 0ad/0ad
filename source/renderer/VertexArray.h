@@ -176,6 +176,8 @@ public:
 	// (Re-)Upload the attributes of the vertex array from the backing store to
 	// the underlying VBO object.
 	void Upload();
+	// Make this vertex array's data available for the next series of calls to Bind
+	void PrepareForRendering();
 	// Bind this array, returns the base address for calls to glVertexPointer etc.
 	u8* Bind();
 

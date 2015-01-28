@@ -226,6 +226,8 @@ void ShaderModelVertexRenderer::UpdateModelData(CModel* model, CModelRData* data
 		// upload everything to vertex buffer
 		shadermodel->m_Array.Upload();
 	}
+
+	shadermodel->m_Array.PrepareForRendering();
 }
 
 
