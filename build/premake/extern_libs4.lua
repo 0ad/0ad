@@ -358,6 +358,7 @@ extern_lib_defs = {
 				win_names  = { "libiconv" },
 				osx_names = { "iconv" },
 				dbg_suffix = "",
+				no_delayload = 1,
 			})
 			-- glibc (used on Linux and GNU/kFreeBSD) has iconv
 			-- FreeBSD 10+ has iconv as a part of libc
@@ -767,6 +768,7 @@ extern_lib_defs = {
 			add_default_links({
 				win_names  = { "zlib1" },
 				unix_names = { "z" },
+				no_delayload = 1,
 			})
 		end,
 	},
