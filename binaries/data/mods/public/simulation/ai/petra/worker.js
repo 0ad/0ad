@@ -29,6 +29,11 @@ m.Worker.prototype.update = function(ent, gameState)
 		this.accessIndex = this.base.accessIndex;
 
 	var subrole = this.ent.getMetadata(PlayerID, "subrole");
+	if (!subrole)	// subrole may-be undefined after a transport, garrisoning, army, ...
+	{
+		this.ent.setMetadata(PlayerID, "subrole", "idle");
+		return;
+	}
 
 	// Check for inaccessible targets (in RMS maps, we quite often have chicken or bushes inside obstruction of other entities).
 	if (ent.unitAIState() === "INDIVIDUAL.GATHER.APPROACHING" || ent.unitAIState() === "INDIVIDUAL.COMBAT.APPROACHING")
