@@ -1481,6 +1481,10 @@ public:
 		CFixedVector2D pos = cmpPosition->GetPosition2D();
 		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
 
+		// Gaia does not have a visibility cache
+		if (player == 0)
+			return ComputeLosVisibility(ent, player);
+
 		if (m_DirtyVisibility[n])
 			return ComputeLosVisibility(ent, player);
 
