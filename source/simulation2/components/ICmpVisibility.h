@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -22,10 +22,22 @@
 
 #include "simulation2/components/ICmpRangeManager.h"
 
+/**
+ * The Visibility component is a scripted component that allows any part of the simulation to
+ * influence the visibility of an entity.
+ *
+ * This component:
+ * - Holds the template values RetainInFog and AlwaysVisible, used by the range manager to compute
+ * the visibility of the entity;
+ * - Can supersede the range manager if it is "activated". This is to avoid useless calls to the scripts.
+ */
+
 class ICmpVisibility : public IComponent
 {
 public:
-	virtual ICmpRangeManager::ELosVisibility GetLosVisibility(player_id_t player, bool isOutsideFog, bool forceRetainInFog) = 0;
+	virtual bool IsActivated() = 0;
+
+	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) = 0;
 
 	virtual bool GetRetainInFog() = 0;
 

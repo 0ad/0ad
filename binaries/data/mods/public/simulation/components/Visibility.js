@@ -10,70 +10,65 @@ Visibility.prototype.Schema =
 	"</element>" +
 	"<element name='AlwaysVisible'>" +
 		"<data type='boolean'/>" +
+	"</element>" +
+	"<element name='Preview'>" +
+		"<data type='boolean'/>" +
 	"</element>";
 
 Visibility.prototype.Init = function()
 {
+	this.retainInFog = this.template.RetainInFog == "true";
+	this.alwaysVisible = this.template.AlwaysVisible == "true";
+	this.preview = this.template.Preview == "true";
 
+	this.activated = false;
+
+	if (this.preview)
+		this.activated = true;
 };
 
 /**
- * This function is called for entities in explored territory.
- * isOutsideFog: true if we're in the vision range of a unit, false otherwise
- * forceRetainInFog: useful for previewed entities, see the RangeManager system component documentation
+ * If this function returns true, the range manager will call the GetVisibility function
+ * instead of computing the visibility.
  */
-Visibility.prototype.GetLosVisibility = function(player, isOutsideFog, forceRetainInFog)
+Visibility.prototype.IsActivated = function()
 {
-	if (isOutsideFog)
+	return this.activated;
+};
+
+/**
+ * This function is called if IsActivated returns true.
+ * If so, the return value supersedes the visibility computed by the range manager.
+ * isVisible: true if the entity is in the vision range of a unit, false otherwise
+ * isExplored: true if the entity is in explored territory, false otherwise
+ */
+Visibility.prototype.GetVisibility = function(player, isVisible, isExplored)
+{
+	if (!this.activated)
+		warn("The Visibility component was asked to provide a superseding visibility while not activated, this should not happen");
+
+	if (this.preview)
 	{
-		var cmpMirage = Engine.QueryInterface(this.entity, IID_Mirage);
-		if (cmpMirage)
-			return VIS_HIDDEN;
+		// For the owner only, mock the "RetainInFog" behaviour
 
-		return VIS_VISIBLE;
-	}
-
-	// Fogged if the 'retain in fog' flag is set, and in a non-visible explored region
-	if (!forceRetainInFog && !this.GetRetainInFog())
-		return VIS_HIDDEN;
-
-	var cmpMirage = Engine.QueryInterface(this.entity, IID_Mirage);
-	if (cmpMirage && cmpMirage.GetPlayer() == player)
-		return VIS_FOGGED;
-
-	var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
-	if (!cmpOwnership)
-		return VIS_FOGGED;
-
-	if (cmpOwnership.GetOwner() == player)
-	{
-		var cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
-		if (!cmpFogging)
-			return VIS_FOGGED;
-
-		// Fogged entities must not disappear while the mirage is not ready
-		if (!cmpFogging.IsMiraged(player))
-			return VIS_FOGGED;
+		let cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
+		if (cmpOwnership && cmpOwnership.GetOwner() == player && isExplored)
+			return isVisible ? VIS_VISIBLE : VIS_FOGGED;
 
 		return VIS_HIDDEN;
 	}
 
-	// Fogged entities must not disappear while the mirage is not ready
-	var cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
-	if (cmpFogging && cmpFogging.WasSeen(player) && !cmpFogging.IsMiraged(player))
-		return VIS_FOGGED;
-
-	return VIS_HIDDEN;
+	return VIS_VISIBLE;
 };
 
 Visibility.prototype.GetRetainInFog = function()
 {
-	return this.template.RetainInFog == "true";
+	return this.retainInFog;
 };
 
 Visibility.prototype.GetAlwaysVisible = function()
 {
-	return this.template.AlwaysVisible == "true";
+	return this.alwaysVisible;
 };
 
 Engine.RegisterComponentType(IID_Visibility, "Visibility", Visibility);

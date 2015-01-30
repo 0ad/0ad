@@ -1386,7 +1386,7 @@ public:
 			return CLosQuerier(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
 	}
 
-	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
+	ELosVisibility ComputeLosVisibility(CEntityHandle ent, player_id_t player)
 	{
 		// Entities not with positions in the world are never visible
 		if (ent.GetId() == INVALID_ENTITY)
@@ -1413,34 +1413,61 @@ public:
 				return VIS_VISIBLE;
 		}
 
-		// Visible if within a visible region
+		// Get visible regions
 		CLosQuerier los(GetSharedLosMask(player), m_LosState, m_TerrainVerticesPerSide);
+
+		// Ask the Visibility component about special situations
+		CmpPtr<ICmpVisibility> cmpVisibility(ent);
+		if (cmpVisibility && cmpVisibility->IsActivated())
+			return cmpVisibility->GetVisibility(player, los.IsVisible(i, j), los.IsExplored(i, j));
+
+		// Else, default behavior
+
+		if (los.IsVisible(i, j))
+			return VIS_VISIBLE;
 
 		if (!los.IsExplored(i, j))
 			return VIS_HIDDEN;
 
-		// Try to ask the Visibility component of the entity, if any
-		CmpPtr<ICmpVisibility> cmpVisibility(ent);
-		if (cmpVisibility)
-			return cmpVisibility->GetLosVisibility(player, los.IsVisible(i, j), forceRetainInFog);
+		// Invisible if the 'retain in fog' flag is not set, and in a non-visible explored region
+		if (!(cmpVisibility && cmpVisibility->GetRetainInFog()))
+			return VIS_HIDDEN;
 
-		// Default behaviour
-		if (los.IsVisible(i, j))
-			return VIS_VISIBLE;
-		
-		if (forceRetainInFog)
+		if (cmpMirage && cmpMirage->GetPlayer() == player)
 			return VIS_FOGGED;
-		
+
+		CmpPtr<ICmpOwnership> cmpOwnership(ent);
+		if (!cmpOwnership)
+			return VIS_VISIBLE;
+
+		if (cmpOwnership->GetOwner() == player)
+		{
+			CmpPtr<ICmpFogging> cmpFogging(ent);
+			if (!cmpFogging)
+				return VIS_VISIBLE;
+
+			// Fogged entities must not disappear while the mirage is not ready
+			if (!cmpFogging->IsMiraged(player))
+				return VIS_FOGGED;
+
+			return VIS_HIDDEN;
+		}
+	
+		// Fogged entities must not disappear while the mirage is not ready
+		CmpPtr<ICmpFogging> cmpFogging(ent);
+		if (cmpFogging && cmpFogging->WasSeen(player) && !cmpFogging->IsMiraged(player))
+			return VIS_FOGGED;
+
 		return VIS_HIDDEN;
 	}
 
-	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
+	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player)
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
-		return ComputeLosVisibility(handle, player, forceRetainInFog);
+		return ComputeLosVisibility(handle, player);
 	}
 
-	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player, bool forceRetainInFog)
+	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player)
 	{
 		entity_id_t entId = ent.GetId();
 		
@@ -1455,22 +1482,22 @@ public:
 		i32 n = PosToLosTilesHelper(pos.X, pos.Y);
 
 		if (m_DirtyVisibility[n])
-			return ComputeLosVisibility(ent, player, forceRetainInFog);
+			return ComputeLosVisibility(ent, player);
 
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
-			return ComputeLosVisibility(ent, player, forceRetainInFog);
+			return ComputeLosVisibility(ent, player);
 
 		EntityMap<EntityData>::iterator it = m_EntityData.find(entId);
 		if (it == m_EntityData.end())
-			return ComputeLosVisibility(ent, player, forceRetainInFog);
+			return ComputeLosVisibility(ent, player);
 
 		return static_cast<ELosVisibility>(GetPlayerVisibility(it->second.visibilities, player));
 	}
 
-	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player, bool forceRetainInFog)
+	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player)
 	{
 		CEntityHandle handle = GetSimContext().GetComponentManager().LookupEntityHandle(ent);
-		return GetLosVisibility(handle, player, forceRetainInFog);
+		return GetLosVisibility(handle, player);
 	}
 
 	i32 PosToLosTilesHelper(entity_pos_t x, entity_pos_t z)
@@ -1549,7 +1576,7 @@ public:
 		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
 		{
 			u8 oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
-			u8 newVis = ComputeLosVisibility(itEnts->first, player, false);
+			u8 newVis = ComputeLosVisibility(itEnts->first, player);
 			
 			oldVisibilities.push_back(oldVis);
 			newVisibilities.push_back(newVis);

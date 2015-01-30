@@ -95,14 +95,12 @@ BuildRestrictions.prototype.CheckPlacement = function()
 	if (!cmpPlayer.IsAI())
 	{
 		// Check whether it's in a visible or fogged region
-		// tell GetLosVisibility to force RetainInFog because preview entities set this to false,
-		// which would show them as hidden instead of fogged
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
 		var cmpOwnership = Engine.QueryInterface(this.entity, IID_Ownership);
 		if (!cmpRangeManager || !cmpOwnership)
 			return result; // Fail
 
-		var explored = (cmpRangeManager.GetLosVisibility(this.entity, cmpOwnership.GetOwner(), true) != "hidden");
+		var explored = (cmpRangeManager.GetLosVisibility(this.entity, cmpOwnership.GetOwner()) != "hidden");
 		if (!explored)
 		{
 			result.message = markForTranslation("%(name)s cannot be built in unexplored area");
