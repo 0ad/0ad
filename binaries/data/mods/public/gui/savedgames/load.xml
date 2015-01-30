@@ -36,10 +36,6 @@
 			</action>
 		</object>
 
-		<object hotkey="session.savedgames.reallyDelete">
-			<action on="Press">deleteGameWithoutConfirmation();</action>
-		</object>
-
 		<object name="loadGameButton" type="button" style="StoneButton" size="66%-5 100%-60 100%-25 100%-32">
 			<translatableAttribute id="caption">Load</translatableAttribute>
 			<action on="Press">loadGame();</action>
