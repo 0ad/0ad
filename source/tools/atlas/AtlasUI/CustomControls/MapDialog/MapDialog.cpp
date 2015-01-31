@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,8 @@ static const wxString scenarioPath(L"maps/scenarios/");
 static const wxString skirmishPath(L"maps/skirmishes/");
 
 MapDialog::MapDialog(wxWindow* parent, MapDialogType type, const wxIcon& icon)
-	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU), m_Type(type)
+	: wxDialog(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxSize(600,400), wxCAPTION|wxRESIZE_BORDER|wxCLOSE_BOX|wxSYSTEM_MENU), 
+	m_Type(type), m_SelectedPage(0)
 {
 	Freeze();
 

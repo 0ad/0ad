@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -124,10 +124,10 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			pCaption->insert(m_iBufferPos, text);
 
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
-		
+
 		m_iBufferPos += text.length();
 		m_iBufferPos_Tail = -1;
-		
+
 		UpdateAutoScroll();
 
 		return IN_HANDLED;
@@ -140,7 +140,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		const char *rawText = ev->ev.edit.text;
 		int rawLength = strlen(rawText);
 		std::wstring wtext = wstring_from_utf8(rawText);
-		
+
 		debug_printf(L"SDL_TEXTEDITING: text=%hs, start=%d, length=%d\n", rawText, ev->ev.edit.start, ev->ev.edit.length);
 		m_WantedX=0.0f;
 
@@ -166,11 +166,11 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			m_iComposedLength = wtext.length();
 			m_iComposedPos = ev->ev.edit.start < m_iComposedLength ? ev->ev.edit.start : m_iComposedLength;
 			m_iBufferPos = m_iInsertPos + m_iComposedPos;
-		
+
 			// TODO: composed text selection - what does ev.edit.length do?
 			m_iBufferPos_Tail = -1;
 		}
-		
+
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 		UpdateAutoScroll();
@@ -228,7 +228,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 										pCaption->Right( (long) pCaption->length()-m_iBufferPos );
 
 						--m_iBufferPos;
-					
+
 						UpdateText(m_iBufferPos, m_iBufferPos+1, m_iBufferPos);
 					}
 				}
@@ -372,7 +372,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 						m_iBufferPos = m_iBufferPos_Tail;
 
 					m_iBufferPos_Tail = -1;
-				}			
+				}
 
 				UpdateAutoScroll();
 				break;
@@ -414,7 +414,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					if (m_iBufferPos >= current->m_ListStart &&
 						m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
 						break;
-					
+
 					++current;
 				}
 
@@ -437,7 +437,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					m_iBufferPos = current->m_ListStart + GetXTextPosition(current, pos_x, m_WantedX);
 				}
 				// else we can't move up
-				
+
 				UpdateAutoScroll();
 			}
 				break;
@@ -459,7 +459,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 					if (m_iBufferPos >= current->m_ListStart &&
 						m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
 						break;
-					
+
 					++current;
 				}
 
@@ -644,7 +644,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 				m_iBufferPos--;
 			}
-				
+
 			// If we end up on a puctuation char we just delete it (treat punct like a word)
 			if (iswpunct(searchString[m_iBufferPos - 1]))
 				m_iBufferPos--;
@@ -694,12 +694,12 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			}
 			DeleteCurSelection();
 		}
-		return IN_HANDLED;			
+		return IN_HANDLED;
 	}
 	else if (hotkey == "text.move.left")
 	{
 		m_WantedX=0.0f;
-				
+
 		if (shiftKeyPressed || !SelectingText())
 		{
 			if (!shiftKeyPressed)
@@ -723,7 +723,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 					m_iBufferPos--;
 				}
-				
+
 				// If we end up on a puctuation char we just select it (treat punct like a word)
 				if (iswpunct(searchString[m_iBufferPos - 1]))
 					m_iBufferPos--;
@@ -794,7 +794,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 				m_iBufferPos = m_iBufferPos_Tail;
 
 			m_iBufferPos_Tail = -1;
-		}			
+		}
 
 		UpdateAutoScroll();
 
@@ -825,7 +825,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 			(Message.value == CStr("size") || 
 			 Message.value == CStr("z") ||
 			 Message.value == CStr("absolute")))
-		{		
+		{
 			GetScrollBar(0).SetX(m_CachedActualSize.right);
 			GetScrollBar(0).SetY(m_CachedActualSize.top);
 			GetScrollBar(0).SetZ(GetBufferedZ());
@@ -868,7 +868,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 
 			UpdateText();
 		}
-		
+
 		}break;
 
 	case GUIM_MOUSE_PRESS_LEFT:
@@ -902,7 +902,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		}
 
 		m_SelectingText = true;
-		
+
 		UpdateAutoScroll();
 
 		// If we immediately release the button it will just be seen as a click
@@ -1155,7 +1155,7 @@ void CInput::Draw()
 	}
 
 	if (GetGUI())
-	{	
+	{
 		CStrW font_name_w;
 		CColor color, color_selected;
 		//CStrW caption;
@@ -1163,7 +1163,7 @@ void CInput::Draw()
 		GUI<CColor>::GetSetting(this, "textcolor", color);
 		GUI<CColor>::GetSetting(this, "textcolor_selected", color_selected);
 		CStrIntern font_name(font_name_w.ToUTF8());
-		
+
 		// Get pointer of caption, it might be very large, and we don't
 		//  want to copy it continuously.
 		CStrW *pCaption = NULL;
@@ -1180,10 +1180,10 @@ void CInput::Draw()
 
 		CGUISpriteInstance *sprite=NULL, *sprite_selectarea=NULL;
 		int cell_id;
-		
+
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite", sprite);
 		GUI<CGUISpriteInstance>::GetSettingPointer(this, "sprite_selectarea", sprite_selectarea);
-	
+
 		GUI<int>::GetSetting(this, "cell_id", cell_id);
 
 		GetGUI()->DrawSprite(*sprite, cell_id, bz, m_CachedActualSize);
@@ -1244,7 +1244,7 @@ void CInput::Draw()
 		float ls = (float)font.GetLineSpacing();
 
 		CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(str_gui_text);
-		
+
 		CTextRenderer textRenderer(tech->GetShader());
 		textRenderer.Font(font_name);
 
@@ -1254,7 +1254,7 @@ void CInput::Draw()
 			(float)(int)(m_CachedActualSize.left) + buffer_zone, 
 			(float)(int)(m_CachedActualSize.top+h) + buffer_zone,
 			bz+0.1f);
-		
+
 		// U+FE33: PRESENTATION FORM FOR VERTICAL LOW LINE
 		// (sort of like a | which is aligned to the left of most characters)
 
@@ -1411,14 +1411,14 @@ void CInput::Draw()
 
 		// Reset some from previous run
 		buffered_y = -scroll;
-		
+
 		// Setup initial color (then it might change and change back, when drawing selected area)
 		textRenderer.Color(color);
 
 		tech->BeginPass();
 
 		bool using_selected_color = false;
-		
+
 		for (std::list<SRow>::const_iterator it = m_CharacterPositions.begin();
 			 it != m_CharacterPositions.end();
 			 ++it, buffered_y += ls)
@@ -1432,7 +1432,7 @@ void CInput::Draw()
 				}
 
 				CMatrix3D savedTransform = textRenderer.GetTransform();
-				
+
 				// Text must always be drawn in integer values. So we have to convert scroll
 				if (multiline)
 					textRenderer.Translate(0.f, -(float)(int)scroll, 0.f);
@@ -1492,7 +1492,7 @@ void CInput::Draw()
 					}
 
 					// check it's now outside a one-liner, then we'll break
-					if (!multiline && i < (int)it->m_ListOfX.size())				
+					if (!multiline && i < (int)it->m_ListOfX.size())
 					{
 						if (it->m_ListOfX[i] - m_HorizontalScroll > m_CachedActualSize.GetWidth()-buffer_zone)
 							break;
@@ -1514,7 +1514,7 @@ void CInput::Draw()
 				textRenderer.SetTransform(savedTransform);
 			}
 
-			textRenderer.Translate(0.f, ls, 0.f);	
+			textRenderer.Translate(0.f, ls, 0.f);
 		}
 
 		textRenderer.Render();
@@ -1563,7 +1563,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 
 	SRow row;
 	row.m_ListStart = 0;
-	
+
 	int to = 0;	// make sure it's initialized
 
 	if (to_before == -1)
@@ -1670,7 +1670,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		// set 'from' to the row we'll destroy from
 		//  and 'to' to the row we'll destroy to
 		from = destroy_row_from->m_ListStart;
-		
+
 		if (destroy_row_to != m_CharacterPositions.end())
 			to = destroy_row_to->m_ListStart; // notice it will iterate [from, to), so it will never reach to.
 		else
@@ -1684,7 +1684,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		--temp_it;
 
 		current_line = m_CharacterPositions.erase(destroy_row_from, destroy_row_to);
-		
+
 		// If there has been a change in number of characters
 		//  we need to change all m_ListStart that comes after
 		//  the interval we just destroyed. We'll change all
@@ -1707,7 +1707,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				to += delta;
 		}
 	}
-	
+
 	int last_word_started=from;
 	//int last_list_start=-1;	// unused
 	float x_pos = 0.f;
@@ -1721,7 +1721,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 		{
 			if (i==to-1 && to != (int)caption.length())
 				break; // it will be added outside
-			
+
 			current_line = m_CharacterPositions.insert( current_line, row );
 			++current_line;
 
@@ -1760,7 +1760,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 					// regular word-wrap
 					row.m_ListOfX.resize(row.m_ListOfX.size() - (i-last_word_started+1));
 				}
-				
+
 				// Now, create a new line:
 				//  notice: when we enter a newline, you can stand with the cursor
 				//  both before and after that character, being on different
@@ -1868,7 +1868,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 				// set 'from' to the from row we'll destroy
 				//  and 'to' to 'to_after'
 				from = destroy_row_from->m_ListStart;
-				
+
 				if (destroy_row_to != m_CharacterPositions.end())
 					to = destroy_row_to->m_ListStart; // notice it will iterate [from, to[, so it will never reach to.
 				else
@@ -1936,7 +1936,7 @@ int CInput::GetMouseHoveringTextPosition()
 		GUI<CStrW>::GetSetting(this, "font", font_name_w);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 		CStrIntern font_name(font_name_w.ToUTF8());
-		
+
 		float scroll=0.f;
 		if (scrollbar)
 		{
@@ -1985,7 +1985,7 @@ int CInput::GetMouseHoveringTextPosition()
 
 	//m_iBufferPos = m_CharacterPositions.get.m_ListStart;
 	retPosition = current->m_ListStart;
-	
+
 	// Okay, now loop through the glyphs to find the appropriate X position
 	float dummy;
 	retPosition += GetXTextPosition(current, mouse.x, dummy);
@@ -2089,13 +2089,13 @@ void CInput::UpdateAutoScroll()
 		GUI<CStrW>::GetSetting(this, "font", font_name_w);
 		GUI<bool>::GetSetting(this, "scrollbar", scrollbar);
 		CStrIntern font_name(font_name_w.ToUTF8());
-		
+
 		float scroll=0.f;
 		if (!scrollbar)
 			return;
 
 		scroll = GetScrollBar(0).GetPos();
-		
+
 		// Now get the height of the font.
 						// TODO: Get the real font
 		CFontMetrics font(font_name);
@@ -2112,7 +2112,7 @@ void CInput::UpdateAutoScroll()
 			if (m_iBufferPos >= current->m_ListStart &&
 				m_iBufferPos <= current->m_ListStart+(int)current->m_ListOfX.size())
 				break;
-			
+
 			++current;
 			++row;
 		}

@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,9 +21,9 @@
 
 #include "simulation2/system/InterfaceScripted.h"
 
-std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player, bool forceRetainInFog)
+std::string ICmpRangeManager::GetLosVisibility_wrapper(entity_id_t ent, int player)
 {
-	ELosVisibility visibility = GetLosVisibility(ent, player, forceRetainInFog);
+	ELosVisibility visibility = GetLosVisibility(ent, player);
 	switch (visibility)
 	{
 	case VIS_HIDDEN: return "hidden";
@@ -51,7 +51,7 @@ DEFINE_INTERFACE_METHOD_0("ExploreTerritories", void, ICmpRangeManager, ExploreT
 DEFINE_INTERFACE_METHOD_2("SetLosRevealAll", void, ICmpRangeManager, SetLosRevealAll, player_id_t, bool)
 DEFINE_INTERFACE_METHOD_1("GetLosRevealAll", bool, ICmpRangeManager, GetLosRevealAll, player_id_t)
 DEFINE_INTERFACE_METHOD_5("GetElevationAdaptedRange", entity_pos_t, ICmpRangeManager, GetElevationAdaptedRange, CFixedVector3D, CFixedVector3D, entity_pos_t, entity_pos_t, entity_pos_t)
-DEFINE_INTERFACE_METHOD_3("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t, bool)
+DEFINE_INTERFACE_METHOD_2("GetLosVisibility", std::string, ICmpRangeManager, GetLosVisibility_wrapper, entity_id_t, player_id_t)
 DEFINE_INTERFACE_METHOD_1("SetLosCircular", void, ICmpRangeManager, SetLosCircular, bool)
 DEFINE_INTERFACE_METHOD_0("GetLosCircular", bool, ICmpRangeManager, GetLosCircular)
 DEFINE_INTERFACE_METHOD_2("SetSharedLos", void, ICmpRangeManager, SetSharedLos, player_id_t, std::vector<player_id_t>)

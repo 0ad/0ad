@@ -340,7 +340,7 @@ BuildingAI.prototype.CheckTargetVisible = function(target)
 	if (cmpFogging && cmpFogging.IsMiraged(cmpOwnership.GetOwner()))
 		return true;
 
-	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner(), false) == "hidden")
+	if (cmpRangeManager.GetLosVisibility(target, cmpOwnership.GetOwner()) == "hidden")
 		return false;
 
 	// Either visible directly, or visible in fog

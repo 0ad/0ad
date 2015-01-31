@@ -151,20 +151,22 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	var tradingGoods = { "food": 0, "wood": 0, "stone": 0, "metal": 0 };
 	// first, try to anticipate future needs 
 	var stocks = gameState.ai.HQ.getTotalResourceLevel(gameState);
+	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	var remaining = 100;
 	var targetNum = this.Config.Economy.targetNumTraders;
 	for (var type in stocks)
 	{
 		if (type == "food")
 			continue;
+		let wantedRate = gameState.ai.HQ.wantedRates[type];
 		if (stocks[type] < 200)
 		{
-			tradingGoods[type] = 20;
-			targetNum += 3;
+			tradingGoods[type] = (wantedRate > 0) ? 20 : 10;
+			targetNum += Math.min(5, 3 + Math.ceil(wantedRate/30));
 		}
 		else if (stocks[type] < 500)
 		{
-			tradingGoods[type] = 15;
+			tradingGoods[type] = (wantedRate > 0) ? 15 : 10;
 			targetNum += 2;
 		}
 		else if (stocks[type] < 1000)
@@ -181,7 +183,6 @@ m.TradeManager.prototype.setTradingGoods = function(gameState)
 	var mainNeed = Math.floor(remaining * 70 / 100)
 	var nextNeed = remaining - mainNeed;
 
-	var mostNeeded = gameState.ai.HQ.pickMostNeededResources(gameState);
 	tradingGoods[mostNeeded[0].type] += mainNeed;
 	if (mostNeeded[1].wanted > 0)
 		tradingGoods[mostNeeded[1].type] += nextNeed;
@@ -565,7 +566,7 @@ m.TradeManager.prototype.update = function(gameState, events, queues)
 			this.trainMoreTraders(gameState, queues);
 		if (gameState.ai.playedTurn % 20 == 0 && this.traders.length >= 2)
 			gameState.ai.HQ.researchManager.researchTradeBonus(gameState, queues);
-		if (gameState.ai.playedTurn % 80 == 0)
+		if (gameState.ai.playedTurn % 60 == 0)
 			this.setTradingGoods(gameState);
 	}
 };

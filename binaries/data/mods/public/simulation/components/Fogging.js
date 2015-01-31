@@ -160,7 +160,7 @@ Fogging.prototype.OnDestroy = function(msg)
 	for (var player = 0; player < this.mirages.length; ++player)
 	{
 		var cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
-		if (cmpRangeManager.GetLosVisibility(this.mirages[player], player, false) == "hidden")
+		if (cmpRangeManager.GetLosVisibility(this.mirages[player], player) == "hidden")
 		{
 			Engine.DestroyEntity(this.mirages[player]);
 			continue;

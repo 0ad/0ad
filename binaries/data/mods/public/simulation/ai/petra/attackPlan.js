@@ -644,50 +644,54 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 {
 	var plan = this.name;
 	var added = false;
-	var self = this;
 	// If we can not build units, assign all available except those affected to allied defense to the current attack
 	if (!this.canBuildUnits)
 	{
-		gameState.getOwnUnits().forEach(function(ent) {
+		for (let ent of gameState.getOwnUnits().values())
+		{
 			if (!ent.position())
-				return;
+				continue;
 			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-				return;
+				continue;
 			if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
-				return;
+				continue;
 			if (ent.getMetadata(PlayerID, "allied"))
-				return;
+				continue;
 			ent.setMetadata(PlayerID, "plan", plan);
-			self.unitCollection.updateEnt(ent);
+			this.unitCollection.updateEnt(ent);
 			added = true; 
-		});
+		}
 		return added;
 	}
 
-	// TODO: assign myself units that fit only, right now I'm getting anything.
-	// Assign all no-roles that fit (after a plan aborts, for example).
 	if (this.type === "Raid")
 	{
+		// Raid are fast cavalry attack: assign all cav except some for hunting
 		var num = 0;
-		gameState.getOwnUnits().filter(API3.Filters.byClass("Cavalry")).forEach(function(ent) {
+		for (let ent of gameState.getOwnUnits().values())
+		{
+			if (!ent.hasClass("Cavalry"))
+				continue;
 			if (!ent.position())
-				return;
+				continue;
 			if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
-				return;
+				continue;
 			if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
-				return;
+				continue;
 			if (num++ < 2)
-				return;
+				continue;
 			ent.setMetadata(PlayerID, "plan", plan);
-			self.unitCollection.updateEnt(ent);
+			this.unitCollection.updateEnt(ent);
 			added = true;
-		});
+		}
 		return added;
 	}
 
-	var noRole = gameState.getOwnEntitiesByRole(undefined, false).filter(API3.Filters.byClass("Unit"));
-	for (var ent of noRole.values())
+	// Assign all units without specific role
+	for (let ent of gameState.getOwnEntitiesByRole(undefined, true).values())
 	{
+		if (!ent.hasClass("Unit"))
+			continue;
 		if (!ent.position())
 			continue;
 		if (ent.getMetadata(PlayerID, "plan") !== undefined && ent.getMetadata(PlayerID, "plan") !== -1)
@@ -697,27 +701,28 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
-		self.unitCollection.updateEnt(ent);
+		this.unitCollection.updateEnt(ent);
 		added = true;
 	}
 	// Add units previously in a plan, but which left it because needed for defense or attack finished
-	gameState.ai.HQ.attackManager.outOfPlan.forEach(function(ent) {
+	for (let ent of gameState.ai.HQ.attackManager.outOfPlan.values())
+	{
 		if (!ent.position())
-			return;
+			continue;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined || ent.getMetadata(PlayerID, "transporter") !== undefined)
-			return;
+			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
-		self.unitCollection.updateEnt(ent);
+		this.unitCollection.updateEnt(ent);
 		added = true;
-	});
+	}
 
-	if (this.type !== "Rush")
-		return added;
-
-	// For a rush, assign also workers (but keep a minimum number of defenders)
-	var worker = gameState.getOwnEntitiesByRole("worker", true);
-	var num = 0;
-	for (var ent of worker.values())
+	// Finally add also some workers,
+	// If Rush, assign all kind of workers, keeping a minimum number of defenders
+	// Otherwise, assign only idle workers if too much of them
+	let worker = gameState.getOwnEntitiesByRole("worker", true);
+	let num = 0;
+	let numbase = {};
+	for (let ent of worker.values())
 	{
 		if (!ent.position())
 			continue;
@@ -725,12 +730,23 @@ m.AttackPlan.prototype.assignUnits = function(gameState)
 			continue;
 		if (ent.getMetadata(PlayerID, "transport") !== undefined)
 			continue;
-		if (ent.hasClass("Ship") || ent.hasClass("Support") || ent.attackTypes() === undefined)
+		if (!ent.hasClass("CitizenSoldier"))
 			continue;
-		if (num++ < 9)
+		let baseID = ent.getMetadata(PlayerID, "base");
+		if (baseID)
+			numbase[baseID] = numbase[baseID] ? ++numbase[baseID] : 1;
+		else
+		{
+			API3.warn("Petra problem ent without base ");
+			m.dumpEntity(ent);
+			continue;
+		}
+		if (this.type !== "Rush" && ent.getMetadata(PlayerID, "subrole") !== "idle")
+			continue;
+		if (num++ < 9 || numbase[baseID] < 5)
 			continue;
 		ent.setMetadata(PlayerID, "plan", plan);
-		self.unitCollection.updateEnt(ent);
+		this.unitCollection.updateEnt(ent);
 		added = true;
 	}
 	return added;

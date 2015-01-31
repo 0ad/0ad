@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,9 +30,14 @@ class CCmpVisibilityScripted : public ICmpVisibility
 public:
 	DEFAULT_SCRIPT_WRAPPER(VisibilityScripted)
 
-	virtual ICmpRangeManager::ELosVisibility GetLosVisibility(player_id_t player, bool isOutsideFog, bool forceRetainInFog)
+	virtual bool IsActivated()
 	{
-		int visibility = m_Script.Call<int, player_id_t, bool, bool>("GetLosVisibility", player, isOutsideFog, forceRetainInFog);
+		return m_Script.Call<bool>("IsActivated");
+	}
+
+	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored)
+	{
+		int visibility = m_Script.Call<int, player_id_t, bool, bool>("GetVisibility", player, isVisible, isExplored);
 
 		switch (visibility)
 		{

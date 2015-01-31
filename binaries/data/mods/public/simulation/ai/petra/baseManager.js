@@ -494,7 +494,7 @@ m.BaseManager.prototype.checkResourceLevels = function (gameState, queues)
 	
 };
 
-// let's return the estimated gather rates.
+// Adds the estimated gather rates from this base to the currentRates
 m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 {
 	for (var i in currentRates)
@@ -504,25 +504,22 @@ m.BaseManager.prototype.getGatherRates = function(gameState, currentRates)
 		// Given that the faster you gather, the more travel time matters,
 		// I use some logarithms.
 		// TODO: this should take into account for unit speed and/or distance to target
-		
-		var units = this.gatherersByType(gameState, i);
-		units.forEach(function (ent) {
+
+		this.gatherersByType(gameState, i).forEach(function (ent) {
 			var gRate = ent.currentGatherRate();
 			if (gRate !== undefined)
 				currentRates[i] += Math.log(1+gRate)/1.1;
 		});
 		if (i === "food")
 		{
-			units = this.workers.filter(API3.Filters.byMetadata(PlayerID, "subrole", "hunter"));
-			units.forEach(function (ent) {
+			this.workersBySubrole(gameState, "hunter").forEach(function (ent) {
 				if (ent.isIdle())
 					return;
 				var gRate = ent.currentGatherRate()
 				if (gRate !== undefined)
 					currentRates[i] += Math.log(1+gRate)/1.1;
 			});
-			units = this.workers.filter(API3.Filters.byMetadata(PlayerID, "subrole", "fisher"));
-			units.forEach(function (ent) {
+			this.workersBySubrole(gameState, "fisher").forEach(function (ent) {
 				if (ent.isIdle())
 					return;
 				var gRate = ent.currentGatherRate()
@@ -609,7 +606,7 @@ m.BaseManager.prototype.setWorkersIdleByPriority = function(gameState)
 m.BaseManager.prototype.reassignIdleWorkers = function(gameState)
 {
 	// Search for idle workers, and tell them to gather resources based on demand
-	var filter = API3.Filters.or(API3.Filters.byMetadata(PlayerID,"subrole","idle"), API3.Filters.not(API3.Filters.byHasMetadata(PlayerID,"subrole")));
+	var filter = API3.Filters.byMetadata(PlayerID, "subrole", "idle");
 	var idleWorkers = gameState.updatingCollection("idle-workers-base-" + this.ID, filter, this.workers);
 
 	var self = this;
