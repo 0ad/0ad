@@ -1424,7 +1424,12 @@ public:
 		// Else, default behavior
 
 		if (los.IsVisible(i, j))
+		{
+			if (cmpMirage)
+				return VIS_HIDDEN;
+
 			return VIS_VISIBLE;
+		}
 
 		if (!los.IsExplored(i, j))
 			return VIS_HIDDEN;
@@ -1433,26 +1438,22 @@ public:
 		if (!(cmpVisibility && cmpVisibility->GetRetainInFog()))
 			return VIS_HIDDEN;
 
-		if (cmpMirage && cmpMirage->GetPlayer() == player)
+		if (cmpMirage)
 			return VIS_FOGGED;
 
 		CmpPtr<ICmpOwnership> cmpOwnership(ent);
 		if (!cmpOwnership)
-			return VIS_VISIBLE;
+			return VIS_FOGGED;
 
 		if (cmpOwnership->GetOwner() == player)
 		{
 			CmpPtr<ICmpFogging> cmpFogging(ent);
-			if (!cmpFogging)
-				return VIS_VISIBLE;
-
-			// Fogged entities must not disappear while the mirage is not ready
-			if (!cmpFogging->IsMiraged(player))
+			if (!(cmpFogging && cmpFogging->IsMiraged(player)))
 				return VIS_FOGGED;
 
 			return VIS_HIDDEN;
 		}
-	
+
 		// Fogged entities must not disappear while the mirage is not ready
 		CmpPtr<ICmpFogging> cmpFogging(ent);
 		if (cmpFogging && cmpFogging->WasSeen(player) && !cmpFogging->IsMiraged(player))
