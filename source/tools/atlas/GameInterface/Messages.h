@@ -693,6 +693,12 @@ MESSAGE(TriggerToggleSelector,
 		((Position, position))
 		);
 
+QUERY(GetSelectedObjectsTemplateNames,
+		((std::vector<ObjectID>, ids))
+		,
+		((std::vector<std::string>, names))
+		);
+
 
 #ifndef MESSAGES_SKIP_SETUP
 #include "MessagesSetup.h"
