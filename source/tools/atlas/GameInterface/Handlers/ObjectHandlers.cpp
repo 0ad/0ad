@@ -975,4 +975,22 @@ MESSAGEHANDLER(SetBandbox)
 	AtlasView::GetView_Game()->SetBandbox(msg->show, (float)msg->sx0, (float)msg->sy0, (float)msg->sx1, (float)msg->sy1);
 }
 
+QUERYHANDLER(GetSelectedObjectsTemplateNames)
+{
+	std::vector<entity_id_t> ids = *msg->ids;
+	std::vector<std::string> names;
+
+	CmpPtr<ICmpTemplateManager> cmpTemplateManager(*g_Game->GetSimulation2(), SYSTEM_ENTITY);
+	ENSURE(cmpTemplateManager);
+
+	for (size_t i = 0; i < ids.size(); ++i)
+	{
+		entity_id_t id = (entity_id_t)ids[i];
+		std::string templateName = cmpTemplateManager->GetCurrentTemplateName(id);
+		names.push_back(templateName);
+	}
+
+	std::sort(names.begin(), names.end());
+	msg->names = names;
+}
 }
