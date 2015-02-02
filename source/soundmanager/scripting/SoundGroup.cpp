@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -197,7 +197,7 @@ void CSoundGroup::UploadPropertiesAndPlay(size_t theIndex, const CVector3D& posi
 			itemRollOff = 0;
 		
 		if ( sndData->IsStereo() )
-			LOGWARNING( "OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName()->string8() );
+			LOGWARNING("OpenAL: stereo sounds can't be positioned: %s", sndData->GetFileName().string8());
 
 		hSound->SetLocation(CVector3D((sndDist * sin(offSet)), 0, - sndDist * cos(offSet)));
 		hSound->SetRollOff(itemRollOff);

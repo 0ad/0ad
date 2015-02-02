@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -83,7 +83,7 @@ public:
 	void Pause();
 	void Resume();
 
-	Path* GetName();
+	const Path GetName();
 
 	virtual void SetLooping(bool loops);
 	virtual bool IdleTask();

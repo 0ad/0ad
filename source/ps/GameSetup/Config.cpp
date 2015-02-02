@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -24,7 +24,6 @@
 #include "ps/CLogger.h"
 #include "ps/ConfigDB.h"
 #include "ps/GameSetup/CmdLineArgs.h"
-#include "soundmanager/ISoundManager.h"
 
 // (these variables are documented in the header.)
 
@@ -106,28 +105,6 @@ static void LoadGlobals()
 	CFG_GET_VAL("silhouettes", g_Silhouettes);
 	CFG_GET_VAL("showsky", g_ShowSky);
 	CFG_GET_VAL("gui.scale", g_GuiScale);
-
-	if (g_SoundManager)
-	{
-		float gain = 0.5f;
-		float musicGain = 0.5f;
-		float ambientGain = 0.5f;
-		float actionGain = 0.5f;
-		float uiGain = 0.5f;
-
-		CFG_GET_VAL("sound.mastergain", gain);
-		CFG_GET_VAL("sound.musicgain", musicGain);
-		CFG_GET_VAL("sound.ambientgain", ambientGain);
-		CFG_GET_VAL("sound.actiongain", actionGain);
-		CFG_GET_VAL("sound.uigain", uiGain);
-
-		g_SoundManager->SetMasterGain(gain);
-		g_SoundManager->SetMusicGain(musicGain);
-		g_SoundManager->SetAmbientGain(ambientGain);
-		g_SoundManager->SetActionGain(actionGain);
-		g_SoundManager->SetUIGain(uiGain);
-	}
-
 
 	CFG_GET_VAL("jsdebugger.enable", g_JSDebuggerEnabled);
 	CFG_GET_VAL("profiler2.script.enable", g_ScriptProfilingEnabled);

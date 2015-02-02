@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,8 @@
 
 #if CONFIG2_AUDIO
 
-#include "soundmanager/data/SoundData.h"
 #include "soundmanager/SoundManager.h"
-
-#include <iostream>
+#include "soundmanager/data/SoundData.h"
 
 CBufferItem::CBufferItem(CSoundData* sndData)
 {
@@ -47,21 +45,21 @@ void CBufferItem::ReleaseOpenALBuffer()
 		return;
 
 	int num_processed;
-	AL_CHECK
+	AL_CHECK;
 	alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-	AL_CHECK
+	AL_CHECK;
 
 	if (num_processed > 0)
 	{
 		ALuint* al_buf = new ALuint[num_processed];
 		alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
 		
-		AL_CHECK
+		AL_CHECK;
 		delete[] al_buf;
 	}
 	alSourcei(m_ALSource, AL_BUFFER, 0);
 	((CSoundManager*)g_SoundManager)->ReleaseALSource(m_ALSource);
-	AL_CHECK
+	AL_CHECK;
 
 	m_ALSource = 0;
 }
@@ -78,7 +76,7 @@ bool CBufferItem::IdleTask()
 		CScopeLock lock(m_ItemMutex);
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
-		AL_CHECK
+		AL_CHECK;
 		m_ShouldBePlaying = (proc_state != AL_STOPPED);
 		return (proc_state != AL_STOPPED);
 	}
@@ -86,17 +84,17 @@ bool CBufferItem::IdleTask()
 	if (GetLooping())
 	{
 		int num_processed;
-		AL_CHECK
+		AL_CHECK;
 		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
 		
-		AL_CHECK
+		AL_CHECK;
 		for (int i = 0; i < num_processed; i++)
 		{
 			ALuint al_buf;
 			alSourceUnqueueBuffers(m_ALSource, 1, &al_buf);
-			AL_CHECK
+			AL_CHECK;
 			alSourceQueueBuffers(m_ALSource, 1, &al_buf);
-			AL_CHECK
+			AL_CHECK;
 		}
 	}
 
@@ -108,18 +106,18 @@ void CBufferItem::Attach(CSoundData* itemData)
 	if ( m_ALSource == 0 )
 		return;
 	
-	AL_CHECK
+	AL_CHECK;
 	if (m_SoundData != NULL)
 	{
 		CSoundData::ReleaseSoundData(m_SoundData);
 		m_SoundData = 0;
 	}
-	AL_CHECK
+	AL_CHECK;
 	if (itemData != NULL)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(),(const ALuint *) m_SoundData->GetBufferPtr());
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
@@ -129,4 +127,3 @@ void CBufferItem::SetLooping(bool loops)
 }
 
 #endif // CONFIG2_AUDIO
-

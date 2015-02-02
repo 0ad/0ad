@@ -1,4 +1,4 @@
-/* Copyright (C) 2013 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,8 @@
 
 #if CONFIG2_AUDIO
 
-#include "soundmanager/data/OggData.h"
 #include "soundmanager/SoundManager.h"
-
-#include <iostream>
+#include "soundmanager/data/OggData.h"
 
 CStreamItem::CStreamItem(CSoundData* sndData)
 {
@@ -44,36 +42,36 @@ void CStreamItem::ReleaseOpenALStream()
 	if (m_ALSource != 0)
 	{
 		int num_processed;
-		AL_CHECK
+		AL_CHECK;
 		alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-		AL_CHECK
+		AL_CHECK;
 
 		if (num_processed > 0)
 		{
 			ALuint* al_buf = new ALuint[num_processed];
 			alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-			AL_CHECK
+			AL_CHECK;
 			delete[] al_buf;
 		}
 		alSourcei(m_ALSource, AL_BUFFER, 0);
-		AL_CHECK
+		AL_CHECK;
 		((CSoundManager*)g_SoundManager)->ReleaseALSource(m_ALSource);
-		AL_CHECK
+		AL_CHECK;
 		m_ALSource = 0;
 	}
 }
 
 bool CStreamItem::IdleTask()
 {
-	AL_CHECK
+	AL_CHECK;
 	HandleFade();
-	AL_CHECK
+	AL_CHECK;
 
 	if (m_ALSource != 0)
 	{
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
-		AL_CHECK
+		AL_CHECK;
 		
 		if (proc_state == AL_STOPPED)
 		{
@@ -88,16 +86,16 @@ bool CStreamItem::IdleTask()
 			{
 				int num_processed;
 				alGetSourcei(m_ALSource, AL_BUFFERS_PROCESSED, &num_processed);
-				AL_CHECK
+				AL_CHECK;
 				
 				if (num_processed > 0)
 				{
 					ALuint* al_buf = new ALuint[num_processed];
 					alSourceUnqueueBuffers(m_ALSource, num_processed, al_buf);
-					AL_CHECK
+					AL_CHECK;
 					int didWrite = theData->FetchDataIntoBuffer(num_processed, al_buf);
 					alSourceQueueBuffers(m_ALSource, didWrite, al_buf);
-					AL_CHECK
+					AL_CHECK;
 					delete[] al_buf;
 				}
 			}
@@ -113,7 +111,7 @@ bool CStreamItem::IdleTask()
 			}
 		}
 	}
-	AL_CHECK
+	AL_CHECK;
 	return true;
 }
 
@@ -129,7 +127,7 @@ void CStreamItem::Attach(CSoundData* itemData)
 	{
 		m_SoundData = itemData->IncrementCount();
 		alSourceQueueBuffers(m_ALSource, m_SoundData->GetBufferCount(), (const ALuint *)m_SoundData->GetBufferPtr());
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
@@ -139,4 +137,3 @@ void CStreamItem::SetLooping(bool loops)
 }
 
 #endif // CONFIG2_AUDIO
-

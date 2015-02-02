@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@ public:
 	virtual bool IsPlaying() = 0;
 	
 	
-	virtual Path* GetName() = 0;
+	virtual const Path GetName() = 0;
 	virtual bool IdleTask() = 0;
 	virtual	bool IsFading() = 0;
 	virtual bool Finished() = 0;
@@ -68,4 +68,3 @@ public:
 #endif // CONFIG2_AUDIO
 
 #endif // INCLUDED_ISOUNDITEM_H
-
