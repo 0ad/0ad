@@ -482,7 +482,7 @@ ObjectBottomBar::ObjectBottomBar(
 
 static wxControl* CreateTemplateNameObject(wxWindow* parent, const std::string templateName, int counterTemplate)
 {
-	wxString idTemplate(templateName.c_str());
+	wxString idTemplate(wxString::FromUTF8(templateName.c_str()));
 	if (counterTemplate > 1)
 		idTemplate.Append(wxString::Format(wxT(" (%i)"), counterTemplate));
 
