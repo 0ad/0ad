@@ -1415,7 +1415,7 @@ m.HQ.prototype.findBestBaseForMilitary = function(gameState)
 m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 {
 	if (gameState.ai.queues.emergency.countQueuedUnits() !== 0)
-		return;
+		return false;
 
 	// find nearest base anchor
 	var distcut = 20000;
@@ -1451,7 +1451,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 		}
 	}
 	if (!nearestAnchor || distmin > distcut)
-		return;
+		return false;
 
 	// We will choose randomly ranged and melee units, except when garrisonHolder is full
 	// in which case we prefer melee units
@@ -1489,7 +1489,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 			break;
 	}
 	if (!templateFound)
-		return;
+		return false;
 
 	// Check first if we can afford it without touching the other accounts
 	// and if not, take some of other accounted resources
@@ -1512,6 +1512,7 @@ m.HQ.prototype.trainEmergencyUnits = function(gameState, positions)
 	if (autogarrison)
 		metadata.garrisonType = "protection";
 	gameState.ai.queues.emergency.addItem(new m.TrainingPlan(gameState, templateFound[0], metadata, 1, 1));
+	return true;
 };
 
 m.HQ.prototype.canBuild = function(gameState, structure)
