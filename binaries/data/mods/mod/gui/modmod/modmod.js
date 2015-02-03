@@ -329,21 +329,20 @@ function closePage()
 	Engine.SwitchGuiPage("page_pregame.xml", {});
 }
 
-
 /**
  * Moves an item in the list @p objectName up or down depending on the value of @p up.
  */
 function moveCurrItem(objectName, up)
 {
-	// reuse the check for null and if something is selected.
-	if (getCurrItemValue(objectName) == "")
+	var obj = Engine.GetGUIObjectByName(objectName);
+	if (!obj)
 		return;
 
-	var idx = Engine.GetGUIObjectByName(objectName).selected;
+	var idx = obj.selected;
 	if (idx === -1)
 		return;
 
-	var num = getNumItems(objectName);
+	var num = obj.list.length;
 	var idx2 = idx + (up ? -1 : 1);
 	if (idx2 < 0 || idx2 >= num)
 		return;
@@ -353,8 +352,8 @@ function moveCurrItem(objectName, up)
 	g_modsEnabled[idx2] = tmp;
 
 	// Selected object reached the new position.
-	Engine.GetGUIObjectByName(objectName).list = g_modsEnabled;
-	Engine.GetGUIObjectByName(objectName).selected = idx2;
+	obj.list = g_modsEnabled;
+	obj.selected = idx2;
 	generateModsList('modsEnabledList', g_modsEnabled);
 }
 
