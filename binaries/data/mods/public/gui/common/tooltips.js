@@ -1,10 +1,16 @@
 const COST_DISPLAY_NAMES = {
-	"food": "[icon=\"iconFood\"]",
-	"wood": "[icon=\"iconWood\"]",
-	"stone": "[icon=\"iconStone\"]",
-	"metal": "[icon=\"iconMetal\"]",
-	"population": "[icon=\"iconPopulation\"]",
-	"time": "[icon=\"iconTime\"]"
+	"food": '[icon="iconFood"]',
+	"wood": '[icon="iconWood"]',
+	"stone": '[icon="iconStone"]',
+	"metal": '[icon="iconMetal"]',
+	"population": '[icon="iconPopulation"]',
+	"time": '[icon="iconTime"]'
+};
+
+const txtFormats = {
+	"unit": ['[font="sans-10"][color="orange"]', '[/color][/font]'],
+	"header": ['[font="sans-bold-13"]', '[/font]'],
+	"body": ['[font="sans-13"]', '[/font]']
 };
 
 function damageValues(dmg)
@@ -18,40 +24,48 @@ function damageValues(dmg)
 function damageTypeDetails(dmg)
 {
 	if (!dmg)
-		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
+		return '[font="sans-12"]' + translate("(None)") + '[/font]';
 
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.hack.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Hack") + txtFormats.unit[1]
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.pierce.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Pierce") + txtFormats.unit[1]
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.crush.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Crush") + txtFormats.unit[1]
 		}));
 
 	return dmgArray.join(translate(", "));
 }
 
-// TODO color/font
 function attackRateDetails(entState, type)
 {
 	var time = entState.attack[type].repeatTime / 1000;
-	if (entState.buildingAI) {
-		var arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
-		return sprintf(translate("%(arrowString)s / %(timeString)s"), {
-			arrowString: sprintf(translatePlural("%(arrows)s arrow", "%(arrows)s arrows", arrows), { arrows: arrows}),
-			timeString: sprintf(translatePlural("%(time)s second", "%(time)s seconds", time), { time: time })
-		});
-	}
-	return sprintf(translatePlural("%(time)s second", "%(time)s seconds", time), { time: time });
+	var timeString = sprintf(translate("%(time)s %(second)s"), {
+		time: time,
+		second: txtFormats.unit[0] + translatePlural("second", "seconds", time) + txtFormats.unit[1]
+	});
+
+	if (!entState.buildingAI)
+		return timeString;
+
+	var arrows = Math.max(entState.buildingAI.arrowCount, entState.buildingAI.defaultArrowCount);
+	var arrowString = sprintf(translate("%(arrowcount)s %(arrow)s"), {
+		arrowcount: arrows,
+		arrow: txtFormats.unit[0] + translatePlural("arrow", "arrows", arrows) + txtFormats.unit[1]
+	});
+	return sprintf(translate("%(arrowString)s / %(timeString)s"), {
+		arrowString: arrowString,
+		timeString: timeString
+	});
 }
 
 // Converts an armor level into the actual reduction percentage
@@ -63,62 +77,62 @@ function armorLevelToPercentageString(level)
 
 function getArmorTooltip(dmg)
 {
-	var label = "[font=\"sans-bold-13\"]" + translate("Armor:") + "[/font]";
+	var label = txtFormats.header[0] + translate("Armor:") + txtFormats.header[1];
 	if (!dmg)
 		return sprintf(translate("%(label)s %(details)s"), {
 			"label": label,
-			"details": "[font=\"sans-12\"]" + translate("(None)") + "[/font]"
+			"details": '[font="sans-12"]' + translate("(None)") + '[/font]'
 		});
 
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.hack,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + "[/font]"
+			damageType: txtFormats.unit[0] + translate("Hack") + txtFormats.unit[1],
+			armorPercentage: '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.hack) }) + '[/font]'
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.pierce,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + "[/font]"
+			damageType: txtFormats.unit[0] + translate("Pierce") + txtFormats.unit[1],
+			armorPercentage: '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.pierce) }) + '[/font]'
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s %(armorPercentage)s"), {
 			damage: dmg.crush,
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]",
-			armorPercentage: "[font=\"sans-10\"]" + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + "[/font]"
+			damageType: txtFormats.unit[0] + translate("Crush") + txtFormats.unit[1],
+			armorPercentage: '[font="sans-10"]' + sprintf(translate("(%(armorPercentage)s)"), { armorPercentage: armorLevelToPercentageString(dmg.crush) }) + '[/font]'
 		}));
 
 	return sprintf(translate("%(label)s %(details)s"), {
 		"label": label,
-		"details": dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]")
+		"details": dmgArray.join('[font="sans-12"]' + translate(", ") + '[/font]')
 	});
 }
 
 function damageTypesToText(dmg)
 {
 	if (!dmg)
-		return "[font=\"sans-12\"]" + translate("(None)") + "[/font]";
+		return '[font="sans-12"]' + translate("(None)") + '[/font]';
 
 	var dmgArray = [];
 	if (dmg.hack)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.hack.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Hack") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Hack") + txtFormats.unit[1]
 		}));
 	if (dmg.pierce)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.pierce.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Pierce") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Pierce") + txtFormats.unit[1]
 		}));
 	if (dmg.crush)
 		dmgArray.push(sprintf(translate("%(damage)s %(damageType)s"), {
 			damage: dmg.crush.toFixed(1),
-			damageType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Crush") + "[/color][/font]"
+			damageType: txtFormats.unit[0] + translate("Crush") + txtFormats.unit[1]
 		}));
 
-	return dmgArray.join("[font=\"sans-12\"]" + translate(", ") + "[/font]");
+	return dmgArray.join('[font="sans-12"]' + translate(", ") + '[/font]');
 }
 
 function getAttackTypeLabel(type)
@@ -138,9 +152,9 @@ function getAttackTooltip(template)
 		return "";
 
 	if (template.buildingAI)
-		var rateLabel = "[font=\"sans-bold-13\"]" + translate("Interval:") + "[/font]";
+		var rateLabel = txtFormats.header[0] + translate("Interval:") + txtFormats.header[1];
 	else
-		var rateLabel = "[font=\"sans-bold-13\"]" + translate("Rate:") + "[/font]";
+		var rateLabel = txtFormats.header[0] + translate("Rate:") + txtFormats.header[1];
 
 	for (var type in template.attack)
 	{
@@ -154,7 +168,7 @@ function getAttackTooltip(template)
 			details: attackRateDetails(template, type)
 		});
 
-		var attackLabel = "[font=\"sans-bold-13\"]" + getAttackTypeLabel(type) + "[/font]";
+		var attackLabel = txtFormats.header[0] + getAttackTypeLabel(type) + txtFormats.header[1];
 		if (type != "Ranged")
 		{
 			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rate)s"), {
@@ -167,9 +181,9 @@ function getAttackTooltip(template)
 
 		var realRange = template.attack[type].elevationAdaptedRange;
 		var range = Math.round(template.attack[type].maxRange);
-		var rangeLabel = "[font=\"sans-bold-13\"]" + translate("Range:") + "[/font]"
+		var rangeLabel = txtFormats.header[0] + translate("Range:") + txtFormats.header[1];
 		var relativeRange = Math.round((realRange - range));
-		var meters = "[font=\"sans-10\"][color=\"orange\"]" + translate("meters") + "[/color][/font]";
+		var meters = txtFormats.unit[0] + translate("meters") + txtFormats.unit[1];
 
 		if (relativeRange) // show if it is non-zero
 			attacks.push(sprintf(translate("%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"), {
@@ -340,7 +354,7 @@ function getPopulationBonusTooltip(template)
 	var popBonus = "";
 	if (template.cost && template.cost.populationBonus)
 		popBonus = "\n" + sprintf(translate("%(label)s %(populationBonus)s"), {
-			label: "[font=\"sans-bold-13\"]" + translate("Population Bonus:") + "[/font]",
+			label: txtFormats.header[0] + translate("Population Bonus:") + txtFormats.header[1],
 			populationBonus: template.cost.populationBonus
 		});
 	return popBonus;
@@ -354,11 +368,11 @@ function getNeededResourcesTooltip(resources)
 	var formatted = [];
 	for (var resource in resources)
 		formatted.push(sprintf(translate("%(component)s %(cost)s"), {
-			component: "[font=\"sans-12\"]" + getCostComponentDisplayName(resource) + "[/font]",
+			component: '[font="sans-12"]' + getCostComponentDisplayName(resource) + '[/font]',
 			cost: resources[resource]
 		}));
 
-	return "\n\n[font=\"sans-bold-13\"][color=\"red\"]" + translate("Insufficient resources:") + "[/color][/font]\n" + formatted.join("  ");
+	return '\n\n[font="sans-bold-13"][color="red"]' + translate("Insufficient resources:") + '[/color][/font]\n' + formatted.join("  ");
 }
 
 function getSpeedTooltip(template)
@@ -366,14 +380,40 @@ function getSpeedTooltip(template)
 	if (!template.speed)
 		return "";
 
-	var label = "[font=\"sans-bold-13\"]" + translate("Speed:") + "[/font]";
+	var label = txtFormats.header[0] + translate("Speed:") + txtFormats.header[1];
 	var speeds = [];
 	if (template.speed.walk)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Walk") + "[/color][/font]"}));
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.walk, movementType: txtFormats.unit[0] + translate("Walk") + txtFormats.unit[1]}));
 	if (template.speed.run)
-		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: "[font=\"sans-10\"][color=\"orange\"]" + translate("Run") + "[/color][/font]"}));
+		speeds.push(sprintf(translate("%(speed)s %(movementType)s"), { speed: template.speed.run, movementType: txtFormats.unit[0] + translate("Run") + txtFormats.unit[1]}));
 
-	return sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) })
+	return sprintf(translate("%(label)s %(speeds)s"), { label: label, speeds: speeds.join(translate(", ")) });
+}
+
+function getHealerTooltip(template)
+{
+	if (!template.healer)
+		return "";
+
+	var healer = [
+		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+			label: txtFormats.header[0] + translate("Heal:") + txtFormats.header[1],
+			val: template.healer.HP,
+			// Translation: Short for Health Points (that are healed in one healing action)
+			unit: txtFormats.unit[0] + translate("HP") + txtFormats.unit[1]
+		}),
+		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+			label: txtFormats.header[0] + translate("Range:") + txtFormats.header[1],
+			val: template.healer.Range,
+			unit: txtFormats.unit[0] + translate("meters") + txtFormats.unit[1]
+		}),
+		sprintf(translate("%(label)s %(val)s %(unit)s"), {
+			label: txtFormats.header[0] + translate("Rate:") + txtFormats.header[1],
+			val: template.healer.Rate/1000,
+			unit: txtFormats.unit[0] + translatePlural("second", "seconds", template.healer.Rate/1000) + txtFormats.unit[1]
+		})
+	];
+	return healer.join(translate(", "));
 }
 
 
@@ -422,11 +462,11 @@ function getVisibleEntityClassesFormatted(template)
 	var r = ""
 	if (template.visibleIdentityClasses && template.visibleIdentityClasses.length)
 	{
-		r += "\n[font=\"sans-bold-13\"]" + translate("Classes:") + "[/font] ";
-		r += "[font=\"sans-13\"]" + translate(template.visibleIdentityClasses[0]) ;
-		for (var c = 1; c < template.visibleIdentityClasses.length; c++)
-			r += ", " + translate(template.visibleIdentityClasses[c]);
-		r += "[/font]";
+		r += '\n' + txtFormats.header[0] + translate("Classes:") + txtFormats.header[1];
+		var classes = [];
+		for (var c of template.visibleIdentityClasses)
+			classes.push(translate(c));
+		r += ' ' + txtFormats.body[0] + classes.join(translate(", ")) + txtFormats.body[1];
 	}
 	return r;
 }
