@@ -121,6 +121,22 @@ StatisticsTracker.prototype.Init = function()
 	this.treasuresCollected = 0;
 };
 
+/**
+ * Returns a subset of statistics that will be added to the simulation state,
+ * thus called each turn. Basic statistics should not contain data that would 
+ * be expensive to compute.
+ *
+ * Note: as of now, nothing in the game needs that, but some AIs developed by
+ * modders need it in the API.
+ */
+StatisticsTracker.prototype.GetBasicStatistics = function()
+{
+	return {
+		"resourcesGathered": this.resourcesGathered,
+		"percentMapExplored": this.GetPercentMapExplored()
+	};
+};
+
 StatisticsTracker.prototype.GetStatistics = function()
 {
 	return {

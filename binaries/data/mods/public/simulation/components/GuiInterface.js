@@ -128,6 +128,17 @@ GuiInterface.prototype.GetSimulationState = function(player)
 	var cmpBarter = Engine.QueryInterface(SYSTEM_ENTITY, IID_Barter);
 	ret.barterPrices = cmpBarter.GetPrices();
 
+	// Add basic statistics to each player
+	var cmpPlayerMan = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	var n = cmpPlayerMan.GetNumPlayers();
+	for (var i = 0; i < n; ++i)
+	{
+		var playerEnt = cmpPlayerMan.GetPlayerByID(i);
+		var cmpPlayerStatisticsTracker = Engine.QueryInterface(playerEnt, IID_StatisticsTracker);
+		if (cmpPlayerStatisticsTracker)
+			ret.players[i].statistics = cmpPlayerStatisticsTracker.GetBasicStatistics();
+	}
+
 	return ret;
 };
 
