@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -25,30 +25,20 @@
 #include "OggData.h"
 #include "ps/CLogger.h"
 
-#include <iostream>
-
 DataMap CSoundData::sSoundData;
 
 CSoundData::CSoundData()
+	: m_ALBuffer(0), m_RetentionCount(0)
 {
-	InitProperties();
 }
 
 CSoundData::~CSoundData()
 {
-	AL_CHECK
+	AL_CHECK;
 	if (m_ALBuffer != 0)
 		alDeleteBuffers(1, &m_ALBuffer);
 	m_ALBuffer = 0;
-	AL_CHECK
-	delete m_FileName;
-}
-
-void CSoundData::InitProperties()
-{
-	m_ALBuffer = 0;
-	m_RetentionCount = 0;
-	m_FileName = NULL;
+	AL_CHECK;
 }
 
 void CSoundData::ReleaseSoundData(CSoundData* theData)
@@ -57,7 +47,7 @@ void CSoundData::ReleaseSoundData(CSoundData* theData)
 
 	if (theData->DecrementCount())
 	{
-		if ((itemFind = CSoundData::sSoundData.find( theData->GetFileName()->string() )) != sSoundData.end())
+		if ((itemFind = CSoundData::sSoundData.find( theData->GetFileName().string() )) != sSoundData.end())
 		{
 			CSoundData::sSoundData.erase(itemFind);
 		}
@@ -98,20 +88,16 @@ bool CSoundData::IsOneShot()
 
 CSoundData* CSoundData::SoundDataFromOgg(const VfsPath& itemPath)
 {
-	CSoundData* answer = NULL;
 	COggData* oggAnswer = new COggData();
 
-	if ( oggAnswer->InitOggFile(itemPath) )
-	{
-		answer = oggAnswer;
-	}
-	else
+	if (!oggAnswer->InitOggFile(itemPath))
 	{
 		LOGERROR("could not initialize ogg data at %s", itemPath.string8());
 		delete oggAnswer;
+		return NULL;
 	}
 
-	return answer;
+	return oggAnswer;
 }
 
 int CSoundData::GetBufferCount()
@@ -119,16 +105,14 @@ int CSoundData::GetBufferCount()
 	return 1;
 }
 
-Path* CSoundData::GetFileName()
+const Path& CSoundData::GetFileName()
 {
 	return m_FileName;
 }
 
 void CSoundData::SetFileName(const Path& aName)
 {
-	delete m_FileName;
-
-	m_FileName = new Path( aName );
+	m_FileName = aName;
 }
 
 CSoundData* CSoundData::IncrementCount()

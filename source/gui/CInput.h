@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,9 +35,6 @@ GUI Object - Input [box]
 //  Includes / Compiler directives
 //--------------------------------------------------------
 #include "GUI.h"
-
-// TODO Gee: Remove
-class IGUIScrollBar;
 
 //--------------------------------------------------------
 //  Macros
@@ -111,53 +108,54 @@ protected:
 	 */
 	virtual void Draw();
 
-	// Calculate m_CharacterPosition
-	//  the main task for this function is to perfom word-wrapping
-	// You input from which character it has been changed, because
-	//  if we add a character to the very last end, we don't want
-	//  process everything all over again! Also notice you can
-	//  specify a 'to' also, it will only be used though if a '\n'
-	//  appears, because then the word-wrapping won't change after
-	//  that.
+	/**
+	 * Calculate m_CharacterPosition
+	 * the main task for this function is to perfom word-wrapping
+	 * You input from which character it has been changed, because
+	 * if we add a character to the very last end, we don't want
+	 * process everything all over again! Also notice you can
+	 * specify a 'to' also, it will only be used though if a '\n'
+	 * appears, because then the word-wrapping won't change after
+	 * that.
+	 */
 	void UpdateText(int from=0, int to_before=-1, int to_after=-1);
 
-	// Delete the current selection. Also places the pointer at the
-	//  crack between the two segments kept.
+	/**
+	 * Delete the current selection. Also places the pointer at the
+	 * crack between the two segments kept.
+	 */
 	void DeleteCurSelection();
 
-	// Is text selected? It can be denote two ways, m_iBufferPos_Tail
-	//  being -1 or the same as m_iBufferPos. This makes for clearer
-	//  code.
+	/**
+	 * Is text selected? It can be denote two ways, m_iBufferPos_Tail
+	 * being -1 or the same as m_iBufferPos. This makes for clearer
+	 * code.
+	 */
 	bool SelectingText() const;
 
-	// Get area of where text can be drawn.
+	/// Get area of where text can be drawn.
 	float GetTextAreaWidth();
 
-	// Called every time the auto-scrolling should be checked.
+	/// Called every time the auto-scrolling should be checked.
 	void UpdateAutoScroll();
 
-	// Clear composed IME input when supported (SDL2 only).
+	/// Clear composed IME input when supported (SDL2 only).
 	void ClearComposedText();
 
+	/// Updates the buffer (cursor) position exposed to JS.
+	void UpdateBufferPositionSetting();
 protected:
-	// Cursor position 
-	//  (the second one is for selection of larger areas, -1 if not used)
-	// A note on 'Tail', it was first called 'To', and the natural order
-	//  of X and X_To was X then X_To. Now Tail is called so, because it
-	//  can be placed both before and after, but the important things is
-	//  that m_iBufferPos is ALWAYS where the edit pointer is. Yes, there
-	//  is an edit pointer even though you select a larger area. For instance
-	//  if you want to resize the selection with Shift+Left/Right, there
-	//  are always two ways a selection can look. Check any OS GUI and you'll
-	//  see.
-	int m_iBufferPos,
-		m_iBufferPos_Tail;
+	/// Cursor position
+	int m_iBufferPos;
+	/// Cursor position we started to select from. (-1 if not selecting)
+	/// (NB: Can be larger than m_iBufferPos if selecting from back to front.)
+	int m_iBufferPos_Tail;
 
-	// If we're composing text with an IME
+	/// If we're composing text with an IME
 	bool m_ComposingText;
-	// The length and position of the current IME composition
+	/// The length and position of the current IME composition
 	int m_iComposedLength, m_iComposedPos;
-	// The position to insert committed text
+	/// The position to insert committed text
 	int m_iInsertPos;
 
 	// the outer vector is lines, and the inner is X positions
@@ -166,40 +164,44 @@ protected:
 	//  pointer should be placed when the input control is pressed.
 	struct SRow
 	{
-		int					m_ListStart;	// Where does the Row starts
-		std::vector<float>	m_ListOfX;		// List of X values for each character.
+		int					m_ListStart;	/// Where does the Row starts
+		std::vector<float>	m_ListOfX;		/// List of X values for each character.
 	};
 
-	// List of rows, list because I use a lot of iterators, and change
-	//  its size continuously, it's easier and safer if I know the
-	//  iterators never gets invalidated.
-	// For one-liners, only one row is used.
+	/**
+	 * List of rows to ease changing its size, so iterators stay valid.
+	 * For one-liners only one row is used.
+	 */
 	std::list< SRow > m_CharacterPositions;
 
 	// *** Things for a multi-lined input control *** //
 
-	// This is when you change row with up/down, and the row you jump
-	//  to doesn't have anything at that X position, then it will
-	//  keep the WantedX position in mind when switching to the next
-	//  row. It will keep on being used until it reach a row which meets
-	//  the requirements.
-	//  0.0f means not in use.
+	/**
+	 * When you change row with up/down, and the row you jump to does
+	 * not have anything at that X position, then it will keep the
+	 * m_WantedX position in mind when switching to the next row.
+	 * It will keep on being used until it reach a row which meets the
+	 * requirements.
+	 * 0.0f means not in use.
+	 */
 	float m_WantedX;
 
-	// If we are in the process of selecting a larger selection of text
-	//  using the mouse click (hold) and drag, this is true.
+	/**
+	 * If we are in the process of selecting a larger selection of text
+	 * using the mouse click (hold) and drag, this is true.
+	 */
 	bool m_SelectingText;
 
 	// *** Things for one-line input control *** //
 	float m_HorizontalScroll;
 
-	// Used to store the previous time for flashing the cursor.
+	/// Used to store the previous time for flashing the cursor.
 	double m_PrevTime;
 
-	// Cursor blink rate in seconds, if greater than 0.0.
+	/// Cursor blink rate in seconds, if greater than 0.0.
 	double m_CursorBlinkRate;
 
-	// If the cursor should be drawn or not.
+	/// If the cursor should be drawn or not.
 	bool m_CursorVisState;
 };
 

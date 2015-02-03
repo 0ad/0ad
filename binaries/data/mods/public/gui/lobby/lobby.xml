@@ -231,7 +231,7 @@
 				<object name="chatText" size="0 0 100% 94%" type="text" style="ChatPanel" font="sans-13"/>
 				<object name="chatInput" size="0 94% 100% 100%" type="input" style="ModernInput" font="sans-13">
 					<action on="Press">submitChatInput();</action>
-					<action on="Tab">completeNick();</action>
+					<action on="Tab">autoCompleteNick("chatInput", Engine.GetPlayerList());</action>
 				</object>
 			</object>
 		</object>

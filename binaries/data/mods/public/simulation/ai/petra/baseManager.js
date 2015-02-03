@@ -16,18 +16,20 @@ m.BaseManager = function(gameState, Config)
 {
 	this.Config = Config;
 	this.ID = gameState.ai.uniqueIDs.bases++;
-	
+
 	// anchor building: seen as the main building of the base. Needs to have territorial influence
 	this.anchor = undefined;
 	this.anchorId = undefined;
 	this.accessIndex = undefined;
-	
+
 	// Maximum distance (from any dropsite) to look for resources
 	// 3 areas are used: from 0 to max/4, from max/4 to max/2 and from max/2 to max 
 	this.maxDistResourceSquare = 360*360;
-	
+
 	this.constructing = false;
-	
+	// Defenders to train in this cc when its construction is finished 
+	this.neededDefenders = ((this.Config.difficulty > 2) ? 3 + 2*(this.Config.difficulty - 3) : 0);
+
 	// vector for iterating, to check one use the HQ map.
 	this.territoryIndices = [];
 };
@@ -36,6 +38,8 @@ m.BaseManager.prototype.init = function(gameState, unconstructed)
 {
 	if (unconstructed !== undefined)
 		this.constructing = unconstructed;
+	else
+		this.neededDefenders = 0;
 	this.workerObject = new m.Worker(this);
 	// entitycollections
 	this.units = gameState.getOwnUnits().filter(API3.Filters.byMetadata(PlayerID, "base", this.ID));
@@ -110,6 +114,7 @@ m.BaseManager.prototype.checkEvents = function (gameState, events, queues)
 				// sounds like we lost our anchor. Let's reaffect our units and buildings
 				this.anchor = undefined;
 				this.anchorId = undefined;
+				this.neededDefenders = 0;
 				let bestbase = m.getBestBase(ent, gameState);
 				this.newbaseID = bestbase.ID;
 				for (let entity of this.units.values())
@@ -991,6 +996,8 @@ m.BaseManager.prototype.update = function(gameState, queues, events)
 			}
 		}
 	}
+	else if (this.neededDefenders && gameState.ai.HQ.trainEmergencyUnits(gameState, [this.anchor.position()]))
+		--this.neededDefenders;
 
 	if (gameState.ai.playedTurn % 2 === 0 && gameState.currentPhase() > 1)
 		this.setWorkersIdleByPriority(gameState);
@@ -1013,6 +1020,7 @@ m.BaseManager.prototype.Serialize = function()
 		"maxDistResourceSquare": this.maxDistResourceSquare,
 		"constructing": this.constructing,
 		"gatherers": this.gatherers,
+		"neededDefenders": this.neededDefenders,
 		"territoryIndices": this.territoryIndices
 	};
 };

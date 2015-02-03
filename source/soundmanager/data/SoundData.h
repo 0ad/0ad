@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -44,14 +44,13 @@ public:
 	
 	CSoundData* IncrementCount();
 	bool DecrementCount();
-	void InitProperties();
 	virtual bool IsOneShot();
 	virtual bool IsStereo();
 
 	
 	virtual unsigned int GetBuffer();
 	virtual int GetBufferCount();
-	virtual Path* GetFileName();
+	virtual const Path& GetFileName();
 	virtual void SetFileName(const Path& aName);
 
 	virtual unsigned int* GetBufferPtr();
@@ -61,7 +60,7 @@ protected:
 
 	unsigned int m_ALBuffer;
 	int m_RetentionCount;
-	Path* m_FileName;
+	Path m_FileName;
 
 };
 

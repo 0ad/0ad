@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -21,10 +21,8 @@
 
 #if CONFIG2_AUDIO
 
-#include "soundmanager/data/SoundData.h"
 #include "soundmanager/SoundManager.h"
-
-#include <iostream>
+#include "soundmanager/data/SoundData.h"
 
 CSoundItem::CSoundItem()
 {
@@ -56,7 +54,7 @@ bool CSoundItem::IdleTask()
 		CScopeLock lock(m_ItemMutex);
 		int proc_state;
 		alGetSourcei(m_ALSource, AL_SOURCE_STATE, &proc_state);
-		AL_CHECK
+		AL_CHECK;
 		m_ShouldBePlaying = (proc_state != AL_STOPPED);
 		return (proc_state != AL_STOPPED);
 	}
@@ -73,15 +71,14 @@ void CSoundItem::Attach(CSoundData* itemData)
 
 	if (itemData != NULL)
 	{
-		AL_CHECK
+		AL_CHECK;
 		alSourcei(m_ALSource, AL_BUFFER, 0);
-		AL_CHECK
+		AL_CHECK;
 		m_SoundData = itemData->IncrementCount();
 		alSourcei(m_ALSource, AL_BUFFER, m_SoundData->GetBuffer());
 		
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
 #endif // CONFIG2_AUDIO
-

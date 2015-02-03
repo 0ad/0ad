@@ -240,3 +240,49 @@ function sanitizePlayerName(name, stripUnicode, stripSpaces)
 	// Limit the length to 20 characters
 	return sanitizedName.substr(0,20);
 }
+
+function tryAutoComplete(text, autoCompleteList)
+{
+	if (!text.length)
+		return text;
+
+	var wordSplit = text.split(/\s/g);
+	if (!wordSplit.length)
+		return text;
+
+	var lastWord = wordSplit.pop();
+	if (!lastWord.length)
+		return text;
+
+	for (var word of autoCompleteList)
+	{
+		if (word.toLowerCase().indexOf(lastWord.toLowerCase()) != 0)
+			continue;
+		
+		text = wordSplit.join(" ")
+		if (text.length > 0)
+			text += " ";
+
+		text += word;
+		break;
+	}
+	return text;
+}
+
+function autoCompleteNick(guiName, playerList)
+{
+	var input = Engine.GetGUIObjectByName(guiName);
+	var text = input.caption;
+	if (!text.length)
+		return;
+
+	var autoCompleteList = [];
+	for (var player of playerList)
+		autoCompleteList.push(player.name);
+
+	var bufferPosition = input.buffer_position;
+	var textTillBufferPosition = text.substring(0, bufferPosition);
+	var newText = tryAutoComplete(textTillBufferPosition, autoCompleteList);
+	input.caption = newText + text.substring(bufferPosition);
+	input.buffer_position = bufferPosition + (newText.length - textTillBufferPosition.length);
+}

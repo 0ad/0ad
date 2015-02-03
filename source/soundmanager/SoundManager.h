@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -35,7 +35,7 @@
 #include <vector>
 #include <map>
 
-#define AL_CHECK CSoundManager::al_check(__func__, __LINE__);
+#define AL_CHECK CSoundManager::al_check(__func__, __LINE__)
 
 struct ALSourceHolder
 {
@@ -58,9 +58,9 @@ class CSoundManager : public ISoundManager
 
 protected:
 
-	ALuint m_ALEnvironment;
 	ALCcontext* m_Context;
 	ALCdevice* m_Device;
+	ALSourceHolder* m_ALSourceBuffer;
 	ISoundItem* m_CurrentTune;
 	ISoundItem* m_CurrentEnvirons;
 	CSoundManagerWorker* m_Worker;
@@ -76,8 +76,8 @@ protected:
 	bool m_Enabled;
 	long m_BufferSize;
 	int m_BufferCount;
-	bool m_MusicEnabled;
 	bool m_SoundEnabled;
+	bool m_MusicEnabled;
 
 	bool m_MusicPaused;
 	bool m_AmbientPaused;
@@ -90,7 +90,6 @@ protected:
 	long m_DistressErrCount;
 	long m_DistressTime;
 
-	ALSourceHolder* m_ALSourceBuffer;
 
 public:
 	CSoundManager();
@@ -118,7 +117,7 @@ public:
 	static void al_check(const char* caller, int line);
 
 	void SetMusicEnabled(bool isEnabled);
-	void setSoundEnabled(bool enabled);
+	void SetSoundEnabled(bool enabled);
 
 	ALuint GetALSource(ISoundItem* anItem);
 	void ReleaseALSource(ALuint theSource);

@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -47,7 +47,6 @@ public:
 
 protected:
 	OggStreamPtr  ogg;
-//	int m_current_section;
 	bool m_FileFinished;
 	bool m_OneShot;
 	ALuint m_Buffer[100];

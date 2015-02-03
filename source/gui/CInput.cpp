@@ -50,6 +50,7 @@ CInput::CInput()
 	m_PrevTime(0.0), m_CursorVisState(true), m_CursorBlinkRate(0.5), m_ComposingText(false),
 	m_iComposedLength(0), m_iComposedPos(0), m_iInsertPos(0)
 {
+	AddSetting(GUIST_int,					"buffer_position");
 	AddSetting(GUIST_float,					"buffer_zone");
 	AddSetting(GUIST_CStrW,					"caption");
 	AddSetting(GUIST_int,					"cell_id");
@@ -79,11 +80,18 @@ CInput::~CInput()
 {
 }
 
+void CInput::UpdateBufferPositionSetting()
+{
+	int* bufferPos = (int*)m_Settings["buffer_position"].m_pSetting;
+	*bufferPos = m_iBufferPos;
+}
+
 void CInput::ClearComposedText()
 {
 	CStrW *pCaption = (CStrW*)m_Settings["caption"].m_pSetting;
 	pCaption->erase(m_iInsertPos, m_iComposedLength);
 	m_iBufferPos = m_iInsertPos;
+	UpdateBufferPositionSetting();
 	m_iComposedLength = 0;
 	m_iComposedPos = 0;
 }
@@ -126,6 +134,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 		m_iBufferPos += text.length();
+		UpdateBufferPositionSetting();
 		m_iBufferPos_Tail = -1;
 
 		UpdateAutoScroll();
@@ -171,6 +180,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 			m_iBufferPos_Tail = -1;
 		}
 
+		UpdateBufferPositionSetting();
 		UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 		UpdateAutoScroll();
@@ -551,6 +561,7 @@ InReaction CInput::ManuallyHandleEvent(const SDL_Event_* ev)
 				break;
 		}
 
+		UpdateBufferPositionSetting();
 		return IN_HANDLED;
 	}
 
@@ -585,6 +596,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			UpdateText(m_iBufferPos, m_iBufferPos, m_iBufferPos+1);
 
 			m_iBufferPos += (int)wcslen(text);
+			UpdateBufferPositionSetting();
 
 			sys_clipboard_free(text);
 		}
@@ -660,6 +672,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 				}
 			}
 
+			UpdateBufferPositionSetting();
 			DeleteCurSelection();
 		}
 		return IN_HANDLED;
@@ -692,6 +705,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 
 				m_iBufferPos++;
 			}
+			UpdateBufferPositionSetting();
 			DeleteCurSelection();
 		}
 		return IN_HANDLED;
@@ -748,6 +762,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			m_iBufferPos_Tail = -1;
 		}
 
+		UpdateBufferPositionSetting();
 		UpdateAutoScroll();
 
 		return IN_HANDLED;
@@ -796,6 +811,7 @@ InReaction CInput::ManuallyHandleHotkeyEvent(const SDL_Event_* ev)
 			m_iBufferPos_Tail = -1;
 		}
 
+		UpdateBufferPositionSetting();
 		UpdateAutoScroll();
 
 		return IN_HANDLED;
@@ -841,6 +857,12 @@ void CInput::HandleMessage(SGUIMessage &Message)
 			GetScrollBar(0).SetScrollBarStyle(scrollbar_style);
 		}
 
+		if (Message.value == CStr("buffer_position"))
+		{
+			GUI<int>::GetSetting(this, Message.value, m_iBufferPos);
+			m_iBufferPos_Tail = -1; // position change resets selection
+		}
+
 		if (Message.value == CStr("size") || 
 			Message.value == CStr("z") ||
 			Message.value == CStr("font") || 
@@ -857,14 +879,10 @@ void CInput::HandleMessage(SGUIMessage &Message)
 			bool multiline;
 			GUI<bool>::GetSetting(this, "multiline", multiline);
 
-			if (multiline == false)
-			{
+			if (!multiline)
 				GetScrollBar(0).SetLength(0.f);
-			}
 			else
-			{
-				GetScrollBar(0).SetLength( m_CachedActualSize.bottom - m_CachedActualSize.top );
-			}
+				GetScrollBar(0).SetLength(m_CachedActualSize.bottom - m_CachedActualSize.top);
 
 			UpdateText();
 		}
@@ -893,13 +911,9 @@ void CInput::HandleMessage(SGUIMessage &Message)
 		//  should of course be placed accordingly. Other
 		//  special cases are handled like the input box norms.
 		if (g_keys[SDLK_RSHIFT] || g_keys[SDLK_LSHIFT])
-		{
 			m_iBufferPos = GetMouseHoveringTextPosition();
-		}
 		else
-		{
 			m_iBufferPos = m_iBufferPos_Tail = GetMouseHoveringTextPosition();
-		}
 
 		m_SelectingText = true;
 
@@ -1098,6 +1112,7 @@ void CInput::HandleMessage(SGUIMessage &Message)
 	default:
 		break;
 	}
+	UpdateBufferPositionSetting();
 }
 
 void CInput::UpdateCachedSize()
@@ -1552,6 +1567,7 @@ void CInput::UpdateText(int from, int to_before, int to_after)
 	// Ensure positions are valid after caption changes
 	m_iBufferPos = std::min(m_iBufferPos, (int)caption.size());
 	m_iBufferPos_Tail = std::min(m_iBufferPos_Tail, (int)caption.size());
+	UpdateBufferPositionSetting();
 
 	if (font_name.empty())
 	{
@@ -2053,6 +2069,7 @@ void CInput::DeleteCurSelection()
 	// Remove selection
 	m_iBufferPos_Tail = -1;
 	m_iBufferPos = virtualFrom;
+	UpdateBufferPositionSetting();
 }
 
 bool CInput::SelectingText() const

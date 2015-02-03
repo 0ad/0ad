@@ -1,4 +1,4 @@
-	/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -27,6 +27,7 @@
 #include "lib/external_libraries/libsdl.h"
 #include "ps/CLogger.h"
 #include "ps/CStr.h"
+#include "ps/ConfigDB.h"
 #include "ps/Filesystem.h"
 #include "ps/Profiler2.h"
 
@@ -88,14 +89,14 @@ public:
 	void CleanupItems()
 	{
 		CScopeLock lock(m_DeadItemsMutex);
-		AL_CHECK
+		AL_CHECK;
 		ItemsList::iterator deadItems = m_DeadItems->begin();
 		while (deadItems != m_DeadItems->end())
 		{
 			delete *deadItems;
 			++deadItems;
 
-			AL_CHECK
+			AL_CHECK;
 		}
 		m_DeadItems->clear();
 	}
@@ -131,7 +132,7 @@ private:
 
 				while (lstr != m_Items->end())
 				{
-					AL_CHECK
+					AL_CHECK;
 					if ((*lstr)->IdleTask())
 					{
 						if ((pauseTime == 500) && (*lstr)->IsFading())
@@ -146,13 +147,13 @@ private:
 					}
 					++lstr;
 
-					AL_CHECK
+					AL_CHECK;
 				}
 
 				delete m_Items;
 				m_Items = nextItemList;
 
-				AL_CHECK
+				AL_CHECK;
 			}
 			SDL_Delay(pauseTime);
 		}
@@ -216,8 +217,7 @@ void CSoundManager::al_check(const char* caller, int line)
 
 Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
 {
-//	LOGERROR("GUI file '%s' changed - reloading page", path.string8());
-
+	// TODO implement sound file hotloading
 	return INFO::OK;
 }
 
@@ -227,40 +227,27 @@ Status CSoundManager::ReloadChangedFiles(const VfsPath& UNUSED(path))
 }
 
 CSoundManager::CSoundManager()
+	: m_Context(nullptr), m_Device(nullptr), m_ALSourceBuffer(nullptr),
+	m_CurrentTune(nullptr), m_CurrentEnvirons(nullptr),
+	m_Worker(nullptr), m_DistressMutex(), m_PlayListItems(nullptr), m_SoundGroups(),
+	m_Gain(.5f), m_MusicGain(.5f), m_AmbientGain(.5f), m_ActionGain(.5f), m_UIGain(.5f),
+	m_Enabled(false), m_BufferSize(98304), m_BufferCount(50),
+	m_SoundEnabled(true), m_MusicEnabled(true), m_MusicPaused(false),
+	m_AmbientPaused(false), m_ActionPaused(false),
+	m_RunningPlaylist(false), m_PlayingPlaylist(false), m_LoopingPlaylist(false),
+	m_PlaylistGap(0), m_DistressErrCount(0), m_DistressTime(0)
 {
-	m_CurrentEnvirons = NULL;
-	m_ALSourceBuffer = NULL;
-	m_Device = NULL;
-	m_Context = NULL;
-	m_Worker = NULL;
-	m_PlayListItems	= NULL;
-	m_CurrentTune = NULL;
-	m_Gain = 1;
-	m_MusicGain = 1;
-	m_AmbientGain = 1;
-	m_ActionGain = 1;
-	m_UIGain = 1;
-	m_BufferCount = 50;
-	m_BufferSize = 98304;
-	m_SoundEnabled = true;
-	m_MusicEnabled = true;
-	m_MusicPaused = false;
-	m_AmbientPaused = false;
-	m_ActionPaused = false;
+	CFG_GET_VAL("sound.mastergain", m_Gain);
+	CFG_GET_VAL("sound.musicgain", m_MusicGain);
+	CFG_GET_VAL("sound.ambientgain", m_AmbientGain);
+	CFG_GET_VAL("sound.actiongain", m_ActionGain);
+	CFG_GET_VAL("sound.uigain", m_UIGain);
 
-	m_DistressTime = 0;
-	m_DistressErrCount = 0;
-
-	m_PlayingPlaylist = false;
-	m_LoopingPlaylist = false;
-	m_RunningPlaylist = false;
-	m_PlaylistGap = 0;
-
-	m_Enabled = false;
 	AlcInit();
 
 	if (m_Enabled)
 	{
+		SetMasterGain(m_Gain);
 		InitListener();
 
 		m_PlayListItems = new PlayList;
@@ -275,15 +262,15 @@ CSoundManager::~CSoundManager()
 
 	if (m_Worker)
 	{
-		AL_CHECK
+		AL_CHECK;
 		m_Worker->Shutdown();
-		AL_CHECK
+		AL_CHECK;
 		m_Worker->CleanupItems();
-		AL_CHECK
+		AL_CHECK;
 
 		delete m_Worker;
 	}
-	AL_CHECK
+	AL_CHECK;
 
 	for (std::map<std::wstring, CSoundGroup*>::iterator it = m_SoundGroups.begin(); it != m_SoundGroups.end(); ++it)
 		delete it->second;
@@ -486,7 +473,7 @@ void CSoundManager::SetMasterGain(float gain)
 	{
 		m_Gain = gain;
 		alListenerf(AL_GAIN, m_Gain);
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
@@ -510,13 +497,13 @@ void CSoundManager::SetUIGain(float gain)
 
 ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 {	
-	AL_CHECK
+	AL_CHECK;
 
 	if (m_Enabled)
 	{
 		CSoundData* itemData = CSoundData::SoundDataFromFile(itemPath);
 
-		AL_CHECK
+		AL_CHECK;
 		if (itemData)
 			return CSoundManager::ItemForData(itemData);
 	}
@@ -526,10 +513,10 @@ ISoundItem* CSoundManager::LoadItem(const VfsPath& itemPath)
 
 ISoundItem* CSoundManager::ItemForData(CSoundData* itemData)
 {	
-	AL_CHECK
+	AL_CHECK;
 	ISoundItem* answer = NULL;
 
-	AL_CHECK
+	AL_CHECK;
 	
 	if (m_Enabled && (itemData != NULL))
 	{
@@ -570,7 +557,7 @@ void CSoundManager::IdleTask()
 					else if (m_PlaylistGap < timer_Time())
 					{
 						m_PlaylistGap = 0;
-						PlayList::iterator it = find(m_PlayListItems->begin(), m_PlayListItems->end(), *(m_CurrentTune->GetName()));
+						PlayList::iterator it = find(m_PlayListItems->begin(), m_PlayListItems->end(), m_CurrentTune->GetName());
 						if (it != m_PlayListItems->end())
 						{
 							++it;
@@ -630,7 +617,7 @@ void CSoundManager::PlayGroupItem(ISoundItem* anItem, ALfloat groupGain)
 		{
 			anItem->SetGain(m_ActionGain * groupGain);
 			anItem->PlayAndDelete();
-			AL_CHECK
+			AL_CHECK;
 		}
 	}
 }
@@ -710,7 +697,7 @@ void CSoundManager::PlayAsUI(const VfsPath& itemPath, bool looping)
 				anItem->PlayAndDelete();
 			}
 		}
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
@@ -755,7 +742,7 @@ void CSoundManager::SetMusicItem(ISoundItem* anItem)
 {
 	if (m_Enabled)
 	{
-		AL_CHECK
+		AL_CHECK;
 		if (m_CurrentTune)
 		{
 			m_CurrentTune->FadeAndDelete(2.00);
@@ -787,7 +774,7 @@ void CSoundManager::SetMusicItem(ISoundItem* anItem)
 				anItem->StopAndDelete();
 			}
 		}
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 
@@ -812,7 +799,7 @@ void CSoundManager::SetAmbientItem(ISoundItem* anItem)
 				m_CurrentEnvirons->FadeToIn(m_AmbientGain, 2.00);
 			}
 		}
-		AL_CHECK
+		AL_CHECK;
 	}
 }
 #else // CONFIG2_AUDIO
