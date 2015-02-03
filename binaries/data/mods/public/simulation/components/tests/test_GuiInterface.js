@@ -101,6 +101,18 @@ AddMock(100, IID_TechnologyManager, {
 });
 
 AddMock(100, IID_StatisticsTracker, {
+	GetBasicStatistics: function() { 
+		return {
+			"resourcesGathered": {
+				"food": 100,	
+				"wood": 0,	
+				"metal": 0,	
+				"stone": 0,
+				"vegetarianFood": 0, 
+			},
+			"percentMapExplored": 10
+		};
+	},
 	GetStatistics: function() { 
 		return {
 			"unitsTrained": 10,
@@ -165,6 +177,18 @@ AddMock(101, IID_TechnologyManager, {
 });
 
 AddMock(101, IID_StatisticsTracker, {
+	GetBasicStatistics: function() { 
+		return {
+			"resourcesGathered": {
+				"food": 100,	
+				"wood": 0,	
+				"metal": 0,	
+				"stone": 0,
+				"vegetarianFood": 0, 
+			},
+			"percentMapExplored": 10
+		};
+	},
 	GetStatistics: function() { 
 		return {
 			"unitsTrained": 10,
@@ -222,6 +246,16 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			statistics: {
+				resourcesGathered: {
+					food: 100,
+					wood: 0,
+					metal: 0,
+					stone: 0,
+					vegetarianFood: 0, 
+				},
+				percentMapExplored: 10
+			},
 		},
 		{
 			name: "Player 2",
@@ -251,6 +285,16 @@ TS_ASSERT_UNEVAL_EQUALS(cmp.GetSimulationState(), {
 			researchedTechs: {},
 			classCounts: {},
 			typeCountsByClass: {},
+			statistics: {
+				resourcesGathered: {
+					food: 100,
+					wood: 0,
+					metal: 0,
+					stone: 0,
+					vegetarianFood: 0, 
+				},
+				percentMapExplored: 10
+			},
 		}
 	],
 	circularMap: false,
