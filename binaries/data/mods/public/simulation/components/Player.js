@@ -726,7 +726,7 @@ Player.prototype.SetDisabledTemplates = function(templates)
 	cmpGuiInterface.PushNotification({"type": "resetselectionpannel", "players": [this.GetPlayerID()]});
 };
 
-Player.prototype.GetDisabledTemplates = function(templates)
+Player.prototype.GetDisabledTemplates = function()
 {
 	return this.disabledTemplates;
 };
