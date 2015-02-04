@@ -100,14 +100,6 @@
           <rotate sid="rotationX">1 0 0 -2.04906e-5</rotate>
           <scale sid="scale">1 1 1</scale>
         </node>
-        <node id="prop_gar01" name="prop_gar01" type="NODE">
-          <matrix sid="parentinverse">1 0 0 0 0 1 -2.38419e-7 0 0 2.38419e-7 1 0 0 0 0 1</matrix>
-          <translate sid="location">1.25e-4 -0.02496695 11.01433</translate>
-          <rotate sid="rotationZ">0 0 1 0</rotate>
-          <rotate sid="rotationY">0 1 0 0</rotate>
-          <rotate sid="rotationX">1 0 0 -2.04906e-5</rotate>
-          <scale sid="scale">1 1 1</scale>
-        </node>
       </node>
     </visual_scene>
   </library_visual_scenes>
