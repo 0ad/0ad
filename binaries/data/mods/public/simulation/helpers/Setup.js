@@ -39,6 +39,18 @@ function LoadMapSettings(settings)
 	var cmpEndGameManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_EndGameManager);
 	if (settings.GameType)
 		cmpEndGameManager.SetGameType(settings.GameType);
+
+	if (settings.Garrison)
+	{
+		for (let holder in settings.Garrison)
+		{
+			let cmpGarrisonHolder = Engine.QueryInterface(+holder, IID_GarrisonHolder);
+			if (!cmpGarrisonHolder)
+				warning("Map error in Setup.js: entity " + holder + " can not garrison units");
+			else
+				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
+		}
+	}
 }
 
 Engine.RegisterGlobal("LoadMapSettings", LoadMapSettings);

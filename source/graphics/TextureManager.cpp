@@ -73,6 +73,16 @@ struct TPequal_to
 	}
 };
 
+std::size_t hash_value(const CTexturePtr& v)
+{
+	TPhash h;
+	return h(v);
+}
+std::size_t hash_value(const CTextureProperties& v)
+{
+	TPhash h;
+	return h(v);
+}
 
 class CTextureManagerImpl
 {

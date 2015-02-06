@@ -43,6 +43,8 @@ Player.prototype.Init = function()
 		"stone": markForTranslation("Stone"),
 	}
 	this.disabledTemplates = {};
+	this.disabledTechnologies = {};
+	this.startingTechnologies = {};
 };
 
 Player.prototype.SetPlayerID = function(id)
@@ -569,6 +571,24 @@ Player.prototype.IsNeutral = function(id)
 };
 
 /**
+ * Do some map dependant initializations
+ */
+Player.prototype.OnGlobalInitGame = function(msg)
+{
+	let cmpTechnologyManager = Engine.QueryInterface(this.entity, IID_TechnologyManager);
+	if (cmpTechnologyManager)
+		for (let tech in this.startingTechnologies)
+			cmpTechnologyManager.ResearchTechnology(tech);
+
+	// Replace the "{civ}" code with this civ ID
+	let disabledTemplates = this.disabledTemplates;
+	this.disabledTemplates = {};
+	for (let template in disabledTemplates)
+		if (disabledTemplates[template])
+			this.disabledTemplates[template.replace(/\{civ\}/g, this.civ)] = true;
+};
+
+/**
  * Keep track of population effects of all entities that
  * become owned or unowned by this player
  */
@@ -729,6 +749,39 @@ Player.prototype.SetDisabledTemplates = function(templates)
 Player.prototype.GetDisabledTemplates = function()
 {
 	return this.disabledTemplates;
+};
+
+Player.prototype.AddDisabledTechnology = function(tech)
+{
+	this.disabledTechnologies[tech] = true;
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+};
+
+Player.prototype.RemoveDisabledTechnology = function(tech)
+{
+	this.disabledTechnologies[tech] = false;
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+};
+
+Player.prototype.SetDisabledTechnologies = function(techs)
+{
+	this.disabledTechnologies = techs;
+	Engine.BroadcastMessage(MT_DisabledTechnologiesChanged, {});
+};
+
+Player.prototype.GetDisabledTechnologies = function()
+{
+	return this.disabledTechnologies;
+};
+
+Player.prototype.AddStartingTechnology = function(tech)
+{
+	this.startingTechnologies[tech] = true;
+};
+
+Player.prototype.SetStartingTechnologies = function(techs)
+{
+	this.startingTechnologies = techs;
 };
 
 Engine.RegisterComponentType(IID_Player, "Player", Player);

@@ -156,13 +156,19 @@ ProductionQueue.prototype.GetTechnologiesList = function()
 	
 	var techs = string.split(/\s+/);
 	var techList = [];
-	var superseded = {}; // Stores the tech which supersedes the key 
+	var superseded = {}; // Stores the tech which supersedes the key
+
+	var cmpPlayer = QueryOwnerInterface(this.entity, IID_Player);
+	if (cmpPlayer)
+		var disabledTechnologies = cmpPlayer.GetDisabledTechnologies();
 	
 	// Add any top level technologies to an array which corresponds to the displayed icons
 	// Also store what a technology is superceded by in the superceded object {"tech1":"techWhichSupercedesTech1", ...}
 	for (var i in techs)
 	{
 		var tech = techs[i];
+		if (disabledTechnologies && disabledTechnologies[tech])
+			continue;
 		var template = cmpTechnologyManager.GetTechnologyTemplate(tech);
 		if (!template.supersedes || techs.indexOf(template.supersedes) === -1)
 			techList.push(tech);
