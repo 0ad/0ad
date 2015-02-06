@@ -811,40 +811,188 @@ BEGIN_COMMAND(MoveObjects)
 };
 END_COMMAND(MoveObjects)
 
-
-BEGIN_COMMAND(RotateObject)
+BEGIN_COMMAND(RotateObjectsFromCenterPoint)
 {
-	float m_AngleOld, m_AngleNew;
+	typedef std::map<entity_id_t, CVector3D> ObjectPositionMap;
+	typedef std::map<entity_id_t, float> ObjectAngleMap;
+	ObjectPositionMap m_PosOld, m_PosNew;
+	ObjectAngleMap m_AngleOld, m_AngleNew;
+	CVector3D m_CenterPoint;
+	float m_AngleInitialRotation;
 
 	void Do()
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (!cmpPosition)
-			return;
+		std::vector<entity_id_t> ids = *msg->ids;
 
-		m_AngleOld = cmpPosition->GetRotation().Y.ToFloat();
-		if (msg->usetarget)
+		CVector3D minPos;
+		CVector3D maxPos;
+
+		// Compute min position and max position
+		for (size_t i = 0; i < ids.size(); ++i)
 		{
+			entity_id_t id = ids[i];
+
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			if (!cmpPosition)
+				continue;
+
+			CVector3D pos = cmpPosition->GetPosition();
+
+			m_PosOld[id] = cmpPosition->GetPosition();
+			m_AngleOld[id] = cmpPosition->GetRotation().Y.ToFloat();
+
+			if (i == 0) {
+				minPos = pos;
+				maxPos = pos;
+				m_CenterPoint.Y = pos.Y;
+				continue;
+			}
+
+			if (pos.X < minPos.X)
+				minPos.X = pos.X;
+
+			if (pos.X > maxPos.X)
+				maxPos.X = pos.X;
+
+			if (pos.Z < minPos.Z)
+				minPos.Z = pos.Z;
+
+			if (pos.Z > maxPos.Z)
+				maxPos.Z = pos.Z;
+		}
+
+		// Calculate objects center point
+		m_CenterPoint.X = minPos.X + ((maxPos.X - minPos.X) * 0.5);
+		m_CenterPoint.Z = minPos.Z + ((maxPos.Z - minPos.Z) * 0.5);
+
+		CVector3D target = msg->target->GetWorldSpace(m_CenterPoint.Y);
+		m_AngleInitialRotation = atan2(target.X-m_CenterPoint.X, target.Z-m_CenterPoint.Z);
+	}
+
+	void SetPos(ObjectPositionMap position, ObjectAngleMap angle)
+	{
+		ObjectPositionMap::iterator it;
+		for (it = position.begin(); it != position.end(); ++it)
+		{
+			entity_id_t id = it->first;
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			if (!cmpPosition)
+				return;
+
+			// Set 2D position, ignoring height
+			CVector3D pos = it->second;
+			cmpPosition->JumpTo(entity_pos_t::FromFloat(pos.X), entity_pos_t::FromFloat(pos.Z));
+
+			if (msg->rotateObject)
+				cmpPosition->SetYRotation(entity_angle_t::FromFloat(angle[id]));
+
+		}
+
+		for (it = position.begin(); it != position.end(); ++it)
+			CheckObstructionAndUpdateVisual(it->first);
+	}
+
+	void Redo()
+	{
+		SetPos(m_PosNew, m_AngleNew);
+	}
+
+	void RecalculateRotation(Position newPoint)
+	{
+		std::vector<entity_id_t> ids = *msg->ids;
+
+		CVector3D target = newPoint.GetWorldSpace(m_CenterPoint.Y);
+		float newAngle = atan2(target.X-m_CenterPoint.X, target.Z-m_CenterPoint.Z);
+
+		float globalAngle = m_AngleInitialRotation - newAngle;
+
+		// Recalculate positions
+		for (size_t i = 0; i < ids.size(); ++i)
+		{
+			entity_id_t id = ids[i];
+
+			CVector3D pos = m_PosOld[id];
+			float angle = atan2(pos.X - m_CenterPoint.X, pos.Z - m_CenterPoint.Z);
+			float localAngle = angle + (globalAngle - angle);
+			float xCos = cosf(localAngle);
+			float xSin = sinf(localAngle);
+
+			pos.X -= m_CenterPoint.X;
+			pos.Z -= m_CenterPoint.Z;
+
+			float newX = pos.X * xCos - pos.Z * xSin;
+			float newZ = pos.X * xSin + pos.Z * xCos;
+
+			pos.X = newX + m_CenterPoint.X;
+			pos.Z = newZ + m_CenterPoint.Z;
+
+			m_PosNew[id] = pos;
+
+			m_AngleNew[id] = m_AngleOld[id] - globalAngle;
+		}
+
+		SetPos(m_PosNew, m_AngleNew);
+	}
+
+	void Undo()
+	{
+		SetPos(m_PosOld, m_AngleOld);
+	}
+
+	void MergeIntoPrevious(cRotateObjectsFromCenterPoint* prev)
+	{
+		// TODO: do something valid if prev unit != this unit
+		ENSURE(*prev->msg->ids == *msg->ids);
+		m_PosOld = prev->m_PosOld;
+		m_AngleInitialRotation = prev->m_AngleInitialRotation;
+		m_AngleOld = prev->m_AngleOld;
+		m_CenterPoint = prev->m_CenterPoint;
+
+		RecalculateRotation(msg->target);
+	}
+};
+END_COMMAND(RotateObjectsFromCenterPoint)
+
+BEGIN_COMMAND(RotateObject)
+{
+	typedef std::map<entity_id_t, float> ObjectAngleMap;
+	ObjectAngleMap m_AngleOld, m_AngleNew;
+
+	void Do()
+	{
+		std::vector<entity_id_t> ids = *msg->ids;
+
+		for (size_t i = 0; i < ids.size(); ++i)
+		{
+			entity_id_t id = (entity_id_t)ids[i];
+
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			if (!cmpPosition)
+				return;
+
+			m_AngleOld[id] = cmpPosition->GetRotation().Y.ToFloat();
+
 			CMatrix3D transform = cmpPosition->GetInterpolatedTransform(0.f);
 			CVector3D pos = transform.GetTranslation();
 			CVector3D target = msg->target->GetWorldSpace(pos.Y);
-			m_AngleNew = atan2(target.X-pos.X, target.Z-pos.Z);
-		}
-		else
-		{
-			m_AngleNew = msg->angle;
+			m_AngleNew[id] = atan2(target.X-pos.X, target.Z-pos.Z);
 		}
 
 		SetAngle(m_AngleNew);
 	}
 
-	void SetAngle(float angle)
+	void SetAngle(ObjectAngleMap angles)
 	{
-		CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), (entity_id_t)msg->id);
-		if (!cmpPosition)
-			return;
+		ObjectAngleMap::iterator it;
+		for (it = angles.begin(); it != angles.end(); ++it)
+		{
+			entity_id_t id = (entity_id_t)it->first;
+			CmpPtr<ICmpPosition> cmpPosition(*g_Game->GetSimulation2(), id);
+			if (!cmpPosition)
+				return;
 
-		cmpPosition->SetYRotation(entity_angle_t::FromFloat(angle));
+			cmpPosition->SetYRotation(entity_angle_t::FromFloat(it->second));
+		}
 	}
 
 	void Redo()
@@ -860,7 +1008,7 @@ BEGIN_COMMAND(RotateObject)
 	void MergeIntoPrevious(cRotateObject* prev)
 	{
 		// TODO: do something valid if prev unit != this unit
-		ENSURE(prev->msg->id == msg->id);
+		ENSURE(*prev->msg->ids == *msg->ids);
 		prev->m_AngleNew = m_AngleNew;
 	}
 };
