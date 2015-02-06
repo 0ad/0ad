@@ -306,4 +306,7 @@ private:
 	std::weak_ptr<CTexture> m_Self;
 };
 
+std::size_t hash_value(const CTexturePtr& v);
+std::size_t hash_value(const CTextureProperties& v);
+
 #endif // INCLUDED_TEXTUREMANAGER
