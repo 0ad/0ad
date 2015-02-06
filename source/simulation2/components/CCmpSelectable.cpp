@@ -1,4 +1,4 @@
-/* Copyright (C) 2012 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -345,6 +345,14 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 			break;
 		}
 	case MT_PositionChanged:
+		{
+			if (m_AlwaysVisible)
+			{
+				const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
+				m_AlphaMin = msgData.inWorld ? MIN_ALPHA_ALWAYS_VISIBLE : MIN_ALPHA_UNSELECTED;
+				m_Color.a = m_AlphaMin;
+			}
+		}
 	case MT_TerrainChanged:
 	case MT_WaterChanged:
 		{
