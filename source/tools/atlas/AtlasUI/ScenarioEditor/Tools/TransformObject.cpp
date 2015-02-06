@@ -300,16 +300,9 @@ public:
 
 				return true;
 			}
-			else if (g_SelectedObjects.size() == 1 && ((evt.Dragging() && evt.RightIsDown()) || evt.RightDown()))
+			else if (!g_SelectedObjects.empty() && ((evt.Dragging() && evt.RightIsDown()) || evt.RightDown()))
 			{
-				// TODO: Rotation of selections with multiple objects?
-
-				// Dragging with right mouse button -> rotate objects to look
-				// at mouse
-				Position pos(evt.GetPosition());
-				for (size_t i = 0; i < g_SelectedObjects.size(); ++i)
-					POST_COMMAND(RotateObject, (g_SelectedObjects[i], true, pos, 0.f));
-
+				SET_STATE(Rotating);
 				return true;
 			}
 			else if (evt.Moving())
@@ -556,6 +549,63 @@ public:
 		}
 	}
 	Pasting;
+
+	struct sRotating : public State
+	{
+		bool fromCenterPoint;
+
+		void OnEnter(TransformObject* WXUNUSED(obj))
+		{
+			fromCenterPoint = true;
+		}
+
+		bool OnMouse(TransformObject* obj, wxMouseEvent& evt)
+		{
+			if (evt.RightUp())
+			{
+				POST_MESSAGE(ResetSelectionColor, ());
+				SET_STATE(Waiting);
+				return true;
+			}
+			else if (evt.Dragging())
+			{
+				bool fromGlobalAndIndividualCenterPoints = !evt.ControlDown() && !evt.ShiftDown();
+				bool newFromCenterPoint = evt.ShiftDown() || fromGlobalAndIndividualCenterPoints;
+				if (newFromCenterPoint != fromCenterPoint)
+				{
+					ScenarioEditor::GetCommandProc().FinaliseLastCommand();
+					fromCenterPoint = newFromCenterPoint;
+				}
+
+				Position pos(evt.GetPosition());
+
+				if (fromCenterPoint)
+					POST_COMMAND(RotateObjectsFromCenterPoint, (g_SelectedObjects, pos, fromGlobalAndIndividualCenterPoints));
+				else
+					POST_COMMAND(RotateObject, (g_SelectedObjects, pos));
+
+				return true;
+			}
+
+			return false;
+		}
+
+		bool OnKey(TransformObject* obj, wxKeyEvent& evt, KeyEventType type)
+		{
+			if (type == KEY_UP && evt.GetKeyCode() == WXK_ESCAPE)
+			{
+				// Cancel move action
+				ScenarioEditor::GetCommandProc().FinaliseLastCommand();
+				ScenarioEditor::GetCommandProc().Undo();
+				SET_STATE(Waiting);
+
+				return true;
+			}
+
+			return false;
+		}
+	}
+	Rotating;
 };
 
 IMPLEMENT_DYNAMIC_CLASS(TransformObject, StateDrivenTool<TransformObject>);

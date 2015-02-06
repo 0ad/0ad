@@ -5030,7 +5030,7 @@ UnitAI.prototype.PerformGather = function(target, queued, force)
 /**
  * Adds gather-near-position order to the queue, not forced, so it can be
  * interrupted by attacks.
- */S
+ */
 UnitAI.prototype.GatherNearPosition = function(x, z, type, template, queued)
 {
 	// Remove "resource|" prefix from template name, if present.
