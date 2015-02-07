@@ -46,7 +46,7 @@ function LoadMapSettings(settings)
 		{
 			let cmpGarrisonHolder = Engine.QueryInterface(+holder, IID_GarrisonHolder);
 			if (!cmpGarrisonHolder)
-				warning("Map error in Setup.js: entity " + holder + " can not garrison units");
+				warn("Map error in Setup.js: entity " + holder + " can not garrison units");
 			else
 				cmpGarrisonHolder.initGarrison = settings.Garrison[holder];
 		}
