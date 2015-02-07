@@ -187,6 +187,12 @@
 
 				<object name="chatInput" size="4 100%-24 100%-76 100%-4" type="input" style="ModernInput">
 					<action on="Press">submitChatInput();</action>
+					<action on="Tab">
+						var players = [];
+						for (var player in g_PlayerAssignments)
+							players.push(g_PlayerAssignments[player]);
+						autoCompleteNick("chatInput", players);
+					</action>
 				</object>
 
 				<object size="100%-72 100%-24 100%-4 100%-4" type="button" style="StoneButton">
