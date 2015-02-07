@@ -9,14 +9,14 @@
     </Entities>
   </Builder>
   <Cost>
-    <BuildTime>7</BuildTime>
+    <BuildTime>10</BuildTime>
     <Resources>
-      <food>0</food>
-      <metal>50</metal>
+      <food>25</food>
+      <metal>25</metal>
     </Resources>
   </Cost>
   <Health>
-    <Max>50</Max>
+    <Max>30</Max>
   </Health>
   <Identity>
     <Civ>ptol</Civ>
@@ -32,12 +32,6 @@
   <Promotion>
     <Entity>units/ptol_infantry_archer_a</Entity>
   </Promotion>
-  <UnitMotion>
-    <WalkSpeed>11.5</WalkSpeed>
-    <Run>
-      <Speed>20.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/ptolemies/infantry_archer_b.xml</Actor>
   </VisualActor>

@@ -8,14 +8,6 @@
     <History>Cataphracts were the crushing blow of the Seleucid cavalry. The development of the Seleucid cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Seleucids adopted the catapharct from encounters with Iranian nomads like the Massagetes, Scythian steppes tribes, or Bactrians in the East.</History>
     <RequiredTechnology>successors/unlock_reform_army</RequiredTechnology>
   </Identity>
-  <UnitMotion>
-    <WalkSpeed>13.5</WalkSpeed>
-    <Run>
-      <Speed>25.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/champion_unit_2.xml</Actor>
   </VisualActor>

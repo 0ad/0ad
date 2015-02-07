@@ -3,7 +3,7 @@
   <Armour>
     <Hack>2</Hack>
     <Pierce>4</Pierce>
-    <Crush>3</Crush>
+    <Crush>15</Crush>
   </Armour>
   <Attack>
     <Slaughter>
@@ -23,6 +23,7 @@
       structures/{civ}_corral
       structures/{civ}_outpost
       other/wallset_palisade
+      other/palisades_rocks_fort
       structures/{civ}_dock
       structures/{civ}_barracks
       structures/{civ}_blacksmith
@@ -49,7 +50,7 @@
     <Height>2.5</Height>
   </Footprint>
   <Health>
-    <Max>100</Max>
+    <Max>80</Max>
   </Health>
   <Identity>
     <GenericName>Infantry</GenericName>
@@ -66,7 +67,7 @@
   </Loot>
   <Looter/>
   <Promotion>
-    <RequiredXp>100</RequiredXp>
+    <RequiredXp>100000000</RequiredXp>
   </Promotion>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
@@ -122,6 +123,6 @@
     <CostClass>infantry</CostClass>
   </UnitMotion>
   <Vision>
-    <Range>80</Range>
+    <Range>96</Range>
   </Vision>
 </Entity>

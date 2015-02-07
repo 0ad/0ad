@@ -2,11 +2,11 @@
 <Entity parent="template_unit_cavalry">
   <Attack>
     <Ranged>
-      <Hack>0</Hack>
-      <Pierce>9</Pierce>
-      <Crush>0</Crush>
+      <Hack>0.0</Hack>
+      <Pierce>9.0</Pierce>
+      <Crush>0.0</Crush>
       <MaxRange>16.0</MaxRange>
-      <MinRange>20.0</MinRange>
+      <MinRange>0.0</MinRange>
       <ProjectileSpeed>25.0</ProjectileSpeed>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>1500</RepeatTime>
@@ -14,6 +14,9 @@
       <Spread>1.6</Spread>
     </Ranged>
   </Attack>
+  <Health>
+    <Max>120</Max>
+  </Health>
   <Identity>
     <GenericName>Ranged Cavalry</GenericName>
 	<VisibleClasses datatype="tokens">Ranged</VisibleClasses>
@@ -22,7 +25,7 @@
     </Formations>
   </Identity>
   <Promotion>
-    <RequiredXp>200</RequiredXp>
+    <RequiredXp>20000000</RequiredXp>
   </Promotion>
   <Sound>
     <SoundGroups>

@@ -7,14 +7,6 @@
     <Icon>units/pers_champion_cavalry.png</Icon>
     <History>Cataphracts were the crushing blow of the Persian cavalry. The development of the Persian cataphract is not well understood, as is the relationship between these men and future generations of cataphract cavalry. At best it seems the Persians adopted the catapharct from encounters with Iranian nomads like the Massagetes.</History>
   </Identity>
-  <UnitMotion>
-    <WalkSpeed>13.5</WalkSpeed>
-    <Run>
-      <Speed>25.0</Speed>
-      <Range>1000.0</Range>
-      <RangeMin>10.0</RangeMin>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/champion_unit_2.xml</Actor>
   </VisualActor>

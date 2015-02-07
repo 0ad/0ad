@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_defense_tower">
   <Armour>
-    <Hack>10.0</Hack>
+    <Hack>5.0</Hack>
     <Pierce>20.0</Pierce>
-    <Crush>5.0</Crush>
+    <Crush>1.0</Crush>
   </Armour>
+  <Attack>
+    <Ranged>
+      <Hack>0.0</Hack>
+      <Pierce>10.0</Pierce>
+      <Crush>0.0</Crush>
+      <MaxRange>40.0</MaxRange>
+      <MinRange>4.0</MinRange>
+    </Ranged>
+  </Attack>
   <Cost>
-    <BuildTime>18</BuildTime>
+    <BuildTime>40</BuildTime>
+    <Resources>
+      <wood>100</wood>
+    </Resources>
   </Cost>
   <Footprint>
     <Square width="9.5" depth="8.5"/>
     <Height>9.0</Height>
   </Footprint>
   <Health>
-    <Max>2000</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <Civ>gaia</Civ>
@@ -22,6 +34,7 @@
     <Classes datatype="tokens">Palisade</Classes>
     <History>A cheap, quick defensive structure constructed with sharpened tree trunks</History>
     <Icon>gaia/special_palisade.png</Icon>
+    <RequiredTechnology>phase_village</RequiredTechnology>
   </Identity>
   <Obstruction>
     <Static width="9.0" depth="7.5"/>

@@ -3,13 +3,13 @@
   <Armour>
     <Hack>1</Hack>
     <Pierce>40</Pierce>
-    <Crush>5</Crush>
+    <Crush>10</Crush>
   </Armour>
   <Attack>
     <Melee>
       <Hack>0.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>80.0</Crush>
+      <Crush>150.0</Crush>
       <MaxRange>6.5</MaxRange>
       <RepeatTime>1500</RepeatTime>
       <PreferredClasses datatype="tokens">Gates Structure</PreferredClasses>
@@ -40,7 +40,7 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Health>
-    <Max>500</Max>
+    <Max>150</Max>
   </Health>
   <Identity>
     <GenericName>Battering Ram</GenericName>

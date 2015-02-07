@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>7</Pierce>
-    <Crush>6</Crush>
+    <Hack>10</Hack>
+    <Pierce>10</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>22</Hack>
+      <Hack>9.0</Hack>
       <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>750</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>44.0</Hack>
+      <Hack>18.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
@@ -24,9 +23,12 @@
   <Cost>
     <Resources>
       <wood>75</wood>
-      <metal>50</metal>
+      <metal>75</metal>
     </Resources>
   </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Sword</VisibleClasses>
     <GenericName>Champion Swordsman</GenericName>
@@ -49,7 +51,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
+    <WalkSpeed>12.5</WalkSpeed>
     <Run>
       <Speed>16.0</Speed>
       <Range>600.0</Range>

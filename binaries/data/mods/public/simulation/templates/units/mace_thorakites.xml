@@ -8,15 +8,6 @@
     <Icon>units/mace_thorakites.png</Icon>
 	<RequiredTechnology>phase_town</RequiredTechnology>
   </Identity>
-  <UnitMotion>
-    <WalkSpeed>9.5</WalkSpeed>
-    <Run>
-      <Speed>22.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>66</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/macedonians/thorakites.xml</Actor>
   </VisualActor>

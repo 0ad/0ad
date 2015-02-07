@@ -2,9 +2,9 @@
 <Entity parent="template_unit_cavalry_melee">
   <Attack>
     <Melee>
-      <Hack>4.5</Hack>
-      <Pierce>34</Pierce>
-      <RepeatTime>2250</RepeatTime>
+      <Hack>1.0</Hack>
+      <Pierce>27</Pierce>
+      <RepeatTime>3500</RepeatTime>
     </Melee>
     <Charge>
       <Hack>10.0</Hack>
@@ -28,4 +28,12 @@
     <stone>0</stone>
     <metal>0</metal>
   </Loot>
+  <UnitMotion>
+    <WalkSpeed>22.0</WalkSpeed>
+    <Run>
+      <Speed>40.0</Speed>
+      <Range>600.0</Range>
+      <RangeMin>5.0</RangeMin>
+    </Run>
+  </UnitMotion>
 </Entity>

@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_archer">
-  <Attack>
-    <Ranged>
-      <Pierce>35.0</Pierce>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <Population>1</Population>
-    <BuildTime>19</BuildTime>
-  </Cost>
   <Footprint replace="">
     <Square width="7.5" depth="15.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>200</Max>
-  </Health>
   <Identity>
     <Civ>sele</Civ>
     <Classes datatype="tokens">Champion Chariot</Classes>
@@ -42,12 +30,6 @@
       <food>50</food>
     </Capacities>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>14.0</WalkSpeed>
-    <Run>
-      <Speed>33.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_archer_e.xml</Actor>
   </VisualActor>

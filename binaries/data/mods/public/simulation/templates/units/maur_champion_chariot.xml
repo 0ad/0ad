@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_archer">
-  <Cost>
-    <Population>1</Population>
-    <BuildTime>19</BuildTime>
-  </Cost>
   <Footprint replace="">
     <Square width="5.5" depth="10.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>190</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
     <Classes datatype="tokens">Champion Chariot</Classes>
@@ -37,12 +30,6 @@
       <food>50</food>
     </Capacities>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>19.0</WalkSpeed>
-    <Run>
-      <Speed>36.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/mauryans/chariot_a.xml</Actor>
   </VisualActor>
