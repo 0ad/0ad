@@ -97,6 +97,11 @@ ResourceSupply.prototype.GetDiminishingReturns = function()
 
 ResourceSupply.prototype.TakeResources = function(rate)
 {
+	// Before changing the amount, activate Fogging if necessary to hide changes
+	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
+	if (cmpFogging)
+		cmpFogging.Activate();
+
 	if (this.infinite)
 		return { "amount": rate, "exhausted": false };
 

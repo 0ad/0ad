@@ -5,17 +5,18 @@ const VIS_VISIBLE = 2;
 function Fogging() {}
 
 Fogging.prototype.Schema =
-	"<a:help>Allows this entity to be replaced by mirages entities in the fog-of-war.</a:help>" +
+	"<a:help>Allows this entity to be replaced by mirage entities in the fog-of-war.</a:help>" +
 	"<empty/>";
 
 Fogging.prototype.Init = function()
 {
+	this.activated = false;
 	this.mirages = [];
 	this.miraged = [];
 	this.seen = [];
 
-	var cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
-	for (var player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
+	let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+	for (let player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
 	{
 		this.mirages.push(INVALID_ENTITY);
 		this.miraged.push(false);
@@ -23,8 +24,36 @@ Fogging.prototype.Init = function()
 	}
 };
 
+Fogging.prototype.Activate = function()
+{
+	let mustUpdate = !this.activated;
+	this.activated = true;
+
+	if (mustUpdate)
+	{
+		// Load a mirage for each player who has already seen the entity
+		let cmpPlayerManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_PlayerManager);
+		for (let player = 0; player < cmpPlayerManager.GetNumPlayers(); ++player)
+		{
+			if (this.seen[player])
+				this.LoadMirage(player);
+		}
+	}
+};
+
+Fogging.prototype.IsActivated = function()
+{
+	return this.activated;
+}
+
 Fogging.prototype.LoadMirage = function(player)
 {
+	if (!this.activated)
+	{
+		error("LoadMirage called for an entity with fogging deactivated");
+		return;
+	}
+
 	this.miraged[player] = true;
 
 	if (this.mirages[player] == INVALID_ENTITY)
@@ -108,10 +137,17 @@ Fogging.prototype.LoadMirage = function(player)
 	// Notify the GUI the entity has been replaced by a mirage, in case it is selected at this moment
 	var cmpGuiInterface = Engine.QueryInterface(SYSTEM_ENTITY, IID_GuiInterface);
 	cmpGuiInterface.AddMiragedEntity(player, this.entity, this.mirages[player]);
+
+	// Notify the range manager the visibility of this entity must be updated
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.RequestVisibilityUpdate(this.entity);
 };
 
 Fogging.prototype.ForceMiraging = function(player)
 {
+	if (!this.activated)
+		return;
+
 	this.seen[player] = true;
 	this.LoadMirage(player);
 };
@@ -140,21 +176,6 @@ Fogging.prototype.WasSeen = function(player)
 	return this.seen[player];
 };
 
-Fogging.prototype.OnVisibilityChanged = function(msg)
-{
-	if (msg.player >= this.mirages.length)
-		return;
-
-	if (msg.newVisibility == VIS_VISIBLE)
-	{
-		this.miraged[msg.player] = false;
-		this.seen[msg.player] = true;
-	}
-
-	if (msg.newVisibility == VIS_FOGGED)
-		this.LoadMirage(msg.player);
-};
-
 Fogging.prototype.OnDestroy = function(msg)
 {
 	for (var player = 0; player < this.mirages.length; ++player)
@@ -170,6 +191,28 @@ Fogging.prototype.OnDestroy = function(msg)
 		if (cmpMirage)
 			cmpMirage.SetParent(INVALID_ENTITY);
 	}
+};
+
+Fogging.prototype.OnOwnershipChanged = function(msg)
+{
+	// Always activate fogging for non-Gaia entities
+	if (msg.to > 0)
+		this.Activate();
+};
+
+Fogging.prototype.OnVisibilityChanged = function(msg)
+{
+	if (msg.player >= this.mirages.length)
+		return;
+
+	if (msg.newVisibility == VIS_VISIBLE)
+	{
+		this.miraged[msg.player] = false;
+		this.seen[msg.player] = true;
+	}
+
+	if (msg.newVisibility == VIS_FOGGED && this.activated)
+		this.LoadMirage(msg.player);
 };
 
 Engine.RegisterComponentType(IID_Fogging, "Fogging", Fogging);
