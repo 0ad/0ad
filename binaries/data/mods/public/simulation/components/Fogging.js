@@ -44,7 +44,7 @@ Fogging.prototype.Activate = function()
 Fogging.prototype.IsActivated = function()
 {
 	return this.activated;
-}
+};
 
 Fogging.prototype.LoadMirage = function(player)
 {
