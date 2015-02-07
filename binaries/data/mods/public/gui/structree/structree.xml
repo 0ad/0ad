@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<objects>
+	<script file="gui/common/functions_civinfo.js"/>
+	<script file="gui/common/functions_utility.js"/>
+	<script file="gui/common/tooltips.js"/>
+	<script file="gui/structree/structree.js"/>
+	<script file="gui/structree/draw.js"/>
+	<script file="gui/structree/helper.js"/>
+	<script file="gui/structree/load.js"/>
+
+	<!-- Add a translucent black background to fade out the menu page -->
+	<object type="image" z="0" sprite="bkTranslucent"/>
+
+	<object type="image" style="ModernDialog" size="16 24 100%-16 100%-24">
+		<object style="TitleText" type="text" size="50%-128 -18 50%+128 14">
+			<translatableAttribute id="caption">Structure Tree</translatableAttribute>
+		</object>
+
+		<!-- Civ selection -->
+		<object size="16 10 100%-16 30">
+			<object
+				name="civSelectionHeading"
+				type="text"
+				font="sans-bold-16"
+				textcolor="white"
+				text_align="left"
+				size="100%-264 10 100%-160 48">
+				<translatableAttribute id="caption">Civilization:</translatableAttribute>
+			</object>
+
+			<object name="civSelection" type="dropdown" style="ModernDropDown" size="100%-160 8 100% 34">
+				<action on="SelectionChange">selectCiv(this.list_data[this.selected]);</action>
+			</object>
+		</object>
+
+		<object
+			name="civEmblem"
+			type="image"
+			size="6 6 96+6 96+6"
+			sprite="stretched:pregame/shell/logo/wfg_logo_white.png"
+		/>
+
+		<object
+			name="civName"
+			type="text"
+			font="sans-bold-20"
+			textcolor="white"
+			text_align="left"
+			text_valign="top"
+			size="104 32 100%-8 96"
+		/>
+
+		<object
+			name="civHistory"
+			type="text"
+			font="sans-12"
+			textcolor="white"
+			text_align="left"
+			text_valign="top"
+			size="104 52 100%-8 100%"
+		/>
+
+		<!-- Data display -->
+		<object size="0 54+64 100% 100%-54">
+			<repeat count="4" var="n">
+				<object name="phase[n]_phase" type="image"/>
+				<object name="phase[n]_bar">
+					<repeat count="4" var="k">
+						<object name="phase[n]_bar[k]" type="image" sprite="ProdBar">
+							<object name="phase[n]_bar[k]_icon" type="image" size="2 2 20 20"/>
+						</object>
+					</repeat>
+				</object>
+			</repeat>
+
+			<object type="image" style="TreeDisplay" size="48+16+8 0 100%-16 100%">
+				<include file="gui/structree/rows.xml"/>
+			</object>
+
+		</object>
+
+		<!-- Close dialog -->
+		<object
+			type="button"
+			style="StoneButton"
+			size="100%-164 100%-44 100%-16 100%-16"
+		>
+			<translatableAttribute id="caption">Close</translatableAttribute>
+			<action on="Press">Engine.PopGuiPage();</action>
+		</object>
+
+	</object>
+</objects>
