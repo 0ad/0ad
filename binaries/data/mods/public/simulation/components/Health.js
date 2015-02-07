@@ -70,6 +70,11 @@ Health.prototype.SetHitpoints = function(value)
 	if (this.hitpoints == 0)
 		return;
 
+	// Before changing the value, activate Fogging if necessary to hide changes
+	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
+	if (cmpFogging)
+		cmpFogging.Activate();
+
 	var old = this.hitpoints;
 	this.hitpoints = Math.max(1, Math.min(this.GetMaxHitpoints(), value));
 	
@@ -150,6 +155,11 @@ Health.prototype.Kill = function()
  */
 Health.prototype.Reduce = function(amount)
 {
+	// Before changing the value, activate Fogging if necessary to hide changes
+	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
+	if (cmpFogging)
+		cmpFogging.Activate();
+
 	var state = { "killed": false };
 	if (amount >= 0 && this.hitpoints == this.GetMaxHitpoints())
 	{
@@ -208,6 +218,11 @@ Health.prototype.Reduce = function(amount)
 
 Health.prototype.Increase = function(amount)
 {
+	// Before changing the value, activate Fogging if necessary to hide changes
+	let cmpFogging = Engine.QueryInterface(this.entity, IID_Fogging);
+	if (cmpFogging)
+		cmpFogging.Activate();
+
 	if (this.hitpoints == this.GetMaxHitpoints())
 		return {"old": this.hitpoints, "new":this.hitpoints};
 

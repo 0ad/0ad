@@ -323,6 +323,12 @@ public:
 	virtual ELosVisibility GetLosVisibility(CEntityHandle ent, player_id_t player) = 0;
 	virtual ELosVisibility GetLosVisibility(entity_id_t ent, player_id_t player) = 0;
 
+	/**
+	 * Request the update of the visibility cache of ent at next turn.
+	 * Typically used for fogging.
+	 */
+	virtual void RequestVisibilityUpdate(entity_id_t ent) = 0;
+
 
 	/**
 	 * GetLosVisibility wrapped for script calls.

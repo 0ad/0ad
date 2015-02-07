@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>12</Hack>
-    <Pierce>10</Pierce>
-    <Crush>7</Crush>
+    <Hack>15</Hack>
+    <Pierce>15</Pierce>
+    <Crush>20</Crush>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>4.5</Hack>
-      <Pierce>8.5</Pierce>
+      <Hack>1.0</Hack>
+      <Pierce>5.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
-      <RepeatTime>750</RepeatTime>
+      <RepeatTime>1500</RepeatTime>
+      <Bonuses>
+          <BonusCavMelee>
+            <Classes>Cavalry</Classes>
+            <Multiplier>2.0</Multiplier>
+          </BonusCavMelee>
+      </Bonuses>
     </Melee>
     <Charge>
       <Hack>6.0</Hack>
@@ -19,6 +25,12 @@
       <Crush>0.0</Crush>
       <MaxRange>8.0</MaxRange>
       <MinRange>0.0</MinRange>
+      <Bonuses>
+          <BonusCavMelee>
+            <Classes>Cavalry</Classes>
+            <Multiplier>2.0</Multiplier>
+          </BonusCavMelee>
+      </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -26,10 +38,14 @@
       <wood>100</wood>
     </Resources>
   </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear Pike</VisibleClasses>
     <GenericName>Champion Pikeman</GenericName>
-	<History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
+    <History>Pike, or sarissa, infantry were developed by Philip II of Macedon based on the hoplite of the Greek city-states. The Macedonian pikemen, or phalangites, wielded an extra long spear (sarissa) approximatly 4 to 7 meters (13–21 feet) in length. Because of it's length and weight, the pike required the use of both hands, so the shield was slung over the pikeman's shoulder with a leather strap. Front-line pikemen of the age were generally highly-armored, while those in the back lines were lightly armored. Such pike-wielding troops were employed by numerous states, from Carthage to Syria, and were used to fix enemy infantry in position while the army's cavalry worked to turn the enemy flanks.</History>
+    <Tooltip>Counters: 2x vs. Cavalry.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/syntagma
@@ -53,7 +69,7 @@
     <Max>1200</Max>
   </Stamina>
   <UnitMotion>
-    <WalkSpeed>8</WalkSpeed>
+    <WalkSpeed>7.0</WalkSpeed>
     <Run>
       <Speed>13.0</Speed>
       <Range>600.0</Range>

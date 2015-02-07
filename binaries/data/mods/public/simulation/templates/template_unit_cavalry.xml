@@ -3,7 +3,7 @@
   <Armour>
     <Hack>3</Hack>
     <Pierce>1</Pierce>
-    <Crush>3</Crush>
+    <Crush>15</Crush>
   </Armour>
   <Attack>
     <Slaughter>
@@ -21,7 +21,7 @@
     </Resources>
   </Cost>
   <Footprint replace="">
-    <Square width="3" depth="5"/>
+    <Square width="4" depth="6"/>
     <Height>7.5</Height>
   </Footprint>
   <Health>
@@ -50,7 +50,7 @@
     <Anchor>pitch</Anchor>
   </Position>
   <Promotion>
-    <RequiredXp>150</RequiredXp>
+    <RequiredXp>15000000</RequiredXp>
   </Promotion>
   <ResourceGatherer>
     <MaxDistance>2.0</MaxDistance>
@@ -102,6 +102,6 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>96</Range>
+    <Range>160</Range>
   </Vision>
 </Entity>

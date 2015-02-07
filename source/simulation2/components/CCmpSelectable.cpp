@@ -287,87 +287,88 @@ void CCmpSelectable::HandleMessage(const CMessage& msg, bool UNUSED(global))
 	switch (msg.GetType())
 	{
 	case MT_Interpolate:
+	{
+		PROFILE3("Selectable::Interpolate");
+
+		const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
+
+		if (m_FadeDeltaAlpha != 0.f)
 		{
-			PROFILE3("Selectable::Interpolate");
-
-			const CMessageInterpolate& msgData = static_cast<const CMessageInterpolate&> (msg);
-
-			if (m_FadeDeltaAlpha != 0.f)
+			m_FadeProgress += msgData.deltaRealTime;
+			if (m_FadeProgress >= FADE_DURATION)
 			{
-				m_FadeProgress += msgData.deltaRealTime;
-				if (m_FadeProgress >= FADE_DURATION)
-				{
-					const float targetAlpha = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
+				const float targetAlpha = m_FadeBaselineAlpha + m_FadeDeltaAlpha;
 
-					// stop the fade
-					m_Color.a = targetAlpha;
-					m_FadeBaselineAlpha = targetAlpha;
-					m_FadeDeltaAlpha = 0.f;
-					m_FadeProgress = FADE_DURATION; // will need to be reset to start the next fade again
-				}
-				else
-				{
-					m_Color.a = Ease::QuartOut(m_FadeProgress, m_FadeBaselineAlpha, m_FadeDeltaAlpha, FADE_DURATION);
-				}
+				// stop the fade
+				m_Color.a = targetAlpha;
+				m_FadeBaselineAlpha = targetAlpha;
+				m_FadeDeltaAlpha = 0.f;
+				m_FadeProgress = FADE_DURATION; // will need to be reset to start the next fade again
 			}
-
-			// update dynamic overlay only when visible
-			if (m_Color.a > 0)
-				UpdateDynamicOverlay(msgData.offset);
-
-			UpdateMessageSubscriptions();
-
-			break;
+			else
+			{
+				m_Color.a = Ease::QuartOut(m_FadeProgress, m_FadeBaselineAlpha, m_FadeDeltaAlpha, FADE_DURATION);
+			}
 		}
+
+		// update dynamic overlay only when visible
+		if (m_Color.a > 0)
+			UpdateDynamicOverlay(msgData.offset);
+
+		UpdateMessageSubscriptions();
+
+		break;
+	}
 	case MT_OwnershipChanged: 
-		{
-			const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
+	{
+		const CMessageOwnershipChanged& msgData = static_cast<const CMessageOwnershipChanged&> (msg);
 
-			// don't update color if there's no new owner (e.g. the unit died)
-			if (msgData.to == INVALID_PLAYER)
-				break;
-
-			// update the selection highlight color
-			CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
-			if (!cmpPlayerManager)
-				break;
-
-			CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
-			if (!cmpPlayer)
-				break;
-
-			// Update the highlight color, while keeping the current alpha target value intact
-			// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
-			CColor color = cmpPlayer->GetColour();
-			SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
-
-			InvalidateStaticOverlay();
+		// don't update color if there's no new owner (e.g. the unit died)
+		if (msgData.to == INVALID_PLAYER)
 			break;
-		}
+
+		// update the selection highlight color
+		CmpPtr<ICmpPlayerManager> cmpPlayerManager(GetSystemEntity());
+		if (!cmpPlayerManager)
+			break;
+
+		CmpPtr<ICmpPlayer> cmpPlayer(GetSimContext(), cmpPlayerManager->GetPlayerByID(msgData.to));
+		if (!cmpPlayer)
+			break;
+
+		// Update the highlight color, while keeping the current alpha target value intact
+		// (i.e. baseline + delta), so that any ongoing fades simply continue with the new color.
+		CColor color = cmpPlayer->GetColour();
+		SetSelectionHighlight(CColor(color.r, color.g, color.b, m_FadeBaselineAlpha + m_FadeDeltaAlpha), m_Selected);
+
+		InvalidateStaticOverlay();
+		break;
+	}
 	case MT_PositionChanged:
+	{
+		if (m_AlwaysVisible)
 		{
-			if (m_AlwaysVisible)
-			{
-				const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
-				m_AlphaMin = msgData.inWorld ? MIN_ALPHA_ALWAYS_VISIBLE : MIN_ALPHA_UNSELECTED;
-				m_Color.a = m_AlphaMin;
-			}
+			const CMessagePositionChanged& msgData = static_cast<const CMessagePositionChanged&> (msg);
+			m_AlphaMin = msgData.inWorld ? MIN_ALPHA_ALWAYS_VISIBLE : MIN_ALPHA_UNSELECTED;
+			m_Color.a = m_AlphaMin;
 		}
+
+		InvalidateStaticOverlay();
+		break;
+	}
 	case MT_TerrainChanged:
 	case MT_WaterChanged:
-		{
-			InvalidateStaticOverlay();
-			break;
-		}
+		InvalidateStaticOverlay();
+		break;
 	case MT_RenderSubmit:
-		{
-			PROFILE3("Selectable::RenderSubmit");
+	{
+		PROFILE3("Selectable::RenderSubmit");
 
-			const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
-			RenderSubmit(msgData.collector);
+		const CMessageRenderSubmit& msgData = static_cast<const CMessageRenderSubmit&> (msg);
+		RenderSubmit(msgData.collector);
 
-			break;
-		}
+		break;
+	}
 	}
 }
 

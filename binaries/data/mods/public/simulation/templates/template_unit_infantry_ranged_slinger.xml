@@ -3,24 +3,24 @@
   <Armour>
     <Hack>1</Hack>
     <Pierce>1</Pierce>
-    <Crush>3</Crush>
   </Armour>
   <Attack>
     <Ranged>
       <Hack>0</Hack>
-      <Pierce>8.5</Pierce>
-      <Crush>1.5</Crush>
-      <MaxRange>48.0</MaxRange>
+      <Pierce>12.0</Pierce>
+      <Crush>2.5</Crush>
+      <MaxRange>60.0</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>60.0</ProjectileSpeed>
-      <PrepareTime>750</PrepareTime>
-      <RepeatTime>750</RepeatTime>
-      <Spread>1.5</Spread>
+      <PrepareTime>1000</PrepareTime>
+      <RepeatTime>1000</RepeatTime>
+      <Spread>1.4</Spread>
     </Ranged>
   </Attack>
   <Cost>
     <Resources>
-      <stone>50</stone>
+      <stone>30</stone>
+      <wood>20</wood>
     </Resources>
   </Cost>
   <Identity>
@@ -32,9 +32,9 @@
     <stone>5</stone>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>11.5</WalkSpeed>
+    <WalkSpeed>12.0</WalkSpeed>
     <Run>
-      <Speed>18.0</Speed>
+      <Speed>24.0</Speed>
     </Run>
   </UnitMotion>
 </Entity>

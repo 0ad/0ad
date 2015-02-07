@@ -1454,12 +1454,15 @@ public:
 			return VIS_HIDDEN;
 		}
 
-		// Fogged entities must not disappear while the mirage is not ready
+		// Fogged entities are hidden in two cases:
+		// - They were not scouted
+		// - A mirage replaces them
 		CmpPtr<ICmpFogging> cmpFogging(ent);
-		if (cmpFogging && cmpFogging->WasSeen(player) && !cmpFogging->IsMiraged(player))
-			return VIS_FOGGED;
+		if (cmpFogging && cmpFogging->IsActivated() &&
+			(!cmpFogging->WasSeen(player) || cmpFogging->IsMiraged(player)))
+			return VIS_HIDDEN;
 
-		return VIS_HIDDEN;
+		return VIS_FOGGED;
 	}
 
 	ELosVisibility ComputeLosVisibility(entity_id_t ent, player_id_t player)
@@ -1557,11 +1560,19 @@ public:
 
 		for (std::vector<entity_id_t>::iterator it = m_ModifiedEntities.begin(); it != m_ModifiedEntities.end(); ++it)
 		{
-			UpdateVisibility(*it);
+			// Don't bother updating if we already did it in a global update
+			if (!m_GlobalVisibilityUpdate)
+				UpdateVisibility(*it);
 		}
 		m_ModifiedEntities.clear();
 
 		m_GlobalVisibilityUpdate = false;
+	}
+
+	virtual void RequestVisibilityUpdate(entity_id_t ent)
+	{
+		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), ent) == m_ModifiedEntities.end())
+			m_ModifiedEntities.push_back(ent);
 	}
 
 	void UpdateVisibility(entity_id_t ent)
@@ -1594,10 +1605,6 @@ public:
 		{
 			if (oldVisibilities[player-1] == newVisibilities[player-1])
 				continue;
-			
-			// Another visibility update can be necessary to take in account new mirages
-			if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), ent) == m_ModifiedEntities.end())
-				m_ModifiedEntities.push_back(ent);
 
 			CMessageVisibilityChanged msg(player, ent, oldVisibilities[player-1], newVisibilities[player-1]);
 			GetSimContext().GetComponentManager().PostMessage(ent, msg);

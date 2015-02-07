@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
   <Armour>
-    <Hack>5</Hack>
-    <Pierce>7</Pierce>
-    <Crush>6</Crush>
+    <Hack>10</Hack>
+    <Pierce>10</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>7</Hack>
-      <Pierce>14</Pierce>
+      <Hack>6.0</Hack>
+      <Pierce>5.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>750</RepeatTime>
+      <Bonuses>
+          <BonusCavMelee>
+            <Classes>Cavalry</Classes>
+            <Multiplier>2.0</Multiplier>
+          </BonusCavMelee>
+      </Bonuses>
     </Melee>
     <Charge>
       <Hack>15.0</Hack>
@@ -19,6 +24,12 @@
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
+      <Bonuses>
+          <BonusCavMelee>
+            <Classes>Cavalry</Classes>
+            <Multiplier>2.0</Multiplier>
+          </BonusCavMelee>
+      </Bonuses>
     </Charge>
   </Attack>
   <Cost>
@@ -26,9 +37,13 @@
       <wood>100</wood>
     </Resources>
   </Cost>
+  <Health>
+    <Max>200</Max>
+  </Health>
   <Identity>
     <GenericName>Champion Spearman</GenericName>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
+    <Tooltip>Counters: 2x vs. Cavalry.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo
@@ -48,7 +63,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>9</WalkSpeed>
+    <WalkSpeed>11.5</WalkSpeed>
     <Run>
       <Speed>15.0</Speed>
       <Range>600.0</Range>

@@ -1,29 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
-  <Armour>
-    <Hack>5</Hack>
-    <Pierce>7</Pierce>
-    <Crush>8</Crush>
-  </Armour>
-  <Attack>
-    <Ranged>
-      <Pierce>31</Pierce>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <BuildTime>18</BuildTime>
-    <Resources>
-      <food>150</food>
-      <wood>100</wood>
-    </Resources>
-  </Cost>
   <Footprint replace="">
     <Square width="5.5" depth="10.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>220</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
     <Classes datatype="tokens">Chariot</Classes>
@@ -55,12 +35,6 @@ Causes trample damage to enemy units.</Tooltip>
       <food>50</food>
     </Capacities>
   </ResourceGatherer>
-  <UnitMotion>
-    <WalkSpeed>18.5</WalkSpeed>
-    <Run>
-      <Speed>35.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/cavalry_archer_b.xml</Actor>
   </VisualActor>

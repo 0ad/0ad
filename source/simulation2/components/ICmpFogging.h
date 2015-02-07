@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -30,6 +30,7 @@
 class ICmpFogging : public IComponent
 {
 public:
+	virtual bool IsActivated() = 0;
 	virtual bool WasSeen(player_id_t player) = 0;
 	virtual bool IsMiraged(player_id_t player) = 0;
 	virtual void ForceMiraging(player_id_t player) = 0;

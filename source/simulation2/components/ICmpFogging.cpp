@@ -1,4 +1,4 @@
-/* Copyright (C) 2014 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -29,6 +29,11 @@ class CCmpFoggingScripted : public ICmpFogging
 {
 public:
 	DEFAULT_SCRIPT_WRAPPER(FoggingScripted)
+
+	virtual bool IsActivated()
+	{
+		return m_Script.Call<bool>("IsActivated");
+	}
 
 	virtual bool WasSeen(player_id_t player)
 	{

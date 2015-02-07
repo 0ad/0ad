@@ -1,24 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_archer">
-  <Armour>
-    <Hack>6</Hack>
-    <Pierce>10</Pierce>
-    <Crush>10</Crush>
-  </Armour>
-  <Cost>
-    <BuildTime>20</BuildTime>
-    <Resources>
-      <food>150</food>
-      <wood>100</wood>
-    </Resources>
-  </Cost>
   <Footprint replace="">
     <Circle radius="3.5"/>
     <Height>8.0</Height>
   </Footprint>
-  <Health>
-    <Max>330</Max>
-  </Health>
   <Identity>
     <Civ>maur</Civ>
     <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
@@ -49,15 +34,6 @@
       <trained>actor/fauna/animal/elephant_trained.xml</trained>
     </SoundGroups>
   </Sound>
-  <UnitMotion>
-    <WalkSpeed>7.5</WalkSpeed>
-    <Run>
-      <Speed>12.0</Speed>
-    </Run>
-  </UnitMotion>
-  <Vision>
-    <Range>84</Range>
-  </Vision>
   <VisualActor>
     <Actor>units/mauryans/elephant_archer_b.xml</Actor>
   </VisualActor>

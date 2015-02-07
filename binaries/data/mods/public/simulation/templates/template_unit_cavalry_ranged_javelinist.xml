@@ -3,12 +3,13 @@
   <Attack>
     <Ranged>
       <Hack>0</Hack>
-      <Pierce>17.5</Pierce>
+      <Pierce>26.0</Pierce>
       <Crush>0</Crush>
       <MaxRange>40</MaxRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1000</PrepareTime>
       <RepeatTime>1000</RepeatTime>
+      <Spread>1.8</Spread>
     </Ranged>
   </Attack>
   <Cost>
@@ -17,9 +18,6 @@
       <wood>40</wood>
     </Resources>
   </Cost>
-  <Health>
-    <Max>140</Max>
-  </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Javelin</VisibleClasses>
     <GenericName>Cavalry Skirmisher</GenericName>

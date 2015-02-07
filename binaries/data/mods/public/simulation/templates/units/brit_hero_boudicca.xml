@@ -13,20 +13,6 @@
       <AuraDescription>+5 Attack and +25% Speed for Champion Units.</AuraDescription>
     </Aura1>
   </Auras>
-  <Armour>
-    <Hack>7</Hack>
-    <Pierce>7</Pierce>
-    <Crush>8</Crush>
-  </Armour>
-  <Cost>
-    <Population>4</Population>
-    <BuildTime>50</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
   <Footprint replace="">
     <Square width="4.5" depth="9.0"/>
     <Height>5.0</Height>
@@ -52,12 +38,6 @@
       <death>actor/human/death/female_death.xml</death>
     </SoundGroups>
   </Sound>
-  <UnitMotion>
-    <WalkSpeed>21.0</WalkSpeed>
-    <Run>
-      <Speed>38.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/celts/boudicca_chariot.xml</Actor>
   </VisualActor>

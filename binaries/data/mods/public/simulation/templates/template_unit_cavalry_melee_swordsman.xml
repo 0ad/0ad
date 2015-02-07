@@ -2,18 +2,17 @@
 <Entity parent="template_unit_cavalry_melee">
   <Armour>
     <Hack>4</Hack>
-    <Pierce>3</Pierce>
-    <Crush>4</Crush>
+    <Pierce>2</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>18.5</Hack>
+      <Hack>7.0</Hack>
       <Pierce>0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
     </Melee>
     <Charge>
-      <Hack>30.0</Hack>
+      <Hack>16.0</Hack>
       <Pierce>0.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>6.0</MaxRange>
@@ -39,7 +38,7 @@
     <metal>6</metal>
   </Loot>
   <UnitMotion>
-    <WalkSpeed>17</WalkSpeed>
+    <WalkSpeed>20.0</WalkSpeed>
     <Run>
       <Speed>28.75</Speed>
       <Range>600.0</Range>

@@ -13,29 +13,10 @@
       <AuraDescription> +15% Gather Rate and Build Rate of nearby units.</AuraDescription>
     </Aura1>
   </Auras>
-  <Attack>
-    <Ranged>
-      <Pierce>26.5</Pierce>
-      <MaxRange>64.0</MaxRange>
-      <MinRange>12.0</MinRange>
-    </Ranged>
-  </Attack>
-  <Cost>
-    <Population>4</Population>
-    <BuildTime>40</BuildTime>
-    <Resources>
-      <food>200</food>
-      <wood>100</wood>
-      <metal>100</metal>
-    </Resources>
-  </Cost>
   <Footprint replace="">
     <Square width="6.0" depth="12.0"/>
     <Height>5.0</Height>
   </Footprint>
-  <Health>
-    <Max>1000</Max>
-  </Health>
   <Identity>
     <Civ>pers</Civ>
     <Classes datatype="tokens">Chariot</Classes>
@@ -54,12 +35,6 @@
   <Obstruction>
     <Unit radius="2.0"/>
   </Obstruction>
-  <UnitMotion>
-    <WalkSpeed>21.5</WalkSpeed>
-    <Run>
-      <Speed>38.0</Speed>
-    </Run>
-  </UnitMotion>
   <VisualActor>
     <Actor>units/persians/hero_xerxes_chariot.xml</Actor>
   </VisualActor>

@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry">
   <Armour>
-    <Hack>6</Hack>
-    <Pierce>4</Pierce>
-    <Crush>6</Crush>
+    <Hack>9</Hack>
+    <Pierce>8</Pierce>
   </Armour>
   <Attack>
     <Melee>
-      <Hack>7</Hack>
-      <Pierce>50.5</Pierce>
+      <Hack>2.0</Hack>
+      <Pierce>54.0</Pierce>
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <RepeatTime>2250</RepeatTime>
-      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Melee>
     <Charge>
       <Hack>7.5</Hack>
@@ -20,7 +18,6 @@
       <Crush>0.0</Crush>
       <MaxRange>5.0</MaxRange>
       <MinRange>0.0</MinRange>
-      <PreferredClasses datatype="tokens">Siege</PreferredClasses>
     </Charge>
   </Attack>
   <Cost>
@@ -30,10 +27,16 @@
     </Resources>
   </Cost>
   <Health>
-    <Max>230</Max>
+    <Max>300</Max>
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
     <GenericName>Champion Cavalry Spearman</GenericName>
   </Identity>
+  <UnitMotion>
+    <WalkSpeed>25.0</WalkSpeed>
+    <Run>
+      <Speed>40.0</Speed>
+    </Run>
+  </UnitMotion>
 </Entity>

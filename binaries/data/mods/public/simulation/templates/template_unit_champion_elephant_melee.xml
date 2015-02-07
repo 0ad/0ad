@@ -2,16 +2,16 @@
 <Entity parent="template_unit_champion_elephant">
   <Attack>
     <Melee>
-      <Hack>28</Hack>
+      <Hack>20</Hack>
       <Pierce>0</Pierce>
-      <Crush>40.0</Crush>
+      <Crush>150.0</Crush>
       <MaxRange>8.0</MaxRange>
       <RepeatTime>1500</RepeatTime>
     </Melee>
     <Charge>
-      <Hack>80.0</Hack>
+      <Hack>40.0</Hack>
       <Pierce>0.0</Pierce>
-      <Crush>80.0</Crush>
+      <Crush>300.0</Crush>
       <MaxRange>8.0</MaxRange>
       <MinRange>0.0</MinRange>
     </Charge>

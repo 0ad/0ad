@@ -433,8 +433,11 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 	permittedComponentTypes.insert("Footprint");
 	permittedComponentTypes.insert("Minimap");
 	permittedComponentTypes.insert("Ownership");
+	permittedComponentTypes.insert("OverlayRenderer");
 	permittedComponentTypes.insert("Position");
 	permittedComponentTypes.insert("Selectable");
+	permittedComponentTypes.insert("StatusBars");
+	permittedComponentTypes.insert("Visibility");
 	permittedComponentTypes.insert("VisualActor");
 
 	CParamNode::LoadXMLString(out, "<Entity/>");
@@ -456,7 +459,6 @@ void CTemplateLoader::CopyMirageSubset(CParamNode& out, const CParamNode& in)
 
 	// Set the entity as mirage entity
 	CParamNode::LoadXMLString(out, "<Entity><Mirage/></Entity>");
-	CParamNode::LoadXMLString(out, "<Entity><Visibility><RetainInFog>true</RetainInFog><AlwaysVisible>false</AlwaysVisible><Preview>false</Preview></Visibility></Entity>");
 }
 
 void CTemplateLoader::CopyFoundationSubset(CParamNode& out, const CParamNode& in)

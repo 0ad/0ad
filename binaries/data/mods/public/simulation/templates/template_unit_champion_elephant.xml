@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion">
   <Armour>
-    <Hack>5</Hack>
-    <Pierce>10</Pierce>
-    <Crush>10</Crush>
+    <Hack>8</Hack>
+    <Pierce>8</Pierce>
+    <Crush>25</Crush>
   </Armour>
   <Cost>
     <Population>3</Population>
@@ -20,7 +20,7 @@
     <Height>6.0</Height>
   </Footprint>
   <Health>
-    <Max>750</Max>
+    <Max>500</Max>
   </Health>
   <Identity>
     <VisibleClasses datatype="tokens">Elephant</VisibleClasses>
@@ -70,7 +70,7 @@
     </Run>
   </UnitMotion>
   <Vision>
-    <Range>80</Range>
+    <Range>100</Range>
   </Vision>
   <VisualActor>
     <Actor>units/mauryans/champion_elephant.xml</Actor>

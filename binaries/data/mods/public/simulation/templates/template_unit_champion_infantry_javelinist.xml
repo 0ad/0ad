@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry">
-  <Armour>
-    <Hack>4</Hack>
-    <Pierce>4</Pierce>
-    <Crush>6</Crush>
-  </Armour>
   <Attack>
     <Ranged>
       <Hack>0</Hack>
-      <Pierce>26.5</Pierce>
+      <Pierce>52.0</Pierce>
       <Crush>0</Crush>
-      <MaxRange>48</MaxRange>
+      <MaxRange>40</MaxRange>
       <MinRange>0.0</MinRange>
       <ProjectileSpeed>50.0</ProjectileSpeed>
       <PrepareTime>1000</PrepareTime>
@@ -40,7 +35,7 @@
     </SoundGroups>
   </Sound>
   <UnitMotion>
-    <WalkSpeed>10.5</WalkSpeed>
+    <WalkSpeed>18.0</WalkSpeed>
     <Run>
       <Speed>18.0</Speed>
     </Run>
