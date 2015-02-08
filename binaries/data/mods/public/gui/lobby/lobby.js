@@ -743,7 +743,7 @@ function onTick()
 function submitChatInput()
 {
 	var input = Engine.GetGUIObjectByName("chatInput");
-	var text = escapeText(input.caption);
+	var text = input.caption;
 	if (text.length)
 	{
 		if (!handleSpecialCommand(text) && !isSpam(text, g_Name))

@@ -268,14 +268,13 @@ function openDiplomacy()
 	isDiplomacyOpen = true;
 
 	let we = Engine.GetPlayerID();
-	let players = getPlayerData(g_PlayerAssignments);
 
 	// Get offset for one line
 	let onesize = Engine.GetGUIObjectByName("diplomacyPlayer[0]").size;
 	let rowsize = onesize.bottom - onesize.top;
 
 	// We don't include gaia
-	for (let i = 1; i < players.length; ++i)
+	for (let i = 1; i < g_Players.length; ++i)
 	{
 		// Apply offset
 		let row = Engine.GetGUIObjectByName("diplomacyPlayer["+(i-1)+"]");
@@ -285,19 +284,19 @@ function openDiplomacy()
 		row.size = size;
 
 		// Set background colour
-		let playerColor = rgbToGuiColor(players[i].color);
+		let playerColor = rgbToGuiColor(g_Players[i].color);
 		row.sprite = "colour: "+playerColor + " 32";
 
-		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + players[i].name + "[/color]";
-		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[players[i].civ].Name;
+		Engine.GetGUIObjectByName("diplomacyPlayerName["+(i-1)+"]").caption = "[color=\"" + playerColor + "\"]" + g_Players[i].name + "[/color]";
+		Engine.GetGUIObjectByName("diplomacyPlayerCiv["+(i-1)+"]").caption = g_CivData[g_Players[i].civ].Name;
 
-		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (players[i].team < 0) ? translateWithContext("team", "None") : players[i].team+1;
+		Engine.GetGUIObjectByName("diplomacyPlayerTeam["+(i-1)+"]").caption = (g_Players[i].team < 0) ? translateWithContext("team", "None") : g_Players[i].team+1;
 
 		if (i != we)
-			Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (players[i].isAlly[we] ? translate("Ally") : (players[i].isNeutral[we] ? translate("Neutral") : translate("Enemy")));
+			Engine.GetGUIObjectByName("diplomacyPlayerTheirs["+(i-1)+"]").caption = (g_Players[i].isAlly[we] ? translate("Ally") : (g_Players[i].isNeutral[we] ? translate("Neutral") : translate("Enemy")));
 
 		// Don't display the options for ourself, or if we or the other player aren't active anymore
-		if (i == we || players[we].state != "active" || players[i].state != "active")
+		if (i == we || g_Players[we].state != "active" || g_Players[i].state != "active")
 		{
 			// Hide the unused/unselectable options
 			for each (let a in ["TributeFood", "TributeWood", "TributeStone", "TributeMetal", "Ally", "Neutral", "Enemy"])
@@ -326,24 +325,24 @@ function openDiplomacy()
 						"stone": (resource == "stone" ? 100 : 0) * multiplier,
 						"metal": (resource == "metal" ? 100 : 0) * multiplier,
 					};
-					button.tooltip = formatTributeTooltip(players[player], resource, amounts[resource]);
+					button.tooltip = formatTributeTooltip(g_Players[player], resource, amounts[resource]);
 					// This is in a closure so that we have access to `player`, `amounts`, and `multiplier` without some
 					// evil global variable hackery.
 					flushTributing = function() {
 						tributeResource({"player": player, "amounts": amounts});
 						multiplier = 1;
-						button.tooltip = formatTributeTooltip(players[player], resource, 100);
+						button.tooltip = formatTributeTooltip(g_Players[player], resource, 100);
 					};
 					if (!isBatchTrainPressed)
 						flushTributing();
 				};
 			})(i, resource, button);
 			button.hidden = false;
-			button.tooltip = formatTributeTooltip(players[i], resource, 100);
+			button.tooltip = formatTributeTooltip(g_Players[i], resource, 100);
 		}
 
 		// Skip our own teams on teams locked
-		if (players[we].teamsLocked && players[we].team != -1 && players[we].team == players[i].team)
+		if (g_Players[we].teamsLocked && g_Players[we].team != -1 && g_Players[we].team == g_Players[i].team)
 			continue;
 
 		// Diplomacy settings
@@ -352,7 +351,7 @@ function openDiplomacy()
 		{
 			let button = Engine.GetGUIObjectByName("diplomacyPlayer"+setting+"["+(i-1)+"]");
 
-			button.caption = players[we]["is"+setting][i] ? translate("x") : "";
+			button.caption = g_Players[we]["is"+setting][i] ? translate("x") : "";
 			button.onpress = (function(e){ return function() { setDiplomacy(e) } })({"player": i, "to": setting.toLowerCase()});
 			button.hidden = false;
 		}

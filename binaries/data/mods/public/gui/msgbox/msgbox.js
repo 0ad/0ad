@@ -104,16 +104,16 @@ function init(data)
 	switch (data.buttonCaptions.length)
 	{
 	case 1:
-		mbButton1Obj.size = "50%-64 100%-76 50%+64 100%-48";
+		mbButton1Obj.size = "18 100%-46 100%-18 100%-18";
 		break;
 	case 2:
-		mbButton1Obj.size = "50%-144 100%-76 50%-16 100%-48";
-		mbButton2Obj.size = "50%+16 100%-76 50%+144 100%-48";
+		mbButton1Obj.size = "18 100%-46 50%-5 100%-18";
+		mbButton2Obj.size = "50%+5 100%-46 100%-18 100%-18";
 		break;
 	case 3:
-		mbButton1Obj.size = "10% 100%-76 30% 100%-48";
-		mbButton2Obj.size = "40% 100%-76 60% 100%-48";
-		mbButton3Obj.size = "70% 100%-76 90% 100%-48";
+		mbButton1Obj.size = "18 100%-46 33%-5 100%-18";
+		mbButton2Obj.size = "33%+5 100%-46 66%-5 100%-18";
+		mbButton3Obj.size = "66%+5 100%-46 100%-18 100%-18";
 		break;
 	}
 }
