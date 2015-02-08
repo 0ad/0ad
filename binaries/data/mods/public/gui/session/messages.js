@@ -506,7 +506,7 @@ function addChatMessage(msg, playerAssignments)
 		var message;
 		if ("translate" in msg && msg.translate)
 		{
-			message = translate(msg.text); // No need to escape, not a use message.
+			message = translate(msg.text); // No need to escape, not a user message.
 			if ("translateParameters" in msg && msg.translateParameters)
 			{
 				var parameters = msg.parameters || {};

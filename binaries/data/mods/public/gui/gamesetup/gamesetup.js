@@ -941,7 +941,7 @@ function selectMap(name)
 		return;
 
 	// reset some map specific properties which are not necessarily redefined on each map
-	for (let prop of ["TriggerScripts", "CircularMap", "StartingTechnologies", "DisabledTechnologies", "DisabledTemplates", "Garrison"])
+	for (let prop of ["TriggerScripts", "CircularMap", "Garrison"])
 		if (g_GameAttributes.settings[prop] !== undefined)
 			g_GameAttributes.settings[prop] = undefined;
 

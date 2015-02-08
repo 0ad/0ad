@@ -71,18 +71,16 @@ function sortNameIgnoreCase(x, y)
 
 // ====================================================================
 
-// Escape text tags and whitespace, so users can't use special formatting in their chats
-// Limit string length to 256 characters
+/**
+ * Escape tag start and escape characters, so users cannot use special formatting.
+ * Also limit string length to 256 characters (not counting escape characters).
+ */
 function escapeText(text)
 {
 	if (!text)
 		return text;
 
-	var out = text.replace(/[\[\]]+/g,"");
-	out = out.replace(/\s+/g, " ");
-
-	return out.substr(0, 255);
-
+	return text.substr(0, 255).replace(/\\/g, "\\\\").replace(/\[/g, "\\[");
 }
 
 // ====================================================================

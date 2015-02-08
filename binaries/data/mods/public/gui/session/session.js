@@ -977,7 +977,7 @@ function reportGame(extendedSimState)
 	// Tribute
 	playerStatistics.tributesSent = "";
 	playerStatistics.tributesReceived = "";
-	// Total	
+	// Total
 	playerStatistics.economyScore = "";
 	playerStatistics.militaryScore = "";
 	playerStatistics.totalScore = "";
@@ -992,8 +992,11 @@ function reportGame(extendedSimState)
 	var teamsLocked = true;
 
 	// Serialize the statistics for each player into a comma-separated list.
-	for each (var player in extendedSimState.players)
+	// Ignore gaia
+	for (let i = 1; i < extendedSimState.players.length; ++i)
 	{
+		let player = extendedSimState.players[i];
+
 		playerStates += player.state + ",";
 		playerCivs += player.civ + ",";
 		teams += player.team + ",";
@@ -1066,4 +1069,3 @@ function reportGame(extendedSimState)
 
 	Engine.SendGameReport(reportObject);
 }
-
