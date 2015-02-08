@@ -231,15 +231,14 @@ function selectCiv(civCode)
 
 	// Determine the buildList for the civ (grouped by phase)
 	var buildList = {};
+	for (let pha of g_ParsedData.phaseList)
+		buildList[pha] = [];
 	for (let structCode of g_Lists.structures)
 	{
 		if (!g_ParsedData.structures[structCode].phase || startStructs.indexOf(structCode) > -1)
 			g_ParsedData.structures[structCode].phase = g_ParsedData.phaseList[0];
 
 		let myPhase = g_ParsedData.structures[structCode].phase;
-
-		if (!(myPhase in buildList))
-			buildList[myPhase] = [];
 		buildList[myPhase].push(structCode);
 	}
 
