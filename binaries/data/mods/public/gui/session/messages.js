@@ -76,9 +76,7 @@ var g_NotificationsTypes =
 			"player": player
 		});
 
-		// If the diplomacy panel is open refresh it.
-		if (isDiplomacyOpen)
-			openDiplomacy();
+		updateDiplomacy();
 	},
 	"diplomacy": function(notification, player)
 	{
@@ -89,9 +87,7 @@ var g_NotificationsTypes =
 			"status": notification.status
 		});
 
-		// If the diplomacy panel is open refresh it.
-		if (isDiplomacyOpen)
-			openDiplomacy();
+		updateDiplomacy();
 	},
 	"quit": function(notification, player)
 	{
@@ -157,6 +153,15 @@ function handleNotifications()
 
 	for (var player of notification.players)
 		action(notification, player);
+}
+
+function updateDiplomacy()
+{
+	g_Players = getPlayerData(g_PlayerAssignments);
+
+	// If the diplomacy panel is open refresh it.
+	if (isDiplomacyOpen)
+		openDiplomacy();
 }
 
 function updateTimeNotifications()
