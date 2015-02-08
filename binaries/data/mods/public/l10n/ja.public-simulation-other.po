@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Kanetaka Suto, 2014
+# Kanetaka Suto, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-21 18:25+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-29 21:51+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,21 @@ msgstr "%(name)sへの贈り物です。お役立てください。"
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
 msgstr "%(name)sと険悪な状況とお見受けします。これがお役に立てば幸いです。"
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "新たな交易路を%(name)sとの間に設けました。交易は我々すべてに利益をもたらすことでしょう。"
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "新たな交易路が%(name)sとの間に設けられました。あなたの分け前をお受け取りください。"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -546,17 +559,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵領"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s は建造数量リミットの %(limit)s に達しました"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s は訓練リミットの %(limit)s に達しました"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s リミットの %(limit)s に達しました"

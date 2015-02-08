@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014
+# Jeff Huang <s8321414@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-12-14 09:40+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-25 14:10+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,21 @@ msgstr "這是給 %(name)s 的一份禮物，請好好的利用它。"
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "我發現您正處於一個不太好的狀況 %(name)s ，希望這個能有幫助。"
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "我發現您正處於一個不太好的狀況 %(name)s ，希望這個能有所幫助。"
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "我已經與 %(name)s 設定了一條新的路線。這交易對我們來說都有利可圖。"
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "與 %(name)s 成立一條新的貿易路線。獲取您的那一份利潤吧"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -546,17 +559,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "敵方的"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s 已達到最大建造數 %(limit)s"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s 已達到最大訓練數 %(limit)s"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s 已達到最高限制 %(limit)s"

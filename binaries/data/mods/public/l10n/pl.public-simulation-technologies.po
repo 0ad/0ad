@@ -15,9 +15,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-12-29 10:50+0000\n"
-"Last-Translator: miragae <miragae@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-26 09:20+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/0ad/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -170,7 +170,6 @@ msgstr "Metalowa zbroja dla konia."
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -2183,20 +2182,6 @@ msgstr "Celtowie przeważnie wznosili drewniane konstrukcje postawione na gruzow
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
 msgstr "Konstrukcja drewniana"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
-msgid ""
-"Crop rotation increases yield by preventing the depletion of vital nutrients"
-" and minerals from the soil."
-msgstr "Płodozmian zwiększa wydajność upraw, zapobiegając jałowieniu gleb."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
-msgid "Increase the yield of your farms. +25% farming rate."
-msgstr "Zwiększ wydajność swoich upraw. +25% szybkość zbiorów."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
-msgid "Crop Rotation"
-msgstr "Płodozmian"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."

@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-12-08 11:51+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-25 10:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Galician (http://www.transifex.com/projects/p/0ad/language/gl/)\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,21 @@ msgstr "Preséntolle un agasallo, %(name)s. Faga bo uso del."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "Vexo que está a atravesar un mal momento, %(name)s. Espero que isto axude."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -546,17 +559,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "inimigo"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "Acadouse o límite de construción de «%(category)s» (%(limit)s)."
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "Acadouse o límite de adestramento de «%(category)s» (%(limit)s)."
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Acadouse o límite de «%(category)s» (%(limit)s)."

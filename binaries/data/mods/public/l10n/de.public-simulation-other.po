@@ -5,13 +5,14 @@
 # Translators:
 # leper <leper@wildfiregames.com>, 2014
 # manuel <37d504fb@opayq.com>, 2014
-# Raymond Vetter, 2014
+# Raymond Vetter, 2014-2015
+# Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-21 02:00+0000\n"
-"Last-Translator: leper <leper@wildfiregames.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-05 19:24+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,8 +37,21 @@ msgstr "Hier ist ein Geschenk für %(name)s, mach was draus."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "Ich sehe, dass du in einer schlechten Situation bist %(name)s, hoffe, dass dies helfen wird."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "Ich sehe, dass du in einer schlechten Situation bist, %(name)s, und hoffe, dass dies helfen wird."
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "Ich habe eine neue Route mit %(name)s etabliert. Der Handel wird profitabel für uns alle sein."
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "Eine neue Handelsroute ist mit %(name)s etabliert. Nimm deinen Anteil an den Gewinnen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -55,7 +69,7 @@ msgstr "Beginnen wir: bilde zuerst eine Gruppe (Umschalttaste + Klick) von 5 Fra
 msgid ""
 "Now, assign your female citizens to gather berries, your cavalryman to hunt "
 "the chickens and the citizen soldiers to gather wood."
-msgstr "Befehle nun die Bürgerinnen Beeren zu sammeln, Ihren Reiter die Hühner zu jagen und die Bürgersoldaten Holz zu sammeln."
+msgstr "Befiehl nun den Bürgerinnen Beeren zu sammeln, deinen Kavellaristen Hühner zu jagen und den Bürgersoldaten Holz zu sammeln."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:18
 msgid "Now set the rally point of your civil center on the berries."
@@ -65,19 +79,19 @@ msgstr "Setze nun den Sammelpunkt des Verwaltungssitzes auf die Beeren."
 msgid ""
 "Queue some slingers to train after the female citizens, you won't have "
 "enough resources for a batch."
-msgstr "Reihe einige Schleuderer nach den weiblichen Bürgern zur Ausbildung ein, du wirst nicht ausreichend Rohstoffe für eine Gruppe haben."
+msgstr "Reihe einige Schleuderer nach den Bürgerinnen zur Ausbildung ein, du wirst nicht ausreichend Rohstoffe für eine Gruppe haben."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:28
 msgid ""
 "When your female citizens have finished training, use 4 to build a house "
 "nearby."
-msgstr "Wenn die Ausbildung der weiblichen Bürger vollendet ist, erteile 4 von ihnen den Auftrag ein Haus in der Nähe zu errichten."
+msgstr "Wenn die Ausbildung deiner Bürgerinnen vollendet ist, erteile 4 von ihnen den Auftrag ein Haus in der Nähe zu errichten."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:33
 msgid ""
 "Set the CC's rally point on the nearby trees, queue more slingers, you want "
 "to train 6 right now."
-msgstr "Setze den Sammelpunkt des Dorfzentrums auf die nahegelegenen Bäume und bilde noch 6 weitere Schleuderer aus."
+msgstr "Setze den Sammelpunkt des Verwaltungssitzes auf die nahegelegenen Bäume und bilde noch 6 weitere Schleuderer aus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:38
 msgid "Queue a batch of 5 female citizens."
@@ -85,38 +99,38 @@ msgstr "Reihe eine Gruppe von 5 weiblichen Bürgern ein."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:43
 msgid "Use shift-click to queue another house for the 4 builders."
-msgstr "Drücke die Umschalttaste und klicke, um ein Haus für die 4 Arbeiter zu errichten."
+msgstr "Drücke die Umschalttaste und klicke, um ein weiteres Haus für die 4 Arbeiter einzureihen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:48
 msgid ""
 "Set the rally point back to the berries once all of the citizen soldiers "
 "have finished training."
-msgstr "Stellen Sie den Sammelpunkt zurück zu den Beeren, sobald alle Soldaten ihre Ausbildung abgeschlossen haben."
+msgstr "Setze den Sammelpunkt zurück zu den Beeren, sobald alle Soldaten fertig ausgebildet sind."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:53
 msgid ""
 "Send one citizen soldier to gather stone, send 2 others to build a "
 "storehouse near the southern trees."
-msgstr "Senden Sie einen Soldat zum Stein sammeln, senden sie 2 andere um ein Lagerhaus in der Nähe der südlichen Bäumen zu bauen."
+msgstr "Schicke einen Soldaten zum Stein abbauen, schicke 2 andere, um ein Lagerhaus in der Nähe der Bäume im Süden zu errichten."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:58
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:78
 msgid "Queue another 5 female citizens."
-msgstr "Reihe weitere 5 weibliche Bürger zur Ausbildung ein."
+msgstr "Reihe weitere 5 Bürgerinnen zur Ausbildung ein."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:63
 msgid "Use a female citizen to construct a field next to your CC."
-msgstr "Nutze eine Bürgerin, um ein Feld in der Nähe deines Bürgerzentrums zu bauen."
+msgstr "Verwende eine Bürgerin, um ein Feld in der Nähe deines Verwaltungssitzes zu bauen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:68
 msgid ""
 "Your cavalryman has probably run out of chickens by now, there are some "
 "goats to the left of your base."
-msgstr "Ihre Kavallerie findet wahrscheinlich keine Hühner mehr, es gibt allerdings einige Ziegen links neben Ihrer Basis."
+msgstr "Deinem Kavalleristen sind wahrscheinlich inzwischen die Hühner ausgegangen, es gibt einige Ziegen links neben deiner Basis."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:73
 msgid "Use 2-3 more female citizens to construct the field."
-msgstr "Verwende 2-3 mehr Bürgerinnen, um das Feld zu bauen."
+msgstr "Verwende 2-3 Bürgerinnen mehr, um das Feld zu bauen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:83
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:128
@@ -130,11 +144,11 @@ msgstr "Gib ein weiteres Haus in Auftrag."
 msgid ""
 "The berry bushes are getting crowded, send some female citizens to work the "
 "field, set the rally point there."
-msgstr "Es herrscht Gedränge an den Beerenbüschen, schicke einige der Frauen dort zur Feldarbeit und setze den Sammelpunkt auf das Feld."
+msgstr "Es herrscht langsam Gedränge an den Beerenbüschen, schicke einige Bürgerinnen zur Feldarbeit und setze den Sammelpunkt dort."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:93
 msgid "Queue another 5 female citizens, these should gather stone."
-msgstr "Reihe weitere 5 weibliche Bürger zur Ausbildung ein, sie sollen Steine abbauen."
+msgstr "Reihe weitere 5 Bürgerinnen zur Ausbildung ein, sie sollen Steine abbauen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:98
 msgid ""
@@ -150,11 +164,11 @@ msgstr "Sende die Arbeiter von den Beerenbüschen auf das Feld zum Ernten, damit
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:108
 msgid "Queue another house to be built."
-msgstr "Gib ein weiteres Haus in Auftrag gebaut zu werden."
+msgstr "Gib ein weiteres Haus in Auftrag."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:113
 msgid "Queue 5 more female citizens. These will gather wood."
-msgstr "Reihe weitere 5 weibliche Bürger zur Ausbildung ein. Sie werden Holz abbauen."
+msgstr "Reihe weitere 5 Bürgerinnen zur Ausbildung ein. Sie werden Holz abbauen."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:118
 msgid ""
@@ -166,11 +180,11 @@ msgstr "Baue ein weiteres Feld, dies verringert die Gehzeit deiner Bürgerinnen.
 msgid ""
 "Train some more slingers, send them to gather stone. Train about 5, you may "
 "not have enough resources for a batch right now."
-msgstr "Bilde weitere Schleuderer aus und schicke sie zum Steinabbau. Bilde etwa 5 aus, du hast eventuell noch nicht genug Rohstoffe für eine Gruppe."
+msgstr "Bilde weitere Schleuderer aus und schicke sie zum Steinabbauen. Bilde etwa 5 aus, du hast eventuell noch nicht genug Rohstoffe für eine Gruppe."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:133
 msgid "Queue another batch of 5 female citizens these are for wood."
-msgstr "Reihe eine weitere Gruppe von 5 weiblichen Bürgern zur Ausbildung ein, sie sind fürs Holz."
+msgstr "Reihe eine weitere Gruppe von 5 Bürgerinnen zur Ausbildung ein, diese sind fürs Holz."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:143
 msgid "Queue a batch of spearmen."
@@ -178,7 +192,7 @@ msgstr "Gib eine Gruppe Speerträger in Auftrag."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:148
 msgid "Research the stone mining technology from the storehouse."
-msgstr "Erforschen Sie die Bergbautechnik aus dem Lagerhaus."
+msgstr "Erforsche die Bergbautechnik im Lagerhaus."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:153
 msgid "Queue a batch of slingers."
@@ -255,13 +269,13 @@ msgstr "Von diesem Punkt aus hast du eine gute Basis um eine Armee aufzustellen 
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:233
 msgid "The key points to remember are:"
-msgstr "Die Schlüsselpunkte, an die du dich erinnern musst, sind:"
+msgstr "Die zentralen Punkte, an die du dich erinnern musst, sind:"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:238
 msgid ""
 " - Don't have any idle units. Shift click queuing and rally points are very "
 "useful."
-msgstr "Vermeide untätige Einheiten. Das Ausbilden per Umschalten + Klicken und Sammelpunkte sind äußerst hilfreich."
+msgstr "- Vermeide untätige Einheiten. Das Ausbilden per Umschalten + Klicken und Sammelpunkte sind äußerst hilfreich."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:243
 msgid ""
@@ -273,7 +287,7 @@ msgstr "- Benutze all deine Rohstoffe, Rohstoffe zu horten oder zu viel eines Ro
 msgid ""
 " - Use the right units for the right task, female citizens gather food, "
 "cavalry hunt, citizen soldiers do the rest."
-msgstr "- Nutze die passenden Einheiten für die passenden Aufgaben, weibliche Bürger sammeln Nahrung, die Kavallerie jagt und die Bürgersoldaten erledigen den Rest."
+msgstr "- Nutze die passenden Einheiten für die passenden Aufgaben, Bürgerinnen sammeln Nahrung, die Kavallerie jagt und die Bürgersoldaten erledigen den Rest."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:253
 msgid ""
@@ -285,13 +299,13 @@ msgstr "- Schrecke nicht davor zurück Einheiten anderen Ressourcen zuzuweisen, 
 msgid ""
 " - Build enough houses, your CC should be kept busy as much as possible, it "
 "is the only training building until town phase."
-msgstr "Baue genug Wohnhäuser. Das Dorfzentrum sollte so viele Einheiten ausbilden wie möglich, es ist bis in die Stadtphase deine einzige Ausbildungsstätte für Bürger."
+msgstr "- Baue genügend Wohnhäuser. Der Verwaltungssitz sollte so viele Einheiten wie möglich ausbilden, es ist bis in die Stadtphase deine einzige Ausbildungsstätte für Bürger."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:263
 msgid ""
 " - Female citizens are cheap, so you can build more of them and gather more "
 "resources."
-msgstr "- Weibliche Bürger sind billig, so dass Sie mehr von ihnen bauen und mehr Ressourcen sammeln können."
+msgstr "- Bürgerinnen sind billig, so dass Sie mehr von ihnen bauen und mehr Ressourcen sammeln können."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:268
 msgid ""
@@ -310,14 +324,14 @@ msgid ""
 "Welcome to the 0 A.D. tutorial. First left-click on a female citizen, then "
 "Right-click on a berry bush nearby to make the unit collect food. Female "
 "citizens gather food faster than other units."
-msgstr "Willkommen beim 0 A.D. Tutorial. Klicke zuerst mit der linken Maustaste auf eine Bürgerin, dann mit der rechten Maustaste auf einen Bärenstrauch in der Nähe, um Sie Nahrung sammeln zu lassen. Bürgerinnen können Nahrung schneller sammeln als andere Einheiten."
+msgstr "Willkommen beim 0 A.D. Tutorial. Klicke zuerst mit der linken Maustaste auf eine Bürgerin, dann mit der rechten Maustaste auf einen Beerenstrauch in der Nähe, um sie Nahrung sammeln zu lassen. Bürgerinnen können Nahrung schneller sammeln als andere Einheiten."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:7
 msgid ""
 "Select the citizen-soldier, right-click on a tree near the Civil Center to "
 "begin collecting wood. Citizen-soldiers gather wood faster than female "
 "citizens."
-msgstr "Wähle den Bürgersoldaten und rechtsklicke auf einen Baum nahe des Verwaltungssitzes, um Holz zu sammeln. Männliche Bürger sammeln Holz schneller als Weibliche."
+msgstr "Wähle den Bürgersoldaten und rechtsklicke auf einen Baum nahe des Verwaltungssitzes, um Holz zu sammeln. Bürgersoldaten sammeln Holz schneller als Bürgerinnen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:11
 msgid ""
@@ -329,14 +343,14 @@ msgstr "Wähle deinen Verwaltungssitz aus und Shift-klicke einmal auf das Hoplit
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr "Wähle die beiden untätigen weiblichen Bürger aus und baue ein Haus in der Nähe, durch auswählen des Haus-Symbols. Platziere das Haus durch einen Linksklick auf ein Stück Land."
+msgstr "Wähle die beiden untätigen Bürgerinnen aus und baue ein Haus in der Nähe, indem du das Haus-Symbol wählst. Platziere das Haus durch einen Linksklick auf ein Stück Land."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
 "Select the newly trained Hoplites and assign them to build a storehouse "
 "beside some nearby trees. They will begin to gather wood when it's "
 "constructed."
-msgstr "Wähle die frisch ausgebildeten Hopliten aus und beauftrage sie ein Lagerhaus in der Nähe von Bäumen zu bauen. Sie werden mit dem Abbau von Holz beginnen, wenn das Lagerhaus fertig ist."
+msgstr "Wähle die frisch ausgebildeten Hopliten aus und beauftrage sie, ein Lagerhaus in der Nähe von Bäumen zu bauen. Sie werden mit dem Abbau von Holz beginnen, wenn das Lagerhaus fertig ist."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:27
 msgid ""
@@ -362,33 +376,33 @@ msgid ""
 "The field's builders will now automatically begin collecting food from the "
 "field. Using the newly created group of skirmishers, get them to build "
 "another house nearby."
-msgstr "Die Bauarbeiter des Feldes werden nun automatisch beginnen Nahrung auf dem Feld zu sammeln. Benutze nun die frisch ausgebildete Gruppe Plänkler um in der Nähe ein Haus zu bauen."
+msgstr "Die Bauarbeiter des Feldes werden nun automatisch beginnen, Nahrung auf dem Feld zu sammeln. Benutze nun die frisch ausgebildete Gruppe Plänkler um in der Nähe ein Haus zu bauen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:51
 msgid ""
 "Train 5 Hoplites from the Civil Center. Select the Civil Center and with it "
 "selected right click on a tree nearby. Units from the Civil Center will now "
 "automatically gather wood."
-msgstr "Bilde 5 Hopliten im Verwaltungssitz aus. Klicke auf das Dorfzentrum und klicke dann mit der rechten Maustaste auf einen nahegelegenen Baum. Die im Dorfzentrum ausgebildeten Einheiten werden ab sofort automatisch Holz sammeln gehen."
+msgstr "Bilde 5 Hopliten im Verwaltungssitz aus. Klicke auf den Verwaltungssitz und klicke dann mit der rechten Maustaste auf einen nahegelegenen Baum. Die im Dorfzentrum ausgebildeten Einheiten werden ab sofort automatisch Holz sammeln gehen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:57
 msgid ""
 "Order the idle Skirmishers to build an outpost to the north east at the edge"
 " of your territory.  This will be the fifth Village Phase structure that you"
 " have built, allowing you to advance to the Town Phase."
-msgstr "Schicke die untätigen Scharmützler an die nordöstliche Grenze deines Territoriums, um einen Außenposten zu errichten. Dies ist das fünfte Gebäude des Dorfzeitalters, anschließend kannst du ins Stadtzeitalter aufsteigen."
+msgstr "Schicke die untätigen Scharmützler an die nordöstliche Grenze deines Territoriums, um einen Außenposten zu errichten. Dies ist das fünfte Gebäude der Dorfphase, anschließend kannst du in die Stadtphase aufsteigen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:63
 msgid ""
 "Select the Civil Center again and advance to Town Phase by clicking on the "
 "'II' icon. This will allow Town Phase buildings to be constructed."
-msgstr "Markiere das Dorfzentrum und klicke auf das Symbol \"II\", um ins Stadtzeitalter aufzusteigen. Dann können auch städtische Gebäude errichtet werden."
+msgstr "Wähle den Verwaltungssitz und klicke auf das Symbol \"II\", um in die Stadtphase aufzusteigen. Dann können Gebäude dieser Phase errichtet werden."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:69
 msgid ""
 "Start building 5 female citizens in the Civil Center and set its rally point"
 " to the farm (right click on it)."
-msgstr "Gib weitere 5 weibliche Bürger im Verwaltungssitz in Auftrag und setze den Sammelpunkt auf die Farm (rechts-klicke auf sie),"
+msgstr "Gib weitere 5 Bürgerinnen im Verwaltungssitz in Auftrag und setze den Sammelpunkt auf die Farm (rechts-klicke auf sie),"
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:74
 msgid ""
@@ -406,11 +420,11 @@ msgstr "Bereite dich auf einen Angriff vor. Bilde mehr Soldaten in Kasernen aus 
 msgid ""
 "Build a Blacksmith and research the Infantry Training technology (sword "
 "icon) to improve infantry hack attack."
-msgstr "Baue einen Schmied und erforsche die Infanterie-Ausbildungstechnologie (Schwert-Symbol), um Infanterie-Hack-Angriff zu verbessern."
+msgstr "Baue einen Schmied und erforsche die Infanterie-Ausbildungstechnologie (Schwert-Symbol), um den Hiebangriff der Infanterie zu verbessern."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:92
 msgid "The enemy is coming. Build more soldiers to fight off the enemies."
-msgstr "Der Feind rückt näher. Baue mehr Soldaten, um ihn besiegen zu können."
+msgstr "Der Feind rückt näher. Baue mehr Soldaten, um ihn abzuwehren."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:99
 msgid ""
@@ -422,26 +436,26 @@ msgstr "Der feindliche Angriff wurde abgewehrt. Bau jetzt einen Markt und einen 
 msgid ""
 "Now that City Phase requirements have been reached, select your Civil Center"
 " and advance to City Phase."
-msgstr "Jetzt, da die Anforderungen für die Stadtphase erreicht sind, wähle deinen Verwaltungssitz aus und schreite zur Großstadtphase voran."
+msgstr "Jetzt, da die Anforderungen für die Großstadtphase erreicht sind, wähle deinen Verwaltungssitz aus und schreite zur Großstadtphase voran."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:110
 msgid ""
 "Now that you are in City Phase, build a fortress nearby and use it to build "
 "2 Battering Rams."
-msgstr "Nachdem du dich in der Stadtphase befindest, baue eine Festung in der Nähe und verwende diese um 2 Rammböcke bauen."
+msgstr "Nachdem du dich in der Großstadtphase befindest, baue eine Festung in der Nähe und verwende diese um 2 Rammböcke bauen."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:115
 msgid ""
 "Stop all your soldiers gathering resources and instead task small groups to "
 "find the enemy Civil Center on the map. Female citizens should continue to "
 "gather resources."
-msgstr "Formiere jetzt alle Soldaten, die Rohstoffe sammeln, zu kleinen Gruppen und weise sie an, den gegnerischen Verwaltungssitz zu suchen. Die weiblichen Einwohner sollen weiter Rohstoffe sammeln."
+msgstr "Formiere jetzt alle Soldaten, die Rohstoffe sammeln, zu kleinen Gruppen und weise sie an, den gegnerischen Verwaltungssitz zu suchen. Die Bürgerinnen sollten weiter Rohstoffe sammeln."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:122
 msgid ""
 "The enemy's base has been spotted, send your siege weapons and all remaining"
 " soldiers to destroy it."
-msgstr "Basis des Gegners wurde entdeckt, sende Belagerungswaffen aus um alle übrigen Soldaten zu eliminieren."
+msgstr "Die Basis des Gegners wurde entdeckt, schicke Belagerungswaffen und alle übrigen Soldaten, um es zu zerstören."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:126
 msgid "The enemy has been defeated. All tutorial tasks are now completed…"
@@ -455,7 +469,7 @@ msgstr "%(name)s kann wegen einem unbekannten Fehler nicht gebaut werden"
 #: simulation/components/BuildRestrictions.js:108
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
-msgstr "%(name)s kann nicht in unerkundeter Karte gebaut werden"
+msgstr "%(name)s kann nicht in unerforschtem Gebiet gebaut werden"
 
 #: simulation/components/BuildRestrictions.js:156
 #, javascript-format
@@ -472,28 +486,28 @@ msgstr "%(name)s kann nicht auf ungültigem Land gebaut werden"
 #: simulation/components/BuildRestrictions.js:184
 msgctxt "Territory type"
 msgid "ally"
-msgstr "Verbündetes"
+msgstr "verbündetem"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:187
 msgctxt "Territory type"
 msgid "own"
-msgstr "Eigenes"
+msgstr "eigenem"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:190
 msgctxt "Territory type"
 msgid "neutral"
-msgstr "Neutrales"
+msgstr "neutralem"
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
 #: simulation/components/BuildRestrictions.js:193
 msgctxt "Territory type"
 msgid "enemy"
-msgstr "Feindliches"
+msgstr "feindlichem"
 
 #: simulation/components/BuildRestrictions.js:199
 #, javascript-format
@@ -505,7 +519,7 @@ msgstr "%(name)s kann nicht in %(territoryType)s Territorium gebaut werden. Gül
 #: simulation/components/BuildRestrictions.js:238
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
-msgstr "%(name)s kann nur an einer gültigen Küstenlinie gebaut werden"
+msgstr "%(name)s muss an einer gültigen Küstenlinie gebaut werden"
 
 #: simulation/components/BuildRestrictions.js:262
 #, javascript-format
@@ -548,17 +562,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "Feindliches"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s Bau Limit von %(limit)s erreicht"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s Training Limit von %(limit)s erreicht"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s Limit von %(limit)s erreicht"
@@ -624,7 +638,7 @@ msgstr "Gemächlich (0.5x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[3].Name
 msgid "Relaxed (0.75x)"
-msgstr "Relaxed (0.75x)"
+msgstr "Entspannt (0.75x)"
 
 #: simulation/data/game_speeds.jsonSpeeds[4].Name
 msgid "Normal (1x)"
@@ -737,7 +751,7 @@ msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr "Begann als Fork von Aegis bot, Petra ist die stabilste AI, die zur Verfügung steht. Es unterstützt Marinekarten und ist in der Regel anspruchsvoll. Bitte melde Fragen an Wildfire Games (siehe Link im Hauptmenü)."
+msgstr "Begonnen als Fork von Aegis bot, ist Petra die stabilste KI, die zur Verfügung steht. Sie unterstützt Seekarten und ist in der Regel anspruchsvoller. Bitte melde Probleme an Wildfire Games (siehe Link im Hauptmenü)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"
@@ -747,4 +761,4 @@ msgstr "Tutorial KI"
 msgid ""
 "The Tutorial AI should only be used on the \"Introductory Tutorial\" "
 "scenario."
-msgstr "Das Tutorial AI sollte nur auf dem \"Einführung Tutorial\"-Szenario verwendet werden."
+msgstr "Das Tutorial KI sollte nur im \"Einführungs-Tutorial\"-Szenario verwendet werden."

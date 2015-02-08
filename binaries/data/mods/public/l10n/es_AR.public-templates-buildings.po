@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Adrian Sbardella <sbardemadrian@gmail.com>, 2015
 # Damian Axel Xavier <dax@barrio-maritimo.com.ar>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2015-01-16 05:10+0000\n"
-"Last-Translator: Damian Axel Xavier <dax@barrio-maritimo.com.ar>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-27 21:33+0000\n"
+"Last-Translator: Adrian Sbardella <sbardemadrian@gmail.com>\n"
 "Language-Team: Spanish (Argentina) (http://www.transifex.com/projects/p/0ad/language/es_AR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -60,17 +61,17 @@ msgstr "Casa"
 
 #: simulation/templates/template_structure_civic_temple.xml:11
 msgid "Healing Aura"
-msgstr ""
+msgstr "Aura Curativa"
 
 #: simulation/templates/template_structure_civic_temple.xml:12
 msgid "Heals nearby units at 1 HP per second."
-msgstr ""
+msgstr "Cura unidades cercanas a 1 HP por segundo"
 
 #: simulation/templates/template_structure_civic_temple.xml:43
 msgid ""
 "Train healers. Garrison up to 20 units to heal them at a quick rate (3 HP "
 "per second). Research healing and religious improvements."
-msgstr ""
+msgstr "Entrena curadores. Almacena hasta 20 unidades para curarlas a alta velocidad (3 HP por segundo). Investiga mejoras curativas y religiosas"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
@@ -81,85 +82,85 @@ msgstr ""
 #: simulation/templates/structures/celt_blacksmith.xml:11
 #: simulation/templates/structures/gaul_blacksmith.xml:11
 msgid "Town"
-msgstr ""
+msgstr "Ciudad"
 
 #: simulation/templates/template_structure_civic_temple.xml:44
 #: simulation/templates/template_structure_civic_temple.xml:42
 msgid "Temple"
-msgstr ""
+msgstr "Templo"
 
 #: simulation/templates/template_structure_defense.xml:14
 msgid "Defensive Structure"
-msgstr ""
+msgstr "Estructura Defensiva"
 
 #: simulation/templates/template_structure_defense.xml:15
 #: simulation/templates/template_structure_military_fortress.xml:57
 msgid "Defensive"
-msgstr ""
+msgstr "Defensiva"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:54
 msgid "Defense Tower"
-msgstr ""
+msgstr "Torre de Defensa"
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:55
 msgid "Shoots arrows. Garrison to provide extra defense."
-msgstr ""
+msgstr "Dispara flechas. Almacena unidades para proveer defensa extra."
 
 #: simulation/templates/template_structure_defense_defense_tower.xml:57
 #: simulation/templates/template_structure_defense_defense_tower.xml:26
 msgid "DefenseTower"
-msgstr ""
+msgstr "TorreDefensiva"
 
 #: simulation/templates/template_structure_defense_outpost.xml:58
 msgid ""
 "Build in neutral and own territories to scout areas of the map. Slowly loses"
 " health while in neutral territory."
-msgstr ""
+msgstr "Construible en territorios neutrales y propios para explorar áreas del mapa. Lentamente pierde salud estando en territorio neutral"
 
 #: simulation/templates/template_structure_defense_outpost.xml:60
 #: simulation/templates/template_structure_defense_outpost.xml:57
 msgid "Outpost"
-msgstr ""
+msgstr "Puesto de Vigilancia"
 
 #: simulation/templates/template_structure_defense_wall.xml:23
 msgid "Stone Wall"
-msgstr ""
+msgstr "Muralla de Piedra"
 
 #: simulation/templates/template_structure_defense_wall.xml:24
 #: simulation/templates/template_structure_defense_wallset.xml:11
 msgid "Wall off your town for a stout defense."
-msgstr ""
+msgstr "Amuralle su ciudad para una defensa fuerte."
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:27
 msgid "City Gate"
-msgstr ""
+msgstr "Puerta de la Ciudad"
 
 #: simulation/templates/template_structure_defense_wall_gate.xml:28
 msgid ""
 "Allow units access through a city wall. Can be locked to prevent access."
-msgstr ""
+msgstr "Permite acceso a unidades a través de una puerta de ciudad. Puede ser bloqueada para prevenir el acceso."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:13
 #: simulation/templates/template_structure_defense_wall_medium.xml:13
 msgid "Wall Protection"
-msgstr ""
+msgstr "Protección de muro"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:14
 #: simulation/templates/template_structure_defense_wall_medium.xml:14
 msgid "Units on walls have 3 extra Armor levels"
-msgstr ""
+msgstr "Unidades en murallas tienen 3 niveles extra de Armadura"
 
 #: simulation/templates/template_structure_defense_wall_long.xml:53
 msgid "Long wall segments can be converted to gates."
-msgstr ""
+msgstr "Segmentos grandes de muralla pueden ser convertidos en puertas."
 
 #: simulation/templates/template_structure_defense_wall_long.xml:54
 msgid "Convert Stone Wall into City Gate"
-msgstr ""
+msgstr "Convertir Muralla en Puerta de Ciudad"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:49
 msgid "Wall Turret"
-msgstr ""
+msgstr "Torreta de Muralla"
 
 #: simulation/templates/template_structure_defense_wall_tower.xml:50
 msgid "Shoots arrows. Garrison to defend a city wall against attackers."
@@ -639,24 +640,29 @@ msgstr ""
 msgid "Brythonic Outpost"
 msgstr ""
 
-#: simulation/templates/structures/brit_rotarymill.xml:20
-#: simulation/templates/structures/celt_sb1.xml:23
-#: simulation/templates/structures/gaul_rotarymill.xml:20
-msgid "Rotary Mill"
-msgstr ""
-
 #: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/celt_sb1.xml:24
 #: simulation/templates/structures/gaul_rotarymill.xml:21
-msgid "Melonas"
+msgid "Farming bonus"
 msgstr ""
 
 #: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/celt_sb1.xml:25
 #: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid ""
-"Increase nearby farming output +25%. (Currently, a special technology can be"
-" researched to serve this function)"
+msgid "Boosts nearby farming with +25%."
+msgstr ""
+
+#: simulation/templates/structures/brit_rotarymill.xml:32
+#: simulation/templates/structures/gaul_rotarymill.xml:32
+msgid "Rotary Mill"
+msgstr ""
+
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
+msgid "Melonas"
+msgstr ""
+
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
+msgid "Increase nearby farming output +25%."
 msgstr ""
 
 #: simulation/templates/structures/brit_storehouse.xml:8
@@ -1380,22 +1386,22 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:7
-#: simulation/templates/structures/sele_military_colony.xml:7
+#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/sele_military_colony.xml:8
 msgid "Colony"
-msgstr ""
-
-#: simulation/templates/structures/ptol_military_colony.xml:29
-#: simulation/templates/structures/sele_military_colony.xml:29
-msgid "Military Colony"
 msgstr ""
 
 #: simulation/templates/structures/ptol_military_colony.xml:30
 #: simulation/templates/structures/sele_military_colony.xml:30
+msgid "Military Colony"
+msgstr ""
+
+#: simulation/templates/structures/ptol_military_colony.xml:31
+#: simulation/templates/structures/sele_military_colony.xml:31
 msgid "Klēroukhia"
 msgstr ""
 
-#: simulation/templates/structures/ptol_military_colony.xml:33
+#: simulation/templates/structures/ptol_military_colony.xml:34
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1623,7 +1629,7 @@ msgid ""
 "for stout defense."
 msgstr ""
 
-#: simulation/templates/structures/sele_military_colony.xml:33
+#: simulation/templates/structures/sele_military_colony.xml:34
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

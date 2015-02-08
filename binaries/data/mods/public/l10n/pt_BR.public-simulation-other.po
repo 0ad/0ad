@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2015-01-23 18:22+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-28 05:33+0000\n"
 "Last-Translator: PedroDognani <pedro_dognani_@hotmail.com>\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -39,8 +39,21 @@ msgstr "Aqui está um presente para %(name)s, faça bom use dele."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "Eu vejo que você está em uma situação ruim, %(name)s, eu espero que isto vá ajudá-lo."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "Eu vejo que você está em uma situação ruim %(name)s, eu espero que isto ajude."
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "Eu tenho a configuração de uma nova rota com %(name)s. Negociação será lucrativa para todos nós."
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "Uma nova rota de comércio está configurada com %(name)s. Leve a sua parte dos lucros"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -551,17 +564,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "inimigo"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s limite de construções de %(limit)s alcançado"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s limite de formação de %(limit)s alcançado"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limite de %(limit)s alcançado"

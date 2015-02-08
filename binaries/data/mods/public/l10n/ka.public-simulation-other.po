@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-20 09:51+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-25 10:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -34,8 +34,21 @@ msgstr "აი საჩუქარი მოთამაშისთვის 
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "ვხედავ, რომ ცუდ მდგომარეობაში ხარ %(name)s, ვიმედოვნებ ეს დაგეხმარება."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr ""
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -546,17 +559,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "მტერი"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s შენების ზღვარი - %(limit)s მიღწეულია"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s წვრთნის ზღვარი - %(limit)s მიღწეულია"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ზღვარი - %(limit)s მიღწეულია"

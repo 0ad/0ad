@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 10:08+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-25 10:36+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Georgian (http://www.transifex.com/projects/p/0ad/language/ka/)\n"
 "MIME-Version: 1.0\n"
@@ -97,6 +97,188 @@ msgstr "%(dateString)s %(map)s - %(description)s"
 msgid "%(dateString)s %(map)s"
 msgstr "%(dateString)s %(map)s"
 
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:4
+msgctxt "firstWord"
+msgid "Food"
+msgstr "საჭმელი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:6
+msgctxt "firstWord"
+msgid "Meat"
+msgstr "ხორცი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:8
+msgctxt "firstWord"
+msgid "Metal"
+msgstr "ლითონი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:10
+msgctxt "firstWord"
+msgid "Ore"
+msgstr "მადანი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:12
+msgctxt "firstWord"
+msgid "Rock"
+msgstr "ქვა"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:14
+msgctxt "firstWord"
+msgid "Ruins"
+msgstr "ნანგრევები"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:16
+msgctxt "firstWord"
+msgid "Stone"
+msgstr "ქვა"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:18
+msgctxt "firstWord"
+msgid "Treasure"
+msgstr "განძი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:20
+msgctxt "firstWord"
+msgid "Tree"
+msgstr "ხე"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:22
+msgctxt "firstWord"
+msgid "Wood"
+msgstr "ხე"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:24
+msgctxt "firstWord"
+msgid "Fruit"
+msgstr "ხილი"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:26
+msgctxt "firstWord"
+msgid "Grain"
+msgstr "მარცვლეული"
+
+#. Translation: Word as used at the beginning of a sentence or as a single-
+#. word sentence.
+#: gui/common/l10n.js:28
+msgctxt "firstWord"
+msgid "Fish"
+msgstr "თევზი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:32
+msgctxt "withinSentence"
+msgid "Food"
+msgstr "საჭმელი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:34
+msgctxt "withinSentence"
+msgid "Meat"
+msgstr "ხორცი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:36
+msgctxt "withinSentence"
+msgid "Metal"
+msgstr "ლითონი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:38
+msgctxt "withinSentence"
+msgid "Ore"
+msgstr "მადანი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:40
+msgctxt "withinSentence"
+msgid "Rock"
+msgstr "ქვა"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:42
+msgctxt "withinSentence"
+msgid "Ruins"
+msgstr "ნანგრევები"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:44
+msgctxt "withinSentence"
+msgid "Stone"
+msgstr "ქვა"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:46
+msgctxt "withinSentence"
+msgid "Treasure"
+msgstr "განძი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:48
+msgctxt "withinSentence"
+msgid "Tree"
+msgstr "ხე"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:50
+msgctxt "withinSentence"
+msgid "Wood"
+msgstr "ხე"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:52
+msgctxt "withinSentence"
+msgid "Fruit"
+msgstr "ხილი"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:54
+msgctxt "withinSentence"
+msgid "Grain"
+msgstr "მარცვლეული"
+
+#. Translation: Word as used in the middle of a sentence (which may require
+#. using lowercase for your language).
+#: gui/common/l10n.js:56
+msgctxt "withinSentence"
+msgid "Fish"
+msgstr "თევზი"
+
 #: gui/common/network.js:6
 msgid "Unknown reason"
 msgstr "უცნობი მიზეზი"
@@ -130,6 +312,202 @@ msgstr "მიზეზი: %(reason)s."
 #: gui/common/network.js:20
 msgid "Disconnected"
 msgstr "გამოერთებულია"
+
+#: gui/common/tooltips.js:21 gui/common/tooltips.js:70
+#: gui/common/tooltips.js:102
+msgid "(None)"
+msgstr "(არცერთი)"
+
+#: gui/common/tooltips.js:25 gui/common/tooltips.js:30
+#: gui/common/tooltips.js:35 gui/common/tooltips.js:106
+#: gui/common/tooltips.js:111 gui/common/tooltips.js:116
+#, javascript-format
+msgid "%(damage)s %(damageType)s"
+msgstr "%(damage)s %(damageType)s"
+
+#: gui/common/tooltips.js:27 gui/common/tooltips.js:77
+#: gui/common/tooltips.js:108
+msgid "Hack"
+msgstr "ცხენი"
+
+#: gui/common/tooltips.js:32 gui/common/tooltips.js:83
+#: gui/common/tooltips.js:113
+msgid "Pierce"
+msgstr ""
+
+#: gui/common/tooltips.js:37 gui/common/tooltips.js:89
+#: gui/common/tooltips.js:118
+msgid "Crush"
+msgstr "გასრესა"
+
+#: gui/common/tooltips.js:40 gui/common/tooltips.js:95
+#: gui/common/tooltips.js:121 gui/common/tooltips.js:195
+#: gui/common/tooltips.js:376
+msgid ", "
+msgstr ","
+
+#: gui/common/tooltips.js:49
+#, javascript-format
+msgid "%(arrowString)s / %(timeString)s"
+msgstr "%(arrowString)s / %(timeString)s"
+
+#: gui/common/tooltips.js:50
+#, javascript-format
+msgid "%(arrows)s arrow"
+msgid_plural "%(arrows)s arrows"
+msgstr[0] ""
+
+#: gui/common/tooltips.js:51 gui/common/tooltips.js:54
+#, javascript-format
+msgid "%(time)s second"
+msgid_plural "%(time)s seconds"
+msgstr[0] ""
+
+#: gui/common/tooltips.js:66
+msgid "Armor:"
+msgstr "ჯავშანი:"
+
+#: gui/common/tooltips.js:68 gui/common/tooltips.js:93
+#: gui/common/tooltips.js:152
+#, javascript-format
+msgid "%(label)s %(details)s"
+msgstr "%(label)s %(details)s"
+
+#: gui/common/tooltips.js:75 gui/common/tooltips.js:81
+#: gui/common/tooltips.js:87
+#, javascript-format
+msgid "%(damage)s %(damageType)s %(armorPercentage)s"
+msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
+
+#: gui/common/tooltips.js:78 gui/common/tooltips.js:84
+#: gui/common/tooltips.js:90
+#, javascript-format
+msgid "(%(armorPercentage)s)"
+msgstr "(%(armorPercentage)s)"
+
+#: gui/common/tooltips.js:126
+msgid "Charge Attack:"
+msgstr ""
+
+#: gui/common/tooltips.js:127
+msgid "Melee Attack:"
+msgstr "ახლოდან თავდასხმა:"
+
+#: gui/common/tooltips.js:128
+msgid "Ranged Attack:"
+msgstr "შორიდან თავდასხმა:"
+
+#: gui/common/tooltips.js:131
+msgid "Attack:"
+msgstr "თავდასხმა:"
+
+#: gui/common/tooltips.js:141
+msgid "Interval:"
+msgstr "შუალედი:"
+
+#: gui/common/tooltips.js:143
+msgid "Rate:"
+msgstr "განაკვეთი:"
+
+#: gui/common/tooltips.js:160
+#, javascript-format
+msgid "%(attackLabel)s %(details)s, %(rate)s"
+msgstr ""
+
+#: gui/common/tooltips.js:170
+msgid "Range:"
+msgstr "მანძილი:"
+
+#: gui/common/tooltips.js:172
+msgid "meters"
+msgstr "მეტრი"
+
+#: gui/common/tooltips.js:175
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
+"(%(relative)s), %(rate)s"
+msgstr ""
+
+#: gui/common/tooltips.js:185
+#, javascript-format
+msgid ""
+"%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
+"%(rate)s"
+msgstr ""
+
+#: gui/common/tooltips.js:235 gui/common/tooltips.js:236
+#: gui/common/tooltips.js:237 gui/common/tooltips.js:238
+#: gui/common/tooltips.js:239 gui/common/tooltips.js:240
+#: gui/common/tooltips.js:356
+#, javascript-format
+msgid "%(component)s %(cost)s"
+msgstr "%(component)s %(cost)s"
+
+#. Translation: This string is part of the resources cost string on
+#. the tooltip for wall structures.
+#: gui/common/tooltips.js:294
+#, javascript-format
+msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
+msgstr "%(resourceIcon)s %(minimum)s-დან %(resourceIcon)s %(maximum)s-მდე"
+
+#: gui/common/tooltips.js:325
+#, javascript-format
+msgid "Walls:  %(costs)s"
+msgstr "კედლები: %(costs)s"
+
+#: gui/common/tooltips.js:326
+#, javascript-format
+msgid "Towers:  %(costs)s"
+msgstr "კოშკები: %(costs)s"
+
+#: gui/common/tooltips.js:342
+#, javascript-format
+msgid "%(label)s %(populationBonus)s"
+msgstr "%(label)s %(populationBonus)s"
+
+#: gui/common/tooltips.js:343
+msgid "Population Bonus:"
+msgstr "მოსახლეობის ჯილდო:"
+
+#: gui/common/tooltips.js:361
+msgid "Insufficient resources:"
+msgstr "არასაკმარისი სახსრები:"
+
+#: gui/common/tooltips.js:369
+msgid "Speed:"
+msgstr "სიჩქარე:"
+
+#: gui/common/tooltips.js:372 gui/common/tooltips.js:374
+#, javascript-format
+msgid "%(speed)s %(movementType)s"
+msgstr "%(speed)s %(movementType)s"
+
+#: gui/common/tooltips.js:372
+msgid "Walk"
+msgstr "სიარული"
+
+#: gui/common/tooltips.js:374
+msgid "Run"
+msgstr "სირბილი"
+
+#: gui/common/tooltips.js:376
+#, javascript-format
+msgid "%(label)s %(speeds)s"
+msgstr "%(label)s %(speeds)s"
+
+#: gui/common/tooltips.js:385
+#, javascript-format
+msgid "%(specificName)s (%(genericName)s)"
+msgstr "%(specificName)s (%(genericName)s)"
+
+#: gui/common/tooltips.js:395
+msgid "???"
+msgstr "???"
+
+#: gui/common/tooltips.js:425
+msgid "Classes:"
+msgstr "კლასები:"
 
 #: gui/locale/locale_advanced.js:22 gui/locale/locale_advanced.js:76
 msgctxt "localeCountry"
@@ -228,183 +606,192 @@ msgstr "თამაშის დროის მაჩვენებელი"
 msgid "Show current simulation time in top right corner."
 msgstr "აჩვენე ახლანდელი მოკატუნების დრო ზედა მარჯვენა კუთხეში."
 
-#: gui/options/options.js:19
+#: gui/options/options.js:16
+msgid "Persist match settings"
+msgstr ""
+
+#: gui/options/options.js:16
+msgid ""
+"Save and restore match settings for quick reuse when hosting an other game"
+msgstr ""
+
+#: gui/options/options.js:20
 msgid "Prefer GLSL"
 msgstr "ამჯობინე GLSL"
 
-#: gui/options/options.js:19
+#: gui/options/options.js:20
 msgid "Use OpenGL 2.0 shaders (recommended)"
 msgstr "გამოიყენე OpenGL 2.0 მჩრდილავი (რჩეული)"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Post Processing"
 msgstr "დამუშავების შემდეგი"
 
-#: gui/options/options.js:20
+#: gui/options/options.js:21
 msgid "Use screen-space postprocessing filters (HDR, Bloom, DOF, etc)"
 msgstr ""
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Shadows"
 msgstr "ჩრდილები"
 
-#: gui/options/options.js:21
+#: gui/options/options.js:22
 msgid "Enable shadows"
 msgstr "ჩართე ჩრდილები"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Particles"
 msgstr "ნაწილაკები"
 
-#: gui/options/options.js:22
+#: gui/options/options.js:23
 msgid "Enable particles"
 msgstr "ჩართე ნაწილაკები"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Show Sky"
 msgstr "აჩვენე ცა"
 
-#: gui/options/options.js:23
+#: gui/options/options.js:24
 msgid "Render Sky"
 msgstr "გამოსახე ცა"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Smooth LOS"
 msgstr "გლუვი LOS"
 
-#: gui/options/options.js:24
+#: gui/options/options.js:25
 msgid "Lift darkness and fog-of-war smoothly"
 msgstr ""
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Unit Silhouettes"
 msgstr "ლანდები"
 
-#: gui/options/options.js:25
+#: gui/options/options.js:26
 msgid "Show outlines of units behind buildings"
 msgstr "აჩვენე შენობების და ხალხის მოხაზულობები შენობების მიღმა"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Shadow Filtering"
 msgstr "ჩრდილის წურვა"
 
-#: gui/options/options.js:26
+#: gui/options/options.js:27
 msgid "Smooth shadows"
 msgstr "გლუვი ჩრდილები"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid "Fast & Ugly Water"
 msgstr "სწრაბი და მახინჯი წყალი"
 
-#: gui/options/options.js:27
+#: gui/options/options.js:28
 msgid ""
 "Use the lowest settings possible to render water. This makes other settings "
 "irrelevant."
 msgstr "გამოიყენე ყველაზე დაბალი შესაძლო გარემოცვები რომ აჩვენო წყალი. ეს შეუსაბამოს ხდის სხვა გარემოცვებს."
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid "HQ Water Effects"
 msgstr "მაღალი ხარისხის წყლის შედეგი"
 
-#: gui/options/options.js:28
+#: gui/options/options.js:29
 msgid ""
 "Use higher-quality effects for water, rendering coastal waves, shore foam, "
 "and ships trails."
 msgstr "გამოიყენე უფრო მაღალი ხარისხის მოქმედებები წყალზე, სანაპიროს ტალღების დამუშავება, სანაპიროს ქაფი და გემის ნაკვალევები."
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Real Water Depth"
 msgstr "წყლის ნამდვილი სიღრმე"
 
-#: gui/options/options.js:29
+#: gui/options/options.js:30
 msgid "Use actual water depth in rendering calculations"
 msgstr "გამოთვლებში გამოიყენე წყლის ნამდვილი სიღმე."
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Water Reflections"
 msgstr "წყლის ანარეკლები"
 
-#: gui/options/options.js:30
+#: gui/options/options.js:31
 msgid "Allow water to reflect a mirror image"
 msgstr "ჩართე წყალზე სარკესავით არეკვლა"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Water Refraction"
 msgstr "წყალში გარდატეხა"
 
-#: gui/options/options.js:31
+#: gui/options/options.js:32
 msgid "Use a real water refraction map and not transparency"
 msgstr "გამოიყენე სინათლის წყალში ნამდვილი გარდატეხა და არა გამჭვირვალობა"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Shadows on Water"
 msgstr "ჩრდილები წყალზე"
 
-#: gui/options/options.js:32
+#: gui/options/options.js:33
 msgid "Cast shadows on water"
 msgstr "აჩვენე ჩრდილები წყალზე"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "VSync"
 msgstr "შვეული თანხვედრა"
 
-#: gui/options/options.js:33
+#: gui/options/options.js:34
 msgid "Run vertical sync to fix screen tearing. REQUIRES GAME RESTART"
 msgstr "გაუშვი შვეული თანხვედრა რომ გაასწორო მსახავის გაწყვეტა. საჭიროების თამაშის გადატვირთვას"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Master Gain"
 msgstr "მთავარი ასაწევი"
 
-#: gui/options/options.js:37
+#: gui/options/options.js:38
 msgid "Master audio gain"
 msgstr "მთავარი ხმის ასაწევი"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "Music Gain"
 msgstr "მუსიკის ასაწევი"
 
-#: gui/options/options.js:38
+#: gui/options/options.js:39
 msgid "In game music gain"
 msgstr "თამაშის მუსიკის ასაწევი"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "Ambient Gain"
 msgstr "გარემომცველი ხმების ასაწევი"
 
-#: gui/options/options.js:39
+#: gui/options/options.js:40
 msgid "In game ambient sound gain"
 msgstr "თამაშის გარემომცველი ხმების ასაწევი"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "Action Gain"
 msgstr "მოქმედების ასაწევი"
 
-#: gui/options/options.js:40
+#: gui/options/options.js:41
 msgid "In game unit action sound gain"
 msgstr "თამაშში ერთეულების მოქმედებების ხმის ასაწევი"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "UI Gain"
 msgstr "სს ასაწევი"
 
-#: gui/options/options.js:41
+#: gui/options/options.js:42
 msgid "UI sound gain"
 msgstr "სამომხმარებლო სახის ხმის ასაწევი"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "Chat Backlog"
 msgstr "ლაყბობის უკუ ჩანაწერები"
 
-#: gui/options/options.js:45
+#: gui/options/options.js:46
 msgid "Number of backlogged messages to load when joining the lobby"
 msgstr "უკუ ჩანაწერების რაოდენობა, რაც უნდა გამოჩნდეს ვესტიბიულში შესვლისას "
 
-#: gui/options/options.js:46
+#: gui/options/options.js:47
 msgid "Chat Timestamp"
 msgstr "ლაყბობის დროის ბეჭედი"
 
-#: gui/options/options.js:46
+#: gui/options/options.js:47
 msgid "Show time that messages are posted in the lobby chat"
 msgstr "აჩვენე ვესტიბიულში დაწერილი შეტყობინებების დრო"
 
@@ -576,7 +963,7 @@ msgstr ""
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
 
-#: gui/summary/summary.js:810
+#: gui/summary/summary.js:809
 msgid "Team total"
 msgstr ""
 

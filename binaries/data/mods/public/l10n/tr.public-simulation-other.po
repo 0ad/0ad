@@ -4,15 +4,16 @@
 # 
 # Translators:
 # Emre Cıklatekerlio <bosmail@programmer.net>, 2014
+# sicey <sicey224@hotmail.com>, 2015
 # Sinan Özgün <ozgunsinan@gmail.com>, 2014
 # Volkan Gezer <volkangezer@gmail.com>, 2014
 # yakup <mutouk@yandex.ru>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-23 12:40+0000\n"
-"Last-Translator: yakup <mutouk@yandex.ru>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-31 02:20+0000\n"
+"Last-Translator: sicey <sicey224@hotmail.com>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/0ad/language/tr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -37,8 +38,21 @@ msgstr "Burada %(name)s için bir hediye var, o bundan iyi faydalanacak."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "Ben %(name)s nin kötü bir durumda olduğunu göryorum, umarım bu ona yardımcı olacak."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "Senin %(name)s, kötü bir halde olduğnu görüyorum"
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "yeni bir rota belirledim seninle %(name)s. Ticaret hepimiz için karlı olacaktır"
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "Seninle yeni ticaret rotası belirledim %(name)s. Senin kar payın"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -549,17 +563,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "düşman"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s yapı limiti %(limit)s e  ulaşıldı"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s eğitim limiti %(limit)s e  ulaşıldı"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s limiti %(limit)s e  ulaşıldı"

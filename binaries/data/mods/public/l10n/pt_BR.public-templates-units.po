@@ -5,7 +5,7 @@
 # Translators:
 # Cleiton Nunes <umarekhawari@gmail.com>, 2014
 # dexmendonca <dexmendoncadev@gmail.com>, 2014
-# Ernan, 2014
+# Ernan, 2014-2015
 # Leonardo Augusto Suzin <leonardosuzin@gmail.com>, 2014
 # Leonardo Barcihello <barichello@gmail.com>, 2014
 # mac.edgar <mac.edgar@hotmail.com>, 2014
@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2015-01-23 18:02+0000\n"
-"Last-Translator: PedroDognani <pedro_dognani_@hotmail.com>\n"
+"PO-Revision-Date: 2015-01-29 15:41+0000\n"
+"Last-Translator: Ernan\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/0ad/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -749,7 +749,7 @@ msgstr "Todas as unidades em sua formação ganham +15% de velocidade e +1 de ar
 #: simulation/templates/units/athen_hero_iphicrates.xml:22
 #: simulation/templates/units/hele_hero_xenophon.xml:22
 msgid "Peltast Reforms"
-msgstr ""
+msgstr "Reformas de infantaria leve"
 
 #: simulation/templates/units/athen_hero_iphicrates.xml:23
 #: simulation/templates/units/hele_hero_xenophon.xml:23
@@ -880,7 +880,7 @@ msgstr "Ploîon Phortēgikón"
 
 #: simulation/templates/units/athen_ship_trireme.xml:5
 msgid "Triḗrēs Athēnaía"
-msgstr ""
+msgstr "Triḗrēs Athēnaía"
 
 #: simulation/templates/units/athen_ship_trireme.xml:6
 msgid "Athenian Trireme"
@@ -1185,7 +1185,7 @@ msgstr "Ḥannibaʿal Baraq"
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
-msgstr ""
+msgstr "Habilidade \"Estrategista\" (Implementando): O jogador pode ver mudanças dentro da névoa de guerra enquanto Aníbal estiver vivo.\nPode atacar às cegas."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
@@ -1194,7 +1194,7 @@ msgstr "Aura de Comandante"
 #: simulation/templates/units/cart_hero_maharbal.xml:12
 msgid ""
 " +5 Cavalry charge attack within vision range of him (currently useless)."
-msgstr ""
+msgstr "+5 carga de ataque de Cavalaria dentro do seu campo de visão (atualmente inútil)."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:17
 msgid "Maharbal"
@@ -1319,7 +1319,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:16
 msgid "Brythonic Champion Chariot."
-msgstr ""
+msgstr "Carruagem bretã campeã"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -1333,7 +1333,7 @@ msgstr "Brihent Gaulês"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid "Gallic Champion Cavalry."
-msgstr ""
+msgstr "Cavalaria Campeã Gaulesa"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:5
 msgid "Two-Handed Swordsman"
@@ -1408,7 +1408,7 @@ msgstr "Hetaîros"
 
 #: simulation/templates/units/hele_champion_cavalry_mace.xml:7
 msgid "Macedonian Champion Cavalry."
-msgstr ""
+msgstr "Cavalaria Campeã Macedônia"
 
 #: simulation/templates/units/hele_champion_infantry_mace.xml:5
 #: simulation/templates/units/mace_infantry_spearman_b.xml:13
@@ -1424,7 +1424,7 @@ msgstr "Pezétairos"
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Uses the Syntagma Formation."
-msgstr ""
+msgstr "Piqueiro de Elite Macedônico.\nUnidade de linha pesada. Usa Formação em Sintagma."
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:13
 #: simulation/templates/units/spart_champion_infantry_spear.xml:10
@@ -1438,7 +1438,7 @@ msgstr "Spartiā́tēs"
 #: simulation/templates/units/hele_champion_infantry_polis.xml:15
 #: simulation/templates/units/spart_champion_infantry_spear.xml:12
 msgid "Classes: Champion Melee Infantry Spearman."
-msgstr ""
+msgstr "Classes: Infantaria Lanceira de Corpo-a-corpo Campeã."
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:5
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:5
@@ -1454,11 +1454,11 @@ msgstr "Ékdromos Athēnaïkós"
 msgid ""
 "Poleis Champion Raider.\n"
 "    Fast Move Speed."
-msgstr ""
+msgstr "Salteador Campeão de Pólis.\nVelocidade de Movimento Rápida."
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:7
 msgid "Poleis Champion Raider."
-msgstr ""
+msgstr "Salteador Campeão de Pólis."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
@@ -1535,7 +1535,7 @@ msgstr "Leial Zalduneria"
 msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Classes: Escaramuceiro de Cavalaria de Alcance Campeã.\nEspecial: Azagaia em chamas, Bom contra edifícios."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1778,7 +1778,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:22
 msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr ""
+msgstr "Classes: Carruagem de Arqueiros de Cavalaria de Arremesso Campeã. Causa dano por atropelamento."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1824,7 +1824,7 @@ msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:30
 msgid "Can run amok."
-msgstr ""
+msgstr "Pode atacar às cegas."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:32
 msgid "Ashoka the Great"
@@ -1961,7 +1961,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr ""
+msgstr "Classes: Infantaria Mercenária de Espadachins Corpo-a-Corpo."
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1987,7 +1987,7 @@ msgstr "Babiruviya Ratha"
 msgid ""
 "Classes: Ranged Cavalry Chariot Archer.\n"
 "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Classes: Carruagem de Arqueiro de Alcance de Cavalaria.\nCausa dano de atropelo a unidades inimigas."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -2045,7 +2045,7 @@ msgstr "Anasuia"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:12
 msgid "Lead from the Front Aura"
-msgstr ""
+msgstr "Aura de liderança da Frente"
 
 #: simulation/templates/units/pers_hero_cyrus.xml:13
 msgid "+2 attack for nearby cavalry units."
@@ -2080,7 +2080,7 @@ msgid ""
 "Hero Scythe Chariot Archer.\n"
 "Hero Aura: \"Merchant of the Empire.\" Boosts profitablity of trade during his lifetime (TBD).\n"
 "Ranged attack 2x vs. spearmen. Ranged attack 1.5x vs. Swordsmen."
-msgstr ""
+msgstr "Carruagem de Herói Arqueiro Cita.\nAura de Herói: \"Mercador de Império\". Aumenta a lucratividade do comércio durante sua vida (Sendo implementado).\nAlcance de ataque 2x maior contra lanceiros. Alcance de ataque 1,5x maior contra espadachins."
 
 #: simulation/templates/units/pers_hero_xerxes.xml:12
 #: simulation/templates/units/pers_hero_xerxes_chariot.xml:12
@@ -2219,7 +2219,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 #: simulation/templates/units/sele_cavalry_archer_b.xml:11
 msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr ""
+msgstr "Classes: Arqueiro a Camelo de Cavalaria de Alcance."
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2281,7 +2281,7 @@ msgstr "Kleopatra H' Philopater"
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "Classes: herói Arqueiro de Infantaria.\nAura \"Acompanhante\" (Sendo implementado): Aumenta a eficácia dos heróis dentro do seu campo de visão. Diminui a eficácia dos heróis inimigos."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2289,11 +2289,11 @@ msgstr "Aura de Construção"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:12
 msgid "Buildings construct 10% faster within his vision."
-msgstr ""
+msgstr "Edifícios constroem 10% mais rápido dentro do seu raio de visão."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:23
 msgid "Mercenary Patron Aura"
-msgstr ""
+msgstr "Aura de Mercenário Patrono"
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:24
 msgid "Mercenaries cost -50% resources during his lifetime."
@@ -2309,11 +2309,11 @@ msgstr "Ptolemaios A' Soter"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:10
 msgid "Raphia Aura"
-msgstr ""
+msgstr "Aura de Raphia"
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:11
 msgid "Egyptian Pikemen have 40% greater health during his lifetime."
-msgstr ""
+msgstr "Piqueiros Egípcios têm 40% mais saúde durante a sua vida."
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:22
 msgid "Ptolemy IV \"Father Loving\""
@@ -2333,7 +2333,7 @@ msgstr "Kousít Misthophóros Toxóti̱s"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:29
 msgid "Classes: Ranged Mercenary Infantry Archer Worker."
-msgstr ""
+msgstr "Classes: Infantaria Mercenária de Trabalhador Arqueiro de Longo alcance"
 
 #: simulation/templates/units/ptol_infantry_javelinist_b.xml:15
 msgid "Mercenary Thureos Skirmisher"
@@ -2477,7 +2477,7 @@ msgstr "Cipião Africano"
 msgid ""
 "\"Divide and Conquer\" Ability: Convert groups of enemy units to his side "
 "for 500 Metal. (Not implemented)"
-msgstr ""
+msgstr "Habilidade \"Dividir e Conquistar\": Faz com que grupos de unidades inimigas mudem para o seu lado por 500 de Metal (Não implementado)"
 
 #: simulation/templates/units/rome_infantry_javelinist_b.xml:14
 msgid "Roman Skirmisher"
@@ -2663,7 +2663,7 @@ msgstr "Drepanèphoros"
 
 #: simulation/templates/units/sele_champion_chariot.xml:26
 msgid "Classes: Champion Ranged Cavalry Chariot Archer."
-msgstr ""
+msgstr "Classes: Carruagem de Arqueiros de Cavalaria de Arremesso Campeã."
 
 #: simulation/templates/units/sele_champion_elephant.xml:5
 msgid "Armored War Elephant"
@@ -2691,7 +2691,7 @@ msgstr "Thorakitès Rhomaïkós"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:12
 msgid "Ilarchès Aura"
-msgstr ""
+msgstr "Ilarchès Aura"
 
 #: simulation/templates/units/sele_hero_antiochus_great.xml:13
 msgid "All cavalry gains +2 levels of all armour types."
@@ -2707,7 +2707,7 @@ msgstr "Antiokhos G' Mégās"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:12
 msgid "Conquest Aura"
-msgstr ""
+msgstr "Aura de Conquista"
 
 #: simulation/templates/units/sele_hero_antiochus_righteous.xml:13
 msgid ""
@@ -2725,7 +2725,7 @@ msgstr "Antiokhos D' Epiphanes"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:13
 msgid "Zooiarchos Aura"
-msgstr ""
+msgstr "Zooiarchos Aura"
 
 #: simulation/templates/units/sele_hero_seleucus_victor.xml:14
 msgid "Boosts War Elephant attack and speed +20% within his vision."
@@ -2781,7 +2781,7 @@ msgstr "Chrysaspides"
 
 #: simulation/templates/units/sele_infantry_swordsman_b.xml:18
 msgid "Classes: Mercenary Citizen Melee Infantry Swordsman."
-msgstr ""
+msgstr "Classes: Infantaria de Cidadãos Mercenários de Espadachins Corpo-a-Corpo."
 
 #: simulation/templates/units/sele_ship_trireme.xml:5
 msgid "Seleukidó̱n Triērēs"
@@ -2825,7 +2825,7 @@ msgstr "Phalangites Spartiatis"
 
 #: simulation/templates/units/spart_champion_infantry_spear.xml:11
 msgid "Spartiā́tes"
-msgstr ""
+msgstr "Spartiā́tes"
 
 #: simulation/templates/units/spart_champion_infantry_sword.xml:21
 msgid "Skiritai Commando"
@@ -2847,16 +2847,16 @@ msgstr "Ágis"
 msgid ""
 "No hero aura. Has 2x health of other infantry heroes. Basically a very tough"
 " hoplite."
-msgstr ""
+msgstr "Sem aura de herói. Tem 2x saúde dos outros heróis de infantaria. Basicamente uma hoplita muito duro."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:14
 msgid "Helot Reforms"
-msgstr ""
+msgstr "Reformas de hilotas"
 
 #: simulation/templates/units/spart_hero_brasidas.xml:15
 msgid ""
 "Helot Skirmishers within sight of him gain +2 attack and +1 all armor types."
-msgstr ""
+msgstr "Escaramuçadores Hilotas dentro do seu campo de visão ganham +2 ataque e +1 a todos os tipos de armadura."
 
 #: simulation/templates/units/spart_hero_brasidas.xml:20
 #: simulation/templates/units/spart_hero_brasidas.xml:21
@@ -2865,7 +2865,7 @@ msgstr "Brásidas"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:11
 msgid "Last Stand Aura"
-msgstr ""
+msgstr "Último Aura de Pé"
 
 #: simulation/templates/units/spart_hero_leonidas.xml:12
 msgid "+20% attack for nearby Hoplites and Spartiates."
@@ -2901,13 +2901,13 @@ msgstr "Mulher Espartana"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:26
 msgid "Spartiā̂tis"
-msgstr ""
+msgstr "Spartiā̂tis"
 
 #: simulation/templates/units/spart_support_female_citizen.xml:29
 msgid ""
 "Classes: Citizen Support Worker Female.\n"
 "Gather resources, build structures, and inspire nearby males to work faster. Bonused at foraging and farming."
-msgstr ""
+msgstr "Classes: Cidadã trabalhadora de Suporte.\nRecolhe recursos, constrói estruturas, e inspira os homens nas proximidades a trabalhar mais rápido. Bônus para comida e plantio."
 
 #: simulation/templates/units/spart_support_trader.xml:9
 msgid "Émporos Perioikos"

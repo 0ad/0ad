@@ -10,8 +10,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:22+0100\n"
-"PO-Revision-Date: 2014-12-13 08:57+0000\n"
+"POT-Creation-Date: 2015-01-24 20:15+0100\n"
+"PO-Revision-Date: 2015-02-06 09:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
@@ -22,19 +22,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:799
+#: gui/scripting/ScriptFunctions.cpp:767
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (versi modifikasi)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:804
+#: gui/scripting/ScriptFunctions.cpp:772
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:825
+#: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
 msgstr "versi modifikasi"
 
@@ -46,148 +46,148 @@ msgstr "Tulisan panjang"
 msgid "Authentication failed"
 msgstr "Autentifikasi gagal"
 
-#: lobby/XmppClient.cpp:457
+#: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
 msgstr "Registrasi tidak diterima"
 
-#: lobby/XmppClient.cpp:458
+#: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
 msgstr "Registrasi bermasalah"
 
-#: lobby/XmppClient.cpp:459
+#: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
 msgstr "Registrasi tidak diterima"
 
-#: lobby/XmppClient.cpp:460
+#: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
 msgstr ""
 
-#: lobby/XmppClient.cpp:461
+#: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
 msgstr "Pendaftaran dilarang."
 
-#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
 msgstr "Registrasi dibutuhkan"
 
-#: lobby/XmppClient.cpp:463
+#: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
 msgstr ""
 
-#: lobby/XmppClient.cpp:464
+#: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
 msgstr "Registrasi tidak diizinkan"
 
-#: lobby/XmppClient.cpp:465
+#: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
 msgstr "Masalah tidak dikenal dalam registrasi"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
 msgstr ""
 
-#: lobby/XmppClient.cpp:996
+#: lobby/XmppClient.cpp:982
 msgid "Bad request"
 msgstr ""
 
-#: lobby/XmppClient.cpp:997
+#: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
 msgstr "Nama pemain telah terpakai"
 
-#: lobby/XmppClient.cpp:998
+#: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
 msgstr "Fitur belum diimplementasi"
 
-#: lobby/XmppClient.cpp:999
+#: lobby/XmppClient.cpp:985
 msgid "Forbidden"
 msgstr "Dilarang"
 
-#: lobby/XmppClient.cpp:1000
+#: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1001
+#: lobby/XmppClient.cpp:987
 msgid "Internal server error"
 msgstr "Masalah server internal"
 
-#: lobby/XmppClient.cpp:1002
+#: lobby/XmppClient.cpp:988
 msgid "Item not found"
 msgstr "Barang tidak ditemukan"
 
-#: lobby/XmppClient.cpp:1003
+#: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1004
+#: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
 msgstr "Tidak Diterima"
 
-#: lobby/XmppClient.cpp:1005
+#: lobby/XmppClient.cpp:991
 msgid "Not allowed"
 msgstr "Tidak diizinkan"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:992
 msgid "Not authorized"
 msgstr "Tidak diterima"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:993
 msgid "Not modified"
 msgstr "Tidak dimodifikasi"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:994
 msgid "Payment required"
 msgstr "Pembayaran diperlukan"
 
-#: lobby/XmppClient.cpp:1009
+#: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:996
 msgid "Redirect"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
 msgstr "Server pengendali tidak ditemukan"
 
-#: lobby/XmppClient.cpp:1013
+#: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
 msgstr "Waktu server pengendali habis"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
 msgstr "Batasan sumber daya"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
 msgstr "Servis tidak tersedia"
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
 msgstr "Kondisi yang tak dapat didefinisikan"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
 msgstr ""
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
 msgstr "Pengirim tidak dikenal"
 
-#: lobby/XmppClient.cpp:1021
+#: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
 msgstr "Error yang tak dapat didefinisikan"
 
-#: ps/SavedGame.cpp:129
+#: ps/SavedGame.cpp:131
 #, c-format
-msgid "Saved game to '%ls'"
-msgstr "Menyimpan permainan ke '%ls'"
+msgid "Saved game to '%s'"
+msgstr ""
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
-msgid "Screenshot written to '%ls'"
-msgstr "Gambar layar tersimpan ke '%ls'"
+msgid "Screenshot written to '%s'"
+msgstr ""

@@ -8,9 +8,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-10-08 10:41+0000\n"
-"Last-Translator: Mysterelee <8161525@qq.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-26 09:20+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -163,7 +163,6 @@ msgstr "马身体用的金属盔甲。"
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -2176,20 +2175,6 @@ msgstr "凯尔特人的建筑物多半以碎石为地基并以木头盖成。因
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
 msgstr "木制建筑"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
-msgid ""
-"Crop rotation increases yield by preventing the depletion of vital nutrients"
-" and minerals from the soil."
-msgstr "轮作通过防止土壤中重要的营养和矿物质的枯竭增加产量。"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
-msgid "Increase the yield of your farms. +25% farming rate."
-msgstr "增加农田产量。耕作速度 +25%"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
-msgid "Crop Rotation"
-msgstr "轮作"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."

@@ -7,12 +7,13 @@
 # leper <leper@wildfiregames.com>, 2014
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Raymond Vetter, 2014
+# Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-12-26 04:51+0000\n"
-"Last-Translator: Wuzzy <almikes@aol.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-05 21:01+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -165,7 +166,6 @@ msgstr "Metallrüstung für den Pferdekörper."
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -364,7 +364,7 @@ msgstr "Speerkämpfer der Infanterie +1 Hiebschutz"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsongenericName
 msgid "Reinforced Shield"
-msgstr "Verstärktes Schild"
+msgstr "Verstärkter Schild"
 
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.ptol
 #: simulation/data/technologies/armor_infantryspearmen_pierce_02.jsonspecificName.spart
@@ -424,15 +424,15 @@ msgstr "Argyraspides"
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsondescription
 msgid "Lead sheathing protects ship hulls."
-msgstr "Bleiabdichtungen schützen den Schiffsrumpf."
+msgstr "Bleiverkleidungen schützen den Schiffsrumpf."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsontooltip
 msgid "Lead sheathing protects ship hulls. +2 levels to all ship armor types."
-msgstr "Bleiabdichtungen schützen den Schiffsrumpf. +2 zu allen Rüstungsarten."
+msgstr "Bleiverkleidungen schützen den Schiffsrumpf. +2 zu allen Rüstungsarten."
 
 #: simulation/data/technologies/armor_ship_hullsheathing.jsongenericName
 msgid "Lead hull sheathing"
-msgstr "Bleiabdichtungen"
+msgstr "Bleiverkleidungen"
 
 #: simulation/data/technologies/armor_ship_hypozomata.jsondescription
 msgid "The hypozomata braces the structure of a ship."
@@ -450,7 +450,7 @@ msgstr "Hypozomata-Umgürtung"
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsondescription
 msgid "Wooden reinforcement beams for ship hulls."
-msgstr "Verstärkte Holzbalken für Schiffsrümpfe."
+msgstr "Hölzerne Verstärkungsbalken für Schiffsrümpfe."
 
 #: simulation/data/technologies/armor_ship_reinforcedhull.jsontooltip
 msgid ""
@@ -470,7 +470,7 @@ msgstr "Verstärkter Rumpf"
 #: simulation/data/technologies/mauryans/special_archery_tradition.jsonrequirementsTooltip
 #: simulation/data/technologies/persians/special_archery_tradition.jsonrequirementsTooltip
 msgid "Unlocked in Village Phase."
-msgstr "Freigeschaltet in der Siedlungsphase."
+msgstr "Freigeschaltet in der Dorfphase."
 
 #: simulation/data/technologies/armor_trade_convoys.jsondescription
 msgid "Increases defensive capability of traders."
@@ -486,7 +486,7 @@ msgstr "Handelskonvois"
 
 #: simulation/data/technologies/attack_cav_lance.jsondescription
 msgid "A long spear made specifically for cavalry."
-msgstr "Ein langer Speer, speziell für Kavallerie geformt."
+msgstr "Ein langer Speer, speziell für Kavallerie."
 
 #: simulation/data/technologies/attack_cav_lance.jsontooltip
 msgid ""
@@ -728,7 +728,7 @@ msgstr "Dynamis"
 msgid ""
 "Secret steel working techniques give sword blades distinctive and beautiful "
 "markings. Not only that, but the steel's hardness is unparalleled."
-msgstr "Geheime Metallverarbeitungstechniken geben Schwertern ein charakteristische und schöne Zeichnung. Aber nicht nur das, der Härtegrad des Stahls ist unnachahmlich."
+msgstr "Geheime Metallverarbeitungstechniken geben Schwertern eine charakteristische und schöne Zeichnung. Aber nicht nur das, der Härtegrad des Stahls ist unnachahmlich."
 
 #: simulation/data/technologies/attack_steel_working.jsontooltip
 msgid "+2 attack for all sword units."
@@ -780,7 +780,7 @@ msgstr "Pfeilschützen erhöht die maximale Reichweite der Feuerpfeilen."
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr "Erhöht den Wehrturm maximale Reichweite um 8 Metern."
+msgstr "Erhöht die maximale Reichweite des Wehrturms um 8 Meter."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -793,7 +793,7 @@ msgstr "Ein Nachtwächter erhöht die Wachsamkeit."
 #: simulation/data/technologies/attack_tower_watch.jsontooltip
 msgid ""
 "Post sentries to double the number of default arrows in ungarrisoned Towers."
-msgstr "Setze Wachposten ein, um die Anzahl gefeuerter Pfeile zu verdoppeln, wenn der Turm nicht von Soldaten bemannt ist."
+msgstr "Setze Wachposten ein, um die Anzahl der abgefeuerten Pfeile in unbemannten Türmen zu verdoppeln."
 
 #: simulation/data/technologies/attack_tower_watch.jsongenericName
 msgid "Sentries"
@@ -2178,20 +2178,6 @@ msgstr "Keltische Gebäude wurden hauptsächlich aus Holz gebaut mit einem Funda
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
 msgstr "Holzkonstruktion"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
-msgid ""
-"Crop rotation increases yield by preventing the depletion of vital nutrients"
-" and minerals from the soil."
-msgstr "Wechselwirtschaft erhöht den Ertrag, indem der Abbau lebenswichtige Nährstoffe und Minerale verhindert wird."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
-msgid "Increase the yield of your farms. +25% farming rate."
-msgstr "Erhöhe die Produktion deiner Bauernhöfe. +25% landwirtschaftlicher Ertrag."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
-msgid "Crop Rotation"
-msgstr "Wechselwirtschaft"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."

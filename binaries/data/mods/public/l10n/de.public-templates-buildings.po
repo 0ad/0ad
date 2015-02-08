@@ -4,19 +4,19 @@
 # 
 # Translators:
 # Larson März <lmaerz@emailn.de>, 2014
-# Leonard König <leonard.r.koenig@gmail.com>, 2014
+# Leonard König <leonard.r.koenig@gmail.com>, 2014-2015
 # leper <leper@wildfiregames.com>, 2014
 # MartinusMagnus <martinkleemann@web.de>, 2014
 # Raymond Vetter, 2014
 # richyguitar <richyguitargod@gmail.com>, 2014
 # Silasoa <silasoa1@web.de>, 2014
-# Xaver, 2014
+# Xaver, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 10:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-06 19:21+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -445,7 +445,7 @@ msgstr "Griechischer Außenposten"
 #: simulation/templates/structures/athen_prytaneion.xml:24
 #: simulation/templates/structures/hele_prytaneion.xml:21
 msgid "Council Chamber"
-msgstr "Gerichtshalle"
+msgstr "Rathaussaal"
 
 #: simulation/templates/structures/athen_prytaneion.xml:25
 #: simulation/templates/structures/hele_prytaneion.xml:22
@@ -580,7 +580,7 @@ msgstr "Inselniederlassung"
 
 #: simulation/templates/structures/brit_crannog.xml:24
 msgid "Increase population limit and defend waterways"
-msgstr "Vergrößert Bevölkerungslimit und verteidigt Wasserstraßen."
+msgstr "Vergrößere das Bevölkerungslimit und verteidige Wasserstraßen."
 
 #: simulation/templates/structures/brit_crannog.xml:25
 #: simulation/templates/structures/brit_dock.xml:15
@@ -644,27 +644,32 @@ msgstr "Marchnaty"
 
 #: simulation/templates/structures/brit_outpost.xml:5
 msgid "Brythonic Outpost"
-msgstr "Britischer Außenposten"
+msgstr "Britannischer Außenposten"
 
-#: simulation/templates/structures/brit_rotarymill.xml:20
-#: simulation/templates/structures/celt_sb1.xml:23
-#: simulation/templates/structures/gaul_rotarymill.xml:20
+#: simulation/templates/structures/brit_rotarymill.xml:21
+#: simulation/templates/structures/gaul_rotarymill.xml:21
+msgid "Farming bonus"
+msgstr "Landwirtschaftsbonus"
+
+#: simulation/templates/structures/brit_rotarymill.xml:22
+#: simulation/templates/structures/gaul_rotarymill.xml:22
+msgid "Boosts nearby farming with +25%."
+msgstr "Fördert nahe gelegene Landwirtschaft mit +25%."
+
+#: simulation/templates/structures/brit_rotarymill.xml:32
+#: simulation/templates/structures/gaul_rotarymill.xml:32
 msgid "Rotary Mill"
 msgstr "Drehmühle"
 
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/celt_sb1.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:21
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/celt_sb1.xml:25
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid ""
-"Increase nearby farming output +25%. (Currently, a special technology can be"
-" researched to serve this function)"
-msgstr "Erhöht die Ausbeute nahe gelegener Landwirtschaft um +25%. (Derzeit kann eine spezielle Technologie erforscht werden, um diese Funktion zu ermöglichen)."
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
+msgid "Increase nearby farming output +25%."
+msgstr "Erhöht nahen Landwirtschaftsertrag um +25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/celt_storehouse.xml:8
@@ -756,7 +761,7 @@ msgstr "Baue Fischerboote, um Nahrung zu sammeln und Handelsschiffe, um mit ande
 
 #: simulation/templates/structures/cart_embassy.xml:22
 msgid "Hire mercenaries."
-msgstr "Werbe Söldner an."
+msgstr "Wirb Söldner an."
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:20
 msgid "Celtic Embassy"
@@ -764,7 +769,7 @@ msgstr "Keltische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_celtic.xml:22
 msgid "Hire Celtic mercenaries. Research improvements for these mercenaries."
-msgstr "Werbe keltische Söldner an. Erforsche Verbesserungen für diese Söldner."
+msgstr "Wirb keltische Söldner an. Erforsche Verbesserungen für diese Söldner."
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:13
 msgid "Iberian Embassy"
@@ -772,7 +777,7 @@ msgstr "Iberische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_iberian.xml:15
 msgid "Hire Iberian mercenaries. Research improvements for these mercenaries."
-msgstr "Werbe iberische Söldner an. Erforsche Verbesserungen für diese Söldner."
+msgstr "Wirb iberische Söldner an. Erforsche Verbesserungen für diese Söldner."
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:20
 msgid "Italiote Embassy"
@@ -780,7 +785,7 @@ msgstr "Italiotische Botschaft"
 
 #: simulation/templates/structures/cart_embassy_italiote.xml:22
 msgid "Hire Italian mercenaries. Research improvements for these mercenaries."
-msgstr "Werbe italische Söldner an. Erforsche Verbesserungen für diese Söldner."
+msgstr "Wirb italische Söldner an. Erforsche Verbesserungen für diese Söldner."
 
 #: simulation/templates/structures/cart_farmstead.xml:9
 msgid "Aḥuzāh"
@@ -834,7 +839,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr "Bilde Hopliten der Heiligen Schar und Priesterinnen, die deine Truppen heilen, aus. Fasst eine bis zu 20 Einheiten umfassende Garnison, die schnell geheilt wird."
+msgstr "Bilde Priesterinnen und Hopliten der Heiligen Schar aus. Bilde Pikeniere der Heiligen Schar aus. Quartiere bis zu 20 Einheiten ein, um sie schnell zu heilen."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -858,12 +863,12 @@ msgstr "Tempel des Baal-Hammon"
 #: simulation/templates/structures/celt_fortress_g.xml:11
 #: simulation/templates/structures/gaul_fortress.xml:8
 msgid "Gallic Dun"
-msgstr "Gallisches Dun"
+msgstr "Gallischer Dun"
 
 #: simulation/templates/structures/celt_fortress_g.xml:12
 #: simulation/templates/structures/gaul_fortress.xml:9
 msgid "Train Gallic heroes and champions. Construct siege rams."
-msgstr "Bilde gallische Helden und Gardisten aus. Baue Belagerungsrammen."
+msgstr "Bilde gallische Helden und Gardisten aus. Baue Rammböcke."
 
 #: simulation/templates/structures/celt_outpost.xml:5
 msgid "Celtic Outpost"
@@ -1117,7 +1122,7 @@ msgstr "Śāsana Stambha Aśokā"
 
 #: simulation/templates/structures/maur_pillar_ashoka.xml:29
 msgid "The famous pillar of Ashoka. Currently a useless structure."
-msgstr "Die Berühmte Säule von Ashoka. Aktuell ein nutzloses Gebäude."
+msgstr "Die Berühmte Säule von Ashoka. Derzeit ein nutzloses Gebäude."
 
 #: simulation/templates/structures/maur_storehouse.xml:5
 msgid "Khalla"
@@ -1178,7 +1183,7 @@ msgid ""
 "\"Satrapy Tribute\": Gain a trickle of food, wood, stone, and metal "
 "resources. Train Persian heroes and their \"Immortals\" bodyguards. Build "
 "Limit: 1."
-msgstr "„Satrap-Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Bilde Persische Helden und ihre „unsterbliche“ Leibgarde aus. Baulimit: 1."
+msgstr "„Satrapien-Tribut“: Erhalte eine kleine Menge Nahrung, Holz, Stein und Metall. Bilde Persische Helden und ihre „Unsterblichen“-Leibgarde aus. Baulimit: 1."
 
 #: simulation/templates/structures/pers_barracks.xml:5
 msgid "Padgan"
@@ -1186,7 +1191,7 @@ msgstr "Padgan"
 
 #: simulation/templates/structures/pers_barracks.xml:7
 msgid "Levy citizen-infantry units."
-msgstr "Einheiten der Bürgerinfanterie einberufen."
+msgstr "Bürgersoldaten einziehen."
 
 #: simulation/templates/structures/pers_blacksmith.xml:5
 msgid "Arštišta"
@@ -1194,7 +1199,7 @@ msgstr "Arštišta"
 
 #: simulation/templates/structures/pers_civil_centre.xml:5
 msgid "Provincial Governor"
-msgstr "Provinzstadthalter"
+msgstr "Provinzstatthalter"
 
 #: simulation/templates/structures/pers_civil_centre.xml:6
 msgid "Xšaçapāvan"
@@ -1227,7 +1232,7 @@ msgstr "Didā"
 
 #: simulation/templates/structures/pers_fortress.xml:7
 msgid "Train Champion Cavalry and Construct Siege Rams."
-msgstr "Bilde Gardereiter aus und baue Rammböcke."
+msgstr "Bilde Garde-Kavallerie aus und baue Rammböcke."
 
 #: simulation/templates/structures/pers_house.xml:22
 msgid "Huvādā"
@@ -1235,12 +1240,12 @@ msgstr "Huvādā"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:20
 msgid "Ishtar Gate of Babylon"
-msgstr "Ishtar-Tor"
+msgstr "Ischtar-Tor"
 
 #: simulation/templates/structures/pers_ishtar_gate.xml:21
 #: simulation/templates/structures/rome_arch.xml:23
 msgid "Special Imperial Roman building."
-msgstr "Spezielles imperiales-römisches Gebäude."
+msgstr "Spezielles imperial-römisches Gebäude."
 
 #: simulation/templates/structures/pers_market.xml:12
 msgid "Ardatašta"
@@ -1320,7 +1325,7 @@ msgstr "ḥwt-n-mš'"
 msgid ""
 "Train Egyptian and Middle-Eastern citizen-soldiers. Research training "
 "improvements. Garrison: 10."
-msgstr "Bilde Ägyptische und mittelöstliche Bürgersoldaten aus. Verbessere die Trainingsmethoden. Einquartieren: 10."
+msgstr "Bilde ägyptische und nahöstliche Bürgersoldaten aus. Erforsche Ausbildungsverbesserungen. Einquartieren: 10."
 
 #: simulation/templates/structures/ptol_civil_centre.xml:15
 msgid "pr-'a"
@@ -1366,7 +1371,7 @@ msgstr "Pharos"
 msgid ""
 "Build along the shore to reveal the shorelines over the entire map (Not "
 "implemented). Very large vision range: 180 meters."
-msgstr "An der Küste errichten, um die gesamten Küstenlinien der Karte zu zeigen (nicht implementiert). Sehr große Sichtweite: 180 Meter."
+msgstr "An der Küste errichten, um die Küstenlinien der gesamten Karte aufzudecken (nicht implementiert). Sehr große Sichtweite: 180 Meter."
 
 #: simulation/templates/structures/ptol_market.xml:9
 msgid "ḥwt-n-ḫt.w-wḫa.w"
@@ -1385,29 +1390,29 @@ msgid ""
 "Cheap barracks-like structure that is buildable in Neutral territory, but casts no territory influence.\n"
 "- Train Mercenaries. \n"
 "- Min. distance from other Military Settlements: 100 meters."
-msgstr "Günstiges, Baracken ähnliches, Gebäude, welches im neutralen Bereich errichtet werden kann. Hat keinen territorialen Einfluss.\n- Heure Söldner an.\n- Min. Abstand zu anderen Militär Siedlungen: 100 Meter."
+msgstr "Günstiges, einer Kaserne ähnliches Gebäude, das im neutralen Bereich errichtet werden kann, aber keinen territorialen Einfluss hat.\n- Heure Söldner an.\n- Min. Abstand zu anderen militärischen Siedlungen: 100 Meter."
 
-#: simulation/templates/structures/ptol_military_colony.xml:7
-#: simulation/templates/structures/sele_military_colony.xml:7
+#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/sele_military_colony.xml:8
 msgid "Colony"
 msgstr "Kolonie"
 
-#: simulation/templates/structures/ptol_military_colony.xml:29
-#: simulation/templates/structures/sele_military_colony.xml:29
+#: simulation/templates/structures/ptol_military_colony.xml:30
+#: simulation/templates/structures/sele_military_colony.xml:30
 msgid "Military Colony"
 msgstr "Militärische Siedlung"
 
-#: simulation/templates/structures/ptol_military_colony.xml:30
-#: simulation/templates/structures/sele_military_colony.xml:30
+#: simulation/templates/structures/ptol_military_colony.xml:31
+#: simulation/templates/structures/sele_military_colony.xml:31
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:33
+#: simulation/templates/structures/ptol_military_colony.xml:34
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Das ist das ptolemäische Gebäude zur Gebietserweiterung. Ähnlich, wie der Verwaltungssitz für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut. \n- Bilde Siedler vieler Nationen aus. \n- Min. Entfernung von anderen militärischen Kolonien: 120 Meter."
+msgstr "Sie ist das ptolemäische Gebäude zur Gebietserweiterung, ähnlich dem Verwaltungssitz der anderen Fraktionen. Sie ist schwächer und generiert ein kleineres Territorium, aber sie ist billiger und wird schneller gebaut. \n- Bilde Siedler vieler Nationen aus. \n- Min. Entfernung von anderen militärischen Siedlungen: 120 Meter."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1452,7 +1457,7 @@ msgstr "Castrum Vallum"
 msgid ""
 "Build anywhere on the map, even in enemy territory. Construct siege weapons "
 "and train citizen-soldiers. Heal garrisoned units slowly."
-msgstr "Kann überall auf der Karte, auch in gegnerischem Territorium, gebaut werden. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Heilt einquartierte Einheiten langsam."
+msgstr "Kann überall auf der Karte, auch in gegnerischem Territorium, gebaut werden. Bilde Bürgersoldaten aus und baue Belagerungswaffen. Heile einquartierte Einheiten langsam."
 
 #: simulation/templates/structures/rome_barracks.xml:18
 msgid "Castrum"
@@ -1504,7 +1509,7 @@ msgstr "Vigilarium"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:31
 msgid "Siege Wall Gate"
-msgstr "Belagerungsmauertor"
+msgstr "Belagerungswall-Tor"
 
 #: simulation/templates/structures/rome_siege_wall_gate.xml:32
 msgid "Porta Circummunitionis"
@@ -1536,7 +1541,7 @@ msgstr "Baue Belageungswälle in Belagerungswalltore um."
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:31
 msgid "Siege Wall Tower"
-msgstr "Belagerungsmauerturm"
+msgstr "Belagerungswall-Turm"
 
 #: simulation/templates/structures/rome_siege_wall_tower.xml:32
 msgid "Turris Circummunitionis"
@@ -1630,12 +1635,12 @@ msgid ""
 "for stout defense."
 msgstr "Baue Belagerungswaffen und bilde Gardeeinheiten aus. Quartiere bis zu 20 Soldaten zur Verteidigung ein."
 
-#: simulation/templates/structures/sele_military_colony.xml:33
+#: simulation/templates/structures/sele_military_colony.xml:34
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr "Das ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie das Dorfzentrum für andere Fraktionen. Es ist schwächer und generiert ein kleineres Territorium, aber es ist billiger und wird schneller gebaut.\n- Bilde Siedler vieler Nationen aus.\n- Min. Entfernung zu anderen Militärischen Kolonien: 120 Meter."
+msgstr "Sie ist das seleukidische Gebäude zur Gebietserweiterung, ähnlich wie der Verwaltungssitz der anderen Fraktionen. Sie ist schwächer und generiert ein kleineres Territorium, aber sie ist billiger und wird schneller gebaut.\n- Bilde Siedler vieler Nationen aus.\n- Min. Entfernung zu anderen Militärischen Siedlungen: 120 Meter."
 
 #: simulation/templates/structures/sele_outpost.xml:5
 msgid "Prophylax"

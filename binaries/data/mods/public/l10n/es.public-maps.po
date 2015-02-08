@@ -4,12 +4,12 @@
 # 
 # Translators:
 # juanda097 <juanda097@openmailbox.org>, 2014
-# Swyter <Swyterzone@gmail.com>, 2014
+# Swyter <Swyterzone@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 11:41+0000\n"
+"POT-Creation-Date: 2015-01-24 20:17+0100\n"
+"PO-Revision-Date: 2015-01-26 11:51+0000\n"
 "Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgstr "Es primavera en Arcadia, Grecia. Las lluvias primaverales hacen fluir ca
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:31
@@ -894,19 +894,19 @@ msgstr "Demo de combate (enorme)"
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 unidades. Extremadamente lento (necesitamos una mayor optimización)."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:56
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Un cañón rocoso y profundo que rebana el desierto. Bueno para partidas multijugador.\n\n2 equipos de 2 jugadores. 1 jugador de cada equipo empieza con una base y recursos. El otro empieza solo con un gran ejército para apoyar a su compañero."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:56
 msgid "Invasion Force"
 msgstr "Fuerza invasora"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[2].Name:31
 #: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
@@ -936,7 +936,7 @@ msgstr "Fuerza invasora"
 msgid "Player 3"
 msgstr "Jugador 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:56
 msgid "Death Canyon - Invasion Force"
 msgstr "El cañón de la muerte - Fuerza invasora"
 
@@ -1683,7 +1683,7 @@ msgstr "Fangal belga (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
-"Two teams face off across  a long, very large saltwater lake.\n"
+"Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "Dos equipos se enfrentan a lo largo de un gran lago salado.\n\nSe puede pescar en el lago central. El mapa está bien surtido con depósitos de piedra y metal."
@@ -1815,8 +1815,10 @@ msgstr "Acrópolis griega (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
-"Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians."
-msgstr "Extraños compañeros de armas. Romanos y cartagineses contra espartanos y persas."
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "Tres facciones encaramadas en la seguridad que proporcionan grandes y elevadas planicies rocosas, las acrópolis.\n\nA su vez, a una cuarta facción, un ramal de río la separa de sus enemigos.\n\nExplora sus tierras para encontrar tesoros de bonificación y hacerte con recursos adicionales."
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"

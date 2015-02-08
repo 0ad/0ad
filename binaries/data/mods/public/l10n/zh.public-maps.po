@@ -8,8 +8,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
+"POT-Creation-Date: 2015-01-24 20:17+0100\n"
+"PO-Revision-Date: 2015-01-25 09:46+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Chinese (http://www.transifex.com/projects/p/0ad/language/zh/)\n"
 "MIME-Version: 1.0\n"
@@ -561,7 +561,7 @@ msgstr "在希腊阿卡迪亚的春日时分。若春雨下的不够，一年之
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:31
@@ -894,19 +894,19 @@ msgstr "战斗演示(大型)"
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296个单位。极其慢(需要深度优化)"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:56
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "一条切过沙漠的深岩石峡谷。适合多人游戏。\n\n2队各2个玩家。每个队伍的其中1个玩家以一座基地及资源开始游戏。另一个玩家则只有庞大的军队来协助他的队友。"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:56
 msgid "Invasion Force"
 msgstr "入侵力量"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[2].Name:31
 #: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
@@ -936,7 +936,7 @@ msgstr "入侵力量"
 msgid "Player 3"
 msgstr "玩家3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:56
 msgid "Death Canyon - Invasion Force"
 msgstr "死亡峡谷-入侵力量"
 
@@ -1683,10 +1683,10 @@ msgstr "比利时沼泽  (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
-"Two teams face off across  a long, very large saltwater lake.\n"
+"Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr "两支队伍在一个既长且大的咸水湖的两边进行对抗。\n\n可以在湖的中央捕鱼。此地图也有相当丰富的石头与金属矿藏。"
+msgstr ""
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Name:42
 msgid "Caspian Sea (2v2)"
@@ -1815,8 +1815,10 @@ msgstr "雅典卫城 (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
-"Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians."
-msgstr "有趣的同盟。罗马-迦太基同盟对抗斯巴达-波斯同盟。"
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"

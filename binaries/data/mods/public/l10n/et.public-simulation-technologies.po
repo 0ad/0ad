@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2015-01-19 21:20+0000\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-01 09:41+0000\n"
 "Last-Translator: unserializable <unserializable@freenet.de>\n"
 "Language-Team: Estonian (http://www.transifex.com/projects/p/0ad/language/et/)\n"
 "MIME-Version: 1.0\n"
@@ -162,7 +162,6 @@ msgstr "Hobuse kere metallturvis."
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -201,7 +200,7 @@ msgstr ""
 
 #: simulation/data/technologies/armor_hero_01.jsongenericName
 msgid "Iron Hero Armor"
-msgstr ""
+msgstr "Sangarite raudturvis"
 
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.ptol
 #: simulation/data/technologies/armor_hero_01.jsonspecificName.spart
@@ -831,7 +830,7 @@ msgstr ""
 
 #: simulation/data/technologies/decay_outpost.jsongenericName
 msgid "Stone Foundations"
-msgstr ""
+msgstr "Kivivundament"
 
 #: simulation/data/technologies/gather_animals_stockbreeding.jsondescription
 msgid "Breeding livestock for food."
@@ -932,7 +931,7 @@ msgstr ""
 
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsongenericName
 msgid "Sharp Ax Heads"
-msgstr ""
+msgstr "Teravad kirvepead"
 
 #: simulation/data/technologies/gather_lumbering_strongeraxes.jsongenericName
 msgid "Stronger Ax"
@@ -999,15 +998,15 @@ msgstr ""
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
-msgstr ""
+msgstr "Hõbedakaevandus"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.mace
 msgid "Mines of Krenides"
-msgstr ""
+msgstr "Krenidese kavandused"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsonspecificName.athen
 msgid "Mines of Laureion"
-msgstr ""
+msgstr "Laureioni kaevandused"
 
 #: simulation/data/technologies/gather_mining_slaves.jsontooltip
 msgid ""
@@ -1597,7 +1596,7 @@ msgstr ""
 
 #: simulation/data/technologies/siege_cost_metal.jsongenericName
 msgid "Metalworker"
-msgstr ""
+msgstr "Metallitöölised"
 
 #: simulation/data/technologies/siege_cost_wood.jsondescription
 msgid "Siege weapons cost less wood"
@@ -1983,7 +1982,7 @@ msgid ""
 "Nobody knew better than the Carthaginians where in the ancient world they "
 "were going and going to go; their merchant traders had missions to "
 "everywhere."
-msgstr ""
+msgstr "Antiikmaailmas ei teadnud keegi suunda kartaagolastest paremini -- nende kaupmeeste käigud ulatusid kõikjale."
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsontooltip
 msgid "Carthaginians were explorers. All Traders and Ships +25% vision range."
@@ -1991,7 +1990,7 @@ msgstr ""
 
 #: simulation/data/technologies/carthaginians/special_exploration.jsongenericName
 msgid "Exploration"
-msgstr ""
+msgstr "Avastusretked"
 
 #: simulation/data/technologies/carthaginians/training_phoenician_naval_architects.jsondescription
 msgid ""
@@ -2176,20 +2175,6 @@ msgstr ""
 msgid "Wooden Construction"
 msgstr ""
 
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
-msgid ""
-"Crop rotation increases yield by preventing the depletion of vital nutrients"
-" and minerals from the soil."
-msgstr ""
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
-msgid "Increase the yield of your farms. +25% farming rate."
-msgstr ""
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
-msgid "Crop Rotation"
-msgstr ""
-
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."
 msgstr ""
@@ -2284,7 +2269,7 @@ msgstr ""
 
 #: simulation/data/technologies/hellenes/teambonus_athen_delian_league.jsongenericName
 msgid "Delian League"
-msgstr ""
+msgstr "Delose Liit"
 
 #: simulation/data/technologies/hellenes/temp_special_hellenization.jsondescription
 msgid ""
@@ -2384,7 +2369,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/immortals.jsongenericName
 msgid "Immortals"
-msgstr ""
+msgstr "Surematud"
 
 #: simulation/data/technologies/persians/persian_architecture.jsondescription
 msgid ""
@@ -2392,7 +2377,7 @@ msgid ""
 " Susa; Darius the Great and Xerxes also built the magnificent Persepolis; "
 "Cyrus the Great greatly improved Ecbatana and virtually 'rebuilt' the old "
 "Elamite capital of Susa."
-msgstr ""
+msgstr "Pärslased ehitasid Sardisest Susasse imepärase 1677-miilise \"kuningate tee\"; Dareios I ja Xerxes I ehitasid suurejoonelise Persepolise; Kyros II uuendas oluliselt Ekbatanat ning praktiliselt ehitas uuesti üles elamiitide vana pealinna Susa."
 
 #: simulation/data/technologies/persians/persian_architecture.jsontooltip
 msgid "All Persian structures +25% health, but also +20% build time."
@@ -2421,7 +2406,7 @@ msgstr ""
 
 #: simulation/data/technologies/persians/special_equine_transports.jsontooltip
 msgid "Phoenician Triremes gain the ability to train cavalry units."
-msgstr ""
+msgstr "Foiniikia trieerid saavad ainuvõimaluse treenida ratsaväeüksusi."
 
 #: simulation/data/technologies/persians/special_equine_transports.jsongenericName
 msgid "Equine Transports"

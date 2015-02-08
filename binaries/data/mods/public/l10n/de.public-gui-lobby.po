@@ -6,12 +6,13 @@
 # Dominik <incredipede@outlook.com>, 2014
 # leper <leper@wildfiregames.com>, 2014
 # Raymond Vetter, 2014
+# Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 23:10+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2015-01-31 11:00+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -180,7 +181,7 @@ msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
-msgstr "Bitte verzichte auf das Spammen. Du wurdest für dreißig Sekunden blockiert."
+msgstr "Bitte nicht spammen. Sie wurden für dreißig Sekunden gesperrt."
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
@@ -196,7 +197,7 @@ msgstr "Bitte gib Deinen Benutzernamen ein"
 
 #: gui/lobby/prelobby.js:105
 msgid "Usernames can't contain [, ], unicode, whitespace, or commas"
-msgstr "Benutzernamen können leider keine [, ], Unicodezeichen, Leerzeichen oder Kommata enthalten"
+msgstr "Benutzernamen dürfen keine [, ], Unicodezeichen, Leerzeichen oder Kommata enthalten"
 
 #: gui/lobby/prelobby.js:111
 msgid "Please enter your password"
@@ -321,7 +322,7 @@ msgstr "Aktualisieren"
 
 #: gui/lobby/lobby.xml:(caption):282
 msgid "Enter username:"
-msgstr "Gebe Benutzername ein:"
+msgstr "Benutzername eingeben:"
 
 #: gui/lobby/lobby.xml:(caption):288
 msgid "View Profile"
@@ -368,15 +369,15 @@ msgstr "Rang"
 
 #: gui/lobby/prelobby.xml:(caption):23
 msgid "Create a new account"
-msgstr "Ein neues Konto erstellen"
+msgstr "Neues Konto erstellen"
 
 #: gui/lobby/prelobby.xml:(caption):27
 msgid "Login to an existing account"
-msgstr "In ein bestehendes Konto einloggen"
+msgstr "In bestehendes Konto einloggen"
 
 #: gui/lobby/prelobby.xml:(caption):33
 msgid "Connect to the game lobby"
-msgstr "Verbinde mit der Lobby"
+msgstr "Mit der Lobby verbinden"
 
 #: gui/lobby/prelobby.xml:(caption):36 gui/lobby/prelobby.xml:(caption):63
 msgid "Login:"
@@ -392,7 +393,7 @@ msgstr "Registrierung"
 
 #: gui/lobby/prelobby.xml:(caption):73
 msgid "Password again:"
-msgstr "Wiederhole das Passwort:"
+msgstr "Passwort wiederholen:"
 
 #: gui/lobby/prelobby.xml:(caption):88
 msgid "I have read and agree to the Terms of Service and Terms of Use:"
@@ -414,7 +415,7 @@ msgstr "Definitionen:"
 msgid ""
 " * The \"service\" is the 0 A.D. Empires Ascendant Multiplayer Lobby "
 "provided by Wildfire Games (WFG)."
-msgstr "Der \"Service\" ist die 0 A.D. Empires Ascendant Mehrspieler Lobby, welcher von Wildfire Games (WFG) zur Verfügung gestellt wird."
+msgstr "Der \"Service\" ist die 0 A.D. Empires Ascendant Mehrspieler Lobby, die von Wildfire Games (WFG) zur Verfügung gestellt wird."
 
 #: gui/lobby/Terms_of_Service.txt:4 gui/lobby/Terms_of_Use.txt:4
 msgid " * \"You\" are the user of the service."
@@ -428,7 +429,7 @@ msgstr "* \"Wir\" sind das Kollektiv aller Wildfire Games (WFG) Teammitglieder."
 msgid ""
 " * \"Rating\" refers to the process of analyzing various user statistics for"
 " the purpose of generating a single comprehensive score."
-msgstr "* \"Rating\" bezeichnet die Analyse verschiedener benutzerspezifischer statistischer Daten, aus denen eine Gesamtwertung berechnet wird."
+msgstr "* \"Bewertung\" bezeichnet die Analyse verschiedener benutzerspezifischer statistischer Daten zur Berechnung einer einzelnen Gesamtwertung."
 
 #: gui/lobby/Terms_of_Service.txt:7
 msgid " * \"Moderate\" refers to the process of enforcing usage policies."
@@ -458,39 +459,39 @@ msgstr "1. Den Dienst zu moderieren."
 
 #: gui/lobby/Terms_of_Service.txt:13
 msgid " 2. Appoint others to moderate the service."
-msgstr "2. Ernennung Anderer den Dienst zu moderieren."
+msgstr "2. Andere zu ernennen, die den Dienst moderieren."
 
 #: gui/lobby/Terms_of_Service.txt:14
 msgid ""
 " 3. Discontinue or interrupt service at any time with or without prior "
 "announcement."
-msgstr "3. Beenden oder Unterbrechen des Dienst jederzeit mit oder ohne vorherige Ankündigung."
+msgstr "3. Den Dienst jederzeit, mit oder ohne vorherige Ankündigung, zu beenden oder zu unterbrechen."
 
 #: gui/lobby/Terms_of_Service.txt:15
 msgid " 4. Change the service at any time with or without announcement."
-msgstr "4. Ändern des Dienstes jederzeit mit oder ohne Ankündigung."
+msgstr "4. Den Dienst jederzeit, mit oder ohne vorherige Ankündigung, zu ändern"
 
 #: gui/lobby/Terms_of_Service.txt:16
 msgid ""
 " 5. Delete any and all service data at any time with or without "
 "announcement."
-msgstr "5. Löschen jeder und aller Dienst-Daten jederzeit mit oder ohne Ankündigung."
+msgstr "5. Jederzeit einzelne oder alle Dienst-Daten, mit oder ohne Ankündigung, zu löschen."
 
 #: gui/lobby/Terms_of_Service.txt:17
 msgid ""
 " 6. Collect any or all user identifiable statistics at any time without "
 "consent for:"
-msgstr "6. Sammeln bestimmter nutzeridentifizierender Statistiken jederzeit ohne Zustimmung für:"
+msgstr "6. Jederzeit einzelne oder alle Statistiken, die Benutzern eindeutig zugeordnet werden können, ohne deren Zustimmung zu sammeln für:"
 
 #: gui/lobby/Terms_of_Service.txt:18
 msgid ""
 "  a. Private analysis by Wildfire Games (WFG) team members and their "
 "affiliates."
-msgstr "a. Private Analysen durch Wildfire Games (WFG) Teammitglieder und ihren Tochtergesellschaften."
+msgstr "a. Private Analysen durch Wildfire Games (WFG) Teammitglieder und ihre Geschäftspartner."
 
 #: gui/lobby/Terms_of_Service.txt:19
 msgid "  b. Anonymized public release by Wildfire Games (WFG) team members."
-msgstr "b. Anonymisierte Veröffentlichungen durch Wildfire Games (WFG) Teammitglieder"
+msgstr "b. Anonymisierte Veröffentlichungen durch Wildfire Games (WFG) Teammitglieder."
 
 #: gui/lobby/Terms_of_Service.txt:20
 msgid ""
@@ -514,11 +515,11 @@ msgstr "* \"Impersonifizierung\" bezeichnet dabei den Versuch, die Identität ei
 msgid ""
 " * \"Spam\" refers to irrelevant or inappropriate messages sent to a large "
 "number of recipients."
-msgstr "* \"Spam\" bezeichnet an einen großen Empfängerkreis versandte Nachrichten mit irrelevantem oder unangemessenem Inhalt."
+msgstr "* \"Spam\" bezeichnet irrelevante oder unangemessene Nachrichten, die an eine große Anzahl Empfänger gesendet wird."
 
 #: gui/lobby/Terms_of_Use.txt:7
 msgid " * \"Rating\" refers to the per-user comprehensive score."
-msgstr "* \"Rating\" bezeichnet dabei eine nutzerspezifische Gesamtbewertung."
+msgstr "* \"Bewertung\" bezeichnet eine nutzerspezifische Gesamtbewertung."
 
 #: gui/lobby/Terms_of_Use.txt:8
 msgid ""
@@ -528,36 +529,36 @@ msgstr "* \"Ranglistenspiele\" sind Spiele, bei denen statistische Daten erhoben
 
 #: gui/lobby/Terms_of_Use.txt:9
 msgid "You agree to:"
-msgstr "Du  akzeptierst und hälst dich an folgendes:"
+msgstr "Sie willigen in folgendes ein:"
 
 #: gui/lobby/Terms_of_Use.txt:10
 msgid ""
 " 1. Only create one account per unique user on the service unless authorized"
 " by a Wildfire Games (WFG) team member."
-msgstr "1. Erstelle nur ein Konto für jeden Benutzer auf dem Service, es sei denn es ist durch ein Wildfire Games (WFG) Teammitglied zugelassen."
+msgstr "1. Nur ein Konto für jeden Benutzer auf dem Service zu erstellen, außer es wurde durch ein Wildfire Games (WFG) Teammitglied autorisiert."
 
 #: gui/lobby/Terms_of_Use.txt:11
 msgid ""
 " 2. Not post profane statements, rude humor, pornographic content, or "
 "discriminatory comments on the service."
-msgstr "2. Verwende keinen unhöflichen Humor, poste keine profanen Aussagen, pornographische Inhalte oder diskriminierende Kommentare auf dem Service."
+msgstr "2. Keinen unhöflichen Humor zu verwenden, keine lästernden Aussagen, pornographische Inhalte oder diskriminierende Kommentare in dem Service zu posten."
 
 #: gui/lobby/Terms_of_Use.txt:12
 msgid " 3. Not purposefully demean the worth of others using the service."
-msgstr "3. Erniedrige niemanden Anderen mit Hilfe dieses Service. "
+msgstr "3. Niemanden Anderen mit Hilfe dieses Service zu erniedrigen. "
 
 #: gui/lobby/Terms_of_Use.txt:13
 msgid ""
 " 4. Not use the service to promote specific goods, services, or products."
-msgstr "4. Nutze den Service nicht, um bestimmte Waren, Dienstleistungen oder Produkte zu bewerben."
+msgstr "4. Den Service nicht zu benutzen, um bestimmte Waren, Dienstleistungen oder Produkte zu bewerben."
 
 #: gui/lobby/Terms_of_Use.txt:14
 msgid " 5. Not impersonate other users of the service."
-msgstr "5. Imitiere nicht andere Benutzer des Dienstes."
+msgstr "5. Keine andere Benutzer des Dienstes zu imitieren."
 
 #: gui/lobby/Terms_of_Use.txt:15
 msgid " 6. Not spam the service."
-msgstr "6. Spamme den Service nicht."
+msgstr "6. Den Service nicht zu spammen."
 
 #: gui/lobby/Terms_of_Use.txt:16
 msgid ""
@@ -565,13 +566,13 @@ msgid ""
 "any of the statistics which impact it. (Examples of this are, but are not "
 "limited to: cheating in ranked games, reverse engineering the service, and "
 "taking advantage of other users of the service.)"
-msgstr "7. Versuche nicht, das Rating von Benutzern oder die zu Grunde liegenden statistischen Daten zu manipulieren. (Dies schließt zum Beispiel folgende Tätigkeiten ein, bleibt jedoch nicht auf selbige beschränkt: Cheaten in Ranglistenspielen, Einsatz von Reverse-Engineering-Techniken, Erlangung von Vorteilen auf Kosten anderer Benutzer.)"
+msgstr "7. Nicht zu versuchen, das Rating von Benutzern oder die zu Grunde liegenden Statistiken zu manipulieren. (Beinhaltet unter anderem: Cheaten in Ranglistenspielen, Einsatz von Reverse-Engineering-Techniken, andere Benutzer des Dienstes übervorteilen.)"
 
 #: gui/lobby/Terms_of_Use.txt:17
 msgid ""
 " 8. Allow yourself to be removed from the service if at any time a moderator"
 " determines your behavior is not consistent with these rules."
-msgstr "8. Du erklärst dich damit einverstanden, von der Benutzung ausgeschlossen zu werden, wenn ein Moderator zu irgendeinem Zeitpunkt feststellt, dass dein Verhalten diesen Regeln widerspricht."
+msgstr "8. Zulassen, von der Benutzung ausgeschlossen zu werden, wenn ein Moderator zu irgendeinem Zeitpunkt feststellt, dass Ihr Verhalten mit diesen Regeln im Konflikt steht."
 
 #: gui/lobby/Terms_of_Use.txt:19
 msgid ""
@@ -579,4 +580,4 @@ msgid ""
 "user of the service is given adequate notice of the change (the definition "
 "of adequate notice will be determined at the time by a panel of Wildfire "
 "Games (WFG) team members)."
-msgstr "1. Dieses Dokument jederzeit beliebig verändern, unter der Voraussetzung, dass der Benutzer angemessen Kenntnis von der Änderung erlangt (die konkrete Definition der Angemessenheit wird derzeit durch ein Gremium aus Teammitgliedern von Wildfire Games (WFG) bestimmt)."
+msgstr "1. Dieses Dokument kann jederzeit beliebig verändert werden; unter der Voraussetzung, dass der Benutzer angemessen Kenntnis von der Änderung erlangt (die konkrete Definition der Angemessenheit wird derzeit durch ein Gremium aus Teammitgliedern von Wildfire Games (WFG) bestimmt)."
