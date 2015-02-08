@@ -30,9 +30,9 @@
 
 // Absolute maximum (bytewise) size of each GL vertex buffer object.
 // Make it large enough for the maximum feasible mesh size (64K vertexes,
-// 32 bytes per vertex in ShaderModelRenderer).
+// 64 bytes per vertex in InstancingModelRenderer).
 // TODO: measure what influence this has on performance
-#define MAX_VB_SIZE_BYTES		(2*1024*1024)
+#define MAX_VB_SIZE_BYTES		(4*1024*1024)
 
 CVertexBuffer::CVertexBuffer(size_t vertexSize, GLenum usage, GLenum target)
 	: m_VertexSize(vertexSize), m_Handle(0), m_SysMem(0), m_Usage(usage), m_Target(target)
