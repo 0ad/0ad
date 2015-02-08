@@ -425,9 +425,9 @@ function addChatMessage(msg, playerAssignments)
 		playerColor = "255 255 255";
 		username = translate("Unknown player");
 	}
-	
+
 	var formatted;
-	
+
 	switch (msg.type)
 	{
 	case "connect":
@@ -592,7 +592,9 @@ function parseChatCommands(msg, playerAssignments)
 		sender = playerAssignments[msg.guid].player;
 	else
 		sender = msg.player;
-	
+
+	// TODO: It would be nice to display multiple different contexts.
+	// It should be made clear that only players matching the union of those receive the message.
 	var recurse = false;
 	var split = msg.text.split(/\s/);
 
@@ -618,15 +620,24 @@ function parseChatCommands(msg, playerAssignments)
 			msg.hide = true;
 		recurse = true;
 		break;
+	case "/ally":
+	case "/allies":
+		// Check if we sent the message, or are the sender's (mutual) ally
+		if (Engine.GetPlayerID() == sender || (g_Players[sender] && g_Players[sender].isMutualAlly[Engine.GetPlayerID()]))
+			msg.context = translate("Ally");
+		else
+			msg.hide = true;
+
+		recurse = true;
+		break;
 	case "/enemy":
-		// Check if we are in a team.
-		if (g_Players[Engine.GetPlayerID()] && g_Players[Engine.GetPlayerID()].team != -1)
-		{
-			if (g_Players[Engine.GetPlayerID()].team == g_Players[sender].team && sender != Engine.GetPlayerID())
-				msg.hide = true;
-			else
-				msg.context = translate("Enemy");
-		}
+	case "/enemies":
+		// Check if we sent the message, or are the sender's enemy
+		if (Engine.GetPlayerID() == sender || (g_Players[sender] && g_Players[sender].isEnemy[Engine.GetPlayerID()]))
+			msg.context = translate("Enemy");
+		else
+			msg.hide = true;
+
 		recurse = true;
 		break;
 	case "/me":
