@@ -2,46 +2,40 @@
 
 <objects>
 	<script file="gui/msgbox/msgbox.js"/>
+	<script file="gui/common/functions_global_object.js"/>
 
+	<!-- Fade out the background because it's non-interactable -->
+	<object sprite="ModernFade" type="image" z="0"/>
 	<object name="mbLeaveHotkey" hotkey="leave" />
-
-	<object>
-		<object name="mbMain"
+	<object name="mbMain"
 			style="ModernDialog"
 			type="image"
-		>
-
-			<object name="mbTitleBar"
-				style="TitleText"
-				type="text"
-				size="50%-128 -18 50%+128 14"
-			/>
-
-			<object name="mbText"
-				type="text"
-				style="ModernLabelText"
-				size="5% 20% 95% 100%-96"
-			/>
-
-			<object name="mbButton1"
-				style="StoneButton"
-				type="button"
-				hidden="true"
-				size="40 100%-50 33%-30 100%-20"
-			/>
-			<object name="mbButton2"
-				style="StoneButton"
-				type="button"
-				hidden="true"
-				size="33%+30 100%-50 66%-40 100%-20"
-			/>
-			<object name="mbButton3"
-				style="StoneButton"
-				type="button"
-				hidden="true"
-				size="66%+30 100%-50 100%-40 100%-20"
-			/>
-		</object>
+	>
+	<object name="mbTitleBar"
+			style="ModernLabelText"
+			type="text"
+			size="50%-128 -18 50%+128 14"
+	/>
+	<object name="mbText"
+			type="text"
+			style="ModernLabelText"
+			size="18 18 100%-18 100%-64"
+	/>
+	<!-- The size of the following buttons is set dynamically in msgbox.js -->
+	<object name="mbButton1"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
+	<object name="mbButton2"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
+	<object name="mbButton3"
+			style="ModernButtonRed"
+			type="button"
+			hidden="true"
+	/>
 	</object>
-
 </objects>
