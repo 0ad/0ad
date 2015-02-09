@@ -1256,6 +1256,8 @@ paintTileClassBasedOnHeight(3.12, 40, 1, clHill);
 
 var playerX = new Array(numPlayers);
 var playerZ = new Array(numPlayers);
+var distmin = scaleByMapSize(60,240);
+distmin *= distmin;
 
 for (var i = 0; i < numPlayers; i++)
 {
@@ -1264,29 +1266,49 @@ for (var i = 0; i < numPlayers; i++)
 	{
 		for (var mz = 0; mz < mapSize; mz++)
 		{
-			var placable = true;
 			if (!g_Map.validT(mx, mz, 6))
-				placable = false;
+				continue;
 
+			var placable = true;
 			for (var c = 0; c < i; c++)
-				if (sqrt((playerX[c] - mx)*(playerX[c] - mx) + (playerZ[c] - mz)*(playerZ[c] - mz)) <= scaleByMapSize(14,27))
+				if ((playerX[c] - mx)*(playerX[c] - mx) + (playerZ[c] - mz)*(playerZ[c] - mz) < distmin)
 					placable = false;
-			
-			if ((g_Map.getHeight(mx, mz) >= 3)&&(g_Map.getHeight(mx, mz) <= 3.12)&&(placable))
+			if (!placable)
+				continue;
+
+			if (g_Map.getHeight(mx, mz) >= 3 && g_Map.getHeight(mx, mz) <= 3.12)
 				placableArea.push([mx, mz]);
 		}
 	}
-	
-	if (placableArea == [])
+
+	if (!placableArea.length)
 	{
 		for (var mx = 0; mx < mapSize; ++mx)
 		{
-			for (var mz = 0; mz < mapSize; ++mz)
+			for (var mz = 0; mz < mapSize; mz++)
 			{
-				if ((g_Map.getHeight(mx, mz) >= 3)&&(g_Map.getHeight(mx, mz) <= 3.12))
+				if (!g_Map.validT(mx, mz, 6))
+					continue;
+
+				var placable = true;
+				for (var c = 0; c < i; c++)
+					if ((playerX[c] - mx)*(playerX[c] - mx) + (playerZ[c] - mz)*(playerZ[c] - mz) < distmin/4)
+						placable = false;
+				if (!placable)
+					continue;
+
+				if (g_Map.getHeight(mx, mz) >= 3 && g_Map.getHeight(mx, mz) <= 3.12)
 					placableArea.push([mx, mz]);
 			}
 		}
+	}
+
+	if (!placableArea.length)
+	{
+		for (var mx = 0; mx < mapSize; ++mx)
+			for (var mz = 0; mz < mapSize; ++mz)
+				if (g_Map.getHeight(mx, mz) >= 3 && g_Map.getHeight(mx, mz) <= 3.12)
+					placableArea.push([mx, mz]);
 	}
 	var chosen = floor(Math.random()*placableArea.length);
 	playerX[i] = placableArea[chosen][0];
