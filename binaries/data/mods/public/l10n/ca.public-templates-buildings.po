@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Haommin <tfs.msimangu@gmail.com>, 2014
+# Haommin <tfs.msimangu@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 10:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-26 11:21+0000\n"
+"Last-Translator: Haommin <tfs.msimangu@gmail.com>\n"
 "Language-Team: Catalan (http://www.transifex.com/projects/p/0ad/language/ca/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -639,25 +639,30 @@ msgstr "Marchnaty"
 msgid "Brythonic Outpost"
 msgstr "Destacament britó"
 
-#: simulation/templates/structures/brit_rotarymill.xml:20
-#: simulation/templates/structures/celt_sb1.xml:23
-#: simulation/templates/structures/gaul_rotarymill.xml:20
+#: simulation/templates/structures/brit_rotarymill.xml:21
+#: simulation/templates/structures/gaul_rotarymill.xml:21
+msgid "Farming bonus"
+msgstr "Bonificació agrícola"
+
+#: simulation/templates/structures/brit_rotarymill.xml:22
+#: simulation/templates/structures/gaul_rotarymill.xml:22
+msgid "Boosts nearby farming with +25%."
+msgstr "Els horts propers produeixen un 25 més."
+
+#: simulation/templates/structures/brit_rotarymill.xml:32
+#: simulation/templates/structures/gaul_rotarymill.xml:32
 msgid "Rotary Mill"
 msgstr "Molí rotatori"
 
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/celt_sb1.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:21
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/celt_sb1.xml:25
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid ""
-"Increase nearby farming output +25%. (Currently, a special technology can be"
-" researched to serve this function)"
-msgstr "Augmenta la producció dels horts propers un 25%. (Actualment es pot investigar una tecnologia especial per fer aquesta funció)"
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
+msgid "Increase nearby farming output +25%."
+msgstr "Augmenta la producció dels horts propers un 25%."
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/celt_storehouse.xml:8
@@ -1380,22 +1385,22 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Estructura barata semblant a una caserna que es pot construir en territori neutral, però no té influència sobre el territori.\n- Recluta mercenaris.\n- Distància mínima a altres assentaments militars: 100 metres."
 
-#: simulation/templates/structures/ptol_military_colony.xml:7
-#: simulation/templates/structures/sele_military_colony.xml:7
+#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/sele_military_colony.xml:8
 msgid "Colony"
 msgstr "Colònia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:29
-#: simulation/templates/structures/sele_military_colony.xml:29
+#: simulation/templates/structures/ptol_military_colony.xml:30
+#: simulation/templates/structures/sele_military_colony.xml:30
 msgid "Military Colony"
 msgstr "Colònia militar"
 
-#: simulation/templates/structures/ptol_military_colony.xml:30
-#: simulation/templates/structures/sele_military_colony.xml:30
+#: simulation/templates/structures/ptol_military_colony.xml:31
+#: simulation/templates/structures/sele_military_colony.xml:31
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:33
+#: simulation/templates/structures/ptol_military_colony.xml:34
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
@@ -1623,7 +1628,7 @@ msgid ""
 "for stout defense."
 msgstr "Construeix maquinària de setge i recluta campions. Refugia fins a 20 soldats per a una forta defensa."
 
-#: simulation/templates/structures/sele_military_colony.xml:33
+#: simulation/templates/structures/sele_military_colony.xml:34
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

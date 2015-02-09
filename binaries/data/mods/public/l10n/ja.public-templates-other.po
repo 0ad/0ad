@@ -7,9 +7,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-02 02:07+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,41 +115,41 @@ msgstr "財宝"
 msgid "A treasure that can be quickly gathered."
 msgstr "手早く採集可能な財宝です。"
 
-#: simulation/templates/template_structure.xml:48
+#: simulation/templates/template_structure.xml:49
 msgid "Structure"
 msgstr "建物"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "ユニット"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
 msgstr "アレクサンドロス大王の軍隊です。"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
 msgstr "アレクサンドロス大王軍"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
-#: simulation/templates/campaigns/army_mace_standard.xml:22
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_standard.xml:21
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
 msgstr "これが戦略マップでの軍隊の見え方です。"
 
-#: simulation/templates/campaigns/army_mace_standard.xml:20
+#: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
 msgstr "マケドニア軍"
 
-#: simulation/templates/campaigns/army_mace_standard.xml:21
+#: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
 msgstr "マケドニア軍"
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
 msgstr "レオニダス1世軍。"
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "レオニダス1世軍"
 
@@ -217,6 +217,10 @@ msgstr "密集横隊"
 #: simulation/templates/formations/line_open.xml:5
 msgid "Line Open"
 msgstr "散開横隊"
+
+#: simulation/templates/formations/null.xml:5
+msgid "None"
+msgstr "なし"
 
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
@@ -710,15 +714,15 @@ msgstr "石の塀"
 msgid "Wheat Field"
 msgstr "小麦畑"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:30
+#: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
 msgstr "巨大神殿"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:31
+#: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:33
+#: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "治療者を養成します。30 ユニットまで駐屯して速やかに回復させます。"
 
@@ -871,11 +875,11 @@ msgstr "宿屋"
 msgid "Warehouse"
 msgstr "貯蔵庫"
 
-#: simulation/templates/other/plane.xml:38
+#: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
 msgstr "P-51 マスタング"
 
-#: simulation/templates/other/plane.xml:40
+#: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
 msgstr "第二次大戦期のアメリカの戦闘機です。"
 

@@ -5,12 +5,13 @@
 # Translators:
 # leper <leper@wildfiregames.com>, 2014
 # Raymond Vetter, 2014
+# Xaver, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 23:10+0000\n"
-"Last-Translator: Raymond Vetter\n"
+"PO-Revision-Date: 2015-01-31 12:31+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -32,7 +33,7 @@ msgstr "Schließen"
 
 #: gui/manual/intro.txt:1
 msgid "[font=\"sans-bold-18\"]0 A.D. in-game manual"
-msgstr "[font=\"sans-bold-18\"]0 A.D. spielinternes Handbuch"
+msgstr "[font=\"sans-bold-18\"]0 A.D. In-Game-Handbuch"
 
 #: gui/manual/intro.txt:2
 msgid "[font=\"sans-14\"]"
@@ -43,7 +44,7 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Vielen Dank für die Installation von 0 A.D.! Diese Seite gibt einen kurzen Überblick über die Funktionen, welche in dieser unvollständigen, sich in der Entwicklung befindenden Alphaversion des Spiels verfügbar sind."
+msgstr "Vielen Dank für die Installation von 0 A.D.! Diese Seite gibt einen kurzen Überblick über die Funktionen, die in dieser unvollständigen, sich in der Entwicklung befindenden Alphaversion des Spiels verfügbar sind."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
@@ -57,11 +58,11 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Du kannst mit Alt + Enter zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel sehr langsam läuft, kannst du manche Einstellungen in der Konfigurationsdatei ändern: Suche die Datei 'binaries/data/config/default.cfg' im Ordner wo dein Spiel installiert ist. Sie gibt dir Anweisungen zum Ändern. Versuche als erstes die Optionen \"fancywater\" und \"shadows\" zu deaktivieren."
+msgstr "[font=\"sans-14\"]Du kannst mit Alt + Enter zwischen Vollbild- und Fenstermodus wechseln. Im Fenstermodus kannst du die Größe des Fensters ändern. Wenn das Spiel zu langsam läuft, kannst du manche Einstellungen in der Konfigurationsdatei ändern: Suche die Datei 'binaries/data/config/default.cfg' in dem Ordner wo das Spiel installiert ist. Sie gibt Anweisungen zum Ändern - Versuche als erstes die Optionen \"fancywater\" und \"shadows\" zu deaktivieren."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
-msgstr "[font=\"sans-bold-16\"]Spiele das Spiel"
+msgstr "[font=\"sans-bold-16\"]Das Spiel spielen"
 
 #: gui/manual/intro.txt:9
 msgid ""
@@ -81,7 +82,7 @@ msgstr "• Linksklick um Einheiten auszuwählen."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "• Linksklicken und gedrückt halten um Gruppen von Einheiten auszuwählen."
+msgstr "• Linksklicken und ziehen um Gruppen von Einheiten auszuwählen."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
@@ -93,7 +94,7 @@ msgstr "• Pfeiltasten oder WASD-Tasten um die Kamera zu bewegen."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Strg + Pfeiltasten oder Umschalttaste + Mausrad um die Kamera zu rotieren."
+msgstr "• Strg + Pfeiltasten oder Shift + Mausrad um die Kamera zu drehen."
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
@@ -149,7 +150,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Zuerst entscheide dich, ob du eine Zufallskarte (automatisch durch ein Skript erstellt) oder ein Szenario (durch die Entwickler erstellt) spielen willst. Szenarios können gefiltert werden, sodass nicht immer alle Karten angezeigt werden. Normalerweise werden nur die „Standardkarten“ angezeigt. Um auch eigene Karten zu sehen, muss „alle Karten“ ausgewählt werden. Die „Demokarten“ sind eher gebaut um bestimmte Spieleigenschaften zu testen, oft aber nicht zum Spielen geeignet."
+msgstr "entscheide dich zuerst , ob du eine Zufallskarte (automatisch durch ein Skript erstellt) oder ein Szenario (von einem Entwickler erstellt) spielen willst. Szenarios können gefiltert werden, sodass nicht immer alle Karten angezeigt werden. Die Standardkarten werden sofort angezeigt - um auch eigene Karten zu sehen, muss „alle Karten“ ausgewählt werden. „Demo-Karten“ sind eher dafür gedacht, bestimmte Spieleigenschaften zu testen, und meistens nicht allgemein verwendbar."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -159,7 +160,7 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr "Danach passe das Spiel an. Bei zufälligen Karten gehören die Anzahl der Spieler, die Kartengröße etc. dazu. Bei Szenarien kann nur eingestellt werden, wer welchen Spieler kontrolliert (entscheidet, wo du auf der Karte startest usw.). Optionen sind ein menschlicher Spieler, eine KI oder kein Spieler (existierende Einheiten werden den Gegner angreifen, wenn er in Sicht kommt, aber es werden weder Einheiten geschaffen noch werden Einheiten ausgeschickt um den Gegner anzugreifen)."
+msgstr "Passe danach das Spiel an. Bei Zufallskarten beinhaltet das die Anzahl der Spieler, die Kartengröße etc. Bei Szenarien kann nur eingestellt werden, wer welchen Spieler kontrolliert (bestimmt, wo du auf der Karte startest usw.). Optionen sind ein menschlicher Spieler, eine KI oder überhaupt kein Spieler (bestehende Einheiten werden Gegner in Sichtweite attackieren, aber es werden weder Einheiten ausgebildet, noch werden Einheiten ausgeschickt um den Gegner anzugreifen)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
@@ -175,7 +176,7 @@ msgstr "[font=\"sans-bold-14\"]Immer"
 
 #: gui/manual/intro.txt:39
 msgid "[font=\"sans-14\"]Alt + F4: Close the game, without confirmation"
-msgstr "[font=\"sans-14\"]Alt + F4: Beenden, ohne Nachfrage"
+msgstr "[font=\"sans-14\"]Alt + F4: Spiel ohne Nachfrage beenden"
 
 #: gui/manual/intro.txt:40
 msgid "Alt + Enter: Toggle between fullscreen and windowed"
@@ -187,7 +188,7 @@ msgstr "„~“ oder F9: Ein-/Ausblenden der Konsole"
 
 #: gui/manual/intro.txt:42
 msgid "Alt + F: Show/hide frame counter (FPS)"
-msgstr "Alt + F: Ein-/ausblenden des Bildzählers (FPS)"
+msgstr "Alt + F: Ein-/ausblenden der Bildrate (FPS)"
 
 #: gui/manual/intro.txt:43
 msgid ""
@@ -221,7 +222,7 @@ msgstr "[font=\"sans-bold-14\"]Im Spiel"
 msgid ""
 "[font=\"sans-14\"]Double Left Click \\[on unit]: Select all of your units of"
 " the same kind on the screen (even if they're different ranks)"
-msgstr "[font=\"sans-14\"]Doppelter Linksklick \\[auf eine Einheit]: Wähle alle deine Einheiten dieses Typs auf dem Bildschirm aus (selbst wenn sie unterschiedliche Ränge bekleiden)"
+msgstr "[font=\"sans-14\"]Doppelter Linksklick \\[auf eine Einheit]: Wähle alle deine Einheiten dieses Typs auf dem Bildschirm aus (selbst wenn sie unterschiedliche Ränge haben)"
 
 #: gui/manual/intro.txt:50
 msgid ""
@@ -263,37 +264,37 @@ msgstr "ESC: Schließt alle Dialoge (Chat, Menü) oder setzt die Auswahl zurück
 
 #: gui/manual/intro.txt:58
 msgid "Enter/return: Open/send chat"
-msgstr "Enter: Chat"
+msgstr "Enter: Chat öffnen/Nachricht senden"
 
 #: gui/manual/intro.txt:59
 msgid "T: Send team chat"
-msgstr "T: Sende Team-Chat"
+msgstr "T: Team-Chat senden"
 
 #: gui/manual/intro.txt:60
 msgid "Pause: Pause/resume the game"
-msgstr "Pause: Pausieren/Fortsetzen des Spiels"
+msgstr "Pause: Pause/Spiel fortsetzen"
 
 #: gui/manual/intro.txt:61
 msgid "Delete: Delete currently selected unit/units/building/buildings"
-msgstr "Entfernen: Ausgewählte Einheiten/Gebäude entfernen"
+msgstr "Entfernen: Ausgewählte Einheiten/Gebäude löschen"
 
 #: gui/manual/intro.txt:62
 msgid ",: Select idle fighters"
-msgstr ",: Wähle untätige Kämpfer"
+msgstr ",: Untätige Kämpfer wählen"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Wähle untätige Arbeiter (auch Bürgersoldaten)"
+msgstr ".: Untätige Arbeiter (auch Bürgersoldaten) wählen"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
-msgstr "H: Stoppe (halte) die derzeit ausgewählten Einheiten."
+msgstr "H: Die derzeit ausgewählten Einheiten anhalten"
 
 #: gui/manual/intro.txt:65
 msgid ""
 "Ctrl + 1 (and so on up to Ctrl + 0): Create control group 1 (to 0) from the "
 "selected units/buildings"
-msgstr "Ctrl + 1 (und so weiter bis Ctrl + 0): Erschaffe Gruppe 1 (bis 0) aus den ausgewählten Einheiten/Gebäuden"
+msgstr "Strg + 1 (und so weiter bis Strg + 0): Erschaffe Gruppe 1 (bis 0) aus den ausgewählten Einheiten/Gebäuden"
 
 #: gui/manual/intro.txt:66
 msgid ""
@@ -321,15 +322,15 @@ msgstr "F5, F6, F7 und F8: Springe mit der Kamera zu einer markierten Position. 
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Wenn Gebäude gewählt sind, die Einheiten ausbilden können: Füge die erste, zweite, ... gezeigte Einheit zur Ausbildungsschleife für alle ausgewählten Gebäude hinzu."
+msgstr "Z, X, C, V, B, N, M: Bei Gebäuden, die Einheiten ausbilden können: Füge die erste, zweite, ... angezeigte Einheit zur Warteschleife für alle ausgewählten Gebäude hinzu."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
-msgstr "[font=\"sans-bold-14\"]Verändere Mausaktionen"
+msgstr "[font=\"sans-bold-14\"]Maus konfigurieren"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + Rechtsklick auf Gebäude: Einquartieren"
+msgstr "[font=\"sans-14\"]Strg + Rechtsklick auf Gebäude: Einquartieren"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
@@ -337,7 +338,7 @@ msgstr "Shift + Rechtsklick: Reihe den Bewegungs-/Bau-/Sammel-/usw. Auftrag in d
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + Linksklick beim Einheiten rekrutieren: Fügt fünf Einheiten pro Klick hinzu."
+msgstr "Shift + Linksklick beim Ausbilden von Einheiten : Fügt fünf Einheiten pro Klick hinzu."
 
 #: gui/manual/intro.txt:76
 msgid ""
@@ -351,7 +352,7 @@ msgstr "Strg + Linksklick oder mit linker Maustaste über Einheiten auf der Map 
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
-msgstr "Mit Alt + linke Maustaste über die Map ziehen: Nur militärische Einheiten auswählen"
+msgstr "Mit Alt + linke Maustaste über die Map ziehen: Nur Militäreinheiten auswählen"
 
 #: gui/manual/intro.txt:79
 msgid ""
@@ -362,7 +363,7 @@ msgstr "Strg + Links auf Gruppen-Zeichen mit mehreren Einheiten ausgewählt: Aus
 msgid ""
 "Right Click with a building/buildings selected: sets a rally point for units"
 " created/ungarrisoned from that building."
-msgstr "Rechtsklick während ein/mehrere Gebäude ausgewählt ist/sind: Setzt einen Wegpunkt für Einheiten, die mit dem/n Gebäude/n erstellt werden oder deren Einquartierung in dem/n Gebäude/n aufgehoben wird."
+msgstr "Rechtsklick während ein oder mehrere Gebäude ausgewählt sind: Setzt einen Wegpunkt für Einheiten, die mit dem Gebäude erstellt werden oder die aus diesem Gebäude ausquartiert werden."
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
@@ -377,7 +378,7 @@ msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr "- Ansonsten: Angriffsbewegung (standardmäßig alle feindlichen Einheiten und Gebäude auf dem Weg werden anvisiert; verwende STRG + Q + Rechtsklick, um nur Einheiten als Ziel zu markieren)."
+msgstr "- Ansonsten: Angriffsbewegung (standardmäßig werden alle feindlichen Einheiten und Gebäude auf dem Weg angegriffen; Strg + Q + Rechtsklick, um nur Einheiten als Ziel anzugreifen)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -385,23 +386,23 @@ msgstr "[font=\"sans-bold-14\"]Overlays"
 
 #: gui/manual/intro.txt:86
 msgid "[font=\"sans-14\"]Alt + G: Hide/show the GUI"
-msgstr "[font=\"sans-14\"]Alt + G: Verstecke/zeige die Bedienelemente"
+msgstr "[font=\"sans-14\"]Alt + G: Benutzeroberfläche zeigen/verstecken"
 
 #: gui/manual/intro.txt:87
 msgid "Alt + D: Show/hide developer overlay (with developer options)"
-msgstr "Alt + D: Zeige/verstecke Entwickler Optionen"
+msgstr "Alt + D:  Entwickler-Overlay zeigen/verstecken (mit Entwickleroptionen)"
 
 #: gui/manual/intro.txt:88
 msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt + W: wechsle den Wireframe-Modus (Drücke einmal, um Wireframes über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Wireframes zu bekommen, und ein drittes mal, um in den normalen Modus zu wechseln)"
+msgstr "Alt + W: Zu Drahtgittermodellen wechseln (einmal drücken, um Drahtgitter über die Texturen zu legen, ein weiteres Mal, um nur mit Texturen eingefärbte Drahtgittermodelle zu bekommen, und ein drittes mal, um in den normalen Modus zurückzuwechseln)"
 
 #: gui/manual/intro.txt:89
 msgid ""
 "Alt + S: Toggle unit silhouettes (might give a small performance boost)"
-msgstr "Alt + S: Silhouetten von Einheiten ein-/ausschalten (kann einen leichten Performancegewinn bringen)"
+msgstr "Alt + S: Umrisse von Einheiten ein-/ausschalten (kann einen leichten Performancegewinn bringen)"
 
 #: gui/manual/intro.txt:90
 msgid "Alt + Z: Toggle sky"
@@ -409,7 +410,7 @@ msgstr "Alt + Z: Anzeigen des Himmels umschalten"
 
 #: gui/manual/intro.txt:92
 msgid "[font=\"sans-bold-14\"]Camera manipulation"
-msgstr "[font=\"sans-bold-14\"]Kameraanpassung"
+msgstr "[font=\"sans-bold-14\"]Kamerasteuerung"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
@@ -429,11 +430,11 @@ msgstr "D oder \\[Pfeil nach rechts]: Kamera nach rechts bewegen"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
-msgstr "Ctrl + W oder \\[oben]: Rotiere die Kamera um nach oben zu gucken"
+msgstr "Strg + W oder \\[oben]: Kamera nach oben drehen"
 
 #: gui/manual/intro.txt:98
 msgid "Ctrl + S or \\[down]: Rotate camera to look downward"
-msgstr "Ctrl + S oder \\[unten]: Rotiere die Kamera um nach unten zu gucken"
+msgstr "Strg + S oder \\[unten]: Kamera nach unten drehen"
 
 #: gui/manual/intro.txt:99
 msgid "Ctrl + A or \\[left]: Rotate camera clockwise around terrain"
@@ -441,7 +442,7 @@ msgstr "Strg + A oder \\[links]: Kamera im Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:100
 msgid "Ctrl + D or \\[right]: Rotate camera anticlockwise around terrain"
-msgstr "Strg + D oder \\[rechts]: Kamera entgegen dem Uhrzeigersinn drehen"
+msgstr "Strg + D oder \\[rechts]: Kamera gegen den Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:101
 msgid "Q: Rotate camera clockwise around terrain"
@@ -449,7 +450,7 @@ msgstr "Q: Kamera im Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:102
 msgid "E: Rotate camera anticlockwise around terrain"
-msgstr "E: Kamera entgegen dem Uhrzeigersinn drehen"
+msgstr "E: Kamera gegen den Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:103
 msgid "Shift + Mouse Wheel Rotate Up: Rotate camera clockwise around terrain"
@@ -458,17 +459,17 @@ msgstr "Umschalt + Mausrad nach oben drehen: Kamera im Uhrzeigersinn drehen"
 #: gui/manual/intro.txt:104
 msgid ""
 "Shift + Mouse Wheel Rotate Down: Rotate camera anticlockwise around terrain"
-msgstr "Umschalt + Mausrad nach unten drehen: Kamera entgegen dem Uhrzeigersinn drehen"
+msgstr "Umschalt + Mausrad nach unten drehen: Kamera gegen den Uhrzeigersinn drehen"
 
 #: gui/manual/intro.txt:105
 msgid ""
 "F: Follow the selected unit (move the camera to stop the camera from "
 "following the unit/s)"
-msgstr "F: Folge der Ausgewählten Einheit (bewege die Kamera, um nicht mehr der Einheit zu folgen)"
+msgstr "F: Folge der ausgewählten Einheit (bewege die Kamera, um der Einheit nicht mehr zu folgen)"
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr "R: Kamera zurücksetzten"
+msgstr "R: Kamerazoom und -orientierung zurücksetzten"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
@@ -480,17 +481,17 @@ msgstr "-: Herauszoomen (gedrückt halten zum durchgängig zoomen)"
 
 #: gui/manual/intro.txt:109
 msgid "Alt + W: Toggle through wireframe modes"
-msgstr "Alt + W: Wechsel den Wireframe-Modus"
+msgstr "Alt + W: Wechsel die Drahtgittermodell-Modi"
 
 #: gui/manual/intro.txt:110
 msgid ""
 "Middle Mouse Button or / (Forward Slash): Keep pressed and move the mouse to"
 " pan"
-msgstr "Mittlere Maustaste oder / (Schrägstrich): Halten Sie gedrückt und bewegen Sie die Maus zum Schwenken"
+msgstr "Mittlere Maustaste oder / (Schrägstrich): Gedrückt halten und die Maus bewegen, um den Kartenausschnitt zu verschieben"
 
 #: gui/manual/intro.txt:112
 msgid "[font=\"sans-bold-14\"]During Building Placement"
-msgstr "[font=\"sans-bold-14\"]Während der Gebäudeplatzierung"
+msgstr "[font=\"sans-bold-14\"]Beim Platzieren von Gebäuden"
 
 #: gui/manual/intro.txt:113
 msgid "[font=\"sans-14\"]\\[: Rotate building 15 degrees counter-clockwise"
@@ -504,7 +505,7 @@ msgstr "]: Gebäude in 15 Grad-Schritten im Uhrzeigersinn drehen"
 msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
-msgstr "Linke Maustaste gedrückt halten: Drehe das Gebäude mit der Maus (Fundament wird beim Loslassen gesetzt)"
+msgstr "Linke Maustaste gedrückt halten: Gebäude mit der Maus drehen  (Fundament wird beim Loslassen gesetzt)"
 
 #: gui/manual/userreport.txt:1
 msgid ""
@@ -513,30 +514,30 @@ msgid ""
 "many players as possible. When you enable automatic feedback, we'll receive "
 "data to help us understand the hardware we should focus on supporting, and "
 "to identify performance problems we should fix."
-msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Bandbreite von Systemen zu testen, aber wir möchten trotzdem die bestmögliche Spielerfahrung für viele Spieler bieten. Wenn Du das Automatische Feedback aktivierst, können wir mit den automatisch gesammelten Daten verstehen, welche Hardware wir unterstützen sollen, beziehungsweise Performanceprobleme aufdecken."
+msgstr "Als Entwickler eines freien, Open-Source-Spieles, haben wir nicht die Möglichkeiten unser Spiel auf einer großen Palette von Systemen zu testen, aber wir möchten trotzdem so vielen Spielern wie möglich die bestmögliche Spielerfahrung bieten. Wenn das automatische Feedback aktiviert ist, können wir mit den erfassten Daten bestimmen, welche Hardware wir unterstützen sollten, beziehungsweise Performanceprobleme aufdecken, die wir lösen sollten."
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr "Die folgenden Daten werden zu unserem Server geschickt:"
+msgstr "Folgenden Daten werden zu unserem Server geschickt:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "• Eine zufällige Benutzer-ID (gespeichert in %APPDATA%\\0ad\\config\\user.cfg unter Windows, ~/.config/0ad/config/user.cfg unter Unix), um mehrere Berichte desselben Nutzers zu erkennen."
+msgstr "• Eine zufällige Benutzer-ID (unter Windows in %APPDATA%\\0ad\\config\\user.cfg gespeichert, unter Unix ~/.config/0ad/config/user.cfg), um mehrere Berichte desselben Nutzers zu erkennen."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Version des Spieles und grundlegende Build-Enstellungen (Optimisationsmodus, Prozessorarchitektur, Zeitstempel, Compilerversion)."
+msgstr "• Die Spielversion und grundlegende Build-Enstellungen (Optimisationsmodus, Prozessorarchitektur, Zeitstempel, Compilerversion)."
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• Hardware-Details: Version des Betriebssystems und des Grafikkartentreibers, OpenGL-Fähigkeiten, Auflösung, CPU-Details, RAM-Größe."
+msgstr "• Hardware-Details: Betriebssystemversion, Version des Grafikkartentreibers, OpenGL-Fähigkeiten, Bildschirmauflösung, CPU-Details, RAM-Größe."
 
 #: gui/manual/userreport.txt:8
 msgid ""
@@ -548,7 +549,7 @@ msgstr "• Performance-Details: eine Momentaufnahme der Zeitdaten ein paar Seku
 msgid ""
 "The data will only be a few kilobytes each time you run the game, so "
 "bandwidth usage is minimal."
-msgstr "Es sind nur ein paar Kilobyte jedes mal wenn das Spiel gestartet wird, sodass die Bandbreite nur minimal genutzt wird."
+msgstr "Die Datenmenge sind nur ein paar Kilobyte bei jedem Spielstart, sodass der Datenverbrauch minimal bleibt."
 
 #: gui/manual/userreport.txt:12
 msgid ""
@@ -557,4 +558,4 @@ msgid ""
 "questions. We will store the IP address that submitted the data, to help "
 "detect abuse of the service, but will not publish it. The published data can"
 " be seen at http://feedback.wildfiregames.com/"
-msgstr "Wir werden die Daten auf unseren Servern speichern und eventuell Statistiken oder nicht-benutzeridentifizierbare Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen Fragen zu helfen. Wir werden die IP-Adressen speichern, von denen die Daten gesendet wurden, um Missbrauch dieses Dienstes zu erkennen und somit nicht zu veröffentlichen. Die veröffentlichten Daten können unter http://feedback.wildfiregames.com/ eingesehen werden."
+msgstr "Wir werden die  erfassten Daten auf unseren Servern speichern und eventuell Statistiken oder nicht-benutzeridentifizierbare Details veröffentlichen, um anderen Spielentwicklern mit ähnlichen Fragen zu helfen. Wir speichern die IP-Adressen, von denen die Daten gesendet wurden, um Missbrauch dieses Dienstes zu erkennen - sie werden aber nicht veröffentlicht. Die veröffentlichten Daten können unter http://feedback.wildfiregames.com/ eingesehen werden."

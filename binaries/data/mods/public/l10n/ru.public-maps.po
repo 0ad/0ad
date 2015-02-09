@@ -10,9 +10,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-26 04:51+0000\n"
-"Last-Translator: Christo Keller <christoniancoder@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:17+0100\n"
+"PO-Revision-Date: 2015-01-25 09:46+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -563,7 +563,7 @@ msgstr "Весна в Аркадии, в Греции. Весенние дожд
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:31
@@ -896,19 +896,19 @@ msgstr "Сражение, демо (огромная)"
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 юнитов. Очень медленно (требуется оптимизация)."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:56
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Глубокий скалистый каньон разрезает пустыню. Удобно для многопользовательской игры.\n\n2 команды по 2  игрока. 1 игрок каждой команды начинает с базой и ресурсами. Другой игрок начинает только с большой армией для помощи его союзнику."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:56
 msgid "Invasion Force"
 msgstr "Сила захвата"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[2].Name:31
 #: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
@@ -938,7 +938,7 @@ msgstr "Сила захвата"
 msgid "Player 3"
 msgstr "Игрок 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:56
 msgid "Death Canyon - Invasion Force"
 msgstr "Каньон смерти -  Сила вторжения"
 
@@ -1685,10 +1685,10 @@ msgstr "Бельгийские болота (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
-"Two teams face off across  a long, very large saltwater lake.\n"
+"Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
-msgstr "Две команды лицом к лицу через длинное большое солёное озеро.\n\nРыбачить можно в центре озера. Карта обеспечена залежами камня и металла. "
+msgstr ""
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Name:42
 msgid "Caspian Sea (2v2)"
@@ -1817,8 +1817,10 @@ msgstr "Греческий Акрополь (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
-"Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians."
-msgstr "Чуждые компаньоны. Римляне и карфагеняне против спартанцев и персов."
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr ""
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"

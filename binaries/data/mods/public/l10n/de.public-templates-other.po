@@ -4,13 +4,13 @@
 # 
 # Translators:
 # Raymond Vetter, 2014
-# Xaver, 2014
+# Xaver, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 09:07+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-05 20:11+0000\n"
+"Last-Translator: Xaver\n"
 "Language-Team: German (http://www.transifex.com/projects/p/0ad/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +24,7 @@ msgstr "Gaia"
 
 #: simulation/templates/template_gaia_flora.xml:8
 msgid "Generic Flora"
-msgstr "Flora"
+msgstr "Generische Flora"
 
 #: simulation/templates/template_gaia_flora_bush.xml:8
 #: simulation/templates/template_gaia_flora_bush_berry.xml:8
@@ -77,7 +77,7 @@ msgstr "Beim Abbauen wird das Baumaterial Stein gewonnen."
 
 #: simulation/templates/template_gaia_ruins.xml:8
 msgid "Generic Ruins"
-msgstr "Ruinen"
+msgstr "Generische Ruinen"
 
 #: simulation/templates/template_gaia_ruins.xml:9
 #: simulation/templates/gaia/special_ruins.xml:9
@@ -92,7 +92,7 @@ msgstr "Diese Ruinen können abgebaut werden um Rohstoffe zu sammeln."
 
 #: simulation/templates/template_gaia_treasure.xml:8
 msgid "Generic Treasure"
-msgstr "Schatz"
+msgstr "Generischer Schatz"
 
 #: simulation/templates/template_gaia_treasure.xml:9
 #: simulation/templates/gaia/special_treasure_food_barrel.xml:9
@@ -114,43 +114,43 @@ msgstr "Schatz"
 
 #: simulation/templates/template_gaia_treasure.xml:10
 msgid "A treasure that can be quickly gathered."
-msgstr "Eine Truhe, die schnell geleert werden kann."
+msgstr "Eine Truhe, die schnell geplündert werden kann."
 
-#: simulation/templates/template_structure.xml:48
+#: simulation/templates/template_structure.xml:49
 msgid "Structure"
-msgstr "Bauwerk"
+msgstr "Gebäude"
 
-#: simulation/templates/template_unit.xml:37
+#: simulation/templates/template_unit.xml:38
 msgid "Unit"
 msgstr "Einheit"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:27
 msgid "Army of Alexander the Great."
 msgstr "Armee Alexander des Großen."
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:28
 msgid "Army of Alexander the Great"
 msgstr "Armee Alexander des Großen"
 
-#: simulation/templates/campaigns/army_mace_hero_alexander.xml:30
-#: simulation/templates/campaigns/army_mace_standard.xml:22
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:30
+#: simulation/templates/campaigns/army_mace_hero_alexander.xml:29
+#: simulation/templates/campaigns/army_mace_standard.xml:21
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
 msgid "This is what an army would look like on the Strat Map."
 msgstr "So würde eine Armee auf der Strategiekarte aussehen."
 
-#: simulation/templates/campaigns/army_mace_standard.xml:20
+#: simulation/templates/campaigns/army_mace_standard.xml:19
 msgid "Army of Macedonia"
 msgstr "Makedonische Armee"
 
-#: simulation/templates/campaigns/army_mace_standard.xml:21
+#: simulation/templates/campaigns/army_mace_standard.xml:20
 msgid "Army of Macedon"
 msgstr "Makedonische Armee"
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:27
 msgid "Army of Leonidas I."
 msgstr "Armee von Leonidas I."
 
-#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:29
+#: simulation/templates/campaigns/army_spart_hero_leonidas.xml:28
 msgid "Army of Leonidas I"
 msgstr "Armee von Leonidas I."
 
@@ -165,7 +165,7 @@ msgstr "Kleine griechische Polis"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:28
 msgid "This is a minor Greek city. Has a territory effect of 150."
-msgstr "Dies ist eine kleinere Griechische Stadt. Sie hat einen Territorialen Effekt von 150."
+msgstr "Dies ist eine kleinere Griechische Stadt. Sie hat einen territorialen Effekt von 150."
 
 #: simulation/templates/campaigns/campaign_city_test.xml:27
 msgid "Greek Polis"
@@ -181,7 +181,7 @@ msgstr "Religiöses Heiligtum"
 
 #: simulation/templates/campaigns/campaign_religious_test.xml:13
 msgid "Greek Religious Sanctuary"
-msgstr "Griechisches, Religiöses Heiligtum"
+msgstr "Griechisches religiöses Heiligtum"
 
 #: simulation/templates/formations/battle_line.xml:5
 msgid "Battle Line"
@@ -219,6 +219,10 @@ msgstr "Geschlossene Linienformation"
 msgid "Line Open"
 msgstr "Offene Linienformation"
 
+#: simulation/templates/formations/null.xml:5
+msgid "None"
+msgstr "Kein"
+
 #: simulation/templates/formations/phalanx.xml:6
 msgid "10 melee infantry units required"
 msgstr "10 Nahkampfinfanteristen benötigt"
@@ -241,7 +245,7 @@ msgstr "Lockere Formation"
 
 #: simulation/templates/formations/syntagma.xml:6
 msgid "9 pike infantry units required"
-msgstr "9 Speer-Infanterie-Einheiten benötigt"
+msgstr "9 Pikeniere benötigt"
 
 #: simulation/templates/formations/syntagma.xml:7
 msgid "Syntagma"
@@ -301,7 +305,7 @@ msgstr "Afrikanischer Buschelefant"
 
 #: simulation/templates/gaia/fauna_elephant_african_infant.xml:15
 msgid "African Elephant (Infant)"
-msgstr "Afrikanischer Elefant (Kind)"
+msgstr "Afrikanischer Elefant (Kalb)"
 
 #: simulation/templates/gaia/fauna_elephant_asian.xml:46
 msgid "Asian Elephant"
@@ -319,7 +323,7 @@ msgstr "Thunfisch"
 #: simulation/templates/gaia/fauna_fish.xml:6
 #: simulation/templates/gaia/fauna_fish_tuna.xml:6
 msgid "Collect food from this bountiful oceanic resource."
-msgstr "Sammle Nahrung von dieser ertragreichen Ressource der See."
+msgstr "Sammle Nahrung von dieser ertragreichen ozeanischen Ressource."
 
 #: simulation/templates/gaia/fauna_fish_tilapia.xml:5
 msgid "Tilapia Fish"
@@ -335,11 +339,11 @@ msgstr "Gazelle"
 
 #: simulation/templates/gaia/fauna_giraffe.xml:12
 msgid "Giraffe (Adult)"
-msgstr "Giraffe (erwachsen)"
+msgstr "Giraffe (ausgewachsen)"
 
 #: simulation/templates/gaia/fauna_giraffe_infant.xml:9
 msgid "Giraffe (Juvenile)"
-msgstr "Giraffe (jung)"
+msgstr "Giraffe (Jungtier)"
 
 #: simulation/templates/gaia/fauna_goat.xml:11
 msgid "Goat"
@@ -646,7 +650,7 @@ msgstr "Bilde Kavallerie der Heiligen Schar und Mediziner aus."
 
 #: simulation/templates/other/celt_homestead.xml:22
 msgid "Homestead"
-msgstr "Siedlerhof"
+msgstr "Gehöft"
 
 #: simulation/templates/other/celt_homestead.xml:23
 msgid "Caer"
@@ -662,7 +666,7 @@ msgstr "Hütte"
 
 #: simulation/templates/other/celt_hut.xml:23
 msgid "Add +2 to Population Cap."
-msgstr "Erhöht das Bevölkerungslimit um 2."
+msgstr "Erhöht das Bevölkerungslimit um +2."
 
 #: simulation/templates/other/celt_longhouse.xml:22
 msgid "Longhouse"
@@ -711,15 +715,15 @@ msgstr "Steinzaun"
 msgid "Wheat Field"
 msgstr "Weizenfeld"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:30
+#: simulation/templates/other/hellenic_epic_temple.xml:29
 msgid "Epic Temple"
 msgstr "Epischer Tempel"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:31
+#: simulation/templates/other/hellenic_epic_temple.xml:30
 msgid "Naos Parthenos"
 msgstr "Naos Parthenos"
 
-#: simulation/templates/other/hellenic_epic_temple.xml:33
+#: simulation/templates/other/hellenic_epic_temple.xml:32
 msgid "Train healers. Garrison up to 30 units to heal them at a quick rate."
 msgstr "Trainiere Heiler. Quartiere bis zu 30 Einheiten ein, um sie schnell zu heilen."
 
@@ -824,7 +828,7 @@ msgstr "Holzwand"
 
 #: simulation/templates/other/palisades_rocks_long.xml:24
 msgid "Convert Wooden Wall into Wooden Gate"
-msgstr "Baue Hölzerne Mauer in Hölzerne Tore um."
+msgstr "Wandle eine hölzerne Mauer in ein hölzernes Tor um."
 
 #: simulation/templates/other/palisades_rocks_outpost.xml:15
 msgid "Outpost"
@@ -872,11 +876,11 @@ msgstr "Schenke"
 msgid "Warehouse"
 msgstr "Lagerhaus"
 
-#: simulation/templates/other/plane.xml:38
+#: simulation/templates/other/plane.xml:37
 msgid "P-51 Mustang"
 msgstr "P-51 Mustang"
 
-#: simulation/templates/other/plane.xml:40
+#: simulation/templates/other/plane.xml:39
 msgid "A World War 2 American fighter plane."
 msgstr "Ein amerikanisches Kampfflugzeug aus dem zweiten Weltkrieg."
 
@@ -902,7 +906,7 @@ msgstr "Schiffswrack"
 
 #: simulation/templates/other/special_treasure_shipwreck.xml:11
 msgid "A decaying military shipwreck. A good opportunity for any businessman."
-msgstr "Ein vermodertes Militär-Schiffswrack. Eine gute Möglichkeit für jeden Handelsmann."
+msgstr "Ein verrottendes militärisches Schiffswrack. Eine gute Gelegenheit für jeden Geschäftsmann."
 
 #: simulation/templates/other/special_treasure_shipwreck_debris.xml:10
 msgid "Shipwreck Cargo"
@@ -911,16 +915,16 @@ msgstr "Ladung eines Schiffswracks"
 #: simulation/templates/other/special_treasure_shipwreck_ram_bow.xml:11
 msgid ""
 "A shipwreck with much loss of life. A good opportunity for any businessman."
-msgstr "Ein schwer beschädigtes Schiffswrack. Eine gute Möglichkeit für jeden Handelsmann."
+msgstr "Ein schwer beschädigtes Schiffswrack. Eine gute Gelegenheit für jeden Geschäftsmann."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat.xml:11
 msgid ""
 "The wreck of a small cargo ship. A good opportunity for any businessman."
-msgstr "Ein Wrack eines kleinen Handelsschiffes. Eine gute Möglichkeit für jeden Handelsmann."
+msgstr "Das Wrack eines kleinen Handelsschiffes. Eine gute Gelegenheit für jeden Geschäftsmann."
 
 #: simulation/templates/other/special_treasure_shipwreck_sail_boat_cut.xml:11
 msgid "A cargo ship rammed in half. A good opportunity for any businessman."
-msgstr "Ein in der Mitte gerammtes Handelsschiff. Eine gute Möglichkeit für jeden Handelsmann."
+msgstr "Ein in der Mitte gerammtes Handelsschiff. Eine gute Gelegenheit für jeden Geschäftsmann."
 
 #: simulation/templates/other/stall_big.xml:12
 msgid "Big stall"
@@ -996,7 +1000,7 @@ msgstr "Oxybelḗs"
 #: simulation/templates/special_units/cart_mechanical_siege_ballista_common.xml:5
 #: simulation/templates/special_units/rome_mechanical_siege_ballista_common.xml:28
 msgid "Ballista"
-msgstr "Ballista"
+msgstr "Balliste"
 
 #: simulation/templates/special_units/ptol_mechanical_siege_polybolos_common.xml:5
 msgid "Polybolos"
@@ -1004,4 +1008,4 @@ msgstr "Polybolos"
 
 #: simulation/templates/special_units/rome_mechanical_siege_scorpio_common.xml:23
 msgid "Scorpio"
-msgstr "Scorpio"
+msgstr "Skorpion"

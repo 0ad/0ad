@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# GunChleoc, 2014-2015
 # GunChleoc, 2014
-# GunChleoc, 2014
-# GunChleoc, 2014
+# GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-13 10:08+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-02 14:42+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -641,25 +641,30 @@ msgstr "Marchnaty"
 msgid "Brythonic Outpost"
 msgstr "Gearastan Breatannach"
 
-#: simulation/templates/structures/brit_rotarymill.xml:20
-#: simulation/templates/structures/celt_sb1.xml:23
-#: simulation/templates/structures/gaul_rotarymill.xml:20
+#: simulation/templates/structures/brit_rotarymill.xml:21
+#: simulation/templates/structures/gaul_rotarymill.xml:21
+msgid "Farming bonus"
+msgstr "Buannachd àiteachais"
+
+#: simulation/templates/structures/brit_rotarymill.xml:22
+#: simulation/templates/structures/gaul_rotarymill.xml:22
+msgid "Boosts nearby farming with +25%."
+msgstr "Meudaichidh seo na bheir àiteachas am fagas dhut le +25%"
+
+#: simulation/templates/structures/brit_rotarymill.xml:32
+#: simulation/templates/structures/gaul_rotarymill.xml:32
 msgid "Rotary Mill"
 msgstr "Muilleann-cuairteachaidh"
 
-#: simulation/templates/structures/brit_rotarymill.xml:21
-#: simulation/templates/structures/celt_sb1.xml:24
-#: simulation/templates/structures/gaul_rotarymill.xml:21
+#: simulation/templates/structures/brit_rotarymill.xml:33
+#: simulation/templates/structures/gaul_rotarymill.xml:33
 msgid "Melonas"
 msgstr "Melonas"
 
-#: simulation/templates/structures/brit_rotarymill.xml:22
-#: simulation/templates/structures/celt_sb1.xml:25
-#: simulation/templates/structures/gaul_rotarymill.xml:22
-msgid ""
-"Increase nearby farming output +25%. (Currently, a special technology can be"
-" researched to serve this function)"
-msgstr "Meudaich toradh an àiteachais faisg air le +25%. (Gabhaidh teicneolas sònraichte rannsachadh air a shon an-dràsta)"
+#: simulation/templates/structures/brit_rotarymill.xml:34
+#: simulation/templates/structures/gaul_rotarymill.xml:34
+msgid "Increase nearby farming output +25%."
+msgstr "Meudaich na bheir àiteachas am fagas dhut le +25%"
 
 #: simulation/templates/structures/brit_storehouse.xml:8
 #: simulation/templates/structures/celt_storehouse.xml:8
@@ -829,7 +834,7 @@ msgstr "Maqdaš"
 msgid ""
 "Train priestesses to heal your troops. Train Sacred Band pikemen. Garrison "
 "up to 20 units to heal them at a quick rate."
-msgstr ""
+msgstr "Trèanaich bana-sagartan gus na saighdearan agad a shlànachadh. Trèanaich pìcearan còmhlain naoimh. Cuir gu ruige 20 aonad 'nan gearastan ann gus an slànachadh gu luath."
 
 #: simulation/templates/structures/cart_wall.xml:18
 #: simulation/templates/structures/cart_wallset_stone.xml:5
@@ -1001,7 +1006,7 @@ msgstr "Cancho Roano"
 msgid ""
 "Train Champions and Heroes. Garrison up to 20 soldiers inside for stout "
 "defense."
-msgstr ""
+msgstr "Trèanaich curaidhean 's laoich. Faodaidh gu ruige 20 saighdear a dhol 'nan gearastan ann airson dìona sheasmhaich."
 
 #: simulation/templates/structures/mace_library.xml:15
 #: simulation/templates/structures/ptol_library.xml:15
@@ -1382,27 +1387,27 @@ msgid ""
 "- Min. distance from other Military Settlements: 100 meters."
 msgstr "Structar coltach ri taighean-feachd ach saor a ghabhas togail air ranntair neo-phàirteach 's aig nach bi buaidh air an ranntair.\n- Trèanaich saighdearan-duaise\n- An t-astar as lugha o thuineachaidhean an airm eile: 100 meatair."
 
-#: simulation/templates/structures/ptol_military_colony.xml:7
-#: simulation/templates/structures/sele_military_colony.xml:7
+#: simulation/templates/structures/ptol_military_colony.xml:8
+#: simulation/templates/structures/sele_military_colony.xml:8
 msgid "Colony"
 msgstr "Tuineachadh"
 
-#: simulation/templates/structures/ptol_military_colony.xml:29
-#: simulation/templates/structures/sele_military_colony.xml:29
+#: simulation/templates/structures/ptol_military_colony.xml:30
+#: simulation/templates/structures/sele_military_colony.xml:30
 msgid "Military Colony"
 msgstr "Tuineachas an airm"
 
-#: simulation/templates/structures/ptol_military_colony.xml:30
-#: simulation/templates/structures/sele_military_colony.xml:30
+#: simulation/templates/structures/ptol_military_colony.xml:31
+#: simulation/templates/structures/sele_military_colony.xml:31
 msgid "Klēroukhia"
 msgstr "Klēroukhia"
 
-#: simulation/templates/structures/ptol_military_colony.xml:33
+#: simulation/templates/structures/ptol_military_colony.xml:34
 msgid ""
 "This is the Ptolemaic expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"
 "- Min. distance from other Military Colonies: 120 meters."
-msgstr ""
+msgstr "Seo togalach tuineachadh nam Ptolamach a tha coltach ris an ionad shìobhalta aig sìobhaltasan eile. Tha e nas laige agus tha a bhuaidh air an ranntair as lugha, ach tha e nas saoire is togaidh tu nas luaithe e.\n- Trèanaich saighdearan-tuineachaidh à diofar dhùthchannan.\n- An t-astar as lugha o thuineachaidhean an airm eile: 120 meatair."
 
 #: simulation/templates/structures/ptol_outpost.xml:5
 msgid "mktr-n-ḫt"
@@ -1625,7 +1630,7 @@ msgid ""
 "for stout defense."
 msgstr "Tog innealan-sèiste agus trèanaich laoich. Faodaidh gu ruige 20 saighdearan a dhol 'nan gearastan ann airson dìona sheasmhaich."
 
-#: simulation/templates/structures/sele_military_colony.xml:33
+#: simulation/templates/structures/sele_military_colony.xml:34
 msgid ""
 "This is the Seleucid expansion building, similar to Civic Centers for other factions. It is weaker and carries a smaller territory influence, but is cheaper and built faster.\n"
 "- Train settler-soldiers of various nationalities.\n"

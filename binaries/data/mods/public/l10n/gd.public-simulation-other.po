@@ -4,13 +4,13 @@
 # 
 # Translators:
 # GunChleoc, 2014
-# GunChleoc, 2014
+# GunChleoc, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-20 09:51+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-02 18:01+0000\n"
+"Last-Translator: GunChleoc\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -21,22 +21,35 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:9
 #, javascript-format
 msgid "I am launching an attack against %(name)s."
-msgstr ""
+msgstr "Tha mi a’ toirt ionnsaigh an aghaidh %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:11
 #, javascript-format
 msgid "I have just sent an army against %(name)s."
-msgstr ""
+msgstr "Tha mi air feachd a chur an aghaidh %(name)s."
 
 #: simulation/ai/petra/chatHelper.js:22
 #, javascript-format
 msgid "Here is a gift for %(name)s, make a good use of it."
-msgstr ""
+msgstr "Seo tìodhlac do %(name)s, faigh deagh chleachdadh às."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr ""
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "%(name)s, mhothaich mi gu bheil thu ann an droch staing ’s tha mi ’n dòchas gum bi seo feumail dhut."
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "Tha mi air slighe-mhalairt le %(name)s a stèidheachadh. Gheibh sinn uile prothaid às a’ mhalart."
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "Chaidh slighe-mhalairt ùr le %(name)s a stèidheachadh. Tog na tha leatsa dhen phrothaid."
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -547,17 +560,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "aig an nàmhaid"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "Chan fhaod thu %(category)s a thogail on a tha %(limit)s dhiubh agad mar-thà"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "Chan fhaod thu %(category)s a thrèanadh on a tha %(limit)s dhiubh agad mar-thà"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "Chan fhaod thu %(category)s a chur ris on a tha %(limit)s dhiubh agad mar-thà"
@@ -736,7 +749,7 @@ msgid ""
 "Started as a fork of Aegis bot, Petra is the most stable AI available. It "
 "supports naval maps and is generally more challenging. Please report issues "
 "to Wildfire Games (see the link in the main menu)."
-msgstr ""
+msgstr "'S e an IF as seasmhaiche a th' ann am Petra a chaidh leasachadh o Aegis. Cuiridh i taic ri seòladaireachd 's tha i nas dùbhlanaiche san fharsaingeachd. Feuch an innis thu do Wildfire Games mu dhuilgheadas sam bith (faic an ceangal sa phrìomh chlàr-taice)."
 
 #: simulation/ai/tutorial-ai/data.jsonname
 msgid "Tutorial AI"

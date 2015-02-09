@@ -9,9 +9,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-10-26 02:05+0100\n"
-"PO-Revision-Date: 2014-09-30 11:31+0000\n"
-"Last-Translator: GunChleoc\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-01-26 09:20+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -164,7 +164,6 @@ msgstr "Armachd meatailt airson bodhaig eich."
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_celts.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_iberian.jsonrequirementsTooltip
 #: simulation/data/technologies/carthaginians/upgrade_rank_elite_italiote.jsonrequirementsTooltip
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/spartans_agoge.jsonrequirementsTooltip
 #: simulation/data/technologies/hellenes/special_iphicratean_reforms.jsonrequirementsTooltip
@@ -2177,20 +2176,6 @@ msgstr "Bhiodh togalaichean nan Ceilteach dèanta de dh'fhiodh le buinn sprùill
 #: simulation/data/technologies/celts/civbonus_celts_wooden_struct.jsongenericName
 msgid "Wooden Construction"
 msgstr "Togalaichean fiodha"
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsondescription
-msgid ""
-"Crop rotation increases yield by preventing the depletion of vital nutrients"
-" and minerals from the soil."
-msgstr "Cuiridh cuairteachadh barra ri torrachas on a bhacas e crìonadh a' bheathachaidh is nan talmhantan on ùir."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsontooltip
-msgid "Increase the yield of your farms. +25% farming rate."
-msgstr "Cuir ri torrachas nan tuathanasan agad. Bidh an àiteach +25% nas luaithe."
-
-#: simulation/data/technologies/celts/special_gather_crop_rotation.jsongenericName
-msgid "Crop Rotation"
-msgstr "Cuairteachadh barra"
 
 #: simulation/data/technologies/hellenes/attack_inf_spearfighting.jsondescription
 msgid "Spear fighting training increases damage of infantry spear units."

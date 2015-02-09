@@ -856,17 +856,16 @@ m.AttackPlan.prototype.rushTargetFinder = function(gameState, playerEnemy)
 	{
 		if (building.owner() == 0)
 			continue;
-		// TODO check on Arrow count
-		if (building.hasClass("CivCentre") || building.hasClass("Tower") || building.hasClass("Fortress"))
+		if (building.getDefaultArrow() || building.getArrowMultiplier())
 			continue;
 		var pos = building.position();
 		var defended = false;
 		for (var defense of buildings)
 		{
-			if (!defense.hasClass("CivCentre") && !defense.hasClass("Tower") && !defense.hasClass("Fortress"))
+			if (!building.getDefaultArrow() && !building.getArrowMultiplier())
 				continue;
 			var dist = API3.SquareVectorDistance(pos, defense.position());
-			if (dist < 4900)   // TODO check on defense range rather than this fixed 70*70
+			if (dist < 6400)   // TODO check on defense range rather than this fixed 80*80
 			{
 				defended = true;
 				break;

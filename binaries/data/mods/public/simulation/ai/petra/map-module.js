@@ -158,7 +158,7 @@ m.createBorderMap = function(gameState)
 {
 	var map = new API3.Map(gameState.sharedScript, "territory");
 	var width = map.width;
-	var border = Math.round(60 / map.cellSize);
+	var border = Math.round(80 / map.cellSize);
 	var passabilityMap = gameState.sharedScript.passabilityMap;
 	var obstructionLandMask = gameState.getPassabilityClassMask("default");
 	var obstructionWaterMask = gameState.getPassabilityClassMask("ship");

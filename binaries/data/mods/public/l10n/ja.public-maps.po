@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Kanetaka Suto, 2014
+# Kanetaka Suto, 2014-2015
 # llen_llen, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:24+0100\n"
-"PO-Revision-Date: 2014-12-20 09:00+0000\n"
-"Last-Translator: llen_llen\n"
+"POT-Creation-Date: 2015-01-24 20:17+0100\n"
+"PO-Revision-Date: 2015-02-02 02:07+0000\n"
+"Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -561,7 +561,7 @@ msgstr "春のギリシアのアルカディアです。春の雨が、今を除
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:31
@@ -894,19 +894,19 @@ msgstr "戦闘デモ（特大）"
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296のユニットたち。とてつもなく遅いです（さらなる最適化が必要です）。"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:56
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "深く岩がちな峡谷が砂漠を切り裂いています。マルチプレイに適しています。\n\n2チームに2プレイヤーずつです。各チームの1プレイヤーは基地と資源持ちで開始します。他のプレイヤーは大きな軍隊のみで開始し、チームメイトを支援します。"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:56
 msgid "Invasion Force"
 msgstr "侵略軍"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:56
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[2].Name:31
 #: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
@@ -936,7 +936,7 @@ msgstr "侵略軍"
 msgid "Player 3"
 msgstr "プレイヤー 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:56
 msgid "Death Canyon - Invasion Force"
 msgstr "死の峡谷 - 侵略軍"
 
@@ -1683,7 +1683,7 @@ msgstr "ベルギーの沼地 (2)"
 
 #: maps/skirmishes/Caspian Sea (2v2).xml:Description:42
 msgid ""
-"Two teams face off across  a long, very large saltwater lake.\n"
+"Two teams face off across a long, very large saltwater lake.\n"
 "\n"
 "Fishing can be had in the central lake. The map is also well-endowed with Stone and Metal deposits."
 msgstr "2チームが長く、非常に大きな塩湖を挟んで対峙しています。\n\n中央の湖で漁業が可能です。マップはまた、石材と金属の鉱床にも十分恵まれています。"
@@ -1815,8 +1815,10 @@ msgstr "ギリシアのアクロポリス (2)"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Description:41
 msgid ""
-"Strange bedfellows. Romans and Carthaginians vs. Spartans and Persians."
-msgstr "呉越同舟。ローマ・カルタゴ連合対スパルタ・ペルシア連合。"
+"Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
+"\n"
+"Scout the lands to find free treasures and to secure new resources.."
+msgstr "3勢力の開始位置は安全な大きな岩がちの台地すなわちアクロポリスの上であり、4つ目は川の支流で敵と隔てられています。\n\n土地を偵察して財宝を獲得し、新たな資源を確保しましょう。"
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"

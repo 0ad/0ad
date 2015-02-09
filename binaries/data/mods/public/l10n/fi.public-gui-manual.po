@@ -4,13 +4,14 @@
 # 
 # Translators:
 # linux_eki <ekiuusi@gmail.com>, 2014
+# mrJalostaja <pauli.nykanen@yahoo.com>, 2015
 # Petri, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 17:50+0000\n"
-"Last-Translator: Petri\n"
+"PO-Revision-Date: 2015-02-07 20:55+0000\n"
+"Last-Translator: mrJalostaja <pauli.nykanen@yahoo.com>\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/0ad/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,7 +25,7 @@ msgstr "Tiedot"
 
 #: gui/manual/manual.xml:(caption):20
 msgid "View Online"
-msgstr "Näytä Verkossa"
+msgstr "Näytä verkossa"
 
 #: gui/manual/manual.xml:(caption):23
 msgid "Close"
@@ -43,11 +44,11 @@ msgid ""
 "Thank you for installing 0 A.D.! This page will give a brief overview of the"
 " features available in this incomplete, under-development, alpha version of "
 "the game."
-msgstr "Kiitos kun asensit 0 A.D:n! Tämä sivu antaa sinulle katsauksen vielä keskeneräisen ja kehitystyön alla olevan alpha version tilasta."
+msgstr "Kiitos kun asensit 0 A.D:n! Tämä sivu antaa sinulle katsauksen vielä keskeneräisen ja kehitystyön alla olevan alphaversion tilasta."
 
 #: gui/manual/intro.txt:5
 msgid "[font=\"sans-bold-16\"]Graphics settings"
-msgstr "[font=\"sans-bold-16\"]Grafiikka asetukset"
+msgstr "[font=\"sans-bold-16\"]Grafiikka-asetukset"
 
 #: gui/manual/intro.txt:6
 msgid ""
@@ -57,7 +58,7 @@ msgid ""
 "file: look for binaries/data/config/default.cfg in the location where the "
 "game is installed, which gives instructions for editing, and try disabling "
 "the \"fancywater\" and \"shadows\" options."
-msgstr "[font=\"sans-14\"]Voit vaihtaa kokonäyttö- ja ikkunanäyttötilan välillä välillä painamalla Alt + Enter. Voit muuttaa ikkunan kokoa ikkuna-näyttötilassa. Jos peli toimii liian hitaasti, voit vaihtaa muutamia asetuksia konfiguraatiotiedostossa: katso binaries/data/config/default.cfg paikassa johon peli on asennettu. Tiedostossa on ohjeet muuttamiseen. Kokeile poistaa käytöstä \"fancywater\" ja \"shadows\"-optiot."
+msgstr "[font=\"sans-14\"]Voit vaihtaa kokonäyttö- ja ikkunatilan välillä välillä painamalla Alt + Enter. Voit muuttaa ikkunan kokoa ikkunatilassa. Jos peli toimii liian hitaasti, voit vaihtaa muutamia asetuksia konfiguraatiotiedostossa: katso binaries/data/config/default.cfg paikassa johon peli on asennettu. Tiedostossa on ohjeet muuttamiseen. Kokeile poistaa käytöstä \"fancywater\" ja \"shadows\"-optiot."
 
 #: gui/manual/intro.txt:8
 msgid "[font=\"sans-bold-16\"]Playing the game"
@@ -73,19 +74,19 @@ msgstr "[font=\"sans-14\"]Ohjaaminen ja pelaaminen on tuttua perinteisten RTS-pe
 
 #: gui/manual/intro.txt:11
 msgid "Basic controls:"
-msgstr "Perus kontrollit:"
+msgstr "Peruskontrollit:"
 
 #: gui/manual/intro.txt:12
 msgid "• Left-click to select units."
-msgstr "Vasen hiirenpainike valitsee yksikön."
+msgstr "Valitse yksiköt hiiren vasemmalla painikkella."
 
 #: gui/manual/intro.txt:13
 msgid "• Left-click-and-drag to select groups of units."
-msgstr "Pidä vasen hiirenpainike pohjassa ja vedä valitaksesi useita yksiköitä."
+msgstr "Pidä hiiren vasen painike pohjassa ja vedä valitaksesi useita yksiköitä."
 
 #: gui/manual/intro.txt:14
 msgid "• Right-click to order units to the target."
-msgstr "Oikea hiirenpainike käskee yksikön kohteeseen."
+msgstr "Hiiren oikea painike käskee yksikön kohteeseen."
 
 #: gui/manual/intro.txt:15
 msgid "• Arrow keys or WASD keys to move the camera."
@@ -93,11 +94,11 @@ msgstr "• Nuolinäppäimet tai WASD näppäimet liikuttavat kameraa."
 
 #: gui/manual/intro.txt:16
 msgid "• Ctrl + arrow keys, or shift + mouse wheel, to rotate the camera."
-msgstr "• Ctrl + nuolinäppäimet tai shift + hiiren rulla, kääntävät kameraa"
+msgstr "• Ctrl + nuolinäppäimet tai shift + hiiren rulla kääntävät kameraa"
 
 #: gui/manual/intro.txt:17
 msgid "• Mouse wheel, or \"+\" and \"-\" keys, to zoom."
-msgstr "• Hiiren rulla, tai \"+\" ja \"-\" näppäimet lähentävät ja loitontavat."
+msgstr "• Hiiren rulla tai \"+\" ja \"-\" -näppäimet lähentävät ja loitontavat."
 
 #: gui/manual/intro.txt:19
 msgid "[font=\"sans-bold-16\"]Modes"
@@ -128,7 +129,7 @@ msgid ""
 "option. The game uses UDP port 20595, so the host must configure their "
 "NAT/firewall/etc to allow this. Other players can then select \"Join game\" "
 "and enter the host's IP address."
-msgstr "Pystyttääksesi moninpelin, yhden pelaajan tulee valita \"Aloita moninpeli\". Peli käyttää UDP porttia 20595, joten hostaajan tulee konfiguroida NATti tai palomuuri hyväksymään yhteydet. Muut pelaajat valitsevat \"Liity peliin\" ja syöttävät hostin IP-osoitteen."
+msgstr "Pystyttääksesi moninpelin, yhden pelaajan tulee valita \"Aloita moninpeli\". Peli käyttää UDP-porttia 20595, joten isännän tulee konfiguroida NAT tai palomuuri hyväksymään yhteydet. Muut pelaajat valitsevat \"Liity peliin\" ja syöttävät isännän IP-osoitteen."
 
 #: gui/manual/intro.txt:28
 msgid "[font=\"sans-bold-16\"]Game setup"
@@ -149,7 +150,7 @@ msgid ""
 "maps\" to see a list of all available maps. Then select a map to play on. "
 "The \"Demo Maps\" are designed for testing particular gameplay features and "
 "are probably not generally useful."
-msgstr "Valitse ensiksi karttatyppi jolla haluat pelata. Haluatko pelata satunnaista karttaa (luodaan skriptin avulla) tai valmista karttaa (karttasuunnittelijan tekemä). Valmiit kartat voidaan suodattaa näyttämään vain muutamia karttoja. Oletuskartat näkyvät heti, mutta erikoiskartat ovat piilossa joten valitse \"Kaikki kartat\" nähdäksesi koko karttalistauksen. Sen jälkeen valitse kartta jota pelata. \"Demo kartat\" ovat suunniteltu tiettyä pelimekaniikan testausta varten,  joten ne eivät ole kovinkaan käyttökelpoisia."
+msgstr "Valitse ensiksi, haluatko pelata satunnaista karttaa (luodaan skriptin avulla) vai valmista karttaa (karttasuunnittelijan tekemä). Valmiit kartat voidaan suodattaa näyttämään vain muutamia karttoja. Oletuskartat näkyvät heti, mutta erikoiskartat ovat piilossa, joten valitse \"Kaikki kartat\" nähdäksesi koko karttalistauksen. Sen jälkeen valitse kartta jota pelata. \"Demokartat\" ovat suunniteltu tiettyä pelimekaniikan testausta varten,  joten ne eivät ole kovinkaan käyttökelpoisia."
 
 #: gui/manual/intro.txt:33
 msgid ""
@@ -159,11 +160,11 @@ msgid ""
 "are either a human player, an AI or no player at all (existing units will "
 "attack enemies that come into sight, but no new units will be created, nor "
 "will the units be sent to attack anyone)."
-msgstr "Viimeiseksi muuta asetuksia. Satunnaiskartoissa voit muuttaa pelaajien määrää, kartan kokoa jne. Skenaarioissa voit valita vain kuka kontrolloi mitäkin kansaa (määrittää mistä kohden karttaa aloittaa) Vaihtoehdot ovat joko toinen ihminen, AI tai ei mitään. (olemassaolevat yksiköt hyökkäävät vihollisen kimppuun havaittaessa mutta uusia yksiköitä ei luoda eikä yksiköitä lähetetä hyökkäämään mihinkään)."
+msgstr "Viimeiseksi muuta asetuksia. Satunnaiskartoissa voit muuttaa pelaajien määrää, kartan kokoa jne. Skenaarioissa voit valita vain kuka kontrolloi mitäkin kansaa (määrittää mistä kohden karttaa aloittaa). Vaihtoehdot ovat joko toinen ihminen, AI tai ei mitään. (Olemassaolevat yksiköt hyökkäävät vihollisen kimppuun havaittaessa, mutta uusia yksiköitä ei luoda eikä yksiköitä lähetetä hyökkäämään mihinkään)."
 
 #: gui/manual/intro.txt:35
 msgid "When you are ready to start, click the \"Start game\" button."
-msgstr "Kun olet valmis aloittamaan, paina \"Aloita peli\" painiketta."
+msgstr "Kun olet valmis aloittamaan, paina \"Aloita peli\" -painiketta."
 
 #: gui/manual/intro.txt:37
 msgid "[font=\"sans-bold-16\"]Hotkeys:"
@@ -204,14 +205,14 @@ msgid ""
 "F2: Take screenshot (in .png format, location is displayed in the top left "
 "of the GUI after the file has been saved, and can also be seen in the "
 "console/logs if you miss it there)"
-msgstr "F2: Ota kuvakaappaus (.png formaatissa, sijainti näkyy vasemmalla ylhäällä GUI:ssa kun tiedosto on tallennettu, sijainti voidaan lukea myös konsolista/logeista)"
+msgstr "F2: Ota kuvakaappaus (.png-formaatissa, sijainti näkyy vasemmalla ylhäällä GUI:ssa kun tiedosto on tallennettu, sijainti voidaan lukea myös konsolista/logeista)"
 
 #: gui/manual/intro.txt:46
 msgid ""
 "Shift + F2: Take huge screenshot (6400px*4800px, in .bmp format, location is"
 " displayed in the top left of the GUI after the file has been saved, and can"
 " also be seen in the console/logs if you miss it there)"
-msgstr "Shift + F2: Ota valtava kuvakaappaus (6400px*4800px, .bmp formaatissa, sijainti näkyy vasemmalla ylhäällä GUI:ssa kun tiedosto on tallennettu, sijainti voidaan lukea myös konsolista/logeista)"
+msgstr "Shift + F2: Ota valtava kuvakaappaus (6400px*4800px, .bmp-formaatissa, sijainti näkyy vasemmalla ylhäällä GUI:ssa kun tiedosto on tallennettu, sijainti voidaan lukea myös konsolista/logeista)"
 
 #: gui/manual/intro.txt:48
 msgid "[font=\"sans-bold-14\"]In Game"
@@ -283,7 +284,7 @@ msgstr ",: Valitse jouten olevat taistelijat"
 
 #: gui/manual/intro.txt:63
 msgid ".: Select idle workers (including citizen soldiers)"
-msgstr ".: Valitse joutilas työntekijä (myös kansalais sotilaat.)"
+msgstr ".: Valitse joutilas työntekijä (myös kansalaissotilaat.)"
 
 #: gui/manual/intro.txt:64
 msgid "H: Stop (halt) the currently selected units."
@@ -309,19 +310,19 @@ msgstr "Shift + 1 (aina 0 asti): Lisää hallittavaan ryhmään 1 (aina 0 asti) 
 msgid ""
 "Ctrl + F5 (and so on up to F8): Mark the current camera position, for "
 "jumping back to later."
-msgstr "Ctrl + F5 (aina F8 asti): Merkkaa nykyisen kameran paikan jotta siihen voi palata myöhemmin."
+msgstr "Ctrl + F5 (aina F8 asti): Merkkaa nykyisen kameran paikan, jotta siihen voi palata myöhemmin."
 
 #: gui/manual/intro.txt:69
 msgid ""
 "F5, F6, F7, and F8: Move the camera to a marked position. Jump back to the "
 "last location if the camera is already over the marked position."
-msgstr "F5, F6, F7, ja F8: Siirtää kameran merkattuun paikkaan. Hyppää takaisin edeltävään paikkaa jos kamera on jo valmiiksi merkatun paikan yläpuolella."
+msgstr "F5, F6, F7, ja F8: Siirtää kameran merkattuun paikkaan. Hyppää takaisin edeltävään paikkaan, jos kamera on jo valmiiksi merkatun paikan yläpuolella."
 
 #: gui/manual/intro.txt:70
 msgid ""
 "Z, X, C, V, B, N, M: With training buildings selected. Add the 1st, 2nd, ..."
 " unit shown to the training queue for all the selected buildings."
-msgstr "Z, X, C, V, B, N, M: Kun koulutusrakennus valittu. Lisää 1. 2. 3. ... yksikön, koulutusjonoon jokaiseen valittuun rakennukseen."
+msgstr "Z, X, C, V, B, N, M: Kun koulutusrakennus valittu. Lisää 1. 2. 3. ... yksikön koulutusjonosta jokaiseen valittuun rakennukseen."
 
 #: gui/manual/intro.txt:72
 msgid "[font=\"sans-bold-14\"]Modify mouse action"
@@ -329,25 +330,25 @@ msgstr "[font=\"sans-bold-14\"]Muokkaa hiiren toimintoja"
 
 #: gui/manual/intro.txt:73
 msgid "[font=\"sans-14\"]Ctrl + Right Click on building: Garrison"
-msgstr "[font=\"sans-14\"]Ctrl + Oikea Hiiren Klikkaus rakennukseen: Varuskunta"
+msgstr "[font=\"sans-14\"]Ctrl + hiiren oikea painike rakennukseen: Varuskunta"
 
 #: gui/manual/intro.txt:74
 msgid "Shift + Right Click: Queue the move/build/gather/etc order"
-msgstr "Shift + Oikea klikaus: Jonota liiku/rakenna/kerää/jne käskyjä"
+msgstr "Shift + Oikea klikaus: Jonota liiku/rakenna/kerää/jne. -käskyjä"
 
 #: gui/manual/intro.txt:75
 msgid "Shift + Left click when training unit/s: Add units in batches of five"
-msgstr "Shift + Vasen klikkaus kun koulutat yksiköitä: Lisää yksikön jonoon viiden erässä"
+msgstr "Shift + Vasen klikkaus kun koulutat yksiköitä: Lisää yksiköitä viiden erissä"
 
 #: gui/manual/intro.txt:76
 msgid ""
 "Shift + Left Click or Left Drag over unit on map: Add unit to selection"
-msgstr "Shift + Vasen hiirenklikkaus tai veto yksikön yli kartalla: Lisää yksikön valintaan"
+msgstr "Shift + Vasen klikkaus tai veto yksikön yli kartalla: Lisää yksikön valintaan"
 
 #: gui/manual/intro.txt:77
 msgid ""
 "Ctrl + Left Click or Left Drag over unit on map: Remove unit from selection"
-msgstr "Ctrl + Vasen hiirenklikkaus tai veto yksikön yli kartalla: Poista yksikkö valinnasta"
+msgstr "Ctrl + Vasen klikkaus tai veto yksikön yli kartalla: Poista yksikkö valinnasta"
 
 #: gui/manual/intro.txt:78
 msgid "Alt + Left Drag over units on map: Only select military units"
@@ -356,7 +357,7 @@ msgstr "Alt + Veto hiiren vasemmalla yksiköiden yli kartalla: Valitse vain soti
 #: gui/manual/intro.txt:79
 msgid ""
 "Ctrl + Left Click on unit/group icon with multiple units selected: Deselect"
-msgstr "Ctrl + Vasen hiirenklikkaus yksikön/ryhmän ikonista kun monta yksikköä valittu: Poista valinnasta"
+msgstr "Ctrl + Vasen klikkaus yksikön/ryhmän ikonista kun monta yksikköä valittu: Poista valinnasta"
 
 #: gui/manual/intro.txt:80
 msgid ""
@@ -366,7 +367,7 @@ msgstr "Oikea hiirenklikkaus kun rakennus valittuna: asettaa kokoontumispisteen 
 
 #: gui/manual/intro.txt:81
 msgid "Ctrl + Right Click with units selected:"
-msgstr "Ctrl + oikea hiirenklikkaus yksikkö valittuna:"
+msgstr "Ctrl + oikea klikkaus yksikkö valittuna:"
 
 #: gui/manual/intro.txt:82
 msgid "    - If the cursor is over an allied structure: Garrison"
@@ -377,7 +378,7 @@ msgid ""
 "    - Otherwise: Attack move (by default all enemy units and structures "
 "along the way are targeted, use Ctrl + Q + Right Click to target only "
 "units). "
-msgstr "- Muuten: Hyökkäysliike (oletuksena hyökätään kaikkiin vihollisyksiköihin ja -rakennuksiin kulkusuunnassa, käytä Ctrl + Q + Oikea Hiiren Klikkaus hyökätäksesi vain vihollisyksiköihin)."
+msgstr "- Muuten: Hyökkäysliike (oletuksena hyökätään kaikkiin vihollisyksiköihin ja -rakennuksiin kulkusuunnassa, käytä Ctrl + Q + oikea klikkaus hyökätäksesi vain vihollisyksiköihin)."
 
 #: gui/manual/intro.txt:85
 msgid "[font=\"sans-bold-14\"]Overlays"
@@ -396,7 +397,7 @@ msgid ""
 "Alt + W: Toggle wireframe mode (press once to get wireframes overlaid over "
 "the textured models, twice to get just the wireframes colored by the "
 "textures, thrice to get back to normal textured mode)"
-msgstr "Alt + W: Vaihtaa rautalankamalli-tilan (paina kerran jolloin raukalankamalli peittää tekstuuri mallit, paina kahdesti jolloin saat vain rautalankamallit jotka ovat väritetty tekstuureilla, paina kolmasti palataksesi normaaliin tekstuuritilaan)"
+msgstr "Alt + W: Vaihtaa rautalankamalli-tilan (paina kerran jolloin raukalankamalli peittää tekstuurimallit, paina kahdesti jolloin saat vain rautalankamallit jotka ovat väritetty tekstuureilla, paina kolmasti palataksesi normaaliin tekstuuritilaan)"
 
 #: gui/manual/intro.txt:89
 msgid ""
@@ -468,7 +469,7 @@ msgstr "F: Seuraa valittua yksikköä (siirrä kameraa pysäyttääksesi kameran
 
 #: gui/manual/intro.txt:106
 msgid "R: Reset camera zoom/orientation"
-msgstr "R: Resetoi kameran tarkennus/suunta"
+msgstr "R: Palauta kameran tarkennus/suunta"
 
 #: gui/manual/intro.txt:107
 msgid "+: Zoom in (keep pressed for continuous zoom)"
@@ -517,26 +518,26 @@ msgstr "Ilmaisena, avoimen lähdekoodin pelinä meillä ei ole resursseja testat
 
 #: gui/manual/userreport.txt:3
 msgid "The following data will be sent to our server:"
-msgstr "Seuraava data lähetetään meidän palvelimelle:"
+msgstr "Seuraava data lähetetään palvelimellemme:"
 
 #: gui/manual/userreport.txt:5
 msgid ""
 "• A random user ID (stored in %APPDATA%\\0ad\\config\\user.cfg on Windows, "
 "~/.config/0ad/config/user.cfg on Unix), to let us detect repeated reports "
 "from the same user."
-msgstr "• Satunnainen käyttäjä ID (tallennettu kohteeseen %APPDATA%\\0ad\\config\\user.cfg Windows-käyttöjärjestelmässä, ~/.config/0ad/config/user.cfg Unix-käyttöjärjestelmässä), antaa meidän havaita toistuvat ilmoitukset samalta käyttäjältä."
+msgstr "• Satunnainen käyttäjä-ID (tallennettu kohteeseen %APPDATA%\\0ad\\config\\user.cfg Windows-käyttöjärjestelmässä, ~/.config/0ad/config/user.cfg Unix-käyttöjärjestelmässä), antaa meidän havaita toistuvat ilmoitukset samalta käyttäjältä."
 
 #: gui/manual/userreport.txt:6
 msgid ""
 "• Game version number and basic build settings (optimisation mode, CPU "
 "architecture, timestamp, compiler version)."
-msgstr "• Pelin versionumero ja perus käännösasetukset (optimointi toimintatapa, CPU arkkitehtuuri, aikaleima, kääntäjän versio)"
+msgstr "• Pelin versionumero ja yleiset käännösasetukset (optimointitapa, suorittimen arkkitehtuuri, aikaleima, kääntäjän versio)"
 
 #: gui/manual/userreport.txt:7
 msgid ""
 "• Hardware details: OS version, graphics driver version, OpenGL "
 "capabilities, screen size, CPU details, RAM size."
-msgstr "• Laitteiston tiedot: Käyttöjärjestelmän versio, grafiikka ajurin versio, OpenGL kyvyt, näytön koko, Prosessorin tiedot, Keskusmuistin koko."
+msgstr "• Laitteiston tiedot: Käyttöjärjestelmän versio, grafiikka-ajurin versio, OpenGL-kyvyt, näytön koko, suorittimen tiedot, keskusmuistin koko."
 
 #: gui/manual/userreport.txt:8
 msgid ""

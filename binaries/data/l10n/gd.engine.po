@@ -4,11 +4,12 @@
 # 
 # Translators:
 # GunChleoc, 2013-2014
+# GunChleoc, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:22+0100\n"
-"PO-Revision-Date: 2014-12-13 08:57+0000\n"
+"POT-Creation-Date: 2015-01-24 20:15+0100\n"
+"PO-Revision-Date: 2015-02-06 09:11+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Gaelic, Scottish (http://www.transifex.com/projects/p/0ad/language/gd/)\n"
 "MIME-Version: 1.0\n"
@@ -19,19 +20,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:799
+#: gui/scripting/ScriptFunctions.cpp:767
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (togail ghnàthaichte)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:804
+#: gui/scripting/ScriptFunctions.cpp:772
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:825
+#: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
 msgstr "togail ghnàthaichte"
 
@@ -41,150 +42,150 @@ msgstr "Sreangan fada"
 
 #: lobby/XmppClient.cpp:221
 msgid "Authentication failed"
-msgstr ""
+msgstr "Dh'fhàillig an dearbhadh"
+
+#: lobby/XmppClient.cpp:455
+msgid "Registration not acceptable"
+msgstr "Cha ghabhar ris an clàradh seo"
+
+#: lobby/XmppClient.cpp:456
+msgid "Registration conflict"
+msgstr "Còmhstri leis a' chlàradh"
 
 #: lobby/XmppClient.cpp:457
-msgid "Registration not acceptable"
-msgstr ""
+msgid "Registration not authorized"
+msgstr "Clàradh gun dearbhadh"
 
 #: lobby/XmppClient.cpp:458
-msgid "Registration conflict"
-msgstr ""
+msgid "Registration bad request"
+msgstr "Droch iarrtas air clàradh"
 
 #: lobby/XmppClient.cpp:459
-msgid "Registration not authorized"
-msgstr ""
+msgid "Registration forbidden"
+msgstr "Clàradh toirmisgte"
 
-#: lobby/XmppClient.cpp:460
-msgid "Registration bad request"
-msgstr ""
+#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
+msgid "Registration required"
+msgstr "Tha clàradh riatanach"
 
 #: lobby/XmppClient.cpp:461
-msgid "Registration forbidden"
-msgstr ""
+msgid "Registration unexpected request"
+msgstr "Iarrtas clàraidh air nach robh dùil"
 
-#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
-msgid "Registration required"
-msgstr ""
+#: lobby/XmppClient.cpp:462
+msgid "Registration not allowed"
+msgstr "Chan eil clàradh ceadaichte"
 
 #: lobby/XmppClient.cpp:463
-msgid "Registration unexpected request"
-msgstr ""
-
-#: lobby/XmppClient.cpp:464
-msgid "Registration not allowed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:465
 msgid "Registration unknown error"
-msgstr ""
+msgstr "Mearachd nach aithne dhuinn leis a' chlàradh"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "fo-sheòrsa nach aithne duinn (thoir sùil air na logaichean)"
+
+#: lobby/XmppClient.cpp:982
+msgid "Bad request"
+msgstr "Droch iarrtas"
+
+#: lobby/XmppClient.cpp:983
+msgid "Player name already in use"
+msgstr "Tha an t-ainm cluicheadair 'ga chleachdadh mar-thà"
+
+#: lobby/XmppClient.cpp:984
+msgid "Feature not implemented"
+msgstr "Cha deach am feart seo a phrògramachadh fhathast"
+
+#: lobby/XmppClient.cpp:985
+msgid "Forbidden"
+msgstr "Toirmisgte"
+
+#: lobby/XmppClient.cpp:986
+msgid "Recipient or server gone"
+msgstr "Dh'fhalbh am faightear no am frithealaiche"
+
+#: lobby/XmppClient.cpp:987
+msgid "Internal server error"
+msgstr "Mearachd taobh a-staigh an fhrithealaiche"
+
+#: lobby/XmppClient.cpp:988
+msgid "Item not found"
+msgstr "Cha deach an nì a lorg"
+
+#: lobby/XmppClient.cpp:989
+msgid "Jid malformed"
+msgstr "Droch chumadh air Jid"
+
+#: lobby/XmppClient.cpp:990
+msgid "Not acceptable"
+msgstr "Cha ghabhar ris"
+
+#: lobby/XmppClient.cpp:991
+msgid "Not allowed"
+msgstr "Chan eil seo ceadaichte"
+
+#: lobby/XmppClient.cpp:992
+msgid "Not authorized"
+msgstr "Tha cead a dhìth"
+
+#: lobby/XmppClient.cpp:993
+msgid "Not modified"
+msgstr "Gun atharrachadh"
+
+#: lobby/XmppClient.cpp:994
+msgid "Payment required"
+msgstr "Tha pàigheadh riatanach"
+
+#: lobby/XmppClient.cpp:995
+msgid "Recipient unavailable"
+msgstr "Chan eil am faightear ri làimh"
 
 #: lobby/XmppClient.cpp:996
-msgid "Bad request"
-msgstr ""
-
-#: lobby/XmppClient.cpp:997
-msgid "Player name already in use"
-msgstr ""
+msgid "Redirect"
+msgstr "Ath-sheòladh"
 
 #: lobby/XmppClient.cpp:998
-msgid "Feature not implemented"
-msgstr ""
+msgid "Remote server not found"
+msgstr "Cha deach am frithealaiche cèin a lorg"
 
 #: lobby/XmppClient.cpp:999
-msgid "Forbidden"
-msgstr ""
+msgid "Remote server timeout"
+msgstr "Dh'fhalbh an ùine air an fhrithealaiche chèin"
 
 #: lobby/XmppClient.cpp:1000
-msgid "Recipient or server gone"
-msgstr ""
+msgid "Resource constraint"
+msgstr "Cuingeachadh ghoireasan"
 
 #: lobby/XmppClient.cpp:1001
-msgid "Internal server error"
-msgstr ""
+msgid "Service unavailable"
+msgstr "Chan eil an t-seirbheis seo ri làimh"
 
 #: lobby/XmppClient.cpp:1002
-msgid "Item not found"
-msgstr ""
+msgid "Subscription Required"
+msgstr "Tha fo-sgrìobhadh riatanach"
 
 #: lobby/XmppClient.cpp:1003
-msgid "Jid malformed"
-msgstr ""
+msgid "Undefined condition"
+msgstr "Cumha nach deach a mhìneachadh"
 
 #: lobby/XmppClient.cpp:1004
-msgid "Not acceptable"
-msgstr ""
+msgid "Unexpected request"
+msgstr "Iarrtas air nach robh dùil"
 
 #: lobby/XmppClient.cpp:1005
-msgid "Not allowed"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1006
-msgid "Not authorized"
-msgstr ""
+msgid "Unknown sender"
+msgstr "Seòladair neo-aithnichte"
 
 #: lobby/XmppClient.cpp:1007
-msgid "Not modified"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1008
-msgid "Payment required"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1009
-msgid "Recipient unavailable"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1010
-msgid "Redirect"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1012
-msgid "Remote server not found"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1013
-msgid "Remote server timeout"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1014
-msgid "Resource constraint"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1015
-msgid "Service unavailable"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1016
-msgid "Subscription Required"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1017
-msgid "Undefined condition"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1018
-msgid "Unexpected request"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1019
-msgid "Unknown sender"
-msgstr ""
-
-#: lobby/XmppClient.cpp:1021
 msgid "Error undefined"
-msgstr ""
+msgstr "Mearachd gun mhìneachadh"
 
-#: ps/SavedGame.cpp:129
+#: ps/SavedGame.cpp:131
 #, c-format
-msgid "Saved game to '%ls'"
-msgstr "Chaidh an geama a shàbhaladh gu \"%ls\""
+msgid "Saved game to '%s'"
+msgstr "Chaidh an geama a shàbhaladh gu \"%s\""
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
-msgid "Screenshot written to '%ls'"
-msgstr "Chaidh glacadh-sgrìn a sgrìobhadh gu \"%ls\""
+msgid "Screenshot written to '%s'"
+msgstr "Chaidh an glacadh-sgrìn a shàbhaladh gu \"%s\""

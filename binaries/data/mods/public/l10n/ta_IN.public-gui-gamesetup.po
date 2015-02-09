@@ -3,13 +3,14 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# git12a <git12@openmailbox.org>, 2015
 # msidhard <msidhard@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-07 12:03+0000\n"
+"Last-Translator: git12a <git12@openmailbox.org>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/projects/p/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -24,334 +25,334 @@ msgstr "ஏதுமில்லை"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "இந்த ஆட்டக்காரருக்கு AI முடக்கப்படும்."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Sandbox"
-msgstr ""
+msgstr "மூடினபெட்டி "
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Easy"
-msgstr ""
+msgstr "மிக எளிது"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Easy"
-msgstr ""
+msgstr "எளிது"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Medium"
-msgstr ""
+msgstr "நடுத்தரம்"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Hard"
-msgstr ""
+msgstr "கடினம்"
 
 #: gui/aiconfig/aiconfig.js:29
 msgctxt "aiDiff"
 msgid "Very Hard"
-msgstr ""
+msgstr "மிக கடினம் "
 
 #. Translation: Type of victory condition.
 #: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
-msgstr ""
+msgstr "அளவில்லை "
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very Low"
-msgstr ""
+msgstr "மிக குறைவு"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Low"
-msgstr ""
+msgstr "குறைவு"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Medium"
-msgstr ""
+msgstr "நடுத்தரம்"
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "High"
-msgstr ""
+msgstr "அதிகம் "
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Very High"
-msgstr ""
+msgstr "மிக அதிகம் "
 
 #: gui/gamesetup/gamesetup.js:14
 msgctxt "startingResources"
 msgid "Deathmatch"
-msgstr ""
+msgstr "மரண ஆட்டம்"
 
 #: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
-msgstr ""
+msgstr "முக்கிய மெனுவிற்கு  திரும்பு."
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "ஒதுங்கும் அறைக்கு திரும்பு."
 
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "சிறு போர்"
 
-#: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:652
-#: gui/gamesetup/gamesetup.js:1260
+#: gui/gamesetup/gamesetup.js:139 gui/gamesetup/gamesetup.js:656
+#: gui/gamesetup/gamesetup.js:1332
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "சீரற்ற"
 
 #: gui/gamesetup/gamesetup.js:139
 msgid "Scenario"
 msgstr "சூழ்நிலை"
 
-#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1166
-#: gui/gamesetup/gamesetup.js:1243
+#: gui/gamesetup/gamesetup.js:143 gui/gamesetup/gamesetup.js:1238
+#: gui/gamesetup/gamesetup.js:1315
 msgid "Default"
-msgstr ""
+msgstr "இயல்புநிலை"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
-msgstr ""
+msgstr "கடற்படை வரைபடங்கள்"
 
 #: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
-msgstr ""
+msgstr "செயல்விளக்க வரைபடங்கள்"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
-msgstr ""
+msgstr "எல்லா வரைபடங்கள்"
 
 #: gui/gamesetup/gamesetup.js:367
 msgctxt "team"
 msgid "None"
 msgstr "ஏதுமில்லை"
 
-#: gui/gamesetup/gamesetup.js:586 gui/gamesetup/gamesetup.js:1325
+#: gui/gamesetup/gamesetup.js:590 gui/gamesetup/gamesetup.js:1397
 msgctxt "civilization"
 msgid "Random"
-msgstr ""
+msgstr "சீரற்ற"
 
-#: gui/gamesetup/gamesetup.js:776 gui/gamesetup/gamesetup.js:900
+#: gui/gamesetup/gamesetup.js:843 gui/gamesetup/gamesetup.js:970
 msgid "You"
-msgstr ""
+msgstr "நீங்கள்"
 
-#: gui/gamesetup/gamesetup.js:981
+#: gui/gamesetup/gamesetup.js:1053
 #, javascript-format
 msgid "%(playerName)s %(romanNumber)s"
-msgstr ""
+msgstr "%(playerName)s %(romanNumber)s"
 
-#: gui/gamesetup/gamesetup.js:1129 gui/gamesetup/gamesetup.xml:(caption):112
+#: gui/gamesetup/gamesetup.js:1201 gui/gamesetup/gamesetup.xml:(caption):112
 msgid "Map Size:"
-msgstr ""
+msgstr "வரைபடம் அளவு:"
 
-#: gui/gamesetup/gamesetup.js:1131 gui/gamesetup/gamesetup.js:1190
+#: gui/gamesetup/gamesetup.js:1203 gui/gamesetup/gamesetup.js:1262
 #: gui/gamesetup/gamesetup.xml:(caption):313
 msgid "Revealed Map:"
-msgstr ""
+msgstr "தெரியவந்த வரைபடம்"
 
-#: gui/gamesetup/gamesetup.js:1132 gui/gamesetup/gamesetup.js:1191
+#: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1263
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr ""
+msgstr "ஆராயப்பட்ட வரைபடம்:"
 
-#: gui/gamesetup/gamesetup.js:1136 gui/gamesetup/gamesetup.js:1195
-#: gui/gamesetup/gamesetup.js:1275 gui/gamesetup/gamesetup.xml:(caption):283
+#: gui/gamesetup/gamesetup.js:1208 gui/gamesetup/gamesetup.js:1267
+#: gui/gamesetup/gamesetup.js:1347 gui/gamesetup/gamesetup.xml:(caption):283
 msgid "Victory Condition:"
-msgstr ""
+msgstr "வெற்றி நிபந்தனை"
 
-#: gui/gamesetup/gamesetup.js:1138 gui/gamesetup/gamesetup.js:1197
+#: gui/gamesetup/gamesetup.js:1210 gui/gamesetup/gamesetup.js:1269
 #: gui/gamesetup/gamesetup.xml:(caption):333
 msgid "Teams Locked:"
-msgstr ""
+msgstr "பிரிவில்லா அணிகள்:"
 
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
-#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
-#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
-#: gui/gamesetup/gamesetup.js:1247
+#: gui/gamesetup/gamesetup.js:1229 gui/gamesetup/gamesetup.js:1230
+#: gui/gamesetup/gamesetup.js:1232 gui/gamesetup/gamesetup.js:1285
+#: gui/gamesetup/gamesetup.js:1286 gui/gamesetup/gamesetup.js:1288
+#: gui/gamesetup/gamesetup.js:1316 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1319
 msgid "Yes"
 msgstr "ஆம்"
 
-#: gui/gamesetup/gamesetup.js:1157 gui/gamesetup/gamesetup.js:1158
-#: gui/gamesetup/gamesetup.js:1160 gui/gamesetup/gamesetup.js:1213
-#: gui/gamesetup/gamesetup.js:1214 gui/gamesetup/gamesetup.js:1216
-#: gui/gamesetup/gamesetup.js:1244 gui/gamesetup/gamesetup.js:1245
-#: gui/gamesetup/gamesetup.js:1247
+#: gui/gamesetup/gamesetup.js:1229 gui/gamesetup/gamesetup.js:1230
+#: gui/gamesetup/gamesetup.js:1232 gui/gamesetup/gamesetup.js:1285
+#: gui/gamesetup/gamesetup.js:1286 gui/gamesetup/gamesetup.js:1288
+#: gui/gamesetup/gamesetup.js:1316 gui/gamesetup/gamesetup.js:1317
+#: gui/gamesetup/gamesetup.js:1319
 msgid "No"
 msgstr "இல்லை"
 
-#: gui/gamesetup/gamesetup.js:1261
+#: gui/gamesetup/gamesetup.js:1333
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "பட்டியலில் இருந்து ஒரு வரைபடத்தை சீரற்ற முறையில் தேர்வு"
 
-#: gui/gamesetup/gamesetup.js:1268
+#: gui/gamesetup/gamesetup.js:1340
 msgid "Sorry, no description available."
-msgstr ""
+msgstr "மன்னிக்கவும், எந்த விளக்கமும் இல்லை."
 
-#: gui/gamesetup/gamesetup.js:1271
+#: gui/gamesetup/gamesetup.js:1343
 #, javascript-format
 msgid "%(number)s player. "
 msgid_plural "%(number)s players. "
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%(number)s ஆட்டக்காரர்"
+msgstr[1] "%(number)s ஆட்டக்காரர்கள்"
 
-#: gui/gamesetup/gamesetup.js:1311
+#: gui/gamesetup/gamesetup.js:1383
 msgid "Loading..."
-msgstr ""
+msgstr "ஏற்றப்படுகிறது..."
 
-#: gui/gamesetup/gamesetup.js:1424
+#: gui/gamesetup/gamesetup.js:1496
 #, javascript-format
 msgid "AI: %(ai)s"
-msgstr ""
+msgstr "AI: %(ai)s"
 
-#: gui/gamesetup/gamesetup.js:1429
+#: gui/gamesetup/gamesetup.js:1501
 msgid "Unassigned"
-msgstr ""
+msgstr "ஒதுக்கப்படாத"
 
-#: gui/gamesetup/gamesetup.js:1617 gui/gamesetup/gamesetup.js:1622
-#: gui/gamesetup/gamesetup.js:1640
+#: gui/gamesetup/gamesetup.js:1689 gui/gamesetup/gamesetup.js:1694
+#: gui/gamesetup/gamesetup.js:1712
 #, javascript-format
 msgid "== %(message)s"
-msgstr ""
+msgstr "== %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1617
+#: gui/gamesetup/gamesetup.js:1689
 #, javascript-format
 msgid "%(username)s has joined"
-msgstr ""
+msgstr "%(username)s சேர்ந்தார் "
 
-#: gui/gamesetup/gamesetup.js:1622
+#: gui/gamesetup/gamesetup.js:1694
 #, javascript-format
 msgid "%(username)s has left"
-msgstr ""
+msgstr "%(username)s விலகினார் "
 
-#: gui/gamesetup/gamesetup.js:1627
+#: gui/gamesetup/gamesetup.js:1699
 #, javascript-format
 msgid "<%(username)s>"
-msgstr ""
+msgstr "<%(username)s>"
 
-#: gui/gamesetup/gamesetup.js:1628
+#: gui/gamesetup/gamesetup.js:1700
 #, javascript-format
 msgid "%(username)s %(message)s"
-msgstr ""
+msgstr "%(username)s %(message)s"
 
-#: gui/gamesetup/gamesetup.js:1634
+#: gui/gamesetup/gamesetup.js:1706
 #, javascript-format
 msgid "* %(username)s is ready!"
-msgstr ""
+msgstr "* %(username)s தயார்!"
 
-#: gui/gamesetup/gamesetup.js:1636
+#: gui/gamesetup/gamesetup.js:1708
 #, javascript-format
 msgid "* %(username)s is not ready."
-msgstr ""
+msgstr "* %(username)s தயாரில்லை."
 
-#: gui/gamesetup/gamesetup.js:1640
+#: gui/gamesetup/gamesetup.js:1712
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "விளையாட்டு அமைப்புகளை மாற்றப்பட்டன "
 
-#: gui/gamesetup/gamesetup.js:1665
+#: gui/gamesetup/gamesetup.js:1737
 msgid "I'm not ready"
-msgstr ""
+msgstr "நான் தயாராக இல்லை "
 
-#: gui/gamesetup/gamesetup.js:1666
+#: gui/gamesetup/gamesetup.js:1738
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "நீங்கள் விளையாட தயாராக இல்லை என்று அறிவிக்கவும் ."
 
-#: gui/gamesetup/gamesetup.js:1671 gui/gamesetup/gamesetup.js:1747
+#: gui/gamesetup/gamesetup.js:1743 gui/gamesetup/gamesetup.js:1819
 msgid "I'm ready!"
-msgstr ""
+msgstr "நான் தயார் "
 
-#: gui/gamesetup/gamesetup.js:1672
+#: gui/gamesetup/gamesetup.js:1744
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "நீங்கள் விளையாட தயார் என்று அறிவிக்கவும்!"
 
-#: gui/gamesetup/gamesetup.js:1748
+#: gui/gamesetup/gamesetup.js:1820
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "நீங்கள் விளையாட்டு அமைப்புகளை ஒற்றுகொன்று விளையாட தயார் என்று அறிவிக்கவும்!"
 
-#: gui/gamesetup/gamesetup.js:1867
+#: gui/gamesetup/gamesetup.js:1939
 msgid "None"
 msgstr "ஏதுமில்லை"
 
 #: gui/gamesetup/gamesetup_mp.js:34
 #, javascript-format
 msgid "%(name)s's game"
-msgstr ""
+msgstr "%(name)s's விளையாட்டு "
 
 #: gui/gamesetup/gamesetup_mp.js:60
 msgid "Connecting to server..."
-msgstr ""
+msgstr "சர்வருடன் இணைகிறது..."
 
 #: gui/gamesetup/gamesetup_mp.js:79
 #, javascript-format
 msgid "Net message: %(message)s"
-msgstr ""
+msgstr "நிகர செய்தி: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "சர்வருடன் பதிவு செய்யபடுகிறது..."
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "விளையாட்டு ஏற்கனவே தொடங்கிற்று, மீண்டும் இணைகிறோம்..."
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "விளையாட்டின் பெயர் ஏற்கனவே பயன்பாட்டில் உள்ளது."
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s's விளையாட்டு"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
-msgstr ""
+msgstr "கைப்பற்றல்"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "அனைத்து எதிரிகளை தோற்கடிக்கவும் "
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
-msgstr ""
+msgstr "அதிசயம்"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "வெற்றிபெற ஒரு அதிசயம் கட்டவும் "
 
 #: gui/loading/loading.js:51
 #, javascript-format
 msgid "Loading “%(map)s”"
-msgstr ""
+msgstr "\"%(map)s\" ஏற்றுப்படுகிறது "
 
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "\"%(map)s\" உருவாக்கப்படுகிறது"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
-msgstr ""
+msgstr "AI கட்டமைப்பு"
 
 #: gui/aiconfig/aiconfig.xml:(caption):18
 msgid "AI Player:"
-msgstr ""
+msgstr "AI ஆட்டக்காரர்:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):26
 msgid "AI Difficulty:"
-msgstr ""
+msgstr "AI கஷ்டஅளவு:"
 
 #: gui/aiconfig/aiconfig.xml:(caption):36
 #: gui/gamesetup/gamesetup_mp.xml:(caption):104
@@ -365,19 +366,19 @@ msgstr "சரி"
 
 #: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
-msgstr ""
+msgstr "போட்டி அமைப்பு"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading"
-msgstr ""
+msgstr "ஏற்றப்படுகிறது"
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "வரைபட தகவல் ஏற்றப்படுகிறது. தயவு செய்து காத்திருக்கவும்..."
 
 #: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
-msgstr ""
+msgstr "ஆட்டக்காரர் பெயர்"
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
@@ -385,72 +386,72 @@ msgstr ""
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
-msgstr ""
+msgstr "நாகரிகம்"
 
 #: gui/gamesetup/gamesetup.xml:(caption):62
 msgid "Team"
-msgstr ""
+msgstr "அணி"
 
 #: gui/gamesetup/gamesetup.xml:(caption):100
 msgid "Map Type:"
-msgstr ""
+msgstr "வரைபட வகை:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):103
 msgid "Map Filter:"
-msgstr ""
+msgstr "வரைபட வடிகட்டி:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):106
 msgid "Select Map:"
-msgstr ""
+msgstr "தேர்ந்தெடுத்த வரைபடம்:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):109
 msgid "Number of Players:"
-msgstr ""
+msgstr "ஆட்டக்காரர்களின் எண்ணிக்கை:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):192
 msgid "Send"
-msgstr ""
+msgstr "அனுப்பு"
 
 #: gui/gamesetup/gamesetup.xml:(caption):216
 msgid "Start game!"
-msgstr ""
+msgstr "விளையாட்டு தொடங்கட்டும்!"
 
 #: gui/gamesetup/gamesetup.xml:(caption):234
 msgid "Back"
-msgstr ""
+msgstr "பின்னால்"
 
 #: gui/gamesetup/gamesetup.xml:(caption):256
 #: gui/gamesetup/gamesetup.xml:(caption):268
 msgid "More Options"
-msgstr ""
+msgstr "மேலும் விருப்பத்தேர்வுகள்"
 
 #: gui/gamesetup/gamesetup.xml:(caption):273
 msgid "Game Speed:"
-msgstr ""
+msgstr "விளையாட்டின் வேகம்:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):293
 msgid "Population Cap:"
-msgstr ""
+msgstr "ஜனத்தொகை வரம்பு:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):303
 msgid "Starting Resources:"
-msgstr ""
+msgstr "தொடங்கும்போதுள்ள வளங்கள்:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):343
 msgid "Cheats:"
-msgstr ""
+msgstr "ஏமாற்று வார்தைகள்:"
 
 #: gui/gamesetup/gamesetup.xml:(caption):353
 msgid "Rated Game:"
-msgstr ""
+msgstr "மதிப்பிடப்படும் விளையாட்டு:"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):56
 msgid "View civilization info"
-msgstr ""
+msgstr "நாகரிகத்தின் தகவல்களை பார்க்கவும்"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):71
 msgid "Select player."
-msgstr ""
+msgstr "ஆட்டக்காரரை தேர்வுசெய்."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):81
 msgid "Configure AI settings."
@@ -576,7 +577,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:2
 msgid ""
-"\"From him [Death] alone of all the powers of heaven Persuasion holds "
+"\"From him \\[Death] alone of all the powers of heaven Persuasion holds "
 "aloof.\" - Aeschylus"
 msgstr ""
 
@@ -608,7 +609,7 @@ msgstr ""
 
 #: gui/text/quotes.txt:8
 msgid ""
-"\"She [Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
+"\"She \\[Helen] brought to Ilium her dowry, destruction.\" - Aeschylus, "
 "\"Agamemnon\""
 msgstr ""
 

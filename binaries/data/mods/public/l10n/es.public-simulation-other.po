@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# juanda097 <juanda097@openmailbox.org>, 2014-2015
 # juanda097 <juanda097@openmailbox.org>, 2014
-# juanda097 <juanda097@openmailbox.org>, 2014
-# Swyter <Swyterzone@gmail.com>, 2014
+# Swyter <Swyterzone@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-11-19 23:58+0100\n"
-"PO-Revision-Date: 2014-11-30 17:45+0000\n"
-"Last-Translator: juanda097 <juanda097@openmailbox.org>\n"
+"POT-Creation-Date: 2015-01-24 20:16+0100\n"
+"PO-Revision-Date: 2015-02-08 18:40+0000\n"
+"Last-Translator: Swyter <Swyterzone@gmail.com>\n"
 "Language-Team: Spanish (http://www.transifex.com/projects/p/0ad/language/es/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -36,8 +36,21 @@ msgstr "He aquí un regalo para %(name)s, utilízalo sabiamente."
 
 #: simulation/ai/petra/chatHelper.js:24
 #, javascript-format
-msgid "I see you are in a bad situation %(name)s, hope this will help."
-msgstr "Pareces estar en mala situación %(name)s, espero que esto te ayude."
+msgid "I see you are in a bad situation %(name)s, I hope this will help."
+msgstr "Veo que estás en una mala situación %(name)s, espero que esto te pueda ayudar."
+
+#: simulation/ai/petra/chatHelper.js:35
+#, javascript-format
+msgid ""
+"I have setup a new route with %(name)s. Trading will be profitable for all "
+"of us."
+msgstr "He establecido una nueva ruta comercial con %(name)s. El negocio será rentable para todos nosotros."
+
+#: simulation/ai/petra/chatHelper.js:37
+#, javascript-format
+msgid ""
+"A new trade route is setup with %(name)s. Take your share of the profits"
+msgstr "Se ha establecido una nueva ruta comercial con %(name)s. Llévate tu parte de las ganancias"
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
 msgid ""
@@ -329,7 +342,7 @@ msgstr "Selecciona el centro cívico, y mientras mantienes pulsada la tecla May�
 msgid ""
 "Select the two idle female citizens and build a house nearby by selecting "
 "the house icon. Place the house by left-clicking on a piece of land."
-msgstr "Selecciona a las dos ciudadanas y construye una casa en las cercanías haciendo clic en el icono adecuado. Posiciona la casa haciendo clic-derecho en una zona de tierra despejada."
+msgstr "Selecciona a las dos ciudadanas y construye una casa en las cercanías haciendo clic en el icono adecuado. Posiciona la casa haciendo clic con el botón izquierdo en una zona de tierra despejada."
 
 #: simulation/ai/tutorial-ai/introductory_tutorial.js:21
 msgid ""
@@ -548,17 +561,17 @@ msgctxt "Territory type list"
 msgid "enemy"
 msgstr "enemigos"
 
-#: simulation/components/EntityLimits.js:110
+#: simulation/components/EntityLimits.js:166
 #, javascript-format
 msgid "%(category)s build limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de construcción de %(limit)s"
 
-#: simulation/components/EntityLimits.js:112
+#: simulation/components/EntityLimits.js:168
 #, javascript-format
 msgid "%(category)s training limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de reclutamiento de %(limit)s"
 
-#: simulation/components/EntityLimits.js:116
+#: simulation/components/EntityLimits.js:172
 #, javascript-format
 msgid "%(category)s limit of %(limit)s reached"
 msgstr "%(category)s ha llegado al límite de %(limit)s"

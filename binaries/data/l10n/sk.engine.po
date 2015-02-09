@@ -4,16 +4,16 @@
 # 
 # Translators:
 # Levi Taule <levi.taule@gmail.com>, 2014-2015
-# empy <martinplavala@gmail.com>, 2014
+# empy <martinplavala@gmail.com>, 2014-2015
 # MiroslavR <miroslavr256@gmail.com>, 2014
 # Roman Beňo <romanko.sk@gmail.com>, 2014
 # Roman 'Kaktuxista' Benji <romanbeno273@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:22+0100\n"
-"PO-Revision-Date: 2015-01-11 16:30+0000\n"
-"Last-Translator: Levi Taule <levi.taule@gmail.com>\n"
+"POT-Creation-Date: 2015-01-24 20:15+0100\n"
+"PO-Revision-Date: 2015-02-06 09:11+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovak (http://www.transifex.com/projects/p/0ad/language/sk/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -23,19 +23,19 @@ msgstr ""
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:799
+#: gui/scripting/ScriptFunctions.cpp:767
 #, c-format
 msgid "%s (custom build)"
 msgstr "%s (vlastný build)"
 
 #. Translation: First item is a date and time, item between parenthesis is the
 #. Subversion revision number of the current build.
-#: gui/scripting/ScriptFunctions.cpp:804
+#: gui/scripting/ScriptFunctions.cpp:772
 #, c-format
 msgid "%s (%ls)"
 msgstr "%s (%ls)"
 
-#: gui/scripting/ScriptFunctions.cpp:825
+#: gui/scripting/ScriptFunctions.cpp:793
 msgid "custom build"
 msgstr "vlastný build"
 
@@ -47,148 +47,148 @@ msgstr "Dlhé reťazce"
 msgid "Authentication failed"
 msgstr "Overenie zlyhalo"
 
-#: lobby/XmppClient.cpp:457
+#: lobby/XmppClient.cpp:455
 msgid "Registration not acceptable"
 msgstr "Neprijateľná registrácia"
 
-#: lobby/XmppClient.cpp:458
+#: lobby/XmppClient.cpp:456
 msgid "Registration conflict"
 msgstr "Konflikt v registrácii"
 
-#: lobby/XmppClient.cpp:459
+#: lobby/XmppClient.cpp:457
 msgid "Registration not authorized"
 msgstr "Neoprávnená registrácia"
 
-#: lobby/XmppClient.cpp:460
+#: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
 msgstr "Zlá požiadavka registrácie"
 
-#: lobby/XmppClient.cpp:461
+#: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
 msgstr "Registrácia zakázaná"
 
-#: lobby/XmppClient.cpp:462 lobby/XmppClient.cpp:1011
+#: lobby/XmppClient.cpp:460 lobby/XmppClient.cpp:997
 msgid "Registration required"
 msgstr "Vyžaduje sa registrácia"
 
-#: lobby/XmppClient.cpp:463
+#: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
 msgstr "Neočakávaná požiadavka v registrácii"
 
-#: lobby/XmppClient.cpp:464
+#: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
 msgstr "Registrácia nepovolená"
 
-#: lobby/XmppClient.cpp:465
+#: lobby/XmppClient.cpp:463
 msgid "Registration unknown error"
 msgstr "Neznáma chyba registrácie"
 
-#: lobby/XmppClient.cpp:750
+#: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
 msgstr "neznámy podyp (pozri log)"
 
-#: lobby/XmppClient.cpp:996
+#: lobby/XmppClient.cpp:982
 msgid "Bad request"
 msgstr "Zlá požiadavka"
 
-#: lobby/XmppClient.cpp:997
+#: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
 msgstr "Prezývka sa už používa"
 
-#: lobby/XmppClient.cpp:998
+#: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
 msgstr "Neimplementovaná funkcia"
 
-#: lobby/XmppClient.cpp:999
+#: lobby/XmppClient.cpp:985
 msgid "Forbidden"
 msgstr "Zakázané"
 
-#: lobby/XmppClient.cpp:1000
+#: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
 msgstr "Príjemca alebo server sa stratil"
 
-#: lobby/XmppClient.cpp:1001
+#: lobby/XmppClient.cpp:987
 msgid "Internal server error"
 msgstr "Interná chyba servera"
 
-#: lobby/XmppClient.cpp:1002
+#: lobby/XmppClient.cpp:988
 msgid "Item not found"
 msgstr "Položka nenájdená"
 
-#: lobby/XmppClient.cpp:1003
+#: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
 msgstr "Chybné Jid"
 
-#: lobby/XmppClient.cpp:1004
+#: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
 msgstr "Neprijateľné"
 
-#: lobby/XmppClient.cpp:1005
+#: lobby/XmppClient.cpp:991
 msgid "Not allowed"
 msgstr "Nepovolené"
 
-#: lobby/XmppClient.cpp:1006
+#: lobby/XmppClient.cpp:992
 msgid "Not authorized"
 msgstr "Neautorizované"
 
-#: lobby/XmppClient.cpp:1007
+#: lobby/XmppClient.cpp:993
 msgid "Not modified"
 msgstr "Neupravené"
 
-#: lobby/XmppClient.cpp:1008
+#: lobby/XmppClient.cpp:994
 msgid "Payment required"
 msgstr "Požadovaná platba"
 
-#: lobby/XmppClient.cpp:1009
+#: lobby/XmppClient.cpp:995
 msgid "Recipient unavailable"
 msgstr "Príjemca nedostupný"
 
-#: lobby/XmppClient.cpp:1010
+#: lobby/XmppClient.cpp:996
 msgid "Redirect"
 msgstr "Presmerovanie"
 
-#: lobby/XmppClient.cpp:1012
+#: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
 msgstr "Vzdialený server nenájdený"
 
-#: lobby/XmppClient.cpp:1013
+#: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
 msgstr "Časový limit odozvy vzdialeného servera"
 
-#: lobby/XmppClient.cpp:1014
+#: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
 msgstr "Obmedzenie zdroja"
 
-#: lobby/XmppClient.cpp:1015
+#: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
 msgstr "Služba nie je dostupná"
 
-#: lobby/XmppClient.cpp:1016
+#: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
 msgstr "Vyžaduje sa schválenie"
 
-#: lobby/XmppClient.cpp:1017
+#: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
 msgstr "Nedefinovaná podmienka"
 
-#: lobby/XmppClient.cpp:1018
+#: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
 msgstr "Neočakávaná požiadavka"
 
-#: lobby/XmppClient.cpp:1019
+#: lobby/XmppClient.cpp:1005
 msgid "Unknown sender"
 msgstr "Neznámy odosielateľ"
 
-#: lobby/XmppClient.cpp:1021
+#: lobby/XmppClient.cpp:1007
 msgid "Error undefined"
 msgstr "Nedefinovaná chyba"
 
-#: ps/SavedGame.cpp:129
+#: ps/SavedGame.cpp:131
 #, c-format
-msgid "Saved game to '%ls'"
-msgstr "Hra uložená do \"%ls\""
+msgid "Saved game to '%s'"
+msgstr "Ulož hru do '%s'"
 
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
-msgid "Screenshot written to '%ls'"
-msgstr "Snímka obrazovky uložená do \"%ls\""
+msgid "Screenshot written to '%s'"
+msgstr "Snímok obrazovky uložený do '%s'"
