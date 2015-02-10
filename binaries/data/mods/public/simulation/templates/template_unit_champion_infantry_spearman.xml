@@ -14,7 +14,7 @@
       <Bonuses>
           <BonusCavMelee>
             <Classes>Cavalry</Classes>
-            <Multiplier>2.0</Multiplier>
+            <Multiplier>3.0</Multiplier>
           </BonusCavMelee>
       </Bonuses>
     </Melee>
@@ -27,7 +27,7 @@
       <Bonuses>
           <BonusCavMelee>
             <Classes>Cavalry</Classes>
-            <Multiplier>2.0</Multiplier>
+            <Multiplier>3.0</Multiplier>
           </BonusCavMelee>
       </Bonuses>
     </Charge>
@@ -43,7 +43,7 @@
   <Identity>
     <GenericName>Champion Spearman</GenericName>
     <VisibleClasses datatype="tokens">Melee Spear</VisibleClasses>
-    <Tooltip>Counters: 2x vs. Cavalry.</Tooltip>
+    <Tooltip>Counters: 3x vs. Cavalry.</Tooltip>
     <Formations datatype="tokens">
       formations/phalanx
       formations/testudo
