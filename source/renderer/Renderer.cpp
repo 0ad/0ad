@@ -667,6 +667,8 @@ void CRenderer::Resize(int width, int height)
 	m_Height = height;
 	
 	m->postprocManager.Resize();
+	
+	m_WaterManager->Resize();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
