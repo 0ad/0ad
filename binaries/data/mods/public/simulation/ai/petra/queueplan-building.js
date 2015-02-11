@@ -246,7 +246,7 @@ m.ConstructionPlan.prototype.findGoodPosition = function(gameState)
 	// requires to be inside our territory, and inside our base territory if required
 	// and if our first market, put it on border if possible to maximize distance with next market
 	var favorBorder = template.hasClass("BarterMarket");
-	var disfavorBorder = (template.buildCategory() === "Dock" || 
+	var disfavorBorder = (gameState.currentPhase() > 1 && 
 		(!template.getDefaultArrow() && !template.getArrowMultiplier()));
 	var preferredBase = (this.metadata && this.metadata.preferredBase);
 	if (this.metadata && this.metadata.base !== undefined)

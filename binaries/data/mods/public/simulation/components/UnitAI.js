@@ -5284,6 +5284,29 @@ UnitAI.prototype.SwitchToStance = function(stance)
 	this.SetupRangeQueries();
 };
 
+UnitAI.prototype.SetTurretStance = function()
+{
+	this.previousStance = undefined;
+	if (this.GetStance().respondStandGround)
+		return;
+	for (let stance in g_Stances)
+	{
+		if (!g_Stances[stance].respondStandGround)
+			continue;
+		this.previousStance = this.GetStanceName();
+		this.SwitchToStance(stance);
+		return;
+	}
+};
+
+UnitAI.prototype.ResetTurretStance = function()
+{
+	if (!this.previousStance)
+		return;
+	this.SwitchToStance(this.previousStance);
+	this.previousStance = undefined;
+};
+
 /**
  * Resets losRangeQuery, and if there are some targets in range that we can
  * attack then we start attacking and this returns true; otherwise, returns false.
@@ -5468,6 +5491,8 @@ UnitAI.prototype.GetStance = function()
 
 UnitAI.prototype.GetPossibleStances = function()
 {
+	if (this.IsTurret())
+		return [];
 	return Object.keys(g_Stances);
 };
 

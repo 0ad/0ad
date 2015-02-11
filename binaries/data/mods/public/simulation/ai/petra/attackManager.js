@@ -55,11 +55,11 @@ m.AttackManager.prototype.update = function(gameState, queues, events)
 		API3.warn(" upcoming attacks =================");
 		for (var attackType in this.upcomingAttacks)
 			for (let attack of this.upcomingAttacks[attackType])
-				API3.warn(" type " + attackType + " state " + attack.state  + " units " + attack.unitCollection.length);
+				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state  + " units " + attack.unitCollection.length);
 		API3.warn(" started attacks ==================");
 		for (var attackType in this.startedAttacks)
 			for (let attack of this.startedAttacks[attackType])
-				API3.warn(" type " + attackType + " state " + attack.state + " units " + attack.unitCollection.length);
+				API3.warn(" plan " + attack.name + " type " + attackType + " state " + attack.state + " units " + attack.unitCollection.length);
 		API3.warn(" ==================================");
 	}
 

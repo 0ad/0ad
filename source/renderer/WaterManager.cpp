@@ -293,7 +293,6 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
 
 	glGenTextures(1, &m_FancyTextureOther);
 	glBindTexture(GL_TEXTURE_2D, m_FancyTextureOther);
@@ -301,7 +300,6 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
 
 	glGenTextures(1, &m_FancyTextureDepth);
 	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth);
@@ -309,12 +307,13 @@ int WaterManager::LoadWaterTextures()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
-	
+
 	glBindTexture(GL_TEXTURE_2D, 0);
-	
+
+	Resize();
+
 	// Create the water framebuffers
-	
+
 	GLint currentFbo;
 	glGetIntegerv(GL_FRAMEBUFFER_BINDING_EXT, &currentFbo);
 
@@ -369,6 +368,23 @@ int WaterManager::LoadWaterTextures()
 	m_RenderWater = true;
 #endif
 	return 0;
+}
+
+
+///////////////////////////////////////////////////////////////////
+// Resize: Updates the fancy water textures.
+void WaterManager::Resize()
+{
+	glBindTexture(GL_TEXTURE_2D, m_FancyTextureNormal);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
+
+	glBindTexture(GL_TEXTURE_2D, m_FancyTextureOther);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA8, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_RGBA, GL_UNSIGNED_SHORT, NULL);
+
+	glBindTexture(GL_TEXTURE_2D, m_FancyTextureDepth);
+	glTexImage2D( GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, (GLsizei)g_Renderer.GetWidth(), (GLsizei)g_Renderer.GetHeight(), 0,  GL_DEPTH_COMPONENT, GL_UNSIGNED_SHORT, NULL);
+
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 

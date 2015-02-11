@@ -548,7 +548,7 @@ var commands = {
 		for each (var ent in data.entities)
 		{
 			var cmpUnitAI = Engine.QueryInterface(ent, IID_UnitAI);
-			if (cmpUnitAI)
+			if (cmpUnitAI && !cmpUnitAI.IsTurret())
 				cmpUnitAI.SwitchToStance(cmd.name);
 		}
 	},

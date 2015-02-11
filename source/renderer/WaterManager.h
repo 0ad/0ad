@@ -136,7 +136,13 @@ public:
 	 * if more textures need to be loaded and a negative error value on failure.
 	 */
 	int LoadWaterTextures();
-	
+
+	/**
+	 * Resize: Updates the fancy water textures so that water will render correctly
+	 * with fancy water.
+	 */
+	void Resize();
+
 	/**
 	 * UnloadWaterTextures: Free any loaded water textures and reset the internal state
 	 * so that another call to LoadWaterTextures will begin progressive loading.
