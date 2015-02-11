@@ -475,6 +475,7 @@ m.AttackPlan.prototype.updatePreparation = function(gameState, events)
 	{
 		if (this.canStart())
 		{
+			this.removeTrainingUnitsFromPlan(gameState);
 			this.queue.empty();
 			this.queueChamp.empty();
 			this.queueSiege.empty();
@@ -1694,6 +1695,7 @@ m.AttackPlan.prototype.Abort = function(gameState)
 	for (let unitCat in this.unitStat)
 		this.unit[unitCat].unregister();
 
+	this.removeTrainingUnitsFromPlan(gameState);
 	gameState.ai.queueManager.removeQueue("plan_" + this.name);
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_champ");
 	gameState.ai.queueManager.removeQueue("plan_" + this.name + "_siege");
@@ -1784,6 +1786,14 @@ m.AttackPlan.prototype.debugAttack = function()
 		API3.warn(unitCat + " num=" + this.unit[unitCat].length + " min=" + Unit["minSize"] + " need=" + Unit["targetSize"]);
 	}
 	API3.warn("------------------------------");
+};
+
+m.AttackPlan.prototype.removeTrainingUnitsFromPlan = function(gameState)
+{
+	for (let trainer of gameState.getOwnTrainingFacilities().values())
+		for (let item of trainer.trainingQueue())
+			if (item.metadata && item.metadata.plan == this.name)
+				item.metadata.plan = undefined;
 };
 
 m.AttackPlan.prototype.Serialize = function()
