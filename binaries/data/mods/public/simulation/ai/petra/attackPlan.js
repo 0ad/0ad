@@ -1792,7 +1792,7 @@ m.AttackPlan.prototype.removeTrainingUnitsFromPlan = function(gameState)
 {
 	for (let trainer of gameState.getOwnTrainingFacilities().values())
 		for (let item of trainer.trainingQueue())
-			if (item.metadata && item.metadata.plan == this.name)
+			if (item.metadata && item.metadata.plan && item.metadata.plan == this.name)
 				item.metadata.plan = undefined;
 };
 
