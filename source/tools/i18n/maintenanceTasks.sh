@@ -12,14 +12,14 @@ VCS="svn"
 VCS_UPDATE="svn update"
 VCS_REVERT="svn revert %s@"
 VCS_ADD="svn add %s"
-VCS_COMMIT_AND_PUSH="svn commit -m \"[i18n] Updated POT and PO files\""
+VCS_COMMIT_AND_PUSH="svn commit -m '[i18n] Updated POT and PO files.'"
 git rev-parse &> /dev/null
 if [[ "$?" = "0" ]]; then
     VCS="git"
     VCS_UPDATE="git pull --rebase origin master"
     VCS_REVERT="git checkout -- %s"
     VCS_ADD="git add %s"
-    VCS_COMMIT_AND_PUSH="git commit -am \"[i18n] Updated POT and PO files\" &&
+    VCS_COMMIT_AND_PUSH="git commit -am '[i18n] Updated POT and PO files.' &&
                          git pull --rebase origin master &&
                          git push origin master"
 fi
@@ -52,8 +52,7 @@ python2 "${SCRIPT_PATH}/pullTranslations.py"
 # and wait for the task to eventually finish.
 
 echo ":: Reverting unnecessary changes…"
-for FILE_PATH in $(find "${SCRIPT_PATH}/../../.." -name "*.pot") \
-                 $(find "${SCRIPT_PATH}/../../.." -name "*.po")
+for FILE_PATH in $(find "${SCRIPT_PATH}/../../../binaries/data" -name "*.pot" -o -name "*.po")
 do
     if [[ ! -n "$(poediff -c ${VCS} -rHEAD -qs "${FILE_PATH}")" ]]; then
         $(printf "${VCS_REVERT}" "${FILE_PATH}")
