@@ -4,11 +4,12 @@
 # 
 # Translators:
 # fri, 2014
+# Vojtěch Valigura <Encounter@seznam.cz>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:17+0100\n"
-"PO-Revision-Date: 2015-01-25 09:46+0000\n"
+"POT-Creation-Date: 2015-02-09 19:17+0100\n"
+"PO-Revision-Date: 2015-02-10 09:58+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Czech (http://www.transifex.com/projects/p/0ad/language/cs/)\n"
 "MIME-Version: 1.0\n"
@@ -268,7 +269,7 @@ msgstr "Lorrainská rovina"
 
 #: maps/random/mainland.jsonsettings.Description
 msgid "A typical map without any water."
-msgstr ""
+msgstr "Typická mapa bez jakékoliv vody."
 
 #: maps/random/mainland.jsonsettings.Name
 msgid "Mainland"
@@ -298,7 +299,7 @@ msgstr "Blízkovýchodní neúrodná půda"
 
 #: maps/random/new_rms_test.jsonsettings.Description
 msgid "A basic test of the random map generator - not playable."
-msgstr ""
+msgstr "Základní zkouška generátoru náhodných map - nehratelné."
 
 #: maps/random/new_rms_test.jsonsettings.Name
 msgid "New RMS Test"
@@ -407,7 +408,7 @@ msgstr "Zavodňovací díry v Sahelu"
 
 #: maps/random/schwarzwald.jsonsettings.Description
 msgid "A forest heavy map with a lake in the middle and plenty of resources."
-msgstr ""
+msgstr "Mapa bohatá na lesy s jezerem uprostřed a s množstvím zdrojů."
 
 #: maps/random/schwarzwald.jsonsettings.Name
 msgid "Schwarzwald"
@@ -423,9 +424,9 @@ msgstr "Mořská skála se sněhovými vločkami"
 
 #: maps/random/survivalofthefittest.jsonsettings.Description
 msgid ""
-"IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP\n"
+"[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
-"Protect your base against endless waves of enemies. Use your woman citizen to gather resources. The last player remaining will be the winner."
+"Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
 msgstr ""
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
@@ -469,8 +470,9 @@ msgstr "Neznámá země"
 #: maps/random/unknown_nomad.jsonsettings.Description
 msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
-"[color=\"red\"]Warning: AI players will cause the game to crash.[/color]"
-msgstr "Neznámo... Hráči začínají jen s několika občanskými vojáky a ženami. [color=\"red\"]Varování: Hráči s umělou inteligencí způsobí pád hry.[/color]"
+"[color=\"red\"]Warning: The starting resources should be set at least at "
+"Medium.[/color]"
+msgstr ""
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -528,7 +530,7 @@ msgstr "Posbírejte poklady dřív, než to udělá nepřítel. Lepší ať vyhr
 
 #: maps/scenarios/treasure_islands.js:37
 msgid "Your enemy's treasury is filled to the brim, you lose!"
-msgstr ""
+msgstr "Pokladnice vašeho nepřítele je naplněná po okraj. Prohrajete!"
 
 #: maps/scenarios/treasure_islands.js:42
 msgid "Your treasury is filled to the brim, you are victorious!"
@@ -560,7 +562,7 @@ msgstr ""
 
 #: maps/scenarios/Arcadia.xml:PlayerData[0].Name:41
 #: maps/scenarios/Belgian_Bog_night.xml:PlayerData[0].Name:42
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[0].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[0].Name:31 maps/scenarios/Eire
 #: and Albion.xml:PlayerData[0].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[0].Name:31
@@ -574,7 +576,8 @@ msgstr ""
 #: Britons.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[0].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[0].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[0].Name:42 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[0].Name:42
+#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[0].Name:35 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[0].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[0].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[0].Name:41 maps/scenarios/Tropical
@@ -641,7 +644,8 @@ msgstr "Hráč 1"
 #: Britons.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Gauls.xml:PlayerData[1].Name:41 maps/scenarios/Sandbox -
 #: Iberians.xml:PlayerData[1].Name:42 maps/scenarios/Sandbox -
-#: Romans.xml:PlayerData[1].Name:42 maps/scenarios/Siwa
+#: Romans.xml:PlayerData[1].Name:42
+#: maps/scenarios/Sicilia_Nomad.xml:PlayerData[1].Name:35 maps/scenarios/Siwa
 #: Oasis.xml:PlayerData[1].Name:31 maps/scenarios/The Massacre of
 #: Delphi.xml:PlayerData[1].Name:41 maps/scenarios/Treasure
 #: Islands.xml:PlayerData[1].Name:41 maps/scenarios/Tropical
@@ -694,7 +698,7 @@ msgstr "Hráč 2"
 
 #: maps/scenarios/Arcadia.xml:Name:41
 msgid "Arcadia"
-msgstr ""
+msgstr "Arkádie"
 
 #: maps/scenarios/Azure Coast(2).xml:Description:31 maps/scenarios/Azure
 #: Coast(4).xml:Description:31 maps/scenarios/Azure Coast.xml:Description:41
@@ -893,19 +897,19 @@ msgstr "Ukázka boje (obrovská)"
 msgid "1296 units. Extremely slow (we need more optimisation)."
 msgstr "1296 jednotek. Nesmírně pomalé (je potřeba větší optimalizace)."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Description:42
 msgid ""
 "A deep rocky canyon slicing through the desert. Good for multiplayer.\n"
 "\n"
 "2 teams of 2 players. 1 player on each team starts with a base and resources. The other player starts with only a large army to assist their teammate."
 msgstr "Hluboká, skalnatá horská propast v poušti. Dobré pro hru více hráčů.\n\nDva týmy po dvou hráčích. Jeden hráč v každém týmu začíná se základnou a přírodními zdroji. Druhý hráč začíná jen s velkou armádou, se kterou podporuje svého spoluhráče."
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:56
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[1].Name:42
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[3].Name:42
 msgid "Invasion Force"
 msgstr "Invazní armáda"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:PlayerData[2].Name:42
 #: maps/scenarios/Demo_Trading.xml:PlayerData[2].Name:31 maps/scenarios/Fast
 #: Oasis.xml:PlayerData[2].Name:31
 #: maps/scenarios/Gold_Rush.xml:PlayerData[2].Name:31
@@ -935,7 +939,7 @@ msgstr "Invazní armáda"
 msgid "Player 3"
 msgstr "Hráč 3"
 
-#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:56
+#: maps/scenarios/Death Canyon - Invasion Force.xml:Name:42
 msgid "Death Canyon - Invasion Force"
 msgstr "Smrtící kaňon - Útočící armáda"
 
@@ -1451,6 +1455,16 @@ msgstr "Lodě"
 msgid "Ship Formations"
 msgstr "Formace lodí"
 
+#: maps/scenarios/Sicilia_Nomad.xml:Description:35
+msgid ""
+"The large Mediterranean island of Sicily is open for conquest.\n"
+"[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]"
+msgstr ""
+
+#: maps/scenarios/Sicilia_Nomad.xml:Name:35
+msgid "Sicilia Nomad (2)"
+msgstr ""
+
 #: maps/scenarios/Siwa Oasis.xml:Description:31
 msgid ""
 "Carthage vs. Macedon vs. Persia vs. Iberia! A large oasis acts as the hub of"
@@ -1922,7 +1936,7 @@ msgstr "Řeka Nil (4)"
 msgid ""
 "A dry central basin rich in minerals surrounded by rocky hills and "
 "highlands."
-msgstr ""
+msgstr "Suchá centrální kotlina bohatá na nerosty obklopená skalnatými kopci a vrchovinami."
 
 #: maps/skirmishes/Persian Highlands (4).xml:Name:42
 msgid "Persian Highlands (4)"
@@ -1963,7 +1977,7 @@ msgstr "Sahel (4)"
 
 #: maps/skirmishes/Savanna River.xml:Description:42
 msgid "A large savanna is bisected by a narrow jungle stream."
-msgstr ""
+msgstr "Rozlehlá savana je rozpolcená úzkým pralesním tokem."
 
 #: maps/skirmishes/Savanna River.xml:Name:42
 msgid "Savanna River (2)"

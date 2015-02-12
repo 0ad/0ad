@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Kanetaka Suto, 2014
+# Kanetaka Suto, 2014-2015
 # llen_llen, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2015-02-02 01:55+0000\n"
+"POT-Creation-Date: 2015-02-08 22:08+0100\n"
+"PO-Revision-Date: 2015-02-11 02:21+0000\n"
 "Last-Translator: Kanetaka Suto\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/0ad/language/ja/)\n"
 "MIME-Version: 1.0\n"
@@ -505,6 +505,19 @@ msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "左ドラッグ： マウスで建物を回転（マウスから放したときに基礎が建てられる）"
+
+#: gui/manual/intro.txt:117
+msgid "[font=\"sans-bold-14\"]When loading a saved game"
+msgstr "[font=\"sans-bold-14\"]保存したゲームの読込み時"
+
+#: gui/manual/intro.txt:118
+msgid ""
+"[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
+msgstr "[font=\"sans-14\"]Delete： 選択した保存したゲームを確認のうえ削除"
+
+#: gui/manual/intro.txt:119
+msgid "Shift: do not ask confirmation when deleting a saved game"
+msgstr "Shift： 保存したゲームを削除する際に確認を省略"
 
 #: gui/manual/userreport.txt:1
 msgid ""

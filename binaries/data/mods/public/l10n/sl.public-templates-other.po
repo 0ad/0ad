@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-27 00:20+0000\n"
+"POT-Creation-Date: 2015-02-08 22:09+0100\n"
+"PO-Revision-Date: 2015-02-11 10:41+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Slovenian (http://www.transifex.com/projects/p/0ad/language/sl/)\n"
 "MIME-Version: 1.0\n"
@@ -156,7 +156,7 @@ msgstr ""
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:26
 #: simulation/templates/campaigns/campaign_city_test.xml:26
 msgid "Settlement"
-msgstr ""
+msgstr "Naselbina"
 
 #: simulation/templates/campaigns/campaign_city_minor_test.xml:27
 msgid "Minor Greek Polis"
@@ -791,13 +791,21 @@ msgstr ""
 msgid "Wooden Wall End"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_fort.xml:20
+#: simulation/templates/other/palisades_rocks_fort.xml:32
 msgid "Palisade Fort"
 msgstr ""
 
-#: simulation/templates/other/palisades_rocks_fort.xml:21
+#: simulation/templates/other/palisades_rocks_fort.xml:33
 msgid "Wooden Tower"
 msgstr ""
+
+#: simulation/templates/other/palisades_rocks_fort.xml:37
+msgid "Village"
+msgstr "Vas"
+
+#: simulation/templates/other/palisades_rocks_fort.xml:37
+msgid "DefenseTower"
+msgstr "Obrambni stolp"
 
 #: simulation/templates/other/palisades_rocks_gate.xml:20
 msgid "Palisade Gate"

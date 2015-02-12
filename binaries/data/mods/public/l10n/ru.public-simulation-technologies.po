@@ -7,8 +7,10 @@
 # Christo Keller <christoniancoder@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
 # dr&mx <dronmax@gmail.com>, 2014
+# grin.sv <grin.sv@gmail.com>, 2015
 # Igor Kustov, 2014
 # Konstantin, 2014
+# Maksim Oreshkov <oreshkovmv@mail.ru>, 2015
 # micha030201 <micha030201@gmail.com>, 2014
 # Rudeboy1988 <sheva-gitara@mail.ru>, 2014
 # Xxcapog <xx.artem-kokorin@mail.ru>, 2015
@@ -16,8 +18,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-08 16:31+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-11 10:21+0000\n"
+"Last-Translator: Maksim Oreshkov <oreshkovmv@mail.ru>\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/0ad/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -231,7 +233,7 @@ msgstr "Стёганая или кожаная броня пехотинца."
 #: simulation/data/technologies/armor_infantry_01.jsontooltip
 #: simulation/data/technologies/armor_infantry_02.jsontooltip
 msgid "All Infantry +1 Hack and Pierce Armor Level."
-msgstr ""
+msgstr "Вся пехота +1 к защите от разрубания и прокалывания."
 
 #: simulation/data/technologies/armor_infantry_01.jsongenericName
 #: simulation/data/technologies/armor_infantry_hack_01.jsongenericName
@@ -784,7 +786,7 @@ msgstr "Увеличивается дальность стрельбы горя�
 
 #: simulation/data/technologies/attack_tower_range.jsontooltip
 msgid "Increases defense tower maximum range by 8 meters."
-msgstr ""
+msgstr "Увеличивает дальность оборонительной башни на 8 метров."
 
 #: simulation/data/technologies/attack_tower_range.jsongenericName
 msgid "Arrow Shooters"
@@ -908,15 +910,15 @@ msgstr "Железный плуг"
 
 #: simulation/data/technologies/gather_farming_training.jsondescription
 msgid "Training for workers to increase farm gathering speed."
-msgstr ""
+msgstr "Обучение рабочих для ускорения сбора урожая."
 
 #: simulation/data/technologies/gather_farming_training.jsontooltip
 msgid "Workers +15% farming rate."
-msgstr ""
+msgstr "Работники собирают собирают еду на +25% быстрее."
 
 #: simulation/data/technologies/gather_farming_training.jsongenericName
 msgid "Gather Training"
-msgstr ""
+msgstr "Обучение сбору урожая"
 
 #: simulation/data/technologies/gather_lumbering_ironaxes.jsondescription
 #: simulation/data/technologies/gather_lumbering_sharpaxes.jsondescription
@@ -954,7 +956,7 @@ msgstr "Увеличивает добычу камня."
 #: simulation/data/technologies/gather_mining_serfs.jsontooltip
 msgid ""
 "Compel serfs to help your workers mine stone. +15% stone gathering rate."
-msgstr ""
+msgstr "Заставить крепостных помогать на добыче камня. +15% к скорости добычи камня."
 
 #: simulation/data/technologies/gather_mining_serfs.jsongenericName
 msgid "Serfs"
@@ -969,7 +971,7 @@ msgstr "Гелиотес"
 
 #: simulation/data/technologies/gather_mining_servants.jsontooltip
 msgid "+15% stone gathering rate."
-msgstr ""
+msgstr "+15% к скорости добычи камня."
 
 #: simulation/data/technologies/gather_mining_servants.jsongenericName
 msgid "Servants"
@@ -994,7 +996,7 @@ msgstr "Увеличивает добычу метала."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsontooltip
 msgid "Develop shaft mining. +15% metal gathering rate."
-msgstr ""
+msgstr "Разработать добычу в шахтах. +15% скорости добычи металла."
 
 #: simulation/data/technologies/gather_mining_shaftmining.jsongenericName
 msgid "Shaft Mining"
@@ -1002,7 +1004,7 @@ msgstr "Добыча в шахтах"
 
 #: simulation/data/technologies/gather_mining_silvermining.jsontooltip
 msgid "Strike a vein of precious silver. +50% metal gathering rate."
-msgstr ""
+msgstr "Найти жилу благородного серебра. +50% к скорости добычи металла."
 
 #: simulation/data/technologies/gather_mining_silvermining.jsongenericName
 msgid "Silver Mining"
@@ -1062,7 +1064,7 @@ msgstr "Юниты охраняющие бараки лечатся постоя
 
 #: simulation/data/technologies/heal_barracks.jsontooltip
 msgid "Units gain health over time while garrisoned in barracks."
-msgstr ""
+msgstr "Юниты выздоравливают с течением времени при нахождении в бараках."
 
 #: simulation/data/technologies/heal_barracks.jsongenericName
 msgid "Living Conditions"
@@ -1519,7 +1521,7 @@ msgstr "Инсула"
 
 #: simulation/data/technologies/pop_wonder.jsondescription
 msgid "The wonder attracts many more people to your civilization."
-msgstr ""
+msgstr "Чудо привлекает гораздо больше людей в вашу цивилизацию."
 
 #: simulation/data/technologies/pop_wonder.jsontooltip
 msgid "+50 maximum population cap."
@@ -1641,7 +1643,7 @@ msgstr "+10% к скорости конницы."
 
 #: simulation/data/technologies/speed_cavalry_01.jsongenericName
 msgid "Cavalry Breeding"
-msgstr ""
+msgstr "Разведение коней для кавалерии"
 
 #: simulation/data/technologies/speed_cavalry_02.jsondescription
 msgid "Train your horses to move faster."

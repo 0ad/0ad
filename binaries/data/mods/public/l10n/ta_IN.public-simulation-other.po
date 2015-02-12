@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-07 11:01+0000\n"
+"POT-Creation-Date: 2015-02-08 22:09+0100\n"
+"PO-Revision-Date: 2015-02-09 10:39+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Tamil (India) (http://www.transifex.com/projects/p/0ad/language/ta_IN/)\n"
 "MIME-Version: 1.0\n"
@@ -40,14 +40,14 @@ msgstr ""
 #: simulation/ai/petra/chatHelper.js:35
 #, javascript-format
 msgid ""
-"I have setup a new route with %(name)s. Trading will be profitable for all "
+"I have set up a new route with %(name)s. Trading will be profitable for all "
 "of us."
 msgstr ""
 
 #: simulation/ai/petra/chatHelper.js:37
 #, javascript-format
 msgid ""
-"A new trade route is setup with %(name)s. Take your share of the profits"
+"A new trade route is set up with %(name)s. Take your share of the profits"
 msgstr ""
 
 #: simulation/ai/tutorial-ai/economic_walkthrough.js:3
@@ -463,69 +463,69 @@ msgstr ""
 msgid "%(name)s cannot be built due to unknown error"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:108
+#: simulation/components/BuildRestrictions.js:106
 #, javascript-format
 msgid "%(name)s cannot be built in unexplored area"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:156
+#: simulation/components/BuildRestrictions.js:154
 #, javascript-format
 msgid "%(name)s cannot be built on another building or resource"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:160
+#: simulation/components/BuildRestrictions.js:158
 #, javascript-format
 msgid "%(name)s cannot be built on invalid terrain"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:184
+#: simulation/components/BuildRestrictions.js:182
 msgctxt "Territory type"
 msgid "ally"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:187
+#: simulation/components/BuildRestrictions.js:185
 msgctxt "Territory type"
 msgid "own"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:190
+#: simulation/components/BuildRestrictions.js:188
 msgctxt "Territory type"
 msgid "neutral"
 msgstr ""
 
 #. Translation: territoryType being displayed in a translated sentence in the
 #. form: "House cannot be built in %(territoryType)s territory.".
-#: simulation/components/BuildRestrictions.js:193
+#: simulation/components/BuildRestrictions.js:191
 msgctxt "Territory type"
 msgid "enemy"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:199
+#: simulation/components/BuildRestrictions.js:197
 #, javascript-format
 msgid ""
 "%(name)s cannot be built in %(territoryType)s territory. Valid territories: "
 "%(validTerritories)s"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:238
+#: simulation/components/BuildRestrictions.js:236
 #, javascript-format
 msgid "%(name)s must be built on a valid shoreline"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:262
+#: simulation/components/BuildRestrictions.js:260
 #, javascript-format
 msgid ""
 "%(name)s too close to a %(category)s, must be at least %(distance)s meters "
 "away"
 msgstr ""
 
-#: simulation/components/BuildRestrictions.js:275
+#: simulation/components/BuildRestrictions.js:273
 #, javascript-format
 msgid ""
 "%(name)s too far from a %(category)s, must be within %(distance)s meters"
@@ -533,28 +533,28 @@ msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:306
+#: simulation/components/BuildRestrictions.js:304
 msgctxt "Territory type list"
 msgid "own"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:308
+#: simulation/components/BuildRestrictions.js:306
 msgctxt "Territory type list"
 msgid "ally"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:310
+#: simulation/components/BuildRestrictions.js:308
 msgctxt "Territory type list"
 msgid "neutral"
 msgstr ""
 
 #. Translation: Territory types being displayed as part of a list like "Valid
 #. territories: own, ally".
-#: simulation/components/BuildRestrictions.js:312
+#: simulation/components/BuildRestrictions.js:310
 msgctxt "Territory type list"
 msgid "enemy"
 msgstr ""
@@ -590,26 +590,26 @@ msgstr ""
 msgid "Stone"
 msgstr ""
 
-#: simulation/components/Player.js:236
-#, javascript-format
-msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
-msgstr ""
-
 #: simulation/components/Player.js:238
 #, javascript-format
-msgid ""
-"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
-"%(resourceAmount2)s %(resourceType2)s"
+msgid "Insufficient resources - %(resourceAmount1)s %(resourceType1)s"
 msgstr ""
 
 #: simulation/components/Player.js:240
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
-"%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+"%(resourceAmount2)s %(resourceType2)s"
 msgstr ""
 
 #: simulation/components/Player.js:242
+#, javascript-format
+msgid ""
+"Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
+"%(resourceAmount2)s %(resourceType2)s, %(resourceAmount3)s %(resourceType3)s"
+msgstr ""
+
+#: simulation/components/Player.js:244
 #, javascript-format
 msgid ""
 "Insufficient resources - %(resourceAmount1)s %(resourceType1)s, "
@@ -617,7 +617,7 @@ msgid ""
 "%(resourceType3)s, %(resourceAmount4)s %(resourceType4)s"
 msgstr ""
 
-#: simulation/components/ProductionQueue.js:361
+#: simulation/components/ProductionQueue.js:367
 msgid "The production queue is full."
 msgstr ""
 

@@ -11,8 +11,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-06 19:41+0000\n"
+"POT-Creation-Date: 2015-02-08 22:08+0100\n"
+"PO-Revision-Date: 2015-02-09 20:31+0000\n"
 "Last-Translator: Ellen Roels\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/0ad/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -48,7 +48,7 @@ msgid_plural "Special Buildings"
 msgstr[0] "Speciaal Gebouw"
 msgstr[1] "Speciale Gebouwen"
 
-#: gui/civinfo/civinfo.js:139 gui/summary/summary.xml:(caption):419
+#: gui/civinfo/civinfo.js:139 gui/summary/layout.js:54
 msgid "Heroes"
 msgstr "Helden"
 
@@ -73,11 +73,11 @@ msgstr "Pagina aan het openen"
 msgid "FPS: %(fps)s"
 msgstr "FPS: %(fps)s"
 
-#: gui/common/functions_utility.js:189
+#: gui/common/functions_utility.js:187
 msgid "mm:ss"
 msgstr "mm:ss"
 
-#: gui/common/functions_utility.js:191
+#: gui/common/functions_utility.js:189
 msgid "HH:mm:ss"
 msgstr "HH:mm:ss"
 
@@ -320,201 +320,226 @@ msgstr "Reden: %(reason)s."
 msgid "Disconnected"
 msgstr "Verbinding verbroken"
 
-#: gui/common/tooltips.js:21 gui/common/tooltips.js:70
-#: gui/common/tooltips.js:102
+#: gui/common/tooltips.js:27 gui/common/tooltips.js:84
+#: gui/common/tooltips.js:116
 msgid "(None)"
 msgstr "(Geen)"
 
-#: gui/common/tooltips.js:25 gui/common/tooltips.js:30
-#: gui/common/tooltips.js:35 gui/common/tooltips.js:106
-#: gui/common/tooltips.js:111 gui/common/tooltips.js:116
+#: gui/common/tooltips.js:31 gui/common/tooltips.js:36
+#: gui/common/tooltips.js:41 gui/common/tooltips.js:120
+#: gui/common/tooltips.js:125 gui/common/tooltips.js:130
 #, javascript-format
 msgid "%(damage)s %(damageType)s"
 msgstr "%(damage)s %(damageType)s"
 
-#: gui/common/tooltips.js:27 gui/common/tooltips.js:77
-#: gui/common/tooltips.js:108
+#: gui/common/tooltips.js:33 gui/common/tooltips.js:91
+#: gui/common/tooltips.js:122
 msgid "Hack"
 msgstr "Slag"
 
-#: gui/common/tooltips.js:32 gui/common/tooltips.js:83
-#: gui/common/tooltips.js:113
+#: gui/common/tooltips.js:38 gui/common/tooltips.js:97
+#: gui/common/tooltips.js:127
 msgid "Pierce"
 msgstr "Steek"
 
-#: gui/common/tooltips.js:37 gui/common/tooltips.js:89
-#: gui/common/tooltips.js:118
+#: gui/common/tooltips.js:43 gui/common/tooltips.js:103
+#: gui/common/tooltips.js:132
 msgid "Crush"
 msgstr "Verbrijzelen"
 
-#: gui/common/tooltips.js:40 gui/common/tooltips.js:95
-#: gui/common/tooltips.js:121 gui/common/tooltips.js:195
-#: gui/common/tooltips.js:376
+#: gui/common/tooltips.js:46 gui/common/tooltips.js:109
+#: gui/common/tooltips.js:135 gui/common/tooltips.js:209
+#: gui/common/tooltips.js:390 gui/common/tooltips.js:416
+#: gui/common/tooltips.js:469
 msgid ", "
 msgstr ","
 
-#: gui/common/tooltips.js:49
+#: gui/common/tooltips.js:52
+#, javascript-format
+msgid "%(time)s %(second)s"
+msgstr "%(time)s %(second)s"
+
+#: gui/common/tooltips.js:54 gui/common/tooltips.js:413
+msgid "second"
+msgid_plural "seconds"
+msgstr[0] "seconde"
+msgstr[1] "seconden"
+
+#: gui/common/tooltips.js:61
+#, javascript-format
+msgid "%(arrowcount)s %(arrow)s"
+msgstr "%(arrowcount)s %(arrow)s"
+
+#: gui/common/tooltips.js:63
+msgid "arrow"
+msgid_plural "arrows"
+msgstr[0] "pijl"
+msgstr[1] "pijlen"
+
+#: gui/common/tooltips.js:65
 #, javascript-format
 msgid "%(arrowString)s / %(timeString)s"
 msgstr "%(arrowString)s / %(timeString)s"
 
-#: gui/common/tooltips.js:50
-#, javascript-format
-msgid "%(arrows)s arrow"
-msgid_plural "%(arrows)s arrows"
-msgstr[0] "%(arrows)s pijl"
-msgstr[1] "%(arrows)s pijlen"
-
-#: gui/common/tooltips.js:51 gui/common/tooltips.js:54
-#, javascript-format
-msgid "%(time)s second"
-msgid_plural "%(time)s seconds"
-msgstr[0] "%(time)s seconde"
-msgstr[1] "%(time)s seconden"
-
-#: gui/common/tooltips.js:66
+#: gui/common/tooltips.js:80
 msgid "Armor:"
 msgstr "Bewapening:"
 
-#: gui/common/tooltips.js:68 gui/common/tooltips.js:93
-#: gui/common/tooltips.js:152
+#: gui/common/tooltips.js:82 gui/common/tooltips.js:107
+#: gui/common/tooltips.js:166
 #, javascript-format
 msgid "%(label)s %(details)s"
 msgstr "%(label)s %(details)s"
 
-#: gui/common/tooltips.js:75 gui/common/tooltips.js:81
-#: gui/common/tooltips.js:87
+#: gui/common/tooltips.js:89 gui/common/tooltips.js:95
+#: gui/common/tooltips.js:101
 #, javascript-format
 msgid "%(damage)s %(damageType)s %(armorPercentage)s"
 msgstr "%(damage)s %(damageType)s %(armorPercentage)s"
 
-#: gui/common/tooltips.js:78 gui/common/tooltips.js:84
-#: gui/common/tooltips.js:90
+#: gui/common/tooltips.js:92 gui/common/tooltips.js:98
+#: gui/common/tooltips.js:104
 #, javascript-format
 msgid "(%(armorPercentage)s)"
 msgstr "(%(armorPercentage)s)"
 
-#: gui/common/tooltips.js:126
+#: gui/common/tooltips.js:140
 msgid "Charge Attack:"
 msgstr "Snelle Aanval:"
 
-#: gui/common/tooltips.js:127
+#: gui/common/tooltips.js:141
 msgid "Melee Attack:"
 msgstr "Mêlee Aanval:"
 
-#: gui/common/tooltips.js:128
+#: gui/common/tooltips.js:142
 msgid "Ranged Attack:"
 msgstr "Afstandsaanval:"
 
-#: gui/common/tooltips.js:131
+#: gui/common/tooltips.js:145
 msgid "Attack:"
 msgstr "Aanval:"
 
-#: gui/common/tooltips.js:141
+#: gui/common/tooltips.js:155
 msgid "Interval:"
 msgstr "Interval:"
 
-#: gui/common/tooltips.js:143
+#: gui/common/tooltips.js:157 gui/common/tooltips.js:411
 msgid "Rate:"
 msgstr "Freq:"
 
-#: gui/common/tooltips.js:160
+#: gui/common/tooltips.js:174
 #, javascript-format
 msgid "%(attackLabel)s %(details)s, %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rate)s"
 
-#: gui/common/tooltips.js:170
+#: gui/common/tooltips.js:184 gui/common/tooltips.js:406
 msgid "Range:"
 msgstr "Bereik:"
 
-#: gui/common/tooltips.js:172
+#: gui/common/tooltips.js:186 gui/common/tooltips.js:408
 msgid "meters"
 msgstr "meter"
 
-#: gui/common/tooltips.js:175
+#: gui/common/tooltips.js:189
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s "
 "(%(relative)s), %(rate)s"
 msgstr "%(attackLabel)s %(details)s, %(rangeLabel)s %(range)s %(meters)s (%(relative)s), %(rate)s"
 
-#: gui/common/tooltips.js:185
+#: gui/common/tooltips.js:199
 #, javascript-format
 msgid ""
 "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, "
 "%(rate)s"
 msgstr "%(attackLabel)s %(damageTypes)s, %(rangeLabel)s %(range)s %(meters)s, %(rate)s"
 
-#: gui/common/tooltips.js:235 gui/common/tooltips.js:236
-#: gui/common/tooltips.js:237 gui/common/tooltips.js:238
-#: gui/common/tooltips.js:239 gui/common/tooltips.js:240
-#: gui/common/tooltips.js:356
+#: gui/common/tooltips.js:249 gui/common/tooltips.js:250
+#: gui/common/tooltips.js:251 gui/common/tooltips.js:252
+#: gui/common/tooltips.js:253 gui/common/tooltips.js:254
+#: gui/common/tooltips.js:370
 #, javascript-format
 msgid "%(component)s %(cost)s"
 msgstr "%(component)s %(cost)s"
 
 #. Translation: This string is part of the resources cost string on
 #. the tooltip for wall structures.
-#: gui/common/tooltips.js:294
+#: gui/common/tooltips.js:308
 #, javascript-format
 msgid "%(resourceIcon)s %(minimum)s to %(resourceIcon)s %(maximum)s"
 msgstr "%(resourceIcon)s %(minimum)s tot %(resourceIcon)s %(maximum)s"
 
-#: gui/common/tooltips.js:325
+#: gui/common/tooltips.js:339
 #, javascript-format
 msgid "Walls:  %(costs)s"
 msgstr "Muren: %(costs)s"
 
-#: gui/common/tooltips.js:326
+#: gui/common/tooltips.js:340
 #, javascript-format
 msgid "Towers:  %(costs)s"
 msgstr "Torens: %(costs)s"
 
-#: gui/common/tooltips.js:342
+#: gui/common/tooltips.js:356
 #, javascript-format
 msgid "%(label)s %(populationBonus)s"
 msgstr "%(label)s %(populationBonus)s"
 
-#: gui/common/tooltips.js:343
+#: gui/common/tooltips.js:357
 msgid "Population Bonus:"
 msgstr "Bevolkingsbonus"
 
-#: gui/common/tooltips.js:361
+#: gui/common/tooltips.js:375
 msgid "Insufficient resources:"
 msgstr "Onvoldoende grondstoffen:"
 
-#: gui/common/tooltips.js:369
+#: gui/common/tooltips.js:383
 msgid "Speed:"
 msgstr "Snelheid:"
 
-#: gui/common/tooltips.js:372 gui/common/tooltips.js:374
+#: gui/common/tooltips.js:386 gui/common/tooltips.js:388
 #, javascript-format
 msgid "%(speed)s %(movementType)s"
 msgstr "%(speed)s %(movementType)s"
 
-#: gui/common/tooltips.js:372
+#: gui/common/tooltips.js:386
 msgid "Walk"
 msgstr "Wandelen"
 
-#: gui/common/tooltips.js:374
+#: gui/common/tooltips.js:388
 msgid "Run"
 msgstr "Lopen"
 
-#: gui/common/tooltips.js:376
+#: gui/common/tooltips.js:390
 #, javascript-format
 msgid "%(label)s %(speeds)s"
 msgstr "%(label)s %(speeds)s"
 
-#: gui/common/tooltips.js:385
+#: gui/common/tooltips.js:399 gui/common/tooltips.js:405
+#: gui/common/tooltips.js:410
+#, javascript-format
+msgid "%(label)s %(val)s %(unit)s"
+msgstr "%(label)s %(val)s %(unit)s"
+
+#: gui/common/tooltips.js:400
+msgid "Heal:"
+msgstr "Genezing:"
+
+#. Translation: Short for Health Points (that are healed in one healing
+#. action)
+#: gui/common/tooltips.js:403
+msgid "HP"
+msgstr "HP"
+
+#: gui/common/tooltips.js:425
 #, javascript-format
 msgid "%(specificName)s (%(genericName)s)"
 msgstr "%(specificName)s (%(genericName)s)"
 
-#: gui/common/tooltips.js:395
+#: gui/common/tooltips.js:435
 msgid "???"
 msgstr "???"
 
-#: gui/common/tooltips.js:425
+#: gui/common/tooltips.js:465
 msgid "Classes:"
 msgstr "Klasse"
 
@@ -540,7 +565,7 @@ msgid "No"
 msgstr "Nee"
 
 #: gui/msgbox/msgbox.js:44 gui/pregame/mainmenu.js:158
-#: gui/splashscreen/splashscreen.xml:(caption):27
+#: gui/splashscreen/splashscreen.xml:(caption):22
 msgid "OK"
 msgstr "OK"
 
@@ -892,7 +917,7 @@ msgstr "Start de spellobby. \\[NIET GEACTIVEERD IN DEZE VERSIE]"
 msgid "Technical Details"
 msgstr "Technische details"
 
-#: gui/pregame/mainmenu.js:307
+#: gui/pregame/mainmenu.js:307 gui/pregame/mainmenu.xml:(caption):156
 msgid "Manual"
 msgstr "Handleiding"
 
@@ -958,23 +983,179 @@ msgstr "Opgeslagen spel zal permanent overschreven worden, ben je zeker?"
 msgid "OVERWRITE SAVE"
 msgstr "OVERSCHRIJF OPGESLAGEN SPEL"
 
-#: gui/summary/summary.js:508
+#: gui/summary/layout.js:4 gui/summary/layout.js:21 gui/summary/layout.js:48
+#: gui/summary/layout.js:73 gui/summary/layout.js:98 gui/summary/layout.js:119
+#: gui/summary/summary.xml:(caption):103
+msgid "Player name"
+msgstr "Speler naam"
+
+#: gui/summary/layout.js:5
+msgid "Economy score"
+msgstr "Economische score"
+
+#: gui/summary/layout.js:6
+msgid "Military score"
+msgstr "Militaire score"
+
+#: gui/summary/layout.js:7
+msgid "Exploration score"
+msgstr "Ontdekkings-score"
+
+#: gui/summary/layout.js:8
+msgid "Total score"
+msgstr "Totale score"
+
+#: gui/summary/layout.js:22 gui/summary/layout.js:49 gui/summary/layout.js:78
+msgid "Total"
+msgstr "Totaal"
+
+#: gui/summary/layout.js:23
+msgid "Houses"
+msgstr "Huizen"
+
+#: gui/summary/layout.js:24
+msgid "Economic"
+msgstr "Economisch"
+
+#: gui/summary/layout.js:25
+msgid "Outposts"
+msgstr "Voorposten"
+
+#: gui/summary/layout.js:26
+msgid "Military"
+msgstr "Militair"
+
+#: gui/summary/layout.js:27
+msgid "Fortresses"
+msgstr "Vestingen"
+
+#: gui/summary/layout.js:28
+msgid "Civ centers"
+msgstr "Beschavingscentra"
+
+#: gui/summary/layout.js:29
+msgid "Wonders"
+msgstr "Wonderen"
+
+#: gui/summary/layout.js:32
+msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
+msgstr "Gebouwstatistieken (Gebouwd / Verloren / Vernietigd)"
+
+#: gui/summary/layout.js:50
+msgid "Infantry"
+msgstr "Infanterie"
+
+#: gui/summary/layout.js:51
+msgid "Worker"
+msgstr "Arbeider"
+
+#: gui/summary/layout.js:52
+msgid "Cavalry"
+msgstr "Cavalerie"
+
+#: gui/summary/layout.js:53
+msgid "Champion"
+msgstr "Kampioen"
+
+#: gui/summary/layout.js:55
+msgid "Navy"
+msgstr "Marine"
+
+#: gui/summary/layout.js:58
+msgid "Units Statistics (Trained / Lost / Killed)"
+msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
+
+#: gui/summary/layout.js:74
+msgid "Food"
+msgstr "voedsel"
+
+#: gui/summary/layout.js:75
+msgid "Wood"
+msgstr "hout"
+
+#: gui/summary/layout.js:76
+msgid "Stone"
+msgstr "steen"
+
+#: gui/summary/layout.js:77
+msgid "Metal"
+msgstr "metaal"
+
+#: gui/summary/layout.js:79
+msgid "Treasures collected"
+msgstr "Schatten verzameld"
+
+#: gui/summary/layout.js:80
+msgid "Tributes (Sent / Received)"
+msgstr "Donaties (Verzonden / Gekregen)"
+
+#: gui/summary/layout.js:83
+msgid "Resource Statistics (Gathered / Used)"
+msgstr "Grondstofstatistieken (verzameld/gebruikt)"
+
+#: gui/summary/layout.js:99
+msgid "Food exchanged"
+msgstr "Voedsel gewisseld"
+
+#: gui/summary/layout.js:100
+msgid "Wood exchanged"
+msgstr "Hout gewisseld"
+
+#: gui/summary/layout.js:101
+msgid "Stone exchanged"
+msgstr "Steen gewisseld"
+
+#: gui/summary/layout.js:102
+msgid "Metal exchanged"
+msgstr "Metaal gewisseld"
+
+#: gui/summary/layout.js:103
+msgid "Barter efficiency"
+msgstr "Handel-efficiëntie"
+
+#: gui/summary/layout.js:104
+msgid "Trade income"
+msgstr "Handel inkomsten"
+
+#: gui/summary/layout.js:120
+msgid ""
+"Vegetarian\n"
+"ratio"
+msgstr "Vegetarische\nratio"
+
+#: gui/summary/layout.js:121
+msgid "Feminisation"
+msgstr "Vervrouwe-lijking"
+
+#: gui/summary/layout.js:122
+msgid ""
+"Kill / Death\n"
+"ratio"
+msgstr "Vermoord /Gestorven \nratio"
+
+#: gui/summary/layout.js:123
+msgid ""
+"Map\n"
+"exploration"
+msgstr "Kaart\nverkenning"
+
+#: gui/summary/layout.js:255
+msgid "Team total"
+msgstr "Team totaal"
+
+#: gui/summary/summary.js:139
 msgid "Scenario"
 msgstr "Scenario"
 
-#: gui/summary/summary.js:510
+#: gui/summary/summary.js:141
 #, javascript-format
 msgid "Time elapsed: %(time)s"
 msgstr "Verstreken tijd: %(time)s"
 
-#: gui/summary/summary.js:531
+#: gui/summary/summary.js:162
 #, javascript-format
 msgid "%(mapName)s - %(mapType)s"
 msgstr "%(mapName)s - %(mapType)s"
-
-#: gui/summary/summary.js:809
-msgid "Team total"
-msgstr "Team totaal"
 
 #: gui/civinfo/civinfo.xml:(caption):16
 msgid "Civilizations"
@@ -990,7 +1171,7 @@ msgstr "Sluiten"
 
 #: gui/locale/locale.xml:(caption):14
 #: gui/locale/locale_advanced.xml:(caption):14
-#: gui/pregame/mainmenu.xml:(caption):286
+#: gui/pregame/mainmenu.xml:(caption):346
 msgid "Language"
 msgstr "Taal"
 
@@ -1108,17 +1289,17 @@ msgstr "Anonieme feedback is momenteel geactiveerd."
 msgid "Status: $status."
 msgstr "Status: $status."
 
-#: gui/pregame/mainmenu.xml:486
+#: gui/pregame/mainmenu.xml:528
 msgid "Alpha XVII: Quercus"
 msgstr "Alpha XVII: Quercus"
 
-#: gui/pregame/mainmenu.xml:488
+#: gui/pregame/mainmenu.xml:530
 msgid ""
 "WARNING: This is an early development version of the game. Many features "
 "have not been added yet."
 msgstr "LET OP: Dit spel is nog volop in ontwikkeling. Vele functies zijn nog niet geïmplementeerd."
 
-#: gui/pregame/mainmenu.xml:490
+#: gui/pregame/mainmenu.xml:532
 msgid "Get involved at: play0ad.com"
 msgstr "Help mee op: play0ad.com"
 
@@ -1130,178 +1311,192 @@ msgstr "Feedback inschakelen"
 msgid "Disable Feedback"
 msgstr "Feedback uitschakelen"
 
-#: gui/pregame/mainmenu.xml:(caption):155
+#: gui/pregame/mainmenu.xml:(caption):173
+msgid "Structure Tree"
+msgstr "Gebouwenboom"
+
+#: gui/pregame/mainmenu.xml:(caption):190
+msgid "History"
+msgstr "Geschiedenis"
+
+#: gui/pregame/mainmenu.xml:(caption):215
 msgid "Matches"
 msgstr "Matches"
 
-#: gui/pregame/mainmenu.xml:(caption):169
+#: gui/pregame/mainmenu.xml:(caption):229
 msgid "Campaigns"
 msgstr "Veldtochten"
 
-#: gui/pregame/mainmenu.xml:(caption):186 gui/savedgames/load.xml:(caption):15
+#: gui/pregame/mainmenu.xml:(caption):246 gui/savedgames/load.xml:(caption):15
 msgid "Load Game"
 msgstr "Laad spel"
 
 #. Join a game by specifying the host's IP address.
-#: gui/pregame/mainmenu.xml:(caption):209
+#: gui/pregame/mainmenu.xml:(caption):269
 msgid "Join Game"
 msgstr "Join spel"
 
-#: gui/pregame/mainmenu.xml:(caption):224
+#: gui/pregame/mainmenu.xml:(caption):284
 msgid "Host Game"
 msgstr "Host een spel"
 
-#: gui/pregame/mainmenu.xml:(caption):239
+#: gui/pregame/mainmenu.xml:(caption):299
 msgid "Game Lobby"
 msgstr "Spellobby"
 
-#: gui/pregame/mainmenu.xml:(caption):269
+#: gui/pregame/mainmenu.xml:(caption):329
 msgid "Options"
 msgstr "Instellingen"
 
-#: gui/pregame/mainmenu.xml:(caption):302
+#: gui/pregame/mainmenu.xml:(caption):362
 msgid "Scenario Editor"
 msgstr "Scenario bewerker"
 
-#: gui/pregame/mainmenu.xml:(caption):315
+#: gui/pregame/mainmenu.xml:(caption):375
 msgid "Welcome Screen"
 msgstr "Welkomstscherm"
 
-#: gui/pregame/mainmenu.xml:(caption):330
+#: gui/pregame/mainmenu.xml:(caption):390
 msgid "Mod Selection"
 msgstr "Mod selectie"
 
-#: gui/pregame/mainmenu.xml:(caption):384
+#: gui/pregame/mainmenu.xml:(caption):445
 msgid "Learn To Play"
 msgstr "Spelhandleiding"
 
-#: gui/pregame/mainmenu.xml:(caption):401
+#: gui/pregame/mainmenu.xml:(caption):460
 msgid "Single Player"
 msgstr "Singleplayer"
 
-#: gui/pregame/mainmenu.xml:(caption):416
+#: gui/pregame/mainmenu.xml:(caption):475
 msgid "Multiplayer"
 msgstr "Multiplayer"
 
-#: gui/pregame/mainmenu.xml:(caption):431
+#: gui/pregame/mainmenu.xml:(caption):490
 msgid "Tools & Options"
 msgstr "Hulpmiddelen & opties"
 
-#: gui/pregame/mainmenu.xml:(caption):446
-msgid "History"
-msgstr "Geschiedenis"
-
-#: gui/pregame/mainmenu.xml:(caption):463
+#: gui/pregame/mainmenu.xml:(caption):505
 msgid "Exit"
 msgstr "Stop"
 
-#: gui/pregame/mainmenu.xml:(caption):500
+#: gui/pregame/mainmenu.xml:(caption):542
 msgid "Help with the Translation!"
 msgstr "Help met de vertaling!"
 
-#: gui/pregame/mainmenu.xml:(caption):512
+#: gui/pregame/mainmenu.xml:(caption):554
 msgid "Website"
 msgstr "Website"
 
-#: gui/pregame/mainmenu.xml:(caption):524
+#: gui/pregame/mainmenu.xml:(caption):566
 msgid "Chat"
 msgstr "Chat"
 
-#: gui/pregame/mainmenu.xml:(caption):536
+#: gui/pregame/mainmenu.xml:(caption):578
 msgid "Report a Bug"
 msgstr "Meld een probleem"
 
-#: gui/pregame/mainmenu.xml:(caption):565
+#: gui/pregame/mainmenu.xml:(caption):607
 msgid "WILDFIRE GAMES"
 msgstr "WILDFIRE GAMES"
 
-#: gui/pregame/mainmenu.xml:(tooltip):156
+#: gui/pregame/mainmenu.xml:(tooltip):157
+msgid "Open the 0 A.D. Game Manual."
+msgstr "Open de handleiding voor 0 A.D."
+
+#: gui/pregame/mainmenu.xml:(tooltip):174
+msgid "View the structure tree of civilizations featured in 0 A.D."
+msgstr "Leer meer over de gebouwen van de verschillende beschavingen in 0 A.D."
+
+#: gui/pregame/mainmenu.xml:(tooltip):191
+msgid "Learn about the many civilizations featured in 0 A.D."
+msgstr "Leer meer over de beschavingen in 0 A.D."
+
+#: gui/pregame/mainmenu.xml:(tooltip):216
 msgid "Click here to start a new single player game."
 msgstr "Klik om een nieuw singleplayer spel te starten."
 
-#: gui/pregame/mainmenu.xml:(tooltip):170
+#: gui/pregame/mainmenu.xml:(tooltip):230
 msgid ""
 "Relive history through historical military campaigns. \\[NOT YET "
 "IMPLEMENTED]"
 msgstr "Herbeleef de geschiedenis door middel van historische militaire veldtochten. \\[NOG NIET GEÏMPLEMENTEERD]"
 
-#: gui/pregame/mainmenu.xml:(tooltip):187
+#: gui/pregame/mainmenu.xml:(tooltip):247
 msgid "Click here to load a saved game."
 msgstr "Klik hier om een opgeslagen spel te laden."
 
-#: gui/pregame/mainmenu.xml:(tooltip):210
+#: gui/pregame/mainmenu.xml:(tooltip):270
 msgid "Joining an existing multiplayer game."
 msgstr "Sluit je aan bij een bestaand multiplayer spel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):225
+#: gui/pregame/mainmenu.xml:(tooltip):285
 msgid "Host a multiplayer game.\\n\\nRequires UDP port 20595 to be open."
 msgstr "Host een nieuw multiplayer spel.\\n\\nUDP poort 20595 moet opengesteld worden."
 
-#: gui/pregame/mainmenu.xml:(tooltip):240
+#: gui/pregame/mainmenu.xml:(tooltip):300
 msgid "Launch the multiplayer lobby."
 msgstr "Start de spellobby"
 
-#: gui/pregame/mainmenu.xml:(tooltip):270
+#: gui/pregame/mainmenu.xml:(tooltip):330
 msgid "Adjust game settings."
 msgstr "Wijzig de instellingen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):287
+#: gui/pregame/mainmenu.xml:(tooltip):347
 msgid "Choose the language of the game."
 msgstr "Kies de taal van het spel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):303
+#: gui/pregame/mainmenu.xml:(tooltip):363
 msgid ""
 "Open the Atlas Scenario Editor in a new window. You can run this more "
 "reliably by starting the game with the command-line argument \"-editor\"."
 msgstr "Open de Atlas scenario bewerker in een nieuw venster. Je kan dit ook starten met de opdrachtpromt optie \"-editor\" op een meer betrouwbare manier."
 
-#: gui/pregame/mainmenu.xml:(tooltip):316
+#: gui/pregame/mainmenu.xml:(tooltip):376
 msgid "Show the Welcome Screen. Useful if you hid it by mistake."
 msgstr "Toon het welkomstscherm. Nuttig als je het per ongeluk verborgen had."
 
-#: gui/pregame/mainmenu.xml:(tooltip):331
+#: gui/pregame/mainmenu.xml:(tooltip):391
 msgid "Select mods to use."
 msgstr "Selecteer te gebruiken mods."
 
-#: gui/pregame/mainmenu.xml:(tooltip):385
-msgid "Open the 0 A.D. Game Manual."
-msgstr "Open de handleiding voor 0 A.D."
+#: gui/pregame/mainmenu.xml:(tooltip):446
+msgid ""
+"Learn how to play, discover the technology trees, and the history behind the"
+" civilizations"
+msgstr "Leer het spel kennen, ontdek de technologiebomen en de geschiedenis achter de beschavingen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):402
+#: gui/pregame/mainmenu.xml:(tooltip):461
 msgid "Challenge the computer player to a single player match."
 msgstr "Daag de computer uit voor een gevecht."
 
-#: gui/pregame/mainmenu.xml:(tooltip):417
+#: gui/pregame/mainmenu.xml:(tooltip):476
 msgid "Fight against one or more human players in a multiplayer game."
 msgstr "Daag één of meerdere mensen uit voor een netwerk spel."
 
-#: gui/pregame/mainmenu.xml:(tooltip):432
+#: gui/pregame/mainmenu.xml:(tooltip):491
 msgid "Game options and scenario design tools."
 msgstr "Spelinstellingen en scenario-ontwerphulpmiddelen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):447
-msgid "Learn about the many civilizations featured in 0 A.D."
-msgstr "Leer meer over de beschavingen in 0 A.D."
-
-#: gui/pregame/mainmenu.xml:(tooltip):464
+#: gui/pregame/mainmenu.xml:(tooltip):506
 msgid "Exits the game."
 msgstr "Stopt het spel"
 
-#: gui/pregame/mainmenu.xml:(tooltip):501
+#: gui/pregame/mainmenu.xml:(tooltip):543
 msgid "Click to open the 0 A.D. translate page in your browser."
 msgstr "Klik om de 0 A.D. vertaalpagina te openen in je browser."
 
-#: gui/pregame/mainmenu.xml:(tooltip):513
+#: gui/pregame/mainmenu.xml:(tooltip):555
 msgid "Click to open play0ad.com in your web browser."
 msgstr "Klik om play0ad.com in je webbrowser te openen."
 
-#: gui/pregame/mainmenu.xml:(tooltip):525
+#: gui/pregame/mainmenu.xml:(tooltip):567
 msgid ""
 "Click to open the 0 A.D. IRC chat in your browser. (#0ad on "
 "webchat.quakenet.org)"
 msgstr "Klik om de IRC chat in je webbrowser te openen. (#0ad op webchat.quakenet.org)"
 
-#: gui/pregame/mainmenu.xml:(tooltip):537
+#: gui/pregame/mainmenu.xml:(tooltip):579
 msgid "Click to visit 0 A.D. Trac to report a bug, crash, or error."
 msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander probleem te melden."
 
@@ -1309,7 +1504,7 @@ msgstr "Klik om de 0 A.D. Trac pagina te bezoeken en zo een bug, crash of ander 
 msgid "Delete"
 msgstr "Verwijder"
 
-#: gui/savedgames/load.xml:(caption):35
+#: gui/savedgames/load.xml:(caption):42
 msgid "Load"
 msgstr "Laad"
 
@@ -1322,227 +1517,77 @@ msgid "Description:"
 msgstr "Omschrijving:"
 
 #: gui/splashscreen/splashscreen.xml:(caption):12
-msgid "Welcome to 0 A.D. !"
-msgstr "Welkom bij 0 A.D. !"
+msgid "Welcome!"
+msgstr "Welkom!"
 
-#: gui/splashscreen/splashscreen.xml:(caption):20
+#: gui/splashscreen/splashscreen.xml:(caption):17
 msgid "Show this message in the future"
 msgstr "Toon dit bericht ook in de toekomst."
 
-#: gui/splashscreen/splashscreen.xml:(caption):38
-msgid "Known issues (web)"
+#: gui/splashscreen/splashscreen.xml:(caption):33
+msgid "Known Issues (web)"
 msgstr "Gekende problemen (web)"
 
-#: gui/summary/summary.xml:(caption):19
+#: gui/summary/summary.xml:(caption):21
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: gui/summary/summary.xml:(caption):59
+#: gui/summary/summary.xml:(caption):61
 msgid "Score"
 msgstr "Score"
 
-#: gui/summary/summary.xml:(caption):66
+#: gui/summary/summary.xml:(caption):68
 msgid "Buildings"
 msgstr "Gebouwen"
 
-#: gui/summary/summary.xml:(caption):73
+#: gui/summary/summary.xml:(caption):75
 msgid "Units"
 msgstr "Eenheden"
 
-#: gui/summary/summary.xml:(caption):80
+#: gui/summary/summary.xml:(caption):82
 msgid "Resources"
 msgstr "Grondstoffen"
 
-#: gui/summary/summary.xml:(caption):87
+#: gui/summary/summary.xml:(caption):89
 msgid "Market"
 msgstr "Markt"
 
-#: gui/summary/summary.xml:(caption):94
+#: gui/summary/summary.xml:(caption):96
 msgid "Miscellaneous"
 msgstr "Diversen"
 
-#: gui/summary/summary.xml:(caption):102 gui/summary/summary.xml:(caption):224
-#: gui/summary/summary.xml:(caption):398 gui/summary/summary.xml:(caption):559
-#: gui/summary/summary.xml:(caption):720 gui/summary/summary.xml:(caption):866
-msgid "Player name"
-msgstr "Speler naam"
-
-#: gui/summary/summary.xml:(caption):105
-msgid "Economy score"
-msgstr "Economische score"
-
-#: gui/summary/summary.xml:(caption):108
-msgid "Military score"
-msgstr "Militaire score"
-
-#: gui/summary/summary.xml:(caption):111
-msgid "Exploration score"
-msgstr "Ontdekkings-score"
-
-#: gui/summary/summary.xml:(caption):114
-msgid "Total score"
-msgstr "Totale score"
-
-#: gui/summary/summary.xml:(caption):227
-msgid "Buildings Statistics (Constructed / Lost / Destroyed)"
-msgstr "Gebouwstatistieken (Gebouwd / Verloren / Vernietigd)"
-
-#: gui/summary/summary.xml:(caption):230 gui/summary/summary.xml:(caption):404
-#: gui/summary/summary.xml:(caption):577
-msgid "Total"
-msgstr "Totaal"
-
-#: gui/summary/summary.xml:(caption):233
-msgid "Houses"
-msgstr "Huizen"
-
-#: gui/summary/summary.xml:(caption):236
-msgid "Economic"
-msgstr "Economisch"
-
-#: gui/summary/summary.xml:(caption):239
-msgid "Outposts"
-msgstr "Voorposten"
-
-#: gui/summary/summary.xml:(caption):242
-msgid "Military"
-msgstr "Militair"
-
-#: gui/summary/summary.xml:(caption):245
-msgid "Fortresses"
-msgstr "Vestingen"
-
-#: gui/summary/summary.xml:(caption):248
-msgid "Civ Centers"
-msgstr "Beschavingscentra"
-
-#: gui/summary/summary.xml:(caption):251
-msgid "Wonders"
-msgstr "Wonderen"
-
-#: gui/summary/summary.xml:(caption):401
-msgid "Units Statistics (Trained / Lost / Killed)"
-msgstr "Eenhedenstatistieken (rekruteringen / verloren / vermoord)"
-
-#: gui/summary/summary.xml:(caption):407
-msgid "Infantry"
-msgstr "Infanterie"
-
-#: gui/summary/summary.xml:(caption):410
-msgid "Worker"
-msgstr "Arbeider"
-
-#: gui/summary/summary.xml:(caption):413
-msgid "Cavalry"
-msgstr "Cavalerie"
-
-#: gui/summary/summary.xml:(caption):416
-msgid "Champion"
-msgstr "Kampioen"
-
-#: gui/summary/summary.xml:(caption):422
-msgid "Navy"
-msgstr "Marine"
-
-#: gui/summary/summary.xml:(caption):562
-msgid "Resource Statistics (Gathered / Used)"
-msgstr "Grondstofstatistieken (verzameld/gebruikt)"
-
-#: gui/summary/summary.xml:(caption):565
-msgid "Food"
-msgstr "voedsel"
-
-#: gui/summary/summary.xml:(caption):568
-msgid "Wood"
-msgstr "hout"
-
-#: gui/summary/summary.xml:(caption):571
-msgid "Stone"
-msgstr "steen"
-
-#: gui/summary/summary.xml:(caption):574
-msgid "Metal"
-msgstr "metaal"
-
-#: gui/summary/summary.xml:(caption):580
-msgid "Treasures collected"
-msgstr "Schatten verzameld"
-
-#: gui/summary/summary.xml:(caption):583
-msgid "Tributes (Sent / Received)"
-msgstr "Donaties (Verzonden / Gekregen)"
-
-#: gui/summary/summary.xml:(caption):723
-msgid "Food exchanged"
-msgstr "Voedsel gewisseld"
-
-#: gui/summary/summary.xml:(caption):726
-msgid "Wood exchanged"
-msgstr "Hout gewisseld"
-
-#: gui/summary/summary.xml:(caption):729
-msgid "Stone exchanged"
-msgstr "Steen gewisseld"
-
-#: gui/summary/summary.xml:(caption):732
-msgid "Metal exchanged"
-msgstr "Metaal gewisseld"
-
-#: gui/summary/summary.xml:(caption):735
-msgid "Barter efficiency"
-msgstr "Handel-efficiëntie"
-
-#: gui/summary/summary.xml:(caption):738
-msgid "Trade income"
-msgstr "Handel inkomsten"
-
-#: gui/summary/summary.xml:(caption):869
-msgid "Vegetarian\\nratio"
-msgstr "Vegetatische\\nratio"
-
-#: gui/summary/summary.xml:(caption):872
-msgid "Feminisation"
-msgstr "Vervrouwe-lijking"
-
-#: gui/summary/summary.xml:(caption):875
-msgid "Kill / Death\\nratio"
-msgstr "Vermoord /Gestorven\\nratio"
-
-#: gui/summary/summary.xml:(caption):878
-msgid "Map\\nexploration"
-msgstr "Kaartverkenning"
-
-#: gui/summary/summary.xml:(caption):985
+#: gui/summary/summary.xml:(caption):157
 msgid "Continue"
 msgstr "Verder"
 
-#: gui/splashscreen/splashscreen.txt:1
-msgid "[font=\"sans-bold-16\"]Thank you for installing 0 A.D.!"
-msgstr "[font=\"sans-bold-16\"]Bedankt voor het installeren van 0 A.D.!"
-
 #: gui/splashscreen/splashscreen.txt:2
+msgid ""
+"[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"]Bedankt voor het installeren van 0 A.D. Empires Ascendant!"
+
+#: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
 msgstr "[font=\"sans-16\"]"
 
-#: gui/splashscreen/splashscreen.txt:3
+#: gui/splashscreen/splashscreen.txt:4
 msgid ""
-"[icon=\"constructionIcon\"]  This is an early experimental version of the "
-"game. Features are missing and it contains bugs."
-msgstr "[icon=\"constructionIcon\"]  Dit is een vroege, experimentele versie van het spel. \nEr zijn zaken nog niet geïmplementeerd, en ook verschillende problemen."
+"[imgleft=\"constructionIcon\"]This game is still in development. Features "
+"are missing and it contains bugs."
+msgstr "[icon=\"constructionIcon\"]  Dit spel is nog steeds in ontwikkeling. Er zijn zaken nog niet geïmplementeerd, en ook verschillende problemen."
 
-#: gui/splashscreen/splashscreen.txt:5
-msgid "[icon=\"iconLag\"]  The game lags when many units are moving."
+#: gui/splashscreen/splashscreen.txt:6
+msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
 msgstr "[icon=\"iconLag\"]  Het spel wordt erg traag wanneer er veel eenheden samen bewegen."
 
-#: gui/splashscreen/splashscreen.txt:7
-msgid "[icon=\"iconMap\"]  Large maps can cause problems."
-msgstr "[icon=\"iconMap\"]  Grote kaarten veroorzaken veel problemen."
-
 #: gui/splashscreen/splashscreen.txt:9
+msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
+msgstr "[icon=\"iconMap\"]  Grote kaarten kunnen problemen veroorzaken."
+
+#: gui/splashscreen/splashscreen.txt:12
 msgid ""
-"[icon=\"iconFormation\"]  We disabled formations until we find out how to "
-"make them less laggy, more fun to play, and historically accurate."
-msgstr "[icon=\"iconFormation\"] We hebben formaties uitgeschakeld totdat we uitvinden hoe we deze minder lagg kunnen laten produceren, leuker om te spelen laten zijn en meer historisch accuraat kunnen maken."
+"[imgleft=\"iconFormation\"]Formations are a work in progress, but you can "
+"toggle forming and disbanding formations as desired."
+msgstr "[imgleft=\"iconFormation\"]Formaties zijn nog in volle ontwikkeling, maar je kan formaties aan/uit zetten naar wens."
 
 #: gui/text/tips/army_camp.txt:1
 msgid "ROMAN ARMY CAMP"

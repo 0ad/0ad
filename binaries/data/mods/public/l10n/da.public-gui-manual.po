@@ -5,13 +5,13 @@
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014
 # Mads Overgård Henningsen <mads.overgaard@live.dk>, 2014
-# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
+# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-02-08 22:08+0100\n"
+"PO-Revision-Date: 2015-02-09 22:34+0000\n"
+"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -234,13 +234,13 @@ msgstr "Tre venstre klik \\[på enhed]: Vælg alle dine enheder af samme slags o
 msgid ""
 "Alt + Double Left Click \\[on unit]: Select all your units of the same kind "
 "on the entire map (even if they have different ranks)"
-msgstr ""
+msgstr "Alt + Dobbelt-Venstreklik \\[på enhed]: Vælg alle dine enheder af samme slags på hele kortet (Selv hvis de har forskellig rank)"
 
 #: gui/manual/intro.txt:52
 msgid ""
 "Alt + Triple Left Click \\[on unit]: Select all your units of the same kind "
 "and rank on the entire map"
-msgstr ""
+msgstr "Alt + Tredobbelt-ventreklik \\[på enhed]: Vælg af dine enheder af samme slags og rank på hele kortet"
 
 #: gui/manual/intro.txt:53
 msgid "Shift + F5: Quicksave"
@@ -414,19 +414,19 @@ msgstr "[font=\"sans-bold-14\"]Kamerabevægelse"
 
 #: gui/manual/intro.txt:93
 msgid "[font=\"sans-14\"]W or \\[up]: Pan screen up"
-msgstr ""
+msgstr "[font=\"sans-14\"]W eller \\[op]: Panorér skærm opad"
 
 #: gui/manual/intro.txt:94
 msgid "S or \\[down]: Pan screen down"
-msgstr ""
+msgstr "S eller \\[ned]: Panorér skærm ned"
 
 #: gui/manual/intro.txt:95
 msgid "A or \\[left]: Pan screen left"
-msgstr ""
+msgstr "A eller \\[venstre]: Panorér skærm mod venstre"
 
 #: gui/manual/intro.txt:96
 msgid "D or \\[right]: Pan screen right"
-msgstr ""
+msgstr "D eller \\[højre]: Panorér skærm mod højre"
 
 #: gui/manual/intro.txt:97
 msgid "Ctrl + W or \\[up]: Rotate camera to look upward"
@@ -506,6 +506,19 @@ msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "Venstretræk: Roter bygning med musen (fundamentet vil blive placeret når knappen lettes)"
+
+#: gui/manual/intro.txt:117
+msgid "[font=\"sans-bold-14\"]When loading a saved game"
+msgstr "[font=\"sans-bold-14\"]Når der indlæses et gemt spil"
+
+#: gui/manual/intro.txt:118
+msgid ""
+"[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
+msgstr "[font=\"sans-14\"]Slet: Slet det valgte gemte spil "
+
+#: gui/manual/intro.txt:119
+msgid "Shift: do not ask confirmation when deleting a saved game"
+msgstr "Shift: Spørg ikke om bekræftelse, når der slettes et gemt spil"
 
 #: gui/manual/userreport.txt:1
 msgid ""
