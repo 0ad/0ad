@@ -519,7 +519,7 @@ public:
 				it->second.z = entity_pos_t::Zero();
 			}
 
-			m_ModifiedEntities.push_back(ent);
+			RequestVisibilityUpdate(ent);
 
 			break;
 		}
