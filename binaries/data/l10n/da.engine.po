@@ -5,13 +5,13 @@
 # Translators:
 # Wachsmuth <emilistrupkarlsmose@gmail.com>, 2014-2015
 # Fijure <mathiasik@live.dk>, 2014
-# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014
+# Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:15+0100\n"
-"PO-Revision-Date: 2015-02-07 16:31+0000\n"
-"Last-Translator: Wachsmuth <emilistrupkarlsmose@gmail.com>\n"
+"PO-Revision-Date: 2015-02-09 22:34+0000\n"
+"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -59,7 +59,7 @@ msgstr "Registrering ikke autoriseret"
 
 #: lobby/XmppClient.cpp:458
 msgid "Registration bad request"
-msgstr ""
+msgstr "Registrering dårlig anmodning"
 
 #: lobby/XmppClient.cpp:459
 msgid "Registration forbidden"
@@ -71,7 +71,7 @@ msgstr "Registrering kræves"
 
 #: lobby/XmppClient.cpp:461
 msgid "Registration unexpected request"
-msgstr ""
+msgstr "Registrering uventet anmodning"
 
 #: lobby/XmppClient.cpp:462
 msgid "Registration not allowed"
@@ -83,19 +83,19 @@ msgstr "Registrering ukendt fejl"
 
 #: lobby/XmppClient.cpp:736
 msgid "unknown subtype (see logs)"
-msgstr ""
+msgstr "Ukendt subtype (Se logs)"
 
 #: lobby/XmppClient.cpp:982
 msgid "Bad request"
-msgstr ""
+msgstr "Dårlig anmodning"
 
 #: lobby/XmppClient.cpp:983
 msgid "Player name already in use"
-msgstr ""
+msgstr "Spiller navn allerede i brug"
 
 #: lobby/XmppClient.cpp:984
 msgid "Feature not implemented"
-msgstr ""
+msgstr "Funktion ikke implementeret"
 
 #: lobby/XmppClient.cpp:985
 msgid "Forbidden"
@@ -103,19 +103,19 @@ msgstr "Forbudt"
 
 #: lobby/XmppClient.cpp:986
 msgid "Recipient or server gone"
-msgstr ""
+msgstr "Modtager eller server nede"
 
 #: lobby/XmppClient.cpp:987
 msgid "Internal server error"
-msgstr ""
+msgstr "Intern server fejl"
 
 #: lobby/XmppClient.cpp:988
 msgid "Item not found"
-msgstr ""
+msgstr "Element ikke fundet"
 
 #: lobby/XmppClient.cpp:989
 msgid "Jid malformed"
-msgstr ""
+msgstr "Jid misdannet"
 
 #: lobby/XmppClient.cpp:990
 msgid "Not acceptable"
@@ -143,31 +143,31 @@ msgstr "Modtager utilgængelig"
 
 #: lobby/XmppClient.cpp:996
 msgid "Redirect"
-msgstr ""
+msgstr "Omdirigere"
 
 #: lobby/XmppClient.cpp:998
 msgid "Remote server not found"
-msgstr ""
+msgstr "Fjern server ikke fundet"
 
 #: lobby/XmppClient.cpp:999
 msgid "Remote server timeout"
-msgstr ""
+msgstr "Fjern server timeout"
 
 #: lobby/XmppClient.cpp:1000
 msgid "Resource constraint"
-msgstr ""
+msgstr "Begrænset element"
 
 #: lobby/XmppClient.cpp:1001
 msgid "Service unavailable"
-msgstr ""
+msgstr "Service utilgængeligt"
 
 #: lobby/XmppClient.cpp:1002
 msgid "Subscription Required"
-msgstr ""
+msgstr "Abonnering krævet"
 
 #: lobby/XmppClient.cpp:1003
 msgid "Undefined condition"
-msgstr ""
+msgstr "Udefinérbar tilstand"
 
 #: lobby/XmppClient.cpp:1004
 msgid "Unexpected request"
@@ -189,4 +189,4 @@ msgstr "Spil gemt til '%s'"
 #: ps/Util.cpp:244 ps/Util.cpp:377
 #, c-format
 msgid "Screenshot written to '%s'"
-msgstr ""
+msgstr "Skræmbillede gemt i '%s'"

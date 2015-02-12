@@ -3,12 +3,12 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# Jeff Huang <s8321414@gmail.com>, 2014
+# Jeff Huang <s8321414@gmail.com>, 2014-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-14 09:50+0000\n"
+"POT-Creation-Date: 2015-02-08 22:08+0100\n"
+"PO-Revision-Date: 2015-02-10 08:01+0000\n"
 "Last-Translator: Jeff Huang <s8321414@gmail.com>\n"
 "Language-Team: Chinese (Taiwan) (http://www.transifex.com/projects/p/0ad/language/zh_TW/)\n"
 "MIME-Version: 1.0\n"
@@ -504,6 +504,19 @@ msgid ""
 "Left Drag: Rotate building using mouse (foundation will be placed on mouse "
 "release)"
 msgstr "左鍵拖曳：使用滑鼠旋轉建築物（地基會在滑鼠放開時放置）"
+
+#: gui/manual/intro.txt:117
+msgid "[font=\"sans-bold-14\"]When loading a saved game"
+msgstr "[font=\"sans-bold-14\"]當正在載入已儲存的遊戲時"
+
+#: gui/manual/intro.txt:118
+msgid ""
+"[font=\"sans-14\"]Delete: delete the selected saved game asking confirmation"
+msgstr "[font=\"sans-14\"]Delete：刪除選取的已儲存遊戲，刪除前會先詢問以確認"
+
+#: gui/manual/intro.txt:119
+msgid "Shift: do not ask confirmation when deleting a saved game"
+msgstr "Shift：在刪除已儲存的遊戲時不詢問就刪除"
 
 #: gui/manual/userreport.txt:1
 msgid ""
