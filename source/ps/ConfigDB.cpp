@@ -226,11 +226,11 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			return false;
 		}
 	}
-	
+
 	TConfigMap newMap;
 	char *filebuf = (char*)buffer.get();
 	char *filebufend = filebuf+buflen;
-	
+
 	bool quoted = false;
 	CStr header;
 	CStr name;
@@ -247,6 +247,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 
 		case ' ':
 		case '\r':
+		case '\t':
 			continue; // ignore
 
 		case '[':
@@ -300,8 +301,9 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 						--pos; // We should terminate the outer loop too
 					break;
 
-				case '\r':
 				case ' ':
+				case '\r':
+				case '\t':
 					break; // ignore
 
 				case ',':
@@ -327,7 +329,7 @@ bool CConfigDB::Reload(EConfigNamespace ns)
 			name.push_back(*pos);
 			continue;
 		}
-		
+
 		// Consume the rest of the line
 		while (pos < filebufend && *pos != '\n')
 			++pos;
