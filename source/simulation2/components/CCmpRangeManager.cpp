@@ -98,13 +98,38 @@ static u32 CalcSharedLosMask(std::vector<player_id_t> players)
 }
 
 /**
-* Computes the 2-bit visibility for one player, given the total 32-bit visibilities
-*/
+ * Returns shared 1-bit mask for given list of players.
+ */
+static u32 CalcSharedDirtyVisibilityMask(std::vector<player_id_t> players)
+{
+	u16 playerMask = 0;
+	for (size_t i = 0; i < players.size(); i++)
+	{
+		if (players[i] > 0 && players[i] <= 16)
+			playerMask |= (0x1 << (players[i] - 1));
+	}
+
+	return playerMask;
+}
+
+/**
+ * Computes the 2-bit visibility for one player, given the total 32-bit visibilities
+ */
 static inline u8 GetPlayerVisibility(u32 visibilities, player_id_t player)
 {
 	if (player > 0 && player <= 16)
 		return (visibilities >> (2 *(player-1))) & 0x3;
 	return 0;
+}
+
+/**
+ * Test whether the visibility is dirty for a given LoS tile and a given player
+ */
+static inline bool IsVisibilityDirty(u16 dirty, player_id_t player)
+{
+	if (player > 0 && player <= 16)
+		return (dirty >> (player - 1)) & 0x1;
+	return false;
 }
 
 /**
@@ -302,7 +327,7 @@ public:
 	// Cache for visibility tracking (not serialized)
 	i32 m_LosTilesPerSide;
 	bool m_GlobalVisibilityUpdate;
-	std::vector<u8> m_DirtyVisibility;
+	std::vector<u16> m_DirtyVisibility;
 	std::vector<std::set<entity_id_t> > m_LosTiles;
 	// List of entities that must be updated, regardless of the status of their tile
 	std::vector<entity_id_t> m_ModifiedEntities;
@@ -323,6 +348,8 @@ public:
 
 	// Shared LOS masks, one per player.
 	std::vector<u32> m_SharedLosMasks;
+	// Shared dirty visibility masks, one per player.
+	std::vector<u16> m_SharedDirtyVisibilityMasks;
 
 	// Cache explored vertices per player (not serialized)
 	u32 m_TotalInworldVertices;
@@ -351,6 +378,7 @@ public:
 		m_LosRevealAll.resize(MAX_LOS_PLAYER_ID+2,false);
 		m_LosRevealAll[0] = true;
 		m_SharedLosMasks.resize(MAX_LOS_PLAYER_ID+2,0);
+		m_SharedDirtyVisibilityMasks.resize(MAX_LOS_PLAYER_ID + 2, 0);
 
 		m_LosCircular = false;
 		m_TerrainVerticesPerSide = 0;
@@ -384,6 +412,7 @@ public:
 
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "los state", m_LosState);
 		SerializeVector<SerializeU32_Unbounded>()(serialize, "shared los masks", m_SharedLosMasks);
+		SerializeVector<SerializeU16_Unbounded>()(serialize, "shared dirty visibility masks", m_SharedDirtyVisibilityMasks);
 	}
 
 	virtual void Serialize(ISerializer& serialize)
@@ -1489,7 +1518,7 @@ public:
 		if (player <= 0)
 			return ComputeLosVisibility(ent, player);
 
-		if (m_DirtyVisibility[n])
+		if (IsVisibilityDirty(m_DirtyVisibility[n], player))
 			return ComputeLosVisibility(ent, player);
 
 		if (std::find(m_ModifiedEntities.begin(), m_ModifiedEntities.end(), entId) != m_ModifiedEntities.end())
@@ -1544,28 +1573,27 @@ public:
 	{
 		PROFILE("UpdateVisibilityData");
 		
-		for (i32 n = 0; n < m_LosTilesPerSide*m_LosTilesPerSide; ++n)
+		for (i32 n = 0; n < m_LosTilesPerSide * m_LosTilesPerSide; ++n)
 		{
-			if (m_DirtyVisibility[n] == 1 || m_GlobalVisibilityUpdate)
+			for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
 			{
-				for (std::set<entity_id_t>::iterator it = m_LosTiles[n].begin();
-					it != m_LosTiles[n].end();
-					++it)
+				if (IsVisibilityDirty(m_DirtyVisibility[n], player) || m_GlobalVisibilityUpdate)
 				{
-					UpdateVisibility(*it);
+					for (auto& ent : m_LosTiles[n])
+						UpdateVisibility(ent, player);
 				}
-				m_DirtyVisibility[n] = 0;
 			}
+			m_DirtyVisibility[n] = 0;
 		}
 
-		for (std::vector<entity_id_t>::iterator it = m_ModifiedEntities.begin(); it != m_ModifiedEntities.end(); ++it)
+		// Don't bother updating modified entities if the update was global
+		if (!m_GlobalVisibilityUpdate)
 		{
-			// Don't bother updating if we already did it in a global update
-			if (!m_GlobalVisibilityUpdate)
-				UpdateVisibility(*it);
+			for (auto& ent : m_ModifiedEntities)
+				UpdateVisibility(ent);
 		}
-		m_ModifiedEntities.clear();
 
+		m_ModifiedEntities.clear();
 		m_GlobalVisibilityUpdate = false;
 	}
 
@@ -1575,40 +1603,28 @@ public:
 			m_ModifiedEntities.push_back(ent);
 	}
 
-	void UpdateVisibility(entity_id_t ent)
+	void UpdateVisibility(entity_id_t ent, player_id_t player)
 	{
-		// Warning: Code related to fogging (like posting VisibilityChanged messages) 
-		// shouldn't be invoked while keeping an iterator to an element of m_EntityData.
-		// Otherwise, by deleting mirage entities and so on, 
-		// that code will change the indexes in the map, leading to segfaults. 
 		EntityMap<EntityData>::iterator itEnts = m_EntityData.find(ent);
 		if (itEnts == m_EntityData.end())
 			return;
 
-		// So we just remember what visibilities to update and do that later.
-		std::vector<u8> oldVisibilities;
-		std::vector<u8> newVisibilities;
+		u8 oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
+		u8 newVis = ComputeLosVisibility(itEnts->first, player);
+
+		if (oldVis == newVis)
+			return;
 		
-		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
-		{
-			u8 oldVis = GetPlayerVisibility(itEnts->second.visibilities, player);
-			u8 newVis = ComputeLosVisibility(itEnts->first, player);
-			
-			oldVisibilities.push_back(oldVis);
-			newVisibilities.push_back(newVis);
+		itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2 * (player - 1))) | (newVis << 2 * (player - 1));
 
-			if (oldVis != newVis)
-				itEnts->second.visibilities = (itEnts->second.visibilities & ~(0x3 << 2*(player-1))) | (newVis << 2*(player-1));
-		}
+		CMessageVisibilityChanged msg(player, ent, oldVis, newVis);
+		GetSimContext().GetComponentManager().PostMessage(ent, msg);
+	}
 
-		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID+1; ++player)
-		{
-			if (oldVisibilities[player-1] == newVisibilities[player-1])
-				continue;
-
-			CMessageVisibilityChanged msg(player, ent, oldVisibilities[player-1], newVisibilities[player-1]);
-			GetSimContext().GetComponentManager().PostMessage(ent, msg);
-		}
+	void UpdateVisibility(entity_id_t ent)
+	{		
+		for (player_id_t player = 1; player < MAX_LOS_PLAYER_ID + 1; ++player)
+			UpdateVisibility(ent, player);
 	}
 
 	virtual void SetLosRevealAll(player_id_t player, bool enabled)
@@ -1653,6 +1669,7 @@ public:
 	virtual void SetSharedLos(player_id_t player, std::vector<player_id_t> players)
 	{
 		m_SharedLosMasks[player] = CalcSharedLosMask(players);
+		m_SharedDirtyVisibilityMasks[player] = CalcSharedDirtyVisibilityMask(players);
 	}
 
 	virtual u32 GetSharedLosMask(player_id_t player)
@@ -1813,14 +1830,16 @@ public:
 				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
 				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
 
+				u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
+
 				if (j > 0 && i > 0)
-					m_DirtyVisibility[n1] = 1;
+					m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
 				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n2] = 1;
+					m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
 				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
-					m_DirtyVisibility[n3] = 1;
+					m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
 				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n4] = 1;
+					m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
 			}
 
 			ASSERT(counts[idx] < 65535);
@@ -1858,14 +1877,16 @@ public:
 				int n3 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + (i-1)/LOS_TILES_RATIO;
 				int n4 = (j/LOS_TILES_RATIO)*m_LosTilesPerSide + i/LOS_TILES_RATIO;
 
+				u16 sharedDirtyVisibilityMask = m_SharedDirtyVisibilityMasks[owner];
+
 				if (j > 0 && i > 0)
-					m_DirtyVisibility[n1] = 1;
+					m_DirtyVisibility[n1] |= sharedDirtyVisibilityMask;
 				if (n2 != n1 && j > 0 && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n2] = 1;
+					m_DirtyVisibility[n2] |= sharedDirtyVisibilityMask;
 				if (n3 != n1 && j < m_TerrainVerticesPerSide && i > 0)
-					m_DirtyVisibility[n3] = 1;
+					m_DirtyVisibility[n3] |= sharedDirtyVisibilityMask;
 				if (n4 != n1 && j < m_TerrainVerticesPerSide && i < m_TerrainVerticesPerSide)
-					m_DirtyVisibility[n4] = 1;
+					m_DirtyVisibility[n4] |= sharedDirtyVisibilityMask;
 			}
 		}
 	}

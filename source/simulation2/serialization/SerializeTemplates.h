@@ -1,4 +1,4 @@
-/* Copyright (C) 2011 Wildfire Games.
+/* Copyright (C) 2015 Wildfire Games.
  * This file is part of 0 A.D.
  *
  * 0 A.D. is free software: you can redistribute it and/or modify
@@ -148,6 +148,19 @@ struct SerializeU8_Enum
 		u8 val;
 		deserialize.NumberU8(name, val, 0, max);
 		value = (T)val;
+	}
+};
+
+struct SerializeU16_Unbounded
+{
+	void operator()(ISerializer& serialize, const char* name, u16 value)
+	{
+		serialize.NumberU16_Unbounded(name, value);
+	}
+
+	void operator()(IDeserializer& deserialize, const char* name, u16& value)
+	{
+		deserialize.NumberU16_Unbounded(name, value);
 	}
 };
 
