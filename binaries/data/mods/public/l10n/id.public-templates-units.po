@@ -3,15 +3,15 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
-# azayrahmad <azayrahmad@gmail.com>, 2014
+# azayrahmad <azayrahmad@gmail.com>, 2014-2015
 # Samuel Christo Randiny <srandiny@gmail.com>, 2014
 # Tirtayasa <eggar4tirtayasa@gmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-09 09:16+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"POT-Creation-Date: 2015-02-12 00:57+0100\n"
+"PO-Revision-Date: 2015-02-12 14:52+0000\n"
+"Last-Translator: azayrahmad <azayrahmad@gmail.com>\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/0ad/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -64,8 +64,8 @@ msgstr "Dasar"
 #: simulation/templates/template_unit_champion_infantry_swordsman.xml:33
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
 #: simulation/templates/template_unit_hero_cavalry_swordsman.xml:18
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:17
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_hero_infantry_swordsman.xml:17
 #: simulation/templates/template_unit_infantry_melee.xml:26
 msgid "Melee"
@@ -80,8 +80,8 @@ msgstr "Kavaleri Jarak Dekat"
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:45
 #: simulation/templates/template_unit_hero_cavalry_spearman.xml:18
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:17
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:23
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:35
 msgid "Spear"
@@ -205,7 +205,7 @@ msgid "Champion Skirmisher"
 msgstr "Jawara Penskirmis "
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:45
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:18
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:24
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:38
 msgid "Pike"
 msgstr "Galah"
@@ -216,10 +216,12 @@ msgstr "Jawara Penggalah"
 
 #: simulation/templates/template_unit_champion_infantry_pikeman.xml:48
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:46
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:26
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:25
 #: simulation/templates/template_unit_infantry_melee_pikeman.xml:41
 #: simulation/templates/template_unit_infantry_melee_spearman.xml:38
-msgid "Counters: 2x vs. Cavalry."
-msgstr ""
+msgid "Counters: 3x vs. Cavalry."
+msgstr "Melawan: 3x vs. Pasukan Kuda."
 
 #: simulation/templates/template_unit_champion_infantry_spearman.xml:44
 msgid "Champion Spearman"
@@ -311,11 +313,11 @@ msgstr "Pahlawan Pemanah"
 msgid "Hero Skirmisher"
 msgstr "Pahlawan Penskirmis "
 
-#: simulation/templates/template_unit_hero_infantry_pikeman.xml:19
+#: simulation/templates/template_unit_hero_infantry_pikeman.xml:25
 msgid "Hero Pikeman"
 msgstr "Pahlawan Penggalah"
 
-#: simulation/templates/template_unit_hero_infantry_spearman.xml:18
+#: simulation/templates/template_unit_hero_infantry_spearman.xml:24
 msgid "Hero Spearman"
 msgstr "Pahlawan Penombak"
 
@@ -388,7 +390,7 @@ msgstr "Kapal Dagang"
 msgid ""
 "Trade between docks. Garrison a Trader aboard for additional profit (+20% "
 "for each garrisoned). Gather profitable aquatic treasures."
-msgstr ""
+msgstr "Berdagang antar dermaga. Masukkan Pedagang untuk keuntungan tambahan (+20% untuk setiap unit tersimpan). Mengumpulkan harta karun lautan."
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:54
 msgid "Heavy Warship"
@@ -396,7 +398,7 @@ msgstr "Kapal Perang Berat"
 
 #: simulation/templates/template_unit_mechanical_ship_quinquereme.xml:55
 msgid "Garrison with catapults to increase ranged fire power."
-msgstr ""
+msgstr "Masukkan katapel untuk meningkatkan jarak tembak."
 
 #: simulation/templates/template_unit_mechanical_ship_trireme.xml:46
 msgid "Medium Warship"
@@ -425,7 +427,7 @@ msgstr "Menara Kepung"
 #: simulation/templates/template_unit_mechanical_siege_tower.xml:54
 msgid ""
 "Garrison up to 20 infantry inside to increase arrow count from 0 to 10."
-msgstr ""
+msgstr "Simpan hingga 20 infanteri untuk menambah jumlah panah dari 0 hingga 10."
 
 #: simulation/templates/template_unit_support.xml:11
 msgid "Support"
@@ -1183,7 +1185,7 @@ msgstr "Ḥannibaʿal Baraq"
 msgid ""
 "\"Strategist\" Ability (TBD): The player can see changes within the fog of war while Hannibal lives. \n"
 "Can run amok."
-msgstr ""
+msgstr "Kemampuan \"Penyiasat\" (TBD): Pemain dapat melihat perubahan di dalam kabut perang selama Hannibal hidup.\nDapat mengamuk."
 
 #: simulation/templates/units/cart_hero_maharbal.xml:11
 msgid "Commander Aura"
@@ -1317,7 +1319,7 @@ msgstr "Mekir"
 
 #: simulation/templates/units/celt_champion_cavalry_brit.xml:16
 msgid "Brythonic Champion Chariot."
-msgstr ""
+msgstr "Kereta Jawara Briton"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_cavalry.xml:5
@@ -1331,7 +1333,7 @@ msgstr "Brihent Galia"
 
 #: simulation/templates/units/celt_champion_cavalry_gaul.xml:7
 msgid "Gallic Champion Cavalry."
-msgstr ""
+msgstr "Jawara Berkuda Galia"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:5
 msgid "Two-Handed Swordsman"
@@ -1339,7 +1341,7 @@ msgstr "Pasukan Pedang Dua-Tangan"
 
 #: simulation/templates/units/celt_champion_infantry_brit.xml:7
 msgid "Brythonic Champion Swordsman."
-msgstr ""
+msgstr "Jawara Pedang Briton"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:5
 #: simulation/templates/units/gaul_champion_infantry.xml:5
@@ -1353,7 +1355,7 @@ msgstr "Solduros"
 
 #: simulation/templates/units/celt_champion_infantry_gaul.xml:7
 msgid "Gallic Champion Swordsman."
-msgstr ""
+msgstr "Jawara Pedang Galia"
 
 #: simulation/templates/units/celt_fanatic.xml:15
 #: simulation/templates/units/gaul_champion_fanatic.xml:15
@@ -1422,7 +1424,7 @@ msgstr "Pezétairos"
 msgid ""
 "Macedonian Champion Pikeman.\n"
 "Heavy line infantry. Uses the Syntagma Formation."
-msgstr ""
+msgstr "Penombak Jawara Makedon.\nInfanteri berat. Menggunakan Formasi Syntagma."
 
 #: simulation/templates/units/hele_champion_infantry_polis.xml:13
 #: simulation/templates/units/spart_champion_infantry_spear.xml:5
@@ -1436,7 +1438,7 @@ msgstr "Spartiā́tēs"
 #: simulation/templates/units/hele_champion_infantry_polis.xml:15
 #: simulation/templates/units/spart_champion_infantry_spear.xml:7
 msgid "Classes: Champion Melee Infantry Spearman."
-msgstr ""
+msgstr "Kelas: Jawara Infanteri Penombak Jarak Dekat"
 
 #: simulation/templates/units/hele_champion_ranged_polis.xml:5
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:5
@@ -1452,11 +1454,11 @@ msgstr "Ékdromos Athēnaïkós"
 msgid ""
 "Poleis Champion Raider.\n"
 "    Fast Move Speed."
-msgstr ""
+msgstr "Jawara Penyamun Polis.\nKecepatan Gerak Tinggi."
 
 #: simulation/templates/units/hele_champion_swordsman_polis.xml:7
 msgid "Poleis Champion Raider."
-msgstr ""
+msgstr "Jawara Penyamun Polis."
 
 #: simulation/templates/units/hele_hero_xenophon.xml:28
 msgid "Xenophon"
@@ -1533,7 +1535,7 @@ msgstr "Leial Zalduneria"
 msgid ""
 "Classes: Champion Ranged Cavalry Skirmisher.\n"
 "Special: Flaming javelins. Good vs. Buildings."
-msgstr ""
+msgstr "Kelas: Jawara Penskirmis Berkuda Berjarak.\nSpesial: Lembing berapi. Bagus melawan Bangunan."
 
 #: simulation/templates/units/iber_champion_infantry.xml:5
 msgid "Leial Ezpatari"
@@ -1728,7 +1730,7 @@ msgstr "Hemiolos"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:5
 msgid "Gynḗ Makedonikḗ"
-msgstr ""
+msgstr "Gynḗ Makedonikḗ"
 
 #: simulation/templates/units/mace_support_female_citizen.xml:6
 msgid "Macedonian Woman"
@@ -1776,7 +1778,7 @@ msgstr "Rath"
 
 #: simulation/templates/units/maur_champion_chariot.xml:15
 msgid "Classes: Champion Ranged Cavalry Chariot Archer. Deals Trample Damage."
-msgstr ""
+msgstr "Kelas: Jawara Berkuda Jarak Jauh Pemanah Kereta. Memberi Kerusakan Injakan."
 
 #: simulation/templates/units/maur_champion_elephant.xml:5
 #: simulation/templates/units/pers_champion_elephant.xml:5
@@ -1793,15 +1795,15 @@ msgstr "Ksatria"
 
 #: simulation/templates/units/maur_champion_infantry.xml:16
 msgid "Yōddha"
-msgstr ""
+msgstr "Yōddha"
 
 #: simulation/templates/units/maur_champion_infantry.xml:20
 msgid "Classes: Champion Melee Infantry Swordsman."
-msgstr ""
+msgstr "Kelas: Jawara Pasukan Pedang Jarak Dekat"
 
 #: simulation/templates/units/maur_champion_maiden.xml:5
 msgid "Maiden Guard"
-msgstr ""
+msgstr "Penjaga Wanita"
 
 #: simulation/templates/units/maur_champion_maiden.xml:6
 #: simulation/templates/units/maur_champion_maiden_archer.xml:6
@@ -1810,7 +1812,7 @@ msgstr "Visha Kanya"
 
 #: simulation/templates/units/maur_champion_maiden_archer.xml:5
 msgid "Maiden Guard Archer"
-msgstr ""
+msgstr "Penjaga Wanita Pemanah"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:11
 msgid "Elephant Archer"
@@ -1822,7 +1824,7 @@ msgstr "Vachii Gaja"
 
 #: simulation/templates/units/maur_elephant_archer_b.xml:15
 msgid "Can run amok."
-msgstr ""
+msgstr "Dapat mengamuk."
 
 #: simulation/templates/units/maur_hero_ashoka.xml:9
 msgid "Ashoka the Great"
@@ -1959,7 +1961,7 @@ msgstr "Rhomphaiaphoros Thrakikós"
 
 #: simulation/templates/units/merc_thrace_swordsman.xml:26
 msgid "Classes: Mercenary Melee Infantry Swordsman."
-msgstr ""
+msgstr "Kelas: Pasukan Pedang Jarak Dekat Bayaran."
 
 #: simulation/templates/units/noldor_ship_bireme.xml:9
 msgid "Mankar Cirya"
@@ -1985,7 +1987,7 @@ msgstr "Babiruviya Ratha"
 msgid ""
 "Classes: Ranged Cavalry Chariot Archer.\n"
 "Causes trample damage to enemy units."
-msgstr ""
+msgstr "Kelas: Pemanah Berkereta Jarak Jauh.\nMenyebabkan kerusakan injakan pada unit musuh."
 
 #: simulation/templates/units/pers_cavalry_javelinist_b.xml:6
 #: simulation/templates/units/pers_cavalry_javelinist_b_trireme.xml:9
@@ -2217,7 +2219,7 @@ msgstr "Mutsābiq Gamal Nabatu"
 #: simulation/templates/units/ptol_cavalry_archer_b.xml:11
 #: simulation/templates/units/sele_cavalry_archer_b.xml:11
 msgid "Classes: Ranged Cavalry Camel Archer."
-msgstr ""
+msgstr "Kelas: Pemanah Unta Jarak Jauh"
 
 #: simulation/templates/units/ptol_cavalry_javelinist_b.xml:13
 msgid "Tarantine Settler Cavalry"
@@ -2273,13 +2275,13 @@ msgstr "Kleopatra VII"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:19
 msgid "Kleopatra H' Philopator"
-msgstr ""
+msgstr "Kleopatra H' Philopator"
 
 #: simulation/templates/units/ptol_hero_cleopatra.xml:20
 msgid ""
 "Classes: Hero Infantry Archer.\n"
 "\"Consort\" Aura (TBD): Increased effectiveness of allied heroes in her vision. Decreased effectiveness for enemy heroes."
-msgstr ""
+msgstr "Kelas: Pahlawan Infanteri Pemanah \nAura \"Permaisuri\" (TBD): Meningkatkan efektivitas pahlawan sekutu pada jarak pandangnya. Mengurangi efektivitas pahlawan musuh."
 
 #: simulation/templates/units/ptol_hero_ptolemy_I.xml:11
 msgid "Construction Aura"
@@ -2319,7 +2321,7 @@ msgstr "Ptolemy IV \"Ayah Penyayang\""
 
 #: simulation/templates/units/ptol_hero_ptolemy_IV.xml:17
 msgid "Ptolemaios D' Philopator"
-msgstr ""
+msgstr "Ptolemaios D' Philopator"
 
 #: simulation/templates/units/ptol_infantry_archer_b.xml:25
 msgid "Nubian Mercenary Archer"

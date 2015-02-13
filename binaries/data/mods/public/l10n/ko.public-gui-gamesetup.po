@@ -5,14 +5,15 @@
 # Translators:
 # jasonkimik <jasonkim@linux.com>, 2014
 # Kevin Min <candyson1@naver.com>, 2015
+# TJ Kim <manowar72@gmail.com>, 2015
 # Valtiel <shinhs6291@naver.com>, 2014
 # VictoriaKim <sis2468@hotmail.co.kr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-26 09:48+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-13 00:11+0000\n"
+"Last-Translator: TJ Kim <manowar72@gmail.com>\n"
 "Language-Team: Korean (http://www.transifex.com/projects/p/0ad/language/ko/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -27,7 +28,7 @@ msgstr "없음"
 
 #: gui/aiconfig/aiconfig.js:10
 msgid "AI will be disabled for this player."
-msgstr ""
+msgstr "이 플레이어에게는 인공지능을 사용하지 않습니다."
 
 #. Translation: AI difficulty level.
 #: gui/aiconfig/aiconfig.js:29
@@ -63,7 +64,7 @@ msgstr "매우 어려움"
 #. Translation: Type of victory condition.
 #: gui/gamesetup/gamesetup.js:10
 msgid "Unlimited"
-msgstr ""
+msgstr "무제한"
 
 #. Translation: Amount of starting resources.
 #: gui/gamesetup/gamesetup.js:14
@@ -98,11 +99,11 @@ msgstr "데스매치"
 
 #: gui/gamesetup/gamesetup.js:106
 msgid "Return to the main menu."
-msgstr ""
+msgstr "메인메뉴로 돌아가기"
 
 #: gui/gamesetup/gamesetup.js:110
 msgid "Return to the lobby."
-msgstr ""
+msgstr "로비로 돌아가기"
 
 #: gui/gamesetup/gamesetup.js:139
 msgctxt "map"
@@ -126,11 +127,11 @@ msgstr "기본값"
 
 #: gui/gamesetup/gamesetup.js:144
 msgid "Naval Maps"
-msgstr ""
+msgstr "해군 맵"
 
 #: gui/gamesetup/gamesetup.js:145
 msgid "Demo Maps"
-msgstr ""
+msgstr "데모 맵"
 
 #: gui/gamesetup/gamesetup.js:146
 msgid "All Maps"
@@ -167,7 +168,7 @@ msgstr "공개된 지도"
 #: gui/gamesetup/gamesetup.js:1204 gui/gamesetup/gamesetup.js:1263
 #: gui/gamesetup/gamesetup.xml:(caption):323
 msgid "Explored Map:"
-msgstr ""
+msgstr "탐험맵"
 
 #: gui/gamesetup/gamesetup.js:1208 gui/gamesetup/gamesetup.js:1267
 #: gui/gamesetup/gamesetup.js:1347 gui/gamesetup/gamesetup.xml:(caption):283
@@ -197,7 +198,7 @@ msgstr "아니오"
 
 #: gui/gamesetup/gamesetup.js:1333
 msgid "Randomly selects a map from the list"
-msgstr ""
+msgstr "리스트에서 무작위로 맵 선택"
 
 #: gui/gamesetup/gamesetup.js:1340
 msgid "Sorry, no description available."
@@ -260,7 +261,7 @@ msgstr "%(username)s는 준비되지 않았습니다. "
 
 #: gui/gamesetup/gamesetup.js:1712
 msgid "Game settings have been changed"
-msgstr ""
+msgstr "게임셋팅이 변경되었습니다"
 
 #: gui/gamesetup/gamesetup.js:1737
 msgid "I'm not ready"
@@ -268,7 +269,7 @@ msgstr "준비가 아직 되지 않았습니다."
 
 #: gui/gamesetup/gamesetup.js:1738
 msgid "State that you are not ready to play."
-msgstr ""
+msgstr "게임할 준비가 되지 않은 상태"
 
 #: gui/gamesetup/gamesetup.js:1743 gui/gamesetup/gamesetup.js:1819
 msgid "I'm ready!"
@@ -276,11 +277,11 @@ msgstr "준비를 다 마쳤습니다!"
 
 #: gui/gamesetup/gamesetup.js:1744
 msgid "State that you are ready to play!"
-msgstr ""
+msgstr "게임할 준비가 된 상태"
 
 #: gui/gamesetup/gamesetup.js:1820
 msgid "State that you accept the current settings and are ready to play!"
-msgstr ""
+msgstr "현재의 셋팅을 적용해서 게임을 할 준비가 된 상태"
 
 #: gui/gamesetup/gamesetup.js:1939
 msgid "None"
@@ -302,20 +303,20 @@ msgstr "총 메세지 수: %(message)s"
 
 #: gui/gamesetup/gamesetup_mp.js:136
 msgid "Registering with server..."
-msgstr ""
+msgstr "서버에 등록하는 중"
 
 #: gui/gamesetup/gamesetup_mp.js:142
 msgid "Game has already started, rejoining..."
-msgstr ""
+msgstr "게임이 이미 시작되었습니다. 재가입 중"
 
 #: gui/gamesetup/gamesetup_mp.js:188
 msgid "Game name already in use."
-msgstr ""
+msgstr "게임명이 이미 사용중입니다."
 
 #: gui/gamesetup/gamesetup_mp.js:249
 #, javascript-format
 msgid "%(playername)s's game"
-msgstr ""
+msgstr "%(playername)s의 게임"
 
 #: gui/gamesetup/victory_conditions/conquest.js:6
 msgid "Conquest"
@@ -323,7 +324,7 @@ msgstr "정복"
 
 #: gui/gamesetup/victory_conditions/conquest.js:7
 msgid "Defeat all opponents"
-msgstr ""
+msgstr "모든 적들을 물리쳐라"
 
 #: gui/gamesetup/victory_conditions/wonder.js:6
 msgid "Wonder"
@@ -331,7 +332,7 @@ msgstr "경관"
 
 #: gui/gamesetup/victory_conditions/wonder.js:7
 msgid "Build a wonder to win"
-msgstr ""
+msgstr "불가사의 만들기"
 
 #: gui/loading/loading.js:51
 #, javascript-format
@@ -341,7 +342,7 @@ msgstr "“%(map)s”를 로딩중"
 #: gui/loading/loading.js:55
 #, javascript-format
 msgid "Generating “%(map)s”"
-msgstr ""
+msgstr "“%(map)s”맵 생성중"
 
 #: gui/aiconfig/aiconfig.xml:(caption):13
 msgid "AI Configuration"
@@ -367,7 +368,7 @@ msgstr "OK"
 
 #: gui/gamesetup/gamesetup.xml:(caption):16
 msgid "Match Setup"
-msgstr ""
+msgstr "게임 설정"
 
 #: gui/gamesetup/gamesetup.xml:(caption):22
 msgid "Loading"
@@ -375,15 +376,15 @@ msgstr "로딩중"
 
 #: gui/gamesetup/gamesetup.xml:(caption):26
 msgid "Loading map data. Please wait..."
-msgstr ""
+msgstr "맵을 로딩하고 있습니다. 기다려 주세요."
 
 #: gui/gamesetup/gamesetup.xml:(caption):41
 msgid "Player Name"
-msgstr ""
+msgstr "플레이어 이름 "
 
 #: gui/gamesetup/gamesetup.xml:(caption):44
 msgid "Player Placement"
-msgstr ""
+msgstr "플레이어 배치"
 
 #: gui/gamesetup/gamesetup.xml:(caption):47
 msgid "Civilization"
@@ -460,11 +461,11 @@ msgstr "AI 설정하기"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):84
 msgid "Select player's civilization."
-msgstr ""
+msgstr "문명을 선택하세요"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):88
 msgid "Select player's team."
-msgstr ""
+msgstr "팀을 선택하세요."
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):129
 msgid "Select a map type."
@@ -488,7 +489,7 @@ msgstr "맵 사이즈 결정(큰 사이즈의 맵은 성능을 저하시킬수 �
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):217
 msgid "Start a new game with the current settings."
-msgstr ""
+msgstr "현재 셋팅으로 새 게임 시작하기"
 
 #: gui/gamesetup/gamesetup.xml:(tooltip):257
 msgid "See more game options"

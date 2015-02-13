@@ -5,7 +5,7 @@
 # Translators:
 # Arthur Jaouen <arthur.jaouen@gmail.com>, 2015
 # Moul <ma.azimi@laposte.net>, 2015
-# Nicolas Auvray <na.itms76@gmail.com>, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # silure <silure@openmailbox.org>, 2014
 # Polakrity <sxk-fr@live.fr>, 2014
 # Toto AD <ad@imw.fr>, 2014
@@ -14,8 +14,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2015-02-09 19:17+0100\n"
-"PO-Revision-Date: 2015-02-10 09:58+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-12 13:56+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -74,7 +74,7 @@ msgid ""
 "Each player starts deep in the forest.\n"
 "\n"
 "The Ardennes is a region of extensive forests, rolling hills and ridges formed within the Givetian  Ardennes mountain range, primarily in modern day Belgium and Luxembourg. The region took its name from the ancient Silva, a vast forest in Roman times called Arduenna Silva."
-msgstr "Chaque joueur commence en pleine forêt.\n\nLes Ardennes sont une région de vastes forêts, de collines et de crêtes formées au sein d'une chaîne de montagnes du Givétien, à notre époque essentiellement en Belgique et au Luxembourg. La région tire son nom de l'ancienne Arduenna Silva (forêt ardennaise en français), qui était la plus grande forêt de toute la Gaule selon Jules César qui la cite à deux reprises dans sa guerre des Gaules."
+msgstr "Chaque joueur commence en pleine forêt.\n\nLes Ardennes sont une région de vastes forêts, de collines et de crêtes formées au sein d'une chaîne de montagnes du Givétien, à notre époque essentiellement en Belgique et au Luxembourg. La région tire son nom de l'ancienne Arduenna Silva, une vaste forêt de l'époque romaine."
 
 #: maps/random/ardennes_forest.jsonsettings.Name
 msgid "Ardennes Forest"
@@ -109,7 +109,7 @@ msgstr "Chaque joueur commence sur une colline entourée de falaises abruptes. R
 
 #: maps/random/cantabrian_highlands.jsonsettings.Name
 msgid "Cantabrian Highlands"
-msgstr "Cordillère Cantabrique"
+msgstr "Cordillère cantabrique"
 
 #: maps/random/canyon.jsonsettings.Description
 msgid "Players start around the map in deep canyons."
@@ -132,7 +132,7 @@ msgstr "Continent"
 msgid ""
 "Two Mediterranean land masses connected by a narrow spit of land, called an "
 "'Isthmus'."
-msgstr "Deux grandes étendues de terre méditerranéennes reliés par une étroite bande de terre, appelé 'isthme'."
+msgstr "Deux grandes étendues de terre méditerranéennes reliées par une étroite bande de terre, appelée 'isthme'."
 
 #: maps/random/corinthian_isthmus.jsonsettings.Name
 msgid "Corinthian Isthmus"
@@ -324,7 +324,7 @@ msgstr "Aurores boréales"
 msgid ""
 "Players start around a small oasis in the center of the map which holds much"
 " of the available wood on the map."
-msgstr "Les joueurs commencent au centre de la carte autour d'une petite oasis qui détient une bonne partie du bois disponible."
+msgstr "Les joueurs commencent autour d'une petite oasis au centre de la carte qui détient une bonne partie du bois disponible."
 
 #: maps/random/oasis.jsonsettings.Name
 msgid "Oasis"
@@ -360,7 +360,7 @@ msgstr "De hautes montagnes séparent les ennemis.\n\nLes Pyrénées sont une gr
 
 #: maps/random/pyrenean_sierra.jsonsettings.Name
 msgid "Pyrenean Sierra"
-msgstr "Sierra Pyrénéenne"
+msgstr "Sierra pyrénéenne"
 
 #: maps/random/rhine_marshlands.jsonsettings.Description
 msgid ""
@@ -432,7 +432,7 @@ msgid ""
 "[color=\"red\"]IMPORTANT NOTE: AI PLAYERS DO NOT WORK WITH THIS MAP[/color]\n"
 "\n"
 "Protect your base against endless waves of enemies. Use your woman citizen to collect the treasures at the center of the map before others do, and try to build your base up. The last player remaining will be the winner!"
-msgstr ""
+msgstr "[color=\"red\"]NOTE IMPORTANTE : LES JOUEURS IA NE FONCTIONNENT PAS AVEC CETTE CARTE[/color]\n\nProtégez votre base contre des vagues d'ennemis incessantes. Utilisez votre villageoise pour recueillir les trésors au centre de la carte avant les autres, et tentez de développer votre base. Le dernier joueur restant sera le vainqueur !"
 
 #: maps/random/survivalofthefittest.jsonsettings.Name
 msgid "Survival of the Fittest"
@@ -477,7 +477,7 @@ msgid ""
 "The unknown... Players start with only some citizen soldiers and females. "
 "[color=\"red\"]Warning: The starting resources should be set at least at "
 "Medium.[/color]"
-msgstr ""
+msgstr "L'inconnu... Les joueurs commencent avec seulement quelques citoyens-soldats et des femmes. [color=\"red\"]Attention : Les ressources de départ doivent être au moins au niveau Moyen.[/color]"
 
 #: maps/random/unknown_nomad.jsonsettings.Name
 msgid "Unknown Nomad"
@@ -1464,7 +1464,7 @@ msgstr "Démo - Formations des navires"
 msgid ""
 "The large Mediterranean island of Sicily is open for conquest.\n"
 "[color=\"orange\"]Tip: docks are useful dropsite when no territory[/color]"
-msgstr "La grande île méditerranéenne de la Sicile est ouverte à la conquête.\n[color=\"orange\"]Conseil: les quais sont des lieux de déchargement utiles quand il n'y a pas de territoire[/color]"
+msgstr "La grande île méditerranéenne de Sicile est ouverte à la conquête.\n[color=\"orange\"]Astuce : les quais sont des lieux de déchargement utiles quand il n'y a pas de territoire[/color]"
 
 #: maps/scenarios/Sicilia_Nomad.xml:Name:35
 msgid "Sicilia Nomad (2)"
@@ -1836,7 +1836,7 @@ msgid ""
 "Three factions find themselves perched safely atop large rocky plateaus, or acropolises, whereas the fourth one is separated from their foes by a river branch.\n"
 "\n"
 "Scout the lands to find free treasures and to secure new resources.."
-msgstr "Trois factions se retrouvent perchées en toute sécurité sur de grands plateaux rocheux, ou acropoles, tandis que la quatrième est séparée de ses ennemis par une branche de la rivière.\n\nExplorez le territoire pour trouver des trésors et obtenir de nouvelles ressources..."
+msgstr "Trois factions se retrouvent perchées en sécurité sur de grands plateaux rocheux, ou acropoles, tandis que la quatrième est séparée de ses ennemis par une branche de rivière.\n\nExplorez le territoire pour trouver des trésors et obtenir de nouvelles ressources..."
 
 #: maps/skirmishes/Greek Acropolis (4).xml:Name:41
 msgid "Greek Acropolis (4)"

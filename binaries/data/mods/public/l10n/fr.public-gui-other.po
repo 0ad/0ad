@@ -7,15 +7,15 @@
 # Buggi <buggi@filzmail.com>, 2014
 # Moul <ma.azimi@laposte.net>, 2015
 # Marco tom Suden, 2014
-# Nicolas Auvray <na.itms76@gmail.com>, 2014
+# Nicolas Auvray <na.itms76@gmail.com>, 2014-2015
 # Polakrity <sxk-fr@live.fr>, 2014
 # Vincent Pouliquen <vins_om@hotmail.fr>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-02-08 22:08+0100\n"
-"PO-Revision-Date: 2015-02-10 01:11+0000\n"
-"Last-Translator: Moul <ma.azimi@laposte.net>\n"
+"POT-Creation-Date: 2015-02-12 00:57+0100\n"
+"PO-Revision-Date: 2015-02-12 11:53+0000\n"
+"Last-Translator: Nicolas Auvray <na.itms76@gmail.com>\n"
 "Language-Team: French (http://www.transifex.com/projects/p/0ad/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,7 +132,7 @@ msgstr "Métal"
 #: gui/common/l10n.js:10
 msgctxt "firstWord"
 msgid "Ore"
-msgstr "minerai"
+msgstr "Minerai"
 
 #. Translation: Word as used at the beginning of a sentence or as a single-
 #. word sentence.
@@ -202,21 +202,21 @@ msgstr "Poisson"
 #: gui/common/l10n.js:32
 msgctxt "withinSentence"
 msgid "Food"
-msgstr "Nourriture"
+msgstr "nourriture"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:34
 msgctxt "withinSentence"
 msgid "Meat"
-msgstr "Viande"
+msgstr "viande"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:36
 msgctxt "withinSentence"
 msgid "Metal"
-msgstr "Métal"
+msgstr "métal"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
@@ -230,63 +230,63 @@ msgstr "minerai"
 #: gui/common/l10n.js:40
 msgctxt "withinSentence"
 msgid "Rock"
-msgstr "Roche"
+msgstr "roche"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:42
 msgctxt "withinSentence"
 msgid "Ruins"
-msgstr "Ruines"
+msgstr "ruines"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:44
 msgctxt "withinSentence"
 msgid "Stone"
-msgstr "Pierre"
+msgstr "pierre"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:46
 msgctxt "withinSentence"
 msgid "Treasure"
-msgstr "Trésor"
+msgstr "trésor"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:48
 msgctxt "withinSentence"
 msgid "Tree"
-msgstr "Arbre"
+msgstr "arbre"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:50
 msgctxt "withinSentence"
 msgid "Wood"
-msgstr "Bois"
+msgstr "bois"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:52
 msgctxt "withinSentence"
 msgid "Fruit"
-msgstr "Fruit"
+msgstr "fruit"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:54
 msgctxt "withinSentence"
 msgid "Grain"
-msgstr "Grain"
+msgstr "grain"
 
 #. Translation: Word as used in the middle of a sentence (which may require
 #. using lowercase for your language).
 #: gui/common/l10n.js:56
 msgctxt "withinSentence"
 msgid "Fish"
-msgstr "Poisson"
+msgstr "poisson"
 
 #: gui/common/network.js:6
 msgid "Unknown reason"
@@ -524,7 +524,7 @@ msgstr "%(label)s %(val)s %(unit)s"
 
 #: gui/common/tooltips.js:400
 msgid "Heal:"
-msgstr "Guérir;"
+msgstr "Guérir :"
 
 #. Translation: Short for Health Points (that are healed in one healing
 #. action)
@@ -648,7 +648,7 @@ msgstr "Enregistrer les paramètres du match"
 
 #: gui/options/options.js:16
 msgid ""
-"Save and restore match settings for quick reuse when hosting an other game"
+"Save and restore match settings for quick reuse when hosting another game"
 msgstr "Enregistrer et restaurer les paramètres du match pour une réutilisation rapide lors de l'hébergement d'une autre partie "
 
 #: gui/options/options.js:20
@@ -697,7 +697,7 @@ msgstr "Ligne de mire fluide"
 
 #: gui/options/options.js:25
 msgid "Lift darkness and fog-of-war smoothly"
-msgstr "Lever doucement l'obscurité et le brouillard de guerre (nécessite Préférer GLSL)"
+msgstr "Lever doucement l'obscurité et le brouillard de guerre"
 
 #: gui/options/options.js:26
 msgid "Unit Silhouettes"
@@ -1123,7 +1123,7 @@ msgstr "Revenus du commerce"
 msgid ""
 "Vegetarian\n"
 "ratio"
-msgstr "Taux de\nvégétarien"
+msgstr "Taux de\nvégétariens"
 
 #: gui/summary/layout.js:121
 msgid "Feminisation"
@@ -1143,7 +1143,7 @@ msgstr "Exploration\nde la carte"
 
 #: gui/summary/layout.js:255
 msgid "Team total"
-msgstr "Seulement équipe"
+msgstr "Total de l'équipe"
 
 #: gui/summary/summary.js:139
 msgid "Scenario"
@@ -1292,8 +1292,8 @@ msgid "Status: $status."
 msgstr "État : $status."
 
 #: gui/pregame/mainmenu.xml:528
-msgid "Alpha XVII: Quercus"
-msgstr "Alpha XVII : Quercus"
+msgid "Alpha XVIII: Rhododactylos"
+msgstr "Alpha XVIII : Rhododactylos"
 
 #: gui/pregame/mainmenu.xml:530
 msgid ""
@@ -1408,7 +1408,7 @@ msgstr "Ouvrir le manuel de jeu de 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):174
 msgid "View the structure tree of civilizations featured in 0 A.D."
-msgstr "Aperçu de l'arbre des civilisations dans 0 A.D."
+msgstr "Voir l'arbre des civilisations dans 0 A.D."
 
 #: gui/pregame/mainmenu.xml:(tooltip):191
 msgid "Learn about the many civilizations featured in 0 A.D."
@@ -1528,7 +1528,7 @@ msgstr "Montrer ce message ultérieurement"
 
 #: gui/splashscreen/splashscreen.xml:(caption):33
 msgid "Known Issues (web)"
-msgstr "Problèmes Connus (web)"
+msgstr "Problèmes connus (web)"
 
 #: gui/summary/summary.xml:(caption):21
 msgid "Summary"
@@ -1565,7 +1565,7 @@ msgstr "Continuer"
 #: gui/splashscreen/splashscreen.txt:2
 msgid ""
 "[font=\"sans-bold-20\"]  Thank you for installing 0 A.D. Empires Ascendant!"
-msgstr "[font=\"sans-bold-20\"]  Merci d'avoir installé 0 A.D. Empires Ascendant!"
+msgstr "[font=\"sans-bold-20\"] Merci d'avoir installé 0 A.D. Empires Ascendant !"
 
 #: gui/splashscreen/splashscreen.txt:3
 msgid "[font=\"sans-16\"]"
@@ -1579,11 +1579,11 @@ msgstr "[imgleft=\"constructionIcon\"]Le jeu est encore en développement. Des f
 
 #: gui/splashscreen/splashscreen.txt:6
 msgid "[imgleft=\"iconLag\"]The game runs slowly when many units are moving."
-msgstr "[imgleft=\"iconLag\"]Le jeu est ralenti quand de nombreuses unités sont en mouvement."
+msgstr "[imgleft=\"iconLag\"]Le jeu est tourne lentement quand de nombreuses unités sont en mouvement."
 
 #: gui/splashscreen/splashscreen.txt:9
 msgid "[imgleft=\"iconMap\"]Large maps can cause problems."
-msgstr "[imgleft=\"iconMap\"]Les grandes cartes peuvent causer des bugs."
+msgstr "[imgleft=\"iconMap\"]Les grandes cartes peuvent causer des problèmes."
 
 #: gui/splashscreen/splashscreen.txt:12
 msgid ""

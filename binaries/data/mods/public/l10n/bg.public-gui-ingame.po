@@ -12,8 +12,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-01-25 10:36+0000\n"
+"POT-Creation-Date: 2015-02-12 00:57+0100\n"
+"PO-Revision-Date: 2015-02-12 09:44+0000\n"
 "Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Bulgarian (http://www.transifex.com/projects/p/0ad/language/bg/)\n"
 "MIME-Version: 1.0\n"
@@ -91,75 +91,76 @@ msgstr "Унищожи всичко което е избрано в момент
 msgid "Delete"
 msgstr "Изтрий"
 
-#: gui/session/menu.js:294
+#: gui/session/menu.js:293
 msgctxt "team"
 msgid "None"
 msgstr "Без"
 
-#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):28
+#: gui/session/menu.js:296 gui/session/messages.js:627
+#: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Съюзник"
 
-#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:296 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Неутрален"
 
-#: gui/session/menu.js:297 gui/session/messages.js:623
+#: gui/session/menu.js:296 gui/session/messages.js:637
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Враг"
 
-#: gui/session/menu.js:355
+#: gui/session/menu.js:354
 msgid "x"
 msgstr "х"
 
-#: gui/session/menu.js:466
+#: gui/session/menu.js:465
 msgid "There are no land traders."
 msgstr "Няма наземни продавачи."
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:471
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s неактивен"
 msgstr[1] "%(numberOfLandTraders)s неактивни"
 
-#: gui/session/menu.js:476
+#: gui/session/menu.js:475
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "%(numberTrading)s наземен продавач продава."
 msgstr[1] "%(numberTrading)s наземни продавачи продават."
 
-#: gui/session/menu.js:479
+#: gui/session/menu.js:478
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:481
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:490
+#: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, и %(garrisonedString)s."
 
-#: gui/session/menu.js:500 gui/session/menu.js:562
+#: gui/session/menu.js:499 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:507 gui/session/menu.js:569
+#: gui/session/menu.js:506 gui/session/menu.js:568
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:517
+#: gui/session/menu.js:516
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -170,211 +171,211 @@ msgid_plural ""
 msgstr[0] ""
 msgstr[1] ""
 
-#: gui/session/menu.js:520
+#: gui/session/menu.js:519
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, и %(inactiveString)s."
 
-#: gui/session/menu.js:527
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:536
+#: gui/session/menu.js:535
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s неактивен наземен продавач"
 msgstr[1] "%(numberOfLandTraders)s неактивни наземени продавачи"
 
-#: gui/session/menu.js:537 gui/session/menu.js:579
+#: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Има %(inactiveString)s."
 msgstr[1] "Има %(inactiveString)s."
 
-#: gui/session/menu.js:549
+#: gui/session/menu.js:548
 msgid "There are no merchant ships."
 msgstr "Няма повече търговски кораби."
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:554
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s е неактивен"
 msgstr[1] "%(numberOfShipTraders)s са неактивни"
 
-#: gui/session/menu.js:559
+#: gui/session/menu.js:558
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "%(numberTrading)s търговски кораб търгува"
 msgstr[1] "%(numberTrading)s търговски кораби търгуват"
 
-#: gui/session/menu.js:578
+#: gui/session/menu.js:577
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s неактивен търговски кораб"
 msgstr[1] "%(numberOfShipTraders)s неактивни търговски кораби"
 
-#: gui/session/menu.js:657 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:656 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Наръчник"
 
-#: gui/session/menu.js:668
+#: gui/session/menu.js:667
 msgid "The Developer Overlay was opened."
 msgstr "Подложка за Разработчици беше отворена."
 
-#: gui/session/menu.js:670
+#: gui/session/menu.js:669
 msgid "The Developer Overlay was closed."
 msgstr "Подложка за Разработчици беше затворена."
 
-#: gui/session/menu.js:686
+#: gui/session/menu.js:685
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Дай %(resourceAmount)s %(resourceType)s на %(playerName)s.  Натисни със Shift, за да дадеш %(greaterAmount)s."
 
-#: gui/session/messages.js:202
+#: gui/session/messages.js:207
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Мрежово съобщение: %(message)s"
 
-#: gui/session/messages.js:215
+#: gui/session/messages.js:220
 msgid "Waiting for other players to connect..."
 msgstr "Изчакване на другите играчи да се свържат..."
 
-#: gui/session/messages.js:219
+#: gui/session/messages.js:224
 msgid "Synchronising gameplay with other players..."
 msgstr "Синхронизиране режим на играта с другите играчи..."
 
-#: gui/session/messages.js:227
+#: gui/session/messages.js:232
 msgid "Connected to the server."
 msgstr "Свързан към сървъра."
 
-#: gui/session/messages.js:231
+#: gui/session/messages.js:236
 msgid "Connection to the server has been authenticated."
 msgstr "Връзката към сървъра беше ауторизирана."
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:241
 msgid "Connection to the server has been lost."
 msgstr "Връзката към сървъра беше загубена."
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:241
 msgid "The game has ended."
 msgstr "Играта свърши."
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:426
 msgid "Unknown player"
 msgstr "Непознат играч"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s се присъедини към играта."
 
-#: gui/session/messages.js:432
+#: gui/session/messages.js:437
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s напусна играта."
 
-#: gui/session/messages.js:437
+#: gui/session/messages.js:442
 msgid "You have been defeated."
 msgstr "Ти беше победен."
 
-#: gui/session/messages.js:439
+#: gui/session/messages.js:444
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s беше победен."
 
-#: gui/session/messages.js:447
+#: gui/session/messages.js:452
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Вече сте съюзник със %(player)s."
 
-#: gui/session/messages.js:449
+#: gui/session/messages.js:454
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Вече сте във война със %(player)s."
 
-#: gui/session/messages.js:451
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Вече сте неутрален със %(player)s."
 
-#: gui/session/messages.js:457
+#: gui/session/messages.js:462
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s вече е съюзник с вас."
 
-#: gui/session/messages.js:459
+#: gui/session/messages.js:464
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s вече във война с вас."
 
-#: gui/session/messages.js:461
+#: gui/session/messages.js:466
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s вече е неутрален с вас."
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:480
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:483
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s и %(lastAmount)s"
 
-#: gui/session/messages.js:484 gui/session/utility_functions.js:137
+#: gui/session/messages.js:489 gui/session/utility_functions.js:137
 #: gui/session/utility_functions.js:142
 msgid ", "
 msgstr ","
 
-#: gui/session/messages.js:489
+#: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s ви изпрати %(amounts)s."
 
-#: gui/session/messages.js:499
+#: gui/session/messages.js:504
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Вие бяхте атакуван от %(attacker)s!"
 
-#: gui/session/messages.js:524
+#: gui/session/messages.js:529
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:532
+#: gui/session/messages.js:537
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:545 gui/session/messages.js:546
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:549
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:557
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr "%(userTag)s %(message)s"
 
-#: gui/session/messages.js:610 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:617 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Отбор"
 
-#: gui/session/messages.js:643
+#: gui/session/messages.js:659
 msgid "Private"
 msgstr "Частен"
 
@@ -832,7 +833,7 @@ msgstr "Опции"
 msgid "Resign"
 msgstr "Предай се"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):330
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):331
 msgid "Exit"
 msgstr "Изход"
 
@@ -896,15 +897,15 @@ msgstr "Пауза"
 msgid "Click to Resume Game"
 msgstr "Кликни, за да Продължиш Играта"
 
-#: gui/session/session.xml:(caption):203
+#: gui/session/session.xml:(caption):204
 msgid "Cancel"
 msgstr "Отказ"
 
-#: gui/session/session.xml:(caption):209
+#: gui/session/session.xml:(caption):210
 msgid "Team Only"
 msgstr "Само за Отбора"
 
-#: gui/session/session.xml:(caption):213
+#: gui/session/session.xml:(caption):214
 msgid "Send"
 msgstr "Изпрати"
 
@@ -992,8 +993,8 @@ msgid "Menu"
 msgstr "Меню"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVII : Quercus"
-msgstr "ALPHA XVII : Quercus"
+msgid "ALPHA XVIII : Rhododactylos"
+msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

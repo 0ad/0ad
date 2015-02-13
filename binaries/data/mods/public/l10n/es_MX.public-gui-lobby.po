@@ -3,12 +3,13 @@
 # This file is distributed under the same license as the 0 A.D. — Empires Ascendant project.
 # 
 # Translators:
+# Edgar Carballo <karvayoEdgar@gmail.com>, 2015
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
 "POT-Creation-Date: 2014-12-13 02:23+0100\n"
-"PO-Revision-Date: 2014-12-13 09:49+0000\n"
-"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
+"PO-Revision-Date: 2015-02-12 07:33+0000\n"
+"Last-Translator: Edgar Carballo <karvayoEdgar@gmail.com>\n"
 "Language-Team: Spanish (Mexico) (http://www.transifex.com/projects/p/0ad/language/es_MX/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,12 +20,12 @@ msgstr ""
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Skirmish"
-msgstr ""
+msgstr "Escaramuza"
 
 #: gui/lobby/lobby.js:9
 msgctxt "map"
 msgid "Random"
-msgstr ""
+msgstr "Aleatorio"
 
 #: gui/lobby/lobby.js:9
 msgid "Scenario"
@@ -48,25 +49,25 @@ msgstr ""
 #: gui/lobby/lobby.js:241 gui/lobby/lobby.js:242 gui/lobby/lobby.js:243
 #: gui/lobby/lobby.js:244 gui/lobby/lobby.js:245 gui/lobby/lobby.js:246
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: gui/lobby/lobby.js:271 gui/lobby/lobby.js:299
 #, javascript-format
 msgid "%(nick)s (%(rating)s)"
-msgstr ""
+msgstr "%(nick)s (%(rating)s)"
 
 #: gui/lobby/lobby.js:282 gui/lobby/lobby.js:310
 #, javascript-format
 msgid "%(percentage)s%%"
-msgstr ""
+msgstr "%(percentage)s%%"
 
 #: gui/lobby/lobby.js:284 gui/lobby/lobby.js:312
 msgid "-"
-msgstr ""
+msgstr "-"
 
 #: gui/lobby/lobby.js:444
 msgid "Busy"
-msgstr ""
+msgstr "Ocupado"
 
 #: gui/lobby/lobby.js:449
 msgid "Away"
@@ -74,7 +75,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:453
 msgid "Online"
-msgstr ""
+msgstr "En línea"
 
 #: gui/lobby/lobby.js:457
 msgid "Offline"
@@ -87,7 +88,7 @@ msgstr ""
 
 #: gui/lobby/lobby.js:511
 msgid "A randomly selected map."
-msgstr ""
+msgstr "Un mapa aleatorio."
 
 #: gui/lobby/lobby.js:537
 msgid "Sorry, no description available."
@@ -173,7 +174,7 @@ msgstr ""
 #: gui/lobby/lobby.js:953
 #, javascript-format
 msgid "%(time)s %(message)s"
-msgstr ""
+msgstr "%(time)s %(message)s"
 
 #: gui/lobby/lobby.js:1003
 msgid "Please do not spam. You have been blocked for thirty seconds."
@@ -181,7 +182,7 @@ msgstr ""
 
 #: gui/lobby/prelobby.js:40
 msgid "Connecting..."
-msgstr ""
+msgstr "Conectando..."
 
 #: gui/lobby/prelobby.js:62
 msgid "Registering..."
