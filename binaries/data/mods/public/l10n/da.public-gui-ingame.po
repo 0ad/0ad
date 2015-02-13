@@ -16,9 +16,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: 0 A.D.\n"
-"POT-Creation-Date: 2015-01-24 20:16+0100\n"
-"PO-Revision-Date: 2015-02-09 22:34+0000\n"
-"Last-Translator: Nicolai Nystrup-Eriksen <nicolain-e@hotmail.dk>\n"
+"POT-Creation-Date: 2015-02-12 00:57+0100\n"
+"PO-Revision-Date: 2015-02-12 09:44+0000\n"
+"Last-Translator: Adrián Chaves Fernández <adriyetichaves@gmail.com>\n"
 "Language-Team: Danish (http://www.transifex.com/projects/p/0ad/language/da/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -95,75 +95,76 @@ msgstr "Ødelæg alle?"
 msgid "Delete"
 msgstr "Slet"
 
-#: gui/session/menu.js:294
+#: gui/session/menu.js:293
 msgctxt "team"
 msgid "None"
 msgstr "Intet"
 
-#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):28
+#: gui/session/menu.js:296 gui/session/messages.js:627
+#: gui/session/diplomacy_window.xml:(tooltip):28
 msgid "Ally"
 msgstr "Allieret"
 
-#: gui/session/menu.js:297 gui/session/diplomacy_window.xml:(tooltip):32
+#: gui/session/menu.js:296 gui/session/diplomacy_window.xml:(tooltip):32
 msgid "Neutral"
 msgstr "Neutral"
 
-#: gui/session/menu.js:297 gui/session/messages.js:623
+#: gui/session/menu.js:296 gui/session/messages.js:637
 #: gui/session/diplomacy_window.xml:(tooltip):36
 msgid "Enemy"
 msgstr "Fjende"
 
-#: gui/session/menu.js:355
+#: gui/session/menu.js:354
 msgid "x"
 msgstr "x"
 
-#: gui/session/menu.js:466
+#: gui/session/menu.js:465
 msgid "There are no land traders."
 msgstr "Der er ingen landhandlere."
 
-#: gui/session/menu.js:472
+#: gui/session/menu.js:471
 #, javascript-format
 msgid "%(numberOfLandTraders)s inactive"
 msgid_plural "%(numberOfLandTraders)s inactive"
 msgstr[0] "%(numberOfLandTraders)s inaktiv"
 msgstr[1] "%(numberOfLandTraders)s inaktive"
 
-#: gui/session/menu.js:476
+#: gui/session/menu.js:475
 #, javascript-format
 msgid "There is %(numberTrading)s land trader trading"
 msgid_plural "There are %(numberTrading)s land traders trading"
 msgstr[0] "Der er %(numberTrading)s landhandler, der handler"
 msgstr[1] "Der er %(numberTrading)s landhandlere, der handler"
 
-#: gui/session/menu.js:479
+#: gui/session/menu.js:478
 #, javascript-format
 msgid "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgid_plural "%(numberGarrisoned)s garrisoned on a trading merchant ship"
 msgstr[0] "%(numberGarrisoned)s garnisonerede på et handlende handelsskib"
 msgstr[1] "%(numberGarrisoned)s garnisonerede på handlende handelsskibe"
 
-#: gui/session/menu.js:482
+#: gui/session/menu.js:481
 #, javascript-format
 msgid ""
 "%(openingTradingString)s, %(garrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, %(garrisonedString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:490
+#: gui/session/menu.js:489
 #, javascript-format
 msgid "%(openingTradingString)s, and %(garrisonedString)s."
 msgstr "%(openingTradingString)s, og %(garrisonedString)s."
 
-#: gui/session/menu.js:500 gui/session/menu.js:562
+#: gui/session/menu.js:499 gui/session/menu.js:561
 #, javascript-format
 msgid "%(openingTradingString)s, and %(inactiveString)s."
 msgstr "%(openingTradingString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:507 gui/session/menu.js:569
+#: gui/session/menu.js:506 gui/session/menu.js:568
 #, javascript-format
 msgid "%(openingTradingString)s."
 msgstr "%(openingTradingString)s."
 
-#: gui/session/menu.js:517
+#: gui/session/menu.js:516
 #, javascript-format
 msgid ""
 "There is %(numberGarrisoned)s land trader garrisoned on a trading merchant "
@@ -174,211 +175,211 @@ msgid_plural ""
 msgstr[0] "Der er %(numberGarrisoned)s landhandler garnisoneret på et handlende handelsskib."
 msgstr[1] "Der er %(numberGarrisoned)s landhandlere garnisoneret på et handlende handelsskib."
 
-#: gui/session/menu.js:520
+#: gui/session/menu.js:519
 #, javascript-format
 msgid "%(openingGarrisonedString)s, and %(inactiveString)s."
 msgstr "%(openingGarrisonedString)s, og %(inactiveString)s."
 
-#: gui/session/menu.js:527
+#: gui/session/menu.js:526
 #, javascript-format
 msgid "%(openingGarrisonedString)s."
 msgstr "%(openingGarrisonedString)s."
 
-#: gui/session/menu.js:536
+#: gui/session/menu.js:535
 #, javascript-format
 msgid "%(numberOfLandTraders)s land trader inactive"
 msgid_plural "%(numberOfLandTraders)s land traders inactive"
 msgstr[0] "%(numberOfLandTraders)s inaktiv landhandler"
 msgstr[1] "%(numberOfLandTraders)s inaktive landhandlere"
 
-#: gui/session/menu.js:537 gui/session/menu.js:579
+#: gui/session/menu.js:536 gui/session/menu.js:578
 #, javascript-format
 msgid "There is %(inactiveString)s."
 msgid_plural "There are %(inactiveString)s."
 msgstr[0] "Der er %(inactiveString)s."
 msgstr[1] "Der er %(inactiveString)s."
 
-#: gui/session/menu.js:549
+#: gui/session/menu.js:548
 msgid "There are no merchant ships."
 msgstr "Der er ingen handelsskibe."
 
-#: gui/session/menu.js:555
+#: gui/session/menu.js:554
 #, javascript-format
 msgid "%(numberOfShipTraders)s inactive"
 msgid_plural "%(numberOfShipTraders)s inactive"
 msgstr[0] "%(numberOfShipTraders)s inaktiv"
 msgstr[1] "%(numberOfShipTraders)s inaktive"
 
-#: gui/session/menu.js:559
+#: gui/session/menu.js:558
 #, javascript-format
 msgid "There is %(numberTrading)s merchant ship trading"
 msgid_plural "There are %(numberTrading)s merchant ships trading"
 msgstr[0] "Der er %(numberTrading)s handlende handelskib"
 msgstr[1] "Der er %(numberTrading)s handlende handelskibe"
 
-#: gui/session/menu.js:578
+#: gui/session/menu.js:577
 #, javascript-format
 msgid "%(numberOfShipTraders)s merchant ship inactive"
 msgid_plural "%(numberOfShipTraders)s merchant ships inactive"
 msgstr[0] "%(numberOfShipTraders)s handelsskib inaktivt"
 msgstr[1] "%(numberOfShipTraders)s handelsskibe inaktive"
 
-#: gui/session/menu.js:657 gui/session/menu.xml:(caption):17
+#: gui/session/menu.js:656 gui/session/menu.xml:(caption):17
 msgid "Manual"
 msgstr "Manual"
 
-#: gui/session/menu.js:668
+#: gui/session/menu.js:667
 msgid "The Developer Overlay was opened."
 msgstr "Udvikleroverlayet blev åbnet."
 
-#: gui/session/menu.js:670
+#: gui/session/menu.js:669
 msgid "The Developer Overlay was closed."
 msgstr "Udvikleroverlayet blev lukket."
 
-#: gui/session/menu.js:686
+#: gui/session/menu.js:685
 #, javascript-format
 msgid ""
 "Tribute %(resourceAmount)s %(resourceType)s to %(playerName)s. Shift-click "
 "to tribute %(greaterAmount)s."
 msgstr "Tribut %(resourceAmount)s %(resourceType)s til %(playerName)s. Shift-klik for at tributte %(greaterAmount)s."
 
-#: gui/session/messages.js:202
+#: gui/session/messages.js:207
 #, javascript-format
 msgid "Net message: %(message)s"
 msgstr "Netbesked: %(message)s"
 
-#: gui/session/messages.js:215
+#: gui/session/messages.js:220
 msgid "Waiting for other players to connect..."
 msgstr "Vente på at andre spillere får forbindelse..."
 
-#: gui/session/messages.js:219
+#: gui/session/messages.js:224
 msgid "Synchronising gameplay with other players..."
 msgstr "Synkroniserer spil med andre spillere..."
 
-#: gui/session/messages.js:227
+#: gui/session/messages.js:232
 msgid "Connected to the server."
 msgstr "Forbundet til serveren."
 
-#: gui/session/messages.js:231
+#: gui/session/messages.js:236
 msgid "Connection to the server has been authenticated."
 msgstr "Forbindelsen til serveren er blevet bekræftet."
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:241
 msgid "Connection to the server has been lost."
 msgstr "Forbindelsen til serveren er blevet tabt."
 
-#: gui/session/messages.js:236
+#: gui/session/messages.js:241
 msgid "The game has ended."
 msgstr "Spillet er slut."
 
-#: gui/session/messages.js:421
+#: gui/session/messages.js:426
 msgid "Unknown player"
 msgstr "Ukendt spiller"
 
-#: gui/session/messages.js:429
+#: gui/session/messages.js:434
 #, javascript-format
 msgid "%(player)s has joined the game."
 msgstr "%(player)s deltager nu i spillet."
 
-#: gui/session/messages.js:432
+#: gui/session/messages.js:437
 #, javascript-format
 msgid "%(player)s has left the game."
 msgstr "%(player)s har forladt spillet."
 
-#: gui/session/messages.js:437
+#: gui/session/messages.js:442
 msgid "You have been defeated."
 msgstr "Du er blevet besejret."
 
-#: gui/session/messages.js:439
+#: gui/session/messages.js:444
 #, javascript-format
 msgid "%(player)s has been defeated."
 msgstr "%(player)s er blevet besejret."
 
-#: gui/session/messages.js:447
+#: gui/session/messages.js:452
 #, javascript-format
 msgid "You are now allied with %(player)s."
 msgstr "Du er nu allieret med %(player)s."
 
-#: gui/session/messages.js:449
+#: gui/session/messages.js:454
 #, javascript-format
 msgid "You are now at war with %(player)s."
 msgstr "Du er nu i krig med %(player)s."
 
-#: gui/session/messages.js:451
+#: gui/session/messages.js:456
 #, javascript-format
 msgid "You are now neutral with %(player)s."
 msgstr "Du er nu neutral med %(player)s."
 
-#: gui/session/messages.js:457
+#: gui/session/messages.js:462
 #, javascript-format
 msgid "%(player)s is now allied with you."
 msgstr "%(player)s er nu din allierede."
 
-#: gui/session/messages.js:459
+#: gui/session/messages.js:464
 #, javascript-format
 msgid "%(player)s is now at war with you."
 msgstr "%(player)s er nu i krig med dig."
 
-#: gui/session/messages.js:461
+#: gui/session/messages.js:466
 #, javascript-format
 msgid "%(player)s is now neutral with you."
 msgstr "%(player)s er nu neutral med dig."
 
-#: gui/session/messages.js:475
+#: gui/session/messages.js:480
 #, javascript-format
 msgid "%(amount)s %(resourceType)s"
 msgstr "%(amount)s %(resourceType)s"
 
-#: gui/session/messages.js:483
+#: gui/session/messages.js:488
 #, javascript-format
 msgid "%(previousAmounts)s and %(lastAmount)s"
 msgstr "%(previousAmounts)s og %(lastAmount)s"
 
-#: gui/session/messages.js:484 gui/session/utility_functions.js:137
+#: gui/session/messages.js:489 gui/session/utility_functions.js:137
 #: gui/session/utility_functions.js:142
 msgid ", "
 msgstr ","
 
-#: gui/session/messages.js:489
+#: gui/session/messages.js:494
 #, javascript-format
 msgid "%(player)s has sent you %(amounts)s."
 msgstr "%(player)s har sendt dig %(amounts)s."
 
-#: gui/session/messages.js:499
+#: gui/session/messages.js:504
 #, javascript-format
 msgid "You have been attacked by %(attacker)s!"
 msgstr "Du er blevet angrebet af %(attacker)s!"
 
-#: gui/session/messages.js:524
+#: gui/session/messages.js:529
 #, javascript-format
 msgid "(%(context)s) * %(user)s %(message)s"
 msgstr "(%(context)s) * %(user)s %(message)s"
 
-#: gui/session/messages.js:532
+#: gui/session/messages.js:537
 #, javascript-format
 msgid "* %(user)s %(message)s"
 msgstr "* %(user)s %(message)s"
 
-#: gui/session/messages.js:540 gui/session/messages.js:541
+#: gui/session/messages.js:545 gui/session/messages.js:546
 #, javascript-format
 msgid "<%(user)s>"
 msgstr "<%(user)s>"
 
-#: gui/session/messages.js:544
+#: gui/session/messages.js:549
 #, javascript-format
 msgid "(%(context)s) %(userTag)s %(message)s"
 msgstr "(%(context)s) %(userTag)s %(message)s"
 
-#: gui/session/messages.js:552
+#: gui/session/messages.js:557
 #, javascript-format
 msgid "%(userTag)s %(message)s"
 msgstr " %(userTag)s %(message)s "
 
-#: gui/session/messages.js:610 gui/session/diplomacy_window.xml:(caption):21
+#: gui/session/messages.js:617 gui/session/diplomacy_window.xml:(caption):21
 msgid "Team"
 msgstr "Hold"
 
-#: gui/session/messages.js:643
+#: gui/session/messages.js:659
 msgid "Private"
 msgstr "Privat"
 
@@ -836,7 +837,7 @@ msgstr "Indstillinger"
 msgid "Resign"
 msgstr "Giv op"
 
-#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):330
+#: gui/session/menu.xml:(caption):87 gui/session/session.xml:(caption):331
 msgid "Exit"
 msgstr "Afslut"
 
@@ -900,15 +901,15 @@ msgstr "Spillet er sat på Pause"
 msgid "Click to Resume Game"
 msgstr "Klik for at fortsætte spillet. "
 
-#: gui/session/session.xml:(caption):203
+#: gui/session/session.xml:(caption):204
 msgid "Cancel"
 msgstr "Annuller"
 
-#: gui/session/session.xml:(caption):209
+#: gui/session/session.xml:(caption):210
 msgid "Team Only"
 msgstr "Kun Team"
 
-#: gui/session/session.xml:(caption):213
+#: gui/session/session.xml:(caption):214
 msgid "Send"
 msgstr "Send"
 
@@ -996,8 +997,8 @@ msgid "Menu"
 msgstr "Menu"
 
 #: gui/session/top_panel/label.xml:(caption):4
-msgid "ALPHA XVII : Quercus"
-msgstr "ALPHA XVII : Quercus"
+msgid "ALPHA XVIII : Rhododactylos"
+msgstr ""
 
 #: gui/session/top_panel/resource_food.xml:(tooltip):3
 msgid "Food"

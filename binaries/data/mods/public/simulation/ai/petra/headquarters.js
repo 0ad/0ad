@@ -243,6 +243,16 @@ m.HQ.prototype.checkEvents = function (gameState, events, queues)
 				// we were supposed to be autogarrisoned, but this has failed (may-be full)
 				ent.setMetadata(PlayerID, "garrisonType", undefined);
 			}
+
+			// Check if this unit is no more needed in its attack plan
+			// (happen when the training ends after the attack is started or aborted)
+			let plan = ent.getMetadata(PlayerID, "plan");
+			if (plan != undefined && plan >= 0)
+			{
+				let attack = this.attackManager.getPlan(plan);
+				if (!attack || attack.isStarted())
+					ent.setMetadata(PlayerID, "plan", -1);
+			}
 		}
 	}
 };
