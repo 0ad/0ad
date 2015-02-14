@@ -237,8 +237,13 @@ public:
 	template<typename CHAR> bool Eval(const CHAR* code, JS::MutableHandleValue out);
 	template<typename T, typename CHAR> bool Eval(const CHAR* code, T& out);
 
-	// We have to use a mutable handle because JS_Stringify requires that for unknown reasons.
-	std::wstring ToString(JS::MutableHandleValue obj, bool pretty = false);
+	/**
+	 * Convert an object to a UTF-8 encoded string, either with JSON
+	 * (if pretty == true and there is no JSON error) or with toSource().
+	 *
+	 * We have to use a mutable handle because JS_Stringify requires that for unknown reasons.
+	 */
+	std::string ToString(JS::MutableHandleValue obj, bool pretty = false);
 
 	/**
 	 * Parse a UTF-8-encoded JSON string. Returns the unmodified value on error

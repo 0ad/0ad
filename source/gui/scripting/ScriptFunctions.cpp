@@ -628,7 +628,7 @@ void ForceGC(ScriptInterface::CxPrivate* pCxPrivate)
 	double time = timer_Time();
 	JS_GC(pCxPrivate->pScriptInterface->GetJSRuntime());
 	time = timer_Time() - time;
-	g_Console->InsertMessage(L"Garbage collection completed in: %f", time);
+	g_Console->InsertMessage(fmt::sprintf("Garbage collection completed in: %f", time));
 }
 
 void DumpSimState(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))

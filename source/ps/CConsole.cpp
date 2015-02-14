@@ -63,8 +63,8 @@ CConsole::CConsole()
 	m_bCursorVisState = true;
 	m_cursorBlinkRate = 0.5;
 
-	InsertMessage(L"[ 0 A.D. Console v0.14 ]");
-	InsertMessage(L"");
+	InsertMessage("[ 0 A.D. Console v0.14 ]");
+	InsertMessage("");
 }
 
 CConsole::~CConsole()
@@ -124,47 +124,6 @@ void CConsole::FlushBuffer()
 	// Clear the buffer and set the cursor and length to 0
 	memset(m_szBuffer, '\0', sizeof(wchar_t) * CONSOLE_BUFFER_SIZE);
 	m_iBufferPos = m_iBufferLength = 0;
-}
-
-
-void CConsole::ToLower(wchar_t* szMessage, size_t iSize)
-{
-	size_t L = (size_t)wcslen(szMessage);
-
-	if (L <= 0) return;
-
-	if (iSize && iSize < L) L = iSize;
-
-	for(size_t i = 0; i < L; i++)
-		szMessage[i] = towlower(szMessage[i]);
-}
-
-
-void CConsole::Trim(wchar_t* szMessage, const wchar_t cChar, size_t iSize)
-{
-	size_t L = wcslen(szMessage);
-	if(!L)
-		return;
-
-	if (iSize && iSize < L) L = iSize;
-
-	wchar_t szChar[2] = { cChar, 0 };
-
-	// Find the first point at which szChar does not
-	// exist in the message
-	size_t ofs = wcsspn(szMessage, szChar);
-	if(ofs == 0)	// no leading <cChar> chars - we're done
-		return;
-
-	// move everything <ofs> chars left, replacing leading cChar chars
-	L -= ofs;
-	memmove(szMessage, szMessage+ofs, L*sizeof(wchar_t));
-
-	for(ssize_t i = (ssize_t)L; i >= 0; i--)
-	{
-		szMessage[i] = '\0';
-		if (szMessage[i - 1] != cChar) break;
-	}
 }
 
 
@@ -514,32 +473,13 @@ void CConsole::InsertChar(const int szChar, const wchar_t cooked)
 }
 
 
-void CConsole::InsertMessage(const wchar_t* szMessage, ...)
-{
-	va_list args;
-	wchar_t szBuffer[CONSOLE_MESSAGE_SIZE];
-
-	va_start(args, szMessage);
-	if (vswprintf(szBuffer, CONSOLE_MESSAGE_SIZE, szMessage, args) == -1)
-	{
-		debug_printf("Error printfing console message (buffer size exceeded?)\n");
-
-		// Make it obvious that the text was trimmed (assuming it was)
-		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");
-	}
-	va_end(args);
-
-	InsertMessageRaw(szBuffer);
-}
-	
-
-void CConsole::InsertMessageRaw(const CStrW& message)
+void CConsole::InsertMessage(const std::string& message)
 {
 	// (TODO: this text-wrapping is rubbish since we now use variable-width fonts)
 
 	//Insert newlines to wraparound text where needed
-	CStrW wrapAround(message);
-	CStrW newline(L"\n");
+	std::wstring wrapAround = wstring_from_utf8(message.c_str());
+	std::wstring newline(L"\n");
 	size_t oldNewline=0;
 	size_t distance;
 	
@@ -620,7 +560,7 @@ void CConsole::ProcessBuffer(const wchar_t* szLine)
 	JS::RootedValue rval(cx);
 	pScriptInterface->Eval(szLine, &rval);
 	if (!rval.isUndefined())
-		InsertMessageRaw(pScriptInterface->ToString(&rval));
+		InsertMessage(pScriptInterface->ToString(&rval));
 }
 
 void CConsole::LoadHistory()
@@ -669,11 +609,6 @@ void CConsole::SaveHistory()
 		buffer.Append(&newline, 1);
 	}
 	g_VFS->CreateFile(m_sHistoryFile, buffer.Data(), buffer.Size());
-}
-
-void CConsole::ReceivedChatMessage(const wchar_t *szSender, const wchar_t *szMessage)
-{
-	InsertMessage(L"%ls: %ls", szSender, szMessage);
 }
 
 #if SDL_VERSION_ATLEAST(2, 0, 0)

@@ -1005,18 +1005,6 @@ struct Stringifier
 	std::stringstream stream;
 };
 
-struct StringifierW
-{
-	static bool callback(const jschar* buf, u32 len, void* data)
-	{
-		utf16string str(buf, buf+len);
-		static_cast<StringifierW*>(data)->stream << std::wstring(str.begin(), str.end());
-		return true;
-	}
-
-	std::wstringstream stream;
-};
-
 // TODO: It's not quite clear why JS_Stringify needs JS::MutableHandleValue. |obj| should not get modified.
 // It probably has historical reasons and could be changed by SpiderMonkey in the future.
 std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool indent)
@@ -1035,24 +1023,24 @@ std::string ScriptInterface::StringifyJSON(JS::MutableHandleValue obj, bool inde
 }
 
 
-std::wstring ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
+std::string ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 {
 	JSAutoRequest rq(m->m_cx);
 
 	if (obj.isUndefined())
-		return L"(void 0)";
+		return "(void 0)";
 
 	// Try to stringify as JSON if possible
 	// (TODO: this is maybe a bad idea since it'll drop 'undefined' values silently)
 	if (pretty)
 	{
-		StringifierW str;
+		Stringifier str;
 		JS::RootedValue indentVal(m->m_cx, JS::Int32Value(2));
 
 		// Temporary disable the error reporter, so we don't print complaints about cyclic values
 		JSErrorReporter er = JS_SetErrorReporter(m->m_cx, NULL);
 
-		bool ok = JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &StringifierW::callback, &str);
+		bool ok = JS_Stringify(m->m_cx, obj, JS::NullPtr(), indentVal, &Stringifier::callback, &str);
 
 		// Restore error reporter
 		JS_SetErrorReporter(m->m_cx, er);
@@ -1069,7 +1057,7 @@ std::wstring ScriptInterface::ToString(JS::MutableHandleValue obj, bool pretty)
 
 	std::wstring source = L"(error)";
 	CallFunction(obj, "toSource", source);
-	return source;
+	return utf8_from_wstring(source);
 }
 
 void ScriptInterface::ReportError(const char* msg)

@@ -196,19 +196,19 @@ void CNetClient::PushGuiMessage(const JS::HandleValue message)
 	m_GuiMessageQueue.push_back(JS::Heap<JS::Value>(message));
 }
 
-std::wstring CNetClient::TestReadGuiMessages()
+std::string CNetClient::TestReadGuiMessages()
 {
 	JSContext* cx = GetScriptInterface().GetContext();
 	JSAutoRequest rq(cx);
 	
-	std::wstring r;
+	std::string r;
 	JS::RootedValue msg(cx);
 	while (true)
 	{
 		GuiPoll(&msg);
 		if (msg.isUndefined())
 			break;
-		r += GetScriptInterface().ToString(&msg) + L"\n";
+		r += GetScriptInterface().ToString(&msg) + "\n";
 	}
 	return r;
 }

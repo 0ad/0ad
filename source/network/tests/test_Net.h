@@ -161,7 +161,7 @@ public:
 		clients.push_back(&client3);
 
 		connect(server, clients);
-		debug_printf("%s", utf8_from_wstring(client1.TestReadGuiMessages()).c_str());
+		debug_printf("%s", client1.TestReadGuiMessages().c_str());
 
 		server.StartGame();
 		SDL_Delay(100);
@@ -230,7 +230,7 @@ public:
 		clients.push_back(&client3);
 
 		connect(server, clients);
-		debug_printf("%s", utf8_from_wstring(client1.TestReadGuiMessages()).c_str());
+		debug_printf("%s", client1.TestReadGuiMessages().c_str());
 
 		server.StartGame();
 		SDL_Delay(100);

@@ -70,13 +70,9 @@ public:
 
 	void Render();
 
-	void InsertMessage(const wchar_t* szMessage, ...) WPRINTF_ARGS(2);
 	void InsertChar(const int szChar, const wchar_t cooked);
 
-	// Insert message without printf-style formatting, and without length limits
-	void InsertMessageRaw(const CStrW& message);
-
-	void ReceivedChatMessage(const wchar_t *pSender, const wchar_t *szMessage);
+	void InsertMessage(const std::string& message);
 
 	void SetBuffer(const wchar_t* szMessage);
 
@@ -125,9 +121,6 @@ private:
 	double m_prevTime;	// the previous time the cursor draw state changed (used for blinking cursor)
 	bool m_bCursorVisState;	// if the cursor should be drawn or not
 	double m_cursorBlinkRate;	// cursor blink rate in seconds, if greater than 0.0
-
-	void ToLower(wchar_t* szMessage, size_t iSize = 0);
-	void Trim(wchar_t* szMessage, const wchar_t cChar = 32, size_t iSize = 0);
 
 	void DrawWindow(CShaderProgramPtr& shader);
 	void DrawHistory(CTextRenderer& textRenderer);
