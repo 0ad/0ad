@@ -106,7 +106,7 @@ void wdbg_printf(const wchar_t* fmt, ...)
 	wvsprintfW(buf, fmt, ap);	// (return value doesn't indicate whether truncation occurred)
 	va_end(ap);
 
-	debug_puts(buf);
+	OutputDebugStringW(buf);
 }
 
 
