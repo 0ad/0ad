@@ -286,7 +286,7 @@ u8* CVertexBuffer::Bind()
 
 				// Unmap might fail on e.g. resolution switches, so just try again
 				// and hope it will eventually succeed
-				debug_printf(L"glUnmapBuffer failed, trying again...");
+				debug_printf("glUnmapBuffer failed, trying again...");
 			}
 
 			// Anything we just uploaded is clean; anything else is dirty
@@ -337,16 +337,16 @@ size_t CVertexBuffer::GetBytesAllocated() const
 
 void CVertexBuffer::DumpStatus()
 {
-	debug_printf(L"freeverts = %d\n", (int)m_FreeVertices);
+	debug_printf("freeverts = %d\n", (int)m_FreeVertices);
 
 	size_t maxSize = 0;
 	typedef std::list<VBChunk*>::iterator Iter;
 	for (Iter iter = m_FreeList.begin(); iter != m_FreeList.end(); ++iter)
 	{
-		debug_printf(L"free chunk %p: size=%d\n", *iter, (int)((*iter)->m_Count));
+		debug_printf("free chunk %p: size=%d\n", (void *)*iter, (int)((*iter)->m_Count));
 		maxSize = std::max((*iter)->m_Count, maxSize);
 	}
-	debug_printf(L"max size = %d\n", (int)maxSize);
+	debug_printf("max size = %d\n", (int)maxSize);
 }
 
 bool CVertexBuffer::UseStreaming(GLenum usage)

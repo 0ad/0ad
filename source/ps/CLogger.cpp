@@ -148,7 +148,7 @@ void CLogger::WriteMessage(const char* message, bool doRender = false)
 
 	++m_NumberOfMessages;
 //	if (m_UseDebugPrintf)
-//		debug_printf(L"MESSAGE: %hs\n", message);
+//		debug_printf("MESSAGE: %s\n", message);
 
 	*m_MainLog << "<p>" << cmessage << "</p>\n";
 	m_MainLog->flush();
@@ -169,7 +169,7 @@ void CLogger::WriteError(const char* message)
 
 	++m_NumberOfErrors;
 	if (m_UseDebugPrintf)
-		debug_printf(L"ERROR: %hs\n", message);
+		debug_printf("ERROR: %s\n", message);
 
 	if (g_Console) g_Console->InsertMessage(L"ERROR: %hs", message);
 	*m_InterestingLog << "<p class=\"error\">ERROR: " << cmessage << "</p>\n";
@@ -189,7 +189,7 @@ void CLogger::WriteWarning(const char* message)
 
 	++m_NumberOfWarnings;
 	if (m_UseDebugPrintf)
-		debug_printf(L"WARNING: %hs\n", message);
+		debug_printf("WARNING: %s\n", message);
 
 	if (g_Console) g_Console->InsertMessage(L"WARNING: %hs", message);
 	*m_InterestingLog << "<p class=\"warning\">WARNING: " << cmessage << "</p>\n";

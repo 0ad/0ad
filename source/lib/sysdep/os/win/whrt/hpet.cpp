@@ -51,9 +51,9 @@ public:
 	{
 	}
 
-	virtual const wchar_t* Name() const
+	virtual const char* Name() const
 	{
-		return L"HPET";
+		return "HPET";
 	}
 
 	Status Activate()
@@ -213,7 +213,7 @@ private:
 		const u32 period_fs = (u32)bits(caps_and_id, 32, 63);
 		ENSURE(period_fs != 0);	// "a value of 0 in this field is not permitted"
 		frequency = 1e15 / period_fs;
-		debug_printf(L"HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, counterBits, period_fs, frequency);
+		debug_printf("HPET: rev=%X vendor=%X bits=%d period=%08X freq=%g\n", revision, vendorID, counterBits, period_fs, frequency);
 
 		if(period_fs > 0x05F5E100)	// 100 ns (spec guarantees >= 10 MHz)
 			return ERR::CORRUPTED;	// avoid using HPET (e.g. if calibration was still in progress)

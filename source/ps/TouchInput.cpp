@@ -62,7 +62,7 @@ bool CTouchInput::IsEnabled()
 
 void CTouchInput::OnFingerDown(int id, int x, int y)
 {
-	debug_printf(L"finger down %d %d %d; state %d\n", id, x, y, m_State);
+	debug_printf("finger down %d %d %d; state %d\n", id, x, y, m_State);
 	m_Down[id] = true;
 	m_Prev[id] = m_Pos[id] = CVector2D(x, y);
 
@@ -80,7 +80,7 @@ void CTouchInput::OnFingerDown(int id, int x, int y)
 
 void CTouchInput::OnFingerUp(int id, int x, int y)
 {
-	debug_printf(L"finger up %d %d %d; state %d\n", id, x, y, m_State);
+	debug_printf("finger up %d %d %d; state %d\n", id, x, y, m_State);
 	m_Down[id] = false;
 	m_Pos[id] = CVector2D(x, y);
 
@@ -113,7 +113,7 @@ void CTouchInput::OnFingerUp(int id, int x, int y)
 
 void CTouchInput::OnFingerMotion(int id, int x, int y)
 {
-	debug_printf(L"finger motion %d %d %d; state %d\n", id, x, y, m_State);
+	debug_printf("finger motion %d %d %d; state %d\n", id, x, y, m_State);
 
 	CVector2D pos(x, y);
 
@@ -267,7 +267,7 @@ InReaction CTouchInput::HandleEvent(const SDL_Event_* ev)
 	case SDL_FINGERMOTION:
 	{
 		// Map finger events onto the mouse, for basic testing
-		debug_printf(L"finger %hs tid=%lld fid=%lld x=%f y=%f dx=%f dy=%f p=%f\n",
+		debug_printf("finger %s tid=%lld fid=%lld x=%f y=%f dx=%f dy=%f p=%f\n",
 			ev->ev.type == SDL_FINGERDOWN ? "down" :
 			ev->ev.type == SDL_FINGERUP ? "up" :
 			ev->ev.type == SDL_FINGERMOTION ? "motion" : "?",

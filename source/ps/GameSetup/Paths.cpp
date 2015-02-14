@@ -194,7 +194,7 @@ Paths::Paths(const CmdLineArgs& args)
 # if OS_MACOSX
 	if (osx_IsAppBundleValid())
 	{
-		debug_printf(L"Valid app bundle detected\n");
+		debug_printf("Valid app bundle detected\n");
 
 		std::string resourcesPath = osx_GetBundleResourcesPath();
 		// Ensure we have a valid resources path

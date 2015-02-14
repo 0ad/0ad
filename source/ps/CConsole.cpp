@@ -522,7 +522,7 @@ void CConsole::InsertMessage(const wchar_t* szMessage, ...)
 	va_start(args, szMessage);
 	if (vswprintf(szBuffer, CONSOLE_MESSAGE_SIZE, szMessage, args) == -1)
 	{
-		debug_printf(L"Error printfing console message (buffer size exceeded?)\n");
+		debug_printf("Error printfing console message (buffer size exceeded?)\n");
 
 		// Make it obvious that the text was trimmed (assuming it was)
 		wcscpy(szBuffer+CONSOLE_MESSAGE_SIZE-4, L"...");

@@ -71,7 +71,7 @@ static Status GetAndValidateApicIds()
 	// having one zero-valued ID is legitimate)
 	if(numUnique == 1 && sortedApicIds[0] == 0 && numIds != 1)
 	{
-		debug_printf(L"APIC: all zero\n");
+		debug_printf("APIC: all zero\n");
 		return ERR::CPU_FEATURE_MISSING;	// NOWARN
 	}
 
@@ -79,7 +79,7 @@ static Status GetAndValidateApicIds()
 	// imperfect or doesn't allow access to all processors.
 	if(numUnique != numIds)
 	{
-		debug_printf(L"APIC: not unique\n");
+		debug_printf("APIC: not unique\n");
 		return ERR::FAIL;	// NOWARN
 	}
 

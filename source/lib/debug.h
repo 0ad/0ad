@@ -66,7 +66,7 @@ extern void debug_break();
  *
  * @param fmt Format string and varargs; see printf.
  **/
-LIB_API void debug_printf(const wchar_t* fmt, ...) WPRINTF_ARGS(1);
+LIB_API void debug_printf(const char* fmt, ...) PRINTF_ARGS(1);
 
 
 /**
@@ -232,13 +232,13 @@ LIB_API ErrorReaction debug_DisplayError(const wchar_t* description, size_t flag
  * in future, allow output with the given tag to proceed.
  * no effect if already added.
  **/
-LIB_API void debug_filter_add(const wchar_t* tag);
+LIB_API void debug_filter_add(const char* tag);
 
 /**
  * in future, discard output with the given tag.
  * no effect if not currently added.
  **/
-LIB_API void debug_filter_remove(const wchar_t* tag);
+LIB_API void debug_filter_remove(const char* tag);
 
 /**
  * clear all filter state; equivalent to debug_filter_remove for
@@ -251,7 +251,12 @@ LIB_API void debug_filter_clear();
  * useful for a series of debug_printfs - avoids needing to add a tag to
  * each of their format strings.
  **/
-LIB_API bool debug_filter_allows(const wchar_t* text);
+LIB_API bool debug_filter_allows(const char* text);
+
+/**
+ * call debug_puts if debug_filter_allows allows the string.
+ **/
+LIB_API void debug_puts_filtered(const char* text);
 
 /**
  * write an error description and all logs into crashlog.txt
@@ -263,7 +268,7 @@ LIB_API bool debug_filter_allows(const wchar_t* text);
  * @return Status; ERR::REENTERED if reentered via recursion or
  * multithreading (not allowed since an infinite loop may result).
  **/
-LIB_API Status debug_WriteCrashlog(const wchar_t* text);
+LIB_API Status debug_WriteCrashlog(const char* text);
 
 
 //-----------------------------------------------------------------------------
@@ -489,7 +494,7 @@ LIB_API Status debug_DumpStack(wchar_t* buf, size_t maxChars, void* context, con
  * this can be quite slow (~1 ms)! On Windows, it uses OutputDebugString
  * (entails context switch), otherwise stdout+fflush (waits for IO).
  **/
-LIB_API void debug_puts(const wchar_t* text);
+LIB_API void debug_puts(const char* text);
 
 /**
  * return the caller of a certain function on the call stack.

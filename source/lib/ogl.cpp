@@ -375,8 +375,8 @@ static void importExtensionFunctions()
 
 static void dump_gl_error(GLenum err)
 {
-	debug_printf(L"OGL| ");
-#define E(e) case e: debug_printf(L"%ls\n", WIDEN(#e)); break;
+	debug_printf("OGL| ");
+#define E(e) case e: debug_printf("%s\n", #e); break;
 	switch (err)
 	{
 	E(GL_INVALID_ENUM)
@@ -388,7 +388,7 @@ static void dump_gl_error(GLenum err)
 #endif
 	E(GL_OUT_OF_MEMORY)
 	E(GL_INVALID_FRAMEBUFFER_OPERATION)
-	default: debug_printf(L"Unknown GL error: %04x\n", err); break;
+	default: debug_printf("Unknown GL error: %04x\n", err); break;
 	}
 #undef E
 }
@@ -414,7 +414,7 @@ void ogl_WarnIfErrorLoc(const char *file, int line)
 	}
 
 	if(error_enountered)
-		debug_printf(L"%hs:%d: OpenGL error(s) occurred: %04x\n", file, line, (unsigned int)first_error);
+		debug_printf("%s:%d: OpenGL error(s) occurred: %04x\n", file, line, (unsigned int)first_error);
 }
 
 
@@ -452,7 +452,7 @@ bool ogl_SquelchError(GLenum err_to_ignore)
 	}
 
 	if(error_enountered)
-		debug_printf(L"OpenGL error(s) occurred: %04x\n", (unsigned int)first_error);
+		debug_printf("OpenGL error(s) occurred: %04x\n", (unsigned int)first_error);
 
 	return error_ignored;
 }

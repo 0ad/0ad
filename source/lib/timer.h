@@ -34,6 +34,7 @@
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"	// x86_x64::rdtsc
 #endif
 
+#include "lib/utf8.h"
 
 /**
  * timer_Time will subsequently return values relative to the current time.
@@ -62,8 +63,8 @@ typedef i64 Cycles;
  * internal helper functions for returning an easily readable
  * string (i.e. re-scaled to appropriate units)
  **/
-LIB_API std::wstring StringForSeconds(double seconds);
-LIB_API std::wstring StringForCycles(Cycles cycles);
+LIB_API std::string StringForSeconds(double seconds);
+LIB_API std::string StringForCycles(Cycles cycles);
 
 
 //-----------------------------------------------------------------------------
@@ -82,8 +83,8 @@ public:
 	~ScopeTimer()
 	{
 		const double t1 = timer_Time();
-		const std::wstring elapsedTimeString = StringForSeconds(t1-m_t0);
-		debug_printf(L"TIMER| %ls: %ls\n", m_description, elapsedTimeString.c_str());
+		const std::string elapsedTimeString = StringForSeconds(t1-m_t0);
+		debug_printf("TIMER| %s: %s\n", utf8_from_wstring(m_description).c_str(), elapsedTimeString.c_str());
 	}
 
 private:
@@ -197,7 +198,7 @@ retry:
 		m_cycles -= t.m_cycles;
 	}
 
-	std::wstring ToString() const
+	std::string ToString() const
 	{
 		ENSURE(m_cycles >= 0);
 		return StringForCycles(m_cycles);
@@ -251,7 +252,7 @@ retry:
 		m_seconds -= t.m_seconds;
 	}
 
-	std::wstring ToString() const
+	std::string ToString() const
 	{
 		ENSURE(m_seconds >= 0.0);
 		return StringForSeconds(m_seconds);

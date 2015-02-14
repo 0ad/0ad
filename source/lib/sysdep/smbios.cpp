@@ -227,7 +227,7 @@ void FieldInitializer::operator()<const char*>(size_t flags, const char*& t, con
 
 	if(number > strings.size())
 	{
-		debug_printf(L"SMBIOS: invalid string number %d (count=%d)\n", number, (int)strings.size());
+		debug_printf("SMBIOS: invalid string number %d (count=%d)\n", number, (int)strings.size());
 		return;
 	}
 
@@ -436,7 +436,7 @@ static Status InitStructures()
 	{
 		if(header+1 > end)
 		{
-			debug_printf(L"SMBIOS: table not terminated\n");
+			debug_printf("SMBIOS: table not terminated\n");
 			break;
 		}
 		if(header->id == 127)	// end
@@ -455,7 +455,7 @@ static Status InitStructures()
 
 		default:
 			if(32 < header->id && header->id < 126)	// only mention non-proprietary structures of which we are not aware
-				debug_printf(L"SMBIOS: unknown structure type %d\n", header->id);
+				debug_printf("SMBIOS: unknown structure type %d\n", header->id);
 			break;
 		}
 

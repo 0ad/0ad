@@ -161,7 +161,7 @@ private:
 			// at least one 32-bit XP system STILL fails here,
 			// so don't raise an error dialog.
 			if(!ok)
-				debug_printf(L"SetDeviceGammaRamp failed twice. Oh well.\n");
+				debug_printf("SetDeviceGammaRamp failed twice. Oh well.\n");
 		}
 		return (ok == TRUE);
 	}

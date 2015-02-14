@@ -36,7 +36,7 @@ Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_curso
 								colorSpaceName:NSCalibratedRGBColorSpace bytesPerRow:w*4 bitsPerPixel:0];
 	if (!bitmap)
 	{
-		debug_printf(L"sys_cursor_create: Error creating NSBitmapImageRep!\n");
+		debug_printf("sys_cursor_create: Error creating NSBitmapImageRep!\n");
 		return ERR::FAIL;
 	}
 
@@ -56,7 +56,7 @@ Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_curso
 	if (!image)
 	{
 		[bitmap release];
-		debug_printf(L"sys_cursor_create: Error creating NSImage!\n");
+		debug_printf("sys_cursor_create: Error creating NSImage!\n");
 		return ERR::FAIL;
 	}
 
@@ -67,7 +67,7 @@ Status sys_cursor_create(int w, int h, void* bgra_img, int hx, int hy, sys_curso
 
 	if (!impl)
 	{
-		debug_printf(L"sys_cursor_create: Error creating NSCursor!\n");
+		debug_printf("sys_cursor_create: Error creating NSCursor!\n");
 		return ERR::FAIL;
 	}
 

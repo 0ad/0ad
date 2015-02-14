@@ -126,9 +126,9 @@ static bool IsSandyBridge()
 class CounterTSC : public ICounter
 {
 public:
-	virtual const wchar_t* Name() const
+	virtual const char* Name() const
 	{
-		return L"TSC";
+		return "TSC";
 	}
 
 	Status Activate()

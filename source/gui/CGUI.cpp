@@ -993,7 +993,7 @@ void CGUI::Xeromyces_ReadRootObjects(XMBElement Element, CXeromyces* pFile, boos
 	XMBElementList children = Element.GetChildNodes();
 	for (int i=0; i<children.Count; ++i)
 	{
-		//debug_printf(L"Object %d\n", i);
+		//debug_printf("Object %d\n", i);
 		XMBElement child = children.Item(i);
 
 		if (child.GetNodeName() == el_script)

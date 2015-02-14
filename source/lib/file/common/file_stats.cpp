@@ -264,13 +264,13 @@ template<typename T> int percent(T num, T divisor)
 
 void file_stats_dump()
 {
-	if(!debug_filter_allows(L"FILE_STATS|"))
+	if(!debug_filter_allows("FILE_STATS|"))
 		return;
 
 	const double KB = 1e3; const double MB = 1e6; const double ms = 1e-3;
 
-	debug_printf(L"--------------------------------------------------------------------------------\n");
-	debug_printf(L"File statistics:\n");
+	debug_printf("--------------------------------------------------------------------------------\n");
+	debug_printf("File statistics:\n");
 
 	// note: we split the reports into several debug_printfs for clarity;
 	// this is necessary anyway due to fixed-size buffer.

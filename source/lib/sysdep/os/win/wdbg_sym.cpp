@@ -812,7 +812,7 @@ static Status DetermineSymbolAddress(DWORD id, const SYMBOL_INFOW* sym, const Du
 
 	*pp = (const u8*)(uintptr_t)addr;
 
-	debug_printf(L"SYM| %ls at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", sym->Name, *pp, sym->Flags, dataKind, sym->Address, state.stackFrame->AddrFrame.Offset);
+	debug_printf("SYM| %s at %p  flags=%X dk=%d sym->addr=%I64X fp=%I64x\n", utf8_from_wstring(sym->Name).c_str(), *pp, sym->Flags, dataKind, sym->Address, state.stackFrame->AddrFrame.Offset);
 	return INFO::OK;
 }
 
@@ -1170,7 +1170,7 @@ static bool ptr_already_visited(const u8* p)
 		static bool haveComplained;
 		if(!haveComplained)
 		{
-			debug_printf(L"WARNING: ptr_already_visited: capacity exceeded, increase maxVisited\n");
+			debug_printf("WARNING: ptr_already_visited: capacity exceeded, increase maxVisited\n");
 			debug_break();
 			haveComplained = true;
 		}
@@ -1469,7 +1469,7 @@ static Status udt_dump_normal(const wchar_t* type_name, const u8* p, size_t size
 			continue;
 		if(ofs >= size)
 		{
-			debug_printf(L"INVALID_UDT %ls %d %d\n", type_name, ofs, size);
+			debug_printf("INVALID_UDT %s %d %d\n", utf8_from_wstring(type_name).c_str(), ofs, size);
 		}
 		//ENSURE(ofs < size);
 
@@ -1581,7 +1581,7 @@ static Status dump_sym_unknown(DWORD type_id, const u8* UNUSED(p), DumpState& st
 	if(!pSymGetTypeInfo(hProcess, state.moduleBase, type_id, TI_GET_SYMTAG, &type_tag))
 		WARN_RETURN(ERR::SYM_TYPE_INFO_UNAVAILABLE);
 
-	debug_printf(L"SYM: unknown tag: %d\n", type_tag);
+	debug_printf("SYM: unknown tag: %d\n", type_tag);
 	out(L"(unknown symbol type)");
 	return INFO::OK;
 }

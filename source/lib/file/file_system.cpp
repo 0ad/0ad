@@ -153,7 +153,7 @@ Status CreateDirectories(const OsPath& path, mode_t mode)
 	errno = 0;
 	if(wmkdir(path, mode) != 0)
 	{
-		debug_printf(L"CreateDirectories: failed to mkdir %ls (mode %d)", path.string().c_str(), mode);
+		debug_printf("CreateDirectories: failed to mkdir %s (mode %d)", path.string8().c_str(), mode);
 		WARN_RETURN(StatusFromErrno());
 	}
 

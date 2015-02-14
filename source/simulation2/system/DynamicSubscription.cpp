@@ -71,18 +71,18 @@ void CDynamicSubscription::DebugDump()
 {
 	std::set<IComponent*, CompareIComponent>::iterator it;
 
-	debug_printf(L"components:");
+	debug_printf("components:");
 	for (size_t i = 0; i < m_Components.size(); i++)
-		debug_printf(L" %p", m_Components[i]);
-	debug_printf(L"\n");
+		debug_printf(" %p", (void *)m_Components[i]);
+	debug_printf("\n");
 
-	debug_printf(L"added:");
+	debug_printf("added:");
 	for (it = m_Added.begin(); it != m_Added.end(); ++it)
-		debug_printf(L" %p", *it);
-	debug_printf(L"\n");
+		debug_printf(" %p", (void *)*it);
+	debug_printf("\n");
 
-	debug_printf(L"removed:");
+	debug_printf("removed:");
 	for (it = m_Removed.begin(); it != m_Removed.end(); ++it)
-		debug_printf(L" %p", *it);
-	debug_printf(L"\n");
+		debug_printf(" %p", (void *)*it);
+	debug_printf("\n");
 }

@@ -612,7 +612,7 @@ void SetCameraTarget(ScriptInterface::CxPrivate* UNUSED(pCxPrivate), float x, fl
 // Useful for testing the crashlog/stack trace code.
 int Crash(ScriptInterface::CxPrivate* UNUSED(pCxPrivate))
 {
-	debug_printf(L"Crashing at user's request.\n");
+	debug_printf("Crashing at user's request.\n");
 	return *(volatile int*)0;
 }
 

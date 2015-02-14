@@ -84,7 +84,7 @@ void MessagePasserImpl::Add(IMessage* msg)
 	ENSURE(msg->GetType() == IMessage::Message);
 
 	if (m_Trace)
-		debug_printf(L"%8.3f add message: %hs\n", timer_Time(), msg->GetName());
+		debug_printf("%8.3f add message: %s\n", timer_Time(), msg->GetName());
 
 	{
 		CScopeLock lock(m_Mutex);
@@ -110,7 +110,7 @@ IMessage* MessagePasserImpl::Retrieve()
 	}
 
 	if (m_Trace && msg)
-		debug_printf(L"%8.3f retrieved message: %hs\n", timer_Time(), msg->GetName());
+		debug_printf("%8.3f retrieved message: %s\n", timer_Time(), msg->GetName());
 
 	return msg;
 }
@@ -121,7 +121,7 @@ void MessagePasserImpl::Query(QueryMessage* qry, void(* UNUSED(timeoutCallback) 
 	ENSURE(qry->GetType() == IMessage::Query);
 
 	if (m_Trace)
-		debug_printf(L"%8.3f add query: %hs\n", timer_Time(), qry->GetName());
+		debug_printf("%8.3f add query: %s\n", timer_Time(), qry->GetName());
 
 	// Set the semaphore, so we can block until the query has been handled
 	qry->m_Semaphore = static_cast<void*>(m_Semaphore);

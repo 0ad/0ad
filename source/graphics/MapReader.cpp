@@ -1140,7 +1140,7 @@ void CXMLReader::ReadXML()
 		}
 		else
 		{
-			debug_printf(L"Invalid XML element in map file: %hs\n", name.c_str());
+			debug_printf("Invalid XML element in map file: %s\n", name.c_str());
 			debug_warn(L"Invalid map XML data");
 		}
 	}

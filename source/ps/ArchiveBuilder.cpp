@@ -97,7 +97,7 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 		)
 		{
 			VfsPath cachedPath;
-			debug_printf(L"Converting texture %ls\n", realPath.string().c_str());
+			debug_printf("Converting texture %s\n", realPath.string8().c_str());
 			bool ok = textureManager.GenerateCachedTexture(path, cachedPath);
 			ENSURE(ok);
 
@@ -129,7 +129,7 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 			}
 			
 			VfsPath cachedPath;
-			debug_printf(L"Converting model %ls\n", realPath.string().c_str());
+			debug_printf("Converting model %s\n", realPath.string8().c_str());
 			bool ok = colladaManager.GenerateCachedFile(path, type, cachedPath);
 			
 			// The DAE might fail to convert for whatever reason, and in that case
@@ -149,14 +149,14 @@ void CArchiveBuilder::Build(const OsPath& archive, bool compress)
 			continue;
 		}
 
-		debug_printf(L"Adding %ls\n", realPath.string().c_str());
+		debug_printf("Adding %s\n", realPath.string8().c_str());
 		writer->AddFile(realPath, path);
 
 		// Also cache XMB versions of all XML files
 		if (path.Extension() == L".xml")
 		{
 			VfsPath cachedPath;
-			debug_printf(L"Converting XML file %ls\n", realPath.string().c_str());
+			debug_printf("Converting XML file %s\n", realPath.string8().c_str());
 			bool ok = xero.GenerateCachedXMB(m_VFS, path, cachedPath);
 			ENSURE(ok);
 

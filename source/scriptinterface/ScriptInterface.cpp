@@ -150,7 +150,7 @@ bool print(JSContext* cx, uint argc, jsval* vp)
 		std::wstring str;
 		if (!ScriptInterface::FromJSVal(cx, args[i], str))
 			return false;
-		debug_printf(L"%ls", str.c_str());
+		debug_printf("%s", utf8_from_wstring(str).c_str());
 	}
 	fflush(stdout);
 	args.rval().setUndefined();

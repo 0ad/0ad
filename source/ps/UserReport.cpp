@@ -322,7 +322,7 @@ private:
 		CScopeLock lock(m_WorkerMutex);
 		m_Status = status;
 #if DEBUG_UPLOADS
-		debug_printf(L">>> CUserReporterWorker status: %hs\n", status.c_str());
+		debug_printf(">>> CUserReporterWorker status: %s\n", status.c_str());
 #endif
 	}
 

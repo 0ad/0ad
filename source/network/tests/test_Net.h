@@ -77,7 +77,7 @@ public:
 
 		for (size_t i = 0; ; ++i)
 		{
-//			debug_printf(L".");
+//			debug_printf(".");
 			for (size_t j = 0; j < clients.size(); ++j)
 				clients[j]->Poll();
 
@@ -99,7 +99,7 @@ public:
 	{
 		for (size_t i = 0; ; ++i)
 		{
-//			debug_printf(L".");
+//			debug_printf(".");
 			server.Poll();
 			for (size_t j = 0; j < clients.size(); ++j)
 				clients[j]->Poll();
@@ -161,7 +161,7 @@ public:
 		clients.push_back(&client3);
 
 		connect(server, clients);
-		debug_printf(L"%ls", client1.TestReadGuiMessages().c_str());
+		debug_printf("%s", utf8_from_wstring(client1.TestReadGuiMessages()).c_str());
 
 		server.StartGame();
 		SDL_Delay(100);
@@ -230,7 +230,7 @@ public:
 		clients.push_back(&client3);
 
 		connect(server, clients);
-		debug_printf(L"%ls", client1.TestReadGuiMessages().c_str());
+		debug_printf("%s", utf8_from_wstring(client1.TestReadGuiMessages()).c_str());
 
 		server.StartGame();
 		SDL_Delay(100);
@@ -261,12 +261,12 @@ public:
 			client1Game.GetTurnManager()->PostCommand(cmd);
 		}
 
-		debug_printf(L"==== Disconnecting client 2\n");
+		debug_printf("==== Disconnecting client 2\n");
 
 		client2.DestroyConnection();
 		clients.erase(clients.begin()+1);
 
-		debug_printf(L"==== Connecting client 2B\n");
+		debug_printf("==== Connecting client 2B\n");
 
 		CGame client2BGame(true);
 		CNetClient client2B(&client2BGame);
@@ -277,7 +277,7 @@ public:
 
 		for (size_t i = 0; ; ++i)
 		{
-			debug_printf(L"[%u]\n", client2B.GetCurrState());
+			debug_printf("[%u]\n", client2B.GetCurrState());
 			client2B.Poll();
 			if (client2B.GetCurrState() == NCS_PREGAME)
 				break;

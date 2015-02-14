@@ -205,7 +205,7 @@ static ErrorReactionInternal try_gui_display_error(const wchar_t* text, bool man
 
 ErrorReactionInternal sys_display_error(const wchar_t* text, size_t flags)
 {
-	debug_printf(L"%ls\n\n", text);
+	debug_printf("%s\n\n", utf8_from_wstring(text).c_str());
 
 	const bool manual_break   = (flags & DE_MANUAL_BREAK  ) != 0;
 	const bool allow_suppress = (flags & DE_ALLOW_SUPPRESS) != 0;
@@ -358,7 +358,7 @@ Status sys_open_url(const std::string& url)
 
 		execlp(URL_OPEN_COMMAND, URL_OPEN_COMMAND, url.c_str(), (const char*)NULL);
 
-		debug_printf(L"Failed to run '" URL_OPEN_COMMAND "' command\n");
+		debug_printf("Failed to run '" URL_OPEN_COMMAND "' command\n");
 
 		// We can't call exit() because that'll try to free resources which were the parent's,
 		// so just abort here

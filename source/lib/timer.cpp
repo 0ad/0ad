@@ -180,8 +180,8 @@ TimerClient* timer_AddClient(TimerClient* tc, const wchar_t* description)
 
 void timer_DisplayClientTotals()
 {
-	debug_printf(L"TIMER TOTALS (%lu clients)\n", (unsigned long)numClients);
-	debug_printf(L"-----------------------------------------------------\n");
+	debug_printf("TIMER TOTALS (%lu clients)\n", (unsigned long)numClients);
+	debug_printf("-----------------------------------------------------\n");
 
 	while(clients)
 	{
@@ -191,44 +191,44 @@ void timer_DisplayClientTotals()
 		clients = tc->next;
 		numClients--;
 
-		const std::wstring duration = tc->sum.ToString();
-		debug_printf(L"  %ls: %ls (%lux)\n", tc->description, duration.c_str(), (unsigned long)tc->num_calls);
+		const std::string duration = tc->sum.ToString();
+		debug_printf("  %s: %s (%lux)\n", utf8_from_wstring(tc->description).c_str(), duration.c_str(), (unsigned long)tc->num_calls);
 	}
 
-	debug_printf(L"-----------------------------------------------------\n");
+	debug_printf("-----------------------------------------------------\n");
 }
 
 
 //-----------------------------------------------------------------------------
 
-std::wstring StringForSeconds(double seconds)
+std::string StringForSeconds(double seconds)
 {
 	double scale = 1e6;
-	const wchar_t* unit = L" us";
+	const char* unit = " us";
 	if(seconds > 1.0)
-		scale = 1, unit = L" s";
+		scale = 1, unit = " s";
 	else if(seconds > 1e-3)
-		scale = 1e3, unit = L" ms";
+		scale = 1e3, unit = " ms";
 
-	std::wstringstream ss;
+	std::stringstream ss;
 	ss << seconds*scale;
 	ss << unit;
 	return ss.str();
 }
 
 
-std::wstring StringForCycles(Cycles cycles)
+std::string StringForCycles(Cycles cycles)
 {
 	double scale = 1.0;
-	const wchar_t* unit = L" c";
+	const char* unit = " c";
 	if(cycles > 10000000000LL)	// 10 Gc
-		scale = 1e-9, unit = L" Gc";
+		scale = 1e-9, unit = " Gc";
 	else if(cycles > 10000000)	// 10 Mc
-		scale = 1e-6, unit = L" Mc";
+		scale = 1e-6, unit = " Mc";
 	else if(cycles > 10000)	// 10 kc
-		scale = 1e-3, unit = L" kc";
+		scale = 1e-3, unit = " kc";
 
-	std::wstringstream ss;
+	std::stringstream ss;
 	ss << cycles*scale;
 	ss << unit;
 	return ss.str();

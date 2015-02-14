@@ -536,7 +536,7 @@ static const Characteristics* CharacteristicsFromDescriptor(Descriptor descripto
 			return &characteristics;
 	}
 
-	debug_printf(L"Unknown cache/TLB descriptor 0x%x\n", (unsigned int)descriptor);
+	debug_printf("Unknown cache/TLB descriptor 0x%x\n", (unsigned int)descriptor);
 	return 0;
 }
 

@@ -60,7 +60,7 @@ public:
 	{
 		if (!VfsFileExists(L"simulation/components/tests/setup.js"))
 		{
-			debug_printf(L"WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests/setup.js)\n");
+			debug_printf("WARNING: Skipping component scripts tests (can't find binaries/data/mods/public/simulation/components/tests/setup.js)\n");
 			return;
 		}
 

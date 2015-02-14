@@ -80,7 +80,7 @@ static void CallFunctionPointers(PfnLibError* begin, PfnLibError* end)
 	}
 
 	const DWORD t1 = GetTickCount();
-	debug_printf(L"WINIT| total elapsed time in callbacks %d ms (+-10)\n", t1-t0);
+	debug_printf("WINIT| total elapsed time in callbacks %d ms (+-10)\n", t1-t0);
 }
 
 

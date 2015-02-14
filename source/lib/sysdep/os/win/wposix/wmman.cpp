@@ -109,7 +109,7 @@ static Status mmap_mem(void* start, size_t len, int prot, int flags, int fd, voi
 	void* p = VirtualAlloc(start, len, allocationType, protect);
 	if(!p)
 	{
-		debug_printf(L"wmman: VirtualAlloc(%p, 0x%I64X) failed\n", start, len);
+		debug_printf("wmman: VirtualAlloc(%p, 0x%I64X) failed\n", start, len);
 		WARN_RETURN(ERR::NO_MEM);
 	}
 	*pp = p;
