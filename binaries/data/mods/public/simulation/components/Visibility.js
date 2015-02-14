@@ -21,32 +21,27 @@ Visibility.prototype.Init = function()
 	this.alwaysVisible = this.template.AlwaysVisible == "true";
 	this.preview = this.template.Preview == "true";
 
-	this.activated = false;
-
 	if (this.preview)
-		this.activated = true;
+		this.SetActivated(true);
 };
 
 /**
- * If this function returns true, the range manager will call the GetVisibility function
- * instead of computing the visibility.
+ * Sets the range manager scriptedVisibility flag for this entity.
  */
-Visibility.prototype.IsActivated = function()
+Visibility.prototype.SetActivated = function(status)
 {
-	return this.activated;
+	let cmpRangeManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_RangeManager);
+	cmpRangeManager.ActivateScriptedVisibility(this.entity, status);
 };
 
 /**
- * This function is called if IsActivated returns true.
+ * This function is called if the range manager scriptedVisibility flag is set to true for this entity.
  * If so, the return value supersedes the visibility computed by the range manager.
  * isVisible: true if the entity is in the vision range of a unit, false otherwise
  * isExplored: true if the entity is in explored territory, false otherwise
  */
 Visibility.prototype.GetVisibility = function(player, isVisible, isExplored)
 {
-	if (!this.activated)
-		warn("The Visibility component was asked to provide a superseding visibility while not activated, this should not happen");
-
 	if (this.preview)
 	{
 		// For the owner only, mock the "RetainInFog" behaviour

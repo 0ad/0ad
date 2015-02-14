@@ -35,8 +35,6 @@
 class ICmpVisibility : public IComponent
 {
 public:
-	virtual bool IsActivated() = 0;
-
 	virtual ICmpRangeManager::ELosVisibility GetVisibility(player_id_t player, bool isVisible, bool isExplored) = 0;
 
 	virtual bool GetRetainInFog() = 0;
